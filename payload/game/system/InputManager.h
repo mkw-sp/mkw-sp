@@ -1,0 +1,62 @@
+#pragma once
+
+#include <Common.h>
+
+typedef struct {
+    u8 _00[0x90 - 0x00];
+} Pad;
+
+void Pad_calc(Pad *this);
+
+typedef struct {
+    Pad;
+    u8 _90[0xa8 - 0x90];
+} GhostPad;
+
+GhostPad *GhostPad_ct(GhostPad *this);
+
+typedef struct {
+    u8 _00[0xd8 - 0x00];
+} PadProxy;
+
+// TODO r5
+void PadProxy_setPad(PadProxy *this, Pad *pad, Pad *r5);
+
+typedef struct {
+    PadProxy;
+    u8 _d8[0xe4 - 0xd8];
+    bool isLocked;
+    u8 _e5[0xec - 0xe5];
+} GhostPadProxy;
+
+GhostPadProxy *GhostPadProxy_ct(GhostPadProxy *this);
+
+void GhostPadProxy_setPad(GhostPadProxy *this, GhostPad *pad, const void *inputs, bool driftIsAuto);
+
+void GhostPadProxy_start(GhostPadProxy *this);
+
+void GhostPadProxy_calc(GhostPadProxy *this, bool isPaused);
+
+void GhostPadProxy_reset(GhostPadProxy *this);
+
+typedef struct {
+    u8 _0000[0x0004 - 0x0000];
+    GhostPadProxy ghostProxies[4];
+    u8 _03b4[0x1690 - 0x03b4];
+    Pad dummyPad;
+    u8 _1720[0x415c - 0x1720];
+    GhostPad multiGhostPads[11]; // Added
+    GhostPadProxy multiGhostProxies[11]; // Added
+} InputManager;
+
+extern InputManager *s_inputManager;
+
+InputManager *InputManager_createInstance(void);
+
+InputManager *InputManager_ct(InputManager *this);
+
+void InputManager_setGhostPad(InputManager *this, u32 ghostId, const void *ghostInputs, bool driftIsAuto);
+
+void InputManager_startRace(InputManager *this);
+
+void InputManager_startGhostProxies(InputManager *this);

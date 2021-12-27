@@ -1,0 +1,137 @@
+#include <Common.S>
+
+// Increase the size of nameIsEnabled from 3 to 12
+
+PATCH_REPLACE_START(CtrlRaceNameBalloon_initSelf, 0x144)
+    cmpwi r4, 12
+PATCH_REPLACE_END(CtrlRaceNameBalloon_initSelf, 0x144)
+
+PATCH_REPLACE_START(CtrlRaceNameBalloon_calcSelf, 0x1e4)
+    cmpwi r4, 12
+PATCH_REPLACE_END(CtrlRaceNameBalloon_calcSelf, 0x1e4)
+
+PATCH_REPLACE_START(CtrlRaceNameBalloon_calcSelf, 0x408)
+    cmpwi r4, 12
+PATCH_REPLACE_END(CtrlRaceNameBalloon_calcSelf, 0x408)
+
+PATCH_REPLACE_START(CtrlRaceNameBalloon_calcPosition, 0x264)
+    cmpwi r4, 12
+PATCH_REPLACE_END(CtrlRaceNameBalloon_calcPosition, 0x264)
+
+// Move nameIsEnabled from 0x0 to 0x44
+
+PATCH_INJECT_START(CtrlRaceNameBalloon_initSelf, 0x15c)
+    add r3, r3, r4
+    stb r0, 0x44 (r3)
+PATCH_INJECT_END(CtrlRaceNameBalloon_initSelf, 0x15c)
+
+PATCH_INJECT_START(CtrlRaceNameBalloon_calcSelf, 0x1fc)
+    add r3, r3, r4
+    stb r0, 0x44 (r3)
+PATCH_INJECT_END(CtrlRaceNameBalloon_calcSelf, 0x1fc)
+
+PATCH_INJECT_START(CtrlRaceNameBalloon_calcSelf, 0x420)
+    add r3, r3, r4
+    stb r0, 0x44 (r3)
+PATCH_INJECT_END(CtrlRaceNameBalloon_calcSelf, 0x420)
+
+PATCH_REPLACE_START(CtrlRaceNameBalloon_calcSelf, 0x50c)
+    lbz r0, 0x44 (r3)
+PATCH_REPLACE_END(CtrlRaceNameBalloon_calcSelf, 0x50c)
+
+PATCH_INJECT_START(CtrlRaceNameBalloon_calcSelf, 0x52c)
+    add r4, r6, r4
+    stb r3, 0x44 (r4)
+PATCH_INJECT_END(CtrlRaceNameBalloon_calcSelf, 0x52c)
+
+PATCH_INJECT_START(CtrlRaceNameBalloon_calcPosition, 0x27c)
+    add r3, r3, r4
+    stb r0, 0x44 (r3)
+PATCH_INJECT_END(CtrlRaceNameBalloon_calcPosition, 0x27c)
+
+PATCH_REPLACE_START(BalloonManager_calc, 0x94)
+    stb r4, 0x44 (r3)
+PATCH_REPLACE_END(BalloonManager_calc, 0x94)
+
+PATCH_REPLACE_START(BalloonManager_calc, 0xe8)
+    stb r5, 0x44 (r3)
+PATCH_REPLACE_END(BalloonManager_calc, 0xe8)
+
+PATCH_REPLACE_START(BalloonManager_calc, 0x168)
+    stb r5, 0x44 (r3)
+PATCH_REPLACE_END(BalloonManager_calc, 0x168)
+
+PATCH_INJECT_START(BalloonManager_calc, 0x4cc)
+    add r3, r30, r15
+    stb r26, 0x44 (r3)
+PATCH_INJECT_END(BalloonManager_calc, 0x4cc)
+
+PATCH_INJECT_START(BalloonManager_calc, 0x734)
+    add r3, r30, r4
+    stb r26, 0x44 (r3)
+PATCH_INJECT_END(BalloonManager_calc, 0x734)
+
+PATCH_INJECT_START(BalloonManager_calc, 0x810)
+    add r3, r30, r5
+    stb r26, 0x44 (r3)
+PATCH_INJECT_END(BalloonManager_calc, 0x810)
+
+// Move namePositions to 0xc4
+
+PATCH_REPLACE_START(CtrlRaceNameBalloon_calcPosition, 0x98)
+    lwz r5, 0xc4 (r6)
+    lwz r4, 0xc8 (r6)
+    lwz r0, 0xcc (r6)
+PATCH_REPLACE_END(CtrlRaceNameBalloon_calcPosition, 0x98)
+
+PATCH_REPLACE_START(BalloonManager_calc, 0x430)
+    stfs f0, 0xc4 (r16)
+    lfs f0, 0x30 (r1)
+    stfs f0, 0xc8 (r16)
+    lfs f0, 0x34 (r1)
+    stfs f0, 0xcc (r16)
+PATCH_REPLACE_END(BalloonManager_calc, 0x430)
+
+PATCH_REPLACE_START(BalloonManager_calc, 0x74c)
+    stfs f0, 0xc4 (r16)
+    lfs f0, 0x30 (r1)
+    stfs f0, 0xc8 (r16)
+    lfs f0, 0x34 (r1)
+    stfs f0, 0xcc (r16)
+PATCH_REPLACE_END(BalloonManager_calc, 0x74c)
+
+PATCH_REPLACE_START(BalloonManager_calc, 0x7b0)
+    lfs f0, 0xcc (r4)
+PATCH_REPLACE_END(BalloonManager_calc, 0x7b0)
+
+PATCH_INJECT_START(BalloonManager_calc, 0x7c)
+    # Check if the current section id is ghost replay
+    lis r3, s_sectionManager@ha
+    lwz r3, s_sectionManager@l (r3)
+    lwz r3, 0x0 (r3)
+    lwz r3, 0x0 (r3)
+    cmpwi r3, 0x34
+    bne .Lend
+
+    # Check that there are at least to ghosts
+    lis r3, s_raceConfig@ha
+    lwz r3, s_raceConfig@l (r3)
+    lbz r3, 0x24 (r3)
+    cmpwi r3, 2
+    blt .Lend
+
+    li r0, -1 # Hide the tagline at the beginning of the race
+
+.Lend:
+    stw r0, 0x14 (r30) # Original instruction
+PATCH_INJECT_END(BalloonManager_calc, 0x7c)
+
+// Fix disappearing names in rear view
+PATCH_REPLACE_START(BalloonManager_calc, 0x4ec)
+    b 0x334
+PATCH_REPLACE_END(BalloonManager_calc, 0x4ec)
+
+// Always use the battle maximum distance
+PATCH_REPLACE_START(CtrlRaceNameBalloon_load, 0x17c)
+    nop
+PATCH_REPLACE_END(CtrlRaceNameBalloon_load, 0x17c)

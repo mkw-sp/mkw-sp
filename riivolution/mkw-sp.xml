@@ -1,0 +1,19 @@
+<wiidisc version="1" root="/mkw-sp">
+    <id game="RMC" />
+    <options>
+        <section name="Support Package">
+            <option name="Support Package">
+                <choice name="Enabled">
+                    <patch id="sp" />
+                </choice>
+            </option>
+        </section>
+    </options>
+    <patch id="sp">
+        <memory offset="0x800061c4" value="4bffdd3d" />
+        <memory offset="0x80003f00" valuefile="bin/loader{$__region}.bin" />
+        <file disc="/bin/payload.bin" external="bin/payload{$__region}.bin" create="true" />
+        <folder disc="/" external="disc" create="true" />
+        <savegame external="" clone="false" />
+    </patch>
+</wiidisc>

@@ -1,0 +1,103 @@
+#include "BootStrapScene.h"
+
+#include "Patcher.h"
+
+#include <string.h>
+
+#include <Rel.h>
+
+typedef void (*RelEntryFunction)(void);
+
+static void *loadRel(void *arg) {
+    EGG_Heap *heap = arg;
+
+    DVDFileInfo fileInfo;
+    if (!DVDOpen("/rel/StaticR.rel", &fileInfo)) {
+        return NULL;
+    }
+
+    s32 size = OSRoundUp32B(fileInfo.length);
+    void *src = EGG_Heap_alloc(size, 0x20, heap);
+    if (!src) {
+        DVDClose(&fileInfo);
+        return NULL;
+    }
+
+    s32 result = DVDRead(&fileInfo, src, size, 0);
+    DVDClose(&fileInfo);
+    if (result != size) {
+        return NULL;
+    }
+
+    void *dst = Rel_getStart();
+    OSModuleHeader *srcHeader = src;
+    memcpy(dst, src, srcHeader->fixSize);
+    ICInvalidateRange(dst, srcHeader->fixSize);
+    OSModuleHeader *dstHeader = dst;
+
+    void *bss = dst + OSRoundUp32B(srcHeader->fixSize);
+
+    dstHeader->info.sectionInfoOffset += (u32)dst;
+    OSSectionInfo *dstSectionInfo = (OSSectionInfo *)dstHeader->info.sectionInfoOffset;
+    for (u32 i = 1; i < dstHeader->info.numSections; i++) {
+        if (dstSectionInfo[i].offset != 0) {
+            dstSectionInfo[i].offset += (u32)dst;
+        } else if (dstSectionInfo[i].size != 0) {
+            dstSectionInfo[i].offset = (u32)bss;
+        }
+    }
+
+    dstHeader->impOffset += (u32)src;
+    OSImportInfo *importInfo = (OSImportInfo *)dstHeader->impOffset;
+    for (u32 i = 0; i < dstHeader->impSize / sizeof(OSImportInfo); i++) {
+        importInfo[i].offset += (u32)src;
+    }
+
+    Relocate(NULL, dstHeader);
+    Relocate(dstHeader, dstHeader);
+
+    EGG_Heap_free(src, NULL);
+
+    OSSectionInfo *prologSectionInfo = dstSectionInfo + dstHeader->prologSection;
+    return (void *)(prologSectionInfo->offset + dstHeader->prolog);
+}
+
+void my_BootStrapScene_calc(BootStrapScene *this) {
+    RelEntryFunction entry;
+    if (!OSJoinThread(this->relLoadThread, (void **)&entry)) {
+        return;
+    }
+
+    if (!entry) {
+        // TODO handle
+        return;
+    }
+
+    Patcher_patch(PATCHER_BINARY_REL);
+
+    entry();
+}
+
+void my_BootStrapScene_draw(BootStrapScene *this) {
+    UNUSED(this);
+}
+
+void my_BootStrapScene_enter(BootStrapScene *this) {
+    this->relLoadThread = EGG_Heap_alloc(sizeof(OSThread), 0x4, this->heapMem1);
+    u32 stackSize = 0x5000;
+    this->relLoadThreadStack = EGG_Heap_alloc(stackSize, 0x4, this->heapMem1);
+    void *stackBase = this->relLoadThreadStack + stackSize;
+    OSCreateThread(this->relLoadThread, loadRel, this->heapMem1, stackBase, stackSize, 20, 0);
+    OSResumeThread(this->relLoadThread);
+}
+
+void my_BootStrapScene_exit(BootStrapScene *this) {
+    OSDetachThread(this->relLoadThread);
+    EGG_Heap_free(this->relLoadThreadStack, NULL);
+    EGG_Heap_free(this->relLoadThread, NULL);
+}
+
+PATCH_B(BootStrapScene_calc, my_BootStrapScene_calc);
+PATCH_B(BootStrapScene_draw, my_BootStrapScene_draw);
+PATCH_B(BootStrapScene_enter, my_BootStrapScene_enter);
+PATCH_B(BootStrapScene_exit, my_BootStrapScene_exit);
