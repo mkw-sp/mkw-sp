@@ -499,21 +499,23 @@ def unpack_sections(in_data, offset, parent_magic):
         offset += section['size']
         del section['size']
         if magic == 'pas1' or magic == 'grs1':
-            expected_last_magic = {
-                'pas1': 'pan1',
-                'grs1': 'grp1',
-            }[magic]
             last_magic = last_section.get('magic')
-            if last_magic != expected_last_magic:
+            if last_magic is None:
+                exit(f'Unexpected {magic} without parent.')
+            expected_last_magics = {
+                'pas1': ['pan1', 'pic1', 'bnd1', 'txt1', 'wnd1'],
+                'grs1': ['grp1'],
+            }[magic]
+            if last_magic not in expected_last_magics:
                 exit(f'Unexpected {magic} after {last_magic}.')
             offset, child_sections = unpack_sections(in_data, offset, last_magic)
             last_section['children'] = child_sections
         elif magic == 'pae1' or magic == 'gre1':
-            expected_parent_magic = {
-                'pae1': 'pan1',
-                'gre1': 'grp1',
+            expected_parent_magics = {
+                'pae1': ['pan1', 'pic1', 'bnd1', 'txt1', 'wnd1'],
+                'gre1': ['grp1'],
             }[magic]
-            if parent_magic != expected_parent_magic:
+            if parent_magic not in expected_parent_magics:
                 exit(f'Unexpected {magic} after {parent_magic}.')
             break
         else:
@@ -548,6 +550,10 @@ def pack_section(section):
             {
                 'magic': {
                     'pan1': 'pas1',
+                    'pic1': 'pas1',
+                    'bnd1': 'pas1',
+                    'txt1': 'pas1',
+                    'wnd1': 'pas1',
                     'grp1': 'grs1',
                 }[magic],
             },
@@ -555,6 +561,10 @@ def pack_section(section):
             {
                 'magic': {
                     'pan1': 'pae1',
+                    'pic1': 'pae1',
+                    'bnd1': 'pae1',
+                    'txt1': 'pae1',
+                    'wnd1': 'pae1',
                     'grp1': 'gre1',
                 }[magic],
             },

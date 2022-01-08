@@ -10,8 +10,10 @@ Convert Wii UI formats to JSON5 and vice versa.
 | BRCTR   | Yes  | Yes   |       |
 | BRLAN   | Yes  | Yes   |       |
 | BRLYT   | WIP  | WIP   |       |
+| SZS[^2] | Yes  | Yes   |       |
 
 [^1]: Mario Kart Wii only.
+[^2]: U.8 + Yaz0.
 
 ## How to use
 
