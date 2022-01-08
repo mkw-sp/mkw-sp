@@ -13,7 +13,7 @@ Convert Wii UI formats to JSON5 and vice versa.
 | SZS[^2] | Yes  | Yes   |       |
 
 [^1]: Mario Kart Wii only.
-[^2]: U.8 + Yaz0.
+[^2]: U8 + Yaz0.
 
 ## How to use
 
