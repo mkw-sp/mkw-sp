@@ -48,7 +48,7 @@ def process_node(node, index, names, contents):
     if node['is_dir']:
         count = 1
         for i, child in enumerate(node['children']):
-            count += process_node(child, index + 1 + i, names, contents)
+            count += process_node(child, index + count, names, contents)
         node['count'] = count
         return count
     else:
@@ -57,16 +57,16 @@ def process_node(node, index, names, contents):
         contents.buffer = contents.buffer.ljust((len(contents.buffer) + 0x1f) & ~0x1f, b'\0')
         return 1
 
-def pack_node(node, names_offset, contents_offset, parent_index):
+def pack_node(node, contents_offset, parent_index):
     common_data = b''.join([
         pack_bool8(node['is_dir']),
-        pack_u32(names_offset + node['name_offset'])[1:4],
+        pack_u32(node['name_offset'])[1:4],
     ])
 
     if node['is_dir']:
         children_data = b''
         for child in node['children']:
-            children_data += pack_node(child, names_offset, contents_offset, node['index'])
+            children_data += pack_node(child, contents_offset, node['index'])
         return b''.join([
             common_data,
             pack_u32(parent_index),
@@ -95,7 +95,7 @@ def pack_u8(root):
 
     names_offset = 0x20 + count * 0xc
     contents_offset = names_offset + len(names.buffer)
-    nodes_data = pack_node(root, names_offset, contents_offset, 0x0)
+    nodes_data = pack_node(root, contents_offset, 0x0)
 
     return b''.join([
         b'U\xaa8-',

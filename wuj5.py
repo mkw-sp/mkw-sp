@@ -53,7 +53,7 @@ def decode_szs_node(out_path, node):
             out_file = open(out_path + '.json5', 'w')
         out_file.write(out_data)
 
-def decode_szs(in_path):
+def decode_szs(in_path, out_path):
     in_file = open(in_path, 'rb')
     in_data = in_file.read()
     magic = in_data[0:4]
@@ -64,12 +64,14 @@ def decode_szs(in_path):
         exit(f'Unexpected magic {magic} for extension {ext} (expected {expected_magic}).')
     in_data = unpack_yaz(in_data)
     root = unpack_u8(in_data)
-    decode_szs_node(in_path + '.d', root)
+    if out_path is None:
+        out_path = in_path + '.d'
+    decode_szs_node(out_path, root)
 
 def decode(in_path, out_path):
     ext = in_path.split(os.extsep)[-1]
     if ext == 'szs':
-        decode_szs(in_path)
+        decode_szs(in_path, out_path)
         return
     unpack = ext_unpack.get(ext)
     if unpack is None:
@@ -122,18 +124,19 @@ def encode_szs_node(in_path):
         **node,
     }
 
-def encode_szs(in_path):
+def encode_szs(in_path, out_path):
     root = encode_szs_node(in_path)
     out_data = pack_u8(root)
     out_data = pack_yaz(out_data)
-    out_path = os.path.splitext(in_path)[0]
+    if out_path is None:
+        out_path = os.path.splitext(in_path)[0]
     out_file = open(out_path, 'wb')
     out_file.write(out_data)
 
 def encode(in_path, out_path):
     ext = in_path.split(os.extsep)[-2]
     if ext == 'szs':
-        encode_szs(in_path)
+        encode_szs(in_path, out_path)
         return
     pack = ext_pack.get(ext)
     if pack is None:
