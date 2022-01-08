@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 
 
+import glob
 import os
 from vendor.ninja_syntax import Writer
 
@@ -11,6 +12,7 @@ n.variable('ninja_required_version', '1.3')
 n.newline()
 
 n.variable('builddir', 'build')
+n.variable('outdir', 'out')
 n.newline()
 
 n.variable('cc', 'powerpc-eabi-gcc')
@@ -79,62 +81,28 @@ n.rule(
 )
 n.newline()
 
-sourcefiles = {
-    'loader': [
-        os.path.join('Loader.c'),
-    ],
-    'payload': [
-        os.path.join('game', 'gfx', 'Camera.S'),
-        os.path.join('game', 'gfx', 'CameraManager.S'),
-        os.path.join('game', 'host_system', 'BootStrapScene.c'),
-        os.path.join('game', 'host_system', 'Patcher.c'),
-        os.path.join('game', 'host_system', 'Payload.c'),
-        os.path.join('game', 'host_system', 'RkSystem.c'),
-        os.path.join('game', 'host_system', 'SceneManager.S'),
-        os.path.join('game', 'snd', 'Snd.S'),
-        os.path.join('game', 'system', 'GhostFile.c'),
-        os.path.join('game', 'system', 'InputManager.S'),
-        os.path.join('game', 'system', 'InputManager.c'),
-        os.path.join('game', 'system', 'MultiDvdArchive.c'),
-        os.path.join('game', 'system', 'NandHelper.c'),
-        os.path.join('game', 'system', 'NandManager.S'),
-        os.path.join('game', 'system', 'RaceConfig.S'),
-        os.path.join('game', 'system', 'RaceConfig.c'),
-        os.path.join('game', 'system', 'RaceManager.S'),
-        os.path.join('game', 'system', 'RaceManager.c'),
-        os.path.join('game', 'system', 'ResourceManager.c'),
-        os.path.join('game', 'system', 'SaveManager.c'),
-        os.path.join('game', 'ui', 'GhostManagerPage.c'),
-        os.path.join('game', 'ui', 'GhostSelectButton.c'),
-        os.path.join('game', 'ui', 'GhostSelectControl.c'),
-        os.path.join('game', 'ui', 'Section.c'),
-        os.path.join('game', 'ui', 'SectionManager.c'),
-        os.path.join('game', 'ui', 'TabControl.c'),
-        os.path.join('game', 'ui', 'TimeAttackGhostListPage.c'),
-        os.path.join('game', 'ui', 'UIAnimator.c'),
-        os.path.join('game', 'ui', 'UIControl.c'),
-        os.path.join('game', 'ui', 'ctrl', 'CtrlMenuBackButton.c'),
-        os.path.join('game', 'ui', 'ctrl', 'CtrlMenuPageTitleText.c'),
-        os.path.join('game', 'ui', 'ctrl', 'CtrlRace2DMap.S'),
-        os.path.join('game', 'ui', 'ctrl', 'CtrlRaceBase.S'),
-        os.path.join('game', 'ui', 'ctrl', 'CtrlRaceNameBalloon.S'),
-        os.path.join('game', 'ui', 'ctrl', 'CtrlRaceNameBalloon.c'),
-        os.path.join('game', 'ui', 'ctrl', 'CtrlRaceSpeed.c'),
-        os.path.join('game', 'ui', 'ctrl', 'CtrlRaceTime.S'),
-        os.path.join('game', 'ui', 'page', 'RacePage.S'),
-        os.path.join('game', 'ui', 'page', 'RacePage.c'),
-        os.path.join('nw4r', 'lyt', 'lyt_arcResourceAccessor.S'),
-        os.path.join('nw4r', 'lyt', 'lyt_layout.S'),
-        os.path.join('revolution', 'nand.c'),
-    ],
-}
-ofiles = {target: [] for target in sourcefiles}
+bintargets = ['loader', 'payload']
 
-for target in sourcefiles:
-    for sourcefile in sourcefiles[target]:
-        sourcefile = os.path.join(target, sourcefile)
-        _, ext = os.path.splitext(sourcefile)
-        ofile = os.path.join('$builddir', sourcefile + '.o')
+srcdirs = {}
+for target in bintargets:
+    pattern = os.path.join(target, '**', '')
+    srcdirs[target] = glob.glob(pattern, recursive=True)
+    srcdirs[target] = [os.path.normpath(srcdir) for srcdir in srcdirs[target]]
+
+srcfiles = {}
+for target in bintargets:
+    srcfiles[target] = []
+    for ext in ['.S', '.c']:
+        pattern = os.path.join(target, '**', '*' + ext)
+        srcfiles[target] += glob.glob(pattern, recursive=True)
+    srcfiles[target] = [os.path.relpath(srcfile, target) for srcfile in srcfiles[target]]
+ofiles = {target: [] for target in srcfiles}
+
+for target in srcfiles:
+    for srcfile in srcfiles[target]:
+        srcfile = os.path.join(target, srcfile)
+        _, ext = os.path.splitext(srcfile)
+        ofile = os.path.join('$builddir', srcfile + '.o')
         rule = {
             '.S': 'as',
             '.c': 'cc',
@@ -142,7 +110,7 @@ for target in sourcefiles:
         n.build(
             ofile,
             rule,
-            sourcefile,
+            srcfile,
         )
         ofiles[target] += [ofile]
     n.newline()
@@ -162,7 +130,7 @@ for region in ['P', 'E', 'J', 'K']:
 for target in ofiles:
     for region in ['P', 'E', 'J', 'K']:
         n.build(
-            os.path.join('$builddir', f'{target}{region}.bin'),
+            os.path.join('$outdir', 'mkw-sp', 'bin', f'{target}{region}.bin'),
             'ld',
             ofiles[target],
             variables = {
@@ -178,6 +146,83 @@ for target in ofiles:
         )
         n.newline()
 
+n.variable('wuj5', os.path.join('vendor', 'wuj5', 'wuj5.py'))
+n.newline()
+
+n.rule(
+    'wuj5',
+    command = '$wuj5 encode $in -o $out',
+    description = 'WUJ5 $out',
+)
+n.newline()
+
+n.rule(
+    'cp',
+    command = 'cp $in $out',
+    description = 'CP $out',
+)
+n.newline()
+
+n.rule(
+    'szs',
+    command = '$wuj5 encode $szsin -o $out',
+    description = 'SZS $out',
+)
+n.newline()
+
+assettargets = [
+    os.path.join('Scene', 'UI', 'MenuSingleSP'),
+    os.path.join('Scene', 'UI', 'MenuSingleSP_E'),
+    os.path.join('Scene', 'UI', 'RaceSP'),
+]
+
+assetdirs = {}
+for target in assettargets:
+    pattern = os.path.join('assets', target + '.szs.d', '**', '')
+    assetdirs[target] = glob.glob(pattern, recursive=True)
+    assetdirs[target] = [os.path.normpath(assetdir) for assetdir in assetdirs[target]]
+
+assetfiles = {}
+for target in assettargets:
+    assetfiles[target] = []
+    for ext in ['.json5', '.tpl']:
+        pattern = os.path.join('assets', target + '.szs.d', '**', '*' + ext)
+        assetfiles[target] += glob.glob(pattern, recursive=True)
+    assetfiles[target] = [os.path.relpath(assetfile, 'assets') for assetfile in assetfiles[target]]
+outfiles = {target: [] for target in assetfiles}
+
+for target in assetfiles:
+    for assetfile in assetfiles[target]:
+        assetfile = os.path.join('assets', assetfile)
+        base, ext = os.path.splitext(assetfile)
+        outext = {
+            '.json5': '',
+            '.tpl': '.tpl',
+        }[ext]
+        outfile = os.path.join('$builddir', base + outext)
+        rule = {
+            '.json5': 'wuj5',
+            '.tpl': 'cp',
+        }[ext]
+        n.build(
+            outfile,
+            rule,
+            assetfile,
+        )
+        outfiles[target] += [outfile]
+    n.newline()
+
+for target in outfiles:
+    n.build(
+        os.path.join('$outdir', 'mkw-sp', 'disc', target + '.szs'),
+        'szs',
+        variables = {
+            'szsin': os.path.join('$builddir', 'assets', target + '.szs.d'),
+        },
+        implicit = outfiles[target],
+    )
+    n.newline()
+
 n.variable('configure', os.path.join('.', 'configure.py'))
 n.newline()
 
@@ -192,5 +237,7 @@ n.build(
     implicit = [
         '$configure',
         os.path.join('vendor', 'ninja_syntax.py'),
+        *sum(srcdirs.values(), []),
+        *sum(assetdirs.values(), []),
     ],
 )

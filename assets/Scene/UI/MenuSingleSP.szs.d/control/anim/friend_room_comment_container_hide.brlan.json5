@@ -1,0 +1,70 @@
+{
+    "version": 10,
+    "sections": [
+        {
+            "magic": "pat1",
+            "id": 2,
+            "groups": [],
+            "name": "hide",
+            "start frame": 70,
+            "end frame": 130,
+            "descending bind": true,
+        },
+        {
+            "magic": "pai1",
+            "frame count": 60,
+            "loop": true,
+            "tpls": [],
+            "contents": [
+                {
+                    "name": "SlideBase",
+                    "kind": "pane",
+                    "animations": [
+                        {
+                            "magic": "RLPA",
+                            "targets": [
+                                {
+                                    "id": 0,
+                                    "kind": "translate x",
+                                    "curve type": "hermite",
+                                    "keys": [
+                                        {
+                                            "frame": 0.0,
+                                            "value": 608.0,
+                                            "slope": -20.266666,
+                                        },
+                                        {
+                                            "frame": 60.0,
+                                            "value": -608.0,
+                                            "slope": -20.266666,
+                                        },
+                                    ],
+                                },
+                            ],
+                        },
+                        {
+                            "magic": "RLVI",
+                            "targets": [
+                                {
+                                    "id": 0,
+                                    "kind": "visibility",
+                                    "curve type": "step",
+                                    "keys": [
+                                        {
+                                            "frame": 0.0,
+                                            "value": 0,
+                                        },
+                                        {
+                                            "frame": 60.0,
+                                            "value": 1,
+                                        },
+                                    ],
+                                },
+                            ],
+                        },
+                    ],
+                },
+            ],
+        },
+    ],
+}

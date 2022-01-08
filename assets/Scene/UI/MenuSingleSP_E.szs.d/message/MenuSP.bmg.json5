@@ -1,0 +1,22 @@
+{
+    "0x1780": {
+        "font": "regular",
+        "string": "Solo Time Trial",
+    },
+    "0x3000": {
+        "font": "regular",
+        "string": "Race Against 1 Ghost",
+    },
+    "0x3001": {
+        "font": "regular",
+        "string": "Watch 1 Ghost",
+    },
+    "0x3002": {
+        "font": "regular",
+        "string": "Race Against \u001a\u0a02\u0010\0\0 Ghosts",
+    },
+    "0x3003": {
+        "font": "regular",
+        "string": "Watch \u001a\u0a02\u0010\0\0 Ghosts",
+    },
+}
