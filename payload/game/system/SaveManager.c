@@ -19,16 +19,21 @@ SaveManager *my_SaveManager_createInstance(void) {
 
     this->ghostCount = 0;
     EGG_Heap *heap = s_rootScene->heapCollection.heaps[HEAP_ID_MEM2];
-    this->rawGhostHeaders = EGG_Heap_alloc(MAX_GHOST_COUNT * sizeof(RawGhostHeader), 0x4, heap);
-    this->ghostPaths = EGG_Heap_alloc(MAX_GHOST_COUNT * NAND_MAX_PATH, 0x4, heap);
+    this->rawGhostHeaders = spAllocArray(MAX_GHOST_COUNT, sizeof(RawGhostHeader), 0x4, heap);
+    this->ghostPaths = spAllocArray(MAX_GHOST_COUNT, NAND_MAX_PATH, 0x4, heap);
 
+    this->spCanSave = true;
+    this->spBuffer = spAlloc(SP_BUFFER_SIZE, 0x20, heap);
+    this->spSectionCount = 0;
+    this->spSections = NULL;
+    this->spLicenseCount = 0;
     for (u32 i = 0; i < ARRAY_SIZE(this->spLicenses); i++) {
         this->spLicenses[i] = NULL;
     }
+    this->spCurrentLicense = -1;
 
     return s_saveManager;
 }
-
 PATCH_B(SaveManager_createInstance, my_SaveManager_createInstance);
 
 static void SaveManager_initGhost(SaveManager *this, const char *path) {
@@ -50,27 +55,25 @@ static void SaveManager_initGhost(SaveManager *this, const char *path) {
     this->ghostCount++;
 }
 
-static u32 SaveManager_initGhostsDir(SaveManager *this, const char *dir) {
+static void SaveManager_initGhostsDir(SaveManager *this, const char *dir) {
     if (this->ghostCount >= MAX_GHOST_COUNT) {
-        return RK_NAND_RESULT_OK;
+        return;
     }
 
     if (strlen(dir) + 1 + NAND_MAX_NAME > NAND_MAX_PATH) {
-        return RK_NAND_RESULT_OK;
+        return;
     }
 
-    u32 result, fileCount;
+    u32 fileCount;
 
-    result = NandHelper_readDir(dir, NULL, &fileCount);
-    if (result != RK_NAND_RESULT_OK) {
-        return result;
+    if (NandHelper_readDir(dir, NULL, &fileCount) != RK_NAND_RESULT_OK) {
+        return;
     }
 
     u32 size = OSRoundUp32B(fileCount * (NAND_MAX_NAME + 1));
     EGG_Heap *heap = s_rootScene->heapCollection.heaps[HEAP_ID_MEM2];
-    char *names = EGG_Heap_alloc(size, 0x20, heap);
-    result = NandHelper_readDir(dir, names, &fileCount);
-    if (result != RK_NAND_RESULT_OK) {
+    char *names = spAlloc(size, 0x20, heap);
+    if (NandHelper_readDir(dir, names, &fileCount) != RK_NAND_RESULT_OK) {
         goto cleanup;
     }
 
@@ -80,53 +83,160 @@ static u32 SaveManager_initGhostsDir(SaveManager *this, const char *dir) {
         snprintf(path, sizeof(path), "%s/%s", dir, name);
 
         u32 type;
-        result = NandHelper_getType(path, &type);
-        if (result != RK_NAND_RESULT_OK) {
-            goto cleanup;
-        }
-
-        switch (type) {
-        case NAND_TYPE_FILE:
-            SaveManager_initGhost(this, path);
-            break;
-        case NAND_TYPE_DIR:
-            result = SaveManager_initGhostsDir(this, path);
-            if (result != RK_NAND_RESULT_OK) {
-                goto cleanup;
+        if (NandHelper_getType(path, &type) == RK_NAND_RESULT_OK) {
+            switch (type) {
+            case RK_NAND_TYPE_FILE:
+                SaveManager_initGhost(this, path);
+                break;
+            case RK_NAND_TYPE_DIR:
+                SaveManager_initGhostsDir(this, path);
+                break;
             }
-            break;
         }
 
         name += strlen(name) + 1;
     }
 
 cleanup:
-    EGG_Heap_free(names, NULL);
-    return result;
+    spFree(names);
 }
 
-static u32 SaveManager_initGhosts(SaveManager *this) {
-    u32 result;
-
+static void SaveManager_initGhosts(SaveManager *this) {
     char dir[NAND_MAX_PATH];
-    result = NandHelper_getHomeDir(dir);
-    if (result != RK_NAND_RESULT_OK) {
-        return result;
+    if (NandHelper_getHomeDir(dir) != RK_NAND_RESULT_OK) {
+        return;
     }
 
     u32 offset = strlen(dir);
     u32 size = strlen("/ghosts") + 1;
     if (offset + size > NAND_MAX_PATH) {
-        return RK_NAND_RESULT_OTHER;
+        return;
     }
     memcpy(dir + offset, "/ghosts", size);
 
-    result = NandHelper_createDir(dir, NAND_PERM_OWNER_READ | NAND_PERM_OWNER_WRITE);
-    if (result != RK_NAND_RESULT_OK) {
-        return result;
+    u8 perm = NAND_PERM_OWNER_READ | NAND_PERM_OWNER_WRITE;
+    if (NandHelper_createDir(dir, perm) != RK_NAND_RESULT_OK) {
+        return;
     }
 
-    return SaveManager_initGhostsDir(this, dir);
+    SaveManager_initGhostsDir(this, dir);
+}
+
+static bool setupSpSave(const char *path) {
+    u8 perm = NAND_PERM_OWNER_READ | NAND_PERM_OWNER_WRITE;
+    if (NandHelper_create(path, perm) != RK_NAND_RESULT_OK) {
+        return false;
+    }
+
+    alignas(0x20) SpSaveHeader header = { .magic = SP_SAVE_HEADER_MAGIC, .crc32 = 0x0 };
+    return NandHelper_writeFile(path, &header, sizeof(header)) == RK_NAND_RESULT_OK;
+}
+
+static bool SpSaveLicense_checkSize(const SpSaveLicense *this) {
+    switch (this->version) {
+        case SP_SAVE_LICENSE_VERSION:
+            return this->size == sizeof(SpSaveLicense);
+        default:
+            return this->size >= sizeof(SpSaveLicense);
+    }
+}
+
+static bool SaveManager_initSpSave(SaveManager *this) {
+    char path[NAND_MAX_PATH];
+    if (NandHelper_getHomeDir(path) != RK_NAND_RESULT_OK) {
+        return false;
+    }
+
+    u32 offset = strlen(path);
+    u32 size = strlen("/save.bin") + 1;
+    if (offset + size > NAND_MAX_PATH) {
+        return false;
+    }
+    memcpy(path + offset, "/save.bin", size);
+
+    u32 type;
+    if (NandHelper_getType(path, &type) != RK_NAND_RESULT_OK) {
+        return false;
+    }
+    switch (type) {
+    case RK_NAND_TYPE_NONE:
+        if (!setupSpSave(path)) {
+            return false;
+        }
+        break;
+    case RK_NAND_TYPE_FILE:
+        break;
+    case RK_NAND_TYPE_DIR:
+        return false;
+    }
+
+    EGG_Heap *heap = s_rootScene->heapCollection.heaps[HEAP_ID_MEM2];
+    u32 length;
+    if (NandHelper_readFile(path, this->spBuffer, SP_BUFFER_SIZE, &length) != RK_NAND_RESULT_OK) {
+        return false;
+    }
+
+    offset = sizeof(SpSaveHeader);
+    if (length < offset) {
+        return false;
+    }
+
+    SpSaveHeader *header = this->spBuffer;
+    u32 crc32 = NETCalcCRC32(this->spBuffer + offset, length - offset);
+    if (crc32 != header->crc32) {
+        return false;
+    }
+
+    u32 sectionCount;
+    s32 unusedLicenseCount = MAX_SP_LICENSE_COUNT;
+    for (sectionCount = 0; offset < length; sectionCount++) {
+        if (length - offset < sizeof(SpSaveSection)) {
+            return false;
+        }
+
+        SpSaveSection *section = this->spBuffer + offset;
+        if (section->size < sizeof(SpSaveSection) || section->size > length - offset) {
+            return false;
+        }
+
+        if (section->magic == SP_SAVE_LICENSE_MAGIC) {
+            SpSaveLicense *license = (SpSaveLicense *)section;
+            if (!SpSaveLicense_checkSize(license)) {
+                return false;
+            }
+            unusedLicenseCount--;
+        }
+
+        offset += section->size;
+    }
+
+    if (unusedLicenseCount < 0) {
+        unusedLicenseCount = 0;
+    }
+
+    u32 maxSectionCount = sectionCount + unusedLicenseCount;
+    this->spSections = spAllocArray(maxSectionCount, sizeof(SpSaveSection *), 0x4, heap);
+    offset = sizeof(SpSaveHeader);
+    for (u32 i = 0; i < sectionCount; i++) {
+        SpSaveSection *section = this->spBuffer + offset;
+        this->spSections[i] = spAlloc(section->size, 0x4, heap);
+        memcpy(this->spSections[i], section, section->size);
+        offset += section->size;
+    }
+    this->spSectionCount = sectionCount;
+
+    this->spLicenseCount = 0;
+    for (u32 i = 0; i < sectionCount && this->spLicenseCount < MAX_SP_LICENSE_COUNT; i++) {
+        if (this->spSections[i]->magic == SP_SAVE_LICENSE_MAGIC) {
+            this->spLicenses[this->spLicenseCount++] = (SpSaveLicense *)this->spSections[i];
+        }
+    }
+
+    for (u32 i = this->spLicenseCount; i < MAX_SP_LICENSE_COUNT; i++) {
+        this->spLicenses[i] = spAlloc(sizeof(SpSaveLicense), 0x4, heap);
+    }
+
+    return true;
 }
 
 static void SaveManager_init(SaveManager *this) {
@@ -135,11 +245,15 @@ static void SaveManager_init(SaveManager *this) {
 
     this->otherRawSave = this->rawSave;
 
-    this->result = SaveManager_initGhosts(this);
+    if (!SaveManager_initSpSave(this)) {
+        this->result = RK_NAND_RESULT_NOSPACE;
+        this->spCanSave = false;
+    }
+    SaveManager_initGhosts(this);
     this->isBusy = false;
 }
 
-static void SaveManager_initTask(void *arg) {
+static void initTask(void *arg) {
     UNUSED(arg);
 
     SaveManager_init(s_saveManager);
@@ -147,9 +261,8 @@ static void SaveManager_initTask(void *arg) {
 
 static void my_SaveManager_initAsync(SaveManager *this) {
     this->isBusy = true;
-    EGG_TaskThread_request(this->taskThread, SaveManager_initTask, NULL, NULL);
+    EGG_TaskThread_request(this->taskThread, initTask, NULL, NULL);
 }
-
 PATCH_B(SaveManager_initAsync, my_SaveManager_initAsync);
 
 static void my_SaveManager_resetAsync(SaveManager *this) {
@@ -159,8 +272,111 @@ static void my_SaveManager_resetAsync(SaveManager *this) {
     this->isBusy = false;
     this->result = RK_NAND_RESULT_OK;
 }
-
 PATCH_B(SaveManager_resetAsync, my_SaveManager_resetAsync);
+
+static void SaveManager_saveSp(SaveManager *this) {
+    u32 length = sizeof(SpSaveHeader);
+    for (u32 i = 0; i < this->spSectionCount; i++) {
+        if (length + this->spSections[i]->size > SP_BUFFER_SIZE) {
+            goto fail;
+        }
+        memcpy(this->spBuffer + length, this->spSections[i], this->spSections[i]->size);
+        length += this->spSections[i]->size;
+    }
+
+    char dir[NAND_MAX_PATH];
+    if (NandHelper_getHomeDir(dir) != RK_NAND_RESULT_OK) {
+        goto fail;
+    }
+
+    u8 perm = NAND_PERM_OWNER_READ | NAND_PERM_OWNER_WRITE;
+    if (NandHelper_create("/tmp/save.bin", perm) != RK_NAND_RESULT_OK) {
+        goto fail;
+    }
+
+    u32 crc32 = NETCalcCRC32(this->spBuffer + sizeof(SpSaveHeader), length - sizeof(SpSaveHeader));
+    SpSaveHeader header = { .magic = SP_SAVE_HEADER_MAGIC, .crc32 = crc32 };
+    memcpy(this->spBuffer, &header, sizeof(header));
+    if (NandHelper_writeFile("/tmp/save.bin", this->spBuffer, length) != RK_NAND_RESULT_OK) {
+        goto fail;
+    }
+
+    if (NandHelper_move("/tmp/save.bin", dir) != RK_NAND_RESULT_OK) {
+        goto fail;
+    }
+
+    this->isBusy = false;
+    this->result = RK_NAND_RESULT_OK;
+    return;
+
+fail:
+    this->spCanSave = false;
+    this->isBusy = false;
+    this->result = RK_NAND_RESULT_NOSPACE;
+}
+
+static void saveSpTask(void *arg) {
+    UNUSED(arg);
+
+    SaveManager_saveSp(s_saveManager);
+}
+
+static void my_SaveManager_saveLicensesAsync(SaveManager *this) {
+    if (!this->spCanSave) {
+        this->isBusy = false;
+        this->result = RK_NAND_RESULT_OK;
+    }
+
+    this->isBusy = true;
+    EGG_TaskThread_request(this->taskThread, saveSpTask, NULL, NULL);
+}
+PATCH_B(SaveManager_saveLicensesAsync, my_SaveManager_saveLicensesAsync);
+
+void SaveManager_eraseSpLicense(SaveManager *this) {
+    const SpSaveLicense *license = this->spLicenses[this->spCurrentLicense];
+    for (u32 i = this->spCurrentLicense; i < this->spLicenseCount - 1; i++) {
+        this->spLicenses[i] = this->spLicenses[i + 1];
+    }
+    this->spLicenseCount--;
+    for (u32 i = 0; i < this->spSectionCount; i++) {
+        if (this->spSections[i] == (SpSaveSection *)license) {
+            for (u32 j = i; j < this->spSectionCount - 1; j++) {
+                this->spSections[j] = this->spSections[j + 1];
+            }
+            break;
+        }
+    }
+    this->spSectionCount--;
+    this->spCurrentLicense = -1;
+}
+
+void SaveManager_createSpLicense(SaveManager *this, const MiiId *miiId) {
+    SpSaveLicense *license = this->spLicenses[this->spLicenseCount++];
+    license->magic = SP_SAVE_LICENSE_MAGIC;
+    license->size = sizeof(SpSaveLicense);
+    license->version = SP_SAVE_LICENSE_VERSION;
+    license->miiId = *miiId;
+    this->spSections[this->spSectionCount++] = license;
+    this->spCurrentLicense = this->spLicenseCount - 1;
+}
+
+bool SaveManager_hasSpLicenseWithMiiId(const SaveManager *this, const MiiId *miiId) {
+    for (u32 i = 0; i < this->spLicenseCount; i++) {
+        if (!memcmp(&this->spLicenses[i]->miiId, miiId, sizeof(MiiId))) {
+            return true;
+        }
+    }
+
+    return false;
+}
+
+void SaveManager_changeSpLicenseMiiId(const SaveManager *this, const MiiId *miiId) {
+    if (this->spCurrentLicense < 0) {
+        return;
+    }
+
+    this->spLicenses[this->spCurrentLicense]->miiId = *miiId;
+}
 
 static void SaveManager_loadGhostHeaders(SaveManager *this) {
     for (u32 i = 0; i < this->ghostCount; i++) {
@@ -172,7 +388,7 @@ static void SaveManager_loadGhostHeaders(SaveManager *this) {
     this->result = RK_NAND_RESULT_OK;
 }
 
-static void SaveManager_loadGhostHeadersTask(void *arg) {
+static void loadGhostHeadersTask(void *arg) {
     UNUSED(arg);
 
     SaveManager_loadGhostHeaders(s_saveManager);
@@ -188,9 +404,8 @@ static void my_SaveManager_loadGhostHeadersAsync(SaveManager *this, s32 licenseI
     this->ghostGroup = group;
 
     this->isBusy = true;
-    EGG_TaskThread_request(this->taskThread, SaveManager_loadGhostHeadersTask, NULL, NULL);
+    EGG_TaskThread_request(this->taskThread, loadGhostHeadersTask, NULL, NULL);
 }
-
 PATCH_B(SaveManager_loadGhostHeadersAsync, my_SaveManager_loadGhostHeadersAsync);
 
 static void SaveManager_loadGhosts(SaveManager *this) {
@@ -208,7 +423,8 @@ static void SaveManager_loadGhosts(SaveManager *this) {
     for (u32 i = 0; i < cx->timeAttackGhostCount; i++) {
         u32 index = cx->timeAttackGhostIndices[i];
         const char *path = this->ghostPaths[index];
-        this->result = NandHelper_readFile(path, this->rawGhostFile, 0x2800);
+        u32 length;
+        this->result = NandHelper_readFile(path, this->rawGhostFile, 0x2800, &length);
         if (this->result != RK_NAND_RESULT_OK) {
             break;
         }
@@ -223,7 +439,7 @@ static void SaveManager_loadGhosts(SaveManager *this) {
     this->isBusy = false;
 }
 
-static void SaveManager_loadGhostsTask(void *arg) {
+static void loadGhostsTask(void *arg) {
     UNUSED(arg);
 
     SaveManager_loadGhosts(s_saveManager);
@@ -236,7 +452,6 @@ static void my_SaveManager_loadGhostAsync(SaveManager *this, s32 licenseId, u32 
     UNUSED(courseId);
 
     this->isBusy = true;
-    EGG_TaskThread_request(this->taskThread, SaveManager_loadGhostsTask, NULL, NULL);
+    EGG_TaskThread_request(this->taskThread, loadGhostsTask, NULL, NULL);
 }
-
 PATCH_B(SaveManager_loadGhostAsync, my_SaveManager_loadGhostAsync);

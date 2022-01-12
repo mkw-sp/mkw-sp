@@ -18,16 +18,12 @@ enum {
 
 enum {
     NAND_ACCESS_READ = 0x1,
+    NAND_ACCESS_WRITE = 0x2,
 };
 
 enum {
     NAND_MAX_PATH = 64,
     NAND_MAX_NAME = 12,
-};
-
-enum {
-    NAND_TYPE_FILE = 0x1,
-    NAND_TYPE_DIR = 0x2,
 };
 
 typedef struct {
@@ -37,3 +33,5 @@ typedef struct {
 s32 NANDReadDir(const char *path, char *nameList, u32 *num);
 
 s32 NANDGetHomeDir(char path[NAND_MAX_PATH]);
+
+s32 NANDMove(const char *path, const char *destDir);

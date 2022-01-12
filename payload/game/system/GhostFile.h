@@ -1,6 +1,6 @@
 #pragma once
 
-#include "../util/Mii.h"
+#include "Mii.h"
 
 enum {
     MAX_GHOST_COUNT = 512,

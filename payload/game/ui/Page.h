@@ -5,6 +5,7 @@
 
 enum {
     PAGE_ID_RACE_CONFIRM = 0x4b,
+    PAGE_ID_CONFIRM = 0x52,
     PAGE_ID_GHOST_MANAGER = 0xa7,
     PAGE_ID_MAX = 0xd3,
 };
@@ -91,5 +92,4 @@ void Page_initChildren(Page *this, u32 count);
 
 void Page_insertChild(Page *this, u32 index, UIControl *child, u32 drawPass);
 
-// TODO f1
-void Page_startReplace(Page *this, u32 animation, f32 f1);
+void Page_startReplace(Page *this, u32 animation, f32 delay);

@@ -17,11 +17,7 @@ static void *loadRel(void *arg) {
     }
 
     s32 size = OSRoundUp32B(fileInfo.length);
-    void *src = EGG_Heap_alloc(size, 0x20, heap);
-    if (!src) {
-        DVDClose(&fileInfo);
-        return NULL;
-    }
+    void *src = spAlloc(size, 0x20, heap);
 
     s32 result = DVDRead(&fileInfo, src, size, 0);
     DVDClose(&fileInfo);
@@ -56,7 +52,7 @@ static void *loadRel(void *arg) {
     Relocate(NULL, dstHeader);
     Relocate(dstHeader, dstHeader);
 
-    EGG_Heap_free(src, NULL);
+    spFree(src);
 
     OSSectionInfo *prologSectionInfo = dstSectionInfo + dstHeader->prologSection;
     return (void *)(prologSectionInfo->offset + dstHeader->prolog);
@@ -83,9 +79,9 @@ void my_BootStrapScene_draw(BootStrapScene *this) {
 }
 
 void my_BootStrapScene_enter(BootStrapScene *this) {
-    this->relLoadThread = EGG_Heap_alloc(sizeof(OSThread), 0x4, this->heapMem1);
+    this->relLoadThread = spAlloc(sizeof(OSThread), 0x4, this->heapMem1);
     u32 stackSize = 0x5000;
-    this->relLoadThreadStack = EGG_Heap_alloc(stackSize, 0x4, this->heapMem1);
+    this->relLoadThreadStack = spAlloc(stackSize, 0x4, this->heapMem1);
     void *stackBase = this->relLoadThreadStack + stackSize;
     OSCreateThread(this->relLoadThread, loadRel, this->heapMem1, stackBase, stackSize, 20, 0);
     OSResumeThread(this->relLoadThread);
@@ -93,8 +89,8 @@ void my_BootStrapScene_enter(BootStrapScene *this) {
 
 void my_BootStrapScene_exit(BootStrapScene *this) {
     OSDetachThread(this->relLoadThread);
-    EGG_Heap_free(this->relLoadThreadStack, NULL);
-    EGG_Heap_free(this->relLoadThread, NULL);
+    spFree(this->relLoadThreadStack);
+    spFree(this->relLoadThread);
 }
 
 PATCH_B(BootStrapScene_calc, my_BootStrapScene_calc);

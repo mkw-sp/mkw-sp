@@ -85,6 +85,6 @@ void LayoutUIControl_setPicture(LayoutUIControl *this, const char *dstPane, cons
 
 bool LayoutUIControl_hasPictureSourcePane(LayoutUIControl *this, const char *pane);
 
-void LayoutUIControl_setMiiPicture(LayoutUIControl *this, const char *pane, MiiGroup *miiGroup, u32 preset, u32 index);
+void LayoutUIControl_setMiiPicture(LayoutUIControl *this, const char *pane, MiiGroup *miiGroup, u32 index, u32 preset);
 
 void LayoutUIControl_setPaneVisible(LayoutUIControl *this, const char *pane, bool visible);

@@ -15,3 +15,7 @@ typedef struct {
 extern SectionManager *s_sectionManager;
 
 void SectionManager_init(SectionManager *this);
+
+void SectionManager_setNextSection(SectionManager *this, u32 sectionId, u32 animation);
+
+void SectionManager_startChangeSection(SectionManager *this, u32 delay, u32 color);

@@ -7,15 +7,44 @@
 #include <revolution.h>
 
 enum {
-    MAX_SP_LICENSE_COUNT = 4,
+    SP_SAVE_HEADER_MAGIC = 0x53505341, // SPSA
+    SP_SAVE_LICENSE_MAGIC = 0x53504c49, // SPLI
 };
+
+enum {
+    SP_SAVE_LICENSE_VERSION = 0,
+};
+
+typedef struct {
+    u32 magic;
+    u32 crc32;
+} SpSaveHeader;
 
 typedef struct {
     u32 magic;
     u32 size;
     u32 version;
-    RawMii mii;
-} SpLicense;
+} SpSaveSection;
+
+typedef struct {
+    SpSaveSection;
+    MiiId miiId;
+} SpSaveLicense;
+
+enum {
+    SP_BUFFER_SIZE = 0x100000,
+};
+
+enum {
+    MAX_SP_LICENSE_COUNT = 6,
+};
+
+typedef struct {
+    wchar_t miiName[11];
+    MiiId miiId;
+    u8 _001e[0x93f0 - 0x001e];
+} License;
+static_assert(sizeof(License) == 0x93f0);
 
 typedef struct {
     u8 _00000[0x00014 - 0x00000];
@@ -26,15 +55,23 @@ typedef struct {
     RawGhostHeader *rawGhostHeaders; // Modified
     GhostGroup *ghostGroup;
     char (*ghostPaths)[NAND_MAX_PATH]; // Modified
-    u8 _00030[0x24ffc - 0x00030];
+    u8 _00030[0x00038 - 0x00030];
+    License licenses[4];
+    u8 _24ff8[0x24ffc - 0x24ff8];
     void *otherRawSave;
     bool isBusy;
     bool isValid;
     bool canSave;
-    u8 _25003[0x25004 - 0x25003];
+    bool spCanSave; // Added (was padding)
     u32 result;
-    SpLicense *spLicenses[MAX_SP_LICENSE_COUNT];
+    void *spBuffer; // Added
+    u32 spSectionCount; // Added
+    SpSaveSection **spSections; // Added
+    u32 spLicenseCount; // Added
+    SpSaveLicense *spLicenses[MAX_SP_LICENSE_COUNT]; // Added
+    s32 spCurrentLicense; // Added
 } SaveManager;
+static_assert(offsetof(SaveManager, spBuffer) == 0x25008);
 
 extern SaveManager *s_saveManager;
 
@@ -43,6 +80,18 @@ SaveManager *SaveManager_createInstance(void);
 void SaveManager_initAsync(SaveManager *this);
 
 void SaveManager_resetAsync(SaveManager *this);
+
+void SaveManager_saveLicensesAsync(SaveManager *this);
+
+void SaveManager_createLicense(SaveManager *this, u32 licenseId, const MiiId *miiId, const wchar_t *miiName);
+
+void SaveManager_selectLicense(SaveManager *this, u32 licenseId);
+
+void SaveManager_eraseSpLicense(SaveManager *this);
+
+void SaveManager_createSpLicense(SaveManager *this, const MiiId *miiId);
+
+bool SaveManager_hasSpLicenseWithMiiId(const SaveManager *this, const MiiId *miiId);
 
 void SaveManager_loadGhostAsync(SaveManager *this, s32 licenseId, u32 category, u32 index, u32 courseId);
 

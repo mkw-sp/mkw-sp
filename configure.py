@@ -28,6 +28,7 @@ cflags = [
     '-fno-asynchronous-unwind-tables',
     '-fno-zero-initialized-in-bss',
     '-fplan9-extensions',
+    '-fshort-wchar',
     '-isystem', 'include',
     '-isystem', 'payload',
     '-O2',
@@ -171,9 +172,11 @@ n.rule(
 n.newline()
 
 assettargets = [
+    os.path.join('Scene', 'UI', 'MenuOtherSP'),
     os.path.join('Scene', 'UI', 'MenuSingleSP'),
     os.path.join('Scene', 'UI', 'MenuSingleSP_E'),
     os.path.join('Scene', 'UI', 'RaceSP'),
+    os.path.join('Scene', 'UI', 'TitleSP'),
 ]
 
 assetdirs = {}

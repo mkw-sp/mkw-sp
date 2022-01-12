@@ -27,7 +27,7 @@ static void setupTimeAttack(bool isRace, bool fromReplay) {
             MiiGroup_copy(&cx->playerMiis, &cx->playerMiis, i, i + !!isRace);
         } else {
             RawGhostHeader *header = (RawGhostHeader *)(*menuScenario->ghostBuffer)[i];
-            MiiGroup_load(&cx->playerMiis, i + !!isRace, &header->mii);
+            MiiGroup_insertFromRaw(&cx->playerMiis, i + !!isRace, &header->mii);
         }
     }
     if (fromReplay) {

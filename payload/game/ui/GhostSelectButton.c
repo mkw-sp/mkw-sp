@@ -122,7 +122,7 @@ void GhostSelectButton_refresh(GhostSelectButton *this, u32 ghostIndex) {
     TimeAttackGhostListPage *page = (TimeAttackGhostListPage *)this->group->page;
     GhostFile *file = GhostList_getFile(page->ghostList, ghostIndex);
 
-    MiiGroup_load(&this->miiGroup, 0, &file->rawMii);
+    MiiGroup_insertFromRaw(&this->miiGroup, 0, &file->rawMii);
     ExtendedMessageInfo nameInfo = {
         .miis[0] = MiiGroup_get(&this->miiGroup, 0),
     };

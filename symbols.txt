@@ -1,5 +1,6 @@
 0x80005f34 memcpy
 0x80006038 memset
+0x8000f1f0 memmove
 
 0x800074d8 BootStrapScene_enter
 0x800079d0 BootStrapScene_calc
@@ -20,6 +21,7 @@
 0x8015e834 DVDReadPrio
 0x8015e568 DVDClose
 0x8016a05c ISFS_ReadDir
+0x8019bee8 NANDMove
 0x8019de1c nandIsPrivatePath
 0x8019dea8 nandIsInitialized
 0x8019dec0 nandConvertErrorCode
@@ -36,8 +38,10 @@
 0x801aa4ec OSDetachThread
 0x801aa58c OSResumeThread
 0x801aaca8 OSSleepTicks
+0x801d1ca0 NETCalcCRC32
 
 0x80229814 EGG_Heap_alloc
+0x80229adc EGG_Heap_findContainHeap
 0x80229b84 EGG_Heap_free
 0x80229dcc new
 0x80229e14 delete
@@ -66,12 +70,15 @@
 0x805238f0 InputManager_calc
 0x80524568 InputManager_startRace
 0x80524580 InputManager_startGhostProxies
+0x80526020 Mii_80526020
 0x8052a098 MultiDvdArchive_create
 0x8052a2fc MenuMultiDvdArchive_init
 0x8052af64 NandHelper_open
 0x8052b144 NandHelper_close
 0x8052b228 NandHelper_read
 0x8052b3f8 NandHelper_getLength
+0x8052b4d4 NandHelper_write
+0x8052b95c NandHelper_create
 0x8052b754 NandHelper_createDir
 0x8052b84c NandHelper_getType
 0x8052bdf4 NandManager_createInstance
@@ -86,6 +93,10 @@
 0x80543db0 SaveManager_createInstance
 0x80543f10 SaveManager_ct
 0x80544a38 SaveManager_initAsync
+0x80544c2c SaveManager_saveLicensesAsync
+0x80544cd8 SaveManager_selectLicense
+0x80547fbc SaveManager_eraseLicense
+0x80548030 SaveManager_createLicense
 0x80549a68 SaveManager_loadGhostAsync
 0x80549dac SaveManager_loadGhostHeadersAsync
 0x8054a868 SaveManager_resetAsync
@@ -96,7 +107,7 @@
 0x805baf10 CtrlMenuPageTitleText_dt
 0x805bb220 Page_vf_5c
 0x805bb224 Page_vf_58
-0x805bb228 Page_vf_54
+0x805bb228 Page_onRefocus
 0x805bb22c Page_vf_50
 0x805bb230 Page_vf_48
 0x805bb234 Page_vf_44
@@ -119,10 +130,15 @@
 0x805bdae0 PushButton_setSelectHandler
 0x805bdaf0 PushButton_selectDefault
 0x805bdb44 PushButton_select
+0x805bdbd4 PushButton_setPlayerFlags
+0x805bdf88 PushButton_getDelay
 0x805be600 UIControl_initSelf
 0x805be7f4 CtrlMenuBackButton_dt
 0x805bed68 Page_vf_60
 0x805bf2d8 Page_vf_4c
+0x805c211c ConfirmPage_reset
+0x805c21a8 ConfirmPage_setTitleMessage
+0x805c21b0 ConfirmPage_setWindowMessage
 0x805c2c60 ControlLoader_load
 0x805c9888 Page_vf_30
 0x805e1b04 GhostManagerPage_setupGhostRace
@@ -130,6 +146,10 @@
 0x805e2430 compareGhostEntries
 0x805e2500 GhostList_getFile
 0x805e39d8 GlobalContext_copyPlayerMiis
+0x805ea834 LicenseSelectPage_ct
+0x805ec274 LicenseDisplayPage_onActivate
+0x805ec4e8 refreshLicenseControl
+0x805ee244 LicenseDeletePage_onRefocus
 0x805eeb68 MenuInputManager_ct
 0x805eeb8c MenuInputManager_dt
 0x805efcf8 ControlInputManager_setHandler
@@ -142,7 +162,8 @@
 0x805f9e78 MiiGroup_ct
 0x805f9f58 MiiGroup_dt
 0x805fa04c MiiGroup_init
-0x805fa610 MiiGroup_load
+0x805fa610 MiiGroup_insertFromRaw
+0x805fa6e0 MiiGroup_insertFromId
 0x805fa930 MiiGroup_get
 0x805faf34 MiiGroup_copy
 0x8060197c Page_ct
@@ -156,11 +177,15 @@
 0x806025b0 Page_push
 0x80606bd0 LayoutUIControl_vf_28
 0x8061b358 RegisteredPadManager_getFlags
+0x80620c5c SaveManagerProxy_init
+0x80620dd8 SaveManagerProxy_processRequest
 0x80623390 Section_createPage
 0x80633ba8 TimeAttackRacePage_getNameBalloonCount
 0x80633c7c GhostReplayRacePage_getNameBalloonCount
 0x80633c84 GhostReplayRacePage_getControls
 0x80634e44 SectionManager_init
+0x80635a3c SectionManager_setNextSection
+0x80635ac8 SectionManager_startChangeSection
 0x80635ec4 SheetSelectControl_ct
 0x8063607c SheetSelectControl_dt
 0x80636120 SheetSelectControl_load
@@ -220,6 +245,8 @@
 0x807f7e64 RaceManager_getPlayerMaxLap
 0x807f7e80 CtrlRaceTime_getPlayerId
 0x807f7ec0 CtrlRaceTime_calcSelf
+0x808503dc MainMenuPage_onInit
+0x80850db0 MainMenuPage_onActivate
 0x80856664 RacePage_initInputs
 0x80856cec RacePage_beforeCalc
 0x808572d4 RacePage_canChangeSection

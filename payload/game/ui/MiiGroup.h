@@ -1,6 +1,6 @@
 #pragma once
 
-#include "../util/Mii.h"
+#include "../system/Mii.h"
 
 #include <egg/core/eggHeap.h>
 
@@ -14,7 +14,9 @@ void MiiGroup_dt(MiiGroup *this, s32 type);
 
 void MiiGroup_init(MiiGroup *this, u32 count, u32 presetFlags, EGG_Heap *heap);
 
-void MiiGroup_load(MiiGroup *this, u32 index, RawMii *raw);
+void MiiGroup_insertFromId(MiiGroup *this, u32 index, MiiId *id);
+
+void MiiGroup_insertFromRaw(MiiGroup *this, u32 index, RawMii *raw);
 
 Mii *MiiGroup_get(MiiGroup *this, u32 index);
 

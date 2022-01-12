@@ -171,6 +171,8 @@ static TimeAttackGhostListPage *my_TimeAttackGhostListPage_ct(TimeAttackGhostLis
     return this;
 }
 
+PATCH_B(TimeAttackGhostListPage_ct, my_TimeAttackGhostListPage_ct);
+
 static void TimeAttackGhostListPage_dt(Page *base, s32 type) {
     TimeAttackGhostListPage *this = (TimeAttackGhostListPage *)base;
 
@@ -192,6 +194,7 @@ static void TimeAttackGhostListPage_dt(Page *base, s32 type) {
 
 static s32 TimeAttackGhostListPage_getReplacement(Page *base) {
     TimeAttackGhostListPage *this = (TimeAttackGhostListPage *)base;
+
     return this->replacement;
 }
 
@@ -358,5 +361,3 @@ void TimeAttackGhostListPage_chooseGhost(TimeAttackGhostListPage *this, u32 butt
 
     TimeAttackGhostListPage_refreshLaunchButton(this);
 }
-
-PATCH_B(TimeAttackGhostListPage_ct, my_TimeAttackGhostListPage_ct);

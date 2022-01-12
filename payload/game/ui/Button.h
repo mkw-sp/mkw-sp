@@ -10,7 +10,9 @@ typedef struct {
 
 typedef struct {
     LayoutUIControl;
-    u8 _174[0x254 - 0x174];
+    u8 _174[0x240 - 0x174];
+    s32 index;
+    u8 _244[0x254 - 0x244];
 } PushButton;
 
 PushButton *PushButton_ct(PushButton *this);
@@ -27,3 +29,7 @@ void PushButton_setSelectHandler(PushButton *this, InputHandler *handler);
 void PushButton_selectDefault(PushButton *this, u32 localPlayerId);
 
 void PushButton_select(PushButton *this, u32 localPlayerId);
+
+void PushButton_setPlayerFlags(PushButton *this, u32 playerFlags);
+
+f32 PushButton_getDelay(PushButton *this);

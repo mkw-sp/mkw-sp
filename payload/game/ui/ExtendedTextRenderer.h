@@ -1,6 +1,6 @@
 #pragma once
 
-#include "../util/Mii.h"
+#include "../system/Mii.h"
 
 typedef struct {
     s32 intVals[9];

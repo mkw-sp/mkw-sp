@@ -9,3 +9,11 @@ typedef struct {
 void *EGG_Heap_alloc(u32 size, s32 align, EGG_Heap *heap);
 
 void EGG_Heap_free(void *memBlock, EGG_Heap *heap);
+
+EGG_Heap *EGG_Heap_findContainHeap(const void *memBlock);
+
+void *spAlloc(size_t size, size_t align, EGG_Heap *heap);
+
+void *spAllocArray(size_t count, size_t size, size_t align, EGG_Heap *heap);
+
+void spFree(void *memBlock);
