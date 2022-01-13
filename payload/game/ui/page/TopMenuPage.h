@@ -8,3 +8,5 @@ typedef struct {
     PushButton *fileAdminButton;
 } TopMenuPage;
 static_assert(sizeof(TopMenuPage) == 0xcb8);
+
+TopMenuPage *TopMenuPage_ct(TopMenuPage *this);

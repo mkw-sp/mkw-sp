@@ -2,6 +2,9 @@
 
 #include "../../system/SaveManager.h"
 
+// Only show the first 2 buttons (offline single and multi-player)
+PATCH_S16(TopMenuPage_ct, 0x7e, 2);
+
 void TopMenuPage_initMiiGroup(TopMenuPage *this) {
     this->miiGroup = new(sizeof(MiiGroup));
     MiiGroup_ct(this->miiGroup);

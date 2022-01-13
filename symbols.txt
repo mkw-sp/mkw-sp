@@ -180,6 +180,7 @@
 0x80620c5c SaveManagerProxy_init
 0x80620dd8 SaveManagerProxy_processRequest
 0x80623390 Section_createPage
+0x80625da0 TopMenuPage_ct
 0x80633ba8 TimeAttackRacePage_getNameBalloonCount
 0x80633c7c GhostReplayRacePage_getNameBalloonCount
 0x80633c84 GhostReplayRacePage_getControls
