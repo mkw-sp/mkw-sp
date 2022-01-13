@@ -181,6 +181,7 @@
 0x80620dd8 SaveManagerProxy_processRequest
 0x80623390 Section_createPage
 0x80625da0 TopMenuPage_ct
+0x80626698 SingleTopMenuPage_ct
 0x80633ba8 TimeAttackRacePage_getNameBalloonCount
 0x80633c7c GhostReplayRacePage_getNameBalloonCount
 0x80633c84 GhostReplayRacePage_getControls
@@ -246,6 +247,11 @@
 0x807f7e64 RaceManager_getPlayerMaxLap
 0x807f7e80 CtrlRaceTime_getPlayerId
 0x807f7ec0 CtrlRaceTime_calcSelf
+0x8084ef1c SingleTopMenuPage_onInit
+0x8084efc4 SingleTopMenuPage_vf_84
+0x8084f110 SingleTopMenuPage_onActivate
+0x8084f298 SingleTopMenuPage_onButtonFront
+0x8084f688 SingleTopMenuPage_vf_64
 0x808503dc TopMenuPage_onInit
 0x80850db0 TopMenuPage_onActivate
 0x80856664 RacePage_initInputs
