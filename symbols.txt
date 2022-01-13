@@ -245,8 +245,8 @@
 0x807f7e64 RaceManager_getPlayerMaxLap
 0x807f7e80 CtrlRaceTime_getPlayerId
 0x807f7ec0 CtrlRaceTime_calcSelf
-0x808503dc MainMenuPage_onInit
-0x80850db0 MainMenuPage_onActivate
+0x808503dc TopMenuPage_onInit
+0x80850db0 TopMenuPage_onActivate
 0x80856664 RacePage_initInputs
 0x80856cec RacePage_beforeCalc
 0x808572d4 RacePage_canChangeSection

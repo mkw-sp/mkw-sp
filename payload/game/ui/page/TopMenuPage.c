@@ -1,8 +1,8 @@
-#include "MainMenuPage.h"
+#include "TopMenuPage.h"
 
 #include "../../system/SaveManager.h"
 
-void MainMenuPage_initMiiGroup(MainMenuPage *this) {
+void TopMenuPage_initMiiGroup(TopMenuPage *this) {
     this->miiGroup = new(sizeof(MiiGroup));
     MiiGroup_ct(this->miiGroup);
     MiiGroup_init(this->miiGroup, MAX_SP_LICENSE_COUNT, 0x4, NULL);
@@ -11,7 +11,7 @@ void MainMenuPage_initMiiGroup(MainMenuPage *this) {
     }
 }
 
-void MainMenuPage_refreshFileAdminButton(MainMenuPage *this) {
+void TopMenuPage_refreshFileAdminButton(TopMenuPage *this) {
     u32 index = s_saveManager->spCurrentLicense;
     LayoutUIControl_setMiiPicture(this->fileAdminButton, "mii", this->miiGroup, index, 2);
 }

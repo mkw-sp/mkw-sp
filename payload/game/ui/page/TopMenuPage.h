@@ -6,5 +6,5 @@ typedef struct {
     MenuPage;
     u8 _430[0xcb4 - 0x430];
     PushButton *fileAdminButton;
-} MainMenuPage;
-static_assert(sizeof(MainMenuPage) == 0xcb8);
+} TopMenuPage;
+static_assert(sizeof(TopMenuPage) == 0xcb8);
