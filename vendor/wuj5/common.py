@@ -87,6 +87,12 @@ def unpack_enum(in_data, offset, kind, **kwargs):
 def unpack_enum8(in_data, offset, **kwargs):
     return unpack_enum(in_data, offset, 'u8', **kwargs)
 
+def unpack_enum16(in_data, offset, **kwargs):
+    return unpack_enum(in_data, offset, 'u16', **kwargs)
+
+def unpack_enum32(in_data, offset, **kwargs):
+    return unpack_enum(in_data, offset, 'u32', **kwargs)
+
 def pack_pad8(val, **kwargs):
     return b'\x00'
 
@@ -163,6 +169,12 @@ def pack_enum(name, kind, **kwargs):
 def pack_enum8(val, **kwargs):
     return pack_enum(val, 'u8', **kwargs)
 
+def pack_enum16(val, **kwargs):
+    return pack_enum(val, 'u16', **kwargs)
+
+def pack_enum32(val, **kwargs):
+    return pack_enum(val, 'u32', **kwargs)
+
 size = {
     'pad8': 0x1,
     'pad16': 0x2,
@@ -236,7 +248,9 @@ class Buffer:
         return self.offset + len(self.buffer)
 
     def push(self, data):
+        size = self.size()
         self.buffer += data
+        return size
 
 class Strings:
     def __init__(self, encoding, terminator):
