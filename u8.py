@@ -91,10 +91,10 @@ def pack_u8(root):
     contents = Buffer(0x0)
     count = process_node(root, 0x0, names, contents)
 
-    names.buffer = names.buffer.ljust((len(names.buffer) + 0x1f) & ~0x1f, b'\0')
-
     names_offset = 0x20 + count * 0xc
     contents_offset = names_offset + len(names.buffer)
+    contents_offset = (contents_offset + 0x1f) & ~0x1f
+    names.buffer = names.buffer.ljust(contents_offset - names_offset, b'\0')
     nodes_data = pack_node(root, contents_offset, 0x0)
 
     return b''.join([
