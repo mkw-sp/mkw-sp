@@ -1,7 +1,6 @@
 #!/usr/bin/env python3
 
 
-import glob
 import os
 from vendor.ninja_syntax import Writer
 
@@ -14,11 +13,6 @@ n.newline()
 n.variable('builddir', 'build')
 n.variable('outdir', 'out')
 n.newline()
-
-os.makedirs('build', exist_ok = True)
-os.makedirs(os.path.join('build', 'assets', 'Scene', 'UI'), exist_ok = True)
-alldeps = []
-listfiles = []
 
 n.variable('cc', 'powerpc-eabi-gcc')
 n.variable('port', os.path.join('.', 'port.py'))
@@ -87,49 +81,82 @@ n.rule(
 )
 n.newline()
 
-bintargets = ['loader', 'payload']
-
-srcfiles = {}
-for target in bintargets:
-    deps = []
-    srcfiles[target] = []
-    for ext in ['.S', '.c']:
-        pattern = os.path.join(target, '**', '*' + ext)
-        srcfiles[target] += glob.glob(pattern, recursive=True)
-    deps += srcfiles[target]
-    srcfiles[target] = [os.path.relpath(srcfile, target) for srcfile in srcfiles[target]]
-    pattern = os.path.join(target, '**', '')
-    srcdirs = glob.glob(pattern, recursive=True)
-    srcdirs = [os.path.normpath(srcdir) for srcdir in srcdirs]
-    deps += srcdirs
-    alldeps += deps
-    for region in ['P']:
-        listfile = os.path.join('build', target + '.listfile')
-        listfile_data = ' '.join(deps)
-        try:
-            old_data = open(listfile, 'r').read()
-        except FileNotFoundError:
-            old_data = None
-        if listfile_data != old_data:
-            open(listfile, 'w').write(listfile_data)
-        listfiles += [listfile]
-
-ofiles = {target: [] for target in srcfiles}
-for target in srcfiles:
-    for srcfile in srcfiles[target]:
-        srcfile = os.path.join(target, srcfile)
-        _, ext = os.path.splitext(srcfile)
-        ofile = os.path.join('$builddir', srcfile + '.o')
+code_in_files = {
+    'loader': [
+        os.path.join('Loader.c'),
+    ],
+    'payload': [
+        os.path.join('egg', 'core', 'eggHeap.c'),
+        os.path.join('game', 'gfx', 'Camera.S'),
+        os.path.join('game', 'gfx', 'CameraManager.S'),
+        os.path.join('game', 'host_system', 'BootStrapScene.c'),
+        os.path.join('game', 'host_system', 'Patcher.c'),
+        os.path.join('game', 'host_system', 'Payload.c'),
+        os.path.join('game', 'host_system', 'RkSystem.c'),
+        os.path.join('game', 'host_system', 'SceneManager.S'),
+        os.path.join('game', 'host_system', 'SceneManager.c'),
+        os.path.join('game', 'snd', 'Snd.S'),
+        os.path.join('game', 'system', 'GhostFile.c'),
+        os.path.join('game', 'system', 'InputManager.S'),
+        os.path.join('game', 'system', 'InputManager.c'),
+        os.path.join('game', 'system', 'Mii.S'),
+        os.path.join('game', 'system', 'MultiDvdArchive.c'),
+        os.path.join('game', 'system', 'NandHelper.c'),
+        os.path.join('game', 'system', 'NandManager.S'),
+        os.path.join('game', 'system', 'RaceConfig.S'),
+        os.path.join('game', 'system', 'RaceConfig.c'),
+        os.path.join('game', 'system', 'RaceManager.S'),
+        os.path.join('game', 'system', 'RaceManager.c'),
+        os.path.join('game', 'system', 'ResourceManager.c'),
+        os.path.join('game', 'system', 'SaveManager.c'),
+        os.path.join('game', 'ui', 'GhostManagerPage.c'),
+        os.path.join('game', 'ui', 'GhostSelectButton.c'),
+        os.path.join('game', 'ui', 'GhostSelectControl.c'),
+        os.path.join('game', 'ui', 'License.S'),
+        os.path.join('game', 'ui', 'License.c'),
+        os.path.join('game', 'ui', 'LicenseSelectButton.c'),
+        os.path.join('game', 'ui', 'SaveManagerProxy.S'),
+        os.path.join('game', 'ui', 'Section.c'),
+        os.path.join('game', 'ui', 'SectionManager.c'),
+        os.path.join('game', 'ui', 'TabControl.c'),
+        os.path.join('game', 'ui', 'TimeAttackGhostListPage.c'),
+        os.path.join('game', 'ui', 'UIAnimator.c'),
+        os.path.join('game', 'ui', 'UIControl.c'),
+        os.path.join('game', 'ui', 'ctrl', 'CtrlMenuBackButton.c'),
+        os.path.join('game', 'ui', 'ctrl', 'CtrlMenuPageTitleText.c'),
+        os.path.join('game', 'ui', 'ctrl', 'CtrlRace2DMap.S'),
+        os.path.join('game', 'ui', 'ctrl', 'CtrlRaceBase.S'),
+        os.path.join('game', 'ui', 'ctrl', 'CtrlRaceNameBalloon.S'),
+        os.path.join('game', 'ui', 'ctrl', 'CtrlRaceNameBalloon.c'),
+        os.path.join('game', 'ui', 'ctrl', 'CtrlRaceSpeed.c'),
+        os.path.join('game', 'ui', 'ctrl', 'CtrlRaceTime.S'),
+        os.path.join('game', 'ui', 'page', 'RacePage.S'),
+        os.path.join('game', 'ui', 'page', 'RacePage.c'),
+        os.path.join('game', 'ui', 'page', 'SingleTopMenuPage.S'),
+        os.path.join('game', 'ui', 'page', 'SingleTopMenuPage.c'),
+        os.path.join('game', 'ui', 'page', 'TopMenuPage.S'),
+        os.path.join('game', 'ui', 'page', 'TopMenuPage.c'),
+        os.path.join('nw4r', 'lyt', 'lyt_arcResourceAccessor.S'),
+        os.path.join('nw4r', 'lyt', 'lyt_layout.S'),
+        os.path.join('revolution', 'nand.c'),
+    ],
+}
+code_out_files = {target: [] for target in code_in_files}
+for target in code_in_files:
+    for in_file in code_in_files[target]:
+        in_file = os.path.join(target, in_file)
+        _, ext = os.path.splitext(in_file)
+        out_file = os.path.join('$builddir', in_file + '.o')
         rule = {
             '.S': 'as',
             '.c': 'cc',
         }[ext]
         n.build(
-            ofile,
+            out_file,
             rule,
-            srcfile,
+            in_file,
         )
-        ofiles[target] += [ofile]
+        code_out_files[target] += [out_file]
     n.newline()
 
 for region in ['P']:
@@ -144,12 +171,12 @@ for region in ['P']:
     )
     n.newline()
 
-for target in ofiles:
+for target in code_out_files:
     for region in ['P']:
         n.build(
             os.path.join('$outdir', 'mkw-sp', 'bin', f'{target}{region}.bin'),
             'ld',
-            ofiles[target],
+            code_out_files[target],
             variables = {
                 'base': '0x80003f00' if target == 'loader' else {
                     'P': '0x8076db60',
@@ -159,10 +186,7 @@ for target in ofiles:
                 }[region],
                 'script': os.path.join('$builddir', 'scripts', f'RMC{region}.ld'),
             },
-            implicit = [
-                os.path.join('$builddir', 'scripts', f'RMC{region}.ld'),
-                os.path.join('build', target + '.listfile'),
-            ],
+            implicit = os.path.join('$builddir', 'scripts', f'RMC{region}.ld'),
         )
         n.newline()
 
@@ -190,75 +214,95 @@ n.rule(
 )
 n.newline()
 
-assettargets = [
-    os.path.join('Scene', 'UI', 'MenuOtherSP'),
-    os.path.join('Scene', 'UI', 'MenuSingleSP'),
-    os.path.join('Scene', 'UI', 'MenuSingleSP_E'),
-    os.path.join('Scene', 'UI', 'RaceSP'),
-    os.path.join('Scene', 'UI', 'TitleSP'),
-]
-
-assetfiles = {}
-for target in assettargets:
-    deps = []
-    assetfiles[target] = []
-    for ext in ['.json5', '.tpl']:
-        pattern = os.path.join('assets', target + '.szs.d', '**', '*' + ext)
-        assetfiles[target] += glob.glob(pattern, recursive=True)
-    deps += assetfiles[target]
-    assetfiles[target] = [os.path.relpath(assetfile, 'assets') for assetfile in assetfiles[target]]
-    pattern = os.path.join('assets', target + '.szs.d', '**', '')
-    assetdirs = glob.glob(pattern, recursive=True)
-    assetdirs = [os.path.normpath(assetdir) for assetdir in assetdirs]
-    deps += assetdirs
-    alldeps += deps
-    listfile = os.path.join('build', 'assets', target + '.listfile')
-    listfile_data = ' '.join(deps)
-    try:
-        old_data = open(listfile, 'r').read()
-    except FileNotFoundError:
-        old_data = None
-    if listfile_data != old_data:
-        open(listfile, 'w').write(listfile_data)
-    listfiles += [listfile]
-
-outfiles = {target: [] for target in assetfiles}
-for target in assetfiles:
-    for assetfile in assetfiles[target]:
-        assetfile = os.path.join('assets', assetfile)
-        base, ext = os.path.splitext(assetfile)
+asset_in_files = {
+    'MenuOtherSP.szs': [
+        os.path.join('control', 'blyt', 'common_w076_license_icon_center.brlyt.json5'),
+        os.path.join('control', 'ctrl', 'LicenseDisplay.brctr.json5'),
+        os.path.join('control', 'ctrl', 'LicenseManagement.brctr.json5'),
+        os.path.join('control', 'timg', 'tt_license_icon_004.tpl'),
+    ],
+    'MenuSingleSP.szs': [
+        os.path.join('button', 'blyt', 'common_w129_movie_button_single_top.brlyt.json5'),
+        os.path.join('button', 'ctrl', 'SingleTop.brctr.json5'),
+        os.path.join('button', 'ctrl', 'TimeAttackGhostListArrowLeft.brctr.json5'),
+        os.path.join('button', 'ctrl', 'TimeAttackGhostListArrowRight.brctr.json5'),
+        os.path.join('button', 'ctrl', 'TimeAttackGhostList.brctr.json5'),
+        os.path.join('control', 'anim', 'common_w200_ghost_button_active_off.brlan.json5'),
+        os.path.join('control', 'anim', 'common_w200_ghost_button_active_off_to_on.brlan.json5'),
+        os.path.join('control', 'anim', 'common_w200_ghost_button_active_on.brlan.json5'),
+        os.path.join('control', 'anim', 'common_w200_ghost_button_free.brlan.json5'),
+        os.path.join('control', 'anim', 'common_w200_ghost_button_free_to_select.brlan.json5'),
+        os.path.join('control', 'anim', 'common_w200_ghost_button_light_01_ok.brlan.json5'),
+        os.path.join('control', 'anim', 'common_w200_ghost_button_light_01_stop.brlan.json5'),
+        os.path.join('control', 'anim', 'common_w200_ghost_button_light_02_select.brlan.json5'),
+        os.path.join('control', 'anim', 'common_w200_ghost_button_light_02_stop.brlan.json5'),
+        os.path.join('control', 'anim', 'common_w200_ghost_button_select.brlan.json5'),
+        os.path.join('control', 'anim', 'common_w200_ghost_button_select_to_free.brlan.json5'),
+        os.path.join('control', 'anim', 'friend_room_comment_container_center_to_right.brlan.json5'),
+        os.path.join('control', 'anim', 'friend_room_comment_container_hide.brlan.json5'),
+        os.path.join('control', 'anim', 'friend_room_comment_container_left_to_center.brlan.json5'),
+        os.path.join('control', 'anim', 'friend_room_comment_container_show.brlan.json5'),
+        os.path.join('control', 'blyt', 'common_w200_ghost_button.brlyt.json5'),
+        os.path.join('control', 'blyt', 'ghost_container.brlyt.json5'),
+        os.path.join('control', 'ctrl', 'GhostSelectBase.brctr.json5'),
+        os.path.join('control', 'ctrl', 'GhostSelectOption.brctr.json5'),
+        os.path.join('control', 'ctrl', 'TimeAttackGhostListPageNum.brctr.json5'),
+    ],
+    'MenuSingleSP_E.szs': [
+        os.path.join('message', 'MenuSP.bmg.json5'),
+    ],
+    'RaceSP.szs': [
+        os.path.join('game_image', 'anim', 'game_image_speed_texture_pattern_0_9.brlan.json5'),
+        os.path.join('game_image', 'blyt', 'game_image_speed.brlyt.json5'),
+        os.path.join('game_image', 'ctrl', 'battle_total_point.brctr.json5'),
+        os.path.join('game_image', 'ctrl', 'lap_number.brctr.json5'),
+        os.path.join('game_image', 'ctrl', 'position_multi.brctr.json5'),
+        os.path.join('game_image', 'ctrl', 'speed_number.brctr.json5'),
+        os.path.join('game_image', 'ctrl', 'time_number.brctr.json5'),
+        os.path.join('game_image', 'timg', 'tt_d_number_3d_minus.tpl'),
+        os.path.join('game_image', 'timg', 'tt_d_number_3d_none.tpl'),
+        os.path.join('game_image', 'timg', 'tt_speed_E.tpl'),
+    ],
+    'TitleSP.szs': [
+        os.path.join('button', 'blyt', 'common_w076_license_icon_center.brlyt.json5'),
+        os.path.join('button', 'ctrl', 'LicenseSelect.brctr.json5'),
+        os.path.join('button', 'ctrl', 'TopMenuMultiWaku.brctr.json5'),
+        os.path.join('button', 'ctrl', 'TopMenuSingleWaku.brctr.json5'),
+        os.path.join('button', 'timg', 'tt_license_icon_004.tpl'),
+    ],
+}
+asset_out_files = {target: [] for target in asset_in_files}
+for target in asset_in_files:
+    for in_file in asset_in_files[target]:
+        base, ext = os.path.splitext(in_file)
         outext = {
             '.json5': '',
             '.tpl': '.tpl',
         }[ext]
-        outfile = os.path.join('$builddir', base + outext)
+        out_file = os.path.join('$builddir', 'Shared.szs.d', base + outext)
+        in_file = os.path.join('assets', in_file)
         rule = {
             '.json5': 'wuj5',
             '.tpl': 'cp',
         }[ext]
         n.build(
-            outfile,
+            out_file,
             rule,
-            assetfile,
+            in_file,
         )
-        outfiles[target] += [outfile]
+        asset_out_files[target] += [out_file]
     n.newline()
 
-for target in outfiles:
+for target in asset_out_files:
     n.build(
-        os.path.join('$outdir', 'mkw-sp', 'disc', target + '.szs'),
+        os.path.join('$outdir', 'mkw-sp', 'disc', target),
         'szs',
-        outfiles[target],
+        asset_out_files[target],
         variables = {
-            'szsin': os.path.join('$builddir', 'assets', target + '.szs.d'),
+            'szsin': os.path.join('$builddir', 'Shared.szs.d'),
         },
-        implicit = [
-            os.path.join('build', 'assets', target + '.listfile'),
-        ],
     )
     n.newline()
-
-open('build.depfile', 'w').write('build.ninja: ' + ' '.join(alldeps))
 
 n.variable('configure', os.path.join('.', 'configure.py'))
 n.newline()
@@ -266,20 +310,13 @@ n.newline()
 n.rule(
     'configure',
     command = '$configure',
-    depfile = '$depfile',
-    deps = 'gcc',
     generator = True,
-    restat = True,
 )
 n.build(
     'build.ninja',
     'configure',
-    variables = {
-        'depfile': 'build.depfile',
-    },
     implicit = [
         '$configure',
         os.path.join('vendor', 'ninja_syntax.py'),
     ],
-    implicit_outputs = listfiles,
 )
