@@ -34,13 +34,15 @@ ext_pack = {
     'brlyt': pack_brlyt,
 }
 
-def decode_szs_node(out_path, node):
+def decode_szs_node(out_path, node, retained):
     out_path = os.path.join(out_path, node['name'])
     if node['is_dir']:
         os.mkdir(out_path)
         for child in node['children']:
-            decode_szs_node(out_path, child)
+            decode_szs_node(out_path, child, retained)
     else:
+        if retained is not None and out_path not in retained:
+            return
         ext = out_path.split(os.extsep)[-1]
         in_data = node['content']
         unpack = ext_unpack.get(ext)
@@ -53,7 +55,7 @@ def decode_szs_node(out_path, node):
             out_file = open(out_path + '.json5', 'w')
         out_file.write(out_data)
 
-def decode_szs(in_path, out_path):
+def decode_szs(in_path, out_path, retained):
     in_file = open(in_path, 'rb')
     in_data = in_file.read()
     magic = in_data[0:4]
@@ -66,12 +68,12 @@ def decode_szs(in_path, out_path):
     root = unpack_u8(in_data)
     if out_path is None:
         out_path = in_path + '.d'
-    decode_szs_node(out_path, root)
+    decode_szs_node(out_path, root, retained)
 
-def decode(in_path, out_path):
+def decode(in_path, out_path, retained):
     ext = in_path.split(os.extsep)[-1]
     if ext == 'szs':
-        decode_szs(in_path, out_path)
+        decode_szs(in_path, out_path, retained)
         return
     unpack = ext_unpack.get(ext)
     if unpack is None:
@@ -91,17 +93,21 @@ def decode(in_path, out_path):
     out_file = open(out_path, 'w')
     out_file.write(out_data)
 
-def encode_szs_node(in_path):
+def encode_szs_node(in_path, retained):
     is_dir = os.path.isdir(in_path)
     if is_dir:
         out_path = in_path
         children = []
         for child_path in sorted(os.listdir(in_path)):
-            children += [encode_szs_node(os.path.join(in_path, child_path))]
+            child = encode_szs_node(os.path.join(in_path, child_path), retained)
+            if child is not None:
+                children += [child]
         node = {
             'children': children,
         }
     else:
+        if retained is not None and in_path not in retained:
+            return None
         parts = in_path.split(os.extsep)
         ext = parts[-2] if len(parts) >= 2 else None
         pack = ext_pack.get(ext)
@@ -124,8 +130,8 @@ def encode_szs_node(in_path):
         **node,
     }
 
-def encode_szs(in_path, out_path):
-    root = encode_szs_node(in_path)
+def encode_szs(in_path, out_path, retained):
+    root = encode_szs_node(in_path, retained)
     out_data = pack_u8(root)
     out_data = pack_yaz(out_data)
     if out_path is None:
@@ -133,10 +139,10 @@ def encode_szs(in_path, out_path):
     out_file = open(out_path, 'wb')
     out_file.write(out_data)
 
-def encode(in_path, out_path):
+def encode(in_path, out_path, retained):
     ext = in_path.split(os.extsep)[-2]
     if ext == 'szs':
-        encode_szs(in_path, out_path)
+        encode_szs(in_path, out_path, retained)
         return
     pack = ext_pack.get(ext)
     if pack is None:
@@ -155,6 +161,7 @@ parser = ArgumentParser()
 parser.add_argument('operation', choices = ['decode', 'encode'])
 parser.add_argument('inputs', nargs = '+')
 parser.add_argument('-o', '--outputs', nargs = '*')
+parser.add_argument('--retained', nargs = '*')
 args = parser.parse_args()
 
 operations = {
@@ -166,4 +173,4 @@ if args.outputs is None:
 if len(args.outputs) != len(args.inputs):
     exit('Wrong number of output paths.')
 for in_path, out_path in zip(args.inputs, args.outputs):
-    operations[args.operation](in_path, out_path)
+    operations[args.operation](in_path, out_path, args.retained)
