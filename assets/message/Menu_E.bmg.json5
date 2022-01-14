@@ -1,0 +1,5486 @@
+{
+    "0x1": {
+        "font": "regular",
+        "string": null,
+    },
+    "0x7d0": {
+        "font": "regular",
+        "string": "OK",
+    },
+    "0x7d1": {
+        "font": "regular",
+        "string": "←{arg back button|0}Back",
+    },
+    "0x7d2": {
+        "font": "regular",
+        "string": "Yes",
+    },
+    "0x7d3": {
+        "font": "regular",
+        "string": "No",
+    },
+    "0x7d4": {
+        "font": "regular",
+        "string": null,
+    },
+    "0x7d5": {
+        "font": "regular",
+        "string": "→",
+    },
+    "0x7d6": {
+        "font": "regular",
+        "string": null,
+    },
+    "0x7d7": {
+        "font": "regular",
+        "string": "←",
+    },
+    "0x7d8": {
+        "font": "regular",
+        "string": null,
+    },
+    "0x7d9": {
+        "font": "regular",
+        "string": "{arg integer|0 0}/{arg integer|1 0}",
+    },
+    "0x7da": {
+        "font": "regular",
+        "string": "Mario Kart Wii",
+    },
+    "0x7db": {
+        "font": "regular",
+        "string": "Single Player",
+    },
+    "0x7dc": {
+        "font": "regular",
+        "string": "Multiplayer",
+    },
+    "0x7dd": {
+        "font": "regular",
+        "string": "Nintendo WFC",
+    },
+    "0x7de": {
+        "font": "regular",
+        "string": "Mario Kart Channel",
+    },
+    "0x7df": {
+        "font": "regular",
+        "string": "Licence Settings",
+    },
+    "0x7e0": {
+        "font": "regular",
+        "string": "Records",
+    },
+    "0x7e1": {
+        "font": "regular",
+        "string": "Press the A Button",
+    },
+    "0x7e2": {
+        "font": "regular",
+        "string": "Main Menu",
+    },
+    "0x7e3": {
+        "font": "regular",
+        "string": null,
+    },
+    "0x7e4": {
+        "font": "regular",
+        "string": "Grand Prix and more for one player!",
+    },
+    "0x7e5": {
+        "font": "regular",
+        "string": "Race and battle with two players!",
+    },
+    "0x7e6": {
+        "font": "regular",
+        "string": "Race and battle with three players!",
+    },
+    "0x7e7": {
+        "font": "regular",
+        "string": "Race and battle with four players!",
+    },
+    "0x7e8": {
+        "font": "regular",
+        "string": "Play via Nintendo WFC!",
+    },
+    "0x7e9": {
+        "font": "regular",
+        "string": "Play with a friend via Nintendo WFC!",
+    },
+    "0x7ea": {
+        "font": "regular",
+        "string": "View rankings and competition data!",
+    },
+    "0x7eb": {
+        "font": "regular",
+        "string": "Check your records and change your Mii!",
+    },
+    "0x7ec": {
+        "font": "regular",
+        "string": null,
+    },
+    "0x7ed": {
+        "font": "regular",
+        "string": null,
+    },
+    "0x7ee": {
+        "font": "regular",
+        "string": "Multiplayer (2P)",
+    },
+    "0x7ef": {
+        "font": "regular",
+        "string": "Multiplayer (3P)",
+    },
+    "0x7f0": {
+        "font": "regular",
+        "string": "Multiplayer (4P)",
+    },
+    "0x7f1": {
+        "font": "regular",
+        "string": "Nintendo WFC (1P)",
+    },
+    "0x7f2": {
+        "font": "regular",
+        "string": "Nintendo WFC (2P)",
+    },
+    "0x7f3": {
+        "font": "regular",
+        "string": null,
+    },
+    "0x802": {
+        "font": "regular",
+        "string": "Please insert the Mario Kart Wii\nGame Disc into the Wii console\nand wait for the game to start up.",
+    },
+    "0x803": {
+        "font": "regular",
+        "string": "The Game Disc could not be read.\nPlease read the Wii Operations\nManual for more information.",
+    },
+    "0x804": {
+        "font": "regular",
+        "string": "An error has occurred.\n\nPress the EJECT Button, remove\nthe Game Disc, and turn the power\noff. Please read the Wii Operations\nManual for more information.",
+    },
+    "0x805": {
+        "font": "regular",
+        "string": "There is not enough available space in\nthe Wii System Memory. Create 23 blocks\nof free space by either moving data to\nan SD Card or deleting data in the\nData Management Screen.",
+    },
+    "0x806": {
+        "font": "regular",
+        "string": "The Wii System Memory has been\ncorrupted. Refer to the Wii\nOperations Manual for further\ninstructions.",
+    },
+    "0x807": {
+        "font": "regular",
+        "string": "This data is corrupted and\ncannot be used.\n\nDelete the corrupted file and\ncreate a new one?",
+    },
+    "0x808": {
+        "font": "regular",
+        "string": null,
+    },
+    "0x809": {
+        "font": "regular",
+        "string": "Could not write to/read from\nWii System Memory.\n\nFor details, please read the\nWii Operations Manual.",
+    },
+    "0x80a": {
+        "font": "regular",
+        "string": "You will now return to the Wii Menu.",
+    },
+    "0x80b": {
+        "font": "regular",
+        "string": "Continue without saving",
+    },
+    "0x80c": {
+        "font": "regular",
+        "string": "Return to the Wii Menu",
+    },
+    "0x80d": {
+        "font": "regular",
+        "string": "You cannot choose this menu\nbecause there is no save file.",
+    },
+    "0x80e": {
+        "font": "regular",
+        "string": "No save file could be read.\nPlease insert a Mario Kart Wii\nGame Disc.",
+    },
+    "0x80f": {
+        "font": "regular",
+        "string": "Start Game Disc",
+    },
+    "0x810": {
+        "font": "regular",
+        "string": "You will be returned\nto the Wii Menu.\nIs this OK?",
+    },
+    "0x811": {
+        "font": "regular",
+        "string": "Saving. Please do not touch\nthe POWER Button or RESET.",
+    },
+    "0x812": {
+        "font": "regular",
+        "string": "Unable to load Mii Channel data.\nPlease access the Mii Channel\nand check Mii Channel data.",
+    },
+    "0x813": {
+        "font": "regular",
+        "string": "If you erase this Mii from the\nMii Channel, it will also be\nerased in Mario Kart Wii, so\nplease be careful.",
+    },
+    "0x814": {
+        "font": "regular",
+        "string": "Your licence was created using a\nGuest Mii. You can create a new Mii\nof your own in the Mii Channel.",
+    },
+    "0x815": {
+        "font": "regular",
+        "string": "The ghost data challenge could not\nbe sent. Up to five challenges can\nbe sent each time you play.\n\nPlease wait until the next time\nyou start Mario Kart Wii to send\nanother challenge.",
+    },
+    "0x816": {
+        "font": "regular",
+        "string": "Unable to connect to Nintendo Wi-Fi\nConnection. There is no save data.\n\nYou can manage the Wii System Memory\non the Data Management Screen\nof the Wii Options.",
+    },
+    "0x817": {
+        "font": "regular",
+        "string": "There is not enough available space\nin the Wii System Memory. Either\nmove data to an SD Card or delete\ndata on the Data Management Screen.",
+    },
+    "0x818": {
+        "font": "regular",
+        "string": "You will now disconnect\nfrom Nintendo WFC and\nreturn to the main menu.",
+    },
+    "0x819": {
+        "font": "regular",
+        "string": "Your Country setting has been changed, so new\nsave data must be created. If you do not want to\nlose your existing save data, please return to the\nWii Menu and restore your original Country setting.",
+    },
+    "0x81a": {
+        "font": "regular",
+        "string": "Create New Save Data",
+    },
+    "0x81b": {
+        "font": "regular",
+        "string": null,
+    },
+    "0x834": {
+        "font": "regular",
+        "string": null,
+    },
+    "0x835": {
+        "font": "regular",
+        "string": "A new Mario Kart Wii\nlicence will be created.",
+    },
+    "0x836": {
+        "font": "regular",
+        "string": "New Licence",
+    },
+    "0x837": {
+        "font": "regular",
+        "string": "Erase Licence",
+    },
+    "0x838": {
+        "font": "regular",
+        "string": "Select Licence",
+    },
+    "0x839": {
+        "font": "regular",
+        "string": null,
+    },
+    "0x83a": {
+        "font": "regular",
+        "string": null,
+    },
+    "0x83b": {
+        "font": "regular",
+        "string": null,
+    },
+    "0x83c": {
+        "font": "regular",
+        "string": null,
+    },
+    "0x83d": {
+        "font": "regular",
+        "string": null,
+    },
+    "0x83e": {
+        "font": "regular",
+        "string": "{arg integer|0 4}-{arg integer|1 4}-{arg integer|2 4}",
+    },
+    "0x83f": {
+        "font": "regular",
+        "string": "A new licence will be\ncreated for {arg player|0}.\n\nIs this OK?",
+    },
+    "0x840": {
+        "font": "regular",
+        "string": "The Mii for this licence will\nbe changed to {arg player|0}.\nIs this OK?",
+    },
+    "0x841": {
+        "font": "regular",
+        "string": "{current player|} and {arg player|0}\nwill connect to Nintendo WFC\ntogether. Is this OK?",
+    },
+    "0x842": {
+        "font": "regular",
+        "string": null,
+    },
+    "0x848": {
+        "font": "regular",
+        "string": "Records",
+    },
+    "0x849": {
+        "font": "regular",
+        "string": "View {current player|}'s records.",
+    },
+    "0x84a": {
+        "font": "regular",
+        "string": "Change the Mii on this licence.",
+    },
+    "0x84b": {
+        "font": "regular",
+        "string": "Select Mii",
+    },
+    "0x84c": {
+        "font": "regular",
+        "string": null,
+    },
+    "0x84d": {
+        "font": "regular",
+        "string": null,
+    },
+    "0x84e": {
+        "font": "regular",
+        "string": null,
+    },
+    "0x84f": {
+        "font": "regular",
+        "string": null,
+    },
+    "0x850": {
+        "font": "regular",
+        "string": "Erase {current player|}'s licence.",
+    },
+    "0x851": {
+        "font": "regular",
+        "string": null,
+    },
+    "0x852": {
+        "font": "regular",
+        "string": null,
+    },
+    "0x853": {
+        "font": "regular",
+        "string": null,
+    },
+    "0x854": {
+        "font": "regular",
+        "string": null,
+    },
+    "0x855": {
+        "font": "regular",
+        "string": null,
+    },
+    "0x856": {
+        "font": "regular",
+        "string": null,
+    },
+    "0x857": {
+        "font": "regular",
+        "string": "Close",
+    },
+    "0x858": {
+        "font": "regular",
+        "string": null,
+    },
+    "0x866": {
+        "font": "regular",
+        "string": null,
+    },
+    "0x867": {
+        "font": "regular",
+        "string": "Your new licence has been created.",
+    },
+    "0x868": {
+        "font": "regular",
+        "string": "Are you sure you want to\nerase {current player|}'s licence?",
+    },
+    "0x869": {
+        "font": "regular",
+        "string": "{current player|}'s licence\nhas been erased.",
+    },
+    "0x86a": {
+        "font": "regular",
+        "string": null,
+    },
+    "0x86b": {
+        "font": "regular",
+        "string": "The Mii for this licence has been changed.",
+    },
+    "0x86c": {
+        "font": "regular",
+        "string": null,
+    },
+    "0x86d": {
+        "font": "regular",
+        "string": "Erasing licence...",
+    },
+    "0x86e": {
+        "font": "regular",
+        "string": "The Friend Roster, ghost data records\nand other data for this licence will be\nerased. Are you sure this is OK?",
+    },
+    "0x86f": {
+        "font": "regular",
+        "string": null,
+    },
+    "0x898": {
+        "font": "regular",
+        "string": "Change Mii",
+    },
+    "0x899": {
+        "font": "regular",
+        "string": "Select Mii",
+    },
+    "0x89a": {
+        "font": "regular",
+        "string": "Wii Console",
+    },
+    "0x89b": {
+        "font": "regular",
+        "string": "Guest",
+    },
+    "0x89c": {
+        "font": "regular",
+        "string": null,
+    },
+    "0x89d": {
+        "font": "regular",
+        "string": "The Mii for this licence has been deleted\nfrom the Mii Channel.\n\nPlease choose another Mii.",
+    },
+    "0x89e": {
+        "font": "regular",
+        "string": null,
+    },
+    "0x89f": {
+        "font": "regular",
+        "string": null,
+    },
+    "0x8a0": {
+        "font": "regular",
+        "string": null,
+    },
+    "0x8a1": {
+        "font": "regular",
+        "string": null,
+    },
+    "0x8a2": {
+        "font": "regular",
+        "string": null,
+    },
+    "0x8ca": {
+        "font": "regular",
+        "string": null,
+    },
+    "0x8cb": {
+        "font": "regular",
+        "string": null,
+    },
+    "0x8cc": {
+        "font": "regular",
+        "string": null,
+    },
+    "0x8cd": {
+        "font": "regular",
+        "string": null,
+    },
+    "0x8ce": {
+        "font": "regular",
+        "string": null,
+    },
+    "0x8cf": {
+        "font": "regular",
+        "string": null,
+    },
+    "0x8d0": {
+        "font": "regular",
+        "string": null,
+    },
+    "0x8d1": {
+        "font": "regular",
+        "string": null,
+    },
+    "0x8d2": {
+        "font": "regular",
+        "string": "The battery charge is\nrunning low.",
+    },
+    "0x8d3": {
+        "font": "regular",
+        "string": null,
+    },
+    "0x8d4": {
+        "font": "regular",
+        "string": null,
+    },
+    "0x8d5": {
+        "font": "regular",
+        "string": null,
+    },
+    "0x8d6": {
+        "font": "regular",
+        "string": null,
+    },
+    "0x8fc": {
+        "font": "regular",
+        "string": null,
+    },
+    "0x8fd": {
+        "font": "regular",
+        "string": "1\n{font scale|50}Player",
+    },
+    "0x8fe": {
+        "font": "regular",
+        "string": "2\n{font scale|50}Players",
+    },
+    "0x8ff": {
+        "font": "regular",
+        "string": "3\n{font scale|50}Players",
+    },
+    "0x900": {
+        "font": "regular",
+        "string": "4\n{font scale|50}Players",
+    },
+    "0x901": {
+        "font": "regular",
+        "string": "{2 chars| }",
+    },
+    "0x902": {
+        "font": "regular",
+        "string": "{2 chars| }",
+    },
+    "0x903": {
+        "font": "regular",
+        "string": null,
+    },
+    "0x960": {
+        "font": "regular",
+        "string": null,
+    },
+    "0x961": {
+        "font": "regular",
+        "string": "Register Controllers",
+    },
+    "0x962": {
+        "font": "regular",
+        "string": "Press the A Button on Player 2's Controller.",
+    },
+    "0x963": {
+        "font": "regular",
+        "string": "Press the A Button on Player 3's Controller.",
+    },
+    "0x964": {
+        "font": "regular",
+        "string": "Press the A Button on Player 4's Controller.",
+    },
+    "0x965": {
+        "font": "regular",
+        "string": null,
+    },
+    "0x966": {
+        "font": "regular",
+        "string": null,
+    },
+    "0x967": {
+        "font": "regular",
+        "string": null,
+    },
+    "0x968": {
+        "font": "regular",
+        "string": null,
+    },
+    "0x969": {
+        "font": "regular",
+        "string": null,
+    },
+    "0x9c4": {
+        "font": "regular",
+        "string": "Is this OK?",
+    },
+    "0x9c5": {
+        "font": "regular",
+        "string": "Change",
+    },
+    "0x9c6": {
+        "font": "regular",
+        "string": "Press the A Button on Player 1's controller.",
+    },
+    "0x9c7": {
+        "font": "regular",
+        "string": "Press the A Button on Player 2's controller.",
+    },
+    "0x9c8": {
+        "font": "regular",
+        "string": "Press the A Button on Player 3's controller.",
+    },
+    "0x9c9": {
+        "font": "regular",
+        "string": "Press the A Button on Player 4's controller.",
+    },
+    "0x9ca": {
+        "font": "regular",
+        "string": "Use these controllers.",
+    },
+    "0x9cb": {
+        "font": "regular",
+        "string": "Change the controllers.",
+    },
+    "0x9cc": {
+        "font": "regular",
+        "string": "{arg message|0}Add Wii Remote",
+    },
+    "0x9cd": {
+        "font": "regular",
+        "string": "Press {1 char|} and {1 char|} simultaneously.",
+    },
+    "0x9ce": {
+        "font": "regular",
+        "string": "{arg message|0}OK",
+    },
+    "0x9cf": {
+        "font": "regular",
+        "string": null,
+    },
+    "0x9d0": {
+        "font": "regular",
+        "string": null,
+    },
+    "0x9d1": {
+        "font": "regular",
+        "string": null,
+    },
+    "0x9d2": {
+        "font": "regular",
+        "string": null,
+    },
+    "0x9f6": {
+        "font": "regular",
+        "string": "{1 char|}",
+    },
+    "0x9f7": {
+        "font": "regular",
+        "string": "{1 char|}",
+    },
+    "0x9f8": {
+        "font": "regular",
+        "string": "{1 char|}",
+    },
+    "0x9f9": {
+        "font": "regular",
+        "string": "{1 char|}",
+    },
+    "0x9fa": {
+        "font": "regular",
+        "string": "{1 char|}",
+    },
+    "0x9fb": {
+        "font": "regular",
+        "string": "{color|player 1}OK",
+    },
+    "0x9fc": {
+        "font": "regular",
+        "string": "{color|player 2}OK",
+    },
+    "0x9fd": {
+        "font": "regular",
+        "string": "{color|player 3}OK",
+    },
+    "0x9fe": {
+        "font": "regular",
+        "string": "{color|player 4}OK",
+    },
+    "0x9ff": {
+        "font": "regular",
+        "string": null,
+    },
+    "0xa28": {
+        "font": "regular",
+        "string": "Add the Mario Kart Channel to\nyour Wii Menu? This requires\n{arg integer|0 0} blocks of free space.",
+    },
+    "0xa29": {
+        "font": "regular",
+        "string": "Add",
+    },
+    "0xa2a": {
+        "font": "regular",
+        "string": "Cancel",
+    },
+    "0xa2b": {
+        "font": "regular",
+        "string": null,
+    },
+    "0xa2c": {
+        "font": "regular",
+        "string": null,
+    },
+    "0xa2d": {
+        "font": "regular",
+        "string": null,
+    },
+    "0xa2e": {
+        "font": "regular",
+        "string": null,
+    },
+    "0xa2f": {
+        "font": "regular",
+        "string": "Add Mario Kart Channel",
+    },
+    "0xa30": {
+        "font": "regular",
+        "string": "Add the Mario Kart Channel to\nyour Wii Menu and you will be\nable to access the Channel\nwithout having to insert the\nMario Kart Wii Game Disc!",
+    },
+    "0xa31": {
+        "font": "regular",
+        "string": "The Mario Kart Channel has already\nbeen added to your Wii Menu.",
+    },
+    "0xa32": {
+        "font": "regular",
+        "string": "There is not enough available space\nin the Wii System Memory.\nCreate {arg integer|0 0} blocks of free space\nby either moving data to an SD Card\nor deleting data on the\nData Management Screen.",
+    },
+    "0xa33": {
+        "font": "regular",
+        "string": "There is not enough available space\nin the Wii System Memory. Either\nmove data to an SD Card or delete\ndata on the Data Management Screen.",
+    },
+    "0xa34": {
+        "font": "regular",
+        "string": "There is not enough available space\non your Wii Menu. Either move Channels\nto an SD Card or delete Channels on\nthe Data Management Screen.",
+    },
+    "0xa35": {
+        "font": "regular",
+        "string": "The Wii System Memory\nhas been corrupted. Refer\nto the Wii Operations Manual\nfor further instructions.",
+    },
+    "0xa36": {
+        "font": "regular",
+        "string": null,
+    },
+    "0xbb8": {
+        "font": "regular",
+        "string": "Grand Prix",
+    },
+    "0xbb9": {
+        "font": "regular",
+        "string": "Time Trials",
+    },
+    "0xbba": {
+        "font": "regular",
+        "string": "VS Race",
+    },
+    "0xbbb": {
+        "font": "regular",
+        "string": "Battle",
+    },
+    "0xbbc": {
+        "font": "regular",
+        "string": null,
+    },
+    "0xbbd": {
+        "font": "regular",
+        "string": null,
+    },
+    "0xbbe": {
+        "font": "regular",
+        "string": "50cc\n{font scale|50}Karts Only",
+    },
+    "0xbbf": {
+        "font": "regular",
+        "string": "100cc\n{font scale|50}Bikes Only",
+    },
+    "0xbc0": {
+        "font": "regular",
+        "string": "150cc\n{font scale|50}Karts and Bikes",
+    },
+    "0xbc1": {
+        "font": "regular",
+        "string": "Mirror\n{font scale|50}Karts and Bikes",
+    },
+    "0xbc2": {
+        "font": "regular",
+        "string": "50cc\n{font scale|50}Karts and Bikes",
+    },
+    "0xbc3": {
+        "font": "regular",
+        "string": "100cc\n{font scale|50}Karts and Bikes",
+    },
+    "0xbc4": {
+        "font": "regular",
+        "string": "{arg message|0}Switch",
+    },
+    "0xbc5": {
+        "font": "regular",
+        "string": null,
+    },
+    "0xbea": {
+        "font": "regular",
+        "string": "A four-course race for first place!",
+    },
+    "0xbeb": {
+        "font": "regular",
+        "string": "A solo race for the fastest record!",
+    },
+    "0xbec": {
+        "font": "regular",
+        "string": "Race with custom settings!",
+    },
+    "0xbed": {
+        "font": "regular",
+        "string": "Race with custom settings!",
+    },
+    "0xbee": {
+        "font": "regular",
+        "string": "Battle in teams!",
+    },
+    "0xbef": {
+        "font": "regular",
+        "string": "Battle in teams!",
+    },
+    "0xbf0": {
+        "font": "regular",
+        "string": null,
+    },
+    "0xbf1": {
+        "font": "regular",
+        "string": null,
+    },
+    "0xbf2": {
+        "font": "regular",
+        "string": null,
+    },
+    "0xbf3": {
+        "font": "regular",
+        "string": null,
+    },
+    "0xbf4": {
+        "font": "regular",
+        "string": "A Grand Prix for beginners (karts only).",
+    },
+    "0xbf5": {
+        "font": "regular",
+        "string": "A standard Grand Prix (bikes only).",
+    },
+    "0xbf6": {
+        "font": "regular",
+        "string": "A Grand Prix for experts (karts and bikes).",
+    },
+    "0xbf7": {
+        "font": "regular",
+        "string": "A mirrored Grand Prix (karts and bikes).",
+    },
+    "0xbf8": {
+        "font": "regular",
+        "string": "A Grand Prix for beginners (karts and bikes).",
+    },
+    "0xbf9": {
+        "font": "regular",
+        "string": "A standard Grand Prix (karts and bikes).",
+    },
+    "0xbfa": {
+        "font": "regular",
+        "string": null,
+    },
+    "0xc1c": {
+        "font": "regular",
+        "string": "Time Trials",
+    },
+    "0xc1d": {
+        "font": "regular",
+        "string": "There is no ghost data for this course.",
+    },
+    "0xc1e": {
+        "font": "regular",
+        "string": null,
+    },
+    "0xc1f": {
+        "font": "regular",
+        "string": "Rankings",
+    },
+    "0xc20": {
+        "font": "regular",
+        "string": null,
+    },
+    "0xc80": {
+        "font": "regular",
+        "string": "Battle Type",
+    },
+    "0xc81": {
+        "font": "regular",
+        "string": "Balloon Battle",
+    },
+    "0xc82": {
+        "font": "regular",
+        "string": "Coin Runners",
+    },
+    "0xc83": {
+        "font": "regular",
+        "string": null,
+    },
+    "0xc84": {
+        "font": "regular",
+        "string": null,
+    },
+    "0xcb2": {
+        "font": "regular",
+        "string": "Pop the opposing team's balloons!",
+    },
+    "0xcb3": {
+        "font": "regular",
+        "string": "Battle for the most coins!",
+    },
+    "0xcb4": {
+        "font": "regular",
+        "string": null,
+    },
+    "0xcb5": {
+        "font": "regular",
+        "string": null,
+    },
+    "0xce9": {
+        "font": "regular",
+        "string": "Drift Mode",
+    },
+    "0xcea": {
+        "font": "regular",
+        "string": "Automatic",
+    },
+    "0xceb": {
+        "font": "regular",
+        "string": "Manual",
+    },
+    "0xcec": {
+        "font": "regular",
+        "string": "Help",
+    },
+    "0xced": {
+        "font": "regular",
+        "string": "■ Drift ■\nDrift lets you take corners without\nlosing speed. There are two drift modes.\n\n■ Automatic Drift ■\nYou will drift automatically when turning,\nbut you can't {arg back button|0}hop or use Mini-Turbos.\n\n■ Manual Drift ■\n{arg back button|0}Hop while turning to drift. Keep\ndrifting to get a Mini-Turbo, which\ngives you a burst of speed.",
+    },
+    "0xcee": {
+        "font": "regular",
+        "string": "View an explanation of drift and drift modes.",
+    },
+    "0xcef": {
+        "font": "regular",
+        "string": "Speed",
+    },
+    "0xcf0": {
+        "font": "regular",
+        "string": "Weight",
+    },
+    "0xcf1": {
+        "font": "regular",
+        "string": "Acceleration",
+    },
+    "0xcf2": {
+        "font": "regular",
+        "string": "Handling",
+    },
+    "0xcf3": {
+        "font": "regular",
+        "string": "Drift",
+    },
+    "0xcf4": {
+        "font": "regular",
+        "string": "Off-Road",
+    },
+    "0xcf5": {
+        "font": "regular",
+        "string": "Mini-Turbo",
+    },
+    "0xcf6": {
+        "font": "regular",
+        "string": null,
+    },
+    "0xd16": {
+        "font": "regular",
+        "string": "Drift automatically (no Mini-Turbo).",
+    },
+    "0xd17": {
+        "font": "regular",
+        "string": "Drift manually (with Mini-Turbo).",
+    },
+    "0xd18": {
+        "font": "regular",
+        "string": null,
+    },
+    "0xd20": {
+        "font": "regular",
+        "string": "{arg message|0}　Trophy: {arg message|1}　Rank:{arg message|2}",
+    },
+    "0xd21": {
+        "font": "regular",
+        "string": "Time Trials",
+    },
+    "0xd22": {
+        "font": "regular",
+        "string": "{arg message|0}",
+    },
+    "0xd23": {
+        "font": "regular",
+        "string": "{arg message|0} VS Race",
+    },
+    "0xd24": {
+        "font": "regular",
+        "string": "{1 char|} Balloon Battle",
+    },
+    "0xd25": {
+        "font": "regular",
+        "string": "{1 char|} Coin Runners",
+    },
+    "0xd26": {
+        "font": "regular",
+        "string": "{arg message|0} Team VS Race",
+    },
+    "0xd2a": {
+        "font": "regular",
+        "string": "{1 char|}",
+    },
+    "0xd2b": {
+        "font": "regular",
+        "string": "{1 char|}",
+    },
+    "0xd2c": {
+        "font": "regular",
+        "string": "{1 char|}",
+    },
+    "0xd2d": {
+        "font": "regular",
+        "string": "{1 char|}",
+    },
+    "0xd2e": {
+        "font": "regular",
+        "string": "{1 char|}",
+    },
+    "0xd2f": {
+        "font": "regular",
+        "string": "{1 char|}",
+    },
+    "0xd30": {
+        "font": "regular",
+        "string": "{1 char|}",
+    },
+    "0xd31": {
+        "font": "regular",
+        "string": "{1 char|}",
+    },
+    "0xd32": {
+        "font": "regular",
+        "string": "{1 char|}",
+    },
+    "0xd33": {
+        "font": "regular",
+        "string": "{1 char|}",
+    },
+    "0xd34": {
+        "font": "regular",
+        "string": "{1 char|}",
+    },
+    "0xd35": {
+        "font": "regular",
+        "string": "F",
+    },
+    "0xd36": {
+        "font": "regular",
+        "string": " 　",
+    },
+    "0xd37": {
+        "font": "regular",
+        "string": null,
+    },
+    "0xd38": {
+        "font": "regular",
+        "string": null,
+    },
+    "0xd48": {
+        "font": "regular",
+        "string": "Rules",
+    },
+    "0xd49": {
+        "font": "regular",
+        "string": "Select Class",
+    },
+    "0xd4a": {
+        "font": "regular",
+        "string": "Select Character",
+    },
+    "0xd4b": {
+        "font": "regular",
+        "string": "Select Vehicle",
+    },
+    "0xd4c": {
+        "font": "regular",
+        "string": "Select Cup",
+    },
+    "0xd4d": {
+        "font": "regular",
+        "string": "Select Course",
+    },
+    "0xd4e": {
+        "font": "regular",
+        "string": "Select Stage",
+    },
+    "0xd4f": {
+        "font": "regular",
+        "string": "Choose Ghost Data",
+    },
+    "0xd50": {
+        "font": "regular",
+        "string": "Battle",
+    },
+    "0xd51": {
+        "font": "regular",
+        "string": "VS Race",
+    },
+    "0xd52": {
+        "font": "regular",
+        "string": "Class",
+    },
+    "0xd53": {
+        "font": "regular",
+        "string": "50cc",
+    },
+    "0xd54": {
+        "font": "regular",
+        "string": "100cc",
+    },
+    "0xd55": {
+        "font": "regular",
+        "string": "150cc",
+    },
+    "0xd56": {
+        "font": "regular",
+        "string": "Mirror",
+    },
+    "0xd57": {
+        "font": "regular",
+        "string": "50cc class for beginners.",
+    },
+    "0xd58": {
+        "font": "regular",
+        "string": "100cc class for average racers.",
+    },
+    "0xd59": {
+        "font": "regular",
+        "string": "150cc class for experts.",
+    },
+    "0xd5a": {
+        "font": "regular",
+        "string": "150cc class with mirrored courses.",
+    },
+    "0xd5c": {
+        "font": "regular",
+        "string": "CPU",
+    },
+    "0xd5d": {
+        "font": "regular",
+        "string": "Easy",
+    },
+    "0xd5e": {
+        "font": "regular",
+        "string": "Normal",
+    },
+    "0xd5f": {
+        "font": "regular",
+        "string": "Hard",
+    },
+    "0xd60": {
+        "font": "regular",
+        "string": "Off",
+    },
+    "0xd61": {
+        "font": "regular",
+        "string": "CPU players are less skilled.",
+    },
+    "0xd62": {
+        "font": "regular",
+        "string": "CPU players are of average skill.",
+    },
+    "0xd63": {
+        "font": "regular",
+        "string": "CPU players are more skilled.",
+    },
+    "0xd64": {
+        "font": "regular",
+        "string": "Race without CPU players.",
+    },
+    "0xd66": {
+        "font": "regular",
+        "string": "Vehicles",
+    },
+    "0xd67": {
+        "font": "regular",
+        "string": "Karts",
+    },
+    "0xd68": {
+        "font": "regular",
+        "string": "Bikes",
+    },
+    "0xd69": {
+        "font": "regular",
+        "string": "All",
+    },
+    "0xd6a": {
+        "font": "regular",
+        "string": "CPU players use karts only.",
+    },
+    "0xd6b": {
+        "font": "regular",
+        "string": "CPU players use bikes only.",
+    },
+    "0xd6c": {
+        "font": "regular",
+        "string": "CPU players use karts and bikes.",
+    },
+    "0xd6d": {
+        "font": "regular",
+        "string": "CPU players use karts only.",
+    },
+    "0xd6e": {
+        "font": "regular",
+        "string": "CPU players use bikes only.",
+    },
+    "0xd6f": {
+        "font": "regular",
+        "string": "CPU players use karts and bikes.",
+    },
+    "0xd70": {
+        "font": "regular",
+        "string": "Course",
+    },
+    "0xd71": {
+        "font": "regular",
+        "string": "Choose",
+    },
+    "0xd72": {
+        "font": "regular",
+        "string": "Random",
+    },
+    "0xd73": {
+        "font": "regular",
+        "string": "In Order",
+    },
+    "0xd74": {
+        "font": "regular",
+        "string": "Choose the course for each race.",
+    },
+    "0xd75": {
+        "font": "regular",
+        "string": "Courses are chosen at random.",
+    },
+    "0xd76": {
+        "font": "regular",
+        "string": "Race courses in Cup order.",
+    },
+    "0xd77": {
+        "font": "regular",
+        "string": "Choose the stage for each battle.",
+    },
+    "0xd78": {
+        "font": "regular",
+        "string": "Stages are chosen at random.",
+    },
+    "0xd79": {
+        "font": "regular",
+        "string": "Play stages in order.",
+    },
+    "0xd7a": {
+        "font": "regular",
+        "string": "Races",
+    },
+    "0xd7b": {
+        "font": "regular",
+        "string": "{arg integer|0 1}",
+    },
+    "0xd7c": {
+        "font": "regular",
+        "string": "Wins",
+    },
+    "0xd84": {
+        "font": "regular",
+        "string": "{arg integer|0 1}",
+    },
+    "0xd85": {
+        "font": "regular",
+        "string": "Teams",
+    },
+    "0xd86": {
+        "font": "regular",
+        "string": "Team Race",
+    },
+    "0xd87": {
+        "font": "regular",
+        "string": "Solo Race",
+    },
+    "0xd88": {
+        "font": "regular",
+        "string": null,
+    },
+    "0xd89": {
+        "font": "regular",
+        "string": "Set the number of races.",
+    },
+    "0xd8a": {
+        "font": "regular",
+        "string": "Set the number of wins needed for overall victory.",
+    },
+    "0xd8b": {
+        "font": "regular",
+        "string": "Compete in teams for the most points!",
+    },
+    "0xd8c": {
+        "font": "regular",
+        "string": "Compete for the most points!",
+    },
+    "0xd8d": {
+        "font": "regular",
+        "string": "Stage",
+    },
+    "0xd8e": {
+        "font": "regular",
+        "string": "Are you sure you want\nto quit this VS Race?",
+    },
+    "0xd8f": {
+        "font": "regular",
+        "string": "Are you sure you want\nto quit this Battle?",
+    },
+    "0xd90": {
+        "font": "regular",
+        "string": "Race with these rules.",
+    },
+    "0xd91": {
+        "font": "regular",
+        "string": "Battle with these rules.",
+    },
+    "0xd92": {
+        "font": "regular",
+        "string": "Set various race rules.",
+    },
+    "0xd93": {
+        "font": "regular",
+        "string": "Set various battle rules.",
+    },
+    "0xd94": {
+        "font": "regular",
+        "string": null,
+    },
+    "0xd98": {
+        "font": "regular",
+        "string": "Items",
+    },
+    "0xd99": {
+        "font": "regular",
+        "string": "Recommended",
+    },
+    "0xd9a": {
+        "font": "regular",
+        "string": "Frantic",
+    },
+    "0xd9b": {
+        "font": "regular",
+        "string": "Basic",
+    },
+    "0xd9c": {
+        "font": "regular",
+        "string": "None",
+    },
+    "0xd9d": {
+        "font": "regular",
+        "string": "All items appear with balanced frequency.",
+    },
+    "0xd9e": {
+        "font": "regular",
+        "string": "Powerful items appear with high frequency.",
+    },
+    "0xd9f": {
+        "font": "regular",
+        "string": "Powerful items are hard to find.",
+    },
+    "0xda0": {
+        "font": "regular",
+        "string": "No items will appear.",
+    },
+    "0xda1": {
+        "font": "regular",
+        "string": null,
+    },
+    "0xdac": {
+        "font": "regular",
+        "string": "Team Settings",
+    },
+    "0xdad": {
+        "font": "regular",
+        "string": "Blue\nTeam",
+    },
+    "0xdae": {
+        "font": "regular",
+        "string": "Red\nTeam",
+    },
+    "0xdaf": {
+        "font": "regular",
+        "string": "Teams",
+    },
+    "0xdb0": {
+        "font": "regular",
+        "string": "Play with these teams.",
+    },
+    "0xdb1": {
+        "font": "regular",
+        "string": "Racers",
+    },
+    "0xdb2": {
+        "font": "regular",
+        "string": "{color|team blue}Blue\nTeam",
+    },
+    "0xdb3": {
+        "font": "regular",
+        "string": "{color|team red}Red\nTeam",
+    },
+    "0xdb4": {
+        "font": "regular",
+        "string": "Everyone is on the same team.\n\nPlease choose again.",
+    },
+    "0xdb5": {
+        "font": "regular",
+        "string": null,
+    },
+    "0xdde": {
+        "font": "regular",
+        "string": "Start?",
+    },
+    "0xddf": {
+        "font": "regular",
+        "string": "Start?",
+    },
+    "0xde0": {
+        "font": "regular",
+        "string": "Start?",
+    },
+    "0xde1": {
+        "font": "regular",
+        "string": null,
+    },
+    "0xfa0": {
+        "font": "regular",
+        "string": "Worldwide",
+    },
+    "0xfa1": {
+        "font": "regular",
+        "string": "Continental",
+    },
+    "0xfa2": {
+        "font": "regular",
+        "string": "Friends",
+    },
+    "0xfa3": {
+        "font": "regular",
+        "string": "Ghost Race",
+    },
+    "0xfa4": {
+        "font": "regular",
+        "string": "Nintendo Wi-Fi Connection",
+    },
+    "0xfa5": {
+        "font": "regular",
+        "string": null,
+    },
+    "0xfa6": {
+        "font": "regular",
+        "string": null,
+    },
+    "0xfa7": {
+        "font": "regular",
+        "string": null,
+    },
+    "0xfa8": {
+        "font": "regular",
+        "string": "There are no Friends registered\nin your Friend Roster.\n\nRegister Friends to play\ntogether on Nintendo WFC. ",
+    },
+    "0xfa9": {
+        "font": "regular",
+        "string": null,
+    },
+    "0xfaa": {
+        "font": "regular",
+        "string": "Connecting to Nintendo WFC...",
+    },
+    "0xfab": {
+        "font": "regular",
+        "string": "Disconnect from Nintendo WFC?",
+    },
+    "0xfac": {
+        "font": "regular",
+        "string": "Yes",
+    },
+    "0xfad": {
+        "font": "regular",
+        "string": "No",
+    },
+    "0xfae": {
+        "font": "regular",
+        "string": null,
+    },
+    "0xfaf": {
+        "font": "regular",
+        "string": null,
+    },
+    "0xfb0": {
+        "font": "regular",
+        "string": "You cannot access Nintendo\nWi-Fi Connection using this\nMii name. Please change your\nMii name and try again.",
+    },
+    "0xfb1": {
+        "font": "regular",
+        "string": null,
+    },
+    "0xfb2": {
+        "font": "regular",
+        "string": "You were disconnected\nfrom the other players.",
+    },
+    "0xfb3": {
+        "font": "regular",
+        "string": "Leave the room?",
+    },
+    "0xfb4": {
+        "font": "regular",
+        "string": "Close the room?",
+    },
+    "0xfb5": {
+        "font": "regular",
+        "string": "You were disconnected from the\nroom's creator. You will now be\nreturned to your Friend Roster.",
+    },
+    "0xfb6": {
+        "font": "regular",
+        "string": "You were unable to join this Friend.\n\nPlease wait and try again later.",
+    },
+    "0xfb7": {
+        "font": "regular",
+        "string": null,
+    },
+    "0xfb8": {
+        "font": "regular",
+        "string": "Teams",
+    },
+    "0xfb9": {
+        "font": "regular",
+        "string": null,
+    },
+    "0x1004": {
+        "font": "regular",
+        "string": "Room",
+    },
+    "0x1005": {
+        "font": "regular",
+        "string": "Create a Room",
+    },
+    "0x1006": {
+        "font": "regular",
+        "string": "Joining Friend...",
+    },
+    "0x1007": {
+        "font": "regular",
+        "string": null,
+    },
+    "0x1008": {
+        "font": "regular",
+        "string": null,
+    },
+    "0x1009": {
+        "font": "regular",
+        "string": null,
+    },
+    "0x100a": {
+        "font": "regular",
+        "string": "Searching for players...",
+    },
+    "0x100b": {
+        "font": "regular",
+        "string": "Players have been chosen!",
+    },
+    "0x100c": {
+        "font": "regular",
+        "string": "Waiting for Friends...",
+    },
+    "0x100d": {
+        "font": "regular",
+        "string": "Start Game",
+    },
+    "0x100e": {
+        "font": "regular",
+        "string": "We're playing a Grand Prix!",
+    },
+    "0x100f": {
+        "font": "regular",
+        "string": "We're playing a Team Grand Prix!",
+    },
+    "0x1010": {
+        "font": "regular",
+        "string": "We're playing a Balloon Battle!",
+    },
+    "0x1011": {
+        "font": "regular",
+        "string": "We're playing Coin Runners!",
+    },
+    "0x1012": {
+        "font": "regular",
+        "string": null,
+    },
+    "0x1036": {
+        "font": "regular",
+        "string": "Add Friends",
+    },
+    "0x1037": {
+        "font": "regular",
+        "string": "I've added you, {arg player|0}!",
+    },
+    "0x1038": {
+        "font": "regular",
+        "string": "There are no Friends to add.",
+    },
+    "0x1039": {
+        "font": "regular",
+        "string": null,
+    },
+    "0x103a": {
+        "font": "regular",
+        "string": "Now we're Friends, {arg player|0}!",
+    },
+    "0x103b": {
+        "font": "regular",
+        "string": null,
+    },
+    "0x1068": {
+        "font": "regular",
+        "string": "Message",
+    },
+    "0x1069": {
+        "font": "regular",
+        "string": "{arg integer|0 2}/{arg integer|1 2}",
+    },
+    "0x106a": {
+        "font": "regular",
+        "string": "{arg integer|0 0}\n{font scale|70}Race Rating",
+    },
+    "0x106b": {
+        "font": "regular",
+        "string": "{arg integer|0 0}\n{font scale|70}Battle Rating",
+    },
+    "0x106c": {
+        "font": "regular",
+        "string": "Please wait...",
+    },
+    "0x106d": {
+        "font": "regular",
+        "string": "Worldwide VS Race",
+    },
+    "0x106e": {
+        "font": "regular",
+        "string": "Worldwide Battle",
+    },
+    "0x106f": {
+        "font": "regular",
+        "string": "Continental VS Race",
+    },
+    "0x1070": {
+        "font": "regular",
+        "string": "Continental Battle",
+    },
+    "0x10cc": {
+        "font": "regular",
+        "string": "Choose a mode.",
+    },
+    "0x10cd": {
+        "font": "regular",
+        "string": "Please wait...",
+    },
+    "0x10ce": {
+        "font": "regular",
+        "string": "The mode has been decided.",
+    },
+    "0x10cf": {
+        "font": "regular",
+        "string": null,
+    },
+    "0x10d0": {
+        "font": "regular",
+        "string": null,
+    },
+    "0x10d1": {
+        "font": "regular",
+        "string": "VS Race",
+    },
+    "0x10d2": {
+        "font": "regular",
+        "string": "VS Race",
+    },
+    "0x10d3": {
+        "font": "regular",
+        "string": null,
+    },
+    "0x10d4": {
+        "font": "regular",
+        "string": "Battle",
+    },
+    "0x10d5": {
+        "font": "regular",
+        "string": "Battle",
+    },
+    "0x10d6": {
+        "font": "regular",
+        "string": "Challenge players around the world.",
+    },
+    "0x10d7": {
+        "font": "regular",
+        "string": "Challenge players on your continent.",
+    },
+    "0x10d8": {
+        "font": "regular",
+        "string": "Play with just your Friends.",
+    },
+    "0x10d9": {
+        "font": "regular",
+        "string": "Race against ghost data from players around the world.",
+    },
+    "0x10da": {
+        "font": "regular",
+        "string": "Race with up to 11 other players!",
+    },
+    "0x10db": {
+        "font": "regular",
+        "string": "Battle with up to 6 players on each team!",
+    },
+    "0x10dc": {
+        "font": "regular",
+        "string": "Create a room to play with Friends.",
+    },
+    "0x10dd": {
+        "font": "regular",
+        "string": "See what your Friends are doing right now.",
+    },
+    "0x10de": {
+        "font": "regular",
+        "string": "Register a Friend Code in your Friend Roster.",
+    },
+    "0x10df": {
+        "font": "regular",
+        "string": null,
+    },
+    "0x10e0": {
+        "font": "regular",
+        "string": "The next race is 100cc class!",
+    },
+    "0x10e1": {
+        "font": "regular",
+        "string": "The next race is 150cc class!",
+    },
+    "0x10e2": {
+        "font": "regular",
+        "string": "The next race is Mirror class!",
+    },
+    "0x10e3": {
+        "font": "regular",
+        "string": "{1 char|} Balloon Battle",
+    },
+    "0x10e4": {
+        "font": "regular",
+        "string": "{1 char|} Coin Runners",
+    },
+    "0x10e5": {
+        "font": "regular",
+        "string": "The next race is 100cc class!",
+    },
+    "0x10e6": {
+        "font": "regular",
+        "string": "The next race is 150cc class!",
+    },
+    "0x10e7": {
+        "font": "regular",
+        "string": "The next race is Mirror class!",
+    },
+    "0x10e8": {
+        "font": "regular",
+        "string": "The next race is 100cc class!",
+    },
+    "0x10e9": {
+        "font": "regular",
+        "string": "The next race is 150cc class!",
+    },
+    "0x10ea": {
+        "font": "regular",
+        "string": "The next race is Mirror class!",
+    },
+    "0x10eb": {
+        "font": "regular",
+        "string": null,
+    },
+    "0x10ec": {
+        "font": "regular",
+        "string": null,
+    },
+    "0x10ed": {
+        "font": "regular",
+        "string": null,
+    },
+    "0x10ee": {
+        "font": "regular",
+        "string": null,
+    },
+    "0x10fe": {
+        "font": "regular",
+        "string": "Vote for a course?",
+    },
+    "0x10ff": {
+        "font": "regular",
+        "string": "Vote",
+    },
+    "0x1100": {
+        "font": "regular",
+        "string": "Random",
+    },
+    "0x1101": {
+        "font": "regular",
+        "string": "???",
+    },
+    "0x1102": {
+        "font": "regular",
+        "string": "Course Votes",
+    },
+    "0x1103": {
+        "font": "regular",
+        "string": "Stage Votes",
+    },
+    "0x1104": {
+        "font": "regular",
+        "string": "Vote for a stage?",
+    },
+    "0x1105": {
+        "font": "regular",
+        "string": "Getting ready to race...",
+    },
+    "0x1106": {
+        "font": "regular",
+        "string": "Getting ready to battle...",
+    },
+    "0x1107": {
+        "font": "regular",
+        "string": null,
+    },
+    "0x1108": {
+        "font": "regular",
+        "string": "Waiting for everyone to vote...",
+    },
+    "0x1109": {
+        "font": "regular",
+        "string": "",
+    },
+    "0x110a": {
+        "font": "regular",
+        "string": "The course has been decided!",
+    },
+    "0x110b": {
+        "font": "regular",
+        "string": "The stage has been decided!",
+    },
+    "0x110c": {
+        "font": "regular",
+        "string": null,
+    },
+    "0x1112": {
+        "font": "regular",
+        "string": "Send a message to everyone in the room.",
+    },
+    "0x1113": {
+        "font": "regular",
+        "string": "Choose a message to send.",
+    },
+    "0x1114": {
+        "font": "regular",
+        "string": "Start a game with these players.",
+    },
+    "0x1115": {
+        "font": "regular",
+        "string": "Choose what to play.",
+    },
+    "0x1116": {
+        "font": "regular",
+        "string": "Invite others to become your Friends.",
+    },
+    "0x1117": {
+        "font": "regular",
+        "string": "This message will only be sent to the player you are inviting.",
+    },
+    "0x1118": {
+        "font": "regular",
+        "string": null,
+    },
+    "0x1126": {
+        "font": "regular",
+        "string": "Enter a Friend Code.",
+    },
+    "0x1127": {
+        "font": "regular",
+        "string": "Register this Friend Code.",
+    },
+    "0x1128": {
+        "font": "regular",
+        "string": "Play with Friends.",
+    },
+    "0x1129": {
+        "font": "regular",
+        "string": "This Friend Code will be removed.",
+    },
+    "0x112a": {
+        "font": "regular",
+        "string": null,
+    },
+    "0x112b": {
+        "font": "regular",
+        "string": null,
+    },
+    "0x112c": {
+        "font": "regular",
+        "string": null,
+    },
+    "0x112d": {
+        "font": "regular",
+        "string": null,
+    },
+    "0x1193": {
+        "font": "regular",
+        "string": "Here I am!",
+    },
+    "0x1194": {
+        "font": "regular",
+        "string": "Hello!",
+    },
+    "0x1195": {
+        "font": "regular",
+        "string": "Good evening!",
+    },
+    "0x1196": {
+        "font": "regular",
+        "string": "Long time no see!",
+    },
+    "0x1197": {
+        "font": "regular",
+        "string": "Good luck!",
+    },
+    "0x1198": {
+        "font": "regular",
+        "string": "Thanks for waiting!",
+    },
+    "0x1199": {
+        "font": "regular",
+        "string": "Welcome!",
+    },
+    "0x119a": {
+        "font": "regular",
+        "string": "Is everyone here?",
+    },
+    "0x119b": {
+        "font": "regular",
+        "string": "Let's wait a bit longer!",
+    },
+    "0x119c": {
+        "font": "regular",
+        "string": "Ready?",
+    },
+    "0x119d": {
+        "font": "regular",
+        "string": "Starting soon?",
+    },
+    "0x119e": {
+        "font": "regular",
+        "string": "Let's wait 3 more minutes...",
+    },
+    "0x119f": {
+        "font": "regular",
+        "string": "I'm going to take a break...",
+    },
+    "0x11a0": {
+        "font": "regular",
+        "string": "OK!",
+    },
+    "0x11a1": {
+        "font": "regular",
+        "string": "Let's get started!",
+    },
+    "0x11a2": {
+        "font": "regular",
+        "string": "Go easy on me!",
+    },
+    "0x11a3": {
+        "font": "regular",
+        "string": "I'll try my best!",
+    },
+    "0x11a4": {
+        "font": "regular",
+        "string": "What shall we play?",
+    },
+    "0x11a5": {
+        "font": "regular",
+        "string": "Any preferences?",
+    },
+    "0x11a6": {
+        "font": "regular",
+        "string": "A Grand Prix or a Battle?",
+    },
+    "0x11a7": {
+        "font": "regular",
+        "string": "I mightn't do so well...",
+    },
+    "0x11a8": {
+        "font": "regular",
+        "string": "Let's have a Grand Prix!",
+    },
+    "0x11a9": {
+        "font": "regular",
+        "string": "Let's have a Team Grand Prix!",
+    },
+    "0x11aa": {
+        "font": "regular",
+        "string": "Let's have a Balloon Battle!",
+    },
+    "0x11ab": {
+        "font": "regular",
+        "string": "Let's play Coin Runners!",
+    },
+    "0x11ac": {
+        "font": "regular",
+        "string": "I'm going to use a small vehicle!",
+    },
+    "0x11ad": {
+        "font": "regular",
+        "string": "I'm going to use a medium vehicle!",
+    },
+    "0x11ae": {
+        "font": "regular",
+        "string": "I'm going to use a large vehicle!",
+    },
+    "0x11af": {
+        "font": "regular",
+        "string": "I'm going to race as a Mii!",
+    },
+    "0x11b0": {
+        "font": "regular",
+        "string": "I'm going to use my Wii Wheel!",
+    },
+    "0x11b1": {
+        "font": "regular",
+        "string": "I'm going to use a kart!",
+    },
+    "0x11b2": {
+        "font": "regular",
+        "string": "I'm going to use a bike!",
+    },
+    "0x11b3": {
+        "font": "regular",
+        "string": "I can't decide...",
+    },
+    "0x11b4": {
+        "font": "regular",
+        "string": "Which course?",
+    },
+    "0x11b5": {
+        "font": "regular",
+        "string": "Hmm...",
+    },
+    "0x11b6": {
+        "font": "regular",
+        "string": "Let's choose Random!",
+    },
+    "0x11b7": {
+        "font": "regular",
+        "string": "Let's try a new course!",
+    },
+    "0x11b8": {
+        "font": "regular",
+        "string": "Luigi Circuit!",
+    },
+    "0x11b9": {
+        "font": "regular",
+        "string": "Moo Moo Meadows!",
+    },
+    "0x11ba": {
+        "font": "regular",
+        "string": "Mushroom Gorge!",
+    },
+    "0x11bb": {
+        "font": "regular",
+        "string": "Toad's Factory!",
+    },
+    "0x11bc": {
+        "font": "regular",
+        "string": "Mario Circuit!",
+    },
+    "0x11bd": {
+        "font": "regular",
+        "string": "Coconut Mall!",
+    },
+    "0x11be": {
+        "font": "regular",
+        "string": "DK's Snowboard Cross!",
+    },
+    "0x11bf": {
+        "font": "regular",
+        "string": "Wario's Gold Mine!",
+    },
+    "0x11c0": {
+        "font": "regular",
+        "string": "Daisy Circuit!",
+    },
+    "0x11c1": {
+        "font": "regular",
+        "string": "Koopa Cape!",
+    },
+    "0x11c2": {
+        "font": "regular",
+        "string": "Maple Treeway!",
+    },
+    "0x11c3": {
+        "font": "regular",
+        "string": "Grumble Volcano!",
+    },
+    "0x11c4": {
+        "font": "regular",
+        "string": "Dry Dry Ruins!",
+    },
+    "0x11c5": {
+        "font": "regular",
+        "string": "Moonview Highway!",
+    },
+    "0x11c6": {
+        "font": "regular",
+        "string": "Bowser's Castle!",
+    },
+    "0x11c7": {
+        "font": "regular",
+        "string": "Rainbow Road!",
+    },
+    "0x11c8": {
+        "font": "regular",
+        "string": "GCN Peach Beach!",
+    },
+    "0x11c9": {
+        "font": "regular",
+        "string": "DS Yoshi Falls!",
+    },
+    "0x11ca": {
+        "font": "regular",
+        "string": "SNES Ghost Valley 2!",
+    },
+    "0x11cb": {
+        "font": "regular",
+        "string": "N64 Mario Raceway!",
+    },
+    "0x11cc": {
+        "font": "regular",
+        "string": "N64 Sherbet Land!",
+    },
+    "0x11cd": {
+        "font": "regular",
+        "string": "GBA Shy Guy Beach!",
+    },
+    "0x11ce": {
+        "font": "regular",
+        "string": "DS Delfino Square!",
+    },
+    "0x11cf": {
+        "font": "regular",
+        "string": "GCN Waluigi Stadium!",
+    },
+    "0x11d0": {
+        "font": "regular",
+        "string": "DS Desert Hills!",
+    },
+    "0x11d1": {
+        "font": "regular",
+        "string": "GBA Bowser Castle 3!",
+    },
+    "0x11d2": {
+        "font": "regular",
+        "string": "N64 DK's Jungle Parkway!",
+    },
+    "0x11d3": {
+        "font": "regular",
+        "string": "GCN Mario Circuit!",
+    },
+    "0x11d4": {
+        "font": "regular",
+        "string": "SNES Mario Circuit 3!",
+    },
+    "0x11d5": {
+        "font": "regular",
+        "string": "DS Peach Gardens!",
+    },
+    "0x11d6": {
+        "font": "regular",
+        "string": "GCN DK Mountain!",
+    },
+    "0x11d7": {
+        "font": "regular",
+        "string": "N64 Bowser's Castle!",
+    },
+    "0x11d8": {
+        "font": "regular",
+        "string": "Block Plaza!",
+    },
+    "0x11d9": {
+        "font": "regular",
+        "string": "Delfino Pier!",
+    },
+    "0x11da": {
+        "font": "regular",
+        "string": "Funky Stadium!",
+    },
+    "0x11db": {
+        "font": "regular",
+        "string": "Chain Chomp Roulette!",
+    },
+    "0x11dc": {
+        "font": "regular",
+        "string": "Thwomp Desert!",
+    },
+    "0x11dd": {
+        "font": "regular",
+        "string": "SNES Battle Course 4!",
+    },
+    "0x11de": {
+        "font": "regular",
+        "string": "GBA Battle Course 3!",
+    },
+    "0x11df": {
+        "font": "regular",
+        "string": "N64 Skyscraper!",
+    },
+    "0x11e0": {
+        "font": "regular",
+        "string": "GCN Cookie Land!",
+    },
+    "0x11e1": {
+        "font": "regular",
+        "string": "DS Twilight House!",
+    },
+    "0x11e2": {
+        "font": "regular",
+        "string": "The red team rules!",
+    },
+    "0x11e3": {
+        "font": "regular",
+        "string": "The blue team rules!",
+    },
+    "0x11e4": {
+        "font": "regular",
+        "string": "Yaaaay!",
+    },
+    "0x11e5": {
+        "font": "regular",
+        "string": "I'm the best!",
+    },
+    "0x11e6": {
+        "font": "regular",
+        "string": "You're all so fast!",
+    },
+    "0x11e7": {
+        "font": "regular",
+        "string": "Congratulations!",
+    },
+    "0x11e8": {
+        "font": "regular",
+        "string": "That was fun!",
+    },
+    "0x11e9": {
+        "font": "regular",
+        "string": "So exciting!",
+    },
+    "0x11ea": {
+        "font": "regular",
+        "string": "Grrr! No fair!",
+    },
+    "0x11eb": {
+        "font": "regular",
+        "string": "I won't lose next time!",
+    },
+    "0x11ec": {
+        "font": "regular",
+        "string": "Let's play again!",
+    },
+    "0x11ed": {
+        "font": "regular",
+        "string": "This isn't over yet!",
+    },
+    "0x11ee": {
+        "font": "regular",
+        "string": "The next game will be the last!",
+    },
+    "0x11ef": {
+        "font": "regular",
+        "string": "I'm ready to quit...",
+    },
+    "0x11f0": {
+        "font": "regular",
+        "string": "Thanks for a great time!",
+    },
+    "0x11f1": {
+        "font": "regular",
+        "string": "Thanks!",
+    },
+    "0x11f2": {
+        "font": "regular",
+        "string": "Goodnight!",
+    },
+    "0x11f3": {
+        "font": "regular",
+        "string": "See you later!",
+    },
+    "0x11f4": {
+        "font": "regular",
+        "string": null,
+    },
+    "0x11f5": {
+        "font": "regular",
+        "string": null,
+    },
+    "0x11f6": {
+        "font": "regular",
+        "string": null,
+    },
+    "0x11f7": {
+        "font": "regular",
+        "string": null,
+    },
+    "0x11f8": {
+        "font": "regular",
+        "string": "A communication error has\noccurred. You will now\nreturn to the main menu.\n\nError Code: {arg integer|0 5}",
+    },
+    "0x11f9": {
+        "font": "regular",
+        "string": "Unable to connect to the Internet.\nConfirm the Internet settings of\nthe Wii console.\n\nError Code: {arg integer|0 5}",
+    },
+    "0x11fa": {
+        "font": "regular",
+        "string": "Either Nintendo Wi-Fi Connection is\nexperiencing high traffic volumes or the\nservice is down. Please try again later.\nFor help, visit support.nintendo.com.\n\nError Code: {arg integer|0 5}",
+    },
+    "0x11fb": {
+        "font": "regular",
+        "string": "Unable to connect to Nintendo Wi-Fi\nConnection. For help, check the\nsoftware Instruction Booklet or\nvisit support.nintendo.com.\n\nError Code: {arg integer|0 5}",
+    },
+    "0x11fc": {
+        "font": "regular",
+        "string": "The Nintendo Wi-Fi Connection service for\nthis software has been discontinued. Visit\nsupport.nintendo.com for a list of current\nNintendo Wi-Fi Connection-compatible software.\n\nError Code: {arg integer|0 5}",
+    },
+    "0x11fd": {
+        "font": "regular",
+        "string": "Unable to connect to Nintendo Wi-Fi\nConnection. For help, check the\nsoftware Instruction Booklet or\nvisit support.nintendo.com.\n\nError Code: {arg integer|0 5}",
+    },
+    "0x11fe": {
+        "font": "regular",
+        "string": "Either Nintendo Wi-Fi Connection is\nexperiencing high traffic volumes, or\nthe service is down. Please try again later.\nFor help, visit support.nintendo.com.\n\nError Code: {arg integer|0 5}",
+    },
+    "0x11ff": {
+        "font": "regular",
+        "string": "There is not enough available space\nin the Wii System Memory.\n\nError Code: {arg integer|0 5}",
+    },
+    "0x1200": {
+        "font": "regular",
+        "string": "The Wii System Memory has been damaged.\nRefer to the Wii Operations Manual\nfor further instructions.\n\n\nError Code: {arg integer|0 5}",
+    },
+    "0x1201": {
+        "font": "regular",
+        "string": "Disconnected from network during\ndata transmission.\n\nError Code: {arg integer|0 5}",
+    },
+    "0x1202": {
+        "font": "regular",
+        "string": "Download failed. Please try again.\nFor help, visit support.nintendo.com.\n\nError Code: {arg integer|0 5}",
+    },
+    "0x1203": {
+        "font": "regular",
+        "string": "Disconnected from network during\ndata transmission.\n\nError Code: {arg integer|0 5}",
+    },
+    "0x1204": {
+        "font": "regular",
+        "string": "Disconnected from network during\ndata transmission.\n\nError Code: {arg integer|0 5}",
+    },
+    "0x1205": {
+        "font": "regular",
+        "string": "Disconnected from network during\ndata transmission.\n\nError Code: {arg integer|0 5}",
+    },
+    "0x1206": {
+        "font": "regular",
+        "string": "Disconnected from network during\ndata transmission.\n\nError Code: {arg integer|0 5}",
+    },
+    "0x1207": {
+        "font": "regular",
+        "string": "Disconnected from network during\ndata transmission.\n\nError Code: {arg integer|0 5}",
+    },
+    "0x1208": {
+        "font": "regular",
+        "string": "Unable to connect to the Internet.\nConfirm the Internet settings of\nthe Wii console.\n\nError Code: {arg integer|0 5}",
+    },
+    "0x1209": {
+        "font": "regular",
+        "string": "Unable to connect to the Internet.\nConfirm the Internet settings of\nthe Wii console.\n\nError Code: {arg integer|0 5}",
+    },
+    "0x120a": {
+        "font": "regular",
+        "string": "Unable to connect to the Internet.\nConfirm the Internet settings of\nthe Wii console.\n\nError Code: {arg integer|0 5}",
+    },
+    "0x120b": {
+        "font": "regular",
+        "string": "Unable to connect to the Internet.\nConfirm the Internet settings of\nthe Wii console.\n\nError Code: {arg integer|0 5}",
+    },
+    "0x120c": {
+        "font": "regular",
+        "string": "Unable to connect to the Internet.\nConfirm the Internet settings of\nthe Wii console.\n\nError Code: {arg integer|0 5}",
+    },
+    "0x120d": {
+        "font": "regular",
+        "string": "Unable to connect to the Internet.\nConfirm the Internet settings of\nthe Wii console.\n\nError Code: {arg integer|0 5}",
+    },
+    "0x120e": {
+        "font": "regular",
+        "string": "Unable to connect to the Internet.\nConfirm the Internet settings of\nthe Wii console.\n\nError Code: {arg integer|0 5}",
+    },
+    "0x120f": {
+        "font": "regular",
+        "string": "Unable to connect to the Internet.\nConfirm the Internet settings of\nthe Wii console.\n\nError Code: {arg integer|0 5}",
+    },
+    "0x1210": {
+        "font": "regular",
+        "string": "Unable to connect to the Internet.\nConfirm the Internet settings of\nthe Wii console.\n\nError Code: {arg integer|0 5}",
+    },
+    "0x1211": {
+        "font": "regular",
+        "string": "Unable to connect to the Internet.\nConfirm the Internet settings of\nthe Wii console.\n\nError Code: {arg integer|0 5}",
+    },
+    "0x1212": {
+        "font": "regular",
+        "string": "Unable to connect to the Internet.\nConfirm the Internet settings of\nthe Wii console.\n\nError Code: {arg integer|0 5}",
+    },
+    "0x1213": {
+        "font": "regular",
+        "string": "Unable to connect to the Internet.\nConfirm the Internet settings of\nthe Wii console.\n\nError Code: {arg integer|0 5}",
+    },
+    "0x1214": {
+        "font": "regular",
+        "string": "Unable to connect to the Internet.\nConfirm the Internet settings of\nthe Wii console.\n\nError Code: {arg integer|0 5}",
+    },
+    "0x1215": {
+        "font": "regular",
+        "string": "Disconnected from network during\ndata transmission.\n\nError Code: {arg integer|0 5}",
+    },
+    "0x1216": {
+        "font": "regular",
+        "string": null,
+    },
+    "0x1388": {
+        "font": "regular",
+        "string": "Mario Kart Channel",
+    },
+    "0x1389": {
+        "font": "regular",
+        "string": "Friend Roster",
+    },
+    "0x138a": {
+        "font": "regular",
+        "string": "Rankings",
+    },
+    "0x138b": {
+        "font": "regular",
+        "string": "Ghost Race",
+    },
+    "0x138c": {
+        "font": "regular",
+        "string": "Competitions",
+    },
+    "0x138d": {
+        "font": "regular",
+        "string": null,
+    },
+    "0x138e": {
+        "font": "regular",
+        "string": "Register Friend Code",
+    },
+    "0x138f": {
+        "font": "regular",
+        "string": null,
+    },
+    "0x1390": {
+        "font": "regular",
+        "string": "Wii Menu",
+    },
+    "0x1391": {
+        "font": "regular",
+        "string": "Downloaded Ghost Data List",
+    },
+    "0x1392": {
+        "font": "regular",
+        "string": "Competitions",
+    },
+    "0x1393": {
+        "font": "regular",
+        "string": "Friend Roster",
+    },
+    "0x1394": {
+        "font": "regular",
+        "string": null,
+    },
+    "0x1395": {
+        "font": "regular",
+        "string": null,
+    },
+    "0x1396": {
+        "font": "regular",
+        "string": "Start Race",
+    },
+    "0x1397": {
+        "font": "regular",
+        "string": "Hone your Time Trial technique\nby challenging ghost data from\nplayers around the world in a\nseries of races via Nintendo WFC!",
+    },
+    "0x1398": {
+        "font": "regular",
+        "string": "My Ghost Data",
+    },
+    "0x1399": {
+        "font": "regular",
+        "string": "Hone your Time Trial technique\nby challenging ghost data from\nplayers around the world in a\nseries of races via Nintendo WFC!\n\nYour current record:\n{arg integer|0 0} {arg cond messages|0 5026 5027} - {arg integer|1 0} {arg cond messages|1 5028 5029}",
+    },
+    "0x139a": {
+        "font": "regular",
+        "string": "Hone your Time Trial technique\nby challenging ghost data from\nplayers around the world in a\nseries of races via Nintendo WFC!\n\nYour current record:\n{arg integer|0 0} {arg cond messages|0 5026 5027} - {arg integer|1 0} {arg cond messages|1 5028 5029}",
+    },
+    "0x139b": {
+        "font": "regular",
+        "string": "Hone your Time Trial technique\nby challenging ghost data from\nplayers around the world in a\nseries of races via Nintendo WFC!\n\nYour current record:\n{arg integer|0 0} {arg cond messages|0 5026 5027} - {arg integer|1 0} {arg cond messages|1 5028 5029}",
+    },
+    "0x139c": {
+        "font": "regular",
+        "string": "Hone your Time Trial technique\nby challenging ghost data from\nplayers around the world in a\nseries of races via Nintendo WFC!\n\nYour current record:\n{arg integer|0 0} {arg cond messages|0 5026 5027} - {arg integer|1 0} {arg cond messages|1 5028 5029}",
+    },
+    "0x139d": {
+        "font": "regular",
+        "string": "Hone your Time Trial technique\nby challenging ghost data from\nplayers around the world in a\nseries of races via Nintendo WFC!\n\nYour current record:\n{arg integer|0 0} {arg cond messages|0 5026 5027} - {arg integer|1 0} {arg cond messages|1 5028 5029}",
+    },
+    "0x139e": {
+        "font": "regular",
+        "string": "Hone your Time Trial technique\nby challenging ghost data from\nplayers around the world in a\nseries of races via Nintendo WFC!\n\nYour current record:\n{arg integer|0 0} {arg cond messages|0 5026 5027} - {arg integer|1 0} {arg cond messages|1 5028 5029}",
+    },
+    "0x139f": {
+        "font": "regular",
+        "string": "Hone your Time Trial technique\nby challenging ghost data from\nplayers around the world in a\nseries of races via Nintendo WFC!\n\nYour current record:\n{arg integer|0 0} {arg cond messages|0 5026 5027} - {arg integer|1 0} {arg cond messages|1 5028 5029}",
+    },
+    "0x13a0": {
+        "font": "regular",
+        "string": "Hone your Time Trial technique\nby challenging ghost data from\nplayers around the world in a\nseries of races via Nintendo WFC!\n\nYour current record:\n{arg integer|0 0} {arg cond messages|0 5026 5027} - {arg integer|1 0} {arg cond messages|1 5028 5029}",
+    },
+    "0x13a1": {
+        "font": "regular",
+        "string": "{arg integer|0 0} {arg cond messages|0 5026 5027}",
+    },
+    "0x13a2": {
+        "font": "regular",
+        "string": "win",
+    },
+    "0x13a3": {
+        "font": "regular",
+        "string": "wins",
+    },
+    "0x13a4": {
+        "font": "regular",
+        "string": "loss",
+    },
+    "0x13a5": {
+        "font": "regular",
+        "string": "losses",
+    },
+    "0x13a6": {
+        "font": "regular",
+        "string": null,
+    },
+    "0x13ba": {
+        "font": "regular",
+        "string": "Friends",
+    },
+    "0x13bb": {
+        "font": "regular",
+        "string": "Ghost Data",
+    },
+    "0x13bc": {
+        "font": "regular",
+        "string": "Time Trial Rankings",
+    },
+    "0x13bd": {
+        "font": "regular",
+        "string": null,
+    },
+    "0x13be": {
+        "font": "regular",
+        "string": "Competition Rankings",
+    },
+    "0x13bf": {
+        "font": "regular",
+        "string": null,
+    },
+    "0x13c4": {
+        "font": "regular",
+        "string": "Check what your Friends are doing.",
+    },
+    "0x13c5": {
+        "font": "regular",
+        "string": "View rankings of Friends and other players.",
+    },
+    "0x13c6": {
+        "font": "regular",
+        "string": "Check and erase downloaded ghost data.",
+    },
+    "0x13c7": {
+        "font": "regular",
+        "string": "Participate in Mario Kart competitions.",
+    },
+    "0x13c8": {
+        "font": "regular",
+        "string": "Challenge ghost data from around the world.",
+    },
+    "0x13c9": {
+        "font": "regular",
+        "string": null,
+    },
+    "0x13ca": {
+        "font": "regular",
+        "string": "Send and receive ghost data.",
+    },
+    "0x13cb": {
+        "font": "regular",
+        "string": null,
+    },
+    "0x13cc": {
+        "font": "regular",
+        "string": "View Mario Kart competition rankings.",
+    },
+    "0x13cd": {
+        "font": "regular",
+        "string": null,
+    },
+    "0x13ce": {
+        "font": "regular",
+        "string": null,
+    },
+    "0x13cf": {
+        "font": "regular",
+        "string": null,
+    },
+    "0x13d0": {
+        "font": "regular",
+        "string": null,
+    },
+    "0x13d1": {
+        "font": "regular",
+        "string": null,
+    },
+    "0x13d2": {
+        "font": "regular",
+        "string": null,
+    },
+    "0x13d3": {
+        "font": "regular",
+        "string": null,
+    },
+    "0x13d8": {
+        "font": "regular",
+        "string": null,
+    },
+    "0x13d9": {
+        "font": "regular",
+        "string": null,
+    },
+    "0x13da": {
+        "font": "regular",
+        "string": null,
+    },
+    "0x13db": {
+        "font": "regular",
+        "string": null,
+    },
+    "0x13dc": {
+        "font": "regular",
+        "string": null,
+    },
+    "0x13dd": {
+        "font": "regular",
+        "string": null,
+    },
+    "0x13ec": {
+        "font": "regular",
+        "string": "Please enter a Friend Code.",
+    },
+    "0x13ed": {
+        "font": "regular",
+        "string": "Register this Friend Code?\n\n{arg integer|0 4}-{arg integer|1 4}-{arg integer|2 4}",
+    },
+    "0x13ee": {
+        "font": "regular",
+        "string": "This is not a valid Friend Code.\n\n{arg integer|0 4}-{arg integer|1 4}-{arg integer|2 4}",
+    },
+    "0x13ef": {
+        "font": "regular",
+        "string": "You have registered this Friend Code:\n\n{arg integer|0 4}-{arg integer|1 4}-{arg integer|2 4}",
+    },
+    "0x13f0": {
+        "font": "regular",
+        "string": "Before you can play against \nthis Friend, they must also\nregister your Friend Code.\n\nYour Friend Code is:\n\n{arg integer|0 4}-{arg integer|1 4}-{arg integer|2 4}",
+    },
+    "0x13f1": {
+        "font": "regular",
+        "string": "{arg integer|0 1}",
+    },
+    "0x13f2": {
+        "font": "regular",
+        "string": "-",
+    },
+    "0x13f3": {
+        "font": "regular",
+        "string": null,
+    },
+    "0x13f6": {
+        "font": "regular",
+        "string": "This Friend Code is already registered\nin your Friend Roster.",
+    },
+    "0x13f7": {
+        "font": "regular",
+        "string": "Your Friend Roster already contains\nthe maximum 30 Friends.",
+    },
+    "0x13f8": {
+        "font": "regular",
+        "string": "You don't have a Friend Code.",
+    },
+    "0x13f9": {
+        "font": "regular",
+        "string": "You can't register the Friend Codes\nof licences in the Mario Kart Wii\nsave data stored on this Wii console.",
+    },
+    "0x13fb": {
+        "font": "regular",
+        "string": null,
+    },
+    "0x141e": {
+        "font": "regular",
+        "string": null,
+    },
+    "0x141f": {
+        "font": "regular",
+        "string": null,
+    },
+    "0x1420": {
+        "font": "regular",
+        "string": null,
+    },
+    "0x1421": {
+        "font": "regular",
+        "string": null,
+    },
+    "0x1422": {
+        "font": "regular",
+        "string": null,
+    },
+    "0x1423": {
+        "font": "regular",
+        "string": null,
+    },
+    "0x1424": {
+        "font": "regular",
+        "string": null,
+    },
+    "0x1425": {
+        "font": "regular",
+        "string": null,
+    },
+    "0x1450": {
+        "font": "regular",
+        "string": "Remove",
+    },
+    "0x1451": {
+        "font": "regular",
+        "string": "Join Friend",
+    },
+    "0x1452": {
+        "font": "regular",
+        "string": "Unable to join.",
+    },
+    "0x1453": {
+        "font": "regular",
+        "string": "You are not Friends yet.",
+    },
+    "0x1454": {
+        "font": "regular",
+        "string": null,
+    },
+    "0x1455": {
+        "font": "regular",
+        "string": null,
+    },
+    "0x1456": {
+        "font": "regular",
+        "string": "win",
+    },
+    "0x1457": {
+        "font": "regular",
+        "string": "wins",
+    },
+    "0x1458": {
+        "font": "regular",
+        "string": null,
+    },
+    "0x1459": {
+        "font": "regular",
+        "string": "Battle",
+    },
+    "0x145a": {
+        "font": "regular",
+        "string": "Remove this Friend Code?",
+    },
+    "0x145b": {
+        "font": "regular",
+        "string": "The Friend Code has been removed.",
+    },
+    "0x145c": {
+        "font": "regular",
+        "string": "Removing Friend Code...",
+    },
+    "0x145d": {
+        "font": "regular",
+        "string": "Remove Friend Code",
+    },
+    "0x145e": {
+        "font": "regular",
+        "string": "Remove Friend Code",
+    },
+    "0x145f": {
+        "font": "regular",
+        "string": "Cancel",
+    },
+    "0x1460": {
+        "font": "regular",
+        "string": "{arg cond messages|0 5206 5207}",
+    },
+    "0x1461": {
+        "font": "regular",
+        "string": "All data associated with this\nFriend Code will be erased.\n\nAre you sure this is OK?",
+    },
+    "0x1462": {
+        "font": "regular",
+        "string": null,
+    },
+    "0x14b4": {
+        "font": "regular",
+        "string": "I'm on Nintendo WFC!",
+    },
+    "0x14b5": {
+        "font": "regular",
+        "string": "I'm not on Nintendo WFC...",
+    },
+    "0x14b6": {
+        "font": "regular",
+        "string": null,
+    },
+    "0x14b7": {
+        "font": "regular",
+        "string": null,
+    },
+    "0x14b8": {
+        "font": "regular",
+        "string": "I have an open room!",
+    },
+    "0x14b9": {
+        "font": "regular",
+        "string": "I'm playing with Friends!",
+    },
+    "0x14ba": {
+        "font": "regular",
+        "string": "I'm playing with Friends!",
+    },
+    "0x14bb": {
+        "font": "regular",
+        "string": "I'm in a Worldwide VS Race!",
+    },
+    "0x14bc": {
+        "font": "regular",
+        "string": "I'm in a Worldwide Battle!",
+    },
+    "0x14bd": {
+        "font": "regular",
+        "string": "I'm in a Continental VS Race!",
+    },
+    "0x14be": {
+        "font": "regular",
+        "string": "I'm in a Continental Battle!",
+    },
+    "0x14bf": {
+        "font": "regular",
+        "string": "I'm hosting a Grand Prix (1/4)!",
+    },
+    "0x14c0": {
+        "font": "regular",
+        "string": "I'm hosting a Grand Prix (2/4)!",
+    },
+    "0x14c1": {
+        "font": "regular",
+        "string": "I'm hosting a Grand Prix (3/4)!",
+    },
+    "0x14c2": {
+        "font": "regular",
+        "string": "I'm hosting a Grand Prix (4/4)!",
+    },
+    "0x14c3": {
+        "font": "regular",
+        "string": "I'm hosting a Battle (1st battle)!",
+    },
+    "0x14c4": {
+        "font": "regular",
+        "string": "I'm hosting a Battle (2nd battle)!",
+    },
+    "0x14c5": {
+        "font": "regular",
+        "string": "I'm hosting a Battle (3rd battle)!",
+    },
+    "0x14c6": {
+        "font": "regular",
+        "string": "I'm hosting a Battle (tie-break)!",
+    },
+    "0x14c7": {
+        "font": "regular",
+        "string": "I'm playing with Friends (1/4)!",
+    },
+    "0x14c8": {
+        "font": "regular",
+        "string": "I'm playing with Friends (2/4)!",
+    },
+    "0x14c9": {
+        "font": "regular",
+        "string": "I'm playing with Friends (3/4)!",
+    },
+    "0x14ca": {
+        "font": "regular",
+        "string": "I'm playing with Friends (4/4)!",
+    },
+    "0x14cb": {
+        "font": "regular",
+        "string": "I'm playing with Friends (1st battle)!",
+    },
+    "0x14cc": {
+        "font": "regular",
+        "string": "I'm playing with Friends (2nd battle)!",
+    },
+    "0x14cd": {
+        "font": "regular",
+        "string": "I'm playing with Friends (3rd battle)!",
+    },
+    "0x14ce": {
+        "font": "regular",
+        "string": "I'm playing with Friends (tie-break)!",
+    },
+    "0x14cf": {
+        "font": "regular",
+        "string": null,
+    },
+    "0x14d0": {
+        "font": "regular",
+        "string": null,
+    },
+    "0x14e6": {
+        "font": "regular",
+        "string": "Join a Friend.",
+    },
+    "0x14e7": {
+        "font": "regular",
+        "string": null,
+    },
+    "0x1518": {
+        "font": "regular",
+        "string": null,
+    },
+    "0x1519": {
+        "font": "regular",
+        "string": null,
+    },
+    "0x151a": {
+        "font": "regular",
+        "string": "This ghost data will be sent.\nIs this OK?",
+    },
+    "0x151b": {
+        "font": "regular",
+        "string": "Sending ghost data...",
+    },
+    "0x151c": {
+        "font": "regular",
+        "string": "Your challenge has been\nsent to {arg player|0}!\n\n{arg integer|0 0}/5",
+    },
+    "0x151d": {
+        "font": "regular",
+        "string": "Your challenge has been\nsent to {arg player|0}!\n\n5/5\n\nYou cannot send any more challenges until\nthe next time you play Mario Kart Wii.",
+    },
+    "0x151e": {
+        "font": "regular",
+        "string": "No ghost data was found, so\nthe challenge could not be sent.",
+    },
+    "0x151f": {
+        "font": "regular",
+        "string": null,
+    },
+    "0x157c": {
+        "font": "regular",
+        "string": "Reading ghost data...",
+    },
+    "0x157d": {
+        "font": "regular",
+        "string": "You received a challenge from a Friend!",
+    },
+    "0x157e": {
+        "font": "regular",
+        "string": "Your Downloaded Ghost Data List is full.\nYou are currently unable to receive\nchallenges from your Friends.\n\nPlease erase a ghost data record.",
+    },
+    "0x157f": {
+        "font": "regular",
+        "string": "This course is not available yet.\n\nIf you earn enough trophies in\nGrand Prix mode, you can unlock\nnew courses to race on.",
+    },
+    "0x1580": {
+        "font": "regular",
+        "string": "An error occurred when downloading\nthe ghost data challenge.",
+    },
+    "0x1581": {
+        "font": "regular",
+        "string": null,
+    },
+    "0x15e0": {
+        "font": "regular",
+        "string": "",
+    },
+    "0x15e1": {
+        "font": "regular",
+        "string": "Japan",
+    },
+    "0x15e8": {
+        "font": "regular",
+        "string": "Anguilla",
+    },
+    "0x15e9": {
+        "font": "regular",
+        "string": "Antigua and Barbuda",
+    },
+    "0x15ea": {
+        "font": "regular",
+        "string": "Argentina",
+    },
+    "0x15eb": {
+        "font": "regular",
+        "string": "Aruba",
+    },
+    "0x15ec": {
+        "font": "regular",
+        "string": "Bahamas",
+    },
+    "0x15ed": {
+        "font": "regular",
+        "string": "Barbados",
+    },
+    "0x15ee": {
+        "font": "regular",
+        "string": "Belize",
+    },
+    "0x15ef": {
+        "font": "regular",
+        "string": "Bolivia",
+    },
+    "0x15f0": {
+        "font": "regular",
+        "string": "Brazil",
+    },
+    "0x15f1": {
+        "font": "regular",
+        "string": "British Virgin Islands",
+    },
+    "0x15f2": {
+        "font": "regular",
+        "string": "Canada",
+    },
+    "0x15f3": {
+        "font": "regular",
+        "string": "Cayman Islands",
+    },
+    "0x15f4": {
+        "font": "regular",
+        "string": "Chile",
+    },
+    "0x15f5": {
+        "font": "regular",
+        "string": "Colombia",
+    },
+    "0x15f6": {
+        "font": "regular",
+        "string": "Costa Rica",
+    },
+    "0x15f7": {
+        "font": "regular",
+        "string": "Dominica",
+    },
+    "0x15f8": {
+        "font": "regular",
+        "string": "Dominican Republic",
+    },
+    "0x15f9": {
+        "font": "regular",
+        "string": "Ecuador",
+    },
+    "0x15fa": {
+        "font": "regular",
+        "string": "El Salvador",
+    },
+    "0x15fc": {
+        "font": "regular",
+        "string": "Grenada",
+    },
+    "0x15fe": {
+        "font": "regular",
+        "string": "Guatemala",
+    },
+    "0x15ff": {
+        "font": "regular",
+        "string": "Guyana",
+    },
+    "0x1600": {
+        "font": "regular",
+        "string": "Haiti",
+    },
+    "0x1601": {
+        "font": "regular",
+        "string": "Honduras",
+    },
+    "0x1602": {
+        "font": "regular",
+        "string": "Jamaica",
+    },
+    "0x1604": {
+        "font": "regular",
+        "string": "Mexico",
+    },
+    "0x1605": {
+        "font": "regular",
+        "string": "Montserrat",
+    },
+    "0x1606": {
+        "font": "regular",
+        "string": "Netherlands Antilles",
+    },
+    "0x1607": {
+        "font": "regular",
+        "string": "Nicaragua",
+    },
+    "0x1608": {
+        "font": "regular",
+        "string": "Panama",
+    },
+    "0x1609": {
+        "font": "regular",
+        "string": "Paraguay",
+    },
+    "0x160a": {
+        "font": "regular",
+        "string": "Peru",
+    },
+    "0x160b": {
+        "font": "regular",
+        "string": "St Kitts and Nevis",
+    },
+    "0x160c": {
+        "font": "regular",
+        "string": "St Lucia",
+    },
+    "0x160d": {
+        "font": "regular",
+        "string": "St Vincent and the Grenadines",
+    },
+    "0x160e": {
+        "font": "regular",
+        "string": "Suriname",
+    },
+    "0x160f": {
+        "font": "regular",
+        "string": "Trinidad and Tobago",
+    },
+    "0x1610": {
+        "font": "regular",
+        "string": "Turks and Caicos Islands",
+    },
+    "0x1611": {
+        "font": "regular",
+        "string": "United States",
+    },
+    "0x1612": {
+        "font": "regular",
+        "string": "Uruguay",
+    },
+    "0x1613": {
+        "font": "regular",
+        "string": "US Virgin Islands",
+    },
+    "0x1614": {
+        "font": "regular",
+        "string": "Venezuela",
+    },
+    "0x1621": {
+        "font": "regular",
+        "string": "Australia",
+    },
+    "0x1622": {
+        "font": "regular",
+        "string": "Austria ",
+    },
+    "0x1623": {
+        "font": "regular",
+        "string": "Belgium",
+    },
+    "0x162a": {
+        "font": "regular",
+        "string": "Denmark",
+    },
+    "0x162c": {
+        "font": "regular",
+        "string": "Finland",
+    },
+    "0x162d": {
+        "font": "regular",
+        "string": "France",
+    },
+    "0x162e": {
+        "font": "regular",
+        "string": "Germany",
+    },
+    "0x162f": {
+        "font": "regular",
+        "string": "Greece",
+    },
+    "0x1632": {
+        "font": "regular",
+        "string": "Ireland",
+    },
+    "0x1633": {
+        "font": "regular",
+        "string": "Italy",
+    },
+    "0x1638": {
+        "font": "regular",
+        "string": "Luxembourg",
+    },
+    "0x163e": {
+        "font": "regular",
+        "string": "Netherlands",
+    },
+    "0x163f": {
+        "font": "regular",
+        "string": "New Zealand",
+    },
+    "0x1640": {
+        "font": "regular",
+        "string": "Norway",
+    },
+    "0x1642": {
+        "font": "regular",
+        "string": "Portugal",
+    },
+    "0x1649": {
+        "font": "regular",
+        "string": "Spain",
+    },
+    "0x164b": {
+        "font": "regular",
+        "string": "Sweden",
+    },
+    "0x164c": {
+        "font": "regular",
+        "string": "Switzerland",
+    },
+    "0x164e": {
+        "font": "regular",
+        "string": "United Kingdom",
+    },
+    "0x1660": {
+        "font": "regular",
+        "string": "",
+    },
+    "0x1668": {
+        "font": "regular",
+        "string": "South Korea",
+    },
+    "0x1670": {
+        "font": "regular",
+        "string": "",
+    },
+    "0x1671": {
+        "font": "regular",
+        "string": "",
+    },
+    "0x1680": {
+        "font": "regular",
+        "string": "",
+    },
+    "0x16df": {
+        "font": "regular",
+        "string": null,
+    },
+    "0x1770": {
+        "font": "regular",
+        "string": "Choose a course.",
+    },
+    "0x1771": {
+        "font": "regular",
+        "string": "Friend Ranking",
+    },
+    "0x1772": {
+        "font": "regular",
+        "string": "Continental Ranking",
+    },
+    "0x1773": {
+        "font": "regular",
+        "string": "Worldwide Ranking",
+    },
+    "0x1774": {
+        "font": "regular",
+        "string": "Top 10",
+    },
+    "0x1775": {
+        "font": "regular",
+        "string": "{arg message|0} Friend Top 10",
+    },
+    "0x1776": {
+        "font": "regular",
+        "string": "{arg message|0} Continental Top 10",
+    },
+    "0x1777": {
+        "font": "regular",
+        "string": "{arg message|0} Worldwide Top 10",
+    },
+    "0x1778": {
+        "font": "regular",
+        "string": "10",
+    },
+    "0x1779": {
+        "font": "regular",
+        "string": "Top 10",
+    },
+    "0x177a": {
+        "font": "regular",
+        "string": "Start Time Trial",
+    },
+    "0x177b": {
+        "font": "regular",
+        "string": "Challenge this Ghost Data",
+    },
+    "0x177c": {
+        "font": "regular",
+        "string": "Watch Replay",
+    },
+    "0x177d": {
+        "font": "regular",
+        "string": "Erase Ghost Data",
+    },
+    "0x177e": {
+        "font": "regular",
+        "string": "Send Ghost Data",
+    },
+    "0x177f": {
+        "font": "regular",
+        "string": "Challenge this Ghost Data",
+    },
+    "0x1780": {
+        "font": "regular",
+        "string": "Solo Time Trial",
+    },
+    "0x1781": {
+        "font": "regular",
+        "string": "NEW",
+    },
+    "0x1782": {
+        "font": "regular",
+        "string": "Friend",
+    },
+    "0x1783": {
+        "font": "regular",
+        "string": "Top 10",
+    },
+    "0x1784": {
+        "font": "regular",
+        "string": "Continental",
+    },
+    "0x1785": {
+        "font": "regular",
+        "string": "Top 10",
+    },
+    "0x1786": {
+        "font": "regular",
+        "string": "Worldwide",
+    },
+    "0x1787": {
+        "font": "regular",
+        "string": "Top 10",
+    },
+    "0x1788": {
+        "font": "regular",
+        "string": null,
+    },
+    "0x17a2": {
+        "font": "regular",
+        "string": "TIME",
+    },
+    "0x17a3": {
+        "font": "regular",
+        "string": "{arg integer|0 1}:{arg integer|1 2}",
+    },
+    "0x17a4": {
+        "font": "regular",
+        "string": "{arg integer|0 2}:{arg integer|1 2}.{arg integer|2 3}",
+    },
+    "0x17a5": {
+        "font": "regular",
+        "string": "--:--.---",
+    },
+    "0x17a6": {
+        "font": "regular",
+        "string": "Continental Champion",
+    },
+    "0x17a7": {
+        "font": "regular",
+        "string": "World Champion",
+    },
+    "0x17a8": {
+        "font": "regular",
+        "string": "Rival Ghost Data",
+    },
+    "0x17a9": {
+        "font": "regular",
+        "string": "Friend",
+    },
+    "0x17aa": {
+        "font": "regular",
+        "string": "Continental",
+    },
+    "0x17ab": {
+        "font": "regular",
+        "string": "Worldwide",
+    },
+    "0x17ac": {
+        "font": "regular",
+        "string": "{arg front button|0}",
+    },
+    "0x17ad": {
+        "font": "regular",
+        "string": "Family Ghost Data",
+    },
+    "0x17ae": {
+        "font": "regular",
+        "string": "Friend Ghost Data",
+    },
+    "0x17af": {
+        "font": "regular",
+        "string": "Special Ghost Data",
+    },
+    "0x17b0": {
+        "font": "regular",
+        "string": "Staff Ghost Data",
+    },
+    "0x17b1": {
+        "font": "regular",
+        "string": null,
+    },
+    "0x17d4": {
+        "font": "regular",
+        "string": "There is no ghost data for\n{arg message|0}.",
+    },
+    "0x17d5": {
+        "font": "regular",
+        "string": "There is no ghost data for\n{arg license player|0}.",
+    },
+    "0x17d6": {
+        "font": "regular",
+        "string": "There is no downloaded ghost data.",
+    },
+    "0x17d7": {
+        "font": "regular",
+        "string": null,
+    },
+    "0x17de": {
+        "font": "regular",
+        "string": "Downloading ghost data...",
+    },
+    "0x17df": {
+        "font": "regular",
+        "string": "Your Downloaded Ghost Data List\nis full. You are currently unable\nto download any more ghost data.\n\nPlease erase a ghost data record\nfrom your Downloaded Ghost Data List.",
+    },
+    "0x17e0": {
+        "font": "regular",
+        "string": "An error occurred when\ndownloading the ghost data.\n\nError Code: {arg integer|0 5}",
+    },
+    "0x17e1": {
+        "font": "regular",
+        "string": "The ghost data has been downloaded.",
+    },
+    "0x17e2": {
+        "font": "regular",
+        "string": "Downloading the Top 10...",
+    },
+    "0x17e3": {
+        "font": "regular",
+        "string": "An error occurred when\ndownloading the Top 10.\n\nError Code: {arg integer|0 5}",
+    },
+    "0x17e4": {
+        "font": "regular",
+        "string": "There is no Top 10.",
+    },
+    "0x17e5": {
+        "font": "regular",
+        "string": "",
+    },
+    "0x17e8": {
+        "font": "regular",
+        "string": "Connect to Nintendo WFC?",
+    },
+    "0x17e9": {
+        "font": "regular",
+        "string": "OK",
+    },
+    "0x17ea": {
+        "font": "regular",
+        "string": "Connect to Nintendo WFC?",
+    },
+    "0x17eb": {
+        "font": "regular",
+        "string": "The existing ghost data will be\nreplaced with the new ghost data.\n\nIs this OK?",
+    },
+    "0x17ec": {
+        "font": "regular",
+        "string": null,
+    },
+    "0x1806": {
+        "font": "regular",
+        "string": "Race this ghost data.",
+    },
+    "0x1807": {
+        "font": "regular",
+        "string": "Watch the ghost data replay.",
+    },
+    "0x1808": {
+        "font": "regular",
+        "string": "Are you sure you want to erase the ghost data?",
+    },
+    "0x1809": {
+        "font": "regular",
+        "string": "Erase",
+    },
+    "0x180a": {
+        "font": "regular",
+        "string": "Cancel",
+    },
+    "0x180b": {
+        "font": "regular",
+        "string": null,
+    },
+    "0x1839": {
+        "font": "regular",
+        "string": "1st",
+    },
+    "0x183a": {
+        "font": "regular",
+        "string": "2nd",
+    },
+    "0x183b": {
+        "font": "regular",
+        "string": "3rd",
+    },
+    "0x183c": {
+        "font": "regular",
+        "string": "4th",
+    },
+    "0x183d": {
+        "font": "regular",
+        "string": "5th",
+    },
+    "0x183e": {
+        "font": "regular",
+        "string": "6th",
+    },
+    "0x183f": {
+        "font": "regular",
+        "string": "7th",
+    },
+    "0x1840": {
+        "font": "regular",
+        "string": "8th",
+    },
+    "0x1841": {
+        "font": "regular",
+        "string": "9th",
+    },
+    "0x1842": {
+        "font": "regular",
+        "string": "10th",
+    },
+    "0x1843": {
+        "font": "regular",
+        "string": "11th",
+    },
+    "0x1844": {
+        "font": "regular",
+        "string": "12th",
+    },
+    "0x1845": {
+        "font": "regular",
+        "string": null,
+    },
+    "0x186a": {
+        "font": "regular",
+        "string": "Start a Time Trial on this course.",
+    },
+    "0x186b": {
+        "font": "regular",
+        "string": "Check {arg player|0}'s record.",
+    },
+    "0x186c": {
+        "font": "regular",
+        "string": "Race the Continental Champion.",
+    },
+    "0x186d": {
+        "font": "regular",
+        "string": "Race the World Champion.",
+    },
+    "0x186e": {
+        "font": "regular",
+        "string": "Race ghost data slightly faster than your record.",
+    },
+    "0x186f": {
+        "font": "regular",
+        "string": "View your Friend Top 10.",
+    },
+    "0x1870": {
+        "font": "regular",
+        "string": "View the Continental Top 10.",
+    },
+    "0x1871": {
+        "font": "regular",
+        "string": "View the Worldwide Top 10.",
+    },
+    "0x1872": {
+        "font": "regular",
+        "string": "Race against Mario Kart Wii staff ghost data.",
+    },
+    "0x1873": {
+        "font": "regular",
+        "string": "{arg player|0}'s record.",
+    },
+    "0x1874": {
+        "font": "regular",
+        "string": "The Continental Champion's record.",
+    },
+    "0x1875": {
+        "font": "regular",
+        "string": "The Worldwide Champion's record.",
+    },
+    "0x1876": {
+        "font": "regular",
+        "string": null,
+    },
+    "0x189c": {
+        "font": "regular",
+        "string": "Send Ghost Data",
+    },
+    "0x189d": {
+        "font": "regular",
+        "string": "{arg player|0} has not set a record\nfor {arg message|0}.",
+    },
+    "0x189e": {
+        "font": "regular",
+        "string": "{arg player|0}'s current record for\n{arg message|0} is {arg integer|0 2}:{arg integer|1 2}.{arg integer|2 3}.",
+    },
+    "0x189f": {
+        "font": "regular",
+        "string": "{arg player|0} has not set a record\nfor {arg message|0}.",
+    },
+    "0x18a0": {
+        "font": "regular",
+        "string": "{arg player|0}'s current record for\n{arg message|0} is {arg integer|0 2}:{arg integer|1 2}.{arg integer|2 3}.",
+    },
+    "0x18a1": {
+        "font": "regular",
+        "string": "Sending ghost data...",
+    },
+    "0x18a2": {
+        "font": "regular",
+        "string": null,
+    },
+    "0x18a6": {
+        "font": "regular",
+        "string": "The WiiConnect24 service is\ntemporarily unavailable. Please\ntry again later.\n\nError Code: {arg integer|0 6}",
+    },
+    "0x18a7": {
+        "font": "regular",
+        "string": "A connection to the Internet could not\nbe established. WiiConnect24 cannot be\nused. Please go to the Wii Settings and\ncheck your Connection Settings under\nInternet. For details, consult the\nWii Operations Manual.\n\nError Code: {arg integer|0 6}",
+    },
+    "0x18a8": {
+        "font": "regular",
+        "string": "There is a problem with the Wii System Memory.\nWiiConnect24 cannot be used. \n\nError Code: {arg integer|0 6}",
+    },
+    "0x18a9": {
+        "font": "regular",
+        "string": "In order to use the WiiConnect24\nfeature,  a system update is\nrequired. For details, consult\nthe Wii Operations Manual.\n\nError Code: {arg integer|0 6}",
+    },
+    "0x18aa": {
+        "font": "regular",
+        "string": "WiiConnect24 cannot be used\nbecause an error has occurred.\n\nReset and try again.\n\nError Code: {arg integer|0 6}",
+    },
+    "0x18ab": {
+        "font": "regular",
+        "string": "The WiiConnect24 setting has not been\nturned on. Please check the settings\nunder Wii Options. For details, consult\nthe Wii Operations Manual.\n\nError Code: {arg integer|0 6}",
+    },
+    "0x18ac": {
+        "font": "regular",
+        "string": "There is a problem with the Wii System Memory.\nWiiConnect24 cannot be used. \n\nError Code: {arg integer|0 6}",
+    },
+    "0x18ad": {
+        "font": "regular",
+        "string": "Use of network functions is restricted.\n\nPlease go to Wii Options and check\nyour Parental Control settings.",
+    },
+    "0x18ae": {
+        "font": "regular",
+        "string": "No Internet connections have\nbeen configured.\n\nPlease go to Wii Options and\nconfigure a connection on the\nInternet settings screen.\n\nError Code: 50200",
+    },
+    "0x18af": {
+        "font": "regular",
+        "string": "The Mario Kart Channel uses WiiConnect24\nto receive information such as:\n\n・challenges from your Friends\n・rankings of players around the world\n・ghost data from players of a similar\nskill level to you\n・scheduled competitions",
+    },
+    "0x18b0": {
+        "font": "regular",
+        "string": "You can set your WiiConnect24\nsettings in the Wii Options.\n\nPlease check the Wii Operations\nManual for more information.",
+    },
+    "0x18b1": {
+        "font": "regular",
+        "string": "WiiConnect24 cannot be used because\nan error has occurred.\n\nReset and try again.\n\nError Code: {arg integer|0 6}",
+    },
+    "0x18b2": {
+        "font": "regular",
+        "string": "",
+    },
+    "0x18f6": {
+        "font": "regular",
+        "string": "GO!",
+    },
+    "0x18f7": {
+        "font": "regular",
+        "string": "",
+    },
+    "0x1900": {
+        "font": "regular",
+        "string": "New Friend challenge!",
+    },
+    "0x1901": {
+        "font": "regular",
+        "string": "Special ghost data now available!",
+    },
+    "0x1902": {
+        "font": "regular",
+        "string": "A competition is in progress!",
+    },
+    "0x1903": {
+        "font": "regular",
+        "string": "Latest rankings now available!",
+    },
+    "0x1904": {
+        "font": "regular",
+        "string": "Start a Ghost Race!",
+    },
+    "0x1905": {
+        "font": "regular",
+        "string": "New Friend Records available!",
+    },
+    "0x1906": {
+        "font": "regular",
+        "string": "Add the Mario Kart Channel!",
+    },
+    "0x1907": {
+        "font": "regular",
+        "string": "Join the message service!",
+    },
+    "0x1908": {
+        "font": "regular",
+        "string": "Set your region!",
+    },
+    "0x1909": {
+        "font": "regular",
+        "string": "Invite Friends via the Wii Message Board!",
+    },
+    "0x190a": {
+        "font": "regular",
+        "string": "Download the latest data!",
+    },
+    "0x190b": {
+        "font": "regular",
+        "string": null,
+    },
+    "0x190c": {
+        "font": "regular",
+        "string": null,
+    },
+    "0x1964": {
+        "font": "regular",
+        "string": "Go to your Downloaded Ghost Data List.",
+    },
+    "0x1965": {
+        "font": "regular",
+        "string": "Go to Time Trial Rankings.",
+    },
+    "0x1966": {
+        "font": "regular",
+        "string": "Go to Competitions.",
+    },
+    "0x1967": {
+        "font": "regular",
+        "string": "Go to Time Trial Rankings.",
+    },
+    "0x1968": {
+        "font": "regular",
+        "string": "Go to Ghost Race.",
+    },
+    "0x1969": {
+        "font": "regular",
+        "string": "Go to Time Trial Rankings.",
+    },
+    "0x196a": {
+        "font": "regular",
+        "string": "Go to Options.",
+    },
+    "0x196b": {
+        "font": "regular",
+        "string": "Go to Options.",
+    },
+    "0x196c": {
+        "font": "regular",
+        "string": "Go to Options.",
+    },
+    "0x196d": {
+        "font": "regular",
+        "string": "Invite people to become Friends.",
+    },
+    "0x196e": {
+        "font": "regular",
+        "string": "Update ranking and competition data!",
+    },
+    "0x196f": {
+        "font": "regular",
+        "string": null,
+    },
+    "0x1970": {
+        "font": "regular",
+        "string": null,
+    },
+    "0x1996": {
+        "font": "regular",
+        "string": "Competition rankings are\ncurrently unavailable.",
+    },
+    "0x1997": {
+        "font": "regular",
+        "string": "Downloading competition rankings...",
+    },
+    "0x1998": {
+        "font": "regular",
+        "string": "An error occurred when downloading\nthe competition rankings.\n\nError Code: {arg integer|0 5}",
+    },
+    "0x1999": {
+        "font": "regular",
+        "string": "You can view competition rankings\nstarting from the day after a\ncompetition starts.\n\nPlease wait a little longer.",
+    },
+    "0x199a": {
+        "font": "regular",
+        "string": "First Half",
+    },
+    "0x199b": {
+        "font": "regular",
+        "string": "Second Half",
+    },
+    "0x199c": {
+        "font": "regular",
+        "string": "Rankings are not available\nyet for this competition.\n\nPlease check back again tomorrow.",
+    },
+    "0x19c8": {
+        "font": "regular",
+        "string": "You can participate in worldwide\nMario Kart Wii competitions.\n\nPlease connect your Wii to the Internet,\nmake sure WiiConnect24 is activated\nand wait for a competition to start!",
+    },
+    "0x19c9": {
+        "font": "regular",
+        "string": "The previous competition has finished\nand the results are now available!",
+    },
+    "0x19ca": {
+        "font": "regular",
+        "string": "{arg string|0}",
+    },
+    "0x19cb": {
+        "font": "regular",
+        "string": "{arg string|0}",
+    },
+    "0x19cc": {
+        "font": "regular",
+        "string": "Start",
+    },
+    "0x19cd": {
+        "font": "regular",
+        "string": "Post Competition Record",
+    },
+    "0x19ce": {
+        "font": "regular",
+        "string": "Posting competition record...",
+    },
+    "0x19cf": {
+        "font": "regular",
+        "string": "{arg string|0}\n{arg integer|0 2}:{arg integer|1 2}.{arg integer|2 3}",
+    },
+    "0x19d0": {
+        "font": "regular",
+        "string": "Your competition record was posted.",
+    },
+    "0x19d1": {
+        "font": "regular",
+        "string": "Failed to post the\ncompetition record.\n\nError Code: {arg integer|0 5}",
+    },
+    "0x19d2": {
+        "font": "regular",
+        "string": "The deadline is {arg integer|2 0}/{arg integer|1 0}/{arg integer|0 0}.",
+    },
+    "0x19d3": {
+        "font": "regular",
+        "string": null,
+    },
+    "0x1a2c": {
+        "font": "regular",
+        "string": "Wii Message Board Invitation",
+    },
+    "0x1a2d": {
+        "font": "regular",
+        "string": "You can send a Wii Message Board\nmessage containing your Friend Code\nto your Wii Friends.\n\nIt's a quick and easy way to\nbecome Friends in Mario Kart Wii!",
+    },
+    "0x1a2e": {
+        "font": "regular",
+        "string": "Choose a Wii Friend to send an invitation to.",
+    },
+    "0x1a2f": {
+        "font": "regular",
+        "string": "An invitation will be sent to\n{arg string|0}'s Wii Message Board.\n\nIs this OK?",
+    },
+    "0x1a30": {
+        "font": "regular",
+        "string": "Sending invitation...",
+    },
+    "0x1a31": {
+        "font": "regular",
+        "string": "The invitation has been sent to\n{arg string|0}'s Wii Message Board.\n\nYou will be notified via your\nWii Message Board if {arg string|0}\naccepts your invitation.",
+    },
+    "0x1a32": {
+        "font": "regular",
+        "string": "Failed to send the invitation.\n\nError Code: {arg integer|0 6}",
+    },
+    "0x1a33": {
+        "font": "regular",
+        "string": "{arg string|0}",
+    },
+    "0x1a34": {
+        "font": "regular",
+        "string": "The competition record was sent.\n\nYou will now go to the\nCompetition Rankings.",
+    },
+    "0x1a35": {
+        "font": "regular",
+        "string": null,
+    },
+    "0x1a36": {
+        "font": "regular",
+        "string": "Register Friend Code",
+    },
+    "0x1a37": {
+        "font": "regular",
+        "string": "You have received an invitation\nfrom {arg string|0}.\n\nIf you register this player's\nFriend Code in your Friend Roster, \nyour Friend Code will be sent\nto them automatically.",
+    },
+    "0x1a38": {
+        "font": "regular",
+        "string": "Register {arg string|0}'s Friend Code\nin your Friend Roster?",
+    },
+    "0x1a39": {
+        "font": "regular",
+        "string": "Registering...",
+    },
+    "0x1a3a": {
+        "font": "regular",
+        "string": "Registered {arg string|0}'s Friend Code\nin your Friend Roster.",
+    },
+    "0x1a3b": {
+        "font": "regular",
+        "string": "Failed to register Friend Code.\n\nError Code: {arg integer|0 6}",
+    },
+    "0x1a3c": {
+        "font": "regular",
+        "string": "You do not have a Friend Code.\n\nA Friend Code is a 12-digit number that\nis automatically assigned to you the\nfirst time you connect to Nintendo WFC.\n\nFor more information, please refer to\nthe Mario Kart Wii Instruction Booklet.",
+    },
+    "0x1a3d": {
+        "font": "regular",
+        "string": "You have received a Friend registration\ninvitation, but there are already 30\nFriend Codes in your Friend Roster.\n\nYou are unable to register any\nmore Friend Codes.",
+    },
+    "0x1a3e": {
+        "font": "regular",
+        "string": "You have received a Friend registration\ninvitation, but the sender has been erased\nfrom your Wii Message Board Address Book.\n\nPlease start the Mario Kart Channel\nagain and register their Friend Code.",
+    },
+    "0x1a3f": {
+        "font": "regular",
+        "string": "You have received a Friend\nregistration invitation, but the\nsender's Friend Code is already\nregistered in your Friend Roster.",
+    },
+    "0x1a40": {
+        "font": "regular",
+        "string": "",
+    },
+    "0x1a90": {
+        "font": "regular",
+        "string": "Download Competition Rankings",
+    },
+    "0x1a91": {
+        "font": "regular",
+        "string": "Downloading competition rankings...",
+    },
+    "0x1a92": {
+        "font": "regular",
+        "string": "Competition rankings downloaded.",
+    },
+    "0x1a93": {
+        "font": "regular",
+        "string": "Failed to download\ncompetition rankings.\n\nError Code: {arg integer|0 5}",
+    },
+    "0x1a94": {
+        "font": "regular",
+        "string": null,
+    },
+    "0x1a9b": {
+        "font": "regular",
+        "string": null,
+    },
+    "0x1a9c": {
+        "font": "regular",
+        "string": null,
+    },
+    "0x1a9d": {
+        "font": "regular",
+        "string": null,
+    },
+    "0x1af4": {
+        "font": "regular",
+        "string": "Download Latest Data",
+    },
+    "0x1af5": {
+        "font": "regular",
+        "string": "The latest Mario Kart Channel\ndata will be downloaded.",
+    },
+    "0x1af6": {
+        "font": "regular",
+        "string": "Downloading the latest data...",
+    },
+    "0x1af7": {
+        "font": "regular",
+        "string": "The latest Mario Kart Channel\ndata has been downloaded.",
+    },
+    "0x1af8": {
+        "font": "regular",
+        "string": "An error occurred when\ndownloading the latest data.\n\nError Code: {arg integer|0 6}",
+    },
+    "0x1af9": {
+        "font": "regular",
+        "string": null,
+    },
+    "0x1b58": {
+        "font": "regular",
+        "string": "Options",
+    },
+    "0x1b59": {
+        "font": "regular",
+        "string": "Nintendo Wi-Fi Connection",
+    },
+    "0x1b5a": {
+        "font": "regular",
+        "string": "Options",
+    },
+    "0x1b5b": {
+        "font": "regular",
+        "string": "Next",
+    },
+    "0x1b5c": {
+        "font": "regular",
+        "string": null,
+    },
+    "0x1bbc": {
+        "font": "regular",
+        "string": "GCN Controller Rumble",
+    },
+    "0x1bbd": {
+        "font": "regular",
+        "string": "Do you want to use the Rumble feature\nof the Nintendo GameCube Controller?",
+    },
+    "0x1bbe": {
+        "font": "regular",
+        "string": "Yes",
+    },
+    "0x1bbf": {
+        "font": "regular",
+        "string": "No",
+    },
+    "0x1bc0": {
+        "font": "regular",
+        "string": "You have chosen to use the\nNintendo GameCube Controller\nRumble feature.",
+    },
+    "0x1bc1": {
+        "font": "regular",
+        "string": "You have chosen not to use the\nNintendo GameCube Controller\nRumble feature.",
+    },
+    "0x1bc2": {
+        "font": "regular",
+        "string": null,
+    },
+    "0x1c20": {
+        "font": "regular",
+        "string": "Region Setting",
+    },
+    "0x1c21": {
+        "font": "regular",
+        "string": "Return to the Wii Menu to\nchange your region setting?",
+    },
+    "0x1c22": {
+        "font": "regular",
+        "string": null,
+    },
+    "0x1c23": {
+        "font": "regular",
+        "string": null,
+    },
+    "0x1c24": {
+        "font": "regular",
+        "string": null,
+    },
+    "0x1c52": {
+        "font": "regular",
+        "string": "Flag and Region Display",
+    },
+    "0x1c53": {
+        "font": "regular",
+        "string": "Mario Kart Wii can show your country flag\nand region in the following places:\n\n・as a globe position in Nintendo WFC mode\n・in your ghost data\n\nIf you choose to make this information\navailable, it will be sent to other\nplayers when playing via Nintendo WFC.",
+    },
+    "0x1c54": {
+        "font": "regular",
+        "string": "Do you want to display your country\nflag and region on Nintendo WFC?\n",
+    },
+    "0x1c55": {
+        "font": "regular",
+        "string": "Yes",
+    },
+    "0x1c56": {
+        "font": "regular",
+        "string": "No",
+    },
+    "0x1c57": {
+        "font": "regular",
+        "string": "You have chosen to display your\ncountry flag and region on Nintendo WFC.",
+    },
+    "0x1c58": {
+        "font": "regular",
+        "string": "You have chosen not to display your\ncountry flag and region on Nintendo WFC.",
+    },
+    "0x1c59": {
+        "font": "regular",
+        "string": null,
+    },
+    "0x1c84": {
+        "font": "regular",
+        "string": "Message Service",
+    },
+    "0x1c85": {
+        "font": "regular",
+        "string": "Join the message service to have the latest\nupdates from the Mario Kart Channel posted\nto your Wii Message Board via WiiConnect24.\nYou can opt out at any time.\n\nMessages will include information about:\n\n・competitions\n・special ghost data downloads",
+    },
+    "0x1c86": {
+        "font": "regular",
+        "string": "Would you like to join\nthe Mario Kart Channel\nmessage service?",
+    },
+    "0x1c87": {
+        "font": "regular",
+        "string": "Join",
+    },
+    "0x1c88": {
+        "font": "regular",
+        "string": "Don't Join",
+    },
+    "0x1c89": {
+        "font": "regular",
+        "string": "You have joined the Mario Kart\nChannel message service.",
+    },
+    "0x1c8a": {
+        "font": "regular",
+        "string": "You will not receive messages\nfrom the Mario Kart Channel\nmessage service. Is this OK?",
+    },
+    "0x1c8b": {
+        "font": "regular",
+        "string": "",
+    },
+    "0x1cb6": {
+        "font": "regular",
+        "string": "With the current settings, you will\nreceive messages from the Mario Kart\nChannel on your Wii Message Board.",
+    },
+    "0x1cb7": {
+        "font": "regular",
+        "string": "Please select your desired\nmessage service setting.",
+    },
+    "0x1cb8": {
+        "font": "regular",
+        "string": "Opt out of the Mario Kart Channel\nmessage service",
+    },
+    "0x1cb9": {
+        "font": "regular",
+        "string": "Opt out of all Channel\nmessage services",
+    },
+    "0x1cba": {
+        "font": "regular",
+        "string": "Continue receiving Mario Kart Channel\nmessages",
+    },
+    "0x1cbb": {
+        "font": "regular",
+        "string": "Opt out of receiving messages\nfrom the Mario Kart Channel?",
+    },
+    "0x1cbc": {
+        "font": "regular",
+        "string": "Stop receiving messages\nfrom all Channels?",
+    },
+    "0x1cbd": {
+        "font": "regular",
+        "string": "You will continue to\nreceive messages from\nthe Mario Kart Channel.",
+    },
+    "0x1cbe": {
+        "font": "regular",
+        "string": "You have not joined the Mario Kart\nChannel message service.",
+    },
+    "0x1cbf": {
+        "font": "regular",
+        "string": "You have opted out of\nthe Mario Kart Channel\nmessage service.",
+    },
+    "0x1cc0": {
+        "font": "regular",
+        "string": "You have opted out of all\nChannel message services.",
+    },
+    "0x1cc1": {
+        "font": "regular",
+        "string": "",
+    },
+    "0x1ce8": {
+        "font": "regular",
+        "string": "Data Sharing",
+    },
+    "0x1ce9": {
+        "font": "regular",
+        "string": "When you play Mario Kart Wii via\nNintendo WFC, the following data will\nautomatically be sent to Nintendo:\n\n・your Mii and nickname\n・your records and ghost data\n\nThis data may also be shared with\nother players on Nintendo WFC.",
+    },
+    "0x1cea": {
+        "font": "regular",
+        "string": "Will you allow game data\nto be sent to Nintendo?",
+    },
+    "0x1ceb": {
+        "font": "regular",
+        "string": "Allow",
+    },
+    "0x1cec": {
+        "font": "regular",
+        "string": "Do Not Allow",
+    },
+    "0x1ced": {
+        "font": "regular",
+        "string": "You have chosen to allow\nsending of game data to Nintendo.",
+    },
+    "0x1cee": {
+        "font": "regular",
+        "string": "Are you sure this is OK? You will be\nunable to play Mario Kart Wii via\nNintendo WFC with this setting.",
+    },
+    "0x1cef": {
+        "font": "regular",
+        "string": "You have chosen not to allow\nsending of game data to Nintendo.",
+    },
+    "0x1cf0": {
+        "font": "regular",
+        "string": "Please do not use your real name or any other\npersonal information as the nickname of your\nMii. If you have done so, please take one of\nthe following steps to change your Mii's\nnickname in order to protect your privacy.\n\n・Change your Mii's nickname in the Mii Channel\n・Switch to a Guest Mii in the Licence Settings",
+    },
+    "0x1cf1": {
+        "font": "regular",
+        "string": "",
+    },
+    "0x1d4c": {
+        "font": "regular",
+        "string": "Mii Display",
+    },
+    "0x1d4d": {
+        "font": "regular",
+        "string": "Miis created by other players\nmay be displayed during races\nand battles, in ranking data\nand other places on Nintendo WFC.\n\nYou can choose to allow these Miis to\nbe displayed as they are, or to replace\nthem with Miis created by Nintendo.",
+    },
+    "0x1d4e": {
+        "font": "regular",
+        "string": "Will you allow Miis created\nby other players to be\ndisplayed in Mario Kart Wii?",
+    },
+    "0x1d4f": {
+        "font": "regular",
+        "string": "Allow",
+    },
+    "0x1d50": {
+        "font": "regular",
+        "string": "Do Not Allow",
+    },
+    "0x1d51": {
+        "font": "regular",
+        "string": "You have chosen to allow Miis\ncreated by other players to be\ndisplayed in Mario Kart Wii.",
+    },
+    "0x1d52": {
+        "font": "regular",
+        "string": "You have chosen not to allow Miis\ncreated by other players to be\ndisplayed in Mario Kart Wii.",
+    },
+    "0x1d53": {
+        "font": "regular",
+        "string": "Miis created by other players will be\nreplaced with Miis created by Nintendo.\n\nIs this OK?",
+    },
+    "0x1d54": {
+        "font": "regular",
+        "string": null,
+    },
+    "0x1db0": {
+        "font": "regular",
+        "string": null,
+    },
+    "0x1db1": {
+        "font": "regular",
+        "string": null,
+    },
+    "0x1db2": {
+        "font": "regular",
+        "string": null,
+    },
+    "0x1db3": {
+        "font": "regular",
+        "string": null,
+    },
+    "0x1db4": {
+        "font": "regular",
+        "string": null,
+    },
+    "0x1db5": {
+        "font": "regular",
+        "string": null,
+    },
+    "0x1e14": {
+        "font": "regular",
+        "string": "Mario Kart Wii can be displayed in\n60Hz (480i) Mode. Your current setting is\n50Hz (576i) Mode. If your TV - like most\nTV models - supports 60Hz Mode, please\nselect this TV Type in the Wii System\nSettings for a better display quality.\n\nTo change your TV Type setting to\n60Hz Mode, please press the HOME Button\nand go to the Wii Menu.",
+    },
+    "0x1e15": {
+        "font": "regular",
+        "string": "{2 chars|< <}",
+    },
+    "0x1e16": {
+        "font": "regular",
+        "string": "CONGRATULATIONS!",
+    },
+    "0x1e17": {
+        "font": "regular",
+        "string": "Post this photo to the\nWii Message Board?",
+    },
+    "0x1e18": {
+        "font": "regular",
+        "string": "Posting...",
+    },
+    "0x1e19": {
+        "font": "regular",
+        "string": "The photo was posted to\nthe Wii Message Board!",
+    },
+    "0x1e1a": {
+        "font": "regular",
+        "string": "Please take care not to post too many\nphotos, as this can cause your Wii\nMessage Board to run out of space.\n\nWhen the Wii Message Board is full,\nspace for new messages will be\ncreated by deleting existing\nmessages, starting from the oldest.",
+    },
+    "0x1e1b": {
+        "font": "regular",
+        "string": "Thanks for playing,\nand please continue to\nenjoy Mario Kart Wii!",
+    },
+    "0x1f40": {
+        "font": "regular",
+        "string": "Congratulations!\nYou have unlocked the\n{arg message|0} {arg message|1}!",
+    },
+    "0x1f41": {
+        "font": "regular",
+        "string": "Congratulations!\nYou have unlocked the\nMirror class!",
+    },
+    "0x1f42": {
+        "font": "regular",
+        "string": "Congratulations!\nYou can now play as\n{arg message|0}!",
+    },
+    "0x1f43": {
+        "font": "regular",
+        "string": "Congratulations!\nYou can now play as\n{arg message|0}!",
+    },
+    "0x1f44": {
+        "font": "regular",
+        "string": "Congratulations! You have\nunlocked a small kart,\nthe {arg message|0}!",
+    },
+    "0x1f45": {
+        "font": "regular",
+        "string": "Congratulations! You have\nunlocked a medium kart,\nthe {arg message|0}!",
+    },
+    "0x1f46": {
+        "font": "regular",
+        "string": "Congratulations! You have\nunlocked a large kart,\nthe {arg message|0}!",
+    },
+    "0x1f47": {
+        "font": "regular",
+        "string": "Congratulations! You have\nunlocked a small bike,\nthe {arg message|0}!",
+    },
+    "0x1f48": {
+        "font": "regular",
+        "string": "Congratulations! You have\nunlocked a medium bike,\nthe {arg message|0}!",
+    },
+    "0x1f49": {
+        "font": "regular",
+        "string": "Congratulations! You have\nunlocked a large bike,\nthe {arg message|0}!",
+    },
+    "0x1f4a": {
+        "font": "regular",
+        "string": "Congratulations!\nYou have unlocked the 50cc\nGrand Prix (karts and bikes)!",
+    },
+    "0x1f4b": {
+        "font": "regular",
+        "string": "Congratulations!\nYou have unlocked the 100cc\nGrand Prix (karts and bikes)!",
+    },
+    "0x1f4c": {
+        "font": "regular",
+        "string": null,
+    },
+    "0x1fa4": {
+        "font": "regular",
+        "string": "You've earned trophies in the {arg message|0} Mushroom and Flower Cups!",
+    },
+    "0x1fa5": {
+        "font": "regular",
+        "string": "You've earned a trophy in the {arg message|0} Star Cup!",
+    },
+    "0x1fa6": {
+        "font": "regular",
+        "string": "You've earned trophies in the {arg message|0} Shell and Banana Cups!",
+    },
+    "0x1fa7": {
+        "font": "regular",
+        "string": "You've earned a trophy in the {arg message|0} Leaf Cup!",
+    },
+    "0x1fa8": {
+        "font": "regular",
+        "string": "You've won all the 150cc Cups!",
+    },
+    "0x1fa9": {
+        "font": "regular",
+        "string": null,
+    },
+    "0x1fae": {
+        "font": "regular",
+        "string": "You've won the 100cc Leaf Cup!",
+    },
+    "0x1faf": {
+        "font": "regular",
+        "string": "You've played Time Trials on all courses!",
+    },
+    "0x1fb0": {
+        "font": "regular",
+        "string": "You've won 1000 times on Nintendo WFC!",
+    },
+    "0x1fb1": {
+        "font": "regular",
+        "string": "You've earned Rank {1 char|} in all 50cc Wii Grand Prix Cups!",
+    },
+    "0x1fb2": {
+        "font": "regular",
+        "string": "You've unlocked 8 Expert Staff Ghost Data records in Time Trials!",
+    },
+    "0x1fb3": {
+        "font": "regular",
+        "string": "You've won the 50cc Lightning Cup!",
+    },
+    "0x1fb4": {
+        "font": "regular",
+        "string": "You've earned Rank {1 char|} in all 100cc Retro Grand Prix Cups!",
+    },
+    "0x1fb5": {
+        "font": "regular",
+        "string": "You've won the 150cc Special Cup!",
+    },
+    "0x1fb6": {
+        "font": "regular",
+        "string": "You've played Time Trials on 16 different courses!",
+    },
+    "0x1fb7": {
+        "font": "regular",
+        "string": "You've earned Rank {1 char|} on all Mirror Cups!",
+    },
+    "0x1fb8": {
+        "font": "regular",
+        "string": "You got a present from Super Mario Galaxy!",
+    },
+    "0x1fb9": {
+        "font": "regular",
+        "string": "You've earned Rank {1 char|} in all 150cc Wii Grand Prix Cups!",
+    },
+    "0x1fba": {
+        "font": "regular",
+        "string": "You've unlocked 4 Expert Staff Ghost Data records in Time Trials!",
+    },
+    "0x1fbb": {
+        "font": "regular",
+        "string": "You've won 25 Ghost Races!",
+    },
+    "0x1fbc": {
+        "font": "regular",
+        "string": "You've won the 50cc Star Cup!",
+    },
+    "0x1fbd": {
+        "font": "regular",
+        "string": "You've won the 100cc Special Cup!",
+    },
+    "0x1fbe": {
+        "font": "regular",
+        "string": "You've unlocked all 32 Expert Staff Ghost Data records in Time Trials!",
+    },
+    "0x1fbf": {
+        "font": "regular",
+        "string": "You've won 5000 times on Nintendo WFC!",
+    },
+    "0x1fc0": {
+        "font": "regular",
+        "string": "You've won 100 Ghost Races!",
+    },
+    "0x1fc1": {
+        "font": "regular",
+        "string": "You've won 250 times on Nintendo WFC!",
+    },
+    "0x1fc2": {
+        "font": "regular",
+        "string": null,
+    },
+    "0x1fcc": {
+        "font": "regular",
+        "string": "You've earned Rank {1 char|} in all 50cc Retro Grand Prix Cups!",
+    },
+    "0x1fcd": {
+        "font": "regular",
+        "string": "You've unlocked an Expert Staff Ghost Data record in Time Trials!",
+    },
+    "0x1fce": {
+        "font": "regular",
+        "string": "You've won 50 times on Nintendo WFC!",
+    },
+    "0x1fcf": {
+        "font": "regular",
+        "string": "You've won the Mirror Lightning Cup!",
+    },
+    "0x1fd0": {
+        "font": "regular",
+        "string": "You've won the 50cc Leaf Cup!",
+    },
+    "0x1fd1": {
+        "font": "regular",
+        "string": "You've won the 150cc Leaf Cup!",
+    },
+    "0x1fd2": {
+        "font": "regular",
+        "string": "You've unlocked 24 Expert Staff Ghost Data records in Time Trials!",
+    },
+    "0x1fd3": {
+        "font": "regular",
+        "string": "You've won the 50cc Special Cup!",
+    },
+    "0x1fd4": {
+        "font": "regular",
+        "string": "You've earned Rank {1 char|} in all 150cc Retro Grand Prix Cups!",
+    },
+    "0x1fd5": {
+        "font": "regular",
+        "string": "You've won the 150cc Lightning Cup!",
+    },
+    "0x1fd6": {
+        "font": "regular",
+        "string": "You've won the 150cc Star Cup!",
+    },
+    "0x1fd7": {
+        "font": "regular",
+        "string": "You've played Time Trials on 8 different courses!",
+    },
+    "0x1fd8": {
+        "font": "regular",
+        "string": "You've won 5 Ghost Races!",
+    },
+    "0x1fd9": {
+        "font": "regular",
+        "string": "You've won the Mirror Leaf Cup!",
+    },
+    "0x1fda": {
+        "font": "regular",
+        "string": "You've won the 100cc Lightning Cup!",
+    },
+    "0x1fdb": {
+        "font": "regular",
+        "string": "You've earned Rank {1 char|} in all 100cc Wii Grand Prix Cups!",
+    },
+    "0x1fdc": {
+        "font": "regular",
+        "string": "You've won the Mirror Star Cup!",
+    },
+    "0x1fdd": {
+        "font": "regular",
+        "string": "You've won the 100cc Star Cup!",
+    },
+    "0x1fde": {
+        "font": "regular",
+        "string": "You've unlocked 12 Expert Staff Ghost Data records in Time Trials!",
+    },
+    "0x1fdf": {
+        "font": "regular",
+        "string": "You've won 200 Ghost Races!",
+    },
+    "0x1fe0": {
+        "font": "regular",
+        "string": "You've won the Mirror Special Cup!",
+    },
+    "0x1fe1": {
+        "font": "regular",
+        "string": "You've earned trophies in all 50cc Cups!",
+    },
+    "0x1fe2": {
+        "font": "regular",
+        "string": "You've earned trophies in all 100cc Cups!",
+    },
+    "0x1fe3": {
+        "font": "regular",
+        "string": "You've won 3000 times on Nintendo WFC!",
+    },
+    "0x1fe4": {
+        "font": "regular",
+        "string": "You've played Mario Kart Wii {arg integer|0 0} times!",
+    },
+    "0x1fe5": {
+        "font": "regular",
+        "string": null,
+    },
+    "0x2008": {
+        "font": "regular",
+        "string": "Overall Records",
+    },
+    "0x2009": {
+        "font": "regular",
+        "string": "Favourites",
+    },
+    "0x200a": {
+        "font": "regular",
+        "string": "Friend Records",
+    },
+    "0x200b": {
+        "font": "regular",
+        "string": "Nintendo WFC Records",
+    },
+    "0x200c": {
+        "font": "regular",
+        "string": "Other Records",
+    },
+    "0x2012": {
+        "font": "regular",
+        "string": "Overall Rank",
+    },
+    "0x2013": {
+        "font": "regular",
+        "string": "Distance Travelled",
+    },
+    "0x2014": {
+        "font": "regular",
+        "string": "Total Race Count",
+    },
+    "0x2015": {
+        "font": "regular",
+        "string": "Total Battle Count",
+    },
+    "0x2016": {
+        "font": "regular",
+        "string": "Wii Wheel Usage Rate",
+    },
+    "0x2017": {
+        "font": "regular",
+        "string": "Tricks Performed",
+    },
+    "0x2018": {
+        "font": "regular",
+        "string": "Favourite Character",
+    },
+    "0x2019": {
+        "font": "regular",
+        "string": "Favourite Vehicle",
+    },
+    "0x201a": {
+        "font": "regular",
+        "string": "Favourite Course",
+    },
+    "0x201b": {
+        "font": "regular",
+        "string": "Favourite Stage",
+    },
+    "0x201c": {
+        "font": "regular",
+        "string": "Nintendo WFC Friends Record",
+    },
+    "0x201d": {
+        "font": "regular",
+        "string": null,
+    },
+    "0x201e": {
+        "font": "regular",
+        "string": "Ghost Data Challenges Sent",
+    },
+    "0x201f": {
+        "font": "regular",
+        "string": "Ghost Data Challenges Received",
+    },
+    "0x2020": {
+        "font": "regular",
+        "string": "Race Rating",
+    },
+    "0x2021": {
+        "font": "regular",
+        "string": "VS Race Record",
+    },
+    "0x2022": {
+        "font": "regular",
+        "string": "Battle Rating",
+    },
+    "0x2023": {
+        "font": "regular",
+        "string": "Battle Record",
+    },
+    "0x2024": {
+        "font": "regular",
+        "string": "Times 1st Place Achieved",
+    },
+    "0x2025": {
+        "font": "regular",
+        "string": "% Race Time in 1st Place",
+    },
+    "0x2026": {
+        "font": "regular",
+        "string": "Item Hits Delivered",
+    },
+    "0x2027": {
+        "font": "regular",
+        "string": "Item Hits Received",
+    },
+    "0x2028": {
+        "font": "regular",
+        "string": "Ghost Race Record",
+    },
+    "0x2029": {
+        "font": "regular",
+        "string": "Competitions Entered",
+    },
+    "0x202a": {
+        "font": "regular",
+        "string": null,
+    },
+    "0x202b": {
+        "font": "regular",
+        "string": null,
+    },
+    "0x202c": {
+        "font": "regular",
+        "string": null,
+    },
+    "0x202d": {
+        "font": "regular",
+        "string": null,
+    },
+    "0x202e": {
+        "font": "regular",
+        "string": null,
+    },
+    "0x2044": {
+        "font": "regular",
+        "string": "{arg message|0}",
+    },
+    "0x2045": {
+        "font": "regular",
+        "string": "{arg integer|0 0}",
+    },
+    "0x2046": {
+        "font": "regular",
+        "string": "{arg integer|0 0}",
+    },
+    "0x2047": {
+        "font": "regular",
+        "string": "{arg integer|0 0}",
+    },
+    "0x2048": {
+        "font": "regular",
+        "string": "{arg integer|0 0}%",
+    },
+    "0x2049": {
+        "font": "regular",
+        "string": "{arg integer|0 0}",
+    },
+    "0x204a": {
+        "font": "regular",
+        "string": "{arg message|0}",
+    },
+    "0x204b": {
+        "font": "regular",
+        "string": "{arg message|0}",
+    },
+    "0x204c": {
+        "font": "regular",
+        "string": "{arg message|0}",
+    },
+    "0x204d": {
+        "font": "regular",
+        "string": "{arg message|0}",
+    },
+    "0x204e": {
+        "font": "regular",
+        "string": "Wins: {arg integer|0 0}   Losses: {arg integer|1 0}",
+    },
+    "0x204f": {
+        "font": "regular",
+        "string": null,
+    },
+    "0x2050": {
+        "font": "regular",
+        "string": "{arg integer|0 0}",
+    },
+    "0x2051": {
+        "font": "regular",
+        "string": "{arg integer|0 0}",
+    },
+    "0x2052": {
+        "font": "regular",
+        "string": "{arg integer|0 0}",
+    },
+    "0x2053": {
+        "font": "regular",
+        "string": "Wins: {arg integer|0 0}   Losses: {arg integer|1 0}",
+    },
+    "0x2054": {
+        "font": "regular",
+        "string": "{arg integer|0 0}",
+    },
+    "0x2055": {
+        "font": "regular",
+        "string": "Wins: {arg integer|0 0}   Losses: {arg integer|1 0}",
+    },
+    "0x2056": {
+        "font": "regular",
+        "string": "{arg integer|0 0} times",
+    },
+    "0x2057": {
+        "font": "regular",
+        "string": "{arg integer|0 0}%",
+    },
+    "0x2058": {
+        "font": "regular",
+        "string": "{arg integer|0 0} times",
+    },
+    "0x2059": {
+        "font": "regular",
+        "string": "{arg integer|0 0} times",
+    },
+    "0x205a": {
+        "font": "regular",
+        "string": "Wins: {arg integer|0 0}   Losses: {arg integer|1 0}",
+    },
+    "0x205b": {
+        "font": "regular",
+        "string": "{arg integer|0 0} times",
+    },
+    "0x205c": {
+        "font": "regular",
+        "string": null,
+    },
+    "0x20d0": {
+        "font": "regular",
+        "string": null,
+    },
+    "0x20d1": {
+        "font": "regular",
+        "string": null,
+    },
+    "0x20d2": {
+        "font": "regular",
+        "string": null,
+    },
+    "0x20d3": {
+        "font": "regular",
+        "string": null,
+    },
+    "0x20d4": {
+        "font": "regular",
+        "string": null,
+    },
+    "0x20d5": {
+        "font": "regular",
+        "string": "Congratulations,\n%ls!\n\nYou've earned trophies in all Cups!\nTo commemorate your achievement,\nwe present you with this souvenir\nphoto. Thank you for playing,\nand please continue to enjoy\nMario Kart Wii!",
+    },
+    "0x20d6": {
+        "font": "regular",
+        "string": "Congratulations,\n%ls!\n\nYou've won all Mario Kart Wii\nCups! To commemorate your\nachievement, we present you with\nthis souvenir photo. Thank you for\nplaying, and please continue to\nenjoy Mario Kart Wii!",
+    },
+    "0x20d7": {
+        "font": "regular",
+        "string": null,
+    },
+    "0x20d8": {
+        "font": "regular",
+        "string": null,
+    },
+    "0x20d9": {
+        "font": "regular",
+        "string": null,
+    },
+    "0x20da": {
+        "font": "regular",
+        "string": null,
+    },
+    "0x20db": {
+        "font": "regular",
+        "string": null,
+    },
+    "0x20dc": {
+        "font": "regular",
+        "string": null,
+    },
+    "0x20dd": {
+        "font": "regular",
+        "string": null,
+    },
+    "0x20de": {
+        "font": "regular",
+        "string": null,
+    },
+    "0x20df": {
+        "font": "regular",
+        "string": null,
+    },
+    "0x20e0": {
+        "font": "regular",
+        "string": null,
+    },
+    "0x20e1": {
+        "font": "regular",
+        "string": null,
+    },
+    "0x20e2": {
+        "font": "regular",
+        "string": null,
+    },
+    "0x20e3": {
+        "font": "regular",
+        "string": null,
+    },
+    "0x20e4": {
+        "font": "regular",
+        "string": null,
+    },
+    "0x20e5": {
+        "font": "regular",
+        "string": null,
+    },
+    "0x20e6": {
+        "font": "regular",
+        "string": null,
+    },
+    "0x20e7": {
+        "font": "regular",
+        "string": null,
+    },
+    "0x20e8": {
+        "font": "regular",
+        "string": null,
+    },
+    "0x20e9": {
+        "font": "regular",
+        "string": null,
+    },
+    "0x20ea": {
+        "font": "regular",
+        "string": null,
+    },
+    "0x20eb": {
+        "font": "regular",
+        "string": null,
+    },
+    "0x20ec": {
+        "font": "regular",
+        "string": null,
+    },
+    "0x20ed": {
+        "font": "regular",
+        "string": null,
+    },
+    "0x20ee": {
+        "font": "regular",
+        "string": null,
+    },
+    "0x20f8": {
+        "font": "regular",
+        "string": null,
+    },
+    "0x20f9": {
+        "font": "regular",
+        "string": null,
+    },
+    "0x20fa": {
+        "font": "regular",
+        "string": null,
+    },
+    "0x20fb": {
+        "font": "regular",
+        "string": null,
+    },
+    "0x20fc": {
+        "font": "regular",
+        "string": null,
+    },
+    "0x20fd": {
+        "font": "regular",
+        "string": null,
+    },
+    "0x20fe": {
+        "font": "regular",
+        "string": null,
+    },
+    "0x20ff": {
+        "font": "regular",
+        "string": null,
+    },
+    "0x2100": {
+        "font": "regular",
+        "string": null,
+    },
+    "0x2101": {
+        "font": "regular",
+        "string": null,
+    },
+    "0x2102": {
+        "font": "regular",
+        "string": null,
+    },
+    "0x2103": {
+        "font": "regular",
+        "string": null,
+    },
+    "0x2104": {
+        "font": "regular",
+        "string": null,
+    },
+    "0x2105": {
+        "font": "regular",
+        "string": null,
+    },
+    "0x2106": {
+        "font": "regular",
+        "string": null,
+    },
+    "0x2107": {
+        "font": "regular",
+        "string": null,
+    },
+    "0x2108": {
+        "font": "regular",
+        "string": null,
+    },
+    "0x2109": {
+        "font": "regular",
+        "string": null,
+    },
+    "0x210a": {
+        "font": "regular",
+        "string": null,
+    },
+    "0x210b": {
+        "font": "regular",
+        "string": null,
+    },
+    "0x210c": {
+        "font": "regular",
+        "string": null,
+    },
+    "0x210d": {
+        "font": "regular",
+        "string": null,
+    },
+    "0x210e": {
+        "font": "regular",
+        "string": "Congratulations, %ls!\n\nAs a reward for earning trophies in\nall 100cc Cups, a new Engine Class\nhas become available:\n\n100cc (Karts and Bikes)",
+    },
+    "0x210f": {
+        "font": "regular",
+        "string": null,
+    },
+    "0x2110": {
+        "font": "regular",
+        "string": null,
+    },
+    "0x2116": {
+        "font": "regular",
+        "string": null,
+    },
+    "0x2117": {
+        "font": "regular",
+        "string": null,
+    },
+    "0x2118": {
+        "font": "regular",
+        "string": null,
+    },
+    "0x2119": {
+        "font": "regular",
+        "string": null,
+    },
+    "0x211a": {
+        "font": "regular",
+        "string": null,
+    },
+    "0x211b": {
+        "font": "regular",
+        "string": null,
+    },
+    "0x211c": {
+        "font": "regular",
+        "string": null,
+    },
+    "0x211d": {
+        "font": "regular",
+        "string": null,
+    },
+    "0x211e": {
+        "font": "regular",
+        "string": null,
+    },
+    "0x211f": {
+        "font": "regular",
+        "string": null,
+    },
+    "0x2120": {
+        "font": "regular",
+        "string": null,
+    },
+    "0x2121": {
+        "font": "regular",
+        "string": null,
+    },
+    "0x2122": {
+        "font": "regular",
+        "string": null,
+    },
+    "0x2123": {
+        "font": "regular",
+        "string": null,
+    },
+    "0x2124": {
+        "font": "regular",
+        "string": null,
+    },
+    "0x2125": {
+        "font": "regular",
+        "string": null,
+    },
+    "0x2126": {
+        "font": "regular",
+        "string": null,
+    },
+    "0x212a": {
+        "font": "regular",
+        "string": "This is a message from the\nMario Kart Channel.\n\n{arg string|0}\n\n\n\nIf you do not wish to receive further\ncommercial messages from Nintendo,\nplease select the Opt Out button in\nthe upper-right corner of the screen.\n\nYou can opt out of either\n(1) messages for the Mario Kart\nChannel only, or\n(2) all messages for all Channels\nand games.",
+    },
+    "0x212b": {
+        "font": "regular",
+        "string": "This is a message from the\nMario Kart Channel.\n\n{arg string|0}\n\n\n\nIf you do not wish to receive further\ncommercial messages from Nintendo,\nplease select the Opt Out button in\nthe upper-right corner of the screen.\n\nYou can opt out of either\n(1) messages for the Mario Kart\nChannel only, or\n(2) all messages for all Channels\nand games.",
+    },
+    "0x212c": {
+        "font": "regular",
+        "string": "You have received a Friend\nregistration invitation from\n%ls!\n\nMario Kart Wii\nFriend Code: %04d-%04d-%04d\n\nBy registering each other's Friend\nCodes, you can play Mario Kart Wii\ntogether via Nintendo Wi-Fi\nConnection.\n\nIf you have Mario Kart Wii and have\nadded the Mario Kart Channel to\nyour Wii Menu, you can select\nthe START button on the right to\nconfirm.\n\nHave fun!",
+    },
+    "0x212d": {
+        "font": "regular",
+        "string": "%ls has accepted\nyour Friend registration invitation!\n\nMario Kart Wii\nFriend Code: %04d-%04d-%04d\n\nNote: If there's room on your Friend\nRoster, this Friend Code will\nbe registered automatically.\n\nIf you have added the Mario Kart\nChannel to your Wii Menu, you can\nstart the Channel by selecting the\nSTART button on the right to\nconfirm that the Friend Code has\nbeen registered.\n\nHave fun!",
+    },
+    "0x212e": {
+        "font": "regular",
+        "string": null,
+    },
+    "0x212f": {
+        "font": "regular",
+        "string": null,
+    },
+    "0x2130": {
+        "font": "regular",
+        "string": null,
+    },
+    "0x2131": {
+        "font": "regular",
+        "string": null,
+    },
+    "0x2132": {
+        "font": "regular",
+        "string": null,
+    },
+    "0x2133": {
+        "font": "regular",
+        "string": null,
+    },
+    "0x2134": {
+        "font": "regular",
+        "string": null,
+    },
+    "0x2138": {
+        "font": "regular",
+        "string": null,
+    },
+    "0x2139": {
+        "font": "regular",
+        "string": null,
+    },
+    "0x213e": {
+        "font": "regular",
+        "string": null,
+    },
+    "0x213f": {
+        "font": "regular",
+        "string": null,
+    },
+    "0x2140": {
+        "font": "regular",
+        "string": null,
+    },
+    "0x2141": {
+        "font": "regular",
+        "string": null,
+    },
+    "0x2142": {
+        "font": "regular",
+        "string": null,
+    },
+    "0x2143": {
+        "font": "regular",
+        "string": null,
+    },
+    "0x2144": {
+        "font": "regular",
+        "string": null,
+    },
+    "0x2145": {
+        "font": "regular",
+        "string": null,
+    },
+    "0x2146": {
+        "font": "regular",
+        "string": null,
+    },
+    "0x2147": {
+        "font": "regular",
+        "string": null,
+    },
+    "0x2148": {
+        "font": "regular",
+        "string": null,
+    },
+    "0x2149": {
+        "font": "regular",
+        "string": null,
+    },
+    "0x214a": {
+        "font": "regular",
+        "string": null,
+    },
+    "0x214b": {
+        "font": "regular",
+        "string": null,
+    },
+    "0x214c": {
+        "font": "regular",
+        "string": null,
+    },
+    "0x214d": {
+        "font": "regular",
+        "string": null,
+    },
+    "0x214e": {
+        "font": "regular",
+        "string": null,
+    },
+    "0x214f": {
+        "font": "regular",
+        "string": null,
+    },
+    "0x2150": {
+        "font": "regular",
+        "string": null,
+    },
+    "0x2151": {
+        "font": "regular",
+        "string": null,
+    },
+    "0x2152": {
+        "font": "regular",
+        "string": null,
+    },
+    "0x215c": {
+        "font": "regular",
+        "string": null,
+    },
+    "0x215d": {
+        "font": "regular",
+        "string": null,
+    },
+    "0x215e": {
+        "font": "regular",
+        "string": null,
+    },
+    "0x215f": {
+        "font": "regular",
+        "string": null,
+    },
+    "0x2160": {
+        "font": "regular",
+        "string": null,
+    },
+    "0x2161": {
+        "font": "regular",
+        "string": null,
+    },
+    "0x2162": {
+        "font": "regular",
+        "string": null,
+    },
+    "0x2163": {
+        "font": "regular",
+        "string": null,
+    },
+    "0x2164": {
+        "font": "regular",
+        "string": null,
+    },
+    "0x2165": {
+        "font": "regular",
+        "string": null,
+    },
+    "0x2166": {
+        "font": "regular",
+        "string": null,
+    },
+    "0x2167": {
+        "font": "regular",
+        "string": null,
+    },
+    "0x2168": {
+        "font": "regular",
+        "string": null,
+    },
+    "0x2169": {
+        "font": "regular",
+        "string": null,
+    },
+    "0x216a": {
+        "font": "regular",
+        "string": null,
+    },
+    "0x216b": {
+        "font": "regular",
+        "string": null,
+    },
+    "0x216c": {
+        "font": "regular",
+        "string": null,
+    },
+    "0x216d": {
+        "font": "regular",
+        "string": null,
+    },
+    "0x216e": {
+        "font": "regular",
+        "string": null,
+    },
+    "0x216f": {
+        "font": "regular",
+        "string": null,
+    },
+    "0x2170": {
+        "font": "regular",
+        "string": null,
+    },
+    "0x2171": {
+        "font": "regular",
+        "string": null,
+    },
+    "0x2172": {
+        "font": "regular",
+        "string": null,
+    },
+    "0x2173": {
+        "font": "regular",
+        "string": null,
+    },
+    "0x2174": {
+        "font": "regular",
+        "string": null,
+    },
+    "0x2175": {
+        "font": "regular",
+        "string": null,
+    },
+    "0x2176": {
+        "font": "regular",
+        "string": null,
+    },
+    "0x2177": {
+        "font": "regular",
+        "string": null,
+    },
+    "0x3000": {
+        "font": "regular",
+        "string": "Race Against 1 Ghost",
+    },
+    "0x3001": {
+        "font": "regular",
+        "string": "Watch 1 Ghost",
+    },
+    "0x3002": {
+        "font": "regular",
+        "string": "Race Against {arg integer|0 0} Ghosts",
+    },
+    "0x3003": {
+        "font": "regular",
+        "string": "Watch {arg integer|0 0} Ghosts",
+    },
+    "0x18697": {
+        "font": "regular",
+        "string": null,
+    },
+    "0x18698": {
+        "font": "regular",
+        "string": null,
+    },
+    "0x18699": {
+        "font": "regular",
+        "string": null,
+    },
+    "0x1869a": {
+        "font": "regular",
+        "string": null,
+    },
+    "0x1869b": {
+        "font": "regular",
+        "string": null,
+    },
+    "0x1869c": {
+        "font": "regular",
+        "string": null,
+    },
+    "0x1869d": {
+        "font": "regular",
+        "string": null,
+    },
+    "0x1869e": {
+        "font": "regular",
+        "string": null,
+    },
+}

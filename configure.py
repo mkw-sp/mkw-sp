@@ -209,7 +209,7 @@ n.newline()
 
 n.rule(
     'szs',
-    command = '$wuj5 encode $szsin -o $out --retained $in',
+    command = '$wuj5 encode $szsin -o $out --retained $in $args',
     description = 'SZS $out',
 )
 n.newline()
@@ -249,7 +249,34 @@ asset_in_files = {
         os.path.join('control', 'ctrl', 'TimeAttackGhostListPageNum.brctr.json5'),
     ],
     'MenuSingleSP_E.szs': [
-        os.path.join('message', 'MenuSP.bmg.json5'),
+        os.path.join('message', 'Menu_E.bmg.json5'),
+    ],
+    'MenuSingleSP_F.szs': [
+        os.path.join('message', 'Menu_F.bmg.json5'),
+    ],
+    'MenuSingleSP_G.szs': [
+        os.path.join('message', 'Menu_G.bmg.json5'),
+    ],
+    'MenuSingleSP_I.szs': [
+        os.path.join('message', 'Menu_I.bmg.json5'),
+    ],
+    'MenuSingleSP_J.szs': [
+        os.path.join('message', 'Menu_J.bmg.json5'),
+    ],
+    'MenuSingleSP_K.szs': [
+        os.path.join('message', 'Menu_K.bmg.json5'),
+    ],
+    'MenuSingleSP_M.szs': [
+        os.path.join('message', 'Menu_M.bmg.json5'),
+    ],
+    'MenuSingleSP_Q.szs': [
+        os.path.join('message', 'Menu_Q.bmg.json5'),
+    ],
+    'MenuSingleSP_S.szs': [
+        os.path.join('message', 'Menu_S.bmg.json5'),
+    ],
+    'MenuSingleSP_U.szs': [
+        os.path.join('message', 'Menu_U.bmg.json5'),
     ],
     'RaceSP.szs': [
         os.path.join('game_image', 'anim', 'game_image_speed_texture_pattern_0_9.brlan.json5'),
@@ -261,6 +288,35 @@ asset_in_files = {
         os.path.join('game_image', 'ctrl', 'time_number.brctr.json5'),
         os.path.join('game_image', 'timg', 'tt_d_number_3d_minus.tpl'),
         os.path.join('game_image', 'timg', 'tt_d_number_3d_none.tpl'),
+    ],
+    'RaceSP_E.szs': [
+        os.path.join('game_image', 'timg', 'tt_speed_E.tpl'),
+    ],
+    'RaceSP_F.szs': [
+        os.path.join('game_image', 'timg', 'tt_speed_F.tpl'),
+    ],
+    'RaceSP_G.szs': [
+        os.path.join('game_image', 'timg', 'tt_speed_G.tpl'),
+    ],
+    'RaceSP_I.szs': [
+        os.path.join('game_image', 'timg', 'tt_speed_I.tpl'),
+    ],
+    'RaceSP_J.szs': [
+        os.path.join('game_image', 'timg', 'tt_speed_E.tpl'),
+    ],
+    'RaceSP_K.szs': [
+        os.path.join('game_image', 'timg', 'tt_speed_E.tpl'),
+    ],
+    'RaceSP_M.szs': [
+        os.path.join('game_image', 'timg', 'tt_speed_S.tpl'),
+    ],
+    'RaceSP_Q.szs': [
+        os.path.join('game_image', 'timg', 'tt_speed_F.tpl'),
+    ],
+    'RaceSP_S.szs': [
+        os.path.join('game_image', 'timg', 'tt_speed_S.tpl'),
+    ],
+    'RaceSP_U.szs': [
         os.path.join('game_image', 'timg', 'tt_speed_E.tpl'),
     ],
     'TitleSP.szs': [
@@ -281,25 +337,46 @@ for target in asset_in_files:
         }[ext]
         out_file = os.path.join('$builddir', 'Shared.szs.d', base + outext)
         in_file = os.path.join('assets', in_file)
-        rule = {
-            '.json5': 'wuj5',
-            '.tpl': 'cp',
-        }[ext]
-        n.build(
-            out_file,
-            rule,
-            in_file,
-        )
+        out_files = [out_file for out_files in asset_out_files.values() for out_file in out_files]
+        if out_file not in out_files:
+            rule = {
+                '.json5': 'wuj5',
+                '.tpl': 'cp',
+            }[ext]
+            n.build(
+                out_file,
+                rule,
+                in_file,
+            )
         asset_out_files[target] += [out_file]
-    n.newline()
+n.newline()
 
+renamed = {
+    'Menu_E.bmg': 'Menu.bmg',
+    'Menu_F.bmg': 'Menu.bmg',
+    'Menu_G.bmg': 'Menu.bmg',
+    'Menu_I.bmg': 'Menu.bmg',
+    'Menu_J.bmg': 'Menu.bmg',
+    'Menu_K.bmg': 'Menu.bmg',
+    'Menu_M.bmg': 'Menu.bmg',
+    'Menu_Q.bmg': 'Menu.bmg',
+    'Menu_S.bmg': 'Menu.bmg',
+    'Menu_U.bmg': 'Menu.bmg',
+    'tt_speed_E.tpl': 'tt_speed.tpl',
+    'tt_speed_F.tpl': 'tt_speed.tpl',
+    'tt_speed_G.tpl': 'tt_speed.tpl',
+    'tt_speed_I.tpl': 'tt_speed.tpl',
+    'tt_speed_S.tpl': 'tt_speed.tpl',
+}
+renamed = ' '.join([f'--renamed {src} {dst}' for src, dst in renamed.items()])
 for target in asset_out_files:
     n.build(
-        os.path.join('$outdir', 'mkw-sp', 'disc', target),
+        os.path.join('$outdir', 'mkw-sp', 'disc', 'Scene', 'UI', target),
         'szs',
         asset_out_files[target],
         variables = {
             'szsin': os.path.join('$builddir', 'Shared.szs.d'),
+            'args': renamed,
         },
     )
     n.newline()
