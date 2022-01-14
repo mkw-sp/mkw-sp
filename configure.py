@@ -326,6 +326,36 @@ asset_in_files = {
         os.path.join('button', 'ctrl', 'TopMenuSingleWaku.brctr.json5'),
         os.path.join('button', 'timg', 'tt_license_icon_004.tpl'),
     ],
+    'TitleSP_E.szs': [
+        os.path.join('message', 'Menu_E.bmg.json5'),
+    ],
+    'TitleSP_F.szs': [
+        os.path.join('message', 'Menu_F.bmg.json5'),
+    ],
+    'TitleSP_G.szs': [
+        os.path.join('message', 'Menu_G.bmg.json5'),
+    ],
+    'TitleSP_I.szs': [
+        os.path.join('message', 'Menu_I.bmg.json5'),
+    ],
+    'TitleSP_J.szs': [
+        os.path.join('message', 'Menu_J.bmg.json5'),
+    ],
+    'TitleSP_K.szs': [
+        os.path.join('message', 'Menu_K.bmg.json5'),
+    ],
+    'TitleSP_M.szs': [
+        os.path.join('message', 'Menu_M.bmg.json5'),
+    ],
+    'TitleSP_Q.szs': [
+        os.path.join('message', 'Menu_Q.bmg.json5'),
+    ],
+    'TitleSP_S.szs': [
+        os.path.join('message', 'Menu_S.bmg.json5'),
+    ],
+    'TitleSP_U.szs': [
+        os.path.join('message', 'Menu_U.bmg.json5'),
+    ],
 }
 asset_out_files = {target: [] for target in asset_in_files}
 for target in asset_in_files:
