@@ -115,6 +115,7 @@ code_in_files = {
         os.path.join('game', 'ui', 'License.S'),
         os.path.join('game', 'ui', 'License.c'),
         os.path.join('game', 'ui', 'LicenseSelectButton.c'),
+        os.path.join('game', 'ui', 'LicenseSelectPage.c'),
         os.path.join('game', 'ui', 'SaveManagerProxy.S'),
         os.path.join('game', 'ui', 'Section.c'),
         os.path.join('game', 'ui', 'SectionManager.c'),
