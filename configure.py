@@ -15,6 +15,11 @@ n.variable('builddir', 'build')
 n.variable('outdir', 'out')
 n.newline()
 
+os.makedirs('build', exist_ok = True)
+os.makedirs(os.path.join('build', 'assets', 'Scene', 'UI'), exist_ok = True)
+alldeps = []
+listfiles = []
+
 n.variable('cc', 'powerpc-eabi-gcc')
 n.variable('port', os.path.join('.', 'port.py'))
 n.newline()
@@ -84,21 +89,32 @@ n.newline()
 
 bintargets = ['loader', 'payload']
 
-srcdirs = {}
-for target in bintargets:
-    pattern = os.path.join(target, '**', '')
-    srcdirs[target] = glob.glob(pattern, recursive=True)
-    srcdirs[target] = [os.path.normpath(srcdir) for srcdir in srcdirs[target]]
-
 srcfiles = {}
 for target in bintargets:
+    deps = []
     srcfiles[target] = []
     for ext in ['.S', '.c']:
         pattern = os.path.join(target, '**', '*' + ext)
         srcfiles[target] += glob.glob(pattern, recursive=True)
+    deps += srcfiles[target]
     srcfiles[target] = [os.path.relpath(srcfile, target) for srcfile in srcfiles[target]]
-ofiles = {target: [] for target in srcfiles}
+    pattern = os.path.join(target, '**', '')
+    srcdirs = glob.glob(pattern, recursive=True)
+    srcdirs = [os.path.normpath(srcdir) for srcdir in srcdirs]
+    deps += srcdirs
+    alldeps += deps
+    for region in ['P']:
+        listfile = os.path.join('build', target + '.listfile')
+        listfile_data = ' '.join(deps)
+        try:
+            old_data = open(listfile, 'r').read()
+        except FileNotFoundError:
+            old_data = None
+        if listfile_data != old_data:
+            open(listfile, 'w').write(listfile_data)
+        listfiles += [listfile]
 
+ofiles = {target: [] for target in srcfiles}
 for target in srcfiles:
     for srcfile in srcfiles[target]:
         srcfile = os.path.join(target, srcfile)
@@ -116,7 +132,7 @@ for target in srcfiles:
         ofiles[target] += [ofile]
     n.newline()
 
-for region in ['P', 'E', 'J', 'K']:
+for region in ['P']:
     n.build(
         os.path.join('$builddir', 'scripts', f'RMC{region}.ld'),
         'port',
@@ -129,7 +145,7 @@ for region in ['P', 'E', 'J', 'K']:
     n.newline()
 
 for target in ofiles:
-    for region in ['P', 'E', 'J', 'K']:
+    for region in ['P']:
         n.build(
             os.path.join('$outdir', 'mkw-sp', 'bin', f'{target}{region}.bin'),
             'ld',
@@ -143,7 +159,10 @@ for target in ofiles:
                 }[region],
                 'script': os.path.join('$builddir', 'scripts', f'RMC{region}.ld'),
             },
-            implicit = os.path.join('$builddir', 'scripts', f'RMC{region}.ld'),
+            implicit = [
+                os.path.join('$builddir', 'scripts', f'RMC{region}.ld'),
+                os.path.join('build', target + '.listfile'),
+            ],
         )
         n.newline()
 
@@ -166,7 +185,7 @@ n.newline()
 
 n.rule(
     'szs',
-    command = '$wuj5 encode $szsin -o $out',
+    command = '$wuj5 encode $szsin -o $out --retained $in',
     description = 'SZS $out',
 )
 n.newline()
@@ -179,21 +198,31 @@ assettargets = [
     os.path.join('Scene', 'UI', 'TitleSP'),
 ]
 
-assetdirs = {}
-for target in assettargets:
-    pattern = os.path.join('assets', target + '.szs.d', '**', '')
-    assetdirs[target] = glob.glob(pattern, recursive=True)
-    assetdirs[target] = [os.path.normpath(assetdir) for assetdir in assetdirs[target]]
-
 assetfiles = {}
 for target in assettargets:
+    deps = []
     assetfiles[target] = []
     for ext in ['.json5', '.tpl']:
         pattern = os.path.join('assets', target + '.szs.d', '**', '*' + ext)
         assetfiles[target] += glob.glob(pattern, recursive=True)
+    deps += assetfiles[target]
     assetfiles[target] = [os.path.relpath(assetfile, 'assets') for assetfile in assetfiles[target]]
-outfiles = {target: [] for target in assetfiles}
+    pattern = os.path.join('assets', target + '.szs.d', '**', '')
+    assetdirs = glob.glob(pattern, recursive=True)
+    assetdirs = [os.path.normpath(assetdir) for assetdir in assetdirs]
+    deps += assetdirs
+    alldeps += deps
+    listfile = os.path.join('build', 'assets', target + '.listfile')
+    listfile_data = ' '.join(deps)
+    try:
+        old_data = open(listfile, 'r').read()
+    except FileNotFoundError:
+        old_data = None
+    if listfile_data != old_data:
+        open(listfile, 'w').write(listfile_data)
+    listfiles += [listfile]
 
+outfiles = {target: [] for target in assetfiles}
 for target in assetfiles:
     for assetfile in assetfiles[target]:
         assetfile = os.path.join('assets', assetfile)
@@ -219,12 +248,17 @@ for target in outfiles:
     n.build(
         os.path.join('$outdir', 'mkw-sp', 'disc', target + '.szs'),
         'szs',
+        outfiles[target],
         variables = {
             'szsin': os.path.join('$builddir', 'assets', target + '.szs.d'),
         },
-        implicit = outfiles[target],
+        implicit = [
+            os.path.join('build', 'assets', target + '.listfile'),
+        ],
     )
     n.newline()
+
+open('build.depfile', 'w').write('build.ninja: ' + ' '.join(alldeps))
 
 n.variable('configure', os.path.join('.', 'configure.py'))
 n.newline()
@@ -232,15 +266,20 @@ n.newline()
 n.rule(
     'configure',
     command = '$configure',
+    depfile = '$depfile',
+    deps = 'gcc',
     generator = True,
+    restat = True,
 )
 n.build(
     'build.ninja',
     'configure',
+    variables = {
+        'depfile': 'build.depfile',
+    },
     implicit = [
         '$configure',
         os.path.join('vendor', 'ninja_syntax.py'),
-        *sum(srcdirs.values(), []),
-        *sum(assetdirs.values(), []),
     ],
+    implicit_outputs = listfiles,
 )
