@@ -34,12 +34,15 @@ ext_pack = {
     'brlyt': pack_brlyt,
 }
 
-def decode_szs_node(out_path, node, retained):
-    out_path = os.path.join(out_path, node['name'])
+def decode_szs_node(out_path, node, retained, renamed):
+    name = node['name']
+    if name in renamed:
+        name = renamed[name]
+    out_path = os.path.join(out_path, name)
     if node['is_dir']:
         os.mkdir(out_path)
         for child in node['children']:
-            decode_szs_node(out_path, child, retained)
+            decode_szs_node(out_path, child, retained, renamed)
     else:
         if retained is not None and out_path not in retained:
             return
@@ -55,7 +58,7 @@ def decode_szs_node(out_path, node, retained):
             out_file = open(out_path + '.json5', 'w')
         out_file.write(out_data)
 
-def decode_szs(in_path, out_path, retained):
+def decode_szs(in_path, out_path, retained, renamed):
     in_file = open(in_path, 'rb')
     in_data = in_file.read()
     magic = in_data[0:4]
@@ -68,12 +71,12 @@ def decode_szs(in_path, out_path, retained):
     root = unpack_u8(in_data)
     if out_path is None:
         out_path = in_path + '.d'
-    decode_szs_node(out_path, root, retained)
+    decode_szs_node(out_path, root, retained, renamed)
 
-def decode(in_path, out_path, retained):
+def decode(in_path, out_path, retained, renamed):
     ext = in_path.split(os.extsep)[-1]
     if ext == 'szs':
-        decode_szs(in_path, out_path, retained)
+        decode_szs(in_path, out_path, retained, renamed)
         return
     unpack = ext_unpack.get(ext)
     if unpack is None:
@@ -87,19 +90,19 @@ def decode(in_path, out_path, retained):
         expected_magic = expected_magic.decode('ascii')
         exit(f'Unexpected magic {magic} for extension {ext} (expected {expected_magic}).')
     val = unpack(in_data)
-    out_data = json5.dumps(val, indent = 4, quote_keys = True)
+    out_data = json5.dumps(val, ensure_ascii = False, indent = 4, quote_keys = True)
     if out_path is None:
         out_path = in_path + '.json5'
     out_file = open(out_path, 'w')
     out_file.write(out_data)
 
-def encode_szs_node(in_path, retained):
+def encode_szs_node(in_path, retained, renamed):
     is_dir = os.path.isdir(in_path)
     if is_dir:
         out_path = in_path
         children = []
         for child_path in sorted(os.listdir(in_path)):
-            child = encode_szs_node(os.path.join(in_path, child_path), retained)
+            child = encode_szs_node(os.path.join(in_path, child_path), retained, renamed)
             if child is not None:
                 children += [child]
         node = {
@@ -124,14 +127,17 @@ def encode_szs_node(in_path, retained):
         node = {
             'content': out_data,
         }
+    name = os.path.basename(out_path)
+    if name in renamed:
+        name = renamed[name]
     return {
         'is_dir': is_dir,
-        'name': os.path.basename(out_path),
+        'name': name,
         **node,
     }
 
-def encode_szs(in_path, out_path, retained):
-    root = encode_szs_node(in_path, retained)
+def encode_szs(in_path, out_path, retained, renamed):
+    root = encode_szs_node(in_path, retained, renamed)
     out_data = pack_u8(root)
     out_data = pack_yaz(out_data)
     if out_path is None:
@@ -139,10 +145,10 @@ def encode_szs(in_path, out_path, retained):
     out_file = open(out_path, 'wb')
     out_file.write(out_data)
 
-def encode(in_path, out_path, retained):
+def encode(in_path, out_path, retained, renamed):
     ext = in_path.split(os.extsep)[-2]
     if ext == 'szs':
-        encode_szs(in_path, out_path, retained)
+        encode_szs(in_path, out_path, retained, renamed)
         return
     pack = ext_pack.get(ext)
     if pack is None:
@@ -162,6 +168,7 @@ parser.add_argument('operation', choices = ['decode', 'encode'])
 parser.add_argument('inputs', nargs = '+')
 parser.add_argument('-o', '--outputs', nargs = '*')
 parser.add_argument('--retained', nargs = '*')
+parser.add_argument('--renamed', action = 'append', nargs = 2)
 args = parser.parse_args()
 
 operations = {
@@ -172,5 +179,8 @@ if args.outputs is None:
     args.outputs = [None] * len(args.inputs)
 if len(args.outputs) != len(args.inputs):
     exit('Wrong number of output paths.')
+renamed = {}
+if args.renamed is not None:
+    renamed = {src: dst for src, dst in args.renamed}
 for in_path, out_path in zip(args.inputs, args.outputs):
-    operations[args.operation](in_path, out_path, args.retained)
+    operations[args.operation](in_path, out_path, args.retained, renamed)
