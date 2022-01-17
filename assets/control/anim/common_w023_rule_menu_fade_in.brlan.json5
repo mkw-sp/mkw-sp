@@ -1,0 +1,216 @@
+{
+    "version": 10,
+    "sections": [
+        {
+            "magic": "pat1",
+            "id": 6,
+            "groups": [],
+            "name": "fade_in",
+            "start frame": 40,
+            "end frame": 50,
+            "descending bind": true,
+        },
+        {
+            "magic": "pai1",
+            "frame count": 11,
+            "loop": false,
+            "tpls": [],
+            "contents": [
+                {
+                    "name": "text_light_02",
+                    "kind": "pane",
+                    "animations": [
+                        {
+                            "magic": "RLPA",
+                            "targets": [
+                                {
+                                    "id": 0,
+                                    "kind": "scale x",
+                                    "curve type": "hermite",
+                                    "keys": [
+                                        {
+                                            "frame": -30.0,
+                                            "value": 1.0,
+                                            "slope": 0.0,
+                                        },
+                                    ],
+                                },
+                                {
+                                    "id": 0,
+                                    "kind": "scale y",
+                                    "curve type": "hermite",
+                                    "keys": [
+                                        {
+                                            "frame": -30.0,
+                                            "value": 1.0,
+                                            "slope": 0.0,
+                                        },
+                                    ],
+                                },
+                            ],
+                        },
+                        {
+                            "magic": "RLVC",
+                            "targets": [
+                                {
+                                    "id": 0,
+                                    "kind": "pane alpha",
+                                    "curve type": "hermite",
+                                    "keys": [
+                                        {
+                                            "frame": -40.0,
+                                            "value": 0.0,
+                                            "slope": 0.0,
+                                        },
+                                    ],
+                                },
+                            ],
+                        },
+                    ],
+                },
+                {
+                    "name": "text_light_01",
+                    "kind": "pane",
+                    "animations": [
+                        {
+                            "magic": "RLPA",
+                            "targets": [
+                                {
+                                    "id": 0,
+                                    "kind": "scale x",
+                                    "curve type": "hermite",
+                                    "keys": [
+                                        {
+                                            "frame": -30.0,
+                                            "value": 1.0,
+                                            "slope": 0.0,
+                                        },
+                                    ],
+                                },
+                                {
+                                    "id": 0,
+                                    "kind": "scale y",
+                                    "curve type": "hermite",
+                                    "keys": [
+                                        {
+                                            "frame": -30.0,
+                                            "value": 1.0,
+                                            "slope": 0.0,
+                                        },
+                                    ],
+                                },
+                            ],
+                        },
+                        {
+                            "magic": "RLVC",
+                            "targets": [
+                                {
+                                    "id": 0,
+                                    "kind": "pane alpha",
+                                    "curve type": "hermite",
+                                    "keys": [
+                                        {
+                                            "frame": -30.0,
+                                            "value": 0.0,
+                                            "slope": 0.0,
+                                        },
+                                    ],
+                                },
+                            ],
+                        },
+                    ],
+                },
+                {
+                    "name": "pause_w_fade_n",
+                    "kind": "pane",
+                    "animations": [
+                        {
+                            "magic": "RLPA",
+                            "targets": [
+                                {
+                                    "id": 0,
+                                    "kind": "scale x",
+                                    "curve type": "hermite",
+                                    "keys": [
+                                        {
+                                            "frame": 0.0,
+                                            "value": 0.0,
+                                            "slope": -6e-05,
+                                        },
+                                        {
+                                            "frame": 10.0,
+                                            "value": 1.0,
+                                            "slope": -0.162325,
+                                        },
+                                    ],
+                                },
+                                {
+                                    "id": 0,
+                                    "kind": "scale y",
+                                    "curve type": "hermite",
+                                    "keys": [
+                                        {
+                                            "frame": 0.0,
+                                            "value": 0.0,
+                                            "slope": 0.450434,
+                                        },
+                                        {
+                                            "frame": 10.0,
+                                            "value": 1.0,
+                                            "slope": -0.070774,
+                                        },
+                                    ],
+                                },
+                            ],
+                        },
+                        {
+                            "magic": "RLVC",
+                            "targets": [
+                                {
+                                    "id": 0,
+                                    "kind": "pane alpha",
+                                    "curve type": "hermite",
+                                    "keys": [
+                                        {
+                                            "frame": 0.0,
+                                            "value": 0.0,
+                                            "slope": 3.580526,
+                                        },
+                                        {
+                                            "frame": 10.0,
+                                            "value": 255.0,
+                                            "slope": 74.028557,
+                                        },
+                                    ],
+                                },
+                            ],
+                        },
+                    ],
+                },
+                {
+                    "name": "color_down",
+                    "kind": "pane",
+                    "animations": [
+                        {
+                            "magic": "RLVC",
+                            "targets": [
+                                {
+                                    "id": 0,
+                                    "kind": "pane alpha",
+                                    "curve type": "hermite",
+                                    "keys": [
+                                        {
+                                            "frame": -39.0,
+                                            "value": 128.0,
+                                            "slope": 0.0,
+                                        },
+                                    ],
+                                },
+                            ],
+                        },
+                    ],
+                },
+            ],
+        },
+    ],
+}

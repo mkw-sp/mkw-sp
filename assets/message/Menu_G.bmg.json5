@@ -5451,6 +5451,46 @@
         "font": "regular",
         "string": "Watch {arg integer|0 0} Ghosts",
     },
+    "0x3004": {
+        "font": "regular",
+        "string": "HUD Labels",
+    },
+    "0x3005": {
+        "font": "regular",
+        "string": "Hide",
+    },
+    "0x3006": {
+        "font": "regular",
+        "string": "Show",
+    },
+    "0x3007": {
+        "font": "regular",
+        "string": "16:9 FOV",
+    },
+    "0x3008": {
+        "font": "regular",
+        "string": "Default",
+    },
+    "0x3009": {
+        "font": "regular",
+        "string": "Wider",
+    },
+    "0x3010": {
+        "font": "regular",
+        "string": "Hide HUD control labels.",
+    },
+    "0x3011": {
+        "font": "regular",
+        "string": "Show HUD control labels.",
+    },
+    "0x3014": {
+        "font": "regular",
+        "string": "Use the default field of view in 16:9.",
+    },
+    "0x3015": {
+        "font": "regular",
+        "string": "Use the wider 4:3 field of view in 16:9.",
+    },
     "0x18697": {
         "font": "regular",
         "string": null,

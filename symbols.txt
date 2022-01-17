@@ -136,6 +136,7 @@
 0x805be7f4 CtrlMenuBackButton_dt
 0x805bed68 Page_vf_60
 0x805bf2d8 Page_vf_4c
+0x805c00c0 CtrlMenuInstructionText_dt
 0x805c211c ConfirmPage_reset
 0x805c21a8 ConfirmPage_setTitleMessage
 0x805c21b0 ConfirmPage_setWindowMessage
@@ -175,6 +176,13 @@
 0x806024b0 Page_changeSection
 0x80602530 Page_vf_20
 0x806025b0 Page_push
+0x80605724 RadioButtonControl_ct
+0x806058c8 RadioButtonControl_dt
+0x8060594c RadioButtonControl_load
+0x80605d54 RadioButtonControl_setFrontHandler
+0x80605d6c RadioButtonControl_setSelectHandler
+0x80605d74 RadioButtonControl_selectDefault
+0x80605dfc RadioButtonControl_select
 0x80606bd0 LayoutUIControl_vf_28
 0x8061b358 RegisteredPadManager_getFlags
 0x80620c5c SaveManagerProxy_init
@@ -182,6 +190,8 @@
 0x80623390 Section_createPage
 0x80625da0 TopMenuPage_ct
 0x80626698 SingleTopMenuPage_ct
+0x8062c0f4 LicenseRecordsPage_ct
+0x8062c3a4 Section_addPages
 0x80633ba8 TimeAttackRacePage_getNameBalloonCount
 0x80633c7c GhostReplayRacePage_getNameBalloonCount
 0x80633c84 GhostReplayRacePage_getControls
@@ -224,6 +234,8 @@
 0x80708b44 Snd_80708b44
 0x807e947c CtrlMenuPageTitleText_load
 0x807e987c CtrlMenuPageTitleText_setMessage
+0x807e9904 CtrlMenuInstructionText_load
+0x807e9a38 CtrlMenuInstructionText_setMessage
 0x807ea8d8 CtrlRaceBase_dt
 0x807ec6e8 CtrlRaceBase_initSelf
 0x807eb3cc CtrlRace2DMapCharacter_calcTransform
@@ -267,6 +279,7 @@
 0x80860acc getCharacterPane
 
 0x808b3188 languageSuffixes
+0x808d3698 s_CtrlMenuInstructionText_vt
 0x808d36d4 s_CtrlMenuPageTitleText_vt
 0x808d374c s_CtrlMenuBackButton_vt
 
