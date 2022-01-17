@@ -41,7 +41,7 @@ static void onSettingSelect(RadioButtonControlHandler *this, RadioButtonControl 
     }
 
     LicenseSettingsPage *page = container_of(this, LicenseSettingsPage, onSettingSelect);
-    u32 messageId = 0x3010 + control->index * 4 + selected;
+    u32 messageId = 0x3007 + control->index * 5 + selected;
     CtrlMenuInstructionText_setMessage(&page->instructionText, messageId, NULL);
 }
 
@@ -135,7 +135,6 @@ static void LicenseSettingsPage_onInit(Page *base) {
     }
 
     CtrlMenuPageTitleText_setMessage(&this->pageTitleText, 0x7df, NULL);
-    CtrlMenuInstructionText_setMessage(&this->instructionText, 0x3010, NULL);
 
     this->resetSelection = true;
 }
@@ -145,6 +144,8 @@ static void LicenseSettingsPage_onActivate(Page *base) {
 
     if (this->resetSelection) {
         RadioButtonControl_selectDefault(&this->settingControls[0], 0);
+        u32 messageId = 0x3007 + this->settingControls[0].selected;
+        CtrlMenuInstructionText_setMessage(&this->instructionText, messageId, NULL);
         this->resetSelection = false;
     }
 }

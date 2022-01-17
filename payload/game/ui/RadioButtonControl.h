@@ -17,7 +17,8 @@ typedef struct RadioButtonControlHandler {
 
 typedef struct RadioButtonControl {
     LayoutUIControl;
-    u8 _174[0x20c - 0x174];
+    u8 _174[0x208 - 0x174];
+    u32 selected;
     u32 index;
     u8 _210[0x298 - 0x210];
 } RadioButtonControl;
