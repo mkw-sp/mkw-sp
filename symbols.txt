@@ -277,6 +277,7 @@
 0x80857b08 RacePage_getControlCount
 0x80857cc0 RacePage_initControls
 0x80858864 BalloonManager_dt
+0x808588cc CtrlRaceNameBalloon_ct
 0x80858a50 RacePage_calcItemBalloons
 0x80858ae4 RacePage_calcNameBalloons
 0x80860acc getCharacterPane
@@ -293,3 +294,4 @@
 0x809bd748 s_saveManager
 0x809c18f8 s_kartObjectManager
 0x809c1e38 s_sectionManager
+0x809c38b8 s_raceGlobals

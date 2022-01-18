@@ -104,8 +104,59 @@ PATCH_REPLACE_START(BalloonManager_calc, 0x7b0)
     lfs f0, 0xcc (r4)
 PATCH_REPLACE_END(BalloonManager_calc, 0x7b0)
 
+// Initialize lastWatchedPlayerId too
+PATCH_REPLACE_START(CtrlRaceNameBalloon_ct, 0x30)
+    stw r4, 0x174 (r31)
+PATCH_REPLACE_END(CtrlRaceNameBalloon_ct, 0x30)
+
+.global fix_BalloonManager_calc
+fix_BalloonManager_calc:
+    li r4, 0x2 # Original instruction
+
+    # Check that the current section id is ghost replay
+    lis r5, s_sectionManager@ha
+    lwz r5, s_sectionManager@l (r5)
+    lwz r5, 0x0 (r5)
+    lwz r5, 0x0 (r5)
+    cmpwi r5, 0x34
+    bnelr
+
+    mflr r25
+    mr r24, r3
+
+    # Check that the tag rule is "watched"
+    lis r3, s_saveManager@ha
+    lwz r3, s_saveManager@l (r3)
+    bl SaveManager_getTaRuleGhostTags
+    cmpwi r3, 0x1
+    mr r3, r24
+    mtlr r25
+    bnelr
+
+    # Always try to display tags for every player. The actual visibility logic is moved to the tags
+    # themselves, allowing for faster switching.
+    addi r25, r25, 0x140
+    mtlr r25
+    blr
+.size fix_BalloonManager_calc, . - fix_BalloonManager_calc
+PATCH_BL(BalloonManager_calc + 0x48, fix_BalloonManager_calc)
+
+.global thunk_CtrlRaceNameBalloon_calcVisiblity
+thunk_CtrlRaceNameBalloon_calcVisibility:
+    mflr r30
+
+    mr r3, r31
+    bl CtrlRaceNameBalloon_calcVisibility
+
+    lwz r0, 0x44 (r1) # Original instruction
+
+    mtlr r30
+    blr
+.size thunk_CtrlRaceNameBalloon_calcVisibility, . - thunk_CtrlRaceNameBalloon_calcVisibility
+PATCH_BL(CtrlRaceNameBalloon_calcSelf + 0x628, thunk_CtrlRaceNameBalloon_calcVisibility)
+
 PATCH_INJECT_START(BalloonManager_calc, 0x7c)
-    # Check if the current section id is ghost replay
+    # Check that the current section id is ghost replay
     lis r3, s_sectionManager@ha
     lwz r3, s_sectionManager@l (r3)
     lwz r3, 0x0 (r3)
@@ -130,6 +181,11 @@ PATCH_INJECT_END(BalloonManager_calc, 0x7c)
 PATCH_REPLACE_START(BalloonManager_calc, 0x4ec)
     b 0x334
 PATCH_REPLACE_END(BalloonManager_calc, 0x4ec)
+
+// Wait a shorter time before displaying tags
+PATCH_REPLACE_START(BalloonManager_calc, 0x128)
+    li r0, 300
+PATCH_REPLACE_END(BalloonManager_calc, 0x128)
 
 // Always use the battle maximum distance
 PATCH_REPLACE_START(CtrlRaceNameBalloon_load, 0x17c)

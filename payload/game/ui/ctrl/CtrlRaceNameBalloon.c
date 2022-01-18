@@ -1,5 +1,11 @@
 #include "CtrlRaceNameBalloon.h"
 
+#include "../page/RacePage.h"
+
+#include "../../race/RaceGlobals.h"
+
+#include "../../system/SaveManager.h"
+
 static BalloonManager *my_BalloonManager_ct(BalloonManager *this) {
     this->nameCount = 0;
     for (u32 i = 0; i < ARRAY_SIZE(this->namePositions); i++) {
@@ -38,3 +44,29 @@ static void my_BalloonManager_addNameControl(BalloonManager *this, CtrlRaceNameB
 }
 
 PATCH_B(BalloonManager_addNameControl, my_BalloonManager_addNameControl);
+
+void CtrlRaceNameBalloon_calcVisibility(CtrlRaceNameBalloon *this) {
+    // An artificial 1 frame delay is added to match the camera.
+    u8 lastWatchedPlayerId = this->lastWatchedPlayerId;
+    RacePage *page = (RacePage *)this->group->page;
+    this->lastWatchedPlayerId = page->watchedPlayerId;
+
+    if (this->isHidden) {
+        return;
+    }
+
+    if (!s_raceGlobals.isTimeAttack) {
+        return;
+    }
+
+    switch (SaveManager_getTaRuleGhostTags(s_saveManager)) {
+    case SP_TA_RULE_GHOST_TAGS_NONE:
+        this->isHidden = true;
+        return;
+    case SP_TA_RULE_GHOST_TAGS_WATCHED:
+        this->isHidden = this->playerId != (s32)lastWatchedPlayerId;
+        return;
+    default:
+        return;
+    }
+}

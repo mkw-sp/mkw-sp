@@ -1,10 +1,15 @@
 #pragma once
 
-#include <Common.h>
+#include "../UIControl.h"
 
 typedef struct {
-    u8 _000[0x188 - 0x000];
+    LayoutUIControl;
+    u8 _174[0x177 - 0x174];
+    u8 lastWatchedPlayerId; // Added
+    s32 playerId;
+    u8 _17c[0x188 - 0x17c];
 } CtrlRaceNameBalloon;
+static_assert(sizeof(CtrlRaceNameBalloon) == 0x188);
 
 typedef struct {
     u8 _00[0x03 - 0x00];
