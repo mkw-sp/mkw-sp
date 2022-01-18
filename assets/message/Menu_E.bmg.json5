@@ -161,7 +161,7 @@
     },
     "0x805": {
         "font": "regular",
-        "string": "There is not enough available space in\nthe Wii System Memory. Create 23 blocks\nof free space by either moving data to\nan SD Card or deleting data in the\nData Management Screen.",
+        "string": "Something went wrong when reading from\nor writing to the save.",
     },
     "0x806": {
         "font": "regular",
