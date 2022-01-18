@@ -58,7 +58,6 @@ static const RadioButtonControlHandler_vt onRuleControlSelect_vt = {
 };
 
 static void onOkButtonFront(PushButtonHandler *this, PushButton *button, u32 localPlayerId) {
-    UNUSED(button);
     UNUSED(localPlayerId);
 
     TimeAttackRulesPage *page = container_of(this, TimeAttackRulesPage, onOkButtonFront);
@@ -66,8 +65,8 @@ static void onOkButtonFront(PushButtonHandler *this, PushButton *button, u32 loc
     Section *currentSection = s_sectionManager->currentSection;
     CharacterSelectPage *characterSelectPage = (CharacterSelectPage *)currentSection->pages[PAGE_ID_CHARACTER_SELECT];
     characterSelectPage->prevId = page->id;
-    // TODO delay
-    Page_startReplace(page, PAGE_ANIMATION_NEXT, 0.0f);
+    f32 delay = PushButton_getDelay(button);
+    Page_startReplace(page, PAGE_ANIMATION_NEXT, delay);
 }
 
 static const PushButtonHandler_vt onOkButtonFront_vt = {
