@@ -246,6 +246,11 @@ static void SaveManager_init(SaveManager *this) {
     this->otherRawSave = this->rawSave;
 
     if (!SaveManager_initSpSave(this)) {
+        EGG_Heap *heap = s_rootScene->heapCollection.heaps[HEAP_ID_MEM2];
+        this->spSections = spAllocArray(MAX_SP_LICENSE_COUNT, sizeof(SpSaveSection *), 0x4, heap);
+        for (u32 i = 0; i < MAX_SP_LICENSE_COUNT; i++) {
+            this->spLicenses[i] = spAlloc(sizeof(SpSaveLicense), 0x4, heap);
+        }
         this->result = RK_NAND_RESULT_NOSPACE;
         this->spCanSave = false;
     }
