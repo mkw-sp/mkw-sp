@@ -57,7 +57,8 @@ static const RadioButtonControlHandler_vt onRuleControlSelect_vt = {
     .handle = onRuleControlSelect,
 };
 
-static void onOkButtonFront(InputHandler *this, u32 localPlayerId) {
+static void onOkButtonFront(PushButtonHandler *this, PushButton *button, u32 localPlayerId) {
+    UNUSED(button);
     UNUSED(localPlayerId);
 
     TimeAttackRulesPage *page = container_of(this, TimeAttackRulesPage, onOkButtonFront);
@@ -69,18 +70,19 @@ static void onOkButtonFront(InputHandler *this, u32 localPlayerId) {
     Page_startReplace(page, PAGE_ANIMATION_NEXT, 0.0f);
 }
 
-static const InputHandler_vt onOkButtonFront_vt = {
+static const PushButtonHandler_vt onOkButtonFront_vt = {
     .handle = onOkButtonFront,
 };
 
-static void onOkButtonSelect(InputHandler *this, u32 localPlayerId) {
+static void onOkButtonSelect(PushButtonHandler *this, PushButton *button, u32 localPlayerId) {
+    UNUSED(button);
     UNUSED(localPlayerId);
 
     TimeAttackRulesPage *page = container_of(this, TimeAttackRulesPage, onOkButtonSelect);
     CtrlMenuInstructionText_setMessage(&page->instructionText, 0x3019, NULL);
 }
 
-static const InputHandler_vt onOkButtonSelect_vt = {
+static const PushButtonHandler_vt onOkButtonSelect_vt = {
     .handle = onOkButtonSelect,
 };
 

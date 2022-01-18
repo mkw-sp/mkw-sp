@@ -6,7 +6,7 @@
 typedef struct {
     PushButton;
     MiiGroup miiGroup;
-    InputHandler onFront;
+    PushButtonHandler onFront;
     ConfirmPageHandler onCreateConfirm;
     ConfirmPageHandler onChangeConfirm;
     ConfirmPageHandler onCancel;

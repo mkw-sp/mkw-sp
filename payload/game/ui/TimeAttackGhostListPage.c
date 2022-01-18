@@ -126,26 +126,28 @@ static const InputHandler_vt onSheetSelectLeft_vt = {
     .handle = onSheetSelectLeft,
 };
 
-static void onLaunchButtonSelect(InputHandler *this, u32 localPlayerId) {
-    UNUSED(localPlayerId);
-
-    TimeAttackGhostListPage *page = container_of(this, TimeAttackGhostListPage, onLaunchButtonSelect);
-    page->lastSelected = -1;
-}
-
-static const InputHandler_vt onLaunchButtonSelect_vt = {
-    .handle = onLaunchButtonSelect,
-};
-
-static void onLaunchButtonFront(InputHandler *this, u32 localPlayerId) {
+static void onLaunchButtonFront(PushButtonHandler *this, PushButton *button, u32 localPlayerId) {
+    UNUSED(button);
     UNUSED(localPlayerId);
 
     TimeAttackGhostListPage *page = container_of(this, TimeAttackGhostListPage, onLaunchButtonFront);
     page->vt->push(page, 0x4b, PAGE_ANIMATION_NEXT); // TODO enum
 }
 
-static const InputHandler_vt onLaunchButtonFront_vt = {
+static const PushButtonHandler_vt onLaunchButtonFront_vt = {
     .handle = onLaunchButtonFront,
+};
+
+static void onLaunchButtonSelect(PushButtonHandler *this, PushButton *button, u32 localPlayerId) {
+    UNUSED(button);
+    UNUSED(localPlayerId);
+
+    TimeAttackGhostListPage *page = container_of(this, TimeAttackGhostListPage, onLaunchButtonSelect);
+    page->lastSelected = -1;
+}
+
+static const PushButtonHandler_vt onLaunchButtonSelect_vt = {
+    .handle = onLaunchButtonSelect,
 };
 
 static TimeAttackGhostListPage *my_TimeAttackGhostListPage_ct(TimeAttackGhostListPage *this) {
@@ -234,7 +236,6 @@ static void TimeAttackGhostListPage_onInit(Page *base) {
     SheetSelectControl_setLeftHandler(&this->sheetSelect, &this->onSheetSelectLeft);
     PushButton_setSelectHandler(&this->launchButton, &this->onLaunchButtonSelect);
     PushButton_setFrontHandler(&this->launchButton, &this->onLaunchButtonFront, false);
-    PushButton_setFrontHandler(&this->backButton, &this->onBack, false);
 
     CtrlMenuPageTitleText_setMessage(&this->pageTitleText, 0xd4f, NULL);
     u32 flags = RegisteredPadManager_getFlags(&s_sectionManager->registeredPadManager, 0);

@@ -8,10 +8,12 @@
 #include <stdio.h>
 #include <string.h>
 
-static void onFront(InputHandler *this, u32 localPlayerId) {
+static void onFront(PushButtonHandler *this, PushButton *base, u32 localPlayerId) {
+    UNUSED(this);
     UNUSED(localPlayerId);
 
-    LicenseSelectButton *button = container_of(this, LicenseSelectButton, onFront);
+    LicenseSelectButton *button = (LicenseSelectButton *)base;
+
     u32 index = button->index;
     if (index < s_saveManager->spLicenseCount) {
         s_saveManager->spCurrentLicense = index;
@@ -53,7 +55,7 @@ static void onFront(InputHandler *this, u32 localPlayerId) {
     }
 }
 
-static const InputHandler_vt onFront_vt = {
+static const PushButtonHandler_vt onFront_vt = {
     .handle = onFront,
 };
 

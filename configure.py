@@ -33,6 +33,7 @@ cflags = [
     '-O2',
     '-Wall',
     '-Werror=implicit-function-declaration',
+    '-Werror=incompatible-pointer-types',
     '-Wextra',
 ]
 ldflags = [

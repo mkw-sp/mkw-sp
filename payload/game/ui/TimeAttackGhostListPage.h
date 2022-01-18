@@ -22,8 +22,8 @@ typedef struct {
     InputHandler onOption;
     InputHandler onSheetSelectRight;
     InputHandler onSheetSelectLeft;
-    InputHandler onLaunchButtonSelect;
-    InputHandler onLaunchButtonFront;
+    PushButtonHandler onLaunchButtonSelect;
+    PushButtonHandler onLaunchButtonFront;
     GhostSelectControl *shownGhostSelect;
     GhostSelectControl *hiddenGhostSelect;
     bool isReplay;
