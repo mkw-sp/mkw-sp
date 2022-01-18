@@ -15,11 +15,11 @@ static const InputHandler_vt onBack_vt = {
     .handle = onBack,
 };
 
-static void onSettingFront(RadioButtonControlHandler *this, RadioButtonControl *control, u32 localPlayerId, s32 selected) {
+static void onSettingControlFront(RadioButtonControlHandler *this, RadioButtonControl *control, u32 localPlayerId, s32 selected) {
     UNUSED(localPlayerId);
     UNUSED(selected); // TODO use
 
-    LicenseSettingsPage *page = container_of(this, LicenseSettingsPage, onSettingFront);
+    LicenseSettingsPage *page = container_of(this, LicenseSettingsPage, onSettingControlFront);
     if (control->index < ARRAY_SIZE(page->settingControls) - 1) {
         RadioButtonControl_select(&page->settingControls[control->index + 1], 0);
     } else {
@@ -29,24 +29,24 @@ static void onSettingFront(RadioButtonControlHandler *this, RadioButtonControl *
     }
 }
 
-static const RadioButtonControlHandler_vt onSettingFront_vt = {
-    .handle = onSettingFront,
+static const RadioButtonControlHandler_vt onSettingControlFront_vt = {
+    .handle = onSettingControlFront,
 };
 
-static void onSettingSelect(RadioButtonControlHandler *this, RadioButtonControl *control, u32 localPlayerId, s32 selected) {
+static void onSettingControlSelect(RadioButtonControlHandler *this, RadioButtonControl *control, u32 localPlayerId, s32 selected) {
     UNUSED(localPlayerId);
 
     if (selected < 0) {
         return;
     }
 
-    LicenseSettingsPage *page = container_of(this, LicenseSettingsPage, onSettingSelect);
+    LicenseSettingsPage *page = container_of(this, LicenseSettingsPage, onSettingControlSelect);
     u32 messageId = 0x3007 + control->index * 5 + selected;
     CtrlMenuInstructionText_setMessage(&page->instructionText, messageId, NULL);
 }
 
-static const RadioButtonControlHandler_vt onSettingSelect_vt = {
-    .handle = onSettingSelect,
+static const RadioButtonControlHandler_vt onSettingControlSelect_vt = {
+    .handle = onSettingControlSelect,
 };
 
 extern void LicenseRecordsPage_ct;
@@ -63,8 +63,8 @@ static LicenseSettingsPage *LicenseSettingsPage_ct(LicenseSettingsPage *this) {
         RadioButtonControl_ct(&this->settingControls[i]);
     }
     this->onBack.vt = &onBack_vt;
-    this->onSettingFront.vt = &onSettingFront_vt;
-    this->onSettingSelect.vt = &onSettingSelect_vt;
+    this->onSettingControlFront.vt = &onSettingControlFront_vt;
+    this->onSettingControlSelect.vt = &onSettingControlSelect_vt;
 
     return this;
 }
@@ -111,17 +111,17 @@ static void LicenseSettingsPage_onInit(Page *base) {
     CtrlMenuPageTitleText_load(&this->pageTitleText, false);
     CtrlMenuInstructionText_load(&this->instructionText);
     PushButton_load(&this->backButton, "button", "Back", "ButtonBackPopup", 0x1, false, true);
-    const char *names[] = {
+    const char *settingNames[] = {
         "HudLabels",
         "169Fov",
     };
     for (u32 i = 0; i < ARRAY_SIZE(this->settingControls); i++) {
         char variant[0x20];
-        snprintf(variant, sizeof(variant), "Radio%s", names[i]);
+        snprintf(variant, sizeof(variant), "Radio%s", settingNames[i]);
         char buffers[2][0x20];
         const char *buttonVariants[2];
         for (u32 j = 0; j < 2; j++) {
-            snprintf(buffers[j], sizeof(*buffers), "Option%s%lu", names[i], j);
+            snprintf(buffers[j], sizeof(*buffers), "Option%s%lu", settingNames[i], j);
             buttonVariants[j] = buffers[j];
         }
         RadioButtonControl_load(&this->settingControls[i], 2, 0, "control", "LicenseSettingRadioBase", variant, "LicenseSettingRadioOption", buttonVariants, 0x1, false, false);
@@ -130,8 +130,9 @@ static void LicenseSettingsPage_onInit(Page *base) {
 
     MultiControlInputManager_setHandler(&this->inputManager, INPUT_ID_BACK, &this->onBack, false, false);
     for (u32 i = 0; i < ARRAY_SIZE(this->settingControls); i++) {
-        RadioButtonControl_setFrontHandler(&this->settingControls[i], &this->onSettingFront);
-        RadioButtonControl_setSelectHandler(&this->settingControls[i], &this->onSettingSelect);
+        RadioButtonControl *control = &this->settingControls[i];
+        RadioButtonControl_setFrontHandler(control, &this->onSettingControlFront);
+        RadioButtonControl_setSelectHandler(control, &this->onSettingControlSelect);
     }
 
     CtrlMenuPageTitleText_setMessage(&this->pageTitleText, 0x7df, NULL);

@@ -15,7 +15,7 @@ typedef struct {
     CtrlMenuInstructionText instructionText;
     CtrlMenuBackButton backButton;
     InputHandler onBack;
-    RadioButtonControlHandler onSettingFront;
-    RadioButtonControlHandler onSettingSelect;
+    RadioButtonControlHandler onSettingControlFront;
+    RadioButtonControlHandler onSettingControlSelect;
     bool resetSelection;
 } LicenseSettingsPage;
