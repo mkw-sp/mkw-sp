@@ -113,7 +113,7 @@ PATCH_INJECT_START(BalloonManager_calc, 0x7c)
     cmpwi r3, 0x34
     bne .Lend
 
-    # Check that there are at least to ghosts
+    # Check that there are at least two ghosts
     lis r3, s_raceConfig@ha
     lwz r3, s_raceConfig@l (r3)
     lbz r3, 0x24 (r3)
