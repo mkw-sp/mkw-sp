@@ -123,6 +123,7 @@ code_in_files = {
         os.path.join('game', 'ui', 'SectionManager.c'),
         os.path.join('game', 'ui', 'TabControl.c'),
         os.path.join('game', 'ui', 'TimeAttackGhostListPage.c'),
+        os.path.join('game', 'ui', 'TimeAttackRulesPage.c'),
         os.path.join('game', 'ui', 'UIAnimator.c'),
         os.path.join('game', 'ui', 'UIControl.c'),
         os.path.join('game', 'ui', 'ctrl', 'CtrlMenuBackButton.c'),
@@ -313,6 +314,8 @@ asset_in_files = {
         os.path.join('control', 'blyt', 'ghost_container.brlyt.json5'),
         os.path.join('control', 'ctrl', 'GhostSelectBase.brctr.json5'),
         os.path.join('control', 'ctrl', 'GhostSelectOption.brctr.json5'),
+        os.path.join('control', 'ctrl', 'TASettingRadioBase.brctr.json5'),
+        os.path.join('control', 'ctrl', 'TASettingRadioOption.brctr.json5'),
         os.path.join('control', 'ctrl', 'TimeAttackGhostListPageNum.brctr.json5'),
     ],
     'MenuSingleSP_E.szs': [

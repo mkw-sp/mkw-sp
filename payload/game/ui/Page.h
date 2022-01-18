@@ -6,6 +6,7 @@
 enum {
     PAGE_ID_RACE_CONFIRM = 0x4b,
     PAGE_ID_CONFIRM = 0x52,
+    PAGE_ID_CHARACTER_SELECT = 0x6b,
     PAGE_ID_GHOST_MANAGER = 0xa7,
     PAGE_ID_MAX = 0xd3,
 };
@@ -17,10 +18,12 @@ enum {
 
 typedef struct Page {
     const struct Page_vt *vt;
-    u8 _04[0x38 - 0x04];
+    u32 id;
+    u8 _08[0x38 - 0x08];
     MenuInputManager *baseInputManager;
     u8 _3c[0x44 - 0x3c];
 } Page;
+static_assert(sizeof(Page) == 0x44);
 
 typedef struct Page_vt {
     u8 _00[0x08 - 0x00];

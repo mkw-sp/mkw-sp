@@ -5627,6 +5627,10 @@
         "font": "regular",
         "string": "Make all ghosts solid.",
     },
+    "0x3019": {
+        "font": "regular",
+        "string": "Play Time Trials with these rules.",
+    },
     "0x18697": {
         "font": "regular",
         "string": null,

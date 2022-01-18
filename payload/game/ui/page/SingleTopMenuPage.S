@@ -44,3 +44,9 @@ PATCH_INJECT_START(SingleTopMenuPage_onButtonFront, 0xe8)
     lwz r4, 0x240 (r4) # Original instruction
     addi r4, r4, 1
 PATCH_INJECT_END(SingleTopMenuPage_onButtonFront, 0xe8)
+
+// Load the rules page that replaces the gp class selection when the
+// time trials button is pressed.
+PATCH_REPLACE_START(SingleTopMenuPage_onButtonFront, 0xd4)
+    li r27, 0x6a
+PATCH_REPLACE_END(SingleTopMenuPage_onButtonFront, 0xd4)

@@ -190,6 +190,7 @@
 0x80623390 Section_createPage
 0x80625da0 TopMenuPage_ct
 0x80626698 SingleTopMenuPage_ct
+0x80626950 ClassSelectPage_ct
 0x8062c0f4 LicenseRecordsPage_ct
 0x8062c3a4 Section_addPages
 0x80633ba8 TimeAttackRacePage_getNameBalloonCount
