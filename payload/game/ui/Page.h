@@ -36,7 +36,7 @@ typedef struct Page_vt {
     void *vf_20;
     void (*push)(Page *this, u32 pageId, s32 animation);
     void (*onInit)(Page *this);
-    void *vf_2c;
+    void (*onDeinit)(Page *this);
     void (*onActivate)(Page *this);
     void *vf_34;
     void *vf_38;
@@ -72,7 +72,7 @@ void Page_push(Page *this, u32 pageId, s32 animation);
 
 void Page_onInit(Page *this);
 
-extern u8 Page_vf_2c;
+void Page_onDeinit(Page *this);
 
 void Page_onActivate(Page *this);
 

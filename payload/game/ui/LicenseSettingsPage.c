@@ -1,5 +1,9 @@
 #include "LicenseSettingsPage.h"
 
+#include "SectionManager.h"
+
+#include "../system/SaveManager.h"
+
 #include <stdio.h>
 
 static const Page_vt s_LicenseSettingsPage_vt;
@@ -17,7 +21,16 @@ static const InputHandler_vt onBack_vt = {
 
 static void onSettingControlFront(RadioButtonControlHandler *this, RadioButtonControl *control, u32 localPlayerId, s32 selected) {
     UNUSED(localPlayerId);
-    UNUSED(selected); // TODO use
+
+    SpSaveLicense *license = s_saveManager->spLicenses[s_saveManager->spCurrentLicense];
+    switch (control->index) {
+    case 0:
+        license->settingHudLabels = selected;
+        break;
+    case 1:
+        license->setting169Fov = selected;
+        break;
+    }
 
     LicenseSettingsPage *page = container_of(this, LicenseSettingsPage, onSettingControlFront);
     if (control->index < ARRAY_SIZE(page->settingControls) - 1) {
@@ -116,6 +129,16 @@ static void LicenseSettingsPage_onInit(Page *base) {
         "169Fov",
     };
     for (u32 i = 0; i < ARRAY_SIZE(this->settingControls); i++) {
+        const SpSaveLicense *license = s_saveManager->spLicenses[s_saveManager->spCurrentLicense];
+        u32 chosen;
+        switch (i) {
+        case 0:
+            chosen = license->settingHudLabels;
+            break;
+        case 1:
+            chosen = license->setting169Fov;
+            break;
+        }
         char variant[0x20];
         snprintf(variant, sizeof(variant), "Radio%s", settingNames[i]);
         char buffers[2][0x20];
@@ -124,7 +147,7 @@ static void LicenseSettingsPage_onInit(Page *base) {
             snprintf(buffers[j], sizeof(*buffers), "Option%s%lu", settingNames[i], j);
             buttonVariants[j] = buffers[j];
         }
-        RadioButtonControl_load(&this->settingControls[i], 2, 0, "control", "LicenseSettingRadioBase", variant, "LicenseSettingRadioOption", buttonVariants, 0x1, false, false);
+        RadioButtonControl_load(&this->settingControls[i], 2, chosen, "control", "LicenseSettingRadioBase", variant, "LicenseSettingRadioOption", buttonVariants, 0x1, false, false);
         this->settingControls[i].index = i;
     }
 
@@ -138,6 +161,12 @@ static void LicenseSettingsPage_onInit(Page *base) {
     CtrlMenuPageTitleText_setMessage(&this->pageTitleText, 0x7df, NULL);
 
     this->resetSelection = true;
+}
+
+static void LicenseSettingsPage_onDeinit(Page *base) {
+    UNUSED(base);
+
+    SaveManagerProxy_markLicensesDirty(s_sectionManager->saveManagerProxy);
 }
 
 static void LicenseSettingsPage_onActivate(Page *base) {
@@ -159,9 +188,9 @@ static const Page_vt s_LicenseSettingsPage_vt = {
     .vf_18 = &Page_vf_18,
     .changeSection = Page_changeSection,
     .vf_20 = &Page_vf_20,
-    .push = &Page_push,
+    .push = Page_push,
     .onInit = LicenseSettingsPage_onInit,
-    .vf_2c = &Page_vf_2c,
+    .onDeinit = LicenseSettingsPage_onDeinit,
     .onActivate = LicenseSettingsPage_onActivate,
     .vf_34 = &Page_vf_34,
     .vf_38 = &Page_vf_38,

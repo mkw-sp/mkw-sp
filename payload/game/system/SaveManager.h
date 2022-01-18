@@ -26,9 +26,47 @@ typedef struct {
     u32 version;
 } SpSaveSection;
 
+enum {
+    SP_DRIFT_MODE_AUTO = 0x0,
+    SP_DRIFT_MODE_MANUAL = 0x1,
+};
+
+enum {
+    SP_SETTING_HUD_LABELS_HIDE = 0x0,
+    SP_SETTING_HUD_LABELS_SHOW = 0x1,
+};
+
+enum {
+    SP_SETTING_169_FOV_DEFAULT = 0x0,
+    SP_SETTING_169_FOV_WIDER = 0x1,
+};
+
+enum {
+    SP_TA_RULE_CLASS_150CC = 0x0,
+    SP_TA_RULE_CLASS_200CC = 0x1,
+};
+
+enum {
+    SP_TA_RULE_GHOST_TAGS_NONE = 0x0,
+    SP_TA_RULE_GHOST_TAGS_WATCHED = 0x1,
+    SP_TA_RULE_GHOST_TAGS_ALL = 0x2,
+};
+
+enum {
+    SP_TA_RULE_SOLID_GHOSTS_NONE = 0x0,
+    SP_TA_RULE_SOLID_GHOSTS_WATCHED = 0x1,
+    SP_TA_RULE_SOLID_GHOSTS_ALL = 0x2,
+};
+
 typedef struct {
     SpSaveSection;
     MiiId miiId;
+    u32 driftMode : 1;
+    u32 settingHudLabels : 1;
+    u32 setting169Fov : 1;
+    u32 taRuleClass : 1;
+    u32 taRuleGhostTags : 2;
+    u32 taRuleSolidGhosts : 2;
 } SpSaveLicense;
 
 enum {

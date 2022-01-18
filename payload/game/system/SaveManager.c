@@ -141,6 +141,25 @@ static bool SpSaveLicense_checkSize(const SpSaveLicense *this) {
     }
 }
 
+static void SpSaveLicense_sanitize(SpSaveLicense *this) {
+    switch (this->taRuleGhostTags) {
+        case SP_TA_RULE_GHOST_TAGS_NONE:
+        case SP_TA_RULE_GHOST_TAGS_WATCHED:
+        case SP_TA_RULE_GHOST_TAGS_ALL:
+            break;
+        default:
+            this->taRuleGhostTags = SP_TA_RULE_GHOST_TAGS_ALL;
+    }
+    switch (this->taRuleSolidGhosts) {
+        case SP_TA_RULE_SOLID_GHOSTS_NONE:
+        case SP_TA_RULE_SOLID_GHOSTS_WATCHED:
+        case SP_TA_RULE_SOLID_GHOSTS_ALL:
+            break;
+        default:
+            this->taRuleSolidGhosts = SP_TA_RULE_SOLID_GHOSTS_NONE;
+    }
+}
+
 static bool SaveManager_initSpSave(SaveManager *this) {
     char path[NAND_MAX_PATH];
     if (NandHelper_getHomeDir(path) != RK_NAND_RESULT_OK) {
@@ -204,6 +223,7 @@ static bool SaveManager_initSpSave(SaveManager *this) {
             if (!SpSaveLicense_checkSize(license)) {
                 return false;
             }
+            SpSaveLicense_sanitize(license);
             unusedLicenseCount--;
         }
 
@@ -361,6 +381,12 @@ void SaveManager_createSpLicense(SaveManager *this, const MiiId *miiId) {
     license->size = sizeof(SpSaveLicense);
     license->version = SP_SAVE_LICENSE_VERSION;
     license->miiId = *miiId;
+    license->driftMode = SP_DRIFT_MODE_MANUAL;
+    license->settingHudLabels = SP_SETTING_HUD_LABELS_HIDE;
+    license->setting169Fov = SP_SETTING_169_FOV_DEFAULT;
+    license->taRuleClass = SP_TA_RULE_CLASS_150CC;
+    license->taRuleGhostTags = SP_TA_RULE_GHOST_TAGS_ALL;
+    license->taRuleSolidGhosts = SP_TA_RULE_SOLID_GHOSTS_NONE;
     this->spSections[this->spSectionCount++] = license;
     this->spCurrentLicense = this->spLicenseCount - 1;
 }

@@ -4,6 +4,8 @@
 
 #include "page/CharacterSelectPage.h"
 
+#include "../system/SaveManager.h"
+
 #include <stdio.h>
 
 static const Page_vt s_TimeAttackRulesPage_vt;
@@ -22,7 +24,19 @@ static const InputHandler_vt onBack_vt = {
 
 static void onRuleControlFront(RadioButtonControlHandler *this, RadioButtonControl *control, u32 localPlayerId, s32 selected) {
     UNUSED(localPlayerId);
-    UNUSED(selected); // TODO use
+
+    SpSaveLicense *license = s_saveManager->spLicenses[s_saveManager->spCurrentLicense];
+    switch (control->index) {
+    case 0:
+        license->taRuleClass = selected;
+        break;
+    case 1:
+        license->taRuleGhostTags = selected;
+        break;
+    case 2:
+        license->taRuleSolidGhosts = selected;
+        break;
+    }
 
     TimeAttackRulesPage *page = container_of(this, TimeAttackRulesPage, onRuleControlFront);
     if (control->index < ARRAY_SIZE(page->ruleControls) - 1) {
@@ -160,6 +174,19 @@ static void TimeAttackRulesPage_onInit(Page *base) {
     };
     u32 buttonCounts[] = { 2, 3, 3 };
     for (u32 i = 0; i < ARRAY_SIZE(this->ruleControls); i++) {
+        const SpSaveLicense *license = s_saveManager->spLicenses[s_saveManager->spCurrentLicense];
+        u32 chosen;
+        switch (i) {
+        case 0:
+            chosen = license->taRuleClass;
+            break;
+        case 1:
+            chosen = license->taRuleGhostTags;
+            break;
+        case 2:
+            chosen = license->taRuleSolidGhosts;
+            break;
+        }
         char variant[0x20];
         snprintf(variant, sizeof(variant), "Radio%s", ruleNames[i]);
         char buffers[3][0x20];
@@ -168,7 +195,7 @@ static void TimeAttackRulesPage_onInit(Page *base) {
             snprintf(buffers[j], sizeof(*buffers), "Option%s%lu", ruleNames[i], j);
             buttonVariants[j] = buffers[j];
         }
-        RadioButtonControl_load(&this->ruleControls[i], buttonCounts[i], 0, "control", "TASettingRadioBase", variant, "TASettingRadioOption", buttonVariants, 0x1, false, false);
+        RadioButtonControl_load(&this->ruleControls[i], buttonCounts[i], chosen, "control", "TASettingRadioBase", variant, "TASettingRadioOption", buttonVariants, 0x1, false, false);
         this->ruleControls[i].index = i;
     }
 
@@ -182,6 +209,12 @@ static void TimeAttackRulesPage_onInit(Page *base) {
     PushButton_setSelectHandler(&this->okButton, &this->onOkButtonSelect);
 
     CtrlMenuPageTitleText_setMessage(&this->pageTitleText, 0xd48, NULL);
+}
+
+static void TimeAttackRulesPage_onDeinit(Page *base) {
+    UNUSED(base);
+
+    SaveManagerProxy_markLicensesDirty(s_sectionManager->saveManagerProxy);
 }
 
 static void TimeAttackRulesPage_onActivate(Page *base) {
@@ -203,7 +236,7 @@ static const Page_vt s_TimeAttackRulesPage_vt = {
     .vf_20 = &Page_vf_20,
     .push = &Page_push,
     .onInit = TimeAttackRulesPage_onInit,
-    .vf_2c = &Page_vf_2c,
+    .onDeinit = TimeAttackRulesPage_onDeinit,
     .onActivate = TimeAttackRulesPage_onActivate,
     .vf_34 = &Page_vf_34,
     .vf_38 = &Page_vf_38,
