@@ -4,6 +4,16 @@ PATCH_REPLACE_START(Camera_805a1d10, 0x164)
     nop
 PATCH_REPLACE_END(Camera_805a1d10, 0x164)
 
+PATCH_INJECT_START(Camera_805a2034, 0xbc)
+    mr r29, r3
+    lis r3, s_saveManager@ha
+    lwz r3, s_saveManager@l (r3)
+    bl SaveManager_getSetting169Fov
+    slwi r3, r3, 4
+    subf r3, r3, r29
+    addi r0, r3, 0x10
+PATCH_INJECT_END(Camera_805a2034, 0xbc)
+
 .global fix_Camera_805a21d0_rearView
 fix_Camera_805a21d0_rearView:
     lwz r0, 0x334 (r29) # Original instruction

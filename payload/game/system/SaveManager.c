@@ -409,6 +409,26 @@ void SaveManager_changeSpLicenseMiiId(const SaveManager *this, const MiiId *miiI
     this->spLicenses[this->spCurrentLicense]->miiId = *miiId;
 }
 
+u32 SaveManager_getSettingHudLabels(const SaveManager *this) {
+    return this->spLicenses[this->spCurrentLicense]->settingHudLabels;
+}
+
+u32 SaveManager_getSetting169Fov(const SaveManager *this) {
+    return this->spLicenses[this->spCurrentLicense]->setting169Fov;
+}
+
+u32 SaveManager_getTaRuleClass(const SaveManager *this) {
+    return this->spLicenses[this->spCurrentLicense]->taRuleClass;
+}
+
+u32 SaveManager_getTaRuleGhostTags(const SaveManager *this) {
+    return this->spLicenses[this->spCurrentLicense]->taRuleGhostTags;
+}
+
+u32 SaveManager_getTaRuleSolidGhosts(const SaveManager *this) {
+    return this->spLicenses[this->spCurrentLicense]->taRuleSolidGhosts;
+}
+
 static void SaveManager_loadGhostHeaders(SaveManager *this) {
     for (u32 i = 0; i < this->ghostCount; i++) {
         GhostGroup_invalidate(this->ghostGroup, i);

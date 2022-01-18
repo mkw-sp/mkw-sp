@@ -131,6 +131,16 @@ void SaveManager_createSpLicense(SaveManager *this, const MiiId *miiId);
 
 bool SaveManager_hasSpLicenseWithMiiId(const SaveManager *this, const MiiId *miiId);
 
+u32 SaveManager_getSettingHudLabels(const SaveManager *this);
+
+u32 SaveManager_getSetting169Fov(const SaveManager *this);
+
+u32 SaveManager_getTaRuleClass(const SaveManager *this);
+
+u32 SaveManager_getTaRuleGhostTags(const SaveManager *this);
+
+u32 SaveManager_getTaRuleSolidGhosts(const SaveManager *this);
+
 void SaveManager_loadGhostAsync(SaveManager *this, s32 licenseId, u32 category, u32 index, u32 courseId);
 
 void SaveManager_loadGhostHeadersAsync(SaveManager *this, s32 licenseId, GhostGroup *group);

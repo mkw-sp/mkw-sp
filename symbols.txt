@@ -102,6 +102,7 @@
 0x8054a868 SaveManager_resetAsync
 0x80590cf8 KartObjectProxy_getSpeed
 0x805a1d10 Camera_805a1d10
+0x805a2034 Camera_805a2034
 0x805a21d0 Camera_805a21d0
 0x805a8468 CameraManager_ct
 0x805baf10 CtrlMenuPageTitleText_dt
