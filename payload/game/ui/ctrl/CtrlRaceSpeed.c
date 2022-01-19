@@ -2,6 +2,8 @@
 
 #include "../../kart/KartObjectManager.h"
 
+#include <stdio.h>
+
 enum {
     GROUP_ID_INT0 = 0x0,
     GROUP_ID_INT1 = 0x1,
@@ -122,9 +124,12 @@ static const CtrlRaceBase_vt s_CtrlRaceSpeed_vt = {
     .vf_4c = &CtrlRaceBase_vf_4c,
 };
 
-void CtrlRaceSpeed_load(CtrlRaceSpeed *this, const char *variant, u32 localPlayerId) {
+void CtrlRaceSpeed_load(CtrlRaceSpeed *this, u32 localPlayerCount, u32 localPlayerId) {
     this->localPlayerId = localPlayerId;
 
+    char variant[0x20];
+    u32 variantId = localPlayerCount == 3 ? 4 : localPlayerCount;
+    snprintf(variant, sizeof(variant), "CtrlRaceSpeed_%lu_%lu", variantId, localPlayerId);
     const char *groups[] = {
         "eAFInt0",
         "texture_pattern_0_9_0",
@@ -147,4 +152,6 @@ void CtrlRaceSpeed_load(CtrlRaceSpeed *this, const char *variant, u32 localPlaye
     for (u32 i = 0; i < 5; i++) {
         UIAnimator_setAnimationInactive(&this->animator, i, 0, 0.0f);
     }
+
+    CtrlRaceBase_initLabelVisibility(this, localPlayerCount, "speed_text");
 }

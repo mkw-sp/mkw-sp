@@ -3,16 +3,11 @@
 #include "../ctrl/CtrlRaceNameBalloon.h"
 #include "../ctrl/CtrlRaceSpeed.h"
 
-#include <stdio.h>
-
 void RacePage_initSpeedControl(RacePage *this, u32 controlId, u32 localPlayerCount, u32 localPlayerId) {
     CtrlRaceSpeed *control = new(sizeof(CtrlRaceSpeed));
     CtrlRaceSpeed_ct(control);
     Page_insertChild(this, controlId, control, 0);
-    char variant[0x20];
-    u32 variantId = localPlayerCount == 3 ? 4 : localPlayerCount;
-    snprintf(variant, sizeof(variant), "CtrlRaceSpeed_%lu_%lu", variantId, localPlayerId);
-    CtrlRaceSpeed_load(control, variant, localPlayerId);
+    CtrlRaceSpeed_load(control, localPlayerCount, localPlayerId);
 }
 
 extern void RacePage_initControls;

@@ -8,4 +8,4 @@ typedef struct {
 
 CtrlRaceSpeed *CtrlRaceSpeed_ct(CtrlRaceSpeed *this);
 
-void CtrlRaceSpeed_load(CtrlRaceSpeed *this, const char *variant, u32 localPlayerId);
+void CtrlRaceSpeed_load(CtrlRaceSpeed *this, u32 localPlayerCount, u32 localPlayerId);

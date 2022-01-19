@@ -51,6 +51,24 @@ PATCH_INJECT_END(RacePage_initControls, 0x3e0)
 
 
 
+PATCH_INJECT_START(RacePage_initControls, 0x1a0)
+    bl CtrlRaceLap_load # Original instruction
+
+    mr r3, r20
+    mr r4, r19
+    bl CtrlRaceLap_initLabelVisibility
+PATCH_INJECT_END(RacePage_initControls, 0x1a0)
+
+PATCH_INJECT_START(RacePage_initControls, 0x4c8)
+    bl CtrlRaceTime_load # Original instruction
+
+    mr r3, r14
+    mr r4, r19
+    bl CtrlRaceTime_initLabelVisibility
+PATCH_INJECT_END(RacePage_initControls, 0x4c8)
+
+
+
 # If the number of CtrlRaceNameBalloon is not zero, set it to 12
 
 PATCH_REPLACE_START(RacePage_initControls, 0x5cc)

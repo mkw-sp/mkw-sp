@@ -251,6 +251,7 @@
 0x807ec3e0 CtrlRaceBase_process
 0x807ec7f8 CtrlRaceBase_getPlayerId
 0x807ec8ec CtrlRaceBase_vf_28
+0x807ef8d0 CtrlRaceLap_load
 0x807efd18 CtrlRaceNameBalloon_load
 0x807efec8 CtrlRaceNameBalloon_initSelf
 0x807f06e8 CtrlRaceNameBalloon_calcSelf
@@ -262,6 +263,7 @@
 0x807f7e64 RaceManager_getPlayerMaxLap
 0x807f7e80 CtrlRaceTime_getPlayerId
 0x807f7ec0 CtrlRaceTime_calcSelf
+0x807f842c CtrlRaceTime_load
 0x8084ef1c SingleTopMenuPage_onInit
 0x8084efc4 SingleTopMenuPage_vf_84
 0x8084f110 SingleTopMenuPage_onActivate

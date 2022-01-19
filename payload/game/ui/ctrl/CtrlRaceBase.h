@@ -39,3 +39,5 @@ extern u8 CtrlRaceBase_vf_4c;
 void CtrlRaceBase_setPaneColor(CtrlRaceBase *this, const char *pane, bool teamColors);
 
 s8 CtrlRaceBase_getPlayerId(CtrlRaceBase *this);
+
+void CtrlRaceBase_initLabelVisibility(CtrlRaceBase *this, u32 localPlayerCount, const char *pane);
