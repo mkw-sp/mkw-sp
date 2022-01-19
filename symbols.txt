@@ -97,6 +97,7 @@
 0x80544cd8 SaveManager_selectLicense
 0x80547fbc SaveManager_eraseLicense
 0x80548030 SaveManager_createLicense
+0x80548300 RawLicense_reset
 0x80549a68 SaveManager_loadGhostAsync
 0x80549dac SaveManager_loadGhostHeadersAsync
 0x8054a868 SaveManager_resetAsync
