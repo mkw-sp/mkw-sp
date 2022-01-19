@@ -382,7 +382,7 @@ void SaveManager_createSpLicense(SaveManager *this, const MiiId *miiId) {
     license->version = SP_SAVE_LICENSE_VERSION;
     license->miiId = *miiId;
     license->driftMode = SP_DRIFT_MODE_MANUAL;
-    license->settingHudLabels = SP_SETTING_HUD_LABELS_HIDE;
+    license->settingHudLabels = SP_SETTING_HUD_LABELS_SHOW;
     license->setting169Fov = SP_SETTING_169_FOV_DEFAULT;
     license->taRuleClass = SP_TA_RULE_CLASS_150CC;
     license->taRuleGhostTags = SP_TA_RULE_GHOST_TAGS_ALL;
