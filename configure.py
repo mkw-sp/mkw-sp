@@ -126,6 +126,7 @@ code_in_files = {
         os.path.join('game', 'ui', 'TabControl.c'),
         os.path.join('game', 'ui', 'TimeAttackGhostListPage.c'),
         os.path.join('game', 'ui', 'TimeAttackRulesPage.c'),
+        os.path.join('game', 'ui', 'TitlePage.S'),
         os.path.join('game', 'ui', 'UIAnimator.c'),
         os.path.join('game', 'ui', 'UIControl.c'),
         os.path.join('game', 'ui', 'ctrl', 'CtrlMenuBackButton.c'),

@@ -214,6 +214,7 @@
 0x80638830 TabOptionButton_setChosen
 0x80638988 TabOptionButton_onSelect
 0x806395ec TimeAttackGhostListPage_ct
+0x8063ab6c TitlePage_onInit
 0x8063c820 UIAnimator_getGroup
 0x8063c91c Group_setAnimation
 0x8063cb20 Group_setAnimationInactive
