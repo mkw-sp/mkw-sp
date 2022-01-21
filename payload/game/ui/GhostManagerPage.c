@@ -35,7 +35,7 @@ static void setupTimeAttack(bool isRace, bool fromReplay) {
     }
     menuScenario->courseId = cx->timeAttackCourseId;
     GlobalContext_copyPlayerMiis(cx);
-    menuScenario->engineClass = ENGINE_CLASS_150_CC;
+    menuScenario->engineClass = ENGINE_CLASS_150CC;
     menuScenario->gameMode = GAME_MODE_TIME_ATTACK;
     menuScenario->gameType = GAME_TYPE_TIME_ATTACK;
     menuScenario->modeFlags &= ~MODE_FLAG_MIRROR;

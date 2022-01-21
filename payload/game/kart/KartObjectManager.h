@@ -7,3 +7,9 @@ typedef struct {
 } KartObjectManager;
 
 extern KartObjectManager *s_kartObjectManager;
+
+void KartObjectManager_createInstance(void);
+
+extern bool speedModIsEnabled;
+extern f32 speedModFactor;
+extern f32 speedModReverseFactor;

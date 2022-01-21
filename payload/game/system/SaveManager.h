@@ -7,6 +7,13 @@
 #include <revolution.h>
 
 enum {
+    VS_RULE_CLASS_100CC = 0x0,
+    VS_RULE_CLASS_150CC = 0x1,
+    VS_RULE_CLASS_MIRROR = 0x2,
+    VS_RULE_CLASS_200CC = 0x3,
+};
+
+enum {
     SP_SAVE_HEADER_MAGIC = 0x53505341, // SPSA
     SP_SAVE_LICENSE_MAGIC = 0x53504c49, // SPLI
 };
@@ -144,3 +151,5 @@ u32 SaveManager_getTaRuleSolidGhosts(const SaveManager *this);
 void SaveManager_loadGhostAsync(SaveManager *this, s32 licenseId, u32 category, u32 index, u32 courseId);
 
 void SaveManager_loadGhostHeadersAsync(SaveManager *this, s32 licenseId, GhostGroup *group);
+
+extern bool vsSpeedModIsEnabled;

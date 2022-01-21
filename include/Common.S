@@ -86,6 +86,24 @@
         .int size_replacement_ ## dst ## _ ## offset; \
     .previous
 
+#define PATCH_B_START(dst, offset) \
+    .global injection_ ## dst ## _ ## offset; \
+    injection_ ## dst ## _ ## offset:
+
+#define PATCH_B_END(dst, offset) \
+    .size injection_ ## dst ## _ ## offset, . - injection_ ## dst ## _ ## offset; \
+    .set size_injection_ ## dst ## _ ## offset, . - injection_ ## dst ## _ ## offset; \
+    .section "patches"; \
+    .global patch_ ## dst ## _ ## offset; \
+    .size patch_ ## dst ## _ ## offset, 0x10; \
+    patch_ ## dst ## _ ## offset: \
+        .int PATCH_TYPE_BRANCH; \
+        .int dst + offset; \
+        .int injection_ ## dst ## _ ## offset; \
+        .byte 0x0; \
+        .balign 0x10; \
+    .previous
+
 #define PATCH_INJECT_START(dst, offset) \
     .global injection_ ## dst ## _ ## offset; \
     injection_ ## dst ## _ ## offset:
@@ -104,6 +122,12 @@
         .byte 0x1; \
         .balign 0x10; \
     .previous
+
+#define PATCH_BL_START(dst, offset) \
+    PATCH_INJECT_START(dst, offset)
+
+#define PATCH_BL_END(dst, offset) \
+    PATCH_INJECT_END(dst, offset)
 
 #define PATCH_BRANCH(from, to, link) \
     .section "patches"; \

@@ -506,3 +506,5 @@ static void my_SaveManager_loadGhostAsync(SaveManager *this, s32 licenseId, u32 
     EGG_TaskThread_request(this->taskThread, loadGhostsTask, NULL, NULL);
 }
 PATCH_B(SaveManager_loadGhostAsync, my_SaveManager_loadGhostAsync);
+
+bool vsSpeedModIsEnabled;

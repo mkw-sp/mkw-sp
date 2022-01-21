@@ -19,10 +19,13 @@ typedef struct {
 } RaceConfigPlayer;
 
 enum {
-    ENGINE_CLASS_150_CC = 0x2,
+    ENGINE_CLASS_50CC = 0x0,
+    ENGINE_CLASS_100CC = 0x1,
+    ENGINE_CLASS_150CC = 0x2,
 };
 
 enum {
+    GAME_MODE_OFFLINE_VS = 0x1,
     GAME_MODE_TIME_ATTACK = 0x2,
 };
 
