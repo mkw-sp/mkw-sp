@@ -41,16 +41,17 @@ static void SaveManager_initGhost(SaveManager *this, const char *path) {
         return;
     }
 
-    alignas(0x20) RawGhostHeader raw;
-    if (NandHelper_readFromFile(path, &raw, sizeof(raw), 0) != RK_NAND_RESULT_OK) {
+    u32 length;
+    if (NandHelper_readFile(path, this->rawGhostFile, 0x2800, &length) != RK_NAND_RESULT_OK) {
         return;
     }
 
-    if (!RawGhostHeader_isValid(&raw)) {
+    if (!RawGhostFile_spIsValid(this->rawGhostFile, length)) {
         return;
     }
 
-    this->rawGhostHeaders[this->ghostCount] = raw;
+    const RawGhostHeader *header = (RawGhostHeader *)this->rawGhostFile;
+    memcpy(&this->rawGhostHeaders[this->ghostCount], header, sizeof(RawGhostHeader));
     memcpy(&this->ghostPaths[this->ghostCount], path, NAND_MAX_PATH);
     this->ghostCount++;
 }
@@ -477,13 +478,26 @@ static void SaveManager_loadGhosts(SaveManager *this) {
         u32 length;
         this->result = NandHelper_readFile(path, this->rawGhostFile, 0x2800, &length);
         if (this->result != RK_NAND_RESULT_OK) {
-            break;
+            memset((*menuScenario->ghostBuffer)[i], 0, 0x2800);
+            continue;
         }
 
         if (((RawGhostHeader *)this->rawGhostFile)->isCompressed) {
-            RawGhostFile_decompress(this->rawGhostFile, (*menuScenario->ghostBuffer)[i]);
+            if (!RawGhostFile_spIsValid(this->rawGhostFile, length)) {
+                memset((*menuScenario->ghostBuffer)[i], 0, 0x2800);
+                continue;
+            }
+
+            if (!RawGhostFile_spDecompress(this->rawGhostFile, (*menuScenario->ghostBuffer)[i])) {
+                memset((*menuScenario->ghostBuffer)[i], 0, 0x2800);
+                continue;
+            }
         } else {
             memcpy((*menuScenario->ghostBuffer)[i], this->rawGhostFile, 0x2800);
+        }
+
+        if (!RawGhostFile_spIsValid((*menuScenario->ghostBuffer)[i], 0x2800)) {
+            memset((*menuScenario->ghostBuffer)[i], 0, 0x2800);
         }
     }
 

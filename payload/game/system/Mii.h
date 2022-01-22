@@ -8,8 +8,10 @@ typedef struct {
 } MiiId;
 
 typedef struct {
-    u8 _00[0x4c - 0x00];
+    u8 _00[0x4a - 0x00];
+    u16 crc16;
 } RawMii;
+static_assert(sizeof(RawMii) == 0x4c);
 
 typedef struct {
     u8 _00[0x68 - 0x00];

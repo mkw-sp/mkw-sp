@@ -12,8 +12,18 @@ enum {
     GHOST_TYPE_MAX = 0x26,
 };
 
+typedef struct __attribute__((packed)) {
+    u16 minutes : 7;
+    u8 seconds : 7;
+    u16 milliseconds : 10;
+} RawTime;
+
 typedef struct {
-    u8 _00[0x08 - 0x00];
+    u32 magic;
+
+    RawTime raceTime;
+    u32 courseId : 6;
+    u8 _pad0 : 2;
 
     u32 vehicleId : 6;
     u32 characterId : 6;
@@ -29,13 +39,51 @@ typedef struct {
     bool driftIsAuto : 1;
     u8 _pad3 : 1;
 
-    u8 _0e[0x3c - 0x0e];
+    u16 inputsSize;
+    u8 lapCount;
+
+    RawTime lapTimes[5];
+
+    u8 _20[0x3c - 0x20];
     RawMii mii;
 } RawGhostHeader;
+static_assert(sizeof(RawGhostHeader) == 0x88);
 
-bool RawGhostHeader_isValid(RawGhostHeader *this);
+typedef struct {
+    u32 size;
+    u32 magic;
+} FooterFooter;
+static_assert(sizeof(FooterFooter) == 0x8);
 
-bool RawGhostFile_decompress(const u8 *restrict src, u8 *restrict dst);
+typedef struct {
+    u8 _00[0x48 - 0x00];
+    u32 trackSha1[5];
+    u8 _5c[0x64 - 0x5c];
+    f32 raceTimeDiff;
+    u8 _68[0x80 - 0x68];
+    f32 lapTimeDiffs[10]; // Reversed
+    u8 _a8[0xc6 - 0xa8];
+    u8 category;
+    u8 version;
+    FooterFooter;
+} CtgpFooter;
+static_assert(sizeof(CtgpFooter) == 0xd0);
+
+typedef struct {
+    u32 version;
+    u32 trackSha1[5];
+    f32 raceTimeDiff;
+    f32 lapTimeDiffs[11];
+    bool hasSpeedMod : 1;
+    bool hasUltraShortcut : 1;
+    bool hasHwg : 1;
+} SpFooter;
+
+bool RawGhostFile_isValid(const u8 *raw);
+
+bool RawGhostFile_spIsValid(const u8 *raw, u32 size);
+
+bool RawGhostFile_spDecompress(const u8 *restrict src, u8 *restrict dst);
 
 typedef struct {
     u8 _0[0x4 - 0x0];

@@ -17,6 +17,8 @@
 0x800836d0 AnimResource_CalcAnimationNum
 0x80084170 MultiArcResourceAccessor_Attach
 
+0x800c78d0 RFLiCalculateCRC
+
 0x8015e2bc DVDOpen
 0x8015e834 DVDReadPrio
 0x8015e568 DVDClose
@@ -50,7 +52,7 @@
 
 0x80386000 s_systemManager
 
-0x8051c094 RawGhostHeader_isValid
+0x8051c120 RawGhostFile_isValid
 0x8051ce94 GhostGroup_ct
 0x8051d064 GhostGroup_invalidate
 0x8051d0bc GhostGroup_readHeader
@@ -85,7 +87,7 @@
 0x8052b84c NandHelper_getType
 0x8052bdf4 NandManager_createInstance
 0x8052bff8 NandManager_init
-0x8052f4e8 RaceConfigScenario_initControllers
+0x8052f4e8 RaceConfigScenario_initPads
 0x8052fe58 RaceConfig_createInstance
 0x8053015c RaceConfig_ct
 0x80533ed8 RaceManagerPlayer_ct

@@ -1,17 +1,8 @@
 #include <Common.S>
 
-.global thunk_RaceConfigScenario_initGhostController
-thunk_RaceConfigScenario_initGhostController:
-    mflr r21
-
+PATCH_B_START(RaceConfigScenario_initPads, 0xd8)
     mr r3, r24
     mr r4, r26
-    bl RaceConfigScenario_initGhostController
-    addi r27, r27, 0x1
-
-    addi r21, r21, 0xa4
-    mtlr r21
-    blr
-.size thunk_RaceConfigScenario_initGhostController, . - thunk_RaceConfigScenario_initGhostController
-
-PATCH_BL(RaceConfigScenario_initControllers + 0xd8, thunk_RaceConfigScenario_initGhostController)
+    bl RaceConfigScenario_initGhostPad
+    b RaceConfigScenario_initPads + 0x168
+PATCH_B_END(RaceConfigScenario_initPads, 0xd8)

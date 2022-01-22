@@ -3,11 +3,22 @@
 #include "GhostFile.h"
 #include "InputManager.h"
 
+#include "../util/Registry.h"
+
 #include <string.h>
 
-void RaceConfigScenario_initGhostController(RaceConfigScenario *this, u32 playerId) {
+void RaceConfigScenario_initGhostPad(RaceConfigScenario *this, u32 playerId) {
     u32 ghostId = this->players[0].type == PLAYER_TYPE_GHOST ? playerId : playerId - 1;
     const u8 *rawGhostFile = (*this->ghostBuffer)[ghostId];
+
+    if (!RawGhostFile_isValid(rawGhostFile)) {
+        InputManager_setGhostPad(s_inputManager, ghostId, rawGhostFile + 0x88, false);
+        this->players[playerId].characterId = CHARACTER_ID_MARIO;
+        this->players[playerId].vehicleId = VEHICLE_ID_STANDARD_KART_M;
+        this->players[playerId].controllerId = CONTROLLER_ID_WHEEL;
+        return;
+    }
+
     const RawGhostHeader *rawGhostHeader = (RawGhostHeader *)rawGhostFile;
     bool driftIsAuto = rawGhostHeader->driftIsAuto;
     InputManager_setGhostPad(s_inputManager, ghostId, rawGhostFile + 0x88, driftIsAuto);
