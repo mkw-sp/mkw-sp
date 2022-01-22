@@ -2,6 +2,8 @@
 
 #include "MultiDvdArchive.h"
 
+extern const char *courseFilenames[0x28];
+
 typedef struct {
     u8 _000[0x004 - 0x000];
     MultiDvdArchive **multiDvdArchives;

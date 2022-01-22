@@ -17,6 +17,7 @@ typedef struct __attribute__((packed)) {
     u8 seconds : 7;
     u16 milliseconds : 10;
 } RawTime;
+static_assert(sizeof(RawTime) == 0x3);
 
 typedef struct {
     u32 magic;
@@ -49,6 +50,11 @@ typedef struct {
 } RawGhostHeader;
 static_assert(sizeof(RawGhostHeader) == 0x88);
 
+enum {
+    CTGP_FOOTER_MAGIC = 0x434b4744, // CKGD
+    SP_FOOTER_MAGIC = 0x53504744, // SPGD
+};
+
 typedef struct {
     u32 size;
     u32 magic;
@@ -57,7 +63,7 @@ static_assert(sizeof(FooterFooter) == 0x8);
 
 typedef struct {
     u8 _00[0x48 - 0x00];
-    u32 trackSha1[5];
+    u32 courseSha1[5];
     u8 _5c[0x64 - 0x5c];
     f32 raceTimeDiff;
     u8 _68[0x80 - 0x68];
@@ -71,13 +77,27 @@ static_assert(sizeof(CtgpFooter) == 0xd0);
 
 typedef struct {
     u32 version;
-    u32 trackSha1[5];
+    u32 courseSha1[5];
     f32 raceTimeDiff;
     f32 lapTimeDiffs[11];
     bool hasSpeedMod : 1;
     bool hasUltraShortcut : 1;
     bool hasHwg : 1;
 } SpFooter;
+
+typedef struct {
+    u32 magic;
+    union {
+        CtgpFooter ctgp;
+        SpFooter sp;
+    };
+} GhostFooter;
+
+void GhostFooter_init(GhostFooter *footer, const u8 *raw, u32 size);
+
+const u32 *GhostFooter_getCourseSha1(const GhostFooter *this);
+
+bool GhostFooter_hasSpeedMod(const GhostFooter *this);
 
 bool RawGhostFile_isValid(const u8 *raw);
 
@@ -94,25 +114,31 @@ typedef struct {
 } Time;
 
 typedef struct {
-    u8 _00[0x18 - 0x00];
+    bool headerIsValid;
+    u8 _01[0x18 - 0x01];
     RawMii rawMii;
     u8 _64[0xa4 - 0x64];
     Time raceTime;
     u32 characterId;
     u32 vehicleId;
-    u8 _b8[0xcc - 0xb8];
+    u32 courseId;
+    u8 _bc[0xcc - 0xbc];
     u8 country;
     u8 _cd[0xd8 - 0xcd];
 } GhostFile;
+static_assert(sizeof(GhostFile) == 0xd8);
 
 typedef struct {
     u8 _00[0x04 - 0x00];
     u16 count;
     u8 _06[0x14 - 0x06];
 } GhostGroup;
+static_assert(sizeof(GhostGroup) == 0x14);
 
 GhostGroup *GhostGroup_ct(GhostGroup *this);
 
 void GhostGroup_invalidate(GhostGroup *this, u16 i);
+
+GhostFile *GhostGroup_get(const GhostGroup *this, u16 i);
 
 void GhostGroup_readHeader(GhostGroup *this, u16 i, RawGhostHeader *raw);

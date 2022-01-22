@@ -12,11 +12,11 @@ void OSInit(void);
 typedef s64 OSTime;
 
 #define OS_BUS_CLOCK (*(u32 *)0x800000f8)
-
 #define OS_TIMER_CLOCK (OS_BUS_CLOCK / 4)
 
 #define OSMillisecondsToTicks(msec) ((msec) * (OS_TIMER_CLOCK / 1000))
 
+void OSReport(const char* msg, ...);
 void OSFatal(GXColor fg, GXColor bg, const char* msg);
 
 #include "revolution/os/OSCache.h"

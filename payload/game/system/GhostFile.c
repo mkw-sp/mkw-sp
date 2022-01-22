@@ -41,13 +41,63 @@ typedef struct {
 static_assert(sizeof(InputsHeader) == 0x8);
 
 enum {
-    CTGP_FOOTER_MAGIC = 0x434b4744, // CKGD
-    SP_FOOTER_MAGIC = 0x53504744, // SPGD
-};
-
-enum {
     SP_FOOTER_VERSION = 0,
 };
+
+void GhostFooter_init(GhostFooter *this, const u8 *raw, u32 size) {
+    this->magic = 0x0;
+
+    const RawGhostHeader *header = (RawGhostHeader *)raw;
+    if (!header->isCompressed) {
+        return;
+    }
+
+    u32 srcSize = *(u32 *)(raw + sizeof(RawGhostHeader));
+    u32 mainSize = sizeof(RawGhostHeader) + sizeof(u32) + srcSize + sizeof(u32);
+
+    if (mainSize + sizeof(FooterFooter) > size) {
+        return;
+    }
+
+    u32 footerFooterOffset = size - sizeof(u32) - sizeof(FooterFooter);
+    const FooterFooter *footerFooter = (FooterFooter *)(raw + footerFooterOffset);
+
+    if (footerFooter->magic == CTGP_FOOTER_MAGIC && footerFooter->size == sizeof(CtgpFooter)) {
+        this->magic = CTGP_FOOTER_MAGIC;
+        const CtgpFooter *ctgp = (CtgpFooter *)(raw + mainSize);
+        this->ctgp = *ctgp;
+        return;
+    }
+
+    if (footerFooter->magic == SP_FOOTER_MAGIC && footerFooter->size >= sizeof(SpFooter)) {
+        this->magic = SP_FOOTER_MAGIC;
+        const SpFooter *sp = (SpFooter *)(raw + mainSize);
+        this->sp = *sp;
+        return;
+    }
+}
+
+const u32 *GhostFooter_getCourseSha1(const GhostFooter *this) {
+    switch (this->magic) {
+    case CTGP_FOOTER_MAGIC:
+        return this->ctgp.courseSha1;
+    case SP_FOOTER_MAGIC:
+        return this->sp.courseSha1;
+    default:
+        return NULL;
+    }
+}
+
+bool GhostFooter_hasSpeedMod(const GhostFooter *this) {
+    switch (this->magic) {
+    case CTGP_FOOTER_MAGIC:
+        return this->ctgp.category >= 4;
+    case SP_FOOTER_MAGIC:
+        return this->sp.hasSpeedMod;
+    default:
+        return NULL;
+    }
+}
 
 static bool my_RawGhostFile_isValid(const u8 *raw) {
     // All checks are already done at load time by the function below

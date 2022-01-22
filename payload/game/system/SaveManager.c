@@ -1,8 +1,11 @@
 #include "SaveManager.h"
 
+#include "DynMem.h"
 #include "NandHelper.h"
 #include "RaceConfig.h"
+#include "ResourceManager.h"
 #include "RootScene.h"
+#include "Yaz.h"
 
 #include "../ui/SectionManager.h"
 
@@ -20,7 +23,10 @@ SaveManager *my_SaveManager_createInstance(void) {
     this->ghostCount = 0;
     EGG_Heap *heap = s_rootScene->heapCollection.heaps[HEAP_ID_MEM2];
     this->rawGhostHeaders = spAllocArray(MAX_GHOST_COUNT, sizeof(RawGhostHeader), 0x4, heap);
+    this->ghostFooters = spAllocArray(MAX_GHOST_COUNT, sizeof(GhostFooter), 0x4, heap);
     this->ghostPaths = spAllocArray(MAX_GHOST_COUNT, NAND_MAX_PATH, 0x4, heap);
+    this->courseSha1IsValid = spAllocArray(0x20, sizeof(bool), 0x4, heap);
+    this->courseSha1s = spAllocArray(0x20, 5 * sizeof(u32), 0x4, heap);
 
     this->spCanSave = true;
     this->spBuffer = spAlloc(SP_BUFFER_SIZE, 0x20, heap);
@@ -31,6 +37,9 @@ SaveManager *my_SaveManager_createInstance(void) {
         this->spLicenses[i] = NULL;
     }
     this->spCurrentLicense = -1;
+    for (u32 i = 0; i < 0x20; i++) {
+        this->courseSha1IsValid[i] = false;
+    }
 
     return s_saveManager;
 }
@@ -52,6 +61,7 @@ static void SaveManager_initGhost(SaveManager *this, const char *path) {
 
     const RawGhostHeader *header = (RawGhostHeader *)this->rawGhostFile;
     memcpy(&this->rawGhostHeaders[this->ghostCount], header, sizeof(RawGhostHeader));
+    GhostFooter_init(&this->ghostFooters[this->ghostCount], this->rawGhostFile, length);
     memcpy(&this->ghostPaths[this->ghostCount], path, NAND_MAX_PATH);
     this->ghostCount++;
 }
@@ -275,7 +285,9 @@ static void SaveManager_init(SaveManager *this) {
         this->result = RK_NAND_RESULT_NOSPACE;
         this->spCanSave = false;
     }
+
     SaveManager_initGhosts(this);
+
     this->isBusy = false;
 }
 
@@ -510,5 +522,61 @@ static void my_SaveManager_loadGhostAsync(SaveManager *this, s32 licenseId, u32 
     EGG_TaskThread_request(this->taskThread, loadGhostsTask, NULL, NULL);
 }
 PATCH_B(SaveManager_loadGhostAsync, my_SaveManager_loadGhostAsync);
+
+static void SaveManager_computeCourseSha1(SaveManager *this, u32 courseId) {
+    char path[0x40];
+    snprintf(path, sizeof(path), "Race/Course/%s.szs", courseFilenames[courseId]);
+    DVDFileInfo fileInfo;
+    if (!DVDOpen(path, &fileInfo)) {
+        return;
+    }
+
+    u32 srcSize = OSRoundUp32B(fileInfo.length);
+    u8 *src = spAlloc(srcSize, 0x20, DynMem_getHeapMem2());
+    s32 result = DVDRead(&fileInfo, src, srcSize, 0);
+    DVDClose(&fileInfo);
+    if (result != (s32)srcSize) {
+        goto cleanupSrc;
+    }
+
+    u32 dstSize = Yaz_getSize(src);
+    u8 *dst = spAlloc(dstSize, 0x4, DynMem_getHeapMem1());
+    if (Yaz_decode(src, dst, srcSize, dstSize) != dstSize) {
+        goto cleanupDst;
+    }
+
+    NETCalcSHA1(this->courseSha1s[courseId], dst, dstSize);
+    this->courseSha1IsValid[courseId] = true;
+
+    this->isBusy = false;
+
+cleanupDst:
+    spFree(dst);
+cleanupSrc:
+    spFree(src);
+}
+
+static void computeCourseSha1Task(void *arg) {
+    u32 courseId = (u32)arg;
+    SaveManager_computeCourseSha1(s_saveManager, courseId);
+    while (s_saveManager->isBusy) {
+        VIWaitForRetrace();
+        SaveManager_computeCourseSha1(s_saveManager, courseId);
+    }
+}
+
+bool SaveManager_computeCourseSha1Async(SaveManager *this, u32 courseId) {
+    if (this->courseSha1IsValid[courseId]) {
+        return true;
+    }
+
+    this->isBusy = true;
+    EGG_TaskThread_request(this->taskThread, computeCourseSha1Task, (void *)courseId, NULL);
+    return false;
+}
+
+const u32 *SaveManager_getCourseSha1(const SaveManager *this, u32 courseId) {
+    return this->courseSha1s[courseId];
+}
 
 bool vsSpeedModIsEnabled;

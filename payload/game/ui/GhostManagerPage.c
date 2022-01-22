@@ -3,10 +3,34 @@
 #include "SectionManager.h"
 
 #include "../system/RaceConfig.h"
+#include "../system/SaveManager.h"
 
-int compareGhostEntries(const void *p0, const void *p1);
+#include <stdlib.h>
+#include <string.h>
 
-int my_compareGhostEntries(const void *p0, const void *p1) {
+static void my_GhostList_populate(GhostList *this, u32 courseId) {
+    UNUSED(this);
+    UNUSED(courseId);
+}
+PATCH_B(GhostList_populate, my_GhostList_populate);
+
+void GhostManagerPage_requestPopulate(GhostManagerPage *this) {
+    this->nextRequest = GHOST_MANAGER_PAGE_REQUEST_POPULATE;
+}
+
+void GhostManagerPage_processPopulate(GhostManagerPage *this);
+
+void GhostManagerPage_dispatchPopulate(GhostManagerPage *this) {
+    u32 courseId = s_raceConfig->menuScenario.courseId;
+    if (SaveManager_computeCourseSha1Async(s_saveManager, courseId)) {
+        GhostManagerPage_processPopulate(this);
+        return;
+    }
+
+    this->currentRequest = GHOST_MANAGER_PAGE_REQUEST_POPULATE;
+}
+
+static int compareGhostEntries(const void *p0, const void *p1) {
     const GhostEntry *e0 = p0;
     const GhostEntry *e1 = p1;
     const Time *t0 = &e0->file->raceTime;
@@ -16,7 +40,52 @@ int my_compareGhostEntries(const void *p0, const void *p1) {
     return d0 - d1;
 }
 
-PATCH_B(compareGhostEntries, my_compareGhostEntries);
+void GhostManagerPage_processPopulate(GhostManagerPage *this) {
+    if (s_saveManager->isBusy) {
+        return;
+    }
+
+    u32 courseId = s_raceConfig->menuScenario.courseId;
+    const u32 *courseSha1 = SaveManager_getCourseSha1(s_saveManager, courseId);
+    bool speedModIsEnabled = SaveManager_getTaRuleClass(s_saveManager) == SP_TA_RULE_CLASS_200CC;
+
+    GhostList *list = &this->list;
+    list->count = 0;
+    const GhostGroup *group = this->groups[4];
+    for (u32 i = 0; i < group->count && list->count < ARRAY_SIZE(list->entries); i++) {
+        const GhostFile *file = GhostGroup_get(group, i);
+        if (!file) {
+            continue;
+        }
+
+        const GhostFooter *footer = &s_saveManager->ghostFooters[i];
+        switch (footer->magic) {
+        case CTGP_FOOTER_MAGIC:
+        case SP_FOOTER_MAGIC:
+            if (memcmp(GhostFooter_getCourseSha1(footer), courseSha1, 5 * sizeof(u32))) {
+                continue;
+            }
+            if (GhostFooter_hasSpeedMod(footer) != speedModIsEnabled) {
+                continue;
+            }
+            break;
+        default:
+            if (courseId != file->courseId) {
+                continue;
+            }
+        }
+
+        list->entries[list->count].file = file;
+        list->entries[list->count].groupIndex = 4;
+        list->entries[list->count].index = i;
+        list->entries[list->count].isNew = false;
+        list->count++;
+    }
+
+    qsort(list->entries, list->count, sizeof(GhostEntry), compareGhostEntries);
+
+    this->currentRequest = GHOST_MANAGER_PAGE_REQUEST_NONE;
+}
 
 static void setupTimeAttack(bool isRace, bool fromReplay) {
     GlobalContext *cx = s_sectionManager->globalContext;
@@ -42,21 +111,23 @@ static void setupTimeAttack(bool isRace, bool fromReplay) {
     menuScenario->modeFlags &= ~MODE_FLAG_TEAMS;
 }
 
-void my_GhostManagerPage_setupGhostReplay(GhostManagerPage *this, bool isStaffGhost) {
+void GhostManagerPage_setupGhostReplay(GhostManagerPage *this, bool isStaffGhost);
+
+static void my_GhostManagerPage_setupGhostReplay(GhostManagerPage *this, bool isStaffGhost) {
     UNUSED(this);
     UNUSED(isStaffGhost);
 
     setupTimeAttack(false, false);
 }
-
 PATCH_B(GhostManagerPage_setupGhostReplay, my_GhostManagerPage_setupGhostReplay);
 
-void my_GhostManagerPage_setupGhostRace(GhostManagerPage *this, bool isStaffGhost, bool isNewRecord, bool fromReplay) {
+void GhostManagerPage_setupGhostRace(GhostManagerPage *this, bool isStaffGhost, bool isNewRecord, bool fromReplay);
+
+static void my_GhostManagerPage_setupGhostRace(GhostManagerPage *this, bool isStaffGhost, bool isNewRecord, bool fromReplay) {
     UNUSED(this);
     UNUSED(isStaffGhost);
     UNUSED(isNewRecord);
 
     setupTimeAttack(true, fromReplay);
 }
-
 PATCH_B(GhostManagerPage_setupGhostRace, my_GhostManagerPage_setupGhostRace);

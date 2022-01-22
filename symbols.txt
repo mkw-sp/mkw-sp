@@ -1,6 +1,8 @@
 0x80005f34 memcpy
 0x80006038 memset
 0x8000f1f0 memmove
+0x8000f314 memcmp
+0x80011b00 qsort
 
 0x800074d8 BootStrapScene_enter
 0x800079d0 BootStrapScene_calc
@@ -33,6 +35,7 @@
 0x801a1104 OSAllocFromMEM1ArenaLo
 0x801a162c DCFlushRange
 0x801a1710 ICInvalidateRange
+0x801a25d0 OSReport
 0x801a4ec4 OSFatal
 0x801a6d3c Relocate
 0x801a9e84 OSCreateThread
@@ -40,8 +43,15 @@
 0x801aa4ec OSDetachThread
 0x801aa58c OSResumeThread
 0x801aaca8 OSSleepTicks
+0x801b99ec VIWaitForRetrace
 0x801d1ca0 NETCalcCRC32
+0x801d24f4 NETSHA1Init
+0x801d2544 NETSHA1Update
+0x801d25f8 NETSHA1GetDigest
 
+0x80226ac8 EGG_ExpHeap_create
+0x80226c90 EGG_ExpHeap_getAllocatableSize
+0x80226ebc EGG_ExpHeap_freeAll
 0x80229814 EGG_Heap_alloc
 0x80229adc EGG_Heap_findContainHeap
 0x80229b84 EGG_Heap_free
@@ -53,9 +63,12 @@
 0x80386000 s_systemManager
 
 0x80519508 DvdArchive_decompress
+0x8051a4dc GameScene_8051a4dc
+0x8051b7b0 GameScene_reinit
 0x8051c120 RawGhostFile_isValid
 0x8051ce94 GhostGroup_ct
 0x8051d064 GhostGroup_invalidate
+0x8051d084 GhostGroup_get
 0x8051d0bc GhostGroup_readHeader
 0x8051d1b4 RawGhostFile_decompress
 0x8051d5e8 HomeButton_getFile
@@ -163,9 +176,10 @@
 0x805c21b0 ConfirmPage_setWindowMessage
 0x805c2c60 ControlLoader_load
 0x805c9888 Page_vf_30
+0x805e1214 GhostManagerPage_process
 0x805e1b04 GhostManagerPage_setupGhostRace
 0x805e1d5c GhostManagerPage_setupGhostReplay
-0x805e2430 compareGhostEntries
+0x805e2200 GhostList_populate
 0x805e2500 GhostList_getFile
 0x805e39d8 GlobalContext_copyPlayerMiis
 0x805ea834 LicenseSelectPage_ct
@@ -232,6 +246,8 @@
 0x806386c8 TabOptionButton_setPlayerFlags
 0x80638830 TabOptionButton_setChosen
 0x80638988 TabOptionButton_onSelect
+0x80638fa0 TimeAttackTopPage_onActivate
+0x8063914c TimeAttackTopPage_afterCalc
 0x806395ec TimeAttackGhostListPage_ct
 0x8063ab6c TitlePage_onInit
 0x8063c820 UIAnimator_getGroup
@@ -322,6 +338,7 @@
 0x80860acc getCharacterPane
 
 0x808b3188 languageSuffixes
+0x808b3984 courseFilenames
 0x808b5b1c minDriftSpeedFactor
 0x808b5c78 boostAccelerations
 0x808cb550 ai_808cb550

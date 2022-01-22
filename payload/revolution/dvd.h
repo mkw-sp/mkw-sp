@@ -2,13 +2,11 @@
 
 #include <Common.h>
 
-typedef struct DVDFileInfo DVDFileInfo;
-
-struct DVDFileInfo {
+typedef struct {
     u8 _00[0x34];
     u32 length;
     u8 _38[0x4];
-};
+} DVDFileInfo;
 
 BOOL DVDOpen(const char *fileName, DVDFileInfo *fileInfo);
 

@@ -99,8 +99,9 @@ typedef struct {
     u32 ghostCount; // Modified
     RawGhostHeader *rawGhostHeaders; // Modified
     GhostGroup *ghostGroup;
+    GhostFooter *ghostFooters; // Modified
     char (*ghostPaths)[NAND_MAX_PATH]; // Modified
-    u8 _00030[0x00038 - 0x00030];
+    u8 _00034[0x00038 - 0x00034];
     License licenses[4];
     u8 _24ff8[0x24ffc - 0x24ff8];
     void *otherRawSave;
@@ -115,6 +116,8 @@ typedef struct {
     u32 spLicenseCount; // Added
     SpSaveLicense *spLicenses[MAX_SP_LICENSE_COUNT]; // Added
     s32 spCurrentLicense; // Added
+    bool *courseSha1IsValid; // Added
+    u32 (*courseSha1s)[5]; // Added
 } SaveManager;
 static_assert(offsetof(SaveManager, spBuffer) == 0x25008);
 
@@ -149,5 +152,9 @@ u32 SaveManager_getTaRuleSolidGhosts(const SaveManager *this);
 void SaveManager_loadGhostAsync(SaveManager *this, s32 licenseId, u32 category, u32 index, u32 courseId);
 
 void SaveManager_loadGhostHeadersAsync(SaveManager *this, s32 licenseId, GhostGroup *group);
+
+bool SaveManager_computeCourseSha1Async(SaveManager *this, u32 courseId);
+
+const u32 *SaveManager_getCourseSha1(const SaveManager *this, u32 courseId);
 
 extern bool vsSpeedModIsEnabled;
