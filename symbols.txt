@@ -52,11 +52,13 @@
 
 0x80386000 s_systemManager
 
+0x80519508 DvdArchive_decompress
 0x8051c120 RawGhostFile_isValid
 0x8051ce94 GhostGroup_ct
 0x8051d064 GhostGroup_invalidate
 0x8051d0bc GhostGroup_readHeader
 0x8051d1b4 RawGhostFile_decompress
+0x8051d5e8 HomeButton_getFile
 0x8051ed14 Pad_calc
 0x8051f410 WiiPad_processClassic
 0x805201b0 GcPad_process
