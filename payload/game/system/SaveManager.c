@@ -392,16 +392,6 @@ void SaveManager_createSpLicense(SaveManager *this, const MiiId *miiId) {
     this->spCurrentLicense = this->spLicenseCount - 1;
 }
 
-bool SaveManager_hasSpLicenseWithMiiId(const SaveManager *this, const MiiId *miiId) {
-    for (u32 i = 0; i < this->spLicenseCount; i++) {
-        if (!memcmp(&this->spLicenses[i]->miiId, miiId, sizeof(MiiId))) {
-            return true;
-        }
-    }
-
-    return false;
-}
-
 void SaveManager_changeSpLicenseMiiId(const SaveManager *this, const MiiId *miiId) {
     if (this->spCurrentLicense < 0) {
         return;

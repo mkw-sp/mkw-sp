@@ -136,8 +136,6 @@ void SaveManager_eraseSpLicense(SaveManager *this);
 
 void SaveManager_createSpLicense(SaveManager *this, const MiiId *miiId);
 
-bool SaveManager_hasSpLicenseWithMiiId(const SaveManager *this, const MiiId *miiId);
-
 u32 SaveManager_getSettingHudLabels(const SaveManager *this);
 
 u32 SaveManager_getSetting169Fov(const SaveManager *this);
