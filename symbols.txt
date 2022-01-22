@@ -25,6 +25,7 @@
 0x8015e834 DVDReadPrio
 0x8015e568 DVDClose
 0x8016a05c ISFS_ReadDir
+0x8019acac PSVECDotProduct
 0x8019bee8 NANDMove
 0x8019de1c nandIsPrivatePath
 0x8019dea8 nandIsInitialized
@@ -129,8 +130,10 @@
 0x805858ac KartMove_startKiller
 0x8058faa8 KartObjectManager_createInstance
 0x8058fb2c KartObjectManager_ct
+0x805903cc KartObjectProxy_getVehiclePhysics
 0x805903f4 KartObjectProxy_getPadProxy
-0x80590cf8 KartObjectProxy_getSpeed
+0x8059077c KartObjectProxy_getKartMove
+0x80590cf8 KartObjectProxy_getInternalSpeed
 0x80591fa4 KartParam_compute
 0x80596480 KartSub_calcPass0
 0x80596cfc KartSub_calcPass1

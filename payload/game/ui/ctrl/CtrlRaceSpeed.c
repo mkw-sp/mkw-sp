@@ -2,6 +2,8 @@
 
 #include "../../kart/KartObjectManager.h"
 
+#include <revolution.h>
+
 #include <stdio.h>
 
 enum {
@@ -55,7 +57,15 @@ static void CtrlRaceSpeed_calcSelf(UIControl *base) {
     CtrlRaceBase_process(this);
 
     u32 playerId = CtrlRaceBase_getPlayerId(this);
-    f32 speed = KartObjectProxy_getSpeed(s_kartObjectManager->objects[playerId]);
+    const KartObject *object = s_kartObjectManager->objects[playerId];
+    f32 internalSpeed = KartObjectProxy_getInternalSpeed(object);
+    const Vec3 *internalVelDir = &KartObjectProxy_getKartMove(object)->internalVelDir;
+    const Vec3 *movingRoadVel = &KartObjectProxy_getVehiclePhysics(object)->movingRoadVel;
+    const Vec3 *movingWaterVel = &KartObjectProxy_getVehiclePhysics(object)->movingWaterVel;
+    f32 speed = internalSpeed;
+    speed += PSVECDotProduct(internalVelDir, movingRoadVel);
+    speed += PSVECDotProduct(internalVelDir, movingWaterVel);
+
     s32 integral = speed;
     u32 fractional = (speed >= 0.0f ? speed - integral : integral - speed) * 100.0f + 0.5f;
     if (integral > 999) {
