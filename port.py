@@ -152,8 +152,9 @@ out_file = open(args.out_path, 'w')
 out_file.write('SECTIONS {\n')
 
 out_file.write('    .text base : { *(first) *(.text*) }\n')
-for section in ['patches', '.rodata', '.data', '.bss']:
-    out_file.write(f'    {section} : {{ *({section}) }}\n')
+out_file.write('    patches : { *(patches*) }\n')
+out_file.write('    .rodata : { *(.rodata*) }\n')
+out_file.write('    .data : { *(.data*) *(.bss*) *(.sbss*) }\n')
 out_file.write('\n')
 
 for name, dst_binary in DST_BINARIES[args.region].items():

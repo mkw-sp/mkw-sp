@@ -25,7 +25,6 @@ asflags = [
 cflags = [
     '-fms-extensions',
     '-fno-asynchronous-unwind-tables',
-    '-fno-zero-initialized-in-bss',
     '-fplan9-extensions',
     '-fshort-wchar',
     '-isystem', 'include',
