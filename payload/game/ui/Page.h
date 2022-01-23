@@ -19,7 +19,8 @@ enum {
 typedef struct Page {
     const struct Page_vt *vt;
     u32 id;
-    u8 _08[0x38 - 0x08];
+    u32 state;
+    u8 _0c[0x38 - 0x0c];
     MenuInputManager *baseInputManager;
     u8 _3c[0x44 - 0x3c];
 } Page;

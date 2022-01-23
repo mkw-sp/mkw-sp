@@ -1,0 +1,730 @@
+{
+    "0x3e8": {
+        "font": "regular",
+        "string": "",
+    },
+    "0x3e9": {
+        "font": "regular",
+        "string": "やめない",
+    },
+    "0x3ea": {
+        "font": "regular",
+        "string": "やめる",
+    },
+    "0x3eb": {
+        "font": "regular",
+        "string": "ゲームをつづける",
+    },
+    "0x3ec": {
+        "font": "regular",
+        "string": "ゲームをやめる",
+    },
+    "0x3ed": {
+        "font": "regular",
+        "string": "コースをかえる",
+    },
+    "0x3ee": {
+        "font": "regular",
+        "string": "キャラクターをかえる",
+    },
+    "0x3ef": {
+        "font": "regular",
+        "string": "スタートをやりなおす",
+    },
+    "0x3f0": {
+        "font": "regular",
+        "string": "ミッションをえらぶ",
+    },
+    "0x3f1": {
+        "font": "regular",
+        "string": "つぎのレースへ",
+    },
+    "0x3f2": {
+        "font": "regular",
+        "string": "つぎにすすむ",
+    },
+    "0x3f3": {
+        "font": "regular",
+        "string": "もういちど",
+    },
+    "0x3f4": {
+        "font": "regular",
+        "string": "リプレイをみる",
+    },
+    "0x3f5": {
+        "font": "regular",
+        "string": "リプレイをつづける",
+    },
+    "0x3f6": {
+        "font": "regular",
+        "string": "はじめからリプレイ",
+    },
+    "0x3f7": {
+        "font": "regular",
+        "string": "ランキングをみる",
+    },
+    "0x3f8": {
+        "font": "regular",
+        "string": "ゴーストリストをみる",
+    },
+    "0x3f9": {
+        "font": "regular",
+        "string": null,
+    },
+    "0x3fa": {
+        "font": "regular",
+        "string": "つぎのゴースト",
+    },
+    "0x3fb": {
+        "font": "regular",
+        "string": null,
+    },
+    "0x3fc": {
+        "font": "regular",
+        "string": "Wi-Fiメニュー",
+    },
+    "0x3fd": {
+        "font": "regular",
+        "string": "リプレイをやめる",
+    },
+    "0x3fe": {
+        "font": "regular",
+        "string": "レースをはじめる",
+    },
+    "0x3ff": {
+        "font": "regular",
+        "string": "つぎのレースへ",
+    },
+    "0x400": {
+        "font": "regular",
+        "string": "つぎのバトルへ",
+    },
+    "0x401": {
+        "font": "regular",
+        "string": "しばらくおまちください",
+    },
+    "0x402": {
+        "font": "regular",
+        "string": "ゴーストをかえる",
+    },
+    "0x403": {
+        "font": "regular",
+        "string": "ゴーストとレース",
+    },
+    "0x404": {
+        "font": "regular",
+        "string": "リプレイをつづける",
+    },
+    "0x405": {
+        "font": "regular",
+        "string": "リプレイをやめる",
+    },
+    "0x406": {
+        "font": "regular",
+        "string": "はじめからリプレイ",
+    },
+    "0x407": {
+        "font": "regular",
+        "string": "つぎは  {arg integer|0 0}人  であそべそうです",
+    },
+    "0x408": {
+        "font": "regular",
+        "string": "レコードをおくる",
+    },
+    "0x409": {
+        "font": "regular",
+        "string": "",
+    },
+    "0x44d": {
+        "font": "regular",
+        "string": "ほんとうにやめますか？",
+    },
+    "0x44e": {
+        "font": "regular",
+        "string": "マリオカートチャンネルの\nランキングに移動します。\nよろしいですか？",
+    },
+    "0x44f": {
+        "font": "regular",
+        "string": "OK",
+    },
+    "0x450": {
+        "font": "regular",
+        "string": null,
+    },
+    "0x451": {
+        "font": "regular",
+        "string": "おめでとうございます！\n{arg player|0}さんに勝ちました！\n\nゴーストをおくりかえしますか？",
+    },
+    "0x452": {
+        "font": "regular",
+        "string": "おくる",
+    },
+    "0x453": {
+        "font": "regular",
+        "string": "おくらない",
+    },
+    "0x454": {
+        "font": "regular",
+        "string": "はい",
+    },
+    "0x455": {
+        "font": "regular",
+        "string": "いいえ",
+    },
+    "0x456": {
+        "font": "regular",
+        "string": "",
+    },
+    "0x457": {
+        "font": "regular",
+        "string": "フレンドリストに移動します。\nよろしいですか？",
+    },
+    "0x458": {
+        "font": "regular",
+        "string": "レコードをおくります。\nよろしいですか？\n（期間中は何度でもおくれます）",
+    },
+    "0x459": {
+        "font": "regular",
+        "string": "勝負をあきらめて\nつぎのゴーストを受信します。\nよろしいですか？",
+    },
+    "0x45a": {
+        "font": "regular",
+        "string": "勝負をあきらめて\nメニューにもどります。\nよろしいですか？",
+    },
+    "0x45b": {
+        "font": "regular",
+        "string": "{current player|}さんのゴーストが  つくられました！",
+    },
+    "0x45c": {
+        "font": "regular",
+        "string": "ゴーストはつくられませんでした",
+    },
+    "0x45d": {
+        "font": "regular",
+        "string": "ゴースト挑戦状を送ることはできません",
+    },
+    "0x45e": {
+        "font": "regular",
+        "string": "コースセレクトにもどります。\nよろしいですか？",
+    },
+    "0x45f": {
+        "font": "regular",
+        "string": "Ghost data will be truncated.",
+    },
+    "0x460": {
+        "font": "regular",
+        "string": "",
+    },
+    "0x461": {
+        "font": "regular",
+        "string": "はやいスタッフゴーストが  出現しました！",
+    },
+    "0x4b1": {
+        "font": "caps",
+        "string": "3",
+    },
+    "0x4b2": {
+        "font": "caps",
+        "string": "2",
+    },
+    "0x4b3": {
+        "font": "caps",
+        "string": "1",
+    },
+    "0x4b4": {
+        "font": "caps",
+        "string": "GO!!",
+    },
+    "0x4b5": {
+        "font": "caps",
+        "string": "FINISH!!",
+    },
+    "0x4b6": {
+        "font": "caps",
+        "string": "YOU WIN!!",
+    },
+    "0x4b7": {
+        "font": "caps",
+        "string": "YOU LOSE",
+    },
+    "0x4b8": {
+        "font": "regular",
+        "string": null,
+    },
+    "0x4b9": {
+        "font": "regular",
+        "string": null,
+    },
+    "0x4ba": {
+        "font": "regular",
+        "string": "ゆうしょうおめでとう",
+    },
+    "0x4bb": {
+        "font": "caps",
+        "string": "NEW RECORD!!",
+    },
+    "0x4bc": {
+        "font": "regular",
+        "string": "レコード",
+    },
+    "0x4bd": {
+        "font": "regular",
+        "string": "ベストラップ",
+    },
+    "0x4be": {
+        "font": "regular",
+        "string": "{color|team red}レッドチームの勝ち！",
+    },
+    "0x4bf": {
+        "font": "regular",
+        "string": "{color|team blue}ブルーチームの勝ち！",
+    },
+    "0x4c0": {
+        "font": "regular",
+        "string": "{color|team red}レッドチーム  優勝！",
+    },
+    "0x4c1": {
+        "font": "regular",
+        "string": "{color|team blue}ブルーチーム  優勝！",
+    },
+    "0x4c2": {
+        "font": "regular",
+        "string": "ひきわけ",
+    },
+    "0x4c3": {
+        "font": "regular",
+        "string": "優勝  おめでとう！",
+    },
+    "0x4c4": {
+        "font": "regular",
+        "string": "準優勝  おめでとう！",
+    },
+    "0x4c5": {
+        "font": "regular",
+        "string": "３位  おめでとう！",
+    },
+    "0x4c6": {
+        "font": "regular",
+        "string": "つぎは上位をめざそう！",
+    },
+    "0x4c7": {
+        "font": "regular",
+        "string": "{color|team red}レッドチームの負け",
+    },
+    "0x4c8": {
+        "font": "regular",
+        "string": "{color|team blue}ブルーチームの負け",
+    },
+    "0x4c9": {
+        "font": "regular",
+        "string": "{color|team red}レッドチームの負け",
+    },
+    "0x4ca": {
+        "font": "regular",
+        "string": "{color|team blue}ブルーチームの負け",
+    },
+    "0x4cb": {
+        "font": "regular",
+        "string": "",
+    },
+    "0x515": {
+        "font": "regular",
+        "string": "1st",
+    },
+    "0x516": {
+        "font": "regular",
+        "string": "2nd",
+    },
+    "0x517": {
+        "font": "regular",
+        "string": "3rd",
+    },
+    "0x518": {
+        "font": "regular",
+        "string": "4th",
+    },
+    "0x519": {
+        "font": "regular",
+        "string": "5th",
+    },
+    "0x51a": {
+        "font": "regular",
+        "string": "6th",
+    },
+    "0x51b": {
+        "font": "regular",
+        "string": "7th",
+    },
+    "0x51c": {
+        "font": "regular",
+        "string": "8th",
+    },
+    "0x51d": {
+        "font": "regular",
+        "string": "9th",
+    },
+    "0x51e": {
+        "font": "regular",
+        "string": "10th",
+    },
+    "0x51f": {
+        "font": "regular",
+        "string": "11th",
+    },
+    "0x520": {
+        "font": "regular",
+        "string": "12th",
+    },
+    "0x521": {
+        "font": "regular",
+        "string": "{arg cond messages|0 1316 1317}",
+    },
+    "0x522": {
+        "font": "regular",
+        "string": "{arg integer|0 0}",
+    },
+    "0x523": {
+        "font": "regular",
+        "string": "{arg signed integer|0 0}",
+    },
+    "0x524": {
+        "font": "regular",
+        "string": "pt",
+    },
+    "0x525": {
+        "font": "regular",
+        "string": "pts",
+    },
+    "0x526": {
+        "font": "regular",
+        "string": "{arg cond messages|0 1319 1320}",
+    },
+    "0x527": {
+        "font": "regular",
+        "string": "{color|team red}win",
+    },
+    "0x528": {
+        "font": "regular",
+        "string": "{color|team red}wins",
+    },
+    "0x529": {
+        "font": "regular",
+        "string": "{arg cond messages|0 1322 1323}",
+    },
+    "0x52a": {
+        "font": "regular",
+        "string": "{color|team blue}win",
+    },
+    "0x52b": {
+        "font": "regular",
+        "string": "{color|team blue}wins",
+    },
+    "0x52c": {
+        "font": "regular",
+        "string": "{arg cond messages|0 1325 1326}",
+    },
+    "0x52d": {
+        "font": "regular",
+        "string": "{color|team red}pt",
+    },
+    "0x52e": {
+        "font": "regular",
+        "string": "{color|team red}pts",
+    },
+    "0x52f": {
+        "font": "regular",
+        "string": "{arg cond messages|0 1328 1329}",
+    },
+    "0x530": {
+        "font": "regular",
+        "string": "{color|team blue}pt",
+    },
+    "0x531": {
+        "font": "regular",
+        "string": "{color|team blue}pts",
+    },
+    "0x532": {
+        "font": "regular",
+        "string": "ゴーストバトル　{arg integer|0 0}勝　{arg integer|1 0}敗",
+    },
+    "0x533": {
+        "font": "regular",
+        "string": "ゴーストバトル　{arg integer|0 0}勝　{arg integer|1 0}敗",
+    },
+    "0x534": {
+        "font": "regular",
+        "string": "{color|team red}{arg message|0}",
+    },
+    "0x535": {
+        "font": "regular",
+        "string": "{color|team blue}{arg message|0}",
+    },
+    "0x536": {
+        "font": "regular",
+        "string": "TIME",
+    },
+    "0x537": {
+        "font": "regular",
+        "string": "LAP",
+    },
+    "0x538": {
+        "font": "regular",
+        "string": "SCORE",
+    },
+    "0x539": {
+        "font": "regular",
+        "string": "LIVE",
+    },
+    "0x53a": {
+        "font": "regular",
+        "string": "つぎのレースから参加できます。（{arg integer|0 0}人）\nこのままお待ちください。",
+    },
+    "0x53b": {
+        "font": "regular",
+        "string": "つぎのバトルから参加できます。（{arg integer|0 0}人）\nこのままお待ちください。",
+    },
+    "0x53c": {
+        "font": "regular",
+        "string": "\n順位が確定したので\nレースを終了しました",
+    },
+    "0x53d": {
+        "font": "regular",
+        "string": "\nスタートから５分経過したので\nレースを終了しました",
+    },
+    "0x53e": {
+        "font": "regular",
+        "string": "\nトップがゴールしてから30秒経過したので\nレースを終了しました",
+    },
+    "0x53f": {
+        "font": "regular",
+        "string": "　VR",
+    },
+    "0x540": {
+        "font": "regular",
+        "string": "　BR",
+    },
+    "0x541": {
+        "font": "regular",
+        "string": "{1 char|}",
+    },
+    "0x578": {
+        "font": "regular",
+        "string": "{arg integer|0 2}:{arg integer|1 2}.{arg integer|2 3}",
+    },
+    "0x579": {
+        "font": "regular",
+        "string": "--:--.---",
+    },
+    "0x57a": {
+        "font": "regular",
+        "string": ":",
+    },
+    "0x57b": {
+        "font": "regular",
+        "string": ".",
+    },
+    "0x57c": {
+        "font": "regular",
+        "string": "",
+    },
+    "0x581": {
+        "font": "regular",
+        "string": "{arg message|0}　VS　チーム戦　{arg integer|0 0}/{arg integer|1 0}",
+    },
+    "0x582": {
+        "font": "regular",
+        "string": "{arg message|0}　{arg message|1}　1st レース",
+    },
+    "0x583": {
+        "font": "regular",
+        "string": "{arg message|0}　{arg message|1}　2nd レース",
+    },
+    "0x584": {
+        "font": "regular",
+        "string": "{arg message|0}　{arg message|1}　3rd レース",
+    },
+    "0x585": {
+        "font": "regular",
+        "string": "{arg message|0}　{arg message|1}　ファイナルレース",
+    },
+    "0x586": {
+        "font": "regular",
+        "string": "{arg message|0}　VS　{arg integer|0 0}/{arg integer|1 0}",
+    },
+    "0x587": {
+        "font": "regular",
+        "string": "ふうせんバトル",
+    },
+    "0x588": {
+        "font": "regular",
+        "string": "あつめてコイン",
+    },
+    "0x589": {
+        "font": "regular",
+        "string": "50cc",
+    },
+    "0x58a": {
+        "font": "regular",
+        "string": "100cc",
+    },
+    "0x58b": {
+        "font": "regular",
+        "string": "150cc",
+    },
+    "0x58c": {
+        "font": "regular",
+        "string": "ミラー",
+    },
+    "0x58d": {
+        "font": "regular",
+        "string": "{arg message|0}　{arg message|1}",
+    },
+    "0x58e": {
+        "font": "regular",
+        "string": "{arg message|0}　VS",
+    },
+    "0x58f": {
+        "font": "regular",
+        "string": "ランク：",
+    },
+    "0x590": {
+        "font": "regular",
+        "string": "{1 char|}",
+    },
+    "0x591": {
+        "font": "regular",
+        "string": "{1 char|}",
+    },
+    "0x592": {
+        "font": "regular",
+        "string": "{1 char|}",
+    },
+    "0x593": {
+        "font": "regular",
+        "string": "{1 char|}　",
+    },
+    "0x594": {
+        "font": "regular",
+        "string": "{1 char|}",
+    },
+    "0x595": {
+        "font": "regular",
+        "string": "{1 char|}",
+    },
+    "0x596": {
+        "font": "regular",
+        "string": "{1 char|}　",
+    },
+    "0x597": {
+        "font": "regular",
+        "string": "{1 char|}",
+    },
+    "0x598": {
+        "font": "regular",
+        "string": "F",
+    },
+    "0x599": {
+        "font": "regular",
+        "string": "{arg message|0}  グランプリ",
+    },
+    "0x59a": {
+        "font": "regular",
+        "string": "{arg message|0}  グランプリ  チーム戦",
+    },
+    "0x59b": {
+        "font": "regular",
+        "string": "{arg message|0}  VS  チーム戦",
+    },
+    "0x59c": {
+        "font": "regular",
+        "string": null,
+    },
+    "0x59d": {
+        "font": "regular",
+        "string": null,
+    },
+    "0x59e": {
+        "font": "regular",
+        "string": null,
+    },
+    "0x59f": {
+        "font": "regular",
+        "string": null,
+    },
+    "0x5a0": {
+        "font": "regular",
+        "string": "{arg message|0}　VS  {arg message|1}",
+    },
+    "0x5a1": {
+        "font": "regular",
+        "string": "{arg message|2}{arg message|0}  グランプリ  1st レース",
+    },
+    "0x5a2": {
+        "font": "regular",
+        "string": "{arg message|2}{arg message|0}  グランプリ  2nd レース",
+    },
+    "0x5a3": {
+        "font": "regular",
+        "string": "{arg message|2}{arg message|0}  グランプリ  3rd レース",
+    },
+    "0x5a4": {
+        "font": "regular",
+        "string": "{arg message|2}{arg message|0}  グランプリ  ファイナルレース",
+    },
+    "0x5a5": {
+        "font": "regular",
+        "string": "{arg message|2}ふうせんバトル",
+    },
+    "0x5a6": {
+        "font": "regular",
+        "string": "{arg message|2}あつめてコイン",
+    },
+    "0x5a7": {
+        "font": "regular",
+        "string": "（{arg integer|0 0}人）",
+    },
+    "0x5a8": {
+        "font": "regular",
+        "string": "",
+    },
+    "0x5a9": {
+        "font": "regular",
+        "string": "{color|team red}",
+    },
+    "0x5aa": {
+        "font": "regular",
+        "string": "{color|team blue}",
+    },
+    "0x5ab": {
+        "font": "regular",
+        "string": "",
+    },
+    "0x5dc": {
+        "font": "regular",
+        "string": "アイテム",
+    },
+    "0x5dd": {
+        "font": "regular",
+        "string": "ハンドル",
+    },
+    "0x5de": {
+        "font": "regular",
+        "string": "アクセル",
+    },
+    "0x5df": {
+        "font": "regular",
+        "string": "ブレーキ・ドリフト",
+    },
+    "0x5e0": {
+        "font": "regular",
+        "string": "ブレーキ",
+    },
+    "0x5e1": {
+        "font": "regular",
+        "string": "",
+    },
+    "0x3025": {
+        "font": "regular",
+        "string": "Saving ghost data...",
+    },
+}

@@ -97,3 +97,29 @@ PATCH_B_START(KartMove_startKiller, 0x24)
     stfs f0, 0x2c (r3) // Original instruction
     b KartMove_startKiller + 0x28
 PATCH_B_END(KartMove_startKiller, 0x24)
+
+
+
+PATCH_BL_START(KartMove_calcSpeed, 0x65c)
+    lwz r0, 0x4 (r3) // Original instruction
+
+    // Check that the player id is 0
+    lwz r4, 0x0 (r29)
+    lwz r4, 0x0 (r4)
+    lbz r4, 0x10 (r4)
+    cmpwi r4, 0x0
+    bnelr
+
+    extrwi. r4, r0, 1, 1
+    beqlr
+
+    andi. r4, r0, 0x60
+    beqlr
+
+    bl SpFooter_onWallride
+
+    lwz r3, 0x0 (r29)
+    lwz r3, 0x4 (r3)
+    lwz r0, 0x4 (r3) // Original instruction again
+    b KartMove_calcSpeed + 0x660
+PATCH_BL_END(KartMove_calcSpeed, 0x65c)

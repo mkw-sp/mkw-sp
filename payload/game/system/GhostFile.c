@@ -44,6 +44,31 @@ enum {
     SP_FOOTER_VERSION = 0,
 };
 
+SpFooter s_spFooter;
+
+void SpFooter_onRaceStart(const u32 *courseSha1, bool speedModIsEnabled) {
+    memset(&s_spFooter, 0, sizeof(SpFooter));
+    s_spFooter.version = SP_FOOTER_VERSION;
+    memcpy(s_spFooter.courseSha1, courseSha1, sizeof(s_spFooter.courseSha1));
+    s_spFooter.hasSpeedMod = speedModIsEnabled;
+}
+
+void SpFooter_onLapEnd(u32 lap, f32 timeDiff) {
+    s_spFooter.lapTimeDiffs[lap] = timeDiff;
+}
+
+void SpFooter_onUltraShortcut(void) {
+    s_spFooter.hasUltraShortcut = true;
+}
+
+void SpFooter_onHwg(void) {
+    s_spFooter.hasHwg = true;
+}
+
+void SpFooter_onWallride(void) {
+    s_spFooter.hasWallride = true;
+}
+
 void GhostFooter_init(GhostFooter *this, const u8 *raw, u32 size) {
     this->magic = 0x0;
 
@@ -332,4 +357,36 @@ bool RawGhostFile_spDecompress(const u8 *restrict src, u8 *restrict dst) {
     *(u32 *)(dst + 0x2800 - sizeof(u32)) = crc32;
 
     return true;
+}
+
+u32 GhostFile_spWrite(const GhostFile *this, u8 *raw) {
+    memset(raw, 0, 0x2800);
+
+    RawGhostHeader *header = (RawGhostHeader *)raw;
+    GhostFile_writeHeader(this, header);
+    header->inputsSize = this->inputsSize;
+    header->isCompressed = true;
+    u8 *dst = raw + sizeof(RawGhostHeader) + sizeof(u32);
+    u32 dstSize = 0x2800;
+    dstSize -= sizeof(RawGhostHeader) + 3 * sizeof(u32) + sizeof(SpFooter) + sizeof(FooterFooter);
+    dstSize = Yaz_encode(this->inputs, dst, this->inputsSize, dstSize);
+    if (dstSize == 0) {
+        return 0;
+    }
+    dstSize = (dstSize + 0x3) & ~0x3;
+    *(u32 *)(raw + sizeof(RawGhostHeader)) = dstSize;
+
+    u32 mainSize = sizeof(RawGhostHeader) + sizeof(u32) + dstSize + sizeof(u32);
+    u32 crc32 = NETCalcCRC32(raw, mainSize - sizeof(u32));
+    *(u32 *)(raw + mainSize - sizeof(u32)) = crc32;
+
+    *(SpFooter *)(raw + mainSize) = s_spFooter;
+    FooterFooter footerFooter = { .size = sizeof(SpFooter), .magic = SP_FOOTER_MAGIC };
+    *(FooterFooter *)(raw + mainSize + sizeof(SpFooter)) = footerFooter;
+
+    u32 size = mainSize + sizeof(SpFooter) + sizeof(FooterFooter) + sizeof(u32);
+    crc32 = NETCalcCRC32(raw, size - sizeof(u32));
+    *(u32 *)(raw + size - sizeof(u32)) = crc32;
+
+    return size;
 }

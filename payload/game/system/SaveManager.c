@@ -523,6 +523,116 @@ static void my_SaveManager_loadGhostAsync(SaveManager *this, s32 licenseId, u32 
 }
 PATCH_B(SaveManager_loadGhostAsync, my_SaveManager_loadGhostAsync);
 
+static char nibbleToChar(u8 val) {
+    if (val < 0xa) {
+        return '0' + val;
+    }
+    return 'a' + val - 0xa;
+}
+
+static void SaveManager_saveGhost(SaveManager *this, GhostFile *file) {
+    this->saveGhostResult = false;
+
+    if (file->raceTime.minutes > 99) {
+        goto fail;
+    }
+
+    u32 length = GhostFile_spWrite(file, this->rawGhostFile);
+    if (length == 0) {
+        goto fail;
+    }
+
+    char dir[NAND_MAX_PATH];
+    if (NandHelper_getHomeDir(dir) != RK_NAND_RESULT_OK) {
+        goto fail;
+    }
+
+    u32 offset = strlen(dir);
+    u32 dirSize = strlen("/ghosts/") + 1;
+    if (offset + dirSize > NAND_MAX_PATH) {
+        goto fail;
+    }
+    memcpy(dir + offset, "/ghosts/", dirSize);
+
+    offset += dirSize - 1;
+    if (offset + NAND_MAX_NAME + 1 > NAND_MAX_PATH) {
+        goto fail;
+    }
+    const u8 *courseSha1 = (const u8 *)this->courseSha1s[file->courseId];
+    for (u32 i = 0; i < NAND_MAX_NAME; i += 2) {
+        dir[offset + i] = nibbleToChar(courseSha1[i / 2] >> 4);
+        dir[offset + i + 1] = nibbleToChar(courseSha1[i / 2] & 0xf);
+    }
+    dir[offset + NAND_MAX_NAME] = '\0';
+
+    u8 perm = NAND_PERM_OWNER_READ | NAND_PERM_OWNER_WRITE;
+    if (NandHelper_createDir(dir, perm) != RK_NAND_RESULT_OK) {
+        goto fail;
+    }
+
+    u16 mins = file->raceTime.minutes;
+    u8 secs = file->raceTime.seconds;
+    u16 msecs = file->raceTime.milliseconds;
+    char path[NAND_MAX_PATH];
+    snprintf(path, NAND_MAX_PATH, "%s/%02u%02u%03u.rkg", dir, mins, secs, msecs);
+    u32 type;
+    if (NandHelper_getType(path, &type) != RK_NAND_RESULT_OK) {
+        goto fail;
+    }
+    if (type != RK_NAND_TYPE_NONE) {
+        char c;
+        for (c = 'a'; c <= 'z'; c++) {
+            snprintf(path, NAND_MAX_PATH, "%s/%02u%02u%03u%c.rkg", dir, mins, secs, msecs, c);
+            if (NandHelper_getType(path, &type) != RK_NAND_RESULT_OK) {
+                goto fail;
+            }
+            if (type == RK_NAND_TYPE_NONE) {
+                break;
+            }
+        }
+        if (c > 'z') {
+            goto fail;
+        }
+    }
+
+    if (NandHelper_create(path, perm) != RK_NAND_RESULT_OK) {
+        goto fail;
+    }
+
+    if (NandHelper_writeFile(path, this->rawGhostFile, length) != RK_NAND_RESULT_OK) {
+        goto fail;
+    }
+
+    this->saveGhostResult = true;
+
+    if (RawGhostFile_spIsValid(this->rawGhostFile, length) && this->ghostCount < MAX_GHOST_COUNT) {
+        const RawGhostHeader *header = (RawGhostHeader *)this->rawGhostFile;
+        memcpy(&this->rawGhostHeaders[this->ghostCount], header, sizeof(RawGhostHeader));
+        GhostFooter_init(&this->ghostFooters[this->ghostCount], this->rawGhostFile, length);
+        memcpy(&this->ghostPaths[this->ghostCount], path, NAND_MAX_PATH);
+        this->ghostCount++;
+    }
+
+fail:
+    this->isBusy = false;
+}
+
+static void saveGhostTask(void *arg) {
+    GhostFile *file = arg;
+    SaveManager_saveGhost(s_saveManager, file);
+}
+
+static void my_SaveManager_saveGhostAsync(SaveManager *this, s32 licenseId, u32 category, u32 index, GhostFile *file, bool saveLicense) {
+    UNUSED(licenseId);
+    UNUSED(category);
+    UNUSED(index);
+    UNUSED(saveLicense);
+
+    this->isBusy = true;
+    EGG_TaskThread_request(this->taskThread, saveGhostTask, file, NULL);
+}
+PATCH_B(SaveManager_saveGhostAsync, my_SaveManager_saveGhostAsync);
+
 static void SaveManager_computeCourseSha1(SaveManager *this, u32 courseId) {
     char path[0x40];
     snprintf(path, sizeof(path), "Race/Course/%s.szs", courseFilenames[courseId]);

@@ -1,0 +1,730 @@
+{
+    "0x3e8": {
+        "font": "regular",
+        "string": "",
+    },
+    "0x3e9": {
+        "font": "regular",
+        "string": "No",
+    },
+    "0x3ea": {
+        "font": "regular",
+        "string": "Yes",
+    },
+    "0x3eb": {
+        "font": "regular",
+        "string": "Continue",
+    },
+    "0x3ec": {
+        "font": "regular",
+        "string": "Quit",
+    },
+    "0x3ed": {
+        "font": "regular",
+        "string": "Change Course",
+    },
+    "0x3ee": {
+        "font": "regular",
+        "string": "Change Character",
+    },
+    "0x3ef": {
+        "font": "regular",
+        "string": "Restart",
+    },
+    "0x3f0": {
+        "font": "regular",
+        "string": "Choose a Mission",
+    },
+    "0x3f1": {
+        "font": "regular",
+        "string": "Next Race",
+    },
+    "0x3f2": {
+        "font": "regular",
+        "string": "Next",
+    },
+    "0x3f3": {
+        "font": "regular",
+        "string": "Retry",
+    },
+    "0x3f4": {
+        "font": "regular",
+        "string": "Watch Replay",
+    },
+    "0x3f5": {
+        "font": "regular",
+        "string": "Continue Replay",
+    },
+    "0x3f6": {
+        "font": "regular",
+        "string": "Restart Replay",
+    },
+    "0x3f7": {
+        "font": "regular",
+        "string": "Check Rankings",
+    },
+    "0x3f8": {
+        "font": "regular",
+        "string": "Ghost Data List",
+    },
+    "0x3f9": {
+        "font": "regular",
+        "string": null,
+    },
+    "0x3fa": {
+        "font": "regular",
+        "string": "Next Ghost Race",
+    },
+    "0x3fb": {
+        "font": "regular",
+        "string": null,
+    },
+    "0x3fc": {
+        "font": "regular",
+        "string": "Nintendo WFC Menu",
+    },
+    "0x3fd": {
+        "font": "regular",
+        "string": "Quit Replay",
+    },
+    "0x3fe": {
+        "font": "regular",
+        "string": "Start Race",
+    },
+    "0x3ff": {
+        "font": "regular",
+        "string": "Next Race",
+    },
+    "0x400": {
+        "font": "regular",
+        "string": "Next Battle",
+    },
+    "0x401": {
+        "font": "regular",
+        "string": "Please wait a moment...",
+    },
+    "0x402": {
+        "font": "regular",
+        "string": "Change Ghost Data",
+    },
+    "0x403": {
+        "font": "regular",
+        "string": "Challenge this Ghost Data",
+    },
+    "0x404": {
+        "font": "regular",
+        "string": "Continue Replay",
+    },
+    "0x405": {
+        "font": "regular",
+        "string": "End Replay",
+    },
+    "0x406": {
+        "font": "regular",
+        "string": "Restart Replay",
+    },
+    "0x407": {
+        "font": "regular",
+        "string": "Estimated no. players\nfor next match: {arg integer|0 0}",
+    },
+    "0x408": {
+        "font": "regular",
+        "string": "Send Record",
+    },
+    "0x409": {
+        "font": "regular",
+        "string": "",
+    },
+    "0x44d": {
+        "font": "regular",
+        "string": "Are you sure you want to quit?",
+    },
+    "0x44e": {
+        "font": "regular",
+        "string": "Go to the Mario Kart Channel\nto view rankings?",
+    },
+    "0x44f": {
+        "font": "regular",
+        "string": "OK",
+    },
+    "0x450": {
+        "font": "regular",
+        "string": null,
+    },
+    "0x451": {
+        "font": "regular",
+        "string": "Congratulations!\nYou beat {arg player|0}'s record!\n\nWould you like to send your\nghost data to {arg player|0}?",
+    },
+    "0x452": {
+        "font": "regular",
+        "string": "Send",
+    },
+    "0x453": {
+        "font": "regular",
+        "string": "Don't Send",
+    },
+    "0x454": {
+        "font": "regular",
+        "string": "Yes",
+    },
+    "0x455": {
+        "font": "regular",
+        "string": "No",
+    },
+    "0x456": {
+        "font": "regular",
+        "string": "",
+    },
+    "0x457": {
+        "font": "regular",
+        "string": "Go to your Friend Roster?",
+    },
+    "0x458": {
+        "font": "regular",
+        "string": "You can send as many records as\nyou like before the competition\ndeadline. Send this record?",
+    },
+    "0x459": {
+        "font": "regular",
+        "string": "Are you sure you want to\nend this race and download\nthe next ghost data record?",
+    },
+    "0x45a": {
+        "font": "regular",
+        "string": "Are you sure you want to\nquit this race and return\nto the main menu?",
+    },
+    "0x45b": {
+        "font": "regular",
+        "string": "Saved ghost data for {current player|}!",
+    },
+    "0x45c": {
+        "font": "regular",
+        "string": "Ghost data could not be saved.",
+    },
+    "0x45d": {
+        "font": "regular",
+        "string": "Unable to send ghost data challenge.",
+    },
+    "0x45e": {
+        "font": "regular",
+        "string": "Return to the course\nselection screen?",
+    },
+    "0x45f": {
+        "font": "regular",
+        "string": "Ghost data will be truncated.",
+    },
+    "0x460": {
+        "font": "regular",
+        "string": "",
+    },
+    "0x461": {
+        "font": "regular",
+        "string": "You've unlocked an Expert Staff Ghost Data record!",
+    },
+    "0x4b1": {
+        "font": "caps",
+        "string": "3",
+    },
+    "0x4b2": {
+        "font": "caps",
+        "string": "2",
+    },
+    "0x4b3": {
+        "font": "caps",
+        "string": "1",
+    },
+    "0x4b4": {
+        "font": "caps",
+        "string": "GO!",
+    },
+    "0x4b5": {
+        "font": "caps",
+        "string": "FINISH!",
+    },
+    "0x4b6": {
+        "font": "caps",
+        "string": "YOU WIN!",
+    },
+    "0x4b7": {
+        "font": "caps",
+        "string": "YOU LOSE!",
+    },
+    "0x4b8": {
+        "font": "regular",
+        "string": null,
+    },
+    "0x4b9": {
+        "font": "regular",
+        "string": null,
+    },
+    "0x4ba": {
+        "font": "regular",
+        "string": "Congratulations!",
+    },
+    "0x4bb": {
+        "font": "caps",
+        "string": "NEW RECORD!",
+    },
+    "0x4bc": {
+        "font": "regular",
+        "string": "Record",
+    },
+    "0x4bd": {
+        "font": "regular",
+        "string": "Best Lap",
+    },
+    "0x4be": {
+        "font": "regular",
+        "string": "{color|team red}THE RED TEAM WINS!",
+    },
+    "0x4bf": {
+        "font": "regular",
+        "string": "{color|team blue}THE BLUE TEAM WINS!",
+    },
+    "0x4c0": {
+        "font": "regular",
+        "string": "{color|team red}VICTORY FOR THE RED TEAM!",
+    },
+    "0x4c1": {
+        "font": "regular",
+        "string": "{color|team blue}VICTORY FOR THE BLUE TEAM!",
+    },
+    "0x4c2": {
+        "font": "regular",
+        "string": "DRAW",
+    },
+    "0x4c3": {
+        "font": "regular",
+        "string": "CONGRATULATIONS!",
+    },
+    "0x4c4": {
+        "font": "regular",
+        "string": "CONGRATULATIONS!",
+    },
+    "0x4c5": {
+        "font": "regular",
+        "string": "CONGRATULATIONS!",
+    },
+    "0x4c6": {
+        "font": "regular",
+        "string": "BETTER LUCK NEXT TIME!",
+    },
+    "0x4c7": {
+        "font": "regular",
+        "string": "{color|team red}THE RED TEAM LOSES!",
+    },
+    "0x4c8": {
+        "font": "regular",
+        "string": "{color|team blue}THE BLUE TEAM LOSES!",
+    },
+    "0x4c9": {
+        "font": "regular",
+        "string": "{color|team red}THE RED TEAM LOSES!",
+    },
+    "0x4ca": {
+        "font": "regular",
+        "string": "{color|team blue}THE BLUE TEAM LOSES!",
+    },
+    "0x4cb": {
+        "font": "regular",
+        "string": "",
+    },
+    "0x515": {
+        "font": "regular",
+        "string": "1st",
+    },
+    "0x516": {
+        "font": "regular",
+        "string": "2nd",
+    },
+    "0x517": {
+        "font": "regular",
+        "string": "3rd",
+    },
+    "0x518": {
+        "font": "regular",
+        "string": "4th",
+    },
+    "0x519": {
+        "font": "regular",
+        "string": "5th",
+    },
+    "0x51a": {
+        "font": "regular",
+        "string": "6th",
+    },
+    "0x51b": {
+        "font": "regular",
+        "string": "7th",
+    },
+    "0x51c": {
+        "font": "regular",
+        "string": "8th",
+    },
+    "0x51d": {
+        "font": "regular",
+        "string": "9th",
+    },
+    "0x51e": {
+        "font": "regular",
+        "string": "10th",
+    },
+    "0x51f": {
+        "font": "regular",
+        "string": "11th",
+    },
+    "0x520": {
+        "font": "regular",
+        "string": "12th",
+    },
+    "0x521": {
+        "font": "regular",
+        "string": "{arg cond messages|0 1316 1317}",
+    },
+    "0x522": {
+        "font": "regular",
+        "string": "{arg integer|0 0}",
+    },
+    "0x523": {
+        "font": "regular",
+        "string": "{arg signed integer|0 0}",
+    },
+    "0x524": {
+        "font": "regular",
+        "string": " pt",
+    },
+    "0x525": {
+        "font": "regular",
+        "string": " pts",
+    },
+    "0x526": {
+        "font": "regular",
+        "string": "{arg cond messages|0 1319 1320}",
+    },
+    "0x527": {
+        "font": "regular",
+        "string": "{color|team red}win",
+    },
+    "0x528": {
+        "font": "regular",
+        "string": "{color|team red}wins",
+    },
+    "0x529": {
+        "font": "regular",
+        "string": "{arg cond messages|0 1322 1323}",
+    },
+    "0x52a": {
+        "font": "regular",
+        "string": "{color|team blue}win",
+    },
+    "0x52b": {
+        "font": "regular",
+        "string": "{color|team blue}wins",
+    },
+    "0x52c": {
+        "font": "regular",
+        "string": "{arg cond messages|0 1325 1326}",
+    },
+    "0x52d": {
+        "font": "regular",
+        "string": "{color|team red}pt",
+    },
+    "0x52e": {
+        "font": "regular",
+        "string": "{color|team red}pts",
+    },
+    "0x52f": {
+        "font": "regular",
+        "string": "{arg cond messages|0 1328 1329}",
+    },
+    "0x530": {
+        "font": "regular",
+        "string": "{color|team blue}pt",
+    },
+    "0x531": {
+        "font": "regular",
+        "string": "{color|team blue}pts",
+    },
+    "0x532": {
+        "font": "regular",
+        "string": "Wins: {arg integer|0 0} - Losses: {arg integer|1 0}",
+    },
+    "0x533": {
+        "font": "regular",
+        "string": "Wins: {arg integer|0 0} - Losses: {arg integer|1 0}",
+    },
+    "0x534": {
+        "font": "regular",
+        "string": "{color|team red}{arg message|0}",
+    },
+    "0x535": {
+        "font": "regular",
+        "string": "{color|team blue}{arg message|0}",
+    },
+    "0x536": {
+        "font": "regular",
+        "string": "TIME",
+    },
+    "0x537": {
+        "font": "regular",
+        "string": "LAP",
+    },
+    "0x538": {
+        "font": "regular",
+        "string": "SCORE",
+    },
+    "0x539": {
+        "font": "regular",
+        "string": "LIVE",
+    },
+    "0x53a": {
+        "font": "regular",
+        "string": "You will join the next race.\nEstimated no. players: {arg integer|0 0}\nPlease wait...",
+    },
+    "0x53b": {
+        "font": "regular",
+        "string": "You will join the next battle.\nEstimated no. players: {arg integer|0 0}\nPlease wait...",
+    },
+    "0x53c": {
+        "font": "regular",
+        "string": "\nResults have been determined.\nThe race has ended.",
+    },
+    "0x53d": {
+        "font": "regular",
+        "string": "\n5 minutes have passed.\nThe race has ended.",
+    },
+    "0x53e": {
+        "font": "regular",
+        "string": "30 seconds have passed since\nthe winner crossed the finish\nline. The race has ended.",
+    },
+    "0x53f": {
+        "font": "regular",
+        "string": "",
+    },
+    "0x540": {
+        "font": "regular",
+        "string": "",
+    },
+    "0x541": {
+        "font": "regular",
+        "string": "{1 char|}",
+    },
+    "0x578": {
+        "font": "regular",
+        "string": "{arg integer|0 2}:{arg integer|1 2}.{arg integer|2 3}",
+    },
+    "0x579": {
+        "font": "regular",
+        "string": "--:--.---",
+    },
+    "0x57a": {
+        "font": "regular",
+        "string": ":",
+    },
+    "0x57b": {
+        "font": "regular",
+        "string": ".",
+    },
+    "0x57c": {
+        "font": "regular",
+        "string": "",
+    },
+    "0x581": {
+        "font": "regular",
+        "string": "{arg message|0} Team VS Race - {arg integer|0 0} of {arg integer|1 0}",
+    },
+    "0x582": {
+        "font": "regular",
+        "string": "{arg message|0} {arg message|1} - 1st Race",
+    },
+    "0x583": {
+        "font": "regular",
+        "string": "{arg message|0} {arg message|1} - 2nd Race",
+    },
+    "0x584": {
+        "font": "regular",
+        "string": "{arg message|0} {arg message|1} - 3rd Race",
+    },
+    "0x585": {
+        "font": "regular",
+        "string": "{arg message|0} {arg message|1} - Final Race",
+    },
+    "0x586": {
+        "font": "regular",
+        "string": "{arg message|0} VS Race - {arg integer|0 0} of {arg integer|1 0}",
+    },
+    "0x587": {
+        "font": "regular",
+        "string": "Balloon Battle",
+    },
+    "0x588": {
+        "font": "regular",
+        "string": "Coin Runners",
+    },
+    "0x589": {
+        "font": "regular",
+        "string": "50cc",
+    },
+    "0x58a": {
+        "font": "regular",
+        "string": "100cc",
+    },
+    "0x58b": {
+        "font": "regular",
+        "string": "150cc",
+    },
+    "0x58c": {
+        "font": "regular",
+        "string": "Mirror",
+    },
+    "0x58d": {
+        "font": "regular",
+        "string": "{arg message|0} {arg message|1}",
+    },
+    "0x58e": {
+        "font": "regular",
+        "string": "{arg message|0} VS Race",
+    },
+    "0x58f": {
+        "font": "regular",
+        "string": "Rank: ",
+    },
+    "0x590": {
+        "font": "regular",
+        "string": "{1 char|}",
+    },
+    "0x591": {
+        "font": "regular",
+        "string": "{1 char|}",
+    },
+    "0x592": {
+        "font": "regular",
+        "string": "{1 char|}",
+    },
+    "0x593": {
+        "font": "regular",
+        "string": "{1 char|}　",
+    },
+    "0x594": {
+        "font": "regular",
+        "string": "{1 char|}",
+    },
+    "0x595": {
+        "font": "regular",
+        "string": "{1 char|}",
+    },
+    "0x596": {
+        "font": "regular",
+        "string": "{1 char|}　",
+    },
+    "0x597": {
+        "font": "regular",
+        "string": "{1 char|}",
+    },
+    "0x598": {
+        "font": "regular",
+        "string": "F",
+    },
+    "0x599": {
+        "font": "regular",
+        "string": "{arg message|0} Grand Prix",
+    },
+    "0x59a": {
+        "font": "regular",
+        "string": "{arg message|0} Team Grand Prix",
+    },
+    "0x59b": {
+        "font": "regular",
+        "string": "{arg message|0} Team VS Race",
+    },
+    "0x59c": {
+        "font": "regular",
+        "string": null,
+    },
+    "0x59d": {
+        "font": "regular",
+        "string": null,
+    },
+    "0x59e": {
+        "font": "regular",
+        "string": null,
+    },
+    "0x59f": {
+        "font": "regular",
+        "string": null,
+    },
+    "0x5a0": {
+        "font": "regular",
+        "string": "{arg message|0} VS Race {arg message|1}",
+    },
+    "0x5a1": {
+        "font": "regular",
+        "string": "{arg message|2}{arg message|0}  Grand Prix - 1st Race",
+    },
+    "0x5a2": {
+        "font": "regular",
+        "string": "{arg message|2}{arg message|0}  Grand Prix - 2nd Race",
+    },
+    "0x5a3": {
+        "font": "regular",
+        "string": "{arg message|2}{arg message|0}  Grand Prix - 3rd Race",
+    },
+    "0x5a4": {
+        "font": "regular",
+        "string": "{arg message|2}{arg message|0}  Grand Prix - Final Race",
+    },
+    "0x5a5": {
+        "font": "regular",
+        "string": "{arg message|2}Balloon Battle",
+    },
+    "0x5a6": {
+        "font": "regular",
+        "string": "{arg message|2}Coin Runners",
+    },
+    "0x5a7": {
+        "font": "regular",
+        "string": "({arg integer|0 0} players)",
+    },
+    "0x5a8": {
+        "font": "regular",
+        "string": "",
+    },
+    "0x5a9": {
+        "font": "regular",
+        "string": "{color|team red}",
+    },
+    "0x5aa": {
+        "font": "regular",
+        "string": "{color|team blue}",
+    },
+    "0x5ab": {
+        "font": "regular",
+        "string": "",
+    },
+    "0x5dc": {
+        "font": "regular",
+        "string": "Use Item",
+    },
+    "0x5dd": {
+        "font": "regular",
+        "string": "Steer",
+    },
+    "0x5de": {
+        "font": "regular",
+        "string": "Accelerate",
+    },
+    "0x5df": {
+        "font": "regular",
+        "string": "Brake/Drift",
+    },
+    "0x5e0": {
+        "font": "regular",
+        "string": "Brake",
+    },
+    "0x5e1": {
+        "font": "regular",
+        "string": "",
+    },
+    "0x3025": {
+        "font": "regular",
+        "string": "Saving ghost data...",
+    },
+}

@@ -101,7 +101,9 @@ typedef struct {
     GhostGroup *ghostGroup;
     GhostFooter *ghostFooters; // Modified
     char (*ghostPaths)[NAND_MAX_PATH]; // Modified
-    u8 _00034[0x00038 - 0x00034];
+    u8 _00034[0x00035 - 0x00034];
+    bool saveGhostResult;
+    u8 _00036[0x00038 - 0x00036];
     License licenses[4];
     u8 _24ff8[0x24ffc - 0x24ff8];
     void *otherRawSave;
@@ -152,6 +154,8 @@ u32 SaveManager_getTaRuleSolidGhosts(const SaveManager *this);
 void SaveManager_loadGhostAsync(SaveManager *this, s32 licenseId, u32 category, u32 index, u32 courseId);
 
 void SaveManager_loadGhostHeadersAsync(SaveManager *this, s32 licenseId, GhostGroup *group);
+
+void SaveManager_saveGhostAsync(SaveManager *this, s32 licenseId, u32 category, u32 index, GhostFile *file, bool saveLicense);
 
 bool SaveManager_computeCourseSha1Async(SaveManager *this, u32 courseId);
 

@@ -7,4 +7,6 @@ typedef struct {
 } SaveManagerProxy;
 static_assert(sizeof(SaveManagerProxy) == 0x128);
 
+bool SaveManagerProxy_hasPendingRequests(const SaveManagerProxy *this);
+
 void SaveManagerProxy_markLicensesDirty(SaveManagerProxy *this);

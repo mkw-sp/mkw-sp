@@ -78,12 +78,22 @@ static_assert(sizeof(CtgpFooter) == 0xd0);
 typedef struct {
     u32 version;
     u32 courseSha1[5];
-    f32 raceTimeDiff;
     f32 lapTimeDiffs[11];
     bool hasSpeedMod : 1;
     bool hasUltraShortcut : 1;
     bool hasHwg : 1;
+    bool hasWallride : 1;
 } SpFooter;
+
+void SpFooter_onRaceStart(const u32 *courseSha1, bool speedModIsEnabled);
+
+void SpFooter_onLapEnd(u32 lap, f32 timeDiff);
+
+void SpFooter_onUltraShortcut(void);
+
+void SpFooter_onHwg(void);
+
+void SpFooter_onWallride(void);
 
 typedef struct {
     u32 magic;
@@ -124,9 +134,15 @@ typedef struct {
     u32 courseId;
     u8 _bc[0xcc - 0xbc];
     u8 country;
-    u8 _cd[0xd8 - 0xcd];
+    u8 _cd[0xd0 - 0xcd];
+    u32 inputsSize;
+    u8 *inputs;
 } GhostFile;
 static_assert(sizeof(GhostFile) == 0xd8);
+
+void GhostFile_writeHeader(const GhostFile *this, RawGhostHeader *header);
+
+u32 GhostFile_spWrite(const GhostFile *this, u8 *raw);
 
 typedef struct {
     u8 _00[0x04 - 0x00];

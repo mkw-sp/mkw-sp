@@ -63,10 +63,13 @@
 
 0x80386000 s_systemManager
 
+0x80511e7c CourseMap_computeFinishTime
+0x80511ec8 CheckPoint_computeFinishTime
 0x80519508 DvdArchive_decompress
 0x8051a4dc GameScene_8051a4dc
 0x8051b7b0 GameScene_reinit
 0x8051c120 RawGhostFile_isValid
+0x8051c7f4 GhostFile_writeHeader
 0x8051ce94 GhostGroup_ct
 0x8051d064 GhostGroup_invalidate
 0x8051d084 GhostGroup_get
@@ -107,6 +110,7 @@
 0x8052fe58 RaceConfig_createInstance
 0x8053015c RaceConfig_ct
 0x80533ed8 RaceManagerPlayer_ct
+0x80534df8 RaceManagerPlayer_calcCheckPoint
 0x80535d14 TimeAttackGameMode_canEndRace
 0x80541794 ResourceManager_getMenuArchiveCount
 0x80541878 ResourceManager_attachLayoutDir
@@ -120,6 +124,7 @@
 0x80548300 RawLicense_reset
 0x80549a68 SaveManager_loadGhostAsync
 0x80549dac SaveManager_loadGhostHeadersAsync
+0x8054a048 SaveManager_saveGhostAsync
 0x8054a868 SaveManager_resetAsync
 0x805784d4 KartMove_init
 0x8057ab68 KartMove_calcAcceleration
@@ -135,6 +140,7 @@
 0x8059077c KartObjectProxy_getKartMove
 0x80590cf8 KartObjectProxy_getInternalSpeed
 0x80591fa4 KartParam_compute
+0x80594bd4 KartState_calcCollisions
 0x80596480 KartSub_calcPass0
 0x80596cfc KartSub_calcPass1
 0x805a1d10 Camera_805a1d10
@@ -225,6 +231,7 @@
 0x8061b358 RegisteredPadManager_getFlags
 0x80620c5c SaveManagerProxy_init
 0x80620dd8 SaveManagerProxy_processRequest
+0x806212fc SaveManagerProxy_hasPendingRequests
 0x80621410 SaveManagerProxy_markLicensesDirty
 0x80623390 Section_createPage
 0x80625da0 TopMenuPage_ct
@@ -327,6 +334,11 @@
 0x808503dc TopMenuPage_onInit
 0x80850db0 TopMenuPage_onActivate
 0x80852450 VsMenuPage_onActivate
+0x808556e4 TimeAttackSplitsPage_ct
+0x80855854 TimeAttackSplitsPage_onFront
+0x80855adc TimeAttackSplitsPage_afterCalc
+0x80855b30 TimeAttackSplitsPage_vf_38
+0x808561dc TimeAttackSplitsPage_getReplacement
 0x80856664 RacePage_initInputs
 0x80856cec RacePage_beforeCalc
 0x808572d4 RacePage_canChangeSection

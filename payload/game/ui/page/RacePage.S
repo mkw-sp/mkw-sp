@@ -114,3 +114,19 @@ PATCH_REPLACE_END(RacePage_canChangeSection, 0x14)
 PATCH_REPLACE_START(RacePage_canReplace, 0xd4)
     b 0x1c
 PATCH_REPLACE_END(RacePage_canReplace, 0xd4)
+
+
+
+// Always get the "FINISH" ending in time trials
+
+PATCH_REPLACE_START(RacePage_beforeCalc, 0x380)
+    b 0x34
+PATCH_REPLACE_END(RacePage_beforeCalc, 0x380)
+
+
+
+// Do not show "Ghost data could not be saved." after 6 minutes
+
+PATCH_REPLACE_START(RacePage_afterCalc, 0x5e8)
+    nop
+PATCH_REPLACE_END(RacePage_afterCalc, 0x5e8)

@@ -31,6 +31,10 @@ static void my_KartObjectManager_createInstance(void) {
     boostAccelerations[0] = 3.0f * speedModFactor;
     ai_808cb550 = 70.0f * speedModFactor;
 
+    u32 courseId = s_raceConfig->raceScenario.courseId;
+    const u32 *courseSha1 = SaveManager_getCourseSha1(s_saveManager, courseId);
+    SpFooter_onRaceStart(courseSha1, speedModIsEnabled);
+
     s_kartObjectManager = new(sizeof(KartObjectManager));
     KartObjectManager_ct(s_kartObjectManager);
 }
