@@ -297,7 +297,7 @@
 0x807e9904 CtrlMenuInstructionText_load
 0x807e9a38 CtrlMenuInstructionText_setMessage
 0x807ea8d8 CtrlRaceBase_dt
-0x807ec6e8 CtrlRaceBase_initSelf
+0x807eaecc CtrlRace2DMapCharacter_initSelf
 0x807eb3cc CtrlRace2DMapCharacter_calcTransform
 0x807ebe40 CtrlRaceBase_vf_44
 0x807ebf14 CtrlRaceBase_vf_2c
@@ -306,6 +306,7 @@
 0x807ec3b0 CtrlRaceBase_vf_48
 0x807ec3c4 CtrlRaceBase_vf_4c
 0x807ec3e0 CtrlRaceBase_process
+0x807ec6e8 CtrlRaceBase_initSelf
 0x807ec7f8 CtrlRaceBase_getPlayerId
 0x807ec8ec CtrlRaceBase_vf_28
 0x807ef8d0 CtrlRaceLap_load
