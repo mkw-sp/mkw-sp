@@ -233,6 +233,7 @@
 0x80626950 ClassSelectPage_ct
 0x8062c0f4 LicenseRecordsPage_ct
 0x8062c3a4 Section_addPages
+0x80633a00 VsMultiRacePage_getControls
 0x80633ba8 TimeAttackRacePage_getNameBalloonCount
 0x80633c7c GhostReplayRacePage_getNameBalloonCount
 0x80633c84 GhostReplayRacePage_getControls

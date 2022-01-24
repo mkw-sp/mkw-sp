@@ -44,7 +44,29 @@ u32 GhostReplayRacePage_getControls(RacePage *this);
 static u32 my_GhostReplayRacePage_getControls(RacePage *this) {
     UNUSED(this);
 
-    return CONTROL_TIME | CONTROL_COUNT | CONTROL_MAP | CONTROL_LAP | CONTROL_ITEM_WINDOW;
+    u32 controls = 0;
+    controls |= CONTROL_TIME;
+    controls |= CONTROL_COUNT;
+    controls |= CONTROL_MAP;
+    controls |= CONTROL_LAP;
+    controls |= CONTROL_ITEM_WINDOW;
+    return controls;
 }
-
 PATCH_B(GhostReplayRacePage_getControls, my_GhostReplayRacePage_getControls);
+
+u32 VsMultiRacePage_getControls(RacePage *this);
+
+static u32 my_VsMultiRacePage_getControls(RacePage *this) {
+    UNUSED(this);
+
+    u32 controls = 0;
+    controls |= CONTROL_TIME;
+    controls |= CONTROL_COUNT;
+    controls |= CONTROL_MAP;
+    controls |= CONTROL_RANK_NUM;
+    controls |= CONTROL_LAP;
+    controls |= CONTROL_ITEM_WINDOW;
+    controls |= CONTROL_ITEM_BALLOON;
+    return controls;
+}
+PATCH_B(VsMultiRacePage_getControls, my_VsMultiRacePage_getControls);
