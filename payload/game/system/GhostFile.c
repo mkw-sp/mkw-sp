@@ -350,8 +350,10 @@ bool RawGhostFile_spDecompress(const u8 *restrict src, u8 *restrict dst) {
     u32 srcOffset = sizeof(RawGhostHeader) + sizeof(u32);
     u32 dstOffset = sizeof(RawGhostHeader);
     u32 srcSize = *(u32 *)(src + sizeof(RawGhostHeader));
-    u32 dstSize = Yaz_getSize(src + srcSize);
-    Yaz_decode(src + srcOffset, dst + dstOffset, srcSize, dstSize);
+    u32 dstSize = Yaz_getSize(src + srcOffset);
+    if (Yaz_decode(src + srcOffset, dst + dstOffset, srcSize, dstSize) != dstSize) {
+        return false;
+    }
 
     u32 crc32 = NETCalcCRC32(dst, 0x2800 - sizeof(u32));
     *(u32 *)(dst + 0x2800 - sizeof(u32)) = crc32;
