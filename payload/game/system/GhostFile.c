@@ -366,6 +366,7 @@ u32 GhostFile_spWrite(const GhostFile *this, u8 *raw) {
 
     RawGhostHeader *header = (RawGhostHeader *)raw;
     GhostFile_writeHeader(this, header);
+    header->type = GHOST_TYPE_FAST_STAFF;
     header->inputsSize = this->inputsSize;
     header->isCompressed = true;
     u8 *dst = raw + sizeof(RawGhostHeader) + sizeof(u32);

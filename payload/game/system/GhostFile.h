@@ -9,6 +9,7 @@ enum {
 enum {
     GHOST_TYPE_NONE = 0x0,
     GHOST_TYPE_SAVED = 0x1,
+    GHOST_TYPE_FAST_STAFF = 0x26,
     GHOST_TYPE_MAX = 0x26,
 };
 
