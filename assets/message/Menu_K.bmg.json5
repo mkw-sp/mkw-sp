@@ -5585,49 +5585,133 @@
     },
     "0x300e": {
         "font": "regular",
-        "string": "Ghost Tags",
+        "string": "Map Icons",
     },
     "0x300f": {
         "font": "regular",
-        "string": "None",
+        "string": "Characters",
     },
     "0x3010": {
         "font": "regular",
-        "string": "Watched",
+        "string": "Miis",
     },
     "0x3011": {
         "font": "regular",
-        "string": "All",
+        "string": "Use characters as minimap icons.",
     },
     "0x3012": {
         "font": "regular",
-        "string": "Do not display any ghost tag.",
+        "string": "Use Miis as minimap icons.",
     },
     "0x3013": {
         "font": "regular",
-        "string": "Only display the tag of the watched ghost.",
+        "string": "Ghost Sorting",
     },
     "0x3014": {
         "font": "regular",
-        "string": "Display tags for all ghosts.",
+        "string": "Fastest",
     },
     "0x3015": {
         "font": "regular",
-        "string": "Solid Ghosts",
+        "string": "Slowest",
     },
     "0x3016": {
         "font": "regular",
-        "string": "Do not make any ghost solid.",
+        "string": "Newest",
     },
     "0x3017": {
         "font": "regular",
-        "string": "Make the current ghost solid.",
+        "string": "Oldest",
     },
     "0x3018": {
         "font": "regular",
-        "string": "Make all ghosts solid.",
+        "string": "Sort ghosts from fastest to slowest.",
     },
     "0x3019": {
+        "font": "regular",
+        "string": "Sort ghosts from slowest to fastest.",
+    },
+    "0x301a": {
+        "font": "regular",
+        "string": "Sort ghosts from newest to oldest.",
+    },
+    "0x301b": {
+        "font": "regular",
+        "string": "Sort ghosts from oldest to newest.",
+    },
+    "0x301c": {
+        "font": "regular",
+        "string": "Tag Visibility",
+    },
+    "0x301d": {
+        "font": "regular",
+        "string": "None",
+    },
+    "0x301e": {
+        "font": "regular",
+        "string": "Watched",
+    },
+    "0x301f": {
+        "font": "regular",
+        "string": "All",
+    },
+    "0x3020": {
+        "font": "regular",
+        "string": "Do not display any ghost tag.",
+    },
+    "0x3021": {
+        "font": "regular",
+        "string": "Only display the tag of the watched ghost.",
+    },
+    "0x3022": {
+        "font": "regular",
+        "string": "Display tags for all ghosts.",
+    },
+    "0x3023": {
+        "font": "regular",
+        "string": "Tag Content",
+    },
+    "0x3024": {
+        "font": "regular",
+        "string": "Name",
+    },
+    "0x3025": {
+        "font": "regular",
+        "string": "Time",
+    },
+    "0x3026": {
+        "font": "regular",
+        "string": "Date",
+    },
+    "0x3027": {
+        "font": "regular",
+        "string": "Use the ghost name as the tag.",
+    },
+    "0x3028": {
+        "font": "regular",
+        "string": "Use the ghost finish time as the tag.",
+    },
+    "0x3029": {
+        "font": "regular",
+        "string": "Use the ghost creation date as the tag.",
+    },
+    "0x302a": {
+        "font": "regular",
+        "string": "Solid Ghosts",
+    },
+    "0x302b": {
+        "font": "regular",
+        "string": "Do not make any ghost solid.",
+    },
+    "0x302c": {
+        "font": "regular",
+        "string": "Make the watched ghost solid.",
+    },
+    "0x302d": {
+        "font": "regular",
+        "string": "Make all ghosts solid.",
+    },
+    "0x302e": {
         "font": "regular",
         "string": "Play Time Trials with these rules.",
     },

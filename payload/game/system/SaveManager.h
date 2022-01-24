@@ -49,14 +49,32 @@ enum {
 };
 
 enum {
+    SP_SETTING_MAP_ICONS_CHARACTERS = 0x0,
+    SP_SETTING_MAP_ICONS_MIIS = 0x1,
+};
+
+enum {
     SP_TA_RULE_CLASS_150CC = 0x0,
     SP_TA_RULE_CLASS_200CC = 0x1,
 };
 
 enum {
-    SP_TA_RULE_GHOST_TAGS_NONE = 0x0,
-    SP_TA_RULE_GHOST_TAGS_WATCHED = 0x1,
-    SP_TA_RULE_GHOST_TAGS_ALL = 0x2,
+    SP_TA_RULE_GHOST_SORTING_FASTEST = 0x0,
+    SP_TA_RULE_GHOST_SORTING_SLOWEST = 0x1,
+    SP_TA_RULE_GHOST_SORTING_NEWEST = 0x2,
+    SP_TA_RULE_GHOST_SORTING_OLDEST = 0x3,
+};
+
+enum {
+    SP_TA_RULE_GHOST_TAG_VISIBILITY_NONE = 0x0,
+    SP_TA_RULE_GHOST_TAG_VISIBILITY_WATCHED = 0x1,
+    SP_TA_RULE_GHOST_TAG_VISIBILITY_ALL = 0x2,
+};
+
+enum {
+    SP_TA_RULE_GHOST_TAG_CONTENT_NAME = 0x0,
+    SP_TA_RULE_GHOST_TAG_CONTENT_TIME = 0x1,
+    SP_TA_RULE_GHOST_TAG_CONTENT_DATE = 0x2,
 };
 
 enum {
@@ -71,8 +89,11 @@ typedef struct {
     u32 driftMode : 1;
     u32 settingHudLabels : 1;
     u32 setting169Fov : 1;
+    u32 settingMapIcons : 1;
     u32 taRuleClass : 1;
-    u32 taRuleGhostTags : 2;
+    u32 taRuleGhostSorting : 2;
+    u32 taRuleGhostTagVisibility : 2;
+    u32 taRuleGhostTagContent : 2;
     u32 taRuleSolidGhosts : 2;
 } SpSaveLicense;
 
@@ -145,9 +166,15 @@ u32 SaveManager_getSettingHudLabels(const SaveManager *this);
 
 u32 SaveManager_getSetting169Fov(const SaveManager *this);
 
+u32 SaveManager_getSettingMapIcons(const SaveManager *this);
+
 u32 SaveManager_getTaRuleClass(const SaveManager *this);
 
-u32 SaveManager_getTaRuleGhostTags(const SaveManager *this);
+u32 SaveManager_getTaRuleGhostSorting(const SaveManager *this);
+
+u32 SaveManager_getTaRuleGhostTagVisibility(const SaveManager *this);
+
+u32 SaveManager_getTaRuleGhostTagContent(const SaveManager *this);
 
 u32 SaveManager_getTaRuleSolidGhosts(const SaveManager *this);
 

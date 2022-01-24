@@ -152,13 +152,21 @@ static bool SpSaveLicense_checkSize(const SpSaveLicense *this) {
 }
 
 static void SpSaveLicense_sanitize(SpSaveLicense *this) {
-    switch (this->taRuleGhostTags) {
-        case SP_TA_RULE_GHOST_TAGS_NONE:
-        case SP_TA_RULE_GHOST_TAGS_WATCHED:
-        case SP_TA_RULE_GHOST_TAGS_ALL:
+    switch (this->taRuleGhostTagVisibility) {
+        case SP_TA_RULE_GHOST_TAG_VISIBILITY_NONE:
+        case SP_TA_RULE_GHOST_TAG_VISIBILITY_WATCHED:
+        case SP_TA_RULE_GHOST_TAG_VISIBILITY_ALL:
             break;
         default:
-            this->taRuleGhostTags = SP_TA_RULE_GHOST_TAGS_ALL;
+            this->taRuleGhostTagVisibility = SP_TA_RULE_GHOST_TAG_VISIBILITY_ALL;
+    }
+    switch (this->taRuleGhostTagContent) {
+        case SP_TA_RULE_GHOST_TAG_CONTENT_NAME:
+        case SP_TA_RULE_GHOST_TAG_CONTENT_TIME:
+        case SP_TA_RULE_GHOST_TAG_CONTENT_DATE:
+            break;
+        default:
+            this->taRuleGhostTagContent = SP_TA_RULE_GHOST_TAG_CONTENT_NAME;
     }
     switch (this->taRuleSolidGhosts) {
         case SP_TA_RULE_SOLID_GHOSTS_NONE:
@@ -396,8 +404,11 @@ void SaveManager_createSpLicense(SaveManager *this, const MiiId *miiId) {
     license->driftMode = SP_DRIFT_MODE_MANUAL;
     license->settingHudLabels = SP_SETTING_HUD_LABELS_SHOW;
     license->setting169Fov = SP_SETTING_169_FOV_DEFAULT;
+    license->settingMapIcons = SP_SETTING_MAP_ICONS_MIIS;
     license->taRuleClass = SP_TA_RULE_CLASS_150CC;
-    license->taRuleGhostTags = SP_TA_RULE_GHOST_TAGS_ALL;
+    license->taRuleGhostSorting = SP_TA_RULE_GHOST_SORTING_FASTEST;
+    license->taRuleGhostTagVisibility = SP_TA_RULE_GHOST_TAG_VISIBILITY_ALL;
+    license->taRuleGhostTagContent = SP_TA_RULE_GHOST_TAG_CONTENT_NAME;
     license->taRuleSolidGhosts = SP_TA_RULE_SOLID_GHOSTS_NONE;
     this->spSections[this->spSectionCount++] = license;
     this->spCurrentLicense = this->spLicenseCount - 1;
@@ -419,12 +430,24 @@ u32 SaveManager_getSetting169Fov(const SaveManager *this) {
     return this->spLicenses[this->spCurrentLicense]->setting169Fov;
 }
 
+u32 SaveManager_getSettingMapIcons(const SaveManager *this) {
+    return this->spLicenses[this->spCurrentLicense]->settingMapIcons;
+}
+
 u32 SaveManager_getTaRuleClass(const SaveManager *this) {
     return this->spLicenses[this->spCurrentLicense]->taRuleClass;
 }
 
-u32 SaveManager_getTaRuleGhostTags(const SaveManager *this) {
-    return this->spLicenses[this->spCurrentLicense]->taRuleGhostTags;
+u32 SaveManager_getTaRuleGhostSorting(const SaveManager *this) {
+    return this->spLicenses[this->spCurrentLicense]->taRuleGhostSorting;
+}
+
+u32 SaveManager_getTaRuleGhostTagVisibility(const SaveManager *this) {
+    return this->spLicenses[this->spCurrentLicense]->taRuleGhostTagVisibility;
+}
+
+u32 SaveManager_getTaRuleGhostTagContent(const SaveManager *this) {
+    return this->spLicenses[this->spCurrentLicense]->taRuleGhostTagContent;
 }
 
 u32 SaveManager_getTaRuleSolidGhosts(const SaveManager *this) {

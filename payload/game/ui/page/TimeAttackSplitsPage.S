@@ -12,5 +12,5 @@ PATCH_REPLACE_END(TimeAttackSplitsPage_vf_38, 0xf4)
 
 PATCH_REPLACE_START(TimeAttackSplitsPage_vf_38, 0x5f4)
     // Set the message id to "Saving ghost data..." first
-    li r4, 0x3025
+    li r4, 0x302f
 PATCH_REPLACE_END(TimeAttackSplitsPage_vf_38, 0x5f4)

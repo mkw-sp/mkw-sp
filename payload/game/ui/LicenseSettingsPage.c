@@ -30,6 +30,9 @@ static void onSettingControlFront(RadioButtonControlHandler *this, RadioButtonCo
     case 1:
         license->setting169Fov = selected;
         break;
+    case 2:
+        license->settingMapIcons = selected;
+        break;
     }
 
     LicenseSettingsPage *page = container_of(this, LicenseSettingsPage, onSettingControlFront);
@@ -127,6 +130,7 @@ static void LicenseSettingsPage_onInit(Page *base) {
     const char *settingNames[] = {
         "HudLabels",
         "169Fov",
+        "MapIcons",
     };
     for (u32 i = 0; i < ARRAY_SIZE(this->settingControls); i++) {
         const SpSaveLicense *license = s_saveManager->spLicenses[s_saveManager->spCurrentLicense];
@@ -137,6 +141,9 @@ static void LicenseSettingsPage_onInit(Page *base) {
             break;
         case 1:
             chosen = license->setting169Fov;
+            break;
+        case 2:
+            chosen = license->settingMapIcons;
             break;
         }
         char variant[0x20];

@@ -59,11 +59,11 @@ void CtrlRaceNameBalloon_calcVisibility(CtrlRaceNameBalloon *this) {
         return;
     }
 
-    switch (SaveManager_getTaRuleGhostTags(s_saveManager)) {
-    case SP_TA_RULE_GHOST_TAGS_NONE:
+    switch (SaveManager_getTaRuleGhostTagVisibility(s_saveManager)) {
+    case SP_TA_RULE_GHOST_TAG_VISIBILITY_NONE:
         this->isHidden = true;
         return;
-    case SP_TA_RULE_GHOST_TAGS_WATCHED:
+    case SP_TA_RULE_GHOST_TAG_VISIBILITY_WATCHED:
         this->isHidden = this->playerId != (s32)lastWatchedPlayerId;
         return;
     default:

@@ -124,10 +124,10 @@ fix_BalloonManager_calc:
     mflr r25
     mr r24, r3
 
-    # Check that the tag rule is "watched"
+    # Check that the tag visibility rule is "watched"
     lis r3, s_saveManager@ha
     lwz r3, s_saveManager@l (r3)
-    bl SaveManager_getTaRuleGhostTags
+    bl SaveManager_getTaRuleGhostTagVisibility
     cmpwi r3, 0x1
     mr r3, r24
     mtlr r25

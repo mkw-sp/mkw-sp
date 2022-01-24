@@ -31,9 +31,15 @@ static void onRuleControlFront(RadioButtonControlHandler *this, RadioButtonContr
         license->taRuleClass = selected;
         break;
     case 1:
-        license->taRuleGhostTags = selected;
+        license->taRuleGhostSorting = selected;
         break;
     case 2:
+        license->taRuleGhostTagVisibility = selected;
+        break;
+    case 3:
+        license->taRuleGhostTagContent = selected;
+        break;
+    case 4:
         license->taRuleSolidGhosts = selected;
         break;
     }
@@ -58,10 +64,12 @@ static void onRuleControlSelect(RadioButtonControlHandler *this, RadioButtonCont
     }
 
     TimeAttackRulesPage *page = container_of(this, TimeAttackRulesPage, onRuleControlSelect);
-    u32 messageIds[][3] = {
+    u32 messageIds[][4] = {
         { 0xd58, 0xd5a },
-        { 0x3012, 0x3013, 0x3014 },
-        { 0x3016, 0x3017, 0x3018 },
+        { 0x3018, 0x3019, 0x301a, 0x301b },
+        { 0x3020, 0x3021, 0x3022 },
+        { 0x3027, 0x3028, 0x3029 },
+        { 0x302b, 0x302c, 0x302d },
     };
     u32 messageId = messageIds[control->index][selected];
     CtrlMenuInstructionText_setMessage(&page->instructionText, messageId, NULL);
@@ -92,7 +100,7 @@ static void onOkButtonSelect(PushButtonHandler *this, PushButton *button, u32 lo
     UNUSED(localPlayerId);
 
     TimeAttackRulesPage *page = container_of(this, TimeAttackRulesPage, onOkButtonSelect);
-    CtrlMenuInstructionText_setMessage(&page->instructionText, 0x3019, NULL);
+    CtrlMenuInstructionText_setMessage(&page->instructionText, 0x302e, NULL);
 }
 
 static const PushButtonHandler_vt onOkButtonSelect_vt = {
@@ -169,10 +177,12 @@ static void TimeAttackRulesPage_onInit(Page *base) {
     PushButton_load(&this->backButton, "button", "Back", "ButtonBack", 0x1, false, true);
     const char *ruleNames[] = {
         "Class",
-        "GhostTags",
+        "GhostSorting",
+        "GhostTagVisibility",
+        "GhostTagContent",
         "SolidGhosts",
     };
-    u32 buttonCounts[] = { 2, 3, 3 };
+    u32 buttonCounts[] = { 2, 4, 3, 3, 3 };
     for (u32 i = 0; i < ARRAY_SIZE(this->ruleControls); i++) {
         const SpSaveLicense *license = s_saveManager->spLicenses[s_saveManager->spCurrentLicense];
         u32 chosen;
@@ -181,16 +191,22 @@ static void TimeAttackRulesPage_onInit(Page *base) {
             chosen = license->taRuleClass;
             break;
         case 1:
-            chosen = license->taRuleGhostTags;
+            chosen = license->taRuleGhostSorting;
             break;
         case 2:
+            chosen = license->taRuleGhostTagVisibility;
+            break;
+        case 3:
+            chosen = license->taRuleGhostTagContent;
+            break;
+        case 4:
             chosen = license->taRuleSolidGhosts;
             break;
         }
         char variant[0x20];
         snprintf(variant, sizeof(variant), "Radio%s", ruleNames[i]);
-        char buffers[3][0x20];
-        const char *buttonVariants[3];
+        char buffers[4][0x20];
+        const char *buttonVariants[4];
         for (u32 j = 0; j < buttonCounts[i]; j++) {
             snprintf(buffers[j], sizeof(*buffers), "Option%s%lu", ruleNames[i], j);
             buttonVariants[j] = buffers[j];
@@ -221,7 +237,7 @@ static void TimeAttackRulesPage_onActivate(Page *base) {
     TimeAttackRulesPage *this = (TimeAttackRulesPage *)base;
 
     PushButton_selectDefault(&this->okButton, 0);
-    CtrlMenuInstructionText_setMessage(&this->instructionText, 0x3019, NULL);
+    CtrlMenuInstructionText_setMessage(&this->instructionText, 0x302e, NULL);
 
     this->replacement = -1; // TODO enum
 }
