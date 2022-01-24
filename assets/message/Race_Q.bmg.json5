@@ -727,4 +727,8 @@
         "font": "regular",
         "string": "Saving ghost data...",
     },
+    "0x3030": {
+        "font": "regular",
+        "string": "{arg integer|0 4}-{arg integer|1 2}-{arg integer|2 2}",
+    },
 }

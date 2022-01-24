@@ -312,6 +312,7 @@
 0x807ef8d0 CtrlRaceLap_load
 0x807efd18 CtrlRaceNameBalloon_load
 0x807efec8 CtrlRaceNameBalloon_initSelf
+0x807f0044 CtrlRaceNameBalloon_refresh
 0x807f06e8 CtrlRaceNameBalloon_calcSelf
 0x807f1094 CtrlRaceNameBalloon_calcPosition
 0x807f132c BalloonManager_calc

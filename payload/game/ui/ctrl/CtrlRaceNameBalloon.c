@@ -2,8 +2,11 @@
 
 #include "../page/RacePage.h"
 
+#include "../SectionManager.h"
+
 #include "../../race/RaceGlobals.h"
 
+#include "../../system/RaceConfig.h"
 #include "../../system/SaveManager.h"
 
 static BalloonManager *my_BalloonManager_ct(BalloonManager *this) {
@@ -44,6 +47,57 @@ static void my_BalloonManager_addNameControl(BalloonManager *this, CtrlRaceNameB
 }
 
 PATCH_B(BalloonManager_addNameControl, my_BalloonManager_addNameControl);
+
+static void CtrlRaceNameBalloon_refreshTextName(CtrlRaceNameBalloon *this, u32 playerId) {
+    ExtendedMessageInfo info = {
+        .miis[0] = MiiGroup_get(&s_sectionManager->globalContext->playerMiis, playerId),
+    };
+    LayoutUIControl_setMessage(this, "chara_name", 0x251d, &info);
+}
+
+static void CtrlRaceNameBalloon_refreshTextTime(CtrlRaceNameBalloon *this, u32 playerId) {
+    const RaceConfigScenario *raceScenario = &s_raceConfig->raceScenario;
+    u32 index = raceScenario->players[0].type == PLAYER_TYPE_GHOST ? playerId : playerId - 1;
+    const RawGhostHeader *header = (RawGhostHeader *)(*raceScenario->ghostBuffer)[index];
+    ExtendedMessageInfo info = {
+        .intVals[0] = header->raceTime.minutes,
+        .intVals[1] = header->raceTime.seconds,
+        .intVals[2] = header->raceTime.milliseconds,
+    };
+    LayoutUIControl_setMessage(this, "chara_name", 0x578, &info);
+}
+
+static void CtrlRaceNameBalloon_refreshTextDate(CtrlRaceNameBalloon *this, u32 playerId) {
+    const RaceConfigScenario *raceScenario = &s_raceConfig->raceScenario;
+    u32 index = raceScenario->players[0].type == PLAYER_TYPE_GHOST ? playerId : playerId - 1;
+    const RawGhostHeader *header = (RawGhostHeader *)(*raceScenario->ghostBuffer)[index];
+    ExtendedMessageInfo info = {
+        .intVals[0] = header->year + 2000,
+        .intVals[1] = header->month,
+        .intVals[2] = header->day,
+    };
+    LayoutUIControl_setMessage(this, "chara_name", 0x3030, &info);
+}
+
+void CtrlRaceNameBalloon_refreshText(CtrlRaceNameBalloon *this, u32 playerId) {
+    u32 playerType = s_raceConfig->raceScenario.players[playerId].type;
+    if (playerType != PLAYER_TYPE_GHOST) {
+        CtrlRaceNameBalloon_refreshTextName(this, playerId);
+        return;
+    }
+
+    switch (SaveManager_getTaRuleGhostTagContent(s_saveManager)) {
+    case SP_TA_RULE_GHOST_TAG_CONTENT_NAME:
+        CtrlRaceNameBalloon_refreshTextName(this, playerId);
+        break;
+    case SP_TA_RULE_GHOST_TAG_CONTENT_TIME:
+        CtrlRaceNameBalloon_refreshTextTime(this, playerId);
+        break;
+    case SP_TA_RULE_GHOST_TAG_CONTENT_DATE:
+        CtrlRaceNameBalloon_refreshTextDate(this, playerId);
+        break;
+    }
+}
 
 void CtrlRaceNameBalloon_calcVisibility(CtrlRaceNameBalloon *this) {
     // An artificial 1 frame delay is added to match the camera.

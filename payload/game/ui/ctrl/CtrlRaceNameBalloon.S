@@ -191,3 +191,11 @@ PATCH_REPLACE_END(BalloonManager_calc, 0x128)
 PATCH_REPLACE_START(CtrlRaceNameBalloon_load, 0x17c)
     nop
 PATCH_REPLACE_END(CtrlRaceNameBalloon_load, 0x17c)
+
+PATCH_B_START(CtrlRaceNameBalloon_refresh, 0x4d8)
+    mr r3, r29
+    mr r4, r30
+    bl CtrlRaceNameBalloon_refreshText
+
+    b CtrlRaceNameBalloon_refresh + 0x540
+PATCH_B_END(CtrlRaceNameBalloon_refresh, 0x4d8)
