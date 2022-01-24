@@ -50,11 +50,7 @@
 0x801d2544 NETSHA1Update
 0x801d25f8 NETSHA1GetDigest
 
-0x80226ac8 EGG_ExpHeap_create
-0x80226c90 EGG_ExpHeap_getAllocatableSize
-0x80226ebc EGG_ExpHeap_freeAll
 0x80229814 EGG_Heap_alloc
-0x80229adc EGG_Heap_findContainHeap
 0x80229b84 EGG_Heap_free
 0x80229dcc new
 0x80229e14 delete
@@ -66,8 +62,6 @@
 0x80511e7c CourseMap_computeFinishTime
 0x80511ec8 CheckPoint_computeFinishTime
 0x80519508 DvdArchive_decompress
-0x8051a4dc GameScene_8051a4dc
-0x8051b7b0 GameScene_reinit
 0x8051c120 RawGhostFile_isValid
 0x8051c7f4 GhostFile_writeHeader
 0x8051ce94 GhostGroup_ct

@@ -108,8 +108,6 @@ code_in_files = {
         os.path.join('game', 'snd', 'Snd.S'),
         os.path.join('game', 'system', 'CourseMap.S'),
         os.path.join('game', 'system', 'DvdArchive.S'),
-        os.path.join('game', 'system', 'DynMem.c'),
-        os.path.join('game', 'system', 'GameScene.S'),
         os.path.join('game', 'system', 'GhostFile.c'),
         os.path.join('game', 'system', 'HomeButton.S'),
         os.path.join('game', 'system', 'InputManager.S'),

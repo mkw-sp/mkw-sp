@@ -1,6 +1,5 @@
 #include "SaveManager.h"
 
-#include "DynMem.h"
 #include "NandHelper.h"
 #include "RaceConfig.h"
 #include "ResourceManager.h"
@@ -641,29 +640,44 @@ static void SaveManager_computeCourseSha1(SaveManager *this, u32 courseId) {
         return;
     }
 
-    u32 srcSize = OSRoundUp32B(fileInfo.length);
-    u8 *src = spAlloc(srcSize, 0x20, DynMem_getHeapMem2());
-    s32 result = DVDRead(&fileInfo, src, srcSize, 0);
-    DVDClose(&fileInfo);
-    if (result != (s32)srcSize) {
-        goto cleanupSrc;
+    u32 fileSize = OSRoundUp32B(fileInfo.length), fileOffset = 0x0;
+    YazDecoder yazDecoder;
+    YazDecoder_init(&yazDecoder);
+    u32 yazResult = YAZ_DECODER_RESULT_WANTS_SRC;
+    NETSHA1Context sha1Cx;
+    NETSHA1Init(&sha1Cx);
+    alignas(0x20) u8 srcBuffer[0x1000];
+    alignas(0x20) u8 dstBuffer[0x1000];
+    while (fileOffset < fileSize && yazResult != YAZ_DECODER_RESULT_DONE) {
+        u32 srcSize = fileSize - fileOffset;
+        if (srcSize > sizeof(srcBuffer)) {
+            srcSize = sizeof(srcBuffer);
+        }
+        if (DVDRead(&fileInfo, srcBuffer, srcSize, fileOffset) != (s32)srcSize) {
+            goto cleanup;
+        }
+        fileOffset += srcSize;
+
+        const u8 *src = srcBuffer;
+        do {
+            u8 *dst = dstBuffer;
+            u32 dstSize = sizeof(dstBuffer);
+            yazResult = YazDecoder_feed(&yazDecoder, &src, &dst, &srcSize, &dstSize);
+            if (yazResult == YAZ_DECODER_RESULT_ERROR) {
+                goto cleanup;
+            }
+
+            NETSHA1Update(&sha1Cx, dstBuffer, dst - dstBuffer);
+        } while (yazResult == YAZ_DECODER_RESULT_WANTS_DST);
     }
 
-    u32 dstSize = Yaz_getSize(src);
-    u8 *dst = spAlloc(dstSize, 0x4, DynMem_getHeapMem1());
-    if (Yaz_decode(src, dst, srcSize, dstSize) != dstSize) {
-        goto cleanupDst;
-    }
-
-    NETCalcSHA1(this->courseSha1s[courseId], dst, dstSize);
+    NETSHA1GetDigest(&sha1Cx, this->courseSha1s[courseId]);
     this->courseSha1IsValid[courseId] = true;
 
     this->isBusy = false;
 
-cleanupDst:
-    spFree(dst);
-cleanupSrc:
-    spFree(src);
+cleanup:
+    DVDClose(&fileInfo);
 }
 
 static void computeCourseSha1Task(void *arg) {
