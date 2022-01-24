@@ -189,7 +189,7 @@ static void YazDecoder_write(YazDecoder *this, u8 *restrict *dst, u32 *dstSize, 
     }
 }
 
-bool YazDecoder_process(YazDecoder *this, const u8 *restrict *src, u8 *restrict *dst, u32 *srcSize, u32 *dstSize) {
+static bool YazDecoder_process(YazDecoder *this, const u8 *restrict *src, u8 *restrict *dst, u32 *srcSize, u32 *dstSize) {
     u8 val;
     switch (this->state) {
     case STATE_HEADER:
