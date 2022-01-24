@@ -30,14 +30,38 @@ void GhostManagerPage_dispatchPopulate(GhostManagerPage *this) {
     this->currentRequest = GHOST_MANAGER_PAGE_REQUEST_POPULATE;
 }
 
+static int compareGhostEntriesByTime(const GhostEntry *e0, const GhostEntry *e1) {
+    const Time *t0 = &e0->file->raceTime;
+    const Time *t1 = &e1->file->raceTime;
+    s32 d0 = (t0->minutes * 60 + t0->seconds) * 1000 + t0->milliseconds;
+    s32 d1 = (t1->minutes * 60 + t1->seconds) * 1000 + t1->milliseconds;
+    return d0 < d1 ? -1 : d0 > d1 ? 1 : 0;
+}
+
+static int compareGhostEntriesByDate(const GhostEntry *e0, const GhostEntry *e1) {
+    const GhostFile *f0 = e0->file;
+    const GhostFile *f1 = e1->file;
+    s32 t0 = (f0->year * 12 + f0->month) * 31 + f0->day;
+    s32 t1 = (f1->year * 12 + f1->month) * 31 + f1->day;
+    return t0 < t1 ? -1 : t0 > t1 ? 1 : 0;
+}
+
 static int compareGhostEntries(const void *p0, const void *p1) {
     const GhostEntry *e0 = p0;
     const GhostEntry *e1 = p1;
-    const Time *t0 = &e0->file->raceTime;
-    const Time *t1 = &e1->file->raceTime;
-    s32 d0 = ((t0->minutes * 60) + t0->seconds) * 1000 + t0->milliseconds;
-    s32 d1 = ((t1->minutes * 60) + t1->seconds) * 1000 + t1->milliseconds;
-    return d0 - d1;
+    switch (SaveManager_getTaRuleGhostSorting(s_saveManager)) {
+    case SP_TA_RULE_GHOST_SORTING_FASTEST:
+        return compareGhostEntriesByTime(e0, e1);
+    case SP_TA_RULE_GHOST_SORTING_SLOWEST:
+        return compareGhostEntriesByTime(e1, e0);
+    case SP_TA_RULE_GHOST_SORTING_NEWEST:
+        return compareGhostEntriesByDate(e1, e0);
+    case SP_TA_RULE_GHOST_SORTING_OLDEST:
+        return compareGhostEntriesByDate(e0, e1);
+    default:
+        // Should be unreachable
+        return 0;
+    }
 }
 
 void GhostManagerPage_processPopulate(GhostManagerPage *this) {

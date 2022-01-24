@@ -133,7 +133,11 @@ typedef struct {
     u32 characterId;
     u32 vehicleId;
     u32 courseId;
-    u8 _bc[0xcc - 0xbc];
+    u8 _bc[0xc0 - 0xbc];
+    u8 year;
+    u8 month;
+    u8 day;
+    u8 _c3[0xcc - 0xc3];
     u8 country;
     u8 _cd[0xd0 - 0xcd];
     u32 inputsSize;
