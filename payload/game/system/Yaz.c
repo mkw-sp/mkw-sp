@@ -193,7 +193,8 @@ static bool YazDecoder_process(YazDecoder *this, const u8 *restrict *src, u8 *re
     u8 val;
     switch (this->state) {
     case STATE_HEADER:
-        this->header.buffer[this->totalSrcSize] = YazDecoder_read(this, src, srcSize);
+        val = YazDecoder_read(this, src, srcSize);
+        this->header.buffer[this->totalSrcSize - 1] = val;
         if (this->totalSrcSize == 0x10) {
             u32 magic = readU32(this->header.buffer, 0x0);
             if (magic != YAZ0_MAGIC && magic != YAZ1_MAGIC) {
