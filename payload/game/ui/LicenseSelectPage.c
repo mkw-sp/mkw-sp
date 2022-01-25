@@ -111,7 +111,8 @@ static void LicenseSelectPage_onInit(Page *base) {
         LicenseSelectButton_load(&this->licenseButtons[i], i);
     }
 
-    MultiControlInputManager_setHandler(&this->inputManager, INPUT_ID_BACK, &this->onBack, false, false);
+    MultiControlInputManager_setHandler(&this->inputManager, INPUT_ID_BACK, &this->onBack, false,
+            false);
     PushButton_setFrontHandler(&this->aboutButton, &this->onAboutButtonFront, false);
 
     CtrlMenuPageTitleText_setMessage(&this->pageTitleText, 0x838, NULL);

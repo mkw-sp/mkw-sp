@@ -77,11 +77,13 @@ extern u8 LayoutUIControl_vf_30;
 
 extern u8 LayoutUIControl_vf_38;
 
-void LayoutUIControl_load(LayoutUIControl *this, const char *dir, const char *file, const char *variant, const char *const *groups);
+void LayoutUIControl_load(LayoutUIControl *this, const char *dir, const char *file,
+        const char *variant, const char *const *groups);
 
 void LayoutUIControl_setParentPane(LayoutUIControl *this, const char *pane);
 
-void LayoutUIControl_setMessage(LayoutUIControl *this, const char *pane, u32 messageId, ExtendedMessageInfo *info);
+void LayoutUIControl_setMessage(LayoutUIControl *this, const char *pane, u32 messageId,
+        ExtendedMessageInfo *info);
 
 void LayoutUIControl_setMessageAll(LayoutUIControl *this, u32 messageId, ExtendedMessageInfo *info);
 
@@ -89,6 +91,7 @@ void LayoutUIControl_setPicture(LayoutUIControl *this, const char *dstPane, cons
 
 bool LayoutUIControl_hasPictureSourcePane(LayoutUIControl *this, const char *pane);
 
-void LayoutUIControl_setMiiPicture(LayoutUIControl *this, const char *pane, MiiGroup *miiGroup, u32 index, u32 preset);
+void LayoutUIControl_setMiiPicture(LayoutUIControl *this, const char *pane, MiiGroup *miiGroup,
+        u32 index, u32 preset);
 
 void LayoutUIControl_setPaneVisible(LayoutUIControl *this, const char *pane, bool visible);

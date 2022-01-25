@@ -154,7 +154,8 @@ void SaveManager_resetAsync(SaveManager *this);
 
 void SaveManager_saveLicensesAsync(SaveManager *this);
 
-void SaveManager_createLicense(SaveManager *this, u32 licenseId, const MiiId *miiId, const wchar_t *miiName);
+void SaveManager_createLicense(SaveManager *this, u32 licenseId, const MiiId *miiId,
+        const wchar_t *miiName);
 
 void SaveManager_selectLicense(SaveManager *this, u32 licenseId);
 
@@ -178,11 +179,13 @@ u32 SaveManager_getTaRuleGhostTagContent(const SaveManager *this);
 
 u32 SaveManager_getTaRuleSolidGhosts(const SaveManager *this);
 
-void SaveManager_loadGhostAsync(SaveManager *this, s32 licenseId, u32 category, u32 index, u32 courseId);
+void SaveManager_loadGhostAsync(SaveManager *this, s32 licenseId, u32 category, u32 index,
+        u32 courseId);
 
 void SaveManager_loadGhostHeadersAsync(SaveManager *this, s32 licenseId, GhostGroup *group);
 
-void SaveManager_saveGhostAsync(SaveManager *this, s32 licenseId, u32 category, u32 index, GhostFile *file, bool saveLicense);
+void SaveManager_saveGhostAsync(SaveManager *this, s32 licenseId, u32 category, u32 index,
+        GhostFile *file, bool saveLicense);
 
 bool SaveManager_computeCourseSha1Async(SaveManager *this, u32 courseId);
 

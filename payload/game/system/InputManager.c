@@ -34,7 +34,8 @@ void InputManager_calcMultiGhostProxies(InputManager *this, bool isPaused) {
     }
 }
 
-void InputManager_setGhostPad(InputManager *this, u32 ghostId, const void *ghostInputs, bool driftIsAuto) {
+void InputManager_setGhostPad(InputManager *this, u32 ghostId, const void *ghostInputs,
+        bool driftIsAuto) {
     GhostPadProxy *proxy = &this->multiGhostProxies[ghostId];
     GhostPad *pad = &this->multiGhostPads[ghostId];
     GhostPadProxy_setPad(proxy, pad, ghostInputs, driftIsAuto);

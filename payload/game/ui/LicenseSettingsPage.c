@@ -17,7 +17,8 @@ static const InputHandler_vt onBack_vt = {
     .handle = onBack,
 };
 
-static void onSettingControlFront(RadioButtonControlHandler *this, RadioButtonControl *control, u32 UNUSED(localPlayerId), s32 selected) {
+static void onSettingControlFront(RadioButtonControlHandler *this, RadioButtonControl *control,
+        u32 UNUSED(localPlayerId), s32 selected) {
     SpSaveLicense *license = s_saveManager->spLicenses[s_saveManager->spCurrentLicense];
     switch (control->index) {
     case 0:
@@ -45,7 +46,8 @@ static const RadioButtonControlHandler_vt onSettingControlFront_vt = {
     .handle = onSettingControlFront,
 };
 
-static void onSettingControlSelect(RadioButtonControlHandler *this, RadioButtonControl *control, u32 UNUSED(localPlayerId), s32 selected) {
+static void onSettingControlSelect(RadioButtonControlHandler *this, RadioButtonControl *control,
+        u32 UNUSED(localPlayerId), s32 selected) {
     if (selected < 0) {
         return;
     }
@@ -146,11 +148,14 @@ static void LicenseSettingsPage_onInit(Page *base) {
             snprintf(buffers[j], sizeof(*buffers), "Option%s%lu", settingNames[i], j);
             buttonVariants[j] = buffers[j];
         }
-        RadioButtonControl_load(&this->settingControls[i], 2, chosen, "control", "LicenseSettingRadioBase", variant, "LicenseSettingRadioOption", buttonVariants, 0x1, false, false);
+        RadioButtonControl_load(&this->settingControls[i], 2, chosen, "control",
+                "LicenseSettingRadioBase", variant, "LicenseSettingRadioOption", buttonVariants,
+                0x1, false, false);
         this->settingControls[i].index = i;
     }
 
-    MultiControlInputManager_setHandler(&this->inputManager, INPUT_ID_BACK, &this->onBack, false, false);
+    MultiControlInputManager_setHandler(&this->inputManager, INPUT_ID_BACK, &this->onBack, false,
+            false);
     for (u32 i = 0; i < ARRAY_SIZE(this->settingControls); i++) {
         RadioButtonControl *control = &this->settingControls[i];
         RadioButtonControl_setFrontHandler(control, &this->onSettingControlFront);

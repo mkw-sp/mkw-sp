@@ -134,14 +134,17 @@ static void setupTimeAttack(bool isRace, bool fromReplay) {
 
 void GhostManagerPage_setupGhostReplay(GhostManagerPage *this, bool isStaffGhost);
 
-static void my_GhostManagerPage_setupGhostReplay(GhostManagerPage *UNUSED(this), bool UNUSED(isStaffGhost)) {
+static void my_GhostManagerPage_setupGhostReplay(GhostManagerPage *UNUSED(this),
+        bool UNUSED(isStaffGhost)) {
     setupTimeAttack(false, false);
 }
 PATCH_B(GhostManagerPage_setupGhostReplay, my_GhostManagerPage_setupGhostReplay);
 
-void GhostManagerPage_setupGhostRace(GhostManagerPage *this, bool isStaffGhost, bool isNewRecord, bool fromReplay);
+void GhostManagerPage_setupGhostRace(GhostManagerPage *this, bool isStaffGhost, bool isNewRecord,
+        bool fromReplay);
 
-static void my_GhostManagerPage_setupGhostRace(GhostManagerPage *UNUSED(this), bool UNUSED(isStaffGhost), bool UNUSED(isNewRecord), bool fromReplay) {
+static void my_GhostManagerPage_setupGhostRace(GhostManagerPage *UNUSED(this),
+        bool UNUSED(isStaffGhost), bool UNUSED(isNewRecord), bool fromReplay) {
     setupTimeAttack(true, fromReplay);
 }
 PATCH_B(GhostManagerPage_setupGhostRace, my_GhostManagerPage_setupGhostRace);

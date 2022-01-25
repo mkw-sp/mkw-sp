@@ -19,5 +19,4 @@ typedef struct {
 } GlobalContext;
 static_assert(offsetof(GlobalContext, timeAttackGhostCount) == 0x510);
 
-
 void GlobalContext_copyPlayerMiis(GlobalContext *this);

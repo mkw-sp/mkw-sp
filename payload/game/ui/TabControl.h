@@ -16,7 +16,8 @@ TabOptionButton *TabOptionButton_ct(TabOptionButton *this);
 
 void TabOptionButton_dt(TabOptionButton *this, s32 type);
 
-void TabOptionButton_load(TabOptionButton *this, u32 i, const char *dir, const char *file, const char *variant, u32 playerFlags, bool r8, bool pointerOnly);
+void TabOptionButton_load(TabOptionButton *this, u32 i, const char *dir, const char *file,
+        const char *variant, u32 playerFlags, bool r8, bool pointerOnly);
 
 void TabOptionButton_setPlayerFlags(TabOptionButton *this, u32 playerFlags);
 

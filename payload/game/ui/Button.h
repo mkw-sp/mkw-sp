@@ -35,7 +35,8 @@ PushButton *PushButton_ct(PushButton *this);
 void PushButton_dt(PushButton *this, s32 type);
 
 // TODO r8
-void PushButton_load(PushButton *this, const char *dir, const char *file, const char *variant, u32 playerFlags, bool r8, bool pointerOnly);
+void PushButton_load(PushButton *this, const char *dir, const char *file, const char *variant,
+        u32 playerFlags, bool r8, bool pointerOnly);
 
 void PushButton_setFrontHandler(PushButton *this, PushButtonHandler *handler, bool repeat);
 

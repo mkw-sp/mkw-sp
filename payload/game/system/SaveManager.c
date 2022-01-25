@@ -144,37 +144,37 @@ static bool setupSpSave(const char *path) {
 
 static bool SpSaveLicense_checkSize(const SpSaveLicense *this) {
     switch (this->version) {
-        case SP_SAVE_LICENSE_VERSION:
-            return this->size == sizeof(SpSaveLicense);
-        default:
-            return this->size >= sizeof(SpSaveLicense);
+    case SP_SAVE_LICENSE_VERSION:
+        return this->size == sizeof(SpSaveLicense);
+    default:
+        return this->size >= sizeof(SpSaveLicense);
     }
 }
 
 static void SpSaveLicense_sanitize(SpSaveLicense *this) {
     switch (this->taRuleGhostTagVisibility) {
-        case SP_TA_RULE_GHOST_TAG_VISIBILITY_NONE:
-        case SP_TA_RULE_GHOST_TAG_VISIBILITY_WATCHED:
-        case SP_TA_RULE_GHOST_TAG_VISIBILITY_ALL:
-            break;
-        default:
-            this->taRuleGhostTagVisibility = SP_TA_RULE_GHOST_TAG_VISIBILITY_ALL;
+    case SP_TA_RULE_GHOST_TAG_VISIBILITY_NONE:
+    case SP_TA_RULE_GHOST_TAG_VISIBILITY_WATCHED:
+    case SP_TA_RULE_GHOST_TAG_VISIBILITY_ALL:
+        break;
+    default:
+        this->taRuleGhostTagVisibility = SP_TA_RULE_GHOST_TAG_VISIBILITY_ALL;
     }
     switch (this->taRuleGhostTagContent) {
-        case SP_TA_RULE_GHOST_TAG_CONTENT_NAME:
-        case SP_TA_RULE_GHOST_TAG_CONTENT_TIME:
-        case SP_TA_RULE_GHOST_TAG_CONTENT_DATE:
-            break;
-        default:
-            this->taRuleGhostTagContent = SP_TA_RULE_GHOST_TAG_CONTENT_NAME;
+    case SP_TA_RULE_GHOST_TAG_CONTENT_NAME:
+    case SP_TA_RULE_GHOST_TAG_CONTENT_TIME:
+    case SP_TA_RULE_GHOST_TAG_CONTENT_DATE:
+        break;
+    default:
+        this->taRuleGhostTagContent = SP_TA_RULE_GHOST_TAG_CONTENT_NAME;
     }
     switch (this->taRuleSolidGhosts) {
-        case SP_TA_RULE_SOLID_GHOSTS_NONE:
-        case SP_TA_RULE_SOLID_GHOSTS_WATCHED:
-        case SP_TA_RULE_SOLID_GHOSTS_ALL:
-            break;
-        default:
-            this->taRuleSolidGhosts = SP_TA_RULE_SOLID_GHOSTS_NONE;
+    case SP_TA_RULE_SOLID_GHOSTS_NONE:
+    case SP_TA_RULE_SOLID_GHOSTS_WATCHED:
+    case SP_TA_RULE_SOLID_GHOSTS_ALL:
+        break;
+    default:
+        this->taRuleSolidGhosts = SP_TA_RULE_SOLID_GHOSTS_NONE;
     }
 }
 
@@ -464,7 +464,8 @@ static void loadGhostHeadersTask(void *UNUSED(arg)) {
     SaveManager_loadGhostHeaders(s_saveManager);
 }
 
-static void my_SaveManager_loadGhostHeadersAsync(SaveManager *this, s32 UNUSED(licenseId), GhostGroup *group) {
+static void my_SaveManager_loadGhostHeadersAsync(SaveManager *this, s32 UNUSED(licenseId),
+        GhostGroup *group) {
     if (group->count == 0) {
         return;
     }
@@ -524,8 +525,8 @@ static void loadGhostsTask(void *UNUSED(arg)) {
     SaveManager_loadGhosts(s_saveManager);
 }
 
-static void my_SaveManager_loadGhostAsync(SaveManager *this, s32 UNUSED(licenseId), u32 UNUSED(category), u32 UNUSED(index), u32 UNUSED(courseId)) {
-
+static void my_SaveManager_loadGhostAsync(SaveManager *this, s32 UNUSED(licenseId),
+        u32 UNUSED(category), u32 UNUSED(index), u32 UNUSED(courseId)) {
     this->isBusy = true;
     EGG_TaskThread_request(this->taskThread, loadGhostsTask, NULL, NULL);
 }
@@ -630,7 +631,8 @@ static void saveGhostTask(void *arg) {
     SaveManager_saveGhost(s_saveManager, file);
 }
 
-static void my_SaveManager_saveGhostAsync(SaveManager *this, s32 UNUSED(licenseId), u32 UNUSED(category), u32 UNUSED(index), GhostFile *file, bool UNUSED(saveLicense)) {
+static void my_SaveManager_saveGhostAsync(SaveManager *this, s32 UNUSED(licenseId),
+        u32 UNUSED(category), u32 UNUSED(index), GhostFile *file, bool UNUSED(saveLicense)) {
     this->isBusy = true;
     EGG_TaskThread_request(this->taskThread, saveGhostTask, file, NULL);
 }

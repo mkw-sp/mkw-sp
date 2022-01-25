@@ -20,7 +20,8 @@ static const InputHandler_vt onBack_vt = {
     .handle = onBack,
 };
 
-static void onRuleControlFront(RadioButtonControlHandler *this, RadioButtonControl *control, u32 UNUSED(localPlayerId), s32 selected) {
+static void onRuleControlFront(RadioButtonControlHandler *this, RadioButtonControl *control,
+        u32 UNUSED(localPlayerId), s32 selected) {
     SpSaveLicense *license = s_saveManager->spLicenses[s_saveManager->spCurrentLicense];
     switch (control->index) {
     case 0:
@@ -52,7 +53,8 @@ static const RadioButtonControlHandler_vt onRuleControlFront_vt = {
     .handle = onRuleControlFront,
 };
 
-static void onRuleControlSelect(RadioButtonControlHandler *this, RadioButtonControl *control, u32 UNUSED(localPlayerId), s32 selected) {
+static void onRuleControlSelect(RadioButtonControlHandler *this, RadioButtonControl *control,
+        u32 UNUSED(localPlayerId), s32 selected) {
     if (selected < 0) {
         return;
     }
@@ -73,11 +75,13 @@ static const RadioButtonControlHandler_vt onRuleControlSelect_vt = {
     .handle = onRuleControlSelect,
 };
 
-static void onOkButtonFront(PushButtonHandler *this, PushButton *button, u32 UNUSED(localPlayerId)) {
+static void onOkButtonFront(PushButtonHandler *this, PushButton *button,
+        u32 UNUSED(localPlayerId)) {
     TimeAttackRulesPage *page = CONTAINER_OF(this, TimeAttackRulesPage, onOkButtonFront);
     page->replacement = PAGE_ID_CHARACTER_SELECT;
     Section *currentSection = s_sectionManager->currentSection;
-    CharacterSelectPage *characterSelectPage = (CharacterSelectPage *)currentSection->pages[PAGE_ID_CHARACTER_SELECT];
+    CharacterSelectPage *characterSelectPage =
+            (CharacterSelectPage *)currentSection->pages[PAGE_ID_CHARACTER_SELECT];
     characterSelectPage->prevId = page->id;
     f32 delay = PushButton_getDelay(button);
     Page_startReplace(page, PAGE_ANIMATION_NEXT, delay);
@@ -87,7 +91,8 @@ static const PushButtonHandler_vt onOkButtonFront_vt = {
     .handle = onOkButtonFront,
 };
 
-static void onOkButtonSelect(PushButtonHandler *this, PushButton *UNUSED(button), u32 UNUSED(localPlayerId)) {
+static void onOkButtonSelect(PushButtonHandler *this, PushButton *UNUSED(button),
+        u32 UNUSED(localPlayerId)) {
     TimeAttackRulesPage *page = CONTAINER_OF(this, TimeAttackRulesPage, onOkButtonSelect);
     CtrlMenuInstructionText_setMessage(&page->instructionText, 0x302e, NULL);
 }
@@ -200,11 +205,14 @@ static void TimeAttackRulesPage_onInit(Page *base) {
             snprintf(buffers[j], sizeof(*buffers), "Option%s%lu", ruleNames[i], j);
             buttonVariants[j] = buffers[j];
         }
-        RadioButtonControl_load(&this->ruleControls[i], buttonCounts[i], chosen, "control", "TASettingRadioBase", variant, "TASettingRadioOption", buttonVariants, 0x1, false, false);
+        RadioButtonControl_load(&this->ruleControls[i], buttonCounts[i], chosen, "control",
+                "TASettingRadioBase", variant, "TASettingRadioOption", buttonVariants, 0x1, false,
+                false);
         this->ruleControls[i].index = i;
     }
 
-    MultiControlInputManager_setHandler(&this->inputManager, INPUT_ID_BACK, &this->onBack, false, false);
+    MultiControlInputManager_setHandler(&this->inputManager, INPUT_ID_BACK, &this->onBack, false,
+            false);
     for (u32 i = 0; i < ARRAY_SIZE(this->ruleControls); i++) {
         RadioButtonControl *control = &this->ruleControls[i];
         RadioButtonControl_setFrontHandler(control, &this->onRuleControlFront);

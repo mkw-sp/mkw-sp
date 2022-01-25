@@ -45,7 +45,8 @@ typedef struct {
 } ControlInputManager;
 static_assert(sizeof(ControlInputManager) == 0x84);
 
-void ControlInputManager_setHandler(ControlInputManager *this, u32 inputId, InputHandler *handler, bool repeat);
+void ControlInputManager_setHandler(ControlInputManager *this, u32 inputId, InputHandler *handler,
+        bool repeat);
 
 typedef struct MultiControlInputManager {
     MenuInputManager;
@@ -57,13 +58,16 @@ MultiControlInputManager *MultiControlInputManager_ct(MultiControlInputManager *
 
 void MultiControlInputManager_dt(MultiControlInputManager *this, s32 type);
 
-void MultiControlInputManager_init(MultiControlInputManager *this, u32 playerFlags, bool isMultiPlayer);
+void MultiControlInputManager_init(MultiControlInputManager *this, u32 playerFlags,
+        bool isMultiPlayer);
 
 // TODO mode list
 void MultiControlInputManager_setPointerMode(MultiControlInputManager *this, u32 mode);
 
 // TODO remaining args
-void MultiControlInputManager_setHandler(MultiControlInputManager *this, u32 inputId, InputHandler *handler, bool r6, bool r7);
+void MultiControlInputManager_setHandler(MultiControlInputManager *this, u32 inputId,
+        InputHandler *handler, bool r6, bool r7);
 
 // TODO r6
-void MultiControlInputManager_select(MultiControlInputManager *this, u32 localPlayerId, ControlInputManager *child, s32 r6);
+void MultiControlInputManager_select(MultiControlInputManager *this, u32 localPlayerId,
+        ControlInputManager *child, s32 r6);

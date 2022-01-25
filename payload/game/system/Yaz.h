@@ -37,4 +37,5 @@ enum {
 
 void YazDecoder_init(YazDecoder *this);
 
-u32 YazDecoder_feed(YazDecoder *this, const u8 *restrict *src, u8 *restrict *dst, u32 *srcSize, u32 *dstSize);
+u32 YazDecoder_feed(YazDecoder *this, const u8 *restrict *src, u8 *restrict *dst, u32 *srcSize,
+        u32 *dstSize);

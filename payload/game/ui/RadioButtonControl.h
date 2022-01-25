@@ -8,7 +8,8 @@ struct RadioButtonControlHandler;
 
 typedef struct {
     u8 _0[0x8 - 0x0];
-    void (*handle)(struct RadioButtonControlHandler *handler, struct RadioButtonControl *control, u32 localPlayerId, s32 selected);
+    void (*handle)(struct RadioButtonControlHandler *handler, struct RadioButtonControl *control,
+            u32 localPlayerId, s32 selected);
 } RadioButtonControlHandler_vt;
 static_assert(sizeof(RadioButtonControlHandler_vt) == 0xc);
 
@@ -30,11 +31,15 @@ RadioButtonControl *RadioButtonControl_ct(RadioButtonControl *this);
 void RadioButtonControl_dt(RadioButtonControl *this, s32 type);
 
 // TODO stack_f
-void RadioButtonControl_load(RadioButtonControl *this, u32 buttonCount, u32 chosen, const char *dir, const char *file, const char *variant, const char *buttonFile, const char *const *buttonVariants, u32 playerFlags, bool stack_f, bool pointerOnly);
+void RadioButtonControl_load(RadioButtonControl *this, u32 buttonCount, u32 chosen, const char *dir,
+        const char *file, const char *variant, const char *buttonFile,
+        const char *const *buttonVariants, u32 playerFlags, bool stack_f, bool pointerOnly);
 
-void RadioButtonControl_setFrontHandler(RadioButtonControl *this, RadioButtonControlHandler *handler);
+void RadioButtonControl_setFrontHandler(RadioButtonControl *this,
+        RadioButtonControlHandler *handler);
 
-void RadioButtonControl_setSelectHandler(RadioButtonControl *this, RadioButtonControlHandler *handler);
+void RadioButtonControl_setSelectHandler(RadioButtonControl *this,
+        RadioButtonControlHandler *handler);
 
 void RadioButtonControl_selectDefault(RadioButtonControl *this, u32 localPlayerId);
 

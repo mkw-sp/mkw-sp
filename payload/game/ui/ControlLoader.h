@@ -8,4 +8,5 @@ typedef struct {
 } ControlLoader;
 static_assert(sizeof(ControlLoader) == 0x28);
 
-void ControlLoader_load(ControlLoader *this, const char *dir, const char *file, const char *variant, const char *const *groups);
+void ControlLoader_load(ControlLoader *this, const char *dir, const char *file, const char *variant,
+        const char *const *groups);

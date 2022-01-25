@@ -16,8 +16,8 @@ typedef s64 OSTime;
 
 #define OSMillisecondsToTicks(msec) ((msec) * (OS_TIMER_CLOCK / 1000))
 
-void OSReport(const char* msg, ...);
-void OSFatal(GXColor fg, GXColor bg, const char* msg);
+void OSReport(const char *msg, ...);
+void OSFatal(GXColor fg, GXColor bg, const char *msg);
 
 #include "revolution/os/OSCache.h"
 #include "revolution/os/OSModule.h"

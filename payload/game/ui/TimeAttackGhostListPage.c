@@ -118,8 +118,10 @@ static const InputHandler_vt onSheetSelectLeft_vt = {
     .handle = onSheetSelectLeft,
 };
 
-static void onLaunchButtonFront(PushButtonHandler *this, PushButton *UNUSED(button), u32 UNUSED(localPlayerId)) {
-    TimeAttackGhostListPage *page = CONTAINER_OF(this, TimeAttackGhostListPage, onLaunchButtonFront);
+static void onLaunchButtonFront(PushButtonHandler *this, PushButton *UNUSED(button),
+        u32 UNUSED(localPlayerId)) {
+    TimeAttackGhostListPage *page =
+            CONTAINER_OF(this, TimeAttackGhostListPage, onLaunchButtonFront);
     page->vt->push(page, 0x4b, PAGE_ANIMATION_NEXT); // TODO enum
 }
 
@@ -127,8 +129,10 @@ static const PushButtonHandler_vt onLaunchButtonFront_vt = {
     .handle = onLaunchButtonFront,
 };
 
-static void onLaunchButtonSelect(PushButtonHandler *this, PushButton *UNUSED(button), u32 UNUSED(localPlayerId)) {
-    TimeAttackGhostListPage *page = CONTAINER_OF(this, TimeAttackGhostListPage, onLaunchButtonSelect);
+static void onLaunchButtonSelect(PushButtonHandler *this, PushButton *UNUSED(button),
+        u32 UNUSED(localPlayerId)) {
+    TimeAttackGhostListPage *page =
+            CONTAINER_OF(this, TimeAttackGhostListPage, onLaunchButtonSelect);
     page->lastSelected = -1;
 }
 
@@ -210,13 +214,19 @@ static void TimeAttackGhostListPage_onInit(Page *base) {
     LayoutUIControl_load(&this->switchLabel, "control", "ClassChange", "ClassChange", groups);
     GhostSelectControl_load(&this->ghostSelects[0]);
     GhostSelectControl_load(&this->ghostSelects[1]);
-    SheetSelectControl_load(&this->sheetSelect, "button", "TimeAttackGhostListArrowRight", "ButtonArrowRight", "TimeAttackGhostListArrowLeft", "ButtonArrowLeft", 0x1, false, false);
-    LayoutUIControl_load(&this->sheetLabel, "control", "TimeAttackGhostListPageNum", "TimeAttackGhostListPageNum", NULL);
-    PushButton_load(&this->launchButton, "button", "TimeAttackGhostList", "Launch", 0x1, false, false);
+    SheetSelectControl_load(&this->sheetSelect, "button", "TimeAttackGhostListArrowRight",
+            "ButtonArrowRight", "TimeAttackGhostListArrowLeft", "ButtonArrowLeft", 0x1, false,
+            false);
+    LayoutUIControl_load(&this->sheetLabel, "control", "TimeAttackGhostListPageNum",
+            "TimeAttackGhostListPageNum", NULL);
+    PushButton_load(&this->launchButton, "button", "TimeAttackGhostList", "Launch", 0x1, false,
+            false);
     PushButton_load(&this->backButton, "button", "Back", "ButtonBackPopup", 0x1, false, true);
 
-    MultiControlInputManager_setHandler(&this->inputManager, INPUT_ID_BACK, &this->onBack, false, false);
-    MultiControlInputManager_setHandler(&this->inputManager, INPUT_ID_OPTION, &this->onOption, false, false);
+    MultiControlInputManager_setHandler(&this->inputManager, INPUT_ID_BACK, &this->onBack, false,
+            false);
+    MultiControlInputManager_setHandler(&this->inputManager, INPUT_ID_OPTION, &this->onOption,
+            false, false);
     SheetSelectControl_setRightHandler(&this->sheetSelect, &this->onSheetSelectRight);
     SheetSelectControl_setLeftHandler(&this->sheetSelect, &this->onSheetSelectLeft);
     PushButton_setSelectHandler(&this->launchButton, &this->onLaunchButtonSelect);
@@ -295,7 +305,8 @@ static void TimeAttackGhostListPage_onRefocus(Page *base) {
         }
     }
 
-    GhostManagerPage *ghostManagerPage = (GhostManagerPage *)currentSection->pages[PAGE_ID_GHOST_MANAGER];
+    GhostManagerPage *ghostManagerPage =
+            (GhostManagerPage *)currentSection->pages[PAGE_ID_GHOST_MANAGER];
     u32 sectionId; // TODO enum
     if (this->chosenCount == 0) {
         sectionId = 0x1f;

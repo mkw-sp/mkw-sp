@@ -60,7 +60,8 @@ InputManager *InputManager_createInstance(void);
 
 InputManager *InputManager_ct(InputManager *this);
 
-void InputManager_setGhostPad(InputManager *this, u32 ghostId, const void *ghostInputs, bool driftIsAuto);
+void InputManager_setGhostPad(InputManager *this, u32 ghostId, const void *ghostInputs,
+        bool driftIsAuto);
 
 void InputManager_startRace(InputManager *this);
 

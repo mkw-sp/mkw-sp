@@ -56,7 +56,8 @@ static const PushButtonHandler_vt onFront_vt = {
     .handle = onFront,
 };
 
-static void onCreateConfirm(ConfirmPageHandler *UNUSED(this), ConfirmPage *UNUSED(confirmPage), f32 delay) {
+static void onCreateConfirm(ConfirmPageHandler *UNUSED(this), ConfirmPage *UNUSED(confirmPage),
+        f32 delay) {
     SectionManager_setNextSection(s_sectionManager, 0x45 /* TODO enum */, PAGE_ANIMATION_NEXT);
     SectionManager_startChangeSection(s_sectionManager, delay, 0x000000ff);
 }
@@ -65,7 +66,8 @@ static const ConfirmPageHandler_vt onCreateConfirm_vt = {
     .handle = onCreateConfirm,
 };
 
-static void onChangeConfirm(ConfirmPageHandler *UNUSED(this), ConfirmPage *UNUSED(confirmPage), f32 delay) {
+static void onChangeConfirm(ConfirmPageHandler *UNUSED(this), ConfirmPage *UNUSED(confirmPage),
+        f32 delay) {
     SectionManager_setNextSection(s_sectionManager, 0x46 /* TODO enum */, PAGE_ANIMATION_NEXT);
     SectionManager_startChangeSection(s_sectionManager, delay, 0x000000ff);
 }
@@ -74,7 +76,8 @@ static const ConfirmPageHandler_vt onChangeConfirm_vt = {
     .handle = onChangeConfirm,
 };
 
-static void onCancel(ConfirmPageHandler *UNUSED(this), ConfirmPage *confirmPage, f32 UNUSED(delay)) {
+static void onCancel(ConfirmPageHandler *UNUSED(this), ConfirmPage *confirmPage,
+        f32 UNUSED(delay)) {
     confirmPage->replacement = 0x65; // TODO enum
 }
 

@@ -3,7 +3,8 @@
 #include "../ctrl/CtrlRaceNameBalloon.h"
 #include "../ctrl/CtrlRaceSpeed.h"
 
-void RacePage_initSpeedControl(RacePage *this, u32 controlId, u32 localPlayerCount, u32 localPlayerId) {
+void RacePage_initSpeedControl(RacePage *this, u32 controlId, u32 localPlayerCount,
+        u32 localPlayerId) {
     CtrlRaceSpeed *control = new(sizeof(CtrlRaceSpeed));
     CtrlRaceSpeed_ct(control);
     Page_insertChild(this, controlId, control, 0);

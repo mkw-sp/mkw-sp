@@ -13,4 +13,5 @@ void CtrlMenuInstructionText_dt(CtrlMenuInstructionText *this, s32 type);
 
 void CtrlMenuInstructionText_load(CtrlMenuInstructionText *this);
 
-void CtrlMenuInstructionText_setMessage(CtrlMenuInstructionText *this, s32 messageId, ExtendedMessageInfo *info);
+void CtrlMenuInstructionText_setMessage(CtrlMenuInstructionText *this, s32 messageId,
+        ExtendedMessageInfo *info);
