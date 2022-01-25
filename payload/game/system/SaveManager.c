@@ -298,9 +298,7 @@ static void SaveManager_init(SaveManager *this) {
     this->isBusy = false;
 }
 
-static void initTask(void *arg) {
-    UNUSED(arg);
-
+static void initTask(void *UNUSED(arg)) {
     SaveManager_init(s_saveManager);
 }
 
@@ -360,9 +358,7 @@ fail:
     this->result = RK_NAND_RESULT_NOSPACE;
 }
 
-static void saveSpTask(void *arg) {
-    UNUSED(arg);
-
+static void saveSpTask(void *UNUSED(arg)) {
     SaveManager_saveSp(s_saveManager);
 }
 
@@ -464,15 +460,11 @@ static void SaveManager_loadGhostHeaders(SaveManager *this) {
     this->result = RK_NAND_RESULT_OK;
 }
 
-static void loadGhostHeadersTask(void *arg) {
-    UNUSED(arg);
-
+static void loadGhostHeadersTask(void *UNUSED(arg)) {
     SaveManager_loadGhostHeaders(s_saveManager);
 }
 
-static void my_SaveManager_loadGhostHeadersAsync(SaveManager *this, s32 licenseId, GhostGroup *group) {
-    UNUSED(licenseId);
-
+static void my_SaveManager_loadGhostHeadersAsync(SaveManager *this, s32 UNUSED(licenseId), GhostGroup *group) {
     if (group->count == 0) {
         return;
     }
@@ -528,17 +520,11 @@ static void SaveManager_loadGhosts(SaveManager *this) {
     this->isBusy = false;
 }
 
-static void loadGhostsTask(void *arg) {
-    UNUSED(arg);
-
+static void loadGhostsTask(void *UNUSED(arg)) {
     SaveManager_loadGhosts(s_saveManager);
 }
 
-static void my_SaveManager_loadGhostAsync(SaveManager *this, s32 licenseId, u32 category, u32 index, u32 courseId) {
-    UNUSED(licenseId);
-    UNUSED(category);
-    UNUSED(index);
-    UNUSED(courseId);
+static void my_SaveManager_loadGhostAsync(SaveManager *this, s32 UNUSED(licenseId), u32 UNUSED(category), u32 UNUSED(index), u32 UNUSED(courseId)) {
 
     this->isBusy = true;
     EGG_TaskThread_request(this->taskThread, loadGhostsTask, NULL, NULL);
@@ -644,12 +630,7 @@ static void saveGhostTask(void *arg) {
     SaveManager_saveGhost(s_saveManager, file);
 }
 
-static void my_SaveManager_saveGhostAsync(SaveManager *this, s32 licenseId, u32 category, u32 index, GhostFile *file, bool saveLicense) {
-    UNUSED(licenseId);
-    UNUSED(category);
-    UNUSED(index);
-    UNUSED(saveLicense);
-
+static void my_SaveManager_saveGhostAsync(SaveManager *this, s32 UNUSED(licenseId), u32 UNUSED(category), u32 UNUSED(index), GhostFile *file, bool UNUSED(saveLicense)) {
     this->isBusy = true;
     EGG_TaskThread_request(this->taskThread, saveGhostTask, file, NULL);
 }

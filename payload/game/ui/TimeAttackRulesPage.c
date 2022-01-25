@@ -10,9 +10,7 @@
 
 static const Page_vt s_TimeAttackRulesPage_vt;
 
-static void onBack(InputHandler *this, u32 localPlayerId) {
-    UNUSED(localPlayerId);
-
+static void onBack(InputHandler *this, u32 UNUSED(localPlayerId)) {
     TimeAttackRulesPage *page = CONTAINER_OF(this, TimeAttackRulesPage, onBack);
     page->replacement = 0x69; // TODO enum
     Page_startReplace(page, PAGE_ANIMATION_PREV, 0.0f);
@@ -22,9 +20,7 @@ static const InputHandler_vt onBack_vt = {
     .handle = onBack,
 };
 
-static void onRuleControlFront(RadioButtonControlHandler *this, RadioButtonControl *control, u32 localPlayerId, s32 selected) {
-    UNUSED(localPlayerId);
-
+static void onRuleControlFront(RadioButtonControlHandler *this, RadioButtonControl *control, u32 UNUSED(localPlayerId), s32 selected) {
     SpSaveLicense *license = s_saveManager->spLicenses[s_saveManager->spCurrentLicense];
     switch (control->index) {
     case 0:
@@ -56,9 +52,7 @@ static const RadioButtonControlHandler_vt onRuleControlFront_vt = {
     .handle = onRuleControlFront,
 };
 
-static void onRuleControlSelect(RadioButtonControlHandler *this, RadioButtonControl *control, u32 localPlayerId, s32 selected) {
-    UNUSED(localPlayerId);
-
+static void onRuleControlSelect(RadioButtonControlHandler *this, RadioButtonControl *control, u32 UNUSED(localPlayerId), s32 selected) {
     if (selected < 0) {
         return;
     }
@@ -79,9 +73,7 @@ static const RadioButtonControlHandler_vt onRuleControlSelect_vt = {
     .handle = onRuleControlSelect,
 };
 
-static void onOkButtonFront(PushButtonHandler *this, PushButton *button, u32 localPlayerId) {
-    UNUSED(localPlayerId);
-
+static void onOkButtonFront(PushButtonHandler *this, PushButton *button, u32 UNUSED(localPlayerId)) {
     TimeAttackRulesPage *page = CONTAINER_OF(this, TimeAttackRulesPage, onOkButtonFront);
     page->replacement = PAGE_ID_CHARACTER_SELECT;
     Section *currentSection = s_sectionManager->currentSection;
@@ -95,10 +87,7 @@ static const PushButtonHandler_vt onOkButtonFront_vt = {
     .handle = onOkButtonFront,
 };
 
-static void onOkButtonSelect(PushButtonHandler *this, PushButton *button, u32 localPlayerId) {
-    UNUSED(button);
-    UNUSED(localPlayerId);
-
+static void onOkButtonSelect(PushButtonHandler *this, PushButton *UNUSED(button), u32 UNUSED(localPlayerId)) {
     TimeAttackRulesPage *page = CONTAINER_OF(this, TimeAttackRulesPage, onOkButtonSelect);
     CtrlMenuInstructionText_setMessage(&page->instructionText, 0x302e, NULL);
 }
@@ -227,9 +216,7 @@ static void TimeAttackRulesPage_onInit(Page *base) {
     CtrlMenuPageTitleText_setMessage(&this->pageTitleText, 0xd48, NULL);
 }
 
-static void TimeAttackRulesPage_onDeinit(Page *base) {
-    UNUSED(base);
-
+static void TimeAttackRulesPage_onDeinit(Page *UNUSED(base)) {
     SaveManagerProxy_markLicensesDirty(s_sectionManager->saveManagerProxy);
 }
 

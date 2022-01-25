@@ -74,9 +74,7 @@ void my_BootStrapScene_calc(BootStrapScene *this) {
     entry();
 }
 
-void my_BootStrapScene_draw(BootStrapScene *this) {
-    UNUSED(this);
-}
+void my_BootStrapScene_draw(BootStrapScene *UNUSED(this)) {}
 
 void my_BootStrapScene_enter(BootStrapScene *this) {
     this->relLoadThread = spAlloc(sizeof(OSThread), 0x4, this->heapMem1);

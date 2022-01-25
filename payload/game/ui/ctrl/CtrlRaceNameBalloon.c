@@ -40,9 +40,7 @@ static void my_BalloonManager_init(BalloonManager *this, u8 localPlayerId) {
 
 PATCH_B(BalloonManager_init, my_BalloonManager_init);
 
-static void my_BalloonManager_addNameControl(BalloonManager *this, CtrlRaceNameBalloon *nameControl) {
-    UNUSED(nameControl);
-
+static void my_BalloonManager_addNameControl(BalloonManager *this, CtrlRaceNameBalloon *UNUSED(nameControl)) {
     this->nameCount++;
 }
 

@@ -2,9 +2,7 @@
 
 #include "RaceConfig.h"
 
-static bool my_TimeAttackGameMode_canEndRace(TimeAttackGameMode *this) {
-    UNUSED(this);
-
+static bool my_TimeAttackGameMode_canEndRace(TimeAttackGameMode *UNUSED(this)) {
     const RaceConfigScenario *raceScenario = &s_raceConfig->raceScenario;
     for (u32 i = 0; i < raceScenario->playerCount; i++) {
         if (!(s_raceManager->players[i]->flags & RACE_MANAGER_PLAYER_FLAG_HAS_FINISHED)) {

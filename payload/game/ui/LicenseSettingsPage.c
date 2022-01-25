@@ -8,9 +8,7 @@
 
 static const Page_vt s_LicenseSettingsPage_vt;
 
-static void onBack(InputHandler *this, u32 localPlayerId) {
-    UNUSED(localPlayerId);
-
+static void onBack(InputHandler *this, u32 UNUSED(localPlayerId)) {
     LicenseSettingsPage *page = CONTAINER_OF(this, LicenseSettingsPage, onBack);
     Page_startReplace(page, PAGE_ANIMATION_PREV, 0.0f);
 }
@@ -19,9 +17,7 @@ static const InputHandler_vt onBack_vt = {
     .handle = onBack,
 };
 
-static void onSettingControlFront(RadioButtonControlHandler *this, RadioButtonControl *control, u32 localPlayerId, s32 selected) {
-    UNUSED(localPlayerId);
-
+static void onSettingControlFront(RadioButtonControlHandler *this, RadioButtonControl *control, u32 UNUSED(localPlayerId), s32 selected) {
     SpSaveLicense *license = s_saveManager->spLicenses[s_saveManager->spCurrentLicense];
     switch (control->index) {
     case 0:
@@ -49,9 +45,7 @@ static const RadioButtonControlHandler_vt onSettingControlFront_vt = {
     .handle = onSettingControlFront,
 };
 
-static void onSettingControlSelect(RadioButtonControlHandler *this, RadioButtonControl *control, u32 localPlayerId, s32 selected) {
-    UNUSED(localPlayerId);
-
+static void onSettingControlSelect(RadioButtonControlHandler *this, RadioButtonControl *control, u32 UNUSED(localPlayerId), s32 selected) {
     if (selected < 0) {
         return;
     }
@@ -103,9 +97,7 @@ static void LicenseSettingsPage_dt(Page *base, s32 type) {
     }
 }
 
-static s32 LicenseSettingsPage_getReplacement(Page *base) {
-    UNUSED(base);
-
+static s32 LicenseSettingsPage_getReplacement(Page *UNUSED(base)) {
     return 0x67; // TODO enum
 }
 
@@ -170,9 +162,7 @@ static void LicenseSettingsPage_onInit(Page *base) {
     this->resetSelection = true;
 }
 
-static void LicenseSettingsPage_onDeinit(Page *base) {
-    UNUSED(base);
-
+static void LicenseSettingsPage_onDeinit(Page *UNUSED(base)) {
     SaveManagerProxy_markLicensesDirty(s_sectionManager->saveManagerProxy);
 }
 

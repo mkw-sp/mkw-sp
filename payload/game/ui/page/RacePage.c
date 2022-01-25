@@ -41,9 +41,7 @@ enum {
 
 u32 GhostReplayRacePage_getControls(RacePage *this);
 
-static u32 my_GhostReplayRacePage_getControls(RacePage *this) {
-    UNUSED(this);
-
+static u32 my_GhostReplayRacePage_getControls(RacePage *UNUSED(this)) {
     u32 controls = 0;
     controls |= CONTROL_TIME;
     controls |= CONTROL_COUNT;
@@ -56,9 +54,7 @@ PATCH_B(GhostReplayRacePage_getControls, my_GhostReplayRacePage_getControls);
 
 u32 VsMultiRacePage_getControls(RacePage *this);
 
-static u32 my_VsMultiRacePage_getControls(RacePage *this) {
-    UNUSED(this);
-
+static u32 my_VsMultiRacePage_getControls(RacePage *UNUSED(this)) {
     u32 controls = 0;
     controls |= CONTROL_TIME;
     controls |= CONTROL_COUNT;

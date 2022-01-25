@@ -8,10 +8,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-static void my_GhostList_populate(GhostList *this, u32 courseId) {
-    UNUSED(this);
-    UNUSED(courseId);
-}
+static void my_GhostList_populate(GhostList *UNUSED(this), u32 UNUSED(courseId)) {}
 PATCH_B(GhostList_populate, my_GhostList_populate);
 
 void GhostManagerPage_requestPopulate(GhostManagerPage *this) {
@@ -137,21 +134,14 @@ static void setupTimeAttack(bool isRace, bool fromReplay) {
 
 void GhostManagerPage_setupGhostReplay(GhostManagerPage *this, bool isStaffGhost);
 
-static void my_GhostManagerPage_setupGhostReplay(GhostManagerPage *this, bool isStaffGhost) {
-    UNUSED(this);
-    UNUSED(isStaffGhost);
-
+static void my_GhostManagerPage_setupGhostReplay(GhostManagerPage *UNUSED(this), bool UNUSED(isStaffGhost)) {
     setupTimeAttack(false, false);
 }
 PATCH_B(GhostManagerPage_setupGhostReplay, my_GhostManagerPage_setupGhostReplay);
 
 void GhostManagerPage_setupGhostRace(GhostManagerPage *this, bool isStaffGhost, bool isNewRecord, bool fromReplay);
 
-static void my_GhostManagerPage_setupGhostRace(GhostManagerPage *this, bool isStaffGhost, bool isNewRecord, bool fromReplay) {
-    UNUSED(this);
-    UNUSED(isStaffGhost);
-    UNUSED(isNewRecord);
-
+static void my_GhostManagerPage_setupGhostRace(GhostManagerPage *UNUSED(this), bool UNUSED(isStaffGhost), bool UNUSED(isNewRecord), bool fromReplay) {
     setupTimeAttack(true, fromReplay);
 }
 PATCH_B(GhostManagerPage_setupGhostRace, my_GhostManagerPage_setupGhostRace);

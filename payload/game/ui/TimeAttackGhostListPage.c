@@ -9,8 +9,7 @@
 
 static const Page_vt s_TimeAttackGhostListPage_vt;
 
-static void onBack(InputHandler *this, u32 localPlayerId) {
-    UNUSED(localPlayerId);
+static void onBack(InputHandler *this, u32 UNUSED(localPlayerId)) {
 
     TimeAttackGhostListPage *page = CONTAINER_OF(this, TimeAttackGhostListPage, onBack);
     page->replacement = 0x6f; // TODO enum
@@ -36,9 +35,7 @@ static void TimeAttackGhostListPage_refreshLaunchButton(TimeAttackGhostListPage 
     }
 }
 
-static void onOption(InputHandler *this, u32 localPlayerId) {
-    UNUSED(localPlayerId);
-
+static void onOption(InputHandler *this, u32 UNUSED(localPlayerId)) {
     TimeAttackGhostListPage *page = CONTAINER_OF(this, TimeAttackGhostListPage, onOption);
     if (!page->switchLabel.isHidden) {
         page->isReplay = !page->isReplay;
@@ -76,9 +73,7 @@ static void TimeAttackGhostListPage_swapGhostSelects(TimeAttackGhostListPage *th
     this->hiddenGhostSelect = tmp;
 }
 
-static void onSheetSelectRight(InputHandler *this, u32 localPlayerId) {
-    UNUSED(localPlayerId);
-
+static void onSheetSelectRight(InputHandler *this, u32 UNUSED(localPlayerId)) {
     TimeAttackGhostListPage *page = CONTAINER_OF(this, TimeAttackGhostListPage, onSheetSelectRight);
     if (!TimeAttackGhostListPage_canSwapGhostSelects(page)) {
         return;
@@ -101,9 +96,7 @@ static const InputHandler_vt onSheetSelectRight_vt = {
     .handle = onSheetSelectRight,
 };
 
-static void onSheetSelectLeft(InputHandler *this, u32 localPlayerId) {
-    UNUSED(localPlayerId);
-
+static void onSheetSelectLeft(InputHandler *this, u32 UNUSED(localPlayerId)) {
     TimeAttackGhostListPage *page = CONTAINER_OF(this, TimeAttackGhostListPage, onSheetSelectLeft);
     if (!TimeAttackGhostListPage_canSwapGhostSelects(page)) {
         return;
@@ -126,10 +119,7 @@ static const InputHandler_vt onSheetSelectLeft_vt = {
     .handle = onSheetSelectLeft,
 };
 
-static void onLaunchButtonFront(PushButtonHandler *this, PushButton *button, u32 localPlayerId) {
-    UNUSED(button);
-    UNUSED(localPlayerId);
-
+static void onLaunchButtonFront(PushButtonHandler *this, PushButton *UNUSED(button), u32 UNUSED(localPlayerId)) {
     TimeAttackGhostListPage *page = CONTAINER_OF(this, TimeAttackGhostListPage, onLaunchButtonFront);
     page->vt->push(page, 0x4b, PAGE_ANIMATION_NEXT); // TODO enum
 }
@@ -138,10 +128,7 @@ static const PushButtonHandler_vt onLaunchButtonFront_vt = {
     .handle = onLaunchButtonFront,
 };
 
-static void onLaunchButtonSelect(PushButtonHandler *this, PushButton *button, u32 localPlayerId) {
-    UNUSED(button);
-    UNUSED(localPlayerId);
-
+static void onLaunchButtonSelect(PushButtonHandler *this, PushButton *UNUSED(button), u32 UNUSED(localPlayerId)) {
     TimeAttackGhostListPage *page = CONTAINER_OF(this, TimeAttackGhostListPage, onLaunchButtonSelect);
     page->lastSelected = -1;
 }

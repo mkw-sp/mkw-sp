@@ -19,7 +19,7 @@ typedef unsigned long long u64;
 typedef float f32;
 typedef double f64;
 
-#define UNUSED(variable) (void)(variable)
+#define UNUSED(x) UNUSED_ ## x __attribute__((__unused__))
 
 #define CONTAINER_OF(ptr, type, member) ((type *)((char *)(1 ? (ptr) : &((type *)0)->member) - offsetof(type, member)))
 

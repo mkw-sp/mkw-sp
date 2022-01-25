@@ -8,10 +8,7 @@
 #include <stdio.h>
 #include <string.h>
 
-static void onFront(PushButtonHandler *this, PushButton *base, u32 localPlayerId) {
-    UNUSED(this);
-    UNUSED(localPlayerId);
-
+static void onFront(PushButtonHandler *UNUSED(this), PushButton *base, u32 UNUSED(localPlayerId)) {
     LicenseSelectButton *button = (LicenseSelectButton *)base;
 
     u32 index = button->index;
@@ -59,10 +56,7 @@ static const PushButtonHandler_vt onFront_vt = {
     .handle = onFront,
 };
 
-static void onCreateConfirm(ConfirmPageHandler *this, ConfirmPage *confirmPage, f32 delay) {
-    UNUSED(this);
-    UNUSED(confirmPage);
-
+static void onCreateConfirm(ConfirmPageHandler *UNUSED(this), ConfirmPage *UNUSED(confirmPage), f32 delay) {
     SectionManager_setNextSection(s_sectionManager, 0x45 /* TODO enum */, PAGE_ANIMATION_NEXT);
     SectionManager_startChangeSection(s_sectionManager, delay, 0x000000ff);
 }
@@ -71,10 +65,7 @@ static const ConfirmPageHandler_vt onCreateConfirm_vt = {
     .handle = onCreateConfirm,
 };
 
-static void onChangeConfirm(ConfirmPageHandler *this, ConfirmPage *confirmPage, f32 delay) {
-    UNUSED(this);
-    UNUSED(confirmPage);
-
+static void onChangeConfirm(ConfirmPageHandler *UNUSED(this), ConfirmPage *UNUSED(confirmPage), f32 delay) {
     SectionManager_setNextSection(s_sectionManager, 0x46 /* TODO enum */, PAGE_ANIMATION_NEXT);
     SectionManager_startChangeSection(s_sectionManager, delay, 0x000000ff);
 }
@@ -83,10 +74,7 @@ static const ConfirmPageHandler_vt onChangeConfirm_vt = {
     .handle = onChangeConfirm,
 };
 
-static void onCancel(ConfirmPageHandler *this, ConfirmPage *confirmPage, f32 delay) {
-    UNUSED(this);
-    UNUSED(delay);
-
+static void onCancel(ConfirmPageHandler *UNUSED(this), ConfirmPage *confirmPage, f32 UNUSED(delay)) {
     confirmPage->replacement = 0x65; // TODO enum
 }
 

@@ -6,9 +6,7 @@
 
 static const Page_vt s_LicenseSelectPage_vt;
 
-static void onBack(InputHandler *this, u32 localPlayerId) {
-    UNUSED(localPlayerId);
-
+static void onBack(InputHandler *this, u32 UNUSED(localPlayerId)) {
     LicenseSelectPage *page = CONTAINER_OF(this, LicenseSelectPage, onBack);
     page->replacement = 0x57; // TODO enum
     Page_startReplace(page, PAGE_ANIMATION_PREV, 0.0f);
@@ -18,9 +16,7 @@ static const InputHandler_vt onBack_vt = {
     .handle = onBack,
 };
 
-static void onAboutButtonFront(PushButtonHandler *this, PushButton *button, u32 localPlayerId) {
-    UNUSED(localPlayerId);
-
+static void onAboutButtonFront(PushButtonHandler *this, PushButton *button, u32 UNUSED(localPlayerId)) {
     LicenseSelectPage *page = CONTAINER_OF(this, LicenseSelectPage, onAboutButtonFront);
     Section *currentSection = s_sectionManager->currentSection;
     ConfirmPage *confirmPage = (ConfirmPage *)currentSection->pages[PAGE_ID_CONFIRM];
@@ -41,9 +37,7 @@ static const PushButtonHandler_vt onAboutButtonFront_vt = {
     .handle = onAboutButtonFront,
 };
 
-static void onAboutConfirm(ConfirmPageHandler *this, ConfirmPage *confirmPage, f32 delay) {
-    UNUSED(delay);
-
+static void onAboutConfirm(ConfirmPageHandler *this, ConfirmPage *confirmPage, f32 UNUSED(delay)) {
     LicenseSelectPage *page = CONTAINER_OF(this, LicenseSelectPage, onAboutConfirm);
     page->replacement = -1; // TODO enum
     confirmPage->replacement = 0x65; // TODO enum
