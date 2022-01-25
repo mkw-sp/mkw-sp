@@ -159,6 +159,7 @@ code_in_files = {
         os.path.join('game', 'ui', 'ctrl', 'CtrlRaceSpeed.c'),
         os.path.join('game', 'ui', 'ctrl', 'CtrlRaceTime.S'),
         os.path.join('game', 'ui', 'ctrl', 'CtrlRaceTime.c'),
+        os.path.join('game', 'ui', 'page', 'CharacterSelectPage.S'),
         os.path.join('game', 'ui', 'page', 'RaceMenuPage.c'),
         os.path.join('game', 'ui', 'page', 'RacePage.S'),
         os.path.join('game', 'ui', 'page', 'RacePage.c'),

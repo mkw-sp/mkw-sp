@@ -328,6 +328,7 @@
 0x807f7e80 CtrlRaceTime_getPlayerId
 0x807f7ec0 CtrlRaceTime_calcSelf
 0x807f842c CtrlRaceTime_load
+0x8083d55c CharacterSelectPage_onInit
 0x8084ef1c SingleTopMenuPage_onInit
 0x8084efc4 SingleTopMenuPage_vf_84
 0x8084f110 SingleTopMenuPage_onActivate
