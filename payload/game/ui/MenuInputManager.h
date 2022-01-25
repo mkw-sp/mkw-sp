@@ -14,6 +14,7 @@ typedef struct {
     u8 _0[0x8 - 0x0];
     void (*handle)(struct InputHandler *handler, u32 localPlayerId);
 } InputHandler_vt;
+static_assert(sizeof(InputHandler_vt) == 0xc);
 
 typedef struct InputHandler {
     const InputHandler_vt *vt;
@@ -22,6 +23,7 @@ typedef struct InputHandler {
 typedef struct {
     u8 _00[0xf - 0x0];
 } MenuInputManager;
+static_assert(sizeof(MenuInputManager) == 0xf);
 
 MenuInputManager *MenuInputManager_ct(MenuInputManager *this);
 
@@ -32,6 +34,7 @@ typedef struct {
     InputHandler *selectHandler;
     u8 _1c[0x28 - 0x1c];
 } ControlInputManagerPane;
+static_assert(sizeof(ControlInputManagerPane) == 0x28);
 
 typedef struct {
     u8 _00[0x0c - 0x00];
@@ -40,13 +43,15 @@ typedef struct {
     struct MultiControlInputManager *parent;
     u8 _40[0x84 - 0x40];
 } ControlInputManager;
+static_assert(sizeof(ControlInputManager) == 0x84);
 
 void ControlInputManager_setHandler(ControlInputManager *this, u32 inputId, InputHandler *handler, bool repeat);
 
 typedef struct MultiControlInputManager {
     MenuInputManager;
-    u8 _010[0x224 - 0x010];
+    u8 _00f[0x224 - 0x00f];
 } MultiControlInputManager;
+static_assert(sizeof(MultiControlInputManager) == 0x224);
 
 MultiControlInputManager *MultiControlInputManager_ct(MultiControlInputManager *this);
 

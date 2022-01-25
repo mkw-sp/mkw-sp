@@ -8,6 +8,7 @@ typedef struct {
     u8 localPlayerId;
     u8 _191[0x198 - 0x191];
 } CtrlRaceBase;
+static_assert(sizeof(CtrlRaceBase) == 0x198);
 
 typedef struct {
     LayoutUIControl_vt;
@@ -17,6 +18,7 @@ typedef struct {
     void *vf_48;
     void *vf_4c;
 } CtrlRaceBase_vt;
+static_assert(sizeof(CtrlRaceBase_vt) == 0x50);
 
 void CtrlRaceBase_dt(UIControl *base, s32 type);
 

@@ -3,10 +3,11 @@
 #include <Common.h>
 
 typedef struct {
-    u8 _00[0x34];
+    u8 _00[0x34 - 0x00];
     u32 length;
-    u8 _38[0x4];
+    u8 _38[0x3c - 0x38];
 } DVDFileInfo;
+static_assert(sizeof(DVDFileInfo) == 0x3c);
 
 BOOL DVDOpen(const char *fileName, DVDFileInfo *fileInfo);
 

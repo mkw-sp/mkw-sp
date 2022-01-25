@@ -9,6 +9,7 @@ typedef struct {
     f32 fadeoutOpacity;
     u8 _260[0x264 - 0x260];
 } CtrlMenuBackButton;
+static_assert(sizeof(CtrlMenuBackButton) == 0x264);
 
 CtrlMenuBackButton *CtrlMenuBackButton_ct(CtrlMenuBackButton *this);
 

@@ -5,6 +5,7 @@
 typedef struct {
     LayoutUIControl;
 } CtrlMenuPageTitleText;
+static_assert(sizeof(CtrlMenuPageTitleText) == 0x174);
 
 CtrlMenuPageTitleText *CtrlMenuPageTitleText_ct(CtrlMenuPageTitleText *this);
 

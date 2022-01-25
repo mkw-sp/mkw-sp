@@ -12,3 +12,4 @@ typedef struct {
     EGG_Heap *heaps[3];
     u8 _00c[0xc0c - 0x00c];
 } HeapCollection;
+static_assert(sizeof(HeapCollection) == 0xc0c);

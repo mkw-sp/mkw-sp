@@ -9,5 +9,6 @@ typedef struct {
     MultiDvdArchive **multiDvdArchives;
     u8 _008[0x61c - 0x008];
 } ResourceManager;
+static_assert(sizeof(ResourceManager) == 0x61c);
 
 u16 ResourceManager_getMenuArchiveCount(ResourceManager *this);

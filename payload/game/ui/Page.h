@@ -52,6 +52,7 @@ typedef struct Page_vt {
     void *vf_5c;
     void *vf_60;
 } Page_vt;
+static_assert(sizeof(Page_vt) == 0x64);
 
 Page *Page_ct(Page *this);
 

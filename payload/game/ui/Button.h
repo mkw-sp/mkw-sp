@@ -10,6 +10,7 @@ typedef struct {
     u8 _0[0x8 - 0x0];
     void (*handle)(struct PushButtonHandler *handler, struct PushButton *button, u32 localPlayerId);
 } PushButtonHandler_vt;
+static_assert(sizeof(PushButtonHandler_vt) == 0xc);
 
 typedef struct PushButtonHandler {
     const PushButtonHandler_vt *vt;
@@ -19,6 +20,7 @@ typedef struct {
     LayoutUIControl_vt;
     u8 _03c[0x4c - 0x3c];
 } PushButton_vt;
+static_assert(sizeof(PushButton_vt) == 0x4c);
 
 typedef struct PushButton {
     LayoutUIControl;
@@ -26,6 +28,7 @@ typedef struct PushButton {
     s32 index;
     u8 _244[0x254 - 0x244];
 } PushButton;
+static_assert(sizeof(PushButton) == 0x254);
 
 PushButton *PushButton_ct(PushButton *this);
 

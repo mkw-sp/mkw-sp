@@ -123,6 +123,7 @@ typedef struct {
     u16 milliseconds;
     u8 _a[0xc - 0xa];
 } Time;
+static_assert(sizeof(Time) == 0xc);
 
 typedef struct {
     bool headerIsValid;

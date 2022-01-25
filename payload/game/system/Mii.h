@@ -6,6 +6,7 @@ typedef struct {
     u8 avatar[4];
     u8 client[4];
 } MiiId;
+static_assert(sizeof(MiiId) == 0x8);
 
 typedef struct {
     u8 _00[0x4a - 0x00];

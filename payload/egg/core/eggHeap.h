@@ -5,6 +5,7 @@
 typedef struct {
     u8 _00[0x38 - 0x00];
 } EGG_Heap;
+static_assert(sizeof(EGG_Heap) == 0x38);
 
 void *EGG_Heap_alloc(u32 size, s32 align, EGG_Heap *heap);
 

@@ -8,3 +8,4 @@ typedef struct {
     bool hasConfirmed;
     u8 _6c5[0x6cc - 0x6c5];
 } RaceConfirmPage;
+static_assert(sizeof(RaceConfirmPage) == 0x6cc);

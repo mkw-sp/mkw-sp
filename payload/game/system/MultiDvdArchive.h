@@ -15,11 +15,13 @@ typedef struct {
     u8 _14[0x18 - 0x14];
     u32 *kinds;
 } MultiDvdArchive;
+static_assert(sizeof(MultiDvdArchive) == 0x1c);
 
 MultiDvdArchive *MultiDvdArchive_create(u32 type);
 
 typedef struct {
     MultiDvdArchive;
 } MenuMultiDvdArchive;
+static_assert(sizeof(MenuMultiDvdArchive) == 0x1c);
 
 void MenuMultiDvdArchive_init(MenuMultiDvdArchive *this);

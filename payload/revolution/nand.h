@@ -29,6 +29,7 @@ enum {
 typedef struct {
     u8 _00[0x8c - 0x00];
 } NANDFileInfo;
+static_assert(sizeof(NANDFileInfo) == 0x8c);
 
 s32 NANDReadDir(const char *path, char *nameList, u32 *num);
 

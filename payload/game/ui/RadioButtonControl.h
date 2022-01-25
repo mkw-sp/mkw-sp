@@ -10,6 +10,7 @@ typedef struct {
     u8 _0[0x8 - 0x0];
     void (*handle)(struct RadioButtonControlHandler *handler, struct RadioButtonControl *control, u32 localPlayerId, s32 selected);
 } RadioButtonControlHandler_vt;
+static_assert(sizeof(RadioButtonControlHandler_vt) == 0xc);
 
 typedef struct RadioButtonControlHandler {
     const RadioButtonControlHandler_vt *vt;

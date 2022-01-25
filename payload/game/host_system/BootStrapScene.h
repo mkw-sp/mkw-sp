@@ -12,8 +12,12 @@ typedef struct {
     OSThread *relLoadThread;
     u8 _c74[0xcd8 - 0xc78];
 } BootStrapScene;
+static_assert(sizeof(BootStrapScene) == 0xcd8);
 
 void BootStrapScene_calc(BootStrapScene *this);
+
 void BootStrapScene_draw(BootStrapScene *this);
+
 void BootStrapScene_enter(BootStrapScene *this);
+
 void BootStrapScene_exit(BootStrapScene *this);

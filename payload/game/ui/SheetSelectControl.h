@@ -7,6 +7,7 @@ typedef struct {
     UIControl;
     u8 _098[0x538 - 0x098];
 } SheetSelectControl;
+static_assert(sizeof(SheetSelectControl) == 0x538);
 
 SheetSelectControl *SheetSelectControl_ct(SheetSelectControl *this);
 

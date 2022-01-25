@@ -7,6 +7,7 @@
 typedef struct {
     u8 _00[0x98 - 0x00];
 } MiiGroup;
+static_assert(sizeof(MiiGroup) == 0x98);
 
 MiiGroup *MiiGroup_ct(MiiGroup *this);
 

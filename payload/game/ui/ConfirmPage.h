@@ -10,6 +10,7 @@ typedef struct {
     u8 _0[0x8 - 0x0];
     void (*handle)(struct ConfirmPageHandler *handler, struct ConfirmPage *page, f32 delay);
 } ConfirmPageHandler_vt;
+static_assert(sizeof(ConfirmPageHandler_vt) == 0xc);
 
 typedef struct ConfirmPageHandler {
     const ConfirmPageHandler_vt *vt;
@@ -23,6 +24,7 @@ typedef struct ConfirmPage {
     u8 _828[0xa54 - 0x828];
     s32 replacement;
 } ConfirmPage;
+static_assert(sizeof(ConfirmPage) == 0xa58);
 
 void ConfirmPage_reset(ConfirmPage *this);
 

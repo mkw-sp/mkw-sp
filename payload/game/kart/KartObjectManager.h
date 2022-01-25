@@ -5,6 +5,7 @@ typedef struct {
     KartObject **objects;
     u8 _24[0x38 - 0x24];
 } KartObjectManager;
+static_assert(sizeof(KartObjectManager) == 0x38);
 
 extern KartObjectManager *s_kartObjectManager;
 

@@ -10,6 +10,7 @@ typedef struct {
     u32 index;
     u8 _238[0x240 - 0x238];
 } TabOptionButton; // C++ name: TabControl::OptionButton
+static_assert(sizeof(TabOptionButton) == 0x240);
 
 TabOptionButton *TabOptionButton_ct(TabOptionButton *this);
 

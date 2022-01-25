@@ -5,6 +5,7 @@
 typedef struct {
     u8 _00[0x90 - 0x00];
 } Pad;
+static_assert(sizeof(Pad) == 0x90);
 
 void Pad_calc(Pad *this);
 
@@ -12,12 +13,14 @@ typedef struct {
     Pad;
     u8 _90[0xa8 - 0x90];
 } GhostPad;
+static_assert(sizeof(GhostPad) == 0xa8);
 
 GhostPad *GhostPad_ct(GhostPad *this);
 
 typedef struct {
     u8 _00[0xd8 - 0x00];
 } PadProxy;
+static_assert(sizeof(PadProxy) == 0xd8);
 
 // TODO r5
 void PadProxy_setPad(PadProxy *this, Pad *pad, Pad *r5);
@@ -28,6 +31,7 @@ typedef struct {
     bool isLocked;
     u8 _e5[0xec - 0xe5];
 } GhostPadProxy;
+static_assert(sizeof(GhostPadProxy) == 0xec);
 
 GhostPadProxy *GhostPadProxy_ct(GhostPadProxy *this);
 
@@ -48,6 +52,7 @@ typedef struct {
     GhostPad multiGhostPads[11]; // Added
     GhostPadProxy multiGhostProxies[11]; // Added
 } InputManager;
+static_assert(offsetof(InputManager, multiGhostPads) == 0x415c);
 
 extern InputManager *s_inputManager;
 

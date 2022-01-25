@@ -2,11 +2,10 @@
 
 #include <Common.h>
 
-typedef struct OSThread OSThread;
-
-struct OSThread {
-    u8 _0[0x318];
-};
+typedef struct {
+    u8 _000[0x318 - 0x000];
+} OSThread;
+static_assert(sizeof(OSThread) == 0x318);
 
 BOOL OSCreateThread(OSThread *thread, void *(*func)(void *), void *param, void *stack,
     u32 stackSize, s32 priority, u16 attr);

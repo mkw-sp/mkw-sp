@@ -7,3 +7,4 @@ typedef struct {
     struct Page *page;
     u8 _10[0x14 - 0x10];
 } ControlGroup;
+static_assert(sizeof(ControlGroup) == 0x14);

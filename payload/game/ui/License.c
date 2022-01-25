@@ -3,6 +3,7 @@
 typedef struct {
     LayoutUIControl;
 } LicenseControl;
+static_assert(sizeof(LicenseControl) == 0x174);
 
 void refreshLicenseControl(void *r3, LicenseControl *control, u32 licenseId, MiiGroup *miiGroup, u32 index);
 

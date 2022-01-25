@@ -17,6 +17,7 @@ typedef struct {
     s32 controllerId;
     u8 _d4[0xf0 - 0xd4];
 } RaceConfigPlayer;
+static_assert(sizeof(RaceConfigPlayer) == 0xf0);
 
 enum {
     ENGINE_CLASS_50CC = 0x0,
@@ -52,6 +53,7 @@ typedef struct {
     u8 _b74[0xbec - 0xb74];
     u8 (*ghostBuffer)[11][0x2800]; // Modified
 } RaceConfigScenario;
+static_assert(sizeof(RaceConfigScenario) == 0xbf0);
 
 typedef struct {
     u8 _0000[0x0020 - 0x0000];
@@ -60,6 +62,7 @@ typedef struct {
     RaceConfigScenario awardsScenario;
     u8 ghostBuffers[2][11][0x2800]; // Modified
 } RaceConfig;
+static_assert(offsetof(RaceConfig, ghostBuffers[0][2]) == 0x73f0);
 
 extern RaceConfig *s_raceConfig;
 

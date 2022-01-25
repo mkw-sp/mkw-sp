@@ -13,6 +13,7 @@ typedef struct {
     u8 _94[0x98 - 0x94];
     GlobalContext *globalContext;
 } SectionManager;
+static_assert(sizeof(SectionManager) == 0x9c);
 
 extern SectionManager *s_sectionManager;
 

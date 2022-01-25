@@ -10,3 +10,4 @@ struct GXColor {
     u8 b;
     u8 a;
 };
+static_assert(sizeof(GXColor) == 0x4);

@@ -8,5 +8,6 @@ typedef struct {
     u32 watchedPlayerId;
     u8 _068[0x1dc - 0x068];
 } RacePage;
+static_assert(sizeof(RacePage) == 0x1dc);
 
 extern RacePage *s_racePage;
