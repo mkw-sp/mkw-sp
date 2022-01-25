@@ -21,7 +21,7 @@ typedef double f64;
 
 #define UNUSED(variable) (void)(variable)
 
-#define container_of(ptr, type, member) ((type *)((char *)(1 ? (ptr) : &((type *)0)->member) - offsetof(type, member)))
+#define CONTAINER_OF(ptr, type, member) ((type *)((char *)(1 ? (ptr) : &((type *)0)->member) - offsetof(type, member)))
 
 #define BUILD_BUG_ON_ZERO(e) ((int)(sizeof(struct { int:(-!!(e)); })))
 #define SAME_TYPE(a, b) __builtin_types_compatible_p(typeof(a), typeof(b))

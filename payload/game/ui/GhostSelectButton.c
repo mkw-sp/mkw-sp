@@ -50,7 +50,7 @@ enum {
 static void onSelect(InputHandler *this, u32 localPlayerId) {
     UNUSED(localPlayerId);
 
-    GhostSelectButton *button = container_of(this, GhostSelectButton, onSelect);
+    GhostSelectButton *button = CONTAINER_OF(this, GhostSelectButton, onSelect);
     TabOptionButton_onSelect(button, localPlayerId);
 
     TimeAttackGhostListPage *page = (TimeAttackGhostListPage *)button->group->page;
@@ -64,7 +64,7 @@ static const InputHandler_vt onSelect_vt = {
 static void onFront(InputHandler *this, u32 localPlayerId) {
     UNUSED(localPlayerId);
 
-    GhostSelectButton *button = container_of(this, GhostSelectButton, onFront);
+    GhostSelectButton *button = CONTAINER_OF(this, GhostSelectButton, onFront);
     UIAnimator_setAnimation(&button->animator, GROUP_ID_SELECT_IN, ANIM_ID_SELECT_IN, 0.0f);
     UIAnimator_setAnimation(&button->animator, GROUP_ID_OK, ANIM_ID_OK, 0.0f);
 

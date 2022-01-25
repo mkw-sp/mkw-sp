@@ -13,7 +13,7 @@ static const Page_vt s_TimeAttackRulesPage_vt;
 static void onBack(InputHandler *this, u32 localPlayerId) {
     UNUSED(localPlayerId);
 
-    TimeAttackRulesPage *page = container_of(this, TimeAttackRulesPage, onBack);
+    TimeAttackRulesPage *page = CONTAINER_OF(this, TimeAttackRulesPage, onBack);
     page->replacement = 0x69; // TODO enum
     Page_startReplace(page, PAGE_ANIMATION_PREV, 0.0f);
 }
@@ -44,7 +44,7 @@ static void onRuleControlFront(RadioButtonControlHandler *this, RadioButtonContr
         break;
     }
 
-    TimeAttackRulesPage *page = container_of(this, TimeAttackRulesPage, onRuleControlFront);
+    TimeAttackRulesPage *page = CONTAINER_OF(this, TimeAttackRulesPage, onRuleControlFront);
     if (control->index < ARRAY_SIZE(page->ruleControls) - 1) {
         RadioButtonControl_select(&page->ruleControls[control->index + 1], 0);
     } else {
@@ -63,7 +63,7 @@ static void onRuleControlSelect(RadioButtonControlHandler *this, RadioButtonCont
         return;
     }
 
-    TimeAttackRulesPage *page = container_of(this, TimeAttackRulesPage, onRuleControlSelect);
+    TimeAttackRulesPage *page = CONTAINER_OF(this, TimeAttackRulesPage, onRuleControlSelect);
     u32 messageIds[][4] = {
         { 0xd58, 0xd5a },
         { 0x3018, 0x3019, 0x301a, 0x301b },
@@ -82,7 +82,7 @@ static const RadioButtonControlHandler_vt onRuleControlSelect_vt = {
 static void onOkButtonFront(PushButtonHandler *this, PushButton *button, u32 localPlayerId) {
     UNUSED(localPlayerId);
 
-    TimeAttackRulesPage *page = container_of(this, TimeAttackRulesPage, onOkButtonFront);
+    TimeAttackRulesPage *page = CONTAINER_OF(this, TimeAttackRulesPage, onOkButtonFront);
     page->replacement = PAGE_ID_CHARACTER_SELECT;
     Section *currentSection = s_sectionManager->currentSection;
     CharacterSelectPage *characterSelectPage = (CharacterSelectPage *)currentSection->pages[PAGE_ID_CHARACTER_SELECT];
@@ -99,7 +99,7 @@ static void onOkButtonSelect(PushButtonHandler *this, PushButton *button, u32 lo
     UNUSED(button);
     UNUSED(localPlayerId);
 
-    TimeAttackRulesPage *page = container_of(this, TimeAttackRulesPage, onOkButtonSelect);
+    TimeAttackRulesPage *page = CONTAINER_OF(this, TimeAttackRulesPage, onOkButtonSelect);
     CtrlMenuInstructionText_setMessage(&page->instructionText, 0x302e, NULL);
 }
 

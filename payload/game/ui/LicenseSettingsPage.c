@@ -11,7 +11,7 @@ static const Page_vt s_LicenseSettingsPage_vt;
 static void onBack(InputHandler *this, u32 localPlayerId) {
     UNUSED(localPlayerId);
 
-    LicenseSettingsPage *page = container_of(this, LicenseSettingsPage, onBack);
+    LicenseSettingsPage *page = CONTAINER_OF(this, LicenseSettingsPage, onBack);
     Page_startReplace(page, PAGE_ANIMATION_PREV, 0.0f);
 }
 
@@ -35,7 +35,7 @@ static void onSettingControlFront(RadioButtonControlHandler *this, RadioButtonCo
         break;
     }
 
-    LicenseSettingsPage *page = container_of(this, LicenseSettingsPage, onSettingControlFront);
+    LicenseSettingsPage *page = CONTAINER_OF(this, LicenseSettingsPage, onSettingControlFront);
     if (control->index < ARRAY_SIZE(page->settingControls) - 1) {
         RadioButtonControl_select(&page->settingControls[control->index + 1], 0);
     } else {
@@ -56,7 +56,7 @@ static void onSettingControlSelect(RadioButtonControlHandler *this, RadioButtonC
         return;
     }
 
-    LicenseSettingsPage *page = container_of(this, LicenseSettingsPage, onSettingControlSelect);
+    LicenseSettingsPage *page = CONTAINER_OF(this, LicenseSettingsPage, onSettingControlSelect);
     u32 messageId = 0x3007 + control->index * 5 + selected;
     CtrlMenuInstructionText_setMessage(&page->instructionText, messageId, NULL);
 }
