@@ -85,7 +85,7 @@
     },
     "0x7e4": {
         "font": "regular",
-        "string": "Grand Prix und mehr für einen Spieler!",
+        "string": "Time Trials and more for one player!",
     },
     "0x7e5": {
         "font": "regular",
@@ -161,7 +161,7 @@
     },
     "0x805": {
         "font": "regular",
-        "string": "Der Speicher der Wii-Konsole ist\nbelegt. Bitte rufe den Datenver-\nwaltungsbildschirm auf, um Daten\nauf eine SD Card zu verschieben\noder zu löschen (erforderliche\nBlöcke: 23).",
+        "string": "Something went wrong when reading from\nor writing to the save.",
     },
     "0x806": {
         "font": "regular",
@@ -313,11 +313,11 @@
     },
     "0x848": {
         "font": "regular",
-        "string": "Rekorde",
+        "string": "Settings",
     },
     "0x849": {
         "font": "regular",
-        "string": "Sieh Rekorde von {current player|} an.",
+        "string": "Change settings for this licence.",
     },
     "0x84a": {
         "font": "regular",
@@ -1129,35 +1129,35 @@
     },
     "0xd53": {
         "font": "regular",
-        "string": "50 ccm",
+        "string": "100cc",
     },
     "0xd54": {
         "font": "regular",
-        "string": "100 ccm",
+        "string": "150cc",
     },
     "0xd55": {
         "font": "regular",
-        "string": "150 ccm",
+        "string": "Mirror",
     },
     "0xd56": {
         "font": "regular",
-        "string": "Spiegel",
+        "string": "200cc",
     },
     "0xd57": {
         "font": "regular",
-        "string": "50 ccm für Anfänger.",
+        "string": "0.9 speed factor.",
     },
     "0xd58": {
         "font": "regular",
-        "string": "100 ccm für Fortgeschrittene.",
+        "string": "1.0 speed factor.",
     },
     "0xd59": {
         "font": "regular",
-        "string": "150 ccm für Experten.",
+        "string": "1.0 speed factor with mirrored courses.",
     },
     "0xd5a": {
         "font": "regular",
-        "string": "150 ccm, spiegelverkehrter Kurs.",
+        "string": "1.5 speed factor with brake drifting and fast falling.",
     },
     "0xd5c": {
         "font": "regular",

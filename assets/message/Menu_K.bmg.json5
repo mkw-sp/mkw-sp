@@ -85,7 +85,7 @@
     },
     "0x7e4": {
         "font": "regular",
-        "string": "그랑프리 등을 혼자 플레이합니다",
+        "string": "Time Trials and more for one player!",
     },
     "0x7e5": {
         "font": "regular",
@@ -161,7 +161,7 @@
     },
     "0x805": {
         "font": "regular",
-        "string": "Wii 본체 저장 메모리의\n빈 용량이 부족합니다.\n저장 데이터 관리 화면에서\n데이터를 SD 카드로 이동하거나\n데이터를 삭제하여 23블록의\n여유 공간을 확보해 주십시오.",
+        "string": "Something went wrong when reading from\nor writing to the save.",
     },
     "0x806": {
         "font": "regular",
@@ -313,11 +313,11 @@
     },
     "0x848": {
         "font": "regular",
-        "string": "기록 확인",
+        "string": "Settings",
     },
     "0x849": {
         "font": "regular",
-        "string": "{current player|} 님의 기록을 확인합니다",
+        "string": "Change settings for this licence.",
     },
     "0x84a": {
         "font": "regular",
@@ -1129,35 +1129,35 @@
     },
     "0xd53": {
         "font": "regular",
-        "string": "50cc",
+        "string": "100cc",
     },
     "0xd54": {
         "font": "regular",
-        "string": "100cc",
+        "string": "150cc",
     },
     "0xd55": {
         "font": "regular",
-        "string": "150cc",
+        "string": "Mirror",
     },
     "0xd56": {
         "font": "regular",
-        "string": "미러",
+        "string": "200cc",
     },
     "0xd57": {
         "font": "regular",
-        "string": "초보자를 위한 50cc 스피드입니다",
+        "string": "0.9 speed factor.",
     },
     "0xd58": {
         "font": "regular",
-        "string": "평균적인 100cc 스피드입니다",
+        "string": "1.0 speed factor.",
     },
     "0xd59": {
         "font": "regular",
-        "string": "전문가를 위한 150cc 스피드입니다",
+        "string": "1.0 speed factor with mirrored courses.",
     },
     "0xd5a": {
         "font": "regular",
-        "string": "좌우가 뒤바뀐 코스에서 150cc 스피드입니다",
+        "string": "1.5 speed factor with brake drifting and fast falling.",
     },
     "0xd5c": {
         "font": "regular",

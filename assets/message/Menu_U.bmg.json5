@@ -1129,35 +1129,35 @@
     },
     "0xd53": {
         "font": "regular",
-        "string": "50cc",
+        "string": "100cc",
     },
     "0xd54": {
         "font": "regular",
-        "string": "100cc",
+        "string": "150cc",
     },
     "0xd55": {
         "font": "regular",
-        "string": "150cc",
+        "string": "Mirror",
     },
     "0xd56": {
         "font": "regular",
-        "string": "Mirror",
+        "string": "200cc",
     },
     "0xd57": {
         "font": "regular",
-        "string": "50cc speed for beginners.",
+        "string": "0.9 speed factor.",
     },
     "0xd58": {
         "font": "regular",
-        "string": "100cc speed for average racers.",
+        "string": "1.0 speed factor.",
     },
     "0xd59": {
         "font": "regular",
-        "string": "150cc speed for experts.",
+        "string": "1.0 speed factor with mirrored courses.",
     },
     "0xd5a": {
         "font": "regular",
-        "string": "Right/left reverse course, 150cc speed.",
+        "string": "1.5 speed factor with brake drifting and fast falling.",
     },
     "0xd5c": {
         "font": "regular",

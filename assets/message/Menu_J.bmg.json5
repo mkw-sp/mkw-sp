@@ -85,7 +85,7 @@
     },
     "0x7e4": {
         "font": "regular",
-        "string": "グランプリなどを  １人であそびます",
+        "string": "Time Trials and more for one player!",
     },
     "0x7e5": {
         "font": "regular",
@@ -161,7 +161,7 @@
     },
     "0x805": {
         "font": "regular",
-        "string": "Wii本体保存メモリの空き容量が不足しています。\nセーブデータ画面で\nデータをSDカードに移動するか\nデータを消去して\n23ブロックの空きブロックを用意してください。",
+        "string": "Something went wrong when reading from\nor writing to the save.",
     },
     "0x806": {
         "font": "regular",
@@ -313,11 +313,11 @@
     },
     "0x848": {
         "font": "regular",
-        "string": "きろくをみる",
+        "string": "Settings",
     },
     "0x849": {
         "font": "regular",
-        "string": "{current player|}さんの  きろくをみます",
+        "string": "Change settings for this licence.",
     },
     "0x84a": {
         "font": "regular",
@@ -1129,35 +1129,35 @@
     },
     "0xd53": {
         "font": "regular",
-        "string": "50cc",
+        "string": "100cc",
     },
     "0xd54": {
         "font": "regular",
-        "string": "100cc",
+        "string": "150cc",
     },
     "0xd55": {
         "font": "regular",
-        "string": "150cc",
+        "string": "Mirror",
     },
     "0xd56": {
         "font": "regular",
-        "string": "ミラー",
+        "string": "200cc",
     },
     "0xd57": {
         "font": "regular",
-        "string": "ビギナーむけ  50ccのスピードです",
+        "string": "0.9 speed factor.",
     },
     "0xd58": {
         "font": "regular",
-        "string": "スタンダードな  100ccのスピードです",
+        "string": "1.0 speed factor.",
     },
     "0xd59": {
         "font": "regular",
-        "string": "エキスパートむけ  150ccのスピードです",
+        "string": "1.0 speed factor with mirrored courses.",
     },
     "0xd5a": {
         "font": "regular",
-        "string": "左右反転コースで  150ccのスピードです",
+        "string": "1.5 speed factor with brake drifting and fast falling.",
     },
     "0xd5c": {
         "font": "regular",

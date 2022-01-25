@@ -85,7 +85,7 @@
     },
     "0x7e4": {
         "font": "regular",
-        "string": "Grand Prix et plus pour 1 joueur!",
+        "string": "Time Trials and more for one player!",
     },
     "0x7e5": {
         "font": "regular",
@@ -161,7 +161,7 @@
     },
     "0x805": {
         "font": "regular",
-        "string": "Il n'y a pas assez d'espace libre dans\nla mémoire de la console Wii. Libérez \n23 blocs en transférant des données \nà une carte SD ou en effaçant des \ndonnées depuis l'écran de Gestion \ndes données.",
+        "string": "Something went wrong when reading from\nor writing to the save.",
     },
     "0x806": {
         "font": "regular",
@@ -313,11 +313,11 @@
     },
     "0x848": {
         "font": "regular",
-        "string": "Records",
+        "string": "Settings",
     },
     "0x849": {
         "font": "regular",
-        "string": "Affichez les records de {current player|}.",
+        "string": "Change settings for this licence.",
     },
     "0x84a": {
         "font": "regular",
@@ -1129,35 +1129,35 @@
     },
     "0xd53": {
         "font": "regular",
-        "string": "50cc",
+        "string": "100cc",
     },
     "0xd54": {
         "font": "regular",
-        "string": "100cc",
+        "string": "150cc",
     },
     "0xd55": {
         "font": "regular",
-        "string": "150cc",
+        "string": "Mirror",
     },
     "0xd56": {
         "font": "regular",
-        "string": "Miroir",
+        "string": "200cc",
     },
     "0xd57": {
         "font": "regular",
-        "string": "50cc, pour les débutants.",
+        "string": "0.9 speed factor.",
     },
     "0xd58": {
         "font": "regular",
-        "string": "100cc, pour les pilotes confirmés.",
+        "string": "1.0 speed factor.",
     },
     "0xd59": {
         "font": "regular",
-        "string": "150cc, pour les experts.",
+        "string": "1.0 speed factor with mirrored courses.",
     },
     "0xd5a": {
         "font": "regular",
-        "string": "150cc, droite/gauche inversées.",
+        "string": "1.5 speed factor with brake drifting and fast falling.",
     },
     "0xd5c": {
         "font": "regular",

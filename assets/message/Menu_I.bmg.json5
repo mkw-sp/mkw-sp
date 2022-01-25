@@ -85,7 +85,7 @@
     },
     "0x7e4": {
         "font": "regular",
-        "string": "Gran premio e molto altro per un giocatore!",
+        "string": "Time Trials and more for one player!",
     },
     "0x7e5": {
         "font": "regular",
@@ -161,7 +161,7 @@
     },
     "0x805": {
         "font": "regular",
-        "string": "Non c'è abbastanza spazio libero nella\nmemoria della console Wii. Blocchi\nliberi necessari: 23. Per creare spazio,\nvai allo schermo Gestione dati e\ncancella alcuni dati o trasferiscili\nin una scheda SD.",
+        "string": "Something went wrong when reading from\nor writing to the save.",
     },
     "0x806": {
         "font": "regular",
@@ -313,11 +313,11 @@
     },
     "0x848": {
         "font": "regular",
-        "string": "Record",
+        "string": "Settings",
     },
     "0x849": {
         "font": "regular",
-        "string": "Guarda i record di {current player|}.",
+        "string": "Change settings for this licence.",
     },
     "0x84a": {
         "font": "regular",
@@ -1129,35 +1129,35 @@
     },
     "0xd53": {
         "font": "regular",
-        "string": "50cc",
+        "string": "100cc",
     },
     "0xd54": {
         "font": "regular",
-        "string": "100cc",
+        "string": "150cc",
     },
     "0xd55": {
         "font": "regular",
-        "string": "150cc",
+        "string": "Mirror",
     },
     "0xd56": {
         "font": "regular",
-        "string": "Speculare",
+        "string": "200cc",
     },
     "0xd57": {
         "font": "regular",
-        "string": "Veicoli da 50cc per principianti.",
+        "string": "0.9 speed factor.",
     },
     "0xd58": {
         "font": "regular",
-        "string": "Veicoli da 100cc per piloti esperti.",
+        "string": "1.0 speed factor.",
     },
     "0xd59": {
         "font": "regular",
-        "string": "Veicoli da 150cc per veri assi.",
+        "string": "1.0 speed factor with mirrored courses.",
     },
     "0xd5a": {
         "font": "regular",
-        "string": "Percorsi visti allo specchio, classe 150cc.",
+        "string": "1.5 speed factor with brake drifting and fast falling.",
     },
     "0xd5c": {
         "font": "regular",
