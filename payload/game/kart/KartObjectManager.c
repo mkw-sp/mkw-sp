@@ -3,6 +3,8 @@
 #include "../system/RaceConfig.h"
 #include "../system/SaveManager.h"
 
+#include "../ui/page/RacePage.h"
+
 bool speedModIsEnabled;
 f32 speedModFactor;
 f32 speedModReverseFactor;
@@ -10,6 +12,8 @@ f32 speedModReverseFactor;
 extern f32 minDriftSpeedFactor;
 extern f32 boostAccelerations[6];
 extern f32 ai_808cb550;
+
+u8 s_playerDrawPriorities[12];
 
 KartObjectManager *KartObjectManager_ct(KartObjectManager *this);
 
@@ -39,3 +43,26 @@ static void my_KartObjectManager_createInstance(void) {
     KartObjectManager_ct(s_kartObjectManager);
 }
 PATCH_B(KartObjectManager_createInstance, my_KartObjectManager_createInstance);
+
+static bool playerIsSolid(u32 playerId) {
+    const RaceConfigScenario *raceScenario = &s_raceConfig->raceScenario;
+    if (raceScenario->players[playerId].type != PLAYER_TYPE_GHOST) {
+        return true;
+    }
+
+    switch (SaveManager_getTaRuleSolidGhosts(s_saveManager)) {
+    case SP_TA_RULE_SOLID_GHOSTS_NONE:
+        return false;
+    case SP_TA_RULE_SOLID_GHOSTS_ALL:
+        return true;
+    default:
+        return playerId == s_racePage->watchedPlayerId;
+    }
+}
+
+void calcDrawPriorities(void) {
+    const RaceConfigScenario *raceScenario = &s_raceConfig->raceScenario;
+    for (u32 i = 0; i < raceScenario->playerCount; i++) {
+        s_playerDrawPriorities[i] = playerIsSolid(i) ? 0x4e : 0x3;
+    }
+}

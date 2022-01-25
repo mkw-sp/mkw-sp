@@ -116,3 +116,90 @@ PATCH_BL_START(KartSub_calcPass1, 0x694)
     fmuls f0, f0, f2
     blr
 PATCH_BL_END(KartSub_calcPass1, 0x694)
+
+
+
+PATCH_BL_START(KartSub_calcTransforms, 0x20)
+    lwz r12, 0xc (r3) // Original instruction
+
+    lwz r4, 0x7c (r3)
+    cmpwi r4, 0x0
+    beqlr
+
+    // Get the player id
+    lwz r5, 0x0 (r29)
+    lwz r5, 0x0 (r5)
+    lbz r5, 0x10 (r5)
+
+    lis r6, s_playerDrawPriorities@h
+    ori r6, r6, s_playerDrawPriorities@l
+    lbzx r5, r6, r5
+
+    lwz r6, 0x14 (r4)
+    lwz r6, 0x0 (r6)
+    stb r5, 0xd0 (r6)
+
+    lwz r6, 0x18 (r4)
+    lwz r6, 0x0 (r6)
+    stb r5, 0xd0 (r6)
+
+    b KartSub_calcTransforms + 0x24
+PATCH_BL_END(KartSub_calcTransforms, 0x20)
+
+PATCH_BL_START(KartSub_calcTransforms, 0x44)
+    lwz r12, 0xc (r3) // Original instruction
+
+    lwz r4, 0x7c (r3)
+    cmpwi r4, 0x0
+    beqlr
+
+    // Get the player id
+    lwz r5, 0x0 (r29)
+    lwz r5, 0x0 (r5)
+    lbz r5, 0x10 (r5)
+
+    lis r6, s_playerDrawPriorities@h
+    ori r6, r6, s_playerDrawPriorities@l
+    lbzx r5, r6, r5
+
+    lwz r6, 0x14 (r4)
+    cmpwi r6, 0x0
+    beqlr
+    lwz r6, 0x0 (r6)
+    stb r5, 0xd0 (r6)
+
+    lwz r6, 0x18 (r4)
+    lwz r6, 0x0 (r6)
+    stb r5, 0xd0 (r6)
+
+    b KartSub_calcTransforms + 0x48
+PATCH_BL_END(KartSub_calcTransforms, 0x44)
+
+PATCH_BL_START(KartSub_calcTransforms, 0xa4)
+    lwz r12, 0xc (r30) // Original instruction
+
+    lwz r4, 0x7c (r30)
+    cmpwi r4, 0x0
+    beqlr
+
+    // Get the player id
+    lwz r5, 0x0 (r29)
+    lwz r5, 0x0 (r5)
+    lbz r5, 0x10 (r5)
+
+    lis r6, s_playerDrawPriorities@h
+    ori r6, r6, s_playerDrawPriorities@l
+    lbzx r5, r6, r5
+
+    lwz r6, 0x14 (r4)
+    cmpwi r6, 0x0
+    beqlr
+    lwz r6, 0x0 (r6)
+    stb r5, 0xd0 (r6)
+
+    lwz r6, 0x18 (r4)
+    lwz r6, 0x0 (r6)
+    stb r5, 0xd0 (r6)
+
+    b KartSub_calcTransforms + 0xa8
+PATCH_BL_END(KartSub_calcTransforms, 0xa4)

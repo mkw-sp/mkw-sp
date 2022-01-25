@@ -101,6 +101,8 @@ code_in_files = {
         os.path.join('game', 'item', 'ItemObjKouraAo.S'),
         os.path.join('game', 'item', 'ItemObjKouraMidori.S'),
         os.path.join('game', 'kart', 'KartMove.S'),
+        os.path.join('game', 'kart', 'KartObject.S'),
+        os.path.join('game', 'kart', 'KartObjectManager.S'),
         os.path.join('game', 'kart', 'KartObjectManager.c'),
         os.path.join('game', 'kart', 'KartParam.S'),
         os.path.join('game', 'kart', 'KartState.S'),
