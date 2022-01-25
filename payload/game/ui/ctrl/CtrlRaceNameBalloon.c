@@ -17,7 +17,6 @@ static BalloonManager *my_BalloonManager_ct(BalloonManager *this) {
 
     return this;
 }
-
 PATCH_B(BalloonManager_ct, my_BalloonManager_ct);
 
 static void my_BalloonManager_dt(BalloonManager *this, s32 type) {
@@ -25,7 +24,6 @@ static void my_BalloonManager_dt(BalloonManager *this, s32 type) {
         delete(this);
     }
 }
-
 PATCH_B(BalloonManager_dt, my_BalloonManager_dt);
 
 static void my_BalloonManager_init(BalloonManager *this, u8 localPlayerId) {
@@ -37,13 +35,11 @@ static void my_BalloonManager_init(BalloonManager *this, u8 localPlayerId) {
         this->nameIsEnabled[i] = false;
     }
 }
-
 PATCH_B(BalloonManager_init, my_BalloonManager_init);
 
 static void my_BalloonManager_addNameControl(BalloonManager *this, CtrlRaceNameBalloon *UNUSED(nameControl)) {
     this->nameCount++;
 }
-
 PATCH_B(BalloonManager_addNameControl, my_BalloonManager_addNameControl);
 
 static void CtrlRaceNameBalloon_refreshTextName(CtrlRaceNameBalloon *this, u32 playerId) {

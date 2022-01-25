@@ -20,7 +20,6 @@ static bool my_TimeAttackGameMode_canEndRace(TimeAttackGameMode *UNUSED(this)) {
 
     return true;
 }
-
 PATCH_B(TimeAttackGameMode_canEndRace, my_TimeAttackGameMode_canEndRace);
 
 void RaceManagerPlayer_setMultiGhostPadProxy(RaceManagerPlayer *this) {

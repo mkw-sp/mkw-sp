@@ -73,8 +73,10 @@ void my_BootStrapScene_calc(BootStrapScene *this) {
 
     entry();
 }
+PATCH_B(BootStrapScene_calc, my_BootStrapScene_calc);
 
 void my_BootStrapScene_draw(BootStrapScene *UNUSED(this)) {}
+PATCH_B(BootStrapScene_draw, my_BootStrapScene_draw);
 
 void my_BootStrapScene_enter(BootStrapScene *this) {
     this->relLoadThread = spAlloc(sizeof(OSThread), 0x4, this->heapMem1);
@@ -84,14 +86,11 @@ void my_BootStrapScene_enter(BootStrapScene *this) {
     OSCreateThread(this->relLoadThread, loadRel, this->heapMem1, stackBase, stackSize, 20, 0);
     OSResumeThread(this->relLoadThread);
 }
+PATCH_B(BootStrapScene_enter, my_BootStrapScene_enter);
 
 void my_BootStrapScene_exit(BootStrapScene *this) {
     OSDetachThread(this->relLoadThread);
     spFree(this->relLoadThreadStack);
     spFree(this->relLoadThread);
 }
-
-PATCH_B(BootStrapScene_calc, my_BootStrapScene_calc);
-PATCH_B(BootStrapScene_draw, my_BootStrapScene_draw);
-PATCH_B(BootStrapScene_enter, my_BootStrapScene_enter);
 PATCH_B(BootStrapScene_exit, my_BootStrapScene_exit);

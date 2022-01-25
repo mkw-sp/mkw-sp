@@ -10,7 +10,6 @@ static u16 my_ResourceManager_getMenuArchiveCount(ResourceManager *this) {
     }
     return loadedCount;
 }
-
 PATCH_B(ResourceManager_getMenuArchiveCount, my_ResourceManager_getMenuArchiveCount);
 
 extern void ResourceManager_attachLayoutDir;

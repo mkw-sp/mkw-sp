@@ -25,5 +25,4 @@ static void my_MenuMultiDvdArchive_init(MenuMultiDvdArchive *this) {
         this->kinds[i] = RESOURCE_KIND_FILE_DOUBLE_FORMAT;
     }
 }
-
 PATCH_B(MenuMultiDvdArchive_init, my_MenuMultiDvdArchive_init);

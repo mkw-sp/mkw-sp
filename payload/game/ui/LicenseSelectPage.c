@@ -64,7 +64,6 @@ static LicenseSelectPage *my_LicenseSelectPage_ct(LicenseSelectPage *this) {
 
     return this;
 }
-
 PATCH_B(LicenseSelectPage_ct, my_LicenseSelectPage_ct);
 
 static void LicenseSelectPage_dt(Page *base, s32 type) {

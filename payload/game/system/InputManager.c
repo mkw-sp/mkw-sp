@@ -14,7 +14,6 @@ static InputManager *my_InputManager_createInstance(void) {
 
     return s_inputManager;
 }
-
 PATCH_B(InputManager_createInstance, my_InputManager_createInstance);
 
 void InputManager_resetMultiGhostProxies(InputManager *this) {
@@ -50,7 +49,6 @@ static void my_InputManager_startRace(InputManager *this) {
         this->multiGhostProxies[i].isLocked = true;
     }
 }
-
 PATCH_B(InputManager_startRace, my_InputManager_startRace);
 
 static void my_InputManager_startGhostProxies(InputManager *this) {
@@ -62,5 +60,4 @@ static void my_InputManager_startGhostProxies(InputManager *this) {
         GhostPadProxy_start(&this->multiGhostProxies[i]);
     }
 }
-
 PATCH_B(InputManager_startGhostProxies, my_InputManager_startGhostProxies);

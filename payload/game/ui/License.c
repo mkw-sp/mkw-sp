@@ -15,6 +15,4 @@ void my_refreshLicenseControl(void *UNUSED(r3), LicenseControl *control, u32 UNU
     };
     LayoutUIControl_setMessage(control, "player", 0x251d, &info);
 }
-
 PATCH_B(refreshLicenseControl, my_refreshLicenseControl);
-

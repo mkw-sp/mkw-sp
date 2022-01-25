@@ -38,5 +38,4 @@ static RaceConfig *my_RaceConfig_createInstance(void) {
 
     return s_raceConfig;
 }
-
 PATCH_B(RaceConfig_createInstance, my_RaceConfig_createInstance);

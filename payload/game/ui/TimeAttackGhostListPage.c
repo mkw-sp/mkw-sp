@@ -10,7 +10,6 @@
 static const Page_vt s_TimeAttackGhostListPage_vt;
 
 static void onBack(InputHandler *this, u32 UNUSED(localPlayerId)) {
-
     TimeAttackGhostListPage *page = CONTAINER_OF(this, TimeAttackGhostListPage, onBack);
     page->replacement = 0x6f; // TODO enum
     Page_startReplace(page, PAGE_ANIMATION_PREV, 0.0f);
@@ -159,7 +158,6 @@ static TimeAttackGhostListPage *my_TimeAttackGhostListPage_ct(TimeAttackGhostLis
 
     return this;
 }
-
 PATCH_B(TimeAttackGhostListPage_ct, my_TimeAttackGhostListPage_ct);
 
 static void TimeAttackGhostListPage_dt(Page *base, s32 type) {
