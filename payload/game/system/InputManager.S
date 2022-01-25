@@ -14,7 +14,7 @@ PATCH_BL_START(WiiPad_processClassic, 0x1e8)
     cmpwi r8, 0x240
     bnelr
 
-    // Set the break drifting bit
+    // Set the brake drifting bit
     ori r6, r6, 0x10
     blr
 PATCH_BL_END(WiiPad_processClassic, 0x1e8)
@@ -33,7 +33,7 @@ PATCH_BL_START(GcPad_process, 0xec)
     cmpwi r4, 0x220
     bnelr
 
-    // Set the break drifting bit
+    // Set the brake drifting bit
     ori r8, r8, 0x10
     blr
 PATCH_BL_END(GcPad_process, 0xec)

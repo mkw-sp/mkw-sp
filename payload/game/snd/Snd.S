@@ -14,7 +14,7 @@ PATCH_BL_START(Snd_806fafb4, 0x44)
     cmpwi r5, 0xf
     bnelr
 
-    // Check that the break drifting bit is set
+    // Check that the brake drifting bit is set
     lis r5, s_raceManager@ha
     lwz r5, s_raceManager@l (r5)
     lwz r5, 0xc (r5)

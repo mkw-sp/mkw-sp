@@ -14,7 +14,7 @@ PATCH_BL_START(Input_80745be4, 0xd0)
     cmpwi r6, 0x404
     bnelr
 
-    // Set the break drifting bit
+    // Set the brake drifting bit
     ori r31, r31, 0x10
     blr
 PATCH_BL_END(Input_80745be4, 0xd0)
@@ -33,7 +33,7 @@ PATCH_BL_START(Input_80745de4, 0x18c)
     cmpwi r3, 0x600
     bnelr
 
-    // Set the break drifting bit
+    // Set the brake drifting bit
     ori r0, r0, 0x10
     blr
 PATCH_BL_END(Input_80745de4, 0x18c)

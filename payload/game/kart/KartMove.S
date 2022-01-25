@@ -21,7 +21,7 @@ PATCH_B_START(KartMove_calcAcceleration, 0x284)
     cmpwi r3, 0xf
     bne .Lend
 
-    // Check that the break drifting bit is set
+    // Check that the brake drifting bit is set
     lis r3, s_raceManager@ha
     lwz r3, s_raceManager@l (r3)
     lwz r3, 0xc (r3)
