@@ -18,9 +18,10 @@ typedef struct {
     u8 _08[0x14 - 0x08];
     s32 playerIds[12];
     bool nameIsEnabled[12]; // Moved
-    u8 _50[0xc4 - 0x50];
-    Vec3 namePositions[12]; // Moved
+    Vec3 *namePositions; // Modified
+    u8 _54[0xc4 - 0x54];
 } BalloonManager;
+static_assert(sizeof(BalloonManager) == 0xc4);
 
 BalloonManager *BalloonManager_ct(BalloonManager *this);
 

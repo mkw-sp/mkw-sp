@@ -76,28 +76,34 @@ PATCH_INJECT_START(BalloonManager_calc, 0x810)
     stb r26, 0x44 (r3)
 PATCH_INJECT_END(BalloonManager_calc, 0x810)
 
-// Move namePositions to 0xc4
+// Move namePositions to 0x50 and add a level of indirection
 
-PATCH_REPLACE_START(CtrlRaceNameBalloon_calcPosition, 0x98)
-    lwz r5, 0xc4 (r6)
-    lwz r4, 0xc8 (r6)
-    lwz r0, 0xcc (r6)
-PATCH_REPLACE_END(CtrlRaceNameBalloon_calcPosition, 0x98)
+PATCH_B_START(CtrlRaceNameBalloon_calcPosition, 0x94)
+    lwz r6, 0x50 (r4)
+    add r6, r6, r0
+    lwz r5, 0x0 (r6)
+    lwz r4, 0x4 (r6)
+    lwz r0, 0x8 (r6)
+    b CtrlRaceNameBalloon_calcPosition + 0xa4
+PATCH_B_END(CtrlRaceNameBalloon_calcPosition, 0x94)
 
-PATCH_REPLACE_START(BalloonManager_calc, 0x430)
-    stfs f0, 0xc4 (r16)
+PATCH_B_START(BalloonManager_calc, 0x42c)
+    lwz r16, 0x50 (r30)
+    add r16, r16, r0
+    stfs f0, 0x0 (r16)
     lfs f0, 0x30 (r1)
-    stfs f0, 0xc8 (r16)
+    stfs f0, 0x4 (r16)
     lfs f0, 0x34 (r1)
-    stfs f0, 0xcc (r16)
-PATCH_REPLACE_END(BalloonManager_calc, 0x430)
+    stfs f0, 0x8 (r16)
+    b BalloonManager_calc + 0x444
+PATCH_B_END(BalloonManager_calc, 0x42c)
 
 PATCH_REPLACE_START(BalloonManager_calc, 0x74c)
-    stfs f0, 0xc4 (r16)
+    stfs f0, 0x0 (r16)
     lfs f0, 0x30 (r1)
-    stfs f0, 0xc8 (r16)
+    stfs f0, 0x4 (r16)
     lfs f0, 0x34 (r1)
-    stfs f0, 0xcc (r16)
+    stfs f0, 0x8 (r16)
 PATCH_REPLACE_END(BalloonManager_calc, 0x74c)
 
 PATCH_REPLACE_START(BalloonManager_calc, 0x7b0)

@@ -11,20 +11,6 @@ void RacePage_initSpeedControl(RacePage *this, u32 controlId, u32 localPlayerCou
     CtrlRaceSpeed_load(control, localPlayerCount, localPlayerId);
 }
 
-extern void RacePage_initControls;
-extern void RacePage_afterCalc;
-extern void RacePage_calcNameBalloons;
-extern void RacePage_calcItemBalloons;
-
-PATCH_S16(RacePage_initControls, 0x566, sizeof(BalloonManager));
-PATCH_S16(RacePage_initControls, 0x57e, sizeof(BalloonManager));
-PATCH_S16(RacePage_initControls, 0x5a2, sizeof(BalloonManager));
-PATCH_S16(RacePage_initControls, 0x626, sizeof(BalloonManager));
-PATCH_S16(RacePage_initControls, 0x72a, sizeof(BalloonManager));
-PATCH_S16(RacePage_afterCalc, 0x5e, sizeof(BalloonManager));
-PATCH_S16(RacePage_calcNameBalloons, 0x76, sizeof(BalloonManager));
-PATCH_S16(RacePage_calcItemBalloons, 0x72, sizeof(BalloonManager));
-
 enum {
     CONTROL_TIME = 1 << 1,
     CONTROL_COUNT = 1 << 2,

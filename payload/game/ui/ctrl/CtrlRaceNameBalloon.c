@@ -11,7 +11,8 @@
 
 static BalloonManager *my_BalloonManager_ct(BalloonManager *this) {
     this->nameCount = 0;
-    for (u32 i = 0; i < ARRAY_SIZE(this->namePositions); i++) {
+    this->namePositions = spAllocArray(12, sizeof(Vec3), 0x4, NULL);
+    for (u32 i = 0; i < 12; i++) {
         this->namePositions[i] = (Vec3) { 0 };
     }
 
@@ -20,6 +21,8 @@ static BalloonManager *my_BalloonManager_ct(BalloonManager *this) {
 PATCH_B(BalloonManager_ct, my_BalloonManager_ct);
 
 static void my_BalloonManager_dt(BalloonManager *this, s32 type) {
+    spFree(this->namePositions);
+
     if (type > 0) {
         delete(this);
     }
