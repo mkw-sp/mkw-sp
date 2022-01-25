@@ -159,6 +159,7 @@ code_in_files = {
         os.path.join('game', 'ui', 'ctrl', 'CtrlRaceSpeed.c'),
         os.path.join('game', 'ui', 'ctrl', 'CtrlRaceTime.S'),
         os.path.join('game', 'ui', 'ctrl', 'CtrlRaceTime.c'),
+        os.path.join('game', 'ui', 'page', 'RaceMenuPage.c'),
         os.path.join('game', 'ui', 'page', 'RacePage.S'),
         os.path.join('game', 'ui', 'page', 'RacePage.c'),
         os.path.join('game', 'ui', 'page', 'SingleTopMenuPage.S'),
@@ -378,6 +379,7 @@ asset_in_files = {
         os.path.join('message', 'Menu_U.bmg.json5'),
     ],
     'RaceSP.szs': [
+        os.path.join('button', 'ctrl', 'AfterMenuTimeAttack.brctr.json5'),
         os.path.join('game_image', 'anim', 'game_image_speed_texture_pattern_0_9.brlan.json5'),
         os.path.join('game_image', 'blyt', 'game_image_speed.brlyt.json5'),
         os.path.join('game_image', 'ctrl', 'battle_total_point.brctr.json5'),
