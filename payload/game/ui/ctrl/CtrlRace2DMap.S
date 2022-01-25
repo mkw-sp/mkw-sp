@@ -1,21 +1,21 @@
 #include <Common.S>
 
 PATCH_B_START(CtrlRace2DMapCharacter_calcTransform, 0x138)
-    # Check if the section id is ghost replay
+    // Check if the section id is ghost replay
     cmpwi r0, 0x34
     bne .Lend
 
-    li r0, 0x6a # Pretend it's live view instead
+    li r0, 0x6a // Pretend it's live view instead
 
 .Lend:
-    cmpwi r0, 0x6a # Original instruction
+    cmpwi r0, 0x6a // Original instruction
 
     b CtrlRace2DMapCharacter_calcTransform + 0x13c
 PATCH_B_END(CtrlRace2DMapCharacter_calcTransform, 0x138)
 
-# Make the icon of the selected player appear over the other ones
+// Make the icon of the selected player appear over the other ones
 PATCH_B_START(CtrlRace2DMapCharacter_calcTransform, 0x298)
-    stfs f0, 0x48 (r3) # Original instruction
+    stfs f0, 0x48 (r3) // Original instruction
 
     lfs f3, 0x78 (r30)
 
@@ -31,7 +31,7 @@ PATCH_B_START(CtrlRace2DMapCharacter_calcTransform, 0x298)
     b CtrlRace2DMapCharacter_calcTransform + 0x29c
 PATCH_B_END(CtrlRace2DMapCharacter_calcTransform, 0x298)
 
-# Fix copy-pasting bug
+// Fix copy-pasting bug
 PATCH_REPLACE_START(CtrlRace2DMapCharacter_calcTransform, 0x5bc)
     lwz r3, 0x1c0 (r28)
 PATCH_REPLACE_END(CtrlRace2DMapCharacter_calcTransform, 0x5bc)

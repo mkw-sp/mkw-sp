@@ -17,9 +17,9 @@ PATCH_B_START(Camera_805a2034, 0xbc)
 PATCH_B_END(Camera_805a2034, 0xbc)
 
 PATCH_BL_START(Camera_805a21d0, 0xf4)
-    lwz r0, 0x334 (r29) # Original instruction
+    lwz r0, 0x334 (r29) // Original instruction
 
-    # Check if the current section is ghost replay
+    // Check if the current section is ghost replay
     lis r4, s_sectionManager@ha
     lwz r4, s_sectionManager@l (r4)
     lwz r4, 0x0 (r4)
@@ -35,7 +35,7 @@ PATCH_BL_START(Camera_805a21d0, 0xf4)
 PATCH_BL_END(Camera_805a21d0, 0xf4)
 
 PATCH_BL_START(Camera_805a21d0, 0x7a0)
-    # Check that the current section is not ghost replay
+    // Check that the current section is not ghost replay
     lis r4, s_sectionManager@ha
     lwz r4, s_sectionManager@l (r4)
     lwz r4, 0x0 (r4)
@@ -43,6 +43,6 @@ PATCH_BL_START(Camera_805a21d0, 0x7a0)
     cmpwi r4, 0x34
     beqlr
 
-    ori r0, r0, 0x4 # Original instruction
+    ori r0, r0, 0x4 // Original instruction
     b Camera_805a21d0 + 0x7a4
 PATCH_BL_END(Camera_805a21d0, 0x7a0)

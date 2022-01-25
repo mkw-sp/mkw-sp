@@ -1,14 +1,14 @@
 #include <Common.S>
 
 PATCH_BL_START(Layout_CreateAnimTransform, 0x38)
-    mtctr r12 # Original instruction
+    mtctr r12 // Original instruction
 
-    # Check that there is a pat1 section
+    // Check that there is a pat1 section
     lwz r5, 0x8 (r4)
     cmpwi r5, 0x0
     beqlr
 
-    # Check if groups are explicitly specified
+    // Check if groups are explicitly specified
     lhz r5, 0xa (r5)
     cmpwi r5, 0x0
     beqlr
@@ -28,8 +28,8 @@ PATCH_BL_START(Layout_CreateAnimTransform, 0x38)
     stw r27, 0x8 (r1)
 
     mr r30, r3
-    li r28, 0x0 # Loop counter
-    li r27, 0x0 # Number of animations
+    li r28, 0x0 // Loop counter
+    li r27, 0x0 // Number of animations
 
 .Lloop:
     lwz r3, 0x8 (r31)

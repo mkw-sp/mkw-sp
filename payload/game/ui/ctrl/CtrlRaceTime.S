@@ -1,7 +1,7 @@
 #include <Common.S>
 
 PATCH_B_START(CtrlRaceTime_calcSelf, 0x34)
-    stb r0, 0x1b6 (r31) # Original instruction
+    stb r0, 0x1b6 (r31) // Original instruction
 
     mr r3, r30
     bl RaceManager_getPlayerMaxLap

@@ -168,9 +168,9 @@ PATCH_B_START(CtrlRaceNameBalloon_calcSelf, 0x628)
 PATCH_B_END(CtrlRaceNameBalloon_calcSelf, 0x628)
 
 PATCH_BL_START(BalloonManager_calc, 0x7c)
-    stw r0, 0x14 (r30) # Original instruction
+    stw r0, 0x14 (r30) // Original instruction
 
-    # Check that the current section id is ghost replay
+    // Check that the current section id is ghost replay
     lis r3, s_sectionManager@ha
     lwz r3, s_sectionManager@l (r3)
     lwz r3, 0x0 (r3)
@@ -178,14 +178,14 @@ PATCH_BL_START(BalloonManager_calc, 0x7c)
     cmpwi r3, 0x34
     bnelr
 
-    # Check that there are at least two ghosts
+    // Check that there are at least two ghosts
     lis r3, s_raceConfig@ha
     lwz r3, s_raceConfig@l (r3)
     lbz r3, 0x24 (r3)
     cmpwi r3, 2
     bltlr
 
-    # Hide the tagline at the beginning of the race
+    // Hide the tagline at the beginning of the race
     li r0, -1
     stw r0, 0x14 (r30)
 

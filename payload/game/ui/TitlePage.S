@@ -1,7 +1,7 @@
 #include <Common.S>
 
 PATCH_B_START(TitlePage_onInit, 0x16c)
-    # Enable alternative backgrounds
+    // Enable alternative backgrounds
     li r0, 0x1
     stb r0, 0x348 (r31)
 

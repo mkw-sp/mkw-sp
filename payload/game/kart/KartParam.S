@@ -8,9 +8,9 @@ PATCH_B_START(KartParam_compute, 0x1f0)
     fmuls f3, f3, f2
     stfs f3, 0xc (r3)
 
-    fmuls f0, f0, f2 # Player base speed
-    fmuls f1, f1, f2 # Vehicle base speed
-    fadds f0, f1, f0 # Original instruction
+    fmuls f0, f0, f2 // Player base speed
+    fmuls f1, f1, f2 // Vehicle base speed
+    fadds f0, f1, f0 // Original instruction
     b KartParam_compute + 0x1f4
 PATCH_B_END(KartParam_compute, 0x1f0)
 
