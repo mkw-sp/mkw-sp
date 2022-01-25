@@ -1,31 +1,29 @@
 #include <Common.S>
 
-.global fix_RacePage_initInputs
-fix_RacePage_initInputs:
-    # Check if the section id is ghost replay
+PATCH_B_START(RacePage_initInputs, 0x240)
+    // Check if the section id is ghost replay
     cmpwi r0, 0x34
     bne .LinitInputs_end
 
-    li r0, 0x6a # Pretend it's live view instead
+    li r0, 0x6a // Pretend it's live view instead
 
 .LinitInputs_end:
-    cmpwi r0, 0x6a # Original instruction
-    blr
-.size fix_RacePage_initInputs, . - fix_RacePage_initInputs
-
-PATCH_BL(RacePage_initInputs + 0x240, fix_RacePage_initInputs)
+    cmpwi r0, 0x6a // Original instruction
+    b RacePage_initInputs + 0x244
+PATCH_B_END(RacePage_initInputs, 0x240)
 
 
 
-PATCH_INJECT_START(RacePage_getControlCount, 0x198)
+PATCH_B_START(RacePage_getControlCount, 0x198)
     add r3, r3, r30 # Increase the control count by one CtrlRaceSpeed per local player
 
     lwz r31, 0x1c (r1) # Original instruction
-PATCH_INJECT_END(RacePage_getControlCount, 0x198)
+    b RacePage_getControlCount + 0x19c
+PATCH_B_END(RacePage_getControlCount, 0x198)
 
 
 
-PATCH_INJECT_START(RacePage_getControlCount, 0xc4)
+PATCH_B_START(RacePage_getControlCount, 0xc4)
     cmpwi r3, 0 # Check if the number of CtrlRaceNameBalloon is zero
     beq .LgetControlCount_end
 
@@ -33,11 +31,12 @@ PATCH_INJECT_START(RacePage_getControlCount, 0xc4)
 
 .LgetControlCount_end:
     add r31, r31, r3 # Original instruction
-PATCH_INJECT_END(RacePage_getControlCount, 0xc4)
+    b RacePage_getControlCount + 0xc8
+PATCH_B_END(RacePage_getControlCount, 0xc4)
 
 
 
-PATCH_INJECT_START(RacePage_initControls, 0x3e0)
+PATCH_B_START(RacePage_initControls, 0x3e0)
     mr r3, r15 # this
     mr r4, r18 # controlId
     mr r5, r19 # localPlayerCount
@@ -47,25 +46,30 @@ PATCH_INJECT_START(RacePage_initControls, 0x3e0)
     addi r18, r18, 1 # Increment the control id
 
     addi r17, r17, 1 # Original instruction, increment the local player id
-PATCH_INJECT_END(RacePage_initControls, 0x3e0)
+    b RacePage_initControls + 0x3e4
+PATCH_B_END(RacePage_initControls, 0x3e0)
 
 
 
-PATCH_INJECT_START(RacePage_initControls, 0x1a0)
+PATCH_B_START(RacePage_initControls, 0x1a0)
     bl CtrlRaceLap_load # Original instruction
 
     mr r3, r20
     mr r4, r19
     bl CtrlRaceLap_initLabelVisibility
-PATCH_INJECT_END(RacePage_initControls, 0x1a0)
 
-PATCH_INJECT_START(RacePage_initControls, 0x4c8)
+    b RacePage_initControls + 0x1a4
+PATCH_B_END(RacePage_initControls, 0x1a0)
+
+PATCH_B_START(RacePage_initControls, 0x4c8)
     bl CtrlRaceTime_load # Original instruction
 
     mr r3, r14
     mr r4, r19
     bl CtrlRaceTime_initLabelVisibility
-PATCH_INJECT_END(RacePage_initControls, 0x4c8)
+
+    b RacePage_initControls + 0x4cc
+PATCH_B_END(RacePage_initControls, 0x4c8)
 
 
 
@@ -81,27 +85,24 @@ PATCH_REPLACE_END(RacePage_initControls, 0x680)
 
 
 
-.global fix_RacePage_beforeCalc
-fix_RacePage_beforeCalc:
-    # Check if the section id is live replay
+PATCH_B_START(RacePage_beforeCalc, 0x3c)
+    // Check if the section id is live replay
     cmpwi r0, 0x34
     bne .LbeforeCalc_end
 
-    # Check that the countdown has started
+    // Check that the countdown has started
     lis r4, s_raceManager@ha
     lwz r4, s_raceManager@l (r4)
     lwz r4, 0x28 (r4)
     cmpwi r4, 0x0
     beq .LbeforeCalc_end
 
-    li r0, 0x6a # If the section is ghost replay, pretend it's live view instead
+    li r0, 0x6a // If the section is ghost replay, pretend it's live view instead
 
 .LbeforeCalc_end:
-    cmpwi r0, 0x6a # Original instruction
-    blr
-.size fix_RacePage_beforeCalc, . - fix_RacePage_beforeCalc
-
-PATCH_BL(RacePage_beforeCalc + 0x3c, fix_RacePage_beforeCalc)
+    cmpwi r0, 0x6a // Original instruction
+    b RacePage_beforeCalc + 0x40
+PATCH_B_END(RacePage_beforeCalc, 0x3c)
 
 
 

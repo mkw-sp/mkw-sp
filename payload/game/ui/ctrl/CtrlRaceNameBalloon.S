@@ -20,34 +20,44 @@ PATCH_REPLACE_END(CtrlRaceNameBalloon_calcPosition, 0x264)
 
 // Move nameIsEnabled from 0x0 to 0x44
 
-PATCH_INJECT_START(CtrlRaceNameBalloon_initSelf, 0x15c)
+PATCH_B_START(CtrlRaceNameBalloon_initSelf, 0x15c)
     add r3, r3, r4
     stb r0, 0x44 (r3)
-PATCH_INJECT_END(CtrlRaceNameBalloon_initSelf, 0x15c)
 
-PATCH_INJECT_START(CtrlRaceNameBalloon_calcSelf, 0x1fc)
-    add r3, r3, r4
-    stb r0, 0x44 (r3)
-PATCH_INJECT_END(CtrlRaceNameBalloon_calcSelf, 0x1fc)
+    b CtrlRaceNameBalloon_initSelf + 0x160
+PATCH_B_END(CtrlRaceNameBalloon_initSelf, 0x15c)
 
-PATCH_INJECT_START(CtrlRaceNameBalloon_calcSelf, 0x420)
+PATCH_B_START(CtrlRaceNameBalloon_calcSelf, 0x1fc)
     add r3, r3, r4
     stb r0, 0x44 (r3)
-PATCH_INJECT_END(CtrlRaceNameBalloon_calcSelf, 0x420)
+
+    b CtrlRaceNameBalloon_calcSelf + 0x200
+PATCH_B_END(CtrlRaceNameBalloon_calcSelf, 0x1fc)
+
+PATCH_B_START(CtrlRaceNameBalloon_calcSelf, 0x420)
+    add r3, r3, r4
+    stb r0, 0x44 (r3)
+
+    b CtrlRaceNameBalloon_calcSelf + 0x424
+PATCH_B_END(CtrlRaceNameBalloon_calcSelf, 0x420)
 
 PATCH_REPLACE_START(CtrlRaceNameBalloon_calcSelf, 0x50c)
     lbz r0, 0x44 (r3)
 PATCH_REPLACE_END(CtrlRaceNameBalloon_calcSelf, 0x50c)
 
-PATCH_INJECT_START(CtrlRaceNameBalloon_calcSelf, 0x52c)
+PATCH_B_START(CtrlRaceNameBalloon_calcSelf, 0x52c)
     add r4, r6, r4
     stb r3, 0x44 (r4)
-PATCH_INJECT_END(CtrlRaceNameBalloon_calcSelf, 0x52c)
 
-PATCH_INJECT_START(CtrlRaceNameBalloon_calcPosition, 0x27c)
+    b CtrlRaceNameBalloon_calcSelf + 0x530
+PATCH_B_END(CtrlRaceNameBalloon_calcSelf, 0x52c)
+
+PATCH_B_START(CtrlRaceNameBalloon_calcPosition, 0x27c)
     add r3, r3, r4
     stb r0, 0x44 (r3)
-PATCH_INJECT_END(CtrlRaceNameBalloon_calcPosition, 0x27c)
+
+    b CtrlRaceNameBalloon_calcPosition + 0x280
+PATCH_B_END(CtrlRaceNameBalloon_calcPosition, 0x27c)
 
 PATCH_REPLACE_START(BalloonManager_calc, 0x94)
     stb r4, 0x44 (r3)
@@ -61,20 +71,26 @@ PATCH_REPLACE_START(BalloonManager_calc, 0x168)
     stb r5, 0x44 (r3)
 PATCH_REPLACE_END(BalloonManager_calc, 0x168)
 
-PATCH_INJECT_START(BalloonManager_calc, 0x4cc)
+PATCH_B_START(BalloonManager_calc, 0x4cc)
     add r3, r30, r15
     stb r26, 0x44 (r3)
-PATCH_INJECT_END(BalloonManager_calc, 0x4cc)
 
-PATCH_INJECT_START(BalloonManager_calc, 0x734)
+    b BalloonManager_calc + 0x4d0
+PATCH_B_END(BalloonManager_calc, 0x4cc)
+
+PATCH_B_START(BalloonManager_calc, 0x734)
     add r3, r30, r4
     stb r26, 0x44 (r3)
-PATCH_INJECT_END(BalloonManager_calc, 0x734)
 
-PATCH_INJECT_START(BalloonManager_calc, 0x810)
+    b BalloonManager_calc + 0x738
+PATCH_B_END(BalloonManager_calc, 0x734)
+
+PATCH_B_START(BalloonManager_calc, 0x810)
     add r3, r30, r5
     stb r26, 0x44 (r3)
-PATCH_INJECT_END(BalloonManager_calc, 0x810)
+
+    b BalloonManager_calc + 0x814
+PATCH_B_END(BalloonManager_calc, 0x810)
 
 // Move namePositions to 0x50 and add a level of indirection
 
@@ -115,11 +131,10 @@ PATCH_REPLACE_START(CtrlRaceNameBalloon_ct, 0x30)
     stw r4, 0x174 (r31)
 PATCH_REPLACE_END(CtrlRaceNameBalloon_ct, 0x30)
 
-.global fix_BalloonManager_calc
-fix_BalloonManager_calc:
-    li r4, 0x2 # Original instruction
+PATCH_BL_START(BalloonManager_calc, 0x48)
+    li r4, 0x2 // Original instruction
 
-    # Check that the current section id is ghost replay
+    // Check that the current section id is ghost replay
     lis r5, s_sectionManager@ha
     lwz r5, s_sectionManager@l (r5)
     lwz r5, 0x0 (r5)
@@ -130,7 +145,7 @@ fix_BalloonManager_calc:
     mflr r25
     mr r24, r3
 
-    # Check that the tag visibility rule is "watched"
+    // Check that the tag visibility rule is "watched"
     lis r3, s_saveManager@ha
     lwz r3, s_saveManager@l (r3)
     bl SaveManager_getTaRuleGhostTagVisibility
@@ -139,49 +154,43 @@ fix_BalloonManager_calc:
     mtlr r25
     bnelr
 
-    # Always try to display tags for every player. The actual visibility logic is moved to the tags
-    # themselves, allowing for faster switching.
-    addi r25, r25, 0x140
-    mtlr r25
-    blr
-.size fix_BalloonManager_calc, . - fix_BalloonManager_calc
-PATCH_BL(BalloonManager_calc + 0x48, fix_BalloonManager_calc)
+    // Always try to display tags for every player. The actual visibility logic is moved to the tags
+    // themselves, allowing for faster switching.
+    b BalloonManager_calc + 0x18c
+PATCH_BL_END(BalloonManager_calc, 0x48)
 
-.global thunk_CtrlRaceNameBalloon_calcVisiblity
-thunk_CtrlRaceNameBalloon_calcVisibility:
-    mflr r30
-
+PATCH_B_START(CtrlRaceNameBalloon_calcSelf, 0x628)
     mr r3, r31
     bl CtrlRaceNameBalloon_calcVisibility
 
-    lwz r0, 0x44 (r1) # Original instruction
+    lwz r0, 0x44 (r1) // Original instruction
+    b CtrlRaceNameBalloon_calcSelf + 0x62c
+PATCH_B_END(CtrlRaceNameBalloon_calcSelf, 0x628)
 
-    mtlr r30
-    blr
-.size thunk_CtrlRaceNameBalloon_calcVisibility, . - thunk_CtrlRaceNameBalloon_calcVisibility
-PATCH_BL(CtrlRaceNameBalloon_calcSelf + 0x628, thunk_CtrlRaceNameBalloon_calcVisibility)
+PATCH_BL_START(BalloonManager_calc, 0x7c)
+    stw r0, 0x14 (r30) # Original instruction
 
-PATCH_INJECT_START(BalloonManager_calc, 0x7c)
     # Check that the current section id is ghost replay
     lis r3, s_sectionManager@ha
     lwz r3, s_sectionManager@l (r3)
     lwz r3, 0x0 (r3)
     lwz r3, 0x0 (r3)
     cmpwi r3, 0x34
-    bne .Lend
+    bnelr
 
     # Check that there are at least two ghosts
     lis r3, s_raceConfig@ha
     lwz r3, s_raceConfig@l (r3)
     lbz r3, 0x24 (r3)
     cmpwi r3, 2
-    blt .Lend
+    bltlr
 
-    li r0, -1 # Hide the tagline at the beginning of the race
+    # Hide the tagline at the beginning of the race
+    li r0, -1
+    stw r0, 0x14 (r30)
 
-.Lend:
-    stw r0, 0x14 (r30) # Original instruction
-PATCH_INJECT_END(BalloonManager_calc, 0x7c)
+    b BalloonManager_calc + 0x80
+PATCH_BL_END(BalloonManager_calc, 0x7c)
 
 // Fix disappearing names in rear view
 PATCH_REPLACE_START(BalloonManager_calc, 0x4ec)

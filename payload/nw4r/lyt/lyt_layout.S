@@ -1,7 +1,6 @@
 #include <Common.S>
 
-.global fix_Layout_CreateAnimTransform
-fix_Layout_CreateAnimTransform:
+PATCH_BL_START(Layout_CreateAnimTransform, 0x38)
     mtctr r12 # Original instruction
 
     # Check that there is a pat1 section
@@ -74,6 +73,4 @@ fix_Layout_CreateAnimTransform:
     addi r7, r7, 0x28
     mtlr r7
     bctr
-.size fix_Layout_CreateAnimTransform, . - fix_Layout_CreateAnimTransform
-
-PATCH_BL(Layout_CreateAnimTransform + 0x38, fix_Layout_CreateAnimTransform) 
+PATCH_BL_END(Layout_CreateAnimTransform, 0x38)

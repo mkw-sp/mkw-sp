@@ -86,61 +86,32 @@
         .int size_replacement_ ## dst ## _ ## offset; \
     .previous
 
-#define PATCH_B_START(dst, offset) \
-    .global injection_ ## dst ## _ ## offset; \
-    injection_ ## dst ## _ ## offset:
+#define PATCH_BRANCH_START(dst, offset, link) \
+    .global dst_ ## dst ## _ ## offset; \
+    dst_ ## dst ## _ ## offset:
 
-#define PATCH_B_END(dst, offset) \
-    .size injection_ ## dst ## _ ## offset, . - injection_ ## dst ## _ ## offset; \
-    .set size_injection_ ## dst ## _ ## offset, . - injection_ ## dst ## _ ## offset; \
+#define PATCH_BRANCH_END(dst, offset, link) \
+    .size dst_ ## dst ## _ ## offset, . - dst_ ## dst ## _ ## offset; \
+    .set size_dst_ ## dst ## _ ## offset, . - dst_ ## dst ## _ ## offset; \
     .section "patches"; \
     .global patch_ ## dst ## _ ## offset; \
     .size patch_ ## dst ## _ ## offset, 0x10; \
     patch_ ## dst ## _ ## offset: \
         .int PATCH_TYPE_BRANCH; \
         .int dst + offset; \
-        .int injection_ ## dst ## _ ## offset; \
-        .byte 0x0; \
-        .balign 0x10; \
-    .previous
-
-#define PATCH_INJECT_START(dst, offset) \
-    .global injection_ ## dst ## _ ## offset; \
-    injection_ ## dst ## _ ## offset:
-
-#define PATCH_INJECT_END(dst, offset) \
-        b dst + offset + 0x4; \
-    .size injection_ ## dst ## _ ## offset, . - injection_ ## dst ## _ ## offset; \
-    .set size_injection_ ## dst ## _ ## offset, . - injection_ ## dst ## _ ## offset; \
-    .section "patches"; \
-    .global patch_ ## dst ## _ ## offset; \
-    .size patch_ ## dst ## _ ## offset, 0x10; \
-    patch_ ## dst ## _ ## offset: \
-        .int PATCH_TYPE_BRANCH; \
-        .int dst + offset; \
-        .int injection_ ## dst ## _ ## offset; \
-        .byte 0x1; \
-        .balign 0x10; \
-    .previous
-
-#define PATCH_BL_START(dst, offset) \
-    PATCH_INJECT_START(dst, offset)
-
-#define PATCH_BL_END(dst, offset) \
-    PATCH_INJECT_END(dst, offset)
-
-#define PATCH_BRANCH(from, to, link) \
-    .section "patches"; \
-    .global patch_ ## to; \
-    .size patch_ ## to, 0x10; \
-    patch_ ## to: \
-        .int PATCH_TYPE_BRANCH; \
-        .int from; \
-        .int to; \
+        .int dst_ ## dst ## _ ## offset; \
         .byte link; \
         .balign 0x10; \
     .previous
 
-#define PATCH_B(from, to) PATCH_BRANCH(from, to, 0x0)
+#define PATCH_B_START(dst, offset) \
+    PATCH_BRANCH_START(dst, offset, 0x0)
 
-#define PATCH_BL(from, to) PATCH_BRANCH(from, to, 0x1)
+#define PATCH_B_END(dst, offset) \
+    PATCH_BRANCH_END(dst, offset, 0x0)
+
+#define PATCH_BL_START(dst, offset) \
+    PATCH_BRANCH_START(dst, offset, 0x1)
+
+#define PATCH_BL_END(dst, offset) \
+    PATCH_BRANCH_END(dst, offset, 0x1)

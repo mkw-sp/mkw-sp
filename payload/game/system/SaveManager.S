@@ -1,6 +1,6 @@
 #include <Common.S>
 
-PATCH_INJECT_START(RawLicense_reset, 0x64)
+PATCH_B_START(RawLicense_reset, 0x64)
     // Unlock everything
     lis r9, 0xffff
     ori r9, r9, 0xffff
@@ -8,4 +8,5 @@ PATCH_INJECT_START(RawLicense_reset, 0x64)
     lis r9, 0x031f
     ori r9, r9, 0xfffc
     stw r9, 0x34 (r31)
-PATCH_INJECT_END(RawLicense_reset, 0x64)
+    b RawLicense_reset + 0x68
+PATCH_B_END(RawLicense_reset, 0x64)

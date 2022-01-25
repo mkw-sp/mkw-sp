@@ -1,6 +1,6 @@
 #include <Common.S>
 
-PATCH_INJECT_START(CtrlRaceBase_getPlayerId, 0x24)
+PATCH_B_START(CtrlRaceBase_getPlayerId, 0x24)
     # Check if the section id is ghost replay
     cmpwi r0, 0x34
     bne .Lend
@@ -9,4 +9,6 @@ PATCH_INJECT_START(CtrlRaceBase_getPlayerId, 0x24)
 
 .Lend:
     cmpwi r0, 0x6a # Original instruction
-PATCH_INJECT_END(CtrlRaceBase_getPlayerId, 0x24)
+
+    b CtrlRaceBase_getPlayerId + 0x28
+PATCH_B_END(CtrlRaceBase_getPlayerId, 0x24)

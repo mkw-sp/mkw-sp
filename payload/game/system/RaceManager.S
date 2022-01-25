@@ -1,19 +1,12 @@
 #include <Common.S>
 
-.global thunk_RaceManagerPlayer_setMultiGhostPadProxy
-thunk_RaceManagerPlayer_setMultiGhostPadProxy:
-    mflr r29
-
+PATCH_B_START(RaceManagerPlayer_ct, 0x298)
     mr r3, r30
     bl RaceManagerPlayer_setMultiGhostPadProxy
 
-    mr r3, r30 # Original instruction
-
-    mtlr r29
-    blr
-.size thunk_RaceManagerPlayer_setMultiGhostPadProxy, . - thunk_RaceManagerPlayer_setMultiGhostPadProxy
-
-PATCH_BL(RaceManagerPlayer_ct + 0x298, thunk_RaceManagerPlayer_setMultiGhostPadProxy)
+    mr r3, r30 // Original instruction
+    b RaceManagerPlayer_ct + 0x29c
+PATCH_B_END(RaceManagerPlayer_ct, 0x298)
 
 
 PATCH_BL_START(RaceManagerPlayer_calcCheckPoint, 0x320)

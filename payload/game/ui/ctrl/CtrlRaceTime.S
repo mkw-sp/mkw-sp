@@ -1,14 +1,14 @@
 #include <Common.S>
 
-PATCH_B(CtrlRaceTime_getPlayerId, CtrlRaceBase_getPlayerId)
-
-PATCH_INJECT_START(CtrlRaceTime_calcSelf, 0x34)
+PATCH_B_START(CtrlRaceTime_calcSelf, 0x34)
     stb r0, 0x1b6 (r31) # Original instruction
 
     mr r3, r30
     bl RaceManager_getPlayerMaxLap
     stw r3, 0x1c0 (r31)
-PATCH_INJECT_END(CtrlRaceTime_calcSelf, 0x34)
+
+    b CtrlRaceTime_calcSelf + 0x38
+PATCH_B_END(CtrlRaceTime_calcSelf, 0x34)
 
 PATCH_BL_START(CtrlRaceTime_calcSelf, 0x74)
     subi r0, r3, 0x6a // Original instruction
