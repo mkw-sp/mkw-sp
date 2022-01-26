@@ -20,5 +20,6 @@ typedef struct {
     RadioButtonControlHandler onRuleControlSelect;
     PushButtonHandler onOkButtonFront;
     PushButtonHandler onOkButtonSelect;
+    PushButtonHandler onBackButtonFront;
     s32 replacement;
 } TimeAttackRulesPage;

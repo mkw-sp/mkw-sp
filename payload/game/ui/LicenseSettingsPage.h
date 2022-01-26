@@ -17,5 +17,6 @@ typedef struct {
     InputHandler onBack;
     RadioButtonControlHandler onSettingControlFront;
     RadioButtonControlHandler onSettingControlSelect;
+    PushButtonHandler onBackButtonFront;
     bool resetSelection;
 } LicenseSettingsPage;

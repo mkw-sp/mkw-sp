@@ -61,6 +61,17 @@ static const RadioButtonControlHandler_vt onSettingControlSelect_vt = {
     .handle = onSettingControlSelect,
 };
 
+static void onBackButtonFront(PushButtonHandler *this, PushButton *button,
+        u32 UNUSED(localPlayerId)) {
+    LicenseSettingsPage *page = CONTAINER_OF(this, LicenseSettingsPage, onBackButtonFront);
+    f32 delay = PushButton_getDelay(button);
+    Page_startReplace(page, PAGE_ANIMATION_PREV, delay);
+}
+
+static const PushButtonHandler_vt onBackButtonFront_vt = {
+    .handle = onBackButtonFront,
+};
+
 extern void LicenseRecordsPage_ct;
 
 static LicenseSettingsPage *LicenseSettingsPage_ct(LicenseSettingsPage *this) {
@@ -77,6 +88,7 @@ static LicenseSettingsPage *LicenseSettingsPage_ct(LicenseSettingsPage *this) {
     this->onBack.vt = &onBack_vt;
     this->onSettingControlFront.vt = &onSettingControlFront_vt;
     this->onSettingControlSelect.vt = &onSettingControlSelect_vt;
+    this->onBackButtonFront.vt = &onBackButtonFront_vt;
 
     return this;
 }
@@ -161,6 +173,7 @@ static void LicenseSettingsPage_onInit(Page *base) {
         RadioButtonControl_setFrontHandler(control, &this->onSettingControlFront);
         RadioButtonControl_setSelectHandler(control, &this->onSettingControlSelect);
     }
+    PushButton_setFrontHandler(&this->backButton, &this->onBackButtonFront, false);
 
     CtrlMenuPageTitleText_setMessage(&this->pageTitleText, 0x7df, NULL);
 

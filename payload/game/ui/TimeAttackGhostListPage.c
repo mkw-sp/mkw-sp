@@ -140,6 +140,19 @@ static const PushButtonHandler_vt onLaunchButtonSelect_vt = {
     .handle = onLaunchButtonSelect,
 };
 
+static void onBackButtonFront(PushButtonHandler *this, PushButton *button,
+        u32 UNUSED(localPlayerId)) {
+    TimeAttackGhostListPage *page =
+            CONTAINER_OF(this, TimeAttackGhostListPage, onBackButtonFront);
+    page->replacement = 0x6f; // TODO enum
+    f32 delay = PushButton_getDelay(button);
+    Page_startReplace(page, PAGE_ANIMATION_PREV, delay);
+}
+
+static const PushButtonHandler_vt onBackButtonFront_vt = {
+    .handle = onBackButtonFront,
+};
+
 static TimeAttackGhostListPage *my_TimeAttackGhostListPage_ct(TimeAttackGhostListPage *this) {
     Page_ct(this);
     this->vt = &s_TimeAttackGhostListPage_vt;
@@ -159,6 +172,7 @@ static TimeAttackGhostListPage *my_TimeAttackGhostListPage_ct(TimeAttackGhostLis
     this->onSheetSelectLeft.vt = &onSheetSelectLeft_vt;
     this->onLaunchButtonSelect.vt = &onLaunchButtonSelect_vt;
     this->onLaunchButtonFront.vt = &onLaunchButtonFront_vt;
+    this->onBackButtonFront.vt = &onBackButtonFront_vt;
 
     return this;
 }
@@ -231,6 +245,7 @@ static void TimeAttackGhostListPage_onInit(Page *base) {
     SheetSelectControl_setLeftHandler(&this->sheetSelect, &this->onSheetSelectLeft);
     PushButton_setSelectHandler(&this->launchButton, &this->onLaunchButtonSelect);
     PushButton_setFrontHandler(&this->launchButton, &this->onLaunchButtonFront, false);
+    PushButton_setFrontHandler(&this->backButton, &this->onBackButtonFront, false);
 
     CtrlMenuPageTitleText_setMessage(&this->pageTitleText, 0xd4f, NULL);
     u32 flags = RegisteredPadManager_getFlags(&s_sectionManager->registeredPadManager, 0);

@@ -16,7 +16,8 @@ static const InputHandler_vt onBack_vt = {
     .handle = onBack,
 };
 
-static void onAboutButtonFront(PushButtonHandler *this, PushButton *button, u32 UNUSED(localPlayerId)) {
+static void onAboutButtonFront(PushButtonHandler *this, PushButton *button,
+        u32 UNUSED(localPlayerId)) {
     LicenseSelectPage *page = CONTAINER_OF(this, LicenseSelectPage, onAboutButtonFront);
     Section *currentSection = s_sectionManager->currentSection;
     ConfirmPage *confirmPage = (ConfirmPage *)currentSection->pages[PAGE_ID_CONFIRM];
@@ -47,6 +48,18 @@ static const ConfirmPageHandler_vt onAboutConfirm_vt = {
     .handle = onAboutConfirm,
 };
 
+static void onBackButtonFront(PushButtonHandler *this, PushButton *button,
+        u32 UNUSED(localPlayerId)) {
+    LicenseSelectPage *page = CONTAINER_OF(this, LicenseSelectPage, onBackButtonFront);
+    page->replacement = 0x57; // TODO enum
+    f32 delay = PushButton_getDelay(button);
+    Page_startReplace(page, PAGE_ANIMATION_PREV, delay);
+}
+
+static const PushButtonHandler_vt onBackButtonFront_vt = {
+    .handle = onBackButtonFront,
+};
+
 static LicenseSelectPage *my_LicenseSelectPage_ct(LicenseSelectPage *this) {
     Page_ct(this);
     this->vt = &s_LicenseSelectPage_vt;
@@ -61,6 +74,7 @@ static LicenseSelectPage *my_LicenseSelectPage_ct(LicenseSelectPage *this) {
     this->onBack.vt = &onBack_vt;
     this->onAboutButtonFront.vt = &onAboutButtonFront_vt;
     this->onAboutConfirm.vt = &onAboutConfirm_vt;
+    this->onBackButtonFront.vt = &onBackButtonFront_vt;
 
     return this;
 }
@@ -114,6 +128,7 @@ static void LicenseSelectPage_onInit(Page *base) {
     MultiControlInputManager_setHandler(&this->inputManager, INPUT_ID_BACK, &this->onBack, false,
             false);
     PushButton_setFrontHandler(&this->aboutButton, &this->onAboutButtonFront, false);
+    PushButton_setFrontHandler(&this->backButton, &this->onBackButtonFront, false);
 
     CtrlMenuPageTitleText_setMessage(&this->pageTitleText, 0x838, NULL);
 }

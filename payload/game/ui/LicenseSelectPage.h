@@ -17,6 +17,7 @@ typedef struct {
     InputHandler onBack;
     PushButtonHandler onAboutButtonFront;
     ConfirmPageHandler onAboutConfirm;
+    PushButtonHandler onBackButtonFront;
     s32 replacement;
 } LicenseSelectPage;
 

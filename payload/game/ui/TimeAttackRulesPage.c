@@ -101,6 +101,18 @@ static const PushButtonHandler_vt onOkButtonSelect_vt = {
     .handle = onOkButtonSelect,
 };
 
+static void onBackButtonFront(PushButtonHandler *this, PushButton *button,
+        u32 UNUSED(localPlayerId)) {
+    TimeAttackRulesPage *page = CONTAINER_OF(this, TimeAttackRulesPage, onBackButtonFront);
+    page->replacement = 0x69; // TODO enum
+    f32 delay = PushButton_getDelay(button);
+    Page_startReplace(page, PAGE_ANIMATION_PREV, delay);
+}
+
+static const PushButtonHandler_vt onBackButtonFront_vt = {
+    .handle = onBackButtonFront,
+};
+
 extern void ClassSelectPage_ct;
 
 static TimeAttackRulesPage *TimeAttackRulesPage_ct(TimeAttackRulesPage *this) {
@@ -120,6 +132,7 @@ static TimeAttackRulesPage *TimeAttackRulesPage_ct(TimeAttackRulesPage *this) {
     this->onRuleControlSelect.vt = &onRuleControlSelect_vt;
     this->onOkButtonFront.vt = &onOkButtonFront_vt;
     this->onOkButtonSelect.vt = &onOkButtonSelect_vt;
+    this->onBackButtonFront.vt = &onBackButtonFront_vt;
 
     return this;
 }
@@ -220,6 +233,7 @@ static void TimeAttackRulesPage_onInit(Page *base) {
     }
     PushButton_setFrontHandler(&this->okButton, &this->onOkButtonFront, false);
     PushButton_setSelectHandler(&this->okButton, &this->onOkButtonSelect);
+    PushButton_setFrontHandler(&this->backButton, &this->onBackButtonFront, false);
 
     CtrlMenuPageTitleText_setMessage(&this->pageTitleText, 0xd48, NULL);
 }
