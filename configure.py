@@ -152,7 +152,6 @@ code_in_files = {
         os.path.join('game', 'ui', 'ctrl', 'CtrlMenuPageTitleText.c'),
         os.path.join('game', 'ui', 'ctrl', 'CtrlMenuPressStart.S'),
         os.path.join('game', 'ui', 'ctrl', 'CtrlRace2DMap.S'),
-        os.path.join('game', 'ui', 'ctrl', 'CtrlRace2DMapCharacter.S'),
         os.path.join('game', 'ui', 'ctrl', 'CtrlRaceBase.S'),
         os.path.join('game', 'ui', 'ctrl', 'CtrlRaceBase.c'),
         os.path.join('game', 'ui', 'ctrl', 'CtrlRaceLap.c'),
