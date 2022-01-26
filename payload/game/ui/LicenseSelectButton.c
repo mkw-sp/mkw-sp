@@ -58,7 +58,8 @@ static const PushButtonHandler_vt onFront_vt = {
 
 static void onCreateConfirm(ConfirmPageHandler *UNUSED(this), ConfirmPage *UNUSED(confirmPage),
         f32 delay) {
-    SectionManager_setNextSection(s_sectionManager, 0x45 /* TODO enum */, PAGE_ANIMATION_NEXT);
+    SectionManager_setNextSection(s_sectionManager, SECTION_ID_MII_SELECT_CREATE,
+            PAGE_ANIMATION_NEXT);
     SectionManager_startChangeSection(s_sectionManager, delay, 0x000000ff);
 }
 
@@ -68,7 +69,8 @@ static const ConfirmPageHandler_vt onCreateConfirm_vt = {
 
 static void onChangeConfirm(ConfirmPageHandler *UNUSED(this), ConfirmPage *UNUSED(confirmPage),
         f32 delay) {
-    SectionManager_setNextSection(s_sectionManager, 0x46 /* TODO enum */, PAGE_ANIMATION_NEXT);
+    SectionManager_setNextSection(s_sectionManager, SECTION_ID_MII_SELECT_CHANGE,
+            PAGE_ANIMATION_NEXT);
     SectionManager_startChangeSection(s_sectionManager, delay, 0x000000ff);
 }
 

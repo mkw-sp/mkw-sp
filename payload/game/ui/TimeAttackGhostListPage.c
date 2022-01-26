@@ -325,15 +325,15 @@ static void TimeAttackGhostListPage_onRefocus(Page *base) {
 
     GhostManagerPage *ghostManagerPage =
             (GhostManagerPage *)currentSection->pages[PAGE_ID_GHOST_MANAGER];
-    u32 sectionId; // TODO enum
+    u32 sectionId;
     if (this->chosenCount == 0) {
-        sectionId = 0x1f;
+        sectionId = SECTION_ID_TIME_ATTACK;
     } else if (this->isReplay) {
         ghostManagerPage->nextRequest = GHOST_MANAGER_PAGE_REQUEST_SAVED_GHOST_REPLAY;
-        sectionId = 0x34;
+        sectionId = SECTION_ID_GHOST_REPLAY;
     } else {
         ghostManagerPage->nextRequest = GHOST_MANAGER_PAGE_REQUEST_SAVED_GHOST_RACE;
-        sectionId = 0x1f;
+        sectionId = SECTION_ID_TIME_ATTACK;
     }
     this->vt->changeSection(this, sectionId, PAGE_ANIMATION_NEXT, 0.0f);
 }
