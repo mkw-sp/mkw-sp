@@ -37,3 +37,5 @@ void SheetSelectControl_setRightHandler(SheetSelectControl *this,
 
 void SheetSelectControl_setLeftHandler(SheetSelectControl *this,
         SheetSelectControlHandler *handler);
+
+void SheetSelectControl_setPlayerFlags(SheetSelectControl *this, u32 playerFlags);

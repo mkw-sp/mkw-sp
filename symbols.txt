@@ -251,6 +251,7 @@
 0x80636120 SheetSelectControl_load
 0x806361e8 SheetSelectControl_setRightHandler
 0x806361f0 SheetSelectControl_setLeftHandler
+0x806361f8 SheetSelectControl_setPlayerFlags
 0x80638048 TabOptionButton_ct
 0x8063813c TabOptionButton_dt
 0x806381a4 TabOptionButton_load

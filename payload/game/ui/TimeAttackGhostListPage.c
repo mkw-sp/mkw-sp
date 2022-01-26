@@ -282,6 +282,9 @@ static void TimeAttackGhostListPage_onActivate(Page *base) {
 
     this->lastSelected = -1;
 
+    this->sheetSelect.isHidden = this->sheetCount <= 1;
+    SheetSelectControl_setPlayerFlags(&this->sheetSelect, this->sheetCount <= 1 ? 0x0 : 0x1);
+
     this->isReplay = false;
     this->switchLabel.isHidden = true;
     TimeAttackGhostListPage_refreshLaunchButton(this);
