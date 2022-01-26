@@ -218,6 +218,7 @@
 0x806024b0 Page_changeSection
 0x80602530 Page_vf_20
 0x806025b0 Page_push
+0x80602cf8 Page_playSfx
 0x80605724 RadioButtonControl_ct
 0x806058c8 RadioButtonControl_dt
 0x8060594c RadioButtonControl_load
@@ -268,6 +269,7 @@
 0x8063d194 UIControl_vf_20
 0x8063d268 UIControl_initChildren
 0x8063d278 UIControl_insertChild
+0x8063d74c UIControl_playSfx
 0x8063d788 LayoutUIControl_vf_2c
 0x8063d798 LayoutUIControl_ct
 0x8063d8c0 LayoutUIControl_dt

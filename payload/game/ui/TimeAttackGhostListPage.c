@@ -39,6 +39,7 @@ static void onOption(InputHandler *this, u32 UNUSED(localPlayerId)) {
     if (!page->switchLabel.isHidden) {
         page->isReplay = !page->isReplay;
         TimeAttackGhostListPage_refreshLaunchButton(page);
+        Page_playSfx(page, 0x14 + !!page->isReplay, -1);
     }
 }
 

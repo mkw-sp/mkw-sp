@@ -46,6 +46,9 @@ void UIControl_initChildren(UIControl *this, u32 count);
 
 void UIControl_insertChild(UIControl *this, u32 index, UIControl *child);
 
+// TODO r5
+void UIControl_playSfx(UIControl *this, u32 sfxId, s32 r5);
+
 typedef struct {
     UIControl;
     UIAnimator animator;

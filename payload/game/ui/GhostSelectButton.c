@@ -71,6 +71,9 @@ static void onFront(InputHandler *this, u32 UNUSED(localPlayerId)) {
 
     button->chosen = !button->chosen;
     TabOptionButton_setChosen(button, button->chosen);
+    if (button->chosen) {
+        UIControl_playSfx(button, 0xd, -1);
+    }
 
     TimeAttackGhostListPage_chooseGhost(page, button->index);
 }
