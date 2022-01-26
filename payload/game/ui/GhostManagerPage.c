@@ -111,17 +111,17 @@ void GhostManagerPage_processPopulate(GhostManagerPage *this) {
 static void setupTimeAttack(bool isRace, bool fromReplay) {
     GlobalContext *cx = s_sectionManager->globalContext;
     RaceConfigScenario *menuScenario = &s_raceConfig->menuScenario;
+    if (!isRace) {
+        MiiGroup_copy(&cx->playerMiis, &cx->localPlayerMiis, 0, cx->timeAttackGhostCount);
+    }
     for (u32 i = cx->timeAttackGhostCount; i --> 0;) {
         menuScenario->players[i + !!isRace].type = PLAYER_TYPE_GHOST;
         if (fromReplay) {
-            MiiGroup_copy(&cx->playerMiis, &cx->playerMiis, i, i + !!isRace);
+            MiiGroup_swap(&cx->playerMiis, i, i + 1);
         } else {
             RawGhostHeader *header = (RawGhostHeader *)(*menuScenario->ghostBuffer)[i];
             MiiGroup_insertFromRaw(&cx->playerMiis, i + !!isRace, &header->mii);
         }
-    }
-    if (fromReplay) {
-        MiiGroup_copy(&cx->playerMiis, &cx->playerMiis, 11, 0);
     }
     menuScenario->courseId = cx->timeAttackCourseId;
     GlobalContext_copyPlayerMiis(cx);

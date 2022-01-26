@@ -308,9 +308,6 @@ static void TimeAttackGhostListPage_onRefocus(Page *base) {
     cx->timeAttackGhostType = GHOST_TYPE_SAVED;
     cx->timeAttackCourseId = menuScenario->courseId;
     cx->timeAttackLicenseId = -1;
-    if (playerCount != 0 && this->isReplay) {
-        MiiGroup_copy(&cx->playerMiis, &cx->localPlayerMiis, 0, 11);
-    }
 
     cx->timeAttackGhostCount = 0;
     for (u32 i = 0; i < ARRAY_SIZE(this->ghostIsChosen); i++) {
