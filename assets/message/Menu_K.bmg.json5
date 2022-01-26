@@ -5719,6 +5719,18 @@
         "font": "regular",
         "string": "GECKO CODES ARE ENABLED",
     },
+    "0x3032": {
+        "font": "regular",
+        "string": "None",
+    },
+    "0x3033": {
+        "font": "regular",
+        "string": "Watched",
+    },
+    "0x3034": {
+        "font": "regular",
+        "string": "All",
+    },
     "0x18697": {
         "font": "regular",
         "string": null,

@@ -5627,6 +5627,18 @@
         "font": "regular",
         "string": "LES CODES GECKO SONT ACTIVÉS",
     },
+    "0x3032": {
+        "font": "regular",
+        "string": "Aucun",
+    },
+    "0x3033": {
+        "font": "regular",
+        "string": "Suivi",
+    },
+    "0x3034": {
+        "font": "regular",
+        "string": "Tous",
+    },
     "0x18697": {
         "font": "regular",
         "string": null,
