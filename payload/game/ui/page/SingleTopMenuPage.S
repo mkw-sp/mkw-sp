@@ -59,6 +59,11 @@ PATCH_B_START(SingleTopMenuPage_onButtonFront, 0xe8)
     b SingleTopMenuPage_onButtonFront + 0xec
 PATCH_B_END(SingleTopMenuPage_onButtonFront, 0xe8)
 
+PATCH_REPLACE_START(SingleTopMenuPage_onButtonFront, 0x20c)
+    // Adjust the check for the back button id
+    cmpwi r4, -100 + 1
+PATCH_REPLACE_END(SingleTopMenuPage_onButtonFront, 0x20c)
+
 // Load the rules page that replaces the gp class selection when the
 // time trials button is pressed.
 PATCH_REPLACE_START(SingleTopMenuPage_onButtonFront, 0xd4)
