@@ -67,7 +67,7 @@ void GhostManagerPage_processPopulate(GhostManagerPage *this) {
     }
 
     u32 courseId = s_raceConfig->menuScenario.courseId;
-    const u32 *courseSha1 = SaveManager_getCourseSha1(s_saveManager, courseId);
+    const u8 *courseSha1 = SaveManager_getCourseSha1(s_saveManager, courseId);
     bool speedModIsEnabled = SaveManager_getTaRuleClass(s_saveManager) == SP_TA_RULE_CLASS_200CC;
 
     GhostList *list = &this->list;
@@ -83,7 +83,7 @@ void GhostManagerPage_processPopulate(GhostManagerPage *this) {
         switch (footer->magic) {
         case CTGP_FOOTER_MAGIC:
         case SP_FOOTER_MAGIC:
-            if (memcmp(GhostFooter_getCourseSha1(footer), courseSha1, 5 * sizeof(u32))) {
+            if (memcmp(GhostFooter_getCourseSha1(footer), courseSha1, 0x14)) {
                 continue;
             }
             if (GhostFooter_hasSpeedMod(footer) != speedModIsEnabled) {

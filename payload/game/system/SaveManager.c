@@ -25,7 +25,7 @@ SaveManager *my_SaveManager_createInstance(void) {
     this->ghostFooters = spAllocArray(MAX_GHOST_COUNT, sizeof(GhostFooter), 0x4, heap);
     this->ghostPaths = spAllocArray(MAX_GHOST_COUNT, NAND_MAX_PATH, 0x4, heap);
     this->courseSha1IsValid = spAllocArray(0x20, sizeof(bool), 0x4, heap);
-    this->courseSha1s = spAllocArray(0x20, 5 * sizeof(u32), 0x4, heap);
+    this->courseSha1s = spAllocArray(0x20, 0x14, 0x4, heap);
 
     this->spCanSave = true;
     this->spBuffer = spAlloc(SP_BUFFER_SIZE, 0x20, heap);
@@ -567,7 +567,7 @@ static void SaveManager_saveGhost(SaveManager *this, GhostFile *file) {
     if (offset + NAND_MAX_NAME + 1 > NAND_MAX_PATH) {
         goto fail;
     }
-    const u8 *courseSha1 = (const u8 *)this->courseSha1s[file->courseId];
+    const u8 *courseSha1 = this->courseSha1s[file->courseId];
     for (u32 i = 0; i < NAND_MAX_NAME; i += 2) {
         dir[offset + i] = nibbleToChar(courseSha1[i / 2] >> 4);
         dir[offset + i + 1] = nibbleToChar(courseSha1[i / 2] & 0xf);
@@ -705,7 +705,7 @@ bool SaveManager_computeCourseSha1Async(SaveManager *this, u32 courseId) {
     return false;
 }
 
-const u32 *SaveManager_getCourseSha1(const SaveManager *this, u32 courseId) {
+const u8 *SaveManager_getCourseSha1(const SaveManager *this, u32 courseId) {
     return this->courseSha1s[courseId];
 }
 

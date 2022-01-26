@@ -140,7 +140,7 @@ typedef struct {
     SpSaveLicense *spLicenses[MAX_SP_LICENSE_COUNT]; // Added
     s32 spCurrentLicense; // Added
     bool *courseSha1IsValid; // Added
-    u32 (*courseSha1s)[5]; // Added
+    u8 (*courseSha1s)[0x14]; // Added
 } SaveManager;
 static_assert(offsetof(SaveManager, spBuffer) == 0x25008);
 
@@ -189,6 +189,6 @@ void SaveManager_saveGhostAsync(SaveManager *this, s32 licenseId, u32 category, 
 
 bool SaveManager_computeCourseSha1Async(SaveManager *this, u32 courseId);
 
-const u32 *SaveManager_getCourseSha1(const SaveManager *this, u32 courseId);
+const u8 *SaveManager_getCourseSha1(const SaveManager *this, u32 courseId);
 
 extern bool vsSpeedModIsEnabled;

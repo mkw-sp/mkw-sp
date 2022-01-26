@@ -64,7 +64,7 @@ static_assert(sizeof(FooterFooter) == 0x8);
 
 typedef struct {
     u8 _00[0x48 - 0x00];
-    u32 courseSha1[5];
+    u8 courseSha1[0x14];
     u8 _5c[0x64 - 0x5c];
     f32 raceTimeDiff;
     u8 _68[0x80 - 0x68];
@@ -78,7 +78,7 @@ static_assert(sizeof(CtgpFooter) == 0xd0);
 
 typedef struct {
     u32 version;
-    u32 courseSha1[5];
+    u8 courseSha1[0x14];
     f32 lapTimeDiffs[11];
     bool hasSpeedMod : 1;
     bool hasUltraShortcut : 1;
@@ -86,7 +86,7 @@ typedef struct {
     bool hasWallride : 1;
 } SpFooter;
 
-void SpFooter_onRaceStart(const u32 *courseSha1, bool speedModIsEnabled);
+void SpFooter_onRaceStart(const u8 *courseSha1, bool speedModIsEnabled);
 
 void SpFooter_onLapEnd(u32 lap, f32 timeDiff);
 
@@ -106,7 +106,7 @@ typedef struct {
 
 void GhostFooter_init(GhostFooter *footer, const u8 *raw, u32 size);
 
-const u32 *GhostFooter_getCourseSha1(const GhostFooter *this);
+const u8 *GhostFooter_getCourseSha1(const GhostFooter *this);
 
 bool GhostFooter_hasSpeedMod(const GhostFooter *this);
 

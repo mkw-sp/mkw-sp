@@ -46,7 +46,7 @@ enum {
 
 SpFooter s_spFooter;
 
-void SpFooter_onRaceStart(const u32 *courseSha1, bool speedModIsEnabled) {
+void SpFooter_onRaceStart(const u8 *courseSha1, bool speedModIsEnabled) {
     memset(&s_spFooter, 0, sizeof(SpFooter));
     s_spFooter.version = SP_FOOTER_VERSION;
     memcpy(s_spFooter.courseSha1, courseSha1, sizeof(s_spFooter.courseSha1));
@@ -102,7 +102,7 @@ void GhostFooter_init(GhostFooter *this, const u8 *raw, u32 size) {
     }
 }
 
-const u32 *GhostFooter_getCourseSha1(const GhostFooter *this) {
+const u8 *GhostFooter_getCourseSha1(const GhostFooter *this) {
     switch (this->magic) {
     case CTGP_FOOTER_MAGIC:
         return this->ctgp.courseSha1;
