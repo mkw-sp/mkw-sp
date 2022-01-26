@@ -11,6 +11,9 @@
 static void onFront(PushButtonHandler *UNUSED(this), PushButton *base, u32 UNUSED(localPlayerId)) {
     LicenseSelectButton *button = (LicenseSelectButton *)base;
 
+    GlobalContext *cx = s_sectionManager->globalContext;
+    GlobalContext_changeLicense(cx);
+
     u32 index = button->index;
     if (index < s_saveManager->spLicenseCount) {
         s_saveManager->spCurrentLicense = index;
@@ -18,7 +21,6 @@ static void onFront(PushButtonHandler *UNUSED(this), PushButton *base, u32 UNUSE
         if (mii) {
             SaveManager_createLicense(s_saveManager, 0, &mii->id, mii->name);
             SaveManager_selectLicense(s_saveManager, 0);
-            GlobalContext *cx = s_sectionManager->globalContext;
             MiiGroup_copy(&cx->localPlayerMiis, &button->miiGroup, 0, 0);
             LicenseSelectPage *page = (LicenseSelectPage *)button->group->page;
             page->replacement = PAGE_ID_TOP_MENU;
