@@ -7,7 +7,7 @@
 s32 TimeAttackSplitsPage_getReplacement(TimeAttackSplitsPage *this);
 
 s32 my_TimeAttackSplitsPage_getReplacement(TimeAttackSplitsPage *UNUSED(this)) {
-    return 0x21; // TODO enum
+    return PAGE_ID_AFTER_TA_MENU;
 }
 PATCH_B(TimeAttackSplitsPage_getReplacement, my_TimeAttackSplitsPage_getReplacement);
 

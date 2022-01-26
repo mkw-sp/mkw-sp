@@ -11,7 +11,7 @@ static const Page_vt s_TimeAttackGhostListPage_vt;
 
 static void onBack(InputHandler *this, u32 UNUSED(localPlayerId)) {
     TimeAttackGhostListPage *page = CONTAINER_OF(this, TimeAttackGhostListPage, onBack);
-    page->replacement = 0x6f; // TODO enum
+    page->replacement = PAGE_ID_COURSE_SELECT;
     Page_startReplace(page, PAGE_ANIMATION_PREV, 0.0f);
 }
 
@@ -125,7 +125,7 @@ static void onLaunchButtonFront(PushButtonHandler *this, PushButton *UNUSED(butt
         u32 UNUSED(localPlayerId)) {
     TimeAttackGhostListPage *page =
             CONTAINER_OF(this, TimeAttackGhostListPage, onLaunchButtonFront);
-    page->vt->push(page, 0x4b, PAGE_ANIMATION_NEXT); // TODO enum
+    page->vt->push(page, PAGE_ID_RACE_CONFIRM, PAGE_ANIMATION_NEXT);
 }
 
 static const PushButtonHandler_vt onLaunchButtonFront_vt = {
@@ -147,7 +147,7 @@ static void onBackButtonFront(PushButtonHandler *this, PushButton *button,
         u32 UNUSED(localPlayerId)) {
     TimeAttackGhostListPage *page =
             CONTAINER_OF(this, TimeAttackGhostListPage, onBackButtonFront);
-    page->replacement = 0x6f; // TODO enum
+    page->replacement = PAGE_ID_COURSE_SELECT;
     f32 delay = PushButton_getDelay(button);
     Page_startReplace(page, PAGE_ANIMATION_PREV, delay);
 }
@@ -290,7 +290,7 @@ static void TimeAttackGhostListPage_onActivate(Page *base) {
     this->switchLabel.isHidden = true;
     TimeAttackGhostListPage_refreshLaunchButton(this);
 
-    this->replacement = -1; // TODO enum
+    this->replacement = PAGE_ID_NONE;
 }
 
 static void TimeAttackGhostListPage_onRefocus(Page *base) {

@@ -8,7 +8,7 @@ static const Page_vt s_LicenseSelectPage_vt;
 
 static void onBack(InputHandler *this, u32 UNUSED(localPlayerId)) {
     LicenseSelectPage *page = CONTAINER_OF(this, LicenseSelectPage, onBack);
-    page->replacement = 0x57; // TODO enum
+    page->replacement = PAGE_ID_TITLE;
     Page_startReplace(page, PAGE_ANIMATION_PREV, 0.0f);
 }
 
@@ -40,8 +40,8 @@ static const PushButtonHandler_vt onAboutButtonFront_vt = {
 
 static void onAboutConfirm(ConfirmPageHandler *this, ConfirmPage *confirmPage, f32 UNUSED(delay)) {
     LicenseSelectPage *page = CONTAINER_OF(this, LicenseSelectPage, onAboutConfirm);
-    page->replacement = -1; // TODO enum
-    confirmPage->replacement = 0x65; // TODO enum
+    page->replacement = PAGE_ID_NONE;
+    confirmPage->replacement = PAGE_ID_LICENSE_SELECT;
 }
 
 static const ConfirmPageHandler_vt onAboutConfirm_vt = {
@@ -51,7 +51,7 @@ static const ConfirmPageHandler_vt onAboutConfirm_vt = {
 static void onBackButtonFront(PushButtonHandler *this, PushButton *button,
         u32 UNUSED(localPlayerId)) {
     LicenseSelectPage *page = CONTAINER_OF(this, LicenseSelectPage, onBackButtonFront);
-    page->replacement = 0x57; // TODO enum
+    page->replacement = PAGE_ID_TITLE;
     f32 delay = PushButton_getDelay(button);
     Page_startReplace(page, PAGE_ANIMATION_PREV, delay);
 }
@@ -139,7 +139,7 @@ static void LicenseSelectPage_onActivate(Page *base) {
     u32 index = s_saveManager->spCurrentLicense < 0 ? 0 : s_saveManager->spCurrentLicense;
     PushButton_selectDefault(&this->licenseButtons[index], 0);
 
-    this->replacement = -1; // TODO enum
+    this->replacement = PAGE_ID_NONE;
 }
 
 static const Page_vt s_LicenseSelectPage_vt = {

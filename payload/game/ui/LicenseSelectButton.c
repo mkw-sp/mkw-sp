@@ -21,7 +21,7 @@ static void onFront(PushButtonHandler *UNUSED(this), PushButton *base, u32 UNUSE
             GlobalContext *cx = s_sectionManager->globalContext;
             MiiGroup_copy(&cx->localPlayerMiis, &button->miiGroup, 0, 0);
             LicenseSelectPage *page = (LicenseSelectPage *)button->group->page;
-            page->replacement = 0x5a; // TODO enum
+            page->replacement = PAGE_ID_TOP_MENU;
             f32 delay = PushButton_getDelay(button);
             Page_startReplace(page, PAGE_ANIMATION_NEXT, delay);
         } else {
@@ -78,7 +78,7 @@ static const ConfirmPageHandler_vt onChangeConfirm_vt = {
 
 static void onCancel(ConfirmPageHandler *UNUSED(this), ConfirmPage *confirmPage,
         f32 UNUSED(delay)) {
-    confirmPage->replacement = 0x65; // TODO enum
+    confirmPage->replacement = PAGE_ID_LICENSE_SELECT;
 }
 
 static const ConfirmPageHandler_vt onCancel_vt = {

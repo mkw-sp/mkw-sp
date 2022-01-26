@@ -12,7 +12,7 @@ static const Page_vt s_TimeAttackRulesPage_vt;
 
 static void onBack(InputHandler *this, u32 UNUSED(localPlayerId)) {
     TimeAttackRulesPage *page = CONTAINER_OF(this, TimeAttackRulesPage, onBack);
-    page->replacement = 0x69; // TODO enum
+    page->replacement = PAGE_ID_SINGLE_TOP_MENU;
     Page_startReplace(page, PAGE_ANIMATION_PREV, 0.0f);
 }
 
@@ -104,7 +104,7 @@ static const PushButtonHandler_vt onOkButtonSelect_vt = {
 static void onBackButtonFront(PushButtonHandler *this, PushButton *button,
         u32 UNUSED(localPlayerId)) {
     TimeAttackRulesPage *page = CONTAINER_OF(this, TimeAttackRulesPage, onBackButtonFront);
-    page->replacement = 0x69; // TODO enum
+    page->replacement = PAGE_ID_SINGLE_TOP_MENU;
     f32 delay = PushButton_getDelay(button);
     Page_startReplace(page, PAGE_ANIMATION_PREV, delay);
 }
@@ -248,7 +248,7 @@ static void TimeAttackRulesPage_onActivate(Page *base) {
     PushButton_selectDefault(&this->okButton, 0);
     CtrlMenuInstructionText_setMessage(&this->instructionText, 0x302e, NULL);
 
-    this->replacement = -1; // TODO enum
+    this->replacement = PAGE_ID_NONE;
 }
 
 static const Page_vt s_TimeAttackRulesPage_vt = {

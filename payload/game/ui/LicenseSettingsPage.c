@@ -112,7 +112,7 @@ static void LicenseSettingsPage_dt(Page *base, s32 type) {
 }
 
 static s32 LicenseSettingsPage_getReplacement(Page *UNUSED(base)) {
-    return 0x67; // TODO enum
+    return PAGE_ID_LICENSE_SETTINGS;
 }
 
 static void LicenseSettingsPage_onInit(Page *base) {
