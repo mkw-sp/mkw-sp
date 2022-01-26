@@ -1,5 +1,14 @@
 #include <Common.S>
 
+PATCH_REPLACE_START(CtrlRace2DMap_load, 0x44)
+    // Always set the focused player icon scale to 0.8
+    lfs f1, 0x10 (r31)
+    stfs f1, 0x1c (r31)
+
+    // Keep the non-focused one at 0.6
+    b 0xc
+PATCH_REPLACE_END(CtrlRace2DMap_load, 0x44)
+
 PATCH_BL_START(CtrlRace2DMapCharacter_initSelf, 0x294)
     lwz r4, 0x20 + 0x8 + 0x10 (r3) // Get the player type
 
@@ -63,7 +72,12 @@ PATCH_B_START(CtrlRace2DMapCharacter_calcTransform, 0x298)
     b CtrlRace2DMapCharacter_calcTransform + 0x29c
 PATCH_B_END(CtrlRace2DMapCharacter_calcTransform, 0x298)
 
-// Fix copy-pasting bug
-PATCH_REPLACE_START(CtrlRace2DMapCharacter_calcTransform, 0x5bc)
+// Always hide shadows
+PATCH_REPLACE_START(CtrlRace2DMapCharacter_calcTransform, 0x5b4)
+    stb r0, 0xbb (r3)
     lwz r3, 0x1c0 (r28)
-PATCH_REPLACE_END(CtrlRace2DMapCharacter_calcTransform, 0x5bc)
+    lbz r0, 0xbb (r3)
+    rlwinm r0, r0, 0, 18, 30
+    stb r0, 0xbb (r3)
+    b 0x2c
+PATCH_REPLACE_END(CtrlRace2DMapCharacter_calcTransform, 0x5b4)
