@@ -48,7 +48,7 @@ n.newline()
 
 n.rule(
     'as',
-    command = '$cc -MMD -MT $out -MF $out.d $asflags -c $in -o $out',
+    command = '$cc -MD -MT $out -MF $out.d $asflags -c $in -o $out',
     depfile = '$out.d',
     deps = 'gcc',
     description = 'AS $out',
@@ -57,7 +57,7 @@ n.newline()
 
 n.rule(
     'cc',
-    command = '$cc -MMD -MT $out -MF $out.d $cflags -c $in -o $out',
+    command = '$cc -MD -MT $out -MF $out.d $cflags -c $in -o $out',
     depfile = '$out.d',
     deps = 'gcc',
     description = 'CC $out',
