@@ -10,3 +10,16 @@ PATCH_B_START(RawLicense_reset, 0x64)
     stw r9, 0x34 (r31)
     b RawLicense_reset + 0x68
 PATCH_B_END(RawLicense_reset, 0x64)
+
+PATCH_B_START(RawLicense_reset, 0x140)
+    lis r3, s_saveManager@ha
+    lwz r3, s_saveManager@l (r3)
+    bl SaveManager_getDriftMode
+    addi r3, r3, 0x1
+    lhz r4, 0xea (r31)
+    rlwimi r4, r3, 14, 16, 17
+    sth r4, 0xea (r31)
+
+    lwz r0, 0x34 (r1) // Original instruction
+    b RawLicense_reset + 0x144
+PATCH_B_END(RawLicense_reset, 0x140)

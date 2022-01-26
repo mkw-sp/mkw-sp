@@ -418,6 +418,14 @@ void SaveManager_changeSpLicenseMiiId(const SaveManager *this, const MiiId *miiI
     this->spLicenses[this->spCurrentLicense]->miiId = *miiId;
 }
 
+u32 SaveManager_getDriftMode(const SaveManager *this) {
+    return this->spLicenses[this->spCurrentLicense]->driftMode;
+}
+
+void SaveManager_setDriftMode(SaveManager *this, u32 driftMode) {
+    this->spLicenses[this->spCurrentLicense]->driftMode = driftMode;
+}
+
 u32 SaveManager_getSettingHudLabels(const SaveManager *this) {
     return this->spLicenses[this->spCurrentLicense]->settingHudLabels;
 }

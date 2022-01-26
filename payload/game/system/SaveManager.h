@@ -34,8 +34,8 @@ typedef struct {
 } SpSaveSection;
 
 enum {
-    SP_DRIFT_MODE_AUTO = 0x0,
-    SP_DRIFT_MODE_MANUAL = 0x1,
+    SP_DRIFT_MODE_MANUAL = 0x0,
+    SP_DRIFT_MODE_AUTO = 0x1,
 };
 
 enum {
@@ -162,6 +162,10 @@ void SaveManager_selectLicense(SaveManager *this, u32 licenseId);
 void SaveManager_eraseSpLicense(SaveManager *this);
 
 void SaveManager_createSpLicense(SaveManager *this, const MiiId *miiId);
+
+u32 SaveManager_getDriftMode(const SaveManager *this);
+
+void SaveManager_setDriftMode(SaveManager *this, u32 driftMode);
 
 u32 SaveManager_getSettingHudLabels(const SaveManager *this);
 
