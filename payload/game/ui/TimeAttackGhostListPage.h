@@ -20,8 +20,8 @@ typedef struct {
     CtrlMenuBackButton backButton;
     InputHandler onBack;
     InputHandler onOption;
-    InputHandler onSheetSelectRight;
-    InputHandler onSheetSelectLeft;
+    SheetSelectControlHandler onSheetSelectRight;
+    SheetSelectControlHandler onSheetSelectLeft;
     PushButtonHandler onLaunchButtonSelect;
     PushButtonHandler onLaunchButtonFront;
     PushButtonHandler onBackButtonFront;

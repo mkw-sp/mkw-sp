@@ -72,7 +72,8 @@ static void TimeAttackGhostListPage_swapGhostSelects(TimeAttackGhostListPage *th
     this->hiddenGhostSelect = tmp;
 }
 
-static void onSheetSelectRight(InputHandler *this, u32 UNUSED(localPlayerId)) {
+static void onSheetSelectRight(SheetSelectControlHandler *this, SheetSelectControl *UNUSED(control),
+        u32 UNUSED(localPlayerId)) {
     TimeAttackGhostListPage *page = CONTAINER_OF(this, TimeAttackGhostListPage, onSheetSelectRight);
     if (!TimeAttackGhostListPage_canSwapGhostSelects(page)) {
         return;
@@ -91,11 +92,12 @@ static void onSheetSelectRight(InputHandler *this, u32 UNUSED(localPlayerId)) {
     TimeAttackGhostListPage_swapGhostSelects(page);
 }
 
-static const InputHandler_vt onSheetSelectRight_vt = {
+static const SheetSelectControlHandler_vt onSheetSelectRight_vt = {
     .handle = onSheetSelectRight,
 };
 
-static void onSheetSelectLeft(InputHandler *this, u32 UNUSED(localPlayerId)) {
+static void onSheetSelectLeft(SheetSelectControlHandler *this, SheetSelectControl *UNUSED(control),
+        u32 UNUSED(localPlayerId)) {
     TimeAttackGhostListPage *page = CONTAINER_OF(this, TimeAttackGhostListPage, onSheetSelectLeft);
     if (!TimeAttackGhostListPage_canSwapGhostSelects(page)) {
         return;
@@ -114,7 +116,7 @@ static void onSheetSelectLeft(InputHandler *this, u32 UNUSED(localPlayerId)) {
     TimeAttackGhostListPage_swapGhostSelects(page);
 }
 
-static const InputHandler_vt onSheetSelectLeft_vt = {
+static const SheetSelectControlHandler_vt onSheetSelectLeft_vt = {
     .handle = onSheetSelectLeft,
 };
 
