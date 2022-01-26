@@ -149,6 +149,7 @@ code_in_files = {
         os.path.join('game', 'ui', 'ctrl', 'CtrlMenuBackButton.c'),
         os.path.join('game', 'ui', 'ctrl', 'CtrlMenuInstructionText.c'),
         os.path.join('game', 'ui', 'ctrl', 'CtrlMenuPageTitleText.c'),
+        os.path.join('game', 'ui', 'ctrl', 'CtrlMenuPressStart.S'),
         os.path.join('game', 'ui', 'ctrl', 'CtrlRace2DMap.S'),
         os.path.join('game', 'ui', 'ctrl', 'CtrlRace2DMapCharacter.S'),
         os.path.join('game', 'ui', 'ctrl', 'CtrlRaceBase.S'),
@@ -393,42 +394,52 @@ asset_in_files = {
     ],
     'RaceSP_E.szs': [
         os.path.join('game_image', 'timg', 'tt_speed_E.tpl'),
+        os.path.join('message', 'Menu_E.bmg.json5'),
         os.path.join('message', 'Race_E.bmg.json5'),
     ],
     'RaceSP_F.szs': [
         os.path.join('game_image', 'timg', 'tt_speed_F.tpl'),
+        os.path.join('message', 'Menu_F.bmg.json5'),
         os.path.join('message', 'Race_F.bmg.json5'),
     ],
     'RaceSP_G.szs': [
         os.path.join('game_image', 'timg', 'tt_speed_G.tpl'),
+        os.path.join('message', 'Menu_G.bmg.json5'),
         os.path.join('message', 'Race_G.bmg.json5'),
     ],
     'RaceSP_I.szs': [
         os.path.join('game_image', 'timg', 'tt_speed_I.tpl'),
+        os.path.join('message', 'Menu_I.bmg.json5'),
         os.path.join('message', 'Race_I.bmg.json5'),
     ],
     'RaceSP_J.szs': [
         os.path.join('game_image', 'timg', 'tt_speed_E.tpl'),
+        os.path.join('message', 'Menu_J.bmg.json5'),
         os.path.join('message', 'Race_J.bmg.json5'),
     ],
     'RaceSP_K.szs': [
         os.path.join('game_image', 'timg', 'tt_speed_E.tpl'),
+        os.path.join('message', 'Menu_K.bmg.json5'),
         os.path.join('message', 'Race_K.bmg.json5'),
     ],
     'RaceSP_M.szs': [
         os.path.join('game_image', 'timg', 'tt_speed_S.tpl'),
+        os.path.join('message', 'Menu_M.bmg.json5'),
         os.path.join('message', 'Race_M.bmg.json5'),
     ],
     'RaceSP_Q.szs': [
         os.path.join('game_image', 'timg', 'tt_speed_F.tpl'),
+        os.path.join('message', 'Menu_Q.bmg.json5'),
         os.path.join('message', 'Race_Q.bmg.json5'),
     ],
     'RaceSP_S.szs': [
         os.path.join('game_image', 'timg', 'tt_speed_S.tpl'),
+        os.path.join('message', 'Menu_S.bmg.json5'),
         os.path.join('message', 'Race_S.bmg.json5'),
     ],
     'RaceSP_U.szs': [
         os.path.join('game_image', 'timg', 'tt_speed_E.tpl'),
+        os.path.join('message', 'Menu_U.bmg.json5'),
         os.path.join('message', 'Race_U.bmg.json5'),
     ],
     'TitleSP.szs': [

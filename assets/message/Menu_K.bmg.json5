@@ -5715,6 +5715,10 @@
         "font": "regular",
         "string": "Play Time Trials with these rules.",
     },
+    "0x3031": {
+        "font": "regular",
+        "string": "GECKO CODES ARE ENABLED",
+    },
     "0x18697": {
         "font": "regular",
         "string": null,
