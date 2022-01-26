@@ -209,7 +209,7 @@
     },
     "0x45f": {
         "font": "regular",
-        "string": "Ghost data will be truncated.",
+        "string": "Le fantôme va être tronqué.",
     },
     "0x460": {
         "font": "regular",
@@ -725,7 +725,7 @@
     },
     "0x302f": {
         "font": "regular",
-        "string": "Saving ghost data...",
+        "string": "Sauvegarde du fantôme...",
     },
     "0x3030": {
         "font": "regular",
