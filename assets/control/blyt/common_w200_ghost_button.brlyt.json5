@@ -1391,7 +1391,7 @@
                     "flags": {
                         "visible": true,
                         "influenced alpha": true,
-                        "location adjust": false,
+                        "location adjust": true,
                     },
                     "base position": "center",
                     "opacity": 255,
@@ -1967,7 +1967,7 @@
                                     "flags": {
                                         "visible": true,
                                         "influenced alpha": false,
-                                        "location adjust": true,
+                                        "location adjust": false,
                                     },
                                     "base position": "center",
                                     "opacity": 255,
@@ -2018,7 +2018,7 @@
                                     "flags": {
                                         "visible": true,
                                         "influenced alpha": false,
-                                        "location adjust": true,
+                                        "location adjust": false,
                                     },
                                     "base position": "center",
                                     "opacity": 255,
@@ -2069,7 +2069,7 @@
                                     "flags": {
                                         "visible": true,
                                         "influenced alpha": false,
-                                        "location adjust": true,
+                                        "location adjust": false,
                                     },
                                     "base position": "center",
                                     "opacity": 255,
@@ -2120,7 +2120,7 @@
                                     "flags": {
                                         "visible": true,
                                         "influenced alpha": false,
-                                        "location adjust": true,
+                                        "location adjust": false,
                                     },
                                     "base position": "center",
                                     "opacity": 255,
@@ -2171,7 +2171,7 @@
                                     "flags": {
                                         "visible": true,
                                         "influenced alpha": false,
-                                        "location adjust": true,
+                                        "location adjust": false,
                                     },
                                     "base position": "center",
                                     "opacity": 255,
@@ -2222,7 +2222,7 @@
                                     "flags": {
                                         "visible": true,
                                         "influenced alpha": false,
-                                        "location adjust": true,
+                                        "location adjust": false,
                                     },
                                     "base position": "center",
                                     "opacity": 150,
@@ -2263,7 +2263,7 @@
                                     "flags": {
                                         "visible": true,
                                         "influenced alpha": false,
-                                        "location adjust": true,
+                                        "location adjust": false,
                                     },
                                     "base position": "center",
                                     "opacity": 255,
@@ -2304,7 +2304,7 @@
                                     "flags": {
                                         "visible": true,
                                         "influenced alpha": false,
-                                        "location adjust": true,
+                                        "location adjust": false,
                                     },
                                     "base position": "center",
                                     "opacity": 255,
@@ -2345,7 +2345,7 @@
                                     "flags": {
                                         "visible": true,
                                         "influenced alpha": false,
-                                        "location adjust": true,
+                                        "location adjust": false,
                                     },
                                     "base position": "center",
                                     "opacity": 0,
@@ -2386,7 +2386,7 @@
                                     "flags": {
                                         "visible": true,
                                         "influenced alpha": false,
-                                        "location adjust": true,
+                                        "location adjust": false,
                                     },
                                     "base position": "center",
                                     "opacity": 0,
@@ -3192,7 +3192,7 @@
                                     "flags": {
                                         "visible": true,
                                         "influenced alpha": false,
-                                        "location adjust": true,
+                                        "location adjust": false,
                                     },
                                     "base position": "center",
                                     "opacity": 150,
@@ -3233,7 +3233,7 @@
                                     "flags": {
                                         "visible": true,
                                         "influenced alpha": false,
-                                        "location adjust": true,
+                                        "location adjust": false,
                                     },
                                     "base position": "center",
                                     "opacity": 255,
@@ -3274,7 +3274,7 @@
                                     "flags": {
                                         "visible": true,
                                         "influenced alpha": false,
-                                        "location adjust": true,
+                                        "location adjust": false,
                                     },
                                     "base position": "center",
                                     "opacity": 255,
@@ -3315,7 +3315,7 @@
                                     "flags": {
                                         "visible": true,
                                         "influenced alpha": false,
-                                        "location adjust": true,
+                                        "location adjust": false,
                                     },
                                     "base position": "center",
                                     "opacity": 0,
@@ -3356,7 +3356,7 @@
                                     "flags": {
                                         "visible": true,
                                         "influenced alpha": false,
-                                        "location adjust": true,
+                                        "location adjust": false,
                                     },
                                     "base position": "center",
                                     "opacity": 0,
