@@ -1,7 +1,7 @@
 #include <Common.S>
 
 .section .rodata
-.LC0:
+.Lfloats:
     .float 0.3
     .float 1.0
 .previous
@@ -48,9 +48,9 @@ PATCH_BL_START(KartSub_calcPass0, 0x310)
 
     fabs f3, f2
     fadds f2, f2, f3 // stickY <= 0.0f ? 0.0f : 2.0f * stickY
-    lis r5, .LC0@ha
-    lfs f3, .LC0@l + 0x0 (r5)
-    lfs f4, .LC0@l + 0x4 (r5)
+    lis r5, .Lfloats@ha
+    lfs f3, .Lfloats@l + 0x0 (r5)
+    lfs f4, .Lfloats@l + 0x4 (r5)
     fmadds f2, f2, f3, f4
     fmuls f0, f0, f2
     stfs f0, 0x148 (r4) // Original instruction again, with the modified value
@@ -109,9 +109,9 @@ PATCH_BL_START(KartSub_calcPass1, 0x694)
 
     fabs f3, f2
     fadds f2, f2, f3 // stickY <= 0.0f ? 0.0f : 2.0f * stickY
-    lis r4, .LC0@ha
-    lfs f3, .LC0@l + 0x0 (r4)
-    lfs f4, .LC0@l + 0x4 (r4)
+    lis r4, .Lfloats@ha
+    lfs f3, .Lfloats@l + 0x0 (r4)
+    lfs f4, .Lfloats@l + 0x4 (r4)
     fmadds f2, f2, f3, f4
     fmuls f0, f0, f2
     blr
