@@ -115,6 +115,7 @@ code_in_files = {
         os.path.join('game', 'system', 'InputManager.S'),
         os.path.join('game', 'system', 'InputManager.c'),
         os.path.join('game', 'system', 'Mii.S'),
+        os.path.join('game', 'system', 'MultiDvdArchive.S'),
         os.path.join('game', 'system', 'MultiDvdArchive.c'),
         os.path.join('game', 'system', 'NandHelper.c'),
         os.path.join('game', 'system', 'NandManager.S'),
@@ -253,7 +254,7 @@ n.rule(
 n.newline()
 
 asset_in_files = {
-    'MenuOtherSP.szs': [
+    'OthrSP.szs': [
         os.path.join('control', 'anim', 'common_w023_rule_menu_fade_in_after.brlan.json5'),
         os.path.join('control', 'anim', 'common_w023_rule_menu_fade_in_before.brlan.json5'),
         os.path.join('control', 'anim', 'common_w023_rule_menu_fade_in.brlan.json5'),
@@ -292,37 +293,37 @@ asset_in_files = {
         os.path.join('control', 'ctrl', 'LicenseSettingRadioOption.brctr.json5'),
         os.path.join('control', 'timg', 'tt_license_icon_004.tpl'),
     ],
-    'MenuOtherSP_E.szs': [
+    'OthrSP_E.szs': [
         os.path.join('message', 'Menu_E.bmg.json5'),
     ],
-    'MenuOtherSP_F.szs': [
+    'OthrSP_F.szs': [
         os.path.join('message', 'Menu_F.bmg.json5'),
     ],
-    'MenuOtherSP_G.szs': [
+    'OthrSP_G.szs': [
         os.path.join('message', 'Menu_G.bmg.json5'),
     ],
-    'MenuOtherSP_I.szs': [
+    'OthrSP_I.szs': [
         os.path.join('message', 'Menu_I.bmg.json5'),
     ],
-    'MenuOtherSP_J.szs': [
+    'OthrSP_J.szs': [
         os.path.join('message', 'Menu_J.bmg.json5'),
     ],
-    'MenuOtherSP_K.szs': [
+    'OthrSP_K.szs': [
         os.path.join('message', 'Menu_K.bmg.json5'),
     ],
-    'MenuOtherSP_M.szs': [
+    'OthrSP_M.szs': [
         os.path.join('message', 'Menu_M.bmg.json5'),
     ],
-    'MenuOtherSP_Q.szs': [
+    'OthrSP_Q.szs': [
         os.path.join('message', 'Menu_Q.bmg.json5'),
     ],
-    'MenuOtherSP_S.szs': [
+    'OthrSP_S.szs': [
         os.path.join('message', 'Menu_S.bmg.json5'),
     ],
-    'MenuOtherSP_U.szs': [
+    'OthrSP_U.szs': [
         os.path.join('message', 'Menu_U.bmg.json5'),
     ],
-    'MenuSingleSP.szs': [
+    'SnglSP.szs': [
         os.path.join('button', 'blyt', 'common_w129_movie_button_single_top.brlyt.json5'),
         os.path.join('button', 'ctrl', 'SingleTop.brctr.json5'),
         os.path.join('button', 'ctrl', 'TimeAttackGhostListArrowLeft.brctr.json5'),
@@ -351,34 +352,34 @@ asset_in_files = {
         os.path.join('control', 'ctrl', 'TASettingRadioOption.brctr.json5'),
         os.path.join('control', 'ctrl', 'TimeAttackGhostListPageNum.brctr.json5'),
     ],
-    'MenuSingleSP_E.szs': [
+    'SnglSP_E.szs': [
         os.path.join('message', 'Menu_E.bmg.json5'),
     ],
-    'MenuSingleSP_F.szs': [
+    'SnglSP_F.szs': [
         os.path.join('message', 'Menu_F.bmg.json5'),
     ],
-    'MenuSingleSP_G.szs': [
+    'SnglSP_G.szs': [
         os.path.join('message', 'Menu_G.bmg.json5'),
     ],
-    'MenuSingleSP_I.szs': [
+    'SnglSP_I.szs': [
         os.path.join('message', 'Menu_I.bmg.json5'),
     ],
-    'MenuSingleSP_J.szs': [
+    'SnglSP_J.szs': [
         os.path.join('message', 'Menu_J.bmg.json5'),
     ],
-    'MenuSingleSP_K.szs': [
+    'SnglSP_K.szs': [
         os.path.join('message', 'Menu_K.bmg.json5'),
     ],
-    'MenuSingleSP_M.szs': [
+    'SnglSP_M.szs': [
         os.path.join('message', 'Menu_M.bmg.json5'),
     ],
-    'MenuSingleSP_Q.szs': [
+    'SnglSP_Q.szs': [
         os.path.join('message', 'Menu_Q.bmg.json5'),
     ],
-    'MenuSingleSP_S.szs': [
+    'SnglSP_S.szs': [
         os.path.join('message', 'Menu_S.bmg.json5'),
     ],
-    'MenuSingleSP_U.szs': [
+    'SnglSP_U.szs': [
         os.path.join('message', 'Menu_U.bmg.json5'),
     ],
     'RaceSP.szs': [
@@ -443,41 +444,41 @@ asset_in_files = {
         os.path.join('message', 'Menu_U.bmg.json5'),
         os.path.join('message', 'Race_U.bmg.json5'),
     ],
-    'TitleSP.szs': [
+    'TitlSP.szs': [
         os.path.join('button', 'blyt', 'common_w076_license_icon_center.brlyt.json5'),
         os.path.join('button', 'ctrl', 'LicenseSelect.brctr.json5'),
         os.path.join('button', 'ctrl', 'TopMenuMultiWaku.brctr.json5'),
         os.path.join('button', 'ctrl', 'TopMenuSingleWaku.brctr.json5'),
         os.path.join('button', 'timg', 'tt_license_icon_004.tpl'),
     ],
-    'TitleSP_E.szs': [
+    'TitlSP_E.szs': [
         os.path.join('message', 'Menu_E.bmg.json5'),
     ],
-    'TitleSP_F.szs': [
+    'TitlSP_F.szs': [
         os.path.join('message', 'Menu_F.bmg.json5'),
     ],
-    'TitleSP_G.szs': [
+    'TitlSP_G.szs': [
         os.path.join('message', 'Menu_G.bmg.json5'),
     ],
-    'TitleSP_I.szs': [
+    'TitlSP_I.szs': [
         os.path.join('message', 'Menu_I.bmg.json5'),
     ],
-    'TitleSP_J.szs': [
+    'TitlSP_J.szs': [
         os.path.join('message', 'Menu_J.bmg.json5'),
     ],
-    'TitleSP_K.szs': [
+    'TitlSP_K.szs': [
         os.path.join('message', 'Menu_K.bmg.json5'),
     ],
-    'TitleSP_M.szs': [
+    'TitlSP_M.szs': [
         os.path.join('message', 'Menu_M.bmg.json5'),
     ],
-    'TitleSP_Q.szs': [
+    'TitlSP_Q.szs': [
         os.path.join('message', 'Menu_Q.bmg.json5'),
     ],
-    'TitleSP_S.szs': [
+    'TitlSP_S.szs': [
         os.path.join('message', 'Menu_S.bmg.json5'),
     ],
-    'TitleSP_U.szs': [
+    'TitlSP_U.szs': [
         os.path.join('message', 'Menu_U.bmg.json5'),
     ],
 }

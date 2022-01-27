@@ -2,7 +2,6 @@
 0x80006038 memset
 0x8000f1f0 memmove
 0x8000f314 memcmp
-0x80011b00 qsort
 
 0x800074d8 BootStrapScene_enter
 0x800079d0 BootStrapScene_calc
@@ -12,6 +11,8 @@
 0x80009844 SceneManager_changeSiblingScene
 
 0x80011938 snprintf
+0x80011b00 qsort
+0x8001329c strcmp
 0x80021254 strlen
 
 0x80079cf0 GroupContainer_FindGroupByName
@@ -91,6 +92,7 @@
 0x80526020 Mii_80526020
 0x8052a098 MultiDvdArchive_create
 0x8052a2fc MenuMultiDvdArchive_init
+0x8052a954 MultiDvdArchive_load
 0x8052af64 NandHelper_open
 0x8052b144 NandHelper_close
 0x8052b228 NandHelper_read
