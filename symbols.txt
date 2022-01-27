@@ -19,6 +19,7 @@
 0x8007a5a0 Layout_CreateAnimTransform
 0x800836d0 AnimResource_CalcAnimationNum
 0x80084170 MultiArcResourceAccessor_Attach
+0x800912c0 DvdSoundArchive_OpenExtStream
 
 0x800c78d0 RFLiCalculateCRC
 
