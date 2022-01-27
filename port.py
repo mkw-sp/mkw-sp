@@ -46,6 +46,7 @@ SRC_BINARIES = {
         {
             'P': 0x80004000,
             'E': 0x80004000,
+            'J': 0x80004000,
         },
         [
             Section(0x80004000, 0x80006460),
@@ -67,6 +68,7 @@ SRC_BINARIES = {
         {
             'P': 0x805102e0,
             'E': 0x8050bf60,
+            'J': 0x8050fc60,
         },
         [
             Section(0x805103b4, 0x8088f400),
@@ -376,6 +378,31 @@ CHUNKS = {
         Chunk(0x8000af78, 0x80021ba8, 0x8000ae9c),
         Chunk(0x80021bb0, 0x80244ea4, 0x80021ad0),
         Chunk(0x802a4080, 0x8038917c, 0x802a3a00),
+        Chunk(0x805103b4, 0x805cc0a8, 0x8050fd34),
+        Chunk(0x805cc1b4, 0x805fa33c, 0x805cba90),
+        Chunk(0x805fa344, 0x805ff6e8, 0x805f9c20),
+        Chunk(0x805ffd70, 0x806003e8, 0x805ff528),
+        Chunk(0x80600c78, 0x80620cb4, 0x806003ec),
+        Chunk(0x80620d7c, 0x80637a24, 0x806204c8),
+        Chunk(0x80637a80, 0x8063bcf8, 0x8063716c),
+        Chunk(0x8063be40, 0x8088f400, 0x8063b4ac),
+        Chunk(0x808b3188, 0x808b318c, 0x808b22e8),
+        Chunk(0x808b3984, 0x808b3988, 0x808b2ae4),
+        Chunk(0x808b5b1c, 0x808b5b20, 0x808b4c7c),
+        Chunk(0x808b5c78, 0x808b5c7c, 0x808b4dd8),
+        Chunk(0x808cb550, 0x808cb554, 0x808ca6a0),
+        Chunk(0x808d3698, 0x808d369c, 0x808d27e8),
+        Chunk(0x808d36d4, 0x808d36d8, 0x808d2824),
+        Chunk(0x808d374c, 0x808d3750, 0x808d289c),
+        Chunk(0x809bd70c, 0x809bd710, 0x809bc76c),
+        Chunk(0x809bd728, 0x809bd72c, 0x809bc788),
+        Chunk(0x809bd730, 0x809bd734, 0x809bc790),
+        Chunk(0x809bd740, 0x809bd744, 0x809bc7a0),
+        Chunk(0x809bd748, 0x809bd74c, 0x809bc7a8),
+        Chunk(0x809c18f8, 0x809c18fc, 0x809c0958),
+        Chunk(0x809c1e38, 0x809c1e3c, 0x809c0e98),
+        Chunk(0x809c38b8, 0x809c38bc, 0x809c2918),
+        Chunk(0x809c4680, 0x809c4684, 0x809c36e0),
     ],
     'K': [
         Chunk(0x80004000, 0x800074dc, 0x80004000),
@@ -446,6 +473,7 @@ for symbol in symbols.readlines():
         address -= {
             'P': 0xe02e0,
             'E': 0xe0280,
+            'J': 0xe0200,
         }[args.region]
     address -= SRC_BINARIES[binary_name].start[args.region]
     address += DST_BINARIES[args.region][binary_name].start
