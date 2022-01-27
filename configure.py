@@ -200,7 +200,7 @@ for target in code_in_files:
         code_out_files[target] += [out_file]
     n.newline()
 
-for region in ['P']:
+for region in ['P', 'E']:
     n.build(
         os.path.join('$builddir', 'scripts', f'RMC{region}.ld'),
         'port',
@@ -213,7 +213,7 @@ for region in ['P']:
     n.newline()
 
 for target in code_out_files:
-    for region in ['P']:
+    for region in ['P', 'E']:
         n.build(
             os.path.join('$outdir', 'mkw-sp', 'bin', f'{target}{region}.bin'),
             'ld',
