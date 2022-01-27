@@ -58,6 +58,7 @@
 0x80229e14 delete
 0x8023afe0 EGG_SceneManager_changeSiblingScene
 0x80242c18 EGG_TaskThread_request
+0x80243d6c EGG_Video_configure
 
 0x80386000 s_systemManager
 

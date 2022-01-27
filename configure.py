@@ -88,6 +88,7 @@ code_in_files = {
     ],
     'payload': [
         os.path.join('egg', 'core', 'eggHeap.c'),
+        os.path.join('egg', 'core', 'eggVideo.S'),
         os.path.join('game', 'effect', 'Effect.S'),
         os.path.join('game', 'gfx', 'Camera.S'),
         os.path.join('game', 'gfx', 'CameraManager.S'),
