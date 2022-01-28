@@ -419,6 +419,10 @@ void SaveManager_changeSpLicenseMiiId(const SaveManager *this, const MiiId *miiI
 }
 
 u32 SaveManager_getDriftMode(const SaveManager *this) {
+    if (this->spCurrentLicense == -1) {
+        return SP_DRIFT_MODE_MANUAL;
+    }
+
     return this->spLicenses[this->spCurrentLicense]->driftMode;
 }
 
