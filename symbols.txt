@@ -8,6 +8,7 @@
 0x80007bc8 BootStrapScene_draw
 0x80007f2c BootStrapScene_exit
 0x80009194 RkSystem_initialize
+0x8000951c RkSystem_run
 0x80009844 SceneManager_changeSiblingScene
 
 0x80011938 snprintf

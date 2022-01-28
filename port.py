@@ -47,6 +47,7 @@ SRC_BINARIES = {
             'P': 0x80004000,
             'E': 0x80004000,
             'J': 0x80004000,
+            'K': 0x80004000,
         },
         [
             Section(0x80004000, 0x80006460),
@@ -69,6 +70,7 @@ SRC_BINARIES = {
             'P': 0x805102e0,
             'E': 0x8050bf60,
             'J': 0x8050fc60,
+            'K': 0x804fe300,
         },
         [
             Section(0x805103b4, 0x8088f400),
@@ -420,6 +422,43 @@ CHUNKS = {
         Chunk(0x802100a0, 0x80244de0, 0x80210414),
         Chunk(0x802a4080, 0x803858e0, 0x80292080),
         Chunk(0x80385fc0, 0x8038917c, 0x80373fe0),
+        Chunk(0x805103b4, 0x8051d72c, 0x804fe3d4),
+        Chunk(0x8051e488, 0x8052a324, 0x8050c4ac),
+        Chunk(0x8052a338, 0x805c08cc, 0x80518390),
+        Chunk(0x805c08d4, 0x805cc0a8, 0x805ae938),
+        Chunk(0x805cc220, 0x805ceae0, 0x805ba1e0),
+        Chunk(0x805ceafc, 0x805cf0e8, 0x805bcabc),
+        Chunk(0x805cf8bc, 0x805d00d0, 0x805bda40),
+        Chunk(0x805d01c8, 0x805d124c, 0x805be350),
+        Chunk(0x805d1260, 0x805eeb68, 0x805bf3fc),
+        Chunk(0x805eeb68, 0x805fa33c, 0x805dcf88),
+        Chunk(0x805fa344, 0x80620cb4, 0x805e8764),
+        Chunk(0x80620d7c, 0x80637a24, 0x8060f174),
+        Chunk(0x80637a80, 0x8063bcf8, 0x80625e18),
+        Chunk(0x8063be40, 0x806681e8, 0x8062a158),
+        Chunk(0x80668334, 0x80675464, 0x8065668c),
+        Chunk(0x80675808, 0x80675eb8, 0x80663b68),
+        Chunk(0x80675f2c, 0x806771f8, 0x8066428c),
+        Chunk(0x80677c3c, 0x80678134, 0x80665fe4),
+        Chunk(0x8067818c, 0x80742b58, 0x80666534),
+        Chunk(0x80743154, 0x8088f400, 0x80731514),
+        Chunk(0x808b3188, 0x808b318c, 0x808a15f8),
+        Chunk(0x808b3984, 0x808b3988, 0x808a1dfc),
+        Chunk(0x808b5b1c, 0x808b5b20, 0x808a3f94),
+        Chunk(0x808b5c78, 0x808b5c7c, 0x808a40f0),
+        Chunk(0x808cb550, 0x808cb554, 0x808b99e8),
+        Chunk(0x808d3698, 0x808d369c, 0x808c1b30),
+        Chunk(0x808d36d4, 0x808d36d8, 0x808c1b6c),
+        Chunk(0x808d374c, 0x808d3750, 0x808c1be4),
+        Chunk(0x809bd70c, 0x809bd710, 0x809abd4c),
+        Chunk(0x809bd728, 0x809bd72c, 0x809abd68),
+        Chunk(0x809bd730, 0x809bd734, 0x809abd70),
+        Chunk(0x809bd740, 0x809bd744, 0x809abd80),
+        Chunk(0x809bd748, 0x809bd74c, 0x809abd88),
+        Chunk(0x809c18f8, 0x809c18fc, 0x809aff38),
+        Chunk(0x809c1e38, 0x809c1e3c, 0x809b0478),
+        Chunk(0x809c38b8, 0x809c38bc, 0x809b13f8),
+        Chunk(0x809c4680, 0x809c4684, 0x809b2cc0),
     ],
 }
 
@@ -445,7 +484,6 @@ args = parser.parse_args()
 
 out_file = open(args.out_path, 'w')
 out_file.write('SECTIONS {\n')
-
 out_file.write('    .text base : { *(first) *(.text*) }\n')
 out_file.write('    patches : { *(patches*) }\n')
 out_file.write('    .rodata : { *(.rodata*) }\n')
@@ -474,6 +512,7 @@ for symbol in symbols.readlines():
             'P': 0xe02e0,
             'E': 0xe0280,
             'J': 0xe0200,
+            'K': 0xe04a0,
         }[args.region]
     address -= SRC_BINARIES[binary_name].start[args.region]
     address += DST_BINARIES[args.region][binary_name].start

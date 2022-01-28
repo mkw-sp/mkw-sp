@@ -28,6 +28,8 @@ typedef double f64;
 #define MUST_BE_ARRAY(a) BUILD_BUG_ON_ZERO(SAME_TYPE((a), &(a)[0]))
 #define ARRAY_SIZE(arr) (sizeof(arr) / sizeof((arr)[0]) + MUST_BE_ARRAY(arr))
 
+#define REGION (*(char *)0x80000003)
+
 void *new(size_t size);
 
 void delete(void *memBlock);
@@ -83,13 +85,19 @@ typedef struct {
 
 #define PATCH_NOP(function, offset) PATCH_U32(function, offset, 0x60000000)
 
-#define PATCH_B(from, to) \
+#define PATCH_BRANCH(from, to, link) \
     __attribute__((section("patches"))) \
     extern const Patch patch_ ## to = { \
         .type = PATCH_TYPE_BRANCH, \
         .branch = { \
             &from, \
             &to, \
-            false, \
+            link, \
         }, \
     }
+
+#define PATCH_B(from, to) \
+    PATCH_BRANCH(from, to, false)
+
+#define PATCH_BL(from, to) \
+    PATCH_BRANCH(from, to, true)

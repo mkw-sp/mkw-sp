@@ -5,13 +5,15 @@
 #include <stdio.h>
 #include <string.h>
 
+#include <revolution.h>
+
 enum {
     RESOURCE_KIND_FILE_DOUBLE_FORMAT = 0x0,
     RESOURCE_KIND_FILE_SINGLE_FORMAT = 0x1,
     RESOURCE_KIND_FILE_SHORT_FORMAT = 0x3,
 };
 
-extern const char *languageSuffixes[7];
+extern const char *languageSuffixes[];
 
 // Change the number of menu archives to 6
 PATCH_S16(MultiDvdArchive_create, 0xf2, 6);
@@ -44,16 +46,22 @@ void MultiDvdArchive_formatShort(MultiDvdArchive *this, const char *filename, u3
     for (u32 j = 0; j < 9; j++) {
         if (!strcmp(filename, filenames[j])) {
             snprintf(path, 0x100, "%s%s", replacements[j], this->names[i]);
+            OSReport("%s%s\n", replacements[j], this->names[i]);
             return;
         }
     }
 
+    OSReport("%s%s\n", filename, this->names[i]);
     snprintf(path, 0x100, "%s%s", filename, this->names[i]);
 }
 
 static void my_MenuMultiDvdArchive_init(MenuMultiDvdArchive *this) {
     const char *languageSuffix = languageSuffixes[s_systemManager->language];
-    snprintf(this->names[0], 0x80, ".szs");
+    if (REGION == 'K') {
+        snprintf(this->names[0], 0x80, "_R.szs");
+    } else {
+        snprintf(this->names[0], 0x80, ".szs");
+    }
     snprintf(this->names[1], 0x80, "%s", languageSuffix);
     snprintf(this->names[2], 0x80, "SP.szs");
     snprintf(this->names[3], 0x80, "SP%s", languageSuffix);
