@@ -27,6 +27,12 @@ void RaceConfigScenario_initGhostPad(RaceConfigScenario *this, u32 playerId) {
     this->players[playerId].controllerId = rawGhostHeader->controllerId;
 }
 
+void RaceConfigScenario_resetGhostPlayerTypes(RaceConfigScenario *this) {
+    for (u32 i = 1; i < 12; i++) {
+        this->players[i].type = PLAYER_TYPE_NONE;
+    }
+}
+
 static RaceConfig *my_RaceConfig_createInstance(void) {
     s_raceConfig = new(sizeof(RaceConfig));
     RaceConfig_ct(s_raceConfig);
