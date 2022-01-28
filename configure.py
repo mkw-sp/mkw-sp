@@ -213,24 +213,35 @@ for region in ['P', 'E', 'J', 'K']:
     )
     n.newline()
 
-for target in code_out_files:
-    for region in ['P', 'E', 'J', 'K']:
-        n.build(
-            os.path.join('$outdir', 'mkw-sp', 'bin', f'{target}{region}.bin'),
-            'ld',
-            code_out_files[target],
-            variables = {
-                'base': '0x80003f00' if target == 'loader' else {
-                    'P': '0x8076db60',
-                    'E': '0x80769400',
-                    'J': '0x8076cca0',
-                    'K': '0x8075bfe0',
-                }[region],
-                'script': os.path.join('$builddir', 'scripts', f'RMC{region}.ld'),
-            },
-            implicit = os.path.join('$builddir', 'scripts', f'RMC{region}.ld'),
-        )
-        n.newline()
+n.build(
+    os.path.join('$outdir', 'bin', f'loader.bin'),
+    'ld',
+    code_out_files['loader'],
+    variables = {
+        'base': '0x80004000',
+        'script': os.path.join('loader', 'RMC.ld'),
+    },
+    implicit = os.path.join('loader', 'RMC.ld'),
+)
+n.newline()
+
+for region in ['P', 'E', 'J', 'K']:
+    n.build(
+        os.path.join('$outdir', 'bin', f'payload{region}.bin'),
+        'ld',
+        code_out_files['payload'],
+        variables = {
+            'base': {
+                'P': '0x8076db60',
+                'E': '0x80769400',
+                'J': '0x8076cca0',
+                'K': '0x8075bfe0',
+            }[region],
+            'script': os.path.join('$builddir', 'scripts', f'RMC{region}.ld'),
+        },
+        implicit = os.path.join('$builddir', 'scripts', f'RMC{region}.ld'),
+    )
+    n.newline()
 
 n.variable('wuj5', os.path.join('vendor', 'wuj5', 'wuj5.py'))
 n.newline()
@@ -539,7 +550,7 @@ renamed = {
 renamed = ' '.join([f'--renamed {src} {dst}' for src, dst in renamed.items()])
 for target in asset_out_files:
     n.build(
-        os.path.join('$outdir', 'mkw-sp', 'disc', 'Scene', 'UI', target),
+        os.path.join('$outdir', 'disc', 'Scene', 'UI', target),
         'szs',
         asset_out_files[target],
         variables = {
