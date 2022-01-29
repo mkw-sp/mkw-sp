@@ -27,15 +27,30 @@ static void *(*OSAllocFromMEM1ArenaLo)(u32 size, u32 align);
 static void (*ICInvalidateRange)(void *addr, u32 nBytes);
 static void (*OSFatal)(GXColor fg, GXColor bg, const char *msg);
 
+static char getRegionCode(void) {
+    switch (REGION) {
+    case REGION_P:
+        return 'P';
+    case REGION_E:
+        return 'E';
+    case REGION_J:
+        return 'J';
+    case REGION_K:
+        return 'K';
+    default:
+        while (true);
+    }
+}
+
 static u32 Rel_getSize(void) {
     switch (REGION) {
-    case 'P':
+    case REGION_P:
         return 0x3d49d0;
-    case 'E':
+    case REGION_E:
         return 0x3d45f0;
-    case 'J':
+    case REGION_J:
         return 0x3d4190;
-    case 'K':
+    case REGION_K:
         return 0x3d4e30;
     default:
         while (true);
@@ -46,7 +61,7 @@ typedef void (*PayloadEntryFunction)(void);
 
 PayloadEntryFunction loadPayload(void) {
     char fileName[0x20];
-    snprintf(fileName, sizeof(fileName), "/bin/payload%c.bin", REGION);
+    snprintf(fileName, sizeof(fileName), "/bin/payload%c.bin", getRegionCode());
 
     DVDFileInfo fileInfo;
     if (!DVDOpen(fileName, &fileInfo)) {
@@ -68,7 +83,7 @@ PayloadEntryFunction loadPayload(void) {
 
 __attribute__((section("first"))) void start(void) {
     switch (REGION) {
-    case 'P':
+    case REGION_P:
         snprintf = (void *)0x80011938;
         DVDOpen = (void *)0x8015e2bc;
         DVDReadPrio = (void *)0x8015e834;
@@ -78,7 +93,7 @@ __attribute__((section("first"))) void start(void) {
         ICInvalidateRange = (void *)0x801a1710;
         OSFatal = (void *)0x801a4ec4;
         break;
-    case 'E':
+    case REGION_E:
         snprintf = (void *)0x80010dd8;
         DVDOpen = (void *)0x8015e21c;
         DVDReadPrio = (void *)0x8015e794;
@@ -88,7 +103,7 @@ __attribute__((section("first"))) void start(void) {
         ICInvalidateRange = (void *)0x801a1670;
         OSFatal = (void *)0x801a4e24;
         break;
-    case 'J':
+    case REGION_J:
         snprintf = (void *)0x8001185c;
         DVDOpen = (void *)0x8015e1dc;
         DVDReadPrio = (void *)0x8015e754;
@@ -98,7 +113,7 @@ __attribute__((section("first"))) void start(void) {
         ICInvalidateRange = (void *)0x801a1630;
         OSFatal = (void *)0x801a4de4;
         break;
-    case 'K':
+    case REGION_K:
         snprintf = (void *)0x800119a0;
         DVDOpen = (void *)0x8015e334;
         DVDReadPrio = (void *)0x8015e8ac;

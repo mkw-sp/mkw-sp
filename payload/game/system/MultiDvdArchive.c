@@ -57,7 +57,7 @@ void MultiDvdArchive_formatShort(MultiDvdArchive *this, const char *filename, u3
 
 static void my_MenuMultiDvdArchive_init(MenuMultiDvdArchive *this) {
     const char *languageSuffix = languageSuffixes[s_systemManager->language];
-    if (REGION == 'K') {
+    if (REGION == REGION_K) {
         snprintf(this->names[0], 0x80, "_R.szs");
     } else {
         snprintf(this->names[0], 0x80, ".szs");

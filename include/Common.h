@@ -28,7 +28,14 @@ typedef double f64;
 #define MUST_BE_ARRAY(a) BUILD_BUG_ON_ZERO(SAME_TYPE((a), &(a)[0]))
 #define ARRAY_SIZE(arr) (sizeof(arr) / sizeof((arr)[0]) + MUST_BE_ARRAY(arr))
 
-#define REGION (*(char *)0x80000003)
+enum {
+    REGION_P = 0x54a9,
+    REGION_E = 0x5409,
+    REGION_J = 0x53cd,
+    REGION_K = 0x5511,
+};
+
+#define REGION (*(u16 *)0x8000620a)
 
 void *new(size_t size);
 
