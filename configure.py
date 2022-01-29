@@ -14,7 +14,8 @@ n.variable('builddir', 'build')
 n.variable('outdir', 'out')
 n.newline()
 
-n.variable('cc', 'powerpc-eabi-gcc')
+devkitppc = os.environ.get("DEVKITPPC")
+n.variable('cc', os.path.join(devkitppc, 'bin', 'powerpc-eabi-gcc'))
 n.variable('port', os.path.join('.', 'port.py'))
 n.newline()
 
