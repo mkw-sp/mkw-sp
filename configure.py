@@ -16,7 +16,7 @@ n.newline()
 
 devkitppc = os.environ.get("DEVKITPPC")
 n.variable('cc', os.path.join(devkitppc, 'bin', 'powerpc-eabi-gcc'))
-n.variable('port', os.path.join('.', 'port.py'))
+n.variable('port', 'port.py')
 n.newline()
 
 asflags = [
@@ -67,7 +67,7 @@ n.newline()
 
 n.rule(
     'port',
-    command = '$port $region $in $out',
+    command = 'python $port $region $in $out',
     description = 'PORT $out'
 )
 n.newline()
@@ -250,7 +250,7 @@ n.newline()
 
 n.rule(
     'wuj5',
-    command = '$wuj5 encode $in -o $out',
+    command = 'python $wuj5 encode $in -o $out',
     description = 'WUJ5 $out',
 )
 n.newline()
@@ -264,7 +264,7 @@ n.newline()
 
 n.rule(
     'szs',
-    command = '$wuj5 encode $szsin -o $out --retained $in $args',
+    command = 'python $wuj5 encode $szsin -o $out --retained $in $args',
     description = 'SZS $out',
 )
 n.newline()
