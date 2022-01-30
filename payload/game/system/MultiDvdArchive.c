@@ -46,12 +46,10 @@ void MultiDvdArchive_formatShort(MultiDvdArchive *this, const char *filename, u3
     for (u32 j = 0; j < 9; j++) {
         if (!strcmp(filename, filenames[j])) {
             snprintf(path, 0x100, "%s%s", replacements[j], this->names[i]);
-            OSReport("%s%s\n", replacements[j], this->names[i]);
             return;
         }
     }
 
-    OSReport("%s%s\n", filename, this->names[i]);
     snprintf(path, 0x100, "%s%s", filename, this->names[i]);
 }
 
