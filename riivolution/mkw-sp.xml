@@ -18,7 +18,7 @@
         <memory offset="0x800061c4" value="4bffde3d" />
         <memory offset="0x80004000" valuefile="loader.bin" />
         <folder disc="/" external="disc" create="true" />
-        <savegame external="" clone="false" />
+        <savegame external="/mkw-sp" clone="false" />
     </patch>
     <patch id="ms">
         <folder external="My Stuff" />
