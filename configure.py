@@ -216,7 +216,7 @@ for region in ['P', 'E', 'J', 'K']:
     n.newline()
 
 n.build(
-    os.path.join('$outdir', 'bin', f'loader.bin'),
+    os.path.join('$outdir', f'loader.bin'),
     'ld',
     code_out_files['loader'],
     variables = {
@@ -229,7 +229,7 @@ n.newline()
 
 for region in ['P', 'E', 'J', 'K']:
     n.build(
-        os.path.join('$outdir', 'bin', f'payload{region}.bin'),
+        os.path.join('$outdir', 'disc', 'bin', f'payload{region}.bin'),
         'ld',
         code_out_files['payload'],
         variables = {

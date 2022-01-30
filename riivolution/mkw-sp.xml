@@ -16,11 +16,7 @@
     </options>
     <patch id="sp">
         <memory offset="0x800061c4" value="4bffde3d" />
-        <memory offset="0x80004000" valuefile="bin/loader.bin" />
-        <file disc="/bin/payloadP.bin" external="bin/payloadP.bin" create="true" />
-        <file disc="/bin/payloadE.bin" external="bin/payloadE.bin" create="true" />
-        <file disc="/bin/payloadJ.bin" external="bin/payloadJ.bin" create="true" />
-        <file disc="/bin/payloadK.bin" external="bin/payloadK.bin" create="true" />
+        <memory offset="0x80004000" valuefile="loader.bin" />
         <folder disc="/" external="disc" create="true" />
         <savegame external="" clone="false" />
     </patch>
