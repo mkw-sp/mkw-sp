@@ -119,7 +119,7 @@ def encode_szs_node(in_path, retained, renamed):
             out_data = in_file.read()
             out_path = in_path
         else:
-            in_file = open(in_path, 'r')
+            in_file = open(in_path, 'r', encoding='utf-8')
             in_data = in_file.read()
             val = json5.loads(in_data)
             out_data = pack(val)
@@ -153,7 +153,7 @@ def encode(in_path, out_path, retained, renamed):
     pack = ext_pack.get(ext)
     if pack is None:
         exit(f'Unknown file format with binary extension {ext}.')
-    in_file = open(in_path, 'r')
+    in_file = open(in_path, 'r', encoding='utf-8')
     in_data = in_file.read()
     val = json5.loads(in_data)
     out_data = pack(val)
