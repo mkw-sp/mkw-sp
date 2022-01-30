@@ -65,14 +65,17 @@ static void my_MenuMultiDvdArchive_init(MenuMultiDvdArchive *this) {
     snprintf(this->names[1], 0x80, "%s", languageSuffix);
     snprintf(this->names[2], 0x80, "SP.szs");
     snprintf(this->names[3], 0x80, "SP%s", languageSuffix);
-    snprintf(this->names[4], 0x80, "MS.szs");
-    snprintf(this->names[5], 0x80, "MS%s", languageSuffix);
+    snprintf(this->names[4], 0x80, "_Dif.szs");
+    snprintf(this->names[5], 0x80, "%.2s_Dif.szs", languageSuffix);
+    for (u32 i = 0; i < 6; i++) {
+        OSReport("%s\n", this->names[i]);
+    }
 
     this->kinds[0] = RESOURCE_KIND_FILE_DOUBLE_FORMAT;
     this->kinds[1] = RESOURCE_KIND_FILE_DOUBLE_FORMAT;
     this->kinds[2] = RESOURCE_KIND_FILE_SHORT_FORMAT;
     this->kinds[3] = RESOURCE_KIND_FILE_SHORT_FORMAT;
-    this->kinds[4] = RESOURCE_KIND_FILE_SHORT_FORMAT;
-    this->kinds[5] = RESOURCE_KIND_FILE_SHORT_FORMAT;
+    this->kinds[4] = RESOURCE_KIND_FILE_DOUBLE_FORMAT;
+    this->kinds[5] = RESOURCE_KIND_FILE_DOUBLE_FORMAT;
 }
 PATCH_B(MenuMultiDvdArchive_init, my_MenuMultiDvdArchive_init);
