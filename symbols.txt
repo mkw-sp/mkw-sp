@@ -267,6 +267,7 @@
 0x80638988 TabOptionButton_onSelect
 0x80638fa0 TimeAttackTopPage_onActivate
 0x8063914c TimeAttackTopPage_afterCalc
+0x80639260 TimeAttackTopPage_onRefocus
 0x806395ec TimeAttackGhostListPage_ct
 0x8063ab6c TitlePage_onInit
 0x8063c820 UIAnimator_getGroup
