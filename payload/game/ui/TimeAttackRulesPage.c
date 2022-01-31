@@ -64,7 +64,7 @@ static void onRuleControlSelect(RadioButtonControlHandler *this, RadioButtonCont
         { 0xd58, 0xd5a },
         { 0x3018, 0x3019, 0x301a, 0x301b },
         { 0x3020, 0x3021, 0x3022 },
-        { 0x3027, 0x3028, 0x3029 },
+        { 0x3027, 0x3028, 0x3036, 0x3029 },
         { 0x302b, 0x302c, 0x302d },
     };
     u32 messageId = messageIds[control->index][selected];
@@ -189,7 +189,7 @@ static void TimeAttackRulesPage_onInit(Page *base) {
         "GhostTagContent",
         "SolidGhosts",
     };
-    u32 buttonCounts[] = { 2, 4, 3, 3, 3 };
+    u32 buttonCounts[] = { 2, 4, 3, 4, 3 };
     for (u32 i = 0; i < ARRAY_SIZE(this->ruleControls); i++) {
         const SpSaveLicense *license = s_saveManager->spLicenses[s_saveManager->spCurrentLicense];
         u32 chosen;

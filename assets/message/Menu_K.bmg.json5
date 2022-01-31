@@ -5731,6 +5731,14 @@
         "font": "regular",
         "string": "All",
     },
+    "0x3035": {
+        "font": "regular",
+        "string": "Shortened Time",
+    },
+    "0x3036": {
+        "font": "regular",
+        "string": "Time option without leading zeroes.",
+    },
     "0x18697": {
         "font": "regular",
         "string": null,

@@ -163,6 +163,7 @@ static void SpSaveLicense_sanitize(SpSaveLicense *this) {
     switch (this->taRuleGhostTagContent) {
     case SP_TA_RULE_GHOST_TAG_CONTENT_NAME:
     case SP_TA_RULE_GHOST_TAG_CONTENT_TIME:
+    case SP_TA_RULE_GHOST_TAG_CONTENT_TIME_NOLEADING:
     case SP_TA_RULE_GHOST_TAG_CONTENT_DATE:
         break;
     default:

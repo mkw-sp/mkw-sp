@@ -52,7 +52,7 @@ static void CtrlRaceNameBalloon_refreshTextName(CtrlRaceNameBalloon *this, u32 p
     LayoutUIControl_setMessage(this, "chara_name", 0x251d, &info);
 }
 
-static void CtrlRaceNameBalloon_refreshTextTime(CtrlRaceNameBalloon *this, u32 playerId) {
+static void CtrlRaceNameBalloon_refreshTextTime(CtrlRaceNameBalloon *this, u32 playerId, bool leadingZeroes) {
     const RaceConfigScenario *raceScenario = &s_raceConfig->raceScenario;
     u32 index = raceScenario->players[0].type == PLAYER_TYPE_GHOST ? playerId : playerId - 1;
     const RawGhostHeader *header = (RawGhostHeader *)(*raceScenario->ghostBuffer)[index];
@@ -61,7 +61,7 @@ static void CtrlRaceNameBalloon_refreshTextTime(CtrlRaceNameBalloon *this, u32 p
         .intVals[1] = header->raceTime.seconds,
         .intVals[2] = header->raceTime.milliseconds,
     };
-    LayoutUIControl_setMessage(this, "chara_name", 0x578, &info);
+    LayoutUIControl_setMessage(this, "chara_name", leadingZeroes ? 0x578 : 0x577, &info);
 }
 
 static void CtrlRaceNameBalloon_refreshTextDate(CtrlRaceNameBalloon *this, u32 playerId) {
@@ -88,7 +88,10 @@ void CtrlRaceNameBalloon_refreshText(CtrlRaceNameBalloon *this, u32 playerId) {
         CtrlRaceNameBalloon_refreshTextName(this, playerId);
         break;
     case SP_TA_RULE_GHOST_TAG_CONTENT_TIME:
-        CtrlRaceNameBalloon_refreshTextTime(this, playerId);
+        CtrlRaceNameBalloon_refreshTextTime(this, playerId, /* leadingZeroes */ true);
+        break;
+    case SP_TA_RULE_GHOST_TAG_CONTENT_TIME_NOLEADING:
+        CtrlRaceNameBalloon_refreshTextTime(this, playerId, /* leadingZeroes */ false);
         break;
     case SP_TA_RULE_GHOST_TAG_CONTENT_DATE:
         CtrlRaceNameBalloon_refreshTextDate(this, playerId);

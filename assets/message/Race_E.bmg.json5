@@ -507,6 +507,10 @@
         "font": "regular",
         "string": "{1 char|}",
     },
+    "0x577": {
+        "font": "regular",
+        "string": "{arg integer|0 0}:{arg integer|1 0}.{arg integer|2 3}",
+    },
     "0x578": {
         "font": "regular",
         "string": "{arg integer|0 2}:{arg integer|1 2}.{arg integer|2 3}",
