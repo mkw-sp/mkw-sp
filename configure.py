@@ -4,6 +4,11 @@
 import os
 from vendor.ninja_syntax import Writer
 
+try:
+    import json5
+    del json5
+except ModuleNotFoundError:
+    raise SystemExit("Error: pyjson5 not found. Please install it with `python -m pip install json5`")
 
 n = Writer(open('build.ninja', 'w'))
 
