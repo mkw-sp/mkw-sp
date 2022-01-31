@@ -6,6 +6,7 @@ You need:
 
 - Python 3
 - pyjson5
+- json5
 - ninja (samurai also works)
 - devkitPPC (with the DEVKITPPC environment variable set)
 
