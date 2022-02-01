@@ -10,7 +10,8 @@ enum {
 };
 
 typedef struct {
-    u8 _000[0x008 - 0x000];
+    u32 id;
+    u8 _004[0x008 - 0x004];
     Page *pages[PAGE_ID_MAX];
     u8 _354[0x408 - 0x354];
 } Section;

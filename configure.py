@@ -114,6 +114,7 @@ code_in_files = {
         os.path.join('game', 'kart', 'KartParam.S'),
         os.path.join('game', 'kart', 'KartState.S'),
         os.path.join('game', 'kart', 'KartSub.S'),
+        os.path.join('game', 'race', 'DriverManager.c'),
         os.path.join('game', 'snd', 'Snd.S'),
         os.path.join('game', 'system', 'CourseMap.S'),
         os.path.join('game', 'system', 'DvdArchive.S'),
