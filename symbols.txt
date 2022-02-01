@@ -53,6 +53,7 @@
 0x801d2544 NETSHA1Update
 0x801d25f8 NETSHA1GetDigest
 
+0x80218098 EGG_CpuTexture_Construct
 0x80229814 EGG_Heap_alloc
 0x80229b84 EGG_Heap_free
 0x80229dcc new
@@ -308,6 +309,7 @@
 0x807ad958 ItemObjKouraAo_807ad958
 0x807aec64 ItemObjKouraMidori_807aec64
 0x807b54f4 Item_807b54f4
+0x807dfc54 Map2DRenderer_init__createTexBuffer
 0x807e947c CtrlMenuPageTitleText_load
 0x807e987c CtrlMenuPageTitleText_setMessage
 0x807e9904 CtrlMenuInstructionText_load
