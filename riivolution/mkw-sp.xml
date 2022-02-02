@@ -22,6 +22,6 @@
     </patch>
     <patch id="ms">
         <folder external="My Stuff" />
-        <folder disc="/" external="My Stuff" />
+        <folder disc="/" external="My Stuff" create="true" />
     </patch>
 </wiidisc>
