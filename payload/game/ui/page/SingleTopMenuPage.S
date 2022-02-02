@@ -69,3 +69,10 @@ PATCH_REPLACE_END(SingleTopMenuPage_onButtonFront, 0x20c)
 PATCH_REPLACE_START(SingleTopMenuPage_onButtonFront, 0xd4)
     li r27, 0x6a
 PATCH_REPLACE_END(SingleTopMenuPage_onButtonFront, 0xd4)
+
+
+
+// Allow access to time trials even when we can't save
+PATCH_REPLACE_START(SingleTopMenuPage_onButtonFront, 0x94)
+    li r0, 0x0
+PATCH_REPLACE_END(SingleTopMenuPage_onButtonFront, 0x94)
