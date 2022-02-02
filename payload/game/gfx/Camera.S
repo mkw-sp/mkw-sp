@@ -17,7 +17,7 @@ PATCH_B_START(Camera_805a2034, 0xbc)
 PATCH_B_END(Camera_805a2034, 0xbc)
 
 PATCH_BL_START(Camera_805a21d0, 0xf4)
-    lwz r0, 0x334 (r29) // Original instruction
+    lhz r0, 0x334 (r29) // Original instruction
 
     // Check if the current section is ghost replay
     lis r4, s_sectionManager@ha
