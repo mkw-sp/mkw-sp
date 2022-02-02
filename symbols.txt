@@ -311,6 +311,7 @@
 0x807ad958 ItemObjKouraAo_807ad958
 0x807aec64 ItemObjKouraMidori_807aec64
 0x807b54f4 Item_807b54f4
+0x807cb198 Driver_807cb198
 0x807dfc54 Map2DRenderer_init__createTexBuffer
 0x807e947c CtrlMenuPageTitleText_load
 0x807e987c CtrlMenuPageTitleText_setMessage
