@@ -346,6 +346,12 @@
 0x807f7e80 CtrlRaceTime_getPlayerId
 0x807f7ec0 CtrlRaceTime_calcSelf
 0x807f842c CtrlRaceTime_load
+0x8082a38c ObjManager_ct
+0x8082b3a0 ObjManager_groupInsert
+0x8082b3b8 ObjManager_groupGetCount
+0x8082cad8 ObjPylon01_ct
+0x8082cc64 ObjPylon01_vf_b0
+0x8082dbec ObjPylon01_vf_c0
 0x8083d55c CharacterSelectPage_onInit
 0x8084e388 DriftSelectPage_onButtonFront
 0x8084ef1c SingleTopMenuPage_onInit
