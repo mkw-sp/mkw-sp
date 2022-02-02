@@ -21,6 +21,7 @@ n.newline()
 
 devkitppc = os.environ.get("DEVKITPPC")
 n.variable('cc', os.path.join(devkitppc, 'bin', 'powerpc-eabi-gcc'))
+n.variable('cpp', os.path.join(devkitppc, 'bin', 'powerpc-eabi-g++'))
 n.variable('port', 'port.py')
 n.newline()
 
@@ -42,6 +43,23 @@ cflags = [
     '-Wextra',
     '-Wno-packed-bitfield-compat',
 ]
+cppflags = [
+    '-fms-extensions',
+    '-fno-asynchronous-unwind-tables',
+    # '-fplan9-extensions',
+    '-fshort-wchar',
+    '-isystem', 'include',
+    '-isystem', 'payload',
+    '-O2',
+    '-Wall',
+    # '-Werror=implicit-function-declaration',
+    # '-Werror=incompatible-pointer-types',
+    '-Wextra',
+    '-Wno-packed-bitfield-compat',
+    
+    '-fno-exceptions',
+    '-fno-unwind-tables',
+]
 ldflags = [
     '-nostdlib',
     '-Wl,--entry=start',
@@ -49,6 +67,7 @@ ldflags = [
 ]
 n.variable('asflags', ' '.join(asflags))
 n.variable('cflags', ' '.join(cflags))
+n.variable('cppflags', ' '.join(cppflags))
 n.variable('ldflags', ' '.join(ldflags))
 n.newline()
 
@@ -67,6 +86,15 @@ n.rule(
     depfile = '$out.d',
     deps = 'gcc',
     description = 'CC $out',
+)
+n.newline()
+
+n.rule(
+    'cpp',
+    command = '$cpp -MD -MT $out -MF $out.d $cppflags -c $in -o $out',
+    depfile = '$out.d',
+    deps = 'gcc',
+    description = 'CPP $out',
 )
 n.newline()
 
@@ -95,6 +123,7 @@ code_in_files = {
     'payload': [
         os.path.join('egg', 'core', 'eggHeap.c'),
         os.path.join('egg', 'core', 'eggVideo.S'),
+        os.path.join('egg', 'core', 'eggSystem.c'),
         os.path.join('game', 'effect', 'Effect.S'),
         os.path.join('game', 'gfx', 'Camera.S'),
         os.path.join('game', 'gfx', 'CameraManager.S'),
@@ -194,6 +223,7 @@ code_in_files = {
         os.path.join('nw4r', 'lyt', 'lyt_layout.S'),
         os.path.join('nw4r', 'snd', 'snd_DvdSoundArchive.S'),
         os.path.join('revolution', 'nand.c'),
+        os.path.join('sp', 'Keyboard.cpp'),
         os.path.join('sp', 'Fatal.c'),
     ],
 }
@@ -206,6 +236,7 @@ for target in code_in_files:
         rule = {
             '.S': 'as',
             '.c': 'cc',
+            '.cpp': 'cpp',
         }[ext]
         n.build(
             out_file,

@@ -9,6 +9,7 @@
 0x80007f2c BootStrapScene_exit
 0x80009194 RkSystem_initialize
 0x8000951c RkSystem_run
+0x80009820 EGG_ConfigurationData_onBeginFrame
 0x80009844 SceneManager_changeSiblingScene
 
 0x80011938 snprintf
@@ -28,6 +29,9 @@
 0x8015e834 DVDReadPrio
 0x8015e568 DVDClose
 0x8016a05c ISFS_ReadDir
+0x801938f8 IOS_Open
+0x80193ad8 IOS_Close
+0x80194290 IOS_Ioctl
 0x8019acac PSVECDotProduct
 0x8019bee8 NANDMove
 0x8019de1c nandIsPrivatePath

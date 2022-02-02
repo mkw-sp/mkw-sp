@@ -37,9 +37,11 @@ enum {
 
 #define REGION (*(u16 *)0x8000620a)
 
+#if !defined(NO_NEW_DELETE) && !defined(__cplusplus) // new/delete are reserved identifiers in C++
 void *new(size_t size);
 
 void delete(void *memBlock);
+#endif
 
 typedef struct {
     f32 x;
