@@ -160,15 +160,6 @@ static void SpSaveLicense_sanitize(SpSaveLicense *this) {
     default:
         this->taRuleGhostTagVisibility = SP_TA_RULE_GHOST_TAG_VISIBILITY_ALL;
     }
-    switch (this->taRuleGhostTagContent) {
-    case SP_TA_RULE_GHOST_TAG_CONTENT_NAME:
-    case SP_TA_RULE_GHOST_TAG_CONTENT_TIME:
-    case SP_TA_RULE_GHOST_TAG_CONTENT_TIME_NOLEADING:
-    case SP_TA_RULE_GHOST_TAG_CONTENT_DATE:
-        break;
-    default:
-        this->taRuleGhostTagContent = SP_TA_RULE_GHOST_TAG_CONTENT_NAME;
-    }
     switch (this->taRuleSolidGhosts) {
     case SP_TA_RULE_SOLID_GHOSTS_NONE:
     case SP_TA_RULE_SOLID_GHOSTS_WATCHED:
