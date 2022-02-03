@@ -158,7 +158,7 @@ static void SpSaveLicense_sanitize(SpSaveLicense *this) {
     case SP_TA_RULE_GHOST_TAG_VISIBILITY_ALL:
         break;
     default:
-        this->taRuleGhostTagVisibility = SP_TA_RULE_GHOST_TAG_VISIBILITY_ALL;
+        this->taRuleGhostTagVisibility = SP_TA_RULE_GHOST_TAG_VISIBILITY_DEFAULT;
     }
     switch (this->taRuleSolidGhosts) {
     case SP_TA_RULE_SOLID_GHOSTS_NONE:
@@ -166,7 +166,7 @@ static void SpSaveLicense_sanitize(SpSaveLicense *this) {
     case SP_TA_RULE_SOLID_GHOSTS_ALL:
         break;
     default:
-        this->taRuleSolidGhosts = SP_TA_RULE_SOLID_GHOSTS_NONE;
+        this->taRuleSolidGhosts = SP_TA_RULE_SOLID_GHOSTS_DEFAULT;
     }
 }
 
@@ -389,15 +389,15 @@ void SaveManager_createSpLicense(SaveManager *this, const MiiId *miiId) {
     license->size = sizeof(SpSaveLicense);
     license->version = SP_SAVE_LICENSE_VERSION;
     license->miiId = *miiId;
-    license->driftMode = SP_DRIFT_MODE_MANUAL;
-    license->settingHudLabels = SP_SETTING_HUD_LABELS_SHOW;
+    license->driftMode = SP_DRIFT_MODE_DEFAULT;
+    license->settingHudLabels = SP_SETTING_HUD_LABELS_DEFAULT;
     license->setting169Fov = SP_SETTING_169_FOV_DEFAULT;
-    license->settingMapIcons = SP_SETTING_MAP_ICONS_MIIS;
-    license->taRuleClass = SP_TA_RULE_CLASS_150CC;
-    license->taRuleGhostSorting = SP_TA_RULE_GHOST_SORTING_FASTEST;
-    license->taRuleGhostTagVisibility = SP_TA_RULE_GHOST_TAG_VISIBILITY_ALL;
-    license->taRuleGhostTagContent = SP_TA_RULE_GHOST_TAG_CONTENT_NAME;
-    license->taRuleSolidGhosts = SP_TA_RULE_SOLID_GHOSTS_NONE;
+    license->settingMapIcons = SP_SETTING_MAP_ICONS_DEFAULT;
+    license->taRuleClass = SP_TA_RULE_CLASS_DEFAULT;
+    license->taRuleGhostSorting = SP_TA_RULE_GHOST_SORTING_DEFAULT;
+    license->taRuleGhostTagVisibility = SP_TA_RULE_GHOST_TAG_VISIBILITY_DEFAULT;
+    license->taRuleGhostTagContent = SP_TA_RULE_GHOST_TAG_CONTENT_DEFAULT;
+    license->taRuleSolidGhosts = SP_TA_RULE_SOLID_GHOSTS_DEFAULT;
     this->spSections[this->spSectionCount++] = license;
     this->spCurrentLicense = this->spLicenseCount - 1;
 }
@@ -411,46 +411,82 @@ void SaveManager_changeSpLicenseMiiId(const SaveManager *this, const MiiId *miiI
 }
 
 u32 SaveManager_getDriftMode(const SaveManager *this) {
-    if (this->spCurrentLicense == -1) {
-        return SP_DRIFT_MODE_MANUAL;
+    if (this->spCurrentLicense < 0) {
+        return SP_DRIFT_MODE_DEFAULT;
     }
 
     return this->spLicenses[this->spCurrentLicense]->driftMode;
 }
 
 void SaveManager_setDriftMode(SaveManager *this, u32 driftMode) {
+    if (this->spCurrentLicense < 0) {
+        return;
+    }
+
     this->spLicenses[this->spCurrentLicense]->driftMode = driftMode;
 }
 
 u32 SaveManager_getSettingHudLabels(const SaveManager *this) {
+    if (this->spCurrentLicense < 0) {
+        return SP_SETTING_HUD_LABELS_DEFAULT;
+    }
+
     return this->spLicenses[this->spCurrentLicense]->settingHudLabels;
 }
 
 u32 SaveManager_getSetting169Fov(const SaveManager *this) {
+    if (this->spCurrentLicense < 0) {
+        return SP_SETTING_HUD_LABELS_DEFAULT;
+    }
+
     return this->spLicenses[this->spCurrentLicense]->setting169Fov;
 }
 
 u32 SaveManager_getSettingMapIcons(const SaveManager *this) {
+    if (this->spCurrentLicense < 0) {
+        return SP_SETTING_MAP_ICONS_DEFAULT;
+    }
+
     return this->spLicenses[this->spCurrentLicense]->settingMapIcons;
 }
 
 u32 SaveManager_getTaRuleClass(const SaveManager *this) {
+    if (this->spCurrentLicense < 0) {
+        return SP_TA_RULE_CLASS_DEFAULT;
+    }
+
     return this->spLicenses[this->spCurrentLicense]->taRuleClass;
 }
 
 u32 SaveManager_getTaRuleGhostSorting(const SaveManager *this) {
+    if (this->spCurrentLicense < 0) {
+        return SP_TA_RULE_GHOST_SORTING_DEFAULT;
+    }
+
     return this->spLicenses[this->spCurrentLicense]->taRuleGhostSorting;
 }
 
 u32 SaveManager_getTaRuleGhostTagVisibility(const SaveManager *this) {
+    if (this->spCurrentLicense < 0) {
+        return SP_TA_RULE_GHOST_TAG_VISIBILITY_DEFAULT;
+    }
+
     return this->spLicenses[this->spCurrentLicense]->taRuleGhostTagVisibility;
 }
 
 u32 SaveManager_getTaRuleGhostTagContent(const SaveManager *this) {
+    if (this->spCurrentLicense < 0) {
+        return SP_TA_RULE_GHOST_TAG_CONTENT_DEFAULT;
+    }
+
     return this->spLicenses[this->spCurrentLicense]->taRuleGhostTagContent;
 }
 
 u32 SaveManager_getTaRuleSolidGhosts(const SaveManager *this) {
+    if (this->spCurrentLicense < 0) {
+        return SP_TA_RULE_SOLID_GHOSTS_DEFAULT;
+    }
+
     return this->spLicenses[this->spCurrentLicense]->taRuleSolidGhosts;
 }
 
