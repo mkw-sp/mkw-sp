@@ -223,8 +223,9 @@ code_in_files = {
         os.path.join('nw4r', 'lyt', 'lyt_layout.S'),
         os.path.join('nw4r', 'snd', 'snd_DvdSoundArchive.S'),
         os.path.join('revolution', 'nand.c'),
-        os.path.join('sp', 'Keyboard.cpp'),
         os.path.join('sp', 'Fatal.c'),
+        os.path.join('sp', 'IOSKeyboard.c'),
+        os.path.join('sp', 'Keyboard.c'),
     ],
 }
 code_out_files = {target: [] for target in code_in_files}

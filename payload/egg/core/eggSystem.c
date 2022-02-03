@@ -35,12 +35,21 @@ static void my_lineCallback(const char *buf, size_t len) {
     }
 }
 
-void my_onBeginFrame(void *UNUSED(system)) {
-    if (!SP_IsConsoleInputInit()) {
-        SP_InitConsoleInput();
-        SP_SetLineCallback(my_lineCallback);
+// IOS KBD module is not supported on this platform
+static bool sConsoleInputUnavailable = false;
 
-        assert(SP_IsConsoleInputInit() && "Failed to initialize console");
+void my_onBeginFrame(void *UNUSED(system)) {
+    if (sConsoleInputUnavailable)
+        return;
+
+    if (!SP_IsConsoleInputInit()) {
+        if (SP_InitConsoleInput()) {
+            SP_SetLineCallback(my_lineCallback);
+        } else {
+            // Do not try again
+            sConsoleInputUnavailable = true;
+            return;
+        }
     }
 
     SP_ProcessConsoleInput();
