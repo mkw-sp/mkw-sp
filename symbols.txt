@@ -213,6 +213,8 @@
 0x805f0d84 MultiControlInputManager_setHandler
 0x805f0db4 MultiControlInputManager_setPointerMode
 0x805f20ec MultiControlInputManager_select
+0x805f9224 MessageWindowPopupPage_reset
+0x805f9244 MessageWindowPopupPage_setMessage
 0x805f9e78 MiiGroup_ct
 0x805f9f58 MiiGroup_dt
 0x805fa04c MiiGroup_init
@@ -275,6 +277,7 @@
 0x80639260 TimeAttackTopPage_onRefocus
 0x806395ec TimeAttackGhostListPage_ct
 0x8063ab6c TitlePage_onInit
+0x8063ad64 TitlePage_onActivate
 0x8063c820 UIAnimator_getGroup
 0x8063c91c Group_setAnimation
 0x8063cb20 Group_setAnimationInactive
