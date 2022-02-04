@@ -360,6 +360,8 @@
 0x8082cc64 ObjPylon01_vf_b0
 0x8082dbec ObjPylon01_vf_c0
 0x8083d55c CharacterSelectPage_onInit
+0x808404a0 CourseSelectPage_onActivate
+0x80841110 CupSelectPage_onActivate
 0x8084e388 DriftSelectPage_onButtonFront
 0x8084ef1c SingleTopMenuPage_onInit
 0x8084efc4 SingleTopMenuPage_vf_84
