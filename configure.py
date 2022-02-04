@@ -181,6 +181,7 @@ code_in_files = {
         os.path.join('game', 'ui', 'LicenseSettingsPage.c'),
         os.path.join('game', 'ui', 'Map2DRenderer.c'),
         os.path.join('game', 'ui', 'MiiGroup.c'),
+        os.path.join('game', 'ui', 'Page.c'),
         os.path.join('game', 'ui', 'SaveManagerProxy.S'),
         os.path.join('game', 'ui', 'Section.S'),
         os.path.join('game', 'ui', 'Section.c'),

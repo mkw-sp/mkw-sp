@@ -196,6 +196,7 @@
 0x805c211c ConfirmPage_reset
 0x805c21a8 ConfirmPage_setTitleMessage
 0x805c21b0 ConfirmPage_setWindowMessage
+0x805c28d8 ControlGroup_update
 0x805c2c60 ControlLoader_load
 0x805c9888 Page_vf_30
 0x805e1214 GhostManagerPage_process
@@ -232,12 +233,14 @@
 0x8060197c Page_ct
 0x80601a04 Page_dt
 0x80601ad8 Page_onInit
+0x806022cc Page_update
 0x8060245c Page_initChildren
 0x8060246c Page_insertChild
 0x80602488 Page_startReplace
 0x806024b0 Page_changeSection
 0x80602530 Page_vf_20
 0x806025b0 Page_push
+0x8060265c Page_animUpdate
 0x80602cf8 Page_playSfx
 0x80605724 RadioButtonControl_ct
 0x806058c8 RadioButtonControl_dt

@@ -1,7 +1,17 @@
 #pragma once
 
+#include "ControlGroup.h"
 #include "MenuInputManager.h"
 #include "UIControl.h"
+
+enum {
+    PAGE_STATE_0,
+    PAGE_STATE_1,
+    PAGE_STATE_2,
+    PAGE_STATE_3,
+    PAGE_STATE_4,
+    PAGE_STATE_5
+};
 
 enum {
     PAGE_ID_NONE = -0x1,
@@ -29,7 +39,10 @@ typedef struct Page {
     const struct Page_vt *vt;
     u32 id;
     u32 state;
-    u8 _0c[0x38 - 0x0c];
+    bool canProceed;
+    u8 _0d[0x10 - 0xd];
+    u8 _10[0x24 - 0x10];
+    ControlGroup controlGroup;
     MenuInputManager *baseInputManager;
     u8 _3c[0x44 - 0x3c];
 } Page;
@@ -53,8 +66,8 @@ typedef struct Page_vt {
     void *vf_3c;
     void *vf_40;
     void *vf_44;
-    void *vf_48;
-    void *vf_4c;
+    void (*vf_48)(Page *this);  // Return unknown
+    void (*vf_4c)(Page *this);  // Return unknown
     void *vf_50;
     void (*onRefocus)(Page *this);
     void *vf_58;
@@ -92,8 +105,8 @@ extern u8 Page_vf_38;
 extern u8 Page_vf_3c;
 extern u8 Page_vf_40;
 extern u8 Page_vf_44;
-extern u8 Page_vf_48;
-extern u8 Page_vf_4c;
+extern void Page_vf_48(Page *this);  // Return unknown
+extern void Page_vf_4c(Page *this);  // Return unknown
 extern u8 Page_vf_50;
 
 void Page_onRefocus(Page *this);
@@ -110,3 +123,10 @@ void Page_startReplace(Page *this, u32 animation, f32 delay);
 
 // TODO r5
 void Page_playSfx(Page *this, u32 sfxId, s32 r5);
+
+void Page_update(Page *this);
+void Page_animUpdate(Page *this);
+
+// Default: true
+bool Page_getTransitionsEnabled(void);
+void Page_setTransitionsEnabled(bool enable);

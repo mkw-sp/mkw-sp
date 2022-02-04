@@ -6,8 +6,14 @@
 #include <string.h>      // memcpy
 
 #include <game/system/SaveManager.h>
+#include <game/ui/Page.h>
 
 extern void EGG_ConfigurationData_onBeginFrame(void *system);
+
+static const char* sOnOff[2] = {
+    "OFF",
+    "ON"
+};
 
 static void my_lineCallback(const char *buf, size_t len) {
     // Demo functions
@@ -32,6 +38,14 @@ static void my_lineCallback(const char *buf, size_t len) {
             OSReport("example_command: taRuleGhostTagContent == %s\n",
                     tagContent[SaveManager_getTaRuleGhostTagContent(s_saveManager) & 3]);
         }
+        return;
+    }
+
+    if (!strcmp(tmp, "/instant_menu")) {
+        bool menuTrans = !Page_getTransitionsEnabled();
+        Page_setTransitionsEnabled(menuTrans);
+        OSReport("instant_menu: Menu transition animations toggled %s\n", sOnOff[menuTrans]);
+        return;
     }
 }
 
