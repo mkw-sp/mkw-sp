@@ -7,6 +7,8 @@
 static const Page_vt s_LicenseSelectPage_vt;
 
 static void onBack(InputHandler *this, u32 UNUSED(localPlayerId)) {
+    s_saveManager->spCurrentLicense = -1;
+
     LicenseSelectPage *page = CONTAINER_OF(this, LicenseSelectPage, onBack);
     page->replacement = PAGE_ID_TITLE;
     Page_startReplace(page, PAGE_ANIMATION_PREV, 0.0f);
@@ -50,6 +52,8 @@ static const ConfirmPageHandler_vt onAboutConfirm_vt = {
 
 static void onBackButtonFront(PushButtonHandler *this, PushButton *button,
         u32 UNUSED(localPlayerId)) {
+    s_saveManager->spCurrentLicense = -1;
+
     LicenseSelectPage *page = CONTAINER_OF(this, LicenseSelectPage, onBackButtonFront);
     page->replacement = PAGE_ID_TITLE;
     f32 delay = PushButton_getDelay(button);

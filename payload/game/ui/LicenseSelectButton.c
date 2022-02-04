@@ -40,6 +40,7 @@ static void onFront(PushButtonHandler *UNUSED(this), PushButton *base, u32 UNUSE
             Page_startReplace(page, PAGE_ANIMATION_NEXT, delay);
         }
     } else if (index == s_saveManager->spLicenseCount) {
+        s_saveManager->spCurrentLicense = -1;
         Section *currentSection = s_sectionManager->currentSection;
         ConfirmPage *confirmPage = (ConfirmPage *)currentSection->pages[PAGE_ID_CONFIRM];
         ConfirmPage_reset(confirmPage);
