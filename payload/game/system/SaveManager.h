@@ -7,6 +7,23 @@
 #include <revolution.h>
 
 enum {
+    GHOST_RESOURCE_TYPE_DVD,
+    GHOST_RESOURCE_TYPE_NAND,
+};
+
+typedef struct {
+    u8 type;
+    union {
+        struct {
+            u32 entrynum;
+        } dvd;
+        struct {
+            char path[NAND_MAX_PATH];
+        } nand;
+    };
+} GhostResource;
+
+enum {
     VS_RULE_CLASS_100CC = 0x0,
     VS_RULE_CLASS_150CC = 0x1,
     VS_RULE_CLASS_MIRROR = 0x2,
@@ -131,7 +148,7 @@ typedef struct {
     RawGhostHeader *rawGhostHeaders; // Modified
     GhostGroup *ghostGroup;
     GhostFooter *ghostFooters; // Modified
-    char (*ghostPaths)[NAND_MAX_PATH]; // Modified
+    GhostResource *ghostResources;
     u8 _00034[0x00035 - 0x00034];
     bool saveGhostResult;
     u8 _00036[0x00038 - 0x00036];

@@ -23,7 +23,7 @@ SaveManager *my_SaveManager_createInstance(void) {
     EGG_Heap *heap = s_rootScene->heapCollection.heaps[HEAP_ID_MEM2];
     this->rawGhostHeaders = spAllocArray(MAX_GHOST_COUNT, sizeof(RawGhostHeader), 0x4, heap);
     this->ghostFooters = spAllocArray(MAX_GHOST_COUNT, sizeof(GhostFooter), 0x4, heap);
-    this->ghostPaths = spAllocArray(MAX_GHOST_COUNT, NAND_MAX_PATH, 0x4, heap);
+    this->ghostResources = spAllocArray(MAX_GHOST_COUNT, sizeof(GhostResource), 0x4, heap);
     this->courseSha1IsValid = spAllocArray(0x20, sizeof(bool), 0x4, heap);
     this->courseSha1s = spAllocArray(0x20, 0x14, 0x4, heap);
 
@@ -44,92 +44,70 @@ SaveManager *my_SaveManager_createInstance(void) {
 }
 PATCH_B(SaveManager_createInstance, my_SaveManager_createInstance);
 
-static void SaveManager_initGhost(SaveManager *this, const char *path) {
+static void SaveManager_initGhost(SaveManager *this, s32 entrynum) {
     if (this->ghostCount >= MAX_GHOST_COUNT) {
         return;
     }
 
-    u32 length;
-    if (NandHelper_readFile(path, this->rawGhostFile, 0x2800, &length) != RK_NAND_RESULT_OK) {
+    DVDFileInfo fileInfo;
+    if (!DVDFastOpen(entrynum, &fileInfo)) {
         return;
     }
 
+    u32 length = fileInfo.length;
+    if (length > 0x2800) {
+        goto cleanup;
+    }
+
+    s32 result = DVDRead(&fileInfo, this->rawGhostFile, OSRoundUp32B(length), 0);
+    if (result != (s32)OSRoundUp32B(length)) {
+        goto cleanup;
+    }
+
     if (!RawGhostFile_spIsValid(this->rawGhostFile, length)) {
-        return;
+        goto cleanup;
     }
 
     const RawGhostHeader *header = (RawGhostHeader *)this->rawGhostFile;
     memcpy(&this->rawGhostHeaders[this->ghostCount], header, sizeof(RawGhostHeader));
     GhostFooter_init(&this->ghostFooters[this->ghostCount], this->rawGhostFile, length);
-    memcpy(&this->ghostPaths[this->ghostCount], path, NAND_MAX_PATH);
+    this->ghostResources[this->ghostCount].type = GHOST_RESOURCE_TYPE_DVD;
+    this->ghostResources[this->ghostCount].dvd.entrynum = entrynum;
     this->ghostCount++;
+
+cleanup:
+    DVDClose(&fileInfo);
 }
 
-static void SaveManager_initGhostsDir(SaveManager *this, const char *dir) {
+static void SaveManager_initGhostsDir(SaveManager *this, u32 entrynum) {
     if (this->ghostCount >= MAX_GHOST_COUNT) {
         return;
     }
 
-    if (strlen(dir) + 1 + NAND_MAX_NAME > NAND_MAX_PATH) {
+    DVDDir dir;
+    if (!DVDFastOpenDir(entrynum, &dir)) {
         return;
     }
 
-    u32 fileCount;
-
-    if (NandHelper_readDir(dir, NULL, &fileCount) != RK_NAND_RESULT_OK) {
-        return;
-    }
-
-    u32 size = OSRoundUp32B(fileCount * (NAND_MAX_NAME + 1));
-    EGG_Heap *heap = s_rootScene->heapCollection.heaps[HEAP_ID_MEM2];
-    char *names = spAlloc(size, 0x20, heap);
-    if (NandHelper_readDir(dir, names, &fileCount) != RK_NAND_RESULT_OK) {
-        goto cleanup;
-    }
-
-    const char *name = names;
-    for (u32 i = 0; i < fileCount; i++) {
-        char path[NAND_MAX_PATH];
-        snprintf(path, sizeof(path), "%s/%s", dir, name);
-
-        u32 type;
-        if (NandHelper_getType(path, &type) == RK_NAND_RESULT_OK) {
-            switch (type) {
-            case RK_NAND_TYPE_FILE:
-                SaveManager_initGhost(this, path);
-                break;
-            case RK_NAND_TYPE_DIR:
-                SaveManager_initGhostsDir(this, path);
-                break;
-            }
+    DVDDirEntry dirent;
+    while (DVDReadDir(&dir, &dirent)) {
+        if (dirent.isDir) {
+            SaveManager_initGhostsDir(this, dirent.entryNum);
+        } else {
+            SaveManager_initGhost(this, dirent.entryNum);
         }
-
-        name += strlen(name) + 1;
     }
 
-cleanup:
-    spFree(names);
+    DVDCloseDir(&dir);
 }
 
 static void SaveManager_initGhosts(SaveManager *this) {
-    char dir[NAND_MAX_PATH];
-    if (NandHelper_getHomeDir(dir) != RK_NAND_RESULT_OK) {
+    s32 entrynum = DVDConvertPathToEntrynum("/ghosts");
+    if (entrynum < 0) {
         return;
     }
 
-    u32 offset = strlen(dir);
-    u32 size = strlen("/ghosts") + 1;
-    if (offset + size > NAND_MAX_PATH) {
-        return;
-    }
-    memcpy(dir + offset, "/ghosts", size);
-
-    u8 perm = NAND_PERM_OWNER_READ | NAND_PERM_OWNER_WRITE;
-    if (NandHelper_createDir(dir, perm) != RK_NAND_RESULT_OK) {
-        return;
-    }
-
-    SaveManager_initGhostsDir(this, dir);
+    SaveManager_initGhostsDir(this, entrynum);
 }
 
 static bool setupSpSave(const char *path) {
@@ -517,6 +495,58 @@ static void my_SaveManager_loadGhostHeadersAsync(SaveManager *this, s32 UNUSED(l
 }
 PATCH_B(SaveManager_loadGhostHeadersAsync, my_SaveManager_loadGhostHeadersAsync);
 
+static bool SaveManager_loadGhost(SaveManager *this, u32 i) {
+    const GlobalContext *cx = s_sectionManager->globalContext;
+    RaceConfigScenario *menuScenario = &s_raceConfig->menuScenario;
+
+    u32 length;
+    switch (this->ghostResources[cx->timeAttackGhostIndices[i]].type) {
+    case GHOST_RESOURCE_TYPE_DVD:
+        u32 entrynum = this->ghostResources[cx->timeAttackGhostIndices[i]].dvd.entrynum;
+        DVDFileInfo fileInfo;
+        if (!DVDFastOpen(entrynum, &fileInfo)) {
+            return false;
+        }
+
+        length = fileInfo.length;
+        if (length > 0x2800) {
+            return false;
+        }
+
+        s32 result = DVDRead(&fileInfo, this->rawGhostFile, OSRoundUp32B(length), 0);
+        DVDClose(&fileInfo);
+        if (result != (s32)OSRoundUp32B(length)) {
+            return false;
+        }
+
+        break;
+    case GHOST_RESOURCE_TYPE_NAND:
+        const char *path = this->ghostResources[cx->timeAttackGhostIndices[i]].nand.path;
+        if (NandHelper_readFile(path, this->rawGhostFile, 0x2800, &length) != RK_NAND_RESULT_OK) {
+            return false;
+        }
+
+        break;
+    default:
+        // Should be unreachable
+        return false;
+    }
+
+    if (((RawGhostHeader *)this->rawGhostFile)->isCompressed) {
+        if (!RawGhostFile_spIsValid(this->rawGhostFile, length)) {
+            return false;
+        }
+
+        if (!RawGhostFile_spDecompress(this->rawGhostFile, (*menuScenario->ghostBuffer)[i])) {
+            return false;
+        }
+    } else {
+        memcpy((*menuScenario->ghostBuffer)[i], this->rawGhostFile, 0x2800);
+    }
+
+    return RawGhostFile_spIsValid((*menuScenario->ghostBuffer)[i], 0x2800);
+}
+
 static void SaveManager_loadGhosts(SaveManager *this) {
     RaceConfigScenario *raceScenario = &s_raceConfig->raceScenario;
     RaceConfigScenario *menuScenario = &s_raceConfig->menuScenario;
@@ -528,32 +558,9 @@ static void SaveManager_loadGhosts(SaveManager *this) {
         }
     }
 
-    GlobalContext *cx = s_sectionManager->globalContext;
+    const GlobalContext *cx = s_sectionManager->globalContext;
     for (u32 i = 0; i < cx->timeAttackGhostCount; i++) {
-        u32 index = cx->timeAttackGhostIndices[i];
-        const char *path = this->ghostPaths[index];
-        u32 length;
-        this->result = NandHelper_readFile(path, this->rawGhostFile, 0x2800, &length);
-        if (this->result != RK_NAND_RESULT_OK) {
-            memset((*menuScenario->ghostBuffer)[i], 0, 0x2800);
-            continue;
-        }
-
-        if (((RawGhostHeader *)this->rawGhostFile)->isCompressed) {
-            if (!RawGhostFile_spIsValid(this->rawGhostFile, length)) {
-                memset((*menuScenario->ghostBuffer)[i], 0, 0x2800);
-                continue;
-            }
-
-            if (!RawGhostFile_spDecompress(this->rawGhostFile, (*menuScenario->ghostBuffer)[i])) {
-                memset((*menuScenario->ghostBuffer)[i], 0, 0x2800);
-                continue;
-            }
-        } else {
-            memcpy((*menuScenario->ghostBuffer)[i], this->rawGhostFile, 0x2800);
-        }
-
-        if (!RawGhostFile_spIsValid((*menuScenario->ghostBuffer)[i], 0x2800)) {
+        if (!SaveManager_loadGhost(this, i)) {
             memset((*menuScenario->ghostBuffer)[i], 0, 0x2800);
         }
     }
@@ -771,7 +778,8 @@ static void SaveManager_saveGhost(SaveManager *this, GhostFile *file) {
         const RawGhostHeader *header = (RawGhostHeader *)this->rawGhostFile;
         memcpy(&this->rawGhostHeaders[this->ghostCount], header, sizeof(RawGhostHeader));
         GhostFooter_init(&this->ghostFooters[this->ghostCount], this->rawGhostFile, length);
-        memcpy(&this->ghostPaths[this->ghostCount], path, NAND_MAX_PATH);
+        this->ghostResources[this->ghostCount].type = GHOST_RESOURCE_TYPE_NAND;
+        memcpy(this->ghostResources[this->ghostCount].nand.path, path, NAND_MAX_PATH);
         this->ghostCount++;
     }
 

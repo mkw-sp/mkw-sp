@@ -25,6 +25,8 @@
 
 0x800c78d0 RFLiCalculateCRC
 
+0x8015df4c DVDConvertPathToEntrynum
+0x8015e254 DVDFastOpen
 0x8015e2bc DVDOpen
 0x8015e834 DVDReadPrio
 0x8015e568 DVDClose
@@ -67,6 +69,9 @@
 0x80243d6c EGG_Video_configure
 
 0x80386000 s_systemManager
+0x80386638 MaxEntryNum
+0x8038663c FstStringStart
+0x80386640 FstStart
 
 0x80511e7c CourseMap_computeFinishTime
 0x80511ec8 CheckPoint_computeFinishTime
