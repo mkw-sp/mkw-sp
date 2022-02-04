@@ -6,7 +6,7 @@
 static bool geckoWarningWasShown = false;
 
 void TitlePage_processGeckoWarning(TitlePage *this) {
-    if (*(u32 *)0x80001800 != 0xD01F1BAD + 5) {
+    if (*(u8 *)0x800018A8 != 0x94) {
         return;
     }
 
