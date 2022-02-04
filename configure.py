@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 
-import os
+import os, sys
 from vendor.ninja_syntax import Writer
 
 try:
@@ -100,7 +100,7 @@ n.newline()
 
 n.rule(
     'port',
-    command = 'python $port $region $in $out',
+    command = f'{sys.executable} $port $region $in $out',
     description = 'PORT $out'
 )
 n.newline()
@@ -299,7 +299,7 @@ n.newline()
 
 n.rule(
     'wuj5',
-    command = 'python $wuj5 encode $in -o $out',
+    command = f'{sys.executable} $wuj5 encode $in -o $out',
     description = 'WUJ5 $out',
 )
 n.newline()
@@ -313,7 +313,7 @@ n.newline()
 
 n.rule(
     'szs',
-    command = 'python $wuj5 encode $szsin -o $out --retained $in $args',
+    command = f'{sys.executable} $wuj5 encode $szsin -o $out --retained $in $args',
     description = 'SZS $out',
 )
 n.newline()
