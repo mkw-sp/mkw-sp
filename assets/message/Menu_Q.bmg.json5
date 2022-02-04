@@ -5651,6 +5651,26 @@
         "font": "regular",
         "string": "Gecko codes are UNSUPPORTED\nand will crash your game.\nPress A if you know what you are doing\nand do NOT report bugs.",
     },
+    "0x3038": {
+        "font": "regular",
+        "string": "Menu Transitions",
+    },
+    "0x3039": {
+        "font": "regular",
+        "string": "Disable",
+    },
+    "0x303a": {
+        "font": "regular",
+        "string": "Enable",
+    },
+    "0x303b": {
+        "font": "regular",
+        "string": "Make the menu transitions instant.",
+    },
+    "0x303c": {
+        "font": "regular",
+        "string": "Keep the default pace of the menu transitions.",
+    },
     "0x18697": {
         "font": "regular",
         "string": null,

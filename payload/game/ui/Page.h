@@ -126,7 +126,3 @@ void Page_playSfx(Page *this, u32 sfxId, s32 r5);
 
 void Page_update(Page *this);
 void Page_animUpdate(Page *this);
-
-// Default: true
-bool Page_getTransitionsEnabled(void);
-void Page_setTransitionsEnabled(bool enable);

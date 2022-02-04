@@ -122,10 +122,23 @@ static bool setupSpSave(const char *path) {
 
 static bool SpSaveLicense_checkSize(const SpSaveLicense *this) {
     switch (this->version) {
+    case 0:
+        return this->size == 0x18;
     case SP_SAVE_LICENSE_VERSION:
         return this->size == sizeof(SpSaveLicense);
     default:
         return this->size >= sizeof(SpSaveLicense);
+    }
+}
+
+static void SpSaveLicense_upgrade(SpSaveLicense *this) {
+    if (this->version < 1) {
+        this->settingPageTransitions = SP_SETTING_PAGE_TRANSITIONS_DEFAULT;
+    }
+
+    if (this->version < SP_SAVE_LICENSE_VERSION) {
+        this->size = sizeof(SpSaveLicense);
+        this->version = SP_SAVE_LICENSE_VERSION;
     }
 }
 
@@ -207,11 +220,10 @@ static bool SaveManager_initSpSave(SaveManager *this) {
         }
 
         if (section->magic == SP_SAVE_LICENSE_MAGIC) {
-            SpSaveLicense *license = (SpSaveLicense *)section;
+            const SpSaveLicense *license = (SpSaveLicense *)section;
             if (!SpSaveLicense_checkSize(license)) {
                 return false;
             }
-            SpSaveLicense_sanitize(license);
             unusedLicenseCount--;
         }
 
@@ -226,9 +238,14 @@ static bool SaveManager_initSpSave(SaveManager *this) {
     this->spSections = spAllocArray(maxSectionCount, sizeof(SpSaveSection *), 0x4, heap);
     offset = sizeof(SpSaveHeader);
     for (u32 i = 0; i < sectionCount; i++) {
-        SpSaveSection *section = this->spBuffer + offset;
+        const SpSaveSection *section = this->spBuffer + offset;
         this->spSections[i] = spAlloc(section->size, 0x4, heap);
         memcpy(this->spSections[i], section, section->size);
+        if (section->magic == SP_SAVE_LICENSE_MAGIC) {
+            SpSaveLicense *license = (SpSaveLicense *)this->spSections[i];
+            SpSaveLicense_upgrade(license);
+            SpSaveLicense_sanitize(license);
+        }
         offset += section->size;
     }
     this->spSectionCount = sectionCount;
@@ -371,6 +388,7 @@ void SaveManager_createSpLicense(SaveManager *this, const MiiId *miiId) {
     license->settingHudLabels = SP_SETTING_HUD_LABELS_DEFAULT;
     license->setting169Fov = SP_SETTING_169_FOV_DEFAULT;
     license->settingMapIcons = SP_SETTING_MAP_ICONS_DEFAULT;
+    license->settingPageTransitions = SP_SETTING_PAGE_TRANSITIONS_DEFAULT;
     license->taRuleClass = SP_TA_RULE_CLASS_DEFAULT;
     license->taRuleGhostSorting = SP_TA_RULE_GHOST_SORTING_DEFAULT;
     license->taRuleGhostTagVisibility = SP_TA_RULE_GHOST_TAG_VISIBILITY_DEFAULT;
@@ -426,6 +444,22 @@ u32 SaveManager_getSettingMapIcons(const SaveManager *this) {
     }
 
     return this->spLicenses[this->spCurrentLicense]->settingMapIcons;
+}
+
+u32 SaveManager_getSettingPageTransitions(const SaveManager *this) {
+    if (this->spCurrentLicense < 0) {
+        return SP_SETTING_PAGE_TRANSITIONS_DEFAULT;
+    }
+
+    return this->spLicenses[this->spCurrentLicense]->settingPageTransitions;
+}
+
+void SaveManager_setSettingPageTransitions(const SaveManager *this, u32 pageTransitions) {
+    if (this->spCurrentLicense < 0) {
+        return;
+    }
+
+    this->spLicenses[this->spCurrentLicense]->settingPageTransitions = pageTransitions;
 }
 
 u32 SaveManager_getTaRuleClass(const SaveManager *this) {

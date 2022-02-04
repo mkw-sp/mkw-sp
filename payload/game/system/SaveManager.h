@@ -36,7 +36,7 @@ enum {
 };
 
 enum {
-    SP_SAVE_LICENSE_VERSION = 0,
+    SP_SAVE_LICENSE_VERSION = 1,
 };
 
 typedef struct {
@@ -72,6 +72,12 @@ enum {
     SP_SETTING_MAP_ICONS_CHARACTERS = 0x0,
     SP_SETTING_MAP_ICONS_MIIS = 0x1,
     SP_SETTING_MAP_ICONS_DEFAULT = SP_SETTING_MAP_ICONS_MIIS,
+};
+
+enum {
+    SP_SETTING_PAGE_TRANSITIONS_DISABLE = 0x0,
+    SP_SETTING_PAGE_TRANSITIONS_ENABLE = 0x1,
+    SP_SETTING_PAGE_TRANSITIONS_DEFAULT = SP_SETTING_PAGE_TRANSITIONS_ENABLE,
 };
 
 enum {
@@ -122,7 +128,9 @@ typedef struct {
     u32 taRuleGhostTagVisibility : 2;
     u32 taRuleGhostTagContent : 2;
     u32 taRuleSolidGhosts : 2;
+    u32 settingPageTransitions : 1;
 } SpSaveLicense;
+static_assert(sizeof(SpSaveLicense) == 0x18);
 
 enum {
     SP_BUFFER_SIZE = 0x10000, // 64 KiB
@@ -199,6 +207,10 @@ u32 SaveManager_getSettingHudLabels(const SaveManager *this);
 u32 SaveManager_getSetting169Fov(const SaveManager *this);
 
 u32 SaveManager_getSettingMapIcons(const SaveManager *this);
+
+u32 SaveManager_getSettingPageTransitions(const SaveManager *this);
+
+void SaveManager_setSettingPageTransitions(const SaveManager *this, u32 pageTransitions);
 
 u32 SaveManager_getTaRuleClass(const SaveManager *this);
 

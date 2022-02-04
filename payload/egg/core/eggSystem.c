@@ -6,7 +6,6 @@
 #include <string.h>      // memcpy
 
 #include <game/system/SaveManager.h>
-#include <game/ui/Page.h>
 
 extern void EGG_ConfigurationData_onBeginFrame(void *system);
 
@@ -42,9 +41,13 @@ static void my_lineCallback(const char *buf, size_t len) {
     }
 
     if (!strcmp(tmp, "/instant_menu")) {
-        bool menuTrans = !Page_getTransitionsEnabled();
-        Page_setTransitionsEnabled(menuTrans);
-        OSReport("instant_menu: Menu transition animations toggled %s\n", sOnOff[menuTrans]);
+        if (s_saveManager == NULL) {
+            OSReport("instant_menu: Failed to load Save Manager\n");
+        } else {
+            bool menuTrans = !SaveManager_getSettingPageTransitions(s_saveManager);
+            SaveManager_setSettingPageTransitions(s_saveManager, menuTrans);
+            OSReport("instant_menu: Menu transition animations toggled %s\n", sOnOff[menuTrans]);
+        }
         return;
     }
 }

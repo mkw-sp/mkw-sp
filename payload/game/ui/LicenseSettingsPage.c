@@ -30,6 +30,9 @@ static void onSettingControlFront(RadioButtonControlHandler *this, RadioButtonCo
     case 2:
         license->settingMapIcons = selected;
         break;
+    case 3:
+        license->settingPageTransitions = selected;
+        break;
     }
 
     LicenseSettingsPage *page = CONTAINER_OF(this, LicenseSettingsPage, onSettingControlFront);
@@ -53,7 +56,13 @@ static void onSettingControlSelect(RadioButtonControlHandler *this, RadioButtonC
     }
 
     LicenseSettingsPage *page = CONTAINER_OF(this, LicenseSettingsPage, onSettingControlSelect);
-    u32 messageId = 0x3007 + control->index * 5 + selected;
+    u32 messageIds[][2] = {
+        { 0x3007, 0x3008 },
+        { 0x300c, 0x300d },
+        { 0x3011, 0x3012 },
+        { 0x303b, 0x303c },
+    };
+    u32 messageId = messageIds[control->index][selected];
     CtrlMenuInstructionText_setMessage(&page->instructionText, messageId, NULL);
 }
 
@@ -137,6 +146,7 @@ static void LicenseSettingsPage_onInit(Page *base) {
         "HudLabels",
         "169Fov",
         "MapIcons",
+        "PageTransitions",
     };
     for (u32 i = 0; i < ARRAY_SIZE(this->settingControls); i++) {
         const SpSaveLicense *license = s_saveManager->spLicenses[s_saveManager->spCurrentLicense];
@@ -150,6 +160,9 @@ static void LicenseSettingsPage_onInit(Page *base) {
             break;
         case 2:
             chosen = license->settingMapIcons;
+            break;
+        case 3:
+            chosen = license->settingPageTransitions;
             break;
         }
         char variant[0x20];
