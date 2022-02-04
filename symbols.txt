@@ -205,6 +205,8 @@
 0x805e2500 GhostList_getFile
 0x805e39d8 GlobalContext_copyPlayerMiis
 0x805e40a8 GlobalContext_changeLicense
+0x805e889c MainLayout_load
+0x805e9f80 PictureSourceLayoutList_load
 0x805ea834 LicenseSelectPage_ct
 0x805ec274 LicenseDisplayPage_onActivate
 0x805ec4e8 refreshLicenseControl
