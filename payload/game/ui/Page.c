@@ -15,9 +15,9 @@ static void my_Page_update(Page *page) {
     case PAGE_STATE_4:
     case PAGE_STATE_5:
         // Handle animations
-        (*page->vt->vf_48)(page);
-        ControlGroup_update(&page->controlGroup);
-        (*page->vt->vf_4c)(page);
+        (*page->vt->beforeCalc)(page);
+        ControlGroup_calc(&page->controlGroup);
+        (*page->vt->afterCalc)(page);
         Page_animUpdate(page);
         break;
     }

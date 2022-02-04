@@ -165,7 +165,7 @@
 0x805bb224 Page_vf_58
 0x805bb228 Page_onRefocus
 0x805bb22c Page_vf_50
-0x805bb230 Page_vf_48
+0x805bb230 Page_beforeCalc
 0x805bb234 Page_vf_44
 0x805bb238 Page_vf_40
 0x805bb23c Page_vf_3c
@@ -191,12 +191,12 @@
 0x805be600 UIControl_initSelf
 0x805be7f4 CtrlMenuBackButton_dt
 0x805bed68 Page_vf_60
-0x805bf2d8 Page_vf_4c
+0x805bf2d8 Page_afterCalc
 0x805c00c0 CtrlMenuInstructionText_dt
 0x805c211c ConfirmPage_reset
 0x805c21a8 ConfirmPage_setTitleMessage
 0x805c21b0 ConfirmPage_setWindowMessage
-0x805c28d8 ControlGroup_update
+0x805c28d8 ControlGroup_calc
 0x805c2c60 ControlLoader_load
 0x805c9888 Page_vf_30
 0x805e1214 GhostManagerPage_process

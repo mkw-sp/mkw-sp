@@ -9,4 +9,4 @@ typedef struct {
 } ControlGroup;
 static_assert(sizeof(ControlGroup) == 0x14);
 
-void ControlGroup_update(ControlGroup* group);
+void ControlGroup_calc(ControlGroup* group);

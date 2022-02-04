@@ -66,8 +66,8 @@ typedef struct Page_vt {
     void *vf_3c;
     void *vf_40;
     void *vf_44;
-    void (*vf_48)(Page *this);  // Return unknown
-    void (*vf_4c)(Page *this);  // Return unknown
+    void (*beforeCalc)(Page *this);
+    void (*afterCalc)(Page *this);
     void *vf_50;
     void (*onRefocus)(Page *this);
     void *vf_58;
@@ -105,8 +105,8 @@ extern u8 Page_vf_38;
 extern u8 Page_vf_3c;
 extern u8 Page_vf_40;
 extern u8 Page_vf_44;
-extern void Page_vf_48(Page *this);  // Return unknown
-extern void Page_vf_4c(Page *this);  // Return unknown
+extern void Page_beforeCalc(Page *this);
+extern void Page_afterCalc(Page *this);
 extern u8 Page_vf_50;
 
 void Page_onRefocus(Page *this);
