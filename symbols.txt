@@ -371,6 +371,7 @@
 0x808503dc TopMenuPage_onInit
 0x80850db0 TopMenuPage_onActivate
 0x80852450 VsMenuPage_onActivate
+0x80855200 DemoPage_onInit
 0x808556e4 TimeAttackSplitsPage_ct
 0x80855854 TimeAttackSplitsPage_onFront
 0x80855adc TimeAttackSplitsPage_afterCalc

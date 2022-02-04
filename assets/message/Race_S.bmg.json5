@@ -565,15 +565,15 @@
     },
     "0x589": {
         "font": "regular",
-        "string": "50cc",
+        "string": "100cc",
     },
     "0x58a": {
         "font": "regular",
-        "string": "100cc",
+        "string": "150cc",
     },
     "0x58b": {
         "font": "regular",
-        "string": "150cc",
+        "string": "200cc",
     },
     "0x58c": {
         "font": "regular",
