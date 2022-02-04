@@ -388,6 +388,7 @@
 0x80855b30 TimeAttackSplitsPage_vf_38
 0x808561dc TimeAttackSplitsPage_getReplacement
 0x80856664 RacePage_initInputs
+0x808569bc RacePage_onPause
 0x80856cec RacePage_beforeCalc
 0x808572d4 RacePage_canChangeSection
 0x808573ac RacePage_canReplace
