@@ -501,7 +501,7 @@ static bool SaveManager_loadGhost(SaveManager *this, u32 i) {
 
     u32 length;
     switch (this->ghostResources[cx->timeAttackGhostIndices[i]].type) {
-    case GHOST_RESOURCE_TYPE_DVD:
+    case GHOST_RESOURCE_TYPE_DVD:;
         u32 entrynum = this->ghostResources[cx->timeAttackGhostIndices[i]].dvd.entrynum;
         DVDFileInfo fileInfo;
         if (!DVDFastOpen(entrynum, &fileInfo)) {
@@ -520,7 +520,7 @@ static bool SaveManager_loadGhost(SaveManager *this, u32 i) {
         }
 
         break;
-    case GHOST_RESOURCE_TYPE_NAND:
+    case GHOST_RESOURCE_TYPE_NAND:;
         const char *path = this->ghostResources[cx->timeAttackGhostIndices[i]].nand.path;
         if (NandHelper_readFile(path, this->rawGhostFile, 0x2800, &length) != RK_NAND_RESULT_OK) {
             return false;
