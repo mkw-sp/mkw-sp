@@ -315,6 +315,36 @@ n.rule(
 n.newline()
 
 asset_in_files = {
+    'MultSP_E.szs': [
+        os.path.join('message', 'Menu_E.bmg.json5'),
+    ],
+    'MultSP_F.szs': [
+        os.path.join('message', 'Menu_F.bmg.json5'),
+    ],
+    'MultSP_G.szs': [
+        os.path.join('message', 'Menu_G.bmg.json5'),
+    ],
+    'MultSP_I.szs': [
+        os.path.join('message', 'Menu_I.bmg.json5'),
+    ],
+    'MultSP_J.szs': [
+        os.path.join('message', 'Menu_J.bmg.json5'),
+    ],
+    'MultSP_K.szs': [
+        os.path.join('message', 'Menu_K.bmg.json5'),
+    ],
+    'MultSP_M.szs': [
+        os.path.join('message', 'Menu_M.bmg.json5'),
+    ],
+    'MultSP_Q.szs': [
+        os.path.join('message', 'Menu_Q.bmg.json5'),
+    ],
+    'MultSP_S.szs': [
+        os.path.join('message', 'Menu_S.bmg.json5'),
+    ],
+    'MultSP_U.szs': [
+        os.path.join('message', 'Menu_U.bmg.json5'),
+    ],
     'OthrSP.szs': [
         os.path.join('control', 'anim', 'common_w023_rule_menu_fade_in_after.brlan.json5'),
         os.path.join('control', 'anim', 'common_w023_rule_menu_fade_in_before.brlan.json5'),
