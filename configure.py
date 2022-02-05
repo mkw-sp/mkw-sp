@@ -231,6 +231,7 @@ code_in_files = {
         os.path.join('revolution', 'dvd.c'),
         os.path.join('revolution', 'nand.c'),
         os.path.join('sp', 'Fatal.c'),
+        os.path.join('sp', 'FlameGraph.c'),
         os.path.join('sp', 'IOSKeyboard.c'),
         os.path.join('sp', 'Keyboard.c'),
     ],

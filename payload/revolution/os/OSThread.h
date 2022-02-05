@@ -7,6 +7,8 @@ typedef struct {
 } OSThread;
 static_assert(sizeof(OSThread) == 0x318);
 
+OSThread *OSGetCurrentThread(void);
+
 BOOL OSCreateThread(OSThread *thread, void *(*func)(void *), void *param, void *stack,
         u32 stackSize, s32 priority, u16 attr);
 
