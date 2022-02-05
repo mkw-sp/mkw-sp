@@ -263,6 +263,7 @@
 0x8062c3a4 Section_addPages
 0x80632cc0 AfterTAMenuPage_getButtons
 0x80632ccc AfterTAMenuPage_getButtonCount
+0x80632f4c GhostReplayPauseMenuPage_vf_74
 0x80633a00 VsMultiRacePage_getControls
 0x80633ba8 TimeAttackRacePage_getNameBalloonCount
 0x80633c7c GhostReplayRacePage_getNameBalloonCount
