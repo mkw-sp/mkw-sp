@@ -19,11 +19,25 @@ typedef unsigned long long u64;
 typedef float f32;
 typedef double f64;
 
-#define UNUSED(x) UNUSED_ ## x __attribute__((__unused__))
+#define MIN(a, b)               \
+    ({                          \
+        __typeof__(a) _a = (a); \
+        __typeof__(b) _b = (b); \
+        _a < _b ? _a : _b;      \
+    })
+#define MAX(a, b)               \
+    ({                          \
+        __typeof__(a) _a = (a); \
+        __typeof__(b) _b = (b); \
+        _a > _b ? _a : _b;      \
+    })
 
-#define CONTAINER_OF(ptr, type, member) ((type *)((char *)(1 ? (ptr) : &((type *)0)->member) - offsetof(type, member)))
+#define UNUSED(x) UNUSED_##x __attribute__((__unused__))
 
-#define BUILD_BUG_ON_ZERO(e) ((int)(sizeof(struct { int:(-!!(e)); })))
+#define CONTAINER_OF(ptr, type, member) \
+    ((type *)((char *)(1 ? (ptr) : &((type *)0)->member) - offsetof(type, member)))
+
+#define BUILD_BUG_ON_ZERO(e) ((int)(sizeof(struct { int : (-!!(e)); })))
 #define SAME_TYPE(a, b) __builtin_types_compatible_p(typeof(a), typeof(b))
 #define MUST_BE_ARRAY(a) BUILD_BUG_ON_ZERO(SAME_TYPE((a), &(a)[0]))
 #define ARRAY_SIZE(arr) (sizeof(arr) / sizeof((arr)[0]) + MUST_BE_ARRAY(arr))
@@ -37,11 +51,17 @@ enum {
 
 #define REGION (*(u16 *)0x8000620a)
 
-#if !defined(NO_NEW_DELETE) && !defined(__cplusplus) // new/delete are reserved identifiers in C++
-void *new(size_t size);
+#if !defined(NO_NEW_DELETE) && \
+        !defined(__cplusplus)  // new/delete are reserved identifiers in C++
+void *new (size_t size);
 
-void delete(void *memBlock);
+void delete (void *memBlock);
 #endif
+
+typedef struct {
+    f32 x;
+    f32 y;
+} Vec2;
 
 typedef struct {
     f32 x;

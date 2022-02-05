@@ -17,8 +17,34 @@ static_assert(sizeof(GhostPad) == 0xa8);
 
 GhostPad *GhostPad_ct(GhostPad *this);
 
+typedef enum {
+    BUTTON_ACCEL = 1 << 0,
+    BUTTON_BRAKE = 1 << 1,
+    BUTTON_ITEM = 1 << 2,
+    BUTTON_DRIFT = 1 << 3,
+    BUTTON_UNK4 = 1 << 4,
+    BUTTON_LOOK_BACKWARDS = 1 << 5,
+
+    BUTTON_BRAKEDRIFT = BUTTON_UNK4,
+} ButtonFlags;
+
 typedef struct {
-    u8 _00[0xd8 - 0x00];
+    void *_00;
+    u16 buttons; // ButtonFlags
+    u16 rawButtons;
+    Vec2 stick;
+    u8 rawStick[2];
+    u8 trick;
+    u8 rawTrick;
+    u8 _14[0x18 - 0x14];
+} RaceInputState;
+static_assert(sizeof(RaceInputState) == 0x18);
+
+typedef struct {
+    u8 _00[0x28 - 0x00];
+    RaceInputState currentInputState;
+    RaceInputState lastInputState;
+    u8 _58[0xd8 - 0x58];
 } PadProxy;
 static_assert(sizeof(PadProxy) == 0xd8);
 
@@ -35,7 +61,8 @@ static_assert(sizeof(GhostPadProxy) == 0xec);
 
 GhostPadProxy *GhostPadProxy_ct(GhostPadProxy *this);
 
-void GhostPadProxy_setPad(GhostPadProxy *this, GhostPad *pad, const void *inputs, bool driftIsAuto);
+void GhostPadProxy_setPad(
+        GhostPadProxy *this, GhostPad *pad, const void *inputs, bool driftIsAuto);
 
 void GhostPadProxy_start(GhostPadProxy *this);
 
@@ -49,8 +76,8 @@ typedef struct {
     u8 _03b4[0x1690 - 0x03b4];
     Pad dummyPad;
     u8 _1720[0x415c - 0x1720];
-    GhostPad multiGhostPads[11]; // Added
-    GhostPadProxy multiGhostProxies[11]; // Added
+    GhostPad multiGhostPads[11];          // Added
+    GhostPadProxy multiGhostProxies[11];  // Added
 } InputManager;
 static_assert(offsetof(InputManager, multiGhostPads) == 0x415c);
 
@@ -60,8 +87,8 @@ InputManager *InputManager_createInstance(void);
 
 InputManager *InputManager_ct(InputManager *this);
 
-void InputManager_setGhostPad(InputManager *this, u32 ghostId, const void *ghostInputs,
-        bool driftIsAuto);
+void InputManager_setGhostPad(
+        InputManager *this, u32 ghostId, const void *ghostInputs, bool driftIsAuto);
 
 void InputManager_startRace(InputManager *this);
 

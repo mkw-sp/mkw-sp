@@ -1,14 +1,27 @@
 #include "RacePage.h"
 
+#include "../ctrl/CtrlRaceInputDisplay.h"
 #include "../ctrl/CtrlRaceNameBalloon.h"
 #include "../ctrl/CtrlRaceSpeed.h"
 
-void RacePage_initSpeedControl(RacePage *this, u32 controlId, u32 localPlayerCount,
-        u32 localPlayerId) {
-    CtrlRaceSpeed *control = new(sizeof(CtrlRaceSpeed));
+void RacePage_initSpeedControl(
+        RacePage *this, u32 controlId, u32 localPlayerCount, u32 localPlayerId) {
+    CtrlRaceSpeed *control = new (sizeof(CtrlRaceSpeed));
     CtrlRaceSpeed_ct(control);
     Page_insertChild(this, controlId, control, 0);
     CtrlRaceSpeed_load(control, localPlayerCount, localPlayerId);
+}
+void RacePage_initInputDisplayControl(RacePage *this, u32 controlId) {
+    CtrlRaceInputDisplay *control = new (sizeof(CtrlRaceInputDisplay));
+    CtrlRaceInputDisplay_ct(control);
+    Page_insertChild(this, controlId, control, 0);
+    CtrlRaceInputDisplay_load(control);
+}
+
+void RacePage_initCustomControls(
+        RacePage *this, u32 controlId, u32 localPlayerCount, u32 localPlayerId) {
+    RacePage_initSpeedControl(this, controlId, localPlayerCount, localPlayerId);
+    RacePage_initInputDisplayControl(this, controlId + 1);
 }
 
 enum {

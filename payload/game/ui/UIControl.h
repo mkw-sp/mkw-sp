@@ -52,7 +52,8 @@ void UIControl_playSfx(UIControl *this, u32 sfxId, s32 r5);
 typedef struct {
     UIControl;
     UIAnimator animator;
-    u8 _0a8[0x174 - 0x0a8];
+    u8 mainLayout[0x144-0xa8];
+    u8 _144[0x174 - 0x144];
 } LayoutUIControl;
 static_assert(sizeof(LayoutUIControl) == 0x174);
 
