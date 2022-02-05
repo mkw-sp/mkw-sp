@@ -41,16 +41,18 @@ typedef struct {
 static_assert(sizeof(InputsHeader) == 0x8);
 
 enum {
-    SP_FOOTER_VERSION = 0,
+    SP_FOOTER_VERSION = 1,
 };
 
 SpFooter s_spFooter;
+static u32 usedShrooms;
 
 void SpFooter_onRaceStart(const u8 *courseSha1, bool speedModIsEnabled) {
     memset(&s_spFooter, 0, sizeof(SpFooter));
     s_spFooter.version = SP_FOOTER_VERSION;
     memcpy(s_spFooter.courseSha1, courseSha1, sizeof(s_spFooter.courseSha1));
     s_spFooter.hasSpeedMod = speedModIsEnabled;
+    usedShrooms = 0;
 }
 
 void SpFooter_onLapEnd(u32 lap, f32 timeDiff) {
@@ -67,6 +69,25 @@ void SpFooter_onHwg(void) {
 
 void SpFooter_onWallride(void) {
     s_spFooter.hasWallride = true;
+}
+
+void SpFooter_onShroom(u32 lap) {
+    if (usedShrooms >= 3) {
+        return;
+    }
+
+    s_spFooter.shroomStrategy |= lap << (15 - 5 * ++usedShrooms);
+}
+
+static bool SpFooter_checkSize(const SpFooter *this, u32 size) {
+    switch (this->version) {
+    case 0:
+        return size == 0x48;
+    case SP_FOOTER_VERSION:
+        return size == sizeof(SpFooter);
+    default:
+        return size >= sizeof(SpFooter);
+    }
 }
 
 void GhostFooter_init(GhostFooter *this, const u8 *raw, u32 size) {
@@ -94,7 +115,7 @@ void GhostFooter_init(GhostFooter *this, const u8 *raw, u32 size) {
         return;
     }
 
-    if (footerFooter->magic == SP_FOOTER_MAGIC && footerFooter->size >= sizeof(SpFooter)) {
+    if (footerFooter->magic == SP_FOOTER_MAGIC && footerFooter->size >= 0x48) {
         this->magic = SP_FOOTER_MAGIC;
         const SpFooter *sp = (SpFooter *)(raw + mainSize);
         this->sp = *sp;
@@ -323,8 +344,13 @@ bool RawGhostFile_spIsValid(const u8 *raw, u32 size) {
         return NETCalcCRC32(raw, size - sizeof(u32)) == crc32;
     }
 
-    if (footerFooter->magic == SP_FOOTER_MAGIC && footerFooter->size >= sizeof(SpFooter)) {
+    if (footerFooter->magic == SP_FOOTER_MAGIC && footerFooter->size >= 0x48) {
         if (mainSize + footerFooter->size + sizeof(FooterFooter) + sizeof(u32) != size) {
+            return false;
+        }
+
+        const SpFooter *sp = (SpFooter *)(raw + mainSize);
+        if (!SpFooter_checkSize(sp, footerFooter->size)) {
             return false;
         }
 

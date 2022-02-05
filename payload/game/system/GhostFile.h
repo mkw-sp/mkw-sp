@@ -84,7 +84,9 @@ typedef struct {
     bool hasUltraShortcut : 1;
     bool hasHwg : 1;
     bool hasWallride : 1;
+    u32 shroomStrategy : 15;
 } SpFooter;
+static_assert(sizeof(SpFooter) == 0x48);
 
 void SpFooter_onRaceStart(const u8 *courseSha1, bool speedModIsEnabled);
 
@@ -95,6 +97,8 @@ void SpFooter_onUltraShortcut(void);
 void SpFooter_onHwg(void);
 
 void SpFooter_onWallride(void);
+
+void SpFooter_onShroom(u32 lap);
 
 typedef struct {
     u32 magic;

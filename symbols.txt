@@ -141,6 +141,7 @@
 0x8057b99c KartMove_setKillerStartHardSpeedLimit
 0x8057b9ac KartMove_setKillerEndHardSpeedLimit
 0x8057b9bc KartMove_calcSpeed
+0x8057f3d8 KartMove_activateMushroom
 0x80584d58 KartMove_calcCannon
 0x805858ac KartMove_startKiller
 0x8058eebc KartObject_calcPass1
