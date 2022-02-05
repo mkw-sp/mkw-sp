@@ -134,6 +134,14 @@ PATCH_REPLACE_END(RacePage_afterCalc, 0x5e8)
 
 
 
+// Allow pausing during the countdown in non-replay modes
+
+PATCH_REPLACE_START(RacePage_onPause, 0x70)
+    b 0x20
+PATCH_REPLACE_END(RacePage_onPause, 0x70)
+
+
+
 // Also hide the HUD in ghost replay
 
 PATCH_REPLACE_START(RacePage_onPause, 0x138)
