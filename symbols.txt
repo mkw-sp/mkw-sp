@@ -225,6 +225,9 @@
 0x805f20ec MultiControlInputManager_select
 0x805f9224 MessageWindowPopupPage_reset
 0x805f9244 MessageWindowPopupPage_setMessage
+0x805f9700 MessageWindowControl_ct
+0x805f973c MessageWindowControl_dt
+0x805f9794 MessageWindowControl_load
 0x805f9e78 MiiGroup_ct
 0x805f9f58 MiiGroup_dt
 0x805fa04c MiiGroup_init
@@ -288,6 +291,7 @@
 0x80638fa0 TimeAttackTopPage_onActivate
 0x8063914c TimeAttackTopPage_afterCalc
 0x80639260 TimeAttackTopPage_onRefocus
+0x806393c8 TimeAttackTopPage_onReady
 0x806395ec TimeAttackGhostListPage_ct
 0x8063ab6c TitlePage_onInit
 0x8063ad64 TitlePage_onActivate

@@ -60,6 +60,7 @@ static bool TimeAttackGhostListPage_canSwapGhostSelects(TimeAttackGhostListPage 
 }
 
 static void TimeAttackGhostListPage_refreshSheetLabel(TimeAttackGhostListPage *this) {
+    this->sheetLabel.isHidden = this->sheetCount == 0;
     ExtendedMessageInfo info = {
         .intVals[0] = this->sheetIndex + 1,
         .intVals[1] = this->sheetCount,
@@ -167,6 +168,7 @@ static TimeAttackGhostListPage *my_TimeAttackGhostListPage_ct(TimeAttackGhostLis
     GhostSelectControl_ct(&this->ghostSelects[1]);
     SheetSelectControl_ct(&this->sheetSelect);
     LayoutUIControl_ct(&this->sheetLabel);
+    MessageWindowControl_ct(&this->messageWindow);
     PushButton_ct(&this->launchButton);
     CtrlMenuBackButton_ct(&this->backButton);
     this->onBack.vt = &onBack_vt;
@@ -186,6 +188,7 @@ static void TimeAttackGhostListPage_dt(Page *base, s32 type) {
 
     CtrlMenuBackButton_dt(&this->backButton, -1);
     PushButton_dt(&this->launchButton, -1);
+    MessageWindowControl_dt(&this->messageWindow, -1);
     LayoutUIControl_dt(&this->sheetLabel, -1);
     SheetSelectControl_dt(&this->sheetSelect, -1);
     GhostSelectControl_dt(&this->ghostSelects[1], -1);
@@ -213,15 +216,16 @@ static void TimeAttackGhostListPage_onInit(Page *base) {
     this->baseInputManager = &this->inputManager;
     MultiControlInputManager_setPointerMode(&this->inputManager, 0x1);
 
-    Page_initChildren(this, 8);
+    Page_initChildren(this, 9);
     Page_insertChild(this, 0, &this->pageTitleText, 0);
     Page_insertChild(this, 1, &this->switchLabel, 0);
     Page_insertChild(this, 2, &this->ghostSelects[0], 0);
     Page_insertChild(this, 3, &this->ghostSelects[1], 0);
     Page_insertChild(this, 4, &this->sheetSelect, 0);
     Page_insertChild(this, 5, &this->sheetLabel, 0);
-    Page_insertChild(this, 6, &this->launchButton, 0);
-    Page_insertChild(this, 7, &this->backButton, 0);
+    Page_insertChild(this, 6, &this->messageWindow, 0);
+    Page_insertChild(this, 7, &this->launchButton, 0);
+    Page_insertChild(this, 8, &this->backButton, 0);
 
     CtrlMenuPageTitleText_load(&this->pageTitleText, false);
     const char *groups[] = {
@@ -236,6 +240,8 @@ static void TimeAttackGhostListPage_onInit(Page *base) {
             false);
     LayoutUIControl_load(&this->sheetLabel, "control", "TimeAttackGhostListPageNum",
             "TimeAttackGhostListPageNum", NULL);
+    MessageWindowControl_load(&this->messageWindow, "message_window", "MessageWindowHalf",
+            "MessageWindowHalf");
     PushButton_load(&this->launchButton, "button", "TimeAttackGhostList", "Launch", 0x1, false,
             false);
     PushButton_load(&this->backButton, "button", "Back", "ButtonBackPopup", 0x1, false, true);
@@ -256,6 +262,7 @@ static void TimeAttackGhostListPage_onInit(Page *base) {
     u32 messageId = padType == REGISTERED_PAD_TYPE_GC ? 0x902 : 0x901;
     ExtendedMessageInfo info = { .messageIds[0] = messageId };
     LayoutUIControl_setMessageAll(&this->switchLabel, 0xbc4, &info);
+    LayoutUIControl_setMessageAll(&this->messageWindow, 0xc1d, NULL);
 }
 
 static void TimeAttackGhostListPage_onActivate(Page *base) {
@@ -289,6 +296,8 @@ static void TimeAttackGhostListPage_onActivate(Page *base) {
     this->isReplay = false;
     this->switchLabel.isHidden = true;
     TimeAttackGhostListPage_refreshLaunchButton(this);
+
+    this->messageWindow.isHidden = this->sheetCount != 0;
 
     this->replacement = PAGE_ID_NONE;
 }

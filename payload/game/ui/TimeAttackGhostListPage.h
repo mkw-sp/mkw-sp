@@ -2,6 +2,7 @@
 
 #include "GhostManagerPage.h"
 #include "GhostSelectControl.h"
+#include "MessageWindowControl.h"
 #include "Page.h"
 #include "SheetSelectControl.h"
 
@@ -16,6 +17,7 @@ typedef struct {
     GhostSelectControl ghostSelects[2];
     SheetSelectControl sheetSelect;
     LayoutUIControl sheetLabel;
+    MessageWindowControl messageWindow;
     PushButton launchButton;
     CtrlMenuBackButton backButton;
     InputHandler onBack;
