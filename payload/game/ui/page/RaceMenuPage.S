@@ -1,14 +1,14 @@
 #include <Common.S>
 
-// Remove the controller diagram in single player vs (in favor of restart)
+// Remove the controller explanation diagram
 
-PATCH_REPLACE_START(RaceMenuPage_onInit, 0xdc)
-    nop
-PATCH_REPLACE_END(RaceMenuPage_onInit, 0xdc)
+PATCH_REPLACE_START(RaceMenuPage_onInit, 0x9c)
+    b 0x7c
+PATCH_REPLACE_END(RaceMenuPage_onInit, 0x9c)
 
-PATCH_REPLACE_START(RaceMenuPage_onInit, 0x308)
-    nop
-PATCH_REPLACE_END(RaceMenuPage_onInit, 0x308)
+PATCH_REPLACE_START(RaceMenuPage_onInit, 0x2d0)
+    b 0x840
+PATCH_REPLACE_END(RaceMenuPage_onInit, 0x2d0)
 
 
 

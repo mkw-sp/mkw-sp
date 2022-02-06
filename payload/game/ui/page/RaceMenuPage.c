@@ -56,3 +56,30 @@ static const char *my_VsPauseMenuPage_getFile(void) {
     return "PauseMenuVS";
 }
 PATCH_B(VsPauseMenuPage_getFile, my_VsPauseMenuPage_getFile);
+
+static u32 battlePauseButtons[] = {
+    0x0,
+    0x2,
+    0x1,
+};
+
+u32 BattlePauseMenuPage_getButtonCount(void);
+
+static u32 my_BattlePauseMenuPage_getButtonCount(void) {
+    return ARRAY_SIZE(battlePauseButtons);
+}
+PATCH_B(BattlePauseMenuPage_getButtonCount, my_BattlePauseMenuPage_getButtonCount);
+
+const u32 *BattlePauseMenuPage_getButtons(void);
+
+static const u32 *my_BattlePauseMenuPage_getButtons(void) {
+    return battlePauseButtons;
+}
+PATCH_B(BattlePauseMenuPage_getButtons, my_BattlePauseMenuPage_getButtons);
+
+const char *BattlePauseMenuPage_getFile(void);
+
+static const char *my_BattlePauseMenuPage_getFile(void) {
+    return "PauseMenuVS";
+}
+PATCH_B(BattlePauseMenuPage_getFile, my_BattlePauseMenuPage_getFile);
