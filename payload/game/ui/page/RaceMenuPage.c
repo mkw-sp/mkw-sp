@@ -29,3 +29,30 @@ static const u32 *my_AfterTAMenuPage_getButtons(void) {
     return afterTaButtons;
 }
 PATCH_B(AfterTAMenuPage_getButtons, my_AfterTAMenuPage_getButtons);
+
+static u32 vsPauseButtons[] = {
+    0x0,
+    0x2,
+    0x1,
+};
+
+u32 VsPauseMenuPage_getButtonCount(void);
+
+static u32 my_VsPauseMenuPage_getButtonCount(void) {
+    return ARRAY_SIZE(vsPauseButtons);
+}
+PATCH_B(VsPauseMenuPage_getButtonCount, my_VsPauseMenuPage_getButtonCount);
+
+const u32 *VsPauseMenuPage_getButtons(void);
+
+static const u32 *my_VsPauseMenuPage_getButtons(void) {
+    return vsPauseButtons;
+}
+PATCH_B(VsPauseMenuPage_getButtons, my_VsPauseMenuPage_getButtons);
+
+const char *VsPauseMenuPage_getFile(void);
+
+static const char *my_VsPauseMenuPage_getFile(void) {
+    return "PauseMenuVS";
+}
+PATCH_B(VsPauseMenuPage_getFile, my_VsPauseMenuPage_getFile);
