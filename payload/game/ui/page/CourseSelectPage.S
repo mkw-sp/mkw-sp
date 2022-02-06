@@ -1,5 +1,21 @@
 #include <Common.S>
 
+PATCH_BL_START(CourseSelectPage_onInit, 0x20)
+    lwz r0, 0x0 (r4) // Original instruction
+
+    // Check that the section is "Change Ghost Data" (repurposed "Change Mission")
+    cmpwi r0, 0x4d
+    bnelr
+
+    // Set the previous page to cup select
+    li r6, 0x6e
+    stw r6, 0x3ec (r3)
+
+    b CourseSelectPage_onInit + 0x24
+PATCH_BL_END(CourseSelectPage_onInit, 0x20)
+
+
+
 PATCH_BL_START(CourseSelectPage_onActivate, 0xd0)
     // Adjust engine classes to handle the removal of 50cc and the addition of 200cc
     addi r3, r3, 0xd52

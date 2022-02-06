@@ -1,5 +1,17 @@
 #include <Common.S>
 
+// Initialize the previous page id for both "Change Course" and "Change Ghost Data"
+
+PATCH_BL_START(CupSelectPage_onInit, 0x84)
+    cmpwi r0, 0x4a // Original instruction
+    beqlr
+
+    cmpwi r0, 0x4d
+    b CupSelectPage_onInit + 0x88
+PATCH_BL_END(CupSelectPage_onInit, 0x84)
+
+
+
 PATCH_BL_START(CupSelectPage_onActivate, 0x348)
     // Adjust engine classes to handle the removal of 50cc and the addition of 200cc
     addi r3, r3, 0xd52
