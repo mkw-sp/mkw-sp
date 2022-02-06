@@ -758,7 +758,7 @@ static void SaveManager_saveGhost(SaveManager *this, GhostFile *file) {
     getCourseName(this->courseSha1s[file->courseId], courseName);
 
     char dir[NAND_MAX_PATH];
-    if (snprintf(dir, NAND_MAX_PATH, "%s/ghosts/%s", homeDir, courseName) > NAND_MAX_PATH) {
+    if (snprintf(dir, NAND_MAX_PATH, "%s/ghosts/%s", homeDir, courseName) >= NAND_MAX_PATH) {
         goto fail;
     }
 
@@ -771,7 +771,7 @@ static void SaveManager_saveGhost(SaveManager *this, GhostFile *file) {
     u8 secs = file->raceTime.seconds;
     u16 msecs = file->raceTime.milliseconds;
     char path[NAND_MAX_PATH];
-    if (snprintf(path, NAND_MAX_PATH, "%s/%02u%02u%03u.rkg", dir, mins, secs, msecs) >
+    if (snprintf(path, NAND_MAX_PATH, "%s/%02u%02u%03u.rkg", dir, mins, secs, msecs) >=
             NAND_MAX_PATH) {
         goto fail;
     }
@@ -782,7 +782,7 @@ static void SaveManager_saveGhost(SaveManager *this, GhostFile *file) {
     if (type != RK_NAND_TYPE_NONE) {
         char c;
         for (c = 'a'; c <= 'z'; c++) {
-            if (snprintf(path, NAND_MAX_PATH, "%s/%02u%02u%03u%c.rkg", dir, mins, secs, msecs, c) >
+            if (snprintf(path, NAND_MAX_PATH, "%s/%02u%02u%03u%c.rkg", dir, mins, secs, msecs, c) >=
                     NAND_MAX_PATH) {
                 goto fail;
             }
