@@ -70,6 +70,13 @@ static void CtrlRaceSpeed_calcSelf(UIControl *base) {
         speed = hardSpeedLimit;
     }
 
+    if (object->accessor->state->inCannon) {
+        const Vec3 *pos = KartObjectProxy_getPos(object);
+        const Vec3 *lastPos = KartObjectProxy_getLastPos(object);
+        Vec3 vel = { pos->x - lastPos->x, pos->y - lastPos->y, pos->z - lastPos->z };
+        speed = PSVECMag(&vel);
+    }
+
     s32 integral = speed;
     u32 fractional = (speed >= 0.0f ? speed - integral : integral - speed) * 100.0f + 0.5f;
     if (integral > 999) {
