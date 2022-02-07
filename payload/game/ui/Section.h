@@ -7,6 +7,7 @@ enum {
     SECTION_ID_GHOST_REPLAY = 0x34,
     SECTION_ID_MII_SELECT_CREATE = 0x45,
     SECTION_ID_MII_SELECT_CHANGE = 0x46,
+    SECTION_ID_SINGLE_CHANGE_GHOST_DATA = 0x4d, // Modified
 };
 
 typedef struct {

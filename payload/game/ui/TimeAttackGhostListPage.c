@@ -212,6 +212,14 @@ static s32 TimeAttackGhostListPage_getReplacement(Page *base) {
 static void TimeAttackGhostListPage_onInit(Page *base) {
     TimeAttackGhostListPage *this = (TimeAttackGhostListPage *)base;
 
+    RaceConfigScenario *menuScenario = &s_raceConfig->menuScenario;
+    const GlobalContext *cx = s_sectionManager->globalContext;
+    if (s_sectionManager->currentSection->id == SECTION_ID_SINGLE_CHANGE_GHOST_DATA) {
+        menuScenario->players[0].type = PLAYER_TYPE_LOCAL;
+        menuScenario->players[0].vehicleId = cx->timeAttackVehicleId;
+        menuScenario->players[0].characterId = cx->timeAttackCharacterId;
+    }
+
     MultiControlInputManager_init(&this->inputManager, 0x1, false);
     this->baseInputManager = &this->inputManager;
     MultiControlInputManager_setPointerMode(&this->inputManager, 0x1);

@@ -5,7 +5,11 @@
 #include "../system/GhostFile.h"
 
 typedef struct {
-    u8 _000[0x188 - 0x000];
+    u8 _000[0x12c - 0x000];
+    u32 timeAttackCharacterId;
+    u8 _130[0x13c - 0x130];
+    u32 timeAttackVehicleId;
+    u8 _140[0x188 - 0x140];
     MiiGroup playerMiis;
     u8 _220[0x238 - 0x220];
     MiiGroup localPlayerMiis;
