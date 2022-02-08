@@ -3,9 +3,13 @@
 #include <Common.h>
 #include <nw4r/lyt/lyt_pane.h>
 
-lyt_Pane* Layout_findPaneByName(void* layout, const char* name);
+typedef struct {
+    char _00[0x0c - 0x00];
+} Layout;
 
-inline lyt_Pane* Layout_findPictureByName(void* layout, const char* name) {
-    // TODO: RTTI check
-    return Layout_findPaneByName(layout, name);
-}
+typedef struct {
+    Layout;
+    char _0c[0x9c-0x0c];
+} MainLayout;
+
+lyt_Pane *Layout_findPaneByName(Layout *layout, const char *name);

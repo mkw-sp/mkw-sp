@@ -46,6 +46,8 @@ typedef struct {
     AccelState accelState;
     TriggerState triggerStates[kTrigger_Count];
     Vec2 cstickState;
+
+    u32 elocalPlayerId;
 } CtrlRaceInputDisplay;
 
 enum {
@@ -54,4 +56,5 @@ enum {
 
 CtrlRaceInputDisplay *CtrlRaceInputDisplay_ct(CtrlRaceInputDisplay *this);
 
-void CtrlRaceInputDisplay_load(CtrlRaceInputDisplay *this);
+void CtrlRaceInputDisplay_load(
+        CtrlRaceInputDisplay *this, u32 localPlayerCount, u32 localPlayerId);

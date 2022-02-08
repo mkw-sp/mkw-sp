@@ -11,17 +11,17 @@ void RacePage_initSpeedControl(
     Page_insertChild(this, controlId, control, 0);
     CtrlRaceSpeed_load(control, localPlayerCount, localPlayerId);
 }
-void RacePage_initInputDisplayControl(RacePage *this, u32 controlId) {
+void RacePage_initInputDisplayControl(RacePage *this, u32 controlId,  u32 localPlayerCount, u32 localPlayerId) {
     CtrlRaceInputDisplay *control = new (sizeof(CtrlRaceInputDisplay));
     CtrlRaceInputDisplay_ct(control);
     Page_insertChild(this, controlId, control, 0);
-    CtrlRaceInputDisplay_load(control);
+    CtrlRaceInputDisplay_load(control, localPlayerCount, localPlayerId);
 }
 
 void RacePage_initCustomControls(
         RacePage *this, u32 controlId, u32 localPlayerCount, u32 localPlayerId) {
     RacePage_initSpeedControl(this, controlId, localPlayerCount, localPlayerId);
-    RacePage_initInputDisplayControl(this, controlId + 1);
+    RacePage_initInputDisplayControl(this, controlId + 1, localPlayerCount, localPlayerId);
 }
 
 enum {

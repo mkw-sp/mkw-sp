@@ -149,6 +149,13 @@ static void SpSaveLicense_upgrade(SpSaveLicense *this) {
 }
 
 static void SpSaveLicense_sanitize(SpSaveLicense *this) {
+    switch (this->settingRaceInputDisplay) {
+    case SP_SETTING_RACE_INPUT_DISPLAY_DISABLE:
+    case SP_SETTING_RACE_INPUT_DISPLAY_SIMPLE:
+        break;
+    default:
+        this->settingRaceInputDisplay = SP_SETTING_RACE_INPUT_DISPLAY_DEFAULT;
+    }
     switch (this->taRuleGhostTagVisibility) {
     case SP_TA_RULE_GHOST_TAG_VISIBILITY_NONE:
     case SP_TA_RULE_GHOST_TAG_VISIBILITY_WATCHED:
@@ -395,6 +402,7 @@ void SaveManager_createSpLicense(SaveManager *this, const MiiId *miiId) {
     license->setting169Fov = SP_SETTING_169_FOV_DEFAULT;
     license->settingMapIcons = SP_SETTING_MAP_ICONS_DEFAULT;
     license->settingPageTransitions = SP_SETTING_PAGE_TRANSITIONS_DEFAULT;
+    license->settingRaceInputDisplay = SP_SETTING_RACE_INPUT_DISPLAY_DEFAULT;
     license->taRuleClass = SP_TA_RULE_CLASS_DEFAULT;
     license->taRuleGhostSorting = SP_TA_RULE_GHOST_SORTING_DEFAULT;
     license->taRuleGhostTagVisibility = SP_TA_RULE_GHOST_TAG_VISIBILITY_DEFAULT;

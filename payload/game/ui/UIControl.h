@@ -1,5 +1,6 @@
 #pragma once
 
+#include <game/ui/Layout.h>
 #include "ControlGroup.h"
 #include "ExtendedTextRenderer.h"
 #include "MiiGroup.h"
@@ -52,7 +53,7 @@ void UIControl_playSfx(UIControl *this, u32 sfxId, s32 r5);
 typedef struct {
     UIControl;
     UIAnimator animator;
-    u8 mainLayout[0x144-0xa8];
+    MainLayout mainLayout;
     u8 _144[0x174 - 0x144];
 } LayoutUIControl;
 static_assert(sizeof(LayoutUIControl) == 0x174);

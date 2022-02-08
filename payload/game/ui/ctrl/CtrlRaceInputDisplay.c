@@ -3,6 +3,7 @@
 #include <game/system/RaceManager.h>
 #include <game/system/SaveManager.h>
 #include <revolution.h>
+#include <stdio.h>
 
 static const CtrlRaceBase_vt s_CtrlRaceInputDisplay_vt;
 
@@ -38,6 +39,8 @@ CtrlRaceInputDisplay *CtrlRaceInputDisplay_ct(CtrlRaceInputDisplay *this) {
     this->triggerStates[kTrigger_BrakeDrift] = kTriggerState_Off;
     this->cstickState.x = 0.0f;
     this->cstickState.y = 0.0f;
+
+    this->elocalPlayerId = 0;
 
     return this;
 }
@@ -172,7 +175,7 @@ static void CtrlRaceInputDisplay_calcSelf(UIControl *base) {
     CtrlRaceBase_process(this);
 
     // Update display
-    u32 playerId = CtrlRaceBase_getPlayerId(this);
+    u32 playerId = this->elocalPlayerId;
 
     assert(s_raceManager);
     assert(s_raceManager->players[playerId]);
@@ -233,12 +236,19 @@ static const CtrlRaceBase_vt s_CtrlRaceInputDisplay_vt = {
     .vf_4c = &CtrlRaceBase_vf_4c,
 };
 
-void CtrlRaceInputDisplay_load(CtrlRaceInputDisplay *this) {
+void CtrlRaceInputDisplay_load(
+        CtrlRaceInputDisplay *this, u32 localPlayerCount, u32 localPlayerId) {
+    this->elocalPlayerId = localPlayerId;
+
+    char variant[0x20];
+    u32 variantId = localPlayerCount == 3 ? 4 : localPlayerCount;
+    snprintf(variant, sizeof(variant), "InputDisplay_%lu_%lu", variantId, localPlayerId);
+
     const char *groups[] = {
         NULL,
         NULL,
         NULL,
     };
-    LayoutUIControl_load(this, "game_image", "InputDisplay", "InputDisplay", groups);
+    LayoutUIControl_load(this, "game_image", "InputDisplay", variant, groups);
     // setAnimationInactive
 }
