@@ -161,10 +161,11 @@ static void CtrlRaceInputDisplay_setCSTICK(
         return;
 
     // Map range [-1, 1] -> [-width/2, width/2]
+    const lyt_Pane *cstickPane = this->cstickPane;
     this->cstickPane->trans.x =
-            this->cstickOrigin.x + 0.5f * state->x * this->cstickPane->width;
+            this->cstickOrigin.x + 0.5f * state->x * cstickPane->scale.x * cstickPane->width;
     this->cstickPane->trans.y =
-            this->cstickOrigin.y + 0.5f * state->y * this->cstickPane->height;
+            this->cstickOrigin.y + 0.5f * state->y * cstickPane->scale.y * cstickPane->height;
 
     this->cstickState = *state;
 }
