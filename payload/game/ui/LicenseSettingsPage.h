@@ -11,7 +11,7 @@ typedef struct {
     Page;
     MultiControlInputManager inputManager;
     CtrlMenuPageTitleText pageTitleText;
-    RadioButtonControl settingControls[4];
+    RadioButtonControl settingControls[5];
     CtrlMenuInstructionText instructionText;
     CtrlMenuBackButton backButton;
     InputHandler onBack;

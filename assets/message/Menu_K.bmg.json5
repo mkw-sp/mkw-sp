@@ -5763,6 +5763,26 @@
         "font": "regular",
         "string": "Keep the default pace of the menu transitions.",
     },
+    "0x303d": {
+        "font": "regular",
+        "string": "Input Display",
+    },
+    "0x303e": {
+        "font": "regular",
+        "string": "Disable",
+    },
+    "0x303f": {
+        "font": "regular",
+        "string": "Enable",
+    },
+    "0x3040": {
+        "font": "regular",
+        "string": "Don't display inputs during a race.",
+    },
+    "0x3041": {
+        "font": "regular",
+        "string": "Display controller inputs during a race.",
+    },
     "0x18697": {
         "font": "regular",
         "string": null,

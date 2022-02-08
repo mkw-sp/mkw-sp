@@ -1,6 +1,7 @@
 #include "CtrlRaceInputDisplay.h"
 #include <game/kart/KartObjectManager.h>
 #include <game/system/RaceManager.h>
+#include <game/system/SaveManager.h>
 #include <revolution.h>
 
 static const CtrlRaceBase_vt s_CtrlRaceInputDisplay_vt;
@@ -200,11 +201,22 @@ static void CtrlRaceInputDisplay_calcSelf(UIControl *base) {
     }
 }
 
+static void CtrlRaceInputDisplay_draw(UIControl *base) {
+    // Perform the check here to support hot-swapping in the future via an in-race license
+    // settings editor.
+    if (SaveManager_getSettingRaceInputDisplay(s_saveManager) !=
+            SP_SETTING_RACE_INPUT_DISPLAY_SIMPLE) {
+        return;
+    }
+
+    LayoutUIControl_draw(base);
+};
+
 static const CtrlRaceBase_vt s_CtrlRaceInputDisplay_vt = {
     .dt = CtrlRaceInputDisplay_dt,
     .init = LayoutUIControl_init,
     .calc = LayoutUIControl_calc,
-    .draw = LayoutUIControl_draw,
+    .draw = CtrlRaceInputDisplay_draw,
     .initSelf = CtrlRaceInputDisplay_initSelf,
     .calcSelf = CtrlRaceInputDisplay_calcSelf,
     .vf_20 = &UIControl_vf_20,

@@ -124,6 +124,8 @@ static bool SpSaveLicense_checkSize(const SpSaveLicense *this) {
     switch (this->version) {
     case 0:
         return this->size == 0x18;
+    case 1:
+        return this->size == 0x18;
     case SP_SAVE_LICENSE_VERSION:
         return this->size == sizeof(SpSaveLicense);
     default:
@@ -134,6 +136,10 @@ static bool SpSaveLicense_checkSize(const SpSaveLicense *this) {
 static void SpSaveLicense_upgrade(SpSaveLicense *this) {
     if (this->version < 1) {
         this->settingPageTransitions = SP_SETTING_PAGE_TRANSITIONS_DEFAULT;
+    }
+
+    if (this->version < 2) {
+        this->settingRaceInputDisplay = SP_SETTING_RACE_INPUT_DISPLAY_DEFAULT;
     }
 
     if (this->version < SP_SAVE_LICENSE_VERSION) {
@@ -460,6 +466,22 @@ void SaveManager_setSettingPageTransitions(const SaveManager *this, u32 pageTran
     }
 
     this->spLicenses[this->spCurrentLicense]->settingPageTransitions = pageTransitions;
+}
+
+u32 SaveManager_getSettingRaceInputDisplay(const SaveManager *this) {
+    if (this->spCurrentLicense < 0) {
+        return SP_SETTING_RACE_INPUT_DISPLAY_DEFAULT;
+    }
+
+    return this->spLicenses[this->spCurrentLicense]->settingRaceInputDisplay;
+}
+
+void SaveManager_setSettingRaceInputDisplay(SaveManager *this, u32 raceInputDisplay) {
+    if (this->spCurrentLicense < 0) {
+        return;
+    }
+
+    this->spLicenses[this->spCurrentLicense]->settingRaceInputDisplay = raceInputDisplay;
 }
 
 u32 SaveManager_getTaRuleClass(const SaveManager *this) {

@@ -36,7 +36,7 @@ enum {
 };
 
 enum {
-    SP_SAVE_LICENSE_VERSION = 1,
+    SP_SAVE_LICENSE_VERSION = 2,
 };
 
 typedef struct {
@@ -78,6 +78,18 @@ enum {
     SP_SETTING_PAGE_TRANSITIONS_DISABLE = 0x0,
     SP_SETTING_PAGE_TRANSITIONS_ENABLE = 0x1,
     SP_SETTING_PAGE_TRANSITIONS_DEFAULT = SP_SETTING_PAGE_TRANSITIONS_ENABLE,
+};
+
+enum {
+    SP_SETTING_RACE_INPUT_DISPLAY_DISABLE = 0x0,
+    SP_SETTING_RACE_INPUT_DISPLAY_SIMPLE = 0x1,   // Preset 0
+    SP_SETTING_RACE_INPUT_DISPLAY_CLASSIC = 0x2,  // Preset 1
+    SP_SETTING_RACE_INPUT_DISPLAY_PRESET2 = 0x3,
+    SP_SETTING_RACE_INPUT_DISPLAY_PRESET3 = 0x4,
+    SP_SETTING_RACE_INPUT_DISPLAY_PRESET4 = 0x5,
+    SP_SETTING_RACE_INPUT_DISPLAY_PRESET5 = 0x6,
+    SP_SETTING_RACE_INPUT_DISPLAY_PRESET6 = 0x7,
+    SP_SETTING_RACE_INPUT_DISPLAY_DEFAULT = SP_SETTING_RACE_INPUT_DISPLAY_SIMPLE,
 };
 
 enum {
@@ -129,6 +141,7 @@ typedef struct {
     u32 taRuleGhostTagContent : 2;
     u32 taRuleSolidGhosts : 2;
     u32 settingPageTransitions : 1;
+    u32 settingRaceInputDisplay : 3;
 } SpSaveLicense;
 static_assert(sizeof(SpSaveLicense) == 0x18);
 
@@ -211,6 +224,10 @@ u32 SaveManager_getSettingMapIcons(const SaveManager *this);
 u32 SaveManager_getSettingPageTransitions(const SaveManager *this);
 
 void SaveManager_setSettingPageTransitions(const SaveManager *this, u32 pageTransitions);
+
+u32 SaveManager_getSettingRaceInputDisplay(const SaveManager *this);
+
+void SaveManager_setSettingRaceInputDisplay(SaveManager *this, u32 raceInputDisplay);
 
 u32 SaveManager_getTaRuleClass(const SaveManager *this);
 
