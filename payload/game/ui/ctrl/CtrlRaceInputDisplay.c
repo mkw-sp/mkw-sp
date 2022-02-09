@@ -33,14 +33,13 @@ CtrlRaceInputDisplay *CtrlRaceInputDisplay_ct(CtrlRaceInputDisplay *this) {
     this->vt = &s_CtrlRaceInputDisplay_vt;
 
     this->dpadState = kDpadState_Off;
+    this->dpadTimer = 0;
     this->accelState = kAccelState_Off;
     this->triggerStates[kTrigger_L] = kTriggerState_Off;
     this->triggerStates[kTrigger_R] = kTriggerState_Off;
     this->triggerStates[kTrigger_BrakeDrift] = kTriggerState_Off;
     this->cstickState.x = 0.0f;
     this->cstickState.y = 0.0f;
-
-    this->elocalPlayerId = 0;
 
     return this;
 }
@@ -123,6 +122,8 @@ static void CtrlRaceInputDisplay_initSelf(UIControl *base) {
     lyt_setPaneVisible(this->cstickPane, true);
 
     this->cstickOrigin = this->cstickPane->trans;
+
+    this->playerId = CtrlRaceBase_getPlayerId(this);
 }
 
 static void CtrlRaceInputDisplay_setDPAD(CtrlRaceInputDisplay *this, DpadState state) {
@@ -176,7 +177,11 @@ static void CtrlRaceInputDisplay_calcSelf(UIControl *base) {
     CtrlRaceBase_process(this);
 
     // Update display
-    u32 playerId = this->elocalPlayerId;
+    u32 playerId = CtrlRaceBase_getPlayerId(this);
+    if (playerId != this->playerId) {
+        this->dpadTimer = 0;
+        this->playerId = playerId;
+    }
 
     assert(s_raceManager);
     assert(s_raceManager->players[playerId]);
@@ -239,7 +244,7 @@ static const CtrlRaceBase_vt s_CtrlRaceInputDisplay_vt = {
 
 void CtrlRaceInputDisplay_load(
         CtrlRaceInputDisplay *this, u32 localPlayerCount, u32 localPlayerId) {
-    this->elocalPlayerId = localPlayerId;
+    this->localPlayerId = localPlayerId;
 
     char variant[0x20];
     u32 variantId = localPlayerCount == 3 ? 4 : localPlayerCount;

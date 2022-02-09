@@ -47,7 +47,7 @@ typedef struct {
     TriggerState triggerStates[kTrigger_Count];
     Vec2 cstickState;
 
-    u32 elocalPlayerId;
+    u32 playerId;
 } CtrlRaceInputDisplay;
 
 enum {
