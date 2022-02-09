@@ -186,26 +186,32 @@ static void CtrlRaceInputDisplay_calcSelf(UIControl *base) {
     assert(s_raceManager);
     assert(s_raceManager->players[playerId]);
     assert(s_raceManager->players[playerId]->padProxy);
-    RaceInputState *input =
-            &s_raceManager->players[playerId]->padProxy->currentInputState;
+    RaceInputState input =
+            s_raceManager->players[playerId]->padProxy->currentInputState;
 
-    assert(input->trick < kDpadState_Count);
-    CtrlRaceInputDisplay_setDPAD(this, MIN(input->trick, kDpadState_Count - 1));
+    if (!input.isValid) {
+        input.buttons = 0;
+        input.stick = (Vec2) { 0.0f, 0.0f };
+        input.trick = 0;
+    }
+
+    assert(input.trick < kDpadState_Count);
+    CtrlRaceInputDisplay_setDPAD(this, MIN(input.trick, kDpadState_Count - 1));
     CtrlRaceInputDisplay_setACCEL(this,
-            (input->buttons & BUTTON_ACCEL) ? kAccelState_Pressed : kAccelState_Off);
+            (input.buttons & BUTTON_ACCEL) ? kAccelState_Pressed : kAccelState_Off);
     CtrlRaceInputDisplay_setTRIGGER(this, kTrigger_L,
-            (input->buttons & BUTTON_ITEM) ? kTriggerState_Pressed : kTriggerState_Off);
+            (input.buttons & BUTTON_ITEM) ? kTriggerState_Pressed : kTriggerState_Off);
     CtrlRaceInputDisplay_setTRIGGER(this, kTrigger_R,
-            (input->buttons & (BUTTON_BRAKE | BUTTON_DRIFT)) ? kTriggerState_Pressed
+            (input.buttons & (BUTTON_BRAKE | BUTTON_DRIFT)) ? kTriggerState_Pressed
                                                              : kTriggerState_Off);
-    assert(input->stick.x <= 1.0f && input->stick.x >= -1.0f);
-    assert(input->stick.y <= 1.0f && input->stick.y >= -1.0f);
-    CtrlRaceInputDisplay_setCSTICK(this, &input->stick);
+    assert(input.stick.x <= 1.0f && input.stick.x >= -1.0f);
+    assert(input.stick.y <= 1.0f && input.stick.y >= -1.0f);
+    CtrlRaceInputDisplay_setCSTICK(this, &input.stick);
 
     // 200cc BrakeDrift
     if (speedModIsEnabled) {
         CtrlRaceInputDisplay_setTRIGGER(this, kTrigger_BrakeDrift,
-                (input->buttons & BUTTON_BRAKEDRIFT) ? kTriggerState_Pressed
+                (input.buttons & BUTTON_BRAKEDRIFT) ? kTriggerState_Pressed
                                                      : kTriggerState_Off);
     }
 }

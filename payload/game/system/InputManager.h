@@ -36,7 +36,7 @@ typedef struct {
     u8 rawStick[2];
     u8 trick;
     u8 rawTrick;
-    u8 _14[0x18 - 0x14];
+    bool isValid : 1;
 } RaceInputState;
 static_assert(sizeof(RaceInputState) == 0x18);
 
