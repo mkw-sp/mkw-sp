@@ -49,6 +49,7 @@
 0x801a25d0 OSReport
 0x801a4ec4 OSFatal
 0x801a6d3c Relocate
+0x801A7684 OSProtectRange
 0x801a98b0 OSGetCurrentThread
 0x801a9e84 OSCreateThread
 0x801aa3ac OSJoinThread
