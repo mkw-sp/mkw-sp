@@ -12,6 +12,9 @@ PATCH_REPLACE_END(RaceMenuPage_onInit, 0x2d0)
 
 
 
+// The game doesn't reset the player type of the ghosts, which can sometimes lead to an infinite
+// loop if there is more than one. So do it here.
+
 PATCH_B_START(RaceMenuPage_onButtonFront, 0x2e8)
     lwz r3, s_raceConfig@l (r31)
     addi r3, r3, 0x20 + 0xbf0
@@ -20,6 +23,36 @@ PATCH_B_START(RaceMenuPage_onButtonFront, 0x2e8)
     lwz r4, s_raceConfig@l (r31) // Original instruction
     b RaceMenuPage_onButtonFront + 0x2ec
 PATCH_B_END(RaceMenuPage_onButtonFront, 0x2e8)
+
+PATCH_B_START(RaceMenuPage_onButtonFront, 0x4b8)
+    lis r3, s_raceConfig@ha
+    lwz r3, s_raceConfig@l (r3)
+    addi r3, r3, 0x20 + 0xbf0
+    bl RaceConfigScenario_resetGhostPlayerTypes
+
+    lis r3, s_raceConfig@ha // Original instruction
+    b RaceMenuPage_onButtonFront + 0x4bc
+PATCH_B_END(RaceMenuPage_onButtonFront, 0x4b8)
+
+PATCH_B_START(RaceMenuPage_onButtonFront, 0x4f8)
+    lis r3, s_raceConfig@ha
+    lwz r3, s_raceConfig@l (r3)
+    addi r3, r3, 0x20 + 0xbf0
+    bl RaceConfigScenario_resetGhostPlayerTypes
+
+    lis r3, s_raceConfig@ha // Original instruction
+    b RaceMenuPage_onButtonFront + 0x4fc
+PATCH_B_END(RaceMenuPage_onButtonFront, 0x4f8)
+
+PATCH_B_START(RaceMenuPage_onButtonFront, 0x594)
+    lis r3, s_raceConfig@ha
+    lwz r3, s_raceConfig@l (r3)
+    addi r3, r3, 0x20 + 0xbf0
+    bl RaceConfigScenario_resetGhostPlayerTypes
+
+    lis r3, s_raceConfig@ha // Original instruction
+    b RaceMenuPage_onButtonFront + 0x598
+PATCH_B_END(RaceMenuPage_onButtonFront, 0x594)
 
 
 
