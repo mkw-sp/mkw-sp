@@ -494,6 +494,7 @@ asset_in_files = {
         os.path.join('button', 'ctrl', 'AfterMenuVS.brctr.json5'),
         os.path.join('button', 'ctrl', 'AfterMenuVSLast.brctr.json5'),
         os.path.join('button', 'ctrl', 'PauseMenuGhostWatch.brctr.json5'),
+        os.path.join('button', 'ctrl', 'PauseMenuReplayTA.brctr.json5'),
         os.path.join('button', 'ctrl', 'PauseMenuTimeAttack.brctr.json5'),
         os.path.join('button', 'ctrl', 'PauseMenuVS.brctr.json5'),
         os.path.join('game_image', 'anim', 'game_image_speed_texture_pattern_0_9.brlan.json5'),
