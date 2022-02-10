@@ -198,6 +198,7 @@ code_in_files = {
         os.path.join('game', 'ui', 'TitlePage.c'),
         os.path.join('game', 'ui', 'UIAnimator.c'),
         os.path.join('game', 'ui', 'UIControl.c'),
+        os.path.join('game', 'ui', 'Wipe.S'),
         os.path.join('game', 'ui', 'ctrl', 'CtrlMenuBackButton.c'),
         os.path.join('game', 'ui', 'ctrl', 'CtrlMenuInstructionText.c'),
         os.path.join('game', 'ui', 'ctrl', 'CtrlMenuPageTitleText.c'),
