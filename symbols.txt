@@ -271,6 +271,7 @@
 0x80620dd8 SaveManagerProxy_processRequest
 0x806212fc SaveManagerProxy_hasPendingRequests
 0x80621410 SaveManagerProxy_markLicensesDirty
+0x80622d08 Section_addPage
 0x80622da0 Section_addActivePage
 0x80623390 Section_createPage
 0x80625da0 TopMenuPage_ct
