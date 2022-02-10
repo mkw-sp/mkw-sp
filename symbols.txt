@@ -342,6 +342,7 @@
 0x8063e3dc LayoutUIControl_setMiiPicture
 0x8063e54c LayoutUIControl_setPaneVisible
 0x8063e61c LayoutUIControl_vf_30
+0x80651d8c WipeControl_calcSelf
 0x80698028 Effect_80698028
 0x80698f70 Effect_80698f70
 0x806a19d8 Effect_806a19d8
