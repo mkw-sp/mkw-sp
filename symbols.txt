@@ -97,6 +97,7 @@
 0x80520730 GhostPad_ct
 0x80521554 PadProxy_setPad
 0x805215d4 GhostPadProxy_start
+0x80521688 GhostPadProxy_end
 0x80521768 GhostPadProxy_calc
 0x80521844 GhostPadProxy_setPad
 0x805220bc GhostPadProxy_ct
@@ -126,6 +127,7 @@
 0x8052fe58 RaceConfig_createInstance
 0x8053015c RaceConfig_ct
 0x80533ed8 RaceManagerPlayer_ct
+0x805347f4 RaceManagerPlayer_endRace
 0x80534df8 RaceManagerPlayer_calcCheckPoint
 0x80535d14 TimeAttackGameMode_canEndRace
 0x80541794 ResourceManager_getMenuArchiveCount
