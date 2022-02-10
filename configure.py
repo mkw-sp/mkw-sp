@@ -489,15 +489,17 @@ asset_in_files = {
         os.path.join('button', 'blyt', 'common_w202_menu_compact.brlyt.json5'),
         os.path.join('button', 'ctrl', 'AfterMenuBT.brctr.json5'),
         os.path.join('button', 'ctrl', 'AfterMenuBTLast.brctr.json5'),
+        os.path.join('button', 'ctrl', 'AfterMenuEndConfirm.brctr.json5'),
+        os.path.join('button', 'ctrl', 'AfterMenuTimeAttack.brctr.json5'),
         os.path.join('button', 'ctrl', 'AfterMenuVS.brctr.json5'),
         os.path.join('button', 'ctrl', 'AfterMenuVSLast.brctr.json5'),
-        os.path.join('button', 'ctrl', 'AfterMenuTimeAttack.brctr.json5'),
         os.path.join('button', 'ctrl', 'PauseMenuGhostWatch.brctr.json5'),
         os.path.join('button', 'ctrl', 'PauseMenuTimeAttack.brctr.json5'),
         os.path.join('button', 'ctrl', 'PauseMenuVS.brctr.json5'),
         os.path.join('game_image', 'anim', 'game_image_speed_texture_pattern_0_9.brlan.json5'),
         os.path.join('game_image', 'blyt', 'game_image_speed.brlyt.json5'),
         os.path.join('game_image', 'blyt', 'InputDisplay.brlyt.json5'),
+        os.path.join('game_image', 'blyt', 'race_message_half.brlyt'),
         os.path.join('game_image', 'ctrl', 'battle_total_point.brctr.json5'),
         os.path.join('game_image', 'ctrl', 'InputDisplay.brctr.json5'),
         os.path.join('game_image', 'ctrl', 'lap_number.brctr.json5'),
@@ -615,6 +617,7 @@ for target in asset_in_files:
     for in_file in asset_in_files[target]:
         base, ext = os.path.splitext(in_file)
         outext = {
+            '.brlyt': '.brlyt',
             '.json5': '',
             '.tpl': '.tpl',
         }[ext]
@@ -623,6 +626,7 @@ for target in asset_in_files:
         out_files = [out_file for out_files in asset_out_files.values() for out_file in out_files]
         if out_file not in out_files:
             rule = {
+                '.brlyt': 'cp',
                 '.json5': 'wuj5',
                 '.tpl': 'cp',
             }[ext]
