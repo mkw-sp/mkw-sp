@@ -22,6 +22,13 @@ PATCH_BL_START(CtrlRace2DMapCharacter_initSelf, 0x294)
     cmpwi r4, 0x1
     beqlr
 
+    // Check that we are not in split-screen mode
+    lis r4, s_raceConfig@ha
+    lwz r4, s_raceConfig@l (r4)
+    lbz r4, 0x20 + 0x6 (r4)
+    cmpwi r4, 0x1
+    bgtlr
+
     mflr r29
     mr r28, r3
 
