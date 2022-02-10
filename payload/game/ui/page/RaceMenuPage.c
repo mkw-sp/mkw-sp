@@ -1,11 +1,15 @@
 #include "RaceMenuPage.h"
 
+// TODO add enum for button ids
+
 static const u32 ghostWatchPauseButtons[] = {
     0xc,
     0xf,
     0xe,
     0x12,
-    0xd,
+    0x5,
+    0x6,
+    0x1,
 };
 
 u32 GhostWatchPauseMenuPage_getButtonCount(void);
