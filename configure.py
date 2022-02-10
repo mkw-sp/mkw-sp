@@ -486,6 +486,11 @@ asset_in_files = {
         os.path.join('message', 'Menu_U.bmg.json5'),
     ],
     'RaceSP.szs': [
+        os.path.join('button', 'blyt', 'common_w202_menu_compact.brlyt.json5'),
+        os.path.join('button', 'ctrl', 'AfterMenuBT.brctr.json5'),
+        os.path.join('button', 'ctrl', 'AfterMenuBTLast.brctr.json5'),
+        os.path.join('button', 'ctrl', 'AfterMenuVS.brctr.json5'),
+        os.path.join('button', 'ctrl', 'AfterMenuVSLast.brctr.json5'),
         os.path.join('button', 'ctrl', 'AfterMenuTimeAttack.brctr.json5'),
         os.path.join('button', 'ctrl', 'PauseMenuGhostWatch.brctr.json5'),
         os.path.join('button', 'ctrl', 'PauseMenuTimeAttack.brctr.json5'),
