@@ -20,6 +20,23 @@ PATCH_REPLACE_END(RaceMenuPage_onActivate, 0x404)
 
 
 
+// Reset the replacement of the previous page when pressing "Continue" on the confirmation page.
+
+PATCH_B_START(RaceMenuPage_onButtonFront, 0x128)
+    lwz r3, 0x0 (r3) // Original instruction
+
+    lwz r4, 0x58 (r28)
+    slwi r4, r4, 0x2
+    add r4, r3, r4
+    lwz r4, 0x8 (r4)
+    li r5, -0x1
+    stw r5, 0xf0 (r4)
+
+    b RaceMenuPage_onButtonFront + 0x12c
+PATCH_B_END(RaceMenuPage_onButtonFront, 0x128)
+
+
+
 // When quitting from ghost watch, go to the main menu.
 
 PATCH_REPLACE_START(RaceMenuPage_onButtonFront, 0x224)
