@@ -445,6 +445,7 @@
 0x80858a50 RacePage_calcItemBalloons
 0x80858ae4 RacePage_calcNameBalloons
 0x80858d60 RaceMenuPage_onInit
+0x80859a2c RaceMenuPage_onActivate
 0x8085a0f4 RaceMenuPage_onButtonFront
 0x80860acc getCharacterPane
 

@@ -12,6 +12,22 @@ PATCH_REPLACE_END(RaceMenuPage_onInit, 0x2d0)
 
 
 
+// Do not show different messages when quitting from ghost watch.
+
+PATCH_REPLACE_START(RaceMenuPage_onActivate, 0x404)
+    b 0x30
+PATCH_REPLACE_END(RaceMenuPage_onActivate, 0x404)
+
+
+
+// When quitting from ghost watch, go to the main menu.
+
+PATCH_REPLACE_START(RaceMenuPage_onButtonFront, 0x224)
+    nop
+PATCH_REPLACE_END(RaceMenuPage_onButtonFront, 0x224)
+
+
+
 // The game doesn't reset the player type of the ghosts, which can sometimes lead to an infinite
 // loop if there is more than one. So do it here.
 
