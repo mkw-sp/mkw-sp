@@ -46,7 +46,10 @@
 0x801a1104 OSAllocFromMEM1ArenaLo
 0x801a162c DCFlushRange
 0x801a1710 ICInvalidateRange
+0x801A2030 OSGetStackPointer
+0x801A24A4 OSFillFPUContext
 0x801a25d0 OSReport
+0x801A278C OSSetErrorHandler
 0x801a4ec4 OSFatal
 0x801a6d3c Relocate
 0x801A7684 OSProtectRange
