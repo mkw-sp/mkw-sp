@@ -43,10 +43,30 @@ PATCH_BL_END(Snd_806fafb4, 0x44)
 
 
 
-// This function handles sound triggers. Normally they are only enabled for human players, except
-// when the current section is a ghost replay one (0x32, 0x33, 0x34). This makes the game crash
-// with multighost because the local player id can be -1 while the game assumes that it will be
-// positive. To fix that this patch completely removes the exception (for now).
-PATCH_REPLACE_START(Snd_80708b44, 0x28)
-    blr
-PATCH_REPLACE_END(Snd_80708b44, 0x28)
+PATCH_BL_START(Snd_80716170, 0x10)
+    lwz r3, 0x10 (r3) // Original instruction, get section id
+
+    // Check that the section id is ghost replay
+    cmpwi r3, 0x34
+    bnelr
+
+    // Enable the loading of character voices
+    li r3, 0x3
+    b Snd_80716170 + 0x18
+PATCH_BL_END(Snd_80716170, 0x10)
+
+PATCH_REPLACE_START(Snd_80716170, 0xa0)
+    nop // Remove ghost player type check
+PATCH_REPLACE_END(Snd_80716170, 0xa0)
+
+PATCH_BL_START(Snd_80716170, 0xd0)
+    cmpwi r3, 0x0 // Original instruction, check if the player is local
+    bnelr // If that's the case we are done
+
+    // Otherwise check if the player is a ghost
+    mr r3, r28
+    bl KartObjectProxy_isGhost
+
+    cmpwi r3, 0x0 // Original instruction again
+    b Snd_80716170 + 0xd4
+PATCH_BL_END(Snd_80716170, 0xd0)

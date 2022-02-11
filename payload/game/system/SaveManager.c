@@ -123,8 +123,8 @@ static bool setupSpSave(const char *path) {
 static bool SpSaveLicense_checkSize(const SpSaveLicense *this) {
     switch (this->version) {
     case 0:
-        return this->size == 0x18;
     case 1:
+    case 2:
         return this->size == 0x18;
     case SP_SAVE_LICENSE_VERSION:
         return this->size == sizeof(SpSaveLicense);
@@ -140,6 +140,10 @@ static void SpSaveLicense_upgrade(SpSaveLicense *this) {
 
     if (this->version < 2) {
         this->settingRaceInputDisplay = SP_SETTING_RACE_INPUT_DISPLAY_DEFAULT;
+    }
+
+    if (this->version < 3) {
+        this->taRuleGhostSound = SP_TA_RULE_GHOST_SOUND_DEFAULT;
     }
 
     if (this->version < SP_SAVE_LICENSE_VERSION) {
@@ -171,6 +175,14 @@ static void SpSaveLicense_sanitize(SpSaveLicense *this) {
         break;
     default:
         this->taRuleSolidGhosts = SP_TA_RULE_SOLID_GHOSTS_DEFAULT;
+    }
+    switch (this->taRuleGhostSound) {
+    case SP_TA_RULE_GHOST_SOUND_NONE:
+    case SP_TA_RULE_GHOST_SOUND_WATCHED:
+    case SP_TA_RULE_GHOST_SOUND_ALL:
+        break;
+    default:
+        this->taRuleGhostSound = SP_TA_RULE_GHOST_SOUND_DEFAULT;
     }
 }
 
@@ -408,6 +420,7 @@ void SaveManager_createSpLicense(SaveManager *this, const MiiId *miiId) {
     license->taRuleGhostTagVisibility = SP_TA_RULE_GHOST_TAG_VISIBILITY_DEFAULT;
     license->taRuleGhostTagContent = SP_TA_RULE_GHOST_TAG_CONTENT_DEFAULT;
     license->taRuleSolidGhosts = SP_TA_RULE_SOLID_GHOSTS_DEFAULT;
+    license->taRuleGhostSound = SP_TA_RULE_GHOST_SOUND_DEFAULT;
     this->spSections[this->spSectionCount++] = license;
     this->spCurrentLicense = this->spLicenseCount - 1;
 }
@@ -530,6 +543,14 @@ u32 SaveManager_getTaRuleSolidGhosts(const SaveManager *this) {
     }
 
     return this->spLicenses[this->spCurrentLicense]->taRuleSolidGhosts;
+}
+
+u32 SaveManager_getTaRuleGhostSound(const SaveManager *this) {
+    if (this->spCurrentLicense < 0) {
+        return SP_TA_RULE_GHOST_SOUND_DEFAULT;
+    }
+
+    return this->spLicenses[this->spCurrentLicense]->taRuleGhostSound;
 }
 
 static void SaveManager_loadGhostHeaders(SaveManager *this) {

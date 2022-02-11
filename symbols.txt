@@ -161,6 +161,7 @@
 0x80590224 KartObjectProxy_getLastPos
 0x805903cc KartObjectProxy_getVehiclePhysics
 0x805903f4 KartObjectProxy_getPadProxy
+0x80590678 KartObjectProxy_isGhost
 0x8059077c KartObjectProxy_getKartMove
 0x80590cf8 KartObjectProxy_getInternalSpeed
 0x80591fa4 KartParam_compute
@@ -348,7 +349,10 @@
 0x806a19d8 Effect_806a19d8
 0x806a1b68 Effect_806a1b68
 0x806fafb4 Snd_806fafb4
-0x80708b44 Snd_80708b44
+0x80707534 KartSound_init
+0x80708b44 KartSound_80708b44
+0x8070b250 KartSound_8070b250
+0x80716170 Snd_80716170
 0x8071e270 JugemManager_createInstance
 0x8071e480 JugemManager_createJugems
 0x8071e638 JugemManager_init
@@ -451,6 +455,7 @@
 0x80859a2c RaceMenuPage_onActivate
 0x8085a0f4 RaceMenuPage_onButtonFront
 0x80860acc getCharacterPane
+0x80863a9c DriverSound_init
 
 0x808b3188 languageSuffixes
 0x808b3984 courseFilenames

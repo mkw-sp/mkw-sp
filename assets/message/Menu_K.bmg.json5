@@ -5783,6 +5783,22 @@
         "font": "regular",
         "string": "Display controller inputs during a race.",
     },
+    "0x3042": {
+        "font": "regular",
+        "string": "Ghost Sound",
+    },
+    "0x3043": {
+        "font": "regular",
+        "string": "Do not enable sound for any ghost.",
+    },
+    "0x3044": {
+        "font": "regular",
+        "string": "Only enable sound for the watched ghost.",
+    },
+    "0x3045": {
+        "font": "regular",
+        "string": "Enable sound for all ghosts.",
+    },
     "0x18697": {
         "font": "regular",
         "string": null,

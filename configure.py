@@ -150,6 +150,8 @@ code_in_files = {
         os.path.join('game', 'race', 'DriverManager.c'),
         os.path.join('game', 'race', 'JugemManager.S'),
         os.path.join('game', 'race', 'JugemManager.c'),
+        os.path.join('game', 'snd', 'DriverSound.S'),
+        os.path.join('game', 'snd', 'KartSound.S'),
         os.path.join('game', 'snd', 'Snd.S'),
         os.path.join('game', 'system', 'CourseMap.S'),
         os.path.join('game', 'system', 'DvdArchive.S'),

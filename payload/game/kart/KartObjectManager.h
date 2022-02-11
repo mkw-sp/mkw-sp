@@ -3,7 +3,8 @@
 typedef struct {
     u8 _00[0x20 - 0x00];
     KartObject **objects;
-    u8 _24[0x38 - 0x24];
+    u8 count;
+    u8 _25[0x38 - 0x25];
 } KartObjectManager;
 static_assert(sizeof(KartObjectManager) == 0x38);
 

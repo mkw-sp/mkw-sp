@@ -39,6 +39,9 @@ static void onRuleControlFront(RadioButtonControlHandler *this, RadioButtonContr
     case 4:
         license->taRuleSolidGhosts = selected;
         break;
+    case 5:
+        license->taRuleGhostSound = selected;
+        break;
     }
 
     TimeAttackRulesPage *page = CONTAINER_OF(this, TimeAttackRulesPage, onRuleControlFront);
@@ -66,6 +69,7 @@ static void onRuleControlSelect(RadioButtonControlHandler *this, RadioButtonCont
         { 0x3020, 0x3021, 0x3022 },
         { 0x3027, 0x3028, 0x3036, 0x3029 },
         { 0x302b, 0x302c, 0x302d },
+        { 0x3043, 0x3044, 0x3045 },
     };
     u32 messageId = messageIds[control->index][selected];
     CtrlMenuInstructionText_setMessage(&page->instructionText, messageId, NULL);
@@ -188,8 +192,9 @@ static void TimeAttackRulesPage_onInit(Page *base) {
         "GhostTagVisibility",
         "GhostTagContent",
         "SolidGhosts",
+        "GhostSound",
     };
-    u32 buttonCounts[] = { 2, 4, 3, 4, 3 };
+    u32 buttonCounts[] = { 2, 4, 3, 4, 3, 3 };
     for (u32 i = 0; i < ARRAY_SIZE(this->ruleControls); i++) {
         const SpSaveLicense *license = s_saveManager->spLicenses[s_saveManager->spCurrentLicense];
         u32 chosen;
@@ -208,6 +213,9 @@ static void TimeAttackRulesPage_onInit(Page *base) {
             break;
         case 4:
             chosen = license->taRuleSolidGhosts;
+            break;
+        case 5:
+            chosen = license->taRuleGhostSound;
             break;
         }
         char variant[0x20];

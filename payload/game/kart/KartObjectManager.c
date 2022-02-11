@@ -1,6 +1,7 @@
 #include "KartObjectManager.h"
 
 #include "../system/RaceConfig.h"
+#include "../system/RaceManager.h"
 #include "../system/SaveManager.h"
 
 #include "../ui/page/RacePage.h"
@@ -60,9 +61,46 @@ static bool playerIsSolid(u32 playerId) {
     }
 }
 
-void calcDrawPriorities(void) {
-    const RaceConfigScenario *raceScenario = &s_raceConfig->raceScenario;
-    for (u32 i = 0; i < raceScenario->playerCount; i++) {
+enum {
+    SOUND_SETTING_NONE = 0x0,
+    SOUND_SETTING_PARTIAL = 0x1,
+    SOUND_SETTING_FULL = 0x2,
+};
+
+static u32 getGhostSoundSetting(u32 playerId) {
+    switch (SaveManager_getTaRuleGhostSound(s_saveManager)) {
+    case SP_TA_RULE_GHOST_SOUND_NONE:
+        return SOUND_SETTING_NONE;
+    case SP_TA_RULE_GHOST_SOUND_ALL:
+        if (playerId != s_racePage->watchedPlayerId) {
+            return SOUND_SETTING_PARTIAL;
+        }
+        return SOUND_SETTING_FULL;
+    default:
+        if (playerId != s_racePage->watchedPlayerId) {
+            return SOUND_SETTING_NONE;
+        }
+        return SOUND_SETTING_FULL;
+    }
+}
+
+void KartObjectManager_beforeCalc(KartObjectManager *this) {
+    for (u32 i = 0; i < this->count; i++) {
         s_playerDrawPriorities[i] = playerIsSolid(i) ? 0x4e : 0x3;
+    }
+
+    for (u32 i = 0; i < this->count; i++) {
+        const RaceConfigScenario *raceScenario = &s_raceConfig->raceScenario;
+        if (raceScenario->players[i].type != PLAYER_TYPE_GHOST) {
+            continue;
+        }
+
+        u32 soundSetting = getGhostSoundSetting(i);
+        bool hasFinished = s_raceManager->players[i]->hasFinished;
+        KartAccessor *accessor = this->objects[i]->accessor;
+        accessor->sound->isLocal = soundSetting == SOUND_SETTING_FULL;
+        accessor->sound->isGhost = soundSetting == SOUND_SETTING_NONE;
+        accessor->driver->sound->isLocal = soundSetting == SOUND_SETTING_FULL && !hasFinished;
+        accessor->driver->sound->isGhost = soundSetting == SOUND_SETTING_NONE || hasFinished;
     }
 }

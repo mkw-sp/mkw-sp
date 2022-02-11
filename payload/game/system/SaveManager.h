@@ -36,7 +36,7 @@ enum {
 };
 
 enum {
-    SP_SAVE_LICENSE_VERSION = 2,
+    SP_SAVE_LICENSE_VERSION = 3,
 };
 
 typedef struct {
@@ -128,6 +128,13 @@ enum {
     SP_TA_RULE_SOLID_GHOSTS_DEFAULT = SP_TA_RULE_SOLID_GHOSTS_NONE,
 };
 
+enum {
+    SP_TA_RULE_GHOST_SOUND_NONE = 0x0,
+    SP_TA_RULE_GHOST_SOUND_WATCHED = 0x1,
+    SP_TA_RULE_GHOST_SOUND_ALL = 0x2,
+    SP_TA_RULE_GHOST_SOUND_DEFAULT = SP_TA_RULE_GHOST_SOUND_WATCHED,
+};
+
 typedef struct {
     SpSaveSection;
     MiiId miiId;
@@ -142,6 +149,7 @@ typedef struct {
     u32 taRuleSolidGhosts : 2;
     u32 settingPageTransitions : 1;
     u32 settingRaceInputDisplay : 3;
+    u32 taRuleGhostSound : 2;
 } SpSaveLicense;
 static_assert(sizeof(SpSaveLicense) == 0x18);
 
@@ -238,6 +246,8 @@ u32 SaveManager_getTaRuleGhostTagVisibility(const SaveManager *this);
 u32 SaveManager_getTaRuleGhostTagContent(const SaveManager *this);
 
 u32 SaveManager_getTaRuleSolidGhosts(const SaveManager *this);
+
+u32 SaveManager_getTaRuleGhostSound(const SaveManager *this);
 
 void SaveManager_loadGhostAsync(SaveManager *this, s32 licenseId, u32 category, u32 index,
         u32 courseId);
