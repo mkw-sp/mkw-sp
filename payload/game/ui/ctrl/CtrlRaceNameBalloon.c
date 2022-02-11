@@ -49,7 +49,7 @@ static void CtrlRaceNameBalloon_refreshTextName(CtrlRaceNameBalloon *this, u32 p
     ExtendedMessageInfo info = {
         .miis[0] = MiiGroup_get(&s_sectionManager->globalContext->playerMiis, playerId),
     };
-    LayoutUIControl_setMessage(this, "chara_name", 0x251d, &info);
+    LayoutUIControl_setMessage(this, "chara_name", 9501, &info);
 }
 
 static void CtrlRaceNameBalloon_refreshTextTime(CtrlRaceNameBalloon *this, u32 playerId, bool leadingZeroes) {
@@ -61,7 +61,7 @@ static void CtrlRaceNameBalloon_refreshTextTime(CtrlRaceNameBalloon *this, u32 p
         .intVals[1] = header->raceTime.seconds,
         .intVals[2] = header->raceTime.milliseconds,
     };
-    LayoutUIControl_setMessage(this, "chara_name", leadingZeroes ? 0x578 : 0x577, &info);
+    LayoutUIControl_setMessage(this, "chara_name", leadingZeroes ? 1400 : 10071, &info);
 }
 
 static void CtrlRaceNameBalloon_refreshTextDate(CtrlRaceNameBalloon *this, u32 playerId) {
@@ -73,7 +73,7 @@ static void CtrlRaceNameBalloon_refreshTextDate(CtrlRaceNameBalloon *this, u32 p
         .intVals[1] = header->month,
         .intVals[2] = header->day,
     };
-    LayoutUIControl_setMessage(this, "chara_name", 0x3030, &info);
+    LayoutUIControl_setMessage(this, "chara_name", 10048, &info);
 }
 
 void CtrlRaceNameBalloon_refreshText(CtrlRaceNameBalloon *this, u32 playerId) {

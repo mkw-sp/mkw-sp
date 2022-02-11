@@ -1,5741 +1,5469 @@
 {
-    "0x1": {
+    "1": {
         "font": "regular",
         "string": null,
     },
-    "0x7d0": {
+    "2000": {
         "font": "regular",
         "string": "OK",
     },
-    "0x7d1": {
+    "2001": {
         "font": "regular",
         "string": "←{arg back button|0}Retour",
     },
-    "0x7d2": {
+    "2002": {
         "font": "regular",
         "string": "Oui",
     },
-    "0x7d3": {
+    "2003": {
         "font": "regular",
         "string": "Non",
     },
-    "0x7d4": {
+    "2004": {
         "font": "regular",
         "string": null,
     },
-    "0x7d5": {
+    "2005": {
         "font": "regular",
         "string": "→",
     },
-    "0x7d6": {
+    "2006": {
         "font": "regular",
         "string": null,
     },
-    "0x7d7": {
+    "2007": {
         "font": "regular",
         "string": "←",
     },
-    "0x7d8": {
+    "2008": {
         "font": "regular",
         "string": null,
     },
-    "0x7d9": {
+    "2009": {
         "font": "regular",
         "string": "{arg integer|0 0}/{arg integer|1 0}",
     },
-    "0x7da": {
+    "2010": {
         "font": "regular",
         "string": "Mario Kart Wii",
     },
-    "0x7db": {
+    "2011": {
         "font": "regular",
         "string": "Un joueur",
     },
-    "0x7dc": {
+    "2012": {
         "font": "regular",
         "string": "Multijoueur",
     },
-    "0x7dd": {
+    "2013": {
         "font": "regular",
         "string": "CWF Nintendo",
     },
-    "0x7de": {
+    "2014": {
         "font": "regular",
         "string": "Chaîne Mario Kart",
     },
-    "0x7df": {
+    "2015": {
         "font": "regular",
         "string": "Options du permis",
     },
-    "0x7e0": {
+    "2016": {
         "font": "regular",
         "string": "Records",
     },
-    "0x7e1": {
+    "2017": {
         "font": "regular",
         "string": "Appuyez sur le Bouton A",
     },
-    "0x7e2": {
+    "2018": {
         "font": "regular",
         "string": "Menu principal",
     },
-    "0x7e3": {
+    "2019": {
         "font": "regular",
         "string": null,
     },
-    "0x7e4": {
+    "2020": {
         "font": "regular",
-        "string": "Contre-la-montre et plus pour 1 joueur!",
+        "string": "Grand Prix et plus pour 1 joueur!",
     },
-    "0x7e5": {
+    "2021": {
         "font": "regular",
         "string": "Courses et batailles pour 2 joueurs!",
     },
-    "0x7e6": {
+    "2022": {
         "font": "regular",
         "string": "Courses et batailles pour 3 joueurs!",
     },
-    "0x7e7": {
+    "2023": {
         "font": "regular",
         "string": "Courses et batailles pour 4 joueurs!",
     },
-    "0x7e8": {
+    "2024": {
         "font": "regular",
         "string": "Jouez via la CWF Nintendo!",
     },
-    "0x7e9": {
+    "2025": {
         "font": "regular",
         "string": "Jouez avec un ami via la CWF Nintendo!",
     },
-    "0x7ea": {
+    "2026": {
         "font": "regular",
         "string": "Classements et tournois!",
     },
-    "0x7eb": {
+    "2027": {
         "font": "regular",
-        "string": "Edit settings or change your Mii!",
+        "string": "Consultez vos records et changez de Mii!",
     },
-    "0x7ec": {
-        "font": "regular",
-        "string": null,
-    },
-    "0x7ed": {
+    "2028": {
         "font": "regular",
         "string": null,
     },
-    "0x7ee": {
+    "2029": {
+        "font": "regular",
+        "string": null,
+    },
+    "2030": {
         "font": "regular",
         "string": "Multijoueur (2J)",
     },
-    "0x7ef": {
+    "2031": {
         "font": "regular",
         "string": "Multijoueur (3J)",
     },
-    "0x7f0": {
+    "2032": {
         "font": "regular",
         "string": "Multijoueur (4J)",
     },
-    "0x7f1": {
+    "2033": {
         "font": "regular",
         "string": "CWF Nintendo (1J)",
     },
-    "0x7f2": {
+    "2034": {
         "font": "regular",
         "string": "CWF Nintendo (2J)",
     },
-    "0x7f3": {
+    "2035": {
         "font": "regular",
         "string": null,
     },
-    "0x802": {
+    "2050": {
         "font": "regular",
         "string": "Veuillez vous assurer\nque le disque Mario \nKart Wii est inséré et \nattendre que le jeu \ndémarre.",
     },
-    "0x803": {
+    "2051": {
         "font": "regular",
         "string": "Impossible de lire le disque.\nVeuillez vous référer au Mode \nd'Emploi Wii pour plus de détails.",
     },
-    "0x804": {
+    "2052": {
         "font": "regular",
         "string": "Une erreur est survenue.\n\nAppuyez sur le Bouton EJECT, retirez\nle disque et éteignez la console.\nVeuillez vous référer au Mode\nd'Emploi Wii pour plus de détails.",
     },
-    "0x805": {
+    "2053": {
         "font": "regular",
-        "string": "Une erreur est survenue lors de la lecture\nou l'écriture de la sauvegarde.",
+        "string": "Il n'y a pas assez d'espace libre dans\nla mémoire de la console Wii. Libérez \n23 blocs en transférant des données \nà une carte SD ou en effaçant des \ndonnées depuis l'écran de Gestion \ndes données.",
     },
-    "0x806": {
+    "2054": {
         "font": "regular",
         "string": "La mémoire de la console \nWii a été endommagée. \n\nVeuillez vous référer au \nMode d'Emploi Wii pour \nplus de détails.",
     },
-    "0x807": {
+    "2055": {
         "font": "regular",
         "string": "Ce fichier est corrompu et ne peut \npas être utilisé. Voulez-vous effacer\nle fichier et en créer un autre?",
     },
-    "0x808": {
+    "2056": {
         "font": "regular",
         "string": null,
     },
-    "0x809": {
+    "2057": {
         "font": "regular",
         "string": "Impossible de lire ou \nd'écrire dans la mémoire \nde la console Wii. \n\nVeuillez vous référer au \nMode d'Emploi Wii pour \nplus de détails.",
     },
-    "0x80a": {
+    "2058": {
         "font": "regular",
         "string": "Vous allez retourner au Menu Wii.",
     },
-    "0x80b": {
+    "2059": {
         "font": "regular",
         "string": "Commencer sans sauvegarder.",
     },
-    "0x80c": {
+    "2060": {
         "font": "regular",
         "string": "Retourner au Menu Wii",
     },
-    "0x80d": {
+    "2061": {
         "font": "regular",
         "string": "Vous ne pouvez pas choisir \nce menu car il n'y a aucun\nfichier de sauvegarde.",
     },
-    "0x80e": {
+    "2062": {
         "font": "regular",
         "string": "Aucun fichier de sauvegarde \nn'a été trouvé. \n\nVeuillez insérer le disque \nMario Kart Wii.",
     },
-    "0x80f": {
+    "2063": {
         "font": "regular",
         "string": "Démarrer",
     },
-    "0x810": {
+    "2064": {
         "font": "regular",
         "string": "Vous allez retourner au\nMenu Wii. Voulez-vous\ncontinuer?",
     },
-    "0x811": {
+    "2065": {
         "font": "regular",
         "string": "Sauvegarde en cours...\nNe touchez pas au Bouton\nPOWER ni au Bouton RESET.",
     },
-    "0x812": {
+    "2066": {
         "font": "regular",
         "string": "Impossible de lire les données\nde sauvegarde de la Chaîne\nMii.\n\nVeuillez accéder à la Chaîne Mii\npour vérifier vos données.",
     },
-    "0x813": {
+    "2067": {
         "font": "regular",
         "string": "Si le Mii que vous venez de \nchoisir est supprimé de la \nChaîne Mii, celui que vous \nutilisez dans Mario Kart Wii\nsera également supprimé. \nFaites attention!",
     },
-    "0x814": {
+    "2068": {
         "font": "regular",
         "string": "Vous avez créé un permis\navec un Mii invité. Vous \npouvez créer un nouveau \nMii dans la Chaîne Mii.",
     },
-    "0x815": {
+    "2069": {
         "font": "regular",
         "string": "Vous ne pouvez pas envoyer plus\nde 5 fantômes par session de jeu.\n\nEssayez de nouveau la prochaine fois\nque vous jouerez à Mario Kart Wii.",
     },
-    "0x816": {
+    "2070": {
         "font": "regular",
         "string": "Il n'y a pas de données de \nsauvegarde, ainsi vous ne \npouvez pas utiliser ce mode.\n\nVous pouvez gérer vos \ndonnées de sauvegarde\ndans la mémoire de la \nconsole Wii.",
     },
-    "0x817": {
+    "2071": {
         "font": "regular",
         "string": "Il n'y a pas assez d'espace libre\ndans la mémoire de la console Wii.\nTransférez des données sur une carte SD\nou effacez des données inutiles depuis\nl'écran de Gestion des données.",
     },
-    "0x818": {
+    "2072": {
         "font": "regular",
         "string": "La connexion à la CWF Nintendo\na été interrompue et vous allez\nretourner au menu principal.",
     },
-    "0x819": {
+    "2073": {
         "font": "regular",
         "string": "Les paramètres de pays ont été changés.\nDe nouvelles données de sauvegarde doivent\nêtre créées. Si vous ne voulez pas perdre\nvos données de sauvegarde actuelles,\nretournez au Menu Wii et restaurez\nles paramètres de pays précédents.",
     },
-    "0x81a": {
+    "2074": {
         "font": "regular",
         "string": "Créer un nouveau fichier de sauvegarde.",
     },
-    "0x81b": {
+    "2075": {
         "font": "regular",
         "string": null,
     },
-    "0x834": {
+    "2100": {
         "font": "regular",
         "string": null,
     },
-    "0x835": {
+    "2101": {
         "font": "regular",
         "string": "Un nouveau permis Mario \nKart Wii sera créé.",
     },
-    "0x836": {
+    "2102": {
         "font": "regular",
         "string": "Nouveau permis",
     },
-    "0x837": {
+    "2103": {
         "font": "regular",
         "string": "Effacer ce permis",
     },
-    "0x838": {
+    "2104": {
         "font": "regular",
         "string": "Choix du permis",
     },
-    "0x839": {
+    "2105": {
         "font": "regular",
         "string": null,
     },
-    "0x83a": {
+    "2106": {
         "font": "regular",
         "string": null,
     },
-    "0x83b": {
+    "2107": {
         "font": "regular",
         "string": null,
     },
-    "0x83c": {
+    "2108": {
         "font": "regular",
         "string": null,
     },
-    "0x83d": {
+    "2109": {
         "font": "regular",
         "string": null,
     },
-    "0x83e": {
+    "2110": {
         "font": "regular",
         "string": "{arg integer|0 4}-{arg integer|1 4}-{arg integer|2 4}",
     },
-    "0x83f": {
+    "2111": {
         "font": "regular",
         "string": "Un nouveau permis sera\ncréé pour {arg player|0}.\nVoulez-vous continuer?",
     },
-    "0x840": {
+    "2112": {
         "font": "regular",
         "string": "Le Mii associé à ce permis\nsera changé pour celui de \n{arg player|0}.\nVoulez-vous continuer?",
     },
-    "0x841": {
+    "2113": {
         "font": "regular",
         "string": "{current player|} et \n{arg player|0}\nvont se connecter ensemble\nà la CWF Nintendo.",
     },
-    "0x842": {
+    "2114": {
         "font": "regular",
         "string": null,
     },
-    "0x848": {
+    "2120": {
         "font": "regular",
-        "string": "Réglages",
+        "string": "Records",
     },
-    "0x849": {
+    "2121": {
         "font": "regular",
-        "string": "Changez les réglages pour ce permis.",
+        "string": "Affichez les records de {current player|}.",
     },
-    "0x84a": {
+    "2122": {
         "font": "regular",
         "string": "Changez le Mii associé à ce permis.",
     },
-    "0x84b": {
+    "2123": {
         "font": "regular",
         "string": "Choisissez un Mii.",
     },
-    "0x84c": {
+    "2124": {
         "font": "regular",
         "string": null,
     },
-    "0x84d": {
+    "2125": {
         "font": "regular",
         "string": null,
     },
-    "0x84e": {
+    "2126": {
         "font": "regular",
         "string": null,
     },
-    "0x84f": {
+    "2127": {
         "font": "regular",
         "string": null,
     },
-    "0x850": {
+    "2128": {
         "font": "regular",
         "string": "Supprimez le permis de {current player|}.",
     },
-    "0x851": {
+    "2129": {
         "font": "regular",
         "string": null,
     },
-    "0x852": {
+    "2130": {
         "font": "regular",
         "string": null,
     },
-    "0x853": {
+    "2131": {
         "font": "regular",
         "string": null,
     },
-    "0x854": {
+    "2132": {
         "font": "regular",
         "string": null,
     },
-    "0x855": {
+    "2133": {
         "font": "regular",
         "string": null,
     },
-    "0x856": {
+    "2134": {
         "font": "regular",
         "string": null,
     },
-    "0x857": {
+    "2135": {
         "font": "regular",
         "string": "Fermer",
     },
-    "0x858": {
+    "2136": {
         "font": "regular",
         "string": null,
     },
-    "0x866": {
+    "2150": {
         "font": "regular",
         "string": null,
     },
-    "0x867": {
+    "2151": {
         "font": "regular",
         "string": "Votre nouveau permis est prêt.",
     },
-    "0x868": {
+    "2152": {
         "font": "regular",
         "string": "Le permis de {current player|} sera effacé.\nVoulez-vous continuer?",
     },
-    "0x869": {
+    "2153": {
         "font": "regular",
         "string": "Le permis de {current player|} a été effacé.",
     },
-    "0x86a": {
+    "2154": {
         "font": "regular",
         "string": null,
     },
-    "0x86b": {
+    "2155": {
         "font": "regular",
         "string": "Le Mii associé à ce permis a été changé.",
     },
-    "0x86c": {
+    "2156": {
         "font": "regular",
         "string": null,
     },
-    "0x86d": {
+    "2157": {
         "font": "regular",
         "string": "Effacement du permis en cours...",
     },
-    "0x86e": {
+    "2158": {
         "font": "regular",
         "string": "Toutes les données associées à ce\npermis, y compris la liste d'amis\net les fantômes, seront effacées. \nVoulez-vous continuer?",
     },
-    "0x86f": {
+    "2159": {
         "font": "regular",
         "string": null,
     },
-    "0x898": {
+    "2200": {
         "font": "regular",
         "string": "Changer de Mii",
     },
-    "0x899": {
+    "2201": {
         "font": "regular",
         "string": "Choisissez un Mii!",
     },
-    "0x89a": {
+    "2202": {
         "font": "regular",
         "string": "Console Wii",
     },
-    "0x89b": {
+    "2203": {
         "font": "regular",
         "string": "Invité",
     },
-    "0x89c": {
+    "2204": {
         "font": "regular",
         "string": null,
     },
-    "0x89d": {
+    "2205": {
         "font": "regular",
         "string": "Le Mii associé à ce permis a été\nsupprimé de la Chaîne Mii. \nVeuillez sélectionner un autre Mii.",
     },
-    "0x89e": {
+    "2206": {
         "font": "regular",
         "string": null,
     },
-    "0x89f": {
+    "2207": {
         "font": "regular",
         "string": null,
     },
-    "0x8a0": {
+    "2208": {
         "font": "regular",
         "string": null,
     },
-    "0x8a1": {
+    "2209": {
         "font": "regular",
         "string": null,
     },
-    "0x8a2": {
+    "2210": {
         "font": "regular",
         "string": null,
     },
-    "0x8ca": {
+    "2250": {
         "font": "regular",
         "string": null,
     },
-    "0x8cb": {
+    "2251": {
         "font": "regular",
         "string": null,
     },
-    "0x8cc": {
+    "2252": {
         "font": "regular",
         "string": null,
     },
-    "0x8cd": {
+    "2253": {
         "font": "regular",
         "string": null,
     },
-    "0x8ce": {
+    "2254": {
         "font": "regular",
         "string": null,
     },
-    "0x8cf": {
+    "2255": {
         "font": "regular",
         "string": null,
     },
-    "0x8d0": {
+    "2256": {
         "font": "regular",
         "string": null,
     },
-    "0x8d1": {
+    "2257": {
         "font": "regular",
         "string": null,
     },
-    "0x8d2": {
+    "2258": {
         "font": "regular",
         "string": "Les piles de la \ntélécommande Wii \nsont presque vides.",
     },
-    "0x8d3": {
+    "2259": {
         "font": "regular",
         "string": null,
     },
-    "0x8d4": {
+    "2260": {
         "font": "regular",
         "string": null,
     },
-    "0x8d5": {
+    "2261": {
         "font": "regular",
         "string": null,
     },
-    "0x8d6": {
+    "2262": {
         "font": "regular",
         "string": null,
     },
-    "0x8fc": {
+    "2300": {
         "font": "regular",
         "string": null,
     },
-    "0x8fd": {
+    "2301": {
         "font": "regular",
         "string": "1\n{font scale|50}joueur",
     },
-    "0x8fe": {
+    "2302": {
         "font": "regular",
         "string": "2\n{font scale|50}joueurs",
     },
-    "0x8ff": {
+    "2303": {
         "font": "regular",
         "string": "3\n{font scale|50}joueurs",
     },
-    "0x900": {
+    "2304": {
         "font": "regular",
         "string": "4\n{font scale|50}joueurs",
     },
-    "0x901": {
+    "2305": {
         "font": "regular",
         "string": "{2 chars| }",
     },
-    "0x902": {
+    "2306": {
         "font": "regular",
         "string": "{2 chars| }",
     },
-    "0x903": {
+    "2307": {
         "font": "regular",
         "string": null,
     },
-    "0x960": {
+    "2400": {
         "font": "regular",
         "string": null,
     },
-    "0x961": {
+    "2401": {
         "font": "regular",
         "string": "Attribution des manettes",
     },
-    "0x962": {
+    "2402": {
         "font": "regular",
         "string": "Appuyez sur le Bouton A sur la manette du joueur 2.",
     },
-    "0x963": {
+    "2403": {
         "font": "regular",
         "string": "Appuyez sur le Bouton A sur la manette du joueur 3.",
     },
-    "0x964": {
+    "2404": {
         "font": "regular",
         "string": "Appuyez sur le Bouton A sur la manette du joueur 4.",
     },
-    "0x965": {
+    "2405": {
         "font": "regular",
         "string": null,
     },
-    "0x966": {
+    "2406": {
         "font": "regular",
         "string": null,
     },
-    "0x967": {
+    "2407": {
         "font": "regular",
         "string": null,
     },
-    "0x968": {
+    "2408": {
         "font": "regular",
         "string": null,
     },
-    "0x969": {
+    "2409": {
         "font": "regular",
         "string": null,
     },
-    "0x9c4": {
+    "2500": {
         "font": "regular",
         "string": "Accepter?",
     },
-    "0x9c5": {
+    "2501": {
         "font": "regular",
         "string": "Modifier",
     },
-    "0x9c6": {
+    "2502": {
         "font": "regular",
         "string": "Appuyez sur le Bouton A sur la manette du joueur 1.",
     },
-    "0x9c7": {
+    "2503": {
         "font": "regular",
         "string": "Appuyez sur le Bouton A sur la manette du joueur 2.",
     },
-    "0x9c8": {
+    "2504": {
         "font": "regular",
         "string": "Appuyez sur le Bouton A sur la manette du joueur 3.",
     },
-    "0x9c9": {
+    "2505": {
         "font": "regular",
         "string": "Appuyez sur le Bouton A sur la manette du joueur 4.",
     },
-    "0x9ca": {
+    "2506": {
         "font": "regular",
         "string": "Voici les manettes qui seront utilisées.",
     },
-    "0x9cb": {
+    "2507": {
         "font": "regular",
         "string": "Modifiez l'attribution des manettes.",
     },
-    "0x9cc": {
+    "2508": {
         "font": "regular",
         "string": "{arg message|0} Ajouter une\ntélécommande Wii",
     },
-    "0x9cd": {
+    "2509": {
         "font": "regular",
         "string": "Appuyez simultanément sur {1 char|} et {1 char|}.",
     },
-    "0x9ce": {
+    "2510": {
         "font": "regular",
         "string": "{arg message|0} OK",
     },
-    "0x9cf": {
+    "2511": {
         "font": "regular",
         "string": null,
     },
-    "0x9d0": {
+    "2512": {
         "font": "regular",
         "string": null,
     },
-    "0x9d1": {
+    "2513": {
         "font": "regular",
         "string": null,
     },
-    "0x9d2": {
+    "2514": {
         "font": "regular",
         "string": null,
     },
-    "0x9f6": {
+    "2550": {
         "font": "regular",
         "string": "{1 char|}",
     },
-    "0x9f7": {
+    "2551": {
         "font": "regular",
         "string": "{1 char|}",
     },
-    "0x9f8": {
+    "2552": {
         "font": "regular",
         "string": "{1 char|}",
     },
-    "0x9f9": {
+    "2553": {
         "font": "regular",
         "string": "{1 char|}",
     },
-    "0x9fa": {
+    "2554": {
         "font": "regular",
         "string": "{1 char|}",
     },
-    "0x9fb": {
+    "2555": {
         "font": "regular",
         "string": "{color|player 1}OK",
     },
-    "0x9fc": {
+    "2556": {
         "font": "regular",
         "string": "{color|player 2}OK",
     },
-    "0x9fd": {
+    "2557": {
         "font": "regular",
         "string": "{color|player 3}OK",
     },
-    "0x9fe": {
+    "2558": {
         "font": "regular",
         "string": "{color|player 4}OK",
     },
-    "0x9ff": {
+    "2559": {
         "font": "regular",
         "string": null,
     },
-    "0xa28": {
+    "2600": {
         "font": "regular",
         "string": "Voulez-vous installer la \nChaîne Mario Kart ({arg integer|0 0}\nblocs) sur votre Menu Wii?",
     },
-    "0xa29": {
+    "2601": {
         "font": "regular",
         "string": "Oui",
     },
-    "0xa2a": {
+    "2602": {
         "font": "regular",
         "string": "Non",
     },
-    "0xa2b": {
+    "2603": {
         "font": "regular",
         "string": null,
     },
-    "0xa2c": {
+    "2604": {
         "font": "regular",
         "string": null,
     },
-    "0xa2d": {
+    "2605": {
         "font": "regular",
         "string": null,
     },
-    "0xa2e": {
+    "2606": {
         "font": "regular",
         "string": null,
     },
-    "0xa2f": {
+    "2607": {
         "font": "regular",
         "string": "Chaîne Mario Kart",
     },
-    "0xa30": {
+    "2608": {
         "font": "regular",
         "string": "Si vous installez la Chaîne\nMario Kart sur votre Bureau Wii,\nvous pourrez accéder à cette\nchaîne sans devoir insérer le\ndisque Mario Kart Wii.",
     },
-    "0xa31": {
+    "2609": {
         "font": "regular",
         "string": "La Chaîne Mario Kart est\ndéjà installée sur votre\nBureau Wii.",
     },
-    "0xa32": {
+    "2610": {
         "font": "regular",
         "string": "Il n'y a pas assez d'espace libre\ndans la mémoire de la console Wii.\nLibérez {arg integer|0 0} blocs en transférant\ndes données à une carte SD\nou en les effaçant depuis l'écran\nde Gestion des données. Gérez \nles données sauvegardées dans \nla mémoire de la console Wii à \npartir de l’écran de Gestion des \ndonnées de la console.",
     },
-    "0xa33": {
+    "2611": {
         "font": "regular",
         "string": "Il n'y a pas assez d'espace libre dans \nla mémoire de la console Wii.\nTransférez des données à une carte \nSD ou effacez des données inutiles \ndepuis l'écran de Gestion des données.\nGérez les données sauvegardées \ndans la mémoire de la console Wii \nà partir de l'écran de Gestion des \ndonnées de la console.",
     },
-    "0xa34": {
+    "2612": {
         "font": "regular",
         "string": "Il n'y a pas de chaîne libre \ndans le Menu Wii. \n\nTransférez des chaînes sur\nune carte SD ou effacez des \nchaînes depuis l'écran de \nGestion des données.",
     },
-    "0xa35": {
+    "2613": {
         "font": "regular",
         "string": "La mémoire de la console Wii a été \nendommagée. Veuillez vous référer \nau Mode d'Emploi Wii pour plus de \ndétails.",
     },
-    "0xa36": {
+    "2614": {
         "font": "regular",
         "string": null,
     },
-    "0xbb8": {
+    "3000": {
         "font": "regular",
         "string": "Grand Prix",
     },
-    "0xbb9": {
+    "3001": {
         "font": "regular",
         "string": "Contre-la-montre",
     },
-    "0xbba": {
+    "3002": {
         "font": "regular",
         "string": "Course VS",
     },
-    "0xbbb": {
+    "3003": {
         "font": "regular",
         "string": "Bataille",
     },
-    "0xbbc": {
+    "3004": {
         "font": "regular",
         "string": null,
     },
-    "0xbbd": {
+    "3005": {
         "font": "regular",
         "string": null,
     },
-    "0xbbe": {
+    "3006": {
         "font": "regular",
         "string": "50cc\n{font scale|50}Karts seulement",
     },
-    "0xbbf": {
+    "3007": {
         "font": "regular",
         "string": "100cc\n{font scale|50}Motos seulement",
     },
-    "0xbc0": {
+    "3008": {
         "font": "regular",
         "string": "150cc\n{font scale|50}Karts et motos",
     },
-    "0xbc1": {
+    "3009": {
         "font": "regular",
         "string": "Miroir\n{font scale|50}Karts et motos",
     },
-    "0xbc2": {
+    "3010": {
         "font": "regular",
         "string": "50cc\n{font scale|50}Karts et motos",
     },
-    "0xbc3": {
+    "3011": {
         "font": "regular",
         "string": "100cc\n{font scale|50}Karts et motos",
     },
-    "0xbc4": {
+    "3012": {
         "font": "regular",
         "string": "{2 chars| }Changer",
     },
-    "0xbc5": {
+    "3013": {
         "font": "regular",
         "string": null,
     },
-    "0xbea": {
+    "3050": {
         "font": "regular",
         "string": "Décrochez la première place sur quatre circuits!",
     },
-    "0xbeb": {
+    "3051": {
         "font": "regular",
         "string": "Essayez de réaliser le meilleur temps!",
     },
-    "0xbec": {
+    "3052": {
         "font": "regular",
         "string": "Faites une course selon vos propres règles!",
     },
-    "0xbed": {
+    "3053": {
         "font": "regular",
         "string": "Faites une course selon vos propres règles!",
     },
-    "0xbee": {
+    "3054": {
         "font": "regular",
         "string": "Menez votre équipe à la victoire!",
     },
-    "0xbef": {
+    "3055": {
         "font": "regular",
         "string": "Formez deux équipes et affrontez-vous!",
     },
-    "0xbf0": {
+    "3056": {
         "font": "regular",
         "string": null,
     },
-    "0xbf1": {
+    "3057": {
         "font": "regular",
         "string": null,
     },
-    "0xbf2": {
+    "3058": {
         "font": "regular",
         "string": null,
     },
-    "0xbf3": {
+    "3059": {
         "font": "regular",
         "string": null,
     },
-    "0xbf4": {
+    "3060": {
         "font": "regular",
         "string": "Grand Prix pour novices (karts seulement).",
     },
-    "0xbf5": {
+    "3061": {
         "font": "regular",
         "string": "Grand Prix standard (motos seulement).",
     },
-    "0xbf6": {
+    "3062": {
         "font": "regular",
         "string": "Grand Prix pour experts (karts et motos).",
     },
-    "0xbf7": {
+    "3063": {
         "font": "regular",
         "string": "La droite et la gauche sont inversées (karts et motos).",
     },
-    "0xbf8": {
+    "3064": {
         "font": "regular",
         "string": "Grand Prix pour novices (karts et motos).",
     },
-    "0xbf9": {
+    "3065": {
         "font": "regular",
         "string": "Grand Prix standard (karts et motos).",
     },
-    "0xbfa": {
+    "3066": {
         "font": "regular",
         "string": null,
     },
-    "0xc1c": {
+    "3100": {
         "font": "regular",
         "string": "Contre-la-montre",
     },
-    "0xc1d": {
+    "3101": {
         "font": "regular",
         "string": "Il n'y a aucun fantôme pour ce circuit.",
     },
-    "0xc1e": {
+    "3102": {
         "font": "regular",
         "string": null,
     },
-    "0xc1f": {
+    "3103": {
         "font": "regular",
         "string": "Voir les classements",
     },
-    "0xc20": {
+    "3104": {
         "font": "regular",
         "string": null,
     },
-    "0xc80": {
+    "3200": {
         "font": "regular",
         "string": "Type de bataille",
     },
-    "0xc81": {
+    "3201": {
         "font": "regular",
         "string": "Bataille de Ballons",
     },
-    "0xc82": {
+    "3202": {
         "font": "regular",
         "string": "Pilotes Pièces",
     },
-    "0xc83": {
+    "3203": {
         "font": "regular",
         "string": null,
     },
-    "0xc84": {
+    "3204": {
         "font": "regular",
         "string": null,
     },
-    "0xcb2": {
+    "3250": {
         "font": "regular",
         "string": "Éclatez les ballons de vos adversaires!",
     },
-    "0xcb3": {
+    "3251": {
         "font": "regular",
         "string": "Récupérez le plus de pièces possible!",
     },
-    "0xcb4": {
+    "3252": {
         "font": "regular",
         "string": null,
     },
-    "0xcb5": {
+    "3253": {
         "font": "regular",
         "string": null,
     },
-    "0xce9": {
+    "3305": {
         "font": "regular",
         "string": "Mode de dérapage",
     },
-    "0xcea": {
+    "3306": {
         "font": "regular",
         "string": "Automatique",
     },
-    "0xceb": {
+    "3307": {
         "font": "regular",
         "string": "Manuel",
     },
-    "0xcec": {
+    "3308": {
         "font": "regular",
         "string": "Aide",
     },
-    "0xced": {
+    "3309": {
         "font": "regular",
         "string": "■Dérapage automatique■\nVous déraperez automatiquement lorsque \nvous tournez. En négociant les virages, \nvous ne perdrez pas de vitesse,{arg back button|0} mais vous \nne pourrez ni sauter ni utiliser de Mini-turbo.\n\n■Dérapage manuel■\n{arg back button|0}Sautez pendant que vous tournez pour déraper. \nContinuez à déraper pour charger un Mini-turbo\net déclencher une poussée de vitesse.",
     },
-    "0xcee": {
+    "3310": {
         "font": "regular",
         "string": "Explications sur les modes de dérapage.",
     },
-    "0xcef": {
+    "3311": {
         "font": "regular",
         "string": "Vitesse",
     },
-    "0xcf0": {
+    "3312": {
         "font": "regular",
         "string": "Poids",
     },
-    "0xcf1": {
+    "3313": {
         "font": "regular",
         "string": "Accélération",
     },
-    "0xcf2": {
+    "3314": {
         "font": "regular",
         "string": "Maniabilité",
     },
-    "0xcf3": {
+    "3315": {
         "font": "regular",
         "string": "Dérapage",
     },
-    "0xcf4": {
+    "3316": {
         "font": "regular",
         "string": "Hors-piste",
     },
-    "0xcf5": {
+    "3317": {
         "font": "regular",
         "string": "Mini-turbo",
     },
-    "0xcf6": {
+    "3318": {
         "font": "regular",
         "string": null,
     },
-    "0xd16": {
+    "3350": {
         "font": "regular",
         "string": "Dérapage automatique (sans Mini-turbo).",
     },
-    "0xd17": {
+    "3351": {
         "font": "regular",
         "string": "Dérapage manuel (avec Mini-turbo).",
     },
-    "0xd18": {
+    "3352": {
         "font": "regular",
         "string": null,
     },
-    "0xd20": {
+    "3360": {
         "font": "regular",
         "string": "{arg message|0} Trophée: {arg message|1} Classe: {arg message|2}",
     },
-    "0xd21": {
+    "3361": {
         "font": "regular",
         "string": "Contre-la-montre",
     },
-    "0xd22": {
+    "3362": {
         "font": "regular",
         "string": "{arg message|0}",
     },
-    "0xd23": {
+    "3363": {
         "font": "regular",
         "string": "Course VS {arg message|0}",
     },
-    "0xd24": {
+    "3364": {
         "font": "regular",
         "string": "{1 char|} Bataille de Ballons",
     },
-    "0xd25": {
+    "3365": {
         "font": "regular",
         "string": "{1 char|} Pilotes Pièces",
     },
-    "0xd26": {
+    "3366": {
         "font": "regular",
         "string": "Course VS par équipes {arg message|0}",
     },
-    "0xd2a": {
+    "3370": {
         "font": "regular",
         "string": "{1 char|}",
     },
-    "0xd2b": {
+    "3371": {
         "font": "regular",
         "string": "{1 char|}",
     },
-    "0xd2c": {
+    "3372": {
         "font": "regular",
         "string": "{1 char|}",
     },
-    "0xd2d": {
+    "3373": {
         "font": "regular",
         "string": "{1 char|}",
     },
-    "0xd2e": {
+    "3374": {
         "font": "regular",
         "string": "{1 char|}",
     },
-    "0xd2f": {
+    "3375": {
         "font": "regular",
         "string": "{1 char|}",
     },
-    "0xd30": {
+    "3376": {
         "font": "regular",
         "string": "{1 char|}",
     },
-    "0xd31": {
+    "3377": {
         "font": "regular",
         "string": "{1 char|}",
     },
-    "0xd32": {
+    "3378": {
         "font": "regular",
         "string": "{1 char|}",
     },
-    "0xd33": {
+    "3379": {
         "font": "regular",
         "string": "{1 char|}",
     },
-    "0xd34": {
+    "3380": {
         "font": "regular",
         "string": "{1 char|}",
     },
-    "0xd35": {
+    "3381": {
         "font": "regular",
         "string": "F",
     },
-    "0xd36": {
+    "3382": {
         "font": "regular",
         "string": "",
     },
-    "0xd37": {
+    "3383": {
         "font": "regular",
         "string": null,
     },
-    "0xd38": {
+    "3384": {
         "font": "regular",
         "string": null,
     },
-    "0xd48": {
+    "3400": {
         "font": "regular",
         "string": "Règles",
     },
-    "0xd49": {
+    "3401": {
         "font": "regular",
         "string": "Cylindrées",
     },
-    "0xd4a": {
+    "3402": {
         "font": "regular",
         "string": "Pilotes",
     },
-    "0xd4b": {
+    "3403": {
         "font": "regular",
         "string": "Véhicules",
     },
-    "0xd4c": {
+    "3404": {
         "font": "regular",
         "string": "Coupes",
     },
-    "0xd4d": {
+    "3405": {
         "font": "regular",
         "string": "Circuits",
     },
-    "0xd4e": {
+    "3406": {
         "font": "regular",
         "string": "Arènes",
     },
-    "0xd4f": {
+    "3407": {
         "font": "regular",
         "string": "Fantômes",
     },
-    "0xd50": {
+    "3408": {
         "font": "regular",
         "string": "Bataille",
     },
-    "0xd51": {
+    "3409": {
         "font": "regular",
         "string": "Course VS",
     },
-    "0xd52": {
+    "3410": {
         "font": "regular",
         "string": "Cylindrée",
     },
-    "0xd53": {
+    "3411": {
+        "font": "regular",
+        "string": "50cc",
+    },
+    "3412": {
         "font": "regular",
         "string": "100cc",
     },
-    "0xd54": {
+    "3413": {
         "font": "regular",
         "string": "150cc",
     },
-    "0xd55": {
+    "3414": {
         "font": "regular",
         "string": "Miroir",
     },
-    "0xd56": {
+    "3415": {
         "font": "regular",
-        "string": "200cc",
+        "string": "50cc, pour les débutants.",
     },
-    "0xd57": {
+    "3416": {
         "font": "regular",
-        "string": "Facteur de vitesse 0.9.",
+        "string": "100cc, pour les pilotes confirmés.",
     },
-    "0xd58": {
+    "3417": {
         "font": "regular",
-        "string": "Facteur de vitesse 1.0",
+        "string": "150cc, pour les experts.",
     },
-    "0xd59": {
+    "3418": {
         "font": "regular",
-        "string": "Facteur de vitesse 1.0, mode miroir.",
+        "string": "150cc, droite/gauche inversées.",
     },
-    "0xd5a": {
-        "font": "regular",
-        "string": "Facteur de vitesse 1.5, freinage-dérapage et atterrissage rapide.",
-    },
-    "0xd5c": {
+    "3420": {
         "font": "regular",
         "string": "Ordi",
     },
-    "0xd5d": {
+    "3421": {
         "font": "regular",
         "string": "Facile",
     },
-    "0xd5e": {
+    "3422": {
         "font": "regular",
         "string": "Normal",
     },
-    "0xd5f": {
+    "3423": {
         "font": "regular",
         "string": "Difficile",
     },
-    "0xd60": {
+    "3424": {
         "font": "regular",
         "string": "Aucun",
     },
-    "0xd61": {
+    "3425": {
         "font": "regular",
         "string": "Les pilotes ordi sont des pilotes novices.",
     },
-    "0xd62": {
+    "3426": {
         "font": "regular",
         "string": "Les pilotes ordi sont des pilotes confirmés.",
     },
-    "0xd63": {
+    "3427": {
         "font": "regular",
         "string": "Les pilotes ordi sont des pilotes experts.",
     },
-    "0xd64": {
+    "3428": {
         "font": "regular",
         "string": "Aucun pilote ordi.",
     },
-    "0xd66": {
+    "3430": {
         "font": "regular",
         "string": "Véhicules ordi",
     },
-    "0xd67": {
+    "3431": {
         "font": "regular",
         "string": "Karts",
     },
-    "0xd68": {
+    "3432": {
         "font": "regular",
         "string": "Motos",
     },
-    "0xd69": {
+    "3433": {
         "font": "regular",
         "string": "Tous",
     },
-    "0xd6a": {
+    "3434": {
         "font": "regular",
         "string": "Les pilotes ordi roulent en kart uniquement.",
     },
-    "0xd6b": {
+    "3435": {
         "font": "regular",
         "string": "Les pilotes ordi roulent en moto uniquement.",
     },
-    "0xd6c": {
+    "3436": {
         "font": "regular",
         "string": "Les pilotes ordi roulent en kart et moto.",
     },
-    "0xd6d": {
+    "3437": {
         "font": "regular",
         "string": "Les pilotes ordi roulent en kart uniquement.",
     },
-    "0xd6e": {
+    "3438": {
         "font": "regular",
         "string": "Les pilotes ordi roulent en moto uniquement.",
     },
-    "0xd6f": {
+    "3439": {
         "font": "regular",
         "string": "Les pilotes ordi roulent en kart et moto.",
     },
-    "0xd70": {
+    "3440": {
         "font": "regular",
         "string": "Circuits",
     },
-    "0xd71": {
+    "3441": {
         "font": "regular",
         "string": "Au choix",
     },
-    "0xd72": {
+    "3442": {
         "font": "regular",
         "string": "Aléatoire",
     },
-    "0xd73": {
+    "3443": {
         "font": "regular",
         "string": "Dans l'ordre",
     },
-    "0xd74": {
+    "3444": {
         "font": "regular",
         "string": "Le circuit est choisi avant chaque course.",
     },
-    "0xd75": {
+    "3445": {
         "font": "regular",
         "string": "Les circuits sont choisis au hasard.",
     },
-    "0xd76": {
+    "3446": {
         "font": "regular",
         "string": "Les circuits se succèdent dans l'ordre des coupes.",
     },
-    "0xd77": {
+    "3447": {
         "font": "regular",
         "string": "L'arène est choisie avant chaque bataille.",
     },
-    "0xd78": {
+    "3448": {
         "font": "regular",
         "string": "Les arènes sont choisies au hasard.",
     },
-    "0xd79": {
+    "3449": {
         "font": "regular",
         "string": "Les arènes se succèdent dans l'ordre.",
     },
-    "0xd7a": {
+    "3450": {
         "font": "regular",
         "string": "Courses",
     },
-    "0xd7b": {
+    "3451": {
         "font": "regular",
         "string": "{arg integer|0 1}",
     },
-    "0xd7c": {
+    "3452": {
         "font": "regular",
         "string": "Victoires",
     },
-    "0xd84": {
+    "3460": {
         "font": "regular",
         "string": "{arg integer|0 1}",
     },
-    "0xd85": {
+    "3461": {
         "font": "regular",
         "string": "Course par équipes",
     },
-    "0xd86": {
+    "3462": {
         "font": "regular",
         "string": "Course par équipes",
     },
-    "0xd87": {
+    "3463": {
         "font": "regular",
         "string": "Course solo",
     },
-    "0xd88": {
+    "3464": {
         "font": "regular",
         "string": null,
     },
-    "0xd89": {
+    "3465": {
         "font": "regular",
         "string": "Sélectionnez le nombre de courses.",
     },
-    "0xd8a": {
+    "3466": {
         "font": "regular",
         "string": "Sélectionnez le nombre de victoires.",
     },
-    "0xd8b": {
+    "3467": {
         "font": "regular",
         "string": "Menez votre équipe à la victoire!",
     },
-    "0xd8c": {
+    "3468": {
         "font": "regular",
         "string": "Chacun pour soi et que le meilleur gagne!",
     },
-    "0xd8d": {
+    "3469": {
         "font": "regular",
         "string": "Arènes",
     },
-    "0xd8e": {
+    "3470": {
         "font": "regular",
         "string": "Voulez-vous vraiment\nquitter la course VS \nen cours?",
     },
-    "0xd8f": {
+    "3471": {
         "font": "regular",
         "string": "Voulez-vous vraiment \nquitter la bataille en \ncours?",
     },
-    "0xd90": {
+    "3472": {
         "font": "regular",
         "string": "Faites une course avec ces règles.",
     },
-    "0xd91": {
+    "3473": {
         "font": "regular",
         "string": "Faites une bataille avec ces règles.",
     },
-    "0xd92": {
+    "3474": {
         "font": "regular",
         "string": "Réglez divers paramètres de la course.",
     },
-    "0xd93": {
+    "3475": {
         "font": "regular",
         "string": "Réglez divers paramètres de la bataille.",
     },
-    "0xd94": {
+    "3476": {
         "font": "regular",
         "string": null,
     },
-    "0xd98": {
+    "3480": {
         "font": "regular",
         "string": "Objets",
     },
-    "0xd99": {
+    "3481": {
         "font": "regular",
         "string": "Équilibré",
     },
-    "0xd9a": {
+    "3482": {
         "font": "regular",
         "string": "Agressif",
     },
-    "0xd9b": {
+    "3483": {
         "font": "regular",
         "string": "Stratégique",
     },
-    "0xd9c": {
+    "3484": {
         "font": "regular",
         "string": "Aucun",
     },
-    "0xd9d": {
+    "3485": {
         "font": "regular",
         "string": "Les objets apparaissent de manière équilibrée.",
     },
-    "0xd9e": {
+    "3486": {
         "font": "regular",
         "string": "Les objets puissants apparaissent plus souvent.",
     },
-    "0xd9f": {
+    "3487": {
         "font": "regular",
         "string": "Les objets puissants apparaissent moins souvent.",
     },
-    "0xda0": {
+    "3488": {
         "font": "regular",
         "string": "Aucun objet n'apparaît.",
     },
-    "0xda1": {
+    "3489": {
         "font": "regular",
         "string": null,
     },
-    "0xdac": {
+    "3500": {
         "font": "regular",
         "string": "Choix de l'équipe",
     },
-    "0xdad": {
+    "3501": {
         "font": "regular",
         "string": "Équipe\nbleue",
     },
-    "0xdae": {
+    "3502": {
         "font": "regular",
         "string": "Équipe\nrouge",
     },
-    "0xdaf": {
+    "3503": {
         "font": "regular",
         "string": "Équipes",
     },
-    "0xdb0": {
+    "3504": {
         "font": "regular",
         "string": "Jouez avec ces équipes.",
     },
-    "0xdb1": {
+    "3505": {
         "font": "regular",
         "string": "Membres",
     },
-    "0xdb2": {
+    "3506": {
         "font": "regular",
         "string": "{color|team blue}Équipe\nbleue",
     },
-    "0xdb3": {
+    "3507": {
         "font": "regular",
         "string": "{color|team red}Équipe\nrouge",
     },
-    "0xdb4": {
+    "3508": {
         "font": "regular",
         "string": "Tous les joueurs sont dans la même équipe.\n\nVeuillez faire une nouvelle sélection.",
     },
-    "0xdb5": {
+    "3509": {
         "font": "regular",
         "string": null,
     },
-    "0xdde": {
+    "3550": {
         "font": "regular",
         "string": "Commencer la course?",
     },
-    "0xddf": {
+    "3551": {
         "font": "regular",
         "string": "Commencer la bataille?",
     },
-    "0xde0": {
+    "3552": {
         "font": "regular",
         "string": "Commencer le tournoi?",
     },
-    "0xde1": {
+    "3553": {
         "font": "regular",
         "string": null,
     },
-    "0xfa0": {
+    "4000": {
         "font": "regular",
         "string": "Mondial",
     },
-    "0xfa1": {
+    "4001": {
         "font": "regular",
         "string": "Continental",
     },
-    "0xfa2": {
+    "4002": {
         "font": "regular",
         "string": "Amis",
     },
-    "0xfa3": {
+    "4003": {
         "font": "regular",
         "string": "Course fantôme",
     },
-    "0xfa4": {
+    "4004": {
         "font": "regular",
         "string": "Paramètres CWF Nintendo",
     },
-    "0xfa5": {
+    "4005": {
         "font": "regular",
         "string": null,
     },
-    "0xfa6": {
+    "4006": {
         "font": "regular",
         "string": null,
     },
-    "0xfa7": {
+    "4007": {
         "font": "regular",
         "string": null,
     },
-    "0xfa8": {
+    "4008": {
         "font": "regular",
         "string": "Vous n'avez aucun ami \nenregistré. Enregistrez \ndes amis pour pouvoir \njouer ensemble.",
     },
-    "0xfa9": {
+    "4009": {
         "font": "regular",
         "string": null,
     },
-    "0xfaa": {
+    "4010": {
         "font": "regular",
         "string": "Accès à la Connexion Wi-Fi Nintendo...",
     },
-    "0xfab": {
+    "4011": {
         "font": "regular",
         "string": "Voulez-vous interrompre la \nConnexion Wi-Fi Nintendo?",
     },
-    "0xfac": {
+    "4012": {
         "font": "regular",
         "string": "Oui",
     },
-    "0xfad": {
+    "4013": {
         "font": "regular",
         "string": "Non",
     },
-    "0xfae": {
+    "4014": {
         "font": "regular",
         "string": null,
     },
-    "0xfaf": {
+    "4015": {
         "font": "regular",
         "string": null,
     },
-    "0xfb0": {
+    "4016": {
         "font": "regular",
         "string": "Impossible d'accéder à la CWF\nNintendo avec ce nom de Mii.\n\nVeuillez vous reconnecter après \navoir changé le nom du Mii.",
     },
-    "0xfb1": {
+    "4017": {
         "font": "regular",
         "string": null,
     },
-    "0xfb2": {
+    "4018": {
         "font": "regular",
         "string": "La connexion avec les autres\njoueurs a été interrompue.",
     },
-    "0xfb3": {
+    "4019": {
         "font": "regular",
         "string": "Quitter la salle?",
     },
-    "0xfb4": {
+    "4020": {
         "font": "regular",
         "string": "Voulez-vous vraiment \nfermer la salle?",
     },
-    "0xfb5": {
+    "4021": {
         "font": "regular",
         "string": "La connexion avec le créateur de la\nsalle a été interrompue. Vous allez\nretourner à votre liste d'amis.",
     },
-    "0xfb6": {
+    "4022": {
         "font": "regular",
         "string": "Vous n'avez pas pu\nrejoindre votre ami.\n\nVeuillez réessayer\nultérieurement.",
     },
-    "0xfb7": {
+    "4023": {
         "font": "regular",
         "string": null,
     },
-    "0xfb8": {
+    "4024": {
         "font": "regular",
         "string": "Équipes",
     },
-    "0xfb9": {
+    "4025": {
         "font": "regular",
         "string": null,
     },
-    "0x1004": {
+    "4100": {
         "font": "regular",
         "string": "Salle",
     },
-    "0x1005": {
+    "4101": {
         "font": "regular",
         "string": "Créer une salle",
     },
-    "0x1006": {
+    "4102": {
         "font": "regular",
         "string": "Connexion en cours...",
     },
-    "0x1007": {
+    "4103": {
         "font": "regular",
         "string": null,
     },
-    "0x1008": {
+    "4104": {
         "font": "regular",
         "string": null,
     },
-    "0x1009": {
+    "4105": {
         "font": "regular",
         "string": null,
     },
-    "0x100a": {
+    "4106": {
         "font": "regular",
         "string": "Recherche d'adversaires...",
     },
-    "0x100b": {
+    "4107": {
         "font": "regular",
         "string": "Vos adversaires ont été choisis!",
     },
-    "0x100c": {
+    "4108": {
         "font": "regular",
         "string": "En attente d'amis...",
     },
-    "0x100d": {
+    "4109": {
         "font": "regular",
         "string": "Commencer",
     },
-    "0x100e": {
+    "4110": {
         "font": "regular",
         "string": "Faisons une course VS!",
     },
-    "0x100f": {
+    "4111": {
         "font": "regular",
         "string": "Faisons une course VS par équipes!",
     },
-    "0x1010": {
+    "4112": {
         "font": "regular",
         "string": "Faisons une Bataille de Ballons!",
     },
-    "0x1011": {
+    "4113": {
         "font": "regular",
         "string": "Faisons une Pilotes Pièces!",
     },
-    "0x1012": {
+    "4114": {
         "font": "regular",
         "string": null,
     },
-    "0x1036": {
+    "4150": {
         "font": "regular",
         "string": "Enregistrer",
     },
-    "0x1037": {
+    "4151": {
         "font": "regular",
         "string": "Soyons amis, {arg player|0}!",
     },
-    "0x1038": {
+    "4152": {
         "font": "regular",
         "string": "Aucun nouvel ami à enregistrer.",
     },
-    "0x1039": {
+    "4153": {
         "font": "regular",
         "string": null,
     },
-    "0x103a": {
+    "4154": {
         "font": "regular",
         "string": "Nous sommes amis, {arg player|0}!",
     },
-    "0x103b": {
+    "4155": {
         "font": "regular",
         "string": null,
     },
-    "0x1068": {
+    "4200": {
         "font": "regular",
         "string": "Message",
     },
-    "0x1069": {
+    "4201": {
         "font": "regular",
         "string": "{arg integer|0 2}/{arg integer|1 2}",
     },
-    "0x106a": {
+    "4202": {
         "font": "regular",
         "string": "{arg integer|0 0}{font scale|70} Pts Course",
     },
-    "0x106b": {
+    "4203": {
         "font": "regular",
         "string": "{arg integer|0 0}{font scale|70} Pts Bataille",
     },
-    "0x106c": {
+    "4204": {
         "font": "regular",
         "string": "Veuillez patienter...",
     },
-    "0x106d": {
+    "4205": {
         "font": "regular",
         "string": "Course VS mondiale",
     },
-    "0x106e": {
+    "4206": {
         "font": "regular",
         "string": "Bataille mondiale",
     },
-    "0x106f": {
+    "4207": {
         "font": "regular",
         "string": "Course VS continentale",
     },
-    "0x1070": {
+    "4208": {
         "font": "regular",
         "string": "Bataille continentale",
     },
-    "0x10cc": {
+    "4300": {
         "font": "regular",
         "string": "Choisissez un mode.",
     },
-    "0x10cd": {
+    "4301": {
         "font": "regular",
         "string": "Veuillez patienter...",
     },
-    "0x10ce": {
+    "4302": {
         "font": "regular",
         "string": "Le mode de jeu a été choisi.",
     },
-    "0x10cf": {
+    "4303": {
         "font": "regular",
         "string": null,
     },
-    "0x10d0": {
+    "4304": {
         "font": "regular",
         "string": null,
     },
-    "0x10d1": {
+    "4305": {
         "font": "regular",
         "string": "Course VS",
     },
-    "0x10d2": {
+    "4306": {
         "font": "regular",
         "string": "Course VS",
     },
-    "0x10d3": {
+    "4307": {
         "font": "regular",
         "string": null,
     },
-    "0x10d4": {
+    "4308": {
         "font": "regular",
         "string": "Bataille",
     },
-    "0x10d5": {
+    "4309": {
         "font": "regular",
         "string": "Bataille",
     },
-    "0x10d6": {
+    "4310": {
         "font": "regular",
         "string": "Jouez avec des gens du monde entier.",
     },
-    "0x10d7": {
+    "4311": {
         "font": "regular",
         "string": "Jouez avec des gens dans votre région.",
     },
-    "0x10d8": {
+    "4312": {
         "font": "regular",
         "string": "Jouez avec des amis.",
     },
-    "0x10d9": {
+    "4313": {
         "font": "regular",
         "string": "Affrontez les fantômes de joueurs du monde entier.",
     },
-    "0x10da": {
+    "4314": {
         "font": "regular",
         "string": "Affrontez jusqu'à 11 autres joueurs!",
     },
-    "0x10db": {
+    "4315": {
         "font": "regular",
         "string": "Formez deux équipes de six et affrontez-vous!",
     },
-    "0x10dc": {
+    "4316": {
         "font": "regular",
         "string": "Créez une salle et affrontez vos amis.",
     },
-    "0x10dd": {
+    "4317": {
         "font": "regular",
         "string": "Consultez le statut de vos amis.",
     },
-    "0x10de": {
+    "4318": {
         "font": "regular",
         "string": "Enregistrez un nouveau code ami.",
     },
-    "0x10df": {
+    "4319": {
         "font": "regular",
         "string": null,
     },
-    "0x10e0": {
+    "4320": {
         "font": "regular",
         "string": "La course suivante sera en 100cc!",
     },
-    "0x10e1": {
+    "4321": {
         "font": "regular",
         "string": "La course suivante sera en 150cc!",
     },
-    "0x10e2": {
+    "4322": {
         "font": "regular",
         "string": "La course suivante sera en Mode Miroir!",
     },
-    "0x10e3": {
+    "4323": {
         "font": "regular",
         "string": "{1 char|} Bataille de Ballons",
     },
-    "0x10e4": {
+    "4324": {
         "font": "regular",
         "string": "{1 char|} Pilotes Pièces",
     },
-    "0x10e5": {
+    "4325": {
         "font": "regular",
         "string": "La course suivante sera en 100cc!",
     },
-    "0x10e6": {
+    "4326": {
         "font": "regular",
         "string": "La course suivante sera en 150cc!",
     },
-    "0x10e7": {
+    "4327": {
         "font": "regular",
         "string": "La course suivante sera en Mode Miroir!",
     },
-    "0x10e8": {
+    "4328": {
         "font": "regular",
         "string": "La course suivante sera en 100cc!",
     },
-    "0x10e9": {
+    "4329": {
         "font": "regular",
         "string": "La course suivante sera en 150cc!",
     },
-    "0x10ea": {
+    "4330": {
         "font": "regular",
         "string": "La course suivante sera en Mode Miroir!",
     },
-    "0x10eb": {
+    "4331": {
         "font": "regular",
         "string": null,
     },
-    "0x10ec": {
+    "4332": {
         "font": "regular",
         "string": null,
     },
-    "0x10ed": {
+    "4333": {
         "font": "regular",
         "string": null,
     },
-    "0x10ee": {
+    "4334": {
         "font": "regular",
         "string": null,
     },
-    "0x10fe": {
+    "4350": {
         "font": "regular",
         "string": "Voulez-vous voter pour le circuit suivant?",
     },
-    "0x10ff": {
+    "4351": {
         "font": "regular",
         "string": "Voter",
     },
-    "0x1100": {
+    "4352": {
         "font": "regular",
         "string": "Aléatoire",
     },
-    "0x1101": {
+    "4353": {
         "font": "regular",
         "string": "?",
     },
-    "0x1102": {
+    "4354": {
         "font": "regular",
         "string": "Votes circuit",
     },
-    "0x1103": {
+    "4355": {
         "font": "regular",
         "string": "Votes arène",
     },
-    "0x1104": {
+    "4356": {
         "font": "regular",
         "string": "Voulez-vous voter pour une arène?",
     },
-    "0x1105": {
+    "4357": {
         "font": "regular",
         "string": "Course en préparation...",
     },
-    "0x1106": {
+    "4358": {
         "font": "regular",
         "string": "Bataille en préparation...",
     },
-    "0x1107": {
+    "4359": {
         "font": "regular",
         "string": null,
     },
-    "0x1108": {
+    "4360": {
         "font": "regular",
         "string": "Vote des joueurs en cours...",
     },
-    "0x1109": {
+    "4361": {
         "font": "regular",
         "string": "",
     },
-    "0x110a": {
+    "4362": {
         "font": "regular",
         "string": "Le circuit a été sélectionné!",
     },
-    "0x110b": {
+    "4363": {
         "font": "regular",
         "string": "L'arène a été sélectionnée!",
     },
-    "0x110c": {
+    "4364": {
         "font": "regular",
         "string": null,
     },
-    "0x1112": {
+    "4370": {
         "font": "regular",
         "string": "Envoyez un message à tout le monde.",
     },
-    "0x1113": {
+    "4371": {
         "font": "regular",
         "string": "Choisissez le message à envoyer.",
     },
-    "0x1114": {
+    "4372": {
         "font": "regular",
         "string": "Commencez la partie avec ces joueurs.",
     },
-    "0x1115": {
+    "4373": {
         "font": "regular",
         "string": "Choisissez le mode de jeu.",
     },
-    "0x1116": {
+    "4374": {
         "font": "regular",
         "string": "Invitez d'autres joueurs à devenir vos amis.",
     },
-    "0x1117": {
+    "4375": {
         "font": "regular",
         "string": "Ce message ne sera envoyé qu'à la personne que vous invitez.",
     },
-    "0x1118": {
+    "4376": {
         "font": "regular",
         "string": null,
     },
-    "0x1126": {
+    "4390": {
         "font": "regular",
         "string": "Veuillez saisir un code ami.",
     },
-    "0x1127": {
+    "4391": {
         "font": "regular",
         "string": "Enregistrez ce code ami.",
     },
-    "0x1128": {
+    "4392": {
         "font": "regular",
         "string": "Affrontez des amis.",
     },
-    "0x1129": {
+    "4393": {
         "font": "regular",
         "string": "Ce joueur sera supprimé de votre liste d'amis.",
     },
-    "0x112a": {
+    "4394": {
         "font": "regular",
         "string": null,
     },
-    "0x112b": {
+    "4395": {
         "font": "regular",
         "string": null,
     },
-    "0x112c": {
+    "4396": {
         "font": "regular",
         "string": null,
     },
-    "0x112d": {
+    "4397": {
         "font": "regular",
         "string": null,
     },
-    "0x1193": {
+    "4499": {
         "font": "regular",
         "string": "Me voilà!",
     },
-    "0x1194": {
+    "4500": {
         "font": "regular",
         "string": "Bonjour!",
     },
-    "0x1195": {
+    "4501": {
         "font": "regular",
         "string": "Bonsoir!",
     },
-    "0x1196": {
+    "4502": {
         "font": "regular",
         "string": "Ça faisait longtemps!",
     },
-    "0x1197": {
+    "4503": {
         "font": "regular",
         "string": "Bonne chance!",
     },
-    "0x1198": {
+    "4504": {
         "font": "regular",
         "string": "Merci d'avoir patienté!",
     },
-    "0x1199": {
+    "4505": {
         "font": "regular",
         "string": "Bienvenue!",
     },
-    "0x119a": {
+    "4506": {
         "font": "regular",
         "string": "Tout le monde est là?",
     },
-    "0x119b": {
+    "4507": {
         "font": "regular",
         "string": "Attendons encore un peu...",
     },
-    "0x119c": {
+    "4508": {
         "font": "regular",
         "string": "Tout le monde est prêt?",
     },
-    "0x119d": {
+    "4509": {
         "font": "regular",
         "string": "La partie commence bientôt?",
     },
-    "0x119e": {
+    "4510": {
         "font": "regular",
         "string": "Attendons encore quelques minutes...",
     },
-    "0x119f": {
+    "4511": {
         "font": "regular",
         "string": "Je vais faire une pause...",
     },
-    "0x11a0": {
+    "4512": {
         "font": "regular",
         "string": "OK!",
     },
-    "0x11a1": {
+    "4513": {
         "font": "regular",
         "string": "C'est parti!",
     },
-    "0x11a2": {
+    "4514": {
         "font": "regular",
         "string": "Ne soyez pas trop durs avec moi!",
     },
-    "0x11a3": {
+    "4515": {
         "font": "regular",
         "string": "Je vais faire de mon mieux!",
     },
-    "0x11a4": {
+    "4516": {
         "font": "regular",
         "string": "Qu'est-ce qu'on fait?",
     },
-    "0x11a5": {
+    "4517": {
         "font": "regular",
         "string": "Des préférences?",
     },
-    "0x11a6": {
+    "4518": {
         "font": "regular",
         "string": "Une course VS ou une bataille?",
     },
-    "0x11a7": {
+    "4519": {
         "font": "regular",
         "string": "Je le sens mal...",
     },
-    "0x11a8": {
+    "4520": {
         "font": "regular",
         "string": "Une course VS!",
     },
-    "0x11a9": {
+    "4521": {
         "font": "regular",
         "string": "Une course VS par équipes!",
     },
-    "0x11aa": {
+    "4522": {
         "font": "regular",
         "string": "Une Bataille de Ballons!",
     },
-    "0x11ab": {
+    "4523": {
         "font": "regular",
         "string": "Une Pilotes Pièces!",
     },
-    "0x11ac": {
+    "4524": {
         "font": "regular",
         "string": "Je vais prendre un véhicule léger!",
     },
-    "0x11ad": {
+    "4525": {
         "font": "regular",
         "string": "Je vais prendre un véhicule standard!",
     },
-    "0x11ae": {
+    "4526": {
         "font": "regular",
         "string": "Je vais prendre un véhicule lourd!",
     },
-    "0x11af": {
+    "4527": {
         "font": "regular",
         "string": "Je vais jouer avec mon Mii!",
     },
-    "0x11b0": {
+    "4528": {
         "font": "regular",
         "string": "Je vais jouer avec le Wii Wheel!",
     },
-    "0x11b1": {
+    "4529": {
         "font": "regular",
         "string": "Je vais prendre un kart!",
     },
-    "0x11b2": {
+    "4530": {
         "font": "regular",
         "string": "Je vais prendre une moto!",
     },
-    "0x11b3": {
+    "4531": {
         "font": "regular",
         "string": "Peu importe!",
     },
-    "0x11b4": {
+    "4532": {
         "font": "regular",
         "string": "Quel circuit?",
     },
-    "0x11b5": {
+    "4533": {
         "font": "regular",
         "string": "Hum...",
     },
-    "0x11b6": {
+    "4534": {
         "font": "regular",
         "string": "Laissons le hasard décider!",
     },
-    "0x11b7": {
+    "4535": {
         "font": "regular",
         "string": "Essayons un autre circuit!",
     },
-    "0x11b8": {
+    "4536": {
         "font": "regular",
         "string": "Circuit Luigi!",
     },
-    "0x11b9": {
+    "4537": {
         "font": "regular",
         "string": "Prairie Meuh Meuh!",
     },
-    "0x11ba": {
+    "4538": {
         "font": "regular",
         "string": "Gorge Champignon!",
     },
-    "0x11bb": {
+    "4539": {
         "font": "regular",
         "string": "Usine de Toad!",
     },
-    "0x11bc": {
+    "4540": {
         "font": "regular",
         "string": "Circuit Mario!",
     },
-    "0x11bd": {
+    "4541": {
         "font": "regular",
         "string": "Centre Cocotier!",
     },
-    "0x11be": {
+    "4542": {
         "font": "regular",
         "string": "Sommet DK!",
     },
-    "0x11bf": {
+    "4543": {
         "font": "regular",
         "string": "Mine d'Or de Wario!",
     },
-    "0x11c0": {
+    "4544": {
         "font": "regular",
         "string": "Circuit Daisy!",
     },
-    "0x11c1": {
+    "4545": {
         "font": "regular",
         "string": "Cap Koopa!",
     },
-    "0x11c2": {
+    "4546": {
         "font": "regular",
         "string": "Chemin à la Sucrerie!",
     },
-    "0x11c3": {
+    "4547": {
         "font": "regular",
         "string": "Volcan Grondant!",
     },
-    "0x11c4": {
+    "4548": {
         "font": "regular",
         "string": "Ruines Sec-Sec!",
     },
-    "0x11c5": {
+    "4549": {
         "font": "regular",
         "string": "Autoroute de la Lune!",
     },
-    "0x11c6": {
+    "4550": {
         "font": "regular",
         "string": "Château de Bowser!",
     },
-    "0x11c7": {
+    "4551": {
         "font": "regular",
         "string": "Route Arc-en-ciel!",
     },
-    "0x11c8": {
+    "4552": {
         "font": "regular",
         "string": "GCN Plage Peach!",
     },
-    "0x11c9": {
+    "4553": {
         "font": "regular",
         "string": "DS Cascades Yoshi!",
     },
-    "0x11ca": {
+    "4554": {
         "font": "regular",
         "string": "SNES Vallée Fantôme 2!",
     },
-    "0x11cb": {
+    "4555": {
         "font": "regular",
         "string": "N64 Autodrome Mario!",
     },
-    "0x11cc": {
+    "4556": {
         "font": "regular",
         "string": "N64 Royaume Sorbet!",
     },
-    "0x11cd": {
+    "4557": {
         "font": "regular",
         "string": "GBA Plage Shy Guy!",
     },
-    "0x11ce": {
+    "4558": {
         "font": "regular",
         "string": "DS Quartier Delfino!",
     },
-    "0x11cf": {
+    "4559": {
         "font": "regular",
         "string": "GCN Stade Waluigi!",
     },
-    "0x11d0": {
+    "4560": {
         "font": "regular",
         "string": "DS Désert du Soleil!",
     },
-    "0x11d1": {
+    "4561": {
         "font": "regular",
         "string": "GBA Château de Bowser 3!",
     },
-    "0x11d2": {
+    "4562": {
         "font": "regular",
         "string": "N64 Jungle de DK!",
     },
-    "0x11d3": {
+    "4563": {
         "font": "regular",
         "string": "GCN Circuit Mario!",
     },
-    "0x11d4": {
+    "4564": {
         "font": "regular",
         "string": "SNES Circuit Mario 3!",
     },
-    "0x11d5": {
+    "4565": {
         "font": "regular",
         "string": "DS Jardin Peach!",
     },
-    "0x11d6": {
+    "4566": {
         "font": "regular",
         "string": "GCN Montagne DK!",
     },
-    "0x11d7": {
+    "4567": {
         "font": "regular",
         "string": "N64 Château de Bowser!",
     },
-    "0x11d8": {
+    "4568": {
         "font": "regular",
         "string": "Square Bloc!",
     },
-    "0x11d9": {
+    "4569": {
         "font": "regular",
         "string": "Quai Delfino!",
     },
-    "0x11da": {
+    "4570": {
         "font": "regular",
         "string": "Stade de Funky Kong!",
     },
-    "0x11db": {
+    "4571": {
         "font": "regular",
         "string": "Roulette Chain Chomp!",
     },
-    "0x11dc": {
+    "4572": {
         "font": "regular",
         "string": "Désert Thwomp!",
     },
-    "0x11dd": {
+    "4573": {
         "font": "regular",
         "string": "SNES Circuit de Bataille 4!",
     },
-    "0x11de": {
+    "4574": {
         "font": "regular",
         "string": "GBA Circuit de Bataille 3!",
     },
-    "0x11df": {
+    "4575": {
         "font": "regular",
         "string": "N64 Gratte-ciel!",
     },
-    "0x11e0": {
+    "4576": {
         "font": "regular",
         "string": "GCN Cookie Arena!",
     },
-    "0x11e1": {
+    "4577": {
         "font": "regular",
         "string": "DS Maison de l'Aube!",
     },
-    "0x11e2": {
+    "4578": {
         "font": "regular",
         "string": "Allez, les rouges!",
     },
-    "0x11e3": {
+    "4579": {
         "font": "regular",
         "string": "Allez, les bleus!",
     },
-    "0x11e4": {
+    "4580": {
         "font": "regular",
         "string": "Youpi!",
     },
-    "0x11e5": {
+    "4581": {
         "font": "regular",
         "string": "J'ai gagné!",
     },
-    "0x11e6": {
+    "4582": {
         "font": "regular",
         "string": "Ça va trop vite pour moi!",
     },
-    "0x11e7": {
+    "4583": {
         "font": "regular",
         "string": "Félicitations!",
     },
-    "0x11e8": {
+    "4584": {
         "font": "regular",
         "string": "C'était marrant!",
     },
-    "0x11e9": {
+    "4585": {
         "font": "regular",
         "string": "Belle partie!",
     },
-    "0x11ea": {
+    "4586": {
         "font": "regular",
         "string": "Grrr! Pas juste!",
     },
-    "0x11eb": {
+    "4587": {
         "font": "regular",
         "string": "J'aurai ma revanche!",
     },
-    "0x11ec": {
+    "4588": {
         "font": "regular",
         "string": "Remettons ça!",
     },
-    "0x11ed": {
+    "4589": {
         "font": "regular",
         "string": "Ce n'est pas encore fini!",
     },
-    "0x11ee": {
+    "4590": {
         "font": "regular",
         "string": "Allez, une dernière!",
     },
-    "0x11ef": {
+    "4591": {
         "font": "regular",
         "string": "Je vais en rester là...",
     },
-    "0x11f0": {
+    "4592": {
         "font": "regular",
         "string": "Merci pour ce bon moment!",
     },
-    "0x11f1": {
+    "4593": {
         "font": "regular",
         "string": "Merci!",
     },
-    "0x11f2": {
+    "4594": {
         "font": "regular",
         "string": "Bonne nuit!",
     },
-    "0x11f3": {
+    "4595": {
         "font": "regular",
         "string": "À la prochaine!",
     },
-    "0x11f4": {
+    "4596": {
         "font": "regular",
         "string": null,
     },
-    "0x11f5": {
+    "4597": {
         "font": "regular",
         "string": null,
     },
-    "0x11f6": {
+    "4598": {
         "font": "regular",
         "string": null,
     },
-    "0x11f7": {
+    "4599": {
         "font": "regular",
         "string": null,
     },
-    "0x11f8": {
+    "4600": {
         "font": "regular",
         "string": "Une erreur de communication\nest survenue. Vous allez \nretourner au menu principal.\n\nCode d'erreur: {arg integer|0 5}",
     },
-    "0x11f9": {
+    "4601": {
         "font": "regular",
         "string": "Impossible de se connecter à\nInternet. Vérifiez les paramètres \nInternet de la console Wii.\n\nCode d'erreur: {arg integer|0 5}",
     },
-    "0x11fa": {
+    "4602": {
         "font": "regular",
         "string": "Soit la Connexion Wi-Fi Nintendo \nconnaît un trafic trop important, soit \nle service est interrompu. Veuillez\nréessayer ultérieurement. Pour \ntoute assistance, visitez le site\nsupport.nintendo.com.\n\nCode d'erreur: {arg integer|0 5}",
     },
-    "0x11fb": {
+    "4603": {
         "font": "regular",
         "string": "Impossible de se connecter à\nla Connexion Wi-Fi Nintendo.\nPour toute assistance, référez-\nvous au Mode d'Emploi ou visitez \nle site support.nintendo.com.\n\nCode d'erreur: {arg integer|0 5}",
     },
-    "0x11fc": {
+    "4604": {
         "font": "regular",
         "string": "Le service de la Connexion Wi-Fi Nintendo \npour ce logiciel a été interrompu. Visitez le site\nsupport.nintendo.com pour une liste actuelle\ndes logiciels compatibles avec la Connexion\nWi-Fi Nintendo.\n\nCode d'erreur: {arg integer|0 5}",
     },
-    "0x11fd": {
+    "4605": {
         "font": "regular",
         "string": "Impossible de se connecter à\nla Connexion Wi-Fi Nintendo.\nPour toute assistance, référez-\nvous au Mode d'Emploi ou visitez \nle site support.nintendo.com.\n\nCode d'erreur: {arg integer|0 5}",
     },
-    "0x11fe": {
+    "4606": {
         "font": "regular",
         "string": "Soit la Connexion Wi-Fi Nintendo \nconnaît un trafic trop important, soit \nle service est interrompu. Veuillez\nréessayer ultérieurement. Pour \ntoute assistance, visitez le site\nsupport.nintendo.com.\n\nCode d'erreur: {arg integer|0 5}",
     },
-    "0x11ff": {
+    "4607": {
         "font": "regular",
         "string": "Il n'y a pas assez d'espace libre\ndans la mémoire de la console Wii.\n\nCode d'erreur: {arg integer|0 5}",
     },
-    "0x1200": {
+    "4608": {
         "font": "regular",
         "string": "La mémoire de la console Wii a \nété endommagée. Veuillez vous \nréférer au Mode d'Emploi Wii \npour plus de détails.\n\nCode d'erreur: {arg integer|0 5}",
     },
-    "0x1201": {
+    "4609": {
         "font": "regular",
         "string": "Erreur de communication.\nVeuillez réessayer. Pour toute\nassistance, visitez le site\nsupport.nintendo.com.\n\nCode d'erreur: {arg integer|0 5}",
     },
-    "0x1202": {
+    "4610": {
         "font": "regular",
         "string": "Le téléchargement a échoué.\nVeuillez réessayer. Pour toute \nassistance, visitez le site \nsupport.nintendo.com.\n\nCode d'erreur: {arg integer|0 5}",
     },
-    "0x1203": {
+    "4611": {
         "font": "regular",
         "string": "Erreur de communication. \nVeuillez réessayer. Pour toute \nassistance, visitez le site\nsupport.nintendo.com.\n\nCode d'erreur: {arg integer|0 5}",
     },
-    "0x1204": {
+    "4612": {
         "font": "regular",
         "string": "Erreur de communication. \nVeuillez réessayer. Pour toute \nassistance, visitez le site\nsupport.nintendo.com.\n\nCode d'erreur: {arg integer|0 5}",
     },
-    "0x1205": {
+    "4613": {
         "font": "regular",
         "string": "Erreur de communication. \nVeuillez réessayer. Pour toute \nassistance, visitez le site\nsupport.nintendo.com.\n\nCode d'erreur: {arg integer|0 5}",
     },
-    "0x1206": {
+    "4614": {
         "font": "regular",
         "string": "Erreur de communication. \nVeuillez réessayer. Pour \ntoute assistance, visitez le \nsite support.nintendo.com.\n\nCode d'erreur: {arg integer|0 5}",
     },
-    "0x1207": {
+    "4615": {
         "font": "regular",
         "string": "Erreur de communication. Veuillez réessayer.\nPour toute assistance, visitez le site\nsupport.nintendo.com.\n\nCode d'erreur: {arg integer|0 5}",
     },
-    "0x1208": {
+    "4616": {
         "font": "regular",
         "string": "Impossible de se connecter à Internet.\nVérifiez les Paramètres Internet de la\nconsole Wii.\n\nCode d'erreur: {arg integer|0 5}",
     },
-    "0x1209": {
+    "4617": {
         "font": "regular",
         "string": "Impossible de se connecter à Internet.\nVérifiez les Paramètres Internet de la\nconsole Wii.\n\nCode d'erreur: {arg integer|0 5}",
     },
-    "0x120a": {
+    "4618": {
         "font": "regular",
         "string": "Impossible de se connecter à Internet.\nVérifiez les Paramètres Internet de la\nconsole Wii.\n\nCode d'erreur: {arg integer|0 5}",
     },
-    "0x120b": {
+    "4619": {
         "font": "regular",
         "string": "Impossible de se connecter à Internet.\nVérifiez les Paramètres Internet de la\nconsole Wii.\n\nCode d'erreur: {arg integer|0 5}",
     },
-    "0x120c": {
+    "4620": {
         "font": "regular",
         "string": "Impossible de se connecter à Internet.\nVérifiez les Paramètres Internet de la\nconsole Wii.\n\nCode d'erreur: {arg integer|0 5}",
     },
-    "0x120d": {
+    "4621": {
         "font": "regular",
         "string": "Impossible de se connecter à Internet.\nVérifiez les Paramètres Internet de la\nconsole Wii.\n\nCode d'erreur: {arg integer|0 5}",
     },
-    "0x120e": {
+    "4622": {
         "font": "regular",
         "string": "Impossible de se connecter à Internet.\nVérifiez les Paramètres Internet de la\nconsole Wii.\n\nCode d'erreur: {arg integer|0 5}",
     },
-    "0x120f": {
+    "4623": {
         "font": "regular",
         "string": "Impossible de se connecter à Internet.\nVérifiez les Paramètres Internet de la\nconsole Wii.\n\nCode d'erreur: {arg integer|0 5}",
     },
-    "0x1210": {
+    "4624": {
         "font": "regular",
         "string": "Impossible de se connecter à Internet.\nVérifiez les Paramètres Internet de la\nconsole Wii.\n\nCode d'erreur: {arg integer|0 5}",
     },
-    "0x1211": {
+    "4625": {
         "font": "regular",
         "string": "Impossible de se connecter à Internet.\nVérifiez les Paramètres Internet de la\nconsole Wii.\n\nCode d'erreur: {arg integer|0 5}",
     },
-    "0x1212": {
+    "4626": {
         "font": "regular",
         "string": "Impossible de se connecter à Internet.\nVérifiez les Paramètres Internet de la\nconsole Wii.\n\nCode d'erreur: {arg integer|0 5}",
     },
-    "0x1213": {
+    "4627": {
         "font": "regular",
         "string": "Impossible de se connecter à Internet.\nVérifiez les Paramètres Internet de la\nconsole Wii.\n\nCode d'erreur: {arg integer|0 5}",
     },
-    "0x1214": {
+    "4628": {
         "font": "regular",
         "string": "Impossible de se connecter à Internet.\nVérifiez les Paramètres Internet de la\nconsole Wii.\n\nCode d'erreur: {arg integer|0 5}",
     },
-    "0x1215": {
+    "4629": {
         "font": "regular",
         "string": "Erreur de communication. Vous\navez été déconnecté de la CWF\nNintendo. Pour toute assistance,\nveuillez visiter\nsupport.nintendo.com.\n\nCode d'erreur: {arg integer|0 5}",
     },
-    "0x1216": {
+    "4630": {
         "font": "regular",
         "string": null,
     },
-    "0x1388": {
+    "5000": {
         "font": "regular",
         "string": "Chaîne Mario Kart",
     },
-    "0x1389": {
+    "5001": {
         "font": "regular",
         "string": "Trouver un ami",
     },
-    "0x138a": {
+    "5002": {
         "font": "regular",
         "string": "Classements",
     },
-    "0x138b": {
+    "5003": {
         "font": "regular",
         "string": "Course fantôme",
     },
-    "0x138c": {
+    "5004": {
         "font": "regular",
         "string": "Tournois",
     },
-    "0x138d": {
+    "5005": {
         "font": "regular",
         "string": null,
     },
-    "0x138e": {
+    "5006": {
         "font": "regular",
         "string": "Enregistrer un ami",
     },
-    "0x138f": {
+    "5007": {
         "font": "regular",
         "string": null,
     },
-    "0x1390": {
+    "5008": {
         "font": "regular",
         "string": "Menu Wii",
     },
-    "0x1391": {
+    "5009": {
         "font": "regular",
         "string": "Fantômes téléchargés",
     },
-    "0x1392": {
+    "5010": {
         "font": "regular",
         "string": "Tournois",
     },
-    "0x1393": {
+    "5011": {
         "font": "regular",
         "string": "Liste d'amis",
     },
-    "0x1394": {
+    "5012": {
         "font": "regular",
         "string": null,
     },
-    "0x1395": {
+    "5013": {
         "font": "regular",
         "string": null,
     },
-    "0x1396": {
+    "5014": {
         "font": "regular",
         "string": "Commencer la course",
     },
-    "0x1397": {
+    "5015": {
         "font": "regular",
         "string": "Améliorez votre technique \nen affrontant des fantômes \nde joueurs du monde entier \ndans une série de courses!",
     },
-    "0x1398": {
+    "5016": {
         "font": "regular",
         "string": "Mon fantôme",
     },
-    "0x1399": {
+    "5017": {
         "font": "regular",
         "string": "Améliorez votre technique\nen affrontant des fantômes \nde joueurs du monde entier \ndans une série de courses! \n\n{arg integer|0 0} {arg cond messages|0 5026 5027} - {arg integer|1 0} {arg cond messages|1 5028 5029}",
     },
-    "0x139a": {
+    "5018": {
         "font": "regular",
         "string": "Améliorez votre technique\nen affrontant des fantômes \nde joueurs du monde entier \ndans une série de courses! \n\n{arg integer|0 0} {arg cond messages|0 5026 5027} - {arg integer|1 0} {arg cond messages|1 5028 5029}",
     },
-    "0x139b": {
+    "5019": {
         "font": "regular",
         "string": "Améliorez votre technique\nen affrontant des fantômes \nde joueurs du monde entier \ndans une série de courses! \n\n{arg integer|0 0} {arg cond messages|0 5026 5027} - {arg integer|1 0} {arg cond messages|1 5028 5029}",
     },
-    "0x139c": {
+    "5020": {
         "font": "regular",
         "string": "Améliorez votre technique\nen affrontant des fantômes \nde joueurs du monde entier \ndans une série de courses! \n\n{arg integer|0 0} {arg cond messages|0 5026 5027} - {arg integer|1 0} {arg cond messages|1 5028 5029}",
     },
-    "0x139d": {
+    "5021": {
         "font": "regular",
         "string": "Améliorez votre technique\nen affrontant des fantômes \nde joueurs du monde entier \ndans une série de courses!  \n\n{arg integer|0 0} {arg cond messages|0 5026 5027} - {arg integer|1 0} {arg cond messages|1 5028 5029}",
     },
-    "0x139e": {
+    "5022": {
         "font": "regular",
         "string": "Améliorez votre technique\nen affrontant des fantômes \nde joueurs du monde entier \ndans une série de courses! \n\n{arg integer|0 0} {arg cond messages|0 5026 5027} - {arg integer|1 0} {arg cond messages|1 5028 5029}",
     },
-    "0x139f": {
+    "5023": {
         "font": "regular",
         "string": "Améliorez votre technique\nen affrontant des fantômes \nde joueurs du monde entier \ndans une série de courses!  \n\n{arg integer|0 0} {arg cond messages|0 5026 5027} - {arg integer|1 0} {arg cond messages|1 5028 5029}",
     },
-    "0x13a0": {
+    "5024": {
         "font": "regular",
         "string": "Améliorez votre technique\nen affrontant des fantômes \nde joueurs du monde entier \ndans une série de courses!  \n\n{arg integer|0 0} {arg cond messages|0 5026 5027} - {arg integer|1 0} {arg cond messages|1 5028 5029}",
     },
-    "0x13a1": {
+    "5025": {
         "font": "regular",
         "string": "{arg integer|0 0} {arg cond messages|0 5026 5027}",
     },
-    "0x13a2": {
+    "5026": {
         "font": "regular",
         "string": "victoire",
     },
-    "0x13a3": {
+    "5027": {
         "font": "regular",
         "string": "victoires",
     },
-    "0x13a4": {
+    "5028": {
         "font": "regular",
         "string": "défaite",
     },
-    "0x13a5": {
+    "5029": {
         "font": "regular",
         "string": "défaites",
     },
-    "0x13a6": {
+    "5030": {
         "font": "regular",
         "string": null,
     },
-    "0x13ba": {
+    "5050": {
         "font": "regular",
         "string": "Amis",
     },
-    "0x13bb": {
+    "5051": {
         "font": "regular",
         "string": "Fantômes",
     },
-    "0x13bc": {
+    "5052": {
         "font": "regular",
         "string": "Classement Contre-la-montre",
     },
-    "0x13bd": {
+    "5053": {
         "font": "regular",
         "string": null,
     },
-    "0x13be": {
+    "5054": {
         "font": "regular",
         "string": "Classement Tournoi",
     },
-    "0x13bf": {
+    "5055": {
         "font": "regular",
         "string": null,
     },
-    "0x13c4": {
+    "5060": {
         "font": "regular",
         "string": "Vérifiez le statut de vos amis.",
     },
-    "0x13c5": {
+    "5061": {
         "font": "regular",
         "string": "Consultez les records des autres joueurs.",
     },
-    "0x13c6": {
+    "5062": {
         "font": "regular",
         "string": "Vérifiez ou effacez les fantômes téléchargés.",
     },
-    "0x13c7": {
+    "5063": {
         "font": "regular",
         "string": "Participez à des tournois Mario Kart Wii.",
     },
-    "0x13c8": {
+    "5064": {
         "font": "regular",
         "string": "Affrontez des fantômes et consultez votre liste.",
     },
-    "0x13c9": {
+    "5065": {
         "font": "regular",
         "string": null,
     },
-    "0x13ca": {
+    "5066": {
         "font": "regular",
         "string": "Envoyez et affrontez des fantômes ici!",
     },
-    "0x13cb": {
+    "5067": {
         "font": "regular",
         "string": null,
     },
-    "0x13cc": {
+    "5068": {
         "font": "regular",
         "string": "Consultez les classements des tournois!",
     },
-    "0x13cd": {
+    "5069": {
         "font": "regular",
         "string": null,
     },
-    "0x13ce": {
+    "5070": {
         "font": "regular",
         "string": null,
     },
-    "0x13cf": {
+    "5071": {
         "font": "regular",
         "string": null,
     },
-    "0x13d0": {
+    "5072": {
         "font": "regular",
         "string": null,
     },
-    "0x13d1": {
+    "5073": {
         "font": "regular",
         "string": null,
     },
-    "0x13d2": {
+    "5074": {
         "font": "regular",
         "string": null,
     },
-    "0x13d3": {
+    "5075": {
         "font": "regular",
         "string": null,
     },
-    "0x13d8": {
+    "5080": {
         "font": "regular",
         "string": null,
     },
-    "0x13d9": {
+    "5081": {
         "font": "regular",
         "string": null,
     },
-    "0x13da": {
+    "5082": {
         "font": "regular",
         "string": null,
     },
-    "0x13db": {
+    "5083": {
         "font": "regular",
         "string": null,
     },
-    "0x13dc": {
+    "5084": {
         "font": "regular",
         "string": null,
     },
-    "0x13dd": {
+    "5085": {
         "font": "regular",
         "string": null,
     },
-    "0x13ec": {
+    "5100": {
         "font": "regular",
         "string": "Veuillez saisir le code ami.",
     },
-    "0x13ed": {
+    "5101": {
         "font": "regular",
         "string": "Voulez-vous enregistrer ce code ami?\n\n{arg integer|0 4}-{arg integer|1 4}-{arg integer|2 4}",
     },
-    "0x13ee": {
+    "5102": {
         "font": "regular",
         "string": "Le code ami ci-dessous est incorrect.\n\n{arg integer|0 4}-{arg integer|1 4}-{arg integer|2 4}.",
     },
-    "0x13ef": {
+    "5103": {
         "font": "regular",
         "string": "Le code ami ci-dessous\na été enregistré.\n\n{arg integer|0 4}-{arg integer|1 4}-{arg integer|2 4}",
     },
-    "0x13f0": {
+    "5104": {
         "font": "regular",
         "string": "Assurez-vous que votre ami\nenregistre votre code ami, {current player|}.\n\n{arg integer|0 4}-{arg integer|1 4}-{arg integer|2 4}\n\nUne fois que vous et votre ami\naurez enregistré vos codes respectifs,\nvous pourrez jouer ensemble.",
     },
-    "0x13f1": {
+    "5105": {
         "font": "regular",
         "string": "{arg integer|0 1}",
     },
-    "0x13f2": {
+    "5106": {
         "font": "regular",
         "string": "-",
     },
-    "0x13f3": {
+    "5107": {
         "font": "regular",
         "string": null,
     },
-    "0x13f6": {
+    "5110": {
         "font": "regular",
         "string": "Ce code ami est \ndéjà enregistré.",
     },
-    "0x13f7": {
+    "5111": {
         "font": "regular",
         "string": "Vous pouvez avoir jusqu'à \n30 amis dans votre liste \nd'amis. Votre liste d'amis \nest pleine.",
     },
-    "0x13f8": {
+    "5112": {
         "font": "regular",
         "string": "Vous n'avez pas le code ami de {current player|}.",
     },
-    "0x13f9": {
+    "5113": {
         "font": "regular",
         "string": "Ceci est le code ami de {arg license player|0}.\n\nIl ne peut pas être enregistré.",
     },
-    "0x13fb": {
+    "5115": {
         "font": "regular",
         "string": null,
     },
-    "0x141e": {
+    "5150": {
         "font": "regular",
         "string": null,
     },
-    "0x141f": {
+    "5151": {
         "font": "regular",
         "string": null,
     },
-    "0x1420": {
+    "5152": {
         "font": "regular",
         "string": null,
     },
-    "0x1421": {
+    "5153": {
         "font": "regular",
         "string": null,
     },
-    "0x1422": {
+    "5154": {
         "font": "regular",
         "string": null,
     },
-    "0x1423": {
+    "5155": {
         "font": "regular",
         "string": null,
     },
-    "0x1424": {
+    "5156": {
         "font": "regular",
         "string": null,
     },
-    "0x1425": {
+    "5157": {
         "font": "regular",
         "string": null,
     },
-    "0x1450": {
+    "5200": {
         "font": "regular",
         "string": "Supprimer",
     },
-    "0x1451": {
+    "5201": {
         "font": "regular",
         "string": "Rejoindre cet ami",
     },
-    "0x1452": {
+    "5202": {
         "font": "regular",
         "string": "Impossible de rejoindre cet ami.",
     },
-    "0x1453": {
+    "5203": {
         "font": "regular",
         "string": "Vous n'êtes pas encore amis.",
     },
-    "0x1454": {
+    "5204": {
         "font": "regular",
         "string": null,
     },
-    "0x1455": {
+    "5205": {
         "font": "regular",
         "string": null,
     },
-    "0x1456": {
+    "5206": {
         "font": "regular",
         "string": "victoire",
     },
-    "0x1457": {
+    "5207": {
         "font": "regular",
         "string": "victoires",
     },
-    "0x1458": {
+    "5208": {
         "font": "regular",
         "string": null,
     },
-    "0x1459": {
+    "5209": {
         "font": "regular",
         "string": "Bataille",
     },
-    "0x145a": {
+    "5210": {
         "font": "regular",
         "string": "Supprimer ce code ami?",
     },
-    "0x145b": {
+    "5211": {
         "font": "regular",
         "string": "Cet ami a été supprimé.",
     },
-    "0x145c": {
+    "5212": {
         "font": "regular",
         "string": "Suppression d'un ami en cours...",
     },
-    "0x145d": {
+    "5213": {
         "font": "regular",
         "string": "Supprimer un ami",
     },
-    "0x145e": {
+    "5214": {
         "font": "regular",
         "string": "Supprimer",
     },
-    "0x145f": {
+    "5215": {
         "font": "regular",
         "string": "Ne pas supprimer",
     },
-    "0x1460": {
+    "5216": {
         "font": "regular",
         "string": "{arg cond messages|0 5206 5207}",
     },
-    "0x1461": {
+    "5217": {
         "font": "regular",
         "string": "Toutes les données associées\nà ce code ami seront effacées.\nVoulez-vous continuer?",
     },
-    "0x1462": {
+    "5218": {
         "font": "regular",
         "string": null,
     },
-    "0x14b4": {
+    "5300": {
         "font": "regular",
         "string": "Je suis en ligne!",
     },
-    "0x14b5": {
+    "5301": {
         "font": "regular",
         "string": "Je suis hors ligne!",
     },
-    "0x14b6": {
+    "5302": {
         "font": "regular",
         "string": null,
     },
-    "0x14b7": {
+    "5303": {
         "font": "regular",
         "string": null,
     },
-    "0x14b8": {
+    "5304": {
         "font": "regular",
         "string": "J'ai créé une salle!",
     },
-    "0x14b9": {
+    "5305": {
         "font": "regular",
         "string": "J'affronte un ami maintenant!",
     },
-    "0x14ba": {
+    "5306": {
         "font": "regular",
         "string": "J'affronte un ami maintenant!",
     },
-    "0x14bb": {
+    "5307": {
         "font": "regular",
         "string": "Je fais une course VS mondiale!",
     },
-    "0x14bc": {
+    "5308": {
         "font": "regular",
         "string": "Je fais une bataille mondiale!",
     },
-    "0x14bd": {
+    "5309": {
         "font": "regular",
         "string": "Je fais une course VS continentale!",
     },
-    "0x14be": {
+    "5310": {
         "font": "regular",
         "string": "Je fais une bataille continentale!",
     },
-    "0x14bf": {
+    "5311": {
         "font": "regular",
         "string": "J'héberge une course (1{1 char|} course)!",
     },
-    "0x14c0": {
+    "5312": {
         "font": "regular",
         "string": "J'héberge une course (2{1 char|} course)!",
     },
-    "0x14c1": {
+    "5313": {
         "font": "regular",
         "string": "J'héberge une course (3{1 char|} course)!",
     },
-    "0x14c2": {
+    "5314": {
         "font": "regular",
         "string": "J'héberge une course (4{1 char|} course)!",
     },
-    "0x14c3": {
+    "5315": {
         "font": "regular",
         "string": "J'héberge une bataille (1{1 char|} bataille)!",
     },
-    "0x14c4": {
+    "5316": {
         "font": "regular",
         "string": "J'héberge une bataille (2{1 char|} bataille)!",
     },
-    "0x14c5": {
+    "5317": {
         "font": "regular",
         "string": "J'héberge une bataille (3{1 char|} bataille)!",
     },
-    "0x14c6": {
+    "5318": {
         "font": "regular",
         "string": "J'héberge une bataille (bris d'égalité)!",
     },
-    "0x14c7": {
+    "5319": {
         "font": "regular",
         "string": "J'affronte un ami (1{1 char|} course)!",
     },
-    "0x14c8": {
+    "5320": {
         "font": "regular",
         "string": "Je joue avec un ami (2{1 char|} course).",
     },
-    "0x14c9": {
+    "5321": {
         "font": "regular",
         "string": "Je joue avec un ami (3{1 char|} course).",
     },
-    "0x14ca": {
+    "5322": {
         "font": "regular",
         "string": "Je joue avec un ami (4{1 char|} course).",
     },
-    "0x14cb": {
+    "5323": {
         "font": "regular",
         "string": "Je joue avec un ami (1{1 char|} bataille).",
     },
-    "0x14cc": {
+    "5324": {
         "font": "regular",
         "string": "Je joue avec un ami (2{1 char|} bataille).",
     },
-    "0x14cd": {
+    "5325": {
         "font": "regular",
         "string": "Je joue avec un ami (3{1 char|} bataille).",
     },
-    "0x14ce": {
+    "5326": {
         "font": "regular",
         "string": "Je joue avec un ami (bris d'égalité).",
     },
-    "0x14cf": {
+    "5327": {
         "font": "regular",
         "string": null,
     },
-    "0x14d0": {
+    "5328": {
         "font": "regular",
         "string": null,
     },
-    "0x14e6": {
+    "5350": {
         "font": "regular",
         "string": "Je rejoins un ami.",
     },
-    "0x14e7": {
+    "5351": {
         "font": "regular",
         "string": null,
     },
-    "0x1518": {
+    "5400": {
         "font": "regular",
         "string": null,
     },
-    "0x1519": {
+    "5401": {
         "font": "regular",
         "string": null,
     },
-    "0x151a": {
+    "5402": {
         "font": "regular",
         "string": "Voulez-vous vraiment\nenvoyer ce fantôme?",
     },
-    "0x151b": {
+    "5403": {
         "font": "regular",
         "string": "Envoi du fantôme en cours...",
     },
-    "0x151c": {
+    "5404": {
         "font": "regular",
         "string": "Vous avez envoyé un fantôme\nen défi à {arg player|0}!\n\n{arg integer|0 0}/5",
     },
-    "0x151d": {
+    "5405": {
         "font": "regular",
         "string": "Vous avez envoyé un fantôme\nen defi à {arg player|0}!\n\n5/5\n\nVous pourrez envoyer d'autres\nfantômes la prochaine fois que\nvous jouerez à Mario Kart Wii.",
     },
-    "0x151e": {
+    "5406": {
         "font": "regular",
         "string": "Impossible d'envoyer un fantôme \nen défi car vous n'en avez pas \nencore créé.",
     },
-    "0x151f": {
+    "5407": {
         "font": "regular",
         "string": null,
     },
-    "0x157c": {
+    "5500": {
         "font": "regular",
         "string": "Lecture des fantômes en cours...",
     },
-    "0x157d": {
+    "5501": {
         "font": "regular",
         "string": "Un ami vous a lancé un défi!",
     },
-    "0x157e": {
+    "5502": {
         "font": "regular",
         "string": "Votre liste de fantômes téléchargés\nest pleine, ainsi vous ne pouvez \npas relever les défis de vos amis.\n\nVeuillez effacer un fantôme.",
     },
-    "0x157f": {
+    "5503": {
         "font": "regular",
         "string": "Vous ne pouvez pas encore\nfaire la course sur ce circuit.\n\nGagnez des trophées en \nGrand Prix pour déverrouiller \nplus de circuits.",
     },
-    "0x1580": {
+    "5504": {
         "font": "regular",
         "string": "Une erreur est survenue pendant\nle téléchargement du fantôme.",
     },
-    "0x1581": {
+    "5505": {
         "font": "regular",
         "string": null,
     },
-    "0x15e0": {
+    "5600": {
         "font": "regular",
         "string": "",
     },
-    "0x15e1": {
+    "5601": {
         "font": "regular",
         "string": "Japon",
     },
-    "0x15e8": {
+    "5608": {
         "font": "regular",
         "string": "Anguilla",
     },
-    "0x15e9": {
+    "5609": {
         "font": "regular",
         "string": "Antigua-et-Barbuda",
     },
-    "0x15ea": {
+    "5610": {
         "font": "regular",
         "string": "Argentine",
     },
-    "0x15eb": {
+    "5611": {
         "font": "regular",
         "string": "Aruba",
     },
-    "0x15ec": {
+    "5612": {
         "font": "regular",
         "string": "Bahamas",
     },
-    "0x15ed": {
+    "5613": {
         "font": "regular",
         "string": "Barbade",
     },
-    "0x15ee": {
+    "5614": {
         "font": "regular",
         "string": "Belize",
     },
-    "0x15ef": {
+    "5615": {
         "font": "regular",
         "string": "Bolivie",
     },
-    "0x15f0": {
+    "5616": {
         "font": "regular",
         "string": "Brésil",
     },
-    "0x15f1": {
+    "5617": {
         "font": "regular",
         "string": "Îles Vierges britanniques",
     },
-    "0x15f2": {
+    "5618": {
         "font": "regular",
         "string": "Canada",
     },
-    "0x15f3": {
+    "5619": {
         "font": "regular",
         "string": "Îles Caïman",
     },
-    "0x15f4": {
+    "5620": {
         "font": "regular",
         "string": "Chili",
     },
-    "0x15f5": {
+    "5621": {
         "font": "regular",
         "string": "Colombie",
     },
-    "0x15f6": {
+    "5622": {
         "font": "regular",
         "string": "Costa Rica",
     },
-    "0x15f7": {
+    "5623": {
         "font": "regular",
         "string": "Dominique",
     },
-    "0x15f8": {
+    "5624": {
         "font": "regular",
         "string": "République dominicaine",
     },
-    "0x15f9": {
+    "5625": {
         "font": "regular",
         "string": "Équateur",
     },
-    "0x15fa": {
+    "5626": {
         "font": "regular",
         "string": "Salvador",
     },
-    "0x15fc": {
+    "5628": {
         "font": "regular",
         "string": "Grenade",
     },
-    "0x15fe": {
+    "5630": {
         "font": "regular",
         "string": "Guatemala",
     },
-    "0x15ff": {
+    "5631": {
         "font": "regular",
         "string": "Guyana",
     },
-    "0x1600": {
+    "5632": {
         "font": "regular",
         "string": "Haïti",
     },
-    "0x1601": {
+    "5633": {
         "font": "regular",
         "string": "Honduras",
     },
-    "0x1602": {
+    "5634": {
         "font": "regular",
         "string": "Jamaïque",
     },
-    "0x1604": {
+    "5636": {
         "font": "regular",
         "string": "Mexique",
     },
-    "0x1605": {
+    "5637": {
         "font": "regular",
         "string": "Montserrat",
     },
-    "0x1606": {
+    "5638": {
         "font": "regular",
         "string": "Antilles néerlandaises",
     },
-    "0x1607": {
+    "5639": {
         "font": "regular",
         "string": "Nicaragua",
     },
-    "0x1608": {
+    "5640": {
         "font": "regular",
         "string": "Panama",
     },
-    "0x1609": {
+    "5641": {
         "font": "regular",
         "string": "Paraguay",
     },
-    "0x160a": {
+    "5642": {
         "font": "regular",
         "string": "Pérou",
     },
-    "0x160b": {
+    "5643": {
         "font": "regular",
         "string": "Saint-Christophe-et-Niévès",
     },
-    "0x160c": {
+    "5644": {
         "font": "regular",
         "string": "Sainte-Lucie",
     },
-    "0x160d": {
+    "5645": {
         "font": "regular",
         "string": "Saint-Vincent-et-les-Grenadines",
     },
-    "0x160e": {
+    "5646": {
         "font": "regular",
         "string": "Suriname",
     },
-    "0x160f": {
+    "5647": {
         "font": "regular",
         "string": "Trinité-et-Tobago",
     },
-    "0x1610": {
+    "5648": {
         "font": "regular",
         "string": "Îles Turques-et-Caïques",
     },
-    "0x1611": {
+    "5649": {
         "font": "regular",
         "string": "États-Unis d'Amérique",
     },
-    "0x1612": {
+    "5650": {
         "font": "regular",
         "string": "Uruguay",
     },
-    "0x1613": {
+    "5651": {
         "font": "regular",
         "string": "Îles Vierges américaines",
     },
-    "0x1614": {
+    "5652": {
         "font": "regular",
         "string": "Venezuela",
     },
-    "0x1621": {
+    "5665": {
         "font": "regular",
         "string": "Australie",
     },
-    "0x1622": {
+    "5666": {
         "font": "regular",
         "string": "Autriche",
     },
-    "0x1623": {
+    "5667": {
         "font": "regular",
         "string": "Belgique",
     },
-    "0x162a": {
+    "5674": {
         "font": "regular",
         "string": "Danemark",
     },
-    "0x162c": {
+    "5676": {
         "font": "regular",
         "string": "Finlande",
     },
-    "0x162d": {
+    "5677": {
         "font": "regular",
         "string": "France",
     },
-    "0x162e": {
+    "5678": {
         "font": "regular",
         "string": "Allemagne",
     },
-    "0x162f": {
+    "5679": {
         "font": "regular",
         "string": "Grèce",
     },
-    "0x1632": {
+    "5682": {
         "font": "regular",
         "string": "Irlande",
     },
-    "0x1633": {
+    "5683": {
         "font": "regular",
         "string": "Italie",
     },
-    "0x1638": {
+    "5688": {
         "font": "regular",
         "string": "Luxembourg",
     },
-    "0x163e": {
+    "5694": {
         "font": "regular",
         "string": "Pays-Bas",
     },
-    "0x163f": {
+    "5695": {
         "font": "regular",
         "string": "Nouvelle-Zélande",
     },
-    "0x1640": {
+    "5696": {
         "font": "regular",
         "string": "Norvège",
     },
-    "0x1642": {
+    "5698": {
         "font": "regular",
         "string": "Portugal",
     },
-    "0x1649": {
+    "5705": {
         "font": "regular",
         "string": "Espagne",
     },
-    "0x164b": {
+    "5707": {
         "font": "regular",
         "string": "Suède",
     },
-    "0x164c": {
+    "5708": {
         "font": "regular",
         "string": "Suisse",
     },
-    "0x164e": {
+    "5710": {
         "font": "regular",
         "string": "Royaume-Uni",
     },
-    "0x1660": {
+    "5728": {
         "font": "regular",
         "string": "",
     },
-    "0x1668": {
+    "5736": {
         "font": "regular",
         "string": "Corée du Sud",
     },
-    "0x1670": {
+    "5744": {
         "font": "regular",
         "string": "",
     },
-    "0x1671": {
+    "5745": {
         "font": "regular",
         "string": "",
     },
-    "0x1680": {
+    "5760": {
         "font": "regular",
         "string": "",
     },
-    "0x16df": {
+    "5855": {
         "font": "regular",
         "string": null,
     },
-    "0x1770": {
+    "6000": {
         "font": "regular",
         "string": "Choisissez un circuit.",
     },
-    "0x1771": {
+    "6001": {
         "font": "regular",
         "string": "Classement amis",
     },
-    "0x1772": {
+    "6002": {
         "font": "regular",
         "string": "Classement continental",
     },
-    "0x1773": {
+    "6003": {
         "font": "regular",
         "string": "Classement mondial",
     },
-    "0x1774": {
+    "6004": {
         "font": "regular",
         "string": "MEILLEURS",
     },
-    "0x1775": {
+    "6005": {
         "font": "regular",
         "string": "{arg message|0} 10 Meilleurs amis",
     },
-    "0x1776": {
+    "6006": {
         "font": "regular",
         "string": "{arg message|0} 10 Meilleurs continental",
     },
-    "0x1777": {
+    "6007": {
         "font": "regular",
         "string": "{arg message|0} 10 Meilleurs mondial",
     },
-    "0x1778": {
+    "6008": {
         "font": "regular",
         "string": "10",
     },
-    "0x1779": {
+    "6009": {
         "font": "regular",
         "string": "10 MEILLEURS",
     },
-    "0x177a": {
+    "6010": {
         "font": "regular",
         "string": "Contre-la-montre",
     },
-    "0x177b": {
+    "6011": {
         "font": "regular",
         "string": "Affronter ce fantôme",
     },
-    "0x177c": {
+    "6012": {
         "font": "regular",
         "string": "Revoir la course",
     },
-    "0x177d": {
+    "6013": {
         "font": "regular",
         "string": "Effacer ce fantôme",
     },
-    "0x177e": {
+    "6014": {
         "font": "regular",
         "string": "Envoyer un fantôme en défi",
     },
-    "0x177f": {
+    "6015": {
         "font": "regular",
         "string": "Affronter ce fantôme",
     },
-    "0x1780": {
+    "6016": {
         "font": "regular",
         "string": "Contre-la-montre solo",
     },
-    "0x1781": {
+    "6017": {
         "font": "regular",
         "string": "NOUVEAU",
     },
-    "0x1782": {
+    "6018": {
         "font": "regular",
         "string": "10 Meilleurs",
     },
-    "0x1783": {
+    "6019": {
         "font": "regular",
         "string": "amis",
     },
-    "0x1784": {
+    "6020": {
         "font": "regular",
         "string": "10 Meilleurs",
     },
-    "0x1785": {
+    "6021": {
         "font": "regular",
         "string": "continental",
     },
-    "0x1786": {
+    "6022": {
         "font": "regular",
         "string": "10 Meilleurs",
     },
-    "0x1787": {
+    "6023": {
         "font": "regular",
         "string": "mondial",
     },
-    "0x1788": {
+    "6024": {
         "font": "regular",
         "string": null,
     },
-    "0x17a2": {
+    "6050": {
         "font": "regular",
         "string": "TEMPS",
     },
-    "0x17a3": {
+    "6051": {
         "font": "regular",
         "string": "{arg integer|0 1}:{arg integer|1 2}",
     },
-    "0x17a4": {
+    "6052": {
         "font": "regular",
         "string": "{arg integer|0 2}:{arg integer|1 2}.{arg integer|2 3}",
     },
-    "0x17a5": {
+    "6053": {
         "font": "regular",
         "string": "--:--.---",
     },
-    "0x17a6": {
+    "6054": {
         "font": "regular",
         "string": "Champion continental",
     },
-    "0x17a7": {
+    "6055": {
         "font": "regular",
         "string": "Champion du monde",
     },
-    "0x17a8": {
+    "6056": {
         "font": "regular",
         "string": "Fantôme rival",
     },
-    "0x17a9": {
+    "6057": {
         "font": "regular",
         "string": "amis",
     },
-    "0x17aa": {
+    "6058": {
         "font": "regular",
         "string": "continental",
     },
-    "0x17ab": {
+    "6059": {
         "font": "regular",
         "string": "mondial",
     },
-    "0x17ac": {
+    "6060": {
         "font": "regular",
         "string": "{arg front button|0}",
     },
-    "0x17ad": {
+    "6061": {
         "font": "regular",
         "string": "Fantôme famille",
     },
-    "0x17ae": {
+    "6062": {
         "font": "regular",
         "string": "Fantôme ami",
     },
-    "0x17af": {
+    "6063": {
         "font": "regular",
         "string": "Fantôme spécial",
     },
-    "0x17b0": {
+    "6064": {
         "font": "regular",
         "string": "Fantôme des développeurs",
     },
-    "0x17b1": {
+    "6065": {
         "font": "regular",
         "string": null,
     },
-    "0x17d4": {
+    "6100": {
         "font": "regular",
         "string": "Il n'y a pas de fantôme pour\n{arg message|0}.",
     },
-    "0x17d5": {
+    "6101": {
         "font": "regular",
         "string": "Il n'y a pas de fantôme pour\n{arg license player|0}.",
     },
-    "0x17d6": {
+    "6102": {
         "font": "regular",
         "string": "Il n'y a aucun fantôme téléchargé.",
     },
-    "0x17d7": {
+    "6103": {
         "font": "regular",
         "string": null,
     },
-    "0x17de": {
+    "6110": {
         "font": "regular",
         "string": "Téléchargement du fantôme en cours...",
     },
-    "0x17df": {
+    "6111": {
         "font": "regular",
         "string": "Votre liste de fantômes \ntéléchargés est pleine.\nVous ne pouvez pas \ntélécharger plus de\nfantômes.\n\nVeuillez supprimer un\nfantôme.",
     },
-    "0x17e0": {
+    "6112": {
         "font": "regular",
         "string": "Une erreur est survenue lors\nde la réception d'un fantôme.\n\nCode d'erreur: {arg integer|0 5}",
     },
-    "0x17e1": {
+    "6113": {
         "font": "regular",
         "string": "Un fantôme a été téléchargé.",
     },
-    "0x17e2": {
+    "6114": {
         "font": "regular",
         "string": "Téléchargement en cours...",
     },
-    "0x17e3": {
+    "6115": {
         "font": "regular",
         "string": "Une erreur est survenue\npendant le téléchargement\ndes 10 Meilleurs.\n\nCode d'erreur: {arg integer|0 5}",
     },
-    "0x17e4": {
+    "6116": {
         "font": "regular",
         "string": "10 Meilleurs non disponible.",
     },
-    "0x17e5": {
+    "6117": {
         "font": "regular",
         "string": "",
     },
-    "0x17e8": {
+    "6120": {
         "font": "regular",
         "string": "Vous vous connecterez à la \nCWF Nintendo. Voulez-vous\ncontinuer?",
     },
-    "0x17e9": {
+    "6121": {
         "font": "regular",
         "string": "OK",
     },
-    "0x17ea": {
+    "6122": {
         "font": "regular",
         "string": "Vous vous connecterez à la \nCWF Nintendo. Voulez-vous\ncontinuer?",
     },
-    "0x17eb": {
+    "6123": {
         "font": "regular",
         "string": "Un nouveau fantôme remplacera\nle fantôme actuel.\n\nVoulez-vous continuer?",
     },
-    "0x17ec": {
+    "6124": {
         "font": "regular",
         "string": null,
     },
-    "0x1806": {
+    "6150": {
         "font": "regular",
         "string": "Affronter un fantôme.",
     },
-    "0x1807": {
+    "6151": {
         "font": "regular",
         "string": "Voir la course de ce fantôme.",
     },
-    "0x1808": {
+    "6152": {
         "font": "regular",
         "string": "Voulez-vous vraiment effacer ce fantôme?",
     },
-    "0x1809": {
+    "6153": {
         "font": "regular",
         "string": "Effacer",
     },
-    "0x180a": {
+    "6154": {
         "font": "regular",
         "string": "Ne pas effacer",
     },
-    "0x180b": {
+    "6155": {
         "font": "regular",
         "string": null,
     },
-    "0x1839": {
+    "6201": {
         "font": "regular",
         "string": "1{1 char|}",
     },
-    "0x183a": {
+    "6202": {
         "font": "regular",
         "string": "2{1 char|}",
     },
-    "0x183b": {
+    "6203": {
         "font": "regular",
         "string": "3{1 char|}",
     },
-    "0x183c": {
+    "6204": {
         "font": "regular",
         "string": "4{1 char|}",
     },
-    "0x183d": {
+    "6205": {
         "font": "regular",
         "string": "5{1 char|}",
     },
-    "0x183e": {
+    "6206": {
         "font": "regular",
         "string": "6{1 char|}",
     },
-    "0x183f": {
+    "6207": {
         "font": "regular",
         "string": "7{1 char|}",
     },
-    "0x1840": {
+    "6208": {
         "font": "regular",
         "string": "8{1 char|}",
     },
-    "0x1841": {
+    "6209": {
         "font": "regular",
         "string": "9{1 char|}",
     },
-    "0x1842": {
+    "6210": {
         "font": "regular",
         "string": "10{1 char|}",
     },
-    "0x1843": {
+    "6211": {
         "font": "regular",
         "string": "11{1 char|}",
     },
-    "0x1844": {
+    "6212": {
         "font": "regular",
         "string": "12{1 char|}",
     },
-    "0x1845": {
+    "6213": {
         "font": "regular",
         "string": null,
     },
-    "0x186a": {
+    "6250": {
         "font": "regular",
         "string": "Commencez un Contre-la-montre maintenant.",
     },
-    "0x186b": {
+    "6251": {
         "font": "regular",
         "string": "Affrontez {arg player|0}.",
     },
-    "0x186c": {
+    "6252": {
         "font": "regular",
         "string": "Affrontez le fantôme du champion continental.",
     },
-    "0x186d": {
+    "6253": {
         "font": "regular",
         "string": "Affrontez le fantôme du champion du monde.",
     },
-    "0x186e": {
+    "6254": {
         "font": "regular",
         "string": "Affrontez ce fantôme un peu plus rapide que vous.",
     },
-    "0x186f": {
+    "6255": {
         "font": "regular",
         "string": "Affichez les 10 Meilleurs de votre liste d'amis.",
     },
-    "0x1870": {
+    "6256": {
         "font": "regular",
         "string": "Affichez les 10 Meilleurs continental.",
     },
-    "0x1871": {
+    "6257": {
         "font": "regular",
         "string": "Affichez les 10 Meilleurs mondial.",
     },
-    "0x1872": {
+    "6258": {
         "font": "regular",
         "string": "Affrontez ce fantôme des développeurs de Mario Kart Wii.",
     },
-    "0x1873": {
+    "6259": {
         "font": "regular",
         "string": "Record de {arg player|0}.",
     },
-    "0x1874": {
+    "6260": {
         "font": "regular",
         "string": "Record du champion continental",
     },
-    "0x1875": {
+    "6261": {
         "font": "regular",
         "string": "Record du champion du monde",
     },
-    "0x1876": {
+    "6262": {
         "font": "regular",
         "string": null,
     },
-    "0x189c": {
+    "6300": {
         "font": "regular",
         "string": "Envoyer votre fantôme",
     },
-    "0x189d": {
+    "6301": {
         "font": "regular",
         "string": "{arg player|0} n'a pas de\nrecord sur {arg message|0}.",
     },
-    "0x189e": {
+    "6302": {
         "font": "regular",
         "string": "Le record de {arg player|0}\nsur {arg message|0} est:\n{arg integer|0 2}:{arg integer|1 2}.{arg integer|2 3}.",
     },
-    "0x189f": {
+    "6303": {
         "font": "regular",
         "string": "{arg player|0} n'a pas de\nrecord sur {arg message|0}.",
     },
-    "0x18a0": {
+    "6304": {
         "font": "regular",
         "string": "Le record de {arg player|0}\nsur {arg message|0} est:\n{arg integer|0 2}:{arg integer|1 2}.{arg integer|2 3}.",
     },
-    "0x18a1": {
+    "6305": {
         "font": "regular",
         "string": "Envoi du fantôme en cours...",
     },
-    "0x18a2": {
+    "6306": {
         "font": "regular",
         "string": null,
     },
-    "0x18a6": {
+    "6310": {
         "font": "regular",
         "string": "WiiConnect24 est temporairement inutilisable. \nVeuillez patienter quelques instants avant de réessayer.\n\nCode d'erreur: {arg integer|0 6}",
     },
-    "0x18a7": {
+    "6311": {
         "font": "regular",
         "string": "Une connexion à Internet n'ayant pas pu \nêtre établie, WiiConnect24 ne peut pas \nêtre utilisé. Veuillez vérifier les paramètres \nInternet dans Options Wii. Référez-vous au \nMode d'Emploi Wii pour plus de détails.\n\nCode d'erreur: {arg integer|0 6}",
     },
-    "0x18a8": {
+    "6312": {
         "font": "regular",
         "string": "En raison d'un problème avec la mémoire de \nla console Wii, WiiConnect24 est indisponible.\n\nCode d'erreur: {arg integer|0 6}",
     },
-    "0x18a9": {
+    "6313": {
         "font": "regular",
         "string": "Vous devez mettre à jour \nvotre console pour utiliser \nWiiConnect24. Veuillez vous \nréférer au Mode d'Emploi Wii\npour plus de détails.\n\nCode d'erreur: {arg integer|0 6}",
     },
-    "0x18aa": {
+    "6314": {
         "font": "regular",
         "string": "Une erreur s'est produite et WiiConnect24 \nne peut pas être utilisé. Veuillez \nredémarrer la console et réessayer.\n\nCode d'erreur: {arg integer|0 6}",
     },
-    "0x18ab": {
+    "6315": {
         "font": "regular",
         "string": "WiiConnect24 n'est pas activé. Veuillez \nvérifier vos paramètres dans Options \nWii. Référez-vous au Mode d'Emploi \nWii pour plus de détails.\n\nCode d'erreur: {arg integer|0 6}",
     },
-    "0x18ac": {
+    "6316": {
         "font": "regular",
         "string": "En raison d'un problème avec la mémoire \nde la console Wii, WiiConnect24 est \nindisponible.\n\nCode d'erreur: {arg integer|0 6}",
     },
-    "0x18ad": {
+    "6317": {
         "font": "regular",
         "string": "L'utilisation des fonctions du \nréseau a été restreinte. \n\nVeuillez vérifier le contrôle \nparental dans Options Wii.",
     },
-    "0x18ae": {
+    "6318": {
         "font": "regular",
         "string": "Impossible de se connecter\nà Internet. Vérifiez les \nparamètres Internet de \nla console Wii.\n\nCode d'erreur: 50200",
     },
-    "0x18af": {
+    "6319": {
         "font": "regular",
         "string": "La Chaîne Mario Kart utilise le \nservice WiiConnect24 pour \nrecevoir des informations telles que:\n\n・Les défis lancés par vos amis\n・Les classements des joueurs du \nmonde entier\n・Les fantômes de rivaux éventuels\n・Le calendrier des tournois",
     },
-    "0x18b0": {
+    "6320": {
         "font": "regular",
         "string": "Vous pouvez paramétrer votre \nconnexion WiiConnect24 depuis \nl'écran Options Wii.\n\nVeuillez vous référer au Mode \nd'Emploi Wii pour plus de détails.",
     },
-    "0x18b1": {
+    "6321": {
         "font": "regular",
         "string": "Une erreur est survenue. Impossible\nd'utiliser WiiConnect24. Veuillez\nréinitialiser la console et réessayer.\n\nCode d'erreur: {arg integer|0 6}",
     },
-    "0x18b2": {
+    "6322": {
         "font": "regular",
         "string": "",
     },
-    "0x18f6": {
+    "6390": {
         "font": "regular",
         "string": "OK!",
     },
-    "0x18f7": {
+    "6391": {
         "font": "regular",
         "string": "",
     },
-    "0x1900": {
+    "6400": {
         "font": "regular",
         "string": "Un ami vous a lancé un défi!",
     },
-    "0x1901": {
+    "6401": {
         "font": "regular",
         "string": "Un fantôme spécial est disponible!",
     },
-    "0x1902": {
+    "6402": {
         "font": "regular",
         "string": "Un tournoi a commencé!",
     },
-    "0x1903": {
+    "6403": {
         "font": "regular",
         "string": "Les classements ont été mis à jour!",
     },
-    "0x1904": {
+    "6404": {
         "font": "regular",
         "string": "Affrontez un fantôme!",
     },
-    "0x1905": {
+    "6405": {
         "font": "regular",
         "string": "Un ami a mis à jour ses records!",
     },
-    "0x1906": {
+    "6406": {
         "font": "regular",
         "string": "Installez la Chaîne Mario Kart!",
     },
-    "0x1907": {
+    "6407": {
         "font": "regular",
         "string": "Activez le service de messagerie!",
     },
-    "0x1908": {
+    "6408": {
         "font": "regular",
         "string": "Indiquez votre région!",
     },
-    "0x1909": {
+    "6409": {
         "font": "regular",
         "string": "Invitez vos amis via le Bureau Wii!",
     },
-    "0x190a": {
+    "6410": {
         "font": "regular",
         "string": "Téléchargez les dernières données!",
     },
-    "0x190b": {
+    "6411": {
         "font": "regular",
         "string": null,
     },
-    "0x190c": {
+    "6412": {
         "font": "regular",
         "string": null,
     },
-    "0x1964": {
+    "6500": {
         "font": "regular",
         "string": "Affichez votre liste de fantômes téléchargés.",
     },
-    "0x1965": {
+    "6501": {
         "font": "regular",
         "string": "Affichez le classement en Contre-la-montre.",
     },
-    "0x1966": {
+    "6502": {
         "font": "regular",
         "string": "Participez à un tournoi.",
     },
-    "0x1967": {
+    "6503": {
         "font": "regular",
         "string": "Affichez le classement en Contre-la-montre.",
     },
-    "0x1968": {
+    "6504": {
         "font": "regular",
         "string": "Affrontez un fantôme via la CWF Nintendo.",
     },
-    "0x1969": {
+    "6505": {
         "font": "regular",
         "string": "Affichez le classement en Contre-la-montre.",
     },
-    "0x196a": {
+    "6506": {
         "font": "regular",
         "string": "Affichez l'écran des paramètres.",
     },
-    "0x196b": {
+    "6507": {
         "font": "regular",
         "string": "Affichez l'écran des paramètres.",
     },
-    "0x196c": {
+    "6508": {
         "font": "regular",
         "string": "Affichez l'écran des paramètres.",
     },
-    "0x196d": {
+    "6509": {
         "font": "regular",
         "string": "Invitez vos amis via le Bureau Wii.",
     },
-    "0x196e": {
+    "6510": {
         "font": "regular",
         "string": "Recevez les dernières mises à jour.",
     },
-    "0x196f": {
+    "6511": {
         "font": "regular",
         "string": null,
     },
-    "0x1970": {
+    "6512": {
         "font": "regular",
         "string": null,
     },
-    "0x1996": {
+    "6550": {
         "font": "regular",
         "string": "Vous ne pouvez pas consulter \nles classements des tournois \npour l'instant.",
     },
-    "0x1997": {
+    "6551": {
         "font": "regular",
         "string": "Téléchargement du classement en cours...",
     },
-    "0x1998": {
+    "6552": {
         "font": "regular",
         "string": "Une erreur est survenue pendant\nle téléchargement du classement\ndu tournoi.\n\nCode d'erreur: {arg integer|0 5}",
     },
-    "0x1999": {
+    "6553": {
         "font": "regular",
         "string": "Vous pouvez consulter le classement\nd'un tournoi un jour après son début.\n\nVeuillez patienter.",
     },
-    "0x199a": {
+    "6554": {
         "font": "regular",
         "string": "Première moitié",
     },
-    "0x199b": {
+    "6555": {
         "font": "regular",
         "string": "Seconde moitié",
     },
-    "0x199c": {
+    "6556": {
         "font": "regular",
         "string": "Le classement de ce tournoi\nn'est pas encore disponible.\n\nVeuillez réessayer demain.",
     },
-    "0x19c8": {
+    "6600": {
         "font": "regular",
         "string": "Un tournoi mondial Mario \nKart Wii va commencer et\nsera jouable pendant une\ndurée limitée.\n\nVeuillez connecter votre Wii\nà Internet, activer le service\nWiiConnect24, et attendre \nque le tournoi commence.",
     },
-    "0x19c9": {
+    "6601": {
         "font": "regular",
         "string": "Le tournoi précédent est terminé\net son classement est maintenant \ndisponible!",
     },
-    "0x19ca": {
+    "6602": {
         "font": "regular",
         "string": "{arg string|0}",
     },
-    "0x19cb": {
+    "6603": {
         "font": "regular",
         "string": "{arg string|0}",
     },
-    "0x19cc": {
+    "6604": {
         "font": "regular",
         "string": "Commencer",
     },
-    "0x19cd": {
+    "6605": {
         "font": "regular",
         "string": "Statistiques du tournoi",
     },
-    "0x19ce": {
+    "6606": {
         "font": "regular",
         "string": "Envoi en cours...",
     },
-    "0x19cf": {
+    "6607": {
         "font": "regular",
         "string": "{arg string|0}\n{arg integer|0 2}:{arg integer|1 2}.{arg integer|2 3}",
     },
-    "0x19d0": {
+    "6608": {
         "font": "regular",
         "string": "Les statistiques du tournoi \nont été envoyées.",
     },
-    "0x19d1": {
+    "6609": {
         "font": "regular",
         "string": "Impossible d'envoyer les\nstatistiques du tournoi.\n\nCode d'erreur: {arg integer|0 5}",
     },
-    "0x19d2": {
+    "6610": {
         "font": "regular",
         "string": "Ce tournoi durera\njusqu'au {arg integer|2 0}/{arg integer|1 0}/{arg integer|0 0}.",
     },
-    "0x19d3": {
+    "6611": {
         "font": "regular",
         "string": null,
     },
-    "0x1a2c": {
+    "6700": {
         "font": "regular",
         "string": "Invitation via le Bureau Wii",
     },
-    "0x1a2d": {
+    "6701": {
         "font": "regular",
         "string": "Vous pouvez envoyer une invitation\ncontenant votre code ami sur le\nBureau Wii de vos amis. \n\nVotre code ami sera inclus, ainsi \nvos amis pourront vous enregistrer \nimmédiatement.",
     },
-    "0x1a2e": {
+    "6702": {
         "font": "regular",
         "string": "Veuillez choisir le destinataire.",
     },
-    "0x1a2f": {
+    "6703": {
         "font": "regular",
         "string": "Voulez-vous vraiment envoyer\nune invitation sur le Bureau\nWii de {arg string|0}?",
     },
-    "0x1a30": {
+    "6704": {
         "font": "regular",
         "string": "Envoi de votre invitation en cours...",
     },
-    "0x1a31": {
+    "6705": {
         "font": "regular",
         "string": "Votre invitation a été envoyée \nsur le Bureau Wii de \n{arg string|0}!\n\nSi {arg string|0} répond \nà votre invitation, vous \npourrez devenir amis.",
     },
-    "0x1a32": {
+    "6706": {
         "font": "regular",
         "string": "Une erreur s'est produite\npendant l'envoi de l'invitation.\n\nCode d'erreur: {arg integer|0 6}",
     },
-    "0x1a33": {
+    "6707": {
         "font": "regular",
         "string": "{arg string|0}",
     },
-    "0x1a34": {
+    "6708": {
         "font": "regular",
         "string": "Vos statistiques du tournoi\nont été envoyées. Vous\nserez à présent redirigé \nvers le classement du\ntournoi.",
     },
-    "0x1a35": {
+    "6709": {
         "font": "regular",
         "string": null,
     },
-    "0x1a36": {
+    "6710": {
         "font": "regular",
         "string": "Enregistrement d'amis",
     },
-    "0x1a37": {
+    "6711": {
         "font": "regular",
         "string": "{arg string|0} vous a envoyé\nune invitation.\n\nVous pouvez ajouter cette \npersonne à votre liste d'amis\nimmédiatement. Votre code \nami sera aussitôt envoyé à\n{arg string|0}.",
     },
-    "0x1a38": {
+    "6712": {
         "font": "regular",
         "string": "Le code ami de {arg string|0} \nsera enregistré dans\nvotre liste d'amis.\n\nVoulez-vous continuer?",
     },
-    "0x1a39": {
+    "6713": {
         "font": "regular",
         "string": "Enregistrement en cours...",
     },
-    "0x1a3a": {
+    "6714": {
         "font": "regular",
         "string": "{arg string|0} a été\nenregistré dans votre\nliste d'amis.",
     },
-    "0x1a3b": {
+    "6715": {
         "font": "regular",
         "string": "Une erreur s'est\nproduite lors de\nl'enregistrement\nde cet ami.\n\nCode d'erreur: {arg integer|0 6}",
     },
-    "0x1a3c": {
+    "6716": {
         "font": "regular",
         "string": "Vous n'avez pas de code ami,\n{current player|}.\n\nVotre code ami est un nombre à\n12 chiffres qui vous permet de \nvous connecter à la CWF Nintendo.\n\nVeuillez vous référer au Mode\nd'Emploi de Mario Kart Wii pour \nplus de détails.",
     },
-    "0x1a3d": {
+    "6717": {
         "font": "regular",
         "string": "Vous avez reçu une invitation,\nmais vous avez déjà 30 codes\nami dans votre liste d'amis,\n{current player|}.\n\nVous ne pouvez pas enregistrer\nplus de 30 codes ami.",
     },
-    "0x1a3e": {
+    "6718": {
         "font": "regular",
         "string": "Vous avez reçu une invitation mais\nl'expéditeur a été effacé du carnet\nd'adresses de votre Bureau Wii.\n\nVeuillez accéder à la Chaîne Mario\nKart et enregistrer son code ami.",
     },
-    "0x1a3f": {
+    "6719": {
         "font": "regular",
         "string": "Vous avez reçu une invitation mais\nle code ami de l'expéditeur est déjà\nenregistré dans votre liste d'amis.",
     },
-    "0x1a40": {
+    "6720": {
         "font": "regular",
         "string": "",
     },
-    "0x1a90": {
+    "6800": {
         "font": "regular",
         "string": "Télécharger le classement du tournoi",
     },
-    "0x1a91": {
+    "6801": {
         "font": "regular",
         "string": "Téléchargement du classement en cours...",
     },
-    "0x1a92": {
+    "6802": {
         "font": "regular",
         "string": "Classement du tournoi téléchargé.",
     },
-    "0x1a93": {
+    "6803": {
         "font": "regular",
         "string": "Impossible de télécharger\nle classement du tournoi.\n\nCode d'erreur: {arg integer|0 6}",
     },
-    "0x1a94": {
+    "6804": {
         "font": "regular",
         "string": null,
     },
-    "0x1a9b": {
+    "6811": {
         "font": "regular",
         "string": null,
     },
-    "0x1a9c": {
+    "6812": {
         "font": "regular",
         "string": null,
     },
-    "0x1a9d": {
+    "6813": {
         "font": "regular",
         "string": null,
     },
-    "0x1af4": {
+    "6900": {
         "font": "regular",
         "string": "Dernières données",
     },
-    "0x1af5": {
+    "6901": {
         "font": "regular",
         "string": "Sélectionnez OK pour télécharger\nles dernières données de la \nChaîne Mario Kart.",
     },
-    "0x1af6": {
+    "6902": {
         "font": "regular",
         "string": "Téléchargement des dernières données...",
     },
-    "0x1af7": {
+    "6903": {
         "font": "regular",
         "string": "Les dernières données Mario \nKart Wii ont été reçues.",
     },
-    "0x1af8": {
+    "6904": {
         "font": "regular",
         "string": "Une erreur est survenue pendant\nle téléchargement des dernières\ndonnées.\n\nCode d'erreur: {arg integer|0 6}",
     },
-    "0x1af9": {
+    "6905": {
         "font": "regular",
         "string": null,
     },
-    "0x1b58": {
-        "font": "regular",
-        "string": "À propos de MKW-SP",
-    },
-    "0x1b59": {
-        "font": "regular",
-        "string": "Connexion Wi-Fi Nintendo",
-    },
-    "0x1b5a": {
+    "7000": {
         "font": "regular",
         "string": "Paramètres",
     },
-    "0x1b5b": {
+    "7001": {
+        "font": "regular",
+        "string": "Connexion Wi-Fi Nintendo",
+    },
+    "7002": {
+        "font": "regular",
+        "string": "Paramètres",
+    },
+    "7003": {
         "font": "regular",
         "string": "Suivant",
     },
-    "0x1b5c": {
+    "7004": {
         "font": "regular",
         "string": null,
     },
-    "0x1bbc": {
+    "7100": {
         "font": "regular",
         "string": "Manette Nintendo GameCube",
     },
-    "0x1bbd": {
+    "7101": {
         "font": "regular",
         "string": "Voulez-vous activer la\nfonction de vibration de\nla manette Nintendo \nGameCube?",
     },
-    "0x1bbe": {
+    "7102": {
         "font": "regular",
         "string": "Oui",
     },
-    "0x1bbf": {
+    "7103": {
         "font": "regular",
         "string": "Non",
     },
-    "0x1bc0": {
+    "7104": {
         "font": "regular",
         "string": "La fonction de vibration\nde la manette Nintendo \nGameCube a été activée.",
     },
-    "0x1bc1": {
+    "7105": {
         "font": "regular",
         "string": "La fonction de vibration\nde la manette Nintendo\nGameCube a été \ndésactivée.",
     },
-    "0x1bc2": {
+    "7106": {
         "font": "regular",
         "string": null,
     },
-    "0x1c20": {
+    "7200": {
         "font": "regular",
         "string": "Votre région",
     },
-    "0x1c21": {
+    "7201": {
         "font": "regular",
         "string": "Voulez-vous retourner au\nMenu Wii afin de modifier\nvos paramètres régionaux?",
     },
-    "0x1c22": {
+    "7202": {
         "font": "regular",
         "string": null,
     },
-    "0x1c23": {
+    "7203": {
         "font": "regular",
         "string": null,
     },
-    "0x1c24": {
+    "7204": {
         "font": "regular",
         "string": null,
     },
-    "0x1c52": {
+    "7250": {
         "font": "regular",
         "string": "Profil régional",
     },
-    "0x1c53": {
+    "7251": {
         "font": "regular",
         "string": "Dans Mario Kart Wii, votre \nsituation géographique et votre \ndrapeau national apparaissent sur:\n\n・Le globe CWF Nintendo\n・Vos fantômes\n\nCe profil régional sera visible par \ntous les joueurs connectés à la \nCWF Nintendo.",
     },
-    "0x1c54": {
+    "7252": {
         "font": "regular",
         "string": "Voulez-vous afficher votre profil\nrégional lorsque vous jouez à \nMario Kart Wii?",
     },
-    "0x1c55": {
+    "7253": {
         "font": "regular",
         "string": "Oui",
     },
-    "0x1c56": {
+    "7254": {
         "font": "regular",
         "string": "Non",
     },
-    "0x1c57": {
+    "7255": {
         "font": "regular",
         "string": "Vous avez choisi \nd'afficher votre \nprofil régional.",
     },
-    "0x1c58": {
+    "7256": {
         "font": "regular",
         "string": "Vous avez choisi de\nne pas afficher votre\nprofil régional.",
     },
-    "0x1c59": {
+    "7257": {
         "font": "regular",
         "string": null,
     },
-    "0x1c84": {
+    "7300": {
         "font": "regular",
         "string": "Service de messagerie",
     },
-    "0x1c85": {
+    "7301": {
         "font": "regular",
         "string": "Le service de messagerie vous permet de\nrecevoir les dernières nouvelles de la \nChaîne Mario Kart sur votre Bureau Wii \ngrâce à WiiConnect24. Ces messages \nvous renseigneront sur:\n・les tournois à venir\n・les fantômes spéciaux disponibles\nVous continuerez de recevoir des messages\nessentiels à ce jeu.",
     },
-    "0x1c86": {
+    "7302": {
         "font": "regular",
         "string": "Voulez-vous recevoir\nles messages de la\nChaîne Mario Kart?",
     },
-    "0x1c87": {
+    "7303": {
         "font": "regular",
         "string": "Oui",
     },
-    "0x1c88": {
+    "7304": {
         "font": "regular",
         "string": "Non",
     },
-    "0x1c89": {
+    "7305": {
         "font": "regular",
         "string": "Vous avez choisi de\nrecevoir les messages\nde la Chaîne Mario Kart.",
     },
-    "0x1c8a": {
+    "7306": {
         "font": "regular",
         "string": "Vous ne recevrez aucun message\nde la Chaîne Mario Kart. Voulez-\nvous continuer?",
     },
-    "0x1c8b": {
+    "7307": {
         "font": "regular",
         "string": "",
     },
-    "0x1cb6": {
+    "7350": {
         "font": "regular",
         "string": "Vos paramètres actuels vous \npermettent de recevoir des \nmessages de la Chaîne Mario \nKart sur votre Bureau Wii.",
     },
-    "0x1cb7": {
+    "7351": {
         "font": "regular",
         "string": "Sélectionnez un paramètre.",
     },
-    "0x1cb8": {
+    "7352": {
         "font": "regular",
         "string": "Aucun message Mario Kart Wii",
     },
-    "0x1cb9": {
+    "7353": {
         "font": "regular",
         "string": "Aucun message d'aucune chaîne",
     },
-    "0x1cba": {
+    "7354": {
         "font": "regular",
         "string": "Recevoir des messages",
     },
-    "0x1cbb": {
+    "7355": {
         "font": "regular",
         "string": "Vous ne recevrez pas de \nmessages de la Chaîne Mario \nKart. Voulez-vous continuer?",
     },
-    "0x1cbc": {
+    "7356": {
         "font": "regular",
         "string": "Vous ne recevrez pas de messages\nd'aucune chaîne. Voulez-vous\ncontinuer?",
     },
-    "0x1cbd": {
+    "7357": {
         "font": "regular",
         "string": "Vous continuerez de recevoir \ndes messages de la Chaîne \nMario Kart.",
     },
-    "0x1cbe": {
+    "7358": {
         "font": "regular",
         "string": "Vous avez choisi de ne\npas recevoir de messages\nde la Chaîne Mario Kart.",
     },
-    "0x1cbf": {
+    "7359": {
         "font": "regular",
         "string": "Vous ne recevrez pas de messages\nde la Chaîne Mario Kart.",
     },
-    "0x1cc0": {
+    "7360": {
         "font": "regular",
         "string": "Vous ne recevrez pas de messages\nd'aucun service.",
     },
-    "0x1cc1": {
+    "7361": {
         "font": "regular",
         "string": "",
     },
-    "0x1ce8": {
+    "7400": {
         "font": "regular",
         "string": "Échange de données",
     },
-    "0x1ce9": {
+    "7401": {
         "font": "regular",
         "string": "Lorsque vous jouez à Mario Kart Wii via \nla CWF Nintendo, les données suivantes \nseront automatiquement envoyées à \nNintendo:\n\n・Votre Mii et votre pseudonyme\n・Vos temps record et vos fantômes\n\nCes données peuvent être vues par\nd'autres joueurs de Mario Kart Wii.",
     },
-    "0x1cea": {
+    "7402": {
         "font": "regular",
         "string": "Voulez-vous autoriser l'échange\nde données avec Nintendo?",
     },
-    "0x1ceb": {
+    "7403": {
         "font": "regular",
         "string": "Oui",
     },
-    "0x1cec": {
+    "7404": {
         "font": "regular",
         "string": "Non",
     },
-    "0x1ced": {
+    "7405": {
         "font": "regular",
         "string": "Vous avez autorisé l'échange\nde données Mario Kart Wii\navec Nintendo.",
     },
-    "0x1cee": {
+    "7406": {
         "font": "regular",
         "string": "Vous ne pourrez pas jouer à \nMario Kart Wii via la CWF Nintendo.\nVoulez-vous continuer?",
     },
-    "0x1cef": {
+    "7407": {
         "font": "regular",
         "string": "Vous avez interdit l'échange\nde données Mario Kart Wii\nà Nintendo.",
     },
-    "0x1cf0": {
+    "7408": {
         "font": "regular",
         "string": "Pour protéger votre vie privée, n'utilisez pas votre\nvrai nom ou toute autre information personnelle \ndans le nom de votre Mii. Le cas échéant, \neffectuez l'une des opérations suivantes:\n\n・Changez le nom de votre Mii dans la Chaîne Mii\n・Choisissez un Mii invité dans Options du permis",
     },
-    "0x1cf1": {
+    "7409": {
         "font": "regular",
         "string": "",
     },
-    "0x1d4c": {
+    "7500": {
         "font": "regular",
         "string": "Affichage des Mii",
     },
-    "0x1d4d": {
+    "7501": {
         "font": "regular",
         "string": "Les Mii créés par les joueurs du\nmonde entier apparaîtront dans\nles courses CWF Nintendo, dans\nles classements, ainsi qu'à \ncertains autres endroits dans \nMario Kart Wii.\n\nVous pouvez choisir de les\nafficher ou de les remplacer par\ndes Mii créés par Nintendo.",
     },
-    "0x1d4e": {
+    "7502": {
         "font": "regular",
         "string": "Voulez-vous afficher les Mii des \nautres joueurs tels qu'ils sont?",
     },
-    "0x1d4f": {
+    "7503": {
         "font": "regular",
         "string": "Oui",
     },
-    "0x1d50": {
+    "7504": {
         "font": "regular",
         "string": "Non",
     },
-    "0x1d51": {
+    "7505": {
         "font": "regular",
         "string": "Vous avez choisi d'afficher\nles Mii des autres joueurs.",
     },
-    "0x1d52": {
+    "7506": {
         "font": "regular",
         "string": "Vous avez choisi de ne pas afficher\nles Mii des autres joueurs.",
     },
-    "0x1d53": {
+    "7507": {
         "font": "regular",
         "string": "Les Mii des autres joueurs seront remplacés\npar des Mii créés par Nintendo. Voulez-vous \ncontinuer?",
     },
-    "0x1d54": {
+    "7508": {
         "font": "regular",
         "string": null,
     },
-    "0x1db0": {
+    "7600": {
         "font": "regular",
         "string": null,
     },
-    "0x1db1": {
+    "7601": {
         "font": "regular",
         "string": null,
     },
-    "0x1db2": {
+    "7602": {
         "font": "regular",
         "string": null,
     },
-    "0x1db3": {
+    "7603": {
         "font": "regular",
         "string": null,
     },
-    "0x1db4": {
+    "7604": {
         "font": "regular",
         "string": null,
     },
-    "0x1db5": {
+    "7605": {
         "font": "regular",
         "string": null,
     },
-    "0x1e14": {
+    "7700": {
         "font": "regular",
         "string": "Mario Kart Wii peut être affiché avec le\nmode 60Hz (480i). Vous utilisez actuellement\nle mode 50Hz (576i). Si votre téléviseur, \ncomme la plupart des modèles, est compatible \navec le mode 60Hz, sélectionnez-le sur l'écran\nRésolution du téléviseur dans Paramètres Wii \npour obtenir une image de meilleure qualité.\n\nPour changer le paramètre du Type de\ntéléviseur en 60Hz, appuyez sur le\nBouton HOME et accédez au Menu Wii.",
     },
-    "0x1e15": {
+    "7701": {
         "font": "regular",
         "string": "{2 chars|< <}",
     },
-    "0x1e16": {
+    "7702": {
         "font": "regular",
         "string": "FÉLICITATIONS!",
     },
-    "0x1e17": {
+    "7703": {
         "font": "regular",
         "string": "Voulez-vous envoyer une\nphoto commémorative sur\nle Bureau Wii?",
     },
-    "0x1e18": {
+    "7704": {
         "font": "regular",
         "string": "Envoi sur le Bureau Wii en cours...",
     },
-    "0x1e19": {
+    "7705": {
         "font": "regular",
         "string": "La photo commémorative\na été envoyée sur le \nBureau WIi.",
     },
-    "0x1e1a": {
+    "7706": {
         "font": "regular",
         "string": "Si vous sauvegardez trop de photos,\nvous n'aurez plus d'espace libre\ndans la mémoire du Bureau Wii.\n\nLorsque la mémoire du Bureau Wii est\npleine, les messages les plus anciens\nseront supprimés pour faire de la place\naux nouveaux.",
     },
-    "0x1e1b": {
+    "7707": {
         "font": "regular",
         "string": "Merci d'avoir joué!\n\nContinuez à vous amuser\navec Mario Kart Wii!",
     },
-    "0x1f40": {
+    "8000": {
         "font": "regular",
         "string": "Félicitations!\nVous avez déverrouillé la\n{arg message|1} en {arg message|0}!",
     },
-    "0x1f41": {
+    "8001": {
         "font": "regular",
         "string": "Félicitations!\nVous pouvez à présent\njouer en Mode Miroir!",
     },
-    "0x1f42": {
+    "8002": {
         "font": "regular",
         "string": "Félicitations!\nVous pouvez à présent\njouer avec {arg message|0}!",
     },
-    "0x1f43": {
+    "8003": {
         "font": "regular",
         "string": "Félicitations!\nVous pouvez à présent\njouer avec {arg message|0}!",
     },
-    "0x1f44": {
+    "8004": {
         "font": "regular",
         "string": "Félicitations! \nVous avez déverrouillé \nun nouveau kart léger!\n\n{arg message|0}",
     },
-    "0x1f45": {
+    "8005": {
         "font": "regular",
         "string": "Félicitations! \nVous avez déverrouillé \nun nouveau kart standard!\n\n{arg message|0}",
     },
-    "0x1f46": {
+    "8006": {
         "font": "regular",
         "string": "Félicitations! \nVous avez déverrouillé \nun nouveau kart lourd!\n\n{arg message|0}",
     },
-    "0x1f47": {
+    "8007": {
         "font": "regular",
         "string": "Félicitations!\nVous avez déverrouillé \nune nouvelle moto légère!\n\n{arg message|0}",
     },
-    "0x1f48": {
+    "8008": {
         "font": "regular",
         "string": "Félicitations!\nVous avez déverrouillé \nune nouvelle moto standard!\n\n{arg message|0}",
     },
-    "0x1f49": {
+    "8009": {
         "font": "regular",
         "string": "Félicitations!\nVous avez déverrouillé \nune nouvelle moto lourde!\n\n{arg message|0}",
     },
-    "0x1f4a": {
+    "8010": {
         "font": "regular",
         "string": "Félicitations!\nVous pouvez maintenant faire\nun Grand Prix en 50cc avec\nkarts et motos!",
     },
-    "0x1f4b": {
+    "8011": {
         "font": "regular",
         "string": "Félicitations!\nVous pouvez maintenant faire \ndes parties en Grand Prix en \n100cc (karts et motos)!",
     },
-    "0x1f4c": {
+    "8012": {
         "font": "regular",
         "string": null,
     },
-    "0x1fa4": {
+    "8100": {
         "font": "regular",
         "string": "Vous avez gagné un trophée dans les Coupes Champignon et Fleur en {arg message|0}!",
     },
-    "0x1fa5": {
+    "8101": {
         "font": "regular",
         "string": "Vous avez gagné un trophée dans la Coupe Étoile en {arg message|0}!",
     },
-    "0x1fa6": {
+    "8102": {
         "font": "regular",
         "string": "Vous avez gagné un trophée dans les Coupes Carapace et Fleur en {arg message|0}!",
     },
-    "0x1fa7": {
+    "8103": {
         "font": "regular",
         "string": "Vous avez gagné un trophée dans la Coupe Feuille en {arg message|0}!",
     },
-    "0x1fa8": {
+    "8104": {
         "font": "regular",
         "string": "Vous avez remporté toutes les coupes en 150cc!",
     },
-    "0x1fa9": {
+    "8105": {
         "font": "regular",
         "string": null,
     },
-    "0x1fae": {
+    "8110": {
         "font": "regular",
         "string": "Vous avez remporté la Coupe Feuille en 100cc!",
     },
-    "0x1faf": {
+    "8111": {
         "font": "regular",
         "string": "Vous avez joué en Contre-la-montre sur tous les circuits!",
     },
-    "0x1fb0": {
+    "8112": {
         "font": "regular",
         "string": "Vous avez remporté 1000 courses via la CWF Nintendo!",
     },
-    "0x1fb1": {
+    "8113": {
         "font": "regular",
         "string": "Vous avez obtenu la classe {1 char|} dans toutes les coupes Wii en 50cc!",
     },
-    "0x1fb2": {
+    "8114": {
         "font": "regular",
         "string": "Vous avez déverrouillé 8 super fantômes des développeurs!",
     },
-    "0x1fb3": {
+    "8115": {
         "font": "regular",
         "string": "Vous avez remporté la Coupe Éclair en 50cc!",
     },
-    "0x1fb4": {
+    "8116": {
         "font": "regular",
         "string": "Vous avez obtenu la classe {1 char|} dans toutes les coupes Rétro en 100cc!",
     },
-    "0x1fb5": {
+    "8117": {
         "font": "regular",
         "string": "Vous avez remporté la Coupe Spéciale en 150cc!",
     },
-    "0x1fb6": {
+    "8118": {
         "font": "regular",
         "string": "Vous avez joué en Contre-la-montre sur 16 circuits différents!",
     },
-    "0x1fb7": {
+    "8119": {
         "font": "regular",
         "string": "Vous avez obtenu la classe {1 char|} dans toutes les coupes en Mode Miroir!",
     },
-    "0x1fb8": {
+    "8120": {
         "font": "regular",
         "string": "Vous avez reçu un cadeau de Super Mario Galaxy!",
     },
-    "0x1fb9": {
+    "8121": {
         "font": "regular",
         "string": "Vous avez obtenu la classe {1 char|} dans toutes les coupes Wii en 150cc!",
     },
-    "0x1fba": {
+    "8122": {
         "font": "regular",
         "string": "Vous avez déverrouillé 4 super fantômes des développeurs!",
     },
-    "0x1fbb": {
+    "8123": {
         "font": "regular",
         "string": "Vous avez remporté 25 courses fantôme!",
     },
-    "0x1fbc": {
+    "8124": {
         "font": "regular",
         "string": "Vous avez remporté la Coupe Étoile en 50cc!",
     },
-    "0x1fbd": {
+    "8125": {
         "font": "regular",
         "string": "Vous avez remporté la Coupe Spéciale en 100cc!",
     },
-    "0x1fbe": {
+    "8126": {
         "font": "regular",
         "string": "Vous avez déverrouillé les 32 super fantômes des développeurs!",
     },
-    "0x1fbf": {
+    "8127": {
         "font": "regular",
         "string": "Vous avez remporté 5000 courses via la CWF Nintendo!",
     },
-    "0x1fc0": {
+    "8128": {
         "font": "regular",
         "string": "Vous avez remporté 100 courses fantôme!",
     },
-    "0x1fc1": {
+    "8129": {
         "font": "regular",
         "string": "Vous avez remporté 250 courses fantôme!",
     },
-    "0x1fc2": {
+    "8130": {
         "font": "regular",
         "string": null,
     },
-    "0x1fcc": {
+    "8140": {
         "font": "regular",
         "string": "Vous avez obtenu la classe {1 char|} dans toutes les coupes Rétro en 50cc!",
     },
-    "0x1fcd": {
+    "8141": {
         "font": "regular",
         "string": "Vous avez déverrouillé un super fantôme des développeurs!",
     },
-    "0x1fce": {
+    "8142": {
         "font": "regular",
         "string": "Vous avez remporté 50 courses via la CWF Nintendo!",
     },
-    "0x1fcf": {
+    "8143": {
         "font": "regular",
         "string": "Vous avez remporté la Coupe Éclair en Mode Miroir!",
     },
-    "0x1fd0": {
+    "8144": {
         "font": "regular",
         "string": "Vous avez remporté la Coupe Feuille en 50cc!",
     },
-    "0x1fd1": {
+    "8145": {
         "font": "regular",
         "string": "Vous avez remporté la Coupe Feuille en 150cc!",
     },
-    "0x1fd2": {
+    "8146": {
         "font": "regular",
         "string": "Vous avez déverrouillé 24 super fantômes des développeurs!",
     },
-    "0x1fd3": {
+    "8147": {
         "font": "regular",
         "string": "Vous avez remporté la Coupe Spéciale en 50cc!",
     },
-    "0x1fd4": {
+    "8148": {
         "font": "regular",
         "string": "Vous avez obtenu la classe {1 char|} dans toutes les coupes Rétro en 150cc!",
     },
-    "0x1fd5": {
+    "8149": {
         "font": "regular",
         "string": "Vous avez remporté la Coupe Éclair en 150cc!",
     },
-    "0x1fd6": {
+    "8150": {
         "font": "regular",
         "string": "Vous avez remporté la Coupe Étoile en 150cc!",
     },
-    "0x1fd7": {
+    "8151": {
         "font": "regular",
         "string": "Vous avez joué en Contre-la-montre sur 8 circuits différents!",
     },
-    "0x1fd8": {
+    "8152": {
         "font": "regular",
         "string": "Vous avez remporté 5 courses fantôme!",
     },
-    "0x1fd9": {
+    "8153": {
         "font": "regular",
         "string": "Vous avez remporté la Coupe Feuille en Mode Miroir!",
     },
-    "0x1fda": {
+    "8154": {
         "font": "regular",
         "string": "Vous avez remporté la Coupe Éclair en 50cc!",
     },
-    "0x1fdb": {
+    "8155": {
         "font": "regular",
         "string": "Vous avez obtenu la classe {1 char|} dans toutes les coupes Wii en 100cc!",
     },
-    "0x1fdc": {
+    "8156": {
         "font": "regular",
         "string": "Vous avez remporté la Coupe Étoile en Mode Miroir!",
     },
-    "0x1fdd": {
+    "8157": {
         "font": "regular",
         "string": "Vous avez remporté la Coupe Étoile en 100cc!",
     },
-    "0x1fde": {
+    "8158": {
         "font": "regular",
         "string": "Vous avez déverrouillé 12 super fantômes des développeurs!",
     },
-    "0x1fdf": {
+    "8159": {
         "font": "regular",
         "string": "Vous avez remporté 200 courses fantôme!",
     },
-    "0x1fe0": {
+    "8160": {
         "font": "regular",
         "string": "Vous avez remporté la Coupe Spéciale en Mode Miroir!",
     },
-    "0x1fe1": {
+    "8161": {
         "font": "regular",
         "string": "Vous avez gagné un trophée dans toutes les coupes en 50cc!",
     },
-    "0x1fe2": {
+    "8162": {
         "font": "regular",
         "string": "Vous avez gagné un trophée dans toutes les coupes en 100cc!",
     },
-    "0x1fe3": {
+    "8163": {
         "font": "regular",
         "string": "Vous avez remporté 3000 courses via la CWF Nintendo!",
     },
-    "0x1fe4": {
+    "8164": {
         "font": "regular",
         "string": "Parties jouées: {arg integer|0 0}!",
     },
-    "0x1fe5": {
+    "8165": {
         "font": "regular",
         "string": null,
     },
-    "0x2008": {
+    "8200": {
         "font": "regular",
         "string": "Général",
     },
-    "0x2009": {
+    "8201": {
         "font": "regular",
         "string": "Préférences",
     },
-    "0x200a": {
+    "8202": {
         "font": "regular",
         "string": "Amis",
     },
-    "0x200b": {
+    "8203": {
         "font": "regular",
         "string": "CWF Nintendo",
     },
-    "0x200c": {
+    "8204": {
         "font": "regular",
         "string": "Divers",
     },
-    "0x2012": {
+    "8210": {
         "font": "regular",
         "string": "Classe",
     },
-    "0x2013": {
+    "8211": {
         "font": "regular",
         "string": "Distance parcourue",
     },
-    "0x2014": {
+    "8212": {
         "font": "regular",
         "string": "Courses disputées",
     },
-    "0x2015": {
+    "8213": {
         "font": "regular",
         "string": "Batailles disputées",
     },
-    "0x2016": {
+    "8214": {
         "font": "regular",
         "string": "% d'utilisation du Wii Wheel",
     },
-    "0x2017": {
+    "8215": {
         "font": "regular",
         "string": "Figures aériennes réalisées",
     },
-    "0x2018": {
+    "8216": {
         "font": "regular",
         "string": "Pilote préféré",
     },
-    "0x2019": {
+    "8217": {
         "font": "regular",
         "string": "Véhicule préféré",
     },
-    "0x201a": {
+    "8218": {
         "font": "regular",
         "string": "Circuit préféré",
     },
-    "0x201b": {
+    "8219": {
         "font": "regular",
         "string": "Arène préférée",
     },
-    "0x201c": {
+    "8220": {
         "font": "regular",
         "string": "Courses Ami CWF Nintendo",
     },
-    "0x201d": {
+    "8221": {
         "font": "regular",
         "string": null,
     },
-    "0x201e": {
+    "8222": {
         "font": "regular",
         "string": "Fantômes envoyés en défi",
     },
-    "0x201f": {
+    "8223": {
         "font": "regular",
         "string": "Fantômes reçus en défi",
     },
-    "0x2020": {
+    "8224": {
         "font": "regular",
         "string": "Points Course (Pts Course)",
     },
-    "0x2021": {
+    "8225": {
         "font": "regular",
         "string": "Courses CWF Nintendo",
     },
-    "0x2022": {
+    "8226": {
         "font": "regular",
         "string": "Points Bataille (Pts Bataille)",
     },
-    "0x2023": {
+    "8227": {
         "font": "regular",
         "string": "Batailles CWF Nintendo",
     },
-    "0x2024": {
+    "8228": {
         "font": "regular",
         "string": "Arrivées en 1{1 char|} place",
     },
-    "0x2025": {
+    "8229": {
         "font": "regular",
         "string": "% de temps en 1{1 char|} place",
     },
-    "0x2026": {
+    "8230": {
         "font": "regular",
         "string": "Coups donnés",
     },
-    "0x2027": {
+    "8231": {
         "font": "regular",
         "string": "Coups reçus",
     },
-    "0x2028": {
+    "8232": {
         "font": "regular",
         "string": "Courses fantôme",
     },
-    "0x2029": {
+    "8233": {
         "font": "regular",
         "string": "Participations aux tournois",
     },
-    "0x202a": {
+    "8234": {
         "font": "regular",
         "string": null,
     },
-    "0x202b": {
+    "8235": {
         "font": "regular",
         "string": null,
     },
-    "0x202c": {
+    "8236": {
         "font": "regular",
         "string": null,
     },
-    "0x202d": {
+    "8237": {
         "font": "regular",
         "string": null,
     },
-    "0x202e": {
+    "8238": {
         "font": "regular",
         "string": null,
     },
-    "0x2044": {
+    "8260": {
         "font": "regular",
         "string": "{arg message|0}",
     },
-    "0x2045": {
+    "8261": {
         "font": "regular",
         "string": "{arg integer|0 0}",
     },
-    "0x2046": {
+    "8262": {
         "font": "regular",
         "string": "{arg integer|0 0}",
     },
-    "0x2047": {
+    "8263": {
         "font": "regular",
         "string": "{arg integer|0 0}",
     },
-    "0x2048": {
+    "8264": {
         "font": "regular",
         "string": "{arg integer|0 0} %",
     },
-    "0x2049": {
+    "8265": {
         "font": "regular",
         "string": "{arg integer|0 0} ",
     },
-    "0x204a": {
+    "8266": {
         "font": "regular",
         "string": "{arg message|0}",
     },
-    "0x204b": {
+    "8267": {
         "font": "regular",
         "string": "{arg message|0}",
     },
-    "0x204c": {
+    "8268": {
         "font": "regular",
         "string": "{arg message|0}",
     },
-    "0x204d": {
+    "8269": {
         "font": "regular",
         "string": "{arg message|0}",
     },
-    "0x204e": {
+    "8270": {
         "font": "regular",
         "string": "Victoires: {arg integer|0 0} Défaites: {arg integer|1 0} ",
     },
-    "0x204f": {
+    "8271": {
         "font": "regular",
         "string": null,
     },
-    "0x2050": {
+    "8272": {
         "font": "regular",
         "string": "{arg integer|0 0} ",
     },
-    "0x2051": {
+    "8273": {
         "font": "regular",
         "string": "{arg integer|0 0} ",
     },
-    "0x2052": {
+    "8274": {
         "font": "regular",
         "string": "{arg integer|0 0}",
     },
-    "0x2053": {
+    "8275": {
         "font": "regular",
         "string": "Victoires: {arg integer|0 0} Défaites: {arg integer|1 0}",
     },
-    "0x2054": {
+    "8276": {
         "font": "regular",
         "string": "{arg integer|0 0}",
     },
-    "0x2055": {
+    "8277": {
         "font": "regular",
         "string": "Victoires: {arg integer|0 0} Défaites: {arg integer|1 0}",
     },
-    "0x2056": {
+    "8278": {
         "font": "regular",
         "string": "{arg integer|0 0}",
     },
-    "0x2057": {
+    "8279": {
         "font": "regular",
         "string": "{arg integer|0 0} %",
     },
-    "0x2058": {
+    "8280": {
         "font": "regular",
         "string": "{arg integer|0 0}",
     },
-    "0x2059": {
+    "8281": {
         "font": "regular",
         "string": "{arg integer|0 0}",
     },
-    "0x205a": {
+    "8282": {
         "font": "regular",
         "string": "Victoires: {arg integer|0 0} Défaites: {arg integer|1 0}",
     },
-    "0x205b": {
+    "8283": {
         "font": "regular",
         "string": "{arg integer|0 0}",
     },
-    "0x205c": {
+    "8284": {
         "font": "regular",
         "string": null,
     },
-    "0x20d0": {
+    "8400": {
         "font": "regular",
         "string": null,
     },
-    "0x20d1": {
+    "8401": {
         "font": "regular",
         "string": null,
     },
-    "0x20d2": {
+    "8402": {
         "font": "regular",
         "string": null,
     },
-    "0x20d3": {
+    "8403": {
         "font": "regular",
         "string": null,
     },
-    "0x20d4": {
+    "8404": {
         "font": "regular",
         "string": null,
     },
-    "0x20d5": {
+    "8405": {
         "font": "regular",
         "string": "Félicitations, %ls!\n\nVous avez gagné tous les\ntrophées dans Mario Kart Wii!\n\nVeuillez accepter cette photo \ncommémorative en récompense\nde vos efforts.\n\nContinuez à vous amuser avec \nMario Kart Wii!",
     },
-    "0x20d6": {
+    "8406": {
         "font": "regular",
         "string": "Félicitations, %ls!\n\nVous avez remporté tous les \nGrand Prix dans Mario Kart Wii!\n\nVeuillez accepter cette photo \ncommémorative en récompense \nde vos efforts.\n\nContinuez à vous amuser avec \nMario Kart Wii!",
     },
-    "0x20d7": {
+    "8407": {
         "font": "regular",
         "string": null,
     },
-    "0x20d8": {
+    "8408": {
         "font": "regular",
         "string": null,
     },
-    "0x20d9": {
+    "8409": {
         "font": "regular",
         "string": null,
     },
-    "0x20da": {
+    "8410": {
         "font": "regular",
         "string": null,
     },
-    "0x20db": {
+    "8411": {
         "font": "regular",
         "string": null,
     },
-    "0x20dc": {
+    "8412": {
         "font": "regular",
         "string": null,
     },
-    "0x20dd": {
+    "8413": {
         "font": "regular",
         "string": null,
     },
-    "0x20de": {
+    "8414": {
         "font": "regular",
         "string": null,
     },
-    "0x20df": {
+    "8415": {
         "font": "regular",
         "string": null,
     },
-    "0x20e0": {
+    "8416": {
         "font": "regular",
         "string": null,
     },
-    "0x20e1": {
+    "8417": {
         "font": "regular",
         "string": null,
     },
-    "0x20e2": {
+    "8418": {
         "font": "regular",
         "string": null,
     },
-    "0x20e3": {
+    "8419": {
         "font": "regular",
         "string": null,
     },
-    "0x20e4": {
+    "8420": {
         "font": "regular",
         "string": null,
     },
-    "0x20e5": {
+    "8421": {
         "font": "regular",
         "string": null,
     },
-    "0x20e6": {
+    "8422": {
         "font": "regular",
         "string": null,
     },
-    "0x20e7": {
+    "8423": {
         "font": "regular",
         "string": null,
     },
-    "0x20e8": {
+    "8424": {
         "font": "regular",
         "string": null,
     },
-    "0x20e9": {
+    "8425": {
         "font": "regular",
         "string": null,
     },
-    "0x20ea": {
+    "8426": {
         "font": "regular",
         "string": null,
     },
-    "0x20eb": {
+    "8427": {
         "font": "regular",
         "string": null,
     },
-    "0x20ec": {
+    "8428": {
         "font": "regular",
         "string": null,
     },
-    "0x20ed": {
+    "8429": {
         "font": "regular",
         "string": null,
     },
-    "0x20ee": {
+    "8430": {
         "font": "regular",
         "string": null,
     },
-    "0x20f8": {
+    "8440": {
         "font": "regular",
         "string": null,
     },
-    "0x20f9": {
+    "8441": {
         "font": "regular",
         "string": null,
     },
-    "0x20fa": {
+    "8442": {
         "font": "regular",
         "string": null,
     },
-    "0x20fb": {
+    "8443": {
         "font": "regular",
         "string": null,
     },
-    "0x20fc": {
+    "8444": {
         "font": "regular",
         "string": null,
     },
-    "0x20fd": {
+    "8445": {
         "font": "regular",
         "string": null,
     },
-    "0x20fe": {
+    "8446": {
         "font": "regular",
         "string": null,
     },
-    "0x20ff": {
+    "8447": {
         "font": "regular",
         "string": null,
     },
-    "0x2100": {
+    "8448": {
         "font": "regular",
         "string": null,
     },
-    "0x2101": {
+    "8449": {
         "font": "regular",
         "string": null,
     },
-    "0x2102": {
+    "8450": {
         "font": "regular",
         "string": null,
     },
-    "0x2103": {
+    "8451": {
         "font": "regular",
         "string": null,
     },
-    "0x2104": {
+    "8452": {
         "font": "regular",
         "string": null,
     },
-    "0x2105": {
+    "8453": {
         "font": "regular",
         "string": null,
     },
-    "0x2106": {
+    "8454": {
         "font": "regular",
         "string": null,
     },
-    "0x2107": {
+    "8455": {
         "font": "regular",
         "string": null,
     },
-    "0x2108": {
+    "8456": {
         "font": "regular",
         "string": null,
     },
-    "0x2109": {
+    "8457": {
         "font": "regular",
         "string": null,
     },
-    "0x210a": {
+    "8458": {
         "font": "regular",
         "string": null,
     },
-    "0x210b": {
+    "8459": {
         "font": "regular",
         "string": null,
     },
-    "0x210c": {
+    "8460": {
         "font": "regular",
         "string": null,
     },
-    "0x210d": {
+    "8461": {
         "font": "regular",
         "string": null,
     },
-    "0x210e": {
+    "8462": {
         "font": "regular",
         "string": "Félicitations, %ls!\n\nEn gagnant des trophées dans toutes les coupes en 100cc, vous avez déverrouillé le Grand Prix 100cc (karts et motos)!",
     },
-    "0x210f": {
+    "8463": {
         "font": "regular",
         "string": null,
     },
-    "0x2110": {
+    "8464": {
         "font": "regular",
         "string": null,
     },
-    "0x2116": {
+    "8470": {
         "font": "regular",
         "string": null,
     },
-    "0x2117": {
+    "8471": {
         "font": "regular",
         "string": null,
     },
-    "0x2118": {
+    "8472": {
         "font": "regular",
         "string": null,
     },
-    "0x2119": {
+    "8473": {
         "font": "regular",
         "string": null,
     },
-    "0x211a": {
+    "8474": {
         "font": "regular",
         "string": null,
     },
-    "0x211b": {
+    "8475": {
         "font": "regular",
         "string": null,
     },
-    "0x211c": {
+    "8476": {
         "font": "regular",
         "string": null,
     },
-    "0x211d": {
+    "8477": {
         "font": "regular",
         "string": null,
     },
-    "0x211e": {
+    "8478": {
         "font": "regular",
         "string": null,
     },
-    "0x211f": {
+    "8479": {
         "font": "regular",
         "string": null,
     },
-    "0x2120": {
+    "8480": {
         "font": "regular",
         "string": null,
     },
-    "0x2121": {
+    "8481": {
         "font": "regular",
         "string": null,
     },
-    "0x2122": {
+    "8482": {
         "font": "regular",
         "string": null,
     },
-    "0x2123": {
+    "8483": {
         "font": "regular",
         "string": null,
     },
-    "0x2124": {
+    "8484": {
         "font": "regular",
         "string": null,
     },
-    "0x2125": {
+    "8485": {
         "font": "regular",
         "string": null,
     },
-    "0x2126": {
+    "8486": {
         "font": "regular",
         "string": null,
     },
-    "0x212a": {
+    "8490": {
         "font": "regular",
         "string": "Le message ci-dessous\nest de la Chaîne Mario Kart!\n\n{arg string|0}\n\n\n\n[Comment vous désabonner]\n\nCe message vous a été envoyé\npar la Chaîne Mario Kart. Si vous \nne désirez plus recevoir de \nmessages, pointez Se désister,\nappuyez sur le Bouton A, et \nindiquez si vous ne voulez plus \nrecevoir de messages de cette \nchaîne uniquement, ou de toutes \nles chaînes. ",
     },
-    "0x212b": {
+    "8491": {
         "font": "regular",
         "string": "Le message ci-dessous\nest de la Chaîne Mario Kart!\n\n{arg string|0}\n\n\n\n[Comment vous désabonner]\n\nCe message vous a été envoyé\npar la Chaîne Mario Kart. Si vous \nne désirez plus recevoir de \nmessages, pointez Se désister,\nappuyez sur le Bouton A, et \nindiquez si vous ne voulez plus \nrecevoir de messages de cette \nchaîne uniquement, ou de toutes \nles chaînes. ",
     },
-    "0x212c": {
+    "8492": {
         "font": "regular",
         "string": "Un joueur de Mario Kart Wii vous\na envoyé une invitation!\n\n◆Nom\n%ls\n\n◆Code ami\n%04d-%04d-%04d\n\nEnregistrez vos codes amis\nrespectifs pour pouvoir\njouer ensemble.\n\nSi vous possédez Mario Kart Wii et \nque vous avez installé la Chaîne \nMario Kart sur votre Bureau Wii, \nsélectionnez le bouton \"Démarrer\"\nen bas à droite pour enregistrer ce\ncode ami dans votre liste d'amis.\n\nLes joueurs qui ne l'ont pas installée \ndoivent s'envoyer des répliques.",
     },
-    "0x212d": {
+    "8493": {
         "font": "regular",
         "string": "%ls a accepté\nvotre invitation!\n\nCode ami Mario Kart Wii:\n%04d-%04d-%04d\n\n＊Si vous avez de la place dans\nvotre liste d'amis, ce code ami\nsera enregistré automatiquement.\n\nEn enregistrant vos codes amis\nrespectifs, vous pourrez jouer\nensemble.\n\nAmusez-vous bien!",
     },
-    "0x212e": {
+    "8494": {
         "font": "regular",
         "string": null,
     },
-    "0x212f": {
+    "8495": {
         "font": "regular",
         "string": null,
     },
-    "0x2130": {
+    "8496": {
         "font": "regular",
         "string": null,
     },
-    "0x2131": {
+    "8497": {
         "font": "regular",
         "string": null,
     },
-    "0x2132": {
+    "8498": {
         "font": "regular",
         "string": null,
     },
-    "0x2133": {
+    "8499": {
         "font": "regular",
         "string": null,
     },
-    "0x2134": {
+    "8500": {
         "font": "regular",
         "string": null,
     },
-    "0x2138": {
+    "8504": {
         "font": "regular",
         "string": null,
     },
-    "0x2139": {
+    "8505": {
         "font": "regular",
         "string": null,
     },
-    "0x213e": {
+    "8510": {
         "font": "regular",
         "string": null,
     },
-    "0x213f": {
+    "8511": {
         "font": "regular",
         "string": null,
     },
-    "0x2140": {
+    "8512": {
         "font": "regular",
         "string": null,
     },
-    "0x2141": {
+    "8513": {
         "font": "regular",
         "string": null,
     },
-    "0x2142": {
+    "8514": {
         "font": "regular",
         "string": null,
     },
-    "0x2143": {
+    "8515": {
         "font": "regular",
         "string": null,
     },
-    "0x2144": {
+    "8516": {
         "font": "regular",
         "string": null,
     },
-    "0x2145": {
+    "8517": {
         "font": "regular",
         "string": null,
     },
-    "0x2146": {
+    "8518": {
         "font": "regular",
         "string": null,
     },
-    "0x2147": {
+    "8519": {
         "font": "regular",
         "string": null,
     },
-    "0x2148": {
+    "8520": {
         "font": "regular",
         "string": null,
     },
-    "0x2149": {
+    "8521": {
         "font": "regular",
         "string": null,
     },
-    "0x214a": {
+    "8522": {
         "font": "regular",
         "string": null,
     },
-    "0x214b": {
+    "8523": {
         "font": "regular",
         "string": null,
     },
-    "0x214c": {
+    "8524": {
         "font": "regular",
         "string": null,
     },
-    "0x214d": {
+    "8525": {
         "font": "regular",
         "string": null,
     },
-    "0x214e": {
+    "8526": {
         "font": "regular",
         "string": null,
     },
-    "0x214f": {
+    "8527": {
         "font": "regular",
         "string": null,
     },
-    "0x2150": {
+    "8528": {
         "font": "regular",
         "string": null,
     },
-    "0x2151": {
+    "8529": {
         "font": "regular",
         "string": null,
     },
-    "0x2152": {
+    "8530": {
         "font": "regular",
         "string": null,
     },
-    "0x215c": {
+    "8540": {
         "font": "regular",
         "string": null,
     },
-    "0x215d": {
+    "8541": {
         "font": "regular",
         "string": null,
     },
-    "0x215e": {
+    "8542": {
         "font": "regular",
         "string": null,
     },
-    "0x215f": {
+    "8543": {
         "font": "regular",
         "string": null,
     },
-    "0x2160": {
+    "8544": {
         "font": "regular",
         "string": null,
     },
-    "0x2161": {
+    "8545": {
         "font": "regular",
         "string": null,
     },
-    "0x2162": {
+    "8546": {
         "font": "regular",
         "string": null,
     },
-    "0x2163": {
+    "8547": {
         "font": "regular",
         "string": null,
     },
-    "0x2164": {
+    "8548": {
         "font": "regular",
         "string": null,
     },
-    "0x2165": {
+    "8549": {
         "font": "regular",
         "string": null,
     },
-    "0x2166": {
+    "8550": {
         "font": "regular",
         "string": null,
     },
-    "0x2167": {
+    "8551": {
         "font": "regular",
         "string": null,
     },
-    "0x2168": {
+    "8552": {
         "font": "regular",
         "string": null,
     },
-    "0x2169": {
+    "8553": {
         "font": "regular",
         "string": null,
     },
-    "0x216a": {
+    "8554": {
         "font": "regular",
         "string": null,
     },
-    "0x216b": {
+    "8555": {
         "font": "regular",
         "string": null,
     },
-    "0x216c": {
+    "8556": {
         "font": "regular",
         "string": null,
     },
-    "0x216d": {
+    "8557": {
         "font": "regular",
         "string": null,
     },
-    "0x216e": {
+    "8558": {
         "font": "regular",
         "string": null,
     },
-    "0x216f": {
+    "8559": {
         "font": "regular",
         "string": null,
     },
-    "0x2170": {
+    "8560": {
         "font": "regular",
         "string": null,
     },
-    "0x2171": {
+    "8561": {
         "font": "regular",
         "string": null,
     },
-    "0x2172": {
+    "8562": {
         "font": "regular",
         "string": null,
     },
-    "0x2173": {
+    "8563": {
         "font": "regular",
         "string": null,
     },
-    "0x2174": {
+    "8564": {
         "font": "regular",
         "string": null,
     },
-    "0x2175": {
+    "8565": {
         "font": "regular",
         "string": null,
     },
-    "0x2176": {
+    "8566": {
         "font": "regular",
         "string": null,
     },
-    "0x2177": {
+    "8567": {
         "font": "regular",
         "string": null,
     },
-    "0x3000": {
+    "99991": {
         "font": "regular",
-        "string": "Affronter 1 fantôme",
-    },
-    "0x3001": {
-        "font": "regular",
-        "string": "Regarder 1 fantôme",
-    },
-    "0x3002": {
-        "font": "regular",
-        "string": "Affronter {arg integer|0 0} fantômes",
-    },
-    "0x3003": {
-        "font": "regular",
-        "string": "Regarder {arg integer|0 0} fantômes",
-    },
-    "0x3004": {
-        "font": "regular",
-        "string": "Libellés de l'ATH",
-    },
-    "0x3005": {
-        "font": "regular",
-        "string": "Cacher",
-    },
-    "0x3006": {
-        "font": "regular",
-        "string": "Afficher",
-    },
-    "0x3007": {
-        "font": "regular",
-        "string": "Cacher les libellés de l'ATH (HUD).",
-    },
-    "0x3008": {
-        "font": "regular",
-        "string": "Afficher les libellés de l'ATH (HUD).",
-    },
-    "0x3009": {
-        "font": "regular",
-        "string": "Champ de vue 16:9",
-    },
-    "0x300a": {
-        "font": "regular",
-        "string": "Par défaut",
-    },
-    "0x300b": {
-        "font": "regular",
-        "string": "Plus large",
-    },
-    "0x300c": {
-        "font": "regular",
-        "string": "Utiliser le champ de vue par défaut en mode 16:9.",
-    },
-    "0x300d": {
-        "font": "regular",
-        "string": "Utiliser le champ de vue plus large du mode 4:3 en mode 16:9.",
-    },
-    "0x300e": {
-        "font": "regular",
-        "string": "Icônes de la carte",
-    },
-    "0x300f": {
-        "font": "regular",
-        "string": "Personnages",
-    },
-    "0x3010": {
-        "font": "regular",
-        "string": "Miis",
-    },
-    "0x3011": {
-        "font": "regular",
-        "string": "Utiliser les personnages comme icônes sur la mini-carte.",
-    },
-    "0x3012": {
-        "font": "regular",
-        "string": "Utiliser les Miis comme icônes sur la mini-carte.",
-    },
-    "0x3013": {
-        "font": "regular",
-        "string": "Tri des fantômes",
-    },
-    "0x3014": {
-        "font": "regular",
-        "string": "Plus rapide",
-    },
-    "0x3015": {
-        "font": "regular",
-        "string": "Plus lent",
-    },
-    "0x3016": {
-        "font": "regular",
-        "string": "Plus récent",
-    },
-    "0x3017": {
-        "font": "regular",
-        "string": "Plus ancien",
-    },
-    "0x3018": {
-        "font": "regular",
-        "string": "Trier les fantômes du plus rapide au plus lent.",
-    },
-    "0x3019": {
-        "font": "regular",
-        "string": "Trier les fantômes du plus lent au plus rapide.",
-    },
-    "0x301a": {
-        "font": "regular",
-        "string": "Trier les fantômes du plus récent au plus ancien.",
-    },
-    "0x301b": {
-        "font": "regular",
-        "string": "Trier les fantômes du plus ancien au plus récent.",
-    },
-    "0x301c": {
-        "font": "regular",
-        "string": "Balises visibles",
-    },
-    "0x301d": {
-        "font": "regular",
-        "string": "Aucune",
-    },
-    "0x301e": {
-        "font": "regular",
-        "string": "Suivie",
-    },
-    "0x301f": {
-        "font": "regular",
-        "string": "Toutes",
-    },
-    "0x3020": {
-        "font": "regular",
-        "string": "N'afficher la balise d'aucune fantôme.",
-    },
-    "0x3021": {
-        "font": "regular",
-        "string": "Afficher la balise du fantôme suivi uniquement.",
-    },
-    "0x3022": {
-        "font": "regular",
-        "string": "Afficher la balise de tous les fantômes.",
-    },
-    "0x3023": {
-        "font": "regular",
-        "string": "Contenu des balises",
-    },
-    "0x3024": {
-        "font": "regular",
-        "string": "Nom",
-    },
-    "0x3025": {
-        "font": "regular",
-        "string": "Temps",
-    },
-    "0x3026": {
-        "font": "regular",
-        "string": "Date",
-    },
-    "0x3027": {
-        "font": "regular",
-        "string": "Utiliser le nom du fantôme comme balise.",
-    },
-    "0x3028": {
-        "font": "regular",
-        "string": "Utiliser le temps du fantôme comme balise.",
-    },
-    "0x3029": {
-        "font": "regular",
-        "string": "Utiliser la date de création du fantôme comme balise.",
-    },
-    "0x302a": {
-        "font": "regular",
-        "string": "Fantômes opaques",
-    },
-    "0x302b": {
-        "font": "regular",
-        "string": "Ne rendre aucun fantôme opaque.",
-    },
-    "0x302c": {
-        "font": "regular",
-        "string": "Rendre le fantôme suivi opaque uniquement.",
-    },
-    "0x302d": {
-        "font": "regular",
-        "string": "Rendre tous les fantômes opaques.",
-    },
-    "0x302e": {
-        "font": "regular",
-        "string": "Confirmer ces règles.",
-    },
-    "0x3031": {
-        "font": "regular",
-        "string": "LES CODES GECKO SONT ACTIVÉS",
-    },
-    "0x3032": {
-        "font": "regular",
-        "string": "Aucun",
-    },
-    "0x3033": {
-        "font": "regular",
-        "string": "Suivi",
-    },
-    "0x3034": {
-        "font": "regular",
-        "string": "Tous",
-    },
-    "0x3035": {
-        "font": "regular",
-        "string": "Shortened Time",
-    },
-    "0x3036": {
-        "font": "regular",
-        "string": "Time option without leading zeroes.",
-    },
-    "0x3037": {
-        "font": "regular",
-        "string": "Gecko codes are UNSUPPORTED\nand will crash your game.\nPress A if you know what you are doing\nand do NOT report bugs.",
-    },
-    "0x3038": {
-        "font": "regular",
-        "string": "Menu Transitions",
-    },
-    "0x3039": {
-        "font": "regular",
-        "string": "Disable",
-    },
-    "0x303a": {
-        "font": "regular",
-        "string": "Enable",
-    },
-    "0x303b": {
-        "font": "regular",
-        "string": "Make the menu transitions instant.",
-    },
-    "0x303c": {
-        "font": "regular",
-        "string": "Keep the default pace of the menu transitions.",
-    },
-    "0x303d": {
-        "font": "regular",
-        "string": "Input Display",
-    },
-    "0x303e": {
-        "font": "regular",
-        "string": "Disable",
-    },
-    "0x303f": {
-        "font": "regular",
-        "string": "Enable",
-    },
-    "0x3040": {
-        "font": "regular",
-        "string": "Don't display inputs during a race.",
-    },
-    "0x3041": {
-        "font": "regular",
-        "string": "Display controller inputs during a race.",
-    },
-    "0x3042": {
-        "font": "regular",
-        "string": "Ghost Sound",
-    },
-    "0x3043": {
-        "font": "regular",
-        "string": "Do not enable sound for any ghost.",
-    },
-    "0x3044": {
-        "font": "regular",
-        "string": "Only enable sound for the watched ghost.",
-    },
-    "0x3045": {
-        "font": "regular",
-        "string": "Enable sound for all ghosts.",
-    },
-    "0x18697": {
-        "font": "regular",
         "string": null,
     },
-    "0x18698": {
+    "99992": {
         "font": "regular",
         "string": null,
     },
-    "0x18699": {
+    "99993": {
         "font": "regular",
         "string": null,
     },
-    "0x1869a": {
+    "99994": {
         "font": "regular",
         "string": null,
     },
-    "0x1869b": {
+    "99995": {
         "font": "regular",
         "string": null,
     },
-    "0x1869c": {
+    "99996": {
         "font": "regular",
         "string": null,
     },
-    "0x1869d": {
+    "99997": {
         "font": "regular",
         "string": null,
     },
-    "0x1869e": {
+    "99998": {
         "font": "regular",
         "string": null,
     },

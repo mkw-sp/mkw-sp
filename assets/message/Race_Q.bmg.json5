@@ -1,738 +1,726 @@
 {
-    "0x3e8": {
+    "1000": {
         "font": "regular",
         "string": "",
     },
-    "0x3e9": {
+    "1001": {
         "font": "regular",
         "string": "Non",
     },
-    "0x3ea": {
+    "1002": {
         "font": "regular",
         "string": "Oui",
     },
-    "0x3eb": {
+    "1003": {
         "font": "regular",
         "string": "Continuer la partie",
     },
-    "0x3ec": {
+    "1004": {
         "font": "regular",
         "string": "Quitter la partie",
     },
-    "0x3ed": {
+    "1005": {
         "font": "regular",
         "string": "Changer de circuit",
     },
-    "0x3ee": {
+    "1006": {
         "font": "regular",
         "string": "Changer de pilote",
     },
-    "0x3ef": {
+    "1007": {
         "font": "regular",
         "string": "Recommencer",
     },
-    "0x3f0": {
+    "1008": {
         "font": "regular",
         "string": "Choisir une mission",
     },
-    "0x3f1": {
+    "1009": {
         "font": "regular",
         "string": "Course suivante",
     },
-    "0x3f2": {
+    "1010": {
         "font": "regular",
         "string": "Suite",
     },
-    "0x3f3": {
+    "1011": {
         "font": "regular",
         "string": "Réessayer",
     },
-    "0x3f4": {
+    "1012": {
         "font": "regular",
         "string": "Revoir la course",
     },
-    "0x3f5": {
+    "1013": {
         "font": "regular",
         "string": "Reprendre",
     },
-    "0x3f6": {
+    "1014": {
         "font": "regular",
         "string": "Revoir depuis le début",
     },
-    "0x3f7": {
+    "1015": {
         "font": "regular",
         "string": "Voir le classement",
     },
-    "0x3f8": {
+    "1016": {
         "font": "regular",
         "string": "Liste de fantômes",
     },
-    "0x3f9": {
+    "1017": {
         "font": "regular",
         "string": null,
     },
-    "0x3fa": {
+    "1018": {
         "font": "regular",
         "string": "Fantôme suivant",
     },
-    "0x3fb": {
+    "1019": {
         "font": "regular",
         "string": null,
     },
-    "0x3fc": {
+    "1020": {
         "font": "regular",
         "string": "Menu CWF Nintendo",
     },
-    "0x3fd": {
+    "1021": {
         "font": "regular",
         "string": "Quitter",
     },
-    "0x3fe": {
+    "1022": {
         "font": "regular",
         "string": "Commencer la course",
     },
-    "0x3ff": {
+    "1023": {
         "font": "regular",
         "string": "Course suivante",
     },
-    "0x400": {
+    "1024": {
         "font": "regular",
         "string": "Bataille suivante",
     },
-    "0x401": {
+    "1025": {
         "font": "regular",
         "string": "Veuillez patienter...",
     },
-    "0x402": {
+    "1026": {
         "font": "regular",
         "string": "Changer de fantôme",
     },
-    "0x403": {
+    "1027": {
         "font": "regular",
         "string": "Affronter ce fantôme",
     },
-    "0x404": {
+    "1028": {
         "font": "regular",
         "string": "Reprendre",
     },
-    "0x405": {
+    "1029": {
         "font": "regular",
         "string": "Quitter",
     },
-    "0x406": {
+    "1030": {
         "font": "regular",
         "string": "Revoir depuis le début",
     },
-    "0x407": {
+    "1031": {
         "font": "regular",
         "string": "Partie suivante: {arg integer|0 0} joueurs prévus",
     },
-    "0x408": {
+    "1032": {
         "font": "regular",
         "string": "Envoyer votre record",
     },
-    "0x409": {
+    "1033": {
         "font": "regular",
         "string": "",
     },
-    "0x44d": {
+    "1101": {
         "font": "regular",
         "string": "Voulez-vous vraiment quitter?",
     },
-    "0x44e": {
+    "1102": {
         "font": "regular",
         "string": "Voulez-vous consulter\nle classement de la\nChaîne Mario Kart?",
     },
-    "0x44f": {
+    "1103": {
         "font": "regular",
         "string": "OK",
     },
-    "0x450": {
+    "1104": {
         "font": "regular",
         "string": null,
     },
-    "0x451": {
+    "1105": {
         "font": "regular",
         "string": "Félicitations!\nVous avez battu le fantôme \nde {arg player|0}!\n\nVoulez-vous lui envoyer \nvotre fantôme?",
     },
-    "0x452": {
+    "1106": {
         "font": "regular",
         "string": "Oui",
     },
-    "0x453": {
+    "1107": {
         "font": "regular",
         "string": "Non",
     },
-    "0x454": {
+    "1108": {
         "font": "regular",
         "string": "Oui",
     },
-    "0x455": {
+    "1109": {
         "font": "regular",
         "string": "Non",
     },
-    "0x456": {
+    "1110": {
         "font": "regular",
         "string": "",
     },
-    "0x457": {
+    "1111": {
         "font": "regular",
         "string": "Voulez-vous accéder\nà votre liste d'amis?",
     },
-    "0x458": {
+    "1112": {
         "font": "regular",
         "string": "Vous pouvez envoyer autant de\nrecords que vous voulez avant\nla fin du tournoi. Voulez-vous\nenvoyer votre record?",
     },
-    "0x459": {
+    "1113": {
         "font": "regular",
         "string": "Voulez-vous vraiment quitter\ncette course et télécharger\nle fantôme suivant?",
     },
-    "0x45a": {
+    "1114": {
         "font": "regular",
         "string": "Voulez-vous vraiment quitter\ncette course et retourner au\nmenu principal?",
     },
-    "0x45b": {
+    "1115": {
         "font": "regular",
         "string": "Un fantôme a été créé pour {current player|}!",
     },
-    "0x45c": {
+    "1116": {
         "font": "regular",
         "string": "Impossible de créér le fantôme.",
     },
-    "0x45d": {
+    "1117": {
         "font": "regular",
         "string": "Impossible d'envoyer un fantôme en défi.",
     },
-    "0x45e": {
+    "1118": {
         "font": "regular",
         "string": "Voulez-vous retourner à \nl'écran de choix du circuit?",
     },
-    "0x45f": {
+    "1119": {
         "font": "regular",
-        "string": "Le fantôme va être tronqué.",
+        "string": "Impossible de créer un fantôme.",
     },
-    "0x460": {
+    "1120": {
         "font": "regular",
         "string": "",
     },
-    "0x461": {
+    "1121": {
         "font": "regular",
         "string": "Vous avez déverrouillé un super fantôme des développeurs!",
     },
-    "0x4b1": {
+    "1201": {
         "font": "caps",
         "string": "3",
     },
-    "0x4b2": {
+    "1202": {
         "font": "caps",
         "string": "2",
     },
-    "0x4b3": {
+    "1203": {
         "font": "caps",
         "string": "1",
     },
-    "0x4b4": {
+    "1204": {
         "font": "caps",
         "string": "PARTEZ!",
     },
-    "0x4b5": {
+    "1205": {
         "font": "caps",
         "string": "TERMINÉ!",
     },
-    "0x4b6": {
+    "1206": {
         "font": "caps",
         "string": "VICTOIRE!",
     },
-    "0x4b7": {
+    "1207": {
         "font": "caps",
         "string": "DÉFAITE!",
     },
-    "0x4b8": {
+    "1208": {
         "font": "regular",
         "string": null,
     },
-    "0x4b9": {
+    "1209": {
         "font": "regular",
         "string": null,
     },
-    "0x4ba": {
+    "1210": {
         "font": "regular",
         "string": "Félicitations!",
     },
-    "0x4bb": {
+    "1211": {
         "font": "caps",
         "string": "NOUVEAU RECORD!",
     },
-    "0x4bc": {
+    "1212": {
         "font": "regular",
         "string": "Record",
     },
-    "0x4bd": {
+    "1213": {
         "font": "regular",
         "string": "Meil. tour",
     },
-    "0x4be": {
+    "1214": {
         "font": "regular",
         "string": "{color|team red}VICTOIRE DES ROUGES!",
     },
-    "0x4bf": {
+    "1215": {
         "font": "regular",
         "string": "{color|team blue}VICTOIRE DES BLEUS!",
     },
-    "0x4c0": {
+    "1216": {
         "font": "regular",
         "string": "{color|team red}LES ROUGES L'EMPORTENT!",
     },
-    "0x4c1": {
+    "1217": {
         "font": "regular",
         "string": "{color|team blue}LES BLEUS L'EMPORTENT!",
     },
-    "0x4c2": {
+    "1218": {
         "font": "regular",
         "string": "ÉGALITÉ!",
     },
-    "0x4c3": {
+    "1219": {
         "font": "regular",
         "string": "PREMIÈRE PLACE!",
     },
-    "0x4c4": {
+    "1220": {
         "font": "regular",
         "string": "DEUXIÈME PLACE!",
     },
-    "0x4c5": {
+    "1221": {
         "font": "regular",
         "string": "TROISIÈME PLACE!",
     },
-    "0x4c6": {
+    "1222": {
         "font": "regular",
         "string": "QUEL DOMMAGE!",
     },
-    "0x4c7": {
+    "1223": {
         "font": "regular",
         "string": "{color|team red}DÉFAITE DES ROUGES!",
     },
-    "0x4c8": {
+    "1224": {
         "font": "regular",
         "string": "{color|team blue}DÉFAITE DES BLEUS!",
     },
-    "0x4c9": {
+    "1225": {
         "font": "regular",
         "string": "{color|team red}DÉFAITE DES ROUGES!",
     },
-    "0x4ca": {
+    "1226": {
         "font": "regular",
         "string": "{color|team blue}DÉFAITE DES BLEUS!",
     },
-    "0x4cb": {
+    "1227": {
         "font": "regular",
         "string": "",
     },
-    "0x515": {
+    "1301": {
         "font": "regular",
         "string": "1{1 char|}",
     },
-    "0x516": {
+    "1302": {
         "font": "regular",
         "string": "2{1 char|}",
     },
-    "0x517": {
+    "1303": {
         "font": "regular",
         "string": "3{1 char|}",
     },
-    "0x518": {
+    "1304": {
         "font": "regular",
         "string": "4{1 char|}",
     },
-    "0x519": {
+    "1305": {
         "font": "regular",
         "string": "5{1 char|}",
     },
-    "0x51a": {
+    "1306": {
         "font": "regular",
         "string": "6{1 char|}",
     },
-    "0x51b": {
+    "1307": {
         "font": "regular",
         "string": "7{1 char|}",
     },
-    "0x51c": {
+    "1308": {
         "font": "regular",
         "string": "8{1 char|}",
     },
-    "0x51d": {
+    "1309": {
         "font": "regular",
         "string": "9{1 char|}",
     },
-    "0x51e": {
+    "1310": {
         "font": "regular",
         "string": "10{1 char|}",
     },
-    "0x51f": {
+    "1311": {
         "font": "regular",
         "string": "11{1 char|}",
     },
-    "0x520": {
+    "1312": {
         "font": "regular",
         "string": "12{1 char|}",
     },
-    "0x521": {
+    "1313": {
         "font": "regular",
         "string": "{arg cond messages|0 1316 1317}",
     },
-    "0x522": {
+    "1314": {
         "font": "regular",
         "string": "{arg integer|0 0}",
     },
-    "0x523": {
+    "1315": {
         "font": "regular",
         "string": "{arg signed integer|0 0}",
     },
-    "0x524": {
+    "1316": {
         "font": "regular",
         "string": "pt",
     },
-    "0x525": {
+    "1317": {
         "font": "regular",
         "string": "pts",
     },
-    "0x526": {
+    "1318": {
         "font": "regular",
         "string": "{arg cond messages|0 1319 1320}",
     },
-    "0x527": {
+    "1319": {
         "font": "regular",
         "string": "{color|team red}victoire",
     },
-    "0x528": {
+    "1320": {
         "font": "regular",
         "string": "{color|team red}victoires",
     },
-    "0x529": {
+    "1321": {
         "font": "regular",
         "string": "{arg cond messages|0 1322 1323}",
     },
-    "0x52a": {
+    "1322": {
         "font": "regular",
         "string": "{color|team blue}victoire",
     },
-    "0x52b": {
+    "1323": {
         "font": "regular",
         "string": "{color|team blue}victoires",
     },
-    "0x52c": {
+    "1324": {
         "font": "regular",
         "string": "{arg cond messages|0 1325 1326}",
     },
-    "0x52d": {
+    "1325": {
         "font": "regular",
         "string": "{color|team red}pt",
     },
-    "0x52e": {
+    "1326": {
         "font": "regular",
         "string": "{color|team red}pts",
     },
-    "0x52f": {
+    "1327": {
         "font": "regular",
         "string": "{arg cond messages|0 1328 1329}",
     },
-    "0x530": {
+    "1328": {
         "font": "regular",
         "string": "{color|team blue}pt",
     },
-    "0x531": {
+    "1329": {
         "font": "regular",
         "string": "{color|team blue}pts",
     },
-    "0x532": {
+    "1330": {
         "font": "regular",
         "string": "Course fantôme - Victoires: {arg integer|0 0} Défaites: {arg integer|1 0}",
     },
-    "0x533": {
+    "1331": {
         "font": "regular",
         "string": "Course fantôme - Victoires: {arg integer|0 0} Défaites: {arg integer|1 0}",
     },
-    "0x534": {
+    "1332": {
         "font": "regular",
         "string": "{color|team red}{arg message|0}",
     },
-    "0x535": {
+    "1333": {
         "font": "regular",
         "string": "{color|team blue}{arg message|0}",
     },
-    "0x536": {
+    "1334": {
         "font": "regular",
         "string": "TEMPS",
     },
-    "0x537": {
+    "1335": {
         "font": "regular",
         "string": "TOUR",
     },
-    "0x538": {
+    "1336": {
         "font": "regular",
         "string": "POINTAGE",
     },
-    "0x539": {
+    "1337": {
         "font": "regular",
         "string": "EN DIRECT",
     },
-    "0x53a": {
+    "1338": {
         "font": "regular",
         "string": "Vous allez participer\nà la course suivante\n({arg integer|0 0} joueurs prévus).",
     },
-    "0x53b": {
+    "1339": {
         "font": "regular",
         "string": "Vous allez participer\nà la bataille suivante\n({arg integer|0 0} joueurs prévus).",
     },
-    "0x53c": {
+    "1340": {
         "font": "regular",
         "string": "\nLe classement a été établi.\nLa course est terminée.",
     },
-    "0x53d": {
+    "1341": {
         "font": "regular",
         "string": "\n5 minutes se sont écoulées.\nLa course est terminée.",
     },
-    "0x53e": {
+    "1342": {
         "font": "regular",
         "string": "Le pilote gagnant a franchi la\nligne d'arrivée il y a 30 secondes.\nLa partie est terminée.",
     },
-    "0x53f": {
+    "1343": {
         "font": "regular",
         "string": "",
     },
-    "0x540": {
+    "1344": {
         "font": "regular",
         "string": "",
     },
-    "0x541": {
+    "1345": {
         "font": "regular",
         "string": "{1 char|}",
     },
-    "0x577": {
-        "font": "regular",
-        "string": "{arg integer|0 0}:{arg integer|1 0}.{arg integer|2 3}",
-    },
-    "0x578": {
+    "1400": {
         "font": "regular",
         "string": "{arg integer|0 2}:{arg integer|1 2}.{arg integer|2 3}",
     },
-    "0x579": {
+    "1401": {
         "font": "regular",
         "string": "--:--.---",
     },
-    "0x57a": {
+    "1402": {
         "font": "regular",
         "string": ":",
     },
-    "0x57b": {
+    "1403": {
         "font": "regular",
         "string": ".",
     },
-    "0x57c": {
+    "1404": {
         "font": "regular",
         "string": "",
     },
-    "0x581": {
+    "1409": {
         "font": "regular",
         "string": "Course VS par équipes {arg message|0} - {arg integer|0 0}/{arg integer|1 0}",
     },
-    "0x582": {
+    "1410": {
         "font": "regular",
         "string": "{arg message|1} {arg message|0} - 1{1 char|} course",
     },
-    "0x583": {
+    "1411": {
         "font": "regular",
         "string": "{arg message|1} {arg message|0} - 2{1 char|} course",
     },
-    "0x584": {
+    "1412": {
         "font": "regular",
         "string": "{arg message|1} {arg message|0} - 3{1 char|} course",
     },
-    "0x585": {
+    "1413": {
         "font": "regular",
         "string": "{arg message|1} {arg message|0} - Course finale",
     },
-    "0x586": {
+    "1414": {
         "font": "regular",
         "string": "Course VS {arg message|0} - {arg integer|0 0}/{arg integer|1 0}",
     },
-    "0x587": {
+    "1415": {
         "font": "regular",
         "string": "Bataille de Ballons",
     },
-    "0x588": {
+    "1416": {
         "font": "regular",
         "string": "Pilotes Pièces",
     },
-    "0x589": {
+    "1417": {
+        "font": "regular",
+        "string": "50cc",
+    },
+    "1418": {
         "font": "regular",
         "string": "100cc",
     },
-    "0x58a": {
+    "1419": {
         "font": "regular",
         "string": "150cc",
     },
-    "0x58b": {
-        "font": "regular",
-        "string": "200cc",
-    },
-    "0x58c": {
+    "1420": {
         "font": "regular",
         "string": "Miroir",
     },
-    "0x58d": {
+    "1421": {
         "font": "regular",
         "string": "{arg message|1} {arg message|0}",
     },
-    "0x58e": {
+    "1422": {
         "font": "regular",
         "string": "Course VS {arg message|0}",
     },
-    "0x58f": {
+    "1423": {
         "font": "regular",
         "string": "CLASSE:",
     },
-    "0x590": {
+    "1424": {
         "font": "regular",
         "string": "{1 char|}",
     },
-    "0x591": {
+    "1425": {
         "font": "regular",
         "string": "{1 char|}",
     },
-    "0x592": {
+    "1426": {
         "font": "regular",
         "string": "{1 char|}",
     },
-    "0x593": {
+    "1427": {
         "font": "regular",
         "string": "{1 char|}",
     },
-    "0x594": {
+    "1428": {
         "font": "regular",
         "string": "{1 char|}",
     },
-    "0x595": {
+    "1429": {
         "font": "regular",
         "string": "{1 char|}",
     },
-    "0x596": {
+    "1430": {
         "font": "regular",
         "string": "{1 char|}",
     },
-    "0x597": {
+    "1431": {
         "font": "regular",
         "string": "{1 char|}",
     },
-    "0x598": {
+    "1432": {
         "font": "regular",
         "string": "F",
     },
-    "0x599": {
+    "1433": {
         "font": "regular",
         "string": "Course VS {arg message|0}",
     },
-    "0x59a": {
+    "1434": {
         "font": "regular",
         "string": "Course VS amis par équipes {arg message|0}",
     },
-    "0x59b": {
+    "1435": {
         "font": "regular",
         "string": "Course VS par équipes {arg message|0}",
     },
-    "0x59c": {
+    "1436": {
         "font": "regular",
         "string": null,
     },
-    "0x59d": {
+    "1437": {
         "font": "regular",
         "string": null,
     },
-    "0x59e": {
+    "1438": {
         "font": "regular",
         "string": null,
     },
-    "0x59f": {
+    "1439": {
         "font": "regular",
         "string": null,
     },
-    "0x5a0": {
+    "1440": {
         "font": "regular",
         "string": "Course VS {arg message|0} {arg message|1}",
     },
-    "0x5a1": {
+    "1441": {
         "font": "regular",
         "string": "{arg message|2}Course VS {arg message|0} - 1{1 char|} course",
     },
-    "0x5a2": {
+    "1442": {
         "font": "regular",
         "string": "{arg message|2}Course VS {arg message|0} - 2{1 char|} course",
     },
-    "0x5a3": {
+    "1443": {
         "font": "regular",
         "string": "{arg message|2}Course VS {arg message|0} {arg message|2} - 3{1 char|} course",
     },
-    "0x5a4": {
+    "1444": {
         "font": "regular",
         "string": "{arg message|2}Course VS {arg message|0} {arg message|2} - Course finale",
     },
-    "0x5a5": {
+    "1445": {
         "font": "regular",
         "string": "{arg message|2}Bataille de Ballons",
     },
-    "0x5a6": {
+    "1446": {
         "font": "regular",
         "string": "{arg message|2}Pilotes Pièces",
     },
-    "0x5a7": {
+    "1447": {
         "font": "regular",
         "string": "({arg integer|0 0} joueurs)",
     },
-    "0x5a8": {
+    "1448": {
         "font": "regular",
         "string": "",
     },
-    "0x5a9": {
+    "1449": {
         "font": "regular",
         "string": "{color|team red}",
     },
-    "0x5aa": {
+    "1450": {
         "font": "regular",
         "string": "{color|team blue}",
     },
-    "0x5ab": {
+    "1451": {
         "font": "regular",
         "string": "",
     },
-    "0x5dc": {
+    "1500": {
         "font": "regular",
         "string": "Utiliser un objet",
     },
-    "0x5dd": {
+    "1501": {
         "font": "regular",
         "string": "Tourner",
     },
-    "0x5de": {
+    "1502": {
         "font": "regular",
         "string": "Accélérer",
     },
-    "0x5df": {
+    "1503": {
         "font": "regular",
         "string": "Freiner/Déraper",
     },
-    "0x5e0": {
+    "1504": {
         "font": "regular",
         "string": "Freiner",
     },
-    "0x5e1": {
+    "1505": {
         "font": "regular",
         "string": "",
-    },
-    "0x302f": {
-        "font": "regular",
-        "string": "Sauvegarde du fantôme...",
-    },
-    "0x3030": {
-        "font": "regular",
-        "string": "{arg integer|0 4}-{arg integer|1 2}-{arg integer|2 2}",
     },
 }

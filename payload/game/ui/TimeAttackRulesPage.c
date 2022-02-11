@@ -64,12 +64,12 @@ static void onRuleControlSelect(RadioButtonControlHandler *this, RadioButtonCont
 
     TimeAttackRulesPage *page = CONTAINER_OF(this, TimeAttackRulesPage, onRuleControlSelect);
     u32 messageIds[][4] = {
-        { 0xd58, 0xd5a },
-        { 0x3018, 0x3019, 0x301a, 0x301b },
-        { 0x3020, 0x3021, 0x3022 },
-        { 0x3027, 0x3028, 0x3036, 0x3029 },
-        { 0x302b, 0x302c, 0x302d },
-        { 0x3043, 0x3044, 0x3045 },
+        { 10079, 10081 },
+        { 10024, 10025, 10026, 10027 },
+        { 10032, 10033, 10034 },
+        { 10039, 10040, 10054, 10041 },
+        { 10043, 10044, 10045 },
+        { 10067, 10068, 10069 },
     };
     u32 messageId = messageIds[control->index][selected];
     CtrlMenuInstructionText_setMessage(&page->instructionText, messageId, NULL);
@@ -98,7 +98,7 @@ static const PushButtonHandler_vt onOkButtonFront_vt = {
 static void onOkButtonSelect(PushButtonHandler *this, PushButton *UNUSED(button),
         u32 UNUSED(localPlayerId)) {
     TimeAttackRulesPage *page = CONTAINER_OF(this, TimeAttackRulesPage, onOkButtonSelect);
-    CtrlMenuInstructionText_setMessage(&page->instructionText, 0x302e, NULL);
+    CtrlMenuInstructionText_setMessage(&page->instructionText, 10046, NULL);
 }
 
 static const PushButtonHandler_vt onOkButtonSelect_vt = {
@@ -243,7 +243,7 @@ static void TimeAttackRulesPage_onInit(Page *base) {
     PushButton_setSelectHandler(&this->okButton, &this->onOkButtonSelect);
     PushButton_setFrontHandler(&this->backButton, &this->onBackButtonFront, false);
 
-    CtrlMenuPageTitleText_setMessage(&this->pageTitleText, 0xd48, NULL);
+    CtrlMenuPageTitleText_setMessage(&this->pageTitleText, 3400, NULL);
 }
 
 static void TimeAttackRulesPage_onDeinit(Page *UNUSED(base)) {
@@ -254,7 +254,7 @@ static void TimeAttackRulesPage_onActivate(Page *base) {
     TimeAttackRulesPage *this = (TimeAttackRulesPage *)base;
 
     PushButton_selectDefault(&this->okButton, 0);
-    CtrlMenuInstructionText_setMessage(&this->instructionText, 0x302e, NULL);
+    CtrlMenuInstructionText_setMessage(&this->instructionText, 10046, NULL);
 
     this->replacement = PAGE_ID_NONE;
 }

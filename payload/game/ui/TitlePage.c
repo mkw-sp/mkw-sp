@@ -20,6 +20,6 @@ void TitlePage_processGeckoWarning(TitlePage *this) {
     MessageWindowPopupPage *messageWindowPopupPage =
             (MessageWindowPopupPage *)currentSection->pages[PAGE_ID_MESSAGE_WINDOW_POPUP];
     MessageWindowPopupPage_reset(messageWindowPopupPage);
-    MessageWindowPopupPage_setMessage(messageWindowPopupPage, 0x3037, NULL);
+    MessageWindowPopupPage_setMessage(messageWindowPopupPage, 10055, NULL);
     Page_push(this, PAGE_ID_MESSAGE_WINDOW_POPUP, PAGE_ANIMATION_NEXT);
 }

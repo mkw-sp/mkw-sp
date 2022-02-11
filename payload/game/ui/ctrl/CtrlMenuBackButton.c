@@ -11,7 +11,7 @@ CtrlMenuBackButton *CtrlMenuBackButton_ct(CtrlMenuBackButton *this) {
     PushButton_ct(this);
     this->vt = &s_CtrlMenuBackButton_vt;
 
-    this->messageId = 0x7d1;
+    this->messageId = 2001;
     this->fadeoutState = FADEOUT_STATE_DISABLED;
     this->fadeoutOpacity = 0.0f;
 

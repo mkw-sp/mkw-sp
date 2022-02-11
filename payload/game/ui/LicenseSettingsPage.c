@@ -60,11 +60,11 @@ static void onSettingControlSelect(RadioButtonControlHandler *this, RadioButtonC
 
     LicenseSettingsPage *page = CONTAINER_OF(this, LicenseSettingsPage, onSettingControlSelect);
     u32 messageIds[][2] = {
-        { 0x3007, 0x3008 },
-        { 0x300c, 0x300d },
-        { 0x3011, 0x3012 },
-        { 0x303b, 0x303c },
-        { 0x3040, 0x3041 },
+        { 10007, 10008 },
+        { 10012, 10013 },
+        { 10017, 10018 },
+        { 10059, 10060 },
+        { 10064, 10065 },
     };
     u32 messageId = messageIds[control->index][selected];
     CtrlMenuInstructionText_setMessage(&page->instructionText, messageId, NULL);
@@ -196,7 +196,7 @@ static void LicenseSettingsPage_onInit(Page *base) {
     }
     PushButton_setFrontHandler(&this->backButton, &this->onBackButtonFront, false);
 
-    CtrlMenuPageTitleText_setMessage(&this->pageTitleText, 0x7df, NULL);
+    CtrlMenuPageTitleText_setMessage(&this->pageTitleText, 2015, NULL);
 
     this->resetSelection = true;
 }
@@ -210,7 +210,7 @@ static void LicenseSettingsPage_onActivate(Page *base) {
 
     if (this->resetSelection) {
         RadioButtonControl_selectDefault(&this->settingControls[0], 0);
-        u32 messageId = 0x3007 + this->settingControls[0].selected;
+        u32 messageId = 10007 + this->settingControls[0].selected;
         CtrlMenuInstructionText_setMessage(&this->instructionText, messageId, NULL);
         this->resetSelection = false;
     }

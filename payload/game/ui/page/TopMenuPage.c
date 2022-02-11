@@ -18,3 +18,24 @@ void TopMenuPage_refreshFileAdminButton(TopMenuPage *this) {
     u32 index = s_saveManager->spCurrentLicense;
     LayoutUIControl_setMiiPicture(this->fileAdminButton, "mii", this->miiGroup, index, 2);
 }
+
+void TopMenuPage_onButtonSelect(TopMenuPage *this, PushButton *button);
+
+void my_TopMenuPage_onButtonSelect(TopMenuPage *this, PushButton *button) {
+    if (button->index == -100) {
+        CtrlMenuInstructionText_setMessage(this->instructionText, 0, NULL);
+    } else {
+        const u32 messageIds[] = {
+            10073,
+            2021,
+            2022,
+            2023,
+            2024,
+            2025,
+            2026,
+            10074,
+        };
+        CtrlMenuInstructionText_setMessage(this->instructionText, messageIds[button->index], NULL);
+    }
+}
+PATCH_B(TopMenuPage_onButtonSelect, my_TopMenuPage_onButtonSelect);

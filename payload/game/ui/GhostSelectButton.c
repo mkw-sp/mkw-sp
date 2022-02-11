@@ -125,11 +125,11 @@ void GhostSelectButton_refresh(GhostSelectButton *this, u32 ghostIndex) {
     ExtendedMessageInfo nameInfo = {
         .miis[0] = MiiGroup_get(&this->miiGroup, 0),
     };
-    LayoutUIControl_setMessage(this, "name_shadow", 0x251d, &nameInfo);
-    LayoutUIControl_setMessage(this, "name", 0x251d, &nameInfo);
-    LayoutUIControl_setMessage(this, "active_name", 0x251d, &nameInfo);
-    LayoutUIControl_setMessage(this, "name_light_01", 0x251d, &nameInfo);
-    LayoutUIControl_setMessage(this, "name_light_02", 0x251d, &nameInfo);
+    LayoutUIControl_setMessage(this, "name_shadow", 9501, &nameInfo);
+    LayoutUIControl_setMessage(this, "name", 9501, &nameInfo);
+    LayoutUIControl_setMessage(this, "active_name", 9501, &nameInfo);
+    LayoutUIControl_setMessage(this, "name_light_01", 9501, &nameInfo);
+    LayoutUIControl_setMessage(this, "name_light_02", 9501, &nameInfo);
 
     char countryPane[0x4];
     snprintf(countryPane, sizeof(countryPane), "%03u", file->country);
@@ -167,11 +167,11 @@ void GhostSelectButton_refresh(GhostSelectButton *this, u32 ghostIndex) {
         .intVals[1] = file->raceTime.seconds,
         .intVals[2] = file->raceTime.milliseconds,
     };
-    LayoutUIControl_setMessage(this, "time_shadow", 0x17a4, &timeInfo);
-    LayoutUIControl_setMessage(this, "time", 0x17a4, &timeInfo);
-    LayoutUIControl_setMessage(this, "active_time", 0x17a4, &timeInfo);
-    LayoutUIControl_setMessage(this, "time_light_01", 0x17a4, &timeInfo);
-    LayoutUIControl_setMessage(this, "time_light_02", 0x17a4, &timeInfo);
+    LayoutUIControl_setMessage(this, "time_shadow", 6052, &timeInfo);
+    LayoutUIControl_setMessage(this, "time", 6052, &timeInfo);
+    LayoutUIControl_setMessage(this, "active_time", 6052, &timeInfo);
+    LayoutUIControl_setMessage(this, "time_light_01", 6052, &timeInfo);
+    LayoutUIControl_setMessage(this, "time_light_02", 6052, &timeInfo);
 
     this->chosen = page->ghostIsChosen[ghostIndex];
     TabOptionButton_setChosen(this, this->chosen);

@@ -22,13 +22,13 @@ static const InputHandler_vt onBack_vt = {
 static void TimeAttackGhostListPage_refreshLaunchButton(TimeAttackGhostListPage *this) {
     if (this->chosenCount == 0) {
         this->switchLabel.isHidden = true;
-        LayoutUIControl_setMessageAll(&this->launchButton, 0x1780, NULL);
+        LayoutUIControl_setMessageAll(&this->launchButton, 6016, NULL);
     } else if (this->chosenCount == 1) {
         this->switchLabel.isHidden = false;
-        u32 messageId = this->isReplay ? 0x3001 : 0x3000;
+        u32 messageId = this->isReplay ? 10001 : 10000;
         LayoutUIControl_setMessageAll(&this->launchButton, messageId, NULL);
     } else {
-        u32 messageId = this->isReplay ? 0x3003 : 0x3002;
+        u32 messageId = this->isReplay ? 10003 : 10002;
         ExtendedMessageInfo info = { .intVals[0] = this->chosenCount };
         LayoutUIControl_setMessageAll(&this->launchButton, messageId, &info);
     }
@@ -65,7 +65,7 @@ static void TimeAttackGhostListPage_refreshSheetLabel(TimeAttackGhostListPage *t
         .intVals[0] = this->sheetIndex + 1,
         .intVals[1] = this->sheetCount,
     };
-    LayoutUIControl_setMessageAll(&this->sheetLabel, 0x7d9, &info);
+    LayoutUIControl_setMessageAll(&this->sheetLabel, 2009, &info);
 }
 
 static void TimeAttackGhostListPage_swapGhostSelects(TimeAttackGhostListPage *this) {
@@ -264,13 +264,13 @@ static void TimeAttackGhostListPage_onInit(Page *base) {
     PushButton_setFrontHandler(&this->launchButton, &this->onLaunchButtonFront, false);
     PushButton_setFrontHandler(&this->backButton, &this->onBackButtonFront, false);
 
-    CtrlMenuPageTitleText_setMessage(&this->pageTitleText, 0xd4f, NULL);
+    CtrlMenuPageTitleText_setMessage(&this->pageTitleText, 3407, NULL);
     u32 flags = RegisteredPadManager_getFlags(&s_sectionManager->registeredPadManager, 0);
     u32 padType = REGISTERED_PAD_FLAGS_GET_TYPE(flags);
-    u32 messageId = padType == REGISTERED_PAD_TYPE_GC ? 0x902 : 0x901;
+    u32 messageId = padType == REGISTERED_PAD_TYPE_GC ? 2306 : 2305;
     ExtendedMessageInfo info = { .messageIds[0] = messageId };
-    LayoutUIControl_setMessageAll(&this->switchLabel, 0xbc4, &info);
-    LayoutUIControl_setMessageAll(&this->messageWindow, 0xc1d, NULL);
+    LayoutUIControl_setMessageAll(&this->switchLabel, 3012, &info);
+    LayoutUIControl_setMessageAll(&this->messageWindow, 3101, NULL);
 }
 
 static void TimeAttackGhostListPage_onActivate(Page *base) {

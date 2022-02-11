@@ -13,8 +13,7 @@ PATCH_BL_END(CupSelectPage_onInit, 0x84)
 
 
 PATCH_BL_START(CupSelectPage_onActivate, 0x348)
-    // Adjust engine classes to handle the removal of 50cc and the addition of 200cc
-    addi r3, r3, 0xd52
+    addi r3, r3, 3411 // Original instruction
 
     // Check that 200cc is enabled
     lis r5, vsSpeedModIsEnabled@ha
@@ -23,6 +22,6 @@ PATCH_BL_START(CupSelectPage_onActivate, 0x348)
     beqlr
 
     // Set the message id for 200cc
-    li r0, 0xd56
+    li r0, 10072
     b CupSelectPage_onActivate + 0x360
 PATCH_BL_END(CupSelectPage_onActivate, 0x348)

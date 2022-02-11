@@ -24,11 +24,11 @@ static void onAboutButtonFront(PushButtonHandler *this, PushButton *button,
     Section *currentSection = s_sectionManager->currentSection;
     ConfirmPage *confirmPage = (ConfirmPage *)currentSection->pages[PAGE_ID_CONFIRM];
     ConfirmPage_reset(confirmPage);
-    ConfirmPage_setTitleMessage(confirmPage, 0x1b58, NULL);
+    ConfirmPage_setTitleMessage(confirmPage, 10082, NULL);
     ExtendedMessageInfo info = {
         .strings[0] = L"MKW-SP v0.1",
     };
-    ConfirmPage_setWindowMessage(confirmPage, 0x19ca, &info);
+    ConfirmPage_setWindowMessage(confirmPage, 6602, &info);
     confirmPage->onConfirm = &page->onAboutConfirm;
     confirmPage->onCancel = &page->onAboutConfirm;
     page->replacement = PAGE_ID_CONFIRM;
@@ -70,7 +70,7 @@ static LicenseSelectPage *my_LicenseSelectPage_ct(LicenseSelectPage *this) {
 
     MultiControlInputManager_ct(&this->inputManager);
     CtrlMenuPageTitleText_ct(&this->pageTitleText);
-    PushButton_ct(&this->aboutButton);
+    PushButton_ct(&this->optionsButton);
     CtrlMenuBackButton_ct(&this->backButton);
     for (u32 i = 0; i < ARRAY_SIZE(this->licenseButtons); i++) {
         LicenseSelectButton_ct(&this->licenseButtons[i]);
@@ -91,7 +91,7 @@ static void LicenseSelectPage_dt(Page *base, s32 type) {
         LicenseSelectButton_dt(&this->licenseButtons[i], -1);
     }
     CtrlMenuBackButton_dt(&this->backButton, -1);
-    PushButton_dt(&this->aboutButton, -1);
+    PushButton_dt(&this->optionsButton, -1);
     CtrlMenuPageTitleText_dt(&this->pageTitleText, -1);
     MultiControlInputManager_dt(&this->inputManager, -1);
 
@@ -116,14 +116,14 @@ static void LicenseSelectPage_onInit(Page *base) {
 
     Page_initChildren(this, 3 + ARRAY_SIZE(this->licenseButtons));
     Page_insertChild(this, 0, &this->pageTitleText, 0);
-    Page_insertChild(this, 1, &this->aboutButton, 0);
+    Page_insertChild(this, 1, &this->optionsButton, 0);
     Page_insertChild(this, 2, &this->backButton, 0);
     for (u32 i = 0; i < ARRAY_SIZE(this->licenseButtons); i++) {
         Page_insertChild(this, 3 + i, &this->licenseButtons[i], 0);
     }
 
     CtrlMenuPageTitleText_load(&this->pageTitleText, false);
-    PushButton_load(&this->aboutButton, "button", "LicenseSelectS", "Option", 0x1, false, false);
+    PushButton_load(&this->optionsButton, "button", "LicenseSelectS", "Option", 0x1, false, false);
     PushButton_load(&this->backButton, "button", "Back", "ButtonBack", 0x1, false, true);
     for (u32 i = 0; i < ARRAY_SIZE(this->licenseButtons); i++) {
         LicenseSelectButton_load(&this->licenseButtons[i], i);
@@ -131,10 +131,11 @@ static void LicenseSelectPage_onInit(Page *base) {
 
     MultiControlInputManager_setHandler(&this->inputManager, INPUT_ID_BACK, &this->onBack, false,
             false);
-    PushButton_setFrontHandler(&this->aboutButton, &this->onAboutButtonFront, false);
+    PushButton_setFrontHandler(&this->optionsButton, &this->onAboutButtonFront, false);
     PushButton_setFrontHandler(&this->backButton, &this->onBackButtonFront, false);
 
-    CtrlMenuPageTitleText_setMessage(&this->pageTitleText, 0x838, NULL);
+    LayoutUIControl_setMessageAll(&this->optionsButton, 10082, NULL);
+    CtrlMenuPageTitleText_setMessage(&this->pageTitleText, 2104, NULL);
 }
 
 static void LicenseSelectPage_onActivate(Page *base) {

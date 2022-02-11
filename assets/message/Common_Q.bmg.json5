@@ -1,0 +1,990 @@
+{
+    "9000": {
+        "font": "regular",
+        "string": "Mario",
+    },
+    "9001": {
+        "font": "regular",
+        "string": "Baby Peach",
+    },
+    "9002": {
+        "font": "regular",
+        "string": "Waluigi",
+    },
+    "9003": {
+        "font": "regular",
+        "string": "Bowser",
+    },
+    "9004": {
+        "font": "regular",
+        "string": "Baby Daisy",
+    },
+    "9005": {
+        "font": "regular",
+        "string": "Dry Bones",
+    },
+    "9006": {
+        "font": "regular",
+        "string": "Baby Mario",
+    },
+    "9007": {
+        "font": "regular",
+        "string": "Luigi",
+    },
+    "9008": {
+        "font": "regular",
+        "string": "Toad",
+    },
+    "9009": {
+        "font": "regular",
+        "string": "Donkey Kong",
+    },
+    "9010": {
+        "font": "regular",
+        "string": "Yoshi",
+    },
+    "9011": {
+        "font": "regular",
+        "string": "Wario",
+    },
+    "9012": {
+        "font": "regular",
+        "string": "Baby Luigi",
+    },
+    "9013": {
+        "font": "regular",
+        "string": "Toadette",
+    },
+    "9014": {
+        "font": "regular",
+        "string": "Koopa Troopa",
+    },
+    "9015": {
+        "font": "regular",
+        "string": "Daisy",
+    },
+    "9016": {
+        "font": "regular",
+        "string": "Peach",
+    },
+    "9017": {
+        "font": "regular",
+        "string": "Birdo",
+    },
+    "9018": {
+        "font": "regular",
+        "string": "Diddy Kong",
+    },
+    "9019": {
+        "font": "regular",
+        "string": "King Boo",
+    },
+    "9020": {
+        "font": "regular",
+        "string": "Bowser Jr.",
+    },
+    "9021": {
+        "font": "regular",
+        "string": "Dry Bowser",
+    },
+    "9022": {
+        "font": "regular",
+        "string": "Funky Kong",
+    },
+    "9023": {
+        "font": "regular",
+        "string": "Rosalina",
+    },
+    "9024": {
+        "font": "regular",
+        "string": "Mii",
+    },
+    "9050": {
+        "font": "regular",
+        "string": "{arg player|0}",
+    },
+    "9051": {
+        "font": "regular",
+        "string": "{arg player|0}",
+    },
+    "9052": {
+        "font": "regular",
+        "string": "Mii (Tenue A)",
+    },
+    "9053": {
+        "font": "regular",
+        "string": "Mii (Tenue B)",
+    },
+    "9054": {
+        "font": "regular",
+        "string": null,
+    },
+    "9100": {
+        "font": "regular",
+        "string": "Kart Léger",
+    },
+    "9101": {
+        "font": "regular",
+        "string": "Kart Standard",
+    },
+    "9102": {
+        "font": "regular",
+        "string": "Kart Lourd",
+    },
+    "9103": {
+        "font": "regular",
+        "string": "Rehausseur",
+    },
+    "9104": {
+        "font": "regular",
+        "string": "Dragster Classique",
+    },
+    "9105": {
+        "font": "regular",
+        "string": "VTT",
+    },
+    "9106": {
+        "font": "regular",
+        "string": "Mini-bête",
+    },
+    "9107": {
+        "font": "regular",
+        "string": "Cabriolaile",
+    },
+    "9108": {
+        "font": "regular",
+        "string": "Crache-flammes",
+    },
+    "9109": {
+        "font": "regular",
+        "string": "Cheepmobile",
+    },
+    "9110": {
+        "font": "regular",
+        "string": "Super Bloups",
+    },
+    "9111": {
+        "font": "regular",
+        "string": "Kart Piranha",
+    },
+    "9112": {
+        "font": "regular",
+        "string": "Petit Titan",
+    },
+    "9113": {
+        "font": "regular",
+        "string": "Kart Calèche",
+    },
+    "9114": {
+        "font": "regular",
+        "string": "Bolide Stellaire",
+    },
+    "9115": {
+        "font": "regular",
+        "string": "Blue Falcon",
+    },
+    "9116": {
+        "font": "regular",
+        "string": "Intrépide",
+    },
+    "9117": {
+        "font": "regular",
+        "string": "Coupé Miel",
+    },
+    "9118": {
+        "font": "regular",
+        "string": "Kart Léger",
+    },
+    "9119": {
+        "font": "regular",
+        "string": "Kart Standard",
+    },
+    "9120": {
+        "font": "regular",
+        "string": "Kart Lourd",
+    },
+    "9121": {
+        "font": "regular",
+        "string": "Kart Léger",
+    },
+    "9122": {
+        "font": "regular",
+        "string": "Kart Standard",
+    },
+    "9123": {
+        "font": "regular",
+        "string": "Kart Lourd",
+    },
+    "9124": {
+        "font": "regular",
+        "string": "",
+    },
+    "9150": {
+        "font": "regular",
+        "string": "Moto Légère",
+    },
+    "9151": {
+        "font": "regular",
+        "string": "Moto Standard",
+    },
+    "9152": {
+        "font": "regular",
+        "string": "Moto Lourde",
+    },
+    "9153": {
+        "font": "regular",
+        "string": "Moto Balle",
+    },
+    "9154": {
+        "font": "regular",
+        "string": "Moto Mach",
+    },
+    "9155": {
+        "font": "regular",
+        "string": "Moto Flammes",
+    },
+    "9156": {
+        "font": "regular",
+        "string": "Mini-cyclo",
+    },
+    "9157": {
+        "font": "regular",
+        "string": "Étincelle",
+    },
+    "9158": {
+        "font": "regular",
+        "string": "Moto Wario",
+    },
+    "9159": {
+        "font": "regular",
+        "string": "Coin-coin",
+    },
+    "9160": {
+        "font": "regular",
+        "string": "Cyclo Vroum",
+    },
+    "9161": {
+        "font": "regular",
+        "string": "Étoile Filante",
+    },
+    "9162": {
+        "font": "regular",
+        "string": "Kamekroiseur",
+    },
+    "9163": {
+        "font": "regular",
+        "string": "Nitrocyclette",
+    },
+    "9164": {
+        "font": "regular",
+        "string": "Torpille",
+    },
+    "9165": {
+        "font": "regular",
+        "string": "Capsule Jet",
+    },
+    "9166": {
+        "font": "regular",
+        "string": "Coryphène",
+    },
+    "9167": {
+        "font": "regular",
+        "string": "Spectre",
+    },
+    "9168": {
+        "font": "regular",
+        "string": "Moto Légère",
+    },
+    "9169": {
+        "font": "regular",
+        "string": "Moto Standard",
+    },
+    "9170": {
+        "font": "regular",
+        "string": "Moto Lourde",
+    },
+    "9171": {
+        "font": "regular",
+        "string": "Moto Légère",
+    },
+    "9172": {
+        "font": "regular",
+        "string": "Moto Standard",
+    },
+    "9173": {
+        "font": "regular",
+        "string": "Moto Lourde",
+    },
+    "9174": {
+        "font": "regular",
+        "string": null,
+    },
+    "9200": {
+        "font": "regular",
+        "string": "Coupe Champignon",
+    },
+    "9201": {
+        "font": "regular",
+        "string": "Coupe Fleur",
+    },
+    "9202": {
+        "font": "regular",
+        "string": "Coupe Étoile",
+    },
+    "9203": {
+        "font": "regular",
+        "string": "Coupe Spéciale",
+    },
+    "9204": {
+        "font": "regular",
+        "string": "Coupe Carapace",
+    },
+    "9205": {
+        "font": "regular",
+        "string": "Coupe Banane",
+    },
+    "9206": {
+        "font": "regular",
+        "string": "Coupe Feuille",
+    },
+    "9207": {
+        "font": "regular",
+        "string": "Coupe Éclair",
+    },
+    "9208": {
+        "font": "regular",
+        "string": "Colisée Galactique",
+    },
+    "9300": {
+        "font": "regular",
+        "string": "Circuit Mario",
+    },
+    "9301": {
+        "font": "regular",
+        "string": "Prairie Meuh Meuh",
+    },
+    "9302": {
+        "font": "regular",
+        "string": "Gorge Champignon",
+    },
+    "9303": {
+        "font": "regular",
+        "string": "Volcan Grondant",
+    },
+    "9304": {
+        "font": "regular",
+        "string": "Usine de Toad",
+    },
+    "9305": {
+        "font": "regular",
+        "string": "Centre Cocotier",
+    },
+    "9306": {
+        "font": "regular",
+        "string": "Sommet DK",
+    },
+    "9307": {
+        "font": "regular",
+        "string": "Mine d'Or de Wario",
+    },
+    "9308": {
+        "font": "regular",
+        "string": "Circuit Luigi",
+    },
+    "9309": {
+        "font": "regular",
+        "string": "Circuit Daisy",
+    },
+    "9310": {
+        "font": "regular",
+        "string": "Autoroute de la Lune",
+    },
+    "9311": {
+        "font": "regular",
+        "string": "Chemin à la Sucrerie",
+    },
+    "9312": {
+        "font": "regular",
+        "string": "Château de Bowser",
+    },
+    "9313": {
+        "font": "regular",
+        "string": "Route Arc-en-ciel",
+    },
+    "9314": {
+        "font": "regular",
+        "string": "Ruines Sec-Sec",
+    },
+    "9315": {
+        "font": "regular",
+        "string": "Cap Koopa",
+    },
+    "9316": {
+        "font": "regular",
+        "string": "GCN Plage Peach",
+    },
+    "9317": {
+        "font": "regular",
+        "string": "GCN Circuit Mario",
+    },
+    "9318": {
+        "font": "regular",
+        "string": "GCN Stade Waluigi",
+    },
+    "9319": {
+        "font": "regular",
+        "string": "GCN Montagne DK",
+    },
+    "9320": {
+        "font": "regular",
+        "string": "DS Cascades Yoshi",
+    },
+    "9321": {
+        "font": "regular",
+        "string": "DS Désert du Soleil",
+    },
+    "9322": {
+        "font": "regular",
+        "string": "DS Jardin Peach",
+    },
+    "9323": {
+        "font": "regular",
+        "string": "DS Quartier Delfino",
+    },
+    "9324": {
+        "font": "regular",
+        "string": "SNES Circuit Mario 3",
+    },
+    "9325": {
+        "font": "regular",
+        "string": "SNES Vallée Fantôme 2",
+    },
+    "9326": {
+        "font": "regular",
+        "string": "N64 Autodrome Mario",
+    },
+    "9327": {
+        "font": "regular",
+        "string": "N64 Royaume Sorbet",
+    },
+    "9328": {
+        "font": "regular",
+        "string": "N64 Château de Bowser",
+    },
+    "9329": {
+        "font": "regular",
+        "string": "N64 Jungle de DK",
+    },
+    "9330": {
+        "font": "regular",
+        "string": "GBA Château de Bowser 3",
+    },
+    "9331": {
+        "font": "regular",
+        "string": "GBA Plage Shy Guy",
+    },
+    "9350": {
+        "font": "regular",
+        "string": null,
+    },
+    "9351": {
+        "font": "regular",
+        "string": "Bataille de Ballons",
+    },
+    "9352": {
+        "font": "regular",
+        "string": "Pilotes Pièces",
+    },
+    "9353": {
+        "font": "regular",
+        "string": "Arènes Wii",
+    },
+    "9354": {
+        "font": "regular",
+        "string": "Arènes Rétro",
+    },
+    "9355": {
+        "font": "regular",
+        "string": null,
+    },
+    "9360": {
+        "font": "regular",
+        "string": "Circuit Mario",
+    },
+    "9361": {
+        "font": "regular",
+        "string": "Prairie Meuh Meuh",
+    },
+    "9362": {
+        "font": "regular",
+        "string": "Gorge Champignon",
+    },
+    "9363": {
+        "font": "regular",
+        "string": "Volcan Grondant",
+    },
+    "9364": {
+        "font": "regular",
+        "string": "Usine de Toad",
+    },
+    "9365": {
+        "font": "regular",
+        "string": "Centre Cocotier",
+    },
+    "9366": {
+        "font": "regular",
+        "string": "Sommet DK",
+    },
+    "9367": {
+        "font": "regular",
+        "string": "Mine d'Or de Wario",
+    },
+    "9368": {
+        "font": "regular",
+        "string": "Circuit Luigi",
+    },
+    "9369": {
+        "font": "regular",
+        "string": "Circuit Daisy",
+    },
+    "9370": {
+        "font": "regular",
+        "string": "Autoroute de la Lune",
+    },
+    "9371": {
+        "font": "regular",
+        "string": "Chemin à la Sucrerie",
+    },
+    "9372": {
+        "font": "regular",
+        "string": "Château de Bowser",
+    },
+    "9373": {
+        "font": "regular",
+        "string": "Route Arc-en-ciel",
+    },
+    "9374": {
+        "font": "regular",
+        "string": "Ruines Sec-Sec",
+    },
+    "9375": {
+        "font": "regular",
+        "string": "Cap Koopa",
+    },
+    "9376": {
+        "font": "regular",
+        "string": "GCN Plage Peach",
+    },
+    "9377": {
+        "font": "regular",
+        "string": "GCN Circuit Mario",
+    },
+    "9378": {
+        "font": "regular",
+        "string": "GCN Stade Waluigi",
+    },
+    "9379": {
+        "font": "regular",
+        "string": "GCN Montagne DK",
+    },
+    "9380": {
+        "font": "regular",
+        "string": "DS Cascades Yoshi",
+    },
+    "9381": {
+        "font": "regular",
+        "string": "DS Désert du Soleil",
+    },
+    "9382": {
+        "font": "regular",
+        "string": "DS Jardin Peach",
+    },
+    "9383": {
+        "font": "regular",
+        "string": "DS Quartier Delfino",
+    },
+    "9384": {
+        "font": "regular",
+        "string": "SNES Circuit Mario 3",
+    },
+    "9385": {
+        "font": "regular",
+        "string": "SNES Vallée Fantôme 2",
+    },
+    "9386": {
+        "font": "regular",
+        "string": "N64 Autodrome Mario",
+    },
+    "9387": {
+        "font": "regular",
+        "string": "N64 Royaume Sorbet",
+    },
+    "9388": {
+        "font": "regular",
+        "string": "N64 Château de Bowser",
+    },
+    "9389": {
+        "font": "regular",
+        "string": "N64 Jungle de DK",
+    },
+    "9390": {
+        "font": "regular",
+        "string": "GBA Château de Bowser 3",
+    },
+    "9391": {
+        "font": "regular",
+        "string": "GBA Plage Shy Guy",
+    },
+    "9392": {
+        "font": "regular",
+        "string": null,
+    },
+    "9400": {
+        "font": "regular",
+        "string": "Quai Delfino",
+    },
+    "9401": {
+        "font": "regular",
+        "string": "Square Bloc",
+    },
+    "9402": {
+        "font": "regular",
+        "string": "Roulette Chain Chomp",
+    },
+    "9403": {
+        "font": "regular",
+        "string": "Stade de Funky Kong",
+    },
+    "9404": {
+        "font": "regular",
+        "string": "Désert Thwomp",
+    },
+    "9405": {
+        "font": "regular",
+        "string": "GCN Cookie Arena",
+    },
+    "9406": {
+        "font": "regular",
+        "string": "DS Maison de l'Aube",
+    },
+    "9407": {
+        "font": "regular",
+        "string": "SNES Circuit de Bataille 4",
+    },
+    "9408": {
+        "font": "regular",
+        "string": "GBA Circuit de Bataille 3",
+    },
+    "9409": {
+        "font": "regular",
+        "string": "N64 Gratte-ciel",
+    },
+    "9410": {
+        "font": "regular",
+        "string": null,
+    },
+    "9420": {
+        "font": "regular",
+        "string": "Quai Delfino",
+    },
+    "9421": {
+        "font": "regular",
+        "string": "Square Bloc",
+    },
+    "9422": {
+        "font": "regular",
+        "string": "Roulette Chain Chomp",
+    },
+    "9423": {
+        "font": "regular",
+        "string": "Stade de Funky Kong",
+    },
+    "9424": {
+        "font": "regular",
+        "string": "Désert Thwomp",
+    },
+    "9425": {
+        "font": "regular",
+        "string": "GCN Cookie Arena",
+    },
+    "9426": {
+        "font": "regular",
+        "string": "DS Maison de l'Aube",
+    },
+    "9427": {
+        "font": "regular",
+        "string": "SNES Circuit de Bataille 4",
+    },
+    "9428": {
+        "font": "regular",
+        "string": "GBA Circuit de Bataille 3",
+    },
+    "9429": {
+        "font": "regular",
+        "string": "N64 Gratte-Ciel",
+    },
+    "9430": {
+        "font": "regular",
+        "string": null,
+    },
+    "9450": {
+        "font": "regular",
+        "string": "GCN Cookie Arena",
+    },
+    "9451": {
+        "font": "regular",
+        "string": "DS Maison de l'Aube",
+    },
+    "9452": {
+        "font": "regular",
+        "string": "SNES Circuit de Bataille 4",
+    },
+    "9453": {
+        "font": "regular",
+        "string": "GBA Circuit de Bataille 3",
+    },
+    "9454": {
+        "font": "regular",
+        "string": "N64 Gratte-ciel",
+    },
+    "9455": {
+        "font": "regular",
+        "string": null,
+    },
+    "9500": {
+        "font": "regular",
+        "string": "Joueur {arg player|0}",
+    },
+    "9501": {
+        "font": "regular",
+        "string": "{arg player|0}",
+    },
+    "9502": {
+        "font": "regular",
+        "string": "{arg border|0}",
+    },
+    "9503": {
+        "font": "regular",
+        "string": "{arg question mark|0}",
+    },
+    "9504": {
+        "font": "regular",
+        "string": "{arg front button|0}",
+    },
+    "9505": {
+        "font": "regular",
+        "string": null,
+    },
+    "9550": {
+        "font": "regular",
+        "string": "J1",
+    },
+    "9551": {
+        "font": "regular",
+        "string": "J2",
+    },
+    "9552": {
+        "font": "regular",
+        "string": "J3",
+    },
+    "9553": {
+        "font": "regular",
+        "string": "J4",
+    },
+    "9554": {
+        "font": "regular",
+        "string": null,
+    },
+    "9600": {
+        "font": "regular",
+        "string": "{1 char|①}",
+    },
+    "9601": {
+        "font": "regular",
+        "string": "{1 char|②}",
+    },
+    "9602": {
+        "font": "regular",
+        "string": "{1 char|③}",
+    },
+    "9603": {
+        "font": "regular",
+        "string": "{1 char|④}",
+    },
+    "9604": {
+        "font": "regular",
+        "string": "{1 char|⑤}",
+    },
+    "9605": {
+        "font": "regular",
+        "string": "{1 char|⑥}",
+    },
+    "9606": {
+        "font": "regular",
+        "string": "{1 char|⑦}",
+    },
+    "9607": {
+        "font": "regular",
+        "string": "{1 char|⑧}",
+    },
+    "9608": {
+        "font": "regular",
+        "string": "{1 char|⑨}",
+    },
+    "9609": {
+        "font": "regular",
+        "string": "{1 char|⑩}",
+    },
+    "9610": {
+        "font": "regular",
+        "string": "{1 char|⑪}",
+    },
+    "9611": {
+        "font": "regular",
+        "string": "{1 char|⑫}",
+    },
+    "9612": {
+        "font": "regular",
+        "string": "/{1 char|⑬}",
+    },
+    "9613": {
+        "font": "regular",
+        "string": "-{1 char|⑭}",
+    },
+    "9614": {
+        "font": "regular",
+        "string": "+{1 char|⑮}",
+    },
+    "9615": {
+        "font": "regular",
+        "string": null,
+    },
+    "9650": {
+        "font": "regular",
+        "string": "{arg message|0}{arg message|1}{arg message|2}{arg message|3}{arg message|4}{arg message|5}{arg message|6}{arg message|7}{arg message|8}",
+    },
+    "9651": {
+        "font": "regular",
+        "string": "{1 char|⑭}{arg message|0}{arg message|1}{arg message|2}{arg message|3}{arg message|4}{arg message|5}{arg message|6}{arg message|7}{arg message|8}",
+    },
+    "9652": {
+        "font": "regular",
+        "string": "{1 char|⑮}{arg message|0}{arg message|1}{arg message|2}{arg message|3}{arg message|4}{arg message|5}{arg message|6}{arg message|7}{arg message|8}",
+    },
+    "9653": {
+        "font": "regular",
+        "string": "{arg message|0}{font scale|70}/{arg message|1}",
+    },
+    "9654": {
+        "font": "regular",
+        "string": "{arg message|0}{arg message|1}{font scale|70}/{arg message|2}{arg message|3}",
+    },
+    "9655": {
+        "font": "regular",
+        "string": "{arg message|0}{arg message|1}{arg message|2}{font scale|70}/{arg message|3}{arg message|4}{arg message|5}",
+    },
+    "9656": {
+        "font": "regular",
+        "string": null,
+    },
+    "9700": {
+        "font": "regular",
+        "string": "Pts Course",
+    },
+    "9701": {
+        "font": "regular",
+        "string": "Pts Bataille",
+    },
+    "9702": {
+        "font": "regular",
+        "string": "Classe",
+    },
+    "9703": {
+        "font": "regular",
+        "string": "Invité",
+    },
+    "9704": {
+        "font": "regular",
+        "string": "----",
+    },
+    "9705": {
+        "font": "regular",
+        "string": null,
+    },
+    "9710": {
+        "font": "regular",
+        "string": "{1 char|}",
+    },
+    "9711": {
+        "font": "regular",
+        "string": "{1 char|}",
+    },
+    "9712": {
+        "font": "regular",
+        "string": "{1 char|}",
+    },
+    "9713": {
+        "font": "regular",
+        "string": "{1 char|}",
+    },
+    "9714": {
+        "font": "regular",
+        "string": "{1 char|}",
+    },
+    "9715": {
+        "font": "regular",
+        "string": "{1 char|}",
+    },
+    "9716": {
+        "font": "regular",
+        "string": "{1 char|}",
+    },
+    "9717": {
+        "font": "regular",
+        "string": "{1 char|}",
+    },
+    "9718": {
+        "font": "regular",
+        "string": "{1 char|}",
+    },
+    "9719": {
+        "font": "regular",
+        "string": "{1 char|}",
+    },
+    "9720": {
+        "font": "regular",
+        "string": "{1 char|}",
+    },
+    "9721": {
+        "font": "regular",
+        "string": "{1 char|}",
+    },
+    "9722": {
+        "font": "regular",
+        "string": null,
+    },
+    "9900": {
+        "font": "regular",
+        "string": "La connexion avec la manette\na été interrompue. Veuillez \nappuyer sur le Bouton A.",
+    },
+    "9901": {
+        "font": "regular",
+        "string": "La manette a été changée.\nVeuillez appuyer sur le\nBouton A.",
+    },
+    "9902": {
+        "font": "regular",
+        "string": "Impossible de changer de manette\npendant une partie. Reconnectez \nla manette originale.",
+    },
+    "9903": {
+        "font": "regular",
+        "string": "Impossible de changer de manette \npendant une partie CWF Nintendo. \nReconnectez la manette originale.",
+    },
+    "9904": {
+        "font": "regular",
+        "string": "Ce tournoi nécessite un Wii Wheel.\nInsérez la télécommande Wii dans le\nWii Wheel et appuyez sur le Bouton A.",
+    },
+    "9999": {
+        "font": "regular",
+        "string": "?",
+    },
+}

@@ -16,6 +16,6 @@ void my_refreshLicenseControl(void *UNUSED(r3), LicenseControl *control, u32 UNU
     ExtendedMessageInfo info = {
         .miis[0] = MiiGroup_get(miiGroup, index),
     };
-    LayoutUIControl_setMessage(control, "player", 0x251d, &info);
+    LayoutUIControl_setMessage(control, "player", 9501, &info);
 }
 PATCH_B(refreshLicenseControl, my_refreshLicenseControl);

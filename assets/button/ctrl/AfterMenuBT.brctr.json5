@@ -139,12 +139,12 @@
         {
             "pane": "",
             "name": "",
-            "message id": 0x400,
+            "message id": 1024,
         },
         {
             "pane": "",
             "name": "",
-            "message id": 0x3ec,
+            "message id": 1004,
         },
     ],
     "pictures": [],

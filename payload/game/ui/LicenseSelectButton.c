@@ -30,8 +30,8 @@ static void onFront(PushButtonHandler *UNUSED(this), PushButton *base, u32 UNUSE
             Section *currentSection = s_sectionManager->currentSection;
             ConfirmPage *confirmPage = (ConfirmPage *)currentSection->pages[PAGE_ID_CONFIRM];
             ConfirmPage_reset(confirmPage);
-            ConfirmPage_setTitleMessage(confirmPage, 0x898, NULL);
-            ConfirmPage_setWindowMessage(confirmPage, 0x89d, NULL);
+            ConfirmPage_setTitleMessage(confirmPage, 2200, NULL);
+            ConfirmPage_setWindowMessage(confirmPage, 2205, NULL);
             confirmPage->onConfirm = &button->onChangeConfirm;
             confirmPage->onCancel = &button->onCancel;
             LicenseSelectPage *page = (LicenseSelectPage *)button->group->page;
@@ -44,8 +44,8 @@ static void onFront(PushButtonHandler *UNUSED(this), PushButton *base, u32 UNUSE
         Section *currentSection = s_sectionManager->currentSection;
         ConfirmPage *confirmPage = (ConfirmPage *)currentSection->pages[PAGE_ID_CONFIRM];
         ConfirmPage_reset(confirmPage);
-        ConfirmPage_setTitleMessage(confirmPage, 0x836, NULL);
-        ConfirmPage_setWindowMessage(confirmPage, 0x835, NULL);
+        ConfirmPage_setTitleMessage(confirmPage, 2102, NULL);
+        ConfirmPage_setWindowMessage(confirmPage, 2101, NULL);
         confirmPage->onConfirm = &button->onCreateConfirm;
         confirmPage->onCancel = &button->onCancel;
         LicenseSelectPage *page = (LicenseSelectPage *)button->group->page;
@@ -124,10 +124,10 @@ void LicenseSelectButton_load(LicenseSelectButton *this, u32 index) {
         ExtendedMessageInfo info = {
             .miis[0] = MiiGroup_get(&this->miiGroup, 0),
         };
-        LayoutUIControl_setMessage(this, "player", 0x251d, &info);
+        LayoutUIControl_setMessage(this, "player", 9501, &info);
     } else if (index == s_saveManager->spLicenseCount) {
         LayoutUIControl_setPaneVisible(this, "new", true);
-        LayoutUIControl_setMessage(this, "new", 0x1781, NULL);
+        LayoutUIControl_setMessage(this, "new", 6017, NULL);
         LayoutUIControl_setPaneVisible(this, "mii", false);
     } else {
         this->isHidden = true;

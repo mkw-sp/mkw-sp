@@ -186,6 +186,7 @@ code_in_files = {
         os.path.join('game', 'ui', 'MiiGroup.c'),
         os.path.join('game', 'ui', 'Model.S'),
         os.path.join('game', 'ui', 'Page.c'),
+        os.path.join('game', 'ui', 'Save.S'),
         os.path.join('game', 'ui', 'SaveManagerProxy.S'),
         os.path.join('game', 'ui', 'Section.c'),
         os.path.join('game', 'ui', 'SectionManager.S'),
@@ -230,6 +231,7 @@ code_in_files = {
         os.path.join('game', 'ui', 'page', 'TopMenuPage.c'),
         os.path.join('game', 'ui', 'page', 'VsMenuPage.S'),
         os.path.join('game', 'ui', 'page', 'VsMenuPage.c'),
+        os.path.join('game', 'ui', 'page', 'VsRulesPage.c'),
         os.path.join('game', 'util', 'Input.S'),
         os.path.join('nw4r', 'lyt', 'lyt_arcResourceAccessor.S'),
         os.path.join('nw4r', 'lyt', 'lyt_layout.S'),
@@ -304,7 +306,15 @@ for region in ['P', 'E', 'J', 'K']:
     )
     n.newline()
 
+n.variable('merge', os.path.join('.', 'merge.py'))
 n.variable('wuj5', os.path.join('vendor', 'wuj5', 'wuj5.py'))
+n.newline()
+
+n.rule(
+    'merge',
+    command = f'{sys.executable} $merge $in -o $out',
+    description = 'MERGE $out',
+)
 n.newline()
 
 n.rule(
@@ -329,37 +339,8 @@ n.rule(
 n.newline()
 
 asset_in_files = {
-    'MenuMultiSP_E.szs': [
-        os.path.join('message', 'Menu_E.bmg.json5'),
-    ],
-    'MenuMultiSP_F.szs': [
-        os.path.join('message', 'Menu_F.bmg.json5'),
-    ],
-    'MenuMultiSP_G.szs': [
-        os.path.join('message', 'Menu_G.bmg.json5'),
-    ],
-    'MenuMultiSP_I.szs': [
-        os.path.join('message', 'Menu_I.bmg.json5'),
-    ],
-    'MenuMultiSP_J.szs': [
-        os.path.join('message', 'Menu_J.bmg.json5'),
-    ],
-    'MenuMultiSP_K.szs': [
-        os.path.join('message', 'Menu_K.bmg.json5'),
-    ],
-    'MenuMultiSP_M.szs': [
-        os.path.join('message', 'Menu_M.bmg.json5'),
-    ],
-    'MenuMultiSP_Q.szs': [
-        os.path.join('message', 'Menu_Q.bmg.json5'),
-    ],
-    'MenuMultiSP_S.szs': [
-        os.path.join('message', 'Menu_S.bmg.json5'),
-    ],
-    'MenuMultiSP_U.szs': [
-        os.path.join('message', 'Menu_U.bmg.json5'),
-    ],
     'MenuOtherSP.szs': [
+        os.path.join('button', 'ctrl', 'LicenseManagementButton.brctr.json5'),
         os.path.join('control', 'anim', 'common_w023_rule_menu_fade_in_after.brlan.json5'),
         os.path.join('control', 'anim', 'common_w023_rule_menu_fade_in_before.brlan.json5'),
         os.path.join('control', 'anim', 'common_w023_rule_menu_fade_in.brlan.json5'),
@@ -398,36 +379,6 @@ asset_in_files = {
         os.path.join('control', 'ctrl', 'LicenseSettingRadioOption.brctr.json5'),
         os.path.join('control', 'timg', 'tt_license_icon_004.tpl'),
     ],
-    'MenuOtherSP_E.szs': [
-        os.path.join('message', 'Menu_E.bmg.json5'),
-    ],
-    'MenuOtherSP_F.szs': [
-        os.path.join('message', 'Menu_F.bmg.json5'),
-    ],
-    'MenuOtherSP_G.szs': [
-        os.path.join('message', 'Menu_G.bmg.json5'),
-    ],
-    'MenuOtherSP_I.szs': [
-        os.path.join('message', 'Menu_I.bmg.json5'),
-    ],
-    'MenuOtherSP_J.szs': [
-        os.path.join('message', 'Menu_J.bmg.json5'),
-    ],
-    'MenuOtherSP_K.szs': [
-        os.path.join('message', 'Menu_K.bmg.json5'),
-    ],
-    'MenuOtherSP_M.szs': [
-        os.path.join('message', 'Menu_M.bmg.json5'),
-    ],
-    'MenuOtherSP_Q.szs': [
-        os.path.join('message', 'Menu_Q.bmg.json5'),
-    ],
-    'MenuOtherSP_S.szs': [
-        os.path.join('message', 'Menu_S.bmg.json5'),
-    ],
-    'MenuOtherSP_U.szs': [
-        os.path.join('message', 'Menu_U.bmg.json5'),
-    ],
     'MenuSingleSP.szs': [
         os.path.join('button', 'blyt', 'common_w129_movie_button_single_top.brlyt.json5'),
         os.path.join('button', 'ctrl', 'SingleTop.brctr.json5'),
@@ -456,36 +407,7 @@ asset_in_files = {
         os.path.join('control', 'ctrl', 'TASettingRadioBase.brctr.json5'),
         os.path.join('control', 'ctrl', 'TASettingRadioOption.brctr.json5'),
         os.path.join('control', 'ctrl', 'TimeAttackGhostListPageNum.brctr.json5'),
-    ],
-    'MenuSingleSP_E.szs': [
-        os.path.join('message', 'Menu_E.bmg.json5'),
-    ],
-    'MenuSingleSP_F.szs': [
-        os.path.join('message', 'Menu_F.bmg.json5'),
-    ],
-    'MenuSingleSP_G.szs': [
-        os.path.join('message', 'Menu_G.bmg.json5'),
-    ],
-    'MenuSingleSP_I.szs': [
-        os.path.join('message', 'Menu_I.bmg.json5'),
-    ],
-    'MenuSingleSP_J.szs': [
-        os.path.join('message', 'Menu_J.bmg.json5'),
-    ],
-    'MenuSingleSP_K.szs': [
-        os.path.join('message', 'Menu_K.bmg.json5'),
-    ],
-    'MenuSingleSP_M.szs': [
-        os.path.join('message', 'Menu_M.bmg.json5'),
-    ],
-    'MenuSingleSP_Q.szs': [
-        os.path.join('message', 'Menu_Q.bmg.json5'),
-    ],
-    'MenuSingleSP_S.szs': [
-        os.path.join('message', 'Menu_S.bmg.json5'),
-    ],
-    'MenuSingleSP_U.szs': [
-        os.path.join('message', 'Menu_U.bmg.json5'),
+        os.path.join('control', 'ctrl', 'VSSettingRadioOption.brctr.json5'),
     ],
     'RaceSP.szs': [
         os.path.join('button', 'blyt', 'common_w202_menu_compact.brlyt.json5'),
@@ -527,56 +449,6 @@ asset_in_files = {
         os.path.join('game_image', 'timg', 'tt_d_number_3d_minus.tpl'),
         os.path.join('game_image', 'timg', 'tt_d_number_3d_none.tpl'),
     ],
-    'RaceSP_E.szs': [
-        os.path.join('game_image', 'timg', 'tt_speed_E.tpl'),
-        os.path.join('message', 'Menu_E.bmg.json5'),
-        os.path.join('message', 'Race_E.bmg.json5'),
-    ],
-    'RaceSP_F.szs': [
-        os.path.join('game_image', 'timg', 'tt_speed_F.tpl'),
-        os.path.join('message', 'Menu_F.bmg.json5'),
-        os.path.join('message', 'Race_F.bmg.json5'),
-    ],
-    'RaceSP_G.szs': [
-        os.path.join('game_image', 'timg', 'tt_speed_G.tpl'),
-        os.path.join('message', 'Menu_G.bmg.json5'),
-        os.path.join('message', 'Race_G.bmg.json5'),
-    ],
-    'RaceSP_I.szs': [
-        os.path.join('game_image', 'timg', 'tt_speed_I.tpl'),
-        os.path.join('message', 'Menu_I.bmg.json5'),
-        os.path.join('message', 'Race_I.bmg.json5'),
-    ],
-    'RaceSP_J.szs': [
-        os.path.join('game_image', 'timg', 'tt_speed_E.tpl'),
-        os.path.join('message', 'Menu_J.bmg.json5'),
-        os.path.join('message', 'Race_J.bmg.json5'),
-    ],
-    'RaceSP_K.szs': [
-        os.path.join('game_image', 'timg', 'tt_speed_E.tpl'),
-        os.path.join('message', 'Menu_K.bmg.json5'),
-        os.path.join('message', 'Race_K.bmg.json5'),
-    ],
-    'RaceSP_M.szs': [
-        os.path.join('game_image', 'timg', 'tt_speed_S.tpl'),
-        os.path.join('message', 'Menu_M.bmg.json5'),
-        os.path.join('message', 'Race_M.bmg.json5'),
-    ],
-    'RaceSP_Q.szs': [
-        os.path.join('game_image', 'timg', 'tt_speed_F.tpl'),
-        os.path.join('message', 'Menu_Q.bmg.json5'),
-        os.path.join('message', 'Race_Q.bmg.json5'),
-    ],
-    'RaceSP_S.szs': [
-        os.path.join('game_image', 'timg', 'tt_speed_S.tpl'),
-        os.path.join('message', 'Menu_S.bmg.json5'),
-        os.path.join('message', 'Race_S.bmg.json5'),
-    ],
-    'RaceSP_U.szs': [
-        os.path.join('game_image', 'timg', 'tt_speed_E.tpl'),
-        os.path.join('message', 'Menu_U.bmg.json5'),
-        os.path.join('message', 'Race_U.bmg.json5'),
-    ],
     'TitleSP.szs': [
         os.path.join('button', 'blyt', 'common_w076_license_icon_center.brlyt.json5'),
         os.path.join('button', 'ctrl', 'LicenseSelect.brctr.json5'),
@@ -584,37 +456,35 @@ asset_in_files = {
         os.path.join('button', 'ctrl', 'TopMenuSingleWaku.brctr.json5'),
         os.path.join('button', 'timg', 'tt_license_icon_004.tpl'),
     ],
-    'TitleSP_E.szs': [
-        os.path.join('message', 'Menu_E.bmg.json5'),
-    ],
-    'TitleSP_F.szs': [
-        os.path.join('message', 'Menu_F.bmg.json5'),
-    ],
-    'TitleSP_G.szs': [
-        os.path.join('message', 'Menu_G.bmg.json5'),
-    ],
-    'TitleSP_I.szs': [
-        os.path.join('message', 'Menu_I.bmg.json5'),
-    ],
-    'TitleSP_J.szs': [
-        os.path.join('message', 'Menu_J.bmg.json5'),
-    ],
-    'TitleSP_K.szs': [
-        os.path.join('message', 'Menu_K.bmg.json5'),
-    ],
-    'TitleSP_M.szs': [
-        os.path.join('message', 'Menu_M.bmg.json5'),
-    ],
-    'TitleSP_Q.szs': [
-        os.path.join('message', 'Menu_Q.bmg.json5'),
-    ],
-    'TitleSP_S.szs': [
-        os.path.join('message', 'Menu_S.bmg.json5'),
-    ],
-    'TitleSP_U.szs': [
-        os.path.join('message', 'Menu_U.bmg.json5'),
-    ],
 }
+for language in ['E', 'F', 'G', 'I', 'J', 'K', 'M', 'Q', 'S', 'U']:
+    asset_in_files[f'AwardSP_{language}.szs'] = [
+        os.path.join('message', f'Common_{language}.bmg.json5'),
+        os.path.join('message', f'Menu_{language}.bmg.json5'),
+        os.path.join('message', f'Race_{language}.bmg.json5'),
+    ]
+    asset_in_files[f'MenuMultiSP_{language}.szs'] = [
+        os.path.join('message', f'Common_{language}.bmg.json5'),
+        os.path.join('message', f'Menu_{language}.bmg.json5'),
+    ]
+    asset_in_files[f'MenuOtherSP_{language}.szs'] = [
+        os.path.join('message', f'Common_{language}.bmg.json5'),
+        os.path.join('message', f'Menu_{language}.bmg.json5'),
+    ]
+    asset_in_files[f'MenuSingleSP_{language}.szs'] = [
+        os.path.join('message', f'Common_{language}.bmg.json5'),
+        os.path.join('message', f'Menu_{language}.bmg.json5'),
+    ]
+    asset_in_files[f'RaceSP_{language}.szs'] = [
+        os.path.join('game_image', 'timg', 'tt_speed_E.tpl'), # FIXME
+        os.path.join('message', f'Common_{language}.bmg.json5'),
+        os.path.join('message', f'Menu_{language}.bmg.json5'),
+        os.path.join('message', f'Race_{language}.bmg.json5'),
+    ]
+    asset_in_files[f'TitleSP_{language}.szs'] = [
+        os.path.join('message', f'Common_{language}.bmg.json5'),
+        os.path.join('message', f'Menu_{language}.bmg.json5'),
+    ]
 asset_out_files = {target: [] for target in asset_in_files}
 for target in asset_in_files:
     for in_file in asset_in_files[target]:
@@ -625,8 +495,22 @@ for target in asset_in_files:
             '.tpl': '.tpl',
         }[ext]
         out_file = os.path.join('$builddir', 'Shared.szs.d', base + outext)
-        in_file = os.path.join('assets', in_file)
+        basebase, baseext = os.path.splitext(base)
         out_files = [out_file for out_files in asset_out_files.values() for out_file in out_files]
+        if baseext == '.bmg':
+            merged_file = os.path.join('$builddir', 'merged', in_file)
+            if out_file not in out_files:
+                n.build(
+                    merged_file,
+                    'merge',
+                    [
+                        os.path.join('assets', in_file),
+                        os.path.join('assets', basebase.rsplit('_', 1)[0] + 'SP_E.bmg.json5'),
+                    ]
+                )
+                in_file = merged_file
+        else:
+            in_file = os.path.join('assets', in_file)
         if out_file not in out_files:
             rule = {
                 '.brlyt': 'cp',
@@ -642,6 +526,16 @@ for target in asset_in_files:
 n.newline()
 
 renamed = {
+    'Common_E.bmg': 'Common.bmg',
+    'Common_F.bmg': 'Common.bmg',
+    'Common_G.bmg': 'Common.bmg',
+    'Common_I.bmg': 'Common.bmg',
+    'Common_J.bmg': 'Common.bmg',
+    'Common_K.bmg': 'Common.bmg',
+    'Common_M.bmg': 'Common.bmg',
+    'Common_Q.bmg': 'Common.bmg',
+    'Common_S.bmg': 'Common.bmg',
+    'Common_U.bmg': 'Common.bmg',
     'Menu_E.bmg': 'Menu.bmg',
     'Menu_F.bmg': 'Menu.bmg',
     'Menu_G.bmg': 'Menu.bmg',

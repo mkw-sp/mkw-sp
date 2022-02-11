@@ -11,7 +11,7 @@ typedef struct {
     Page;
     MultiControlInputManager inputManager;
     CtrlMenuPageTitleText pageTitleText;
-    PushButton aboutButton;
+    PushButton optionsButton;
     CtrlMenuBackButton backButton;
     LicenseSelectButton licenseButtons[6];
     InputHandler onBack;
