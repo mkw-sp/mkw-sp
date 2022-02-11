@@ -6,6 +6,13 @@ PATCH_REPLACE_START(RaceMenuPage_onInit, 0x9c)
     b 0x7c
 PATCH_REPLACE_END(RaceMenuPage_onInit, 0x9c)
 
+// Use our version of the button ID -> string array
+PATCH_REPLACE_START(RaceMenuPage_onInit, 0x18c)
+    lis r15, sButtonStrings@ha // +0x18c
+    stw r3, 0x48(r28) // +0x190 Original instruction
+    addi r15, r15, sButtonStrings@l // +0x194
+PATCH_REPLACE_END(RaceMenuPage_onInit, 0x18c)
+
 PATCH_REPLACE_START(RaceMenuPage_onInit, 0x2d0)
     b 0x840
 PATCH_REPLACE_END(RaceMenuPage_onInit, 0x2d0)

@@ -1,15 +1,104 @@
 #include "RaceMenuPage.h"
 
-// TODO add enum for button ids
+// Note: Could do these as an X-Macro
+
+typedef enum {
+    kPausePageButtonID_Continue1 = 0x0,
+    kPausePageButtonID_Quit1 = 0x1,
+    kPausePageButtonID_Restart1 = 0x2,
+    kPausePageButtonID_Restart2 = 0x3,
+    kPausePageButtonID_Replay = 0x4,
+    kPausePageButtonID_ChangeCourse = 0x5,
+    kPausePageButtonID_ChangeCharacter = 0x6,
+    kPausePageButtonID_Next = 0x7,
+    kPausePageButtonID_Ranking = 0x8,
+    kPausePageButtonID_ContinueReplay = 0x9,
+    kPausePageButtonID_RestartReplay = 0xA,
+    kPausePageButtonID_QuitReplay = 0xB,
+    kPausePageButtonID_Continue2 = 0xC,
+    kPausePageButtonID_Quit2 = 0xD,
+    kPausePageButtonID_BattleGhost = 0xE,
+    kPausePageButtonID_Restart3 = 0xF,
+    kPausePageButtonID_Continue3 = 0x10,
+    kPausePageButtonID_Quit3 = 0x11,
+    kPausePageButtonID_ChangeMission = 0x12,
+    kPausePageButtonID_Send1 = 0x13,
+    kPausePageButtonID_NoSend1 = 0x14,
+    kPausePageButtonID_GoRanking = 0x15,
+    kPausePageButtonID_NotGoRanking = 0x16,
+    kPausePageButtonID_ConfirmContinue = 0x17,
+    kPausePageButtonID_ConfirmQuit = 0x18,
+    kPausePageButtonID_SendRecord = 0x19,
+    kPausePageButtonID_Send2 = 0x1A,
+    kPausePageButtonID_NoSend2 = 0x1B,
+    kPausePageButtonID_FriendGhostBattle = 0x1C,
+    kPausePageButtonID_GoFriendRoom = 0x1D,
+    kPausePageButtonID_NotGoFriendRoom = 0x1E,
+    kPausePageButtonID_NextGhost = 0x1F,
+    kPausePageButtonID_Yes1 = 0x20,
+    kPausePageButtonID_No1 = 0x21,
+    kPausePageButtonID_Quit4 = 0x22,
+    kPausePageButtonID_Yes2 = 0x23,
+    kPausePageButtonID_No2 = 0x24,
+
+    // Reserved: Edit license settings in-game
+    kPausePageButtonID_EXTLicenseSettings = 0x25,
+} PausePageButtonID;
+
+// Referenced by RaceMenuPage.S
+const char *sButtonStrings[] = {
+    "ButtonContinue",           // kPausePageButtonID_Continue1
+    "ButtonQuit",               // kPausePageButtonID_Quit1
+    "ButtonRestart",            // kPausePageButtonID_Restart1
+    "ButtonRestart",            // kPausePageButtonID_Restart2
+    "ButtonReplay",             // kPausePageButtonID_Replay
+    "ButtonChangeCourse",       // kPausePageButtonID_ChangeCourse
+    "ButtonChangeCharacter",    // kPausePageButtonID_ChangeCharacter
+    "ButtonNext",               // kPausePageButtonID_Next
+    "ButtonRanking",            // kPausePageButtonID_Ranking
+    "ButtonContinueReplay",     // kPausePageButtonID_ContinueReplay
+    "ButtonRestartReplay",      // kPausePageButtonID_RestartReplay
+    "ButtonQuitReplay",         // kPausePageButtonID_QuitReplay
+    "ButtonContinue",           // kPausePageButtonID_Continue2
+    "ButtonQuit",               // kPausePageButtonID_Quit2
+    "ButtonBattleGhost",        // kPausePageButtonID_BattleGhost
+    "ButtonRestart",            // kPausePageButtonID_Restart3
+    "ButtonContinue",           // kPausePageButtonID_Continue3
+    "ButtonQuit",               // kPausePageButtonID_Quit3
+    "ButtonChangeMission",      // kPausePageButtonID_ChangeMission
+    "ButtonSend",               // kPausePageButtonID_Send1
+    "ButtonNoSend",             // kPausePageButtonID_NoSend1
+    "ButtonGoRanking",          // kPausePageButtonID_GoRanking
+    "ButtonNotGoRanking",       // kPausePageButtonID_NotGoRanking
+    "ButtonConfirmContinue",    // kPausePageButtonID_ConfirmContinue
+    "ButtonConfirmQuit",        // kPausePageButtonID_ConfirmQuit
+    "ButtonSendRecord",         // kPausePageButtonID_SendRecord
+    "ButtonSend",               // kPausePageButtonID_Send2
+    "ButtonNoSend",             // kPausePageButtonID_NoSend2
+    "ButtonFriendGhostBattle",  // kButtonID_FriendGhostBattle
+    "ButtonGoFriendRoom",       // kPausePageButtonID_GoFriendRoom
+    "ButtonNotGoFriendRoom",    // kPausePageButtonID_NotGoFriendRoom
+    "ButtonNextGhost",          // kPausePageButtonID_NextGhost
+    "ButtonYes",                // kPausePageButtonID_Yes1
+    "ButtonNo",                 // kPausePageButtonID_No1
+    "ButtonQuit",               // kPausePageButtonID_Quit4
+    "ButtonYes",                // kPausePageButtonID_Yes2
+    "ButtonNo",                 // kPausePageButtonID_No2
+
+    "ButtonSettings",  // kPausePageButtonID_EXTLicenseSettings
+};
 
 static const u32 ghostWatchPauseButtons[] = {
-    0xc,
-    0xf,
-    0xe,
-    0x12,
-    0x5,
-    0x6,
-    0x1,
+    kPausePageButtonID_Continue2,
+    kPausePageButtonID_Restart3,
+    kPausePageButtonID_BattleGhost,
+
+    // Repurposed as "Change Ghost Data"
+    kPausePageButtonID_ChangeMission,
+
+    kPausePageButtonID_ChangeCourse,
+    kPausePageButtonID_ChangeCharacter,
+    kPausePageButtonID_Quit1,
 };
 
 u32 GhostWatchPauseMenuPage_getButtonCount(void);
@@ -17,7 +106,8 @@ u32 GhostWatchPauseMenuPage_getButtonCount(void);
 static u32 my_GhostWatchPauseMenuPage_getButtonCount(void) {
     return ARRAY_SIZE(ghostWatchPauseButtons);
 }
-PATCH_B(GhostWatchPauseMenuPage_getButtonCount, my_GhostWatchPauseMenuPage_getButtonCount);
+PATCH_B(GhostWatchPauseMenuPage_getButtonCount,
+        my_GhostWatchPauseMenuPage_getButtonCount);
 
 const u32 *GhostWatchPauseMenuPage_getButtons(void);
 
@@ -35,12 +125,15 @@ static bool my_GhostWatchPauseMenuPage_vf_74(void) {
 PATCH_B(GhostWatchPauseMenuPage_vf_74, my_GhostWatchPauseMenuPage_vf_74);
 
 static const u32 afterTaButtons[] = {
-    0x3,
-    0x12,
-    0x5,
-    0x6,
-    0x4,
-    0x1,
+    kPausePageButtonID_Restart2,
+
+    // Repurposed as "Change Ghost Data"
+    kPausePageButtonID_ChangeMission,
+    
+    kPausePageButtonID_ChangeCourse,
+    kPausePageButtonID_ChangeCharacter,
+    kPausePageButtonID_Replay,
+    kPausePageButtonID_Quit1,
 };
 
 u32 AfterTimeAttackMenuPage_getButtonCount(void);
@@ -48,7 +141,8 @@ u32 AfterTimeAttackMenuPage_getButtonCount(void);
 static u32 my_AfterTimeAttackMenuPage_getButtonCount(void) {
     return ARRAY_SIZE(afterTaButtons);
 }
-PATCH_B(AfterTimeAttackMenuPage_getButtonCount, my_AfterTimeAttackMenuPage_getButtonCount);
+PATCH_B(AfterTimeAttackMenuPage_getButtonCount,
+        my_AfterTimeAttackMenuPage_getButtonCount);
 
 const u32 *AfterTimeAttackMenuPage_getButtons(void);
 
@@ -58,9 +152,9 @@ static const u32 *my_AfterTimeAttackMenuPage_getButtons(void) {
 PATCH_B(AfterTimeAttackMenuPage_getButtons, my_AfterTimeAttackMenuPage_getButtons);
 
 static const u32 vsPauseButtons[] = {
-    0x0,
-    0x2,
-    0x1,
+    kPausePageButtonID_Continue1,
+    kPausePageButtonID_Restart1,
+    kPausePageButtonID_Quit1,
 };
 
 u32 VsPauseMenuPage_getButtonCount(void);
@@ -85,9 +179,9 @@ static const char *my_VsPauseMenuPage_getFile(void) {
 PATCH_B(VsPauseMenuPage_getFile, my_VsPauseMenuPage_getFile);
 
 static const u32 battlePauseButtons[] = {
-    0x0,
-    0x2,
-    0x1,
+    kPausePageButtonID_Continue1,
+    kPausePageButtonID_Restart1,
+    kPausePageButtonID_Quit1,
 };
 
 u32 BattlePauseMenuPage_getButtonCount(void);
@@ -112,12 +206,15 @@ static const char *my_BattlePauseMenuPage_getFile(void) {
 PATCH_B(BattlePauseMenuPage_getFile, my_BattlePauseMenuPage_getFile);
 
 static const u32 timeAttackPauseButtons[] = {
-    0x0,
-    0x2,
-    0x12,
-    0x5,
-    0x6,
-    0x1,
+    kPausePageButtonID_Continue1,
+    kPausePageButtonID_Restart1,
+
+    // Repurposed as "Change Ghost Data"
+    kPausePageButtonID_ChangeMission,
+
+    kPausePageButtonID_ChangeCourse,
+    kPausePageButtonID_ChangeCharacter,
+    kPausePageButtonID_Quit1,
 };
 
 u32 TimeAttackPauseMenuPage_getButtonCount(void);
@@ -125,7 +222,8 @@ u32 TimeAttackPauseMenuPage_getButtonCount(void);
 static u32 my_TimeAttackPauseMenuPage_getButtonCount(void) {
     return ARRAY_SIZE(timeAttackPauseButtons);
 }
-PATCH_B(TimeAttackPauseMenuPage_getButtonCount, my_TimeAttackPauseMenuPage_getButtonCount);
+PATCH_B(TimeAttackPauseMenuPage_getButtonCount,
+        my_TimeAttackPauseMenuPage_getButtonCount);
 
 const u32 *TimeAttackPauseMenuPage_getButtons(void);
 
