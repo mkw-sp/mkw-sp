@@ -172,6 +172,7 @@ code_in_files = {
         os.path.join('game', 'system', 'SaveManager.S'),
         os.path.join('game', 'system', 'SaveManager.c'),
         os.path.join('game', 'system', 'Yaz.c'),
+        os.path.join('game', 'ui', 'ControlLoader.S'),
         os.path.join('game', 'ui', 'GhostManagerPage.S'),
         os.path.join('game', 'ui', 'GhostManagerPage.c'),
         os.path.join('game', 'ui', 'GhostSelectButton.c'),
