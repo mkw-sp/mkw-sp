@@ -187,7 +187,6 @@ code_in_files = {
         os.path.join('game', 'ui', 'Model.S'),
         os.path.join('game', 'ui', 'Page.c'),
         os.path.join('game', 'ui', 'SaveManagerProxy.S'),
-        os.path.join('game', 'ui', 'Section.S'),
         os.path.join('game', 'ui', 'Section.c'),
         os.path.join('game', 'ui', 'SectionManager.S'),
         os.path.join('game', 'ui', 'SectionManager.c'),

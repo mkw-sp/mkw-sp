@@ -19,3 +19,9 @@ typedef struct {
 static_assert(sizeof(Section) == 0x408);
 
 void Section_createPage(u32 pageId);
+
+void Section_addPages(Section *section, u32 sectionId);
+void Section_addPage(Section *section, u32 pageId);
+
+void Section_addActivePages(Section *section, u32 sectionId);
+void Section_addActivePage(Section *section, u32 pageId);
