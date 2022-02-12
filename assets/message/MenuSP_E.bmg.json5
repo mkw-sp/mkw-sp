@@ -1,0 +1,242 @@
+{
+    "10000": {
+        "font": "regular",
+        "string": "Race Against 1 Ghost",
+    },
+    "10001": {
+        "font": "regular",
+        "string": "Watch 1 Ghost",
+    },
+    "10002": {
+        "font": "regular",
+        "string": "Race Against {arg integer|0 0} Ghosts",
+    },
+    "10003": {
+        "font": "regular",
+        "string": "Watch {arg integer|0 0} Ghosts",
+    },
+    "10004": {
+        "font": "regular",
+        "string": "HUD Labels",
+    },
+    "10005": {
+        "font": "regular",
+        "string": "Hide",
+    },
+    "10006": {
+        "font": "regular",
+        "string": "Show",
+    },
+    "10007": {
+        "font": "regular",
+        "string": "Hide HUD control labels.",
+    },
+    "10008": {
+        "font": "regular",
+        "string": "Show HUD control labels.",
+    },
+    "10009": {
+        "font": "regular",
+        "string": "16:9 FOV",
+    },
+    "10010": {
+        "font": "regular",
+        "string": "Default",
+    },
+    "10011": {
+        "font": "regular",
+        "string": "Wider",
+    },
+    "10012": {
+        "font": "regular",
+        "string": "Use the default field of view in 16:9 mode.",
+    },
+    "10013": {
+        "font": "regular",
+        "string": "Use the wider 4:3 field of view in 16:9 mode.",
+    },
+    "10014": {
+        "font": "regular",
+        "string": "Map Icons",
+    },
+    "10015": {
+        "font": "regular",
+        "string": "Characters",
+    },
+    "10016": {
+        "font": "regular",
+        "string": "Miis",
+    },
+    "10017": {
+        "font": "regular",
+        "string": "Use characters as minimap icons.",
+    },
+    "10018": {
+        "font": "regular",
+        "string": "Use Miis as minimap icons.",
+    },
+    "10019": {
+        "font": "regular",
+        "string": "Ghost Sorting",
+    },
+    "10020": {
+        "font": "regular",
+        "string": "Fastest",
+    },
+    "10021": {
+        "font": "regular",
+        "string": "Slowest",
+    },
+    "10022": {
+        "font": "regular",
+        "string": "Newest",
+    },
+    "10023": {
+        "font": "regular",
+        "string": "Oldest",
+    },
+    "10024": {
+        "font": "regular",
+        "string": "Sort ghosts from fastest to slowest.",
+    },
+    "10025": {
+        "font": "regular",
+        "string": "Sort ghosts from slowest to fastest.",
+    },
+    "10026": {
+        "font": "regular",
+        "string": "Sort ghosts from newest to oldest.",
+    },
+    "10027": {
+        "font": "regular",
+        "string": "Sort ghosts from oldest to newest.",
+    },
+    "10028": {
+        "font": "regular",
+        "string": "Tag Visibility",
+    },
+    "10029": {
+        "font": "regular",
+        "string": "None",
+    },
+    "10030": {
+        "font": "regular",
+        "string": "Watched",
+    },
+    "10031": {
+        "font": "regular",
+        "string": "All",
+    },
+    "10032": {
+        "font": "regular",
+        "string": "Do not display any ghost tag.",
+    },
+    "10033": {
+        "font": "regular",
+        "string": "Only display the tag of the watched ghost.",
+    },
+    "10034": {
+        "font": "regular",
+        "string": "Display tags for all ghosts.",
+    },
+    "10035": {
+        "font": "regular",
+        "string": "Tag Content",
+    },
+    "10036": {
+        "font": "regular",
+        "string": "Name",
+    },
+    "10037": {
+        "font": "regular",
+        "string": "Time",
+    },
+    "10038": {
+        "font": "regular",
+        "string": "Date",
+    },
+    "10039": {
+        "font": "regular",
+        "string": "Use the ghost name as the tag.",
+    },
+    "10040": {
+        "font": "regular",
+        "string": "Use the ghost finish time as the tag.",
+    },
+    "10041": {
+        "font": "regular",
+        "string": "Use the ghost creation date as the tag.",
+    },
+    "10042": {
+        "font": "regular",
+        "string": "Solid Ghosts",
+    },
+    "10043": {
+        "font": "regular",
+        "string": "Do not make any ghost solid.",
+    },
+    "10044": {
+        "font": "regular",
+        "string": "Make the watched ghost solid.",
+    },
+    "10045": {
+        "font": "regular",
+        "string": "Make all ghosts solid.",
+    },
+    "10046": {
+        "font": "regular",
+        "string": "Play Time Trials with these rules.",
+    },
+    "10053": {
+        "font": "regular",
+        "string": "Shortened Time",
+    },
+    "10054": {
+        "font": "regular",
+        "string": "Time option without leading zeroes.",
+    },
+    "10055": {
+        "font": "regular",
+        "string": "Gecko codes are UNSUPPORTED\\nand will crash your game.\\nPress A if you know what you are doing\\nand do NOT report bugs.",
+    },
+    "10073": {
+        "font": "regular",
+        "string": "Time Trials and more for one player!",
+    },
+    "10074": {
+        "font": "regular",
+        "string": "Edit settings or change your Mii!",
+    },
+    "10075": {
+        "font": "regular",
+        "string": "Something went wrong when reading from\\nor writing to the save.",
+    },
+    "10076": {
+        "font": "regular",
+        "string": "Settings",
+    },
+    "10077": {
+        "font": "regular",
+        "string": "Change settings for this licence.",
+    },
+    "10078": {
+        "font": "regular",
+        "string": "0.9x speed factor.",
+    },
+    "10079": {
+        "font": "regular",
+        "string": "1.0x speed factor.",
+    },
+    "10080": {
+        "font": "regular",
+        "string": "1.0x speed factor with mirrored courses.",
+    },
+    "10081": {
+        "font": "regular",
+        "string": "1.5x speed factor with brake drifting and fast falling.",
+    },
+    "10082": {
+        "font": "regular",
+        "string": "MKW-SP Options",
+    },
+}

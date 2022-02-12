@@ -1,0 +1,14 @@
+{
+    "10010": {
+        "font": "regular",
+        "string": "보통",
+    },
+    "10015": {
+        "font": "regular",
+        "string": "캐릭터",
+    },
+    "10016": {
+        "font": "regular",
+        "string": "Mii",
+    },
+}

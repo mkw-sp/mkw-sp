@@ -1,0 +1,122 @@
+{
+    "10000": {
+        "font": "regular",
+        "string": "1体のゴーストとレース",
+    },
+    "10001": {
+        "font": "regular",
+        "string": "1体のゴーストでリプレイ",
+    },
+    "10002": {
+        "font": "regular",
+        "string": " {arg integer|0 0}体のゴーストとレース",
+    },
+    "10003": {
+        "font": "regular",
+        "string": " {arg integer|0 0}体のゴーストでリプレイ",
+    },
+    "10010": {
+        "font": "regular",
+        "string": "ふつう",
+    },
+    "10011": {
+        "font": "regular",
+        "string": "ひろい",
+    },
+    "10014": {
+        "font": "regular",
+        "string": "マップアイコン",
+    },
+    "10015": {
+        "font": "regular",
+        "string": "キャラクター",
+    },
+    "10016": {
+        "font": "regular",
+        "string": "Mii",
+    },
+    "10017": {
+        "font": "regular",
+        "string": "ミニマップの表示を  キャラクターにします",
+    },
+    "10018": {
+        "font": "regular",
+        "string": "ミニマップの表示を  Miiにします",
+    },
+    "10019": {
+        "font": "regular",
+        "string": "ゴーストのならびかえ",
+    },
+    "10020": {
+        "font": "regular",
+        "string": "はやい順",
+    },
+    "10021": {
+        "font": "regular",
+        "string": "おそい順",
+    },
+    "10022": {
+        "font": "regular",
+        "string": "新しい順",
+    },
+    "10023": {
+        "font": "regular",
+        "string": "古い順",
+    },
+    "10024": {
+        "font": "regular",
+        "string": "ゴーストをはやい順からおそい順に  ならびかえます",
+    },
+    "10025": {
+        "font": "regular",
+        "string": "ゴーストをおそい順からはやい順に  ならびかえます",
+    },
+    "10026": {
+        "font": "regular",
+        "string": "ゴーストを新しい順から古い順に  ならびかえます",
+    },
+    "10027": {
+        "font": "regular",
+        "string": "ゴーストを古い順から新しい順に  ならびかえます",
+    },
+    "10028": {
+        "font": "regular",
+        "string": "タグの表示",
+    },
+    "10029": {
+        "font": "regular",
+        "string": "なし",
+    },
+    "10031": {
+        "font": "regular",
+        "string": "すべて",
+    },
+    "10036": {
+        "font": "regular",
+        "string": "名前",
+    },
+    "10037": {
+        "font": "regular",
+        "string": "タイム",
+    },
+    "10038": {
+        "font": "regular",
+        "string": "年月日",
+    },
+    "10073": {
+        "font": "regular",
+        "string": "タイムアタックなどを  １人であそびます",
+    },
+    "10074": {
+        "font": "regular",
+        "string": "設定を変更したり  Miiをかえることができます",
+    },
+    "10076": {
+        "font": "regular",
+        "string": "設定",
+    },
+    "10077": {
+        "font": "regular",
+        "string": "ライセンスの設定を  へんこうします",
+    },
+}

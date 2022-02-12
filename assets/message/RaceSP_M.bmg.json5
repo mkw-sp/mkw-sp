@@ -1,0 +1,14 @@
+{
+    "10047": {
+        "font": "regular",
+        "string": "Guardando datos fantasma...",
+    },
+    "10070": {
+        "font": "regular",
+        "string": "Los datos fantasma serán truncados.",
+    },
+    "10071": {
+        "font": "regular",
+        "string": "{arg integer|0 0}:{arg integer|1 0}.{arg integer|2 3}",
+    },
+}
