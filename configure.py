@@ -506,7 +506,7 @@ for target in asset_in_files:
                     'merge',
                     [
                         os.path.join('assets', in_file),
-                        os.path.join('assets', basebase.rsplit('_', 1)[0] + 'SP_E.bmg.json5'),
+                        os.path.join('assets', basebase.rsplit('_', 1)[0] + 'SP_U.bmg.json5'),
                     ]
                 )
                 in_file = merged_file

@@ -187,10 +187,6 @@
         "font": "regular",
         "string": "Play Time Trials with these rules.",
     },
-    "10049": {
-        "font": "regular",
-        "string": "GECKO CODES ARE ENABLED",
-    },
     "10053": {
         "font": "regular",
         "string": "Shortened Time",
@@ -261,7 +257,7 @@
     },
     "10073": {
         "font": "regular",
-        "string": "Time Trials and more for one player!",
+        "string": "Play Time Trials and other modes alone.",
     },
     "10074": {
         "font": "regular",
@@ -277,7 +273,7 @@
     },
     "10077": {
         "font": "regular",
-        "string": "Change settings for this licence.",
+        "string": "Change settings for this license.",
     },
     "10078": {
         "font": "regular",
