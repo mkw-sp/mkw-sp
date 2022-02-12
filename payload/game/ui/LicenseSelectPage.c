@@ -170,5 +170,5 @@ static const Page_vt s_LicenseSelectPage_vt = {
     .onRefocus = Page_onRefocus,
     .vf_58 = &Page_vf_58,
     .vf_5c = &Page_vf_5c,
-    .vf_60 = &Page_vf_60,
+    .getTypeInfo = Page_getTypeInfo,
 };

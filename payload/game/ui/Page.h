@@ -2,6 +2,7 @@
 
 #include "ControlGroup.h"
 #include "MenuInputManager.h"
+#include "TypeInfo.h"
 #include "UIControl.h"
 
 enum {
@@ -35,8 +36,7 @@ enum {
     PAGE_ANIMATION_PREV = 0x1,
 };
 
-typedef struct Page {
-    const struct Page_vt *vt;
+typedef struct PageBase {
     u32 id;
     u32 state;
     bool canProceed;
@@ -45,6 +45,11 @@ typedef struct Page {
     ControlGroup controlGroup;
     MenuInputManager *baseInputManager;
     u8 _3c[0x44 - 0x3c];
+} PageBase;
+
+typedef struct Page {
+    const struct Page_vt *vt;
+    PageBase;
 } Page;
 static_assert(sizeof(Page) == 0x44);
 
@@ -72,7 +77,7 @@ typedef struct Page_vt {
     void (*onRefocus)(Page *this);
     void *vf_58;
     void *vf_5c;
-    void *vf_60;
+    TypeInfo *(*getTypeInfo)(Page *this);
 } Page_vt;
 static_assert(sizeof(Page_vt) == 0x64);
 
@@ -113,7 +118,7 @@ void Page_onRefocus(Page *this);
 
 extern u8 Page_vf_58;
 extern u8 Page_vf_5c;
-extern u8 Page_vf_60;
+TypeInfo *Page_getTypeInfo(Page *this);
 
 void Page_initChildren(Page *this, u32 count);
 
@@ -126,3 +131,35 @@ void Page_playSfx(Page *this, u32 sfxId, s32 r5);
 
 void Page_update(Page *this);
 void Page_animUpdate(Page *this);
+
+inline bool PageIsA(TypeInfo *typeInfo, Page *page) {
+    assert(page != NULL);
+
+    TypeInfo *pageTypeInfo = page->vt->getTypeInfo(page);
+
+    return TypeInfo_isDerived(typeInfo, pageTypeInfo);
+}
+
+inline Page *PageAsA(TypeInfo *typeInfo, Page *page) {
+    if (page == NULL)
+        return NULL;
+
+    // NB: In C++ this would just be a static_cast, which would add or subtract as needed
+    // to cast Page to whatever type; in C that *doesn't* happen. So we just return
+    // the Page pointer type and rely on the user to do the thisptr adjustment.
+    return PageIsA(typeInfo, page) ? page : NULL;
+}
+
+// The port tool fails on these
+
+// PAGE_ID_GHOST_MANAGER
+// extern TypeInfo *GhostManagerPage_RTTI;
+extern TypeInfo *GhostManagerPage_getTypeInfo();
+#define GhostManagerPage_RTTI (GhostManagerPage_getTypeInfo())
+
+// PauseMenu / PausePage probably
+//
+// RaceMenuPage + friends
+// extern TypeInfo *PausePage_RTTI;
+extern TypeInfo *RaceMenuPage_getTypeInfo();
+#define RaceMenuPage_RTTI (RaceMenuPage_getTypeInfo())

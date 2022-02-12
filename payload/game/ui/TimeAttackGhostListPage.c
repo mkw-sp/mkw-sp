@@ -378,7 +378,7 @@ static const Page_vt s_TimeAttackGhostListPage_vt = {
     .onRefocus = TimeAttackGhostListPage_onRefocus,
     .vf_58 = &Page_vf_58,
     .vf_5c = &Page_vf_5c,
-    .vf_60 = &Page_vf_60,
+    .getTypeInfo = Page_getTypeInfo,
 };
 
 void TimeAttackGhostListPage_chooseGhost(TimeAttackGhostListPage *this, u32 buttonIndex) {
