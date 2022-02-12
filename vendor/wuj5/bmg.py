@@ -152,7 +152,7 @@ def unpack_bmg(in_data):
                 else:
                     string += dat1[offset:offset + 0x2].decode('utf-16-be')
                     offset += 0x2
-        messages[hex(message_id)] = {
+        messages[message_id] = {
             'font': font,
             'string': string,
         }
@@ -255,7 +255,7 @@ def pack_bmg(messages):
             'string offset': string_offset,
             'font': messages[message_id]['font'],
         }]
-        mid1 += [int(message_id, 16)]
+        mid1 += [int(message_id, 0)]
 
     sections = {
         'INF1': inf1,
