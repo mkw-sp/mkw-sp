@@ -121,6 +121,7 @@ code_in_files = {
         os.path.join('Loader.c'),
     ],
     'payload': [
+        os.path.join('egg', 'core', 'eggColorFader.c'),
         os.path.join('egg', 'core', 'eggHeap.c'),
         os.path.join('egg', 'core', 'eggVideo.S'),
         os.path.join('egg', 'core', 'eggSystem.c'),

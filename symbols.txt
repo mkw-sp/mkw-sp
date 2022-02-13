@@ -75,6 +75,10 @@
 0x80242c18 EGG_TaskThread_request
 0x80243d6c EGG_Video_configure
 
+0x80215168 EGG_ColorFader_CT
+0x80215280 EGG_ColorFader_fadeIn
+0x802152A8 EGG_ColorFader_fadeOut
+
 0x80386000 s_systemManager
 0x80386638 MaxEntryNum
 0x8038663c FstStringStart
