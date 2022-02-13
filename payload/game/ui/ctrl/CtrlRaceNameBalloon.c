@@ -46,7 +46,7 @@ static void my_BalloonManager_addNameControl(BalloonManager *this, CtrlRaceNameB
 PATCH_B(BalloonManager_addNameControl, my_BalloonManager_addNameControl);
 
 static void CtrlRaceNameBalloon_refreshTextName(CtrlRaceNameBalloon *this, u32 playerId) {
-    ExtendedMessageInfo info = {
+    MessageInfo info = {
         .miis[0] = MiiGroup_get(&s_sectionManager->globalContext->playerMiis, playerId),
     };
     LayoutUIControl_setMessage(this, "chara_name", 9501, &info);
@@ -56,7 +56,7 @@ static void CtrlRaceNameBalloon_refreshTextTime(CtrlRaceNameBalloon *this, u32 p
     const RaceConfigScenario *raceScenario = &s_raceConfig->raceScenario;
     u32 index = raceScenario->players[0].type == PLAYER_TYPE_GHOST ? playerId : playerId - 1;
     const RawGhostHeader *header = (RawGhostHeader *)(*raceScenario->ghostBuffer)[index];
-    ExtendedMessageInfo info = {
+    MessageInfo info = {
         .intVals[0] = header->raceTime.minutes,
         .intVals[1] = header->raceTime.seconds,
         .intVals[2] = header->raceTime.milliseconds,
@@ -68,7 +68,7 @@ static void CtrlRaceNameBalloon_refreshTextDate(CtrlRaceNameBalloon *this, u32 p
     const RaceConfigScenario *raceScenario = &s_raceConfig->raceScenario;
     u32 index = raceScenario->players[0].type == PLAYER_TYPE_GHOST ? playerId : playerId - 1;
     const RawGhostHeader *header = (RawGhostHeader *)(*raceScenario->ghostBuffer)[index];
-    ExtendedMessageInfo info = {
+    MessageInfo info = {
         .intVals[0] = header->year + 2000,
         .intVals[1] = header->month,
         .intVals[2] = header->day,

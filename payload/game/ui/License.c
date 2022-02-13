@@ -13,7 +13,7 @@ void my_refreshLicenseControl(void *UNUSED(r3), LicenseControl *control, u32 UNU
     LayoutUIControl_setPaneVisible(control, "new", false);
     LayoutUIControl_setPaneVisible(control, "mii", true);
     LayoutUIControl_setMiiPicture(control, "mii", miiGroup, index, 0);
-    ExtendedMessageInfo info = {
+    MessageInfo info = {
         .miis[0] = MiiGroup_get(miiGroup, index),
     };
     LayoutUIControl_setMessage(control, "player", 9501, &info);

@@ -11,4 +11,4 @@ static_assert(sizeof(MessageWindowPopupPage) == 0x604);
 void MessageWindowPopupPage_reset(MessageWindowPopupPage *this);
 
 void MessageWindowPopupPage_setMessage(MessageWindowPopupPage *this, u32 messageId,
-        ExtendedMessageInfo *info);
+        MessageInfo *info);

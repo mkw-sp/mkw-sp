@@ -122,7 +122,7 @@ void GhostSelectButton_refresh(GhostSelectButton *this, u32 ghostIndex) {
     GhostFile *file = GhostList_getFile(page->ghostList, ghostIndex);
 
     MiiGroup_insertFromRaw(&this->miiGroup, 0, &file->rawMii);
-    ExtendedMessageInfo nameInfo = {
+    MessageInfo nameInfo = {
         .miis[0] = MiiGroup_get(&this->miiGroup, 0),
     };
     LayoutUIControl_setMessage(this, "name_shadow", 9501, &nameInfo);
@@ -162,7 +162,7 @@ void GhostSelectButton_refresh(GhostSelectButton *this, u32 ghostIndex) {
     LayoutUIControl_setPicture(this, "machine_light_01", vehiclePane);
     LayoutUIControl_setPicture(this, "machine_light_02", vehiclePane);
 
-    ExtendedMessageInfo timeInfo = {
+    MessageInfo timeInfo = {
         .intVals[0] = file->raceTime.minutes,
         .intVals[1] = file->raceTime.seconds,
         .intVals[2] = file->raceTime.milliseconds,

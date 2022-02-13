@@ -2,7 +2,7 @@
 
 #include <game/ui/Layout.h>
 #include "ControlGroup.h"
-#include "ExtendedTextRenderer.h"
+#include "Font.h"
 #include "MiiGroup.h"
 #include "UIAnimator.h"
 
@@ -88,9 +88,9 @@ void LayoutUIControl_load(LayoutUIControl *this, const char *dir, const char *fi
 void LayoutUIControl_setParentPane(LayoutUIControl *this, const char *pane);
 
 void LayoutUIControl_setMessage(LayoutUIControl *this, const char *pane, u32 messageId,
-        ExtendedMessageInfo *info);
+        MessageInfo *info);
 
-void LayoutUIControl_setMessageAll(LayoutUIControl *this, u32 messageId, ExtendedMessageInfo *info);
+void LayoutUIControl_setMessageAll(LayoutUIControl *this, u32 messageId, MessageInfo *info);
 
 void LayoutUIControl_setPicture(LayoutUIControl *this, const char *dstPane, const char *srcPane);
 

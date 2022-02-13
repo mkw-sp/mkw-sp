@@ -9,5 +9,5 @@ typedef struct {
     u8 _6c[0x9c - 0x6c];
     wchar_t *strings[9];
     u8 _c0[0xc4 - 0xc0];
-} ExtendedMessageInfo;
-static_assert(sizeof(ExtendedMessageInfo) == 0xc4);
+} MessageInfo;
+static_assert(sizeof(MessageInfo) == 0xc4);

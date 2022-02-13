@@ -28,6 +28,6 @@ static_assert(sizeof(ConfirmPage) == 0xa58);
 
 void ConfirmPage_reset(ConfirmPage *this);
 
-void ConfirmPage_setTitleMessage(ConfirmPage *this, u32 messageId, ExtendedMessageInfo *info);
+void ConfirmPage_setTitleMessage(ConfirmPage *this, u32 messageId, MessageInfo *info);
 
-void ConfirmPage_setWindowMessage(ConfirmPage *this, u32 messageId, ExtendedMessageInfo *info);
+void ConfirmPage_setWindowMessage(ConfirmPage *this, u32 messageId, MessageInfo *info);

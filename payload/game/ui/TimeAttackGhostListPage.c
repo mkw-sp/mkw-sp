@@ -29,7 +29,7 @@ static void TimeAttackGhostListPage_refreshLaunchButton(TimeAttackGhostListPage 
         LayoutUIControl_setMessageAll(&this->launchButton, messageId, NULL);
     } else {
         u32 messageId = this->isReplay ? 10003 : 10002;
-        ExtendedMessageInfo info = { .intVals[0] = this->chosenCount };
+        MessageInfo info = { .intVals[0] = this->chosenCount };
         LayoutUIControl_setMessageAll(&this->launchButton, messageId, &info);
     }
 }
@@ -61,7 +61,7 @@ static bool TimeAttackGhostListPage_canSwapGhostSelects(TimeAttackGhostListPage 
 
 static void TimeAttackGhostListPage_refreshSheetLabel(TimeAttackGhostListPage *this) {
     this->sheetLabel.isHidden = this->sheetCount == 0;
-    ExtendedMessageInfo info = {
+    MessageInfo info = {
         .intVals[0] = this->sheetIndex + 1,
         .intVals[1] = this->sheetCount,
     };
@@ -271,7 +271,7 @@ static void TimeAttackGhostListPage_onInit(Page *base) {
     u32 flags = RegisteredPadManager_getFlags(&s_sectionManager->registeredPadManager, 0);
     u32 padType = REGISTERED_PAD_FLAGS_GET_TYPE(flags);
     u32 messageId = padType == REGISTERED_PAD_TYPE_GC ? 2306 : 2305;
-    ExtendedMessageInfo info = { .messageIds[0] = messageId };
+    MessageInfo info = { .messageIds[0] = messageId };
     LayoutUIControl_setMessageAll(&this->switchLabel, 3012, &info);
     LayoutUIControl_setMessageAll(&this->messageWindow, 3101, NULL);
 }

@@ -25,7 +25,7 @@ static void onAboutButtonFront(PushButtonHandler *this, PushButton *button,
     ConfirmPage *confirmPage = (ConfirmPage *)currentSection->pages[PAGE_ID_CONFIRM];
     ConfirmPage_reset(confirmPage);
     ConfirmPage_setTitleMessage(confirmPage, 10082, NULL);
-    ExtendedMessageInfo info = {
+    MessageInfo info = {
         .strings[0] = L"MKW-SP v0.1",
     };
     ConfirmPage_setWindowMessage(confirmPage, 6602, &info);

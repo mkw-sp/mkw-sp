@@ -121,7 +121,7 @@ void LicenseSelectButton_load(LicenseSelectButton *this, u32 index) {
         MiiGroup_insertFromId(&this->miiGroup, 0, &s_saveManager->spLicenses[index]->miiId);
         LayoutUIControl_setPaneVisible(this, "mii", true);
         LayoutUIControl_setMiiPicture(this, "mii", &this->miiGroup, 0, 0);
-        ExtendedMessageInfo info = {
+        MessageInfo info = {
             .miis[0] = MiiGroup_get(&this->miiGroup, 0),
         };
         LayoutUIControl_setMessage(this, "player", 9501, &info);
