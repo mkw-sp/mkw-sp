@@ -3,4 +3,8 @@
         "font": "regular",
         "string": "200cc",
     },
+    "10076": {
+        "font": "regular",
+        "string": "Ajustes",
+    },
 }

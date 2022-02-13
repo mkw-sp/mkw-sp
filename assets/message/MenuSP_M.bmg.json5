@@ -267,10 +267,6 @@
         "font": "regular",
         "string": "Ha ocurrido un error al leer o guardar los datos de guardado.",
     },
-    "10076": {
-        "font": "regular",
-        "string": "Ajustes",
-    },
     "10077": {
         "font": "regular",
         "string": "Cambia los ajustes para esta licencia.",

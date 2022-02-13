@@ -254,6 +254,7 @@
 0x805faf34 MiiGroup_copy
 0x8060197c Page_ct
 0x80601a04 Page_dt
+0x80601a60 Page_init
 0x80601ad8 Page_onInit
 0x806022cc Page_update
 0x8060245c Page_initChildren
@@ -292,6 +293,8 @@
 0x80632f4c GhostWatchPauseMenuPage_vf_74
 0x80632f60 GhostWatchPauseMenuPage_getButtons
 0x80632f6c GhostWatchPauseMenuPage_getButtonCount
+0x80633104 ReplayTAMenuPage_getButtons
+0x80633110 ReplayTAPauseMenuPage_getButtonCount
 0x80633248 BattlePauseMenuPage_getFile
 0x80633270 BattlePauseMenuPage_getButtons
 0x8063327c BattlePauseMenuPage_getButtonCount

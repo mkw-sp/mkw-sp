@@ -199,10 +199,6 @@
         "font": "regular",
         "string": "Une erreur est survenue lors de la lecture\\nou l'écriture de la sauvegarde.",
     },
-    "10076": {
-        "font": "regular",
-        "string": "Réglages",
-    },
     "10077": {
         "font": "regular",
         "string": "Changez les réglages pour ce permis.",

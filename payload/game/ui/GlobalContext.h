@@ -13,7 +13,9 @@ typedef struct {
     MiiGroup playerMiis;
     u8 _220[0x238 - 0x220];
     MiiGroup localPlayerMiis;
-    u8 _2d0[0x3c4 - 0x2d0];
+    u8 _2d0[0x3bc - 0x2d0];
+    u32 _3bc;
+    u8 _3c0[0x3c4-0x3c0];
     u32 timeAttackGhostType;
     s32 timeAttackCourseId;
     s32 timeAttackLicenseId;

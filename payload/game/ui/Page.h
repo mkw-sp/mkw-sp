@@ -16,7 +16,22 @@ enum {
 
 enum {
     PAGE_ID_NONE = -0x1,
+    
+    PAGE_ID_GP_PAUSE_MENU = 0x17,
+    PAGE_ID_VS_PAUSE_MENU = 0x18,
+    PAGE_ID_TA_PAUSE_MENU = 0x19,
+    PAGE_ID_BATTLE_PAUSE_MENU = 0x1a,
+    PAGE_ID_MR_PAUSE_MENU = 0x1b,
+    PAGE_ID_TA_GHOST_PAUSE_MENU = 0x1c,
+
+    PAGE_ID_GHOST_REPLAY_PAUSE_MENU = 0x1f,
+
     PAGE_ID_AFTER_TA_MENU = 0x21,
+    PAGE_ID_CONFIRM_QUIT = 0x2c,
+
+    PAGE_ID_GP_REPLAY_PAUSE_MENU = 0x38,
+    PAGE_ID_TA_REPLAY_PAUSE_MENU = 0x39,
+
     PAGE_ID_RACE_CONFIRM = 0x4b,
     PAGE_ID_MESSAGE_WINDOW_POPUP = 0x4d,
     PAGE_ID_CONFIRM = 0x52,
@@ -28,6 +43,16 @@ enum {
     PAGE_ID_CHARACTER_SELECT = 0x6b,
     PAGE_ID_COURSE_SELECT = 0x6f,
     PAGE_ID_GHOST_MANAGER = 0xa7,
+
+    // Replaced with MKW-SP license settings
+    PAGE_ID_LICENSE_RECORDS = 0xce,
+    // Disabled {
+    PAGE_ID_LICENSE_RECORDS_FAVORITES = 0xcf,
+    PAGE_ID_LICENSE_RECORDS_FRIENDS = 0xd0,
+    PAGE_ID_LICENSE_RECORDS_WFC = 0xd1,
+    PAGE_ID_LICENSE_RECORDS_OTHER = 0xd2,
+    // }
+
     PAGE_ID_MAX = 0xd3,
 };
 
@@ -131,6 +156,8 @@ void Page_playSfx(Page *this, u32 sfxId, s32 r5);
 
 void Page_update(Page *this);
 void Page_animUpdate(Page *this);
+
+void Page_init(Page *this, u32 pageId);
 
 inline bool PageIsA(TypeInfo *typeInfo, Page *page) {
     assert(page != NULL);

@@ -19,4 +19,9 @@ typedef struct {
     RadioButtonControlHandler onSettingControlSelect;
     PushButtonHandler onBackButtonFront;
     bool resetSelection;
+
+    // Instruction text & back button not available during race
+    bool enableInstructionText;
+    bool enableBackButton;
+    s32 replacementPage;
 } LicenseSettingsPage;

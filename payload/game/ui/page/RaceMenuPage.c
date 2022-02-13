@@ -1,4 +1,6 @@
 #include "RaceMenuPage.h"
+#include <game/ui/Button.h>
+#include <game/ui/SectionManager.h>
 
 // Note: Could do these as an X-Macro
 
@@ -98,6 +100,7 @@ static const u32 ghostWatchPauseButtons[] = {
 
     kPausePageButtonID_ChangeCourse,
     kPausePageButtonID_ChangeCharacter,
+    kPausePageButtonID_EXTLicenseSettings,
     kPausePageButtonID_Quit1,
 };
 
@@ -129,7 +132,7 @@ static const u32 afterTaButtons[] = {
 
     // Repurposed as "Change Ghost Data"
     kPausePageButtonID_ChangeMission,
-    
+
     kPausePageButtonID_ChangeCourse,
     kPausePageButtonID_ChangeCharacter,
     kPausePageButtonID_Replay,
@@ -154,6 +157,7 @@ PATCH_B(AfterTimeAttackMenuPage_getButtons, my_AfterTimeAttackMenuPage_getButton
 static const u32 vsPauseButtons[] = {
     kPausePageButtonID_Continue1,
     kPausePageButtonID_Restart1,
+    kPausePageButtonID_EXTLicenseSettings,
     kPausePageButtonID_Quit1,
 };
 
@@ -214,6 +218,7 @@ static const u32 timeAttackPauseButtons[] = {
 
     kPausePageButtonID_ChangeCourse,
     kPausePageButtonID_ChangeCharacter,
+    kPausePageButtonID_EXTLicenseSettings,
     kPausePageButtonID_Quit1,
 };
 
@@ -231,3 +236,50 @@ static const u32 *my_TimeAttackPauseMenuPage_getButtons(void) {
     return timeAttackPauseButtons;
 }
 PATCH_B(TimeAttackPauseMenuPage_getButtons, my_TimeAttackPauseMenuPage_getButtons);
+
+static const u32 replayTAPauseButtons[] = {
+    kPausePageButtonID_ContinueReplay,
+    kPausePageButtonID_RestartReplay,
+    kPausePageButtonID_EXTLicenseSettings,
+    kPausePageButtonID_QuitReplay,
+};
+u32 ReplayTAPauseMenuPage_getButtonCount(void);
+u32 my_ReplayTAPauseMenuPage_getButtonCount(void) {
+    return ARRAY_SIZE(replayTAPauseButtons);
+}
+PATCH_B(ReplayTAPauseMenuPage_getButtonCount, my_ReplayTAPauseMenuPage_getButtonCount);
+
+const u32 *ReplayTAMenuPage_getButtons(void);
+
+static const u32 *my_ReplayTAMenuPage_getButtons(void) {
+    return replayTAPauseButtons;
+}
+
+PATCH_B(ReplayTAMenuPage_getButtons, my_ReplayTAMenuPage_getButtons);
+
+void RaceMenuPage_onFrontSettings(
+        RaceMenuPage *this, PushButton *pushButton, u32 UNUSED(localPlayerId)) {
+    const float pushDelay = PushButton_getDelay(pushButton);
+
+    Page *settingsPage = s_sectionManager->currentSection->pages[PAGE_ID_LICENSE_RECORDS];
+    assert(settingsPage != NULL);
+    // settingsPage->backId = this->id;
+    // settingsPage->localPlayerIdInvokedSettings = localPlayerId;
+    this->vt->nextPage(this, PAGE_ID_LICENSE_RECORDS);
+    Page_startReplace((Page *)this, /* animation */ 0, pushDelay);
+}
+
+bool RaceMenuPage_onFrontOther(
+        RaceMenuPage *this, PushButton *pushButton, u32 localPlayerId) {
+    PausePageButtonID buttonId = (PausePageButtonID)pushButton->index;
+
+    switch (buttonId) {
+    case kPausePageButtonID_EXTLicenseSettings:
+        RaceMenuPage_onFrontSettings(this, pushButton, localPlayerId);
+        return true;  // Handled
+    default:
+        return false;  // Unhandled
+    }
+
+    // SaveManagerProxy_markLicensesDirty by caller
+}

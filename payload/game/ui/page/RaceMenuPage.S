@@ -107,3 +107,23 @@ PATCH_B_START(RaceMenuPage_onButtonFront, 0x5c8)
 
     b RaceMenuPage_onButtonFront + 0x5cc
 PATCH_B_END(RaceMenuPage_onButtonFront, 0x5c8)
+
+otherButtonId:
+    mr r3, r28 // RaceMenuPage *this
+    mr r4, r29 // PushButton *pushButton
+    mr r5, r30 // u32 localPlayerId
+    bl RaceMenuPage_onFrontOther
+
+    cmpwi r3, 0
+    beq unhandled
+        b RaceMenuPage_onButtonFront + 0x1aec // Handled
+    unhandled:
+        // REL14 can't fit this
+        b RaceMenuPage_onButtonFront + 0x1abc // Unhandled
+
+PATCH_B_START(RaceMenuPage_onButtonFront, 0x1aac)
+// buttonId != kPausePageButtonID_NotGoRanking
+bne otherButtonId
+// buttonId == kPausePageButtonID_NotGoRanking
+b RaceMenuPage_onButtonFront + 0x1ab0
+PATCH_B_END(RaceMenuPage_onButtonFront, 0x1aac)

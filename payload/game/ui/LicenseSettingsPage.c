@@ -59,15 +59,18 @@ static void onSettingControlSelect(RadioButtonControlHandler *this, RadioButtonC
     }
 
     LicenseSettingsPage *page = CONTAINER_OF(this, LicenseSettingsPage, onSettingControlSelect);
-    u32 messageIds[][2] = {
-        { 10007, 10008 },
-        { 10012, 10013 },
-        { 10017, 10018 },
-        { 10059, 10060 },
-        { 10064, 10065 },
-    };
-    u32 messageId = messageIds[control->index][selected];
-    CtrlMenuInstructionText_setMessage(&page->instructionText, messageId, NULL);
+
+    if (page->enableInstructionText) {
+        u32 messageIds[][2] = {
+            { 10007, 10008 },
+            { 10012, 10013 },
+            { 10017, 10018 },
+            { 10059, 10060 },
+            { 10064, 10065 },
+        };
+        u32 messageId = messageIds[control->index][selected];
+        CtrlMenuInstructionText_setMessage(&page->instructionText, messageId, NULL);
+    }
 }
 
 static const RadioButtonControlHandler_vt onSettingControlSelect_vt = {
@@ -103,6 +106,10 @@ static LicenseSettingsPage *LicenseSettingsPage_ct(LicenseSettingsPage *this) {
     this->onSettingControlSelect.vt = &onSettingControlSelect_vt;
     this->onBackButtonFront.vt = &onBackButtonFront_vt;
 
+    this->enableInstructionText = true;
+    this->enableBackButton = true;
+    this->replacementPage = PAGE_ID_LICENSE_SETTINGS;
+
     return this;
 }
 PATCH_B(LicenseRecordsPage_ct, LicenseSettingsPage_ct);
@@ -124,8 +131,10 @@ static void LicenseSettingsPage_dt(Page *base, s32 type) {
     }
 }
 
-static s32 LicenseSettingsPage_getReplacement(Page *UNUSED(base)) {
-    return PAGE_ID_LICENSE_SETTINGS;
+static s32 LicenseSettingsPage_getReplacement(Page *base) {
+    LicenseSettingsPage *this = (LicenseSettingsPage *)base;
+    
+    return this->replacementPage;
 }
 
 static void LicenseSettingsPage_onInit(Page *base) {
@@ -135,17 +144,28 @@ static void LicenseSettingsPage_onInit(Page *base) {
     this->baseInputManager = &this->inputManager;
     MultiControlInputManager_setPointerMode(&this->inputManager, 0x1);
 
-    Page_initChildren(this, 3 + ARRAY_SIZE(this->settingControls));
-    Page_insertChild(this, 0, &this->pageTitleText, 0);
-    Page_insertChild(this, 1, &this->instructionText, 0);
-    Page_insertChild(this, 2, &this->backButton, 0);
+    Page_initChildren(this, 1 + this->enableInstructionText + this->enableBackButton + ARRAY_SIZE(this->settingControls));
+
+    u32 id = 0;
+    Page_insertChild(this, id++, &this->pageTitleText, 0);
+    if (this->enableInstructionText) {
+        Page_insertChild(this, id++, &this->instructionText, 0);
+    }
+    if (this->enableBackButton) {
+        Page_insertChild(this, id++, &this->backButton, 0);
+    }
     for (u32 i = 0; i < ARRAY_SIZE(this->settingControls); i++) {
-        Page_insertChild(this, 3 + i, &this->settingControls[i], 0);
+        Page_insertChild(this, id++, &this->settingControls[i], 0);
     }
 
     CtrlMenuPageTitleText_load(&this->pageTitleText, false);
-    CtrlMenuInstructionText_load(&this->instructionText);
-    PushButton_load(&this->backButton, "button", "Back", "ButtonBackPopup", 0x1, false, true);
+    if (this->enableInstructionText) {
+        CtrlMenuInstructionText_load(&this->instructionText);
+    }
+    if (this->enableBackButton) {
+        PushButton_load(&this->backButton, "button", "Back", "ButtonBackPopup", 0x1, false, true);
+    }
+
     const char *settingNames[] = {
         "HudLabels",
         "169Fov",
@@ -194,7 +214,9 @@ static void LicenseSettingsPage_onInit(Page *base) {
         RadioButtonControl_setFrontHandler(control, &this->onSettingControlFront);
         RadioButtonControl_setSelectHandler(control, &this->onSettingControlSelect);
     }
-    PushButton_setFrontHandler(&this->backButton, &this->onBackButtonFront, false);
+    if (this->enableBackButton) {
+        PushButton_setFrontHandler(&this->backButton, &this->onBackButtonFront, false);
+    }
 
     CtrlMenuPageTitleText_setMessage(&this->pageTitleText, 2015, NULL);
 
@@ -210,8 +232,10 @@ static void LicenseSettingsPage_onActivate(Page *base) {
 
     if (this->resetSelection) {
         RadioButtonControl_selectDefault(&this->settingControls[0], 0);
-        u32 messageId = 10007 + this->settingControls[0].selected;
-        CtrlMenuInstructionText_setMessage(&this->instructionText, messageId, NULL);
+        if (this->enableInstructionText) {
+            u32 messageId = 10007 + this->settingControls[0].selected;
+            CtrlMenuInstructionText_setMessage(&this->instructionText, messageId, NULL);
+        }
         this->resetSelection = false;
     }
 }
