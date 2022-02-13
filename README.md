@@ -1,4 +1,4 @@
-# Mario Kart Wii - Support Package
+# Mario Kart Wii - Service Pack
 
 ## Building
 

@@ -1,8 +1,8 @@
 <wiidisc version="1" root="/mkw-sp">
     <id game="RMC" />
     <options>
-        <section name="Support Package">
-            <option name="Support Package">
+        <section name="Service Pack">
+            <option name="Service Pack">
                 <choice name="Enabled">
                     <patch id="sp" />
                 </choice>
