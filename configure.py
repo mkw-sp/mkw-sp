@@ -237,6 +237,7 @@ code_in_files = {
         os.path.join('game', 'ui', 'page', 'VsMenuPage.c'),
         os.path.join('game', 'ui', 'page', 'VsRulesPage.c'),
         os.path.join('game', 'util', 'Input.S'),
+        os.path.join('nw4r', 'db', 'dbException.c'),
         os.path.join('nw4r', 'lyt', 'lyt_arcResourceAccessor.S'),
         os.path.join('nw4r', 'lyt', 'lyt_layout.S'),
         os.path.join('nw4r', 'snd', 'snd_DvdSoundArchive.S'),

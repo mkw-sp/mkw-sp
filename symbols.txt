@@ -17,6 +17,8 @@
 0x8001329c strcmp
 0x80021254 strlen
 
+0x80023150 nw4r_db_Exception_Init
+
 0x80079cf0 GroupContainer_FindGroupByName
 0x8007a5a0 Layout_CreateAnimTransform
 0x800836d0 AnimResource_CalcAnimationNum
