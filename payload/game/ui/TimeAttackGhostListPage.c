@@ -225,7 +225,7 @@ static void TimeAttackGhostListPage_onInit(Page *base) {
 
     MultiControlInputManager_init(&this->inputManager, 0x1, false);
     this->baseInputManager = &this->inputManager;
-    MultiControlInputManager_setPointerMode(&this->inputManager, 0x1);
+    MultiControlInputManager_setWrappingMode(&this->inputManager, WRAPPING_MODE_Y);
 
     Page_initChildren(this, 9);
     Page_insertChild(this, 0, &this->pageTitleText, 0);

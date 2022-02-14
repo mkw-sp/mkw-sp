@@ -112,7 +112,7 @@ static void LicenseSelectPage_onInit(Page *base) {
 
     MultiControlInputManager_init(&this->inputManager, 0x1, false);
     this->baseInputManager = &this->inputManager;
-    MultiControlInputManager_setPointerMode(&this->inputManager, 0x1);
+    MultiControlInputManager_setWrappingMode(&this->inputManager, WRAPPING_MODE_NEITHER);
 
     Page_initChildren(this, 3 + ARRAY_SIZE(this->licenseButtons));
     Page_insertChild(this, 0, &this->pageTitleText, 0);

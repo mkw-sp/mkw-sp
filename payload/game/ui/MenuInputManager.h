@@ -61,8 +61,13 @@ void MultiControlInputManager_dt(MultiControlInputManager *this, s32 type);
 void MultiControlInputManager_init(MultiControlInputManager *this, u32 playerFlags,
         bool isMultiPlayer);
 
-// TODO mode list
-void MultiControlInputManager_setPointerMode(MultiControlInputManager *this, u32 mode);
+enum {
+    WRAPPING_MODE_BOTH = 0x0,
+    WRAPPING_MODE_Y = 0x1,
+    WRAPPING_MODE_NEITHER = 0x2,
+};
+
+void MultiControlInputManager_setWrappingMode(MultiControlInputManager *this, u32 mode);
 
 // TODO remaining args
 void MultiControlInputManager_setHandler(MultiControlInputManager *this, u32 inputId,

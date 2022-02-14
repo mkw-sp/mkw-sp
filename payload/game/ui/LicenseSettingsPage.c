@@ -142,7 +142,7 @@ static void LicenseSettingsPage_onInit(Page *base) {
 
     MultiControlInputManager_init(&this->inputManager, 0x1, false);
     this->baseInputManager = &this->inputManager;
-    MultiControlInputManager_setPointerMode(&this->inputManager, 0x1);
+    MultiControlInputManager_setWrappingMode(&this->inputManager, WRAPPING_MODE_Y);
 
     Page_initChildren(this, 1 + this->enableInstructionText + this->enableBackButton + ARRAY_SIZE(this->settingControls));
 
