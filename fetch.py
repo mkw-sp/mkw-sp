@@ -57,7 +57,7 @@ for group in ['Common', 'Menu', 'Race']:
             if message != '{{no|-}}':
                 messages[message_id] = {
                     'font': 'regular',
-                    'string': message.replace('\n', '\\n'),
+                    'string': message,
                 }
         data = json5.dumps(messages, ensure_ascii = False, indent = 4, quote_keys = True)
         path = os.path.join('assets', 'message', f'{group}SP_{language}.bmg.json5')

@@ -197,7 +197,7 @@
     },
     "10055": {
         "font": "regular",
-        "string": "Los códigos Gecko NO están\\nsoportados, por lo que estos\\nharán que tu juego se congele.\\nPulsa A si sabes lo que haces,\\ny NO reportes bugs al respecto.",
+        "string": "Los códigos Gecko NO están\nsoportados, por lo que estos\nharán que tu juego se congele.\nPulsa A si sabes lo que haces,\ny NO reportes bugs al respecto.",
     },
     "10056": {
         "font": "regular",

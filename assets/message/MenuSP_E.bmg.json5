@@ -197,7 +197,7 @@
     },
     "10055": {
         "font": "regular",
-        "string": "Gecko codes are UNSUPPORTED\\nand will crash your game.\\nPress A if you know what you are doing\\nand do NOT report bugs.",
+        "string": "Gecko codes are UNSUPPORTED\nand will crash your game.\nPress A if you know what you are doing\nand do NOT report bugs.",
     },
     "10073": {
         "font": "regular",
@@ -209,7 +209,7 @@
     },
     "10075": {
         "font": "regular",
-        "string": "Something went wrong when reading from\\nor writing to the save.",
+        "string": "Something went wrong when reading from\nor writing to the save.",
     },
     "10077": {
         "font": "regular",
