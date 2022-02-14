@@ -5,5 +5,6 @@
 #include "revolution/mtx.h"
 #include "revolution/vi.h"
 #include "revolution/nand.h"
+#include "revolution/sc.h"
 
 #include "revolution/net.h"

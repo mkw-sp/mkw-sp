@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 
 
+from google.auth.transport.requests import Request
 from google.oauth2.credentials import Credentials
 from google_auth_oauthlib.flow import InstalledAppFlow
 from googleapiclient.discovery import build
@@ -42,6 +43,7 @@ for group in ['Common', 'Menu', 'Race']:
         'M': 'Spanish (NTSC)',
         'Q': 'French (NTSC)',
         'S': 'Spanish (PAL)',
+        'N': 'Dutch',
     }
     for language in languages:
         if languages[language] not in values[0]:

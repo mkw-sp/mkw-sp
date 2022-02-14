@@ -1,0 +1,14 @@
+{
+    "10047": {
+        "font": "regular",
+        "string": "Geestdata opslaan...",
+    },
+    "10070": {
+        "font": "regular",
+        "string": "Geestdata zal worden verwijderd.",
+    },
+    "10071": {
+        "font": "regular",
+        "string": "{arg integer|0 0}:{arg integer|1 0}.{arg integer|2 3}",
+    },
+}

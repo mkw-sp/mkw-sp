@@ -174,6 +174,8 @@ code_in_files = {
         os.path.join('game', 'system', 'SaveManager.c'),
         os.path.join('game', 'system', 'Yaz.c'),
         os.path.join('game', 'ui', 'ControlLoader.S'),
+        os.path.join('game', 'ui', 'Font.S'),
+        os.path.join('game', 'ui', 'FontManager.c'),
         os.path.join('game', 'ui', 'GhostManagerPage.S'),
         os.path.join('game', 'ui', 'GhostManagerPage.c'),
         os.path.join('game', 'ui', 'GhostSelectButton.c'),
@@ -340,8 +342,41 @@ n.rule(
 )
 n.newline()
 
+LANGUAGES = [
+    'E', # English (PAL)
+    'F', # French (PAL)
+    'G', # German
+    'I', # Italian
+    'J', # Japanese
+    'K', # Korean
+    'M', # Spanish (NTSC)
+    'Q', # French (NTSC)
+    'S', # Spanish (PAL)
+    'U', # English (NTSC)
+    'N', # Dutch
+]
+HUD_LANGUAGES = {
+    'E': 'E',
+    'F': 'F',
+    'G': 'G',
+    'I': 'I',
+    'J': 'E',
+    'K': 'E',
+    'M': 'S',
+    'Q': 'F',
+    'S': 'S',
+    'U': 'E',
+    'N': 'N',
+}
+
 asset_in_files = {
-    'MenuOtherSP.szs': [
+    os.path.join('Scene', 'UI', 'FontSP.szs'): [
+        os.path.join('kart_font_K.brfnt'),
+        os.path.join('kart_font_R.brfnt'),
+        os.path.join('tt_kart_font_rodan_ntlg_pro_b_K.brfnt'),
+        os.path.join('tt_kart_font_rodan_ntlg_pro_b_R.brfnt'),
+    ],
+    os.path.join('Scene', 'UI', 'MenuOtherSP.szs'): [
         os.path.join('button', 'ctrl', 'LicenseManagementButton.brctr.json5'),
         os.path.join('control', 'anim', 'common_w023_rule_menu_fade_in_after.brlan.json5'),
         os.path.join('control', 'anim', 'common_w023_rule_menu_fade_in_before.brlan.json5'),
@@ -381,7 +416,7 @@ asset_in_files = {
         os.path.join('control', 'ctrl', 'LicenseSettingRadioOption.brctr.json5'),
         os.path.join('control', 'timg', 'tt_license_icon_004.tpl'),
     ],
-    'MenuSingleSP.szs': [
+    os.path.join('Scene', 'UI', 'MenuSingleSP.szs'): [
         os.path.join('button', 'blyt', 'common_w129_movie_button_single_top.brlyt.json5'),
         os.path.join('button', 'ctrl', 'SingleTop.brctr.json5'),
         os.path.join('button', 'ctrl', 'TimeAttackGhostListArrowLeft.brctr.json5'),
@@ -411,7 +446,7 @@ asset_in_files = {
         os.path.join('control', 'ctrl', 'TimeAttackGhostListPageNum.brctr.json5'),
         os.path.join('control', 'ctrl', 'VSSettingRadioOption.brctr.json5'),
     ],
-    'RaceSP.szs': [
+    os.path.join('Scene', 'UI', 'RaceSP.szs'): [
         os.path.join('button', 'blyt', 'common_w202_menu_compact.brlyt.json5'),
         os.path.join('button', 'ctrl', 'AfterMenuBT.brctr.json5'),
         os.path.join('button', 'ctrl', 'AfterMenuBTLast.brctr.json5'),
@@ -489,7 +524,7 @@ asset_in_files = {
         os.path.join('game_image', 'timg', 'tt_d_number_3d_minus.tpl'),
         os.path.join('game_image', 'timg', 'tt_d_number_3d_none.tpl'),
     ],
-    'TitleSP.szs': [
+    os.path.join('Scene', 'UI', 'TitleSP.szs'): [
         os.path.join('button', 'blyt', 'common_w076_license_icon_center.brlyt.json5'),
         os.path.join('button', 'ctrl', 'LicenseSelect.brctr.json5'),
         os.path.join('button', 'ctrl', 'TopMenuMultiWaku.brctr.json5'),
@@ -497,31 +532,50 @@ asset_in_files = {
         os.path.join('button', 'timg', 'tt_license_icon_004.tpl'),
     ],
 }
-for language in ['E', 'F', 'G', 'I', 'J', 'K', 'M', 'Q', 'S', 'U']:
-    asset_in_files[f'AwardSP_{language}.szs'] = [
+for language in LANGUAGES:
+    hud_language = HUD_LANGUAGES[language]
+    if language != 'K':
+        asset_in_files[os.path.join('Race', f'Common_{language}.szs')] = [
+            os.path.join(f'jugemu_lap_{language}.brres'),
+            os.path.join(f'jugemu_lapf_{language}.brres'),
+        ]
+    asset_in_files[os.path.join('Scene', 'UI', f'AwardSP_{language}.szs')] = [
         os.path.join('message', f'Common_{language}.bmg.json5'),
         os.path.join('message', f'Menu_{language}.bmg.json5'),
         os.path.join('message', f'Race_{language}.bmg.json5'),
     ]
-    asset_in_files[f'MenuMultiSP_{language}.szs'] = [
+    asset_in_files[os.path.join('Scene', 'UI', f'MenuMultiSP_{language}.szs')] = [
         os.path.join('message', f'Common_{language}.bmg.json5'),
         os.path.join('message', f'Menu_{language}.bmg.json5'),
     ]
-    asset_in_files[f'MenuOtherSP_{language}.szs'] = [
+    asset_in_files[os.path.join('Scene', 'UI', f'MenuOtherSP_{language}.szs')] = [
         os.path.join('message', f'Common_{language}.bmg.json5'),
         os.path.join('message', f'Menu_{language}.bmg.json5'),
     ]
-    asset_in_files[f'MenuSingleSP_{language}.szs'] = [
+    asset_in_files[os.path.join('Scene', 'UI', f'MenuSingleSP_{language}.szs')] = [
         os.path.join('message', f'Common_{language}.bmg.json5'),
         os.path.join('message', f'Menu_{language}.bmg.json5'),
     ]
-    asset_in_files[f'RaceSP_{language}.szs'] = [
-        os.path.join('game_image', 'timg', 'tt_speed_E.tpl'), # FIXME
+    asset_in_files[os.path.join('Scene', 'UI', f'RaceSP_{language}.szs')] = [
+        os.path.join('game_image', 'timg', f'tt_speed_{hud_language}.tpl'),
         os.path.join('message', f'Common_{language}.bmg.json5'),
         os.path.join('message', f'Menu_{language}.bmg.json5'),
         os.path.join('message', f'Race_{language}.bmg.json5'),
     ]
-    asset_in_files[f'TitleSP_{language}.szs'] = [
+    if hud_language != 'E':
+        asset_in_files[os.path.join('Scene', 'UI', f'RaceSP_{language}.szs')] += [
+            os.path.join('game_image', 'timg', f'tt_lap_{hud_language}.tpl'),
+            os.path.join('game_image', 'timg', f'tt_lap_{hud_language}_lap1.tpl'),
+            os.path.join('game_image', 'timg', f'tt_lap_{hud_language}_lap2.tpl'),
+            os.path.join('game_image', 'timg', f'tt_lap_{hud_language}_lap3.tpl'),
+            os.path.join('game_image', 'timg', f'tt_time_{hud_language}.tpl'),
+        ]
+        for i in range(12):
+            for base in ['tt_position_no_st_64x64', 'tt_multi_position_no_st_64x64']:
+                asset_in_files[os.path.join('Scene', 'UI', f'RaceSP_{language}.szs')] += [
+                    os.path.join('game_image', 'timg', f'{base}_{hud_language}_{i + 1:02d}.tpl')
+                ]
+    asset_in_files[os.path.join('Scene', 'UI', f'TitleSP_{language}.szs')] = [
         os.path.join('message', f'Common_{language}.bmg.json5'),
         os.path.join('message', f'Menu_{language}.bmg.json5'),
     ]
@@ -530,7 +584,9 @@ for target in asset_in_files:
     for in_file in asset_in_files[target]:
         base, ext = os.path.splitext(in_file)
         outext = {
+            '.brfnt': '.brfnt',
             '.brlyt': '.brlyt',
+            '.brres': '.brres',
             '.json5': '',
             '.tpl': '.tpl',
         }[ext]
@@ -554,7 +610,9 @@ for target in asset_in_files:
             in_file = os.path.join('assets', in_file)
         if out_file not in out_files:
             rule = {
+                '.brfnt': 'cp',
                 '.brlyt': 'cp',
+                '.brres': 'cp',
                 '.json5': 'wuj5',
                 '.tpl': 'cp',
             }[ext]
@@ -566,52 +624,37 @@ for target in asset_in_files:
         asset_out_files[target] += [out_file]
 n.newline()
 
-renamed = {
-    'Common_E.bmg': 'Common.bmg',
-    'Common_F.bmg': 'Common.bmg',
-    'Common_G.bmg': 'Common.bmg',
-    'Common_I.bmg': 'Common.bmg',
-    'Common_J.bmg': 'Common.bmg',
-    'Common_K.bmg': 'Common.bmg',
-    'Common_M.bmg': 'Common.bmg',
-    'Common_Q.bmg': 'Common.bmg',
-    'Common_S.bmg': 'Common.bmg',
-    'Common_U.bmg': 'Common.bmg',
-    'Menu_E.bmg': 'Menu.bmg',
-    'Menu_F.bmg': 'Menu.bmg',
-    'Menu_G.bmg': 'Menu.bmg',
-    'Menu_I.bmg': 'Menu.bmg',
-    'Menu_J.bmg': 'Menu.bmg',
-    'Menu_K.bmg': 'Menu.bmg',
-    'Menu_M.bmg': 'Menu.bmg',
-    'Menu_Q.bmg': 'Menu.bmg',
-    'Menu_S.bmg': 'Menu.bmg',
-    'Menu_U.bmg': 'Menu.bmg',
-    'Race_E.bmg': 'Race.bmg',
-    'Race_F.bmg': 'Race.bmg',
-    'Race_G.bmg': 'Race.bmg',
-    'Race_I.bmg': 'Race.bmg',
-    'Race_J.bmg': 'Race.bmg',
-    'Race_K.bmg': 'Race.bmg',
-    'Race_M.bmg': 'Race.bmg',
-    'Race_Q.bmg': 'Race.bmg',
-    'Race_S.bmg': 'Race.bmg',
-    'Race_U.bmg': 'Race.bmg',
-    'tt_speed_E.tpl': 'tt_speed.tpl',
-    'tt_speed_F.tpl': 'tt_speed.tpl',
-    'tt_speed_G.tpl': 'tt_speed.tpl',
-    'tt_speed_I.tpl': 'tt_speed.tpl',
-    'tt_speed_S.tpl': 'tt_speed.tpl',
-}
-renamed = ' '.join([f'--renamed {src} {dst}' for src, dst in renamed.items()])
+renamed = {}
+for language in LANGUAGES:
+    renamed[f'jugemu_lap_{language}.brres'] = 'jugemu_lap.brres'
+    renamed[f'jugemu_lapf_{language}.brres'] = 'jugemu_lapf.brres'
+    renamed[f'Common_{language}.bmg'] = 'Common.bmg'
+    renamed[f'Menu_{language}.bmg'] = 'Menu.bmg'
+    renamed[f'Race_{language}.bmg'] = 'Race.bmg'
+for hud_language in HUD_LANGUAGES.values():
+    renamed[f'tt_lap_{hud_language}.tpl'] = 'tt_lap_E.tpl'
+    renamed[f'tt_lap_{hud_language}_lap1.tpl'] = 'tt_lap_E_Lap1.tpl'
+    renamed[f'tt_lap_{hud_language}_lap2.tpl'] = 'tt_lap_E_lap2.tpl'
+    renamed[f'tt_lap_{hud_language}_lap3.tpl'] = 'tt_lap_E_lap3.tpl'
+    renamed[f'tt_speed_{hud_language}.tpl'] = 'tt_speed.tpl'
+    renamed[f'tt_time_{hud_language}.tpl'] = 'tt_time_E.tpl'
+    for i in range(12):
+        for base in ['tt_position_no_st_64x64', 'tt_multi_position_no_st_64x64']:
+            renamed[f'{base}_{hud_language}_{i + 1:02d}.tpl'] = f'{base}_{i + 1:02d}.tpl'
 for target in asset_out_files:
+    target_renamed = {}
+    for out_file in asset_out_files[target]:
+        out_file = os.path.basename(out_file)
+        if out_file in renamed:
+            target_renamed[out_file] = renamed[out_file]
+    target_renamed = ' '.join([f'--renamed {src} {dst}' for src, dst in target_renamed.items()])
     n.build(
-        os.path.join('$outdir', 'disc', 'Scene', 'UI', target),
+        os.path.join('$outdir', 'disc', target),
         'szs',
         asset_out_files[target],
         variables = {
             'szsin': os.path.join('$builddir', 'Shared.szs.d'),
-            'args': renamed,
+            'args': target_renamed,
         },
     )
     n.newline()
