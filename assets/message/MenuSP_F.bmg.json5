@@ -187,13 +187,81 @@
         "font": "regular",
         "string": "Confirmer ces règles.",
     },
+    "10053": {
+        "font": "regular",
+        "string": "Temps racourci",
+    },
+    "10054": {
+        "font": "regular",
+        "string": "Option de temps sans zéros non-significatifs.",
+    },
     "10055": {
         "font": "regular",
         "string": "Les codes Gecko NE SONT PAS SUPPORTÉS et vont figer votre jeu. Appuyez sur A si vous savez ce que vous faites et NE reportez PAS de bugs.",
     },
+    "10056": {
+        "font": "regular",
+        "string": "Transitions des menus",
+    },
+    "10057": {
+        "font": "regular",
+        "string": "Activer",
+    },
+    "10058": {
+        "font": "regular",
+        "string": "Désactiver",
+    },
+    "10059": {
+        "font": "regular",
+        "string": "Rendre les transitions des menus instantanées.",
+    },
+    "10060": {
+        "font": "regular",
+        "string": "Garder le rythme par défaut des transitions des menus.",
+    },
+    "10061": {
+        "font": "regular",
+        "string": "Affichage des entrées",
+    },
+    "10062": {
+        "font": "regular",
+        "string": "Activer",
+    },
+    "10063": {
+        "font": "regular",
+        "string": "Désactiver",
+    },
+    "10064": {
+        "font": "regular",
+        "string": "Ne pas afficher les entrées des manettes.",
+    },
+    "10065": {
+        "font": "regular",
+        "string": "Afficher les entrées des manettes.",
+    },
+    "10066": {
+        "font": "regular",
+        "string": "Son des fantômes",
+    },
+    "10067": {
+        "font": "regular",
+        "string": "N'activer le son pour aucun fantôme.",
+    },
+    "10068": {
+        "font": "regular",
+        "string": "Activer le son pour le fantôme suivi uniquement.",
+    },
+    "10069": {
+        "font": "regular",
+        "string": "Activer le son pour tous les fantômes.",
+    },
     "10073": {
         "font": "regular",
         "string": "Contre-la-montre et plus pour 1 joueur!",
+    },
+    "10074": {
+        "font": "regular",
+        "string": "Modifiez les réglages ou changez de Mii!",
     },
     "10075": {
         "font": "regular",
@@ -218,5 +286,9 @@
     "10081": {
         "font": "regular",
         "string": "Facteur de vitesse 1.5, freinage-dérapage et atterrissage rapide.",
+    },
+    "10082": {
+        "font": "regular",
+        "string": "Options de MKW-SP",
     },
 }
