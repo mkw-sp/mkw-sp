@@ -105,6 +105,10 @@ static void CtrlRaceInputDisplay_initSelf(UIControl *base) {
     for (int i = 0; i < kAccelState_Count; ++i) {
         assert(this->accelPanes[i] != NULL && "Failed to load ACCEL panes");
         lyt_setPaneVisible(this->accelPanes[i], i == kAccelState_Off);
+        if (speedModIsEnabled) {
+            this->accelPanes[i]->trans.x += this->accelPanes[i]->scale.x * 15.0f;
+            this->accelPanes[i]->trans.y += this->accelPanes[i]->scale.y * 15.0f;
+        }
     }
 
     for (int i = 0; i < kTrigger_Count; ++i) {
