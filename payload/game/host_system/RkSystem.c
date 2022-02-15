@@ -3,6 +3,9 @@
 extern void RkSystem_initialize;
 extern void RkSystem_run;
 
+// Increase the number of lines that the exception console can hold
+PATCH_U32(RkSystem_initialize, 0x190, 0x38800068 /* li r4, 104 */);
+
 // Automatically display exception information on the television screen when an exception occurs
 PATCH_NOP(RkSystem_initialize, 0x1A0);
 PATCH_U32(RkSystem_initialize, 0x1A4, 0x38600000 /* li r3, 0 */);
