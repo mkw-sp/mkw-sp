@@ -193,23 +193,23 @@ static const MultiDvdArchive_vt s_FontMultiDvdArchive_vt = {
 
 static MultiDvdArchive *my_MultiDvdArchive_create(u32 type) {
     switch (type) {
-    case MULTI_DVD_ARCHIVE_TYPE_RACE:
+    case MULTI_DVD_ARCHIVE_TYPE_RACE:;
         RaceMultiDvdArchive *raceMulti = new(sizeof(RaceMultiDvdArchive));
         RaceMultiDvdArchive_ct(raceMulti);
         return raceMulti;
-    case MULTI_DVD_ARCHIVE_TYPE_COURSE:
+    case MULTI_DVD_ARCHIVE_TYPE_COURSE:;
         CourseMultiDvdArchive *courseMulti = new(sizeof(CourseMultiDvdArchive));
         CourseMultiDvdArchive_ct(courseMulti);
         return courseMulti;
-    case MULTI_DVD_ARCHIVE_TYPE_MENU:
+    case MULTI_DVD_ARCHIVE_TYPE_MENU:;
         MenuMultiDvdArchive *menuMulti = new(sizeof(MenuMultiDvdArchive));
         MenuMultiDvdArchive_ct(menuMulti);
         return menuMulti;
-    case MULTI_DVD_ARCHIVE_TYPE_FONT:
+    case MULTI_DVD_ARCHIVE_TYPE_FONT:;
         FontMultiDvdArchive *fontMulti = new(sizeof(FontMultiDvdArchive));
         FontMultiDvdArchive_ct(fontMulti);
         return fontMulti;
-    default:
+    default:;
         MultiDvdArchive *multi = new(sizeof(MultiDvdArchive));
         MultiDvdArchive_ct(multi, 2);
         multi->vt->init(multi);
