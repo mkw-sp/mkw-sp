@@ -54,6 +54,9 @@
 0x8019e020 nandGenerateAbsPath
 0x8019e40c NANDGetHomeDir
 0x8019fc68 OSInit
+0x801a08e0 OSSetPeriodicAlarm
+0x801a10ac OSGetMEM2ArenaHi
+0x801a10dc OSSetMEM2ArenaHi
 0x801a1104 OSAllocFromMEM1ArenaLo
 0x801a162c DCFlushRange
 0x801a1710 ICInvalidateRange
