@@ -63,3 +63,5 @@ for group in ['Common', 'Menu', 'Race']:
         path = os.path.join('assets', 'message', f'{group}SP_{language}.bmg.json5')
         file = open(path, 'w', encoding = 'utf-8')
         file.write(data)
+
+True

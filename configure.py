@@ -10,6 +10,24 @@ try:
 except ModuleNotFoundError:
     raise SystemExit("Error: pyjson5 not found. Please install it with `python -m pip install json5`")
 
+import subprocess
+
+
+def get_git_changed_files():
+    # git update-index --refresh
+    return os.popen('git update-index --refresh').read()
+
+def changed_files():
+    s = get_git_changed_files()
+    return [os.path.basename(x).replace(': needs update', '') for x in s.split('\n')]
+
+# https://stackoverflow.com/questions/14989858/get-the-current-git-hash-in-a-python-script/14989911#14989911
+def get_git_revision_hash() -> str:
+    return subprocess.check_output(['git', 'rev-parse', 'HEAD']).decode('ascii').strip()
+
+def get_git_revision_short_hash() -> str:
+    return subprocess.check_output(['git', 'rev-parse', '--short', 'HEAD']).decode('ascii').strip()
+
 n = Writer(open('build.ninja', 'w'))
 
 n.variable('ninja_required_version', '1.3')
@@ -42,6 +60,8 @@ cflags = [
     '-Werror=incompatible-pointer-types',
     '-Wextra',
     '-Wno-packed-bitfield-compat',
+    f'-DGIT_HASH={get_git_revision_short_hash()}',
+    f'-DGIT_CHANGED_FILES=\'"{", ".join(changed_files())}"\'',
 ]
 cppflags = [
     '-fms-extensions',
@@ -56,6 +76,8 @@ cppflags = [
     # '-Werror=incompatible-pointer-types',
     '-Wextra',
     '-Wno-packed-bitfield-compat',
+    f'-DGIT_HASH="{get_git_revision_short_hash()}"',
+    f'-DGIT_CHANGED_FILES=\'"{", ".join(changed_files())}"\'',
     
     '-fno-exceptions',
     '-fno-unwind-tables',
@@ -238,6 +260,7 @@ code_in_files = {
         os.path.join('game', 'ui', 'page', 'VsMenuPage.c'),
         os.path.join('game', 'ui', 'page', 'VsRulesPage.c'),
         os.path.join('game', 'util', 'Input.S'),
+        os.path.join('nw4r', 'db', 'dbException.c'),
         os.path.join('nw4r', 'db', 'dbException.S'),
         os.path.join('nw4r', 'lyt', 'lyt_arcResourceAccessor.S'),
         os.path.join('nw4r', 'lyt', 'lyt_layout.S'),
@@ -246,6 +269,7 @@ code_in_files = {
         os.path.join('revolution', 'nand.c'),
         os.path.join('sp', 'Fatal.c'),
         os.path.join('sp', 'FlameGraph.c'),
+        os.path.join('sp', 'Host.c'),
         os.path.join('sp', 'IOSDolphin.c'),
         os.path.join('sp', 'IOSKeyboard.c'),
         os.path.join('sp', 'Keyboard.c'),

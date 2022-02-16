@@ -7,6 +7,7 @@
 
 #include <game/system/SaveManager.h>
 
+#include <sp/Host.h>
 #include <sp/IOSDolphin.h>
 
 extern void EGG_ConfigurationData_onBeginFrame(void *system);
@@ -122,7 +123,14 @@ static void my_lineCallback(const char *buf, size_t len) {
 // IOS KBD module is not supported on this platform
 static bool sConsoleInputUnavailable = false;
 
+static bool sHostIsInit = false;
+
 void my_onBeginFrame(void *UNUSED(system)) {
+    if (!sHostIsInit) {
+        InitHost();
+        sHostIsInit = true;
+    }
+
     if (sConsoleInputUnavailable)
         return;
 

@@ -18,6 +18,8 @@
 0x80021254 strlen
 
 0x80023150 nw4r_db_Exception_Init
+0x800235A0 Exception_Printf_
+0x80023680 Exception_PrintCtx
 
 0x80079cf0 GroupContainer_FindGroupByName
 0x8007a5a0 Layout_CreateAnimTransform
