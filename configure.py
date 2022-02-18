@@ -144,6 +144,8 @@ code_in_files = {
     ],
     'payload': [
         os.path.join('egg', 'core', 'eggColorFader.c'),
+        os.path.join('egg', 'core', 'eggEffectCreator.S'),
+        os.path.join('egg', 'core', 'eggG3dUtil.S'),
         os.path.join('egg', 'core', 'eggHeap.c'),
         os.path.join('egg', 'core', 'eggVideo.S'),
         os.path.join('egg', 'core', 'eggSystem.c'),
@@ -177,8 +179,10 @@ code_in_files = {
         os.path.join('game', 'snd', 'DriverSound.S'),
         os.path.join('game', 'snd', 'KartSound.S'),
         os.path.join('game', 'snd', 'Snd.S'),
+        os.path.join('game', 'system', 'BugCheck.c'),
         os.path.join('game', 'system', 'CourseMap.S'),
         os.path.join('game', 'system', 'DvdArchive.S'),
+        os.path.join('game', 'system', 'FatalScene.c'),
         os.path.join('game', 'system', 'GhostFile.c'),
         os.path.join('game', 'system', 'HomeButton.S'),
         os.path.join('game', 'system', 'InputManager.S'),
@@ -195,6 +199,8 @@ code_in_files = {
         os.path.join('game', 'system', 'ResourceManager.c'),
         os.path.join('game', 'system', 'SaveManager.S'),
         os.path.join('game', 'system', 'SaveManager.c'),
+        os.path.join('game', 'system', 'SceneCreatorDynamic.S'),
+        os.path.join('game', 'system', 'SceneCreatorDynamic.c'),
         os.path.join('game', 'system', 'Yaz.c'),
         os.path.join('game', 'ui', 'ControlLoader.S'),
         os.path.join('game', 'ui', 'Font.S'),
@@ -396,6 +402,11 @@ HUD_LANGUAGES = {
 }
 
 asset_in_files = {
+    os.path.join('Scene', 'UI', 'CrashSP.szs'): [
+        os.path.join('fatal', 'blyt', 'Fatal.brlyt'),
+        os.path.join('fatal', 'font', 'sf_light_i8_utf16.brfnt'),
+        os.path.join('fatal', 'font', 'sf_medium_basic.brfnt'),
+    ],
     os.path.join('Scene', 'UI', 'FontSP.szs'): [
         os.path.join('kart_font_K.brfnt'),
         os.path.join('kart_font_R.brfnt'),
@@ -610,6 +621,7 @@ for target in asset_in_files:
     for in_file in asset_in_files[target]:
         base, ext = os.path.splitext(in_file)
         outext = {
+            '.brfna': '.brfna',
             '.brfnt': '.brfnt',
             '.brlyt': '.brlyt',
             '.brres': '.brres',
@@ -636,6 +648,7 @@ for target in asset_in_files:
             in_file = os.path.join('assets', in_file)
         if out_file not in out_files:
             rule = {
+                '.brfna': 'cp',
                 '.brfnt': 'cp',
                 '.brlyt': 'cp',
                 '.brres': 'cp',

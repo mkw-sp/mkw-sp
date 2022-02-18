@@ -1,3 +1,4 @@
+#include "eggColorFader.h"
 #include <revolution.h>
 #include <sp/IOSDolphin.h>
 
@@ -79,9 +80,6 @@ static bool post_fadeOut(bool changed) {
 
     return changed;
 }
-
-bool EGG_ColorFader_fadeIn(void *colorFader);
-bool EGG_ColorFader_fadeOut(void *colorFader);
 
 PATCH_B(EGG_ColorFader_fadeIn + 0x24, post_fadeIn);
 PATCH_B(EGG_ColorFader_fadeOut + 0x28, post_fadeOut);

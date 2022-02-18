@@ -1,5 +1,6 @@
 0x80005f34 memcpy
 0x80006038 memset
+0x800060A4 __start
 0x8000f1f0 memmove
 0x8000f314 memcmp
 
@@ -12,17 +13,33 @@
 0x80009820 EGG_ConfigurationData_onBeginFrame
 0x80009844 SceneManager_changeSiblingScene
 
+0x8001182C vsnprintf
 0x80011938 snprintf
 0x80011b00 qsort
+0x800131e0 strncpy
 0x8001329c strcmp
+0x800135f0 strstr
 0x80021254 strlen
+
 
 0x80023150 nw4r_db_Exception_Init
 0x800235A0 Exception_Printf_
 0x80023680 Exception_PrintCtx
 
 0x80079cf0 GroupContainer_FindGroupByName
+0x8007A000 lyt_Layout_CT
+0x8007A040 lyt_Layout_DT
+0x8007A170 Layout_build
 0x8007a5a0 Layout_CreateAnimTransform
+0x8007A970 Layout_calculateMtx
+0x8007A990 Layout_draw
+0x8007B320 lyt_TextBox_CT
+0x80082620 lyt_DrawInfo_CT
+0x800826A0 lyt_DrawInfo_DT
+0x80084000 lyt_ArcResourceLink_Set
+0x80084070 lyt_MultiArcResourceAccessor_CT
+0x800840E0 lyt_MultiArcResourceAccessor_DT
+0x800841B0 MultiArcResourceAccessor_GetResource
 0x800836d0 AnimResource_CalcAnimationNum
 0x80084170 MultiArcResourceAccessor_Attach
 0x800912c0 DvdSoundArchive_OpenExtStream
@@ -35,6 +52,7 @@
 0x8015e834 DVDReadPrio
 0x8015e568 DVDClose
 0x8016a05c ISFS_ReadDir
+0x8016F3B8 GXSetCullMode
 0x80171b58 GXSetTevDirect
 0x80171ce0 GXSetTevColorIn
 0x80171d20 GXSetTevAlphaIn
@@ -43,12 +61,26 @@
 0x80171e10 GXSetTevColor
 0x80171f80 GXSetTevKAlphaSel
 0x80171fd0 GXSetTevSwapMode
+0x801720C0 GXSetZTexture
 0x8017214c GXSetTevOrder
 0x801722a8 GXSetNumTevStages
+0x801722CC GXSetFog
+0x80172824 GXSetZMode
+0x8017301C GXSetProjection
+0x801733B4 GXSetViewport
+0x80173430 GXSetScissor
+0x801734E0 GXSetScissorBoxOffset
+0x8017351C GXSetClipMode
+
+0x80193048 strnlen
 0x801938f8 IOS_Open
 0x80193ad8 IOS_Close
 0x80194290 IOS_Ioctl
 0x801945E0 IOS_Ioctlv
+0x80199038 MEMFreeToExpHeap
+0x801992A8 MEMVisitAllocatedForExpHeap
+0x80199D04 PSMTXIdentity
+0x8019AB4C C_MTXOrtho
 0x8019ac68 PSVECMag
 0x8019acac PSVECDotProduct
 0x8019bee8 NANDMove
@@ -69,6 +101,7 @@
 0x801a6d3c Relocate
 0x801A7684 OSProtectRange
 0x801a98b0 OSGetCurrentThread
+0x801a98e8 OSDisableScheduler
 0x801a9e84 OSCreateThread
 0x801aa3ac OSJoinThread
 0x801aa4ec OSDetachThread
@@ -76,23 +109,30 @@
 0x801aaca8 OSSleepTicks
 0x801b1d0c SCGetLanguage
 0x801b99ec VIWaitForRetrace
+0x801BAB2C VISetBlack
 0x801d1ca0 NETCalcCRC32
 0x801d24f4 NETSHA1Init
 0x801d2544 NETSHA1Update
 0x801d25f8 NETSHA1GetDigest
 
+0x80215168 EGG_ColorFader_CT
+0x80215280 EGG_ColorFader_fadeIn
+0x802152A8 EGG_ColorFader_fadeOut
 0x80218098 EGG_CpuTexture_Construct
+0x802245AC EffectCreator_createEffect
+0x80226dc0 EGG_ExpHeap_InitAlloc
+0x802289DC g3dutil_SearchSamplers
 0x80229814 EGG_Heap_alloc
 0x80229b84 EGG_Heap_free
 0x80229dcc new
 0x80229e14 delete
+0x8023ad10 EGG_Scene_CT
+0x8023ad84 EGG_Scene_DT
 0x8023afe0 EGG_SceneManager_changeSiblingScene
 0x80242c18 EGG_TaskThread_request
 0x80243d6c EGG_Video_configure
 
-0x80215168 EGG_ColorFader_CT
-0x80215280 EGG_ColorFader_fadeIn
-0x802152A8 EGG_ColorFader_fadeOut
+0x802A4080 sRKSystem
 
 0x80386000 s_systemManager
 0x80386638 MaxEntryNum
@@ -168,6 +208,7 @@
 0x80549dac SaveManager_loadGhostHeadersAsync
 0x8054a048 SaveManager_saveGhostAsync
 0x8054a868 SaveManager_resetAsync
+0x8054aa64 SceneCreatorDynamic_create
 0x805784d4 KartMove_init
 0x8057ab68 KartMove_calcAcceleration
 0x8057b99c KartMove_setKillerStartHardSpeedLimit
