@@ -1,5 +1,7 @@
 # Mario Kart Wii - Service Pack
 
+Mario Kart Wii - Service Pack is an experimental, open-source, cross-platform mod for MKW aiming to provide a variety of features and improvements over the base game. More details on the [website](https://www.mkw-sp.com).
+
 ## Building
 
 You need:
