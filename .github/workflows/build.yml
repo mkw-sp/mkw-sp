@@ -10,14 +10,12 @@ jobs:
     timeout-minutes: 20
     steps:
       - uses: actions/checkout@v2
-
       - name: Cache DevkitPPC
         id: cache-1
         uses: actions/cache@v2
         with:
           path: cache
           key: ${{ runner.os }}-cache-dkp
-
       - name: Download devkitPPC
         if: steps.cache-1.outputs.cache-hit != 'true'
         run: | 
@@ -26,8 +24,6 @@ jobs:
           cd ..
       - name: Extract devkitPPC
         run: tar -xf cache/devkitPPC-r40-1-linux_x86_64.pkg.tar.xz
-      - name: Install pyjson5
-        run: pip install pyjson5
       - name: Install ninja
         run: sudo apt install ninja-build
       - name: Install json5
