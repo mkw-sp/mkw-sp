@@ -9,7 +9,8 @@ jobs:
       DEVKITPPC: opt/devkitpro/devkitPPC
     timeout-minutes: 20
     steps:
-      - uses: actions/checkout@v2
+      - name: Checkout
+        uses: actions/checkout@v2
       - name: Cache DevkitPPC
         id: cache-1
         uses: actions/cache@v2
@@ -26,6 +27,10 @@ jobs:
         run: tar -xf cache/devkitPPC-r40-1-linux_x86_64.pkg.tar.xz
       - name: Install ninja
         run: sudo apt install ninja-build
+      - name: Install PyPy
+        uses: actions/setup-python@v2
+        with:
+          python-version: 'pypy-3.8'
       - name: Install json5
         run: pip install json5
       - name: Configure ninja
