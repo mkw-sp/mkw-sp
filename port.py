@@ -489,40 +489,40 @@ parser.add_argument('in_path')
 parser.add_argument('out_path')
 args = parser.parse_args()
 
-out_file = open(args.out_path, 'w')
-out_file.write('SECTIONS {\n')
-out_file.write('    .text base : { *(first) *(.text*) }\n')
-out_file.write('    patches : { *(patches*) }\n')
-out_file.write('    .rodata : { *(.rodata*) }\n')
-out_file.write('    .data : { *(.data*) *(.bss*) *(.sbss*) }\n')
-out_file.write('\n')
-
-for name, dst_binary in DST_BINARIES[args.region].items():
-    write_symbol(out_file, f'{name}_start', dst_binary.start)
-    write_symbol(out_file, f'{name}_end', dst_binary.end)
+with open(args.out_path, 'w') as out_file:
+    out_file.write('SECTIONS {\n')
+    out_file.write('    .text base : { *(first) *(.text*) }\n')
+    out_file.write('    patches : { *(patches*) }\n')
+    out_file.write('    .rodata : { *(.rodata*) }\n')
+    out_file.write('    .data : { *(.data*) *(.bss*) *(.sbss*) }\n')
     out_file.write('\n')
 
-symbols = open(args.in_path)
-for symbol in symbols.readlines():
-    if symbol.isspace():
+    for name, dst_binary in DST_BINARIES[args.region].items():
+        write_symbol(out_file, f'{name}_start', dst_binary.start)
+        write_symbol(out_file, f'{name}_end', dst_binary.end)
         out_file.write('\n')
-        continue
-    address, name = symbol.split()
-    address = int(address, 16)
-    binary_name = get_binary_name(address)
-    is_rel_bss = 0x809bd6e0 <= address < 0x809c4f90
-    address = port(args.region, address)
-    if address is None:
-        sys.exit(f'Couldn\'t port symbol {name} to region {args.region}!')
-    if is_rel_bss:
-        address -= {
-            'P': 0xe02e0,
-            'E': 0xe0280,
-            'J': 0xe0200,
-            'K': 0xe04a0,
-        }[args.region]
-    address -= SRC_BINARIES[binary_name].start[args.region]
-    address += DST_BINARIES[args.region][binary_name].start
-    write_symbol(out_file, name, address)
 
-out_file.write('}\n')
+    with open(args.in_path, 'r') as symbols:
+        for symbol in symbols.readlines():
+            if symbol.isspace():
+                out_file.write('\n')
+                continue
+            address, name = symbol.split()
+            address = int(address, 16)
+            binary_name = get_binary_name(address)
+            is_rel_bss = 0x809bd6e0 <= address < 0x809c4f90
+            address = port(args.region, address)
+            if address is None:
+                sys.exit(f'Couldn\'t port symbol {name} to region {args.region}!')
+            if is_rel_bss:
+                address -= {
+                    'P': 0xe02e0,
+                    'E': 0xe0280,
+                    'J': 0xe0200,
+                    'K': 0xe04a0,
+                }[args.region]
+            address -= SRC_BINARIES[binary_name].start[args.region]
+            address += DST_BINARIES[args.region][binary_name].start
+            write_symbol(out_file, name, address)
+
+    out_file.write('}\n')

@@ -59,7 +59,7 @@ for group in ['Common', 'Menu', 'Race']:
                     'font': 'regular',
                     'string': message,
                 }
-        data = json5.dumps(messages, ensure_ascii = False, indent = 4, quote_keys = True)
-        path = os.path.join('assets', 'message', f'{group}SP_{language}.bmg.json5')
-        file = open(path, 'w', encoding = 'utf-8')
-        file.write(data)
+        out_data = json5.dumps(messages, ensure_ascii = False, indent = 4, quote_keys = True)
+        out_path = os.path.join('assets', 'message', f'{group}SP_{language}.bmg.json5')
+        with open(path, 'w', encoding = 'utf-8') as out_file:
+            out_file.write(out_data)

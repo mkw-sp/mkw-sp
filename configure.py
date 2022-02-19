@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 
 
+import io
 import os, sys
 from vendor.ninja_syntax import Writer
 
@@ -15,7 +16,8 @@ import subprocess
 
 def get_git_changed_files():
     # git update-index --refresh
-    return os.popen('git update-index --refresh').read()
+    with os.popen('git update-index --refresh') as p:
+        return p.read()
 
 def changed_files():
     s = get_git_changed_files()
@@ -28,7 +30,8 @@ def get_git_revision_hash() -> str:
 def get_git_revision_short_hash() -> str:
     return subprocess.check_output(['git', 'rev-parse', '--short', 'HEAD']).decode('ascii').strip()
 
-n = Writer(open('build.ninja', 'w'))
+out_buf = io.StringIO()
+n = Writer(out_buf)
 
 n.variable('ninja_required_version', '1.3')
 n.newline()
@@ -714,3 +717,7 @@ n.build(
         os.path.join('vendor', 'ninja_syntax.py'),
     ],
 )
+
+with open('build.ninja', 'w') as out_file:
+    out_file.write(out_buf.getvalue())
+n.close()
