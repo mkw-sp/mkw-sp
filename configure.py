@@ -271,6 +271,7 @@ code_in_files = {
         os.path.join('game', 'util', 'Input.S'),
         os.path.join('nw4r', 'db', 'dbException.c'),
         os.path.join('nw4r', 'db', 'dbException.S'),
+        os.path.join('nw4r', 'g3d', 'g3dResFile.S'),
         os.path.join('nw4r', 'lyt', 'lyt_arcResourceAccessor.S'),
         os.path.join('nw4r', 'lyt', 'lyt_layout.S'),
         os.path.join('nw4r', 'snd', 'snd_DvdSoundArchive.S'),

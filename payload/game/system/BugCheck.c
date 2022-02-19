@@ -152,3 +152,36 @@ void MissingBreffFail(const char *breff_name) {
     snprintf(file, sizeof(file), "%s.breff", breff_name);
     SpBugCheck(file, "BREFF (particle effect) file is missing");
 }
+
+// XREF: g3dResFile.S
+void InvalidRevisionFail(
+        int bad_version, unsigned int res_type, int index, const char *brres_name) {
+    char file[64];
+
+    if (brres_name && *brres_name)
+        snprintf(file, sizeof(file), "%s.brres", brres_name);
+    else
+        snprintf(file, sizeof(file), "BRRES");
+
+    char desc[512];
+    switch (res_type) {
+    case ('S' << 8) | 'R':
+        snprintf(desc, sizeof(desc),
+                "Invalid version in .srt0 texture animation.\n\n"
+                "SRT0 #%i is version %i (expected version 5).\n",
+                index, bad_version);
+        break;
+    default:
+        snprintf(desc, sizeof(desc),
+                "A subfile in the BRRES (3D model) has an invalid version number:\n"
+                " - bad_version=%i\n"
+                " - res_type=0x%x\n"
+                " - index=%i\n"
+                " - brres_name=%s\n",
+                bad_version, res_type, index,
+                brres_name && *brres_name ? brres_name : "?");
+        break;
+    }
+
+    SpBugCheck(file, desc);
+}
