@@ -703,12 +703,12 @@ for target in asset_out_files:
     )
     n.newline()
 
-n.variable('configure', os.path.join('.', 'configure.py'))
+n.variable('configure', 'configure.py')
 n.newline()
 
 n.rule(
     'configure',
-    command = '$configure',
+    command = f'{sys.executable} $configure',
     generator = True,
 )
 n.build(
