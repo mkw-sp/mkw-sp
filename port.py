@@ -9,6 +9,7 @@ from typing import Dict, List
 
 @dataclass
 class Section:
+    name: str
     start: int
     end: int
 
@@ -42,45 +43,130 @@ class Chunk:
 
 
 SRC_BINARIES = {
-    'dol': SrcBinary(
-        {
-            'P': 0x80004000,
-            'E': 0x80004000,
-            'J': 0x80004000,
-            'K': 0x80004000,
-        },
-        [
-            Section(0x80004000, 0x80006460),
-            Section(0x80006460, 0x80006a20),
-            Section(0x80006a20, 0x800072c0),
-            Section(0x800072c0, 0x80244de0),
-            Section(0x80244de0, 0x80244e90),
-            Section(0x80244ea0, 0x80244eac),
-            Section(0x80244ec0, 0x80258580),
-            Section(0x80258580, 0x802a4040),
-            Section(0x802a4080, 0x80384c00),
-            Section(0x80384c00, 0x80385fc0),
-            Section(0x80385fc0, 0x80386fa0),
-            Section(0x80386fa0, 0x80389140),
-            Section(0x80389140, 0x8038917c),
-        ],
-    ),
-    'rel': SrcBinary(
-        {
-            'P': 0x805102e0,
-            'E': 0x8050bf60,
-            'J': 0x8050fc60,
-            'K': 0x804fe300,
-        },
-        [
-            Section(0x805103b4, 0x8088f400),
-            Section(0x8088f400, 0x8088f704),
-            Section(0x8088f704, 0x8088f710),
-            Section(0x8088f720, 0x808b2bd0),
-            Section(0x808b2bd0, 0x808dd3d4),
-            Section(0x809bd6e0, 0x809c4f90),
-        ],
-    ),
+    'P': {
+        'dol': SrcBinary(
+            0x80004000,
+            [
+                Section('init'      , 0x80004000, 0x80006460),
+                Section('extab'     , 0x80006460, 0x80006A20),
+                Section('extabindex', 0x80006A20, 0x800072C0),
+                Section('text'      , 0x800072C0, 0x80244DE0),
+                Section('ctors'     , 0x80244DE0, 0x80244EA0),
+                Section('dtors'     , 0x80244EA0, 0x80244EC0),
+                Section('rodata'    , 0x80244EC0, 0x80258580),
+                Section('data'      , 0x80258580, 0x802A4040),
+                Section('bss'       , 0x802A4080, 0x80384C00),
+                Section('sdata'     , 0x80384C00, 0x80385FC0),
+                Section('sbss'      , 0x80385FC0, 0x80386FA0),
+                Section('sdata2'    , 0x80386FA0, 0x80389140),
+                Section('sbss2'     , 0x80389140, 0x8038917C)
+            ]
+        ),
+        'rel':SrcBinary(
+            0x805102E0,
+            [
+                Section('text'  , 0x805103B4, 0x8088F400),
+                Section('ctors' , 0x8088F400, 0x8088F704),
+                Section('dtors' , 0x8088F704, 0x8088F710),
+                Section('rodata', 0x8088F720, 0x808B2BD0),
+                Section('data'  , 0x808B2BD0, 0x808DD3D4),
+                Section('bss'   , 0x809BD6E0, 0x809C4F90)
+            ]
+        )
+    },
+    'E': {
+        'dol': SrcBinary(
+            0x80004000,
+            [
+                Section('init'      , 0x80004000, 0x80006460),
+                Section('extab'     , 0x80006460, 0x80006A20),
+                Section('extabindex', 0x80006A20, 0x800072C0),
+                Section('text'      , 0x800072C0, 0x80244D40),
+                Section('ctors'     , 0x80244D40, 0x80244E00),
+                Section('dtors'     , 0x80244E00, 0x80244E20),
+                Section('rodata'    , 0x80244E40, 0x80258260),
+                Section('data'      , 0x80258260, 0x8029FD00),
+                Section('bss'       , 0x8029FD00, 0x80380880),
+                Section('sdata'     , 0x80380880, 0x80381C40),
+                Section('sbss'      , 0x80381C40, 0x80382C20),
+                Section('sdata2'    , 0x80382C20, 0x80384DC0),
+                Section('sbss2'     , 0x80384DC0, 0x80384DFC)
+            ]
+        ),
+        'rel': SrcBinary(
+            0x8050BF60,
+            [
+                Section('text'  , 0x8050C034, 0x8088AFD0),
+                Section('ctors' , 0x8088AFD0, 0x8088B2D4),
+                Section('dtors' , 0x8088B2D4, 0x8088B2E0),
+                Section('rodata', 0x8088B2E0, 0x808AE520),
+                Section('data'  , 0x808AE520, 0x808D8C7C),
+                Section('bss'   , 0x809B8F20, 0x809C07D0)
+            ]
+        )
+    },
+    'J': {
+        'dol': SrcBinary(
+            0x80004000,
+            [
+                Section('init'      , 0x80004000, 0x80006460),
+                Section('extab'     , 0x80006460, 0x80006A20),
+                Section('extabindex', 0x80006A20, 0x800072C0),
+                Section('text'      , 0x800072C0, 0x80244D00),
+                Section('ctors'     , 0x80244D00, 0x80244DC0),
+                Section('dtors'     , 0x80244DC0, 0x80244DE0),
+                Section('rodata'    , 0x80244E00, 0x80257F20),
+                Section('data'      , 0x80257F20, 0x802A39E0),
+                Section('bss'       , 0x802A3A00, 0x80384580),
+                Section('sdata'     , 0x80384580, 0x80385940),
+                Section('sbss'      , 0x80385940, 0x80386920),
+                Section('sdata2'    , 0x80386920, 0x80388AC0),
+                Section('sbss2'     , 0x80388AC0, 0x80388AFC)
+            ]
+        ),
+        'rel': SrcBinary(
+            0x8050FC60,
+            [
+                Section('text'  , 0x8050FD34, 0x8088EA6C),
+                Section('ctors' , 0x8088EA6C, 0x8088ED70),
+                Section('dtors' , 0x8088ED70, 0x8088ED7C),
+                Section('rodata', 0x8088ED80, 0x808B1D30),
+                Section('data'  , 0x808B1D30, 0x808DC524),
+                Section('bss'   , 0x809BC740, 0x809C3FF0)
+            ]
+        )
+    },
+    'K': {
+        'dol': SrcBinary(
+            0x80004000,
+            [
+                Section('init'      , 0x80004000, 0x80006460),
+                Section('extab'     , 0x80006460, 0x80006A20),
+                Section('extabindex', 0x80006A20, 0x800072C0),
+                Section('text'      , 0x800072C0, 0x80245160),
+                Section('ctors'     , 0x80245160, 0x80245220),
+                Section('dtors'     , 0x80245220, 0x80245240),
+                Section('rodata'    , 0x80245240, 0x80258340),
+                Section('data'      , 0x80258340, 0x80292040),
+                Section('bss'       , 0x80292080, 0x80372C00),
+                Section('sdata'     , 0x80372C00, 0x80373FE0),
+                Section('sbss'      , 0x80373FE0, 0x80374FC0),
+                Section('sdata2'    , 0x80374FC0, 0x80377160),
+                Section('sbss2'     , 0x80377160, 0x8037719C)
+            ]
+        ),
+        'rel': SrcBinary(
+            0x804FE300,
+            [
+                Section('text'  , 0x804FE3D4, 0x8087D7C0),
+                Section('ctors' , 0x8087D7C0, 0x8087DAC4),
+                Section('dtors' , 0x8087DAC4, 0x8087DAD0),
+                Section('rodata', 0x8087DAE0, 0x808A1030),
+                Section('data'  , 0x808A1030, 0x808CB86C),
+                Section('bss'   , 0x809ABD20, 0x809B35D0)
+            ]
+        )
+    }
 }
 
 DST_BINARIES = {
@@ -473,8 +559,8 @@ CHUNKS = {
 def write_symbol(out_file, name, address):
     out_file.write(f'    {name} = {address:#x};\n');
 
-def get_binary_name(address):
-    return next(name for name, src_binary in SRC_BINARIES.items() if address in src_binary)
+def get_binary_name(region, address):
+    return next(module for module, sections in SRC_BINARIES[region].items() if address in sections)
 
 def port(region, address):
     if region == 'P':
@@ -497,10 +583,14 @@ out_file.write('    .rodata : { *(.rodata*) }\n')
 out_file.write('    .data : { *(.data*) *(.bss*) *(.sbss*) }\n')
 out_file.write('\n')
 
-for name, dst_binary in DST_BINARIES[args.region].items():
-    write_symbol(out_file, f'{name}_start', dst_binary.start)
-    write_symbol(out_file, f'{name}_end', dst_binary.end)
-    out_file.write('\n')
+for section in SRC_BINARIES[args.region]['dol'].sections:
+    write_symbol(out_file, f'dol_{section.name}_start', section.start)
+    write_symbol(out_file, f'dol_{section.name}_end', section.end)
+out_file.write('\n')
+
+write_symbol(out_file, 'rel_start', DST_BINARIES[args.region]['rel'].start)
+write_symbol(out_file, 'rel_end', DST_BINARIES[args.region]['rel'].end)
+out_file.write('\n')
 
 symbols = open(args.in_path)
 for symbol in symbols.readlines():
@@ -509,8 +599,14 @@ for symbol in symbols.readlines():
         continue
     address, name = symbol.split()
     address = int(address, 16)
-    binary_name = get_binary_name(address)
-    is_rel_bss = 0x809bd6e0 <= address < 0x809c4f90
+
+    # At the moment, this script only supports porting addresses from the PAL version of the game to other versions of the game
+    binary_name = get_binary_name('P', address)
+    bssSection = next((section for section in SRC_BINARIES['P']['rel'].sections if section.name == 'bss'), None)
+    if bssSection is None:
+        sys.exit('Couldn\'t find the \'.bss\' section of the \'StaticR.rel\' module!')
+    is_rel_bss = bssSection.start <= address < bssSection.end
+
     address = port(args.region, address)
     if address is None:
         sys.exit(f'Couldn\'t port symbol {name} to region {args.region}!')
@@ -521,7 +617,7 @@ for symbol in symbols.readlines():
             'J': 0xe0200,
             'K': 0xe04a0,
         }[args.region]
-    address -= SRC_BINARIES[binary_name].start[args.region]
+    address -= SRC_BINARIES[args.region][binary_name].start
     address += DST_BINARIES[args.region][binary_name].start
     write_symbol(out_file, name, address)
 
