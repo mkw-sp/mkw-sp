@@ -644,7 +644,8 @@ for target in asset_in_files:
                         os.path.join('assets', in_file),
                         os.path.join('assets', basebase.rsplit('_', 1)[0] + 'SP_U.bmg.json5'),
                         os.path.join('assets', basebase.replace('_', 'SP_') + '.bmg.json5'),
-                    ]
+                    ],
+                    implicit = '$merge',
                 )
                 in_file = merged_file
         else:
