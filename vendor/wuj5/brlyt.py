@@ -1,3 +1,5 @@
+import sys
+
 from common import *
 
 
@@ -501,13 +503,13 @@ def unpack_sections(in_data, offset, parent_magic):
         if magic == 'pas1' or magic == 'grs1':
             last_magic = last_section.get('magic')
             if last_magic is None:
-                exit(f'Unexpected {magic} without parent.')
+                sys.exit(f'Unexpected {magic} without parent.')
             expected_last_magics = {
                 'pas1': ['pan1', 'pic1', 'bnd1', 'txt1', 'wnd1'],
                 'grs1': ['grp1'],
             }[magic]
             if last_magic not in expected_last_magics:
-                exit(f'Unexpected {magic} after {last_magic}.')
+                sys.exit(f'Unexpected {magic} after {last_magic}.')
             offset, child_sections = unpack_sections(in_data, offset, last_magic)
             last_section['children'] = child_sections
         elif magic == 'pae1' or magic == 'gre1':
@@ -516,7 +518,7 @@ def unpack_sections(in_data, offset, parent_magic):
                 'gre1': ['grp1'],
             }[magic]
             if parent_magic not in expected_parent_magics:
-                exit(f'Unexpected {magic} after {parent_magic}.')
+                sys.exit(f'Unexpected {magic} after {parent_magic}.')
             break
         else:
             sections += [section]

@@ -1,4 +1,5 @@
 import struct
+import sys
 
 
 def unpack_pad8(in_data, offset, **kwargs):
@@ -81,7 +82,7 @@ def unpack_enum(in_data, offset, kind, **kwargs):
     variant = next((variant for variant in variants if variant.val == val), None)
     if variant is None:
         vals = [variant.val for variant in variants]
-        exit(f'Unknown enum variant with value {val} (expected one of {vals}).')
+        sys.exit(f'Unknown enum variant with value {val} (expected one of {vals}).')
     return variant.name
 
 def unpack_enum8(in_data, offset, **kwargs):
@@ -163,7 +164,7 @@ def pack_enum(name, kind, **kwargs):
     variant = next((variant for variant in variants if variant.name == name), None)
     if variant is None:
         names = [variant.name for variant in variants]
-        exit(f'Unknown enum variant with name {name} (expected one of {names}).')
+        sys.exit(f'Unknown enum variant with name {name} (expected one of {names}).')
     return pack[kind](variant.val)
 
 def pack_enum8(val, **kwargs):

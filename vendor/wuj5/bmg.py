@@ -1,3 +1,5 @@
+import sys
+
 from common import *
 
 
@@ -91,7 +93,7 @@ def unpack_bmg(in_data):
         magic = unpack_magic(in_data, offset + 0x00)
         size = unpack_u32(in_data, offset + 0x04)
         if magic in sections:
-            exit(f'Duplicate bmg section {magic}.')
+            sys.exit(f'Duplicate bmg section {magic}.')
         section = {
             'INF1': unpack_inf1,
             'DAT1': unpack_dat1,
