@@ -7,7 +7,7 @@ Mario Kart Wii - Service Pack is an experimental, open-source, cross-platform mo
 You need:
 
 - Python 3
-- pyjson5
+- pyjson5 (if installing from pip, the package is `json5` NOT `pyjson5`)
 - ninja (samurai also works)
 - devkitPPC (with the DEVKITPPC environment variable set)
 
