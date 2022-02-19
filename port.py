@@ -575,6 +575,9 @@ parser.add_argument('in_path')
 parser.add_argument('out_path')
 args = parser.parse_args()
 
+if args.region != 'P' and args.region != 'E' and args.region != 'J' and args.region != 'K':
+    sys.exit(f'The specified region \'{args.region}\' is invalid! Valid regions include: P, E, J, and K!')
+
 out_file = open(args.out_path, 'w')
 out_file.write('SECTIONS {\n')
 out_file.write('    .text base : { *(first) *(.text*) }\n')
