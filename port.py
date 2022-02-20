@@ -624,7 +624,7 @@ for symbol in symbols.readlines():
     address, name = symbol.split()
     address = int(address, 16)
 
-    # At the moment, this script only supports porting addresnotses from the PAL version of the game to other versions of the game
+    # At the moment, this script only supports porting addresses from the PAL version of the game to other versions of the game
     binary_name = get_binary_name('P', address)
     bss_section = next((section for section in SRC_BINARIES['P']['rel'].sections if section.name == 'bss'), None)
     if bss_section is None:
