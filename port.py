@@ -596,6 +596,24 @@ for section in SRC_BINARIES[args.region]['dol'].sections:
     write_symbol(out_file, f'dol_{section.name}_end', section.end)
 out_file.write('\n')
 
+# Write the start and end address for each section in the rel
+mkw_sp_rel_section_address = DST_BINARIES[args.region]['rel'].start
+mkw_sp_rel_section_address += 0x4C # sizeof(OSModuleHeader)
+mkw_sp_rel_section_address += 0x88 # sizeof(OSSectionInfo) * 0x11
+for i in range(len(SRC_BINARIES[args.region]['rel'].sections)):
+    section = SRC_BINARIES[args.region]['rel'].sections[i]
+
+    # If the start address of the next section is greater than the end address of the previous section
+    if i > 0 and section.start > rel_previous_section_end_address:
+        # Add the difference
+        mkw_sp_rel_section_address += section.start - rel_previous_section_end_address
+
+    write_symbol(out_file, f'mkw_sp_rel_{section.name}_start', mkw_sp_rel_section_address)
+    mkw_sp_rel_section_address += section.end - section.start
+    write_symbol(out_file, f'mkw_sp_rel_{section.name}_end', mkw_sp_rel_section_address)
+    rel_previous_section_end_address = section.end
+out_file.write('\n')
+
 symbols = open(args.in_path)
 for symbol in symbols.readlines():
     if symbol.isspace():
