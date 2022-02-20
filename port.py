@@ -626,10 +626,10 @@ for symbol in symbols.readlines():
 
     # At the moment, this script only supports porting addresnotses from the PAL version of the game to other versions of the game
     binary_name = get_binary_name('P', address)
-    bssSection = next((section for section in SRC_BINARIES['P']['rel'].sections if section.name == 'bss'), None)
-    if bssSection is None:
+    bss_section = next((section for section in SRC_BINARIES['P']['rel'].sections if section.name == 'bss'), None)
+    if bss_section is None:
         sys.exit('Couldn\'t find the \'.bss\' section of the \'StaticR.rel\' module!')
-    is_rel_bss = bssSection.start <= address < bssSection.end
+    is_rel_bss = bss_section.start <= address < bss_section.end
 
     address = port(args.region, address)
     if address is None:
