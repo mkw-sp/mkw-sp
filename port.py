@@ -586,11 +586,13 @@ out_file.write('    .rodata : { *(.rodata*) }\n')
 out_file.write('    .data : { *(.data*) *(.bss*) *(.sbss*) }\n')
 out_file.write('\n')
 
+# Write the start and end address for each module
 for module in DST_BINARIES[args.region]:
     write_symbol(out_file, f'{module}_start', DST_BINARIES[args.region][module].start)
     write_symbol(out_file, f'{module}_end', DST_BINARIES[args.region][module].end)
     out_file.write('\n')
 
+# Write the start and end address for each section in the dol
 for section in SRC_BINARIES[args.region]['dol'].sections:
     write_symbol(out_file, f'dol_{section.name}_start', section.start)
     write_symbol(out_file, f'dol_{section.name}_end', section.end)
@@ -622,7 +624,7 @@ for symbol in symbols.readlines():
     address, name = symbol.split()
     address = int(address, 16)
 
-    # At the moment, this script only supports porting addresses from the PAL version of the game to other versions of the game
+    # At the moment, this script only supports porting addresnotses from the PAL version of the game to other versions of the game
     binary_name = get_binary_name('P', address)
     bssSection = next((section for section in SRC_BINARIES['P']['rel'].sections if section.name == 'bss'), None)
     if bssSection is None:
