@@ -578,72 +578,43 @@ args = parser.parse_args()
 if args.region != 'P' and args.region != 'E' and args.region != 'J' and args.region != 'K':
     sys.exit(f'The specified region \'{args.region}\' is invalid! Valid regions include: P, E, J, and K!')
 
-out_file = open(args.out_path, 'w')
-out_file.write('SECTIONS {\n')
-out_file.write('    .text base : { *(first) *(.text*) }\n')
-out_file.write('    patches : { *(patches*) }\n')
-out_file.write('    .rodata : { *(.rodata*) }\n')
-out_file.write('    .data : { *(.data*) *(.bss*) *(.sbss*) }\n')
-out_file.write('\n')
-
-# Write the start and end address for each module
-for module in DST_BINARIES[args.region]:
-    write_symbol(out_file, f'{module}_start', DST_BINARIES[args.region][module].start)
-    write_symbol(out_file, f'{module}_end', DST_BINARIES[args.region][module].end)
+with open(args.out_path, 'w') as out_file:
+    out_file.write('SECTIONS {\n')
+    out_file.write('    .text base : { *(first) *(.text*) }\n')
+    out_file.write('    patches : { *(patches*) }\n')
+    out_file.write('    .rodata : { *(.rodata*) }\n')
+    out_file.write('    .data : { *(.data*) *(.bss*) *(.sbss*) }\n')
     out_file.write('\n')
 
-# Write the start and end address for each section in the dol
-for section in SRC_BINARIES[args.region]['dol'].sections:
-    write_symbol(out_file, f'dol_{section.name}_start', section.start)
-    write_symbol(out_file, f'dol_{section.name}_end', section.end)
-out_file.write('\n')
-
-# Write the start and end address for each section in the rel
-mkw_sp_rel_section_address = DST_BINARIES[args.region]['rel'].start
-mkw_sp_rel_section_address += 0x4C # sizeof(OSModuleHeader)
-mkw_sp_rel_section_address += 0x88 # sizeof(OSSectionInfo) * 0x11
-for i in range(len(SRC_BINARIES[args.region]['rel'].sections)):
-    section = SRC_BINARIES[args.region]['rel'].sections[i]
-
-    # If the start address of the next section is greater than the end address of the previous section
-    if i > 0 and section.start > rel_previous_section_end_address:
-        # Add the difference
-        mkw_sp_rel_section_address += section.start - rel_previous_section_end_address
-
-    write_symbol(out_file, f'mkw_sp_rel_{section.name}_start', mkw_sp_rel_section_address)
-    mkw_sp_rel_section_address += section.end - section.start
-    write_symbol(out_file, f'mkw_sp_rel_{section.name}_end', mkw_sp_rel_section_address)
-    rel_previous_section_end_address = section.end
-out_file.write('\n')
-
-symbols = open(args.in_path)
-for symbol in symbols.readlines():
-    if symbol.isspace():
+    # Write the start and end address for each module
+    for module in DST_BINARIES[args.region]:
+        write_symbol(out_file, f'{module}_start', DST_BINARIES[args.region][module].start)
+        write_symbol(out_file, f'{module}_end', DST_BINARIES[args.region][module].end)
         out_file.write('\n')
-        continue
-    address, name = symbol.split()
-    address = int(address, 16)
 
-    # At the moment, this script only supports porting addresses from the PAL version of the game to other versions of the game
-    binary_name = get_binary_name('P', address)
-    bss_section = next((section for section in SRC_BINARIES['P']['rel'].sections if section.name == 'bss'), None)
-    if bss_section is None:
-        sys.exit('Couldn\'t find the \'.bss\' section of the \'StaticR.rel\' module!')
-    is_rel_bss = bss_section.start <= address < bss_section.end
+    # Write the start and end address for each section in the dol
+    for section in SRC_BINARIES[args.region]['dol'].sections:
+        write_symbol(out_file, f'dol_{section.name}_start', section.start)
+        write_symbol(out_file, f'dol_{section.name}_end', section.end)
+    out_file.write('\n')
 
-    address = port(args.region, address)
-    if address is None:
-        sys.exit(f'Couldn\'t port symbol {name} to region {args.region}!')
-    if is_rel_bss:
-        address -= {
-            'P': 0xe02e0,
-            'E': 0xe0280,
-            'J': 0xe0200,
-            'K': 0xe04a0,
-        }[args.region]
-    address -= SRC_BINARIES[args.region][binary_name].start
-    address += DST_BINARIES[args.region][binary_name].start
-    write_symbol(out_file, name, address)
+    # Write the start and end address for each section in the rel
+    mkw_sp_rel_section_address = DST_BINARIES[args.region]['rel'].start
+    mkw_sp_rel_section_address += 0x4C # sizeof(OSModuleHeader)
+    mkw_sp_rel_section_address += 0x88 # sizeof(OSSectionInfo) * 0x11
+    for i in range(len(SRC_BINARIES[args.region]['rel'].sections)):
+        section = SRC_BINARIES[args.region]['rel'].sections[i]
+
+        # If the start address of the next section is greater than the end address of the previous section
+        if i > 0 and section.start > rel_previous_section_end_address:
+            # Add the difference
+            mkw_sp_rel_section_address += section.start - rel_previous_section_end_address
+
+        write_symbol(out_file, f'rel_{section.name}_start', mkw_sp_rel_section_address)
+        mkw_sp_rel_section_address += section.end - section.start
+        write_symbol(out_file, f'rel_{section.name}_end', mkw_sp_rel_section_address)
+        rel_previous_section_end_address = section.end
+    out_file.write('\n')
 
     with open(args.in_path, 'r') as symbols:
         for symbol in symbols.readlines():
@@ -652,8 +623,14 @@ for symbol in symbols.readlines():
                 continue
             address, name = symbol.split()
             address = int(address, 16)
-            binary_name = get_binary_name(address)
-            is_rel_bss = 0x809bd6e0 <= address < 0x809c4f90
+
+            # At the moment, this script only supports porting addresses from the PAL version of the game to other versions of the game
+            binary_name = get_binary_name('P', address)
+            bss_section = next((section for section in SRC_BINARIES['P']['rel'].sections if section.name == 'bss'), None)
+            if bss_section is None:
+                sys.exit('Couldn\'t find the \'.bss\' section of the \'StaticR.rel\' module!')
+            is_rel_bss = bss_section.start <= address < bss_section.end
+
             address = port(args.region, address)
             if address is None:
                 sys.exit(f'Couldn\'t port symbol {name} to region {args.region}!')
@@ -664,7 +641,7 @@ for symbol in symbols.readlines():
                     'J': 0xe0200,
                     'K': 0xe04a0,
                 }[args.region]
-            address -= SRC_BINARIES[binary_name].start[args.region]
+            address -= SRC_BINARIES[args.region][binary_name].start
             address += DST_BINARIES[args.region][binary_name].start
             write_symbol(out_file, name, address)
 
