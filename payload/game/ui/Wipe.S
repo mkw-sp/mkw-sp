@@ -10,6 +10,9 @@ PATCH_BL_START(WipeControl_calcSelf, 0x3c)
 
     lis r4, s_racePage@ha
     lwz r4, s_racePage@l (r4)
+    cmpwi r4, 0x0
+    beqlr
+
     lwz r3, 0x64 (r4)
 
     b WipeControl_calcSelf + 0x40
