@@ -190,6 +190,7 @@ code_in_files = {
         os.path.join('game', 'system', 'HomeButton.S'),
         os.path.join('game', 'system', 'InputManager.S'),
         os.path.join('game', 'system', 'InputManager.c'),
+        os.path.join('game', 'system', 'Memory.c'),
         os.path.join('game', 'system', 'Mii.S'),
         os.path.join('game', 'system', 'MultiDvdArchive.c'),
         os.path.join('game', 'system', 'NandHelper.c'),

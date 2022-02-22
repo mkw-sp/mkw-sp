@@ -1,10 +1,9 @@
 #include "BootStrapScene.h"
-
 #include "Patcher.h"
 
-#include <string.h>
-
 #include <Rel.h>
+#include <game/system/Memory.h>
+#include <string.h>
 
 typedef void (*RelEntryFunction)(void);
 
@@ -70,6 +69,7 @@ void my_BootStrapScene_calc(BootStrapScene *this) {
     }
 
     Patcher_patch(PATCHER_BINARY_REL);
+    ProtectRangeModule(OS_PROTECT_CHANNEL_2, Rel_getTextSectionStart(), Rel_getRodataSectionEnd(), OS_PROTECT_PERMISSION_READ);
 
     entry();
 }
