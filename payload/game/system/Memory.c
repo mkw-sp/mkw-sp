@@ -1,15 +1,13 @@
 #include "Memory.h"
 
+#include <assert.h>
 #include <revolution/os.h>
 #include <stdint.h>
 
 void ProtectRangeModule(u32 channel, void* start, void* end, u32 permissions)
 {
-    if (channel > OS_PROTECT_CHANNEL_3)
-	return;
-
-    if (permissions & ~OS_PROTECT_PERMISSION_RW)
-	return;
+    assert(!(channel > OS_PROTECT_CHANNEL_3));
+    assert(!(permissions & ~OS_PROTECT_PERMISSION_RW));
 
     u32 start_address = MemoryRoundUp1024B((uintptr_t)start);
     u32 end_address   = MemoryRoundDown1024B((uintptr_t)end);
