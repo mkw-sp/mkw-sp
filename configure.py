@@ -172,6 +172,7 @@ code_in_files = {
         os.path.join('game', 'kart', 'KartParam.S'),
         os.path.join('game', 'kart', 'KartState.S'),
         os.path.join('game', 'kart', 'KartSub.S'),
+        os.path.join('game', 'net', 'NetManager.S'),
         os.path.join('game', 'obj', 'ObjManager.c'),
         os.path.join('game', 'obj', 'ObjPylon01.S'),
         os.path.join('game', 'obj', 'ObjPylon01.c'),
@@ -201,6 +202,7 @@ code_in_files = {
         os.path.join('game', 'system', 'RaceManager.c'),
         os.path.join('game', 'system', 'ResourceManager.S'),
         os.path.join('game', 'system', 'ResourceManager.c'),
+        os.path.join('game', 'system', 'RootScene.c'),
         os.path.join('game', 'system', 'SaveManager.S'),
         os.path.join('game', 'system', 'SaveManager.c'),
         os.path.join('game', 'system', 'SceneCreatorDynamic.S'),
@@ -284,6 +286,7 @@ code_in_files = {
         os.path.join('sp', 'IOSDolphin.c'),
         os.path.join('sp', 'IOSKeyboard.c'),
         os.path.join('sp', 'Keyboard.c'),
+        os.path.join('sp', 'Slab.c'),
     ],
 }
 code_out_files = {target: [] for target in code_in_files}

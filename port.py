@@ -508,6 +508,8 @@ CHUNKS = {
         Chunk(0x800ea4d4, 0x80164294, 0x800ea54c),
         Chunk(0x80164364, 0x801746fc, 0x80164400),
         Chunk(0x8017f680, 0x801e8414, 0x8017f9dc),
+        # SO Library. This chunk probably extends much further on both bounds
+        Chunk(0x801EBEC0, 0x801EE668, 0x801EC2E8),
         Chunk(0x802100a0, 0x80244de0, 0x80210414),
         Chunk(0x802a4080, 0x803858e0, 0x80292080),
         Chunk(0x80385fc0, 0x8038917c, 0x80373fe0),

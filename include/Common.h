@@ -42,6 +42,19 @@ typedef double f64;
 #define MUST_BE_ARRAY(a) BUILD_BUG_ON_ZERO(SAME_TYPE((a), &(a)[0]))
 #define ARRAY_SIZE(arr) (sizeof(arr) / sizeof((arr)[0]) + MUST_BE_ARRAY(arr))
 
+#define SP_TOSTRING(x) #x
+#define SP_TOSTRING2(x) SP_TOSTRING(x)
+
+#ifndef RVL_OS_NEEDS_IMPORT
+#define RVL_OS_NEEDS_IMPORT \
+    static_assert(false, "Please include revolution.h to use SP_LOG")
+#endif
+
+#define SP_LOG(m, ...)                                                          \
+    RVL_OS_NEEDS_IMPORT;                                                        \
+    OSReport("[" __FILE__ ":" SP_TOSTRING2(__LINE__) "] " m "\n" __VA_OPT__(, ) \
+                    __VA_ARGS__)
+
 enum {
     REGION_P = 0x54a9,
     REGION_E = 0x5409,

@@ -9,4 +9,6 @@ typedef struct {
 } RootScene;
 static_assert(sizeof(RootScene) == 0xcb8);
 
+void RootScene_allocate(RootScene *scn);
+
 extern RootScene *s_rootScene;

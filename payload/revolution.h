@@ -8,5 +8,6 @@
 #include "revolution/mem.h"
 #include "revolution/nand.h"
 #include "revolution/sc.h"
+#include "revolution/so.h"
 
 #include "revolution/net.h"
