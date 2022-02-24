@@ -66,6 +66,8 @@
 #define f30 30
 #define f31 31
 
+#define HID4 1011
+
 #define PATCH_TYPE_WRITE 0x0
 #define PATCH_TYPE_BRANCH 0x1
 
