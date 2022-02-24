@@ -150,7 +150,6 @@ code_in_files = {
         os.path.join('egg', 'core', 'eggEffectCreator.S'),
         os.path.join('egg', 'core', 'eggG3dUtil.S'),
         os.path.join('egg', 'core', 'eggHeap.c'),
-        os.path.join('egg', 'core', 'eggVideo.S'),
         os.path.join('egg', 'core', 'eggSystem.c'),
         os.path.join('game', 'effect', 'Effect.S'),
         os.path.join('game', 'gfx', 'Camera.S'),
