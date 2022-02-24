@@ -359,10 +359,10 @@ bool SdiStorage_init(FatStorage *fatStorage) {
         return false;
     }
 
-    fatStorage->read = Sdi_read;
-    fatStorage->write = Sdi_write;
-    fatStorage->erase = Sdi_erase;
-    fatStorage->sync = Sdi_sync;
+    fatStorage->diskRead = Sdi_read;
+    fatStorage->diskWrite = Sdi_write;
+    fatStorage->diskErase = Sdi_erase;
+    fatStorage->diskSync = Sdi_sync;
 
     OSReport("[SDI] Successfully completed initialization\n");
     return true;
