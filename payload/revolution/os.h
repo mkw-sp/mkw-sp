@@ -30,8 +30,6 @@ void OSReport(const char *msg, ...);
 void OSFatal(GXColor fg, GXColor bg, const char *msg);
 
 #include "revolution/os/OSCache.h"
-#include "revolution/os/OSContext.h"
-#include "revolution/os/OSError.h"
 #include "revolution/os/OSMemory.h"
 #include "revolution/os/OSModule.h"
 #include "revolution/os/OSMutex.h"
