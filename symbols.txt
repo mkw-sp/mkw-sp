@@ -1,3 +1,5 @@
+0x80004000 payloadSize
+
 0x80005f34 memcpy
 0x80006038 memset
 0x800060A4 __start
@@ -18,9 +20,9 @@
 0x80011b00 qsort
 0x800131e0 strncpy
 0x8001329c strcmp
+0x800133f8 strchr
 0x800135f0 strstr
 0x80021254 strlen
-
 
 0x80023150 nw4r_db_Exception_Init
 0x800235A0 Exception_Printf_
@@ -43,6 +45,7 @@
 0x800841B0 MultiArcResourceAccessor_GetResource
 0x800836d0 AnimResource_CalcAnimationNum
 0x80084170 MultiArcResourceAccessor_Attach
+0x80091090 DvdSoundArchive_80091090
 0x800912c0 DvdSoundArchive_OpenExtStream
 
 0x800c78d0 RFLiCalculateCRC
@@ -50,8 +53,11 @@
 0x8015df4c DVDConvertPathToEntrynum
 0x8015e254 DVDFastOpen
 0x8015e2bc DVDOpen
+0x8015e74c DVDReadAsyncPrio
 0x8015e834 DVDReadPrio
 0x8015e568 DVDClose
+0x80162c88 DVDCancelAsync
+0x80162fec DVDCancel
 0x8016a05c ISFS_ReadDir
 0x8016F3B8 GXSetCullMode
 0x80171b58 GXSetTevDirect
@@ -108,7 +114,9 @@
 0x801aa4ec OSDetachThread
 0x801aa58c OSResumeThread
 0x801aaca8 OSSleepTicks
+0x801aad5c OSGetTime
 0x801AAD74 OSGetTick
+0x801aafa8 OSTicksToCalendarTime
 0x801b1d0c SCGetLanguage
 0x801b99ec VIWaitForRetrace
 0x801BAB2C VISetBlack
@@ -160,6 +168,8 @@
 0x80215280 EGG_ColorFader_fadeIn
 0x802152A8 EGG_ColorFader_fadeOut
 0x80218098 EGG_CpuTexture_Construct
+0x80222470 EGG_DvdFile_openEntrynum
+0x802224e8 EGG_DvdFile_openPath
 0x802245AC EffectCreator_createEffect
 0x80226aC8 EGG_ExpHeap_create
 0x80226dc0 EGG_ExpHeap_InitAlloc
@@ -218,6 +228,7 @@
 0x8052a538 MultiDvdArchive_ct
 0x8052a648 MultiDvdArchive_init
 0x8052a6dc MultiDvdArchive_dt
+0x8052a864 MultiDvdArchive_exists
 0x8052a954 MultiDvdArchive_load
 0x8052af64 NandHelper_open
 0x8052b144 NandHelper_close

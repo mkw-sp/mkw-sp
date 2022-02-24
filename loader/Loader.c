@@ -1,142 +1,87 @@
-#include <Common.h>
+#include "Apploader.h"
+#include "Cache.h"
+#include "Delay.h"
+#include "Di.h"
 
-typedef struct {
-    u8 _00[0x34 - 0x00];
-    u32 length;
-    u8 _38[0x3c - 0x38];
-} DVDFileInfo;
-static_assert(sizeof(DVDFileInfo) == 0x3c);
+#include <string.h>
 
-typedef struct {
-    u8 r;
-    u8 g;
-    u8 b;
-    u8 a;
-} GXColor;
-static_assert(sizeof(GXColor) == 0x4);
+extern const void payloadP;
+extern const u32 payloadPSize;
+extern const void payloadE;
+extern const u32 payloadESize;
+extern const void payloadJ;
+extern const u32 payloadJSize;
+extern const void payloadK;
+extern const u32 payloadKSize;
 
-static int (*snprintf)(char *restrict str, size_t size, const char *restrict format, ...);
-static BOOL (*DVDOpen)(const char *fileName, DVDFileInfo *fileInfo);
-static s32 (*DVDReadPrio)(DVDFileInfo *fileInfo, void *addr, s32 length, s32 offset, s32 prio);
-#define DVDRead(fileInfo, addr, length, offset) \
-    DVDReadPrio((fileInfo), (addr), (length), (offset), 2)
-static BOOL (*DVDClose)(DVDFileInfo *fileInfo);
-#define OSRoundUp32B(x) (((u32)(x) + 32 - 1) & ~(32 - 1))
-static void (*OSInit)(void);
-static void *(*OSAllocFromMEM1ArenaLo)(u32 size, u32 align);
-static void (*ICInvalidateRange)(void *addr, u32 nBytes);
-static void (*OSFatal)(GXColor fg, GXColor bg, const char *msg);
+// The payload needs this to reserve the memory on the arena
+extern u32 payloadSize;
 
-static char getRegionCode(void) {
+void Loader_run(void) {
+    while (!Di_init()) {
+        mdelay(100);
+    }
+
+    GameEntryFunc gameEntry;
+    while (!Apploader_loadAndRun(&gameEntry)) {
+        mdelay(100);
+
+        if (Di_isInserted()) {
+            Di_reset();
+        }
+    }
+
+    Di_deinit();
+
+    void *payloadDst;
+    const void *payloadSrc;
+    u32 *hook; // At the end of OSInit
+    u32 *ClearArena;
     switch (REGION) {
     case REGION_P:
-        return 'P';
-    case REGION_E:
-        return 'E';
-    case REGION_J:
-        return 'J';
-    case REGION_K:
-        return 'K';
-    default:
-        while (true);
-    }
-}
-
-static u32 Rel_getSize(void) {
-    switch (REGION) {
-    case REGION_P:
-        return 0x3d49d0;
-    case REGION_E:
-        return 0x3d45f0;
-    case REGION_J:
-        return 0x3d4190;
-    case REGION_K:
-        return 0x3d4e30;
-    default:
-        while (true);
-    }
-}
-
-typedef void (*PayloadEntryFunction)(void);
-
-PayloadEntryFunction loadPayload(void) {
-    char fileName[0x20];
-    snprintf(fileName, sizeof(fileName), "/bin/payload%c.bin", getRegionCode());
-
-    DVDFileInfo fileInfo;
-    if (!DVDOpen(fileName, &fileInfo)) {
-        return NULL;
-    }
-
-    s32 size = OSRoundUp32B(fileInfo.length);
-    void *payload = OSAllocFromMEM1ArenaLo(size, 0x20);
-    s32 result = DVDRead(&fileInfo, payload, size, 0);
-    DVDClose(&fileInfo);
-    if (result != size) {
-        return NULL;
-    }
-
-    ICInvalidateRange(payload, size);
-
-    return payload;
-}
-
-__attribute__((section("first"))) void start(void) {
-    switch (REGION) {
-    case REGION_P:
-        snprintf = (void *)0x80011938;
-        DVDOpen = (void *)0x8015e2bc;
-        DVDReadPrio = (void *)0x8015e834;
-        DVDClose = (void *)0x8015e568;
-        OSInit = (void *)0x8019fc68;
-        OSAllocFromMEM1ArenaLo = (void *)0x801a1104;
-        ICInvalidateRange = (void *)0x801a1710;
-        OSFatal = (void *)0x801a4ec4;
+        payloadDst = (void *)0x8076db60;
+        payloadSrc = &payloadP;
+        payloadSize = payloadPSize;
+        hook = (u32 *)0x801a00dc;
+        ClearArena = (u32 *)0x8019ff34;
         break;
     case REGION_E:
-        snprintf = (void *)0x80010dd8;
-        DVDOpen = (void *)0x8015e21c;
-        DVDReadPrio = (void *)0x8015e794;
-        DVDClose = (void *)0x8015e4c8;
-        OSInit = (void *)0x8019fbc8;
-        OSAllocFromMEM1ArenaLo = (void *)0x801a1064;
-        ICInvalidateRange = (void *)0x801a1670;
-        OSFatal = (void *)0x801a4e24;
+        payloadDst = (void *)0x80769400;
+        payloadSrc = &payloadE;
+        payloadSize = payloadESize;
+        hook = (u32 *)0x801a003c;
+        ClearArena = (u32 *)0x8019fe94;
         break;
     case REGION_J:
-        snprintf = (void *)0x8001185c;
-        DVDOpen = (void *)0x8015e1dc;
-        DVDReadPrio = (void *)0x8015e754;
-        DVDClose = (void *)0x8015e488;
-        OSInit = (void *)0x8019fb88;
-        OSAllocFromMEM1ArenaLo = (void *)0x801a1024;
-        ICInvalidateRange = (void *)0x801a1630;
-        OSFatal = (void *)0x801a4de4;
+        payloadDst = (void *)0x8076cca0;
+        payloadSrc = &payloadJ;
+        payloadSize = payloadJSize;
+        hook = (u32 *)0x8019fffc;
+        ClearArena = (u32 *)0x8019fe54;
         break;
     case REGION_K:
-        snprintf = (void *)0x800119a0;
-        DVDOpen = (void *)0x8015e334;
-        DVDReadPrio = (void *)0x8015e8ac;
-        DVDClose = (void *)0x8015e5e0;
-        OSInit = (void *)0x8019ffc4;
-        OSAllocFromMEM1ArenaLo = (void *)0x801a1460;
-        ICInvalidateRange = (void *)0x801a1a6c;
-        OSFatal = (void *)0x801a5220;
+        payloadDst = (void *)0x8075bfe0;
+        payloadSrc = &payloadK;
+        payloadSize = payloadKSize;
+        hook = (u32 *)0x801a0438;
+        ClearArena = (u32 *)0x801a0290;
         break;
     default:
+        // TODO tell the user about it
         while (true);
     }
 
-    OSInit();
+    memcpy(payloadDst, payloadSrc, payloadSize);
+    DCFlushRange(payloadDst, payloadSize);
+    ICInvalidateRange(payloadDst, payloadSize);
 
-    OSAllocFromMEM1ArenaLo(Rel_getSize(), 0x20);
+    *hook = 0x12 << 26 | (((u32)payloadDst - (u32)hook) & 0x3fffffc);
+    DCFlushRange(hook, sizeof(u32));
+    ICInvalidateRange(hook, sizeof(u32));
 
-    PayloadEntryFunction entry = loadPayload();
-    if (!entry) {
-        GXColor fg = { 255, 255, 255, 255 };
-        GXColor bg = { 0, 0, 0, 255 };
-        OSFatal(fg, bg, "Couldn't load mkw-sp payload!");
-    }
+    *ClearArena = 0x60000000;
+    DCFlushRange(ClearArena, sizeof(u32));
+    ICInvalidateRange(ClearArena, sizeof(u32));
 
-    entry();
+    gameEntry();
 }
