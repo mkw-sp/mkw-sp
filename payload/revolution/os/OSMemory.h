@@ -1,5 +1,7 @@
 #pragma once
 
+#include <Common.h>
+
 // Channels
 #define OS_PROTECT_CHANNEL_0 0
 #define OS_PROTECT_CHANNEL_1 1
@@ -12,4 +14,4 @@
 #define OS_PROTECT_PERMISSION_WRITE 0x02
 #define OS_PROTECT_PERMISSION_RW    (OS_PROTECT_PERMISSION_READ | OS_PROTECT_PERMISSION_WRITE)
 
-void OSProtectRange(unsigned int channel, void* address, unsigned int size, unsigned int permissions);
+void OSProtectRange(u32 channel, void* address, u32 size, u32 permissions);
