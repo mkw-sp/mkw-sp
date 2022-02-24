@@ -26,6 +26,24 @@ typedef s64 OSTime;
 
 u32 OSGetTick(void);
 
+OSTime OSGetTime(void);
+
+typedef struct {
+    int sec;
+    int min;
+    int hour;
+    int mday;
+    int mon; 
+    int year;
+    int wday;
+    int yday;
+
+    int msec;
+    int usec;
+} OSCalendarTime;
+
+void OSTicksToCalendarTime(OSTime ticks, OSCalendarTime *td);
+
 void OSReport(const char *msg, ...);
 void OSFatal(GXColor fg, GXColor bg, const char *msg);
 

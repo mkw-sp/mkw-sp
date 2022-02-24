@@ -1,12 +1,34 @@
 #pragma once
 
-#include <Common.h>
+#include "sp/Storage.h"
 
-typedef struct {
-    u8 _00[0x34 - 0x00];
+typedef struct DVDCommandBlock DVDCommandBlock;
+typedef struct DVDFileInfo DVDFileInfo;
+
+typedef void (*DVDCallback)(s32 result, DVDFileInfo *fileInfo);
+
+struct DVDCommandBlock {
+    union {
+        struct {
+            DVDCommandBlock *next;
+            DVDCommandBlock *prev;
+        };
+        struct { // Added
+            File file;
+        };
+    };
+    u32 command;
+    s32 state;
+    u8 _10[0x30 - 0x10];
+};
+static_assert(sizeof(DVDCommandBlock) == 0x30);
+
+struct DVDFileInfo {
+    DVDCommandBlock cb;
+    u32 startAddr;
     u32 length;
-    u8 _38[0x3c - 0x38];
-} DVDFileInfo;
+    DVDCallback callback;
+};
 static_assert(sizeof(DVDFileInfo) == 0x3c);
 
 typedef struct {

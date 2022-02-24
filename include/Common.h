@@ -55,6 +55,9 @@ typedef double f64;
     OSReport("[" __FILE__ ":" SP_TOSTRING2(__LINE__) "] " m "\n" __VA_OPT__(, ) \
                     __VA_ARGS__)
 
+#define VIRTUAL_TO_PHYSICAL(ptr) ((u32)(ptr) & 0x7fffffff)
+#define PHYSICAL_TO_VIRTUAL(addr) ((void *)((addr) | 0x80000000))
+
 enum {
     REGION_P = 0x54a9,
     REGION_E = 0x5409,
