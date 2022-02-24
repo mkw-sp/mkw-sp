@@ -50,7 +50,7 @@ DRESULT disk_read (
 	UINT count			/* Number of sectors to read */
 )
 {
-	return FatStorage_read(sector, count, buff) ? RES_OK : RES_ERROR;
+	return FatStorage_diskRead(sector, count, buff) ? RES_OK : RES_ERROR;
 }
 
 
@@ -68,7 +68,7 @@ DRESULT disk_write (
 	UINT count			/* Number of sectors to write */
 )
 {
-	return FatStorage_write(sector, count, buff) ? RES_OK : RES_ERROR;
+	return FatStorage_diskWrite(sector, count, buff) ? RES_OK : RES_ERROR;
 }
 
 #endif
@@ -86,12 +86,12 @@ DRESULT disk_ioctl (
 {
 	switch (cmd) {
 	case CTRL_SYNC:
-		return FatStorage_sync() ? RES_OK : RES_ERROR;
+		return FatStorage_diskSync() ? RES_OK : RES_ERROR;
 	case CTRL_TRIM:;
 		const LBA_t *args = buff;
 		LBA_t firstSector = args[0];
 		LBA_t sectorCount = args[1] - args[0] + 1;
-		return FatStorage_erase(firstSector, sectorCount) ? RES_OK : RES_ERROR;
+		return FatStorage_diskErase(firstSector, sectorCount) ? RES_OK : RES_ERROR;
 	default:
 		assert(false);
 	}

@@ -15,7 +15,7 @@ u32 openedFiles = 0;
 FIL files[MAX_OPEN_FILE_COUNT];
 static FatStorage fatStorage;
 
-static bool open(File *file, const char *path, u32 mode) {
+static bool FatStorage_open(File *file, const char *path, u32 mode) {
     OSLockMutex(&mutex);
 
     for (file->fd = 0; file->fd < MAX_OPEN_FILE_COUNT; file->fd++) {
@@ -46,7 +46,7 @@ static bool open(File *file, const char *path, u32 mode) {
     return result;
 }
 
-static bool close(File *file) {
+static bool FatStorage_close(File *file) {
     assert(file->fd < MAX_OPEN_FILE_COUNT);
 
     OSLockMutex(&mutex);
@@ -60,7 +60,7 @@ static bool close(File *file) {
     return result;
 }
 
-static bool read(File *file, void *dst, u32 size, u32 *readSize) {
+static bool FatStorage_read(File *file, void *dst, u32 size, u32 *readSize) {
     assert(file->fd < MAX_OPEN_FILE_COUNT);
 
     OSLockMutex(&mutex);
@@ -72,7 +72,7 @@ static bool read(File *file, void *dst, u32 size, u32 *readSize) {
     return result;
 }
 
-static bool write(File *file, const void *src, u32 size, u32 *writtenSize) {
+static bool FatStorage_write(File *file, const void *src, u32 size, u32 *writtenSize) {
     assert(file->fd < MAX_OPEN_FILE_COUNT);
 
     OSLockMutex(&mutex);
@@ -84,7 +84,7 @@ static bool write(File *file, const void *src, u32 size, u32 *writtenSize) {
     return result;
 }
 
-static u64 size(File *file) {
+static u64 FatStorage_size(File *file) {
     assert(file->fd < MAX_OPEN_FILE_COUNT);
 
     OSLockMutex(&mutex);
@@ -96,7 +96,7 @@ static u64 size(File *file) {
     return size;
 }
 
-static bool lseek(File *file, u64 offset) {
+static bool FatStorage_lseek(File *file, u64 offset) {
     assert(file->fd < MAX_OPEN_FILE_COUNT);
 
     OSLockMutex(&mutex);
@@ -108,7 +108,7 @@ static bool lseek(File *file, u64 offset) {
     return result;
 }
 
-static u64 tell(File *file) {
+static u64 FatStorage_tell(File *file) {
     assert(file->fd < MAX_OPEN_FILE_COUNT);
 
     OSLockMutex(&mutex);
@@ -137,29 +137,29 @@ bool FatStorage_init(Storage *storage) {
         return false;
     }
 
-    storage->open = open;
-    storage->close = close;
-    storage->read = read;
-    storage->write = write;
-    storage->size = size;
-    storage->lseek = lseek;
-    storage->tell = tell;
+    storage->open = FatStorage_open;
+    storage->close = FatStorage_close;
+    storage->read = FatStorage_read;
+    storage->write = FatStorage_write;
+    storage->size = FatStorage_size;
+    storage->lseek = FatStorage_lseek;
+    storage->tell = FatStorage_tell;
 
     return true;
 }
 
-bool FatStorage_read(u32 firstSector, u32 sectorCount, void *buffer) {
-    return fatStorage.read(firstSector, sectorCount, buffer);
+bool FatStorage_diskRead(u32 firstSector, u32 sectorCount, void *buffer) {
+    return fatStorage.diskRead(firstSector, sectorCount, buffer);
 }
 
-bool FatStorage_write(u32 firstSector, u32 sectorCount, const void *buffer) {
-    return fatStorage.write(firstSector, sectorCount, buffer);
+bool FatStorage_diskWrite(u32 firstSector, u32 sectorCount, const void *buffer) {
+    return fatStorage.diskWrite(firstSector, sectorCount, buffer);
 }
 
-bool FatStorage_erase(u32 firstSector, u32 sectorCount) {
-    return fatStorage.erase(firstSector, sectorCount);
+bool FatStorage_diskErase(u32 firstSector, u32 sectorCount) {
+    return fatStorage.diskErase(firstSector, sectorCount);
 }
 
-bool FatStorage_sync(void) {
-    return fatStorage.sync();
+bool FatStorage_diskSync(void) {
+    return fatStorage.diskSync();
 }
