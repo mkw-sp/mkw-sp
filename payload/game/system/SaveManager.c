@@ -11,6 +11,11 @@
 #include <stdalign.h>
 #include <stdio.h>
 #include <string.h>
+#include <wchar.h>
+
+enum {
+    GHOST_PATH_BUFFER_MAX_COUNT = 0x20000, // 256 KiB
+};
 
 SaveManager *SaveManager_ct(SaveManager *this);
 
@@ -23,9 +28,14 @@ SaveManager *my_SaveManager_createInstance(void) {
     EGG_Heap *heap = s_rootScene->heapCollection.heaps[HEAP_ID_MEM2];
     this->rawGhostHeaders = spAllocArray(MAX_GHOST_COUNT, sizeof(RawGhostHeader), 0x4, heap);
     this->ghostFooters = spAllocArray(MAX_GHOST_COUNT, sizeof(GhostFooter), 0x4, heap);
-    this->ghostResources = spAllocArray(MAX_GHOST_COUNT, sizeof(GhostResource), 0x4, heap);
+    this->ghostPaths = spAllocArray(MAX_GHOST_COUNT, sizeof(wchar_t *), 0x4, heap);
     this->courseSha1IsValid = spAllocArray(0x20, sizeof(bool), 0x4, heap);
+    for (u32 i = 0; i < 0x20; i++) {
+        this->courseSha1IsValid[i] = false;
+    }
     this->courseSha1s = spAllocArray(0x20, 0x14, 0x4, heap);
+    this->ghostPathBuffer = spAllocArray(GHOST_PATH_BUFFER_MAX_COUNT, sizeof(wchar_t), 0x4, heap);
+    this->ghostPathBufferFreeCount = GHOST_PATH_BUFFER_MAX_COUNT;
 
     this->spCanSave = true;
     this->spBuffer = spAlloc(SP_BUFFER_SIZE, 0x20, heap);
@@ -36,78 +46,92 @@ SaveManager *my_SaveManager_createInstance(void) {
         this->spLicenses[i] = NULL;
     }
     this->spCurrentLicense = -1;
-    for (u32 i = 0; i < 0x20; i++) {
-        this->courseSha1IsValid[i] = false;
-    }
 
     return s_saveManager;
 }
 PATCH_B(SaveManager_createInstance, my_SaveManager_createInstance);
 
-static void SaveManager_initGhost(SaveManager *this, s32 entrynum) {
+static const wchar_t *SaveManager_allocGhostPath(SaveManager *this, const wchar_t *path,
+        u32 length) {
+    if (length + 1 > this->ghostPathBufferFreeCount) {
+        return NULL;
+    }
+
+    u32 offset = GHOST_PATH_BUFFER_MAX_COUNT - this->ghostPathBufferFreeCount;
+    path = wmemcpy(this->ghostPathBuffer + offset, path, length);
+    this->ghostPathBuffer[offset + length] = L'\0';
+    this->ghostPathBufferFreeCount -= length + 1;
+    return path;
+}
+
+static void SaveManager_initGhost(SaveManager *this, const wchar_t *path, u32 offset) {
     if (this->ghostCount >= MAX_GHOST_COUNT) {
         return;
     }
 
-    DVDFileInfo fileInfo;
-    if (!DVDFastOpen(entrynum, &fileInfo)) {
+    u32 readSize;
+    if (!Storage_readFile(path, this->rawGhostFile, 0x2800, &readSize)) {
         return;
     }
 
-    u32 length = fileInfo.length;
-    if (length > 0x2800) {
-        goto cleanup;
+    if (!RawGhostFile_spIsValid(this->rawGhostFile, readSize)) {
+        return;
     }
 
-    s32 result = DVDRead(&fileInfo, this->rawGhostFile, OSRoundUp32B(length), 0);
-    if (result != (s32)OSRoundUp32B(length)) {
-        goto cleanup;
-    }
-
-    if (!RawGhostFile_spIsValid(this->rawGhostFile, length)) {
-        goto cleanup;
+    path = SaveManager_allocGhostPath(this, path, offset);
+    if (!path) {
+        return;
     }
 
     const RawGhostHeader *header = (RawGhostHeader *)this->rawGhostFile;
     memcpy(&this->rawGhostHeaders[this->ghostCount], header, sizeof(RawGhostHeader));
-    GhostFooter_init(&this->ghostFooters[this->ghostCount], this->rawGhostFile, length);
-    this->ghostResources[this->ghostCount].type = GHOST_RESOURCE_TYPE_DVD;
-    this->ghostResources[this->ghostCount].dvd.entrynum = entrynum;
+    GhostFooter_init(&this->ghostFooters[this->ghostCount], this->rawGhostFile, readSize);
+    this->ghostPaths[this->ghostCount] = path;
     this->ghostCount++;
-
-cleanup:
-    DVDClose(&fileInfo);
 }
 
-static void SaveManager_initGhostsDir(SaveManager *this, u32 entrynum) {
+static void SaveManager_initGhostsDir(SaveManager *this, wchar_t *path, u32 offset) {
     if (this->ghostCount >= MAX_GHOST_COUNT) {
         return;
     }
 
-    DVDDir dir;
-    if (!DVDFastOpenDir(entrynum, &dir)) {
+    Dir dir;
+    if (!Storage_openDir(&dir, path)) {
         return;
     }
 
-    DVDDirEntry dirent;
-    while (DVDReadDir(&dir, &dirent)) {
-        if (dirent.isDir) {
-            SaveManager_initGhostsDir(this, dirent.entryNum);
-        } else {
-            SaveManager_initGhost(this, dirent.entryNum);
+    DirEntry entry;
+    while (Storage_readDir(&dir, &entry)) {
+        s32 length = swprintf(path + offset, 2048 - offset, L"/%ls", entry.name);
+        if (length < 0) {
+            continue;
         }
+        offset += length;
+        if (entry.type == NODE_TYPE_FILE) {
+            SaveManager_initGhost(this, path, offset);
+        } else if (entry.type == NODE_TYPE_DIR) {
+            SaveManager_initGhostsDir(this, path, offset);
+        } else {
+            break;
+        }
+        offset -= length;
     }
 
-    DVDCloseDir(&dir);
+    Storage_closeDir(&dir);
 }
 
 static void SaveManager_initGhosts(SaveManager *this) {
-    s32 entrynum = DVDConvertPathToEntrynum("/ghosts");
-    if (entrynum < 0) {
-        return;
-    }
+    wchar_t path[2048];
+    u32 offset = swprintf(path, 2048, L"/mkw-sp/ghosts");
+    SaveManager_initGhostsDir(this, path, offset);
+    offset = swprintf(path, 2048, L"/ctgpr/ghosts");
+    SaveManager_initGhostsDir(this, path, offset);
 
-    SaveManager_initGhostsDir(this, entrynum);
+    Storage_createDir(L"/mkw-sp/ghosts", true);
+
+    SP_LOG("Ghosts: %u / %u", this->ghostCount, MAX_GHOST_COUNT);
+    u32 count = GHOST_PATH_BUFFER_MAX_COUNT - this->ghostPathBufferFreeCount;
+    SP_LOG("Ghost path buffer: %u / %u", count, GHOST_PATH_BUFFER_MAX_COUNT);
 }
 
 static bool setupSpSave(const char *path) {
@@ -584,41 +608,15 @@ static bool SaveManager_loadGhost(SaveManager *this, u32 i) {
     const GlobalContext *cx = s_sectionManager->globalContext;
     RaceConfigScenario *menuScenario = &s_raceConfig->menuScenario;
 
-    u32 length;
-    switch (this->ghostResources[cx->timeAttackGhostIndices[i]].type) {
-    case GHOST_RESOURCE_TYPE_DVD:;
-        u32 entrynum = this->ghostResources[cx->timeAttackGhostIndices[i]].dvd.entrynum;
-        DVDFileInfo fileInfo;
-        if (!DVDFastOpen(entrynum, &fileInfo)) {
-            return false;
-        }
-
-        length = fileInfo.length;
-        if (length > 0x2800) {
-            return false;
-        }
-
-        s32 result = DVDRead(&fileInfo, this->rawGhostFile, OSRoundUp32B(length), 0);
-        DVDClose(&fileInfo);
-        if (result != (s32)OSRoundUp32B(length)) {
-            return false;
-        }
-
-        break;
-    case GHOST_RESOURCE_TYPE_NAND:;
-        const char *path = this->ghostResources[cx->timeAttackGhostIndices[i]].nand.path;
-        if (NandHelper_readFile(path, this->rawGhostFile, 0x2800, &length) != RK_NAND_RESULT_OK) {
-            return false;
-        }
-
-        break;
-    default:
-        // Should be unreachable
+    const wchar_t *path = this->ghostPaths[cx->timeAttackGhostIndices[i]];
+    OSReport("%ls\n", path);
+    u32 readSize;
+    if (!Storage_readFile(path, this->rawGhostFile, 0x2800, &readSize)) {
         return false;
     }
 
     if (((RawGhostHeader *)this->rawGhostFile)->isCompressed) {
-        if (!RawGhostFile_spIsValid(this->rawGhostFile, length)) {
+        if (!RawGhostFile_spIsValid(this->rawGhostFile, readSize)) {
             return false;
         }
 
@@ -781,11 +779,11 @@ static void getCourseName(const u8 *courseSha1, char *courseName) {
         }
     }
 
-    for (u32 i = 0; i < NAND_MAX_NAME; i += 2) {
+    for (u32 i = 0; i < 2 * 0x14; i += 2) {
         courseName[i] = nibbleToChar(courseSha1[i / 2] >> 4);
         courseName[i + 1] = nibbleToChar(courseSha1[i / 2] & 0xf);
     }
-    courseName[NAND_MAX_NAME] = '\0';
+    courseName[2 * 0x14] = '\0';
 }
 
 static void SaveManager_saveGhost(SaveManager *this, GhostFile *file) {
@@ -795,78 +793,48 @@ static void SaveManager_saveGhost(SaveManager *this, GhostFile *file) {
         goto fail;
     }
 
-    u32 length = GhostFile_spWrite(file, this->rawGhostFile);
-    if (length == 0) {
+    u32 size = GhostFile_spWrite(file, this->rawGhostFile);
+    if (size == 0) {
         goto fail;
     }
 
-    char homeDir[NAND_MAX_PATH];
-    if (NandHelper_getHomeDir(homeDir) != RK_NAND_RESULT_OK) {
-        goto fail;
-    }
+    wchar_t path[255 + 1];
+    u32 offset = swprintf(path, 255 + 1, L"/mkw-sp/ghosts/");
 
-    char courseName[NAND_MAX_NAME + 1];
+    char courseName[0x14 * 2 + 1];
     getCourseName(this->courseSha1s[file->courseId], courseName);
+    offset += swprintf(path + offset, 255 + 1 - offset, L"%s", courseName);
 
-    char dir[NAND_MAX_PATH];
-    if (snprintf(dir, NAND_MAX_PATH, "%s/ghosts/%s", homeDir, courseName) >= NAND_MAX_PATH) {
-        goto fail;
-    }
-
-    u8 perm = NAND_PERM_OWNER_READ | NAND_PERM_OWNER_WRITE;
-    if (NandHelper_createDir(dir, perm) != RK_NAND_RESULT_OK) {
+    if (!Storage_createDir(path, true)) {
         goto fail;
     }
 
-    u16 mins = file->raceTime.minutes;
-    u8 secs = file->raceTime.seconds;
-    u16 msecs = file->raceTime.milliseconds;
-    char path[NAND_MAX_PATH];
-    if (snprintf(path, NAND_MAX_PATH, "%s/%02u%02u%03u.rkg", dir, mins, secs, msecs) >=
-            NAND_MAX_PATH) {
-        goto fail;
+    offset += swprintf(path + offset, 255 + 1 - offset, L"/%02um", file->raceTime.minutes);
+    offset += swprintf(path + offset, 255 + 1 - offset, L"%02us", file->raceTime.seconds);
+    offset += swprintf(path + offset, 255 + 1 - offset, L"%03u ", file->raceTime.milliseconds);
+    const wchar_t *miiName = file->rawMii.name;
+    if (miiName[0] == L'\0') {
+        miiName = L"Player";
     }
-    u32 type;
-    if (NandHelper_getType(path, &type) != RK_NAND_RESULT_OK) {
-        goto fail;
-    }
-    if (type != RK_NAND_TYPE_NONE) {
-        char c;
-        for (c = 'a'; c <= 'z'; c++) {
-            if (snprintf(path, NAND_MAX_PATH, "%s/%02u%02u%03u%c.rkg", dir, mins, secs, msecs, c) >=
-                    NAND_MAX_PATH) {
-                goto fail;
-            }
-            if (NandHelper_getType(path, &type) != RK_NAND_RESULT_OK) {
-                goto fail;
-            }
-            if (type == RK_NAND_TYPE_NONE) {
+    offset += swprintf(path + offset, 255 + 1 - offset, L"%ls", miiName);
+    swprintf(path + offset, 255 + 1 - offset, L".rkg");
+
+    if (!Storage_writeFile(path, false, this->rawGhostFile, size)) {
+        u32 i;
+        for (i = 0; i < 100; i++) {
+            swprintf(path + offset, 255 + 1 - offset, L" %u.rkg", i);
+            if (Storage_writeFile(path, false, this->rawGhostFile, size)) {
                 break;
             }
         }
-        if (c > 'z') {
+        if (i >= 100) {
             goto fail;
         }
     }
 
-    if (NandHelper_create(path, perm) != RK_NAND_RESULT_OK) {
-        goto fail;
-    }
-
-    if (NandHelper_writeFile(path, this->rawGhostFile, length) != RK_NAND_RESULT_OK) {
-        goto fail;
-    }
-
     this->saveGhostResult = true;
 
-    if (RawGhostFile_spIsValid(this->rawGhostFile, length) && this->ghostCount < MAX_GHOST_COUNT) {
-        const RawGhostHeader *header = (RawGhostHeader *)this->rawGhostFile;
-        memcpy(&this->rawGhostHeaders[this->ghostCount], header, sizeof(RawGhostHeader));
-        GhostFooter_init(&this->ghostFooters[this->ghostCount], this->rawGhostFile, length);
-        this->ghostResources[this->ghostCount].type = GHOST_RESOURCE_TYPE_NAND;
-        memcpy(this->ghostResources[this->ghostCount].nand.path, path, NAND_MAX_PATH);
-        this->ghostCount++;
-    }
+    SaveManager_initGhost(this, path, wcslen(path));
 
 fail:
     this->isBusy = false;
