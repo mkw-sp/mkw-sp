@@ -255,13 +255,14 @@ static bool Sdi_transfer(bool isWrite, u32 firstSector, u32 sectorCount, void *b
     if ((u32)buffer & 0x1f) {
         while (sectorCount > 0) {
             u32 chunkSectorCount = MIN(sectorCount, TMP_SECTOR_COUNT);
+            if (isWrite) {
+                memcpy(tmpBuffer, buffer, chunkSectorCount * SECTOR_SIZE);
+            }
             if (!Sdi_transferAligned(isWrite, firstSector, chunkSectorCount, tmpBuffer)) {
                 Sdi_deselect();
                 return false;
             }
-            if (isWrite) {
-                memcpy(tmpBuffer, buffer, chunkSectorCount * SECTOR_SIZE);
-            } else {
+            if (!isWrite) {
                 memcpy(buffer, tmpBuffer, chunkSectorCount * SECTOR_SIZE);
             }
             firstSector += chunkSectorCount;

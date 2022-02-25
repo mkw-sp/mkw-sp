@@ -7,23 +7,6 @@
 #include <revolution.h>
 
 enum {
-    GHOST_RESOURCE_TYPE_DVD,
-    GHOST_RESOURCE_TYPE_NAND,
-};
-
-typedef struct {
-    u8 type;
-    union {
-        struct {
-            u32 entrynum;
-        } dvd;
-        struct {
-            char path[NAND_MAX_PATH];
-        } nand;
-    };
-} GhostResource;
-
-enum {
     VS_RULE_CLASS_100CC = 0x0,
     VS_RULE_CLASS_150CC = 0x1,
     VS_RULE_CLASS_MIRROR = 0x2,
@@ -177,7 +160,7 @@ typedef struct {
     RawGhostHeader *rawGhostHeaders; // Modified
     GhostGroup *ghostGroup;
     GhostFooter *ghostFooters; // Modified
-    GhostResource *ghostResources;
+    const wchar_t **ghostPaths;
     u8 _00034[0x00035 - 0x00034];
     bool saveGhostResult;
     u8 _00036[0x00038 - 0x00036];
@@ -195,6 +178,8 @@ typedef struct {
     u32 spLicenseCount; // Added
     SpSaveLicense *spLicenses[MAX_SP_LICENSE_COUNT]; // Added
     s32 spCurrentLicense; // Added
+    wchar_t *ghostPathBuffer; // Added
+    u32 ghostPathBufferFreeCount;
     bool *courseSha1IsValid; // Added
     u8 (*courseSha1s)[0x14]; // Added
 } SaveManager;
