@@ -110,7 +110,7 @@ n.newline()
 
 n.rule(
     'incbin',
-    command = '$cc -DNAME=$name -DPATH=$in -c Incbin.S -o $out',
+    command = '$cc -DNAME=$name -DPATH=$path -c Incbin.S -o $out',
     description = 'INCBIN $out',
 )
 n.newline()
@@ -376,6 +376,7 @@ for region in ['P', 'E', 'J', 'K']:
         os.path.join('$builddir', 'bin', f'payload{region}.bin'),
         variables = {
             'name': f'payload{region}',
+            'path': '/'.join(['$builddir', 'bin', f'payload{region}.bin']),
         },
         implicit = 'Incbin.S',
     )
