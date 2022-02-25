@@ -134,16 +134,6 @@ static void SaveManager_initGhosts(SaveManager *this) {
     SP_LOG("Ghost path buffer: %u / %u", count, GHOST_PATH_BUFFER_MAX_COUNT);
 }
 
-static bool setupSpSave(const char *path) {
-    u8 perm = NAND_PERM_OWNER_READ | NAND_PERM_OWNER_WRITE;
-    if (NandHelper_create(path, perm) != RK_NAND_RESULT_OK) {
-        return false;
-    }
-
-    alignas(0x20) SpSaveHeader header = { .magic = SP_SAVE_HEADER_MAGIC, .crc32 = 0x0 };
-    return NandHelper_writeFile(path, &header, sizeof(header)) == RK_NAND_RESULT_OK;
-}
-
 static bool SpSaveLicense_checkSize(const SpSaveLicense *this) {
     switch (this->version) {
     case 0:
@@ -211,60 +201,46 @@ static void SpSaveLicense_sanitize(SpSaveLicense *this) {
 }
 
 static bool SaveManager_initSpSave(SaveManager *this) {
-    char path[NAND_MAX_PATH];
-    if (NandHelper_getHomeDir(path) != RK_NAND_RESULT_OK) {
-        return false;
-    }
-
-    u32 offset = strlen(path);
-    u32 size = strlen("/save.bin") + 1;
-    if (offset + size > NAND_MAX_PATH) {
-        return false;
-    }
-    memcpy(path + offset, "/save.bin", size);
-
-    u32 type;
-    if (NandHelper_getType(path, &type) != RK_NAND_RESULT_OK) {
-        return false;
-    }
-    switch (type) {
-    case RK_NAND_TYPE_NONE:
-        if (!setupSpSave(path)) {
+    const wchar_t path[] = L"/mkw-sp/save.bin";
+    switch (Storage_type(path)) {
+    case NODE_TYPE_NONE:;
+        alignas(0x20) SpSaveHeader header = { .magic = SP_SAVE_HEADER_MAGIC, .crc32 = 0x0 };
+        if (!Storage_writeFile(path, true, &header, sizeof(header))) {
             return false;
         }
         break;
-    case RK_NAND_TYPE_FILE:
+    case NODE_TYPE_FILE:
         break;
-    case RK_NAND_TYPE_DIR:
+    default:
         return false;
     }
 
     EGG_Heap *heap = s_rootScene->heapCollection.heaps[HEAP_ID_MEM2];
-    u32 length;
-    if (NandHelper_readFile(path, this->spBuffer, SP_BUFFER_SIZE, &length) != RK_NAND_RESULT_OK) {
+    u32 size;
+    if (!Storage_readFile(path, this->spBuffer, SP_BUFFER_SIZE, &size)) {
         return false;
     }
 
-    offset = sizeof(SpSaveHeader);
-    if (length < offset) {
+    u32 offset = sizeof(SpSaveHeader);
+    if (size < offset) {
         return false;
     }
 
     SpSaveHeader *header = this->spBuffer;
-    u32 crc32 = NETCalcCRC32(this->spBuffer + offset, length - offset);
+    u32 crc32 = NETCalcCRC32(this->spBuffer + offset, size - offset);
     if (crc32 != header->crc32) {
         return false;
     }
 
     u32 sectionCount;
     s32 unusedLicenseCount = MAX_SP_LICENSE_COUNT;
-    for (sectionCount = 0; offset < length; sectionCount++) {
-        if (length - offset < sizeof(SpSaveSection)) {
+    for (sectionCount = 0; offset < size; sectionCount++) {
+        if (size - offset < sizeof(SpSaveSection)) {
             return false;
         }
 
         SpSaveSection *section = this->spBuffer + offset;
-        if (section->size < sizeof(SpSaveSection) || section->size > length - offset) {
+        if (section->size < sizeof(SpSaveSection) || section->size > size - offset) {
             return false;
         }
 
@@ -354,35 +330,36 @@ static void my_SaveManager_resetAsync(SaveManager *this) {
 PATCH_B(SaveManager_resetAsync, my_SaveManager_resetAsync);
 
 static void SaveManager_saveSp(SaveManager *this) {
-    u32 length = sizeof(SpSaveHeader);
+    u32 size = sizeof(SpSaveHeader);
     for (u32 i = 0; i < this->spSectionCount; i++) {
-        if (length + this->spSections[i]->size > SP_BUFFER_SIZE) {
+        if (size + this->spSections[i]->size > SP_BUFFER_SIZE) {
             goto fail;
         }
-        memcpy(this->spBuffer + length, this->spSections[i], this->spSections[i]->size);
-        length += this->spSections[i]->size;
+        memcpy(this->spBuffer + size, this->spSections[i], this->spSections[i]->size);
+        size += this->spSections[i]->size;
     }
 
-    char dir[NAND_MAX_PATH];
-    if (NandHelper_getHomeDir(dir) != RK_NAND_RESULT_OK) {
-        goto fail;
-    }
-
-    u8 perm = NAND_PERM_OWNER_READ | NAND_PERM_OWNER_WRITE;
-    if (NandHelper_create("/tmp/save.bin", perm) != RK_NAND_RESULT_OK) {
-        goto fail;
-    }
-
-    u32 crc32 = NETCalcCRC32(this->spBuffer + sizeof(SpSaveHeader), length - sizeof(SpSaveHeader));
+    u32 crc32 = NETCalcCRC32(this->spBuffer + sizeof(SpSaveHeader), size - sizeof(SpSaveHeader));
     SpSaveHeader header = { .magic = SP_SAVE_HEADER_MAGIC, .crc32 = crc32 };
     memcpy(this->spBuffer, &header, sizeof(header));
-    if (NandHelper_writeFile("/tmp/save.bin", this->spBuffer, length) != RK_NAND_RESULT_OK) {
+
+    if (!Storage_writeFile(L"/mkw-sp/save.bin.new", true, this->spBuffer, size)) {
         goto fail;
     }
 
-    if (NandHelper_move("/tmp/save.bin", dir) != RK_NAND_RESULT_OK) {
+    if (!Storage_delete(L"/mkw-sp/save.bin.old", true)) {
         goto fail;
     }
+
+    if (!Storage_rename(L"/mkw-sp/save.bin", L"/mkw-sp/save.bin.old")) {
+        goto fail;
+    }
+
+    if (!Storage_rename(L"/mkw-sp/save.bin.new", L"/mkw-sp/save.bin")) {
+        goto fail;
+    }
+
+    Storage_delete(L"/mkw-sp/save.bin.old", true); // Not a big deal if this fails
 
     this->isBusy = false;
     this->result = RK_NAND_RESULT_OK;

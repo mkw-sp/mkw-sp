@@ -131,11 +131,11 @@ static u64 FatStorage_tell(File *file) {
     return offset;
 }
 
-static bool FatStorage_createDir(const wchar_t *path, bool overwrite) {
+static bool FatStorage_createDir(const wchar_t *path, bool allowNop) {
     OSLockMutex(&mutex);
 
     FRESULT fResult = f_mkdir(path);
-    bool result = fResult == FR_OK || (overwrite && fResult == FR_EXIST);
+    bool result = fResult == FR_OK || (allowNop && fResult == FR_EXIST);
 
     OSUnlockMutex(&mutex);
 
@@ -205,6 +205,45 @@ static bool FatStorage_closeDir(Dir *dir) {
     return result;
 }
 
+static u32 FatStorage_type(const wchar_t *path) {
+    OSLockMutex(&mutex);
+
+    u32 type = NODE_TYPE_NONE;
+    FILINFO info;
+    if (f_stat(path, &info) == FR_OK) {
+        if (info.fattrib & AM_DIR) {
+            type = NODE_TYPE_DIR;
+        } else {
+            type = NODE_TYPE_FILE;
+        }
+    }
+
+    OSUnlockMutex(&mutex);
+
+    return type;
+}
+
+static bool FatStorage_rename(const wchar_t *srcPath, const wchar_t *dstPath) {
+    OSLockMutex(&mutex);
+
+    bool result = f_rename(srcPath, dstPath) == FR_OK;
+
+    OSUnlockMutex(&mutex);
+
+    return result;
+}
+
+static bool FatStorage_delete(const wchar_t *path, bool allowNop) {
+    OSLockMutex(&mutex);
+
+    FRESULT fResult = f_unlink(path);
+    bool result = fResult == FR_OK || (allowNop && fResult == FR_NO_FILE);
+
+    OSUnlockMutex(&mutex);
+
+    return result;
+}
+
 static bool FatStorage_find(void) {
     if (SdiStorage_init(&fatStorage)) {
         return true;
@@ -233,6 +272,9 @@ bool FatStorage_init(Storage *storage) {
     storage->openDir = FatStorage_openDir;
     storage->readDir = FatStorage_readDir;
     storage->closeDir = FatStorage_closeDir;
+    storage->type = FatStorage_type;
+    storage->rename = FatStorage_rename;
+    storage->delete = FatStorage_delete;
 
     return true;
 }
