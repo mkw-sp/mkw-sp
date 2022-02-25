@@ -109,10 +109,10 @@ bool Storage_writeFile(const wchar_t *path, bool overwrite, const void *src, u32
     return Storage_close(&file);
 }
 
-bool Storage_createDir(const wchar_t *path, bool overwrite) {
+bool Storage_createDir(const wchar_t *path, bool allowNop) {
     assert(path);
 
-    return storage.createDir(path, overwrite);
+    return storage.createDir(path, allowNop);
 }
 
 bool Storage_openDir(Dir *dir, const wchar_t *path) {
@@ -133,4 +133,23 @@ bool Storage_closeDir(Dir *dir) {
     assert(dir);
 
     return storage.closeDir(dir);
+}
+
+u32 Storage_type(const wchar_t *path) {
+    assert(path);
+
+    return storage.type(path);
+}
+
+bool Storage_rename(const wchar_t *srcPath, const wchar_t *dstPath) {
+    assert(srcPath);
+    assert(dstPath);
+
+    return storage.rename(srcPath, dstPath);
+}
+
+bool Storage_delete(const wchar_t *path, bool allowNop) {
+    assert(path);
+
+    return storage.delete(path, allowNop);
 }

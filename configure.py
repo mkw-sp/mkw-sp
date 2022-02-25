@@ -203,7 +203,6 @@ code_in_files = {
         os.path.join('payload', 'game', 'system', 'Mii.S'),
         os.path.join('payload', 'game', 'system', 'MultiDvdArchive.S'),
         os.path.join('payload', 'game', 'system', 'MultiDvdArchive.c'),
-        os.path.join('payload', 'game', 'system', 'NandHelper.c'),
         os.path.join('payload', 'game', 'system', 'NandManager.S'),
         os.path.join('payload', 'game', 'system', 'RaceConfig.S'),
         os.path.join('payload', 'game', 'system', 'RaceConfig.c'),
