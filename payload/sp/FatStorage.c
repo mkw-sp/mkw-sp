@@ -5,21 +5,26 @@
 #include <ff/ff.h>
 #include <revolution.h>
 
+#include <string.h>
+
 enum {
     MAX_OPEN_FILE_COUNT = 32,
+    MAX_OPEN_DIR_COUNT = 32,
 };
 
 FATFS fs;
 static OSMutex mutex;
-u32 openedFiles = 0;
+u32 openFiles = 0;
 FIL files[MAX_OPEN_FILE_COUNT];
+u32 openDirs = 0;
+DIR dirs[MAX_OPEN_DIR_COUNT];
 static FatStorage fatStorage;
 
-static bool FatStorage_open(File *file, const char *path, u32 mode) {
+static bool FatStorage_open(File *file, const wchar_t *path, u32 mode) {
     OSLockMutex(&mutex);
 
     for (file->fd = 0; file->fd < MAX_OPEN_FILE_COUNT; file->fd++) {
-        if (!(openedFiles & 1 << file->fd)) {
+        if (!(openFiles & 1 << file->fd)) {
             break;
         }
     }
@@ -35,10 +40,16 @@ static bool FatStorage_open(File *file, const char *path, u32 mode) {
     if (mode & MODE_WRITE) {
         fMode |= FA_WRITE;
     }
+    if (mode & MODE_CREATE_NEW) {
+        fMode |= FA_CREATE_NEW;
+    }
+    if (mode & MODE_CREATE_ALWAYS) {
+        fMode |= FA_CREATE_ALWAYS;
+    }
     bool result = f_open(&files[file->fd], path, fMode) == FR_OK;
 
     if (result) {
-        openedFiles |= 1 << file->fd;
+        openFiles |= 1 << file->fd;
     }
 
     OSUnlockMutex(&mutex);
@@ -53,7 +64,7 @@ static bool FatStorage_close(File *file) {
 
     bool result = f_close(&files[file->fd]) == FR_OK;
 
-    openedFiles &= ~(1 << file->fd);
+    openFiles &= ~(1 << file->fd);
 
     OSUnlockMutex(&mutex);
 
@@ -120,6 +131,80 @@ static u64 FatStorage_tell(File *file) {
     return offset;
 }
 
+static bool FatStorage_createDir(const wchar_t *path, bool overwrite) {
+    OSLockMutex(&mutex);
+
+    FRESULT fResult = f_mkdir(path);
+    bool result = fResult == FR_OK || (overwrite && fResult == FR_EXIST);
+
+    OSUnlockMutex(&mutex);
+
+    return result;
+}
+
+static bool FatStorage_openDir(Dir *dir, const wchar_t *path) {
+    OSLockMutex(&mutex);
+
+    for (dir->fd = 0; dir->fd < MAX_OPEN_DIR_COUNT; dir->fd++) {
+        if (!(openDirs & 1 << dir->fd)) {
+            break;
+        }
+    }
+    if (dir->fd == MAX_OPEN_DIR_COUNT) {
+        OSUnlockMutex(&mutex);
+        return false;
+    }
+
+    bool result = f_opendir(&dirs[dir->fd], path) == FR_OK;
+
+    if (result) {
+        openDirs |= 1 << dir->fd;
+    }
+
+    OSUnlockMutex(&mutex);
+
+    return result;
+}
+
+static bool FatStorage_readDir(Dir *dir, DirEntry *entry) {
+    assert(dir->fd < MAX_OPEN_DIR_COUNT);
+
+    OSLockMutex(&mutex);
+
+    FILINFO info;
+    bool result = f_readdir(&dirs[dir->fd], &info) == FR_OK;
+
+    if (result) {
+        static_assert(sizeof(info.fname) <= sizeof(entry->name));
+        memcpy(entry->name, info.fname, sizeof(info.fname));
+        if (info.fname[0] == L'\0') {
+            entry->type = NODE_TYPE_NONE;
+        } else if (info.fattrib & AM_DIR) {
+            entry->type = NODE_TYPE_DIR;
+        } else {
+            entry->type = NODE_TYPE_FILE;
+        }
+    }
+
+    OSUnlockMutex(&mutex);
+
+    return result;
+}
+
+static bool FatStorage_closeDir(Dir *dir) {
+    assert(dir->fd < MAX_OPEN_DIR_COUNT);
+
+    OSLockMutex(&mutex);
+
+    bool result = f_closedir(&dirs[dir->fd]) == FR_OK;
+
+    openDirs &= ~(1 << dir->fd);
+
+    OSUnlockMutex(&mutex);
+
+    return result;
+}
+
 static bool FatStorage_find(void) {
     if (SdiStorage_init(&fatStorage)) {
         return true;
@@ -133,7 +218,7 @@ bool FatStorage_init(Storage *storage) {
         return false;
     }
 
-    if (f_mount(&fs, "", 1) != FR_OK) {
+    if (f_mount(&fs, L"", 1) != FR_OK) {
         return false;
     }
 
@@ -144,6 +229,10 @@ bool FatStorage_init(Storage *storage) {
     storage->size = FatStorage_size;
     storage->lseek = FatStorage_lseek;
     storage->tell = FatStorage_tell;
+    storage->createDir = FatStorage_createDir;
+    storage->openDir = FatStorage_openDir;
+    storage->readDir = FatStorage_readDir;
+    storage->closeDir = FatStorage_closeDir;
 
     return true;
 }

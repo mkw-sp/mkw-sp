@@ -5,6 +5,7 @@
 #include <stdint.h>
 #include <stdio.h>
 #include <string.h>
+#include <wchar.h>
 
 enum {
     MAX_PATH_LENGTH = 47, // /Race/Competition/CommonObj/CommonObj01.szs is the longest with 44
@@ -23,8 +24,8 @@ BOOL DVDExOpen(const char *fileName, DVDFileInfo *fileInfo) {
     assert(fileName);
     assert(fileInfo);
 
-    char path[strlen("/mkw-sp/disc") + MAX_PATH_LENGTH + 1];
-    snprintf(path, sizeof(path), "/mkw-sp/disc%s", fileName);
+    wchar_t path[wcslen(L"/mkw-sp/disc") + MAX_PATH_LENGTH + 1];
+    swprintf(path, sizeof(path) / sizeof(wchar_t), L"/mkw-sp/disc%s", fileName);
 
     if (!Storage_open(&fileInfo->cb.file, path, MODE_READ)) {
         return false;
