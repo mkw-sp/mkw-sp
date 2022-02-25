@@ -1,6 +1,5 @@
 #include "Memory.h"
 
-#include <assert.h>
 #include <revolution/os.h>
 #include <stdint.h>
 
