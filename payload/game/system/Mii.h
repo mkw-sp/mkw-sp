@@ -9,7 +9,8 @@ typedef struct {
 static_assert(sizeof(MiiId) == 0x8);
 
 typedef struct {
-    u8 _00[0x4a - 0x00];
+    u8 _00[0x36 - 0x00];
+    wchar_t name[10];
     u16 crc16;
 } RawMii;
 static_assert(sizeof(RawMii) == 0x4c);
