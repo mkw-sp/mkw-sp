@@ -41,10 +41,13 @@ typedef struct {
     u64 (*size)(File *file);
     bool (*lseek)(File *file, u64 offset);
     u64 (*tell)(File *file);
-    bool (*createDir)(const wchar_t *path, bool overwrite);
+    bool (*createDir)(const wchar_t *path, bool allowNop);
     bool (*openDir)(Dir *dir, const wchar_t *path);
     bool (*readDir)(Dir *dir, DirEntry *entry);
     bool (*closeDir)(Dir *dir);
+    u32 (*type)(const wchar_t *path);
+    bool (*rename)(const wchar_t *srcPath, const wchar_t *dstPath);
+    bool (*delete)(const wchar_t *path, bool allowNop);
 } Storage;
 
 bool Storage_init(void);
@@ -67,7 +70,7 @@ bool Storage_readFile(const wchar_t *path, void *dst, u32 size, u32 *readSize);
 
 bool Storage_writeFile(const wchar_t *path, bool overwrite, const void *src, u32 size);
 
-bool Storage_createDir(const wchar_t *path, bool overwrite);
+bool Storage_createDir(const wchar_t *path, bool allowNop);
 
 bool Storage_openDir(Dir *dir, const wchar_t *path);
 
@@ -76,3 +79,7 @@ bool Storage_readDir(Dir *dir, DirEntry *entry);
 bool Storage_closeDir(Dir *dir);
 
 u32 Storage_type(const wchar_t *path);
+
+bool Storage_rename(const wchar_t *srcPath, const wchar_t *dstPath);
+
+bool Storage_delete(const wchar_t *path, bool allowNop);
