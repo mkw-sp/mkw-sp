@@ -45,7 +45,7 @@ typedef struct {
             u32 ioctlv;
             u32 inputCount;
             u32 outputCount;
-            IoctlvPair *pairs;
+            u32 pairs;
         } ioctlv;
     };
     u8 user[0x40 - 0x20];
@@ -138,7 +138,7 @@ s32 Ios_ioctlv(s32 fd, u32 ioctlv, u32 inputCount, u32 outputCount, IoctlvPair *
     request.ioctlv.ioctlv = ioctlv;
     request.ioctlv.inputCount = inputCount;
     request.ioctlv.outputCount = outputCount;
-    request.ioctlv.pairs = pairs;
+    request.ioctlv.pairs = VIRTUAL_TO_PHYSICAL(pairs);
 
     sync();
 
