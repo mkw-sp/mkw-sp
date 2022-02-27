@@ -107,7 +107,7 @@ u32 Yaz_encode(const u8 *restrict src, u8 *restrict dst, u32 srcSize, u32 dstSiz
                 return 0;
             }
         }
-        u32 firstRefOffset = dstOffset < 0x1000 ? 0x0 : dstOffset - 0x1000;
+        u32 firstRefOffset = srcOffset < 0x1000 ? 0x0 : srcOffset - 0x1000;
         u32 bestRefSize = 0x1, bestRefOffset;
         for (u32 refOffset = firstRefOffset; refOffset < srcOffset; refOffset++) {
             u32 refSize;
