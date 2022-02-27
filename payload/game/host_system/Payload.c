@@ -17,7 +17,7 @@ __attribute__((section("first"))) void start(void) {
     OSAllocFromMEM1ArenaLo(payloadSize, 0x20);
 
     // We don't clear the arena in OSInit because the payload is already copied at that point, but
-    // some code expect it to be zeroed.
+    // some code expects it to be zeroed.
     memset(OSGetMEM1ArenaLo(), 0, OSGetMEM1ArenaHi() - OSGetMEM1ArenaLo());
 
     Patcher_patch(PATCHER_BINARY_DOL);
