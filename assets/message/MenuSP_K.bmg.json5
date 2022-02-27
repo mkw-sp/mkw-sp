@@ -11,4 +11,20 @@
         "font": "regular",
         "string": "Mii",
     },
+    "10057": {
+        "font": "regular",
+        "string": "OFF",
+    },
+    "10058": {
+        "font": "regular",
+        "string": "ON",
+    },
+    "10062": {
+        "font": "regular",
+        "string": "OFF",
+    },
+    "10063": {
+        "font": "regular",
+        "string": "ON",
+    },
 }

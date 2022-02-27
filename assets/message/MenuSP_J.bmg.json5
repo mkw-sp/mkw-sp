@@ -15,6 +15,30 @@
         "font": "regular",
         "string": " {arg integer|0 0}体のゴーストでリプレイ",
     },
+    "10004": {
+        "font": "regular",
+        "string": "HUDテキスト",
+    },
+    "10005": {
+        "font": "regular",
+        "string": "消去",
+    },
+    "10006": {
+        "font": "regular",
+        "string": "表示",
+    },
+    "10007": {
+        "font": "regular",
+        "string": "タイムやラップなどのテキストを  表示しません",
+    },
+    "10008": {
+        "font": "regular",
+        "string": "タイムやラップなどのテキストを  表示します",
+    },
+    "10009": {
+        "font": "regular",
+        "string": "16:9ビュー表示",
+    },
     "10010": {
         "font": "regular",
         "string": "ふつう",
@@ -22,6 +46,14 @@
     "10011": {
         "font": "regular",
         "string": "ひろい",
+    },
+    "10012": {
+        "font": "regular",
+        "string": "ワイド設定が16:9のときでも　そのままのビュー表示です",
+    },
+    "10013": {
+        "font": "regular",
+        "string": "ワイド設定が16:9のときでも  4:3のひろいビュー表示にします",
     },
     "10014": {
         "font": "regular",
@@ -102,6 +134,26 @@
     "10038": {
         "font": "regular",
         "string": "年月日",
+    },
+    "10057": {
+        "font": "regular",
+        "string": "OFF",
+    },
+    "10058": {
+        "font": "regular",
+        "string": "ON",
+    },
+    "10061": {
+        "font": "regular",
+        "string": "コントローラ入力表示",
+    },
+    "10062": {
+        "font": "regular",
+        "string": "OFF",
+    },
+    "10063": {
+        "font": "regular",
+        "string": "ON",
     },
     "10073": {
         "font": "regular",

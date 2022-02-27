@@ -61,7 +61,7 @@
     },
     "10015": {
         "font": "regular",
-        "string": "Karakters",
+        "string": "Coureurs",
     },
     "10016": {
         "font": "regular",
@@ -125,7 +125,7 @@
     },
     "10031": {
         "font": "regular",
-        "string": "Alles",
+        "string": "Allen",
     },
     "10032": {
         "font": "regular",
@@ -286,5 +286,9 @@
     "10081": {
         "font": "regular",
         "string": "1,5x snelheidsfactor met rem-driften en snel-vallen.",
+    },
+    "10082": {
+        "font": "regular",
+        "string": "MKW-SP Opties",
     },
 }
