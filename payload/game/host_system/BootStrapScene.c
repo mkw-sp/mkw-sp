@@ -31,6 +31,7 @@ static void *loadRel(void *arg) {
     OSModuleHeader *dstHeader = dst;
 
     void *bss = dst + OSRoundUp32B(srcHeader->fixSize);
+    memset(bss, 0, srcHeader->bssSize);
 
     dstHeader->info.sectionInfoOffset += (u32)dst;
     OSSectionInfo *dstSectionInfo = (OSSectionInfo *)dstHeader->info.sectionInfoOffset;
