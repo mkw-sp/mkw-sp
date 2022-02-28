@@ -12,7 +12,8 @@ static_assert(sizeof(OSModuleInfo) == 0x20);
 
 typedef struct {
     OSModuleInfo info;
-    u8 _20[0x28 - 0x20];
+    u32 bssSize;
+    u8 _24[0x28 - 0x24];
     u32 impOffset;
     u32 impSize;
     u8 prologSection;
