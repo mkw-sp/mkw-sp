@@ -219,7 +219,7 @@ static bool Sdi_enable4BitBus(void) {
 }
 
 static bool Sdi_select(void) {
-    return Sdi_sendCommand(CMD_SELECT, 3, RESPONSE_TYPE_R1B, rca, 0, 0, NULL, NULL);
+    return Sdi_sendCommand(CMD_SELECT, 3, RESPONSE_TYPE_R1B, rca << 16, 0, 0, NULL, NULL);
 }
 
 static bool Sdi_deselect(void) {
