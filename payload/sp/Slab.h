@@ -14,7 +14,7 @@
 #define NUM_SLABS(arr, alloc_size) (sizeof(arr) / (alloc_size + 4))
 
 // The SO library does a bunch of small allocations
-#define NET_SLABS_LIST(func) func(32, 32) func(64, 32) func(1024, 16) func(2048, 8)
+#define NET_SLABS_LIST(func) func(32, 8) func(64, 4) func(1024, 4)
 
 typedef struct {
 #define __NetSlabMember(granularity, count) \

@@ -15,9 +15,7 @@ EGG_Heap *spSocketHeap = NULL;
 static OSMutex sSocketMutex;
 
 enum {
-    // Already a bit generous
-    GAME_DWC_SO_ALLOC_SIZE = 634880,
-    NET_HEAP_SIZE = sizeof(NetSlabs) + GAME_DWC_SO_ALLOC_SIZE,
+    NET_HEAP_SIZE = sizeof(NetSlabs) + 5000,
 };
 
 static void *so_alloc(u32 id, s32 size) {
@@ -92,14 +90,6 @@ static void RootScene_initNet(RootScene *scn) {
         int res = SOInit(&cfg);
         SP_LOG("SOInit returned %i", res);
         assert(res == 0 && "SOInit failed");
-    }
-
-    {
-        LOADING_SECTION("Starting Socket library");
-
-        int res = SOStartup();
-        SP_LOG("SOStartup returned %i", res);
-        assert(res == 0 && "Failed to SOStartup");
     }
 
     sNetIsInit = true;
