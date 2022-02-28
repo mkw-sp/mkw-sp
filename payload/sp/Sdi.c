@@ -276,9 +276,7 @@ static bool Sdi_transfer(bool isWrite, u32 firstSector, u32 sectorCount, void *b
         }
     }
 
-    if (!Sdi_deselect()) {
-        return false;
-    }
+    Sdi_deselect();
 
     return true;
 }
@@ -356,9 +354,7 @@ bool SdiStorage_init(FatStorage *fatStorage) {
         return false;
     }
 
-    if (!Sdi_deselect()) {
-        return false;
-    }
+    Sdi_deselect();
 
     fatStorage->diskRead = Sdi_read;
     fatStorage->diskWrite = Sdi_write;
