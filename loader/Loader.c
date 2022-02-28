@@ -2,6 +2,7 @@
 #include "Cache.h"
 #include "Delay.h"
 #include "Di.h"
+#include "Stack.h"
 
 #include <string.h>
 
@@ -32,6 +33,8 @@ void Loader_run(void) {
     }
 
     Di_deinit();
+    
+    RandomizeMainThreadStackPointer();
 
     void *payloadDst;
     const void *payloadSrc;

@@ -315,6 +315,7 @@ code_in_files = {
         os.path.join('loader', 'Loader.c'),
         os.path.join('loader', 'Memcpy.c'),
         os.path.join('loader', 'Memset.c'),
+        os.path.join('loader', 'Stack.c'),
         os.path.join('loader', 'Start.S'),
         os.path.join('loader', 'Strlen.c'),
     ],
