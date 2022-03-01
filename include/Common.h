@@ -58,6 +58,8 @@ typedef double f64;
 #define VIRTUAL_TO_PHYSICAL(ptr) ((u32)(ptr) & 0x7fffffff)
 #define PHYSICAL_TO_VIRTUAL(addr) ((void *)((addr) | 0x80000000))
 
+#define ROUND_UP(n, a) (((u32)(n) + (a)-1) & ~((a)-1))
+
 enum {
     REGION_P = 0x54a9,
     REGION_E = 0x5409,

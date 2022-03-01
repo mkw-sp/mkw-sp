@@ -1,15 +1,32 @@
 #include "Storage.h"
 
 #include "FatStorage.h"
+#include "NetStorage.h"
 
+#include <revolution.h>
+
+// Primary storage: FAT/SD
 static Storage storage;
+// Secondary storage: LAN NetStorage
+static Storage sNetStorage;
 
 static bool Storage_find(void) {
-    if (FatStorage_init(&storage)) {
-        return true;
+    bool result = false;
+
+    if (FatStorage_init(&storage)){
+        result = true;
+    } else {
+        assert(!"Failed to initialize FatStorage");
+    }
+    storage.next = NULL;
+
+    if (NetStorage_init(&sNetStorage)) {
+        storage.next = &sNetStorage;
+        sNetStorage.next = NULL;
+        result = true;
     }
 
-    return false;
+    return result;
 }
 
 bool Storage_init(void) {
@@ -20,21 +37,32 @@ bool Storage_open(File *file, const wchar_t *path, u32 mode) {
     assert(file);
     assert(path);
 
-    return storage.open(file, path, mode);
+    for (Storage *s = &storage; s != NULL; s = s->next) {
+        assert(s->open);
+        if (s->open(file, path, mode)) {
+            file->storage = s;
+            return true;
+        }
+    }
+
+    file->storage = NULL;
+    return false;
 }
 
 bool Storage_close(File *file) {
     assert(file);
+    assert(file->storage);
 
-    return storage.close(file);
+    return file->storage->close(file);
 }
 
 bool Storage_read(File *file, void *dst, u32 size, u32 *readSize) {
     assert(file);
     assert(dst);
     assert(readSize);
+    assert(file->storage);
 
-    return storage.read(file, dst, size, readSize);
+    return file->storage->read(file, dst, size, readSize);
 }
 
 bool Storage_write(File *file, const void *src, u32 size, u32 *writtenSize) {
@@ -42,27 +70,31 @@ bool Storage_write(File *file, const void *src, u32 size, u32 *writtenSize) {
     assert(src);
     assert(writtenSize);
 
-    return storage.write(file, src, size, writtenSize);
+    return file->storage->write(file, src, size, writtenSize);
 }
 
 u64 Storage_size(File *file) {
-    return storage.size(file);
+    assert(file);
+    assert(file->storage);
+
+    return file->storage->size(file);
 }
 
 bool Storage_lseek(File *file, u64 offset) {
     assert(file);
+    assert(file->storage);
 
-    if (!storage.lseek(file, offset)) {
+    if (!file->storage->lseek(file, offset)) {
         return false;
     }
 
-    return storage.tell(file) == offset;
+    return file->storage->tell(file) == offset;
 }
 
 u64 Storage_tell(File *file) {
     assert(file);
 
-    return storage.tell(file);
+    return file->storage->tell(file);
 }
 
 bool Storage_readFile(const wchar_t *path, void *dst, u32 size, u32 *readSize) {
@@ -109,6 +141,7 @@ bool Storage_writeFile(const wchar_t *path, bool overwrite, const void *src, u32
     return Storage_close(&file);
 }
 
+// WARNING: Only operates on the primary storage
 bool Storage_createDir(const wchar_t *path, bool allowNop) {
     assert(path);
 
@@ -119,28 +152,48 @@ bool Storage_openDir(Dir *dir, const wchar_t *path) {
     assert(dir);
     assert(path);
 
-    return storage.openDir(dir, path);
+    for (Storage *s = &storage; s != NULL; s = s->next) {
+        assert(s->openDir);
+        if (s->openDir(dir, path)) {
+            dir->storage = s;
+            return true;
+        }
+    }
+
+    dir->storage = NULL;
+    return false;
 }
 
 bool Storage_readDir(Dir *dir, DirEntry *entry) {
     assert(dir);
+    assert(dir->storage);
     assert(entry);
 
-    return storage.readDir(dir, entry);
+    return dir->storage->readDir(dir, entry);
 }
 
 bool Storage_closeDir(Dir *dir) {
     assert(dir);
+    assert(dir->storage);
 
-    return storage.closeDir(dir);
+    return dir->storage->closeDir(dir);
 }
 
 u32 Storage_type(const wchar_t *path) {
     assert(path);
 
-    return storage.type(path);
+    for (Storage *s = &storage; s != NULL; s = s->next) {
+        assert(s->type);
+        u32 type = s->type(path);
+        if (type != NODE_TYPE_NONE) {
+            return type;
+        }
+    }
+
+    return NODE_TYPE_NONE;
 }
 
+// WARNING: Only operates on the primary storage
 bool Storage_rename(const wchar_t *srcPath, const wchar_t *dstPath) {
     assert(srcPath);
     assert(dstPath);
@@ -148,6 +201,7 @@ bool Storage_rename(const wchar_t *srcPath, const wchar_t *dstPath) {
     return storage.rename(srcPath, dstPath);
 }
 
+// WARNING: Only operates on the primary storage
 bool Storage_delete(const wchar_t *path, bool allowNop) {
     assert(path);
 

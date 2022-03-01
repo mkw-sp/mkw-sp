@@ -3,6 +3,7 @@
 #include <Common.h>
 
 typedef struct {
+    struct Storage* storage;
     u32 fd;
 } Node;
 
@@ -33,7 +34,8 @@ enum {
     MODE_CREATE_ALWAYS = 1 << 3,
 };
 
-typedef struct {
+typedef struct Storage {
+    struct Storage* next;
     bool (*open)(File *file, const wchar_t *path, u32 mode);
     bool (*close)(File *file);
     bool (*read)(File *file, void *dst, u32 size, u32 *readSize);

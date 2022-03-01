@@ -8,10 +8,14 @@
 // Stream buffer
 //
 
+enum {
+    NET_STREAM_CHUNK = 1024,
+};
+
 typedef struct {
     s32 streamedOffset;
     s32 streamedSize;
-    u8 buffer[1024];
+    u8 buffer[NET_STREAM_CHUNK];
 } NetStreamBuf;
 
 void NetStreamBuf_copy(NetStreamBuf *self, const NetStreamBuf *other);
@@ -49,7 +53,7 @@ typedef struct {  // Zero initialized
 static inline void NetFile_create(NetFile *file) {
     memset(file, 0, sizeof(*file));
 }
-bool NetFile_open(NetFile *file, NetStorageClient *client, const char *path);
+bool NetFile_open(NetFile *file, NetStorageClient *client, const wchar_t *path);
 void NetFile_close(NetFile *file);
 u32 NetFile_read(NetFile *file, void *dst, s32 len, s32 offset);
 // Prefetch

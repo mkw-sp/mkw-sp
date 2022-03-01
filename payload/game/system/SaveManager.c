@@ -837,6 +837,8 @@ static void SaveManager_computeCourseSha1(SaveManager *this, u32 courseId) {
         return;
     }
 
+    SP_LOG("Computing course SHA1: %s\n", courseFilenames[courseId]);
+
     u32 fileSize = OSRoundUp32B(fileInfo.length), fileOffset = 0x0;
     YazDecoder yazDecoder;
     YazDecoder_init(&yazDecoder);
@@ -851,6 +853,7 @@ static void SaveManager_computeCourseSha1(SaveManager *this, u32 courseId) {
             srcSize = sizeof(srcBuffer);
         }
         if (DVDRead(&fileInfo, srcBuffer, srcSize, fileOffset) != (s32)srcSize) {
+            SP_LOG("DVDRead failed");
             goto cleanup;
         }
         fileOffset += srcSize;
@@ -861,6 +864,7 @@ static void SaveManager_computeCourseSha1(SaveManager *this, u32 courseId) {
             u32 dstSize = sizeof(dstBuffer);
             yazResult = YazDecoder_feed(&yazDecoder, &src, &dst, &srcSize, &dstSize);
             if (yazResult == YAZ_DECODER_RESULT_ERROR) {
+                SP_LOG("YAZ_DECODER_RESULT_ERROR");
                 goto cleanup;
             }
 
