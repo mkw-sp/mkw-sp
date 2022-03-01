@@ -20,7 +20,7 @@
 #ifdef DEBUG
 #define BUILD_TYPE_STR "Debug " _GIT_HASH
 #else
-#define BUILD_TYPE_STR "0.1.2 (Release) REV " _GIT_HASH
+#define BUILD_TYPE_STR "0.1.3 (Release) REV " _GIT_HASH
 #endif
 
 #ifdef __VERSION__
