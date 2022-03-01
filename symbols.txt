@@ -18,6 +18,7 @@
 0x8001182C vsnprintf
 0x80011938 snprintf
 0x80011b00 qsort
+0x80013040 sscanf
 0x800131e0 strncpy
 0x8001329c strcmp
 0x800133f8 strchr
@@ -102,6 +103,8 @@
 0x8019fc68 OSInit
 0x801a10a4 OSGetMEM1ArenaHi
 0x801a10bc OSGetMEM1ArenaLo
+0x801a10c4 OSGetMEM2ArenaLo
+0x801a10f4 OSSetMEM2ArenaLo
 0x801a1104 OSAllocFromMEM1ArenaLo
 0x801a162c DCFlushRange
 0x801a1710 ICInvalidateRange

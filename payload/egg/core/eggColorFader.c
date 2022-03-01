@@ -75,7 +75,7 @@ static bool post_fadeOut(bool changed) {
     if (!sDolphinUnavailable) {
         Init();
         if (sDolphin >= 0 && changed)
-            PushEmuSpeed(400);  // Unlimited
+            PushEmuSpeed(800);  // Unlimited
     }
 
     return changed;

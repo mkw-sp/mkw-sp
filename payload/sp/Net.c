@@ -1,25 +1,24 @@
-#include "RootScene.h"
+#include "Net.h"
+
 #include <revolution.h>
-#include <sp/Slab.h>
 #include <string.h>
 
-#ifdef LOADING_TIME_DEBUG
-#include <sp/FlameGraph.h>
-#define LOADING_SECTION(s) SIMPLE_PERF_NAMED(s)
-#else
-#define LOADING_SECTION(s)
+#if 0
+#include <egg/core/eggHeap.h>
 #endif
 
+#define LOADING_SECTION(...)
+
 static bool sNetIsInit = false;
+#if 0
 EGG_Heap *spSocketHeap = NULL;
+#endif
 static OSMutex sSocketMutex;
 
-enum {
-    NET_HEAP_SIZE = sizeof(NetSlabs) + 5000,
-};
-
 static void *so_alloc(u32 id, s32 size) {
+#if 0
     assert(spSocketHeap);
+#endif
 
     OSLockMutex(&sSocketMutex);
 
@@ -32,17 +31,26 @@ static void *so_alloc(u32 id, s32 size) {
         }
     }
 
+#if 0
     // Fall back to ExpHeap
-
     SP_LOG("[SO] Alloc ID(%i) %i bytes\n", id, size);
     void *res = EGG_Heap_alloc(size, 32, spSocketHeap);
     SP_LOG("[SO] Alloc @ %p\n", res);
 
+
     OSUnlockMutex(&sSocketMutex);
     return res;
+#endif
+
+    OSUnlockMutex(&sSocketMutex);
+
+    assert(!"Bad alloc");
+    return NULL;
 }
 static void so_free(u32 UNUSED(id), void *ptr, s32 size) {
+#if 0
     assert(spSocketHeap);
+#endif
 
     OSLockMutex(&sSocketMutex);
 
@@ -52,19 +60,23 @@ static void so_free(u32 UNUSED(id), void *ptr, s32 size) {
         return;
     }
 
+    assert(!"Bad alloc");
+#if 0
     OSReport("[SO] Free %i bytes\n", size);
     EGG_Heap_free(ptr, spSocketHeap);
+#endif
     OSUnlockMutex(&sSocketMutex);
 }
 
-static void RootScene_initNet(RootScene *scn) {
+bool Net_init(NetSlabs *netSlabs) {
     if (sNetIsInit)
-        return;
+        return true;
 
     LOADING_SECTION("Initializing network");
 
     OSInitMutex(&sSocketMutex);
 
+#if 0
     {
         LOADING_SECTION("Creating linked-list heap");
 
@@ -72,11 +84,15 @@ static void RootScene_initNet(RootScene *scn) {
                 NET_HEAP_SIZE, scn->heapCollection.heaps[1], /* attr= */ 0);
         assert(spSocketHeap && "Failed to allocate socket heap");
     }
+#endif
 
     {
         LOADING_SECTION("-> Creating slab allocator");
 
+#if 0
         sSlabs = EGG_Heap_alloc(sizeof(NetSlabs), 4, spSocketHeap);
+#endif
+        sSlabs = netSlabs;
         assert(sSlabs && "Failed to create slab allocator");
         memset(sSlabs, 0, sizeof(*sSlabs));
     }
@@ -93,11 +109,11 @@ static void RootScene_initNet(RootScene *scn) {
     }
 
     sNetIsInit = true;
+    return sNetIsInit;
 }
 
-// Memory layout isn't randomized here
-void RootScene_allocateEx(RootScene *scn) {
-    RootScene_initNet(scn);
+bool Net_initFromArena(void) {
+    NetSlabs* slabs = OSAllocFromMEM2ArenaLo(sizeof(NetSlabs), 4);
+    
+    return Net_init(slabs);
 }
-
-PATCH_B(RootScene_allocate + 0xb64, RootScene_allocateEx);

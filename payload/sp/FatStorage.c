@@ -6,6 +6,7 @@
 #include <revolution.h>
 
 #include <string.h>
+#include <revolution.h>
 
 enum {
     MAX_OPEN_FILE_COUNT = 32,
@@ -254,10 +255,12 @@ static bool FatStorage_find(void) {
 
 bool FatStorage_init(Storage *storage) {
     if (!FatStorage_find()) {
+        SP_LOG("[FatStorage] Failed to find");
         return false;
     }
 
     if (f_mount(&fs, L"", 1) != FR_OK) {
+        SP_LOG("[FatStorage] Failed to mount");
         return false;
     }
 
@@ -276,6 +279,7 @@ bool FatStorage_init(Storage *storage) {
     storage->rename = FatStorage_rename;
     storage->delete = FatStorage_delete;
 
+    SP_LOG("[FatStorage] Initialized");
     return true;
 }
 
