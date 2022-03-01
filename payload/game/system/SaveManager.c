@@ -102,6 +102,9 @@ static void SaveManager_initGhostsDir(SaveManager *this, wchar_t *path, u32 offs
 
     DirEntry entry;
     while (Storage_readDir(&dir, &entry)) {
+        if (entry.type == NODE_TYPE_NONE) {
+            break;
+        }
         s32 length = swprintf(path + offset, 2048 - offset, L"/%ls", entry.name);
         if (length < 0) {
             continue;
