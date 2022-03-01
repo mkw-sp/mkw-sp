@@ -25,7 +25,8 @@ BOOL DVDExOpen(const char *fileName, DVDFileInfo *fileInfo) {
     assert(fileInfo);
 
     wchar_t path[wcslen(L"/mkw-sp/disc") + MAX_PATH_LENGTH + 1];
-    swprintf(path, sizeof(path) / sizeof(wchar_t), L"/mkw-sp/disc%s", fileName);
+    const wchar_t *format = fileName[0] == L'/' ? L"/mkw-sp/disc%s" : L"/mkw-sp/disc/%s";
+    swprintf(path, sizeof(path) / sizeof(wchar_t), format, fileName);
 
     if (!Storage_open(&fileInfo->cb.file, path, MODE_READ)) {
         return false;
