@@ -285,6 +285,7 @@ code_in_files = {
         os.path.join('payload', 'nw4r', 'lyt', 'lyt_arcResourceAccessor.S'),
         os.path.join('payload', 'nw4r', 'lyt', 'lyt_layout.S'),
         os.path.join('payload', 'nw4r', 'snd', 'snd_DvdSoundArchive.S'),
+        os.path.join('payload', 'platform', 'wchar.c'),
         os.path.join('payload', 'revolution', 'dvd.S'),
         os.path.join('payload', 'revolution', 'dvd.c'),
         os.path.join('payload', 'revolution', 'dvdex.c'),

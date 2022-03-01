@@ -8,26 +8,53 @@
 #include <wchar.h>
 
 enum {
+    MAX_PREFIX_COUNT = 32,
+    MAX_PREFIX_LENGTH = 32,
     MAX_PATH_LENGTH = 47, // /Race/Competition/CommonObj/CommonObj01.szs is the longest with 44
     MAX_FILE_COUNT = 3072, // About 2000 in the base game
 };
 
+static u32 prefixCount = 0;
+static wchar_t prefixes[MAX_PREFIX_COUNT][MAX_PREFIX_LENGTH + 1];
 static OSMutex mutex;
 static u32 fileCount = 0;
 static char paths[MAX_FILE_COUNT][MAX_PATH_LENGTH + 1];
 
+static void discoverMyStuffPrefixes(void) {
+    Dir dir;
+    if (!Storage_openDir(&dir, L"/mkw-sp")) {
+        return;
+    }
+
+    DirEntry entry;
+    while (Storage_readDir(&dir, &entry)) {
+        if (entry.type == NODE_TYPE_NONE) {
+            break;
+        }
+        if (entry.type != NODE_TYPE_DIR) {
+            continue;
+        }
+        if (wcslen(entry.name) > MAX_PREFIX_LENGTH) {
+            continue;
+        }
+        if (wcsncmp(entry.name, L"My Stuff", wcslen(L"My Stuff"))) {
+            continue;
+        }
+        swprintf(prefixes[prefixCount++], MAX_PREFIX_LENGTH + 1, L"%ls", entry.name);
+        SP_LOG("Added file replacement prefix %ls", entry.name);
+    }
+
+    Storage_closeDir(&dir);
+}
+
 void DVDExInit(void) {
+    swprintf(prefixes[prefixCount++], MAX_PREFIX_LENGTH + 1, L"disc");
+    discoverMyStuffPrefixes();
+
     OSInitMutex(&mutex);
 }
 
-BOOL DVDExOpen(const char *fileName, DVDFileInfo *fileInfo) {
-    assert(fileName);
-    assert(fileInfo);
-
-    wchar_t path[wcslen(L"/mkw-sp/disc") + MAX_PATH_LENGTH + 1];
-    const wchar_t *format = fileName[0] == L'/' ? L"/mkw-sp/disc%s" : L"/mkw-sp/disc/%s";
-    swprintf(path, sizeof(path) / sizeof(wchar_t), format, fileName);
-
+static bool tryOpen(const wchar_t *path, DVDFileInfo *fileInfo) {
     if (!Storage_open(&fileInfo->cb.file, path, MODE_READ)) {
         return false;
     }
@@ -37,8 +64,38 @@ BOOL DVDExOpen(const char *fileName, DVDFileInfo *fileInfo) {
     fileInfo->callback = NULL;
     fileInfo->cb.state = 0;
     fileInfo->cb.command = (u32)-1; // Mark this as a replaced file
-
     return true;
+}
+
+BOOL DVDExOpen(const char *fileName, DVDFileInfo *fileInfo) {
+    assert(fileName);
+    assert(fileInfo);
+
+    if (fileName[0] == '/') {
+        fileName++;
+    }
+    for (u32 i = prefixCount; i --> 0;) {
+        wchar_t path[MAX_PREFIX_LENGTH + MAX_PATH_LENGTH + 1];
+        swprintf(path, sizeof(path) / sizeof(wchar_t), L"/mkw-sp/%ls/%s", prefixes[i], fileName);
+        if (tryOpen(path, fileInfo)) {
+            return true;
+        }
+        const char *bare = fileName;
+        for (const char *s = fileName; *s != '\0'; s++) {
+            if (*s == '/') {
+                bare = s + 1;
+            }
+        }
+        if (bare == fileName) {
+            continue;
+        }
+        swprintf(path, sizeof(path) / sizeof(wchar_t), L"/mkw-sp/%ls/%s", prefixes[i], bare);
+        if (tryOpen(path, fileInfo)) {
+            return true;
+        }
+    }
+
+    return false;
 }
 
 s32 DVDExReadPrio(DVDFileInfo *fileInfo, void *addr, s32 length, s32 offset, s32 UNUSED(prio)) {
@@ -55,7 +112,14 @@ s32 DVDExReadPrio(DVDFileInfo *fileInfo, void *addr, s32 length, s32 offset, s32
     }
 
     u32 readLength;
-    return Storage_read(&fileInfo->cb.file, addr, length, &readLength) ? (s32)readLength : -1;
+    if (!Storage_read(&fileInfo->cb.file, addr, length, &readLength)) {
+        return -1;
+    }
+
+    if (Storage_tell(&fileInfo->cb.file) == Storage_size(&fileInfo->cb.file)) {
+        readLength = OSRoundUp32B(readLength);
+    }
+    return (s32)readLength;
 }
 
 BOOL DVDExReadAsyncPrio(DVDFileInfo *fileInfo, void *addr, s32 length, s32 offset,
