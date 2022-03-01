@@ -2,6 +2,7 @@
 
 #include "../system/Memory.h"
 #include "../../sp/Storage.h"
+#include <sp/Net.h>
 
 #include <revolution.h>
 
@@ -27,6 +28,12 @@ __attribute__((section("first"))) void start(void) {
     ProtectRangeModule(OS_PROTECT_CHANNEL_1, Dol_getInitSectionStart(), Dol_getRodataSectionEnd(), OS_PROTECT_PERMISSION_READ);
     ProtectRangeModule(OS_PROTECT_CHANNEL_2, Dol_getSdata2SectionStart(), Dol_getSbss2SectionEnd(), OS_PROTECT_PERMISSION_READ);
 
-    assert(Storage_init());
+    // Start net
+    bool netWasInit = Net_initFromArena();
+    assert(netWasInit);
+
+    bool storageWasInit = Storage_init();
+    assert(storageWasInit);
+
     DVDExInit();
 }

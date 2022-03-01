@@ -1,5 +1,6 @@
 #include "NetStorageClient.h"
 #include <sp/ScopeLock.h>
+#include <wchar.h>
 
 enum kNetPacket {
     kNetPacket_Open,
@@ -24,7 +25,7 @@ typedef struct {
 
 typedef struct {
     NetRequest;
-    char path[64];
+    wchar_t path[64];
 } NetRequest_Open;
 
 typedef struct {
@@ -36,6 +37,9 @@ static int sIdCounter = 0;
 static int AllocID() {
     return sIdCounter++;
 }
+
+#define NET_DEBUG(...)
+// #define NET_DEBUG SP_LOG
 
 void NetStreamBuf_copy(NetStreamBuf *self, const NetStreamBuf *other) {
     static_assert(sizeof(*self) == sizeof(*other));
@@ -58,7 +62,6 @@ bool NetStreamBuf_contains(NetStreamBuf *buf, s32 offset, s32 len) {
 void NetStorageClient_create(NetStorageClient *client) {
     memset(client, 0, sizeof(*client));
     TcpSocket_create(&client->sock);
-    TcpSocket_init(&client->sock);
 }
 
 void NetStorageClient_destroy(NetStorageClient *client) {
@@ -67,6 +70,7 @@ void NetStorageClient_destroy(NetStorageClient *client) {
 
 bool NetStorageClient_connect(
         NetStorageClient *client, u8 ipa, u8 ipb, u8 ipc, u8 ipd, u32 port) {
+    TcpSocket_init(&client->sock);
     return TcpSocket_tryConnectIpv4(&client->sock, ipa, ipb, ipc, ipd, port);
 }
 void NetStorageClient_disconnect(NetStorageClient *client) {
@@ -74,7 +78,7 @@ void NetStorageClient_disconnect(NetStorageClient *client) {
     TcpSocket_disconnect(&client->sock);
 }
 
-bool NetFile_open(NetFile *file, NetStorageClient *client, const char *path) {
+bool NetFile_open(NetFile *file, NetStorageClient *client, const wchar_t *path) {
     assert(file);
     assert(client);
     assert(!file->isOpen && "File is already open");
@@ -85,9 +89,9 @@ bool NetFile_open(NetFile *file, NetStorageClient *client, const char *path) {
     file->client = client;
     file->id = AllocID();
 
-    u32 path_len = strlen(path);
+    u32 path_len = wcslen(path);
     assert(path_len < 64);
-    SP_LOG("[NetFile] Opening id=%u,path=%s, pathlen=%u", file->id, path, path_len);
+    NET_DEBUG("[NetFile] Opening id=%u, path=%ls, pathlen=%u", file->id, path, path_len);
 
     u8 request_buf_size = sizeof(NetRequest_Open);
     NetRequest_Open req;
@@ -96,7 +100,7 @@ bool NetFile_open(NetFile *file, NetStorageClient *client, const char *path) {
     req.packet_type = kNetPacket_Open;
     req.file_id = file->id;
     memset(req.path, 0, sizeof(req.path));
-    memcpy(req.path, path, MIN(path_len, sizeof(req.path) - 1));
+    memcpy(req.path, path, sizeof(wchar_t) * MIN(path_len, ARRAY_SIZE(req.path) - 1));
     if (!TcpSocket_sendBytes(&client->sock, &req, sizeof(req))) {
         SP_LOG("[NetFile] Failed to send Open request");
         return false;
@@ -109,7 +113,7 @@ bool NetFile_open(NetFile *file, NetStorageClient *client, const char *path) {
         return false;
     }
 
-    SP_LOG("[NetFile] -> Opened id=%u,filesize=%u", file->id, response.file_size);
+    NET_DEBUG("[NetFile] -> Opened id=%u,filesize=%u", file->id, response.file_size);
 
     if (response.file_size == 0) {
         return false;
@@ -139,7 +143,7 @@ bool NetFile_stream(NetFile *file, u32 pos, u32 bytes) {
     file->buffer.streamedOffset = pos;
     file->buffer.streamedSize = bytes;
 
-    SP_LOG("[NetFile] Streaming id=%u,pos=%u,len=%u", file->id, pos, bytes);
+    NET_DEBUG("[NetFile] Streaming id=%u,pos=%u,len=%u", file->id, pos, bytes);
 
     NetRequest_Read req = (NetRequest_Read){
         .packet_len = sizeof(NetRequest_Read),
@@ -159,7 +163,7 @@ bool NetFile_stream(NetFile *file, u32 pos, u32 bytes) {
         return false;
     }
 
-    SP_LOG("[NetFile] -> Result=%s", file->buffer.buffer);
+    // NET_DEBUG("[NetFile] -> Result=%s", file->buffer.buffer);
 
     return true;
 }
@@ -171,13 +175,13 @@ u32 NetFile_read(NetFile *file, void *dst, s32 len, s32 offset) {
     assert(len >= 32);
     assert(offset >= 0);
 
-    SP_LOG("[NetFile] Read id=%i,dst=%p,len=%i,offset=%i", (signed)file->id, dst,
+    NET_DEBUG("[NetFile] Read id=%i,dst=%p,len=%i,offset=%i", (signed)file->id, dst,
             (signed)len, (signed)offset);
 
-    for (s32 i = offset; i < len; i += 1024) {
+    for (s32 i = offset; i < offset + len; i += NET_STREAM_CHUNK) {
         // Usually 1024, unless last read
-        s32 current_stride = MIN(file->fileSize - i, 1024);
-        SP_LOG("current_stride=%u", (signed)current_stride);
+        s32 current_stride = MIN(file->fileSize - i, NET_STREAM_CHUNK);
+        NET_DEBUG("current_stride=%u", (signed)current_stride);
 
         // TODO: Double buffer
         // TODO: If seek back 4, this rereads 1024 (uncommon)
@@ -191,8 +195,11 @@ u32 NetFile_read(NetFile *file, void *dst, s32 len, s32 offset) {
             }
         }
         u32 streambuf_offset = i - file->buffer.streamedOffset;
-        memcpy((u8 *)dst + i, file->buffer.buffer + streambuf_offset,
-                MIN(current_stride, len - i));
+
+        NET_DEBUG("COPY to=%p, from=%p, len=%u", (u8 *)dst + i - offset,
+                file->buffer.buffer + streambuf_offset, MIN(current_stride, len - i));
+        memcpy((u8 *)dst + i - offset, file->buffer.buffer + streambuf_offset,
+                MIN(current_stride, offset + len - i));
     }
 
     return len;

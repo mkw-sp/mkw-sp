@@ -7,15 +7,7 @@
 #include <string.h>
 
 #include <egg/core/eggSystem.h>
-
-static inline void Util_toUtf16(wchar_t *dst, u32 dst_max, const char *src, u32 src_max) {
-    const u32 min_bound = MIN(dst_max, src_max);
-    const u32 len = strnlen(src, min_bound);
-
-    for (u32 i = 0; i < len; ++i) {
-        dst[i] = (wchar_t)src[i];
-    }
-}
+#include <sp/WideUtil.h>
 
 // Referenced by SceneCreatorDyanmic.S
 bool sBugCheckSet = false;
