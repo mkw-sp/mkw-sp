@@ -14,18 +14,26 @@ PATCH_B_START(KartParam_compute, 0x1f0)
     b KartParam_compute + 0x1f4
 PATCH_B_END(KartParam_compute, 0x1f0)
 
-PATCH_REPLACE_START(KartParam_compute, 0x210)
-    fmadds f0, f1, f2, f0
-PATCH_REPLACE_END(KartParam_compute, 0x210)
+PATCH_B_START(KartParam_compute, 0x210)
+    fmuls f1, f1, f2
+    fadds f0, f1, f0
+    b KartParam_compute + 0x214
+PATCH_B_END(KartParam_compute, 0x210)
 
-PATCH_REPLACE_START(KartParam_compute, 0x220)
-    fmadds f0, f1, f2, f0
-PATCH_REPLACE_END(KartParam_compute, 0x220)
+PATCH_B_START(KartParam_compute, 0x220)
+    fmuls f1, f1, f2
+    fadds f0, f1, f0
+    b KartParam_compute + 0x224
+PATCH_B_END(KartParam_compute, 0x220)
 
-PATCH_REPLACE_START(KartParam_compute, 0x230)
-    fmadds f0, f1, f2, f0
-PATCH_REPLACE_END(KartParam_compute, 0x230)
+PATCH_B_START(KartParam_compute, 0x230)
+    fmuls f1, f1, f2
+    fadds f0, f1, f0
+    b KartParam_compute + 0x234
+PATCH_B_END(KartParam_compute, 0x230)
 
-PATCH_REPLACE_START(KartParam_compute, 0x240)
-    fmadds f0, f1, f2, f0
-PATCH_REPLACE_END(KartParam_compute, 0x240)
+PATCH_B_START(KartParam_compute, 0x240)
+    fmuls f1, f1, f2
+    fadds f0, f1, f0
+    b KartParam_compute + 0x244
+PATCH_B_END(KartParam_compute, 0x240)
