@@ -41,7 +41,7 @@ typedef struct {
 static_assert(sizeof(InputsHeader) == 0x8);
 
 enum {
-    SP_FOOTER_VERSION = 1,
+    SP_FOOTER_VERSION = 2,
 };
 
 SpFooter s_spFooter;
@@ -82,6 +82,7 @@ void SpFooter_onShroom(u32 lap) {
 static bool SpFooter_checkSize(const SpFooter *this, u32 size) {
     switch (this->version) {
     case 0:
+    case 1:
         return size == 0x48;
     case SP_FOOTER_VERSION:
         return size == sizeof(SpFooter);
