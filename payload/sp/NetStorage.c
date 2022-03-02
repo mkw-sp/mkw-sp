@@ -105,6 +105,9 @@ static bool NetStorage_write(File *UNUSED(file), const void *UNUSED(src),
         u32 UNUSED(size), u32 *UNUSED(writtenSize)) {
     return false;
 }
+static bool NetStorage_sync(File *UNUSED(file)) {
+    return false;
+}
 static u64 NetStorage_size(File *file) {
     NetStorageFile *net_file = GetNetFileByFd(file->fd);
     assert(net_file);
@@ -201,6 +204,7 @@ bool NetStorage_init(Storage *storage) {
     storage->close = NetStorage_close;
     storage->read = NetStorage_read;
     storage->write = NetStorage_write;
+    storage->sync = NetStorage_sync;
     storage->size = NetStorage_size;
     storage->lseek = NetStorage_lseek;
     storage->tell = NetStorage_tell;

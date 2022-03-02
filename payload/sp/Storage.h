@@ -40,6 +40,7 @@ typedef struct Storage {
     bool (*close)(File *file);
     bool (*read)(File *file, void *dst, u32 size, u32 *readSize);
     bool (*write)(File *file, const void *src, u32 size, u32 *writtenSize);
+    bool (*sync)(File *file);
     u64 (*size)(File *file);
     bool (*lseek)(File *file, u64 offset);
     u64 (*tell)(File *file);
@@ -61,6 +62,8 @@ bool Storage_close(File *file);
 bool Storage_read(File *file, void *dst, u32 size, u32 *readSize);
 
 bool Storage_write(File *file, const void *src, u32 size, u32 *writtenSize);
+
+bool Storage_sync(File *file);
 
 u64 Storage_size(File *file);
 
