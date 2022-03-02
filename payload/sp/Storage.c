@@ -1,9 +1,8 @@
 #include "Storage.h"
 
 #include "FatStorage.h"
+#include "LogFile.h"
 #include "NetStorage.h"
-
-#include <revolution.h>
 
 // Primary storage: FAT/SD
 static Storage storage;
@@ -34,6 +33,8 @@ bool Storage_init(void) {
 }
 
 bool Storage_open(File *file, const wchar_t *path, u32 mode) {
+    LOG_FILE_DISABLE();
+
     assert(file);
     assert(path);
 
@@ -50,6 +51,8 @@ bool Storage_open(File *file, const wchar_t *path, u32 mode) {
 }
 
 bool Storage_close(File *file) {
+    LOG_FILE_DISABLE();
+
     assert(file);
     assert(file->storage);
 
@@ -57,6 +60,8 @@ bool Storage_close(File *file) {
 }
 
 bool Storage_read(File *file, void *dst, u32 size, u32 *readSize) {
+    LOG_FILE_DISABLE();
+
     assert(file);
     assert(dst);
     assert(readSize);
@@ -66,6 +71,8 @@ bool Storage_read(File *file, void *dst, u32 size, u32 *readSize) {
 }
 
 bool Storage_write(File *file, const void *src, u32 size, u32 *writtenSize) {
+    LOG_FILE_DISABLE();
+
     assert(file);
     assert(src);
     assert(writtenSize);
@@ -73,7 +80,17 @@ bool Storage_write(File *file, const void *src, u32 size, u32 *writtenSize) {
     return file->storage->write(file, src, size, writtenSize);
 }
 
+bool Storage_sync(File *file) {
+    LOG_FILE_DISABLE();
+
+    assert(file);
+
+    return file->storage->sync(file);
+}
+
 u64 Storage_size(File *file) {
+    LOG_FILE_DISABLE();
+
     assert(file);
     assert(file->storage);
 
@@ -81,6 +98,8 @@ u64 Storage_size(File *file) {
 }
 
 bool Storage_lseek(File *file, u64 offset) {
+    LOG_FILE_DISABLE();
+
     assert(file);
     assert(file->storage);
 
@@ -92,6 +111,8 @@ bool Storage_lseek(File *file, u64 offset) {
 }
 
 u64 Storage_tell(File *file) {
+    LOG_FILE_DISABLE();
+
     assert(file);
 
     return file->storage->tell(file);
@@ -143,12 +164,16 @@ bool Storage_writeFile(const wchar_t *path, bool overwrite, const void *src, u32
 
 // WARNING: Only operates on the primary storage
 bool Storage_createDir(const wchar_t *path, bool allowNop) {
+    LOG_FILE_DISABLE();
+
     assert(path);
 
     return storage.createDir(path, allowNop);
 }
 
 bool Storage_openDir(Dir *dir, const wchar_t *path) {
+    LOG_FILE_DISABLE();
+
     assert(dir);
     assert(path);
 
@@ -165,6 +190,8 @@ bool Storage_openDir(Dir *dir, const wchar_t *path) {
 }
 
 bool Storage_readDir(Dir *dir, DirEntry *entry) {
+    LOG_FILE_DISABLE();
+
     assert(dir);
     assert(dir->storage);
     assert(entry);
@@ -173,6 +200,8 @@ bool Storage_readDir(Dir *dir, DirEntry *entry) {
 }
 
 bool Storage_closeDir(Dir *dir) {
+    LOG_FILE_DISABLE();
+
     assert(dir);
     assert(dir->storage);
 
@@ -180,6 +209,8 @@ bool Storage_closeDir(Dir *dir) {
 }
 
 u32 Storage_type(const wchar_t *path) {
+    LOG_FILE_DISABLE();
+
     assert(path);
 
     for (Storage *s = &storage; s != NULL; s = s->next) {
@@ -195,6 +226,8 @@ u32 Storage_type(const wchar_t *path) {
 
 // WARNING: Only operates on the primary storage
 bool Storage_rename(const wchar_t *srcPath, const wchar_t *dstPath) {
+    LOG_FILE_DISABLE();
+
     assert(srcPath);
     assert(dstPath);
 
@@ -203,6 +236,8 @@ bool Storage_rename(const wchar_t *srcPath, const wchar_t *dstPath) {
 
 // WARNING: Only operates on the primary storage
 bool Storage_delete(const wchar_t *path, bool allowNop) {
+    LOG_FILE_DISABLE();
+
     assert(path);
 
     return storage.delete(path, allowNop);

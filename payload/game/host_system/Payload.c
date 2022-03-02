@@ -1,6 +1,7 @@
 #include "Patcher.h"
 
 #include "../system/Memory.h"
+#include "../../sp/LogFile.h"
 #include "../../sp/Storage.h"
 #include <sp/Net.h>
 
@@ -34,6 +35,8 @@ __attribute__((section("first"))) void start(void) {
 
     bool storageWasInit = Storage_init();
     assert(storageWasInit);
+
+    LogFile_init();
 
     DVDExInit();
 }

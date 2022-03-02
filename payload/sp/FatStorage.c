@@ -96,6 +96,18 @@ static bool FatStorage_write(File *file, const void *src, u32 size, u32 *written
     return result;
 }
 
+static bool FatStorage_sync(File *file) {
+    assert(file->fd < MAX_OPEN_FILE_COUNT);
+
+    OSLockMutex(&mutex);
+
+    bool result = f_sync(&files[file->fd]) == FR_OK;
+
+    OSUnlockMutex(&mutex);
+
+    return result;
+}
+
 static u64 FatStorage_size(File *file) {
     assert(file->fd < MAX_OPEN_FILE_COUNT);
 
@@ -268,6 +280,7 @@ bool FatStorage_init(Storage *storage) {
     storage->close = FatStorage_close;
     storage->read = FatStorage_read;
     storage->write = FatStorage_write;
+    storage->sync = FatStorage_sync;
     storage->size = FatStorage_size;
     storage->lseek = FatStorage_lseek;
     storage->tell = FatStorage_tell;
