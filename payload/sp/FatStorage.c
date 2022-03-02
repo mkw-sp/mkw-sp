@@ -13,12 +13,12 @@ enum {
     MAX_OPEN_DIR_COUNT = 32,
 };
 
-FATFS fs;
+static FATFS fs;
 static OSMutex mutex;
-u32 openFiles = 0;
-FIL files[MAX_OPEN_FILE_COUNT];
-u32 openDirs = 0;
-DIR dirs[MAX_OPEN_DIR_COUNT];
+static u32 openFiles = 0;
+static FIL files[MAX_OPEN_FILE_COUNT];
+static u32 openDirs = 0;
+static DIR dirs[MAX_OPEN_DIR_COUNT];
 static FatStorage fatStorage;
 
 static bool FatStorage_open(File *file, const wchar_t *path, u32 mode) {
