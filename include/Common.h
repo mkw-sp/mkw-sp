@@ -50,9 +50,15 @@ typedef double f64;
     static_assert(false, "Please include revolution.h to use SP_LOG")
 #endif
 
-#define SP_LOG(m, ...)                                                          \
-    RVL_OS_NEEDS_IMPORT;                                                        \
-    OSReport("[" __FILE__ ":" SP_TOSTRING2(__LINE__) "] " m "\n" __VA_OPT__(, ) \
+// clang: Merged May 16 2019, Clang 9
+// GCC:   Merged May 20 2021, GCC 12 (likely to release April 2022)
+#ifndef __FILE_NAME__
+#define __FILE_NAME__ __FILE__
+#endif
+
+#define SP_LOG(m, ...)                                                               \
+    RVL_OS_NEEDS_IMPORT;                                                             \
+    OSReport("[" __FILE_NAME__ ":" SP_TOSTRING2(__LINE__) "] " m "\n" __VA_OPT__(, ) \
                     __VA_ARGS__)
 
 #define VIRTUAL_TO_PHYSICAL(ptr) ((u32)(ptr) & 0x7fffffff)
