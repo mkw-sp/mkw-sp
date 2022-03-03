@@ -3,10 +3,12 @@
 #include "MessageWindowPage.h"
 #include "SectionManager.h"
 
+#include <sp/Host.h>
+
 static bool geckoWarningWasShown = false;
 
 void TitlePage_processGeckoWarning(TitlePage *this) {
-    if (*(u8 *)0x800018A8 != 0x94) {
+    if (!Host_IsGeckoEnabled()) {
         return;
     }
 

@@ -4,21 +4,19 @@
 #include <revolution.h>
 #include <revolution/ios.h>
 #include <sp/IOSDolphin.h>
+#include <sp/Version.h>
 #include <string.h>
 
+static bool sHostIsInit = false;
+static HostPlatform sPlatform = HOST_UNKNOWN;
 static char sDolphinTag[64] = "Not dolphin";
 
-const char *GetDolphinTag() {
-    return sDolphinTag;
-}
+void Host_Init(void) {
+    if (sHostIsInit)
+        return;
 
-static HostPlatform sPlatform = HOST_UNKNOWN;
+    sHostIsInit = true;
 
-HostPlatform getHostPlatform() {
-    return sPlatform;
-}
-
-void InitHost() {
     {
         IOSDolphin iosDolphin = IOSDolphin_Open();
         if (iosDolphin >= 0) {
@@ -56,10 +54,80 @@ void InitHost() {
     case 0:
         sPlatform = HOST_REVOLUTION;
         return;
-    case 0xDEAD:
-        sPlatform = HOST_TEGRA;
-        return;
     }
 
     sPlatform = HOST_UNKNOWN;
+}
+
+const char *Host_GetDolphinTag(void) {
+    Host_Init();
+    return sDolphinTag;
+}
+
+HostPlatform Host_GetPlatform(void) {
+    Host_Init();
+    return sPlatform;
+}
+
+bool Host_IsGeckoEnabled(void) {
+    return *(volatile u8 *)0x800018A8 == 0x94;
+}
+
+const char *Host_GetRegionString(void) {
+    switch (REGION) {
+    case REGION_P:
+        return "PAL";
+    case REGION_E:
+        return "NTSC-U";
+    case REGION_J:
+        return "NTSC-J";
+    case REGION_K:
+        return "NTSC-K";
+    default:
+        return "?";
+    }
+}
+
+void Host_PrintMkwSpInfo(PrintfFunction *func) {
+    Host_Init();
+
+    const char *region = Host_GetRegionString();
+
+    (*func)("--------------------------------\n");
+    (*func)("MKW-SP v" BUILD_TYPE_STR "\nRegion: %s, System: ", region);
+
+    switch (Host_GetPlatform()) {
+    case HOST_REVOLUTION:
+        (*func)("Wii");
+        break;
+    case HOST_CAFE:
+        (*func)("WiiU");
+        break;
+    case HOST_DOLPHIN_UNKNOWN:
+        (*func)("Dolphin (Unsupported)");
+        break;
+    case HOST_DOLPHIN:
+        (*func)("Dolphin %s", Host_GetDolphinTag());
+        break;
+    case HOST_UNKNOWN:
+        (*func)("Unknown host");
+        break;
+    default:
+        (*func)("Invalid host");
+        break;
+    }
+
+    if (Host_IsGeckoEnabled()) {
+        (*func)("*");
+    }
+
+    (*func)("\n");
+
+    (*func)("Built " __DATE__ " at " __TIME__ ", " CC_STR "\n");
+
+    if (_HAS_GIT_CHANGES) {
+        (*func)("Changed files: " _GIT_CHANGED_FILES "\n");
+    }
+
+    (*func)("--------------------------------\n");
 }

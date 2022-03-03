@@ -1,9 +1,11 @@
 #include "Patcher.h"
 
 #include "../system/Memory.h"
-#include "../../sp/LogFile.h"
-#include "../../sp/Storage.h"
+
+#include <sp/Host.h>
+#include <sp/LogFile.h>
 #include <sp/Net.h>
+#include <sp/Storage.h>
 
 #include <revolution.h>
 
@@ -29,7 +31,8 @@ __attribute__((section("first"))) void start(void) {
     ProtectRangeModule(OS_PROTECT_CHANNEL_1, Dol_getInitSectionStart(), Dol_getRodataSectionEnd(), OS_PROTECT_PERMISSION_READ);
     ProtectRangeModule(OS_PROTECT_CHANNEL_2, Dol_getSdata2SectionStart(), Dol_getSbss2SectionEnd(), OS_PROTECT_PERMISSION_READ);
 
-    // Start net
+    Host_Init();
+
     bool netWasInit = Net_initFromArena();
     assert(netWasInit);
 
@@ -37,6 +40,15 @@ __attribute__((section("first"))) void start(void) {
     assert(storageWasInit);
 
     LogFile_init();
+
+    // Example output:
+    //     --------------------------------
+    //     MKW-SP v0.1.4 (Release) REV 15610c0
+    //     Region: PAL, System: Dolphin 5.0-15993
+    //     Built Mar  2 2022 at 23:22:40, GCC 10.2.0
+    //     Changed files: 'configure.py, Payload.c, dbException.c, Host.c, Host.h, '
+    //     --------------------------------
+    Host_PrintMkwSpInfo(OSReport);
 
     DVDExInit();
 }
