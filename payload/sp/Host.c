@@ -125,9 +125,5 @@ void Host_PrintMkwSpInfo(PrintfFunction *func) {
 
     (*func)("Built " __DATE__ " at " __TIME__ ", " CC_STR "\n");
 
-    if (_HAS_GIT_CHANGES) {
-        (*func)("Changed files: " _GIT_CHANGED_FILES "\n");
-    }
-
     (*func)("--------------------------------\n");
 }

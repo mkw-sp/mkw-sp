@@ -14,15 +14,6 @@ except ModuleNotFoundError:
 import subprocess
 
 
-def get_git_changed_files():
-    # git update-index --refresh
-    with os.popen('git update-index --refresh') as p:
-        return p.read()
-
-def changed_files():
-    s = get_git_changed_files()
-    return [os.path.basename(x).replace(': needs update', '') for x in s.split('\n')]
-
 # https://stackoverflow.com/questions/14989858/get-the-current-git-hash-in-a-python-script/14989911#14989911
 def get_git_revision_hash() -> str:
     return subprocess.check_output(['git', 'rev-parse', 'HEAD']).decode('ascii').strip()
@@ -66,7 +57,6 @@ cflags = [
     '-Wextra',
     '-Wno-packed-bitfield-compat',
     f'-DGIT_HASH={get_git_revision_short_hash()}',
-    f'-DGIT_CHANGED_FILES=\'"{", ".join(changed_files())}"\'',
 ]
 cppflags = [
     '-fms-extensions',
@@ -83,7 +73,6 @@ cppflags = [
     '-Wextra',
     '-Wno-packed-bitfield-compat',
     f'-DGIT_HASH="{get_git_revision_short_hash()}"',
-    f'-DGIT_CHANGED_FILES=\'"{", ".join(changed_files())}"\'',
     
     '-fno-exceptions',
     '-fno-unwind-tables',

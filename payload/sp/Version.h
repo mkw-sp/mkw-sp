@@ -9,14 +9,6 @@
 #define _GIT_HASH S2(GIT_HASH)
 #endif
 
-#ifdef GIT_CHANGED_FILES
-#define _GIT_CHANGED_FILES S2(GIT_CHANGED_FILES)
-#else
-#define _GIT_CHANGED_FILES ""
-#endif
-
-#define _HAS_GIT_CHANGES (_GIT_CHANGED_FILES[0] != '\0')
-
 #ifdef DEBUG
 #define BUILD_TYPE_STR "Debug " _GIT_HASH
 #else
