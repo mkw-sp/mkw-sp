@@ -43,6 +43,5 @@ typedef void PrintfFunction(const char *, ...);
 //     MKW-SP v0.1.4 (Release) REV 15610c0
 //     Region: PAL, System: Dolphin 5.0-15993
 //     Built Mar  2 2022 at 23:22:40, GCC 10.2.0
-//     Changed files: 'configure.py, Payload.c, dbException.c, Host.c, Host.h, '
 //     --------------------------------
 void Host_PrintMkwSpInfo(PrintfFunction *func);
