@@ -280,6 +280,8 @@ code_in_files = {
         os.path.join('payload', 'revolution', 'dvdex.c'),
         os.path.join('payload', 'revolution', 'nand.c'),
         os.path.join('payload', 'revolution', 'os', 'OSError.c'),
+        os.path.join('payload', 'revolution', 'os', 'OSThread.S'),
+        os.path.join('payload', 'revolution', 'os', 'OSThread.c'),
         os.path.join('payload', 'sp', 'Fatal.c'),
         os.path.join('payload', 'sp', 'FatStorage.c'),
         os.path.join('payload', 'sp', 'FlameGraph.c'),

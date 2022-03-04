@@ -1,9 +1,8 @@
 #include "Cache.h"
-#include "Stack.h"
+
+#include <sp/Stack.h>
 
 #define MAIN_THREAD_STACK_BITS_ENTROPY 11
-
-static inline u32* RandomizeStackPointer(u32* stack_pointer, u32 bits_entropy);
 
 void RandomizeMainThreadStackPointer(void)
 {
@@ -22,9 +21,4 @@ void RandomizeMainThreadStackPointer(void)
     DCFlushRange(ori, sizeof(u16));
     ICInvalidateRange(lis, sizeof(u16));
     ICInvalidateRange(ori, sizeof(u16));
-}
-
-static inline u32* RandomizeStackPointer(u32* stack_pointer, u32 bits_entropy)
-{
-    return (u32*)((((u32)stack_pointer - (__builtin_ppc_mftb() & ((1 << bits_entropy) - 1))) + 0x7) & ~0x7);
 }
