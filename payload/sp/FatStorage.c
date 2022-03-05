@@ -72,24 +72,30 @@ static bool FatStorage_close(File *file) {
     return result;
 }
 
-static bool FatStorage_read(File *file, void *dst, u32 size, u32 *readSize) {
+static bool FatStorage_read(File *file, void *dst, u32 size, u32 offset, u32 *readSize) {
     assert(file->fd < MAX_OPEN_FILE_COUNT);
 
     OSLockMutex(&mutex);
 
-    bool result = f_read(&files[file->fd], dst, size, (UINT *)readSize) == FR_OK;
+    bool result = f_lseek(&files[file->fd], offset) == FR_OK;
+    if (result) {
+        result = f_read(&files[file->fd], dst, size, (UINT *)readSize) == FR_OK;
+    }
 
     OSUnlockMutex(&mutex);
 
     return result;
 }
 
-static bool FatStorage_write(File *file, const void *src, u32 size, u32 *writtenSize) {
+static bool FatStorage_write(File *file, const void *src, u32 size, u32 offset, u32 *writtenSize) {
     assert(file->fd < MAX_OPEN_FILE_COUNT);
 
     OSLockMutex(&mutex);
 
-    bool result = f_write(&files[file->fd], src, size, (UINT *)writtenSize) == FR_OK;
+    bool result = f_lseek(&files[file->fd], offset) == FR_OK;
+    if (result) {
+        result = f_write(&files[file->fd], src, size, (UINT *)writtenSize) == FR_OK;
+    }
 
     OSUnlockMutex(&mutex);
 
@@ -118,30 +124,6 @@ static u64 FatStorage_size(File *file) {
     OSUnlockMutex(&mutex);
 
     return size;
-}
-
-static bool FatStorage_lseek(File *file, u64 offset) {
-    assert(file->fd < MAX_OPEN_FILE_COUNT);
-
-    OSLockMutex(&mutex);
-
-    bool result = f_lseek(&files[file->fd], offset) == FR_OK;
-
-    OSUnlockMutex(&mutex);
-
-    return result;
-}
-
-static u64 FatStorage_tell(File *file) {
-    assert(file->fd < MAX_OPEN_FILE_COUNT);
-
-    OSLockMutex(&mutex);
-
-    u64 offset = f_tell(&files[file->fd]);
-
-    OSUnlockMutex(&mutex);
-
-    return offset;
 }
 
 static bool FatStorage_createDir(const wchar_t *path, bool allowNop) {
@@ -282,8 +264,6 @@ bool FatStorage_init(Storage *storage) {
     storage->write = FatStorage_write;
     storage->sync = FatStorage_sync;
     storage->size = FatStorage_size;
-    storage->lseek = FatStorage_lseek;
-    storage->tell = FatStorage_tell;
     storage->createDir = FatStorage_createDir;
     storage->openDir = FatStorage_openDir;
     storage->readDir = FatStorage_readDir;
