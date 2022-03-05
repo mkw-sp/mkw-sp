@@ -13,13 +13,13 @@ enum {
     MAX_OPEN_DIR_COUNT = 32,
 };
 
-static FATFS fs;
 static OSMutex mutex;
+static FatStorage fatStorage;
+static FATFS fs;
 static u32 openFiles = 0;
 static FIL files[MAX_OPEN_FILE_COUNT];
 static u32 openDirs = 0;
 static DIR dirs[MAX_OPEN_DIR_COUNT];
-static FatStorage fatStorage;
 
 static bool FatStorage_open(File *file, const wchar_t *path, u32 mode) {
     SP_SCOPED_MUTEX_LOCK(mutex);
@@ -202,6 +202,8 @@ static bool FatStorage_find(void) {
 }
 
 bool FatStorage_init(Storage *storage) {
+    OSInitMutex(&mutex);
+
     if (!FatStorage_find()) {
         SP_LOG("[FatStorage] Failed to find");
         return false;
