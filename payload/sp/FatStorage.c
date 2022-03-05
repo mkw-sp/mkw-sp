@@ -1,12 +1,12 @@
 #include "FatStorage.h"
 
+#include "ScopeLock.h"
 #include "Sdi.h"
 
 #include <ff/ff.h>
 #include <revolution.h>
 
 #include <string.h>
-#include <revolution.h>
 
 enum {
     MAX_OPEN_FILE_COUNT = 32,
@@ -22,7 +22,7 @@ static DIR dirs[MAX_OPEN_DIR_COUNT];
 static FatStorage fatStorage;
 
 static bool FatStorage_open(File *file, const wchar_t *path, u32 mode) {
-    OSLockMutex(&mutex);
+    SP_SCOPED_MUTEX_LOCK(mutex);
 
     for (file->fd = 0; file->fd < MAX_OPEN_FILE_COUNT; file->fd++) {
         if (!(openFiles & 1 << file->fd)) {
@@ -30,7 +30,6 @@ static bool FatStorage_open(File *file, const wchar_t *path, u32 mode) {
         }
     }
     if (file->fd == MAX_OPEN_FILE_COUNT) {
-        OSUnlockMutex(&mutex);
         return false;
     }
 
@@ -47,98 +46,73 @@ static bool FatStorage_open(File *file, const wchar_t *path, u32 mode) {
     if (mode & MODE_CREATE_ALWAYS) {
         fMode |= FA_CREATE_ALWAYS;
     }
-    bool result = f_open(&files[file->fd], path, fMode) == FR_OK;
-
-    if (result) {
-        openFiles |= 1 << file->fd;
+    if (f_open(&files[file->fd], path, fMode) != FR_OK) {
+        return false;
     }
 
-    OSUnlockMutex(&mutex);
+    openFiles |= 1 << file->fd;
 
-    return result;
+    return true;
 }
 
 static bool FatStorage_close(File *file) {
     assert(file->fd < MAX_OPEN_FILE_COUNT);
 
-    OSLockMutex(&mutex);
-
-    bool result = f_close(&files[file->fd]) == FR_OK;
+    SP_SCOPED_MUTEX_LOCK(mutex);
 
     openFiles &= ~(1 << file->fd);
-
-    OSUnlockMutex(&mutex);
-
-    return result;
+    return f_close(&files[file->fd]) == FR_OK;
 }
 
 static bool FatStorage_read(File *file, void *dst, u32 size, u32 offset, u32 *readSize) {
     assert(file->fd < MAX_OPEN_FILE_COUNT);
 
-    OSLockMutex(&mutex);
+    SP_SCOPED_MUTEX_LOCK(mutex);
 
-    bool result = f_lseek(&files[file->fd], offset) == FR_OK;
-    if (result) {
-        result = f_read(&files[file->fd], dst, size, (UINT *)readSize) == FR_OK;
+    if (f_lseek(&files[file->fd], offset) != FR_OK) {
+        return false;
     }
 
-    OSUnlockMutex(&mutex);
-
-    return result;
+    return f_read(&files[file->fd], dst, size, (UINT *)readSize) == FR_OK;
 }
 
 static bool FatStorage_write(File *file, const void *src, u32 size, u32 offset, u32 *writtenSize) {
     assert(file->fd < MAX_OPEN_FILE_COUNT);
 
-    OSLockMutex(&mutex);
+    SP_SCOPED_MUTEX_LOCK(mutex);
 
-    bool result = f_lseek(&files[file->fd], offset) == FR_OK;
-    if (result) {
-        result = f_write(&files[file->fd], src, size, (UINT *)writtenSize) == FR_OK;
+    if (f_lseek(&files[file->fd], offset) != FR_OK) {
+        return false;
     }
 
-    OSUnlockMutex(&mutex);
-
-    return result;
+    return f_write(&files[file->fd], src, size, (UINT *)writtenSize) == FR_OK;
 }
 
 static bool FatStorage_sync(File *file) {
     assert(file->fd < MAX_OPEN_FILE_COUNT);
 
-    OSLockMutex(&mutex);
+    SP_SCOPED_MUTEX_LOCK(mutex);
 
-    bool result = f_sync(&files[file->fd]) == FR_OK;
-
-    OSUnlockMutex(&mutex);
-
-    return result;
+    return f_sync(&files[file->fd]) == FR_OK;
 }
 
 static u64 FatStorage_size(File *file) {
     assert(file->fd < MAX_OPEN_FILE_COUNT);
 
-    OSLockMutex(&mutex);
+    SP_SCOPED_MUTEX_LOCK(mutex);
 
-    u64 size = f_size(&files[file->fd]);
-
-    OSUnlockMutex(&mutex);
-
-    return size;
+    return f_size(&files[file->fd]);
 }
 
 static bool FatStorage_createDir(const wchar_t *path, bool allowNop) {
-    OSLockMutex(&mutex);
+    SP_SCOPED_MUTEX_LOCK(mutex);
 
     FRESULT fResult = f_mkdir(path);
-    bool result = fResult == FR_OK || (allowNop && fResult == FR_EXIST);
-
-    OSUnlockMutex(&mutex);
-
-    return result;
+    return fResult == FR_OK || (allowNop && fResult == FR_EXIST);
 }
 
 static bool FatStorage_openDir(Dir *dir, const wchar_t *path) {
-    OSLockMutex(&mutex);
+    SP_SCOPED_MUTEX_LOCK(mutex);
 
     for (dir->fd = 0; dir->fd < MAX_OPEN_DIR_COUNT; dir->fd++) {
         if (!(openDirs & 1 << dir->fd)) {
@@ -146,62 +120,52 @@ static bool FatStorage_openDir(Dir *dir, const wchar_t *path) {
         }
     }
     if (dir->fd == MAX_OPEN_DIR_COUNT) {
-        OSUnlockMutex(&mutex);
         return false;
     }
 
-    bool result = f_opendir(&dirs[dir->fd], path) == FR_OK;
-
-    if (result) {
-        openDirs |= 1 << dir->fd;
+    if (f_opendir(&dirs[dir->fd], path) != FR_OK) {
+        return false;
     }
 
-    OSUnlockMutex(&mutex);
+    openDirs |= 1 << dir->fd;
 
-    return result;
+    return true;
 }
 
 static bool FatStorage_readDir(Dir *dir, DirEntry *entry) {
     assert(dir->fd < MAX_OPEN_DIR_COUNT);
 
-    OSLockMutex(&mutex);
+    SP_SCOPED_MUTEX_LOCK(mutex);
 
     FILINFO info;
-    bool result = f_readdir(&dirs[dir->fd], &info) == FR_OK;
-
-    if (result) {
-        static_assert(sizeof(info.fname) <= sizeof(entry->name));
-        memcpy(entry->name, info.fname, sizeof(info.fname));
-        if (info.fname[0] == L'\0') {
-            entry->type = NODE_TYPE_NONE;
-        } else if (info.fattrib & AM_DIR) {
-            entry->type = NODE_TYPE_DIR;
-        } else {
-            entry->type = NODE_TYPE_FILE;
-        }
+    if (f_readdir(&dirs[dir->fd], &info) != FR_OK) {
+        return false;
     }
 
-    OSUnlockMutex(&mutex);
+    static_assert(sizeof(info.fname) <= sizeof(entry->name));
+    memcpy(entry->name, info.fname, sizeof(info.fname));
+    if (info.fname[0] == L'\0') {
+        entry->type = NODE_TYPE_NONE;
+    } else if (info.fattrib & AM_DIR) {
+        entry->type = NODE_TYPE_DIR;
+    } else {
+        entry->type = NODE_TYPE_FILE;
+    }
 
-    return result;
+    return true;
 }
 
 static bool FatStorage_closeDir(Dir *dir) {
     assert(dir->fd < MAX_OPEN_DIR_COUNT);
 
-    OSLockMutex(&mutex);
-
-    bool result = f_closedir(&dirs[dir->fd]) == FR_OK;
+    SP_SCOPED_MUTEX_LOCK(mutex);
 
     openDirs &= ~(1 << dir->fd);
-
-    OSUnlockMutex(&mutex);
-
-    return result;
+    return f_closedir(&dirs[dir->fd]) == FR_OK;
 }
 
 static u32 FatStorage_type(const wchar_t *path) {
-    OSLockMutex(&mutex);
+    SP_SCOPED_MUTEX_LOCK(mutex);
 
     u32 type = NODE_TYPE_NONE;
     FILINFO info;
@@ -213,30 +177,20 @@ static u32 FatStorage_type(const wchar_t *path) {
         }
     }
 
-    OSUnlockMutex(&mutex);
-
     return type;
 }
 
 static bool FatStorage_rename(const wchar_t *srcPath, const wchar_t *dstPath) {
-    OSLockMutex(&mutex);
+    SP_SCOPED_MUTEX_LOCK(mutex);
 
-    bool result = f_rename(srcPath, dstPath) == FR_OK;
-
-    OSUnlockMutex(&mutex);
-
-    return result;
+    return f_rename(srcPath, dstPath) == FR_OK;
 }
 
 static bool FatStorage_delete(const wchar_t *path, bool allowNop) {
-    OSLockMutex(&mutex);
+    SP_SCOPED_MUTEX_LOCK(mutex);
 
     FRESULT fResult = f_unlink(path);
-    bool result = fResult == FR_OK || (allowNop && fResult == FR_NO_FILE);
-
-    OSUnlockMutex(&mutex);
-
-    return result;
+    return fResult == FR_OK || (allowNop && fResult == FR_NO_FILE);
 }
 
 static bool FatStorage_find(void) {
