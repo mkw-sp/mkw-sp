@@ -151,3 +151,34 @@ s32 Ios_ioctlv(s32 fd, u32 ioctlv, u32 inputCount, u32 outputCount, IoctlvPair *
 
     return request.result;
 }
+
+void Ios_ioctlvReboot(s32 fd, u32 ioctlv, u32 inputCount, IoctlvPair *pairs) {
+    for (u32 i = 0; i < inputCount; i++) {
+        if (pairs[i].data) {
+            DCFlushRange(pairs[i].data, pairs[i].size);
+            pairs[i].data = (void *)VIRTUAL_TO_PHYSICAL(pairs[i].data);
+        }
+    }
+    DCFlushRange(pairs, inputCount * sizeof(IoctlvPair));
+
+    memset(&request, 0, sizeof(request));
+
+    request.cmd = CMD_IOCTLV;
+    request.fd = fd;
+    request.ioctlv.ioctlv = ioctlv;
+    request.ioctlv.inputCount = inputCount;
+    request.ioctlv.outputCount = 0;
+    request.ioctlv.pairs = VIRTUAL_TO_PHYSICAL(pairs);
+
+    DCFlushRange(&request, sizeof(request));
+
+    *ppcmsg = VIRTUAL_TO_PHYSICAL(&request);
+    *ppcctrl = X1;
+
+    while ((*ppcctrl & Y2) != Y2);
+    *ppcctrl = Y2;
+
+    while ((*ppcctrl & Y2) != Y2);
+    *ppcctrl = Y2;
+    *ppcctrl = X2;
+}

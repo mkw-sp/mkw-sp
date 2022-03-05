@@ -310,6 +310,7 @@ code_in_files = {
         os.path.join('loader', 'Cache.S'),
         os.path.join('loader', 'Delay.S'),
         os.path.join('loader', 'Di.c'),
+        os.path.join('loader', 'Es.c'),
         os.path.join('loader', 'Ios.c'),
         os.path.join('loader', 'Loader.c'),
         os.path.join('loader', 'Memcpy.c'),

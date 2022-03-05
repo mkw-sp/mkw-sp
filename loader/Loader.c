@@ -2,8 +2,11 @@
 #include "Cache.h"
 #include "Delay.h"
 #include "Di.h"
+#include "Es.h"
+#include "Ios.h"
 #include "Stack.h"
 
+#include <stdalign.h>
 #include <string.h>
 
 extern const void payloadP;
@@ -18,7 +21,40 @@ extern const u32 payloadKSize;
 // The payload needs this to reserve the memory on the arena
 extern u32 payloadSize;
 
+static bool isDolphin(void) {
+    // Dolphin 5.0-11186 and later
+    alignas(0x20) char dolphinPath[] = "/dev/dolphin";
+    s32 dolphinFd = Ios_open(dolphinPath, 0);
+    if (dolphinFd >= 0) {
+        Ios_close(dolphinFd);
+        return true;
+    }
+
+    // Older versions
+    alignas(0x20) char sysPath[] = "/sys";
+    s32 sysFd = Ios_open(sysPath, 1);
+    if (sysFd == -106) {
+        return true;
+    }
+    if (sysFd >= 0) {
+        Ios_close(sysFd);
+    }
+
+    return false;
+}
+
 void Loader_run(void) {
+    if (isDolphin()) {
+        while (!Es_init()) {
+            mdelay(100);
+        }
+
+        TicketView view = { 0 }; // Dolphin doesn't care
+        Es_launchTitle(0x000000010000003b /* IOS59 */, &view);
+
+        Es_deinit();
+    }
+
     while (!Di_init()) {
         mdelay(100);
     }
