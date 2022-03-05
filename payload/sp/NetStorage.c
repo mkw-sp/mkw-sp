@@ -8,11 +8,7 @@
 NetStorageClient sNetStorageClient;
 static bool sNetStorageConnected;
 
-typedef struct {
-    NetFile file;
-    s32 pos;
-} NetStorageFile;
-NetStorageFile sNetFiles[12];
+NetFile sNetFiles[12];
 u32 sOpenNetFiles;
 s32 sNumOpenNetFiles;
 
@@ -35,7 +31,7 @@ static s32 GetFreeFd() {
     return -1;
 }
 
-static NetStorageFile *GetNetFileByFd(s32 fd) {
+static NetFile *GetNetFileByFd(s32 fd) {
     if (fd >= (s32)ARRAY_SIZE(sNetFiles)) {
         return NULL;
     }
@@ -60,26 +56,26 @@ static bool NetStorage_open(File *file, const wchar_t *path, u32 UNUSED(mode)) {
         return false;
     }
 
-    NetStorageFile *net_file = GetNetFileByFd(fd);
-    if (NetFile_open(&net_file->file, &sNetStorageClient, path)) {
+    NetFile *netFile = GetNetFileByFd(fd);
+    if (NetFile_open(netFile, &sNetStorageClient, path)) {
         ++sNumOpenNetFiles;
         MarkFdUsed(fd, true);
         file->fd = fd;
         return true;
     }
 
-    memset(net_file, 0, sizeof(*net_file));
+    memset(&netFile, 0, sizeof(netFile));
     return false;
 }
 
 static bool NetStorage_close(File *file) {
-    NetStorageFile *net_file = GetNetFileByFd(file->fd);
-    assert(net_file);
+    NetFile *netFile = GetNetFileByFd(file->fd);
+    assert(netFile);
 
     SP_SCOPED_MUTEX_LOCK(sNetMutex);
 
-    NetFile_close(&net_file->file);
-    memset(net_file, 0, sizeof(*net_file));
+    NetFile_close(netFile);
+    memset(&netFile, 0, sizeof(netFile));
 
     MarkFdUsed(file->fd, false);
     --sNumOpenNetFiles;
@@ -87,13 +83,13 @@ static bool NetStorage_close(File *file) {
 
     return true;
 }
-static bool NetStorage_read(File *file, void *dst, u32 size, u32 *readSize) {
-    NetStorageFile *net_file = GetNetFileByFd(file->fd);
-    assert(net_file);
+static bool NetStorage_read(File *file, void *dst, u32 size, u32 offset, u32 *readSize) {
+    NetFile *netFile = GetNetFileByFd(file->fd);
+    assert(netFile);
 
     SP_SCOPED_MUTEX_LOCK(sNetMutex);
 
-    const u32 amount_read = NetFile_read(&net_file->file, dst, size, net_file->pos);
+    const u32 amount_read = NetFile_read(netFile, dst, size, offset);
 
     if (readSize != NULL) {
         *readSize = amount_read;
@@ -102,35 +98,17 @@ static bool NetStorage_read(File *file, void *dst, u32 size, u32 *readSize) {
     return amount_read == size;
 }
 static bool NetStorage_write(File *UNUSED(file), const void *UNUSED(src),
-        u32 UNUSED(size), u32 *UNUSED(writtenSize)) {
+        u32 UNUSED(size), u32 UNUSED(offset), u32 *UNUSED(writtenSize)) {
     return false;
 }
 static bool NetStorage_sync(File *UNUSED(file)) {
     return false;
 }
 static u64 NetStorage_size(File *file) {
-    NetStorageFile *net_file = GetNetFileByFd(file->fd);
-    assert(net_file);
+    NetFile *netFile = GetNetFileByFd(file->fd);
+    assert(netFile);
 
-    return net_file->file.fileSize;
-}
-static bool NetStorage_lseek(File *file, u64 offset) {
-    NetStorageFile *net_file = GetNetFileByFd(file->fd);
-    assert(net_file);
-
-    SP_SCOPED_MUTEX_LOCK(sNetMutex);
-
-    net_file->pos = (s32)offset;
-
-    assert(((u64)net_file->pos) == offset);
-
-    return true;
-}
-static u64 NetStorage_tell(File *file) {
-    NetStorageFile *net_file = GetNetFileByFd(file->fd);
-    assert(net_file);
-
-    return net_file->pos;
+    return netFile->fileSize;
 }
 static bool NetStorage_createDir(const wchar_t *UNUSED(path), bool UNUSED(allowNop)) {
     return false;
@@ -206,8 +184,6 @@ bool NetStorage_init(Storage *storage) {
     storage->write = NetStorage_write;
     storage->sync = NetStorage_sync;
     storage->size = NetStorage_size;
-    storage->lseek = NetStorage_lseek;
-    storage->tell = NetStorage_tell;
     storage->createDir = NetStorage_createDir;
     storage->openDir = NetStorage_openDir;
     storage->readDir = NetStorage_readDir;

@@ -59,7 +59,7 @@ bool Storage_close(File *file) {
     return file->storage->close(file);
 }
 
-bool Storage_read(File *file, void *dst, u32 size, u32 *readSize) {
+bool Storage_read(File *file, void *dst, u32 size, u32 offset, u32 *readSize) {
     LOG_FILE_DISABLE();
 
     assert(file);
@@ -67,17 +67,17 @@ bool Storage_read(File *file, void *dst, u32 size, u32 *readSize) {
     assert(readSize);
     assert(file->storage);
 
-    return file->storage->read(file, dst, size, readSize);
+    return file->storage->read(file, dst, size, offset, readSize);
 }
 
-bool Storage_write(File *file, const void *src, u32 size, u32 *writtenSize) {
+bool Storage_write(File *file, const void *src, u32 size, u32 offset, u32 *writtenSize) {
     LOG_FILE_DISABLE();
 
     assert(file);
     assert(src);
     assert(writtenSize);
 
-    return file->storage->write(file, src, size, writtenSize);
+    return file->storage->write(file, src, size, offset, writtenSize);
 }
 
 bool Storage_sync(File *file) {
@@ -97,27 +97,6 @@ u64 Storage_size(File *file) {
     return file->storage->size(file);
 }
 
-bool Storage_lseek(File *file, u64 offset) {
-    LOG_FILE_DISABLE();
-
-    assert(file);
-    assert(file->storage);
-
-    if (!file->storage->lseek(file, offset)) {
-        return false;
-    }
-
-    return file->storage->tell(file) == offset;
-}
-
-u64 Storage_tell(File *file) {
-    LOG_FILE_DISABLE();
-
-    assert(file);
-
-    return file->storage->tell(file);
-}
-
 bool Storage_readFile(const wchar_t *path, void *dst, u32 size, u32 *readSize) {
     File file;
     if (!Storage_open(&file, path, MODE_READ)) {
@@ -129,7 +108,7 @@ bool Storage_readFile(const wchar_t *path, void *dst, u32 size, u32 *readSize) {
         size = fileSize;
     }
 
-    if (!Storage_read(&file, dst, size, readSize)) {
+    if (!Storage_read(&file, dst, size, 0, readSize)) {
         Storage_close(&file);
         return false;
     }
@@ -150,7 +129,7 @@ bool Storage_writeFile(const wchar_t *path, bool overwrite, const void *src, u32
     }
 
     u32 writtenSize;
-    if (!Storage_write(&file, src, size, &writtenSize)) {
+    if (!Storage_write(&file, src, size, 0, &writtenSize)) {
         Storage_close(&file);
         return false;
     }

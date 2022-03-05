@@ -9,6 +9,7 @@
 static bool isInit = false;
 static OSMutex fileMutex;
 static File file;
+static u32 offset = 0;
 static OSTime startTime;
 static OSMutex listMutex;
 static ThreadNode *listHead = NULL;
@@ -54,8 +55,9 @@ void LogFile_vprintf(const char *restrict format, va_list args) {
     {
         SP_SCOPED_MUTEX_LOCK(fileMutex);
         u32 writtenSize;
-        Storage_write(&file, buffer, strlen(buffer), &writtenSize);
+        Storage_write(&file, buffer, strlen(buffer), offset, &writtenSize);
         Storage_sync(&file);
+        offset += writtenSize;
     }
 }
 
