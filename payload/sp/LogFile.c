@@ -15,7 +15,7 @@ static ThreadNode *listHead = NULL;
 
 void LogFile_init(void) {
     OSInitMutex(&fileMutex);
-    if (!Storage_open(&file, L"/mkw-sp/log.txt", MODE_WRITE | MODE_CREATE_ALWAYS)) {
+    if (!Storage_open(&file, L"/mkw-sp/log.txt", "w")) {
         return;
     }
 

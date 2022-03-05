@@ -32,7 +32,7 @@ bool Storage_init(void) {
     return Storage_find();
 }
 
-bool Storage_open(File *file, const wchar_t *path, u32 mode) {
+bool Storage_open(File *file, const wchar_t *path, const char *mode) {
     LOG_FILE_DISABLE();
 
     assert(file);
@@ -97,7 +97,7 @@ u64 Storage_size(File *file) {
 
 bool Storage_readFile(const wchar_t *path, void *dst, u32 size, u32 *readSize) {
     File file;
-    if (!Storage_open(&file, path, MODE_READ)) {
+    if (!Storage_open(&file, path, "r")) {
         return false;
     }
 
@@ -117,12 +117,7 @@ bool Storage_readFile(const wchar_t *path, void *dst, u32 size, u32 *readSize) {
 
 bool Storage_writeFile(const wchar_t *path, bool overwrite, const void *src, u32 size) {
     File file;
-    u32 mode = MODE_WRITE;
-    if (overwrite) {
-        mode |= MODE_CREATE_ALWAYS;
-    } else {
-        mode |= MODE_CREATE_NEW;
-    }
+    const char *mode = overwrite ? "w" : "wx";
     if (!Storage_open(&file, path, mode)) {
         return false;
     }
