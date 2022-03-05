@@ -21,7 +21,7 @@ static FIL files[MAX_OPEN_FILE_COUNT];
 static u32 openDirs = 0;
 static DIR dirs[MAX_OPEN_DIR_COUNT];
 
-static bool FatStorage_open(File *file, const wchar_t *path, u32 mode) {
+static bool FatStorage_open(File *file, const wchar_t *path, const char *mode) {
     SP_SCOPED_MUTEX_LOCK(mutex);
 
     for (file->fd = 0; file->fd < MAX_OPEN_FILE_COUNT; file->fd++) {
@@ -33,18 +33,15 @@ static bool FatStorage_open(File *file, const wchar_t *path, u32 mode) {
         return false;
     }
 
-    u32 fMode = 0;
-    if (mode & MODE_READ) {
-        fMode |= FA_READ;
-    }
-    if (mode & MODE_WRITE) {
-        fMode |= FA_WRITE;
-    }
-    if (mode & MODE_CREATE_NEW) {
-        fMode |= FA_CREATE_NEW;
-    }
-    if (mode & MODE_CREATE_ALWAYS) {
-        fMode |= FA_CREATE_ALWAYS;
+    u32 fMode;
+    if (!strcmp(mode, "r")) {
+        fMode = FA_READ;
+    } else if (!strcmp(mode, "w")) {
+        fMode = FA_CREATE_ALWAYS | FA_WRITE;
+    } else if (!strcmp(mode, "wx")) {
+        fMode = FA_CREATE_NEW | FA_WRITE;
+    } else {
+        assert(!"Unknown opening mode");
     }
     if (f_open(&files[file->fd], path, fMode) != FR_OK) {
         return false;

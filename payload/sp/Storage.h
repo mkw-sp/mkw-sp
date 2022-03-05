@@ -36,7 +36,7 @@ enum {
 
 typedef struct Storage {
     struct Storage* next;
-    bool (*open)(File *file, const wchar_t *path, u32 mode);
+    bool (*open)(File *file, const wchar_t *path, const char *mode);
     bool (*close)(File *file);
     bool (*read)(File *file, void *dst, u32 size, u32 offset);
     bool (*write)(File *file, const void *src, u32 size, u32 offset);
@@ -53,7 +53,7 @@ typedef struct Storage {
 
 bool Storage_init(void);
 
-bool Storage_open(File *file, const wchar_t *path, u32 mode);
+bool Storage_open(File *file, const wchar_t *path, const char *mode);
 
 bool Storage_close(File *file);
 
