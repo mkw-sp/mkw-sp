@@ -40,7 +40,7 @@ static NetFile *GetNetFileByFd(s32 fd) {
 }
 
 // WARNING: File creation not supported. NetFile is read-only.
-static bool NetStorage_open(File *file, const wchar_t *path, u32 UNUSED(mode)) {
+static bool NetStorage_open(File *file, const wchar_t *path, const char *UNUSED(mode)) {
     if (!sNetStorageConnected) {
         return false;
     }

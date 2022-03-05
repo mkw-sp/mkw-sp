@@ -55,7 +55,7 @@ void DVDExInit(void) {
 }
 
 static bool tryOpen(const wchar_t *path, DVDFileInfo *fileInfo) {
-    if (!Storage_open(&fileInfo->cb.file, path, MODE_READ)) {
+    if (!Storage_open(&fileInfo->cb.file, path, "r")) {
         return false;
     }
 
