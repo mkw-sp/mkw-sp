@@ -64,7 +64,7 @@ static bool FatStorage_close(File *file) {
     return f_close(&files[file->fd]) == FR_OK;
 }
 
-static bool FatStorage_read(File *file, void *dst, u32 size, u32 offset, u32 *readSize) {
+static bool FatStorage_read(File *file, void *dst, u32 size, u32 offset) {
     assert(file->fd < MAX_OPEN_FILE_COUNT);
 
     SP_SCOPED_MUTEX_LOCK(mutex);
@@ -73,10 +73,15 @@ static bool FatStorage_read(File *file, void *dst, u32 size, u32 offset, u32 *re
         return false;
     }
 
-    return f_read(&files[file->fd], dst, size, (UINT *)readSize) == FR_OK;
+    UINT readSize;
+    if (f_read(&files[file->fd], dst, size, &readSize) != FR_OK) {
+        return false;
+    }
+
+    return readSize == size;
 }
 
-static bool FatStorage_write(File *file, const void *src, u32 size, u32 offset, u32 *writtenSize) {
+static bool FatStorage_write(File *file, const void *src, u32 size, u32 offset) {
     assert(file->fd < MAX_OPEN_FILE_COUNT);
 
     SP_SCOPED_MUTEX_LOCK(mutex);
@@ -85,7 +90,12 @@ static bool FatStorage_write(File *file, const void *src, u32 size, u32 offset, 
         return false;
     }
 
-    return f_write(&files[file->fd], src, size, (UINT *)writtenSize) == FR_OK;
+    UINT writtenSize;
+    if (f_write(&files[file->fd], src, size, &writtenSize) != FR_OK) {
+        return false;
+    }
+
+    return writtenSize == size;
 }
 
 static bool FatStorage_sync(File *file) {

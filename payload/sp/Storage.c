@@ -59,25 +59,23 @@ bool Storage_close(File *file) {
     return file->storage->close(file);
 }
 
-bool Storage_read(File *file, void *dst, u32 size, u32 offset, u32 *readSize) {
+bool Storage_read(File *file, void *dst, u32 size, u32 offset) {
     LOG_FILE_DISABLE();
 
     assert(file);
     assert(dst);
-    assert(readSize);
     assert(file->storage);
 
-    return file->storage->read(file, dst, size, offset, readSize);
+    return file->storage->read(file, dst, size, offset);
 }
 
-bool Storage_write(File *file, const void *src, u32 size, u32 offset, u32 *writtenSize) {
+bool Storage_write(File *file, const void *src, u32 size, u32 offset) {
     LOG_FILE_DISABLE();
 
     assert(file);
     assert(src);
-    assert(writtenSize);
 
-    return file->storage->write(file, src, size, offset, writtenSize);
+    return file->storage->write(file, src, size, offset);
 }
 
 bool Storage_sync(File *file) {
@@ -108,11 +106,12 @@ bool Storage_readFile(const wchar_t *path, void *dst, u32 size, u32 *readSize) {
         size = fileSize;
     }
 
-    if (!Storage_read(&file, dst, size, 0, readSize)) {
+    if (!Storage_read(&file, dst, size, 0)) {
         Storage_close(&file);
         return false;
     }
 
+    *readSize = size;
     return Storage_close(&file);
 }
 
@@ -128,12 +127,7 @@ bool Storage_writeFile(const wchar_t *path, bool overwrite, const void *src, u32
         return false;
     }
 
-    u32 writtenSize;
-    if (!Storage_write(&file, src, size, 0, &writtenSize)) {
-        Storage_close(&file);
-        return false;
-    }
-    if (writtenSize != size) {
+    if (!Storage_write(&file, src, size, 0)) {
         Storage_close(&file);
         return false;
     }
