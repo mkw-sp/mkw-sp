@@ -103,5 +103,5 @@ bool Di_deinit(void) {
 
     fd = -1;
 
-    return result == RESULT_SUCCESS;
+    return result == 0;
 }
