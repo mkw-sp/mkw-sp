@@ -38,12 +38,10 @@ typedef struct Storage {
     struct Storage* next;
     bool (*open)(File *file, const wchar_t *path, u32 mode);
     bool (*close)(File *file);
-    bool (*read)(File *file, void *dst, u32 size, u32 *readSize);
-    bool (*write)(File *file, const void *src, u32 size, u32 *writtenSize);
+    bool (*read)(File *file, void *dst, u32 size, u32 offset, u32 *readSize);
+    bool (*write)(File *file, const void *src, u32 size, u32 offset, u32 *writtenSize);
     bool (*sync)(File *file);
     u64 (*size)(File *file);
-    bool (*lseek)(File *file, u64 offset);
-    u64 (*tell)(File *file);
     bool (*createDir)(const wchar_t *path, bool allowNop);
     bool (*openDir)(Dir *dir, const wchar_t *path);
     bool (*readDir)(Dir *dir, DirEntry *entry);
@@ -59,17 +57,13 @@ bool Storage_open(File *file, const wchar_t *path, u32 mode);
 
 bool Storage_close(File *file);
 
-bool Storage_read(File *file, void *dst, u32 size, u32 *readSize);
+bool Storage_read(File *file, void *dst, u32 size, u32 offset, u32 *readSize);
 
-bool Storage_write(File *file, const void *src, u32 size, u32 *writtenSize);
+bool Storage_write(File *file, const void *src, u32 size, u32 offset, u32 *writtenSize);
 
 bool Storage_sync(File *file);
 
 u64 Storage_size(File *file);
-
-bool Storage_lseek(File *file, u64 offset);
-
-u64 Storage_tell(File *file);
 
 bool Storage_readFile(const wchar_t *path, void *dst, u32 size, u32 *readSize);
 
