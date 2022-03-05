@@ -107,15 +107,22 @@ s32 DVDExReadPrio(DVDFileInfo *fileInfo, void *addr, s32 length, s32 offset, s32
     assert(offset >= 0);
     assert(!(offset & 3));
 
-    u32 readLength;
-    if (!Storage_read(&fileInfo->cb.file, addr, length, offset, &readLength)) {
+    u32 fileLength = Storage_size(&fileInfo->cb.file);
+    if (fileLength < (u32)offset + (u32)length) {
+        length = fileLength - offset;
+        if (length < 0) {
+            length = 0;
+        }
+    }
+
+    if (!Storage_read(&fileInfo->cb.file, addr, length, offset)) {
         return -1;
     }
 
-    if (offset + readLength == Storage_size(&fileInfo->cb.file)) {
-        readLength = OSRoundUp32B(readLength);
+    if ((u32)offset + (u32)length == Storage_size(&fileInfo->cb.file)) {
+        length = OSRoundUp32B(length);
     }
-    return (s32)readLength;
+    return length;
 }
 
 BOOL DVDExReadAsyncPrio(DVDFileInfo *fileInfo, void *addr, s32 length, s32 offset,

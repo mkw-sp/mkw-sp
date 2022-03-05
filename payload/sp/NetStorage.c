@@ -83,7 +83,7 @@ static bool NetStorage_close(File *file) {
 
     return true;
 }
-static bool NetStorage_read(File *file, void *dst, u32 size, u32 offset, u32 *readSize) {
+static bool NetStorage_read(File *file, void *dst, u32 size, u32 offset) {
     NetFile *netFile = GetNetFileByFd(file->fd);
     assert(netFile);
 
@@ -91,14 +91,10 @@ static bool NetStorage_read(File *file, void *dst, u32 size, u32 offset, u32 *re
 
     const u32 amount_read = NetFile_read(netFile, dst, size, offset);
 
-    if (readSize != NULL) {
-        *readSize = amount_read;
-    }
-
     return amount_read == size;
 }
 static bool NetStorage_write(File *UNUSED(file), const void *UNUSED(src),
-        u32 UNUSED(size), u32 UNUSED(offset), u32 *UNUSED(writtenSize)) {
+        u32 UNUSED(size), u32 UNUSED(offset)) {
     return false;
 }
 static bool NetStorage_sync(File *UNUSED(file)) {
