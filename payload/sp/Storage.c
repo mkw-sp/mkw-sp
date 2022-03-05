@@ -9,27 +9,17 @@ static Storage storage;
 // Secondary storage: LAN NetStorage
 static Storage sNetStorage;
 
-static bool Storage_find(void) {
-    bool result = false;
-
-    if (FatStorage_init(&storage)){
-        result = true;
-    } else {
-        assert(!"Failed to initialize FatStorage");
+bool Storage_init(void) {
+    if (!FatStorage_init(&storage)) {
+        return false;
     }
-    storage.next = NULL;
 
     if (NetStorage_init(&sNetStorage)) {
         storage.next = &sNetStorage;
         sNetStorage.next = NULL;
-        result = true;
     }
 
-    return result;
-}
-
-bool Storage_init(void) {
-    return Storage_find();
+    return true;
 }
 
 bool Storage_open(File *file, const wchar_t *path, const char *mode) {
