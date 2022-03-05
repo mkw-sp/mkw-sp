@@ -51,7 +51,7 @@ typedef struct Storage {
     bool (*delete)(const wchar_t *path, bool allowNop);
 } Storage;
 
-bool Storage_init(void);
+void Storage_init(void);
 
 bool Storage_open(File *file, const wchar_t *path, const char *mode);
 

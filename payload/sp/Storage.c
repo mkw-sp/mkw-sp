@@ -3,33 +3,34 @@
 #include "FatStorage.h"
 #include "LogFile.h"
 #include "NetStorage.h"
+#include "WfsStorage.h"
 
-// Primary storage: FAT/SD
+// Primary storage: WFS HLE or FAT/SD
 static Storage storage;
 // Secondary storage: LAN NetStorage
 static Storage sNetStorage;
 
-static bool Storage_find(void) {
-    bool result = false;
-
-    if (FatStorage_init(&storage)){
-        result = true;
-    } else {
-        assert(!"Failed to initialize FatStorage");
+static bool Storage_findPrimary(void) {
+    if (WfsStorage_init(&storage)) {
+        return true;
     }
-    storage.next = NULL;
+
+    if (FatStorage_init(&storage)) {
+        return true;
+    }
+
+    return false;
+}
+
+void Storage_init(void) {
+    if (!Storage_findPrimary()) {
+        assert(!"Failed to initialize primary storage");
+    }
 
     if (NetStorage_init(&sNetStorage)) {
         storage.next = &sNetStorage;
         sNetStorage.next = NULL;
-        result = true;
     }
-
-    return result;
-}
-
-bool Storage_init(void) {
-    return Storage_find();
 }
 
 bool Storage_open(File *file, const wchar_t *path, const char *mode) {

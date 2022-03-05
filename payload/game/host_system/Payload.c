@@ -36,8 +36,7 @@ __attribute__((section("first"))) void start(void) {
     bool netWasInit = Net_initFromArena();
     assert(netWasInit);
 
-    bool storageWasInit = Storage_init();
-    assert(storageWasInit);
+    Storage_init();
 
     LogFile_init();
 
