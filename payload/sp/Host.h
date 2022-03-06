@@ -24,6 +24,15 @@ typedef enum {
     //! - The specific version is available with `Host_GetDolphinTag()`
     //!
     HOST_DOLPHIN,
+
+    //! Windows
+    HOST_WINDOWS,
+
+    //! MacOS/iOS/iPadOS/tvOS
+    HOST_APPLE,
+
+    //! Linux
+    HOST_LINUX,
 } HostPlatform;
 
 void Host_Init(void);
