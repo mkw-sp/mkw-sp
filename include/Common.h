@@ -4,6 +4,10 @@
 #include <stdbool.h>
 #include <stddef.h>
 
+#if defined(_WIN32) || defined(__APPLE__) || defined(__linux__)
+#define PLATFORM_EMULATOR
+#endif
+
 typedef int BOOL;
 
 typedef signed char s8;

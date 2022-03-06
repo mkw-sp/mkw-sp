@@ -5,18 +5,14 @@
 #include <revolution/ios.h>
 #include <sp/IOSDolphin.h>
 #include <sp/Version.h>
+#include <stdio.h>
 #include <string.h>
 
 static bool sHostIsInit = false;
 static HostPlatform sPlatform = HOST_UNKNOWN;
 static char sDolphinTag[64] = "Not dolphin";
 
-void Host_Init(void) {
-    if (sHostIsInit)
-        return;
-
-    sHostIsInit = true;
-
+static void DetectPlatform(void) {
     {
         IOSDolphin iosDolphin = IOSDolphin_Open();
         if (iosDolphin >= 0) {
@@ -45,18 +41,36 @@ void Host_Init(void) {
         }
     }
 
-    const u32 acrReg = *(volatile u32 *)0xCD8005A0;
+    {
+        const u32 acrReg = *(volatile u32 *)0xCD8005A0;
 
-    switch (acrReg >> 16) {
-    case 0xCAFE:
-        sPlatform = HOST_CAFE;
-        return;
-    case 0:
-        sPlatform = HOST_REVOLUTION;
-        return;
+        switch (acrReg >> 16) {
+        case 0xCAFE:
+            sPlatform = HOST_CAFE;
+            return;
+        case 0:
+            sPlatform = HOST_REVOLUTION;
+            return;
+        }
     }
 
     sPlatform = HOST_UNKNOWN;
+}
+
+void Host_Init(void) {
+    if (sHostIsInit)
+        return;
+    sHostIsInit = true;
+
+#if defined(_WIN32)
+    sPlatform = HOST_WINDOWS;
+#elif defined(__APPLE__)
+    sPlatform = HOST_APPLE;
+#elif defined(__linux__)
+    sPlatform = HOST_LINUX;
+#else
+    DetectPlatform();
+#endif
 }
 
 const char *Host_GetDolphinTag(void) {
@@ -70,10 +84,17 @@ HostPlatform Host_GetPlatform(void) {
 }
 
 bool Host_IsGeckoEnabled(void) {
+#ifdef PLATFORM_EMULATOR
+    return false;
+#else
     return *(volatile u8 *)0x800018A8 == 0x94;
+#endif
 }
 
 const char *Host_GetRegionString(void) {
+#ifdef PLATFORM_EMULATOR
+    return "PAL";
+#else
     switch (REGION) {
     case REGION_P:
         return "PAL";
@@ -86,6 +107,7 @@ const char *Host_GetRegionString(void) {
     default:
         return "?";
     }
+#endif
 }
 
 void Host_PrintMkwSpInfo(PrintfFunction *func) {
@@ -94,36 +116,47 @@ void Host_PrintMkwSpInfo(PrintfFunction *func) {
     const char *region = Host_GetRegionString();
 
     (*func)("--------------------------------\n");
-    (*func)("MKW-SP v" BUILD_TYPE_STR "\nRegion: %s, System: ", region);
+    (*func)("MKW-SP v" BUILD_TYPE_STR "\n");
+
+    char system[128];
+    memset(system, 0, sizeof(system));
 
     switch (Host_GetPlatform()) {
     case HOST_REVOLUTION:
-        (*func)("Wii");
+        snprintf(system, sizeof(system), "Wii");
         break;
     case HOST_CAFE:
-        (*func)("WiiU");
+        snprintf(system, sizeof(system), "WiiU");
         break;
     case HOST_DOLPHIN_UNKNOWN:
-        (*func)("Dolphin (Unsupported)");
+        snprintf(system, sizeof(system), "Dolphin (Unsupported)");
         break;
     case HOST_DOLPHIN:
-        (*func)("Dolphin %s", Host_GetDolphinTag());
+        snprintf(system, sizeof(system), "Dolphin %s", Host_GetDolphinTag());
+        break;
+    case HOST_WINDOWS:
+        snprintf(system, sizeof(system), "Windows");
+        break;
+    case HOST_APPLE:
+        snprintf(system, sizeof(system), "Apple");
+        break;
+    case HOST_LINUX:
+        snprintf(system, sizeof(system), "Linux");
         break;
     case HOST_UNKNOWN:
-        (*func)("Unknown host");
+        snprintf(system, sizeof(system), "Unknown host");
         break;
     default:
-        (*func)("Invalid host");
+        snprintf(system, sizeof(system), "Invalid host");
         break;
     }
 
     if (Host_IsGeckoEnabled()) {
-        (*func)("*");
+        const int len = strnlen(system, sizeof(system));
+        snprintf(system + len, sizeof(system) - len, "*");
     }
 
-    (*func)("\n");
-
+    (*func)("Region: %s, System: %s\n", region, system);
     (*func)("Built " __DATE__ " at " __TIME__ ", " CC_STR "\n");
-
     (*func)("--------------------------------\n");
 }
