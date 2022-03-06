@@ -26,35 +26,13 @@ enum {
 };
 
 static s32 fd = -1;
-static char deviceName[0x20];
-
-static bool WfsStorage_getDeviceName(void) {
-    alignas(0x20) u32 deviceId = 0;
-    alignas(0x20) u8 out[0x20];
-
-    if (IOS_Ioctl(fd, IOCTL_GET_DEVICE_NAME, &deviceId, sizeof(deviceId), &out, sizeof(out)) < 0) {
-        SP_LOG("[WFS] Failed to get device name");
-        return false;
-    }
-
-    u32 length = out[0];
-    if (length >= 0x20) {
-        SP_LOG("[WFS] Got invalid device name");
-        return false;
-    }
-
-    memcpy(deviceName, out + 1, length);
-    deviceName[length] = '\0';
-    SP_LOG("[WFS] Successfully got device name %s", deviceName);
-    return true;
-}
 
 static bool WfsStorage_openExisting(File *file, const wchar_t *path, u32 mode) {
     alignas(0x20) u8 in[0x220] = { 0 };
     alignas(0x20) u8 out[0x20] = { 0 };
 
     write_u32(in, 0x0, mode);
-    u32 length = snprintf((char *)in + 0x22, MAX_PATH_LENGTH, "/vol/%s%ls", deviceName, path);
+    u32 length = snprintf((char *)in + 0x22, MAX_PATH_LENGTH, "%ls", path);
     if (length > MAX_PATH_LENGTH) {
         return false;
     }
@@ -73,7 +51,7 @@ static bool WfsStorage_createOpen(File *file, const wchar_t *path, u32 mode) {
     alignas(0x20) u8 out[0x20] = { 0 };
 
     write_u32(in, 0x0, mode);
-    u32 length = snprintf((char *)in + 0x22, MAX_PATH_LENGTH, "/vol/%s%ls", deviceName, path);
+    u32 length = snprintf((char *)in + 0x22, MAX_PATH_LENGTH, "%ls", path);
     if (length > MAX_PATH_LENGTH) {
         return false;
     }
@@ -205,7 +183,7 @@ static u32 WfsStorage_type(const wchar_t *path) {
     alignas(0x20) u8 in[0x200] = { 0 };
     alignas(0x20) u8 out[0x20] = { 0 };
 
-    u32 length = snprintf((char *)in + 0x2, MAX_PATH_LENGTH, "/vol/%s%ls", deviceName, path);
+    u32 length = snprintf((char *)in + 0x2, MAX_PATH_LENGTH, "%ls", path);
     if (length > MAX_PATH_LENGTH) {
         return NODE_TYPE_NONE;
     }
@@ -221,15 +199,13 @@ static u32 WfsStorage_type(const wchar_t *path) {
 static bool WfsStorage_rename(const wchar_t *srcPath, const wchar_t *dstPath) {
     alignas(0x20) u8 in[0x400] = { 0 };
 
-    char *srcBuf = (char *)in + 0x2;
-    u32 srcLength = snprintf(srcBuf, MAX_PATH_LENGTH, "/vol/%s%ls", deviceName, srcPath);
+    u32 srcLength = snprintf((char *)in + 0x2, MAX_PATH_LENGTH, "%ls", srcPath);
     if (srcLength > MAX_PATH_LENGTH) {
         return false;
     }
     write_u16(in, 0x0, srcLength);
 
-    char *dstBuf = (char *)in + 0x202;
-    u32 dstLength = snprintf(dstBuf, MAX_PATH_LENGTH, "/vol/%s%ls", deviceName, dstPath);
+    u32 dstLength = snprintf((char *)in + 0x202, MAX_PATH_LENGTH, "%ls", dstPath);
     if (dstLength > MAX_PATH_LENGTH) {
         return false;
     }
@@ -243,7 +219,6 @@ static bool WfsStorage_delete(const wchar_t *path, bool allowNop) {
     return true;
 }
 
-
 bool WfsStorage_init(Storage *storage) {
     assert(fd < 0);
 
@@ -253,10 +228,6 @@ bool WfsStorage_init(Storage *storage) {
         return false;
     } else {
         SP_LOG("[WFS] Successfully opened interface: ID: %i", fd);
-    }
-
-    if (!WfsStorage_getDeviceName()) {
-        return false;
     }
 
     storage->open = WfsStorage_open;
