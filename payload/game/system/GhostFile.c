@@ -1,6 +1,6 @@
 #include "GhostFile.h"
 
-#include "Yaz.h"
+#include <sp/Yaz.h>
 
 #include <rfl.h>
 

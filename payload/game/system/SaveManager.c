@@ -4,7 +4,7 @@
 #include "RaceConfig.h"
 #include "ResourceManager.h"
 #include "RootScene.h"
-#include "Yaz.h"
+#include <sp/Yaz.h>
 
 #include "../ui/SectionManager.h"
 
