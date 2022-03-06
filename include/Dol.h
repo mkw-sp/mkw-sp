@@ -5,6 +5,9 @@
 extern void dol_start;
 extern void dol_end;
 extern void dol_init_start;
+extern void dol_init_end;
+extern void dol_text_start;
+extern void dol_text_end;
 extern void dol_rodata_end;
 extern void dol_sdata2_start;
 extern void dol_sbss2_end;
@@ -23,6 +26,17 @@ static u32 Dol_getSize(void) {
 
 static void *Dol_getInitSectionStart(void) {
     return &dol_init_start;
+}
+static void *Dol_getInitSectionEnd(void) {
+    return &dol_init_end;
+}
+
+static void *Dol_getTextSectionStart(void) {
+    return &dol_text_start;
+}
+
+static void *Dol_getTextSectionEnd(void) {
+    return &dol_text_end;
 }
 
 static void *Dol_getRodataSectionEnd(void) {

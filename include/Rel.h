@@ -5,6 +5,7 @@
 extern void rel_start;
 extern void rel_end;
 extern void rel_text_start;
+extern void rel_text_end;
 extern void rel_rodata_end;
 
 static void *Rel_getStart(void) {
@@ -21,6 +22,10 @@ static u32 Rel_getSize(void) {
 
 static void *Rel_getTextSectionStart(void) {
     return &rel_text_start;
+}
+
+static void *Rel_getTextSectionEnd(void) {
+    return &rel_text_end;
 }
 
 static void *Rel_getRodataSectionEnd(void) {

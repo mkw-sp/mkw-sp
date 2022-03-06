@@ -22,6 +22,19 @@ static inline void *OSAllocFromMEM2ArenaLo(u32 size, u32 align) {
     return (void *)result;
 }
 
+u32 OSGetPhysicalMem1Size(void);
+u32 OSGetPhysicalMem2Size(void);
+
+#define OS_MEM1_REGION_PREFIX 0x00000000
+#define OS_MEM2_REGION_PREFIX 0x10000000
+#define OS_MEM_REGION_ID_MASK 0x30000000
+#define OSIsMEM1Region(addr) \
+    (((u32)(addr)&OS_MEM_REGION_ID_MASK) == OS_MEM1_REGION_PREFIX)
+#define OSIsMEM2Region(addr) \
+    (((u32)(addr)&OS_MEM_REGION_ID_MASK) == OS_MEM2_REGION_PREFIX)
+
+void *OSGetStackPointer(void);
+
 #define OSRoundUp32B(x) (((u32)(x) + 32 - 1) & ~(32 - 1))
 #define OSRoundDown32B(x) (((u32)(x)) & ~(32 - 1))
 

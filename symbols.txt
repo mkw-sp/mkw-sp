@@ -109,9 +109,12 @@
 0x801a1104 OSAllocFromMEM1ArenaLo
 0x801a162c DCFlushRange
 0x801a1710 ICInvalidateRange
+0x801a2030 OSGetStackPointer
 0x801a25d0 OSReport
 0x801a4ec4 OSFatal
 0x801a6d3c Relocate
+0x801a75d0 OSGetPhysicalMem1Size
+0x801a75dc OSGetPhysicalMem2Size
 0x801A7684 OSProtectRange
 0x801a7eac OSInitMutex
 0x801a7ee4 OSLockMutex
