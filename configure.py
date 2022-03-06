@@ -296,6 +296,7 @@ code_in_files = {
         os.path.join('payload', 'sp', 'NetStorageClient.c'),
         os.path.join('payload', 'sp', 'Sdi.c'),
         os.path.join('payload', 'sp', 'Slab.c'),
+        os.path.join('payload', 'sp', 'StackTrace.c'),
         os.path.join('payload', 'sp', 'Storage.c'),
         os.path.join('payload', 'sp', 'Tcp.c'),
         os.path.join('payload', 'sp', 'Yaz.c'),
