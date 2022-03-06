@@ -1,10 +1,11 @@
 #include "FatalScene.h"
 #include <egg/core/eggColorFader.h>
 #include <egg/core/eggSystem.h>
-#include <game/system/Yaz.h>
 #include <nw4r/lyt/lyt_pane.h>
 #include <revolution.h>
 #include <sp/FlameGraph.h>
+#include <sp/Yaz.h>
+
 #include <stdarg.h>
 #include <stdio.h>
 #include <string.h>
