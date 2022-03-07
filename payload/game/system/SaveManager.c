@@ -350,7 +350,7 @@ static void SaveManager_saveSp(SaveManager *this) {
         goto fail;
     }
 
-    if (!Storage_delete(L"/mkw-sp/save.bin.old", true)) {
+    if (!Storage_remove(L"/mkw-sp/save.bin.old", true)) {
         goto fail;
     }
 
@@ -362,7 +362,7 @@ static void SaveManager_saveSp(SaveManager *this) {
         goto fail;
     }
 
-    Storage_delete(L"/mkw-sp/save.bin.old", true); // Not a big deal if this fails
+    Storage_remove(L"/mkw-sp/save.bin.old", true); // Not a big deal if this fails
 
     this->isBusy = false;
     this->result = RK_NAND_RESULT_OK;

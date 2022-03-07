@@ -35,7 +35,7 @@ enum {
     YAZ_DECODER_RESULT_WANTS_DST,
 };
 
-void YazDecoder_init(YazDecoder *this);
+void YazDecoder_init(YazDecoder *self);
 
-u32 YazDecoder_feed(YazDecoder *this, const u8 *restrict *src, u8 *restrict *dst, u32 *srcSize,
+u32 YazDecoder_feed(YazDecoder *self, const u8 *restrict *src, u8 *restrict *dst, u32 *srcSize,
         u32 *dstSize);

@@ -68,7 +68,7 @@ static void so_free(u32 UNUSED(id), void *ptr, s32 size) {
     OSUnlockMutex(&sSocketMutex);
 }
 
-bool Net_init(NetSlabs *netSlabs) {
+static bool Net_initLow(NetSlabs *netSlabs) {
     if (sNetIsInit)
         return true;
 
@@ -112,8 +112,8 @@ bool Net_init(NetSlabs *netSlabs) {
     return sNetIsInit;
 }
 
-bool Net_initFromArena(void) {
+bool Net_init(void) {
     NetSlabs* slabs = OSAllocFromMEM2ArenaLo(sizeof(NetSlabs), 4);
     
-    return Net_init(slabs);
+    return Net_initLow(slabs);
 }

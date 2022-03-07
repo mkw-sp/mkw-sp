@@ -141,7 +141,7 @@ static bool NetStorage_rename(
         const wchar_t *UNUSED(srcPath), const wchar_t *UNUSED(dstPath)) {
     return false;
 }
-static bool NetStorage_delete(const wchar_t *UNUSED(path), bool UNUSED(allowNop)) {
+static bool NetStorage_remove(const wchar_t *UNUSED(path), bool UNUSED(allowNop)) {
     return false;
 }
 
@@ -186,7 +186,7 @@ bool NetStorage_init(Storage *storage) {
     storage->closeDir = NetStorage_closeDir;
     storage->type = NetStorage_type;
     storage->rename = NetStorage_rename;
-    storage->delete = NetStorage_delete;
+    storage->remove = NetStorage_remove;
 
     return true;
 }
