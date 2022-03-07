@@ -48,7 +48,7 @@ typedef struct Storage {
     bool (*closeDir)(Dir *dir);
     u32 (*type)(const wchar_t *path);
     bool (*rename)(const wchar_t *srcPath, const wchar_t *dstPath);
-    bool (*delete)(const wchar_t *path, bool allowNop);
+    bool (*remove)(const wchar_t *path, bool allowNop);
 } Storage;
 
 void Storage_init(void);
@@ -81,4 +81,4 @@ u32 Storage_type(const wchar_t *path);
 
 bool Storage_rename(const wchar_t *srcPath, const wchar_t *dstPath);
 
-bool Storage_delete(const wchar_t *path, bool allowNop);
+bool Storage_remove(const wchar_t *path, bool allowNop);

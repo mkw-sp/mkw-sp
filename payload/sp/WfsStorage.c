@@ -87,10 +87,10 @@ static bool WfsStorage_createOpen(File *file, const wchar_t *path, u32 mode) {
     return true;
 }
 
-static bool WfsStorage_delete(const wchar_t *path, bool allowNop);
+static bool WfsStorage_remove(const wchar_t *path, bool allowNop);
 
 static bool WfsStorage_openOverwrite(File *file, const wchar_t *path, u32 mode) {
-    if (!WfsStorage_delete(path, true)) {
+    if (!WfsStorage_remove(path, true)) {
         return false;
     }
 
@@ -238,7 +238,7 @@ static bool WfsStorage_rename(const wchar_t *srcPath, const wchar_t *dstPath) {
     return IOS_Ioctl(fd, IOCTL_RENAME, in, sizeof(in), NULL, 0) >= 0;
 }
 
-static bool WfsStorage_delete(const wchar_t *path, bool allowNop) {
+static bool WfsStorage_remove(const wchar_t *path, bool allowNop) {
     // TODO implement
     return true;
 }
@@ -271,7 +271,7 @@ bool WfsStorage_init(Storage *storage) {
     storage->closeDir = WfsStorage_closeDir;
     storage->type = WfsStorage_type;
     storage->rename = WfsStorage_rename;
-    storage->delete = WfsStorage_delete;
+    storage->remove = WfsStorage_remove;
 
     return false; // Not fully supported yet
 }

@@ -204,10 +204,10 @@ bool Storage_rename(const wchar_t *srcPath, const wchar_t *dstPath) {
 }
 
 // WARNING: Only operates on the primary storage
-bool Storage_delete(const wchar_t *path, bool allowNop) {
+bool Storage_remove(const wchar_t *path, bool allowNop) {
     LOG_FILE_DISABLE();
 
     assert(path);
 
-    return storage.delete(path, allowNop);
+    return storage.remove(path, allowNop);
 }
