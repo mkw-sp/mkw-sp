@@ -159,8 +159,8 @@ bool NetFile_stream(NetFile *file, u32 pos, u32 bytes) {
     NET_DEBUG("[NetFile] Streaming id=%u,pos=%u,len=%u", file->id, pos, bytes);
 
     NetRequest_Read req = (NetRequest_Read){
-        .packet_len = sp_htonl(sizeof(NetRequest_Read)),
-        .packet_type = sp_htonl(kNetPacket_Read),
+        .packet_len = sp_htonl((u32)sizeof(NetRequest_Read)),
+        .packet_type = sp_htonl((u32)kNetPacket_Read),
         .file_id = sp_htonl(file->id),
         .offset = sp_htonl(pos),
         .length = sp_htonl(bytes),

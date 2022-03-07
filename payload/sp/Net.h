@@ -6,6 +6,5 @@
 enum {
     NET_HEAP_SIZE = sizeof(NetSlabs) + 5000,
 };
-bool Net_init(NetSlabs* slabs);
 
-bool Net_initFromArena(void);
+bool Net_init(void);
