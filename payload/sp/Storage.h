@@ -26,14 +26,6 @@ typedef struct {
     u32 type;
 } DirEntry;
 
-// TODO this is a bit confusing
-enum {
-    MODE_READ = 1 << 0,
-    MODE_WRITE = 1 << 1,
-    MODE_CREATE_NEW = 1 << 2,
-    MODE_CREATE_ALWAYS = 1 << 3,
-};
-
 typedef struct Storage {
     struct Storage* next;
     bool (*open)(File *file, const wchar_t *path, const char *mode);
