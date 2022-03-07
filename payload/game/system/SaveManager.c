@@ -96,12 +96,11 @@ static void SaveManager_initGhostsDir(SaveManager *this, wchar_t *path, u32 offs
     }
 
     Dir dir;
-    if (!Storage_openDir(&dir, path)) {
+    DirEntry entry;
+    if (!Storage_openDir(&dir, &entry, path)) {
         return;
     }
-
-    DirEntry entry;
-    while (Storage_readDir(&dir, &entry)) {
+    do {
         if (entry.type == NODE_TYPE_NONE) {
             break;
         }
@@ -118,7 +117,7 @@ static void SaveManager_initGhostsDir(SaveManager *this, wchar_t *path, u32 offs
             break;
         }
         offset -= length;
-    }
+    } while (Storage_readDir(&dir, &entry));
 
     Storage_closeDir(&dir);
 }

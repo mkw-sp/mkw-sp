@@ -22,12 +22,12 @@ static char paths[MAX_FILE_COUNT][MAX_PATH_LENGTH + 1];
 
 static void discoverMyStuffPrefixes(void) {
     Dir dir;
-    if (!Storage_openDir(&dir, L"/mkw-sp")) {
+    DirEntry entry;
+    if (!Storage_openDir(&dir, &entry, L"/mkw-sp")) {
         return;
     }
 
-    DirEntry entry;
-    while (Storage_readDir(&dir, &entry)) {
+    do {
         if (entry.type == NODE_TYPE_NONE) {
             break;
         }
@@ -42,7 +42,7 @@ static void discoverMyStuffPrefixes(void) {
         }
         swprintf(prefixes[prefixCount++], MAX_PREFIX_LENGTH + 1, L"%ls", entry.name);
         SP_LOG("Added file replacement prefix %ls", entry.name);
-    }
+    } while (Storage_readDir(&dir, &entry));
 
     Storage_closeDir(&dir);
 }

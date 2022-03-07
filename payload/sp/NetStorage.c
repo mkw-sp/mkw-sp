@@ -109,7 +109,7 @@ static u64 NetStorage_size(File *file) {
 static bool NetStorage_createDir(const wchar_t *UNUSED(path), bool UNUSED(allowNop)) {
     return false;
 }
-static bool NetStorage_openDir(Dir *UNUSED(dir), const wchar_t *path) {
+static bool NetStorage_openDir(Dir *UNUSED(dir), DirEntry *UNUSED(entry), const wchar_t *path) {
     SP_LOG("Open dir %ls", path);
     return false;
 }

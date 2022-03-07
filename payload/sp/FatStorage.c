@@ -118,7 +118,26 @@ static bool FatStorage_createDir(const wchar_t *path, bool allowNop) {
     return fResult == FR_OK || (allowNop && fResult == FR_EXIST);
 }
 
-static bool FatStorage_openDir(Dir *dir, const wchar_t *path) {
+static bool FatStorage_nextDirEntry(const Dir *dir, DirEntry *entry) {
+    FILINFO info;
+    if (f_readdir(&dirs[dir->fd], &info) != FR_OK) {
+        return false;
+    }
+
+    static_assert(sizeof(info.fname) <= sizeof(entry->name));
+    memcpy(entry->name, info.fname, sizeof(info.fname));
+    if (info.fname[0] == L'\0') {
+        entry->type = NODE_TYPE_NONE;
+    } else if (info.fattrib & AM_DIR) {
+        entry->type = NODE_TYPE_DIR;
+    } else {
+        entry->type = NODE_TYPE_FILE;
+    }
+
+    return true;
+}
+
+static bool FatStorage_openDir(Dir *dir, DirEntry *entry, const wchar_t *path) {
     SP_SCOPED_MUTEX_LOCK(mutex);
 
     for (dir->fd = 0; dir->fd < MAX_OPEN_DIR_COUNT; dir->fd++) {
@@ -136,7 +155,7 @@ static bool FatStorage_openDir(Dir *dir, const wchar_t *path) {
 
     openDirs |= 1 << dir->fd;
 
-    return true;
+    return FatStorage_nextDirEntry(dir, entry);
 }
 
 static bool FatStorage_readDir(Dir *dir, DirEntry *entry) {
@@ -144,22 +163,7 @@ static bool FatStorage_readDir(Dir *dir, DirEntry *entry) {
 
     SP_SCOPED_MUTEX_LOCK(mutex);
 
-    FILINFO info;
-    if (f_readdir(&dirs[dir->fd], &info) != FR_OK) {
-        return false;
-    }
-
-    static_assert(sizeof(info.fname) <= sizeof(entry->name));
-    memcpy(entry->name, info.fname, sizeof(info.fname));
-    if (info.fname[0] == L'\0') {
-        entry->type = NODE_TYPE_NONE;
-    } else if (info.fattrib & AM_DIR) {
-        entry->type = NODE_TYPE_DIR;
-    } else {
-        entry->type = NODE_TYPE_FILE;
-    }
-
-    return true;
+    return FatStorage_nextDirEntry(dir, entry);
 }
 
 static bool FatStorage_closeDir(Dir *dir) {

@@ -43,7 +43,7 @@ typedef struct Storage {
     bool (*sync)(File *file);
     u64 (*size)(File *file);
     bool (*createDir)(const wchar_t *path, bool allowNop);
-    bool (*openDir)(Dir *dir, const wchar_t *path);
+    bool (*openDir)(Dir *dir, DirEntry *entry, const wchar_t *path);
     bool (*readDir)(Dir *dir, DirEntry *entry);
     bool (*closeDir)(Dir *dir);
     u32 (*type)(const wchar_t *path);
@@ -71,7 +71,7 @@ bool Storage_writeFile(const wchar_t *path, bool overwrite, const void *src, u32
 
 bool Storage_createDir(const wchar_t *path, bool allowNop);
 
-bool Storage_openDir(Dir *dir, const wchar_t *path);
+bool Storage_openDir(Dir *dir, DirEntry *entry, const wchar_t *path);
 
 bool Storage_readDir(Dir *dir, DirEntry *entry);
 

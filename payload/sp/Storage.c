@@ -140,15 +140,16 @@ bool Storage_createDir(const wchar_t *path, bool allowNop) {
     return storage.createDir(path, allowNop);
 }
 
-bool Storage_openDir(Dir *dir, const wchar_t *path) {
+bool Storage_openDir(Dir *dir, DirEntry *entry, const wchar_t *path) {
     LOG_FILE_DISABLE();
 
     assert(dir);
+    assert(entry);
     assert(path);
 
     for (Storage *s = &storage; s != NULL; s = s->next) {
         assert(s->openDir);
-        if (s->openDir(dir, path)) {
+        if (s->openDir(dir, entry, path)) {
             dir->storage = s;
             return true;
         }
