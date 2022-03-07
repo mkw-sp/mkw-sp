@@ -8,6 +8,23 @@
 #define PLATFORM_EMULATOR
 #endif
 
+// A'la C++20
+enum {
+    kEndianLittle,
+    kEndianBig,
+
+#ifdef PLATFORM_EMULATOR
+    kEndianCurrent = kEndianLittle,
+#else
+    kEndianCurrent = kEndianBig,
+#endif
+};
+
+
+#ifdef __cplusplus
+#define restrict __restrict
+#endif
+
 typedef int BOOL;
 
 typedef signed char s8;
@@ -41,10 +58,15 @@ typedef double f64;
 #define CONTAINER_OF(ptr, type, member) \
     ((type *)((char *)(1 ? (ptr) : &((type *)0)->member) - offsetof(type, member)))
 
+//
+// WARNING: BUILD_BUG_ON_ZERO / MUST_BE_ARRAY returns 4 on Windows.
+//
+
 #define BUILD_BUG_ON_ZERO(e) ((int)(sizeof(struct { int : (-!!(e)); })))
 #define SAME_TYPE(a, b) __builtin_types_compatible_p(typeof(a), typeof(b))
 #define MUST_BE_ARRAY(a) BUILD_BUG_ON_ZERO(SAME_TYPE((a), &(a)[0]))
-#define ARRAY_SIZE(arr) (sizeof(arr) / sizeof((arr)[0]) + MUST_BE_ARRAY(arr))
+
+#define ARRAY_SIZE(arr) (sizeof(arr) / sizeof((arr)[0]) + (MUST_BE_ARRAY(arr) && 0))
 
 #define SP_TOSTRING(x) #x
 #define SP_TOSTRING2(x) SP_TOSTRING(x)

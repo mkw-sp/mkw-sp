@@ -1,4 +1,5 @@
 #include "NetStorageClient.h"
+#include <sp/Bytes.h>
 #include <sp/ScopeLock.h>
 #include <wchar.h>
 
@@ -62,6 +63,7 @@ bool NetStreamBuf_contains(NetStreamBuf *buf, s32 offset, s32 len) {
 void NetStorageClient_create(NetStorageClient *client) {
     memset(client, 0, sizeof(*client));
     TcpSocket_create(&client->sock);
+    OSInitMutex(&client->mutex);
 }
 
 void NetStorageClient_destroy(NetStorageClient *client) {
@@ -96,11 +98,14 @@ bool NetFile_open(NetFile *file, NetStorageClient *client, const wchar_t *path) 
     u8 request_buf_size = sizeof(NetRequest_Open);
     NetRequest_Open req;
 
-    req.packet_len = request_buf_size;
-    req.packet_type = kNetPacket_Open;
-    req.file_id = file->id;
+    req.packet_len = sp_htonl((u32)request_buf_size);
+    req.packet_type = sp_htonl((u32)kNetPacket_Open);
+    req.file_id = sp_htonl(file->id);
     memset(req.path, 0, sizeof(req.path));
     memcpy(req.path, path, sizeof(wchar_t) * MIN(path_len, ARRAY_SIZE(req.path) - 1));
+    for (size_t i = 0; i < ARRAY_SIZE(req.path); ++i) {
+        req.path[i] = sp_htons(req.path[i]);
+    }
     if (!TcpSocket_sendBytes(&client->sock, &req, sizeof(req))) {
         SP_LOG("[NetFile] Failed to send Open request");
         return false;
@@ -112,8 +117,11 @@ bool NetFile_open(NetFile *file, NetStorageClient *client, const wchar_t *path) 
         SP_LOG("[NetFile] Failed to receieve Open response");
         return false;
     }
+    response.file_id = sp_ntohl(response.file_id);
+    response.file_size = sp_ntohl(response.file_size);
 
-    NET_DEBUG("[NetFile] -> Opened id=%u,filesize=%u", file->id, response.file_size);
+    NET_DEBUG("[NetFile] -> Opened id=%u,filesize=%u", (unsigned)file->id,
+            (unsigned)response.file_size);
 
     if (response.file_size == 0) {
         return false;
@@ -132,7 +140,12 @@ void NetFile_close(NetFile *file) {
     assert(file->isOpen && "File isn't open");
 
     file->isOpen = false;
-    --file->client->filesInFlight;
+
+    assert(file->client);
+    {
+        SP_SCOPED_MUTEX_LOCK(file->client->mutex);
+        --file->client->filesInFlight;
+    }
 }
 
 bool NetFile_stream(NetFile *file, u32 pos, u32 bytes) {
@@ -146,11 +159,11 @@ bool NetFile_stream(NetFile *file, u32 pos, u32 bytes) {
     NET_DEBUG("[NetFile] Streaming id=%u,pos=%u,len=%u", file->id, pos, bytes);
 
     NetRequest_Read req = (NetRequest_Read){
-        .packet_len = sizeof(NetRequest_Read),
-        .packet_type = kNetPacket_Read,
-        .file_id = file->id,
-        .offset = pos,
-        .length = bytes,
+        .packet_len = sp_htonl(sizeof(NetRequest_Read)),
+        .packet_type = sp_htonl(kNetPacket_Read),
+        .file_id = sp_htonl(file->id),
+        .offset = sp_htonl(pos),
+        .length = sp_htonl(bytes),
     };
     if (!TcpSocket_sendBytes(&file->client->sock, &req, sizeof(req))) {
         SP_LOG("[NetFile] Failed to send Read packet");
@@ -172,7 +185,7 @@ u32 NetFile_read(NetFile *file, void *dst, s32 len, s32 offset) {
     assert(file != NULL);
     assert(file->isOpen);
     assert(dst != NULL);
-    assert(len >= 32);
+    assert(len >= 1);
     assert(offset >= 0);
 
     NET_DEBUG("[NetFile] Read id=%i,dst=%p,len=%i,offset=%i", (signed)file->id, dst,
@@ -191,7 +204,7 @@ u32 NetFile_read(NetFile *file, void *dst, s32 len, s32 offset) {
             // Intentional: Read potentially extra (e.g. if cache miss for first 32B, read
             // the first 1024B)
             if (!NetFile_stream(file, i, current_stride)) {
-                return i;
+                return i - offset;
             }
         }
         u32 streambuf_offset = i - file->buffer.streamedOffset;
