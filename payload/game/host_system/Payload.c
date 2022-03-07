@@ -33,7 +33,7 @@ __attribute__((section("first"))) void start(void) {
 
     Host_Init();
 
-    bool netWasInit = Net_initFromArena();
+    bool netWasInit = Net_init();
     assert(netWasInit);
 
     bool storageWasInit = Storage_init();

@@ -193,7 +193,7 @@ static bool FatStorage_rename(const wchar_t *srcPath, const wchar_t *dstPath) {
     return f_rename(srcPath, dstPath) == FR_OK;
 }
 
-static bool FatStorage_delete(const wchar_t *path, bool allowNop) {
+static bool FatStorage_remove(const wchar_t *path, bool allowNop) {
     SP_SCOPED_MUTEX_LOCK(mutex);
 
     FRESULT fResult = f_unlink(path);
@@ -233,7 +233,7 @@ bool FatStorage_init(Storage *storage) {
     storage->closeDir = FatStorage_closeDir;
     storage->type = FatStorage_type;
     storage->rename = FatStorage_rename;
-    storage->delete = FatStorage_delete;
+    storage->remove = FatStorage_remove;
 
     SP_LOG("[FatStorage] Initialized");
     return true;
