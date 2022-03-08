@@ -34,7 +34,7 @@ static inline u16 swap16(u16 v) {
 }
 #endif
 
-#if kEndianCurrent == kEndianLittle
+#ifdef PLATFORM_LE
 #include <string.h>
 
 // Respects strong aliasing, will never double evaluate

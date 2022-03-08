@@ -16,7 +16,7 @@ void OSSetMEM2ArenaLo(void *lo);
 void *OSAllocFromMEM1ArenaLo(u32 size, u32 align);
 
 static inline void *OSAllocFromMEM2ArenaLo(u32 size, u32 align) {
-    u32 result = ROUND_UP((u32)OSGetMEM2ArenaLo(), align);
+    uintptr_t result = ROUND_UP((uintptr_t)OSGetMEM2ArenaLo(), align);
 
     OSSetMEM2ArenaLo((void *)ROUND_UP(result + size, align));
     return (void *)result;

@@ -12,6 +12,7 @@ static bool sHostIsInit = false;
 static HostPlatform sPlatform = HOST_UNKNOWN;
 static char sDolphinTag[64] = "Not dolphin";
 
+#ifndef PLATFORM_EMULATOR
 static void DetectPlatform(void) {
     {
         IOSDolphin iosDolphin = IOSDolphin_Open();
@@ -56,6 +57,7 @@ static void DetectPlatform(void) {
 
     sPlatform = HOST_UNKNOWN;
 }
+#endif
 
 void Host_Init(void) {
     if (sHostIsInit)
