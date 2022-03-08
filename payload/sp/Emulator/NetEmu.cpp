@@ -8,13 +8,21 @@ extern "C" {
 #include <sp/Tcp.h>
 }
 
+#include <stdio.h>
+#include <cstring>
 #include <string>
 
-#include <stdio.h>
+#ifdef _WIN32
 #include <winsock2.h>
 #include <ws2tcpip.h>
 
 #pragma comment(lib, "Ws2_32.lib")
+#else
+#include <netdb.h>
+#include <sys/socket.h>
+#include <unistd.h>
+#define INVALID_SOCKET ~0
+#endif
 
 void TcpSocket_create(TcpSocket *sock) {
     sock->handle = INVALID_SOCKET;
@@ -54,8 +62,8 @@ bool TcpSocket_tryConnectIpv4(
 
     {
         const int res = connect(sock->handle, result->ai_addr, (int)result->ai_addrlen);
-        if (res == SOCKET_ERROR) {
-            closesocket(sock->handle);
+        if (res != 0) {
+            TcpSocket_disconnect(sock);
             sock->handle = INVALID_SOCKET;
         }
     }
@@ -74,7 +82,13 @@ bool TcpSocket_tryConnectIpv4(
 }
 void TcpSocket_disconnect(TcpSocket *sock) {
     if (sock->handle != INVALID_SOCKET) {
+#ifdef _WIN32
         closesocket(sock->handle);
+#else
+        shutdown(sock->handle, SHUT_RDWR);
+        close(sock->handle);
+#endif
+        sock->handle = INVALID_SOCKET;
     }
 }
 
@@ -87,6 +101,7 @@ bool TcpSocket_sendBytes(TcpSocket *sock, const void *buf, u32 len) {
     return len == send(sock->handle, (char *)buf, len, 0);
 }
 
+#ifdef _WIN32
 static void Net_shutdown() {
     WSACleanup();
 }
@@ -103,3 +118,8 @@ bool Net_init(void) {
     atexit(Net_shutdown);
     return true;
 }
+#else
+bool Net_init(void) {
+    return true;
+}
+#endif

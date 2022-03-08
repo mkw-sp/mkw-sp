@@ -2,17 +2,17 @@
 
 #include <Common.h>
 
-typedef struct {
+typedef struct Node {
     struct Storage* storage;
     u32 fd;
 } Node;
 
 typedef struct {
-    Node;
+    struct Node;
 } File;
 
 typedef struct {
-    Node;
+    struct Node;
 } Dir;
 
 enum {
