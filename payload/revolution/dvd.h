@@ -21,7 +21,7 @@ struct DVDCommandBlock {
     s32 state;
     u8 _10[0x30 - 0x10];
 };
-static_assert(sizeof(DVDCommandBlock) == 0x30);
+static_assert_32bit(sizeof(DVDCommandBlock) == 0x30);
 
 struct DVDFileInfo {
     DVDCommandBlock cb;
@@ -29,7 +29,7 @@ struct DVDFileInfo {
     u32 length;
     DVDCallback callback;
 };
-static_assert(sizeof(DVDFileInfo) == 0x3c);
+static_assert_32bit(sizeof(DVDFileInfo) == 0x3c);
 
 typedef struct {
     u32 entryNum;
@@ -43,7 +43,7 @@ typedef struct {
     BOOL isDir;
     char *name;
 } DVDDirEntry;
-static_assert(sizeof(DVDDirEntry) == 0xc);
+static_assert_32bit(sizeof(DVDDirEntry) == 0xc);
 
 BOOL DVDOpen(const char *fileName, DVDFileInfo *fileInfo);
 

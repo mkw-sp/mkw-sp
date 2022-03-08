@@ -3,23 +3,26 @@
 #include <assert.h>
 #include <stdbool.h>
 #include <stddef.h>
+#include <stdint.h>
 
 #if defined(_WIN32) || defined(__APPLE__) || defined(__linux__)
 #define PLATFORM_EMULATOR
 #endif
 
-// A'la C++20
 enum {
-    kEndianLittle,
-    kEndianBig,
+    kPlatform32 = 0,
+    kPlatform64 = 1,
 
-#ifdef PLATFORM_EMULATOR
-    kEndianCurrent = kEndianLittle,
-#else
-    kEndianCurrent = kEndianBig,
-#endif
+    kPlatformCurrent = sizeof(void *) == 8,
 };
 
+#define static_assert_32bit(s) static_assert(kPlatformCurrent != kPlatform32 || (s))
+
+#ifdef PLATFORM_EMULATOR
+#define PLATFORM_LE
+#else
+#define PLATFORM_BE
+#endif
 
 #ifdef __cplusplus
 #define restrict __restrict
@@ -27,6 +30,8 @@ enum {
 
 typedef int BOOL;
 
+#ifndef PLATFORM_EMULATOR
+// Some code relies on u32 being `%lu`
 typedef signed char s8;
 typedef signed short s16;
 typedef signed long s32;
@@ -36,6 +41,17 @@ typedef unsigned char u8;
 typedef unsigned short u16;
 typedef unsigned long u32;
 typedef unsigned long long u64;
+#else
+typedef int8_t s8;
+typedef int16_t s16;
+typedef int32_t s32;
+typedef int64_t s64;
+
+typedef uint8_t u8;
+typedef uint16_t u16;
+typedef uint32_t u32;
+typedef uint64_t u64;
+#endif
 
 typedef float f32;
 typedef double f64;
@@ -82,15 +98,21 @@ typedef double f64;
 #define __FILE_NAME__ __FILE__
 #endif
 
-#define SP_LOG(m, ...)                                                               \
-    RVL_OS_NEEDS_IMPORT;                                                             \
-    OSReport("[" __FILE_NAME__ ":" SP_TOSTRING2(__LINE__) "] " m "\n" __VA_OPT__(, ) \
-                    __VA_ARGS__)
+#define SP_LOG(m, ...)   \
+    RVL_OS_NEEDS_IMPORT; \
+    OSReport("[" __FILE_NAME__ ":" SP_TOSTRING2(__LINE__) "] " m "\n", ##__VA_ARGS__)
 
-#define VIRTUAL_TO_PHYSICAL(ptr) ((u32)(ptr) & 0x7fffffff)
+static size_t sp_wcslen(const wchar_t *w) {
+    size_t result = 0;
+    while (*w++)
+        ++result;
+    return result;
+}
+
+#define VIRTUAL_TO_PHYSICAL(ptr) ((uintptr_t)(ptr) & 0x7fffffff)
 #define PHYSICAL_TO_VIRTUAL(addr) ((void *)((addr) | 0x80000000))
 
-#define ROUND_UP(n, a) (((u32)(n) + (a)-1) & ~((a)-1))
+#define ROUND_UP(n, a) (((uintptr_t)(n) + (a)-1) & ~((a)-1))
 
 enum {
     REGION_P = 0x54a9,

@@ -10,7 +10,7 @@ enum kNetPacket {
     // kNetPacket_ReadResponse,
 };
 
-typedef struct {
+typedef struct NetRequest {
     // Includes the length of this header
     u32 packet_len;
     // Values of kNetPacket
@@ -18,14 +18,14 @@ typedef struct {
     s32 file_id;
 } NetRequest;
 
-typedef struct {
-    NetRequest;
+typedef struct NetRequest_Read {
+    struct NetRequest r;
     u32 offset;
     u32 length;
 } NetRequest_Read;
 
-typedef struct {
-    NetRequest;
+typedef struct NetRequest_Open {
+    struct NetRequest r;
     wchar_t path[64];
 } NetRequest_Open;
 
@@ -91,16 +91,16 @@ bool NetFile_open(NetFile *file, NetStorageClient *client, const wchar_t *path) 
     file->client = client;
     file->id = AllocID();
 
-    u32 path_len = wcslen(path);
+    u32 path_len = sp_wcslen(path);
     assert(path_len < 64);
     NET_DEBUG("[NetFile] Opening id=%u, path=%ls, pathlen=%u", file->id, path, path_len);
 
     u8 request_buf_size = sizeof(NetRequest_Open);
     NetRequest_Open req;
 
-    req.packet_len = sp_htonl((u32)request_buf_size);
-    req.packet_type = sp_htonl((u32)kNetPacket_Open);
-    req.file_id = sp_htonl(file->id);
+    req.r.packet_len = sp_htonl((u32)request_buf_size);
+    req.r.packet_type = sp_htonl((u32)kNetPacket_Open);
+    req.r.file_id = sp_htonl(file->id);
     memset(req.path, 0, sizeof(req.path));
     memcpy(req.path, path, sizeof(wchar_t) * MIN(path_len, ARRAY_SIZE(req.path) - 1));
     for (size_t i = 0; i < ARRAY_SIZE(req.path); ++i) {
@@ -159,9 +159,9 @@ bool NetFile_stream(NetFile *file, u32 pos, u32 bytes) {
     NET_DEBUG("[NetFile] Streaming id=%u,pos=%u,len=%u", file->id, pos, bytes);
 
     NetRequest_Read req = (NetRequest_Read){
-        .packet_len = sp_htonl((u32)sizeof(NetRequest_Read)),
-        .packet_type = sp_htonl((u32)kNetPacket_Read),
-        .file_id = sp_htonl(file->id),
+        .r.packet_len = sp_htonl((u32)sizeof(NetRequest_Read)),
+        .r.packet_type = sp_htonl((u32)kNetPacket_Read),
+        .r.file_id = sp_htonl(file->id),
         .offset = sp_htonl(pos),
         .length = sp_htonl(bytes),
     };
