@@ -11,9 +11,11 @@ static Storage storage;
 static Storage sNetStorage;
 
 static bool Storage_findPrimary(void) {
+#if 0
     if (WfsStorage_init(&storage)) {
         return true;
     }
+#endif
 
     if (FatStorage_init(&storage)) {
         return true;

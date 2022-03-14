@@ -6,6 +6,7 @@
 #include <sp/LogFile.h>
 #include <sp/Net.h>
 #include <sp/Storage.h>
+#include <sp/Usb.h>
 
 #include <revolution.h>
 
@@ -32,6 +33,9 @@ __attribute__((section("first"))) void start(void) {
     ProtectRangeModule(OS_PROTECT_CHANNEL_2, Dol_getSdata2SectionStart(), Dol_getSbss2SectionEnd(), OS_PROTECT_PERMISSION_READ);
 
     Host_Init();
+
+    bool usbWasInit = Usb_init();
+    assert(usbWasInit);
 
     bool netWasInit = Net_initFromArena();
     assert(netWasInit);

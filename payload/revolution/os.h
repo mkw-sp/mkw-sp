@@ -62,6 +62,7 @@ void OSFatal(GXColor fg, GXColor bg, const char *msg);
 
 #include "revolution/os/OSCache.h"
 #include "revolution/os/OSMemory.h"
+#include "revolution/os/OSMessage.h"
 #include "revolution/os/OSModule.h"
 #include "revolution/os/OSMutex.h"
 #include "revolution/os/OSThread.h"

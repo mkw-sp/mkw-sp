@@ -2,6 +2,7 @@
 
 #include "ScopeLock.h"
 #include "Sdi.h"
+#include "UsbStorage.h"
 
 #include <ff/ff.h>
 #include <revolution.h>
@@ -205,6 +206,10 @@ static bool FatStorage_delete(const wchar_t *path, bool allowNop) {
 }
 
 static bool FatStorage_find(void) {
+    if (UsbStorage_init(&fatStorage)) {
+        return true;
+    }
+
     if (SdiStorage_init(&fatStorage)) {
         return true;
     }
@@ -241,6 +246,10 @@ bool FatStorage_init(Storage *storage) {
 
     SP_LOG("[FatStorage] Initialized");
     return true;
+}
+
+u32 FatStorage_diskSectorSize(void) {
+    return fatStorage.diskSectorSize();
 }
 
 bool FatStorage_diskRead(u32 firstSector, u32 sectorCount, void *buffer) {

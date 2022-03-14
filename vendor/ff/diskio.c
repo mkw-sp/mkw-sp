@@ -87,6 +87,9 @@ DRESULT disk_ioctl (
 	switch (cmd) {
 	case CTRL_SYNC:
 		return FatStorage_diskSync() ? RES_OK : RES_ERROR;
+	case GET_SECTOR_SIZE:
+		*(WORD *)buff = FatStorage_diskSectorSize();
+		return RES_OK;
 	case CTRL_TRIM:;
 		const LBA_t *args = buff;
 		LBA_t firstSector = args[0];

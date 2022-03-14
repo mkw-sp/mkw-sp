@@ -298,6 +298,8 @@ code_in_files = {
         os.path.join('payload', 'sp', 'Slab.c'),
         os.path.join('payload', 'sp', 'Storage.c'),
         os.path.join('payload', 'sp', 'Tcp.c'),
+        os.path.join('payload', 'sp', 'Usb.c'),
+        os.path.join('payload', 'sp', 'UsbStorage.c'),
         os.path.join('payload', 'sp', 'WfsStorage.c'),
         os.path.join('payload', 'sp', 'Yaz.c'),
         os.path.join('vendor', 'arith64.c'),
