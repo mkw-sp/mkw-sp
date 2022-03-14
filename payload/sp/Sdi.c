@@ -281,6 +281,10 @@ static bool Sdi_transfer(bool isWrite, u32 firstSector, u32 sectorCount, void *b
     return true;
 }
 
+static u32 Sdi_sectorSize(void) {
+    return SECTOR_SIZE;
+}
+
 static bool Sdi_read(u32 firstSector, u32 sectorCount, void *buffer) {
     return Sdi_transfer(false, firstSector, sectorCount, buffer);
 }
@@ -356,6 +360,7 @@ bool SdiStorage_init(FatStorage *fatStorage) {
 
     Sdi_deselect();
 
+    fatStorage->diskSectorSize = Sdi_sectorSize;
     fatStorage->diskRead = Sdi_read;
     fatStorage->diskWrite = Sdi_write;
     fatStorage->diskErase = Sdi_erase;
