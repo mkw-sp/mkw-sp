@@ -217,12 +217,12 @@ bool FatStorage_init(Storage *storage) {
     OSInitMutex(&mutex);
 
     if (!FatStorage_find()) {
-        SP_LOG("[FatStorage] Failed to find");
+        SP_LOG("Failed to find a suitable device");
         return false;
     }
 
     if (f_mount(&fs, L"", 1) != FR_OK) {
-        SP_LOG("[FatStorage] Failed to mount");
+        SP_LOG("Failed to mount the filesystem");
         return false;
     }
 
@@ -240,7 +240,7 @@ bool FatStorage_init(Storage *storage) {
     storage->rename = FatStorage_rename;
     storage->remove = FatStorage_remove;
 
-    SP_LOG("[FatStorage] Initialized");
+    SP_LOG("Successfully completed initialization");
     return true;
 }
 
