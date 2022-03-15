@@ -34,7 +34,7 @@ void Loader_run(void) {
 
     Di_deinit();
 
-    RandomizeMainThreadStackPointer();
+    Stack_RandomizeMainThreadStackPointer();
 
     void *payloadDst;
     const void *payloadSrc;

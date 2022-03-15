@@ -1,3 +1,3 @@
 #pragma once
 
-void RandomizeMainThreadStackPointer(void);
+void Stack_RandomizeMainThreadStackPointer(void);
