@@ -9,8 +9,8 @@ DWORD get_fattime (void)
 
     DWORD val = 0;
 
-	assert(time.year >= 1980 && time.year < 2108);
-	val |= (time.year - 1980) << 25;
+    assert(time.year >= 1980 && time.year < 2108);
+    val |= (time.year - 1980) << 25;
 
     assert(time.mon >= 0 && time.mon < 12);
     val |= (time.mon + 1) << 21;
