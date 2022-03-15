@@ -3,7 +3,7 @@
 #include <revolution/os.h>
 #include <stdint.h>
 
-void ProtectRangeModule(u32 channel, void* start, void* end, u32 permissions)
+void Memory_ProtectRangeModule(u32 channel, void* start, void* end, u32 permissions)
 {
     assert(!(channel > OS_PROTECT_CHANNEL_3));
     assert(!(permissions & ~OS_PROTECT_PERMISSION_RW));
