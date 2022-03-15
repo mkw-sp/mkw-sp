@@ -70,7 +70,7 @@ void my_BootStrapScene_calc(BootStrapScene *this) {
     }
 
     Patcher_patch(PATCHER_BINARY_REL);
-    ProtectRangeModule(OS_PROTECT_CHANNEL_3, Rel_getTextSectionStart(), Rel_getRodataSectionEnd(), OS_PROTECT_PERMISSION_READ);
+    Memory_ProtectRangeModule(OS_PROTECT_CHANNEL_3, Rel_getTextSectionStart(), Rel_getRodataSectionEnd(), OS_PROTECT_PERMISSION_READ);
 
     entry();
 }
