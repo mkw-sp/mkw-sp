@@ -1,3 +1,11 @@
+// Resources:
+// - https://wiibrew.org/wiki//dev/usb/ven
+// - https://github.com/dolphin-emu/dolphin/blob/master/Source/Core/Core/IOS/USB/USB_VEN/VEN.cpp
+// - http://www.usb.org/developers/docs/usb_20.zip
+// - https://www.beyondlogic.org/usbnutshell/usb1.shtml
+// - https://libusb.sourceforge.io/api-1.0/annotated.html
+// - https://github.com/devkitPro/libogc/blob/master/libogc/usb.c
+
 #include "Usb.h"
 
 #include "Bytes.h"
