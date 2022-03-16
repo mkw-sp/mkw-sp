@@ -8,6 +8,11 @@ enum kNetPacket {
     // kNetPacket_OpenResponse,
     kNetPacket_Read,
     // kNetPacket_ReadResponse,
+
+    kNetPacket_FileRename,
+    kNetPacket_FileRemove,
+
+    kNetPacket_DirRead,
 };
 
 typedef struct NetRequest {
@@ -26,13 +31,27 @@ typedef struct NetRequest_Read {
 
 typedef struct NetRequest_Open {
     struct NetRequest r;
-    wchar_t path[64];
+    wchar_t path[128];
 } NetRequest_Open;
+
+typedef struct {
+    NetRequest r;
+    wchar_t path[128];
+} NetRequest_FileRename;
 
 typedef struct {
     s32 file_id;
     u32 file_size;  // 0 if error
 } NetRequest_OpenResponse;
+
+typedef struct {
+    struct NetRequest r;
+} NetRequest_DirRead;
+
+typedef struct {
+    u32 type;
+    wchar_t path[128];
+} NetRequest_DirReadResponse;
 
 static int sIdCounter = 0;
 static int AllocID() {
@@ -80,27 +99,28 @@ void NetStorageClient_disconnect(NetStorageClient *client) {
     TcpSocket_disconnect(&client->sock);
 }
 
-bool NetFile_open(NetFile *file, NetStorageClient *client, const wchar_t *path) {
-    assert(file);
+static bool NetNode_open(NetNode *node, NetStorageClient *client, const wchar_t *path) {
+    assert(node);
     assert(client);
-    assert(!file->isOpen && "File is already open");
+    assert(!node->isOpen && "File/Folder is already open");
     assert(path && *path && "Path is empty");
 
     SP_SCOPED_MUTEX_LOCK(client->mutex);
 
-    file->client = client;
-    file->id = AllocID();
+    node->client = client;
+    node->id = AllocID();
 
     u32 path_len = sp_wcslen(path);
-    assert(path_len < 64);
-    NET_DEBUG("[NetFile] Opening id=%u, path=%ls, pathlen=%u", file->id, path, path_len);
+    assert(path_len < 128);
+    NET_DEBUG("[NetFile] Opening id=%u, path=%ls, pathlen=%u", file->node.id, path,
+            path_len);
 
-    u8 request_buf_size = sizeof(NetRequest_Open);
+    u32 request_buf_size = sizeof(NetRequest_Open);
     NetRequest_Open req;
 
     req.r.packet_len = sp_htonl((u32)request_buf_size);
     req.r.packet_type = sp_htonl((u32)kNetPacket_Open);
-    req.r.file_id = sp_htonl(file->id);
+    req.r.file_id = sp_htonl(node->id);
     memset(req.path, 0, sizeof(req.path));
     memcpy(req.path, path, sizeof(wchar_t) * MIN(path_len, ARRAY_SIZE(req.path) - 1));
     for (size_t i = 0; i < ARRAY_SIZE(req.path); ++i) {
@@ -120,15 +140,24 @@ bool NetFile_open(NetFile *file, NetStorageClient *client, const wchar_t *path) 
     response.file_id = sp_ntohl(response.file_id);
     response.file_size = sp_ntohl(response.file_size);
 
-    NET_DEBUG("[NetFile] -> Opened id=%u,filesize=%u", (unsigned)file->id,
+    NET_DEBUG("[NetFile] -> Opened id=%u,filesize=%u", (unsigned)file->node.id,
             (unsigned)response.file_size);
 
     if (response.file_size == 0) {
         return false;
     }
 
-    file->isOpen = true;
-    file->fileSize = response.file_size;
+    node->isOpen = true;
+    node->fileSize = response.file_size;
+
+    return true;
+}
+
+bool NetFile_open(NetFile *file, NetStorageClient *client, const wchar_t *path) {
+    if (!NetNode_open(&file->node, client, path)) {
+        return false;
+    }
+
     file->buffer.streamedOffset = ~0;
     file->buffer.streamedSize = ~0;
 
@@ -137,40 +166,40 @@ bool NetFile_open(NetFile *file, NetStorageClient *client, const wchar_t *path) 
 }
 
 void NetFile_close(NetFile *file) {
-    assert(file->isOpen && "File isn't open");
+    assert(file->node.isOpen && "File isn't open");
 
-    file->isOpen = false;
+    file->node.isOpen = false;
 
-    assert(file->client);
+    assert(file->node.client);
     {
-        SP_SCOPED_MUTEX_LOCK(file->client->mutex);
-        --file->client->filesInFlight;
+        SP_SCOPED_MUTEX_LOCK(file->node.client->mutex);
+        --file->node.client->filesInFlight;
     }
 }
 
 bool NetFile_stream(NetFile *file, u32 pos, u32 bytes) {
     assert(bytes <= sizeof(file->buffer));
 
-    SP_SCOPED_MUTEX_LOCK(file->client->mutex);
+    SP_SCOPED_MUTEX_LOCK(file->node.client->mutex);
 
     file->buffer.streamedOffset = pos;
     file->buffer.streamedSize = bytes;
 
-    NET_DEBUG("[NetFile] Streaming id=%u,pos=%u,len=%u", file->id, pos, bytes);
+    NET_DEBUG("[NetFile] Streaming id=%u,pos=%u,len=%u", file->node.id, pos, bytes);
 
     NetRequest_Read req = (NetRequest_Read){
         .r.packet_len = sp_htonl((u32)sizeof(NetRequest_Read)),
         .r.packet_type = sp_htonl((u32)kNetPacket_Read),
-        .r.file_id = sp_htonl(file->id),
+        .r.file_id = sp_htonl(file->node.id),
         .offset = sp_htonl(pos),
         .length = sp_htonl(bytes),
     };
-    if (!TcpSocket_sendBytes(&file->client->sock, &req, sizeof(req))) {
+    if (!TcpSocket_sendBytes(&file->node.client->sock, &req, sizeof(req))) {
         SP_LOG("[NetFile] Failed to send Read packet");
         return false;
     }
 
-    if (!TcpSocket_receiveBytes(&file->client->sock, file->buffer.buffer,
+    if (!TcpSocket_receiveBytes(&file->node.client->sock, file->buffer.buffer,
                 MIN(sizeof(file->buffer.buffer), bytes))) {
         SP_LOG("[NetFile] Failed to receieve Read response");
         return false;
@@ -183,17 +212,17 @@ bool NetFile_stream(NetFile *file, u32 pos, u32 bytes) {
 
 u32 NetFile_read(NetFile *file, void *dst, s32 len, s32 offset) {
     assert(file != NULL);
-    assert(file->isOpen);
+    assert(file->node.isOpen);
     assert(dst != NULL);
     assert(len >= 1);
     assert(offset >= 0);
 
-    NET_DEBUG("[NetFile] Read id=%i,dst=%p,len=%i,offset=%i", (signed)file->id, dst,
+    NET_DEBUG("[NetFile] Read id=%i,dst=%p,len=%i,offset=%i", (signed)file->node.id, dst,
             (signed)len, (signed)offset);
 
     for (s32 i = offset; i < offset + len; i += NET_STREAM_CHUNK) {
         // Usually 1024, unless last read
-        s32 current_stride = MIN(file->fileSize - i, NET_STREAM_CHUNK);
+        s32 current_stride = MIN(file->node.fileSize - i, NET_STREAM_CHUNK);
         NET_DEBUG("current_stride=%u", (signed)current_stride);
 
         // TODO: Double buffer
@@ -216,4 +245,63 @@ u32 NetFile_read(NetFile *file, void *dst, s32 len, s32 offset) {
     }
 
     return len;
+}
+
+bool NetFile_rename(NetFile *file, const wchar_t *UNUSED(path)) {
+    return false;
+}
+bool NetFile_removeAndClose(NetFile *file) {
+    return false;
+}
+
+bool NetDir_open(NetDir *dir, NetStorageClient *client, const wchar_t *path) {
+    if (!NetNode_open(&dir->node, client, path)) {
+        return false;
+    }
+
+    return true;
+}
+bool NetDir_read(NetDir *dir, NetDirEntry *out) {
+    SP_SCOPED_MUTEX_LOCK(dir->node.client->mutex);
+
+    NetRequest_DirRead req = (NetRequest_DirRead){
+        .r.file_id = sp_htonl(dir->node.id),
+        .r.packet_type = sp_htonl(kNetPacket_DirRead),
+        .r.packet_len = sp_htonl(sizeof(NetRequest_DirRead)),
+    };
+
+    TcpSocket *sock = &dir->node.client->sock;
+
+    if (!TcpSocket_sendBytes(sock, &req, sizeof(req))) {
+        return false;
+    }
+
+    NetRequest_DirReadResponse response;
+    if (!TcpSocket_receiveBytes(sock, &response, sizeof(response))) {
+        return false;
+    }
+    response.type = sp_ntohl(response.type);
+
+    if (response.type == 0) {
+        return false;
+    }
+
+    for (size_t i = 0; i < ARRAY_SIZE(response.path); ++i) {
+        response.path[i] = sp_ntohs(response.path[i]);
+    }
+
+    if (out != NULL) {
+        memcpy(out->name, response.path, MIN(sizeof(out->name), sizeof(response.path)));
+        out->name[ARRAY_SIZE(out->name) - 1] = L'\0';
+        out->isDir = response.type == 2;
+    }
+
+    return true;
+}
+void NetDir_close(NetDir *UNUSED(dir)) {
+    // Do nothing
+}
+
+bool NetFile_write(NetFile* file, const void* src, u32 size, u32 offset) {
+    return false;
 }

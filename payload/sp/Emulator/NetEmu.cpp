@@ -78,6 +78,8 @@ bool TcpSocket_tryConnectIpv4(
         return false;
     }
 
+    sock->isConnected = true;
+
     return true;
 }
 void TcpSocket_disconnect(TcpSocket *sock) {

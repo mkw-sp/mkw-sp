@@ -5,12 +5,14 @@
 #include <stdio.h>
 #include <wchar.h>
 
-NetStorageClient sNetStorageClient;
+static NetStorageClient sNetStorageClient;
 static bool sNetStorageConnected;
 
-NetFile sNetFiles[12];
-u32 sOpenNetFiles;
-s32 sNumOpenNetFiles;
+static NetFile sNetFiles[12];
+static u32 sOpenNetFiles;
+static s32 sNumOpenNetFiles;
+
+static NetDir sNetDirs[12];
 
 static OSMutex sNetMutex;
 
@@ -32,7 +34,7 @@ static s32 GetFreeFd() {
 }
 
 static NetFile *GetNetFileByFd(s32 fd) {
-    if (fd >= (s32)ARRAY_SIZE(sNetFiles)) {
+    if (fd < 0 || fd >= (s32)ARRAY_SIZE(sNetFiles)) {
         return NULL;
     }
 
@@ -93,9 +95,14 @@ static bool NetStorage_read(File *file, void *dst, u32 size, u32 offset) {
 
     return amount_read == size;
 }
-static bool NetStorage_write(File *UNUSED(file), const void *UNUSED(src),
-        u32 UNUSED(size), u32 UNUSED(offset)) {
-    return false;
+static bool NetStorage_write(File *file, const void *src,
+        u32 size, u32 offset) {
+    NetFile *netFile = GetNetFileByFd(file->fd);
+    assert(netFile);
+
+    SP_SCOPED_MUTEX_LOCK(sNetMutex);
+
+    return NetFile_write(netFile, src, size, offset);
 }
 static bool NetStorage_sync(File *UNUSED(file)) {
     return false;
@@ -104,20 +111,65 @@ static u64 NetStorage_size(File *file) {
     NetFile *netFile = GetNetFileByFd(file->fd);
     assert(netFile);
 
-    return netFile->fileSize;
+    return netFile->node.fileSize;
 }
 static bool NetStorage_createDir(const wchar_t *UNUSED(path), bool UNUSED(allowNop)) {
     return false;
 }
-static bool NetStorage_openDir(Dir *UNUSED(dir), const wchar_t *path) {
+static bool NetStorage_openDir(Dir *dir, const wchar_t *path) {
     SP_LOG("Open dir %ls", path);
-    return false;
+
+    SP_SCOPED_MUTEX_LOCK(sNetMutex);
+
+    NetDir *it = NULL;
+    for (size_t i = 0; i < ARRAY_SIZE(sNetDirs); ++i) {
+        if (!sNetDirs[i].node.isOpen) {
+            it = &sNetDirs[i];
+        }
+    }
+
+    if (it == NULL) {
+        return false;
+    }
+
+    if (!NetDir_open(it, &sNetStorageClient, path)) {
+        return false;   
+    }
+
+    dir->fd = it - &sNetDirs[0];
+    return true;
 }
-static bool NetStorage_readDir(Dir *UNUSED(dir), DirEntry *UNUSED(entry)) {
-    return false;
+static bool NetStorage_readDir(Dir *dir, DirEntry *entry) {
+    assert(dir != NULL);
+    assert(dir->fd < ARRAY_SIZE(sNetDirs));
+    assert(sNetDirs[dir->fd].node.isOpen);
+
+    SP_SCOPED_MUTEX_LOCK(sNetMutex);
+
+    NetDirEntry tmp;
+    if (!NetDir_read(&sNetDirs[dir->fd], &tmp)) {
+        return false;
+    }
+
+    if (entry != NULL) {
+        memcpy(entry->name, &tmp.name, MIN(sizeof(entry->name), sizeof(tmp.name)));
+        entry->name[ARRAY_SIZE(entry->name) - 1] = L'\0';
+        entry->type = tmp.isDir ? NODE_TYPE_DIR : NODE_TYPE_FILE;
+    }
+
+    return true;
 }
-static bool NetStorage_closeDir(Dir *UNUSED(dir)) {
-    return false;
+static bool NetStorage_closeDir(Dir *dir) {
+    assert(dir != NULL);
+    assert(dir->fd < ARRAY_SIZE(sNetDirs));
+    assert(sNetDirs[dir->fd].node.isOpen);
+
+    SP_SCOPED_MUTEX_LOCK(sNetMutex);
+
+    NetDir_close(&sNetDirs[dir->fd]);
+    memset(&sNetDirs[dir->fd], 0, sizeof(sNetDirs[dir->fd]));
+    
+    return true;
 }
 static u32 NetStorage_type(const wchar_t *path) {
     // SP_LOG("Type: %ls\n", path);
@@ -128,21 +180,52 @@ static u32 NetStorage_type(const wchar_t *path) {
 
     SP_SCOPED_MUTEX_LOCK(sNetMutex);
 
-    NetFile f;
-    memset(&f, 0, sizeof(f));
-    if (NetFile_open(&f, &sNetStorageClient, path)) {
-        NetFile_close(&f);
-        return NODE_TYPE_FILE;
+    {
+        NetFile f;
+        memset(&f, 0, sizeof(f));
+        if (NetFile_open(&f, &sNetStorageClient, path)) {
+            NetFile_close(&f);
+            return NODE_TYPE_FILE;
+        }
+    }
+
+    {
+        NetDir d;
+        memset(&d, 0, sizeof(d));
+
+        if (NetDir_open(&d, &sNetStorageClient, path)) {
+            NetDir_close(&d);
+            return NODE_TYPE_DIR;
+        }
     }
 
     return NODE_TYPE_NONE;
 }
 static bool NetStorage_rename(
-        const wchar_t *UNUSED(srcPath), const wchar_t *UNUSED(dstPath)) {
-    return false;
+        const wchar_t *srcPath, const wchar_t *dstPath) {
+    SP_SCOPED_MUTEX_LOCK(sNetMutex);
+
+    NetFile f;
+    memset(&f, 0, sizeof(f));
+    if (!NetFile_open(&f, &sNetStorageClient, srcPath)) {
+        return false;
+    }
+
+    const bool result = NetFile_rename(&f, dstPath);
+    NetFile_close(&f);
+
+    return result;
 }
-static bool NetStorage_remove(const wchar_t *UNUSED(path), bool UNUSED(allowNop)) {
-    return false;
+static bool NetStorage_remove(const wchar_t *path, bool UNUSED(allowNop)) {
+    SP_SCOPED_MUTEX_LOCK(sNetMutex);
+
+    NetFile f;
+    memset(&f, 0, sizeof(f));
+    if (!NetFile_open(&f, &sNetStorageClient, path)) {
+        return false;
+    }
+
+    return NetFile_removeAndClose(&f);
 }
 
 // For now, NetStorage is always active, although it may be connected/disconected at a
