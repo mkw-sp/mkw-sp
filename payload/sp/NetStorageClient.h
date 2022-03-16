@@ -42,11 +42,16 @@ void NetStorageClient_disconnect(NetStorageClient *client);
 // Net file
 //
 
-typedef struct {  // Zero initialized
+typedef struct {
     NetStorageClient *client;
-    s32 fileSize;
     u32 isOpen;
     s32 id;
+
+    s32 fileSize; // Folders: Value is meaningless, just needs to be nonzero
+} NetNode;
+
+typedef struct {  // Zero initialized
+    NetNode node;
     NetStreamBuf buffer;
 } NetFile;
 
@@ -58,3 +63,21 @@ void NetFile_close(NetFile *file);
 u32 NetFile_read(NetFile *file, void *dst, s32 len, s32 offset);
 // Prefetch
 bool NetFile_stream(NetFile *file, u32 pos, u32 bytes);
+
+bool NetFile_rename(NetFile *file, const wchar_t *path);
+bool NetFile_removeAndClose(NetFile *file);
+
+bool NetFile_write(NetFile *file, const void *src, u32 size, u32 offset);
+
+typedef struct {
+    NetNode node;
+} NetDir;
+
+typedef struct {
+    wchar_t name[255 + 1];
+    bool isDir;
+} NetDirEntry;
+
+bool NetDir_open(NetDir *dir, NetStorageClient *client, const wchar_t *path);
+bool NetDir_read(NetDir *dir, NetDirEntry *out);
+void NetDir_close(NetDir *dir);

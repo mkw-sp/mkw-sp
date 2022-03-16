@@ -35,6 +35,24 @@ static void NetStorageClient_Test() {
     }
     SP_DEFER(NetStorageClient_disconnect(&client));
 
+    {
+        NetDir d;
+        memset(&d, 0, sizeof(d));
+
+        if (!NetDir_open(&d, &client, L"/mkw-sp/disc/Race/Course")) {
+            SP_LOG("Failed to open directory");
+            return;
+        }
+        SP_DEFER(NetDir_close(&d));
+
+        SP_LOG("Courses:");
+
+        NetDirEntry cur;
+        while (NetDir_read(&d, &cur)) {
+            SP_LOG("- %ls (%s)", cur.name, cur.isDir ? "DIR" : "FILE");
+        }
+    }
+
     NetFile f;
     NetFile_create(&f);
     if (!NetFile_open(&f, &client, L"/mkw-sp/disc/Race/Course/castle_course.szs")) {
@@ -55,7 +73,7 @@ static void NetStorageClient_Test() {
     u8 header[8];
     NetFile_read(&f, header, sizeof(header), 0);
 
-    u32 encodedSize = f.fileSize;
+    u32 encodedSize = f.node.fileSize;
     SP_LOG("Encoded size: %u", encodedSize);
 
     u32 decodedSize = Yaz_getSize(header);
