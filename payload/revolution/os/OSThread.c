@@ -10,6 +10,8 @@ BOOL OSCreateThread_RandomizeThreadStackPointer(OSThread *thread, void *(*func)(
     void* old_stack_base = stack;
     u32   old_stack_size = stackSize;
 
+    assert(old_stack_size >> THREAD_STACK_SIZE_RIGHT_SHIFT_AMOUNT != 0);
+
     u32* new_stack_base = Stack_RandomizeStackPointer((u32*)old_stack_base, __builtin_ctz(old_stack_size >> THREAD_STACK_SIZE_RIGHT_SHIFT_AMOUNT));
     u32  new_stack_size = old_stack_size - ((u32)old_stack_base - (u32)new_stack_base);
 
