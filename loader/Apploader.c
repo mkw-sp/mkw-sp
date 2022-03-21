@@ -79,6 +79,10 @@ bool Apploader_loadAndRun(GameEntryFunc *gameEntry) {
         return false;
     }
 
+    if ((*(u32 *)0x80000000 & ~0xFF) != 0x524D4300) {
+        return false;
+    }
+    
     Partition gamePartition;
     if (!findGamePartition(&gamePartition)) {
         return false;
