@@ -85,6 +85,7 @@
 0x8017351C GXSetClipMode
 
 0x80193048 strnlen
+0x801937e0 IOS_OpenAsync
 0x801938f8 IOS_Open
 0x80193ad8 IOS_Close
 0x80194158 IOS_IoctlAsync
