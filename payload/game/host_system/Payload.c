@@ -5,6 +5,7 @@
 #include <sp/Host.h>
 #include <sp/LogFile.h>
 #include <sp/Net.h>
+#include <sp/Stack.h>
 #include <sp/Storage.h>
 #include <sp/Usb.h>
 
@@ -18,7 +19,9 @@
 
 extern u32 payloadSize;
 
-__attribute__((section("first"))) void start(void) {
+__attribute__((no_stack_protector)) __attribute__((section("first"))) void start(void) {
+    Stack_InitCanary();
+
     Memory_ProtectRangeModule(OS_PROTECT_CHANNEL_0, Payload_getTextSectionStart(), Payload_getRodataSectionEnd(), OS_PROTECT_PERMISSION_READ);
 
     OSAllocFromMEM1ArenaLo(Rel_getSize(), 0x20);

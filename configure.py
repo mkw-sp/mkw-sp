@@ -42,7 +42,7 @@ asflags = [
     '-isystem', 'payload',
     '-isystem', 'vendor',
 ]
-cflags = [
+cflags_loader = [
     '-fms-extensions',
     '-fno-asynchronous-unwind-tables',
     '-fplan9-extensions',
@@ -58,11 +58,16 @@ cflags = [
     '-Wno-packed-bitfield-compat',
     f'-DGIT_HASH={get_git_revision_short_hash()}',
 ]
+cflags_payload = [
+    *cflags_loader,
+    '-fstack-protector-strong',
+]
 cppflags = [
     '-fms-extensions',
     '-fno-asynchronous-unwind-tables',
     # '-fplan9-extensions',
     '-fshort-wchar',
+    '-fstack-protector-strong',
     '-isystem', 'include',
     '-isystem', 'payload',
     '-isystem', 'vendor',
@@ -83,7 +88,6 @@ ldflags = [
     '-Wl,-n',
 ]
 n.variable('asflags', ' '.join(asflags))
-n.variable('cflags', ' '.join(cflags))
 n.variable('cppflags', ' '.join(cppflags))
 n.variable('ldflags', ' '.join(ldflags))
 n.newline()
@@ -297,6 +301,7 @@ code_in_files = {
         os.path.join('payload', 'sp', 'NetStorageClient.c'),
         os.path.join('payload', 'sp', 'Sdi.c'),
         os.path.join('payload', 'sp', 'Slab.c'),
+        os.path.join('payload', 'sp', 'Stack.c'),
         os.path.join('payload', 'sp', 'StackTrace.c'),
         os.path.join('payload', 'sp', 'Storage.c'),
         os.path.join('payload', 'sp', 'Tcp.c'),
@@ -337,6 +342,9 @@ for target in code_in_files:
             out_file,
             rule,
             in_file,
+            variables = {
+                'cflags': ' '.join(cflags_loader) if target == 'loader' else ' '.join(cflags_payload),
+            },
         )
         code_out_files[target] += [out_file]
     n.newline()
