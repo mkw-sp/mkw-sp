@@ -283,6 +283,8 @@ code_in_files = {
         os.path.join('payload', 'revolution', 'dvd.S'),
         os.path.join('payload', 'revolution', 'dvd.c'),
         os.path.join('payload', 'revolution', 'dvdex.c'),
+        os.path.join('payload', 'revolution', 'ios.S'),
+        os.path.join('payload', 'revolution', 'ios.c'),
         os.path.join('payload', 'revolution', 'nand.c'),
         os.path.join('payload', 'revolution', 'os', 'OSError.c'),
         os.path.join('payload', 'revolution', 'os', 'OSMemory.S'),
