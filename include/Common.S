@@ -66,6 +66,10 @@
 #define f30 30
 #define f31 31
 
+#define IBAT4L 561
+#define IBAT6L 565
+#define IBAT7L 567
+
 #define HID4 1011
 
 #define PATCH_TYPE_WRITE 0x0
