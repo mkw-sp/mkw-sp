@@ -118,18 +118,26 @@ u32 Yaz_encode(const u8 *restrict src, u8 *restrict dst, u32 srcSize, u32 dstSiz
             if (dstSize - dstOffset < maxRefSize) {
                 maxRefSize = dstSize - dstOffset;
             }
-            for (refSize = 0; refSize < maxRefSize; refSize++) {
-                if (src[srcOffset + refSize] != src[refOffset + refSize]) {
-                    break;
+            if (bestRefSize < maxRefSize) {
+                if (src[srcOffset + bestRefSize] != src[refOffset + bestRefSize]) {
+                    continue;
+                }
+                for (refSize = 0; refSize < maxRefSize; refSize++) {
+                    if (src[srcOffset + refSize] != src[refOffset + refSize]) {
+                        break;
+                    }
+                }
+                if (refSize > bestRefSize) {
+                    bestRefSize = refSize;
+                    bestRefOffset = refOffset;
+                    if (bestRefSize == 0x111) {
+                        break;
+                    }
                 }
             }
-            if (refSize > bestRefSize) {
-                bestRefSize = refSize;
-                bestRefOffset = refOffset;
-                if (bestRefSize == 0x111) {
-                    break;
-                }
-            }
+            else {
+                break;
+            } 
         }
         if (bestRefSize < 0x3) {
             dst[groupHeaderOffset] |= 1 << (7 - i);
