@@ -50,15 +50,20 @@ def pack_yaz(in_data):
         for ref_offset in ref_offsets:
             ref_size = 0x3
             max_ref_size = min(in_size - in_offset, 0x111)
-            while ref_size < max_ref_size:
-                if in_data[in_offset + ref_size] != in_data[ref_offset + ref_size]:
-                    break
-                ref_size += 0x1
-            if ref_size > best_ref_size:
-                best_ref_size = ref_size
-                best_ref_offset = ref_offset
-                if best_ref_size == 0x111:
-                    break
+            if best_ref_size < max_ref_size:
+                if in_data[in_offset + best_ref_size] != in_data[ref_offset + best_ref_size]:
+                    continue
+                while ref_size < max_ref_size:
+                    if in_data[in_offset + ref_size] != in_data[ref_offset + ref_size]:
+                        break
+                    ref_size += 0x1
+                if ref_size > best_ref_size:
+                    best_ref_size = ref_size
+                    best_ref_offset = ref_offset
+                    if best_ref_size == 0x111:
+                        break
+            else:
+                break
         if best_ref_size < 0x3:
             best_ref_size = 0x1
             out_data[group_header_offset] |= 1 << (7 - i)
