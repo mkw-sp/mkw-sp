@@ -1,9 +1,6 @@
-#include <Common.h>
-#include <revolution.h>
+#include "ios.h"
 
-// ios.S
-extern s32 real_IOS_Open(const char *path, u32 flags);
-extern s32 real_IOS_OpenAsync(const char *path, u32 flags, void *cb, void *userdata);
+#include <revolution.h>
 
 static bool CanIOSOpen(const char *path, u32 flags) {
     (void)path;
@@ -19,7 +16,9 @@ s32 my_IOS_Open(const char *path, u32 flags) {
     }
 
     const s32 result = real_IOS_Open(path, flags);
-    SP_LOG("IOS_Open: %s (%x) -> result 0x%x", path, flags, result);
+    if ((SP_DEBUG_LEVEL & SP_DEBUG_IOS_OPENS) == SP_DEBUG_IOS_OPENS) {
+        SP_LOG("IOS_Open: %s (%x) -> result 0x%x", path, flags, result);
+    }
     return result;
 }
 
@@ -30,7 +29,9 @@ s32 my_IOS_OpenAsync(const char *path, u32 flags, void *cb, void *userdata) {
     }
 
     const s32 result = real_IOS_OpenAsync(path, flags, cb, userdata);
-    SP_LOG("IOS_OpenAsync: %s (%x) cb=%p, user=%p -> result 0x%x", path, flags, cb, userdata,
-            result);
+    if ((SP_DEBUG_LEVEL & SP_DEBUG_IOS_OPENS) == SP_DEBUG_IOS_OPENS) {
+        SP_LOG("IOS_OpenAsync: %s (%x) cb=%p, user=%p -> result 0x%x", path, flags, cb,
+                userdata, result);
+    }
     return result;
 }

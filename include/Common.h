@@ -9,6 +9,10 @@
 #define PLATFORM_EMULATOR
 #endif
 
+#define SP_DEBUG_STACK_RANDOMIZE (1 << 0)
+#define SP_DEBUG_IOS_OPENS (1 << 1)
+#define SP_DEBUG_LEVEL (SP_DEBUG_STACK_RANDOMIZE | SP_DEBUG_IOS_OPENS)
+
 enum {
     kPlatform32 = 0,
     kPlatform64 = 1,
