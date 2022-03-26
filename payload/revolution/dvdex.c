@@ -26,22 +26,22 @@ static void discoverMyStuffPrefixes(void) {
         return;
     }
 
-    DirEntry entry;
-    while (Storage_readDir(&dir, &entry)) {
-        if (entry.type == NODE_TYPE_NONE) {
+    NodeInfo info;
+    while (Storage_readDir(&dir, &info)) {
+        if (info.type == NODE_TYPE_NONE) {
             break;
         }
-        if (entry.type != NODE_TYPE_DIR) {
+        if (info.type != NODE_TYPE_DIR) {
             continue;
         }
-        if (wcslen(entry.name) > MAX_PREFIX_LENGTH) {
+        if (wcslen(info.name) > MAX_PREFIX_LENGTH) {
             continue;
         }
-        if (wcsncmp(entry.name, L"My Stuff", wcslen(L"My Stuff"))) {
+        if (wcsncmp(info.name, L"My Stuff", wcslen(L"My Stuff"))) {
             continue;
         }
-        swprintf(prefixes[prefixCount++], MAX_PREFIX_LENGTH + 1, L"%ls", entry.name);
-        SP_LOG("Added file replacement prefix %ls", entry.name);
+        swprintf(prefixes[prefixCount++], MAX_PREFIX_LENGTH + 1, L"%ls", info.name);
+        SP_LOG("Added file replacement prefix %ls", info.name);
     }
 
     Storage_closeDir(&dir);

@@ -17,3 +17,17 @@ int wcsncmp(const wchar_t *s1, const wchar_t *s2, size_t n) {
 
     return 0;
 }
+
+wchar_t *wcsrchr(const wchar_t *wcs, wchar_t wc) {
+    wchar_t *res = NULL;
+
+    while (*wcs != L'\0') {
+        if (*wcs == wc) {
+            res = wcs;
+        }
+
+        wcs++;
+    }
+
+    return res;
+}

@@ -41,6 +41,10 @@ static NetFile *GetNetFileByFd(s32 fd) {
     return &sNetFiles[fd];
 }
 
+static bool NetStorage_fastOpen(File *UNUSED(file), u64 UNUSED(id)) {
+    return false;
+}
+
 // WARNING: File creation not supported. NetFile is read-only.
 static bool NetStorage_open(File *file, const wchar_t *path, const char *UNUSED(mode)) {
     if (!sNetStorageConnected) {
@@ -116,6 +120,9 @@ static u64 NetStorage_size(File *file) {
 static bool NetStorage_createDir(const wchar_t *UNUSED(path), bool UNUSED(allowNop)) {
     return false;
 }
+static bool NetStorage_fastOpenDir(Dir *UNUSED(dir), u64 UNUSED(id)) {
+    return false;
+}
 static bool NetStorage_openDir(Dir *dir, const wchar_t *path) {
     SP_LOG("Open dir %ls", path);
 
@@ -139,7 +146,7 @@ static bool NetStorage_openDir(Dir *dir, const wchar_t *path) {
     dir->fd = it - &sNetDirs[0];
     return true;
 }
-static bool NetStorage_readDir(Dir *dir, DirEntry *entry) {
+static bool NetStorage_readDir(Dir *dir, NodeInfo *info) {
     assert(dir != NULL);
     assert(dir->fd < ARRAY_SIZE(sNetDirs));
     assert(sNetDirs[dir->fd].node.isOpen);
@@ -151,10 +158,10 @@ static bool NetStorage_readDir(Dir *dir, DirEntry *entry) {
         return false;
     }
 
-    if (entry != NULL) {
-        memcpy(entry->name, &tmp.name, MIN(sizeof(entry->name), sizeof(tmp.name)));
-        entry->name[ARRAY_SIZE(entry->name) - 1] = L'\0';
-        entry->type = tmp.isDir ? NODE_TYPE_DIR : NODE_TYPE_FILE;
+    if (info != NULL) {
+        memcpy(info->name, &tmp.name, MIN(sizeof(info->name), sizeof(tmp.name)));
+        info->name[ARRAY_SIZE(info->name) - 1] = L'\0';
+        info->type = tmp.isDir ? NODE_TYPE_DIR : NODE_TYPE_FILE;
     }
 
     return true;
@@ -171,11 +178,13 @@ static bool NetStorage_closeDir(Dir *dir) {
     
     return true;
 }
-static u32 NetStorage_type(const wchar_t *path) {
+static void NetStorage_stat(const wchar_t *path, NodeInfo *info) {
     // SP_LOG("Type: %ls\n", path);
 
+    info->type = NODE_TYPE_NONE;
+
     if (!sNetStorageConnected) {
-        return NODE_TYPE_NONE;
+        return;
     }
 
     SP_SCOPED_MUTEX_LOCK(sNetMutex);
@@ -185,7 +194,14 @@ static u32 NetStorage_type(const wchar_t *path) {
         memset(&f, 0, sizeof(f));
         if (NetFile_open(&f, &sNetStorageClient, path)) {
             NetFile_close(&f);
-            return NODE_TYPE_FILE;
+            wchar_t *name = wcsrchr(path, '/');
+            assert(name);
+            name++;
+            u32 length = wcslen(name);
+            assert(length + 1 < ARRAY_SIZE(info->name));
+            wmemcpy(info->name, name, length);
+            info->type = NODE_TYPE_FILE;
+            return;
         }
     }
 
@@ -195,11 +211,16 @@ static u32 NetStorage_type(const wchar_t *path) {
 
         if (NetDir_open(&d, &sNetStorageClient, path)) {
             NetDir_close(&d);
-            return NODE_TYPE_DIR;
+            wchar_t *name = wcsrchr(path, '/');
+            assert(name);
+            name++;
+            u32 length = wcslen(name);
+            assert(length + 1 < ARRAY_SIZE(info->name));
+            wmemcpy(info->name, name, length);
+            info->type = NODE_TYPE_FILE;
+            return;
         }
     }
-
-    return NODE_TYPE_NONE;
 }
 static bool NetStorage_rename(
         const wchar_t *srcPath, const wchar_t *dstPath) {
@@ -257,6 +278,7 @@ bool NetStorage_init(Storage *storage) {
     SP_LOG("========================");
 #endif  // STARTUP_NETSTORAGE_IP
 
+    storage->fastOpen = NetStorage_fastOpen;
     storage->open = NetStorage_open;
     storage->close = NetStorage_close;
     storage->read = NetStorage_read;
@@ -264,10 +286,11 @@ bool NetStorage_init(Storage *storage) {
     storage->sync = NetStorage_sync;
     storage->size = NetStorage_size;
     storage->createDir = NetStorage_createDir;
+    storage->fastOpenDir = NetStorage_fastOpenDir;
     storage->openDir = NetStorage_openDir;
     storage->readDir = NetStorage_readDir;
     storage->closeDir = NetStorage_closeDir;
-    storage->type = NetStorage_type;
+    storage->stat = NetStorage_stat;
     storage->rename = NetStorage_rename;
     storage->remove = NetStorage_remove;
 

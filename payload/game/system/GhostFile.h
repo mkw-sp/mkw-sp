@@ -3,7 +3,7 @@
 #include "Mii.h"
 
 enum {
-    MAX_GHOST_COUNT = 512,
+    MAX_GHOST_COUNT = 4096,
 };
 
 enum {

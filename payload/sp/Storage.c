@@ -4,7 +4,7 @@
 #include "LogFile.h"
 #include "NetStorage.h"
 
-// Primary storage: FAT/SD
+// Primary storage: FAT over SD or USB
 static Storage storage;
 // Secondary storage: LAN NetStorage
 static Storage sNetStorage;
@@ -20,6 +20,16 @@ bool Storage_init(void) {
     }
 
     return true;
+}
+
+bool Storage_fastOpen(File *file, NodeId id) {
+    LOG_FILE_DISABLE();
+
+    assert(file);
+    assert(id.storage);
+
+    file->storage = id.storage;
+    return id.storage->fastOpen(file, id.id);
 }
 
 bool Storage_open(File *file, const wchar_t *path, const char *mode) {
@@ -85,24 +95,37 @@ u64 Storage_size(File *file) {
     return file->storage->size(file);
 }
 
+static bool Storage_readFileCommon(File *file, void *dst, u32 size, u32 *readSize) {
+    u64 fileSize = Storage_size(file);
+    if (fileSize < size) {
+        size = fileSize;
+    }
+
+    if (!Storage_read(file, dst, size, 0)) {
+        Storage_close(file);
+        return false;
+    }
+
+    *readSize = size;
+    return Storage_close(file);
+}
+
+bool Storage_fastReadFile(NodeId id, void *dst, u32 size, u32 *readSize) {
+    File file;
+    if (!Storage_fastOpen(&file, id)) {
+        return false;
+    }
+
+    return Storage_readFileCommon(&file, dst, size, readSize);
+}
+
 bool Storage_readFile(const wchar_t *path, void *dst, u32 size, u32 *readSize) {
     File file;
     if (!Storage_open(&file, path, "r")) {
         return false;
     }
 
-    u64 fileSize = Storage_size(&file);
-    if (fileSize < size) {
-        size = fileSize;
-    }
-
-    if (!Storage_read(&file, dst, size, 0)) {
-        Storage_close(&file);
-        return false;
-    }
-
-    *readSize = size;
-    return Storage_close(&file);
+    return Storage_readFileCommon(&file, dst, size, readSize);
 }
 
 bool Storage_writeFile(const wchar_t *path, bool overwrite, const void *src, u32 size) {
@@ -129,6 +152,16 @@ bool Storage_createDir(const wchar_t *path, bool allowNop) {
     return storage.createDir(path, allowNop);
 }
 
+bool Storage_fastOpenDir(Dir *dir, NodeId id) {
+    LOG_FILE_DISABLE();
+
+    assert(dir);
+    assert(id.storage);
+
+    dir->storage = id.storage;
+    return id.storage->fastOpenDir(dir, id.id);
+}
+
 bool Storage_openDir(Dir *dir, const wchar_t *path) {
     LOG_FILE_DISABLE();
 
@@ -147,14 +180,15 @@ bool Storage_openDir(Dir *dir, const wchar_t *path) {
     return false;
 }
 
-bool Storage_readDir(Dir *dir, DirEntry *entry) {
+bool Storage_readDir(Dir *dir, NodeInfo *info) {
     LOG_FILE_DISABLE();
 
     assert(dir);
     assert(dir->storage);
-    assert(entry);
+    assert(info);
 
-    return dir->storage->readDir(dir, entry);
+    info->id.storage = dir->storage;
+    return dir->storage->readDir(dir, info);
 }
 
 bool Storage_closeDir(Dir *dir) {
@@ -166,20 +200,19 @@ bool Storage_closeDir(Dir *dir) {
     return dir->storage->closeDir(dir);
 }
 
-u32 Storage_type(const wchar_t *path) {
+void Storage_stat(const wchar_t *path, NodeInfo *info) {
     LOG_FILE_DISABLE();
 
     assert(path);
+    assert(info);
 
     for (Storage *s = &storage; s != NULL; s = s->next) {
-        assert(s->type);
-        u32 type = s->type(path);
-        if (type != NODE_TYPE_NONE) {
-            return type;
+        assert(s->stat);
+        s->stat(path, info);
+        if (info->type != NODE_TYPE_NONE) {
+            return;
         }
     }
-
-    return NODE_TYPE_NONE;
 }
 
 // WARNING: Only operates on the primary storage

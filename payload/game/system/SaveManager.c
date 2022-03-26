@@ -28,14 +28,12 @@ SaveManager *my_SaveManager_createInstance(void) {
     EGG_Heap *heap = s_rootScene->heapCollection.heaps[HEAP_ID_MEM2];
     this->rawGhostHeaders = spAllocArray(MAX_GHOST_COUNT, sizeof(RawGhostHeader), 0x4, heap);
     this->ghostFooters = spAllocArray(MAX_GHOST_COUNT, sizeof(GhostFooter), 0x4, heap);
-    this->ghostPaths = spAllocArray(MAX_GHOST_COUNT, sizeof(wchar_t *), 0x4, heap);
+    this->ghostIds = spAllocArray(MAX_GHOST_COUNT, sizeof(NodeId), 0x4, heap);
     this->courseSha1IsValid = spAllocArray(0x20, sizeof(bool), 0x4, heap);
     for (u32 i = 0; i < 0x20; i++) {
         this->courseSha1IsValid[i] = false;
     }
     this->courseSha1s = spAllocArray(0x20, 0x14, 0x4, heap);
-    this->ghostPathBuffer = spAllocArray(GHOST_PATH_BUFFER_MAX_COUNT, sizeof(wchar_t), 0x4, heap);
-    this->ghostPathBufferFreeCount = GHOST_PATH_BUFFER_MAX_COUNT;
 
     this->spCanSave = true;
     this->spBuffer = spAlloc(SP_BUFFER_SIZE, 0x20, heap);
@@ -51,26 +49,13 @@ SaveManager *my_SaveManager_createInstance(void) {
 }
 PATCH_B(SaveManager_createInstance, my_SaveManager_createInstance);
 
-static const wchar_t *SaveManager_allocGhostPath(SaveManager *this, const wchar_t *path,
-        u32 length) {
-    if (length + 1 > this->ghostPathBufferFreeCount) {
-        return NULL;
-    }
-
-    u32 offset = GHOST_PATH_BUFFER_MAX_COUNT - this->ghostPathBufferFreeCount;
-    path = wmemcpy(this->ghostPathBuffer + offset, path, length);
-    this->ghostPathBuffer[offset + length] = L'\0';
-    this->ghostPathBufferFreeCount -= length + 1;
-    return path;
-}
-
-static void SaveManager_initGhost(SaveManager *this, const wchar_t *path, u32 offset) {
+static void SaveManager_initGhost(SaveManager *this, const NodeId id) {
     if (this->ghostCount >= MAX_GHOST_COUNT) {
         return;
     }
 
     u32 readSize;
-    if (!Storage_readFile(path, this->rawGhostFile, 0x2800, &readSize)) {
+    if (!Storage_fastReadFile(id, this->rawGhostFile, 0x2800, &readSize)) {
         return;
     }
 
@@ -78,15 +63,10 @@ static void SaveManager_initGhost(SaveManager *this, const wchar_t *path, u32 of
         return;
     }
 
-    path = SaveManager_allocGhostPath(this, path, offset);
-    if (!path) {
-        return;
-    }
-
     const RawGhostHeader *header = (RawGhostHeader *)this->rawGhostFile;
     memcpy(&this->rawGhostHeaders[this->ghostCount], header, sizeof(RawGhostHeader));
     GhostFooter_init(&this->ghostFooters[this->ghostCount], this->rawGhostFile, readSize);
-    this->ghostPaths[this->ghostCount] = path;
+    this->ghostIds[this->ghostCount] = id;
     this->ghostCount++;
 }
 
@@ -100,19 +80,19 @@ static void SaveManager_initGhostsDir(SaveManager *this, wchar_t *path, u32 offs
         return;
     }
 
-    DirEntry entry;
-    while (Storage_readDir(&dir, &entry)) {
-        if (entry.type == NODE_TYPE_NONE) {
+    NodeInfo info;
+    while (Storage_readDir(&dir, &info)) {
+        if (info.type == NODE_TYPE_NONE) {
             break;
         }
-        s32 length = swprintf(path + offset, 2048 - offset, L"/%ls", entry.name);
+        s32 length = swprintf(path + offset, 2048 - offset, L"/%ls", info.name);
         if (length < 0) {
             continue;
         }
         offset += length;
-        if (entry.type == NODE_TYPE_FILE) {
-            SaveManager_initGhost(this, path, offset);
-        } else if (entry.type == NODE_TYPE_DIR) {
+        if (info.type == NODE_TYPE_FILE) {
+            SaveManager_initGhost(this, info.id);
+        } else if (info.type == NODE_TYPE_DIR) {
             SaveManager_initGhostsDir(this, path, offset);
         } else {
             break;
@@ -124,6 +104,8 @@ static void SaveManager_initGhostsDir(SaveManager *this, wchar_t *path, u32 offs
 }
 
 static void SaveManager_initGhosts(SaveManager *this) {
+    SP_LOG("Initializing ghosts...");
+
     wchar_t path[2048];
     u32 offset = swprintf(path, 2048, L"/mkw-sp/ghosts");
     SaveManager_initGhostsDir(this, path, offset);
@@ -133,8 +115,6 @@ static void SaveManager_initGhosts(SaveManager *this) {
     Storage_createDir(L"/mkw-sp/ghosts", true);
 
     SP_LOG("Ghosts: %u / %u", this->ghostCount, MAX_GHOST_COUNT);
-    u32 count = GHOST_PATH_BUFFER_MAX_COUNT - this->ghostPathBufferFreeCount;
-    SP_LOG("Ghost path buffer: %u / %u", count, GHOST_PATH_BUFFER_MAX_COUNT);
 }
 
 static bool SpSaveLicense_checkSize(const SpSaveLicense *this) {
@@ -205,7 +185,9 @@ static void SpSaveLicense_sanitize(SpSaveLicense *this) {
 
 static bool SaveManager_initSpSave(SaveManager *this) {
     const wchar_t path[] = L"/mkw-sp/save.bin";
-    switch (Storage_type(path)) {
+    NodeInfo info;
+    Storage_stat(path, &info);
+    switch (info.type) {
     case NODE_TYPE_NONE:;
         alignas(0x20) SpSaveHeader header = { .magic = SP_SAVE_HEADER_MAGIC, .crc32 = 0x0 };
         if (!Storage_writeFile(path, true, &header, sizeof(header))) {
@@ -588,10 +570,9 @@ static bool SaveManager_loadGhost(SaveManager *this, u32 i) {
     const GlobalContext *cx = s_sectionManager->globalContext;
     RaceConfigScenario *menuScenario = &s_raceConfig->menuScenario;
 
-    const wchar_t *path = this->ghostPaths[cx->timeAttackGhostIndices[i]];
-    OSReport("%ls\n", path);
+    NodeId id = this->ghostIds[cx->timeAttackGhostIndices[i]];
     u32 readSize;
-    if (!Storage_readFile(path, this->rawGhostFile, 0x2800, &readSize)) {
+    if (!Storage_fastReadFile(id, this->rawGhostFile, 0x2800, &readSize)) {
         return false;
     }
 
@@ -814,7 +795,11 @@ static void SaveManager_saveGhost(SaveManager *this, GhostFile *file) {
 
     this->saveGhostResult = true;
 
-    SaveManager_initGhost(this, path, wcslen(path));
+    NodeInfo info;
+    Storage_stat(path, &info);
+    if (info.type == NODE_TYPE_FILE) {
+        SaveManager_initGhost(this, info.id);
+    }
 
 fail:
     this->isBusy = false;

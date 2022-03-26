@@ -66,7 +66,7 @@ typedef struct {
     RawGhostHeader *rawGhostHeaders; // Modified
     GhostGroup *ghostGroup;
     GhostFooter *ghostFooters; // Modified
-    const wchar_t **ghostPaths;
+    NodeId *ghostIds; // Modified
     u8 _00034[0x00035 - 0x00034];
     bool saveGhostResult;
     u8 _00036[0x00038 - 0x00036];
@@ -84,8 +84,6 @@ typedef struct {
     u32 spLicenseCount; // Added
     SpSaveLicense *spLicenses[MAX_SP_LICENSE_COUNT]; // Added
     s32 spCurrentLicense; // Added
-    wchar_t *ghostPathBuffer; // Added
-    u32 ghostPathBufferFreeCount;
     bool *courseSha1IsValid; // Added
     u8 (*courseSha1s)[0x14]; // Added
 } SaveManager;

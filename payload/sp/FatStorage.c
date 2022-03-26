@@ -22,15 +22,36 @@ static FIL files[MAX_OPEN_FILE_COUNT];
 static u32 openDirs = 0;
 static DIR dirs[MAX_OPEN_DIR_COUNT];
 
+static bool findFd(u32 *fd, u32 open, u32 max) {
+    for (*fd = 0; *fd < max; (*fd)++) {
+        if (!(open & 1 << *fd)) {
+            return true;
+        }
+    }
+
+    return false;
+}
+
+static bool FatStorage_fastOpen(File *file, u64 id) {
+    SP_SCOPED_MUTEX_LOCK(mutex);
+
+    if (!findFd(&file->fd, openFiles, MAX_OPEN_FILE_COUNT)) {
+        return false;
+    }
+
+    if (f_fastopen(&files[file->fd], &fs, id) != FR_OK) {
+        return false;
+    }
+
+    openFiles |= 1 << file->fd;
+
+    return true;
+}
+
 static bool FatStorage_open(File *file, const wchar_t *path, const char *mode) {
     SP_SCOPED_MUTEX_LOCK(mutex);
 
-    for (file->fd = 0; file->fd < MAX_OPEN_FILE_COUNT; file->fd++) {
-        if (!(openFiles & 1 << file->fd)) {
-            break;
-        }
-    }
-    if (file->fd == MAX_OPEN_FILE_COUNT) {
+    if (!findFd(&file->fd, openFiles, MAX_OPEN_FILE_COUNT)) {
         return false;
     }
 
@@ -119,15 +140,26 @@ static bool FatStorage_createDir(const wchar_t *path, bool allowNop) {
     return fResult == FR_OK || (allowNop && fResult == FR_EXIST);
 }
 
+static bool FatStorage_fastOpenDir(Dir *dir, u64 id) {
+    SP_SCOPED_MUTEX_LOCK(mutex);
+
+    if (!findFd(&dir->fd, openDirs, MAX_OPEN_DIR_COUNT)) {
+        return false;
+    }
+
+    if (f_fastopendir(&dirs[dir->fd], &fs, id) != FR_OK) {
+        return false;
+    }
+
+    openDirs |= 1 << dir->fd;
+
+    return true;
+}
+
 static bool FatStorage_openDir(Dir *dir, const wchar_t *path) {
     SP_SCOPED_MUTEX_LOCK(mutex);
 
-    for (dir->fd = 0; dir->fd < MAX_OPEN_DIR_COUNT; dir->fd++) {
-        if (!(openDirs & 1 << dir->fd)) {
-            break;
-        }
-    }
-    if (dir->fd == MAX_OPEN_DIR_COUNT) {
+    if (!findFd(&dir->fd, openDirs, MAX_OPEN_DIR_COUNT)) {
         return false;
     }
 
@@ -140,25 +172,26 @@ static bool FatStorage_openDir(Dir *dir, const wchar_t *path) {
     return true;
 }
 
-static bool FatStorage_readDir(Dir *dir, DirEntry *entry) {
+static bool FatStorage_readDir(Dir *dir, NodeInfo *info) {
     assert(dir->fd < MAX_OPEN_DIR_COUNT);
 
     SP_SCOPED_MUTEX_LOCK(mutex);
 
-    FILINFO info;
-    if (f_readdir(&dirs[dir->fd], &info) != FR_OK) {
+    FILINFO fInfo;
+    if (f_readdir(&dirs[dir->fd], &fInfo) != FR_OK) {
         return false;
     }
 
-    static_assert(sizeof(info.fname) <= sizeof(entry->name));
-    memcpy(entry->name, info.fname, sizeof(info.fname));
-    if (info.fname[0] == L'\0') {
-        entry->type = NODE_TYPE_NONE;
-    } else if (info.fattrib & AM_DIR) {
-        entry->type = NODE_TYPE_DIR;
+    info->id.id = fInfo.dir_ofs;
+    if (fInfo.fname[0] == L'\0') {
+        info->type = NODE_TYPE_NONE;
+    } else if (fInfo.fattrib & AM_DIR) {
+        info->type = NODE_TYPE_DIR;
     } else {
-        entry->type = NODE_TYPE_FILE;
+        info->type = NODE_TYPE_FILE;
     }
+    static_assert(sizeof(fInfo.fname) <= sizeof(info->name));
+    memcpy(info->name, fInfo.fname, sizeof(fInfo.fname));
 
     return true;
 }
@@ -172,20 +205,21 @@ static bool FatStorage_closeDir(Dir *dir) {
     return f_closedir(&dirs[dir->fd]) == FR_OK;
 }
 
-static u32 FatStorage_type(const wchar_t *path) {
+static void FatStorage_stat(const wchar_t *path, NodeInfo *info) {
     SP_SCOPED_MUTEX_LOCK(mutex);
 
-    u32 type = NODE_TYPE_NONE;
-    FILINFO info;
-    if (f_stat(path, &info) == FR_OK) {
-        if (info.fattrib & AM_DIR) {
-            type = NODE_TYPE_DIR;
+    info->type = NODE_TYPE_NONE;
+    FILINFO fInfo;
+    if (f_stat(path, &fInfo) == FR_OK) {
+        info->id.id = fInfo.dir_ofs;
+        if (fInfo.fattrib & AM_DIR) {
+            info->type = NODE_TYPE_DIR;
         } else {
-            type = NODE_TYPE_FILE;
+            info->type = NODE_TYPE_FILE;
         }
+        static_assert(sizeof(fInfo.fname) <= sizeof(info->name));
+        memcpy(info->name, fInfo.fname, sizeof(fInfo.fname));
     }
-
-    return type;
 }
 
 static bool FatStorage_rename(const wchar_t *srcPath, const wchar_t *dstPath) {
@@ -226,6 +260,7 @@ bool FatStorage_init(Storage *storage) {
         return false;
     }
 
+    storage->fastOpen = FatStorage_fastOpen;
     storage->open = FatStorage_open;
     storage->close = FatStorage_close;
     storage->read = FatStorage_read;
@@ -233,10 +268,11 @@ bool FatStorage_init(Storage *storage) {
     storage->sync = FatStorage_sync;
     storage->size = FatStorage_size;
     storage->createDir = FatStorage_createDir;
+    storage->fastOpenDir = FatStorage_fastOpenDir;
     storage->openDir = FatStorage_openDir;
     storage->readDir = FatStorage_readDir;
     storage->closeDir = FatStorage_closeDir;
-    storage->type = FatStorage_type;
+    storage->stat = FatStorage_stat;
     storage->rename = FatStorage_rename;
     storage->remove = FatStorage_remove;
 

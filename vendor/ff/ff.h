@@ -245,6 +245,7 @@ typedef struct {
 /* File information structure (FILINFO) */
 
 typedef struct {
+    QWORD   dir_ofs;        /* Directory entry offset */
     FSIZE_t fsize;          /* File size */
     WORD    fdate;          /* Modified date */
     WORD    ftime;          /* Modified time */
@@ -301,6 +302,7 @@ typedef enum {
 /*--------------------------------------------------------------*/
 /* FatFs module application interface                           */
 
+FRESULT f_fastopen (FIL* fp, FATFS* fs, QWORD dir_ofs);             /* Open a file */
 FRESULT f_open (FIL* fp, const TCHAR* path, BYTE mode);             /* Open or create a file */
 FRESULT f_close (FIL* fp);                                          /* Close an open file object */
 FRESULT f_read (FIL* fp, void* buff, UINT btr, UINT* br);           /* Read data from the file */
@@ -308,6 +310,7 @@ FRESULT f_write (FIL* fp, const void* buff, UINT btw, UINT* bw);    /* Write dat
 FRESULT f_lseek (FIL* fp, FSIZE_t ofs);                             /* Move file pointer of the file object */
 FRESULT f_truncate (FIL* fp);                                       /* Truncate the file */
 FRESULT f_sync (FIL* fp);                                           /* Flush cached data of the writing file */
+FRESULT f_fastopendir (DIR* dp, FATFS* fs, QWORD dir_ofs);          /* Open a directory */
 FRESULT f_opendir (DIR* dp, const TCHAR* path);                     /* Open a directory */
 FRESULT f_closedir (DIR* dp);                                       /* Close an open directory */
 FRESULT f_readdir (DIR* dp, FILINFO* fno);                          /* Read a directory item */

@@ -2626,6 +2626,7 @@ static void get_fileinfo (
         fno->fname[di] = 0;                     /* Terminate the name */
         fno->altname[0] = 0;                    /* exFAT does not support SFN */
 
+        fno->dir_ofs = (QWORD)dp->sect * SS(fs) + dp->dptr % SS(fs);    /* Entry offset */
         fno->fattrib = fs->dirbuf[XDIR_Attr] & AM_MASKX;        /* Attribute */
         fno->fsize = (fno->fattrib & AM_DIR) ? 0 : ld_qword(fs->dirbuf + XDIR_FileSize);    /* Size */
         fno->ftime = ld_word(fs->dirbuf + XDIR_ModTime + 0);    /* Time */
@@ -2700,6 +2701,7 @@ static void get_fileinfo (
     fno->fname[di] = 0;     /* Terminate the SFN */
 #endif
 
+    fno->dir_ofs = (QWORD)dp->sect * SS(fs) + dp->dptr % SS(fs); /* Entry offset */
     fno->fattrib = dp->dir[DIR_Attr] & AM_MASK;         /* Attribute */
     fno->fsize = ld_dword(dp->dir + DIR_FileSize);      /* Size */
     fno->ftime = ld_word(dp->dir + DIR_ModTime + 0);    /* Time */
@@ -3647,6 +3649,63 @@ FRESULT f_mount (
 
 
 /*-----------------------------------------------------------------------*/
+/* Open a File                                                           */
+/*-----------------------------------------------------------------------*/
+
+FRESULT f_fastopen (
+    FIL* fp,            /* Pointer to the blank file object */
+    FATFS* fs,          /* Pointer to the filesystem object */
+    QWORD dir_ofs       /* Offset of the directory entry */
+)
+{
+    FRESULT res;
+    LBA_t sect;
+    BYTE* dir;
+
+
+    if (!fp || !fs) return FR_INVALID_OBJECT;
+
+    sect = dir_ofs / SS(fs);                                    /* Sector# of the directory entry */
+    res = move_window(fs, sect);
+    if (res == FR_OK) {
+        dir = fs->win + (dir_ofs % SS(fs));                     /* Pointer to the entry in the win[] */
+#if FF_FS_EXFAT
+        if (fs->fs_type == FS_EXFAT) {
+            fp->obj.sclust = ld_dword(dir + XDIR_FstClus);      /* Start cluster */
+            fp->obj.objsize = ld_qword(dir + XDIR_FileSize);    /* Size */
+            fp->obj.stat = dir[XDIR_GenFlags] & 2;              /* Allocation status */
+            fp->obj.n_frag = 0;                                 /* No last fragment info */
+        } else
+#endif
+        {
+            fp->obj.sclust = ld_clust(fs, dir);                 /* Get object allocation info */
+            fp->obj.objsize = ld_dword(dir + DIR_FileSize);
+        }
+#if FF_USE_FASTSEEK
+            fp->cltbl = 0;                                      /* Disable fast seek mode */
+#endif
+            fp->obj.fs = fs;                                    /* Validate the file object */
+            fp->obj.id = fs->id;
+            fp->flag = FA_READ;                                 /* Set file access mode */
+            fp->err = 0;                                        /* Clear error flag */
+            fp->sect = 0;                                       /* Invalidate current data sector */
+            fp->fptr = 0;                                       /* Set file pointer top of the file */
+#if !FF_FS_READONLY
+#if !FF_FS_TINY
+            memset(fp->buf, 0, sizeof fp->buf);                 /* Clear sector buffer */
+#endif
+#endif
+    }
+
+    if (res != FR_OK) fp->obj.fs = 0;                           /* Invalidate file object on error */
+
+    LEAVE_FF(fs, res);
+}
+
+
+
+
+/*-----------------------------------------------------------------------*/
 /* Open or Create a File                                                 */
 /*-----------------------------------------------------------------------*/
 
@@ -4524,6 +4583,57 @@ FRESULT f_lseek (
 
 
 #if FF_FS_MINIMIZE <= 1
+/*-----------------------------------------------------------------------*/
+/* Create a Directory Object                                             */
+/*-----------------------------------------------------------------------*/
+
+FRESULT f_fastopendir (
+    DIR* dp,            /* Pointer to directory object to create */
+    FATFS* fs,          /* Pointer to the filesystem object */
+    QWORD dir_ofs       /* Offset of the parent directory entry */
+)
+{
+    FRESULT res;
+    LBA_t sect;
+    BYTE* dir;
+
+
+    if (!dp || !fs) return FR_INVALID_OBJECT;
+
+    sect = dir_ofs / SS(fs);                                    /* Sector# of the directory entry */
+    res = move_window(fs, sect);
+    if (res == FR_OK) {
+        dir = fs->win + (dir_ofs % SS(fs));                     /* Pointer to the entry in the win[] */
+#if FF_FS_EXFAT
+        if (fs->fs_type == FS_EXFAT) {
+            dp->obj.sclust = ld_dword(dir + XDIR_FstClus);      /* Start cluster */
+            dp->obj.objsize = ld_qword(dir + XDIR_FileSize);    /* Size */
+            dp->obj.stat = dir[XDIR_GenFlags] & 2;              /* Allocation status */
+            dp->obj.n_frag = 0;                                 /* No last fragment info */
+        } else
+#endif
+        {
+            dp->obj.sclust = ld_clust(fs, dir);                 /* Get object allocation info */
+            dp->obj.objsize = ld_dword(dir + DIR_FileSize);
+        }
+        dp->obj.id = fs->id;
+        res = dir_sdi(dp, 0);                                   /* Rewind directory */
+#if FF_FS_LOCK != 0
+        if (res == FR_OK) {
+            dp->obj.lockid = inc_lock(dp, 0);                   /* Lock the sub directory */
+            if (!dp->obj.lockid) res = FR_TOO_MANY_OPEN_FILES;
+        }
+#endif
+    }
+
+    if (res != FR_OK) dp->obj.fs = 0;                           /* Invalidate dir object on error */
+
+    LEAVE_FF(fs, res);
+}
+
+
+
+
 /*-----------------------------------------------------------------------*/
 /* Create a Directory Object                                             */
 /*-----------------------------------------------------------------------*/
