@@ -1,5 +1,6 @@
 #include "CtrlRaceInputDisplay.h"
 #include <game/kart/KartObjectManager.h>
+#include <game/system/RaceConfig.h>
 #include <game/system/RaceManager.h>
 #include <game/system/SaveManager.h>
 #include <revolution.h>
@@ -167,10 +168,11 @@ static void CtrlRaceInputDisplay_setCSTICK(
 
     // Map range [-1, 1] -> [-width/2, width/2]
     const lyt_Pane *cstickPane = this->cstickPane;
-    this->cstickPane->trans.x =
-            this->cstickOrigin.x + 0.5f * state->x * cstickPane->scale.x * cstickPane->width;
-    this->cstickPane->trans.y =
-            this->cstickOrigin.y + 0.5f * state->y * cstickPane->scale.y * cstickPane->height;
+    this->cstickPane->trans.x = this->cstickOrigin.x +
+                                0.5f * state->x * cstickPane->scale.x * cstickPane->width;
+    this->cstickPane->trans.y = this->cstickOrigin.y + 0.5f * state->y *
+                                                               cstickPane->scale.y *
+                                                               cstickPane->height;
 
     this->cstickState = *state;
 }
@@ -190,33 +192,38 @@ static void CtrlRaceInputDisplay_calcSelf(UIControl *base) {
     assert(s_raceManager);
     assert(s_raceManager->players[playerId]);
     assert(s_raceManager->players[playerId]->padProxy);
-    RaceInputState input =
-            s_raceManager->players[playerId]->padProxy->currentInputState;
+    RaceInputState input = s_raceManager->players[playerId]->padProxy->currentInputState;
 
     if (!input.isValid) {
         input.buttons = 0;
-        input.stick = (Vec2) { 0.0f, 0.0f };
+        input.stick = (Vec2){ 0.0f, 0.0f };
         input.trick = 0;
     }
 
     assert(input.trick < kDpadState_Count);
     CtrlRaceInputDisplay_setDPAD(this, MIN(input.trick, kDpadState_Count - 1));
-    CtrlRaceInputDisplay_setACCEL(this,
-            (input.buttons & BUTTON_ACCEL) ? kAccelState_Pressed : kAccelState_Off);
+    CtrlRaceInputDisplay_setACCEL(
+            this, (input.buttons & BUTTON_ACCEL) ? kAccelState_Pressed : kAccelState_Off);
     CtrlRaceInputDisplay_setTRIGGER(this, kTrigger_L,
             (input.buttons & BUTTON_ITEM) ? kTriggerState_Pressed : kTriggerState_Off);
     CtrlRaceInputDisplay_setTRIGGER(this, kTrigger_R,
             (input.buttons & (BUTTON_BRAKE | BUTTON_DRIFT)) ? kTriggerState_Pressed
-                                                             : kTriggerState_Off);
+                                                            : kTriggerState_Off);
     assert(input.stick.x <= 1.0f && input.stick.x >= -1.0f);
     assert(input.stick.y <= 1.0f && input.stick.y >= -1.0f);
+
+    // Mirror mode inverts stick inputs
+    if ((s_raceConfig->raceScenario.modeFlags & MODE_FLAG_MIRROR) == MODE_FLAG_MIRROR) {
+        input.stick.x *= -1.0f;
+    }
+
     CtrlRaceInputDisplay_setCSTICK(this, &input.stick);
 
     // 200cc BrakeDrift
     if (speedModIsEnabled) {
         CtrlRaceInputDisplay_setTRIGGER(this, kTrigger_BrakeDrift,
                 (input.buttons & BUTTON_BRAKEDRIFT) ? kTriggerState_Pressed
-                                                     : kTriggerState_Off);
+                                                    : kTriggerState_Off);
     }
 }
 
