@@ -39,6 +39,7 @@ BOOL my_DVDOpen(const char *fileName, DVDFileInfo *fileInfo) {
     fileInfo->length = FstStart[entrynum].file.length;
     fileInfo->callback = NULL;
     fileInfo->cb.state = 0;
+    fileInfo->cb.command = 0; // We need to initialize it to mark the file as non-replaced
     return true;
 }
 PATCH_B(DVDOpen, my_DVDOpen);
