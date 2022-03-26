@@ -575,6 +575,7 @@ parser = ArgumentParser()
 parser.add_argument('region')
 parser.add_argument('in_path')
 parser.add_argument('out_path')
+parser.add_argument('--base', action='store_true')
 args = parser.parse_args()
 
 if args.region != 'P' and args.region != 'E' and args.region != 'J' and args.region != 'K':
@@ -598,6 +599,12 @@ with open(args.out_path, 'w') as out_file:
     out_file.write('    payload_data_start = ADDR(.data);\n');
     out_file.write('    payload_data_end = payload_data_start + SIZEOF(.data);\n');
     out_file.write('\n')
+
+    if args.base:
+        for region in DST_BINARIES:
+            for module in DST_BINARIES[region]:
+                DST_BINARIES[region][module].start = SRC_BINARIES[region][module].start
+                DST_BINARIES[region][module].end = max(section.end for section in SRC_BINARIES[region][module].sections)
 
     # Write the start and end address for each module
     for module in DST_BINARIES[args.region]:
@@ -647,7 +654,7 @@ with open(args.out_path, 'w') as out_file:
             address = port(args.region, address)
             if address is None:
                 sys.exit(f'Couldn\'t port symbol {name} to region {args.region}!')
-            if is_rel_bss:
+            if is_rel_bss and not args.base:
                 address -= {
                     'P': 0xe02e0,
                     'E': 0xe0280,
