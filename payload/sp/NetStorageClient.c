@@ -1,6 +1,7 @@
 #include "NetStorageClient.h"
 #include <sp/Bytes.h>
 #include <sp/ScopeLock.h>
+#include <stdio.h>
 #include <wchar.h>
 
 enum kNetPacket {
@@ -13,6 +14,8 @@ enum kNetPacket {
     kNetPacket_FileRemove,
 
     kNetPacket_DirRead,
+
+    kNetPacket_BulkJsonCmds=11,
 };
 
 typedef struct NetRequest {
@@ -52,6 +55,11 @@ typedef struct {
     u32 type;
     wchar_t path[128];
 } NetRequest_DirReadResponse;
+
+typedef struct {
+    struct NetRequest r;
+    u32 len;
+} NetRequest_Json;
 
 static int sIdCounter = 0;
 static int AllocID() {
@@ -247,10 +255,10 @@ u32 NetFile_read(NetFile *file, void *dst, s32 len, s32 offset) {
     return len;
 }
 
-bool NetFile_rename(NetFile *file, const wchar_t *UNUSED(path)) {
+bool NetFile_rename(NetFile *UNUSED(file), const wchar_t *UNUSED(path)) {
     return false;
 }
-bool NetFile_removeAndClose(NetFile *file) {
+bool NetFile_removeAndClose(NetFile *UNUSED(file)) {
     return false;
 }
 
@@ -265,9 +273,9 @@ bool NetDir_read(NetDir *dir, NetDirEntry *out) {
     SP_SCOPED_MUTEX_LOCK(dir->node.client->mutex);
 
     NetRequest_DirRead req = (NetRequest_DirRead){
-        .r.file_id = sp_htonl(dir->node.id),
-        .r.packet_type = sp_htonl(kNetPacket_DirRead),
-        .r.packet_len = sp_htonl(sizeof(NetRequest_DirRead)),
+        .r.file_id = sp_htonl((s32)dir->node.id),
+        .r.packet_type = sp_htonl((u32)kNetPacket_DirRead),
+        .r.packet_len = sp_htonl((u32)sizeof(NetRequest_DirRead)),
     };
 
     TcpSocket *sock = &dir->node.client->sock;
@@ -302,6 +310,50 @@ void NetDir_close(NetDir *UNUSED(dir)) {
     // Do nothing
 }
 
-bool NetFile_write(NetFile* file, const void* src, u32 size, u32 offset) {
+bool NetFile_write(NetFile *UNUSED(file), const void *UNUSED(src), u32 UNUSED(size),
+        u32 UNUSED(offset)) {
     return false;
+}
+
+bool NetStorage_sendJSONCommands(NetStorageClient *self, const char *str) {
+    SP_SCOPED_MUTEX_LOCK(self->mutex);
+
+    const u32 len = strlen(str);
+
+    NetRequest_Json req = (NetRequest_Json){
+        .r.file_id = sp_htonl((s32)-1),
+        .r.packet_type = sp_htonl((u32)kNetPacket_BulkJsonCmds),
+        .r.packet_len = sp_htonl((u32)sizeof(NetRequest_Json)),
+        .len = sp_htonl(len),
+    };
+
+    if (!TcpSocket_sendBytes(&self->sock, &req, sizeof(req))) {
+        return false;
+    }
+    if (!TcpSocket_sendBytes(&self->sock, str, len)) {
+        return false;
+    }
+
+    return true;
+}
+bool NetStorage_sendJSONCommandsUTF16(NetStorageClient *self, const wchar_t *str) {
+    SP_SCOPED_MUTEX_LOCK(self->mutex);
+
+    const u32 len = wcslen(str);
+
+    NetRequest_Json req = (NetRequest_Json){
+        .r.file_id = sp_htonl((s32)-1),
+        .r.packet_type = sp_htonl((u32)kNetPacket_BulkJsonCmds),
+        .r.packet_len = sp_htonl((u32)sizeof(NetRequest_Json)),
+        .len = sp_htonl((u32)(0x80000000 | (len * sizeof(wchar_t)))),
+    };
+
+    if (!TcpSocket_sendBytes(&self->sock, &req, sizeof(req))) {
+        return false;
+    }
+    if (!TcpSocket_sendBytes(&self->sock, str, len * sizeof(wchar_t))) {
+        return false;
+    }
+
+    return true;
 }

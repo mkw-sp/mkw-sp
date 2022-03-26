@@ -5,6 +5,22 @@ from pathlib import Path, PurePosixPath
 import os
 import sys
 
+import json
+from colorama import Fore, Style
+
+
+def encode_string_fixed(string, encoding, length, null_terminate=False):
+    return string[:length-null_terminate].encode(encoding).ljust(length, b'\0')
+
+def IdentifyV1(conn=None, cc="?"):
+    print(f"{Fore.GREEN}Connected to {cc}{Style.RESET_ALL}")
+    if conn:
+        response = f"Server: {sys.version}"
+        conn.sendall(encode_string_fixed(response, 'utf-8', 256))
+
+HANDLERS = {
+    'IdentifyV1': lambda args: IdentifyV1(**args),
+}
 
 #
 # Config
@@ -24,6 +40,8 @@ PACKET_TYPE_NETFILE_OPEN = 0
 PACKET_TYPE_NETFILE_READ = 1
 PACKET_TYPE_NETDIR_READ = 4
 
+PACKET_TYPE_JSON = 11
+
 NODE_TYPE_NONE = 0
 NODE_TYPE_FILE = 1
 NODE_TYPE_DIR = 2
@@ -42,6 +60,7 @@ class Packet:
 class OpenPacket:
     path: str
 
+
 @dataclass
 class OpenResponsePacket:
     file_id: int
@@ -56,15 +75,16 @@ class ReadPacket:
     read_ofs: int
     read_len: int
 
+
 @dataclass
 class ReadDirResponsePacket:
-    node_type : int
+    node_type: int
     path: str
 
     def sendall(self, conn):
         bytes_node_type = struct.pack("!I", self.node_type)
-        bytes_path = self.path[:MAX_PATH_LEN-1].encode('utf-16be').ljust(MAX_PATH_LEN * 2, b'\0')
-
+        bytes_path = encode_string_fixed(
+            self.path, 'utf-16be', MAX_PATH_LEN * 2, null_terminate=True)
         conn.sendall(bytes_node_type + bytes_path)
 
 
@@ -89,14 +109,17 @@ def read_read_packet(conn):
     return ReadPacket(*struct.unpack("!II", conn.recv(8)))
 
 # https://security.openstack.org/guidelines/dg_using-file-paths.html
+
+
 def is_safe_path(basedir, path, follow_symlinks=True):
     if follow_symlinks:
         matchpath = os.path.realpath(path)
     else:
         matchpath = os.path.abspath(path)
-    print(basedir)
-    print(os.path.commonpath((basedir, matchpath)))
+    # print(basedir)
+    # print(os.path.commonpath((basedir, matchpath)))
     return basedir == os.path.commonpath((basedir, matchpath))
+
 
 def read_from_host(path_string):
     path = PurePosixPath(path_string)
@@ -114,14 +137,15 @@ def read_from_host(path_string):
         if not is_safe_path(root, new_path):
             print("Rejecting unsafe path: {}".format(path_string))
             return None
-        
+
         try:
             with open(new_path, 'rb') as f:
                 return f.read()
         except FileNotFoundError:
             continue
         except PermissionError:
-            l = [(f, os.path.isdir(os.path.join(new_path, f))) for f in os.listdir(new_path)]
+            l = [(f, os.path.isdir(os.path.join(new_path, f)))
+                 for f in os.listdir(new_path)]
             print(l)
             return l
 
@@ -139,7 +163,7 @@ class NetFile:
     def file_size(self):
         if not self.file:
             return 0
-        
+
         return len(self.file)
 
     def read(self, ofs, lenf):
@@ -168,7 +192,7 @@ class NetFileCache:
 
     def open_file(self, path, file_id):
         if file_id in self.fileid_to_path:
-            pass # raise RuntimeError("Duplicate netfile id")
+            pass  # raise RuntimeError("Duplicate netfile id")
 
         if path in self.open_netfiles:
             print(f"Reopening {path}")
@@ -190,6 +214,7 @@ class NetFileCache:
 
         path = self.fileid_to_path[file_id]
         return self.open_netfiles[path]
+
 
 class Server:
     def __init__(self):
@@ -232,12 +257,27 @@ class Server:
 
             if q:
                 read_res, is_dir = q
-                response = ReadDirResponsePacket(NODE_TYPE_DIR if is_dir else NODE_TYPE_FILE, read_res)
+                response = ReadDirResponsePacket(
+                    NODE_TYPE_DIR if is_dir else NODE_TYPE_FILE, read_res)
             else:
                 response = ReadDirResponsePacket(NODE_TYPE_NONE, "<NONE>")
             response.sendall(conn)
+        elif packet.packet_type == PACKET_TYPE_JSON:
+            len = struct.unpack("!I", conn.recv(4))[0]
+            is_utf16 = len & 0x8000_0000
+            len &= ~0x8000_0000
+            characters = conn.recv(len).decode(
+                'utf-16be' if is_utf16 else 'utf-8')
+            fmt = '{' + characters + '}'
+            # print(fmt)
+            j = json.loads(fmt)
+            for handler in j:
+                if handler in HANDLERS:
+                    j[handler]['conn'] = conn
+                    HANDLERS[handler](j[handler])
         else:
             print("Unknown packet")
+
 
 def main():
     s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -246,7 +286,8 @@ def main():
 
     dns = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
     dns.connect(("8.8.8.8", 80))
-    print("Listening on {}:{} configured to {}".format(dns.getsockname()[0], s.getsockname()[1], s.getsockname()))
+    print("Listening on {}:{} configured to {}".format(
+        dns.getsockname()[0], s.getsockname()[1], s.getsockname()))
     dns.close()
 
     conn, addr = s.accept()

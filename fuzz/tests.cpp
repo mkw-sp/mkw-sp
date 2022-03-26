@@ -36,6 +36,17 @@ static void NetStorageClient_Test() {
     SP_DEFER(NetStorageClient_disconnect(&client));
 
     {
+        char buf[128];
+        snprintf(buf, sizeof(buf), R"("IdentifyV1":{"cc":"%s"})", __VERSION__);
+        if (NetStorage_sendJSONCommands(&client, buf)) {
+            char response[256];
+            TcpSocket_receiveBytes(&client.sock, response, sizeof(response));
+            response[sizeof(response) - 1] = 0;
+            SP_LOG("Response: %s", response);
+        }
+    }
+
+    {
         NetDir d;
         memset(&d, 0, sizeof(d));
 

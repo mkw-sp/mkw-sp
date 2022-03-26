@@ -81,3 +81,6 @@ typedef struct {
 bool NetDir_open(NetDir *dir, NetStorageClient *client, const wchar_t *path);
 bool NetDir_read(NetDir *dir, NetDirEntry *out);
 void NetDir_close(NetDir *dir);
+
+bool NetStorage_sendJSONCommandsUTF16(NetStorageClient *self, const wchar_t *str);
+bool NetStorage_sendJSONCommands(NetStorageClient *self, const char *str);
