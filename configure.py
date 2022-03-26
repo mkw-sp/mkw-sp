@@ -364,23 +364,24 @@ for region in ['P', 'E', 'J', 'K']:
     n.newline()
 
 for region in ['P', 'E', 'J', 'K']:
-    n.build(
-        os.path.join('$builddir', 'bin', f'payload{region}.bin'),
-        'ld',
-        code_out_files['payload'],
-        variables = {
-            'base': {
-                'P': '0x8076db60',
-                'E': '0x80769400',
-                'J': '0x8076cca0',
-                'K': '0x8075bfe0',
-            }[region],
-            'format': 'binary',
-            'script': os.path.join('$builddir', 'scripts', f'RMC{region}.ld'),
-        },
-        implicit = os.path.join('$builddir', 'scripts', f'RMC{region}.ld'),
-    )
-    n.newline()
+    for fmt in ['binary', 'elf32-powerpc']:
+        n.build(
+            os.path.join('$builddir', 'bin', f'payload{region}.' + ('bin' if fmt == 'binary' else 'elf')),
+            'ld',
+            code_out_files['payload'],
+            variables = {
+                'base': {
+                    'P': '0x8076db60',
+                    'E': '0x80769400',
+                    'J': '0x8076cca0',
+                    'K': '0x8075bfe0',
+                }[region],
+                'format': fmt,
+                'script': os.path.join('$builddir', 'scripts', f'RMC{region}.ld'),
+            },
+            implicit = os.path.join('$builddir', 'scripts', f'RMC{region}.ld'),
+        )
+        n.newline()
 
 for region in ['P', 'E', 'J', 'K']:
     out_file = os.path.join('$builddir', 'loader', f'payload{region}.o')
