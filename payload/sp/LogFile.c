@@ -31,6 +31,10 @@ void LogFile_vprintf(const char *restrict format, va_list args) {
         return;
     }
 
+    if (OSGetCurrentThread() == NULL) {
+        return;
+    }
+
     {
         OSThread *thread = OSGetCurrentThread();
         SP_SCOPED_MUTEX_LOCK(listMutex);
@@ -60,6 +64,10 @@ void LogFile_vprintf(const char *restrict format, va_list args) {
 }
 
 void LogFile_disable(LogFileDisableGuard *guard) {
+    if (!isInit) {
+        return;
+    }
+
     SP_SCOPED_MUTEX_LOCK(listMutex);
     guard->node = (ThreadNode) {
         .thread = OSGetCurrentThread(),
@@ -69,6 +77,10 @@ void LogFile_disable(LogFileDisableGuard *guard) {
 }
 
 void LogFile_restore(LogFileDisableGuard *guard) {
+    if (!isInit) {
+        return;
+    }
+
     SP_SCOPED_MUTEX_LOCK(listMutex);
     ThreadNode **next = &listHead;
     while (*next) {
