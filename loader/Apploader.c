@@ -79,7 +79,10 @@ bool Apploader_loadAndRun(GameEntryFunc *gameEntry) {
         return false;
     }
 
-    if ((*(u32 *)0x80000000 & ~0xFF) != 0x524D4300) {
+    const u32 diskId = *(u32 *)0x80000000;
+    *(u32 *)0x80003180 = diskId;
+
+    if ((diskId >> 8) != (('R' << 16) | ('M' << 8) | 'C')) {
         return false;
     }
     
