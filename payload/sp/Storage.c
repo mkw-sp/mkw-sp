@@ -210,6 +210,7 @@ void Storage_stat(const wchar_t *path, NodeInfo *info) {
         assert(s->stat);
         s->stat(path, info);
         if (info->type != NODE_TYPE_NONE) {
+            info->id.storage = s;
             return;
         }
     }
