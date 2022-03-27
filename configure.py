@@ -148,6 +148,7 @@ n.newline()
 code_in_files = {
     'payload': [
         os.path.join('payload', 'egg', 'core', 'eggColorFader.c'),
+        os.path.join('payload', 'egg', 'core', 'eggDisplay.S'),
         os.path.join('payload', 'egg', 'core', 'eggDvdFile.S'),
         os.path.join('payload', 'egg', 'core', 'eggEffectCreator.S'),
         os.path.join('payload', 'egg', 'core', 'eggG3dUtil.S'),

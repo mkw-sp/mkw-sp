@@ -187,6 +187,7 @@
 0x80215280 EGG_ColorFader_fadeIn
 0x802152A8 EGG_ColorFader_fadeOut
 0x80218098 EGG_CpuTexture_Construct
+0x80219fb4 EGG_Display_copyEFBToXFB
 0x80222470 EGG_DvdFile_openEntrynum
 0x802224e8 EGG_DvdFile_openPath
 0x802245AC EffectCreator_createEffect
