@@ -11,7 +11,7 @@ static const Page_vt s_TimeAttackGhostListPage_vt;
 
 static void onBack(InputHandler *this, u32 UNUSED(localPlayerId)) {
     TimeAttackGhostListPage *page = CONTAINER_OF(this, TimeAttackGhostListPage, onBack);
-    page->replacement = PAGE_ID_COURSE_SELECT;
+    page->replacement = PAGE_ID_COURSE_DETAIL;
     Page_startReplace(page, PAGE_ANIMATION_PREV, 0.0f);
 }
 
@@ -148,7 +148,7 @@ static void onBackButtonFront(PushButtonHandler *this, PushButton *button,
         u32 UNUSED(localPlayerId)) {
     TimeAttackGhostListPage *page =
             CONTAINER_OF(this, TimeAttackGhostListPage, onBackButtonFront);
-    page->replacement = PAGE_ID_COURSE_SELECT;
+    page->replacement = PAGE_ID_COURSE_DETAIL;
     f32 delay = PushButton_getDelay(button);
     Page_startReplace(page, PAGE_ANIMATION_PREV, delay);
 }

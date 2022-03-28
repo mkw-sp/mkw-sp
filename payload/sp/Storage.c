@@ -106,7 +106,9 @@ static bool Storage_readFileCommon(File *file, void *dst, u32 size, u32 *readSiz
         return false;
     }
 
-    *readSize = size;
+    if (readSize) {
+        *readSize = size;
+    }
     return Storage_close(file);
 }
 

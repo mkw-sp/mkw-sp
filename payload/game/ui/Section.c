@@ -1,5 +1,7 @@
 #include "Section.h"
 
+#include "CourseDetailPage.h"
+#include "CourseSelectPage.h"
 #include "GhostManagerPage.h"
 #include "LicenseSelectPage.h"
 #include "LicenseSettingsPage.h"
@@ -10,6 +12,8 @@
 
 PATCH_S16(Section_createPage, 0x92e, sizeof(LicenseSelectPage));
 PATCH_S16(Section_createPage, 0x9a6, sizeof(TimeAttackRulesPage));
+PATCH_S16(Section_createPage, 0xa06, sizeof(CourseSelectPage));
+PATCH_S16(Section_createPage, 0xa1e, sizeof(CourseDetailPage));
 PATCH_S16(Section_createPage, 0xa4e, sizeof(TimeAttackGhostListPage));
 PATCH_S16(Section_createPage, 0xf5e, sizeof(GhostManagerPage));
 PATCH_S16(Section_createPage, 0x12d6, sizeof(LicenseSettingsPage));

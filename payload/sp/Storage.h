@@ -29,6 +29,7 @@ enum {
 typedef struct {
     NodeId id;
     u32 type;
+    u64 size;
     wchar_t name[255 + 1];
 } NodeInfo;
 

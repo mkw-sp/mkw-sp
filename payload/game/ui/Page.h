@@ -41,7 +41,9 @@ enum {
     PAGE_ID_LICENSE_SETTINGS = 0x67,
     PAGE_ID_SINGLE_TOP_MENU = 0x69,
     PAGE_ID_CHARACTER_SELECT = 0x6b,
-    PAGE_ID_COURSE_SELECT = 0x6f,
+    PAGE_ID_MACHINE_SELECT = 0x6c,
+    PAGE_ID_COURSE_SELECT = 0x6e, // Modified
+    PAGE_ID_COURSE_DETAIL = 0x6f, // Modified
     PAGE_ID_GHOST_MANAGER = 0xa7,
 
     // Replaced with MKW-SP license settings

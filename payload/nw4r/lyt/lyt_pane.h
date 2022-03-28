@@ -1,6 +1,6 @@
 #pragma once
 
-#include <Common.h>
+#include "lyt_material.h"
 
 typedef enum {
     kLytPaneFlag_IsVisible = 1 << 0,
@@ -29,7 +29,9 @@ static_assert(sizeof(lyt_Pane) == 0xd8);
 typedef struct lyt_Pane_Vtable {
     char _00[0x3c - 0x00];
     lyt_Pane *(*FindPaneByName)(lyt_Pane *self, const char *name, bool recurse);
-    char _40[0x74 - 0x40];
+    char _68[0x68 - 0x40];
+    lyt_Material *(*GetMaterial)(lyt_Pane *self);
+    char _6c[0x74 - 0x6c];
 } lyt_Pane_Vtable;
 static_assert(offsetof(lyt_Pane_Vtable, FindPaneByName) == 0x3c);
 static_assert(sizeof(lyt_Pane_Vtable) == 0x74);
