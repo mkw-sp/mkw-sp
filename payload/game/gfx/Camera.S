@@ -63,3 +63,12 @@ PATCH_BL_START(Camera_805a21d0, 0x7a0)
     ori r0, r0, 0x4 // Original instruction
     b Camera_805a21d0 + 0x7a4
 PATCH_BL_END(Camera_805a21d0, 0x7a0)
+
+
+
+PATCH_B_START(Camera_805ad5c8, 0xd4)
+    bl Thumbnail_takeScreenshot
+
+    cmpwi r30, 0x0 // Original instruction
+    b Camera_805ad5c8 + 0xd8
+PATCH_B_END(Camera_805ad5c8, 0xd4)

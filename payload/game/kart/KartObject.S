@@ -38,3 +38,14 @@ PATCH_BL_START(KartObject_calcPass1, 0x28)
 
     b KartObject_calcPass1 + 0x2c
 PATCH_BL_END(KartObject_calcPass1, 0x28)
+
+
+
+PATCH_B_START(KartObject_calcPass1, 0x144)
+    // Hide the shadow
+    li r4, 0x0
+    stw r4, 0x4 (r3)
+
+    mr r30, r3 // Original instruction
+    b KartObject_calcPass1 + 0x148
+PATCH_B_END(KartObject_calcPass1, 0x144)

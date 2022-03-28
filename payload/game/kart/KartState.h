@@ -4,7 +4,9 @@
 
 typedef struct {
     u8 _00[0x08 - 0x00];
-    u32 : 27;
+    u32 : 23;
+    bool blinking : 1;
+    u32 : 3;
     bool inCannon : 1;
     u32 : 4;
     u8 _0c[0xc0 - 0x0c];

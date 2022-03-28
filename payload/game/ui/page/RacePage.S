@@ -1,5 +1,13 @@
 #include <Common.S>
 
+// Hide all controls
+
+PATCH_REPLACE_START(RacePage_onInit, 0x3c)
+    li r3, 0x0
+PATCH_REPLACE_END(RacePage_onInit, 0x3c)
+
+
+
 PATCH_B_START(RacePage_initInputs, 0x240)
     // Check if the section id is ghost replay
     cmpwi r0, 0x34
@@ -14,41 +22,11 @@ PATCH_B_END(RacePage_initInputs, 0x240)
 
 
 
-PATCH_B_START(RacePage_getControlCount, 0x198)
-    add r3, r3, r30 // Increase the control count by one CtrlRaceSpeed per local player
-    add r3, r3, r30 // Increase the control count by one CtrlRaceInputDisplay per local player
+// Set the number of CtrlRaceNameBalloon to 0
 
-    lwz r31, 0x1c (r1) // Original instruction
-    b RacePage_getControlCount + 0x19c
-PATCH_B_END(RacePage_getControlCount, 0x198)
-
-
-
-PATCH_B_START(RacePage_getControlCount, 0xc4)
-    cmpwi r3, 0 // Check if the number of CtrlRaceNameBalloon is zero
-    beq .LgetControlCount_end
-
-    li r3, 12 // If not, set it to 12
-
-.LgetControlCount_end:
-    add r31, r31, r3 // Original instruction
-    b RacePage_getControlCount + 0xc8
-PATCH_B_END(RacePage_getControlCount, 0xc4)
-
-
-
-PATCH_B_START(RacePage_initControls, 0x3e0)
-    mr r3, r15 // this
-    mr r4, r18 // controlId
-    mr r5, r19 // localPlayerCount
-    mr r6, r17 // localPlayerId
-    bl RacePage_initCustomControls
-
-    addi r18, r18, 2 // Increment the control id
-
-    addi r17, r17, 1 // Original instruction, increment the local player id
-    b RacePage_initControls + 0x3e4
-PATCH_B_END(RacePage_initControls, 0x3e0)
+PATCH_REPLACE_START(RacePage_getControlCount, 0xc4)
+    nop
+PATCH_REPLACE_END(RacePage_getControlCount, 0xc4)
 
 
 
@@ -74,15 +52,11 @@ PATCH_B_END(RacePage_initControls, 0x4c8)
 
 
 
-// If the number of CtrlRaceNameBalloon is not zero, set it to 12
+// Set the number of CtrlRaceNameBalloon to 0
 
-PATCH_REPLACE_START(RacePage_initControls, 0x5cc)
-    li r3, 12
-PATCH_REPLACE_END(RacePage_initControls, 0x5cc)
-
-PATCH_REPLACE_START(RacePage_initControls, 0x680)
-    li r3, 12
-PATCH_REPLACE_END(RacePage_initControls, 0x680)
+PATCH_REPLACE_START(RacePage_initControls, 0x558)
+    li r3, 0
+PATCH_REPLACE_END(RacePage_initControls, 0x558)
 
 
 
@@ -132,6 +106,31 @@ PATCH_REPLACE_END(RacePage_canReplace, 0xd4)
 PATCH_REPLACE_START(RacePage_beforeCalc, 0x380)
     b 0x34
 PATCH_REPLACE_END(RacePage_beforeCalc, 0x380)
+
+
+
+PATCH_B_START(RacePage_afterCalc, 0x1c0)
+    bl Thumbnail_takeScreenshot
+
+    bl Thumbnail_hasNext
+    li r4, 0x4b
+    mulli r3, r3, -0x31
+    add r4, r4, r3
+    mr r3, r27
+    li r5, 0x0
+    lfs f1, 0x0 (r31)
+    lwz r12, 0x0 (r27)
+    lwz r12, 0x1c (r12)
+    mtctr r12
+    bctrl
+
+    lis r3, s_raceConfig@ha
+    lwz r3, s_raceConfig@l (r3)
+    li r4, 0x5
+    stw r4, 0x1764 (r3)
+
+    b RacePage_afterCalc + 0x340
+PATCH_B_END(RacePage_afterCalc, 0x1c0)
 
 
 

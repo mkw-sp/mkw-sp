@@ -11,16 +11,10 @@ static void my_JugemManager_calc(JugemManager *this) {
 }
 PATCH_B(JugemManager_calc, my_JugemManager_calc);
 
-static void my_JugemManager_setVisible(JugemManager *this, u32 playerId, bool visible) {
-    if (s_sectionManager->currentSection->id == SECTION_ID_GHOST_REPLAY) {
-        if (playerId != s_racePage->watchedPlayerId) {
-            visible = false;
-        }
-    }
-
+static void my_JugemManager_setVisible(JugemManager *this, u32 playerId, bool UNUSED(visible)) {
     for (u32 i = 0; i < this->count; i++) {
         if (Jugem_getPlayerId(this->jugems[i]) == playerId) {
-            Jugem_setVisible(this->jugems[i], visible);
+            Jugem_setVisible(this->jugems[i], false);
         }
     }
 }

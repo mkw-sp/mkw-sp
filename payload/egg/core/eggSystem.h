@@ -2,6 +2,7 @@
 
 #include <Common.h>
 #include <egg/core/eggScene.h>
+#include <egg/core/eggXfbManager.h>
 #include <revolution.h>
 
 typedef struct {
@@ -25,7 +26,7 @@ typedef struct EGGDisplay_Vtable {
 typedef struct {
     char _[0x44 - 0x00];
     EGGVideo *video;
-    void *xfbMgr;
+    EGG_XfbManager *xfbManager;
     EGGDisplay *display;
     void *perfView;
     EGG_SceneManager *scnMgr;

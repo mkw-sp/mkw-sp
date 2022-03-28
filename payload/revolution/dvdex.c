@@ -1,5 +1,7 @@
 #include "dvdex.h"
 
+#include "sp/Thumbnail.h"
+
 #include <revolution.h>
 
 #include <stdint.h>
@@ -74,18 +76,28 @@ BOOL DVDExOpen(const char *fileName, DVDFileInfo *fileInfo) {
     if (fileName[0] == '/') {
         fileName++;
     }
+
+    const char *bare = fileName;
+    for (const char *s = fileName; *s != '\0'; s++) {
+        if (*s == '/') {
+            bare = s + 1;
+        }
+    }
+
+    if (!strncmp(fileName, "Race/Course/", strlen("Race/Course/"))) {
+        wchar_t *path = Thumbnail_getCoursePath(bare);
+        if (path && tryOpen(path, fileInfo)) {
+            return true;
+        }
+    }
+
     for (u32 i = prefixCount; i --> 0;) {
         wchar_t path[MAX_PREFIX_LENGTH + MAX_PATH_LENGTH + 1];
         swprintf(path, sizeof(path) / sizeof(wchar_t), L"/mkw-sp/%ls/%s", prefixes[i], fileName);
         if (tryOpen(path, fileInfo)) {
             return true;
         }
-        const char *bare = fileName;
-        for (const char *s = fileName; *s != '\0'; s++) {
-            if (*s == '/') {
-                bare = s + 1;
-            }
-        }
+
         if (bare == fileName) {
             continue;
         }

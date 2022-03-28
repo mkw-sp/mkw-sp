@@ -15,7 +15,9 @@ typedef struct {
     Driver *driver;
     u8 _18[0x1c - 0x18];
     KartSound *sound;
-    u8 _20[0x64 - 0x20];
+    u8 _20[0x28 - 0x20];
+    KartMove *move;
+    u8 _2c[0x64 - 0x2c];
 } KartAccessor;
 static_assert(sizeof(KartAccessor) == 0x64);
 

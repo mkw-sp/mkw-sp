@@ -86,6 +86,12 @@ static u32 getGhostSoundSetting(u32 playerId) {
 
 void KartObjectManager_beforeCalc(KartObjectManager *this) {
     for (u32 i = 0; i < this->count; i++) {
+        KartAccessor *accessor = this->objects[i]->accessor;
+        accessor->move->blinkTimer = 150;
+        accessor->state->blinking = true;
+    }
+
+    for (u32 i = 0; i < this->count; i++) {
         s_playerDrawPriorities[i] = playerIsSolid(i) ? 0x4e : 0x3;
     }
 

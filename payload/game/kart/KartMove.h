@@ -9,6 +9,8 @@ typedef struct {
     f32 hardSpeedLimit;
     u8 _030[0x074 - 0x030];
     Vec3 internalVelDir;
-    u8 _080[0x294 - 0x080];
+    u8 _080[0x1a8 - 0x080];
+    s16 blinkTimer;
+    u8 _1aa[0x294 - 0x1aa];
 } KartMove;
 static_assert(sizeof(KartMove) == 0x294);

@@ -22,6 +22,7 @@
 0x80013040 sscanf
 0x800131e0 strncpy
 0x8001329c strcmp
+0x800133b8 strncmp
 0x800133f8 strchr
 0x800135f0 strstr
 0x80015650 wmemcpy
@@ -203,6 +204,7 @@
 0x8023afe0 EGG_SceneManager_changeSiblingScene
 0x80242c18 EGG_TaskThread_request
 0x80243d6c EGG_Video_configure
+0x802441ec EGG_Xfb_calcXfbSize
 
 0x802A4080 sRKSystem
 
@@ -283,6 +285,7 @@
 0x8054a048 SaveManager_saveGhostAsync
 0x8054a868 SaveManager_resetAsync
 0x8054aa64 SceneCreatorDynamic_create
+0x8056a300 KartBlink_calc
 0x805784d4 KartMove_init
 0x8057ab68 KartMove_calcAcceleration
 0x8057b99c KartMove_setKillerStartHardSpeedLimit
@@ -311,6 +314,7 @@
 0x805a2034 Camera_805a2034
 0x805a21d0 Camera_805a21d0
 0x805a8468 CameraManager_ct
+0x805ad5c8 Camera_805ad5c8
 0x805baf10 CtrlMenuPageTitleText_dt
 0x805bb220 Page_vf_5c
 0x805bb224 Page_vf_58
@@ -598,6 +602,7 @@
 0x80855adc TimeAttackSplitsPage_afterCalc
 0x80855b30 TimeAttackSplitsPage_vf_38
 0x808561dc TimeAttackSplitsPage_getReplacement
+0x80856278 RacePage_onInit
 0x80856664 RacePage_initInputs
 0x808569bc RacePage_onPause
 0x80856cec RacePage_beforeCalc
