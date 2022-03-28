@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 
 
+from argparse import ArgumentParser
 import io
 import os, sys
 from vendor.ninja_syntax import Writer
@@ -13,6 +14,9 @@ except ModuleNotFoundError:
 
 import subprocess
 
+parser = ArgumentParser()
+parser.add_argument('--gdb_compatible', action='store_true')
+args = parser.parse_args()
 
 # https://stackoverflow.com/questions/14989858/get-the-current-git-hash-in-a-python-script/14989911#14989911
 def get_git_revision_hash() -> str:
@@ -58,6 +62,8 @@ cflags_loader = [
     '-Wno-packed-bitfield-compat',
     f'-DGIT_HASH={get_git_revision_short_hash()}',
 ]
+if args.gdb_compatible:
+    cflags_loader += ['-DGDB_COMPATIBLE=1']
 cflags_payload = [
     *cflags_loader,
     '-fstack-protector-strong',
@@ -128,7 +134,7 @@ n.newline()
 
 n.rule(
     'port',
-    command = f'{sys.executable} $port $region $in $out',
+    command = f'{sys.executable} $port $region $in $out' + (' --base' if args.gdb_compatible else ''),
     description = 'PORT $out'
 )
 n.newline()
@@ -372,7 +378,7 @@ for region in ['P', 'E', 'J', 'K']:
             code_out_files['payload'],
             variables = {
                 'base': {
-                    'P': '0x8076db60',
+                    'P': '0x8076db60' if not args.gdb_compatible else '0x809C4FA0',
                     'E': '0x80769400',
                     'J': '0x8076cca0',
                     'K': '0x8075bfe0',
@@ -403,7 +409,7 @@ n.build(
     'ld',
     code_out_files['loader'],
     variables = {
-        'base': '0x80910000',
+        'base': '0x80910000' if not args.gdb_compatible else '0x80E50F90',
         'format': 'elf32-powerpc',
         'script': os.path.join('loader', 'RMC.ld'),
     },
@@ -773,7 +779,7 @@ n.newline()
 
 n.rule(
     'configure',
-    command = f'{sys.executable} $configure',
+    command = f'{sys.executable} $configure' + (' --gdb_compatible' if args.gdb_compatible else ''),
     generator = True,
 )
 n.build(

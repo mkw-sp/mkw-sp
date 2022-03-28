@@ -42,7 +42,11 @@ void Loader_run(void) {
     u32 *ClearArena;
     switch (REGION) {
     case REGION_P:
+#ifdef GDB_COMPATIBLE
+        payloadDst = (void *)0x809C4FA0;
+#else
         payloadDst = (void *)0x8076db60;
+#endif
         payloadSrc = &payloadP;
         payloadSize = payloadPSize;
         hook = (u32 *)0x801a00dc;
@@ -71,7 +75,8 @@ void Loader_run(void) {
         break;
     default:
         // TODO tell the user about it
-        while (true);
+        while (true)
+            ;
     }
 
     memcpy(payloadDst, payloadSrc, payloadSize);

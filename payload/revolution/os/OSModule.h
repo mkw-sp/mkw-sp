@@ -36,5 +36,6 @@ typedef struct {
 } OSImportInfo;
 static_assert(sizeof(OSImportInfo) == 0x8);
 
+s32 OSLink(OSModuleHeader *newModule, void *bss);
 // Not actually exposed in the API
 void Relocate(OSModuleHeader *existingModule, OSModuleHeader *newModule);

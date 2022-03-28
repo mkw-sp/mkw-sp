@@ -24,9 +24,13 @@ __attribute__((no_stack_protector)) __attribute__((section("first"))) void start
 
     Memory_ProtectRangeModule(OS_PROTECT_CHANNEL_0, Payload_getTextSectionStart(), Payload_getRodataSectionEnd(), OS_PROTECT_PERMISSION_READ);
 
+#ifdef GDB_COMPATIBLE
+    OSSetMEM1ArenaLo((void*)0x809C4FA0);
+#else
     OSAllocFromMEM1ArenaLo(Rel_getSize(), 0x20);
-    OSAllocFromMEM1ArenaLo(payloadSize, 0x20);
+#endif
 
+    OSAllocFromMEM1ArenaLo(payloadSize, 0x20);
     // We don't clear the arena in OSInit because the payload is already copied at that point, but
     // some code expects it to be zeroed.
     memset(OSGetMEM1ArenaLo(), 0, OSGetMEM1ArenaHi() - OSGetMEM1ArenaLo());

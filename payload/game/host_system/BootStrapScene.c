@@ -16,6 +16,7 @@ static void *loadRel(void *arg) {
     }
 
     s32 size = OSRoundUp32B(fileInfo.length);
+#ifndef GDB_COMPATIBLE
     void *src = spAlloc(size, 0x20, heap);
 
     s32 result = DVDRead(&fileInfo, src, size, 0);
@@ -56,6 +57,19 @@ static void *loadRel(void *arg) {
 
     OSSectionInfo *prologSectionInfo = dstSectionInfo + dstHeader->prologSection;
     return (void *)(prologSectionInfo->offset + dstHeader->prolog);
+#else
+    s32 result = DVDRead(&fileInfo, Rel_getStart(), size, 0);
+    DVDClose(&fileInfo);
+    if (result != size) {
+        return NULL;
+    }
+
+    OSModuleHeader *dst = (OSModuleHeader *)Rel_getStart();
+    void *bss = (void *)0x809BD6E0;
+
+    OSLink(dst, bss);
+    return dst->prolog;
+#endif
 }
 
 void my_BootStrapScene_calc(BootStrapScene *this) {

@@ -116,6 +116,7 @@
 0x801a25d0 OSReport
 0x801a4ec4 OSFatal
 0x801a6d3c Relocate
+0x801A72DC OSLink
 0x801a72fc OSInitMessageQueue
 0x801a735c OSSendMessage
 0x801a7424 OSReceiveMessage
