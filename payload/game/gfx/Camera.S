@@ -33,6 +33,16 @@ PATCH_B_START(Camera_805a2034, 0xbc)
     b Camera_805a2034 + 0xc0
 PATCH_B_END(Camera_805a2034, 0xbc)
 
+PATCH_B_START(Camera_805a2034, 0xc4)
+    lwz r3, 0x188 (r30)
+    lis r4, 0x437a // Height: 250.0f
+    stw r4, 0x8 (r3)
+    stw r4, 0xc (r3)
+
+    lwz r3, 0x18c (r30) // Original instruction
+    b Camera_805a2034 + 0xc8
+PATCH_B_END(Camera_805a2034, 0xc4)
+
 PATCH_BL_START(Camera_805a21d0, 0xf4)
     lhz r0, 0x334 (r29) // Original instruction
 

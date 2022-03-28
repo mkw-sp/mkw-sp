@@ -269,6 +269,7 @@
 0x805347f4 RaceManagerPlayer_endRace
 0x80534df8 RaceManagerPlayer_calcCheckPoint
 0x80535d14 TimeAttackGameMode_canEndRace
+0x805362dc RaceManager_getStartTransform
 0x80541794 ResourceManager_getMenuArchiveCount
 0x80541878 ResourceManager_attachLayoutDir
 0x80542D4C RootScene_allocate

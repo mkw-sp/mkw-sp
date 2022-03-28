@@ -57,3 +57,9 @@ PATCH_BL_START(RaceManagerPlayer_calcCheckPoint, 0x320)
     lhz r0, 0x1a (r3) // Original instruction again
     b RaceManagerPlayer_calcCheckPoint + 0x324
 PATCH_BL_END(RaceManagerPlayer_calcCheckPoint, 0x320)
+
+
+
+PATCH_REPLACE_START(RaceManager_getStartTransform, 0x28)
+    li r0, 0x2
+PATCH_REPLACE_END(RaceManager_getStartTransform, 0x28)
