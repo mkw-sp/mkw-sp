@@ -13,10 +13,6 @@
 #include <string.h>
 #include <wchar.h>
 
-enum {
-    GHOST_PATH_BUFFER_MAX_COUNT = 0x20000, // 256 KiB
-};
-
 SaveManager *SaveManager_ct(SaveManager *this);
 
 SaveManager *my_SaveManager_createInstance(void) {
