@@ -86,11 +86,9 @@ void GhostManagerPage_processPopulate(GhostManagerPage *this) {
             if (GhostFooter_hasSpeedMod(footer) != speedModIsEnabled) {
                 continue;
             }
-            break;
-        default:
-            if (courseId != header->courseId) {
-                continue;
-            }
+        }
+        if (courseId != header->courseId) {
+            continue;
         }
 
         list->indices[list->count++] = i;
