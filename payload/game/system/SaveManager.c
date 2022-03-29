@@ -126,7 +126,7 @@ static void *SaveManager_initGhostsTask(void *UNUSED(arg)) {
 static void SaveManager_initGhostsAsync(SaveManager *this) {
     void *stackBase = this->ghostInitStack + GHOST_INIT_STACK_SIZE;
     OSCreateThread(&this->ghostInitThread, SaveManager_initGhostsTask, NULL, stackBase,
-            GHOST_INIT_STACK_SIZE, 24, 0);
+            GHOST_INIT_STACK_SIZE, 31, 0);
     OSResumeThread(&this->ghostInitThread);
 }
 
