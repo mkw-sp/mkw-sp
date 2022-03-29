@@ -8,6 +8,8 @@
 #include <stdlib.h>
 #include <string.h>
 
+void GhostList_populate(GhostList *this, u32 courseId);
+
 static void my_GhostList_populate(GhostList *UNUSED(this), u32 UNUSED(courseId)) {}
 PATCH_B(GhostList_populate, my_GhostList_populate);
 
@@ -27,34 +29,34 @@ void GhostManagerPage_dispatchPopulate(GhostManagerPage *this) {
     this->currentRequest = GHOST_MANAGER_PAGE_REQUEST_POPULATE;
 }
 
-static int compareGhostEntriesByTime(const GhostEntry *e0, const GhostEntry *e1) {
-    const Time *t0 = &e0->file->raceTime;
-    const Time *t1 = &e1->file->raceTime;
+static int compareRawGhostHeadersByTime(const RawGhostHeader *h0, const RawGhostHeader *h1) {
+    const RawTime *t0 = &h0->raceTime;
+    const RawTime *t1 = &h1->raceTime;
     s32 d0 = (t0->minutes * 60 + t0->seconds) * 1000 + t0->milliseconds;
     s32 d1 = (t1->minutes * 60 + t1->seconds) * 1000 + t1->milliseconds;
     return d0 < d1 ? -1 : d0 > d1 ? 1 : 0;
 }
 
-static int compareGhostEntriesByDate(const GhostEntry *e0, const GhostEntry *e1) {
-    const GhostFile *f0 = e0->file;
-    const GhostFile *f1 = e1->file;
-    s32 t0 = (f0->year * 12 + f0->month) * 31 + f0->day;
-    s32 t1 = (f1->year * 12 + f1->month) * 31 + f1->day;
+static int compareRawGhostHeadersByDate(const RawGhostHeader *h0, const RawGhostHeader *h1) {
+    s32 t0 = (h0->year * 12 + h0->month) * 31 + h0->day;
+    s32 t1 = (h1->year * 12 + h1->month) * 31 + h1->day;
     return t0 < t1 ? -1 : t0 > t1 ? 1 : 0;
 }
 
-static int compareGhostEntries(const void *p0, const void *p1) {
-    const GhostEntry *e0 = p0;
-    const GhostEntry *e1 = p1;
+static int compareGhostIndices(const void *p0, const void *p1) {
+    u16 i0 = *(u16 *)p0;
+    u16 i1 = *(u16 *)p1;
+    const RawGhostHeader *h0 = &s_saveManager->rawGhostHeaders[i0];
+    const RawGhostHeader *h1 = &s_saveManager->rawGhostHeaders[i1];
     switch (SaveManager_getTaRuleGhostSorting(s_saveManager)) {
     case SP_TA_RULE_GHOST_SORTING_FASTEST:
-        return compareGhostEntriesByTime(e0, e1);
+        return compareRawGhostHeadersByTime(h0, h1);
     case SP_TA_RULE_GHOST_SORTING_SLOWEST:
-        return compareGhostEntriesByTime(e1, e0);
+        return compareRawGhostHeadersByTime(h1, h0);
     case SP_TA_RULE_GHOST_SORTING_NEWEST:
-        return compareGhostEntriesByDate(e1, e0);
+        return compareRawGhostHeadersByDate(h1, h0);
     case SP_TA_RULE_GHOST_SORTING_OLDEST:
-        return compareGhostEntriesByDate(e0, e1);
+        return compareRawGhostHeadersByDate(h0, h1);
     default:
         // Should be unreachable
         return 0;
@@ -70,15 +72,10 @@ void GhostManagerPage_processPopulate(GhostManagerPage *this) {
     const u8 *courseSha1 = SaveManager_getCourseSha1(s_saveManager, courseId);
     bool speedModIsEnabled = SaveManager_getTaRuleClass(s_saveManager) == SP_TA_RULE_CLASS_200CC;
 
-    GhostList *list = &this->list;
+    SpGhostList *list = &this->list;
     list->count = 0;
-    const GhostGroup *group = this->groups[4];
-    for (u32 i = 0; i < group->count && list->count < ARRAY_SIZE(list->entries); i++) {
-        const GhostFile *file = GhostGroup_get(group, i);
-        if (!file) {
-            continue;
-        }
-
+    for (u32 i = 0; i < s_saveManager->ghostCount; i++) {
+        const RawGhostHeader *header = &s_saveManager->rawGhostHeaders[i];
         const GhostFooter *footer = &s_saveManager->ghostFooters[i];
         switch (footer->magic) {
         case CTGP_FOOTER_MAGIC:
@@ -91,19 +88,15 @@ void GhostManagerPage_processPopulate(GhostManagerPage *this) {
             }
             break;
         default:
-            if (courseId != file->courseId) {
+            if (courseId != header->courseId) {
                 continue;
             }
         }
 
-        list->entries[list->count].file = file;
-        list->entries[list->count].groupIndex = 4;
-        list->entries[list->count].index = i;
-        list->entries[list->count].isNew = false;
-        list->count++;
+        list->indices[list->count++] = i;
     }
 
-    qsort(list->entries, list->count, sizeof(GhostEntry), compareGhostEntries);
+    qsort(list->indices, list->count, sizeof(u16), compareGhostIndices);
 
     this->currentRequest = GHOST_MANAGER_PAGE_REQUEST_NONE;
 }

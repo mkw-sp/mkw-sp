@@ -1,8 +1,8 @@
 #include "GhostSelectButton.h"
 
-#include "TimeAttackGhostListPage.h"
-
-#include "../util/Registry.h"
+#include "game/system/SaveManager.h"
+#include "game/ui/TimeAttackGhostListPage.h"
+#include "game/util/Registry.h"
 
 #include <stdio.h>
 
@@ -118,10 +118,10 @@ void GhostSelectButton_load(GhostSelectButton *this, u32 index) {
 }
 
 void GhostSelectButton_refresh(GhostSelectButton *this, u32 ghostIndex) {
-    TimeAttackGhostListPage *page = (TimeAttackGhostListPage *)this->group->page;
-    GhostFile *file = GhostList_getFile(page->ghostList, ghostIndex);
+    const TimeAttackGhostListPage *page = (TimeAttackGhostListPage *)this->group->page;
+    const RawGhostHeader *header = &s_saveManager->rawGhostHeaders[ghostIndex];
 
-    MiiGroup_insertFromRaw(&this->miiGroup, 0, &file->rawMii);
+    MiiGroup_insertFromRaw(&this->miiGroup, 0, &header->mii);
     MessageInfo nameInfo = {
         .miis[0] = MiiGroup_get(&this->miiGroup, 0),
     };
@@ -132,7 +132,7 @@ void GhostSelectButton_refresh(GhostSelectButton *this, u32 ghostIndex) {
     LayoutUIControl_setMessage(this, "name_light_02", 9501, &nameInfo);
 
     char countryPane[0x4];
-    snprintf(countryPane, sizeof(countryPane), "%03u", file->country);
+    snprintf(countryPane, sizeof(countryPane), "%03lu", header->country);
     bool hasCountryPane = LayoutUIControl_hasPictureSourcePane(this, countryPane);
     LayoutUIControl_setPaneVisible(this, "flag_shadow", hasCountryPane);
     LayoutUIControl_setPaneVisible(this, "flag", hasCountryPane);
@@ -147,7 +147,7 @@ void GhostSelectButton_refresh(GhostSelectButton *this, u32 ghostIndex) {
         LayoutUIControl_setPicture(this, "flag_light_02", countryPane);
     }
 
-    const char *characterPane = getCharacterPane(file->characterId);
+    const char *characterPane = getCharacterPane(header->characterId);
     LayoutUIControl_setPicture(this, "chara_shadow", characterPane);
     LayoutUIControl_setPicture(this, "chara", characterPane);
     LayoutUIControl_setPicture(this, "active_chara", characterPane);
@@ -155,7 +155,7 @@ void GhostSelectButton_refresh(GhostSelectButton *this, u32 ghostIndex) {
     LayoutUIControl_setPicture(this, "chara_light_02", characterPane);
 
     char vehiclePane[0xa];
-    snprintf(vehiclePane, sizeof(vehiclePane), "Vehicle%02lu", file->vehicleId);
+    snprintf(vehiclePane, sizeof(vehiclePane), "Vehicle%02u", header->vehicleId);
     LayoutUIControl_setPicture(this, "machine_shadow", vehiclePane);
     LayoutUIControl_setPicture(this, "machine", vehiclePane);
     LayoutUIControl_setPicture(this, "active_machine", vehiclePane);
@@ -163,9 +163,9 @@ void GhostSelectButton_refresh(GhostSelectButton *this, u32 ghostIndex) {
     LayoutUIControl_setPicture(this, "machine_light_02", vehiclePane);
 
     MessageInfo timeInfo = {
-        .intVals[0] = file->raceTime.minutes,
-        .intVals[1] = file->raceTime.seconds,
-        .intVals[2] = file->raceTime.milliseconds,
+        .intVals[0] = header->raceTime.minutes,
+        .intVals[1] = header->raceTime.seconds,
+        .intVals[2] = header->raceTime.milliseconds,
     };
     LayoutUIControl_setMessage(this, "time_shadow", 6052, &timeInfo);
     LayoutUIControl_setMessage(this, "time", 6052, &timeInfo);

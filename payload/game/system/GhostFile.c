@@ -8,12 +8,6 @@
 
 #include <string.h>
 
-// Change the maximum number of ghosts depending on the type
-PATCH_S16(GhostGroup_ct, 0x56, 0); // Saved
-PATCH_S16(GhostGroup_ct, 0x62, MAX_GHOST_COUNT); // Downloaded
-PATCH_S16(GhostGroup_ct, 0x6e, 0); // Staff (per difficulty)
-PATCH_S16(GhostGroup_ct, 0x7a, 0); // Competition
-
 static bool RawTime_isValid(const RawTime *time) {
     if (time->minutes > 99) {
         return false;
@@ -420,3 +414,9 @@ u32 GhostFile_spWrite(const GhostFile *this, u8 *raw) {
 
     return size;
 }
+
+// Do not allocate memory for ghosts
+PATCH_S16(GhostGroup_ct, 0x56, 0); // Saved
+PATCH_S16(GhostGroup_ct, 0x62, 0); // Downloaded
+PATCH_S16(GhostGroup_ct, 0x6e, 0); // Staff (per difficulty)
+PATCH_S16(GhostGroup_ct, 0x7a, 0); // Competition

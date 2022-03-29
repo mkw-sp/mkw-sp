@@ -30,7 +30,7 @@ typedef struct {
     GhostSelectControl *shownGhostSelect;
     GhostSelectControl *hiddenGhostSelect;
     bool isReplay;
-    GhostList *ghostList;
+    SpGhostList *ghostList;
     u32 chosenCount;
     bool ghostIsChosen[GHOST_TYPE_MAX];
     u32 sheetCount;

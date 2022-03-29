@@ -2,6 +2,8 @@
 
 #include "Mii.h"
 
+#include <egg/core/eggHeap.h>
+
 enum {
     MAX_GHOST_COUNT = 4096,
 };
@@ -46,7 +48,9 @@ typedef struct {
 
     RawTime lapTimes[5];
 
-    u8 _20[0x3c - 0x20];
+    u8 _20[0x34 - 0x20];
+    u32 country;
+    u8 _38[0x3c - 0x38];
     RawMii mii;
 } RawGhostHeader;
 static_assert(sizeof(RawGhostHeader) == 0x88);
@@ -155,16 +159,8 @@ void GhostFile_writeHeader(const GhostFile *this, RawGhostHeader *header);
 u32 GhostFile_spWrite(const GhostFile *this, u8 *raw);
 
 typedef struct {
-    u8 _00[0x04 - 0x00];
-    u16 count;
-    u8 _06[0x14 - 0x06];
+    u8 _00[0x14 - 0x00];
 } GhostGroup;
 static_assert(sizeof(GhostGroup) == 0x14);
 
-GhostGroup *GhostGroup_ct(GhostGroup *this);
-
-void GhostGroup_invalidate(GhostGroup *this, u16 i);
-
-GhostFile *GhostGroup_get(const GhostGroup *this, u16 i);
-
-void GhostGroup_readHeader(GhostGroup *this, u16 i, RawGhostHeader *raw);
+GhostGroup *GhostGroup_ct(GhostGroup *this, EGG_Heap *heap, u32 type);

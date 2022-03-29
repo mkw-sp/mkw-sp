@@ -24,7 +24,7 @@ void MiiGroup_init(MiiGroup *this, u32 count, u32 presetFlags, EGG_Heap *heap);
 
 void MiiGroup_insertFromId(MiiGroup *this, u32 index, MiiId *id);
 
-void MiiGroup_insertFromRaw(MiiGroup *this, u32 index, RawMii *raw);
+void MiiGroup_insertFromRaw(MiiGroup *this, u32 index, const RawMii *raw);
 
 Mii *MiiGroup_get(MiiGroup *this, u32 index);
 

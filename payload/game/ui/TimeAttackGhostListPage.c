@@ -338,7 +338,7 @@ static void TimeAttackGhostListPage_onRefocus(Page *base) {
     cx->timeAttackGhostCount = 0;
     for (u32 i = 0; i < ARRAY_SIZE(this->ghostIsChosen); i++) {
         if (this->ghostIsChosen[i]) {
-            u32 index = this->ghostList->entries[i].index;
+            u32 index = this->ghostList->indices[i];
             cx->timeAttackGhostIndices[cx->timeAttackGhostCount++] = index;
         }
     }

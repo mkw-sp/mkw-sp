@@ -554,11 +554,7 @@ u32 SaveManager_getTaRuleGhostSound(const SaveManager *this) {
 
 static void SaveManager_loadGhostHeaders(SaveManager *this) {
     OSJoinThread(&this->ghostInitThread, NULL);
-
-    for (u32 i = 0; i < this->ghostCount; i++) {
-        GhostGroup_invalidate(this->ghostGroup, i);
-        GhostGroup_readHeader(this->ghostGroup, i, this->rawGhostHeaders + i);
-    }
+    OSDetachThread(&this->ghostInitThread);
 
     this->isBusy = false;
     this->result = RK_NAND_RESULT_OK;
@@ -569,13 +565,7 @@ static void loadGhostHeadersTask(void *UNUSED(arg)) {
 }
 
 static void my_SaveManager_loadGhostHeadersAsync(SaveManager *this, s32 UNUSED(licenseId),
-        GhostGroup *group) {
-    if (group->count == 0) {
-        return;
-    }
-
-    this->ghostGroup = group;
-
+        GhostGroup *UNUSED(group)) {
     this->isBusy = true;
     EGG_TaskThread_request(this->taskThread, loadGhostHeadersTask, NULL, NULL);
 }
@@ -608,6 +598,7 @@ static bool SaveManager_loadGhost(SaveManager *this, u32 i) {
 
 static void SaveManager_loadGhosts(SaveManager *this) {
     OSJoinThread(&this->ghostInitThread, NULL);
+    OSDetachThread(&this->ghostInitThread);
 
     RaceConfigScenario *raceScenario = &s_raceConfig->raceScenario;
     RaceConfigScenario *menuScenario = &s_raceConfig->menuScenario;
@@ -766,6 +757,7 @@ static void getCourseName(const u8 *courseSha1, char *courseName) {
 
 static void SaveManager_saveGhost(SaveManager *this, GhostFile *file) {
     OSJoinThread(&this->ghostInitThread, NULL);
+    OSDetachThread(&this->ghostInitThread);
 
     this->saveGhostResult = false;
 
