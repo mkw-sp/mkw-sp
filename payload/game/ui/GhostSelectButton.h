@@ -16,4 +16,4 @@ void GhostSelectButton_dt(GhostSelectButton *this, s32 type);
 
 void GhostSelectButton_load(GhostSelectButton *this, u32 i);
 
-void GhostSelectButton_refresh(GhostSelectButton *this, u32 ghostIndex);
+void GhostSelectButton_refresh(GhostSelectButton *this, u32 listIndex);

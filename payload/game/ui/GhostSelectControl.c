@@ -140,10 +140,10 @@ static void GhostSelectControl_onHide(GhostSelectControl *this) {
 static void GhostSelectControl_onShow(GhostSelectControl *this) {
     TimeAttackGhostListPage *page = (TimeAttackGhostListPage *)this->group->page;
     for (u32 i = 0; i < ARRAY_SIZE(this->buttons); i++) {
-        u32 ghostIndex = page->sheetIndex * ARRAY_SIZE(this->buttons) + i;
-        if (ghostIndex < page->ghostList->count) {
+        u32 listIndex = page->sheetIndex * ARRAY_SIZE(this->buttons) + i;
+        if (listIndex < page->ghostList->count) {
             this->buttons[i].isHidden = false;
-            GhostSelectButton_refresh(&this->buttons[i], ghostIndex);
+            GhostSelectButton_refresh(&this->buttons[i], listIndex);
         } else {
             this->buttons[i].isHidden = true;
         }

@@ -117,8 +117,9 @@ void GhostSelectButton_load(GhostSelectButton *this, u32 index) {
     UIAnimator_setAnimation(&this->animator, GROUP_ID_CHOICE, ANIM_ID_CHOICE_OFF, 0.0f);
 }
 
-void GhostSelectButton_refresh(GhostSelectButton *this, u32 ghostIndex) {
+void GhostSelectButton_refresh(GhostSelectButton *this, u32 listIndex) {
     const TimeAttackGhostListPage *page = (TimeAttackGhostListPage *)this->group->page;
+    u32 ghostIndex = page->ghostList->indices[listIndex];
     const RawGhostHeader *header = &s_saveManager->rawGhostHeaders[ghostIndex];
 
     MiiGroup_insertFromRaw(&this->miiGroup, 0, &header->mii);
@@ -173,6 +174,6 @@ void GhostSelectButton_refresh(GhostSelectButton *this, u32 ghostIndex) {
     LayoutUIControl_setMessage(this, "time_light_01", 6052, &timeInfo);
     LayoutUIControl_setMessage(this, "time_light_02", 6052, &timeInfo);
 
-    this->chosen = page->ghostIsChosen[ghostIndex];
+    this->chosen = page->ghostIsChosen[listIndex];
     TabOptionButton_setChosen(this, this->chosen);
 }

@@ -338,8 +338,8 @@ static void TimeAttackGhostListPage_onRefocus(Page *base) {
     cx->timeAttackGhostCount = 0;
     for (u32 i = 0; i < ARRAY_SIZE(this->ghostIsChosen); i++) {
         if (this->ghostIsChosen[i]) {
-            u32 index = this->ghostList->indices[i];
-            cx->timeAttackGhostIndices[cx->timeAttackGhostCount++] = index;
+            u32 ghostIndex = this->ghostList->indices[i];
+            cx->timeAttackGhostIndices[cx->timeAttackGhostCount++] = ghostIndex;
         }
     }
 
@@ -385,8 +385,8 @@ static const Page_vt s_TimeAttackGhostListPage_vt = {
 };
 
 void TimeAttackGhostListPage_chooseGhost(TimeAttackGhostListPage *this, u32 buttonIndex) {
-    u32 ghostIndex = this->sheetIndex * ARRAY_SIZE(this->ghostSelects[0].buttons) + buttonIndex;
-    this->ghostIsChosen[ghostIndex] = this->shownGhostSelect->buttons[buttonIndex].chosen;
+    u32 listIndex = this->sheetIndex * ARRAY_SIZE(this->ghostSelects[0].buttons) + buttonIndex;
+    this->ghostIsChosen[listIndex] = this->shownGhostSelect->buttons[buttonIndex].chosen;
 
     if (this->shownGhostSelect->buttons[buttonIndex].chosen) {
         this->chosenCount++;
