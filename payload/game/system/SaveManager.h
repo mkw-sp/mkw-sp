@@ -84,6 +84,8 @@ typedef struct {
     u32 spLicenseCount; // Added
     SpSaveLicense *spLicenses[MAX_SP_LICENSE_COUNT]; // Added
     s32 spCurrentLicense; // Added
+    OSThread ghostInitThread; // Added
+    u8 *ghostInitStack; // Added
     bool *courseSha1IsValid; // Added
     u8 (*courseSha1s)[0x14]; // Added
 } SaveManager;

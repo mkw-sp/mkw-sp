@@ -13,6 +13,10 @@
 #include <string.h>
 #include <wchar.h>
 
+enum {
+    GHOST_INIT_STACK_SIZE = 0x8000, // 32 KiB
+};
+
 SaveManager *SaveManager_ct(SaveManager *this);
 
 SaveManager *my_SaveManager_createInstance(void) {
@@ -25,6 +29,7 @@ SaveManager *my_SaveManager_createInstance(void) {
     this->rawGhostHeaders = spAllocArray(MAX_GHOST_COUNT, sizeof(RawGhostHeader), 0x4, heap);
     this->ghostFooters = spAllocArray(MAX_GHOST_COUNT, sizeof(GhostFooter), 0x4, heap);
     this->ghostIds = spAllocArray(MAX_GHOST_COUNT, sizeof(NodeId), 0x4, heap);
+    this->ghostInitStack = spAlloc(GHOST_INIT_STACK_SIZE, 0x4, heap);
     this->courseSha1IsValid = spAllocArray(0x20, sizeof(bool), 0x4, heap);
     for (u32 i = 0; i < 0x20; i++) {
         this->courseSha1IsValid[i] = false;
@@ -111,6 +116,18 @@ static void SaveManager_initGhosts(SaveManager *this) {
     Storage_createDir(L"/mkw-sp/ghosts", true);
 
     SP_LOG("Ghosts: %u / %u", this->ghostCount, MAX_GHOST_COUNT);
+}
+
+static void *SaveManager_initGhostsTask(void *UNUSED(arg)) {
+    SaveManager_initGhosts(s_saveManager);
+    return NULL;
+}
+
+static void SaveManager_initGhostsAsync(SaveManager *this) {
+    void *stackBase = this->ghostInitStack + GHOST_INIT_STACK_SIZE;
+    OSCreateThread(&this->ghostInitThread, SaveManager_initGhostsTask, NULL, stackBase,
+            GHOST_INIT_STACK_SIZE, 24, 0);
+    OSResumeThread(&this->ghostInitThread);
 }
 
 static bool SpSaveLicense_checkSize(const SpSaveLicense *this) {
@@ -286,7 +303,7 @@ static void SaveManager_init(SaveManager *this) {
         this->spCanSave = false;
     }
 
-    SaveManager_initGhosts(this);
+    SaveManager_initGhostsAsync(this);
 
     this->isBusy = false;
 }
@@ -536,6 +553,8 @@ u32 SaveManager_getTaRuleGhostSound(const SaveManager *this) {
 }
 
 static void SaveManager_loadGhostHeaders(SaveManager *this) {
+    OSJoinThread(&this->ghostInitThread, NULL);
+
     for (u32 i = 0; i < this->ghostCount; i++) {
         GhostGroup_invalidate(this->ghostGroup, i);
         GhostGroup_readHeader(this->ghostGroup, i, this->rawGhostHeaders + i);
@@ -588,6 +607,8 @@ static bool SaveManager_loadGhost(SaveManager *this, u32 i) {
 }
 
 static void SaveManager_loadGhosts(SaveManager *this) {
+    OSJoinThread(&this->ghostInitThread, NULL);
+
     RaceConfigScenario *raceScenario = &s_raceConfig->raceScenario;
     RaceConfigScenario *menuScenario = &s_raceConfig->menuScenario;
     if (menuScenario->ghostBuffer == raceScenario->ghostBuffer) {
@@ -744,6 +765,8 @@ static void getCourseName(const u8 *courseSha1, char *courseName) {
 }
 
 static void SaveManager_saveGhost(SaveManager *this, GhostFile *file) {
+    OSJoinThread(&this->ghostInitThread, NULL);
+
     this->saveGhostResult = false;
 
     if (file->raceTime.minutes > 99) {
