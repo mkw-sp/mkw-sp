@@ -32,7 +32,7 @@ typedef struct {
     bool isReplay;
     SpGhostList *ghostList;
     u32 chosenCount;
-    bool ghostIsChosen[GHOST_TYPE_MAX];
+    bool ghostIsChosen[MAX_GHOST_COUNT];
     u32 sheetCount;
     u32 sheetIndex;
     s32 lastSelected;
