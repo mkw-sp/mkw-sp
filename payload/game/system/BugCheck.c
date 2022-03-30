@@ -9,6 +9,8 @@
 #include <egg/core/eggSystem.h>
 #include <sp/WideUtil.h>
 
+#include <sp/StackTrace.h>
+
 // Referenced by SceneCreatorDyanmic.S
 bool sBugCheckSet = false;
 
@@ -69,6 +71,10 @@ void SpBugCheck(const char *file, const char *description) {
     OSReport("FILE: %s\n", file);
     OSReport("DESC: %s\n", description);
     OSReport("------------------------------\n");
+
+    char trace[512];
+    WriteStackTraceShort(trace, sizeof(trace), OSGetStackPointer());
+    OSReport("TRACE: %s\n", trace);
 
     if (!sBugCheckSet)
         SpSaveBugCheck(file, description);
