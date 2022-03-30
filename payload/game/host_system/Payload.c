@@ -1,9 +1,8 @@
 #include "Patcher.h"
 
-#include "../system/Memory.h"
-
 #include <sp/Host.h>
 #include <sp/LogFile.h>
+#include <sp/Memory.h>
 #include <sp/Net.h>
 #include <sp/Stack.h>
 #include <sp/Storage.h>

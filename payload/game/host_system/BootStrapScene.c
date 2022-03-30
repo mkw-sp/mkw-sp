@@ -2,7 +2,7 @@
 #include "Patcher.h"
 
 #include <Rel.h>
-#include <game/system/Memory.h>
+#include <sp/Memory.h>
 #include <string.h>
 
 typedef void (*RelEntryFunction)(void);
