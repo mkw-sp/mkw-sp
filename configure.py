@@ -297,6 +297,7 @@ code_in_files = {
         os.path.join('payload', 'revolution', 'os', 'OSMemory.S'),
         os.path.join('payload', 'revolution', 'os', 'OSThread.S'),
         os.path.join('payload', 'revolution', 'os', 'OSThread.c'),
+        os.path.join('payload', 'sp', 'CourseManager.c'),
         os.path.join('payload', 'sp', 'Fatal.c'),
         os.path.join('payload', 'sp', 'FatStorage.c'),
         os.path.join('payload', 'sp', 'FlameGraph.c'),

@@ -1,6 +1,7 @@
 #include "CourseSelectPage.h"
 
 #include "game/ui/SectionManager.h"
+#include "sp/CourseManager.h"
 #include "sp/Storage.h"
 
 #include <revolution.h>
@@ -212,7 +213,7 @@ static void CourseSelectPage_onActivate(Page *base) {
     CourseSelectPage *this = (CourseSelectPage *)base;
 
     u32 buttonsPerSheet = ARRAY_SIZE(this->courseSelects[0].buttons);
-    this->sheetCount = (32 + buttonsPerSheet - 1) / buttonsPerSheet;
+    this->sheetCount = (CourseManager_count() + buttonsPerSheet - 1) / buttonsPerSheet;
     this->sheetIndex = 0;
     CourseSelectPage_refreshSheetLabel(this);
 
@@ -255,12 +256,12 @@ static const Page_vt s_CourseSelectPage_vt = {
     .getTypeInfo = Page_getTypeInfo,
 };
 
-void CourseSelectPage_selectCourse(CourseSelectPage *this, u32 courseId) {
+void CourseSelectPage_selectCourse(CourseSelectPage *this, u32 index) {
     this->background.isHidden = true;
 
+    u32 dbId = CourseManager_getDbId(index);
     wchar_t path[32];
-    swprintf(path, ARRAY_SIZE(path), L"/mkw-sp/thumbnails/%02X.tpl", courseId);
-    SP_LOG("%ls", path);
+    swprintf(path, ARRAY_SIZE(path), L"/mkw-sp/thumbnails/%4u.tpl", dbId);
     NodeInfo info;
     Storage_stat(path, &info);
     if (info.type != NODE_TYPE_FILE || info.size > MAX_TPL_SIZE) {

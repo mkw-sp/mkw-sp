@@ -1,5 +1,6 @@
 #include "Patcher.h"
 
+#include <sp/CourseManager.h>
 #include <sp/Host.h>
 #include <sp/LogFile.h>
 #include <sp/Memory.h>
@@ -58,6 +59,8 @@ __attribute__((no_stack_protector)) __attribute__((section("first"))) void start
     //     Built Mar  2 2022 at 23:22:40, GCC 10.2.0
     //     --------------------------------
     Host_PrintMkwSpInfo(OSReport);
+
+    CourseManager_init();
 
     DVDExInit();
 }

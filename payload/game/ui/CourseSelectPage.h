@@ -28,4 +28,4 @@ typedef struct {
     u32 lastSelected;
 } CourseSelectPage;
 
-void CourseSelectPage_selectCourse(CourseSelectPage *this, u32 courseId);
+void CourseSelectPage_selectCourse(CourseSelectPage *this, u32 index);

@@ -1,6 +1,7 @@
 #include "CourseSelectControl.h"
 
-#include "CourseSelectPage.h"
+#include "game/ui/CourseSelectPage.h"
+#include "sp/CourseManager.h"
 
 #include <stdio.h>
 
@@ -24,8 +25,8 @@ static void onButtonSelect(PushButtonHandler *this, PushButton *button, u32 UNUS
     CourseSelectControl *control = CONTAINER_OF(this, CourseSelectControl, onButtonSelect);
     CourseSelectPage *page = (CourseSelectPage *)button->group->page;
     page->lastSelected = button->index;
-    u32 courseId = page->sheetIndex * ARRAY_SIZE(control->buttons) + button->index;
-    CourseSelectPage_selectCourse(page, courseId);
+    u32 index = page->sheetIndex * ARRAY_SIZE(control->buttons) + button->index;
+    CourseSelectPage_selectCourse(page, index);
 }
 
 static const PushButtonHandler_vt onButtonSelect_vt = {
@@ -159,9 +160,10 @@ static void CourseSelectControl_onHide(CourseSelectControl *this) {
 static void CourseSelectControl_onShow(CourseSelectControl *this) {
     CourseSelectPage *page = (CourseSelectPage *)this->group->page;
     for (u32 i = 0; i < ARRAY_SIZE(this->buttons); i++) {
-        u32 courseId = page->sheetIndex * ARRAY_SIZE(this->buttons) + i;
-        if (courseId < 32) {
+        u32 index = page->sheetIndex * ARRAY_SIZE(this->buttons) + i;
+        if (index < CourseManager_count()) {
             this->buttons[i].isHidden = false;
+            u32 courseId = CourseManager_getCourseId(index);
             LayoutUIControl_setMessageAll(&this->buttons[i], 9300 + courseId, NULL);
         } else {
             this->buttons[i].isHidden = true;
