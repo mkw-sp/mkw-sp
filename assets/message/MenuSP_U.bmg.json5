@@ -293,6 +293,6 @@
     },
     "10083": {
         "font": "regular",
-        "string": "{color|team blue}{arg string|0}{color|unspecified} {arg string|1}",
+        "string": "{arg string|0}{arg string|1}{color|unspecified} {arg string|2}",
     },
 }

@@ -164,8 +164,9 @@ static void CourseSelectControl_onShow(CourseSelectControl *this) {
         if (index < CourseManager_count()) {
             this->buttons[i].isHidden = false;
             MessageInfo info = {
-                .strings[0] = CourseManager_getPrefix(index),
-                .strings[1] = CourseManager_getName(index),
+                .strings[0] = CourseManager_getPrefixColor(index),
+                .strings[1] = CourseManager_getPrefixName(index),
+                .strings[2] = CourseManager_getName(index),
             };
             LayoutUIControl_setMessageAll(&this->buttons[i], 10083, &info);
         } else {

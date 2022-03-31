@@ -430,7 +430,28 @@ u32 CourseManager_getCourseId(u32 index) {
     return courses[dbIds[selectedIdcs[index]]].courseId;
 }
 
-const wchar_t *CourseManager_getPrefix(u32 index) {
+const wchar_t *CourseManager_getPrefixColor(u32 index) {
+    assert(index < selectedCount);
+
+    switch (courses[dbIds[selectedIdcs[index]]].prefixId) {
+    case PREFIX_ID_SNES:
+        return L"\x1a\x800\x0001\x0010";
+    case PREFIX_ID_N64:
+        return L"\x1a\x800\x0001\x0011";
+    case PREFIX_ID_GBA:
+        return L"\x1a\x800\x0001\x0012";
+    case PREFIX_ID_GCN:
+        return L"\x1a\x800\x0001\x0013";
+    case PREFIX_ID_DS:
+        return L"\x1a\x800\x0001\x0014";
+    case PREFIX_ID_WII:
+        return L"\x1a\x800\x0001\x0021";
+    default:
+        return L"";
+    }
+}
+
+const wchar_t *CourseManager_getPrefixName(u32 index) {
     assert(index < selectedCount);
 
     switch (courses[dbIds[selectedIdcs[index]]].prefixId) {

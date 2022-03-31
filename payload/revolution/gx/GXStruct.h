@@ -10,6 +10,14 @@ typedef struct {
 } GXColor;
 static_assert(sizeof(GXColor) == 0x4);
 
+typedef struct {
+    s16 r;
+    s16 g;
+    s16 b;
+    s16 a;
+} GXColorS10;
+static_assert(sizeof(GXColorS10) == 0x8);
+
 typedef struct GXRenderModeObj {
   int tv_mode;
   u16 fb_width;
