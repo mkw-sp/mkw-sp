@@ -27,6 +27,7 @@
 0x80015650 wmemcpy
 0x80017814 swprintf
 0x80017998 wcslen
+0x80017a14 wcscmp
 0x80021254 strlen
 
 0x80023150 nw4r_db_Exception_Init

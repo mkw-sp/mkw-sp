@@ -291,4 +291,8 @@
         "font": "regular",
         "string": "MKW-SP Options",
     },
+    "10083": {
+        "font": "regular",
+        "string": "{color|team blue}{arg string|0}{color|unspecified} {arg string|1}",
+    },
 }

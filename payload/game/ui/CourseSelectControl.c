@@ -163,8 +163,11 @@ static void CourseSelectControl_onShow(CourseSelectControl *this) {
         u32 index = page->sheetIndex * ARRAY_SIZE(this->buttons) + i;
         if (index < CourseManager_count()) {
             this->buttons[i].isHidden = false;
-            u32 courseId = CourseManager_getCourseId(index);
-            LayoutUIControl_setMessageAll(&this->buttons[i], 9300 + courseId, NULL);
+            MessageInfo info = {
+                .strings[0] = CourseManager_getPrefix(index),
+                .strings[1] = CourseManager_getName(index),
+            };
+            LayoutUIControl_setMessageAll(&this->buttons[i], 10083, &info);
         } else {
             this->buttons[i].isHidden = true;
         }
