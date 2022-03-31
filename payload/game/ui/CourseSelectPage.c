@@ -1,5 +1,6 @@
 #include "CourseSelectPage.h"
 
+#include "game/host_system/SystemManager.h"
 #include "game/ui/SectionManager.h"
 #include "sp/CourseManager.h"
 #include "sp/Storage.h"
@@ -259,9 +260,10 @@ static const Page_vt s_CourseSelectPage_vt = {
 void CourseSelectPage_selectCourse(CourseSelectPage *this, u32 index) {
     this->background.isHidden = true;
 
+    const wchar_t *aspectName = s_systemManager->aspectRatio ? L"169" : L"43";
     u32 dbId = CourseManager_getDbId(index);
-    wchar_t path[32];
-    swprintf(path, ARRAY_SIZE(path), L"/mkw-sp/thumbnails/%4u.tpl", dbId);
+    wchar_t path[48];
+    swprintf(path, ARRAY_SIZE(path), L"/mkw-sp/thumbnails/%ls/%4u.tpl", aspectName, dbId);
     NodeInfo info;
     Storage_stat(path, &info);
     if (info.type != NODE_TYPE_FILE || info.size > MAX_TPL_SIZE) {
