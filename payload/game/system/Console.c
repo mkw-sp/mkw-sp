@@ -101,9 +101,9 @@ static void TextWriter_reset(TextWriter *self) {
     self->mLastTexObj = NULL;
 }
 static void TextWriter_beginDraw(TextWriter *self) {
-    GlyphRenderer_sub0 sub0;
+    lyt_TextBox textBox;
     GlyphRenderer renderer;
-    renderer.dword0 = &sub0;
+    renderer.textBox = &textBox;
     GlyphRenderer_setMaterial(&renderer);
     GXSetNumTevStages(1);
     GXSetTevColorIn(GX_TEVSTAGE0, GX_CC_C0, GX_CC_C1, GX_CC_TEXC, GX_CC_ZERO);

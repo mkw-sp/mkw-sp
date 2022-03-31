@@ -76,6 +76,7 @@
 0x80171d60 GXSetTevColorOp
 0x80171db8 GXSetTevAlphaOp
 0x80171e10 GXSetTevColor
+0x80171e70 GXSetTevColorS10
 0x80171f80 GXSetTevKAlphaSel
 0x80171fd0 GXSetTevSwapMode
 0x80172088 GXSetAlphaCompare
@@ -396,7 +397,7 @@
 0x805cdd00 TextBox_setMessage
 0x805cf154 Font_805cf154
 0x805cf2bc GlyphRenderer_setMaterial
-0x805cf7e4 Font_805cf7e4
+0x805cf7e4 GlyphRenderer_setupColors
 0x805d00b0 Font_805d00b0
 0x805d0f34 Font_ct
 0x805D0F80 Font_dt

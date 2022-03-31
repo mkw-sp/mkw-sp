@@ -3,28 +3,17 @@
 #include <revolution.h>
 #include "../system/Mii.h"
 
+#include <nw4r/lyt/lyt_pane.h>
 #include <nw4r/ut/ut_resFont.h>
 
 typedef struct {
-    u8 gap0[0x84 - 0x0];
-    f32 arrf3284[4];
-    u8 gap94[0xb9 - 0x94];
-    u8 unsignedB9;
-    u8 gapBA[0xdc - 0xba];
-    u8 byteDC;
-    u8 byteDD;
-    u8 byteDE;
-    u8 unsignedDF;
-} GlyphRenderer_sub0;
-typedef struct {
-    GlyphRenderer_sub0 *dword0;
-    u32 dword4;
-    u8 gap8[0x8 - 0x4];
-    u32 dwordC;
-    u8 gap10[0x14 - 0x10];
-    int int14;
-    int int18;
+    lyt_TextBox *textBox;
+    u32 formatId;
+    u32 colorId;
+    u8 _0c[0x10 - 0x0c];
 } GlyphRenderer;
+static_assert(sizeof(GlyphRenderer) == 0x10);
+
 void GlyphRenderer_setMaterial(GlyphRenderer *self);
 
 typedef struct {

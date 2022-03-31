@@ -217,6 +217,7 @@ code_in_files = {
         os.path.join('payload', 'game', 'system', 'SceneCreatorDynamic.c'),
         os.path.join('payload', 'game', 'ui', 'ControlLoader.S'),
         os.path.join('payload', 'game', 'ui', 'Font.S'),
+        os.path.join('payload', 'game', 'ui', 'Font.c'),
         os.path.join('payload', 'game', 'ui', 'FontManager.c'),
         os.path.join('payload', 'game', 'ui', 'GhostManagerPage.S'),
         os.path.join('payload', 'game', 'ui', 'GhostManagerPage.c'),
