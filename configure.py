@@ -155,7 +155,7 @@ code_in_files = {
     'payload': [
         os.path.join('payload', 'egg', 'core', 'eggColorFader.c'),
         os.path.join('payload', 'egg', 'core', 'eggDisplay.S'),
-        os.path.join('payload', 'egg', 'core', 'eggDvdFile.S'),
+        os.path.join('payload', 'egg', 'core', 'eggDvdFile.c'),
         os.path.join('payload', 'egg', 'core', 'eggEffectCreator.S'),
         os.path.join('payload', 'egg', 'core', 'eggG3dUtil.S'),
         os.path.join('payload', 'egg', 'core', 'eggHeap.c'),
@@ -284,6 +284,7 @@ code_in_files = {
         os.path.join('payload', 'nw4r', 'lyt', 'lyt_arcResourceAccessor.S'),
         os.path.join('payload', 'nw4r', 'lyt', 'lyt_layout.S'),
         os.path.join('payload', 'nw4r', 'snd', 'snd_DvdSoundArchive.S'),
+        os.path.join('payload', 'nw4r', 'ut', 'ut_DvdFileStream.S'),
         os.path.join('payload', 'platform', 'string.c'),
         os.path.join('payload', 'platform', 'wchar.c'),
         os.path.join('payload', 'revolution', 'dvd.S'),

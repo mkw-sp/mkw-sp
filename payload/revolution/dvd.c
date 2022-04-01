@@ -43,9 +43,3 @@ BOOL my_DVDOpen(const char *fileName, DVDFileInfo *fileInfo) {
     return true;
 }
 PATCH_B(DVDOpen, my_DVDOpen);
-
-BOOL my_DVDFastOpen(s32 entrynum, DVDFileInfo *fileInfo) {
-    const char *fileName = DVDExConvertEntrynumToPath(entrynum);
-    return my_DVDOpen(fileName, fileInfo);
-}
-PATCH_B(DVDFastOpen, my_DVDFastOpen);

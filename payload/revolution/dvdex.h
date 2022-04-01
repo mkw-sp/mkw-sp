@@ -6,4 +6,4 @@ void DVDExInit(void);
 
 BOOL DVDExOpen(const char *fileName, DVDFileInfo *fileInfo);
 
-const char *DVDExConvertEntrynumToPath(s32 entrynum);
+s32 DVDExConvertPathToEntrynum(const char *fileName);

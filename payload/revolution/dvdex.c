@@ -16,9 +16,6 @@ enum {
 
 static u32 prefixCount = 0;
 static wchar_t prefixes[MAX_PREFIX_COUNT][MAX_PREFIX_LENGTH + 1];
-static OSMutex mutex;
-static u32 fileCount = 0;
-static char paths[MAX_FILE_COUNT][MAX_PATH_LENGTH + 1];
 
 static void discoverMyStuffPrefixes(void) {
     Dir dir;
@@ -50,8 +47,6 @@ static void discoverMyStuffPrefixes(void) {
 void DVDExInit(void) {
     swprintf(prefixes[prefixCount++], MAX_PREFIX_LENGTH + 1, L"disc");
     discoverMyStuffPrefixes();
-
-    OSInitMutex(&mutex);
 }
 
 static bool tryOpen(const wchar_t *path, DVDFileInfo *fileInfo) {
@@ -140,32 +135,14 @@ BOOL DVDExClose(DVDFileInfo *fileInfo) {
     return Storage_close(&fileInfo->cb.file);
 }
 
-s32 DVDExConvertPathToEntrynum(const char *pathPtr) {
-    OSLockMutex(&mutex);
+s32 DVDExConvertPathToEntrynum(const char *fileName) {
+    assert(fileName);
 
-    if (strlen(pathPtr) > MAX_PATH_LENGTH) {
-        assert(false && "[DVDEX] Exceeded maximum path length!\n");
+    DVDFileInfo fileInfo;
+    if (!DVDOpen(fileName, &fileInfo)) {
+        return -1;
     }
 
-    for (u32 i = 0; i < fileCount; i++) {
-        if (!strcmp(paths[i], pathPtr)) {
-            OSUnlockMutex(&mutex);
-            return i;
-        }
-    }
-
-    if (fileCount >= MAX_FILE_COUNT) {
-        assert(false && "[DVDEX] Exceeded maximum file count!\n");
-    }
-
-    s32 i = fileCount;
-    snprintf(paths[fileCount++], MAX_PATH_LENGTH + 1, "%s", pathPtr);
-    OSUnlockMutex(&mutex);
-    return i;
-}
-
-const char *DVDExConvertEntrynumToPath(s32 entrynum) {
-    assert(entrynum >= 0 && (u32)entrynum < fileCount);
-
-    return paths[entrynum];
+    DVDClose(&fileInfo);
+    return 0;
 }

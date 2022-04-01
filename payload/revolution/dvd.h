@@ -56,7 +56,7 @@ s32 DVDReadPrio(DVDFileInfo *fileInfo, void *addr, s32 length, s32 offset, s32 p
 
 BOOL DVDClose(DVDFileInfo *fileInfo);
 
-s32 DVDConvertPathToEntrynum(const char *pathPtr);
+s32 DVDConvertPathToEntrynum(const char *fileName);
 
 BOOL DVDFastOpenDir(s32 entrynum, DVDDir *dir);
 
