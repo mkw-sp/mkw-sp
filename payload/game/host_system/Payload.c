@@ -16,11 +16,7 @@
 #include <Payload.h>
 #include <Rel.h>
 
-extern u32 payloadSize;
-
-__attribute__((no_stack_protector)) __attribute__((section("first"))) void start(void) {
-    Stack_InitCanary();
-
+void Payload_init(void) {
     Memory_ProtectRangeModule(OS_PROTECT_CHANNEL_0, Payload_getTextSectionStart(), Payload_getRodataSectionEnd(), OS_PROTECT_PERMISSION_READ);
 
 #ifdef GDB_COMPATIBLE
@@ -29,12 +25,11 @@ __attribute__((no_stack_protector)) __attribute__((section("first"))) void start
     OSAllocFromMEM1ArenaLo(Rel_getSize(), 0x20);
 #endif
 
-    OSAllocFromMEM1ArenaLo(payloadSize, 0x20);
+    OSAllocFromMEM1ArenaLo(Payload_getSize(), 0x20);
     // We don't clear the arena in OSInit because the payload is already copied at that point, but
     // some code expects it to be zeroed.
     memset(OSGetMEM1ArenaLo(), 0, OSGetMEM1ArenaHi() - OSGetMEM1ArenaLo());
 
-    Patcher_patch(PATCHER_BINARY_DOL);
     Memory_ProtectRangeModule(OS_PROTECT_CHANNEL_1, Dol_getInitSectionStart(), Dol_getRodataSectionEnd(), OS_PROTECT_PERMISSION_READ);
     Memory_ProtectRangeModule(OS_PROTECT_CHANNEL_2, Dol_getSdata2SectionStart(), Dol_getSbss2SectionEnd(), OS_PROTECT_PERMISSION_READ);
 
@@ -60,4 +55,10 @@ __attribute__((no_stack_protector)) __attribute__((section("first"))) void start
     Host_PrintMkwSpInfo(OSReport);
 
     DVDExInit();
+}
+
+__attribute__((no_stack_protector)) __attribute__((section("first"))) void Payload_run(void) {
+    Stack_InitCanary();
+
+    Patcher_patch(PATCHER_BINARY_DOL);
 }

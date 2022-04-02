@@ -90,7 +90,6 @@ cppflags = [
 ]
 ldflags = [
     '-nostdlib',
-    '-Wl,--entry=start',
     '-Wl,-n',
 ]
 n.variable('asflags', ' '.join(asflags))
@@ -141,6 +140,7 @@ n.newline()
 
 ldparams = [
     '-Wl,--defsym,base=$base',
+    '-Wl,--entry=$entry',
     '-Wl,--oformat,$format',
     '-Wl,-T,$script',
 ]
@@ -293,6 +293,8 @@ code_in_files = {
         os.path.join('payload', 'revolution', 'ios.S'),
         os.path.join('payload', 'revolution', 'ios.c'),
         os.path.join('payload', 'revolution', 'nand.c'),
+        os.path.join('payload', 'revolution', 'OS.S'),
+        os.path.join('payload', 'revolution', 'OS.c'),
         os.path.join('payload', 'revolution', 'os', 'OSError.c'),
         os.path.join('payload', 'revolution', 'os', 'OSMemory.S'),
         os.path.join('payload', 'revolution', 'os', 'OSThread.S'),
@@ -384,6 +386,7 @@ for region in ['P', 'E', 'J', 'K']:
                     'J': '0x8076cca0',
                     'K': '0x8075bfe0',
                 }[region],
+                'entry': 'Payload_run',
                 'format': fmt,
                 'script': os.path.join('$builddir', 'scripts', f'RMC{region}.ld'),
             },
@@ -411,6 +414,7 @@ n.build(
     code_out_files['loader'],
     variables = {
         'base': '0x80910000' if not args.gdb_compatible else '0x80E50F90',
+        'entry': 'start',
         'format': 'elf32-powerpc',
         'script': os.path.join('loader', 'RMC.ld'),
     },

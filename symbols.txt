@@ -1,5 +1,3 @@
-0x80004000 payloadSize
-
 0x80005f34 memcpy
 0x80006038 memset
 0x800060A4 __start

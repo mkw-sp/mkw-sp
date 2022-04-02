@@ -4,6 +4,4 @@ SECTIONS {
     .data : { *(.data*) *(.bss*) *(.sbss*) }
 
     stackTop = base;
-
-    payloadSize = 0x80004000;
 }

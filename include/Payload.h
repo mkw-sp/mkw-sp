@@ -9,6 +9,10 @@ extern void payload_rodata_end;
 extern void payload_data_start;
 extern void payload_data_end;
 
+static size_t Payload_getSize(void) {
+    return &payload_data_end - &payload_text_start;
+}
+
 static void *Payload_getTextSectionStart(void) {
     return &payload_text_start;
 }
