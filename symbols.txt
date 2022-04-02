@@ -164,6 +164,8 @@
 0x801b39bc SIGetTypeAsync
 0x801b3acc SISetSamplingRate
 0x801b3ba4 SIRefreshSamplingRate
+
+0x801B94A4 VIInit
 0x801b99ec VIWaitForRetrace
 0x801BAB2C VISetBlack
 0x801d1ca0 NETCalcCRC32
@@ -232,6 +234,8 @@
 0x80243d6c EGG_Video_configure
 
 0x802A4080 sRKSystem
+
+0x803505C0 RDSTHandler
 
 0x80384190 s_dvdList
 0x80386000 s_systemManager
@@ -664,5 +668,3 @@
 0x809c2f38 s_driverManager
 0x809c38b8 s_raceGlobals
 0x809c4680 s_racePage
-
-803505C0 RDSTHandler

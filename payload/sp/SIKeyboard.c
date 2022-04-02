@@ -279,25 +279,8 @@ void SIKeyboard_InitSimple(void) {
     assert(registered);
 }
 
-void *MyThread(void * UNUSED(f)) {
-    SP_LOG("THREAD");
-    while (true) {
-        OSSleepMilliseconds(2);
-        SIKeyboard_PollingHandler();
-    }
-    return 0;
-}
-static OSThread sThread;
-char MyStack[0x5000];
-
 bool SIKeyboard_EnableBackgroundService(void) {
     SP_LOG("Enabling background polling/interrupts");
-// TODO: Make this work
-#if 0
+    VIInit();
     return SIRegisterPollingHandler(SIKeyboard_PollingHandler);
-#else
-    OSCreateThread(&sThread, MyThread, 0, MyStack, sizeof(MyStack), 30, 0);
-    OSResumeThread(&sThread);
-    return true;
-#endif
 }

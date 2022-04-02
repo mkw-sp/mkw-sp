@@ -45,7 +45,7 @@ static inline bool SIRegisterPollingHandler(void *handler) {
     }
 
     *slot = handler;
-    SIEnablePolling(true);
+    SIEnablePollingInterrupt(true);
     return true;
 }
 
