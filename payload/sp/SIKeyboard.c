@@ -165,7 +165,7 @@ size_t SIKeyboard_Poll(char *pKeys, size_t max_keys) {
 
     if (shouldTerminate) {
         SP_LOG("Terminating keyboard connection");
-        SIKeyboard_Terminate();
+        SIKeyboard_Disconnect();
         return 0;
     }
 
@@ -223,11 +223,11 @@ size_t SIKeyboard_Poll(char *pKeys, size_t max_keys) {
     return num;
 }
 
-s32 SIKeyboard_GetActiveChannel(void) {
+s32 SIKeyboard_GetCurrentConnection(void) {
     return sKeyboardChannel;
 }
 
-void SIKeyboard_Terminate(void) {
+void SIKeyboard_Disconnect(void) {
     SP_SCOPED_NO_INTERRUPTS();
 
     SIDisablePolling(SI_CHAN_BIT(sKeyboardChannel));
@@ -282,7 +282,7 @@ size_t SIKeyboard_ConsumeBuffer(char *buf, size_t max_take) {
     return taken;
 }
 
-void SIKeyboard_Init(u32 chan) {
+void SIKeyboard_Connect(u32 chan) {
     SIRefreshSamplingRate();
 
     u32 response[2];
@@ -329,7 +329,7 @@ void SIKeyboard_InitSimple(void) {
         return;
     }
 
-    SIKeyboard_Init(kbd);
+    SIKeyboard_Connect(kbd);
     SP_LOG("SIKeyboard: Initialized");
 
     const bool registered = SIKeyboard_EnableBackgroundService();

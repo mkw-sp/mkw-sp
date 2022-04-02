@@ -6,6 +6,12 @@
 #include "SIKeyboard.h"
 #include "TypingBuffer.h"
 
+typedef enum {
+    kInputDeviceNone,
+    kInputDeviceIOS,
+    kInputDeviceSI,
+} InputDevice;
+
 // Other values are characters
 typedef enum SimpleEvent {
     kSimpleEvent_Enter = 0xff,
@@ -78,25 +84,30 @@ typedef struct ConsoleInput {
     IOSKeyboard mKeyboard;
     SP_LineCallback mCallback;
     bool mIsConsoleOpen : 1;
-    bool mIsSI : 1;
+    InputDevice mInputDevice : 2;
 } ConsoleInput;
 
 static bool ConsoleInput_Open(ConsoleInput *input) {
-    const IOSKeyboard keyboard = IOSKeyboard_Open();
-    input->mIsSI = false;
-    if (keyboard < 0) {
-        s32 si_keyboard = SIKeyboard_GetActiveChannel();
-        if (si_keyboard < 0) {
-            return false;
-        }
-        input->mIsSI = true;
-    }
+    input->mInputDevice = kInputDeviceNone;
 
-    input->mKeyboard = keyboard;
     TypingBuffer_Init(&input->mTypingBuffer);
     input->mCallback = NULL;
     input->mIsConsoleOpen = false;
-    return true;
+
+    const IOSKeyboard ios_keyboard = IOSKeyboard_Open();
+    if (ios_keyboard >= 0) {
+        input->mInputDevice = kInputDeviceIOS;
+        input->mKeyboard = ios_keyboard;
+        return true;
+    }
+
+    const s32 si_keyboard = SIKeyboard_GetCurrentConnection();
+    if (si_keyboard >= 0) {
+        input->mInputDevice = kInputDeviceSI;
+        return true;
+    }
+
+    return false;
 }
 static void ConsoleInput_Close(ConsoleInput *input) {
     IOSKeyboard_Close(input->mKeyboard);
@@ -109,14 +120,21 @@ static void ConsoleInput_EndInteraction(ConsoleInput *input) {
     TypingBuffer_Init(&input->mTypingBuffer);
 }
 static void ConsoleInput_Process(ConsoleInput *input) {
-    SimpleEvents events;
+    SimpleEvents events = (SimpleEvents){
+        .num_events = 0,
+    };
 
-    if (input->mIsSI) {
+    switch (input->mInputDevice) {
+    case kInputDeviceNone:
+        return;
+    case kInputDeviceIOS:
+        ReadSimpleEvents(input->mKeyboard, &events);
+        break;
+    case kInputDeviceSI:
         // SIKeyboard is polled via background handler
         events.num_events =
                 SIKeyboard_ConsumeBuffer(events.events, sizeof(events.events));
-    } else {
-        ReadSimpleEvents(input->mKeyboard, &events);
+        break;
     }
 
     for (size_t i = 0; i < events.num_events; ++i) {
