@@ -146,7 +146,7 @@ static size_t SIKeyboard_PollInternal(char *pKeys, bool *shouldTerminate, s32 *s
             if (shouldTerminate != NULL)
                 *shouldTerminate = true;
             SP_LOG("Checksum failed");
-            return false;
+            return 0;
         }
     }
 
@@ -228,25 +228,31 @@ s32 SIKeyboard_GetActiveChannel(void) {
 }
 
 void SIKeyboard_Terminate(void) {
+    SP_SCOPED_NO_INTERRUPTS();
+
     SIDisablePolling(SI_CHAN_BIT(sKeyboardChannel));
     sKeyboardChannel = -1;
+    sIsInit = false;
 }
 
 void SIKeyboard_PollingHandler(void) {
-    for (int i = 0; i < 1; ++i) {
-        sIsInit = true;
+    SP_SCOPED_NO_INTERRUPTS();
+    sIsInit = sKeyboardChannel > 0;
 
-        // SP_LOG("POLLING HANDLER");
-        char c[3];
-        if (SIKeyboard_Poll(c, sizeof(c)) < 1) {
-            continue;
-        }
-
-        SP_SCOPED_NO_INTERRUPTS();
-        SIKeyboard_VerboseLog("APPEND %c (len=%u)", c, sTypingBuffer.len);
-        TypingBuffer_Append(&sTypingBuffer, c[i]);
-        // SP_LOG("BUF: %s", &sTypingBuffer.buf);
+    char keybuf[3];
+    const size_t num_keys = SIKeyboard_Poll(keybuf, sizeof(keybuf));
+    if (num_keys < 1) {
+        return;
     }
+
+    SIKeyboard_VerboseLog("APPEND %c%c%c (new character size=%u, current buf size=%u)",
+            keybuf[0], keybuf[1], keybuf[2], (u32)num_keys, (u32)sTypingBuffer.len);
+
+    for (size_t i = 0; i < num_keys; ++i) {
+        TypingBuffer_Append(&sTypingBuffer, keybuf[i]);
+    }
+
+    // SP_LOG("BUF: %s", &sTypingBuffer.buf);
 }
 
 size_t SIKeyboard_ConsumeBuffer(char *buf, size_t max_take) {
@@ -297,11 +303,16 @@ void SIKeyboard_Init(u32 chan) {
 }
 
 s32 SIKeyboard_Scan(void) {
-    for (int chan = 0; chan < 4; ++chan) {
+    for (size_t chan = 0; chan < 4; ++chan) {
         u32 type = SIGetType(chan);
 
-        SP_LOG("TYPE: %x", type);
-        // TODO: Actual driver supports wireless variant, handles extra info
+        SP_LOG("[%u] SI Type: %x", (u32)chan, type);
+        if ((type & 0x08300000) == 0x08300000) {
+            SP_LOG("Unsupported SIKeyboard variant");
+            assert(!"Unsupported GCKeyboard variant (wireless?). Are you using actual "
+                    "hardware?");
+            return -1;
+        }
         if ((type & 0x08200000) == 0x08200000) {
             return chan;
         }
@@ -327,7 +338,10 @@ void SIKeyboard_InitSimple(void) {
 
 bool SIKeyboard_EnableBackgroundService(void) {
     SP_LOG("Enabling background polling/interrupts");
+
     VIInit();
+
+    // TODO: This might reduce PAD controller latency?
     SISetSamplingRate(1);
     return SIRegisterPollingHandler(SIKeyboard_PollingHandler);
 }
