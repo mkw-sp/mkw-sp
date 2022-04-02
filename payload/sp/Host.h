@@ -2,38 +2,73 @@
 
 #include <Common.h>
 
+// clang-format off
 typedef enum {
     //! This is either a bug in the platform detection code,
     //! or a novel platform (unlikely).
     //!
     HOST_UNKNOWN,
 
-    //! A physical Wii console.
-    //!
-    HOST_REVOLUTION,
+    __HOST_CONSOLE_BEGIN,
 
-    //! A physical WiiU console running in vWii mode.
-    //!
-    HOST_CAFE,
+        //! A physical Wii console. (RVL-101)
+        //!
+        HOST_REVOLUTION,
 
-    //! Old Dolphin (< 5.0-11186 [Nov 10, 2019 df32e3f])
-    //!
-    HOST_DOLPHIN_UNKNOWN,
+        //! A physical Wii console. (RVL-201)
+        //!
+        HOST_WII_MINI,
 
-    //! Modern Dolphin (>= 5.0-11186 [Nov 10, 2019 df32e3f])
-    //! - The specific version is available with `Host_GetDolphinTag()`
-    //!
-    HOST_DOLPHIN,
+        //! A physical WiiU console running in vWii mode.
+        //!
+        HOST_CAFE,
 
-    //! Windows
-    HOST_WINDOWS,
+    __HOST_CONSOLE_END,
 
-    //! MacOS/iOS/iPadOS/tvOS
-    HOST_APPLE,
+    __HOST_DOLPHIN_BEGIN,
 
-    //! Linux
-    HOST_LINUX,
+        //! Ancient Dolphin (< Dec 16, 2009)
+        //!
+        HOST_DOLPHIN_PREHISTORIC,
+
+        //! Old Dolphin (< 5.0-11186 [Nov 10, 2019 df32e3f])
+        //!
+        HOST_DOLPHIN_UNKNOWN,
+
+        //! Modern Dolphin (>= 5.0-11186 [Nov 10, 2019 df32e3f])
+        //! - The specific version is available with `Host_GetDolphinTag()`
+        //!
+        HOST_DOLPHIN,
+
+    __HOST_DOLPHIN_END,
+
+    __HOST_PC_BEGIN,
+
+        //! Windows
+        HOST_WINDOWS,
+
+        //! MacOS/iOS/iPadOS/tvOS
+        HOST_APPLE,
+
+        //! Linux
+        HOST_LINUX,
+
+    __HOST_PC_END,
 } HostPlatform;
+// clang-format on
+
+static inline bool HostPlatform_IsKnown(HostPlatform platform) {
+    return platform != HOST_UNKNOWN;
+}
+static inline bool HostPlatform_IsConsole(HostPlatform platform) {
+    return platform > __HOST_CONSOLE_BEGIN && platform < __HOST_CONSOLE_END;
+}
+static inline bool HostPlatform_IsDolphin(HostPlatform platform) {
+    return platform > __HOST_DOLPHIN_BEGIN && platform < __HOST_DOLPHIN_END;
+}
+static inline bool HostPlatform_IsPC(HostPlatform platform) {
+    return platform > __HOST_PC_BEGIN && platform < __HOST_PC_END;
+}
 
 void Host_Init(void);
 
@@ -54,3 +89,18 @@ typedef void PrintfFunction(const char *, ...);
 //     Built Mar  2 2022 at 23:22:40, GCC 10.2.0
 //     --------------------------------
 void Host_PrintMkwSpInfo(PrintfFunction *func);
+
+#ifndef PLATFORM_EMULATOR
+typedef struct {
+    u32 _924;
+    u32 ECID_H;
+    u32 ECID_M;
+    u32 ECID_L;
+} RawCPU_ID;
+
+extern const RawCPU_ID sCpuId_PrehistoricDolphin;
+extern const RawCPU_ID sCpuId_Dolphin;
+
+RawCPU_ID Host_GetCPUID(void);
+void Host_SetCPUID(RawCPU_ID id);
+#endif

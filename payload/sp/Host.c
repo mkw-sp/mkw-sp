@@ -13,6 +13,30 @@ static HostPlatform sPlatform = HOST_UNKNOWN;
 static char sDolphinTag[64] = "Not dolphin";
 
 #ifndef PLATFORM_EMULATOR
+const RawCPU_ID sCpuId_PrehistoricDolphin = { 0, 0, 0, 0 };
+const RawCPU_ID sCpuId_Dolphin = { 0xd96e200, 0x1840c00d, 0x82bb08e8, 0 };
+
+RawCPU_ID Host_GetCPUID(void) {
+    u32 _39c = 0, _39d = 0, _39e = 0, _39f = 0;
+    __asm__ volatile("mfspr %0, 0x39c" : "=r"(_39c));
+    __asm__ volatile("mfspr %0, 0x39d" : "=r"(_39d));
+    __asm__ volatile("mfspr %0, 0x39e" : "=r"(_39e));
+    __asm__ volatile("mfspr %0, 0x39f" : "=r"(_39f));
+    return (RawCPU_ID){
+        ._924 = _39c,
+        .ECID_H = _39d,
+        .ECID_M = _39e,
+        .ECID_L = _39f,
+    };
+}
+void Host_SetCPUID(RawCPU_ID id) {
+    u32 _39c = id._924, _39d = id.ECID_H, _39e = id.ECID_M, _39f = id.ECID_L;
+    __asm__ volatile("mtspr 0x39c, %0" : "=r"(_39c));
+    __asm__ volatile("mtspr 0x39d, %0" : "=r"(_39d));
+    __asm__ volatile("mtspr 0x39e, %0" : "=r"(_39e));
+    __asm__ volatile("mtspr 0x39e, %0" : "=r"(_39f));
+}
+
 static void DetectPlatform(void) {
     {
         IOSDolphin iosDolphin = IOSDolphin_Open();
@@ -31,18 +55,30 @@ static void DetectPlatform(void) {
             return;
         }
 
-        s32 iosSys = IOS_Open("/sys", 1);
-        if (iosSys == -106) {
-            // Old dolphin version
+        RawCPU_ID cpuid = Host_GetCPUID();
+
+        if (!memcmp(&cpuid, &sCpuId_Dolphin, sizeof(cpuid))) {
             sPlatform = HOST_DOLPHIN_UNKNOWN;
             return;
         }
-        if (iosSys >= 0) {
-            IOS_Close(iosSys);
+        if (!memcmp(&cpuid, &sCpuId_PrehistoricDolphin, sizeof(cpuid))) {
+            sPlatform = HOST_DOLPHIN_PREHISTORIC;
+            return;
         }
     }
 
     {
+        s32 macaddr =
+                IOS_Open("/title/00000001/00000002/data/macaddr.bin", IPC_OPEN_READ);
+        if (macaddr >= 0) {
+            IOS_Close(macaddr);
+            sPlatform = HOST_WII_MINI;
+            return;
+        }
+    }
+
+    {
+        // TODO: Ensure AHB access
         const u32 acrReg = *(volatile u32 *)0xCD8005A0;
 
         switch (acrReg >> 16) {
@@ -127,8 +163,14 @@ void Host_PrintMkwSpInfo(PrintfFunction *func) {
     case HOST_REVOLUTION:
         snprintf(system, sizeof(system), "Wii");
         break;
+    case HOST_WII_MINI:
+        snprintf(system, sizeof(system), "Wii Mini");
+        break;
     case HOST_CAFE:
         snprintf(system, sizeof(system), "WiiU");
+        break;
+    case HOST_DOLPHIN_PREHISTORIC:
+        snprintf(system, sizeof(system), "Ancient Dolphin (Unsupported)");
         break;
     case HOST_DOLPHIN_UNKNOWN:
         snprintf(system, sizeof(system), "Dolphin (Unsupported)");
