@@ -151,11 +151,11 @@ static void ConsoleInput_Process(ConsoleInput *input) {
             break;
         default:
             TypingBuffer_Append(&input->mTypingBuffer, (char)ev);
+
+            SP_LOG("BUFFER %s", &input->mTypingBuffer.buf);
             break;
         }
     }
-
-    SP_LOG("BUFFER %s", &input->mTypingBuffer.buf);
 }
 
 static bool sConsoleInput_Ready;

@@ -102,9 +102,12 @@ typedef double f64;
 #define __FILE_NAME__ __FILE__
 #endif
 
-#define SP_LOG(m, ...)   \
-    RVL_OS_NEEDS_IMPORT; \
-    OSReport("[" __FILE_NAME__ ":" SP_TOSTRING2(__LINE__) "] " m "\n", ##__VA_ARGS__)
+#define SP_LOG(m, ...)                                                     \
+    do {                                                                   \
+        RVL_OS_NEEDS_IMPORT;                                               \
+        OSReport("[" __FILE_NAME__ ":" SP_TOSTRING2(__LINE__) "] " m "\n", \
+                ##__VA_ARGS__);                                            \
+    } while (0)
 
 static size_t sp_wcslen(const wchar_t *w) {
     size_t result = 0;

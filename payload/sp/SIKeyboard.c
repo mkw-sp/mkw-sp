@@ -20,12 +20,14 @@
 
 static s32 sKeyboardChannel = -1;
 
-static u32 sLastKey = -1;
+static char sLastKeys[3] = { 0, 0, 0 };
 static u32 sLastKeyPress = 0;
 static bool sShiftState = false;
 
 static TypingBuffer sTypingBuffer;
 static bool sIsInit = false;
+
+#define SIKeyboard_VerboseLog(...)
 
 static bool SIKeyboard_TranslateKey(char *pKey) {
     assert(pKey != NULL);
@@ -35,6 +37,7 @@ static bool SIKeyboard_TranslateKey(char *pKey) {
     if (key >= 0x10 && key <= 0x29) {
         c = key - 0x10 + 'a';
     } else if (key == 0x54) {
+        SIKeyboard_VerboseLog("APPLY SHIFT");
         sShiftState = true;
         return false;
     } else if (key == 0x3e) {
@@ -45,18 +48,27 @@ static bool SIKeyboard_TranslateKey(char *pKey) {
         c = 0xff;
     } else if (key == 0x50) {
         c = 0xfe;
+    } else if (key == 0) {
+        // Sustain shift press
+        return false;
     } else {
+        if (sShiftState) {
+            SIKeyboard_VerboseLog("DROP SHIFT %x", (u32)key);
+        }
         sShiftState = false;
         return false;
     }
 
     *pKey = c;
+    if (sShiftState) {
+        SIKeyboard_VerboseLog("DROP SHIFT %c", c);
+    }
     sShiftState = false;
     return true;
 }
-
+static u32 sLast[2];
 // shouldTerminate: If called from a polling handler
-static u32 SIKeyboard_PollInternal(bool *shouldTerminate, s32 *seq) {
+static size_t SIKeyboard_PollInternal(char *pKeys, bool *shouldTerminate, s32 *seq) {
     if (shouldTerminate != NULL)
         *shouldTerminate = false;
     if (seq != NULL)
@@ -83,7 +95,12 @@ static u32 SIKeyboard_PollInternal(bool *shouldTerminate, s32 *seq) {
     if (!SIGetResponse(sKeyboardChannel, response)) {
         return 0;
     }
-    // SP_LOG("RESPONSE %x %x", response[0], response[1]);
+    if (sLast[0] != response[0] || sLast[1] != response[1]) {
+        SIKeyboard_VerboseLog("RESPONSE %x %x", response[0], response[1]);
+    }
+
+    sLast[0] = response[0];
+    sLast[1] = response[1];
 
     // errstat
     if (response[0] & 0x80000000) {
@@ -128,54 +145,82 @@ static u32 SIKeyboard_PollInternal(bool *shouldTerminate, s32 *seq) {
         if ((response[1] & 0xff) != checksum) {
             if (shouldTerminate != NULL)
                 *shouldTerminate = true;
+            SP_LOG("Checksum failed");
             return false;
         }
     }
 
-    return response[1] >> 24;
+    pKeys[0] = (response[1] >> 24) & 0xff;
+    pKeys[1] = (response[1] >> 16) & 0xff;
+    pKeys[2] = (response[1] >> 8) & 0xff;
+    return 3;
 }
 
 size_t SIKeyboard_Poll(char *pKeys, size_t max_keys) {
     SP_SCOPED_NO_INTERRUPTS();
 
     bool shouldTerminate = false;
-    const u32 keys = SIKeyboard_PollInternal(&shouldTerminate, NULL);
+    char keys[3] = { 0, 0, 0 };
+    SIKeyboard_PollInternal(keys, &shouldTerminate, NULL);
+
     if (shouldTerminate) {
         SP_LOG("Terminating keyboard connection");
         SIKeyboard_Terminate();
         return 0;
     }
 
-    if (keys == 0) {
-        return 0;
-    }
-
     // Unfortunate workaround
     // TODO: First press longer wait than subsequent when holding down key
     const u32 tick = OSGetTick();
-    if (keys == sLastKey && OSTicksToMilliseconds(tick - sLastKeyPress) < 500) {
-        // SP_LOG("Duplicate key");
+    if (!memcmp(&keys, sLastKeys, sizeof(keys)) &&
+            OSTicksToMilliseconds(tick - sLastKeyPress) < 500) {
         return 0;
     }
-    sLastKey = keys;
+
+    if (keys[0] == 0 && keys[1] == 0 && keys[2] == 0) {
+        if (sShiftState) {
+            SIKeyboard_VerboseLog("ALL ZERO: Drop shift");
+        }
+        sShiftState = false;
+        return 0;
+    }
+
+    size_t num = 0;
+    for (size_t i = 0; i < 3; ++i) {
+        char c = keys[i];
+
+        if (c != 0x54 /* SHIFT */) {
+            bool already_pressed = false;
+            for (size_t j = 0; j < 3; ++j) {
+                if (sLastKeys[j] == c) {
+                    already_pressed = true;
+                }
+            }
+            if (already_pressed) {
+                continue;
+            }
+        }
+
+        if (!SIKeyboard_TranslateKey(&c)) {
+            SIKeyboard_VerboseLog("Failed to translate");
+            continue;
+        }
+
+        if (max_keys >= i) {
+            *pKeys = c;
+            SIKeyboard_VerboseLog("ADDED");
+            ++num;
+            continue;
+        }
+        SP_LOG("Invalid max keys");
+        break;
+    }
+
+    for (int i = 0; i < 3; ++i) {
+        sLastKeys[i] = keys[i];
+    }
     sLastKeyPress = tick;
-
-    // SP_LOG("Keys=%x", keys);
-    u32 key = (keys & 0xff);
-
-    char c = key & 0xff;
-    if (!SIKeyboard_TranslateKey(&c)) {
-        SP_LOG("Failed to translate");
-        return 0;
-    }
-
-    if (max_keys >= 1) {
-        *pKeys = c;
-        SP_LOG("ADDED");
-        return 1;
-    }
-    SP_LOG("Invalid max keys");
-    return 0;
+    return num;
 }
 
 s32 SIKeyboard_GetActiveChannel(void) {
@@ -188,19 +233,20 @@ void SIKeyboard_Terminate(void) {
 }
 
 void SIKeyboard_PollingHandler(void) {
-    SP_SCOPED_NO_INTERRUPTS();
+    for (int i = 0; i < 1; ++i) {
+        sIsInit = true;
 
-    sIsInit = true;
+        // SP_LOG("POLLING HANDLER");
+        char c[3];
+        if (SIKeyboard_Poll(c, sizeof(c)) < 1) {
+            continue;
+        }
 
-    // SP_LOG("POLLING HANDLER");
-    char c;
-    if (SIKeyboard_Poll(&c, 1) < 1) {
-        return;
+        SP_SCOPED_NO_INTERRUPTS();
+        SIKeyboard_VerboseLog("APPEND %c (len=%u)", c, sTypingBuffer.len);
+        TypingBuffer_Append(&sTypingBuffer, c[i]);
+        // SP_LOG("BUF: %s", &sTypingBuffer.buf);
     }
-
-    SP_LOG("APPEND %c (len=%u)", c, sTypingBuffer.len);
-    TypingBuffer_Append(&sTypingBuffer, c);
-    // SP_LOG("BUF: %s", &sTypingBuffer.buf);
 }
 
 size_t SIKeyboard_ConsumeBuffer(char *buf, size_t max_take) {
