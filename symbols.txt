@@ -104,6 +104,7 @@
 0x8019e020 nandGenerateAbsPath
 0x8019e40c NANDGetHomeDir
 0x8019fc68 OSInit
+0x801A0870 OSSetAlarm
 0x801a10a4 OSGetMEM1ArenaHi
 0x801a10bc OSGetMEM1ArenaLo
 0x801a10c4 OSGetMEM2ArenaLo
@@ -115,6 +116,9 @@
 0x801a2030 OSGetStackPointer
 0x801a25d0 OSReport
 0x801a4ec4 OSFatal
+0x801a65ac OSDisableInterrupts
+0x801a65c0 OSEnableInterrupts
+0x801a65d4 OSRestoreInterrupts
 0x801a6d3c Relocate
 0x801A72DC OSLink
 0x801a72fc OSInitMessageQueue
@@ -138,6 +142,30 @@
 0x801AAD74 OSGetTick
 0x801aafa8 OSTicksToCalendarTime
 0x801b1d0c SCGetLanguage
+0x801b254c SIBusy
+0x801b2568 SIIsChanBusy
+0x801b25a0 CompleteTransfer
+0x801b2894 SIInterruptHandler
+0x801b2c80 SIEnablePollingInterrupt
+0x801b2cf8 SIUnregisterPollingHandler
+0x801b2de0 SIInit
+0x801b2ea0 __SITransfer
+0x801b3050 SIGetStatus
+0x801b30c8 SISetCommand
+0x801b30dc SITransferCommands
+0x801b30ec SISetXY
+0x801b3148 SIEnablePolling
+0x801b31d0 SIDisablePolling
+0x801b323c SIGetResponse
+0x801b3360 AlarmHandler
+0x801b33ec SITransfer
+0x801b3558 GetTypeCallback
+0x801b3808 SIGetType
+0x801b39bc SIGetTypeAsync
+0x801b3acc SISetSamplingRate
+0x801b3ba4 SIRefreshSamplingRate
+
+0x801B94A4 VIInit
 0x801b99ec VIWaitForRetrace
 0x801BAB2C VISetBlack
 0x801d1ca0 NETCalcCRC32
@@ -206,6 +234,8 @@
 0x80243d6c EGG_Video_configure
 
 0x802A4080 sRKSystem
+
+0x803505C0 RDSTHandler
 
 0x80384190 s_dvdList
 0x80386000 s_systemManager

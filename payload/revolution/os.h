@@ -47,6 +47,8 @@ typedef s64 OSTime;
 #define OS_TIMER_CLOCK (OS_BUS_CLOCK / 4)
 
 #define OSMillisecondsToTicks(msec) ((msec) * (OS_TIMER_CLOCK / 1000))
+#define OSMicrosecondsToTicks(usec) ((usec) * (OS_TIMER_CLOCK / 1000000))
+#define OSNanosecondsToTicks(nsec) ((nsec) / (1000000000 / OS_TIMER_CLOCK))
 #define OSTicksToSeconds(ticks) ((ticks) / OS_TIMER_CLOCK)
 #define OSTicksToNanoseconds(ticks) ((ticks) * (1000000000 / OS_TIMER_CLOCK))
 #define OSTicksToMilliseconds(ticks) ((ticks) / (OS_TIMER_CLOCK / 1000))
@@ -80,3 +82,6 @@ void OSFatal(GXColor fg, GXColor bg, const char *msg);
 #include "revolution/os/OSModule.h"
 #include "revolution/os/OSMutex.h"
 #include "revolution/os/OSThread.h"
+
+extern u32 OSDisableInterrupts(void);
+extern void OSRestoreInterrupts(u32);

@@ -25,5 +25,20 @@ inline void TypingBuffer_Append(TypingBuffer *buf, char c) {
 inline void TypingBuffer_Backspace(TypingBuffer *buf) {
     assert(buf->len < sizeof(buf->buf));
     if (buf->len > 0)
-        buf->buf[buf->len--] = '\0';
+        buf->buf[--buf->len] = '\0';
+}
+static inline void TypingBuffer_DeleteFromFront(TypingBuffer *buf, size_t n) {
+    assert(buf->len < sizeof(buf->buf));
+    assert(n < sizeof(buf->buf));
+    assert(n <= buf->len);
+
+    const size_t remaining = buf->len - n;
+    if (remaining > 0) {
+        memmove(buf->buf, buf->buf + n, remaining);
+    }
+    buf->len = remaining;
+
+    if (buf->len < sizeof(buf->buf)) {
+        buf->buf[buf->len] = '\0';
+    }
 }

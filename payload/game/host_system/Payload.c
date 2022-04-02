@@ -16,6 +16,8 @@
 #include <Payload.h>
 #include <Rel.h>
 
+#include <sp/SIKeyboard.h>
+
 void Payload_init(void) {
     Memory_ProtectRangeModule(OS_PROTECT_CHANNEL_0, Payload_getTextSectionStart(), Payload_getRodataSectionEnd(), OS_PROTECT_PERMISSION_READ);
 
@@ -55,6 +57,8 @@ void Payload_init(void) {
     Host_PrintMkwSpInfo(OSReport);
 
     DVDExInit();
+
+    SIKeyboard_InitSimple();
 }
 
 __attribute__((no_stack_protector)) __attribute__((section("first"))) void Payload_run(void) {
