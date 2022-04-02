@@ -1,7 +1,9 @@
 #include <Common.h>
+#include <revolution.h>
 
 #include "IOSKeyboard.h"
 #include "Keyboard.h"
+#include "SIKeyboard.h"
 #include "TypingBuffer.h"
 
 // Other values are characters
@@ -76,12 +78,19 @@ typedef struct ConsoleInput {
     IOSKeyboard mKeyboard;
     SP_LineCallback mCallback;
     bool mIsConsoleOpen : 1;
+    bool mIsSI : 1;
 } ConsoleInput;
 
 static bool ConsoleInput_Open(ConsoleInput *input) {
     const IOSKeyboard keyboard = IOSKeyboard_Open();
-    if (keyboard < 0)
-        return false;
+    input->mIsSI = false;
+    if (keyboard < 0) {
+        s32 si_keyboard = SIKeyboard_GetActiveChannel();
+        if (si_keyboard < 0) {
+            return false;
+        }
+        input->mIsSI = true;
+    }
 
     input->mKeyboard = keyboard;
     TypingBuffer_Init(&input->mTypingBuffer);
@@ -101,7 +110,14 @@ static void ConsoleInput_EndInteraction(ConsoleInput *input) {
 }
 static void ConsoleInput_Process(ConsoleInput *input) {
     SimpleEvents events;
-    ReadSimpleEvents(input->mKeyboard, &events);
+
+    if (input->mIsSI) {
+        // SIKeyboard is polled via background handler
+        events.num_events =
+                SIKeyboard_ConsumeBuffer(events.events, sizeof(events.events));
+    } else {
+        ReadSimpleEvents(input->mKeyboard, &events);
+    }
 
     for (size_t i = 0; i < events.num_events; ++i) {
         SimpleEvent ev = events.events[i];
@@ -138,6 +154,8 @@ static void ConsoleInput_Process(ConsoleInput *input) {
             break;
         }
     }
+
+    SP_LOG("BUFFER %s", &input->mTypingBuffer.buf);
 }
 
 static bool sConsoleInput_Ready;
