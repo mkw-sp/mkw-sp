@@ -282,5 +282,6 @@ void SIKeyboard_InitSimple(void) {
 bool SIKeyboard_EnableBackgroundService(void) {
     SP_LOG("Enabling background polling/interrupts");
     VIInit();
+    SISetSamplingRate(1);
     return SIRegisterPollingHandler(SIKeyboard_PollingHandler);
 }

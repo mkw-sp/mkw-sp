@@ -20,6 +20,8 @@ bool SIGetResponse(s32, void *);
 u32 SIGetType(s32);
 u32 SIGetTypeAsync(s32, SITypeAndStatusCallback);
 
+void SISetSamplingRate(u32 rate);
+
 extern void *RDSTHandler[4];
 
 static inline void **FindRDSTHandler(void *handler) {
