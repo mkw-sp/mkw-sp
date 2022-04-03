@@ -89,6 +89,7 @@ typedef struct ConsoleInput {
 
 static bool ConsoleInput_Open(ConsoleInput *input) {
     input->mInputDevice = kInputDeviceNone;
+    input->mKeyboard = -1;  // 0 is a valid handle
 
     TypingBuffer_Init(&input->mTypingBuffer);
     input->mCallback = NULL;
