@@ -53,6 +53,7 @@
 0x800912c0 snd_DvdSoundArchive_OpenExtStream
 0x800aef80 ut_List_Append
 0x800b00d0 ut_DvdFileStream_ct
+0x800B28D0 ResFont_SetResource
 
 0x800c78d0 RFLiCalculateCRC
 
