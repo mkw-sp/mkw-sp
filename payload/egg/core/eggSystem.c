@@ -10,6 +10,8 @@
 #include <sp/Host.h>
 #include <sp/IOSDolphin.h>
 
+#include <game/system/Console.h>
+
 extern void EGG_ConfigurationData_onBeginFrame(void *system);
 
 static const char *sOnOff[2] = { "OFF", "ON" };
@@ -138,6 +140,11 @@ void my_onBeginFrame(void *UNUSED(system)) {
     }
 
     SP_ProcessConsoleInput();
+    Console_calc();
 }
 
 PATCH_B(EGG_ConfigurationData_onBeginFrame, my_onBeginFrame);
+
+void EGG_ProcessMeter_draw(void *);
+
+PATCH_B(EGG_ProcessMeter_draw + 0xa4, Console_draw);

@@ -5,6 +5,10 @@
 #include <sp/Memory.h>
 #include <string.h>
 
+
+#include <game/system/Console.h>
+#include <sp/Host.h>
+
 typedef void (*RelEntryFunction)(void);
 
 static void *loadRel(void *arg) {
@@ -68,7 +72,7 @@ static void *loadRel(void *arg) {
     void *bss = (void *)0x809BD6E0;
 
     OSLink(dst, bss);
-    return dst->prolog;
+    return (void *)dst->prolog;
 #endif
 }
 
@@ -85,7 +89,10 @@ void my_BootStrapScene_calc(BootStrapScene *this) {
 
     Patcher_patch(PATCHER_BINARY_REL);
     Memory_ProtectRangeModule(OS_PROTECT_CHANNEL_3, Rel_getTextSectionStart(), Rel_getRodataSectionEnd(), OS_PROTECT_PERMISSION_READ);
-
+    
+    if (HostPlatform_IsDolphin(Host_GetPlatform())) {
+        Console_init();
+    }
     entry();
 }
 PATCH_B(BootStrapScene_calc, my_BootStrapScene_calc);

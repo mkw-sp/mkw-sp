@@ -26,12 +26,17 @@ typedef struct {
     int int18;
 } GlyphRenderer;
 void GlyphRenderer_setMaterial(GlyphRenderer *self);
+
 typedef struct {
-    GXTexObj *tex_obj;
     u16 left;
     u16 right;
     u16 top;
     u16 bottom;
+} RectU16;
+
+typedef struct {
+    GXTexObj *tex_obj;
+    RectU16 uv;
 } RKFontGlyphQuad;
 
 static inline float decodeFixed15(u16 fixed) {

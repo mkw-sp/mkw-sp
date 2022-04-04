@@ -20,3 +20,6 @@ typedef struct SP_Line {
 
 // The scratch buffer before ENTER is pressed.
 SP_Line SP_GetCurrentLine(void);
+
+// Is the console open?
+bool SP_IsTyping(void);

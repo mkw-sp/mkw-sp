@@ -244,3 +244,51 @@ typedef enum {
     GX_TRUE,
 } GXBool;
 static_assert(sizeof(GXBool) == 4);
+
+typedef enum {
+    GX_POINTS = 0xb8,
+    GX_LINES = 0xa8,
+    GX_LINESTRIP = 0xb0,
+    GX_TRIANGLES = 0x90,
+    GX_TRIANGLESTRIP = 0x98,
+    GX_TRIANGLEFAN = 0xa0,
+    GX_QUADS = 0x80,
+} GXPrimitive;
+static_assert(sizeof(GXPrimitive) == 4);
+
+typedef enum {
+    GX_VTXFMT0,
+    GX_VTXFMT1,
+    GX_VTXFMT2,
+    GX_VTXFMT3,
+    GX_VTXFMT4,
+    GX_VTXFMT5,
+    GX_VTXFMT6,
+    GX_VTXFMT7,
+    GX_MAX_VTXFMT,
+} GXVtxFmt;
+static_assert(sizeof(GXVtxFmt) == 4);
+
+typedef enum {
+    GX_TEXMAP0,
+    GX_TEXMAP1,
+    GX_TEXMAP2,
+    GX_TEXMAP3,
+    GX_TEXMAP4,
+    GX_TEXMAP5,
+    GX_TEXMAP6,
+    GX_TEXMAP7,
+    GX_MAX_TEXMAP,
+    GX_TEXMAP_NULL = 0xff,
+    GX_TEX_DISABLE = 0x100,
+} GXTexMapID;
+static_assert(sizeof(GXTexMapID) == 4);
+
+typedef enum {
+    GX_AOP_AND,
+    GX_AOP_OR,
+    GX_AOP_XOR,
+    GX_AOP_XNOR,
+    GX_MAX_ALPHAOP,
+} GXAlphaOp;
+static_assert(sizeof(GXAlphaOp) == 4);

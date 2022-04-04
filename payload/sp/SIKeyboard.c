@@ -139,6 +139,18 @@ static char SIKeyboard_TranslateKey(char key) {
     if (key == 0x50) {
         return 0xfe;
     }
+    if (key == 0x2d) {
+        return shift ? '$' : '4';
+    }
+    if (key == 0x2e) {
+        return shift ? '%' : '5';
+    }
+    if (key == 0x2f) {
+        return shift ? '^' : '6';
+    }
+    if (key == 0x30) {
+        return shift ? '&' : '7';
+    }
 
     return 0;
 }

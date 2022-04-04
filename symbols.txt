@@ -66,7 +66,9 @@
 0x80162c88 DVDCancelAsync
 0x80162fec DVDCancel
 0x8016a05c ISFS_ReadDir
+0x8016F0F0 GXBegin
 0x8016F3B8 GXSetCullMode
+0x80170F2C GXLoadTexObj
 0x80171b58 GXSetTevDirect
 0x80171ce0 GXSetTevColorIn
 0x80171d20 GXSetTevAlphaIn
@@ -75,12 +77,16 @@
 0x80171e10 GXSetTevColor
 0x80171f80 GXSetTevKAlphaSel
 0x80171fd0 GXSetTevSwapMode
+0x80172088 GXSetAlphaCompare
 0x801720C0 GXSetZTexture
 0x8017214c GXSetTevOrder
 0x801722a8 GXSetNumTevStages
 0x801722CC GXSetFog
+0x801727CC GXSetColorUpdate
 0x80172824 GXSetZMode
 0x8017301C GXSetProjection
+0x8017310C GXLoadPosMtxImm
+0x80173214 GXSetCurrentMtx
 0x801733B4 GXSetViewport
 0x80173430 GXSetScissor
 0x801734E0 GXSetScissorBoxOffset
@@ -229,6 +235,7 @@
 0x80229b84 EGG_Heap_free
 0x80229dcc new
 0x80229e14 delete
+0x80239338 EGG_ProcessMeter_draw
 0x8023ad10 EGG_Scene_CT
 0x8023ad84 EGG_Scene_DT
 0x8023afe0 EGG_SceneManager_changeSiblingScene
@@ -386,10 +393,11 @@
 0x805c9888 Page_vf_30
 0x805cdd00 TextBox_setMessage
 0x805cf154 Font_805cf154
-0x805cf2bc Font_805cf2bc
+0x805cf2bc GlyphRenderer_setMaterial
 0x805cf7e4 Font_805cf7e4
 0x805d00b0 Font_805d00b0
 0x805d0f34 Font_ct
+0x805D0F80 Font_dt
 0x805d0ff0 Font_load
 0x805D1044 Font_calcQuad
 0x805d1214 Font_buildTexObjs

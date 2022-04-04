@@ -170,8 +170,6 @@ static void ConsoleInput_Process(ConsoleInput *input) {
             break;
         default:
             TypingBuffer_Append(&input->mTypingBuffer, (char)ev);
-
-            SP_LOG("BUFFER %s", &input->mTypingBuffer.buf);
             break;
         }
     }
@@ -216,4 +214,8 @@ SP_Line SP_GetCurrentLine(void) {
         .len = sConsoleInput.mTypingBuffer.len };
 
     return line;
+}
+bool SP_IsTyping(void) {
+    assert(sConsoleInput_Ready);
+    return sConsoleInput.mIsConsoleOpen;
 }

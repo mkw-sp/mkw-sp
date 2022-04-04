@@ -2,6 +2,8 @@
 
 #include "Font.h"
 
+extern Font *sDebugFont;
+
 typedef struct {
     Font *fonts[6];
 } FontManager;

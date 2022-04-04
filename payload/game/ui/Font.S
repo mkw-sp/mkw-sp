@@ -18,7 +18,7 @@ PATCH_REPLACE_START(Font_805cf154, 0x88)
     andi. r0, r0, 0x1
 PATCH_REPLACE_END(Font_805cf154, 0x88)
 
-PATCH_BL_START(Font_805cf2bc, 0xf8)
+PATCH_BL_START(GlyphRenderer_setMaterial, 0xf8)
     li r3, 0x2 // Original instruction (K)
 
     // Check that the region is not K
@@ -32,10 +32,10 @@ PATCH_BL_START(Font_805cf2bc, 0xf8)
     bl GXSetTevSwapMode
 
     lwz r9, 0x0 (r30) // Original instruction (non-K)
-    b Font_805cf2bc + 0xfc
-PATCH_BL_END(Font_805cf2bc, 0xf8)
+    b GlyphRenderer_setMaterial + 0xfc
+PATCH_BL_END(GlyphRenderer_setMaterial, 0xf8)
 
-PATCH_BL_START(Font_805cf2bc, 0x150)
+PATCH_BL_START(GlyphRenderer_setMaterial, 0x150)
     add r0, r0, r5 // Original instruction (K)
 
     // Check that the region is not K
@@ -73,8 +73,8 @@ PATCH_BL_START(Font_805cf2bc, 0x150)
     li r6, 0xff
     bl GXSetTevOrder
 
-    b Font_805cf2bc + 0x22c
-PATCH_BL_END(Font_805cf2bc, 0x150)
+    b GlyphRenderer_setMaterial + 0x22c
+PATCH_BL_END(GlyphRenderer_setMaterial, 0x150)
 
 PATCH_BL_START(Font_805cf7e4, 0x54)
     cmpwi r4, 0x1 // Original instruction (K)

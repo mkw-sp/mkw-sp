@@ -54,7 +54,7 @@ static void AddSettingsPage(Section *section, u32 prev) {
 }
 
 void my_Section_addPages(Section *section, u32 sectionId) {
-    OSReport("DEBUG: Constructing section %u (0x%x)\n", sectionId, sectionId);
+    OSReport("&7DEBUG: Constructing section %u (0x%x)\n", sectionId, sectionId);
     switch (sectionId) {
     case 6:
     case 7:
