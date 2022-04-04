@@ -32,6 +32,7 @@
 0x80023680 Exception_PrintCtx
 
 0x8004D900 ResFile_CheckRevision
+0x80052190 ResMat_Init
 0x80079cf0 GroupContainer_FindGroupByName
 0x8007A000 lyt_Layout_CT
 0x8007A040 lyt_Layout_DT
