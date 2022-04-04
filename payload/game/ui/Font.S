@@ -315,7 +315,7 @@ PATCH_REPLACE_START(Font_805d00b0, 0x110)
     andi. r0, r0, 0x1
 PATCH_REPLACE_END(Font_805d00b0, 0x110)
 
-PATCH_BL_START(Font_805d1214, 0x30)
+PATCH_BL_START(Font_buildTexObjs, 0x30)
     lhz r0, 0xa (r29) // Original instruction
 
     cmpwi r0, 0x0
@@ -324,5 +324,5 @@ PATCH_BL_START(Font_805d1214, 0x30)
     li r3, 0x2
     stw r3, 0x20 (r27)
 
-    b Font_805d1214 + 0x34
-PATCH_BL_END(Font_805d1214, 0x30)
+    b Font_buildTexObjs + 0x34
+PATCH_BL_END(Font_buildTexObjs, 0x30)
