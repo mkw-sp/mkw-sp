@@ -391,7 +391,8 @@
 0x805d00b0 Font_805d00b0
 0x805d0f34 Font_ct
 0x805d0ff0 Font_load
-0x805d1214 Font_805d1214
+0x805D1044 Font_calcQuad
+0x805d1214 Font_buildTexObjs
 0x805d14a4 FontManager_init
 0x805e1214 GhostManagerPage_process
 0x805e1b04 GhostManagerPage_setupGhostRace
