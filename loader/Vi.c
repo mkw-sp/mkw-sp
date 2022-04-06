@@ -94,6 +94,4 @@ void Vi_deinit(void) {
     *vtr = vtrSave;
     *vto = vtoSave;
     *vte = vteSave;
-    *tfbl = 0;
-    *bfbl = 0;
 }
