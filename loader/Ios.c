@@ -5,9 +5,9 @@
 #include <stdalign.h>
 #include <string.h>
 
-volatile u32 *ppcmsg = (u32 *)0xcd000000;
-volatile u32 *ppcctrl = (u32 *)0xcd000004;
-volatile u32 *armmsg = (u32 *)0xcd000008;
+static volatile u32 *ppcmsg = (u32 *)0xcd000000;
+static volatile u32 *ppcctrl = (u32 *)0xcd000004;
+static volatile u32 *armmsg = (u32 *)0xcd000008;
 
 enum {
     X1  = 1 << 0,
@@ -73,6 +73,12 @@ static void sync(void) {
     } while (reply != VIRTUAL_TO_PHYSICAL(&request));
 
     DCInvalidateRange(&request, sizeof(request));
+}
+
+void Ios_init(void) {
+    //while ((*ppcctrl & Y2) != Y2);
+    *ppcctrl = Y2;
+    *ppcctrl = Y1;
 }
 
 s32 Ios_open(const char *path, u32 mode) {

@@ -7,6 +7,8 @@ typedef struct {
     u32 size;
 } IoctlvPair;
 
+void Ios_init(void);
+
 s32 Ios_open(const char *path, u32 mode);
 
 s32 Ios_close(s32 fd);

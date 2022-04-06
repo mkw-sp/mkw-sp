@@ -1,8 +1,11 @@
 #include "Apploader.h"
 #include "Cache.h"
+#include "Console.h"
 #include "Delay.h"
 #include "Di.h"
+#include "Ios.h"
 #include "Stack.h"
+#include "Vi.h"
 
 #include <string.h>
 
@@ -18,16 +21,37 @@ extern const void payloadK;
 extern const u32 payloadKSize;
 
 void Loader_run(void) {
+    DCInvalidateRange((void *)0x80000000, 0x1800000);
+
+    Vi_init();
+
+    Console_init();
+    Console_printString("MKW-SP Loader\n");
+
+    Ios_init();
+
+    Console_printString("Initializing disc interface...");
     while (!Di_init()) {
         mdelay(100);
     }
+    Console_printString(" done.\n");
 
     GameEntryFunc gameEntry;
     while (!Apploader_loadAndRun(&gameEntry)) {
+        if (!Di_isInserted()) {
+            Console_printString("Please insert a Mario Kart Wii disc.\n");
+
+            while (!Di_isInserted()) {
+                mdelay(100);
+            }
+        }
+
         mdelay(100);
 
         if (Di_isInserted()) {
+            Console_printString("Resetting disc interface...");
             Di_reset();
+            Console_printString(" done.\n");
         }
     }
 
@@ -64,17 +88,22 @@ void Loader_run(void) {
         payloadSize = payloadKSize;
         break;
     default:
-        // TODO tell the user about it
-        while (true)
-            ;
+        Console_printString("Region detection failed!");
+        return;
     }
 
+    Console_printString("Copying payload...");
     memcpy(payloadDst, payloadSrc, payloadSize);
     DCFlushRange(payloadDst, payloadSize);
     ICInvalidateRange(payloadDst, payloadSize);
-
+    Console_printString(" done.\n");
+ 
+    Console_printString("Applying patches...");
     PayloadEntryFunc payloadEntry = payloadDst;
     payloadEntry();
+    Console_printString(" done.\n");
+
+    Vi_deinit();
 
     gameEntry();
 }

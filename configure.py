@@ -332,8 +332,10 @@ code_in_files = {
     'loader': [
         os.path.join('loader', 'Apploader.c'),
         os.path.join('loader', 'Cache.S'),
+        os.path.join('loader', 'Console.c'),
         os.path.join('loader', 'Delay.S'),
         os.path.join('loader', 'Di.c'),
+        os.path.join('loader', 'Font.c'),
         os.path.join('loader', 'Ios.c'),
         os.path.join('loader', 'Loader.c'),
         os.path.join('loader', 'Memcpy.c'),
@@ -341,6 +343,7 @@ code_in_files = {
         os.path.join('loader', 'Stack.c'),
         os.path.join('loader', 'Start.S'),
         os.path.join('loader', 'Strlen.c'),
+        os.path.join('loader', 'Vi.c'),
     ],
 }
 code_out_files = {target: [] for target in code_in_files}

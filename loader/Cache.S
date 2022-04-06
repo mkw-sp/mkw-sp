@@ -19,9 +19,6 @@ DCInvalidateRange:
     addi r3, r3, 0x20
     bdnz .LloopDCI
 
-    // Wait until everything has completed
-    sync
-
     blr
 .size DCInvalidateRange, . - DCInvalidateRange
 
@@ -49,6 +46,31 @@ DCFlushRange:
 
     blr
 .size DCFlushRange, . - DCFlushRange
+
+.global DCStoreRange
+DCStoreRange:
+    // Return early if the size is zero
+    cmpwi r4, 0
+    beqlr
+
+    // Setup the block count
+    clrlwi r5, r3, 27
+    add r4, r4, r5
+    addi r4, r4, 0x1f
+    srwi r4, r4, 5
+    mtctr r4
+
+    // Flush the blocks in a loop
+.LloopDCS:
+    dcbst 0, r3
+    addi r3, r3, 0x20
+    bdnz .LloopDCS
+
+    // Wait until everything has completed
+    sc 0x0
+
+    blr
+.size DCStoreRange, . - DCStoreRange
 
 .global ICInvalidateRange
 ICInvalidateRange:
