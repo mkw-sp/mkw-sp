@@ -1,9 +1,7 @@
 #pragma once
 
+#include <Common.h>
+
 void Vi_init(void);
 
-u16 Vi_getXfbWidth(void);
-
-u16 Vi_getXfbHeight(void);
-
-void *Vi_GetXfbStart(void);
+void Vi_writeGrayscaleToXfb(u16 x, u16 y, u8 intensity);

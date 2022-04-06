@@ -3,6 +3,7 @@
 #include "Delay.h"
 #include "Di.h"
 #include "Stack.h"
+#include "Vi.h"
 
 #include <string.h>
 
@@ -18,6 +19,8 @@ extern const void payloadK;
 extern const u32 payloadKSize;
 
 void Loader_run(void) {
+    Vi_init();
+
     while (!Di_init()) {
         mdelay(100);
     }
