@@ -21,6 +21,8 @@ extern const void payloadK;
 extern const u32 payloadKSize;
 
 void Loader_run(void) {
+    // On console, bad stuff seems to happen when writing to the XFB, presumably when some cache
+    // lines are written back to main memory. Prevent that by completely emptying the dcache.
     DCInvalidateRange((void *)0x80000000, 0x1800000);
 
     Vi_init();
