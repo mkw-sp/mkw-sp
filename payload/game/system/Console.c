@@ -341,14 +341,14 @@ void Console_init(void) {
     sInit = true;
 }
 void Console_draw(void) {
-    if (!sInit) {
+    if (!sInit || !SP_IsConsoleInputInit()) {
         return;
     }
     SP_SCOPED_MUTEX_LOCK(sConsoleMutex);
     Console_drawImpl();
 }
 void Console_calc(void) {
-    if (!sInit) {
+    if (!sInit || !SP_IsConsoleInputInit()) {
         return;
     }
     SP_SCOPED_MUTEX_LOCK(sConsoleMutex);
