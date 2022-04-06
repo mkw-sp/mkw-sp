@@ -265,7 +265,8 @@ static void AppendToHistory(const char *s) {
         memmove(sHistory, sHistory + 1, 128 * (LINES - 1));
         --sHistoryCursor;
     }
-    snprintf(sHistory[sHistoryCursor++], 128, "&r&f%s", s);
+    assert(sHistoryCursor < LINES);
+    snprintf(sHistory[sHistoryCursor++], 127, "&r&f%s", s);
 }
 
 static void Console_create() {
@@ -359,8 +360,17 @@ void Console_calc(void) {
     Console_stateDefault(sFramesSinceLastOpen++);
 }
 void Console_addLine(const char *s, size_t UNUSED(len)) {
-    if (!sInit) {
+    OSThread *thread = OSGetCurrentThread();
+    if (!sInit || thread == NULL) {
         SP_SCOPED_NO_INTERRUPTS();
+#if 0
+        if (thread == NULL) {
+            va_list l;
+            vprintf("Called with NULL current thread (hack to prevent optimization to "
+                    "puts, which dolphin doesn't detect: garbage int %i)\n",
+                    l);
+        }
+#endif
         AppendToHistory(s);
         return;
     }
