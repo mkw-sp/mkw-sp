@@ -31,7 +31,7 @@ typedef struct SimpleEvents {
     size_t num_events;
 } SimpleEvents;
 
-static void ReadSimpleEvents(IOSKeyboard keyboard, SimpleEvents *simpleEvents) {
+static void SimpleEvents_ReadIOS(IOSKeyboard keyboard, SimpleEvents *simpleEvents) {
     IOSKeyboard_Event events[MAX_BUFFERED_EVENTS];
     size_t num_events = IOSKeyboard_PollBuffered(keyboard, events, MAX_BUFFERED_EVENTS);
 
@@ -77,6 +77,46 @@ static void ReadSimpleEvents(IOSKeyboard keyboard, SimpleEvents *simpleEvents) {
     }
 
     simpleEvents->num_events = num_simple_events;
+}
+
+// SIKeyboard is polled via background handler on PPC
+static void SimpleEvents_ReadSI(SimpleEvents *events) {
+    assert(events != NULL);
+
+    events->num_events = SIKeyboard_ConsumeBuffer(events->events, sizeof(events->events));
+
+    // Convert in-place
+    bool shiftState = false;
+    size_t outIndex = 0;
+    for (size_t i = 0; i < events->num_events; ++i) {
+        char ch = '\0';
+        switch (events->events[i]) {
+        case SIKEY_ENTER:
+            ch = kSimpleEvent_Enter;
+            break;
+        case SIKEY_BACKSPACE:
+            ch = kSimpleEvent_Backspace;
+            break;
+        case SIKEY_TAB:
+            ch = kSimpleEvent_Tab;
+            break;
+        case SIKEY_ESC:
+            ch = kSimpleEvent_Escape;
+            break;
+        case SIKEY_NEXT_IS_SHIFTED:
+            shiftState = true;
+            break;
+        default:
+            ch = SIKeyboard_KeycodeToCharacter(events->events[i], shiftState);
+            shiftState = false;
+            break;
+        }
+        if (ch == '\0') {
+            continue;
+        }
+        events->events[outIndex++] = ch;
+    }
+    events->num_events = outIndex;
 }
 
 typedef struct ConsoleInput {
@@ -129,12 +169,10 @@ static void ConsoleInput_Process(ConsoleInput *input) {
     case kInputDeviceNone:
         return;
     case kInputDeviceIOS:
-        ReadSimpleEvents(input->mKeyboard, &events);
+        SimpleEvents_ReadIOS(input->mKeyboard, &events);
         break;
     case kInputDeviceSI:
-        // SIKeyboard is polled via background handler
-        events.num_events =
-                SIKeyboard_ConsumeBuffer(events.events, sizeof(events.events));
+        SimpleEvents_ReadSI(&events);
         break;
     }
 

@@ -115,44 +115,187 @@ static bool sIsInit = false;
 
 #define SIKeyboard_VerboseLog(...)
 
-// Return if it can be turned into a valid character
-static char SIKeyboard_TranslateKey(char key) {
-    // Handle these before
-    assert(key != '\0');
-    assert(key != 0x54 /* SHIFT */);
+static const char sKeys[] = {
+    [6] = '\0',    // HOME
+    [7] = '\0',    // END
+    [8] = '\0',    // PGUP
+    [9] = '\0',    // PGDN
+    [0xA] = '\0',  // SCROLLLOCK
 
-    const bool shift = sShiftState;
-    sShiftState = false;
+    [0x10] = 'a',
+    'b',
+    'c',
+    'd',
+    'e',
+    'f',
+    'g',
+    'h',
+    'i',
+    'j',
+    'k',
+    'l',
+    'm',
+    'n',
+    'o',
+    'p',
+    'q',
+    'r',
+    's',
+    't',
+    'u',
+    'v',
+    'w',
+    'x',
+    'y',
+    'z',
+    // 0x29
+    '1',
+    '2',
+    '3',
+    '4',
+    '5',
+    '6',
+    '7',
+    '8',
+    '9',
+    '0',
+    // 0x34
+    '-',
+    '`',
+    '\0',  // PRNTSCR
+    '\'',
+    '[',
+    '=',
+    '\'',
+    ']',  // HASH
+    ',',
+    '.',
+    '/',
+    '\\',           // INTERNATIONAL1
+    [0x40] = '\0',  // F1
+    [0x4B] = '\0',  // F12
+    '\0',           // ESC
+    '\0',           // INSERT
+    '\0',           // DELETE
+    ';',
+    '\0',  // BACKSPACE
+    '\0',  // TAB
+    '\0',  // 0x52: UNK
+    '\0',  // CAPSLOCK
+    '\0',  // LSHIFT
+    '\0',  // RSHIFT
+    '\0',  // LCTRL
+    '\0',  // RALT
+    '\0',  // LWIN
+    ' ',
+    '\0',  // RWIN
+    '\0',  // MENU
 
-    if (key >= 0x10 && key <= 0x29) {
-        return key - 0x10 + (shift ? 'A' : 'a');
-    }
-    if (key == 0x3e) {
-        return shift ? '?' : '/';
-    }
-    if (key == 0x34) {
-        return shift ? '_' : '-';
-    }
-    if (key == 0x61) {
-        return 0xff;
-    }
-    if (key == 0x50) {
-        return 0xfe;
-    }
-    if (key == 0x2d) {
-        return shift ? '$' : '4';
-    }
-    if (key == 0x2e) {
-        return shift ? '%' : '5';
-    }
-    if (key == 0x2f) {
-        return shift ? '^' : '6';
-    }
-    if (key == 0x30) {
-        return shift ? '&' : '7';
-    }
+    '\0',  // LEFT
+    '\0',  // DOWN
+    '\0',  // UP
+    'R',   // RIGHT
 
-    return 0;
+    '\0',  // 0x60 UNK
+
+    '\0',  // ENTER
+};
+static const char sKeysShifted[] = {
+    [6] = '\0',    // HOME
+    [7] = '\0',    // END
+    [8] = '\0',    // PGUP
+    [9] = '\0',    // PGDN
+    [0xA] = '\0',  // SCROLLLOCK
+
+    [0x10] = 'A',
+    'B',
+    'C',
+    'D',
+    'E',
+    'F',
+    'G',
+    'H',
+    'I',
+    'J',
+    'K',
+    'L',
+    'M',
+    'N',
+    'O',
+    'P',
+    'Q',
+    'R',
+    'S',
+    'T',
+    'U',
+    'V',
+    'W',
+    'X',
+    'Y',
+    'Z',
+    // 0x29
+    '!',
+    '@',
+    '#',
+    '$',
+    '%',
+    '^',
+    '&',
+    '*',
+    '(',
+    ')',
+    // 0x34
+    '_',
+    '~',
+    '\0',  // PRNTSCR
+    '\"',
+    '{',
+    '+',
+    '"',
+    '}',  // HASH
+    '<',
+    '>',
+    '?',
+    '|',            // INTERNATIONAL1
+    [0x40] = '\0',  // F1
+    [0x4B] = '\0',  // F12
+    '\0',           // ESC
+    '\0',           // INSERT
+    '\0',           // DELETE
+    ':',
+    '\0',  // BACKSPACE
+    '\0',  // TAB
+    '\0',  // 0x52: UNK
+    '\0',  // CAPSLOCK
+    '\0',  // LSHIFT
+    '\0',  // RSHIFT
+    '\0',  // LCTRL
+    '\0',  // RALT
+    '\0',  // LWIN
+    ' ',
+    '\0',  // RWIN
+    '\0',  // MENU
+
+    '\0',  // LEFT
+    '\0',  // DOWN
+    '\0',  // UP
+    'R',   // RIGHT
+
+    '\0',  // 0x60 UNK
+
+    '\0',  // ENTER
+};
+
+bool SIKeyboard_KeycodeIsCharacter(char key) {
+    return key < sizeof(sKeys) && sKeys[(size_t)key] != '\0';
+}
+
+char SIKeyboard_KeycodeToCharacter(char key, bool shift) {
+    assert(key < sizeof(sKeys));
+    if (key > sizeof(sKeys)) {
+        return '\0';
+    }
+    return shift ? sKeysShifted[(size_t)key] : sKeys[(size_t)key];
 }
 
 static bool SIKeyboard_SetCurrentPacket(KeyCodeTriplet *keys) {
@@ -217,7 +360,7 @@ size_t SIKeyboard_Poll(char *pKeys, size_t max_keys) {
             continue;
         }
 
-        if (keycode == 0x54 /* SHIFT */) {
+        if (keycode == SIKEY_LEFTSHIFT || keycode == SIKEY_RIGHTSHIFT) {
             sShiftState = true;
             continue;
         }
@@ -226,14 +369,13 @@ size_t SIKeyboard_Poll(char *pKeys, size_t max_keys) {
             continue;
         }
 
-        const char ch = SIKeyboard_TranslateKey(keycode);
-        // Check if translation worked
-        if (ch == '\0') {
-            continue;
+        if (sShiftState && num < max_keys) {
+            sShiftState = false;
+            pKeys[num++] = SIKEY_NEXT_IS_SHIFTED;
         }
 
         if (num < max_keys) {
-            pKeys[num++] = ch;
+            pKeys[num++] = keycode;
         } else {
             SP_LOG("SIKeyboard_Poll called with max_keys too small");
         }
