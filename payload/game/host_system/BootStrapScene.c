@@ -62,6 +62,8 @@ static void *loadRel(void *arg) {
     OSSectionInfo *prologSectionInfo = dstSectionInfo + dstHeader->prologSection;
     return (void *)(prologSectionInfo->offset + dstHeader->prolog);
 #else
+    (void)heap;
+    
     s32 result = DVDRead(&fileInfo, Rel_getStart(), size, 0);
     DVDClose(&fileInfo);
     if (result != size) {

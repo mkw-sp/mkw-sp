@@ -15,7 +15,7 @@ EGG_Heap *spSocketHeap = NULL;
 #endif
 static OSMutex sSocketMutex;
 
-static void *so_alloc(u32 id, s32 size) {
+static void *so_alloc(u32 UNUSED(id), s32 size) {
 #if 0
     assert(spSocketHeap);
 #endif

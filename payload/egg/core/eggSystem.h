@@ -2,6 +2,7 @@
 
 #include <Common.h>
 #include <egg/core/eggScene.h>
+#include <egg/core/eggSceneManager.h>
 #include <revolution.h>
 
 typedef struct {

@@ -6,15 +6,6 @@
 
 struct EGGScene_Vtable;
 
-typedef struct {
-    char _00[0x0c - 0x00];
-    struct EGGScene *curScene;
-    char _10[0x24 - 0x10];
-    EGG_ColorFader *fader;
-    u32 _28;
-} EGG_SceneManager;
-static_assert(sizeof(EGG_SceneManager) == 0x2c);
-
 typedef struct EGGScene {
     struct EGGScene_Vtable *vt;
     u8 _disposer[0x10 - 0x04];
@@ -27,7 +18,7 @@ typedef struct EGGScene {
     struct EGGScene *firstChildScene;
 
     u32 sceneID;
-    EGG_SceneManager *sceneMgr;
+    struct EGG_SceneManager *sceneMgr;
 } EGGScene;
 
 typedef struct EGGScene_Vtable {

@@ -1,3 +1,5 @@
+#pragma once
+
 #include <egg/core/eggScene.h>
 #include <nw4r/lyt/lyt_layout.h>
 #include <nw4r/lyt/lyt_pane.h>

@@ -67,8 +67,6 @@ static void **GetSpAllocAddr() {
 
 #define lyt_spAlloc (*GetSpAllocAddr())
 
-void SceneManager_destroyCurrentSceneNoIncoming(EGG_SceneManager *, bool destroyRoot);
-void SceneManager_changeSiblingScene(EGG_SceneManager *, u32 sceneId);
 
 static lyt_Pane *findPane(lyt_Layout *lyt, const char *name) {
     lyt_Pane *result = lyt->rootPane->vtable->FindPaneByName(

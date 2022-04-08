@@ -23,7 +23,8 @@ wchar_t *wcsrchr(const wchar_t *wcs, wchar_t wc) {
 
     while (*wcs != L'\0') {
         if (*wcs == wc) {
-            res = wcs;
+            // This function is also a const-cast
+            res = (wchar_t *)wcs;
         }
 
         wcs++;
