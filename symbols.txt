@@ -20,6 +20,7 @@
 0x80013040 sscanf
 0x800131e0 strncpy
 0x8001329c strcmp
+0x800133B8 strncmp
 0x800133f8 strchr
 0x800135f0 strstr
 0x80015650 wmemcpy
@@ -348,6 +349,7 @@
 0x80596480 KartSub_calcPass0
 0x80596cfc KartSub_calcPass1
 0x8059783c KartSub_calcTransforms
+0x8059BC44 KartKiller_calcTracking
 0x805a1d10 Camera_805a1d10
 0x805a2034 Camera_805a2034
 0x805a21d0 Camera_805a21d0
@@ -679,3 +681,4 @@
 0x809c2f38 s_driverManager
 0x809c38b8 s_raceGlobals
 0x809c4680 s_racePage
+

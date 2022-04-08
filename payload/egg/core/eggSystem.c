@@ -1,16 +1,14 @@
 #include <Common.h>
-
-#include <sp/Keyboard.h>
-
-#include <revolution.h>  // OSReport
-#include <string.h>      // memcpy
-
+#include <game/item/ItemDirector.h>
+#include <game/system/Console.h>
+#include <game/system/RaceConfig.h>
 #include <game/system/SaveManager.h>
-
+#include <revolution.h>  // OSReport
 #include <sp/Host.h>
 #include <sp/IOSDolphin.h>
-
-#include <game/system/Console.h>
+#include <sp/Keyboard.h>
+#include <stdio.h>
+#include <string.h>  // memcpy
 
 extern void EGG_ConfigurationData_onBeginFrame(void *system);
 
@@ -78,6 +76,86 @@ static void DolphinTest() {
     IOSDolphin_Close(dolphin);
 }
 
+static s32 GetMyPlayerID(void) {
+    if (s_raceConfig == NULL) {
+        OSReport("&cNot in a race.\n");
+        return -1;
+    }
+    s32 myPlayerId = s_raceConfig->raceScenario.localPlayerIds[0];
+    if (myPlayerId < 0 || myPlayerId > 11) {
+        OSReport(
+                "&cCurrent player id is &4%i&c. Expected in range &4[0, 11]&c. Are you a "
+                "spectator?\n",
+                myPlayerId);
+        return -1;
+    }
+    return myPlayerId;
+}
+bool sItemSticky = false;
+int sStickyItem = 0;
+int sStickyQty = 1;
+static void ClearItem(s32 myPlayerId) {
+    if (s_itemDirector != NULL) {
+        s_itemDirector->mKartItems[myPlayerId].mCurrentItemKind = 20;
+        s_itemDirector->mKartItems[myPlayerId].mCurrentItemQty = 0;
+    }
+    sItemSticky = false;
+}
+static void TrySetItem(s32 myPlayerId, s32 item, s32 qty) {
+    if (s_itemDirector != NULL) {
+        s_itemDirector->mKartItems[myPlayerId].mCurrentItemKind = item;
+        s_itemDirector->mKartItems[myPlayerId].mCurrentItemQty = qty;
+    }
+}
+
+// Matches "/command", "/command arg", but not "/command2"
+static bool StringStartsWithCommand(const char *line, const char *cmd) {
+    const size_t cmdLen = strlen(cmd);
+    if (strncmp(line, cmd, cmdLen)) {
+        return false;
+    }
+    return line[cmdLen] == '\0' || line[cmdLen] == ' ';
+}
+
+static void SlashICommand(const char *tmp) {
+    const s32 myPlayerId = GetMyPlayerID();
+    if (myPlayerId < 0) {
+        return;
+    }
+
+    // No args
+    if (!strcmp(tmp, "/i")) {
+        OSReport("&aClearing item\n");
+        ClearItem(myPlayerId);
+        return;
+    }
+    // Args
+    if (!strncmp(tmp, "/i ", strlen("/i "))) {
+        int item = 0;
+        int qty = 1;
+        if (!sscanf(tmp, "/i %d %d", &item, &qty)) {
+            OSReport("&aUnknown arguments \"%s\". Usage: /i [item] [qty|0=STICKY]\n",
+                    tmp + strlen("/i "));
+            return;
+        }
+        if (qty <= 0) {
+            qty = MAX(-qty, 1);
+            sItemSticky = true;
+            sStickyItem = item;
+            sStickyQty = qty;
+            OSReport("&aSpawning item %d (&2STICKY %dx&a)\n", item, qty);
+        } else {
+            sItemSticky = false;
+            OSReport("&aSpawning item %d (&2%dx&a)\n", item, qty);
+        }
+
+        TrySetItem(myPlayerId, item, qty);
+        return;
+    }
+
+    OSReport("&4Invalid command: \"%s\"", tmp);
+}
+
 static void my_lineCallback(const char *buf, size_t len) {
     // Demo functions
     char tmp[64];
@@ -88,7 +166,7 @@ static void my_lineCallback(const char *buf, size_t len) {
 
     OSReport("[SP] Line submitted: %s\n", tmp);
 
-    if (!strcmp(tmp, "/example_command")) {
+    if (StringStartsWithCommand(tmp, "/example_command")) {
         if (s_saveManager == NULL) {
             OSReport("example_command: Failed to load Save Manager\n");
         } else {
@@ -104,7 +182,7 @@ static void my_lineCallback(const char *buf, size_t len) {
         return;
     }
 
-    if (!strcmp(tmp, "/instant_menu")) {
+    if (StringStartsWithCommand(tmp, "/instant_menu")) {
         if (s_saveManager == NULL) {
             OSReport("instant_menu: Failed to load Save Manager\n");
         } else {
@@ -116,16 +194,29 @@ static void my_lineCallback(const char *buf, size_t len) {
         return;
     }
 
-    if (!strcmp(tmp, "/dolphin_test")) {
+    if (StringStartsWithCommand(tmp, "/dolphin_test")) {
         DolphinTest();
         return;
     }
+
+    if (StringStartsWithCommand(tmp, "/i")) {
+        SlashICommand(tmp);
+        return;
+    }
+
+    OSReport("&aUnknown command \"%s\"\n", tmp);
 }
 
 // IOS KBD module is not supported on this platform
 static bool sConsoleInputUnavailable = false;
 
 void my_onBeginFrame(void *UNUSED(system)) {
+    if (sItemSticky) {
+        const s32 myPlayerId = GetMyPlayerID();
+        if (myPlayerId >= 0) {
+            TrySetItem(myPlayerId, sStickyItem, sStickyQty);
+        }
+    }
     if (sConsoleInputUnavailable)
         return;
 

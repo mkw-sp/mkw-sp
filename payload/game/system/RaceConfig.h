@@ -48,7 +48,15 @@ typedef struct {
     u32 engineClass;
     u32 gameMode;
     u32 gameType;
-    u8 _b58[0xb70 - 0xb58];
+    u32 battleType;
+    u32 cpuMode;
+    u32 itemMode;
+    u8 localPlayerIds[4];
+    u32 cupId;
+    u8 raceNumber;
+    u8 lapCount;
+    u8 _26;
+    u8 _27;
     u32 modeFlags;
     u8 _b74[0xbec - 0xb74];
     u8 (*ghostBuffer)[11][0x2800]; // Modified
