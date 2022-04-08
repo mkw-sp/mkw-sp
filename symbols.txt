@@ -25,6 +25,7 @@
 0x800135f0 strstr
 0x80015650 wmemcpy
 0x80017814 swprintf
+0x8001790c vswprintf
 0x80017998 wcslen
 0x80021254 strlen
 
@@ -339,10 +340,13 @@
 0x8058ffe8 KartObjectManager_calc
 0x8059020c KartObjectProxy_getPos
 0x80590224 KartObjectProxy_getLastPos
+0x805902ec KartObjectProxy_getTireCount
 0x805903cc KartObjectProxy_getVehiclePhysics
 0x805903f4 KartObjectProxy_getPadProxy
 0x80590678 KartObjectProxy_isGhost
 0x8059077c KartObjectProxy_getKartMove
+0x8059081c KartObjectProxy_getBodyCollisionInfo
+0x80590834 KartObjectProxy_getTireCollisionInfo
 0x80590cf8 KartObjectProxy_getInternalSpeed
 0x80591fa4 KartParam_compute
 0x80594bd4 KartState_calcCollisions

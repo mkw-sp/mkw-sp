@@ -32,3 +32,11 @@ wchar_t *wcsrchr(const wchar_t *wcs, wchar_t wc) {
 
     return res;
 }
+
+wchar_t *wmemset(wchar_t *wcs, wchar_t wc, size_t n) {
+    for (size_t i = 0; i < n; i++) {
+        wcs[i] = wc;
+    }
+
+    return wcs;
+}

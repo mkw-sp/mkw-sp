@@ -15,6 +15,7 @@ PATCH_B_END(RacePage_initInputs, 0x240)
 
 
 PATCH_B_START(RacePage_getControlCount, 0x198)
+    addi r3, r3, 1 // Increase the control count by one CtrlRaceDebugPanel
     add r3, r3, r30 // Increase the control count by one CtrlRaceSpeed per local player
     add r3, r3, r30 // Increase the control count by one CtrlRaceInputDisplay per local player
 
@@ -42,13 +43,26 @@ PATCH_B_START(RacePage_initControls, 0x3e0)
     mr r4, r18 // controlId
     mr r5, r19 // localPlayerCount
     mr r6, r17 // localPlayerId
-    bl RacePage_initCustomControls
+    bl RacePage_initPlayerCustomControls
 
     addi r18, r18, 2 // Increment the control id
 
     addi r17, r17, 1 // Original instruction, increment the local player id
     b RacePage_initControls + 0x3e4
 PATCH_B_END(RacePage_initControls, 0x3e0)
+
+
+
+PATCH_B_START(RacePage_initControls, 0x738)
+    mr r3, r15 // this
+    mr r4, r18 // controlId
+    bl RacePage_initDebugPanelControl
+
+    addi r18, r18, 1 // Increment the control id
+
+    cmpwi r21, 0x0 // Original instruction
+    b RacePage_initControls + 0x73c
+PATCH_B_END(RacePage_initControls, 0x738)
 
 
 
