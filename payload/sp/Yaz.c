@@ -76,12 +76,16 @@ u32 Yaz_decode(const u8 *restrict src, u8 *restrict dst, u32 srcSize, u32 dstSiz
                 }
                 refSize = src[srcOffset++] + 0x12;
             }
-            for (u16 j = 0; j < refSize; j++) {
-                dst[dstOffset++] = dst[refOffset++];
-                if (dstOffset == dstSize) {
-                    return dstOffset;
-                }
+            if (dstOffset + refSize > dstSize) {
+                refSize = dstSize - dstOffset;
             }
+            u8 *dstPtr = dst + dstOffset;
+            const u8 *refPtr = dst + refOffset;
+            #pragma GCC unroll(8)
+            for (u16 j = 0; j < refSize; j++) {
+                *dstPtr++ = *refPtr++;
+            }
+            dstOffset += refSize;
         }
     }
 
