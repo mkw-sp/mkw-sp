@@ -495,10 +495,12 @@ asset_in_files = {
         os.path.join('fatal', 'font', 'sf_light_i8_utf16.brfnt'),
         os.path.join('fatal', 'font', 'sf_medium_basic.brfnt'),
     ],
-    os.path.join('Scene', 'UI', 'FontSP.szs'): [
-        os.path.join('kart_font_K.brfnt'),
-        os.path.join('kart_font_R.brfnt'),
+    os.path.join('Scene', 'UI', 'FontSP_K.szs'): [
+        os.path.join('kart_font_korea.brfnt'),
         os.path.join('tt_kart_font_rodan_ntlg_pro_b_K.brfnt'),
+    ],
+    os.path.join('Scene', 'UI', 'FontSP_R.szs'): [
+        os.path.join('kart_kanji_font.brfnt'),
         os.path.join('tt_kart_font_rodan_ntlg_pro_b_R.brfnt'),
     ],
     os.path.join('Scene', 'UI', 'MenuOtherSP.szs'): [

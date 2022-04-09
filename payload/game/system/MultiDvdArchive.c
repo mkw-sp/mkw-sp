@@ -173,10 +173,11 @@ static void FontMultiDvdArchive_init(MultiDvdArchive *base) {
 
     if (REGION == REGION_K) {
         snprintf(this->names[0], 0x80, "/Scene/UI/Font_K.szs");
+        snprintf(this->names[1], 0x80, "/Scene/UI/FontSP_R.szs");
     } else {
         snprintf(this->names[0], 0x80, "/Scene/UI/Font.szs");
+        snprintf(this->names[1], 0x80, "/Scene/UI/FontSP_K.szs");
     }
-    snprintf(this->names[1], 0x80, "/Scene/UI/FontSP.szs");
     snprintf(this->names[2], 0x80, "/Scene/UI/Font_Dif.szs");
 
     for (u32 i = 0; i < 3; i++) {

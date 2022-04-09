@@ -13,18 +13,26 @@ static void FontManager_initFont(FontManager *this, u32 index, const char *file)
 static void my_FontManager_init(FontManager *this) {
     switch (SCGetLanguage()) {
     case SC_LANG_KOREAN:
-        FontManager_initFont(this, 0, "tt_kart_font_rodan_ntlg_pro_b_K.brfnt");
+        if (REGION == REGION_K) {
+            FontManager_initFont(this, 0, "tt_kart_font_rodan_ntlg_pro_b.brfnt");
+        } else {
+            FontManager_initFont(this, 0, "tt_kart_font_rodan_ntlg_pro_b_K.brfnt");
+        }
         break;
     default:
-        FontManager_initFont(this, 0, "tt_kart_font_rodan_ntlg_pro_b_R.brfnt");
+        if (REGION == REGION_K) {
+            FontManager_initFont(this, 0, "tt_kart_font_rodan_ntlg_pro_b_R.brfnt");
+        } else {
+            FontManager_initFont(this, 0, "tt_kart_font_rodan_ntlg_pro_b.brfnt");
+        }
         break;
     }
     switch (SCGetLanguage()) {
     case SC_LANG_KOREAN:
-        FontManager_initFont(this, 1, "kart_font_K.brfnt");
+        FontManager_initFont(this, 1, "kart_font_korea.brfnt");
         break;
     default:
-        FontManager_initFont(this, 1, "kart_font_R.brfnt");
+        FontManager_initFont(this, 1, "kart_kanji_font.brfnt");
         break;
     }
     
