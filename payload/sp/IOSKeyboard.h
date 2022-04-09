@@ -52,7 +52,7 @@ void IOSKeyboard_Close(IOSKeyboard keyboard);
 // Returns IOSErr
 s32 IOSKeyboard_PollBlocking(IOSKeyboard keyboard, IOSKeyboard_Event *ev);
 
-inline bool IOSKeyboard_NextEvent(IOSKeyboard keyboard, IOSKeyboard_Event *ev) {
+static inline bool IOSKeyboard_NextEvent(IOSKeyboard keyboard, IOSKeyboard_Event *ev) {
     IOSKeyboard_PollBlocking(keyboard, ev);
     return ev->message != 0;
 }

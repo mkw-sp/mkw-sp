@@ -7,7 +7,7 @@ typedef s32 IOSDolphin;
 
 // Return if the operation succeeded
 IOSDolphin IOSDolphin_Open();
-inline bool IOSDolphin_IsOpen(IOSDolphin dolphin) {
+static inline bool IOSDolphin_IsOpen(IOSDolphin dolphin) {
     return dolphin >= 0;
 }
 void IOSDolphin_Close(IOSDolphin dolphin);

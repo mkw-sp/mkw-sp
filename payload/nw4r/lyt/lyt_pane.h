@@ -34,7 +34,7 @@ typedef struct lyt_Pane_Vtable {
 static_assert(offsetof(lyt_Pane_Vtable, FindPaneByName) == 0x3c);
 static_assert(sizeof(lyt_Pane_Vtable) == 0x74);
 
-inline void lyt_setPaneVisible(lyt_Pane *pane, bool visible) {
+static inline void lyt_setPaneVisible(lyt_Pane *pane, bool visible) {
     pane->mFlag &= ~kLytPaneFlag_IsVisible;
     pane->mFlag |= visible ? kLytPaneFlag_IsVisible : 0;
 }
