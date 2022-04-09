@@ -3,6 +3,7 @@
 #include <game/system/Console.h>
 #include <game/system/RaceConfig.h>
 #include <game/system/SaveManager.h>
+#include <game/ui/SectionManager.h>
 #include <revolution.h>  // OSReport
 #include <sp/Host.h>
 #include <sp/IOSDolphin.h>
@@ -201,6 +202,34 @@ static void my_lineCallback(const char *buf, size_t len) {
 
     if (StringStartsWithCommand(tmp, "/i")) {
         SlashICommand(tmp);
+        return;
+    }
+
+    if (StringStartsWithCommand(tmp, "/section")) {
+        if (s_sectionManager == NULL) {
+            OSReport("&aError: Section manager unavailable\n");
+            return;
+        }
+        int nextSectionId = 0;
+        if (!sscanf(tmp, "/section %i", &nextSectionId)) {
+            OSReport("&aUsage /section <id>\n");
+            return;
+        }
+
+        OSReport("&aSwitching to section %d\n", nextSectionId);
+
+        if (s_saveManager == NULL) {
+            OSReport("&aError: Save manager unavailable\n");
+            return;
+        }
+
+        // Default to license 0
+        s_saveManager->spCurrentLicense = 0;
+        SaveManager_selectLicense(s_saveManager, 0);
+
+        SectionManager_setNextSection(s_sectionManager, __builtin_abs(nextSectionId),
+                nextSectionId < 0 ? PAGE_ANIMATION_PREV : PAGE_ANIMATION_NEXT);
+        SectionManager_startChangeSection(s_sectionManager, 5, 0xff);
         return;
     }
 

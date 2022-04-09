@@ -197,6 +197,8 @@ static void TimeAttackRulesPage_onInit(Page *base) {
     u32 buttonCounts[] = { 2, 4, 3, 4, 3, 3 };
     for (u32 i = 0; i < ARRAY_SIZE(this->ruleControls); i++) {
         const SpSaveLicense *license = s_saveManager->spLicenses[s_saveManager->spCurrentLicense];
+        assert(license != NULL);
+        
         u32 chosen;
         switch (i) {
         case 0:

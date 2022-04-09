@@ -17,7 +17,9 @@ static_assert(sizeof(SectionChangeState) == 0x4);
 
 typedef struct {
     Section *currentSection;
-    u8 _04[0x1c - 0x4];
+    u8 _04[0x0c - 0x4];
+    u32 nextSectionId;
+    u8 _10[0x1c - 0x10];
     s32 changeTimer;
     u8 _20[0x28 - 0x20];
     u32 fadeColor;

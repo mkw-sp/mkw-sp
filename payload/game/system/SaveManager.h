@@ -69,7 +69,7 @@ typedef struct {
     NodeId *ghostIds; // Modified
     u8 _00034[0x00035 - 0x00034];
     bool saveGhostResult;
-    u8 _00036[0x00038 - 0x00036];
+    s16 currentLicenseId;
     License licenses[4];
     u8 _24ff8[0x24ffc - 0x24ff8];
     void *otherRawSave;
