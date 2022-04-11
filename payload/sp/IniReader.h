@@ -6,6 +6,7 @@ typedef struct {
     StringRange mString;
     StringView currentSection;
     u32 lineNum;
+    int state; // Internal
 } IniRange;
 
 typedef struct {

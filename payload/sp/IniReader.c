@@ -5,61 +5,151 @@ IniRange IniRange_create(const char *s, size_t len) {
         .mString = StringRange_create(s, len),
         .currentSection = StringView_create(""),
         .lineNum = 0,
+        .state = 0,
     };
 }
+enum {
+    STATE_NONE,
+    STATE_WANT_SECTION,
+    STATE_WANT_SECTION_END,
+    STATE_IN_COMMENT,
+    STATE_WANT_DELIM,
+    STATE_WANT_VALUE,
+    STATE_WANT_VALUE_END,
+    STATE_IN_COMMENT_WANT_VALUE,
+    STATE_POST_WANT_VALUE,
+};
+static bool IniRange_WantsValueEnd(int state) {
+    switch (state) {
+    case STATE_WANT_VALUE_END:
+    case STATE_WANT_VALUE /* Empty value */:
+    case STATE_IN_COMMENT_WANT_VALUE:
+        return true;
+    }
 
+    return false;
+}
 bool IniRange_next(IniRange *self, IniProperty *prop) {
     assert(self != NULL);
     assert(prop != NULL);
 
-    for (;; ++self->lineNum) {
-        StringView rawLine;
-        if (!StringRange_nextLine(&self->mString, &rawLine)) {
-            // End of file
-            return false;
-        }
+    const char *token = NULL;
+    const char *lastNonSpace = NULL;
 
-        // Trim comments and leading zeroes
-        StringView line =
-                SplitLeft(SkipLeading(rawLine, ' '), StringView_create("#;"), NULL);
-        if (line.len == 0) {
-            continue;
-        }
+    StringView key = StringView_create("");
 
-        // Section header
-        if (line.s[0] == '[') {
-            const StringView section =
-                    SplitLeft(SubString(line, 1), StringView_create("]"), NULL);
-            if (section.len == 0) {
-                return false;
+    for (const char *it = self->mString.mView.s + self->mString.mPos;
+            it < self->mString.mView.s + self->mString.mView.len;
+            ++it, ++self->mString.mPos) {
+        if (self->state == STATE_POST_WANT_VALUE) {
+            ++self->lineNum;
+            self->state = STATE_NONE;
+        }
+        switch (*it) {
+        case ' ':
+            if (self->state == STATE_NONE || self->state == STATE_WANT_DELIM ||
+                    self->state == STATE_WANT_VALUE) {
+                break;
             }
-            // Ignore everything trailing ']'; effectively create an implicit comment
-            self->currentSection = section;
-            continue;
-        }
-        // Key
-        if (ContainsChar(line, ']') || ContainsChar(line, '[')) {
-            // Invalid
+            // Treat as identifier
+            goto Identifier;
+            break;
+        case '[':
+            if (self->state == STATE_NONE) {
+                token = it;
+                self->state = STATE_WANT_SECTION;
+                break;
+            }
+            // Treat as identifier
+            goto Identifier;
+            break;
+        case ']':
+            if (self->state == STATE_WANT_SECTION_END ||
+                    self->state == STATE_WANT_SECTION /* Empty section tag */) {
+                self->currentSection = (StringView){ .s = token, .len = it - token };
+                self->state = STATE_NONE;
+                break;
+            }
+            // Treat as identifier
+            goto Identifier;
+            break;
+        case '\n':
+            if (self->state == STATE_NONE || self->state == STATE_IN_COMMENT) {
+                self->state = STATE_NONE;
+                ++self->lineNum;
+                break;
+            }
+            if (IniRange_WantsValueEnd(self->state)) {
+                ++self->mString.mPos;
+            StateWantValue:
+                self->state = STATE_POST_WANT_VALUE;
+                const StringView value = (StringView){
+                    .s = token,
+                    .len = lastNonSpace + 1 - token,
+                };
+                *prop = (IniProperty){
+                    .section = self->currentSection,
+                    .key = key,
+                    .value = value,
+                };
+                return true;
+            }
+            // Error
             return false;
-        }
-        if (line.s[0] == '=') {
-            // Invalid
+        case '#':
+        case ';':
+            if (self->state == STATE_NONE) {
+                self->state = STATE_IN_COMMENT;
+                break;
+            }
+            if (IniRange_WantsValueEnd(self->state)) {
+                self->state = STATE_IN_COMMENT_WANT_VALUE;
+                break;
+            }
+            // Error
             return false;
-        }
-
-        StringView remaining;  // Does not include =
-        const StringView key =
-                SkipTrailing(SplitLeft(line, StringView_create("="), &remaining), ' ');
-        if (remaining.len < 1) {
-            // Invalid
+        case '=':
+            if (self->state == STATE_WANT_DELIM) {
+                self->state = STATE_WANT_VALUE;
+                key = (StringView){
+                    .s = token,
+                    .len = lastNonSpace + 1 - token,
+                };
+                break;
+            }
+            // Error
             return false;
+        default:
+            if (self->state == STATE_IN_COMMENT) {
+                break;
+            }
+            if (self->state == STATE_NONE) {
+                self->state = STATE_WANT_DELIM;
+                token = it;
+                break;
+            }
+            // Treat as identifier
+        Identifier:
+            if (self->state == STATE_WANT_SECTION) {
+                token = it;
+                self->state = STATE_WANT_SECTION_END;
+            }
+            if (self->state == STATE_WANT_VALUE) {
+                token = it;
+                self->state = STATE_WANT_VALUE_END;
+            }
+            if (self->state == STATE_IN_COMMENT_WANT_VALUE) {
+                break;
+            }
+            lastNonSpace = it;
+            break;
         }
-        const StringView value = SkipLeading(remaining, ' ');
-        *prop = (IniProperty){
-            .section = self->currentSection,
-            .key = key,
-            .value = value,
-        };
+    }
+    if (IniRange_WantsValueEnd(self->state)) {
+        goto StateWantValue;
+    }
+    if (self->state == STATE_NONE || self->state == STATE_IN_COMMENT) {
         return true;
     }
+    return false;
 }
