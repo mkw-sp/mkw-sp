@@ -74,7 +74,10 @@ bool IniRange_next(IniRange *self, IniProperty *prop) {
         case ']':
             if (self->state == STATE_WANT_SECTION_END ||
                     self->state == STATE_WANT_SECTION /* Empty section tag */) {
-                self->currentSection = (StringView){ .s = token, .len = it - token };
+                self->currentSection = (StringView){
+                    .s = token,
+                    .len = self->state == STATE_WANT_SECTION ? 0 : it - token,
+                };
                 self->sectionLineNum = self->lineNum;
                 self->sectionLineCharacter = token - lineStart;
                 self->state = STATE_NONE;
