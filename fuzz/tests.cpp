@@ -164,6 +164,11 @@ static void IniTest() {
                 prop.sectionLineCharacter, section, prop.keyvalLineNum,
                 prop.keyvalLineCharacter, key, value);
     }
+    /*
+    [tests.cpp:165] [<2:3> Race] <3:2> DriftMode==Manual
+    [tests.cpp:165] [<2:3> Race] <4:2> HudLabels==Show
+    [tests.cpp:165] [<6:1> Ghost] <7:0> AllowVis==True
+    */
 }
 
 int main() {

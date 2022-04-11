@@ -39,21 +39,17 @@ bool IniRange_next(IniRange *self, IniProperty *prop) {
     assert(self != NULL);
     assert(prop != NULL);
 
-    const char *lineStart = NULL;
+    const char *lineStart = self->mString.mView.s + self->mString.mPos;
     const char *token = NULL;
     const char *lastNonSpace = NULL;
 
     StringView key = StringView_create("");
 
-    for (const char *it = self->mString.mView.s + self->mString.mPos;
-            it < self->mString.mView.s + self->mString.mView.len;
-            ++it, ++self->mString.mPos) {
+    const char *const viewEnd = self->mString.mView.s + self->mString.mView.len;
+    for (const char *it = lineStart; it != viewEnd; ++it, ++self->mString.mPos) {
         if (self->state == STATE_POST_WANT_VALUE) {
             ++self->lineNum;
             self->state = STATE_NONE;
-        }
-        if (lineStart == NULL) {
-            lineStart = it;
         }
         switch (*it) {
         case ' ':
@@ -89,17 +85,17 @@ bool IniRange_next(IniRange *self, IniProperty *prop) {
             if (self->state == STATE_NONE || self->state == STATE_IN_COMMENT) {
                 self->state = STATE_NONE;
                 ++self->lineNum;
-                lineStart = NULL;
+                lineStart = it + 1;
                 break;
             }
             if (IniRange_WantsValueEnd(self->state)) {
                 ++self->mString.mPos;
-            StateWantValue:
-                self->state = STATE_POST_WANT_VALUE;
+            StateWantValue:;
                 const StringView value = (StringView){
                     .s = token,
-                    .len = lastNonSpace + 1 - token,
+                    .len = self->state == STATE_WANT_VALUE ? 0 : lastNonSpace + 1 - token,
                 };
+                self->state = STATE_POST_WANT_VALUE;
                 *prop = (IniProperty){
                     .section = self->currentSection,
                     .sectionLineNum = self->sectionLineNum,
@@ -117,13 +113,14 @@ bool IniRange_next(IniRange *self, IniProperty *prop) {
             case STATE_WANT_SECTION_END:
                 SP_LOG("<%i:%i> Expecting ']', instead saw end of line", self->lineNum,
                         it - lineStart);
-                break;
+                return false;
             case STATE_WANT_DELIM:
-                SP_LOG("<%i:%i> Expecting '=', instead saw end of line", self->lineNum,
-                        it - lineStart);
-                break;
+                SP_LOG("<%i:%i> Expecting '=' or ':', instead saw end of line",
+                        self->lineNum, it - lineStart);
+                return false;
             }
-            return false;
+
+            __builtin_unreachable();
         case '#':
         case ';':
             if (self->state == STATE_NONE || self->state == STATE_IN_COMMENT) {
@@ -139,14 +136,16 @@ bool IniRange_next(IniRange *self, IniProperty *prop) {
             case STATE_WANT_SECTION_END:
                 SP_LOG("<%i:%i> Expecting ']', instead saw comment", self->lineNum,
                         it - lineStart);
-                break;
+                return false;
             case STATE_WANT_DELIM:
-                SP_LOG("<%i:%i> Expecting '=', instead saw comment", self->lineNum,
+                SP_LOG("<%i:%i> Expecting '=' or ':', instead saw comment", self->lineNum,
                         it - lineStart);
-                break;
+                return false;
             }
-            return false;
+
+            __builtin_unreachable();
         case '=':
+        case ':':
             if (self->state == STATE_WANT_DELIM) {
                 self->state = STATE_WANT_VALUE;
                 key = (StringView){
@@ -165,29 +164,52 @@ bool IniRange_next(IniRange *self, IniProperty *prop) {
             }
             // Treat as identifier
         Identifier:
-            if (self->state == STATE_IN_COMMENT) {
+            switch (self->state) {
+            case STATE_IN_COMMENT:
+            case STATE_IN_COMMENT_WANT_VALUE:
                 break;
-            }
-            if (self->state == STATE_WANT_SECTION) {
+            case STATE_WANT_SECTION:
                 token = it;
                 self->state = STATE_WANT_SECTION_END;
-            }
-            if (self->state == STATE_WANT_VALUE) {
+                break;
+            case STATE_WANT_VALUE:
                 token = it;
                 self->state = STATE_WANT_VALUE_END;
-            }
-            if (self->state == STATE_IN_COMMENT_WANT_VALUE) {
                 break;
+            case STATE_NONE:
+            case STATE_WANT_SECTION_END:
+            case STATE_WANT_DELIM:
+            case STATE_WANT_VALUE_END:
+                lastNonSpace = it;
+                break;
+            case STATE_POST_WANT_VALUE:
+                __builtin_unreachable();
             }
-            lastNonSpace = it;
-            break;
+
+            __builtin_unreachable();
         }
     }
-    if (IniRange_WantsValueEnd(self->state)) {
+    switch (self->state) {
+    case STATE_NONE:
+    case STATE_IN_COMMENT:
+        return false;
+    case STATE_WANT_SECTION:
+    case STATE_WANT_SECTION_END:
+        SP_LOG("<%i:%i> Expecting ']', instead saw EOF", self->lineNum,
+                viewEnd - lineStart);
+        return false;
+    case STATE_WANT_DELIM:
+        SP_LOG("<%i:%i> Expecting '=' or ':', instead saw EOF", self->lineNum,
+                viewEnd - lineStart);
+        return false;
+    case STATE_WANT_VALUE:
+    case STATE_WANT_VALUE_END:
+    case STATE_IN_COMMENT_WANT_VALUE:
         goto StateWantValue;
+    case STATE_POST_WANT_VALUE:
+        return false;
     }
-    if (self->state == STATE_NONE || self->state == STATE_IN_COMMENT) {
-        return true;
-    }
+
+    __builtin_unreachable();
     return false;
 }
