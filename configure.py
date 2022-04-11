@@ -307,6 +307,7 @@ code_in_files = {
         os.path.join('payload', 'sp', 'FormattingCodes.c'),
         os.path.join('payload', 'sp', 'FlameGraph.c'),
         os.path.join('payload', 'sp', 'Host.c'),
+        os.path.join('payload', 'sp', 'IniReader.c'),
         os.path.join('payload', 'sp', 'IOSDolphin.c'),
         os.path.join('payload', 'sp', 'IOSKeyboard.c'),
         os.path.join('payload', 'sp', 'Keyboard.c'),

@@ -1,5 +1,6 @@
 extern "C" {
 #include <sp/Host.h>
+#include <sp/IniReader.h>
 #include <sp/Net.h>
 #include <sp/NetStorageClient.h>
 #include <sp/Yaz.h>
@@ -131,6 +132,38 @@ static void NetStorageClient_Test() {
     }
 }
 
+// Get a stack-allocated CString of a string view
+#define sv_as_cstr(sv, svLen)                             \
+    ({                                                    \
+        char *cstr = (char *)__builtin_alloca(svLen + 1); \
+        const size_t lenWritten = MIN(svLen, sv.len);     \
+        memcpy(cstr, sv.s, lenWritten);                   \
+        cstr[lenWritten] = '\0';                          \
+        cstr;                                             \
+    })
+
+static void IniTest() {
+    const char *iniFile =
+            "# Settings\n"
+            "\n"
+            "  [Race] # This is a section \n"
+            "  DriftMode =  Manual # Manual / Auto \n"
+            "  HudLabels =  Show   ; Show / Hide   \n"
+            "\n"
+            "[Ghost]\n"
+            "AllowVis=True\n";
+    IniRange iniRange = IniRange_create(iniFile, strlen(iniFile));
+
+    IniProperty prop;
+    while (IniRange_next(&iniRange, &prop)) {
+        const char *section = sv_as_cstr(prop.section, 64);
+        const char *key = sv_as_cstr(prop.key, 64);
+        const char *value = sv_as_cstr(prop.value, 64);
+
+        SP_LOG("[%s] %s:%s", section, key, value);
+    }
+}
+
 int main() {
     Host_Init();
 
@@ -147,6 +180,8 @@ int main() {
     //     Built Mar  7 2022 at 02:57:14, Clang 12.0.0
     // --------------------------------
     Host_PrintMkwSpInfo(OSReport);
+
+    IniTest();
 
     NetStorageClient_Test();
 

@@ -22,6 +22,7 @@ add_executable(Fuzzing
     ${PROJECT_SOURCE_DIR}/../payload/sp/Emulator/NetEmu.cpp
     ${PROJECT_SOURCE_DIR}/../payload/sp/Emulator/OSEmu.cpp
     ${PROJECT_SOURCE_DIR}/../payload/sp/Host.c
+    ${PROJECT_SOURCE_DIR}/../payload/sp/IniReader.c
     ${PROJECT_SOURCE_DIR}/../payload/sp/NetStorageClient.c
     ${PROJECT_SOURCE_DIR}/../payload/sp/Yaz.c
 	tests.cpp
