@@ -160,7 +160,9 @@ static void IniTest() {
         const char *key = sv_as_cstr(prop.key, 64);
         const char *value = sv_as_cstr(prop.value, 64);
 
-        SP_LOG("[%s] %s:%s", section, key, value);
+        SP_LOG("[<%i:%i> %s] <%i:%i> %s==%s", prop.sectionLineNum,
+                prop.sectionLineCharacter, section, prop.keyvalLineNum,
+                prop.keyvalLineCharacter, key, value);
     }
 }
 

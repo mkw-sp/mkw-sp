@@ -1,13 +1,8 @@
 #include "IniReader.h"
+#include <revolution.h>
+#include <stdarg.h>
+#include <stdio.h>
 
-IniRange IniRange_create(const char *s, size_t len) {
-    return (IniRange){
-        .mString = StringRange_create(s, len),
-        .currentSection = StringView_create(""),
-        .lineNum = 0,
-        .state = 0,
-    };
-}
 enum {
     STATE_NONE,
     STATE_WANT_SECTION,
@@ -19,6 +14,17 @@ enum {
     STATE_IN_COMMENT_WANT_VALUE,
     STATE_POST_WANT_VALUE,
 };
+
+IniRange IniRange_create(const char *s, size_t len) {
+    return (IniRange){
+        .mString = StringRange_create(s, len),
+        .currentSection = StringView_create(""),
+        .lineNum = 0,
+        .sectionLineNum = -1,
+        .sectionLineCharacter = -1,
+        .state = STATE_NONE,
+    };
+}
 static bool IniRange_WantsValueEnd(int state) {
     switch (state) {
     case STATE_WANT_VALUE_END:
@@ -33,6 +39,7 @@ bool IniRange_next(IniRange *self, IniProperty *prop) {
     assert(self != NULL);
     assert(prop != NULL);
 
+    const char *lineStart = NULL;
     const char *token = NULL;
     const char *lastNonSpace = NULL;
 
@@ -45,6 +52,9 @@ bool IniRange_next(IniRange *self, IniProperty *prop) {
             ++self->lineNum;
             self->state = STATE_NONE;
         }
+        if (lineStart == NULL) {
+            lineStart = it;
+        }
         switch (*it) {
         case ' ':
             if (self->state == STATE_NONE || self->state == STATE_WANT_DELIM ||
@@ -53,7 +63,6 @@ bool IniRange_next(IniRange *self, IniProperty *prop) {
             }
             // Treat as identifier
             goto Identifier;
-            break;
         case '[':
             if (self->state == STATE_NONE) {
                 token = it;
@@ -62,21 +71,22 @@ bool IniRange_next(IniRange *self, IniProperty *prop) {
             }
             // Treat as identifier
             goto Identifier;
-            break;
         case ']':
             if (self->state == STATE_WANT_SECTION_END ||
                     self->state == STATE_WANT_SECTION /* Empty section tag */) {
                 self->currentSection = (StringView){ .s = token, .len = it - token };
+                self->sectionLineNum = self->lineNum;
+                self->sectionLineCharacter = token - lineStart;
                 self->state = STATE_NONE;
                 break;
             }
             // Treat as identifier
             goto Identifier;
-            break;
         case '\n':
             if (self->state == STATE_NONE || self->state == STATE_IN_COMMENT) {
                 self->state = STATE_NONE;
                 ++self->lineNum;
+                lineStart = NULL;
                 break;
             }
             if (IniRange_WantsValueEnd(self->state)) {
@@ -89,16 +99,31 @@ bool IniRange_next(IniRange *self, IniProperty *prop) {
                 };
                 *prop = (IniProperty){
                     .section = self->currentSection,
+                    .sectionLineNum = self->sectionLineNum,
+                    .sectionLineCharacter = self->sectionLineCharacter,
                     .key = key,
                     .value = value,
+                    .keyvalLineNum = self->lineNum,
+                    .keyvalLineCharacter = key.s - lineStart,
                 };
+                lineStart = NULL;
                 return true;
             }
-            // Error
+            switch (self->state) {
+            case STATE_WANT_SECTION:
+            case STATE_WANT_SECTION_END:
+                SP_LOG("<%i:%i> Expecting ']', instead saw end of line", self->lineNum,
+                        it - lineStart);
+                break;
+            case STATE_WANT_DELIM:
+                SP_LOG("<%i:%i> Expecting '=', instead saw end of line", self->lineNum,
+                        it - lineStart);
+                break;
+            }
             return false;
         case '#':
         case ';':
-            if (self->state == STATE_NONE) {
+            if (self->state == STATE_NONE || self->state == STATE_IN_COMMENT) {
                 self->state = STATE_IN_COMMENT;
                 break;
             }
@@ -106,7 +131,17 @@ bool IniRange_next(IniRange *self, IniProperty *prop) {
                 self->state = STATE_IN_COMMENT_WANT_VALUE;
                 break;
             }
-            // Error
+            switch (self->state) {
+            case STATE_WANT_SECTION:
+            case STATE_WANT_SECTION_END:
+                SP_LOG("<%i:%i> Expecting ']', instead saw comment", self->lineNum,
+                        it - lineStart);
+                break;
+            case STATE_WANT_DELIM:
+                SP_LOG("<%i:%i> Expecting '=', instead saw comment", self->lineNum,
+                        it - lineStart);
+                break;
+            }
             return false;
         case '=':
             if (self->state == STATE_WANT_DELIM) {
@@ -117,12 +152,9 @@ bool IniRange_next(IniRange *self, IniProperty *prop) {
                 };
                 break;
             }
-            // Error
-            return false;
+            // Treat as identifier
+            goto Identifier;
         default:
-            if (self->state == STATE_IN_COMMENT) {
-                break;
-            }
             if (self->state == STATE_NONE) {
                 self->state = STATE_WANT_DELIM;
                 token = it;
@@ -130,6 +162,9 @@ bool IniRange_next(IniRange *self, IniProperty *prop) {
             }
             // Treat as identifier
         Identifier:
+            if (self->state == STATE_IN_COMMENT) {
+                break;
+            }
             if (self->state == STATE_WANT_SECTION) {
                 token = it;
                 self->state = STATE_WANT_SECTION_END;
