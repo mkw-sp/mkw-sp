@@ -193,6 +193,7 @@ static void NetStorage_stat(const wchar_t *path, NodeInfo *info) {
         NetFile f;
         memset(&f, 0, sizeof(f));
         if (NetFile_open(&f, &sNetStorageClient, path)) {
+            info->size = f.node.fileSize;
             NetFile_close(&f);
             wchar_t *name = wcsrchr(path, '/');
             assert(name);

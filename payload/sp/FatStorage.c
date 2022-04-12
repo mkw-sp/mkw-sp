@@ -190,6 +190,7 @@ static bool FatStorage_readDir(Dir *dir, NodeInfo *info) {
     } else {
         info->type = NODE_TYPE_FILE;
     }
+    info->size = fInfo.fsize;
     static_assert(sizeof(fInfo.fname) <= sizeof(info->name));
     memcpy(info->name, fInfo.fname, sizeof(fInfo.fname));
 
@@ -217,6 +218,7 @@ static void FatStorage_stat(const wchar_t *path, NodeInfo *info) {
         } else {
             info->type = NODE_TYPE_FILE;
         }
+        info->size = fInfo.fsize;
         static_assert(sizeof(fInfo.fname) <= sizeof(info->name));
         memcpy(info->name, fInfo.fname, sizeof(fInfo.fname));
     }

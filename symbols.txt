@@ -26,6 +26,7 @@
 0x80015650 wmemcpy
 0x80017814 swprintf
 0x80017998 wcslen
+0x80017a14 wcscmp
 0x80021254 strlen
 
 0x80023150 nw4r_db_Exception_Init
@@ -42,6 +43,8 @@
 0x8007A970 Layout_calculateMtx
 0x8007A990 Layout_draw
 0x8007B320 lyt_TextBox_CT
+0x800809a0 lyt_Material_GetTexMapAry
+0x80082550 lyt_TexMap_ReplaceImage
 0x80082620 lyt_DrawInfo_CT
 0x800826A0 lyt_DrawInfo_DT
 0x80084000 lyt_ArcResourceLink_Set
@@ -393,7 +396,7 @@
 0x805c21b0 ConfirmPage_setWindowMessage
 0x805c28d8 ControlGroup_calc
 0x805c2c60 ControlLoader_load
-0x805c9888 Page_vf_30
+0x805c9888 Page_onActivate
 0x805cdd00 TextBox_setMessage
 0x805cf154 Font_805cf154
 0x805cf2bc GlyphRenderer_setMaterial
@@ -478,6 +481,8 @@
 0x80625da0 TopMenuPage_ct
 0x80626698 SingleTopMenuPage_ct
 0x80626950 ClassSelectPage_ct
+0x80627684 CupSelectPage_ct
+0x80627bd8 CourseSelectPage_ct
 0x8062c0f4 LicenseRecordsPage_ct
 0x8062c3a4 Section_addPages
 0x80630094 Section_addActivePages
