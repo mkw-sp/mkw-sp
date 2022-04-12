@@ -48,14 +48,14 @@ static int compareGhostIndices(const void *p0, const void *p1) {
     u16 i1 = *(u16 *)p1;
     const RawGhostHeader *h0 = &s_saveManager->rawGhostHeaders[i0];
     const RawGhostHeader *h1 = &s_saveManager->rawGhostHeaders[i1];
-    switch (SaveManager_getTaRuleGhostSorting(s_saveManager)) {
-    case SP_TA_RULE_GHOST_SORTING_FASTEST:
+    switch (SaveManager_getSetting(s_saveManager, kSetting_TaRuleGhostSorting)) {
+    case kTaRuleGhostSorting_Fastest:
         return compareRawGhostHeadersByTime(h0, h1);
-    case SP_TA_RULE_GHOST_SORTING_SLOWEST:
+    case kTaRuleGhostSorting_Slowest:
         return compareRawGhostHeadersByTime(h1, h0);
-    case SP_TA_RULE_GHOST_SORTING_NEWEST:
+    case kTaRuleGhostSorting_Newest:
         return compareRawGhostHeadersByDate(h1, h0);
-    case SP_TA_RULE_GHOST_SORTING_OLDEST:
+    case kTaRuleGhostSorting_Oldest:
         return compareRawGhostHeadersByDate(h0, h1);
     default:
         // Should be unreachable
@@ -70,7 +70,7 @@ void GhostManagerPage_processPopulate(GhostManagerPage *this) {
 
     u32 courseId = s_raceConfig->menuScenario.courseId;
     const u8 *courseSha1 = SaveManager_getCourseSha1(s_saveManager, courseId);
-    bool speedModIsEnabled = SaveManager_getTaRuleClass(s_saveManager) == SP_TA_RULE_CLASS_200CC;
+    bool speedModIsEnabled = SaveManager_getSetting(s_saveManager, kSetting_TaRuleClass) == kTaRuleClass_200cc;
 
     SpGhostList *list = &this->list;
     list->count = 0;

@@ -4,6 +4,56 @@
 #include <stdio.h>
 #include "IniReader.h"
 
+// Ignores sections
+void SpSetting_Set(const BaseSettingsDescriptor *desc, u32 *valueArray, const char *key,
+        const char *value) {
+    int setting = -1;
+    for (size_t i = 0; i < desc->numValues; ++i) {
+        if (!strcmp(key, desc->fieldDescriptors[i].name)) {
+            setting = i;
+            break;
+        }
+    }
+    if (setting == -1) {
+        SP_LOG("Unknown key *::%s", key);
+        SP_LOG("Expected one of:");
+        char validKeys[256];
+        size_t cursor = 0;
+
+        for (size_t i = 0; i < desc->numValues; ++i) {
+            if (cursor >= sizeof(validKeys) - 3) {
+                break;
+            }
+            cursor += snprintf(validKeys + cursor, sizeof(validKeys) - cursor, "%s ",
+                    desc->fieldDescriptors[i].name);
+        }
+        SP_LOG("%s", validKeys);
+        return;
+    }
+    const Setting *spSetting = &desc->fieldDescriptors[setting];
+
+    int valueIt = -1;
+    for (size_t i = 0; i < spSetting->numEnumValues; ++i) {
+        if (!strcmp(spSetting->enumValues[i], value)) {
+            valueIt = i;
+            break;
+        }
+    }
+
+    if (valueIt == -1) {
+        SP_LOG("Unknown value \"%s\" for %s::%s", value,
+                desc->categoryNames[spSetting->category], spSetting->name);
+        SP_LOG("Expected one of:");
+        for (size_t i = 0; i < spSetting->numEnumValues; ++i) {
+            SP_LOG("- %s (%u)", spSetting->enumValues[i], (unsigned)i);
+        }
+        return;
+    }
+    SP_LOG("Setting %s::%s to %s (%i)", desc->categoryNames[spSetting->category],
+            spSetting->name, spSetting->enumValues[valueIt], valueIt);
+    valueArray[setting] = valueIt;
+}
+
 void SpSetting_ParseFromIni(const char *str, size_t len,
         const BaseSettingsDescriptor *desc, u32 *valueArray) {
     IniRange iniRange = IniRange_create(str, len);
@@ -72,8 +122,6 @@ static void Print(char **buf, size_t *maxlen, const char *s, ...) {
 }
 void SpSetting_WriteToIni(char *buf, size_t maxlen, const BaseSettingsDescriptor *desc,
         const u32 *valueArray) {
-    Print(&buf, &maxlen, "# MKW-SP Settings\n");
-
     u32 lastCategory = ~0;
     for (size_t i = 0; i < desc->numValues; ++i) {
         const Setting *spSetting = &desc->fieldDescriptors[i];

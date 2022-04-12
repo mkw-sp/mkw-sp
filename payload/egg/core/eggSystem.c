@@ -177,8 +177,10 @@ static void my_lineCallback(const char *buf, size_t len) {
                 "SP_TA_RULE_GHOST_TAG_CONTENT_TIME_NOLEADING",
                 "SP_TA_RULE_GHOST_TAG_CONTENT_DATE",
             };
+            const u32 rule =
+                    SaveManager_getSetting(s_saveManager, kSetting_TaRuleGhostTagContent);
             OSReport("example_command: taRuleGhostTagContent == %s\n",
-                    tagContent[SaveManager_getTaRuleGhostTagContent(s_saveManager) & 3]);
+                    tagContent[rule & 3]);
         }
         return;
     }
@@ -187,11 +189,23 @@ static void my_lineCallback(const char *buf, size_t len) {
         if (s_saveManager == NULL) {
             OSReport("instant_menu: Failed to load Save Manager\n");
         } else {
-            bool menuTrans = !SaveManager_getSettingPageTransitions(s_saveManager);
-            SaveManager_setSettingPageTransitions(s_saveManager, menuTrans);
+            bool menuTrans =
+                    !SaveManager_getSetting(s_saveManager, kSetting_PageTransitions);
+            SaveManager_setSetting(s_saveManager, kSetting_PageTransitions, menuTrans);
             OSReport("instant_menu: Menu transition animations toggled %s\n",
                     sOnOff[menuTrans]);
         }
+        return;
+    }
+
+    if (StringStartsWithCommand(tmp, "/set")) {
+        char setting[64];
+        char value[64];
+        if (2 != sscanf(tmp, "/set %s %s", setting, value)) {
+            OSReport("&a/set: Invalid arguments\n");
+            return;
+        }
+        ClientSettings_set(&s_saveManager->iniSettings, setting, value);
         return;
     }
 

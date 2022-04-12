@@ -19,7 +19,7 @@ static void my_Page_update(Page *page) {
     switch (page->state) {
     case PAGE_STATE_3:
     case PAGE_STATE_5:
-        if (!SaveManager_getSettingPageTransitions(s_saveManager))
+        if (!SaveManager_getSetting(s_saveManager, kSetting_PageTransitions))
             page->canProceed = true;
         break;
     }

@@ -83,7 +83,7 @@ void CtrlRaceNameBalloon_refreshText(CtrlRaceNameBalloon *this, u32 playerId) {
         return;
     }
 
-    switch (SaveManager_getTaRuleGhostTagContent(s_saveManager)) {
+    switch (SaveManager_getSetting(s_saveManager, kSetting_TaRuleGhostTagContent)) {
     case SP_TA_RULE_GHOST_TAG_CONTENT_NAME:
         CtrlRaceNameBalloon_refreshTextName(this, playerId);
         break;
@@ -113,11 +113,11 @@ void CtrlRaceNameBalloon_calcVisibility(CtrlRaceNameBalloon *this) {
         return;
     }
 
-    switch (SaveManager_getTaRuleGhostTagVisibility(s_saveManager)) {
-    case SP_TA_RULE_GHOST_TAG_VISIBILITY_NONE:
+    switch (SaveManager_getSetting(s_saveManager, kSetting_TaRuleGhostTagVisibility)) {
+    case kTaRuleGhostTagVisibility_None:
         this->isHidden = true;
         return;
-    case SP_TA_RULE_GHOST_TAG_VISIBILITY_WATCHED:
+    case kTaRuleGhostTagVisibility_Watched:
         this->isHidden = this->playerId != (s32)lastWatchedPlayerId;
         return;
     default:

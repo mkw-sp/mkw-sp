@@ -14,7 +14,8 @@ PATCH_B_END(RawLicense_reset, 0x64)
 PATCH_B_START(RawLicense_reset, 0x140)
     lis r3, s_saveManager@ha
     lwz r3, s_saveManager@l (r3)
-    bl SaveManager_getDriftMode
+    li r4, kSetting_DriftMode
+    bl SaveManager_getSetting
     addi r3, r3, 0x1
     lhz r4, 0xea (r31)
     rlwimi r4, r3, 14, 16, 17

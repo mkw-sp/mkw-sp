@@ -25,7 +25,8 @@ PATCH_B_START(Camera_805a2034, 0xbc)
     mr r29, r3
     lis r3, s_saveManager@ha
     lwz r3, s_saveManager@l (r3)
-    bl SaveManager_getSetting169Fov
+    li r4, kSetting_169_Fov
+    bl SaveManager_getSetting
     slwi r3, r3, 4
     subf r3, r3, r29
     addi r0, r3, 0x10

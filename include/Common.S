@@ -121,3 +121,16 @@
 
 #define PATCH_BL_END(dst, offset) \
     PATCH_BRANCH_END(dst, offset, 0x1)
+
+#define kSetting_DriftMode 0
+#define kSetting_HudLabels 1
+#define kSetting_169_Fov 2
+#define kSetting_MapIcons 3
+#define kSetting_TaRuleClass 4
+#define kSetting_TaRuleGhostSorting 5
+#define kSetting_TaRuleGhostTagVisibility 6
+#define kSetting_TaRuleGhostTagContent 7
+#define kSetting_TaRuleSolidGhosts 8
+#define kSetting_PageTransitions 9
+#define kSetting_RaceInputDisplay 10
+#define kSetting_TaRuleGhostSound 11

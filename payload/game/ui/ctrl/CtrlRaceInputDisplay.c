@@ -230,7 +230,7 @@ static void CtrlRaceInputDisplay_calcSelf(UIControl *base) {
 static void CtrlRaceInputDisplay_draw(UIControl *base) {
     // Perform the check here to support hot-swapping in the future via an in-race license
     // settings editor.
-    if (SaveManager_getSettingRaceInputDisplay(s_saveManager) !=
+    if (SaveManager_getSetting(s_saveManager, kSetting_RaceInputDisplay) !=
             SP_SETTING_RACE_INPUT_DISPLAY_SIMPLE) {
         return;
     }

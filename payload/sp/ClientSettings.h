@@ -1,5 +1,9 @@
+#pragma once
+
 #include <Common.h>
 #include <sp/BaseSettings.h>
+#include <sp/StringView.h>
+#include <stdio.h>
 
 // Legacy enums
 enum {
@@ -187,19 +191,20 @@ enum {
     kTaRuleGhostSound_Default = kTaRuleGhostSound_Watched,
 };
 
+// NOTE: Mirrored by ASM in Common.S, modify both when making changes
 typedef enum {
-    kSetting_DriftMode,
-    kSetting_HudLabels,
-    kSetting_169_Fov,
-    kSetting_MapIcons,
-    kSetting_TaRuleClass,
-    kSetting_TaRuleGhostSorting,
-    kSetting_TaRuleGhostTagVisibility,
-    kSetting_TaRuleGhostTagContent,
-    kSetting_TaRuleSolidGhosts,
-    kSetting_PageTransitions,
-    kSetting_RaceInputDisplay,
-    kSetting_TaRuleGhostSound,
+    kSetting_DriftMode = 0,
+    kSetting_HudLabels = 1,
+    kSetting_169_Fov = 2,
+    kSetting_MapIcons = 3,
+    kSetting_TaRuleClass = 4,
+    kSetting_TaRuleGhostSorting = 5,
+    kSetting_TaRuleGhostTagVisibility = 6,
+    kSetting_TaRuleGhostTagContent = 7,
+    kSetting_TaRuleSolidGhosts = 8,
+    kSetting_PageTransitions = 9,
+    kSetting_RaceInputDisplay = 10,
+    kSetting_TaRuleGhostSound = 11,
 
     kSetting_MAX,
 } SpSettingKey;
@@ -212,3 +217,31 @@ enum {
 };
 
 const BaseSettingsDescriptor *ClientSettings_getDescriptor(void);
+
+typedef struct {
+    const BaseSettingsDescriptor *mDesc;
+    u32 mValues[kSetting_MAX];
+} ClientSettings;
+
+static inline void ClientSettings_init(ClientSettings *self) {
+    self->mDesc = ClientSettings_getDescriptor();
+    assert(self->mDesc->numValues == kSetting_MAX);
+}
+static inline void ClientSettings_reset(ClientSettings *self) {
+    SpSetting_ResetToDefault(self->mDesc, self->mValues);
+}
+static inline void ClientSettings_readIni(ClientSettings *self, StringView view) {
+    SpSetting_ParseFromIni(view.s, view.len, self->mDesc, self->mValues);
+}
+static inline void ClientSettings_writeIni(
+        const ClientSettings *self, char *start, size_t len) {
+    const char *header = "# MKW-SP Settings\n";
+    size_t written = snprintf(start, len, "%s", header);
+    start += written;
+    len -= written;
+    SpSetting_WriteToIni(start, len, self->mDesc, self->mValues);
+}
+static inline void ClientSettings_set(
+    ClientSettings* self, const char* key, const char* value) {
+    SpSetting_Set(self->mDesc, self->mValues, key, value);
+}

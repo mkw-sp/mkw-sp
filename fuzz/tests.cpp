@@ -12,6 +12,8 @@ extern "C" {
 #include <utility>
 #include <vector>
 
+#include "spClientSettings.hpp"
+
 template <typename TFunctor>
 struct Defer {
     TFunctor mF;
@@ -164,24 +166,22 @@ static void IniTest() {
 }
 
 static void IniTest2() {
-    u32 settings[kSetting_MAX];
+    ClientSettings settings;
+    ClientSettings_init(&settings);
 
-    const BaseSettingsDescriptor *desc = ClientSettings_getDescriptor();
-    SpSetting_ResetToDefault(desc, settings);
+    ClientSettings_reset(&settings);
 
     char buf[512];
-    SpSetting_WriteToIni(buf, sizeof(buf), desc, settings);
+    ClientSettings_writeIni(&settings, buf, sizeof(buf));
 
     SP_LOG("RESULT:\n%s", buf);
 
-    const char *tmp = "[TTs]\nClass=200cc\n";
-    SpSetting_ParseFromIni(tmp, strlen(tmp), desc, settings);
+    ClientSettings_readIni(&settings, StringView_create("[TTs]\nClass=200cc\n"));
     /*
         [BaseSettings.c:53] Setting Class to 200cc (1)
     */
 
-    const char *invalid = "[TTs]\nClass=1cc\n";
-    SpSetting_ParseFromIni(invalid, strlen(invalid), desc, settings);
+    ClientSettings_readIni(&settings, StringView_create("[TTs]\nClass=1cc\n"));
     /*
         [BaseSettings.c:44] Unknown value "1cc" for TTs::Class
         [BaseSettings.c:45] Expected one of:
@@ -189,14 +189,12 @@ static void IniTest2() {
         [BaseSettings.c:47] - 200cc (1)
     */
 
-    const char *invalid2 = "[TTs]\nClass2=200cc\n";
-    SpSetting_ParseFromIni(invalid2, strlen(invalid2), desc, settings);
+    ClientSettings_readIni(&settings, StringView_create("[TTs]\nClass2=200cc\n"));
     /*
         [BaseSettings.c:28] Unknown key TTs::Class2
     */
 
-    const char *invalid3 = "[TTs 3]\nClass=200cc\n";
-    SpSetting_ParseFromIni(invalid3, strlen(invalid3), desc, settings);
+    ClientSettings_readIni(&settings, StringView_create("[TTs 3]\nClass=200cc\n"));
     /*
         [BaseSettings.c:28] Unknown key TTs 3::Class
     */

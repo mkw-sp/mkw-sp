@@ -34,7 +34,8 @@ PATCH_BL_START(CtrlRace2DMapCharacter_initSelf, 0x294)
 
     lis r3, s_saveManager@ha
     lwz r3, s_saveManager@l (r3)
-    bl SaveManager_getSettingMapIcons
+    li r4, kSetting_MapIcons
+    bl SaveManager_getSetting
     cmpwi r3, 0x1
 
     mr r3, r28

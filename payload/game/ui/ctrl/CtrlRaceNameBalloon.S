@@ -148,7 +148,8 @@ PATCH_BL_START(BalloonManager_calc, 0x48)
     // Check that the tag visibility rule is "watched"
     lis r3, s_saveManager@ha
     lwz r3, s_saveManager@l (r3)
-    bl SaveManager_getTaRuleGhostTagVisibility
+    li r4, kSetting_TaRuleGhostTagVisibility
+    bl SaveManager_getSetting
     cmpwi r3, 0x1
     mr r3, r24
     mtlr r25

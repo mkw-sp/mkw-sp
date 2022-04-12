@@ -63,9 +63,17 @@ static void WriterTextBox_newLine(WriterTextBox *self) {
     self->max_height = 0.0f;
 }
 
-static Rect WriterTextBox_advanceCursor(WriterTextBox *self, float width, float height) {
+static Rect WriterTextBox_advanceCursor(
+        WriterTextBox *self, float width, float height, bool isSpace) {
     // Calc line wrap
-    if (self->base_region.right - (width + self->cursor_x) < 1.0f) {
+    float indentThreshhold = width;
+
+    // Strongly favor word breaks
+    if (isSpace) {
+        indentThreshhold = 10.0f * width;
+    }
+
+    if (self->base_region.right - (width + self->cursor_x) < indentThreshhold) {
         WriterTextBox_newLine(self);
         // Indent
         self->cursor_x += width;
@@ -186,7 +194,8 @@ static void TextWriter_drawCharByColors(
         width *= 0.75f;
     }
 
-    const Rect screen_pos = WriterTextBox_advanceCursor(&self->mBox, width, height);
+    const Rect screen_pos =
+            WriterTextBox_advanceCursor(&self->mBox, width, height, c == '-');
 
     TextWriter_drawQuad(self,    //
             fg_color, bg_color,  // Color
@@ -257,16 +266,17 @@ static char sLastLine[64];
 
 enum {
     LINES = 24,
+    LINE_SIZE = 256,
 };
-static char sHistory[LINES][128];
+static char sHistory[LINES][LINE_SIZE];
 static size_t sHistoryCursor = 0;
 static void AppendToHistory(const char *s) {
     if (sHistoryCursor >= LINES) {
-        memmove(sHistory, sHistory + 1, 128 * (LINES - 1));
+        memmove(sHistory, sHistory + 1, LINE_SIZE * (LINES - 1));
         --sHistoryCursor;
     }
     assert(sHistoryCursor < LINES);
-    snprintf(sHistory[sHistoryCursor++], 127, "&r&f%s", s);
+    snprintf(sHistory[sHistoryCursor++], LINE_SIZE - 1, "&r&f%s", s);
 }
 
 static void Console_create() {
@@ -360,21 +370,39 @@ void Console_calc(void) {
     Console_stateDefault(sFramesSinceLastOpen++);
 }
 void Console_addLine(const char *s, size_t UNUSED(len)) {
-    OSThread *thread = OSGetCurrentThread();
-    if (!sInit || thread == NULL) {
-        SP_SCOPED_NO_INTERRUPTS();
+    // To support being called by an interrupt handler, we can't use a mutex. If a call
+    // was interrupted, the global state could be accesesd in an invalid state.
+    SP_SCOPED_NO_INTERRUPTS();
+
 #if 0
+    OSThread *thread = OSGetCurrentThread();
+    if (thread == NULL) {
         if (thread == NULL) {
             va_list l;
             vprintf("Called with NULL current thread (hack to prevent optimization to "
                     "puts, which dolphin doesn't detect: garbage int %i)\n",
                     l);
         }
-#endif
-        AppendToHistory(s);
-        return;
     }
-
-    SP_SCOPED_MUTEX_LOCK(sConsoleMutex);
+#endif
     AppendToHistory(s);
+}
+
+static void Console_vprintfThreadUnsafe(const char *prefix, const char *s, va_list args) {
+    // 1024 bytes of stack may be too large for some threads, so we store it in BSS.
+    static char formatted[512];
+    vsnprintf(formatted, sizeof(formatted), s, args);
+
+    static char buf[512];
+    const size_t len = snprintf(buf, sizeof(buf), "%s%s", prefix, formatted);
+
+    Console_addLine(buf, len);
+}
+
+void Console_vprintf(const char *prefix, const char *s, va_list args) {
+    // To support being called by an interrupt handler, we can't use a mutex. If a call
+    // was interrupted, the global state could be accesesd in an invalid state.
+    SP_SCOPED_NO_INTERRUPTS();
+
+    Console_vprintfThreadUnsafe(prefix, s, args);
 }

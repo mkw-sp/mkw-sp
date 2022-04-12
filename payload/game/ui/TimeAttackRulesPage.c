@@ -25,22 +25,22 @@ static void onRuleControlFront(RadioButtonControlHandler *this, RadioButtonContr
     SpSaveLicense *license = s_saveManager->spLicenses[s_saveManager->spCurrentLicense];
     switch (control->index) {
     case 0:
-        license->taRuleClass = selected;
+        s_saveManager->iniSettings.mValues[kSetting_TaRuleClass] = selected;
         break;
     case 1:
-        license->taRuleGhostSorting = selected;
+        s_saveManager->iniSettings.mValues[kSetting_TaRuleGhostSorting] = selected;
         break;
     case 2:
-        license->taRuleGhostTagVisibility = selected;
+        s_saveManager->iniSettings.mValues[kSetting_TaRuleGhostTagVisibility] = selected;
         break;
     case 3:
-        license->taRuleGhostTagContent = selected;
+        s_saveManager->iniSettings.mValues[kSetting_TaRuleGhostTagContent] = selected;
         break;
     case 4:
-        license->taRuleSolidGhosts = selected;
+        s_saveManager->iniSettings.mValues[kSetting_TaRuleSolidGhosts] = selected;
         break;
     case 5:
-        license->taRuleGhostSound = selected;
+        s_saveManager->iniSettings.mValues[kSetting_TaRuleGhostSound] = selected;
         break;
     }
 
@@ -202,22 +202,22 @@ static void TimeAttackRulesPage_onInit(Page *base) {
         u32 chosen;
         switch (i) {
         case 0:
-            chosen = license->taRuleClass;
+            chosen = s_saveManager->iniSettings.mValues[kSetting_TaRuleClass];
             break;
         case 1:
-            chosen = license->taRuleGhostSorting;
+            chosen = s_saveManager->iniSettings.mValues[kSetting_TaRuleGhostSorting];
             break;
         case 2:
-            chosen = license->taRuleGhostTagVisibility;
+            chosen = s_saveManager->iniSettings.mValues[kSetting_TaRuleGhostTagVisibility];
             break;
         case 3:
-            chosen = license->taRuleGhostTagContent;
+            chosen = s_saveManager->iniSettings.mValues[kSetting_TaRuleGhostTagContent];
             break;
         case 4:
-            chosen = license->taRuleSolidGhosts;
+            chosen = s_saveManager->iniSettings.mValues[kSetting_TaRuleSolidGhosts];
             break;
         case 5:
-            chosen = license->taRuleGhostSound;
+            chosen = s_saveManager->iniSettings.mValues[kSetting_TaRuleGhostSound];
             break;
         }
         char variant[0x20];

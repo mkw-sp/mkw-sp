@@ -52,19 +52,9 @@ void my_OSReport(const char *msg, ...) {
     LogFile_vprintf(msg, args);
     va_end(args);
 
-    {
-        char formatted[128];
-        va_start(args, msg);
-        vsnprintf(formatted, sizeof(formatted), msg, args);
-        va_end(args);
-
-        const char* prefix = GetPrefix(ClassifyCaller(OSGetStackPointer()));
-
-        char buf[128];
-        const size_t len = snprintf(buf, sizeof(buf), "%s%s",
-                prefix, formatted);
-
-        Console_addLine(buf, len);
-    }
+    const char *prefix = GetPrefix(ClassifyCaller(OSGetStackPointer()));
+    va_start(args, msg);
+    Console_vprintf(prefix, msg, args);
+    va_end(args);
 }
 PATCH_B(OSReport, my_OSReport);

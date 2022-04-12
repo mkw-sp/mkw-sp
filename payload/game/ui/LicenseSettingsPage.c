@@ -19,23 +19,26 @@ static const InputHandler_vt onBack_vt = {
 
 static void onSettingControlFront(RadioButtonControlHandler *this, RadioButtonControl *control,
         u32 UNUSED(localPlayerId), s32 selected) {
-    SpSaveLicense *license = s_saveManager->spLicenses[s_saveManager->spCurrentLicense];
+    int setting = -1;
     switch (control->index) {
     case 0:
-        license->settingHudLabels = selected;
+        setting = kSetting_HudLabels;
         break;
     case 1:
-        license->setting169Fov = selected;
+        setting = kSetting_169_Fov;
         break;
     case 2:
-        license->settingMapIcons = selected;
+        setting = kSetting_MapIcons;
         break;
     case 3:
-        license->settingPageTransitions = selected;
+        setting = kSetting_PageTransitions;
         break;
     case 4:
-        license->settingRaceInputDisplay = selected;
+        setting = kSetting_RaceInputDisplay;
         break;
+    }
+    if (setting != -1) {
+        s_saveManager->iniSettings.mValues[setting] = selected;
     }
 
     LicenseSettingsPage *page = CONTAINER_OF(this, LicenseSettingsPage, onSettingControlFront);
@@ -174,23 +177,22 @@ static void LicenseSettingsPage_onInit(Page *base) {
         "RaceInputDisplay",
     };
     for (u32 i = 0; i < ARRAY_SIZE(this->settingControls); i++) {
-        const SpSaveLicense *license = s_saveManager->spLicenses[s_saveManager->spCurrentLicense];
         u32 chosen;
         switch (i) {
         case 0:
-            chosen = license->settingHudLabels;
+            chosen = s_saveManager->iniSettings.mValues[kSetting_HudLabels]; 
             break;
         case 1:
-            chosen = license->setting169Fov;
+            chosen = s_saveManager->iniSettings.mValues[kSetting_169_Fov];
             break;
         case 2:
-            chosen = license->settingMapIcons;
+            chosen = s_saveManager->iniSettings.mValues[kSetting_MapIcons];
             break;
         case 3:
-            chosen = license->settingPageTransitions;
+            chosen = s_saveManager->iniSettings.mValues[kSetting_PageTransitions];
             break;
         case 4:
-            chosen = license->settingRaceInputDisplay;
+            chosen = s_saveManager->iniSettings.mValues[kSetting_RaceInputDisplay];
             break;
         }
         char variant[0x20];

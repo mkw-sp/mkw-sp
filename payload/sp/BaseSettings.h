@@ -23,3 +23,7 @@ void SpSetting_ParseFromIni(
 void SpSetting_WriteToIni(
         char *buf, size_t maxlen, const BaseSettingsDescriptor *desc, const u32 *valueArray);
 void SpSetting_ResetToDefault(const BaseSettingsDescriptor *desc, u32 *valueArray);
+
+// Ignores sections
+void SpSetting_Set(const BaseSettingsDescriptor *desc, u32 *valueArray, const char *key,
+        const char *value);

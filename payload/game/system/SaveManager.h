@@ -21,7 +21,7 @@ enum {
 };
 
 enum {
-    SP_SAVE_LICENSE_VERSION = 3,
+    SP_SAVE_LICENSE_VERSION = 4,
 };
 
 typedef struct {
@@ -38,9 +38,8 @@ typedef struct {
 typedef struct {
     SpSaveSection;
     MiiId miiId;
-    SpSettingBitField;
 } SpSaveLicense;
-static_assert(sizeof(SpSaveLicense) == 0x18);
+static_assert(sizeof(SpSaveLicense) == 0x14);
 
 enum {
     SP_BUFFER_SIZE = 0x10000, // 64 KiB
@@ -88,6 +87,7 @@ typedef struct {
     u8 *ghostInitStack; // Added
     bool *courseSha1IsValid; // Added
     u8 (*courseSha1s)[0x14]; // Added
+    ClientSettings iniSettings;
 } SaveManager;
 static_assert(offsetof(SaveManager, spBuffer) == 0x25008);
 
@@ -110,35 +110,8 @@ void SaveManager_eraseSpLicense(SaveManager *this);
 
 void SaveManager_createSpLicense(SaveManager *this, const MiiId *miiId);
 
-u32 SaveManager_getDriftMode(const SaveManager *this);
-
-void SaveManager_setDriftMode(SaveManager *this, u32 driftMode);
-
-u32 SaveManager_getSettingHudLabels(const SaveManager *this);
-
-u32 SaveManager_getSetting169Fov(const SaveManager *this);
-
-u32 SaveManager_getSettingMapIcons(const SaveManager *this);
-
-u32 SaveManager_getSettingPageTransitions(const SaveManager *this);
-
-void SaveManager_setSettingPageTransitions(const SaveManager *this, u32 pageTransitions);
-
-u32 SaveManager_getSettingRaceInputDisplay(const SaveManager *this);
-
-void SaveManager_setSettingRaceInputDisplay(SaveManager *this, u32 raceInputDisplay);
-
-u32 SaveManager_getTaRuleClass(const SaveManager *this);
-
-u32 SaveManager_getTaRuleGhostSorting(const SaveManager *this);
-
-u32 SaveManager_getTaRuleGhostTagVisibility(const SaveManager *this);
-
-u32 SaveManager_getTaRuleGhostTagContent(const SaveManager *this);
-
-u32 SaveManager_getTaRuleSolidGhosts(const SaveManager *this);
-
-u32 SaveManager_getTaRuleGhostSound(const SaveManager *this);
+u32 SaveManager_getSetting(const SaveManager *this, SpSettingKey key);
+void SaveManager_setSetting(SaveManager *this, SpSettingKey key, u32 value);
 
 void SaveManager_loadGhostAsync(SaveManager *this, s32 licenseId, u32 category, u32 index,
         u32 courseId);

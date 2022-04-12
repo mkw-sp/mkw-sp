@@ -135,6 +135,7 @@ static bool SpSaveLicense_checkSize(const SpSaveLicense *this) {
     case 0:
     case 1:
     case 2:
+    case 3:
         return this->size == 0x18;
     case SP_SAVE_LICENSE_VERSION:
         return this->size == sizeof(SpSaveLicense);
@@ -144,57 +145,13 @@ static bool SpSaveLicense_checkSize(const SpSaveLicense *this) {
 }
 
 static void SpSaveLicense_upgrade(SpSaveLicense *this) {
-    if (this->version < 1) {
-        this->settingPageTransitions = SP_SETTING_PAGE_TRANSITIONS_DEFAULT;
-    }
-
-    if (this->version < 2) {
-        this->settingRaceInputDisplay = SP_SETTING_RACE_INPUT_DISPLAY_DEFAULT;
-    }
-
-    if (this->version < 3) {
-        this->taRuleGhostSound = SP_TA_RULE_GHOST_SOUND_DEFAULT;
-    }
-
     if (this->version < SP_SAVE_LICENSE_VERSION) {
         this->size = sizeof(SpSaveLicense);
         this->version = SP_SAVE_LICENSE_VERSION;
     }
 }
 
-static void SpSaveLicense_sanitize(SpSaveLicense *this) {
-    switch (this->settingRaceInputDisplay) {
-    case SP_SETTING_RACE_INPUT_DISPLAY_DISABLE:
-    case SP_SETTING_RACE_INPUT_DISPLAY_SIMPLE:
-        break;
-    default:
-        this->settingRaceInputDisplay = SP_SETTING_RACE_INPUT_DISPLAY_DEFAULT;
-    }
-    switch (this->taRuleGhostTagVisibility) {
-    case SP_TA_RULE_GHOST_TAG_VISIBILITY_NONE:
-    case SP_TA_RULE_GHOST_TAG_VISIBILITY_WATCHED:
-    case SP_TA_RULE_GHOST_TAG_VISIBILITY_ALL:
-        break;
-    default:
-        this->taRuleGhostTagVisibility = SP_TA_RULE_GHOST_TAG_VISIBILITY_DEFAULT;
-    }
-    switch (this->taRuleSolidGhosts) {
-    case SP_TA_RULE_SOLID_GHOSTS_NONE:
-    case SP_TA_RULE_SOLID_GHOSTS_WATCHED:
-    case SP_TA_RULE_SOLID_GHOSTS_ALL:
-        break;
-    default:
-        this->taRuleSolidGhosts = SP_TA_RULE_SOLID_GHOSTS_DEFAULT;
-    }
-    switch (this->taRuleGhostSound) {
-    case SP_TA_RULE_GHOST_SOUND_NONE:
-    case SP_TA_RULE_GHOST_SOUND_WATCHED:
-    case SP_TA_RULE_GHOST_SOUND_ALL:
-        break;
-    default:
-        this->taRuleGhostSound = SP_TA_RULE_GHOST_SOUND_DEFAULT;
-    }
-}
+static void SpSaveLicense_sanitize(SpSaveLicense * UNUSED(this)) {}
 
 static bool SaveManager_initSpSave(SaveManager *this) {
     const wchar_t path[] = L"/mkw-sp/save.bin";
@@ -245,6 +202,7 @@ static bool SaveManager_initSpSave(SaveManager *this) {
         if (section->magic == SP_SAVE_LICENSE_MAGIC) {
             const SpSaveLicense *license = (SpSaveLicense *)section;
             if (!SpSaveLicense_checkSize(license)) {
+                SP_LOG("ERROR: Invalid size");
                 return false;
             }
             unusedLicenseCount--;
@@ -282,6 +240,25 @@ static bool SaveManager_initSpSave(SaveManager *this) {
 
     for (u32 i = this->spLicenseCount; i < MAX_SP_LICENSE_COUNT; i++) {
         this->spLicenses[i] = spAlloc(sizeof(SpSaveLicense), 0x4, heap);
+    }
+
+    ClientSettings_init(&this->iniSettings);
+    ClientSettings_reset(&this->iniSettings);
+
+    // Load INI settings
+    {
+        // TODO: Hopefully this is enough. Can always stream the file if not.
+        char iniBuffer[512];
+
+        u32 size;
+        if (Storage_readFile(L"/mkw-sp/settings.ini", iniBuffer, sizeof(iniBuffer), &size)) {
+            ClientSettings_readIni(&this->iniSettings, (StringView){ .s = iniBuffer, .len = size });
+        } else {
+            ClientSettings_writeIni(&this->iniSettings, iniBuffer, sizeof(iniBuffer));
+            SP_LOG("Initial Settings File: %s", iniBuffer);
+            bool written = Storage_writeFile(L"/mkw-sp/settings.ini", true, iniBuffer, strlen(iniBuffer));
+            assert(written);
+        }
     }
 
     return true;
@@ -327,6 +304,36 @@ static void my_SaveManager_resetAsync(SaveManager *this) {
 }
 PATCH_B(SaveManager_resetAsync, my_SaveManager_resetAsync);
 
+static bool TryReplace(const wchar_t* path, const void* fileData, size_t fileSize) {
+    wchar_t newPath[64];
+    swprintf(newPath, ARRAY_SIZE(newPath), L"%s.new", path);
+    wchar_t oldPath[64];
+    swprintf(oldPath, ARRAY_SIZE(oldPath), L"%s.old", path);
+
+    if (!Storage_writeFile(newPath, true, fileData, fileSize)) {
+        SP_LOG("Failed to write to %ls", newPath);
+        return false;
+    }
+
+    if (!Storage_remove(oldPath, true)) {
+        SP_LOG("Failed to remove %ls", oldPath);
+        return false;
+    }
+
+    if (!Storage_rename(path, oldPath)) {
+        SP_LOG("Failed to rename %ls to %ls", path, oldPath);
+        return false;
+    }
+
+    if (!Storage_rename(newPath, path)) {
+        SP_LOG("Failed to rename %ls to %ls", newPath, path);
+        return false;
+    }
+
+    Storage_remove(oldPath, true); // Not a big deal if this fails
+    return true;
+}
+
 static void SaveManager_saveSp(SaveManager *this) {
     u32 size = sizeof(SpSaveHeader);
     for (u32 i = 0; i < this->spSectionCount; i++) {
@@ -341,23 +348,17 @@ static void SaveManager_saveSp(SaveManager *this) {
     SpSaveHeader header = { .magic = SP_SAVE_HEADER_MAGIC, .crc32 = crc32 };
     memcpy(this->spBuffer, &header, sizeof(header));
 
-    if (!Storage_writeFile(L"/mkw-sp/save.bin.new", true, this->spBuffer, size)) {
+    if (!TryReplace(L"/mkw-sp/save.bin", this->spBuffer, size)) {
+        SP_LOG("Failed to save to save.bin");
         goto fail;
     }
-
-    if (!Storage_remove(L"/mkw-sp/save.bin.old", true)) {
+    char iniBuffer[512];
+    ClientSettings_writeIni(&this->iniSettings, iniBuffer, sizeof(iniBuffer));
+    SP_LOG("Writing settings: %s", iniBuffer);
+    if (!TryReplace(L"/mkw-sp/settings.ini", iniBuffer, strlen(iniBuffer))) {
+        SP_LOG("Failed to save settings.ini");
         goto fail;
     }
-
-    if (!Storage_rename(L"/mkw-sp/save.bin", L"/mkw-sp/save.bin.old")) {
-        goto fail;
-    }
-
-    if (!Storage_rename(L"/mkw-sp/save.bin.new", L"/mkw-sp/save.bin")) {
-        goto fail;
-    }
-
-    Storage_remove(L"/mkw-sp/save.bin.old", true); // Not a big deal if this fails
 
     this->isBusy = false;
     this->result = RK_NAND_RESULT_OK;
@@ -408,18 +409,6 @@ void SaveManager_createSpLicense(SaveManager *this, const MiiId *miiId) {
     license->size = sizeof(SpSaveLicense);
     license->version = SP_SAVE_LICENSE_VERSION;
     license->miiId = *miiId;
-    license->driftMode = SP_DRIFT_MODE_DEFAULT;
-    license->settingHudLabels = SP_SETTING_HUD_LABELS_DEFAULT;
-    license->setting169Fov = SP_SETTING_169_FOV_DEFAULT;
-    license->settingMapIcons = SP_SETTING_MAP_ICONS_DEFAULT;
-    license->settingPageTransitions = SP_SETTING_PAGE_TRANSITIONS_DEFAULT;
-    license->settingRaceInputDisplay = SP_SETTING_RACE_INPUT_DISPLAY_DEFAULT;
-    license->taRuleClass = SP_TA_RULE_CLASS_DEFAULT;
-    license->taRuleGhostSorting = SP_TA_RULE_GHOST_SORTING_DEFAULT;
-    license->taRuleGhostTagVisibility = SP_TA_RULE_GHOST_TAG_VISIBILITY_DEFAULT;
-    license->taRuleGhostTagContent = SP_TA_RULE_GHOST_TAG_CONTENT_DEFAULT;
-    license->taRuleSolidGhosts = SP_TA_RULE_SOLID_GHOSTS_DEFAULT;
-    license->taRuleGhostSound = SP_TA_RULE_GHOST_SOUND_DEFAULT;
     this->spSections[this->spSectionCount++] = license;
     this->spCurrentLicense = this->spLicenseCount - 1;
 }
@@ -430,126 +419,37 @@ void SaveManager_changeSpLicenseMiiId(const SaveManager *this, const MiiId *miiI
     }
 
     this->spLicenses[this->spCurrentLicense]->miiId = *miiId;
-}
+} 
 
-u32 SaveManager_getDriftMode(const SaveManager *this) {
+u32 SaveManager_getSetting(const SaveManager *this, SpSettingKey key) {
+    assert(key < kSetting_MAX);
+
+#if 0
     if (this->spCurrentLicense < 0) {
-        return SP_DRIFT_MODE_DEFAULT;
+        const BaseSettingsDescriptor* desc = ClientSettings_getDescriptor();
+        assert(key < desc->numValues);
+
+        const Setting* field = &desc->fieldDescriptors[key];
+        return field->defaultValue;
     }
 
-    return this->spLicenses[this->spCurrentLicense]->driftMode;
+    assert(this->spLicenses[this->spCurrentLicense]->fields.mDesc);
+    return this->spLicenses[this->spCurrentLicense]->fields.mValues[key];
+#endif
+    return this->iniSettings.mValues[key];
 }
 
-void SaveManager_setDriftMode(SaveManager *this, u32 driftMode) {
-    if (this->spCurrentLicense < 0) {
-        return;
-    }
+void SaveManager_setSetting(SaveManager *this, SpSettingKey key, u32 value) {
+    assert(key < kSetting_MAX);
 
-    this->spLicenses[this->spCurrentLicense]->driftMode = driftMode;
-}
-
-u32 SaveManager_getSettingHudLabels(const SaveManager *this) {
-    if (this->spCurrentLicense < 0) {
-        return SP_SETTING_HUD_LABELS_DEFAULT;
-    }
-
-    return this->spLicenses[this->spCurrentLicense]->settingHudLabels;
-}
-
-u32 SaveManager_getSetting169Fov(const SaveManager *this) {
-    if (this->spCurrentLicense < 0) {
-        return SP_SETTING_HUD_LABELS_DEFAULT;
-    }
-
-    return this->spLicenses[this->spCurrentLicense]->setting169Fov;
-}
-
-u32 SaveManager_getSettingMapIcons(const SaveManager *this) {
-    if (this->spCurrentLicense < 0) {
-        return SP_SETTING_MAP_ICONS_DEFAULT;
-    }
-
-    return this->spLicenses[this->spCurrentLicense]->settingMapIcons;
-}
-
-u32 SaveManager_getSettingPageTransitions(const SaveManager *this) {
-    if (this->spCurrentLicense < 0) {
-        return SP_SETTING_PAGE_TRANSITIONS_DEFAULT;
-    }
-
-    return this->spLicenses[this->spCurrentLicense]->settingPageTransitions;
-}
-
-void SaveManager_setSettingPageTransitions(const SaveManager *this, u32 pageTransitions) {
+#if 0
     if (this->spCurrentLicense < 0) {
         return;
     }
 
-    this->spLicenses[this->spCurrentLicense]->settingPageTransitions = pageTransitions;
-}
-
-u32 SaveManager_getSettingRaceInputDisplay(const SaveManager *this) {
-    if (this->spCurrentLicense < 0) {
-        return SP_SETTING_RACE_INPUT_DISPLAY_DEFAULT;
-    }
-
-    return this->spLicenses[this->spCurrentLicense]->settingRaceInputDisplay;
-}
-
-void SaveManager_setSettingRaceInputDisplay(SaveManager *this, u32 raceInputDisplay) {
-    if (this->spCurrentLicense < 0) {
-        return;
-    }
-
-    this->spLicenses[this->spCurrentLicense]->settingRaceInputDisplay = raceInputDisplay;
-}
-
-u32 SaveManager_getTaRuleClass(const SaveManager *this) {
-    if (this->spCurrentLicense < 0) {
-        return SP_TA_RULE_CLASS_DEFAULT;
-    }
-
-    return this->spLicenses[this->spCurrentLicense]->taRuleClass;
-}
-
-u32 SaveManager_getTaRuleGhostSorting(const SaveManager *this) {
-    if (this->spCurrentLicense < 0) {
-        return SP_TA_RULE_GHOST_SORTING_DEFAULT;
-    }
-
-    return this->spLicenses[this->spCurrentLicense]->taRuleGhostSorting;
-}
-
-u32 SaveManager_getTaRuleGhostTagVisibility(const SaveManager *this) {
-    if (this->spCurrentLicense < 0) {
-        return SP_TA_RULE_GHOST_TAG_VISIBILITY_DEFAULT;
-    }
-
-    return this->spLicenses[this->spCurrentLicense]->taRuleGhostTagVisibility;
-}
-
-u32 SaveManager_getTaRuleGhostTagContent(const SaveManager *this) {
-    if (this->spCurrentLicense < 0) {
-        return SP_TA_RULE_GHOST_TAG_CONTENT_DEFAULT;
-    }
-
-    return this->spLicenses[this->spCurrentLicense]->taRuleGhostTagContent;
-}
-
-u32 SaveManager_getTaRuleSolidGhosts(const SaveManager *this) {
-    if (this->spCurrentLicense < 0) {
-        return SP_TA_RULE_SOLID_GHOSTS_DEFAULT;
-    }
-
-    return this->spLicenses[this->spCurrentLicense]->taRuleSolidGhosts;
-}
-
-u32 SaveManager_getTaRuleGhostSound(const SaveManager *this) {
-    if (this->spCurrentLicense < 0) {
-        return SP_TA_RULE_GHOST_SOUND_DEFAULT;
-    }
-
-    return this->spLicenses[this->spCurrentLicense]->taRuleGhostSound;
+    this->spLicenses[this->spCurrentLicense]->fields.mValues[key] = value;
+#endif
+    this->iniSettings.mValues[key] = value;
 }
 
 static void SaveManager_loadGhostHeaders(SaveManager *this) {
