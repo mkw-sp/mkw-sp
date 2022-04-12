@@ -25,6 +25,10 @@ static inline StringView StringView_create(const char *s) {
         .len = strlen(s),
     };
 }
+static inline bool StringView_equalsCStr(StringView v, const char *s) {
+    const size_t len = strlen(s);
+    return v.len == len && !memcmp(v.s, s, len);
+}
 static inline StringView SubString(StringView view, size_t offset) {
     if (offset > view.len) {
         view.len = 0;
@@ -88,3 +92,13 @@ static StringView SkipTrailing(StringView view, char c) {
 
     return view;
 }
+
+// Get a stack-allocated CString of a string view
+#define sv_as_cstr(sv, svLen)                             \
+    ({                                                    \
+        char *cstr = (char *)__builtin_alloca(svLen + 1); \
+        const size_t lenWritten = MIN(svLen, sv.len);     \
+        memcpy(cstr, sv.s, lenWritten);                   \
+        cstr[lenWritten] = '\0';                          \
+        cstr;                                             \
+    })

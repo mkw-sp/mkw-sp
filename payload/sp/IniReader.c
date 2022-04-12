@@ -62,6 +62,7 @@ bool IniRange_next(IniRange *self, IniProperty *prop) {
         case '[':
             if (self->state == STATE_NONE) {
                 token = it;
+                lastNonSpace = token;
                 self->state = STATE_WANT_SECTION;
                 break;
             }
@@ -105,7 +106,6 @@ bool IniRange_next(IniRange *self, IniProperty *prop) {
                     .keyvalLineNum = self->lineNum,
                     .keyvalLineCharacter = key.s - lineStart,
                 };
-                lineStart = NULL;
                 return true;
             }
             switch (self->state) {
@@ -160,6 +160,7 @@ bool IniRange_next(IniRange *self, IniProperty *prop) {
             if (self->state == STATE_NONE) {
                 self->state = STATE_WANT_DELIM;
                 token = it;
+                lastNonSpace = token;
                 break;
             }
             // Treat as identifier
@@ -167,21 +168,25 @@ bool IniRange_next(IniRange *self, IniProperty *prop) {
             switch (self->state) {
             case STATE_IN_COMMENT:
             case STATE_IN_COMMENT_WANT_VALUE:
-                break;
+                continue;
             case STATE_WANT_SECTION:
                 token = it;
+                lastNonSpace = token;
                 self->state = STATE_WANT_SECTION_END;
-                break;
+                continue;
             case STATE_WANT_VALUE:
                 token = it;
+                lastNonSpace = token;
                 self->state = STATE_WANT_VALUE_END;
-                break;
-            case STATE_NONE:
+                continue;
             case STATE_WANT_SECTION_END:
             case STATE_WANT_DELIM:
             case STATE_WANT_VALUE_END:
-                lastNonSpace = it;
-                break;
+                if (*it != ' ') {
+                    lastNonSpace = it;
+                }
+                continue;
+            case STATE_NONE:
             case STATE_POST_WANT_VALUE:
                 __builtin_unreachable();
             }

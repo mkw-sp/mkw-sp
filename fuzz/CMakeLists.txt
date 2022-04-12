@@ -21,6 +21,8 @@ add_executable(Fuzzing
     # (Cross-platform)
     ${PROJECT_SOURCE_DIR}/../payload/sp/Emulator/NetEmu.cpp
     ${PROJECT_SOURCE_DIR}/../payload/sp/Emulator/OSEmu.cpp
+    ${PROJECT_SOURCE_DIR}/../payload/sp/BaseSettings.c
+    ${PROJECT_SOURCE_DIR}/../payload/sp/ClientSettings.c
     ${PROJECT_SOURCE_DIR}/../payload/sp/Host.c
     ${PROJECT_SOURCE_DIR}/../payload/sp/IniReader.c
     ${PROJECT_SOURCE_DIR}/../payload/sp/NetStorageClient.c
