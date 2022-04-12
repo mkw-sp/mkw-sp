@@ -1,11 +1,11 @@
 #include "Patcher.h"
 
+#include "sp/Dol.h"
+#include "sp/Rel.h"
+
 #include <revolution.h>
 
 #include <string.h>
-
-#include <Dol.h>
-#include <Rel.h>
 
 extern const Patch __start_patches;
 extern const Patch __stop_patches;

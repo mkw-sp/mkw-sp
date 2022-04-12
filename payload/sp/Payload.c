@@ -1,22 +1,20 @@
-#include "Patcher.h"
+#include "Payload.h"
 
-#include <sp/Host.h>
-#include <sp/LogFile.h>
-#include <sp/Memory.h>
-#include <sp/Net.h>
-#include <sp/Stack.h>
-#include <sp/Storage.h>
-#include <sp/Usb.h>
+#include "sp/Dol.h"
+#include "sp/Host.h"
+#include "sp/LogFile.h"
+#include "sp/Memory.h"
+#include "sp/Net.h"
+#include "sp/Patcher.h"
+#include "sp/Rel.h"
+#include "sp/SIKeyboard.h"
+#include "sp/Stack.h"
+#include "sp/Storage.h"
+#include "sp/Usb.h"
 
 #include <revolution.h>
 
 #include <string.h>
-
-#include <Dol.h>
-#include <Payload.h>
-#include <Rel.h>
-
-#include <sp/SIKeyboard.h>
 
 void Payload_init(void) {
     Memory_ProtectRangeModule(OS_PROTECT_CHANNEL_0, Payload_getTextSectionStart(), Payload_getRodataSectionEnd(), OS_PROTECT_PERMISSION_READ);

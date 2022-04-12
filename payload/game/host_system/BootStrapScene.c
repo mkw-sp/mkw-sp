@@ -1,13 +1,12 @@
 #include "BootStrapScene.h"
-#include "Patcher.h"
 
-#include <Rel.h>
-#include <sp/Memory.h>
+#include "game/system/Console.h"
+#include "sp/Host.h"
+#include "sp/Memory.h"
+#include "sp/Patcher.h"
+#include "sp/Rel.h"
+
 #include <string.h>
-
-
-#include <game/system/Console.h>
-#include <sp/Host.h>
 
 typedef void (*RelEntryFunction)(void);
 

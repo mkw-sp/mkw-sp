@@ -1,9 +1,10 @@
 #include "StackTrace.h"
-#include <revolution.h>
 
-#include <Dol.h>
-#include <Payload.h>
-#include <Rel.h>
+#include "sp/Dol.h"
+#include "sp/Payload.h"
+#include "sp/Rel.h"
+
+#include <revolution.h>
 
 #include <stdio.h>
 
