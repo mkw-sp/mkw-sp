@@ -322,6 +322,7 @@ code_in_files = {
         os.path.join('payload', 'sp', 'Sdi.c'),
         os.path.join('payload', 'sp', 'SIKeyboard.c'),
         os.path.join('payload', 'sp', 'Slab.c'),
+        os.path.join('payload', 'sp', 'Stack.S'),
         os.path.join('payload', 'sp', 'Stack.c'),
         os.path.join('payload', 'sp', 'StackTrace.c'),
         os.path.join('payload', 'sp', 'Storage.c'),
