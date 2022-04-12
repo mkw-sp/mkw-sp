@@ -1,6 +1,6 @@
 #include <Common.S>
 
-// These functions can be better optimized if we find another register that is free for use
+// These functions can be better optimized if we can find another register that is free for use
 
 .globl Stack_XORLinkRegisterRestore
 Stack_XORLinkRegisterRestore:

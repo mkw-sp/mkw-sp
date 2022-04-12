@@ -90,8 +90,8 @@ void my_BootStrapScene_calc(BootStrapScene *this) {
     }
 
     Patcher_patch(PATCHER_BINARY_REL);
-    // The game will crash if the following function is ran before the '.rel' module is patched
 #ifndef GDB_COMPATIBLE
+    // The game will crash if the following function is ran before the '.rel' module is patched
     Stack_DoLinkRegisterPatches(Rel_getTextSectionStart(), Rel_getTextSectionEnd());
 #endif
     Memory_ProtectRangeModule(OS_PROTECT_CHANNEL_3, Rel_getTextSectionStart(), Rel_getRodataSectionEnd(), OS_PROTECT_PERMISSION_READ);
