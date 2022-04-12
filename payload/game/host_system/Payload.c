@@ -63,6 +63,9 @@ void Payload_init(void) {
 
 __attribute__((no_stack_protector)) __attribute__((section("first"))) void Payload_run(void) {
     Stack_InitCanary();
-
     Patcher_patch(PATCHER_BINARY_DOL);
+    // The game will crash if the following function is ran before the '.dol' module is patched
+#ifndef GDB_COMPATIBLE
+    Stack_DoLinkRegisterPatches(Dol_getTextSectionStart(), Dol_getTextSectionEnd());
+#endif
 }
