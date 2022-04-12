@@ -8,6 +8,7 @@
 #include <revolution.h>
 
 #include <string.h>
+#include <wchar.h>
 
 enum {
     MAX_OPEN_FILE_COUNT = 32,
@@ -22,7 +23,7 @@ static FIL files[MAX_OPEN_FILE_COUNT];
 static u32 openDirs = 0;
 static DIR dirs[MAX_OPEN_DIR_COUNT];
 
-static bool findFd(u32 *fd, u32 open, u32 max) {
+static bool FatStorage_findFd(u32 *fd, u32 open, u32 max) {
     for (*fd = 0; *fd < max; (*fd)++) {
         if (!(open & 1 << *fd)) {
             return true;
@@ -32,10 +33,18 @@ static bool findFd(u32 *fd, u32 open, u32 max) {
     return false;
 }
 
+static const wchar_t *FatStorage_shortenPath(const wchar_t *path) {
+    if (!wcsncmp(path, L"/mkw-sp/", wcslen(L"/mkw-sp/"))) {
+        return path + wcslen(L"/mkw-sp/");
+    }
+
+    return path;
+}
+
 static bool FatStorage_fastOpen(File *file, u64 id) {
     SP_SCOPED_MUTEX_LOCK(mutex);
 
-    if (!findFd(&file->fd, openFiles, MAX_OPEN_FILE_COUNT)) {
+    if (!FatStorage_findFd(&file->fd, openFiles, MAX_OPEN_FILE_COUNT)) {
         return false;
     }
 
@@ -51,7 +60,7 @@ static bool FatStorage_fastOpen(File *file, u64 id) {
 static bool FatStorage_open(File *file, const wchar_t *path, const char *mode) {
     SP_SCOPED_MUTEX_LOCK(mutex);
 
-    if (!findFd(&file->fd, openFiles, MAX_OPEN_FILE_COUNT)) {
+    if (!FatStorage_findFd(&file->fd, openFiles, MAX_OPEN_FILE_COUNT)) {
         return false;
     }
 
@@ -65,6 +74,7 @@ static bool FatStorage_open(File *file, const wchar_t *path, const char *mode) {
     } else {
         assert(!"Unknown opening mode");
     }
+    path = FatStorage_shortenPath(path);
     if (f_open(&files[file->fd], path, fMode) != FR_OK) {
         return false;
     }
@@ -136,6 +146,7 @@ static u64 FatStorage_size(File *file) {
 static bool FatStorage_createDir(const wchar_t *path, bool allowNop) {
     SP_SCOPED_MUTEX_LOCK(mutex);
 
+    path = FatStorage_shortenPath(path);
     FRESULT fResult = f_mkdir(path);
     return fResult == FR_OK || (allowNop && fResult == FR_EXIST);
 }
@@ -143,7 +154,7 @@ static bool FatStorage_createDir(const wchar_t *path, bool allowNop) {
 static bool FatStorage_fastOpenDir(Dir *dir, u64 id) {
     SP_SCOPED_MUTEX_LOCK(mutex);
 
-    if (!findFd(&dir->fd, openDirs, MAX_OPEN_DIR_COUNT)) {
+    if (!FatStorage_findFd(&dir->fd, openDirs, MAX_OPEN_DIR_COUNT)) {
         return false;
     }
 
@@ -159,10 +170,11 @@ static bool FatStorage_fastOpenDir(Dir *dir, u64 id) {
 static bool FatStorage_openDir(Dir *dir, const wchar_t *path) {
     SP_SCOPED_MUTEX_LOCK(mutex);
 
-    if (!findFd(&dir->fd, openDirs, MAX_OPEN_DIR_COUNT)) {
+    if (!FatStorage_findFd(&dir->fd, openDirs, MAX_OPEN_DIR_COUNT)) {
         return false;
     }
 
+    path = FatStorage_shortenPath(path);
     if (f_opendir(&dirs[dir->fd], path) != FR_OK) {
         return false;
     }
@@ -210,6 +222,7 @@ static void FatStorage_stat(const wchar_t *path, NodeInfo *info) {
     SP_SCOPED_MUTEX_LOCK(mutex);
 
     info->type = NODE_TYPE_NONE;
+    path = FatStorage_shortenPath(path);
     FILINFO fInfo;
     if (f_stat(path, &fInfo) == FR_OK) {
         info->id.id = fInfo.dir_ofs;
@@ -227,12 +240,15 @@ static void FatStorage_stat(const wchar_t *path, NodeInfo *info) {
 static bool FatStorage_rename(const wchar_t *srcPath, const wchar_t *dstPath) {
     SP_SCOPED_MUTEX_LOCK(mutex);
 
+    srcPath = FatStorage_shortenPath(srcPath);
+    dstPath = FatStorage_shortenPath(dstPath);
     return f_rename(srcPath, dstPath) == FR_OK;
 }
 
 static bool FatStorage_remove(const wchar_t *path, bool allowNop) {
     SP_SCOPED_MUTEX_LOCK(mutex);
 
+    path = FatStorage_shortenPath(path);
     FRESULT fResult = f_unlink(path);
     return fResult == FR_OK || (allowNop && fResult == FR_NO_FILE);
 }
@@ -259,6 +275,11 @@ bool FatStorage_init(Storage *storage) {
 
     if (f_mount(&fs, L"", 1) != FR_OK) {
         SP_LOG("Failed to mount the filesystem");
+        return false;
+    }
+
+    if (f_chdir(L"/mkw-sp") != FR_OK) {
+        SP_LOG("Failed to change the current directory to /mkw-sp");
         return false;
     }
 
