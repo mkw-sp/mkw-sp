@@ -89,11 +89,11 @@ static bool Sdi_resetCard(void) {
     alignas(0x20) u32 out;
 
     if (IOS_Ioctl(fd, IOCTL_RESET_CARD, NULL, 0, &out, sizeof(out)) < 0) {
-        OSReport("[SDI] Failed to reset interface\n");
+        SP_LOG("Failed to reset interface");
         return false;
     }
 
-    OSReport("[SDI] Successfully reset interface\n");
+    SP_LOG("Successfully reset interface");
     rca = out >> 16;
     return true;
 }
@@ -102,11 +102,11 @@ static bool Sdi_getStatus(u32 *status) {
     alignas(0x20) u32 out;
 
     if (IOS_Ioctl(fd, IOCTL_GET_STATUS, NULL, 0, &out, sizeof(out)) < 0) {
-        OSReport("[SDI] Failed to get status\n");
+        SP_LOG("Failed to get status");
         return false;
     }
 
-    OSReport("[SDI] Got status 0x%x\n", out);
+    SP_LOG("Got status 0x%x", out);
     *status = out;
     return true;
 }
@@ -123,7 +123,7 @@ static bool Sdi_readHcr(u8 reg, u8 size, u32 *val) {
     alignas(0x20) u32 out;
 
     if (IOS_Ioctl(fd, IOCTL_READ_HCR, &regOp, sizeof(regOp), &out, sizeof(out)) < 0) {
-        OSReport("[SDI] Failed to read host controller register 0x%x\n", reg);
+        SP_LOG("Failed to read host controller register 0x%x", reg);
         return false;
     }
 
@@ -142,7 +142,7 @@ static bool Sdi_writeHcr(u8 reg, u8 size, u32 val) {
     };
 
     if (IOS_Ioctl(fd, IOCTL_WRITE_HCR, &regOp, sizeof(regOp), NULL, 0) < 0) {
-        OSReport("[SDI] Failed to write to host controller register 0x%x\n", reg);
+        SP_LOG("Failed to write to host controller register 0x%x", reg);
         return false;
     }
 
@@ -153,7 +153,7 @@ static bool Sdi_setClock(u32 clock) {
     alignas(0x20) u32 in = clock;
 
     if (IOS_Ioctl(fd, IOCTL_SET_CLOCK, &in, sizeof(in), NULL, 0) < 0) {
-        OSReport("[SDI] Failed to set clock\n");
+        SP_LOG("Failed to set clock");
         return false;
     }
 
@@ -191,12 +191,12 @@ static bool Sdi_sendCommand(u32 command, u32 commandType, u32 responseType, u32 
             },
         };
         if (IOS_Ioctlv(fd, IOCTLV_SEND_COMMAND, 2, 1, vec) < 0) {
-            OSReport("[SDI] Failed to send command 0x%x\n", command);
+            SP_LOG("Failed to send command 0x%x", command);
             return false;
         }
     } else {
         if (IOS_Ioctl(fd, IOCTL_SEND_COMMAND, &request, sizeof(request), &out, sizeof(out)) < 0) {
-            OSReport("[SDI] Failed to send command 0x%x\n", command);
+            SP_LOG("Failed to send command 0x%x", command);
             return false;
         }
     }
@@ -308,10 +308,10 @@ bool SdiStorage_init(FatStorage *fatStorage) {
 
     fd = IOS_Open("/dev/sdio/slot0", 0);
     if (fd < 0) {
-        OSReport("[SDI] Failed to open /dev/sdio/slot0: Returned error %i\n", fd);
+        SP_LOG("Failed to open /dev/sdio/slot0: Returned error %i", fd);
         return false;
     } else {
-        OSReport("[SDI] Successfully opened interface: ID: %i\n", fd);
+        SP_LOG("Successfully opened interface: ID: %i", fd);
     }
 
     if (!Sdi_resetCard()) {
@@ -324,19 +324,19 @@ bool SdiStorage_init(FatStorage *fatStorage) {
     }
 
     if (!(status & STATUS_CARD_INSERTED)) {
-        OSReport("[SDI] No card inserted\n");
+        SP_LOG("No card inserted");
         return false;
     }
 
     if (!(status & STATUS_TYPE_MEMORY)) {
-        OSReport("[SDI] Not a memory card\n");
+        SP_LOG("Not a memory card");
         return false;
     }
 
     isSdhc = !!(status & STATUS_TYPE_SDHC);
 
     if (!Sdi_enable4BitBus()) {
-        OSReport("[SDI] Failed to enable 4-bit bus\n");
+        SP_LOG("Failed to enable 4-bit bus");
         return false;
     }
 
@@ -366,6 +366,6 @@ bool SdiStorage_init(FatStorage *fatStorage) {
     fatStorage->diskErase = Sdi_erase;
     fatStorage->diskSync = Sdi_sync;
 
-    OSReport("[SDI] Successfully completed initialization\n");
+    SP_LOG("Successfully completed initialization");
     return true;
 }
