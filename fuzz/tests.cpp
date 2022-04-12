@@ -1,4 +1,6 @@
 extern "C" {
+#include <sp/BaseSettings.h>
+#include <sp/ClientSettings.h>
 #include <sp/Host.h>
 #include <sp/IniReader.h>
 #include <sp/Net.h>
@@ -132,16 +134,6 @@ static void NetStorageClient_Test() {
     }
 }
 
-// Get a stack-allocated CString of a string view
-#define sv_as_cstr(sv, svLen)                             \
-    ({                                                    \
-        char *cstr = (char *)__builtin_alloca(svLen + 1); \
-        const size_t lenWritten = MIN(svLen, sv.len);     \
-        memcpy(cstr, sv.s, lenWritten);                   \
-        cstr[lenWritten] = '\0';                          \
-        cstr;                                             \
-    })
-
 static void IniTest() {
     const char *iniFile =
             "# Settings\n"
@@ -171,6 +163,45 @@ static void IniTest() {
     */
 }
 
+static void IniTest2() {
+    u32 settings[kSetting_MAX];
+
+    const BaseSettingsDescriptor *desc = ClientSettings_getDescriptor();
+    SpSetting_ResetToDefault(desc, settings);
+
+    char buf[512];
+    SpSetting_WriteToIni(buf, sizeof(buf), desc, settings);
+
+    SP_LOG("RESULT:\n%s", buf);
+
+    const char *tmp = "[TTs]\nClass=200cc\n";
+    SpSetting_ParseFromIni(tmp, strlen(tmp), desc, settings);
+    /*
+        [BaseSettings.c:53] Setting Class to 200cc (1)
+    */
+
+    const char *invalid = "[TTs]\nClass=1cc\n";
+    SpSetting_ParseFromIni(invalid, strlen(invalid), desc, settings);
+    /*
+        [BaseSettings.c:44] Unknown value "1cc" for TTs::Class
+        [BaseSettings.c:45] Expected one of:
+        [BaseSettings.c:47] - 150cc (0)
+        [BaseSettings.c:47] - 200cc (1)
+    */
+
+    const char *invalid2 = "[TTs]\nClass2=200cc\n";
+    SpSetting_ParseFromIni(invalid2, strlen(invalid2), desc, settings);
+    /*
+        [BaseSettings.c:28] Unknown key TTs::Class2
+    */
+
+    const char *invalid3 = "[TTs 3]\nClass=200cc\n";
+    SpSetting_ParseFromIni(invalid3, strlen(invalid3), desc, settings);
+    /*
+        [BaseSettings.c:28] Unknown key TTs 3::Class
+    */
+}
+
 int main() {
     Host_Init();
 
@@ -189,6 +220,7 @@ int main() {
     Host_PrintMkwSpInfo(OSReport);
 
     IniTest();
+    IniTest2();
 
     NetStorageClient_Test();
 
