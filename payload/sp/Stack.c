@@ -31,7 +31,7 @@ static u32 Stack_CreateBranchLinkInstruction(const u32* source_address, const u3
 
 static u32* Stack_FindLastFunction(u32* start_address, u32* end_address, FindFunction find)
 {
-    while (end_address > start_address)
+    while (end_address >= start_address)
     {
         end_address--;
 
@@ -55,7 +55,7 @@ static u32* Stack_FindNextFunction(u32* start_address, u32* end_address, FindFun
     return NULL;
 }
 
-static inline bool Stack_IsFunctionEpilogue(const u32* start_address, const u32* end_address)
+static bool Stack_IsFunctionEpilogue(const u32* start_address, const u32* end_address)
 {
     const u32 mtlr = 0x7C0803A6;
     const u16 addi = 0x3821;
@@ -64,7 +64,7 @@ static inline bool Stack_IsFunctionEpilogue(const u32* start_address, const u32*
     return (end_address - start_address) >= 3 && start_address[0] == mtlr && ((start_address[1] >> 16) == addi) && start_address[2] == blr;
 }
 
-static inline bool Stack_IsFunctionPrologue(const u32* start_address, const u32* end_address)
+static bool Stack_IsFunctionPrologue(const u32* start_address, const u32* end_address)
 {
     const u16 stwu = 0x9421;
     const u32 mflr = 0x7C0802A6;
@@ -72,14 +72,14 @@ static inline bool Stack_IsFunctionPrologue(const u32* start_address, const u32*
     return (end_address - start_address) >= 2 && ((start_address[0] >> 16) == stwu) && start_address[1] == mflr;
 }
 
-static inline bool Stack_IsLinkRegisterRestoreInstruction(const u32* start_address, const u32* end_address)
+static bool Stack_IsLinkRegisterRestoreInstruction(const u32* start_address, const u32* end_address)
 {
     const u16 lr_restore_instruction_high = 0x8001;
 
     return (end_address - start_address) >= 1 && (end_address[0] >> 16) == lr_restore_instruction_high;
 }
 
-static inline bool Stack_IsLinkRegisterSaveInstruction(const u32* start_address, const u32* end_address)
+static bool Stack_IsLinkRegisterSaveInstruction(const u32* start_address, const u32* end_address)
 {
     const u16 lr_save_instruction_high = 0x9001;
 
@@ -118,10 +118,6 @@ void Stack_DoLinkRegisterPatches(u32* start_address, u32* end_address)
         // lwz r0, 0xXXXX(r1)
         u32* lwz = Stack_FindLastFunction(stw, mtlr, Stack_IsLinkRegisterRestoreInstruction);
         if (!lwz)
-            goto label_check_next_function;
-
-        // Verify that the instructions are in the expected order
-        if (!(stw < lwz))
             goto label_check_next_function;
 
         // If the function does not return, skip over it
