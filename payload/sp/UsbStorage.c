@@ -277,7 +277,7 @@ static bool UsbStorage_onDeviceAdd(const UsbDeviceInfo *info) {
 }
 
 static void UsbStorage_onDeviceRemove(u32 UNUSED(id)) {
-    deviceFound = false;
+    assert(!"Device was removed!");
 }
 
 static UsbHandler handler = {
