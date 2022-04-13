@@ -1,3 +1,7 @@
+// Resources:
+// - http://hitmen.c02.at/files/yagcd/yagcd/chap5.html#sec5.3
+// - https://github.com/dolphin-emu/dolphin/blob/master/Source/Core/Core/HW/VideoInterface.cpp
+
 #include "Vi.h"
 
 #include "Cache.h"
