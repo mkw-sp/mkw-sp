@@ -205,7 +205,11 @@ static void my_lineCallback(const char *buf, size_t len) {
             OSReport("&a/set: Invalid arguments\n");
             return;
         }
-        ClientSettings_set(&s_saveManager->iniSettings, setting, value);
+        if (s_saveManager->spCurrentLicense < 0) {
+            OSReport("&a/set: No license active\n");
+            return;
+        }
+        ClientSettings_set(&s_saveManager->spLicenses[s_saveManager->spCurrentLicense]->cfg, setting, value);
         return;
     }
 

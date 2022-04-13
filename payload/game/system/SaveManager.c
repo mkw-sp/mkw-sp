@@ -37,12 +37,11 @@ SaveManager *my_SaveManager_createInstance(void) {
     this->courseSha1s = spAllocArray(0x20, 0x14, 0x4, heap);
 
     this->spCanSave = true;
-    this->spBuffer = spAlloc(SP_BUFFER_SIZE, 0x20, heap);
-    this->spSectionCount = 0;
-    this->spSections = NULL;
     this->spLicenseCount = 0;
     for (u32 i = 0; i < ARRAY_SIZE(this->spLicenses); i++) {
-        this->spLicenses[i] = NULL;
+        this->spLicenses[i] = spAlloc(sizeof(SpSaveLicense), 0x4, heap);
+        ClientSettings_init(&this->spLicenses[i]->cfg);
+        ClientSettings_reset(&this->spLicenses[i]->cfg);
     }
     this->spCurrentLicense = -1;
 
@@ -130,135 +129,23 @@ static void SaveManager_initGhostsAsync(SaveManager *this) {
     OSResumeThread(&this->ghostInitThread);
 }
 
-static bool SpSaveLicense_checkSize(const SpSaveLicense *this) {
-    switch (this->version) {
-    case 0:
-    case 1:
-    case 2:
-    case 3:
-        return this->size == 0x18;
-    case SP_SAVE_LICENSE_VERSION:
-        return this->size == sizeof(SpSaveLicense);
-    default:
-        return this->size >= sizeof(SpSaveLicense);
-    }
-}
-
-static void SpSaveLicense_upgrade(SpSaveLicense *this) {
-    if (this->version < SP_SAVE_LICENSE_VERSION) {
-        this->size = sizeof(SpSaveLicense);
-        this->version = SP_SAVE_LICENSE_VERSION;
-    }
-}
-
-static void SpSaveLicense_sanitize(SpSaveLicense * UNUSED(this)) {}
-
 static bool SaveManager_initSpSave(SaveManager *this) {
-    const wchar_t path[] = L"/mkw-sp/save.bin";
-    NodeInfo info;
-    Storage_stat(path, &info);
-    switch (info.type) {
-    case NODE_TYPE_NONE:;
-        alignas(0x20) SpSaveHeader header = { .magic = SP_SAVE_HEADER_MAGIC, .crc32 = 0x0 };
-        if (!Storage_writeFile(path, true, &header, sizeof(header))) {
-            return false;
-        }
-        break;
-    case NODE_TYPE_FILE:
-        break;
-    default:
-        return false;
-    }
-
-    EGG_Heap *heap = s_rootScene->heapCollection.heaps[HEAP_ID_MEM2];
-    u32 size;
-    if (!Storage_readFile(path, this->spBuffer, SP_BUFFER_SIZE, &size)) {
-        return false;
-    }
-
-    u32 offset = sizeof(SpSaveHeader);
-    if (size < offset) {
-        return false;
-    }
-
-    SpSaveHeader *header = this->spBuffer;
-    u32 crc32 = NETCalcCRC32(this->spBuffer + offset, size - offset);
-    if (crc32 != header->crc32) {
-        return false;
-    }
-
-    u32 sectionCount;
-    s32 unusedLicenseCount = MAX_SP_LICENSE_COUNT;
-    for (sectionCount = 0; offset < size; sectionCount++) {
-        if (size - offset < sizeof(SpSaveSection)) {
-            return false;
-        }
-
-        SpSaveSection *section = this->spBuffer + offset;
-        if (section->size < sizeof(SpSaveSection) || section->size > size - offset) {
-            return false;
-        }
-
-        if (section->magic == SP_SAVE_LICENSE_MAGIC) {
-            const SpSaveLicense *license = (SpSaveLicense *)section;
-            if (!SpSaveLicense_checkSize(license)) {
-                SP_LOG("ERROR: Invalid size");
-                return false;
-            }
-            unusedLicenseCount--;
-        }
-
-        offset += section->size;
-    }
-
-    if (unusedLicenseCount < 0) {
-        unusedLicenseCount = 0;
-    }
-
-    u32 maxSectionCount = sectionCount + unusedLicenseCount;
-    this->spSections = spAllocArray(maxSectionCount, sizeof(SpSaveSection *), 0x4, heap);
-    offset = sizeof(SpSaveHeader);
-    for (u32 i = 0; i < sectionCount; i++) {
-        const SpSaveSection *section = this->spBuffer + offset;
-        this->spSections[i] = spAlloc(section->size, 0x4, heap);
-        memcpy(this->spSections[i], section, section->size);
-        if (section->magic == SP_SAVE_LICENSE_MAGIC) {
-            SpSaveLicense *license = (SpSaveLicense *)this->spSections[i];
-            SpSaveLicense_upgrade(license);
-            SpSaveLicense_sanitize(license);
-        }
-        offset += section->size;
-    }
-    this->spSectionCount = sectionCount;
-
     this->spLicenseCount = 0;
-    for (u32 i = 0; i < sectionCount && this->spLicenseCount < MAX_SP_LICENSE_COUNT; i++) {
-        if (this->spSections[i]->magic == SP_SAVE_LICENSE_MAGIC) {
-            this->spLicenses[this->spLicenseCount++] = (SpSaveLicense *)this->spSections[i];
-        }
-    }
+    
+    // TODO: Hopefully this is enough. Can always stream the file if not.
+    char iniBuffer[512];
 
-    for (u32 i = this->spLicenseCount; i < MAX_SP_LICENSE_COUNT; i++) {
-        this->spLicenses[i] = spAlloc(sizeof(SpSaveLicense), 0x4, heap);
-    }
-
-    ClientSettings_init(&this->iniSettings);
-    ClientSettings_reset(&this->iniSettings);
-
-    // Load INI settings
-    {
-        // TODO: Hopefully this is enough. Can always stream the file if not.
-        char iniBuffer[512];
+    for (size_t i = 0; i < 6; ++i) {
+        wchar_t path[64];
+        swprintf(path, ARRAY_SIZE(path), L"/mkw-sp/settings%u.ini", (unsigned)i);
 
         u32 size;
-        if (Storage_readFile(L"/mkw-sp/settings.ini", iniBuffer, sizeof(iniBuffer), &size)) {
-            ClientSettings_readIni(&this->iniSettings, (StringView){ .s = iniBuffer, .len = size });
-        } else {
-            ClientSettings_writeIni(&this->iniSettings, iniBuffer, sizeof(iniBuffer));
-            SP_LOG("Initial Settings File: %s", iniBuffer);
-            bool written = Storage_writeFile(L"/mkw-sp/settings.ini", true, iniBuffer, strlen(iniBuffer));
-            assert(written);
+        if (!Storage_readFile(path, iniBuffer, sizeof(iniBuffer), &size)) {
+            break;
         }
+
+        ClientSettings_readIni(&this->spLicenses[i]->cfg, (StringView){ .s = iniBuffer, .len = size });
+        this->spLicenseCount = i + 1;
     }
 
     return true;
@@ -272,7 +159,6 @@ static void SaveManager_init(SaveManager *this) {
 
     if (!SaveManager_initSpSave(this)) {
         EGG_Heap *heap = s_rootScene->heapCollection.heaps[HEAP_ID_MEM2];
-        this->spSections = spAllocArray(MAX_SP_LICENSE_COUNT, sizeof(SpSaveSection *), 0x4, heap);
         for (u32 i = 0; i < MAX_SP_LICENSE_COUNT; i++) {
             this->spLicenses[i] = spAlloc(sizeof(SpSaveLicense), 0x4, heap);
         }
@@ -322,7 +208,7 @@ static bool TryReplace(const wchar_t* path, const void* fileData, size_t fileSiz
 
     if (!Storage_rename(path, oldPath)) {
         SP_LOG("Failed to rename %ls to %ls", path, oldPath);
-        return false;
+        // Ignore
     }
 
     if (!Storage_rename(newPath, path)) {
@@ -335,39 +221,28 @@ static bool TryReplace(const wchar_t* path, const void* fileData, size_t fileSiz
 }
 
 static void SaveManager_saveSp(SaveManager *this) {
-    u32 size = sizeof(SpSaveHeader);
-    for (u32 i = 0; i < this->spSectionCount; i++) {
-        if (size + this->spSections[i]->size > SP_BUFFER_SIZE) {
-            goto fail;
-        }
-        memcpy(this->spBuffer + size, this->spSections[i], this->spSections[i]->size);
-        size += this->spSections[i]->size;
-    }
-
-    u32 crc32 = NETCalcCRC32(this->spBuffer + sizeof(SpSaveHeader), size - sizeof(SpSaveHeader));
-    SpSaveHeader header = { .magic = SP_SAVE_HEADER_MAGIC, .crc32 = crc32 };
-    memcpy(this->spBuffer, &header, sizeof(header));
-
-    if (!TryReplace(L"/mkw-sp/save.bin", this->spBuffer, size)) {
-        SP_LOG("Failed to save to save.bin");
-        goto fail;
-    }
     char iniBuffer[512];
-    ClientSettings_writeIni(&this->iniSettings, iniBuffer, sizeof(iniBuffer));
-    SP_LOG("Writing settings: %s", iniBuffer);
-    if (!TryReplace(L"/mkw-sp/settings.ini", iniBuffer, strlen(iniBuffer))) {
-        SP_LOG("Failed to save settings.ini");
-        goto fail;
+
+    for (size_t i = 0; i < this->spLicenseCount; ++i) {
+        SpSaveLicense* license = this->spLicenses[i];
+
+        ClientSettings_writeIni(&license->cfg, iniBuffer, sizeof(iniBuffer));
+        SP_LOG("Writing settings: %s", iniBuffer);
+
+        wchar_t path[64];
+        swprintf(path, ARRAY_SIZE(path), L"/mkw-sp/settings%u.ini", (unsigned)i);
+
+        if (!TryReplace(path, iniBuffer, strlen(iniBuffer))) {
+            SP_LOG("Failed to save %ls", path);
+            this->spCanSave = false;
+            this->isBusy = false;
+            this->result = RK_NAND_RESULT_NOSPACE;
+            return;
+        }
     }
 
     this->isBusy = false;
     this->result = RK_NAND_RESULT_OK;
-    return;
-
-fail:
-    this->spCanSave = false;
-    this->isBusy = false;
-    this->result = RK_NAND_RESULT_NOSPACE;
 }
 
 static void saveSpTask(void *UNUSED(arg)) {
@@ -386,30 +261,50 @@ static void my_SaveManager_saveLicensesAsync(SaveManager *this) {
 PATCH_B(SaveManager_saveLicensesAsync, my_SaveManager_saveLicensesAsync);
 
 void SaveManager_eraseSpLicense(SaveManager *this) {
-    const SpSaveLicense *license = this->spLicenses[this->spCurrentLicense];
     for (u32 i = this->spCurrentLicense; i < this->spLicenseCount - 1; i++) {
         this->spLicenses[i] = this->spLicenses[i + 1];
     }
     this->spLicenseCount--;
-    for (u32 i = 0; i < this->spSectionCount; i++) {
-        if (this->spSections[i] == (SpSaveSection *)license) {
-            for (u32 j = i; j < this->spSectionCount - 1; j++) {
-                this->spSections[j] = this->spSections[j + 1];
-            }
-            break;
-        }
-    }
-    this->spSectionCount--;
     this->spCurrentLicense = -1;
+}
+
+static void ClientSettings_setMii(ClientSettings* self, const MiiId* miiId) {
+    const u32 miiAvatar = (miiId->avatar[0] << 24) | (miiId->avatar[1] << 16) | (miiId->avatar[2] << 8) | miiId->avatar[3]; 
+    const u32 miiClient = (miiId->client[0] << 24) | (miiId->client[1] << 16) | (miiId->client[2] << 8) | miiId->client[3];
+    self->mValues[kSetting_MiiAvatar] = miiAvatar;
+    self->mValues[kSetting_MiiClient] = miiClient;
+}
+static MiiId ClientSettings_getMii(const ClientSettings *self) {
+    assert(self != NULL);
+
+    const u32 miiAvatar = self->mValues[kSetting_MiiAvatar];
+    const u32 miiClient = self->mValues[kSetting_MiiClient];
+
+    return (MiiId) {
+        .avatar = {
+            miiAvatar >> 24, miiAvatar >> 16, miiAvatar >> 8, miiAvatar
+        },
+        .client = {
+            miiClient >> 24, miiClient >> 16, miiClient >> 8, miiClient
+        }
+    };
+}
+MiiId SaveManager_getMiiId(const SaveManager *this, u32 licenseId) {
+    assert(licenseId < this->spLicenseCount);
+
+    const SpSaveLicense *license = this->spLicenses[licenseId];
+    assert(license != NULL);
+
+    return ClientSettings_getMii(&license->cfg);
 }
 
 void SaveManager_createSpLicense(SaveManager *this, const MiiId *miiId) {
     SpSaveLicense *license = this->spLicenses[this->spLicenseCount++];
-    license->magic = SP_SAVE_LICENSE_MAGIC;
-    license->size = sizeof(SpSaveLicense);
-    license->version = SP_SAVE_LICENSE_VERSION;
-    license->miiId = *miiId;
-    this->spSections[this->spSectionCount++] = license;
+    
+    ClientSettings_init(&license->cfg);
+    ClientSettings_reset(&license->cfg);
+    ClientSettings_setMii(&license->cfg, miiId);
+
     this->spCurrentLicense = this->spLicenseCount - 1;
 }
 
@@ -418,13 +313,12 @@ void SaveManager_changeSpLicenseMiiId(const SaveManager *this, const MiiId *miiI
         return;
     }
 
-    this->spLicenses[this->spCurrentLicense]->miiId = *miiId;
+    ClientSettings_setMii(&this->spLicenses[this->spCurrentLicense]->cfg, miiId);
 } 
 
 u32 SaveManager_getSetting(const SaveManager *this, SpSettingKey key) {
     assert(key < kSetting_MAX);
 
-#if 0
     if (this->spCurrentLicense < 0) {
         const BaseSettingsDescriptor* desc = ClientSettings_getDescriptor();
         assert(key < desc->numValues);
@@ -433,23 +327,18 @@ u32 SaveManager_getSetting(const SaveManager *this, SpSettingKey key) {
         return field->defaultValue;
     }
 
-    assert(this->spLicenses[this->spCurrentLicense]->fields.mDesc);
-    return this->spLicenses[this->spCurrentLicense]->fields.mValues[key];
-#endif
-    return this->iniSettings.mValues[key];
+    assert(this->spLicenses[this->spCurrentLicense]->cfg.mDesc);
+    return this->spLicenses[this->spCurrentLicense]->cfg.mValues[key];
 }
 
 void SaveManager_setSetting(SaveManager *this, SpSettingKey key, u32 value) {
     assert(key < kSetting_MAX);
 
-#if 0
     if (this->spCurrentLicense < 0) {
         return;
     }
 
-    this->spLicenses[this->spCurrentLicense]->fields.mValues[key] = value;
-#endif
-    this->iniSettings.mValues[key] = value;
+    this->spLicenses[this->spCurrentLicense]->cfg.mValues[key] = value;
 }
 
 static void SaveManager_loadGhostHeaders(SaveManager *this) {

@@ -10,7 +10,8 @@ void TopMenuPage_initMiiGroup(TopMenuPage *this) {
     MiiGroup_ct(this->miiGroup);
     MiiGroup_init(this->miiGroup, MAX_SP_LICENSE_COUNT, 0x4, NULL);
     for (u32 i = 0; i < s_saveManager->spLicenseCount; i++) {
-        MiiGroup_insertFromId(this->miiGroup, i, &s_saveManager->spLicenses[i]->miiId);
+        MiiId miiId = SaveManager_getMiiId(s_saveManager, i);
+        MiiGroup_insertFromId(this->miiGroup, i, &miiId);
     }
 }
 

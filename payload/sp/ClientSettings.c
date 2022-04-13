@@ -59,6 +59,7 @@ static const char *kTaRuleGhostSound[] = {
 static const char *kCategory[] = {
     [kCategory_Race] = "Race",
     [kCategory_TA] = "TTs",
+    [kCategory_License] = "License",
 };
 
 #define REGISTER_SETTING(Id, Name, Category, Enum)                          \
@@ -82,6 +83,16 @@ static const Setting SpSettings[] = {
     REGISTER_SETTING(kSetting_RaceInputDisplay, "InputDisplay", kCategory_Race, kRaceInputDisplay),
     REGISTER_SETTING(kSetting_TaRuleGhostSound, "GhostSound", kCategory_TA, kTaRuleGhostSound),
     // clang-format on
+    [kSetting_MiiAvatar] = (Setting){ .name = "MiiAvatar",
+            .category = kCategory_License,
+            .defaultValue = 0x80000001,
+            .enumValues = NULL,
+            .numEnumValues = 0 },
+    [kSetting_MiiClient] = (Setting){ .name = "MiiClient",
+            .category = kCategory_License,
+            .defaultValue = 0xECFF82D2,
+            .enumValues = NULL,
+            .numEnumValues = 0 },
 };
 static const BaseSettingsDescriptor SpSettingsDesc = (BaseSettingsDescriptor){
     .numValues = ARRAY_SIZE(SpSettings),

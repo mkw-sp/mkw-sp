@@ -206,12 +206,18 @@ typedef enum {
     kSetting_RaceInputDisplay = 10,
     kSetting_TaRuleGhostSound = 11,
 
+    // BE encoding of u8[4]
+    kSetting_MiiAvatar = 12,
+    // BE encoding of u8[4]
+    kSetting_MiiClient = 13,
+
     kSetting_MAX,
 } SpSettingKey;
 
 enum {
     kCategory_Race,
     kCategory_TA,
+    kCategory_License,
 
     kCategory_MAX,
 };

@@ -19,6 +19,7 @@ static const InputHandler_vt onBack_vt = {
 
 static void onSettingControlFront(RadioButtonControlHandler *this, RadioButtonControl *control,
         u32 UNUSED(localPlayerId), s32 selected) {
+    SpSaveLicense *license = s_saveManager->spLicenses[s_saveManager->spCurrentLicense];
     int setting = -1;
     switch (control->index) {
     case 0:
@@ -38,7 +39,7 @@ static void onSettingControlFront(RadioButtonControlHandler *this, RadioButtonCo
         break;
     }
     if (setting != -1) {
-        s_saveManager->iniSettings.mValues[setting] = selected;
+        license->cfg.mValues[setting] = selected;
     }
 
     LicenseSettingsPage *page = CONTAINER_OF(this, LicenseSettingsPage, onSettingControlFront);
@@ -177,22 +178,23 @@ static void LicenseSettingsPage_onInit(Page *base) {
         "RaceInputDisplay",
     };
     for (u32 i = 0; i < ARRAY_SIZE(this->settingControls); i++) {
+        SpSaveLicense *license = s_saveManager->spLicenses[s_saveManager->spCurrentLicense];
         u32 chosen;
         switch (i) {
         case 0:
-            chosen = s_saveManager->iniSettings.mValues[kSetting_HudLabels]; 
+            chosen = license->cfg.mValues[kSetting_HudLabels]; 
             break;
         case 1:
-            chosen = s_saveManager->iniSettings.mValues[kSetting_169_Fov];
+            chosen = license->cfg.mValues[kSetting_169_Fov];
             break;
         case 2:
-            chosen = s_saveManager->iniSettings.mValues[kSetting_MapIcons];
+            chosen = license->cfg.mValues[kSetting_MapIcons];
             break;
         case 3:
-            chosen = s_saveManager->iniSettings.mValues[kSetting_PageTransitions];
+            chosen = license->cfg.mValues[kSetting_PageTransitions];
             break;
         case 4:
-            chosen = s_saveManager->iniSettings.mValues[kSetting_RaceInputDisplay];
+            chosen = license->cfg.mValues[kSetting_RaceInputDisplay];
             break;
         }
         char variant[0x20];

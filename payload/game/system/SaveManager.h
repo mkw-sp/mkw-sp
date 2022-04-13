@@ -30,16 +30,8 @@ typedef struct {
 } SpSaveHeader;
 
 typedef struct {
-    u32 magic;
-    u32 size;
-    u32 version;
-} SpSaveSection;
-
-typedef struct {
-    SpSaveSection;
-    MiiId miiId;
+    ClientSettings cfg;
 } SpSaveLicense;
-static_assert(sizeof(SpSaveLicense) == 0x14);
 
 enum {
     SP_BUFFER_SIZE = 0x10000, // 64 KiB
@@ -77,9 +69,6 @@ typedef struct {
     bool canSave;
     bool spCanSave; // Added (was padding)
     u32 result;
-    void *spBuffer; // Added
-    u32 spSectionCount; // Added
-    SpSaveSection **spSections; // Added
     u32 spLicenseCount; // Added
     SpSaveLicense *spLicenses[MAX_SP_LICENSE_COUNT]; // Added
     s32 spCurrentLicense; // Added
@@ -87,9 +76,7 @@ typedef struct {
     u8 *ghostInitStack; // Added
     bool *courseSha1IsValid; // Added
     u8 (*courseSha1s)[0x14]; // Added
-    ClientSettings iniSettings;
 } SaveManager;
-static_assert(offsetof(SaveManager, spBuffer) == 0x25008);
 
 extern SaveManager *s_saveManager;
 
@@ -126,3 +113,5 @@ bool SaveManager_computeCourseSha1Async(SaveManager *this, u32 courseId);
 const u8 *SaveManager_getCourseSha1(const SaveManager *this, u32 courseId);
 
 extern bool vsSpeedModIsEnabled;
+
+MiiId SaveManager_getMiiId(const SaveManager *this, u32 licenseId);

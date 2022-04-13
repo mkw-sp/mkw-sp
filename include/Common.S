@@ -134,3 +134,5 @@
 #define kSetting_PageTransitions 9
 #define kSetting_RaceInputDisplay 10
 #define kSetting_TaRuleGhostSound 11
+#define kSetting_MiiAvatar 12
+#define kSetting_MiiClient 13
