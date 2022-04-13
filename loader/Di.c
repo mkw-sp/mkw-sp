@@ -1,3 +1,8 @@
+// Resources:
+// - https://wiibrew.org/wiki//dev/di
+// - https://github.com/dolphin-emu/dolphin/blob/master/Source/Core/Core/IOS/DI/DI.cpp
+// - https://github.com/Chadderz121/brainslug-wii/blob/master/src/di/di.c
+
 #include "Di.h"
 
 #include "Ios.h"
