@@ -248,9 +248,7 @@ static bool Sdi_transferAligned(bool isWrite, u32 firstSector, u32 sectorCount, 
 static bool Sdi_transfer(bool isWrite, u32 firstSector, u32 sectorCount, void *buffer) {
     assert(buffer);
 
-    if (!Sdi_select()) {
-        return false;
-    }
+    assert(Sdi_select());
 
     if ((u32)buffer & 0x1f) {
         while (sectorCount > 0) {
