@@ -1,3 +1,8 @@
+// Resources:
+// - https://github.com/dolphin-emu/dolphin/blob/master/Source/Core/Core/HW/WII_IPC.cpp
+// - https://wiibrew.org/wiki/Hardware/IPC
+// - https://wiibrew.org/wiki/IOS
+
 #include "Ios.h"
 
 #include "Cache.h"
