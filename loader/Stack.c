@@ -17,8 +17,8 @@ void Stack_RandomizeMainThreadStackPointer(void)
     *lis = (u32)stack_pointer >> 16;
     *ori = (u32)stack_pointer >>  0;
 
-    DCFlushRange(lis, sizeof(u16));
-    DCFlushRange(ori, sizeof(u16));
-    ICInvalidateRange(lis, sizeof(u16));
-    ICInvalidateRange(ori, sizeof(u16));
+    DCFlushRange(lis, sizeof(*lis));
+    DCFlushRange(ori, sizeof(*ori));
+    ICInvalidateRange(lis, sizeof(*lis));
+    ICInvalidateRange(ori, sizeof(*ori));
 }

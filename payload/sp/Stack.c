@@ -131,10 +131,10 @@ void Stack_DoLinkRegisterPatches(u32* start_address, u32* end_address)
         *stw = Stack_CreateBranchLinkInstruction(stw, (u32*)Stack_XORLinkRegisterSave);
         *lwz = Stack_CreateBranchLinkInstruction(lwz, (u32*)Stack_XORLinkRegisterRestore);
 
-        DCFlushRange(stw, sizeof(stw));
-        DCFlushRange(lwz, sizeof(lwz));
-        ICInvalidateRange(stw, sizeof(stw));
-        ICInvalidateRange(lwz, sizeof(lwz));
+        DCFlushRange(stw, sizeof(*stw));
+        DCFlushRange(lwz, sizeof(*lwz));
+        ICInvalidateRange(stw, sizeof(*stw));
+        ICInvalidateRange(lwz, sizeof(*lwz));
 
 label_check_next_function:
         start_address = mtlr + 3;
