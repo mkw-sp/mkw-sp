@@ -1,8 +1,8 @@
 #include "BaseSettings.h"
 #include <revolution.h>
+#include <sp/HexParser.h>
 #include <stdarg.h>
 #include <stdio.h>
-#include "HexParser.h"
 #include "IniReader.h"
 
 // Ignores sections

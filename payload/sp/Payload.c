@@ -2,15 +2,15 @@
 
 #include "sp/Dol.h"
 #include "sp/Host.h"
-#include "sp/LogFile.h"
 #include "sp/Memory.h"
 #include "sp/Net.h"
 #include "sp/Patcher.h"
 #include "sp/Rel.h"
-#include "sp/SIKeyboard.h"
 #include "sp/Stack.h"
-#include "sp/Storage.h"
-#include "sp/Usb.h"
+#include "sp/keyboard/SIKeyboard.h"
+#include "sp/storage/LogFile.h"
+#include "sp/storage/Storage.h"
+#include "sp/storage/Usb.h"
 
 #include <revolution.h>
 

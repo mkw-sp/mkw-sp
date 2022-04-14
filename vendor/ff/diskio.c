@@ -10,7 +10,7 @@
 #include "ff.h"         /* Obtains integer types */
 #include "diskio.h"     /* Declarations of disk functions */
 
-#include "sp/FatStorage.h"
+#include "sp/storage/FatStorage.h"
 
 
 /*-----------------------------------------------------------------------*/

@@ -1,12 +1,9 @@
-#include "revolution/os.h"
-
-#include "sp/LogFile.h"
-#include "sp/StackTrace.h"
-
-#include "game/system/Console.h"
-
 #include <stdarg.h>
 #include <stdio.h>
+#include "game/system/Console.h"
+#include "revolution/os.h"
+#include "sp/StackTrace.h"
+#include "sp/storage/LogFile.h"
 
 static const char *GetPrefix(BinaryType bin) {
     switch (bin) {

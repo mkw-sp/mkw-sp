@@ -1,10 +1,11 @@
 #include <Common.h>
 #include <revolution.h>
 
+#include <sp/TypingBuffer.h>
+
 #include "IOSKeyboard.h"
 #include "Keyboard.h"
 #include "SIKeyboard.h"
-#include "TypingBuffer.h"
 
 typedef enum {
     kInputDeviceNone,

@@ -1,9 +1,11 @@
 #include "NetStorage.h"
-#include "NetStorageClient.h"
-#include "ScopeLock.h"
 
 #include <stdio.h>
 #include <wchar.h>
+
+#include <sp/ScopeLock.h>
+
+#include "NetStorageClient.h"
 
 static NetStorageClient sNetStorageClient;
 static bool sNetStorageConnected;
@@ -99,8 +101,7 @@ static bool NetStorage_read(File *file, void *dst, u32 size, u32 offset) {
 
     return amount_read == size;
 }
-static bool NetStorage_write(File *file, const void *src,
-        u32 size, u32 offset) {
+static bool NetStorage_write(File *file, const void *src, u32 size, u32 offset) {
     NetFile *netFile = GetNetFileByFd(file->fd);
     assert(netFile);
 
@@ -140,7 +141,7 @@ static bool NetStorage_openDir(Dir *dir, const wchar_t *path) {
     }
 
     if (!NetDir_open(it, &sNetStorageClient, path)) {
-        return false;   
+        return false;
     }
 
     dir->fd = it - &sNetDirs[0];
@@ -175,7 +176,7 @@ static bool NetStorage_closeDir(Dir *dir) {
 
     NetDir_close(&sNetDirs[dir->fd]);
     memset(&sNetDirs[dir->fd], 0, sizeof(sNetDirs[dir->fd]));
-    
+
     return true;
 }
 static void NetStorage_stat(const wchar_t *path, NodeInfo *info) {
@@ -223,8 +224,7 @@ static void NetStorage_stat(const wchar_t *path, NodeInfo *info) {
         }
     }
 }
-static bool NetStorage_rename(
-        const wchar_t *srcPath, const wchar_t *dstPath) {
+static bool NetStorage_rename(const wchar_t *srcPath, const wchar_t *dstPath) {
     SP_SCOPED_MUTEX_LOCK(sNetMutex);
 
     NetFile f;

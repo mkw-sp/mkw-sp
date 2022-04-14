@@ -6,7 +6,8 @@
 
 #include "UsbStorage.h"
 
-#include "Bytes.h"
+#include <sp/Bytes.h>
+
 #include "Usb.h"
 
 #include <revolution.h>
