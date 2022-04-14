@@ -11,6 +11,17 @@
 
 typedef void (*PayloadEntryFunc)(void);
 
+#ifdef SP_DEBUG
+#define payloadP payloadPD
+#define payloadPSize payloadPDSize
+#define payloadE payloadED
+#define payloadESize payloadEDSize
+#define payloadJ payloadJD
+#define payloadJSize payloadJDSize
+#define payloadK payloadKD
+#define payloadKSize payloadKDSize
+#endif
+
 extern const void payloadP;
 extern const u32 payloadPSize;
 extern const void payloadE;
