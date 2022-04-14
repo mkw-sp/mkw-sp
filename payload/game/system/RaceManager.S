@@ -11,22 +11,22 @@ PATCH_B_END(RaceManagerPlayer_ct, 0x298)
 
 
 PATCH_BL_START(RaceManagerPlayer_endRace, 0x11c)
-    lis r4, s_raceManager@ha // Original instruction
+    lis r3, s_raceManager@ha // Original instruction
 
     // Check that the player is a ghost
-    lis r3, s_raceConfig@ha
-    lwz r3, s_raceConfig@l (r3)
+    lis r4, s_raceConfig@ha
+    lwz r4, s_raceConfig@l (r4)
     lbz r5, 0x8 (r31)
     mulli r5, r5, 0xf0
-    add r3, r3, r5
-    lwz r3, 0x20 + 0x8 + 0x10 (r3)
-    cmpwi r3, 0x3
+    add r4, r4, r5
+    lwz r4, 0x20 + 0x8 + 0x10 (r4)
+    cmpwi r4, 0x3
     bnelr
 
     lwz r3, 0x48 (r31)
     bl GhostPadProxy_end
 
-    lis r4, s_raceManager@ha // Original instruction again
+    lis r3, s_raceManager@ha // Original instruction again
     b RaceManagerPlayer_endRace + 0x120
 PATCH_BL_END(RaceManagerPlayer_endRace, 0x11c)
 
