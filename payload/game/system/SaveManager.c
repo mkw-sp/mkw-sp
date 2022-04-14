@@ -202,7 +202,7 @@ static void my_RawLicense_reset(RawLicense *self) {
     self->rules[3] = 0x1000;
     self->vr = 5000;
     self->br = 5000;
-    self->driftMode = SaveManager_getSetting(s_saveManager, kSetting_DriftMode) + 1;
+    self->driftMode = (SaveManager_getSetting(s_saveManager, kSetting_DriftMode) + 1) << 14;
 }
 PATCH_B(RawLicense_reset, my_RawLicense_reset);
 
