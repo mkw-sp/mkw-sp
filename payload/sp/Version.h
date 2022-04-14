@@ -9,7 +9,7 @@
 #define _GIT_HASH S2(GIT_HASH)
 #endif
 
-#ifdef DEBUG
+#ifdef SP_DEBUG
 #define BUILD_TYPE_STR "Debug " _GIT_HASH
 #else
 #define BUILD_TYPE_STR "0.1.4 (Release) REV " _GIT_HASH

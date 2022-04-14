@@ -54,7 +54,6 @@ cflags_loader = [
     '-isystem', 'include',
     '-isystem', 'payload',
     '-isystem', 'vendor',
-    '-O2',
     '-Wall',
     '-Werror=implicit-function-declaration',
     '-Werror=incompatible-pointer-types',
@@ -77,7 +76,6 @@ cppflags = [
     '-isystem', 'include',
     '-isystem', 'payload',
     '-isystem', 'vendor',
-    '-O2',
     '-Wall',
     # '-Werror=implicit-function-declaration',
     # '-Werror=incompatible-pointer-types',
@@ -352,26 +350,31 @@ code_in_files = {
         os.path.join('loader', 'Vi.c'),
     ],
 }
-code_out_files = {target: [] for target in code_in_files}
+code_out_files = {}
+for profile in ['DEBUG', 'RELEASE']:
+    code_out_files[profile] = {target: [] for target in code_in_files}
+
 for target in code_in_files:
     for in_file in code_in_files[target]:
         _, ext = os.path.splitext(in_file)
-        out_file = os.path.join('$builddir', in_file + '.o')
-        rule = {
-            '.S': 'as',
-            '.c': 'cc',
-            '.cpp': 'cpp',
-        }[ext]
-        n.build(
-            out_file,
-            rule,
-            in_file,
-            variables = {
-                'cflags': ' '.join(cflags_loader) if target == 'loader' else ' '.join(cflags_payload),
-            },
-        )
-        code_out_files[target] += [out_file]
-    n.newline()
+        for profile in ['DEBUG', 'RELEASE']:
+            out_file = os.path.join('$builddir', in_file + ('.o' if profile == 'RELEASE' else 'D.o'))
+            code_out_files[profile][target] += [out_file]
+            rule = {
+                '.S': 'as',
+                '.c': 'cc',
+                '.cpp': 'cpp',
+            }[ext]
+            cur_cflags = (cflags_loader if target == 'loader' else cflags_payload) + (['-O0', '-g', '-DSP_DEBUG'] if profile == 'DEBUG' else ['-O2', '-DSP_RELEASE'])
+            n.build(
+                out_file,
+                rule,
+                in_file,
+                variables = {
+                    'cflags': ' '.join(cur_cflags),
+                },
+            )
+        n.newline()
 
 for region in ['P', 'E', 'J', 'K']:
     n.build(
@@ -387,52 +390,59 @@ for region in ['P', 'E', 'J', 'K']:
 
 for region in ['P', 'E', 'J', 'K']:
     for fmt in ['binary', 'elf32-powerpc']:
-        n.build(
-            os.path.join('$builddir', 'bin', f'payload{region}.' + ('bin' if fmt == 'binary' else 'elf')),
-            'ld',
-            code_out_files['payload'],
-            variables = {
-                'base': {
-                    'P': '0x8076db60' if not args.gdb_compatible else '0x809C4FA0',
-                    'E': '0x80769400',
-                    'J': '0x8076cca0',
-                    'K': '0x8075bfe0',
-                }[region],
-                'entry': 'Payload_run',
-                'format': fmt,
-                'script': os.path.join('$builddir', 'scripts', f'RMC{region}.ld'),
-            },
-            implicit = os.path.join('$builddir', 'scripts', f'RMC{region}.ld'),
-        )
-        n.newline()
+        for profile in ['DEBUG', 'RELEASE']:
+            suffix = 'D' if profile == 'DEBUG' else ''
+            extension = 'bin' if fmt == 'binary' else 'elf'
+            n.build(
+                os.path.join('$builddir', 'bin', f'payload{region}{suffix}.{extension}'),
+                'ld',
+                code_out_files[profile]['payload'],
+                variables = {
+                    'base': {
+                        'P': '0x8076db60' if not args.gdb_compatible else '0x809C4FA0',
+                        'E': '0x80769400',
+                        'J': '0x8076cca0',
+                        'K': '0x8075bfe0',
+                    }[region],
+                    'entry': 'Payload_run',
+                    'format': fmt,
+                    'script': os.path.join('$builddir', 'scripts', f'RMC{region}.ld'),
+                },
+                implicit = os.path.join('$builddir', 'scripts', f'RMC{region}.ld'),
+            )
+            n.newline()
 
 for region in ['P', 'E', 'J', 'K']:
-    out_file = os.path.join('$builddir', 'loader', f'payload{region}.o')
-    n.build(
-        out_file,
-        'incbin',
-        os.path.join('$builddir', 'bin', f'payload{region}.bin'),
-        variables = {
-            'name': f'payload{region}',
-            'path': '/'.join(['$builddir', 'bin', f'payload{region}.bin']),
-        },
-        implicit = 'Incbin.S',
-    )
-    code_out_files['loader'] += [out_file]
+    for profile in ['DEBUG', 'RELEASE']:
+        suffix = 'D' if profile == 'DEBUG' else ''
+        out_file = os.path.join('$builddir', 'loader', f'payload{region}{suffix}.o')
+        n.build(
+            out_file,
+            'incbin',
+            os.path.join('$builddir', 'bin', f'payload{region}{suffix}.bin'),
+            variables = {
+                'name': f'payload{region}{suffix}',
+                'path': '/'.join(['$builddir', 'bin', f'payload{region}{suffix}.bin']),
+            },
+            implicit = 'Incbin.S',
+        )
+        code_out_files[profile]['loader'] += [out_file]
 
-n.build(
-    os.path.join('$outdir', 'boot.elf'),
-    'ld',
-    code_out_files['loader'],
-    variables = {
-        'base': '0x80910000' if not args.gdb_compatible else '0x80E50F90',
-        'entry': 'start',
-        'format': 'elf32-powerpc',
-        'script': os.path.join('loader', 'RMC.ld'),
-    },
-    implicit = os.path.join('loader', 'RMC.ld'),
-)
-n.newline()
+for profile in ['DEBUG', 'RELEASE']:
+    suffix = 'D' if profile == 'DEBUG' else ''
+    n.build(
+        os.path.join('$outdir', f'boot{suffix}.elf'),
+        'ld',
+        code_out_files[profile]['loader'],
+        variables = {
+            'base': '0x80910000' if not args.gdb_compatible else '0x80E50F90',
+            'entry': 'start',
+            'format': 'elf32-powerpc',
+            'script': os.path.join('loader', 'RMC.ld'),
+        },
+        implicit = os.path.join('loader', 'RMC.ld'),
+    )
+    n.newline()
 
 n.variable('merge', os.path.join('.', 'merge.py'))
 n.variable('wuj5', os.path.join('vendor', 'wuj5', 'wuj5.py'))
