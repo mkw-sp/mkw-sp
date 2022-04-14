@@ -554,6 +554,7 @@
 0x80658B9C NetManager_connect
 0x8067bb34 ObjEfDirector_mount
 0x8067c5c0 ObjEfDirector_mountEffect
+0x806979f0 Effect_806979f0
 0x80698028 Effect_80698028
 0x80698f70 Effect_80698f70
 0x806a19d8 Effect_806a19d8
