@@ -26,6 +26,15 @@ enum {
     COLOR_ID_RED = 0x40,
 };
 
+static GXColor GXColorS10ToGXColor(GXColorS10 color) {
+    return (GXColor) {
+        .r = MAX(0, MIN(color.r, 255)),
+        .g = MAX(0, MIN(color.g, 255)),
+        .b = MAX(0, MIN(color.b, 255)),
+        .a = MAX(0, MIN(color.a, 255)),
+    };
+}
+
 void GlyphRenderer_setupColors(GlyphRenderer *self, u32 formatId, u32 colorId);
 
 static void my_GlyphRenderer_setupColors(GlyphRenderer *self, u32 formatId, u32 colorId) {
@@ -95,8 +104,13 @@ static void my_GlyphRenderer_setupColors(GlyphRenderer *self, u32 formatId, u32 
         return;
     }
 
+    if (colorId == self->colorId) {
+        return;
+    }
+
     lyt_Material *material = self->textBox->vtable->GetMaterial((lyt_Pane *)self->textBox);
-    GXSetTevColorS10(GX_TEVREG1, material->tevColors[0]);
+    GXColor bgColor = GXColorS10ToGXColor(material->tevColors[0]);
+    GXSetTevColor(GX_TEVREG1, bgColor);
     GXColor formatColor;
     switch (colorId) {
     case COLOR_ID_UNUSED_RED:
@@ -151,11 +165,11 @@ static void my_GlyphRenderer_setupColors(GlyphRenderer *self, u32 formatId, u32 
         formatColor = (GXColor) { .r = 255, .g = 255, .b = 255, .a = 255 };
         break;
     }
-    GXColorS10 materialColor = material->tevColors[1];
-    materialColor.r = (materialColor.r * formatColor.r) >> 8;
-    materialColor.g = (materialColor.g * formatColor.g) >> 8;
-    materialColor.b = (materialColor.b * formatColor.b) >> 8;
-    GXSetTevColorS10(GX_TEVREG2, materialColor);
+    GXColor fgColor = GXColorS10ToGXColor(material->tevColors[1]);
+    fgColor.r = (fgColor.r * formatColor.r) / 256;
+    fgColor.g = (fgColor.g * formatColor.g) / 256;
+    fgColor.b = (fgColor.b * formatColor.b) / 256;
+    GXSetTevColor(GX_TEVREG2, fgColor);
     self->colorId = colorId;
 }
 PATCH_B(GlyphRenderer_setupColors, my_GlyphRenderer_setupColors);

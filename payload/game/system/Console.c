@@ -130,9 +130,9 @@ enum {
     VERT_TOP_Y,
     VERT_BOTTOM_Y,
 };
-static void DrawColoredQuad(u32 fg_color, u32 bg_color, const s16 *pos, const u16 *uv) {
-    GXSetTevColor(GX_TEVREG0, &fg_color);
-    GXSetTevColor(GX_TEVREG1, &bg_color);
+static void DrawColoredQuad(GXColor fg_color, GXColor bg_color, const s16 *pos, const u16 *uv) {
+    GXSetTevColor(GX_TEVREG0, fg_color);
+    GXSetTevColor(GX_TEVREG1, bg_color);
 
     GXBegin(GX_QUADS, GX_VTXFMT0, 4);
     {
@@ -151,7 +151,7 @@ static void DrawColoredQuad(u32 fg_color, u32 bg_color, const s16 *pos, const u1
     GXEnd();
 }
 
-static void TextWriter_drawQuad(TextWriter *self, u32 fg_color, u32 bg_color,
+static void TextWriter_drawQuad(TextWriter *self, GXColor fg_color, GXColor bg_color,
         GXTexObj *obj, RectU16 uv_encoded, Rect position) {
     assert(obj);
     if (self->mLastTexObj != obj) {
@@ -177,7 +177,7 @@ static void TextWriter_drawQuad(TextWriter *self, u32 fg_color, u32 bg_color,
 }
 
 static void TextWriter_drawCharByColors(
-        TextWriter *self, char c, u32 fg_color, u32 bg_color, float size) {
+        TextWriter *self, char c, GXColor fg_color, GXColor bg_color, float size) {
     assert(sDebugFont != NULL);
     const FontInformation *info = sDebugFont->base.fontInformation;
     assert(info != NULL);
@@ -205,20 +205,29 @@ static void TextWriter_drawCharByColors(
     );
 }
 
+static GXColor HexColorToGXColor(u32 hexColor) {
+    return (GXColor) {
+        .r = hexColor >> 24,
+        .g = hexColor >> 16,
+        .b = hexColor >> 8,
+        .a = hexColor >> 0,
+    };
+}
+
 static void TextWriter_drawCharByFormatCode(
         TextWriter *self, char c, u8 fmt, float size, u8 alpha_override) {
     Formatting format = (Formatting){ .mBC = fmt };
 
-    u32 fg_color = hex_color_fg(Formatting_getColorCode(format));
-    u32 bg_color = hex_color_bg(Formatting_getColorCode(format));
+    GXColor fg_color = HexColorToGXColor(hex_color_fg(Formatting_getColorCode(format)));
+    GXColor bg_color = HexColorToGXColor(hex_color_bg(Formatting_getColorCode(format)));
 
     if (Formatting_isState(format, STATE_BOLD)) {
         size *= 1.2;
     }
 
     if (alpha_override) {
-        fg_color = (fg_color & ~0xFF) | alpha_override;
-        bg_color = (bg_color & ~0xFF) | alpha_override;
+        fg_color.a = alpha_override;
+        bg_color.a = alpha_override;
     }
 
     // TODO: italic, etc
@@ -227,7 +236,8 @@ static void TextWriter_drawCharByFormatCode(
 
 static void TextWriter_newLine(TextWriter *self, float size) {
     // Invisible char to compute line height
-    TextWriter_drawCharByColors(self, 'F', 0, 0, size);
+    GXColor transparent = { 0, 0, 0, 0 };
+    TextWriter_drawCharByColors(self, 'F', transparent, transparent, size);
     WriterTextBox_newLine(&self->mBox);
 }
 // alpha_override = 0 -> no override
@@ -244,9 +254,10 @@ static void TextWriter_draw(
         case '\n':
             TextWriter_newLine(self, size);
             break;
-        case ' ':
+        case ' ':;
             // Invisible char
-            TextWriter_drawCharByColors(self, '-', 0, 0, size);
+            GXColor transparent = { 0, 0, 0, 0 };
+            TextWriter_drawCharByColors(self, '-', transparent, transparent, size);
             break;
         default:
             TextWriter_drawCharByFormatCode(

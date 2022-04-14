@@ -21,7 +21,6 @@ void GXLoadTexObj(const GXTexObj *obj, GXTexMapID id);
 void GXLoadPosMtxImm(float *, u32);
 void GXSetCurrentMtx(u32);
 void GXSetColorUpdate(u32);
-void GXSetTevColor(u32, u32 *);
 void GXBegin(u32, u32, u32);
 
 // bin_op(left_un_arg(ALPHA, left_un_arg), right_un_op(ALPHA, right_un_arg)

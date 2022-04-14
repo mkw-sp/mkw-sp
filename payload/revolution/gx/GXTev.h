@@ -15,6 +15,8 @@ void GXSetTevColorOp(GXTevStageID stage, GXTevOp op, GXTevBias bias, GXTevScale 
 void GXSetTevAlphaOp(GXTevStageID stage, GXTevOp op, GXTevBias bias, GXTevScale scale, GXBool clamp,
         GXTevRegID out_reg);
 
+void GXSetTevColor(GXTevRegID id, GXColor color);
+
 void GXSetTevColorS10(GXTevRegID id, GXColorS10 color);
 
 void GXSetNumTevStages(u8 nStages);
