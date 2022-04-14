@@ -1,8 +1,8 @@
 #pragma once
 
 #include <Common.h>
-#include <sp/BaseSettings.h>
 #include <sp/StringView.h>
+#include <sp/settings/BaseSettings.h>
 #include <stdio.h>
 
 // Legacy enums
@@ -248,6 +248,6 @@ static inline void ClientSettings_writeIni(
     SpSetting_WriteToIni(start, len, self->mDesc, self->mValues);
 }
 static inline void ClientSettings_set(
-    ClientSettings* self, const char* key, const char* value) {
+        ClientSettings *self, const char *key, const char *value) {
     SpSetting_Set(self->mDesc, self->mValues, key, value);
 }

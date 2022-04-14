@@ -7,7 +7,7 @@
 #include <revolution.h>  // OSReport
 #include <sp/Host.h>
 #include <sp/IOSDolphin.h>
-#include <sp/Keyboard.h>
+#include <sp/keyboard/Keyboard.h>
 #include <stdio.h>
 #include <string.h>  // memcpy
 

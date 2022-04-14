@@ -1,6 +1,7 @@
 #include "LogFile.h"
 
-#include "ScopeLock.h"
+#include <sp/ScopeLock.h>
+
 #include "Storage.h"
 
 #include <stdio.h>

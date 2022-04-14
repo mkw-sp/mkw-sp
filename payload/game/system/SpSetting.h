@@ -1,6 +1,6 @@
 #pragma once
 
-#include <sp/ClientSettings.h>
+#include <sp/settings/ClientSettings.h>
 
 // Bit fields
 typedef struct {

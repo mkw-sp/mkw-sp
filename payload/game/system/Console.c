@@ -4,7 +4,7 @@
 #include <nw4r/lyt/lyt_layout.h>
 #include <revolution.h>
 #include <sp/FormattingCodes.h>
-#include <sp/Keyboard.h>
+#include <sp/keyboard/Keyboard.h>
 #include <sp/ScopeLock.h>
 #include <stdio.h>
 #include <string.h>

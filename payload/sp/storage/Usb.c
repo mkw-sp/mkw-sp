@@ -8,8 +8,8 @@
 
 #include "Usb.h"
 
-#include "Bytes.h"
-#include "ScopeLock.h"
+#include <sp/Bytes.h>
+#include <sp/ScopeLock.h>
 
 #include <revolution.h>
 #include <revolution/ios.h>

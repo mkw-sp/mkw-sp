@@ -1,6 +1,7 @@
 #include "FatStorage.h"
 
-#include "ScopeLock.h"
+#include <sp/ScopeLock.h>
+
 #include "Sdi.h"
 #include "UsbStorage.h"
 
