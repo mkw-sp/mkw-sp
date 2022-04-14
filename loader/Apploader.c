@@ -96,6 +96,7 @@ bool Apploader_loadAndRun(GameEntryFunc *gameEntry) {
         while (Di_isInserted()) {
             mdelay(100);
         }
+        return false;
     }
     Console_printString("Mario Kart Wii disc found (disc id ");
     Console_printString(diskIdString);
