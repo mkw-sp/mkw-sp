@@ -160,13 +160,14 @@ PATCH_BL_START(BalloonManager_calc, 0x48)
     b BalloonManager_calc + 0x18c
 PATCH_BL_END(BalloonManager_calc, 0x48)
 
-PATCH_B_START(CtrlRaceNameBalloon_calcSelf, 0x628)
+PATCH_B_START(CtrlRaceNameBalloon_calcSelf, 0x620)
+    bl CtrlRaceNameBalloon_calcPosition // Original instruction
+
     mr r3, r31
     bl CtrlRaceNameBalloon_calcVisibility
 
-    lwz r0, 0x44 (r1) // Original instruction
-    b CtrlRaceNameBalloon_calcSelf + 0x62c
-PATCH_B_END(CtrlRaceNameBalloon_calcSelf, 0x628)
+    b CtrlRaceNameBalloon_calcSelf + 0x624
+PATCH_B_END(CtrlRaceNameBalloon_calcSelf, 0x620)
 
 PATCH_BL_START(BalloonManager_calc, 0x7c)
     stw r0, 0x14 (r30) // Original instruction
