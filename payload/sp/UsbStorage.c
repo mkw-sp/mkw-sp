@@ -346,8 +346,7 @@ bool UsbStorage_init(FatStorage *fatStorage) {
 
     Usb_addHandler(&handler);
 
-    if (!deviceFound) {
-        Usb_removeHandler(&handler);
+    if (Usb_removeHandler(&handler)) {
         return false;
     }
 

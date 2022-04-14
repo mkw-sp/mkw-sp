@@ -317,11 +317,17 @@ void Usb_addHandler(UsbHandler *handler) {
     handler->next = next;
 }
 
-void Usb_removeHandler(UsbHandler *handler) {
+bool Usb_removeHandler(UsbHandler *handler) {
     assert(isInit);
     assert(handler);
 
     SP_SCOPED_MUTEX_LOCK(mutex);
+
+    for (u32 i = 0; i < MAX_DEVICE_COUNT; i++) {
+        if (devices[i].handler == handler) {
+            return false;
+        }
+    }
 
     for (UsbHandler **next = &head; *next; next = &(*next)->next) {
         if (*next == handler) {
@@ -329,6 +335,8 @@ void Usb_removeHandler(UsbHandler *handler) {
             break;
         }
     }
+
+    return true;
 }
 
 bool Usb_ctrlTransfer(u32 id, u8 requestType, u8 request, u16 value, u16 index, u16 length,

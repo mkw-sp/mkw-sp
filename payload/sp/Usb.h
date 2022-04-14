@@ -130,7 +130,7 @@ bool Usb_init(void);
 
 void Usb_addHandler(UsbHandler *handler);
 
-void Usb_removeHandler(UsbHandler *handler);
+bool Usb_removeHandler(UsbHandler *handler);
 
 bool Usb_ctrlTransfer(u32 id, u8 requestType, u8 request, u16 value, u16 index, u16 length,
         void *data);
