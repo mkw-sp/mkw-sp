@@ -105,7 +105,7 @@ void Stack_DoLinkRegisterPatches(u32* start_address, u32* end_address)
         if (!stw)
             goto label_check_next_function;
 
-        u32* lwz = Stack_FindLastFunction(stw, mtlr, Stack_IsLinkRegisterRestoreInstruction, 1);
+        u32* lwz = Stack_FindLastFunction(stw + 1, mtlr, Stack_IsLinkRegisterRestoreInstruction, 1);
         if (!lwz)
             goto label_check_next_function;
 
