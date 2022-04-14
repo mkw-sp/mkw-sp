@@ -123,28 +123,3 @@ PATCH_BL_START(KartMove_calcSpeed, 0x65c)
     lwz r0, 0x4 (r3) // Original instruction again
     b KartMove_calcSpeed + 0x660
 PATCH_BL_END(KartMove_calcSpeed, 0x65c)
-
-
-
-PATCH_BL_START(KartMove_activateMushroom, 0x240)
-    lwz r0, 0x14 (r1) // Original instruction
-
-    // Check that the player id is 0
-    lwz r3, 0x0 (r30)
-    lwz r3, 0x0 (r3)
-    lbz r3, 0x10 (r3)
-    cmpwi r3, 0x0
-    bnelr
-
-    // Get lap
-    lis r3, s_raceManager@ha
-    lwz r3, s_raceManager@l (r3)
-    lwz r3, 0xc (r3)
-    lwz r3, 0x0 (r3)
-    lbz r3, 0x26 (r3)
-
-    bl SpFooter_onShroom
-
-    lwz r0, 0x14 (r1) // Original instruction again
-    b KartMove_activateMushroom + 0x244
-PATCH_BL_END(KartMove_activateMushroom, 0x240)
