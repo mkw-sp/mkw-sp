@@ -42,6 +42,20 @@ enum {
 };
 
 typedef struct {
+    u8 _0000[0x0030 - 0x0000];
+    u32 unlockFlags[4];
+    u8 _0040[0x0080 - 0x0040];
+    u16 rules[4];
+    u8 _0088[0x00b0 - 0x0088];
+    u16 vr;
+    u16 br;
+    u8 _00b4[0x00ea - 0x00b4];
+    u16 driftMode;
+    u8 _00ec[0x8cc0 - 0x00ec];
+} RawLicense;
+static_assert(sizeof(RawLicense) == 0x8cc0);
+
+typedef struct {
     wchar_t miiName[11];
     MiiId miiId;
     u8 _001e[0x93f0 - 0x001e];

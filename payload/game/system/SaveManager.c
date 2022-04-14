@@ -190,6 +190,22 @@ static void my_SaveManager_resetAsync(SaveManager *this) {
 }
 PATCH_B(SaveManager_resetAsync, my_SaveManager_resetAsync);
 
+void RawLicense_reset(RawLicense *self);
+
+static void my_RawLicense_reset(RawLicense *self) {
+    memset(self, 0, sizeof(*self));
+    self->unlockFlags[0] = 0xffffffff;
+    self->unlockFlags[1] = 0x31ffffc;
+    self->rules[0] = 0x5008;
+    self->rules[1] = 0x1000;
+    self->rules[2] = 0x5008;
+    self->rules[3] = 0x1000;
+    self->vr = 5000;
+    self->br = 5000;
+    self->driftMode = SaveManager_getSetting(s_saveManager, kSetting_DriftMode) + 1;
+}
+PATCH_B(RawLicense_reset, my_RawLicense_reset);
+
 static bool TryReplace(const wchar_t* path, const void* fileData, size_t fileSize) {
     wchar_t newPath[64];
     swprintf(newPath, ARRAY_SIZE(newPath), L"%s.new", path);

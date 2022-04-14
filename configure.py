@@ -209,7 +209,6 @@ code_in_files = {
         os.path.join('payload', 'game', 'system', 'RaceManager.c'),
         os.path.join('payload', 'game', 'system', 'ResourceManager.S'),
         os.path.join('payload', 'game', 'system', 'ResourceManager.c'),
-        os.path.join('payload', 'game', 'system', 'SaveManager.S'),
         os.path.join('payload', 'game', 'system', 'SaveManager.c'),
         os.path.join('payload', 'game', 'system', 'SceneCreatorDynamic.S'),
         os.path.join('payload', 'game', 'system', 'SceneCreatorDynamic.c'),
