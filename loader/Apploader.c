@@ -103,7 +103,7 @@ bool Apploader_loadAndRun(GameEntryFunc *gameEntry) {
 
     Partition gamePartition;
     if (!findGamePartition(&gamePartition)) {
-        Console_printString("Game partition not found\n");
+        Console_printString("Game partition not found.\n");
         return false;
     }
     Console_printString("Found game partition.\n");
