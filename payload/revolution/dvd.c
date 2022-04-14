@@ -43,3 +43,13 @@ BOOL my_DVDOpen(const char *fileName, DVDFileInfo *fileInfo) {
     return true;
 }
 PATCH_B(DVDOpen, my_DVDOpen);
+
+BOOL my_DVDClose(DVDFileInfo *fileInfo) {
+    if (fileInfo->cb.command == (u32)-1) {
+        return DVDExClose(fileInfo);
+    }
+
+    DVDCancel(&fileInfo->cb);
+    return true;
+}
+PATCH_B(DVDClose, my_DVDClose);

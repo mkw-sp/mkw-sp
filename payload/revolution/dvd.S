@@ -35,18 +35,6 @@ PATCH_BL_START(DVDReadAsyncPrio, 0x88)
     b DVDReadAsyncPrio + 0xb4
 PATCH_BL_END(DVDReadAsyncPrio, 0x88)
 
-PATCH_BL_START(DVDClose, 0x8)
-    stw r0, 0x14 (r1) // Original instruction
-
-    lwz r4, 0x8 (r3)
-    cmpwi r4, -1
-    bnelr
-
-    bl DVDExClose
-
-    b DVDClose + 0x10
-PATCH_BL_END(DVDClose, 0x8)
-
 PATCH_B_START(DVDCancelAsync, 0x0)
     mr r5, r3
 

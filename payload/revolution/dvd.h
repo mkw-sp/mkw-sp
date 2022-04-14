@@ -63,3 +63,5 @@ BOOL DVDFastOpenDir(s32 entrynum, DVDDir *dir);
 BOOL DVDReadDir(DVDDir *dir, DVDDirEntry *dirent);
 
 BOOL DVDCloseDir(DVDDir *dir);
+
+s32 DVDCancel(DVDCommandBlock *block);
