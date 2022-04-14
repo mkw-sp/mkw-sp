@@ -105,7 +105,5 @@ void Loader_run(void) {
     payloadEntry();
     Console_printString(" done.\n");
 
-    Vi_deinit();
-
     gameEntry();
 }

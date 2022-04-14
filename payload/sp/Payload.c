@@ -26,8 +26,12 @@ void Payload_init(void) {
 #endif
 
     OSAllocFromMEM1ArenaLo(Payload_getSize(), 0x20);
-    // We don't clear the arena in OSInit because the payload is already copied at that point, but
-    // some code expects it to be zeroed.
+    VIInit();
+    VISetBlack(true);
+    VIFlush();
+    VIWaitForRetrace();
+    // We don't clear the arena in OSInit because the payload is already copied at that point, and
+    // the XFB would turn green, but some code expects it to be zeroed.
     memset(OSGetMEM1ArenaLo(), 0, OSGetMEM1ArenaHi() - OSGetMEM1ArenaLo());
 
     Memory_ProtectRangeModule(OS_PROTECT_CHANNEL_1, Dol_getInitSectionStart(), Dol_getRodataSectionEnd(), OS_PROTECT_PERMISSION_READ);

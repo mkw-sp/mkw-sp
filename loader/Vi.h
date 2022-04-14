@@ -13,5 +13,3 @@ u8 Vi_readGrayscaleFromXfb(u16 x, u16 y);
 void Vi_writeGrayscaleToXfb(u16 x, u16 y, u8 intensity);
 
 void Vi_flushXfb(void);
-
-void Vi_deinit(void);

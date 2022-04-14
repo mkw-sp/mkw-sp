@@ -16,18 +16,11 @@ static volatile u32 *tfbl = (u32 *)0xcc00201c;
 static volatile u32 *bfbl = (u32 *)0xcc002024;
 static volatile u16 *visel = (u16 *)0xcc00206e;
 
-static u16 vtrSave;
-static u32 vtoSave;
-static u32 vteSave;
 static u16 xfbWidth;
 static u16 xfbHeight;
 static alignas(0x200) u32 xfb[320 * 574];
 
 void Vi_init(void) {
-    vtrSave = *vtr;
-    vtoSave = *vto;
-    vteSave = *vte;
-
     bool isProgressive = *visel & 0x1;
     bool isNtsc = (*dcr >> 8 & 3) == 0;
     xfbWidth = 640;
@@ -92,12 +85,4 @@ void Vi_writeGrayscaleToXfb(u16 x, u16 y, u8 intensity) {
 
 void Vi_flushXfb(void) {
     DCStoreRange(xfb, sizeof(xfb));
-}
-
-void Vi_deinit(void) {
-    *vtr = vtrSave;
-    *vto = vtoSave;
-    *vte = vteSave;
-    *tfbl = 0;
-    *bfbl = 0;
 }

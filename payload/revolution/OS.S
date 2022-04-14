@@ -1,6 +1,6 @@
 #include <Common.S>
 
-// Remove the call to ClearArena which would otherwise wipe the payload
+// Remove the call to ClearArena which would otherwise wipe the payload and the XFB
 
 PATCH_REPLACE_START(OSInit, 0x2cc)
     nop
