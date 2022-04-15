@@ -69,9 +69,9 @@ enum {
 
 static u32 getGhostSoundSetting(u32 playerId) {
     switch (SaveManager_getSetting(s_saveManager, kSetting_TaRuleGhostSound)) {
-    case SP_TA_RULE_GHOST_SOUND_NONE:
+    case kTaRuleGhostSound_None:
         return SOUND_SETTING_NONE;
-    case SP_TA_RULE_GHOST_SOUND_ALL:
+    case kTaRuleGhostSound_All:
         if (playerId != s_racePage->watchedPlayerId) {
             return SOUND_SETTING_PARTIAL;
         }

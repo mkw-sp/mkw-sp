@@ -84,16 +84,16 @@ void CtrlRaceNameBalloon_refreshText(CtrlRaceNameBalloon *this, u32 playerId) {
     }
 
     switch (SaveManager_getSetting(s_saveManager, kSetting_TaRuleGhostTagContent)) {
-    case SP_TA_RULE_GHOST_TAG_CONTENT_NAME:
+    case kTaRuleGhostTagContent_Name:
         CtrlRaceNameBalloon_refreshTextName(this, playerId);
         break;
-    case SP_TA_RULE_GHOST_TAG_CONTENT_TIME:
+    case kTaRuleGhostTagContent_Time:
         CtrlRaceNameBalloon_refreshTextTime(this, playerId, /* leadingZeroes */ true);
         break;
-    case SP_TA_RULE_GHOST_TAG_CONTENT_TIME_NOLEADING:
+    case kTaRuleGhostTagContent_TimeNoLeading:
         CtrlRaceNameBalloon_refreshTextTime(this, playerId, /* leadingZeroes */ false);
         break;
-    case SP_TA_RULE_GHOST_TAG_CONTENT_DATE:
+    case kTaRuleGhostTagContent_Date:
         CtrlRaceNameBalloon_refreshTextDate(this, playerId);
         break;
     }
