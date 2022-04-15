@@ -1,7 +1,7 @@
 #include "Stack.h"
+#include "Version.h"
 
 #include <revolution/os.h>
-#include <sp/Version.h>
 
 typedef bool (*FindFunction)(const u32* start_address);
 
