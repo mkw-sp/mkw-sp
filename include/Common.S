@@ -122,17 +122,22 @@
 #define PATCH_BL_END(dst, offset) \
     PATCH_BRANCH_END(dst, offset, 0x1)
 
-#define kSetting_DriftMode 0
-#define kSetting_HudLabels 1
-#define kSetting_169_Fov 2
-#define kSetting_MapIcons 3
-#define kSetting_TaRuleClass 4
-#define kSetting_TaRuleGhostSorting 5
-#define kSetting_TaRuleGhostTagVisibility 6
-#define kSetting_TaRuleGhostTagContent 7
-#define kSetting_TaRuleSolidGhosts 8
-#define kSetting_PageTransitions 9
-#define kSetting_RaceInputDisplay 10
-#define kSetting_TaRuleGhostSound 11
-#define kSetting_MiiAvatar 12
-#define kSetting_MiiClient 13
+#define SETTING_RACE 0
+#define kSetting_DriftMode SETTING_RACE + 0
+#define kSetting_HudLabels SETTING_RACE + 1
+#define kSetting_169_Fov SETTING_RACE + 2
+#define kSetting_MapIcons SETTING_RACE + 3
+#define kSetting_PageTransitions SETTING_RACE + 4
+#define kSetting_RaceInputDisplay SETTING_RACE + 5
+
+#define SETTING_TA 6
+#define kSetting_TaRuleClass SETTING_TA + 0
+#define kSetting_TaRuleGhostSorting SETTING_TA + 1
+#define kSetting_TaRuleGhostTagVisibility SETTING_TA + 2
+#define kSetting_TaRuleGhostTagContent SETTING_TA + 3
+#define kSetting_TaRuleSolidGhosts SETTING_TA + 4
+#define kSetting_TaRuleGhostSound SETTING_TA + 5
+
+#define SETTING_LICENSE 12
+#define kSetting_MiiAvatar SETTING_LICENSE + 0 
+#define kSetting_MiiClient SETTING_LICENSE + 1

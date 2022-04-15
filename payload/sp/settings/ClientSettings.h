@@ -107,23 +107,25 @@ enum {
 
 // NOTE: Mirrored by ASM in Common.S, modify both when making changes
 typedef enum {
-    kSetting_DriftMode = 0,
-    kSetting_HudLabels = 1,
-    kSetting_169_Fov = 2,
-    kSetting_MapIcons = 3,
-    kSetting_TaRuleClass = 4,
-    kSetting_TaRuleGhostSorting = 5,
-    kSetting_TaRuleGhostTagVisibility = 6,
-    kSetting_TaRuleGhostTagContent = 7,
-    kSetting_TaRuleSolidGhosts = 8,
-    kSetting_PageTransitions = 9,
-    kSetting_RaceInputDisplay = 10,
-    kSetting_TaRuleGhostSound = 11,
+    // Race
+    kSetting_DriftMode,
+    kSetting_HudLabels,
+    kSetting_169_Fov,
+    kSetting_MapIcons,
+    kSetting_PageTransitions,
+    kSetting_RaceInputDisplay,
 
-    // BE encoding of u8[4]
-    kSetting_MiiAvatar = 12,
-    // BE encoding of u8[4]
-    kSetting_MiiClient = 13,
+    // TA
+    kSetting_TaRuleClass,
+    kSetting_TaRuleGhostSorting,
+    kSetting_TaRuleGhostTagVisibility,
+    kSetting_TaRuleGhostTagContent,
+    kSetting_TaRuleSolidGhosts,
+    kSetting_TaRuleGhostSound,
+
+    // License
+    kSetting_MiiAvatar,  // BE encoding of u8[4]
+    kSetting_MiiClient,  // BE encoding of u8[4]
 
     kSetting_MAX,
 } SpSettingKey;
