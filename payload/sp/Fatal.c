@@ -14,13 +14,13 @@ void __assert_func(
         }
     }
 
-    char stacktrace[128];
+    char stacktrace[384];
     size_t l = WriteStackTraceShort(stacktrace, sizeof(stacktrace), OSGetStackPointer());
     if (l <= 0) {
         snprintf(stacktrace, sizeof(stacktrace), "Stacktrace is unrecoverable.");
     }
 
-    char buf[256];
+    char buf[512];
     snprintf(buf, sizeof(buf), "[%s:%i] %s: %s\n%s", filename, line, assertFunc, expr,
             stacktrace);
 
