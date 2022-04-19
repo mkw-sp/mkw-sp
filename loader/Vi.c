@@ -36,11 +36,11 @@ void Vi_init(void) {
         *vto = 0x6 << 16 | 0x30;
         *vte = 0x6 << 16 | 0x30;
     } else if (isNtsc) {
-        *vto = 0xf << 16 | 0x24;
-        *vte = 0xe << 16 | 0x25;
+        *vto = 0x1 << 16 | 0x23;
+        *vte = 0x0 << 16 | 0x24;
     } else {
-        *vto = 0x11 << 16 | 0x33;
-        *vte = 0x10 << 16 | 0x34;
+        *vto = 0x3 << 16 | 0x18;
+        *vte = 0x2 << 16 | 0x19;
     }
     *tfbl = (u32)xfb;
     *bfbl = (u32)xfb;
