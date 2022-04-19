@@ -2,10 +2,10 @@
 
 #include "game/system/Console.h"
 #include "sp/Host.h"
-#include "sp/Memory.h"
 #include "sp/Patcher.h"
 #include "sp/Rel.h"
-#include "sp/Stack.h"
+#include "sp/security/Memory.h"
+#include "sp/security/Stack.h"
 
 #include <string.h>
 
