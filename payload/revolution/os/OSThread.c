@@ -1,5 +1,5 @@
 #include <revolution/os.h>
-#include <sp/Stack.h>
+#include <sp/security/Stack.h>
 
 #define THREAD_STACK_SIZE_RIGHT_SHIFT_AMOUNT 3
 

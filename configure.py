@@ -309,18 +309,19 @@ code_in_files = {
         os.path.join('payload', 'sp', 'keyboard', 'SIKeyboard.c'),
         os.path.join('payload', 'sp', 'keyboard', 'IOSKeyboard.c'),
         #
-        os.path.join('payload', 'sp', 'Memory.c'),
         os.path.join('payload', 'sp', 'Net.c'),
         os.path.join('payload', 'sp', 'Patcher.c'),
         os.path.join('payload', 'sp', 'Payload.c'),
+        # Security module
+        os.path.join('payload', 'sp', 'security', 'Memory.c'),
+        os.path.join('payload', 'sp', 'security', 'Stack.S'),
+        os.path.join('payload', 'sp', 'security', 'Stack.c'),
         # Settings module
         os.path.join('payload', 'sp', 'settings', 'BaseSettings.c'),
         os.path.join('payload', 'sp', 'settings', 'ClientSettings.c'),
         os.path.join('payload', 'sp', 'settings', 'IniReader.c'),
         #
         os.path.join('payload', 'sp', 'Slab.c'),
-        os.path.join('payload', 'sp', 'Stack.S'),
-        os.path.join('payload', 'sp', 'Stack.c'),
         os.path.join('payload', 'sp', 'StackTrace.c'),
         # Storage module
         os.path.join('payload', 'sp', 'storage', 'FatStorage.c'),

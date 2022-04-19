@@ -1,12 +1,11 @@
-#include "Stack.h"
 #include "StackTrace.h"
 
 #include "sp/Dol.h"
 #include "sp/Payload.h"
 #include "sp/Rel.h"
+#include "sp/security/Stack.h"
 
 #include <revolution.h>
-
 #include <stdio.h>
 
 static bool CheckPointer(u32 addr) {
