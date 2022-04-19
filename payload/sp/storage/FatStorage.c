@@ -16,6 +16,8 @@ enum {
     MAX_OPEN_DIR_COUNT = 32,
 };
 
+typedef bool (*FatStorageInitFunc)(FatStorage *fatStorage);
+
 static OSMutex mutex;
 static FatStorage fatStorage;
 static FATFS fs;
@@ -254,54 +256,53 @@ static bool FatStorage_remove(const wchar_t *path, bool allowNop) {
     return fResult == FR_OK || (allowNop && fResult == FR_NO_FILE);
 }
 
-static bool FatStorage_find(void) {
-    if (UsbStorage_init(&fatStorage)) {
-        return true;
-    }
-
-    if (SdiStorage_init(&fatStorage)) {
-        return true;
-    }
-
-    return false;
-}
-
 bool FatStorage_init(Storage *storage) {
     OSInitMutex(&mutex);
 
-    if (!FatStorage_find()) {
-        SP_LOG("Failed to find a suitable device");
-        return false;
+    const FatStorageInitFunc initFuncs[] = {
+        UsbStorage_init,
+        SdiStorage_init,
+    };
+
+    for (u32 i = 0; i < ARRAY_SIZE(initFuncs); i++) {
+        FatStorageInitFunc initFunc = initFuncs[i];
+        if (!initFunc(&fatStorage)) {
+            SP_LOG("Failed to initialize the device");
+            continue;
+        }
+
+        if (f_mount(&fs, L"", 1) != FR_OK) {
+            SP_LOG("Failed to mount the filesystem");
+            continue;
+        }
+
+        if (f_chdir(L"/mkw-sp") != FR_OK) {
+            SP_LOG("Failed to change the current directory to /mkw-sp");
+            continue;
+        }
+
+        storage->fastOpen = FatStorage_fastOpen;
+        storage->open = FatStorage_open;
+        storage->close = FatStorage_close;
+        storage->read = FatStorage_read;
+        storage->write = FatStorage_write;
+        storage->sync = FatStorage_sync;
+        storage->size = FatStorage_size;
+        storage->createDir = FatStorage_createDir;
+        storage->fastOpenDir = FatStorage_fastOpenDir;
+        storage->openDir = FatStorage_openDir;
+        storage->readDir = FatStorage_readDir;
+        storage->closeDir = FatStorage_closeDir;
+        storage->stat = FatStorage_stat;
+        storage->rename = FatStorage_rename;
+        storage->remove = FatStorage_remove;
+
+        SP_LOG("Successfully completed initialization");
+        return true;
     }
 
-    if (f_mount(&fs, L"", 1) != FR_OK) {
-        SP_LOG("Failed to mount the filesystem");
-        return false;
-    }
-
-    if (f_chdir(L"/mkw-sp") != FR_OK) {
-        SP_LOG("Failed to change the current directory to /mkw-sp");
-        return false;
-    }
-
-    storage->fastOpen = FatStorage_fastOpen;
-    storage->open = FatStorage_open;
-    storage->close = FatStorage_close;
-    storage->read = FatStorage_read;
-    storage->write = FatStorage_write;
-    storage->sync = FatStorage_sync;
-    storage->size = FatStorage_size;
-    storage->createDir = FatStorage_createDir;
-    storage->fastOpenDir = FatStorage_fastOpenDir;
-    storage->openDir = FatStorage_openDir;
-    storage->readDir = FatStorage_readDir;
-    storage->closeDir = FatStorage_closeDir;
-    storage->stat = FatStorage_stat;
-    storage->rename = FatStorage_rename;
-    storage->remove = FatStorage_remove;
-
-    SP_LOG("Successfully completed initialization");
-    return true;
+    SP_LOG("Failed to find a suitable device");
+    return false;
 }
 
 u32 FatStorage_diskSectorSize(void) {
