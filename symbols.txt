@@ -687,6 +687,7 @@
 0x809bd748 s_saveManager
 0x809c18f8 s_kartObjectManager
 0x809c1e38 s_sectionManager
+0x809c21d0 s_effectManager
 0x809c2f38 s_driverManager
 0x809c38b8 s_raceGlobals
 0x809c4680 s_racePage

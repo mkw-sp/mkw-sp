@@ -1,10 +1,10 @@
 #include "KartObjectManager.h"
 
-#include "../system/RaceConfig.h"
-#include "../system/RaceManager.h"
-#include "../system/SaveManager.h"
-
-#include "../ui/page/RacePage.h"
+#include "game/effect/EffectManager.h"
+#include "game/system/RaceConfig.h"
+#include "game/system/RaceManager.h"
+#include "game/system/SaveManager.h"
+#include "game/ui/page/RacePage.h"
 
 bool speedModIsEnabled;
 f32 speedModFactor;
@@ -102,5 +102,15 @@ void KartObjectManager_beforeCalc(KartObjectManager *this) {
         accessor->sound->isGhost = soundSetting == SOUND_SETTING_NONE;
         accessor->driver->sound->isLocal = soundSetting == SOUND_SETTING_FULL && !hasFinished;
         accessor->driver->sound->isGhost = soundSetting == SOUND_SETTING_NONE || hasFinished;
+    }
+
+    for (u32 i = 0; i < this->count; i++) {
+        const RaceConfigScenario *raceScenario = &s_raceConfig->raceScenario;
+        if (raceScenario->players[i].type != PLAYER_TYPE_GHOST) {
+            continue;
+        }
+
+        KartEffect *effect = s_effectManager->karts[i];
+        effect->isGhost = i != s_racePage->watchedPlayerId;
     }
 }
