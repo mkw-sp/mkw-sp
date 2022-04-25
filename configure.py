@@ -183,6 +183,7 @@ code_in_files = {
         os.path.join('payload', 'game', 'obj', 'ObjPylon01.S'),
         os.path.join('payload', 'game', 'obj', 'ObjPylon01.c'),
         os.path.join('payload', 'game', 'race', 'Driver.S'),
+        os.path.join('payload', 'game', 'race', 'DriverManager.S'),
         os.path.join('payload', 'game', 'race', 'DriverManager.c'),
         os.path.join('payload', 'game', 'race', 'JugemManager.S'),
         os.path.join('payload', 'game', 'race', 'JugemManager.c'),

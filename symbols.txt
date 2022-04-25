@@ -579,6 +579,7 @@
 0x80745de4 Input_80745de4
 0x8078c9e8 DriverManager_createInstance
 0x8078ca5c DriverManager_ct
+0x8078cfa4 DriverManager_8078cfa4
 0x8079864c KartItem_activateMushroom
 0x807aa688 ItemObjKouraAka_vf_20
 0x807aae78 ItemObjKouraAka_807aae78
