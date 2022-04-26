@@ -35,7 +35,7 @@ u32 __stack_chk_guard;
 
 void Stack_InitCanary(void)
 {
-    __stack_chk_guard = OSGetTick() & 0x00FFFFFF;
+    __stack_chk_guard = (OSGetTick() & 0x00FFFFFF) | (0x80 << 24);
 }
 
 __attribute__((noreturn)) void __stack_chk_fail(void)

@@ -8,7 +8,6 @@ Stack_XORAlignedLinkRegisterSave:
     lis       r11, __stack_chk_guard@ha
     lwz       r11, __stack_chk_guard@l(r11)
     xor       r0, r0, r11
-    clrlwi    r0, r0, 1 // Null terminator
     stw       r0, 4(r12)
 
     mfctr     r11
@@ -31,7 +30,6 @@ Stack_XORLinkRegisterSave:
     lis       r11, __stack_chk_guard@ha
     lwz       r11, __stack_chk_guard@l(r11)
     xor       r0, r0, r11
-    clrlwi    r0, r0, 1 // Null terminator
     lwz       r11, 0(r1)
     stw       r0, 4(r11)
 
