@@ -1,35 +1,49 @@
 #include <Common.S>
 
-// These functions can be better optimized if we can find another register that is free for use
+// This function can be better optimized if we can find another register that is free for use
+.globl Stack_XORAlignedLinkRegisterSave
+Stack_XORAlignedLinkRegisterSave:
+    mtctr     r11
+
+    lis       r11, __stack_chk_guard@ha
+    lwz       r11, __stack_chk_guard@l(r11)
+    xor       r0, r0, r11
+    clrlwi    r0, r0, 1 // Null terminator
+    stw       r0, 4(r12)
+
+    mfctr     r11
+    blr
+
+.globl Stack_XORAlignedLinkRegisterRestore
+Stack_XORAlignedLinkRegisterRestore:
+    lis       r12, __stack_chk_guard@ha
+    lwz       r11, 4(r10)
+    lwz       r12, __stack_chk_guard@l(r12)
+    xor       r0, r11, r12
+    oris      r0, r0, 0x8000
+    blr
+
+// This function can be better optimized if we can find another register that is free for use
+.globl Stack_XORLinkRegisterSave
+Stack_XORLinkRegisterSave:
+    mtctr     r11
+
+    lis       r11, __stack_chk_guard@ha
+    lwz       r11, __stack_chk_guard@l(r11)
+    xor       r0, r0, r11
+    clrlwi    r0, r0, 1 // Null terminator
+    lwz       r11, 0(r1)
+    stw       r0, 4(r11)
+
+    mfctr     r11
+    blr
 
 .globl Stack_XORLinkRegisterRestore
 Stack_XORLinkRegisterRestore:
-    mtctr     r31
-
-    lwz       r31, 0(r1)
-    lwz       r0, 4(r31)
-
-    lis       r31, __stack_chk_guard@ha
-    lwz       r31, __stack_chk_guard@l(r31)
-
-    xor       r0, r0, r31
+    lwz       r11, 0(r1)
+    lis       r12, __stack_chk_guard@ha
+    lwz       r12, __stack_chk_guard@l(r12)
+    lwz       r11, 4(r11)
+    xor       r0, r11, r12
     oris      r0, r0, 0x8000
-
-    mfctr     r31
-    blr
-
-.globl Stack_XORLinkRegisterSave
-Stack_XORLinkRegisterSave:
-    mtctr     r31
-
-    lis       r31, __stack_chk_guard@ha
-    lwz       r31, __stack_chk_guard@l(r31)
-
-    xor       r0, r0, r31
-    clrlwi    r0, r0, 1 // Null terminator
-
-    lwz       r31, 0(r1)
-    stw       r0, 4(r31)
-
-    mfctr     r31
     blr
