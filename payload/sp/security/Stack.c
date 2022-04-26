@@ -9,17 +9,17 @@ typedef void (*LinkRegisterFunction)(void);
 typedef struct LinkRegisterPatch
 {
     FindFunction find_prologue_function;
+    FindFunction find_lr_save_function;
+    FindFunction find_lr_restore_function;
     FindFunction find_epilogue_function;
-    FindFunction find_link_register_restore_function;
-    FindFunction find_link_register_save_function;
 
     size_t prologue_instruction_count;
+    size_t lr_save_instruction_count;
+    size_t lr_restore_instruction_count;
     size_t epilogue_instruction_count;
-    size_t link_register_restore_instruction_count;
-    size_t link_register_save_instruction_count;
 
-    LinkRegisterFunction new_link_register_save_function;
-    LinkRegisterFunction new_link_register_restore_function;
+    LinkRegisterFunction new_lr_save_function;
+    LinkRegisterFunction new_lr_restore_function;
 } LinkRegisterPatch;
 
 extern void Stack_XORAlignedLinkRegisterSave(void);
@@ -103,35 +103,35 @@ static bool Stack_IsFunctionEpilogue(const u32* start_address)
     return start_address[0] == mtlr && (start_address[1] >> 16) == addi && start_address[2] == blr;
 }
 
-static const LinkRegisterPatch link_register_patches_array[2] =
+static const LinkRegisterPatch lr_patches[2] =
 {
     {
         .find_prologue_function = Stack_IsFunctionPrologue,
+        .find_lr_save_function = Stack_IsLinkRegisterSaveInstruction,
+        .find_lr_restore_function = Stack_IsLinkRegisterRestoreInstruction,
         .find_epilogue_function = Stack_IsFunctionEpilogue,
-        .find_link_register_restore_function = Stack_IsLinkRegisterRestoreInstruction,
-        .find_link_register_save_function = Stack_IsLinkRegisterSaveInstruction,
 
         .prologue_instruction_count = 2,
+        .lr_save_instruction_count = 1,
+        .lr_restore_instruction_count = 1,
         .epilogue_instruction_count = 3,
-        .link_register_restore_instruction_count = 1,
-        .link_register_save_instruction_count = 1,
 
-        .new_link_register_save_function = Stack_XORLinkRegisterSave,
-        .new_link_register_restore_function = Stack_XORLinkRegisterRestore,
+        .new_lr_save_function = Stack_XORLinkRegisterSave,
+        .new_lr_restore_function = Stack_XORLinkRegisterRestore,
     },
     {
         .find_prologue_function = Stack_IsAlignedFunctionPrologue,
+        .find_lr_save_function = Stack_IsAlignedLinkRegisterSaveInstruction,
+        .find_lr_restore_function = Stack_IsAlignedLinkRegisterRestoreInstruction,
         .find_epilogue_function = Stack_IsAlignedFunctionEpilogue,
-        .find_link_register_restore_function = Stack_IsAlignedLinkRegisterRestoreInstruction,
-        .find_link_register_save_function = Stack_IsAlignedLinkRegisterSaveInstruction,
 
         .prologue_instruction_count = 2,
+        .lr_save_instruction_count = 1,
+        .lr_restore_instruction_count = 1,
         .epilogue_instruction_count = 3,
-        .link_register_restore_instruction_count = 1,
-        .link_register_save_instruction_count = 1,
 
-        .new_link_register_save_function = Stack_XORAlignedLinkRegisterSave,
-        .new_link_register_restore_function = Stack_XORAlignedLinkRegisterRestore
+        .new_lr_save_function = Stack_XORAlignedLinkRegisterSave,
+        .new_lr_restore_function = Stack_XORAlignedLinkRegisterRestore
     }
 };
 
@@ -171,48 +171,48 @@ void Stack_DoLinkRegisterPatches(u32* start, u32* end)
     assert(((u32)start & 3) == 0);
     assert(((u32)end & 3) == 0);
 
-    for (size_t n = 0; n < ARRAY_SIZE(link_register_patches_array); n++)
+    for (size_t n = 0; n < ARRAY_SIZE(lr_patches); n++)
     {
         u32* start_address = start;
         u32* end_address = end;
-        const LinkRegisterPatch* link_register_patch = &link_register_patches_array[n];
+        const LinkRegisterPatch* lr_patch = &lr_patches[n];
 
         while (start_address < end_address)
         {
-            u32* prologue = Stack_FindFirstFunction(start_address, end_address, link_register_patch->find_prologue_function, link_register_patch->prologue_instruction_count);
+            u32* prologue = Stack_FindFirstFunction(start_address, end_address, lr_patch->find_prologue_function, lr_patch->prologue_instruction_count);
             if (!prologue)
                 break;
 
-            u32* epilogue = Stack_FindFirstFunction(prologue + link_register_patch->prologue_instruction_count, end_address, link_register_patch->find_epilogue_function, link_register_patch->epilogue_instruction_count);
+            u32* epilogue = Stack_FindFirstFunction(prologue + lr_patch->prologue_instruction_count, end_address, lr_patch->find_epilogue_function, lr_patch->epilogue_instruction_count);
             if (!epilogue)
                 break;
 
-            u32* link_register_save_instruction = Stack_FindFirstFunction(prologue + link_register_patch->prologue_instruction_count, epilogue, link_register_patch->find_link_register_save_function, link_register_patch->link_register_save_instruction_count);
-            if (!link_register_save_instruction)
+            u32* lr_save_instruction = Stack_FindFirstFunction(prologue + lr_patch->prologue_instruction_count, epilogue, lr_patch->find_lr_save_function, lr_patch->lr_save_instruction_count);
+            if (!lr_save_instruction)
                 goto label_check_next_function;
 
-            u32* link_register_restore_instruction = Stack_FindLastFunction(link_register_save_instruction + link_register_patch->link_register_save_instruction_count, epilogue, link_register_patch->find_link_register_restore_function, link_register_patch->link_register_restore_instruction_count);
-            if (!link_register_restore_instruction)
+            u32* lr_restore_instruction = Stack_FindLastFunction(lr_save_instruction + lr_patch->lr_save_instruction_count, epilogue, lr_patch->find_lr_restore_function, lr_patch->lr_restore_instruction_count);
+            if (!lr_restore_instruction)
                 goto label_check_next_function;
 
             // Skip over functions that do not return
-            u32* next_prologue = Stack_FindFirstFunction(prologue + link_register_patch->prologue_instruction_count, end_address, link_register_patch->find_prologue_function, link_register_patch->prologue_instruction_count);
+            u32* next_prologue = Stack_FindFirstFunction(prologue + lr_patch->prologue_instruction_count, end_address, lr_patch->find_prologue_function, lr_patch->prologue_instruction_count);
             if (next_prologue && !(next_prologue > epilogue))
             {
                 start_address = next_prologue;
                 continue;
             }
 
-            *link_register_save_instruction = Stack_CreateBranchLinkInstruction(link_register_save_instruction, (u32*)link_register_patch->new_link_register_save_function);
-            *link_register_restore_instruction = Stack_CreateBranchLinkInstruction(link_register_restore_instruction, (u32*)link_register_patch->new_link_register_restore_function);
+            *lr_save_instruction = Stack_CreateBranchLinkInstruction(lr_save_instruction, (u32*)lr_patch->new_lr_save_function);
+            *lr_restore_instruction = Stack_CreateBranchLinkInstruction(lr_restore_instruction, (u32*)lr_patch->new_lr_restore_function);
 
-            DCFlushRange(link_register_save_instruction, sizeof(*link_register_save_instruction));
-            DCFlushRange(link_register_restore_instruction, sizeof(*link_register_restore_instruction));
-            ICInvalidateRange(link_register_save_instruction, sizeof(*link_register_save_instruction));
-            ICInvalidateRange(link_register_restore_instruction, sizeof(*link_register_restore_instruction));
+            DCFlushRange(lr_save_instruction, sizeof(*lr_save_instruction));
+            DCFlushRange(lr_restore_instruction, sizeof(*lr_restore_instruction));
+            ICInvalidateRange(lr_save_instruction, sizeof(*lr_save_instruction));
+            ICInvalidateRange(lr_restore_instruction, sizeof(*lr_restore_instruction));
 
 label_check_next_function:
-            start_address = epilogue + link_register_patch->epilogue_instruction_count;
+            start_address = epilogue + lr_patch->epilogue_instruction_count;
         }
     }
 }
