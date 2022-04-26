@@ -171,7 +171,7 @@ void Stack_DoLinkRegisterPatches(u32* start, u32* end)
     assert(((u32)start & 3) == 0);
     assert(((u32)end & 3) == 0);
 
-    for (size_t n = 0; n < ARRAY_SIZE(link_register_patch_array); n++)
+    for (size_t n = 0; n < ARRAY_SIZE(link_register_patches_array); n++)
     {
         u32* start_address = start;
         u32* end_address = end;
