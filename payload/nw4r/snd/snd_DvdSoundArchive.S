@@ -25,9 +25,10 @@ PATCH_REPLACE_END(snd_DvdSoundArchive_OpenExtStream, 0x54)
 
 // Ignore the stream size from the BRSAR
 
-PATCH_B_START(snd_DvdSoundArchive_OpenExtStream, 0x14)
-    lis r31, 0x7fff
-    ori r31, r31, 0xffff
+PATCH_B_START(snd_DvdSoundArchive_OpenExtStream, 0x90)
+    lis r6, 0x7fff
+    ori r6, r6, 0xffff
+    stw r6, 0x74 (r29)
 
-    b snd_DvdSoundArchive_OpenExtStream + 0x18
-PATCH_B_END(snd_DvdSoundArchive_OpenExtStream, 0x14)
+    b snd_DvdSoundArchive_OpenExtStream + 0x94
+PATCH_B_END(snd_DvdSoundArchive_OpenExtStream, 0x90)
