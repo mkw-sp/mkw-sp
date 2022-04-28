@@ -278,7 +278,7 @@ code_in_files = {
         os.path.join('payload', 'game', 'ui', 'page', 'VsMenuPage.c'),
         os.path.join('payload', 'game', 'ui', 'page', 'VsRulesPage.c'),
         os.path.join('payload', 'game', 'util', 'Input.S'),
-        os.path.join('payload', 'nw4r', 'db', 'Assert.S'),
+        os.path.join('payload', 'nw4r', 'db', 'dbAssert.S'),
         os.path.join('payload', 'nw4r', 'db', 'dbException.c'),
         os.path.join('payload', 'nw4r', 'db', 'dbException.S'),
         os.path.join('payload', 'nw4r', 'g3d', 'g3d_resmat.c'),
