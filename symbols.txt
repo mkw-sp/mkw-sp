@@ -32,6 +32,7 @@
 0x80023150 nw4r_db_Exception_Init
 0x800235A0 Exception_Printf_
 0x80023680 Exception_PrintCtx
+0x80025DC0 nw4r_db_ShowStack_
 
 0x8004D900 ResFile_CheckRevision
 0x80052190 ResMat_Init
@@ -127,7 +128,9 @@
 0x801a162c DCFlushRange
 0x801a1710 ICInvalidateRange
 0x801a2030 OSGetStackPointer
+0x801A2178 OSDumpContext
 0x801a25d0 OSReport
+0x801A2660 OSPanic
 0x801a4ec4 OSFatal
 0x801a65ac OSDisableInterrupts
 0x801a65c0 OSEnableInterrupts
@@ -330,6 +333,7 @@
 0x8054a048 SaveManager_saveGhostAsync
 0x8054a868 SaveManager_resetAsync
 0x8054aa64 SceneCreatorDynamic_create
+0x805553B0 _unresolved
 0x805784d4 KartMove_init
 0x8057ab68 KartMove_calcAcceleration
 0x8057b99c KartMove_setKillerStartHardSpeedLimit
