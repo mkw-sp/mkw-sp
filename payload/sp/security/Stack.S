@@ -19,7 +19,6 @@ Stack_XORAlignedLinkRegisterRestore:
     lwz       r11, 4(r10)
     lwz       r12, __stack_chk_guard@l(r12)
     xor       r0, r11, r12
-    oris      r0, r0, 0x8000
     blr
 
 // This function can be better optimized if we can find another register that is free for use
@@ -43,5 +42,4 @@ Stack_XORLinkRegisterRestore:
     lwz       r12, __stack_chk_guard@l(r12)
     lwz       r11, 4(r11)
     xor       r0, r11, r12
-    oris      r0, r0, 0x8000
     blr

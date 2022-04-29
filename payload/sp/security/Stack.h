@@ -22,8 +22,3 @@ static inline u32* Stack_XORLinkRegister(u32* link_register)
 {
     return (u32*)((u32)link_register ^ __stack_chk_guard);
 }
-
-static inline u32* Stack_DecryptLinkRegister(u32* encrypted_link_register)
-{
-    return (u32*)((u32)Stack_XORLinkRegister(encrypted_link_register) | (1 << 31));
-}

@@ -39,7 +39,7 @@ bool StackTraceIterator_read(StackTraceIterator *it, void **addr) {
 
     if (addr != NULL) {
         void* lr = it->cur->LR;
-        *addr = Stack_IsLinkRegisterEncrypted((u32*)lr) ? (void*)Stack_DecryptLinkRegister((u32*)lr) : lr;
+        *addr = Stack_IsLinkRegisterEncrypted((u32*)lr) ? (void*)Stack_XORLinkRegister((u32*)lr) : lr;
     }
 
     ++it->depth;
