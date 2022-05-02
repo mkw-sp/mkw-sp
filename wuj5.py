@@ -35,7 +35,7 @@ ext_pack = {
     'brlyt': pack_brlyt,
 }
 
-def decode_szs_node(out_path, node, retained, renamed):
+def decode_u8_node(out_path, node, retained, renamed):
     name = node['name']
     if name in renamed:
         name = renamed[name]
@@ -43,7 +43,7 @@ def decode_szs_node(out_path, node, retained, renamed):
     if node['is_dir']:
         os.mkdir(out_path)
         for child in node['children']:
-            decode_szs_node(out_path, child, retained, renamed)
+            decode_u8_node(out_path, child, retained, renamed)
     else:
         if retained is not None and out_path not in retained:
             return
@@ -60,25 +60,30 @@ def decode_szs_node(out_path, node, retained, renamed):
             with open(out_path + '.json5', 'w') as out_file:
                 out_file.write(out_data)
 
-def decode_szs(in_path, out_path, retained, renamed):
+def decode_u8(in_path, out_path, retained, renamed):
     with open(in_path, 'rb') as in_file:
         in_data = in_file.read()
     magic = in_data[0:4]
-    expected_magic = b'Yaz0'
+    ext = in_path.split(os.extsep)[-1]
+    expected_magic = {
+        'u8': b'U\xaa8-',
+        'szs': b'Yaz0',
+    }[ext]
     if magic != expected_magic:
         magic = magic.decode('ascii')
         expected_magic = expected_magic.decode('ascii')
         sys.exit(f'Unexpected magic {magic} for extension {ext} (expected {expected_magic}).')
-    in_data = unpack_yaz(in_data)
+    if ext == 'szs':
+        in_data = unpack_yaz(in_data)
     root = unpack_u8(in_data)
     if out_path is None:
         out_path = in_path + '.d'
-    decode_szs_node(out_path, root, retained, renamed)
+    decode_u8_node(out_path, root, retained, renamed)
 
 def decode(in_path, out_path, retained, renamed):
     ext = in_path.split(os.extsep)[-1]
-    if ext == 'szs':
-        decode_szs(in_path, out_path, retained, renamed)
+    if ext == 'u8' or ext == 'szs':
+        decode_u8(in_path, out_path, retained, renamed)
         return
     unpack = ext_unpack.get(ext)
     if unpack is None:
@@ -98,13 +103,13 @@ def decode(in_path, out_path, retained, renamed):
     with open(out_path, 'w') as out_file:
         out_file.write(out_data)
 
-def encode_szs_node(in_path, retained, renamed):
+def encode_u8_node(in_path, retained, renamed):
     is_dir = os.path.isdir(in_path)
     if is_dir:
         out_path = in_path
         children = []
         for child_path in sorted(os.listdir(in_path)):
-            child = encode_szs_node(os.path.join(in_path, child_path), retained, renamed)
+            child = encode_u8_node(os.path.join(in_path, child_path), retained, renamed)
             if child is not None:
                 children += [child]
         node = {
@@ -138,10 +143,12 @@ def encode_szs_node(in_path, retained, renamed):
         **node,
     }
 
-def encode_szs(in_path, out_path, retained, renamed):
-    root = encode_szs_node(in_path, retained, renamed)
+def encode_u8(in_path, out_path, retained, renamed):
+    ext = in_path.split(os.extsep)[-2]
+    root = encode_u8_node(in_path, retained, renamed)
     out_data = pack_u8(root)
-    out_data = pack_yaz(out_data)
+    if ext == 'szs':
+        out_data = pack_yaz(out_data)
     if out_path is None:
         out_path = os.path.splitext(in_path)[0]
     with open(out_path, 'wb') as out_file:
@@ -149,8 +156,8 @@ def encode_szs(in_path, out_path, retained, renamed):
 
 def encode(in_path, out_path, retained, renamed):
     ext = in_path.split(os.extsep)[-2]
-    if ext == 'szs':
-        encode_szs(in_path, out_path, retained, renamed)
+    if ext == 'u8' or ext == 'szs':
+        encode_u8(in_path, out_path, retained, renamed)
         return
     pack = ext_pack.get(ext)
     if pack is None:
