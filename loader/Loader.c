@@ -36,6 +36,10 @@ void Loader_run(void) {
     // lines are written back to main memory. Prevent that by completely emptying the dcache.
     DCInvalidateRange((void *)0x80000000, 0x1800000);
 
+    // Reset the DSP: libogc apps like the HBC cannot initialize it properly, but the SDK can.
+    volatile u32 *aiControl = (u32 *)0xcd006c00;
+    *aiControl = 0x00000000;
+
     Vi_init();
 
     Console_init();
