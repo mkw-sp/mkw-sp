@@ -1,26 +1,17 @@
 #include "Apploader.h"
-#include "Cache.h"
 #include "Console.h"
 #include "Delay.h"
 #include "Di.h"
-#include "Ios.h"
 #include "Stack.h"
 #include "Vi.h"
+
+#include <common/Cache.h>
+#include <common/Ios.h>
 
 #include <string.h>
 
 typedef void (*PayloadEntryFunc)(void);
 
-#ifdef SP_DEBUG
-#define payloadP payloadPD
-#define payloadPSize payloadPDSize
-#define payloadE payloadED
-#define payloadESize payloadEDSize
-#define payloadJ payloadJD
-#define payloadJSize payloadJDSize
-#define payloadK payloadKD
-#define payloadKSize payloadKDSize
-#endif
 
 extern const void payloadP;
 extern const u32 payloadPSize;
@@ -44,8 +35,6 @@ void Loader_run(void) {
 
     Console_init();
     Console_printString("MKW-SP Loader\n");
-
-    Ios_init();
 
     Console_printString("Initializing disc interface...");
     while (!Di_init()) {

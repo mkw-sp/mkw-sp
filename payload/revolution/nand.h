@@ -22,6 +22,10 @@ enum {
 };
 
 enum {
+    NAND_SEEK_SET = 0,
+};
+
+enum {
     NAND_MAX_PATH = 64,
     NAND_MAX_NAME = 12,
 };
@@ -30,6 +34,14 @@ typedef struct {
     u8 _00[0x8c - 0x00];
 } NANDFileInfo;
 static_assert(sizeof(NANDFileInfo) == 0x8c);
+
+s32 NANDOpen(const char *path, NANDFileInfo *info, u8 accType);
+
+s32 NANDClose(NANDFileInfo *info);
+
+s32 NANDRead(NANDFileInfo *info, void *buf, u32 length);
+
+s32 NANDSeek(NANDFileInfo *info, s32 offset, s32 whence);
 
 s32 NANDReadDir(const char *path, char *nameList, u32 *num);
 

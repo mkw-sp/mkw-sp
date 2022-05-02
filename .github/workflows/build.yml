@@ -33,6 +33,8 @@ jobs:
           python-version: 'pypy-3.8'
       - name: Install json5
         run: pip install json5
+      - name: Install pyelftools
+        run: pip install pyelftools
       - name: Configure ninja
         run: ./configure.py
       - name: Compile

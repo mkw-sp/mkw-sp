@@ -35,433 +35,6 @@ n.variable('builddir', 'build')
 n.variable('outdir', 'out')
 n.newline()
 
-devkitppc = os.environ.get("DEVKITPPC")
-n.variable('cc', os.path.join(devkitppc, 'bin', 'powerpc-eabi-gcc'))
-n.variable('cpp', os.path.join(devkitppc, 'bin', 'powerpc-eabi-g++'))
-n.variable('port', 'port.py')
-n.newline()
-
-asflags = [
-    '-isystem', 'include',
-    '-isystem', 'payload',
-    '-isystem', 'vendor',
-]
-cflags_loader = [
-    '-fms-extensions',
-    '-fno-asynchronous-unwind-tables',
-    '-fplan9-extensions',
-    '-fshort-wchar',
-    '-isystem', 'include',
-    '-isystem', 'payload',
-    '-isystem', 'vendor',
-    '-Wall',
-    '-Werror=implicit-function-declaration',
-    '-Werror=incompatible-pointer-types',
-    '-Wextra',
-    '-Wno-packed-bitfield-compat',
-    f'-DGIT_HASH={get_git_revision_short_hash()}',
-]
-if args.gdb_compatible:
-    cflags_loader += ['-DGDB_COMPATIBLE=1']
-cflags_payload = [
-    *cflags_loader,
-    '-fstack-protector-strong',
-]
-cppflags = [
-    '-fms-extensions',
-    '-fno-asynchronous-unwind-tables',
-    # '-fplan9-extensions',
-    '-fshort-wchar',
-    '-fstack-protector-strong',
-    '-isystem', 'include',
-    '-isystem', 'payload',
-    '-isystem', 'vendor',
-    '-Wall',
-    # '-Werror=implicit-function-declaration',
-    # '-Werror=incompatible-pointer-types',
-    '-Wextra',
-    '-Wno-packed-bitfield-compat',
-    f'-DGIT_HASH="{get_git_revision_short_hash()}"',
-    
-    '-fno-exceptions',
-    '-fno-unwind-tables',
-]
-ldflags = [
-    '-nostdlib',
-    '-Wl,-n',
-]
-n.variable('asflags', ' '.join(asflags))
-n.variable('cppflags', ' '.join(cppflags))
-n.variable('ldflags', ' '.join(ldflags))
-n.newline()
-
-n.rule(
-    'as',
-    command = '$cc -MD -MT $out -MF $out.d $asflags -c $in -o $out',
-    depfile = '$out.d',
-    deps = 'gcc',
-    description = 'AS $out',
-)
-n.newline()
-
-n.rule(
-    'incbin',
-    command = '$cc -DNAME=$name -DPATH=$path -c Incbin.S -o $out',
-    description = 'INCBIN $out',
-)
-n.newline()
-
-n.rule(
-    'cc',
-    command = '$cc -MD -MT $out -MF $out.d $cflags -c $in -o $out',
-    depfile = '$out.d',
-    deps = 'gcc',
-    description = 'CC $out',
-)
-n.newline()
-
-n.rule(
-    'cpp',
-    command = '$cpp -MD -MT $out -MF $out.d $cppflags -c $in -o $out',
-    depfile = '$out.d',
-    deps = 'gcc',
-    description = 'CPP $out',
-)
-n.newline()
-
-n.rule(
-    'port',
-    command = f'{sys.executable} $port $region $in $out' + (' --base' if args.gdb_compatible else ''),
-    description = 'PORT $out'
-)
-n.newline()
-
-ldparams = [
-    '-Wl,--defsym,base=$base',
-    '-Wl,--entry=$entry',
-    '-Wl,--oformat,$format',
-    '-Wl,-T,$script',
-]
-n.rule(
-    'ld',
-    command = '$cc $ldflags ' + ' '.join(ldparams) + ' $in -o $out',
-    description = 'LD $out',
-)
-n.newline()
-
-code_in_files = {
-    'payload': [
-        os.path.join('payload', 'egg', 'core', 'eggColorFader.c'),
-        os.path.join('payload', 'egg', 'core', 'eggDisplay.S'),
-        os.path.join('payload', 'egg', 'core', 'eggDvdFile.c'),
-        os.path.join('payload', 'egg', 'core', 'eggEffectCreator.S'),
-        os.path.join('payload', 'egg', 'core', 'eggG3dUtil.S'),
-        os.path.join('payload', 'egg', 'core', 'eggHeap.c'),
-        os.path.join('payload', 'egg', 'core', 'eggSystem.c'),
-        os.path.join('payload', 'game', 'effect', 'Effect.S'),
-        os.path.join('payload', 'game', 'gfx', 'Camera.S'),
-        os.path.join('payload', 'game', 'gfx', 'CameraManager.S'),
-        os.path.join('payload', 'game', 'host_system', 'BootStrapScene.c'),
-        os.path.join('payload', 'game', 'host_system', 'RkSystem.S'),
-        os.path.join('payload', 'game', 'host_system', 'RkSystem.c'),
-        os.path.join('payload', 'game', 'host_system', 'SceneManager.S'),
-        os.path.join('payload', 'game', 'host_system', 'SceneManager.c'),
-        os.path.join('payload', 'game', 'item', 'ItemObjKouraAka.S'),
-        os.path.join('payload', 'game', 'item', 'ItemObjKouraAo.S'),
-        os.path.join('payload', 'game', 'item', 'ItemObjKouraMidori.S'),
-        os.path.join('payload', 'game', 'item', 'KartItem.S'),
-        os.path.join('payload', 'game', 'kart', 'KartMove.S'),
-        os.path.join('payload', 'game', 'kart', 'KartObject.S'),
-        os.path.join('payload', 'game', 'kart', 'KartObjectManager.S'),
-        os.path.join('payload', 'game', 'kart', 'KartObjectManager.c'),
-        os.path.join('payload', 'game', 'kart', 'KartParam.S'),
-        os.path.join('payload', 'game', 'kart', 'KartState.S'),
-        os.path.join('payload', 'game', 'kart', 'KartSub.S'),
-        os.path.join('payload', 'game', 'net', 'NetManager.S'),
-        os.path.join('payload', 'game', 'obj', 'ObjEffect.S'),
-        os.path.join('payload', 'game', 'obj', 'ObjManager.c'),
-        os.path.join('payload', 'game', 'obj', 'ObjPylon01.S'),
-        os.path.join('payload', 'game', 'obj', 'ObjPylon01.c'),
-        os.path.join('payload', 'game', 'race', 'Driver.S'),
-        os.path.join('payload', 'game', 'race', 'DriverManager.S'),
-        os.path.join('payload', 'game', 'race', 'DriverManager.c'),
-        os.path.join('payload', 'game', 'race', 'JugemManager.S'),
-        os.path.join('payload', 'game', 'race', 'JugemManager.c'),
-        os.path.join('payload', 'game', 'rel', 'Rel.S'),
-        os.path.join('payload', 'game', 'snd', 'DriverSound.S'),
-        os.path.join('payload', 'game', 'snd', 'KartSound.S'),
-        os.path.join('payload', 'game', 'snd', 'Snd.S'),
-        os.path.join('payload', 'game', 'system', 'BugCheck.c'),
-        os.path.join('payload', 'game', 'system', 'Console.c'),
-        os.path.join('payload', 'game', 'system', 'CourseMap.S'),
-        os.path.join('payload', 'game', 'system', 'DvdArchive.S'),
-        os.path.join('payload', 'game', 'system', 'FatalScene.c'),
-        os.path.join('payload', 'game', 'system', 'GhostFile.c'),
-        os.path.join('payload', 'game', 'system', 'HomeButton.S'),
-        os.path.join('payload', 'game', 'system', 'InputManager.S'),
-        os.path.join('payload', 'game', 'system', 'InputManager.c'),
-        os.path.join('payload', 'game', 'system', 'Mii.S'),
-        os.path.join('payload', 'game', 'system', 'MultiDvdArchive.S'),
-        os.path.join('payload', 'game', 'system', 'MultiDvdArchive.c'),
-        os.path.join('payload', 'game', 'system', 'NandManager.S'),
-        os.path.join('payload', 'game', 'system', 'RaceConfig.S'),
-        os.path.join('payload', 'game', 'system', 'RaceConfig.c'),
-        os.path.join('payload', 'game', 'system', 'RaceManager.S'),
-        os.path.join('payload', 'game', 'system', 'RaceManager.c'),
-        os.path.join('payload', 'game', 'system', 'ResourceManager.S'),
-        os.path.join('payload', 'game', 'system', 'ResourceManager.c'),
-        os.path.join('payload', 'game', 'system', 'SaveManager.c'),
-        os.path.join('payload', 'game', 'system', 'SceneCreatorDynamic.S'),
-        os.path.join('payload', 'game', 'system', 'SceneCreatorDynamic.c'),
-        os.path.join('payload', 'game', 'ui', 'ControlLoader.S'),
-        os.path.join('payload', 'game', 'ui', 'Font.S'),
-        os.path.join('payload', 'game', 'ui', 'Font.c'),
-        os.path.join('payload', 'game', 'ui', 'FontManager.c'),
-        os.path.join('payload', 'game', 'ui', 'GhostManagerPage.S'),
-        os.path.join('payload', 'game', 'ui', 'GhostManagerPage.c'),
-        os.path.join('payload', 'game', 'ui', 'GhostSelectButton.c'),
-        os.path.join('payload', 'game', 'ui', 'GhostSelectControl.c'),
-        os.path.join('payload', 'game', 'ui', 'Layout.S'),
-        os.path.join('payload', 'game', 'ui', 'License.S'),
-        os.path.join('payload', 'game', 'ui', 'License.c'),
-        os.path.join('payload', 'game', 'ui', 'LicenseSelectButton.c'),
-        os.path.join('payload', 'game', 'ui', 'LicenseSelectPage.c'),
-        os.path.join('payload', 'game', 'ui', 'LicenseSettingsPage.c'),
-        os.path.join('payload', 'game', 'ui', 'Map2DRenderer.c'),
-        os.path.join('payload', 'game', 'ui', 'MiiGroup.c'),
-        os.path.join('payload', 'game', 'ui', 'Model.S'),
-        os.path.join('payload', 'game', 'ui', 'Page.c'),
-        os.path.join('payload', 'game', 'ui', 'Save.S'),
-        os.path.join('payload', 'game', 'ui', 'SaveManagerProxy.S'),
-        os.path.join('payload', 'game', 'ui', 'Section.c'),
-        os.path.join('payload', 'game', 'ui', 'SectionManager.S'),
-        os.path.join('payload', 'game', 'ui', 'SectionManager.c'),
-        os.path.join('payload', 'game', 'ui', 'TabControl.c'),
-        os.path.join('payload', 'game', 'ui', 'TimeAttackGhostListPage.c'),
-        os.path.join('payload', 'game', 'ui', 'TimeAttackRulesPage.c'),
-        os.path.join('payload', 'game', 'ui', 'TimeAttackTopPage.S'),
-        os.path.join('payload', 'game', 'ui', 'TitlePage.S'),
-        os.path.join('payload', 'game', 'ui', 'TitlePage.c'),
-        os.path.join('payload', 'game', 'ui', 'UIAnimator.c'),
-        os.path.join('payload', 'game', 'ui', 'UIControl.c'),
-        os.path.join('payload', 'game', 'ui', 'Wipe.S'),
-        os.path.join('payload', 'game', 'ui', 'ctrl', 'CtrlMenuBackButton.c'),
-        os.path.join('payload', 'game', 'ui', 'ctrl', 'CtrlMenuInstructionText.c'),
-        os.path.join('payload', 'game', 'ui', 'ctrl', 'CtrlMenuPageTitleText.c'),
-        os.path.join('payload', 'game', 'ui', 'ctrl', 'CtrlRace2DMap.S'),
-        os.path.join('payload', 'game', 'ui', 'ctrl', 'CtrlRaceBase.S'),
-        os.path.join('payload', 'game', 'ui', 'ctrl', 'CtrlRaceBase.c'),
-        os.path.join('payload', 'game', 'ui', 'ctrl', 'CtrlRaceInputDisplay.c'),
-        os.path.join('payload', 'game', 'ui', 'ctrl', 'CtrlRaceLap.c'),
-        os.path.join('payload', 'game', 'ui', 'ctrl', 'CtrlRaceNameBalloon.S'),
-        os.path.join('payload', 'game', 'ui', 'ctrl', 'CtrlRaceNameBalloon.c'),
-        os.path.join('payload', 'game', 'ui', 'ctrl', 'CtrlRaceSpeed.c'),
-        os.path.join('payload', 'game', 'ui', 'ctrl', 'CtrlRaceTime.S'),
-        os.path.join('payload', 'game', 'ui', 'ctrl', 'CtrlRaceTime.c'),
-        os.path.join('payload', 'game', 'ui', 'page', 'CharacterSelectPage.S'),
-        os.path.join('payload', 'game', 'ui', 'page', 'CourseSelectPage.S'),
-        os.path.join('payload', 'game', 'ui', 'page', 'CupSelectPage.S'),
-        os.path.join('payload', 'game', 'ui', 'page', 'DemoPage.S'),
-        os.path.join('payload', 'game', 'ui', 'page', 'DriftSelectPage.S'),
-        os.path.join('payload', 'game', 'ui', 'page', 'MachineSelectPage.S'),
-        os.path.join('payload', 'game', 'ui', 'page', 'RaceMenuPage.S'),
-        os.path.join('payload', 'game', 'ui', 'page', 'RaceMenuPage.c'),
-        os.path.join('payload', 'game', 'ui', 'page', 'RacePage.S'),
-        os.path.join('payload', 'game', 'ui', 'page', 'RacePage.c'),
-        os.path.join('payload', 'game', 'ui', 'page', 'SingleTopMenuPage.S'),
-        os.path.join('payload', 'game', 'ui', 'page', 'SingleTopMenuPage.c'),
-        os.path.join('payload', 'game', 'ui', 'page', 'TimeAttackSplitsPage.S'),
-        os.path.join('payload', 'game', 'ui', 'page', 'TimeAttackSplitsPage.c'),
-        os.path.join('payload', 'game', 'ui', 'page', 'TopMenuPage.S'),
-        os.path.join('payload', 'game', 'ui', 'page', 'TopMenuPage.c'),
-        os.path.join('payload', 'game', 'ui', 'page', 'VsMenuPage.S'),
-        os.path.join('payload', 'game', 'ui', 'page', 'VsMenuPage.c'),
-        os.path.join('payload', 'game', 'ui', 'page', 'VsRulesPage.c'),
-        os.path.join('payload', 'game', 'util', 'Input.S'),
-        os.path.join('payload', 'nw4r', 'db', 'dbAssert.S'),
-        os.path.join('payload', 'nw4r', 'db', 'dbException.S'),
-        os.path.join('payload', 'nw4r', 'db', 'dbException.c'),
-        os.path.join('payload', 'nw4r', 'g3d', 'g3d_resmat.c'),
-        os.path.join('payload', 'nw4r', 'g3d', 'g3dResFile.S'),
-        os.path.join('payload', 'nw4r', 'g3d', 'MSan.c'),
-        os.path.join('payload', 'nw4r', 'lyt', 'lyt_arcResourceAccessor.S'),
-        os.path.join('payload', 'nw4r', 'lyt', 'lyt_layout.S'),
-        os.path.join('payload', 'nw4r', 'snd', 'snd_DvdSoundArchive.S'),
-        os.path.join('payload', 'nw4r', 'snd', 'snd_SoundArchive.c'),
-        os.path.join('payload', 'nw4r', 'snd', 'snd_SoundArchivePlayer.S'),
-        os.path.join('payload', 'nw4r', 'snd', 'snd_SoundArchivePlayer.c'),
-        os.path.join('payload', 'nw4r', 'ut', 'ut_DvdFileStream.S'),
-        os.path.join('payload', 'platform', 'string.c'),
-        os.path.join('payload', 'platform', 'wchar.c'),
-        os.path.join('payload', 'revolution', 'dvd.S'),
-        os.path.join('payload', 'revolution', 'dvd.c'),
-        os.path.join('payload', 'revolution', 'dvdex.c'),
-        os.path.join('payload', 'revolution', 'ios.S'),
-        os.path.join('payload', 'revolution', 'ios.c'),
-        os.path.join('payload', 'revolution', 'nand.c'),
-        os.path.join('payload', 'revolution', 'OS.S'),
-        os.path.join('payload', 'revolution', 'OS.c'),
-        os.path.join('payload', 'revolution', 'os', 'OSContext.S'),
-        os.path.join('payload', 'revolution', 'os', 'OSError.S'),
-        os.path.join('payload', 'revolution', 'os', 'OSError.c'),
-        os.path.join('payload', 'revolution', 'os', 'OSMemory.S'),
-        os.path.join('payload', 'revolution', 'os', 'OSThread.S'),
-        os.path.join('payload', 'revolution', 'os', 'OSThread.c'),
-        os.path.join('payload', 'sp', 'Commands.c'),
-        os.path.join('payload', 'sp', 'Fatal.c'),
-        os.path.join('payload', 'sp', 'FormattingCodes.c'),
-        os.path.join('payload', 'sp', 'FlameGraph.c'),
-        os.path.join('payload', 'sp', 'Host.c'),
-        os.path.join('payload', 'sp', 'IOSDolphin.c'),
-        # Keyboard module
-        os.path.join('payload', 'sp', 'keyboard', 'Keyboard.c'),
-        os.path.join('payload', 'sp', 'keyboard', 'SIKeyboard.c'),
-        os.path.join('payload', 'sp', 'keyboard', 'IOSKeyboard.c'),
-        #
-        os.path.join('payload', 'sp', 'Net.c'),
-        os.path.join('payload', 'sp', 'Patcher.c'),
-        os.path.join('payload', 'sp', 'Payload.c'),
-        # Security module
-        os.path.join('payload', 'sp', 'security', 'Memory.c'),
-        os.path.join('payload', 'sp', 'security', 'Stack.S'),
-        os.path.join('payload', 'sp', 'security', 'Stack.c'),
-        os.path.join('payload', 'sp', 'security', 'StackTrace.S'),
-        # Settings module
-        os.path.join('payload', 'sp', 'settings', 'BaseSettings.c'),
-        os.path.join('payload', 'sp', 'settings', 'ClientSettings.c'),
-        os.path.join('payload', 'sp', 'settings', 'IniReader.c'),
-        #
-        os.path.join('payload', 'sp', 'Slab.c'),
-        os.path.join('payload', 'sp', 'StackTrace.c'),
-        # Storage module
-        os.path.join('payload', 'sp', 'storage', 'FatStorage.c'),
-        os.path.join('payload', 'sp', 'storage', 'LogFile.c'),
-        os.path.join('payload', 'sp', 'storage', 'NetStorage.c'),
-        os.path.join('payload', 'sp', 'storage', 'NetStorageClient.c'),
-        os.path.join('payload', 'sp', 'storage', 'Sdi.c'),
-        os.path.join('payload', 'sp', 'storage', 'Storage.c'),
-        os.path.join('payload', 'sp', 'storage', 'Usb.c'),
-        os.path.join('payload', 'sp', 'storage', 'UsbStorage.c'),
-        #
-        os.path.join('payload', 'sp', 'Tcp.c'),
-        os.path.join('payload', 'sp', 'Yaz.c'),
-        os.path.join('vendor', 'arith64.c'),
-        os.path.join('vendor', 'ff', 'diskio.c'),
-        os.path.join('vendor', 'ff', 'ff.c'),
-        os.path.join('vendor', 'ff', 'fftime.c'),
-        os.path.join('vendor', 'ff', 'ffunicode.c'),
-    ],
-    'loader': [
-        os.path.join('loader', 'Apploader.c'),
-        os.path.join('loader', 'Cache.S'),
-        os.path.join('loader', 'Console.c'),
-        os.path.join('loader', 'Delay.S'),
-        os.path.join('loader', 'Di.c'),
-        os.path.join('loader', 'Font.c'),
-        os.path.join('loader', 'Ios.c'),
-        os.path.join('loader', 'Loader.c'),
-        os.path.join('loader', 'Memcpy.c'),
-        os.path.join('loader', 'Memset.c'),
-        os.path.join('loader', 'Stack.c'),
-        os.path.join('loader', 'Start.S'),
-        os.path.join('loader', 'Strlen.c'),
-        os.path.join('loader', 'Vi.c'),
-    ],
-}
-code_out_files = {}
-for profile in ['DEBUG', 'RELEASE']:
-    code_out_files[profile] = {target: [] for target in code_in_files}
-
-for target in code_in_files:
-    for in_file in code_in_files[target]:
-        _, ext = os.path.splitext(in_file)
-        for profile in ['DEBUG', 'RELEASE']:
-            out_file = os.path.join('$builddir', in_file + ('.o' if profile == 'RELEASE' else 'D.o'))
-            code_out_files[profile][target] += [out_file]
-            rule = {
-                '.S': 'as',
-                '.c': 'cc',
-                '.cpp': 'cpp',
-            }[ext]
-            cur_cflags = (cflags_loader if target == 'loader' else cflags_payload) + (['-O0', '-g', '-DSP_DEBUG'] if profile == 'DEBUG' else ['-O2', '-DSP_RELEASE'])
-            n.build(
-                out_file,
-                rule,
-                in_file,
-                variables = {
-                    'cflags': ' '.join(cur_cflags),
-                },
-            )
-        n.newline()
-
-for region in ['P', 'E', 'J', 'K']:
-    n.build(
-        os.path.join('$builddir', 'scripts', f'RMC{region}.ld'),
-        'port',
-        os.path.join('.', 'symbols.txt'),
-        variables = {
-            'region': region,
-        },
-        implicit = '$port',
-    )
-    n.newline()
-
-for region in ['P', 'E', 'J', 'K']:
-    for fmt in ['binary', 'elf32-powerpc']:
-        for profile in ['DEBUG', 'RELEASE']:
-            suffix = 'D' if profile == 'DEBUG' else ''
-            extension = 'bin' if fmt == 'binary' else 'elf'
-            n.build(
-                os.path.join('$builddir', 'bin', f'payload{region}{suffix}.{extension}'),
-                'ld',
-                code_out_files[profile]['payload'],
-                variables = {
-                    'base': {
-                        'P': '0x8076db60' if not args.gdb_compatible else '0x809C4FA0',
-                        'E': '0x80769400',
-                        'J': '0x8076cca0',
-                        'K': '0x8075bfe0',
-                    }[region],
-                    'entry': 'Payload_run',
-                    'format': fmt,
-                    'script': os.path.join('$builddir', 'scripts', f'RMC{region}.ld'),
-                },
-                implicit = os.path.join('$builddir', 'scripts', f'RMC{region}.ld'),
-            )
-            n.newline()
-
-for region in ['P', 'E', 'J', 'K']:
-    for profile in ['DEBUG', 'RELEASE']:
-        suffix = 'D' if profile == 'DEBUG' else ''
-        out_file = os.path.join('$builddir', 'loader', f'payload{region}{suffix}.o')
-        n.build(
-            out_file,
-            'incbin',
-            os.path.join('$builddir', 'bin', f'payload{region}{suffix}.bin'),
-            variables = {
-                'name': f'payload{region}{suffix}',
-                'path': '/'.join(['$builddir', 'bin', f'payload{region}{suffix}.bin']),
-            },
-            implicit = 'Incbin.S',
-        )
-        code_out_files[profile]['loader'] += [out_file]
-
-for profile in ['DEBUG', 'RELEASE']:
-    suffix = 'D' if profile == 'DEBUG' else ''
-    n.build(
-        os.path.join('$outdir', f'boot{suffix}.elf'),
-        'ld',
-        code_out_files[profile]['loader'],
-        variables = {
-            'base': '0x80910000' if not args.gdb_compatible else '0x80E50F90',
-            'entry': 'start',
-            'format': 'elf32-powerpc',
-            'script': os.path.join('loader', 'RMC.ld'),
-        },
-        implicit = os.path.join('loader', 'RMC.ld'),
-    )
-    n.newline()
-
 n.variable('merge', os.path.join('.', 'merge.py'))
 n.variable('wuj5', os.path.join('vendor', 'wuj5', 'wuj5.py'))
 n.newline()
@@ -488,9 +61,9 @@ n.rule(
 n.newline()
 
 n.rule(
-    'szs',
-    command = f'{sys.executable} $wuj5 encode $szsin -o $out --retained $in $args',
-    description = 'SZS $out',
+    'u8',
+    command = f'{sys.executable} $wuj5 encode $u8in -o $out --retained $in $args',
+    description = 'U8 $out',
 )
 n.newline()
 
@@ -655,6 +228,7 @@ asset_in_files = {
         os.path.join('control', 'ctrl', 'LicenseSettingRadioBase.brctr.json5'),
         os.path.join('control', 'ctrl', 'LicenseSettingRadioOption.brctr.json5'),
         os.path.join('control', 'timg', 'tt_license_icon_004.tpl'),
+        #
         os.path.join('game_image', 'anim', 'game_image_speed_texture_pattern_0_9.brlan.json5'),
         os.path.join('game_image', 'blyt', 'game_image_speed.brlyt.json5'),
         os.path.join('game_image', 'blyt', 'InputDisplay.brlyt.json5'),
@@ -811,13 +385,529 @@ for target in asset_out_files:
             target_renamed[out_file] = renamed[out_file]
     target_renamed = ' '.join([f'--renamed {src} {dst}' for src, dst in target_renamed.items()])
     n.build(
-        os.path.join('$outdir', 'disc', target),
-        'szs',
+        os.path.join('$builddir', 'assets.u8.d', 'disc', target),
+        'u8',
         asset_out_files[target],
         variables = {
-            'szsin': os.path.join('$builddir', 'Shared.szs.d'),
+            'u8in': os.path.join('$builddir', 'Shared.szs.d'),
             'args': target_renamed,
         },
+    )
+    n.newline()
+
+n.build(
+    os.path.join('$builddir', 'assets.u8'),
+    'u8',
+    [os.path.join('$builddir', 'assets.u8.d', 'disc', target) for target in asset_out_files],
+    variables = {
+        'u8in': os.path.join('$builddir', 'assets.u8.d'),
+    },
+)
+
+devkitppc = os.environ.get("DEVKITPPC")
+n.variable('cc', os.path.join(devkitppc, 'bin', 'powerpc-eabi-gcc'))
+n.variable('cpp', os.path.join(devkitppc, 'bin', 'powerpc-eabi-g++'))
+n.variable('port', 'port.py')
+n.variable('elf2dol', 'elf2dol.py')
+n.newline()
+
+asflags = [
+    '-isystem', 'include',
+    '-isystem', 'payload',
+    '-isystem', 'vendor',
+]
+cflags_common = [
+    '-fms-extensions',
+    '-fno-asynchronous-unwind-tables',
+    '-fplan9-extensions',
+    '-fshort-wchar',
+    '-isystem', 'include',
+    '-isystem', 'payload',
+    '-isystem', 'vendor',
+    '-Wall',
+    '-Werror=implicit-function-declaration',
+    '-Werror=incompatible-pointer-types',
+    '-Wextra',
+    '-Wno-packed-bitfield-compat',
+    f'-DGIT_HASH={get_git_revision_short_hash()}',
+]
+if args.gdb_compatible:
+    cflags_common += ['-DGDB_COMPATIBLE=1']
+target_cflags = {
+    'stub': [
+        *cflags_common,
+        '-isystem', '.',
+    ],
+    'loader': [
+        *cflags_common,
+        '-isystem', '.',
+    ],
+    'payload': [
+        *cflags_common,
+        '-fstack-protector-strong',
+    ],
+}
+profile_cflags = {
+    'DEBUG': [
+        '-O0',
+        '-g',
+        '-DSP_DEBUG'
+    ],
+    'RELEASE': [
+        '-O2',
+        '-DSP_RELEASE'
+    ],
+}
+ldflags = [
+    '-nostdlib',
+    '-Wl,-n',
+]
+n.variable('asflags', ' '.join(asflags))
+n.variable('ldflags', ' '.join(ldflags))
+n.newline()
+
+n.rule(
+    'as',
+    command = '$cc -MD -MT $out -MF $out.d $asflags -c $in -o $out',
+    depfile = '$out.d',
+    deps = 'gcc',
+    description = 'AS $out',
+)
+n.newline()
+
+n.rule(
+    'incbin',
+    command = '$cc -DNAME=$name -DPATH=$path -c Incbin.S -o $out',
+    description = 'INCBIN $out',
+)
+n.newline()
+
+n.rule(
+    'cc',
+    command = '$cc -MD -MT $out -MF $out.d $cflags -c $in -o $out',
+    depfile = '$out.d',
+    deps = 'gcc',
+    description = 'CC $out',
+)
+n.newline()
+
+n.rule(
+    'cpp',
+    command = '$cpp -MD -MT $out -MF $out.d $cppflags -c $in -o $out',
+    depfile = '$out.d',
+    deps = 'gcc',
+    description = 'CPP $out',
+)
+n.newline()
+
+n.rule(
+    'port',
+    command = f'{sys.executable} $port $region $in $out' + (' --base' if args.gdb_compatible else ''),
+    description = 'PORT $out'
+)
+n.newline()
+
+ldparams = [
+    '-Wl,--defsym,base=$base',
+    '-Wl,--entry=$entry',
+    '-Wl,--oformat,$format',
+    '-Wl,-T,$script',
+]
+n.rule(
+    'ld',
+    command = '$cc $ldflags ' + ' '.join(ldparams) + ' $in -o $out',
+    description = 'LD $out',
+)
+n.newline()
+
+n.rule(
+    'elf2dol',
+    command = f'{sys.executable} $elf2dol $in $out',
+    description = 'DOL $out',
+)
+n.newline()
+
+code_in_files = {
+    'payload': [
+        os.path.join('payload', 'egg', 'core', 'eggColorFader.c'),
+        os.path.join('payload', 'egg', 'core', 'eggDisplay.S'),
+        os.path.join('payload', 'egg', 'core', 'eggDvdFile.c'),
+        os.path.join('payload', 'egg', 'core', 'eggEffectCreator.S'),
+        os.path.join('payload', 'egg', 'core', 'eggG3dUtil.S'),
+        os.path.join('payload', 'egg', 'core', 'eggHeap.c'),
+        os.path.join('payload', 'egg', 'core', 'eggSystem.c'),
+        os.path.join('payload', 'game', 'effect', 'Effect.S'),
+        os.path.join('payload', 'game', 'gfx', 'Camera.S'),
+        os.path.join('payload', 'game', 'gfx', 'CameraManager.S'),
+        os.path.join('payload', 'game', 'host_system', 'BootStrapScene.c'),
+        os.path.join('payload', 'game', 'host_system', 'RkSystem.S'),
+        os.path.join('payload', 'game', 'host_system', 'RkSystem.c'),
+        os.path.join('payload', 'game', 'host_system', 'SceneManager.S'),
+        os.path.join('payload', 'game', 'host_system', 'SceneManager.c'),
+        os.path.join('payload', 'game', 'item', 'ItemObjKouraAka.S'),
+        os.path.join('payload', 'game', 'item', 'ItemObjKouraAo.S'),
+        os.path.join('payload', 'game', 'item', 'ItemObjKouraMidori.S'),
+        os.path.join('payload', 'game', 'item', 'KartItem.S'),
+        os.path.join('payload', 'game', 'kart', 'KartMove.S'),
+        os.path.join('payload', 'game', 'kart', 'KartObject.S'),
+        os.path.join('payload', 'game', 'kart', 'KartObjectManager.S'),
+        os.path.join('payload', 'game', 'kart', 'KartObjectManager.c'),
+        os.path.join('payload', 'game', 'kart', 'KartParam.S'),
+        os.path.join('payload', 'game', 'kart', 'KartState.S'),
+        os.path.join('payload', 'game', 'kart', 'KartSub.S'),
+        os.path.join('payload', 'game', 'net', 'NetManager.S'),
+        os.path.join('payload', 'game', 'obj', 'ObjEffect.S'),
+        os.path.join('payload', 'game', 'obj', 'ObjManager.c'),
+        os.path.join('payload', 'game', 'obj', 'ObjPylon01.S'),
+        os.path.join('payload', 'game', 'obj', 'ObjPylon01.c'),
+        os.path.join('payload', 'game', 'race', 'Driver.S'),
+        os.path.join('payload', 'game', 'race', 'DriverManager.S'),
+        os.path.join('payload', 'game', 'race', 'DriverManager.c'),
+        os.path.join('payload', 'game', 'race', 'JugemManager.S'),
+        os.path.join('payload', 'game', 'race', 'JugemManager.c'),
+        os.path.join('payload', 'game', 'rel', 'Rel.S'),
+        os.path.join('payload', 'game', 'snd', 'DriverSound.S'),
+        os.path.join('payload', 'game', 'snd', 'KartSound.S'),
+        os.path.join('payload', 'game', 'snd', 'Snd.S'),
+        os.path.join('payload', 'game', 'system', 'BugCheck.c'),
+        os.path.join('payload', 'game', 'system', 'Console.c'),
+        os.path.join('payload', 'game', 'system', 'CourseMap.S'),
+        os.path.join('payload', 'game', 'system', 'DvdArchive.S'),
+        os.path.join('payload', 'game', 'system', 'FatalScene.c'),
+        os.path.join('payload', 'game', 'system', 'GhostFile.c'),
+        os.path.join('payload', 'game', 'system', 'HomeButton.S'),
+        os.path.join('payload', 'game', 'system', 'InputManager.S'),
+        os.path.join('payload', 'game', 'system', 'InputManager.c'),
+        os.path.join('payload', 'game', 'system', 'Mii.S'),
+        os.path.join('payload', 'game', 'system', 'MultiDvdArchive.S'),
+        os.path.join('payload', 'game', 'system', 'MultiDvdArchive.c'),
+        os.path.join('payload', 'game', 'system', 'NandManager.S'),
+        os.path.join('payload', 'game', 'system', 'RaceConfig.S'),
+        os.path.join('payload', 'game', 'system', 'RaceConfig.c'),
+        os.path.join('payload', 'game', 'system', 'RaceManager.S'),
+        os.path.join('payload', 'game', 'system', 'RaceManager.c'),
+        os.path.join('payload', 'game', 'system', 'ResourceManager.S'),
+        os.path.join('payload', 'game', 'system', 'ResourceManager.c'),
+        os.path.join('payload', 'game', 'system', 'SaveManager.c'),
+        os.path.join('payload', 'game', 'system', 'SceneCreatorDynamic.S'),
+        os.path.join('payload', 'game', 'system', 'SceneCreatorDynamic.c'),
+        os.path.join('payload', 'game', 'ui', 'ControlLoader.S'),
+        os.path.join('payload', 'game', 'ui', 'Font.S'),
+        os.path.join('payload', 'game', 'ui', 'Font.c'),
+        os.path.join('payload', 'game', 'ui', 'FontManager.c'),
+        os.path.join('payload', 'game', 'ui', 'GhostManagerPage.S'),
+        os.path.join('payload', 'game', 'ui', 'GhostManagerPage.c'),
+        os.path.join('payload', 'game', 'ui', 'GhostSelectButton.c'),
+        os.path.join('payload', 'game', 'ui', 'GhostSelectControl.c'),
+        os.path.join('payload', 'game', 'ui', 'Layout.S'),
+        os.path.join('payload', 'game', 'ui', 'License.S'),
+        os.path.join('payload', 'game', 'ui', 'License.c'),
+        os.path.join('payload', 'game', 'ui', 'LicenseSelectButton.c'),
+        os.path.join('payload', 'game', 'ui', 'LicenseSelectPage.c'),
+        os.path.join('payload', 'game', 'ui', 'LicenseSettingsPage.c'),
+        os.path.join('payload', 'game', 'ui', 'Map2DRenderer.c'),
+        os.path.join('payload', 'game', 'ui', 'MiiGroup.c'),
+        os.path.join('payload', 'game', 'ui', 'Model.S'),
+        os.path.join('payload', 'game', 'ui', 'Page.c'),
+        os.path.join('payload', 'game', 'ui', 'Save.S'),
+        os.path.join('payload', 'game', 'ui', 'SaveManagerProxy.S'),
+        os.path.join('payload', 'game', 'ui', 'Section.c'),
+        os.path.join('payload', 'game', 'ui', 'SectionManager.S'),
+        os.path.join('payload', 'game', 'ui', 'SectionManager.c'),
+        os.path.join('payload', 'game', 'ui', 'TabControl.c'),
+        os.path.join('payload', 'game', 'ui', 'TimeAttackGhostListPage.c'),
+        os.path.join('payload', 'game', 'ui', 'TimeAttackRulesPage.c'),
+        os.path.join('payload', 'game', 'ui', 'TimeAttackTopPage.S'),
+        os.path.join('payload', 'game', 'ui', 'TitlePage.S'),
+        os.path.join('payload', 'game', 'ui', 'TitlePage.c'),
+        os.path.join('payload', 'game', 'ui', 'UIAnimator.c'),
+        os.path.join('payload', 'game', 'ui', 'UIControl.c'),
+        os.path.join('payload', 'game', 'ui', 'Wipe.S'),
+        os.path.join('payload', 'game', 'ui', 'ctrl', 'CtrlMenuBackButton.c'),
+        os.path.join('payload', 'game', 'ui', 'ctrl', 'CtrlMenuInstructionText.c'),
+        os.path.join('payload', 'game', 'ui', 'ctrl', 'CtrlMenuPageTitleText.c'),
+        os.path.join('payload', 'game', 'ui', 'ctrl', 'CtrlRace2DMap.S'),
+        os.path.join('payload', 'game', 'ui', 'ctrl', 'CtrlRaceBase.S'),
+        os.path.join('payload', 'game', 'ui', 'ctrl', 'CtrlRaceBase.c'),
+        os.path.join('payload', 'game', 'ui', 'ctrl', 'CtrlRaceInputDisplay.c'),
+        os.path.join('payload', 'game', 'ui', 'ctrl', 'CtrlRaceLap.c'),
+        os.path.join('payload', 'game', 'ui', 'ctrl', 'CtrlRaceNameBalloon.S'),
+        os.path.join('payload', 'game', 'ui', 'ctrl', 'CtrlRaceNameBalloon.c'),
+        os.path.join('payload', 'game', 'ui', 'ctrl', 'CtrlRaceSpeed.c'),
+        os.path.join('payload', 'game', 'ui', 'ctrl', 'CtrlRaceTime.S'),
+        os.path.join('payload', 'game', 'ui', 'ctrl', 'CtrlRaceTime.c'),
+        os.path.join('payload', 'game', 'ui', 'page', 'CharacterSelectPage.S'),
+        os.path.join('payload', 'game', 'ui', 'page', 'CourseSelectPage.S'),
+        os.path.join('payload', 'game', 'ui', 'page', 'CupSelectPage.S'),
+        os.path.join('payload', 'game', 'ui', 'page', 'DemoPage.S'),
+        os.path.join('payload', 'game', 'ui', 'page', 'DriftSelectPage.S'),
+        os.path.join('payload', 'game', 'ui', 'page', 'MachineSelectPage.S'),
+        os.path.join('payload', 'game', 'ui', 'page', 'RaceMenuPage.S'),
+        os.path.join('payload', 'game', 'ui', 'page', 'RaceMenuPage.c'),
+        os.path.join('payload', 'game', 'ui', 'page', 'RacePage.S'),
+        os.path.join('payload', 'game', 'ui', 'page', 'RacePage.c'),
+        os.path.join('payload', 'game', 'ui', 'page', 'SingleTopMenuPage.S'),
+        os.path.join('payload', 'game', 'ui', 'page', 'SingleTopMenuPage.c'),
+        os.path.join('payload', 'game', 'ui', 'page', 'TimeAttackSplitsPage.S'),
+        os.path.join('payload', 'game', 'ui', 'page', 'TimeAttackSplitsPage.c'),
+        os.path.join('payload', 'game', 'ui', 'page', 'TopMenuPage.S'),
+        os.path.join('payload', 'game', 'ui', 'page', 'TopMenuPage.c'),
+        os.path.join('payload', 'game', 'ui', 'page', 'VsMenuPage.S'),
+        os.path.join('payload', 'game', 'ui', 'page', 'VsMenuPage.c'),
+        os.path.join('payload', 'game', 'ui', 'page', 'VsRulesPage.c'),
+        os.path.join('payload', 'game', 'util', 'Input.S'),
+        os.path.join('payload', 'nw4r', 'db', 'dbAssert.S'),
+        os.path.join('payload', 'nw4r', 'db', 'dbException.S'),
+        os.path.join('payload', 'nw4r', 'db', 'dbException.c'),
+        os.path.join('payload', 'nw4r', 'g3d', 'g3d_resmat.c'),
+        os.path.join('payload', 'nw4r', 'g3d', 'g3dResFile.S'),
+        os.path.join('payload', 'nw4r', 'g3d', 'MSan.c'),
+        os.path.join('payload', 'nw4r', 'lyt', 'lyt_arcResourceAccessor.S'),
+        os.path.join('payload', 'nw4r', 'lyt', 'lyt_layout.S'),
+        os.path.join('payload', 'nw4r', 'snd', 'snd_DvdSoundArchive.S'),
+        os.path.join('payload', 'nw4r', 'snd', 'snd_SoundArchive.c'),
+        os.path.join('payload', 'nw4r', 'snd', 'snd_SoundArchivePlayer.S'),
+        os.path.join('payload', 'nw4r', 'snd', 'snd_SoundArchivePlayer.c'),
+        os.path.join('payload', 'nw4r', 'ut', 'ut_DvdFileStream.S'),
+        os.path.join('payload', 'platform', 'string.c'),
+        os.path.join('payload', 'platform', 'wchar.c'),
+        os.path.join('payload', 'revolution', 'arc.c'),
+        os.path.join('payload', 'revolution', 'dvd.S'),
+        os.path.join('payload', 'revolution', 'dvd.c'),
+        os.path.join('payload', 'revolution', 'dvdex.c'),
+        os.path.join('payload', 'revolution', 'ios.S'),
+        os.path.join('payload', 'revolution', 'ios.c'),
+        os.path.join('payload', 'revolution', 'nand.c'),
+        os.path.join('payload', 'revolution', 'OS.S'),
+        os.path.join('payload', 'revolution', 'OS.c'),
+        os.path.join('payload', 'revolution', 'os', 'OSContext.S'),
+        os.path.join('payload', 'revolution', 'os', 'OSError.S'),
+        os.path.join('payload', 'revolution', 'os', 'OSError.c'),
+        os.path.join('payload', 'revolution', 'os', 'OSMemory.S'),
+        os.path.join('payload', 'revolution', 'os', 'OSThread.S'),
+        os.path.join('payload', 'revolution', 'os', 'OSThread.c'),
+        os.path.join('payload', 'sp', 'Commands.c'),
+        os.path.join('payload', 'sp', 'Fatal.c'),
+        os.path.join('payload', 'sp', 'FormattingCodes.c'),
+        os.path.join('payload', 'sp', 'FlameGraph.c'),
+        os.path.join('payload', 'sp', 'Host.c'),
+        os.path.join('payload', 'sp', 'IOSDolphin.c'),
+        # Keyboard module
+        os.path.join('payload', 'sp', 'keyboard', 'Keyboard.c'),
+        os.path.join('payload', 'sp', 'keyboard', 'SIKeyboard.c'),
+        os.path.join('payload', 'sp', 'keyboard', 'IOSKeyboard.c'),
+        #
+        os.path.join('payload', 'sp', 'Net.c'),
+        os.path.join('payload', 'sp', 'Patcher.c'),
+        os.path.join('payload', 'sp', 'Payload.c'),
+        # Security module
+        os.path.join('payload', 'sp', 'security', 'Memory.c'),
+        os.path.join('payload', 'sp', 'security', 'Stack.S'),
+        os.path.join('payload', 'sp', 'security', 'Stack.c'),
+        os.path.join('payload', 'sp', 'security', 'StackTrace.S'),
+        # Settings module
+        os.path.join('payload', 'sp', 'settings', 'BaseSettings.c'),
+        os.path.join('payload', 'sp', 'settings', 'ClientSettings.c'),
+        os.path.join('payload', 'sp', 'settings', 'IniReader.c'),
+        #
+        os.path.join('payload', 'sp', 'Slab.c'),
+        os.path.join('payload', 'sp', 'StackTrace.c'),
+        # Storage module
+        os.path.join('payload', 'sp', 'storage', 'FatStorage.c'),
+        os.path.join('payload', 'sp', 'storage', 'LogFile.c'),
+        os.path.join('payload', 'sp', 'storage', 'NandArcStorage.c'),
+        os.path.join('payload', 'sp', 'storage', 'NetStorage.c'),
+        os.path.join('payload', 'sp', 'storage', 'NetStorageClient.c'),
+        os.path.join('payload', 'sp', 'storage', 'Sdi.c'),
+        os.path.join('payload', 'sp', 'storage', 'Storage.c'),
+        os.path.join('payload', 'sp', 'storage', 'Usb.c'),
+        os.path.join('payload', 'sp', 'storage', 'UsbStorage.c'),
+        #
+        os.path.join('payload', 'sp', 'Tcp.c'),
+        os.path.join('payload', 'sp', 'Yaz.c'),
+        os.path.join('vendor', 'arith64.c'),
+        os.path.join('vendor', 'ff', 'diskio.c'),
+        os.path.join('vendor', 'ff', 'ff.c'),
+        os.path.join('vendor', 'ff', 'fftime.c'),
+        os.path.join('vendor', 'ff', 'ffunicode.c'),
+    ],
+    'loader': [
+        os.path.join('common', 'Cache.S'),
+        os.path.join('common', 'Ios.c'),
+        os.path.join('common', 'Memcpy.c'),
+        os.path.join('common', 'Memset.c'),
+        os.path.join('common', 'Strlen.c'),
+        os.path.join('loader', 'Apploader.c'),
+        os.path.join('loader', 'Console.c'),
+        os.path.join('loader', 'Delay.S'),
+        os.path.join('loader', 'Di.c'),
+        os.path.join('loader', 'Font.c'),
+        os.path.join('loader', 'Loader.c'),
+        os.path.join('loader', 'Stack.c'),
+        os.path.join('loader', 'Start.S'),
+        os.path.join('loader', 'Vi.c'),
+    ],
+    'stub': [
+        os.path.join('common', 'Cache.S'),
+        os.path.join('common', 'Ios.c'),
+        os.path.join('common', 'Memcpy.c'),
+        os.path.join('common', 'Memset.c'),
+        os.path.join('common', 'Strlen.c'),
+        os.path.join('stub', 'Fs.c'),
+        os.path.join('stub', 'Start.S'),
+        os.path.join('stub', 'Strlcpy.c'),
+        os.path.join('stub', 'Stub.c'),
+    ],
+}
+code_out_files = {}
+for profile in ['DEBUG', 'RELEASE']:
+    code_out_files[profile] = {target: [] for target in code_in_files}
+
+for target in code_in_files:
+    for in_file in code_in_files[target]:
+        _, ext = os.path.splitext(in_file)
+        for profile in ['DEBUG', 'RELEASE']:
+            suffix = '.o' if profile == 'RELEASE' else 'D.o'
+            out_file = os.path.join('$builddir', target, in_file + suffix)
+            code_out_files[profile][target] += [out_file]
+            rule = {
+                '.S': 'as',
+                '.c': 'cc',
+                '.cpp': 'cpp',
+            }[ext]
+            n.build(
+                out_file,
+                rule,
+                in_file,
+                variables = {
+                    'cflags': ' '.join([*target_cflags[target], *profile_cflags[profile]]),
+                },
+            )
+        n.newline()
+
+for region in ['P', 'E', 'J', 'K']:
+    n.build(
+        os.path.join('$builddir', 'scripts', f'RMC{region}.ld'),
+        'port',
+        os.path.join('.', 'symbols.txt'),
+        variables = {
+            'region': region,
+        },
+        implicit = '$port',
+    )
+    n.newline()
+
+for region in ['P', 'E', 'J', 'K']:
+    for fmt in ['binary', 'elf32-powerpc']:
+        for profile in ['DEBUG', 'RELEASE']:
+            suffix = 'D' if profile == 'DEBUG' else ''
+            extension = 'bin' if fmt == 'binary' else 'elf'
+            n.build(
+                os.path.join('$builddir', 'bin', f'payload{region}{suffix}.{extension}'),
+                'ld',
+                code_out_files[profile]['payload'],
+                variables = {
+                    'base': {
+                        'P': '0x8076db60' if not args.gdb_compatible else '0x809C4FA0',
+                        'E': '0x80769400',
+                        'J': '0x8076cca0',
+                        'K': '0x8075bfe0',
+                    }[region],
+                    'entry': 'Payload_run',
+                    'format': fmt,
+                    'script': os.path.join('$builddir', 'scripts', f'RMC{region}.ld'),
+                },
+                implicit = os.path.join('$builddir', 'scripts', f'RMC{region}.ld'),
+            )
+            n.newline()
+
+for region in ['P', 'E', 'J', 'K']:
+    for profile in ['DEBUG', 'RELEASE']:
+        suffix = 'D' if profile == 'DEBUG' else ''
+        out_file = os.path.join('$builddir', 'loader', f'payload{region}{suffix}.o')
+        n.build(
+            out_file,
+            'incbin',
+            os.path.join('$builddir', 'bin', f'payload{region}{suffix}.bin'),
+            variables = {
+                'name': f'payload{region}',
+                'path': '/'.join(['$builddir', 'bin', f'payload{region}{suffix}.bin']),
+            },
+            implicit = 'Incbin.S',
+        )
+        code_out_files[profile]['loader'] += [out_file]
+n.newline()
+
+for fmt in ['binary', 'elf32-powerpc']:
+    for profile in ['DEBUG', 'RELEASE']:
+        suffix = 'D' if profile == 'DEBUG' else ''
+        extension = 'bin' if fmt == 'binary' else 'elf'
+        n.build(
+            os.path.join('$builddir', 'bin', f'loader{suffix}.{extension}'),
+            'ld',
+            code_out_files[profile]['loader'],
+            variables = {
+                'base': '0x80b00000',
+                'entry': 'start',
+                'format': fmt,
+                'script': os.path.join('loader', 'RMC.ld'),
+            },
+            implicit = os.path.join('loader', 'RMC.ld'),
+        )
+        n.newline()
+
+for profile in ['DEBUG', 'RELEASE']:
+    suffix = 'D' if profile == 'DEBUG' else ''
+    out_file = os.path.join('$builddir', 'stub', f'loader{suffix}.o')
+    n.build(
+        out_file,
+        'incbin',
+        os.path.join('$builddir', 'bin', f'loader{suffix}.bin'),
+        variables = {
+            'name': 'loader',
+            'path': '/'.join(['$builddir', 'bin', f'loader{suffix}.bin']),
+        },
+        implicit = 'Incbin.S',
+    )
+    code_out_files[profile]['stub'] += [out_file]
+
+out_file = os.path.join('$builddir', 'stub', 'assets.o')
+n.build(
+    out_file,
+    'incbin',
+    os.path.join('$builddir', 'assets.u8'),
+    variables = {
+        'name': 'assets',
+        'path': '/'.join(['$builddir', 'assets.u8']),
+    },
+    implicit = 'Incbin.S',
+)
+for profile in ['DEBUG', 'RELEASE']:
+    code_out_files[profile]['stub'] += [out_file]
+
+for profile in ['DEBUG', 'RELEASE']:
+    suffix = 'D' if profile == 'DEBUG' else ''
+    n.build(
+        os.path.join('$builddir', 'bin', f'stub{suffix}.elf'),
+        'ld',
+        code_out_files[profile]['stub'],
+        variables = {
+            'base': '0x80100000',
+            'entry': 'start',
+            'format': 'elf32-powerpc',
+            'script': os.path.join('stub', 'RMC.ld'),
+        },
+        implicit = os.path.join('stub', 'RMC.ld'),
+    )
+    n.newline()
+
+for profile in ['DEBUG', 'RELEASE']:
+    suffix = 'D' if profile == 'DEBUG' else ''
+    n.build(
+        os.path.join('$outdir', f'boot{suffix}.dol'),
+        'elf2dol',
+        os.path.join('$builddir', 'bin', f'stub{suffix}.elf'),
+        implicit = '$elf2dol',
     )
     n.newline()
 

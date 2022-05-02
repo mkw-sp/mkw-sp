@@ -79,6 +79,17 @@
 
 0x800c78d0 RFLiCalculateCRC
 
+0x80124500 ARCInitHandle
+0x801245a0 ARCOpen
+0x80124844 ARCFastOpen
+0x80124894 ARCConvertPathToEntrynum
+0x80124cd4 ARCGetStartOffset
+0x80124cdc ARCGetLength
+0x80124ce4 ARCClose
+0x80124d44 ARCOpenDir
+0x80124dc0 ARCReadDir
+0x80124e78 ARCCloseDir
+
 0x8015df4c DVDConvertPathToEntrynum
 0x8015e254 DVDFastOpen
 0x8015e2bc DVDOpen
@@ -128,7 +139,11 @@
 0x8019AB4C C_MTXOrtho
 0x8019ac68 PSVECMag
 0x8019acac PSVECDotProduct
+0x8019b7a4 NANDRead
+0x8019b964 NANDSeek
 0x8019bee8 NANDMove
+0x8019c800 NANDOpen
+0x8019ca80 NANDClose
 0x8019de1c nandIsPrivatePath
 0x8019dea8 nandIsInitialized
 0x8019dec0 nandConvertErrorCode

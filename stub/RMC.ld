@@ -1,5 +1,5 @@
 SECTIONS {
-    .text base : { *(first) *(.text*) }
+    .text base : { *(.text*) }
     .rodata : { *(.rodata*) }
     .data : { *(.data*) *(.bss*) *(.sbss*) }
 

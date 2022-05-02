@@ -4,7 +4,7 @@
 
 #include "Vi.h"
 
-#include "Cache.h"
+#include <common/Cache.h>
 
 #include <stdalign.h>
 

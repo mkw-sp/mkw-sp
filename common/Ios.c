@@ -26,6 +26,8 @@ enum {
 enum {
     CMD_OPEN = 1,
     CMD_CLOSE = 2,
+    CMD_READ = 3,
+    CMD_WRITE = 4,
     CMD_IOCTL = 6,
     CMD_IOCTLV = 7,
 };
@@ -39,6 +41,10 @@ typedef struct {
             u32 path;
             u32 mode;
         } open;
+        struct {
+            u32 input;
+            u32 inputSize;
+        } write;
         struct {
             u32 ioctl;
             u32 input;
@@ -106,6 +112,21 @@ s32 Ios_close(s32 fd) {
 
     request.cmd = CMD_CLOSE;
     request.fd = fd;
+
+    sync();
+
+    return request.result;
+}
+
+s32 Ios_write(s32 fd, const void *input, u32 inputSize) {
+    DCFlushRange((void *)input, inputSize);
+
+    memset(&request, 0, sizeof(request));
+
+    request.cmd = CMD_WRITE;
+    request.fd = fd;
+    request.write.input = VIRTUAL_TO_PHYSICAL(input);
+    request.write.inputSize = inputSize;
 
     sync();
 

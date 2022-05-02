@@ -1,22 +1,30 @@
 #include "Storage.h"
 
-#include "FatStorage.h"
-#include "LogFile.h"
-#include "NetStorage.h"
+#include "sp/storage/FatStorage.h"
+#include "sp/storage/LogFile.h"
+#include "sp/storage/NandArcStorage.h"
+#include "sp/storage/NetStorage.h"
 
 // Primary storage: FAT over SD or USB
-static Storage storage;
+static Storage fatStorage;
+// Secondary storage: NAND archive
+static Storage nandArcStorage;
 // Secondary storage: LAN NetStorage
-static Storage sNetStorage;
+static Storage netStorage;
 
 bool Storage_init(void) {
-    if (!FatStorage_init(&storage)) {
+    if (!FatStorage_init(&fatStorage)) {
         return false;
     }
 
-    if (NetStorage_init(&sNetStorage)) {
-        storage.next = &sNetStorage;
-        sNetStorage.next = NULL;
+    if (!NandArcStorage_init(&nandArcStorage)) {
+        return false;
+    }
+    fatStorage.next = &nandArcStorage;
+
+    if (NetStorage_init(&netStorage)) {
+        nandArcStorage.next = &netStorage;
+        netStorage.next = NULL;
     }
 
     return true;
@@ -38,7 +46,7 @@ bool Storage_open(File *file, const wchar_t *path, const char *mode) {
     assert(file);
     assert(path);
 
-    for (Storage *s = &storage; s != NULL; s = s->next) {
+    for (Storage *s = &fatStorage; s != NULL; s = s->next) {
         assert(s->open);
         if (s->open(file, path, mode)) {
             file->storage = s;
@@ -151,7 +159,7 @@ bool Storage_createDir(const wchar_t *path, bool allowNop) {
 
     assert(path);
 
-    return storage.createDir(path, allowNop);
+    return fatStorage.createDir(path, allowNop);
 }
 
 bool Storage_fastOpenDir(Dir *dir, NodeId id) {
@@ -170,7 +178,7 @@ bool Storage_openDir(Dir *dir, const wchar_t *path) {
     assert(dir);
     assert(path);
 
-    for (Storage *s = &storage; s != NULL; s = s->next) {
+    for (Storage *s = &fatStorage; s != NULL; s = s->next) {
         assert(s->openDir);
         if (s->openDir(dir, path)) {
             dir->storage = s;
@@ -208,7 +216,7 @@ void Storage_stat(const wchar_t *path, NodeInfo *info) {
     assert(path);
     assert(info);
 
-    for (Storage *s = &storage; s != NULL; s = s->next) {
+    for (Storage *s = &fatStorage; s != NULL; s = s->next) {
         assert(s->stat);
         s->stat(path, info);
         if (info->type != NODE_TYPE_NONE) {
@@ -225,7 +233,7 @@ bool Storage_rename(const wchar_t *srcPath, const wchar_t *dstPath) {
     assert(srcPath);
     assert(dstPath);
 
-    return storage.rename(srcPath, dstPath);
+    return fatStorage.rename(srcPath, dstPath);
 }
 
 // WARNING: Only operates on the primary storage
@@ -234,5 +242,5 @@ bool Storage_remove(const wchar_t *path, bool allowNop) {
 
     assert(path);
 
-    return storage.remove(path, allowNop);
+    return fatStorage.remove(path, allowNop);
 }

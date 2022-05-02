@@ -1,6 +1,6 @@
-#include "Cache.h"
-
 #include <sp/security/Stack.h>
+
+#include <common/Cache.h>
 
 #define MAIN_THREAD_STACK_BITS_ENTROPY 11
 
