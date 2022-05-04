@@ -1,17 +1,18 @@
-#include <Common.h>
+#include "eggSystem.h"
+
 #include <game/item/ItemDirector.h>
 #include <game/system/Console.h>
 #include <game/system/RaceConfig.h>
 #include <game/system/SaveManager.h>
 #include <game/ui/SectionManager.h>
-#include <revolution.h>  // OSReport
+#include <sp/Commands.h>
 #include <sp/Host.h>
 #include <sp/IOSDolphin.h>
+#include <sp/StringView.h>
 #include <sp/keyboard/Keyboard.h>
 #include <stdio.h>
+#include <stdlib.h>  // qsort
 #include <string.h>  // memcpy
-
-extern void EGG_ConfigurationData_onBeginFrame(void *system);
 
 static const char *sOnOff[2] = { "OFF", "ON" };
 static const char *fmtBool(bool b) {
@@ -109,16 +110,7 @@ static void TrySetItem(s32 myPlayerId, s32 item, s32 qty) {
     }
 }
 
-// Matches "/command", "/command arg", but not "/command2"
-static bool StringStartsWithCommand(const char *line, const char *cmd) {
-    const size_t cmdLen = strlen(cmd);
-    if (strncmp(line, cmd, cmdLen)) {
-        return false;
-    }
-    return line[cmdLen] == '\0' || line[cmdLen] == ' ';
-}
-
-static void SlashICommand(const char *tmp) {
+sp_define_command("/i", "Spawn an item.", const char *tmp) {
     const s32 myPlayerId = GetMyPlayerID();
     if (myPlayerId < 0) {
         return;
@@ -157,101 +149,102 @@ static void SlashICommand(const char *tmp) {
     OSReport("&4Invalid command: \"%s\"", tmp);
 }
 
+sp_define_command("/example_command", "Example command", const char *tmp) {
+    (void)tmp;
+
+    if (s_saveManager == NULL) {
+        OSReport("example_command: Failed to load Save Manager\n");
+        return;
+    }
+
+    static const char *tagContent[4] = {
+        "SP_TA_RULE_GHOST_TAG_CONTENT_NAME",
+        "SP_TA_RULE_GHOST_TAG_CONTENT_TIME",
+        "SP_TA_RULE_GHOST_TAG_CONTENT_TIME_NOLEADING",
+        "SP_TA_RULE_GHOST_TAG_CONTENT_DATE",
+    };
+    const u32 rule =
+            SaveManager_getSetting(s_saveManager, kSetting_TaRuleGhostTagContent);
+    OSReport("example_command: taRuleGhostTagContent == %s\n", tagContent[rule & 3]);
+}
+
+sp_define_command("/instant_menu", "Toggle instant menu transitions", const char *tmp) {
+    (void)tmp;
+
+    if (s_saveManager == NULL) {
+        OSReport("instant_menu: Failed to load Save Manager\n");
+        return;
+    }
+    const bool menuTrans =
+            !SaveManager_getSetting(s_saveManager, kSetting_PageTransitions);
+    SaveManager_setSetting(s_saveManager, kSetting_PageTransitions, menuTrans);
+    OSReport("instant_menu: Menu transition animations toggled %s\n", sOnOff[menuTrans]);
+}
+
+sp_define_command("/set", "Sets a .ini setting key-value", const char *tmp) {
+    char setting[64];
+    char value[64];
+    if (2 != sscanf(tmp, "/set %63s %63s", setting, value)) {
+        OSReport("&a/set: Invalid arguments\n");
+        return;
+    }
+    if (s_saveManager->spCurrentLicense < 0) {
+        OSReport("&a/set: No license active\n");
+        return;
+    }
+    ClientSettings_set(&s_saveManager->spLicenses[s_saveManager->spCurrentLicense]->cfg,
+            setting, value);
+}
+
+sp_define_command("/section", "Transition to a certain game section", const char *tmp) {
+    if (s_sectionManager == NULL) {
+        OSReport("&aError: Section manager unavailable\n");
+        return;
+    }
+    int nextSectionId = 0;
+    if (!sscanf(tmp, "/section %i", &nextSectionId)) {
+        OSReport("&aUsage /section <id>\n");
+        return;
+    }
+
+    OSReport("&aSwitching to section %d\n", nextSectionId);
+
+    if (s_saveManager == NULL) {
+        OSReport("&aError: Save manager unavailable\n");
+        return;
+    }
+
+    // Default to license 0
+    s_saveManager->spCurrentLicense = 0;
+    SaveManager_selectLicense(s_saveManager, 0);
+
+    SectionManager_setNextSection(s_sectionManager, __builtin_abs(nextSectionId),
+            nextSectionId < 0 ? PAGE_ANIMATION_PREV : PAGE_ANIMATION_NEXT);
+    SectionManager_startChangeSection(s_sectionManager, 5, 0xff);
+}
+
+sp_define_command("/dolphin_test", "Test /dev/dolphin driver", const char *tmp) {
+    (void)tmp;
+
+    DolphinTest();
+}
+
 static void my_lineCallback(const char *buf, size_t len) {
-    // Demo functions
-    char tmp[64];
-    if (len > sizeof(tmp) - 1)
-        len = sizeof(tmp) - 1;
-    memcpy(tmp, buf, len);
-    tmp[len] = '\0';
+    StringView view = (StringView){ .s = buf, .len = len };
+    const char *tmp = sv_as_cstr(view, 64);
 
     OSReport("[SP] Line submitted: %s\n", tmp);
 
-    if (StringStartsWithCommand(tmp, "/example_command")) {
-        if (s_saveManager == NULL) {
-            OSReport("example_command: Failed to load Save Manager\n");
-        } else {
-            static const char *tagContent[4] = {
-                "SP_TA_RULE_GHOST_TAG_CONTENT_NAME",
-                "SP_TA_RULE_GHOST_TAG_CONTENT_TIME",
-                "SP_TA_RULE_GHOST_TAG_CONTENT_TIME_NOLEADING",
-                "SP_TA_RULE_GHOST_TAG_CONTENT_DATE",
-            };
-            const u32 rule =
-                    SaveManager_getSetting(s_saveManager, kSetting_TaRuleGhostTagContent);
-            OSReport("example_command: taRuleGhostTagContent == %s\n",
-                    tagContent[rule & 3]);
-        }
+    const Command *it = Commands_match(tmp);
+    if (it == NULL) {
+        OSReport("&aUnknown command \"%s\"\n", tmp);
         return;
     }
-
-    if (StringStartsWithCommand(tmp, "/instant_menu")) {
-        if (s_saveManager == NULL) {
-            OSReport("instant_menu: Failed to load Save Manager\n");
-        } else {
-            bool menuTrans =
-                    !SaveManager_getSetting(s_saveManager, kSetting_PageTransitions);
-            SaveManager_setSetting(s_saveManager, kSetting_PageTransitions, menuTrans);
-            OSReport("instant_menu: Menu transition animations toggled %s\n",
-                    sOnOff[menuTrans]);
-        }
+    if (it->onBegin == NULL) {
+        OSReport("&aCommand not implemented \"%s\"\n", tmp);
         return;
     }
-
-    if (StringStartsWithCommand(tmp, "/set")) {
-        char setting[64];
-        char value[64];
-        if (2 != sscanf(tmp, "/set %s %s", setting, value)) {
-            OSReport("&a/set: Invalid arguments\n");
-            return;
-        }
-        if (s_saveManager->spCurrentLicense < 0) {
-            OSReport("&a/set: No license active\n");
-            return;
-        }
-        ClientSettings_set(&s_saveManager->spLicenses[s_saveManager->spCurrentLicense]->cfg, setting, value);
-        return;
-    }
-
-    if (StringStartsWithCommand(tmp, "/dolphin_test")) {
-        DolphinTest();
-        return;
-    }
-
-    if (StringStartsWithCommand(tmp, "/i")) {
-        SlashICommand(tmp);
-        return;
-    }
-
-    if (StringStartsWithCommand(tmp, "/section")) {
-        if (s_sectionManager == NULL) {
-            OSReport("&aError: Section manager unavailable\n");
-            return;
-        }
-        int nextSectionId = 0;
-        if (!sscanf(tmp, "/section %i", &nextSectionId)) {
-            OSReport("&aUsage /section <id>\n");
-            return;
-        }
-
-        OSReport("&aSwitching to section %d\n", nextSectionId);
-
-        if (s_saveManager == NULL) {
-            OSReport("&aError: Save manager unavailable\n");
-            return;
-        }
-
-        // Default to license 0
-        s_saveManager->spCurrentLicense = 0;
-        SaveManager_selectLicense(s_saveManager, 0);
-
-        SectionManager_setNextSection(s_sectionManager, __builtin_abs(nextSectionId),
-                nextSectionId < 0 ? PAGE_ANIMATION_PREV : PAGE_ANIMATION_NEXT);
-        SectionManager_startChangeSection(s_sectionManager, 5, 0xff);
-        return;
-    }
-
-    OSReport("&aUnknown command \"%s\"\n", tmp);
+    it->onBegin(tmp);
 }
 
 // IOS KBD module is not supported on this platform
@@ -269,6 +262,7 @@ void my_onBeginFrame(void *UNUSED(system)) {
 
     if (!SP_IsConsoleInputInit()) {
         if (SP_InitConsoleInput()) {
+            Commands_init();
             SP_SetLineCallback(my_lineCallback);
         } else {
             // Do not try again
@@ -282,7 +276,4 @@ void my_onBeginFrame(void *UNUSED(system)) {
 }
 
 PATCH_B(EGG_ConfigurationData_onBeginFrame, my_onBeginFrame);
-
-void EGG_ProcessMeter_draw(void *);
-
 PATCH_B(EGG_ProcessMeter_draw + 0xa4, Console_draw);

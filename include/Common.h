@@ -91,6 +91,15 @@ typedef double f64;
 #define SP_TOSTRING(x) #x
 #define SP_TOSTRING2(x) SP_TOSTRING(x)
 
+#define CONCAT_IMPL(x, y) x##y
+#define MACRO_CONCAT(x, y) CONCAT_IMPL(x, y)
+
+#ifdef _MSC_VER
+#define PRAGMA_SECTION(s)
+#else
+#define PRAGMA_SECTION(s) __attribute__((section(s)))
+#endif
+
 #ifndef RVL_OS_NEEDS_IMPORT
 #define RVL_OS_NEEDS_IMPORT \
     static_assert(false, "Please include revolution.h to use SP_LOG")

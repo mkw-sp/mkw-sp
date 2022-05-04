@@ -588,6 +588,7 @@ with open(args.out_path, 'w') as out_file:
     out_file.write('SECTIONS {\n')
     out_file.write('    .text base : { *(first) *(.text*) }\n')
     out_file.write('    patches : { *(patches*) }\n')
+    out_file.write('    commands : { *(commands*) }\n')
     out_file.write('    .rodata : { *(.rodata*) }\n')
     out_file.write('    .data : { *(.data*) *(.bss*) *(.sbss*) }\n')
     out_file.write('\n')
