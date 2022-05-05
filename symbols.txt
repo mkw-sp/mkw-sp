@@ -1,8 +1,6 @@
 0x80005f34 memcpy
 0x80006038 memset
 0x800060A4 __start
-0x8000f1f0 memmove
-0x8000f314 memcmp
 
 0x800074d8 BootStrapScene_enter
 0x800079d0 BootStrapScene_calc
@@ -13,6 +11,8 @@
 0x80009820 EGG_ConfigurationData_onBeginFrame
 0x80009844 SceneManager_changeSiblingScene
 
+0x8000f1f0 memmove
+0x8000f314 memcmp
 0x800117b0 vprintf
 0x8001182C vsnprintf
 0x80011938 snprintf
