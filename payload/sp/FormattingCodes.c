@@ -51,7 +51,7 @@ const Formatting DefaultFormatting = (Formatting){
     .mBC = 0xf,  // White + no effects
 };
 
-static inline u8 Formatting_flag(FontStates state, bool b) {
+static inline u16 Formatting_flag(FontStates state, bool b) {
     return b << (4 + state);
 }
 
@@ -65,62 +65,73 @@ bool Formatting_isState(const Formatting f, FontStates state) {
     return f.mBC & Formatting_flag(state, true);
 }
 void Formatting_setState(Formatting *f, FontStates state, bool v) {
-    u8 tmp = f->mBC & ~Formatting_flag(state, true);
-    f->mBC = tmp | Formatting_flag(state, v);
+    f->mBC &= ~Formatting_flag(state, true);
+    f->mBC |= Formatting_flag(state, v);
 }
 
 // Layout in memory:
-// ByteCode: FFFFCCCC
-// - FFFF: 4 format bits
-// - CCCC: 4 color bits
+// ByteCode: 0000000F FFFFCCCC
+// - 0000000           : Unused
+// -         FFFFF     : 5 format bits
+// -              CCCC : 4 color bits
 //
-// Mask_Then_Or: AAAABBBB CCCCDDDD
-// - AAAABBBB bits when enabled set the corresponding bytecode bit to 0
-// - CCCCDDDD bits when enabled set the corresponding bytecode bit to 1
+// Mask_Then_Or: AAAAAAAABBBBBBBB CCCCCCCCDDDDDDDD
+// - AAAAAAAABBBBBBBB bits when enabled set the corresponding bytecode bit to 0
+// - CCCCCCCCDDDDDDDD bits when enabled set the corresponding bytecode bit to 1
 //
-#define discard_color (0b00001111 << 8)
-#define discard_flags (0b11110000 << 8)
-#define flag_set(x) (1 << ((x) + 4))
-#define color_set(x) ((x)&0b1111)
-static const u16 mask_or_table[0xFF] = {
+#define discard_color (0b0000000000001111 << 16)
+#define discard_flags (0b1111111111110000 << 16)
+#define color_set(x) discard_color | ((x)&0b1111)
+#define flags_add(x) (1 << ((x) + 4))
+
+#define mask_or_start '0'
+#define mask_or_key(x) x - mask_or_start
+static const u32 mask_or_table[] = {
     //
-    ['0'] = discard_color | color_set(0),
-    ['1'] = discard_color | color_set(1),
-    ['2'] = discard_color | color_set(2),
-    ['3'] = discard_color | color_set(3),
-    ['4'] = discard_color | color_set(4),
-    ['5'] = discard_color | color_set(5),
-    ['6'] = discard_color | color_set(6),
-    ['7'] = discard_color | color_set(7),
-    ['8'] = discard_color | color_set(8),
-    ['9'] = discard_color | color_set(9),
+    [mask_or_key('0')] = color_set(0),
+    [mask_or_key('1')] = color_set(1),
+    [mask_or_key('2')] = color_set(2),
+    [mask_or_key('3')] = color_set(3),
+    [mask_or_key('4')] = color_set(4),
+    [mask_or_key('5')] = color_set(5),
+    [mask_or_key('6')] = color_set(6),
+    [mask_or_key('7')] = color_set(7),
+    [mask_or_key('8')] = color_set(8),
+    [mask_or_key('9')] = color_set(9),
 
-    ['a'] = discard_color | color_set(0xa),
-    ['b'] = discard_color | color_set(0xb),
-    ['c'] = discard_color | color_set(0xc),
-    ['d'] = discard_color | color_set(0xd),
-    ['e'] = discard_color | color_set(0xe),
-    ['f'] = discard_color | color_set(0xf),
+    [mask_or_key('a')] = color_set(0xa),
+    [mask_or_key('b')] = color_set(0xb),
+    [mask_or_key('c')] = color_set(0xc),
+    [mask_or_key('d')] = color_set(0xd),
+    [mask_or_key('e')] = color_set(0xe),
+    [mask_or_key('f')] = color_set(0xf),
 
-    ['l'] = flag_set(STATE_BOLD),
-    ['m'] = flag_set(STATE_STRIKETHROUGH),
-    ['n'] = flag_set(STATE_UNDERLINE),
-    ['o'] = flag_set(STATE_ITALICS),
+    [mask_or_key('k')] = flags_add(STATE_OBFUSCATED),
+    [mask_or_key('l')] = flags_add(STATE_BOLD),
+    [mask_or_key('m')] = flags_add(STATE_STRIKETHROUGH),
+    [mask_or_key('n')] = flags_add(STATE_UNDERLINE),
+    [mask_or_key('o')] = flags_add(STATE_ITALICS),
 
-    // Discard all flags
-    ['r'] = (0b11110000 << 8),
+    [mask_or_key('r')] = discard_flags,
 };
 #undef discard_color
+#undef discard_flags
 #undef flag_set
 #undef color_set
 
 void Formatting_applyCode(Formatting *f, char action) {
-    u16 action_v = mask_or_table[(size_t)action];
-    u8 mask_v = ~(action_v >> 8);
-    u8 or_v = action_v & 0xFF;
+    const size_t idx = (size_t)action;
+    if (idx < mask_or_start || mask_or_key(idx) >= ARRAY_SIZE(mask_or_table)) {
+        return;
+    }
+    const u32 action_v = mask_or_table[mask_or_key(idx)];
+    const u16 mask_v = ~(action_v >> 16);
+    const u16 or_v = action_v & 0xFFFF;
 
     f->mBC = (f->mBC & mask_v) | or_v;
 }
+#undef mask_or_start
+#undef mask_or_key
 
 TextRange TextRange_create(const char *s, size_t len) {
     return (TextRange){
@@ -138,7 +149,7 @@ FormattedChar TextRange_next(TextRange *self) {
         if (c == '\0') {
             return (FormattedChar){
                 .character = '\0',
-                .code = 0,
+                .code = { 0 },
             };
         }
 
@@ -156,7 +167,7 @@ FormattedChar TextRange_next(TextRange *self) {
 
         return (FormattedChar){
             .character = c,
-            .code = self->font_state.mBC,
+            .code = self->font_state,
         };
     }
 }

@@ -4,6 +4,7 @@
 #include <sp/StringRange.h>
 
 typedef enum {
+    STATE_OBFUSCATED,
     STATE_BOLD,
     STATE_STRIKETHROUGH,
     STATE_UNDERLINE,
@@ -11,7 +12,7 @@ typedef enum {
 } FontStates;
 
 typedef struct {
-    u8 mBC;
+    u16 mBC;
 } Formatting;
 extern const Formatting DefaultFormatting;
 
@@ -37,7 +38,7 @@ void Formatting_applyCode(Formatting *f, char action);
 
 typedef struct {
     char character;
-    u8 code;
+    Formatting code;
 } FormattedChar;
 
 typedef struct {

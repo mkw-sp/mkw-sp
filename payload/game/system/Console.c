@@ -4,8 +4,8 @@
 #include <nw4r/lyt/lyt_layout.h>
 #include <revolution.h>
 #include <sp/FormattingCodes.h>
-#include <sp/keyboard/Keyboard.h>
 #include <sp/ScopeLock.h>
+#include <sp/keyboard/Keyboard.h>
 #include <stdio.h>
 #include <string.h>
 
@@ -130,7 +130,8 @@ enum {
     VERT_TOP_Y,
     VERT_BOTTOM_Y,
 };
-static void DrawColoredQuad(GXColor fg_color, GXColor bg_color, const s16 *pos, const u16 *uv) {
+static void DrawColoredQuad(
+        GXColor fg_color, GXColor bg_color, const s16 *pos, const u16 *uv) {
     GXSetTevColor(GX_TEVREG0, fg_color);
     GXSetTevColor(GX_TEVREG1, bg_color);
 
@@ -206,7 +207,7 @@ static void TextWriter_drawCharByColors(
 }
 
 static GXColor HexColorToGXColor(u32 hexColor) {
-    return (GXColor) {
+    return (GXColor){
         .r = hexColor >> 24,
         .g = hexColor >> 16,
         .b = hexColor >> 8,
@@ -215,9 +216,7 @@ static GXColor HexColorToGXColor(u32 hexColor) {
 }
 
 static void TextWriter_drawCharByFormatCode(
-        TextWriter *self, char c, u8 fmt, float size, u8 alpha_override) {
-    Formatting format = (Formatting){ .mBC = fmt };
-
+        TextWriter *self, char c, Formatting format, float size, u8 alpha_override) {
     GXColor fg_color = HexColorToGXColor(hex_color_fg(Formatting_getColorCode(format)));
     GXColor bg_color = HexColorToGXColor(hex_color_bg(Formatting_getColorCode(format)));
 
@@ -225,9 +224,15 @@ static void TextWriter_drawCharByFormatCode(
         size *= 1.2;
     }
 
-    if (alpha_override) {
+    if (alpha_override != 0) {
         fg_color.a = alpha_override;
         bg_color.a = alpha_override;
+    }
+
+    if (Formatting_isState(format, STATE_OBFUSCATED)) {
+        const char *dict = "1234567890abcdefghijklmnopqrstuvwxyz~!@#$%^&*()-=_+{}[]";
+        size_t dict_len = strlen(dict);
+        c = dict[OSGetTick() % dict_len];
     }
 
     // TODO: italic, etc
