@@ -10,6 +10,7 @@
 0x8000951c RkSystem_run
 0x80009820 EGG_ConfigurationData_onBeginFrame
 0x80009844 SceneManager_changeSiblingScene
+0x8000b5c8 SystemManager_ripFromDisc
 
 0x8000f1f0 memmove
 0x8000f314 memcmp
@@ -158,6 +159,7 @@
 0x801a10f4 OSSetMEM2ArenaLo
 0x801a1104 OSAllocFromMEM1ArenaLo
 0x801a162c DCFlushRange
+0x801a165c DCStoreRange
 0x801a1710 ICInvalidateRange
 0x801a2030 OSGetStackPointer
 0x801A2178 OSDumpContext
@@ -185,6 +187,8 @@
 0x801aa3ac OSJoinThread
 0x801aa4ec OSDetachThread
 0x801aa58c OSResumeThread
+0x801aa9b8 OSSleepThread
+0x801aaaa4 OSWakeupThread
 0x801aaca8 OSSleepTicks
 0x801aad5c OSGetTime
 0x801AAD74 OSGetTick
@@ -269,13 +273,19 @@
 0x80222470 EGG_DvdFile_openEntrynum
 0x802224e8 EGG_DvdFile_openPath
 0x802245AC EffectCreator_createEffect
+0x80226a1c EGG_ExpHeap_create2
 0x80226aC8 EGG_ExpHeap_create
 0x80226dc0 EGG_ExpHeap_InitAlloc
 0x802289DC g3dutil_SearchSamplers
 0x80229814 EGG_Heap_alloc
 0x80229b84 EGG_Heap_free
 0x80229dcc new
+0x80229dcc _Znwj
+0x80229de0 _ZnwjPN3EGG4HeapEi
+0x80229e04 _ZnajPN3EGG4HeapEi
 0x80229e14 delete
+0x80229e14 _ZdlPvj
+0x80229ee0 _ZdaPv
 0x80239338 EGG_ProcessMeter_draw
 0x8023ad10 EGG_Scene_CT
 0x8023ad84 EGG_Scene_DT
@@ -295,7 +305,12 @@
 
 0x80511e7c CourseMap_computeFinishTime
 0x80511ec8 CheckPoint_computeFinishTime
+0x80518dcc DvdArchive_mount
+0x80518e10 DvdArchive_load
+0x805190f0 DvdArchive_rip
+0x805193c8 DvdArchive_clearFile
 0x80519508 DvdArchive_decompress
+0x805195a4 DvdArchive_move
 0x805195d8 DvdArchive_loadOther
 0x8051c120 RawGhostFile_isValid
 0x8051c7f4 GhostFile_writeHeader
@@ -330,8 +345,10 @@
 0x8052a538 MultiDvdArchive_ct
 0x8052a648 MultiDvdArchive_init
 0x8052a6dc MultiDvdArchive_dt
+0x8052a800 MultiDvdArchive_isLoaded
 0x8052a864 MultiDvdArchive_exists
 0x8052a954 MultiDvdArchive_load
+0x8052aa88 MultiDvdArchive_clear
 0x8052af64 NandHelper_open
 0x8052b144 NandHelper_close
 0x8052b228 NandHelper_read
@@ -349,8 +366,12 @@
 0x805347f4 RaceManagerPlayer_endRace
 0x80534df8 RaceManagerPlayer_calcCheckPoint
 0x80535d14 TimeAttackGameMode_canEndRace
+0x805400a0 ResourceManager_process
 0x80541794 ResourceManager_getMenuArchiveCount
 0x80541878 ResourceManager_attachLayoutDir
+0x805419ac ResourceManager_preloadCourseAsync
+0x80541a70 CourseCache_init
+0x80541b58 CourseCache_load
 0x80542D4C RootScene_allocate
 0x80543db0 SaveManager_createInstance
 0x80543f10 SaveManager_ct
@@ -720,6 +741,7 @@
 0x809bd70c s_inputManager
 0x809bd728 s_raceConfig
 0x809bd730 s_raceManager
+0x809bd738 s_resourceManager
 0x809bd740 s_rootScene
 0x809bd748 s_saveManager
 0x809c18f8 s_kartObjectManager

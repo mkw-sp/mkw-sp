@@ -11,7 +11,7 @@ typedef void (*LoaderEntryFunc)(void);
 #if 0
 static alignas(0x20) const char loaderTmpPath[] = "/tmp/loader.bin";
 #endif
-static alignas(0x20) const char assetsTmpPath[] = "/tmp/assets.u8";
+static alignas(0x20) const char assetsTmpPath[] = "/tmp/assets.arc";
 
 extern const u8 loader[];
 extern const u32 loaderSize;

@@ -29,6 +29,13 @@ static_assert(sizeof(MultiDvdArchive_vt) == 0x10);
 
 MultiDvdArchive *MultiDvdArchive_create(u32 type);
 
+bool MultiDvdArchive_isLoaded(const MultiDvdArchive *self);
+
+void MultiDvdArchive_load(MultiDvdArchive *self, const char *path, EGG_Heap *archiveHeap,
+        EGG_Heap *fileHeap, u32 unused);
+
+void MultiDvdArchive_clear(MultiDvdArchive *self);
+
 typedef struct {
     MultiDvdArchive;
 } RaceMultiDvdArchive;

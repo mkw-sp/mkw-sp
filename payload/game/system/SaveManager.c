@@ -634,64 +634,22 @@ static void my_SaveManager_saveGhostAsync(SaveManager *this, s32 UNUSED(licenseI
 PATCH_B(SaveManager_saveGhostAsync, my_SaveManager_saveGhostAsync);
 
 static void SaveManager_computeCourseSha1(SaveManager *this, u32 courseId) {
-    char path[0x40];
-    snprintf(path, sizeof(path), "Race/Course/%s.szs", courseFilenames[courseId]);
-    DVDFileInfo fileInfo;
-    if (!DVDOpen(path, &fileInfo)) {
-        return;
-    }
+    ResourceManager_preloadCourseAsync(s_resourceManager, courseId);
+    ResourceManager_process(s_resourceManager);
 
-    SP_LOG("Computing course SHA1: %s\n", courseFilenames[courseId]);
-
-    u32 fileSize = OSRoundUp32B(fileInfo.length), fileOffset = 0x0;
-    YazDecoder yazDecoder;
-    YazDecoder_init(&yazDecoder);
-    u32 yazResult = YAZ_DECODER_RESULT_WANTS_SRC;
-    NETSHA1Context sha1Cx;
-    NETSHA1Init(&sha1Cx);
-    alignas(0x20) u8 srcBuffer[0x1000];
-    alignas(0x20) u8 dstBuffer[0x1000];
-    while (fileOffset < fileSize && yazResult != YAZ_DECODER_RESULT_DONE) {
-        u32 srcSize = fileSize - fileOffset;
-        if (srcSize > sizeof(srcBuffer)) {
-            srcSize = sizeof(srcBuffer);
-        }
-        if (DVDRead(&fileInfo, srcBuffer, srcSize, fileOffset) != (s32)srcSize) {
-            SP_LOG("DVDRead failed");
-            goto cleanup;
-        }
-        fileOffset += srcSize;
-
-        const u8 *src = srcBuffer;
-        do {
-            u8 *dst = dstBuffer;
-            u32 dstSize = sizeof(dstBuffer);
-            yazResult = YazDecoder_feed(&yazDecoder, &src, &dst, &srcSize, &dstSize);
-            if (yazResult == YAZ_DECODER_RESULT_ERROR) {
-                SP_LOG("YAZ_DECODER_RESULT_ERROR");
-                goto cleanup;
-            }
-
-            NETSHA1Update(&sha1Cx, dstBuffer, dst - dstBuffer);
-        } while (yazResult == YAZ_DECODER_RESULT_WANTS_DST);
-    }
-
-    NETSHA1GetDigest(&sha1Cx, this->courseSha1s[courseId]);
+    NETSHA1Context cx;
+    NETSHA1Init(&cx);
+    const DvdArchive *archive = &s_resourceManager->courseCache.multi->archives[0];
+    NETSHA1Update(&cx, archive->archiveBuffer, archive->archiveSize);
+    NETSHA1GetDigest(&cx, this->courseSha1s[courseId]);
     this->courseSha1IsValid[courseId] = true;
 
     this->isBusy = false;
-
-cleanup:
-    DVDClose(&fileInfo);
 }
 
 static void computeCourseSha1Task(void *arg) {
     u32 courseId = (u32)arg;
     SaveManager_computeCourseSha1(s_saveManager, courseId);
-    while (s_saveManager->isBusy) {
-        VIWaitForRetrace();
-        SaveManager_computeCourseSha1(s_saveManager, courseId);
-    }
 }
 
 bool SaveManager_computeCourseSha1Async(SaveManager *this, u32 courseId) {

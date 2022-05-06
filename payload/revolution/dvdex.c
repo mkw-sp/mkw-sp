@@ -10,8 +10,7 @@
 enum {
     MAX_PREFIX_COUNT = 32,
     MAX_PREFIX_LENGTH = 32,
-    MAX_PATH_LENGTH = 47, // /Race/Competition/CommonObj/CommonObj01.szs is the longest with 44
-    MAX_FILE_COUNT = 3072, // About 2000 in the base game
+    MAX_PATH_LENGTH = 51, // /Race/Competition/CommonObj/CommonObj01.szs is the longest with 43
 };
 
 static u32 prefixCount = 0;
@@ -50,6 +49,15 @@ void DVDExInit(void) {
 }
 
 static bool tryOpen(const wchar_t *path, DVDFileInfo *fileInfo) {
+    size_t length = wcslen(path);
+    if (length >= wcslen(L".szs") && !wcscmp(path + length - wcslen(L".szs"), L".szs")) {
+        wchar_t lzmaPath[MAX_PREFIX_LENGTH + MAX_PATH_LENGTH + 1];
+        swprintf(lzmaPath, ARRAY_SIZE(lzmaPath), L"%.*ls.arc.lzma", length - wcslen(L".szs"), path);
+        if (tryOpen(lzmaPath, fileInfo)) {
+            return true;
+        }
+    }
+
     if (!Storage_open(&fileInfo->cb.file, path, "r")) {
         return false;
     }

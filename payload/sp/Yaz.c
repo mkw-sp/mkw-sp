@@ -31,7 +31,11 @@ static void writeU32(u8 *data, u32 offset, u32 val) {
     base[0x3] = val;
 }
 
-s32 Yaz_getSize(const u8 *src) {
+s32 Yaz_getDecodedSize(const u8 *src, u32 srcSize) {
+    if (srcSize < 0x10) {
+        return -1;
+    }
+
     u32 magic = readU32(src, 0x0);
     if (magic != YAZ0_MAGIC && magic != YAZ1_MAGIC) {
         return -1;
@@ -40,6 +44,10 @@ s32 Yaz_getSize(const u8 *src) {
 }
 
 u32 Yaz_decode(const u8 *restrict src, u8 *restrict dst, u32 srcSize, u32 dstSize) {
+    if (srcSize < 0x10) {
+        return 0;
+    }
+
     u32 magic = readU32(src, 0x0);
     if (magic != YAZ0_MAGIC && magic != YAZ1_MAGIC) {
         return 0;
@@ -170,152 +178,4 @@ u32 Yaz_encode(const u8 *restrict src, u8 *restrict dst, u32 srcSize, u32 dstSiz
     }
 
     return srcOffset == srcSize ? dstOffset : 0;
-}
-
-enum {
-    STATE_HEADER,
-    STATE_GROUP_HEADER,
-    STATE_COPY,
-    STATE_REF_HEADER0,
-    STATE_REF_HEADER1,
-    STATE_REF_HEADER2,
-    STATE_REF_COPY,
-};
-
-void YazDecoder_init(YazDecoder *this) {
-    this->state = STATE_HEADER;
-    this->groupHeaderIndex = 7;
-    this->totalSrcSize = 0x0;
-    this->totalDstSize = 0x0;
-    this->expectedTotalDstSize = UINT32_MAX;
-    this->bufferOffset = 0x0;
-}
-
-static u8 YazDecoder_read(YazDecoder *this, const u8 *restrict *src, u32 *srcSize) {
-    u8 val = *(*src)++;
-    (*srcSize)--;
-    this->totalSrcSize++;
-    return val;
-}
-
-static void YazDecoder_write(YazDecoder *this, u8 *restrict *dst, u32 *dstSize, u8 val) {
-    *(*dst)++ = val;
-    (*dstSize)--;
-    this->totalDstSize++;
-    this->buffer[this->bufferOffset++] = val;
-    if (this->bufferOffset == 0x1000) {
-        this->bufferOffset = 0x0;
-    }
-}
-
-static bool YazDecoder_process(YazDecoder *this, const u8 *restrict *src, u8 *restrict *dst,
-        u32 *srcSize, u32 *dstSize) {
-    u8 val;
-    switch (this->state) {
-    case STATE_HEADER:
-        val = YazDecoder_read(this, src, srcSize);
-        this->header.buffer[this->totalSrcSize - 1] = val;
-        if (this->totalSrcSize == 0x10) {
-            u32 magic = readU32(this->header.buffer, 0x0);
-            if (magic != YAZ0_MAGIC && magic != YAZ1_MAGIC) {
-                return false;
-            }
-            this->expectedTotalDstSize = readU32(this->header.buffer, 0x4);
-            this->state = STATE_GROUP_HEADER;
-        }
-        return true;
-    case STATE_GROUP_HEADER:
-        this->groupHeaderIndex++;
-        if (this->groupHeaderIndex == 8) {
-            this->groupHeader = YazDecoder_read(this, src, srcSize);
-            this->groupHeaderIndex = 0;
-        }
-        if (this->groupHeader >> (7 - this->groupHeaderIndex) & 1) {
-            this->state = STATE_COPY;
-        } else {
-            this->state = STATE_REF_HEADER0;
-        }
-        return true;
-    case STATE_COPY:
-        val = YazDecoder_read(this, src, srcSize);
-        YazDecoder_write(this, dst, dstSize, val);
-        this->state = STATE_GROUP_HEADER;
-        return true;
-    case STATE_REF_HEADER0:
-        val = YazDecoder_read(this, src, srcSize);
-        this->ref.offset = val << 8 & 0xf00;
-        this->ref.size = (val >> 4) + 0x2;
-        this->state = STATE_REF_HEADER1;
-        return true;
-    case STATE_REF_HEADER1:
-        val = YazDecoder_read(this, src, srcSize);
-        this->ref.offset += val + 0x1;
-        if (this->ref.offset > this->totalDstSize) {
-            return false;
-        }
-        if (this->ref.size == 0x2) {
-            this->state = STATE_REF_HEADER2;
-        } else {
-            this->state = STATE_REF_COPY;
-        }
-        return true;
-    case STATE_REF_HEADER2:
-        val = YazDecoder_read(this, src, srcSize);
-        this->ref.size = val + 0x12;
-        this->state = STATE_REF_COPY;
-        return true;
-    case STATE_REF_COPY:
-        val = this->buffer[(this->bufferOffset - this->ref.offset) & 0xfff];
-        YazDecoder_write(this, dst, dstSize, val);
-        this->ref.size--;
-        if (this->ref.size == 0x0) {
-            this->state = STATE_GROUP_HEADER;
-        }
-        return true;
-    default:
-        // Should be unreachable
-        return false;
-    }
-}
-
-u32 YazDecoder_feed(YazDecoder *this, const u8 *restrict *src, u8 *restrict *dst, u32 *srcSize,
-        u32 *dstSize) {
-    do {
-        if (this->totalDstSize == this->expectedTotalDstSize) {
-            if (this->state == STATE_GROUP_HEADER) {
-                return YAZ_DECODER_RESULT_DONE;
-            } else {
-                return YAZ_DECODER_RESULT_ERROR;
-            }
-        }
-
-        switch (this->state) {
-        case STATE_HEADER:
-        case STATE_GROUP_HEADER:
-        case STATE_REF_HEADER0:
-        case STATE_REF_HEADER1:
-        case STATE_REF_HEADER2:
-            if (*srcSize == 0) {
-                return YAZ_DECODER_RESULT_WANTS_SRC;
-            }
-            break;
-        case STATE_COPY:
-            if (*srcSize == 0) {
-                return YAZ_DECODER_RESULT_WANTS_SRC;
-            } else if (*dstSize == 0) {
-                return YAZ_DECODER_RESULT_WANTS_DST;
-            }
-            break;
-        case STATE_REF_COPY:
-            if (*dstSize == 0) {
-                return YAZ_DECODER_RESULT_WANTS_DST;
-            }
-            break;
-        default:
-            // Should be unreachable
-            return YAZ_DECODER_RESULT_ERROR;
-        }
-    } while (YazDecoder_process(this, src, dst, srcSize, dstSize));
-
-    return YAZ_DECODER_RESULT_ERROR;
 }

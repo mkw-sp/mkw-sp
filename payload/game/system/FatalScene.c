@@ -3,8 +3,8 @@
 #include <egg/core/eggSystem.h>
 #include <nw4r/lyt/lyt_pane.h>
 #include <revolution.h>
+#include <sp/DVDDecompLoader.h>
 #include <sp/FlameGraph.h>
-#include <sp/Yaz.h>
 
 #include <stdarg.h>
 #include <stdio.h>
@@ -15,40 +15,10 @@
 
 // Read a compressed archive from disc
 static void *RipFromDiscAlloc(const char *path, EGG_Heap *heap) {
-    DVDFileInfo fileInfo;
-    if (!DVDOpen(path, &fileInfo)) {
-        return NULL;
-    }
-
-    s32 size = OSRoundUp32B(fileInfo.length);
-    void *szs = EGG_Heap_alloc(size, 0x20, heap);
-    s32 amountRead = DVDRead(&fileInfo, szs, size, 0);
-    DVDClose(&fileInfo);
-    if (amountRead != size) {
-        EGG_Heap_free(szs, heap);
-        return NULL;
-    }
-
-    s32 decomp_size = Yaz_getSize(szs);
-    if (decomp_size == 0) {
-        EGG_Heap_free(szs, heap);
-        return NULL;
-    }
-    void *decomp_buffer = EGG_Heap_alloc(decomp_size, 0x20, heap);
-    if (decomp_buffer == 0) {
-        EGG_Heap_free(szs, heap);
-        return NULL;
-    }
-
-    s32 decoded = Yaz_decode(szs, decomp_buffer, fileInfo.length, decomp_size);
-    if (decoded != decomp_size) {
-        EGG_Heap_free(szs, heap);
-        EGG_Heap_free(decomp_buffer, heap);
-        return NULL;
-    }
-
-    EGG_Heap_free(szs, heap);
-    return decomp_buffer;
+    u8 *szs;
+    size_t szsSize;
+    DVDDecompLoader_load(path, &szs, &szsSize, heap);
+    return szs;
 }
 
 // The porting tool fails on the address itself
@@ -232,7 +202,7 @@ static void free_all_visitor(void *block, void *heap, u32 UNUSED(userParam)) {
 
 // Does not call dispose
 static void PurgeExpHeap(EGG_ExpHeap *expHeap) {
-    MEMVisitAllocatedForExpHeap(expHeap->heapHandle, &free_all_visitor, 0);
+    MEMVisitAllocatedForExpHeap(expHeap->base.heapHandle, &free_all_visitor, 0);
 }
 
 void FatalScene_LeechCurrentScene(FatalScene *this) {

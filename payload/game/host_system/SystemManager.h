@@ -1,6 +1,6 @@
 #pragma once
 
-#include <Common.h>
+#include <egg/core/eggHeap.h>
 
 typedef struct {
     u8 _0000[0x0058 - 0x0000];
@@ -11,3 +11,5 @@ typedef struct {
 static_assert(sizeof(SystemManager) == 0x1100);
 
 extern SystemManager *s_systemManager;
+
+void *SystemManager_ripFromDisc(const char *path, EGG_Heap *heap, bool allocTop, u32 *size);

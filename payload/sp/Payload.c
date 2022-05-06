@@ -1,6 +1,7 @@
 #include "Payload.h"
 
 #include "sp/Dol.h"
+#include "sp/DVDDecompLoader.h"
 #include "sp/Host.h"
 #include "sp/Net.h"
 #include "sp/Patcher.h"
@@ -59,6 +60,8 @@ void Payload_init(void) {
     Host_PrintMkwSpInfo(OSReport);
 
     DVDExInit();
+
+    DVDDecompLoader_init();
 
     SIKeyboard_InitSimple();
 }

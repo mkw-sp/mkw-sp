@@ -16,16 +16,17 @@ void *EGG_Heap_alloc(u32 size, s32 align, EGG_Heap *heap);
 
 void EGG_Heap_free(void *memBlock, EGG_Heap *heap);
 
-void *spAlloc(size_t size, size_t align, EGG_Heap *heap);
+void *spAlloc(size_t size, s32 align, EGG_Heap *heap);
 
-void *spAllocArray(size_t count, size_t size, size_t align, EGG_Heap *heap);
+void *spAllocArray(size_t count, size_t size, s32 align, EGG_Heap *heap);
 
 void spFree(void *memBlock);
 
 typedef struct {
-    EGG_Heap;
+    EGG_Heap base;
     // ...
 } EGG_ExpHeap;
 
 void EGG_ExpHeap_InitAlloc(EGG_ExpHeap *heap, void *alloc, int align);
 EGG_ExpHeap *EGG_ExpHeap_create(s32 size, EGG_Heap *parent, u16 attr);
+EGG_ExpHeap *EGG_ExpHeap_create2(void *block, u32 size, u16 attr);

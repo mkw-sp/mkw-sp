@@ -251,7 +251,7 @@ static void NandArcStorage_stat(const wchar_t *path, NodeInfo *info) {
 bool NandArcStorage_init(Storage *storage) {
     OSInitMutex(&mutex);
 
-    if (NANDOpen("/tmp/assets.u8", &fileInfo, NAND_ACCESS_READ) != NAND_RESULT_OK) {
+    if (NANDOpen("/tmp/assets.arc", &fileInfo, NAND_ACCESS_READ) != NAND_RESULT_OK) {
         return false;
     }
 

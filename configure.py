@@ -61,9 +61,9 @@ n.rule(
 n.newline()
 
 n.rule(
-    'u8',
-    command = f'{sys.executable} $wuj5 encode $u8in -o $out --retained $in $args',
-    description = 'U8 $out',
+    'arc',
+    command = f'{sys.executable} $wuj5 encode $arcin -o $out --retained $in $args',
+    description = 'ARC $out',
 )
 n.newline()
 
@@ -95,20 +95,20 @@ HUD_LANGUAGES = {
 }
 
 asset_in_files = {
-    os.path.join('Scene', 'UI', 'CrashSP.szs'): [
+    os.path.join('Scene', 'UI', 'CrashSP.arc.lzma'): [
         os.path.join('fatal', 'blyt', 'Fatal.brlyt'),
         os.path.join('fatal', 'font', 'sf_light_i8_utf16.brfnt'),
         os.path.join('fatal', 'font', 'sf_medium_basic.brfnt'),
     ],
-    os.path.join('Scene', 'UI', 'FontSP_K.szs'): [
+    os.path.join('Scene', 'UI', 'FontSP_K.arc.lzma'): [
         os.path.join('kart_font_korea.brfnt'),
         os.path.join('tt_kart_font_rodan_ntlg_pro_b_K.brfnt'),
     ],
-    os.path.join('Scene', 'UI', 'FontSP_R.szs'): [
+    os.path.join('Scene', 'UI', 'FontSP_R.arc.lzma'): [
         os.path.join('kart_kanji_font.brfnt'),
         os.path.join('tt_kart_font_rodan_ntlg_pro_b_R.brfnt'),
     ],
-    os.path.join('Scene', 'UI', 'MenuOtherSP.szs'): [
+    os.path.join('Scene', 'UI', 'MenuOtherSP.arc.lzma'): [
         os.path.join('button', 'ctrl', 'LicenseManagementButton.brctr.json5'),
         os.path.join('control', 'anim', 'common_w023_rule_menu_fade_in_after.brlan.json5'),
         os.path.join('control', 'anim', 'common_w023_rule_menu_fade_in_before.brlan.json5'),
@@ -148,7 +148,7 @@ asset_in_files = {
         os.path.join('control', 'ctrl', 'LicenseSettingRadioOption.brctr.json5'),
         os.path.join('control', 'timg', 'tt_license_icon_004.tpl'),
     ],
-    os.path.join('Scene', 'UI', 'MenuSingleSP.szs'): [
+    os.path.join('Scene', 'UI', 'MenuSingleSP.arc.lzma'): [
         os.path.join('button', 'blyt', 'common_w129_movie_button_single_top.brlyt.json5'),
         os.path.join('button', 'ctrl', 'SingleTop.brctr.json5'),
         os.path.join('button', 'ctrl', 'TimeAttackGhostListArrowLeft.brctr.json5'),
@@ -178,7 +178,7 @@ asset_in_files = {
         os.path.join('control', 'ctrl', 'TimeAttackGhostListPageNum.brctr.json5'),
         os.path.join('control', 'ctrl', 'VSSettingRadioOption.brctr.json5'),
     ],
-    os.path.join('Scene', 'UI', 'RaceSP.szs'): [
+    os.path.join('Scene', 'UI', 'RaceSP.arc.lzma'): [
         os.path.join('button', 'blyt', 'common_w202_menu_compact.brlyt.json5'),
         os.path.join('button', 'ctrl', 'AfterMenuBT.brctr.json5'),
         os.path.join('button', 'ctrl', 'AfterMenuBTLast.brctr.json5'),
@@ -257,7 +257,7 @@ asset_in_files = {
         os.path.join('game_image', 'timg', 'tt_d_number_3d_minus.tpl'),
         os.path.join('game_image', 'timg', 'tt_d_number_3d_none.tpl'),
     ],
-    os.path.join('Scene', 'UI', 'TitleSP.szs'): [
+    os.path.join('Scene', 'UI', 'TitleSP.arc.lzma'): [
         os.path.join('button', 'blyt', 'common_w076_license_icon_center.brlyt.json5'),
         os.path.join('button', 'ctrl', 'LicenseSelect.brctr.json5'),
         os.path.join('button', 'ctrl', 'TopMenuMultiWaku.brctr.json5'),
@@ -268,35 +268,35 @@ asset_in_files = {
 for language in LANGUAGES:
     hud_language = HUD_LANGUAGES[language]
     if language != 'K':
-        asset_in_files[os.path.join('Race', f'Common_{language}.szs')] = [
+        asset_in_files[os.path.join('Race', f'Common_{language}.arc.lzma')] = [
             os.path.join(f'jugemu_lap_{language}.brres'),
             os.path.join(f'jugemu_lapf_{language}.brres'),
         ]
-    asset_in_files[os.path.join('Scene', 'UI', f'AwardSP_{language}.szs')] = [
+    asset_in_files[os.path.join('Scene', 'UI', f'AwardSP_{language}.arc.lzma')] = [
         os.path.join('message', f'Common_{language}.bmg.json5'),
         os.path.join('message', f'Menu_{language}.bmg.json5'),
         os.path.join('message', f'Race_{language}.bmg.json5'),
     ]
-    asset_in_files[os.path.join('Scene', 'UI', f'MenuMultiSP_{language}.szs')] = [
+    asset_in_files[os.path.join('Scene', 'UI', f'MenuMultiSP_{language}.arc.lzma')] = [
         os.path.join('message', f'Common_{language}.bmg.json5'),
         os.path.join('message', f'Menu_{language}.bmg.json5'),
     ]
-    asset_in_files[os.path.join('Scene', 'UI', f'MenuOtherSP_{language}.szs')] = [
+    asset_in_files[os.path.join('Scene', 'UI', f'MenuOtherSP_{language}.arc.lzma')] = [
         os.path.join('message', f'Common_{language}.bmg.json5'),
         os.path.join('message', f'Menu_{language}.bmg.json5'),
     ]
-    asset_in_files[os.path.join('Scene', 'UI', f'MenuSingleSP_{language}.szs')] = [
+    asset_in_files[os.path.join('Scene', 'UI', f'MenuSingleSP_{language}.arc.lzma')] = [
         os.path.join('message', f'Common_{language}.bmg.json5'),
         os.path.join('message', f'Menu_{language}.bmg.json5'),
     ]
-    asset_in_files[os.path.join('Scene', 'UI', f'RaceSP_{language}.szs')] = [
+    asset_in_files[os.path.join('Scene', 'UI', f'RaceSP_{language}.arc.lzma')] = [
         os.path.join('game_image', 'timg', f'tt_speed_{hud_language}.tpl'),
         os.path.join('message', f'Common_{language}.bmg.json5'),
         os.path.join('message', f'Menu_{language}.bmg.json5'),
         os.path.join('message', f'Race_{language}.bmg.json5'),
     ]
     if hud_language != 'E':
-        asset_in_files[os.path.join('Scene', 'UI', f'RaceSP_{language}.szs')] += [
+        asset_in_files[os.path.join('Scene', 'UI', f'RaceSP_{language}.arc.lzma')] += [
             os.path.join('game_image', 'timg', f'tt_lap_{hud_language}.tpl'),
             os.path.join('game_image', 'timg', f'tt_lap_{hud_language}_lap1.tpl'),
             os.path.join('game_image', 'timg', f'tt_lap_{hud_language}_lap2.tpl'),
@@ -305,10 +305,10 @@ for language in LANGUAGES:
         ]
         for i in range(12):
             for base in ['tt_position_no_st_64x64', 'tt_multi_position_no_st_64x64']:
-                asset_in_files[os.path.join('Scene', 'UI', f'RaceSP_{language}.szs')] += [
+                asset_in_files[os.path.join('Scene', 'UI', f'RaceSP_{language}.arc.lzma')] += [
                     os.path.join('game_image', 'timg', f'{base}_{hud_language}_{i + 1:02d}.tpl')
                 ]
-    asset_in_files[os.path.join('Scene', 'UI', f'TitleSP_{language}.szs')] = [
+    asset_in_files[os.path.join('Scene', 'UI', f'TitleSP_{language}.arc.lzma')] = [
         os.path.join('message', f'Common_{language}.bmg.json5'),
         os.path.join('message', f'Menu_{language}.bmg.json5'),
     ]
@@ -324,7 +324,7 @@ for target in asset_in_files:
             '.json5': '',
             '.tpl': '.tpl',
         }[ext]
-        out_file = os.path.join('$builddir', 'Shared.szs.d', base + outext)
+        out_file = os.path.join('$builddir', 'Shared.arc.lzma.d', base + outext)
         basebase, baseext = os.path.splitext(base)
         out_files = [out_file for out_files in asset_out_files.values() for out_file in out_files]
         if baseext == '.bmg':
@@ -385,38 +385,37 @@ for target in asset_out_files:
             target_renamed[out_file] = renamed[out_file]
     target_renamed = ' '.join([f'--renamed {src} {dst}' for src, dst in target_renamed.items()])
     n.build(
-        os.path.join('$builddir', 'assets.u8.d', 'disc', target),
-        'u8',
+        os.path.join('$builddir', 'assets.arc.d', 'disc', target),
+        'arc',
         asset_out_files[target],
         variables = {
-            'u8in': os.path.join('$builddir', 'Shared.szs.d'),
+            'arcin': os.path.join('$builddir', 'Shared.arc.lzma.d'),
             'args': target_renamed,
         },
     )
     n.newline()
 
 n.build(
-    os.path.join('$builddir', 'assets.u8'),
-    'u8',
-    [os.path.join('$builddir', 'assets.u8.d', 'disc', target) for target in asset_out_files],
+    os.path.join('$builddir', 'assets.arc'),
+    'arc',
+    [os.path.join('$builddir', 'assets.arc.d', 'disc', target) for target in asset_out_files],
     variables = {
-        'u8in': os.path.join('$builddir', 'assets.u8.d'),
+        'arcin': os.path.join('$builddir', 'assets.arc.d'),
     },
 )
 
 devkitppc = os.environ.get("DEVKITPPC")
-n.variable('cc', os.path.join(devkitppc, 'bin', 'powerpc-eabi-gcc'))
-n.variable('cpp', os.path.join(devkitppc, 'bin', 'powerpc-eabi-g++'))
+n.variable('compiler', os.path.join(devkitppc, 'bin', 'powerpc-eabi-gcc'))
 n.variable('port', 'port.py')
 n.variable('elf2dol', 'elf2dol.py')
 n.newline()
 
-asflags = [
+Sflags = [
     '-isystem', 'include',
     '-isystem', 'payload',
     '-isystem', 'vendor',
 ]
-cflags_common = [
+common_cflags = [
     '-fms-extensions',
     '-fno-asynchronous-unwind-tables',
     '-fplan9-extensions',
@@ -432,18 +431,29 @@ cflags_common = [
     f'-DGIT_HASH={get_git_revision_short_hash()}',
 ]
 if args.gdb_compatible:
-    cflags_common += ['-DGDB_COMPATIBLE=1']
+    common_cflags += ['-DGDB_COMPATIBLE=1']
+common_ccflags = [
+    '-fno-asynchronous-unwind-tables',
+    '-fno-exceptions',
+    '-fno-rtti',
+    '-fshort-wchar',
+    '-isystem', 'include',
+    '-isystem', 'payload',
+    '-isystem', 'vendor',
+    '-std=c++20',
+    '-Wall',
+    '-Wextra',
+    '-Wno-packed-bitfield-compat',
+    f'-DGIT_HASH={get_git_revision_short_hash()}',
+]
 target_cflags = {
     'stub': [
-        *cflags_common,
         '-isystem', '.',
     ],
     'loader': [
-        *cflags_common,
         '-isystem', '.',
     ],
     'payload': [
-        *cflags_common,
         '-fstack-protector-strong',
     ],
 }
@@ -462,41 +472,41 @@ ldflags = [
     '-nostdlib',
     '-Wl,-n',
 ]
-n.variable('asflags', ' '.join(asflags))
+n.variable('Sflags', ' '.join(Sflags))
 n.variable('ldflags', ' '.join(ldflags))
 n.newline()
 
 n.rule(
-    'as',
-    command = '$cc -MD -MT $out -MF $out.d $asflags -c $in -o $out',
+    'S',
+    command = '$compiler -MD -MT $out -MF $out.d $Sflags -c $in -o $out',
     depfile = '$out.d',
     deps = 'gcc',
-    description = 'AS $out',
+    description = 'S $out',
 )
 n.newline()
 
 n.rule(
     'incbin',
-    command = '$cc -DNAME=$name -DPATH=$path -c Incbin.S -o $out',
+    command = '$compiler -DNAME=$name -DPATH=$path -c Incbin.S -o $out',
     description = 'INCBIN $out',
 )
 n.newline()
 
 n.rule(
-    'cc',
-    command = '$cc -MD -MT $out -MF $out.d $cflags -c $in -o $out',
+    'c',
+    command = '$compiler -MD -MT $out -MF $out.d $cflags -c $in -o $out',
     depfile = '$out.d',
     deps = 'gcc',
-    description = 'CC $out',
+    description = 'C $out',
 )
 n.newline()
 
 n.rule(
-    'cpp',
-    command = '$cpp -MD -MT $out -MF $out.d $cppflags -c $in -o $out',
+    'cc',
+    command = '$compiler -MD -MT $out -MF $out.d $ccflags -c $in -o $out',
     depfile = '$out.d',
     deps = 'gcc',
-    description = 'CPP $out',
+    description = 'CC $out',
 )
 n.newline()
 
@@ -515,7 +525,7 @@ ldparams = [
 ]
 n.rule(
     'ld',
-    command = '$cc $ldflags ' + ' '.join(ldparams) + ' $in -o $out',
+    command = '$compiler $ldflags ' + ' '.join(ldparams) + ' $in -o $out',
     description = 'LD $out',
 )
 n.newline()
@@ -573,9 +583,11 @@ code_in_files = {
         os.path.join('payload', 'game', 'system', 'Console.c'),
         os.path.join('payload', 'game', 'system', 'CourseMap.S'),
         os.path.join('payload', 'game', 'system', 'DvdArchive.S'),
+        os.path.join('payload', 'game', 'system', 'DvdArchive.c'),
         os.path.join('payload', 'game', 'system', 'FatalScene.c'),
         os.path.join('payload', 'game', 'system', 'GhostFile.c'),
         os.path.join('payload', 'game', 'system', 'HomeButton.S'),
+        os.path.join('payload', 'game', 'system', 'HomeButton.c'),
         os.path.join('payload', 'game', 'system', 'InputManager.S'),
         os.path.join('payload', 'game', 'system', 'InputManager.c'),
         os.path.join('payload', 'game', 'system', 'Mii.S'),
@@ -671,6 +683,7 @@ code_in_files = {
         os.path.join('payload', 'nw4r', 'ut', 'ut_DvdFileStream.S'),
         os.path.join('payload', 'platform', 'string.c'),
         os.path.join('payload', 'platform', 'wchar.c'),
+        os.path.join('payload', 'revolution', 'arc.S'),
         os.path.join('payload', 'revolution', 'arc.c'),
         os.path.join('payload', 'revolution', 'dvd.S'),
         os.path.join('payload', 'revolution', 'dvd.c'),
@@ -687,6 +700,8 @@ code_in_files = {
         os.path.join('payload', 'revolution', 'os', 'OSThread.S'),
         os.path.join('payload', 'revolution', 'os', 'OSThread.c'),
         os.path.join('payload', 'sp', 'Commands.c'),
+        os.path.join('payload', 'sp', 'DVDDecompLoader.cc'),
+        os.path.join('payload', 'sp', 'DVDFile.cc'),
         os.path.join('payload', 'sp', 'Fatal.c'),
         os.path.join('payload', 'sp', 'FormattingCodes.c'),
         os.path.join('payload', 'sp', 'FlameGraph.c'),
@@ -697,9 +712,11 @@ code_in_files = {
         os.path.join('payload', 'sp', 'keyboard', 'SIKeyboard.c'),
         os.path.join('payload', 'sp', 'keyboard', 'IOSKeyboard.c'),
         #
+        os.path.join('payload', 'sp', 'LZMADecoder.cc'),
         os.path.join('payload', 'sp', 'Net.c'),
         os.path.join('payload', 'sp', 'Patcher.c'),
         os.path.join('payload', 'sp', 'Payload.c'),
+        os.path.join('payload', 'sp', 'ScopeLock.cc'),
         # Security module
         os.path.join('payload', 'sp', 'security', 'Memory.c'),
         os.path.join('payload', 'sp', 'security', 'Stack.S'),
@@ -725,11 +742,13 @@ code_in_files = {
         #
         os.path.join('payload', 'sp', 'Tcp.c'),
         os.path.join('payload', 'sp', 'Yaz.c'),
+        os.path.join('payload', 'sp', 'YAZDecoder.cc'),
         os.path.join('vendor', 'arith64.c'),
         os.path.join('vendor', 'ff', 'diskio.c'),
         os.path.join('vendor', 'ff', 'ff.c'),
         os.path.join('vendor', 'ff', 'fftime.c'),
         os.path.join('vendor', 'ff', 'ffunicode.c'),
+        os.path.join('vendor', 'lzma', 'LzmaDec.c'),
     ],
     'loader': [
         os.path.join('common', 'Cache.S'),
@@ -770,17 +789,21 @@ for target in code_in_files:
             suffix = '.o' if profile == 'RELEASE' else 'D.o'
             out_file = os.path.join('$builddir', target, in_file + suffix)
             code_out_files[profile][target] += [out_file]
-            rule = {
-                '.S': 'as',
-                '.c': 'cc',
-                '.cpp': 'cpp',
-            }[ext]
             n.build(
                 out_file,
-                rule,
+                ext[1:],
                 in_file,
                 variables = {
-                    'cflags': ' '.join([*target_cflags[target], *profile_cflags[profile]]),
+                    'cflags': ' '.join([
+                        *common_cflags,
+                        *target_cflags[target],
+                        *profile_cflags[profile],
+                    ]),
+                    'ccflags': ' '.join([
+                        *common_ccflags,
+                        *target_cflags[target],
+                        *profile_cflags[profile],
+                    ]),
                 },
             )
         n.newline()
@@ -875,10 +898,10 @@ out_file = os.path.join('$builddir', 'stub', 'assets.o')
 n.build(
     out_file,
     'incbin',
-    os.path.join('$builddir', 'assets.u8'),
+    os.path.join('$builddir', 'assets.arc'),
     variables = {
         'name': 'assets',
-        'path': '/'.join(['$builddir', 'assets.u8']),
+        'path': '/'.join(['$builddir', 'assets.arc']),
     },
     implicit = 'Incbin.S',
 )

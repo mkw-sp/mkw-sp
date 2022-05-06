@@ -284,7 +284,7 @@ bool RawGhostFile_spIsValid(const u8 *raw, u32 size) {
         const u8 *src = raw + sizeof(RawGhostHeader) + sizeof(u32);
         u32 srcSize = *(u32 *)(raw + sizeof(RawGhostHeader));
         u8 *dst = (u8 *)&inputsHeader;
-        s32 dstSize = Yaz_getSize(src);
+        s32 dstSize = Yaz_getDecodedSize(src, srcSize);
         if (dstSize < (s32)sizeof(inputsHeader)) {
             return false;
         }
@@ -371,7 +371,7 @@ bool RawGhostFile_spDecompress(const u8 *restrict src, u8 *restrict dst) {
     u32 srcOffset = sizeof(RawGhostHeader) + sizeof(u32);
     u32 dstOffset = sizeof(RawGhostHeader);
     u32 srcSize = *(u32 *)(src + sizeof(RawGhostHeader));
-    u32 dstSize = Yaz_getSize(src + srcOffset);
+    u32 dstSize = Yaz_getDecodedSize(src + srcOffset, srcSize);
     if (Yaz_decode(src + srcOffset, dst + dstOffset, srcSize, dstSize) != dstSize) {
         return false;
     }

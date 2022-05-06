@@ -86,6 +86,15 @@ static inline u32 read_u32_le(const u8 *data, u32 offset) {
     return base[0x3] << 24 | base[0x2] << 16 | base[0x1] << 8 | base[0x0];
 }
 
+static inline u64 read_u64_le(const u8 *data, u32 offset) {
+    const u8 *base = data + offset;
+    u64 val = 0;
+    for (u32 i = 0; i < 8; i++) {
+        val |= (u64)base[i] << (8 * i);
+    }
+    return val;
+}
+
 static inline void write_u8(u8 *data, u32 offset, u8 val) {
     u8 *base = data + offset;
     base[0x0] = val;
