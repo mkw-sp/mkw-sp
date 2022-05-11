@@ -4,6 +4,8 @@
 from argparse import ArgumentParser
 import json5
 import os
+import pylzma
+import struct
 import sys
 
 from bmg import unpack_bmg, pack_bmg
@@ -65,26 +67,31 @@ def decode_u8(in_path, out_path, retained, renamed):
         in_data = in_file.read()
     magic = in_data[0:4]
     ext = in_path.split(os.extsep)[-1]
-    expected_magic = {
-        'u8': b'U\xaa8-',
-        'szs': b'Yaz0',
-    }[ext]
-    if magic != expected_magic:
-        magic = magic.decode('ascii')
-        expected_magic = expected_magic.decode('ascii')
-        sys.exit(f'Unexpected magic {magic} for extension {ext} (expected {expected_magic}).')
+    if ext != 'lzma':
+        expected_magic = {
+            'arc': b'U\xaa8-',
+            'szs': b'Yaz0',
+        }[ext]
+        if magic != expected_magic:
+            magic = magic.decode('ascii')
+            expected_magic = expected_magic.decode('ascii')
+            sys.exit(f'Unexpected magic {magic} for extension {ext} (expected {expected_magic}).')
     if ext == 'szs':
         in_data = unpack_yaz(in_data)
+    elif ext == 'lzma':
+        uncompressed_size = struct.unpack_from('<Q', in_data, 5)[0]
+        in_data = in_data[:5] + in_data[13:]
+        in_data = pylzma.decompress(in_data, maxlength = uncompressed_size)
     root = unpack_u8(in_data)
     if out_path is None:
         out_path = in_path + '.d'
     decode_u8_node(out_path, root, retained, renamed)
 
 def decode(in_path, out_path, retained, renamed):
-    ext = in_path.split(os.extsep)[-1]
-    if ext == 'u8' or ext == 'szs':
+    if in_path.endswith('.arc') or in_path.endswith('.szs') or in_path.endswith('.arc.lzma'):
         decode_u8(in_path, out_path, retained, renamed)
         return
+    ext = in_path.split(os.extsep)[-1]
     unpack = ext_unpack.get(ext)
     if unpack is None:
         sys.exit(f'Unknown file format with extension {ext}.')
@@ -149,16 +156,20 @@ def encode_u8(in_path, out_path, retained, renamed):
     out_data = pack_u8(root)
     if ext == 'szs':
         out_data = pack_yaz(out_data)
+    elif ext == 'lzma':
+        uncompressed_size = len(out_data)
+        out_data = pylzma.compress(out_data, multithreading = 0, eos = 0)
+        out_data = out_data[:5] + struct.pack('<Q', uncompressed_size) + out_data[5:]
     if out_path is None:
         out_path = os.path.splitext(in_path)[0]
     with open(out_path, 'wb') as out_file:
         out_file.write(out_data)
 
 def encode(in_path, out_path, retained, renamed):
-    ext = in_path.split(os.extsep)[-2]
-    if ext == 'u8' or ext == 'szs':
+    if in_path.endswith('.arc.d') or in_path.endswith('.szs.d') or in_path.endswith('.arc.lzma.d'):
         encode_u8(in_path, out_path, retained, renamed)
         return
+    ext = in_path.split(os.extsep)[-2]
     pack = ext_pack.get(ext)
     if pack is None:
         sys.exit(f'Unknown file format with binary extension {ext}.')
