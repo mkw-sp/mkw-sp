@@ -290,6 +290,7 @@
 0x8023ad10 EGG_Scene_CT
 0x8023ad84 EGG_Scene_DT
 0x8023afe0 EGG_SceneManager_changeSiblingScene
+0x80242504 EGG_ConfigurationData_initMemory
 0x80242c18 EGG_TaskThread_request
 0x80243d6c EGG_Video_configure
 
