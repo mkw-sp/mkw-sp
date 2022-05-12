@@ -623,6 +623,7 @@ code_in_files = {
         os.path.join('payload', 'game', 'ui', 'Page.c'),
         os.path.join('payload', 'game', 'ui', 'Save.S'),
         os.path.join('payload', 'game', 'ui', 'SaveManagerProxy.S'),
+        os.path.join('payload', 'game', 'ui', 'Section.S'),
         os.path.join('payload', 'game', 'ui', 'Section.c'),
         os.path.join('payload', 'game', 'ui', 'SectionManager.S'),
         os.path.join('payload', 'game', 'ui', 'SectionManager.c'),
