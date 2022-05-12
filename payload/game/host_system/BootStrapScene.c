@@ -57,6 +57,8 @@ static void *loadRel(void *arg) {
     Relocate(NULL, dstHeader);
     Relocate(dstHeader, dstHeader);
 
+    // Some code expects this area to be zeroed.
+    memset(src, 0, size);
     spFree(src);
 
     OSSectionInfo *prologSectionInfo = dstSectionInfo + dstHeader->prologSection;
