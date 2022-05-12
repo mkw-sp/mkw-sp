@@ -494,6 +494,7 @@
 0x805f0d84 MultiControlInputManager_setHandler
 0x805f0db4 MultiControlInputManager_setWrappingMode
 0x805f20ec MultiControlInputManager_select
+0x805f5230 Model_805f5230
 0x805f5520 Model_805f5520
 0x805f9224 MessageWindowPopupPage_reset
 0x805f9244 MessageWindowPopupPage_setMessage
