@@ -25,7 +25,7 @@ SaveManager *my_SaveManager_createInstance(void) {
     SaveManager *this = s_saveManager;
 
     this->ghostCount = 0;
-    EGG_Heap *heap = s_rootScene->heapCollection.heaps[HEAP_ID_MEM2];
+    EGG_Heap *heap = s_rootScene->heapCollection.heaps[HEAP_ID_MEM1];
     this->rawGhostHeaders = spAllocArray(MAX_GHOST_COUNT, sizeof(RawGhostHeader), 0x4, heap);
     this->ghostFooters = spAllocArray(MAX_GHOST_COUNT, sizeof(GhostFooter), 0x4, heap);
     this->ghostIds = spAllocArray(MAX_GHOST_COUNT, sizeof(NodeId), 0x4, heap);
@@ -158,7 +158,7 @@ static void SaveManager_init(SaveManager *this) {
     this->otherRawSave = this->rawSave;
 
     if (!SaveManager_initSpSave(this)) {
-        EGG_Heap *heap = s_rootScene->heapCollection.heaps[HEAP_ID_MEM2];
+        EGG_Heap *heap = s_rootScene->heapCollection.heaps[HEAP_ID_MEM1];
         for (u32 i = 0; i < MAX_SP_LICENSE_COUNT; i++) {
             this->spLicenses[i] = spAlloc(sizeof(SpSaveLicense), 0x4, heap);
         }
