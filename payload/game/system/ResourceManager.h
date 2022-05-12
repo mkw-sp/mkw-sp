@@ -16,7 +16,7 @@ static_assert(sizeof(CourseCache) == 0x24);
 
 typedef struct {
     u8 _000[0x004 - 0x000];
-    MultiDvdArchive **multiDvdArchives;
+    MultiDvdArchive **multis;
     u8 _008[0x588 - 0x008];
     CourseCache courseCache;
     u8 _5ac[0x61c - 0x5ac];
@@ -25,8 +25,11 @@ static_assert(sizeof(ResourceManager) == 0x61c);
 
 extern ResourceManager *s_resourceManager;
 
-void ResourceManager_process(ResourceManager *this);
+void ResourceManager_process(ResourceManager *self);
 
-u16 ResourceManager_getMenuArchiveCount(ResourceManager *this);
+MultiDvdArchive *ResourceManager_loadCourse(ResourceManager *self, u32 courseId, EGG_Heap *heap,
+        bool splitScreen);
 
-void ResourceManager_preloadCourseAsync(ResourceManager *this, u32 courseId);
+u16 ResourceManager_getMenuArchiveCount(ResourceManager *self);
+
+void ResourceManager_preloadCourseAsync(ResourceManager *self, u32 courseId);

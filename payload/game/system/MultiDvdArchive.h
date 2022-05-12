@@ -34,6 +34,8 @@ bool MultiDvdArchive_isLoaded(const MultiDvdArchive *self);
 void MultiDvdArchive_load(MultiDvdArchive *self, const char *path, EGG_Heap *archiveHeap,
         EGG_Heap *fileHeap, u32 unused);
 
+void MultiDvdArchive_loadOther(MultiDvdArchive *self, MultiDvdArchive *other, EGG_Heap *heap);
+
 void MultiDvdArchive_clear(MultiDvdArchive *self);
 
 typedef struct {

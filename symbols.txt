@@ -350,6 +350,7 @@
 0x8052a864 MultiDvdArchive_exists
 0x8052a954 MultiDvdArchive_load
 0x8052aa88 MultiDvdArchive_clear
+0x8052aae8 MultiDvdArchive_loadOther
 0x8052af64 NandHelper_open
 0x8052b144 NandHelper_close
 0x8052b228 NandHelper_read
@@ -368,6 +369,7 @@
 0x80534df8 RaceManagerPlayer_calcCheckPoint
 0x80535d14 TimeAttackGameMode_canEndRace
 0x805400a0 ResourceManager_process
+0x80540760 ResourceManager_loadCourse
 0x80541794 ResourceManager_getMenuArchiveCount
 0x80541878 ResourceManager_attachLayoutDir
 0x805419ac ResourceManager_preloadCourseAsync
