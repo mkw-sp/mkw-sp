@@ -2,4 +2,4 @@
 
 #include <Common.h>
 
-#define sizeof_ServicePackTopPage 0x1448
+#define sizeof_ServicePackTopPage 0x1458

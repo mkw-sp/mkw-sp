@@ -4,7 +4,8 @@
 
 namespace UI {
 
-ServicePackTopPage::ServicePackTopPage() : m_onBack(this, &UI::ServicePackTopPage::onBack) {}
+ServicePackTopPage::ServicePackTopPage() : m_onBack(this, &UI::ServicePackTopPage::onBack),
+        m_onBackButtonFront(this, &UI::ServicePackTopPage::onBackButtonFront) {}
 
 void ServicePackTopPage::dt(s32 type) {
     m_backButton.dt(-1);
@@ -48,6 +49,7 @@ void ServicePackTopPage::onInit() {
     m_backButton.load("button", "Back", "ButtonBack", 0x1, false, true);
 
     m_inputManager.setHandler(MenuInputManager::InputId::Back, &m_onBack, false, false);
+    m_backButton.setFrontHandler(&m_onBackButtonFront, false);
 
     m_pageTitleText.setMessage(10083, nullptr);
 
@@ -56,6 +58,11 @@ void ServicePackTopPage::onInit() {
 
 void ServicePackTopPage::onBack(u32 UNUSED(localPlayerId)) {
     changeSection(SectionId::TitleFromOptions, Animation::Prev, 0.0f);
+}
+
+void ServicePackTopPage::onBackButtonFront(PushButton *button, u32 UNUSED(localPlayerId)) {
+    f32 delay = button->getDelay();
+    changeSection(SectionId::TitleFromOptions, Animation::Prev, delay);
 }
 
 } // namespace UI
