@@ -1,5 +1,9 @@
 #include "ResourceManager.h"
 
+#include "game/system/RootScene.h"
+
+#include <revolution.h>
+
 #include <stdio.h>
 
 enum {
@@ -7,13 +11,25 @@ enum {
     COURSE_CACHE_STATE_LOADED = 2,
 };
 
-void CourseCache_init(CourseCache *self);
-
-static void my_CourseCache_init(CourseCache *self) {
-    self->buffer = spAlloc(0xb00000 /* 11 MiB */, -0x20, NULL);
-    self->heap = &EGG_ExpHeap_create2(self->buffer, 0xb00000, 1)->base;
+static void CourseCache_init(CourseCache *self) {
+    if (!self->heap) {
+        assert(!self->buffer);
+        EGG_Heap *heap = s_rootScene->heapCollection.heaps[HEAP_ID_MEM2];
+        self->buffer = spAlloc(0xb00000 /* 11 MiB */, -0x20, heap);
+        self->heap = &EGG_ExpHeap_create2(self->buffer, 0xb00000, 1)->base;
+        self->state = COURSE_CACHE_STATE_CLEARED;
+    }
 }
-PATCH_B(CourseCache_init, my_CourseCache_init);
+
+static void CourseCache_deinit(CourseCache *self) {
+    if (self->heap) {
+        assert(self->buffer);
+        self->state = COURSE_CACHE_STATE_CLEARED;
+        EGG_ExpHeap_destroy((EGG_ExpHeap *)self->heap);
+        self->heap = NULL;
+        self->buffer = NULL;
+    }
+}
 
 static void CourseCache_load2(CourseCache *self, u32 courseId, bool splitScreen) {
     self->courseId = courseId;
@@ -79,3 +95,37 @@ extern void ResourceManager_attachLayoutDir;
 
 // Use the correct menu archive count to exit the loop
 PATCH_S16(ResourceManager_attachLayoutDir, 0x42, 0xcc);
+
+static void ResourceManager_initGlobeHeap(ResourceManager *self) {
+    if (!self->globeHeap) {
+        SP_LOG("gh i");
+        EGG_Heap *heap = s_rootScene->heapCollection.heaps[HEAP_ID_MEM2];
+        size_t size = OSRoundUp32B(0x107d080 + 0x20400);
+        void *buffer = spAlloc(size, -0x20, heap);
+        self->globeHeap = &EGG_ExpHeap_create2(buffer, size, 1)->base;
+        SP_LOG("%p", self->globeHeap);
+    }
+}
+
+static void ResourceManager_deinitGlobeHeap(ResourceManager *self) {
+    if (self->globeHeap) {
+        SP_LOG("gh d");
+        EGG_ExpHeap_destroy((EGG_ExpHeap *)self->globeHeap);
+        self->globeHeap = NULL;
+        self->globeLoadingIsBusy = false;
+    }
+}
+
+void ResourceManager_onCreateScene(u32 sceneId) {
+    switch (sceneId) {
+    case SCENE_ID_MENU:
+    case SCENE_ID_RACE:
+        ResourceManager_deinitGlobeHeap(s_resourceManager);
+        CourseCache_init(&s_resourceManager->courseCache);
+        break;
+    case SCENE_ID_GLOBE:
+        CourseCache_deinit(&s_resourceManager->courseCache);
+        ResourceManager_initGlobeHeap(s_resourceManager);
+        break;
+    }
+}

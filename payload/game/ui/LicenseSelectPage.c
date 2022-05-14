@@ -1,6 +1,6 @@
 #include "LicenseSelectPage.h"
 
-#include "SectionManager.h"
+#include "Section.h"
 
 #include "../system/SaveManager.h"
 
@@ -18,36 +18,15 @@ static const InputHandler_vt onBack_vt = {
     .handle = onBack,
 };
 
-static void onAboutButtonFront(PushButtonHandler *this, PushButton *button,
+static void onServicePackButtonFront(PushButtonHandler *this, PushButton *button,
         u32 UNUSED(localPlayerId)) {
-    LicenseSelectPage *page = CONTAINER_OF(this, LicenseSelectPage, onAboutButtonFront);
-    Section *currentSection = s_sectionManager->currentSection;
-    ConfirmPage *confirmPage = (ConfirmPage *)currentSection->pages[PAGE_ID_CONFIRM];
-    ConfirmPage_reset(confirmPage);
-    ConfirmPage_setTitleMessage(confirmPage, 10082, NULL);
-    MessageInfo info = {
-        .strings[0] = L"MKW-SP v0.1.4",
-    };
-    ConfirmPage_setWindowMessage(confirmPage, 6602, &info);
-    confirmPage->onConfirm = &page->onAboutConfirm;
-    confirmPage->onCancel = &page->onAboutConfirm;
-    page->replacement = PAGE_ID_CONFIRM;
+    LicenseSelectPage *page = CONTAINER_OF(this, LicenseSelectPage, onServicePackButtonFront);
     f32 delay = PushButton_getDelay(button);
-    Page_startReplace(page, PAGE_ANIMATION_NEXT, delay);
+    Page_changeSection(page, SECTION_ID_CHANNEL, PAGE_ANIMATION_NEXT, delay);
 }
 
-static const PushButtonHandler_vt onAboutButtonFront_vt = {
-    .handle = onAboutButtonFront,
-};
-
-static void onAboutConfirm(ConfirmPageHandler *this, ConfirmPage *confirmPage, f32 UNUSED(delay)) {
-    LicenseSelectPage *page = CONTAINER_OF(this, LicenseSelectPage, onAboutConfirm);
-    page->replacement = PAGE_ID_NONE;
-    confirmPage->replacement = PAGE_ID_LICENSE_SELECT;
-}
-
-static const ConfirmPageHandler_vt onAboutConfirm_vt = {
-    .handle = onAboutConfirm,
+static const PushButtonHandler_vt onServicePackButtonFront_vt = {
+    .handle = onServicePackButtonFront,
 };
 
 static void onBackButtonFront(PushButtonHandler *this, PushButton *button,
@@ -70,14 +49,13 @@ static LicenseSelectPage *my_LicenseSelectPage_ct(LicenseSelectPage *this) {
 
     MultiControlInputManager_ct(&this->inputManager);
     CtrlMenuPageTitleText_ct(&this->pageTitleText);
-    PushButton_ct(&this->optionsButton);
+    PushButton_ct(&this->servicePackButton);
     CtrlMenuBackButton_ct(&this->backButton);
     for (u32 i = 0; i < ARRAY_SIZE(this->licenseButtons); i++) {
         LicenseSelectButton_ct(&this->licenseButtons[i]);
     }
     this->onBack.vt = &onBack_vt;
-    this->onAboutButtonFront.vt = &onAboutButtonFront_vt;
-    this->onAboutConfirm.vt = &onAboutConfirm_vt;
+    this->onServicePackButtonFront.vt = &onServicePackButtonFront_vt;
     this->onBackButtonFront.vt = &onBackButtonFront_vt;
 
     return this;
@@ -91,7 +69,7 @@ static void LicenseSelectPage_dt(Page *base, s32 type) {
         LicenseSelectButton_dt(&this->licenseButtons[i], -1);
     }
     CtrlMenuBackButton_dt(&this->backButton, -1);
-    PushButton_dt(&this->optionsButton, -1);
+    PushButton_dt(&this->servicePackButton, -1);
     CtrlMenuPageTitleText_dt(&this->pageTitleText, -1);
     MultiControlInputManager_dt(&this->inputManager, -1);
 
@@ -116,14 +94,15 @@ static void LicenseSelectPage_onInit(Page *base) {
 
     Page_initChildren(this, 3 + ARRAY_SIZE(this->licenseButtons));
     Page_insertChild(this, 0, &this->pageTitleText, 0);
-    Page_insertChild(this, 1, &this->optionsButton, 0);
+    Page_insertChild(this, 1, &this->servicePackButton, 0);
     Page_insertChild(this, 2, &this->backButton, 0);
     for (u32 i = 0; i < ARRAY_SIZE(this->licenseButtons); i++) {
         Page_insertChild(this, 3 + i, &this->licenseButtons[i], 0);
     }
 
     CtrlMenuPageTitleText_load(&this->pageTitleText, false);
-    PushButton_load(&this->optionsButton, "button", "LicenseSelectS", "Option", 0x1, false, false);
+    PushButton_load(&this->servicePackButton, "button", "LicenseSelectS", "Option", 0x1, false,
+            false);
     PushButton_load(&this->backButton, "button", "Back", "ButtonBack", 0x1, false, true);
     for (u32 i = 0; i < ARRAY_SIZE(this->licenseButtons); i++) {
         LicenseSelectButton_load(&this->licenseButtons[i], i);
@@ -131,10 +110,10 @@ static void LicenseSelectPage_onInit(Page *base) {
 
     MultiControlInputManager_setHandler(&this->inputManager, INPUT_ID_BACK, &this->onBack, false,
             false);
-    PushButton_setFrontHandler(&this->optionsButton, &this->onAboutButtonFront, false);
+    PushButton_setFrontHandler(&this->servicePackButton, &this->onServicePackButtonFront, false);
     PushButton_setFrontHandler(&this->backButton, &this->onBackButtonFront, false);
 
-    LayoutUIControl_setMessageAll(&this->optionsButton, 10082, NULL);
+    LayoutUIControl_setMessageAll(&this->servicePackButton, 10083, NULL);
     CtrlMenuPageTitleText_setMessage(&this->pageTitleText, 2104, NULL);
 }
 

@@ -291,4 +291,32 @@
         "font": "regular",
         "string": "MKW-SP Options",
     },
+    "10083": {
+        "font": "regular",
+        "string": "Service Pack",
+    },
+    "10084": {
+        "font": "regular",
+        "string": "Global Settings",
+    },
+    "10085": {
+        "font": "regular",
+        "string": "Tracks",
+    },
+    "10086": {
+        "font": "regular",
+        "string": "Ghosts",
+    },
+    "10087": {
+        "font": "regular",
+        "string": "Updates",
+    },
+    "10088": {
+        "font": "regular",
+        "string": "Channel",
+    },
+    "10089": {
+        "font": "regular",
+        "string": "About",
+    },
 }

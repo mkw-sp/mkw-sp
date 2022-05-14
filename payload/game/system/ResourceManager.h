@@ -19,7 +19,11 @@ typedef struct {
     MultiDvdArchive **multis;
     u8 _008[0x588 - 0x008];
     CourseCache courseCache;
-    u8 _5ac[0x61c - 0x5ac];
+    u8 _5ac[0x60c - 0x5ac];
+    bool globeLoadingIsBusy;
+    u8 _60d[0x614 - 0x60d];
+    EGG_Heap *globeHeap;
+    u8 _618[0x61c - 0x618];
 } ResourceManager;
 static_assert(sizeof(ResourceManager) == 0x61c);
 
@@ -33,3 +37,5 @@ MultiDvdArchive *ResourceManager_loadCourse(ResourceManager *self, u32 courseId,
 u16 ResourceManager_getMenuArchiveCount(ResourceManager *self);
 
 void ResourceManager_preloadCourseAsync(ResourceManager *self, u32 courseId);
+
+void ResourceManager_flush(ResourceManager *self);

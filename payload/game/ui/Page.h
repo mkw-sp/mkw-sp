@@ -117,8 +117,7 @@ s32 Page_getReplacement(Page *this);
 extern u8 Page_vf_14;
 extern u8 Page_vf_18;
 
-// TODO f1
-void Page_changeSection(Page *this, u32 sectionId, s32 animation, f32 f1);
+void Page_changeSection(Page *this, u32 sectionId, s32 animation, f32 delay);
 
 extern u8 Page_vf_20;
 

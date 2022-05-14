@@ -30,3 +30,4 @@ typedef struct {
 void EGG_ExpHeap_InitAlloc(EGG_ExpHeap *heap, void *alloc, int align);
 EGG_ExpHeap *EGG_ExpHeap_create(s32 size, EGG_Heap *parent, u16 attr);
 EGG_ExpHeap *EGG_ExpHeap_create2(void *block, u32 size, u16 attr);
+void EGG_ExpHeap_destroy(EGG_ExpHeap *heap);

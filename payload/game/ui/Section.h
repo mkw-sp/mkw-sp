@@ -60,12 +60,13 @@ enum {
     SECTION_ID_GHOST_REPLAY_DL = 0x33,
     // +License
     SECTION_ID_GHOST_REPLAY = 0x34,
-    
-    
+
+
     SECTION_ID_MII_SELECT_CREATE = 0x45,
     SECTION_ID_MII_SELECT_CHANGE = 0x46,
     SECTION_ID_SINGLE_CHANGE_COURSE = 0x4a, // Modified
     SECTION_ID_SINGLE_CHANGE_GHOST_DATA = 0x4d, // Modified
+    SECTION_ID_CHANNEL = 0x7a,
 };
 
 typedef struct {

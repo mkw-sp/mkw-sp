@@ -3,6 +3,12 @@
 #include <egg/core/eggHeap.h>
 
 enum {
+    SCENE_ID_MENU = 0x1,
+    SCENE_ID_RACE = 0x2,
+    SCENE_ID_GLOBE = 0x4,
+};
+
+enum {
     HEAP_ID_MEM1 = 0x0,
     HEAP_ID_MEM2 = 0x1,
     HEAP_ID_DEBUG = 0x2,

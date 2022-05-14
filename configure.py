@@ -95,6 +95,9 @@ HUD_LANGUAGES = {
 }
 
 asset_in_files = {
+    os.path.join('Scene', 'UI', 'ChannelSP.arc.lzma'): [
+        os.path.join('button', 'ctrl', 'ServicePackTopButton.brctr.json5'),
+    ],
     os.path.join('Scene', 'UI', 'CrashSP.arc.lzma'): [
         os.path.join('fatal', 'blyt', 'Fatal.brlyt'),
         os.path.join('fatal', 'font', 'sf_light_i8_utf16.brfnt'),
@@ -277,6 +280,10 @@ for language in LANGUAGES:
         os.path.join('message', f'Menu_{language}.bmg.json5'),
         os.path.join('message', f'Race_{language}.bmg.json5'),
     ]
+    asset_in_files[os.path.join('Scene', 'UI', f'ChannelSP_{language}.arc.lzma')] = [
+        os.path.join('message', f'Common_{language}.bmg.json5'),
+        os.path.join('message', f'Menu_{language}.bmg.json5'),
+    ]
     asset_in_files[os.path.join('Scene', 'UI', f'MenuMultiSP_{language}.arc.lzma')] = [
         os.path.join('message', f'Common_{language}.bmg.json5'),
         os.path.join('message', f'Menu_{language}.bmg.json5'),
@@ -443,6 +450,7 @@ common_ccflags = [
     '-std=c++20',
     '-Wall',
     '-Wextra',
+    '-Wno-delete-non-virtual-dtor',
     '-Wno-packed-bitfield-compat',
     f'-DGIT_HASH={get_git_revision_short_hash()}',
 ]
@@ -545,6 +553,7 @@ code_in_files = {
         os.path.join('payload', 'egg', 'core', 'eggEffectCreator.S'),
         os.path.join('payload', 'egg', 'core', 'eggG3dUtil.S'),
         os.path.join('payload', 'egg', 'core', 'eggHeap.c'),
+        os.path.join('payload', 'egg', 'core', 'eggSceneManager.S'),
         os.path.join('payload', 'egg', 'core', 'eggSystem.S'),
         os.path.join('payload', 'egg', 'core', 'eggSystem.c'),
         os.path.join('payload', 'game', 'effect', 'Effect.S'),
@@ -577,6 +586,7 @@ code_in_files = {
         os.path.join('payload', 'game', 'race', 'JugemManager.S'),
         os.path.join('payload', 'game', 'race', 'JugemManager.c'),
         os.path.join('payload', 'game', 'rel', 'Rel.S'),
+        os.path.join('payload', 'game', 'scene', 'globe', 'GlobeManager.S'),
         os.path.join('payload', 'game', 'snd', 'DriverSound.S'),
         os.path.join('payload', 'game', 'snd', 'KartSound.S'),
         os.path.join('payload', 'game', 'snd', 'Snd.S'),
@@ -601,6 +611,7 @@ code_in_files = {
         os.path.join('payload', 'game', 'system', 'RaceManager.c'),
         os.path.join('payload', 'game', 'system', 'ResourceManager.S'),
         os.path.join('payload', 'game', 'system', 'ResourceManager.c'),
+        os.path.join('payload', 'game', 'system', 'RootScene.S'),
         os.path.join('payload', 'game', 'system', 'SaveManager.c'),
         os.path.join('payload', 'game', 'system', 'SceneCreatorDynamic.S'),
         os.path.join('payload', 'game', 'system', 'SceneCreatorDynamic.c'),
@@ -622,12 +633,14 @@ code_in_files = {
         os.path.join('payload', 'game', 'ui', 'MiiGroup.c'),
         os.path.join('payload', 'game', 'ui', 'Model.S'),
         os.path.join('payload', 'game', 'ui', 'Page.c'),
+        os.path.join('payload', 'game', 'ui', 'Page.cc'),
         os.path.join('payload', 'game', 'ui', 'Save.S'),
         os.path.join('payload', 'game', 'ui', 'SaveManagerProxy.S'),
         os.path.join('payload', 'game', 'ui', 'Section.S'),
         os.path.join('payload', 'game', 'ui', 'Section.c'),
         os.path.join('payload', 'game', 'ui', 'SectionManager.S'),
         os.path.join('payload', 'game', 'ui', 'SectionManager.c'),
+        os.path.join('payload', 'game', 'ui', 'ServicePackTopPage.cc'),
         os.path.join('payload', 'game', 'ui', 'TabControl.c'),
         os.path.join('payload', 'game', 'ui', 'TimeAttackGhostListPage.c'),
         os.path.join('payload', 'game', 'ui', 'TimeAttackRulesPage.c'),
@@ -638,8 +651,10 @@ code_in_files = {
         os.path.join('payload', 'game', 'ui', 'UIControl.c'),
         os.path.join('payload', 'game', 'ui', 'Wipe.S'),
         os.path.join('payload', 'game', 'ui', 'ctrl', 'CtrlMenuBackButton.c'),
+        os.path.join('payload', 'game', 'ui', 'ctrl', 'CtrlMenuBackButton.cc'),
         os.path.join('payload', 'game', 'ui', 'ctrl', 'CtrlMenuInstructionText.c'),
         os.path.join('payload', 'game', 'ui', 'ctrl', 'CtrlMenuPageTitleText.c'),
+        os.path.join('payload', 'game', 'ui', 'ctrl', 'CtrlMenuPageTitleText.cc'),
         os.path.join('payload', 'game', 'ui', 'ctrl', 'CtrlRace2DMap.S'),
         os.path.join('payload', 'game', 'ui', 'ctrl', 'CtrlRaceBase.S'),
         os.path.join('payload', 'game', 'ui', 'ctrl', 'CtrlRaceBase.c'),
