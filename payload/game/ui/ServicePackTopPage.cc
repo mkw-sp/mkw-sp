@@ -1,5 +1,7 @@
 #include "ServicePackTopPage.hh"
 
+#include <new>
+
 namespace UI {
 
 ServicePackTopPage::ServicePackTopPage() : m_onBack(this, &UI::ServicePackTopPage::onBack) {}
@@ -58,10 +60,8 @@ void ServicePackTopPage::onBack(u32 UNUSED(localPlayerId)) {
 
 } // namespace UI
 
-extern "C" void _ZN2UI18ServicePackTopPageC1Ev(void *self);
 extern "C" void *ServicePackTopPage_ct(void *self) {
-    _ZN2UI18ServicePackTopPageC1Ev(self);
-    return self;
+    return new (self) UI::ServicePackTopPage();
 }
 
 static_assert(sizeof_ServicePackTopPage == sizeof(UI::ServicePackTopPage));
