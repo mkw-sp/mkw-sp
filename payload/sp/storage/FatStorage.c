@@ -276,6 +276,12 @@ bool FatStorage_init(Storage *storage) {
             continue;
         }
 
+        FRESULT result = f_mkdir(L"/mkw-sp");
+        if (result != FR_OK && result != FR_EXIST) {
+            SP_LOG("Failed to create or open the /mkw-sp directory");
+            continue;
+        }
+
         if (f_chdir(L"/mkw-sp") != FR_OK) {
             SP_LOG("Failed to change the current directory to /mkw-sp");
             continue;
