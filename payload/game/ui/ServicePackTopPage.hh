@@ -13,7 +13,7 @@ namespace UI {
 class ServicePackTopPage : public Page {
 public:
     ServicePackTopPage();
-    void dt(s32 type) override;
+    ~ServicePackTopPage() override;
     void onInit() override;
 
 private:

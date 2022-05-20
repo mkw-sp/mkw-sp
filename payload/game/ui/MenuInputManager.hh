@@ -54,6 +54,7 @@ public:
     };
 
     MultiControlInputManager();
+    ~MultiControlInputManager();
     void dt(s32 type);
     void init(u32 playerFlags, bool isMultiPlayer);
     void setWrappingMode(WrappingMode wrappingMode);

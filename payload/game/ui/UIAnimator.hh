@@ -17,6 +17,9 @@ private:
 static_assert(sizeof(Group) == 0x44);
 
 class UIAnimator {
+public:
+    void dt(s32 type);
+
 private:
     u8 _00[0x10 - 0x00];
 };

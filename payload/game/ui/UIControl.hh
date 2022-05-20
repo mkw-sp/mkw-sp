@@ -3,6 +3,7 @@
 #include "game/ui/ControlGroup.hh"
 #include "game/ui/Font.hh"
 #include "game/ui/Layout.hh"
+#include "game/ui/MessageGroup.hh"
 #include "game/ui/UIAnimator.hh"
 
 namespace UI {
@@ -10,12 +11,7 @@ namespace UI {
 class UIControl {
 public:
     UIControl();
-
-private:
-    virtual void dummy_00() {}
-    virtual void dummy_04() {}
-
-public:
+    virtual ~UIControl();
     virtual void dt(s32 type);
     virtual void init();
     virtual void calc();
@@ -34,7 +30,8 @@ protected:
 private:
     u8 _04[0x64 - 0x04];
     ControlGroup *m_controlGroup;
-    u8 _68[0x80 - 0x68];
+    ControlGroup m_children;
+    u8 _7c[0x80 - 0x7c];
     bool m_isHidden;
     u8 _81[0x98 - 0x81];
 };
@@ -43,7 +40,7 @@ static_assert(sizeof(UIControl) == 0x98);
 class LayoutUIControl : public UIControl {
 public:
     LayoutUIControl();
-    void dt(s32 type) override;
+    ~LayoutUIControl() override;
     void init() override;
     void calc() override;
     void draw() override;
@@ -57,7 +54,9 @@ protected:
 private:
     UIAnimator m_animator;
     MainLayout m_mainLayout;
-    u8 _144[0x174 - 0x144];
+    MessageGroup m_specificMessageGroup;
+    MessageGroup m_commonMessageGroup;
+    u8 _16c[0x174 - 0x16c];
 };
 static_assert(sizeof(LayoutUIControl) == 0x174);
 

@@ -7,7 +7,7 @@ namespace UI {
 class CtrlMenuBackButton : public PushButton {
 public:
     CtrlMenuBackButton();
-    void dt(s32 type) override;
+    ~CtrlMenuBackButton() override;
 
 protected:
     void initSelf() override;

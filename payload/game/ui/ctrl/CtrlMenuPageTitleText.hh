@@ -7,7 +7,7 @@ namespace UI {
 class CtrlMenuPageTitleText : public LayoutUIControl {
 public:
     CtrlMenuPageTitleText();
-    void dt(s32 type) override;
+    ~CtrlMenuPageTitleText() override;
 
 protected:
     void vf_20() override;

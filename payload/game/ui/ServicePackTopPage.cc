@@ -7,22 +7,7 @@ namespace UI {
 ServicePackTopPage::ServicePackTopPage() : m_onBack(this, &UI::ServicePackTopPage::onBack),
         m_onBackButtonFront(this, &UI::ServicePackTopPage::onBackButtonFront) {}
 
-void ServicePackTopPage::dt(s32 type) {
-    m_backButton.dt(-1);
-    m_aboutButton.dt(-1);
-    m_channelButton.dt(-1);
-    m_updatesButton.dt(-1);
-    m_ghostsButton.dt(-1);
-    m_tracksButton.dt(-1);
-    m_settingsButton.dt(-1);
-    m_pageTitleText.dt(-1);
-    m_inputManager.dt(-1);
-
-    Page::dt(0);
-    if (type > 0) {
-        delete this;
-    }
-}
+ServicePackTopPage::~ServicePackTopPage() {}
 
 void ServicePackTopPage::onInit() {
     m_inputManager.init(0x1, false);

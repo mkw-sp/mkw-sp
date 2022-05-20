@@ -13,6 +13,9 @@ private:
 static_assert(sizeof(Layout) == 0x28);
 
 class MainLayout : public Layout {
+public:
+    void dt(s32 type);
+
 private:
     u8 _28[0x9c - 0x28];
 };

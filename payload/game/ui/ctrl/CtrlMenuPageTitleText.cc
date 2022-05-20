@@ -4,4 +4,6 @@ namespace UI {
 
 CtrlMenuPageTitleText::CtrlMenuPageTitleText() {}
 
+CtrlMenuPageTitleText::~CtrlMenuPageTitleText() {}
+
 } // namespace UI

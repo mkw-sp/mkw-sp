@@ -25,12 +25,7 @@ public:
     };
 
     Page();
-
-private:
-    virtual void dummy_00() {}
-    virtual void dummy_04() {}
-
-public:
+    virtual ~Page();
     virtual void dt(s32 type);
     virtual void vf_0c();
     virtual PageId getReplacement();

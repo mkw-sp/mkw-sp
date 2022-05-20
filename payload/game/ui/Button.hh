@@ -33,7 +33,7 @@ public:
     };
 
     PushButton();
-    void dt(s32 type) override;
+    ~PushButton() override;
     void init() override;
     void calc() override;
     void vf_28() override;

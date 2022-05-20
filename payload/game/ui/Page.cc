@@ -2,6 +2,16 @@
 
 namespace UI {
 
+Page::~Page() {}
+
+void Page::dt(s32 type) {
+    if (type > 0) {
+        delete this;
+    } else {
+        this->~Page();
+    }
+}
+
 void Page::setInputManager(MenuInputManager *inputManager) {
     m_inputManager = inputManager;
 }
