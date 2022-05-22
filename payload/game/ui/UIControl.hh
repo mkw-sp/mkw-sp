@@ -4,6 +4,7 @@
 #include "game/ui/Font.hh"
 #include "game/ui/Layout.hh"
 #include "game/ui/MessageGroup.hh"
+#include "game/ui/MiiGroup.hh"
 #include "game/ui/UIAnimator.hh"
 
 namespace UI {
@@ -26,6 +27,9 @@ protected:
     virtual void vf_2c();
     virtual void vf_30();
     virtual void vf_34();
+
+public:
+    void setVisible(bool visible);
 
 private:
     u8 _04[0x64 - 0x04];
@@ -50,6 +54,13 @@ protected:
     void vf_2c() override;
     void vf_30() override;
     virtual void vf_38();
+
+public:
+    void setMessage(const char *pane, u32 messageId, MessageInfo *info);
+    void setMessageAll(u32 messageId, MessageInfo *info);
+    void setPicture(const char *dstPane, const char *srcPane);
+    void setMiiPicture(const char *pane, MiiGroup *miiGroup, size_t index, u32 preset);
+    void setPaneVisible(const char *pane, bool visible);
 
 private:
     UIAnimator m_animator;

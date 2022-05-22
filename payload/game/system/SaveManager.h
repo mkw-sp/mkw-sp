@@ -96,36 +96,36 @@ extern SaveManager *s_saveManager;
 
 SaveManager *SaveManager_createInstance(void);
 
-void SaveManager_initAsync(SaveManager *this);
+void SaveManager_initAsync(SaveManager *self);
 
-void SaveManager_resetAsync(SaveManager *this);
+void SaveManager_resetAsync(SaveManager *self);
 
-void SaveManager_saveLicensesAsync(SaveManager *this);
+void SaveManager_saveLicensesAsync(SaveManager *self);
 
-void SaveManager_createLicense(SaveManager *this, u32 licenseId, const MiiId *miiId,
+void SaveManager_createLicense(SaveManager *self, u32 licenseId, const MiiId *miiId,
         const wchar_t *miiName);
 
-void SaveManager_selectLicense(SaveManager *this, u32 licenseId);
+void SaveManager_selectLicense(SaveManager *self, u32 licenseId);
 
-void SaveManager_eraseSpLicense(SaveManager *this);
+void SaveManager_eraseSpLicense(SaveManager *self);
 
-void SaveManager_createSpLicense(SaveManager *this, const MiiId *miiId);
+void SaveManager_createSpLicense(SaveManager *self, const MiiId *miiId);
 
-u32 SaveManager_getSetting(const SaveManager *this, SpSettingKey key);
-void SaveManager_setSetting(SaveManager *this, SpSettingKey key, u32 value);
+u32 SaveManager_getSetting(const SaveManager *self, SpSettingKey key);
+void SaveManager_setSetting(SaveManager *self, SpSettingKey key, u32 value);
 
-void SaveManager_loadGhostAsync(SaveManager *this, s32 licenseId, u32 category, u32 index,
+void SaveManager_loadGhostAsync(SaveManager *self, s32 licenseId, u32 category, u32 index,
         u32 courseId);
 
-void SaveManager_loadGhostHeadersAsync(SaveManager *this, s32 licenseId, GhostGroup *group);
+void SaveManager_loadGhostHeadersAsync(SaveManager *self, s32 licenseId, GhostGroup *group);
 
-void SaveManager_saveGhostAsync(SaveManager *this, s32 licenseId, u32 category, u32 index,
+void SaveManager_saveGhostAsync(SaveManager *self, s32 licenseId, u32 category, u32 index,
         GhostFile *file, bool saveLicense);
 
-bool SaveManager_computeCourseSha1Async(SaveManager *this, u32 courseId);
+bool SaveManager_computeCourseSha1Async(SaveManager *self, u32 courseId);
 
-const u8 *SaveManager_getCourseSha1(const SaveManager *this, u32 courseId);
+const u8 *SaveManager_getCourseSha1(const SaveManager *self, u32 courseId);
 
 extern bool vsSpeedModIsEnabled;
 
-MiiId SaveManager_getMiiId(const SaveManager *this, u32 licenseId);
+MiiId SaveManager_getMiiId(const SaveManager *self, u32 licenseId);

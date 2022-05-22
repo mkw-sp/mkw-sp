@@ -54,6 +54,7 @@ protected:
     void setInputManager(MenuInputManager *inputManager);
     void initChildren(u32 count);
     void insertChild(u32 index, UIControl *child, u32 drawPass);
+    void startReplace(Animation animation, f32 delay);
 
 private:
     PageId m_id;

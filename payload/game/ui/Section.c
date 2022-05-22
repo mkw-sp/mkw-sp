@@ -9,7 +9,7 @@
 
 #include <revolution.h>
 
-PATCH_S16(Section_createPage, 0x92e, sizeof(LicenseSelectPage));
+PATCH_S16(Section_createPage, 0x92e, sizeof_LicenseSelectPage);
 PATCH_S16(Section_createPage, 0x9a6, sizeof(TimeAttackRulesPage));
 PATCH_S16(Section_createPage, 0xa4e, sizeof(TimeAttackGhostListPage));
 PATCH_S16(Section_createPage, 0xee6, sizeof_ServicePackTopPage);
@@ -19,6 +19,10 @@ PATCH_S16(Section_createPage, 0x12d6, sizeof(LicenseSettingsPage));
 extern u8 ChannelTopPage_ct;
 extern u8 ServicePackTopPage_ct;
 PATCH_B(ChannelTopPage_ct, ServicePackTopPage_ct);
+
+extern u8 LicenseSelectPage_ct;
+extern u8 my_LicenseSelectPage_ct;
+PATCH_B(LicenseSelectPage_ct, my_LicenseSelectPage_ct);
 
 // The game has 5 pages for the records, we only need 1 for the settings. Disable the 4
 // others.

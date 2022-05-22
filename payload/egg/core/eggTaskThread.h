@@ -9,5 +9,5 @@ typedef struct {
 } EGG_TaskThread;
 static_assert(sizeof(EGG_TaskThread) == 0x58);
 
-void EGG_TaskThread_request(EGG_TaskThread *this, TFunction mainFunction, void *arg,
+void EGG_TaskThread_request(EGG_TaskThread *self, TFunction mainFunction, void *arg,
         void *taskEndMessage);

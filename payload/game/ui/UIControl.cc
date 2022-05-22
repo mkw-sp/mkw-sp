@@ -12,6 +12,10 @@ void UIControl::dt(s32 type) {
     }
 }
 
+void UIControl::setVisible(bool visible) {
+    m_isHidden = !visible;
+}
+
 LayoutUIControl::~LayoutUIControl() {
     m_commonMessageGroup.dt(-1);
     m_specificMessageGroup.dt(-1);

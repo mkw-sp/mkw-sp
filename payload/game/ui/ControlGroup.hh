@@ -1,8 +1,6 @@
 #pragma once
 
-extern "C" {
-#include <Common.h>
-}
+#include <Common.hh>
 
 namespace UI {
 

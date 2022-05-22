@@ -18,7 +18,7 @@ public:
 
 private:
     void onBack(u32 localPlayerId);
-    void onBackButtonFront(PushButton *button, u32 UNUSED(localPlayerId));
+    void onBackButtonFront(PushButton *button, u32 localPlayerId);
 
     MultiControlInputManager m_inputManager;
     CtrlMenuPageTitleText m_pageTitleText;
@@ -29,8 +29,8 @@ private:
     PushButton m_channelButton;
     PushButton m_aboutButton;
     CtrlMenuBackButton m_backButton;
-    MultiControlInputManager::InputHandler<ServicePackTopPage> m_onBack;
-    PushButton::InputHandler<ServicePackTopPage> m_onBackButtonFront;
+    MultiControlInputManager::Handler<ServicePackTopPage> m_onBack;
+    PushButton::Handler<ServicePackTopPage> m_onBackButtonFront;
 };
 
 } // namespace UI

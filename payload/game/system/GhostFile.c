@@ -73,8 +73,8 @@ void SpFooter_onShroom(u32 lap) {
     s_spFooter.shroomStrategy |= lap << (15 - 5 * ++usedShrooms);
 }
 
-static bool SpFooter_checkSize(const SpFooter *this, u32 size) {
-    switch (this->version) {
+static bool SpFooter_checkSize(const SpFooter *self, u32 size) {
+    switch (self->version) {
     case 0:
     case 1:
         return size == 0x48;
@@ -85,8 +85,8 @@ static bool SpFooter_checkSize(const SpFooter *this, u32 size) {
     }
 }
 
-void GhostFooter_init(GhostFooter *this, const u8 *raw, u32 size) {
-    this->magic = 0x0;
+void GhostFooter_init(GhostFooter *self, const u8 *raw, u32 size) {
+    self->magic = 0x0;
 
     const RawGhostHeader *header = (RawGhostHeader *)raw;
     if (!header->isCompressed) {
@@ -104,37 +104,37 @@ void GhostFooter_init(GhostFooter *this, const u8 *raw, u32 size) {
     const FooterFooter *footerFooter = (FooterFooter *)(raw + footerFooterOffset);
 
     if (footerFooter->magic == CTGP_FOOTER_MAGIC && footerFooter->size == sizeof(CtgpFooter)) {
-        this->magic = CTGP_FOOTER_MAGIC;
+        self->magic = CTGP_FOOTER_MAGIC;
         const CtgpFooter *ctgp = (CtgpFooter *)(raw + mainSize);
-        this->ctgp = *ctgp;
+        self->ctgp = *ctgp;
         return;
     }
 
     if (footerFooter->magic == SP_FOOTER_MAGIC && footerFooter->size >= 0x48) {
-        this->magic = SP_FOOTER_MAGIC;
+        self->magic = SP_FOOTER_MAGIC;
         const SpFooter *sp = (SpFooter *)(raw + mainSize);
-        this->sp = *sp;
+        self->sp = *sp;
         return;
     }
 }
 
-const u8 *GhostFooter_getCourseSha1(const GhostFooter *this) {
-    switch (this->magic) {
+const u8 *GhostFooter_getCourseSha1(const GhostFooter *self) {
+    switch (self->magic) {
     case CTGP_FOOTER_MAGIC:
-        return this->ctgp.courseSha1;
+        return self->ctgp.courseSha1;
     case SP_FOOTER_MAGIC:
-        return this->sp.courseSha1;
+        return self->sp.courseSha1;
     default:
         return NULL;
     }
 }
 
-bool GhostFooter_hasSpeedMod(const GhostFooter *this) {
-    switch (this->magic) {
+bool GhostFooter_hasSpeedMod(const GhostFooter *self) {
+    switch (self->magic) {
     case CTGP_FOOTER_MAGIC:
-        return this->ctgp.category >= 4;
+        return self->ctgp.category >= 4;
     case SP_FOOTER_MAGIC:
-        return this->sp.hasSpeedMod;
+        return self->sp.hasSpeedMod;
     default:
         return NULL;
     }
@@ -382,18 +382,18 @@ bool RawGhostFile_spDecompress(const u8 *restrict src, u8 *restrict dst) {
     return true;
 }
 
-u32 GhostFile_spWrite(const GhostFile *this, u8 *raw) {
+u32 GhostFile_spWrite(const GhostFile *self, u8 *raw) {
     memset(raw, 0, 0x2800);
 
     RawGhostHeader *header = (RawGhostHeader *)raw;
-    GhostFile_writeHeader(this, header);
+    GhostFile_writeHeader(self, header);
     header->type = GHOST_TYPE_FAST_STAFF;
-    header->inputsSize = this->inputsSize;
+    header->inputsSize = self->inputsSize;
     header->isCompressed = true;
     u8 *dst = raw + sizeof(RawGhostHeader) + sizeof(u32);
     u32 dstSize = 0x2800;
     dstSize -= sizeof(RawGhostHeader) + 3 * sizeof(u32) + sizeof(SpFooter) + sizeof(FooterFooter);
-    dstSize = Yaz_encode(this->inputs, dst, this->inputsSize, dstSize);
+    dstSize = Yaz_encode(self->inputs, dst, self->inputsSize, dstSize);
     if (dstSize == 0) {
         return 0;
     }

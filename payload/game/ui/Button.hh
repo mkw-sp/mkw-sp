@@ -6,7 +6,7 @@ namespace UI {
 
 class PushButton : public LayoutUIControl {
 public:
-    class IInputHandler {
+    class IHandler {
     private:
         virtual void dummy_00() {}
         virtual void dummy_04() {}
@@ -16,9 +16,9 @@ public:
     };
 
     template <typename T>
-    class InputHandler : public IInputHandler {
+    class Handler : public IHandler {
     public:
-        InputHandler(T *object, void (T::*function)(PushButton *, u32)) {
+        Handler(T *object, void (T::*function)(PushButton *, u32)) {
             m_object = object;
             m_function = function;
         }
@@ -45,13 +45,18 @@ public:
 
     void load(const char *dir, const char *file, const char *variant, u32 playerFlags, bool r8,
             bool pointerOnly);
-    void setFrontHandler(IInputHandler *handler, bool repeat);
+    void setFrontHandler(IHandler *handler, bool repeat);
     void selectDefault(u32 localPlayerId);
+    void setPlayerFlags(u32 playerFlags);
     f32 getDelay() const;
 
 private:
     u8 _174[0x240 - 0x174];
+
+public:
     s32 m_index;
+
+private:
     u8 _244[0x254 - 0x244];
 };
 static_assert(sizeof(PushButton) == 0x254);

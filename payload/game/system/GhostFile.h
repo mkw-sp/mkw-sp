@@ -76,7 +76,7 @@ typedef struct {
     u8 _a8[0xc6 - 0xa8];
     u8 category;
     u8 version;
-    FooterFooter;
+    FooterFooter footer;
 } CtgpFooter;
 static_assert(sizeof(CtgpFooter) == 0xd0);
 
@@ -114,9 +114,9 @@ typedef struct {
 
 void GhostFooter_init(GhostFooter *footer, const u8 *raw, u32 size);
 
-const u8 *GhostFooter_getCourseSha1(const GhostFooter *this);
+const u8 *GhostFooter_getCourseSha1(const GhostFooter *self);
 
-bool GhostFooter_hasSpeedMod(const GhostFooter *this);
+bool GhostFooter_hasSpeedMod(const GhostFooter *self);
 
 bool RawGhostFile_isValid(const u8 *raw);
 
@@ -154,13 +154,13 @@ typedef struct {
 } GhostFile;
 static_assert(sizeof(GhostFile) == 0xd8);
 
-void GhostFile_writeHeader(const GhostFile *this, RawGhostHeader *header);
+void GhostFile_writeHeader(const GhostFile *self, RawGhostHeader *header);
 
-u32 GhostFile_spWrite(const GhostFile *this, u8 *raw);
+u32 GhostFile_spWrite(const GhostFile *self, u8 *raw);
 
 typedef struct {
     u8 _00[0x14 - 0x00];
 } GhostGroup;
 static_assert(sizeof(GhostGroup) == 0x14);
 
-GhostGroup *GhostGroup_ct(GhostGroup *this, EGG_Heap *heap, u32 type);
+GhostGroup *GhostGroup_ct(GhostGroup *self, EGG_Heap *heap, u32 type);

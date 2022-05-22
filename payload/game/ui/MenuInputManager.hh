@@ -1,8 +1,6 @@
 #pragma once
 
-extern "C" {
-#include <Common.h>
-}
+#include <Common.hh>
 
 namespace UI {
 
@@ -27,7 +25,7 @@ public:
         Neither,
     };
 
-    class IInputHandler {
+    class IHandler {
     private:
         virtual void dummy_00() {}
         virtual void dummy_04() {}
@@ -37,9 +35,9 @@ public:
     };
 
     template <typename T>
-    class InputHandler : public IInputHandler {
+    class Handler : public IHandler {
     public:
-        InputHandler(T *object, void (T::*function)(u32)) {
+        Handler(T *object, void (T::*function)(u32)) {
             m_object = object;
             m_function = function;
         }
@@ -59,7 +57,7 @@ public:
     void init(u32 playerFlags, bool isMultiPlayer);
     void setWrappingMode(WrappingMode wrappingMode);
     // TODO remaining args
-    void setHandler(InputId inputId, IInputHandler *handler, bool r6, bool r7);
+    void setHandler(InputId inputId, IHandler *handler, bool r6, bool r7);
 
 private:
     u8 _00f[0x224 - 0x00f];
