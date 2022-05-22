@@ -4,9 +4,6 @@
 
 namespace UI {
 
-ControlGroup::~ControlGroup() {
-    delete[] m_sortedControls;
-    delete[] m_controls;
-}
+ControlGroup::~ControlGroup() = default;
 
 } // namespace UI

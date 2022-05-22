@@ -2,8 +2,8 @@
 
 namespace UI {
 
-CtrlMenuPageTitleText::CtrlMenuPageTitleText() {}
+CtrlMenuPageTitleText::CtrlMenuPageTitleText() = default;
 
-CtrlMenuPageTitleText::~CtrlMenuPageTitleText() {}
+CtrlMenuPageTitleText::~CtrlMenuPageTitleText() = default;
 
 } // namespace UI

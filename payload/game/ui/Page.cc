@@ -2,7 +2,7 @@
 
 namespace UI {
 
-Page::~Page() {}
+Page::~Page() = default;
 
 void Page::dt(s32 type) {
     if (type > 0) {

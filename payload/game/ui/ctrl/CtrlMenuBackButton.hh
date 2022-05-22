@@ -22,9 +22,9 @@ private:
         Enabled,
     };
 
-    u32 m_messageId;
-    FadeoutState m_fadeoutState;
-    f32 m_fadeoutOpacity;
+    u32 m_messageId = 2001;
+    FadeoutState m_fadeoutState = FadeoutState::Disabled;
+    f32 m_fadeoutOpacity = 0.0f;
     u8 _260[0x264 - 0x260];
 };
 static_assert(sizeof(CtrlMenuBackButton) == 0x264);

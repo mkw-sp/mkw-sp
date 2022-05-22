@@ -2,6 +2,6 @@
 
 namespace UI {
 
-PushButton::~PushButton() {}
+PushButton::~PushButton() = default;
 
 } // namespace UI

@@ -8,15 +8,9 @@
 
 namespace UI {
 
-LicenseSelectPage::LicenseSelectPage() : m_onBack(this, &UI::LicenseSelectPage::onBack),
-        m_onServicePackButtonFront(this, &UI::LicenseSelectPage::onServicePackButtonFront),
-        m_onLicenseButtonFront(this, &UI::LicenseSelectPage::onLicenseButtonFront),
-        m_onBackButtonFront(this, &UI::LicenseSelectPage::onBackButtonFront),
-        m_onCreateConfirm(this, &UI::LicenseSelectPage::onCreateConfirm),
-        m_onChangeConfirm(this, &UI::LicenseSelectPage::onChangeConfirm),
-        m_onCancel(this, &UI::LicenseSelectPage::onCancel) {}
+LicenseSelectPage::LicenseSelectPage() = default;
 
-LicenseSelectPage::~LicenseSelectPage() {}
+LicenseSelectPage::~LicenseSelectPage() = default;
 
 PageId LicenseSelectPage::getReplacement() {
     return m_replacement;

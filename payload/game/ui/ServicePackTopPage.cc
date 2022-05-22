@@ -4,10 +4,9 @@
 
 namespace UI {
 
-ServicePackTopPage::ServicePackTopPage() : m_onBack(this, &UI::ServicePackTopPage::onBack),
-        m_onBackButtonFront(this, &UI::ServicePackTopPage::onBackButtonFront) {}
+ServicePackTopPage::ServicePackTopPage() = default;
 
-ServicePackTopPage::~ServicePackTopPage() {}
+ServicePackTopPage::~ServicePackTopPage() = default;
 
 void ServicePackTopPage::onInit() {
     m_inputManager.init(0x1, false);

@@ -13,12 +13,18 @@ namespace UI {
 class ServicePackTopPage : public Page {
 public:
     ServicePackTopPage();
+    ServicePackTopPage(const ServicePackTopPage &) = delete;
+    ServicePackTopPage(ServicePackTopPage &&) = delete;
     ~ServicePackTopPage() override;
+
     void onInit() override;
 
 private:
     void onBack(u32 localPlayerId);
     void onBackButtonFront(PushButton *button, u32 localPlayerId);
+
+    template <typename T>
+    using H = typename T::Handler<ServicePackTopPage>;
 
     MultiControlInputManager m_inputManager;
     CtrlMenuPageTitleText m_pageTitleText;
@@ -29,8 +35,8 @@ private:
     PushButton m_channelButton;
     PushButton m_aboutButton;
     CtrlMenuBackButton m_backButton;
-    MultiControlInputManager::Handler<ServicePackTopPage> m_onBack;
-    PushButton::Handler<ServicePackTopPage> m_onBackButtonFront;
+    H<MultiControlInputManager> m_onBack{ this, &ServicePackTopPage::onBack };
+    H<PushButton> m_onBackButtonFront{ this, &ServicePackTopPage::onBackButtonFront };
 };
 
 } // namespace UI
