@@ -18,6 +18,10 @@ public:
     virtual void calc();
     virtual void draw();
 
+    void initChildren(u32 count);
+    void insertChild(u32 index, UIControl *child);
+    void playSfx(u32 sfxId, s32 r5);
+
 protected:
     virtual void initSelf();
     virtual void calcSelf();
@@ -30,6 +34,8 @@ protected:
 
 public:
     void setVisible(bool visible);
+    bool getVisible() const;
+    Page *getPage();
 
 private:
     u8 _04[0x64 - 0x04];
@@ -56,14 +62,19 @@ protected:
     virtual void vf_38();
 
 public:
-    void setMessage(const char *pane, u32 messageId, MessageInfo *info);
-    void setMessageAll(u32 messageId, MessageInfo *info);
+    void setMessage(const char *pane, u32 messageId, MessageInfo *info = nullptr);
+    void setMessageAll(u32 messageId, MessageInfo *info = nullptr);
     void setPicture(const char *dstPane, const char *srcPane);
+    bool hasPictureSourcePane(const char *pane);
     void setMiiPicture(const char *pane, MiiGroup *miiGroup, size_t index, u32 preset);
     void setPaneVisible(const char *pane, bool visible);
+    void load(const char *dir, const char *file,
+        const char *variant, const char *const *groups);
+    void setParentPane(const char *pane);
 
-private:
+protected:
     UIAnimator m_animator;
+private:
     MainLayout m_mainLayout;
     MessageGroup m_specificMessageGroup;
     MessageGroup m_commonMessageGroup;

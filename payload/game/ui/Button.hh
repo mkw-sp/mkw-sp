@@ -46,7 +46,9 @@ public:
     void load(const char *dir, const char *file, const char *variant, u32 playerFlags, bool r8,
             bool pointerOnly);
     void setFrontHandler(IHandler *handler, bool repeat);
+    void setSelectHandler(IHandler *handler, bool repeat);
     void selectDefault(u32 localPlayerId);
+    void select(u32 localPlayerId);
     void setPlayerFlags(u32 playerFlags);
     f32 getDelay() const;
 

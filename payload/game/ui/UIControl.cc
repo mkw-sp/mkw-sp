@@ -16,6 +16,14 @@ void UIControl::setVisible(bool visible) {
     m_isHidden = !visible;
 }
 
+bool UIControl::getVisible() const {
+    return !m_isHidden;
+}
+
+Page *UIControl::getPage() {
+    return m_controlGroup->m_page;
+}
+
 LayoutUIControl::~LayoutUIControl() {
     m_commonMessageGroup.dt(-1);
     m_specificMessageGroup.dt(-1);

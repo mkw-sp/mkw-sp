@@ -16,7 +16,7 @@ protected:
 
 public:
     void load(bool isOptions);
-    void setMessage(s32 messageId, MessageInfo *info);
+    void setMessage(s32 messageId, MessageInfo *info = nullptr);
 };
 static_assert(sizeof(CtrlMenuPageTitleText) == 0x174);
 

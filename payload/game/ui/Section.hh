@@ -10,6 +10,8 @@ public:
     template <typename T>
     T *page();
 
+    SectionId id() const { return m_id; }
+
 private:
     SectionId m_id;
     u8 _004[0x008 - 0x004];

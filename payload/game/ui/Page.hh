@@ -55,6 +55,7 @@ protected:
     void initChildren(u32 count);
     void insertChild(u32 index, UIControl *child, u32 drawPass);
     void startReplace(Animation animation, f32 delay);
+    void playSfx(u32 sfxId, s32 r5);
 
 private:
     PageId m_id;
