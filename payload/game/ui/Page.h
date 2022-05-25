@@ -74,7 +74,7 @@ typedef struct PageBase {
 
 typedef struct Page {
     const struct Page_vt *vt;
-    PageBase;
+    BASE(PageBase);
 } Page;
 static_assert(sizeof(Page) == 0x44);
 

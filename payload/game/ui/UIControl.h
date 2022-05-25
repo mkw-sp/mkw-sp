@@ -51,7 +51,7 @@ void UIControl_insertChild(UIControl *this, u32 index, UIControl *child);
 void UIControl_playSfx(UIControl *this, u32 sfxId, s32 r5);
 
 typedef struct {
-    UIControl;
+    BASE(UIControl);
     UIAnimator animator;
     MainLayout mainLayout;
     u8 _144[0x174 - 0x144];
@@ -59,7 +59,7 @@ typedef struct {
 static_assert(sizeof(LayoutUIControl) == 0x174);
 
 typedef struct {
-    UIControl_vt;
+    BASE(UIControl_vt);
     void *vf_38;
 } LayoutUIControl_vt;
 static_assert(sizeof(LayoutUIControl_vt) == 0x3c);

@@ -146,6 +146,17 @@ void *new (size_t size);
 void delete (void *memBlock);
 #endif
 
+// payload/nw4r/lyt/lyt_pane.h:24:5: error: declaration does not declare anything [-fpermissive]
+//    24 |     lyt_Pane_Base;
+//       |     ^~
+#ifdef __cplusplus
+// lyt_Pane_Base base;
+#define BASE(x) x base
+#else
+// lyt_Pane_Base;
+#define BASE(x) x
+#endif
+
 typedef struct {
     f32 x;
     f32 y;
