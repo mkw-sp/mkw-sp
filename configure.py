@@ -794,15 +794,16 @@ code_in_files = {
         os.path.join('loader', 'Vi.c'),
     ],
     'stub': [
-        os.path.join('common', 'Cache.S'),
-        os.path.join('common', 'Ios.c'),
+        os.path.join('common', 'DCache.cc'),
+        os.path.join('common', 'ICache.cc'),
+        os.path.join('common', 'IOS.cc'),
         os.path.join('common', 'Memcpy.c'),
         os.path.join('common', 'Memset.c'),
         os.path.join('common', 'Strlen.c'),
-        os.path.join('stub', 'Fs.c'),
+        os.path.join('stub', 'FS.cc'),
         os.path.join('stub', 'Start.S'),
         os.path.join('stub', 'Strlcpy.c'),
-        os.path.join('stub', 'Stub.c'),
+        os.path.join('stub', 'Stub.cc'),
     ],
 }
 code_out_files = {}
