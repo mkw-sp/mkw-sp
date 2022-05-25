@@ -257,6 +257,19 @@ static void SaveManager_saveSp(SaveManager *this) {
         }
     }
 
+    for (size_t i = this->spLicenseCount; i < 6; ++i) {
+        wchar_t path[64];
+        swprintf(path, ARRAY_SIZE(path), L"/mkw-sp/settings%u.ini", (unsigned)i);
+
+        if (!Storage_remove(path, true)) {
+            SP_LOG("Failed to delete %ls", path);
+            this->spCanSave = false;
+            this->isBusy = false;
+            this->result = RK_NAND_RESULT_NOSPACE;
+            return;
+        }
+    }
+
     this->isBusy = false;
     this->result = RK_NAND_RESULT_OK;
 }
