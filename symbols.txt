@@ -606,7 +606,7 @@
 0x80605d74 RadioButtonControl_selectDefault
 0x80605dfc RadioButtonControl_select
 0x80606bd0 LayoutUIControl_vf_28
-0x80606db0 _ZN2UI15LayoutUIControl5vf_28Ev
+0x80606bd0 _ZN2UI15LayoutUIControl5vf_28Ev
 0x80606dbc _ZN2UI9UIControl5vf_28Ev
 0x8061b358 RegisteredPadManager_getFlags
 0x806201fc SaveFailedPage_onActivate
