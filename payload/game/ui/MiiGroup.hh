@@ -6,6 +6,8 @@
 
 namespace UI {
 
+struct RawMii;
+
 class MiiGroup {
 public:
     MiiGroup();
@@ -13,6 +15,7 @@ public:
     virtual void dt(s32 type);
     void init(size_t count, u32 presetFlags, EGG::Heap *heap);
     void insertFromId(size_t index, System::MiiId *id);
+    void insertFromRaw(u32 index, const RawMii *raw);
     System::Mii *get(size_t index);
     void copy(const MiiGroup *srcGroup, size_t srcIndex, size_t index);
 
