@@ -49,7 +49,7 @@ void ControlInputManager_setHandler(ControlInputManager *this, u32 inputId, Inpu
         bool repeat);
 
 typedef struct MultiControlInputManager {
-    MenuInputManager;
+    BASE(MenuInputManager);
     u8 _00f[0x224 - 0x00f];
 } MultiControlInputManager;
 static_assert(sizeof(MultiControlInputManager) == 0x224);

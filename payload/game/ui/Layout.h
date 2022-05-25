@@ -8,7 +8,7 @@ typedef struct {
 } Layout;
 
 typedef struct {
-    Layout;
+    BASE(Layout);
     char _0c[0x9c-0x0c];
 } MainLayout;
 
