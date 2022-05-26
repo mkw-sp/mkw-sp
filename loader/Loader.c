@@ -2,7 +2,6 @@
 #include "Console.h"
 #include "Delay.h"
 #include "Di.h"
-#include "Stack.h"
 #include "Vi.h"
 
 #include <common/Cache.h>
@@ -62,8 +61,6 @@ void Loader_run(void) {
     }
 
     Di_deinit();
-
-    Stack_RandomizeMainThreadStackPointer();
 
     void *payloadDst;
     const void *payloadSrc;

@@ -3,6 +3,8 @@
 #include <revolution/os.h>
 #include <sp/Version.h>
 
+#define MAIN_THREAD_STACK_BITS_ENTROPY 11
+
 typedef bool (*FindFunction)(const u32* start_address);
 typedef void (*LinkRegisterFunction)(void);
 
@@ -22,10 +24,15 @@ typedef struct LinkRegisterPatch
     LinkRegisterFunction new_lr_restore_function;
 } LinkRegisterPatch;
 
+extern void* __init_registers;
+extern void* __OSThreadInit;
+
 extern void Stack_XORAlignedLinkRegisterSave(void);
 extern void Stack_XORAlignedLinkRegisterRestore(void);
 extern void Stack_XORLinkRegisterSave(void);
 extern void Stack_XORLinkRegisterRestore(void);
+
+static const u32 main_thread_stack_size = 0x10000;
 
 static const u32 blr  = 0x4E800020;
 static const u32 mflr = 0x7C0802A6;
@@ -45,6 +52,57 @@ __attribute__((noreturn)) void __stack_chk_fail(void)
 
     OSFatal(foreground, background, "MKW-SP v" BUILD_TYPE_STR "\n\n" "Stack smashing detected !");
     __builtin_unreachable();
+}
+
+static void Stack_SetMainThreadStackPointer(const u32* stack_pointer_bottom, const u32* stack_pointer_top)
+{
+    const u16 ori_r4_hi = 0x6084;
+    const u16 ori_r5_hi = 0x60A5;
+
+    u16* lis = (u16*)((u8*)&__init_registers + 0x76);
+    u16* ori = (u16*)((u8*)&__init_registers + 0x7A);
+
+    *lis = (u32)stack_pointer_top >> 16;
+    *ori = (u32)stack_pointer_top >>  0;
+
+    DCFlushRange(lis, sizeof(*lis));
+    DCFlushRange(ori, sizeof(*ori));
+    ICInvalidateRange(lis, sizeof(*lis));
+    ICInvalidateRange(ori, sizeof(*ori));
+
+    u16* lis_stack_top     = (u16*)((u8*)&__OSThreadInit + 0x7E);
+    u16* lis_stack_bottom  = (u16*)((u8*)&__OSThreadInit + 0x82);
+    u32* addi_stack_top    = (u32*)((u8*)&__OSThreadInit + 0x84);
+    u32* addi_stack_bottom = (u32*)((u8*)&__OSThreadInit + 0x8C);
+
+    *lis_stack_top     = (u32)stack_pointer_top    >> 16;
+    *lis_stack_bottom  = (u32)stack_pointer_bottom >> 16;
+    *addi_stack_top    = (ori_r4_hi << 16) | ((u32)stack_pointer_top    & 0x0000FFFF);
+    *addi_stack_bottom = (ori_r5_hi << 16) | ((u32)stack_pointer_bottom & 0x0000FFFF);
+
+    DCFlushRange(lis_stack_top    , sizeof(*lis_stack_top    ));
+    DCFlushRange(lis_stack_bottom , sizeof(*lis_stack_bottom ));
+    DCFlushRange(addi_stack_top   , sizeof(*addi_stack_top   ));
+    DCFlushRange(addi_stack_bottom, sizeof(*addi_stack_bottom));
+    ICInvalidateRange(lis_stack_top    , sizeof(*lis_stack_top    ));
+    ICInvalidateRange(lis_stack_bottom , sizeof(*lis_stack_bottom ));
+    ICInvalidateRange(addi_stack_top   , sizeof(*addi_stack_top   ));
+    ICInvalidateRange(addi_stack_bottom, sizeof(*addi_stack_bottom));
+}
+
+static void* Stack_AllocFromMEM1ArenaHi(u32 size)
+{
+    u8** mem1_arena_hi = (u8**)0x80003110;
+    *mem1_arena_hi -= size;
+    return (void*)*mem1_arena_hi;
+}
+
+void Stack_RelocateMainThreadStackToMEM1End(void)
+{
+    const u32* stack_pointer_bottom = (u32*)Stack_AllocFromMEM1ArenaHi(main_thread_stack_size);
+    const u32* stack_pointer_top_max = (u32*)((u32)stack_pointer_bottom + main_thread_stack_size);
+    const u32* stack_pointer_top = (u32*)Stack_RandomizeStackPointer((u32*)stack_pointer_top_max, MAIN_THREAD_STACK_BITS_ENTROPY);
+    Stack_SetMainThreadStackPointer(stack_pointer_bottom, stack_pointer_top);
 }
 
 static bool Stack_IsAlignedFunctionPrologue(const u32* start_address)

@@ -66,11 +66,29 @@
 #define f30 30
 #define f31 31
 
+#define LR 8
+
+#define SRR0 26
+#define SRR1 27
+
+#define IBAT0U 528
+#define IBAT0L 529
+#define IBAT2U 532
+#define IBAT2L 533
 #define IBAT4L 561
 #define IBAT6L 565
 #define IBAT7L 567
 
 #define HID4 1011
+
+#define MSR_DR (1 << 4)
+#define MSR_IR (1 << 5)
+
+#define BAT_BL_8MB (0b00000111111 << 2)
+#define BAT_VS     (1 << 1)
+#define BAT_VP     (1 << 0)
+
+#define BAT_PP_RW  (0b10 << 0)
 
 #define PATCH_TYPE_WRITE 0x0
 #define PATCH_TYPE_BRANCH 0x1
