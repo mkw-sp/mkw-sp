@@ -720,6 +720,7 @@ code_in_files = {
         os.path.join('payload', 'revolution', 'nand.c'),
         os.path.join('payload', 'revolution', 'OS.S'),
         os.path.join('payload', 'revolution', 'OS.c'),
+        os.path.join('payload', 'revolution', 'start.S'),
         os.path.join('payload', 'revolution', 'os', 'OSContext.S'),
         os.path.join('payload', 'revolution', 'os', 'OSError.S'),
         os.path.join('payload', 'revolution', 'os', 'OSError.c'),

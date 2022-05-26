@@ -40,6 +40,9 @@ static const u32 mtlr = 0x7C0803A6;
 
 u32 __stack_chk_guard;
 
+u32* main_thread_stack_pointer_bottom;
+u32* main_thread_stack_pointer_top;
+
 void Stack_InitCanary(void)
 {
     __stack_chk_guard = (OSGetTick() & 0x00FFFFFF) | (0x80 << 24);
@@ -56,38 +59,8 @@ __attribute__((noreturn)) void __stack_chk_fail(void)
 
 static void Stack_SetMainThreadStackPointer(const u32* stack_pointer_bottom, const u32* stack_pointer_top)
 {
-    const u16 ori_r4_hi = 0x6084;
-    const u16 ori_r5_hi = 0x60A5;
-
-    u16* lis = (u16*)((u8*)&__init_registers + 0x76);
-    u16* ori = (u16*)((u8*)&__init_registers + 0x7A);
-
-    *lis = (u32)stack_pointer_top >> 16;
-    *ori = (u32)stack_pointer_top >>  0;
-
-    DCFlushRange(lis, sizeof(*lis));
-    DCFlushRange(ori, sizeof(*ori));
-    ICInvalidateRange(lis, sizeof(*lis));
-    ICInvalidateRange(ori, sizeof(*ori));
-
-    u16* lis_stack_top     = (u16*)((u8*)&__OSThreadInit + 0x7E);
-    u16* lis_stack_bottom  = (u16*)((u8*)&__OSThreadInit + 0x82);
-    u32* addi_stack_top    = (u32*)((u8*)&__OSThreadInit + 0x84);
-    u32* addi_stack_bottom = (u32*)((u8*)&__OSThreadInit + 0x8C);
-
-    *lis_stack_top     = (u32)stack_pointer_top    >> 16;
-    *lis_stack_bottom  = (u32)stack_pointer_bottom >> 16;
-    *addi_stack_top    = (ori_r4_hi << 16) | ((u32)stack_pointer_top    & 0x0000FFFF);
-    *addi_stack_bottom = (ori_r5_hi << 16) | ((u32)stack_pointer_bottom & 0x0000FFFF);
-
-    DCFlushRange(lis_stack_top    , sizeof(*lis_stack_top    ));
-    DCFlushRange(lis_stack_bottom , sizeof(*lis_stack_bottom ));
-    DCFlushRange(addi_stack_top   , sizeof(*addi_stack_top   ));
-    DCFlushRange(addi_stack_bottom, sizeof(*addi_stack_bottom));
-    ICInvalidateRange(lis_stack_top    , sizeof(*lis_stack_top    ));
-    ICInvalidateRange(lis_stack_bottom , sizeof(*lis_stack_bottom ));
-    ICInvalidateRange(addi_stack_top   , sizeof(*addi_stack_top   ));
-    ICInvalidateRange(addi_stack_bottom, sizeof(*addi_stack_bottom));
+    main_thread_stack_pointer_bottom = (u32*)stack_pointer_bottom;
+    main_thread_stack_pointer_top = (u32*)stack_pointer_top;
 }
 
 static void* Stack_AllocFromMEM1ArenaHi(u32 size)
