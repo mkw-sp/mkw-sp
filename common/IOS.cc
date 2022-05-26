@@ -133,6 +133,7 @@ s32 Resource::ioctl(u32 ioctl, const void *input, u32 inputSize, void *output, u
 
     request = {};
     request.command = Command::Ioctl;
+    request.fd = m_fd;
     request.ioctl.ioctl = ioctl;
     request.ioctl.input = VirtualToPhysical(input);
     request.ioctl.inputSize = inputSize;
@@ -146,7 +147,7 @@ s32 Resource::ioctl(u32 ioctl, const void *input, u32 inputSize, void *output, u
     return request.result;
 }
 
-s32 Resource::ioctlv(s32 fd, u32 ioctlv, u32 inputCount, u32 outputCount, IoctlvPair *pairs) {
+s32 Resource::ioctlv(u32 ioctlv, u32 inputCount, u32 outputCount, IoctlvPair *pairs) {
     for (u32 i = 0; i < inputCount + outputCount; i++) {
         if (pairs[i].data) {
             DCache::Flush(pairs[i].data, pairs[i].size);
@@ -157,7 +158,7 @@ s32 Resource::ioctlv(s32 fd, u32 ioctlv, u32 inputCount, u32 outputCount, Ioctlv
 
     request = {};
     request.command = Command::Ioctlv;
-    request.fd = fd;
+    request.fd = m_fd;
     request.ioctlv.ioctlv = ioctlv;
     request.ioctlv.inputCount = inputCount;
     request.ioctlv.outputCount = outputCount;
@@ -173,6 +174,10 @@ s32 Resource::ioctlv(s32 fd, u32 ioctlv, u32 inputCount, u32 outputCount, Ioctlv
     }
 
     return request.result;
+}
+
+bool Resource::ok() const {
+    return m_fd >= 0;
 }
 
 File::File(const char *path, Mode mode) : Resource(path, mode) {}
@@ -202,10 +207,6 @@ s32 File::write(const void *input, u32 inputSize) {
     Sync();
 
     return request.result;
-}
-
-bool File::ok() const {
-    return m_fd >= 0;
 }
 
 } // namespace IOS

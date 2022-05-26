@@ -780,19 +780,21 @@ code_in_files = {
         os.path.join('vendor', 'lzma', 'LzmaDec.c'),
     ],
     'loader': [
-        os.path.join('common', 'Cache.S'),
-        os.path.join('common', 'Ios.c'),
+        os.path.join('common', 'DCache.cc'),
+        os.path.join('common', 'ICache.cc'),
+        os.path.join('common', 'IOS.cc'),
         os.path.join('common', 'Memcpy.c'),
         os.path.join('common', 'Memset.c'),
         os.path.join('common', 'Strlen.c'),
-        os.path.join('loader', 'Apploader.c'),
-        os.path.join('loader', 'Console.c'),
-        os.path.join('loader', 'Delay.S'),
-        os.path.join('loader', 'Di.c'),
+        os.path.join('loader', 'Apploader.cc'),
+        os.path.join('loader', 'Clock.cc'),
+        os.path.join('loader', 'Console.cc'),
+        os.path.join('loader', 'DI.cc'),
         os.path.join('loader', 'Font.c'),
-        os.path.join('loader', 'Loader.c'),
+        os.path.join('loader', 'Font.cc'),
+        os.path.join('loader', 'Loader.cc'),
         os.path.join('loader', 'Start.S'),
-        os.path.join('loader', 'Vi.c'),
+        os.path.join('loader', 'VI.cc'),
     ],
     'stub': [
         os.path.join('common', 'DCache.cc'),
@@ -902,9 +904,9 @@ for fmt in ['binary', 'elf32-powerpc']:
                 'base': '0x80b00000',
                 'entry': 'start',
                 'format': fmt,
-                'script': os.path.join('loader', 'RMC.ld'),
+                'script': os.path.join('common', 'RMC.ld'),
             },
-            implicit = os.path.join('loader', 'RMC.ld'),
+            implicit = os.path.join('common', 'RMC.ld'),
         )
         n.newline()
 
@@ -947,9 +949,9 @@ for profile in ['DEBUG', 'RELEASE']:
             'base': '0x80100000',
             'entry': 'start',
             'format': 'elf32-powerpc',
-            'script': os.path.join('stub', 'RMC.ld'),
+            'script': os.path.join('common', 'RMC.ld'),
         },
-        implicit = os.path.join('stub', 'RMC.ld'),
+        implicit = os.path.join('common', 'RMC.ld'),
     )
     n.newline()
 

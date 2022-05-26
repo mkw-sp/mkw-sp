@@ -7,7 +7,7 @@ start:
     lis r1, stackTop@h
     ori r1, r1, stackTop@l
 
-    // Jump to C code
+    // Jump to C++ code
     bl Loader_run
 
     // We should never get there

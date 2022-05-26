@@ -27,7 +27,8 @@ protected:
     Resource(const char *path, Mode mode);
     ~Resource();
     s32 ioctl(u32 ioctl, const void *input, u32 inputSize, void *output, u32 outputSize);
-    s32 ioctlv(s32 fd, u32 ioctlv, u32 inputCount, u32 outputCount, IoctlvPair *pairs);
+    s32 ioctlv(u32 ioctlv, u32 inputCount, u32 outputCount, IoctlvPair *pairs);
+    bool ok() const;
 
 private:
     s32 open(const char *path, Mode mode);
@@ -43,7 +44,7 @@ public:
     ~File() = default;
     s32 read(void *output, u32 outputSize);
     s32 write(const void *input, u32 inputSize);
-    bool ok() const;
+    using Resource::ok;
 };
 
 } // namespace IOS

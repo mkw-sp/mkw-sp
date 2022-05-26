@@ -2,7 +2,7 @@
 
 // Terminus Font, under the SIL Open Font License
 
-static const u8 font[128][16] = {
+const u8 font[128][16] = {
     [' '] = {
         0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
         0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
@@ -384,20 +384,3 @@ static const u8 font[128][16] = {
         0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     },
 };
-
-u8 Font_getGlyphWidth(void) {
-    return 8;
-}
-
-u8 Font_getGlyphHeight(void) {
-    return 16;
-}
-
-const u8 *Font_getGlyph(char c) {
-    u32 i = c;
-    if (i < 128) {
-        return font[i];
-    }
-
-    return font[' '];
-}
