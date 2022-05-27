@@ -93,6 +93,14 @@ static const Setting SpSettings[] = {
             .defaultValue = 0xECFF82D2,
             .enumValues = NULL,
             .numEnumValues = 0 },
+    [kSetting_LoadingScreenColor] =
+            (Setting){
+                    .name = "LoadingScreenColor",
+                    .category = kCategory_License,
+                    .defaultValue = 0xFF,
+                    .enumValues = NULL,
+                    .numEnumValues = 0,
+            },
 };
 static const BaseSettingsDescriptor SpSettingsDesc = (BaseSettingsDescriptor){
     .numValues = ARRAY_SIZE(SpSettings),

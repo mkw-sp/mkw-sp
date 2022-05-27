@@ -126,6 +126,7 @@ typedef enum {
     // License
     kSetting_MiiAvatar,  // BE encoding of u8[4]
     kSetting_MiiClient,  // BE encoding of u8[4]
+    kSetting_LoadingScreenColor,  // BE encoding of u8[4]
 
     kSetting_MAX,
 } SpSettingKey;

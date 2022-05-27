@@ -1,8 +1,13 @@
 #include "SectionManager.h"
+#include "game/system/SaveManager.h"
 
 PATCH_S16(SectionManager_init, 0x8e, sizeof(GlobalContext));
 
 void my_SectionManager_startChangeSection(SectionManager *menu, s32 delay, u32 color) {
+    if (color == 0xFF) {
+        color = SaveManager_getSetting(s_saveManager, kSetting_LoadingScreenColor);
+    }
+
     switch (menu->state) {
     case IDLE:
         menu->state = CHANGE_REQUESTED;
