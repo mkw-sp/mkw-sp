@@ -63,7 +63,7 @@ static void Stack_SetMainThreadStackPointer(const u32* stack_pointer_bottom, con
     main_thread_stack_pointer_top = (u32*)stack_pointer_top;
 }
 
-static void* Stack_AllocFromMEM1ArenaHi(u32 size)
+static void* Stack_AllocFromMEM1ArenaHi(const u32 size)
 {
     u8** mem1_arena_hi = (u8**)0x80003110;
     *mem1_arena_hi -= size;
