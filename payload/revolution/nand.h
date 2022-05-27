@@ -43,8 +43,6 @@ s32 NANDRead(NANDFileInfo *info, void *buf, u32 length);
 
 s32 NANDSeek(NANDFileInfo *info, s32 offset, s32 whence);
 
-s32 NANDReadDir(const char *path, char *nameList, u32 *num);
-
 s32 NANDGetHomeDir(char path[NAND_MAX_PATH]);
 
 s32 NANDMove(const char *path, const char *destDir);

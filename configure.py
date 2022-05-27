@@ -717,7 +717,6 @@ code_in_files = {
         os.path.join('payload', 'revolution', 'dvdex.c'),
         os.path.join('payload', 'revolution', 'ios.S'),
         os.path.join('payload', 'revolution', 'ios.c'),
-        os.path.join('payload', 'revolution', 'nand.c'),
         os.path.join('payload', 'revolution', 'OS.S'),
         os.path.join('payload', 'revolution', 'OS.c'),
         os.path.join('payload', 'revolution', 'start.S'),
