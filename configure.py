@@ -392,7 +392,7 @@ for target in asset_out_files:
             target_renamed[out_file] = renamed[out_file]
     target_renamed = ' '.join([f'--renamed {src} {dst}' for src, dst in target_renamed.items()])
     n.build(
-        os.path.join('$builddir', 'assets.arc.d', 'disc', target),
+        os.path.join('$builddir', 'contents.arc.d', target),
         'arc',
         asset_out_files[target],
         variables = {
@@ -401,15 +401,6 @@ for target in asset_out_files:
         },
     )
     n.newline()
-
-n.build(
-    os.path.join('$builddir', 'assets.arc'),
-    'arc',
-    [os.path.join('$builddir', 'assets.arc.d', 'disc', target) for target in asset_out_files],
-    variables = {
-        'arcin': os.path.join('$builddir', 'assets.arc.d'),
-    },
-)
 
 devkitppc = os.environ.get("DEVKITPPC")
 n.variable('compiler', os.path.join(devkitppc, 'bin', 'powerpc-eabi-gcc'))
@@ -802,9 +793,12 @@ code_in_files = {
         os.path.join('common', 'Memcpy.c'),
         os.path.join('common', 'Memset.c'),
         os.path.join('common', 'Strlen.c'),
+        os.path.join('stub', 'Archive.cc'),
         os.path.join('stub', 'FS.cc'),
         os.path.join('stub', 'Start.S'),
+        os.path.join('stub', 'Strchr.c'),
         os.path.join('stub', 'Strlcpy.c'),
+        os.path.join('stub', 'Strncmp.c'),
         os.path.join('stub', 'Stub.cc'),
     ],
 }
@@ -893,10 +887,11 @@ n.newline()
 
 for fmt in ['binary', 'elf32-powerpc']:
     for profile in ['DEBUG', 'RELEASE']:
+        subdir = os.path.join('contents.arc.d', 'bin') if fmt == 'binary' else 'bin'
         suffix = 'D' if profile == 'DEBUG' else ''
         extension = 'bin' if fmt == 'binary' else 'elf'
         n.build(
-            os.path.join('$builddir', 'bin', f'loader{suffix}.{extension}'),
+            os.path.join('$builddir', subdir, f'loader{suffix}.{extension}'),
             'ld',
             code_out_files[profile]['loader'],
             variables = {
@@ -911,31 +906,32 @@ for fmt in ['binary', 'elf32-powerpc']:
 
 for profile in ['DEBUG', 'RELEASE']:
     suffix = 'D' if profile == 'DEBUG' else ''
-    out_file = os.path.join('$builddir', 'stub', f'loader{suffix}.o')
+    n.build(
+        os.path.join('$builddir', f'contents{suffix}.arc'),
+        'arc',
+        [
+            *[os.path.join('$builddir', 'contents.arc.d', target) for target in asset_out_files],
+            os.path.join('$builddir', 'contents.arc.d', 'bin', f'loader{suffix}.bin'),
+        ],
+        variables = {
+            'arcin': os.path.join('$builddir', 'contents.arc.d'),
+            'args': '--renamed loaderD.bin loader.bin',
+        },
+    )
+
+for profile in ['DEBUG', 'RELEASE']:
+    suffix = 'D' if profile == 'DEBUG' else ''
+    out_file = os.path.join('$builddir', 'stub', f'contents{suffix}.o')
     n.build(
         out_file,
         'incbin',
-        os.path.join('$builddir', 'bin', f'loader{suffix}.bin'),
+        os.path.join('$builddir', f'contents{suffix}.arc'),
         variables = {
-            'name': 'loader',
-            'path': '/'.join(['$builddir', 'bin', f'loader{suffix}.bin']),
+            'name': 'contents',
+            'path': '/'.join(['$builddir', f'contents{suffix}.arc']),
         },
         implicit = 'Incbin.S',
     )
-    code_out_files[profile]['stub'] += [out_file]
-
-out_file = os.path.join('$builddir', 'stub', 'assets.o')
-n.build(
-    out_file,
-    'incbin',
-    os.path.join('$builddir', 'assets.arc'),
-    variables = {
-        'name': 'assets',
-        'path': '/'.join(['$builddir', 'assets.arc']),
-    },
-    implicit = 'Incbin.S',
-)
-for profile in ['DEBUG', 'RELEASE']:
     code_out_files[profile]['stub'] += [out_file]
 
 for profile in ['DEBUG', 'RELEASE']:

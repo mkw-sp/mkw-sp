@@ -1,5 +1,7 @@
 #include "FS.hh"
 
+#include "Archive.hh"
+
 #include <common/ICache.hh>
 
 #include <cstring>
@@ -8,23 +10,30 @@ namespace Stub {
 
 typedef void (*LoaderEntryFunc)(void);
 
-alignas(0x20) static const char assetsTmpPath[] = "/tmp/assets.arc";
+alignas(0x20) static const char contentsTmpPath[] = "/tmp/contents.arc";
 
-extern "C" const u8 loader[];
-extern "C" const u32 loaderSize;
-extern "C" const u8 assets[];
-extern "C" const u32 assetsSize;
+extern "C" const u8 contents[];
+extern "C" const u32 contentsSize;
 
 static void run() {
     IOS::Init();
 
     {
         IOS::FS fs;
-        fs.writeFile(assetsTmpPath, assets, assetsSize);
+        fs.writeFile(contentsTmpPath, contents, contentsSize);
     }
 
-    memcpy(reinterpret_cast<void *>(0x80b00000), loader, loaderSize);
-    ICache::Invalidate(reinterpret_cast<void *>(0x80b00000), loaderSize);
+    Archive archive(contents, contentsSize);
+    if (!archive.ok()) {
+        return;
+    }
+    auto entry = archive.get("./bin/loader.bin");
+    Archive::File *loader = std::get_if<Archive::File>(&entry);
+    if (!loader) {
+        return;
+    }
+    memcpy(reinterpret_cast<void *>(0x80b00000), loader->data, loader->size);
+    ICache::Invalidate(reinterpret_cast<void *>(0x80b00000), loader->size);
 
     LoaderEntryFunc loaderEntry = reinterpret_cast<LoaderEntryFunc>(0x80b00000);
     loaderEntry();

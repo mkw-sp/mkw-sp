@@ -33,8 +33,8 @@ static bool NandArcStorage_findFd(u32 *fd, u32 open, u32 max) {
 }
 
 static const char *NandArcStorage_convertPath(const wchar_t *path) {
-    if (!wcsncmp(path, L"/mkw-sp/", wcslen(L"/mkw-sp/"))) {
-        snprintf(pathBuffer, sizeof(pathBuffer), "%ls", path + wcslen(L"/mkw-sp/"));
+    if (!wcsncmp(path, L"/mkw-sp/disc/", wcslen(L"/mkw-sp/disc/"))) {
+        snprintf(pathBuffer, sizeof(pathBuffer), "%ls", path + wcslen(L"/mkw-sp/disc/"));
         return pathBuffer;
     }
 
@@ -251,7 +251,7 @@ static void NandArcStorage_stat(const wchar_t *path, NodeInfo *info) {
 bool NandArcStorage_init(Storage *storage) {
     OSInitMutex(&mutex);
 
-    if (NANDOpen("/tmp/assets.arc", &fileInfo, NAND_ACCESS_READ) != NAND_RESULT_OK) {
+    if (NANDOpen("/tmp/contents.arc", &fileInfo, NAND_ACCESS_READ) != NAND_RESULT_OK) {
         return false;
     }
 

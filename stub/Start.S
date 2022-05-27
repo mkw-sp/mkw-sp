@@ -18,6 +18,12 @@ start:
     b 0x0
 .size start, . - start
 
+.global abort
+abort:
+    // Or there...
+    b 0x0
+.size abort, . - abort
+
     // Dummy: the presence of such an instruction is the criterion for Dolphin to load an ELF in Wii
     // mode instead of GC.
     mtspr HID4, r3

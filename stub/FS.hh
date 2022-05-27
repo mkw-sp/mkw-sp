@@ -9,9 +9,9 @@ public:
     FS();
     ~FS() = default;
 
-    bool createFile(const char *path, u8 attrs, Mode ownerPerms,
-            Mode groupPerms, Mode otherPerms);
+    bool createDir(const char *path, u8 attrs, Mode ownerPerms, Mode groupPerms, Mode otherPerms);
     bool rename(const char *srcPath, const char *dstPath);
+    bool createFile(const char *path, u8 attrs, Mode ownerPerms, Mode groupPerms, Mode otherPerms);
 
     bool writeFile(const char *path, const void *src, u32 size);
 
