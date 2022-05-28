@@ -36,10 +36,12 @@ public:
     static const size_t HEADER_SIZE = LZMA_PROPS_SIZE + sizeof(u64);
 
 private:
+    EGG::Heap *m_heap;
     LZMAAllocator m_allocator;
     CLzmaDec m_dec;
-    bool m_ok;
-    bool m_done;
+    bool m_knownDstSize = true;
+    bool m_ok = false;
+    bool m_done = false;
 };
 
 } // namespace SP

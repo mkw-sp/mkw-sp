@@ -76,7 +76,7 @@ static bool load(const char *path, u8 **dst, size_t *dstSize, EGG::Heap *heap) {
     src += decoder->headerSize();
     srcSize -= decoder->headerSize();
 
-    while (decoder->ok() && decoder->decode(src, srcSize)) {
+    while (decoder->ok() && !decoder->done() && decoder->decode(src, srcSize)) {
         srcSize = updateExchange.left(true);
         if (srcSize < 0 || (srcSize == 0 && !decoder->done())) {
             return false;

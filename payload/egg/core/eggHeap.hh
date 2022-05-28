@@ -12,7 +12,7 @@ public:
     virtual void *alloc(u32 size, s32 align) = 0;
     virtual void *free(void *block) = 0;
     virtual void vf_1c() = 0;
-    virtual void vf_20() = 0;
+    virtual u32 resizeForMBlock(void *block, u32 size) = 0;
     virtual void vf_24() = 0;
     virtual void vf_28() = 0;
 
