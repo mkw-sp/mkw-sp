@@ -3,8 +3,8 @@
 
 from argparse import ArgumentParser
 import json5
+import lzma
 import os
-import pylzma
 import struct
 import sys
 
@@ -79,9 +79,7 @@ def decode_u8(in_path, out_path, retained, renamed):
     if ext == 'szs':
         in_data = unpack_yaz(in_data)
     elif ext == 'lzma':
-        uncompressed_size = struct.unpack_from('<Q', in_data, 5)[0]
-        in_data = in_data[:5] + in_data[13:]
-        in_data = pylzma.decompress(in_data, maxlength = uncompressed_size)
+        in_data = lzma.decompress(in_data)
     root = unpack_u8(in_data)
     if out_path is None:
         out_path = in_path + '.d'
@@ -157,9 +155,7 @@ def encode_u8(in_path, out_path, retained, renamed):
     if ext == 'szs':
         out_data = pack_yaz(out_data)
     elif ext == 'lzma':
-        uncompressed_size = len(out_data)
-        out_data = pylzma.compress(out_data, multithreading = 0, eos = 0)
-        out_data = out_data[:5] + struct.pack('<Q', uncompressed_size) + out_data[5:]
+        out_data = lzma.compress(out_data, lzma.FORMAT_ALONE)
     if out_path is None:
         out_path = os.path.splitext(in_path)[0]
     with open(out_path, 'wb') as out_file:
