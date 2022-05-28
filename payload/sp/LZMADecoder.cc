@@ -1,6 +1,6 @@
 #include "LZMADecoder.hh"
 
-#include "sp/Bytes.hh"
+#include <common/Bytes.hh>
 
 #include <cstring>
 

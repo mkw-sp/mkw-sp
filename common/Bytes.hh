@@ -2,7 +2,7 @@
 
 #include <bit>
 
-namespace SP::Bytes {
+namespace Bytes {
 
 template <typename T, std::endian E = std::endian::big>
 T Read(const u8 *src, size_t offset) {
@@ -36,4 +36,4 @@ void Write(u8 *dst, size_t offset, T val) {
     }
 }
 
-} // namespace SP::Bytes
+} // namespace Bytes

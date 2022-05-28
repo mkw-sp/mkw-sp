@@ -1,6 +1,7 @@
 #include "FS.hh"
 
 #include "Archive.hh"
+#include "LZMA.hh"
 
 #include <common/ICache.hh>
 
@@ -27,15 +28,19 @@ static void run() {
     if (!archive.ok()) {
         return;
     }
-    auto entry = archive.get("./bin/loader.bin");
-    Archive::File *loader = std::get_if<Archive::File>(&entry);
-    if (!loader) {
+    auto entry = archive.get("./bin/loader.bin.lzma");
+    Archive::File *file = std::get_if<Archive::File>(&entry);
+    if (!file) {
         return;
     }
-    memcpy(reinterpret_cast<void *>(0x80b00000), loader->data, loader->size);
-    ICache::Invalidate(reinterpret_cast<void *>(0x80b00000), loader->size);
+    u8 *loader = reinterpret_cast<u8 *>(0x80b00000);
+    std::optional<size_t> loaderSize = LZMA::Decode(file->data, loader, file->size, 0xc00000);
+    if (!loaderSize) {
+        return;
+    }
+    ICache::Invalidate(loader, *loaderSize);
 
-    LoaderEntryFunc loaderEntry = reinterpret_cast<LoaderEntryFunc>(0x80b00000);
+    LoaderEntryFunc loaderEntry = reinterpret_cast<LoaderEntryFunc>(loader);
     loaderEntry();
 }
 

@@ -1,6 +1,6 @@
 #include "YAZDecoder.hh"
 
-#include "sp/Bytes.hh"
+#include <common/Bytes.hh>
 
 namespace SP {
 

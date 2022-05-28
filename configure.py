@@ -405,6 +405,7 @@ for target in asset_out_files:
 devkitppc = os.environ.get("DEVKITPPC")
 n.variable('compiler', os.path.join(devkitppc, 'bin', 'powerpc-eabi-gcc'))
 n.variable('port', 'port.py')
+n.variable('lzmac', 'lzmac.py')
 n.variable('elf2dol', 'elf2dol.py')
 n.newline()
 
@@ -418,6 +419,7 @@ common_cflags = [
     '-fno-asynchronous-unwind-tables',
     '-fplan9-extensions',
     '-fshort-wchar',
+    '-isystem', '.',
     '-isystem', 'include',
     '-isystem', 'payload',
     '-isystem', 'vendor',
@@ -435,6 +437,7 @@ common_ccflags = [
     '-fno-exceptions',
     '-fno-rtti',
     '-fshort-wchar',
+    '-isystem', '.',
     '-isystem', 'include',
     '-isystem', 'payload',
     '-isystem', 'vendor',
@@ -446,12 +449,8 @@ common_ccflags = [
     f'-DGIT_HASH={get_git_revision_short_hash()}',
 ]
 target_cflags = {
-    'stub': [
-        '-isystem', '.',
-    ],
-    'loader': [
-        '-isystem', '.',
-    ],
+    'stub': [],
+    'loader': [],
     'payload': [
         '-fstack-protector-strong',
     ],
@@ -526,6 +525,13 @@ n.rule(
     'ld',
     command = '$compiler $ldflags ' + ' '.join(ldparams) + ' $in -o $out',
     description = 'LD $out',
+)
+n.newline()
+
+n.rule(
+    'lzmac',
+    command = f'{sys.executable} $lzmac $in $out',
+    description = 'LZMA $out',
 )
 n.newline()
 
@@ -795,11 +801,13 @@ code_in_files = {
         os.path.join('common', 'Strlen.c'),
         os.path.join('stub', 'Archive.cc'),
         os.path.join('stub', 'FS.cc'),
+        os.path.join('stub', 'LZMA.cc'),
         os.path.join('stub', 'Start.S'),
         os.path.join('stub', 'Strchr.c'),
         os.path.join('stub', 'Strlcpy.c'),
         os.path.join('stub', 'Strncmp.c'),
         os.path.join('stub', 'Stub.cc'),
+        os.path.join('vendor', 'lzma', 'LzmaDec.c'),
     ],
 }
 code_out_files = {}
@@ -887,11 +895,10 @@ n.newline()
 
 for fmt in ['binary', 'elf32-powerpc']:
     for profile in ['DEBUG', 'RELEASE']:
-        subdir = os.path.join('contents.arc.d', 'bin') if fmt == 'binary' else 'bin'
         suffix = 'D' if profile == 'DEBUG' else ''
         extension = 'bin' if fmt == 'binary' else 'elf'
         n.build(
-            os.path.join('$builddir', subdir, f'loader{suffix}.{extension}'),
+            os.path.join('$builddir', 'bin', f'loader{suffix}.{extension}'),
             'ld',
             code_out_files[profile]['loader'],
             variables = {
@@ -907,15 +914,23 @@ for fmt in ['binary', 'elf32-powerpc']:
 for profile in ['DEBUG', 'RELEASE']:
     suffix = 'D' if profile == 'DEBUG' else ''
     n.build(
+        os.path.join('$builddir', 'contents.arc.d', 'bin', f'loader{suffix}.bin.lzma'),
+        'lzmac',
+        os.path.join('$builddir', 'bin', f'loader{suffix}.bin'),
+    )
+
+for profile in ['DEBUG', 'RELEASE']:
+    suffix = 'D' if profile == 'DEBUG' else ''
+    n.build(
         os.path.join('$builddir', f'contents{suffix}.arc'),
         'arc',
         [
             *[os.path.join('$builddir', 'contents.arc.d', target) for target in asset_out_files],
-            os.path.join('$builddir', 'contents.arc.d', 'bin', f'loader{suffix}.bin'),
+            os.path.join('$builddir', 'contents.arc.d', 'bin', f'loader{suffix}.bin.lzma'),
         ],
         variables = {
             'arcin': os.path.join('$builddir', 'contents.arc.d'),
-            'args': '--renamed loaderD.bin loader.bin',
+            'args': '--renamed loaderD.bin.lzma loader.bin.lzma',
         },
     )
 

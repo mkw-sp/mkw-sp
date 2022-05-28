@@ -2,11 +2,12 @@ extern "C" {
 #include "DVDDecompLoader.h"
 }
 
-#include "sp/Bytes.hh"
 #include "sp/DVDFile.hh"
 #include "sp/Exchange.hh"
 #include "sp/LZMADecoder.hh"
 #include "sp/YAZDecoder.hh"
+
+#include <common/Bytes.hh>
 
 #include <memory>
 
