@@ -23,6 +23,9 @@ static void CourseCache_init(CourseCache *self) {
 
 static void CourseCache_deinit(CourseCache *self) {
     if (self->heap) {
+        if (self->state == COURSE_CACHE_STATE_LOADED) {
+            MultiDvdArchive_clear(self->multi);
+        }
         assert(self->buffer);
         self->state = COURSE_CACHE_STATE_CLEARED;
         EGG_ExpHeap_destroy((EGG_ExpHeap *)self->heap);
