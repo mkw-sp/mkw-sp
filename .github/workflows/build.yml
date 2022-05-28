@@ -33,8 +33,6 @@ jobs:
           python-version: 'pypy-3.8'
       - name: Install json5
         run: pip install json5
-      - name: Install pylzma
-        run: pip install pylzma
       - name: Install pyelftools
         run: pip install pyelftools
       - name: Configure ninja
