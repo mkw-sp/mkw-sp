@@ -48,6 +48,7 @@ static void run() {
     if (!loaderSize) {
         return;
     }
+    DCache::Flush(loader, *loaderSize);
     ICache::Invalidate(loader, *loaderSize);
 
     LoaderEntryFunc loaderEntry = reinterpret_cast<LoaderEntryFunc>(loader);
