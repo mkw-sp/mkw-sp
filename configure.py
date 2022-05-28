@@ -453,6 +453,10 @@ profile_cflags = {
         '-g',
         '-DSP_DEBUG'
     ],
+    'TEST': [
+        '-O2',
+        '-DSP_TEST'
+    ],
     'RELEASE': [
         '-O2',
         '-DSP_RELEASE'
@@ -810,14 +814,19 @@ code_in_files = {
     ],
 }
 code_out_files = {}
-for profile in ['DEBUG', 'RELEASE']:
+for profile in ['DEBUG', 'TEST', 'RELEASE']:
     code_out_files[profile] = {target: [] for target in code_in_files}
 
 for target in code_in_files:
     for in_file in code_in_files[target]:
         _, ext = os.path.splitext(in_file)
-        for profile in ['DEBUG', 'RELEASE']:
-            suffix = '.o' if profile == 'RELEASE' else 'D.o'
+        for profile in ['DEBUG', 'TEST', 'RELEASE']:
+            if target == 'stub':
+                suffix = profile[0] + '.o'
+            elif profile == 'TEST':
+                continue
+            else:
+                suffix = '.o' if profile == 'RELEASE' else 'D.o'
             out_file = os.path.join('$builddir', target, in_file + suffix)
             code_out_files[profile][target] += [out_file]
             n.build(
@@ -918,8 +927,8 @@ for profile in ['DEBUG', 'RELEASE']:
         os.path.join('$builddir', 'bin', f'loader{suffix}.bin'),
     )
 
-for profile in ['DEBUG', 'RELEASE']:
-    suffix = 'D' if profile == 'DEBUG' else ''
+for profile in ['DEBUG', 'TEST', 'RELEASE']:
+    suffix = profile[0]
     n.build(
         os.path.join('$builddir', 'contents.arc.d', 'bin', f'version{suffix}.bin'),
         'version',
@@ -929,27 +938,30 @@ for profile in ['DEBUG', 'RELEASE']:
         },
     )
 
-for profile in ['DEBUG', 'RELEASE']:
-    suffix = 'D' if profile == 'DEBUG' else ''
+for profile in ['DEBUG', 'TEST', 'RELEASE']:
+    in_suffix = 'D' if profile == 'DEBUG' else ''
+    out_suffix = profile[0]
     n.build(
-        os.path.join('$builddir', f'contents{suffix}.arc'),
+        os.path.join('$builddir', f'contents{out_suffix}.arc'),
         'arc',
         [
             *[os.path.join('$builddir', 'contents.arc.d', target) for target in asset_out_files],
-            os.path.join('$builddir', 'contents.arc.d', 'bin', f'loader{suffix}.bin.lzma'),
-            os.path.join('$builddir', 'contents.arc.d', 'bin', f'version{suffix}.bin'),
+            os.path.join('$builddir', 'contents.arc.d', 'bin', f'loader{in_suffix}.bin.lzma'),
+            os.path.join('$builddir', 'contents.arc.d', 'bin', f'version{out_suffix}.bin'),
         ],
         variables = {
             'arcin': os.path.join('$builddir', 'contents.arc.d'),
             'args': ' '.join([
                 '--renamed loaderD.bin.lzma loader.bin.lzma',
                 '--renamed versionD.bin version.bin',
+                '--renamed versionT.bin version.bin',
+                '--renamed versionR.bin version.bin',
             ]),
         },
     )
 
-for profile in ['DEBUG', 'RELEASE']:
-    suffix = 'D' if profile == 'DEBUG' else ''
+for profile in ['DEBUG', 'TEST', 'RELEASE']:
+    suffix = profile[0]
     out_file = os.path.join('$builddir', 'stub', f'contents{suffix}.o')
     n.build(
         out_file,
@@ -963,8 +975,8 @@ for profile in ['DEBUG', 'RELEASE']:
     )
     code_out_files[profile]['stub'] += [out_file]
 
-for profile in ['DEBUG', 'RELEASE']:
-    suffix = 'D' if profile == 'DEBUG' else ''
+for profile in ['DEBUG', 'TEST', 'RELEASE']:
+    suffix = profile[0]
     n.build(
         os.path.join('$builddir', 'bin', f'stub{suffix}.elf'),
         'ld',
@@ -979,8 +991,8 @@ for profile in ['DEBUG', 'RELEASE']:
     )
     n.newline()
 
-for profile in ['DEBUG', 'RELEASE']:
-    suffix = 'D' if profile == 'DEBUG' else ''
+for profile in ['DEBUG', 'TEST', 'RELEASE']:
+    suffix = profile[0]
     n.build(
         os.path.join('$outdir', f'boot{suffix}.dol'),
         'elf2dol',
@@ -988,8 +1000,8 @@ for profile in ['DEBUG', 'RELEASE']:
         implicit = '$elf2dol',
     )
 
-for profile in ['DEBUG', 'RELEASE']:
-    suffix = 'D' if profile == 'DEBUG' else ''
+for profile in ['DEBUG', 'TEST', 'RELEASE']:
+    suffix = profile[0]
     n.build(
         profile.lower(),
         'phony',
@@ -998,7 +1010,7 @@ for profile in ['DEBUG', 'RELEASE']:
 
 n.default([
     'debug',
-    'release',
+    'test',
 ])
 
 n.variable('configure', 'configure.py')
