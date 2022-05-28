@@ -987,7 +987,19 @@ for profile in ['DEBUG', 'RELEASE']:
         os.path.join('$builddir', 'bin', f'stub{suffix}.elf'),
         implicit = '$elf2dol',
     )
-    n.newline()
+
+for profile in ['DEBUG', 'RELEASE']:
+    suffix = 'D' if profile == 'DEBUG' else ''
+    n.build(
+        profile.lower(),
+        'phony',
+        os.path.join('$outdir', f'boot{suffix}.dol'),
+    )
+
+n.default([
+    'debug',
+    'release',
+])
 
 n.variable('configure', 'configure.py')
 n.newline()
