@@ -38,7 +38,6 @@ parser.add_argument('in_path')
 parser.add_argument('out_path')
 args = parser.parse_args()
 
-
 with open(args.in_path, 'rb') as elf_file, open(args.out_path, 'wb') as dol_file:
     elf_file = ELFFile(elf_file)
     num_segments = elf_file.num_segments()
