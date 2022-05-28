@@ -48,5 +48,9 @@ static void my_DvdArchive_loadOther(DvdArchive *self, DvdArchive *other, EGG_Hea
     self->archiveHeap = other->archiveHeap;
     self->state = DVD_ARCHIVE_STATE_DECOMPRESSED;
     DvdArchive_mount(self, self->archiveHeap);
+    other->archiveBuffer = NULL;
+    other->archiveSize = 0;
+    other->archiveHeap = NULL;
+    DvdArchive_clear(other);
 }
 PATCH_B(DvdArchive_loadOther, my_DvdArchive_loadOther);

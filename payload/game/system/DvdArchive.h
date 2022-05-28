@@ -25,3 +25,5 @@ void DvdArchive_load(DvdArchive *self, const char *path, EGG_Heap *archiveHeap, 
         s8 align, EGG_Heap *fileHeap, u32 unused);
 
 void DvdArchive_rip(DvdArchive *self, const char *path, EGG_Heap *fileHeap, s8 align);
+
+void DvdArchive_clear(DvdArchive *self);

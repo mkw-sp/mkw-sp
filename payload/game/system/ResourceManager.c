@@ -56,11 +56,13 @@ PATCH_B(CourseCache_load, my_CourseCache_load);
 
 MultiDvdArchive *my_ResourceManager_loadCourse(ResourceManager *self, u32 courseId, EGG_Heap *heap,
         bool splitScreen) {
-    if (self->courseCache.state != COURSE_CACHE_STATE_LOADED) {
+    if (self->courseCache.state != COURSE_CACHE_STATE_LOADED ||
+            self->courseCache.courseId != courseId) {
         CourseCache_load2(&self->courseCache, courseId, splitScreen);
     }
     MultiDvdArchive *multi = self->multis[MULTI_DVD_ARCHIVE_TYPE_COURSE];
     MultiDvdArchive_loadOther(multi, self->courseCache.multi, heap);
+    self->courseCache.state = COURSE_CACHE_STATE_CLEARED;
     return multi;
 }
 PATCH_B(ResourceManager_loadCourse, my_ResourceManager_loadCourse);

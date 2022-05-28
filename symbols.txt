@@ -315,6 +315,7 @@
 0x80518dcc DvdArchive_mount
 0x80518e10 DvdArchive_load
 0x805190f0 DvdArchive_rip
+0x805192cc DvdArchive_clear
 0x805193c8 DvdArchive_clearFile
 0x80519508 DvdArchive_decompress
 0x805195a4 DvdArchive_move
