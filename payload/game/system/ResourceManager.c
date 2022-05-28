@@ -103,18 +103,15 @@ PATCH_S16(ResourceManager_attachLayoutDir, 0x42, 0xcc);
 
 static void ResourceManager_initGlobeHeap(ResourceManager *self) {
     if (!self->globeHeap) {
-        SP_LOG("gh i");
         EGG_Heap *heap = s_rootScene->heapCollection.heaps[HEAP_ID_MEM2];
         size_t size = OSRoundUp32B(0x107d080 + 0x20400);
         void *buffer = spAlloc(size, -0x20, heap);
         self->globeHeap = &EGG_ExpHeap_create2(buffer, size, 1)->base;
-        SP_LOG("%p", self->globeHeap);
     }
 }
 
 static void ResourceManager_deinitGlobeHeap(ResourceManager *self) {
     if (self->globeHeap) {
-        SP_LOG("gh d");
         EGG_ExpHeap_destroy((EGG_ExpHeap *)self->globeHeap);
         self->globeHeap = NULL;
         self->globeLoadingIsBusy = false;
