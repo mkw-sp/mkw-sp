@@ -3,6 +3,8 @@
 #include <revolution/os.h>
 #include <sp/Version.h>
 
+#include <stdio.h>
+
 #define MAIN_THREAD_STACK_BITS_ENTROPY 11
 
 typedef bool (*FindFunction)(const u32* start_address);
@@ -53,7 +55,9 @@ __attribute__((noreturn)) void __stack_chk_fail(void)
     const GXColor background = { 0xFF, 0x00, 0x00, 0xFF };
     const GXColor foreground = { 0xFF, 0xFF, 0xFF, 0xFF };
 
-    OSFatal(foreground, background, "MKW-SP v" BUILD_TYPE_STR "\n\n" "Stack smashing detected !");
+    char msg[128];
+    snprintf(msg, sizeof(msg), "MKW-SP v%s\n\n" "Stack smashing detected !", versionInfo.name);
+    OSFatal(foreground, background, msg);
     __builtin_unreachable();
 }
 

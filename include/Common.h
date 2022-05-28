@@ -100,6 +100,18 @@ typedef double f64;
 #define PRAGMA_SECTION(s) __attribute__((section(s)))
 #endif
 
+typedef struct {
+    u16 type;
+    u16 major;
+    u16 minor;
+    u16 patch;
+    u8 reserved[0x18];
+    char name[0x20];
+    char nickname[0x20];
+} VersionInfo;
+
+extern VersionInfo versionInfo;
+
 #ifndef RVL_OS_NEEDS_IMPORT
 #define RVL_OS_NEEDS_IMPORT \
     static_assert(false, "Please include revolution.h to use SP_LOG")

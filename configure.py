@@ -18,13 +18,6 @@ parser = ArgumentParser()
 parser.add_argument('--gdb_compatible', action='store_true')
 args = parser.parse_args()
 
-# https://stackoverflow.com/questions/14989858/get-the-current-git-hash-in-a-python-script/14989911#14989911
-def get_git_revision_hash() -> str:
-    return subprocess.check_output(['git', 'rev-parse', 'HEAD']).decode('ascii').strip()
-
-def get_git_revision_short_hash() -> str:
-    return subprocess.check_output(['git', 'rev-parse', '--short', 'HEAD']).decode('ascii').strip()
-
 out_buf = io.StringIO()
 n = Writer(out_buf)
 
@@ -406,6 +399,7 @@ devkitppc = os.environ.get("DEVKITPPC")
 n.variable('compiler', os.path.join(devkitppc, 'bin', 'powerpc-eabi-gcc'))
 n.variable('port', 'port.py')
 n.variable('lzmac', 'lzmac.py')
+n.variable('version', 'version.py')
 n.variable('elf2dol', 'elf2dol.py')
 n.newline()
 
@@ -428,7 +422,6 @@ common_cflags = [
     '-Werror=incompatible-pointer-types',
     '-Wextra',
     '-Wno-packed-bitfield-compat',
-    f'-DGIT_HASH={get_git_revision_short_hash()}',
 ]
 if args.gdb_compatible:
     common_cflags += ['-DGDB_COMPATIBLE=1']
@@ -446,7 +439,6 @@ common_ccflags = [
     '-Wextra',
     '-Wno-delete-non-virtual-dtor',
     '-Wno-packed-bitfield-compat',
-    f'-DGIT_HASH={get_git_revision_short_hash()}',
 ]
 target_cflags = {
     'stub': [],
@@ -532,6 +524,13 @@ n.rule(
     'lzmac',
     command = f'{sys.executable} $lzmac $in $out',
     description = 'LZMA $out',
+)
+n.newline()
+
+n.rule(
+    'version',
+    command = f'{sys.executable} $version $type $out',
+    description = 'VERSION $out',
 )
 n.newline()
 
@@ -922,15 +921,30 @@ for profile in ['DEBUG', 'RELEASE']:
 for profile in ['DEBUG', 'RELEASE']:
     suffix = 'D' if profile == 'DEBUG' else ''
     n.build(
+        os.path.join('$builddir', 'contents.arc.d', 'bin', f'version{suffix}.bin'),
+        'version',
+        '$version',
+        variables = {
+            'type': profile.lower(),
+        },
+    )
+
+for profile in ['DEBUG', 'RELEASE']:
+    suffix = 'D' if profile == 'DEBUG' else ''
+    n.build(
         os.path.join('$builddir', f'contents{suffix}.arc'),
         'arc',
         [
             *[os.path.join('$builddir', 'contents.arc.d', target) for target in asset_out_files],
             os.path.join('$builddir', 'contents.arc.d', 'bin', f'loader{suffix}.bin.lzma'),
+            os.path.join('$builddir', 'contents.arc.d', 'bin', f'version{suffix}.bin'),
         ],
         variables = {
             'arcin': os.path.join('$builddir', 'contents.arc.d'),
-            'args': '--renamed loaderD.bin.lzma loader.bin.lzma',
+            'args': ' '.join([
+                '--renamed loaderD.bin.lzma loader.bin.lzma',
+                '--renamed versionD.bin version.bin',
+            ]),
         },
     )
 

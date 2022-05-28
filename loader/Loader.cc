@@ -34,7 +34,9 @@ void run() {
     VI::Init();
 
     Console::Init();
-    Console::Print("MKW-SP Loader\n");
+    Console::Print("MKW-SP v");
+    Console::Print(versionInfo.name);
+    Console::Print("\n");
 
     std::optional<Apploader::GameEntryFunc> gameEntry;
     {

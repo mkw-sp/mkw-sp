@@ -7,6 +7,8 @@ SECTIONS {
 
     diskID = 0x80000000;
 
+    versionInfo = 0x80003f00;
+
     vtr = 0xcc002000;
     dcr = 0xcc002002;
     vto = 0xcc00200c;

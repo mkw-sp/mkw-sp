@@ -3,6 +3,7 @@
 #include "Archive.hh"
 #include "LZMA.hh"
 
+#include <common/DCache.hh>
 #include <common/ICache.hh>
 
 #include <cstring>
@@ -28,8 +29,17 @@ static void run() {
     if (!archive.ok()) {
         return;
     }
-    auto entry = archive.get("./bin/loader.bin.lzma");
+
+    auto entry = archive.get("./bin/version.bin");
     Archive::File *file = std::get_if<Archive::File>(&entry);
+    if (!file) {
+        return;
+    }
+    memcpy(&versionInfo, file->data, file->size);
+    DCache::Flush(file->data, file->size);
+
+    entry = archive.get("./bin/loader.bin.lzma");
+    file = std::get_if<Archive::File>(&entry);
     if (!file) {
         return;
     }

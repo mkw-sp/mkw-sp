@@ -154,7 +154,7 @@ void Host_PrintMkwSpInfo(PrintfFunction *func) {
     const char *region = Host_GetRegionString();
 
     (*func)("--------------------------------\n");
-    (*func)("MKW-SP v" BUILD_TYPE_STR "\n");
+    (*func)("MKW-SP v%s\n", versionInfo.name);
 
     char system[128];
     memset(system, 0, sizeof(system));

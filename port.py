@@ -660,6 +660,9 @@ with open(args.out_path, 'w') as out_file:
         rel_previous_section_end_address = section.end
     out_file.write('\n')
 
+    write_symbol(out_file, 'versionInfo', 0x80003f00)
+    out_file.write('\n')
+
     with open(args.in_path, 'r') as symbols:
         for symbol in symbols.readlines():
             if symbol.isspace():
