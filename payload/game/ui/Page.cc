@@ -12,8 +12,4 @@ void Page::dt(s32 type) {
     }
 }
 
-void Page::setInputManager(MenuInputManager *inputManager) {
-    m_inputManager = inputManager;
-}
-
 } // namespace UI

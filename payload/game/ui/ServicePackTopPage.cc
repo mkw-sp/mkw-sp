@@ -8,6 +8,10 @@ ServicePackTopPage::ServicePackTopPage() = default;
 
 ServicePackTopPage::~ServicePackTopPage() = default;
 
+PageId ServicePackTopPage::getReplacement() {
+    return m_replacement;
+}
+
 void ServicePackTopPage::onInit() {
     m_inputManager.init(0x1, false);
     setInputManager(&m_inputManager);
@@ -33,15 +37,26 @@ void ServicePackTopPage::onInit() {
     m_backButton.load("button", "Back", "ButtonBack", 0x1, false, true);
 
     m_inputManager.setHandler(MenuInputManager::InputId::Back, &m_onBack, false, false);
+    m_channelButton.setFrontHandler(&m_onChannelButtonFront, false);
     m_backButton.setFrontHandler(&m_onBackButtonFront, false);
 
-    m_pageTitleText.setMessage(10083, nullptr);
+    m_pageTitleText.setMessage(10083);
 
     m_settingsButton.selectDefault(0);
 }
 
+void ServicePackTopPage::onActivate() {
+    m_replacement = PageId::None;
+}
+
 void ServicePackTopPage::onBack(u32 UNUSED(localPlayerId)) {
     changeSection(SectionId::TitleFromOptions, Animation::Prev, 0.0f);
+}
+
+void ServicePackTopPage::onChannelButtonFront(PushButton *button, u32 UNUSED(localPlayerId)) {
+    m_replacement = PageId::ChannelExplanation;
+    f32 delay = button->getDelay();
+    startReplace(Animation::Next, delay);
 }
 
 void ServicePackTopPage::onBackButtonFront(PushButton *button, u32 UNUSED(localPlayerId)) {

@@ -1,5 +1,6 @@
 #include "Payload.h"
 
+#include "sp/Channel.h"
 #include "sp/Dol.h"
 #include "sp/DVDDecompLoader.h"
 #include "sp/Host.h"
@@ -16,6 +17,9 @@
 #include <revolution.h>
 
 #include <string.h>
+
+extern void (*payload_ctors_start)(void);
+extern void (*payload_ctors_end)(void);
 
 void Payload_init(void) {
     OSDisableCodeExecOnMEM1Hi16MB();
@@ -65,9 +69,14 @@ void Payload_init(void) {
     DVDDecompLoader_init();
 
     SIKeyboard_InitSimple();
+
+    Channel_Init();
 }
 
 __attribute__((no_stack_protector)) __attribute__((section("first"))) void Payload_run(void) {
+    for (void (**ctor)(void) = &payload_ctors_start; ctor < &payload_ctors_end; ctor++) {
+        (*ctor)();
+    }
     Stack_InitCanary();
     Stack_RelocateMainThreadStackToMEM1End();
 #ifndef GDB_COMPATIBLE

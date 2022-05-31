@@ -100,7 +100,15 @@ typedef double f64;
 #define PRAGMA_SECTION(s) __attribute__((section(s)))
 #endif
 
-typedef struct {
+#define CHANNEL_TITLE_ID UINT64_C(0x00010001524d4341)
+
+enum {
+    BUILD_TYPE_DEBUG = 0,
+    BUILD_TYPE_TEST = 1,
+    BUILD_TYPE_RELEASE = 2,
+};
+
+typedef struct VersionInfo {
     u16 type;
     u16 major;
     u16 minor;
@@ -108,6 +116,10 @@ typedef struct {
     u8 reserved[0x18];
     char name[0x20];
     char nickname[0x20];
+
+#ifdef __cplusplus
+    friend auto operator<=>(const VersionInfo &lhs, const VersionInfo &rhs);
+#endif
 } VersionInfo;
 
 extern VersionInfo versionInfo;

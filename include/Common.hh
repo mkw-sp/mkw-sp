@@ -5,13 +5,13 @@ extern "C" {
 }
 
 template <typename T>
-T AlignUp(T val, size_t alignment) {
-    return AlignDown<T>(reinterpret_cast<size_t>(val) + alignment - 1, alignment);
+T AlignDown(T val, size_t alignment) {
+    return reinterpret_cast<T>(reinterpret_cast<size_t>(val) / alignment * alignment);
 }
 
 template <typename T>
-T AlignDown(T val, size_t alignment) {
-    return reinterpret_cast<T>(reinterpret_cast<size_t>(val) / alignment * alignment);
+T AlignUp(T val, size_t alignment) {
+    return AlignDown<T>(reinterpret_cast<size_t>(val) + alignment - 1, alignment);
 }
 
 template <typename T>

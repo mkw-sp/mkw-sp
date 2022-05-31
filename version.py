@@ -3,6 +3,7 @@
 
 from argparse import ArgumentParser
 import struct
+import sys
 
 
 MAJOR = 0
@@ -37,3 +38,7 @@ with open(args.out_path, 'wb') as out_file:
     out_file.write(b'\0' * 0x18) # Reserved bytes
     string = f'{MAJOR}.{MINOR}.{PATCH} ({args.type[:1].upper() + args.type[1:]})'
     write_string(out_file, string)
+    size = out_file.tell()
+    if size > 0x60:
+        sys.exit('Too long')
+    out_file.write(b'\0' * (0x60 - size))

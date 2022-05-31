@@ -36,8 +36,9 @@ public:
     ~ConfirmPage() override;
 
     void reset();
-    void setTitleMessage(u32 messageId, MessageInfo *info);
-    void setWindowMessage(u32 messageId, MessageInfo *info);
+    void setTitleMessage(u32 messageId, MessageInfo *info = nullptr);
+    void setWindowMessage(u32 messageId, MessageInfo *info = nullptr);
+    u32 choice() const;
 
 private:
     u8 _044[0x820 - 0x044];
@@ -47,7 +48,8 @@ public:
     IHandler *m_cancelHandler;
 
 private:
-    u8 _828[0xa54 - 0x828];
+    u8 _828[0xa50 - 0x828];
+    u32 m_choice;
 
 public:
     PageId m_replacement;

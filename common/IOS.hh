@@ -40,10 +40,16 @@ protected:
 
 class File : protected Resource {
 public:
+    struct Stats {
+        u32 size;
+        u32 offset;
+    };
+
     File(const char *path, Mode mode);
     ~File() = default;
     s32 read(void *output, u32 outputSize);
     s32 write(const void *input, u32 inputSize);
+    s32 getStats(Stats *stats);
     using Resource::ok;
 };
 

@@ -1,6 +1,4 @@
-extern "C" {
-#include "DVDDecompLoader.h"
-}
+#include "DVDDecompLoader.hh"
 
 #include "sp/DVDFile.hh"
 #include "sp/Exchange.hh"
@@ -54,7 +52,7 @@ static void init() {
     OSResumeThread(&thread);
 }
 
-static bool load(const char *path, u8 **dst, size_t *dstSize, EGG::Heap *heap) {
+bool load(const char *path, u8 **dst, size_t *dstSize, EGG::Heap *heap) {
     startExchange.left(path);
 
     u32 i = 0;

@@ -319,4 +319,52 @@
         "font": "regular",
         "string": "About",
     },
+    "10090": {
+        "font": "regular",
+        "string": "Installing the MKW-SP channel allows you\nto launch MKW-SP from the Wii Menu\nrather than from the Homebrew Channel\nor an exploit.\nUpdates will be kept in sync between the two.",
+    },
+    "10091": {
+        "font": "regular",
+        "string": "Would you like to install\nthe MKW-SP channel?",
+    },
+    "10092": {
+        "font": "regular",
+        "string": "An update to the MKW-SP channel\nis available. Would you like\nto install it?",
+    },
+    "10093": {
+        "font": "regular",
+        "string": "The MKW-SP channel is already installed.",
+    },
+    "10094": {
+        "font": "regular",
+        "string": "A newer version of the MKW-SP channel\nis already installed!",
+    },
+    "10095": {
+        "font": "regular",
+        "string": "Installing the MKW-SP channel...",
+    },
+    "10096": {
+        "font": "regular",
+        "string": "Updating the MKW-SP channel...",
+    },
+    "10097": {
+        "font": "regular",
+        "string": "The MKW-SP channel was successfully installed!",
+    },
+    "10098": {
+        "font": "regular",
+        "string": "The MKW-SP channel installation failed!",
+    },
+    "10099": {
+        "font": "regular",
+        "string": "The MKW-SP channel was successfully updated!",
+    },
+    "10100": {
+        "font": "regular",
+        "string": "The MKW-SP channel update failed!",
+    },
+    "10101": {
+        "font": "regular",
+        "string": "The MKW-SP channel can only be installed\nfrom release builds!",
+    },
 }

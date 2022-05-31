@@ -403,11 +403,25 @@ n.variable('version', 'version.py')
 n.variable('elf2dol', 'elf2dol.py')
 n.newline()
 
-Sflags = [
+common_Sflags = [
     '-isystem', 'include',
     '-isystem', 'payload',
     '-isystem', 'vendor',
 ]
+profile_Sflags = {
+    'DEBUG': [
+        '-DSP_DEBUG'
+    ],
+    'TEST': [
+        '-DSP_TEST'
+    ],
+    'RELEASE': [
+        '-DSP_RELEASE'
+    ],
+    'CHANNEL': [
+        '-DSP_CHANNEL'
+    ],
+}
 common_cflags = [
     '-fms-extensions',
     '-fno-asynchronous-unwind-tables',
@@ -417,6 +431,7 @@ common_cflags = [
     '-isystem', 'include',
     '-isystem', 'payload',
     '-isystem', 'vendor',
+    '-msdata=none',
     '-Wall',
     '-Werror=implicit-function-declaration',
     '-Werror=incompatible-pointer-types',
@@ -434,6 +449,7 @@ common_ccflags = [
     '-isystem', 'include',
     '-isystem', 'payload',
     '-isystem', 'vendor',
+    '-msdata=none',
     '-std=c++20',
     '-Wall',
     '-Wextra',
@@ -461,12 +477,15 @@ profile_cflags = {
         '-O2',
         '-DSP_RELEASE'
     ],
+    'CHANNEL': [
+        '-O2',
+        '-DSP_CHANNEL'
+    ],
 }
 ldflags = [
     '-nostdlib',
     '-Wl,-n',
 ]
-n.variable('Sflags', ' '.join(Sflags))
 n.variable('ldflags', ' '.join(ldflags))
 n.newline()
 
@@ -617,6 +636,8 @@ code_in_files = {
         os.path.join('payload', 'game', 'system', 'SceneCreatorDynamic.S'),
         os.path.join('payload', 'game', 'system', 'SceneCreatorDynamic.c'),
         os.path.join('payload', 'game', 'ui', 'Button.cc'),
+        os.path.join('payload', 'game', 'ui', 'ChannelPage.cc'),
+        os.path.join('payload', 'game', 'ui', 'ConfirmPage.cc'),
         os.path.join('payload', 'game', 'ui', 'ControlGroup.cc'),
         os.path.join('payload', 'game', 'ui', 'ControlLoader.S'),
         os.path.join('payload', 'game', 'ui', 'Font.S'),
@@ -636,13 +657,13 @@ code_in_files = {
         os.path.join('payload', 'game', 'ui', 'MiiGroup.c'),
         os.path.join('payload', 'game', 'ui', 'MiiGroup.cc'),
         os.path.join('payload', 'game', 'ui', 'Model.S'),
+        os.path.join('payload', 'game', 'ui', 'Option.cc'),
         os.path.join('payload', 'game', 'ui', 'Page.c'),
         os.path.join('payload', 'game', 'ui', 'Page.cc'),
         os.path.join('payload', 'game', 'ui', 'Save.S'),
         os.path.join('payload', 'game', 'ui', 'SaveManagerProxy.S'),
         os.path.join('payload', 'game', 'ui', 'Section.S'),
         os.path.join('payload', 'game', 'ui', 'Section.c'),
-        os.path.join('payload', 'game', 'ui', 'Section.cc'),
         os.path.join('payload', 'game', 'ui', 'SectionManager.S'),
         os.path.join('payload', 'game', 'ui', 'SectionManager.c'),
         os.path.join('payload', 'game', 'ui', 'SectionManager.cc'),
@@ -717,6 +738,7 @@ code_in_files = {
         os.path.join('payload', 'revolution', 'dvdex.c'),
         os.path.join('payload', 'revolution', 'ios.S'),
         os.path.join('payload', 'revolution', 'ios.c'),
+        os.path.join('payload', 'revolution', 'nand.c'),
         os.path.join('payload', 'revolution', 'OS.S'),
         os.path.join('payload', 'revolution', 'OS.c'),
         os.path.join('payload', 'revolution', 'start.S'),
@@ -727,6 +749,7 @@ code_in_files = {
         os.path.join('payload', 'revolution', 'os', 'OSMemory.c'),
         os.path.join('payload', 'revolution', 'os', 'OSThread.S'),
         os.path.join('payload', 'revolution', 'os', 'OSThread.c'),
+        os.path.join('payload', 'sp', 'Channel.cc'),
         os.path.join('payload', 'sp', 'Commands.c'),
         os.path.join('payload', 'sp', 'DVDDecompLoader.cc'),
         os.path.join('payload', 'sp', 'DVDFile.cc'),
@@ -805,6 +828,7 @@ code_in_files = {
         os.path.join('stub', 'Archive.cc'),
         os.path.join('stub', 'FS.cc'),
         os.path.join('stub', 'LZMA.cc'),
+        os.path.join('stub', 'Memcmp.c'),
         os.path.join('stub', 'Start.S'),
         os.path.join('stub', 'Strchr.c'),
         os.path.join('stub', 'Strlcpy.c'),
@@ -814,16 +838,16 @@ code_in_files = {
     ],
 }
 code_out_files = {}
-for profile in ['DEBUG', 'TEST', 'RELEASE']:
+for profile in ['DEBUG', 'TEST', 'RELEASE', 'CHANNEL']:
     code_out_files[profile] = {target: [] for target in code_in_files}
 
 for target in code_in_files:
     for in_file in code_in_files[target]:
         _, ext = os.path.splitext(in_file)
-        for profile in ['DEBUG', 'TEST', 'RELEASE']:
+        for profile in ['DEBUG', 'TEST', 'RELEASE', 'CHANNEL']:
             if target == 'stub':
                 suffix = profile[0] + '.o'
-            elif profile == 'TEST':
+            elif profile == 'TEST' or profile == 'CHANNEL':
                 continue
             else:
                 suffix = '.o' if profile == 'RELEASE' else 'D.o'
@@ -834,6 +858,10 @@ for target in code_in_files:
                 ext[1:],
                 in_file,
                 variables = {
+                    'Sflags': ' '.join([
+                        *common_Sflags,
+                        *profile_Sflags[profile],
+                    ]),
                     'cflags': ' '.join([
                         *common_cflags,
                         *target_cflags[target],
@@ -938,17 +966,58 @@ for profile in ['DEBUG', 'TEST', 'RELEASE']:
         },
     )
 
+n.build(
+    os.path.join('$builddir', 'contents.arc.d', 'channel', 'opening.bnr.lzma'),
+    'lzmac',
+    'opening.bnr',
+)
+
+n.build(
+    os.path.join('$builddir', 'bin', 'stubC.elf'),
+    'ld',
+    code_out_files['CHANNEL']['stub'],
+    variables = {
+        'base': '0x80100000',
+        'entry': 'start',
+        'format': 'elf32-powerpc',
+        'script': os.path.join('common', 'RMC.ld'),
+    },
+    implicit = os.path.join('common', 'RMC.ld'),
+)
+n.newline()
+
+n.build(
+    os.path.join('$builddir', 'bin', 'stubC.dol'),
+    'elf2dol',
+    os.path.join('$builddir', 'bin', 'stubC.elf'),
+    implicit = '$elf2dol',
+)
+n.newline()
+
+n.build(
+    os.path.join('$builddir', 'contents.arc.d', 'channel', 'boot.dol.lzma'),
+    'lzmac',
+    os.path.join('$builddir', 'bin', 'stubC.dol'),
+)
+n.newline()
+
 for profile in ['DEBUG', 'TEST', 'RELEASE']:
     in_suffix = 'D' if profile == 'DEBUG' else ''
     out_suffix = profile[0]
+    in_paths = [
+        *[os.path.join('$builddir', 'contents.arc.d', target) for target in asset_out_files],
+        os.path.join('$builddir', 'contents.arc.d', 'bin', f'loader{in_suffix}.bin.lzma'),
+        os.path.join('$builddir', 'contents.arc.d', 'bin', f'version{out_suffix}.bin'),
+    ]
+    if profile == 'RELEASE':
+        in_paths += [
+            os.path.join('$builddir', 'contents.arc.d', 'channel', 'opening.bnr.lzma'),
+            os.path.join('$builddir', 'contents.arc.d', 'channel', 'boot.dol.lzma'),
+        ]
     n.build(
         os.path.join('$builddir', f'contents{out_suffix}.arc'),
         'arc',
-        [
-            *[os.path.join('$builddir', 'contents.arc.d', target) for target in asset_out_files],
-            os.path.join('$builddir', 'contents.arc.d', 'bin', f'loader{in_suffix}.bin.lzma'),
-            os.path.join('$builddir', 'contents.arc.d', 'bin', f'version{out_suffix}.bin'),
-        ],
+        in_paths,
         variables = {
             'arcin': os.path.join('$builddir', 'contents.arc.d'),
             'args': ' '.join([
@@ -968,7 +1037,7 @@ for profile in ['DEBUG', 'TEST', 'RELEASE']:
         'incbin',
         os.path.join('$builddir', f'contents{suffix}.arc'),
         variables = {
-            'name': 'contents',
+            'name': 'embeddedContents',
             'path': '/'.join(['$builddir', f'contents{suffix}.arc']),
         },
         implicit = 'Incbin.S',
@@ -999,19 +1068,41 @@ for profile in ['DEBUG', 'TEST', 'RELEASE']:
         os.path.join('$builddir', 'bin', f'stub{suffix}.elf'),
         implicit = '$elf2dol',
     )
+n.newline()
 
 for profile in ['DEBUG', 'TEST', 'RELEASE']:
-    suffix = profile[0]
+    in_suffix = 'D' if profile == 'DEBUG' else ''
+    out_suffix = profile[0]
     n.build(
         profile.lower(),
         'phony',
-        os.path.join('$outdir', f'boot{suffix}.dol'),
+        [
+            os.path.join('$builddir', 'bin', f'payloadP{in_suffix}.elf'),
+            os.path.join('$builddir', 'bin', f'payloadE{in_suffix}.elf'),
+            os.path.join('$builddir', 'bin', f'payloadJ{in_suffix}.elf'),
+            os.path.join('$builddir', 'bin', f'payloadK{in_suffix}.elf'),
+            os.path.join('$builddir', 'bin', f'loader{in_suffix}.elf'),
+            os.path.join('$outdir', f'boot{out_suffix}.dol'),
+        ]
     )
+n.newline()
+
+n.build(
+    'all',
+    'phony',
+    [
+        'debug',
+        'test',
+        'release',
+    ],
+)
+n.newline()
 
 n.default([
     'debug',
     'test',
 ])
+n.newline()
 
 n.variable('configure', 'configure.py')
 n.newline()

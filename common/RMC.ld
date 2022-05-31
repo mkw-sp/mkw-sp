@@ -1,4 +1,5 @@
 SECTIONS {
+    bootstrap 0x80003400 : { *(bootstrap) }
     .text base : { *(first) *(.text*) }
     .rodata : { *(.rodata*) }
     .data : { *(.data*) *(.bss*) *(.sbss*) }
@@ -20,6 +21,8 @@ SECTIONS {
     ppcmsg = 0xcd000000;
     ppcctrl = 0xcd000004;
     armmsg = 0xcd000008;
+
+    irqmask = 0xcd000034;
 
     aiControl = 0xcd006c00;
 }

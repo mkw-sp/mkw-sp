@@ -1,0 +1,62 @@
+#pragma once
+
+extern "C" {
+#include "ChannelPage.h"
+}
+
+#include "game/ui/Page.hh"
+
+extern "C" {
+#include <revolution.h>
+}
+
+namespace UI {
+
+class ChannelPage : public Page {
+public:
+    ChannelPage();
+    ChannelPage(const ChannelPage &) = delete;
+    ChannelPage(ChannelPage &&) = delete;
+    ~ChannelPage() override;
+
+    PageId getReplacement() override;
+    void onInit() override;
+    void onDeinit() override;
+    void onActivate() override;
+    void beforeInAnim() override;
+    void beforeOutAnim() override;
+    void afterCalc() override;
+    void onRefocus() override;
+
+private:
+    enum class State {
+        Prev,
+        Explanation,
+        None,
+        Older,
+        Same,
+        Newer,
+        Install,
+        Update,
+        InstallOk,
+        InstallFail,
+        UpdateOk,
+        UpdateFail,
+        Unsupported,
+        Next,
+    };
+
+    State resolve();
+    void transition(State state);
+
+    static void *Install(void *arg);
+    static void *Uninstall(void *arg);
+
+    MenuInputManager m_inputManager;
+    PageId m_replacement;
+    State m_state;
+    OSThread m_thread;
+    u8 m_stack[0x6000 /* 24 KiB */];
+};
+
+} // namespace UI

@@ -15,6 +15,8 @@ void OSInitThreadQueue(OSThreadQueue *queue);
 
 OSThread *OSGetCurrentThread(void);
 
+BOOL OSIsThreadTerminated(OSThread *thread);
+
 BOOL OSCreateThread(OSThread *thread, void *(*func)(void *), void *param, void *stack,
         u32 stackSize, s32 priority, u16 attr);
 

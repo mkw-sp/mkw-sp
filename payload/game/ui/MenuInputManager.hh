@@ -12,6 +12,11 @@ public:
         Option,
     };
 
+    MenuInputManager();
+    ~MenuInputManager();
+    void dt(s32 type);
+    void init(u32 playerFlags, bool isMultiPlayer);
+
 private:
     u8 _0[0xf - 0x0];
 };

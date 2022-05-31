@@ -7,8 +7,10 @@ namespace IOS {
 namespace Ioctl {
     enum {
         CreateDir = 0x3,
+        Delete = 0x7,
         Rename = 0x8,
         CreateFile = 0x9,
+        GetFileStats = 0xb,
     };
 } // namespace Ioctl
 
@@ -43,6 +45,16 @@ bool FS::rename(const char *srcPath, const char *dstPath) {
     return ioctl(Ioctl::Rename, in, sizeof(in), nullptr, 0) == 0;
 }
 
+bool FS::erase(const char *path) {
+    alignas(0x20) char in[0x40];
+
+    if (strlcpy(in, path, 0x40) >= 0x40) {
+        return false;
+    }
+
+    return ioctl(Ioctl::Delete, in, sizeof(in), nullptr, 0) == 0;
+}
+
 bool FS::createFile(const char *path, u8 attrs, Mode ownerPerms, Mode groupPerms, Mode otherPerms) {
     alignas(0x20) u8 in[0x4c];
 
@@ -57,13 +69,43 @@ bool FS::createFile(const char *path, u8 attrs, Mode ownerPerms, Mode groupPerms
     return ioctl(Ioctl::CreateFile, in, sizeof(in), nullptr, 0) == 0;
 }
 
+s32 File::getStats(Stats *stats) {
+    alignas(0x20) Stats out;
+
+    s32 result = ioctl(Ioctl::GetFileStats, nullptr, 0, &out, sizeof(out));
+    if (result >= 0) {
+        *stats = out;
+    }
+    return result;
+}
+
+std::optional<u32> FS::readFile(const char *path, void *dst, u32 size) {
+    File file(path, Mode::Read);
+    if (!file.ok()) {
+        return false;
+    }
+
+    File::Stats stats;
+    if (file.getStats(&stats) < 0 || stats.size > size) {
+        return false;
+    }
+
+    s32 result = file.read(dst, size);
+    if (result < 0) {
+        return {};
+    }
+    return result;
+}
+
 bool FS::writeFile(const char *path, const void *src, u32 size) {
-    createFile(path, 0, Mode::Both, Mode::Both, Mode::Both);
+    erase(path);
+    createFile(path);
 
     File file(path, Mode::Write);
     if (!file.ok()) {
         return false;
     }
+
     s32 result = file.write(src, size);
     return result >= 0 && static_cast<u32>(result) == size;
 }

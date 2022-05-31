@@ -2,6 +2,8 @@
 
 #include "sp/ScopeLock.h"
 
+#include <common/Paths.h>
+
 #include <stdalign.h>
 #include <stdio.h>
 #include <string.h>
@@ -251,7 +253,10 @@ static void NandArcStorage_stat(const wchar_t *path, NodeInfo *info) {
 bool NandArcStorage_init(Storage *storage) {
     OSInitMutex(&mutex);
 
-    if (NANDOpen("/tmp/contents.arc", &fileInfo, NAND_ACCESS_READ) != NAND_RESULT_OK) {
+    const char *tmpPath = "/tmp/contents.arc";
+    const char *path = TITLE_DATA_PATH "/contents.arc";
+    if (NANDOpen(tmpPath, &fileInfo, NAND_ACCESS_READ) != NAND_RESULT_OK &&
+            NANDPrivateOpen(path, &fileInfo, NAND_ACCESS_READ) != NAND_RESULT_OK) {
         return false;
     }
 

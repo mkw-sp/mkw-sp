@@ -17,10 +17,13 @@ public:
     ServicePackTopPage(ServicePackTopPage &&) = delete;
     ~ServicePackTopPage() override;
 
+    PageId getReplacement() override;
     void onInit() override;
+    void onActivate() override;
 
 private:
     void onBack(u32 localPlayerId);
+    void onChannelButtonFront(PushButton *button, u32 localPlayerId);
     void onBackButtonFront(PushButton *button, u32 localPlayerId);
 
     template <typename T>
@@ -36,7 +39,9 @@ private:
     PushButton m_aboutButton;
     CtrlMenuBackButton m_backButton;
     H<MultiControlInputManager> m_onBack{ this, &ServicePackTopPage::onBack };
+    H<PushButton> m_onChannelButtonFront{ this, &ServicePackTopPage::onChannelButtonFront };
     H<PushButton> m_onBackButtonFront{ this, &ServicePackTopPage::onBackButtonFront };
+    PageId m_replacement;
 };
 
 } // namespace UI

@@ -43,8 +43,8 @@ void LicenseSelectPage::onInit() {
     m_backButton.setFrontHandler(&m_onBackButtonFront, false);
 
     m_miiGroup.init(4, 0x1, nullptr);
-    m_pageTitleText.setMessage(2104, nullptr);
-    m_servicePackButton.setMessageAll(10083, nullptr);
+    m_pageTitleText.setMessage(2104);
+    m_servicePackButton.setMessageAll(10083);
     for (size_t i = 0; i < m_licenseButtons.size(); i++) {
         PushButton &button = m_licenseButtons[i];
         const System::SaveManager *saveManager = System::SaveManager::Instance();
@@ -59,7 +59,7 @@ void LicenseSelectPage::onInit() {
             button.setMessage("player", 9501, &info);
         } else if (i == saveManager->spLicenseCount()) {
             button.setPaneVisible("new", true);
-            button.setMessage("new", 6017, nullptr);
+            button.setMessage("new", 6017);
             button.setPaneVisible("mii", false);
         } else {
             button.setVisible(false);
@@ -85,6 +85,8 @@ void LicenseSelectPage::onBack(u32 UNUSED(localPlayerId)) {
 }
 
 void LicenseSelectPage::onServicePackButtonFront(PushButton *button, u32 UNUSED(localPlayerId)) {
+    System::SaveManager::Instance()->unselectSpLicense();
+
     f32 delay = button->getDelay();
     changeSection(SectionId::Channel, Animation::Next, delay);
 }
@@ -107,10 +109,10 @@ void LicenseSelectPage::onLicenseButtonFront(PushButton *button, u32 UNUSED(loca
             f32 delay = button->getDelay();
             startReplace(Animation::Next, delay);
         } else {
-            ConfirmPage *confirmPage = sectionManager->currentSection()->page<ConfirmPage>();
+            auto *confirmPage = sectionManager->currentSection()->page<PageId::Confirm>();
             confirmPage->reset();
-            confirmPage->setTitleMessage(2200, nullptr);
-            confirmPage->setWindowMessage(2205, nullptr);
+            confirmPage->setTitleMessage(2200);
+            confirmPage->setWindowMessage(2205);
             confirmPage->m_confirmHandler = &m_onChangeConfirm;
             confirmPage->m_cancelHandler = &m_onCancel;
             m_replacement = PageId::Confirm;
@@ -119,10 +121,10 @@ void LicenseSelectPage::onLicenseButtonFront(PushButton *button, u32 UNUSED(loca
         }
     } else if (index == saveManager->spLicenseCount()) {
         saveManager->unselectSpLicense();
-        ConfirmPage *confirmPage = sectionManager->currentSection()->page<ConfirmPage>();
+        auto *confirmPage = sectionManager->currentSection()->page<PageId::Confirm>();
         confirmPage->reset();
-        confirmPage->setTitleMessage(2102, nullptr);
-        confirmPage->setWindowMessage(2101, nullptr);
+        confirmPage->setTitleMessage(2102);
+        confirmPage->setWindowMessage(2101);
         confirmPage->m_confirmHandler = &m_onCreateConfirm;
         confirmPage->m_cancelHandler = &m_onCancel;
         m_replacement = PageId::Confirm;

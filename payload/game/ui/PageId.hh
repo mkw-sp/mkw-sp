@@ -14,6 +14,16 @@ enum class PageId {
     
     CourseSelect = 0x6f,
 
+    ServicePackTop = 0xa2,
+
+    OptionExplanation = 0xc2,
+    OptionSelect2 = 0xc3,
+    OptionSelect3 = 0xc4,
+    OptionAwait = 0xc7,
+    OptionMessage = 0xc8,
+    OptionConfirm = 0xc9,
+    ChannelExplanation = 0xca,
+
     Max = 0xd3,
 };
 

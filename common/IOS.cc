@@ -10,6 +10,8 @@ extern "C" volatile u32 ppcmsg;
 extern "C" volatile u32 ppcctrl;
 extern "C" volatile u32 armmsg;
 
+extern "C" volatile u32 irqmask;
+
 enum {
     X1  = 1 << 0,
     Y2  = 1 << 1,
@@ -67,8 +69,14 @@ static_assert(sizeof(Request) == 0x40);
 alignas(0x20) static Request request;
 
 void Init() {
+#ifdef SP_CHANNEL
+    irqmask = 1 << 30;
+    ppcctrl = X2;
+#else
+    //while ((ppcctrl & Y2) != Y2); HACK for Dolphin
     ppcctrl = Y2;
     ppcctrl = Y1;
+#endif
 }
 
 static void Sync() {

@@ -1,5 +1,6 @@
 #include "Section.h"
 
+#include "ChannelPage.h"
 #include "GhostManagerPage.h"
 #include "LicenseSelectPage.h"
 #include "LicenseSettingsPage.h"
@@ -14,6 +15,7 @@ PATCH_S16(Section_createPage, 0x9a6, sizeof(TimeAttackRulesPage));
 PATCH_S16(Section_createPage, 0xa4e, sizeof_TimeAttackGhostListPage);
 PATCH_S16(Section_createPage, 0xee6, sizeof_ServicePackTopPage);
 PATCH_S16(Section_createPage, 0xf5e, sizeof(GhostManagerPage));
+PATCH_S16(Section_createPage, 0x1276, sizeof_ChannelPage);
 PATCH_S16(Section_createPage, 0x12d6, sizeof(LicenseSettingsPage));
 
 extern u8 ChannelTopPage_ct;
@@ -28,6 +30,10 @@ extern u8 TimeAttackGhostListPage_ct;
 extern u8 my_TimeAttackGhostListPage_ct;
 PATCH_B(TimeAttackGhostListPage_ct, my_TimeAttackGhostListPage_ct);
 
+extern u8 ChannelExplanationPage_ct;
+extern u8 ChannelPage_ct;
+PATCH_B(ChannelExplanationPage_ct, ChannelPage_ct);
+
 // The game has 5 pages for the records, we only need 1 for the settings. Disable the 4
 // others.
 #define ONLY_ONE_RECORDS_PAGE
@@ -40,6 +46,9 @@ PATCH_B(TimeAttackGhostListPage_ct, my_TimeAttackGhostListPage_ct);
 
 // Support changing settings in-race
 #define INGAME_LICENSE_SETTINGS
+
+// The channel section is repurposed into the Service Pack section
+#define MORE_CHANNEL_PAGES
 
 #ifdef ALWAYS_SHOW_QUIT_CONFIRM_PAGE
 #define EXTRA_QUIT_CONFIRM(section) Section_addPage(section, PAGE_ID_CONFIRM_QUIT)
@@ -823,6 +832,14 @@ void my_Section_addPages(Section *section, u32 sectionId) {
         Section_addPage(section, 162);
         Section_addPage(section, 163);
         Section_addPage(section, 164);
+#ifdef MORE_CHANNEL_PAGES
+        Section_addPage(section, 194);
+        Section_addPage(section, 195);
+        Section_addPage(section, 199);
+        Section_addPage(section, 200);
+        Section_addPage(section, 201);
+        Section_addPage(section, 202);
+#endif
         break;
     case 125:
         Section_addPage(section, 78);

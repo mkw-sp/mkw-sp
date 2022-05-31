@@ -33,7 +33,10 @@ std::optional<size_t> Decode(const u8 *src, u8 *dst, size_t srcSize, size_t dstS
         return {};
     }
     dec.numProbs = LzmaProps_GetNumProbs(&dec.prop);
-    dec.probs = reinterpret_cast<CLzmaProb *>(0x90000000);
+    if (static_cast<u64>(dec.numProbs) * sizeof(CLzmaProb) > 0x1000000) {
+        return {};
+    }
+    dec.probs = reinterpret_cast<CLzmaProb *>(0x93000000);
     dec.probs_1664 = dec.probs + 1664;
     LzmaDec_Init(&dec);
     src += HEADER_SIZE;

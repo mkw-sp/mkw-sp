@@ -607,6 +607,7 @@ if args.region != 'P' and args.region != 'E' and args.region != 'J' and args.reg
 with open(args.out_path, 'w') as out_file:
     out_file.write('SECTIONS {\n')
     out_file.write('    .text base : { *(first) *(.text*) }\n')
+    out_file.write('    ctors : { *(.ctors*) }\n')
     out_file.write('    patches : { *(patches*) }\n')
     out_file.write('    commands : { *(commands*) }\n')
     out_file.write('    .rodata : { *(.rodata*) }\n')
@@ -616,6 +617,8 @@ with open(args.out_path, 'w') as out_file:
     # Write the start and end address for each section in the payload
     out_file.write('    payload_text_start = ADDR(.text);\n');
     out_file.write('    payload_text_end = payload_text_start + SIZEOF(.text);\n');
+    out_file.write('    payload_ctors_start = ADDR(ctors);\n');
+    out_file.write('    payload_ctors_end = payload_ctors_start + SIZEOF(ctors);\n');
     out_file.write('    payload_patches_start = ADDR(patches);\n');
     out_file.write('    payload_patches_end = payload_patches_start + SIZEOF(patches);\n');
     out_file.write('    payload_rodata_start = ADDR(.rodata);\n');

@@ -38,10 +38,10 @@ public:
     virtual void onDeinit();
     virtual void onActivate();
     virtual void onDeactivate();
-    virtual void vf_38();
-    virtual void vf_3c();
-    virtual void vf_40();
-    virtual void vf_44();
+    virtual void beforeInAnim();
+    virtual void afterInAnim();
+    virtual void beforeOutAnim();
+    virtual void afterOutAnim();
     virtual void beforeCalc();
     virtual void afterCalc();
     virtual void vf_50();
@@ -52,10 +52,13 @@ public:
 
 protected:
     void setInputManager(MenuInputManager *inputManager);
+    void skipInAnim();
+    void skipOutAnim();
     void initChildren(u32 count);
     void insertChild(u32 index, UIControl *child, u32 drawPass);
     void startReplace(Animation animation, f32 delay);
     void playSfx(u32 sfxId, s32 r5);
+    void setAnimSfxIds(u32 nextId, u32 prevId);
 
 private:
     PageId m_id;
