@@ -26,7 +26,7 @@ typedef struct LinkRegisterPatch
     LinkRegisterFunction new_lr_restore_function;
 } LinkRegisterPatch;
 
-extern void* mem1ArenaHi;
+extern u8* mem1ArenaHi;
 
 extern void* __init_registers;
 extern void* __OSThreadInit;
@@ -71,9 +71,8 @@ static void Stack_SetMainThreadStackPointer(const u32* stack_pointer_bottom, con
 
 static void* Stack_AllocFromMEM1ArenaHi(const u32 size)
 {
-    u8* new_mem1_arena_hi = (u8*)mem1ArenaHi - size;
-    mem1ArenaHi = new_mem1_arena_hi;
-    return mem1ArenaHi;
+    mem1ArenaHi -= size;
+    return (void*)mem1ArenaHi;
 }
 
 void Stack_RelocateMainThreadStackToMEM1End(void)
