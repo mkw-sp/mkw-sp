@@ -1,8 +1,8 @@
 #include "Apploader.hh"
 
-#include "Clock.hh"
 #include "Console.hh"
 
+#include <common/Clock.hh>
 #include <common/ICache.hh>
 
 namespace Apploader {

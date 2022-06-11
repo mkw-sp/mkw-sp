@@ -10,6 +10,7 @@ class FS final : private Resource {
 public:
     FS();
     ~FS() = default;
+    using Resource::ok;
 
     bool createDir(const char *path, u8 attrs = 0, Mode ownerPerms = Mode::Both,
             Mode groupPerms = Mode::Both, Mode otherPerms = Mode::Both);

@@ -804,6 +804,7 @@ code_in_files = {
         os.path.join('vendor', 'lzma', 'LzmaDec.c'),
     ],
     'loader': [
+        os.path.join('common', 'Clock.cc'),
         os.path.join('common', 'DCache.cc'),
         os.path.join('common', 'ICache.cc'),
         os.path.join('common', 'IOS.cc'),
@@ -811,7 +812,6 @@ code_in_files = {
         os.path.join('common', 'Memset.c'),
         os.path.join('common', 'Strlen.c'),
         os.path.join('loader', 'Apploader.cc'),
-        os.path.join('loader', 'Clock.cc'),
         os.path.join('loader', 'Console.cc'),
         os.path.join('loader', 'DI.cc'),
         os.path.join('loader', 'Font.c'),
@@ -821,6 +821,7 @@ code_in_files = {
         os.path.join('loader', 'VI.cc'),
     ],
     'stub': [
+        os.path.join('common', 'Clock.cc'),
         os.path.join('common', 'DCache.cc'),
         os.path.join('common', 'ICache.cc'),
         os.path.join('common', 'IOS.cc'),

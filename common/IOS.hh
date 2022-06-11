@@ -5,6 +5,8 @@
 namespace IOS {
 
 void Init();
+bool EscalatePrivileges();
+void DeescalatePrivileges();
 
 enum class Mode : u32 {
     None = 0,
@@ -22,8 +24,7 @@ public:
 
     Resource(const Resource &) = delete;
     Resource &operator=(const Resource &) = delete;
-
-protected:
+    Resource(s32 fd);
     Resource(const char *path, Mode mode);
     ~Resource();
     s32 ioctl(u32 ioctl, const void *input, u32 inputSize, void *output, u32 outputSize);
@@ -45,6 +46,7 @@ public:
         u32 offset;
     };
 
+    File(s32 fd);
     File(const char *path, Mode mode);
     ~File() = default;
     s32 read(void *output, u32 outputSize);

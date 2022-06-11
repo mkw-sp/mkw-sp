@@ -54,7 +54,7 @@ static_assert(sizeof(Ticket) == 0x2a4);
 #endif
 
 // Source: https://stackoverflow.com/questions/34796571
-#define ALIGNED_STRING(S)  (struct { _Alignas(16) char s[sizeof S]; }){ S }.s
+#define ALIGNED_STRING(S)  (struct { alignas(0x20) char s[sizeof(S)]; }){ S }.s
 
 #ifndef SP_CHANNEL
 extern "C" const u8 embeddedContents[];
@@ -93,7 +93,12 @@ static std::optional<LoaderEntryFunc> Run() {
 #endif
 
     Archive *archive;
+    IOS::EscalatePrivileges();
     IOS::FS fs;
+    IOS::DeescalatePrivileges();
+    if (!fs.ok()) {
+        return {};
+    }
 #ifdef SP_RELEASE
     fs.createDir(ALIGNED_STRING(TITLE_PATH));
     fs.createDir(ALIGNED_STRING(TITLE_DATA_PATH));
