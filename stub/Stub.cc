@@ -93,7 +93,9 @@ static std::optional<LoaderEntryFunc> Run() {
 #endif
 
     Archive *archive;
-    IOS::EscalatePrivileges();
+    if (!IOS::EscalatePrivileges()) {
+        return {};
+    }
     IOS::FS fs;
     IOS::DeescalatePrivileges();
     if (!fs.ok()) {
