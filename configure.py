@@ -1065,10 +1065,18 @@ for profile in ['DEBUG', 'TEST', 'RELEASE']:
 for profile in ['DEBUG', 'TEST', 'RELEASE']:
     suffix = profile[0]
     n.build(
-        os.path.join('$outdir', f'boot{suffix}.dol'),
+        os.path.join('$outdir', profile.lower(), 'boot.dol'),
         'elf2dol',
         os.path.join('$builddir', 'bin', f'stub{suffix}.elf'),
         implicit = '$elf2dol',
+    )
+n.newline()
+
+for profile in ['DEBUG', 'TEST', 'RELEASE']:
+    n.build(
+        os.path.join('$outdir', profile.lower(), 'meta.xml'),
+        'cp',
+        os.path.join('meta', profile.lower() + '.xml'),
     )
 n.newline()
 
@@ -1084,7 +1092,8 @@ for profile in ['DEBUG', 'TEST', 'RELEASE']:
             os.path.join('$builddir', 'bin', f'payloadJ{in_suffix}.elf'),
             os.path.join('$builddir', 'bin', f'payloadK{in_suffix}.elf'),
             os.path.join('$builddir', 'bin', f'loader{in_suffix}.elf'),
-            os.path.join('$outdir', f'boot{out_suffix}.dol'),
+            os.path.join('$outdir', profile.lower(), 'boot.dol'),
+            os.path.join('$outdir', profile.lower(), 'meta.xml'),
         ]
     )
 n.newline()
