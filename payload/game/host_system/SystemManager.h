@@ -12,4 +12,11 @@ static_assert(sizeof(SystemManager) == 0x1100);
 
 extern SystemManager *s_systemManager;
 
+void SystemManager_shutdownSystem(SystemManager *self);
+void my_SystemManager_shutdownSystem(SystemManager *self);
+void SystemManager_returnToMenu(SystemManager *self);
+void my_SystemManager_returnToMenu(SystemManager *self);
+void SystemManager_restart(SystemManager *self);
+void my_SystemManager_restart(SystemManager *self);
+
 void *SystemManager_ripFromDisc(const char *path, EGG_Heap *heap, bool allocTop, u32 *size);

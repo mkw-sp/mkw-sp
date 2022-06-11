@@ -11,6 +11,9 @@
 0x8000951c RkSystem_run
 0x80009820 EGG_ConfigurationData_onBeginFrame
 0x80009844 SceneManager_changeSiblingScene
+0x8000b154 SystemManager_shutdownSystem
+0x8000b188 SystemManager_returnToMenu
+0x8000b1bc SystemManager_restart
 0x8000b5c8 SystemManager_ripFromDisc
 
 0x8000f1f0 memmove
@@ -193,6 +196,9 @@
 0x801a7eac OSInitMutex
 0x801a7ee4 OSLockMutex
 0x801a7fc0 OSUnlockMutex
+0x801a856c OSShutdownSystem
+0x801a8688 OSRestart
+0x801a8858 OSReturnToMenu
 0x801A961C __OSThreadInit
 0x801a98b0 OSGetCurrentThread
 0x801a98bc OSIsThreadTerminated

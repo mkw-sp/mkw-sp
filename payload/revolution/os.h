@@ -85,6 +85,7 @@ void OSFatal(GXColor fg, GXColor bg, const char *msg);
 #include "revolution/os/OSMessage.h"
 #include "revolution/os/OSModule.h"
 #include "revolution/os/OSMutex.h"
+#include "revolution/os/OSReset.h"
 #include "revolution/os/OSThread.h"
 
 extern u32 OSDisableInterrupts(void);

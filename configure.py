@@ -583,6 +583,8 @@ code_in_files = {
         os.path.join('payload', 'game', 'host_system', 'RkSystem.c'),
         os.path.join('payload', 'game', 'host_system', 'SceneManager.S'),
         os.path.join('payload', 'game', 'host_system', 'SceneManager.c'),
+        os.path.join('payload', 'game', 'host_system', 'SystemManager.c'),
+        os.path.join('payload', 'game', 'host_system', 'SystemManager.cc'),
         os.path.join('payload', 'game', 'item', 'ItemObjKouraAka.S'),
         os.path.join('payload', 'game', 'item', 'ItemObjKouraAo.S'),
         os.path.join('payload', 'game', 'item', 'ItemObjKouraMidori.S'),
