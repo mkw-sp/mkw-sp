@@ -32,7 +32,7 @@ void LicenseSelectPage::onInit() {
     m_pageTitleText.load(false);
     m_servicePackButton.load("button", "LicenseSelectS", "Option", 0x1, false, false);
     for (size_t i = 0; i < m_licenseButtons.size(); i++) {
-        char variant[0x10];
+        char variant[0x20];
         snprintf(variant, sizeof(variant), "License%zu", i);
         m_licenseButtons[i].load("button", "LicenseSelect", variant, 0x1, false, false);
     }
