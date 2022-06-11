@@ -97,6 +97,7 @@ static std::optional<LoaderEntryFunc> Run() {
 #ifdef SP_RELEASE
     fs.createDir(ALIGNED_STRING(TITLE_PATH));
     fs.createDir(ALIGNED_STRING(TITLE_DATA_PATH));
+    fs.createDir(ALIGNED_STRING(UPDATE_PATH));
     alignas(0x20) Ticket ticket{};
     ticket.signatureType = 0x10001; // RSA-2048
     ticket.titleID = CHANNEL_TITLE_ID;
@@ -111,6 +112,8 @@ static std::optional<LoaderEntryFunc> Run() {
 #endif
 
 #if defined(SP_RELEASE) || defined(SP_CHANNEL)
+    fs.rename(UPDATE_CONTENTS_PATH, CONTENTS_PATH);
+
     std::optional<Archive> nandArchive{};
     std::optional<const VersionInfo *> nandVersionInfo{};
 
