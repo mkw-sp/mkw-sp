@@ -107,11 +107,6 @@ static void SafeFlush(const void *start, size_t size) {
     file.write(start, size);
 }
 
-template <typename T>
-static void SafeFlush(const T *val) {
-    SafeFlush(val, sizeof(T));
-}
-
 static u32 ReadMessage() {
     u32 address = reinterpret_cast<u32>(&armCode[1]);
     u32 message;
@@ -147,7 +142,7 @@ bool EscalatePrivileges() {
     }
 
     // To make sure it's not in the PPC cache
-    SafeFlush(armCode);
+    SafeFlush(armCode, sizeof(armCode));
 
     alignas(0x20) const char *shaPath = "/dev/sha";
     Resource sha(shaPath, Mode::None);
