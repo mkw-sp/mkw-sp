@@ -153,7 +153,7 @@ static std::optional<LoaderEntryFunc> Run() {
     }
 #endif
 
-    DCache::Flush(&versionInfo);
+    DCache::Flush(versionInfo);
 
     auto entry = archive->get("./bin/loader.bin.lzma");
     Archive::File *file = std::get_if<Archive::File>(&entry);

@@ -235,7 +235,7 @@ static_assert(sizeof(Request) == 0x40);
 alignas(0x20) static Request request;
 
 static void Sync() {
-    DCache::Flush(&request);
+    DCache::Flush(request);
 
     ppcmsg = VirtualToPhysical(&request);
     ppcctrl = X1;
@@ -252,7 +252,7 @@ static void Sync() {
         ppcctrl = X2;
     } while (reply != VirtualToPhysical(&request));
 
-    DCache::Invalidate(&request);
+    DCache::Invalidate(request);
 }
 
 Resource::Resource(s32 fd) : m_fd(fd) {}
