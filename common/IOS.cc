@@ -157,7 +157,7 @@ bool EscalatePrivileges() {
     mem1[2] = 0x49036209; // ldr r1, =0xFFFF0014; str r1, [r1, #0x20];
     mem1[3] = 0x47080000; // bx r1
     mem1[4] = 0x10100000; // temporary stack
-    mem1[5] = VirtualToPhysical(&armCode);
+    mem1[5] = VirtualToPhysical(armCode);
     mem1[6] = 0xFFFF0014; // reserved handler
 
     alignas(0x20) Resource::IoctlvPair pairs[4];
