@@ -48,7 +48,7 @@ public:
 
     File(s32 fd);
     File(const char *path, Mode mode);
-    ~File() = default;
+    ~File();
     s32 read(void *output, u32 outputSize);
     s32 write(const void *input, u32 inputSize);
     s32 getStats(Stats *stats);

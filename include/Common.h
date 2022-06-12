@@ -60,6 +60,9 @@ typedef uint64_t u64;
 typedef float f32;
 typedef double f64;
 
+// Source: https://stackoverflow.com/questions/34796571
+#define ALIGNED_STRING(s)  (struct { alignas(0x20) char t[sizeof(s)]; }){ s }.t
+
 #define MIN(a, b)               \
     ({                          \
         __typeof__(a) _a = (a); \

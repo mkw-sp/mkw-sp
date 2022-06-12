@@ -24,5 +24,5 @@ SECTIONS {
 
     irqmask = 0xcd000034;
 
-    aiControl = 0xcd006c00;
+    aicr = 0xcd006c00;
 }

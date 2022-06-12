@@ -8,7 +8,7 @@ start:
     ori r1, r1, stackTop@l
 
     // Jump to C++ code
-    bl Loader_run
+    bl Loader_Run
 
     // We should never get there
     b 0x0

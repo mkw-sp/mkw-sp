@@ -9,7 +9,7 @@ namespace IOS {
 class FS final : private Resource {
 public:
     FS();
-    ~FS() = default;
+    ~FS();
     using Resource::ok;
 
     bool createDir(const char *path, u8 attrs = 0, Mode ownerPerms = Mode::Both,
@@ -21,9 +21,6 @@ public:
 
     std::optional<u32> readFile(const char *path, void *dst, u32 size);
     bool writeFile(const char *path, const void *src, u32 size);
-
-private:
-    static const char s_path[];
 };
 
 } // namespace IOS

@@ -14,10 +14,10 @@ extern "C" volatile u16 visel;
 
 static u16 xfbWidth;
 static u16 xfbHeight;
-alignas(0x200) static u32 xfb[320 * 574];
+u32 *const xfb = reinterpret_cast<u32 *>(0x81600000);
 
 void Init() {
-    bool isProgressive = visel & 0x1;
+    bool isProgressive = visel & 1;
     bool isNtsc = (dcr >> 8 & 3) == 0;
     xfbWidth = 640;
     xfbHeight = isProgressive || isNtsc ? 480 : 574;
@@ -32,14 +32,14 @@ void Init() {
         vto = 0x6 << 16 | 0x30;
         vte = 0x6 << 16 | 0x30;
     } else if (isNtsc) {
-        vto = 0x1 << 16 | 0x23;
-        vte = 0x0 << 16 | 0x24;
-    } else {
         vto = 0x3 << 16 | 0x18;
         vte = 0x2 << 16 | 0x19;
+    } else {
+        vto = 0x1 << 16 | 0x23;
+        vte = 0x0 << 16 | 0x24;
     }
-    tfbl = reinterpret_cast<u32>(xfb);
-    bfbl = reinterpret_cast<u32>(xfb);
+    tfbl = 1 << 28 | reinterpret_cast<u32>(xfb) >> 5;
+    bfbl = 1 << 28 | reinterpret_cast<u32>(xfb) >> 5;
 }
 
 u16 GetXFBWidth() {
@@ -80,7 +80,7 @@ void WriteGrayscaleToXFB(u16 x, u16 y, u8 intensity) {
 }
 
 void FlushXFB() {
-    DCache::Store(&xfb);
+    DCache::Store(xfb, 320 * 574 * sizeof(u32));
 }
 
 } // namespace VI

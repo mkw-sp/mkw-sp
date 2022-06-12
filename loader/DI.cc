@@ -26,9 +26,7 @@ namespace Result {
     };
 } // namespace Result
 
-const char DI::s_path[] = "/dev/di";
-
-DI::DI() : Resource(s_path, Mode::None) {}
+DI::DI() : Resource(ALIGNED_STRING("/dev/di"), Mode::None) {}
 
 bool DI::readDiskID() {
     alignas(0x20) u32 in[8];

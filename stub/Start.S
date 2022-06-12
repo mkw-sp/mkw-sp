@@ -145,8 +145,8 @@ start:
     mtlr r3
 
     // Prepare to jump to the C++ code
-    lis r3, Stub_run@h
-    ori r3, r3, Stub_run@l
+    lis r3, Stub_Run@h
+    ori r3, r3, Stub_Run@l
     mtspr SRR0, r3
 
     // Jump to it by returning from real mode
@@ -165,7 +165,7 @@ start:
     ori r1, r1, stackTop@l
 
     // Jump to C++ code
-    bl Stub_run
+    bl Stub_Run
 
     // We should never get there
     b 0x0

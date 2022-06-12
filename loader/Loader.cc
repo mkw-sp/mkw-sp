@@ -1,16 +1,14 @@
 #include "Apploader.hh"
-#include "Console.hh"
-#include "VI.hh"
 
 #include <common/Clock.hh>
+#include <common/Console.hh>
 #include <common/DCache.hh>
 #include <common/ICache.hh>
+#include <common/VI.hh>
 
 #include <cstring>
 
 namespace Loader {
-
-extern "C" volatile u32 aiControl;
 
 typedef void (*PayloadEntryFunc)(void);
 
@@ -23,14 +21,7 @@ extern "C" const u32 payloadJSize;
 extern "C" const u8 payloadK[];
 extern "C" const u32 payloadKSize;
 
-void run() {
-    // On console, bad stuff seems to happen when writing to the XFB, presumably when some cache
-    // lines are written back to main memory. Prevent that by completely emptying the dcache.
-    DCache::Invalidate(reinterpret_cast<void *>(0x80000000), 0x1800000);
-
-    // Reset the DSP: libogc apps like the HBC cannot initialize it properly, but the SDK can.
-    aiControl = 0;
-
+void Run() {
     VI::Init();
 
     Console::Init();
@@ -108,6 +99,6 @@ void run() {
 
 } // namespace Loader
 
-extern "C" void Loader_run() {
-    Loader::run();
+extern "C" void Loader_Run() {
+    Loader::Run();
 }

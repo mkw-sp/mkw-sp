@@ -3,11 +3,13 @@
 #include "Archive.hh"
 #include "LZMA.hh"
 
+#include <common/Console.hh>
 #include <common/DCache.hh>
 #include <common/ICache.hh>
 extern "C" {
 #include <common/Paths.h>
 }
+#include <common/VI.hh>
 
 #include <compare>
 #include <cstring>
@@ -26,6 +28,8 @@ auto operator<=>(const VersionInfo& lhs, const VersionInfo &rhs) {
 }
 
 namespace Stub {
+
+extern "C" volatile u32 aicr;
 
 typedef void (*LoaderEntryFunc)(void);
 
@@ -53,9 +57,6 @@ static_assert(sizeof(Ticket) == 0x2a4);
 #define CONTENTS_PATH "/tmp/contents.arc"
 #endif
 
-// Source: https://stackoverflow.com/questions/34796571
-#define ALIGNED_STRING(S)  (struct { alignas(0x20) char s[sizeof(S)]; }){ S }.s
-
 #ifndef SP_CHANNEL
 extern "C" const u8 embeddedContents[];
 extern "C" const u32 embeddedContentsSize;
@@ -79,13 +80,26 @@ static std::optional<const VersionInfo *> GetVersionInfo(Archive &archive) {
 }
 
 static std::optional<LoaderEntryFunc> Run() {
+    // Reset the DSP: libogc apps like the HBC cannot initialize it properly, but the SDK can.
+    aicr = 0;
+
+    VI::Init();
+
+    Console::Init();
+    Console::Print("MKW-SP Stub\n");
+
+    Console::Print("Initializing IOS...");
     IOS::Init();
+    Console::Print(" done.\n");
 
 #ifndef SP_CHANNEL
+    Console::Print("Loading the embedded archive...");
     std::optional<Archive> embeddedArchive = LoadArchive(embeddedContents, embeddedContentsSize);
     if (!embeddedArchive) {
+        Console::Print(" failed!\n");
         return {};
     }
+    Console::Print(" done.\n");
     std::optional<const VersionInfo *> embeddedVersionInfo = GetVersionInfo(*embeddedArchive);
     if (!embeddedVersionInfo) {
         return {};
@@ -93,15 +107,23 @@ static std::optional<LoaderEntryFunc> Run() {
 #endif
 
     Archive *archive;
+    Console::Print("Escalating privileges...");
     if (!IOS::EscalatePrivileges()) {
+        Console::Print(" failed!\n");
         return {};
     }
+    Console::Print(" done.\n");
+    Console::Print("Initializing FS...");
     IOS::FS fs;
+    Console::Print(" done.\n");
+    Console::Print("Deescalating privileges...");
     IOS::DeescalatePrivileges();
+    Console::Print(" done.\n");
     if (!fs.ok()) {
         return {};
     }
 #ifdef SP_RELEASE
+    Console::Print("Setting up filesystem...");
     fs.createDir(ALIGNED_STRING(TITLE_PATH));
     fs.createDir(ALIGNED_STRING(TITLE_DATA_PATH));
     fs.createDir(ALIGNED_STRING(UPDATE_PATH));
@@ -116,11 +138,13 @@ static std::optional<LoaderEntryFunc> Run() {
         fs.writeFile(ALIGNED_STRING(TMP_TICKET_PATH), &ticket, sizeof(ticket));
         fs.rename(ALIGNED_STRING(TMP_TICKET_PATH), ALIGNED_STRING(TICKET_PATH));
     }
+    Console::Print(" done.\n");
 #endif
 
 #if defined(SP_RELEASE) || defined(SP_CHANNEL)
     fs.rename(UPDATE_CONTENTS_PATH, CONTENTS_PATH);
 
+    Console::Print("Loading the NAND archive...");
     std::optional<Archive> nandArchive{};
     std::optional<const VersionInfo *> nandVersionInfo{};
 
@@ -133,11 +157,17 @@ static std::optional<LoaderEntryFunc> Run() {
     if (nandArchive) {
         nandVersionInfo = GetVersionInfo(*nandArchive);
     }
+    if (nandVersionInfo) {
+        Console::Print(" done.\n");
+    } else {
+        Console::Print(" failed!\n");
+    }
 #ifdef SP_CHANNEL
     if (nandVersionInfo) {
 #else
     if (nandVersionInfo && **nandVersionInfo >= **embeddedVersionInfo) {
 #endif
+        Console::Print("Using the NAND archive.\n");
         archive = &*nandArchive;
         memcpy(&versionInfo, *nandVersionInfo, sizeof(versionInfo));
     } else {
@@ -145,6 +175,7 @@ static std::optional<LoaderEntryFunc> Run() {
 #ifdef SP_CHANNEL
         return {};
 #else
+        Console::Print("Using the embedded archive.\n");
         fs.writeFile(ALIGNED_STRING(CONTENTS_PATH), embeddedContents, embeddedContentsSize);
         archive = &*embeddedArchive;
         memcpy(&versionInfo, *embeddedVersionInfo, sizeof(versionInfo));
@@ -155,25 +186,36 @@ static std::optional<LoaderEntryFunc> Run() {
 
     DCache::Flush(versionInfo);
 
+    Console::Print("Opening the loader...");
     auto entry = archive->get("./bin/loader.bin.lzma");
     Archive::File *file = std::get_if<Archive::File>(&entry);
     if (!file) {
+        Console::Print(" failed!\n");
         return {};
     }
+    Console::Print(" done.\n");
+    Console::Print("Decompressing the loader...");
     u8 *loader = reinterpret_cast<u8 *>(0x80b00000);
-    std::optional<size_t> loaderSize = LZMA::Decode(file->data, loader, file->size, 0xc00000);
+    std::optional<size_t> loaderSize = LZMA::Decode(file->data, loader, file->size, 0xb00000);
     if (!loaderSize) {
+        Console::Print(" failed!\n");
         return {};
     }
+    Console::Print(" done.\n");
     DCache::Flush(loader, *loaderSize);
     ICache::Invalidate(loader, *loaderSize);
 
+    Console::Print("Running the loader...\n");
     return reinterpret_cast<LoaderEntryFunc>(loader);
 }
 
 } // namespace Stub
 
-extern "C" void Stub_run() {
+extern "C" void Stub_Run() {
+    // On console, bad stuff seems to happen when writing to the XFB, presumably when some cache
+    // lines are written back to main memory. Prevent that by completely emptying the dcache.
+    DCache::Invalidate(reinterpret_cast<void *>(0x80000000), 0x1800000);
+
     std::optional<Stub::LoaderEntryFunc> loaderEntry = Stub::Run();
     if (loaderEntry) {
         (*loaderEntry)();

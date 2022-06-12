@@ -14,9 +14,9 @@ namespace Ioctl {
     };
 } // namespace Ioctl
 
-const char FS::s_path[] = "/dev/fs";
+FS::FS() : Resource(ALIGNED_STRING("/dev/fs"), Mode::None) {}
 
-FS::FS() : Resource(s_path, Mode::None) {}
+FS::~FS() = default;
 
 bool FS::createDir(const char *path, u8 attrs, Mode ownerPerms, Mode groupPerms, Mode otherPerms) {
     alignas(0x20) u8 in[0x4c];

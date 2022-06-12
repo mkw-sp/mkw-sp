@@ -15,9 +15,6 @@ public:
     bool read(void *dst, u32 size, u32 offset);
     bool isInserted();
     bool reset();
-
-private:
-    static const char s_path[];
 };
 
 } // namespace IOS

@@ -84,15 +84,13 @@ u32 armCode[] = {
 
 static bool IsDolphin() {
     // Modern versions
-    alignas(0x20) const char *dolphinPath = "/dev/dolphin";
-    Resource dolphin(dolphinPath, Mode::None);
+    Resource dolphin(ALIGNED_STRING("/dev/dolphin"), Mode::None);
     if (dolphin.ok()) {
         return true;
     }
 
     // Old versions
-    alignas(0x20) const char *shaPath = "/dev/sha";
-    Resource sha(shaPath, Mode::None);
+    Resource sha(ALIGNED_STRING("/dev/sha"), Mode::None);
     if (!sha.ok()) {
         return true;
     }
@@ -144,8 +142,7 @@ bool EscalatePrivileges() {
     // To make sure it's not in the PPC cache
     SafeFlush(armCode, sizeof(armCode));
 
-    alignas(0x20) const char *shaPath = "/dev/sha";
-    Resource sha(shaPath, Mode::None);
+    Resource sha(ALIGNED_STRING("/dev/sha"), Mode::None);
     if (!sha.ok()) {
         return false;
     }
@@ -352,6 +349,8 @@ bool Resource::ok() const {
 File::File(s32 fd) : Resource(fd) {}
 
 File::File(const char *path, Mode mode) : Resource(path, mode) {}
+
+File::~File() = default;
 
 s32 File::read(void *output, u32 outputSize) {
     request = {};
