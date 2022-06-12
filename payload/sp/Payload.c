@@ -48,8 +48,7 @@ void Payload_init(void) {
     bool usbWasInit = Usb_init();
     assert(usbWasInit);
 
-    bool netWasInit = Net_init();
-    assert(netWasInit);
+    Net_Init();
 
     bool storageWasInit = Storage_init();
     assert(storageWasInit);

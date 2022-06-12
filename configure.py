@@ -766,7 +766,7 @@ code_in_files = {
         os.path.join('payload', 'sp', 'keyboard', 'IOSKeyboard.c'),
         #
         os.path.join('payload', 'sp', 'LZMADecoder.cc'),
-        os.path.join('payload', 'sp', 'Net.c'),
+        os.path.join('payload', 'sp', 'Net.cc'),
         os.path.join('payload', 'sp', 'Patcher.c'),
         os.path.join('payload', 'sp', 'Payload.c'),
         os.path.join('payload', 'sp', 'ScopeLock.cc'),
