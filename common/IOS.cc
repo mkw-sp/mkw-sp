@@ -102,7 +102,7 @@ static bool IsDolphin() {
 
 static void SafeFlush(const void *start, size_t size) {
     // The IPC function flushes the cache here on PPC, and then IOS invalidates its own cache.
-    // Note: IOS doesn't check for the invalid fd before they do what we want.
+    // Note: IOS doesn't check for the invalid fd before doing what we want.
     File file(-1);
     file.write(start, size);
 }
