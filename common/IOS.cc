@@ -181,6 +181,10 @@ bool EscalatePrivileges() {
 }
 
 void DeescalatePrivileges() {
+    if (IsDolphin()) {
+        return;
+    }
+
     WriteMessage(2);
     while (ReadMessage() != 3) {
         Clock::WaitMilliseconds(1);
