@@ -14,7 +14,7 @@ namespace SP::DVDDecompLoader {
 static Exchange<const char *, Empty> startExchange;
 static Exchange<bool, s32> updateExchange;
 static OSThread thread;
-alignas(0x8) static u8 stack[0x2000 /* 8 KiB */];
+static u8 stack[0x2000 /* 8 KiB */];
 alignas(0x20) static u8 srcs[2][0x4000 /* 16 KiB */];
 
 static void read(const char *path) {

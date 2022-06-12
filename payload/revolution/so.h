@@ -11,7 +11,8 @@ struct SOLibraryConfig {
     SOAlloc alloc;
     SOFree free;
 };
-int SOStartup();
+int SOStartup(void);
+int SOCleanup(void);
 
 int SOInit(const SOLibraryConfig *cfg);
 int SOSend(int s, const void* buf, int len, int flags);
