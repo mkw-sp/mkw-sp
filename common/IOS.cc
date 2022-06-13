@@ -315,12 +315,12 @@ s32 Resource::ioctl(u32 ioctl, const void *input, u32 inputSize, void *output, u
 
 s32 Resource::ioctlv(u32 ioctlv, u32 inputCount, u32 outputCount, IoctlvPair *pairs) {
     for (u32 i = 0; i < inputCount + outputCount; i++) {
-        if (pairs[i].data) {
+        if (pairs[i].data && pairs[i].size != 0) {
             DCache::Flush(pairs[i].data, pairs[i].size);
             pairs[i].data = reinterpret_cast<void *>(VirtualToPhysical(pairs[i].data));
         }
     }
-    DCache::Flush(pairs, inputCount + outputCount);
+    DCache::Flush(pairs, (inputCount + outputCount) * sizeof(IoctlvPair));
 
     request = {};
     request.command = Command::Ioctlv;
@@ -333,7 +333,7 @@ s32 Resource::ioctlv(u32 ioctlv, u32 inputCount, u32 outputCount, IoctlvPair *pa
     Sync();
 
     for (u32 i = inputCount; i < inputCount + outputCount; i++) {
-        if (pairs[i].data) {
+        if (pairs[i].data && pairs[i].size != 0) {
             pairs[i].data = PhysicalToVirtual<void *>(reinterpret_cast<u32>(pairs[i].data));
             DCache::Invalidate(pairs[i].data, pairs[i].size);
         }
