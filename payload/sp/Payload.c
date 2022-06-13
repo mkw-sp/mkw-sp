@@ -14,6 +14,7 @@
 #include "sp/storage/Storage.h"
 #include "sp/storage/Usb.h"
 
+#include <libhydrogen/hydrogen.h>
 #include <revolution.h>
 
 #include <string.h>
@@ -49,6 +50,8 @@ void Payload_init(void) {
     assert(usbWasInit);
 
     Net_Init();
+
+    hydro_init();
 
     bool storageWasInit = Storage_init();
     assert(storageWasInit);

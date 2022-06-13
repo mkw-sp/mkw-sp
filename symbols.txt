@@ -322,6 +322,7 @@
 0x803505C0 RDSTHandler
 
 0x80384190 s_dvdList
+0x80385908 es_fd
 0x80386000 s_systemManager
 0x80386638 MaxEntryNum
 0x8038663c FstStringStart

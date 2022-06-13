@@ -423,6 +423,7 @@ profile_Sflags = {
     ],
 }
 common_cflags = [
+    '-DREVOLUTION',
     '-fms-extensions',
     '-fno-asynchronous-unwind-tables',
     '-fplan9-extensions',
@@ -441,6 +442,7 @@ common_cflags = [
 if args.gdb_compatible:
     common_cflags += ['-DGDB_COMPATIBLE=1']
 common_ccflags = [
+    '-DREVOLUTION',
     '-fno-asynchronous-unwind-tables',
     '-fno-exceptions',
     '-fno-rtti',
@@ -738,6 +740,7 @@ code_in_files = {
         os.path.join('payload', 'revolution', 'dvd.S'),
         os.path.join('payload', 'revolution', 'dvd.c'),
         os.path.join('payload', 'revolution', 'dvdex.c'),
+        os.path.join('payload', 'revolution', 'es.c'),
         os.path.join('payload', 'revolution', 'ios.S'),
         os.path.join('payload', 'revolution', 'ios.c'),
         os.path.join('payload', 'revolution', 'nand.c'),
@@ -801,6 +804,7 @@ code_in_files = {
         os.path.join('vendor', 'ff', 'ff.c'),
         os.path.join('vendor', 'ff', 'fftime.c'),
         os.path.join('vendor', 'ff', 'ffunicode.c'),
+        os.path.join('vendor', 'libhydrogen', 'hydrogen.c'),
         os.path.join('vendor', 'lzma', 'LzmaDec.c'),
     ],
     'loader': [
