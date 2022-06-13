@@ -208,17 +208,8 @@ static void InstallInternal() {
     }
 }
 
-static void UninstallInternal() {
-    NANDPrivateDelete(TITLE_CONTENT_PATH);
-}
-
 void Install() {
     InstallInternal();
-    Check();
-}
-
-void Uninstall() {
-    UninstallInternal();
     Check();
 }
 

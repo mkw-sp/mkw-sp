@@ -273,11 +273,6 @@ void *ChannelPage::Install(void *UNUSED(arg)) {
     return nullptr;
 }
 
-void *ChannelPage::Uninstall(void *UNUSED(arg)) {
-    SP::Channel::Uninstall();
-    return nullptr;
-}
-
 } // namespace UI
 
 extern "C" void *ChannelPage_ct(void *self) {
