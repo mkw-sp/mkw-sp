@@ -60,9 +60,9 @@ bool DI::openPartition(u32 offset) {
     alignas(0x20) IoctlvPair pairs[5];
     pairs[0].data = in;
     pairs[0].size = sizeof(in);
-    pairs[1].data = NULL;
+    pairs[1].data = nullptr;
     pairs[1].size = 0;
-    pairs[2].data = NULL;
+    pairs[2].data = nullptr;
     pairs[2].size = 0;
     pairs[3].data = tmd;
     pairs[3].size = sizeof(tmd);
