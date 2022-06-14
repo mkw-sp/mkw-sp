@@ -180,7 +180,6 @@ static std::optional<LoaderEntryFunc> Run() {
             tmd.titleType = 1;
             tmd.groupID = 0x3031;
             tmd.region = 3; // Region free
-            memset(tmd.ratings, 0x80, sizeof(tmd.ratings));
             tmd._1ae[4] = 1; // Skip drive reset
             tmd.titleVersion = CHANNEL_TITLE_VERSION;
             tmd.numContents = CHANNEL_CONTENT_COUNT;
