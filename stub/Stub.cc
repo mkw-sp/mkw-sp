@@ -47,8 +47,8 @@ static_assert(sizeof(Ticket) == 0x2a4);
 #pragma pack(pop)
 
 #ifdef SP_RELEASE
-#define TMP_TICKET_PATH "/tmp/524d4341.tik"
-#define TICKET_PATH "/ticket/00010001/524d4341.tik"
+#define TMP_TICKET_PATH "/tmp/524b5350.tik"
+#define TICKET_PATH "/ticket/00010001/524b5350.tik"
 #endif
 
 #if defined(SP_RELEASE) || defined(SP_CHANNEL)

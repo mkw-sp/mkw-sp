@@ -103,7 +103,7 @@ typedef double f64;
 #define PRAGMA_SECTION(s) __attribute__((section(s)))
 #endif
 
-#define CHANNEL_TITLE_ID UINT64_C(0x00010001524d4341)
+#define CHANNEL_TITLE_ID UINT64_C(0x00010001524b5350)
 
 enum {
     BUILD_TYPE_DEBUG = 0,
