@@ -169,6 +169,7 @@ static std::optional<LoaderEntryFunc> Run() {
         memset(ticket.contentAccessMask, 0xff, sizeof(ticket.contentAccessMask));
         if (!fs.writeFile(ALIGNED_STRING(TICKET_PATH), &ticket, sizeof(ticket))) {
             Console::Print("Failed to write the ticket to the NAND!\n");
+            return {};
         }
 
         if (!IOS::File(ALIGNED_STRING(TMD_PATH), IOS::Mode::Read).ok()) {
@@ -193,6 +194,7 @@ static std::optional<LoaderEntryFunc> Run() {
             u32 size = offsetof(IOS::ES::Tmd, contents) + sizeof(*tmd.contents) * tmd.numContents;
             if (!fs.writeFile(ALIGNED_STRING(TMD_PATH), &ticket, size)) {
                 Console::Print("Failed to write the tmd to the NAND!\n");
+                return {};
             }
         }
 
@@ -204,11 +206,13 @@ static std::optional<LoaderEntryFunc> Run() {
         }
         if (!fs.writeFile(ALIGNED_STRING(BANNER_PATH), file->data, file->size)) {
             Console::Print("Failed to copy the save banner to the NAND!\n");
+            return {};
         }
 #endif
 
         if (!fs.writeFile(ALIGNED_STRING(CONTENTS_PATH), embeddedContents, embeddedContentsSize)) {
             Console::Print("Failed to copy the embedded archive to the NAND!\n");
+            return {};
         }
 #endif
     }
