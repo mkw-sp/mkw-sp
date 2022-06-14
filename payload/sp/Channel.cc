@@ -2,6 +2,7 @@
 
 #include "sp/DVDDecompLoader.hh"
 
+#include <common/ES.hh>
 extern "C" {
 #include <common/Paths.h>
 
@@ -19,35 +20,6 @@ extern "C" const u32 channelSize;
 
 namespace SP::Channel {
 
-#pragma pack(push, 4)
-struct Content {
-    u32 id;
-    u16 index;
-    u16 type;
-    u64 size;
-    u8 sha1[0x14];
-};
-static_assert(sizeof(Content) == 0x24);
-
-struct Tmd {
-    u32 signatureType;
-    u8 _004[0x184 - 0x004];
-    u64 iosID;
-    u64 titleID;
-    u32 titleType;
-    u16 groupID;
-    u8 _19a[0x19c - 0x19a];
-    u16 region;
-    u8 ratings[16];
-    u8 _1ae[0x1dc - 0x1ae];
-    u16 titleVersion;
-    u16 numContents;
-    u16 bootIndex;
-    Content contents[512];
-};
-static_assert(sizeof(Tmd) == 0x49e4);
-#pragma pack(pop)
-
 struct ContentFile {
     u8 *data = nullptr;
     size_t size = 0;
@@ -55,11 +27,13 @@ struct ContentFile {
 
 #define TMP_CONTENT_PATH "/tmp/content"
 
-static const u16 titleVersion = 0x0100;
 static const std::array<const char *, 2> contentPaths{ "opening.bnr.lzma", "boot.dol.lzma" };
 static std::array<ContentFile, 2> contentFiles;
 static Status status = Status::None;
 static bool isLoaded = false;
+
+static_assert(contentPaths.size() == CHANNEL_CONTENT_COUNT);
+static_assert(contentFiles.size() == CHANNEL_CONTENT_COUNT);
 
 static void Check() {
     ESP_InitLib();
@@ -98,9 +72,9 @@ static void Check() {
         return;
     }
 
-    if (tmdView.titleVersion < titleVersion) {
+    if (tmdView.titleVersion < CHANNEL_TITLE_VERSION) {
         status = Status::Older;
-    } else if (tmdView.titleVersion == titleVersion) {
+    } else if (tmdView.titleVersion == CHANNEL_TITLE_VERSION) {
         status = Status::Same;
     } else {
         status = Status::Newer;
@@ -166,7 +140,7 @@ static void InstallInternal() {
         return;
     }
 
-    alignas(0x20) Tmd tmd{};
+    alignas(0x20) IOS::ES::Tmd tmd{};
     tmd.signatureType = 0x10001; // RSA-2048
     tmd.iosID = UINT64_C(0x000000010000003a);
     tmd.titleID = CHANNEL_TITLE_ID;
@@ -175,7 +149,7 @@ static void InstallInternal() {
     tmd.region = 3; // Region free
     memset(tmd.ratings, 0x80, sizeof(tmd.ratings));
     tmd._1ae[4] = 1; // Skip drive reset
-    tmd.titleVersion = titleVersion;
+    tmd.titleVersion = CHANNEL_TITLE_VERSION;
     tmd.numContents = contentFiles.size();
     tmd.bootIndex = 1;
     for (size_t i = 0; i < contentFiles.size(); i++) {
@@ -188,7 +162,7 @@ static void InstallInternal() {
         NETSHA1Update(&ctx, contentFiles[i].data, contentFiles[i].size);
         NETSHA1GetDigest(&ctx, tmd.contents[i].sha1);
     }
-    u32 size = offsetof(Tmd, contents) + sizeof(Content) * tmd.numContents;
+    u32 size = offsetof(IOS::ES::Tmd, contents) + sizeof(*tmd.contents) * tmd.numContents;
     if (!WriteFile(TMP_CONTENT_PATH "/title.tmd", &tmd, size)) {
         SP_LOG("Failed to write title.tmd");
         return;

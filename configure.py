@@ -974,6 +974,12 @@ for profile in ['DEBUG', 'TEST', 'RELEASE']:
     )
 
 n.build(
+    os.path.join('$builddir', 'contents.arc.d', 'banner.bin'),
+    'cp',
+    'banner.bin',
+)
+
+n.build(
     os.path.join('$builddir', 'contents.arc.d', 'channel', 'opening.bnr.lzma'),
     'lzmac',
     'opening.bnr',
@@ -1015,6 +1021,7 @@ for profile in ['DEBUG', 'TEST', 'RELEASE']:
         *[os.path.join('$builddir', 'contents.arc.d', target) for target in asset_out_files],
         os.path.join('$builddir', 'contents.arc.d', 'bin', f'loader{in_suffix}.bin.lzma'),
         os.path.join('$builddir', 'contents.arc.d', 'bin', f'version{out_suffix}.bin'),
+        os.path.join('$builddir', 'contents.arc.d', 'banner.bin'),
     ]
     if profile == 'RELEASE':
         in_paths += [

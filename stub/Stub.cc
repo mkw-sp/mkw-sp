@@ -5,6 +5,7 @@
 
 #include <common/Console.hh>
 #include <common/DCache.hh>
+#include <common/ES.hh>
 #include <common/ICache.hh>
 extern "C" {
 #include <common/Paths.h>
@@ -33,22 +34,11 @@ extern "C" volatile u32 aicr;
 
 typedef void (*LoaderEntryFunc)(void);
 
-#pragma pack(push, 4)
-struct Ticket {
-    u32 signatureType;
-    u8 _004[0x1dc - 0x004];
-    u64 titleID;
-    u16 accessMask;
-    u8 _1e6[0x222 - 0x1e6];
-    u8 contentAccessMask[512 / 8];
-    u8 _262[0x2a4 - 0x262];
-};
-static_assert(sizeof(Ticket) == 0x2a4);
-#pragma pack(pop)
-
 #ifdef SP_RELEASE
 #define TMP_TICKET_PATH "/tmp/524b5350.tik"
 #define TICKET_PATH "/ticket/00010001/524b5350.tik"
+#define TMD_PATH TITLE_CONTENT_PATH "/title.tmd"
+#define BANNER_PATH TITLE_DATA_PATH "/banner.bin"
 #endif
 
 #if defined(SP_RELEASE) || defined(SP_CHANNEL)
@@ -123,21 +113,11 @@ static std::optional<LoaderEntryFunc> Run() {
         return {};
     }
 #ifdef SP_RELEASE
-    Console::Print("Setting up filesystem...");
+    Console::Print("Creating directories...");
     fs.createDir(ALIGNED_STRING(TITLE_PATH));
+    fs.createDir(ALIGNED_STRING(TITLE_CONTENT_PATH));
     fs.createDir(ALIGNED_STRING(TITLE_DATA_PATH));
     fs.createDir(ALIGNED_STRING(UPDATE_PATH));
-    alignas(0x20) Ticket ticket{};
-    ticket.signatureType = 0x10001; // RSA-2048
-    ticket.titleID = CHANNEL_TITLE_ID;
-    ticket.accessMask = 0xffff;
-    memset(ticket.contentAccessMask, 0xff, sizeof(ticket.contentAccessMask));
-    alignas(0x20) Ticket nandTicket;
-    if (!fs.readFile(ALIGNED_STRING(TICKET_PATH), &nandTicket, sizeof(nandTicket)) ||
-            memcmp(&ticket, &nandTicket, sizeof(Ticket))) {
-        fs.writeFile(ALIGNED_STRING(TMP_TICKET_PATH), &ticket, sizeof(ticket));
-        fs.rename(ALIGNED_STRING(TMP_TICKET_PATH), ALIGNED_STRING(TICKET_PATH));
-    }
     Console::Print(" done.\n");
 #endif
 
@@ -171,18 +151,67 @@ static std::optional<LoaderEntryFunc> Run() {
         archive = &*nandArchive;
         memcpy(&versionInfo, *nandVersionInfo, sizeof(versionInfo));
     } else {
+#else
+    {
 #endif
 #ifdef SP_CHANNEL
         return {};
 #else
         Console::Print("Using the embedded archive.\n");
-        fs.writeFile(ALIGNED_STRING(CONTENTS_PATH), embeddedContents, embeddedContentsSize);
         archive = &*embeddedArchive;
         memcpy(&versionInfo, *embeddedVersionInfo, sizeof(versionInfo));
+
+#ifdef SP_RELEASE
+        alignas(0x20) IOS::ES::Ticket ticket{};
+        ticket.signatureType = 0x10001; // RSA-2048
+        ticket.titleID = CHANNEL_TITLE_ID;
+        ticket.accessMask = 0xffff;
+        memset(ticket.contentAccessMask, 0xff, sizeof(ticket.contentAccessMask));
+        if (!fs.writeFile(ALIGNED_STRING(TICKET_PATH), &ticket, sizeof(ticket))) {
+            Console::Print("Failed to write the ticket to the NAND!\n");
+        }
+
+        if (!IOS::File(ALIGNED_STRING(TMD_PATH), IOS::Mode::Read).ok()) {
+            alignas(0x20) IOS::ES::Tmd tmd{};
+            tmd.signatureType = 0x10001; // RSA-2048
+            tmd.iosID = UINT64_C(0x000000010000003a);
+            tmd.titleID = CHANNEL_TITLE_ID;
+            tmd.titleType = 1;
+            tmd.groupID = 0x3031;
+            tmd.region = 3; // Region free
+            memset(tmd.ratings, 0x80, sizeof(tmd.ratings));
+            tmd._1ae[4] = 1; // Skip drive reset
+            tmd.titleVersion = CHANNEL_TITLE_VERSION;
+            tmd.numContents = CHANNEL_CONTENT_COUNT;
+            tmd.bootIndex = 1;
+            for (size_t i = 0; i < CHANNEL_CONTENT_COUNT; i++) {
+                tmd.contents[i].id = i;
+                tmd.contents[i].index = i;
+                tmd.contents[i].type = 1;
+                tmd.contents[i].size = 0;
+            }
+            u32 size = offsetof(IOS::ES::Tmd, contents) + sizeof(*tmd.contents) * tmd.numContents;
+            if (!fs.writeFile(ALIGNED_STRING(TMD_PATH), &ticket, size)) {
+                Console::Print("Failed to write the tmd to the NAND!\n");
+            }
+        }
+
+        auto entry = archive->get("./banner.bin");
+        Archive::File *file = std::get_if<Archive::File>(&entry);
+        if (!file) {
+            Console::Print("Failed to find the save banner!\n");
+            return {};
+        }
+        if (!fs.writeFile(ALIGNED_STRING(BANNER_PATH), file->data, file->size)) {
+            Console::Print("Failed to copy the save banner to the NAND!\n");
+        }
 #endif
-#if defined(SP_RELEASE) || defined(SP_CHANNEL)
+
+        if (!fs.writeFile(ALIGNED_STRING(CONTENTS_PATH), embeddedContents, embeddedContentsSize)) {
+            Console::Print("Failed to copy the embedded archive to the NAND!\n");
+        }
+#endif
     }
-#endif
 
     DCache::Flush(versionInfo);
 
