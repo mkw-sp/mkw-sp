@@ -70,8 +70,10 @@ static std::optional<const VersionInfo *> GetVersionInfo(Archive &archive) {
 }
 
 static std::optional<LoaderEntryFunc> Run() {
+#ifndef SP_CHANNEL
     // Reset the DSP: libogc apps like the HBC cannot initialize it properly, but the SDK can.
     aicr = 0;
+#endif
 
     VI::Init();
 
@@ -244,9 +246,11 @@ static std::optional<LoaderEntryFunc> Run() {
 } // namespace Stub
 
 extern "C" void Stub_Run() {
+#ifndef SP_CHANNEL
     // On console, bad stuff seems to happen when writing to the XFB, presumably when some cache
     // lines are written back to main memory. Prevent that by completely emptying the dcache.
     DCache::Invalidate(reinterpret_cast<void *>(0x80000000), 0x1800000);
+#endif
 
     std::optional<Stub::LoaderEntryFunc> loaderEntry = Stub::Run();
     if (loaderEntry) {
