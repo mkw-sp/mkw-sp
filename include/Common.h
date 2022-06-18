@@ -103,7 +103,7 @@ typedef double f64;
 #define PRAGMA_SECTION(s) __attribute__((section(s)))
 #endif
 
-#define CHANNEL_TITLE_ID UINT64_C(0x00010001524b5350)
+#define CHANNEL_TITLE_ID UINT64_C(0x0001000153505350)
 #define CHANNEL_TITLE_VERSION 0x0100
 #define CHANNEL_CONTENT_COUNT 2
 
