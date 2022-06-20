@@ -22,7 +22,7 @@ TimeAttackGhostListPage::~TimeAttackGhostListPage() = default;
 
 void TimeAttackGhostListPage::onBack([[maybe_unused]] u32 localPlayerId) {
     m_replacement = PageId::CourseSelect;
-    startReplace(Animation::Prev, 0.0f);
+    startReplace(Anim::Prev, 0.0f);
 }
 
 void TimeAttackGhostListPage::refreshLaunchButton() {
@@ -115,7 +115,7 @@ void TimeAttackGhostListPage::onSheetSelectLeft(
 
 void TimeAttackGhostListPage::onLaunchButtonFront(
         [[maybe_unused]] PushButton *button, [[maybe_unused]] u32 localPlayerId) {
-    push(PageId::RaceConfirm, Animation::Next);
+    push(PageId::RaceConfirm, Anim::Next);
 }
 
 void TimeAttackGhostListPage::onLaunchButtonSelect(
@@ -127,7 +127,7 @@ void TimeAttackGhostListPage::onBackButtonFront(
         PushButton *button, [[maybe_unused]] u32 localPlayerId) {
     m_replacement = PageId::CourseSelect;
     const f32 delay = button->getDelay();
-    startReplace(Animation::Prev, delay);
+    startReplace(Anim::Prev, delay);
 }
 
 PageId TimeAttackGhostListPage::getReplacement() {
@@ -277,7 +277,7 @@ void TimeAttackGhostListPage::onRefocus() {
         ghostManagerPage->nextRequest = GHOST_MANAGER_PAGE_REQUEST_SAVED_GHOST_RACE;
         sectionId = SectionId::TimeAttack;
     }
-    changeSection(sectionId, Animation::Next, 0.0f);
+    changeSection(sectionId, Anim::Next, 0.0f);
 }
 
 void TimeAttackGhostListPage::chooseGhost(u32 buttonIndex) {

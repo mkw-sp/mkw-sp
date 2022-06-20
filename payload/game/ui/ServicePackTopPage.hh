@@ -23,6 +23,7 @@ public:
 
 private:
     void onBack(u32 localPlayerId);
+    void onUpdateButtonFront(PushButton *button, u32 localPlayerId);
     void onChannelButtonFront(PushButton *button, u32 localPlayerId);
     void onBackButtonFront(PushButton *button, u32 localPlayerId);
 
@@ -34,11 +35,12 @@ private:
     PushButton m_settingsButton;
     PushButton m_tracksButton;
     PushButton m_ghostsButton;
-    PushButton m_updatesButton;
+    PushButton m_updateButton;
     PushButton m_channelButton;
     PushButton m_aboutButton;
     CtrlMenuBackButton m_backButton;
     H<MultiControlInputManager> m_onBack{ this, &ServicePackTopPage::onBack };
+    H<PushButton> m_onUpdateButtonFront{ this, &ServicePackTopPage::onUpdateButtonFront };
     H<PushButton> m_onChannelButtonFront{ this, &ServicePackTopPage::onChannelButtonFront };
     H<PushButton> m_onBackButtonFront{ this, &ServicePackTopPage::onBackButtonFront };
     PageId m_replacement;

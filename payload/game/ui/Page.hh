@@ -19,7 +19,7 @@ public:
         State5,
     };
 
-    enum class Animation {
+    enum class Anim {
         Next,
         Prev,
     };
@@ -31,9 +31,9 @@ public:
     virtual PageId getReplacement();
     virtual void vf_14();
     virtual void vf_18();
-    virtual void changeSection(SectionId id, Animation animation, f32 delay);
+    virtual void changeSection(SectionId id, Anim anim, f32 delay);
     virtual void vf_20();
-    virtual void push(PageId id, Animation animation);
+    virtual void push(PageId id, Anim anim);
     virtual void onInit();
     virtual void onDeinit();
     virtual void onActivate();
@@ -54,9 +54,14 @@ protected:
     void setInputManager(MenuInputManager *inputManager);
     void skipInAnim();
     void skipOutAnim();
+
+public:
+    void setAnim(Anim anim);
+
+protected:
     void initChildren(u32 count);
     void insertChild(u32 index, UIControl *child, u32 drawPass);
-    void startReplace(Animation animation, f32 delay);
+    void startReplace(Anim anim, f32 delay);
     void playSfx(u32 sfxId, s32 r5);
     void setAnimSfxIds(u32 nextId, u32 prevId);
 

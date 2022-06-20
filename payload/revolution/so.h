@@ -21,6 +21,29 @@ int SOWrite(int s, const void* buf, int len);
 #define SO_PF_INET 2
 #define SO_SOCK_STREAM 1
 #define SO_SOCK_DGRAM 2
+
+typedef struct SOInAddr {
+    u32 addr;
+} SOInAddr;
+
+typedef struct SOSockAddrIn {
+    u8 len;
+    u8 family;
+    u16 port;
+    SOInAddr addr;
+} SOSockAddrIn;
+
+typedef struct SOAddrInfo {
+    int flags;
+    int family;
+    int sockType;
+    int protocol;
+    unsigned addrLen;
+    char *canonName;
+    void *addr;
+    struct SOAddrInfo *next;
+} SOAddrInfo;
+
 int SOSocket(int, int, int);
 int SOClose(int s);
 
@@ -36,12 +59,6 @@ int SORead(int s, void *buf, int len);
 
 int SOShutdown(int s, int how);
 
-typedef struct SOInAddr {
-    u32 addr;
-} SOInAddr;
-typedef struct SOSockAddrIn {
-    u8 len;
-    u8 family;
-    u16 port;
-    SOInAddr addr;
-} SOSockAddrIn;
+void SOFreeAddrInfo(SOAddrInfo *ai);
+int SOGetAddrInfo(const char *nodeName, const char *servName, const SOAddrInfo *hints,
+        SOAddrInfo **res);

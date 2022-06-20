@@ -658,6 +658,7 @@ code_in_files = {
         os.path.join('payload', 'game', 'ui', 'LicenseSettingsPage.c'),
         os.path.join('payload', 'game', 'ui', 'Map2DRenderer.c'),
         os.path.join('payload', 'game', 'ui', 'MenuInputManager.cc'),
+        os.path.join('payload', 'game', 'ui', 'MessageWindowControl.cc'),
         os.path.join('payload', 'game', 'ui', 'MiiGroup.c'),
         os.path.join('payload', 'game', 'ui', 'MiiGroup.cc'),
         os.path.join('payload', 'game', 'ui', 'Model.S'),
@@ -684,6 +685,7 @@ code_in_files = {
         os.path.join('payload', 'game', 'ui', 'UIAnimator.cc'),
         os.path.join('payload', 'game', 'ui', 'UIControl.c'),
         os.path.join('payload', 'game', 'ui', 'UIControl.cc'),
+        os.path.join('payload', 'game', 'ui', 'UpdatePage.cc'),
         os.path.join('payload', 'game', 'ui', 'Wipe.S'),
         os.path.join('payload', 'game', 'ui', 'ctrl', 'CtrlMenuBackButton.c'),
         os.path.join('payload', 'game', 'ui', 'ctrl', 'CtrlMenuBackButton.cc'),
@@ -769,7 +771,10 @@ code_in_files = {
         os.path.join('payload', 'sp', 'keyboard', 'IOSKeyboard.c'),
         #
         os.path.join('payload', 'sp', 'LZMADecoder.cc'),
-        os.path.join('payload', 'sp', 'Net.cc'),
+        # Net module
+        os.path.join('payload', 'sp', 'net', 'Net.cc'),
+        os.path.join('payload', 'sp', 'net', 'Socket.cc'),
+        #
         os.path.join('payload', 'sp', 'Patcher.c'),
         os.path.join('payload', 'sp', 'Payload.c'),
         os.path.join('payload', 'sp', 'ScopeLock.cc'),
@@ -797,6 +802,7 @@ code_in_files = {
         os.path.join('payload', 'sp', 'storage', 'UsbStorage.c'),
         #
         os.path.join('payload', 'sp', 'Tcp.c'),
+        os.path.join('payload', 'sp', 'Update.cc'),
         os.path.join('payload', 'sp', 'Yaz.c'),
         os.path.join('payload', 'sp', 'YAZDecoder.cc'),
         os.path.join('vendor', 'arith64.c'),

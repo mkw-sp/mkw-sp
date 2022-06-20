@@ -16,6 +16,13 @@ static void ResetDolphinSpeedLimit() {
     }
 }
 
+static void LaunchTitle(u64 titleID) {
+    if (!OSIsTitleInstalled(titleID)) {
+        return;
+    }
+    __OSLaunchTitle(titleID);
+}
+
 void SystemManager::shutdownSystem() {
     ResetDolphinSpeedLimit();
     VISetBlack(true);
@@ -40,7 +47,13 @@ void SystemManager::restart() {
     VIFlush();
     VIWaitForRetrace();
     VIWaitForRetrace();
-    OSRestart(OS_RESET_RESTART);
+    OSDisableScheduler();
+    __OSShutdownDevices(6);
+    OSEnableScheduler();
+    LaunchTitle(CHANNEL_TITLE_ID);
+    LaunchTitle(UINT64_C(0x000100014f484243) /* OHBC */);
+    LaunchTitle(UINT64_C(0x000100014c554c5a) /* LULZ */);
+    LaunchTitle(UINT64_C(0x0000000100000002));
 }
 
 } // namespace System

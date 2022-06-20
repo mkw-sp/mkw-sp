@@ -3,6 +3,8 @@
 namespace UI {
 
 enum class SectionId {
+    Restart = 0x5,
+
     TimeAttack = 0x1f,
 
     GhostReplay = 0x34,

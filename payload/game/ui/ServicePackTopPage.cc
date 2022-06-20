@@ -22,7 +22,7 @@ void ServicePackTopPage::onInit() {
     insertChild(1, &m_settingsButton, 0);
     insertChild(2, &m_tracksButton, 0);
     insertChild(3, &m_ghostsButton, 0);
-    insertChild(4, &m_updatesButton, 0);
+    insertChild(4, &m_updateButton, 0);
     insertChild(5, &m_channelButton, 0);
     insertChild(6, &m_aboutButton, 0);
     insertChild(7, &m_backButton, 0);
@@ -31,12 +31,13 @@ void ServicePackTopPage::onInit() {
     m_settingsButton.load("button", "ServicePackTopButton", "Settings", 0x1, false, false);
     m_tracksButton.load("button", "ServicePackTopButton", "Tracks", 0x1, false, false);
     m_ghostsButton.load("button", "ServicePackTopButton", "Ghosts", 0x1, false, false);
-    m_updatesButton.load("button", "ServicePackTopButton", "Updates", 0x1, false, false);
+    m_updateButton.load("button", "ServicePackTopButton", "Update", 0x1, false, false);
     m_channelButton.load("button", "ServicePackTopButton", "Channel", 0x1, false, false);
     m_aboutButton.load("button", "ServicePackTopButton", "About", 0x1, false, false);
     m_backButton.load("button", "Back", "ButtonBack", 0x1, false, true);
 
     m_inputManager.setHandler(MenuInputManager::InputId::Back, &m_onBack, false, false);
+    m_updateButton.setFrontHandler(&m_onUpdateButtonFront, false);
     m_channelButton.setFrontHandler(&m_onChannelButtonFront, false);
     m_backButton.setFrontHandler(&m_onBackButtonFront, false);
 
@@ -50,18 +51,24 @@ void ServicePackTopPage::onActivate() {
 }
 
 void ServicePackTopPage::onBack(u32 UNUSED(localPlayerId)) {
-    changeSection(SectionId::TitleFromOptions, Animation::Prev, 0.0f);
+    changeSection(SectionId::TitleFromOptions, Anim::Prev, 0.0f);
+}
+
+void ServicePackTopPage::onUpdateButtonFront(PushButton *button, u32 UNUSED(localPlayerId)) {
+    m_replacement = PageId::ChannelConfirm;
+    f32 delay = button->getDelay();
+    startReplace(Anim::Next, delay);
 }
 
 void ServicePackTopPage::onChannelButtonFront(PushButton *button, u32 UNUSED(localPlayerId)) {
     m_replacement = PageId::ChannelExplanation;
     f32 delay = button->getDelay();
-    startReplace(Animation::Next, delay);
+    startReplace(Anim::Next, delay);
 }
 
 void ServicePackTopPage::onBackButtonFront(PushButton *button, u32 UNUSED(localPlayerId)) {
     f32 delay = button->getDelay();
-    changeSection(SectionId::TitleFromOptions, Animation::Prev, delay);
+    changeSection(SectionId::TitleFromOptions, Anim::Prev, delay);
 }
 
 } // namespace UI

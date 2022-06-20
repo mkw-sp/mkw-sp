@@ -23,6 +23,7 @@ enum class PageId {
     OptionMessage = 0xc8,
     OptionConfirm = 0xc9,
     ChannelExplanation = 0xca,
+    ChannelConfirm = 0xcb,
 
     Max = 0xd3,
 };

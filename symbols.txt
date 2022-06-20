@@ -196,6 +196,7 @@
 0x801a7eac OSInitMutex
 0x801a7ee4 OSLockMutex
 0x801a7fc0 OSUnlockMutex
+0x801a8370 __OSShutdownDevices
 0x801a856c OSShutdownSystem
 0x801a8688 OSRestart
 0x801a8858 OSReturnToMenu
@@ -203,6 +204,7 @@
 0x801a98b0 OSGetCurrentThread
 0x801a98bc OSIsThreadTerminated
 0x801a98e8 OSDisableScheduler
+0x801a9924 OSEnableScheduler
 0x801a9e84 OSCreateThread
 0x801aa3ac OSJoinThread
 0x801aa4ec OSDetachThread
@@ -213,6 +215,8 @@
 0x801aad5c OSGetTime
 0x801AAD74 OSGetTick
 0x801aafa8 OSTicksToCalendarTime
+0x801ada00 __OSLaunchTitle
+0x801ae4a0 OSIsTitleInstalled
 0x801b1d0c SCGetLanguage
 0x801b254c SIBusy
 0x801b2568 SIIsChanBusy
@@ -282,6 +286,8 @@
 0x801ed99c SOHtoNs
 0x801ede88 SOGetHostID
 0x801edf00 SOGetHostByName
+0x801ee040 SOGetAddrInfo
+0x801ee324 SOFreeAddrInfo
 0x801ee388 SOSetSockOpt
 0x801ee48c SOGetInterfaceOpt
 
@@ -512,6 +518,7 @@
 0x805be600 UIControl_initSelf
 0x805be600 _ZN2UI9UIControl8initSelfEv
 0x805be610 _ZN2UI10PushButton5vf_28Ev
+0x805be66c ChannelConfirmPage_ct
 0x805be7f4 CtrlMenuBackButton_dt
 0x805bed68 Page_getTypeInfo
 0x805bed68 _ZN2UI4Page5vf_60Ev
@@ -607,7 +614,6 @@
 0x805fe474 _ZN2UI21OptionExplanationPage15setTitleMessageEm
 0x805fe480 _ZN2UI21OptionExplanationPage16setWindowMessageEm
 0x805feb60 _ZN2UI16OptionSelectPage15setTitleMessageEm
-0x805feb6c _ZN2UI16OptionSelectPage16setWindowMessageEm
 0x805feb78 _ZN2UI16OptionSelectPage17setButtonMessagesEmmm
 0x8060197c Page_ct
 0x8060197c _ZN2UI4PageC2Ev
@@ -617,6 +623,7 @@
 0x80601ad8 Page_onInit
 0x80601ad8 _ZN2UI4Page6onInitEv
 0x806022cc Page_update
+0x8060244c _ZN2UI4Page7setAnimENS0_4AnimE
 0x8060245c Page_initChildren
 0x8060245c _ZN2UI4Page12initChildrenEm
 0x8060246c Page_insertChild
@@ -624,14 +631,14 @@
 0x80602474 _ZN2UI4Page15setInputManagerEPNS_16MenuInputManagerE
 0x8060247c _ZN2UI4Page10skipInAnimEv
 0x80602488 Page_startReplace
-0x80602488 _ZN2UI4Page12startReplaceENS0_9AnimationEf
+0x80602488 _ZN2UI4Page12startReplaceENS0_4AnimEf
 0x806024a4 _ZN2UI4Page11skipOutAnimEv
 0x806024b0 Page_changeSection
-0x806024b0 _ZN2UI4Page13changeSectionENS_9SectionIdENS0_9AnimationEf
+0x806024b0 _ZN2UI4Page13changeSectionENS_9SectionIdENS0_4AnimEf
 0x80602530 Page_vf_20
 0x80602530 _ZN2UI4Page5vf_20Ev
 0x806025b0 Page_push
-0x806025b0 _ZN2UI4Page4pushENS_6PageIdENS0_9AnimationE
+0x806025b0 _ZN2UI4Page4pushENS_6PageIdENS0_4AnimE
 0x8060265c Page_animUpdate
 0x80602cf8 Page_playSfx
 0x80602cf8 _ZN2UI4Page7playSfxEml
@@ -685,7 +692,7 @@
 0x80633c84 GhostReplayRacePage_getControls
 0x80634e44 SectionManager_init
 0x80635a3c SectionManager_setNextSection
-0x80635a3c _ZN2UI14SectionManager14setNextSectionENS_9SectionIdENS_4Page9AnimationE
+0x80635a3c _ZN2UI14SectionManager14setNextSectionENS_9SectionIdENS_4Page4AnimE
 0x80635ac8 SectionManager_startChangeSection
 0x80635ac8 _ZN2UI14SectionManager18startChangeSectionElm
 0x80635ec4 SheetSelectControl_ct

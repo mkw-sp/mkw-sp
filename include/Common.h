@@ -121,10 +121,6 @@ typedef struct VersionInfo {
     u8 reserved[0x18];
     char name[0x20];
     char nickname[0x20];
-
-#ifdef __cplusplus
-    friend auto operator<=>(const VersionInfo &lhs, const VersionInfo &rhs);
-#endif
 } VersionInfo;
 
 extern VersionInfo versionInfo;

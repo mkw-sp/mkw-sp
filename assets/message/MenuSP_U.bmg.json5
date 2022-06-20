@@ -309,7 +309,7 @@
     },
     "10087": {
         "font": "regular",
-        "string": "Updates",
+        "string": "Update",
     },
     "10088": {
         "font": "regular",
@@ -349,15 +349,15 @@
     },
     "10097": {
         "font": "regular",
-        "string": "The MKW-SP channel was successfully installed!",
+        "string": "The MKW-SP channel was successfully\ninstalled!",
     },
     "10098": {
         "font": "regular",
-        "string": "The MKW-SP channel installation failed!",
+        "string": "The MKW-SP channel installation\nfailed!",
     },
     "10099": {
         "font": "regular",
-        "string": "The MKW-SP channel was successfully updated!",
+        "string": "The MKW-SP channel was successfully\nupdated!",
     },
     "10100": {
         "font": "regular",
@@ -366,5 +366,69 @@
     "10101": {
         "font": "regular",
         "string": "The MKW-SP channel can only be installed\nfrom release builds!",
+    },
+    "10102": {
+        "font": "regular",
+        "string": "Checking for updates...\n{arg message|0}",
+    },
+    "10103": {
+        "font": "regular",
+        "string": "A new version of MKW-SP is available!\n{arg string|0} → {arg string|1}",
+    },
+    "10104": {
+        "font": "regular",
+        "string": "The latest version of MKW-SP ({arg string|0})\nis already installed.",
+    },
+    "10105": {
+        "font": "regular",
+        "string": "The MKW-SP update check failed!",
+    },
+    "10106": {
+        "font": "regular",
+        "string": "Would you like to update MKW-SP to {arg string|0}?\nYou will need {arg string|1} MiB ({arg integer|0 0} blocks)\nof free space on the Wii System Memory.",
+    },
+    "10107": {
+        "font": "regular",
+        "string": "Updating MKW-SP...\n{arg message|0}",
+    },
+    "10108": {
+        "font": "regular",
+        "string": "MKW-SP was successfully updated\nfrom {arg string|0} to {arg string|1}.\nA restart is necessary for the update\nto be applied.",
+    },
+    "10109": {
+        "font": "regular",
+        "string": "The MKW-SP update failed!",
+    },
+    "10110": {
+        "font": "regular",
+        "string": "Would you like to restart MKW-SP now?",
+    },
+    "10111": {
+        "font": "regular",
+        "string": "MKW-SP can only be updated\nfrom release builds!",
+    },
+    "10112": {
+        "font": "regular",
+        "string": "Connecting to the server...",
+    },
+    "10113": {
+        "font": "regular",
+        "string": "Sending version information...",
+    },
+    "10114": {
+        "font": "regular",
+        "string": "Receiving version information...",
+    },
+    "10115": {
+        "font": "regular",
+        "string": "Downloading contents...\n{arg string|0} MiB of {arg string|1} MiB - {arg string|2} MiB/s",
+    },
+    "10116": {
+        "font": "regular",
+        "string": "Moving contents...",
+    },
+    "10117": {
+        "font": "regular",
+        "string": "",
     },
 }

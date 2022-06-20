@@ -12,21 +12,7 @@ extern "C" {
 }
 #include <common/VI.hh>
 
-#include <compare>
 #include <cstring>
-
-auto operator<=>(const VersionInfo& lhs, const VersionInfo &rhs) {
-    if (auto cmp = lhs.major <=> rhs.major; cmp != 0) {
-        return cmp;
-    }
-    if (auto cmp = lhs.minor <=> rhs.minor; cmp != 0) {
-        return cmp;
-    }
-    if (auto cmp = lhs.patch <=> rhs.patch; cmp != 0) {
-        return cmp;
-    }
-    return std::strong_ordering::equal;
-}
 
 namespace Stub {
 
