@@ -22,7 +22,9 @@ extern void (*payload_ctors_start)(void);
 extern void (*payload_ctors_end)(void);
 
 void Payload_init(void) {
+        #ifndef GDB_COMPATIBLE
     OSDisableCodeExecOnMEM1Hi16MB();
+            #endif
     Memory_ProtectRangeModule(OS_PROTECT_CHANNEL_0, Payload_getTextSectionStart(), Payload_getRodataSectionEnd(), OS_PROTECT_PERMISSION_READ);
 
 #ifdef GDB_COMPATIBLE
@@ -79,7 +81,7 @@ __attribute__((no_stack_protector)) __attribute__((section("first"))) void Paylo
     Stack_InitCanary();
     Stack_RelocateMainThreadStackToMEM1End();
 #ifndef GDB_COMPATIBLE
-    Stack_DoLinkRegisterPatches(Dol_getTextSectionStart(), Dol_getTextSectionEnd());
+    //Stack_DoLinkRegisterPatches(Dol_getTextSectionStart(), Dol_getTextSectionEnd());
 #endif
     Patcher_patch(PATCHER_BINARY_DOL);
 }

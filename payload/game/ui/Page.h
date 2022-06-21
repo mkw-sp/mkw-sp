@@ -14,7 +14,7 @@ enum {
     PAGE_STATE_5
 };
 
-enum {
+typedef enum {
     PAGE_ID_NONE = -0x1,
     
     PAGE_ID_GP_PAUSE_MENU = 0x17,
@@ -54,7 +54,7 @@ enum {
     // }
 
     PAGE_ID_MAX = 0xd3,
-};
+} PageId;
 
 enum {
     PAGE_ANIMATION_NEXT = 0x0,

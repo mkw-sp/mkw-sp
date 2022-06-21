@@ -368,6 +368,8 @@
 0x80526020 Mii_80526020
 0x8052a098 MultiDvdArchive_create
 0x8052a1c8 CourseMultiDvdArchive_ct
+0x80529e00 SomeMissionModeThing1
+0x80842fb8 SomeMissionModeThing2
 0x8052a538 MultiDvdArchive_ct
 0x8052a648 MultiDvdArchive_init
 0x8052a6dc MultiDvdArchive_dt
@@ -903,6 +905,7 @@
 0x80859a2c RaceMenuPage_onActivate
 0x8085a0f4 RaceMenuPage_onButtonFront
 0x8085bd58 RaceMenuPage_getTypeInfo
+0x8085e3b4 Page_getReplacement
 0x80860acc getCharacterPane
 0x80863a9c DriverSound_init
 

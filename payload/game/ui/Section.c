@@ -7,6 +7,7 @@
 #include "ServicePackTopPage.h"
 #include "TimeAttackGhostListPage.h"
 #include "TimeAttackRulesPage.h"
+#include <game/missionrun/MissionRun.h>
 
 #include <revolution.h>
 
@@ -49,6 +50,8 @@ PATCH_B(ChannelExplanationPage_ct, ChannelPage_ct);
 
 // The channel section is repurposed into the Service Pack section
 #define MORE_CHANNEL_PAGES
+
+#define MISSION_MODE
 
 #ifdef ALWAYS_SHOW_QUIT_CONFIRM_PAGE
 #define EXTRA_QUIT_CONFIRM(section) Section_addPage(section, PAGE_ID_CONFIRM_QUIT)
@@ -298,6 +301,10 @@ void my_Section_addPages(Section *section, u32 sectionId) {
         Section_addPage(section, 44);
         Section_addPage(section, 58);
         LICENSE_SETTINGS(section, PAGE_ID_MR_PAUSE_MENU);
+
+        // Mission Mode
+        Section_addPage(section, 0x35);
+        Section_addPage(section, 0x2A); // Bean's code loads 2A instead, which is Battle 3P menu... I assume that was a mistake and he meant this one
         break;
     case SECTION_ID_TOURNAMENT_REPLAY:
         Section_addPage(section, 22);
@@ -467,6 +474,9 @@ void my_Section_addPages(Section *section, u32 sectionId) {
         Section_addPage(section, 121);
         Section_addPage(section, 127);
         Section_addPage(section, 167);
+
+        // Mission Mode
+        missionModeFunc1();
         break;
     case 75:
         Section_addPage(section, 75);
@@ -1366,6 +1376,9 @@ void my_Section_addActivePages(Section *section, u32 sectionId) {
 #ifdef CHANGE_GHOST_DATA_SUPPORT
         Section_addActivePage(section, 112);
 #endif
+        // Mission Mode
+        Section_addActivePage(section, 127);
+        Section_addActivePage(section, 122);
         break;
     case 81:
         Section_addActivePage(section, 92);

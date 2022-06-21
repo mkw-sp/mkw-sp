@@ -1,6 +1,7 @@
 #include "Page.h"
 
 #include "../system/SaveManager.h"
+#include "./SectionManager.h"
 
 static void my_Page_update(Page *page) {
     switch (page->state) {
@@ -24,4 +25,12 @@ static void my_Page_update(Page *page) {
         break;
     }
 }
+
+static PageId my_Page_getReplacement(){
+    if (s_sectionManager->currentSection->id == PAGE_ID_CONFIRM_QUIT)
+        return 0x25;
+    return 0x26;
+}
+
 PATCH_B(Page_update, my_Page_update);
+PATCH_B(Page_getReplacement, my_Page_getReplacement);

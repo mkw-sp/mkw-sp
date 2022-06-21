@@ -92,7 +92,7 @@ void my_BootStrapScene_calc(BootStrapScene *this) {
     }
 
 #ifndef GDB_COMPATIBLE
-    Stack_DoLinkRegisterPatches(Rel_getTextSectionStart(), Rel_getTextSectionEnd());
+    //Stack_DoLinkRegisterPatches(Rel_getTextSectionStart(), Rel_getTextSectionEnd());
 #endif
     Patcher_patch(PATCHER_BINARY_REL);
     Memory_ProtectRangeModule(OS_PROTECT_CHANNEL_3, Rel_getTextSectionStart(), Rel_getRodataSectionEnd(), OS_PROTECT_PERMISSION_READ);
