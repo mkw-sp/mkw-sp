@@ -8,7 +8,7 @@ static void *AllocSlab(u8 *slabs, int alloc_size, int num_slabs) {
         if (slab[0] == 0) {
             // OSReport("Slab alloc %i\n", i);
             slab[0] = 1;
-            return slab + 4;
+            return slab + 32;
         }
     }
 
@@ -20,9 +20,9 @@ static void FreeSlab(u8 *slabs, int alloc_size, int num_slabs, u8 *addr) {
     assert(addr <= slabs + SLAB_SIZE(alloc_size, num_slabs) &&
             "Address is above slab structure");
     assert(addr >= slabs && "Address is below slab structure");
-    assert(((addr - slabs - 4) % (alloc_size + 4)) == 0 && "Misaligned free");
+    assert(((addr - slabs - 32) % (alloc_size + 32)) == 0 && "Misaligned free");
 
-    addr[-4] = 0;
+    addr[-32] = 0;
 }
 #endif
 
@@ -59,7 +59,7 @@ bool TryFreeFromSlabs(void *ptr, int size) {
     assert(!"Invalid allocation");
 #else
     (void)size;
-    ((u8 *)ptr)[-4] = 0;
+    ((u8 *)ptr)[-32] = 0;
 #endif
 
     return true;

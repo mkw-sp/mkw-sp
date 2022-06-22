@@ -280,10 +280,12 @@
 0x801ed6d0 SOPoll
 0x801ed82c SOInetAtoN
 0x801ed938 SOInetNtoA
+0x801ed9a4 RecvFrom
 0x801ed98c SONtoHl
 0x801ed990 SONtoHs
 0x801ed998 SOHtoNl
 0x801ed99c SOHtoNs
+0x801edc5c SendTo
 0x801ede88 SOGetHostID
 0x801edf00 SOGetHostByName
 0x801ee040 SOGetAddrInfo

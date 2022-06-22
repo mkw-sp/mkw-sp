@@ -13,7 +13,7 @@ static OSThread thread;
 static u8 stack[0x1000 /* 4 KiB */];
 static int res = INT_MIN;
 
-static void *Alloc(u32 UNUSED(id), s32 size) {
+void *Alloc(s32 size) {
     ScopeLock<Mutex> lock(mutex);
 
     void *slab_res = TryAllocFromSlabs(size);
@@ -25,7 +25,11 @@ static void *Alloc(u32 UNUSED(id), s32 size) {
     return nullptr;
 }
 
-static void Free(u32 UNUSED(id), void *ptr, s32 size) {
+static void *Alloc(u32 UNUSED(id), s32 size) {
+    return Alloc(size);
+}
+
+void Free(void *ptr, s32 size) {
     ScopeLock<Mutex> lock(mutex);
 
     // TODO: In theory, we do not need to lock a mutex to free from the slab allocator (?)
@@ -34,6 +38,10 @@ static void Free(u32 UNUSED(id), void *ptr, s32 size) {
     }
 
     assert(!"Bad alloc");
+}
+
+static void Free(u32 UNUSED(id), void *ptr, s32 size) {
+    return Free(ptr, size);
 }
 
 static void *Handle(void *UNUSED(arg)) {
@@ -49,7 +57,7 @@ static void *Handle(void *UNUSED(arg)) {
 }
 
 static void Init() {
-    sSlabs = reinterpret_cast<NetSlabs *>(OSAllocFromMEM2ArenaLo(sizeof(NetSlabs), 4));
+    sSlabs = reinterpret_cast<NetSlabs *>(OSAllocFromMEM2ArenaLo(sizeof(NetSlabs), 0x32));
     assert(sSlabs && "Failed to create slab allocator");
     memset(sSlabs, 0, sizeof(*sSlabs));
 

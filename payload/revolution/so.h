@@ -22,6 +22,10 @@ int SOWrite(int s, const void* buf, int len);
 #define SO_SOCK_STREAM 1
 #define SO_SOCK_DGRAM 2
 
+#define SO_SOL_SOCKET 0xffff
+
+#define SO_SO_RCVBUF 0x00001002
+
 typedef struct SOInAddr {
     u32 addr;
 } SOInAddr;
@@ -56,6 +60,8 @@ int SOGetPeerName(int s, void *sockAddr);
 int SORecvFrom(int s, void *buf, int len, int flags, void *sockFrom);
 int SORecv(int s, void *buf, int len, int flags);
 int SORead(int s, void *buf, int len);
+
+int SOSetSockOpt(int s, int level, int optname, const void *optval, int optlen);
 
 int SOShutdown(int s, int how);
 

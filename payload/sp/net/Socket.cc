@@ -1,5 +1,10 @@
 #include "Socket.hh"
 
+extern "C" {
+#include "sp/Host.h"
+}
+#include "sp/net/Net.hh"
+
 #include <cstdio>
 #include <cstring>
 
@@ -28,6 +33,16 @@ Socket::Socket(const char *hostname, u16 port, const u8 serverPK[hydro_kx_PUBLIC
             SP_LOG("Failed to create socket, returned %d", m_handle);
             continue;
         }
+        if (HostPlatform_IsConsole(Host_GetPlatform())) {
+            u32 size = 0x8000;
+            result = SOSetSockOpt(m_handle, SO_SOL_SOCKET, SO_SO_RCVBUF, &size, sizeof(size));
+            if (result != 0) {
+                SP_LOG("Failed to change the buffer size, returned %d", result);
+                SOClose(m_handle);
+                m_handle = -1;
+                continue;
+            }
+        }
         result = SOConnect(m_handle, address);
         if (result != 0) {
             SP_LOG("Failed to connect, returned %d", result);
@@ -42,15 +57,16 @@ Socket::Socket(const char *hostname, u16 port, const u8 serverPK[hydro_kx_PUBLIC
         return;
     }
 
-    u8 tmp[hydro_kx_N_PACKET1BYTES];
-    if (hydro_kx_n_1(&m_keypair, tmp, nullptr, serverPK) != 0) {
+    auto tmp = Alloc<u8>(hydro_kx_N_PACKET1BYTES);
+    if (hydro_kx_n_1(&m_keypair, tmp.get(), nullptr, serverPK) != 0) {
         SP_LOG("Failed to generate key exchange packet");
         SOClose(m_handle);
         m_handle = -1;
         return;
     }
-    if (SOSend(m_handle, tmp, sizeof(tmp), 0) != sizeof(tmp)) {
-        SP_LOG("Failed to send key exchange packet");
+    result = SOSend(m_handle, tmp.get(), GetSize(tmp), 0);
+    if (result != static_cast<s32>(GetSize(tmp))) {
+        SP_LOG("Failed to send key exchange packet, returned %d", result);
         SOClose(m_handle);
         m_handle = -1;
         return;
@@ -72,9 +88,9 @@ bool Socket::ok() const {
 }
 
 bool Socket::read(u8 *message, u16 size) {
-    u8 tmp[hydro_secretbox_HEADERBYTES + size];
-    for (u16 offset = 0; offset < sizeof(tmp);) {
-        s32 result = SORecv(m_handle, tmp + offset, sizeof(tmp) - offset, 0);
+    auto tmp = Alloc<u8>(hydro_secretbox_HEADERBYTES + size);
+    for (u16 offset = 0; offset < GetSize(tmp);) {
+        s32 result = SORecv(m_handle, tmp.get() + offset, GetSize(tmp) - offset, 0);
         if (result <= 0) {
             SP_LOG("Failed to receive message, returned %d", result);
             return false;
@@ -82,7 +98,8 @@ bool Socket::read(u8 *message, u16 size) {
         offset += result;
     }
     const u8 *key = m_keypair.rx;
-    if (hydro_secretbox_decrypt(message, tmp, sizeof(tmp), m_messageID++, m_context, key) != 0) {
+    if (hydro_secretbox_decrypt(message, tmp.get(), GetSize(tmp), m_messageID++, m_context, key)
+            != 0) {
         SP_LOG("Failed to decrypt message");
         return false;
     }
@@ -91,13 +108,13 @@ bool Socket::read(u8 *message, u16 size) {
 
 bool Socket::write(const u8 *message, u16 size) {
     const u8 *key = m_keypair.tx;
-    u8 tmp[hydro_secretbox_HEADERBYTES + size];
-    if (hydro_secretbox_encrypt(tmp, message, size, m_messageID++, m_context, key) != 0) {
+    auto tmp = Alloc<u8>(hydro_secretbox_HEADERBYTES + size);
+    if (hydro_secretbox_encrypt(tmp.get(), message, size, m_messageID++, m_context, key) != 0) {
         SP_LOG("Failed to encrypt message");
         return false;
     }
-    s32 result = SOSend(m_handle, tmp, sizeof(tmp), 0);
-    if (result != static_cast<s32>(sizeof(tmp))) {
+    s32 result = SOSend(m_handle, tmp.get(), GetSize(tmp), 0);
+    if (result != static_cast<s32>(GetSize(tmp))) {
         SP_LOG("Failed to send message, returned %d", result);
         return false;
     }

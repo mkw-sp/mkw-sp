@@ -756,6 +756,7 @@ code_in_files = {
         os.path.join('payload', 'revolution', 'os', 'OSMemory.c'),
         os.path.join('payload', 'revolution', 'os', 'OSThread.S'),
         os.path.join('payload', 'revolution', 'os', 'OSThread.c'),
+        os.path.join('payload', 'revolution', 'so', 'SOBasic.S'),
         os.path.join('payload', 'sp', 'Channel.cc'),
         os.path.join('payload', 'sp', 'Commands.c'),
         os.path.join('payload', 'sp', 'DVDDecompLoader.cc'),

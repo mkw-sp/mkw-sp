@@ -10,11 +10,11 @@
 // Debug checks
 #define SLAB_DEBUG
 
-#define SLAB_SIZE(alloc_size, num) ((alloc_size + 4) * num)
-#define NUM_SLABS(arr, alloc_size) (sizeof(arr) / (alloc_size + 4))
+#define SLAB_SIZE(alloc_size, num) ((alloc_size + 32) * num)
+#define NUM_SLABS(arr, alloc_size) (sizeof(arr) / (alloc_size + 32))
 
 // The SO library does a bunch of small allocations
-#define NET_SLABS_LIST(func) func(32, 32) func(64, 32) func(1024, 16) func(2048, 8) func(5000, 4)
+#define NET_SLABS_LIST(func) func(32, 32) func(64, 32) func(1024, 16) func(2048, 8) func(5120, 4)
 
 typedef struct {
 #define __NetSlabMember(granularity, count) \
