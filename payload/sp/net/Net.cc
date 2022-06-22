@@ -57,7 +57,7 @@ static void *Handle(void *UNUSED(arg)) {
 }
 
 static void Init() {
-    sSlabs = reinterpret_cast<NetSlabs *>(OSAllocFromMEM2ArenaLo(sizeof(NetSlabs), 0x32));
+    sSlabs = reinterpret_cast<NetSlabs *>(OSAllocFromMEM2ArenaLo(sizeof(NetSlabs), 32));
     assert(sSlabs && "Failed to create slab allocator");
     memset(sSlabs, 0, sizeof(*sSlabs));
 
