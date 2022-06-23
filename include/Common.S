@@ -186,3 +186,5 @@
 #define kSetting_MiiAvatar SETTING_LICENSE + 0 
 #define kSetting_MiiClient SETTING_LICENSE + 1
 #define kSetting_LoadingScreenColor SETTING_LICENSE + 2
+
+#define ChangeCourseData 0x4d

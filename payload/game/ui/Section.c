@@ -1372,7 +1372,7 @@ void my_Section_addActivePages(Section *section, u32 sectionId) {
         Section_addActivePage(section, 94);
         Section_addActivePage(section, 167);
         Section_addActivePage(section, 127);
-
+        OSReport("HERE IT IS: %i", section->id);
 #ifdef CHANGE_GHOST_DATA_SUPPORT
         Section_addActivePage(section, 112);
 #endif

@@ -6,7 +6,7 @@ PATCH_BL_START(CupSelectPage_onInit, 0x84)
     cmpwi r0, 0x4a // Original instruction
     beqlr
 
-    cmpwi r0, 0x4d
+    cmpwi r0, ChangeCourseData
     b CupSelectPage_onInit + 0x88
 PATCH_BL_END(CupSelectPage_onInit, 0x84)
 
