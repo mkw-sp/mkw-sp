@@ -59,7 +59,7 @@ static bool Sync(bool update) {
         message.gameName     = *(u32*)OSGetAppGamename();
         message.hostPlatform = Host_GetPlatform();
 
-        assert(pb_encode_ex(&stream, UpdateMessage_fields, &message, PB_ENCODE_DELIMITED));
+        assert(pb_encode(&stream, UpdateMessage_fields, &message));
 
         if (!socket.write(buffer, stream.bytes_written)) {
              return false;

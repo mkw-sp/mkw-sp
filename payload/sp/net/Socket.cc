@@ -5,6 +5,8 @@ extern "C" {
 }
 #include "sp/net/Net.hh"
 
+#include <common/Bytes.hh>
+
 #include <cstdio>
 #include <cstring>
 
@@ -108,8 +110,11 @@ bool Socket::read(u8 *message, u16 size) {
 
 bool Socket::write(const u8 *message, u16 size) {
     const u8 *key = m_keypair.tx;
-    auto tmp = Alloc<u8>(hydro_secretbox_HEADERBYTES + size);
-    if (hydro_secretbox_encrypt(tmp.get(), message, size, m_messageID++, m_context, key) != 0) {
+    auto tmp = Alloc<u8>(sizeof(u16) + hydro_secretbox_HEADERBYTES + size);
+    assert(GetSize(tmp) - 2 <= UINT16_MAX);
+    Bytes::Write<u16>(tmp.get(), 0, GetSize(tmp) - 2);
+    if (hydro_secretbox_encrypt(tmp.get() + sizeof(u16), message, size, m_messageID++, m_context,
+            key) != 0) {
         SP_LOG("Failed to encrypt message");
         return false;
     }
