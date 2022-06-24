@@ -48,20 +48,20 @@ static bool Sync(bool update) {
 
     status = Status::SendInfo;
     {
-        u8 update_message_buffer[UpdateMessage_size];
-        pb_ostream_t update_message_output_stream = pb_ostream_from_buffer(update_message_buffer, sizeof(update_message_buffer));
+        u8 buffer[UpdateMessage_size];
+        pb_ostream_t stream = pb_ostream_from_buffer(buffer, sizeof(buffer));
 
-        UpdateMessage update_message;
-        update_message.wants_update  = update;
-        update_message.version_major = versionInfo.major;
-        update_message.version_minor = versionInfo.minor;
-        update_message.version_patch = versionInfo.patch;
-        update_message.game_name     = *(u32*)OSGetAppGamename();
-        update_message.host_platform = Host_GetPlatform();
+        UpdateMessage message;
+        message.wantsUpdate  = update;
+        message.versionMajor = versionInfo.major;
+        message.versionMinor = versionInfo.minor;
+        message.versionPatch = versionInfo.patch;
+        message.gameName     = *(u32*)OSGetAppGamename();
+        message.hostPlatform = Host_GetPlatform();
 
-        assert(pb_encode_ex(&update_message_output_stream, UpdateMessage_fields, &update_message, PB_ENCODE_DELIMITED));
+        assert(pb_encode_ex(&stream, UpdateMessage_fields, &message, PB_ENCODE_DELIMITED));
 
-        if (!socket.write(update_message_buffer, update_message_output_stream.bytes_written)) {
+        if (!socket.write(buffer, stream.bytes_written)) {
              return false;
         }
     }

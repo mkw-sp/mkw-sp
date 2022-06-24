@@ -1,11 +1,10 @@
 syntax = "proto2";
 
-message UpdateMessage
-{
-    required bool   wants_update  = 1;
-    required uint32 version_major = 2;
-    required uint32 version_minor = 3;
-    required uint32 version_patch = 4;
-    required uint32 game_name     = 5;
-    required uint32 host_platform = 6;
+message UpdateMessage {
+    required bool   wantsUpdate  = 1;
+    required uint32 versionMajor = 2;
+    required uint32 versionMinor = 3;
+    required uint32 versionPatch = 4;
+    required uint32 gameName     = 5;
+    required uint32 hostPlatform = 6;
 }
