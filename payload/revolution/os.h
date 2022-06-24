@@ -81,6 +81,8 @@ void OSTicksToCalendarTime(OSTime ticks, OSCalendarTime *td);
 void OSReport(const char *msg, ...);
 void OSFatal(GXColor fg, GXColor bg, const char *msg);
 
+const char* OSGetAppGamename(void);
+
 #include "revolution/os/OSCache.h"
 #include "revolution/os/OSMemory.h"
 #include "revolution/os/OSMessage.h"

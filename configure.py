@@ -779,6 +779,8 @@ code_in_files = {
         os.path.join('payload', 'sp', 'Patcher.c'),
         os.path.join('payload', 'sp', 'Payload.c'),
         os.path.join('payload', 'sp', 'ScopeLock.cc'),
+        # Protobuf
+        os.path.join('payload', 'sp', 'protobuf', 'update.pb.c'),
         # Security module
         os.path.join('payload', 'sp', 'security', 'Memory.c'),
         os.path.join('payload', 'sp', 'security', 'Stack.S'),

@@ -165,6 +165,7 @@
 0x8019e020 nandGenerateAbsPath
 0x8019e40c NANDGetHomeDir
 0x8019fc68 OSInit
+0x801A0514 OSGetAppGamename
 0x801A0870 OSSetAlarm
 0x801a10a4 OSGetMEM1ArenaHi
 0x801a10bc OSGetMEM1ArenaLo
