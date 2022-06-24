@@ -19,3 +19,7 @@ PATCH_REPLACE_START(CharacterSelectPage_onInit, 0xa4)
     // Load the time trial rules page when coming from a race
     li r0, 0x6a
 PATCH_REPLACE_END(CharacterSelectPage_onInit, 0xa4)
+
+PATCH_REPLACE_START(CharacterSelectPage_8083e928, 0x27C)
+    cmpwi r0, 0x4f
+PATCH_REPLACE_END(CharacterSelectPage_8083e928, 0x27C)

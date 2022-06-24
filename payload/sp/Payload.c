@@ -23,9 +23,9 @@ extern void (*payload_ctors_end)(void);
 
 void Payload_init(void) {
         #ifndef GDB_COMPATIBLE
-    OSDisableCodeExecOnMEM1Hi16MB();
+    //OSDisableCodeExecOnMEM1Hi16MB();
             #endif
-    Memory_ProtectRangeModule(OS_PROTECT_CHANNEL_0, Payload_getTextSectionStart(), Payload_getRodataSectionEnd(), OS_PROTECT_PERMISSION_READ);
+    //Memory_ProtectRangeModule(OS_PROTECT_CHANNEL_0, Payload_getTextSectionStart(), Payload_getRodataSectionEnd(), OS_PROTECT_PERMISSION_READ);
 
 #ifdef GDB_COMPATIBLE
     OSSetMEM1ArenaLo((void*)0x809C4FA0);

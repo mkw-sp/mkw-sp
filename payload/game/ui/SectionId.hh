@@ -14,7 +14,7 @@ enum class SectionId {
 
     ChangeCourse = 0x4a,
 
-    ChangeGhostData = 0x4d,
+    ChangeGhostData = 0x4e,
 
     Channel = 0x7a,
 
