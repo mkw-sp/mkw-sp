@@ -396,12 +396,20 @@ for target in asset_out_files:
     n.newline()
 
 devkitppc = os.environ.get("DEVKITPPC")
+n.variable('nanopb', os.path.join('vendor', 'nanopb', 'generator', 'nanopb_generator.py'))
 n.variable('compiler', os.path.join(devkitppc, 'bin', 'powerpc-eabi-gcc'))
 n.variable('postprocess', 'postprocess.py')
 n.variable('port', 'port.py')
 n.variable('lzmac', 'lzmac.py')
 n.variable('version', 'version.py')
 n.variable('elf2dol', 'elf2dol.py')
+n.newline()
+
+n.rule(
+    'nanopb',
+    command = f'{sys.executable} $nanopb $in -L "#include <vendor/nanopb/%s>" -D ' + os.path.join('build'),
+    description = 'NANOPB $out',
+)
 n.newline()
 
 common_Sflags = [
@@ -433,6 +441,7 @@ common_cflags = [
     '-isystem', 'include',
     '-isystem', 'payload',
     '-isystem', 'vendor',
+    '-isystem', 'build',
     '-msdata=none',
     '-Wall',
     '-Werror=implicit-function-declaration',
@@ -453,6 +462,7 @@ common_ccflags = [
     '-isystem', 'include',
     '-isystem', 'payload',
     '-isystem', 'vendor',
+    '-isystem', 'build',
     '-msdata=none',
     '-std=c++20',
     '-Wall',
@@ -568,8 +578,31 @@ n.rule(
 )
 n.newline()
 
+protobuf_in_files = [
+    'Update.proto',
+]
+protobuf_h_files = []
+protobuf_c_files = []
+for in_file in protobuf_in_files:
+    in_file = os.path.join('protobuf', in_file)
+    base, _ = os.path.splitext(in_file)
+    h_file = os.path.join('$builddir', base + '.pb.h')
+    c_file = os.path.join('$builddir', base + '.pb.c')
+    protobuf_h_files += [h_file]
+    protobuf_c_files += [c_file]
+    n.build(
+        [
+            h_file,
+            c_file,
+        ],
+        'nanopb',
+        in_file,
+    )
+n.newline()
+
 code_in_files = {
     'payload': [
+        *protobuf_c_files,
         os.path.join('common', 'Console.cc'),
         os.path.join('common', 'DCache.cc'),
         os.path.join('common', 'Font.c'),
@@ -789,8 +822,6 @@ code_in_files = {
         os.path.join('payload', 'sp', 'Payload.cc'),
         os.path.join('payload', 'sp', 'Rel.cc'),
         os.path.join('payload', 'sp', 'ScopeLock.cc'),
-        # Protobuf
-        os.path.join('payload', 'sp', 'protobuf', 'update.pb.c'),
         # Security module
         os.path.join('payload', 'sp', 'security', 'Memory.c'),
         os.path.join('payload', 'sp', 'security', 'Stack.S'),
@@ -907,6 +938,7 @@ for target in code_in_files:
                         *profile_cflags[profile],
                     ]),
                 },
+                implicit = protobuf_h_files if target == 'payload' else [],
             )
         n.newline()
 

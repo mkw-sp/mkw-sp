@@ -1,11 +1,8 @@
 #include "Update.hh"
 
-#include "protobuf/update.pb.h"
-
 extern "C" {
 #include "sp/Host.h"
 }
-
 #include "sp/net/Net.hh"
 #include "sp/net/Socket.hh"
 
@@ -13,7 +10,7 @@ extern "C" {
 extern "C" {
 #include <common/Paths.h>
 }
-
+#include <protobuf/Update.pb.h>
 #include <vendor/nanopb/pb_encode.h>
 
 #include <algorithm>
