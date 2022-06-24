@@ -24,6 +24,7 @@ void missionModeFunc1() {
 
     randomPlaceWith0 = 0;
 
+    // So for some reason loading these pages crashes when gdb_compatible is on
     Section_addPages(currentSection, 148);
 }
 

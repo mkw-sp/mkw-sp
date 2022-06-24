@@ -187,4 +187,4 @@
 #define kSetting_MiiClient SETTING_LICENSE + 1
 #define kSetting_LoadingScreenColor SETTING_LICENSE + 2
 
-#define ChangeGhostData 0x4d
+#define ChangeGhostData 0x4e

@@ -478,6 +478,35 @@ void my_Section_addPages(Section *section, u32 sectionId) {
         // Mission Mode
         missionModeFunc1();
         break;
+    case 78:
+        Section_addPage(section, 75);
+        Section_addPage(section, 77);
+        Section_addPage(section, 79);
+        Section_addPage(section, 81);
+        Section_addPage(section, 82);
+        Section_addPage(section, 83);
+        Section_addPage(section, 92);
+        Section_addPage(section, 94);
+        Section_addPage(section, 105);
+        Section_addPage(section, 106);
+        Section_addPage(section, 107);
+        Section_addPage(section, 108);
+        Section_addPage(section, 109);
+        Section_addPage(section, 110);
+        Section_addPage(section, 111);
+        Section_addPage(section, 112);
+        Section_addPage(section, 113);
+        Section_addPage(section, 114);
+        Section_addPage(section, 115);
+        Section_addPage(section, 116);
+        Section_addPage(section, 117);
+        Section_addPage(section, 118);
+        Section_addPage(section, 119);
+        Section_addPage(section, 120);
+        Section_addPage(section, 121);
+        Section_addPage(section, 127);
+        Section_addPage(section, 167);
+        break;
     case 75:
         Section_addPage(section, 75);
         Section_addPage(section, 78);
@@ -504,7 +533,7 @@ void my_Section_addPages(Section *section, u32 sectionId) {
         Section_addPage(section, 127);
         Section_addPage(section, 167);
         break;
-    case 78:
+    // case 78:
     case 79:
     case 80:
         Section_addPage(section, 75);
@@ -1343,7 +1372,7 @@ void my_Section_addActivePages(Section *section, u32 sectionId) {
         Section_addActivePage(section, 105);
         break;
     case 73:
-    case 78:
+    // case 78:
     case 79:
     case 80:
         Section_addActivePage(section, 92);
@@ -1372,14 +1401,22 @@ void my_Section_addActivePages(Section *section, u32 sectionId) {
         Section_addActivePage(section, 94);
         Section_addActivePage(section, 167);
         Section_addActivePage(section, 127);
-        OSReport("HERE IT IS: %i", section->id);
-#ifdef CHANGE_GHOST_DATA_SUPPORT
-        Section_addActivePage(section, 112);
-#endif
+// #ifdef CHANGE_GHOST_DATA_SUPPORT
+//         Section_addActivePage(section, 112);
+// #endif
         // Mission Mode
         Section_addActivePage(section, 127);
         Section_addActivePage(section, 122);
         break;
+    case 78:
+        Section_addActivePage(section, 92);
+        Section_addActivePage(section, 94);
+        Section_addActivePage(section, 167);
+        Section_addActivePage(section, 127);
+#ifdef CHANGE_GHOST_DATA_SUPPORT
+        Section_addActivePage(section, 112);
+#endif
+    break;
     case 81:
         Section_addActivePage(section, 92);
         Section_addActivePage(section, 94);
