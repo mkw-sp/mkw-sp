@@ -1,5 +1,11 @@
 #include "Update.hh"
 
+#include "protobuf/update.pb.h"
+
+extern "C" {
+#include "sp/Host.h"
+}
+
 #include "sp/net/Net.hh"
 #include "sp/net/Socket.hh"
 
@@ -7,6 +13,8 @@
 extern "C" {
 #include <common/Paths.h>
 }
+
+#include <vendor/nanopb/pb_encode.h>
 
 #include <algorithm>
 #include <cstring>
@@ -43,13 +51,21 @@ static bool Sync(bool update) {
 
     status = Status::SendInfo;
     {
-        u8 message[8] = {};
-        Bytes::Write<u16>(message, 0, update);
-        Bytes::Write<u16>(message, 2, versionInfo.major);
-        Bytes::Write<u16>(message, 4, versionInfo.minor);
-        Bytes::Write<u16>(message, 6, versionInfo.patch);
-        if (!socket.write(message, sizeof(message))) {
-            return false;
+        u8 update_message_buffer[UpdateMessage_size];
+        pb_ostream_t update_message_output_stream = pb_ostream_from_buffer(update_message_buffer, sizeof(update_message_buffer));
+
+        UpdateMessage update_message;
+        update_message.wants_update  = update;
+        update_message.version_major = versionInfo.major;
+        update_message.version_minor = versionInfo.minor;
+        update_message.version_patch = versionInfo.patch;
+        update_message.game_name     = *(u32*)OSGetAppGamename();
+        update_message.host_platform = Host_GetPlatform();
+
+        assert(pb_encode_ex(&update_message_output_stream, UpdateMessage_fields, &update_message, PB_ENCODE_DELIMITED));
+
+        if (!socket.write(update_message_buffer, update_message_output_stream.bytes_written)) {
+             return false;
         }
     }
 
