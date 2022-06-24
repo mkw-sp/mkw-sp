@@ -5,12 +5,15 @@ use std::io::{self, ErrorKind, Read, Write};
 use argon2::{Argon2, Params};
 use chrono::Utc;
 use libhydrogen::{kx, random, secretbox, sign};
+use prost::Message;
 use tokio::fs::OpenOptions;
 use tokio::io::{AsyncReadExt, AsyncWriteExt};
 use tokio::net::{TcpListener, TcpStream};
 use tokio::runtime::Runtime;
 use tokio::sync::mpsc::{self, Sender};
 use zeroize::Zeroizing;
+
+include!(concat!(env!("OUT_DIR"), "/_.rs"));
 
 fn main() -> Result<(), Box<dyn std::error::Error>> {
     eprint!("Password: ");
@@ -86,20 +89,11 @@ async fn handle(
     let mut message_id = 0;
     let context = (*b"update  ").into();
 
-    let mut message = [0u8; 8];
-    read(&mut stream, &mut message_id, &context, &keypair, &mut message).await?;
-    let update = read_u16(&message, 0) != 0;
-    let major = read_u16(&message, 2);
-    let minor = read_u16(&message, 4);
-    let patch = read_u16(&message, 6);
-
-    let source = Version {
-        major,
-        minor,
-        patch,
-    };
+    let message: UpdateMessage = read(&mut stream, &mut message_id, &context, &keypair).await?;
+    let wants_update = message.wants_update;
+    let source = Version::parse(&message)?;
     let target = source.find_target();
-    if !update && target.is_some() {
+    if !wants_update && target.is_some() {
         tx.send(source).await?;
     }
     let mut target = target.unwrap_or(source);
@@ -125,7 +119,7 @@ async fn handle(
     write(&mut stream, &mut message_id, &context, &keypair, &message).await?;
 
     let contents = match contents {
-        Some(contents) if update && target != source => contents,
+        Some(contents) if wants_update && target != source => contents,
         _ => return Ok(()),
     };
     for chunk in contents.chunks(0x1000) {
@@ -135,21 +129,22 @@ async fn handle(
     Ok(())
 }
 
-async fn read(
+async fn read<M: Message + Default>(
     stream: &mut TcpStream,
     message_id: &mut u64,
     context: &secretbox::Context,
     keypair: &kx::SessionKeyPair,
-    message: &mut [u8],
-) -> Result<(), Box<dyn std::error::Error>> {
-    let mut tmp = vec![0; secretbox::HEADERBYTES + message.len()];
+) -> Result<M, Box<dyn std::error::Error>> {
+    let mut size = [0u8; 2];
+    stream.read_exact(&mut size).await?;
+    let size = u16::from_be_bytes(size);
+    let mut tmp = Vec::with_capacity(size as usize);
     stream.read_exact(&mut tmp).await?;
     let key: Zeroizing<[u8; 32]> = Zeroizing::new(keypair.rx.clone().into());
     let key = (*key).into();
     let tmp = secretbox::decrypt(&tmp, *message_id, context, &key)?;
     *message_id += 1;
-    message.clone_from_slice(&tmp);
-    Ok(())
+    Ok(M::decode(&*tmp)?)
 }
 
 async fn write(
@@ -167,10 +162,25 @@ async fn write(
     Ok(())
 }
 
-fn read_u16(data: &[u8], offset: usize) -> u16 {
-    let array = <[u8; 2]>::try_from(&data[offset..offset + 2]).unwrap();
-    u16::from_be_bytes(array)
-}
+/*async fn write<M: Message>(
+    stream: &mut TcpStream,
+    message_id: &mut u64,
+    context: &secretbox::Context,
+    keypair: &kx::SessionKeyPair,
+    message: M,
+) -> Result<(), Box<dyn std::error::Error>> {
+    let tmp = message.encode_to_vec();
+    let key: Zeroizing<[u8; 32]> = Zeroizing::new(keypair.tx.clone().into());
+    let key = (*key).into();
+    let tmp = secretbox::encrypt(&tmp, *message_id, context, &key);
+    *message_id += 1;
+    let size = tmp.len();
+    assert!(size <= u16::MAX as usize);
+    let size = (size as u16).to_be_bytes();
+    stream.write_all(&size).await?;
+    stream.write_all(&tmp).await?;
+    Ok(())
+}*/
 
 fn write_u16(data: &mut [u8], offset: usize, val: u16) {
     let array = val.to_be_bytes();
@@ -190,6 +200,14 @@ struct Version {
 }
 
 impl Version {
+    fn parse(message: &UpdateMessage) -> Result<Version, Box<dyn std::error::Error>> {
+        Ok(Version {
+            major: message.version_major.try_into()?,
+            minor: message.version_minor.try_into()?,
+            patch: message.version_patch.try_into()?,
+        })
+    }
+
     fn find_target(&self) -> Option<Version> {
         let map = fs::read_to_string("map.txt").ok()?;
         for line in map.lines() {
