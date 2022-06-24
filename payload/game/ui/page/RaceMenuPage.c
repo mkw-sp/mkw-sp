@@ -1,6 +1,7 @@
 #include "RaceMenuPage.h"
 #include <game/ui/Button.h>
 #include <game/ui/SectionManager.h>
+#include <payload/game/system/RaceConfig.h>
 
 // Note: Could do these as an X-Macro
 
@@ -45,6 +46,7 @@ typedef enum {
 
     // Reserved: Edit license settings in-game
     kPausePageButtonID_EXTLicenseSettings = 0x25,
+    kPausePageButtonID_EXTChangeGhostData = 0x26,
 } PausePageButtonID;
 
 // Referenced by RaceMenuPage.S
@@ -88,6 +90,7 @@ const char *sButtonStrings[] = {
     "ButtonNo",                 // kPausePageButtonID_No2
 
     "ButtonSettings",  // kPausePageButtonID_EXTLicenseSettings
+    "ButtonChangeGhostData", // kPausePageButtonID_EXTChangeGhostData
 };
 
 static const u32 ghostWatchPauseButtons[] = {
@@ -96,7 +99,7 @@ static const u32 ghostWatchPauseButtons[] = {
     kPausePageButtonID_BattleGhost,
 
     // Repurposed as "Change Ghost Data"
-    kPausePageButtonID_ChangeMission,
+    kPausePageButtonID_EXTChangeGhostData,
 
     kPausePageButtonID_ChangeCourse,
     kPausePageButtonID_ChangeCharacter,
@@ -131,7 +134,7 @@ static const u32 afterTaButtons[] = {
     kPausePageButtonID_Restart2,
 
     // Repurposed as "Change Ghost Data"
-    kPausePageButtonID_ChangeMission,
+    kPausePageButtonID_EXTChangeGhostData,
 
     kPausePageButtonID_ChangeCourse,
     kPausePageButtonID_ChangeCharacter,
@@ -214,7 +217,7 @@ static const u32 timeAttackPauseButtons[] = {
     kPausePageButtonID_Restart1,
 
     // Repurposed as "Change Ghost Data"
-    kPausePageButtonID_ChangeMission,
+    kPausePageButtonID_EXTChangeGhostData,
 
     kPausePageButtonID_ChangeCourse,
     kPausePageButtonID_ChangeCharacter,
@@ -269,6 +272,13 @@ void RaceMenuPage_onFrontSettings(
     Page_startReplace((Page *)this, /* animation */ 0, pushDelay);
 }
 
+void RaceMenuPage_onFrontChangeGhostData(RaceMenuPage *this, PushButton *pushButton, u32 UNUSED(localPlayerId)) {
+    const float pushDelay = PushButton_getDelay(pushButton);
+    s_raceConfig->menuScenario.gameMode = 0; // TIME_ATTACK
+    this->vt->changeSection((Page*)this, SECTION_ID_SINGLE_CHANGE_GHOST_DATA, pushDelay, 0);
+
+}
+
 bool RaceMenuPage_onFrontOther(
         RaceMenuPage *this, PushButton *pushButton, u32 localPlayerId) {
     PausePageButtonID buttonId = (PausePageButtonID)pushButton->index;
@@ -277,6 +287,9 @@ bool RaceMenuPage_onFrontOther(
     case kPausePageButtonID_EXTLicenseSettings:
         RaceMenuPage_onFrontSettings(this, pushButton, localPlayerId);
         return true;  // Handled
+    case kPausePageButtonID_EXTChangeGhostData:
+        RaceMenuPage_onFrontChangeGhostData(this, pushButton, localPlayerId);
+        return true;
     default:
         return false;  // Unhandled
     }

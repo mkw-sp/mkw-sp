@@ -4,7 +4,7 @@ PATCH_BL_START(CharacterSelectPage_onInit, 0x90)
     lwz r0, 0x0 (r3) // Original instruction
 
     // Check that the section is "Change Ghost Data"
-    cmpwi r0, ChangeCourseData
+    cmpwi r0, ChangeGhostData
     bnelr
 
     // Pretend it's "Change Course" to correctly set the previous page

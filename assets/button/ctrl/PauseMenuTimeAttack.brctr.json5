@@ -135,7 +135,7 @@
             "picture count": 0,
         },
         {
-            "name": "ButtonChangeMission",
+            "name": "ButtonChangeGhostData",
             "opacity": 255,
             "animated": true,
             "animation delay": 2.0,

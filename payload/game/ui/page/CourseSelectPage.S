@@ -4,7 +4,7 @@ PATCH_BL_START(CourseSelectPage_onInit, 0x20)
     lwz r0, 0x0 (r4) // Original instruction
 
     // Check that the section is "Change Ghost Data" (repurposed "Change Mission")
-    cmpwi r0, ChangeCourseData
+    cmpwi r0, ChangeGhostData
     bnelr
 
     // Set the previous page to cup select
