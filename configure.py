@@ -824,6 +824,9 @@ code_in_files = {
         os.path.join('vendor', 'ff', 'ffunicode.c'),
         os.path.join('vendor', 'libhydrogen', 'hydrogen.c'),
         os.path.join('vendor', 'lzma', 'LzmaDec.c'),
+        os.path.join('vendor', 'nanopb', 'pb_common.c'),
+        os.path.join('vendor', 'nanopb', 'pb_decode.c'),
+        os.path.join('vendor', 'nanopb', 'pb_encode.c'),
     ],
     'loader': [
         os.path.join('common', 'Clock.cc'),
