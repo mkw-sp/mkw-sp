@@ -579,7 +579,7 @@ n.rule(
 n.newline()
 
 protobuf_in_files = [
-    'Update.proto',
+    'UpdateRequestMessage.proto',
 ]
 protobuf_h_files = []
 protobuf_c_files = []
