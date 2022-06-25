@@ -10,7 +10,7 @@ extern "C" {
 extern "C" {
 #include <common/Paths.h>
 }
-#include <protobuf/Update.pb.h>
+#include <protobuf/UpdateRequestMessage.pb.h>
 #include <vendor/nanopb/pb_encode.h>
 
 #include <algorithm>
@@ -48,10 +48,10 @@ static bool Sync(bool update) {
 
     status = Status::SendInfo;
     {
-        u8 buffer[UpdateMessage_size];
+        u8 buffer[UpdateRequestMessage_size];
         pb_ostream_t stream = pb_ostream_from_buffer(buffer, sizeof(buffer));
 
-        UpdateMessage message;
+        UpdateRequestMessage message;
         message.wantsUpdate  = update;
         message.versionMajor = versionInfo.major;
         message.versionMinor = versionInfo.minor;
@@ -59,7 +59,7 @@ static bool Sync(bool update) {
         message.gameName     = *(u32*)OSGetAppGamename();
         message.hostPlatform = Host_GetPlatform();
 
-        assert(pb_encode(&stream, UpdateMessage_fields, &message));
+        assert(pb_encode(&stream, UpdateRequestMessage_fields, &message));
 
         if (!socket.write(buffer, stream.bytes_written)) {
              return false;
