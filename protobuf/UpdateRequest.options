@@ -1,0 +1,2 @@
+UpdateRequest.gameName     max_length:4
+UpdateRequest.hostPlatform max_length:31

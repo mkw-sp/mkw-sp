@@ -1,6 +1,6 @@
 syntax = "proto2";
 
-message UpdateRequestMessage {
+message UpdateRequest {
     required bool   wantsUpdate  = 1;
     required uint32 versionMajor = 2;
     required uint32 versionMinor = 3;
