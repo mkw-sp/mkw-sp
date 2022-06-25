@@ -1,6 +1,5 @@
 #include "Update.hh"
 
-
 extern "C" {
 #include "sp/Host.h"
 }
