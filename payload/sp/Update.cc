@@ -11,7 +11,7 @@ extern "C" {
 #include <common/Paths.h>
 }
 
-#include <protobuf/UpdateRequestMessage.pb.h>
+#include <protobuf/UpdateRequest.pb.h>
 extern "C" {
 #include <revolution/nwc24/NWC24Utils.h>
 }
@@ -52,18 +52,18 @@ static bool Sync(bool update) {
 
     status = Status::SendInfo;
     {
-        u8 buffer[UpdateRequestMessage_size];
+        u8 buffer[UpdateRequest_size];
         pb_ostream_t stream = pb_ostream_from_buffer(buffer, sizeof(buffer));
 
-        UpdateRequestMessage message;
-        message.wantsUpdate  = update;
-        message.versionMajor = versionInfo.major;
-        message.versionMinor = versionInfo.minor;
-        message.versionPatch = versionInfo.patch;
-        NWC24iStrLCpy(message.gameName, OSGetAppGamename(), sizeof(message.gameName));
-        NWC24iStrLCpy(message.hostPlatform, Host_GetPlatformString(), sizeof(message.hostPlatform));
+        UpdateRequest request;
+        request.wantsUpdate  = update;
+        request.versionMajor = versionInfo.major;
+        request.versionMinor = versionInfo.minor;
+        request.versionPatch = versionInfo.patch;
+        NWC24iStrLCpy(request.gameName, OSGetAppGamename(), sizeof(request.gameName));
+        NWC24iStrLCpy(request.hostPlatform, Host_GetPlatformString(), sizeof(request.hostPlatform));
 
-        assert(pb_encode(&stream, UpdateRequestMessage_fields, &message));
+        assert(pb_encode(&stream, UpdateRequest_fields, &request));
 
         if (!socket.write(buffer, stream.bytes_written)) {
              return false;
