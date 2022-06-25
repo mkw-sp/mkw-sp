@@ -167,7 +167,7 @@ void Host_PrintMkwSpInfo(PrintfFunction *func) {
         snprintf(system, sizeof(system), "Wii Mini");
         break;
     case HOST_CAFE:
-        snprintf(system, sizeof(system), "WiiU");
+        snprintf(system, sizeof(system), "Wii U");
         break;
     case HOST_DOLPHIN_PREHISTORIC:
         snprintf(system, sizeof(system), "Ancient Dolphin (Unsupported)");
