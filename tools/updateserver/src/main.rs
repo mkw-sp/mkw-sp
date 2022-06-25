@@ -1,6 +1,9 @@
+use std::collections::VecDeque;
 use std::fmt;
 use std::fs::{self, File};
 use std::io::{self, ErrorKind, Read, Write};
+use std::net::SocketAddr;
+use std::time::{Duration, Instant};
 
 use argon2::{Argon2, Params};
 use chrono::Utc;
@@ -52,9 +55,23 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
     let runtime = Runtime::new()?;
     runtime.block_on(async {
         let mut file = OpenOptions::new().append(true).create(true).open("log.txt").await?;
-        let (tx, mut rx) = mpsc::channel::<Version>(16);
+        let (tx, mut rx) = mpsc::channel::<(SocketAddr, Version)>(16);
         tokio::spawn(async move {
-            while let Some(version) = rx.recv().await {
+            let mut queue = VecDeque::new();
+            while let Some((address, version)) = rx.recv().await {
+                let now = Instant::now();
+                while let Some((then, _)) = queue.front() {
+                    if now - *then >= Duration::from_secs(24 * 60 * 60) {
+                        queue.pop_front();
+                    } else {
+                        break;
+                    }
+                }
+                if queue.iter().any(|(_, a)| *a == address) {
+                    continue;
+                }
+                queue.push_back((now, address));
+
                 let now = Utc::now();
                 let line = format!("{} {}\n", now.format("%F %T"), version);
                 let _ = file.write_all(line.as_bytes()).await;
@@ -64,11 +81,11 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
 
         let listener = TcpListener::bind("127.0.0.1:21328").await?;
         loop {
-            if let Ok((stream, _)) = listener.accept().await {
+            if let Ok((stream, address)) = listener.accept().await {
                 let server_keypair = server_keypair.clone();
                 let tx = tx.clone();
-                tokio::spawn(async {
-                    let _ = handle(server_keypair, stream, tx).await;
+                tokio::spawn(async move {
+                    let _ = handle(stream, address, server_keypair, tx).await;
                 });
             }
         }
@@ -76,28 +93,31 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
 }
 
 async fn handle(
-    server_keypair: kx::KeyPair,
     stream: TcpStream,
-    tx: Sender<Version>,
+    address: SocketAddr,
+    server_keypair: kx::KeyPair,
+    tx: Sender<(SocketAddr, Version)>,
 ) -> Result<(), Box<dyn std::error::Error>> {
-    let stream = Stream::new(server_keypair, stream, tx).await?;
+    let stream = Stream::new(stream, address, server_keypair, tx).await?;
     stream.handle().await
 }
 
 struct Stream {
     stream: TcpStream,
+    address: SocketAddr,
     message_id: u64,
     context: secretbox::Context,
     tx_key: secretbox::Key,
     rx_key: secretbox::Key,
-    tx: Sender<Version>,
+    tx: Sender<(SocketAddr, Version)>,
 }
 
 impl Stream {
     async fn new(
-        server_keypair: kx::KeyPair,
         mut stream: TcpStream,
-        tx: Sender<Version>,
+        address: SocketAddr,
+        server_keypair: kx::KeyPair,
+        tx: Sender<(SocketAddr, Version)>,
     ) -> Result<Stream, Box<dyn std::error::Error>> {
         stream.set_nodelay(true)?;
 
@@ -112,6 +132,7 @@ impl Stream {
 
         Ok(Stream {
             stream,
+            address,
             message_id: 0,
             context: (*b"update  ").into(),
             rx_key,
@@ -126,7 +147,7 @@ impl Stream {
         let source = Version::parse(&request)?;
         let target = source.find_target();
         if !wants_update && target.is_some() {
-            self.tx.send(source).await?;
+            self.tx.send((self.address, source)).await?;
         }
         let mut target = target.unwrap_or(source);
         let contents = format!("updates/{}/contents.arc", target);
