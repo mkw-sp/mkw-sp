@@ -44,7 +44,6 @@ static void discoverMyStuffPrefixes(void) {
 }
 
 void DVDExInit(void) {
-    swprintf(prefixes[prefixCount++], MAX_PREFIX_LENGTH + 1, L"disc");
     discoverMyStuffPrefixes();
 }
 
@@ -97,8 +96,9 @@ BOOL DVDExOpen(const char *fileName, DVDFileInfo *fileInfo) {
             return true;
         }
     }
-
-    return false;
+    wchar_t path[MAX_PREFIX_LENGTH + MAX_PATH_LENGTH + 1];
+    swprintf(path, sizeof(path) / sizeof(wchar_t), L"nas:/%s", fileName);
+    return tryOpen(path, fileInfo);
 }
 
 s32 DVDExReadPrio(DVDFileInfo *fileInfo, void *addr, s32 length, s32 offset, s32 UNUSED(prio)) {
