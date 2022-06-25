@@ -407,7 +407,7 @@ n.newline()
 
 n.rule(
     'nanopb',
-    command = f'{sys.executable} $nanopb $in -L "#include <vendor/nanopb/%s>" -D ' + os.path.join('build'),
+    command = f'{sys.executable} $nanopb $in -L "#include <vendor/nanopb/%s>" -D build -q',
     description = 'NANOPB $out',
 )
 n.newline()
