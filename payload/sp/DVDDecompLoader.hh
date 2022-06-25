@@ -8,6 +8,8 @@ extern "C" {
 
 namespace SP::DVDDecompLoader {
 
-bool load(const char *path, u8 **dst, size_t *dstSize, EGG::Heap *heap);
+void Init();
+
+bool Load(const char *path, u8 **dst, size_t *dstSize, EGG::Heap *heap);
 
 } // namespace SP::DVDDecompLoader

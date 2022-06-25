@@ -1,8 +1,13 @@
+extern "C" {
 #include "Payload.h"
+}
 
-#include "sp/Channel.h"
+#include "sp/Channel.hh"
+extern "C" {
 #include "sp/Dol.h"
-#include "sp/DVDDecompLoader.h"
+}
+#include "sp/DVDDecompLoader.hh"
+extern "C" {
 #include "sp/Host.h"
 #include "sp/Patcher.h"
 #include "sp/Rel.h"
@@ -16,13 +21,16 @@
 
 #include <libhydrogen/hydrogen.h>
 #include <revolution.h>
+}
 
-#include <string.h>
+#include <cstring>
 
 extern void (*payload_ctors_start)(void);
 extern void (*payload_ctors_end)(void);
 
-void Payload_init(void) {
+namespace SP::Payload {
+
+static void Init() {
     OSDisableCodeExecOnMEM1Hi16MB();
     Memory_ProtectRangeModule(OS_PROTECT_CHANNEL_0, Payload_getTextSectionStart(), Payload_getRodataSectionEnd(), OS_PROTECT_PERMISSION_READ);
 
@@ -39,7 +47,9 @@ void Payload_init(void) {
     VIWaitForRetrace();
     // We don't clear the arena in OSInit because the payload is already copied at that point, and
     // the XFB would turn green, but some code expects it to be zeroed.
-    memset(OSGetMEM1ArenaLo(), 0, OSGetMEM1ArenaHi() - OSGetMEM1ArenaLo());
+    auto *mem1Lo = reinterpret_cast<u8 *>(OSGetMEM1ArenaLo());
+    auto *mem1Hi = reinterpret_cast<u8 *>(OSGetMEM1ArenaHi());
+    memset(OSGetMEM1ArenaLo(), 0, mem1Hi - mem1Lo);
 
     Memory_ProtectRangeModule(OS_PROTECT_CHANNEL_1, Dol_getInitSectionStart(), Dol_getRodataSectionEnd(), OS_PROTECT_PERMISSION_READ);
     Memory_ProtectRangeModule(OS_PROTECT_CHANNEL_2, Dol_getSdata2SectionStart(), Dol_getSbss2SectionEnd(), OS_PROTECT_PERMISSION_READ);
@@ -68,21 +78,32 @@ void Payload_init(void) {
 
     DVDExInit();
 
-    DVDDecompLoader_init();
+    DVDDecompLoader::Init();
 
     SIKeyboard_InitSimple();
 
-    Channel_Init();
+    Channel::Init();
 }
 
-__attribute__((no_stack_protector)) __attribute__((section("first"))) void Payload_run(void) {
+static void Run() {
     for (void (**ctor)(void) = &payload_ctors_start; ctor < &payload_ctors_end; ctor++) {
         (*ctor)();
     }
     Stack_InitCanary();
     Stack_RelocateMainThreadStackToMEM1End();
 #ifndef GDB_COMPATIBLE
-    Stack_DoLinkRegisterPatches(Dol_getTextSectionStart(), Dol_getTextSectionEnd());
+    Stack_DoLinkRegisterPatches(reinterpret_cast<u32 *>(Dol_getTextSectionStart()),
+            reinterpret_cast<u32 *>(Dol_getTextSectionEnd()));
 #endif
     Patcher_patch(PATCHER_BINARY_DOL);
+}
+
+} // namespace SP::Payload
+
+extern "C" void Payload_Init() {
+    SP::Payload::Init();
+}
+
+extern "C" __attribute__((no_stack_protector)) __attribute__((section("first"))) void Payload_Run() {
+    SP::Payload::Run();
 }

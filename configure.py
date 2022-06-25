@@ -779,7 +779,7 @@ code_in_files = {
         os.path.join('payload', 'sp', 'net', 'Socket.cc'),
         #
         os.path.join('payload', 'sp', 'Patcher.c'),
-        os.path.join('payload', 'sp', 'Payload.c'),
+        os.path.join('payload', 'sp', 'Payload.cc'),
         os.path.join('payload', 'sp', 'ScopeLock.cc'),
         # Security module
         os.path.join('payload', 'sp', 'security', 'Memory.c'),
@@ -924,7 +924,7 @@ for region in ['P', 'E', 'J', 'K']:
                         'J': '0x8076cca0',
                         'K': '0x8075bfe0',
                     }[region],
-                    'entry': 'Payload_run',
+                    'entry': 'Payload_Run',
                     'format': fmt,
                     'script': os.path.join('$builddir', 'scripts', f'RMC{region}.ld'),
                 },

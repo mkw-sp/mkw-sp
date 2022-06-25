@@ -1,9 +1,5 @@
 #pragma once
 
-extern "C" {
-#include "Channel.h"
-}
-
 #include <egg/core/eggHeap.hh>
 
 namespace SP::Channel {

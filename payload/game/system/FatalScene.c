@@ -17,7 +17,7 @@
 static void *RipFromDiscAlloc(const char *path, EGG_Heap *heap) {
     u8 *szs;
     size_t szsSize;
-    DVDDecompLoader_load(path, &szs, &szsSize, heap);
+    DVDDecompLoader_Load(path, &szs, &szsSize, heap);
     return szs;
 }
 

@@ -10,7 +10,7 @@ static void *my_HomeButton_getFile(void *UNUSED(r3), const char *path, EGG_Heap 
     if (isCompressed) {
         u8 *file;
         size_t tmpSize;
-        bool result = DVDDecompLoader_load(path, &file, &tmpSize, heap);
+        bool result = DVDDecompLoader_Load(path, &file, &tmpSize, heap);
         assert(result);
         if (fileSize) {
             *fileSize = tmpSize;

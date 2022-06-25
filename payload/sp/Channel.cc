@@ -95,7 +95,7 @@ void Load(EGG::Heap *heap) {
     for (size_t i = 0; i < contentFiles.size(); i++) {
         char path[128];
         snprintf(path, sizeof(path), "/channel/%s", contentPaths[i]);
-        assert(DVDDecompLoader::load(path, &contentFiles[i].data, &contentFiles[i].size, heap));
+        assert(DVDDecompLoader::Load(path, &contentFiles[i].data, &contentFiles[i].size, heap));
     }
 
     isLoaded = true;

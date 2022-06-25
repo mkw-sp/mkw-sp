@@ -47,4 +47,4 @@ static inline void *Payload_getDataSectionEnd(void) {
     return payload_data_end;
 }
 
-void Payload_init(void);
+void Payload_Init(void);
