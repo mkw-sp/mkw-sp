@@ -14,9 +14,12 @@ extern "C" {
 
 #include <cstring>
 
-namespace Stub {
-
 extern "C" volatile u32 aicr;
+
+extern "C" void (*ctors_start)(void);
+extern "C" void (*ctors_end)(void);
+
+namespace Stub {
 
 typedef void (*LoaderEntryFunc)(void);
 
@@ -237,6 +240,10 @@ extern "C" void Stub_Run() {
     // lines are written back to main memory. Prevent that by completely emptying the dcache.
     DCache::Invalidate(reinterpret_cast<void *>(0x80000000), 0x1800000);
 #endif
+
+    for (void (**ctor)(void) = &ctors_start; ctor < &ctors_end; ctor++) {
+        (*ctor)();
+    }
 
     std::optional<Stub::LoaderEntryFunc> loaderEntry = Stub::Run();
     if (loaderEntry) {
