@@ -578,14 +578,15 @@ n.rule(
 )
 n.newline()
 
-protobuf_in_files = [
+protobuf_proto_files = [
     'UpdateRequestMessage.proto',
 ]
 protobuf_h_files = []
 protobuf_c_files = []
-for in_file in protobuf_in_files:
-    in_file = os.path.join('protobuf', in_file)
-    base, _ = os.path.splitext(in_file)
+for proto_file in protobuf_proto_files:
+    proto_file = os.path.join('protobuf', proto_file)
+    base, _ = os.path.splitext(proto_file)
+    options_file = base + '.options'
     h_file = os.path.join('$builddir', base + '.pb.h')
     c_file = os.path.join('$builddir', base + '.pb.c')
     protobuf_h_files += [h_file]
@@ -596,7 +597,8 @@ for in_file in protobuf_in_files:
             c_file,
         ],
         'nanopb',
-        in_file,
+        proto_file,
+        implicit = options_file,
     )
 n.newline()
 
