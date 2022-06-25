@@ -27,6 +27,8 @@ jobs:
         run: tar -xf cache/devkitPPC-r40-1-linux_x86_64.pkg.tar.xz
       - name: Install ninja
         run: sudo apt install ninja-build
+      - name: Install protoc
+        run: sudo apt install protobuf-compiler
       - name: Install PyPy
         uses: actions/setup-python@v2
         with:
@@ -37,6 +39,8 @@ jobs:
         run: pip install pyelftools
       - name: Install itanium_demangler
         run: pip install itanium_demangler
+      - name: Install protobuf
+        run: pip install protobuf
       - name: Configure ninja
         run: ./configure.py
       - name: Compile
