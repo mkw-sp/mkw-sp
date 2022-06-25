@@ -1,5 +1,6 @@
 #include "Update.hh"
 
+
 extern "C" {
 #include "sp/Host.h"
 }
@@ -10,7 +11,11 @@ extern "C" {
 extern "C" {
 #include <common/Paths.h>
 }
+
 #include <protobuf/UpdateRequestMessage.pb.h>
+extern "C" {
+#include <revolution/nwc24/NWC24Utils.h>
+}
 #include <vendor/nanopb/pb_encode.h>
 
 #include <algorithm>
@@ -56,8 +61,8 @@ static bool Sync(bool update) {
         message.versionMajor = versionInfo.major;
         message.versionMinor = versionInfo.minor;
         message.versionPatch = versionInfo.patch;
-        message.gameName     = *(u32*)OSGetAppGamename();
-        message.hostPlatform = Host_GetPlatform();
+        NWC24iStrLCpy(message.gameName, OSGetAppGamename(), sizeof(message.gameName));
+        NWC24iStrLCpy(message.hostPlatform, Host_GetPlatformString(), sizeof(message.hostPlatform));
 
         assert(pb_encode(&stream, UpdateRequestMessage_fields, &message));
 
