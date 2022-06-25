@@ -77,119 +77,128 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
 
 async fn handle(
     server_keypair: kx::KeyPair,
-    mut stream: TcpStream,
+    stream: TcpStream,
     tx: Sender<Version>,
 ) -> Result<(), Box<dyn std::error::Error>> {
-    stream.set_nodelay(true)?;
+    let stream = Stream::new(server_keypair, stream, tx).await?;
+    stream.handle().await
+}
 
-    let mut tmp = Zeroizing::new([0u8; 48]);
-    stream.read_exact(&mut *tmp).await?;
-    let keypair = libhydrogen::kx::n_2(&(*tmp).into(), None, &server_keypair)?;
-    drop(tmp);
-    let mut message_id = 0;
-    let context = (*b"update  ").into();
+struct Stream {
+    stream: TcpStream,
+    message_id: u64,
+    context: secretbox::Context,
+    tx_key: secretbox::Key,
+    rx_key: secretbox::Key,
+    tx: Sender<Version>,
+}
 
-    let message: UpdateMessage = read(&mut stream, &mut message_id, &context, &keypair).await?;
-    let wants_update = message.wants_update;
-    let source = Version::parse(&message)?;
-    let target = source.find_target();
-    if !wants_update && target.is_some() {
-        tx.send(source).await?;
+impl Stream {
+    async fn new(
+        server_keypair: kx::KeyPair,
+        mut stream: TcpStream,
+        tx: Sender<Version>,
+    ) -> Result<Stream, Box<dyn std::error::Error>> {
+        stream.set_nodelay(true)?;
+
+        let mut tmp = Zeroizing::new([0u8; 48]);
+        stream.read_exact(&mut *tmp).await?;
+        let keypair = libhydrogen::kx::n_2(&(*tmp).into(), None, &server_keypair)?;
+        drop(tmp);
+        let rx_key: Zeroizing<[u8; 32]> = Zeroizing::new(keypair.rx.clone().into());
+        let rx_key = (*rx_key).into();
+        let tx_key: Zeroizing<[u8; 32]> = Zeroizing::new(keypair.tx.clone().into());
+        let tx_key = (*tx_key).into();
+
+        Ok(Stream {
+            stream,
+            message_id: 0,
+            context: (*b"update  ").into(),
+            rx_key,
+            tx_key,
+            tx,
+        })
     }
-    let mut target = target.unwrap_or(source);
-    let contents = format!("updates/{}/contents.arc", target);
-    let signature = contents.clone() + ".sig";
-    let contents = fs::read(contents).ok();
-    let signature = fs::read(signature).ok();
 
-    let mut message = [0u8; 78];
-    if let (Some(contents), Some(signature)) = (&contents, &signature) {
-        if target != source && contents.len() <= 0x400000 && signature.len() == sign::BYTES {
-            write_u32(&mut message, 6, contents.len() as u32);
-            message[14..].clone_from_slice(&signature);
-        } else {
-            target = source;
+    async fn handle(mut self) -> Result<(), Box<dyn std::error::Error>> {
+        let request: UpdateRequest = self.read_message().await?;
+        let wants_update = request.wants_update;
+        let source = Version::parse(&request)?;
+        let target = source.find_target();
+        if !wants_update && target.is_some() {
+            self.tx.send(source).await?;
         }
-    } else {
-        target = source;
+        let mut target = target.unwrap_or(source);
+        let contents = format!("updates/{}/contents.arc", target);
+        let signature = contents.clone() + ".sig";
+        let contents = fs::read(contents).ok();
+        let mut size = contents.as_ref().and_then(|contents| contents.len().try_into().ok());
+        let signature = fs::read(signature).ok();
+        let mut signature = signature.filter(|signature| signature.len() == sign::BYTES);
+
+        if size.is_none() || signature.is_none() {
+            target = source;
+            size = None;
+            signature = None;
+        }
+        let response = UpdateResponse {
+            version_major: target.major as u32,
+            version_minor: target.minor as u32,
+            version_patch: target.patch as u32,
+            size: size.unwrap_or(0),
+            signature: signature.unwrap_or(vec![]),
+        };
+        self.write_message(response).await?;
+
+        let contents = match contents {
+            Some(contents) if wants_update && target != source => contents,
+            _ => return Ok(()),
+        };
+        for chunk in contents.chunks(0x1000) {
+            self.write(chunk).await?;
+        }
+
+        Ok(())
     }
-    write_u16(&mut message, 0, target.major);
-    write_u16(&mut message, 2, target.minor);
-    write_u16(&mut message, 4, target.patch);
-    write(&mut stream, &mut message_id, &context, &keypair, &message).await?;
 
-    let contents = match contents {
-        Some(contents) if wants_update && target != source => contents,
-        _ => return Ok(()),
-    };
-    for chunk in contents.chunks(0x1000) {
-        write(&mut stream, &mut message_id, &context, &keypair, chunk).await?;
+    async fn read(&mut self) -> Result<Vec<u8>, Box<dyn std::error::Error>> {
+        let mut size = [0u8; 2];
+        self.stream.read_exact(&mut size).await?;
+        let size = u16::from_be_bytes(size);
+        let mut tmp = Vec::with_capacity(size as usize);
+        self.stream.read_exact(&mut tmp).await?;
+        let tmp = secretbox::decrypt(&tmp, self.message_id, &self.context, &self.rx_key)?;
+        self.message_id += 1;
+        Ok(tmp)
     }
 
-    Ok(())
-}
+    async fn read_message<M>(&mut self) -> Result<M, Box<dyn std::error::Error>>
+    where
+        M: Message + Default,
+    {
+        self.read().await.and_then(|tmp| Ok(M::decode(&*tmp)?))
+    }
 
-async fn read<M: Message + Default>(
-    stream: &mut TcpStream,
-    message_id: &mut u64,
-    context: &secretbox::Context,
-    keypair: &kx::SessionKeyPair,
-) -> Result<M, Box<dyn std::error::Error>> {
-    let mut size = [0u8; 2];
-    stream.read_exact(&mut size).await?;
-    let size = u16::from_be_bytes(size);
-    let mut tmp = Vec::with_capacity(size as usize);
-    stream.read_exact(&mut tmp).await?;
-    let key: Zeroizing<[u8; 32]> = Zeroizing::new(keypair.rx.clone().into());
-    let key = (*key).into();
-    let tmp = secretbox::decrypt(&tmp, *message_id, context, &key)?;
-    *message_id += 1;
-    Ok(M::decode(&*tmp)?)
-}
+    async fn write(&mut self, tmp: &[u8]) -> Result<(), Box<dyn std::error::Error>> {
+        let tmp = secretbox::encrypt(&tmp, self.message_id, &self.context, &self.tx_key);
+        self.message_id += 1;
+        let size = tmp.len();
+        assert!(size <= u16::MAX as usize);
+        let size = (size as u16).to_be_bytes();
+        self.stream.write_all(&size).await?;
+        self.stream.write_all(&tmp).await?;
+        Ok(())
+    }
 
-async fn write(
-    stream: &mut TcpStream,
-    message_id: &mut u64,
-    context: &secretbox::Context,
-    keypair: &kx::SessionKeyPair,
-    message: &[u8],
-) -> Result<(), Box<dyn std::error::Error>> {
-    let key: Zeroizing<[u8; 32]> = Zeroizing::new(keypair.tx.clone().into());
-    let key = (*key).into();
-    let tmp = secretbox::encrypt(message, *message_id, context, &key);
-    *message_id += 1;
-    stream.write_all(&tmp).await?;
-    Ok(())
-}
-
-/*async fn write<M: Message>(
-    stream: &mut TcpStream,
-    message_id: &mut u64,
-    context: &secretbox::Context,
-    keypair: &kx::SessionKeyPair,
-    message: M,
-) -> Result<(), Box<dyn std::error::Error>> {
-    let tmp = message.encode_to_vec();
-    let key: Zeroizing<[u8; 32]> = Zeroizing::new(keypair.tx.clone().into());
-    let key = (*key).into();
-    let tmp = secretbox::encrypt(&tmp, *message_id, context, &key);
-    *message_id += 1;
-    let size = tmp.len();
-    assert!(size <= u16::MAX as usize);
-    let size = (size as u16).to_be_bytes();
-    stream.write_all(&size).await?;
-    stream.write_all(&tmp).await?;
-    Ok(())
-}*/
-
-fn write_u16(data: &mut [u8], offset: usize, val: u16) {
-    let array = val.to_be_bytes();
-    data[offset..offset + 2].clone_from_slice(&array);
-}
-
-fn write_u32(data: &mut [u8], offset: usize, val: u32) {
-    let array = val.to_be_bytes();
-    data[offset..offset + 4].clone_from_slice(&array);
+    async fn write_message<M: Message>(
+        &mut self,
+        message: M,
+    ) -> Result<(), Box<dyn std::error::Error>>
+    where
+        M: Message,
+    {
+        self.write(&message.encode_to_vec()).await
+    }
 }
 
 #[derive(Clone, Copy, Debug, PartialEq)]
@@ -200,11 +209,11 @@ struct Version {
 }
 
 impl Version {
-    fn parse(message: &UpdateMessage) -> Result<Version, Box<dyn std::error::Error>> {
+    fn parse(request: &UpdateRequest) -> Result<Version, Box<dyn std::error::Error>> {
         Ok(Version {
-            major: message.version_major.try_into()?,
-            minor: message.version_minor.try_into()?,
-            patch: message.version_patch.try_into()?,
+            major: request.version_major.try_into()?,
+            minor: request.version_minor.try_into()?,
+            patch: request.version_patch.try_into()?,
         })
     }
 

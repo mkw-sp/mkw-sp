@@ -578,6 +578,7 @@ n.newline()
 
 protobuf_proto_files = [
     'UpdateRequest.proto',
+    'UpdateResponse.proto',
 ]
 protobuf_h_files = []
 protobuf_c_files = []
