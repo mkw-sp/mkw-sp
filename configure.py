@@ -436,6 +436,7 @@ common_cflags = [
     '-Wall',
     '-Werror=implicit-function-declaration',
     '-Werror=incompatible-pointer-types',
+    '-Werror=vla',
     '-Wextra',
     '-Wno-packed-bitfield-compat',
 ]
@@ -454,6 +455,7 @@ common_ccflags = [
     '-msdata=none',
     '-std=c++20',
     '-Wall',
+    '-Werror=vla',
     '-Wextra',
     '-Wno-delete-non-virtual-dtor',
     '-Wno-packed-bitfield-compat',
