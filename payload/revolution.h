@@ -14,4 +14,6 @@
 
 #include "revolution/net.h"
 
+#include "revolution/exi.h"
+
 #include "revolution/es.h"

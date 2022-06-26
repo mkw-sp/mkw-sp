@@ -96,6 +96,9 @@
 0x80124dc0 ARCReadDir
 0x80124e78 ARCCloseDir
 
+0x80131800 BTA_Init
+0x80131980 btu_task_msg_handler
+
 0x8015df4c DVDConvertPathToEntrynum
 0x8015e254 DVDFastOpen
 0x8015e2bc DVDOpen
@@ -109,6 +112,13 @@
 0x8016742c ESP_ListTitleContentsOnCard
 0x80167544 ESP_GetTicketViews
 0x801677f0 ESP_GetTmdView
+0x80167f68 EXIImm
+0x80168380 EXISync
+0x80168680 __EXIProbe
+0x801689d0 EXISelect
+0x80168b00 EXIDeselect
+0x80169164 EXILock
+0x80169260 EXIUnlock
 0x8016F0F0 GXBegin
 0x8016F3B8 GXSetCullMode
 0x80170F2C GXLoadTexObj
@@ -215,10 +225,12 @@
 0x801aaca8 OSSleepTicks
 0x801aad5c OSGetTime
 0x801AAD74 OSGetTick
+0x801aad7c __OSGetSystemTime
 0x801aafa8 OSTicksToCalendarTime
 0x801ada00 __OSLaunchTitle
 0x801ae4a0 OSIsTitleInstalled
 0x801b1d0c SCGetLanguage
+0x801b1e90 SCGetCounterBias
 0x801b254c SIBusy
 0x801b2568 SIIsChanBusy
 0x801b25a0 CompleteTransfer
@@ -328,6 +340,7 @@
 
 0x802A4080 sRKSystem
 
+0x80343680 Ecb
 0x803505C0 RDSTHandler
 
 0x80384190 s_dvdList

@@ -59,8 +59,8 @@ typedef s64 OSTime;
 #define OSTicksToMilliseconds(ticks) ((ticks) / (OS_TIMER_CLOCK / 1000))
 
 u32 OSGetTick(void);
-
 OSTime OSGetTime(void);
+void OSSetTime(OSTime time);
 
 typedef struct {
     int sec;

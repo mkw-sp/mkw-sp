@@ -12,6 +12,7 @@ extern "C" {
 #include "sp/Patcher.h"
 }
 #include "sp/Rel.hh"
+#include "sp/Time.hh"
 extern "C" {
 #include "sp/keyboard/SIKeyboard.h"
 #include "sp/net/Net.h"
@@ -57,6 +58,10 @@ static void Init() {
 
     Memory_ProtectRangeModule(OS_PROTECT_CHANNEL_1, Dol_getInitSectionStart(), Dol_getRodataSectionEnd(), OS_PROTECT_PERMISSION_READ);
     Memory_ProtectRangeModule(OS_PROTECT_CHANNEL_2, Dol_getSdata2SectionStart(), Dol_getSbss2SectionEnd(), OS_PROTECT_PERMISSION_READ);
+
+    Console::Print("Initializing RTC...");
+    Time::Init();
+    Console::Print(" done.\n");
 
     Console::Print("Initializing host...");
     Host_Init();

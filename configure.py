@@ -750,6 +750,7 @@ code_in_files = {
         os.path.join('payload', 'revolution', 'dvd.c'),
         os.path.join('payload', 'revolution', 'dvdex.c'),
         os.path.join('payload', 'revolution', 'es.c'),
+        os.path.join('payload', 'revolution', 'exi.c'),
         os.path.join('payload', 'revolution', 'ios.S'),
         os.path.join('payload', 'revolution', 'ios.c'),
         os.path.join('payload', 'revolution', 'nand.c'),
@@ -763,6 +764,7 @@ code_in_files = {
         os.path.join('payload', 'revolution', 'os', 'OSMemory.c'),
         os.path.join('payload', 'revolution', 'os', 'OSThread.S'),
         os.path.join('payload', 'revolution', 'os', 'OSThread.c'),
+        os.path.join('payload', 'revolution', 'os', 'OSTime.cc'),
         os.path.join('payload', 'revolution', 'so', 'SOBasic.S'),
         os.path.join('payload', 'sp', 'Channel.cc'),
         os.path.join('payload', 'sp', 'Commands.c'),
@@ -811,6 +813,7 @@ code_in_files = {
         os.path.join('payload', 'sp', 'storage', 'UsbStorage.c'),
         #
         os.path.join('payload', 'sp', 'Tcp.c'),
+        os.path.join('payload', 'sp', 'Time.cc'),
         os.path.join('payload', 'sp', 'Update.cc'),
         os.path.join('payload', 'sp', 'Yaz.c'),
         os.path.join('payload', 'sp', 'YAZDecoder.cc'),

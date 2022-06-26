@@ -14,3 +14,5 @@ enum {
 };
 
 u8 SCGetLanguage(void);
+
+u32 SCGetCounterBias(void);
