@@ -1,7 +1,26 @@
 #include "DCache.hh"
 
+#ifdef SP_PAYLOAD
+extern "C" {
+#include <revolution.h>
+}
+#endif
+
 namespace DCache {
 
+#ifdef SP_PAYLOAD
+void Store(const void *start, size_t size) {
+    DCStoreRange(start, size);
+}
+
+void Flush(const void *start, size_t size) {
+    DCFlushRange(start, size);
+}
+
+void Invalidate(void *start, size_t size) {
+    DCInvalidateRange(start, size);
+}
+#else
 void Store(const void *start, size_t size) {
     if (size == 0) {
         return;
@@ -42,5 +61,6 @@ void Invalidate(void *start, size_t size) {
         size -= 0x20;
     } while (size > 0);
 }
+#endif
 
 } // namespace DCache

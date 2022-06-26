@@ -18,7 +18,11 @@ extern "C" {
 #include "sp/storage/LogFile.h"
 #include "sp/storage/Storage.h"
 #include "sp/storage/Usb.h"
+}
 
+#include <common/Console.hh>
+#include <common/VI.hh>
+extern "C" {
 #include <libhydrogen/hydrogen.h>
 #include <revolution.h>
 }
@@ -31,6 +35,13 @@ extern void (*payload_ctors_end)(void);
 namespace SP::Payload {
 
 static void Init() {
+    VI::Init();
+
+    Console::Init();
+    Console::Print("MKW-SP v");
+    Console::Print(versionInfo.name);
+    Console::Print("\n");
+
     OSDisableCodeExecOnMEM1Hi16MB();
     Memory_ProtectRangeModule(OS_PROTECT_CHANNEL_0, Payload_getTextSectionStart(), Payload_getRodataSectionEnd(), OS_PROTECT_PERMISSION_READ);
 
@@ -41,32 +52,35 @@ static void Init() {
 #endif
 
     OSAllocFromMEM1ArenaLo(Payload_getSize(), 0x20);
-    VIInit();
-    VISetBlack(true);
-    VIFlush();
-    VIWaitForRetrace();
-    // We don't clear the arena in OSInit because the payload is already copied at that point, and
-    // the XFB would turn green, but some code expects it to be zeroed.
-    auto *mem1Lo = reinterpret_cast<u8 *>(OSGetMEM1ArenaLo());
-    auto *mem1Hi = reinterpret_cast<u8 *>(OSGetMEM1ArenaHi());
-    memset(OSGetMEM1ArenaLo(), 0, mem1Hi - mem1Lo);
 
     Memory_ProtectRangeModule(OS_PROTECT_CHANNEL_1, Dol_getInitSectionStart(), Dol_getRodataSectionEnd(), OS_PROTECT_PERMISSION_READ);
     Memory_ProtectRangeModule(OS_PROTECT_CHANNEL_2, Dol_getSdata2SectionStart(), Dol_getSbss2SectionEnd(), OS_PROTECT_PERMISSION_READ);
 
+    Console::Print("Initializing host...");
     Host_Init();
+    Console::Print(" done.\n");
 
+    Console::Print("Initializing USB...");
     bool usbWasInit = Usb_init();
     assert(usbWasInit);
+    Console::Print(" done.\n");
 
+    Console::Print("Initializing network...");
     Net_Init();
+    Console::Print(" done.\n");
 
+    Console::Print("Initializing RNG...");
     hydro_init();
+    Console::Print(" done.\n");
 
+    Console::Print("Initializing storage...");
     bool storageWasInit = Storage_init();
     assert(storageWasInit);
+    Console::Print(" done.\n");
 
+    Console::Print("Initializing log file...");
     LogFile_init();
+    Console::Print(" done.\n");
 
     // Example output:
     //     --------------------------------
@@ -76,13 +90,31 @@ static void Init() {
     //     --------------------------------
     Host_PrintMkwSpInfo(OSReport);
 
+    Console::Print("Initializing file replacement...");
     DVDExInit();
+    Console::Print(" done.\n");
 
+    Console::Print("Initializing concurrent decompression...");
     DVDDecompLoader::Init();
+    Console::Print(" done.\n");
 
+    Console::Print("Initializing SI keyboard...");
     SIKeyboard_InitSimple();
+    Console::Print(" done.\n");
 
+    Console::Print("Initializing channel installer...");
     Channel::Init();
+    Console::Print(" done.\n");
+
+    VIInit();
+    VISetBlack(true);
+    VIFlush();
+    VIWaitForRetrace();
+    // We don't clear the arena in OSInit because the payload is already copied at that point, and
+    // the XFB would turn green, but some code expects it to be zeroed.
+    auto *mem1Lo = reinterpret_cast<u8 *>(OSGetMEM1ArenaLo());
+    auto *mem1Hi = reinterpret_cast<u8 *>(OSGetMEM1ArenaHi());
+    memset(OSGetMEM1ArenaLo(), 0, mem1Hi - mem1Lo);
 }
 
 static void Run() {
@@ -104,6 +136,6 @@ extern "C" void Payload_Init() {
     SP::Payload::Init();
 }
 
-extern "C" __attribute__((no_stack_protector)) __attribute__((section("first"))) void Payload_Run() {
+extern "C" __attribute__((no_stack_protector, section("first"))) void Payload_Run() {
     SP::Payload::Run();
 }

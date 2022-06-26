@@ -5,7 +5,6 @@
 #include <common/ES.hh>
 extern "C" {
 #include <common/Paths.h>
-
 #include <revolution.h>
 }
 

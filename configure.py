@@ -570,6 +570,11 @@ n.newline()
 
 code_in_files = {
     'payload': [
+        os.path.join('common', 'Console.cc'),
+        os.path.join('common', 'DCache.cc'),
+        os.path.join('common', 'Font.c'),
+        os.path.join('common', 'Font.cc'),
+        os.path.join('common', 'VI.cc'),
         os.path.join('payload', 'egg', 'core', 'eggColorFader.c'),
         os.path.join('payload', 'egg', 'core', 'eggDisplay.S'),
         os.path.join('payload', 'egg', 'core', 'eggDvdFile.c'),

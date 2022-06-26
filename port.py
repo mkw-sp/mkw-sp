@@ -698,5 +698,16 @@ with open(args.out_path, 'w') as out_file:
             address -= SRC_BINARIES[args.region][binary_name].start
             address += DST_BINARIES[args.region][binary_name].start
             write_symbol(out_file, name, address)
+    out_file.write('\n')
+
+    write_symbol(out_file, 'vtr', 0xcc002000);
+    write_symbol(out_file, 'dcr', 0xcc002002);
+    write_symbol(out_file, 'vto', 0xcc00200c);
+    write_symbol(out_file, 'vte', 0xcc002010);
+    write_symbol(out_file, 'tfbl', 0xcc00201c);
+    write_symbol(out_file, 'bfbl', 0xcc002024);
+    write_symbol(out_file, 'hsw', 0xcc002048);
+    write_symbol(out_file, 'hsr', 0xcc00204a);
+    write_symbol(out_file, 'visel', 0xcc00206e);
 
     out_file.write('}\n')
