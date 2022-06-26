@@ -125,6 +125,10 @@ static bool NetStorage_fastOpenDir(Dir *UNUSED(dir), u64 UNUSED(id)) {
     return false;
 }
 static bool NetStorage_openDir(Dir *dir, const wchar_t *path) {
+    if (!sNetStorageConnected) {
+        return false;
+    }
+
     SP_LOG("Open dir %ls", path);
 
     SP_SCOPED_MUTEX_LOCK(sNetMutex);
