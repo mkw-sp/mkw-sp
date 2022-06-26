@@ -587,7 +587,6 @@ code_in_files = {
         os.path.join('payload', 'game', 'effect', 'Effect.S'),
         os.path.join('payload', 'game', 'gfx', 'Camera.S'),
         os.path.join('payload', 'game', 'gfx', 'CameraManager.S'),
-        os.path.join('payload', 'game', 'host_system', 'BootStrapScene.c'),
         os.path.join('payload', 'game', 'host_system', 'RkSystem.S'),
         os.path.join('payload', 'game', 'host_system', 'RkSystem.c'),
         os.path.join('payload', 'game', 'host_system', 'SceneManager.S'),
@@ -785,6 +784,7 @@ code_in_files = {
         #
         os.path.join('payload', 'sp', 'Patcher.c'),
         os.path.join('payload', 'sp', 'Payload.cc'),
+        os.path.join('payload', 'sp', 'Rel.cc'),
         os.path.join('payload', 'sp', 'ScopeLock.cc'),
         # Security module
         os.path.join('payload', 'sp', 'security', 'Memory.c'),

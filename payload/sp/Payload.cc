@@ -10,7 +10,9 @@ extern "C" {
 extern "C" {
 #include "sp/Host.h"
 #include "sp/Patcher.h"
-#include "sp/Rel.h"
+}
+#include "sp/Rel.hh"
+extern "C" {
 #include "sp/keyboard/SIKeyboard.h"
 #include "sp/net/Net.h"
 #include "sp/security/Memory.h"
@@ -104,6 +106,11 @@ static void Init() {
 
     Console::Print("Initializing channel installer...");
     Channel::Init();
+    Console::Print(" done.\n");
+
+    Console::Print("Loading StaticR.rel...");
+    bool relWasLoaded = Rel::Load();
+    assert(relWasLoaded);
     Console::Print(" done.\n");
 
     VIInit();

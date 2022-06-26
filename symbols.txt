@@ -7,6 +7,7 @@
 0x800079d0 BootStrapScene_calc
 0x80007bc8 BootStrapScene_draw
 0x80007f2c BootStrapScene_exit
+0x80008ef0 RkSystem_main
 0x80009194 RkSystem_initialize
 0x8000951c RkSystem_run
 0x80009820 EGG_ConfigurationData_onBeginFrame
