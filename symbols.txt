@@ -425,6 +425,8 @@
 0x8054a868 SaveManager_resetAsync
 0x8054aa64 SceneCreatorDynamic_create
 0x805553B0 _unresolved
+0x8056ce98 KartBody_calcTransforms
+0x8056da88 BikeBody_calcTransforms
 0x805784d4 KartMove_init
 0x8057ab68 KartMove_calcAcceleration
 0x8057b99c KartMove_setKillerStartHardSpeedLimit

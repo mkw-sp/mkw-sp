@@ -597,6 +597,7 @@ code_in_files = {
         os.path.join('payload', 'game', 'item', 'ItemObjKouraAo.S'),
         os.path.join('payload', 'game', 'item', 'ItemObjKouraMidori.S'),
         os.path.join('payload', 'game', 'item', 'KartItem.S'),
+        os.path.join('payload', 'game', 'kart', 'KartBody.S'),
         os.path.join('payload', 'game', 'kart', 'KartMove.S'),
         os.path.join('payload', 'game', 'kart', 'KartObject.S'),
         os.path.join('payload', 'game', 'kart', 'KartObjectManager.S'),
