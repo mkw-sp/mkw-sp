@@ -6,12 +6,14 @@ Mario Kart Wii - Service Pack is an experimental, open-source, cross-platform mo
 
 You need:
 
+- devkitPPC (with the DEVKITPPC environment variable set)
+- ninja (samurai also works)
+- protoc
 - Python 3 (using PyPy can substantially reduce build times)
 - pyjson5 (if installing from pip, the package is `json5` NOT `pyjson5`)
 - pyelftools
 - itanium\_demangler
-- ninja (samurai also works)
-- devkitPPC (with the DEVKITPPC environment variable set)
+- protobuf (the Python package)
 
 Generate the ninja file:
 
