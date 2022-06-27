@@ -69,7 +69,7 @@ void UpdatePage::afterCalc() {
     wchar_t size[0x10];
     wchar_t throughput[0x10];
     auto printMebibytes = [](u32 val, wchar_t (&mebibytes)[0x10]) {
-        swprintf(mebibytes, sizeof(mebibytes), L"%.2f", (f32)val / (1024 * 1024));
+        swprintf(mebibytes, std::size(mebibytes), L"%.2f", (f32)val / (1024 * 1024));
     };
     switch (m_state) {
     case State::Check:
@@ -192,14 +192,13 @@ void UpdatePage::transition(State state) {
     wchar_t newVersion[0x10];
     wchar_t size[0x10];
     auto printVersion = [](const VersionInfo &info, wchar_t (&version)[0x10]) {
-        size_t length = sizeof(version) / sizeof(*version);
         u16 major = info.major;
         u16 minor = info.minor;
         u16 patch = info.patch;
-        swprintf(version, length, L"v%u.%u.%u", major, minor, patch);
+        swprintf(version, std::size(version), L"v%u.%u.%u", major, minor, patch);
     };
     auto printMebibytes = [](u32 val, wchar_t (&mebibytes)[0x10]) {
-        swprintf(mebibytes, sizeof(mebibytes), L"%.2f", (f32)val / (1024 * 1024));
+        swprintf(mebibytes, std::size(mebibytes), L"%.2f", (f32)val / (1024 * 1024));
     };
     switch (state) {
     case State::Prev:
