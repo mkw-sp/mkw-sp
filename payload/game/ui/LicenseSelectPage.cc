@@ -158,9 +158,3 @@ void LicenseSelectPage::onCancel(ConfirmPage *confirmPage, f32 UNUSED(delay)) {
 }
 
 } // namespace UI
-
-extern "C" void *my_LicenseSelectPage_ct(void *self) {
-    return new (self) UI::LicenseSelectPage();
-}
-
-static_assert(sizeof_LicenseSelectPage == sizeof(UI::LicenseSelectPage));

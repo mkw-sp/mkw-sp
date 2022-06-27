@@ -1,9 +1,5 @@
 #pragma once
 
-extern "C" {
-#include "ServicePackTopPage.h"
-}
-
 #include "game/ui/Page.hh"
 #include "game/ui/ctrl/CtrlMenuBackButton.hh"
 #include "game/ui/ctrl/CtrlMenuPageTitleText.hh"

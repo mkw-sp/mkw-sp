@@ -72,9 +72,3 @@ void ServicePackTopPage::onBackButtonFront(PushButton *button, u32 UNUSED(localP
 }
 
 } // namespace UI
-
-extern "C" void *ServicePackTopPage_ct(void *self) {
-    return new (self) UI::ServicePackTopPage();
-}
-
-static_assert(sizeof_ServicePackTopPage == sizeof(UI::ServicePackTopPage));

@@ -311,9 +311,3 @@ void *UpdatePage::Update(void *UNUSED(arg)) {
 }
 
 } // namespace UI
-
-extern "C" void *UpdatePage_ct(void *self) {
-    return new (self) UI::UpdatePage();
-}
-
-static_assert(sizeof_UpdatePage == sizeof(UI::UpdatePage));

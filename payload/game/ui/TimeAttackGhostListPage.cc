@@ -11,10 +11,6 @@ extern "C" {
 
 #include "game/ui/SectionManager.hh"
 
-extern "C" {
-#include "TimeAttackGhostListPage.h"
-}
-
 namespace UI {
 
 TimeAttackGhostListPage::TimeAttackGhostListPage() = default;
@@ -295,9 +291,3 @@ void TimeAttackGhostListPage::chooseGhost(u32 buttonIndex) {
 }
 
 } // namespace UI
-
-extern "C" void *my_TimeAttackGhostListPage_ct(void *self) {
-    return new (self) UI::TimeAttackGhostListPage();
-}
-
-static_assert(sizeof_TimeAttackGhostListPage == sizeof(UI::TimeAttackGhostListPage));

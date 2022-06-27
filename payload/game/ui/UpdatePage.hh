@@ -1,9 +1,5 @@
 #pragma once
 
-extern "C" {
-#include "UpdatePage.h"
-}
-
 #include "game/ui/MessagePage.hh"
 
 extern "C" {

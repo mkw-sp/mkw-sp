@@ -274,9 +274,3 @@ void *ChannelPage::Install(void *UNUSED(arg)) {
 }
 
 } // namespace UI
-
-extern "C" void *ChannelPage_ct(void *self) {
-    return new (self) UI::ChannelPage();
-}
-
-static_assert(sizeof_ChannelPage == sizeof(UI::ChannelPage));

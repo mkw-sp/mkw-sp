@@ -1,9 +1,5 @@
 #pragma once
 
-extern "C" {
-#include "ChannelPage.h"
-}
-
 #include "game/ui/Page.hh"
 
 extern "C" {
