@@ -1,5 +1,7 @@
 #include "ServicePackTopPage.hh"
 
+#include "game/ui/SectionManager.hh"
+
 #include <new>
 
 namespace UI {
@@ -39,6 +41,7 @@ void ServicePackTopPage::onInit() {
     m_inputManager.setHandler(MenuInputManager::InputId::Back, &m_onBack, false, false);
     m_updateButton.setFrontHandler(&m_onUpdateButtonFront, false);
     m_channelButton.setFrontHandler(&m_onChannelButtonFront, false);
+    m_aboutButton.setFrontHandler(&m_onAboutButtonFront, false);
     m_backButton.setFrontHandler(&m_onBackButtonFront, false);
 
     m_pageTitleText.setMessage(10083);
@@ -66,9 +69,30 @@ void ServicePackTopPage::onChannelButtonFront(PushButton *button, u32 UNUSED(loc
     startReplace(Anim::Next, delay);
 }
 
+void ServicePackTopPage::onAboutButtonFront(PushButton *button, u32 UNUSED(localPlayerId)) {
+    Section *section = SectionManager::Instance()->currentSection();
+    auto *confirmPage = section->page<PageId::Confirm>();
+    confirmPage->reset();
+    confirmPage->setTitleMessage(10089);
+    wchar_t version[0x20];
+    swprintf(version, std::size(version), L"MKW-SP v%s", versionInfo.name);
+    MessageInfo info{};
+    info.strings[0] = version;
+    confirmPage->setWindowMessage(6602, &info);
+    confirmPage->m_confirmHandler = &m_onAboutPop;
+    confirmPage->m_cancelHandler = &m_onAboutPop;
+    m_replacement = PageId::Confirm;
+    f32 delay = button->getDelay();
+    startReplace(Anim::Next, delay);
+}
+
 void ServicePackTopPage::onBackButtonFront(PushButton *button, u32 UNUSED(localPlayerId)) {
     f32 delay = button->getDelay();
     changeSection(SectionId::TitleFromOptions, Anim::Prev, delay);
+}
+
+void ServicePackTopPage::onAboutPop(ConfirmPage *confirmPage, f32 UNUSED(delay)) {
+    confirmPage->m_replacement = PageId::ServicePackTop;
 }
 
 } // namespace UI

@@ -804,8 +804,8 @@ void my_Section_addPages(Section *section, u32 sectionId) {
 #ifndef MORE_CHANNEL_PAGES
         Section_addPage(section, 77);
         Section_addPage(section, 81);
-        Section_addPage(section, 82);
 #endif
+        Section_addPage(section, 82);
         Section_addPage(section, 94);
         Section_addPage(section, 162);
 #ifndef MORE_CHANNEL_PAGES
