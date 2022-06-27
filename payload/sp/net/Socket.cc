@@ -89,23 +89,40 @@ bool Socket::ok() const {
     return m_handle >= 0;
 }
 
-bool Socket::read(u8 *message, u16 size) {
-    auto tmp = Alloc<u8>(hydro_secretbox_HEADERBYTES + size);
-    for (u16 offset = 0; offset < GetSize(tmp);) {
-        s32 result = SORecv(m_handle, tmp.get() + offset, GetSize(tmp) - offset, 0);
+std::optional<u16> Socket::read(u8 *message, u16 maxSize) {
+    auto tmp = Alloc<u8>(sizeof(u16) + hydro_secretbox_HEADERBYTES + maxSize);
+    for (u16 offset = 0; offset < sizeof(u16);) {
+        s32 result = SORecv(m_handle, tmp.get() + offset, sizeof(u16) - offset, 0);
         if (result <= 0) {
-            SP_LOG("Failed to receive message, returned %d", result);
-            return false;
+            SP_LOG("Failed to receive size, returned %d", result);
+            return {};
         }
         offset += result;
     }
-    const u8 *key = m_keypair.rx;
-    if (hydro_secretbox_decrypt(message, tmp.get(), GetSize(tmp), m_messageID++, m_context, key)
-            != 0) {
-        SP_LOG("Failed to decrypt message");
-        return false;
+
+    u16 size = Bytes::Read<u16>(tmp.get(), 0);
+    if (size > GetSize(tmp) - sizeof(u16)) {
+        SP_LOG("Message %llu is larger than the allotted buffer size (0x%04X > 0x%04X)",
+            m_messageID, size, GetSize(tmp) - sizeof(u16));
+        return {};
     }
-    return true;
+
+    for (u16 offset = sizeof(u16); offset < sizeof(u16) + size;) {
+        s32 result = SORecv(m_handle, tmp.get() + offset, sizeof(u16) + size - offset, 0);
+        if (result <= 0) {
+            SP_LOG("Failed to receive message, returned %d", result);
+            return {};
+        }
+        offset += result;
+    }
+
+    const u8 *key = m_keypair.rx;
+    if (hydro_secretbox_decrypt(message, tmp.get() + sizeof(u16), GetSize(tmp) - sizeof(u16),
+            m_messageID++, m_context, key) != 0) {
+        SP_LOG("Failed to decrypt message");
+        return {};
+    }
+    return size - hydro_secretbox_HEADERBYTES;
 }
 
 bool Socket::write(const u8 *message, u16 size) {

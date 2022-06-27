@@ -5,6 +5,8 @@ extern "C" {
 #include <revolution.h>
 }
 
+#include <optional>
+
 namespace SP::Net {
 
 class Socket {
@@ -13,7 +15,7 @@ public:
         const char context[hydro_secretbox_CONTEXTBYTES]);
     ~Socket();
     bool ok() const;
-    bool read(u8 *message, u16 size);
+    std::optional<u16> read(u8 *message, u16 maxSize);
     bool write(const u8 *message, u16 size);
 
 private:
