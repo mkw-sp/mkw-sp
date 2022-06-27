@@ -77,9 +77,9 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
                 let minor = request.version_minor;
                 let patch = request.version_patch;
                 let version = format!("{}.{}.{}", major, minor, patch);
-                let game_name = request.game_name.escape_debug();
-                let host_platform = request.host_platform.escape_debug();
-                let line = format!("{} {} {} {}\n", now, version, game_name, host_platform);
+                let gn = request.game_name.escape_debug();
+                let hp = request.host_platform.escape_debug();
+                let line = format!("{} {} {} {} {}\n", now, address, version, gn, hp);
                 let _ = file.write_all(line.as_bytes()).await;
                 let _ = file.sync_all().await;
             }
