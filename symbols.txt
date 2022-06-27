@@ -96,6 +96,8 @@
 0x80124dc0 ARCReadDir
 0x80124e78 ARCCloseDir
 
+0x80126608 AXSetMasterVolume
+
 0x80131800 BTA_Init
 0x80131980 btu_task_msg_handler
 
@@ -335,8 +337,10 @@
 0x80239338 EGG_ProcessMeter_draw
 0x8023ad10 EGG_Scene_CT
 0x8023ad84 EGG_Scene_DT
+0x8023aef8 _ZN3EGG12SceneManager18reinitCurrentSceneEv
 0x8023afe0 EGG_SceneManager_changeSiblingScene
-0x8023b0e4 EGG_SceneManager_createScene
+0x8023b0e4 _ZN3EGG12SceneManager11createSceneElPNS_5SceneE
+0x8023b3f0 _ZN3EGG12SceneManager12destroySceneEPNS_5SceneE
 0x80242504 EGG_ConfigurationData_initMemory
 0x80242c18 EGG_TaskThread_request
 0x80243d6c EGG_Video_configure
