@@ -55,13 +55,13 @@ void ServicePackTopPage::onBack(u32 UNUSED(localPlayerId)) {
 }
 
 void ServicePackTopPage::onUpdateButtonFront(PushButton *button, u32 UNUSED(localPlayerId)) {
-    m_replacement = PageId::ChannelConfirm;
+    m_replacement = PageId::Update;
     f32 delay = button->getDelay();
     startReplace(Anim::Next, delay);
 }
 
 void ServicePackTopPage::onChannelButtonFront(PushButton *button, u32 UNUSED(localPlayerId)) {
-    m_replacement = PageId::ChannelExplanation;
+    m_replacement = PageId::Channel;
     f32 delay = button->getDelay();
     startReplace(Anim::Next, delay);
 }

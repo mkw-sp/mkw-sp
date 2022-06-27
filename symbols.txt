@@ -508,7 +508,6 @@
 0x805bd2e0 UIControl_calcSelf
 0x805bd2e0 _ZN2UI9UIControl8calcSelfEv
 0x805be39c _ZN2UI10PushButton5vf_2cEv
-0x805bee4c ChannelExplanationPage_ct
 0x805bd3a8 PushButton_ct
 0x805bd3a8 _ZN2UI10PushButtonC1Ev
 0x805bd3a8 _ZN2UI10PushButtonC2Ev
@@ -536,13 +535,11 @@
 0x805be600 UIControl_initSelf
 0x805be600 _ZN2UI9UIControl8initSelfEv
 0x805be610 _ZN2UI10PushButton5vf_28Ev
-0x805be66c ChannelConfirmPage_ct
 0x805be7f4 CtrlMenuBackButton_dt
 0x805bed68 Page_getTypeInfo
 0x805bed68 _ZN2UI4Page5vf_60Ev
 0x805bf2d8 Page_afterCalc
 0x805bf2d8 _ZN2UI4Page9afterCalcEv
-0x805bff18 ChannelTopPage_ct
 0x805c00c0 CtrlMenuInstructionText_dt
 0x805c211c ConfirmPage_reset
 0x805c211c _ZN2UI11ConfirmPage5resetEv
@@ -578,7 +575,6 @@
 0x805e8630 _ZN2UI10MainLayout2dtEl
 0x805e889c MainLayout_load
 0x805e9f80 PictureSourceLayoutList_load
-0x805ea834 LicenseSelectPage_ct
 0x805ec274 LicenseDisplayPage_onActivate
 0x805ec4e8 refreshLicenseControl
 0x805ed7e4 LicenseManagementPage_onInit
@@ -681,6 +677,7 @@
 0x80622d08 Section_addPage
 0x80622da0 Section_addActivePage
 0x80623390 Section_createPage
+0x80623390 _ZN2UI7Section10createPageENS_6PageIdE
 0x80625da0 TopMenuPage_ct
 0x80626698 SingleTopMenuPage_ct
 0x80626950 ClassSelectPage_ct
@@ -745,7 +742,6 @@
 0x8063914c TimeAttackTopPage_afterCalc
 0x80639260 TimeAttackTopPage_onRefocus
 0x806393c8 TimeAttackTopPage_onReady
-0x806395ec TimeAttackGhostListPage_ct
 0x8063ab6c TitlePage_onInit
 0x8063ad64 TitlePage_onActivate
 0x8063c404 _ZN2UI10UIAnimator2dtEl

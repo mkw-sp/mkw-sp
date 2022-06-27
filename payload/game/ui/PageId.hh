@@ -14,6 +14,8 @@ enum class PageId {
     
     CourseSelect = 0x6f,
 
+    TimeAttackGhostList = 0x71,
+
     ServicePackTop = 0xa2,
 
     OptionExplanation = 0xc2,
@@ -22,8 +24,8 @@ enum class PageId {
     OptionAwait = 0xc7,
     OptionMessage = 0xc8,
     OptionConfirm = 0xc9,
-    ChannelExplanation = 0xca,
-    ChannelConfirm = 0xcb,
+    Channel = 0xca, // Replaces ChannelExplanation
+    Update = 0xcb, // Replaces ChannelConfirm
 
     Max = 0xd3,
 };

@@ -23,6 +23,9 @@ public:
     SectionId id() const { return m_id; }
 
 private:
+    static Page *REPLACED(createPage)(PageId pageId);
+    static REPLACE Page *createPage(PageId pageId);
+
     SectionId m_id;
     u8 _004[0x008 - 0x004];
     Page *m_pages[static_cast<size_t>(PageId::Max)];

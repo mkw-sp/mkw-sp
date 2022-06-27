@@ -1,44 +1,14 @@
 #include "Section.h"
 
-#include "ChannelPage.h"
 #include "GhostManagerPage.h"
-#include "LicenseSelectPage.h"
 #include "LicenseSettingsPage.h"
-#include "ServicePackTopPage.h"
-#include "TimeAttackGhostListPage.h"
 #include "TimeAttackRulesPage.h"
-#include "UpdatePage.h"
 
 #include <revolution.h>
 
-PATCH_S16(Section_createPage, 0x92e, sizeof_LicenseSelectPage);
 PATCH_S16(Section_createPage, 0x9a6, sizeof(TimeAttackRulesPage));
-PATCH_S16(Section_createPage, 0xa4e, sizeof_TimeAttackGhostListPage);
-PATCH_S16(Section_createPage, 0xee6, sizeof_ServicePackTopPage);
 PATCH_S16(Section_createPage, 0xf5e, sizeof(GhostManagerPage));
-PATCH_S16(Section_createPage, 0x1276, sizeof_ChannelPage);
-PATCH_S16(Section_createPage, 0x128e, sizeof_UpdatePage);
 PATCH_S16(Section_createPage, 0x12d6, sizeof(LicenseSettingsPage));
-
-extern u8 ChannelTopPage_ct;
-extern u8 ServicePackTopPage_ct;
-PATCH_B(ChannelTopPage_ct, ServicePackTopPage_ct);
-
-extern u8 LicenseSelectPage_ct;
-extern u8 my_LicenseSelectPage_ct;
-PATCH_B(LicenseSelectPage_ct, my_LicenseSelectPage_ct);
-
-extern u8 TimeAttackGhostListPage_ct;
-extern u8 my_TimeAttackGhostListPage_ct;
-PATCH_B(TimeAttackGhostListPage_ct, my_TimeAttackGhostListPage_ct);
-
-extern u8 ChannelExplanationPage_ct;
-extern u8 ChannelPage_ct;
-PATCH_B(ChannelExplanationPage_ct, ChannelPage_ct);
-
-extern u8 ChannelConfirmPage_ct;
-extern u8 UpdatePage_ct;
-PATCH_B(ChannelConfirmPage_ct, UpdatePage_ct);
 
 // The game has 5 pages for the records, we only need 1 for the settings. Disable the 4
 // others.
