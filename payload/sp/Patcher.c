@@ -52,6 +52,14 @@ void Patcher_patch(u32 binary) {
             continue;
         }
 
+        if (patch->type == PATCH_TYPE_BRANCH && patch->branch.thunk) {
+            patch->branch.thunk[0] = *(u32 *)patch->branch.from;
+            void *from = patch->branch.thunk;
+            patch->branch.thunk[1] = 0x12 << 26 | ((patch->branch.from - from) & 0x3fffffc);
+            DCFlushRange(patch->branch.thunk, 2 * sizeof(u32));
+            ICInvalidateRange(patch->branch.thunk, 2 * sizeof(u32));
+        }
+
         memcpy(dst, src, size);
         DCFlushRange(dst, size);
         ICInvalidateRange(dst, size);

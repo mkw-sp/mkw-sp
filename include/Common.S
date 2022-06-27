@@ -134,6 +134,7 @@
         .int dst + offset; \
         .int replacement_ ## dst ## _ ## offset; \
         .int size_replacement_ ## dst ## _ ## offset; \
+        .int 0; \
     .previous
 
 #define PATCH_BRANCH_START(dst, offset, link) \
@@ -151,7 +152,8 @@
         .int dst + offset; \
         .int dst_ ## dst ## _ ## offset; \
         .byte link; \
-        .balign 0x10; \
+        .balign 0x4; \
+        .int 0; \
     .previous
 
 #define PATCH_B_START(dst, offset) \

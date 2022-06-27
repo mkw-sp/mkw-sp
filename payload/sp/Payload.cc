@@ -46,7 +46,6 @@ static void Init() {
     Console::Print("\n");
 
     OSDisableCodeExecOnMEM1Hi16MB();
-    Memory_ProtectRangeModule(OS_PROTECT_CHANNEL_0, Payload_getTextSectionStart(), Payload_getRodataSectionEnd(), OS_PROTECT_PERMISSION_READ);
 
 #ifdef GDB_COMPATIBLE
     OSSetMEM1ArenaLo((void*)0x809C4FA0);
@@ -117,6 +116,8 @@ static void Init() {
     bool relWasLoaded = Rel::Load();
     assert(relWasLoaded);
     Console::Print(" done.\n");
+
+    Memory_ProtectRangeModule(OS_PROTECT_CHANNEL_0, Payload_getTextSectionStart(), Payload_getRodataSectionEnd(), OS_PROTECT_PERMISSION_READ);
 
     VIInit();
     VISetBlack(true);

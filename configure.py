@@ -397,6 +397,7 @@ for target in asset_out_files:
 
 devkitppc = os.environ.get("DEVKITPPC")
 n.variable('compiler', os.path.join(devkitppc, 'bin', 'powerpc-eabi-gcc'))
+n.variable('postprocess', 'postprocess.py')
 n.variable('port', 'port.py')
 n.variable('lzmac', 'lzmac.py')
 n.variable('version', 'version.py')
@@ -486,12 +487,10 @@ profile_cflags = {
         '-DSP_CHANNEL'
     ],
 }
-ldflags = [
+common_ldflags = [
     '-nostdlib',
     '-Wl,-n',
 ]
-n.variable('ldflags', ' '.join(ldflags))
-n.newline()
 
 n.rule(
     'S',
@@ -528,21 +527,22 @@ n.rule(
 n.newline()
 
 n.rule(
+    'postprocess',
+    command = f'{sys.executable} $postprocess $region $in $out',
+    description = 'POSTPROCESS $out'
+)
+n.newline()
+
+n.rule(
     'port',
     command = f'{sys.executable} $port $region $in $out' + (' --base' if args.gdb_compatible else ''),
     description = 'PORT $out'
 )
 n.newline()
 
-ldparams = [
-    '-Wl,--defsym,base=$base',
-    '-Wl,--entry=$entry',
-    '-Wl,--oformat,$format',
-    '-Wl,-T,$script',
-]
 n.rule(
     'ld',
-    command = '$compiler $ldflags ' + ' '.join(ldparams) + ' $in -o $out',
+    command = '$compiler $ldflags $in -o $out',
     description = 'LD $out',
 )
 n.newline()
@@ -905,15 +905,64 @@ for target in code_in_files:
             )
         n.newline()
 
-for region in ['P', 'E', 'J', 'K']:
+for profile in ['DEBUG', 'RELEASE']:
+    suffix = 'D' if profile == 'DEBUG' else ''
     n.build(
-        os.path.join('$builddir', 'scripts', f'RMC{region}.ld'),
-        'port',
-        os.path.join('.', 'symbols.txt'),
+        os.path.join('$builddir', 'bin', f'payload{suffix}.o'),
+        'ld',
+        code_out_files[profile]['payload'],
         variables = {
-            'region': region,
+            'ldflags': ' '.join([
+                *common_ldflags,
+                '-r',
+            ]),
         },
-        implicit = '$port',
+    )
+    n.newline()
+
+for profile in ['DEBUG', 'RELEASE']:
+    suffix = 'D' if profile == 'DEBUG' else ''
+    n.build(
+        [
+            os.path.join('$builddir', 'bin', f'symbols{suffix}.txt'),
+            os.path.join('$builddir', 'bin', f'Replacements{suffix}.c'),
+        ],
+        'postprocess',
+        [
+            os.path.join('$builddir', 'bin', f'payload{suffix}.o'),
+            'symbols.txt',
+        ],
+        implicit = '$postprocess',
+    )
+    n.newline()
+
+for region in ['P', 'E', 'J', 'K']:
+    for profile in ['DEBUG', 'RELEASE']:
+        suffix = 'D' if profile == 'DEBUG' else ''
+        n.build(
+            os.path.join('$builddir', 'scripts', f'RMC{region}{suffix}.ld'),
+            'port',
+            os.path.join('$builddir', 'bin', f'symbols{suffix}.txt'),
+            variables = {
+                'region': region,
+            },
+            implicit = '$port',
+        )
+        n.newline()
+
+for profile in ['DEBUG', 'RELEASE']:
+    suffix = 'D' if profile == 'DEBUG' else ''
+    n.build(
+        os.path.join('$builddir', 'bin', f'Replacements.c{suffix}.o'),
+        'c',
+        os.path.join('$builddir', 'bin', f'Replacements{suffix}.c'),
+        variables = {
+            'cflags': ' '.join([
+                *common_cflags,
+                *target_cflags[target],
+                *profile_cflags[profile],
+            ]),
+        },
     )
     n.newline()
 
@@ -922,22 +971,29 @@ for region in ['P', 'E', 'J', 'K']:
         for profile in ['DEBUG', 'RELEASE']:
             suffix = 'D' if profile == 'DEBUG' else ''
             extension = 'bin' if fmt == 'binary' else 'elf'
+            base = {
+                'P': '0x8076db60' if not args.gdb_compatible else '0x809C4FA0',
+                'E': '0x80769400',
+                'J': '0x8076cca0',
+                'K': '0x8075bfe0',
+            }[region]
             n.build(
                 os.path.join('$builddir', 'bin', f'payload{region}{suffix}.{extension}'),
                 'ld',
-                code_out_files[profile]['payload'],
+                [
+                    os.path.join('$builddir', 'bin', f'payload{suffix}.o'),
+                    os.path.join('$builddir', 'bin', f'Replacements.c{suffix}.o'),
+                ],
                 variables = {
-                    'base': {
-                        'P': '0x8076db60' if not args.gdb_compatible else '0x809C4FA0',
-                        'E': '0x80769400',
-                        'J': '0x8076cca0',
-                        'K': '0x8075bfe0',
-                    }[region],
-                    'entry': 'Payload_Run',
-                    'format': fmt,
-                    'script': os.path.join('$builddir', 'scripts', f'RMC{region}.ld'),
+                    'ldflags' : ' '.join([
+                        *common_ldflags,
+                        f'-Wl,--defsym,base={base}',
+                        '-Wl,--entry=Payload_Run',
+                        f'-Wl,--oformat,{fmt}',
+                        '-Wl,-T,' + os.path.join('$builddir', 'scripts', f'RMC{region}{suffix}.ld'),
+                    ]),
                 },
-                implicit = os.path.join('$builddir', 'scripts', f'RMC{region}.ld'),
+                implicit = os.path.join('$builddir', 'scripts', f'RMC{region}{suffix}.ld'),
             )
             n.newline()
 
@@ -967,10 +1023,13 @@ for fmt in ['binary', 'elf32-powerpc']:
             'ld',
             code_out_files[profile]['loader'],
             variables = {
-                'base': '0x80b00000',
-                'entry': 'start',
-                'format': fmt,
-                'script': os.path.join('common', 'RMC.ld'),
+                'ldflags' : ' '.join([
+                    *common_ldflags,
+                    '-Wl,--defsym,base=0x80b00000',
+                    '-Wl,--entry=start',
+                    f'-Wl,--oformat,{fmt}',
+                    '-Wl,-T,' + os.path.join('common', 'RMC.ld'),
+                ]),
             },
             implicit = os.path.join('common', 'RMC.ld'),
         )
@@ -1012,10 +1071,12 @@ n.build(
     'ld',
     code_out_files['CHANNEL']['stub'],
     variables = {
-        'base': '0x80100000',
-        'entry': 'start',
-        'format': 'elf32-powerpc',
-        'script': os.path.join('common', 'RMC.ld'),
+        'ldflags' : ' '.join([
+            *common_ldflags,
+            '-Wl,--defsym,base=0x80100000',
+            '-Wl,--entry=start',
+            '-Wl,-T,' + os.path.join('common', 'RMC.ld'),
+        ]),
     },
     implicit = os.path.join('common', 'RMC.ld'),
 )
@@ -1087,10 +1148,12 @@ for profile in ['DEBUG', 'TEST', 'RELEASE']:
         'ld',
         code_out_files[profile]['stub'],
         variables = {
-            'base': '0x80100000',
-            'entry': 'start',
-            'format': 'elf32-powerpc',
-            'script': os.path.join('common', 'RMC.ld'),
+            'ldflags' : ' '.join([
+                *common_ldflags,
+                '-Wl,--defsym,base=0x80100000',
+                '-Wl,--entry=start',
+                '-Wl,-T,' + os.path.join('common', 'RMC.ld'),
+            ]),
         },
         implicit = os.path.join('common', 'RMC.ld'),
     )
