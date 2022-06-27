@@ -103,7 +103,7 @@ std::optional<u16> Socket::read(u8 *message, u16 maxSize) {
     u16 size = Bytes::Read<u16>(tmp.get(), 0);
     if (size > GetSize(tmp) - sizeof(u16)) {
         SP_LOG("Message %llu is larger than the allotted buffer size (0x%04X > 0x%04X)",
-            m_messageID, size, GetSize(tmp) - sizeof(u16));
+                m_messageID, size, GetSize(tmp) - sizeof(u16));
         return {};
     }
 
@@ -117,8 +117,8 @@ std::optional<u16> Socket::read(u8 *message, u16 maxSize) {
     }
 
     const u8 *key = m_keypair.rx;
-    if (hydro_secretbox_decrypt(message, tmp.get() + sizeof(u16), GetSize(tmp) - sizeof(u16),
-            m_messageID++, m_context, key) != 0) {
+    if (hydro_secretbox_decrypt(message, tmp.get() + sizeof(u16), size, m_messageID++, m_context,
+            key) != 0) {
         SP_LOG("Failed to decrypt message");
         return {};
     }

@@ -76,7 +76,7 @@ static bool Sync(bool update) {
     {
         u8 buffer[UpdateResponse_size];
         std::optional<u16> size = socket.read(buffer, sizeof(buffer));
-        if (!size.has_value()) {
+        if (!size) {
             return false;
         }
 
@@ -92,7 +92,10 @@ static bool Sync(bool update) {
         newInfo.version.minor = response.versionMinor;
         newInfo.version.patch = response.versionPatch;
         newInfo.size          = response.size;
-        memcpy(newInfo.signature, &response.signature, sizeof(newInfo.signature));
+        if (response.signature.size != sizeof(newInfo.signature)) {
+            return false;
+        }
+        memcpy(newInfo.signature, response.signature.bytes, sizeof(newInfo.signature));
         if (!update) {
             if (newInfo.version > versionInfo) {
                 info.emplace(newInfo);

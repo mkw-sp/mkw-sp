@@ -186,7 +186,7 @@ impl Stream {
         let mut size = [0u8; 2];
         self.stream.read_exact(&mut size).await?;
         let size = u16::from_be_bytes(size);
-        let mut tmp = Vec::with_capacity(size as usize);
+        let mut tmp = vec![0; size as usize];
         self.stream.read_exact(&mut tmp).await?;
         let tmp = secretbox::decrypt(&tmp, self.message_id, &self.context, &self.rx_key)?;
         self.message_id += 1;
