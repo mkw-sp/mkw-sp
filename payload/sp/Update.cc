@@ -12,9 +12,11 @@ extern "C" {
 }
 
 #include <protobuf/UpdateRequest.pb.h>
+#include <protobuf/UpdateResponse.pb.h>
 extern "C" {
 #include <revolution/nwc24/NWC24Utils.h>
 }
+#include <vendor/nanopb/pb_decode.h>
 #include <vendor/nanopb/pb_encode.h>
 
 #include <algorithm>
@@ -72,16 +74,25 @@ static bool Sync(bool update) {
 
     status = Status::ReceiveInfo;
     {
-        u8 message[78] = {};
-        if (!socket.read(message, sizeof(message))) {
+        u8 buffer[UpdateResponse_size];
+        std::optional<u16> size = socket.read(buffer, sizeof(buffer));
+        if (!size.has_value()) {
             return false;
         }
+
+        pb_istream_t stream = pb_istream_from_buffer(buffer, *size);
+
+        UpdateResponse response;
+        if (!pb_decode(&stream, UpdateResponse_fields, &response)) {
+            return false;
+        }
+
         Info newInfo{};
-        newInfo.version.major = Bytes::Read<u16>(message, 0);
-        newInfo.version.minor = Bytes::Read<u16>(message, 2);
-        newInfo.version.patch = Bytes::Read<u16>(message, 4);
-        newInfo.size = Bytes::Read<u32>(message, 6);
-        memcpy(newInfo.signature, message + 14, sizeof(newInfo.signature));
+        newInfo.version.major = response.versionMajor;
+        newInfo.version.minor = response.versionMinor;
+        newInfo.version.patch = response.versionPatch;
+        newInfo.size          = response.size;
+        memcpy(newInfo.signature, &response.signature, sizeof(newInfo.signature));
         if (!update) {
             if (newInfo.version > versionInfo) {
                 info.emplace(newInfo);
