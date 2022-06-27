@@ -9,6 +9,7 @@ You need:
 - Python 3 (using PyPy can substantially reduce build times)
 - pyjson5 (if installing from pip, the package is `json5` NOT `pyjson5`)
 - pyelftools
+- itanium\_demangler
 - ninja (samurai also works)
 - devkitPPC (with the DEVKITPPC environment variable set)
 

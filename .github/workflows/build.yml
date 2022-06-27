@@ -35,6 +35,8 @@ jobs:
         run: pip install json5
       - name: Install pyelftools
         run: pip install pyelftools
+      - name: Install itanium_demangler
+        run: pip install itanium_demangler
       - name: Configure ninja
         run: ./configure.py
       - name: Compile
