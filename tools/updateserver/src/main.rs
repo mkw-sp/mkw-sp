@@ -55,10 +55,10 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
     let runtime = Runtime::new()?;
     runtime.block_on(async {
         let mut file = OpenOptions::new().append(true).create(true).open("log.txt").await?;
-        let (tx, mut rx) = mpsc::channel::<(SocketAddr, Version)>(16);
+        let (tx, mut rx) = mpsc::channel::<(SocketAddr, UpdateRequest)>(16);
         tokio::spawn(async move {
             let mut queue = VecDeque::new();
-            while let Some((address, version)) = rx.recv().await {
+            while let Some((address, request)) = rx.recv().await {
                 let now = Instant::now();
                 while let Some((then, _)) = queue.front() {
                     if now - *then >= Duration::from_secs(24 * 60 * 60) {
@@ -72,8 +72,14 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
                 }
                 queue.push_back((now, address));
 
-                let now = Utc::now();
-                let line = format!("{} {}\n", now.format("%F %T"), version);
+                let now = Utc::now().format("%F %T");
+                let major = request.version_major;
+                let minor = request.version_minor;
+                let patch = request.version_patch;
+                let version = format!("{}.{}.{}", major, minor, patch);
+                let game_name = request.game_name.escape_debug();
+                let host_platform = request.host_platform.escape_debug();
+                let line = format!("{} {} {} {}\n", now, version, game_name, host_platform);
                 let _ = file.write_all(line.as_bytes()).await;
                 let _ = file.sync_all().await;
             }
@@ -96,7 +102,7 @@ async fn handle(
     stream: TcpStream,
     address: SocketAddr,
     server_keypair: kx::KeyPair,
-    tx: Sender<(SocketAddr, Version)>,
+    tx: Sender<(SocketAddr, UpdateRequest)>,
 ) -> Result<(), Box<dyn std::error::Error>> {
     let stream = Stream::new(stream, address, server_keypair, tx).await?;
     stream.handle().await
@@ -109,7 +115,7 @@ struct Stream {
     context: secretbox::Context,
     tx_key: secretbox::Key,
     rx_key: secretbox::Key,
-    tx: Sender<(SocketAddr, Version)>,
+    tx: Sender<(SocketAddr, UpdateRequest)>,
 }
 
 impl Stream {
@@ -117,7 +123,7 @@ impl Stream {
         mut stream: TcpStream,
         address: SocketAddr,
         server_keypair: kx::KeyPair,
-        tx: Sender<(SocketAddr, Version)>,
+        tx: Sender<(SocketAddr, UpdateRequest)>,
     ) -> Result<Stream, Box<dyn std::error::Error>> {
         stream.set_nodelay(true)?;
 
@@ -147,7 +153,7 @@ impl Stream {
         let source = Version::parse(&request)?;
         let target = source.find_target();
         if !wants_update && target.is_some() {
-            self.tx.send((self.address, source)).await?;
+            self.tx.send((self.address, request)).await?;
         }
         let mut target = target.unwrap_or(source);
         let contents = format!("updates/{}/contents.arc", target);
