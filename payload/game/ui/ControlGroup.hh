@@ -11,6 +11,7 @@ class Page;
 class ControlGroup {
 public:
     ~ControlGroup();
+    void calc();
 
     std::unique_ptr<UIControl[]> m_controls;
     std::unique_ptr<UIControl[]> m_sortedControls;

@@ -57,11 +57,13 @@ protected:
 
 public:
     void setAnim(Anim anim);
+    REPLACE void calc();
 
 protected:
     void initChildren(u32 count);
     void insertChild(u32 index, UIControl *child, u32 drawPass);
     void startReplace(Anim anim, f32 delay);
+    void calcAnim();
     void playSfx(u32 sfxId, s32 r5);
     void setAnimSfxIds(u32 nextId, u32 prevId);
 
