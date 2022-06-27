@@ -87,7 +87,7 @@ for name in replacement_symbols:
     if name not in thunk_symbols:
         out_replacements += f'PATCH_B(replaced_{name}, {name});\n'
     else:
-        out_replacements += f'u32 {thunk_symbols[name]}[2];\n'
+        out_replacements += f'__attribute__((section("thunks"))) u32 {thunk_symbols[name]}[2];\n'
         out_replacements += f'PATCH_B_THUNK(replaced_{name}, {name}, {thunk_symbols[name]});\n'
     out_replacements += '\n'
 

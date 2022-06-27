@@ -609,7 +609,7 @@ if args.region != 'P' and args.region != 'E' and args.region != 'J' and args.reg
 
 with open(args.out_path, 'w') as out_file:
     out_file.write('SECTIONS {\n')
-    out_file.write('    .text base : { *(first) *(.text*) }\n')
+    out_file.write('    .text base : { *(first) *(.text*) *(thunks*) }\n')
     out_file.write('    .ctors : { *(.ctors*) }\n')
     out_file.write('    patches : { *(patches*) }\n')
     out_file.write('    commands : { *(commands*) }\n')
