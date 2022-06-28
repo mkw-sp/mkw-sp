@@ -1,9 +1,10 @@
 #include "eggColorFader.h"
 
 #include <revolution.h>
+#include <sp/Host.h>
 
 static bool post_fadeIn(bool changed) {
-    if (changed) {
+    if (HostPlatform_IsDolphin(Host_GetPlatform()) && changed) {
         axIsMuted = false;
     }
 
@@ -11,7 +12,7 @@ static bool post_fadeIn(bool changed) {
 }
 
 static bool post_fadeOut(bool changed) {
-    if (changed) {
+    if (HostPlatform_IsDolphin(Host_GetPlatform()) && changed) {
         axIsMuted = true;
     }
 
