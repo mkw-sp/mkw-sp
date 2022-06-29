@@ -1,3 +1,4 @@
+#include "../Constants.S"
 #include <Common.S>
 
 PATCH_BL_START(CourseSelectPage_onInit, 0x20)

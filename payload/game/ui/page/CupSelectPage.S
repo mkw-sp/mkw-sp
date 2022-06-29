@@ -1,3 +1,4 @@
+#include "../Constants.S"
 #include <Common.S>
 
 // Initialize the previous page id for both "Change Course" and "Change Ghost Data"
