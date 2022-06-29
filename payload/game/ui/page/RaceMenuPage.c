@@ -269,14 +269,14 @@ void RaceMenuPage_onFrontSettings(
     // settingsPage->backId = this->id;
     // settingsPage->localPlayerIdInvokedSettings = localPlayerId;
     this->vt->nextPage(this, PAGE_ID_LICENSE_RECORDS);
-    Page_startReplace((Page *)this, /* animation */ 0, pushDelay);
+    Page_startReplace((Page *)this, PAGE_ANIMATION_NEXT, pushDelay);
 }
 
 void RaceMenuPage_onFrontChangeGhostData(RaceMenuPage *this, PushButton *pushButton, u32 UNUSED(localPlayerId)) {
     PushButton_setPressSound(pushButton, 0xd5); // SE_RC_PAUSE_EXIT_GAME
     const float pushDelay = PushButton_getDelay(pushButton);
     s_raceConfig->menuScenario.gameMode = 0; // TIME_ATTACK
-    this->vt->changeSection((Page*)this, SECTION_ID_SINGLE_CHANGE_GHOST_DATA, pushDelay, 0);
+    this->vt->changeSection((Page*)this, SECTION_ID_SINGLE_CHANGE_GHOST_DATA, PAGE_ANIMATION_NEXT, pushDelay);
 
 }
 
