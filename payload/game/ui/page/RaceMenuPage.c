@@ -273,6 +273,7 @@ void RaceMenuPage_onFrontSettings(
 }
 
 void RaceMenuPage_onFrontChangeGhostData(RaceMenuPage *this, PushButton *pushButton, u32 UNUSED(localPlayerId)) {
+    PushButton_setPressSound(pushButton, 0xd5); // SE_RC_PAUSE_EXIT_GAME
     const float pushDelay = PushButton_getDelay(pushButton);
     s_raceConfig->menuScenario.gameMode = 0; // TIME_ATTACK
     this->vt->changeSection((Page*)this, SECTION_ID_SINGLE_CHANGE_GHOST_DATA, pushDelay, 0);

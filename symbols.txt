@@ -510,6 +510,7 @@
 0x805be12c _ZN2UI10PushButton5vf_40Ev
 0x805be354 _ZN2UI10PushButton5vf_44Ev
 0x805be42c _ZN2UI10PushButton5vf_48Ev
+0x805BE430 PushButton_setPressSound
 0x805be600 UIControl_initSelf
 0x805be600 _ZN2UI9UIControl8initSelfEv
 0x805be610 _ZN2UI10PushButton5vf_28Ev
@@ -856,6 +857,7 @@
 0x807f1c34 BalloonManager_addNameControl
 0x807f1c58 BalloonManager_ct
 0x807f1d44 BalloonManager_init
+0x807f5f20 getResultCtrlName
 0x807f7e64 RaceManager_getPlayerMaxLap
 0x807f7e80 CtrlRaceTime_getPlayerId
 0x807f7ec0 CtrlRaceTime_calcSelf

@@ -76,8 +76,8 @@ PATCH_B_END(SomeMissionModeThing1, 0x1c)
 // This tbh could just be ported to C but I've been doing this for 13 fucking hours straight so this is just gonna be asm for now
 PATCH_B_START(SomeMissionModeThing2, 0x74)
 loc_0x0:
-  lis r4, 0x8000
-  lwz r4, 2496(r4)
+  lis r4, _9c0@ha
+  lwz r4, _9c0@l(r4)
   cmpwi r4, 0x0
   beq+ loc_0x1C
   mr r3, r4

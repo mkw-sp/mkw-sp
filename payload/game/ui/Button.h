@@ -49,3 +49,5 @@ void PushButton_select(PushButton *this, u32 localPlayerId);
 void PushButton_setPlayerFlags(PushButton *this, u32 playerFlags);
 
 f32 PushButton_getDelay(PushButton *this);
+
+void PushButton_setPressSound(PushButton* this, u32 pressSound);
