@@ -1,18 +1,12 @@
 #pragma once
 
+#include "game/ui/GhostManagerPage.hh"
 #include "game/ui/GhostSelectControl.hh"
 #include "game/ui/MessageWindowControl.hh"
 #include "game/ui/Page.hh"
 #include "game/ui/SheetSelectControl.hh"
 #include "game/ui/ctrl/CtrlMenuBackButton.hh"
 #include "game/ui/ctrl/CtrlMenuPageTitleText.hh"
-
-// MAX_GHOST_COUNT
-#define this self
-extern "C" {
-#include "game/ui/GhostManagerPage.h"
-}
-#undef this
 
 namespace UI {
 
@@ -71,9 +65,9 @@ private:
     GhostSelectControl *m_shownGhostSelect;
     GhostSelectControl *m_hiddenGhostSelect;
     bool m_isReplay;
-    SpGhostList *ghostList;
+    const GhostManagerPage::SPList *m_ghostList;
     u32 m_chosenCount;
-    std::array<bool, MAX_GHOST_COUNT> m_ghostIsChosen;
+    std::array<bool, System::MAX_GHOST_COUNT> m_ghostIsChosen;
     u32 m_sheetCount;
     u32 m_sheetIndex;
     s32 m_lastSelected;

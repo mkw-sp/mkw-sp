@@ -26,7 +26,7 @@ static void my_TimeAttackSplitsPage_afterCalc(TimeAttackSplitsPage *this) {
         return;
     }
 
-    if (s_saveManager->saveGhostResult) {
+    if (SaveManager_SaveGhostResult()) {
         LayoutUIControl_setMessageAll(&this->ghostMessage, 1115, NULL);
     } else {
         LayoutUIControl_setMessageAll(&this->ghostMessage, 1116, NULL);

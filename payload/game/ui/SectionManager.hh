@@ -10,7 +10,8 @@ public:
     Section *currentSection();
     GlobalContext *globalContext();
     void setNextSection(SectionId sectionId, Page::Anim anim);
-    void startChangeSection(s32 delay, u32 color);
+    void REPLACED(startChangeSection)(s32 delay, u32 color);
+    REPLACE void startChangeSection(s32 delay, u32 color);
 
     static SectionManager *Instance();
 

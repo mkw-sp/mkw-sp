@@ -44,4 +44,6 @@ void ResourceManager_flush(ResourceManager *self);
 #include <Common.h>
 #endif
 
-void ResourceManager_onCreateScene(u32 sceneId);
+void ResourceManager_OnCreateScene(u32 sceneId);
+
+void ResourceManager_ComputeCourseSHA1(u32 courseId, u8 *courseSHA1);

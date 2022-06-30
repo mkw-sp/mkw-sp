@@ -19,11 +19,8 @@ PATCH_BL_START(DriftSelectPage_onButtonFront, 0x48)
     cmplwi r5, 0x2
     bgelr
 
-    lis r3, s_saveManager@ha
-    lwz r3, s_saveManager@l (r3)
-    li r4, kSetting_DriftMode
-    // r5 = value
-    bl SaveManager_setSetting
+    mr r3, r5
+    bl SaveManager_SetDriftMode
 
     lwz r5, 0x240 (r31) // Original instruction again
     b DriftSelectPage_onButtonFront + 0x4c

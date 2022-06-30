@@ -1,10 +1,13 @@
 #include "KartObjectManager.h"
 
 #include "game/effect/EffectManager.h"
+#include "game/system/GhostFile.h"
 #include "game/system/RaceConfig.h"
 #include "game/system/RaceManager.h"
 #include "game/system/SaveManager.h"
 #include "game/ui/page/RacePage.h"
+
+#include <sp/settings/ClientSettings.h>
 
 bool speedModIsEnabled;
 f32 speedModFactor;
@@ -24,7 +27,7 @@ static void my_KartObjectManager_createInstance(void) {
         speedModIsEnabled = vsSpeedModIsEnabled;
         break;
     case GAME_MODE_TIME_ATTACK:
-        speedModIsEnabled = SaveManager_getSetting(s_saveManager, kSetting_TaRuleClass) == kTaRuleClass_200cc;
+        speedModIsEnabled = SaveManager_GetTARuleClass() == kTaRuleClass_200cc;
         break;
     default:
         speedModIsEnabled = false;
@@ -37,8 +40,8 @@ static void my_KartObjectManager_createInstance(void) {
     ai_808cb550 = 70.0f * speedModFactor;
 
     u32 courseId = s_raceConfig->raceScenario.courseId;
-    const u8 *courseSha1 = SaveManager_getCourseSha1(s_saveManager, courseId);
-    SpFooter_onRaceStart(courseSha1, speedModIsEnabled);
+    const u8 *courseSha1 = SaveManager_CourseSHA1(courseId);
+    SPFooter_OnRaceStart(courseSha1, speedModIsEnabled);
 
     s_kartObjectManager = new(sizeof(KartObjectManager));
     KartObjectManager_ct(s_kartObjectManager);
@@ -51,7 +54,7 @@ static bool playerIsSolid(u32 playerId) {
         return true;
     }
 
-    switch (SaveManager_getSetting(s_saveManager, kSetting_TaRuleSolidGhosts)) {
+    switch (SaveManager_GetTARuleSolidGhosts()) {
     case kTaRuleSolidGhosts_None:
         return false;
     case kTaRuleSolidGhosts_All:
@@ -68,7 +71,7 @@ enum {
 };
 
 static u32 getGhostSoundSetting(u32 playerId) {
-    switch (SaveManager_getSetting(s_saveManager, kSetting_TaRuleGhostSound)) {
+    switch (SaveManager_GetTARuleGhostSound()) {
     case kTaRuleGhostSound_None:
         return SOUND_SETTING_NONE;
     case kTaRuleGhostSound_All:

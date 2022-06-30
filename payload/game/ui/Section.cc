@@ -16,6 +16,8 @@ Page *Section::createPage(PageId pageId) {
         return new TimeAttackGhostListPage;
     case PageId::ServicePackTop:
         return new ServicePackTopPage;
+    case PageId::GhostManager:
+        return new GhostManagerPage;
     case PageId::Channel:
         return new ChannelPage;
     case PageId::Update:

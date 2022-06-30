@@ -55,74 +55,19 @@ typedef struct {
 } RawGhostHeader;
 static_assert(sizeof(RawGhostHeader) == 0x88);
 
-enum {
-    CTGP_FOOTER_MAGIC = 0x434b4744, // CKGD
-    SP_FOOTER_MAGIC = 0x53504744, // SPGD
-};
+void SPFooter_OnRaceStart(const u8 *courseSHA1, bool speedModIsEnabled);
 
-typedef struct {
-    u32 size;
-    u32 magic;
-} FooterFooter;
-static_assert(sizeof(FooterFooter) == 0x8);
+void SPFooter_OnLapEnd(u32 lap, f32 timeDiff);
 
-typedef struct {
-    u8 _00[0x48 - 0x00];
-    u8 courseSha1[0x14];
-    u8 _5c[0x64 - 0x5c];
-    f32 raceTimeDiff;
-    u8 _68[0x80 - 0x68];
-    f32 lapTimeDiffs[10]; // Reversed
-    u8 _a8[0xc6 - 0xa8];
-    u8 category;
-    u8 version;
-    FooterFooter footer;
-} CtgpFooter;
-static_assert(sizeof(CtgpFooter) == 0xd0);
+void SPFooter_OnUltraShortcut(void);
 
-typedef struct {
-    u32 version;
-    u8 courseSha1[0x14];
-    f32 lapTimeDiffs[11];
-    bool hasSpeedMod : 1;
-    bool hasUltraShortcut : 1;
-    bool hasHwg : 1;
-    bool hasWallride : 1;
-    u32 shroomStrategy : 15;
-} SpFooter;
-static_assert(sizeof(SpFooter) == 0x48);
+void SPFooter_OnHwg(void);
 
-void SpFooter_onRaceStart(const u8 *courseSha1, bool speedModIsEnabled);
+void SPFooter_OnWallride(void);
 
-void SpFooter_onLapEnd(u32 lap, f32 timeDiff);
+void SPFooter_OnShroom(u32 lap);
 
-void SpFooter_onUltraShortcut(void);
-
-void SpFooter_onHwg(void);
-
-void SpFooter_onWallride(void);
-
-void SpFooter_onShroom(u32 lap);
-
-typedef struct {
-    u32 magic;
-    union {
-        CtgpFooter ctgp;
-        SpFooter sp;
-    };
-} GhostFooter;
-
-void GhostFooter_init(GhostFooter *footer, const u8 *raw, u32 size);
-
-const u8 *GhostFooter_getCourseSha1(const GhostFooter *self);
-
-bool GhostFooter_hasSpeedMod(const GhostFooter *self);
-
-bool RawGhostFile_isValid(const u8 *raw);
-
-bool RawGhostFile_spIsValid(const u8 *raw, u32 size);
-
-bool RawGhostFile_spDecompress(const u8 *restrict src, u8 *restrict dst);
+bool RawGhostFile_IsValid(const u8 *raw);
 
 typedef struct {
     u8 _0[0x4 - 0x0];

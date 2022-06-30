@@ -15,7 +15,7 @@ PATCH_BL_START(KartItem_activateMushroom, 0x10)
     lwz r3, 0x0 (r3)
     lbz r3, 0x26 (r3)
 
-    bl SpFooter_onShroom
+    bl SPFooter_OnShroom
 
     mr r3, r31
     b KartItem_activateMushroom + 0x14

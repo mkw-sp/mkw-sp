@@ -5,6 +5,8 @@
 #include "sp/storage/NandArcStorage.h"
 #include "sp/storage/NetStorage.h"
 
+#include <wchar.h>
+
 // Primary storage: FAT over SD or USB
 static Storage fatStorage;
 // Secondary storage: NAND archive
@@ -243,4 +245,36 @@ bool Storage_remove(const wchar_t *path, bool allowNop) {
     assert(path);
 
     return fatStorage.remove(path, allowNop);
+}
+
+bool Storage_tryReplace(const wchar_t *path, const void *src, u32 size) {
+    LOG_FILE_DISABLE();
+
+    wchar_t newPath[64];
+    swprintf(newPath, ARRAY_SIZE(newPath), L"%s.new", path);
+    wchar_t oldPath[64];
+    swprintf(oldPath, ARRAY_SIZE(oldPath), L"%s.old", path);
+
+    if (!Storage_writeFile(newPath, true, src, size)) {
+        SP_LOG("Failed to write to %ls", newPath);
+        return false;
+    }
+
+    if (!Storage_remove(oldPath, true)) {
+        SP_LOG("Failed to remove %ls", oldPath);
+        return false;
+    }
+
+    if (!Storage_rename(path, oldPath)) {
+        SP_LOG("Failed to rename %ls to %ls", path, oldPath);
+        // Ignore
+    }
+
+    if (!Storage_rename(newPath, path)) {
+        SP_LOG("Failed to rename %ls to %ls", newPath, path);
+        return false;
+    }
+
+    Storage_remove(oldPath, true); // Not a big deal if this fails
+    return true;
 }

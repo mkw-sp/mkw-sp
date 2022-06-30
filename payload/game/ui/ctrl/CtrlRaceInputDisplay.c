@@ -3,6 +3,9 @@
 #include <game/system/RaceConfig.h>
 #include <game/system/RaceManager.h>
 #include <game/system/SaveManager.h>
+
+#include <sp/settings/ClientSettings.h>
+
 #include <revolution.h>
 #include <stdio.h>
 
@@ -230,8 +233,7 @@ static void CtrlRaceInputDisplay_calcSelf(UIControl *base) {
 static void CtrlRaceInputDisplay_draw(UIControl *base) {
     // Perform the check here to support hot-swapping in the future via an in-race license
     // settings editor.
-    if (SaveManager_getSetting(s_saveManager, kSetting_RaceInputDisplay) !=
-            kRaceInputDisplay_Simple) {
+    if (SaveManager_GetInputDisplay() != kRaceInputDisplay_Simple) {
         return;
     }
 

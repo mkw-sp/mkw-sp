@@ -48,7 +48,7 @@ PATCH_BL_START(RaceManagerPlayer_calcCheckPoint, 0x320)
     mr r27, r5
     mr r28, r6
 
-    bl SpFooter_onUltraShortcut
+    bl SPFooter_OnUltraShortcut
 
     mr r6, r28
     mr r5, r27

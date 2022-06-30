@@ -18,6 +18,8 @@ enum class PageId {
 
     ServicePackTop = 0xa2,
 
+    GhostManager = 0xa7,
+
     OptionExplanation = 0xc2,
     OptionSelect2 = 0xc3,
     OptionSelect3 = 0xc4,

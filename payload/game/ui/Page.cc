@@ -1,8 +1,6 @@
 #include "Page.hh"
 
-extern "C" {
-#include "game/system/SaveManager.h"
-}
+#include "game/system/SaveManager.hh"
 
 namespace UI {
 
@@ -33,11 +31,14 @@ void Page::calc() {
     // Override animation for instant transition
     switch (m_state) {
     case State::State3:
-    case State::State5:
-        if (!SaveManager_getSetting(s_saveManager, kSetting_PageTransitions)) {
+    case State::State5: {
+        auto *saveManager = System::SaveManager::Instance();
+        if (saveManager->getSetting<SP::ClientSettings::Setting::PageTransitions>() ==
+                SP::ClientSettings::PageTransitions::Disable) {
             m_canProceed = true;
         }
         break;
+    }
     default:
         break;
     }

@@ -1,9 +1,11 @@
 #include "GhostSelectButton.hh"
-#include "TimeAttackGhostListPage.hh"
+
+#include "game/ui/TimeAttackGhostListPage.hh"
 extern "C" {
-#include "game/system/SaveManager.h"
 #include "game/util/Registry.h"
 }
+#include "game/system/SaveManager.hh"
+
 #include <stdio.h>
 
 namespace UI {
@@ -99,10 +101,10 @@ void GhostSelectButton::load(u32 index) {
 
 void GhostSelectButton::refresh(u32 listIndex) {
     TimeAttackGhostListPage *page = getGhostListPage();
-    u32 ghostIndex = page->ghostList->indices[listIndex];
-    const RawGhostHeader *header = &s_saveManager->rawGhostHeaders[ghostIndex];
+    u32 ghostIndex = page->m_ghostList->indices()[listIndex];
+    auto *header = System::SaveManager::Instance()->rawGhostHeader(ghostIndex);
 
-    m_miiGroup.insertFromRaw(0, reinterpret_cast<const RawMii *>(&header->mii));
+    m_miiGroup.insertFromRaw(0, &header->mii);
     MessageInfo nameInfo = {};
     nameInfo.miis[0] = m_miiGroup.get(0);
 

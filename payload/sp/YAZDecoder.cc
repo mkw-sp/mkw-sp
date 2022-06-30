@@ -2,14 +2,14 @@
 
 #include <common/Bytes.hh>
 
+#include <algorithm>
+
 namespace SP {
 
 const u32 YAZDecoder::YAZ0_MAGIC = 0x59617a30;
 const u32 YAZDecoder::YAZ1_MAGIC = 0x59617a31;
 
-YAZDecoder::YAZDecoder(const u8 *src, size_t srcSize, EGG::Heap *heap) : m_dst(nullptr),
-        m_dstSize(0), m_dstOffset(0), m_state(State::GroupHeader), m_groupHeaderIndex(7),
-        m_ok(true) {
+YAZDecoder::YAZDecoder(const u8 *src, size_t srcSize, EGG::Heap *heap) {
     if (srcSize < HEADER_SIZE) {
         m_ok = false;
         return;
@@ -18,8 +18,12 @@ YAZDecoder::YAZDecoder(const u8 *src, size_t srcSize, EGG::Heap *heap) : m_dst(n
     m_dst = new (heap, 0x20) u8[m_dstSize];
 }
 
+YAZDecoder::YAZDecoder(u8 *dst, size_t dstSize) : m_owning(false), m_dst(dst), m_dstSize(dstSize) {}
+
 YAZDecoder::~YAZDecoder() {
-    delete[] m_dst;
+    if (m_owning) {
+        delete[] m_dst;
+    }
     m_dst = nullptr;
     m_dstSize = 0;
 }
@@ -125,6 +129,33 @@ size_t YAZDecoder::headerSize() const {
 
 bool YAZDecoder::CheckMagic(u32 magic) {
     return magic == YAZ0_MAGIC || magic == YAZ1_MAGIC;
+}
+
+std::optional<u32> YAZDecoder::GetDecodedSize(const u8 *src, size_t srcSize) {
+    if (srcSize < HEADER_SIZE) {
+        return {};
+    }
+    u32 magic = Bytes::Read<u32>(src, 0x0);
+    if (!CheckMagic(magic)) {
+        return {};
+    }
+    return Bytes::Read<u32>(src, 0x4);
+}
+
+std::optional<u32> YAZDecoder::Decode(const u8 *src, size_t srcSize, u8 *dst, size_t dstSize) {
+    auto tmp = GetDecodedSize(src, srcSize);
+    if (!tmp) {
+        return {};
+    }
+    dstSize = std::min(static_cast<u32>(dstSize), *tmp);
+    YAZDecoder decoder(dst, dstSize);
+    if (!decoder.decode(src, srcSize)) {
+        return {};
+    }
+    if (!decoder.done()) {
+        return {};
+    }
+    return dstSize;
 }
 
 } // namespace SP

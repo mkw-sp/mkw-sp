@@ -3,7 +3,6 @@
 #define this self
 extern "C" {
 #include "game/system/RaceConfig.h"
-#include "game/ui/GhostManagerPage.h"
 #include "game/ui/RaceConfirmPage.h"
 #include "game/ui/SectionManager.h"
 }
@@ -201,13 +200,12 @@ void TimeAttackGhostListPage::onInit() {
 
 void TimeAttackGhostListPage::onActivate() {
     m_launchButton.selectDefault(0);
-    ::Section *currentSection = s_sectionManager->currentSection;
-    GhostManagerPage *ghostManagerPage =
-            (GhostManagerPage *)currentSection->pages[PAGE_ID_GHOST_MANAGER];
-    ghostList = &ghostManagerPage->list;
+    auto *section = SectionManager::Instance()->currentSection();
+    auto *ghostManagerPage = section->page<PageId::GhostManager>();
+    m_ghostList = ghostManagerPage->list();
 
     const u32 buttonsPerSheet = m_ghostSelects[0].buttons.size();
-    m_sheetCount = (ghostList->count + buttonsPerSheet - 1) / buttonsPerSheet;
+    m_sheetCount = (m_ghostList->count() + buttonsPerSheet - 1) / buttonsPerSheet;
     m_sheetIndex = 0;
     refreshSheetLabel();
 
@@ -256,21 +254,21 @@ void TimeAttackGhostListPage::onRefocus() {
     cx->m_timeAttackGhostCount = 0;
     for (u32 i = 0; i < m_ghostIsChosen.size(); i++) {
         if (m_ghostIsChosen[i]) {
-            u32 ghostIndex = this->ghostList->indices[i];
+            u32 ghostIndex = m_ghostList->indices()[i];
             cx->m_timeAttackGhostIndices[cx->m_timeAttackGhostCount++] = ghostIndex;
         }
     }
-    ::Section *currentSection = s_sectionManager->currentSection;
-    GhostManagerPage *ghostManagerPage =
-            (GhostManagerPage *)currentSection->pages[PAGE_ID_GHOST_MANAGER];
+
+    auto *section = SectionManager::Instance()->currentSection();
+    auto *ghostManagerPage = section->page<PageId::GhostManager>();
     SectionId sectionId;
     if (m_chosenCount == 0) {
         sectionId = SectionId::TimeAttack;
     } else if (m_isReplay) {
-        ghostManagerPage->nextRequest = GHOST_MANAGER_PAGE_REQUEST_SAVED_GHOST_REPLAY;
+        ghostManagerPage->requestGhostReplay();
         sectionId = SectionId::GhostReplay;
     } else {
-        ghostManagerPage->nextRequest = GHOST_MANAGER_PAGE_REQUEST_SAVED_GHOST_RACE;
+        ghostManagerPage->requestGhostRace(false, false);
         sectionId = SectionId::TimeAttack;
     }
     changeSection(sectionId, Anim::Next, 0.0f);

@@ -1,5 +1,7 @@
 #include "SectionManager.hh"
 
+#include "game/system/SaveManager.hh"
+
 namespace UI {
 
 Section *SectionManager::currentSection() {
@@ -8,6 +10,15 @@ Section *SectionManager::currentSection() {
 
 GlobalContext *SectionManager::globalContext() {
     return m_globalContext;
+}
+
+void SectionManager::startChangeSection(s32 delay, u32 color) {
+    if (color == 0xFF) {
+        auto *saveManager = System::SaveManager::Instance();
+        color = saveManager->getSetting<SP::ClientSettings::Setting::LoadingScreenColor>();
+    }
+
+    REPLACED(startChangeSection)(delay, color);
 }
 
 SectionManager *SectionManager::Instance() {
