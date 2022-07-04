@@ -209,7 +209,6 @@ asset_in_files = {
         os.path.join('control', 'blyt', 'ghost_container.brlyt.json5'),
         os.path.join('control', 'ctrl', 'GhostSelectBase.brctr.json5'),
         os.path.join('control', 'ctrl', 'GhostSelectOption.brctr.json5'),
-        os.path.join('control', 'ctrl', 'TimeAttackGhostListChange.brctr.json5'),
         os.path.join('control', 'ctrl', 'TimeAttackGhostListPageNum.brctr.json5'),
         os.path.join('message_window', 'ctrl', 'TimeAttackGhostListMessageWindowHalf.brctr.json5'),
         # 200cc

@@ -178,7 +178,7 @@ void TimeAttackGhostListPage::onInit() {
         nullptr,
         nullptr,
     };
-    m_switchLabel.load("control", "TimeAttackGhostListChange", "TimeAttackGhostListChange", groups);
+    m_switchLabel.load("control", "ClassChange", "ClassChange", groups);
     m_ghostSelects[0].load();
     m_ghostSelects[1].load();
     m_sheetSelect.load("button", "TimeAttackGhostListArrowRight", "ButtonArrowRight",
