@@ -147,8 +147,10 @@ using Helper = Settings::Helper<Setting, S>;
 
 extern const char name[];
 extern const char *categoryNames[];
+extern const u32 categoryMessageIds[];
+constexpr u32 entryCount = static_cast<u32>(Setting::Max);
 extern const Entry entries[];
-constexpr Group group{ name, categoryNames, static_cast<u32>(Setting::Max), entries };
+constexpr Group group{ name, categoryNames, categoryMessageIds, entryCount, entries };
 
 typedef Settings::Settings<Category, ClientSettings::group> Settings;
 

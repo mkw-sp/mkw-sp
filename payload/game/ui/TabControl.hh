@@ -1,7 +1,7 @@
 #pragma once
 
-#include "MenuInputManager.hh"
-#include "UIControl.hh"
+#include "game/ui/MenuInputManager.hh"
+#include "game/ui/UIControl.hh"
 
 namespace UI {
 
@@ -10,15 +10,14 @@ public:
     class OptionButton : public LayoutUIControl {
     public:
         OptionButton();
-        ~OptionButton();
-        void dt(s32 type) override;
+        ~OptionButton() override;
         void init() override;
         void calc() override;
         void vf_28() override;
         void vf_2c() override;
 
-        void load(u32 i, const char *dir, const char *file, const char *variant,
-                u32 playerFlags, bool r8, bool pointerOnly);
+        void load(u32 i, const char *dir, const char *file, const char *variant, bool r8,
+                bool pointerOnly);
         void setPlayerFlags(u32 playerFlags);
         void setChosen(bool chosen);
         void select(u32 localPlayerId);

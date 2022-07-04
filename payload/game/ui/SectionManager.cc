@@ -8,6 +8,10 @@ Section *SectionManager::currentSection() {
     return m_currentSection;
 }
 
+SaveManagerProxy *SectionManager::saveManagerProxy() {
+    return m_saveManagerProxy;
+}
+
 GlobalContext *SectionManager::globalContext() {
     return m_globalContext;
 }

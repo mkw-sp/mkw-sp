@@ -45,6 +45,16 @@ void TimeAttackGhostListPage::onOption([[maybe_unused]] u32 localPlayerId) {
     playSfx(m_isReplay ? 0x15 : 0x14, -1);
 }
 
+void TimeAttackGhostListPage::onSettingsButtonFront([[maybe_unused]] PushButton *button,
+        [[maybe_unused]] u32 localPlayerId) {
+    auto *section = SectionManager::Instance()->currentSection();
+    auto *settingsPage = section->page<PageId::Settings>();
+    settingsPage->m_replacement = PageId::TimeAttackGhostList;
+    m_replacement = PageId::Settings;
+    f32 delay = button->getDelay();
+    startReplace(Anim::Next, delay);
+}
+
 bool TimeAttackGhostListPage::canSwapGhostSelects() const {
     if (!m_shownGhostSelect->isShown()) {
         return false;
@@ -134,8 +144,8 @@ void TimeAttackGhostListPage::onInit() {
 
     RaceConfigPlayer &player = s_raceConfig->menuScenario.players[0];
     switch (sectionMgr->currentSection()->id()) {
-    case SectionId::ChangeCourse:
-    case SectionId::ChangeGhostData: {
+    case SectionId::SingleChangeCourse:
+    case SectionId::SingleChangeGhostData: {
         const GlobalContext *cx = sectionMgr->globalContext();
         player.type = PLAYER_TYPE_LOCAL;
         player.vehicleId = cx->m_timeAttackVehicleId;
@@ -148,40 +158,42 @@ void TimeAttackGhostListPage::onInit() {
 
     m_input.init(0x1, /* isMultiPlayer = */ false);
     setInputManager(&m_input);
-    m_input.setWrappingMode(MultiControlInputManager::WrappingMode::Y);
+    m_input.setWrappingMode(MultiControlInputManager::WrappingMode::Neither);
 
-    initChildren(9);
+    initChildren(10);
     insertChild(0, &m_titleText, 0);
-    insertChild(1, &m_switchLabel, 0);
-    insertChild(2, &m_ghostSelects[0], 0);
-    insertChild(3, &m_ghostSelects[1], 0);
-    insertChild(4, &m_sheetSelect, 0);
-    insertChild(5, &m_sheetLabel, 0);
-    insertChild(6, &m_messageWindow, 0);
-    insertChild(7, &m_launchButton, 0);
-    insertChild(8, &m_backButton, 0);
+    insertChild(1, &m_settingsButton, 0);
+    insertChild(2, &m_switchLabel, 0);
+    insertChild(3, &m_ghostSelects[0], 0);
+    insertChild(4, &m_ghostSelects[1], 0);
+    insertChild(5, &m_sheetSelect, 0);
+    insertChild(6, &m_sheetLabel, 0);
+    insertChild(7, &m_messageWindow, 0);
+    insertChild(8, &m_launchButton, 0);
+    insertChild(9, &m_backButton, 0);
 
     m_titleText.load(/* isOptions = */ false);
-
+    m_settingsButton.load("button", "Setting", "ButtonSetting", 0x1, false, false);
     const char *groups[] = {
         nullptr,
         nullptr,
     };
-    m_switchLabel.load("control", "ClassChange", "ClassChange", groups);
-
+    m_switchLabel.load("control", "TimeAttackGhostListChange", "TimeAttackGhostListChange", groups);
     m_ghostSelects[0].load();
     m_ghostSelects[1].load();
     m_sheetSelect.load("button", "TimeAttackGhostListArrowRight", "ButtonArrowRight",
             "TimeAttackGhostListArrowLeft", "ButtonArrowLeft", 0x1, false, false);
     m_sheetLabel.load(
             "control", "TimeAttackGhostListPageNum", "TimeAttackGhostListPageNum", NULL);
-    m_messageWindow.load("message_window", "MessageWindowHalf", "MessageWindowHalf");
+    m_messageWindow.load("message_window", "TimeAttackGhostListMessageWindowHalf",
+            "MessageWindowHalf");
     m_launchButton.load("button", "TimeAttackGhostList", "Launch", 0x1, false, false);
     m_backButton.load(
             "button", "Back", "ButtonBackPopup", 0x1, false, /* pointerOnly = */ true);
 
     m_input.setHandler(MenuInputManager::InputId::Back, &m_onBack);
     m_input.setHandler(MenuInputManager::InputId::Option, &m_onOption);
+    m_settingsButton.setFrontHandler(&m_onSettingsButtonFront, false);
     m_sheetSelect.setRightHandler(&m_onSheetSelectRight);
     m_sheetSelect.setLeftHandler(&m_onSheetSelectLeft);
     m_launchButton.setSelectHandler(&m_onLaunchButtonSelect, false);
@@ -263,13 +275,13 @@ void TimeAttackGhostListPage::onRefocus() {
     auto *ghostManagerPage = section->page<PageId::GhostManager>();
     SectionId sectionId;
     if (m_chosenCount == 0) {
-        sectionId = SectionId::TimeAttack;
+        sectionId = SectionId::TA;
     } else if (m_isReplay) {
         ghostManagerPage->requestGhostReplay();
         sectionId = SectionId::GhostReplay;
     } else {
         ghostManagerPage->requestGhostRace(false, false);
-        sectionId = SectionId::TimeAttack;
+        sectionId = SectionId::TA;
     }
     changeSection(sectionId, Anim::Next, 0.0f);
 }

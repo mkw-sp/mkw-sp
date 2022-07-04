@@ -4,6 +4,7 @@
 #include "game/ui/MenuInputManager.hh"
 #include "game/ui/PageId.hh"
 #include "game/ui/SectionId.hh"
+#include "game/ui/TypeInfo.hh"
 #include "game/ui/UIControl.hh"
 
 namespace UI {
@@ -48,7 +49,17 @@ public:
     virtual void onRefocus();
     virtual void vf_58();
     virtual void vf_5c();
-    virtual void vf_60();
+    virtual TypeInfo *getTypeInfo() const;
+
+    template <typename P>
+    P *downcast() {
+        for (TypeInfo *typeInfo = getTypeInfo(); typeInfo != nullptr; typeInfo = typeInfo->base) {
+            if (typeInfo == P::GetTypeInfo()) {
+                return reinterpret_cast<P *>(this);
+            }
+        }
+        return nullptr;
+    }
 
 protected:
     void setInputManager(MenuInputManager *inputManager);

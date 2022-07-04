@@ -431,4 +431,16 @@
         "font": "regular",
         "string": "",
     },
+    "10118": {
+        "font": "regular",
+        "string": "Race",
+    },
+    "10119": {
+        "font": "regular",
+        "string": "Time Trials",
+    },
+    "10120": {
+        "font": "regular",
+        "string": "License",
+    },
 }

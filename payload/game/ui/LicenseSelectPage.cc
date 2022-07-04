@@ -88,7 +88,7 @@ void LicenseSelectPage::onServicePackButtonFront(PushButton *button, u32 UNUSED(
     System::SaveManager::Instance()->unselectSPLicense();
 
     f32 delay = button->getDelay();
-    changeSection(SectionId::Channel, Anim::Next, delay);
+    changeSection(SectionId::ServicePack, Anim::Next, delay);
 }
 
 void LicenseSelectPage::onLicenseButtonFront(PushButton *button, u32 UNUSED(localPlayerId)) {

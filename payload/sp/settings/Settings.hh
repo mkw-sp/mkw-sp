@@ -16,15 +16,19 @@ template <typename C>
 struct Entry {
     C category;
     const char *name;
+    u32 messageId;
     u32 defaultValue;
     u32 valueCount;
-    const char **valueNames;
+    const char *const *valueNames;
+    const u32 *valueMessageIds;
+    const u32 *valueExplanationMessageIds;
 };
 
 template <typename C>
 struct Group {
     const char *name;
-    const char **categoryNames;
+    const char *const *categoryNames;
+    const u32 *categoryMessageIds;
     u32 entryCount;
     const Entry<C> *entries;
 };
@@ -75,6 +79,14 @@ public:
 
             Print(ini, length, "%s = %s\n", entry.name, entry.valueNames[m_values[i]]);
         }
+    }
+
+    u32 get(u32 setting) const {
+        return m_values[setting];
+    }
+
+    void set(u32 setting, u32 value) {
+        m_values[setting] = value;
     }
 
     template <typename S, S T>

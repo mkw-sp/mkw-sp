@@ -7,6 +7,7 @@
 #include "game/ui/Option.hh"
 #include "game/ui/Page.hh"
 #include "game/ui/SectionId.hh"
+#include "game/ui/SettingsPage.hh"
 
 namespace UI {
 
@@ -16,6 +17,8 @@ private:
     struct PageIdHelper;
 
 public:
+    Page *page(PageId pageId);
+
     template <PageId P>
     PageIdHelper<P>::type *page() {
         return reinterpret_cast<PageIdHelper<P>::type *>(m_pages[static_cast<size_t>(P)]);
@@ -23,9 +26,19 @@ public:
 
     SectionId id() const { return m_id; }
 
+    static u32 GetSceneId(SectionId id);
+
 private:
-    static Page *REPLACED(createPage)(PageId pageId);
-    static REPLACE Page *createPage(PageId pageId);
+    void REPLACED(addPage)(PageId pageId);
+    REPLACE void addPage(PageId pageId);
+    void addActivePage(PageId pageId);
+    void REPLACED(addPages)(SectionId id);
+    REPLACE void addPages(SectionId id);
+    void REPLACED(addActivePages)(SectionId id);
+    REPLACE void addActivePages(SectionId id);
+
+    static Page *REPLACED(CreatePage)(PageId pageId);
+    static REPLACE Page *CreatePage(PageId pageId);
 
     SectionId m_id;
     u8 _004[0x008 - 0x004];
@@ -72,6 +85,11 @@ struct Section::PageIdHelper<PageId::OptionMessage> {
 template <>
 struct Section::PageIdHelper<PageId::OptionConfirm> {
     using type = ConfirmPage;
+};
+
+template <>
+struct Section::PageIdHelper<PageId::Settings> {
+    using type = SettingsPage;
 };
 
 } // namespace UI

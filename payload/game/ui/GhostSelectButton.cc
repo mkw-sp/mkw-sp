@@ -86,7 +86,7 @@ GhostSelectButton::~GhostSelectButton() = default;
 void GhostSelectButton::load(u32 index) {
     char variant[0x10];
     snprintf(variant, sizeof(variant), "Option%lu", index);
-    OptionButton::load(index, "control", "GhostSelectOption", variant, 0x1, false, false);
+    OptionButton::load(index, "control", "GhostSelectOption", variant, false, false);
     setParentPane(variant);
     m_miiGroup.init(1, 0x1, NULL);
     setMiiPicture("mii_shadow", &m_miiGroup, 0, 0);

@@ -52,6 +52,9 @@ public:
     void selectSPLicense(u32 licenseId);
     void unselectSPLicense();
 
+    u32 getSetting(u32 setting) const;
+    void setSetting(u32 setting, u32 value);
+
     template <SP::ClientSettings::Setting S>
     SP::ClientSettings::Helper<S>::type getSetting() const {
         if (!m_spCurrentLicense) {

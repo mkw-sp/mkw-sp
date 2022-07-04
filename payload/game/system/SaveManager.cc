@@ -278,6 +278,22 @@ void SaveManager::unselectSPLicense() {
     m_spCurrentLicense.reset();
 }
 
+u32 SaveManager::getSetting(u32 setting) const {
+    if (!m_spCurrentLicense) {
+        return SP::ClientSettings::entries[setting].defaultValue;
+    }
+
+    return m_spLicenses[*m_spCurrentLicense].get(setting);
+}
+
+void SaveManager::setSetting(u32 setting, u32 value) {
+    if (!m_spCurrentLicense) {
+        return;
+    }
+
+    m_spLicenses[*m_spCurrentLicense].set(setting, value);
+}
+
 void SaveManager::setSetting(const char *key, const char *value) {
     if (!m_spCurrentLicense) {
         return;
