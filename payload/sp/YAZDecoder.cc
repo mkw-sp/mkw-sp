@@ -149,7 +149,7 @@ std::optional<u32> YAZDecoder::Decode(const u8 *src, size_t srcSize, u8 *dst, si
     }
     dstSize = std::min(static_cast<u32>(dstSize), *tmp);
     YAZDecoder decoder(dst, dstSize);
-    if (!decoder.decode(src, srcSize)) {
+    if (!decoder.decode(src + HEADER_SIZE, srcSize - HEADER_SIZE)) {
         return {};
     }
     if (!decoder.done()) {
