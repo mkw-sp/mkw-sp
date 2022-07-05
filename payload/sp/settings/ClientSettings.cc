@@ -6,195 +6,122 @@ namespace SP::ClientSettings {
 
 const char name[] = "MKW-SP Settings";
 
-const char *categoryNames[] = {
-    [static_cast<u32>(Category::Race)] = "Race",
-    [static_cast<u32>(Category::TA)] = "TTs",
-    [static_cast<u32>(Category::License)] = "License",
-};
-
 const u32 categoryMessageIds[] = { 10118, 10119, 10120 };
-
-static const char *driftModeValueNames[] = {
-    [static_cast<u32>(DriftMode::Manual)] = "Manual",
-    [static_cast<u32>(DriftMode::Auto)] = "Auto",
-};
-
-static const char *hudLabelsValueNames[] = {
-    [static_cast<u32>(HUDLabels::Hide)] = "Hide",
-    [static_cast<u32>(HUDLabels::Show)] = "Show",
-};
-
-static const char *fov169ValueNames[] = {
-    [static_cast<u32>(FOV169::FOV169)] = "16:9",
-    [static_cast<u32>(FOV169::FOV43)] = "4:3",
-};
-
-static const char *mapIconsValueNames[] = {
-    [static_cast<u32>(MapIcons::Characters)] = "Characters",
-    [static_cast<u32>(MapIcons::Miis)] = "Miis",
-};
-
-static const char *inputDisplayValueNames[] = {
-    [static_cast<u32>(InputDisplay::Disable)] = "None",
-    [static_cast<u32>(InputDisplay::Simple)] = "Simple",
-};
-
-static const char *taRuleClassValueNames[] = {
-    [static_cast<u32>(TARuleClass::CC150)] = "150cc",
-    [static_cast<u32>(TARuleClass::CC200)] = "200cc",
-};
-
-static const char *taRuleGhostSortingValueNames[] = {
-    [static_cast<u32>(TARuleGhostSorting::Fastest)] = "Fastest",
-    [static_cast<u32>(TARuleGhostSorting::Slowest)] = "Slowest",
-    [static_cast<u32>(TARuleGhostSorting::Newest)] = "Newest",
-    [static_cast<u32>(TARuleGhostSorting::Oldest)] = "Oldest",
-};
-
-static const char *taRuleGhostTagVisibilityValueNames[] = {
-    [static_cast<u32>(TARuleGhostTagVisibility::None)] = "None",
-    [static_cast<u32>(TARuleGhostTagVisibility::Watched)] = "Watched",
-    [static_cast<u32>(TARuleGhostTagVisibility::All)] = "All",
-};
-
-static const char *taRuleGhostTagContentValueNames[] = {
-    [static_cast<u32>(TARuleGhostTagContent::Name)] = "Name",
-    [static_cast<u32>(TARuleGhostTagContent::Time)] = "Time",
-    [static_cast<u32>(TARuleGhostTagContent::TimeNoLeading)] = "TimeNoLeading",
-    [static_cast<u32>(TARuleGhostTagContent::Date)] = "Date",
-};
-
-static const char *taRuleSolidGhostsValueNames[] = {
-    [static_cast<u32>(TARuleSolidGhosts::None)] = "None",
-    [static_cast<u32>(TARuleSolidGhosts::Watched)] = "Watched",
-    [static_cast<u32>(TARuleSolidGhosts::All)] = "All",
-};
-
-static const char *taRuleGhostSoundValueNames[] = {
-    [static_cast<u32>(TARuleGhostSound::None)] = "None",
-    [static_cast<u32>(TARuleGhostSound::Watched)] = "Watched",
-    [static_cast<u32>(TARuleGhostSound::All)] = "All",
-};
-
-static const char *pageTransitionsValueNames[] = {
-    [static_cast<u32>(PageTransitions::Disable)] = "Disable",
-    [static_cast<u32>(PageTransitions::Enable)] = "Enable",
-};
 
 const Entry entries[] = {
     [static_cast<u32>(Setting::DriftMode)] = {
         .category = Category::Race,
-        .name = "DriftMode",
+        .name = magic_enum::enum_name(Setting::DriftMode),
         .messageId = 0,
-        .defaultValue = static_cast<u32>(DriftMode::Default),
-        .valueCount = std::size(driftModeValueNames),
-        .valueNames = driftModeValueNames,
+        .defaultValue = static_cast<u32>(DriftMode::Manual),
+        .valueCount = magic_enum::enum_count<DriftMode>(),
+        .valueNames = magic_enum::enum_names<DriftMode>().data(),
         .valueMessageIds = nullptr,
         .valueExplanationMessageIds = nullptr,
     },
     [static_cast<u32>(Setting::HUDLabels)] = {
         .category = Category::Race,
-        .name = "HUDLabels",
+        .name = magic_enum::enum_name(Setting::HUDLabels),
         .messageId = 10004,
-        .defaultValue = static_cast<u32>(HUDLabels::Default),
-        .valueCount = std::size(hudLabelsValueNames),
-        .valueNames = hudLabelsValueNames,
+        .defaultValue = static_cast<u32>(HUDLabels::Show),
+        .valueCount = magic_enum::enum_count<HUDLabels>(),
+        .valueNames = magic_enum::enum_names<HUDLabels>().data(),
         .valueMessageIds = (u32[]) { 10005, 10006 },
         .valueExplanationMessageIds = (u32[]) { 10007, 10008 },
     },
     [static_cast<u32>(Setting::FOV169)] = {
         .category = Category::Race,
-        .name = "FOV169",
+        .name = magic_enum::enum_name(Setting::FOV169),
         .messageId = 10009,
-        .defaultValue = static_cast<u32>(FOV169::Default),
-        .valueCount = std::size(fov169ValueNames),
-        .valueNames = fov169ValueNames,
+        .defaultValue = static_cast<u32>(FOV169::FOV169),
+        .valueCount = magic_enum::enum_count<FOV169>(),
+        .valueNames = magic_enum::enum_names<FOV169>().data(),
         .valueMessageIds = (u32[]) { 10010, 10011 },
         .valueExplanationMessageIds = (u32[]) { 10012, 10013 },
     },
     [static_cast<u32>(Setting::MapIcons)] = {
         .category = Category::Race,
-        .name = "MapIcons",
+        .name = magic_enum::enum_name(Setting::MapIcons),
         .messageId = 10014,
-        .defaultValue = static_cast<u32>(MapIcons::Default),
-        .valueCount = std::size(mapIconsValueNames),
-        .valueNames = mapIconsValueNames,
+        .defaultValue = static_cast<u32>(MapIcons::Miis),
+        .valueCount = magic_enum::enum_count<MapIcons>(),
+        .valueNames = magic_enum::enum_names<MapIcons>().data(),
         .valueMessageIds = (u32[]) { 10015, 10016 },
         .valueExplanationMessageIds = (u32[]) { 10017, 10018 },
     },
     [static_cast<u32>(Setting::InputDisplay)] = {
         .category = Category::Race,
-        .name = "InputDisplay",
+        .name = magic_enum::enum_name(Setting::InputDisplay),
         .messageId = 10061,
-        .defaultValue = static_cast<u32>(InputDisplay::Default),
-        .valueCount = std::size(inputDisplayValueNames),
-        .valueNames = inputDisplayValueNames,
+        .defaultValue = static_cast<u32>(InputDisplay::Simple),
+        .valueCount = magic_enum::enum_count<InputDisplay>(),
+        .valueNames = magic_enum::enum_names<InputDisplay>().data(),
         .valueMessageIds = (u32[]) { 10062, 10063 },
         .valueExplanationMessageIds = (u32[]) { 10064, 10065 },
     },
-    [static_cast<u32>(Setting::TARuleClass)] = {
+    [static_cast<u32>(Setting::TAClass)] = {
         .category = Category::TA,
-        .name = "Class",
+        .name = magic_enum::enum_name(Setting::TAClass),
         .messageId = 3410,
-        .defaultValue = static_cast<u32>(TARuleClass::Default),
-        .valueCount = std::size(taRuleClassValueNames),
-        .valueNames = taRuleClassValueNames,
+        .defaultValue = static_cast<u32>(TAClass::CC150),
+        .valueCount = magic_enum::enum_count<TAClass>(),
+        .valueNames = magic_enum::enum_names<TAClass>().data(),
         .valueMessageIds = (u32[]) { 3413, 10072 },
         .valueExplanationMessageIds = (u32[]) { 10079, 10081 },
     },
-    [static_cast<u32>(Setting::TARuleGhostSorting)] = {
+    [static_cast<u32>(Setting::TAGhostSorting)] = {
         .category = Category::TA,
-        .name = "GhostSorting",
+        .name = magic_enum::enum_name(Setting::TAGhostSorting),
         .messageId = 10019,
-        .defaultValue = static_cast<u32>(TARuleGhostSorting::Default),
-        .valueCount = std::size(taRuleGhostSortingValueNames),
-        .valueNames = taRuleGhostSortingValueNames,
+        .defaultValue = static_cast<u32>(TAGhostSorting::Fastest),
+        .valueCount = magic_enum::enum_count<TAGhostSorting>(),
+        .valueNames = magic_enum::enum_names<TAGhostSorting>().data(),
         .valueMessageIds = (u32[]) { 10020, 10021, 10022, 10023 },
         .valueExplanationMessageIds = (u32[]) { 10024, 10025, 10026, 10027 },
     },
-    [static_cast<u32>(Setting::TARuleGhostTagVisibility)] = {
+    [static_cast<u32>(Setting::TAGhostTagVisibility)] = {
         .category = Category::TA,
-        .name = "GhostTagVisibility",
+        .name = magic_enum::enum_name(Setting::TAGhostTagVisibility),
         .messageId = 10028,
-        .defaultValue = static_cast<u32>(TARuleGhostTagVisibility::Default),
-        .valueCount = std::size(taRuleGhostTagVisibilityValueNames),
-        .valueNames = taRuleGhostTagVisibilityValueNames,
+        .defaultValue = static_cast<u32>(TAGhostTagVisibility::All),
+        .valueCount = magic_enum::enum_count<TAGhostTagVisibility>(),
+        .valueNames = magic_enum::enum_names<TAGhostTagVisibility>().data(),
         .valueMessageIds = (u32[]) { 10029, 10030, 10031 },
         .valueExplanationMessageIds = (u32[]) { 10032, 10033, 10034 },
     },
-    [static_cast<u32>(Setting::TARuleGhostTagContent)] = {
+    [static_cast<u32>(Setting::TAGhostTagContent)] = {
         .category = Category::TA,
-        .name = "GhostTagContent",
+        .name = magic_enum::enum_name(Setting::TAGhostTagContent),
         .messageId = 10035,
-        .defaultValue = static_cast<u32>(TARuleGhostTagContent::Default),
-        .valueCount = std::size(taRuleGhostTagContentValueNames),
-        .valueNames = taRuleGhostTagContentValueNames,
+        .defaultValue = static_cast<u32>(TAGhostTagContent::Name),
+        .valueCount = magic_enum::enum_count<TAGhostTagContent>(),
+        .valueNames = magic_enum::enum_names<TAGhostTagContent>().data(),
         .valueMessageIds = (u32[]) { 10036, 10037, 10053, 10038 },
         .valueExplanationMessageIds = (u32[]) { 10039, 10040, 10054, 10041 },
     },
-    [static_cast<u32>(Setting::TARuleSolidGhosts)] = {
+    [static_cast<u32>(Setting::TASolidGhosts)] = {
         .category = Category::TA,
-        .name = "SolidGhosts",
+        .name = magic_enum::enum_name(Setting::TASolidGhosts),
         .messageId = 10042,
-        .defaultValue = static_cast<u32>(TARuleSolidGhosts::Default),
-        .valueCount = std::size(taRuleSolidGhostsValueNames),
-        .valueNames = taRuleSolidGhostsValueNames,
+        .defaultValue = static_cast<u32>(TASolidGhosts::None),
+        .valueCount = magic_enum::enum_count<TASolidGhosts>(),
+        .valueNames = magic_enum::enum_names<TASolidGhosts>().data(),
         .valueMessageIds = (u32[]) { 10029, 10030, 10031 },
         .valueExplanationMessageIds = (u32[]) { 10043, 10044, 10045 },
     },
-    [static_cast<u32>(Setting::TARuleGhostSound)] = {
+    [static_cast<u32>(Setting::TAGhostSound)] = {
         .category = Category::TA,
-        .name = "GhostSound",
+        .name = magic_enum::enum_name(Setting::TAGhostSound),
         .messageId = 10066,
-        .defaultValue = static_cast<u32>(TARuleGhostSound::Default),
-        .valueCount = std::size(taRuleGhostSoundValueNames),
-        .valueNames = taRuleGhostSoundValueNames,
+        .defaultValue = static_cast<u32>(TAGhostSound::Watched),
+        .valueCount = magic_enum::enum_count<TAGhostSound>(),
+        .valueNames = magic_enum::enum_names<TAGhostSound>().data(),
         .valueMessageIds = (u32[]) { 10029, 10030, 10031 },
         .valueExplanationMessageIds = (u32[]) { 10067, 10068, 10069 },
     },
     [static_cast<u32>(Setting::MiiAvatar)] = {
         .category = Category::License,
-        .name = "MiiAvatar",
+        .name = magic_enum::enum_name(Setting::MiiAvatar),
         .messageId = 0,
         .defaultValue = 0x80000001,
         .valueCount = 0,
@@ -204,7 +131,7 @@ const Entry entries[] = {
     },
     [static_cast<u32>(Setting::MiiClient)] = {
         .category = Category::License,
-        .name = "MiiClient",
+        .name = magic_enum::enum_name(Setting::MiiClient),
         .messageId = 0,
         .defaultValue = 0xECFF82D2,
         .valueCount = 0,
@@ -214,7 +141,7 @@ const Entry entries[] = {
     },
     [static_cast<u32>(Setting::LoadingScreenColor)] = {
         .category = Category::License,
-        .name = "LoadingScreenColor",
+        .name = magic_enum::enum_name(Setting::LoadingScreenColor),
         .messageId = 0,
         .defaultValue = 0xFF,
         .valueCount = 0,
@@ -224,11 +151,11 @@ const Entry entries[] = {
     },
     [static_cast<u32>(Setting::PageTransitions)] = {
         .category = Category::License,
-        .name = "PageTransitions",
+        .name = magic_enum::enum_name(Setting::PageTransitions),
         .messageId = 10056,
-        .defaultValue = static_cast<u32>(PageTransitions::Default),
-        .valueCount = std::size(pageTransitionsValueNames),
-        .valueNames = pageTransitionsValueNames,
+        .defaultValue = static_cast<u32>(PageTransitions::Enable),
+        .valueCount = magic_enum::enum_count<PageTransitions>(),
+        .valueNames = magic_enum::enum_names<PageTransitions>().data(),
         .valueMessageIds = (u32[]) { 10057, 10058 },
         .valueExplanationMessageIds = (u32[]) { 10059, 10060 },
     },

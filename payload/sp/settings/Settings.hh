@@ -5,6 +5,7 @@
 extern "C" {
 #include <revolution.h>
 }
+#include <vendor/magic_enum/magic_enum.hpp>
 
 #include <cstdarg>
 #include <cstdio>
@@ -15,11 +16,11 @@ namespace SP::Settings {
 template <typename C>
 struct Entry {
     C category;
-    const char *name;
+    std::string_view name;
     u32 messageId;
     u32 defaultValue;
     u32 valueCount;
-    const char *const *valueNames;
+    const std::string_view *valueNames;
     const u32 *valueMessageIds;
     const u32 *valueExplanationMessageIds;
 };
@@ -27,7 +28,7 @@ struct Entry {
 template <typename C>
 struct Group {
     const char *name;
-    const char *const *categoryNames;
+    const std::string_view *categoryNames;
     const u32 *categoryMessageIds;
     u32 entryCount;
     const Entry<C> *entries;
@@ -62,22 +63,27 @@ public:
 
         Print(ini, length, "# %s\n", G.name);
 
-        C lastCategory = C::Max;
+        u32 lastCategory = magic_enum::enum_count<C>();
         for (u32 i = 0; i < G.entryCount; ++i) {
             const auto &entry = G.entries[i];
+            auto entryName = entry.name;
 
-            if (lastCategory != entry.category) {
-                Print(ini, length, "\n[%s]\n", G.categoryNames[static_cast<u32>(entry.category)]);
-                lastCategory = entry.category;
+            if (lastCategory != static_cast<u32>(entry.category)) {
+                auto categoryName = G.categoryNames[static_cast<u32>(entry.category)];
+                Print(ini, length, "\n[%.*s]\n", categoryName.length(), categoryName.data());
+                lastCategory = static_cast<u32>(entry.category);
             }
 
             // 0 -> hex
             if (entry.valueCount == 0) {
-                Print(ini, length, "%s = %08X\n", entry.name, m_values[i]);
+                Print(ini, length, "%.*s = %08X\n", entryName.length(), entryName.data(),
+                        m_values[i]);
                 continue;
             }
 
-            Print(ini, length, "%s = %s\n", entry.name, entry.valueNames[m_values[i]]);
+            auto valueName = entry.valueNames[m_values[i]];
+            Print(ini, length, "%.*s = %.*s\n", entryName.length(), entryName.data(),
+                    valueName.length(), valueName.data());
         }
     }
 
@@ -129,13 +135,13 @@ private:
             if (verbose) {
                 SP_LOG("Expected one of:");
                 for (u32 i = 0; i < G.entryCount; i++) {
-                    SP_LOG("%s", G.entries[i].name);
+                    SP_LOG("%.*s", G.entries[i].name.length(), G.entries[i].name.data());
                 }
             }
             return;
         }
         const auto &entry = G.entries[*setting];
-        const char *categoryName = G.categoryNames[static_cast<u32>(entry.category)];
+        auto categoryName = G.categoryNames[static_cast<u32>(entry.category)];
 
         // Default to hex
         if (entry.valueCount == 0) {
@@ -144,11 +150,13 @@ private:
             char *end;
             u32 v = strtoul(tmp, &end, 16);
             if (*end != '\0') {
-                SP_LOG("Invalid value \"%.*s\" for %s::%s", value.length(), value.data(),
-                        categoryName, entry.name);
+                SP_LOG("Invalid value \"%.*s\" for %.*s::%.*s", value.length(), value.data(),
+                        categoryName.length(), categoryName.data(), entry.name.length(),
+                        entry.name.data());
                 return;
             }
-            SP_LOG("Setting %s::%s to %08x (%i)", categoryName, entry.name, v, v);
+            SP_LOG("Setting %.*s::%.*s to %08x (%i)", categoryName.length(), categoryName.data(),
+                    entry.name.length(), entry.name.data(), v, v);
             m_values[*setting] = v;
             return;
         }
@@ -161,15 +169,19 @@ private:
             }
         }
         if (!v) {
-            SP_LOG("Unknown value \"%.*s\" for %s::%s", value.length(), value.data(), categoryName,
-                    entry.name);
+            SP_LOG("Unknown value \"%.*s\" for %.*s::%.*s", value.length(), value.data(),
+                    categoryName.length(), categoryName.data(), entry.name.length(),
+                    entry.name.data());
             SP_LOG("Expected one of:");
             for (u32 i = 0; i < entry.valueCount; ++i) {
-                SP_LOG("- %s (%u)", entry.valueNames[i], i);
+                auto valueName = entry.valueNames[i];
+                SP_LOG("- %.*s (%u)", valueName.length(), valueName.data(), i);
             }
             return;
         }
-        SP_LOG("Setting %s::%s to %s (%i)", categoryName, entry.name, entry.valueNames[*v], *v);
+        auto valueName = entry.valueNames[*v];
+        SP_LOG("Setting %.*s::%.*s to %.*s (%i)", categoryName.length(), categoryName.data(),
+                entry.name.length(), entry.name.data(), valueName.length(), valueName.data(), *v);
         m_values[*setting] = *v;
     }
 

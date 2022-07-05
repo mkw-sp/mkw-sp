@@ -163,7 +163,7 @@ sp_define_command("/example_command", "Example command", const char *tmp) {
         "SP_TA_RULE_GHOST_TAG_CONTENT_TIME_NOLEADING",
         "SP_TA_RULE_GHOST_TAG_CONTENT_DATE",
     };
-    const u32 rule = SaveManager_GetTARuleGhostTagContent();
+    const u32 rule = SaveManager_GetTAGhostTagContent();
     OSReport("example_command: taRuleGhostTagContent == %s\n", tagContent[rule & 3]);
 }
 

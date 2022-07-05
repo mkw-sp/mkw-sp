@@ -15,8 +15,8 @@ void GhostManagerPage::SPList::populate() {
     auto *saveManager = System::SaveManager::Instance();
     u32 courseId = System::RaceConfig::Instance()->menuScenario().courseId;
     const u8 *courseSHA1 = saveManager->courseSHA1(courseId);
-    auto cc = saveManager->getSetting<SP::ClientSettings::Setting::TARuleClass>();
-    bool speedModIsEnabled = cc == SP::ClientSettings::TARuleClass::CC200;
+    auto cc = saveManager->getSetting<SP::ClientSettings::Setting::TAClass>();
+    bool speedModIsEnabled = cc == SP::ClientSettings::TAClass::CC200;
     m_count = 0;
     for (u32 i = 0; i < saveManager->ghostCount(); i++) {
         auto *header = saveManager->rawGhostHeader(i);
@@ -41,14 +41,14 @@ void GhostManagerPage::SPList::populate() {
         u32 u1 = (t1->minutes * 60 + t1->seconds) * 1000 + t1->milliseconds;
         u32 d0 = (h0->year * 12 + h0->month) * 31 + h0->day;
         u32 d1 = (h1->year * 12 + h1->month) * 31 + h1->day;
-        switch (saveManager->getSetting<SP::ClientSettings::Setting::TARuleGhostSorting>()) {
-        case SP::ClientSettings::TARuleGhostSorting::Fastest:
+        switch (saveManager->getSetting<SP::ClientSettings::Setting::TAGhostSorting>()) {
+        case SP::ClientSettings::TAGhostSorting::Fastest:
             return u0 < u1;
-        case SP::ClientSettings::TARuleGhostSorting::Slowest:
+        case SP::ClientSettings::TAGhostSorting::Slowest:
             return u0 > u1;
-        case SP::ClientSettings::TARuleGhostSorting::Newest:
+        case SP::ClientSettings::TAGhostSorting::Newest:
             return d0 > d1;
-        case SP::ClientSettings::TARuleGhostSorting::Oldest:
+        case SP::ClientSettings::TAGhostSorting::Oldest:
             return d0 < d1;
         default:
             assert(false);

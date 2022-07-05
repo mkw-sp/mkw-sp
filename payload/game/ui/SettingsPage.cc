@@ -34,7 +34,7 @@ void SettingsPage::onInit() {
     }
 
     m_pageTitleText.load(false);
-    m_categoryControl.load(static_cast<u32>(SP::ClientSettings::Category::Max), 0, "control",
+    m_categoryControl.load(magic_enum::enum_count<SP::ClientSettings::Category>(), 0, "control",
             "CategoryUpDownBase", "Category", "CategoryUpDownButtonR", "RightButton",
             "CategoryUpDownButtonL", "LeftButton", m_categoryValue.animator(), 0x1, false, false,
             true, true);

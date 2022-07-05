@@ -27,7 +27,7 @@ static void my_KartObjectManager_createInstance(void) {
         speedModIsEnabled = vsSpeedModIsEnabled;
         break;
     case GAME_MODE_TIME_ATTACK:
-        speedModIsEnabled = SaveManager_GetTARuleClass() == kTaRuleClass_200cc;
+        speedModIsEnabled = SaveManager_GetTAClass() == kTaRuleClass_200cc;
         break;
     default:
         speedModIsEnabled = false;
@@ -54,7 +54,7 @@ static bool playerIsSolid(u32 playerId) {
         return true;
     }
 
-    switch (SaveManager_GetTARuleSolidGhosts()) {
+    switch (SaveManager_GetTASolidGhosts()) {
     case kTaRuleSolidGhosts_None:
         return false;
     case kTaRuleSolidGhosts_All:
@@ -71,7 +71,7 @@ enum {
 };
 
 static u32 getGhostSoundSetting(u32 playerId) {
-    switch (SaveManager_GetTARuleGhostSound()) {
+    switch (SaveManager_GetTAGhostSound()) {
     case kTaRuleGhostSound_None:
         return SOUND_SETTING_NONE;
     case kTaRuleGhostSound_All:

@@ -13,131 +13,91 @@ enum class Setting {
     InputDisplay,
 
     // TA
-    TARuleClass,
-    TARuleGhostSorting,
-    TARuleGhostTagVisibility,
-    TARuleGhostTagContent,
-    TARuleSolidGhosts,
-    TARuleGhostSound,
+    TAClass,
+    TAGhostSorting,
+    TAGhostTagVisibility,
+    TAGhostTagContent,
+    TASolidGhosts,
+    TAGhostSound,
 
     // License
     MiiAvatar,
     MiiClient,
     LoadingScreenColor,
     PageTransitions,
-
-    Max,
 };
 
 enum class Category {
     Race,
     TA,
     License,
-
-    Max,
 };
 
 enum class DriftMode {
     Manual,
     Auto,
-
-    Max,
-    Default = Manual,
 };
 
 enum class HUDLabels {
     Hide,
     Show,
-
-    Max,
-    Default = Show,
 };
 
 enum class FOV169 {
     FOV169,
     FOV43,
-
-    Max,
-    Default = FOV169,
 };
 
 enum class MapIcons {
     Characters,
     Miis,
-
-    Max,
-    Default = Miis,
 };
 
 enum class InputDisplay {
     Disable,
     Simple,
-
-    Max,
-    Default = Simple,
 };
 
-enum class TARuleClass {
+enum class TAClass {
     CC150,
     CC200,
-
-    Max,
-    Default = CC150,
 };
 
-enum class TARuleGhostSorting {
+enum class TAGhostSorting {
     Fastest,
     Slowest,
     Newest,
     Oldest,
-
-    Max,
-    Default = Fastest,
 };
 
-enum class TARuleGhostTagVisibility {
+enum class TAGhostTagVisibility {
     None,
     Watched,
     All,
-
-    Max,
-    Default = All,
 };
 
-enum class TARuleGhostTagContent {
+enum class TAGhostTagContent {
     Name,
     Time,
     TimeNoLeading,
     Date,
-
-    Max,
-    Default = Name,
 };
 
-enum class TARuleSolidGhosts {
+enum class TASolidGhosts {
     None,
     Watched,
     All,
-
-    Max,
-    Default = None,
 };
 
-enum class TARuleGhostSound {
+enum class TAGhostSound {
     None,
     Watched,
     All,
-
-    Max,
-    Default = Watched,
 };
 
 enum class PageTransitions {
     Disable,
     Enable,
-
-    Max,
-    Default = Enable,
 };
 
 typedef Settings::Group<Category> Group;
@@ -146,11 +106,11 @@ template <Setting S>
 using Helper = Settings::Helper<Setting, S>;
 
 extern const char name[];
-extern const char *categoryNames[];
+constexpr auto categoryNames = magic_enum::enum_names<Category>();
 extern const u32 categoryMessageIds[];
-constexpr u32 entryCount = static_cast<u32>(Setting::Max);
+constexpr u32 entryCount = magic_enum::enum_count<Setting>();
 extern const Entry entries[];
-constexpr Group group{ name, categoryNames, categoryMessageIds, entryCount, entries };
+constexpr Group group{ name, categoryNames.data(), categoryMessageIds, entryCount, entries };
 
 typedef Settings::Settings<Category, ClientSettings::group> Settings;
 
@@ -184,33 +144,33 @@ struct Helper<ClientSettings::Setting, ClientSettings::Setting::InputDisplay> {
 };
 
 template <>
-struct Helper<ClientSettings::Setting, ClientSettings::Setting::TARuleClass> {
-    using type = SP::ClientSettings::TARuleClass;
+struct Helper<ClientSettings::Setting, ClientSettings::Setting::TAClass> {
+    using type = SP::ClientSettings::TAClass;
 };
 
 template <>
-struct Helper<ClientSettings::Setting, ClientSettings::Setting::TARuleGhostSorting> {
-    using type = SP::ClientSettings::TARuleGhostSorting;
+struct Helper<ClientSettings::Setting, ClientSettings::Setting::TAGhostSorting> {
+    using type = SP::ClientSettings::TAGhostSorting;
 };
 
 template <>
-struct Helper<ClientSettings::Setting, ClientSettings::Setting::TARuleGhostTagVisibility> {
-    using type = SP::ClientSettings::TARuleGhostTagVisibility;
+struct Helper<ClientSettings::Setting, ClientSettings::Setting::TAGhostTagVisibility> {
+    using type = SP::ClientSettings::TAGhostTagVisibility;
 };
 
 template <>
-struct Helper<ClientSettings::Setting, ClientSettings::Setting::TARuleGhostTagContent> {
-    using type = SP::ClientSettings::TARuleGhostTagContent;
+struct Helper<ClientSettings::Setting, ClientSettings::Setting::TAGhostTagContent> {
+    using type = SP::ClientSettings::TAGhostTagContent;
 };
 
 template <>
-struct Helper<ClientSettings::Setting, ClientSettings::Setting::TARuleSolidGhosts> {
-    using type = SP::ClientSettings::TARuleSolidGhosts;
+struct Helper<ClientSettings::Setting, ClientSettings::Setting::TASolidGhosts> {
+    using type = SP::ClientSettings::TASolidGhosts;
 };
 
 template <>
-struct Helper<ClientSettings::Setting, ClientSettings::Setting::TARuleGhostSound> {
-    using type = SP::ClientSettings::TARuleGhostSound;
+struct Helper<ClientSettings::Setting, ClientSettings::Setting::TAGhostSound> {
+    using type = SP::ClientSettings::TAGhostSound;
 };
 
 template <>

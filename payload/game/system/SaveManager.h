@@ -24,15 +24,15 @@ u32 SaveManager_GetMapIcons(void);
 
 u32 SaveManager_GetInputDisplay(void);
 
-u32 SaveManager_GetTARuleClass(void);
+u32 SaveManager_GetTAClass(void);
 
-u32 SaveManager_GetTARuleGhostTagVisibility(void);
+u32 SaveManager_GetTAGhostTagVisibility(void);
 
-u32 SaveManager_GetTARuleGhostTagContent(void);
+u32 SaveManager_GetTAGhostTagContent(void);
 
-u32 SaveManager_GetTARuleSolidGhosts(void);
+u32 SaveManager_GetTASolidGhosts(void);
 
-u32 SaveManager_GetTARuleGhostSound(void);
+u32 SaveManager_GetTAGhostSound(void);
 
 u32 SaveManager_GetHUDLabels(void);
 

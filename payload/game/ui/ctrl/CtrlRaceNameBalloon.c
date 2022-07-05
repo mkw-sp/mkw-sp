@@ -85,7 +85,7 @@ void CtrlRaceNameBalloon_refreshText(CtrlRaceNameBalloon *this, u32 playerId) {
         return;
     }
 
-    switch (SaveManager_GetTARuleGhostTagContent()) {
+    switch (SaveManager_GetTAGhostTagContent()) {
     case kTaRuleGhostTagContent_Name:
         CtrlRaceNameBalloon_refreshTextName(this, playerId);
         break;
@@ -115,7 +115,7 @@ void CtrlRaceNameBalloon_calcVisibility(CtrlRaceNameBalloon *this) {
         return;
     }
 
-    switch (SaveManager_GetTARuleGhostTagVisibility()) {
+    switch (SaveManager_GetTAGhostTagVisibility()) {
     case kTaRuleGhostTagVisibility_None:
         this->isHidden = true;
         return;

@@ -706,33 +706,33 @@ u32 SaveManager_GetInputDisplay(void) {
     return static_cast<u32>(value);
 }
 
-u32 SaveManager_GetTARuleClass(void) {
+u32 SaveManager_GetTAClass(void) {
     auto *saveManager = System::SaveManager::Instance();
-    auto value = saveManager->getSetting<SP::ClientSettings::Setting::TARuleClass>();
+    auto value = saveManager->getSetting<SP::ClientSettings::Setting::TAClass>();
     return static_cast<u32>(value);
 }
 
-u32 SaveManager_GetTARuleGhostTagVisibility(void) {
+u32 SaveManager_GetTAGhostTagVisibility(void) {
     auto *saveManager = System::SaveManager::Instance();
-    auto value = saveManager->getSetting<SP::ClientSettings::Setting::TARuleGhostTagVisibility>();
+    auto value = saveManager->getSetting<SP::ClientSettings::Setting::TAGhostTagVisibility>();
     return static_cast<u32>(value);
 }
 
-u32 SaveManager_GetTARuleGhostTagContent(void) {
+u32 SaveManager_GetTAGhostTagContent(void) {
     auto *saveManager = System::SaveManager::Instance();
-    auto value = saveManager->getSetting<SP::ClientSettings::Setting::TARuleGhostTagContent>();
+    auto value = saveManager->getSetting<SP::ClientSettings::Setting::TAGhostTagContent>();
     return static_cast<u32>(value);
 }
 
-u32 SaveManager_GetTARuleSolidGhosts(void) {
+u32 SaveManager_GetTASolidGhosts(void) {
     auto *saveManager = System::SaveManager::Instance();
-    auto value = saveManager->getSetting<SP::ClientSettings::Setting::TARuleSolidGhosts>();
+    auto value = saveManager->getSetting<SP::ClientSettings::Setting::TASolidGhosts>();
     return static_cast<u32>(value);
 }
 
-u32 SaveManager_GetTARuleGhostSound(void) {
+u32 SaveManager_GetTAGhostSound(void) {
     auto *saveManager = System::SaveManager::Instance();
-    auto value = saveManager->getSetting<SP::ClientSettings::Setting::TARuleGhostSound>();
+    auto value = saveManager->getSetting<SP::ClientSettings::Setting::TAGhostSound>();
     return static_cast<u32>(value);
 }
 

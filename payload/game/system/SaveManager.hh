@@ -58,7 +58,8 @@ public:
     template <SP::ClientSettings::Setting S>
     SP::ClientSettings::Helper<S>::type getSetting() const {
         if (!m_spCurrentLicense) {
-            return GetDefault<typename SP::ClientSettings::Helper<S>::type>();
+            u32 defaultValue = SP::ClientSettings::entries[static_cast<u32>(S)].defaultValue;
+            return static_cast<SP::ClientSettings::Helper<S>::type>(defaultValue);
         }
 
         return m_spLicenses[*m_spCurrentLicense].get<SP::ClientSettings::Setting, S>();
@@ -122,11 +123,6 @@ private:
     static void GetCourseName(const u8 *courseSHA1, char (&courseName)[0x14 * 2 + 1]);
     static void ComputeCourseSHA1Task(void *arg);
 
-    template <typename T>
-    static T GetDefault() {
-        return T::Default;
-    }
-
     u8 _00000[0x00014 - 0x00000];
     void *m_rawSave;
     u8 *m_rawGhostFile;
@@ -159,10 +155,5 @@ private:
     static const u8 s_courseSHA1s[32][0x14];
     static const char *s_courseAbbreviations[32];
 };
-
-template <>
-inline u32 SaveManager::GetDefault() {
-    return 0;
-}
 
 } // namespace System
