@@ -20,6 +20,10 @@ bool UIControl::getVisible() const {
     return !m_isHidden;
 }
 
+const Page *UIControl::getPage() const {
+    return m_controlGroup->m_page;
+}
+
 Page *UIControl::getPage() {
     return m_controlGroup->m_page;
 }

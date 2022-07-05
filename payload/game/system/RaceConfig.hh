@@ -37,7 +37,9 @@ public:
     struct Scenario {
         u8 _000[0x004 - 0x000];
         u8 playerCount;
-        u8 _005[0x008 - 0x005];
+        u8 _005[0x006 - 0x005];
+        u8 localPlayerCount;
+        u8 _007[0x008 - 0x007];
         Player players[12];
         u32 courseId;
         EngineClass engineClass;

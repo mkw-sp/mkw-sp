@@ -1,5 +1,6 @@
 #pragma once
 
+#ifndef __cplusplus
 #include "KartObject.h"
 
 typedef struct {
@@ -13,6 +14,7 @@ static_assert(sizeof(KartObjectManager) == 0x38);
 extern KartObjectManager *s_kartObjectManager;
 
 void KartObjectManager_createInstance(void);
+#endif
 
 extern bool speedModIsEnabled;
 extern f32 speedModFactor;

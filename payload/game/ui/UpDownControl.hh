@@ -166,6 +166,7 @@ public:
 
     UpDownAnimator *animator();
     TextControl *shownText();
+    TextControl *hiddenText();
     void load(const char *dir, const char *file, const char *variant, const char *textFile,
             const char *textVariant);
     void setChangeHandler(IChangeHandler *handler);

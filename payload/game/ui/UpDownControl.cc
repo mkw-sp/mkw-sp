@@ -22,4 +22,8 @@ TextUpDownValueControl::TextControl *TextUpDownValueControl::shownText() {
     return m_shownText;
 }
 
+TextUpDownValueControl::TextControl *TextUpDownValueControl::hiddenText() {
+    return m_hiddenText;
+}
+
 } // namespace UI

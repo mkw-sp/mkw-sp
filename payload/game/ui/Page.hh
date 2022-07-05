@@ -52,6 +52,16 @@ public:
     virtual TypeInfo *getTypeInfo() const;
 
     template <typename P>
+    const P *downcast() const {
+        for (TypeInfo *typeInfo = getTypeInfo(); typeInfo != nullptr; typeInfo = typeInfo->base) {
+            if (typeInfo == P::GetTypeInfo()) {
+                return reinterpret_cast<const P *>(this);
+            }
+        }
+        return nullptr;
+    }
+
+    template <typename P>
     P *downcast() {
         for (TypeInfo *typeInfo = getTypeInfo(); typeInfo != nullptr; typeInfo = typeInfo->base) {
             if (typeInfo == P::GetTypeInfo()) {

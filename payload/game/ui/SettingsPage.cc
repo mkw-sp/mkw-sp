@@ -126,8 +126,10 @@ void SettingsPage::onCategoryValueChange(TextUpDownValueControl::TextControl *te
         m_settingControls[i].reconfigure(count, chosen);
         m_settingControls[i].setVisible(true);
         m_settingControls[i].setPlayerFlags(0x1);
-        auto *text = m_settingValues[i].shownText();
-        text->setMessageAll(entry.valueMessageIds[chosen]);
+        auto *shownText = m_settingValues[i].shownText();
+        shownText->setMessageAll(entry.valueMessageIds[chosen]);
+        auto *hiddenText = m_settingValues[i].hiddenText();
+        hiddenText->setMessageAll(entry.valueMessageIds[chosen]);
         i++;
     }
     for (; i < std::size(m_settingControls); i++) {
