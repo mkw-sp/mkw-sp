@@ -96,6 +96,8 @@ void Section::addPages(SectionId id) {
 }
 
 void Section::addActivePages(SectionId id) {
+    REPLACED(addActivePages)(id);
+
     std::pair<SectionId, PageId> additions[] = {
         // Complete the "Change Ghost Data" section (repurposed "Change Mission")
         { SectionId::SingleChangeGhostData, PageId::TimeAttackTop },
@@ -105,8 +107,6 @@ void Section::addActivePages(SectionId id) {
             addActivePage(addition.second);
         }
     }
-
-    REPLACED(addActivePages)(id);
 }
 
 Page *Section::CreatePage(PageId pageId) {
