@@ -11,6 +11,7 @@ enum class Setting {
     FOV169,
     MapIcons,
     InputDisplay,
+    RankControl,
 
     // TA
     TAClass,
@@ -56,6 +57,11 @@ enum class MapIcons {
 enum class InputDisplay {
     Disable,
     Simple,
+};
+
+enum class RankControl {
+    GPVS,
+    Always,
 };
 
 enum class TAClass {
@@ -141,6 +147,11 @@ struct Helper<ClientSettings::Setting, ClientSettings::Setting::MapIcons> {
 template <>
 struct Helper<ClientSettings::Setting, ClientSettings::Setting::InputDisplay> {
     using type = SP::ClientSettings::InputDisplay;
+};
+
+template <>
+struct Helper<ClientSettings::Setting, ClientSettings::Setting::RankControl> {
+    using type = SP::ClientSettings::RankControl;
 };
 
 template <>

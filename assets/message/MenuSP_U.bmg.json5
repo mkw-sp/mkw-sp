@@ -443,4 +443,24 @@
         "font": "regular",
         "string": "License",
     },
+    "10121": {
+        "font": "regular",
+        "string": "Position Tracker",
+    },
+    "10122": {
+        "font": "regular",
+        "string": "GP and VS",
+    },
+    "10123": {
+        "font": "regular",
+        "string": "Always",
+    },
+    "10124": {
+        "font": "regular",
+        "string": "Only show the position tracker in GP and VS only.",
+    },
+    "10125": {
+        "font": "regular",
+        "string": "Always show the position tracker.",
+    },
 }

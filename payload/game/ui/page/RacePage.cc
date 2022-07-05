@@ -63,13 +63,16 @@ void RacePage::initControls(u32 controls) {
     }
 }
 
-u32 GhostReplayRacePage::getControls() const {
+u32 TARacePage::getControls() const {
     u32 controls = 0;
     controls |= Control::Time;
     controls |= Control::Count;
     controls |= Control::Map;
+    controls |= Control::RankNum;
     controls |= Control::Lap;
     controls |= Control::ItemWindow;
+    controls |= Control::GhostTimeDiff;
+    controls |= Control::GhostMessage;
     return controls;
 }
 
@@ -82,6 +85,17 @@ u32 VSMultiRacePage::getControls() const {
     controls |= Control::Lap;
     controls |= Control::ItemWindow;
     controls |= Control::ItemBalloon;
+    return controls;
+}
+
+u32 GhostReplayRacePage::getControls() const {
+    u32 controls = 0;
+    controls |= Control::Time;
+    controls |= Control::Count;
+    controls |= Control::Map;
+    controls |= Control::RankNum;
+    controls |= Control::Lap;
+    controls |= Control::ItemWindow;
     return controls;
 }
 

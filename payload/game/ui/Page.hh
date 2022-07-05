@@ -77,6 +77,7 @@ protected:
     void skipOutAnim();
 
 public:
+    PageId id() const;
     void setAnim(Anim anim);
     REPLACE void calc();
 

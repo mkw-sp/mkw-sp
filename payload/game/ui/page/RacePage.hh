@@ -31,10 +31,10 @@ private:
 };
 static_assert(sizeof(RacePage) == 0x1dc);
 
-class GhostReplayRacePage : public RacePage {
+class TARacePage : public RacePage {
 public:
-    GhostReplayRacePage();
-    ~GhostReplayRacePage() override;
+    TARacePage();
+    ~TARacePage() override;
     // ...
     REPLACE u32 getControls() const override;
     // ...
@@ -44,6 +44,15 @@ class VSMultiRacePage : public RacePage {
 public:
     VSMultiRacePage();
     ~VSMultiRacePage() override;
+    // ...
+    REPLACE u32 getControls() const override;
+    // ...
+};
+
+class GhostReplayRacePage : public RacePage {
+public:
+    GhostReplayRacePage();
+    ~GhostReplayRacePage() override;
     // ...
     REPLACE u32 getControls() const override;
     // ...

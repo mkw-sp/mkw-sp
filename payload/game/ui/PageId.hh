@@ -5,7 +5,11 @@ namespace UI {
 enum class PageId {
     None = -0x1,
 
+    TARace = 0xd,
+
     ConfirmQuit = 0x2c,
+
+    GhostReplayRace = 0x37,
 
     RaceConfirm = 0x4b,
 

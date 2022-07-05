@@ -59,6 +59,16 @@ const Entry entries[] = {
         .valueMessageIds = (u32[]) { 10062, 10063 },
         .valueExplanationMessageIds = (u32[]) { 10064, 10065 },
     },
+    [static_cast<u32>(Setting::RankControl)] = {
+        .category = Category::Race,
+        .name = magic_enum::enum_name(Setting::RankControl),
+        .messageId = 10121,
+        .defaultValue = static_cast<u32>(RankControl::GPVS),
+        .valueCount = magic_enum::enum_count<RankControl>(),
+        .valueNames = magic_enum::enum_names<RankControl>().data(),
+        .valueMessageIds = (u32[]) { 10122, 10123 },
+        .valueExplanationMessageIds = (u32[]) { 10124, 10125 },
+    },
     [static_cast<u32>(Setting::TAClass)] = {
         .category = Category::TA,
         .name = magic_enum::enum_name(Setting::TAClass),

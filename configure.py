@@ -867,6 +867,7 @@ code_in_files = {
         os.path.join('payload', 'game', 'ui', 'ctrl', 'CtrlRaceLap.cc'),
         os.path.join('payload', 'game', 'ui', 'ctrl', 'CtrlRaceNameBalloon.S'),
         os.path.join('payload', 'game', 'ui', 'ctrl', 'CtrlRaceNameBalloon.c'),
+        os.path.join('payload', 'game', 'ui', 'ctrl', 'CtrlRaceRankNum.cc'),
         os.path.join('payload', 'game', 'ui', 'ctrl', 'CtrlRaceSpeed.cc'),
         os.path.join('payload', 'game', 'ui', 'ctrl', 'CtrlRaceTime.S'),
         os.path.join('payload', 'game', 'ui', 'ctrl', 'CtrlRaceTime.cc'),
