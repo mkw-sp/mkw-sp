@@ -365,7 +365,7 @@
     },
     "10101": {
         "font": "regular",
-        "string": "The MKW-SP channel can only be installed\nfrom release builds!",
+        "string": "The MKW-SP channel can only be\ninstalled from release builds!",
     },
     "10102": {
         "font": "regular",
