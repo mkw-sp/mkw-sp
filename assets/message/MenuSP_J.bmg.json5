@@ -119,9 +119,25 @@
         "font": "regular",
         "string": "なし",
     },
+    "10030": {
+        "font": "regular",
+        "string": "見ているゴースト",
+    },
     "10031": {
         "font": "regular",
         "string": "すべて",
+    },
+    "10032": {
+        "font": "regular",
+        "string": "ゴーストのタグを  表示しません",
+    },
+    "10033": {
+        "font": "regular",
+        "string": "そのゴーストを見ているときのみ  タグを表示します",
+    },
+    "10034": {
+        "font": "regular",
+        "string": "すべてのゴーストのタグを  表示します",
     },
     "10036": {
         "font": "regular",
@@ -155,6 +171,30 @@
         "font": "regular",
         "string": "ON",
     },
+    "10064": {
+        "font": "regular",
+        "string": "レース中のコントローラの入力を  表示しません",
+    },
+    "10065": {
+        "font": "regular",
+        "string": "レース中のコントローラの入力を  表示します",
+    },
+    "10066": {
+        "font": "regular",
+        "string": "ゴーストのサウンド",
+    },
+    "10067": {
+        "font": "regular",
+        "string": "あらゆるゴーストのサウンドを  ならさないようにします",
+    },
+    "10068": {
+        "font": "regular",
+        "string": "そのゴーストを見ているときのみ  サウンドをならします",
+    },
+    "10069": {
+        "font": "regular",
+        "string": "すべてのゴーストのサウンドを  ならします",
+    },
     "10073": {
         "font": "regular",
         "string": "タイムアタックなどを  １人であそびます",
@@ -166,5 +206,97 @@
     "10077": {
         "font": "regular",
         "string": "ライセンスの設定を  へんこうします",
+    },
+    "10082": {
+        "font": "regular",
+        "string": "MKW-SP設定",
+    },
+    "10083": {
+        "font": "regular",
+        "string": "Service Pack",
+    },
+    "10087": {
+        "font": "regular",
+        "string": "アップデート",
+    },
+    "10088": {
+        "font": "regular",
+        "string": "チャンネル",
+    },
+    "10092": {
+        "font": "regular",
+        "string": "MKW-SPのアップデートが利用できます。\nインストールをしますか？",
+    },
+    "10093": {
+        "font": "regular",
+        "string": "『MKW-SPチャンネル』は\nすでにインストールされています",
+    },
+    "10095": {
+        "font": "regular",
+        "string": "『MKW-SPチャンネル』を\nインストールしています",
+    },
+    "10096": {
+        "font": "regular",
+        "string": "『MKW-SPチャンネル』を\nアップデートしています",
+    },
+    "10097": {
+        "font": "regular",
+        "string": "『MKW-SPチャンネル』が\nインストールされました！",
+    },
+    "10098": {
+        "font": "regular",
+        "string": "『MKW-SPチャンネル』の\nインストールに失敗しました。",
+    },
+    "10099": {
+        "font": "regular",
+        "string": "『MKW-SPチャンネル』が\nアップデートされました！",
+    },
+    "10100": {
+        "font": "regular",
+        "string": "『MKW-SPチャンネル』の\nアップデートに失敗しました。",
+    },
+    "10101": {
+        "font": "regular",
+        "string": "『MKW-SPチャンネル』は\nリリースビルドからのみインストールできます",
+    },
+    "10102": {
+        "font": "regular",
+        "string": "アップデートを確認しています\n{arg message|0}",
+    },
+    "10103": {
+        "font": "regular",
+        "string": "最新バージョンのMKW-SPが利用できます！\n{arg string|0} → {arg string|1}",
+    },
+    "10104": {
+        "font": "regular",
+        "string": "MKW-SPの最新のバージョン({arg string|0})は\nすでにインストールされています。",
+    },
+    "10109": {
+        "font": "regular",
+        "string": "MKW-SPの\nアップデートに失敗しました。",
+    },
+    "10111": {
+        "font": "regular",
+        "string": "MKW-SPは  リリースビルドからのみ\nアップデートすることができます",
+    },
+    "10112": {
+        "font": "regular",
+        "string": "サーバーに接続しています",
+    },
+    "10118": {
+        "font": "regular",
+        "string": "レース",
+    },
+    "10119": {
+        "font": "regular",
+        "string": "タイムアタック",
+    },
+    "10120": {
+        "font": "regular",
+        "string": "ライセンス",
+    },
+    "10121": {
+        "font": "regular",
+        "string": "順位",
     },
 }

@@ -291,4 +291,160 @@
         "font": "regular",
         "string": "MKW-SP Opties",
     },
+    "10083": {
+        "font": "regular",
+        "string": "Service Pack",
+    },
+    "10087": {
+        "font": "regular",
+        "string": "Update",
+    },
+    "10088": {
+        "font": "regular",
+        "string": "Kanaal",
+    },
+    "10089": {
+        "font": "regular",
+        "string": "Over",
+    },
+    "10090": {
+        "font": "regular",
+        "string": "Wanneer het MKW-SP-Kanaal is geïnstalleerd kan MKW-SP worden opgestart via het Wii-Menu en hoeft dat niet meer via het Homebrew-Kanaal of een andere exploit. Updates worden synchroon gehouden tussen de twee.",
+    },
+    "10091": {
+        "font": "regular",
+        "string": "Wil jij het MKW-SP-Kanaal installeren?",
+    },
+    "10092": {
+        "font": "regular",
+        "string": "Een update voor het MKW-SP-Kanaal is beschikbaar. Wil jij deze installeren?",
+    },
+    "10093": {
+        "font": "regular",
+        "string": "Het MKW-SP-Kanaal is al geïnstalleerd.",
+    },
+    "10094": {
+        "font": "regular",
+        "string": "Een nieuwere versie van het MKW-SP-Kanaal is al geïnstalleerd!",
+    },
+    "10095": {
+        "font": "regular",
+        "string": "Bezig met het installeren van het MKW-SP-Kanaal...",
+    },
+    "10096": {
+        "font": "regular",
+        "string": "Bezig met het updaten van het MKW-SP-Kanaal...",
+    },
+    "10097": {
+        "font": "regular",
+        "string": "De installatie van het MKW-SP-Kanaal is gelukt!",
+    },
+    "10098": {
+        "font": "regular",
+        "string": "De installatie van het MKW-SP-Kanaal is mislukt!",
+    },
+    "10099": {
+        "font": "regular",
+        "string": "De update van het MKW-SP-Kanaal is gelukt!",
+    },
+    "10100": {
+        "font": "regular",
+        "string": "De update van het MKW-SP-Kanaal is mislukt!",
+    },
+    "10101": {
+        "font": "regular",
+        "string": "Het MKW-SP-Kanaal kan alleen worden geïnstalleerd vanuit officiële releases!",
+    },
+    "10102": {
+        "font": "regular",
+        "string": "Aan het zoeken voor updates...\n{arg message|0}",
+    },
+    "10103": {
+        "font": "regular",
+        "string": "Een nieuwe versie van MKW-SP is beschikbaar!\n{arg string|0} → {arg string|1}",
+    },
+    "10104": {
+        "font": "regular",
+        "string": "De nieuwste versie van MKW-SP {arg string|0} is al geïnstalleerd.",
+    },
+    "10105": {
+        "font": "regular",
+        "string": "Het is mislukt om te zoeken voor updates van MKW-SP!",
+    },
+    "10106": {
+        "font": "regular",
+        "string": "Wil jij MKW-SP updaten naar {arg string|0}?\nEr zijn {arg string|1} MiB ({arg integer|0 0} blokken) nodig in het Wii-Systeemgeheugen.",
+    },
+    "10107": {
+        "font": "regular",
+        "string": "MKW-SP aan het updaten...\n{arg message|0}",
+    },
+    "10108": {
+        "font": "regular",
+        "string": "Het is gelukt om MKW-SP te updaten van {arg string|0} naar {arg string|1}. Een herstart is nodig om de update toe te passen.",
+    },
+    "10109": {
+        "font": "regular",
+        "string": "De MKW-SP update is mislukt!",
+    },
+    "10110": {
+        "font": "regular",
+        "string": "Wil jij MKW-SP nu opnieuw opstarten?",
+    },
+    "10111": {
+        "font": "regular",
+        "string": "MKW-SP kan alleen worden geïnstalleerd vanuit officiële releases!",
+    },
+    "10112": {
+        "font": "regular",
+        "string": "Aan het verbinden met de server...",
+    },
+    "10113": {
+        "font": "regular",
+        "string": "Versie-informatie aan het versturen...",
+    },
+    "10114": {
+        "font": "regular",
+        "string": "Versie-informatie aan het ontvangen...",
+    },
+    "10115": {
+        "font": "regular",
+        "string": "Inhoud aan het downloaden...\n{arg string|0} MiB van {arg string|1} MiB - {arg string|2} MiB/s",
+    },
+    "10116": {
+        "font": "regular",
+        "string": "Inhoud aan het verplaatsen...",
+    },
+    "10118": {
+        "font": "regular",
+        "string": "Race",
+    },
+    "10119": {
+        "font": "regular",
+        "string": "Tijdraces",
+    },
+    "10120": {
+        "font": "regular",
+        "string": "Rijbewijs",
+    },
+    "10121": {
+        "font": "regular",
+        "string": "Positietracker",
+    },
+    "10122": {
+        "font": "regular",
+        "string": "GP en VS",
+    },
+    "10123": {
+        "font": "regular",
+        "string": "Altijd",
+    },
+    "10124": {
+        "font": "regular",
+        "string": "Geef alleen de positietracker in GPs en VS races weer.",
+    },
+    "10125": {
+        "font": "regular",
+        "string": "Geef de positietracker altijd weer.",
+    },
 }

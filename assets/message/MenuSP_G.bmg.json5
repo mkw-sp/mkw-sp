@@ -1,1 +1,450 @@
-{}
+{
+    "10000": {
+        "font": "regular",
+        "string": "Gegen 1 Geist fahren",
+    },
+    "10001": {
+        "font": "regular",
+        "string": "1 Geist zuschauen",
+    },
+    "10002": {
+        "font": "regular",
+        "string": "Gegen {arg integer|0 0} Geister fahren",
+    },
+    "10003": {
+        "font": "regular",
+        "string": "{arg integer|0 0} Geister zuschauen",
+    },
+    "10004": {
+        "font": "regular",
+        "string": "HUD Zeichen",
+    },
+    "10005": {
+        "font": "regular",
+        "string": "Verstecken",
+    },
+    "10006": {
+        "font": "regular",
+        "string": "Zeigen",
+    },
+    "10007": {
+        "font": "regular",
+        "string": "HUD Steuerelemente verstecken",
+    },
+    "10008": {
+        "font": "regular",
+        "string": "HUD Steuerelemente zeigen",
+    },
+    "10009": {
+        "font": "regular",
+        "string": "16:9 Sichtfeld",
+    },
+    "10010": {
+        "font": "regular",
+        "string": "Standard",
+    },
+    "10011": {
+        "font": "regular",
+        "string": "Breiter",
+    },
+    "10012": {
+        "font": "regular",
+        "string": "Das standardmäßige Sichtfeld im 16:9-Modus verwenden.",
+    },
+    "10013": {
+        "font": "regular",
+        "string": "Breiteres 4:3 Sichtfeld im 16:9 Modus benutzen.",
+    },
+    "10014": {
+        "font": "regular",
+        "string": "Karten Symbole",
+    },
+    "10015": {
+        "font": "regular",
+        "string": "Charaktere",
+    },
+    "10016": {
+        "font": "regular",
+        "string": "Miis",
+    },
+    "10017": {
+        "font": "regular",
+        "string": "Charakter als Karten Symbole benutzen.",
+    },
+    "10018": {
+        "font": "regular",
+        "string": "Miis als Karten Symbole benutzen.",
+    },
+    "10019": {
+        "font": "regular",
+        "string": "Geistersortierung",
+    },
+    "10020": {
+        "font": "regular",
+        "string": "Schnellster",
+    },
+    "10021": {
+        "font": "regular",
+        "string": "Langsamster",
+    },
+    "10022": {
+        "font": "regular",
+        "string": "Neuster",
+    },
+    "10023": {
+        "font": "regular",
+        "string": "Ältester",
+    },
+    "10024": {
+        "font": "regular",
+        "string": "Geister von schnell zu langsam sortieren.",
+    },
+    "10025": {
+        "font": "regular",
+        "string": "Geister von langsam zu schnell sortieren.",
+    },
+    "10026": {
+        "font": "regular",
+        "string": "Geister von neuer zu älter sortieren.",
+    },
+    "10027": {
+        "font": "regular",
+        "string": "Geister von älter zu neuer sortieren.",
+    },
+    "10028": {
+        "font": "regular",
+        "string": "Zeichen Sichtbarkeit",
+    },
+    "10029": {
+        "font": "regular",
+        "string": "Kein",
+    },
+    "10030": {
+        "font": "regular",
+        "string": "Geschaut",
+    },
+    "10031": {
+        "font": "regular",
+        "string": "Alle",
+    },
+    "10032": {
+        "font": "regular",
+        "string": "Keine Geist Zeichen anzeigen.",
+    },
+    "10033": {
+        "font": "regular",
+        "string": "Nur die Zeichen von dem geschauten Geist anzeigen.",
+    },
+    "10034": {
+        "font": "regular",
+        "string": "Zeichen für alle Geister anzeigen",
+    },
+    "10035": {
+        "font": "regular",
+        "string": "Zeichen Inhalt",
+    },
+    "10036": {
+        "font": "regular",
+        "string": "Name",
+    },
+    "10037": {
+        "font": "regular",
+        "string": "Zeit",
+    },
+    "10038": {
+        "font": "regular",
+        "string": "Datum",
+    },
+    "10039": {
+        "font": "regular",
+        "string": "Geist name als Zeichen benutzen.",
+    },
+    "10040": {
+        "font": "regular",
+        "string": "Geist Endzeit als Zeichen benutzen.",
+    },
+    "10041": {
+        "font": "regular",
+        "string": "Geist Erstell Datum als Zeichen benutzen.",
+    },
+    "10042": {
+        "font": "regular",
+        "string": "Solide Geister",
+    },
+    "10043": {
+        "font": "regular",
+        "string": "Keine Geister solide machen.",
+    },
+    "10044": {
+        "font": "regular",
+        "string": "Den geschauten Geist solide machen.",
+    },
+    "10045": {
+        "font": "regular",
+        "string": "Alle Geister solide machen.",
+    },
+    "10046": {
+        "font": "regular",
+        "string": "Zeitfahren mit diesen Regeln fahren.",
+    },
+    "10053": {
+        "font": "regular",
+        "string": "Gekürzte Zeit",
+    },
+    "10054": {
+        "font": "regular",
+        "string": "Zeit Option ohne führende Nullen.",
+    },
+    "10055": {
+        "font": "regular",
+        "string": "Gecko-Codes werden NICHT UNTERSTÜTZT\nund wird dein Spiel zum Absturz bringen.\nDrücke A, wenn du weißt, was du tust und KEINE Fehler melden.",
+    },
+    "10056": {
+        "font": "regular",
+        "string": "Menü Übergänge",
+    },
+    "10057": {
+        "font": "regular",
+        "string": "Aktiviert",
+    },
+    "10058": {
+        "font": "regular",
+        "string": "Deaktiviert",
+    },
+    "10059": {
+        "font": "regular",
+        "string": "Mache die Menü Übergänge sofort.",
+    },
+    "10060": {
+        "font": "regular",
+        "string": "Behalte das normale Tempo der Menü Übergänge.",
+    },
+    "10061": {
+        "font": "regular",
+        "string": "Eingabeanzeige",
+    },
+    "10062": {
+        "font": "regular",
+        "string": "Deaktivieren",
+    },
+    "10063": {
+        "font": "regular",
+        "string": "Aktivieren",
+    },
+    "10064": {
+        "font": "regular",
+        "string": "Während eines Rennens keine Eingaben anzeigen.",
+    },
+    "10065": {
+        "font": "regular",
+        "string": "Während eines Rennens Eingaben anzeigen.",
+    },
+    "10066": {
+        "font": "regular",
+        "string": "Geister Sound",
+    },
+    "10067": {
+        "font": "regular",
+        "string": "Sound für alle Geister deaktivieren.",
+    },
+    "10068": {
+        "font": "regular",
+        "string": "Sound für den Geist der geschaut wird, aktivieren.",
+    },
+    "10069": {
+        "font": "regular",
+        "string": "Sound für alle Geister aktivieren.",
+    },
+    "10073": {
+        "font": "regular",
+        "string": "Zeitfahren und andere Modi alleine spielen.",
+    },
+    "10074": {
+        "font": "regular",
+        "string": "Einstellungen ändern oder den Mii ändern!",
+    },
+    "10075": {
+        "font": "regular",
+        "string": "Irgendetwas ist fehlgeschlagen beim lesen oder schreiben zur Save.",
+    },
+    "10077": {
+        "font": "regular",
+        "string": "Für diese Lizenz Einstellungen ändern",
+    },
+    "10078": {
+        "font": "regular",
+        "string": "0.9x Geschwindigkeitsfaktor.",
+    },
+    "10079": {
+        "font": "regular",
+        "string": "1.0x Geschwindigkeitsfaktor.",
+    },
+    "10080": {
+        "font": "regular",
+        "string": "1.0x Geschwindigkeitsfaktor mit gespiegelten Strecken.",
+    },
+    "10081": {
+        "font": "regular",
+        "string": "1.5x Geschwindigkeitsfaktor mit Brake Drifting und Fast Falling.",
+    },
+    "10082": {
+        "font": "regular",
+        "string": "MKW-SP Optionen",
+    },
+    "10083": {
+        "font": "regular",
+        "string": "Service Pack",
+    },
+    "10087": {
+        "font": "regular",
+        "string": "Aktualisieren",
+    },
+    "10088": {
+        "font": "regular",
+        "string": "Kanal",
+    },
+    "10089": {
+        "font": "regular",
+        "string": "Über",
+    },
+    "10090": {
+        "font": "regular",
+        "string": "Durch die Installation des MKW-SP-Kanals kann man\nMKW-SP über das Wii-Menü starten\nund nicht über den Homebrew-Kanal\noder einem Exploit.\nDie Updates werden zwischen den beiden Kanälen synchronisiert.",
+    },
+    "10091": {
+        "font": "regular",
+        "string": "Möchtest du den MKW-SP Kanal Installieren?",
+    },
+    "10092": {
+        "font": "regular",
+        "string": "Ein Update für den MKW-SP Kanal ist verfügbar. Möchtest du es installieren?",
+    },
+    "10093": {
+        "font": "regular",
+        "string": "Der MKW-SP Kanal ist bereits installiert.",
+    },
+    "10094": {
+        "font": "regular",
+        "string": "Eine neuere Version des MKW-SP Kanals ist bereits installiert!",
+    },
+    "10095": {
+        "font": "regular",
+        "string": "Der MKW-SP Kanal wird installiert...",
+    },
+    "10096": {
+        "font": "regular",
+        "string": "Der MKW-SP Kanal wird aktualisiert..",
+    },
+    "10097": {
+        "font": "regular",
+        "string": "Der MKW-SP Kanal wurde erfolgreich installiert!",
+    },
+    "10098": {
+        "font": "regular",
+        "string": "Die Installation des MKW-SP Kanals ist fehlgeschlagen",
+    },
+    "10099": {
+        "font": "regular",
+        "string": "Der MKW-SP Kanal wurde erfolgreich aktualisiert!",
+    },
+    "10100": {
+        "font": "regular",
+        "string": "Die Aktualisierung des MKW-SP Kanals ist fehlgeschlagen",
+    },
+    "10101": {
+        "font": "regular",
+        "string": "Der MKW-SP Kanal kann nur von Release Builds installiert werden!",
+    },
+    "10102": {
+        "font": "regular",
+        "string": "Auf Updates prüfen...\n{arg message|0}",
+    },
+    "10103": {
+        "font": "regular",
+        "string": "Eine neue Version von MKW-SP ist verfügbar!\n{arg string|0} → {arg string|1}",
+    },
+    "10104": {
+        "font": "regular",
+        "string": "Die neuste Version von MKW-SP ({arg string|0})\nist bereits installiert.",
+    },
+    "10105": {
+        "font": "regular",
+        "string": "Der MKW-SP Update Check ist fehlgeschlagen!",
+    },
+    "10106": {
+        "font": "regular",
+        "string": "Möchten Sie MKW-SP auf {arg string|0} aktualisieren?\nDu benötigst {arg string|1} MiB ({arg integer|0 0} Blöcke)\nan freiem Speicherplatz im Wii-Systemspeicher.",
+    },
+    "10107": {
+        "font": "regular",
+        "string": "MKW-SP Aktualisieren...\n{arg message|0}",
+    },
+    "10108": {
+        "font": "regular",
+        "string": "MKW-SP wurde erfolgreich\nvon {arg string|0} auf {arg string|1} aktualisiert.\nEin Neustart ist notwendig, damit die Aktualisierung\nangewendet werden kann.",
+    },
+    "10109": {
+        "font": "regular",
+        "string": "Das MKW-SP Update ist fehlgeschlagen",
+    },
+    "10110": {
+        "font": "regular",
+        "string": "Möchtest du MKW-SP nun neustarten?",
+    },
+    "10111": {
+        "font": "regular",
+        "string": "MKW-SP kann nur von Release Builds aktualisiert werden!",
+    },
+    "10112": {
+        "font": "regular",
+        "string": "Zum Server verbinden...",
+    },
+    "10113": {
+        "font": "regular",
+        "string": "Version Informationen senden...",
+    },
+    "10114": {
+        "font": "regular",
+        "string": "Version Informationen empfangen...",
+    },
+    "10115": {
+        "font": "regular",
+        "string": "Inhalte herunterladen...\n{arg string|0} MiB von {arg string|1} MiB - {arg string|2} MiB/s",
+    },
+    "10116": {
+        "font": "regular",
+        "string": "Inhalte verschieben...",
+    },
+    "10118": {
+        "font": "regular",
+        "string": "Rennen",
+    },
+    "10119": {
+        "font": "regular",
+        "string": "Zeitfahren",
+    },
+    "10120": {
+        "font": "regular",
+        "string": "Profil",
+    },
+    "10121": {
+        "font": "regular",
+        "string": "Positionstracker",
+    },
+    "10122": {
+        "font": "regular",
+        "string": "GP und VS",
+    },
+    "10123": {
+        "font": "regular",
+        "string": "Immer",
+    },
+    "10124": {
+        "font": "regular",
+        "string": "Nur den Positionstracker in GP und VS zeigen.",
+    },
+    "10125": {
+        "font": "regular",
+        "string": "Immer den Positionstracker zeigen.",
+    },
+}
