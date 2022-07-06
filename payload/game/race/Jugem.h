@@ -4,7 +4,9 @@
 
 typedef struct {
     const struct Jugem_vt *vt;
-    u8 _004[0x218 - 0x004];
+    u8 _004[0x05e - 0x004];
+    bool visible; // Added (was padding)
+    u8 _05f[0x218 - 0x05f];
 } Jugem;
 static_assert(sizeof(Jugem) == 0x218);
 
