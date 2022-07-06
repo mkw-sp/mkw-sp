@@ -42,7 +42,7 @@ PATCH_B(ChannelExplanationPage_ct, ChannelPage_ct);
 // Always show the quit confirmation page
 #define ALWAYS_SHOW_QUIT_CONFIRM_PAGE
 
-// Complete the "Change Ghost Data" section (repurposed "Change Mission")
+// Complete the "Change Ghost Data" section (no longer repurposed "Change Mission")
 #define CHANGE_GHOST_DATA_SUPPORT
 
 // Support changing settings in-race
@@ -51,6 +51,7 @@ PATCH_B(ChannelExplanationPage_ct, ChannelPage_ct);
 // The channel section is repurposed into the Service Pack section
 #define MORE_CHANNEL_PAGES
 
+// Mission mode requires certain patches
 #define MISSION_MODE
 
 #ifdef ALWAYS_SHOW_QUIT_CONFIRM_PAGE
@@ -96,13 +97,13 @@ void my_Section_addPages(Section *section, u32 sectionId) {
         break;
     case 16:
         Section_addPage(section, 3);
-        Section_addPage(section, 79);
+        Section_addPage(section, PAGE_ID_READING_GHOST_DATA);
         Section_addPage(section, 93);
         break;
     case 17:
     case 18:
         Section_addPage(section, 3);
-        Section_addPage(section, 79);
+        Section_addPage(section, PAGE_ID_READING_GHOST_DATA);
         Section_addPage(section, 83);
         Section_addPage(section, 93);
         break;
@@ -145,7 +146,7 @@ void my_Section_addPages(Section *section, u32 sectionId) {
         Section_addPage(section, 12);
         Section_addPage(section, PAGE_ID_GP_PAUSE_MENU);
         Section_addPage(section, 32);
-        Section_addPage(section, 44);
+        Section_addPage(section, PAGE_ID_CONFIRM_QUIT);
         Section_addPage(section, 47);
         Section_addPage(section, 48);
         Section_addPage(section, 58);
@@ -154,9 +155,9 @@ void my_Section_addPages(Section *section, u32 sectionId) {
     case SECTION_ID_TIME_ATTACK:
         Section_addPage(section, 13);
         Section_addPage(section, PAGE_ID_TA_PAUSE_MENU);
-        Section_addPage(section, 33);
+        Section_addPage(section, PAGE_ID_AFTER_TA_MENU);
         Section_addPage(section, 41);
-        Section_addPage(section, 43);
+        Section_addPage(section, PAGE_ID_CHECK_RANKINGS);
 
         EXTRA_QUIT_CONFIRM(section);
 
@@ -173,7 +174,7 @@ void my_Section_addPages(Section *section, u32 sectionId) {
     case SECTION_ID_VS_1P:
         Section_addPage(section, 14);
         Section_addPage(section, PAGE_ID_VS_PAUSE_MENU);
-        Section_addPage(section, 34);
+        Section_addPage(section, PAGE_ID_AFTER_VS_MENU);
         EXTRA_QUIT_CONFIRM(section);
         Section_addPage(section, 47);
         Section_addPage(section, 48);
@@ -183,8 +184,8 @@ void my_Section_addPages(Section *section, u32 sectionId) {
     case SECTION_ID_VS_2P:
         Section_addPage(section, 15);
         Section_addPage(section, PAGE_ID_VS_PAUSE_MENU);
-        Section_addPage(section, 34);
-        Section_addPage(section, 44);
+        Section_addPage(section, PAGE_ID_AFTER_VS_MENU);
+        Section_addPage(section, PAGE_ID_CONFIRM_QUIT);
         Section_addPage(section, 47);
         Section_addPage(section, 48);
         Section_addPage(section, 58);
@@ -193,8 +194,8 @@ void my_Section_addPages(Section *section, u32 sectionId) {
     case SECTION_ID_VS_3P:
         Section_addPage(section, 16);
         Section_addPage(section, PAGE_ID_VS_PAUSE_MENU);
-        Section_addPage(section, 34);
-        Section_addPage(section, 44);
+        Section_addPage(section, PAGE_ID_AFTER_VS_MENU);
+        Section_addPage(section, PAGE_ID_CONFIRM_QUIT);
         Section_addPage(section, 47);
         Section_addPage(section, 48);
         Section_addPage(section, 58);
@@ -203,8 +204,8 @@ void my_Section_addPages(Section *section, u32 sectionId) {
     case SECTION_ID_VS_4P:
         Section_addPage(section, 17);
         Section_addPage(section, PAGE_ID_VS_PAUSE_MENU);
-        Section_addPage(section, 34);
-        Section_addPage(section, 44);
+        Section_addPage(section, PAGE_ID_AFTER_VS_MENU);
+        Section_addPage(section, PAGE_ID_CONFIRM_QUIT);
         Section_addPage(section, 47);
         Section_addPage(section, 48);
         Section_addPage(section, 58);
@@ -213,7 +214,7 @@ void my_Section_addPages(Section *section, u32 sectionId) {
     case SECTION_ID_TEAM_VS_1P:
         Section_addPage(section, 14);
         Section_addPage(section, PAGE_ID_VS_PAUSE_MENU);
-        Section_addPage(section, 34);
+        Section_addPage(section, PAGE_ID_AFTER_VS_MENU);
         EXTRA_QUIT_CONFIRM(section);
         Section_addPage(section, 47);
         Section_addPage(section, 50);
@@ -223,8 +224,8 @@ void my_Section_addPages(Section *section, u32 sectionId) {
     case SECTION_ID_TEAM_VS_2P:
         Section_addPage(section, 15);
         Section_addPage(section, PAGE_ID_VS_PAUSE_MENU);
-        Section_addPage(section, 34);
-        Section_addPage(section, 44);
+        Section_addPage(section, PAGE_ID_AFTER_VS_MENU);
+        Section_addPage(section, PAGE_ID_CONFIRM_QUIT);
         Section_addPage(section, 47);
         Section_addPage(section, 50);
         Section_addPage(section, 58);
@@ -233,8 +234,8 @@ void my_Section_addPages(Section *section, u32 sectionId) {
     case SECTION_ID_TEAM_VS_3P:
         Section_addPage(section, 16);
         Section_addPage(section, PAGE_ID_VS_PAUSE_MENU);
-        Section_addPage(section, 34);
-        Section_addPage(section, 44);
+        Section_addPage(section, PAGE_ID_AFTER_VS_MENU);
+        Section_addPage(section, PAGE_ID_CONFIRM_QUIT);
         Section_addPage(section, 47);
         Section_addPage(section, 50);
         Section_addPage(section, 58);
@@ -243,8 +244,8 @@ void my_Section_addPages(Section *section, u32 sectionId) {
     case SECTION_ID_TEAM_VS_4P:
         Section_addPage(section, 17);
         Section_addPage(section, PAGE_ID_VS_PAUSE_MENU);
-        Section_addPage(section, 34);
-        Section_addPage(section, 44);
+        Section_addPage(section, PAGE_ID_AFTER_VS_MENU);
+        Section_addPage(section, PAGE_ID_CONFIRM_QUIT);
         Section_addPage(section, 47);
         Section_addPage(section, 50);
         Section_addPage(section, 58);
@@ -266,7 +267,7 @@ void my_Section_addPages(Section *section, u32 sectionId) {
         Section_addPage(section, PAGE_ID_BATTLE_PAUSE_MENU);
         Section_addPage(section, 35);
         Section_addPage(section, 36);
-        Section_addPage(section, 44);
+        Section_addPage(section, PAGE_ID_CONFIRM_QUIT);
         Section_addPage(section, 51);
         Section_addPage(section, 52);
         Section_addPage(section, 58);
@@ -277,7 +278,7 @@ void my_Section_addPages(Section *section, u32 sectionId) {
         Section_addPage(section, PAGE_ID_BATTLE_PAUSE_MENU);
         Section_addPage(section, 35);
         Section_addPage(section, 36);
-        Section_addPage(section, 44);
+        Section_addPage(section, PAGE_ID_CONFIRM_QUIT);
         Section_addPage(section, 51);
         Section_addPage(section, 52);
         Section_addPage(section, 58);
@@ -288,7 +289,7 @@ void my_Section_addPages(Section *section, u32 sectionId) {
         Section_addPage(section, PAGE_ID_BATTLE_PAUSE_MENU);
         Section_addPage(section, 35);
         Section_addPage(section, 36);
-        Section_addPage(section, 44);
+        Section_addPage(section, PAGE_ID_CONFIRM_QUIT);
         Section_addPage(section, 51);
         Section_addPage(section, 52);
         Section_addPage(section, 58);
@@ -298,33 +299,34 @@ void my_Section_addPages(Section *section, u32 sectionId) {
         Section_addPage(section, 22);
         Section_addPage(section, PAGE_ID_MR_PAUSE_MENU);
         Section_addPage(section, 37);
-        Section_addPage(section, 44);
+        Section_addPage(section, PAGE_ID_CONFIRM_QUIT);
         Section_addPage(section, 58);
         LICENSE_SETTINGS(section, PAGE_ID_MR_PAUSE_MENU);
 
-        // Mission Mode
-        Section_addPage(section, 0x35);
-        Section_addPage(section, 0x2A); // Bean's code loads 2A instead, which is Battle 3P menu... I assume that was a mistake and he meant this one
+#ifdef MISSION_MODE
+        Section_addPage(section, PAGE_ID_COMPETITION_PERSONAL_LEADERBOARD);
+        Section_addPage(section, PAGE_ID_SEND_TOURNAMENT_RECORD);
+#endif
         break;
     case SECTION_ID_TOURNAMENT_REPLAY:
         Section_addPage(section, 22);
         Section_addPage(section, PAGE_ID_MR_PAUSE_MENU);
         Section_addPage(section, 38);
-        Section_addPage(section, 42);
-        Section_addPage(section, 53);
+        Section_addPage(section, PAGE_ID_SEND_TOURNAMENT_RECORD);
+        Section_addPage(section, PAGE_ID_COMPETITION_PERSONAL_LEADERBOARD);
         Section_addPage(section, 58);
         LICENSE_SETTINGS(section, PAGE_ID_MR_PAUSE_MENU);
         break;
     case SECTION_ID_GP_REPLAY:
-        Section_addPage(section, 44);
+        Section_addPage(section, PAGE_ID_CONFIRM_QUIT);
         Section_addPage(section, 54);
         Section_addPage(section, PAGE_ID_GP_REPLAY_PAUSE_MENU);
         Section_addPage(section, 58);
         LICENSE_SETTINGS(section, PAGE_ID_GP_REPLAY_PAUSE_MENU);
         break;
     case SECTION_ID_TT_REPLAY:
-        Section_addPage(section, 33);
-        Section_addPage(section, 43);
+        Section_addPage(section, PAGE_ID_AFTER_TA_MENU);
+        Section_addPage(section, PAGE_ID_CHECK_RANKINGS);
         EXTRA_QUIT_CONFIRM(section);
         Section_addPage(section, 55);
         Section_addPage(section, PAGE_ID_TA_REPLAY_PAUSE_MENU);
@@ -339,7 +341,7 @@ void my_Section_addPages(Section *section, u32 sectionId) {
         Section_addPage(section, 30);
         Section_addPage(section, 39);
         Section_addPage(section, 40);
-        Section_addPage(section, 44);
+        Section_addPage(section, PAGE_ID_CONFIRM_QUIT);
         Section_addPage(section, 45);
         Section_addPage(section, 46);
         Section_addPage(section, 58);
@@ -352,7 +354,7 @@ void my_Section_addPages(Section *section, u32 sectionId) {
         Section_addPage(section, 30);
         Section_addPage(section, 39);
         Section_addPage(section, 40);
-        Section_addPage(section, 44);
+        Section_addPage(section, PAGE_ID_CONFIRM_QUIT);
         Section_addPage(section, 45);
         Section_addPage(section, 46);
         Section_addPage(section, 58);
@@ -364,7 +366,7 @@ void my_Section_addPages(Section *section, u32 sectionId) {
     case SECTION_ID_GHOST_REPLAY_DL:
     case SECTION_ID_GHOST_REPLAY:
         Section_addPage(section, PAGE_ID_GHOST_REPLAY_PAUSE_MENU);
-        Section_addPage(section, 44);
+        Section_addPage(section, PAGE_ID_CONFIRM_QUIT);
         Section_addPage(section, 55);
         Section_addPage(section, 58);
         Section_addPage(section, 167);
@@ -389,8 +391,8 @@ void my_Section_addPages(Section *section, u32 sectionId) {
     case 61:
     case 62:
         Section_addPage(section, 63);
-        Section_addPage(section, 79);
-        Section_addPage(section, 81);
+        Section_addPage(section, PAGE_ID_READING_GHOST_DATA);
+        Section_addPage(section, PAGE_ID_TEXT_BOX_PRESS_A);
         Section_addPage(section, 83);
         Section_addPage(section, 127);
         break;
@@ -399,8 +401,8 @@ void my_Section_addPages(Section *section, u32 sectionId) {
     case 65:
     case 66:
     case 67:
-        Section_addPage(section, 77);
-        Section_addPage(section, 82);
+        Section_addPage(section, PAGE_ID_MESSAGE_WINDOW_POPUP);
+        Section_addPage(section, PAGE_ID_CONFIRM);
         Section_addPage(section, 84);
         Section_addPage(section, 85);
         Section_addPage(section, 86);
@@ -408,8 +410,8 @@ void my_Section_addPages(Section *section, u32 sectionId) {
         Section_addPage(section, 88);
         Section_addPage(section, 89);
         Section_addPage(section, 90);
-        Section_addPage(section, 94);
-        Section_addPage(section, 101);
+        Section_addPage(section, PAGE_ID_TOP_OVERLAY);
+        Section_addPage(section, PAGE_ID_LICENSE_SELECT);
         break;
     case 68:
         Section_addPage(section, 58);
@@ -417,19 +419,19 @@ void my_Section_addPages(Section *section, u32 sectionId) {
         break;
     case 69:
     case 70:
-        Section_addPage(section, 81);
-        Section_addPage(section, 82);
+        Section_addPage(section, PAGE_ID_TEXT_BOX_PRESS_A);
+        Section_addPage(section, PAGE_ID_CONFIRM);
         Section_addPage(section, 93);
-        Section_addPage(section, 94);
+        Section_addPage(section, PAGE_ID_TOP_OVERLAY);
         Section_addPage(section, 96);
         Section_addPage(section, 102);
         break;
     case 71:
-        Section_addPage(section, 78);
-        Section_addPage(section, 81);
-        Section_addPage(section, 82);
+        Section_addPage(section, PAGE_ID_VOTE_OR_RANDOM);
+        Section_addPage(section, PAGE_ID_TEXT_BOX_PRESS_A);
+        Section_addPage(section, PAGE_ID_CONFIRM);
         Section_addPage(section, 93);
-        Section_addPage(section, 94);
+        Section_addPage(section, PAGE_ID_TOP_OVERLAY);
         Section_addPage(section, 96);
         Section_addPage(section, 102);
         Section_addPage(section, 103);
@@ -447,23 +449,25 @@ void my_Section_addPages(Section *section, u32 sectionId) {
     case 73:
     case 74:
     case 77:
+#ifdef MISSION_MODE
     case 78:
-        Section_addPage(section, 75);
-        Section_addPage(section, 77);
-        Section_addPage(section, 79);
-        Section_addPage(section, 81);
-        Section_addPage(section, 82);
+#endif
+        Section_addPage(section, PAGE_ID_RACE_CONFIRM);
+        Section_addPage(section, PAGE_ID_MESSAGE_WINDOW_POPUP);
+        Section_addPage(section, PAGE_ID_READING_GHOST_DATA);
+        Section_addPage(section, PAGE_ID_TEXT_BOX_PRESS_A);
+        Section_addPage(section, PAGE_ID_CONFIRM);
         Section_addPage(section, 83);
-        Section_addPage(section, 92);
-        Section_addPage(section, 94);
-        Section_addPage(section, 105);
+        Section_addPage(section, PAGE_ID_FLAG_BACKGROUND);
+        Section_addPage(section, PAGE_ID_TOP_OVERLAY);
+        Section_addPage(section, PAGE_ID_SINGLE_TOP_MENU);
         Section_addPage(section, 106);
-        Section_addPage(section, 107);
-        Section_addPage(section, 108);
-        Section_addPage(section, 109);
-        Section_addPage(section, 110);
-        Section_addPage(section, 111);
-        Section_addPage(section, 112);
+        Section_addPage(section, PAGE_ID_CHARACTER_SELECT);
+        Section_addPage(section, PAGE_ID_VEHICLE_SELECT);
+        Section_addPage(section, PAGE_ID_DRIFT_SELECT);
+        Section_addPage(section, PAGE_ID_CUP_SELECT);
+        Section_addPage(section, PAGE_ID_COURSE_SELECT);
+        Section_addPage(section, PAGE_ID_SELECT_GHOST);
         Section_addPage(section, 113);
         Section_addPage(section, 114);
         Section_addPage(section, 115);
@@ -476,80 +480,83 @@ void my_Section_addPages(Section *section, u32 sectionId) {
         Section_addPage(section, 127);
         Section_addPage(section, 167);
 
-        // Mission Mode
+#ifdef MISSION_MODE
         missionModeFunc1();
+#endif
         break;
     case 75:
-        Section_addPage(section, 75);
-        Section_addPage(section, 78);
-        Section_addPage(section, 81);
-        Section_addPage(section, 82);
+        Section_addPage(section, PAGE_ID_RACE_CONFIRM);
+        Section_addPage(section, PAGE_ID_VOTE_OR_RANDOM);
+        Section_addPage(section, PAGE_ID_TEXT_BOX_PRESS_A);
+        Section_addPage(section, PAGE_ID_CONFIRM);
         Section_addPage(section, 83);
-        Section_addPage(section, 92);
-        Section_addPage(section, 94);
-        Section_addPage(section, 110);
-        Section_addPage(section, 111);
+        Section_addPage(section, PAGE_ID_FLAG_BACKGROUND);
+        Section_addPage(section, PAGE_ID_TOP_OVERLAY);
+        Section_addPage(section, PAGE_ID_CUP_SELECT);
+        Section_addPage(section, PAGE_ID_COURSE_SELECT);
         Section_addPage(section, 127);
         Section_addPage(section, 167);
         break;
     case 76:
-        Section_addPage(section, 75);
-        Section_addPage(section, 78);
-        Section_addPage(section, 81);
-        Section_addPage(section, 82);
+        Section_addPage(section, PAGE_ID_RACE_CONFIRM);
+        Section_addPage(section, PAGE_ID_VOTE_OR_RANDOM);
+        Section_addPage(section, PAGE_ID_TEXT_BOX_PRESS_A);
+        Section_addPage(section, PAGE_ID_CONFIRM);
         Section_addPage(section, 83);
-        Section_addPage(section, 92);
-        Section_addPage(section, 94);
+        Section_addPage(section, PAGE_ID_FLAG_BACKGROUND);
+        Section_addPage(section, PAGE_ID_TOP_OVERLAY);
         Section_addPage(section, 120);
         Section_addPage(section, 121);
         Section_addPage(section, 127);
         Section_addPage(section, 167);
         break;
-    // case 78:
+#ifndef MISSION_MODE
+    case 78:
+#endif
     case 79:
     case 80:
-        Section_addPage(section, 75);
-        Section_addPage(section, 77);
-        Section_addPage(section, 92);
-        Section_addPage(section, 94);
-        Section_addPage(section, 107);
-        Section_addPage(section, 108);
-        Section_addPage(section, 109);
+        Section_addPage(section, PAGE_ID_RACE_CONFIRM);
+        Section_addPage(section, PAGE_ID_MESSAGE_WINDOW_POPUP);
+        Section_addPage(section, PAGE_ID_FLAG_BACKGROUND);
+        Section_addPage(section, PAGE_ID_TOP_OVERLAY);
+        Section_addPage(section, PAGE_ID_CHARACTER_SELECT);
+        Section_addPage(section, PAGE_ID_VEHICLE_SELECT);
+        Section_addPage(section, PAGE_ID_DRIFT_SELECT);
         Section_addPage(section, 127);
         Section_addPage(section, 167);
         break;
     case 81:
-        Section_addPage(section, 79);
-        Section_addPage(section, 81);
-        Section_addPage(section, 92);
-        Section_addPage(section, 94);
+        Section_addPage(section, PAGE_ID_READING_GHOST_DATA);
+        Section_addPage(section, PAGE_ID_TEXT_BOX_PRESS_A);
+        Section_addPage(section, PAGE_ID_FLAG_BACKGROUND);
+        Section_addPage(section, PAGE_ID_TOP_OVERLAY);
         Section_addPage(section, 167);
         Section_addPage(section, 182);
         break;
     case 82:
     case 83:
-        Section_addPage(section, 79);
-        Section_addPage(section, 92);
-        Section_addPage(section, 94);
+        Section_addPage(section, PAGE_ID_READING_GHOST_DATA);
+        Section_addPage(section, PAGE_ID_FLAG_BACKGROUND);
+        Section_addPage(section, PAGE_ID_TOP_OVERLAY);
         Section_addPage(section, 167);
         Section_addPage(section, 177);
         Section_addPage(section, 178);
         break;
     case 84:
-        Section_addPage(section, 75);
+        Section_addPage(section, PAGE_ID_RACE_CONFIRM);
         Section_addPage(section, 76);
-        Section_addPage(section, 77);
-        Section_addPage(section, 82);
-        Section_addPage(section, 92);
-        Section_addPage(section, 94);
+        Section_addPage(section, PAGE_ID_MESSAGE_WINDOW_POPUP);
+        Section_addPage(section, PAGE_ID_CONFIRM);
+        Section_addPage(section, PAGE_ID_FLAG_BACKGROUND);
+        Section_addPage(section, PAGE_ID_TOP_OVERLAY);
         Section_addPage(section, 96);
         Section_addPage(section, 97);
         Section_addPage(section, 98);
         Section_addPage(section, 99);
         Section_addPage(section, 100);
-        Section_addPage(section, 107);
-        Section_addPage(section, 110);
-        Section_addPage(section, 111);
+        Section_addPage(section, PAGE_ID_CHARACTER_SELECT);
+        Section_addPage(section, PAGE_ID_CUP_SELECT);
+        Section_addPage(section, PAGE_ID_COURSE_SELECT);
         Section_addPage(section, 114);
         Section_addPage(section, 115);
         Section_addPage(section, 116);
@@ -567,16 +574,16 @@ void my_Section_addPages(Section *section, u32 sectionId) {
     case 86:
     case 87:
         Section_addPage(section, 76);
-        Section_addPage(section, 77);
-        Section_addPage(section, 78);
-        Section_addPage(section, 79);
-        Section_addPage(section, 80);
-        Section_addPage(section, 81);
-        Section_addPage(section, 82);
-        Section_addPage(section, 94);
-        Section_addPage(section, 107);
-        Section_addPage(section, 108);
-        Section_addPage(section, 109);
+        Section_addPage(section, PAGE_ID_MESSAGE_WINDOW_POPUP);
+        Section_addPage(section, PAGE_ID_VOTE_OR_RANDOM);
+        Section_addPage(section, PAGE_ID_READING_GHOST_DATA);
+        Section_addPage(section, PAGE_ID_CONNECTING_NINTENDO_WFC);
+        Section_addPage(section, PAGE_ID_TEXT_BOX_PRESS_A);
+        Section_addPage(section, PAGE_ID_CONFIRM);
+        Section_addPage(section, PAGE_ID_TOP_OVERLAY);
+        Section_addPage(section, PAGE_ID_CHARACTER_SELECT);
+        Section_addPage(section, PAGE_ID_VEHICLE_SELECT);
+        Section_addPage(section, PAGE_ID_DRIFT_SELECT);
         Section_addPage(section, 118);
         Section_addPage(section, 127);
         Section_addPage(section, 132);
@@ -608,13 +615,13 @@ void my_Section_addPages(Section *section, u32 sectionId) {
     case 97:
     case 100:
     case 101:
-        Section_addPage(section, 78);
-        Section_addPage(section, 80);
-        Section_addPage(section, 81);
-        Section_addPage(section, 92);
-        Section_addPage(section, 94);
-        Section_addPage(section, 110);
-        Section_addPage(section, 111);
+        Section_addPage(section, PAGE_ID_VOTE_OR_RANDOM);
+        Section_addPage(section, PAGE_ID_CONNECTING_NINTENDO_WFC);
+        Section_addPage(section, PAGE_ID_TEXT_BOX_PRESS_A);
+        Section_addPage(section, PAGE_ID_FLAG_BACKGROUND);
+        Section_addPage(section, PAGE_ID_TOP_OVERLAY);
+        Section_addPage(section, PAGE_ID_CUP_SELECT);
+        Section_addPage(section, PAGE_ID_COURSE_SELECT);
         Section_addPage(section, 127);
         Section_addPage(section, 136);
         Section_addPage(section, 144);
@@ -627,11 +634,11 @@ void my_Section_addPages(Section *section, u32 sectionId) {
     case 99:
     case 102:
     case 103:
-        Section_addPage(section, 78);
-        Section_addPage(section, 80);
-        Section_addPage(section, 81);
-        Section_addPage(section, 92);
-        Section_addPage(section, 94);
+        Section_addPage(section, PAGE_ID_VOTE_OR_RANDOM);
+        Section_addPage(section, PAGE_ID_CONNECTING_NINTENDO_WFC);
+        Section_addPage(section, PAGE_ID_TEXT_BOX_PRESS_A);
+        Section_addPage(section, PAGE_ID_FLAG_BACKGROUND);
+        Section_addPage(section, PAGE_ID_TOP_OVERLAY);
         Section_addPage(section, 120);
         Section_addPage(section, 121);
         Section_addPage(section, 127);
@@ -641,8 +648,8 @@ void my_Section_addPages(Section *section, u32 sectionId) {
         Section_addPage(section, 146);
         break;
     case 90:
-        Section_addPage(section, 82);
-        Section_addPage(section, 94);
+        Section_addPage(section, PAGE_ID_CONFIRM);
+        Section_addPage(section, PAGE_ID_TOP_OVERLAY);
         Section_addPage(section, 96);
         Section_addPage(section, 97);
         Section_addPage(section, 98);
@@ -654,14 +661,14 @@ void my_Section_addPages(Section *section, u32 sectionId) {
     case 92:
     case 93:
         Section_addPage(section, 76);
-        Section_addPage(section, 77);
-        Section_addPage(section, 78);
-        Section_addPage(section, 79);
-        Section_addPage(section, 80);
-        Section_addPage(section, 81);
-        Section_addPage(section, 82);
-        Section_addPage(section, 94);
-        Section_addPage(section, 107);
+        Section_addPage(section, PAGE_ID_MESSAGE_WINDOW_POPUP);
+        Section_addPage(section, PAGE_ID_VOTE_OR_RANDOM);
+        Section_addPage(section, PAGE_ID_READING_GHOST_DATA);
+        Section_addPage(section, PAGE_ID_CONNECTING_NINTENDO_WFC);
+        Section_addPage(section, PAGE_ID_TEXT_BOX_PRESS_A);
+        Section_addPage(section, PAGE_ID_CONFIRM);
+        Section_addPage(section, PAGE_ID_TOP_OVERLAY);
+        Section_addPage(section, PAGE_ID_CHARACTER_SELECT);
         Section_addPage(section, 118);
         Section_addPage(section, 127);
         Section_addPage(section, 129);
@@ -696,8 +703,8 @@ void my_Section_addPages(Section *section, u32 sectionId) {
         Section_addPage(section, 69);
         Section_addPage(section, 70);
         Section_addPage(section, 71);
-        Section_addPage(section, 72);
-        Section_addPage(section, 81);
+        Section_addPage(section, PAGE_ID_ONLINE_PLEASE_WAIT);
+        Section_addPage(section, PAGE_ID_TEXT_BOX_PRESS_A);
         Section_addPage(section, 136);
         Section_addPage(section, 148);
         break;
@@ -708,17 +715,17 @@ void my_Section_addPages(Section *section, u32 sectionId) {
         Section_addPage(section, 69);
         Section_addPage(section, 70);
         Section_addPage(section, 71);
-        Section_addPage(section, 72);
-        Section_addPage(section, 81);
+        Section_addPage(section, PAGE_ID_ONLINE_PLEASE_WAIT);
+        Section_addPage(section, PAGE_ID_TEXT_BOX_PRESS_A);
         Section_addPage(section, 136);
         Section_addPage(section, 148);
         break;
     case 106:
     case 107:
         Section_addPage(section, 58);
-        Section_addPage(section, 72);
+        Section_addPage(section, PAGE_ID_ONLINE_PLEASE_WAIT);
         Section_addPage(section, 73);
-        Section_addPage(section, 81);
+        Section_addPage(section, PAGE_ID_TEXT_BOX_PRESS_A);
         Section_addPage(section, 136);
         Section_addPage(section, 147);
         Section_addPage(section, 148);
@@ -731,8 +738,8 @@ void my_Section_addPages(Section *section, u32 sectionId) {
         Section_addPage(section, 69);
         Section_addPage(section, 70);
         Section_addPage(section, 71);
-        Section_addPage(section, 72);
-        Section_addPage(section, 81);
+        Section_addPage(section, PAGE_ID_ONLINE_PLEASE_WAIT);
+        Section_addPage(section, PAGE_ID_TEXT_BOX_PRESS_A);
         Section_addPage(section, 136);
         Section_addPage(section, 148);
         break;
@@ -744,8 +751,8 @@ void my_Section_addPages(Section *section, u32 sectionId) {
         Section_addPage(section, 69);
         Section_addPage(section, 70);
         Section_addPage(section, 71);
-        Section_addPage(section, 72);
-        Section_addPage(section, 81);
+        Section_addPage(section, PAGE_ID_ONLINE_PLEASE_WAIT);
+        Section_addPage(section, PAGE_ID_TEXT_BOX_PRESS_A);
         Section_addPage(section, 136);
         Section_addPage(section, 148);
         break;
@@ -753,9 +760,9 @@ void my_Section_addPages(Section *section, u32 sectionId) {
     case 111:
         Section_addPage(section, 51);
         Section_addPage(section, 58);
-        Section_addPage(section, 72);
+        Section_addPage(section, PAGE_ID_ONLINE_PLEASE_WAIT);
         Section_addPage(section, 74);
-        Section_addPage(section, 81);
+        Section_addPage(section, PAGE_ID_TEXT_BOX_PRESS_A);
         Section_addPage(section, 136);
         Section_addPage(section, 147);
         Section_addPage(section, 148);
@@ -766,8 +773,8 @@ void my_Section_addPages(Section *section, u32 sectionId) {
         Section_addPage(section, 58);
         Section_addPage(section, 66);
         Section_addPage(section, 68);
-        Section_addPage(section, 72);
-        Section_addPage(section, 81);
+        Section_addPage(section, PAGE_ID_ONLINE_PLEASE_WAIT);
+        Section_addPage(section, PAGE_ID_TEXT_BOX_PRESS_A);
         Section_addPage(section, 136);
         Section_addPage(section, 148);
         break;
@@ -777,8 +784,8 @@ void my_Section_addPages(Section *section, u32 sectionId) {
         Section_addPage(section, 58);
         Section_addPage(section, 66);
         Section_addPage(section, 68);
-        Section_addPage(section, 72);
-        Section_addPage(section, 81);
+        Section_addPage(section, PAGE_ID_ONLINE_PLEASE_WAIT);
+        Section_addPage(section, PAGE_ID_TEXT_BOX_PRESS_A);
         Section_addPage(section, 136);
         Section_addPage(section, 148);
         break;
@@ -789,8 +796,8 @@ void my_Section_addPages(Section *section, u32 sectionId) {
         Section_addPage(section, 52);
         Section_addPage(section, 58);
         Section_addPage(section, 68);
-        Section_addPage(section, 72);
-        Section_addPage(section, 81);
+        Section_addPage(section, PAGE_ID_ONLINE_PLEASE_WAIT);
+        Section_addPage(section, PAGE_ID_TEXT_BOX_PRESS_A);
         Section_addPage(section, 136);
         Section_addPage(section, 148);
         break;
@@ -800,8 +807,8 @@ void my_Section_addPages(Section *section, u32 sectionId) {
         Section_addPage(section, 58);
         Section_addPage(section, 67);
         Section_addPage(section, 68);
-        Section_addPage(section, 72);
-        Section_addPage(section, 81);
+        Section_addPage(section, PAGE_ID_ONLINE_PLEASE_WAIT);
+        Section_addPage(section, PAGE_ID_TEXT_BOX_PRESS_A);
         Section_addPage(section, 136);
         Section_addPage(section, 148);
         break;
@@ -811,8 +818,8 @@ void my_Section_addPages(Section *section, u32 sectionId) {
         Section_addPage(section, 58);
         Section_addPage(section, 67);
         Section_addPage(section, 68);
-        Section_addPage(section, 72);
-        Section_addPage(section, 81);
+        Section_addPage(section, PAGE_ID_ONLINE_PLEASE_WAIT);
+        Section_addPage(section, PAGE_ID_TEXT_BOX_PRESS_A);
         Section_addPage(section, 136);
         Section_addPage(section, 148);
         break;
@@ -823,8 +830,8 @@ void my_Section_addPages(Section *section, u32 sectionId) {
         Section_addPage(section, 52);
         Section_addPage(section, 58);
         Section_addPage(section, 68);
-        Section_addPage(section, 72);
-        Section_addPage(section, 81);
+        Section_addPage(section, PAGE_ID_ONLINE_PLEASE_WAIT);
+        Section_addPage(section, PAGE_ID_TEXT_BOX_PRESS_A);
         Section_addPage(section, 136);
         Section_addPage(section, 148);
         break;
@@ -837,11 +844,11 @@ void my_Section_addPages(Section *section, u32 sectionId) {
     case 123:
     case 124:
 #ifndef MORE_CHANNEL_PAGES
-        Section_addPage(section, 77);
-        Section_addPage(section, 81);
-        Section_addPage(section, 82);
+        Section_addPage(section, PAGE_ID_MESSAGE_WINDOW_POPUP);
+        Section_addPage(section, PAGE_ID_TEXT_BOX_PRESS_A);
+        Section_addPage(section, PAGE_ID_CONFIRM);
 #endif
-        Section_addPage(section, 94);
+        Section_addPage(section, PAGE_ID_TOP_OVERLAY);
         Section_addPage(section, 162);
 #ifndef MORE_CHANNEL_PAGES
         Section_addPage(section, 163);
@@ -857,13 +864,13 @@ void my_Section_addPages(Section *section, u32 sectionId) {
 #endif
         break;
     case 125:
-        Section_addPage(section, 78);
-        Section_addPage(section, 79);
-        Section_addPage(section, 80);
-        Section_addPage(section, 81);
-        Section_addPage(section, 82);
-        Section_addPage(section, 110);
-        Section_addPage(section, 111);
+        Section_addPage(section, PAGE_ID_VOTE_OR_RANDOM);
+        Section_addPage(section, PAGE_ID_READING_GHOST_DATA);
+        Section_addPage(section, PAGE_ID_CONNECTING_NINTENDO_WFC);
+        Section_addPage(section, PAGE_ID_TEXT_BOX_PRESS_A);
+        Section_addPage(section, PAGE_ID_CONFIRM);
+        Section_addPage(section, PAGE_ID_CUP_SELECT);
+        Section_addPage(section, PAGE_ID_COURSE_SELECT);
         Section_addPage(section, 132);
         Section_addPage(section, 133);
         Section_addPage(section, 134);
@@ -880,11 +887,11 @@ void my_Section_addPages(Section *section, u32 sectionId) {
         Section_addPage(section, 175);
         break;
     case 126:
-        Section_addPage(section, 78);
-        Section_addPage(section, 79);
-        Section_addPage(section, 80);
-        Section_addPage(section, 81);
-        Section_addPage(section, 82);
+        Section_addPage(section, PAGE_ID_VOTE_OR_RANDOM);
+        Section_addPage(section, PAGE_ID_READING_GHOST_DATA);
+        Section_addPage(section, PAGE_ID_CONNECTING_NINTENDO_WFC);
+        Section_addPage(section, PAGE_ID_TEXT_BOX_PRESS_A);
+        Section_addPage(section, PAGE_ID_CONFIRM);
         Section_addPage(section, 132);
         Section_addPage(section, 133);
         Section_addPage(section, 134);
@@ -899,29 +906,29 @@ void my_Section_addPages(Section *section, u32 sectionId) {
         Section_addPage(section, 176);
         break;
     case 127:
-        Section_addPage(section, 75);
-        Section_addPage(section, 77);
-        Section_addPage(section, 81);
-        Section_addPage(section, 94);
-        Section_addPage(section, 107);
-        Section_addPage(section, 108);
-        Section_addPage(section, 109);
+        Section_addPage(section, PAGE_ID_RACE_CONFIRM);
+        Section_addPage(section, PAGE_ID_MESSAGE_WINDOW_POPUP);
+        Section_addPage(section, PAGE_ID_TEXT_BOX_PRESS_A);
+        Section_addPage(section, PAGE_ID_TOP_OVERLAY);
+        Section_addPage(section, PAGE_ID_CHARACTER_SELECT);
+        Section_addPage(section, PAGE_ID_VEHICLE_SELECT);
+        Section_addPage(section, PAGE_ID_DRIFT_SELECT);
         Section_addPage(section, 127);
         Section_addPage(section, 159);
         Section_addPage(section, 160);
         Section_addPage(section, 161);
         break;
     case 128:
-        Section_addPage(section, 75);
-        Section_addPage(section, 77);
-        Section_addPage(section, 78);
-        Section_addPage(section, 80);
-        Section_addPage(section, 81);
-        Section_addPage(section, 82);
-        Section_addPage(section, 94);
-        Section_addPage(section, 107);
-        Section_addPage(section, 108);
-        Section_addPage(section, 109);
+        Section_addPage(section, PAGE_ID_RACE_CONFIRM);
+        Section_addPage(section, PAGE_ID_MESSAGE_WINDOW_POPUP);
+        Section_addPage(section, PAGE_ID_VOTE_OR_RANDOM);
+        Section_addPage(section, PAGE_ID_CONNECTING_NINTENDO_WFC);
+        Section_addPage(section, PAGE_ID_TEXT_BOX_PRESS_A);
+        Section_addPage(section, PAGE_ID_CONFIRM);
+        Section_addPage(section, PAGE_ID_TOP_OVERLAY);
+        Section_addPage(section, PAGE_ID_CHARACTER_SELECT);
+        Section_addPage(section, PAGE_ID_VEHICLE_SELECT);
+        Section_addPage(section, PAGE_ID_DRIFT_SELECT);
         Section_addPage(section, 127);
         Section_addPage(section, 132);
         Section_addPage(section, 133);
@@ -933,16 +940,16 @@ void my_Section_addPages(Section *section, u32 sectionId) {
         Section_addPage(section, 161);
         break;
     case 129:
-        Section_addPage(section, 75);
-        Section_addPage(section, 77);
-        Section_addPage(section, 78);
-        Section_addPage(section, 80);
-        Section_addPage(section, 81);
-        Section_addPage(section, 82);
-        Section_addPage(section, 94);
-        Section_addPage(section, 107);
-        Section_addPage(section, 108);
-        Section_addPage(section, 109);
+        Section_addPage(section, PAGE_ID_RACE_CONFIRM);
+        Section_addPage(section, PAGE_ID_MESSAGE_WINDOW_POPUP);
+        Section_addPage(section, PAGE_ID_VOTE_OR_RANDOM);
+        Section_addPage(section, PAGE_ID_CONNECTING_NINTENDO_WFC);
+        Section_addPage(section, PAGE_ID_TEXT_BOX_PRESS_A);
+        Section_addPage(section, PAGE_ID_CONFIRM);
+        Section_addPage(section, PAGE_ID_TOP_OVERLAY);
+        Section_addPage(section, PAGE_ID_CHARACTER_SELECT);
+        Section_addPage(section, PAGE_ID_VEHICLE_SELECT);
+        Section_addPage(section, PAGE_ID_DRIFT_SELECT);
         Section_addPage(section, 127);
         Section_addPage(section, 132);
         Section_addPage(section, 133);
@@ -953,10 +960,10 @@ void my_Section_addPages(Section *section, u32 sectionId) {
         Section_addPage(section, 161);
         break;
     case 130:
-        Section_addPage(section, 77);
-        Section_addPage(section, 79);
-        Section_addPage(section, 81);
-        Section_addPage(section, 94);
+        Section_addPage(section, PAGE_ID_MESSAGE_WINDOW_POPUP);
+        Section_addPage(section, PAGE_ID_READING_GHOST_DATA);
+        Section_addPage(section, PAGE_ID_TEXT_BOX_PRESS_A);
+        Section_addPage(section, PAGE_ID_TOP_OVERLAY);
         Section_addPage(section, 167);
         Section_addPage(section, 179);
         Section_addPage(section, 180);
@@ -964,16 +971,16 @@ void my_Section_addPages(Section *section, u32 sectionId) {
         break;
     case 131:
         Section_addPage(section, 76);
-        Section_addPage(section, 77);
-        Section_addPage(section, 78);
-        Section_addPage(section, 79);
-        Section_addPage(section, 80);
-        Section_addPage(section, 81);
-        Section_addPage(section, 82);
-        Section_addPage(section, 94);
-        Section_addPage(section, 107);
-        Section_addPage(section, 108);
-        Section_addPage(section, 109);
+        Section_addPage(section, PAGE_ID_MESSAGE_WINDOW_POPUP);
+        Section_addPage(section, PAGE_ID_VOTE_OR_RANDOM);
+        Section_addPage(section, PAGE_ID_READING_GHOST_DATA);
+        Section_addPage(section, PAGE_ID_CONNECTING_NINTENDO_WFC);
+        Section_addPage(section, PAGE_ID_TEXT_BOX_PRESS_A);
+        Section_addPage(section, PAGE_ID_CONFIRM);
+        Section_addPage(section, PAGE_ID_TOP_OVERLAY);
+        Section_addPage(section, PAGE_ID_CHARACTER_SELECT);
+        Section_addPage(section, PAGE_ID_VEHICLE_SELECT);
+        Section_addPage(section, PAGE_ID_DRIFT_SELECT);
         Section_addPage(section, 118);
         Section_addPage(section, 127);
         Section_addPage(section, 132);
@@ -999,16 +1006,16 @@ void my_Section_addPages(Section *section, u32 sectionId) {
         break;
     case 132:
         Section_addPage(section, 76);
-        Section_addPage(section, 77);
-        Section_addPage(section, 78);
-        Section_addPage(section, 79);
-        Section_addPage(section, 80);
-        Section_addPage(section, 81);
-        Section_addPage(section, 82);
-        Section_addPage(section, 94);
-        Section_addPage(section, 107);
-        Section_addPage(section, 108);
-        Section_addPage(section, 109);
+        Section_addPage(section, PAGE_ID_MESSAGE_WINDOW_POPUP);
+        Section_addPage(section, PAGE_ID_VOTE_OR_RANDOM);
+        Section_addPage(section, PAGE_ID_READING_GHOST_DATA);
+        Section_addPage(section, PAGE_ID_CONNECTING_NINTENDO_WFC);
+        Section_addPage(section, PAGE_ID_TEXT_BOX_PRESS_A);
+        Section_addPage(section, PAGE_ID_CONFIRM);
+        Section_addPage(section, PAGE_ID_TOP_OVERLAY);
+        Section_addPage(section, PAGE_ID_CHARACTER_SELECT);
+        Section_addPage(section, PAGE_ID_VEHICLE_SELECT);
+        Section_addPage(section, PAGE_ID_DRIFT_SELECT);
         Section_addPage(section, 118);
         Section_addPage(section, 127);
         Section_addPage(section, 132);
@@ -1035,23 +1042,23 @@ void my_Section_addPages(Section *section, u32 sectionId) {
         break;
     case 133:
     case 134:
-        Section_addPage(section, 75);
-        Section_addPage(section, 77);
-        Section_addPage(section, 81);
-        Section_addPage(section, 107);
-        Section_addPage(section, 108);
-        Section_addPage(section, 109);
+        Section_addPage(section, PAGE_ID_RACE_CONFIRM);
+        Section_addPage(section, PAGE_ID_MESSAGE_WINDOW_POPUP);
+        Section_addPage(section, PAGE_ID_TEXT_BOX_PRESS_A);
+        Section_addPage(section, PAGE_ID_CHARACTER_SELECT);
+        Section_addPage(section, PAGE_ID_VEHICLE_SELECT);
+        Section_addPage(section, PAGE_ID_DRIFT_SELECT);
         Section_addPage(section, 127);
         Section_addPage(section, 183);
         Section_addPage(section, 184);
         Section_addPage(section, 187);
         break;
     case 135:
-        Section_addPage(section, 78);
-        Section_addPage(section, 79);
-        Section_addPage(section, 80);
-        Section_addPage(section, 81);
-        Section_addPage(section, 94);
+        Section_addPage(section, PAGE_ID_VOTE_OR_RANDOM);
+        Section_addPage(section, PAGE_ID_READING_GHOST_DATA);
+        Section_addPage(section, PAGE_ID_CONNECTING_NINTENDO_WFC);
+        Section_addPage(section, PAGE_ID_TEXT_BOX_PRESS_A);
+        Section_addPage(section, PAGE_ID_TOP_OVERLAY);
         Section_addPage(section, 132);
         Section_addPage(section, 133);
         Section_addPage(section, 134);
@@ -1065,24 +1072,24 @@ void my_Section_addPages(Section *section, u32 sectionId) {
         Section_addPage(section, 186);
         break;
     case 138:
-        Section_addPage(section, 79);
-        Section_addPage(section, 81);
-        Section_addPage(section, 82);
-        Section_addPage(section, 94);
+        Section_addPage(section, PAGE_ID_READING_GHOST_DATA);
+        Section_addPage(section, PAGE_ID_TEXT_BOX_PRESS_A);
+        Section_addPage(section, PAGE_ID_CONFIRM);
+        Section_addPage(section, PAGE_ID_TOP_OVERLAY);
         Section_addPage(section, 189);
         Section_addPage(section, 190);
         Section_addPage(section, 191);
         break;
     case 139:
-        Section_addPage(section, 80);
-        Section_addPage(section, 81);
-        Section_addPage(section, 82);
-        Section_addPage(section, 94);
+        Section_addPage(section, PAGE_ID_CONNECTING_NINTENDO_WFC);
+        Section_addPage(section, PAGE_ID_TEXT_BOX_PRESS_A);
+        Section_addPage(section, PAGE_ID_CONFIRM);
+        Section_addPage(section, PAGE_ID_TOP_OVERLAY);
         Section_addPage(section, 188);
         break;
     case 140:
-        Section_addPage(section, 77);
-        Section_addPage(section, 78);
+        Section_addPage(section, PAGE_ID_MESSAGE_WINDOW_POPUP);
+        Section_addPage(section, PAGE_ID_VOTE_OR_RANDOM);
         Section_addPage(section, 93);
         Section_addPage(section, 192);
         Section_addPage(section, 193);
@@ -1110,7 +1117,7 @@ void my_Section_addPages(Section *section, u32 sectionId) {
         Section_addPage(section, 204);
         break;
     case 143:
-        Section_addPage(section, 78);
+        Section_addPage(section, PAGE_ID_VOTE_OR_RANDOM);
         Section_addPage(section, 93);
         Section_addPage(section, 194);
         Section_addPage(section, 195);
@@ -1125,7 +1132,7 @@ void my_Section_addPages(Section *section, u32 sectionId) {
     case 146:
     case 147:
         Section_addPage(section, 91);
-        Section_addPage(section, 94);
+        Section_addPage(section, PAGE_ID_TOP_OVERLAY);
         Section_addPage(section, 127);
         Section_addPage(section, 205);
         break;
@@ -1305,21 +1312,21 @@ void my_Section_addActivePages(Section *section, u32 sectionId) {
     case 64:
         Section_addActivePage(section, 84);
         Section_addActivePage(section, 88);
-        Section_addActivePage(section, 94);
+        Section_addActivePage(section, PAGE_ID_TOP_OVERLAY);
         Section_addActivePage(section, 87);
         break;
     case 65:
         Section_addActivePage(section, 84);
         Section_addActivePage(section, 88);
-        Section_addActivePage(section, 94);
+        Section_addActivePage(section, PAGE_ID_TOP_OVERLAY);
         Section_addActivePage(section, 90);
         break;
     case 66:
     case 67:
         Section_addActivePage(section, 84);
         Section_addActivePage(section, 88);
-        Section_addActivePage(section, 94);
-        Section_addActivePage(section, 101);
+        Section_addActivePage(section, PAGE_ID_TOP_OVERLAY);
+        Section_addActivePage(section, PAGE_ID_LICENSE_SELECT);
         break;
     case 68:
         Section_addActivePage(section, 58);
@@ -1328,83 +1335,84 @@ void my_Section_addActivePages(Section *section, u32 sectionId) {
     case 69:
     case 70:
         Section_addActivePage(section, 93);
-        Section_addActivePage(section, 94);
+        Section_addActivePage(section, PAGE_ID_TOP_OVERLAY);
         Section_addActivePage(section, 96);
         break;
     case 71:
         Section_addActivePage(section, 93);
-        Section_addActivePage(section, 94);
+        Section_addActivePage(section, PAGE_ID_TOP_OVERLAY);
         Section_addActivePage(section, 103);
         break;
     case 72:
-        Section_addActivePage(section, 92);
-        Section_addActivePage(section, 94);
+        Section_addActivePage(section, PAGE_ID_FLAG_BACKGROUND);
+        Section_addActivePage(section, PAGE_ID_TOP_OVERLAY);
         Section_addActivePage(section, 167);
         Section_addActivePage(section, 127);
-        Section_addActivePage(section, 105);
+        Section_addActivePage(section, PAGE_ID_SINGLE_TOP_MENU);
         break;
     case 73:
-    // case 78:
+#ifndef CHANGE_GHOST_DATA_SUPPORT
+    case 78:
+#endif
     case 79:
     case 80:
-        Section_addActivePage(section, 92);
-        Section_addActivePage(section, 94);
+        Section_addActivePage(section, PAGE_ID_FLAG_BACKGROUND);
+        Section_addActivePage(section, PAGE_ID_TOP_OVERLAY);
         Section_addActivePage(section, 167);
         Section_addActivePage(section, 127);
-        Section_addActivePage(section, 107);
+        Section_addActivePage(section, PAGE_ID_CHARACTER_SELECT);
         break;
     case 74:
     case 75:
-        Section_addActivePage(section, 92);
-        Section_addActivePage(section, 94);
+        Section_addActivePage(section, PAGE_ID_FLAG_BACKGROUND);
+        Section_addActivePage(section, PAGE_ID_TOP_OVERLAY);
         Section_addActivePage(section, 167);
         Section_addActivePage(section, 127);
-        Section_addActivePage(section, 110);
+        Section_addActivePage(section, PAGE_ID_CUP_SELECT);
         break;
     case 76:
-        Section_addActivePage(section, 92);
-        Section_addActivePage(section, 94);
+        Section_addActivePage(section, PAGE_ID_FLAG_BACKGROUND);
+        Section_addActivePage(section, PAGE_ID_TOP_OVERLAY);
         Section_addActivePage(section, 167);
         Section_addActivePage(section, 127);
         Section_addActivePage(section, 120);
         break;
     case 77:
-        Section_addActivePage(section, 92);
-        Section_addActivePage(section, 94);
+        Section_addActivePage(section, PAGE_ID_FLAG_BACKGROUND);
+        Section_addActivePage(section, PAGE_ID_TOP_OVERLAY);
         Section_addActivePage(section, 167);
         Section_addActivePage(section, 127);
-// #ifdef CHANGE_GHOST_DATA_SUPPORT
-//         Section_addActivePage(section, 112);
-// #endif
-        // Mission Mode
+#ifdef MISSION_MODE
         Section_addActivePage(section, 127);
         Section_addActivePage(section, 122);
+#endif
         break;
+#ifdef CHANGE_GHOST_DATA_SUPPORT
     case 78:
-        Section_addActivePage(section, 92);
-        Section_addActivePage(section, 94);
+        Section_addActivePage(section, PAGE_ID_FLAG_BACKGROUND);
+        Section_addActivePage(section, PAGE_ID_TOP_OVERLAY);
         Section_addActivePage(section, 167);
         Section_addActivePage(section, 127);
-#ifdef CHANGE_GHOST_DATA_SUPPORT
-        Section_addActivePage(section, 112);
+
+        Section_addActivePage(section, PAGE_ID_SELECT_GHOST);
+        break;
 #endif
-    break;
     case 81:
-        Section_addActivePage(section, 92);
-        Section_addActivePage(section, 94);
+        Section_addActivePage(section, PAGE_ID_FLAG_BACKGROUND);
+        Section_addActivePage(section, PAGE_ID_TOP_OVERLAY);
         Section_addActivePage(section, 167);
         Section_addActivePage(section, 182);
         break;
     case 82:
     case 83:
-        Section_addActivePage(section, 92);
-        Section_addActivePage(section, 94);
+        Section_addActivePage(section, PAGE_ID_FLAG_BACKGROUND);
+        Section_addActivePage(section, PAGE_ID_TOP_OVERLAY);
         Section_addActivePage(section, 167);
         Section_addActivePage(section, 177);
         break;
     case 84:
-        Section_addActivePage(section, 92);
-        Section_addActivePage(section, 94);
+        Section_addActivePage(section, PAGE_ID_FLAG_BACKGROUND);
+        Section_addActivePage(section, PAGE_ID_TOP_OVERLAY);
         Section_addActivePage(section, 127);
         Section_addActivePage(section, 97);
         break;
@@ -1414,7 +1422,7 @@ void my_Section_addActivePages(Section *section, u32 sectionId) {
     case 132:
         Section_addActivePage(section, 136);
         Section_addActivePage(section, 167);
-        Section_addActivePage(section, 94);
+        Section_addActivePage(section, PAGE_ID_TOP_OVERLAY);
         Section_addActivePage(section, 149);
         Section_addActivePage(section, 127);
         Section_addActivePage(section, 132);
@@ -1423,7 +1431,7 @@ void my_Section_addActivePages(Section *section, u32 sectionId) {
     case 92:
         Section_addActivePage(section, 136);
         Section_addActivePage(section, 167);
-        Section_addActivePage(section, 94);
+        Section_addActivePage(section, PAGE_ID_TOP_OVERLAY);
         Section_addActivePage(section, 149);
         Section_addActivePage(section, 127);
         Section_addActivePage(section, 155);
@@ -1432,7 +1440,7 @@ void my_Section_addActivePages(Section *section, u32 sectionId) {
     case 93:
         Section_addActivePage(section, 136);
         Section_addActivePage(section, 167);
-        Section_addActivePage(section, 94);
+        Section_addActivePage(section, PAGE_ID_TOP_OVERLAY);
         Section_addActivePage(section, 149);
         Section_addActivePage(section, 127);
         Section_addActivePage(section, 150);
@@ -1450,13 +1458,13 @@ void my_Section_addActivePages(Section *section, u32 sectionId) {
     case 102:
     case 103:
         Section_addActivePage(section, 136);
-        Section_addActivePage(section, 92);
-        Section_addActivePage(section, 94);
+        Section_addActivePage(section, PAGE_ID_FLAG_BACKGROUND);
+        Section_addActivePage(section, PAGE_ID_TOP_OVERLAY);
         Section_addActivePage(section, 127);
         Section_addActivePage(section, 144);
         break;
     case 90:
-        Section_addActivePage(section, 94);
+        Section_addActivePage(section, PAGE_ID_TOP_OVERLAY);
         Section_addActivePage(section, 97);
         break;
     case 104:
@@ -1516,15 +1524,15 @@ void my_Section_addActivePages(Section *section, u32 sectionId) {
         Section_addActivePage(section, 137);
         break;
     case 122:
-        Section_addActivePage(section, 94);
+        Section_addActivePage(section, PAGE_ID_TOP_OVERLAY);
         Section_addActivePage(section, 162);
         break;
     case 123:
-        Section_addActivePage(section, 94);
+        Section_addActivePage(section, PAGE_ID_TOP_OVERLAY);
         Section_addActivePage(section, 163);
         break;
     case 124:
-        Section_addActivePage(section, 94);
+        Section_addActivePage(section, PAGE_ID_TOP_OVERLAY);
         Section_addActivePage(section, 164);
         break;
     case 125:
@@ -1543,24 +1551,24 @@ void my_Section_addActivePages(Section *section, u32 sectionId) {
         Section_addActivePage(section, 176);
         break;
     case 127:
-        Section_addActivePage(section, 94);
+        Section_addActivePage(section, PAGE_ID_TOP_OVERLAY);
         Section_addActivePage(section, 127);
         Section_addActivePage(section, 159);
         break;
     case 128:
         Section_addActivePage(section, 136);
-        Section_addActivePage(section, 94);
+        Section_addActivePage(section, PAGE_ID_TOP_OVERLAY);
         Section_addActivePage(section, 127);
         Section_addActivePage(section, 159);
         break;
     case 129:
         Section_addActivePage(section, 136);
-        Section_addActivePage(section, 94);
+        Section_addActivePage(section, PAGE_ID_TOP_OVERLAY);
         Section_addActivePage(section, 127);
         Section_addActivePage(section, 132);
         break;
     case 130:
-        Section_addActivePage(section, 94);
+        Section_addActivePage(section, PAGE_ID_TOP_OVERLAY);
         Section_addActivePage(section, 167);
         Section_addActivePage(section, 179);
         break;
@@ -1576,7 +1584,7 @@ void my_Section_addActivePages(Section *section, u32 sectionId) {
         break;
     case 135:
         Section_addActivePage(section, 136);
-        Section_addActivePage(section, 94);
+        Section_addActivePage(section, PAGE_ID_TOP_OVERLAY);
         Section_addActivePage(section, 132);
         break;
     case 136:
@@ -1585,11 +1593,11 @@ void my_Section_addActivePages(Section *section, u32 sectionId) {
         Section_addActivePage(section, 186);
         break;
     case 138:
-        Section_addActivePage(section, 94);
+        Section_addActivePage(section, PAGE_ID_TOP_OVERLAY);
         Section_addActivePage(section, 189);
         break;
     case 139:
-        Section_addActivePage(section, 94);
+        Section_addActivePage(section, PAGE_ID_TOP_OVERLAY);
         Section_addActivePage(section, 188);
         break;
     case 140:
@@ -1618,7 +1626,7 @@ void my_Section_addActivePages(Section *section, u32 sectionId) {
     case 147:
         Section_addActivePage(section, 127);
         Section_addActivePage(section, 91);
-        Section_addActivePage(section, 94);
+        Section_addActivePage(section, PAGE_ID_TOP_OVERLAY);
         Section_addActivePage(section, 205);
         break;
     default:
