@@ -30,9 +30,6 @@ private:
 
     MultiControlInputManager m_inputManager;
     CtrlMenuPageTitleText m_pageTitleText;
-    PushButton m_settingsButton;
-    PushButton m_tracksButton;
-    PushButton m_ghostsButton;
     PushButton m_updateButton;
     PushButton m_channelButton;
     PushButton m_aboutButton;
