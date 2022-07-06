@@ -118,8 +118,6 @@ static void Init() {
     assert(relWasLoaded);
     Console::Print(" done.\n");
 
-    Memory_ProtectRangeModule(OS_PROTECT_CHANNEL_0, Payload_getTextSectionStart(), Payload_getRodataSectionEnd(), OS_PROTECT_PERMISSION_READ);
-
     VIInit();
     VISetBlack(true);
     VIFlush();
