@@ -1021,6 +1021,7 @@ code_in_files = {
         os.path.join('common', 'Strlen.c'),
         os.path.join('common', 'VI.cc'),
         os.path.join('stub', 'Archive.cc'),
+        os.path.join('stub', 'Dolphin.cc'),
         os.path.join('stub', 'FS.cc'),
         os.path.join('stub', 'LZMA.cc'),
         os.path.join('stub', 'Memcmp.c'),

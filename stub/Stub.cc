@@ -1,6 +1,6 @@
-#include "FS.hh"
-
 #include "Archive.hh"
+#include "Dolphin.hh"
+#include "FS.hh"
 #include "LZMA.hh"
 
 #include <common/Console.hh>
@@ -72,6 +72,13 @@ static std::optional<LoaderEntryFunc> Run() {
     Console::Print("Initializing IOS...");
     IOS::Init();
     Console::Print(" done.\n");
+
+    {
+        IOS::Dolphin dolphin;
+        if (dolphin.ok()) {
+            dolphin.setSpeedLimit(800);
+        }
+    }
 
 #ifndef SP_CHANNEL
     Console::Print("Loading the embedded archive...");

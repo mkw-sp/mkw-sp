@@ -9,6 +9,7 @@ extern "C" {
 #include "sp/DVDDecompLoader.hh"
 extern "C" {
 #include "sp/Host.h"
+#include "sp/IOSDolphin.h"
 #include "sp/Patcher.h"
 }
 #include "sp/Rel.hh"
@@ -128,6 +129,12 @@ static void Init() {
     auto *mem1Lo = reinterpret_cast<u8 *>(OSGetMEM1ArenaLo());
     auto *mem1Hi = reinterpret_cast<u8 *>(OSGetMEM1ArenaHi());
     memset(OSGetMEM1ArenaLo(), 0, mem1Hi - mem1Lo);
+
+    IOSDolphin dolphin = IOSDolphin_Open();
+    if (dolphin >= 0) {
+        IOSDolphin_SetSpeedLimit(dolphin, 100);
+        IOSDolphin_Close(dolphin);
+    }
 }
 
 static void Run() {
