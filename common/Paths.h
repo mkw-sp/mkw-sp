@@ -1,5 +1,6 @@
 #pragma once
 
+#define TITLE_PARENT_PATH "/title/00010001"
 #define TITLE_PATH "/title/00010001/53505350"
 #define TITLE_CONTENT_PATH TITLE_PATH "/content"
 #define TITLE_DATA_PATH TITLE_PATH "/data"

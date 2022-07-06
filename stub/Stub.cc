@@ -25,6 +25,7 @@ typedef void (*LoaderEntryFunc)(void);
 
 #ifdef SP_RELEASE
 #define TMP_TICKET_PATH "/tmp/53505350.tik"
+#define TICKET_PARENT_PATH "ticket/00010001"
 #define TICKET_PATH "/ticket/00010001/53505350.tik"
 #define TMD_PATH TITLE_CONTENT_PATH "/title.tmd"
 #define BANNER_PATH TITLE_DATA_PATH "/banner.bin"
@@ -112,10 +113,12 @@ static std::optional<LoaderEntryFunc> Run() {
     }
 #ifdef SP_RELEASE
     Console::Print("Creating directories...");
+    fs.createDir(ALIGNED_STRING(TITLE_PARENT_PATH));
     fs.createDir(ALIGNED_STRING(TITLE_PATH));
     fs.createDir(ALIGNED_STRING(TITLE_CONTENT_PATH));
     fs.createDir(ALIGNED_STRING(TITLE_DATA_PATH));
     fs.createDir(ALIGNED_STRING(UPDATE_PATH));
+    fs.createDir(ALIGNED_STRING(TICKET_PARENT_PATH));
     Console::Print(" done.\n");
 #endif
 
