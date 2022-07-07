@@ -291,4 +291,160 @@
         "font": "regular",
         "string": "Opciones de MKW-SP",
     },
+    "10083": {
+        "font": "regular",
+        "string": "Service Pack",
+    },
+    "10087": {
+        "font": "regular",
+        "string": "Actualización",
+    },
+    "10088": {
+        "font": "regular",
+        "string": "Canal",
+    },
+    "10089": {
+        "font": "regular",
+        "string": "Acerca de MKW-SP",
+    },
+    "10090": {
+        "font": "regular",
+        "string": "Instalar el Canal MKW-SP te permitirá\niniciar MKW-SP desde el Menú de Wii\nen vez de desde el Canal Homebrew o\na través de un exploit.\nLas actualizaciones se mantendrán en\nsincronización entre ambos.",
+    },
+    "10091": {
+        "font": "regular",
+        "string": "¿Quieres instalar\nel Canal MKW-SP?",
+    },
+    "10092": {
+        "font": "regular",
+        "string": "Hay una actualización disponible\npara el Canal MKW-SP.\n¿Quieres instalarla?",
+    },
+    "10093": {
+        "font": "regular",
+        "string": "El Canal MKW-SP ya está instalado.",
+    },
+    "10094": {
+        "font": "regular",
+        "string": "Ya ha sido instalada una versión\nmás moderna del Canal MKW-SP.",
+    },
+    "10095": {
+        "font": "regular",
+        "string": "Instalando el Canal MKW-SP...",
+    },
+    "10096": {
+        "font": "regular",
+        "string": "Actualizando el Canal MKW-SP...",
+    },
+    "10097": {
+        "font": "regular",
+        "string": "¡El Canal MKW-SP ha sido\ninstalado exitosamente!",
+    },
+    "10098": {
+        "font": "regular",
+        "string": "Ha ocurrido un error al\ninstalar el Canal MKW-SP.",
+    },
+    "10099": {
+        "font": "regular",
+        "string": "¡El Canal MKW-SP ha sido\nactualizado exitosamente!",
+    },
+    "10100": {
+        "font": "regular",
+        "string": "Ha ocurrido un error al\nactualizar el Canal MKW-SP.",
+    },
+    "10101": {
+        "font": "regular",
+        "string": "Solo se puede instalar el Canal MKW-SP\ndesde versiones de lanzamiento.",
+    },
+    "10102": {
+        "font": "regular",
+        "string": "Buscando actualizaciones...\n{arg message|0}",
+    },
+    "10103": {
+        "font": "regular",
+        "string": "¡Ya está disponible una nueva\nversión de MKW-SP!\n{arg string|0} → {arg string|1}",
+    },
+    "10104": {
+        "font": "regular",
+        "string": "Ya ha sido instalada la última\nversión de MKW-SP ({arg string|0}).",
+    },
+    "10105": {
+        "font": "regular",
+        "string": "Ha ocurrido un error al\nbuscar actualizaciones.",
+    },
+    "10106": {
+        "font": "regular",
+        "string": "¿Quieres actualizar MKW-SP a\nla versión {arg string|0}?\nSe necesitan {arg string|1} MiB\n({arg integer|0 0} bloques) de espacio\nen la memoria de la consola Wii.",
+    },
+    "10107": {
+        "font": "regular",
+        "string": "Actualizando MKW-SP...\n{arg message|0}",
+    },
+    "10108": {
+        "font": "regular",
+        "string": "MKW-SP ha sido exitosamente\nactualizado de la versión {arg string|0}\na la versión {arg string|1}.\nPara que las actualizaciones se\napliquen correctamente, es necesario\nreiniciar el juego.",
+    },
+    "10109": {
+        "font": "regular",
+        "string": "Ha ocurrido un error\nal actualizar MKW-SP.",
+    },
+    "10110": {
+        "font": "regular",
+        "string": "¿Quieres reiniciar MKW-SP?",
+    },
+    "10111": {
+        "font": "regular",
+        "string": "Solo se puede actualizar MKW-SP\r\ndesde versiones de lanzamiento.",
+    },
+    "10112": {
+        "font": "regular",
+        "string": "Conectando al servidor...",
+    },
+    "10113": {
+        "font": "regular",
+        "string": "Enviando datos de versión...",
+    },
+    "10114": {
+        "font": "regular",
+        "string": "Recibiendo datos de versión...",
+    },
+    "10115": {
+        "font": "regular",
+        "string": "Descargando contenido...\n{arg string|0} MiB de {arg string|1} MiB - {arg string|2} MiB/s",
+    },
+    "10116": {
+        "font": "regular",
+        "string": "Moviendo contenido...",
+    },
+    "10118": {
+        "font": "regular",
+        "string": "Carrera",
+    },
+    "10119": {
+        "font": "regular",
+        "string": "Contrarreloj",
+    },
+    "10120": {
+        "font": "regular",
+        "string": "Carné",
+    },
+    "10121": {
+        "font": "regular",
+        "string": "Rastreador de Posición",
+    },
+    "10122": {
+        "font": "regular",
+        "string": "Grand Prix y VS.",
+    },
+    "10123": {
+        "font": "regular",
+        "string": "Siempre",
+    },
+    "10124": {
+        "font": "regular",
+        "string": "Solo mostrar el rastreador de posición en los modos Grand Prix y VS..",
+    },
+    "10125": {
+        "font": "regular",
+        "string": "Siempre mostrar el rastreador de posición.",
+    },
 }

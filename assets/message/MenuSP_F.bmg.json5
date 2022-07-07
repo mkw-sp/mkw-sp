@@ -291,4 +291,160 @@
         "font": "regular",
         "string": "Options de MKW-SP",
     },
+    "10083": {
+        "font": "regular",
+        "string": "Service Pack",
+    },
+    "10087": {
+        "font": "regular",
+        "string": "Mise à jour",
+    },
+    "10088": {
+        "font": "regular",
+        "string": "Chaîne",
+    },
+    "10089": {
+        "font": "regular",
+        "string": "À propos",
+    },
+    "10090": {
+        "font": "regular",
+        "string": "Installer la chaîne MKW-SP vous permet\nde lancer MKW-SP directement depuis\nle Menu Wii plutôt que depuis la Chaîne\nHomebrew ou un exploit.\nLes mises à jour seront automaiquement\nsynchronisées.",
+    },
+    "10091": {
+        "font": "regular",
+        "string": "Voulez-vous installer\nla chaîne MKW-SP ?",
+    },
+    "10092": {
+        "font": "regular",
+        "string": "Une mise à jour de la chaîne\nMKW-SP est disponible.\nVoulez-vous l'installer ?",
+    },
+    "10093": {
+        "font": "regular",
+        "string": "La chaîne MKW-SP est déjà installée.",
+    },
+    "10094": {
+        "font": "regular",
+        "string": "Une version ultérieure de la chaîne\nMKW-SP est déjà installée !",
+    },
+    "10095": {
+        "font": "regular",
+        "string": "Installation de la chaîne MKW-SP...",
+    },
+    "10096": {
+        "font": "regular",
+        "string": "Mise à jour de la chaîne MKW-SP...",
+    },
+    "10097": {
+        "font": "regular",
+        "string": "L'installation de la chaîne MKW-SP\na réussi !",
+    },
+    "10098": {
+        "font": "regular",
+        "string": "L'installation de la chaîne MKW-SP\na échoué !",
+    },
+    "10099": {
+        "font": "regular",
+        "string": "La mise à jour de la chaîne MKW-SP\na réussi !",
+    },
+    "10100": {
+        "font": "regular",
+        "string": "La mise à jour de la chaîne MKW-SP\na échoué !",
+    },
+    "10101": {
+        "font": "regular",
+        "string": "La chaîne MKW-SP peut uniquement être\ninstallée depuis une distribution officielle.",
+    },
+    "10102": {
+        "font": "regular",
+        "string": "Recherche de mise à jour...\n{arg message|0}",
+    },
+    "10103": {
+        "font": "regular",
+        "string": "Une mise à jour de MKW-SP est\ndisponible !\n{arg string|0} → {arg string|1}",
+    },
+    "10104": {
+        "font": "regular",
+        "string": "La dernière version de MKW-SP ({arg string|0})\nest déjà installée.",
+    },
+    "10105": {
+        "font": "regular",
+        "string": "La recherche de mise à jour a échoué !",
+    },
+    "10106": {
+        "font": "regular",
+        "string": "Voulez-vous mettre MKW-SP à jour vers {arg string|0}?\n{arg string|1} Mio ({arg integer|0 0} blocs) d'espace libre\nsur le stockage de la Wii est nécessaire.",
+    },
+    "10107": {
+        "font": "regular",
+        "string": "Mise à jour de MKW-SP...\n{arg message|0}",
+    },
+    "10108": {
+        "font": "regular",
+        "string": "MKW-SP a été mis à jour\nde {arg string|0} à {arg string|1}.\nUn relancement est nécessaire pour\nappliquer la mise à jour.",
+    },
+    "10109": {
+        "font": "regular",
+        "string": "La mise à jour de MKW-SP a échoué !",
+    },
+    "10110": {
+        "font": "regular",
+        "string": "Voulez-vous relancer MKW-SP\nmaintenant ?",
+    },
+    "10111": {
+        "font": "regular",
+        "string": "MKW-SP peut uniquement être mis\nà jour depuis une distribution officielle.",
+    },
+    "10112": {
+        "font": "regular",
+        "string": "Connection au serveur...",
+    },
+    "10113": {
+        "font": "regular",
+        "string": "Envoi des informations de version...",
+    },
+    "10114": {
+        "font": "regular",
+        "string": "Réception des informations de version...",
+    },
+    "10115": {
+        "font": "regular",
+        "string": "Téléchargement du contenu...\n{arg string|0} MiB of {arg string|1} MiB - {arg string|2} MiB/s",
+    },
+    "10116": {
+        "font": "regular",
+        "string": "Déplacement du contenu...",
+    },
+    "10118": {
+        "font": "regular",
+        "string": "Course",
+    },
+    "10119": {
+        "font": "regular",
+        "string": "Contre-la-montre",
+    },
+    "10120": {
+        "font": "regular",
+        "string": "Permis",
+    },
+    "10121": {
+        "font": "regular",
+        "string": "Place",
+    },
+    "10122": {
+        "font": "regular",
+        "string": "Grand Prix et VS",
+    },
+    "10123": {
+        "font": "regular",
+        "string": "Toujours",
+    },
+    "10124": {
+        "font": "regular",
+        "string": "Afficher la place en mode GP ou VS uniquement.",
+    },
+    "10125": {
+        "font": "regular",
+        "string": "Toujours afficher la place.",
+    },
 }

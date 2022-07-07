@@ -4,6 +4,7 @@
 extern "C" {
 #include "sp/Host.h"
 #include "sp/Patcher.h"
+#include "sp/Payload.h"
 #include "sp/security/Memory.h"
 #include "sp/security/Stack.h"
 
@@ -86,6 +87,7 @@ void Run() {
 #endif
     Patcher_patch(PATCHER_BINARY_REL);
     Memory_ProtectRangeModule(OS_PROTECT_CHANNEL_3, Rel_getTextSectionStart(), Rel_getRodataSectionEnd(), OS_PROTECT_PERMISSION_READ);
+    Memory_ProtectRangeModule(OS_PROTECT_CHANNEL_0, Payload_getTextSectionStart(), Payload_getRodataSectionEnd(), OS_PROTECT_PERMISSION_READ);
 
     if (HostPlatform_IsDolphin(Host_GetPlatform())) {
         Console_init();
