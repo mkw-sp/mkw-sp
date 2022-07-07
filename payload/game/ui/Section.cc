@@ -71,6 +71,34 @@ void Section::addPages(SectionId id) {
         { SectionId::GhostReplayChannel, PageId::Settings },
         { SectionId::GhostReplayDownload, PageId::Settings },
         { SectionId::GhostReplay, PageId::Settings },
+        // Mission Mode
+
+        // Change Ghost Data
+        { SectionId::SingleChangeGhostData, PageId::RaceConfirm },
+        { SectionId::SingleChangeGhostData, PageId::MessageWindowPopup },
+        { SectionId::SingleChangeGhostData, PageId::ReadingGhostData },
+        { SectionId::SingleChangeGhostData, PageId::MenuMessage },
+        { SectionId::SingleChangeGhostData, (PageId)83 },
+        { SectionId::SingleChangeGhostData, PageId::FlagBackground },
+        { SectionId::SingleChangeGhostData, PageId::TopOverlay },
+        { SectionId::SingleChangeGhostData, PageId::SingleTopMenu },
+        { SectionId::SingleChangeGhostData, (PageId)106 },
+        { SectionId::SingleChangeGhostData, PageId::CharacterSelect },
+        { SectionId::SingleChangeGhostData, PageId::VehicleSelect },
+        { SectionId::SingleChangeGhostData, PageId::DriftSelect },
+        { SectionId::SingleChangeGhostData, PageId::CupSelect },
+        { SectionId::SingleChangeGhostData, PageId::CourseSelect },
+        { SectionId::SingleChangeGhostData, PageId::TimeAttackTop },
+        { SectionId::SingleChangeGhostData, PageId::TimeAttackGhostList },
+        { SectionId::SingleChangeGhostData, PageId::VsModeSelect },
+        { SectionId::SingleChangeGhostData, PageId::RaceRules },
+        { SectionId::SingleChangeGhostData, PageId::TeamsOverview },
+        { SectionId::SingleChangeGhostData, PageId::BattleModeSelect },
+        { SectionId::SingleChangeGhostData, PageId::BattleVehicleSelect },
+        { SectionId::SingleChangeGhostData, PageId::BattleRules },
+        { SectionId::SingleChangeGhostData, PageId::BattleCupSelect },
+        { SectionId::SingleChangeGhostData, PageId::BattleCourseSelect },
+
         // Support changing settings from the ghost list
         { SectionId::Single, PageId::Settings },
         { SectionId::SingleChangeDriver, PageId::Settings },
@@ -99,6 +127,33 @@ void Section::addActivePages(SectionId id) {
     REPLACED(addActivePages)(id);
 
     std::pair<SectionId, PageId> additions[] = {
+
+        // Change Ghost Data
+        { SectionId::SingleChangeGhostData, PageId::RaceConfirm },
+        { SectionId::SingleChangeGhostData, PageId::MessageWindowPopup },
+        { SectionId::SingleChangeGhostData, PageId::ReadingGhostData },
+        { SectionId::SingleChangeGhostData, PageId::MenuMessage },
+        { SectionId::SingleChangeGhostData, (PageId)83 },
+        { SectionId::SingleChangeGhostData, PageId::FlagBackground },
+        { SectionId::SingleChangeGhostData, PageId::TopOverlay },
+        { SectionId::SingleChangeGhostData, PageId::SingleTopMenu },
+        { SectionId::SingleChangeGhostData, (PageId)106 },
+        { SectionId::SingleChangeGhostData, PageId::CharacterSelect },
+        { SectionId::SingleChangeGhostData, PageId::VehicleSelect },
+        { SectionId::SingleChangeGhostData, PageId::DriftSelect },
+        { SectionId::SingleChangeGhostData, PageId::CupSelect },
+        { SectionId::SingleChangeGhostData, PageId::CourseSelect },
+        { SectionId::SingleChangeGhostData, PageId::TimeAttackTop },
+        { SectionId::SingleChangeGhostData, PageId::TimeAttackGhostList },
+        { SectionId::SingleChangeGhostData, PageId::VsModeSelect },
+        { SectionId::SingleChangeGhostData, PageId::RaceRules },
+        { SectionId::SingleChangeGhostData, PageId::TeamsOverview },
+        { SectionId::SingleChangeGhostData, PageId::BattleModeSelect },
+        { SectionId::SingleChangeGhostData, PageId::BattleVehicleSelect },
+        { SectionId::SingleChangeGhostData, PageId::BattleRules },
+        { SectionId::SingleChangeGhostData, PageId::BattleCupSelect },
+        { SectionId::SingleChangeGhostData, PageId::BattleCourseSelect },
+
         // Complete the "Change Ghost Data" section (repurposed "Change Mission")
         { SectionId::SingleChangeGhostData, PageId::TimeAttackTop },
     };

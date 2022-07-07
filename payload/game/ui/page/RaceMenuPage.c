@@ -1,5 +1,5 @@
 #include "RaceMenuPage.h"
-
+#include "game/system/RaceConfig.h"
 #include "game/ui/Button.h"
 #include "game/ui/SectionManager.h"
 #include "game/ui/SettingsPage.h"

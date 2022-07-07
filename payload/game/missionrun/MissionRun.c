@@ -14,14 +14,14 @@ u32 _9c0;
 u32 _9d0;
 
 void missionModeFunc1() {
-    Section* currentSection = s_sectionManager->currentSection;
-    TopMenuPage* topMenuPage = (TopMenuPage*)currentSection->pages[PAGE_ID_SINGLE_TOP_MENU];
+    // Section* currentSection = s_sectionManager->currentSection;
+    // TopMenuPage* topMenuPage = (TopMenuPage*)currentSection->pages[PAGE_ID_SINGLE_TOP_MENU];
 
-    topMenuPage->_6b4 = -1;
-    topMenuPage->_6b8 = missionModeFunc2;
-    backup_668 = topMenuPage->_668;
+    // topMenuPage->_6b4 = -1;
+    // topMenuPage->_6b8 = missionModeFunc2;
+    // backup_668 = topMenuPage->_668;
 
-    Section_addPages(currentSection, 148);
+    // Section_addPages(currentSection, 148);
 }
 
 void missionModeFunc2() {

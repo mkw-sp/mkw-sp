@@ -7,22 +7,57 @@ enum class PageId {
 
     TARace = 0xd,
 
-    ConfirmQuit = 0x2c,
+    GpPauseMenu = 0x17,
+    VsPauseMenu = 0x18,
+    TaPauseMenu = 0x19,
+    BattlePauseMenu = 0x1A,
+    MrPauseMenu = 0x1B,
+    TaGhostPauseMenu = 0x1C,
+
+    GhostReplayPauseMenu = 0x1F,
+
+    AfterTaMenu = 0x21,
+    AfterVsMenu = 0x22,
+    SendTournamentRecord = 0x2A,
+    CheckRankings = 0x2B,
+    ConfirmQuit = 0x2C,
+
+    CompetitionPersonalLeaderboard = 0x35,
 
     GhostReplayRace = 0x37,
+    GpReplayPauseMenu = 0x38,
+    TaReplayPauseMenu = 0x39,
 
-    RaceConfirm = 0x4b,
-
+    OnlinePleaseWait = 0x48,
+    RaceConfirm = 0x4B,
+    MessageWindowPopup = 0x4D,
+    VoteOrRandom = 0x4E,
+    ReadingGhostData = 0x4F,
+    ConnectingNintendoWfc = 0x50,
     MenuMessage = 0x51,
     Confirm = 0x52,
     Title = 0x57,
-    TopMenu = 0x5a,
+    TopMenu = 0x5A,
+    FlagBackground = 0x5C,
+    TopOverlay = 0x5E,
     LicenseSelect = 0x65,
     LicenseSettings = 0x67,
-
+    SingleTopMenu = 0x69,
+    CharacterSelect = 0x6B,
+    VehicleSelect = 0x6C,
+    DriftSelect = 0x6D,
+    CupSelect = 0x6E,
     CourseSelect = 0x6f,
     TimeAttackTop = 0x70,
     TimeAttackGhostList = 0x71,
+    VsModeSelect = 0x72,
+    RaceRules = 0x73,
+    TeamsOverview = 0x74,
+    BattleModeSelect = 0x75,
+    BattleVehicleSelect = 0x76,
+    BattleRules = 0x77,
+    BattleCupSelect = 0x78,
+    BattleCourseSelect = 0x79,
 
     ServicePackTop = 0xa2, // Replaces ChannelTop
     ChannelRanking = 0xa3,
@@ -40,10 +75,12 @@ enum class PageId {
     Update = 0xcb, // Replaces ChannelConfirm
 
     Settings = 0xce, // Replaces LicenseRecordsOverall
+    // Disabled {
     LicenseRecordsFavorites = 0xcf,
     LicenseRecordsFriends = 0xd0,
     LicenseRecordsWFC = 0xd1,
     LicenseRecordsOther = 0xd2,
+    // }
 
     Max = 0xd3,
 };
