@@ -11,7 +11,7 @@ PATCH_BL_START(KartState_calcCollisions, 0x7a8)
     cmpwi r3, 0x0
     bnelr
 
-    bl SpFooter_onHwg
+    bl SPFooter_OnHWG
 
     lfs f0, 0x24 (r31) // Original instruction again
     b KartState_calcCollisions + 0x7ac

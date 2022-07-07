@@ -6,13 +6,16 @@ namespace UI {
 
 struct GlobalContext {
 public:
+    void copyPlayerMiis();
     void onChangeLicense();
 
     u8 _000[0x12c - 0x000];
     u32 m_timeAttackCharacterId;
     u8 _130[0x13c - 0x130];
     u32 m_timeAttackVehicleId;
-    u8 _140[0x238 - 0x140];
+    u8 _140[0x188 - 0x140];
+    MiiGroup m_playerMiis;
+    u8 _220[0x238 - 0x220];
     MiiGroup m_localPlayerMiis;
     u8 _2d0[0x3bc - 0x2d0];
     u32 _3bc;

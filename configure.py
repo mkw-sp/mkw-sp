@@ -105,49 +105,89 @@ asset_in_files = {
         os.path.join('tt_kart_font_rodan_ntlg_pro_b_R.brfnt'),
     ],
     os.path.join('Scene', 'UI', 'MenuOtherSP.arc.lzma'): [
+        # License display and license management
         os.path.join('button', 'ctrl', 'LicenseManagementButton.brctr.json5'),
-        os.path.join('control', 'anim', 'common_w023_rule_menu_fade_in_after.brlan.json5'),
-        os.path.join('control', 'anim', 'common_w023_rule_menu_fade_in_before.brlan.json5'),
-        os.path.join('control', 'anim', 'common_w023_rule_menu_fade_in.brlan.json5'),
-        os.path.join('control', 'anim', 'common_w023_rule_menu_fade_out.brlan.json5'),
-        os.path.join('control', 'anim', 'common_w023_rule_menu_free.brlan.json5'),
-        os.path.join('control', 'anim', 'common_w023_rule_menu_free_to_select.brlan.json5'),
-        os.path.join('control', 'anim', 'common_w023_rule_menu_fuchi_check_loop.brlan.json5'),
-        os.path.join('control', 'anim', 'common_w023_rule_menu_select.brlan.json5'),
-        os.path.join('control', 'anim', 'common_w023_rule_menu_select_to_free.brlan.json5'),
-        os.path.join('control', 'anim', 'common_w023_rule_menu_text_light_01_ok.brlan.json5'),
-        os.path.join('control', 'anim', 'common_w023_rule_menu_text_light_01_stop.brlan.json5'),
-        os.path.join('control', 'anim', 'common_w023_rule_menu_text_light_02_select.brlan.json5'),
-        os.path.join('control', 'anim', 'common_w023_rule_menu_text_light_02_stop.brlan.json5'),
-        os.path.join('control', 'anim', 'common_w024_rule_icon_active_off.brlan.json5'),
-        os.path.join('control', 'anim', 'common_w024_rule_icon_active_off_to_on.brlan.json5'),
-        os.path.join('control', 'anim', 'common_w024_rule_icon_active_on.brlan.json5'),
-        os.path.join('control', 'anim', 'common_w024_rule_icon_fade_in_after.brlan.json5'),
-        os.path.join('control', 'anim', 'common_w024_rule_icon_fade_in_before.brlan.json5'),
-        os.path.join('control', 'anim', 'common_w024_rule_icon_fade_in.brlan.json5'),
-        os.path.join('control', 'anim', 'common_w024_rule_icon_fade_out.brlan.json5'),
-        os.path.join('control', 'anim', 'common_w024_rule_icon_free.brlan.json5'),
-        os.path.join('control', 'anim', 'common_w024_rule_icon_free_to_select.brlan.json5'),
-        os.path.join('control', 'anim', 'common_w024_rule_icon_fuchi_check_loop.brlan.json5'),
-        os.path.join('control', 'anim', 'common_w024_rule_icon_select.brlan.json5'),
-        os.path.join('control', 'anim', 'common_w024_rule_icon_select_to_free.brlan.json5'),
-        os.path.join('control', 'anim', 'common_w024_rule_icon_text_light_01_ok.brlan.json5'),
-        os.path.join('control', 'anim', 'common_w024_rule_icon_text_light_01_stop.brlan.json5'),
-        os.path.join('control', 'anim', 'common_w024_rule_icon_text_light_02_select.brlan.json5'),
-        os.path.join('control', 'anim', 'common_w024_rule_icon_text_light_02_stop.brlan.json5'),
-        os.path.join('control', 'blyt', 'common_w024_rule_icon.brlyt.json5'),
         os.path.join('control', 'blyt', 'common_w076_license_icon_center.brlyt.json5'),
-        os.path.join('control', 'blyt', 'common_w201_setting_menu.brlyt.json5'),
         os.path.join('control', 'ctrl', 'LicenseDisplay.brctr.json5'),
         os.path.join('control', 'ctrl', 'LicenseManagement.brctr.json5'),
-        os.path.join('control', 'ctrl', 'LicenseSettingRadioBase.brctr.json5'),
-        os.path.join('control', 'ctrl', 'LicenseSettingRadioOption.brctr.json5'),
         os.path.join('control', 'timg', 'tt_license_icon_004.tpl'),
+        # Settings
+        os.path.join('control', 'anim', 'common_w023_rule_menu_text_light_02_select.brlan.json5'),
+        os.path.join('control', 'anim', 'common_w023_rule_menu_text_light_02_stop.brlan.json5'),
+        os.path.join('control', 'anim', 'common_w134_rule_rap_yaji_l_chara_light_01_ok.brlan.json5'),
+        os.path.join('control', 'anim', 'common_w134_rule_rap_yaji_l_chara_light_01_stop.brlan.json5'),
+        os.path.join('control', 'anim', 'common_w134_rule_rap_yaji_l_chara_light_02_select.brlan.json5'),
+        os.path.join('control', 'anim', 'common_w134_rule_rap_yaji_l_chara_light_02_stop.brlan.json5'),
+        os.path.join('control', 'anim', 'common_w134_rule_rap_yaji_l_free.brlan.json5'),
+        os.path.join('control', 'anim', 'common_w134_rule_rap_yaji_l_free_to_select.brlan.json5'),
+        os.path.join('control', 'anim', 'common_w134_rule_rap_yaji_l_fuchi_check_loop.brlan.json5'),
+        os.path.join('control', 'anim', 'common_w134_rule_rap_yaji_l_select.brlan.json5'),
+        os.path.join('control', 'anim', 'common_w134_rule_rap_yaji_l_select_to_free.brlan.json5'),
+        os.path.join('control', 'anim', 'common_w135_rule_rap_yaji_r_chara_light_01_ok.brlan.json5'),
+        os.path.join('control', 'anim', 'common_w135_rule_rap_yaji_r_chara_light_01_stop.brlan.json5'),
+        os.path.join('control', 'anim', 'common_w135_rule_rap_yaji_r_chara_light_02_select.brlan.json5'),
+        os.path.join('control', 'anim', 'common_w135_rule_rap_yaji_r_chara_light_02_stop.brlan.json5'),
+        os.path.join('control', 'anim', 'common_w135_rule_rap_yaji_r_free.brlan.json5'),
+        os.path.join('control', 'anim', 'common_w135_rule_rap_yaji_r_free_to_select.brlan.json5'),
+        os.path.join('control', 'anim', 'common_w135_rule_rap_yaji_r_fuchi_check_loop.brlan.json5'),
+        os.path.join('control', 'anim', 'common_w135_rule_rap_yaji_r_select.brlan.json5'),
+        os.path.join('control', 'anim', 'common_w135_rule_rap_yaji_r_select_to_free.brlan.json5'),
+        os.path.join('control', 'anim', 'common_w201_setting_menu_free.brlan.json5'),
+        os.path.join('control', 'anim', 'common_w201_setting_menu_free_to_select.brlan.json5'),
+        os.path.join('control', 'anim', 'common_w201_setting_menu_select.brlan.json5'),
+        os.path.join('control', 'anim', 'common_w201_setting_menu_select_to_free.brlan.json5'),
+        os.path.join('control', 'anim', 'gr_area_select_menu_dummy0_loop.brlan.json5'),
+        os.path.join('control', 'anim', 'gr_area_select_menu_dummy0_onetime.brlan.json5'),
+        os.path.join('control', 'anim', 'gr_area_select_menu_dummy1_loop.brlan.json5'),
+        os.path.join('control', 'anim', 'gr_area_select_menu_dummy1_onetime.brlan.json5'),
+        os.path.join('control', 'blyt', 'common_w134_rule_rap_yaji_l.brlyt.json5'),
+        os.path.join('control', 'blyt', 'common_w135_rule_rap_yaji_r.brlyt.json5'),
+        os.path.join('control', 'blyt', 'common_w201_setting_menu.brlyt.json5'),
+        os.path.join('control', 'blyt', 'gr_area_select_menu.brlyt.json5'),
+        os.path.join('control', 'ctrl', 'CategoryUpDownBase.brctr.json5'),
+        os.path.join('control', 'ctrl', 'CategoryUpDownButtonL.brctr.json5'),
+        os.path.join('control', 'ctrl', 'CategoryUpDownButtonR.brctr.json5'),
+        os.path.join('control', 'ctrl', 'SettingUpDownBase.brctr.json5'),
+        os.path.join('control', 'ctrl', 'VSSettingUpDownButtonL.brctr.json5'),
+        os.path.join('control', 'ctrl', 'VSSettingUpDownButtonR.brctr.json5'),
+        os.path.join('control', 'timg', 'tt_yajirushi_type1.tpl'),
+        os.path.join('ranking', 'anim', 'area_select_window_free.brlan.json5'),
+        os.path.join('ranking', 'anim', 'area_select_window_free_to_select.brlan.json5'),
+        os.path.join('ranking', 'anim', 'area_select_window_fuchi_check_loop.brlan.json5'),
+        os.path.join('ranking', 'anim', 'area_select_window_select.brlan.json5'),
+        os.path.join('ranking', 'anim', 'area_select_window_select_to_free.brlan.json5'),
+        os.path.join('ranking', 'anim', 'area_select_window_text_text_center_to_right.brlan.json5'),
+        os.path.join('ranking', 'anim', 'area_select_window_text_text_hide.brlan.json5'),
+        os.path.join('ranking', 'anim', 'area_select_window_text_text_left_to_center.brlan.json5'),
+        os.path.join('ranking', 'anim', 'area_select_window_text_text_light_01_ok.brlan.json5'),
+        os.path.join('ranking', 'anim', 'area_select_window_text_text_light_01_stop.brlan.json5'),
+        os.path.join('ranking', 'anim', 'area_select_window_text_text_light_02_select.brlan.json5'),
+        os.path.join('ranking', 'anim', 'area_select_window_text_text_light_02_stop.brlan.json5'),
+        os.path.join('ranking', 'anim', 'area_select_window_text_text_stop.brlan.json5'),
+        os.path.join('ranking', 'anim', 'category_window_text_free.brlan.json5'),
+        os.path.join('ranking', 'anim', 'category_window_text_free_to_select.brlan.json5'),
+        os.path.join('ranking', 'anim', 'category_window_text_select.brlan.json5'),
+        os.path.join('ranking', 'anim', 'category_window_text_select_to_free.brlan.json5'),
+        os.path.join('ranking', 'anim', 'category_window_text_text_center_to_right.brlan.json5'),
+        os.path.join('ranking', 'anim', 'category_window_text_text_hide.brlan.json5'),
+        os.path.join('ranking', 'anim', 'category_window_text_text_left_to_center.brlan.json5'),
+        os.path.join('ranking', 'blyt', 'area_select_window.brlyt.json5'),
+        os.path.join('ranking', 'blyt', 'area_select_window_text.brlyt.json5'),
+        os.path.join('ranking', 'blyt', 'category_window.brlyt.json5'),
+        os.path.join('ranking', 'blyt', 'category_window_text.brlyt.json5'),
+        os.path.join('ranking', 'ctrl', 'CategoryUpDownText.brctr.json5'),
+        os.path.join('ranking', 'ctrl', 'CategoryUpDownValue.brctr.json5'),
+        os.path.join('ranking', 'ctrl', 'SettingUpDownText.brctr.json5'),
+        os.path.join('ranking', 'ctrl', 'SettingUpDownValue.brctr.json5'),
+        os.path.join('ranking', 'timg', 'tt_pattern_chek_alpha_nasi_32x32.tpl'),
+        os.path.join('ranking', 'timg', 'tt_pattern_chek_bokashi_32x32.tpl'),
     ],
     os.path.join('Scene', 'UI', 'MenuSingleSP.arc.lzma'): [
+        # GP removal
         os.path.join('button', 'blyt', 'common_w129_movie_button_single_top.brlyt.json5'),
         os.path.join('button', 'ctrl', 'SingleTop.brctr.json5'),
         os.path.join('button', 'ctrl', 'SingleTopMR.brctr.json5'),
+        # Ghost list
         os.path.join('button', 'ctrl', 'TimeAttackGhostListArrowLeft.brctr.json5'),
         os.path.join('button', 'ctrl', 'TimeAttackGhostListArrowRight.brctr.json5'),
         os.path.join('button', 'ctrl', 'TimeAttackGhostList.brctr.json5'),
@@ -170,12 +210,59 @@ asset_in_files = {
         os.path.join('control', 'blyt', 'ghost_container.brlyt.json5'),
         os.path.join('control', 'ctrl', 'GhostSelectBase.brctr.json5'),
         os.path.join('control', 'ctrl', 'GhostSelectOption.brctr.json5'),
-        os.path.join('control', 'ctrl', 'TASettingRadioBase.brctr.json5'),
-        os.path.join('control', 'ctrl', 'TASettingRadioOption.brctr.json5'),
         os.path.join('control', 'ctrl', 'TimeAttackGhostListPageNum.brctr.json5'),
+        os.path.join('message_window', 'ctrl', 'TimeAttackGhostListMessageWindowHalf.brctr.json5'),
+        # 200cc
         os.path.join('control', 'ctrl', 'VSSettingRadioOption.brctr.json5'),
+        # Settings
+        os.path.join('button', 'ctrl', 'Setting.brctr.json5'),
+        os.path.join('control', 'anim', 'common_w201_setting_menu_free.brlan.json5'),
+        os.path.join('control', 'anim', 'common_w201_setting_menu_free_to_select.brlan.json5'),
+        os.path.join('control', 'anim', 'common_w201_setting_menu_select.brlan.json5'),
+        os.path.join('control', 'anim', 'common_w201_setting_menu_select_to_free.brlan.json5'),
+        os.path.join('control', 'anim', 'gr_area_select_menu_dummy0_loop.brlan.json5'),
+        os.path.join('control', 'anim', 'gr_area_select_menu_dummy0_onetime.brlan.json5'),
+        os.path.join('control', 'anim', 'gr_area_select_menu_dummy1_loop.brlan.json5'),
+        os.path.join('control', 'anim', 'gr_area_select_menu_dummy1_onetime.brlan.json5'),
+        os.path.join('control', 'blyt', 'common_w201_setting_menu.brlyt.json5'),
+        os.path.join('control', 'blyt', 'gr_area_select_menu.brlyt.json5'),
+        os.path.join('control', 'ctrl', 'CategoryUpDownBase.brctr.json5'),
+        os.path.join('control', 'ctrl', 'CategoryUpDownButtonL.brctr.json5'),
+        os.path.join('control', 'ctrl', 'CategoryUpDownButtonR.brctr.json5'),
+        os.path.join('control', 'ctrl', 'SettingUpDownBase.brctr.json5'),
+        os.path.join('ranking', 'anim', 'area_select_window_free.brlan.json5'),
+        os.path.join('ranking', 'anim', 'area_select_window_free_to_select.brlan.json5'),
+        os.path.join('ranking', 'anim', 'area_select_window_fuchi_check_loop.brlan.json5'),
+        os.path.join('ranking', 'anim', 'area_select_window_select.brlan.json5'),
+        os.path.join('ranking', 'anim', 'area_select_window_select_to_free.brlan.json5'),
+        os.path.join('ranking', 'anim', 'area_select_window_text_text_center_to_right.brlan.json5'),
+        os.path.join('ranking', 'anim', 'area_select_window_text_text_hide.brlan.json5'),
+        os.path.join('ranking', 'anim', 'area_select_window_text_text_left_to_center.brlan.json5'),
+        os.path.join('ranking', 'anim', 'area_select_window_text_text_light_01_ok.brlan.json5'),
+        os.path.join('ranking', 'anim', 'area_select_window_text_text_light_01_stop.brlan.json5'),
+        os.path.join('ranking', 'anim', 'area_select_window_text_text_light_02_select.brlan.json5'),
+        os.path.join('ranking', 'anim', 'area_select_window_text_text_light_02_stop.brlan.json5'),
+        os.path.join('ranking', 'anim', 'area_select_window_text_text_stop.brlan.json5'),
+        os.path.join('ranking', 'anim', 'category_window_text_free.brlan.json5'),
+        os.path.join('ranking', 'anim', 'category_window_text_free_to_select.brlan.json5'),
+        os.path.join('ranking', 'anim', 'category_window_text_select.brlan.json5'),
+        os.path.join('ranking', 'anim', 'category_window_text_select_to_free.brlan.json5'),
+        os.path.join('ranking', 'anim', 'category_window_text_text_center_to_right.brlan.json5'),
+        os.path.join('ranking', 'anim', 'category_window_text_text_hide.brlan.json5'),
+        os.path.join('ranking', 'anim', 'category_window_text_text_left_to_center.brlan.json5'),
+        os.path.join('ranking', 'blyt', 'area_select_window.brlyt.json5'),
+        os.path.join('ranking', 'blyt', 'area_select_window_text.brlyt.json5'),
+        os.path.join('ranking', 'blyt', 'category_window.brlyt.json5'),
+        os.path.join('ranking', 'blyt', 'category_window_text.brlyt.json5'),
+        os.path.join('ranking', 'ctrl', 'CategoryUpDownText.brctr.json5'),
+        os.path.join('ranking', 'ctrl', 'CategoryUpDownValue.brctr.json5'),
+        os.path.join('ranking', 'ctrl', 'SettingUpDownText.brctr.json5'),
+        os.path.join('ranking', 'ctrl', 'SettingUpDownValue.brctr.json5'),
+        os.path.join('ranking', 'timg', 'tt_pattern_chek_alpha_nasi_32x32.tpl'),
+        os.path.join('ranking', 'timg', 'tt_pattern_chek_bokashi_32x32.tpl'),
     ],
     os.path.join('Scene', 'UI', 'RaceSP.arc.lzma'): [
+        # Menu
         os.path.join('button', 'blyt', 'common_w202_menu_compact.brlyt.json5'),
         os.path.join('button', 'ctrl', 'AfterMenuBT.brctr.json5'),
         os.path.join('button', 'ctrl', 'AfterMenuBTLast.brctr.json5'),
@@ -187,45 +274,79 @@ asset_in_files = {
         os.path.join('button', 'ctrl', 'PauseMenuReplayTA.brctr.json5'),
         os.path.join('button', 'ctrl', 'PauseMenuTimeAttack.brctr.json5'),
         os.path.join('button', 'ctrl', 'PauseMenuVS.brctr.json5'),
-        # For in-race licence settings editor
-        os.path.join('control', 'anim', 'common_w023_rule_menu_fade_in_after.brlan.json5'),
-        os.path.join('control', 'anim', 'common_w023_rule_menu_fade_in_before.brlan.json5'),
-        os.path.join('control', 'anim', 'common_w023_rule_menu_fade_in.brlan.json5'),
-        os.path.join('control', 'anim', 'common_w023_rule_menu_fade_out.brlan.json5'),
-        os.path.join('control', 'anim', 'common_w023_rule_menu_free.brlan.json5'),
-        os.path.join('control', 'anim', 'common_w023_rule_menu_free_to_select.brlan.json5'),
-        os.path.join('control', 'anim', 'common_w023_rule_menu_fuchi_check_loop.brlan.json5'),
-        os.path.join('control', 'anim', 'common_w023_rule_menu_select.brlan.json5'),
-        os.path.join('control', 'anim', 'common_w023_rule_menu_select_to_free.brlan.json5'),
-        os.path.join('control', 'anim', 'common_w023_rule_menu_text_light_01_ok.brlan.json5'),
-        os.path.join('control', 'anim', 'common_w023_rule_menu_text_light_01_stop.brlan.json5'),
+        # Settings
+        os.path.join('bg', 'blyt', 'race_obi_bottom_message.brlyt.json5'),
+        os.path.join('bg', 'ctrl', 'RaceObiInstructionText.brctr.json5'),
         os.path.join('control', 'anim', 'common_w023_rule_menu_text_light_02_select.brlan.json5'),
         os.path.join('control', 'anim', 'common_w023_rule_menu_text_light_02_stop.brlan.json5'),
-        os.path.join('control', 'anim', 'common_w024_rule_icon_active_off.brlan.json5'),
-        os.path.join('control', 'anim', 'common_w024_rule_icon_active_off_to_on.brlan.json5'),
-        os.path.join('control', 'anim', 'common_w024_rule_icon_active_on.brlan.json5'),
-        os.path.join('control', 'anim', 'common_w024_rule_icon_fade_in_after.brlan.json5'),
-        os.path.join('control', 'anim', 'common_w024_rule_icon_fade_in_before.brlan.json5'),
-        os.path.join('control', 'anim', 'common_w024_rule_icon_fade_in.brlan.json5'),
-        os.path.join('control', 'anim', 'common_w024_rule_icon_fade_out.brlan.json5'),
-        os.path.join('control', 'anim', 'common_w024_rule_icon_free.brlan.json5'),
-        os.path.join('control', 'anim', 'common_w024_rule_icon_free_to_select.brlan.json5'),
-        os.path.join('control', 'anim', 'common_w024_rule_icon_fuchi_check_loop.brlan.json5'),
-        os.path.join('control', 'anim', 'common_w024_rule_icon_select.brlan.json5'),
-        os.path.join('control', 'anim', 'common_w024_rule_icon_select_to_free.brlan.json5'),
-        os.path.join('control', 'anim', 'common_w024_rule_icon_text_light_01_ok.brlan.json5'),
-        os.path.join('control', 'anim', 'common_w024_rule_icon_text_light_01_stop.brlan.json5'),
-        os.path.join('control', 'anim', 'common_w024_rule_icon_text_light_02_select.brlan.json5'),
-        os.path.join('control', 'anim', 'common_w024_rule_icon_text_light_02_stop.brlan.json5'),
-        os.path.join('control', 'blyt', 'common_w024_rule_icon.brlyt.json5'),
-        os.path.join('control', 'blyt', 'common_w076_license_icon_center.brlyt.json5'),
+        os.path.join('control', 'anim', 'common_w134_rule_rap_yaji_l_chara_light_01_ok.brlan.json5'),
+        os.path.join('control', 'anim', 'common_w134_rule_rap_yaji_l_chara_light_01_stop.brlan.json5'),
+        os.path.join('control', 'anim', 'common_w134_rule_rap_yaji_l_chara_light_02_select.brlan.json5'),
+        os.path.join('control', 'anim', 'common_w134_rule_rap_yaji_l_chara_light_02_stop.brlan.json5'),
+        os.path.join('control', 'anim', 'common_w134_rule_rap_yaji_l_free.brlan.json5'),
+        os.path.join('control', 'anim', 'common_w134_rule_rap_yaji_l_free_to_select.brlan.json5'),
+        os.path.join('control', 'anim', 'common_w134_rule_rap_yaji_l_fuchi_check_loop.brlan.json5'),
+        os.path.join('control', 'anim', 'common_w134_rule_rap_yaji_l_select.brlan.json5'),
+        os.path.join('control', 'anim', 'common_w134_rule_rap_yaji_l_select_to_free.brlan.json5'),
+        os.path.join('control', 'anim', 'common_w135_rule_rap_yaji_r_chara_light_01_ok.brlan.json5'),
+        os.path.join('control', 'anim', 'common_w135_rule_rap_yaji_r_chara_light_01_stop.brlan.json5'),
+        os.path.join('control', 'anim', 'common_w135_rule_rap_yaji_r_chara_light_02_select.brlan.json5'),
+        os.path.join('control', 'anim', 'common_w135_rule_rap_yaji_r_chara_light_02_stop.brlan.json5'),
+        os.path.join('control', 'anim', 'common_w135_rule_rap_yaji_r_free.brlan.json5'),
+        os.path.join('control', 'anim', 'common_w135_rule_rap_yaji_r_free_to_select.brlan.json5'),
+        os.path.join('control', 'anim', 'common_w135_rule_rap_yaji_r_fuchi_check_loop.brlan.json5'),
+        os.path.join('control', 'anim', 'common_w135_rule_rap_yaji_r_select.brlan.json5'),
+        os.path.join('control', 'anim', 'common_w135_rule_rap_yaji_r_select_to_free.brlan.json5'),
+        os.path.join('control', 'anim', 'common_w201_setting_menu_free.brlan.json5'),
+        os.path.join('control', 'anim', 'common_w201_setting_menu_free_to_select.brlan.json5'),
+        os.path.join('control', 'anim', 'common_w201_setting_menu_select.brlan.json5'),
+        os.path.join('control', 'anim', 'common_w201_setting_menu_select_to_free.brlan.json5'),
+        os.path.join('control', 'anim', 'gr_area_select_menu_dummy0_loop.brlan.json5'),
+        os.path.join('control', 'anim', 'gr_area_select_menu_dummy0_onetime.brlan.json5'),
+        os.path.join('control', 'anim', 'gr_area_select_menu_dummy1_loop.brlan.json5'),
+        os.path.join('control', 'anim', 'gr_area_select_menu_dummy1_onetime.brlan.json5'),
+        os.path.join('control', 'blyt', 'common_w134_rule_rap_yaji_l.brlyt.json5'),
+        os.path.join('control', 'blyt', 'common_w135_rule_rap_yaji_r.brlyt.json5'),
         os.path.join('control', 'blyt', 'common_w201_setting_menu.brlyt.json5'),
-        os.path.join('control', 'ctrl', 'LicenseDisplay.brctr.json5'),
-        os.path.join('control', 'ctrl', 'LicenseManagement.brctr.json5'),
-        os.path.join('control', 'ctrl', 'LicenseSettingRadioBase.brctr.json5'),
-        os.path.join('control', 'ctrl', 'LicenseSettingRadioOption.brctr.json5'),
-        os.path.join('control', 'timg', 'tt_license_icon_004.tpl'),
-        #
+        os.path.join('control', 'blyt', 'gr_area_select_menu.brlyt.json5'),
+        os.path.join('control', 'ctrl', 'CategoryUpDownBase.brctr.json5'),
+        os.path.join('control', 'ctrl', 'CategoryUpDownButtonL.brctr.json5'),
+        os.path.join('control', 'ctrl', 'CategoryUpDownButtonR.brctr.json5'),
+        os.path.join('control', 'ctrl', 'SettingUpDownBase.brctr.json5'),
+        os.path.join('control', 'ctrl', 'VSSettingUpDownButtonL.brctr.json5'),
+        os.path.join('control', 'ctrl', 'VSSettingUpDownButtonR.brctr.json5'),
+        os.path.join('control', 'timg', 'tt_yajirushi_type1.tpl'),
+        os.path.join('ranking', 'anim', 'area_select_window_free.brlan.json5'),
+        os.path.join('ranking', 'anim', 'area_select_window_free_to_select.brlan.json5'),
+        os.path.join('ranking', 'anim', 'area_select_window_fuchi_check_loop.brlan.json5'),
+        os.path.join('ranking', 'anim', 'area_select_window_select.brlan.json5'),
+        os.path.join('ranking', 'anim', 'area_select_window_select_to_free.brlan.json5'),
+        os.path.join('ranking', 'anim', 'area_select_window_text_text_center_to_right.brlan.json5'),
+        os.path.join('ranking', 'anim', 'area_select_window_text_text_hide.brlan.json5'),
+        os.path.join('ranking', 'anim', 'area_select_window_text_text_left_to_center.brlan.json5'),
+        os.path.join('ranking', 'anim', 'area_select_window_text_text_light_01_ok.brlan.json5'),
+        os.path.join('ranking', 'anim', 'area_select_window_text_text_light_01_stop.brlan.json5'),
+        os.path.join('ranking', 'anim', 'area_select_window_text_text_light_02_select.brlan.json5'),
+        os.path.join('ranking', 'anim', 'area_select_window_text_text_light_02_stop.brlan.json5'),
+        os.path.join('ranking', 'anim', 'area_select_window_text_text_stop.brlan.json5'),
+        os.path.join('ranking', 'anim', 'category_window_text_free.brlan.json5'),
+        os.path.join('ranking', 'anim', 'category_window_text_free_to_select.brlan.json5'),
+        os.path.join('ranking', 'anim', 'category_window_text_select.brlan.json5'),
+        os.path.join('ranking', 'anim', 'category_window_text_select_to_free.brlan.json5'),
+        os.path.join('ranking', 'anim', 'category_window_text_text_center_to_right.brlan.json5'),
+        os.path.join('ranking', 'anim', 'category_window_text_text_hide.brlan.json5'),
+        os.path.join('ranking', 'anim', 'category_window_text_text_left_to_center.brlan.json5'),
+        os.path.join('ranking', 'blyt', 'area_select_window.brlyt.json5'),
+        os.path.join('ranking', 'blyt', 'area_select_window_text.brlyt.json5'),
+        os.path.join('ranking', 'blyt', 'category_window.brlyt.json5'),
+        os.path.join('ranking', 'blyt', 'category_window_text.brlyt.json5'),
+        os.path.join('ranking', 'ctrl', 'CategoryUpDownText.brctr.json5'),
+        os.path.join('ranking', 'ctrl', 'CategoryUpDownValue.brctr.json5'),
+        os.path.join('ranking', 'ctrl', 'SettingUpDownText.brctr.json5'),
+        os.path.join('ranking', 'ctrl', 'SettingUpDownValue.brctr.json5'),
+        os.path.join('ranking', 'timg', 'tt_pattern_chek_alpha_nasi_32x32.tpl'),
+        os.path.join('ranking', 'timg', 'tt_pattern_chek_bokashi_32x32.tpl'),
+        # HUD
         os.path.join('game_image', 'anim', 'game_image_speed_texture_pattern_0_9.brlan.json5'),
         os.path.join('game_image', 'blyt', 'game_image_speed.brlyt.json5'),
         os.path.join('game_image', 'blyt', 'InputDisplay.brlyt.json5'),
@@ -255,11 +376,13 @@ asset_in_files = {
         os.path.join('game_image', 'timg', 'tt_d_number_3d_none.tpl'),
     ],
     os.path.join('Scene', 'UI', 'TitleSP.arc.lzma'): [
+        # License selection
         os.path.join('button', 'blyt', 'common_w076_license_icon_center.brlyt.json5'),
         os.path.join('button', 'ctrl', 'LicenseSelect.brctr.json5'),
+        os.path.join('button', 'timg', 'tt_license_icon_004.tpl'),
+        # WFC and channel removal
         os.path.join('button', 'ctrl', 'TopMenuMultiWaku.brctr.json5'),
         os.path.join('button', 'ctrl', 'TopMenuSingleWaku.brctr.json5'),
-        os.path.join('button', 'timg', 'tt_license_icon_004.tpl'),
     ],
 }
 for language in LANGUAGES:
@@ -397,11 +520,20 @@ for target in asset_out_files:
     n.newline()
 
 devkitppc = os.environ.get("DEVKITPPC")
+n.variable('nanopb', os.path.join('vendor', 'nanopb', 'generator', 'nanopb_generator.py'))
 n.variable('compiler', os.path.join(devkitppc, 'bin', 'powerpc-eabi-gcc'))
+n.variable('postprocess', 'postprocess.py')
 n.variable('port', 'port.py')
 n.variable('lzmac', 'lzmac.py')
 n.variable('version', 'version.py')
 n.variable('elf2dol', 'elf2dol.py')
+n.newline()
+
+n.rule(
+    'nanopb',
+    command = f'{sys.executable} $nanopb $in -L "#include <vendor/nanopb/%s>" -D build -q',
+    description = 'NANOPB $out',
+)
 n.newline()
 
 common_Sflags = [
@@ -424,6 +556,7 @@ profile_Sflags = {
     ],
 }
 common_cflags = [
+    '-DREVOLUTION',
     '-fms-extensions',
     '-fno-asynchronous-unwind-tables',
     '-fplan9-extensions',
@@ -432,14 +565,17 @@ common_cflags = [
     '-isystem', 'include',
     '-isystem', 'payload',
     '-isystem', 'vendor',
+    '-isystem', 'build',
     '-msdata=none',
     '-Wall',
     '-Werror=implicit-function-declaration',
     '-Werror=incompatible-pointer-types',
+    '-Werror=vla',
     '-Wextra',
     '-Wno-packed-bitfield-compat',
 ]
 common_ccflags = [
+    '-DREVOLUTION',
     '-fno-asynchronous-unwind-tables',
     '-fno-exceptions',
     '-fno-rtti',
@@ -448,9 +584,11 @@ common_ccflags = [
     '-isystem', 'include',
     '-isystem', 'payload',
     '-isystem', 'vendor',
+    '-isystem', 'build',
     '-msdata=none',
     '-std=c++20',
     '-Wall',
+    '-Werror=vla',
     '-Wextra',
     '-Wno-delete-non-virtual-dtor',
     '-Wno-packed-bitfield-compat',
@@ -485,12 +623,10 @@ profile_cflags = {
         '-DSP_CHANNEL'
     ],
 }
-ldflags = [
+common_ldflags = [
     '-nostdlib',
     '-Wl,-n',
 ]
-n.variable('ldflags', ' '.join(ldflags))
-n.newline()
 
 n.rule(
     'S',
@@ -527,21 +663,22 @@ n.rule(
 n.newline()
 
 n.rule(
+    'postprocess',
+    command = f'{sys.executable} $postprocess $region $in $out',
+    description = 'POSTPROCESS $out'
+)
+n.newline()
+
+n.rule(
     'port',
     command = f'{sys.executable} $port $region $in $out' + (' --base' if args.gdb_compatible else ''),
     description = 'PORT $out'
 )
 n.newline()
 
-ldparams = [
-    '-Wl,--defsym,base=$base',
-    '-Wl,--entry=$entry',
-    '-Wl,--oformat,$format',
-    '-Wl,-T,$script',
-]
 n.rule(
     'ld',
-    command = '$compiler $ldflags ' + ' '.join(ldparams) + ' $in -o $out',
+    command = '$compiler $ldflags $in -o $out',
     description = 'LD $out',
 )
 n.newline()
@@ -567,21 +704,51 @@ n.rule(
 )
 n.newline()
 
+protobuf_proto_files = [
+    'UpdateRequest.proto',
+    'UpdateResponse.proto',
+]
+protobuf_h_files = []
+protobuf_c_files = []
+for proto_file in protobuf_proto_files:
+    proto_file = os.path.join('protobuf', proto_file)
+    base, _ = os.path.splitext(proto_file)
+    options_file = base + '.options'
+    h_file = os.path.join('$builddir', base + '.pb.h')
+    c_file = os.path.join('$builddir', base + '.pb.c')
+    protobuf_h_files += [h_file]
+    protobuf_c_files += [c_file]
+    n.build(
+        [
+            h_file,
+            c_file,
+        ],
+        'nanopb',
+        proto_file,
+        implicit = options_file,
+    )
+n.newline()
+
 code_in_files = {
     'payload': [
+        *protobuf_c_files,
+        os.path.join('common', 'Console.cc'),
+        os.path.join('common', 'DCache.cc'),
+        os.path.join('common', 'Font.c'),
+        os.path.join('common', 'Font.cc'),
+        os.path.join('common', 'VI.cc'),
         os.path.join('payload', 'egg', 'core', 'eggColorFader.c'),
         os.path.join('payload', 'egg', 'core', 'eggDisplay.S'),
         os.path.join('payload', 'egg', 'core', 'eggDvdFile.c'),
         os.path.join('payload', 'egg', 'core', 'eggEffectCreator.S'),
         os.path.join('payload', 'egg', 'core', 'eggG3dUtil.S'),
         os.path.join('payload', 'egg', 'core', 'eggHeap.c'),
-        os.path.join('payload', 'egg', 'core', 'eggSceneManager.S'),
+        os.path.join('payload', 'egg', 'core', 'eggSceneManager.cc'),
         os.path.join('payload', 'egg', 'core', 'eggSystem.S'),
         os.path.join('payload', 'egg', 'core', 'eggSystem.c'),
         os.path.join('payload', 'game', 'effect', 'Effect.S'),
         os.path.join('payload', 'game', 'gfx', 'Camera.S'),
         os.path.join('payload', 'game', 'gfx', 'CameraManager.S'),
-        os.path.join('payload', 'game', 'host_system', 'BootStrapScene.c'),
         os.path.join('payload', 'game', 'host_system', 'RkSystem.S'),
         os.path.join('payload', 'game', 'host_system', 'RkSystem.c'),
         os.path.join('payload', 'game', 'host_system', 'SceneManager.S'),
@@ -592,15 +759,21 @@ code_in_files = {
         os.path.join('payload', 'game', 'item', 'ItemObjKouraAo.S'),
         os.path.join('payload', 'game', 'item', 'ItemObjKouraMidori.S'),
         os.path.join('payload', 'game', 'item', 'KartItem.S'),
+        os.path.join('payload', 'game', 'kart', 'KartBody.S'),
         os.path.join('payload', 'game', 'kart', 'KartMove.S'),
+        os.path.join('payload', 'game', 'kart', 'KartMove.cc'),
         os.path.join('payload', 'game', 'kart', 'KartObject.S'),
         os.path.join('payload', 'game', 'kart', 'KartObjectManager.S'),
         os.path.join('payload', 'game', 'kart', 'KartObjectManager.c'),
+        os.path.join('payload', 'game', 'kart', 'KartObjectManager.cc'),
+        os.path.join('payload', 'game', 'kart', 'KartObjectProxy.cc'),
         os.path.join('payload', 'game', 'kart', 'KartParam.S'),
         os.path.join('payload', 'game', 'kart', 'KartState.S'),
+        os.path.join('payload', 'game', 'kart', 'KartState.cc'),
         os.path.join('payload', 'game', 'kart', 'KartSub.S'),
         os.path.join('payload', 'game', 'missionrun', 'MissionRun.S'),
         os.path.join('payload', 'game', 'missionrun', 'MissionRun.c'),
+        os.path.join('payload', 'game', 'kart', 'VehiclePhysics.cc'),
         os.path.join('payload', 'game', 'net', 'NetManager.S'),
         os.path.join('payload', 'game', 'obj', 'ObjEffect.S'),
         os.path.join('payload', 'game', 'obj', 'ObjManager.c'),
@@ -609,6 +782,7 @@ code_in_files = {
         os.path.join('payload', 'game', 'race', 'Driver.S'),
         os.path.join('payload', 'game', 'race', 'DriverManager.S'),
         os.path.join('payload', 'game', 'race', 'DriverManager.c'),
+        os.path.join('payload', 'game', 'race', 'Jugem.S'),
         os.path.join('payload', 'game', 'race', 'JugemManager.S'),
         os.path.join('payload', 'game', 'race', 'JugemManager.c'),
         os.path.join('payload', 'game', 'rel', 'Rel.S'),
@@ -623,22 +797,25 @@ code_in_files = {
         os.path.join('payload', 'game', 'system', 'DvdArchive.c'),
         os.path.join('payload', 'game', 'system', 'FatalScene.c'),
         os.path.join('payload', 'game', 'system', 'GhostFile.c'),
+        os.path.join('payload', 'game', 'system', 'GhostFile.cc'),
         os.path.join('payload', 'game', 'system', 'HomeButton.S'),
         os.path.join('payload', 'game', 'system', 'HomeButton.c'),
         os.path.join('payload', 'game', 'system', 'InputManager.S'),
         os.path.join('payload', 'game', 'system', 'InputManager.c'),
+        os.path.join('payload', 'game', 'system', 'InputManager.cc'),
         os.path.join('payload', 'game', 'system', 'Mii.S'),
         os.path.join('payload', 'game', 'system', 'MultiDvdArchive.S'),
         os.path.join('payload', 'game', 'system', 'MultiDvdArchive.c'),
         os.path.join('payload', 'game', 'system', 'NandManager.S'),
         os.path.join('payload', 'game', 'system', 'RaceConfig.S'),
         os.path.join('payload', 'game', 'system', 'RaceConfig.c'),
+        os.path.join('payload', 'game', 'system', 'RaceConfig.cc'),
         os.path.join('payload', 'game', 'system', 'RaceManager.S'),
         os.path.join('payload', 'game', 'system', 'RaceManager.c'),
+        os.path.join('payload', 'game', 'system', 'RaceManager.cc'),
         os.path.join('payload', 'game', 'system', 'ResourceManager.S'),
         os.path.join('payload', 'game', 'system', 'ResourceManager.c'),
         os.path.join('payload', 'game', 'system', 'RootScene.S'),
-        os.path.join('payload', 'game', 'system', 'SaveManager.c'),
         os.path.join('payload', 'game', 'system', 'SaveManager.cc'),
         os.path.join('payload', 'game', 'system', 'SceneCreatorDynamic.S'),
         os.path.join('payload', 'game', 'system', 'SceneCreatorDynamic.c'),
@@ -650,36 +827,33 @@ code_in_files = {
         os.path.join('payload', 'game', 'ui', 'Font.S'),
         os.path.join('payload', 'game', 'ui', 'Font.c'),
         os.path.join('payload', 'game', 'ui', 'FontManager.c'),
-        os.path.join('payload', 'game', 'ui', 'GhostManagerPage.S'),
-        os.path.join('payload', 'game', 'ui', 'GhostManagerPage.c'),
+        os.path.join('payload', 'game', 'ui', 'GhostManagerPage.cc'),
         os.path.join('payload', 'game', 'ui', 'GhostSelectButton.cc'),
         os.path.join('payload', 'game', 'ui', 'GhostSelectControl.cc'),
         os.path.join('payload', 'game', 'ui', 'Layout.S'),
         os.path.join('payload', 'game', 'ui', 'License.S'),
         os.path.join('payload', 'game', 'ui', 'License.c'),
         os.path.join('payload', 'game', 'ui', 'LicenseSelectPage.cc'),
-        os.path.join('payload', 'game', 'ui', 'LicenseSettingsPage.c'),
         os.path.join('payload', 'game', 'ui', 'Map2DRenderer.c'),
         os.path.join('payload', 'game', 'ui', 'MenuInputManager.cc'),
-        os.path.join('payload', 'game', 'ui', 'MiiGroup.c'),
+        os.path.join('payload', 'game', 'ui', 'MessageWindowControl.cc'),
         os.path.join('payload', 'game', 'ui', 'MiiGroup.cc'),
         os.path.join('payload', 'game', 'ui', 'Model.S'),
         os.path.join('payload', 'game', 'ui', 'Option.cc'),
-        os.path.join('payload', 'game', 'ui', 'Page.c'),
         os.path.join('payload', 'game', 'ui', 'Page.cc'),
+        os.path.join('payload', 'game', 'ui', 'RadioButtonControl.cc'),
         os.path.join('payload', 'game', 'ui', 'Save.S'),
         os.path.join('payload', 'game', 'ui', 'SaveManagerProxy.S'),
         os.path.join('payload', 'game', 'ui', 'Section.S'),
-        os.path.join('payload', 'game', 'ui', 'Section.c'),
+        os.path.join('payload', 'game', 'ui', 'Section.cc'),
         os.path.join('payload', 'game', 'ui', 'SectionManager.S'),
         os.path.join('payload', 'game', 'ui', 'SectionManager.c'),
         os.path.join('payload', 'game', 'ui', 'SectionManager.cc'),
         os.path.join('payload', 'game', 'ui', 'ServicePackTopPage.cc'),
+        os.path.join('payload', 'game', 'ui', 'SettingsPage.cc'),
         os.path.join('payload', 'game', 'ui', 'SheetSelectControl.cc'),
-        os.path.join('payload', 'game', 'ui', 'TabControl.c'),
         os.path.join('payload', 'game', 'ui', 'TabControl.cc'),
         os.path.join('payload', 'game', 'ui', 'TimeAttackGhostListPage.cc'),
-        os.path.join('payload', 'game', 'ui', 'TimeAttackRulesPage.c'),
         os.path.join('payload', 'game', 'ui', 'TimeAttackTopPage.S'),
         os.path.join('payload', 'game', 'ui', 'TitlePage.S'),
         os.path.join('payload', 'game', 'ui', 'TitlePage.c'),
@@ -687,22 +861,22 @@ code_in_files = {
         os.path.join('payload', 'game', 'ui', 'UIAnimator.cc'),
         os.path.join('payload', 'game', 'ui', 'UIControl.c'),
         os.path.join('payload', 'game', 'ui', 'UIControl.cc'),
+        os.path.join('payload', 'game', 'ui', 'UpdatePage.cc'),
+        os.path.join('payload', 'game', 'ui', 'UpDownControl.cc'),
         os.path.join('payload', 'game', 'ui', 'Wipe.S'),
-        os.path.join('payload', 'game', 'ui', 'ctrl', 'CtrlMenuBackButton.c'),
         os.path.join('payload', 'game', 'ui', 'ctrl', 'CtrlMenuBackButton.cc'),
-        os.path.join('payload', 'game', 'ui', 'ctrl', 'CtrlMenuInstructionText.c'),
-        os.path.join('payload', 'game', 'ui', 'ctrl', 'CtrlMenuPageTitleText.c'),
+        os.path.join('payload', 'game', 'ui', 'ctrl', 'CtrlMenuInstructionText.cc'),
         os.path.join('payload', 'game', 'ui', 'ctrl', 'CtrlMenuPageTitleText.cc'),
         os.path.join('payload', 'game', 'ui', 'ctrl', 'CtrlRace2DMap.S'),
-        os.path.join('payload', 'game', 'ui', 'ctrl', 'CtrlRaceBase.S'),
-        os.path.join('payload', 'game', 'ui', 'ctrl', 'CtrlRaceBase.c'),
-        os.path.join('payload', 'game', 'ui', 'ctrl', 'CtrlRaceInputDisplay.c'),
-        os.path.join('payload', 'game', 'ui', 'ctrl', 'CtrlRaceLap.c'),
+        os.path.join('payload', 'game', 'ui', 'ctrl', 'CtrlRaceBase.cc'),
+        os.path.join('payload', 'game', 'ui', 'ctrl', 'CtrlRaceInputDisplay.cc'),
+        os.path.join('payload', 'game', 'ui', 'ctrl', 'CtrlRaceLap.cc'),
         os.path.join('payload', 'game', 'ui', 'ctrl', 'CtrlRaceNameBalloon.S'),
         os.path.join('payload', 'game', 'ui', 'ctrl', 'CtrlRaceNameBalloon.c'),
-        os.path.join('payload', 'game', 'ui', 'ctrl', 'CtrlRaceSpeed.c'),
+        os.path.join('payload', 'game', 'ui', 'ctrl', 'CtrlRaceRankNum.cc'),
+        os.path.join('payload', 'game', 'ui', 'ctrl', 'CtrlRaceSpeed.cc'),
         os.path.join('payload', 'game', 'ui', 'ctrl', 'CtrlRaceTime.S'),
-        os.path.join('payload', 'game', 'ui', 'ctrl', 'CtrlRaceTime.c'),
+        os.path.join('payload', 'game', 'ui', 'ctrl', 'CtrlRaceTime.cc'),
         os.path.join('payload', 'game', 'ui', 'page', 'CharacterSelectPage.S'),
         os.path.join('payload', 'game', 'ui', 'page', 'CourseSelectPage.S'),
         os.path.join('payload', 'game', 'ui', 'page', 'CupSelectPage.S'),
@@ -712,7 +886,7 @@ code_in_files = {
         os.path.join('payload', 'game', 'ui', 'page', 'RaceMenuPage.S'),
         os.path.join('payload', 'game', 'ui', 'page', 'RaceMenuPage.c'),
         os.path.join('payload', 'game', 'ui', 'page', 'RacePage.S'),
-        os.path.join('payload', 'game', 'ui', 'page', 'RacePage.c'),
+        os.path.join('payload', 'game', 'ui', 'page', 'RacePage.cc'),
         os.path.join('payload', 'game', 'ui', 'page', 'SingleTopMenuPage.S'),
         os.path.join('payload', 'game', 'ui', 'page', 'SingleTopMenuPage.c'),
         os.path.join('payload', 'game', 'ui', 'page', 'TimeAttackSplitsPage.S'),
@@ -740,9 +914,12 @@ code_in_files = {
         os.path.join('payload', 'platform', 'wchar.c'),
         os.path.join('payload', 'revolution', 'arc.S'),
         os.path.join('payload', 'revolution', 'arc.c'),
+        os.path.join('payload', 'revolution', 'ax.c'),
         os.path.join('payload', 'revolution', 'dvd.S'),
         os.path.join('payload', 'revolution', 'dvd.c'),
         os.path.join('payload', 'revolution', 'dvdex.c'),
+        os.path.join('payload', 'revolution', 'es.c'),
+        os.path.join('payload', 'revolution', 'exi.c'),
         os.path.join('payload', 'revolution', 'ios.S'),
         os.path.join('payload', 'revolution', 'ios.c'),
         os.path.join('payload', 'revolution', 'nand.c'),
@@ -756,6 +933,8 @@ code_in_files = {
         os.path.join('payload', 'revolution', 'os', 'OSMemory.c'),
         os.path.join('payload', 'revolution', 'os', 'OSThread.S'),
         os.path.join('payload', 'revolution', 'os', 'OSThread.c'),
+        os.path.join('payload', 'revolution', 'os', 'OSTime.cc'),
+        os.path.join('payload', 'revolution', 'so', 'SOBasic.S'),
         os.path.join('payload', 'sp', 'Channel.cc'),
         os.path.join('payload', 'sp', 'Commands.c'),
         os.path.join('payload', 'sp', 'DVDDecompLoader.cc'),
@@ -771,9 +950,13 @@ code_in_files = {
         os.path.join('payload', 'sp', 'keyboard', 'IOSKeyboard.c'),
         #
         os.path.join('payload', 'sp', 'LZMADecoder.cc'),
-        os.path.join('payload', 'sp', 'Net.cc'),
+        # Net module
+        os.path.join('payload', 'sp', 'net', 'Net.cc'),
+        os.path.join('payload', 'sp', 'net', 'Socket.cc'),
+        #
         os.path.join('payload', 'sp', 'Patcher.c'),
-        os.path.join('payload', 'sp', 'Payload.c'),
+        os.path.join('payload', 'sp', 'Payload.cc'),
+        os.path.join('payload', 'sp', 'Rel.cc'),
         os.path.join('payload', 'sp', 'ScopeLock.cc'),
         # Security module
         os.path.join('payload', 'sp', 'security', 'Memory.c'),
@@ -781,9 +964,8 @@ code_in_files = {
         os.path.join('payload', 'sp', 'security', 'Stack.c'),
         os.path.join('payload', 'sp', 'security', 'StackTrace.S'),
         # Settings module
-        os.path.join('payload', 'sp', 'settings', 'BaseSettings.c'),
-        os.path.join('payload', 'sp', 'settings', 'ClientSettings.c'),
-        os.path.join('payload', 'sp', 'settings', 'IniReader.c'),
+        os.path.join('payload', 'sp', 'settings', 'ClientSettings.cc'),
+        os.path.join('payload', 'sp', 'settings', 'IniReader.cc'),
         #
         os.path.join('payload', 'sp', 'Slab.c'),
         os.path.join('payload', 'sp', 'StackTrace.c'),
@@ -799,6 +981,8 @@ code_in_files = {
         os.path.join('payload', 'sp', 'storage', 'UsbStorage.c'),
         #
         os.path.join('payload', 'sp', 'Tcp.c'),
+        os.path.join('payload', 'sp', 'Time.cc'),
+        os.path.join('payload', 'sp', 'Update.cc'),
         os.path.join('payload', 'sp', 'Yaz.c'),
         os.path.join('payload', 'sp', 'YAZDecoder.cc'),
         os.path.join('vendor', 'arith64.c'),
@@ -806,7 +990,11 @@ code_in_files = {
         os.path.join('vendor', 'ff', 'ff.c'),
         os.path.join('vendor', 'ff', 'fftime.c'),
         os.path.join('vendor', 'ff', 'ffunicode.c'),
+        os.path.join('vendor', 'libhydrogen', 'hydrogen.c'),
         os.path.join('vendor', 'lzma', 'LzmaDec.c'),
+        os.path.join('vendor', 'nanopb', 'pb_common.c'),
+        os.path.join('vendor', 'nanopb', 'pb_decode.c'),
+        os.path.join('vendor', 'nanopb', 'pb_encode.c'),
     ],
     'loader': [
         os.path.join('common', 'Clock.cc'),
@@ -838,6 +1026,7 @@ code_in_files = {
         os.path.join('common', 'Strlen.c'),
         os.path.join('common', 'VI.cc'),
         os.path.join('stub', 'Archive.cc'),
+        os.path.join('stub', 'Dolphin.cc'),
         os.path.join('stub', 'FS.cc'),
         os.path.join('stub', 'LZMA.cc'),
         os.path.join('stub', 'Memcmp.c'),
@@ -885,18 +1074,68 @@ for target in code_in_files:
                         *profile_cflags[profile],
                     ]),
                 },
+                implicit = protobuf_h_files if target == 'payload' else [],
             )
         n.newline()
 
-for region in ['P', 'E', 'J', 'K']:
+for profile in ['DEBUG', 'RELEASE']:
+    suffix = 'D' if profile == 'DEBUG' else ''
     n.build(
-        os.path.join('$builddir', 'scripts', f'RMC{region}.ld'),
-        'port',
-        os.path.join('.', 'symbols.txt'),
+        os.path.join('$builddir', 'bin', f'payload{suffix}.o'),
+        'ld',
+        code_out_files[profile]['payload'],
         variables = {
-            'region': region,
+            'ldflags': ' '.join([
+                *common_ldflags,
+                '-r',
+            ]),
         },
-        implicit = '$port',
+    )
+    n.newline()
+
+for profile in ['DEBUG', 'RELEASE']:
+    suffix = 'D' if profile == 'DEBUG' else ''
+    n.build(
+        [
+            os.path.join('$builddir', 'bin', f'symbols{suffix}.txt'),
+            os.path.join('$builddir', 'bin', f'Replacements{suffix}.c'),
+        ],
+        'postprocess',
+        [
+            os.path.join('$builddir', 'bin', f'payload{suffix}.o'),
+            'symbols.txt',
+        ],
+        implicit = '$postprocess',
+    )
+    n.newline()
+
+for region in ['P', 'E', 'J', 'K']:
+    for profile in ['DEBUG', 'RELEASE']:
+        suffix = 'D' if profile == 'DEBUG' else ''
+        n.build(
+            os.path.join('$builddir', 'scripts', f'RMC{region}{suffix}.ld'),
+            'port',
+            os.path.join('$builddir', 'bin', f'symbols{suffix}.txt'),
+            variables = {
+                'region': region,
+            },
+            implicit = '$port',
+        )
+        n.newline()
+
+for profile in ['DEBUG', 'RELEASE']:
+    suffix = 'D' if profile == 'DEBUG' else ''
+    n.build(
+        os.path.join('$builddir', 'bin', f'Replacements.c{suffix}.o'),
+        'c',
+        os.path.join('$builddir', 'bin', f'Replacements{suffix}.c'),
+        variables = {
+            'cflags': ' '.join([
+                *common_cflags,
+                *target_cflags[target],
+                *profile_cflags[profile],
+            ]),
+        },
     )
     n.newline()
 
@@ -905,22 +1144,29 @@ for region in ['P', 'E', 'J', 'K']:
         for profile in ['DEBUG', 'RELEASE']:
             suffix = 'D' if profile == 'DEBUG' else ''
             extension = 'bin' if fmt == 'binary' else 'elf'
+            base = {
+                'P': '0x8076db60' if not args.gdb_compatible else '0x809C4FA0',
+                'E': '0x80769400',
+                'J': '0x8076cca0',
+                'K': '0x8075bfe0',
+            }[region]
             n.build(
                 os.path.join('$builddir', 'bin', f'payload{region}{suffix}.{extension}'),
                 'ld',
-                code_out_files[profile]['payload'],
+                [
+                    os.path.join('$builddir', 'bin', f'payload{suffix}.o'),
+                    os.path.join('$builddir', 'bin', f'Replacements.c{suffix}.o'),
+                ],
                 variables = {
-                    'base': {
-                        'P': '0x8076db60' if not args.gdb_compatible else '0x809C4FA0',
-                        'E': '0x80769400',
-                        'J': '0x8076cca0',
-                        'K': '0x8075bfe0',
-                    }[region],
-                    'entry': 'Payload_run',
-                    'format': fmt,
-                    'script': os.path.join('$builddir', 'scripts', f'RMC{region}.ld'),
+                    'ldflags' : ' '.join([
+                        *common_ldflags,
+                        f'-Wl,--defsym,base={base}',
+                        '-Wl,--entry=Payload_Run',
+                        f'-Wl,--oformat,{fmt}',
+                        '-Wl,-T,' + os.path.join('$builddir', 'scripts', f'RMC{region}{suffix}.ld'),
+                    ]),
                 },
-                implicit = os.path.join('$builddir', 'scripts', f'RMC{region}.ld'),
+                implicit = os.path.join('$builddir', 'scripts', f'RMC{region}{suffix}.ld'),
             )
             n.newline()
 
@@ -950,10 +1196,13 @@ for fmt in ['binary', 'elf32-powerpc']:
             'ld',
             code_out_files[profile]['loader'],
             variables = {
-                'base': '0x80b00000',
-                'entry': 'start',
-                'format': fmt,
-                'script': os.path.join('common', 'RMC.ld'),
+                'ldflags' : ' '.join([
+                    *common_ldflags,
+                    '-Wl,--defsym,base=0x80b00000',
+                    '-Wl,--entry=start',
+                    f'-Wl,--oformat,{fmt}',
+                    '-Wl,-T,' + os.path.join('common', 'RMC.ld'),
+                ]),
             },
             implicit = os.path.join('common', 'RMC.ld'),
         )
@@ -995,10 +1244,12 @@ n.build(
     'ld',
     code_out_files['CHANNEL']['stub'],
     variables = {
-        'base': '0x80100000',
-        'entry': 'start',
-        'format': 'elf32-powerpc',
-        'script': os.path.join('common', 'RMC.ld'),
+        'ldflags' : ' '.join([
+            *common_ldflags,
+            '-Wl,--defsym,base=0x80100000',
+            '-Wl,--entry=start',
+            '-Wl,-T,' + os.path.join('common', 'RMC.ld'),
+        ]),
     },
     implicit = os.path.join('common', 'RMC.ld'),
 )
@@ -1070,10 +1321,12 @@ for profile in ['DEBUG', 'TEST', 'RELEASE']:
         'ld',
         code_out_files[profile]['stub'],
         variables = {
-            'base': '0x80100000',
-            'entry': 'start',
-            'format': 'elf32-powerpc',
-            'script': os.path.join('common', 'RMC.ld'),
+            'ldflags' : ' '.join([
+                *common_ldflags,
+                '-Wl,--defsym,base=0x80100000',
+                '-Wl,--entry=start',
+                '-Wl,-T,' + os.path.join('common', 'RMC.ld'),
+            ]),
         },
         implicit = os.path.join('common', 'RMC.ld'),
     )

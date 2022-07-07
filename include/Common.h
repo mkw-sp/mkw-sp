@@ -121,10 +121,6 @@ typedef struct VersionInfo {
     u8 reserved[0x18];
     char name[0x20];
     char nickname[0x20];
-
-#ifdef __cplusplus
-    friend auto operator<=>(const VersionInfo &lhs, const VersionInfo &rhs);
-#endif
 } VersionInfo;
 
 extern VersionInfo versionInfo;
@@ -214,6 +210,7 @@ typedef struct {
             void *from;
             void *to;
             bool link;
+            u32 *thunk;
         } branch;
     };
 } Patch;
@@ -242,7 +239,7 @@ typedef struct {
 
 #define PATCH_NOP(function, offset) PATCH_U32(function, offset, 0x60000000)
 
-#define PATCH_BRANCH(from, to, link) \
+#define PATCH_BRANCH(from, to, link, thunk) \
     __attribute__((section("patches"))) \
     extern const Patch patch_ ## to = { \
         .type = PATCH_TYPE_BRANCH, \
@@ -250,11 +247,19 @@ typedef struct {
             &from, \
             &to, \
             link, \
+            thunk, \
         }, \
     }
 
 #define PATCH_B(from, to) \
-    PATCH_BRANCH(from, to, false)
+    PATCH_BRANCH(from, to, false, NULL)
+
+#define PATCH_B_THUNK(from, to, thunk) \
+    PATCH_BRANCH(from, to, false, thunk)
 
 #define PATCH_BL(from, to) \
-    PATCH_BRANCH(from, to, true)
+    PATCH_BRANCH(from, to, true, NULL)
+
+#define REPLACE __attribute__((section("replacements")))
+#define DECLARE_REPLACED(function) thunk_replaced_ ## function
+#define REPLACED(function) thunk_replaced_ ## function

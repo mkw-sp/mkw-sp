@@ -1,5 +1,6 @@
 #pragma once
 
+#ifndef __cplusplus
 #include "MultiDvdArchive.h"
 
 extern const char *courseFilenames[0x28];
@@ -39,3 +40,10 @@ u16 ResourceManager_getMenuArchiveCount(ResourceManager *self);
 void ResourceManager_preloadCourseAsync(ResourceManager *self, u32 courseId);
 
 void ResourceManager_flush(ResourceManager *self);
+#else
+#include <Common.h>
+#endif
+
+void ResourceManager_OnCreateScene(u32 sceneId);
+
+void ResourceManager_ComputeCourseSHA1(u32 courseId, u8 *courseSHA1);

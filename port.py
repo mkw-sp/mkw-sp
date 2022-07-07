@@ -200,6 +200,7 @@ CHUNKS = {
         Chunk(0x802402e0, 0x80240e18, 0x802441fc),
         Chunk(0x80240e18, 0x80244dd4, 0x8023ff5c),
         Chunk(0x802a4080, 0x80384c18, 0x8029fd00),
+        Chunk(0x80385908, 0x8038590c, 0x80381588),
         Chunk(0x80385fc0, 0x80386008, 0x80381c40),
         Chunk(0x80386638, 0x80386644, 0x803822b8),
         Chunk(0x80386f48, 0x80386f90, 0x80382bc0),
@@ -234,6 +235,7 @@ CHUNKS = {
         Chunk(0x805bd2d8, 0x805bd2e4, 0x805b695c),
         Chunk(0x805bd39c, 0x805be600, 0x805b56f8),
         Chunk(0x805be600, 0x805be61c, 0x805b6968),
+        Chunk(0x805be66c, 0x805be7f4, 0x8062310c),
         Chunk(0x805be7f4, 0x805be84c, 0x805b76d0),
         Chunk(0x805be84c, 0x805bed68, 0x80623294),
         Chunk(0x805bed68, 0x805bed74, 0x805b7420),
@@ -531,6 +533,7 @@ CHUNKS = {
         Chunk(0x801e8414, 0x8020fd10, 0x801e883c),
         Chunk(0x802100a0, 0x80244de0, 0x80210414),
         Chunk(0x802a4080, 0x803858e0, 0x80292080),
+        Chunk(0x80385908, 0x8038590c, 0x80373910),
         Chunk(0x80385fc0, 0x8038917c, 0x80373fe0),
         Chunk(0x805103b4, 0x8051d72c, 0x804fe3d4),
         Chunk(0x8051e488, 0x8052a324, 0x8050c4ac),
@@ -606,8 +609,8 @@ if args.region != 'P' and args.region != 'E' and args.region != 'J' and args.reg
 
 with open(args.out_path, 'w') as out_file:
     out_file.write('SECTIONS {\n')
-    out_file.write('    .text base : { *(first) *(.text*) }\n')
-    out_file.write('    ctors : { *(.ctors*) }\n')
+    out_file.write('    .text base : { *(first) *(.text*) *(thunks*) }\n')
+    out_file.write('    .ctors : { *(.ctors*) }\n')
     out_file.write('    patches : { *(patches*) }\n')
     out_file.write('    commands : { *(commands*) }\n')
     out_file.write('    .rodata : { *(.rodata*) }\n')
@@ -617,8 +620,8 @@ with open(args.out_path, 'w') as out_file:
     # Write the start and end address for each section in the payload
     out_file.write('    payload_text_start = ADDR(.text);\n');
     out_file.write('    payload_text_end = payload_text_start + SIZEOF(.text);\n');
-    out_file.write('    payload_ctors_start = ADDR(ctors);\n');
-    out_file.write('    payload_ctors_end = payload_ctors_start + SIZEOF(ctors);\n');
+    out_file.write('    payload_ctors_start = ADDR(.ctors);\n');
+    out_file.write('    payload_ctors_end = payload_ctors_start + SIZEOF(.ctors);\n');
     out_file.write('    payload_patches_start = ADDR(patches);\n');
     out_file.write('    payload_patches_end = payload_patches_start + SIZEOF(patches);\n');
     out_file.write('    payload_rodata_start = ADDR(.rodata);\n');
@@ -695,5 +698,16 @@ with open(args.out_path, 'w') as out_file:
             address -= SRC_BINARIES[args.region][binary_name].start
             address += DST_BINARIES[args.region][binary_name].start
             write_symbol(out_file, name, address)
+    out_file.write('\n')
+
+    write_symbol(out_file, 'vtr', 0xcc002000);
+    write_symbol(out_file, 'dcr', 0xcc002002);
+    write_symbol(out_file, 'vto', 0xcc00200c);
+    write_symbol(out_file, 'vte', 0xcc002010);
+    write_symbol(out_file, 'tfbl', 0xcc00201c);
+    write_symbol(out_file, 'bfbl', 0xcc002024);
+    write_symbol(out_file, 'hsw', 0xcc002048);
+    write_symbol(out_file, 'hsr', 0xcc00204a);
+    write_symbol(out_file, 'visel', 0xcc00206e);
 
     out_file.write('}\n')

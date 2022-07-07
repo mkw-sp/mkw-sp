@@ -1,6 +1,7 @@
 #pragma once
 
 #include "revolution/arc.h"
+#include "revolution/ax.h"
 #include "revolution/os.h"
 #include "revolution/dvd.h"
 #include "revolution/dvdex.h"
@@ -13,5 +14,7 @@
 #include "revolution/so.h"
 
 #include "revolution/net.h"
+
+#include "revolution/exi.h"
 
 #include "revolution/es.h"

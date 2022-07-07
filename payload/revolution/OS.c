@@ -2,4 +2,4 @@
 
 #include "sp/Payload.h"
 
-PATCH_B(OSInit + 0x474, Payload_init);
+PATCH_B(OSInit + 0x474, Payload_Init);

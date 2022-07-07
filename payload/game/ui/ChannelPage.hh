@@ -1,9 +1,5 @@
 #pragma once
 
-extern "C" {
-#include "ChannelPage.h"
-}
-
 #include "game/ui/Page.hh"
 
 extern "C" {
@@ -50,7 +46,6 @@ private:
     void transition(State state);
 
     static void *Install(void *arg);
-    static void *Uninstall(void *arg);
 
     MenuInputManager m_inputManager;
     PageId m_replacement;

@@ -18,7 +18,7 @@ static void my_DvdArchive_load(DvdArchive *self, const char *path, EGG_Heap *arc
         if (isCompressed) {
             u8 *archiveBuffer;
             size_t archiveSize;
-            if (DVDDecompLoader_load(path, &archiveBuffer, &archiveSize, archiveHeap)) {
+            if (DVDDecompLoader_Load(path, &archiveBuffer, &archiveSize, archiveHeap)) {
                 self->archiveBuffer = archiveBuffer;
                 self->archiveSize = archiveSize;
                 self->archiveHeap = archiveHeap;

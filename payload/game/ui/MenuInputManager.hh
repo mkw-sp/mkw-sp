@@ -53,6 +53,8 @@ public:
         void (T::*m_function)(u32);
     };
 
+    ControlInputManager();
+    ~ControlInputManager();
     void setHandler(MenuInputManager::InputId inputId, IHandler *handler, bool repeat);
 
     struct ControlInputManagerPane {

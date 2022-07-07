@@ -35,8 +35,8 @@ static bool NandArcStorage_findFd(u32 *fd, u32 open, u32 max) {
 }
 
 static const char *NandArcStorage_convertPath(const wchar_t *path) {
-    if (!wcsncmp(path, L"/mkw-sp/disc/", wcslen(L"/mkw-sp/disc/"))) {
-        snprintf(pathBuffer, sizeof(pathBuffer), "%ls", path + wcslen(L"/mkw-sp/disc/"));
+    if (!wcsncmp(path, L"nas:/", wcslen(L"nas:/"))) {
+        snprintf(pathBuffer, sizeof(pathBuffer), "%ls", path + wcslen(L"nas:/"));
         return pathBuffer;
     }
 

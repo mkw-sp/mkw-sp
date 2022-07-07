@@ -1,10 +1,5 @@
 #pragma once
 
-#include <Common.h>
-#include <sp/StringView.h>
-#include <sp/settings/BaseSettings.h>
-#include <stdio.h>
-
 enum {
     kDriftMode_Manual,
     kDriftMode_Auto,
@@ -138,33 +133,3 @@ enum {
 
     kCategory_MAX,
 };
-
-const BaseSettingsDescriptor *ClientSettings_getDescriptor(void);
-
-typedef struct {
-    const BaseSettingsDescriptor *mDesc;
-    u32 mValues[kSetting_MAX];
-} ClientSettings;
-
-static inline void ClientSettings_init(ClientSettings *self) {
-    self->mDesc = ClientSettings_getDescriptor();
-    assert(self->mDesc->numValues == kSetting_MAX);
-}
-static inline void ClientSettings_reset(ClientSettings *self) {
-    SpSetting_ResetToDefault(self->mDesc, self->mValues);
-}
-static inline void ClientSettings_readIni(ClientSettings *self, StringView view) {
-    SpSetting_ParseFromIni(view.s, view.len, self->mDesc, self->mValues);
-}
-static inline void ClientSettings_writeIni(
-        const ClientSettings *self, char *start, size_t len) {
-    const char *header = "# MKW-SP Settings\n";
-    size_t written = snprintf(start, len, "%s", header);
-    start += written;
-    len -= written;
-    SpSetting_WriteToIni(start, len, self->mDesc, self->mValues);
-}
-static inline void ClientSettings_set(
-        ClientSettings *self, const char *key, const char *value) {
-    SpSetting_Set(self->mDesc, self->mValues, key, value);
-}

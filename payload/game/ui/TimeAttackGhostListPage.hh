@@ -1,18 +1,12 @@
 #pragma once
 
+#include "game/ui/GhostManagerPage.hh"
 #include "game/ui/GhostSelectControl.hh"
 #include "game/ui/MessageWindowControl.hh"
 #include "game/ui/Page.hh"
 #include "game/ui/SheetSelectControl.hh"
 #include "game/ui/ctrl/CtrlMenuBackButton.hh"
 #include "game/ui/ctrl/CtrlMenuPageTitleText.hh"
-
-// MAX_GHOST_COUNT
-#define this self
-extern "C" {
-#include "game/ui/GhostManagerPage.h"
-}
-#undef this
 
 namespace UI {
 
@@ -36,6 +30,7 @@ private:
     void onBack(u32 localPlayerId);
     void refreshLaunchButton();
     void onOption(u32 localPlayerId);
+    void onSettingsButtonFront(PushButton *button, u32 localPlayerId);
     bool canSwapGhostSelects() const;
     void refreshSheetLabel();
     void swapGhostSelects();
@@ -51,6 +46,7 @@ private:
     // UI elements
     MultiControlInputManager m_input;
     CtrlMenuPageTitleText m_titleText;
+    PushButton m_settingsButton;
     LayoutUIControl m_switchLabel;
     std::array<GhostSelectControl, 2> m_ghostSelects;
     SheetSelectControl m_sheetSelect;
@@ -62,6 +58,7 @@ private:
     // Input handlers
     H<MultiControlInputManager> m_onBack{ this, &TimeAttackGhostListPage::onBack };
     H<MultiControlInputManager> m_onOption{ this, &TimeAttackGhostListPage::onOption };
+    H<PushButton> m_onSettingsButtonFront{ this, &TimeAttackGhostListPage::onSettingsButtonFront };
     H<SheetSelectControl> m_onSheetSelectRight{ this, &TimeAttackGhostListPage::onSheetSelectLeft };
     H<SheetSelectControl> m_onSheetSelectLeft{ this, &TimeAttackGhostListPage::onSheetSelectRight };
     H<PushButton> m_onLaunchButtonSelect{ this, &TimeAttackGhostListPage::onLaunchButtonSelect };
@@ -71,9 +68,9 @@ private:
     GhostSelectControl *m_shownGhostSelect;
     GhostSelectControl *m_hiddenGhostSelect;
     bool m_isReplay;
-    SpGhostList *ghostList;
+    const GhostManagerPage::SPList *m_ghostList;
     u32 m_chosenCount;
-    std::array<bool, MAX_GHOST_COUNT> m_ghostIsChosen;
+    std::array<bool, System::MAX_GHOST_COUNT> m_ghostIsChosen;
     u32 m_sheetCount;
     u32 m_sheetIndex;
     s32 m_lastSelected;

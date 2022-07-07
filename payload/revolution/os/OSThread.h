@@ -7,7 +7,9 @@ typedef struct {
 } OSThreadQueue;
 
 typedef struct {
-    u8 _000[0x318 - 0x000];
+    u8 _000[0x2d8 - 0x000];
+    void *val;
+    u8 _2dc[0x318 - 0x2dc];
 } OSThread;
 static_assert(sizeof(OSThread) == 0x318);
 
@@ -16,6 +18,10 @@ void OSInitThreadQueue(OSThreadQueue *queue);
 OSThread *OSGetCurrentThread(void);
 
 BOOL OSIsThreadTerminated(OSThread *thread);
+
+s32 OSDisableScheduler(void);
+
+s32 OSEnableScheduler(void);
 
 BOOL OSCreateThread(OSThread *thread, void *(*func)(void *), void *param, void *stack,
         u32 stackSize, s32 priority, u16 attr);

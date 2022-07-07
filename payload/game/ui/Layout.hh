@@ -1,10 +1,13 @@
 #pragma once
 
-#include <Common.hh>
+#include <nw4r/lyt/lyt_pane.hh>
 
 namespace UI {
 
 class Layout {
+public:
+    nw4r::lyt::Pane *findPaneByName(const char *name);
+
 private:
     u8 _00[0x28 - 0x00];
 };

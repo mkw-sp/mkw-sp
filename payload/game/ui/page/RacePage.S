@@ -14,66 +14,6 @@ PATCH_B_END(RacePage_initInputs, 0x240)
 
 
 
-PATCH_B_START(RacePage_getControlCount, 0x198)
-    add r3, r3, r30 // Increase the control count by one CtrlRaceSpeed per local player
-    add r3, r3, r30 // Increase the control count by one CtrlRaceInputDisplay per local player
-
-    lwz r31, 0x1c (r1) // Original instruction
-    b RacePage_getControlCount + 0x19c
-PATCH_B_END(RacePage_getControlCount, 0x198)
-
-
-
-PATCH_B_START(RacePage_getControlCount, 0xc4)
-    cmpwi r3, 0 // Check if the number of CtrlRaceNameBalloon is zero
-    beq .LgetControlCount_end
-
-    li r3, 12 // If not, set it to 12
-
-.LgetControlCount_end:
-    add r31, r31, r3 // Original instruction
-    b RacePage_getControlCount + 0xc8
-PATCH_B_END(RacePage_getControlCount, 0xc4)
-
-
-
-PATCH_B_START(RacePage_initControls, 0x3e0)
-    mr r3, r15 // this
-    mr r4, r18 // controlId
-    mr r5, r19 // localPlayerCount
-    mr r6, r17 // localPlayerId
-    bl RacePage_initCustomControls
-
-    addi r18, r18, 2 // Increment the control id
-
-    addi r17, r17, 1 // Original instruction, increment the local player id
-    b RacePage_initControls + 0x3e4
-PATCH_B_END(RacePage_initControls, 0x3e0)
-
-
-
-PATCH_B_START(RacePage_initControls, 0x1a0)
-    bl CtrlRaceLap_load // Original instruction
-
-    mr r3, r20
-    mr r4, r19
-    bl CtrlRaceLap_initLabelVisibility
-
-    b RacePage_initControls + 0x1a4
-PATCH_B_END(RacePage_initControls, 0x1a0)
-
-PATCH_B_START(RacePage_initControls, 0x4c8)
-    bl CtrlRaceTime_load // Original instruction
-
-    mr r3, r14
-    mr r4, r19
-    bl CtrlRaceTime_initLabelVisibility
-
-    b RacePage_initControls + 0x4cc
-PATCH_B_END(RacePage_initControls, 0x4c8)
-
-
-
 // If the number of CtrlRaceNameBalloon is not zero, set it to 12
 
 PATCH_REPLACE_START(RacePage_initControls, 0x5cc)

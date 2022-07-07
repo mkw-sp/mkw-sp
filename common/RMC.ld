@@ -1,10 +1,14 @@
 SECTIONS {
     bootstrap 0x80003400 : { *(bootstrap) }
     .text base : { *(first) *(.text*) }
+    .ctors : { *(.ctors*) }
     .rodata : { *(.rodata*) }
     .data : { *(.data*) *(.bss*) *(.sbss*) }
 
     stackTop = base - 0x8;
+
+    ctors_start = ADDR(.ctors);
+    ctors_end = ctors_start + SIZEOF(.ctors);
 
     diskID = 0x80000000;
 
@@ -16,6 +20,8 @@ SECTIONS {
     vte = 0xcc002010;
     tfbl = 0xcc00201c;
     bfbl = 0xcc002024;
+    hsw = 0xcc002048;
+    hsr = 0xcc00204a;
     visel = 0xcc00206e;
 
     ppcmsg = 0xcd000000;

@@ -5,9 +5,9 @@ PATCH_B_START(TimeAttackTopPage_onActivate, 0xa0)
 
     // Send our request, which might complete immediately
     mr r3, r30
-    bl GhostManagerPage_requestPopulate
+    bl _ZN2UI16GhostManagerPage15requestPopulateEv
     mr r3, r30
-    bl GhostManagerPage_process
+    bl _ZN2UI16GhostManagerPage7processEv
 
     lwz r0, 0x94 (r30) // Original instruction again
     b TimeAttackTopPage_onActivate + 0xa4

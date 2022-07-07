@@ -14,10 +14,10 @@ namespace SP::DVDDecompLoader {
 static Exchange<const char *, Empty> startExchange;
 static Exchange<bool, s32> updateExchange;
 static OSThread thread;
-alignas(0x8) static u8 stack[0x2000 /* 8 KiB */];
+static u8 stack[0x2000 /* 8 KiB */];
 alignas(0x20) static u8 srcs[2][0x4000 /* 16 KiB */];
 
-static void read(const char *path) {
+static void Read(const char *path) {
     DVDFile file(path);
     if (!file.ok()) {
         updateExchange.right(-1);
@@ -40,19 +40,19 @@ static void read(const char *path) {
     updateExchange.right(0);
 }
 
-static void *handle(void *UNUSED(arg)) {
+static void *Handle(void *UNUSED(arg)) {
     while (true) {
         const char *path = startExchange.right({});
-        read(path);
+        Read(path);
     }
 }
 
-static void init() {
-    OSCreateThread(&thread, handle, nullptr, stack + sizeof(stack), sizeof(stack), 24, 0);
+void Init() {
+    OSCreateThread(&thread, Handle, nullptr, stack + sizeof(stack), sizeof(stack), 24, 0);
     OSResumeThread(&thread);
 }
 
-bool load(const char *path, u8 **dst, size_t *dstSize, EGG::Heap *heap) {
+bool Load(const char *path, u8 **dst, size_t *dstSize, EGG::Heap *heap) {
     startExchange.left(path);
 
     u32 i = 0;
@@ -94,10 +94,6 @@ bool load(const char *path, u8 **dst, size_t *dstSize, EGG::Heap *heap) {
 
 } // namespace SP::DVDDecompLoader
 
-extern "C" void DVDDecompLoader_init(void) {
-    SP::DVDDecompLoader::init();
-}
-
-extern "C" bool DVDDecompLoader_load(const char *path, u8 **dst, size_t *dstSize, EGG_Heap *heap) {
-    return SP::DVDDecompLoader::load(path, dst, dstSize, reinterpret_cast<EGG::Heap *>(heap));
+extern "C" bool DVDDecompLoader_Load(const char *path, u8 **dst, size_t *dstSize, EGG_Heap *heap) {
+    return SP::DVDDecompLoader::Load(path, dst, dstSize, reinterpret_cast<EGG::Heap *>(heap));
 }

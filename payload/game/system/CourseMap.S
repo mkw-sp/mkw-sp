@@ -61,7 +61,7 @@ PATCH_B_START(CourseMap_computeFinishTime, 0x38)
     lbz r3, 0x26 (r29) // Get the lap from the parent function
     addi r3, r3, -1
     fsubs f1, f1, f2
-    bl SpFooter_onLapEnd
+    bl SPFooter_OnLapEnd
 
     lwz r3, 0x18 (r1) // Restore the milliseconds
 

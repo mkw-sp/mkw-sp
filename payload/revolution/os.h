@@ -50,6 +50,7 @@ typedef s64 OSTime;
 #define OS_BUS_CLOCK (*(u32 *)0x800000f8)
 #define OS_TIMER_CLOCK (OS_BUS_CLOCK / 4)
 
+#define OSSecondsToTicks(sec) ((sec) * OS_TIMER_CLOCK)
 #define OSMillisecondsToTicks(msec) ((msec) * (OS_TIMER_CLOCK / 1000))
 #define OSMicrosecondsToTicks(usec) ((usec) * (OS_TIMER_CLOCK / 1000000))
 #define OSNanosecondsToTicks(nsec) ((nsec) / (1000000000 / OS_TIMER_CLOCK))
@@ -58,8 +59,8 @@ typedef s64 OSTime;
 #define OSTicksToMilliseconds(ticks) ((ticks) / (OS_TIMER_CLOCK / 1000))
 
 u32 OSGetTick(void);
-
 OSTime OSGetTime(void);
+void OSSetTime(OSTime time);
 
 typedef struct {
     int sec;
@@ -80,6 +81,8 @@ void OSTicksToCalendarTime(OSTime ticks, OSCalendarTime *td);
 void OSReport(const char *msg, ...);
 void OSFatal(GXColor fg, GXColor bg, const char *msg);
 
+const char* OSGetAppGamename(void);
+
 #include "revolution/os/OSCache.h"
 #include "revolution/os/OSMemory.h"
 #include "revolution/os/OSMessage.h"
@@ -87,6 +90,7 @@ void OSFatal(GXColor fg, GXColor bg, const char *msg);
 #include "revolution/os/OSMutex.h"
 #include "revolution/os/OSReset.h"
 #include "revolution/os/OSThread.h"
+#include "revolution/os/OSTitle.h"
 
 extern u32 OSDisableInterrupts(void);
 extern void OSRestoreInterrupts(u32);

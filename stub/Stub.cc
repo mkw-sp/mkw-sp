@@ -1,6 +1,6 @@
-#include "FS.hh"
-
 #include "Archive.hh"
+#include "Dolphin.hh"
+#include "FS.hh"
 #include "LZMA.hh"
 
 #include <common/Console.hh>
@@ -12,25 +12,14 @@ extern "C" {
 }
 #include <common/VI.hh>
 
-#include <compare>
 #include <cstring>
 
-auto operator<=>(const VersionInfo& lhs, const VersionInfo &rhs) {
-    if (auto cmp = lhs.major <=> rhs.major; cmp != 0) {
-        return cmp;
-    }
-    if (auto cmp = lhs.minor <=> rhs.minor; cmp != 0) {
-        return cmp;
-    }
-    if (auto cmp = lhs.patch <=> rhs.patch; cmp != 0) {
-        return cmp;
-    }
-    return std::strong_ordering::equal;
-}
+extern "C" volatile u32 aicr;
+
+extern "C" void (*ctors_start)(void);
+extern "C" void (*ctors_end)(void);
 
 namespace Stub {
-
-extern "C" volatile u32 aicr;
 
 typedef void (*LoaderEntryFunc)(void);
 
@@ -83,6 +72,13 @@ static std::optional<LoaderEntryFunc> Run() {
     Console::Print("Initializing IOS...");
     IOS::Init();
     Console::Print(" done.\n");
+
+    {
+        IOS::Dolphin dolphin;
+        if (dolphin.ok()) {
+            dolphin.setSpeedLimit(800);
+        }
+    }
 
 #ifndef SP_CHANNEL
     Console::Print("Loading the embedded archive...");
@@ -251,6 +247,10 @@ extern "C" void Stub_Run() {
     // lines are written back to main memory. Prevent that by completely emptying the dcache.
     DCache::Invalidate(reinterpret_cast<void *>(0x80000000), 0x1800000);
 #endif
+
+    for (void (**ctor)(void) = &ctors_start; ctor < &ctors_end; ctor++) {
+        (*ctor)();
+    }
 
     std::optional<Stub::LoaderEntryFunc> loaderEntry = Stub::Run();
     if (loaderEntry) {

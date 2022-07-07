@@ -8,9 +8,8 @@
 
 #include <cstring>
 
-namespace Loader {
-
-typedef void (*PayloadEntryFunc)(void);
+extern "C" void (*ctors_start)(void);
+extern "C" void (*ctors_end)(void);
 
 extern "C" const u8 payloadP[];
 extern "C" const u32 payloadPSize;
@@ -21,7 +20,15 @@ extern "C" const u32 payloadJSize;
 extern "C" const u8 payloadK[];
 extern "C" const u32 payloadKSize;
 
+namespace Loader {
+
+typedef void (*PayloadEntryFunc)(void);
+
 void Run() {
+    for (void (**ctor)(void) = &ctors_start; ctor < &ctors_end; ctor++) {
+        (*ctor)();
+    }
+
     VI::Init();
 
     Console::Init();

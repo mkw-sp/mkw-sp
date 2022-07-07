@@ -9,6 +9,8 @@
 #include "../../system/RaceConfig.h"
 #include "../../system/SaveManager.h"
 
+#include <sp/settings/ClientSettings.h>
+
 static BalloonManager *my_BalloonManager_ct(BalloonManager *this) {
     this->nameCount = 0;
     this->namePositions = spAllocArray(12, sizeof(Vec3), 0x4, NULL);
@@ -83,7 +85,7 @@ void CtrlRaceNameBalloon_refreshText(CtrlRaceNameBalloon *this, u32 playerId) {
         return;
     }
 
-    switch (SaveManager_getSetting(s_saveManager, kSetting_TaRuleGhostTagContent)) {
+    switch (SaveManager_GetTAGhostTagContent()) {
     case kTaRuleGhostTagContent_Name:
         CtrlRaceNameBalloon_refreshTextName(this, playerId);
         break;
@@ -113,7 +115,7 @@ void CtrlRaceNameBalloon_calcVisibility(CtrlRaceNameBalloon *this) {
         return;
     }
 
-    switch (SaveManager_getSetting(s_saveManager, kSetting_TaRuleGhostTagVisibility)) {
+    switch (SaveManager_GetTAGhostTagVisibility()) {
     case kTaRuleGhostTagVisibility_None:
         this->isHidden = true;
         return;

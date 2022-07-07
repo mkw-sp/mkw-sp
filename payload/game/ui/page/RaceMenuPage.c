@@ -1,7 +1,8 @@
 #include "RaceMenuPage.h"
-#include <game/ui/Button.h>
-#include <game/ui/SectionManager.h>
-#include <payload/game/system/RaceConfig.h>
+
+#include "game/ui/Button.h"
+#include "game/ui/SectionManager.h"
+#include "game/ui/SettingsPage.h"
 
 // Note: Could do these as an X-Macro
 
@@ -262,12 +263,8 @@ PATCH_B(ReplayTAMenuPage_getButtons, my_ReplayTAMenuPage_getButtons);
 
 void RaceMenuPage_onFrontSettings(
         RaceMenuPage *this, PushButton *pushButton, u32 UNUSED(localPlayerId)) {
+    SettingsPage_SetReplacement(this->id);
     const float pushDelay = PushButton_getDelay(pushButton);
-
-    Page *settingsPage = s_sectionManager->currentSection->pages[PAGE_ID_LICENSE_RECORDS];
-    assert(settingsPage != NULL);
-    // settingsPage->backId = this->id;
-    // settingsPage->localPlayerIdInvokedSettings = localPlayerId;
     this->vt->nextPage(this, PAGE_ID_LICENSE_RECORDS);
     Page_startReplace((Page *)this, PAGE_ANIMATION_NEXT, pushDelay);
 }

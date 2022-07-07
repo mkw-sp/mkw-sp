@@ -9,3 +9,5 @@ CMakeCache.txt
 Makefile
 *.exe
 .vscode
+target
+Cargo.lock

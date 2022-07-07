@@ -10,6 +10,8 @@ extern "C" volatile u32 vto;
 extern "C" volatile u32 vte;
 extern "C" volatile u32 tfbl;
 extern "C" volatile u32 bfbl;
+extern "C" volatile u16 hsw;
+extern "C" volatile u16 hsr;
 extern "C" volatile u16 visel;
 
 static u16 xfbWidth;
@@ -38,6 +40,8 @@ void Init() {
         vto = 0x1 << 16 | 0x23;
         vte = 0x0 << 16 | 0x24;
     }
+    hsw = 0x2828;
+    hsr = 0x10f5;
     tfbl = 1 << 28 | reinterpret_cast<u32>(xfb) >> 5;
     bfbl = 1 << 28 | reinterpret_cast<u32>(xfb) >> 5;
 }

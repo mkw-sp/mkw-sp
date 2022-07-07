@@ -116,7 +116,7 @@ PATCH_BL_START(KartMove_calcSpeed, 0x65c)
     andi. r4, r0, 0x60
     beqlr
 
-    bl SpFooter_onWallride
+    bl SPFooter_OnWallride
 
     lwz r3, 0x0 (r29)
     lwz r3, 0x4 (r3)

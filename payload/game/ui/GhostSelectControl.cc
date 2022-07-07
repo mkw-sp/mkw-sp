@@ -104,7 +104,7 @@ void GhostSelectControl::onShow() {
     TimeAttackGhostListPage *page = getGhostListPage();
     for (u32 i = 0; i < buttons.size(); ++i) {
         const u32 listIndex = page->m_sheetIndex * buttons.size() + i;
-        if (listIndex < page->ghostList->count) {
+        if (listIndex < page->m_ghostList->count()) {
             buttons[i].setVisible(true);
             buttons[i].refresh(listIndex);
         } else {

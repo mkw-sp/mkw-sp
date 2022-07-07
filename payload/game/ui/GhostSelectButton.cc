@@ -1,9 +1,11 @@
 #include "GhostSelectButton.hh"
-#include "TimeAttackGhostListPage.hh"
+
+#include "game/ui/TimeAttackGhostListPage.hh"
 extern "C" {
-#include "game/system/SaveManager.h"
 #include "game/util/Registry.h"
 }
+#include "game/system/SaveManager.hh"
+
 #include <stdio.h>
 
 namespace UI {
@@ -84,7 +86,7 @@ GhostSelectButton::~GhostSelectButton() = default;
 void GhostSelectButton::load(u32 index) {
     char variant[0x10];
     snprintf(variant, sizeof(variant), "Option%lu", index);
-    OptionButton::load(index, "control", "GhostSelectOption", variant, 0x1, false, false);
+    OptionButton::load(index, "control", "GhostSelectOption", variant, false, false);
     setParentPane(variant);
     m_miiGroup.init(1, 0x1, NULL);
     setMiiPicture("mii_shadow", &m_miiGroup, 0, 0);
@@ -99,10 +101,10 @@ void GhostSelectButton::load(u32 index) {
 
 void GhostSelectButton::refresh(u32 listIndex) {
     TimeAttackGhostListPage *page = getGhostListPage();
-    u32 ghostIndex = page->ghostList->indices[listIndex];
-    const RawGhostHeader *header = &s_saveManager->rawGhostHeaders[ghostIndex];
+    u32 ghostIndex = page->m_ghostList->indices()[listIndex];
+    auto *header = System::SaveManager::Instance()->rawGhostHeader(ghostIndex);
 
-    m_miiGroup.insertFromRaw(0, reinterpret_cast<const RawMii *>(&header->mii));
+    m_miiGroup.insertFromRaw(0, &header->mii);
     MessageInfo nameInfo = {};
     nameInfo.miis[0] = m_miiGroup.get(0);
 

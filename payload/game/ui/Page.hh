@@ -4,6 +4,7 @@
 #include "game/ui/MenuInputManager.hh"
 #include "game/ui/PageId.hh"
 #include "game/ui/SectionId.hh"
+#include "game/ui/TypeInfo.hh"
 #include "game/ui/UIControl.hh"
 
 namespace UI {
@@ -19,7 +20,7 @@ public:
         State5,
     };
 
-    enum class Animation {
+    enum class Anim {
         Next,
         Prev,
     };
@@ -31,9 +32,9 @@ public:
     virtual PageId getReplacement();
     virtual void vf_14();
     virtual void vf_18();
-    virtual void changeSection(SectionId id, Animation animation, f32 delay);
+    virtual void changeSection(SectionId id, Anim anim, f32 delay);
     virtual void vf_20();
-    virtual void push(PageId id, Animation animation);
+    virtual void push(PageId id, Anim anim);
     virtual void onInit();
     virtual void onDeinit();
     virtual void onActivate();
@@ -48,15 +49,43 @@ public:
     virtual void onRefocus();
     virtual void vf_58();
     virtual void vf_5c();
-    virtual void vf_60();
+    virtual TypeInfo *getTypeInfo() const;
+
+    template <typename P>
+    const P *downcast() const {
+        for (TypeInfo *typeInfo = getTypeInfo(); typeInfo != nullptr; typeInfo = typeInfo->base) {
+            if (typeInfo == P::GetTypeInfo()) {
+                return reinterpret_cast<const P *>(this);
+            }
+        }
+        return nullptr;
+    }
+
+    template <typename P>
+    P *downcast() {
+        for (TypeInfo *typeInfo = getTypeInfo(); typeInfo != nullptr; typeInfo = typeInfo->base) {
+            if (typeInfo == P::GetTypeInfo()) {
+                return reinterpret_cast<P *>(this);
+            }
+        }
+        return nullptr;
+    }
 
 protected:
     void setInputManager(MenuInputManager *inputManager);
     void skipInAnim();
     void skipOutAnim();
+
+public:
+    PageId id() const;
+    void setAnim(Anim anim);
+    REPLACE void calc();
+
+protected:
     void initChildren(u32 count);
     void insertChild(u32 index, UIControl *child, u32 drawPass);
-    void startReplace(Animation animation, f32 delay);
+    void startReplace(Anim anim, f32 delay);
+    void calcAnim();
     void playSfx(u32 sfxId, s32 r5);
     void setAnimSfxIds(u32 nextId, u32 prevId);
 

@@ -118,7 +118,7 @@ static void ResourceManager_deinitGlobeHeap(ResourceManager *self) {
     }
 }
 
-void ResourceManager_onCreateScene(u32 sceneId) {
+void ResourceManager_OnCreateScene(u32 sceneId) {
     switch (sceneId) {
     case SCENE_ID_MENU:
     case SCENE_ID_RACE:
@@ -130,4 +130,15 @@ void ResourceManager_onCreateScene(u32 sceneId) {
         ResourceManager_initGlobeHeap(s_resourceManager);
         break;
     }
+}
+
+void ResourceManager_ComputeCourseSHA1(u32 courseId, u8 *courseSHA1) {
+    ResourceManager_preloadCourseAsync(s_resourceManager, courseId);
+    ResourceManager_process(s_resourceManager);
+
+    NETSHA1Context cx;
+    NETSHA1Init(&cx);
+    const DvdArchive *archive = &s_resourceManager->courseCache.multi->archives[0];
+    NETSHA1Update(&cx, archive->archiveBuffer, archive->archiveSize);
+    NETSHA1GetDigest(&cx, courseSHA1);
 }

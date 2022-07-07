@@ -152,7 +152,7 @@ sp_define_command("/i", "Spawn an item.", const char *tmp) {
 sp_define_command("/example_command", "Example command", const char *tmp) {
     (void)tmp;
 
-    if (s_saveManager == NULL) {
+    if (!SaveManager_IsAvailable()) {
         OSReport("example_command: Failed to load Save Manager\n");
         return;
     }
@@ -163,37 +163,38 @@ sp_define_command("/example_command", "Example command", const char *tmp) {
         "SP_TA_RULE_GHOST_TAG_CONTENT_TIME_NOLEADING",
         "SP_TA_RULE_GHOST_TAG_CONTENT_DATE",
     };
-    const u32 rule =
-            SaveManager_getSetting(s_saveManager, kSetting_TaRuleGhostTagContent);
+    const u32 rule = SaveManager_GetTAGhostTagContent();
     OSReport("example_command: taRuleGhostTagContent == %s\n", tagContent[rule & 3]);
 }
 
 sp_define_command("/instant_menu", "Toggle instant menu transitions", const char *tmp) {
     (void)tmp;
 
-    if (s_saveManager == NULL) {
+    if (!SaveManager_IsAvailable()) {
         OSReport("instant_menu: Failed to load Save Manager\n");
         return;
     }
-    const bool menuTrans =
-            !SaveManager_getSetting(s_saveManager, kSetting_PageTransitions);
-    SaveManager_setSetting(s_saveManager, kSetting_PageTransitions, menuTrans);
+    const bool menuTrans = !SaveManager_GetPageTransitions();
+    SaveManager_SetPageTransitions(menuTrans);
     OSReport("instant_menu: Menu transition animations toggled %s\n", sOnOff[menuTrans]);
 }
 
 sp_define_command("/set", "Sets a .ini setting key-value", const char *tmp) {
+    if (!SaveManager_IsAvailable()) {
+        OSReport("set: Failed to load Save Manager\n");
+        return;
+    }
     char setting[64];
     char value[64];
     if (2 != sscanf(tmp, "/set %63s %63s", setting, value)) {
         OSReport("&a/set: Invalid arguments\n");
         return;
     }
-    if (s_saveManager->spCurrentLicense < 0) {
+    if (SaveManager_SPCurrentLicense()) {
         OSReport("&a/set: No license active\n");
         return;
     }
-    ClientSettings_set(&s_saveManager->spLicenses[s_saveManager->spCurrentLicense]->cfg,
-            setting, value);
+    SaveManager_SetSetting(setting, value);
 }
 
 sp_define_command("/section", "Transition to a certain game section", const char *tmp) {
@@ -209,14 +210,15 @@ sp_define_command("/section", "Transition to a certain game section", const char
 
     OSReport("&aSwitching to section %d\n", nextSectionId);
 
-    if (s_saveManager == NULL) {
+    if (!SaveManager_IsAvailable()) {
         OSReport("&aError: Save manager unavailable\n");
         return;
     }
 
     // Default to license 0
-    s_saveManager->spCurrentLicense = 0;
-    SaveManager_selectLicense(s_saveManager, 0);
+    SaveManager_SelectSPLicense(0);
+    // TODO create base license
+    SaveManager_SelectLicense(0);
 
     SectionManager_setNextSection(s_sectionManager, __builtin_abs(nextSectionId),
             nextSectionId < 0 ? PAGE_ANIMATION_PREV : PAGE_ANIMATION_NEXT);

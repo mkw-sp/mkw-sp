@@ -172,35 +172,3 @@ void Page_update(Page *this);
 void Page_animUpdate(Page *this);
 
 void Page_init(Page *this, u32 pageId);
-
-inline bool PageIsA(TypeInfo *typeInfo, Page *page) {
-    assert(page != NULL);
-
-    TypeInfo *pageTypeInfo = page->vt->getTypeInfo(page);
-
-    return TypeInfo_isDerived(typeInfo, pageTypeInfo);
-}
-
-inline Page *PageAsA(TypeInfo *typeInfo, Page *page) {
-    if (page == NULL)
-        return NULL;
-
-    // NB: In C++ this would just be a static_cast, which would add or subtract as needed
-    // to cast Page to whatever type; in C that *doesn't* happen. So we just return
-    // the Page pointer type and rely on the user to do the thisptr adjustment.
-    return PageIsA(typeInfo, page) ? page : NULL;
-}
-
-// The port tool fails on these
-
-// PAGE_ID_GHOST_MANAGER
-// extern TypeInfo *GhostManagerPage_RTTI;
-extern TypeInfo *GhostManagerPage_getTypeInfo();
-#define GhostManagerPage_RTTI (GhostManagerPage_getTypeInfo())
-
-// PauseMenu / PausePage probably
-//
-// RaceMenuPage + friends
-// extern TypeInfo *PausePage_RTTI;
-extern TypeInfo *RaceMenuPage_getTypeInfo();
-#define RaceMenuPage_RTTI (RaceMenuPage_getTypeInfo())

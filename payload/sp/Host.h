@@ -2,6 +2,9 @@
 
 #include <Common.h>
 
+// Keep this value in sync with the value in the file 'mkw-sp/protobuf/UpdateRequestMessage.options'
+#define HOST_PLATFORM_BUFFER_SIZE (31 + 1)
+
 // clang-format off
 typedef enum {
     //! This is either a bug in the platform detection code,
@@ -75,6 +78,7 @@ void Host_Init(void);
 // Cached
 const char *Host_GetDolphinTag(void);
 HostPlatform Host_GetPlatform(void);
+const char* Host_GetPlatformString(void);
 
 // Not cached
 bool Host_IsGeckoEnabled(void);

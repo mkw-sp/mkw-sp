@@ -181,38 +181,38 @@ void ChannelPage::transition(State state) {
     switch (state) {
     case State::Prev:
         m_replacement = PageId::ServicePackTop;
-        startReplace(Animation::Prev, 0.0f);
+        startReplace(Anim::Prev, 0.0f);
         break;
     case State::Explanation:
         optionExplanationPage->setTitleMessage(10088);
         optionExplanationPage->setWindowMessage(10090);
-        push(PageId::OptionExplanation, m_state == State::Prev ? Animation::Next : Animation::Prev);
+        push(PageId::OptionExplanation, m_state == State::Prev ? Anim::Next : Anim::Prev);
         break;
     case State::None:
         optionSelect2Page->setTitleMessage(10088);
         optionSelect2Page->setWindowMessage(10091);
         optionSelect2Page->setButtonMessages(0, 2002);
         optionSelect2Page->setButtonMessages(1, 2003);
-        push(PageId::OptionSelect2, Animation::Next);
+        push(PageId::OptionSelect2, Anim::Next);
         break;
     case State::Older:
         optionSelect2Page->setTitleMessage(10088);
         optionSelect2Page->setWindowMessage(10092);
         optionSelect2Page->setButtonMessages(0, 2002);
         optionSelect2Page->setButtonMessages(1, 2003);
-        push(PageId::OptionSelect2, Animation::Next);
+        push(PageId::OptionSelect2, Anim::Next);
         break;
     case State::Same:
         optionConfirmPage->reset();
         optionConfirmPage->setTitleMessage(10088);
         optionConfirmPage->setWindowMessage(10093);
-        push(PageId::OptionConfirm, Animation::Next);
+        push(PageId::OptionConfirm, Anim::Next);
         break;
     case State::Newer:
         optionConfirmPage->reset();
         optionConfirmPage->setTitleMessage(10088);
         optionConfirmPage->setWindowMessage(10094);
-        push(PageId::OptionConfirm, Animation::Next);
+        push(PageId::OptionConfirm, Anim::Next);
         break;
     case State::Install:
         OSCreateThread(&m_thread, Install, nullptr, stackTop, sizeof(m_stack), 24, 0);
@@ -220,7 +220,7 @@ void ChannelPage::transition(State state) {
         optionAwaitPage->reset();
         optionAwaitPage->setTitleMessage(10088);
         optionAwaitPage->setWindowMessage(10095);
-        push(PageId::OptionAwait, Animation::Next);
+        push(PageId::OptionAwait, Anim::Next);
         break;
     case State::Update:
         OSCreateThread(&m_thread, Install, nullptr, stackTop, sizeof(m_stack), 24, 0);
@@ -228,41 +228,41 @@ void ChannelPage::transition(State state) {
         optionAwaitPage->reset();
         optionAwaitPage->setTitleMessage(10088);
         optionAwaitPage->setWindowMessage(10096);
-        push(PageId::OptionAwait, Animation::Next);
+        push(PageId::OptionAwait, Anim::Next);
         break;
     case State::InstallOk:
         optionMessagePage->reset();
         optionMessagePage->setTitleMessage(10088);
         optionMessagePage->setWindowMessage(10097);
-        push(PageId::OptionMessage, Animation::Next);
+        push(PageId::OptionMessage, Anim::Next);
         break;
     case State::InstallFail:
         optionMessagePage->reset();
         optionMessagePage->setTitleMessage(10088);
         optionMessagePage->setWindowMessage(10098);
-        push(PageId::OptionMessage, Animation::Next);
+        push(PageId::OptionMessage, Anim::Next);
         break;
     case State::UpdateOk:
         optionMessagePage->reset();
         optionMessagePage->setTitleMessage(10088);
         optionMessagePage->setWindowMessage(10099);
-        push(PageId::OptionMessage, Animation::Next);
+        push(PageId::OptionMessage, Anim::Next);
         break;
     case State::UpdateFail:
         optionMessagePage->reset();
         optionMessagePage->setTitleMessage(10088);
         optionMessagePage->setWindowMessage(10100);
-        push(PageId::OptionMessage, Animation::Next);
+        push(PageId::OptionMessage, Anim::Next);
         break;
     case State::Unsupported:
         optionMessagePage->reset();
         optionMessagePage->setTitleMessage(10088);
         optionMessagePage->setWindowMessage(10101);
-        push(PageId::OptionMessage, Animation::Next);
+        push(PageId::OptionMessage, Anim::Next);
         break;
     case State::Next:
         m_replacement = PageId::ServicePackTop;
-        startReplace(Animation::Next, 0.0f);
+        startReplace(Anim::Next, 0.0f);
         break;
     }
     m_state = state;
@@ -274,9 +274,3 @@ void *ChannelPage::Install(void *UNUSED(arg)) {
 }
 
 } // namespace UI
-
-extern "C" void *ChannelPage_ct(void *self) {
-    return new (self) UI::ChannelPage();
-}
-
-static_assert(sizeof_ChannelPage == sizeof(UI::ChannelPage));

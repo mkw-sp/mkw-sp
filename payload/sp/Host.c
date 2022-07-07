@@ -1,8 +1,10 @@
 #include "Host.h"
 
 #include <Common.h>
+
 #include <revolution.h>
 #include <revolution/ios.h>
+#include <revolution/nwc24/NWC24Utils.h>
 #include <sp/IOSDolphin.h>
 #include <sp/Version.h>
 #include <stdio.h>
@@ -10,7 +12,7 @@
 
 static bool sHostIsInit = false;
 static HostPlatform sPlatform = HOST_UNKNOWN;
-static char sDolphinTag[64] = "Not dolphin";
+static char sDolphinTag[HOST_PLATFORM_BUFFER_SIZE] = "Not dolphin";
 
 #ifndef PLATFORM_EMULATOR
 const RawCPU_ID sCpuId_PrehistoricDolphin = { 0, 0, 0, 0 };
@@ -47,9 +49,8 @@ static void DetectPlatform(void) {
                 OSReport("[HOSTPLATFORM] Failed GetVersion query\n");
                 sPlatform = HOST_DOLPHIN_UNKNOWN;
             } else {
-                memcpy(sDolphinTag, q.version,
-                        MIN(sizeof(sDolphinTag), sizeof(q.version)));
-                sDolphinTag[sizeof(sDolphinTag) - 1] = '\0';
+                const char dolphinTagFormatString[] = "Dolphin %s";
+                snprintf(sDolphinTag, sizeof(sDolphinTag), dolphinTagFormatString, q.version);
             }
             IOSDolphin_Close(iosDolphin);
             return;
@@ -121,6 +122,35 @@ HostPlatform Host_GetPlatform(void) {
     return sPlatform;
 }
 
+const char* Host_GetPlatformString(void)
+{
+    switch (Host_GetPlatform())
+    {
+        case HOST_REVOLUTION:
+            return "Wii";
+        case HOST_WII_MINI:
+            return "Wii Mini";
+        case HOST_CAFE:
+            return "Wii U";
+        case HOST_DOLPHIN_PREHISTORIC:
+            return "Ancient Dolphin (Unsupported)";
+        case HOST_DOLPHIN_UNKNOWN:
+            return "Dolphin (Unsupported)";
+        case HOST_DOLPHIN:
+            return Host_GetDolphinTag();
+        case HOST_WINDOWS:
+            return "Windows";
+        case HOST_APPLE:
+            return "Apple";
+        case HOST_LINUX:
+            return "Linux";
+        case HOST_UNKNOWN:
+            return "Unknown host";
+        default:
+            return "Invalid host";
+    }
+}
+
 bool Host_IsGeckoEnabled(void) {
 #ifdef PLATFORM_EMULATOR
     return false;
@@ -156,44 +186,8 @@ void Host_PrintMkwSpInfo(PrintfFunction *func) {
     (*func)("--------------------------------\n");
     (*func)("MKW-SP v%s\n", versionInfo.name);
 
-    char system[128];
-    memset(system, 0, sizeof(system));
-
-    switch (Host_GetPlatform()) {
-    case HOST_REVOLUTION:
-        snprintf(system, sizeof(system), "Wii");
-        break;
-    case HOST_WII_MINI:
-        snprintf(system, sizeof(system), "Wii Mini");
-        break;
-    case HOST_CAFE:
-        snprintf(system, sizeof(system), "WiiU");
-        break;
-    case HOST_DOLPHIN_PREHISTORIC:
-        snprintf(system, sizeof(system), "Ancient Dolphin (Unsupported)");
-        break;
-    case HOST_DOLPHIN_UNKNOWN:
-        snprintf(system, sizeof(system), "Dolphin (Unsupported)");
-        break;
-    case HOST_DOLPHIN:
-        snprintf(system, sizeof(system), "Dolphin %s", Host_GetDolphinTag());
-        break;
-    case HOST_WINDOWS:
-        snprintf(system, sizeof(system), "Windows");
-        break;
-    case HOST_APPLE:
-        snprintf(system, sizeof(system), "Apple");
-        break;
-    case HOST_LINUX:
-        snprintf(system, sizeof(system), "Linux");
-        break;
-    case HOST_UNKNOWN:
-        snprintf(system, sizeof(system), "Unknown host");
-        break;
-    default:
-        snprintf(system, sizeof(system), "Invalid host");
-        break;
-    }
+    char system[HOST_PLATFORM_BUFFER_SIZE];
+    NWC24iStrLCpy(system, Host_GetPlatformString(), sizeof(system));
 
     if (Host_IsGeckoEnabled()) {
         const int len = strnlen(system, sizeof(system));

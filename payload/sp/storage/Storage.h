@@ -2,17 +2,14 @@
 
 #include <Common.h>
 
-typedef struct Node {
+typedef struct {
     struct Storage* storage;
     u32 fd;
-} Node;
-
-typedef struct {
-    struct Node;
 } File;
 
 typedef struct {
-    struct Node;
+    struct Storage* storage;
+    u32 fd;
 } Dir;
 
 typedef struct {
@@ -89,3 +86,5 @@ void Storage_stat(const wchar_t *path, NodeInfo *info);
 bool Storage_rename(const wchar_t *srcPath, const wchar_t *dstPath);
 
 bool Storage_remove(const wchar_t *path, bool allowNop);
+
+bool Storage_tryReplace(const wchar_t *path, const void *src, u32 size);

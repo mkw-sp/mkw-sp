@@ -1,0 +1,10 @@
+[package]
+name = "sign"
+version = "0.0.0"
+edition = "2021"
+
+[dependencies]
+argon2 = { version = "0.4.0", features = ["std"] }
+libhydrogen = "0.4.1"
+passterm = "1.1.6"
+zeroize = "1.5.5"

@@ -35,6 +35,7 @@ protected:
 public:
     void setVisible(bool visible);
     bool getVisible() const;
+    const Page *getPage() const;
     Page *getPage();
 
 private:
@@ -74,8 +75,8 @@ public:
 
 protected:
     UIAnimator m_animator;
-private:
     MainLayout m_mainLayout;
+private:
     MessageGroup m_specificMessageGroup;
     MessageGroup m_commonMessageGroup;
     u8 _16c[0x174 - 0x16c];
