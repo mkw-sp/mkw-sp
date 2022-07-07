@@ -966,7 +966,7 @@ code_in_files = {
         os.path.join('payload', 'sp', 'StackTrace.c'),
         # Storage module
         os.path.join('payload', 'sp', 'storage', 'FatStorage.c'),
-        os.path.join('payload', 'sp', 'storage', 'LogFile.c'),
+        os.path.join('payload', 'sp', 'storage', 'LogFile.cc'),
         os.path.join('payload', 'sp', 'storage', 'NandArcStorage.c'),
         os.path.join('payload', 'sp', 'storage', 'NetStorage.c'),
         os.path.join('payload', 'sp', 'storage', 'NetStorageClient.c'),

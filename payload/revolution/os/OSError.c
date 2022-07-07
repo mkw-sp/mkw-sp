@@ -46,7 +46,7 @@ void my_OSReport(const char *msg, ...) {
     va_end(args);
 
     va_start(args, msg);
-    LogFile_vprintf(msg, args);
+    LogFile_VPrintf(msg, args);
     va_end(args);
 
     const char *prefix = GetPrefix(ClassifyCaller(OSGetStackPointer()));
