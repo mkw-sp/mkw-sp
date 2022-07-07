@@ -935,6 +935,7 @@
 0x807f1c58 BalloonManager_ct
 0x807f1d44 BalloonManager_init
 0x807f4a08 _ZN2UI15CtrlRaceRankNum8calcSelfEv
+0x807f4d40 _ZN2UI15CtrlRaceRankNum5vf_48Ev
 0x807f7e64 RaceManager_getPlayerMaxLap
 0x807f7e80 _ZN2UI12CtrlRaceTime11getPlayerIdEv
 0x807f7ec0 CtrlRaceTime_calcSelf
