@@ -205,11 +205,11 @@
     },
     "10057": {
         "font": "regular",
-        "string": "Aktiviert",
+        "string": "Deaktiviert",
     },
     "10058": {
         "font": "regular",
-        "string": "Deaktiviert",
+        "string": "Aktiviert",
     },
     "10059": {
         "font": "regular",
