@@ -11,7 +11,7 @@
 
 #define SP_DEBUG_STACK_RANDOMIZE (1 << 0)
 #define SP_DEBUG_IOS_OPENS (1 << 1)
-#define SP_DEBUG_LEVEL (SP_DEBUG_STACK_RANDOMIZE | SP_DEBUG_IOS_OPENS)
+#define SP_DEBUG_LEVEL 0
 
 enum {
     kPlatform32 = 0,
