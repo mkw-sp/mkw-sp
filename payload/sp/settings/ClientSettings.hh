@@ -13,6 +13,9 @@ enum class Setting {
     InputDisplay,
     RankControl,
 
+    // Sound
+    ItemMusic,
+
     // TA
     TAClass,
     TAGhostSorting,
@@ -30,6 +33,7 @@ enum class Setting {
 
 enum class Category {
     Race,
+    Sound,
     TA,
     License,
 };
@@ -62,6 +66,12 @@ enum class InputDisplay {
 enum class RankControl {
     GPVS,
     Always,
+};
+
+enum class ItemMusic {
+    None,
+    DamageOnly,
+    All,
 };
 
 enum class TAClass {
@@ -152,6 +162,11 @@ struct Helper<ClientSettings::Setting, ClientSettings::Setting::InputDisplay> {
 template <>
 struct Helper<ClientSettings::Setting, ClientSettings::Setting::RankControl> {
     using type = SP::ClientSettings::RankControl;
+};
+
+template <>
+struct Helper<ClientSettings::Setting, ClientSettings::Setting::ItemMusic> {
+    using type = SP::ClientSettings::ItemMusic;
 };
 
 template <>

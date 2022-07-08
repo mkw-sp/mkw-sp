@@ -6,7 +6,7 @@ namespace SP::ClientSettings {
 
 const char name[] = "MKW-SP Settings";
 
-const u32 categoryMessageIds[] = { 10118, 10119, 10120 };
+const u32 categoryMessageIds[] = { 10118, 10126, 10119, 10120 };
 
 const Entry entries[] = {
     [static_cast<u32>(Setting::DriftMode)] = {
@@ -68,6 +68,16 @@ const Entry entries[] = {
         .valueNames = magic_enum::enum_names<RankControl>().data(),
         .valueMessageIds = (u32[]) { 10122, 10123 },
         .valueExplanationMessageIds = (u32[]) { 10124, 10125 },
+    },
+    [static_cast<u32>(Setting::ItemMusic)] = {
+        .category = Category::Sound,
+        .name = magic_enum::enum_name(Setting::ItemMusic),
+        .messageId = 10127,
+        .defaultValue = static_cast<u32>(ItemMusic::All),
+        .valueCount = magic_enum::enum_count<ItemMusic>(),
+        .valueNames = magic_enum::enum_names<ItemMusic>().data(),
+        .valueMessageIds = (u32[]) { 10128, 10129, 10130 },
+        .valueExplanationMessageIds = (u32[]) { 10131, 10132, 10133 },
     },
     [static_cast<u32>(Setting::TAClass)] = {
         .category = Category::TA,

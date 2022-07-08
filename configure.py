@@ -783,6 +783,7 @@ code_in_files = {
         os.path.join('payload', 'game', 'rel', 'Rel.S'),
         os.path.join('payload', 'game', 'scene', 'globe', 'GlobeManager.S'),
         os.path.join('payload', 'game', 'snd', 'DriverSound.S'),
+        os.path.join('payload', 'game', 'snd', 'ItemMusicManager.cc'),
         os.path.join('payload', 'game', 'snd', 'KartSound.S'),
         os.path.join('payload', 'game', 'snd', 'Snd.S'),
         os.path.join('payload', 'game', 'system', 'BugCheck.c'),

@@ -851,6 +851,7 @@
 0x80707534 KartSound_init
 0x80708b44 KartSound_80708b44
 0x8070b250 KartSound_8070b250
+0x8070fec8 _ZN5Sound16ItemMusicManager7resolveEv
 0x80716170 Snd_80716170
 0x8071e270 JugemManager_createInstance
 0x8071e480 JugemManager_createJugems

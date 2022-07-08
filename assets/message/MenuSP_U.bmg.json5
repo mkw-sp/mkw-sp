@@ -463,4 +463,36 @@
         "font": "regular",
         "string": "Always show the position tracker.",
     },
+    "10126": {
+        "font": "regular",
+        "string": "Sound",
+    },
+    "10127": {
+        "font": "regular",
+        "string": "Item Music",
+    },
+    "10128": {
+        "font": "regular",
+        "string": "None",
+    },
+    "10129": {
+        "font": "regular",
+        "string": "Shocked/Squashed Only",
+    },
+    "10130": {
+        "font": "regular",
+        "string": "All",
+    },
+    "10131": {
+        "font": "regular",
+        "string": "Do not let items affect the music.",
+    },
+    "10132": {
+        "font": "regular",
+        "string": "Only apply the shocked/squashed music effect.",
+    },
+    "10133": {
+        "font": "regular",
+        "string": "Let stars, mega mushrooms and lightnings affect the music.",
+    },
 }
