@@ -104,6 +104,10 @@ asset_in_files = {
         os.path.join('kart_kanji_font.brfnt'),
         os.path.join('tt_kart_font_rodan_ntlg_pro_b_R.brfnt'),
     ],
+    os.path.join('Scene', 'UI', 'MenuMultiSP.arc.lzma'): [
+        # 200cc
+        os.path.join('control', 'ctrl', 'VSSettingRadioOption.brctr.json5'),
+    ],
     os.path.join('Scene', 'UI', 'MenuOtherSP.arc.lzma'): [
         # License display and license management
         os.path.join('button', 'ctrl', 'LicenseManagementButton.brctr.json5'),
