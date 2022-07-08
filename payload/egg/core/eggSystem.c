@@ -10,7 +10,6 @@
 #include <sp/IOSDolphin.h>
 #include <sp/StringView.h>
 #include <sp/keyboard/Keyboard.h>
-#include <sp/storage/LogFile.h>
 #include <stdio.h>
 #include <stdlib.h>  // qsort
 #include <string.h>  // memcpy
@@ -254,8 +253,6 @@ static void my_lineCallback(const char *buf, size_t len) {
 static bool sConsoleInputUnavailable = false;
 
 void my_onBeginFrame(void *UNUSED(system)) {
-    LogFile_Flush();
-
     if (sItemSticky) {
         const s32 myPlayerId = GetMyPlayerID();
         if (myPlayerId >= 0) {

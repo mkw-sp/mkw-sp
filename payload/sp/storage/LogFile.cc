@@ -11,17 +11,47 @@ namespace SP::LogFile {
 static const size_t BUFFER_SIZE = 4096;
 static bool isInit = false;
 static OSTime startTime;
-static File file;
 static char buffers[BUFFER_SIZE][2];
 static u8 index = 0;
 static u16 offset = 0;
+static OSThread thread;
+static u8 stack[4096];
+
+static void *Run(void *UNUSED(arg)) {
+    File file;
+    if (!Storage_open(&file, L"/mkw-sp/log.txt", "w")) {
+        return nullptr;
+    }
+
+    while (true) {
+        OSSleepMilliseconds(50);
+
+        u8 oldIndex;
+        u16 oldOffset;
+        {
+            ScopeLock<NoInterrupts> lock;
+
+            if (offset == 0) {
+                continue;
+            }
+
+            oldIndex = index;
+            index ^= 1;
+
+            oldOffset = offset;
+            offset = 0;
+        }
+
+        Storage_write(&file, buffers[oldIndex], oldOffset, Storage_size(&file));
+        Storage_sync(&file);
+    }
+}
 
 static void Init() {
     startTime = OSGetTime();
 
-    if (!Storage_open(&file, L"/mkw-sp/log.txt", "w")) {
-        return;
-    }
+    OSCreateThread(&thread, Run, nullptr, stack + sizeof(stack), sizeof(stack), 31, 0);
+    OSResumeThread(&thread);
 
     isInit = true;
 }
@@ -52,31 +82,6 @@ static void VPrintf(const char *format, va_list args) {
     offset += length;
 }
 
-static void Flush() {
-    if (!isInit) {
-        return;
-    }
-
-    u8 oldIndex;
-    u16 oldOffset;
-    {
-        ScopeLock<NoInterrupts> lock;
-
-        if (offset == 0) {
-            return;
-        }
-
-        oldIndex = index;
-        index ^= 1;
-
-        oldOffset = offset;
-        offset = 0;
-    }
-
-    Storage_write(&file, buffers[oldIndex], oldOffset, Storage_size(&file));
-    Storage_sync(&file);
-}
-
 } // namespace SP::LogFile
 
 extern "C" {
@@ -86,9 +91,5 @@ void LogFile_Init(void) {
 
 void LogFile_VPrintf(const char *format, va_list args) {
     SP::LogFile::VPrintf(format, args);
-}
-
-void LogFile_Flush(void) {
-    SP::LogFile::Flush();
 }
 }
