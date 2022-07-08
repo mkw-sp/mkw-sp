@@ -482,8 +482,8 @@
 0x805a21d0 Camera_805a21d0
 0x805a8468 CameraManager_ct
 0x805bac84 _ZN2UI9AwaitPage3popEv
-0x805bb210 _ZN2UI13MenuAwaitPage15setTitleMessageEmPNS_11MessageInfoE
 0x805baf10 CtrlMenuPageTitleText_dt
+0x805bb210 _ZN2UI13MenuAwaitPage15setTitleMessageEmPNS_11MessageInfoE
 0x805bb220 Page_vf_5c
 0x805bb220 _ZN2UI4Page5vf_5cEv
 0x805bb224 Page_vf_58
@@ -513,6 +513,7 @@
 0x805bb25c Page_vf_0c
 0x805bb25c _ZN2UI4Page5vf_0cEv
 0x805bb278 _ZN2UI4Page14getReplacementEv
+0x805bc9dc AwardPage_initType
 0x805bd2d8 UIControl_vf_34
 0x805bd2d8 _ZN2UI9UIControl5vf_34Ev
 0x805bd2dc UIControl_vf_24

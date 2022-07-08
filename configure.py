@@ -819,6 +819,7 @@ code_in_files = {
         os.path.join('payload', 'game', 'system', 'SaveManager.cc'),
         os.path.join('payload', 'game', 'system', 'SceneCreatorDynamic.S'),
         os.path.join('payload', 'game', 'system', 'SceneCreatorDynamic.c'),
+        os.path.join('payload', 'game', 'ui', 'AwardPage.S'),
         os.path.join('payload', 'game', 'ui', 'Button.cc'),
         os.path.join('payload', 'game', 'ui', 'ChannelPage.cc'),
         os.path.join('payload', 'game', 'ui', 'ConfirmPage.cc'),
