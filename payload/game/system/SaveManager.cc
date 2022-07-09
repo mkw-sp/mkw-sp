@@ -213,7 +213,6 @@ void SaveManager::saveSPSave() {
 
     for (size_t i = 0; i < m_spLicenseCount; ++i) {
         m_spLicenses[i].writeIni(iniBuffer, sizeof(iniBuffer));
-        SP_LOG("Writing settings: %s", iniBuffer);
 
         wchar_t path[64];
         swprintf(path, std::size(path), L"/mkw-sp/settings%u.ini", (unsigned)i);
