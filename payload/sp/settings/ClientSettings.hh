@@ -15,6 +15,8 @@ enum class Setting {
 
     // Sound
     ItemMusic,
+    LastLapJingle,
+    LastLapSpeedup,
 
     // TA
     TAClass,
@@ -72,6 +74,17 @@ enum class ItemMusic {
     None,
     DamageOnly,
     All,
+};
+
+enum class LastLapJingle {
+    GameplayOnly,
+    Always,
+};
+
+enum class LastLapSpeedup {
+    None,
+    Static,
+    Dynamic,
 };
 
 enum class TAClass {
@@ -167,6 +180,16 @@ struct Helper<ClientSettings::Setting, ClientSettings::Setting::RankControl> {
 template <>
 struct Helper<ClientSettings::Setting, ClientSettings::Setting::ItemMusic> {
     using type = SP::ClientSettings::ItemMusic;
+};
+
+template <>
+struct Helper<ClientSettings::Setting, ClientSettings::Setting::LastLapJingle> {
+    using type = SP::ClientSettings::LastLapJingle;
+};
+
+template <>
+struct Helper<ClientSettings::Setting, ClientSettings::Setting::LastLapSpeedup> {
+    using type = SP::ClientSettings::LastLapSpeedup;
 };
 
 template <>

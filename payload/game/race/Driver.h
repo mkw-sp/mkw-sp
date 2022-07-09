@@ -1,6 +1,6 @@
 #pragma once
 
-#include "../snd/DriverSound.h"
+#include "game/sound/DriverSound.h"
 
 typedef struct {
     u8 _000[0x00c - 0x000];

@@ -4,6 +4,16 @@
 
 namespace Sound {
 
+ItemMusicManager *ItemMusicManager::CreateInstance() {
+    auto *instance = REPLACED(CreateInstance)();
+    instance->m_speedup = false;
+    return instance;
+}
+
+ItemMusicManager *ItemMusicManager::Instance() {
+    return s_instance;
+}
+
 void ItemMusicManager::resolve() {
     REPLACED(resolve)();
 
@@ -25,6 +35,14 @@ void ItemMusicManager::resolve() {
     default:
         break;
     }
+}
+
+f32 ItemMusicManager::pitch() const {
+    if (!m_speedup) {
+        return m_pitch;
+    }
+
+    return m_pitch * (9.0f / 8.0f); // One major tone
 }
 
 } // namespace Sound
