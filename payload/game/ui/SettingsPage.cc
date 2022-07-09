@@ -80,6 +80,8 @@ void SettingsPage::onDeinit() {
 }
 
 void SettingsPage::onActivate() {
+    m_instructionText.setMessage(0);
+
     m_categoryControl.selectDefault(0);
 
     auto *section = SectionManager::Instance()->currentSection();
