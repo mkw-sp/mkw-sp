@@ -43,7 +43,7 @@ enum class PageId {
     FlagBackground = 0x5C,
     TopOverlay = 0x5E,
     LicenseSelect = 0x65,
-    LicenseSettings = 0x67,
+    LicenseSettingsTop = 0x67,
     SingleTopMenu = 0x69,
     CharacterSelect = 0x6B,
     VehicleSelect = 0x6C,

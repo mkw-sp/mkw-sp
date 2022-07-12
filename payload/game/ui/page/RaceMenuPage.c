@@ -98,10 +98,7 @@ static const u32 ghostWatchPauseButtons[] = {
     kPausePageButtonID_Continue2,
     kPausePageButtonID_Restart3,
     kPausePageButtonID_BattleGhost,
-
-    // Repurposed as "Change Ghost Data"
     kPausePageButtonID_EXTChangeGhostData,
-
     kPausePageButtonID_ChangeCourse,
     kPausePageButtonID_ChangeCharacter,
     kPausePageButtonID_EXTLicenseSettings,
@@ -133,10 +130,7 @@ PATCH_B(GhostWatchPauseMenuPage_vf_74, my_GhostWatchPauseMenuPage_vf_74);
 
 static const u32 afterTaButtons[] = {
     kPausePageButtonID_Restart2,
-
-    // Repurposed as "Change Ghost Data"
     kPausePageButtonID_EXTChangeGhostData,
-
     kPausePageButtonID_ChangeCourse,
     kPausePageButtonID_ChangeCharacter,
     kPausePageButtonID_Replay,
@@ -216,10 +210,7 @@ PATCH_B(BattlePauseMenuPage_getFile, my_BattlePauseMenuPage_getFile);
 static const u32 timeAttackPauseButtons[] = {
     kPausePageButtonID_Continue1,
     kPausePageButtonID_Restart1,
-
-    // Repurposed as "Change Ghost Data"
     kPausePageButtonID_EXTChangeGhostData,
-
     kPausePageButtonID_ChangeCourse,
     kPausePageButtonID_ChangeCharacter,
     kPausePageButtonID_EXTLicenseSettings,

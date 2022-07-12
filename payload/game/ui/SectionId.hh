@@ -46,7 +46,7 @@ enum class SectionId {
     SingleChangeCourse = 0x4a,
     SingleChangeMission = 0x4d,
 
-    SingleChangeGhostData = 0x4e,
+    SingleChangeGhostData = 0x4e, // Replaces SingleMkChannelGhost
     ServicePack = 0x7a, // Replaces Channel
 
     Unlock0 = 0x90,

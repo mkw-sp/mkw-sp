@@ -1,1 +1,0 @@
-#define ChangeGhostData 0x4e

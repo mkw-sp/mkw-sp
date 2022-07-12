@@ -1,15 +1,16 @@
-#include "../Constants.S"
+#include "../SectionId.S"
+#include "../PageId.S"
 #include <Common.S>
 
 PATCH_BL_START(CourseSelectPage_onInit, 0x20)
     lwz r0, 0x0 (r4) // Original instruction
 
-    // Check that the section is "Change Ghost Data" (repurposed "Change Mission")
-    cmpwi r0, ChangeGhostData
+    // Check that the section is "Change Ghost Data"
+    cmpwi r0, SingleChangeGhostData
     bnelr
 
     // Set the previous page to cup select
-    li r6, 0x6e
+    li r6, CupSelect
     stw r6, 0x3ec (r3)
 
     b CourseSelectPage_onInit + 0x24
