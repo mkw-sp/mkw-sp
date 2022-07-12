@@ -170,7 +170,7 @@ void Section::addActivePages(SectionId id) {
     std::pair<SectionId, PageId> additions[] = {
 
         // Change Ghost Data
-        { SectionId::SingleChangeGhostData, PageId::TimeAttackGhostList },
+        //{ SectionId::SingleChangeGhostData, PageId::TimeAttackGhostList },
         { SectionId::SingleChangeGhostData, PageId::TimeAttackTop },
 
         // Mission Mode
