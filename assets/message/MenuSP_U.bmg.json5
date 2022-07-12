@@ -544,14 +544,6 @@
         "string": "Generate a faster music for the last lap on the flight.",
     },
     // Mission Mode
-    "3000": {
-        "font": "regular",
-        "string": "Select Level",
-    },
-    "3001": {
-        "font": "regular",
-        "string": "Select Stage",
-    },
     "3004": {
         "font": "regular",
         "string": "Missions",
@@ -559,5 +551,13 @@
     "3056": {
         "font": "regular",
         "string": "Play missions with various objectives.",
+    },
+    "3700": {
+        "font": "regular",
+        "string": "Select Level",
+    },
+    "3701": {
+        "font": "regular",
+        "string": "Select Stage",
     },
 }
