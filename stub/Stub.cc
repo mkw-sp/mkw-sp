@@ -25,7 +25,7 @@ typedef void (*LoaderEntryFunc)(void);
 
 #ifdef SP_RELEASE
 #define TMP_TICKET_PATH "/tmp/53505350.tik"
-#define TICKET_PARENT_PATH "ticket/00010001"
+#define TICKET_PARENT_PATH "/ticket/00010001"
 #define TICKET_PATH "/ticket/00010001/53505350.tik"
 #define TMD_PATH TITLE_CONTENT_PATH "/title.tmd"
 #define BANNER_PATH TITLE_DATA_PATH "/banner.bin"

@@ -463,4 +463,84 @@
         "font": "regular",
         "string": "Always show the position tracker.",
     },
+    "10126": {
+        "font": "regular",
+        "string": "Sound",
+    },
+    "10127": {
+        "font": "regular",
+        "string": "Item Music",
+    },
+    "10128": {
+        "font": "regular",
+        "string": "None",
+    },
+    "10129": {
+        "font": "regular",
+        "string": "Shocked/Squashed Only",
+    },
+    "10130": {
+        "font": "regular",
+        "string": "All",
+    },
+    "10131": {
+        "font": "regular",
+        "string": "Do not let items affect the music.",
+    },
+    "10132": {
+        "font": "regular",
+        "string": "Only apply the shocked/squashed music effect.",
+    },
+    "10133": {
+        "font": "regular",
+        "string": "Let stars, mega mushrooms and lightnings affect the music.",
+    },
+    "10134": {
+        "font": "regular",
+        "string": "Last Lap Jingle",
+    },
+    "10135": {
+        "font": "regular",
+        "string": "Gameplay Only",
+    },
+    "10136": {
+        "font": "regular",
+        "string": "Always",
+    },
+    "10137": {
+        "font": "regular",
+        "string": "Use a different jingle for the last lap during gameplay only.",
+    },
+    "10138": {
+        "font": "regular",
+        "string": "Use a different jingle for the last lap for both gameplay and replay.",
+    },
+    "10139": {
+        "font": "regular",
+        "string": "Last Lap Speedup",
+    },
+    "10140": {
+        "font": "regular",
+        "string": "None",
+    },
+    "10141": {
+        "font": "regular",
+        "string": "Static",
+    },
+    "10142": {
+        "font": "regular",
+        "string": "Dynamic",
+    },
+    "10143": {
+        "font": "regular",
+        "string": "Do not play a faster music during the last lap.",
+    },
+    "10144": {
+        "font": "regular",
+        "string": "Read the last lap music from a _f suffixed BRSTM.",
+    },
+    "10145": {
+        "font": "regular",
+        "string": "Generate a faster music for the last lap on the flight.",
+    },
 }

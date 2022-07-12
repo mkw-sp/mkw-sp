@@ -7,18 +7,32 @@
 namespace UI {
 
 void CtrlRaceRankNum::calcSelf() {
-    auto pageId = getPage()->id();
-    if (pageId == PageId::TARace || pageId == PageId::GhostReplayRace) {
-        bool visible = System::RaceConfig::Instance()->raceScenario().playerCount > 1;
-        auto *saveManager = System::SaveManager::Instance();
-        auto setting = saveManager->getSetting<SP::ClientSettings::Setting::RankControl>();
-        if (setting != SP::ClientSettings::RankControl::Always) {
-            visible = false;
-        }
-        setVisible(visible);
-    }
+    setVisible(!isDisabled());
 
     REPLACED(calcSelf)();
+}
+
+bool CtrlRaceRankNum::vf_48() {
+    if (isDisabled()) {
+        return true;
+    }
+
+    return REPLACED(vf_48)();
+}
+
+bool CtrlRaceRankNum::isDisabled() const {
+    auto pageId = getPage()->id();
+    if (pageId != PageId::TARace && pageId != PageId::GhostReplayRace) {
+        return false;
+    }
+
+    if (System::RaceConfig::Instance()->raceScenario().playerCount <= 1) {
+        return true;
+    }
+
+    auto *saveManager = System::SaveManager::Instance();
+    auto setting = saveManager->getSetting<SP::ClientSettings::Setting::RankControl>();
+    return setting != SP::ClientSettings::RankControl::Always;
 }
 
 } // namespace UI

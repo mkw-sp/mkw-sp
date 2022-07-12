@@ -9,6 +9,7 @@ public:
     u32 watchedPlayerId() const;
 
     static TypeInfo *GetTypeInfo();
+    static RacePage *Instance();
 
 protected:
     virtual void vf_64();
@@ -28,6 +29,8 @@ private:
     u8 _044[0x064 - 0x044];
     u32 m_watchedPlayerId;
     u8 _068[0x1dc - 0x068];
+
+    static RacePage *s_instance;
 };
 static_assert(sizeof(RacePage) == 0x1dc);
 

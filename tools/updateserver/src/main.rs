@@ -67,10 +67,10 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
                         break;
                     }
                 }
-                if queue.iter().any(|(_, a)| *a == address) {
+                if queue.iter().any(|(_, a)| *a == address.ip()) {
                     continue;
                 }
-                queue.push_back((now, address));
+                queue.push_back((now, address.ip()));
 
                 let now = Utc::now().format("%F %T");
                 let major = request.version_major;

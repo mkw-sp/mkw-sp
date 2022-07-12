@@ -197,12 +197,16 @@ static bool Sdi_sendCommand(u32 command, u32 commandType, u32 responseType, u32 
             },
         };
         if (IOS_Ioctlv(fd, IOCTLV_SEND_COMMAND, 2, 1, vec) < 0) {
-            SP_LOG("Failed to send command 0x%x", command);
+            if (command != CMD_SELECT) {
+                SP_LOG("Failed to send command 0x%x", command);
+            }
             return false;
         }
     } else {
         if (IOS_Ioctl(fd, IOCTL_SEND_COMMAND, &request, sizeof(request), &out, sizeof(out)) < 0) {
-            SP_LOG("Failed to send command 0x%x", command);
+            if (command != CMD_SELECT) {
+                SP_LOG("Failed to send command 0x%x", command);
+            }
             return false;
         }
     }

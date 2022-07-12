@@ -6,7 +6,7 @@ namespace SP::ClientSettings {
 
 const char name[] = "MKW-SP Settings";
 
-const u32 categoryMessageIds[] = { 10118, 10119, 10120 };
+const u32 categoryMessageIds[] = { 10118, 10126, 10119, 10120 };
 
 const Entry entries[] = {
     [static_cast<u32>(Setting::DriftMode)] = {
@@ -68,6 +68,36 @@ const Entry entries[] = {
         .valueNames = magic_enum::enum_names<RankControl>().data(),
         .valueMessageIds = (u32[]) { 10122, 10123 },
         .valueExplanationMessageIds = (u32[]) { 10124, 10125 },
+    },
+    [static_cast<u32>(Setting::ItemMusic)] = {
+        .category = Category::Sound,
+        .name = magic_enum::enum_name(Setting::ItemMusic),
+        .messageId = 10127,
+        .defaultValue = static_cast<u32>(ItemMusic::All),
+        .valueCount = magic_enum::enum_count<ItemMusic>(),
+        .valueNames = magic_enum::enum_names<ItemMusic>().data(),
+        .valueMessageIds = (u32[]) { 10128, 10129, 10130 },
+        .valueExplanationMessageIds = (u32[]) { 10131, 10132, 10133 },
+    },
+    [static_cast<u32>(Setting::LastLapJingle)] = {
+        .category = Category::Sound,
+        .name = magic_enum::enum_name(Setting::LastLapJingle),
+        .messageId = 10134,
+        .defaultValue = static_cast<u32>(LastLapJingle::GameplayOnly),
+        .valueCount = magic_enum::enum_count<LastLapJingle>(),
+        .valueNames = magic_enum::enum_names<LastLapJingle>().data(),
+        .valueMessageIds = (u32[]) { 10135, 10136 },
+        .valueExplanationMessageIds = (u32[]) { 10137, 10138 },
+    },
+    [static_cast<u32>(Setting::LastLapSpeedup)] = {
+        .category = Category::Sound,
+        .name = magic_enum::enum_name(Setting::LastLapSpeedup),
+        .messageId = 10139,
+        .defaultValue = static_cast<u32>(LastLapSpeedup::Static),
+        .valueCount = magic_enum::enum_count<LastLapSpeedup>(),
+        .valueNames = magic_enum::enum_names<LastLapSpeedup>().data(),
+        .valueMessageIds = (u32[]) { 10140, 10141, 10142 },
+        .valueExplanationMessageIds = (u32[]) { 10143, 10144, 10145 },
     },
     [static_cast<u32>(Setting::TAClass)] = {
         .category = Category::TA,

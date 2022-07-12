@@ -6,7 +6,7 @@
 
 #include "../race/Driver.h"
 
-#include "../snd/KartSound.h"
+#include "../sound/KartSound.h"
 
 typedef struct {
     u8 _00[0x04 - 0x00];

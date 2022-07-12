@@ -88,7 +88,7 @@ static void Init() {
     Console::Print(" done.\n");
 
     Console::Print("Initializing log file...");
-    LogFile_init();
+    LogFile_Init();
     Console::Print(" done.\n");
 
     // Example output:

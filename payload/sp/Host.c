@@ -79,20 +79,12 @@ static void DetectPlatform(void) {
     }
 
     {
-        // TODO: Ensure AHB access
-        const u32 acrReg = *(volatile u32 *)0xCD8005A0;
-
-        switch (acrReg >> 16) {
-        case 0xCAFE:
+        if (OSIsTitleInstalled(UINT64_C(0x0000000100000200))) {
             sPlatform = HOST_CAFE;
-            return;
-        case 0:
+        } else {
             sPlatform = HOST_REVOLUTION;
-            return;
         }
     }
-
-    sPlatform = HOST_UNKNOWN;
 }
 #endif
 

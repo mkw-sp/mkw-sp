@@ -61,6 +61,7 @@
 0x800841B0 MultiArcResourceAccessor_GetResource
 0x800836d0 AnimResource_CalcAnimationNum
 0x80084170 MultiArcResourceAccessor_Attach
+0x8008f610 _ZN4nw4r3snd10BasicSound8setPitchEf
 0x80091090 snd_DvdSoundArchive_Open
 0x800912c0 snd_DvdSoundArchive_OpenExtStream
 0x8009ded0 snd_SoundArchive_GetGroupCount
@@ -420,6 +421,7 @@
 0x8052f4e8 RaceConfigScenario_initPads
 0x8052fe58 RaceConfig_createInstance
 0x8053015c RaceConfig_ct
+0x805336a4 _ZN6System11RaceManager11GetLapCountEv
 0x80533ed8 RaceManagerPlayer_ct
 0x805347f4 RaceManagerPlayer_endRace
 0x80534df8 RaceManagerPlayer_calcCheckPoint
@@ -469,8 +471,10 @@
 0x805903cc _ZN4Kart15KartObjectProxy17getVehiclePhysicsEv
 0x805903f4 KartObjectProxy_getPadProxy
 0x80590678 KartObjectProxy_isGhost
+0x80590678 _ZNK4Kart15KartObjectProxy7isGhostEv
 0x8059077c KartObjectProxy_getKartMove
 0x8059077c _ZN4Kart15KartObjectProxy11getKartMoveEv
+0x80590a5c _ZNK4Kart15KartObjectProxy11getPlayerIdEv
 0x80590cf8 KartObjectProxy_getInternalSpeed
 0x80590cf8 _ZNK4Kart15KartObjectProxy16getInternalSpeedEv
 0x80591fa4 KartParam_compute
@@ -484,8 +488,8 @@
 0x805a21d0 Camera_805a21d0
 0x805a8468 CameraManager_ct
 0x805bac84 _ZN2UI9AwaitPage3popEv
-0x805bb210 _ZN2UI13MenuAwaitPage15setTitleMessageEmPNS_11MessageInfoE
 0x805baf10 CtrlMenuPageTitleText_dt
+0x805bb210 _ZN2UI13MenuAwaitPage15setTitleMessageEmPNS_11MessageInfoE
 0x805bb220 Page_vf_5c
 0x805bb220 _ZN2UI4Page5vf_5cEv
 0x805bb224 Page_vf_58
@@ -515,6 +519,7 @@
 0x805bb25c Page_vf_0c
 0x805bb25c _ZN2UI4Page5vf_0cEv
 0x805bb278 _ZN2UI4Page14getReplacementEv
+0x805bc9dc AwardPage_initType
 0x805bd2d8 UIControl_vf_34
 0x805bd2d8 _ZN2UI9UIControl5vf_34Ev
 0x805bd2dc UIControl_vf_24
@@ -853,7 +858,11 @@
 0x806fafb4 Snd_806fafb4
 0x80707534 KartSound_init
 0x80708b44 KartSound_80708b44
-0x8070b250 KartSound_8070b250
+0x8070b250 _ZN5Sound9KartSound7calcLapEv
+0x8070fa08 _ZN5Sound16ItemMusicManager14CreateInstanceEv
+0x8070fd10 _ZN5Sound16ItemMusicManager4calcEv
+0x8070fec8 _ZN5Sound16ItemMusicManager7resolveEv
+0x80711ac4 _ZN5Sound16RaceSoundManager10transitionEm
 0x80716170 Snd_80716170
 0x8071e270 JugemManager_createInstance
 0x8071e480 JugemManager_createJugems
@@ -939,6 +948,7 @@
 0x807f1d44 BalloonManager_init
 0x807f5f20 getResultCtrlName
 0x807f4a08 _ZN2UI15CtrlRaceRankNum8calcSelfEv
+0x807f4d40 _ZN2UI15CtrlRaceRankNum5vf_48Ev
 0x807f7e64 RaceManager_getPlayerMaxLap
 0x807f7e80 _ZN2UI12CtrlRaceTime11getPlayerIdEv
 0x807f7ec0 CtrlRaceTime_calcSelf
@@ -1020,6 +1030,10 @@
 0x809c1e38 s_sectionManager
 0x809c1e38 _ZN2UI14SectionManager10s_instanceE
 0x809c21d0 s_effectManager
+0x809c27f0 _ZN5Sound16ItemMusicManager10s_instanceE
+0x809c27f8 _ZN5Sound16RaceSoundManager10s_instanceE
+0x809c2850 _ZN5Sound17SceneSoundManager10s_instanceE
 0x809c2f38 s_driverManager
 0x809c38b8 s_raceGlobals
 0x809c4680 s_racePage
+0x809c4680 _ZN2UI8RacePage10s_instanceE

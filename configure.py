@@ -104,6 +104,10 @@ asset_in_files = {
         os.path.join('kart_kanji_font.brfnt'),
         os.path.join('tt_kart_font_rodan_ntlg_pro_b_R.brfnt'),
     ],
+    os.path.join('Scene', 'UI', 'MenuMultiSP.arc.lzma'): [
+        # 200cc
+        os.path.join('control', 'ctrl', 'VSSettingRadioOption.brctr.json5'),
+    ],
     os.path.join('Scene', 'UI', 'MenuOtherSP.arc.lzma'): [
         # License display and license management
         os.path.join('button', 'ctrl', 'LicenseManagementButton.brctr.json5'),
@@ -787,9 +791,14 @@ code_in_files = {
         os.path.join('payload', 'game', 'race', 'JugemManager.c'),
         os.path.join('payload', 'game', 'rel', 'Rel.S'),
         os.path.join('payload', 'game', 'scene', 'globe', 'GlobeManager.S'),
-        os.path.join('payload', 'game', 'snd', 'DriverSound.S'),
-        os.path.join('payload', 'game', 'snd', 'KartSound.S'),
-        os.path.join('payload', 'game', 'snd', 'Snd.S'),
+        os.path.join('payload', 'game', 'sound', 'DriverSound.S'),
+        os.path.join('payload', 'game', 'sound', 'ItemMusicManager.S'),
+        os.path.join('payload', 'game', 'sound', 'ItemMusicManager.cc'),
+        os.path.join('payload', 'game', 'sound', 'KartSound.S'),
+        os.path.join('payload', 'game', 'sound', 'KartSound.cc'),
+        os.path.join('payload', 'game', 'sound', 'RaceSoundManager.cc'),
+        os.path.join('payload', 'game', 'sound', 'SceneSoundManager.cc'),
+        os.path.join('payload', 'game', 'sound', 'Snd.S'),
         os.path.join('payload', 'game', 'system', 'BugCheck.c'),
         os.path.join('payload', 'game', 'system', 'Console.c'),
         os.path.join('payload', 'game', 'system', 'CourseMap.S'),
@@ -819,6 +828,7 @@ code_in_files = {
         os.path.join('payload', 'game', 'system', 'SaveManager.cc'),
         os.path.join('payload', 'game', 'system', 'SceneCreatorDynamic.S'),
         os.path.join('payload', 'game', 'system', 'SceneCreatorDynamic.c'),
+        os.path.join('payload', 'game', 'ui', 'AwardPage.S'),
         os.path.join('payload', 'game', 'ui', 'Button.cc'),
         os.path.join('payload', 'game', 'ui', 'ChannelPage.cc'),
         os.path.join('payload', 'game', 'ui', 'ConfirmPage.cc'),
@@ -909,6 +919,7 @@ code_in_files = {
         os.path.join('payload', 'nw4r', 'snd', 'snd_SoundArchive.c'),
         os.path.join('payload', 'nw4r', 'snd', 'snd_SoundArchivePlayer.S'),
         os.path.join('payload', 'nw4r', 'snd', 'snd_SoundArchivePlayer.c'),
+        os.path.join('payload', 'nw4r', 'snd', 'SoundHandle.cc'),
         os.path.join('payload', 'nw4r', 'ut', 'ut_DvdFileStream.S'),
         os.path.join('payload', 'platform', 'string.c'),
         os.path.join('payload', 'platform', 'wchar.c'),
@@ -971,7 +982,7 @@ code_in_files = {
         os.path.join('payload', 'sp', 'StackTrace.c'),
         # Storage module
         os.path.join('payload', 'sp', 'storage', 'FatStorage.c'),
-        os.path.join('payload', 'sp', 'storage', 'LogFile.c'),
+        os.path.join('payload', 'sp', 'storage', 'LogFile.cc'),
         os.path.join('payload', 'sp', 'storage', 'NandArcStorage.c'),
         os.path.join('payload', 'sp', 'storage', 'NetStorage.c'),
         os.path.join('payload', 'sp', 'storage', 'NetStorageClient.c'),

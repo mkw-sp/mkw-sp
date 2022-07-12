@@ -29,6 +29,10 @@ u32 RacePage::watchedPlayerId() const {
     return m_watchedPlayerId;
 }
 
+RacePage *RacePage::Instance() {
+    return s_instance;
+}
+
 u8 RacePage::getControlCount(u32 controls) const {
     u8 count = REPLACED(getControlCount)(controls);
 

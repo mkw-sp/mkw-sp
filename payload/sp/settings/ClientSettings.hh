@@ -13,6 +13,11 @@ enum class Setting {
     InputDisplay,
     RankControl,
 
+    // Sound
+    ItemMusic,
+    LastLapJingle,
+    LastLapSpeedup,
+
     // TA
     TAClass,
     TAGhostSorting,
@@ -30,6 +35,7 @@ enum class Setting {
 
 enum class Category {
     Race,
+    Sound,
     TA,
     License,
 };
@@ -62,6 +68,23 @@ enum class InputDisplay {
 enum class RankControl {
     GPVS,
     Always,
+};
+
+enum class ItemMusic {
+    None,
+    DamageOnly,
+    All,
+};
+
+enum class LastLapJingle {
+    GameplayOnly,
+    Always,
+};
+
+enum class LastLapSpeedup {
+    None,
+    Static,
+    Dynamic,
 };
 
 enum class TAClass {
@@ -152,6 +175,21 @@ struct Helper<ClientSettings::Setting, ClientSettings::Setting::InputDisplay> {
 template <>
 struct Helper<ClientSettings::Setting, ClientSettings::Setting::RankControl> {
     using type = SP::ClientSettings::RankControl;
+};
+
+template <>
+struct Helper<ClientSettings::Setting, ClientSettings::Setting::ItemMusic> {
+    using type = SP::ClientSettings::ItemMusic;
+};
+
+template <>
+struct Helper<ClientSettings::Setting, ClientSettings::Setting::LastLapJingle> {
+    using type = SP::ClientSettings::LastLapJingle;
+};
+
+template <>
+struct Helper<ClientSettings::Setting, ClientSettings::Setting::LastLapSpeedup> {
+    using type = SP::ClientSettings::LastLapSpeedup;
 };
 
 template <>

@@ -1,9 +1,10 @@
 #include "Storage.h"
 
 #include "sp/storage/FatStorage.h"
-#include "sp/storage/LogFile.h"
 #include "sp/storage/NandArcStorage.h"
 #include "sp/storage/NetStorage.h"
+
+#include <revolution.h>
 
 #include <wchar.h>
 
@@ -33,8 +34,6 @@ bool Storage_init(void) {
 }
 
 bool Storage_fastOpen(File *file, NodeId id) {
-    LOG_FILE_DISABLE();
-
     assert(file);
     assert(id.storage);
 
@@ -43,8 +42,6 @@ bool Storage_fastOpen(File *file, NodeId id) {
 }
 
 bool Storage_open(File *file, const wchar_t *path, const char *mode) {
-    LOG_FILE_DISABLE();
-
     assert(file);
     assert(path);
 
@@ -61,8 +58,6 @@ bool Storage_open(File *file, const wchar_t *path, const char *mode) {
 }
 
 bool Storage_close(File *file) {
-    LOG_FILE_DISABLE();
-
     assert(file);
     assert(file->storage);
 
@@ -70,8 +65,6 @@ bool Storage_close(File *file) {
 }
 
 bool Storage_read(File *file, void *dst, u32 size, u32 offset) {
-    LOG_FILE_DISABLE();
-
     assert(file);
     assert(dst);
     assert(file->storage);
@@ -80,8 +73,6 @@ bool Storage_read(File *file, void *dst, u32 size, u32 offset) {
 }
 
 bool Storage_write(File *file, const void *src, u32 size, u32 offset) {
-    LOG_FILE_DISABLE();
-
     assert(file);
     assert(src);
 
@@ -89,16 +80,12 @@ bool Storage_write(File *file, const void *src, u32 size, u32 offset) {
 }
 
 bool Storage_sync(File *file) {
-    LOG_FILE_DISABLE();
-
     assert(file);
 
     return file->storage->sync(file);
 }
 
 u64 Storage_size(File *file) {
-    LOG_FILE_DISABLE();
-
     assert(file);
     assert(file->storage);
 
@@ -157,16 +144,12 @@ bool Storage_writeFile(const wchar_t *path, bool overwrite, const void *src, u32
 
 // WARNING: Only operates on the primary storage
 bool Storage_createDir(const wchar_t *path, bool allowNop) {
-    LOG_FILE_DISABLE();
-
     assert(path);
 
     return fatStorage.createDir(path, allowNop);
 }
 
 bool Storage_fastOpenDir(Dir *dir, NodeId id) {
-    LOG_FILE_DISABLE();
-
     assert(dir);
     assert(id.storage);
 
@@ -175,8 +158,6 @@ bool Storage_fastOpenDir(Dir *dir, NodeId id) {
 }
 
 bool Storage_openDir(Dir *dir, const wchar_t *path) {
-    LOG_FILE_DISABLE();
-
     assert(dir);
     assert(path);
 
@@ -193,8 +174,6 @@ bool Storage_openDir(Dir *dir, const wchar_t *path) {
 }
 
 bool Storage_readDir(Dir *dir, NodeInfo *info) {
-    LOG_FILE_DISABLE();
-
     assert(dir);
     assert(dir->storage);
     assert(info);
@@ -204,8 +183,6 @@ bool Storage_readDir(Dir *dir, NodeInfo *info) {
 }
 
 bool Storage_closeDir(Dir *dir) {
-    LOG_FILE_DISABLE();
-
     assert(dir);
     assert(dir->storage);
 
@@ -213,8 +190,6 @@ bool Storage_closeDir(Dir *dir) {
 }
 
 void Storage_stat(const wchar_t *path, NodeInfo *info) {
-    LOG_FILE_DISABLE();
-
     assert(path);
     assert(info);
 
@@ -230,8 +205,6 @@ void Storage_stat(const wchar_t *path, NodeInfo *info) {
 
 // WARNING: Only operates on the primary storage
 bool Storage_rename(const wchar_t *srcPath, const wchar_t *dstPath) {
-    LOG_FILE_DISABLE();
-
     assert(srcPath);
     assert(dstPath);
 
@@ -240,16 +213,12 @@ bool Storage_rename(const wchar_t *srcPath, const wchar_t *dstPath) {
 
 // WARNING: Only operates on the primary storage
 bool Storage_remove(const wchar_t *path, bool allowNop) {
-    LOG_FILE_DISABLE();
-
     assert(path);
 
     return fatStorage.remove(path, allowNop);
 }
 
 bool Storage_tryReplace(const wchar_t *path, const void *src, u32 size) {
-    LOG_FILE_DISABLE();
-
     wchar_t newPath[64];
     swprintf(newPath, ARRAY_SIZE(newPath), L"%s.new", path);
     wchar_t oldPath[64];
