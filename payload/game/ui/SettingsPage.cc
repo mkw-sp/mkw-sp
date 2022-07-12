@@ -69,7 +69,7 @@ void SettingsPage::onInit() {
     m_pageTitleText.setMessage(10076);
 
     if (sectionId == SectionId::LicenseSettings) {
-        m_replacement = PageId::LicenseSettings;
+        m_replacement = PageId::LicenseSettingsTop;
     } else {
         m_replacement = PageId::None; // Failsafe
     }

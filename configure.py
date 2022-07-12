@@ -190,6 +190,7 @@ asset_in_files = {
         # GP removal
         os.path.join('button', 'blyt', 'common_w129_movie_button_single_top.brlyt.json5'),
         os.path.join('button', 'ctrl', 'SingleTop.brctr.json5'),
+        os.path.join('button', 'ctrl', 'SingleTopMR.brctr.json5'),
         # Ghost list
         os.path.join('button', 'ctrl', 'TimeAttackGhostListArrowLeft.brctr.json5'),
         os.path.join('button', 'ctrl', 'TimeAttackGhostListArrowRight.brctr.json5'),
@@ -577,8 +578,6 @@ common_cflags = [
     '-Wextra',
     '-Wno-packed-bitfield-compat',
 ]
-if args.gdb_compatible:
-    common_cflags += ['-DGDB_COMPATIBLE=1']
 common_ccflags = [
     '-DREVOLUTION',
     '-fno-asynchronous-unwind-tables',
@@ -598,6 +597,10 @@ common_ccflags = [
     '-Wno-delete-non-virtual-dtor',
     '-Wno-packed-bitfield-compat',
 ]
+if args.gdb_compatible:
+    common_cflags += ['-DGDB_COMPATIBLE=1']
+    common_ccflags += ['-DGDB_COMPATIBLE=1']
+
 target_cflags = {
     'stub': [],
     'loader': [],
@@ -772,6 +775,8 @@ code_in_files = {
         os.path.join('payload', 'game', 'kart', 'KartState.S'),
         os.path.join('payload', 'game', 'kart', 'KartState.cc'),
         os.path.join('payload', 'game', 'kart', 'KartSub.S'),
+        os.path.join('payload', 'game', 'missionrun', 'MissionRun.S'),
+        os.path.join('payload', 'game', 'missionrun', 'MissionRun.c'),
         os.path.join('payload', 'game', 'kart', 'VehiclePhysics.cc'),
         os.path.join('payload', 'game', 'net', 'NetManager.S'),
         os.path.join('payload', 'game', 'obj', 'ObjEffect.S'),

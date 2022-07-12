@@ -71,6 +71,62 @@ void Section::addPages(SectionId id) {
         { SectionId::GhostReplayChannel, PageId::Settings },
         { SectionId::GhostReplayDownload, PageId::Settings },
         { SectionId::GhostReplay, PageId::Settings },
+
+        // Mission Mode
+        { SectionId::MRReplay, PageId::CompetitionPersonalLeaderboard},
+        { SectionId::SingleChangeMission, PageId::MissionLevelSelect },
+        { SectionId::SingleChangeMission, PageId::MissionStageSelect },
+        { SectionId::SingleChangeMission, PageId::MissionPrompt },
+        { SectionId::SingleChangeMission, PageId::MissionDrift },
+        { SectionId::SingleChangeMission, PageId::MissionTutorial },
+
+        { SectionId::Single, PageId::MissionLevelSelect},
+        { SectionId::Single, PageId::MissionStageSelect},
+        { SectionId::Single, PageId::MissionPrompt},
+        { SectionId::Single, PageId::MissionDrift},
+        { SectionId::Single, PageId::MissionTutorial},
+        { SectionId::SingleChangeDriver, PageId::MissionLevelSelect},
+        { SectionId::SingleChangeDriver, PageId::MissionStageSelect},
+        { SectionId::SingleChangeDriver, PageId::MissionPrompt},
+        { SectionId::SingleChangeDriver, PageId::MissionDrift},
+        { SectionId::SingleChangeDriver, PageId::MissionTutorial},
+        { SectionId::SingleChangeCourse, PageId::MissionLevelSelect},
+        { SectionId::SingleChangeCourse, PageId::MissionStageSelect},
+        { SectionId::SingleChangeCourse, PageId::MissionPrompt},
+        { SectionId::SingleChangeCourse, PageId::MissionDrift},
+        { SectionId::SingleChangeCourse, PageId::MissionTutorial},
+        { SectionId::SingleChangeGhostData, PageId::MissionLevelSelect},
+        { SectionId::SingleChangeGhostData, PageId::MissionStageSelect},
+        { SectionId::SingleChangeGhostData, PageId::MissionPrompt},
+        { SectionId::SingleChangeGhostData, PageId::MissionDrift},
+        { SectionId::SingleChangeGhostData, PageId::MissionTutorial},
+
+        // Change Ghost Data
+        { SectionId::SingleChangeGhostData, PageId::RaceConfirm },
+        { SectionId::SingleChangeGhostData, PageId::MessageWindowPopup },
+        { SectionId::SingleChangeGhostData, PageId::ReadingGhostData },
+        { SectionId::SingleChangeGhostData, PageId::MenuMessage },
+        { SectionId::SingleChangeGhostData, (PageId)83 },
+        { SectionId::SingleChangeGhostData, PageId::FlagBackground },
+        { SectionId::SingleChangeGhostData, PageId::TopOverlay },
+        { SectionId::SingleChangeGhostData, PageId::SingleTopMenu },
+        { SectionId::SingleChangeGhostData, (PageId)106 },
+        { SectionId::SingleChangeGhostData, PageId::CharacterSelect },
+        { SectionId::SingleChangeGhostData, PageId::VehicleSelect },
+        { SectionId::SingleChangeGhostData, PageId::DriftSelect },
+        { SectionId::SingleChangeGhostData, PageId::CupSelect },
+        { SectionId::SingleChangeGhostData, PageId::CourseSelect },
+        { SectionId::SingleChangeGhostData, PageId::TimeAttackTop },
+        { SectionId::SingleChangeGhostData, PageId::TimeAttackGhostList },
+        { SectionId::SingleChangeGhostData, PageId::VsModeSelect },
+        { SectionId::SingleChangeGhostData, PageId::RaceRules },
+        { SectionId::SingleChangeGhostData, PageId::TeamsOverview },
+        { SectionId::SingleChangeGhostData, PageId::BattleModeSelect },
+        { SectionId::SingleChangeGhostData, PageId::BattleVehicleSelect },
+        { SectionId::SingleChangeGhostData, PageId::BattleRules },
+        { SectionId::SingleChangeGhostData, PageId::BattleCupSelect },
+        { SectionId::SingleChangeGhostData, PageId::BattleCourseSelect },
+
         // Support changing settings from the ghost list
         { SectionId::Single, PageId::Settings },
         { SectionId::SingleChangeDriver, PageId::Settings },
@@ -95,12 +151,29 @@ void Section::addPages(SectionId id) {
     REPLACED(addPages)(id);
 }
 
+void Section::addActivePage(PageId pageId) {
+    std::pair<SectionId, PageId> deletions[] = {
+        { SectionId::SingleChangeGhostData, PageId::CharacterSelect },
+    };
+    for (const auto &deletion : deletions) {
+        if (deletion.first == m_id && deletion.second == pageId) {
+            return;
+        }
+    }
+
+    REPLACED(addActivePage)(pageId);
+}
+
 void Section::addActivePages(SectionId id) {
     REPLACED(addActivePages)(id);
 
     std::pair<SectionId, PageId> additions[] = {
-        // Complete the "Change Ghost Data" section (repurposed "Change Mission")
+
+        // Change Ghost Data
         { SectionId::SingleChangeGhostData, PageId::TimeAttackTop },
+
+        // Mission Mode
+        { SectionId::SingleChangeMission, PageId::MissionLevelSelect },
     };
     for (const auto &addition : additions) {
         if (addition.first == id) {

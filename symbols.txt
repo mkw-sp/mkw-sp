@@ -549,6 +549,7 @@
 0x805be12c _ZN2UI10PushButton5vf_40Ev
 0x805be354 _ZN2UI10PushButton5vf_44Ev
 0x805be42c _ZN2UI10PushButton5vf_48Ev
+0x805BE430 PushButton_setPressSound
 0x805be600 UIControl_initSelf
 0x805be600 _ZN2UI9UIControl8initSelfEv
 0x805be610 _ZN2UI10PushButton5vf_28Ev
@@ -943,6 +944,7 @@
 0x807f1c34 BalloonManager_addNameControl
 0x807f1c58 BalloonManager_ct
 0x807f1d44 BalloonManager_init
+0x807f5f20 getResultCtrlName
 0x807f4a08 _ZN2UI15CtrlRaceRankNum8calcSelfEv
 0x807f4d40 _ZN2UI15CtrlRaceRankNum5vf_48Ev
 0x807f7e64 RaceManager_getPlayerMaxLap
@@ -956,7 +958,9 @@
 0x8082cad8 ObjPylon01_ct
 0x8082cc64 ObjPylon01_vf_b0
 0x8082dbec ObjPylon01_vf_c0
+0x80837a44 FUN_80837a44
 0x8083d55c CharacterSelectPage_onInit
+0x8083e928 CharacterSelectPage_8083e928
 0x808402f4 CourseSelectPage_onInit
 0x808404a0 CourseSelectPage_onActivate
 0x80840efc CupSelectPage_onInit
@@ -996,7 +1000,9 @@
 0x80858d60 RaceMenuPage_onInit
 0x80859a2c RaceMenuPage_onActivate
 0x8085a0f4 RaceMenuPage_onButtonFront
+0x8085bd58 RaceMenuPage_getTypeInfo
 0x8085bd58 _ZN2UI12RaceMenuPage11GetTypeInfoEv
+0x8085e3b4 RaceRankingPage_getReplacement
 0x80860acc getCharacterPane
 0x80863a9c DriverSound_init
 

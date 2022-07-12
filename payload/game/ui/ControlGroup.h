@@ -3,9 +3,10 @@
 #include <Common.h>
 
 typedef struct {
-    u8 _00[0x0c - 0x00];
+    u8 _00[0x08 - 0x00];
+    void* parent;
     struct Page *page;
-    u8 _10[0x14 - 0x10];
+    s32 capacity;
 } ControlGroup;
 static_assert(sizeof(ControlGroup) == 0x14);
 

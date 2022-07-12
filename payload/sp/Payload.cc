@@ -46,7 +46,9 @@ static void Init() {
     Console::Print(versionInfo.name);
     Console::Print("\n");
 
+#ifndef GDB_COMPATIBLE
     OSDisableCodeExecOnMEM1Hi16MB();
+#endif
 
 #ifdef GDB_COMPATIBLE
     OSSetMEM1ArenaLo((void*)0x809C4FA0);
@@ -55,6 +57,7 @@ static void Init() {
 #endif
 
     OSAllocFromMEM1ArenaLo(Payload_getSize(), 0x20);
+
 
     Memory_ProtectRangeModule(OS_PROTECT_CHANNEL_1, Dol_getInitSectionStart(), Dol_getRodataSectionEnd(), OS_PROTECT_PERMISSION_READ);
     Memory_ProtectRangeModule(OS_PROTECT_CHANNEL_2, Dol_getSdata2SectionStart(), Dol_getSbss2SectionEnd(), OS_PROTECT_PERMISSION_READ);

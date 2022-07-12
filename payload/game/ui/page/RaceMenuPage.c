@@ -1,5 +1,5 @@
 #include "RaceMenuPage.h"
-
+#include "game/system/RaceConfig.h"
 #include "game/ui/Button.h"
 #include "game/ui/SectionManager.h"
 #include "game/ui/SettingsPage.h"
@@ -47,6 +47,7 @@ typedef enum {
 
     // Reserved: Edit license settings in-game
     kPausePageButtonID_EXTLicenseSettings = 0x25,
+    kPausePageButtonID_EXTChangeGhostData = 0x26,
 } PausePageButtonID;
 
 // Referenced by RaceMenuPage.S
@@ -90,16 +91,14 @@ const char *sButtonStrings[] = {
     "ButtonNo",                 // kPausePageButtonID_No2
 
     "ButtonSettings",  // kPausePageButtonID_EXTLicenseSettings
+    "ButtonChangeGhostData", // kPausePageButtonID_EXTChangeGhostData
 };
 
 static const u32 ghostWatchPauseButtons[] = {
     kPausePageButtonID_Continue2,
     kPausePageButtonID_Restart3,
     kPausePageButtonID_BattleGhost,
-
-    // Repurposed as "Change Ghost Data"
-    kPausePageButtonID_ChangeMission,
-
+    kPausePageButtonID_EXTChangeGhostData,
     kPausePageButtonID_ChangeCourse,
     kPausePageButtonID_ChangeCharacter,
     kPausePageButtonID_EXTLicenseSettings,
@@ -131,10 +130,7 @@ PATCH_B(GhostWatchPauseMenuPage_vf_74, my_GhostWatchPauseMenuPage_vf_74);
 
 static const u32 afterTaButtons[] = {
     kPausePageButtonID_Restart2,
-
-    // Repurposed as "Change Ghost Data"
-    kPausePageButtonID_ChangeMission,
-
+    kPausePageButtonID_EXTChangeGhostData,
     kPausePageButtonID_ChangeCourse,
     kPausePageButtonID_ChangeCharacter,
     kPausePageButtonID_Replay,
@@ -214,10 +210,7 @@ PATCH_B(BattlePauseMenuPage_getFile, my_BattlePauseMenuPage_getFile);
 static const u32 timeAttackPauseButtons[] = {
     kPausePageButtonID_Continue1,
     kPausePageButtonID_Restart1,
-
-    // Repurposed as "Change Ghost Data"
-    kPausePageButtonID_ChangeMission,
-
+    kPausePageButtonID_EXTChangeGhostData,
     kPausePageButtonID_ChangeCourse,
     kPausePageButtonID_ChangeCharacter,
     kPausePageButtonID_EXTLicenseSettings,
@@ -264,7 +257,15 @@ void RaceMenuPage_onFrontSettings(
     SettingsPage_SetReplacement(this->id);
     const float pushDelay = PushButton_getDelay(pushButton);
     this->vt->nextPage(this, PAGE_ID_LICENSE_RECORDS);
-    Page_startReplace((Page *)this, /* animation */ 0, pushDelay);
+    Page_startReplace((Page *)this, PAGE_ANIMATION_NEXT, pushDelay);
+}
+
+void RaceMenuPage_onFrontChangeGhostData(RaceMenuPage *this, PushButton *pushButton, u32 UNUSED(localPlayerId)) {
+    PushButton_setPressSound(pushButton, 0xd5); // SE_RC_PAUSE_EXIT_GAME
+    const float pushDelay = PushButton_getDelay(pushButton);
+    s_raceConfig->menuScenario.gameMode = 0; // TIME_ATTACK
+    this->vt->changeSection((Page*)this, SECTION_ID_SINGLE_CHANGE_GHOST_DATA, PAGE_ANIMATION_NEXT, pushDelay);
+
 }
 
 bool RaceMenuPage_onFrontOther(
@@ -275,6 +276,9 @@ bool RaceMenuPage_onFrontOther(
     case kPausePageButtonID_EXTLicenseSettings:
         RaceMenuPage_onFrontSettings(this, pushButton, localPlayerId);
         return true;  // Handled
+    case kPausePageButtonID_EXTChangeGhostData:
+        RaceMenuPage_onFrontChangeGhostData(this, pushButton, localPlayerId);
+        return true;
     default:
         return false;  // Unhandled
     }
