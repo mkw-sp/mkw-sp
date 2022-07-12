@@ -450,8 +450,6 @@ s32 SIKeyboard_Scan(void) {
         SP_LOG("[%u] SI Type: %x", (u32)chan, type);
         if ((type & 0x08300000) == 0x08300000) {
             SP_LOG("Unsupported SIKeyboard variant");
-            assert(!"Unsupported GCKeyboard variant (wireless?). Are you using actual "
-                    "hardware?");
             return -1;
         }
         if ((type & 0x08200000) == 0x08200000) {
