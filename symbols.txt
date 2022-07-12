@@ -398,8 +398,6 @@
 0x80526020 Mii_80526020
 0x8052a098 MultiDvdArchive_create
 0x8052a1c8 CourseMultiDvdArchive_ct
-0x80529e00 SomeMissionModeThing1
-0x80842fb8 SomeMissionModeThing2
 0x8052a538 MultiDvdArchive_ct
 0x8052a648 MultiDvdArchive_init
 0x8052a6dc MultiDvdArchive_dt
