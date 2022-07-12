@@ -189,6 +189,7 @@ asset_in_files = {
     os.path.join('Scene', 'UI', 'MenuSingleSP.arc.lzma'): [
         # GP removal
         os.path.join('button', 'blyt', 'common_w129_movie_button_single_top.brlyt.json5'),
+        os.path.join('button', 'ctrl', 'MissionInstruction.brctr.json5'),
         os.path.join('button', 'ctrl', 'SingleTop.brctr.json5'),
         os.path.join('button', 'ctrl', 'SingleTopMR.brctr.json5'),
         # Ghost list
