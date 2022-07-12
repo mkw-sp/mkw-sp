@@ -54,12 +54,7 @@ void Stack_InitCanary(void)
 
 __attribute__((noreturn)) void __stack_chk_fail(void)
 {
-    const GXColor background = { 0xFF, 0x00, 0x00, 0xFF };
-    const GXColor foreground = { 0xFF, 0xFF, 0xFF, 0xFF };
-
-    char msg[128];
-    snprintf(msg, sizeof(msg), "MKW-SP v%s\n\n" "Stack smashing detected !", versionInfo.name);
-    OSFatal(foreground, background, msg);
+    panic("Stack smashing detected !");
     __builtin_unreachable();
 }
 

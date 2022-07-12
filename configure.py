@@ -950,6 +950,7 @@ code_in_files = {
         os.path.join('payload', 'sp', 'FlameGraph.c'),
         os.path.join('payload', 'sp', 'Host.c'),
         os.path.join('payload', 'sp', 'IOSDolphin.c'),
+        os.path.join('payload', 'sp', 'Panic.c'),
         # Keyboard module
         os.path.join('payload', 'sp', 'keyboard', 'Keyboard.c'),
         os.path.join('payload', 'sp', 'keyboard', 'SIKeyboard.c'),

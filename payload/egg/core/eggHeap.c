@@ -2,16 +2,10 @@
 
 #include <revolution.h>
 
-static void panic(void) {
-    const GXColor fg = { 255, 255, 255, 255 };
-    const GXColor bg = { 0, 0, 0, 255 };
-    OSFatal(fg, bg, "Couldn't allocate memory!");
-}
-
 void *spAlloc(size_t size, s32 align, EGG_Heap *heap) {
     void *memBlock = EGG_Heap_alloc(size, align, heap);
     if (!memBlock) {
-        panic();
+        panic("Couldn't allocate memory!");
     }
     SP_LOG("alloc %p (%zu)", memBlock, size);
     return memBlock;

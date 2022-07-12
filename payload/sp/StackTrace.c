@@ -106,7 +106,7 @@ size_t WriteStackTraceShort(char *buf, int capacity, void *sp) {
         }
 
         l += snprintf(
-                buf + l, capacity - l, "at %p%s %s\n", ported, pointerFlag, funcName);
+                buf + l, capacity - l, "@ %p%s %s\n", ported, pointerFlag, funcName);
     }
 
     return l;
