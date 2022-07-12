@@ -53,7 +53,7 @@ cmpwi r4, 0x1
 PATCH_B_END(SingleTopMenuPage_onButtonFront, 0x214)*/
 
 // 6th C2 code in the mission mode code, it was better to just port it in asm
-PATCH_B_START(SomeMissionModeThing1, 0x1c)
+/*PATCH_B_START(SomeMissionModeThing1, 0x1c)
 // Read activator value
 lis r12, activateMissionMode@h
 lwz r12, activateMissionMode@l(r12)
@@ -71,10 +71,10 @@ loc_0x10:
 
 end_thrd:
 b SomeMissionModeThing1+0x20
-PATCH_B_END(SomeMissionModeThing1, 0x1c)
+PATCH_B_END(SomeMissionModeThing1, 0x1c)*/
 
 // This tbh could just be ported to C but I've been doing this for 13 fucking hours straight so this is just gonna be asm for now
-PATCH_B_START(SomeMissionModeThing2, 0x74)
+/*PATCH_B_START(SomeMissionModeThing2, 0x74)
 loc_0x0:
   lis r4, _9c0@ha
   lwz r4, _9c0@l(r4)
@@ -98,4 +98,4 @@ loc_0x2C:
 
 end:
 b SomeMissionModeThing2+0x78
-PATCH_B_END(SomeMissionModeThing2, 0x74)
+PATCH_B_END(SomeMissionModeThing2, 0x74)*/

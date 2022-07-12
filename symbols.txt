@@ -994,7 +994,7 @@
 0x8085a0f4 RaceMenuPage_onButtonFront
 0x8085bd58 RaceMenuPage_getTypeInfo
 0x8085bd58 _ZN2UI12RaceMenuPage11GetTypeInfoEv
-0x8085e3b4 Page_getReplacement
+0x8085e3b4 RaceRankingPage_getReplacement
 0x80860acc getCharacterPane
 0x80863a9c DriverSound_init
 

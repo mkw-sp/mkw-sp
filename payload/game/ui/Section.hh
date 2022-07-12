@@ -31,7 +31,8 @@ public:
 private:
     void REPLACED(addPage)(PageId pageId);
     REPLACE void addPage(PageId pageId);
-    void addActivePage(PageId pageId);
+    void REPLACED(addActivePage)(PageId pageId);
+    REPLACE void addActivePage(PageId pageId);
     void REPLACED(addPages)(SectionId id);
     REPLACE void addPages(SectionId id);
     void REPLACED(addActivePages)(SectionId id);

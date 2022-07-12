@@ -18,6 +18,8 @@ enum class PageId {
 
     AfterTaMenu = 0x21,
     AfterVsMenu = 0x22,
+    AfterMrMenu = 0x25,
+    AfterTournamentMenu = 0x26,
     SendTournamentRecord = 0x2A,
     CheckRankings = 0x2B,
     ConfirmQuit = 0x2C,
@@ -58,6 +60,11 @@ enum class PageId {
     BattleRules = 0x77,
     BattleCupSelect = 0x78,
     BattleCourseSelect = 0x79,
+    MissionLevelSelect = 0x7a,
+    MissionStageSelect = 0x7b,
+    MissionPrompt = 0x7c,
+    MissionDrift = 0x7d,
+    MissionTutorial = 0x7e,
 
     ServicePackTop = 0xa2, // Replaces ChannelTop
     ChannelRanking = 0xa3,

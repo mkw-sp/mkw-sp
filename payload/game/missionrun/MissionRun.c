@@ -8,28 +8,10 @@
 int activateMissionMode = 1;
 const char* brctrMissionMode = "SingleTopMR";
 
-void(*backup_668)(MenuPage*, PushButton*);
-
-u32 _9c0;
-u32 _9d0;
-
-void missionModeFunc1() {
-    // Section* currentSection = s_sectionManager->currentSection;
-    // TopMenuPage* topMenuPage = (TopMenuPage*)currentSection->pages[PAGE_ID_SINGLE_TOP_MENU];
-
-    // topMenuPage->_6b4 = -1;
-    // topMenuPage->_6b8 = missionModeFunc2;
-    // backup_668 = topMenuPage->_668;
-
-    // Section_addPages(currentSection, 148);
-}
-
-void missionModeFunc2() {
-    MenuPage* menuPage = (MenuPage*)s_sectionManager->currentSection->pages[PAGE_ID_SINGLE_TOP_MENU];
-
-    _9d0 = 1;
-
-    backup_668(menuPage, (PushButton*)menuPage->controlGroup.parent);
+int my_RaceRankingPage_getReplacement() {
+    if (s_sectionManager->currentSection->id == SECTION_ID_MR_REPLAY)
+        return PAGE_ID_AFTER_MR_MENU;
+    return PAGE_ID_AFTER_TOURNAMENT_MENU;
 }
 
 const char* my_getResultCtrlName() {
@@ -41,4 +23,5 @@ const char* my_getResultCtrlName() {
     return "ResultVS";
 }
 
+PATCH_B(RaceRankingPage_getReplacement, my_RaceRankingPage_getReplacement);
 PATCH_B(getResultCtrlName, my_getResultCtrlName);

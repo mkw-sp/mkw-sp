@@ -120,11 +120,6 @@ static void Init() {
     assert(relWasLoaded);
     Console::Print(" done.\n");
 
-<<<<<<< HEAD
-    //Memory_ProtectRangeModule(OS_PROTECT_CHANNEL_0, Payload_getTextSectionStart(), Payload_getRodataSectionEnd(), OS_PROTECT_PERMISSION_READ);
-
-=======
->>>>>>> refs/remotes/origin/main
     VIInit();
     VISetBlack(true);
     VIFlush();

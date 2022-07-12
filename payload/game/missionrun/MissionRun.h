@@ -1,6 +1,4 @@
 #pragma once
 
-void missionModeFunc1();
-void missionModeFunc2();
-//void missionModeFunc3();
+extern void* RaceRankingPage_getReplacement;
 extern void* getResultCtrlName;
