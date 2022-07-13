@@ -12,16 +12,16 @@ class DVDStorage : public IStorage {
 public:
     DVDStorage();
 
-    virtual std::optional<FileHandle> fastOpen(u64 id);
-    virtual std::optional<FileHandle> open(const wchar_t *path, const char *mode);
+    std::optional<FileHandle> fastOpen(u64 id) override;
+    std::optional<FileHandle> open(const wchar_t *path, const char *mode) override;
 
-    virtual bool createDir(const wchar_t *path, bool allowNop);
-    virtual std::optional<DirHandle> fastOpenDir(u64 id);
-    virtual std::optional<DirHandle> openDir(const wchar_t *path);
+    bool createDir(const wchar_t *path, bool allowNop) override;
+    std::optional<DirHandle> fastOpenDir(u64 id) override;
+    std::optional<DirHandle> openDir(const wchar_t *path) override;
 
-    virtual std::optional<NodeInfo> stat(const wchar_t *path);
-    virtual bool rename(const wchar_t *srcPath, const wchar_t *dstPath);
-    virtual bool remove(const wchar_t *path, bool allowNop);
+    std::optional<NodeInfo> stat(const wchar_t *path) override;
+    bool rename(const wchar_t *srcPath, const wchar_t *dstPath) override;
+    bool remove(const wchar_t *path, bool allowNop) override;
 
 private:
     class File : public IFile, private DVDFileInfo {

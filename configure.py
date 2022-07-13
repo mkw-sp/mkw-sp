@@ -597,6 +597,7 @@ common_ccflags = [
     '-Wextra',
     '-Wno-delete-non-virtual-dtor',
     '-Wno-packed-bitfield-compat',
+    '-Wsuggest-override',
 ]
 if args.gdb_compatible:
     common_cflags += ['-DGDB_COMPATIBLE=1']
