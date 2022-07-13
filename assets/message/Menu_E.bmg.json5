@@ -763,6 +763,10 @@
         "font": "regular",
         "string": "Battle",
     },
+    "3004": {
+        "font": "regular",
+        "string": null,
+    },
     "3005": {
         "font": "regular",
         "string": null,
