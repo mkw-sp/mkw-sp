@@ -710,13 +710,12 @@ n.rule(
 n.newline()
 
 protobuf_proto_files = [
-    'UpdateRequest.proto',
-    'UpdateResponse.proto',
+    os.path.join('protobuf', 'NetStorage.proto'),
+    os.path.join('protobuf', 'Update.proto'),
 ]
 protobuf_h_files = []
 protobuf_c_files = []
 for proto_file in protobuf_proto_files:
-    proto_file = os.path.join('protobuf', proto_file)
     base, _ = os.path.splitext(proto_file)
     options_file = base + '.options'
     h_file = os.path.join('$builddir', base + '.pb.h')
@@ -744,7 +743,7 @@ code_in_files = {
         os.path.join('common', 'VI.cc'),
         os.path.join('payload', 'egg', 'core', 'eggColorFader.c'),
         os.path.join('payload', 'egg', 'core', 'eggDisplay.S'),
-        os.path.join('payload', 'egg', 'core', 'eggDvdFile.c'),
+        os.path.join('payload', 'egg', 'core', 'eggDVDRipper.cc'),
         os.path.join('payload', 'egg', 'core', 'eggEffectCreator.S'),
         os.path.join('payload', 'egg', 'core', 'eggG3dUtil.S'),
         os.path.join('payload', 'egg', 'core', 'eggHeap.c'),
@@ -814,7 +813,6 @@ code_in_files = {
         os.path.join('payload', 'game', 'system', 'InputManager.c'),
         os.path.join('payload', 'game', 'system', 'InputManager.cc'),
         os.path.join('payload', 'game', 'system', 'Mii.S'),
-        os.path.join('payload', 'game', 'system', 'MultiDvdArchive.S'),
         os.path.join('payload', 'game', 'system', 'MultiDvdArchive.c'),
         os.path.join('payload', 'game', 'system', 'NandManager.S'),
         os.path.join('payload', 'game', 'system', 'RaceConfig.S'),
@@ -825,6 +823,7 @@ code_in_files = {
         os.path.join('payload', 'game', 'system', 'RaceManager.cc'),
         os.path.join('payload', 'game', 'system', 'ResourceManager.S'),
         os.path.join('payload', 'game', 'system', 'ResourceManager.c'),
+        os.path.join('payload', 'game', 'system', 'ResourceManager.cc'),
         os.path.join('payload', 'game', 'system', 'RootScene.S'),
         os.path.join('payload', 'game', 'system', 'SaveManager.cc'),
         os.path.join('payload', 'game', 'system', 'SceneCreatorDynamic.S'),
@@ -916,20 +915,20 @@ code_in_files = {
         os.path.join('payload', 'nw4r', 'g3d', 'MSan.c'),
         os.path.join('payload', 'nw4r', 'lyt', 'lyt_arcResourceAccessor.S'),
         os.path.join('payload', 'nw4r', 'lyt', 'lyt_layout.S'),
-        os.path.join('payload', 'nw4r', 'snd', 'snd_DvdSoundArchive.S'),
-        os.path.join('payload', 'nw4r', 'snd', 'snd_SoundArchive.c'),
-        os.path.join('payload', 'nw4r', 'snd', 'snd_SoundArchivePlayer.S'),
-        os.path.join('payload', 'nw4r', 'snd', 'snd_SoundArchivePlayer.c'),
+        os.path.join('payload', 'nw4r', 'snd', 'DVDSoundArchive.cc'),
+        os.path.join('payload', 'nw4r', 'snd', 'SoundArchive.cc'),
+        os.path.join('payload', 'nw4r', 'snd', 'SoundArchiveFileReader.cc'),
+        os.path.join('payload', 'nw4r', 'snd', 'SoundArchiveLoader.cc'),
+        os.path.join('payload', 'nw4r', 'snd', 'SoundArchivePlayer.cc'),
         os.path.join('payload', 'nw4r', 'snd', 'SoundHandle.cc'),
-        os.path.join('payload', 'nw4r', 'ut', 'ut_DvdFileStream.S'),
+        os.path.join('payload', 'nw4r', 'ut', 'FileStream.cc'),
+        os.path.join('payload', 'nw4r', 'ut', 'IOStream.cc'),
         os.path.join('payload', 'platform', 'string.c'),
         os.path.join('payload', 'platform', 'wchar.c'),
         os.path.join('payload', 'revolution', 'arc.S'),
         os.path.join('payload', 'revolution', 'arc.c'),
         os.path.join('payload', 'revolution', 'ax.c'),
-        os.path.join('payload', 'revolution', 'dvd.S'),
         os.path.join('payload', 'revolution', 'dvd.c'),
-        os.path.join('payload', 'revolution', 'dvdex.c'),
         os.path.join('payload', 'revolution', 'es.c'),
         os.path.join('payload', 'revolution', 'exi.c'),
         os.path.join('payload', 'revolution', 'ios.S'),
@@ -949,8 +948,6 @@ code_in_files = {
         os.path.join('payload', 'revolution', 'so', 'SOBasic.S'),
         os.path.join('payload', 'sp', 'Channel.cc'),
         os.path.join('payload', 'sp', 'Commands.c'),
-        os.path.join('payload', 'sp', 'DVDDecompLoader.cc'),
-        os.path.join('payload', 'sp', 'DVDFile.cc'),
         os.path.join('payload', 'sp', 'Fatal.c'),
         os.path.join('payload', 'sp', 'FormattingCodes.c'),
         os.path.join('payload', 'sp', 'FlameGraph.c'),
@@ -962,6 +959,7 @@ code_in_files = {
         os.path.join('payload', 'sp', 'keyboard', 'SIKeyboard.c'),
         os.path.join('payload', 'sp', 'keyboard', 'IOSKeyboard.c'),
         #
+        os.path.join('payload', 'sp', 'LZ77Decoder.cc'),
         os.path.join('payload', 'sp', 'LZMADecoder.cc'),
         # Net module
         os.path.join('payload', 'sp', 'net', 'Net.cc'),
@@ -983,17 +981,17 @@ code_in_files = {
         os.path.join('payload', 'sp', 'Slab.c'),
         os.path.join('payload', 'sp', 'StackTrace.c'),
         # Storage module
-        os.path.join('payload', 'sp', 'storage', 'FatStorage.c'),
+        os.path.join('payload', 'sp', 'storage', 'DecompLoader.cc'),
+        os.path.join('payload', 'sp', 'storage', 'DVDStorage.cc'),
+        os.path.join('payload', 'sp', 'storage', 'FATStorage.cc'),
         os.path.join('payload', 'sp', 'storage', 'LogFile.cc'),
-        os.path.join('payload', 'sp', 'storage', 'NandArcStorage.c'),
-        os.path.join('payload', 'sp', 'storage', 'NetStorage.c'),
-        os.path.join('payload', 'sp', 'storage', 'NetStorageClient.c'),
+        os.path.join('payload', 'sp', 'storage', 'NANDArchiveStorage.cc'),
+        os.path.join('payload', 'sp', 'storage', 'NetStorage.cc'),
         os.path.join('payload', 'sp', 'storage', 'Sdi.c'),
-        os.path.join('payload', 'sp', 'storage', 'Storage.c'),
+        os.path.join('payload', 'sp', 'storage', 'Storage.cc'),
         os.path.join('payload', 'sp', 'storage', 'Usb.c'),
         os.path.join('payload', 'sp', 'storage', 'UsbStorage.c'),
         #
-        os.path.join('payload', 'sp', 'Tcp.c'),
         os.path.join('payload', 'sp', 'Time.cc'),
         os.path.join('payload', 'sp', 'Update.cc'),
         os.path.join('payload', 'sp', 'Yaz.c'),
@@ -1087,7 +1085,7 @@ for target in code_in_files:
                         *profile_cflags[profile],
                     ]),
                 },
-                implicit = protobuf_h_files if target == 'payload' else [],
+                implicit = [*protobuf_proto_files, *protobuf_h_files] if target == 'payload' else [],
             )
         n.newline()
 

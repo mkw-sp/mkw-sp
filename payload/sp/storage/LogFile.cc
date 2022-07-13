@@ -3,6 +3,7 @@ extern "C" {
 }
 
 #include "sp/ScopeLock.hh"
+#include "sp/storage/Storage.hh"
 
 #include <cstdio>
 
@@ -18,8 +19,8 @@ static OSThread thread;
 static u8 stack[4096];
 
 static void *Run(void *UNUSED(arg)) {
-    File file;
-    if (!Storage_open(&file, L"/mkw-sp/log.txt", "w")) {
+    auto file = Storage::Open(L"/mkw-sp/log.txt", "w");
+    if (!file) {
         return nullptr;
     }
 
@@ -42,8 +43,8 @@ static void *Run(void *UNUSED(arg)) {
             offset = 0;
         }
 
-        Storage_write(&file, buffers[oldIndex], oldOffset, Storage_size(&file));
-        Storage_sync(&file);
+        file->write(buffers[oldIndex], oldOffset, file->size());
+        file->sync();
     }
 }
 

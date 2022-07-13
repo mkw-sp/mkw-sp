@@ -78,6 +78,17 @@ Socket::Socket(const char *hostname, u16 port, const u8 serverPK[hydro_kx_PUBLIC
     memcpy(m_context, context, sizeof(m_context));
 }
 
+Socket::Socket(Socket &&that) : m_handle(that.m_handle), m_keypair(that.m_keypair),
+        m_messageID(that.m_messageID) {
+    memcpy(m_context, that.m_context, sizeof(m_context));
+    hydro_memzero(&that.m_keypair, sizeof(that.m_keypair));
+    that.m_handle = -1;
+}
+
+Socket &Socket::operator=(Socket &&that) {
+    return that;
+}
+
 Socket::~Socket() {
     hydro_memzero(&m_keypair, sizeof(m_keypair));
     if (m_handle >= 0) {

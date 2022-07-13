@@ -8,6 +8,9 @@ namespace SP {
 
 class Mutex final : private OSMutex {
 public:
+    Mutex();
+    ~Mutex();
+
     void lock();
     void unlock();
 };

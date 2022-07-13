@@ -1,6 +1,8 @@
 #include "game/host_system/SystemManager.h"
 
-#include <sp/DVDDecompLoader.h>
+#include <sp/storage/DecompLoader.h>
+
+#include <stdio.h>
 
 void *HomeButton_getFile(void *r3, const char *path, EGG_Heap *heap, bool isCompressed,
         u32 *fileSize);
@@ -10,7 +12,7 @@ static void *my_HomeButton_getFile(void *UNUSED(r3), const char *path, EGG_Heap 
     if (isCompressed) {
         u8 *file;
         size_t tmpSize;
-        bool result = DVDDecompLoader_Load(path, &file, &tmpSize, heap);
+        bool result = DecompLoader_LoadRO(path, &file, &tmpSize, heap);
         assert(result);
         if (fileSize) {
             *fileSize = tmpSize;

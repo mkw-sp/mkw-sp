@@ -9,6 +9,11 @@ enum {
     MULTI_DVD_ARCHIVE_TYPE_FONT = 0x3,
 };
 
+enum {
+    RESOURCE_KIND_FILE_DOUBLE_FORMAT = 0x0,
+    RESOURCE_KIND_FILE_SINGLE_FORMAT = 0x1,
+};
+
 typedef struct {
     const struct MultiDvdArchive_vt *vt;
     DvdArchive *archives;

@@ -1,6 +1,6 @@
 #include "Channel.hh"
 
-#include "sp/DVDDecompLoader.hh"
+#include "sp/storage/DecompLoader.hh"
 
 #include <common/ES.hh>
 extern "C" {
@@ -94,7 +94,8 @@ void Load(EGG::Heap *heap) {
     for (size_t i = 0; i < contentFiles.size(); i++) {
         char path[128];
         snprintf(path, sizeof(path), "/channel/%s", contentPaths[i]);
-        assert(DVDDecompLoader::Load(path, &contentFiles[i].data, &contentFiles[i].size, heap));
+        ContentFile &file = contentFiles[i];
+        assert(Storage::DecompLoader::LoadRO(path, &file.data, &file.size, heap));
     }
 
     isLoaded = true;

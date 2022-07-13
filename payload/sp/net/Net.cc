@@ -56,7 +56,7 @@ static void *Handle(void *UNUSED(arg)) {
     }
 }
 
-static void Init() {
+void Init() {
     sSlabs = reinterpret_cast<NetSlabs *>(OSAllocFromMEM2ArenaLo(sizeof(NetSlabs), 32));
     assert(sSlabs && "Failed to create slab allocator");
     memset(sSlabs, 0, sizeof(*sSlabs));
@@ -83,7 +83,3 @@ void Restart() {
 }
 
 } // namespace SP::Net
-
-extern "C" void Net_Init() {
-    return SP::Net::Init();
-}

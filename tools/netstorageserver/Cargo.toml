@@ -1,0 +1,13 @@
+[package]
+name = "netstorageserver"
+version = "0.0.0"
+edition = "2021"
+
+[dependencies]
+libhydrogen = "0.4.1"
+prost = "0.10.4"
+tokio = { version = "1.19.2", features = ["rt-multi-thread", "io-util", "net", "sync", "fs"] }
+zeroize = "1.5.5"
+
+[build-dependencies]
+prost-build = "0.10.4"

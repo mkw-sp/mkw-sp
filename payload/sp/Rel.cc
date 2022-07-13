@@ -1,14 +1,17 @@
 #include "Rel.hh"
 
-#include "sp/DVDFile.hh"
 extern "C" {
 #include "sp/Host.h"
 #include "sp/Patcher.h"
 #include "sp/Payload.h"
 #include "sp/security/Memory.h"
 #include "sp/security/Stack.h"
+}
+#include "sp/storage/Storage.hh"
 
+extern "C" {
 #include <game/system/Console.h>
+#include <revolution.h>
 }
 
 #include <cstring>
@@ -20,16 +23,15 @@ typedef void (*EntryFunction)(void);
 static EntryFunction entry = nullptr;
 
 bool Load() {
-    DVDFile file("/rel/StaticR.rel");
-    if (!file.ok()) {
+    auto file = Storage::OpenRO("/rel/StaticR.rel");
+    if (!file) {
         return false;
     }
 
 #ifndef GDB_COMPATIBLE
     void *src = OSGetMEM1ArenaLo();
 
-    s32 result = file.read(src, file.alignedSize(), 0);
-    if (result < 0 || static_cast<u32>(result) != file.alignedSize()) {
+    if (!file->read(src, file->size(), 0)) {
         return false;
     }
 
@@ -65,8 +67,7 @@ bool Load() {
     entry = reinterpret_cast<EntryFunction>(prologSectionInfo->offset + dstHeader->prolog);
     return true;
 #else
-    s32 result = file.read(Rel_getStart(), file.alignedSize(), 0);
-    if (result < 0 || static_cast<u32>(result) != file.alignedSize()) {
+    if (!file->read(Rel_getStart(), file->size(), 0)) {
         return false;
     }
 

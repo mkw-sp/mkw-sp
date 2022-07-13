@@ -1,9 +1,0 @@
-syntax = "proto2";
-
-message UpdateResponse {
-    required uint32 versionMajor = 1;
-    required uint32 versionMinor = 2;
-    required uint32 versionPatch = 3;
-    required uint32 size         = 4;
-    required bytes  signature    = 5;
-}

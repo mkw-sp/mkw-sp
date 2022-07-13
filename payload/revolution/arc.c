@@ -36,3 +36,14 @@ BOOL ARCFastOpenDir(ARCHandle *handle, s32 entrynum, ARCDir *dir) {
     dir->next = entry->dir.next;
     return true;
 }
+
+void ARCExClone(const ARCFileInfo *src, ARCFileInfo *dst) {
+    *dst = *src;
+}
+
+void ARCExCloneDir(const ARCDir *src, ARCDir *dst) {
+    dst->handle = src->handle;
+    dst->entryNum = src->entryNum;
+    dst->location = src->entryNum + 1;
+    dst->next = src->next;
+}

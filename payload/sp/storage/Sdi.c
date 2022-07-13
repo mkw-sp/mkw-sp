@@ -313,7 +313,15 @@ static bool Sdi_sync(void) {
     return true;
 }
 
-bool SdiStorage_init(FatStorage *fatStorage) {
+static const FATStorage sdiStorage = {
+    Sdi_sectorSize,
+    Sdi_read,
+    Sdi_write,
+    Sdi_erase,
+    Sdi_sync,
+};
+
+bool SdiStorage_init(const FATStorage **fatStorage) {
     assert(fd < 0);
 
     fd = IOS_Open("/dev/sdio/slot0", 0);
@@ -370,11 +378,7 @@ bool SdiStorage_init(FatStorage *fatStorage) {
 
     Sdi_deselect();
 
-    fatStorage->diskSectorSize = Sdi_sectorSize;
-    fatStorage->diskRead = Sdi_read;
-    fatStorage->diskWrite = Sdi_write;
-    fatStorage->diskErase = Sdi_erase;
-    fatStorage->diskSync = Sdi_sync;
+    *fatStorage = &sdiStorage;
 
     SP_LOG("Successfully completed initialization");
     return true;

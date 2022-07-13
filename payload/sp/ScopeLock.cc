@@ -2,6 +2,12 @@
 
 namespace SP {
 
+Mutex::Mutex() {
+    OSInitMutex(this);
+}
+
+Mutex::~Mutex() = default;
+
 void Mutex::lock() {
     OSLockMutex(this);
 }

@@ -37,7 +37,7 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
             let mut salt = Zeroizing::new([0u8; 32]);
             random::buf_into(&mut *salt);
             let mut file = File::create("salt.bin")?;
-            file.write(&*salt)?;
+            file.write_all(&*salt)?;
             salt
         }
         Err(e) => Err(e)?,

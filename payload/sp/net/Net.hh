@@ -1,7 +1,7 @@
 #pragma once
 
 extern "C" {
-#include "Net.h"
+#include "sp/Slab.h"
 }
 
 #include <memory>
@@ -43,6 +43,7 @@ u32 GetSize(const std::unique_ptr<T[], Deleter<T>> &array) {
     return array.get_deleter().getCount() * sizeof(T);
 }
 
+void Init();
 void Restart();
 
 } // namespace SP::Net

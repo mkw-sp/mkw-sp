@@ -41,7 +41,7 @@ SaveManager *SaveManager::CreateInstance() {
     s_instance->m_ghostCount = 0;
     s_instance->m_rawGhostHeaders = new (heap, 0x4) RawGhostHeader[MAX_GHOST_COUNT];
     s_instance->m_ghostFooters = new (heap, 0x4) GhostFooter[MAX_GHOST_COUNT];
-    s_instance->m_ghostIds = new (heap, 0x4) NodeId[MAX_GHOST_COUNT];
+    s_instance->m_ghostIds = new (heap, 0x4) SP::Storage::NodeId[MAX_GHOST_COUNT];
     for (u32 i = 0; i < std::size(s_instance->m_courseSHA1IsValid); i++) {
         s_instance->m_courseSHA1IsValid[i] = false;
     }
@@ -87,12 +87,12 @@ void SaveManager::initSPSave() {
         wchar_t path[64];
         swprintf(path, std::size(path), L"/mkw-sp/settings%u.ini", m_spLicenseCount);
 
-        u32 size;
-        if (!Storage_readFile(path, iniBuffer, sizeof(iniBuffer), &size)) {
+        auto size = SP::Storage::ReadFile(path, iniBuffer, sizeof(iniBuffer));
+        if (!size) {
             break;
         }
 
-        m_spLicenses[m_spLicenseCount++].readIni(iniBuffer, size);
+        m_spLicenses[m_spLicenseCount++].readIni(iniBuffer, *size);
     }
 }
 
@@ -112,67 +112,61 @@ void *SaveManager::InitGhostsTask(void *UNUSED(arg)) {
 void SaveManager::initGhosts() {
     SP_LOG("Initializing ghosts...");
 
-    wchar_t path[2048];
-    u32 offset = swprintf(path, 2048, L"/mkw-sp/ghosts");
-    initGhosts(path, offset);
-    offset = swprintf(path, 2048, L"/ctgpr/ghosts");
-    initGhosts(path, offset);
+    initGhosts(L"/mkw-sp/ghosts");
+    initGhosts(L"/ctgpr/ghosts");
 
-    Storage_createDir(L"/mkw-sp/ghosts", true);
+    SP::Storage::CreateDir(L"/mkw-sp/ghosts", true);
 
     SP_LOG("Ghosts: %u / %u", m_ghostCount, MAX_GHOST_COUNT);
 }
 
-void SaveManager::initGhosts(wchar_t *path, u32 offset) {
-    if (m_ghostCount >= MAX_GHOST_COUNT) {
+void SaveManager::initGhosts(const wchar_t *path) {
+    auto info = SP::Storage::Stat(path);
+    if (!info) {
         return;
     }
-
-    Dir dir;
-    if (!Storage_openDir(&dir, path)) {
+    if (info->type != SP::Storage::NodeType::Dir) {
         return;
     }
-
-    NodeInfo info;
-    while (Storage_readDir(&dir, &info)) {
-        if (info.type == NODE_TYPE_NONE) {
-            break;
-        }
-        s32 length = swprintf(path + offset, 2048 - offset, L"/%ls", info.name);
-        if (length < 0) {
-            continue;
-        }
-        offset += length;
-        if (info.type == NODE_TYPE_FILE) {
-            initGhost(info.id);
-        } else if (info.type == NODE_TYPE_DIR) {
-            initGhosts(path, offset);
-        } else {
-            break;
-        }
-        offset -= length;
-    }
-
-    Storage_closeDir(&dir);
+    initGhosts(info->id);
 }
 
-void SaveManager::initGhost(NodeId id) {
+void SaveManager::initGhosts(SP::Storage::NodeId id) {
     if (m_ghostCount >= MAX_GHOST_COUNT) {
         return;
     }
 
-    u32 readSize;
-    if (!Storage_fastReadFile(id, m_rawGhostFile, 0x2800, &readSize)) {
+    auto dir = SP::Storage::FastOpenDir(id);
+    if (!dir) {
         return;
     }
 
-    if (!RawGhostFile::IsValid(m_rawGhostFile, readSize)) {
+    while (auto info = dir->read()) {
+        if (info->type == SP::Storage::NodeType::Dir) {
+            initGhosts(info->id);
+        } else {
+            initGhost(info->id);
+        }
+    }
+}
+
+void SaveManager::initGhost(SP::Storage::NodeId id) {
+    if (m_ghostCount >= MAX_GHOST_COUNT) {
+        return;
+    }
+
+    auto readSize = SP::Storage::FastReadFile(id, m_rawGhostFile, 0x2800);
+    if (!readSize) {
+        return;
+    }
+
+    if (!RawGhostFile::IsValid(m_rawGhostFile, *readSize)) {
         return;
     }
 
     auto *header = reinterpret_cast<const RawGhostHeader *>(m_rawGhostFile);
     memcpy(&m_rawGhostHeaders[m_ghostCount], header, sizeof(RawGhostHeader));
-    m_ghostFooters[m_ghostCount] = GhostFooter(m_rawGhostFile, readSize);
+    m_ghostFooters[m_ghostCount] = GhostFooter(m_rawGhostFile, *readSize);
     m_ghostIds[m_ghostCount] = id;
     m_ghostCount++;
 }
@@ -217,7 +211,7 @@ void SaveManager::saveSPSave() {
         wchar_t path[64];
         swprintf(path, std::size(path), L"/mkw-sp/settings%u.ini", (unsigned)i);
 
-        if (!Storage_tryReplace(path, iniBuffer, strlen(iniBuffer))) {
+        if (!SP::Storage::WriteFile(path, iniBuffer, strlen(iniBuffer), true)) {
             SP_LOG("Failed to save %ls", path);
             m_spCanSave = false;
             m_isBusy = false;
@@ -230,7 +224,7 @@ void SaveManager::saveSPSave() {
         wchar_t path[64];
         swprintf(path, std::size(path), L"/mkw-sp/settings%u.ini", (unsigned)i);
 
-        if (!Storage_remove(path, true)) {
+        if (!SP::Storage::Remove(path, true)) {
             SP_LOG("Failed to delete %ls", path);
             m_spCanSave = false;
             m_isBusy = false;
@@ -391,14 +385,14 @@ bool SaveManager::loadGhost(u32 i) {
     auto *context = UI::SectionManager::Instance()->globalContext();
     auto &menuScenario = RaceConfig::Instance()->menuScenario();
 
-    NodeId id = m_ghostIds[context->m_timeAttackGhostIndices[i]];
-    u32 readSize;
-    if (!Storage_fastReadFile(id, m_rawGhostFile, 0x2800, &readSize)) {
+    auto id = m_ghostIds[context->m_timeAttackGhostIndices[i]];
+    auto readSize = SP::Storage::FastReadFile(id, m_rawGhostFile, 0x2800);
+    if (!readSize) {
         return false;
     }
 
     if (reinterpret_cast<RawGhostHeader *>(m_rawGhostFile)->isCompressed) {
-        if (!RawGhostFile::IsValid(m_rawGhostFile, readSize)) {
+        if (!RawGhostFile::IsValid(m_rawGhostFile, *readSize)) {
             return false;
         }
 
@@ -449,7 +443,7 @@ void SaveManager::saveGhost(GhostFile *file) {
     GetCourseName(m_courseSHA1s[file->courseId()], courseName);
     offset += swprintf(path + offset, 255 + 1 - offset, L"%s", courseName);
 
-    if (!Storage_createDir(path, true)) {
+    if (!SP::Storage::CreateDir(path, true)) {
         return;
     }
 
@@ -464,11 +458,11 @@ void SaveManager::saveGhost(GhostFile *file) {
     offset += swprintf(path + offset, 255 + 1 - offset, L"%ls", miiName);
     swprintf(path + offset, 255 + 1 - offset, L".rkg");
 
-    if (!Storage_writeFile(path, false, m_rawGhostFile, *size)) {
+    if (!SP::Storage::WriteFile(path, m_rawGhostFile, *size, false)) {
         u32 i;
         for (i = 0; i < 100; i++) {
             swprintf(path + offset, 255 + 1 - offset, L" %u.rkg", i);
-            if (Storage_writeFile(path, false, m_rawGhostFile, *size)) {
+            if (SP::Storage::WriteFile(path, m_rawGhostFile, *size, false)) {
                 break;
             }
         }
@@ -479,10 +473,9 @@ void SaveManager::saveGhost(GhostFile *file) {
 
     m_saveGhostResult = true;
 
-    NodeInfo info;
-    Storage_stat(path, &info);
-    if (info.type == NODE_TYPE_FILE) {
-        initGhost(info.id);
+    auto info = SP::Storage::Stat(path);
+    if (info && info->type == SP::Storage::NodeType::File) {
+        initGhost(info->id);
     }
 }
 

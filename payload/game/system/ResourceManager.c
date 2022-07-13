@@ -70,6 +70,18 @@ MultiDvdArchive *my_ResourceManager_loadCourse(ResourceManager *self, u32 course
 }
 PATCH_B(ResourceManager_loadCourse, my_ResourceManager_loadCourse);
 
+MultiDvdArchive *my_ResourceManager_loadMission(ResourceManager *self, u32 courseId, u32 missionId,
+        EGG_Heap *heap, bool splitScreen) {
+    MultiDvdArchive *multi = self->multis[MULTI_DVD_ARCHIVE_TYPE_COURSE];
+    multi->kinds[1] = RESOURCE_KIND_FILE_SINGLE_FORMAT;
+    snprintf(multi->names[1], 0x80, "Race/MissionRun/mr%02ld.szs", missionId);
+    CourseCache_load2(&self->courseCache, courseId, splitScreen);
+    MultiDvdArchive_loadOther(multi, self->courseCache.multi, heap);
+    self->courseCache.state = COURSE_CACHE_STATE_CLEARED;
+    return multi;
+}
+PATCH_B(ResourceManager_loadMission, my_ResourceManager_loadMission);
+
 static u16 my_ResourceManager_getMenuArchiveCount(ResourceManager *self) {
     const MultiDvdArchive *multi = self->multis[MULTI_DVD_ARCHIVE_TYPE_MENU];
     u16 loadedCount = 0;

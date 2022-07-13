@@ -5,6 +5,7 @@
 
 #include <egg/core/eggTaskThread.hh>
 #include <sp/settings/ClientSettings.hh>
+#include <sp/storage/Storage.hh>
 
 namespace System {
 
@@ -99,8 +100,9 @@ private:
     void initSPSave();
     void initGhostsAsync();
     void initGhosts();
-    void initGhosts(wchar_t *path, u32 offset);
-    void initGhost(NodeId id);
+    void initGhosts(const wchar_t *path);
+    void initGhosts(SP::Storage::NodeId id);
+    void initGhost(SP::Storage::NodeId id);
 
     void saveSPSave();
 
@@ -131,7 +133,7 @@ private:
     RawGhostHeader *m_rawGhostHeaders; // Modified
     GhostGroup *m_ghostGroup;
     GhostFooter *m_ghostFooters; // Modified
-    NodeId *m_ghostIds; // Modified
+    SP::Storage::NodeId *m_ghostIds; // Modified
     u8 _00034[0x00035 - 0x00034];
     bool m_saveGhostResult;
     s16 m_currentLicenseId;
