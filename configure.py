@@ -89,6 +89,7 @@ HUD_LANGUAGES = {
 
 asset_in_files = {
     os.path.join('Scene', 'UI', 'ChannelSP.arc.lzma'): [
+        os.path.join('bg', 'ctrl', 'MenuObiTitleTextOption.brctr.json5'),
         os.path.join('button', 'ctrl', 'ServicePackTopButton.brctr.json5'),
         os.path.join('button', 'ctrl', 'StorageBenchmarkButton.brctr.json5'),
     ],
