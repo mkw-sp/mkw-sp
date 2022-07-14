@@ -149,7 +149,7 @@ std::optional<FileHandle> NetStorage::startBenchmark() {
 void NetStorage::endBenchmark() {}
 
 u32 NetStorage::getMessageId() {
-    return 10156;
+    return 10158;
 }
 
 std::optional<FileHandle> NetStorage::File::clone() {

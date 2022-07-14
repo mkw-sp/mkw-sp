@@ -581,11 +581,23 @@
     },
     "10155": {
         "font": "regular",
-        "string": "USB",
+        "string": "SD card",
     },
     "10156": {
         "font": "regular",
+        "string": "USB",
+    },
+    "10157": {
+        "font": "regular",
+        "string": "USB",
+    },
+    "10158": {
+        "font": "regular",
         "string": "Network",
+    },
+    "10159": {
+        "font": "regular",
+        "string": "network",
     },
     // Mission Mode
     "3004": {

@@ -42,7 +42,7 @@ void StorageBenchmarkPage::afterCalc() {
     case State::BenchmarkFAT:
     case State::BenchmarkNet:
         if (auto status = SP::Storage::GetBenchmarkStatus()) {
-            info.messageIds[0] = getStorageMessageId();
+            info.messageIds[0] = getStorageMessageId() + 1;
             if (status->mode == SP::Storage::BenchmarkStatus::Mode::Read) {
                 info.messageIds[1] = 10152;
             } else {
@@ -143,7 +143,7 @@ void StorageBenchmarkPage::transition(State state) {
         OSResumeThread(&m_thread);
         optionAwaitPage->reset();
         optionAwaitPage->setTitleMessage(10146);
-        info.messageIds[0] = getStorageMessageId();
+        info.messageIds[0] = getStorageMessageId() + 1;
         info.messageIds[1] = 10151;
         optionAwaitPage->setWindowMessage(10148, &info);
         push(PageId::OptionAwait, Anim::Next);
@@ -152,7 +152,7 @@ void StorageBenchmarkPage::transition(State state) {
     case State::BenchmarkNetOk:
         optionMessagePage->reset();
         optionMessagePage->setTitleMessage(10146);
-        info.messageIds[0] = getStorageMessageId();
+        info.messageIds[0] = getStorageMessageId() + 1;
         for (u32 i = 0; i < 4; i++) {
             info.intVals[i] = m_throughputs->sizes[i] / 1024;
             printMebibytes(m_throughputs->read[i], throughputs[2 * i + 0]);
@@ -167,8 +167,8 @@ void StorageBenchmarkPage::transition(State state) {
     case State::BenchmarkNetFail:
         optionMessagePage->reset();
         optionMessagePage->setTitleMessage(10146);
-        info.messageIds[0] = getStorageMessageId();
-        optionMessagePage->setWindowMessage(10150);
+        info.messageIds[0] = getStorageMessageId() + 1;
+        optionMessagePage->setWindowMessage(10150, &info);
         push(PageId::OptionMessage, Anim::Next);
         break;
     case State::Next:

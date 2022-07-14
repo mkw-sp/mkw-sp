@@ -344,7 +344,7 @@ static bool UsbStorage_sync(void) {
 }
 
 static u32 UsbStorage_getMessageId(void) {
-    return 10155;
+    return 10156;
 }
 
 static const FATStorage usbStorage = {
