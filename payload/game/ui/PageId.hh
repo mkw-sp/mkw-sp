@@ -67,7 +67,7 @@ enum class PageId {
     MissionTutorial = 0x7e,
 
     ServicePackTop = 0xa2, // Replaces ChannelTop
-    ChannelRanking = 0xa3,
+    StorageBenchmark = 0xa3, // Replaces ChannelRanking
     ChannelGhost = 0xa4,
 
     GhostManager = 0xa7,

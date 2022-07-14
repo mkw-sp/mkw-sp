@@ -91,6 +91,33 @@ public:
     virtual std::optional<NodeInfo> stat(const wchar_t *path) = 0;
     virtual bool rename(const wchar_t *srcPath, const wchar_t *dstPath) = 0;
     virtual bool remove(const wchar_t *path, bool allowNop) = 0;
+
+    virtual std::optional<FileHandle> startBenchmark() = 0;
+    virtual void endBenchmark() = 0;
+    virtual u32 getMessageId() = 0;
+};
+
+enum class StorageType {
+    Net,
+    FAT,
+    NANDArchive,
+    DVD,
+};
+
+struct Throughputs {
+    u32 sizes[4];
+    u32 read[4];
+    u32 write[4];
+};
+
+struct BenchmarkStatus {
+    enum class Mode {
+        Read,
+        Write,
+    };
+
+    u32 size;
+    Mode mode;
 };
 
 bool Init();
@@ -109,5 +136,10 @@ std::optional<DirHandle> OpenDir(const wchar_t *path);
 std::optional<NodeInfo> Stat(const wchar_t *path);
 bool Rename(const wchar_t *srcPath, const wchar_t *dstPath);
 bool Remove(const wchar_t *path, bool allowNop);
+
+static constexpr u32 BENCHMARK_BUFFER_SIZE = 1024 * 1024;
+std::optional<Throughputs> Benchmark(StorageType type, void *buffer);
+std::optional<BenchmarkStatus> GetBenchmarkStatus();
+u32 GetMessageId(StorageType type);
 
 } // namespace SP::Storage

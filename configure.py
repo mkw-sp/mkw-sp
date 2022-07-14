@@ -90,6 +90,7 @@ HUD_LANGUAGES = {
 asset_in_files = {
     os.path.join('Scene', 'UI', 'ChannelSP.arc.lzma'): [
         os.path.join('button', 'ctrl', 'ServicePackTopButton.brctr.json5'),
+        os.path.join('button', 'ctrl', 'StorageBenchmarkButton.brctr.json5'),
     ],
     os.path.join('Scene', 'UI', 'CrashSP.arc.lzma'): [
         os.path.join('fatal', 'blyt', 'Fatal.brlyt'),
@@ -863,6 +864,7 @@ code_in_files = {
         os.path.join('payload', 'game', 'ui', 'ServicePackTopPage.cc'),
         os.path.join('payload', 'game', 'ui', 'SettingsPage.cc'),
         os.path.join('payload', 'game', 'ui', 'SheetSelectControl.cc'),
+        os.path.join('payload', 'game', 'ui', 'StorageBenchmarkPage.cc'),
         os.path.join('payload', 'game', 'ui', 'TabControl.cc'),
         os.path.join('payload', 'game', 'ui', 'TimeAttackGhostListPage.cc'),
         os.path.join('payload', 'game', 'ui', 'TimeAttackTopPage.S'),

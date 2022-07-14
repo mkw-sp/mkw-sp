@@ -543,6 +543,50 @@
         "font": "regular",
         "string": "Generate a faster music for the last lap on the flight.",
     },
+    "10146": {
+        "font": "regular",
+        "string": "Storage Benchmark",
+    },
+    "10147": {
+        "font": "regular",
+        "string": "What device do you want to benchmark?",
+    },
+    "10148": {
+        "font": "regular",
+        "string": "Benchmarking the {arg message|0} storage...\n{arg message|1}",
+    },
+    "10149": {
+        "font": "regular",
+        "string": "The {arg message|0} storage benchmark succeeded.\n{arg integer|0 0} KiB: R {arg string|0} MiB/s - W {arg string|1} MiB/s\n{arg integer|1 0} KiB: R {arg string|2} MiB/s - W {arg string|3} MiB/s\n{arg integer|2 0} KiB: R {arg string|4} MiB/s - W {arg string|5} MiB/s\n{arg integer|3 0} KiB: R {arg string|6} MiB/s - W {arg string|7} MiB/s",
+    },
+    "10150": {
+        "font": "regular",
+        "string": "The {arg message|0} storage benchmark failed!",
+    },
+    "10151": {
+        "font": "regular",
+        "string": "Initializing...",
+    },
+    "10152": {
+        "font": "regular",
+        "string": "Reading {arg integer|0 0} KiB chunks...",
+    },
+    "10153": {
+        "font": "regular",
+        "string": "Writing {arg integer|0 0} KiB chunks...",
+    },
+    "10154": {
+        "font": "regular",
+        "string": "SD card",
+    },
+    "10155": {
+        "font": "regular",
+        "string": "USB",
+    },
+    "10156": {
+        "font": "regular",
+        "string": "Network",
+    },
     // Mission Mode
     "3004": {
         "font": "regular",

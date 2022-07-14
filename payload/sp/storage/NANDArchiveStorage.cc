@@ -181,6 +181,16 @@ bool NANDArchiveStorage::remove(const wchar_t *UNUSED(path), bool UNUSED(allowNo
     return false;
 }
 
+std::optional<FileHandle> NANDArchiveStorage::startBenchmark() {
+    return {};
+}
+
+void NANDArchiveStorage::endBenchmark() {}
+
+u32 NANDArchiveStorage::getMessageId() {
+    return 0;
+}
+
 std::optional<FileHandle> NANDArchiveStorage::File::clone() {
     ScopeLock<Mutex> lock(m_storage->m_mutex);
 

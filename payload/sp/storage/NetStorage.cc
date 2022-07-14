@@ -127,6 +127,31 @@ bool NetStorage::remove(const wchar_t *UNUSED(path), bool UNUSED(allowNop)) {
     return false;
 }
 
+std::optional<FileHandle> NetStorage::startBenchmark() {
+    ScopeLock<Mutex> lock(m_mutex);
+
+    if (!m_socket) {
+        return {};
+    }
+
+    auto *file = FindNode(m_files);
+    if (file == std::end(m_files)) {
+        return {};
+    }
+
+    if (!writeStartBenchmark()) {
+        return {};
+    }
+
+    return readOpen(file);
+}
+
+void NetStorage::endBenchmark() {}
+
+u32 NetStorage::getMessageId() {
+    return 10156;
+}
+
 std::optional<FileHandle> NetStorage::File::clone() {
     ScopeLock<Mutex> lock(m_storage->m_mutex);
 
@@ -365,6 +390,12 @@ bool NetStorage::writeStat(const wchar_t *path) {
     NetStorageRequest request;
     request.which_request = NetStorageRequest_stat_tag;
     snprintf(request.request.stat.path, sizeof(request.request.stat.path), "%ls", path);
+    return write(request);
+}
+
+bool NetStorage::writeStartBenchmark() {
+    NetStorageRequest request;
+    request.which_request = NetStorageRequest_startBenchmark_tag;
     return write(request);
 }
 

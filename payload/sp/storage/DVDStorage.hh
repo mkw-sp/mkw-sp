@@ -23,6 +23,10 @@ public:
     bool rename(const wchar_t *srcPath, const wchar_t *dstPath) override;
     bool remove(const wchar_t *path, bool allowNop) override;
 
+    std::optional<FileHandle> startBenchmark() override;
+    void endBenchmark() override;
+    u32 getMessageId() override;
+
 private:
     class File : public IFile, private DVDFileInfo {
     public:

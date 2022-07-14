@@ -54,7 +54,7 @@
 #define MissionDrift 0x7d 
 #define MissionTutorial 0x7e 
 #define ServicePackTop 0xa2 // Replaces ChannelTop 
-#define ChannelRanking 0xa3 
+#define StorageBenchmark 0xa3 // Replaces ChannelRanking
 #define ChannelGhost 0xa4 
 #define GhostManager 0xa7 
 #define OptionExplanation 0xc2 

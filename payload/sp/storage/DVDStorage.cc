@@ -139,6 +139,16 @@ bool DVDStorage::remove(const wchar_t *UNUSED(path), bool UNUSED(allowNop)) {
     return false;
 }
 
+std::optional<FileHandle> DVDStorage::startBenchmark() {
+    return {};
+}
+
+void DVDStorage::endBenchmark() {}
+
+u32 DVDStorage::getMessageId() {
+    return 0;
+}
+
 std::optional<FileHandle> DVDStorage::File::clone() {
     ScopeLock<Mutex> lock(m_storage->m_mutex);
 

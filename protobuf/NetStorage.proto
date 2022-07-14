@@ -54,6 +54,8 @@ message NetStorageRequest {
         required string path = 1;
     }
 
+    message StartBenchmark {}
+
     oneof request {
         FastOpen fastOpen = 1;
         Open open = 2;
@@ -67,6 +69,7 @@ message NetStorageRequest {
         CloseDir closeDir = 10;
         ReadDir readDir = 11;
         Stat stat = 12;
+        StartBenchmark startBenchmark = 13;
     }
 }
 

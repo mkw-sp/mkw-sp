@@ -313,12 +313,17 @@ static bool Sdi_sync(void) {
     return true;
 }
 
+static u32 Sdi_getMessageId(void) {
+    return 10154;
+}
+
 static const FATStorage sdiStorage = {
     Sdi_sectorSize,
     Sdi_read,
     Sdi_write,
     Sdi_erase,
     Sdi_sync,
+    Sdi_getMessageId,
 };
 
 bool SdiStorage_init(const FATStorage **fatStorage) {

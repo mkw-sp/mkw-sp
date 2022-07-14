@@ -26,6 +26,10 @@ public:
     bool rename(const wchar_t *srcPath, const wchar_t *dstPath) override;
     bool remove(const wchar_t *path, bool allowNop) override;
 
+    std::optional<FileHandle> startBenchmark() override;
+    void endBenchmark() override;
+    u32 getMessageId() override;
+
 private:
     class File : public IFile {
     public:
@@ -69,6 +73,7 @@ private:
     bool writeCloseDir(u32 handle);
     bool writeReadDir(u32 handle);
     bool writeStat(const wchar_t *path);
+    bool writeStartBenchmark();
     bool write(NetStorageRequest request);
 
     std::optional<FileHandle> readOpen(File *file);

@@ -210,6 +210,32 @@ bool FATStorage::remove(const wchar_t *path, bool allowNop) {
     return fResult == FR_OK || (allowNop && fResult == FR_NO_FILE);
 }
 
+std::optional<FileHandle> FATStorage::startBenchmark() {
+    ScopeLock<Mutex> lock(m_mutex);
+
+    auto *file = FindNode(m_files);
+    if (file == std::end(m_files)) {
+        return {};
+    }
+
+    if (f_open(file, L"benchmark.bin", FA_CREATE_ALWAYS | FA_WRITE | FA_READ) != FR_OK) {
+        return {};
+    }
+
+    file->m_isOpen = true;
+    return file;
+}
+
+void FATStorage::endBenchmark() {
+    ScopeLock<Mutex> lock(m_mutex);
+
+    f_unlink(L"benchmark.bin");
+}
+
+u32 FATStorage::getMessageId() {
+    return s_storage->getMessageId();
+}
+
 std::optional<FileHandle> FATStorage::File::clone() {
     ScopeLock<Mutex> lock(m_storage->m_mutex);
 

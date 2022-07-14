@@ -4,6 +4,7 @@
 #include "game/ui/LicenseSelectPage.hh"
 #include "game/ui/SettingsPage.hh"
 #include "game/ui/ServicePackTopPage.hh"
+#include "game/ui/StorageBenchmarkPage.hh"
 #include "game/ui/TimeAttackGhostListPage.hh"
 #include "game/ui/UpdatePage.hh"
 
@@ -25,7 +26,6 @@ void Section::addPage(PageId pageId) {
         // aren't needed anymore.
         { SectionId::ServicePack, PageId::TimeAttackTop },
         { SectionId::ServicePack, PageId::MenuMessage },
-        { SectionId::ServicePack, PageId::ChannelRanking },
         { SectionId::ServicePack, PageId::ChannelGhost },
     };
     for (const auto &deletion : deletions) {
@@ -192,6 +192,8 @@ Page *Section::CreatePage(PageId pageId) {
         return new TimeAttackGhostListPage;
     case PageId::ServicePackTop:
         return new ServicePackTopPage;
+    case PageId::StorageBenchmark:
+        return new StorageBenchmarkPage;
     case PageId::GhostManager:
         return new GhostManagerPage;
     case PageId::Channel:

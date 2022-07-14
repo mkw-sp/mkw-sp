@@ -157,9 +157,9 @@ impl Stream {
                     Some(path) => self.open_file(path, &open.mode).await?,
                     None => self.error().await?,
                 },
-                Clone(clone) => match self.file(clone.handle) {
-                    Some(file) => {
-                        let path = file.path.clone();
+                Clone(clone) => match self.file(clone.handle).and_then(|file| file.path.as_ref()) {
+                    Some(path) => {
+                        let path = path.clone();
                         self.open_file(path, "r").await?
                     },
                     None => self.error().await?,
@@ -188,6 +188,7 @@ impl Stream {
                     Some(path) => self.stat(path).await?,
                     None => self.error().await?,
                 },
+                StartBenchmark(_) => self.start_benchmark().await?,
             }
         }
     }
@@ -208,7 +209,7 @@ impl Stream {
             Ok(metadata) => metadata.len(),
             Err(_) => return self.error().await,
         };
-        let _ = self.files[handle].insert(File { file, path });
+        let _ = self.files[handle].insert(File { file, path: Some(path) });
         let handle = handle as u32;
         let response = NetStorageResponse {
             response: Some(Response::Open(net_storage_response::Open { handle, size })),
@@ -246,13 +247,14 @@ impl Stream {
         Ok(())
     }
 
-    async fn write_file(&mut self, handle: u32, size: u32, offset: u64) -> Result<(), Box<dyn std::error::Error>> {
+    async fn write_file(&mut self, handle: u32, mut size: u32, offset: u64) -> Result<(), Box<dyn std::error::Error>> {
         let mut data = vec![];
         while size > 0 {
             let chunk = self.read().await?;
-            if (size >= 0x1000 && chunk.len() != 0x1000) || chunk.len() != size as usize {
+            if chunk.len() != size.min(0x1000) as usize {
                 return Err(anyhow!("Wrong chunk size!"))?;
             }
+            size -= chunk.len() as u32;
             data.extend(chunk);
         }
         let file = match self.file_mut(handle) {
@@ -354,6 +356,28 @@ impl Stream {
         };
         let response = NetStorageResponse {
             response: Some(Response::NodeInfo(node_info)),
+        };
+        self.write_message(response).await
+    }
+
+    async fn start_benchmark(&mut self) -> Result<(), Box<dyn std::error::Error>> {
+        let handle = match self.files.iter_mut().position(|file| file.is_none()) {
+            Some(handle) => handle,
+            None => return self.error().await,
+        };
+        let file = match tempfile::tempfile() {
+            Ok(file) => file,
+            Err(_) => return self.error().await,
+        };
+        let file = tokio::fs::File::from_std(file);
+        let size = match file.metadata().await {
+            Ok(metadata) => metadata.len(),
+            Err(_) => return self.error().await,
+        };
+        let _ = self.files[handle].insert(File { file, path: None });
+        let handle = handle as u32;
+        let response = NetStorageResponse {
+            response: Some(Response::Open(net_storage_response::Open { handle, size })),
         };
         self.write_message(response).await
     }
@@ -467,7 +491,7 @@ enum ConversionRequest {
 
 struct File {
     file: tokio::fs::File,
-    path: PathBuf,
+    path: Option<PathBuf>,
 }
 
 struct Dir {

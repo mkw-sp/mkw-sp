@@ -343,12 +343,17 @@ static bool UsbStorage_sync(void) {
     return UsbStorage_scsiTransfer(false, 0, NULL, lun, sizeof(cmd), cmd);
 }
 
+static u32 UsbStorage_getMessageId(void) {
+    return 10155;
+}
+
 static const FATStorage usbStorage = {
     UsbStorage_sectorSize,
     UsbStorage_read,
     UsbStorage_write,
     UsbStorage_erase,
     UsbStorage_sync,
+    UsbStorage_getMessageId,
 };
 
 bool UsbStorage_init(const FATStorage **fatStorage) {

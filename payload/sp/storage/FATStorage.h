@@ -8,6 +8,7 @@ typedef struct {
     bool (*diskWrite)(u32 firstSector, u32 sectorCount, const void *buffer);
     bool (*diskErase)(u32 firstSector, u32 sectorCount);
     bool (*diskSync)(void);
+    u32 (*getMessageId)(void);
 } FATStorage;
 
 u32 FATStorage_diskSectorSize(void);
