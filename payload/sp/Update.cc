@@ -45,6 +45,10 @@ std::optional<Info> GetInfo() {
 }
 
 static bool Sync(bool update) {
+    if (versionInfo.type != BUILD_TYPE_RELEASE) {
+        return false;
+    }
+
     status = Status::Connect;
     SP::Net::Socket socket("update.mkw-sp.com", 21328, serverPK, "update  ");
     if (!socket.ok()) {
