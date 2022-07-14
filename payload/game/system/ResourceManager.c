@@ -45,7 +45,9 @@ static void CourseCache_load2(CourseCache *self, u32 courseId, bool splitScreen)
     } else {
         snprintf(path, sizeof(path), "Race/Course/%s", courseFilenames[courseId]);
     }
+    SP_LOG("Loading track '%s'...", path);
     MultiDvdArchive_load(self->multi, path, self->heap, self->heap, 0);
+    SP_LOG("Track '%s' was successfully loaded.", path);
     assert(MultiDvdArchive_isLoaded(self->multi));
     self->state = COURSE_CACHE_STATE_LOADED;
 }
