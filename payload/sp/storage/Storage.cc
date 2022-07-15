@@ -232,6 +232,18 @@ std::optional<DirHandle> OpenDir(const wchar_t *path) {
     return Dispatch(&IStorage::openDir, path);
 }
 
+std::optional<DirHandle> OpenRODir(const char *path) {
+    assert(path);
+
+    wchar_t roPath[128];
+    if (path[0] == '/') {
+        swprintf(roPath, std::size(roPath), L"ro:%s", path);
+    } else {
+        swprintf(roPath, std::size(roPath), L"ro:/%s", path);
+    }
+    return OpenDir(roPath);
+}
+
 std::optional<NodeInfo> Stat(const wchar_t *path) {
     assert(path);
 

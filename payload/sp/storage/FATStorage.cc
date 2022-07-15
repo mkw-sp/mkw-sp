@@ -156,7 +156,11 @@ std::optional<DirHandle> FATStorage::openDir(const wchar_t *path) {
         return {};
     }
 
-    if (f_opendir(dir, path) != FR_OK) {
+    auto nodePath = convertPath(path);
+    if (!nodePath) {
+        return {};
+    }
+    if (f_opendir(dir, nodePath->path) != FR_OK) {
         return {};
     }
 

@@ -132,6 +132,7 @@ bool WriteFile(const wchar_t *path, const void *src, u32 size, bool overwrite);
 bool CreateDir(const wchar_t *path, bool allowNop);
 std::optional<DirHandle> FastOpenDir(NodeId id);
 std::optional<DirHandle> OpenDir(const wchar_t *path);
+std::optional<DirHandle> OpenRODir(const char *path);
 
 std::optional<NodeInfo> Stat(const wchar_t *path);
 bool Rename(const wchar_t *srcPath, const wchar_t *dstPath);

@@ -50,9 +50,9 @@ private:
     };
 
     SoundArchiveFileReader m_fileReader;
-    std::optional<SP::Storage::FileHandle> m_file; // Modified
-    u8 _154[0x18c - 0x154]; // Unused
+    std::optional<SP::Storage::FileHandle> m_file{}; // Modified
+    std::optional<SP::Storage::NodeId> m_fId{}; // Modified
 };
-static_assert(sizeof(DVDSoundArchive) == 0x18c);
+static_assert(sizeof(DVDSoundArchive) <= 0x18c);
 
 } // namespace nw4r::snd
