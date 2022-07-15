@@ -600,6 +600,7 @@
 0x805D1044 Font_calcQuad
 0x805d1214 Font_buildTexObjs
 0x805d14a4 FontManager_init
+0x805de838 _ZN2UI8MenuPage11GetTypeInfoEv
 0x805e0c38 _ZN2UI16GhostManagerPageC1Ev
 0x805e1214 _ZN2UI16GhostManagerPage7processEv
 0x805e1748 _ZN2UI16GhostManagerPage16requestGhostRaceEbb
@@ -640,6 +641,7 @@
 0x805f0db4 _ZN2UI24MultiControlInputManager15setWrappingModeENS0_12WrappingModeE
 0x805f20ec MultiControlInputManager_select
 0x805f20ec _ZN2UI24MultiControlInputManager6selectEmPNS_19ControlInputManagerEl
+0x805f2e84 _ZN2UI22BackGroundModelControl8setModelEm
 0x805f5230 Model_805f5230
 0x805f5520 Model_805f5520
 0x805f8b50 _ZN2UI12MessageGroup2dtEl
@@ -728,7 +730,6 @@
 0x80622da0 _ZN2UI7Section13addActivePageENS_6PageIdE
 0x80623390 _ZN2UI7Section10CreatePageENS_6PageIdE
 0x80625da0 TopMenuPage_ct
-0x80626698 SingleTopMenuPage_ct
 0x80626950 ClassSelectPage_ct
 0x80627684 CupSelectPage_ct
 0x80627bd8 CourseSelectPage_ct
@@ -989,11 +990,6 @@
 0x80844d68 MachineSelectPage_onInit
 0x8084ddfc DriftSelectPage_onInit
 0x8084e388 DriftSelectPage_onButtonFront
-0x8084ef1c SingleTopMenuPage_onInit
-0x8084efc4 SingleTopMenuPage_vf_84
-0x8084f110 SingleTopMenuPage_onActivate
-0x8084f298 SingleTopMenuPage_onButtonFront
-0x8084f688 SingleTopMenuPage_vf_64
 0x808503dc TopMenuPage_onInit
 0x80850db0 TopMenuPage_onActivate
 0x8085151c TopMenuPage_onButtonSelect

@@ -4,6 +4,7 @@
 #include "game/ui/ConfirmPage.hh"
 #include "game/ui/GhostManagerPage.hh"
 #include "game/ui/MessagePage.hh"
+#include "game/ui/ModelPage.hh"
 #include "game/ui/Option.hh"
 #include "game/ui/Page.hh"
 #include "game/ui/SectionId.hh"
@@ -51,6 +52,11 @@ static_assert(sizeof(Section) == 0x408);
 template <>
 struct Section::PageIdHelper<PageId::Confirm> {
     using type = ConfirmPage;
+};
+
+template <>
+struct Section::PageIdHelper<PageId::Model> {
+    using type = ModelPage;
 };
 
 template <>

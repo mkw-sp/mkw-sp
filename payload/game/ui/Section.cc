@@ -4,6 +4,7 @@
 #include "game/ui/LicenseSelectPage.hh"
 #include "game/ui/SettingsPage.hh"
 #include "game/ui/ServicePackTopPage.hh"
+#include "game/ui/SingleTopPage.hh"
 #include "game/ui/StorageBenchmarkPage.hh"
 #include "game/ui/TimeAttackGhostListPage.hh"
 #include "game/ui/UpdatePage.hh"
@@ -124,7 +125,7 @@ void Section::addPages(SectionId id) {
         { SectionId::SingleChangeGhostData, PageId::ReadingGhostData },
         { SectionId::SingleChangeGhostData, PageId::MenuMessage },
         { SectionId::SingleChangeGhostData, (PageId)83 },
-        { SectionId::SingleChangeGhostData, PageId::SingleTopMenu },
+        { SectionId::SingleChangeGhostData, PageId::SingleTop },
         { SectionId::SingleChangeGhostData, (PageId)106 },
         { SectionId::SingleChangeGhostData, PageId::CupSelect },
         { SectionId::SingleChangeGhostData, PageId::CourseSelect },
@@ -183,8 +184,8 @@ Page *Section::CreatePage(PageId pageId) {
     switch (pageId) {
     case PageId::LicenseSelect:
         return new LicenseSelectPage;
-    case PageId::Settings:
-        return new SettingsPage;
+    case PageId::SingleTop:
+        return new SingleTopPage;
     case PageId::TimeAttackGhostList:
         return new TimeAttackGhostListPage;
     case PageId::ServicePackTop:
@@ -197,6 +198,8 @@ Page *Section::CreatePage(PageId pageId) {
         return new ChannelPage;
     case PageId::Update:
         return new UpdatePage;
+    case PageId::Settings:
+        return new SettingsPage;
     default:
         return REPLACED(CreatePage)(pageId);
     }

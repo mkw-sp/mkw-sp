@@ -28,11 +28,11 @@
 #define Confirm 0x52 
 #define Title 0x57 
 #define TopMenu 0x5A 
-#define FlagBackground 0x5C 
+#define Model 0x5C 
 #define TopOverlay 0x5E 
 #define LicenseSelect 0x65 
 #define LicenseSettingsTop 0x67 
-#define SingleTopMenu 0x69 
+#define SingleTop 0x69 
 #define CharacterSelect 0x6B 
 #define VehicleSelect 0x6C 
 #define DriftSelect 0x6D 

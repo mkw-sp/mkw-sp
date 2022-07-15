@@ -599,15 +599,15 @@
         "font": "regular",
         "string": "network",
     },
-    // Mission Mode
-    "3004": {
+    "10160": {
         "font": "regular",
         "string": "Missions",
     },
-    "3056": {
+    "10161": {
         "font": "regular",
         "string": "Play missions with various objectives.",
     },
+    // Mission Mode
     "3700": {
         "font": "regular",
         "string": "Select Level",
