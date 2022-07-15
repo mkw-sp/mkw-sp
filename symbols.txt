@@ -466,6 +466,7 @@
 0x8054a048 _ZN6System11SaveManager14saveGhostAsyncElmmPNS_9GhostFileEb
 0x8054a868 _ZN6System11SaveManager10resetAsyncEv
 0x8054aa64 SceneCreatorDynamic_create
+0x805549ac _ZN5Scene9RaceScene5vf_58Ev
 0x805553B0 _unresolved
 0x8056ce98 KartBody_calcTransforms
 0x8056da88 BikeBody_calcTransforms

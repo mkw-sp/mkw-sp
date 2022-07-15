@@ -20,7 +20,7 @@ public:
     void vf_4c() override;
     void vf_50() override;
     void vf_54() override;
-    void vf_58() override;
+    REPLACE void vf_58() override;
 
 private:
     u8 _254c[0x256c - 0x254c];
