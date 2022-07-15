@@ -9,6 +9,7 @@ public:
     struct Player {
         enum class Type {
             Local = 0,
+            CPU = 1,
             Ghost = 3,
             None = 5,
         };

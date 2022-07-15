@@ -98,8 +98,10 @@ void SingleTopPage::onBack([[maybe_unused]] u32 localPlayerId) {
 void SingleTopPage::onTAButtonFront([[maybe_unused]] PushButton *button,
         [[maybe_unused]] u32 localPlayerId) {
     auto &menuScenario = System::RaceConfig::Instance()->menuScenario();
+    menuScenario.engineClass = System::RaceConfig::EngineClass::CC150;
     menuScenario.gameMode = System::RaceConfig::GameMode::TimeAttack;
     menuScenario.cameraMode = 0;
+    menuScenario.players[0].type = System::RaceConfig::Player::Type::Local;
     for (u32 i = 1; i < 12; i++) {
         menuScenario.players[i].type = System::RaceConfig::Player::Type::None;
     }
@@ -128,6 +130,10 @@ void SingleTopPage::onVSButtonFront([[maybe_unused]] PushButton *button,
     auto &menuScenario = System::RaceConfig::Instance()->menuScenario();
     menuScenario.gameMode = System::RaceConfig::GameMode::OfflineVS;
     menuScenario.cameraMode = 5;
+    menuScenario.players[0].type = System::RaceConfig::Player::Type::Local;
+    for (u32 i = 1; i < 12; i++) {
+        menuScenario.players[i].type = System::RaceConfig::Player::Type::CPU;
+    }
 
     Section *section = SectionManager::Instance()->currentSection();
     auto *page = section->page(PageId::VsModeSelect)->downcast<MenuPage>();
@@ -151,8 +157,13 @@ void SingleTopPage::onVSButtonSelect([[maybe_unused]] PushButton *button,
 void SingleTopPage::onBTButtonFront([[maybe_unused]] PushButton *button,
         [[maybe_unused]] u32 localPlayerId) {
     auto &menuScenario = System::RaceConfig::Instance()->menuScenario();
+    menuScenario.engineClass = System::RaceConfig::EngineClass::CC50;
     menuScenario.gameMode = System::RaceConfig::GameMode::OfflineBT;
     menuScenario.cameraMode = 5;
+    menuScenario.players[0].type = System::RaceConfig::Player::Type::Local;
+    for (u32 i = 1; i < 12; i++) {
+        menuScenario.players[i].type = System::RaceConfig::Player::Type::CPU;
+    }
 
     Section *section = SectionManager::Instance()->currentSection();
     auto *page = section->page(PageId::BattleModeSelect)->downcast<MenuPage>();
@@ -179,6 +190,7 @@ void SingleTopPage::onMRButtonFront([[maybe_unused]] PushButton *button,
     auto &menuScenario = System::RaceConfig::Instance()->menuScenario();
     menuScenario.gameMode = System::RaceConfig::GameMode::Mission;
     menuScenario.cameraMode = 0;
+    menuScenario.players[0].type = System::RaceConfig::Player::Type::Local;
     for (u32 i = 1; i < 12; i++) {
         menuScenario.players[i].type = System::RaceConfig::Player::Type::None;
     }
