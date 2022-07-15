@@ -982,6 +982,7 @@
 0x8082dbec ObjPylon01_vf_c0
 0x80837a44 FUN_80837a44
 0x8083d55c CharacterSelectPage_onInit
+0x8083da78 CharacterSelectPage_onActivate
 0x8083e928 CharacterSelectPage_8083e928
 0x808402f4 CourseSelectPage_onInit
 0x808404a0 CourseSelectPage_onActivate
