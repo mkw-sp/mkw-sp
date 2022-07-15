@@ -34,11 +34,30 @@ void Section::addPage(PageId pageId) {
         }
     }
 
+    SP_LOG("addPage %u", pageId);
+
     REPLACED(addPage)(pageId);
+}
+
+void Section::addActivePage(PageId pageId) {
+    std::pair<SectionId, PageId> deletions[] = {
+        { SectionId::SingleChangeGhostData, PageId::CharacterSelect },
+    };
+    for (const auto &deletion : deletions) {
+        if (deletion.first == m_id && deletion.second == pageId) {
+            return;
+        }
+    }
+
+    SP_LOG("addActivePage %u", pageId);
+
+    REPLACED(addActivePage)(pageId);
 }
 
 void Section::addPages(SectionId id) {
     SP_LOG("&7DEBUG: Constructing section %u (0x%x)", id, id);
+
+    REPLACED(addPages)(id);
 
     std::pair<SectionId, PageId> additions[] = {
         // Always show the quit confirmation page
@@ -102,18 +121,11 @@ void Section::addPages(SectionId id) {
         { SectionId::SingleChangeGhostData, PageId::MissionTutorial},
 
         // Change Ghost Data
-        { SectionId::SingleChangeGhostData, PageId::RaceConfirm },
-        { SectionId::SingleChangeGhostData, PageId::MessageWindowPopup },
         { SectionId::SingleChangeGhostData, PageId::ReadingGhostData },
         { SectionId::SingleChangeGhostData, PageId::MenuMessage },
         { SectionId::SingleChangeGhostData, (PageId)83 },
-        { SectionId::SingleChangeGhostData, PageId::FlagBackground },
-        { SectionId::SingleChangeGhostData, PageId::TopOverlay },
         { SectionId::SingleChangeGhostData, PageId::SingleTopMenu },
         { SectionId::SingleChangeGhostData, (PageId)106 },
-        { SectionId::SingleChangeGhostData, PageId::CharacterSelect },
-        { SectionId::SingleChangeGhostData, PageId::VehicleSelect },
-        { SectionId::SingleChangeGhostData, PageId::DriftSelect },
         { SectionId::SingleChangeGhostData, PageId::CupSelect },
         { SectionId::SingleChangeGhostData, PageId::CourseSelect },
         { SectionId::SingleChangeGhostData, PageId::TimeAttackTop },
@@ -147,21 +159,6 @@ void Section::addPages(SectionId id) {
             addPage(addition.second);
         }
     }
-
-    REPLACED(addPages)(id);
-}
-
-void Section::addActivePage(PageId pageId) {
-    std::pair<SectionId, PageId> deletions[] = {
-        { SectionId::SingleChangeGhostData, PageId::CharacterSelect },
-    };
-    for (const auto &deletion : deletions) {
-        if (deletion.first == m_id && deletion.second == pageId) {
-            return;
-        }
-    }
-
-    REPLACED(addActivePage)(pageId);
 }
 
 void Section::addActivePages(SectionId id) {
