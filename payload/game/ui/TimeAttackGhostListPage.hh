@@ -13,6 +13,7 @@ namespace UI {
 class TimeAttackGhostListPage : public Page {
     friend class GhostSelectControl;
     friend class GhostSelectButton;
+    friend class TimeAttackModeSelectPage;
 public:
     TimeAttackGhostListPage();
     TimeAttackGhostListPage(const TimeAttackGhostListPage &) = delete;
@@ -22,23 +23,23 @@ public:
     PageId getReplacement() override;
     void onInit() override;
     void onActivate() override;
-    void onRefocus() override;
 
     void chooseGhost(u32 buttonIndex);
 
 private:
     void onBack(u32 localPlayerId);
-    void refreshLaunchButton();
-    void onOption(u32 localPlayerId);
     void onSettingsButtonFront(PushButton *button, u32 localPlayerId);
-    bool canSwapGhostSelects() const;
-    void refreshSheetLabel();
-    void swapGhostSelects();
+    void onSettingsButtonSelect(PushButton *button, u32 localPlayerId);
+    void onSettingsButtonDeselect(PushButton *button, u32 localPlayerId);
     void onSheetSelectRight(SheetSelectControl *control, u32 localPlayerId);
     void onSheetSelectLeft(SheetSelectControl *control, u32 localPlayerId);
-    void onLaunchButtonFront(PushButton *button, u32 localPlayerId);
-    void onLaunchButtonSelect(PushButton *button, u32 localPlayerId);
+    void onOKButtonFront(PushButton *button, u32 localPlayerId);
+    void onOKButtonSelect(PushButton *button, u32 localPlayerId);
     void onBackButtonFront(PushButton *button, u32 localPlayerId);
+    void refreshSheetLabel();
+    bool canSwapGhostSelects() const;
+    void swapGhostSelects();
+    void refreshOKButton();
 
     template <typename T>
     using H = typename T::Handler<TimeAttackGhostListPage>;
@@ -47,22 +48,22 @@ private:
     MultiControlInputManager m_input;
     CtrlMenuPageTitleText m_titleText;
     PushButton m_settingsButton;
-    LayoutUIControl m_switchLabel;
     std::array<GhostSelectControl, 2> m_ghostSelects;
     SheetSelectControl m_sheetSelect;
     LayoutUIControl m_sheetLabel;
     MessageWindowControl m_messageWindow;
-    PushButton m_launchButton;
+    PushButton m_okButton;
     CtrlMenuBackButton m_backButton;
 
     // Input handlers
     H<MultiControlInputManager> m_onBack{ this, &TimeAttackGhostListPage::onBack };
-    H<MultiControlInputManager> m_onOption{ this, &TimeAttackGhostListPage::onOption };
+    H<PushButton> m_onSettingsButtonSelect{ this, &TimeAttackGhostListPage::onSettingsButtonSelect };
+    H<PushButton> m_onSettingsButtonDeselect{ this, &TimeAttackGhostListPage::onSettingsButtonDeselect };
     H<PushButton> m_onSettingsButtonFront{ this, &TimeAttackGhostListPage::onSettingsButtonFront };
     H<SheetSelectControl> m_onSheetSelectRight{ this, &TimeAttackGhostListPage::onSheetSelectLeft };
     H<SheetSelectControl> m_onSheetSelectLeft{ this, &TimeAttackGhostListPage::onSheetSelectRight };
-    H<PushButton> m_onLaunchButtonSelect{ this, &TimeAttackGhostListPage::onLaunchButtonSelect };
-    H<PushButton> m_onLaunchButtonFront{ this, &TimeAttackGhostListPage::onLaunchButtonFront };
+    H<PushButton> m_onOKButtonSelect{ this, &TimeAttackGhostListPage::onOKButtonSelect };
+    H<PushButton> m_onOKButtonFront{ this, &TimeAttackGhostListPage::onOKButtonFront };
     H<PushButton> m_onBackButtonFront{ this, &TimeAttackGhostListPage::onBackButtonFront };
 
     GhostSelectControl *m_shownGhostSelect;

@@ -115,7 +115,7 @@ void GhostSelectButton::refresh(u32 listIndex) {
     setMessage("name_light_02", 9501, &nameInfo);
 
     char countryPane[0x4];
-    snprintf(countryPane, sizeof(countryPane), "%03lu", header->country);
+    snprintf(countryPane, sizeof(countryPane), "%03u", header->country);
     bool hasCountryPane = hasPictureSourcePane(countryPane);
     setPaneVisible("flag_shadow", hasCountryPane);
     setPaneVisible("flag", hasCountryPane);

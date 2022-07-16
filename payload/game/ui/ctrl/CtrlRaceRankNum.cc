@@ -3,6 +3,7 @@
 #include "game/system/RaceConfig.hh"
 #include "game/system/SaveManager.hh"
 #include "game/ui/Page.hh"
+#include "game/ui/SectionManager.hh"
 
 namespace UI {
 
@@ -21,6 +22,10 @@ bool CtrlRaceRankNum::vf_48() {
 }
 
 bool CtrlRaceRankNum::isDisabled() const {
+    if (SectionManager::Instance()->taIsVanilla()) {
+        return true;
+    }
+
     auto pageId = getPage()->id();
     if (pageId != PageId::TARace && pageId != PageId::GhostReplayRace) {
         return false;

@@ -7,6 +7,7 @@
 #include "game/ui/SingleTopPage.hh"
 #include "game/ui/StorageBenchmarkPage.hh"
 #include "game/ui/TimeAttackGhostListPage.hh"
+#include "game/ui/TimeAttackModeSelectPage.hh"
 #include "game/ui/UpdatePage.hh"
 
 namespace UI {
@@ -23,6 +24,7 @@ void Section::addPage(PageId pageId) {
         { SectionId::LicenseSettings, PageId::LicenseRecordsFriends },
         { SectionId::LicenseSettings, PageId::LicenseRecordsWFC },
         { SectionId::LicenseSettings, PageId::LicenseRecordsOther },
+
         // The channel section is repurposed into the Service Pack section. Remove some pages that
         // aren't needed anymore.
         { SectionId::ServicePack, PageId::TimeAttackTop },
@@ -67,6 +69,7 @@ void Section::addPages(SectionId id) {
         { SectionId::TeamVS1P, PageId::ConfirmQuit },
         { SectionId::Battle1P, PageId::ConfirmQuit },
         { SectionId::TAReplay, PageId::ConfirmQuit },
+
         // Support changing settings in-race
         { SectionId::GP, PageId::Settings },
         { SectionId::TA, PageId::Settings },
@@ -99,7 +102,6 @@ void Section::addPages(SectionId id) {
         { SectionId::SingleChangeMission, PageId::MissionPrompt },
         { SectionId::SingleChangeMission, PageId::MissionDrift },
         { SectionId::SingleChangeMission, PageId::MissionTutorial },
-
         { SectionId::Single, PageId::MissionLevelSelect},
         { SectionId::Single, PageId::MissionStageSelect},
         { SectionId::Single, PageId::MissionPrompt},
@@ -145,6 +147,7 @@ void Section::addPages(SectionId id) {
         { SectionId::SingleChangeDriver, PageId::Settings },
         { SectionId::SingleChangeCourse, PageId::Settings },
         { SectionId::SingleChangeGhostData, PageId::Settings },
+
         // The channel section is repurposed into the Service Pack section. Add some additional
         // pages we need.
         { SectionId::ServicePack, PageId::OptionExplanation },
@@ -186,6 +189,8 @@ Page *Section::CreatePage(PageId pageId) {
         return new LicenseSelectPage;
     case PageId::SingleTop:
         return new SingleTopPage;
+    case PageId::TimeAttackModeSelect:
+        return new TimeAttackModeSelectPage;
     case PageId::TimeAttackGhostList:
         return new TimeAttackGhostListPage;
     case PageId::ServicePackTop:

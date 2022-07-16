@@ -22,6 +22,7 @@ typedef struct {
     u8 _3d0[0x510 - 0x3d0];
     u32 timeAttackGhostCount; // Added
     u32 timeAttackGhostIndices[11]; // Added
+    bool timeAttackIsVanilla; // Added
 } GlobalContext;
 static_assert(offsetof(GlobalContext, timeAttackGhostCount) == 0x510);
 

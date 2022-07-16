@@ -51,7 +51,7 @@ void GhostSelectControl::calcSelf() {
         }
         TimeAttackGhostListPage *page = getGhostListPage();
         if (page->m_lastSelected == -1) {
-            page->m_launchButton.select(0);
+            page->m_okButton.select(0);
         } else if (!buttons[page->m_lastSelected].getVisible()) {
             buttons[0].select(0);
         } else {

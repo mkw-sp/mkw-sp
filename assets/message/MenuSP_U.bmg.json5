@@ -607,6 +607,34 @@
         "font": "regular",
         "string": "Play missions with various objectives.",
     },
+    "10162": {
+        "font": "regular",
+        "string": "OK ({arg integer|0 0} {arg cond messages|0 10163 10164} selected)",
+    },
+    "10163": {
+        "font": "regular",
+        "string": "ghost",
+    },
+    "10164": {
+        "font": "regular",
+        "string": "ghosts",
+    },
+    "10165": {
+        "font": "regular",
+        "string": "Select Mode",
+    },
+    "10166": {
+        "font": "regular",
+        "string": "Time Trials",
+    },
+    "10167": {
+        "font": "regular",
+        "string": "Vanilla Time Trials",
+    },
+    "10168": {
+        "font": "regular",
+        "string": "Replay",
+    },
     // Mission Mode
     "3700": {
         "font": "regular",

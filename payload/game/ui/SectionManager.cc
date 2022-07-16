@@ -25,6 +25,10 @@ void SectionManager::startChangeSection(s32 delay, u32 color) {
     REPLACED(startChangeSection)(delay, color);
 }
 
+bool SectionManager::taIsVanilla() const {
+    return m_currentSection->id() == SectionId::TA && m_globalContext->m_timeAttackIsVanilla;
+}
+
 SectionManager *SectionManager::Instance() {
     return s_instance;
 }

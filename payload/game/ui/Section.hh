@@ -6,9 +6,10 @@
 #include "game/ui/MessagePage.hh"
 #include "game/ui/ModelPage.hh"
 #include "game/ui/Option.hh"
-#include "game/ui/Page.hh"
+#include "game/ui/RaceConfirmPage.hh"
 #include "game/ui/SectionId.hh"
 #include "game/ui/SettingsPage.hh"
+#include "game/ui/TimeAttackGhostListPage.hh"
 
 namespace UI {
 
@@ -50,6 +51,11 @@ private:
 static_assert(sizeof(Section) == 0x408);
 
 template <>
+struct Section::PageIdHelper<PageId::RaceConfirm> {
+    using type = RaceConfirmPage;
+};
+
+template <>
 struct Section::PageIdHelper<PageId::Confirm> {
     using type = ConfirmPage;
 };
@@ -57,6 +63,11 @@ struct Section::PageIdHelper<PageId::Confirm> {
 template <>
 struct Section::PageIdHelper<PageId::Model> {
     using type = ModelPage;
+};
+
+template <>
+struct Section::PageIdHelper<PageId::TimeAttackGhostList> {
+    using type = TimeAttackGhostListPage;
 };
 
 template <>

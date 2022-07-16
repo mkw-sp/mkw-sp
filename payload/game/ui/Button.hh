@@ -1,5 +1,6 @@
 #pragma once
 
+#include "game/ui/MenuInputManager.hh"
 #include "game/ui/UIControl.hh"
 
 namespace UI {
@@ -47,13 +48,15 @@ public:
             bool pointerOnly);
     void setFrontHandler(IHandler *handler, bool repeat);
     void setSelectHandler(IHandler *handler, bool repeat);
+    void setDeselectHandler(IHandler *handler, bool repeat);
     void selectDefault(u32 localPlayerId);
     void select(u32 localPlayerId);
     void setPlayerFlags(u32 playerFlags);
     f32 getDelay() const;
 
 private:
-    u8 _174[0x240 - 0x174];
+    ControlInputManager m_inputManager;
+    u8 _1f8[0x240 - 0x1f8];
 
 public:
     s32 m_index;

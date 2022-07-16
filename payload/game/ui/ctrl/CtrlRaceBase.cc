@@ -32,6 +32,9 @@ void CtrlRaceBase::calcLabelVisibility(const char *pane) {
     if (setting == SP::ClientSettings::HUDLabels::Hide) {
         visible = false;
     }
+    if (SectionManager::Instance()->taIsVanilla()) {
+        visible = true;
+    }
     setPaneVisible(pane, visible);
 }
 

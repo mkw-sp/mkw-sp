@@ -5,10 +5,6 @@
 #include <egg/core/eggHeap.h>
 
 enum {
-    MAX_GHOST_COUNT = 4096,
-};
-
-enum {
     GHOST_TYPE_NONE = 0x0,
     GHOST_TYPE_SAVED = 0x1,
     GHOST_TYPE_FAST_STAFF = 0x26,
@@ -49,13 +45,13 @@ typedef struct {
     RawTime lapTimes[5];
 
     u8 _20[0x34 - 0x20];
-    u32 country;
-    u8 _38[0x3c - 0x38];
+    u8 country;
+    u8 _38[0x3c - 0x35];
     RawMii mii;
 } RawGhostHeader;
 static_assert(sizeof(RawGhostHeader) == 0x88);
 
-void SPFooter_OnRaceStart(const u8 *courseSHA1, bool speedModIsEnabled);
+void SPFooter_OnRaceStart(const u8 *courseSHA1, bool speedModIsEnabled, bool isVanilla);
 
 void SPFooter_OnLapEnd(u32 lap, f32 timeDiff);
 
@@ -68,40 +64,6 @@ void SPFooter_OnWallride(void);
 void SPFooter_OnShroom(u32 lap);
 
 bool RawGhostFile_IsValid(const u8 *raw);
-
-typedef struct {
-    u8 _0[0x4 - 0x0];
-    u16 minutes;
-    u8 seconds;
-    u16 milliseconds;
-    u8 _a[0xc - 0xa];
-} Time;
-static_assert(sizeof(Time) == 0xc);
-
-typedef struct {
-    bool headerIsValid;
-    u8 _01[0x18 - 0x01];
-    RawMii rawMii;
-    u8 _64[0xa4 - 0x64];
-    Time raceTime;
-    u32 characterId;
-    u32 vehicleId;
-    u32 courseId;
-    u8 _bc[0xc0 - 0xbc];
-    u8 year;
-    u8 month;
-    u8 day;
-    u8 _c3[0xcc - 0xc3];
-    u8 country;
-    u8 _cd[0xd0 - 0xcd];
-    u32 inputsSize;
-    u8 *inputs;
-} GhostFile;
-static_assert(sizeof(GhostFile) == 0xd8);
-
-void GhostFile_writeHeader(const GhostFile *self, RawGhostHeader *header);
-
-u32 GhostFile_spWrite(const GhostFile *self, u8 *raw);
 
 typedef struct {
     u8 _00[0x14 - 0x00];

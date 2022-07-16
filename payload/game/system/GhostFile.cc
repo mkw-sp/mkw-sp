@@ -37,6 +37,7 @@ bool SPFooter::checkSize(u32 size) const {
     switch (version) {
     case 0:
     case 1:
+    case 2:
         return size == 0x48;
     case VERSION:
         return size == sizeof(SPFooter);
@@ -45,11 +46,12 @@ bool SPFooter::checkSize(u32 size) const {
     }
 }
 
-void SPFooter::OnRaceStart(const u8 *courseSHA1, bool speedModIsEnabled) {
+void SPFooter::OnRaceStart(const u8 *courseSHA1, bool speedModIsEnabled, bool isVanilla) {
     s_instance = {};
     s_instance.version = VERSION;
     memcpy(s_instance.courseSHA1, courseSHA1, std::size(s_instance.courseSHA1));
     s_instance.hasSpeedMod = speedModIsEnabled;
+    s_instance.isVanilla = isVanilla;
     s_usedShrooms = 0;
 }
 
@@ -442,8 +444,8 @@ std::optional<u32> GhostFile::write(u8 *raw) {
 } // namespace System
 
 extern "C" {
-void SPFooter_OnRaceStart(const u8 *courseSHA1, bool speedModIsEnabled) {
-    System::SPFooter::OnRaceStart(courseSHA1, speedModIsEnabled);
+void SPFooter_OnRaceStart(const u8 *courseSHA1, bool speedModIsEnabled, bool isVanilla) {
+    System::SPFooter::OnRaceStart(courseSHA1, speedModIsEnabled, isVanilla);
 }
 
 void SPFooter_OnLapEnd(u32 lap, f32 timeDiff) {

@@ -43,9 +43,25 @@ public:
     void setRightHandler(IHandler *handler);
     void setLeftHandler(IHandler *handler);
     void setPlayerFlags(u32 playerFlags);
+    void setPointerOnly(bool pointerOnly);
 
 private:
-    u8 _098[0x538 - 0x098];
+    class SheetSelectButton : public LayoutUIControl {
+    public:
+        SheetSelectButton();
+        ~SheetSelectButton() override;
+
+        void setPointerOnly(bool pointerOnly);
+
+    private:
+        ControlInputManager m_inputManager;
+        u8 _1f8[0x248 - 0x1f8];
+    };
+    static_assert(sizeof(SheetSelectButton) == 0x248);
+
+    u8 _098[0x0a8 - 0x098];
+    SheetSelectButton m_rightButton;
+    SheetSelectButton m_leftButton;
 };
 static_assert(sizeof(SheetSelectControl) == 0x538);
 
