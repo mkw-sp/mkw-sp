@@ -925,6 +925,7 @@ code_in_files = {
         os.path.join('payload', 'nw4r', 'snd', 'SoundArchiveLoader.cc'),
         os.path.join('payload', 'nw4r', 'snd', 'SoundArchivePlayer.cc'),
         os.path.join('payload', 'nw4r', 'snd', 'SoundHandle.cc'),
+        os.path.join('payload', 'nw4r', 'snd', 'StrmFileReader.cc'),
         os.path.join('payload', 'nw4r', 'ut', 'FileStream.cc'),
         os.path.join('payload', 'nw4r', 'ut', 'IOStream.cc'),
         os.path.join('payload', 'platform', 'string.c'),
