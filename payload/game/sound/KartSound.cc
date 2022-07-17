@@ -10,6 +10,11 @@
 namespace Sound {
 
 void KartSound::calcLap() {
+    if (m_proxy->isCPU()) {
+        REPLACED(calcLap)();
+        return;
+    }
+
     auto *saveManager = System::SaveManager::Instance();
     u32 playerId = m_proxy->getPlayerId();
 

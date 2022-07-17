@@ -19,6 +19,7 @@ public:
     const Vec3 *getLastPos() const;
     KartState *getKartState();
     VehiclePhysics *getVehiclePhysics();
+    bool isCPU() const;
     bool isGhost() const;
     KartMove *getKartMove();
     u32 getPlayerId() const;
