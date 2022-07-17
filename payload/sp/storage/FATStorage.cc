@@ -64,6 +64,9 @@ FATStorage::FATStorage() {
             swprintf(m_prefixes[m_prefixCount++], std::size(m_prefixes[0]), L"%ls", info->name);
             SP_LOG("Added file replacement prefix %ls", info->name);
         }
+        if (m_prefixCount == 0) {
+            createDir(L"/mkw-sp/My Stuff", true);
+        }
 
         SP_LOG("Successfully completed initialization");
         m_ok = true;
