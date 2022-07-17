@@ -79,38 +79,6 @@
         "font": "regular",
         "string": "Ghost Sorting",
     },
-    "10020": {
-        "font": "regular",
-        "string": "Fastest",
-    },
-    "10021": {
-        "font": "regular",
-        "string": "Slowest",
-    },
-    "10022": {
-        "font": "regular",
-        "string": "Newest",
-    },
-    "10023": {
-        "font": "regular",
-        "string": "Oldest",
-    },
-    "10024": {
-        "font": "regular",
-        "string": "Sort ghosts from fastest to slowest.",
-    },
-    "10025": {
-        "font": "regular",
-        "string": "Sort ghosts from slowest to fastest.",
-    },
-    "10026": {
-        "font": "regular",
-        "string": "Sort ghosts from newest to oldest.",
-    },
-    "10027": {
-        "font": "regular",
-        "string": "Sort ghosts from oldest to newest.",
-    },
     "10028": {
         "font": "regular",
         "string": "Tag Visibility",
@@ -634,6 +602,46 @@
     "10168": {
         "font": "regular",
         "string": "Replay",
+    },
+    "10169": {
+        "font": "regular",
+        "string": "Time",
+    },
+    "10170": {
+        "font": "regular",
+        "string": "Date",
+    },
+    "10171": {
+        "font": "regular",
+        "string": "Flap",
+    },
+    "10172": {
+        "font": "regular",
+        "string": "Lap 2 Pace",
+    },
+    "10173": {
+        "font": "regular",
+        "string": "Lap 3 Pace",
+    },
+    "10174": {
+        "font": "regular",
+        "string": "Sort ghosts by their finish time.",
+    },
+    "10175": {
+        "font": "regular",
+        "string": "Sort ghosts by their creation date.",
+    },
+    "10176": {
+        "font": "regular",
+        "string": "Sort ghosts by their fastest lap.",
+    },
+    "10177": {
+        "font": "regular",
+        "string": "Sort ghosts by their lap 2 pace.",
+    },
+    "10178": {
+        "font": "regular",
+        "string": "Sort ghosts by their lap 3 pace.",
     },
     // Mission Mode
     "3700": {

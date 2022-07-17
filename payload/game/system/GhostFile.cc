@@ -12,6 +12,7 @@ extern "C" {
 }
 #include <sp/YAZDecoder.hh>
 
+#include <algorithm>
 #include <cstring>
 #include <iterator>
 
@@ -31,6 +32,17 @@ bool RawTime::isValid() const {
     }
 
     return true;
+}
+
+u32 RawTime::toMilliseconds() const {
+    return (minutes * 60 + seconds) * 1000 + milliseconds;
+}
+
+const RawTime *RawGhostHeader::flap() const {
+    return std::min_element(std::begin(lapTimes), std::begin(lapTimes) + lapCount,
+            [](auto &l0, auto &l1) {
+                return l0.toMilliseconds() < l1.toMilliseconds();
+            });
 }
 
 bool SPFooter::checkSize(u32 size) const {

@@ -93,10 +93,11 @@ enum class TAClass {
 };
 
 enum class TAGhostSorting {
-    Fastest,
-    Slowest,
-    Newest,
-    Oldest,
+    Time,
+    Date,
+    Flap,
+    Lap2Pace,
+    Lap3Pace,
 };
 
 enum class TAGhostTagVisibility {

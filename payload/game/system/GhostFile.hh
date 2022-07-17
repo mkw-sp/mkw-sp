@@ -10,6 +10,7 @@ static const u32 MAX_GHOST_COUNT = 4096;
 
 struct __attribute__((packed)) RawTime {
     bool isValid() const;
+    u32 toMilliseconds() const;
 
     u16 minutes : 7;
     u8 seconds : 7;
@@ -18,6 +19,8 @@ struct __attribute__((packed)) RawTime {
 static_assert(sizeof(RawTime) == 0x3);
 
 struct RawGhostHeader {
+    const RawTime *flap() const;
+
     u32 magic;
 
     RawTime raceTime;

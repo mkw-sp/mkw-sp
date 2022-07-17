@@ -35,24 +35,28 @@ void GhostManagerPage::SPList::populate() {
     std::sort(std::begin(m_indices), std::begin(m_indices) + m_count, [&](auto i0, auto i1) {
         auto *h0 = saveManager->rawGhostHeader(i0);
         auto *h1 = saveManager->rawGhostHeader(i1);
-        auto *t0 = &h0->raceTime;
-        auto *t1 = &h1->raceTime;
-        u32 u0 = (t0->minutes * 60 + t0->seconds) * 1000 + t0->milliseconds;
-        u32 u1 = (t1->minutes * 60 + t1->seconds) * 1000 + t1->milliseconds;
-        u32 d0 = (h0->year * 12 + h0->month) * 31 + h0->day;
-        u32 d1 = (h1->year * 12 + h1->month) * 31 + h1->day;
         switch (saveManager->getSetting<SP::ClientSettings::Setting::TAGhostSorting>()) {
-        case SP::ClientSettings::TAGhostSorting::Fastest:
-            return u0 < u1;
-        case SP::ClientSettings::TAGhostSorting::Slowest:
-            return u0 > u1;
-        case SP::ClientSettings::TAGhostSorting::Newest:
+        case SP::ClientSettings::TAGhostSorting::Time:
+            return h0->raceTime.toMilliseconds() < h1->raceTime.toMilliseconds();
+        case SP::ClientSettings::TAGhostSorting::Date: {
+            u32 d0 = (h0->year * 12 + h0->month) * 31 + h0->day;
+            u32 d1 = (h1->year * 12 + h1->month) * 31 + h1->day;
             return d0 > d1;
-        case SP::ClientSettings::TAGhostSorting::Oldest:
-            return d0 < d1;
-        default:
-            assert(false);
         }
+        case SP::ClientSettings::TAGhostSorting::Flap:
+            return h0->flap()->toMilliseconds() < h1->flap()->toMilliseconds();
+        case SP::ClientSettings::TAGhostSorting::Lap2Pace:
+            if (h0->lapCount >= 2) {
+                return h0->lapTimes[0].toMilliseconds() < h1->lapTimes[0].toMilliseconds();
+            }
+            break;
+        case SP::ClientSettings::TAGhostSorting::Lap3Pace:
+            if (h0->lapCount >= 2) {
+                return h0->lapTimes[0].toMilliseconds() < h1->lapTimes[0].toMilliseconds();
+            }
+            break;
+        }
+        return h0->raceTime.toMilliseconds() < h1->raceTime.toMilliseconds();
     });
 }
 
