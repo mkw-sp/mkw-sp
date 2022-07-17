@@ -60,8 +60,8 @@ private:
     H<PushButton> m_onSettingsButtonSelect{ this, &TimeAttackGhostListPage::onSettingsButtonSelect };
     H<PushButton> m_onSettingsButtonDeselect{ this, &TimeAttackGhostListPage::onSettingsButtonDeselect };
     H<PushButton> m_onSettingsButtonFront{ this, &TimeAttackGhostListPage::onSettingsButtonFront };
-    H<SheetSelectControl> m_onSheetSelectRight{ this, &TimeAttackGhostListPage::onSheetSelectLeft };
-    H<SheetSelectControl> m_onSheetSelectLeft{ this, &TimeAttackGhostListPage::onSheetSelectRight };
+    H<SheetSelectControl> m_onSheetSelectRight{ this, &TimeAttackGhostListPage::onSheetSelectRight };
+    H<SheetSelectControl> m_onSheetSelectLeft{ this, &TimeAttackGhostListPage::onSheetSelectLeft };
     H<PushButton> m_onOKButtonSelect{ this, &TimeAttackGhostListPage::onOKButtonSelect };
     H<PushButton> m_onOKButtonFront{ this, &TimeAttackGhostListPage::onOKButtonFront };
     H<PushButton> m_onBackButtonFront{ this, &TimeAttackGhostListPage::onBackButtonFront };
