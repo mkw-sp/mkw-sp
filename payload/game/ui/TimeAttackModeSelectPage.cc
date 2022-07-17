@@ -124,8 +124,7 @@ void TimeAttackModeSelectPage::onRefocus() {
     context->m_timeAttackGhostCount = 0;
     for (u32 i = 0; i < ghostListPage->m_ghostIsChosen.size(); i++) {
         if (ghostListPage->m_ghostIsChosen[i]) {
-            u32 ghostIndex = ghostListPage->m_ghostList->indices()[i];
-            context->m_timeAttackGhostIndices[context->m_timeAttackGhostCount++] = ghostIndex;
+            context->m_timeAttackGhostIndices[context->m_timeAttackGhostCount++] = i;
         }
     }
 

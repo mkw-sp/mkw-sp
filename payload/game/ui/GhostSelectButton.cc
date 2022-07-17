@@ -156,7 +156,7 @@ void GhostSelectButton::refresh(u32 listIndex) {
     setMessage("time_light_01", 6052, &timeInfo);
     setMessage("time_light_02", 6052, &timeInfo);
 
-    m_chosen = page->m_ghostIsChosen[listIndex];
+    m_chosen = page->m_ghostIsChosen[ghostIndex];
     setChosen(m_chosen);
 }
 

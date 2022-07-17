@@ -1,6 +1,7 @@
 #include "TimeAttackGhostListPage.hh"
 
 #include "game/system/RaceConfig.hh"
+#include "game/system/SaveManager.hh"
 #include "game/ui/SectionManager.hh"
 
 namespace UI {
@@ -75,42 +76,52 @@ void TimeAttackGhostListPage::onInit() {
 }
 
 void TimeAttackGhostListPage::onActivate() {
-    m_okButton.selectDefault(0);
     auto *section = SectionManager::Instance()->currentSection();
     auto *ghostManagerPage = section->page<PageId::GhostManager>();
     m_ghostList = ghostManagerPage->list();
+    if (m_cc) {
+        ghostManagerPage->repopulate();
+    }
 
-    const u32 buttonsPerSheet = m_ghostSelects[0].buttons.size();
-    m_sheetCount = (m_ghostList->count() + buttonsPerSheet - 1) / buttonsPerSheet;
-    m_sheetIndex = 0;
-    refreshSheetLabel();
+    auto *saveManager = System::SaveManager::Instance();
+    auto cc = saveManager->getSetting<SP::ClientSettings::Setting::TAClass>();
+    if (!m_cc || *m_cc != cc) {
+        m_sheetSelect.setPointerOnly(false);
+        m_okButton.selectDefault(0);
 
-    m_chosenCount = 0;
-    m_ghostIsChosen.fill(false);
+        const u32 buttonsPerSheet = m_ghostSelects[0].buttons.size();
+        m_sheetCount = (m_ghostList->count() + buttonsPerSheet - 1) / buttonsPerSheet;
+        m_sheetIndex = 0;
+        refreshSheetLabel();
+
+        m_chosenCount = 0;
+        m_ghostIsChosen.fill(false);
+
+        m_lastSelected = -1;
+
+        m_sheetSelect.setVisible(m_sheetCount > 1);
+        m_sheetSelect.setPlayerFlags(m_sheetCount <= 1 ? 0x0 : 0x1);
+
+        refreshOKButton();
+
+        m_messageWindow.setVisible(m_sheetCount == 0);
+    }
+    m_cc = cc;
 
     m_shownGhostSelect = &m_ghostSelects[0];
     m_hiddenGhostSelect = &m_ghostSelects[1];
     m_shownGhostSelect->show();
     m_hiddenGhostSelect->hide();
 
-    m_lastSelected = -1;
-
-    m_sheetSelect.setVisible(m_sheetCount > 1);
-    m_sheetSelect.setPlayerFlags(m_sheetCount <= 1 ? 0x0 : 0x1);
-
-    m_isReplay = false;
-    refreshOKButton();
-
-    m_messageWindow.setVisible(m_sheetCount == 0);
-
     m_replacement = PageId::None;
 }
 
 void TimeAttackGhostListPage::chooseGhost(u32 buttonIndex) {
     u32 listIndex = m_sheetIndex * m_ghostSelects[0].buttons.size() + buttonIndex;
+    u32 ghostIndex = m_ghostList->indices()[listIndex];
     bool chosen = m_shownGhostSelect->buttons[buttonIndex].isChosen();
 
-    m_ghostIsChosen[listIndex] = chosen;
+    m_ghostIsChosen[ghostIndex] = chosen;
     if (chosen) {
         ++m_chosenCount;
     } else {
@@ -121,6 +132,8 @@ void TimeAttackGhostListPage::chooseGhost(u32 buttonIndex) {
 }
 
 void TimeAttackGhostListPage::onBack([[maybe_unused]] u32 localPlayerId) {
+    m_cc.reset();
+
     m_replacement = PageId::CourseSelect;
     startReplace(Anim::Prev, 0.0f);
 }
@@ -197,6 +210,8 @@ void TimeAttackGhostListPage::onOKButtonSelect([[maybe_unused]] PushButton *butt
 
 void TimeAttackGhostListPage::onBackButtonFront([[maybe_unused]] PushButton *button,
         [[maybe_unused]] u32 localPlayerId) {
+    m_cc.reset();
+
     m_replacement = PageId::CourseSelect;
     f32 delay = button->getDelay();
     startReplace(Anim::Prev, delay);

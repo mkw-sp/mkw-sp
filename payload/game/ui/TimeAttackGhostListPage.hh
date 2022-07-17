@@ -8,6 +8,8 @@
 #include "game/ui/ctrl/CtrlMenuBackButton.hh"
 #include "game/ui/ctrl/CtrlMenuPageTitleText.hh"
 
+#include <sp/settings/ClientSettings.hh>
+
 namespace UI {
 
 class TimeAttackGhostListPage : public Page {
@@ -68,13 +70,13 @@ private:
 
     GhostSelectControl *m_shownGhostSelect;
     GhostSelectControl *m_hiddenGhostSelect;
-    bool m_isReplay;
     const GhostManagerPage::SPList *m_ghostList;
     u32 m_chosenCount;
     std::array<bool, System::MAX_GHOST_COUNT> m_ghostIsChosen;
     u32 m_sheetCount;
     u32 m_sheetIndex;
     s32 m_lastSelected;
+    std::optional<SP::ClientSettings::TAClass> m_cc{};
     PageId m_replacement;
 };
 

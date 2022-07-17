@@ -34,6 +34,7 @@ public:
     bool requestGhostReplay();
     bool requestGhostRace(bool isNewRecord, bool fromReplay);
     void requestPopulate();
+    void repopulate();
     const SPList *list() const;
 
 private:

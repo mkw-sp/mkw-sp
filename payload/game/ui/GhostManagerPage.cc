@@ -51,8 +51,10 @@ void GhostManagerPage::SPList::populate() {
             }
             break;
         case SP::ClientSettings::TAGhostSorting::Lap3Pace:
-            if (h0->lapCount >= 2) {
-                return h0->lapTimes[0].toMilliseconds() < h1->lapTimes[0].toMilliseconds();
+            if (h0->lapCount >= 3) {
+                u32 l3p0 = h0->lapTimes[0].toMilliseconds() + h0->lapTimes[1].toMilliseconds();
+                u32 l3p1 = h1->lapTimes[0].toMilliseconds() + h1->lapTimes[1].toMilliseconds();
+                return l3p0 < l3p1;
             }
             break;
         }
@@ -103,6 +105,10 @@ void GhostManagerPage::dispatchPopulate() {
     }
 
     m_currentRequest = Request::Populate;
+}
+
+void GhostManagerPage::repopulate() {
+    m_list.populate();
 }
 
 const GhostManagerPage::SPList *GhostManagerPage::list() const {
