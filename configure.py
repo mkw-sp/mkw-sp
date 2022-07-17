@@ -960,34 +960,30 @@ code_in_files = {
         os.path.join('payload', 'sp', 'FlameGraph.c'),
         os.path.join('payload', 'sp', 'Host.c'),
         os.path.join('payload', 'sp', 'IOSDolphin.c'),
-        os.path.join('payload', 'sp', 'Panic.c'),
-        # Keyboard module
-        os.path.join('payload', 'sp', 'keyboard', 'Keyboard.c'),
-        os.path.join('payload', 'sp', 'keyboard', 'SIKeyboard.c'),
-        os.path.join('payload', 'sp', 'keyboard', 'IOSKeyboard.c'),
-        #
         os.path.join('payload', 'sp', 'LZ77Decoder.cc'),
         os.path.join('payload', 'sp', 'LZMADecoder.cc'),
-        # Net module
-        os.path.join('payload', 'sp', 'net', 'Net.cc'),
-        os.path.join('payload', 'sp', 'net', 'Socket.cc'),
-        #
+        os.path.join('payload', 'sp', 'Panic.c'),
         os.path.join('payload', 'sp', 'Patcher.c'),
         os.path.join('payload', 'sp', 'Payload.cc'),
         os.path.join('payload', 'sp', 'Rel.cc'),
         os.path.join('payload', 'sp', 'ScopeLock.cc'),
-        # Security module
+        os.path.join('payload', 'sp', 'Slab.c'),
+        os.path.join('payload', 'sp', 'StackTrace.c'),
+        os.path.join('payload', 'sp', 'Time.cc'),
+        os.path.join('payload', 'sp', 'Update.cc'),
+        os.path.join('payload', 'sp', 'Yaz.c'),
+        os.path.join('payload', 'sp', 'YAZDecoder.cc'),
+        os.path.join('payload', 'sp', 'keyboard', 'Keyboard.c'),
+        os.path.join('payload', 'sp', 'keyboard', 'SIKeyboard.c'),
+        os.path.join('payload', 'sp', 'keyboard', 'IOSKeyboard.c'),
+        os.path.join('payload', 'sp', 'net', 'Net.cc'),
+        os.path.join('payload', 'sp', 'net', 'Socket.cc'),
         os.path.join('payload', 'sp', 'security', 'Memory.c'),
         os.path.join('payload', 'sp', 'security', 'Stack.S'),
         os.path.join('payload', 'sp', 'security', 'Stack.c'),
         os.path.join('payload', 'sp', 'security', 'StackTrace.S'),
-        # Settings module
         os.path.join('payload', 'sp', 'settings', 'ClientSettings.cc'),
         os.path.join('payload', 'sp', 'settings', 'IniReader.cc'),
-        #
-        os.path.join('payload', 'sp', 'Slab.c'),
-        os.path.join('payload', 'sp', 'StackTrace.c'),
-        # Storage module
         os.path.join('payload', 'sp', 'storage', 'DecompLoader.cc'),
         os.path.join('payload', 'sp', 'storage', 'DVDStorage.cc'),
         os.path.join('payload', 'sp', 'storage', 'FATStorage.cc'),
@@ -998,11 +994,6 @@ code_in_files = {
         os.path.join('payload', 'sp', 'storage', 'Storage.cc'),
         os.path.join('payload', 'sp', 'storage', 'Usb.c'),
         os.path.join('payload', 'sp', 'storage', 'UsbStorage.c'),
-        #
-        os.path.join('payload', 'sp', 'Time.cc'),
-        os.path.join('payload', 'sp', 'Update.cc'),
-        os.path.join('payload', 'sp', 'Yaz.c'),
-        os.path.join('payload', 'sp', 'YAZDecoder.cc'),
         os.path.join('vendor', 'arith64.c'),
         os.path.join('vendor', 'ff', 'diskio.c'),
         os.path.join('vendor', 'ff', 'ff.c'),
