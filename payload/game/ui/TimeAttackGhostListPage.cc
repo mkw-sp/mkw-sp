@@ -1,5 +1,8 @@
 #include "TimeAttackGhostListPage.hh"
 
+extern "C" {
+#include "game/system/GhostFile.h"
+}
 #include "game/system/RaceConfig.hh"
 #include "game/system/SaveManager.hh"
 #include "game/ui/SectionManager.hh"
@@ -35,7 +38,7 @@ void TimeAttackGhostListPage::onInit() {
     setInputManager(&m_input);
     m_input.setWrappingMode(MultiControlInputManager::WrappingMode::Neither);
 
-    initChildren(9);
+    initChildren(11);
     insertChild(0, &m_titleText, 0);
     insertChild(1, &m_settingsButton, 0);
     insertChild(2, &m_ghostSelects[0], 0);
@@ -43,8 +46,10 @@ void TimeAttackGhostListPage::onInit() {
     insertChild(4, &m_sheetSelect, 0);
     insertChild(5, &m_sheetLabel, 0);
     insertChild(6, &m_messageWindow, 0);
-    insertChild(7, &m_okButton, 0);
-    insertChild(8, &m_backButton, 0);
+    insertChild(7, &m_aloneButton, 0);
+    insertChild(8, &m_raceButton, 0);
+    insertChild(9, &m_watchButton, 0);
+    insertChild(10, &m_backButton, 0);
 
     m_titleText.load(/* isOptions = */ false);
     m_settingsButton.load("button", "RuleSetting", "ButtonRuleSetting", 0x1, false, false);
@@ -56,7 +61,9 @@ void TimeAttackGhostListPage::onInit() {
             "control", "TimeAttackGhostListPageNum", "TimeAttackGhostListPageNum", NULL);
     m_messageWindow.load("message_window", "TimeAttackGhostListMessageWindowHalf",
             "MessageWindowHalf");
-    m_okButton.load("button", "TimeAttackGhostList", "OK", 0x1, false, false);
+    m_aloneButton.load("button", "TimeAttackGhostList", "Alone", 0x1, false, false);
+    m_raceButton.load("button", "TimeAttackGhostListHalf", "Race", 0x1, false, false);
+    m_watchButton.load("button", "TimeAttackGhostListHalf", "Watch", 0x1, false, false);
     m_backButton.load(
             "button", "Back", "ButtonBackPopup", 0x1, false, /* pointerOnly = */ true);
 
@@ -66,8 +73,13 @@ void TimeAttackGhostListPage::onInit() {
     m_settingsButton.setDeselectHandler(&m_onSettingsButtonDeselect, false);
     m_sheetSelect.setRightHandler(&m_onSheetSelectRight);
     m_sheetSelect.setLeftHandler(&m_onSheetSelectLeft);
-    m_okButton.setSelectHandler(&m_onOKButtonSelect, false);
-    m_okButton.setFrontHandler(&m_onOKButtonFront, false);
+    m_aloneButton.setFrontHandler(&m_onAloneButtonFront, false);
+    m_aloneButton.setSelectHandler(&m_onAloneButtonSelect, false);
+    m_raceButton.setFrontHandler(&m_onRaceButtonFront, false);
+    m_raceButton.setSelectHandler(&m_onRaceButtonSelect, false);
+    m_watchButton.setFrontHandler(&m_onWatchButtonFront, false);
+    m_watchButton.setSelectHandler(&m_onWatchButtonSelect, false);
+    m_watchButton.setDeselectHandler(&m_onWatchButtonDeselect, false);
     m_backButton.setFrontHandler(&m_onBackButtonFront, false);
 
     m_titleText.setMessage(3407);
@@ -87,7 +99,11 @@ void TimeAttackGhostListPage::onActivate() {
     auto cc = saveManager->getSetting<SP::ClientSettings::Setting::TAClass>();
     if (!m_cc || *m_cc != cc) {
         m_sheetSelect.setPointerOnly(false);
-        m_okButton.selectDefault(0);
+        if (m_chosenCount == 0) {
+            m_aloneButton.selectDefault(0);
+        } else {
+            m_raceButton.selectDefault(0);
+        }
 
         const u32 buttonsPerSheet = m_ghostSelects[0].buttons.size();
         m_sheetCount = (m_ghostList->count() + buttonsPerSheet - 1) / buttonsPerSheet;
@@ -102,7 +118,7 @@ void TimeAttackGhostListPage::onActivate() {
         m_sheetSelect.setVisible(m_sheetCount > 1);
         m_sheetSelect.setPlayerFlags(m_sheetCount <= 1 ? 0x0 : 0x1);
 
-        refreshOKButton();
+        refreshLaunchButtons();
 
         m_messageWindow.setVisible(m_sheetCount == 0);
     }
@@ -114,6 +130,48 @@ void TimeAttackGhostListPage::onActivate() {
     m_hiddenGhostSelect->hide();
 
     m_replacement = PageId::None;
+}
+
+void TimeAttackGhostListPage::onRefocus() {
+    auto *section = SectionManager::Instance()->currentSection();
+    auto *raceConfirmPage = section->page<PageId::RaceConfirm>();
+    if (!raceConfirmPage->hasConfirmed()) {
+        return;
+    }
+
+    auto &menuScenario = System::RaceConfig::Instance()->menuScenario();
+    u32 playerCount = m_chosenCount;
+    if (playerCount == 0 || !m_isReplay) {
+        playerCount++;
+    }
+    for (u32 i = playerCount; i < std::size(menuScenario.players); i++) {
+        menuScenario.players[i].type = System::RaceConfig::Player::Type::None;
+    }
+
+    GlobalContext *context = SectionManager::Instance()->globalContext();
+    context->m_timeAttackGhostType = GHOST_TYPE_SAVED;
+    context->m_timeAttackCourseId = menuScenario.courseId;
+    context->m_timeAttackLicenseId = -1;
+
+    context->m_timeAttackGhostCount = 0;
+    for (u32 i = 0; i < m_ghostIsChosen.size(); i++) {
+        if (m_ghostIsChosen[i]) {
+            context->m_timeAttackGhostIndices[context->m_timeAttackGhostCount++] = i;
+        }
+    }
+
+    auto *ghostManagerPage = section->page<PageId::GhostManager>();
+    SectionId sectionId;
+    if (m_chosenCount == 0) {
+        sectionId = SectionId::TA;
+    } else if (m_isReplay) {
+        ghostManagerPage->requestGhostReplay();
+        sectionId = SectionId::GhostReplay;
+    } else {
+        ghostManagerPage->requestGhostRace(false, false);
+        sectionId = SectionId::TA;
+    }
+    changeSection(sectionId, Anim::Next, 0.0f);
 }
 
 void TimeAttackGhostListPage::chooseGhost(u32 buttonIndex) {
@@ -128,7 +186,7 @@ void TimeAttackGhostListPage::chooseGhost(u32 buttonIndex) {
         --m_chosenCount;
     }
 
-    refreshOKButton();
+    refreshLaunchButtons();
 }
 
 void TimeAttackGhostListPage::onBack([[maybe_unused]] u32 localPlayerId) {
@@ -151,11 +209,13 @@ void TimeAttackGhostListPage::onSettingsButtonFront([[maybe_unused]] PushButton 
 void TimeAttackGhostListPage::onSettingsButtonSelect([[maybe_unused]] PushButton *button,
         [[maybe_unused]] u32 localPlayerId) {
     m_sheetSelect.setPointerOnly(true);
+    m_watchButton.setPointerOnly(true);
 }
 
 void TimeAttackGhostListPage::onSettingsButtonDeselect([[maybe_unused]] PushButton *button,
         [[maybe_unused]] u32 localPlayerId) {
     m_sheetSelect.setPointerOnly(false);
+    m_watchButton.setPointerOnly(false);
 }
 
 void TimeAttackGhostListPage::onSheetSelectRight([[maybe_unused]] SheetSelectControl *control,
@@ -196,16 +256,47 @@ void TimeAttackGhostListPage::onSheetSelectLeft([[maybe_unused]] SheetSelectCont
     swapGhostSelects();
 }
 
-void TimeAttackGhostListPage::onOKButtonFront([[maybe_unused]] PushButton *button,
+void TimeAttackGhostListPage::onAloneButtonFront([[maybe_unused]] PushButton *button,
         [[maybe_unused]] u32 localPlayerId) {
-    m_replacement = PageId::TimeAttackModeSelect;
-    f32 delay = button->getDelay();
-    startReplace(Anim::Prev, delay);
+    m_isReplay = false;
+
+    push(PageId::RaceConfirm, Anim::Next);
 }
 
-void TimeAttackGhostListPage::onOKButtonSelect([[maybe_unused]] PushButton *button,
+void TimeAttackGhostListPage::onAloneButtonSelect([[maybe_unused]] PushButton *button,
         [[maybe_unused]] u32 localPlayerId) {
     m_lastSelected = -1;
+}
+
+void TimeAttackGhostListPage::onRaceButtonFront([[maybe_unused]] PushButton *button,
+        [[maybe_unused]] u32 localPlayerId) {
+    m_isReplay = false;
+
+    push(PageId::RaceConfirm, Anim::Next);
+}
+
+void TimeAttackGhostListPage::onRaceButtonSelect([[maybe_unused]] PushButton *button,
+        [[maybe_unused]] u32 localPlayerId) {
+    m_lastSelected = -1;
+}
+
+void TimeAttackGhostListPage::onWatchButtonFront([[maybe_unused]] PushButton *button,
+        [[maybe_unused]] u32 localPlayerId) {
+    m_isReplay = true;
+
+    push(PageId::RaceConfirm, Anim::Next);
+}
+
+void TimeAttackGhostListPage::onWatchButtonSelect([[maybe_unused]] PushButton *button,
+        [[maybe_unused]] u32 localPlayerId) {
+    m_settingsButton.setPointerOnly(true);
+
+    m_lastSelected = -1;
+}
+
+void TimeAttackGhostListPage::onWatchButtonDeselect([[maybe_unused]] PushButton *button,
+        [[maybe_unused]] u32 localPlayerId) {
+    m_settingsButton.setPointerOnly(false);
 }
 
 void TimeAttackGhostListPage::onBackButtonFront([[maybe_unused]] PushButton *button,
@@ -240,10 +331,19 @@ void TimeAttackGhostListPage::swapGhostSelects() {
     std::swap(m_shownGhostSelect, m_hiddenGhostSelect);
 }
 
-void TimeAttackGhostListPage::refreshOKButton() {
-    MessageInfo info{};
-    info.intVals[0] = m_chosenCount;
-    m_okButton.setMessageAll(10162, &info);
+void TimeAttackGhostListPage::refreshLaunchButtons() {
+    m_aloneButton.setVisible(m_chosenCount == 0);
+    m_aloneButton.setPlayerFlags(m_chosenCount == 0 ? 0x1 : 0x0);
+    m_raceButton.setVisible(m_chosenCount != 0);
+    m_raceButton.setPlayerFlags(m_chosenCount != 0 ? 0x1 : 0x0);
+    m_watchButton.setVisible(m_chosenCount != 0);
+    m_watchButton.setPlayerFlags(m_chosenCount != 0 ? 0x1 : 0x0);
+    if (m_chosenCount != 0) {
+        MessageInfo info{};
+        info.intVals[0] = m_chosenCount;
+        m_raceButton.setMessageAll(10162, &info);
+        m_watchButton.setMessageAll(10163, &info);
+    }
 }
 
 } // namespace UI

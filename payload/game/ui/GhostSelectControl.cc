@@ -51,7 +51,18 @@ void GhostSelectControl::calcSelf() {
         }
         TimeAttackGhostListPage *page = getGhostListPage();
         if (page->m_lastSelected == -1) {
-            page->m_okButton.select(0);
+            if (page->m_chosenCount) {
+                page->m_aloneButton.select(0);
+            } else {
+                switch (getSlideAnimation()) {
+                case ANIM_ID_SLIDE_IN_FROM_LEFT:
+                    page->m_raceButton.select(0);
+                    break;
+                case ANIM_ID_SLIDE_IN_FROM_RIGHT:
+                    page->m_watchButton.select(0);
+                    break;
+                }
+            }
         } else if (!buttons[page->m_lastSelected].getVisible()) {
             buttons[0].select(0);
         } else {

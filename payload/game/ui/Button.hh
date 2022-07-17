@@ -52,6 +52,7 @@ public:
     void selectDefault(u32 localPlayerId);
     void select(u32 localPlayerId);
     void setPlayerFlags(u32 playerFlags);
+    void setPointerOnly(bool pointerOnly);
     f32 getDelay() const;
 
 private:

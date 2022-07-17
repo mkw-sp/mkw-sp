@@ -1,6 +1,6 @@
 #include "CtrlRaceLap.hh"
 
-#include "game/ui/SectionManager.hh"
+#include "game/system/SaveManager.hh"
 
 namespace UI {
 
@@ -13,7 +13,10 @@ void CtrlRaceLap::calcSelf() {
 void CtrlRaceLap::load(const char *variant, u32 localPlayerId) {
     m_localPlayerId = localPlayerId;
 
-    const char *file = SectionManager::Instance()->taIsVanilla() ? "lap_number" : "lap_number_sp";
+    auto *saveManager = System::SaveManager::Instance();
+    auto setting = saveManager->getSetting<SP::ClientSettings::Setting::VanillaMode>();
+    bool isVanilla = setting == SP::ClientSettings::VanillaMode::Enable;
+    const char *file = isVanilla ? "lap_number" : "lap_number_sp";
     const char *groups[] = {
         "eAFKartLap",
         "texture_pattern_0_9_0",

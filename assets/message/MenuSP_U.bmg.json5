@@ -561,69 +561,77 @@
     },
     "10162": {
         "font": "regular",
-        "string": "OK ({arg integer|0 0} {arg cond messages|0 10163 10164} selected)",
+        "string": "Race {arg integer|0 0} {arg cond messages|0 10164 10165}",
     },
     "10163": {
         "font": "regular",
-        "string": "ghost",
+        "string": "Watch {arg integer|0 0} {arg cond messages|0 10164 10165}",
     },
     "10164": {
         "font": "regular",
-        "string": "ghosts",
+        "string": "Ghost",
     },
     "10165": {
         "font": "regular",
-        "string": "Select Mode",
+        "string": "Ghosts",
     },
     "10166": {
         "font": "regular",
-        "string": "Time Trials",
+        "string": "Vanilla Mode",
     },
     "10167": {
         "font": "regular",
-        "string": "Vanilla Time Trials",
+        "string": "Disable",
     },
     "10168": {
         "font": "regular",
-        "string": "Replay",
+        "string": "Enable",
     },
     "10169": {
         "font": "regular",
-        "string": "Time",
+        "string": "Disallow most MKW-SP changes.",
     },
     "10170": {
         "font": "regular",
-        "string": "Date",
+        "string": "Allow all MKW-SP changes.",
     },
     "10171": {
         "font": "regular",
-        "string": "Flap",
+        "string": "Time",
     },
     "10172": {
         "font": "regular",
-        "string": "Lap 2 Pace",
+        "string": "Date",
     },
     "10173": {
         "font": "regular",
-        "string": "Lap 3 Pace",
+        "string": "Flap",
     },
     "10174": {
         "font": "regular",
-        "string": "Sort ghosts by their finish time.",
+        "string": "Lap 2 Pace",
     },
     "10175": {
         "font": "regular",
-        "string": "Sort ghosts by their creation date.",
+        "string": "Lap 3 Pace",
     },
     "10176": {
         "font": "regular",
-        "string": "Sort ghosts by their fastest lap.",
+        "string": "Sort ghosts by their finish time.",
     },
     "10177": {
         "font": "regular",
-        "string": "Sort ghosts by their lap 2 pace.",
+        "string": "Sort ghosts by their creation date.",
     },
     "10178": {
+        "font": "regular",
+        "string": "Sort ghosts by their fastest lap.",
+    },
+    "10179": {
+        "font": "regular",
+        "string": "Sort ghosts by their lap 2 pace.",
+    },
+    "10180": {
         "font": "regular",
         "string": "Sort ghosts by their lap 3 pace.",
     },

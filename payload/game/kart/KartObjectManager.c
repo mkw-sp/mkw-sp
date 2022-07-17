@@ -5,7 +5,6 @@
 #include "game/system/RaceConfig.h"
 #include "game/system/RaceManager.h"
 #include "game/system/SaveManager.h"
-#include "game/ui/SectionManager.h"
 #include "game/ui/page/RacePage.h"
 
 #include <sp/settings/ClientSettings.h>
@@ -42,8 +41,11 @@ static void my_KartObjectManager_createInstance(void) {
 
     u32 courseId = s_raceConfig->raceScenario.courseId;
     const u8 *courseSha1 = SaveManager_CourseSHA1(courseId);
-    const GlobalContext *context = s_sectionManager->globalContext;
-    SPFooter_OnRaceStart(courseSha1, speedModIsEnabled, context->timeAttackIsVanilla);
+    bool isVanilla = SaveManager_GetVanillaMode() == kVanillaMode_Enable;
+    if (s_raceConfig->raceScenario.playerCount > 2) {
+        isVanilla = false;
+    }
+    SPFooter_OnRaceStart(courseSha1, speedModIsEnabled, isVanilla);
 
     s_kartObjectManager = new(sizeof(KartObjectManager));
     KartObjectManager_ct(s_kartObjectManager);

@@ -95,7 +95,7 @@
     ],
     "variants": [
         {
-            "name": "Launch",
+            "name": "Alone",
             "opacity": 255,
             "animated": true,
             "animation delay": 4.0,
@@ -110,11 +110,17 @@
             "scale x 16:9": 1.0,
             "scale y 16:9": 1.0,
             "first message": 0,
-            "message count": 0,
+            "message count": 1,
             "first picture": 0,
             "picture count": 0,
         },
     ],
-    "messages": [],
+    "messages": [
+        {
+            "pane": "",
+            "name": "",
+            "message id": 6016,
+        },
+    ],
     "pictures": [],
 }

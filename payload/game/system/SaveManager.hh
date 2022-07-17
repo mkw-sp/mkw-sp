@@ -63,6 +63,14 @@ public:
             return static_cast<SP::ClientSettings::Helper<S>::type>(defaultValue);
         }
 
+        auto vanillaValue = SP::ClientSettings::entries[static_cast<u32>(S)].vanillaValue;
+        if (vanillaValue) {
+            auto setting = getSetting<SP::ClientSettings::Setting::VanillaMode>();
+            if (setting == SP::ClientSettings::VanillaMode::Enable) {
+                return static_cast<SP::ClientSettings::Helper<S>::type>(*vanillaValue);
+            }
+        }
+
         return m_spLicenses[*m_spCurrentLicense].get<SP::ClientSettings::Setting, S>();
     }
 

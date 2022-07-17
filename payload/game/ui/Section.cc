@@ -7,7 +7,6 @@
 #include "game/ui/SingleTopPage.hh"
 #include "game/ui/StorageBenchmarkPage.hh"
 #include "game/ui/TimeAttackGhostListPage.hh"
-#include "game/ui/TimeAttackModeSelectPage.hh"
 #include "game/ui/UpdatePage.hh"
 
 namespace UI {
@@ -189,8 +188,6 @@ Page *Section::CreatePage(PageId pageId) {
         return new LicenseSelectPage;
     case PageId::SingleTop:
         return new SingleTopPage;
-    case PageId::TimeAttackModeSelect:
-        return new TimeAttackModeSelectPage;
     case PageId::TimeAttackGhostList:
         return new TimeAttackGhostListPage;
     case PageId::ServicePackTop:

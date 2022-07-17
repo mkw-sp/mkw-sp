@@ -45,7 +45,6 @@ enum class PageId {
     LicenseSelect = 0x65,
     LicenseSettingsTop = 0x67,
     SingleTop = 0x69,
-    TimeAttackModeSelect = 0x6A, // Replaces GPClassSelect
     CharacterSelect = 0x6B,
     VehicleSelect = 0x6C,
     DriftSelect = 0x6D,

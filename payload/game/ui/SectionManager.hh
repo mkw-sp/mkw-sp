@@ -15,8 +15,6 @@ public:
     void REPLACED(startChangeSection)(s32 delay, u32 color);
     REPLACE void startChangeSection(s32 delay, u32 color);
 
-    bool taIsVanilla() const;
-
     static SectionManager *Instance();
 
 private:

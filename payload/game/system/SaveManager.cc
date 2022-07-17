@@ -276,6 +276,14 @@ u32 SaveManager::getSetting(u32 setting) const {
         return SP::ClientSettings::entries[setting].defaultValue;
     }
 
+    auto vanillaValue = SP::ClientSettings::entries[setting].vanillaValue;
+    if (vanillaValue) {
+        auto vanillaModeSetting = getSetting<SP::ClientSettings::Setting::VanillaMode>();
+        if (vanillaModeSetting == SP::ClientSettings::VanillaMode::Enable) {
+            return *vanillaValue;
+        }
+    }
+
     return m_spLicenses[*m_spCurrentLicense].get(setting);
 }
 
@@ -678,6 +686,12 @@ void SaveManager_SetDriftMode(u32 value) {
     auto *saveManager = System::SaveManager::Instance();
     auto v = static_cast<SP::ClientSettings::DriftMode>(value);
     saveManager->setSetting<SP::ClientSettings::Setting::DriftMode>(v);
+}
+
+u32 SaveManager_GetVanillaMode(void) {
+    auto *saveManager = System::SaveManager::Instance();
+    auto value = saveManager->getSetting<SP::ClientSettings::Setting::VanillaMode>();
+    return static_cast<u32>(value);
 }
 
 u32 SaveManager_GetFOV169(void) {

@@ -28,7 +28,6 @@ public:
     u8 _3d0[0x510 - 0x3d0];
     u32 m_timeAttackGhostCount; // Added
     u32 m_timeAttackGhostIndices[11]; // Added
-    bool m_timeAttackIsVanilla; // Added
 };
 static_assert(offsetof(GlobalContext, m_timeAttackGhostCount) == 0x510);
 

@@ -7,6 +7,12 @@ enum {
     kDriftMode_MAX,
     kDriftMode_Default = kDriftMode_Manual,
 };
+
+enum {
+    kVanillaMode_Disable,
+    kVanillaMode_Enable,
+};
+
 enum {
     kHudLabels_Hide,
     kHudLabels_Show,
@@ -98,38 +104,4 @@ enum {
 
     kTaRuleGhostSound_MAX,
     kTaRuleGhostSound_Default = kTaRuleGhostSound_Watched,
-};
-
-// NOTE: Mirrored by ASM in Common.S, modify both when making changes
-typedef enum {
-    // Race
-    kSetting_DriftMode,
-    kSetting_HudLabels,
-    kSetting_169_Fov,
-    kSetting_MapIcons,
-    kSetting_PageTransitions,
-    kSetting_RaceInputDisplay,
-
-    // TA
-    kSetting_TaRuleClass,
-    kSetting_TaRuleGhostSorting,
-    kSetting_TaRuleGhostTagVisibility,
-    kSetting_TaRuleGhostTagContent,
-    kSetting_TaRuleSolidGhosts,
-    kSetting_TaRuleGhostSound,
-
-    // License
-    kSetting_MiiAvatar,  // BE encoding of u8[4]
-    kSetting_MiiClient,  // BE encoding of u8[4]
-    kSetting_LoadingScreenColor,  // BE encoding of u8[4]
-
-    kSetting_MAX,
-} SpSettingKey;
-
-enum {
-    kCategory_Race,
-    kCategory_TA,
-    kCategory_License,
-
-    kCategory_MAX,
 };

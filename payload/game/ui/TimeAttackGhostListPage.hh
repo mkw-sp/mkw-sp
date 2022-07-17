@@ -25,6 +25,7 @@ public:
     PageId getReplacement() override;
     void onInit() override;
     void onActivate() override;
+    void onRefocus() override;
 
     void chooseGhost(u32 buttonIndex);
 
@@ -35,13 +36,18 @@ private:
     void onSettingsButtonDeselect(PushButton *button, u32 localPlayerId);
     void onSheetSelectRight(SheetSelectControl *control, u32 localPlayerId);
     void onSheetSelectLeft(SheetSelectControl *control, u32 localPlayerId);
-    void onOKButtonFront(PushButton *button, u32 localPlayerId);
-    void onOKButtonSelect(PushButton *button, u32 localPlayerId);
+    void onAloneButtonFront(PushButton *button, u32 localPlayerId);
+    void onAloneButtonSelect(PushButton *button, u32 localPlayerId);
+    void onRaceButtonFront(PushButton *button, u32 localPlayerId);
+    void onRaceButtonSelect(PushButton *button, u32 localPlayerId);
+    void onWatchButtonFront(PushButton *button, u32 localPlayerId);
+    void onWatchButtonSelect(PushButton *button, u32 localPlayerId);
+    void onWatchButtonDeselect(PushButton *button, u32 localPlayerId);
     void onBackButtonFront(PushButton *button, u32 localPlayerId);
     void refreshSheetLabel();
     bool canSwapGhostSelects() const;
     void swapGhostSelects();
-    void refreshOKButton();
+    void refreshLaunchButtons();
 
     template <typename T>
     using H = typename T::Handler<TimeAttackGhostListPage>;
@@ -54,7 +60,9 @@ private:
     SheetSelectControl m_sheetSelect;
     LayoutUIControl m_sheetLabel;
     MessageWindowControl m_messageWindow;
-    PushButton m_okButton;
+    PushButton m_aloneButton;
+    PushButton m_raceButton;
+    PushButton m_watchButton;
     CtrlMenuBackButton m_backButton;
 
     // Input handlers
@@ -64,8 +72,13 @@ private:
     H<PushButton> m_onSettingsButtonFront{ this, &TimeAttackGhostListPage::onSettingsButtonFront };
     H<SheetSelectControl> m_onSheetSelectRight{ this, &TimeAttackGhostListPage::onSheetSelectRight };
     H<SheetSelectControl> m_onSheetSelectLeft{ this, &TimeAttackGhostListPage::onSheetSelectLeft };
-    H<PushButton> m_onOKButtonSelect{ this, &TimeAttackGhostListPage::onOKButtonSelect };
-    H<PushButton> m_onOKButtonFront{ this, &TimeAttackGhostListPage::onOKButtonFront };
+    H<PushButton> m_onAloneButtonFront{ this, &TimeAttackGhostListPage::onAloneButtonFront };
+    H<PushButton> m_onAloneButtonSelect{ this, &TimeAttackGhostListPage::onAloneButtonSelect };
+    H<PushButton> m_onRaceButtonFront{ this, &TimeAttackGhostListPage::onRaceButtonFront };
+    H<PushButton> m_onRaceButtonSelect{ this, &TimeAttackGhostListPage::onRaceButtonSelect };
+    H<PushButton> m_onWatchButtonFront{ this, &TimeAttackGhostListPage::onWatchButtonFront };
+    H<PushButton> m_onWatchButtonSelect{ this, &TimeAttackGhostListPage::onWatchButtonSelect };
+    H<PushButton> m_onWatchButtonDeselect{ this, &TimeAttackGhostListPage::onWatchButtonDeselect };
     H<PushButton> m_onBackButtonFront{ this, &TimeAttackGhostListPage::onBackButtonFront };
 
     GhostSelectControl *m_shownGhostSelect;
@@ -77,6 +90,7 @@ private:
     u32 m_sheetIndex;
     s32 m_lastSelected;
     std::optional<SP::ClientSettings::TAClass> m_cc{};
+    bool m_isReplay;
     PageId m_replacement;
 };
 

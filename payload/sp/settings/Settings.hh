@@ -23,6 +23,7 @@ struct Entry {
     const std::string_view *valueNames;
     const u32 *valueMessageIds;
     const u32 *valueExplanationMessageIds;
+    std::optional<u32> vanillaValue{};
 };
 
 template <typename C>
