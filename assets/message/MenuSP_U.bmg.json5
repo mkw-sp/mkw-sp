@@ -1,20 +1,4 @@
 {
-    "10000": {
-        "font": "regular",
-        "string": "Race Against 1 Ghost",
-    },
-    "10001": {
-        "font": "regular",
-        "string": "Watch 1 Ghost",
-    },
-    "10002": {
-        "font": "regular",
-        "string": "Race Against {arg integer|0 0} Ghosts",
-    },
-    "10003": {
-        "font": "regular",
-        "string": "Watch {arg integer|0 0} Ghosts",
-    },
     "10004": {
         "font": "regular",
         "string": "HUD Labels",
