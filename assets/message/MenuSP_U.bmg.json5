@@ -445,7 +445,7 @@
     },
     "10133": {
         "font": "regular",
-        "string": "Let stars, mega mushrooms and lightnings affect the music.",
+        "string": "Let Stars, Mega Mushrooms and Lightnings affect the music.",
     },
     "10134": {
         "font": "regular",
@@ -461,11 +461,11 @@
     },
     "10137": {
         "font": "regular",
-        "string": "Use a different jingle for the last lap during gameplay only.",
+        "string": "Use a different jingle for the final lap (gameplay only).",
     },
     "10138": {
         "font": "regular",
-        "string": "Use a different jingle for the last lap for both gameplay and replay.",
+        "string": "Use a different jingle for the final lap (gameplay and replay).",
     },
     "10139": {
         "font": "regular",
@@ -485,15 +485,15 @@
     },
     "10143": {
         "font": "regular",
-        "string": "Do not play a faster music during the last lap.",
+        "string": "Use the \"_N\" BRSTM on the final lap.",
     },
     "10144": {
         "font": "regular",
-        "string": "Read the last lap music from a _f suffixed BRSTM.",
+        "string": "Use the \"_F\" BRSTM on the final lap.",
     },
     "10145": {
         "font": "regular",
-        "string": "Generate a faster music for the last lap on the flight.",
+        "string": "Generate final lap music on the fly.",
     },
     "10146": {
         "font": "regular",
@@ -589,11 +589,11 @@
     },
     "10169": {
         "font": "regular",
-        "string": "Disallow most MKW-SP changes.",
+        "string": "Allow all MKW-SP changes.",
     },
     "10170": {
         "font": "regular",
-        "string": "Allow all MKW-SP changes.",
+        "string": "Disallow most MKW-SP changes.",
     },
     "10171": {
         "font": "regular",
@@ -629,11 +629,15 @@
     },
     "10179": {
         "font": "regular",
-        "string": "Sort ghosts by their lap 2 pace.",
+        "string": "Sort ghosts by their pace into lap 2.",
     },
     "10180": {
         "font": "regular",
-        "string": "Sort ghosts by their lap 3 pace.",
+        "string": "Sort ghosts by their pace into lap 3.",
+    },
+    "10181": {
+        "font": "regular",
+        "string": "The {arg message|0} storage benchmark succeeded.\nRank: {arg message|1}\n{arg integer|0 0} KiB: R {arg string|0} MiB/s - W {arg string|1} MiB/s\n{arg integer|1 0} KiB: R {arg string|2} MiB/s - W {arg string|3} MiB/s\n{arg integer|2 0} KiB: R {arg string|4} MiB/s - W {arg string|5} MiB/s\n{arg integer|3 0} KiB: R {arg string|6} MiB/s - W {arg string|7} MiB/s",
     },
     // Mission Mode
     "3004": {
