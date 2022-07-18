@@ -5,11 +5,6 @@
 
 #include <revolution.h>
 
-enum {
-    RESOURCE_KIND_FILE_DOUBLE_FORMAT = 0x0,
-    RESOURCE_KIND_FILE_SINGLE_FORMAT = 0x1,
-};
-
 static const char *getBaseLanguageCode(void) {
     switch (REGION) {
     case REGION_P:

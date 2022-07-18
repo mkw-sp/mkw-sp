@@ -5,6 +5,7 @@
 
 #include <egg/core/eggTaskThread.hh>
 #include <sp/settings/ClientSettings.hh>
+#include <sp/storage/Storage.hh>
 
 namespace System {
 
@@ -62,6 +63,14 @@ public:
             return static_cast<SP::ClientSettings::Helper<S>::type>(defaultValue);
         }
 
+        auto vanillaValue = SP::ClientSettings::entries[static_cast<u32>(S)].vanillaValue;
+        if (vanillaValue) {
+            auto setting = getSetting<SP::ClientSettings::Setting::VanillaMode>();
+            if (setting == SP::ClientSettings::VanillaMode::Enable) {
+                return static_cast<SP::ClientSettings::Helper<S>::type>(*vanillaValue);
+            }
+        }
+
         return m_spLicenses[*m_spCurrentLicense].get<SP::ClientSettings::Setting, S>();
     }
 
@@ -99,8 +108,9 @@ private:
     void initSPSave();
     void initGhostsAsync();
     void initGhosts();
-    void initGhosts(wchar_t *path, u32 offset);
-    void initGhost(NodeId id);
+    void initGhosts(const wchar_t *path);
+    void initGhosts(SP::Storage::NodeId id);
+    void initGhost(SP::Storage::NodeId id);
 
     void saveSPSave();
 
@@ -131,7 +141,7 @@ private:
     RawGhostHeader *m_rawGhostHeaders; // Modified
     GhostGroup *m_ghostGroup;
     GhostFooter *m_ghostFooters; // Modified
-    NodeId *m_ghostIds; // Modified
+    SP::Storage::NodeId *m_ghostIds; // Modified
     u8 _00034[0x00035 - 0x00034];
     bool m_saveGhostResult;
     s16 m_currentLicenseId;

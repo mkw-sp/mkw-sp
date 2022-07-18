@@ -35,6 +35,9 @@ void ResourceManager_process(ResourceManager *self);
 MultiDvdArchive *ResourceManager_loadCourse(ResourceManager *self, u32 courseId, EGG_Heap *heap,
         bool splitScreen);
 
+MultiDvdArchive *ResourceManager_loadMission(ResourceManager *self, u32 courseId, u32 missionId,
+        EGG_Heap *heap, bool splitScreen);
+
 u16 ResourceManager_getMenuArchiveCount(ResourceManager *self);
 
 void ResourceManager_preloadCourseAsync(ResourceManager *self, u32 courseId);

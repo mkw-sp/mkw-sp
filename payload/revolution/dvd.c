@@ -22,34 +22,70 @@ extern u32 MaxEntryNum;
 extern char *FstStringStart;
 extern FstEntry *FstStart;
 
-BOOL my_DVDOpen(const char *fileName, DVDFileInfo *fileInfo) {
-    if (DVDExOpen(fileName, fileInfo)) {
-        return true;
-    }
-
+BOOL DVDOpen(const char *fileName, DVDFileInfo *fileInfo) {
     s32 entrynum = DVDConvertPathToEntrynum(fileName);
-    if (entrynum < 0 || (u32)entrynum >= MaxEntryNum) {
+    return DVDFastOpen(entrynum, fileInfo);
+}
+
+BOOL DVDOpenDir(const char *dirName, DVDDir *dir) {
+    s32 entrynum = DVDConvertPathToEntrynum(dirName);
+    return DVDFastOpenDir(entrynum, dir);
+}
+
+BOOL DVDFastOpenDir(s32 entrynum, DVDDir *dir) {
+    if (entrynum < 0) {
         return false;
     }
-    if (FstStart[entrynum].isDir) {
+
+    if ((u32)entrynum >= MaxEntryNum) {
         return false;
     }
 
-    fileInfo->startAddr = FstStart[entrynum].file.startAddr;
-    fileInfo->length = FstStart[entrynum].file.length;
-    fileInfo->callback = NULL;
-    fileInfo->cb.state = 0;
-    fileInfo->cb.command = 0; // We need to initialize it to mark the file as non-replaced
-    return true;
-}
-PATCH_B(DVDOpen, my_DVDOpen);
-
-BOOL my_DVDClose(DVDFileInfo *fileInfo) {
-    if (fileInfo->cb.command == (u32)-1) {
-        return DVDExClose(fileInfo);
+    if (!FstStart[entrynum].isDir) {
+        return false;
     }
 
-    DVDCancel(&fileInfo->cb);
+    dir->entryNum = entrynum;
+    dir->location = entrynum + 1;
+    dir->next = FstStart[entrynum].dir.next;
     return true;
 }
-PATCH_B(DVDClose, my_DVDClose);
+
+BOOL DVDReadDir(DVDDir *dir, DVDDirEntry *dirent) {
+    if (dir->location <= dir->entryNum) {
+        return false;
+    }
+
+    if (dir->location >= dir->next) {
+        return false;
+    }
+
+    dirent->entryNum = dir->location;
+    dirent->isDir = !!FstStart[dir->location].isDir;
+    dirent->name = FstStringStart + FstStart[dir->location].stringOffset;
+
+    if (FstStart[dir->location].isDir) {
+        dir->location = FstStart[dir->location].dir.next;
+    } else {
+        dir->location++;
+    }
+
+    return true;
+}
+
+BOOL DVDCloseDir(DVDDir *UNUSED(dir)) {
+    return true;
+}
+
+void DVDExClone(const DVDFileInfo *src, DVDFileInfo *dst) {
+    dst->startAddr = src->startAddr;
+    dst->length = src->length;
+    dst->callback = NULL;
+    dst->cb.state = 0;
+}
+
+void DVDExCloneDir(const DVDDir *src, DVDDir *dst) {
+    dst->entryNum = src->entryNum;
+    dst->location = src->entryNum + 1;
+    dst->next = src->next;
+}

@@ -1,35 +1,21 @@
 #pragma once
 
-#include "sp/storage/Storage.h"
+#include <Common.h>
 
-typedef struct DVDCommandBlock DVDCommandBlock;
-typedef struct DVDFileInfo DVDFileInfo;
-
-typedef void (*DVDCallback)(s32 result, DVDFileInfo *fileInfo);
-
-struct DVDCommandBlock {
-    union {
-        struct {
-            DVDCommandBlock *next;
-            DVDCommandBlock *prev;
-        };
-        struct { // Added
-            File file;
-        };
-    };
-    u32 command;
+typedef struct {
+    u8 _00[0x0c - 0x00];
     s32 state;
     u8 _10[0x30 - 0x10];
-};
-static_assert_32bit(sizeof(DVDCommandBlock) == 0x30);
+} DVDCommandBlock;
+static_assert(sizeof(DVDCommandBlock) == 0x30);
 
-struct DVDFileInfo {
+typedef struct {
     DVDCommandBlock cb;
     u32 startAddr;
     u32 length;
-    DVDCallback callback;
-};
-static_assert_32bit(sizeof(DVDFileInfo) == 0x3c);
+    void *callback;
+} DVDFileInfo;
+static_assert(sizeof(DVDFileInfo) == 0x3c);
 
 typedef struct {
     u32 entryNum;
@@ -43,9 +29,9 @@ typedef struct {
     BOOL isDir;
     char *name;
 } DVDDirEntry;
-static_assert_32bit(sizeof(DVDDirEntry) == 0xc);
+static_assert(sizeof(DVDDirEntry) == 0xc);
 
-BOOL DVDOpen(const char *fileName, DVDFileInfo *fileInfo);
+REPLACE BOOL DVDOpen(const char *fileName, DVDFileInfo *fileInfo);
 
 BOOL DVDFastOpen(s32 entrynum, DVDFileInfo *fileInfo);
 
@@ -58,6 +44,8 @@ BOOL DVDClose(DVDFileInfo *fileInfo);
 
 s32 DVDConvertPathToEntrynum(const char *fileName);
 
+BOOL DVDOpenDir(const char *dirName, DVDDir *dir);
+
 BOOL DVDFastOpenDir(s32 entrynum, DVDDir *dir);
 
 BOOL DVDReadDir(DVDDir *dir, DVDDirEntry *dirent);
@@ -65,3 +53,11 @@ BOOL DVDReadDir(DVDDir *dir, DVDDirEntry *dirent);
 BOOL DVDCloseDir(DVDDir *dir);
 
 s32 DVDCancel(DVDCommandBlock *block);
+
+s32 DVDGetEntrynum(const DVDFileInfo *fileInfo);
+
+s32 DVDGetDirEntrynum(const DVDDir *dir);
+
+void DVDExClone(const DVDFileInfo *src, DVDFileInfo *dst);
+
+void DVDExCloneDir(const DVDDir *src, DVDDir *dst);

@@ -1,7 +1,7 @@
 use std::io::Result;
 
 fn main() -> Result<()> {
-    let files = ["../../protobuf/UpdateRequest.proto", "../../protobuf/UpdateResponse.proto"];
+    let files = ["../../protobuf/Update.proto"];
     for file in &files {
         println!("cargo:rerun-if-changed={}", file);
     }

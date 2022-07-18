@@ -41,7 +41,11 @@ static void my_KartObjectManager_createInstance(void) {
 
     u32 courseId = s_raceConfig->raceScenario.courseId;
     const u8 *courseSha1 = SaveManager_CourseSHA1(courseId);
-    SPFooter_OnRaceStart(courseSha1, speedModIsEnabled);
+    bool isVanilla = SaveManager_GetVanillaMode() == kVanillaMode_Enable;
+    if (s_raceConfig->raceScenario.playerCount > 2) {
+        isVanilla = false;
+    }
+    SPFooter_OnRaceStart(courseSha1, speedModIsEnabled, isVanilla);
 
     s_kartObjectManager = new(sizeof(KartObjectManager));
     KartObjectManager_ct(s_kartObjectManager);

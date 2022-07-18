@@ -89,7 +89,9 @@ HUD_LANGUAGES = {
 
 asset_in_files = {
     os.path.join('Scene', 'UI', 'ChannelSP.arc.lzma'): [
+        os.path.join('bg', 'ctrl', 'MenuObiTitleTextOption.brctr.json5'),
         os.path.join('button', 'ctrl', 'ServicePackTopButton.brctr.json5'),
+        os.path.join('button', 'ctrl', 'StorageBenchmarkButton.brctr.json5'),
     ],
     os.path.join('Scene', 'UI', 'CrashSP.arc.lzma'): [
         os.path.join('fatal', 'blyt', 'Fatal.brlyt'),
@@ -189,13 +191,16 @@ asset_in_files = {
     os.path.join('Scene', 'UI', 'MenuSingleSP.arc.lzma'): [
         # GP removal
         os.path.join('button', 'blyt', 'common_w129_movie_button_single_top.brlyt.json5'),
+        os.path.join('button', 'blyt', 'common_w129_movie_button_single_top_no_mr.brlyt.json5'),
         os.path.join('button', 'ctrl', 'MissionInstruction.brctr.json5'),
         os.path.join('button', 'ctrl', 'SingleTop.brctr.json5'),
-        os.path.join('button', 'ctrl', 'SingleTopMR.brctr.json5'),
+        os.path.join('button', 'ctrl', 'SingleTopNoMR.brctr.json5'),
         # Ghost list
+        os.path.join('button', 'blyt', 'common_w203_launch_button_half.brlyt.json5'),
         os.path.join('button', 'ctrl', 'TimeAttackGhostListArrowLeft.brctr.json5'),
         os.path.join('button', 'ctrl', 'TimeAttackGhostListArrowRight.brctr.json5'),
         os.path.join('button', 'ctrl', 'TimeAttackGhostList.brctr.json5'),
+        os.path.join('button', 'ctrl', 'TimeAttackGhostListHalf.brctr.json5'),
         os.path.join('control', 'anim', 'common_w200_ghost_button_active_off.brlan.json5'),
         os.path.join('control', 'anim', 'common_w200_ghost_button_active_off_to_on.brlan.json5'),
         os.path.join('control', 'anim', 'common_w200_ghost_button_active_on.brlan.json5'),
@@ -220,7 +225,6 @@ asset_in_files = {
         # 200cc
         os.path.join('control', 'ctrl', 'VSSettingRadioOption.brctr.json5'),
         # Settings
-        os.path.join('button', 'ctrl', 'Setting.brctr.json5'),
         os.path.join('control', 'anim', 'common_w201_setting_menu_free.brlan.json5'),
         os.path.join('control', 'anim', 'common_w201_setting_menu_free_to_select.brlan.json5'),
         os.path.join('control', 'anim', 'common_w201_setting_menu_select.brlan.json5'),
@@ -358,7 +362,7 @@ asset_in_files = {
         os.path.join('game_image', 'blyt', 'race_message_half.brlyt'),
         os.path.join('game_image', 'ctrl', 'battle_total_point.brctr.json5'),
         os.path.join('game_image', 'ctrl', 'InputDisplay.brctr.json5'),
-        os.path.join('game_image', 'ctrl', 'lap_number.brctr.json5'),
+        os.path.join('game_image', 'ctrl', 'lap_number_sp.brctr.json5'),
         os.path.join('game_image', 'ctrl', 'position_multi.brctr.json5'),
         os.path.join('game_image', 'ctrl', 'speed_number.brctr.json5'),
         os.path.join('game_image', 'ctrl', 'time_number.brctr.json5'),
@@ -597,6 +601,7 @@ common_ccflags = [
     '-Wextra',
     '-Wno-delete-non-virtual-dtor',
     '-Wno-packed-bitfield-compat',
+    '-Wsuggest-override',
 ]
 if args.gdb_compatible:
     common_cflags += ['-DGDB_COMPATIBLE=1']
@@ -710,13 +715,12 @@ n.rule(
 n.newline()
 
 protobuf_proto_files = [
-    'UpdateRequest.proto',
-    'UpdateResponse.proto',
+    os.path.join('protobuf', 'NetStorage.proto'),
+    os.path.join('protobuf', 'Update.proto'),
 ]
 protobuf_h_files = []
 protobuf_c_files = []
 for proto_file in protobuf_proto_files:
-    proto_file = os.path.join('protobuf', proto_file)
     base, _ = os.path.splitext(proto_file)
     options_file = base + '.options'
     h_file = os.path.join('$builddir', base + '.pb.h')
@@ -744,7 +748,7 @@ code_in_files = {
         os.path.join('common', 'VI.cc'),
         os.path.join('payload', 'egg', 'core', 'eggColorFader.c'),
         os.path.join('payload', 'egg', 'core', 'eggDisplay.S'),
-        os.path.join('payload', 'egg', 'core', 'eggDvdFile.c'),
+        os.path.join('payload', 'egg', 'core', 'eggDVDRipper.cc'),
         os.path.join('payload', 'egg', 'core', 'eggEffectCreator.S'),
         os.path.join('payload', 'egg', 'core', 'eggG3dUtil.S'),
         os.path.join('payload', 'egg', 'core', 'eggHeap.c'),
@@ -776,7 +780,6 @@ code_in_files = {
         os.path.join('payload', 'game', 'kart', 'KartState.S'),
         os.path.join('payload', 'game', 'kart', 'KartState.cc'),
         os.path.join('payload', 'game', 'kart', 'KartSub.S'),
-        os.path.join('payload', 'game', 'missionrun', 'MissionRun.S'),
         os.path.join('payload', 'game', 'missionrun', 'MissionRun.c'),
         os.path.join('payload', 'game', 'kart', 'VehiclePhysics.cc'),
         os.path.join('payload', 'game', 'net', 'NetManager.S'),
@@ -814,7 +817,6 @@ code_in_files = {
         os.path.join('payload', 'game', 'system', 'InputManager.c'),
         os.path.join('payload', 'game', 'system', 'InputManager.cc'),
         os.path.join('payload', 'game', 'system', 'Mii.S'),
-        os.path.join('payload', 'game', 'system', 'MultiDvdArchive.S'),
         os.path.join('payload', 'game', 'system', 'MultiDvdArchive.c'),
         os.path.join('payload', 'game', 'system', 'NandManager.S'),
         os.path.join('payload', 'game', 'system', 'RaceConfig.S'),
@@ -825,6 +827,7 @@ code_in_files = {
         os.path.join('payload', 'game', 'system', 'RaceManager.cc'),
         os.path.join('payload', 'game', 'system', 'ResourceManager.S'),
         os.path.join('payload', 'game', 'system', 'ResourceManager.c'),
+        os.path.join('payload', 'game', 'system', 'ResourceManager.cc'),
         os.path.join('payload', 'game', 'system', 'RootScene.S'),
         os.path.join('payload', 'game', 'system', 'SaveManager.cc'),
         os.path.join('payload', 'game', 'system', 'SceneCreatorDynamic.S'),
@@ -850,8 +853,10 @@ code_in_files = {
         os.path.join('payload', 'game', 'ui', 'MessageWindowControl.cc'),
         os.path.join('payload', 'game', 'ui', 'MiiGroup.cc'),
         os.path.join('payload', 'game', 'ui', 'Model.S'),
+        os.path.join('payload', 'game', 'ui', 'ModelPage.cc'),
         os.path.join('payload', 'game', 'ui', 'Option.cc'),
         os.path.join('payload', 'game', 'ui', 'Page.cc'),
+        os.path.join('payload', 'game', 'ui', 'RaceConfirmPage.cc'),
         os.path.join('payload', 'game', 'ui', 'RadioButtonControl.cc'),
         os.path.join('payload', 'game', 'ui', 'Save.S'),
         os.path.join('payload', 'game', 'ui', 'SaveManagerProxy.S'),
@@ -863,6 +868,8 @@ code_in_files = {
         os.path.join('payload', 'game', 'ui', 'ServicePackTopPage.cc'),
         os.path.join('payload', 'game', 'ui', 'SettingsPage.cc'),
         os.path.join('payload', 'game', 'ui', 'SheetSelectControl.cc'),
+        os.path.join('payload', 'game', 'ui', 'SingleTopPage.cc'),
+        os.path.join('payload', 'game', 'ui', 'StorageBenchmarkPage.cc'),
         os.path.join('payload', 'game', 'ui', 'TabControl.cc'),
         os.path.join('payload', 'game', 'ui', 'TimeAttackGhostListPage.cc'),
         os.path.join('payload', 'game', 'ui', 'TimeAttackTopPage.S'),
@@ -898,8 +905,6 @@ code_in_files = {
         os.path.join('payload', 'game', 'ui', 'page', 'RaceMenuPage.c'),
         os.path.join('payload', 'game', 'ui', 'page', 'RacePage.S'),
         os.path.join('payload', 'game', 'ui', 'page', 'RacePage.cc'),
-        os.path.join('payload', 'game', 'ui', 'page', 'SingleTopMenuPage.S'),
-        os.path.join('payload', 'game', 'ui', 'page', 'SingleTopMenuPage.c'),
         os.path.join('payload', 'game', 'ui', 'page', 'TimeAttackSplitsPage.S'),
         os.path.join('payload', 'game', 'ui', 'page', 'TimeAttackSplitsPage.c'),
         os.path.join('payload', 'game', 'ui', 'page', 'TopMenuPage.S'),
@@ -916,20 +921,21 @@ code_in_files = {
         os.path.join('payload', 'nw4r', 'g3d', 'MSan.c'),
         os.path.join('payload', 'nw4r', 'lyt', 'lyt_arcResourceAccessor.S'),
         os.path.join('payload', 'nw4r', 'lyt', 'lyt_layout.S'),
-        os.path.join('payload', 'nw4r', 'snd', 'snd_DvdSoundArchive.S'),
-        os.path.join('payload', 'nw4r', 'snd', 'snd_SoundArchive.c'),
-        os.path.join('payload', 'nw4r', 'snd', 'snd_SoundArchivePlayer.S'),
-        os.path.join('payload', 'nw4r', 'snd', 'snd_SoundArchivePlayer.c'),
+        os.path.join('payload', 'nw4r', 'snd', 'DVDSoundArchive.cc'),
+        os.path.join('payload', 'nw4r', 'snd', 'SoundArchive.cc'),
+        os.path.join('payload', 'nw4r', 'snd', 'SoundArchiveFileReader.cc'),
+        os.path.join('payload', 'nw4r', 'snd', 'SoundArchiveLoader.cc'),
+        os.path.join('payload', 'nw4r', 'snd', 'SoundArchivePlayer.cc'),
         os.path.join('payload', 'nw4r', 'snd', 'SoundHandle.cc'),
-        os.path.join('payload', 'nw4r', 'ut', 'ut_DvdFileStream.S'),
+        os.path.join('payload', 'nw4r', 'snd', 'StrmFileReader.cc'),
+        os.path.join('payload', 'nw4r', 'ut', 'FileStream.cc'),
+        os.path.join('payload', 'nw4r', 'ut', 'IOStream.cc'),
         os.path.join('payload', 'platform', 'string.c'),
         os.path.join('payload', 'platform', 'wchar.c'),
         os.path.join('payload', 'revolution', 'arc.S'),
         os.path.join('payload', 'revolution', 'arc.c'),
         os.path.join('payload', 'revolution', 'ax.c'),
-        os.path.join('payload', 'revolution', 'dvd.S'),
         os.path.join('payload', 'revolution', 'dvd.c'),
-        os.path.join('payload', 'revolution', 'dvdex.c'),
         os.path.join('payload', 'revolution', 'es.c'),
         os.path.join('payload', 'revolution', 'exi.c'),
         os.path.join('payload', 'revolution', 'ios.S'),
@@ -949,55 +955,45 @@ code_in_files = {
         os.path.join('payload', 'revolution', 'so', 'SOBasic.S'),
         os.path.join('payload', 'sp', 'Channel.cc'),
         os.path.join('payload', 'sp', 'Commands.c'),
-        os.path.join('payload', 'sp', 'DVDDecompLoader.cc'),
-        os.path.join('payload', 'sp', 'DVDFile.cc'),
         os.path.join('payload', 'sp', 'Fatal.c'),
         os.path.join('payload', 'sp', 'FormattingCodes.c'),
         os.path.join('payload', 'sp', 'FlameGraph.c'),
         os.path.join('payload', 'sp', 'Host.c'),
         os.path.join('payload', 'sp', 'IOSDolphin.c'),
-        os.path.join('payload', 'sp', 'Panic.c'),
-        # Keyboard module
-        os.path.join('payload', 'sp', 'keyboard', 'Keyboard.c'),
-        os.path.join('payload', 'sp', 'keyboard', 'SIKeyboard.c'),
-        os.path.join('payload', 'sp', 'keyboard', 'IOSKeyboard.c'),
-        #
+        os.path.join('payload', 'sp', 'LZ77Decoder.cc'),
         os.path.join('payload', 'sp', 'LZMADecoder.cc'),
-        # Net module
-        os.path.join('payload', 'sp', 'net', 'Net.cc'),
-        os.path.join('payload', 'sp', 'net', 'Socket.cc'),
-        #
+        os.path.join('payload', 'sp', 'Panic.c'),
         os.path.join('payload', 'sp', 'Patcher.c'),
         os.path.join('payload', 'sp', 'Payload.cc'),
         os.path.join('payload', 'sp', 'Rel.cc'),
         os.path.join('payload', 'sp', 'ScopeLock.cc'),
-        # Security module
-        os.path.join('payload', 'sp', 'security', 'Memory.c'),
-        os.path.join('payload', 'sp', 'security', 'Stack.S'),
-        os.path.join('payload', 'sp', 'security', 'Stack.c'),
-        os.path.join('payload', 'sp', 'security', 'StackTrace.S'),
-        # Settings module
-        os.path.join('payload', 'sp', 'settings', 'ClientSettings.cc'),
-        os.path.join('payload', 'sp', 'settings', 'IniReader.cc'),
-        #
         os.path.join('payload', 'sp', 'Slab.c'),
         os.path.join('payload', 'sp', 'StackTrace.c'),
-        # Storage module
-        os.path.join('payload', 'sp', 'storage', 'FatStorage.c'),
-        os.path.join('payload', 'sp', 'storage', 'LogFile.cc'),
-        os.path.join('payload', 'sp', 'storage', 'NandArcStorage.c'),
-        os.path.join('payload', 'sp', 'storage', 'NetStorage.c'),
-        os.path.join('payload', 'sp', 'storage', 'NetStorageClient.c'),
-        os.path.join('payload', 'sp', 'storage', 'Sdi.c'),
-        os.path.join('payload', 'sp', 'storage', 'Storage.c'),
-        os.path.join('payload', 'sp', 'storage', 'Usb.c'),
-        os.path.join('payload', 'sp', 'storage', 'UsbStorage.c'),
-        #
-        os.path.join('payload', 'sp', 'Tcp.c'),
         os.path.join('payload', 'sp', 'Time.cc'),
         os.path.join('payload', 'sp', 'Update.cc'),
         os.path.join('payload', 'sp', 'Yaz.c'),
         os.path.join('payload', 'sp', 'YAZDecoder.cc'),
+        os.path.join('payload', 'sp', 'keyboard', 'Keyboard.c'),
+        os.path.join('payload', 'sp', 'keyboard', 'SIKeyboard.c'),
+        os.path.join('payload', 'sp', 'keyboard', 'IOSKeyboard.c'),
+        os.path.join('payload', 'sp', 'net', 'Net.cc'),
+        os.path.join('payload', 'sp', 'net', 'Socket.cc'),
+        os.path.join('payload', 'sp', 'security', 'Memory.c'),
+        os.path.join('payload', 'sp', 'security', 'Stack.S'),
+        os.path.join('payload', 'sp', 'security', 'Stack.c'),
+        os.path.join('payload', 'sp', 'security', 'StackTrace.S'),
+        os.path.join('payload', 'sp', 'settings', 'ClientSettings.cc'),
+        os.path.join('payload', 'sp', 'settings', 'IniReader.cc'),
+        os.path.join('payload', 'sp', 'storage', 'DecompLoader.cc'),
+        os.path.join('payload', 'sp', 'storage', 'DVDStorage.cc'),
+        os.path.join('payload', 'sp', 'storage', 'FATStorage.cc'),
+        os.path.join('payload', 'sp', 'storage', 'LogFile.cc'),
+        os.path.join('payload', 'sp', 'storage', 'NANDArchiveStorage.cc'),
+        os.path.join('payload', 'sp', 'storage', 'NetStorage.cc'),
+        os.path.join('payload', 'sp', 'storage', 'Sdi.c'),
+        os.path.join('payload', 'sp', 'storage', 'Storage.cc'),
+        os.path.join('payload', 'sp', 'storage', 'Usb.c'),
+        os.path.join('payload', 'sp', 'storage', 'UsbStorage.c'),
         os.path.join('vendor', 'arith64.c'),
         os.path.join('vendor', 'ff', 'diskio.c'),
         os.path.join('vendor', 'ff', 'ff.c'),
@@ -1087,7 +1083,7 @@ for target in code_in_files:
                         *profile_cflags[profile],
                     ]),
                 },
-                implicit = protobuf_h_files if target == 'payload' else [],
+                implicit = [*protobuf_proto_files, *protobuf_h_files] if target == 'payload' else [],
             )
         n.newline()
 

@@ -21,12 +21,6 @@ void *ControlCheckValid(void *result, const char *path) {
     if (result)
         return result;
 
-    char buf[128];
-    snprintf(buf, sizeof(buf), "Failed to load %s\n", path);
-
-    const GXColor fg = { 255, 255, 255, 255 };
-    const GXColor bg = { 0, 0, 0, 255 };
-    OSFatal(fg, bg, buf);
-
+    panic("Failed to load '%s'!", path);
     __builtin_unreachable();
 }

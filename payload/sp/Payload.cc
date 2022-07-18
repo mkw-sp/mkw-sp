@@ -6,7 +6,6 @@ extern "C" {
 extern "C" {
 #include "sp/Dol.h"
 }
-#include "sp/DVDDecompLoader.hh"
 extern "C" {
 #include "sp/Host.h"
 #include "sp/IOSDolphin.h"
@@ -16,11 +15,16 @@ extern "C" {
 #include "sp/Time.hh"
 extern "C" {
 #include "sp/keyboard/SIKeyboard.h"
-#include "sp/net/Net.h"
+}
+#include "sp/net/Net.hh"
+extern "C" {
 #include "sp/security/Memory.h"
 #include "sp/security/Stack.h"
 #include "sp/storage/LogFile.h"
-#include "sp/storage/Storage.h"
+}
+#include "sp/storage/DecompLoader.hh"
+#include "sp/storage/Storage.hh"
+extern "C" {
 #include "sp/storage/Usb.h"
 }
 
@@ -76,7 +80,7 @@ static void Init() {
     Console::Print(" done.\n");
 
     Console::Print("Initializing network...");
-    Net_Init();
+    Net::Init();
     Console::Print(" done.\n");
 
     Console::Print("Initializing RNG...");
@@ -84,7 +88,7 @@ static void Init() {
     Console::Print(" done.\n");
 
     Console::Print("Initializing storage...");
-    bool storageWasInit = Storage_init();
+    bool storageWasInit = Storage::Init();
     assert(storageWasInit);
     Console::Print(" done.\n");
 
@@ -100,12 +104,8 @@ static void Init() {
     //     --------------------------------
     Host_PrintMkwSpInfo(OSReport);
 
-    Console::Print("Initializing file replacement...");
-    DVDExInit();
-    Console::Print(" done.\n");
-
-    Console::Print("Initializing concurrent decompression...");
-    DVDDecompLoader::Init();
+    Console::Print("Initializing concurrent decompressor...");
+    Storage::DecompLoader::Init();
     Console::Print(" done.\n");
 
     Console::Print("Initializing SI keyboard...");

@@ -33,10 +33,27 @@ static TLS struct {
 # error Unsupported platform
 #endif
 
+#ifdef REVOLUTION
+static OSMutex mutex;
+
+static void hydro_random_lock(void) {
+    OSLockMutex(&mutex);
+}
+
+static void hydro_random_unlock(void) {
+    OSUnlockMutex(&mutex);
+}
+#else
+static void hydro_random_lock(void) {}
+static void hydro_random_unlock(void) {}
+#endif
+
 static void
 hydro_random_ensure_initialized(void)
 {
     if (hydro_random_context.initialized == 0) {
+        hydro_random_lock();
+
 #ifdef REVOLUTION
         assert(hydro_random_init() == 0);
 #else
@@ -47,22 +64,30 @@ hydro_random_ensure_initialized(void)
         gimli_core_u8(hydro_random_context.state, 0);
         hydro_random_ratchet();
         hydro_random_context.initialized = 1;
+
+        hydro_random_unlock();
     }
 }
 
 void
 hydro_random_ratchet(void)
 {
+    hydro_random_lock();
+
     mem_zero(hydro_random_context.state, gimli_RATE);
     STORE64_LE(hydro_random_context.state, hydro_random_context.counter);
     hydro_random_context.counter++;
     gimli_core_u8(hydro_random_context.state, 0);
     hydro_random_context.available = gimli_RATE;
+
+    hydro_random_unlock();
 }
 
 uint32_t
 hydro_random_u32(void)
 {
+    hydro_random_lock();
+
     uint32_t v;
 
     hydro_random_ensure_initialized();
@@ -72,12 +97,16 @@ hydro_random_u32(void)
     memcpy(&v, &hydro_random_context.state[gimli_RATE - hydro_random_context.available], 4);
     hydro_random_context.available -= 4;
 
+    hydro_random_unlock();
+
     return v;
 }
 
 uint32_t
 hydro_random_uniform(const uint32_t upper_bound)
 {
+    hydro_random_lock();
+
     uint32_t min;
     uint32_t r;
 
@@ -91,12 +120,16 @@ hydro_random_uniform(const uint32_t upper_bound)
     /* r is now clamped to a set whose size mod upper_bound == 0
      * the worst case (2**31+1) requires 2 attempts on average */
 
+    hydro_random_unlock();
+
     return r % upper_bound;
 }
 
 void
 hydro_random_buf(void *out, size_t out_len)
 {
+    hydro_random_lock();
+
     uint8_t *p = (uint8_t *) out;
     size_t   i;
     size_t   leftover;
@@ -112,6 +145,8 @@ hydro_random_buf(void *out, size_t out_len)
         mem_cpy(p + i * gimli_RATE, hydro_random_context.state, leftover);
     }
     hydro_random_ratchet();
+
+    hydro_random_unlock();
 }
 
 void
@@ -148,6 +183,10 @@ hydro_random_buf_deterministic(void *out, size_t out_len,
 void
 hydro_random_reseed(void)
 {
+    hydro_random_lock();
+
     hydro_random_context.initialized = 0;
     hydro_random_ensure_initialized();
+
+    hydro_random_unlock();
 }

@@ -19,6 +19,16 @@ const Entry entries[] = {
         .valueMessageIds = nullptr,
         .valueExplanationMessageIds = nullptr,
     },
+    [static_cast<u32>(Setting::VanillaMode)] = {
+        .category = Category::Race,
+        .name = magic_enum::enum_name(Setting::VanillaMode),
+        .messageId = 10166,
+        .defaultValue = static_cast<u32>(VanillaMode::Disable),
+        .valueCount = magic_enum::enum_count<VanillaMode>(),
+        .valueNames = magic_enum::enum_names<VanillaMode>().data(),
+        .valueMessageIds = (u32[]) { 10167, 10168 },
+        .valueExplanationMessageIds = (u32[]) { 10169, 10170 },
+    },
     [static_cast<u32>(Setting::HUDLabels)] = {
         .category = Category::Race,
         .name = magic_enum::enum_name(Setting::HUDLabels),
@@ -28,6 +38,7 @@ const Entry entries[] = {
         .valueNames = magic_enum::enum_names<HUDLabels>().data(),
         .valueMessageIds = (u32[]) { 10005, 10006 },
         .valueExplanationMessageIds = (u32[]) { 10007, 10008 },
+        .vanillaValue = static_cast<u32>(HUDLabels::Show),
     },
     [static_cast<u32>(Setting::FOV169)] = {
         .category = Category::Race,
@@ -38,6 +49,7 @@ const Entry entries[] = {
         .valueNames = magic_enum::enum_names<FOV169>().data(),
         .valueMessageIds = (u32[]) { 10010, 10011 },
         .valueExplanationMessageIds = (u32[]) { 10012, 10013 },
+        .vanillaValue = static_cast<u32>(FOV169::FOV169),
     },
     [static_cast<u32>(Setting::MapIcons)] = {
         .category = Category::Race,
@@ -48,6 +60,7 @@ const Entry entries[] = {
         .valueNames = magic_enum::enum_names<MapIcons>().data(),
         .valueMessageIds = (u32[]) { 10015, 10016 },
         .valueExplanationMessageIds = (u32[]) { 10017, 10018 },
+        .vanillaValue = static_cast<u32>(MapIcons::Characters),
     },
     [static_cast<u32>(Setting::InputDisplay)] = {
         .category = Category::Race,
@@ -58,6 +71,7 @@ const Entry entries[] = {
         .valueNames = magic_enum::enum_names<InputDisplay>().data(),
         .valueMessageIds = (u32[]) { 10062, 10063 },
         .valueExplanationMessageIds = (u32[]) { 10064, 10065 },
+        .vanillaValue = static_cast<u32>(InputDisplay::Disable),
     },
     [static_cast<u32>(Setting::RankControl)] = {
         .category = Category::Race,
@@ -68,6 +82,7 @@ const Entry entries[] = {
         .valueNames = magic_enum::enum_names<RankControl>().data(),
         .valueMessageIds = (u32[]) { 10122, 10123 },
         .valueExplanationMessageIds = (u32[]) { 10124, 10125 },
+        .vanillaValue = static_cast<u32>(RankControl::GPVS),
     },
     [static_cast<u32>(Setting::ItemMusic)] = {
         .category = Category::Sound,
@@ -113,11 +128,11 @@ const Entry entries[] = {
         .category = Category::TA,
         .name = magic_enum::enum_name(Setting::TAGhostSorting),
         .messageId = 10019,
-        .defaultValue = static_cast<u32>(TAGhostSorting::Fastest),
+        .defaultValue = static_cast<u32>(TAGhostSorting::Time),
         .valueCount = magic_enum::enum_count<TAGhostSorting>(),
         .valueNames = magic_enum::enum_names<TAGhostSorting>().data(),
-        .valueMessageIds = (u32[]) { 10020, 10021, 10022, 10023 },
-        .valueExplanationMessageIds = (u32[]) { 10024, 10025, 10026, 10027 },
+        .valueMessageIds = (u32[]) { 10171, 10172, 10173, 10174, 10175 },
+        .valueExplanationMessageIds = (u32[]) { 10176, 10177, 10178, 10179, 10180 },
     },
     [static_cast<u32>(Setting::TAGhostTagVisibility)] = {
         .category = Category::TA,
@@ -128,6 +143,7 @@ const Entry entries[] = {
         .valueNames = magic_enum::enum_names<TAGhostTagVisibility>().data(),
         .valueMessageIds = (u32[]) { 10029, 10030, 10031 },
         .valueExplanationMessageIds = (u32[]) { 10032, 10033, 10034 },
+        .vanillaValue = static_cast<u32>(TAGhostTagVisibility::Watched),
     },
     [static_cast<u32>(Setting::TAGhostTagContent)] = {
         .category = Category::TA,
@@ -138,6 +154,7 @@ const Entry entries[] = {
         .valueNames = magic_enum::enum_names<TAGhostTagContent>().data(),
         .valueMessageIds = (u32[]) { 10036, 10037, 10053, 10038 },
         .valueExplanationMessageIds = (u32[]) { 10039, 10040, 10054, 10041 },
+        .vanillaValue = static_cast<u32>(TAGhostTagContent::Name),
     },
     [static_cast<u32>(Setting::TASolidGhosts)] = {
         .category = Category::TA,
@@ -148,6 +165,7 @@ const Entry entries[] = {
         .valueNames = magic_enum::enum_names<TASolidGhosts>().data(),
         .valueMessageIds = (u32[]) { 10029, 10030, 10031 },
         .valueExplanationMessageIds = (u32[]) { 10043, 10044, 10045 },
+        .vanillaValue = static_cast<u32>(TASolidGhosts::None),
     },
     [static_cast<u32>(Setting::TAGhostSound)] = {
         .category = Category::TA,
@@ -158,6 +176,7 @@ const Entry entries[] = {
         .valueNames = magic_enum::enum_names<TAGhostSound>().data(),
         .valueMessageIds = (u32[]) { 10029, 10030, 10031 },
         .valueExplanationMessageIds = (u32[]) { 10067, 10068, 10069 },
+        .vanillaValue = static_cast<u32>(TAGhostSound::Watched),
     },
     [static_cast<u32>(Setting::MiiAvatar)] = {
         .category = Category::License,

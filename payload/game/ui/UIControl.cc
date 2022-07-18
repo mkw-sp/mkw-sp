@@ -2,7 +2,7 @@
 
 namespace UI {
 
-UIControl::~UIControl() {}
+UIControl::~UIControl() = default;
 
 void UIControl::dt(s32 type) {
     if (type > 0) {

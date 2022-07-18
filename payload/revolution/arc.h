@@ -3,7 +3,8 @@
 #include <Common.h>
 
 typedef struct {
-    u8 _00[0x0c - 0x00];
+    u8 _00[0x08 - 0x00];
+    int fstSize;
     int fileStart;
     u8 _10[0x20 - 0x10];
 } ARCHeader;
@@ -19,7 +20,9 @@ typedef struct {
 static_assert(sizeof(ARCHandle) == 0x1c);
 
 typedef struct {
-    u8 _0[0xc - 0x0];
+    ARCHandle *handle;
+    u32 startOffset;
+    u32 length;
 } ARCFileInfo;
 static_assert(sizeof(ARCFileInfo) == 0xc);
 
@@ -60,3 +63,7 @@ BOOL ARCFastOpenDir(ARCHandle *handle, s32 entrynum, ARCDir *dir); // Not in the
 BOOL ARCReadDir(ARCDir *dir, ARCDirEntry *dirent);
 
 BOOL ARCCloseDir(ARCDir *dir);
+
+void ARCExClone(const ARCFileInfo *src, ARCFileInfo *dst);
+
+void ARCExCloneDir(const ARCDir *src, ARCDir *dst);

@@ -7,6 +7,7 @@ namespace SP::ClientSettings {
 enum class Setting {
     // Race
     DriftMode,
+    VanillaMode,
     HUDLabels,
     FOV169,
     MapIcons,
@@ -43,6 +44,11 @@ enum class Category {
 enum class DriftMode {
     Manual,
     Auto,
+};
+
+enum class VanillaMode {
+    Disable,
+    Enable,
 };
 
 enum class HUDLabels {
@@ -93,10 +99,11 @@ enum class TAClass {
 };
 
 enum class TAGhostSorting {
-    Fastest,
-    Slowest,
-    Newest,
-    Oldest,
+    Time,
+    Date,
+    Flap,
+    Lap2Pace,
+    Lap3Pace,
 };
 
 enum class TAGhostTagVisibility {
@@ -150,6 +157,11 @@ namespace SP::Settings {
 template <>
 struct Helper<ClientSettings::Setting, ClientSettings::Setting::DriftMode> {
     using type = SP::ClientSettings::DriftMode;
+};
+
+template <>
+struct Helper<ClientSettings::Setting, ClientSettings::Setting::VanillaMode> {
+    using type = SP::ClientSettings::VanillaMode;
 };
 
 template <>

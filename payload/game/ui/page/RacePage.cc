@@ -1,6 +1,8 @@
 #include "RacePage.hh"
 
 #include "game/system/RaceConfig.hh"
+#include "game/system/SaveManager.hh"
+#include "game/ui/SectionManager.hh"
 #include "game/ui/ctrl/CtrlRaceInputDisplay.hh"
 #include "game/ui/ctrl/CtrlRaceSpeed.hh"
 
@@ -36,10 +38,14 @@ RacePage *RacePage::Instance() {
 u8 RacePage::getControlCount(u32 controls) const {
     u8 count = REPLACED(getControlCount)(controls);
 
-    u32 localPlayerCount = System::RaceConfig::Instance()->raceScenario().localPlayerCount;
-    localPlayerCount = std::max(localPlayerCount, static_cast<u32>(1));
-    count += localPlayerCount; // CtrlRaceSpeed
-    count += localPlayerCount; // CtrlRaceInputDisplay
+    auto *saveManager = System::SaveManager::Instance();
+    auto setting = saveManager->getSetting<SP::ClientSettings::Setting::VanillaMode>();
+    if (setting == SP::ClientSettings::VanillaMode::Disable) {
+        u32 localPlayerCount = System::RaceConfig::Instance()->raceScenario().localPlayerCount;
+        localPlayerCount = std::max(localPlayerCount, static_cast<u32>(1));
+        count += localPlayerCount; // CtrlRaceSpeed
+        count += localPlayerCount; // CtrlRaceInputDisplay
+    }
 
     if (getNameBalloonCount() != 0) {
         count += 12 - getNameBalloonCount();
@@ -50,6 +56,12 @@ u8 RacePage::getControlCount(u32 controls) const {
 
 void RacePage::initControls(u32 controls) {
     REPLACED(initControls)(controls);
+
+    auto *saveManager = System::SaveManager::Instance();
+    auto setting = saveManager->getSetting<SP::ClientSettings::Setting::VanillaMode>();
+    if (setting == SP::ClientSettings::VanillaMode::Enable) {
+        return;
+    }
 
     u32 index = getControlCount(controls) - 1;
     u32 localPlayerCount = System::RaceConfig::Instance()->raceScenario().localPlayerCount;

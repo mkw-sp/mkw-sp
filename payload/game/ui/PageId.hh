@@ -40,11 +40,11 @@ enum class PageId {
     Confirm = 0x52,
     Title = 0x57,
     TopMenu = 0x5A,
-    FlagBackground = 0x5C,
+    Model = 0x5C,
     TopOverlay = 0x5E,
     LicenseSelect = 0x65,
     LicenseSettingsTop = 0x67,
-    SingleTopMenu = 0x69,
+    SingleTop = 0x69,
     CharacterSelect = 0x6B,
     VehicleSelect = 0x6C,
     DriftSelect = 0x6D,
@@ -67,7 +67,7 @@ enum class PageId {
     MissionTutorial = 0x7e,
 
     ServicePackTop = 0xa2, // Replaces ChannelTop
-    ChannelRanking = 0xa3,
+    StorageBenchmark = 0xa3, // Replaces ChannelRanking
     ChannelGhost = 0xa4,
 
     GhostManager = 0xa7,

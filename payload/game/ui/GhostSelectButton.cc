@@ -115,7 +115,7 @@ void GhostSelectButton::refresh(u32 listIndex) {
     setMessage("name_light_02", 9501, &nameInfo);
 
     char countryPane[0x4];
-    snprintf(countryPane, sizeof(countryPane), "%03lu", header->country);
+    snprintf(countryPane, sizeof(countryPane), "%03u", header->country);
     bool hasCountryPane = hasPictureSourcePane(countryPane);
     setPaneVisible("flag_shadow", hasCountryPane);
     setPaneVisible("flag", hasCountryPane);
@@ -156,7 +156,7 @@ void GhostSelectButton::refresh(u32 listIndex) {
     setMessage("time_light_01", 6052, &timeInfo);
     setMessage("time_light_02", 6052, &timeInfo);
 
-    m_chosen = page->m_ghostIsChosen[listIndex];
+    m_chosen = page->m_ghostIsChosen[ghostIndex];
     setChosen(m_chosen);
 }
 

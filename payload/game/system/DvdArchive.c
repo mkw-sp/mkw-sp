@@ -1,8 +1,9 @@
 #include "DvdArchive.h"
 
-#include <sp/DVDDecompLoader.h>
-
 #include <revolution.h>
+#include <sp/storage/DecompLoader.h>
+
+#include <stdio.h>
 
 void DvdArchive_mount(DvdArchive *self, EGG_Heap *archiveHeap);
 
@@ -18,7 +19,7 @@ static void my_DvdArchive_load(DvdArchive *self, const char *path, EGG_Heap *arc
         if (isCompressed) {
             u8 *archiveBuffer;
             size_t archiveSize;
-            if (DVDDecompLoader_Load(path, &archiveBuffer, &archiveSize, archiveHeap)) {
+            if (DecompLoader_LoadRO(path, &archiveBuffer, &archiveSize, archiveHeap)) {
                 self->archiveBuffer = archiveBuffer;
                 self->archiveSize = archiveSize;
                 self->archiveHeap = archiveHeap;

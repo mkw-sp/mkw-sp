@@ -9,7 +9,7 @@ chrono = "0.4.19"
 libhydrogen = "0.4.1"
 passterm = "1.1.6"
 prost = "0.10.4"
-tokio = { version = "1.19.2", features = ["rt", "rt-multi-thread", "io-util", "net", "sync", "fs"] }
+tokio = { version = "1.19.2", features = ["rt-multi-thread", "io-util", "net", "sync", "fs"] }
 zeroize = "1.5.5"
 
 [build-dependencies]

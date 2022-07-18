@@ -1,0 +1,8 @@
+NetStorageRequest.Open.path max_length:127
+NetStorageRequest.Open.mode max_length:3
+
+NetStorageRequest.OpenDir.path max_length:127
+
+NetStorageRequest.Stat.path max_length:127
+
+NetStorageResponse.NodeInfo.name max_length:127

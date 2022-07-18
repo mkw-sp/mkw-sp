@@ -447,4 +447,20 @@
         "font": "regular",
         "string": "Toujours afficher la place.",
     },
+    "10162": {
+        "font": "regular",
+        "string": "Affronter {arg integer|0 0} {arg cond messages|0 10164 10165}",
+    },
+    "10163": {
+        "font": "regular",
+        "string": "Regarder {arg integer|0 0} {arg cond messages|0 10164 10165}",
+    },
+    "10164": {
+        "font": "regular",
+        "string": "fantôme",
+    },
+    "10165": {
+        "font": "regular",
+        "string": "fantômes",
+    },
 }

@@ -112,6 +112,10 @@ void UpdatePage::afterCalc() {
     }
 }
 
+void UpdatePage::onRefocus() {
+    transition(resolve());
+}
+
 void UpdatePage::onCheckOkFront(MessagePage *messagePage) {
     messagePage->setAnim(Anim::Next);
 }
@@ -295,10 +299,6 @@ void UpdatePage::transition(State state) {
         break;
     }
     m_state = state;
-}
-
-void UpdatePage::onRefocus() {
-    transition(resolve());
 }
 
 void *UpdatePage::Check(void *UNUSED(arg)) {

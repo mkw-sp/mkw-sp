@@ -4603,6 +4603,7 @@ FRESULT f_fastopendir (
     sect = dir_ofs / SS(fs);                                    /* Sector# of the directory entry */
     res = move_window(fs, sect);
     if (res == FR_OK) {
+        dp->obj.fs = fs;
         dir = fs->win + (dir_ofs % SS(fs));                     /* Pointer to the entry in the win[] */
 #if FF_FS_EXFAT
         if (fs->fs_type == FS_EXFAT) {

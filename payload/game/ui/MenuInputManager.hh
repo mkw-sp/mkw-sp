@@ -68,7 +68,13 @@ public:
     ControlInputManagerPane m_pane;
     u8 _34[0x3c - 0x34];
     MultiControlInputManager *m_parent;
-    u8 _40[0x84 - 0x40];
+    u8 _40[0x75 - 0x40];
+
+public:
+    bool m_pointerOnly;
+
+private:
+    u8 _76[0x84 - 0x76];
 };
 static_assert(sizeof(ControlInputManager) == 0x84);
 

@@ -3,7 +3,7 @@
 #include <egg/core/eggSystem.h>
 #include <nw4r/lyt/lyt_pane.h>
 #include <revolution.h>
-#include <sp/DVDDecompLoader.h>
+#include <sp/storage/DecompLoader.h>
 #include <sp/FlameGraph.h>
 
 #include <stdarg.h>
@@ -17,7 +17,7 @@
 static void *RipFromDiscAlloc(const char *path, EGG_Heap *heap) {
     u8 *szs;
     size_t szsSize;
-    DVDDecompLoader_Load(path, &szs, &szsSize, heap);
+    DecompLoader_Load(path, &szs, &szsSize, heap);
     return szs;
 }
 

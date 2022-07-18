@@ -11,8 +11,7 @@ extern "C" {
 #include <common/Paths.h>
 }
 
-#include <protobuf/UpdateRequest.pb.h>
-#include <protobuf/UpdateResponse.pb.h>
+#include <protobuf/Update.pb.h>
 extern "C" {
 #include <revolution/nwc24/NWC24Utils.h>
 }
@@ -46,8 +45,12 @@ std::optional<Info> GetInfo() {
 }
 
 static bool Sync(bool update) {
+    if (versionInfo.type != BUILD_TYPE_RELEASE) {
+        return false;
+    }
+
     status = Status::Connect;
-    SP::Net::Socket socket("update.mkw-sp.com", 0x5350, serverPK, "update  ");
+    SP::Net::Socket socket("update.mkw-sp.com", 21328, serverPK, "update  ");
     if (!socket.ok()) {
         return false;
     }

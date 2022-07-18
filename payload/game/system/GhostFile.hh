@@ -10,6 +10,7 @@ static const u32 MAX_GHOST_COUNT = 4096;
 
 struct __attribute__((packed)) RawTime {
     bool isValid() const;
+    u32 toMilliseconds() const;
 
     u16 minutes : 7;
     u8 seconds : 7;
@@ -18,6 +19,8 @@ struct __attribute__((packed)) RawTime {
 static_assert(sizeof(RawTime) == 0x3);
 
 struct RawGhostHeader {
+    const RawTime *flap() const;
+
     u32 magic;
 
     RawTime raceTime;
@@ -44,8 +47,8 @@ struct RawGhostHeader {
     RawTime lapTimes[5];
 
     u8 _20[0x34 - 0x20];
-    u32 country;
-    u8 _38[0x3c - 0x38];
+    u8 country;
+    u8 _38[0x3c - 0x35];
     RawMii mii;
 };
 static_assert(sizeof(RawGhostHeader) == 0x88);
@@ -75,7 +78,7 @@ static_assert(sizeof(CTGPFooter) == 0xd0);
 struct SPFooter {
     bool checkSize(u32 size) const;
 
-    static void OnRaceStart(const u8 *courseSHA1, bool speedModIsEnabled);
+    static void OnRaceStart(const u8 *courseSHA1, bool speedModIsEnabled, bool isVanilla);
     static void OnLapEnd(u32 lap, f32 timeDiff);
     static void OnUltraShortcut();
     static void OnHWG();
@@ -90,9 +93,10 @@ struct SPFooter {
     bool hasHWG : 1;
     bool hasWallride : 1;
     u32 shroomStrategy : 15;
+    bool isVanilla : 1;
 
     static constexpr u32 MAGIC = 0x53504744; // SPGD
-    static constexpr u32 VERSION = 2;
+    static constexpr u32 VERSION = 3;
     static SPFooter s_instance;
     static u32 s_usedShrooms;
 };

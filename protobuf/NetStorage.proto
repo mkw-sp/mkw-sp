@@ -1,0 +1,109 @@
+syntax = "proto2";
+
+message NetStorageRequest {
+    message FastOpen {
+        required uint32 id = 1;
+    }
+
+    message Open {
+        required string path = 1;
+        required string mode = 2;
+    }
+
+    message Clone {
+        required uint32 handle = 1;
+    }
+
+    message Close {
+        required uint32 handle = 1;
+    }
+
+    message Read {
+        required uint32 handle = 1;
+        required uint32 size   = 2;
+        required uint64 offset = 3;
+    }
+
+    message Write {
+        required uint32 handle = 1;
+        required uint32 size   = 2;
+        required uint64 offset = 3;
+    }
+
+    message FastOpenDir {
+        required uint32 id = 1;
+    }
+
+    message OpenDir {
+        required string path = 1;
+    }
+
+    message CloneDir {
+        required uint32 handle = 1;
+    }
+
+    message CloseDir {
+        required uint32 handle = 1;
+    }
+
+    message ReadDir {
+        required uint32 handle = 1;
+    }
+
+    message Stat {
+        required string path = 1;
+    }
+
+    message StartBenchmark {}
+
+    oneof request {
+        FastOpen fastOpen = 1;
+        Open open = 2;
+        Clone clone = 3;
+        Close close = 4;
+        Read read = 5;
+        Write write = 6;
+        FastOpenDir fastOpenDir = 7;
+        OpenDir openDir = 8;
+        CloneDir cloneDir = 9;
+        CloseDir closeDir = 10;
+        ReadDir readDir = 11;
+        Stat stat = 12;
+        StartBenchmark startBenchmark = 13;
+    }
+}
+
+message NetStorageResponse {
+    message Open {
+        required uint32 handle = 1;
+        required uint64 size   = 2;
+    }
+
+    message OpenDir {
+        required uint32 handle = 1;
+    }
+
+    message NodeInfo {
+        enum Type {
+            File = 0;
+            Dir = 1;
+        }
+
+        required uint32 id   = 1;
+        required Type type   = 2;
+        required uint64 size = 3;
+        required string name = 4;
+    }
+
+    message Ok {}
+
+    message Error {}
+
+    oneof response {
+        Open open = 1;
+        OpenDir openDir = 2;
+        NodeInfo nodeInfo = 3;
+        Ok ok = 4;
+        Error error = 5;
+    }
+}

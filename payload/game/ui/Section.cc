@@ -4,6 +4,8 @@
 #include "game/ui/LicenseSelectPage.hh"
 #include "game/ui/SettingsPage.hh"
 #include "game/ui/ServicePackTopPage.hh"
+#include "game/ui/SingleTopPage.hh"
+#include "game/ui/StorageBenchmarkPage.hh"
 #include "game/ui/TimeAttackGhostListPage.hh"
 #include "game/ui/UpdatePage.hh"
 
@@ -21,11 +23,11 @@ void Section::addPage(PageId pageId) {
         { SectionId::LicenseSettings, PageId::LicenseRecordsFriends },
         { SectionId::LicenseSettings, PageId::LicenseRecordsWFC },
         { SectionId::LicenseSettings, PageId::LicenseRecordsOther },
+
         // The channel section is repurposed into the Service Pack section. Remove some pages that
         // aren't needed anymore.
         { SectionId::ServicePack, PageId::TimeAttackTop },
         { SectionId::ServicePack, PageId::MenuMessage },
-        { SectionId::ServicePack, PageId::ChannelRanking },
         { SectionId::ServicePack, PageId::ChannelGhost },
     };
     for (const auto &deletion : deletions) {
@@ -34,11 +36,30 @@ void Section::addPage(PageId pageId) {
         }
     }
 
+    SP_LOG("addPage %u", pageId);
+
     REPLACED(addPage)(pageId);
+}
+
+void Section::addActivePage(PageId pageId) {
+    std::pair<SectionId, PageId> deletions[] = {
+        { SectionId::SingleChangeGhostData, PageId::CharacterSelect },
+    };
+    for (const auto &deletion : deletions) {
+        if (deletion.first == m_id && deletion.second == pageId) {
+            return;
+        }
+    }
+
+    SP_LOG("addActivePage %u", pageId);
+
+    REPLACED(addActivePage)(pageId);
 }
 
 void Section::addPages(SectionId id) {
     SP_LOG("&7DEBUG: Constructing section %u (0x%x)", id, id);
+
+    REPLACED(addPages)(id);
 
     std::pair<SectionId, PageId> additions[] = {
         // Always show the quit confirmation page
@@ -47,6 +68,7 @@ void Section::addPages(SectionId id) {
         { SectionId::TeamVS1P, PageId::ConfirmQuit },
         { SectionId::Battle1P, PageId::ConfirmQuit },
         { SectionId::TAReplay, PageId::ConfirmQuit },
+
         // Support changing settings in-race
         { SectionId::GP, PageId::Settings },
         { SectionId::TA, PageId::Settings },
@@ -79,7 +101,6 @@ void Section::addPages(SectionId id) {
         { SectionId::SingleChangeMission, PageId::MissionPrompt },
         { SectionId::SingleChangeMission, PageId::MissionDrift },
         { SectionId::SingleChangeMission, PageId::MissionTutorial },
-
         { SectionId::Single, PageId::MissionLevelSelect},
         { SectionId::Single, PageId::MissionStageSelect},
         { SectionId::Single, PageId::MissionPrompt},
@@ -102,18 +123,11 @@ void Section::addPages(SectionId id) {
         { SectionId::SingleChangeGhostData, PageId::MissionTutorial},
 
         // Change Ghost Data
-        { SectionId::SingleChangeGhostData, PageId::RaceConfirm },
-        { SectionId::SingleChangeGhostData, PageId::MessageWindowPopup },
         { SectionId::SingleChangeGhostData, PageId::ReadingGhostData },
         { SectionId::SingleChangeGhostData, PageId::MenuMessage },
         { SectionId::SingleChangeGhostData, (PageId)83 },
-        { SectionId::SingleChangeGhostData, PageId::FlagBackground },
-        { SectionId::SingleChangeGhostData, PageId::TopOverlay },
-        { SectionId::SingleChangeGhostData, PageId::SingleTopMenu },
+        { SectionId::SingleChangeGhostData, PageId::SingleTop },
         { SectionId::SingleChangeGhostData, (PageId)106 },
-        { SectionId::SingleChangeGhostData, PageId::CharacterSelect },
-        { SectionId::SingleChangeGhostData, PageId::VehicleSelect },
-        { SectionId::SingleChangeGhostData, PageId::DriftSelect },
         { SectionId::SingleChangeGhostData, PageId::CupSelect },
         { SectionId::SingleChangeGhostData, PageId::CourseSelect },
         { SectionId::SingleChangeGhostData, PageId::TimeAttackTop },
@@ -132,6 +146,7 @@ void Section::addPages(SectionId id) {
         { SectionId::SingleChangeDriver, PageId::Settings },
         { SectionId::SingleChangeCourse, PageId::Settings },
         { SectionId::SingleChangeGhostData, PageId::Settings },
+
         // The channel section is repurposed into the Service Pack section. Add some additional
         // pages we need.
         { SectionId::ServicePack, PageId::OptionExplanation },
@@ -147,21 +162,6 @@ void Section::addPages(SectionId id) {
             addPage(addition.second);
         }
     }
-
-    REPLACED(addPages)(id);
-}
-
-void Section::addActivePage(PageId pageId) {
-    std::pair<SectionId, PageId> deletions[] = {
-        { SectionId::SingleChangeGhostData, PageId::CharacterSelect },
-    };
-    for (const auto &deletion : deletions) {
-        if (deletion.first == m_id && deletion.second == pageId) {
-            return;
-        }
-    }
-
-    REPLACED(addActivePage)(pageId);
 }
 
 void Section::addActivePages(SectionId id) {
@@ -186,18 +186,22 @@ Page *Section::CreatePage(PageId pageId) {
     switch (pageId) {
     case PageId::LicenseSelect:
         return new LicenseSelectPage;
-    case PageId::Settings:
-        return new SettingsPage;
+    case PageId::SingleTop:
+        return new SingleTopPage;
     case PageId::TimeAttackGhostList:
         return new TimeAttackGhostListPage;
     case PageId::ServicePackTop:
         return new ServicePackTopPage;
+    case PageId::StorageBenchmark:
+        return new StorageBenchmarkPage;
     case PageId::GhostManager:
         return new GhostManagerPage;
     case PageId::Channel:
         return new ChannelPage;
     case PageId::Update:
         return new UpdatePage;
+    case PageId::Settings:
+        return new SettingsPage;
     default:
         return REPLACED(CreatePage)(pageId);
     }

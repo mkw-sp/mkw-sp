@@ -1,5 +1,5 @@
 #pragma once
 
-#include "FatStorage.h"
+#include "FATStorage.h"
 
-bool SdiStorage_init(FatStorage *fatStorage);
+bool SdiStorage_init(const FATStorage **fatStorage);

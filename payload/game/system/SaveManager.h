@@ -18,6 +18,8 @@ void SaveManager_UnselectSPLicense(void);
 
 void SaveManager_SetSetting(const char *key, const char *value);
 
+u32 SaveManager_GetVanillaMode(void);
+
 u32 SaveManager_GetFOV169(void);
 
 u32 SaveManager_GetMapIcons(void);

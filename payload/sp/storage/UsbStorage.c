@@ -277,8 +277,9 @@ static bool UsbStorage_onDeviceAdd(const UsbDeviceInfo *info) {
     return true;
 }
 
-static void UsbStorage_onDeviceRemove(u32 UNUSED(id)) {
-    assert(!"Device was removed!");
+__attribute__((noreturn)) static void UsbStorage_onDeviceRemove(u32 UNUSED(id)) {
+    panic("Device was removed!");
+    __builtin_unreachable();
 }
 
 static UsbHandler handler = {
@@ -342,7 +343,20 @@ static bool UsbStorage_sync(void) {
     return UsbStorage_scsiTransfer(false, 0, NULL, lun, sizeof(cmd), cmd);
 }
 
-bool UsbStorage_init(FatStorage *fatStorage) {
+static u32 UsbStorage_getMessageId(void) {
+    return 10156;
+}
+
+static const FATStorage usbStorage = {
+    UsbStorage_sectorSize,
+    UsbStorage_read,
+    UsbStorage_write,
+    UsbStorage_erase,
+    UsbStorage_sync,
+    UsbStorage_getMessageId,
+};
+
+bool UsbStorage_init(const FATStorage **fatStorage) {
     buffer = OSAllocFromMEM2ArenaLo(0x4000, 0x20);
 
     Usb_addHandler(&handler);
@@ -351,11 +365,7 @@ bool UsbStorage_init(FatStorage *fatStorage) {
         return false;
     }
 
-    fatStorage->diskSectorSize = UsbStorage_sectorSize;
-    fatStorage->diskRead = UsbStorage_read;
-    fatStorage->diskWrite = UsbStorage_write;
-    fatStorage->diskErase = UsbStorage_erase;
-    fatStorage->diskSync = UsbStorage_sync;
+    *fatStorage = &usbStorage;
 
     SP_LOG("Successfully completed initialization");
     return true;

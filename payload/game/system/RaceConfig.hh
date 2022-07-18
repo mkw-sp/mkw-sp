@@ -9,6 +9,7 @@ public:
     struct Player {
         enum class Type {
             Local = 0,
+            CPU = 1,
             Ghost = 3,
             None = 5,
         };
@@ -17,7 +18,8 @@ public:
         u32 vehicleId;
         u32 characterId;
         Type type;
-        u8 _14[0xd0 - 0x14];
+        u8 _14[0xcc - 0x14];
+        u32 team;
         s32 controllerId;
         u8 _d4[0xf0 - 0xd4];
     };
@@ -32,6 +34,8 @@ public:
     enum class GameMode {
         OfflineVS = 1,
         TimeAttack = 2,
+        OfflineBT = 3,
+        Mission = 4,
     };
 
     struct Scenario {

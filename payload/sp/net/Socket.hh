@@ -13,6 +13,9 @@ class Socket {
 public:
     Socket(const char *hostname, u16 port, const u8 serverPK[hydro_kx_PUBLICKEYBYTES],
         const char context[hydro_secretbox_CONTEXTBYTES]);
+    Socket(const Socket &) = delete;
+    Socket(Socket &&);
+    Socket &operator=(Socket &&);
     ~Socket();
     bool ok() const;
     std::optional<u16> read(u8 *message, u16 maxSize);

@@ -1,12 +1,8 @@
 #include <game/ui/SectionManager.h>
-#include <game/ui/page/SingleTopMenuPage.h>
 #include <game/ui/Section.h>
 #include <game/ui/page/TopMenuPage.h>
 
 #include <game/missionrun/MissionRun.h>
-
-int activateMissionMode = 1;
-const char* brctrMissionMode = "SingleTopMR";
 
 int my_RaceRankingPage_getReplacement() {
     if (s_sectionManager->currentSection->id == SECTION_ID_MR_REPLAY)
