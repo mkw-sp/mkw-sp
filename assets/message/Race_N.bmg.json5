@@ -21,11 +21,11 @@
     },
     "1005": {
         "font": "regular",
-        "string": "Verander Parcours",
+        "string": "Verander circuit",
     },
     "1006": {
         "font": "regular",
-        "string": "Verander Personage",
+        "string": "Verander coureur",
     },
     "1007": {
         "font": "regular",
@@ -33,11 +33,11 @@
     },
     "1008": {
         "font": "regular",
-        "string": "Kies een Missie",
+        "string": "Kies een missie",
     },
     "1009": {
         "font": "regular",
-        "string": "Volgende Race",
+        "string": "Volgende race",
     },
     "1010": {
         "font": "regular",
@@ -49,7 +49,7 @@
     },
     "1012": {
         "font": "regular",
-        "string": "Bekijk de Herhaling",
+        "string": "Bekijk de herhaling",
     },
     "1013": {
         "font": "regular",
@@ -61,11 +61,11 @@
     },
     "1015": {
         "font": "regular",
-        "string": "Bekijk Rangen",
+        "string": "Bekijk rangen",
     },
     "1016": {
         "font": "regular",
-        "string": "Geestgegevenslijst",
+        "string": "Geestenlijst",
     },
     "1017": {
         "font": "regular",
@@ -73,7 +73,7 @@
     },
     "1018": {
         "font": "regular",
-        "string": "Volgende Geestrace",
+        "string": "Volgende geestrace",
     },
     "1019": {
         "font": "regular",
@@ -81,35 +81,35 @@
     },
     "1020": {
         "font": "regular",
-        "string": "Nintendo WFC Menu",
+        "string": "Nintendo WFC-Menu",
     },
     "1021": {
         "font": "regular",
-        "string": "Stop Herhaling",
+        "string": "Stop herhaling",
     },
     "1022": {
         "font": "regular",
-        "string": "Begin Race",
+        "string": "Begin race",
     },
     "1023": {
         "font": "regular",
-        "string": "Volgende Race",
+        "string": "Volgende race",
     },
     "1024": {
         "font": "regular",
-        "string": "Volgend Gevecht",
+        "string": "Volgend gevecht",
     },
     "1025": {
         "font": "regular",
-        "string": "Even Geduld...",
+        "string": "Even geduld...",
     },
     "1026": {
         "font": "regular",
-        "string": "Geestgegevens Veranderen",
+        "string": "Geestgegevens veranderen",
     },
     "1027": {
         "font": "regular",
-        "string": "Daag deze Geest uit",
+        "string": "Daag deze geest uit",
     },
     "1028": {
         "font": "regular",
@@ -117,7 +117,7 @@
     },
     "1029": {
         "font": "regular",
-        "string": "Beëindig Herhaling",
+        "string": "Beëindig herhaling",
     },
     "1030": {
         "font": "regular",
@@ -125,11 +125,11 @@
     },
     "1031": {
         "font": "regular",
-        "string": "Voorspeld aantal spelers voor volgende\nrace: {arg integer|0 0}",
+        "string": "Geschatte aantal spelers voor volgende\nrace: {arg integer|0 0}",
     },
     "1032": {
         "font": "regular",
-        "string": "Stuur Record",
+        "string": "Stuur record",
     },
     "1033": {
         "font": "regular",
@@ -141,11 +141,11 @@
     },
     "1102": {
         "font": "regular",
-        "string": "Naar het Mario Kart Kanaal\nom de rangen te bekijken?",
+        "string": "Naar het Mario Kart-Kanaal om de rangen te bekijken?",
     },
     "1103": {
         "font": "regular",
-        "string": "OK",
+        "string": "Oké",
     },
     "1104": {
         "font": "regular",
@@ -153,15 +153,15 @@
     },
     "1105": {
         "font": "regular",
-        "string": "Gefeliciteerd!\nJe hebt {arg player|0}'s record verslagen!\n\nWil je je geest naar\n{arg player|0} versturen?",
+        "string": "Gefeliciteerd!\nJe hebt het record van \z{802,120000} verslagen!\n\nWil je jouw geest naar\n\z{802,120000} versturen?",
     },
     "1106": {
         "font": "regular",
-        "string": "Sturen",
+        "string": "Versturen",
     },
     "1107": {
         "font": "regular",
-        "string": "Niet sturen",
+        "string": "Niet versturen",
     },
     "1108": {
         "font": "regular",
@@ -177,7 +177,7 @@
     },
     "1111": {
         "font": "regular",
-        "string": "Naar je vriendrooster?",
+        "string": "Naar je vriendenlijst?",
     },
     "1112": {
         "font": "regular",
@@ -189,7 +189,7 @@
     },
     "1114": {
         "font": "regular",
-        "string": "Weet je zeker dat je deze\nrace wilt verlaten en terug-\nkeren naar het hoofdmenu?",
+        "string": "Weet je zeker dat je deze\nrace wilt verlaten en\nterugkeert naar het hoofdmenu?",
     },
     "1115": {
         "font": "regular",
@@ -205,7 +205,7 @@
     },
     "1118": {
         "font": "regular",
-        "string": "Terug naar het parcour\nkeuze scherm?",
+        "string": "Terug naar het circuit-selectiescherm?",
     },
     "1119": {
         "font": "regular",
@@ -217,7 +217,7 @@
     },
     "1121": {
         "font": "regular",
-        "string": "Je hebt een uitdagende geestuitdaging vrijgespeeld!",
+        "string": "Je hebt een expertgeest vrijgespeeld!",
     },
     "1201": {
         "font": "caps",
@@ -269,7 +269,7 @@
     },
     "1213": {
         "font": "regular",
-        "string": "Beste Ronde",
+        "string": "Beste ronde",
     },
     "1214": {
         "font": "regular",
@@ -289,7 +289,7 @@
     },
     "1218": {
         "font": "regular",
-        "string": "GELIJK",
+        "string": "GELIJKSPEL",
     },
     "1219": {
         "font": "regular",
@@ -305,7 +305,7 @@
     },
     "1222": {
         "font": "regular",
-        "string": "VOLGENDE KEER MEER GELUK!",
+        "string": "VOLGENDE KEER BETER!",
     },
     "1223": {
         "font": "regular",
@@ -445,11 +445,11 @@
     },
     "1330": {
         "font": "regular",
-        "string": "Winsten: {arg integer|0 0} - Verliezen: {arg integer|1 0}",
+        "string": "Winst: {arg integer|0 0} - Verlies: {arg integer|1 0}",
     },
     "1331": {
         "font": "regular",
-        "string": "Winsten: {arg integer|0 0} - Verliezen: {arg integer|1 0}",
+        "string": "Winst: {arg integer|0 0} - Verlies: {arg integer|1 0}",
     },
     "1332": {
         "font": "regular",
@@ -477,11 +477,11 @@
     },
     "1338": {
         "font": "regular",
-        "string": "Je zal de volgende race meespelen.\nVoorspeld aantal spelers: {arg integer|0 0}\nEven geduld...",
+        "string": "Je zal de volgende race meespelen.\nGeschatte aantal spelers: {arg integer|0 0}\nEven geduld...",
     },
     "1339": {
         "font": "regular",
-        "string": "Je zal het volgende gevecht meedoen.\nVoorspeld aantal spelers: {arg integer|0 0}\nEven geduld...",
+        "string": "Je zal het volgende gevecht meespelen.\nGeschatte aantal spelers: {arg integer|0 0}\nEven geduld...",
     },
     "1340": {
         "font": "regular",
@@ -529,27 +529,27 @@
     },
     "1409": {
         "font": "regular",
-        "string": "{arg message|0} Team Versus Race - {arg integer|0 0} van {arg integer|1 0}",
+        "string": "{arg message|0} Team VS race - {arg integer|0 0} van {arg integer|1 0}",
     },
     "1410": {
         "font": "regular",
-        "string": "{arg message|0} {arg message|1} - 1e Race",
+        "string": "{arg message|0} {arg message|1} - 1e race",
     },
     "1411": {
         "font": "regular",
-        "string": "{arg message|0} {arg message|1} - 2e Race",
+        "string": "{arg message|0} {arg message|1} - 2e race",
     },
     "1412": {
         "font": "regular",
-        "string": "{arg message|0} {arg message|1} - 3e Race",
+        "string": "{arg message|0} {arg message|1} - 3e race",
     },
     "1413": {
         "font": "regular",
-        "string": "{arg message|0} {arg message|1} - Laatste Race",
+        "string": "{arg message|0} {arg message|1} - Laatste race",
     },
     "1414": {
         "font": "regular",
-        "string": "{arg message|0} Versus Race - {arg integer|0 0} van {arg integer|1 0}",
+        "string": "{arg message|0} VS Race - {arg integer|0 0} van {arg integer|1 0}",
     },
     "1415": {
         "font": "regular",
@@ -581,11 +581,11 @@
     },
     "1422": {
         "font": "regular",
-        "string": "{arg message|0} VS Race",
+        "string": "{arg message|0} VS race",
     },
     "1423": {
         "font": "regular",
-        "string": "Cijfer: ",
+        "string": "Rang: ",
     },
     "1424": {
         "font": "regular",
@@ -633,7 +633,7 @@
     },
     "1435": {
         "font": "regular",
-        "string": "{arg message|0} Team VS Race",
+        "string": "{arg message|0} Team VS race",
     },
     "1436": {
         "font": "regular",
@@ -653,23 +653,23 @@
     },
     "1440": {
         "font": "regular",
-        "string": "{arg message|0} VS Race {arg message|1}",
+        "string": "{arg message|0} VS race {arg message|1}",
     },
     "1441": {
         "font": "regular",
-        "string": "{arg message|2}{arg message|0}  Grand Prix - 1e Race",
+        "string": "{arg message|2}{arg message|0}  Grand Prix - 1e race",
     },
     "1442": {
         "font": "regular",
-        "string": "{arg message|2}{arg message|0}  Grand Prix - 2e Race",
+        "string": "{arg message|2}{arg message|0}  Grand Prix - 2e race",
     },
     "1443": {
         "font": "regular",
-        "string": "{arg message|2}{arg message|0}  Grand Prix - 3e Race",
+        "string": "{arg message|2}{arg message|0}  Grand Prix - 3e race",
     },
     "1444": {
         "font": "regular",
-        "string": "{arg message|2}{arg message|0}  Grand Prix - Laatste Race",
+        "string": "{arg message|2}{arg message|0}  Grand Prix - Laatste race",
     },
     "1445": {
         "font": "regular",
@@ -701,11 +701,11 @@
     },
     "1500": {
         "font": "regular",
-        "string": "Voorwerp Gebruiken",
+        "string": "Voorwerp gebruiken",
     },
     "1501": {
         "font": "regular",
-        "string": "Stuur",
+        "string": "Sturen",
     },
     "1502": {
         "font": "regular",

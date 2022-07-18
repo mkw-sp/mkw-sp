@@ -165,7 +165,7 @@
     },
     "9111": {
         "font": "regular",
-        "string": "Piranha Wurger",
+        "string": "Piranha-Wurger",
     },
     "9112": {
         "font": "regular",
@@ -181,7 +181,7 @@
     },
     "9115": {
         "font": "regular",
-        "string": "Blauwe Valk",
+        "string": "Blue Falcon",
     },
     "9116": {
         "font": "regular",
@@ -233,19 +233,19 @@
     },
     "9153": {
         "font": "regular",
-        "string": "Bulletmotor",
+        "string": "Bullet-Motor",
     },
     "9154": {
         "font": "regular",
-        "string": "Mach Bike",
+        "string": "Mach-Motor",
     },
     "9155": {
         "font": "regular",
-        "string": "Bowser Bike",
+        "string": "Bowser-Motor",
     },
     "9156": {
         "font": "regular",
-        "string": "Nanobike",
+        "string": "Nano-Motor",
     },
     "9157": {
         "font": "regular",
@@ -253,7 +253,7 @@
     },
     "9158": {
         "font": "regular",
-        "string": "Wario Bike",
+        "string": "Wario-Motor",
     },
     "9159": {
         "font": "regular",
@@ -261,15 +261,15 @@
     },
     "9160": {
         "font": "regular",
-        "string": "Rapide",
+        "string": "Zip-Zip",
     },
     "9161": {
         "font": "regular",
-        "string": "Twinkel Ster",
+        "string": "Vallende Ster",
     },
     "9162": {
         "font": "regular",
-        "string": "Magikruiser",
+        "string": "Kamek-Cruiser",
     },
     "9163": {
         "font": "regular",
@@ -281,7 +281,7 @@
     },
     "9165": {
         "font": "regular",
-        "string": "Bubbelbike",
+        "string": "Bubbel-Motor",
     },
     "9166": {
         "font": "regular",
@@ -321,35 +321,35 @@
     },
     "9200": {
         "font": "regular",
-        "string": "Paddestoel Cup",
+        "string": "Paddestoelenbeker",
     },
     "9201": {
         "font": "regular",
-        "string": "Bloem Cup",
+        "string": "Bloemenbeker",
     },
     "9202": {
         "font": "regular",
-        "string": "Ster Cup",
+        "string": "Sterrenbeker",
     },
     "9203": {
         "font": "regular",
-        "string": "Speciaal Cup",
+        "string": "Speciale beker",
     },
     "9204": {
         "font": "regular",
-        "string": "Schelp Cup",
+        "string": "Schildbeker",
     },
     "9205": {
         "font": "regular",
-        "string": "Banaan Cup",
+        "string": "Bananenbeker",
     },
     "9206": {
         "font": "regular",
-        "string": "Blad Cup",
+        "string": "Blaadjesbeker",
     },
     "9207": {
         "font": "regular",
-        "string": "Bliksem Cup",
+        "string": "Bliksembeker",
     },
     "9208": {
         "font": "regular",
@@ -413,7 +413,7 @@
     },
     "9314": {
         "font": "regular",
-        "string": "Zinderende Ruïnes",
+        "string": "Kurkdroge Ruïnes",
     },
     "9315": {
         "font": "regular",
@@ -449,7 +449,7 @@
     },
     "9323": {
         "font": "regular",
-        "string": "DS Delfino Plaza",
+        "string": "DS Delfino-Plaza",
     },
     "9324": {
         "font": "regular",
@@ -457,7 +457,7 @@
     },
     "9325": {
         "font": "regular",
-        "string": "SNES Spookvallei 2",
+        "string": "SNES Geestenvallei 2",
     },
     "9326": {
         "font": "regular",
@@ -481,7 +481,7 @@
     },
     "9331": {
         "font": "regular",
-        "string": "GBA Shy Guys Strand",
+        "string": "GBA Shy Guy's Strand",
     },
     "9350": {
         "font": "regular",
@@ -497,11 +497,11 @@
     },
     "9353": {
         "font": "regular",
-        "string": "Wii Arenas",
+        "string": "Wii Arena's",
     },
     "9354": {
         "font": "regular",
-        "string": "Retro Arenas",
+        "string": "Retro Arena's",
     },
     "9355": {
         "font": "regular",
@@ -565,7 +565,7 @@
     },
     "9374": {
         "font": "regular",
-        "string": "Zinderende Ruïnes",
+        "string": "Kurkdroge Ruïnes",
     },
     "9375": {
         "font": "regular",
@@ -601,7 +601,7 @@
     },
     "9383": {
         "font": "regular",
-        "string": "DS Delfino Plaza",
+        "string": "DS Delfino-Plaza",
     },
     "9384": {
         "font": "regular",
@@ -609,7 +609,7 @@
     },
     "9385": {
         "font": "regular",
-        "string": "SNES Spookvallei 2",
+        "string": "SNES Geestenvallei 2",
     },
     "9386": {
         "font": "regular",
@@ -633,7 +633,7 @@
     },
     "9391": {
         "font": "regular",
-        "string": "GBA Shy Guys Strand",
+        "string": "GBA Shy Guy's Strand",
     },
     "9392": {
         "font": "regular",
@@ -641,31 +641,31 @@
     },
     "9400": {
         "font": "regular",
-        "string": "Delfino Pier",
+        "string": "Delfino-Pier",
     },
     "9401": {
         "font": "regular",
-        "string": "Block Plaza",
+        "string": "Blokkenplaza",
     },
     "9402": {
         "font": "regular",
-        "string": "Kettinghond-Roulette",
+        "string": "Chain Chomp Roulette",
     },
     "9403": {
         "font": "regular",
-        "string": "Funky-Stadion",
+        "string": "Funky's Stadion",
     },
     "9404": {
         "font": "regular",
-        "string": "Thwomps Woestijn",
+        "string": "Steenwoestijn",
     },
     "9405": {
         "font": "regular",
-        "string": "GCN Koekieland",
+        "string": "GCN Koekjesland",
     },
     "9406": {
         "font": "regular",
-        "string": "DS Spookhuis",
+        "string": "DS Schemerhuis",
     },
     "9407": {
         "font": "regular",
@@ -685,31 +685,31 @@
     },
     "9420": {
         "font": "regular",
-        "string": "Delfino Pier",
+        "string": "Delfino-Pier",
     },
     "9421": {
         "font": "regular",
-        "string": "Block Plaza",
+        "string": "Blokkenplaza",
     },
     "9422": {
         "font": "regular",
-        "string": "Kettinghond-Roulette",
+        "string": "Chain Chomp Roulette",
     },
     "9423": {
         "font": "regular",
-        "string": "Funky-Stadion",
+        "string": "Funky's Stadion",
     },
     "9424": {
         "font": "regular",
-        "string": "Thwomps Woestijn",
+        "string": "Steenwoestijn",
     },
     "9425": {
         "font": "regular",
-        "string": "GCN Koekieland",
+        "string": "GCN Koekjesland",
     },
     "9426": {
         "font": "regular",
-        "string": "DS Spookhuis",
+        "string": "DS Schemerhuis",
     },
     "9427": {
         "font": "regular",
@@ -729,11 +729,11 @@
     },
     "9450": {
         "font": "regular",
-        "string": "GCN Koekieland",
+        "string": "GCN Koekjesland",
     },
     "9451": {
         "font": "regular",
-        "string": "DS Spookhuis",
+        "string": "DS Schemerhuis",
     },
     "9452": {
         "font": "regular",
@@ -965,23 +965,23 @@
     },
     "9900": {
         "font": "regular",
-        "string": "De verbinding met de\ncontroller is verbroken. \nDruk op de A knop.",
+        "string": "De verbinding met de\ncontroller is verbroken.\nDruk op de A-knop.",
     },
     "9901": {
         "font": "regular",
-        "string": "De controller is veranderd.\nDruk op de A knop.",
+        "string": "De controller is veranderd.\nDruk op de A-knop.",
     },
     "9902": {
         "font": "regular",
-        "string": "De controllers kunnen niet worden \nveranderd tijdens een race. Verbind aub de \norginele controller.",
+        "string": "De controllers kunnen niet worden \nveranderd tijdens een race. Verbind de\norginele controller.",
     },
     "9903": {
         "font": "regular",
-        "string": "De controllers kunnen niet worden veranderd\ntijdens een Nintendo WFC race. Verbind met de orginele controller.",
+        "string": "De controllers kunnen niet worden\nveranderd tijdens een Nintendo\nWFC-race. Verbind de orginele controller.",
     },
     "9904": {
         "font": "regular",
-        "string": "Deze competitie is enkel voor Wii sturen.\nDoe de Wii afstandsbediening in\nhet stuur en druk op A.",
+        "string": "Deze competitie is enkel voor Wii-Wheels.\nDruk de Wii-afstandsbediening in\nhet stuur en druk op de A-knop.",
     },
     "9999": {
         "font": "regular",
