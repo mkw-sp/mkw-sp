@@ -461,11 +461,11 @@
     },
     "10137": {
         "font": "regular",
-        "string": "Use a different jingle for the last lap during gameplay only.",
+        "string": "Use a different jingle for the final lap (gameplay only).",
     },
     "10138": {
         "font": "regular",
-        "string": "Use a different jingle for the last lap for both gameplay and replay.",
+        "string": "Use a different jingle for the final lap (gameplay and replay).",
     },
     "10139": {
         "font": "regular",
@@ -485,15 +485,15 @@
     },
     "10143": {
         "font": "regular",
-        "string": "Do not play a faster music during the last lap.",
+        "string": "Use the \"_N\" BRSTM on the final lap.",
     },
     "10144": {
         "font": "regular",
-        "string": "Read the last lap music from a _f suffixed BRSTM.",
+        "string": "Use the \"_F\" BRSTM on the final lap.",
     },
     "10145": {
         "font": "regular",
-        "string": "Generate a faster music for the last lap on the flight.",
+        "string": "Generate final lap music on the fly.",
     },
     "10146": {
         "font": "regular",
@@ -629,11 +629,11 @@
     },
     "10179": {
         "font": "regular",
-        "string": "Sort ghosts by their lap 2 pace.",
+        "string": "Sort ghosts by their pace into lap 2.",
     },
     "10180": {
         "font": "regular",
-        "string": "Sort ghosts by their lap 3 pace.",
+        "string": "Sort ghosts by their pace into lap 3.",
     },
     // Mission Mode
     "3700": {
