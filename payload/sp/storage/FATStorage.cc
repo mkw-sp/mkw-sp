@@ -370,6 +370,10 @@ std::optional<FATStorage::Path> FATStorage::convertPath(const wchar_t *path) {
         return nodePath;
     }
 
+    if (!wcscmp(path, L"ro:/rel/StaticR.rel")) {
+        return {};
+    }
+
     for (u32 i = m_prefixCount; i --> 0;) {
         FILINFO fInfo;
         swprintf(nodePath.path, std::size(nodePath.path), L"%ls/%ls", m_prefixes[i],

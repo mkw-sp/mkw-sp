@@ -98,11 +98,13 @@ void TimeAttackGhostListPage::onActivate() {
     auto *saveManager = System::SaveManager::Instance();
     auto cc = saveManager->getSetting<SP::ClientSettings::Setting::TAClass>();
     if (!m_cc || *m_cc != cc) {
-        m_sheetSelect.setPointerOnly(false);
-        if (m_chosenCount == 0) {
-            m_aloneButton.selectDefault(0);
-        } else {
-            m_raceButton.selectDefault(0);
+        if (!m_cc) {
+            m_sheetSelect.setPointerOnly(false);
+            if (m_chosenCount == 0) {
+                m_aloneButton.selectDefault(0);
+            } else {
+                m_raceButton.selectDefault(0);
+            }
         }
 
         const u32 buttonsPerSheet = m_ghostSelects[0].buttons.size();
@@ -210,6 +212,8 @@ void TimeAttackGhostListPage::onSettingsButtonSelect([[maybe_unused]] PushButton
         [[maybe_unused]] u32 localPlayerId) {
     m_sheetSelect.setPointerOnly(true);
     m_watchButton.setPointerOnly(true);
+
+    m_lastSelected = -1;
 }
 
 void TimeAttackGhostListPage::onSettingsButtonDeselect([[maybe_unused]] PushButton *button,

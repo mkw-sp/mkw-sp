@@ -51,7 +51,7 @@ void GhostSelectControl::calcSelf() {
         }
         TimeAttackGhostListPage *page = getGhostListPage();
         if (page->m_lastSelected == -1) {
-            if (page->m_chosenCount) {
+            if (page->m_chosenCount == 0) {
                 page->m_aloneButton.select(0);
             } else {
                 switch (getSlideAnimation()) {
