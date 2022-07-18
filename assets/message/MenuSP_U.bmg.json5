@@ -635,6 +635,10 @@
         "font": "regular",
         "string": "Sort ghosts by their pace into lap 3.",
     },
+    "10181": {
+        "font": "regular",
+        "string": "The {arg message|0} storage benchmark succeeded.\nRank: {arg message|1}\n{arg integer|0 0} KiB: R {arg string|0} MiB/s - W {arg string|1} MiB/s\n{arg integer|1 0} KiB: R {arg string|2} MiB/s - W {arg string|3} MiB/s\n{arg integer|2 0} KiB: R {arg string|4} MiB/s - W {arg string|5} MiB/s\n{arg integer|3 0} KiB: R {arg string|6} MiB/s - W {arg string|7} MiB/s",
+    },
     // Mission Mode
     "3700": {
         "font": "regular",
