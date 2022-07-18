@@ -589,11 +589,11 @@
     },
     "10169": {
         "font": "regular",
-        "string": "Disallow most MKW-SP changes.",
+        "string": "Allow all MKW-SP changes.",
     },
     "10170": {
         "font": "regular",
-        "string": "Allow all MKW-SP changes.",
+        "string": "Disallow most MKW-SP changes.",
     },
     "10171": {
         "font": "regular",
