@@ -72,4 +72,15 @@ void Print(const char *s) {
     VI::FlushXFB();
 }
 
+void Print(u32 val) {
+    for (u32 i = 0; i < 8; i++) {
+        u32 digit = val >> ((7 - i) * 4) & 0xf;
+        if (digit < 0xa) {
+            Print(static_cast<char>(digit + '0'));
+        } else {
+            Print(static_cast<char>(digit - 0xa + 'A'));
+        }
+    }
+}
+
 } // namespace Console

@@ -1,5 +1,6 @@
 #include "FS.hh"
 
+#include <algorithm>
 #include <cstring>
 
 namespace IOS {
@@ -108,6 +109,42 @@ bool FS::writeFile(const char *path, const void *src, u32 size) {
 
     s32 result = file.write(src, size);
     return result >= 0 && static_cast<u32>(result) == size;
+}
+
+bool FS::copyFile(const char *srcPath, const char *dstPath) {
+    erase(dstPath);
+    createFile(dstPath);
+
+    File dstFile(dstPath, Mode::Write);
+    if (!dstFile.ok()) {
+        return false;
+    }
+
+    File srcFile(srcPath, Mode::Read);
+    if (!srcFile.ok()) {
+        return false;
+    }
+
+    File::Stats stats;
+    if (srcFile.getStats(&stats) < 0) {
+        return false;
+    }
+
+    u32 size = stats.size;
+    while (size > 0) {
+        alignas(0x20) u8 chunk[8192];
+        u32 chunkSize = std::min(static_cast<size_t>(size), sizeof(chunk));
+        s32 result = srcFile.read(chunk, chunkSize);
+        if (result < 0 || static_cast<u32>(result) != chunkSize) {
+            return false;
+        }
+        result = dstFile.write(chunk, chunkSize);
+        if (result < 0 || static_cast<u32>(result) != chunkSize) {
+            return false;
+        }
+        size -= chunkSize;
+    }
+    return true;
 }
 
 } // namespace IOS

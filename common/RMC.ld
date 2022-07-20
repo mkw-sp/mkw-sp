@@ -1,5 +1,4 @@
 SECTIONS {
-    bootstrap 0x80003400 : { *(bootstrap) }
     .text base : { *(first) *(.text*) }
     .ctors : { *(.ctors*) }
     .rodata : { *(.rodata*) }

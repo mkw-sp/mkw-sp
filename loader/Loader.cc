@@ -3,10 +3,14 @@
 #include <common/Clock.hh>
 #include <common/Console.hh>
 #include <common/DCache.hh>
+#include <common/ES.hh>
+#include <common/FS.hh>
 #include <common/ICache.hh>
+#include <common/Paths.hh>
 #include <common/VI.hh>
 
 #include <cstring>
+#include <iterator>
 
 extern "C" void (*ctors_start)(void);
 extern "C" void (*ctors_end)(void);
@@ -24,17 +28,97 @@ namespace Loader {
 
 typedef void (*PayloadEntryFunc)(void);
 
-void Run() {
-    for (void (**ctor)(void) = &ctors_start; ctor < &ctors_end; ctor++) {
-        (*ctor)();
+static bool ReloadIOS(u64 titleID) {
+    IOS::ES es;
+    if (!es.ok()) {
+        return false;
     }
 
+    auto count = es.getTicketViewCount(titleID);
+    if (!count) {
+        return false;
+    }
+
+    alignas(0x20) IOS::ES::TicketView views[8];
+    if (!es.getTicketViews(titleID, *count, views)) {
+        return false;
+    }
+
+    *(volatile u32 *)0xc0003140 = 0;
+
+    if (!es.launchTitle(titleID, &views[0])) {
+        return false;
+    }
+
+    while (*(volatile u32 *)0xc0003140 == 0) {
+        Clock::WaitMilliseconds(1);
+    }
+
+    IOS::Init();
+
+    return true;
+}
+
+static bool CopyNANDLoader(IOS::FS &fs) {
+    alignas(0x20) const char *pathP2 = "/title/00010008/48414c50/content/0000000b.app";
+    alignas(0x20) const char *pathE2 = "/title/00010008/48414c45/content/0000000b.app";
+    alignas(0x20) const char *pathJ2 = "/title/00010008/48414c4a/content/0000000b.app";
+    alignas(0x20) const char *pathK2 = "/title/00010008/48414c4b/content/00000006.app";
+    alignas(0x20) const char *pathP1 = "/title/00010008/48414c50/content/00000006.app";
+    alignas(0x20) const char *pathE1 = "/title/00010008/48414c45/content/00000006.app";
+    alignas(0x20) const char *pathJ1 = "/title/00010008/48414c4a/content/00000006.app";
+    const char *const paths[] = { pathP2, pathE2, pathJ2, pathK2, pathP1, pathE1, pathJ1 };
+    for (u32 i = 0; i < std::size(paths); i++) {
+        if (fs.copyFile(paths[i], ALIGNED_STRING(TMP_NAND_LOADER_PATH))) {
+            return true;
+        }
+    }
+    fs.erase(ALIGNED_STRING(TMP_NAND_LOADER_PATH));
+    return false;
+}
+
+std::optional<Apploader::GameEntryFunc> Run() {
     VI::Init();
 
     Console::Init();
     Console::Print("MKW-SP v");
     Console::Print(versionInfo.name);
     Console::Print("\n");
+
+    Console::Print("Reloading IOS...");
+    if (!ReloadIOS(UINT64_C(0x000000010000003a))) {
+        Console::Print(" failed!\n");
+        return {};
+    }
+    Console::Print(" done.\n");
+
+    Console::Print("Escalating privileges...");
+    if (!IOS::EscalatePrivileges()) {
+        Console::Print(" failed!\n");
+        return {};
+    }
+    Console::Print(" done.\n");
+
+    Console::Print("Initializing FS...");
+    IOS::FS fs;
+    if (!fs.ok()) {
+        Console::Print(" failed!\n");
+        return {};
+    }
+    Console::Print(" done.\n");
+
+    if (versionInfo.type == BUILD_TYPE_RELEASE) {
+        Console::Print("Copying NAND loader...");
+        if (CopyNANDLoader(fs)) {
+            Console::Print(" done.\n");
+        } else {
+            Console::Print(" failed!\n");
+        }
+    }
+
+    Console::Print("Deescalating privileges...");
+    IOS::DeescalatePrivileges();
+    Console::Print(" done.\n");
 
     std::optional<Apploader::GameEntryFunc> gameEntry;
     {
@@ -87,7 +171,7 @@ void Run() {
         break;
     default:
         Console::Print("Region detection failed!");
-        return;
+        return {};
     }
 
     Console::Print("Copying payload...");
@@ -101,11 +185,18 @@ void Run() {
     payloadEntry();
     Console::Print(" done.\n");
 
-    (*gameEntry)();
+    return gameEntry;
 }
 
 } // namespace Loader
 
 extern "C" void Loader_Run() {
-    Loader::Run();
+    for (void (**ctor)(void) = &ctors_start; ctor < &ctors_end; ctor++) {
+        (*ctor)();
+    }
+
+    auto gameEntry = Loader::Run();
+    if (gameEntry) {
+        (*gameEntry)();
+    }
 }

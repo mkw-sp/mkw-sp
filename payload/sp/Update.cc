@@ -7,9 +7,7 @@ extern "C" {
 #include "sp/net/Socket.hh"
 
 #include <common/Bytes.hh>
-extern "C" {
-#include <common/Paths.h>
-}
+#include <common/Paths.hh>
 
 #include <protobuf/Update.pb.h>
 extern "C" {

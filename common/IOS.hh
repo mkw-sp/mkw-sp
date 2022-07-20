@@ -29,6 +29,7 @@ public:
     ~Resource();
     s32 ioctl(u32 ioctl, const void *input, u32 inputSize, void *output, u32 outputSize);
     s32 ioctlv(u32 ioctlv, u32 inputCount, u32 outputCount, IoctlvPair *pairs);
+    bool ioctlvReboot(u32 ioctlv, u32 inputCount, IoctlvPair *pairs);
     bool ok() const;
 
 private:

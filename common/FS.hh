@@ -1,6 +1,6 @@
 #pragma once
 
-#include <common/IOS.hh>
+#include "IOS.hh"
 
 #include <optional>
 
@@ -21,6 +21,7 @@ public:
 
     std::optional<u32> readFile(const char *path, void *dst, u32 size);
     bool writeFile(const char *path, const void *src, u32 size);
+    bool copyFile(const char *srcPath, const char *dstPath);
 };
 
 } // namespace IOS

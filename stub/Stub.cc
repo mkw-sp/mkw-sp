@@ -1,15 +1,13 @@
 #include "Archive.hh"
 #include "Dolphin.hh"
-#include "FS.hh"
 #include "LZMA.hh"
 
 #include <common/Console.hh>
 #include <common/DCache.hh>
 #include <common/ES.hh>
+#include <common/FS.hh>
 #include <common/ICache.hh>
-extern "C" {
-#include <common/Paths.h>
-}
+#include <common/Paths.hh>
 #include <common/VI.hh>
 
 #include <cstring>
@@ -102,9 +100,11 @@ static std::optional<LoaderEntryFunc> Run() {
         return {};
     }
     Console::Print(" done.\n");
+
     Console::Print("Initializing FS...");
     IOS::FS fs;
     Console::Print(" done.\n");
+
     Console::Print("Deescalating privileges...");
     IOS::DeescalatePrivileges();
     Console::Print(" done.\n");
@@ -178,13 +178,12 @@ static std::optional<LoaderEntryFunc> Run() {
             tmd.signatureType = 0x10001; // RSA-2048
             tmd.iosID = UINT64_C(0x000000010000003a);
             tmd.titleID = CHANNEL_TITLE_ID;
-            tmd.titleType = 1;
             tmd.groupID = 0x3031;
             tmd.region = 3; // Region free
             tmd._1ae[4] = 1; // Skip drive reset
             tmd.titleVersion = CHANNEL_TITLE_VERSION;
             tmd.numContents = CHANNEL_CONTENT_COUNT;
-            tmd.bootIndex = 1;
+            tmd.bootIndex = 2;
             for (size_t i = 0; i < CHANNEL_CONTENT_COUNT; i++) {
                 tmd.contents[i].id = i;
                 tmd.contents[i].index = i;
@@ -255,7 +254,7 @@ extern "C" void Stub_Run() {
         (*ctor)();
     }
 
-    std::optional<Stub::LoaderEntryFunc> loaderEntry = Stub::Run();
+    auto loaderEntry = Stub::Run();
     if (loaderEntry) {
         (*loaderEntry)();
     }

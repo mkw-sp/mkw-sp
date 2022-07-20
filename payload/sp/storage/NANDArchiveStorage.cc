@@ -1,8 +1,6 @@
 #include "NANDArchiveStorage.hh"
 
-extern "C" {
-#include <common/Paths.h>
-}
+#include <common/Paths.hh>
 
 #include <cstring>
 

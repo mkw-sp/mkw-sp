@@ -241,12 +241,22 @@ static void Sync() {
     ppcmsg = VirtualToPhysical(&request);
     ppcctrl = X1;
 
-    while ((ppcctrl & Y2) != Y2);
+    while ((ppcctrl & Y2) != Y2) {
+        if ((ppcctrl & Y1) == Y1) { // Expected an ack but got a reply!
+            ppcctrl = Y1;
+            ppcctrl = X2;
+        }
+    }
     ppcctrl = Y2;
 
     u32 reply;
     do {
-        while ((ppcctrl & Y1) != Y1);
+        while ((ppcctrl & Y1) != Y1) {
+            if ((ppcctrl & Y2) == Y2) { // Expected a reply but got an ack!
+                ppcctrl = Y2;
+            }
+            Clock::WaitMilliseconds(1);
+        }
         reply = armmsg;
         ppcctrl = Y1;
 
@@ -340,6 +350,54 @@ s32 Resource::ioctlv(u32 ioctlv, u32 inputCount, u32 outputCount, IoctlvPair *pa
     }
 
     return request.result;
+}
+
+bool Resource::ioctlvReboot(u32 ioctlv, u32 inputCount, IoctlvPair *pairs) {
+    for (u32 i = 0; i < inputCount; i++) {
+        if (pairs[i].data && pairs[i].size != 0) {
+            DCache::Flush(pairs[i].data, pairs[i].size);
+            pairs[i].data = reinterpret_cast<void *>(VirtualToPhysical(pairs[i].data));
+        }
+    }
+    DCache::Flush(pairs, inputCount * sizeof(IoctlvPair));
+
+    request = {};
+    request.command = Command::Ioctlv;
+    request.fd = m_fd;
+    request.ioctlv.ioctlv = ioctlv;
+    request.ioctlv.inputCount = inputCount;
+    request.ioctlv.outputCount = 0;
+    request.ioctlv.pairs = VirtualToPhysical(pairs);
+
+    DCache::Flush(request);
+
+    ppcmsg = VirtualToPhysical(&request);
+    ppcctrl = X1;
+
+    while ((ppcctrl & Y2) != Y2) {
+        if ((ppcctrl & Y1) == Y1) {
+            u32 reply = armmsg;
+            ppcctrl = Y1;
+            if (reply == VirtualToPhysical(&request)) {
+                return false;
+            }
+        }
+    }
+    ppcctrl = Y2;
+
+    while ((ppcctrl & Y2) != Y2) {
+        if ((ppcctrl & Y1) == Y1) {
+            u32 reply = armmsg;
+            ppcctrl = Y1;
+            if (reply == VirtualToPhysical(&request)) {
+                return false;
+            }
+        }
+    }
+    ppcctrl = Y2;
+    ppcctrl = X2;
+
+    return true;
 }
 
 bool Resource::ok() const {

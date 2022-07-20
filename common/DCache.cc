@@ -10,11 +10,11 @@ namespace DCache {
 
 #ifdef SP_PAYLOAD
 void Store(const void *start, size_t size) {
-    DCStoreRange(start, size);
+    DCStoreRange(const_cast<void *>(start), size);
 }
 
 void Flush(const void *start, size_t size) {
-    DCFlushRange(start, size);
+    DCFlushRange(const_cast<void *>(start), size);
 }
 
 void Invalidate(void *start, size_t size) {

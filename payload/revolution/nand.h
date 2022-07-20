@@ -55,6 +55,8 @@ s32 NANDWrite(NANDFileInfo *info, const void *buf, u32 length);
 
 s32 NANDSeek(NANDFileInfo *info, s32 offset, s32 whence);
 
+s32 NANDGetLength(NANDFileInfo *info, u32 *length);
+
 s32 NANDPrivateCreateDir(const char *path, u8 perm, u8 attr);
 
 s32 NANDGetHomeDir(char path[NAND_MAX_PATH]);

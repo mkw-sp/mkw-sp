@@ -62,6 +62,7 @@ typedef uint64_t u64;
 typedef float f32;
 typedef double f64;
 
+// Note: only for directly passing literals to functions
 // Source: https://stackoverflow.com/questions/34796571
 #define ALIGNED_STRING(s)  (struct { alignas(0x20) char t[sizeof(s)]; }){ s }.t
 
@@ -107,7 +108,7 @@ typedef double f64;
 
 #define CHANNEL_TITLE_ID UINT64_C(0x0001000153505350)
 #define CHANNEL_TITLE_VERSION 0x0100
-#define CHANNEL_CONTENT_COUNT 2
+#define CHANNEL_CONTENT_COUNT 3
 
 enum {
     BUILD_TYPE_DEBUG = 0,
@@ -263,5 +264,4 @@ typedef struct {
     PATCH_BRANCH(from, to, true, NULL)
 
 #define REPLACE __attribute__((section("replacements")))
-#define DECLARE_REPLACED(function) thunk_replaced_ ## function
 #define REPLACED(function) thunk_replaced_ ## function
