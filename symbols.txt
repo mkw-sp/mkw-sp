@@ -747,6 +747,8 @@
 0x80632f6c GhostWatchPauseMenuPage_getButtonCount
 0x80633104 ReplayTAMenuPage_getButtons
 0x80633110 ReplayTAPauseMenuPage_getButtonCount
+0x806331a0 FUN_806331a0
+0x806331ac EventPauseMenuPage_getButtons
 0x80633248 BattlePauseMenuPage_getFile
 0x80633270 BattlePauseMenuPage_getButtons
 0x8063327c BattlePauseMenuPage_getButtonCount
