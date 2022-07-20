@@ -7,6 +7,7 @@ namespace IOS {
 void Init();
 bool EscalatePrivileges();
 void DeescalatePrivileges();
+bool ImportNewCommonKey();
 
 enum class Mode : u32 {
     None = 0,

@@ -116,6 +116,10 @@ std::optional<Apploader::GameEntryFunc> Run() {
         }
     }
 
+    Console::Print("Importing new common key...");
+    IOS::ImportNewCommonKey();
+    Console::Print(" done.\n");
+
     Console::Print("Deescalating privileges...");
     IOS::DeescalatePrivileges();
     Console::Print(" done.\n");

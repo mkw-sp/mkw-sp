@@ -45,6 +45,61 @@ constexpr u32 syscall(SC id) {
     return 0xE6000010 | static_cast<u8>(id) << 5;
 }
 
+#ifdef SP_LOADER
+u32 armCode[] = {
+    /* 0x00 */ 0xEA000000, // b       0x8
+    /* 0x04 */ 0x00000000, // MESSAGE_VALUE
+    /* 0x08 */ 0x00000000, // NEW_COMMON_KEY_ADDRESS
+    // Set PPC UID to root
+    /* 0x0C */ 0xE3A0000F, // mov     r0, #15
+    /* 0x10 */ 0xE3A01000, // mov     r1, #0
+    /* 0x14 */ syscall(SC::IOS_SetUid),
+    // Enable full PPC access
+    /* 0x18 */ 0xE3A05536, // mov     r5, #0xd800000
+    /* 0x1C */ 0xE5954060, // ldr     r4, [r5, #0x60]
+    /* 0x20 */ 0xE3841008, // orr     r1, r4, #8
+    /* 0x24 */ 0xE5851060, // str     r1, [r5, #0x60]
+    /* 0x28 */ 0xE5953064, // ldr     r3, [r5, #0x64]
+    /* 0x2C */ 0xE3831EDF, // orr     r1, r3, #0xdf0
+    /* 0x30 */ 0xE381113A, // orr     r1, r1, #0x8000000e
+    /* 0x34 */ 0xE5851064, // str     r1, [r5, #0x64]
+    // Send response to PPC
+    /* 0x38 */ 0xE24F003C, // adr     r0, MESSAGE_VALUE
+    /* 0x3C */ 0xE3A01001, // mov     r1, #1
+    /* 0x40 */ 0xE5801000, // str     r1, [r0]
+    // Flush the response to main memory
+    /* 0x44 */ 0xE3A01004, // mov     r1, #8
+    /* 0x48 */ syscall(SC::IOS_FlushDCache),
+    // Wait for response back from PPC
+    // loop_start:
+    /* 0x4C */ 0xE24F0050, // adr     r0, MESSAGE_VALUE
+    /* 0x50 */ 0xE5902000, // ldr     r2, [r0]
+    /* 0x54 */ 0xE3520002, // cmp     r2, #2
+    /* 0x58 */ 0x0A000001, // beq     loop_break
+    /* 0x5C */ syscall(SC::IOS_InvalidateDCache),
+    /* 0x60 */ 0xEAFFFFF9, // b       loop_start
+    // loop_break:
+    // Invalidate cache
+    /* 0x64 */ 0xE5900004, // ldr     r0, [r0, #4]
+    /* 0x68 */ 0xE3A01024, // mov     r1, #0x24
+    /* 0x6C */ syscall(SC::IOS_InvalidateDCache),
+    // Disable full PPC access
+    /* 0x70 */ 0xE5853064, // str     r3, [r5, #0x64]
+    /* 0x74 */ 0xE5854060, // str     r4, [r5, #0x60]
+    // Reset PPC UID back to 15
+    /* 0x78 */ 0xE3A0000F, // mov     r0, #15
+    /* 0x7C */ 0xE3A0100F, // mov     r1, #15
+    /* 0x80 */ syscall(SC::IOS_SetUid),
+    // Send response to PPC
+    /* 0x84 */ 0xE24F0088, // adr     r0, MESSAGE_VALUE
+    /* 0x88 */ 0xE3A01003, // mov     r1, #3
+    /* 0x8C */ 0xE5801000, // str     r1, [r0]
+    // Flush the response to main memory
+    /* 0x90 */ 0xE3A01004, // mov     r1, #4
+    /* 0x94 */ syscall(SC::IOS_FlushDCache),
+    /* 0x98 */ 0xE12FFF1E, // bx      lr
+};
+#else
 u32 armCode[] = {
     /* 0x00 */ 0xEA000000, // b       0x8
     /* 0x04 */ 0x00000000, // MESSAGE_VALUE
@@ -81,6 +136,7 @@ u32 armCode[] = {
     /* 0x5C */ syscall(SC::IOS_FlushDCache),
     /* 0x60 */ 0xE12FFF1E, // bx      lr
 };
+#endif
 
 static bool IsDolphin() {
     // Modern versions
@@ -105,15 +161,15 @@ static void SafeFlush(const void *start, size_t size) {
     file.write(start, size);
 }
 
-static u32 ReadMessage() {
-    u32 address = reinterpret_cast<u32>(&armCode[1]);
+static u32 ReadMessage(u32 index) {
+    u32 address = reinterpret_cast<u32>(&armCode[index]);
     u32 message;
     asm volatile("lwz %0, 0x0 (%1); sync" : "=r"(message) : "b"(0xC0000000 | address));
     return message;
 }
 
-static void WriteMessage(u32 message) {
-    u32 address = reinterpret_cast<u32>(&armCode[1]);
+static void WriteMessage(u32 index, u32 message) {
+    u32 address = reinterpret_cast<u32>(&armCode[index]);
     asm volatile("stw %0, 0x0 (%1); eieio" : : "r"(message), "b"(0xC0000000 | address));
 }
 
@@ -171,7 +227,7 @@ bool EscalatePrivileges() {
         return false;
     }
 
-    while (ReadMessage() != 1) {
+    while (ReadMessage(1) != 1) {
         Clock::WaitMilliseconds(1);
     }
     return true;
@@ -182,10 +238,81 @@ void DeescalatePrivileges() {
         return;
     }
 
-    WriteMessage(2);
-    while (ReadMessage() != 3) {
+    WriteMessage(1, 2);
+    while (ReadMessage(1) != 3) {
         Clock::WaitMilliseconds(1);
     }
+}
+
+template <size_t N>
+static bool Compare(const u32 (&mask)[N], const u32 (&pattern)[N], const u32 *ptr) {
+    for (size_t i = 0; i < N; i++) {
+        if ((ptr[i] & mask[i]) != pattern[i]) {
+            return false;
+        }
+    }
+    return true;
+}
+
+template <size_t N>
+static const u32 *Find(const u32 (&mask)[N], const u32 (&pattern)[N], const u32 *start,
+        const u32 *end) {
+    for (const u32 *ptr = start; ptr <= end - N; ptr++) {
+        if (Compare(mask, pattern, ptr)) {
+            return ptr;
+        }
+    }
+    return nullptr;
+}
+
+template <size_t N>
+static void Copy(const u32 (&mask)[N], const u32 (&pattern)[N], u32 *ptr) {
+    for (size_t i = 0; i < N; i++) {
+        ptr[i] = (ptr[i] & ~mask[i]) | (pattern[i] & mask[i]);
+    }
+}
+
+bool ImportNewCommonKey() {
+    if (IsDolphin()) {
+        return true;
+    }
+
+    // Find the common key in the Starlet SRAM.
+    u32 keyMask[] = { 0xFFFFFFFF, 0xFFFFFFFF, 0xFFFFFFFF, 0xFFFFFFFF, 0xFFFFFFFF, 0xFFFFFFFF,
+            0xFFFFFFFF, 0xFFFFFFFF, 0xFFFFFFFF };
+    u32 keyPattern[] = { 0x01EBE42A, 0x225E8593, 0xE448D9C5, 0x457381AA, 0xF7000000, 0x00000000,
+            0x00000000, 0x00000000, 0x00000000 };
+    const u32 *start = reinterpret_cast<u32 *>(0xCD410000);
+    const u32 *end = reinterpret_cast<u32 *>(0xCD420000);
+    start = Find(keyMask, keyPattern, start, end);
+    if (!start) {
+        return false;
+    }
+
+    // The new common key should be at a fixed offset.
+    start += 27;
+    // For Korean Wiis, it's already there.
+    u32 newKeyMask[] = { 0xFFFFFFFF, 0xFFFFFFFF, 0xFFFFFFFF, 0xFFFFFFFF, 0xFFFFFFFF, 0xFFFFFFFF,
+            0xFFFFFFFF, 0xFFFFFFFF, 0xFFFFFFFF };
+    u32 newKeyPattern[] = { 0x0163B82B, 0xB4F4614E, 0x2E13F2FE, 0xFBBA4C9B, 0x7E000000, 0x00000000,
+            0x00000000, 0x00000000, 0x00000000 };
+    if (Compare(newKeyMask, newKeyPattern, start)) {
+        return true;
+    }
+
+    // For other Wiis, it's all zeros instead.
+    u32 noKeyMask[] = { 0xFFFFFFFF, 0xFFFFFFFF, 0xFFFFFFFF, 0xFFFFFFFF, 0xFFFFFFFF, 0xFFFFFFFF,
+            0xFFFFFFFF, 0xFFFFFFFF, 0xFFFFFFFF };
+    u32 noKeyPattern[] = { 0x01000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000,
+            0x00000000, 0x00000000, 0x00000000 };
+    if (!Compare(noKeyMask, noKeyPattern, start)) {
+        return false;
+    }
+
+    // Copy it, and the address to invalidate the cache on the IOS side.
+    Copy(newKeyMask, newKeyPattern, const_cast<u32 *>(start));
+    WriteMessage(2, reinterpret_cast<u32>(start) & 0xffff0000);
+    return true;
 }
 
 enum class Command : u32 {
