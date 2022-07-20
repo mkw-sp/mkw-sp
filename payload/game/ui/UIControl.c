@@ -19,6 +19,9 @@ void _ZN2UI15LayoutUIControl4loadEPKcS2_S2_PKS2_(LayoutUIControl *this, const ch
 
 void *ControlCheckValid(void *result, const char *path) {
     if (result)
+#if LOG_CONTROL_LOAD
+        SP_LOG("Control loaded: %s", path);
+#endif
         return result;
 
     panic("Failed to load '%s'!", path);

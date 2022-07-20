@@ -252,6 +252,47 @@ static const u32 *my_ReplayTAMenuPage_getButtons(void) {
 
 PATCH_B(ReplayTAMenuPage_getButtons, my_ReplayTAMenuPage_getButtons);
 
+
+// Mission mode
+
+// Event buttons
+static const u32 EventPauseButtons[] = {
+    kPausePageButtonID_Continue1,
+    kPausePageButtonID_Restart1,
+    kPausePageButtonID_ChangeCharacter,
+    kPausePageButtonID_Quit1,
+};
+
+// Mission buttons
+static const u32 MissionRunPauseButtons[] = {
+    kPausePageButtonID_Continue1,
+    kPausePageButtonID_Restart1,
+    kPausePageButtonID_ChangeMission,
+    kPausePageButtonID_Quit1,
+};
+
+// Get the right BRCTR depending on the section id
+const char* FUN_806331a0(void);
+static const char* my_FUN_806331a0(void) {
+    if (s_sectionManager->currentSection->id == SECTION_ID_MR_REPLAY)
+        return "PauseMenuMR";
+    return "PauseMenuEvent";
+}
+PATCH_B(FUN_806331a0, my_FUN_806331a0);
+
+// Get the right button array depending on the section id
+const u32 *EventPauseMenuPage_getButtons(void);
+static const u32 *my_EventPauseMenuPage_getButtons(void) {
+    if (s_sectionManager->currentSection->id == SECTION_ID_MR_REPLAY)
+        return MissionRunPauseButtons;
+    return EventPauseButtons;
+}
+
+PATCH_B(EventPauseMenuPage_getButtons, my_EventPauseMenuPage_getButtons);
+
+
+// Custom button handlers
+
 void RaceMenuPage_onFrontSettings(
         RaceMenuPage *this, PushButton *pushButton, u32 UNUSED(localPlayerId)) {
     SettingsPage_SetReplacement(this->id);

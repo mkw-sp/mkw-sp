@@ -74,11 +74,23 @@ PATCH_B(ResourceManager_loadCourse, my_ResourceManager_loadCourse);
 
 MultiDvdArchive *my_ResourceManager_loadMission(ResourceManager *self, u32 courseId, u32 missionId,
         EGG_Heap *heap, bool splitScreen) {
+    // Get a pointer to RM's course MultiDvdArchive
     MultiDvdArchive *multi = self->multis[MULTI_DVD_ARCHIVE_TYPE_COURSE];
+
+    // Fill kind and name for 2nd entry (1st one will be the track itself)
     multi->kinds[1] = RESOURCE_KIND_FILE_SINGLE_FORMAT;
     snprintf(multi->names[1], 0x80, "Race/MissionRun/mr%02ld.szs", missionId);
+
+    // Load track into coursecache
     CourseCache_load2(&self->courseCache, courseId, splitScreen);
+
+    // Load coursecache's multi(which containd the track) into ResourceManager's multi
     MultiDvdArchive_loadOther(multi, self->courseCache.multi, heap);
+
+    // Load all archives (the one in coursecache is already loaded so this only serves to load the mission szs file)
+    MultiDvdArchive_load(multi, "", heap, heap, 0);
+
+    // Clear courseCache as the data inside is no longer needed
     self->courseCache.state = COURSE_CACHE_STATE_CLEARED;
     return multi;
 }

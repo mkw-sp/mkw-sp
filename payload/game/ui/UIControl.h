@@ -6,6 +6,8 @@
 #include "MiiGroup.h"
 #include "UIAnimator.h"
 
+#define LOG_CONTROL_LOAD false
+
 typedef struct {
     const struct UIControl_vt *vt;
     u8 _04[0x64 - 0x04];
