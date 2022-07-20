@@ -5,7 +5,7 @@
 #include "game/ui/ctrl/CtrlMenuInstructionText.hh"
 #include "game/ui/ctrl/CtrlMenuPageTitleText.hh"
 
-#define ENABLE_MR true
+#define ENABLE_MR false
 
 namespace UI {
 
