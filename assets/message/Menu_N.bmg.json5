@@ -5,7 +5,7 @@
     },
     "2000": {
         "font": "regular",
-        "string": "OK",
+        "string": "Oké",
     },
     "2001": {
         "font": "regular",
@@ -61,7 +61,7 @@
     },
     "2014": {
         "font": "regular",
-        "string": "Mario Kart Kanaal",
+        "string": "Mario Kart-Kanaal",
     },
     "2015": {
         "font": "regular",
@@ -73,7 +73,7 @@
     },
     "2017": {
         "font": "regular",
-        "string": "Druk op de A Knop",
+        "string": "Druk op de A-knop",
     },
     "2018": {
         "font": "regular",
@@ -109,7 +109,7 @@
     },
     "2026": {
         "font": "regular",
-        "string": "Bekijk de standen en competitiegegvens!",
+        "string": "Bekijk de ranglijsten en competitiegegevens!",
     },
     "2027": {
         "font": "regular",
@@ -125,15 +125,15 @@
     },
     "2030": {
         "font": "regular",
-        "string": "2 Spelers",
+        "string": "Meerdere Spelers (2S)",
     },
     "2031": {
         "font": "regular",
-        "string": "3 Spelers",
+        "string": "Meerdere Spelers (3S)",
     },
     "2032": {
         "font": "regular",
-        "string": "4 Spelers",
+        "string": "Meerdere Spelers (4S)",
     },
     "2033": {
         "font": "regular",
@@ -149,27 +149,27 @@
     },
     "2050": {
         "font": "regular",
-        "string": "Doe de Mario Kart Wii disc\nin de Wii console en\nwacht tot de game geladen is.",
+        "string": "Steek de Mario Kart Wii-schijf\nin het Wii-systeem en\nwacht tot het spel geladen is.",
     },
     "2051": {
         "font": "regular",
-        "string": "Het spel kan niet worden geladen. \nLees de Wii Handleiding voor meer informatie",
+        "string": "De schijf kon niet gelezen worden.\nLees de Wii-handleiding voor\nmeer informatie.",
     },
     "2052": {
         "font": "regular",
-        "string": "Er is iets fout gegaan.\n\nDruk op de EJECT knop, verwijder\nde Game Disc, en zet het wii systeem\nuit. Lees de Wii handleiding voor meer informatie.",
+        "string": "Er is een fout opgetreden.\n\nDruk op de EJECT-knop, verwijder\nde schijf, en zet het Wii-systeem\nuit. Lees de Wii-handleiding voor\nmeer informatie.",
     },
     "2053": {
         "font": "regular",
-        "string": "Er is niet genoeg vrije ruimte beschrikbaar\nin het Wii geheugen. Zorg voor 23 vrije \nblokkendoor gegevens te kopieren naar een \nSD kaart of door ze te verwijderen.",
+        "string": "Er is niet genoeg vrije ruimte beschikbaar\nin het Wii-geheugen. Zorg voor\n23 vrije blokken door gegevens\nte kopiëren naar een SD-kaart of\ndoor blokken te verwijderen.",
     },
     "2054": {
         "font": "regular",
-        "string": "Het Wii Geheugen is beschadigd.\nLees de Wii Handleiding\nvoor meer informatie.",
+        "string": "Het Wii-geheugen is beschadigd.\nLees de Wii-handleiding\nvoor meer informatie.",
     },
     "2055": {
         "font": "regular",
-        "string": "De gegevens zijn beschadigd en\nkunnen niet worden geladen.\n\nWil je een nieuw bestand maken?",
+        "string": "Deze gegevens zijn beschadigd en\nkunnen niet worden gebruikt.\n\nWil je de beschadigde gegevens\nverwijderen en een nieuw bestand maken?",
     },
     "2056": {
         "font": "regular",
@@ -177,11 +177,11 @@
     },
     "2057": {
         "font": "regular",
-        "string": "Er kan niet van/naar het Wii geheugen\ngelezen of geschreven worden.\nLees de Wii Handleiding voor meer informatie.",
+        "string": "Er kan niet van/naar het Wii-geheugen\ngelezen/geschreven worden.\n\nLees de Wii-handleiding voor meer informatie.",
     },
     "2058": {
         "font": "regular",
-        "string": "Je zal nu terugkeren naar het Wii Menu.",
+        "string": "Je zal nu terugkeren naar het Wii-menu.",
     },
     "2059": {
         "font": "regular",
@@ -189,51 +189,51 @@
     },
     "2060": {
         "font": "regular",
-        "string": "Terug naar het Wii Menu",
+        "string": "Terug naar het Wii-menu",
     },
     "2061": {
         "font": "regular",
-        "string": "Je kan dit menu niet kiezen\nomdat er geen opgeslagen gegevens zijn.",
+        "string": "Je kan dit menu niet kiezen omdat\ner geen opgeslagen gegevens zijn.",
     },
     "2062": {
         "font": "regular",
-        "string": "Er kan niet vanaf het geheugen\nworden gelezen. Doe de Mario Kart Wii Disc in de Wii.",
+        "string": "Er kan niet vanaf het geheugen\nworden gelezen. Steek de Mario Kart\nWii-schijf in de Wii.",
     },
     "2063": {
         "font": "regular",
-        "string": "Start Game Disc",
+        "string": "Start schijf",
     },
     "2064": {
         "font": "regular",
-        "string": "Je zal nu terugkeren\nnaar het Wii Menu.\nIs dit OK?",
+        "string": "Je zal nu terugkeren\nnaar het Wii-menu.\nIs dit oké?",
     },
     "2065": {
         "font": "regular",
-        "string": "Bezig met opslaan. Druk niet\nop de POWER of RESET knop.",
+        "string": "Bezig met opslaan. Druk niet\nop de POWER- of RESET-knop.",
     },
     "2066": {
         "font": "regular",
-        "string": "Kan Mii Kanaal gegevens niet laden.\n Open het Mii Kanaal en\ncontroleer de gegevens.",
+        "string": "Kan de Mii-kanaalgegevens niet laden.\nOpen het Mii-kanaal en\ncontroleer de gegevens.",
     },
     "2067": {
         "font": "regular",
-        "string": "Als je deze Mii van het\nMii Kanaal verwijderd, wordt het ook\nverwijderd in Mario Kart Wii, dus\nwees voorzichtig.",
+        "string": "Als je deze Mii uit het\nMii-kanaal verwijdert, zal het ook\nin Mario Kart Wii worden verwijderd, dus\nwees voorzichtig.",
     },
     "2068": {
         "font": "regular",
-        "string": "Je rijbewijs is gemaakt met een\nGast Mii. Je kan een nieuwe Mii\nmaken in het Mii Kanaal.",
+        "string": "Je rijbewijs werd gemaakt met een\ngast-Mii. Je kan een nieuwe Mii\nmaken in het Mii-kanaal.",
     },
     "2069": {
         "font": "regular",
-        "string": "De geestgegevens kunnen niet\nworden verzonden. Er kunnen tot 5\nuitdagingen worden verzonden elke keer dat je speelt.\n\nEven geduld tot de volgende keer\ndat je Mario Kart Wii opstart om\nnog een uitdaging te verzenden.",
+        "string": "De geestgegevens kunnen niet\nworden verzonden. Je kunt tot vijf\nuitdagingen verzenden per keer dat je speelt.\n\nWacht a.u.b. tot de volgende keer\ndat je Mario Kart Wii opstart om\nnog een uitdaging te verzenden.",
     },
     "2070": {
         "font": "regular",
-        "string": "Er kan geen verbinding worden gemaakt \nmet de Nintendo Wi-Fi verbinding. Er zijn \ngeen opgeslagen gegevens.\n\nJe kan het Wii Geheugen beheren\nop het Opgeslagen Gegevens scherm van \nde Wii Instellingen.",
+        "string": "Er kan geen verbinding worden gemaakt\nmet de Nintendo Wi-Fi Connectie. Er zijn\ngeen opgeslagen gegevens.\n\nJe kan het Wii-geheugen beheren\nop het opgeslagen gegevens-scherm van\nde Wii-instellingen.",
     },
     "2071": {
         "font": "regular",
-        "string": "Er is niet genoeg vrije ruimte beschrikbaar\nin het Wii Geheugen. Verplaats of gegevens\nnaar een SD Kaart, of verwijder gegevens \nin het Opgeslagen Gegevens scherm.",
+        "string": "Er is niet genoeg ruimte beschikbaar\nin het Wii-geheugen. Verplaats gegevens\nnaar een SD-kaart of verwijder gegevens\nop het Opgeslagen gegevens-scherm.",
     },
     "2072": {
         "font": "regular",
@@ -241,11 +241,11 @@
     },
     "2073": {
         "font": "regular",
-        "string": "De landinstelling is veranderd dus moeten er\nnieuwe gegevens worden gemaakt. Als je jouw\ngegevens niet wilt verliezen, keer dan terug naar het Wii Menu en verander de instelling terug.",
+        "string": "De landinstelling is veranderd, dus moeten\ner nieuwe gegevens worden gemaakt. Als\nje jouw gegevens niet wilt verliezen, keer\ndan terug naar het Wii-menu en verander\nde instelling terug.",
     },
     "2074": {
         "font": "regular",
-        "string": "Maak Nieuwe Save Aan",
+        "string": "Maak nieuwe gegevens aan",
     },
     "2075": {
         "font": "regular",
@@ -257,19 +257,19 @@
     },
     "2101": {
         "font": "regular",
-        "string": "Een nieuw Mario Kart Wii\nrijbewijs wordt gemaakt",
+        "string": "Een nieuw Mario Kart Wii-\nrijbewijs wordt gemaakt.",
     },
     "2102": {
         "font": "regular",
-        "string": "Nieuw Rijbewijs",
+        "string": "Nieuw rijbewijs",
     },
     "2103": {
         "font": "regular",
-        "string": "Verwijder Rijbewijs",
+        "string": "Verwijder rijbewijs",
     },
     "2104": {
         "font": "regular",
-        "string": "Selecteer Rijbewijs",
+        "string": "Selecteer rijbewijs",
     },
     "2105": {
         "font": "regular",
@@ -297,7 +297,7 @@
     },
     "2111": {
         "font": "regular",
-        "string": "Een nieuw rijbewijs zal worden\ngecreeërd voor {arg player|0}.\n\nIs dit OK?",
+        "string": "Een nieuw rijbewijs zal worden\ngecreëerd voor {arg player|0}.\n\nIs dit oké?",
     },
     "2112": {
         "font": "regular",
@@ -305,7 +305,7 @@
     },
     "2113": {
         "font": "regular",
-        "string": "{current player|} en {arg player|0}\nzullen samen verbinden met\nNintendo WFC. Is dat oké?",
+        "string": "{current player|} en {arg player|0}\nzullen samen verbinden met\nNintendo WFC. Is dit oké?",
     },
     "2114": {
         "font": "regular",
@@ -317,7 +317,7 @@
     },
     "2121": {
         "font": "regular",
-        "string": "Bekijk {current player|}'s records.",
+        "string": "Bekijk de records van {current player|}.",
     },
     "2122": {
         "font": "regular",
@@ -345,7 +345,7 @@
     },
     "2128": {
         "font": "regular",
-        "string": "Verwijder {current player|}'s rijbewijs.",
+        "string": "Verwijder het rijbewijs van {current player|}.",
     },
     "2129": {
         "font": "regular",
@@ -385,15 +385,15 @@
     },
     "2151": {
         "font": "regular",
-        "string": "Een nieuw rijbewijs is gemaakt.",
+        "string": "Jouw nieuwe rijbewijs is gemaakt.",
     },
     "2152": {
         "font": "regular",
-        "string": "Weet je zeker dat je\n{current player|}'s rijbewijs wilt verwijderen?",
+        "string": "Weet je zeker dat je het rijbewijs\nvan {current player|} wilt verwijderen?",
     },
     "2153": {
         "font": "regular",
-        "string": "{current player|}'s rijbewijs\nis verwijderd.",
+        "string": "Het rijbewijs van {current player|}\nis verwijderd.",
     },
     "2154": {
         "font": "regular",
@@ -409,11 +409,11 @@
     },
     "2157": {
         "font": "regular",
-        "string": "Bezig met verwijderen...",
+        "string": "Rijbewijs aan het verwijderen...",
     },
     "2158": {
         "font": "regular",
-        "string": "De Vriendenlijst, geestgegevens\nen andere gegevens zullen worden\nverwijderd. Weet je zeker dat je door wilt gaan?",
+        "string": "De vriendenlijst, geesten en\nandere gegevens zullen worden\nverwijderd. Weet je zeker dat je door wilt gaan?",
     },
     "2159": {
         "font": "regular",
@@ -441,7 +441,7 @@
     },
     "2205": {
         "font": "regular",
-        "string": "De Mii van dir rijbewijs is verwijderd\nvan het Mii Kanaal\n\nKies een nieuwe Mii.",
+        "string": "De Mii van dit rijbewijs is verwijderd\nvan het Mii-kanaal.\n\nKies een nieuwe Mii.",
     },
     "2206": {
         "font": "regular",
@@ -557,15 +557,15 @@
     },
     "2402": {
         "font": "regular",
-        "string": "Druk op A Knop op de Controller van Speler 2.",
+        "string": "Druk op A-knop op de controller van\nSpeler 2.",
     },
     "2403": {
         "font": "regular",
-        "string": "Druk op A Knop op de Controller van Speler 3.",
+        "string": "Druk op A-knop op de controller van\nSpeler 3.",
     },
     "2404": {
         "font": "regular",
-        "string": "Druk op A Knop op de Controller van Speler 4.",
+        "string": "Druk op A-knop op de controller van\nSpeler 4.",
     },
     "2405": {
         "font": "regular",
@@ -589,7 +589,7 @@
     },
     "2500": {
         "font": "regular",
-        "string": "Is dit OK?",
+        "string": "Is dit oké?",
     },
     "2501": {
         "font": "regular",
@@ -597,19 +597,19 @@
     },
     "2502": {
         "font": "regular",
-        "string": "Druk op A Knop op de Controller van Speler 1.",
+        "string": "Druk op A-knop op de controller van\nSpeler 1.",
     },
     "2503": {
         "font": "regular",
-        "string": "Druk op A Knop op de Controller van Speler 2.",
+        "string": "Druk op A-knop op de controller van\nSpeler 2.",
     },
     "2504": {
         "font": "regular",
-        "string": "Druk op A Knop op de Controller van Speler 3.",
+        "string": "Druk op A-knop op de controller van\nSpeler 3.",
     },
     "2505": {
         "font": "regular",
-        "string": "Druk op A Knop op de Controller van Speler 4.",
+        "string": "Druk op A-knop op de controller van\nSpeler 4.",
     },
     "2506": {
         "font": "regular",
@@ -621,15 +621,15 @@
     },
     "2508": {
         "font": "regular",
-        "string": "{arg message|0}Voeg Wii Afstandsbediening toe",
+        "string": "{arg message|0}Voeg Wii-afstandsbediening toe",
     },
     "2509": {
         "font": "regular",
-        "string": "Druk tegelijk op {1 char|} en {1 char|}.",
+        "string": "Druk tegelijkertijd op {1 char|} en {1 char|}.",
     },
     "2510": {
         "font": "regular",
-        "string": "{arg message|0}OK",
+        "string": "{arg message|0}Oké",
     },
     "2511": {
         "font": "regular",
@@ -669,19 +669,19 @@
     },
     "2555": {
         "font": "regular",
-        "string": "{color|player 1}OK",
+        "string": "{color|player 1}Oké",
     },
     "2556": {
         "font": "regular",
-        "string": "{color|player 2}OK",
+        "string": "{color|player 2}Oké",
     },
     "2557": {
         "font": "regular",
-        "string": "{color|player 3}OK",
+        "string": "{color|player 3}Oké",
     },
     "2558": {
         "font": "regular",
-        "string": "{color|player 4}OK",
+        "string": "{color|player 4}Oké",
     },
     "2559": {
         "font": "regular",
@@ -689,15 +689,15 @@
     },
     "2600": {
         "font": "regular",
-        "string": "Wil je het Mario Kart Wii Kanaal\ninstalleren? Hiervoor zijn\n{arg integer|0 0} blokken in het geheugen nodig.",
+        "string": "Wil je het Mario Kart-Kanaal\ninstalleren? Hiervoor zijn\n{arg integer|0 0} blokken in\nhet geheugen nodig.",
     },
     "2601": {
         "font": "regular",
-        "string": "Voeg toe",
+        "string": "Ja",
     },
     "2602": {
         "font": "regular",
-        "string": "Annuleren",
+        "string": "Nee",
     },
     "2603": {
         "font": "regular",
@@ -717,31 +717,31 @@
     },
     "2607": {
         "font": "regular",
-        "string": "Voeg het Mario Kart kanaal toe",
+        "string": "Voeg het Mario Kart-Kanaal toe",
     },
     "2608": {
         "font": "regular",
-        "string": "Voeg het Mario Kart Kanaal aan\njouw Wii Menu toe en je kan het kanaal\nopenen zonder de Mario Kart Wii Disc!",
+        "string": "Voeg het Mario Kart-Kanaal aan\nhet Wii-menu toe, zodat je het kanaal\nkan openen zonder de\nMario Kart Wii-schijf!",
     },
     "2609": {
         "font": "regular",
-        "string": "Het Mario Kart Kanaal is al eens\ntoegevoegd aan het Wii Menu.",
+        "string": "Het Mario Kart-Kanaal is al\ntoegevoegd aan het Wii-menu.",
     },
     "2610": {
         "font": "regular",
-        "string": "Er is niet genoeg ruimte in\nhet Wii Geheugen.\nMaak {arg integer|0 0} blokken vrij door\nof gegevens naar een SD kaart\nte verplaatsen,\nof gegevens te verwijderen.",
+        "string": "Er is niet genoeg ruimte in\nhet Wii-geheugen.\nMaak {arg integer|0 0} blokken vrij\ndoor gegevens naar een SD-kaart\nte verplaatsen of gegevens te verwijderen.",
     },
     "2611": {
         "font": "regular",
-        "string": "Er is niet genoeg vrije ruimte beschrikbaar\nin het Wii Geheugen. Verplaats of gegevens\nnaar een SD Kaart, of verwijder gegevens \nin het Opgeslagen Gegevens scherm.",
+        "string": "Er is niet genoeg ruimte beschikbaar\nin het Wii-geheugen. Verplaats gegevens\nnaar een SD-kaart of verwijder gegevens\nop in het gegevensbeheer.",
     },
     "2612": {
         "font": "regular",
-        "string": "Er is niet genoeg ruimte in\nhet Wii Geheugen.\nKopieer kanalen naar een SD kaart\nof verwijder kanalen.",
+        "string": "Er is niet genoeg ruimte in\nhet Wii-geheugen. Kopieer kanalen\nnaar een SD-kaart of verwijder kanalen\nin het gegevensbeheer.",
     },
     "2613": {
         "font": "regular",
-        "string": "De Wiigegevens zijn\nbeschadigd. Lees de\nWiihandleiding voor verdere instructies.",
+        "string": "De Wii-gegevens zijn\nbeschadigd. Lees de\nWii-handleiding voor verdere instructies.",
     },
     "2614": {
         "font": "regular",
@@ -757,7 +757,7 @@
     },
     "3002": {
         "font": "regular",
-        "string": "VS Race",
+        "string": "VS race",
     },
     "3003": {
         "font": "regular",
@@ -773,11 +773,11 @@
     },
     "3006": {
         "font": "regular",
-        "string": "50cc\n{font scale|50}Alleen voor Karts",
+        "string": "50cc\n{font scale|50}Alleen Karts",
     },
     "3007": {
         "font": "regular",
-        "string": "100cc\n{font scale|50}Alleen voor Motors",
+        "string": "100cc\n{font scale|50}Alleen Motors",
     },
     "3008": {
         "font": "regular",
@@ -805,11 +805,11 @@
     },
     "3050": {
         "font": "regular",
-        "string": "Race in vier spannende races voor 1ste Plaats!",
+        "string": "Race in vier spannende races voor 1e plaats!",
     },
     "3051": {
         "font": "regular",
-        "string": "Race in je eentje voor het snelste record!",
+        "string": "Race alleen voor het snelste record!",
     },
     "3052": {
         "font": "regular",
@@ -821,11 +821,11 @@
     },
     "3054": {
         "font": "regular",
-        "string": "Vecht met teams!",
+        "string": "Vecht in teams!",
     },
     "3055": {
         "font": "regular",
-        "string": "Vecht met teams!",
+        "string": "Vecht in teams!",
     },
     "3056": {
         "font": "regular",
@@ -845,27 +845,27 @@
     },
     "3060": {
         "font": "regular",
-        "string": "Voor beginners (alleen voor karts).",
+        "string": "Een Grand Prix voor beginners\n(alleen karts).",
     },
     "3061": {
         "font": "regular",
-        "string": "Voor ervaren coureurs (alleen voor bikes).",
+        "string": "Een standaard Grand Prix\n(alleen motors).",
     },
     "3062": {
         "font": "regular",
-        "string": "Voor experts (karts en bikes).",
+        "string": "Een Grand Prix voor experts\n(karts en motors).",
     },
     "3063": {
         "font": "regular",
-        "string": "Gespiegelde banen (karts en bikes)",
+        "string": "Een gespiegelde Grand Prix\n(karts en motors).",
     },
     "3064": {
         "font": "regular",
-        "string": "Voor beginners (karts en bikes).",
+        "string": "Een Grand Prix voor beginners\n(karts en motors).",
     },
     "3065": {
         "font": "regular",
-        "string": "Voor ervaren coureurs (karts en bikes).",
+        "string": "Een standaard Grand Prix\n(karts en motors).",
     },
     "3066": {
         "font": "regular",
@@ -877,7 +877,7 @@
     },
     "3101": {
         "font": "regular",
-        "string": "Er is geen geest voor deze baan.",
+        "string": "Er is geen geest voor dit circuit.",
     },
     "3102": {
         "font": "regular",
@@ -885,7 +885,7 @@
     },
     "3103": {
         "font": "regular",
-        "string": "Rangen",
+        "string": "Ranglijsten",
     },
     "3104": {
         "font": "regular",
@@ -929,7 +929,7 @@
     },
     "3305": {
         "font": "regular",
-        "string": "Drift Mode",
+        "string": "Drift-modus",
     },
     "3306": {
         "font": "regular",
@@ -945,11 +945,11 @@
     },
     "3309": {
         "font": "regular",
-        "string": "■ Drift ■\nDrift laat je bochten nemen zonder\nsnelheid te verliezen. Er zijn twee drift modes.\n\n■ Automatisch ■\nJe drift automatisch als je stuurt,\nmaar je kan geen {arg back button|0}sprongetje maken of een mini-turbo krijgen.\n\n■ Handmatig ■\nMaak een {arg back button|0}sprongetje in een bocht om te drifen.\nBlijf driften om een mini-turbo te krijgen,\nwaardoor je extra snel vooruit gaat.",
+        "string": "■ Drift ■\nDrift laat je bochten nemen zonder\nsnelheid te verliezen. Er zijn twee drift-modi.\n\n■ Automatisch ■\nJe drift automatisch als je stuurt,\nmaar je kan geen {arg back button|0}sprongetje maken of een mini-turbo krijgen.\n\n■ Handmatig ■\nMaak een {arg back button|0}sprongetje in een bocht om te driften.\nBlijf driften om een mini-turbo te krijgen,\nwaardoor je extra snel vooruit gaat.",
     },
     "3310": {
         "font": "regular",
-        "string": "Bekijk een uitleg over driftmodes.",
+        "string": "Bekijk een uitleg over drift-modi.",
     },
     "3311": {
         "font": "regular",
@@ -977,7 +977,7 @@
     },
     "3317": {
         "font": "regular",
-        "string": "Miniturbo",
+        "string": "Mini-turbo",
     },
     "3318": {
         "font": "regular",
@@ -985,11 +985,11 @@
     },
     "3350": {
         "font": "regular",
-        "string": "Drift automatisch (geen Miniturbo).",
+        "string": "Drift automatisch (geen mini-turbo).",
     },
     "3351": {
         "font": "regular",
-        "string": "Drift handmatig (met Miniturbo).",
+        "string": "Drift handmatig (met mini-turbo).",
     },
     "3352": {
         "font": "regular",
@@ -997,7 +997,7 @@
     },
     "3360": {
         "font": "regular",
-        "string": "{arg message|0} Trofee: {arg message|1} Rank: {arg message|2}",
+        "string": "{arg message|0} Trofee: {arg message|1} Rang: {arg message|2}",
     },
     "3361": {
         "font": "regular",
@@ -1009,7 +1009,7 @@
     },
     "3363": {
         "font": "regular",
-        "string": "{arg message|0} VS Race",
+        "string": "{arg message|0} VS race",
     },
     "3364": {
         "font": "regular",
@@ -1021,7 +1021,7 @@
     },
     "3366": {
         "font": "regular",
-        "string": "{arg message|0} Team VS Race",
+        "string": "{arg message|0} Team VS race",
     },
     "3370": {
         "font": "regular",
@@ -1089,7 +1089,7 @@
     },
     "3401": {
         "font": "regular",
-        "string": "Moterklasse kiezen",
+        "string": "Motorklasse kiezen",
     },
     "3402": {
         "font": "regular",
@@ -1101,11 +1101,11 @@
     },
     "3404": {
         "font": "regular",
-        "string": "Cup kiezen",
+        "string": "Beker kiezen",
     },
     "3405": {
         "font": "regular",
-        "string": "Parkoers kiezen",
+        "string": "Circuit kiezen",
     },
     "3406": {
         "font": "regular",
@@ -1113,7 +1113,7 @@
     },
     "3407": {
         "font": "regular",
-        "string": "Geestgegevens kiezen",
+        "string": "Geest kiezen",
     },
     "3408": {
         "font": "regular",
@@ -1121,11 +1121,11 @@
     },
     "3409": {
         "font": "regular",
-        "string": "VS Race",
+        "string": "VS race",
     },
     "3410": {
         "font": "regular",
-        "string": "Moterklasse",
+        "string": "Motorklasse",
     },
     "3411": {
         "font": "regular",
@@ -1149,15 +1149,15 @@
     },
     "3416": {
         "font": "regular",
-        "string": "100cc motorklasse voor gevorderden",
+        "string": "100cc motorklasse voor gevorderden.",
     },
     "3417": {
         "font": "regular",
-        "string": "150cc motorklasse voor experts",
+        "string": "150cc motorklasse voor experts.",
     },
     "3418": {
         "font": "regular",
-        "string": "150cc motorklasse met gespiegelde banen",
+        "string": "150cc motorklasse met gespiegelde circuits.",
     },
     "3420": {
         "font": "regular",
@@ -1169,7 +1169,7 @@
     },
     "3422": {
         "font": "regular",
-        "string": "Gemiddeld",
+        "string": "Normaal",
     },
     "3423": {
         "font": "regular",
@@ -1205,11 +1205,11 @@
     },
     "3432": {
         "font": "regular",
-        "string": "Motoren",
+        "string": "Motors",
     },
     "3433": {
         "font": "regular",
-        "string": "Beiden",
+        "string": "Beide",
     },
     "3434": {
         "font": "regular",
@@ -1217,11 +1217,11 @@
     },
     "3435": {
         "font": "regular",
-        "string": "Computers spelen met motoren.",
+        "string": "Computers spelen met motors.",
     },
     "3436": {
         "font": "regular",
-        "string": "Computers spelen met karts en motoren.",
+        "string": "Computers spelen met karts en motors.",
     },
     "3437": {
         "font": "regular",
@@ -1229,15 +1229,15 @@
     },
     "3438": {
         "font": "regular",
-        "string": "Computers spelen met motoren.",
+        "string": "Computers spelen met motors.",
     },
     "3439": {
         "font": "regular",
-        "string": "Computers spelen met karts en motoren.",
+        "string": "Computers spelen met karts en motors.",
     },
     "3440": {
         "font": "regular",
-        "string": "Banen",
+        "string": "Circuit",
     },
     "3441": {
         "font": "regular",
@@ -1249,19 +1249,19 @@
     },
     "3443": {
         "font": "regular",
-        "string": "Op Volgorde",
+        "string": "Op volgorde",
     },
     "3444": {
         "font": "regular",
-        "string": "Kies de baan voor elke race.",
+        "string": "Kies het circuit voor elke race.",
     },
     "3445": {
         "font": "regular",
-        "string": "Banen worden willekeurig gekozen.",
+        "string": "Circuits worden willekeurig gekozen.",
     },
     "3446": {
         "font": "regular",
-        "string": "De races zijn in de Cup Volgorde.",
+        "string": "Race circuits volgens bekervolgorde.",
     },
     "3447": {
         "font": "regular",
@@ -1273,7 +1273,7 @@
     },
     "3449": {
         "font": "regular",
-        "string": "De arenas zijn in volgorde.",
+        "string": "Speel arena's op volgorde.",
     },
     "3450": {
         "font": "regular",
@@ -1297,11 +1297,11 @@
     },
     "3462": {
         "font": "regular",
-        "string": "Team Race",
+        "string": "Team race",
     },
     "3463": {
         "font": "regular",
-        "string": "Solo Race",
+        "string": "Solo race",
     },
     "3464": {
         "font": "regular",
@@ -1313,7 +1313,7 @@
     },
     "3466": {
         "font": "regular",
-        "string": "Kies het aantal keer dat winst moet worden gehaald.",
+        "string": "Kies het aantal overwinningen dat\nmoet worden gehaald.",
     },
     "3467": {
         "font": "regular",
@@ -1329,7 +1329,7 @@
     },
     "3470": {
         "font": "regular",
-        "string": "Weet je zeker dat je\ndeze VS Race wilt verlaten?",
+        "string": "Weet je zeker dat je\ndeze VS race wilt verlaten?",
     },
     "3471": {
         "font": "regular",
@@ -1377,7 +1377,7 @@
     },
     "3485": {
         "font": "regular",
-        "string": "Alle voorwerpen verschijnen in een evenwichtige regelmaat.",
+        "string": "Alle voorwerpen verschijnen in balans.",
     },
     "3486": {
         "font": "regular",
@@ -1422,14 +1422,14 @@
     "3506": {
         "font": "regular",
         "string": "{color|team blue}Team\nBlauw",
-    },
+    },	
     "3507": {
         "font": "regular",
         "string": "{color|team red}Team\nRood",
     },
     "3508": {
         "font": "regular",
-        "string": "Iedereen is in het zelfde team.\n\nKies opnieuw.",
+        "string": "Iedereen zit in hetzelfde team.\n\nKies opnieuw.",
     },
     "3509": {
         "font": "regular",
@@ -1485,7 +1485,7 @@
     },
     "4008": {
         "font": "regular",
-        "string": "Er zijn geen Vrienden geregistreerd\nin je Vriend Rooster.\n\nRegistreer Vrienden om\ntegen elkaar te spelen op WFC.",
+        "string": "Er zijn geen vrienden geregistreerd\nin je vriendenlijst.\n\nRegistreer vrienden om\nsamen te spelen op Nintendo WFC.",
     },
     "4009": {
         "font": "regular",
@@ -1497,7 +1497,7 @@
     },
     "4011": {
         "font": "regular",
-        "string": "Wil je de verbinding verbreken?",
+        "string": "Wil je de verbinding met\nNintendo WFC verbreken?",
     },
     "4012": {
         "font": "regular",
@@ -1517,7 +1517,7 @@
     },
     "4016": {
         "font": "regular",
-        "string": "Je kan niet met de Nintendo\nWi-Fi servers verbinden.\nmet deze Mii naam. Verander\nje Mii naam en probeer opnieuw.",
+        "string": "Je kan niet verbinden met de Nintendo\nWi-Fi Connectie met deze Mii-naam.\nVerander je Mii-naam en probeer opnieuw.",
     },
     "4017": {
         "font": "regular",
@@ -1537,11 +1537,11 @@
     },
     "4021": {
         "font": "regular",
-        "string": "De verbinding met de maker van\nde kamer is verbroken. Je keert nu terug\nnaar je Vriend Rooster",
+        "string": "De verbinding met de maker van\nde kamer is verbroken. Je keert nu terug\nnaar jouw vriendenlijst.",
     },
     "4022": {
         "font": "regular",
-        "string": "Je kan je nu niet bij deze Vriend voegen.\n\nWacht svp en probeer later nog eens.",
+        "string": "Je kan je nu niet bij deze vriend aansluiten.\n\nWacht en probeer later nog eens.",
     },
     "4023": {
         "font": "regular",
@@ -1561,11 +1561,11 @@
     },
     "4101": {
         "font": "regular",
-        "string": "Maak een Kamer",
+        "string": "Maak een kamer",
     },
     "4102": {
         "font": "regular",
-        "string": "Vriend Bezoeken...",
+        "string": "Verbinden met vriend...",
     },
     "4103": {
         "font": "regular",
@@ -1593,7 +1593,7 @@
     },
     "4109": {
         "font": "regular",
-        "string": "Start het Spel",
+        "string": "Start het spel",
     },
     "4110": {
         "font": "regular",
@@ -1617,7 +1617,7 @@
     },
     "4150": {
         "font": "regular",
-        "string": "Voeg Vrienden Toe",
+        "string": "Voeg vrienden toe",
     },
     "4151": {
         "font": "regular",
@@ -1625,7 +1625,7 @@
     },
     "4152": {
         "font": "regular",
-        "string": "Er zijn geen vrienden toe te voegen.",
+        "string": "Er zijn geen vrienden om toe te voegen.",
     },
     "4153": {
         "font": "regular",
@@ -1661,23 +1661,23 @@
     },
     "4205": {
         "font": "regular",
-        "string": "Wereldwijde Versusrace",
+        "string": "Wereldwijde VS race",
     },
     "4206": {
         "font": "regular",
-        "string": "Wereldwijd Gevecht",
+        "string": "Wereldwijd gevecht",
     },
     "4207": {
         "font": "regular",
-        "string": "Continentale VS Race",
+        "string": "Continentale VS race",
     },
     "4208": {
         "font": "regular",
-        "string": "Continentale Battle",
+        "string": "Continentaal gevecht",
     },
     "4300": {
         "font": "regular",
-        "string": "Kies een mode.",
+        "string": "Kies een modus.",
     },
     "4301": {
         "font": "regular",
@@ -1685,7 +1685,7 @@
     },
     "4302": {
         "font": "regular",
-        "string": "De mode is gekozen.",
+        "string": "De modus is gekozen.",
     },
     "4303": {
         "font": "regular",
@@ -1697,11 +1697,11 @@
     },
     "4305": {
         "font": "regular",
-        "string": "VS Race",
+        "string": "VS race",
     },
     "4306": {
         "font": "regular",
-        "string": "VS Race",
+        "string": "VS race",
     },
     "4307": {
         "font": "regular",
@@ -1721,15 +1721,15 @@
     },
     "4311": {
         "font": "regular",
-        "string": "Daag spelers uit in jouw werelddeel.",
+        "string": "Daag spelers uit in jouw continent.",
     },
     "4312": {
         "font": "regular",
-        "string": "Speel met je vrienden.",
+        "string": "Speel met jouw vrienden.",
     },
     "4313": {
         "font": "regular",
-        "string": "Race tegen geestgegevens van spelers rond de wereld.",
+        "string": "Race tegen geesten van spelers rond de wereld.",
     },
     "4314": {
         "font": "regular",
@@ -1741,7 +1741,7 @@
     },
     "4316": {
         "font": "regular",
-        "string": "Maak een kamer voor enkel vrienden.",
+        "string": "Maak een kamer om met vrienden te spelen.",
     },
     "4317": {
         "font": "regular",
@@ -1817,7 +1817,7 @@
     },
     "4350": {
         "font": "regular",
-        "string": "Voor een parkoers stemmen?",
+        "string": "Voor een circuit stemmen?",
     },
     "4351": {
         "font": "regular",
@@ -1865,7 +1865,7 @@
     },
     "4362": {
         "font": "regular",
-        "string": "De baan is gekozen!",
+        "string": "Het circuit is gekozen!",
     },
     "4363": {
         "font": "regular",
@@ -1893,11 +1893,11 @@
     },
     "4374": {
         "font": "regular",
-        "string": "Nodig anderen uit om je vrienden te worden.",
+        "string": "Nodig anderen uit om jouw vrienden te worden.",
     },
     "4375": {
         "font": "regular",
-        "string": "Dit bericht wordt enkel gestuurd naar de speler die je wilt toevoegen.",
+        "string": "Dit bericht wordt alleen verstuurd naar de speler die je wilt toevoegen.",
     },
     "4376": {
         "font": "regular",
@@ -1917,7 +1917,7 @@
     },
     "4393": {
         "font": "regular",
-        "string": "Deze Vriendcode wordt verwijderd.",
+        "string": "Deze vriendcode wordt verwijderd.",
     },
     "4394": {
         "font": "regular",
@@ -1989,7 +1989,7 @@
     },
     "4512": {
         "font": "regular",
-        "string": "OK!",
+        "string": "Oké!",
     },
     "4513": {
         "font": "regular",
@@ -2013,7 +2013,7 @@
     },
     "4518": {
         "font": "regular",
-        "string": "Een Grand Prix of een Battle?",
+        "string": "Een Grand Prix of een Gevecht?",
     },
     "4519": {
         "font": "regular",
@@ -2025,27 +2025,27 @@
     },
     "4521": {
         "font": "regular",
-        "string": "Laten we een team Grand Prix spelen!",
+        "string": "Laten we een Team Grand Prix spelen!",
     },
     "4522": {
         "font": "regular",
-        "string": "Laten we een Balloon Battle spelen!",
+        "string": "Laten we een Ballongevecht spelen!",
     },
     "4523": {
         "font": "regular",
-        "string": "Laten we coin runners spelen!",
+        "string": "Laten we een Muntengevecht spelen!",
     },
     "4524": {
         "font": "regular",
-        "string": "Ik ga een klein karakter gebruiken!",
+        "string": "Ik ga een kleine coureur gebruiken!",
     },
     "4525": {
         "font": "regular",
-        "string": "Ik ga een gemiddeld karakter gebruiken!",
+        "string": "Ik ga een medium coureur gebruiken!",
     },
     "4526": {
         "font": "regular",
-        "string": "Ik ga een groot karakter gebruiken!",
+        "string": "Ik ga een grote coureur gebruiken!",
     },
     "4527": {
         "font": "regular",
@@ -2053,7 +2053,7 @@
     },
     "4528": {
         "font": "regular",
-        "string": "Ik ga mijn Wii Wheel gebruiken!",
+        "string": "Ik ga mijn Wii-Wheel gebruiken!",
     },
     "4529": {
         "font": "regular",
@@ -2061,7 +2061,7 @@
     },
     "4530": {
         "font": "regular",
-        "string": "Ik ga een bike gebruiken!",
+        "string": "Ik ga een motor gebruiken!",
     },
     "4531": {
         "font": "regular",
@@ -2069,7 +2069,7 @@
     },
     "4532": {
         "font": "regular",
-        "string": "Welke baan?",
+        "string": "Welk circuit?",
     },
     "4533": {
         "font": "regular",
@@ -2077,11 +2077,11 @@
     },
     "4534": {
         "font": "regular",
-        "string": "Laten we random kiezen!",
+        "string": "Laten we willekeurig kiezen!",
     },
     "4535": {
         "font": "regular",
-        "string": "Laten we een nieuwe baan proberen!",
+        "string": "Laten we een nieuw circuit proberen!",
     },
     "4536": {
         "font": "regular",
@@ -2133,7 +2133,7 @@
     },
     "4548": {
         "font": "regular",
-        "string": "Zinderende Ruïnes!",
+        "string": "Kurkdroge Ruïnes!",
     },
     "4549": {
         "font": "regular",
@@ -2157,7 +2157,7 @@
     },
     "4554": {
         "font": "regular",
-        "string": "SNES Spookvallei 2!",
+        "string": "SNES Geestenvallei 2!",
     },
     "4555": {
         "font": "regular",
@@ -2169,11 +2169,11 @@
     },
     "4557": {
         "font": "regular",
-        "string": "GBA Shy Guys Strand!",
+        "string": "GBA Shy Guy's Strand!",
     },
     "4558": {
         "font": "regular",
-        "string": "DS Delfino Plaza!",
+        "string": "DS Delfino-Plaza!",
     },
     "4559": {
         "font": "regular",
@@ -2213,23 +2213,23 @@
     },
     "4568": {
         "font": "regular",
-        "string": "Block Plaza!",
+        "string": "Blokkenplaza!",
     },
     "4569": {
         "font": "regular",
-        "string": "Delfino Pier!",
+        "string": "Delfino-Pier!",
     },
     "4570": {
         "font": "regular",
-        "string": "Funky-Stadion!",
+        "string": "Funky's Stadion!",
     },
     "4571": {
         "font": "regular",
-        "string": "Kettinghond-Roulette!",
+        "string": "Chain Chomp Roulette!",
     },
     "4572": {
         "font": "regular",
-        "string": "Thwomps Woestijn!",
+        "string": "Steenwoestijn!",
     },
     "4573": {
         "font": "regular",
@@ -2245,11 +2245,11 @@
     },
     "4576": {
         "font": "regular",
-        "string": "GCN Koekieland!",
+        "string": "GCN Koekjesland!",
     },
     "4577": {
         "font": "regular",
-        "string": "DS Spookhuis!",
+        "string": "DS Schemerhuis!",
     },
     "4578": {
         "font": "regular",
@@ -2289,7 +2289,7 @@
     },
     "4587": {
         "font": "regular",
-        "string": "De volgende keer ga ik niet verliezen!",
+        "string": "De volgende keer verlies ik niet!",
     },
     "4588": {
         "font": "regular",
@@ -2309,7 +2309,7 @@
     },
     "4592": {
         "font": "regular",
-        "string": "Bedankt voor de goede tijd!",
+        "string": "Bedankt voor de leuke tijd!",
     },
     "4593": {
         "font": "regular",
@@ -2317,7 +2317,7 @@
     },
     "4594": {
         "font": "regular",
-        "string": "Weltrusten!",
+        "string": "Welterusten!",
     },
     "4595": {
         "font": "regular",
@@ -2341,19 +2341,19 @@
     },
     "4600": {
         "font": "regular",
-        "string": "Er vondt een communicatiefout\nplaats. Je zult nu terug\ngaan naar het hoofdmenu.\n\nErrorcode: {arg integer|0 5}",
+        "string": "Er vondt een communicatiefout\nplaats. Je zal nu terugkeren\nnaar het hoofdmenu.\n\nErrorcode: {arg integer|0 5}",
     },
     "4601": {
         "font": "regular",
-        "string": "De verbinding is mislukt.\nConfirmeer de Internetinstellingen\nvan de Wii Console.\n\nErrorcode: {arg integer|0 5}",
+        "string": "De verbinding is mislukt.\nBevestig de internetinstellingen\nvan de Wii-console.\n\nErrorcode: {arg integer|0 5}",
     },
     "4602": {
         "font": "regular",
-        "string": "De Nintendo Wi-Fi verbinding ondervindt\nte veel verkeer, of de service\nis uit de lucht. Probeer het\nlater opnieuw. Bezoek support.nintendo.com.\n\nErrorcode: {arg integer|0 5}",
+        "string": "De Nintendo Wi-Fi Connectie ondervindt\nte veel verkeer, of de service\nis uit de lucht. Probeer het\nlater opnieuw. Bezoek\nsupport.nintendo.com voor hulp.\n\nErrorcode: {arg integer|0 5}",
     },
     "4603": {
         "font": "regular",
-        "string": "Verbinding met de Nintendo Wi-Fi\nConnectie. Check voor hulp de\nsoftware Instructiehandlijding of\nsupport.nintendo.com.\n\nErrorcode: {arg integer|0 5}",
+        "string": "Verbinding met de Nintendo Wi-Fi\nConnectie is mislukt. Bekijk voor\nhulp de software-instructiehandeiding\nof bezoek\nsupport.nintendo.com.\n\nErrorcode: {arg integer|0 5}",
     },
     "4604": {
         "font": "regular",
@@ -2361,103 +2361,103 @@
     },
     "4605": {
         "font": "regular",
-        "string": "Verbinding met de Nintendo Wi-Fi\nConnectie. Check voor hulp de\nsoftware Instructiehandlijding of\nsupport.nintendo.com.\n\nErrorcode: {arg integer|0 5}",
+        "string": "Verbinding met de Nintendo Wi-Fi\nConnectie is mislukt. Bekijk voor\nhulp de software-instructiehandeiding\nof bezoek\nsupport.nintendo.com.\n\nErrorcode: {arg integer|0 5}",
     },
     "4606": {
         "font": "regular",
-        "string": "De Nintendo Wi-Fi verbinding ondervindt\nte veel verkeer, of de service\nis uit de lucht. Probeer het\nlater opnieuw. Bezoek support.nintendo.com.\n\nErrorcode: {arg integer|0 5}",
+        "string": "De Nintendo Wi-Fi Connectie ondervindt\nte veel verkeer, of de service is uit de\nlucht. Probeer het later opnieuw.\nBezoek support.nintendo.com voor hulp.\n\nErrorcode: {arg integer|0 5}",
     },
     "4607": {
         "font": "regular",
-        "string": "Er is niet genoeg vrije ruimte\nin het Wii Systeemgeheugen.\n\nErrorcode: {arg integer|0 5}",
+        "string": "Er is niet genoeg vrije ruimte\nin het Wii-systeemgeheugen.\n\nErrorcode: {arg integer|0 5}",
     },
     "4608": {
         "font": "regular",
-        "string": "Het Wii Systeemgeheugen is beschadigd.\nBekijk de Wii Handleiding voor\nverdere instructies.\n\n\nErrorcode: {arg integer|0 5}",
+        "string": "Het Wii-systeemgeheugen is beschadigd.\nBekijk de Wii-handleiding voor\nverdere instructies.\n\nErrorcode: {arg integer|0 5}",
     },
     "4609": {
         "font": "regular",
-        "string": "Verbinding verbroken tijdens het\nversturen.\n\nErrorcode: {arg integer|0 5}",
+        "string": "Verbinding verbroken tijdens het\nversturen van data.\n\nErrorcode: {arg integer|0 5}",
     },
     "4610": {
         "font": "regular",
-        "string": "Download mislukt. Probeer het opnieuw.\nBezoek voor hulp support.nintendo.com.\n\nErrorcode: {arg integer|0 5}",
+        "string": "Download mislukt. Probeer het opnieuw.\nBezoek support.nintendo.com voor hulp.\n\nErrorcode: {arg integer|0 5}",
     },
     "4611": {
         "font": "regular",
-        "string": "Verbinding verbroken tijdens het\nversturen.\n\nErrorcode: {arg integer|0 5}",
+        "string": "Verbinding verbroken tijdens het\nversturen van data.\n\nErrorcode: {arg integer|0 5}",
     },
     "4612": {
         "font": "regular",
-        "string": "Verbinding verbroken tijdens het\nversturen.\n\nErrorcode: {arg integer|0 5}",
+        "string": "Verbinding verbroken tijdens het\nversturen van data.\n\nErrorcode: {arg integer|0 5}",
     },
     "4613": {
         "font": "regular",
-        "string": "Verbinding verbroken tijdens het\nversturen.\n\nErrorcode: {arg integer|0 5}",
+        "string": "Verbinding verbroken tijdens het\nversturen van data.\n\nErrorcode: {arg integer|0 5}",
     },
     "4614": {
         "font": "regular",
-        "string": "Verbinding verbroken tijdens het\nversturen.\n\nErrorcode: {arg integer|0 5}",
+        "string": "Verbinding verbroken tijdens het\nversturen van data.\n\nErrorcode: {arg integer|0 5}",
     },
     "4615": {
         "font": "regular",
-        "string": "Verbinding verbroken tijdens het\nversturen.\n\nErrorcode: {arg integer|0 5}",
+        "string": "Verbinding verbroken tijdens het\nversturen van data.\n\nErrorcode: {arg integer|0 5}",
     },
     "4616": {
         "font": "regular",
-        "string": "De verbinding is mislukt.\nConfirmeer de Internetinstellingen\nvan de Wii Console.\n\nErrorcode: {arg integer|0 5}",
+        "string": "De verbinding is mislukt.\nBevestig de internetinstellingen\nvan de Wii-console.\n\nErrorcode: {arg integer|0 5}",
     },
     "4617": {
         "font": "regular",
-        "string": "De verbinding is mislukt.\nConfirmeer de Internetinstellingen\nvan de Wii Console.\n\nErrorcode: {arg integer|0 5}",
+        "string": "De verbinding is mislukt.\nBevestig de internetinstellingen\nvan de Wii-console.\n\nErrorcode: {arg integer|0 5}",
     },
     "4618": {
         "font": "regular",
-        "string": "De verbinding is mislukt.\nConfirmeer de Internetinstellingen\nvan de Wii Console.\n\nErrorcode: {arg integer|0 5}",
+        "string": "De verbinding is mislukt.\nBevestig de internetinstellingen\nvan de Wii-console.\n\nErrorcode: {arg integer|0 5}",
     },
     "4619": {
         "font": "regular",
-        "string": "De verbinding is mislukt.\nConfirmeer de Internetinstellingen\nvan de Wii Console.\n\nErrorcode: {arg integer|0 5}",
+        "string": "De verbinding is mislukt.\nBevestig de internetinstellingen\nvan de Wii-console.\n\nErrorcode: {arg integer|0 5}",
     },
     "4620": {
         "font": "regular",
-        "string": "De verbinding is mislukt.\nConfirmeer de Internetinstellingen\nvan de Wii Console.\n\nErrorcode: {arg integer|0 5}",
+        "string": "De verbinding is mislukt.\nBevestig de internetinstellingen\nvan de Wii-console.\n\nErrorcode: {arg integer|0 5}",
     },
     "4621": {
         "font": "regular",
-        "string": "De verbinding is mislukt.\nConfirmeer de Internetinstellingen\nvan de Wii Console.\n\nErrorcode: {arg integer|0 5}",
+        "string": "De verbinding is mislukt.\nBevestig de internetinstellingen\nvan de Wii-console.\n\nErrorcode: {arg integer|0 5}",
     },
     "4622": {
         "font": "regular",
-        "string": "De verbinding is mislukt.\nConfirmeer de Internetinstellingen\nvan de Wii Console.\n\nErrorcode: {arg integer|0 5}",
+        "string": "De verbinding is mislukt.\nBevestig de internetinstellingen\nvan de Wii-console.\n\nErrorcode: {arg integer|0 5}",
     },
     "4623": {
         "font": "regular",
-        "string": "De verbinding is mislukt.\nConfirmeer de Internetinstellingen\nvan de Wii Console.\n\nErrorcode: {arg integer|0 5}",
+        "string": "De verbinding is mislukt.\nBevestig de internetinstellingen\nvan de Wii-console.\n\nErrorcode: {arg integer|0 5}",
     },
     "4624": {
         "font": "regular",
-        "string": "De verbinding is mislukt.\nConfirmeer de Internetinstellingen\nvan de Wii Console.\n\nErrorcode: {arg integer|0 5}",
+        "string": "De verbinding is mislukt.\nBevestig de internetinstellingen\nvan de Wii-console.\n\nErrorcode: {arg integer|0 5}",
     },
     "4625": {
         "font": "regular",
-        "string": "De verbinding is mislukt.\nConfirmeer de Internetinstellingen\nvan de Wii Console.\n\nErrorcode: {arg integer|0 5}",
+        "string": "De verbinding is mislukt.\nBevestig de internetinstellingen\nvan de Wii-console.\n\nErrorcode: {arg integer|0 5}",
     },
     "4626": {
         "font": "regular",
-        "string": "De verbinding is mislukt.\nConfirmeer de Internetinstellingen\nvan de Wii Console.\n\nErrorcode: {arg integer|0 5}",
+        "string": "De verbinding is mislukt.\nBevestig de internetinstellingen\nvan de Wii-console.\n\nErrorcode: {arg integer|0 5}",
     },
     "4627": {
         "font": "regular",
-        "string": "De verbinding is mislukt.\nConfirmeer de Internetinstellingen\nvan de Wii Console.\n\nErrorcode: {arg integer|0 5}",
+        "string": "De verbinding is mislukt.\nBevestig de internetinstellingen\nvan de Wii-console.\n\nErrorcode: {arg integer|0 5}",
     },
     "4628": {
         "font": "regular",
-        "string": "De verbinding is mislukt.\nConfirmeer de Internetinstellingen\nvan de Wii Console.\n\nErrorcode: {arg integer|0 5}",
+        "string": "De verbinding is mislukt.\nBevestig de internetinstellingen\nvan de Wii-console.\n\nErrorcode: {arg integer|0 5}",
     },
     "4629": {
         "font": "regular",
-        "string": "Verbinding verbroken tijdens het\nversturen.\n\nErrorcode: {arg integer|0 5}",
+        "string": "Verbinding verbroken tijdens het\nversturen van data.\n\nErrorcode: {arg integer|0 5}",
     },
     "4630": {
         "font": "regular",
@@ -2465,15 +2465,15 @@
     },
     "5000": {
         "font": "regular",
-        "string": "Mario Kart Kanaal",
+        "string": "Mario Kart-Kanaal",
     },
     "5001": {
         "font": "regular",
-        "string": "Vriendenrooster",
+        "string": "Vriendenlijst",
     },
     "5002": {
         "font": "regular",
-        "string": "Rangen",
+        "string": "Ranglijsten",
     },
     "5003": {
         "font": "regular",
@@ -2497,11 +2497,11 @@
     },
     "5008": {
         "font": "regular",
-        "string": "Wii Menu",
+        "string": "Wii-menu",
     },
     "5009": {
         "font": "regular",
-        "string": "Gedownloade Geestgegevens Lijst",
+        "string": "Lijst van gedownloade geesten",
     },
     "5010": {
         "font": "regular",
@@ -2509,7 +2509,7 @@
     },
     "5011": {
         "font": "regular",
-        "string": "Vriendenrooster",
+        "string": "Vriendenlijst",
     },
     "5012": {
         "font": "regular",
@@ -2521,47 +2521,47 @@
     },
     "5014": {
         "font": "regular",
-        "string": "Begin Race",
+        "string": "Start race",
     },
     "5015": {
         "font": "regular",
-        "string": "Verbeter je Tijdracetechniek\ndoor de geestgegevens van\nspelers rond de wereld uit\nte dagen in Nintendo WFC races!",
+        "string": "Verbeter je Tijdrace-techniek\ndoor geesten van\nspelers rond de wereld uit\nte dagen in Nintendo WFC races!",
     },
     "5016": {
         "font": "regular",
-        "string": "Mijn Geestgegevens",
+        "string": "Mijn geesten",
     },
     "5017": {
         "font": "regular",
-        "string": "Verbeter je Tijdracetechniek\ndoor de geestgegevens van\nspelers rond de wereld uit\nte dagen in Nintendo WFC races!\n\nJe huidige record:\n{arg integer|0 0} {arg cond messages|0 5026 5027} - {arg integer|1 0} {arg cond messages|1 5028 5029}",
+        "string": "Verbeter jouw Tijdrace-techniek\ndoor de geestgegevens van\nspelers rond de wereld uit\nte dagen in Nintendo WFC races!\n\nJe huidige record:\n{arg integer|0 0} {arg cond messages|0 5026 5027} - {arg integer|1 0} {arg cond messages|1 5028 5029}",
     },
     "5018": {
         "font": "regular",
-        "string": "Verbeter je Tijdracetechniek\ndoor de geestgegevens van\nspelers rond de wereld uit\nte dagen in Nintendo WFC races!\n\nJe huidige record:\n{arg integer|0 0} {arg cond messages|0 5026 5027} - {arg integer|1 0} {arg cond messages|1 5028 5029}",
+        "string": "Verbeter jouw Tijdrace-techniek\ndoor de geestgegevens van\nspelers rond de wereld uit\nte dagen in Nintendo WFC races!\n\nJe huidige record:\n{arg integer|0 0} {arg cond messages|0 5026 5027} - {arg integer|1 0} {arg cond messages|1 5028 5029}",
     },
     "5019": {
         "font": "regular",
-        "string": "Verbeter je Tijdracetechniek\ndoor de geestgegevens van\nspelers rond de wereld uit\nte dagen in Nintendo WFC races!\n\nJe huidige record:\n{arg integer|0 0} {arg cond messages|0 5026 5027} - {arg integer|1 0} {arg cond messages|1 5028 5029}",
+        "string": "Verbeter jouw Tijdrace-techniek\ndoor de geestgegevens van\nspelers rond de wereld uit\nte dagen in Nintendo WFC races!\n\nJe huidige record:\n{arg integer|0 0} {arg cond messages|0 5026 5027} - {arg integer|1 0} {arg cond messages|1 5028 5029}",
     },
     "5020": {
         "font": "regular",
-        "string": "Verbeter je Tijdracetechniek\ndoor de geestgegevens van\nspelers rond de wereld uit\nte dagen in Nintendo WFC races!\n\nJe huidige record:\n{arg integer|0 0} {arg cond messages|0 5026 5027} - {arg integer|1 0} {arg cond messages|1 5028 5029}",
+        "string": "Verbeter jouw Tijdrace-techniek\ndoor de geestgegevens van\nspelers rond de wereld uit\nte dagen in Nintendo WFC races!\n\nJe huidige record:\n{arg integer|0 0} {arg cond messages|0 5026 5027} - {arg integer|1 0} {arg cond messages|1 5028 5029}",
     },
     "5021": {
         "font": "regular",
-        "string": "Verbeter je Tijdracetechniek\ndoor de geestgegevens van\nspelers rond de wereld uit\nte dagen in Nintendo WFC races!\n\nJe huidige record:\n{arg integer|0 0} {arg cond messages|0 5026 5027} - {arg integer|1 0} {arg cond messages|1 5028 5029}",
+        "string": "Verbeter jouw Tijdrace-techniek\ndoor de geestgegevens van\nspelers rond de wereld uit\nte dagen in Nintendo WFC races!\n\nJe huidige record:\n{arg integer|0 0} {arg cond messages|0 5026 5027} - {arg integer|1 0} {arg cond messages|1 5028 5029}",
     },
     "5022": {
         "font": "regular",
-        "string": "Verbeter je Tijdracetechniek\ndoor de geestgegevens van\nspelers rond de wereld uit\nte dagen in Nintendo WFC races!\n\nJe huidige record:\n{arg integer|0 0} {arg cond messages|0 5026 5027} - {arg integer|1 0} {arg cond messages|1 5028 5029}",
+        "string": "Verbeter jouw Tijdrace-techniek\ndoor de geestgegevens van\nspelers rond de wereld uit\nte dagen in Nintendo WFC races!\n\nJe huidige record:\n{arg integer|0 0} {arg cond messages|0 5026 5027} - {arg integer|1 0} {arg cond messages|1 5028 5029}",
     },
     "5023": {
         "font": "regular",
-        "string": "Verbeter je Tijdracetechniek\ndoor de geestgegevens van\nspelers rond de wereld uit\nte dagen in Nintendo WFC races!\n\nJe huidige record:\n{arg integer|0 0} {arg cond messages|0 5026 5027} - {arg integer|1 0} {arg cond messages|1 5028 5029}",
+        "string": "Verbeter jouw Tijdrace-techniek\ndoor de geestgegevens van\nspelers rond de wereld uit\nte dagen in Nintendo WFC races!\n\nJe huidige record:\n{arg integer|0 0} {arg cond messages|0 5026 5027} - {arg integer|1 0} {arg cond messages|1 5028 5029}",
     },
     "5024": {
         "font": "regular",
-        "string": "Verbeter je Tijdracetechniek\ndoor de geestgegevens van\nspelers rond de wereld uit\nte dagen in Nintendo WFC races!\n\nJe huidige record:\n{arg integer|0 0} {arg cond messages|0 5026 5027} - {arg integer|1 0} {arg cond messages|1 5028 5029}",
+        "string": "Verbeter jouw Tijdrace-techniek\ndoor de geestgegevens van\nspelers rond de wereld uit\nte dagen in Nintendo WFC races!\n\nJe huidige record:\n{arg integer|0 0} {arg cond messages|0 5026 5027} - {arg integer|1 0} {arg cond messages|1 5028 5029}",
     },
     "5025": {
         "font": "regular",
@@ -2569,7 +2569,7 @@
     },
     "5026": {
         "font": "regular",
-        "string": "winst",
+        "string": "gewonnen",
     },
     "5027": {
         "font": "regular",
@@ -2593,11 +2593,11 @@
     },
     "5051": {
         "font": "regular",
-        "string": "Geestgegevens",
+        "string": "Geesten",
     },
     "5052": {
         "font": "regular",
-        "string": "Tijdritten Scores",
+        "string": "Tijdrace-scores",
     },
     "5053": {
         "font": "regular",
@@ -2621,15 +2621,15 @@
     },
     "5062": {
         "font": "regular",
-        "string": "Bekijk en verwijder gedownloade geestgegevens",
+        "string": "Bekijk en verwijder gedownloade geesten.	",
     },
     "5063": {
         "font": "regular",
-        "string": "Neem deel in Mario Kart competities.",
+        "string": "Neem deel in Mario Kart-competities.",
     },
     "5064": {
         "font": "regular",
-        "string": "Daag Geestgegevens over heel de wereld uit.",
+        "string": "Daag geesten rond heel de wereld uit.",
     },
     "5065": {
         "font": "regular",
@@ -2637,7 +2637,7 @@
     },
     "5066": {
         "font": "regular",
-        "string": "Verstuur en ontvang geestgegevens.",
+        "string": "Verstuur en ontvang geesten.",
     },
     "5067": {
         "font": "regular",
@@ -2645,7 +2645,7 @@
     },
     "5068": {
         "font": "regular",
-        "string": "Bekijk Mario Kart competitie rangen.",
+        "string": "Bekijk Mario Kart-competitiescores.",
     },
     "5069": {
         "font": "regular",
@@ -2705,7 +2705,7 @@
     },
     "5101": {
         "font": "regular",
-        "string": "Registreer deze Friend Code?\n\n{arg integer|0 4}-{arg integer|1 4}-{arg integer|2 4}",
+        "string": "Registreer deze vriendcode?\n\n{arg integer|0 4}-{arg integer|1 4}-{arg integer|2 4}",
     },
     "5102": {
         "font": "regular",
@@ -2717,7 +2717,7 @@
     },
     "5104": {
         "font": "regular",
-        "string": "Voor je tegen deze vriend\nkan spelen, moeten zij ook jouw\nvriendcode geregistreerd hebben.\n\nJe vriendcode is:\n\n{arg integer|0 4}-{arg integer|1 4}-{arg integer|2 4}",
+        "string": "Voor je tegen deze vriend\nkan spelen, moet hij/zij ook jouw\nvriendcode geregistreerd hebben.\n\nJouw vriendcode is:\n\n{arg integer|0 4}-{arg integer|1 4}-{arg integer|2 4}",
     },
     "5105": {
         "font": "regular",
@@ -2733,7 +2733,7 @@
     },
     "5110": {
         "font": "regular",
-        "string": "Deze Vriendcode is al in je Vriendenrooster\ngeregistreerd.",
+        "string": "Deze vriendcode is al in jouw vriendenlijst\ngeregistreerd.",
     },
     "5111": {
         "font": "regular",
@@ -2741,11 +2741,11 @@
     },
     "5112": {
         "font": "regular",
-        "string": "Je hebt geen Vriendcode.",
+        "string": "Je hebt geen vriendcode.",
     },
     "5113": {
         "font": "regular",
-        "string": "Je kan de vriendcode van de\nrijbewijzen in de Mario Kart Wii gegevens\nvan dit systeem niet registreren.",
+        "string": "Je kan de vriendcodes van de\nrijbewijzen in de Mario Kart Wii-gegevens\nvan dit systeem niet registreren.",
     },
     "5115": {
         "font": "regular",
@@ -2789,11 +2789,11 @@
     },
     "5201": {
         "font": "regular",
-        "string": "Bezoek vriend",
+        "string": "Verbinden met vriend",
     },
     "5202": {
         "font": "regular",
-        "string": "Bezoeken mislukt.",
+        "string": "Verbinden mislukt.",
     },
     "5203": {
         "font": "regular",
@@ -2833,7 +2833,7 @@
     },
     "5212": {
         "font": "regular",
-        "string": "Vriendcode verwijderen...",
+        "string": "Vriendcode aan het verwijderen...",
     },
     "5213": {
         "font": "regular",
@@ -2853,7 +2853,7 @@
     },
     "5217": {
         "font": "regular",
-        "string": "Alle data geässocieerd met deze\nVriendcode zal worden verwijderd.\n\nWil je doorgaan?",
+        "string": "Alle data geässocieerd met deze\nvriendcode zal worden verwijderd.\n\nWeet je zeker dat dit oké is?",
     },
     "5218": {
         "font": "regular",
@@ -2889,19 +2889,19 @@
     },
     "5307": {
         "font": "regular",
-        "string": "Ik speel een Wereldwijde VS Race!",
+        "string": "Ik speel een Wereldwijde VS race!",
     },
     "5308": {
         "font": "regular",
-        "string": "Ik speel een Wereldwijd Gevecht!",
+        "string": "Ik speel een Wereldwijd gevecht!",
     },
     "5309": {
         "font": "regular",
-        "string": "Ik ben in een Continentale VS Race!",
+        "string": "Ik ben in een Continentale VS race!",
     },
     "5310": {
         "font": "regular",
-        "string": "Ik speel een Continentaal Gevecht!",
+        "string": "Ik speel een Continentaal gevecht!",
     },
     "5311": {
         "font": "regular",
@@ -2921,19 +2921,19 @@
     },
     "5315": {
         "font": "regular",
-        "string": "Ik leid een Gevecht (1ste)!",
+        "string": "Ik organiseer een gevecht (1e)!",
     },
     "5316": {
         "font": "regular",
-        "string": "Ik leid een Gevecht (2de)!",
+        "string": "Ik organiseer een gevecht (2e)!",
     },
     "5317": {
         "font": "regular",
-        "string": "Ik leid een Gevecht (3de)!",
+        "string": "Ik organiseer een gevecht (3e)!",
     },
     "5318": {
         "font": "regular",
-        "string": "Ik leid een Gevecht (tie-break)!",
+        "string": "Ik organiseer een gevecht (tiebreak)!",
     },
     "5319": {
         "font": "regular",
@@ -2965,7 +2965,7 @@
     },
     "5326": {
         "font": "regular",
-        "string": "Ik speel met vrienden (tie-break)!",
+        "string": "Ik speel met vrienden (tiebreak)!",
     },
     "5327": {
         "font": "regular",
@@ -2977,7 +2977,7 @@
     },
     "5350": {
         "font": "regular",
-        "string": "Bezoek een vriend.",
+        "string": "Sluit aan bij een vriend.",
     },
     "5351": {
         "font": "regular",
@@ -2993,7 +2993,7 @@
     },
     "5402": {
         "font": "regular",
-        "string": "Deze geest zal verzonden worden.\nWil je doorgaan?",
+        "string": "Deze geest zal verzonden worden.\nIs dit oké?",
     },
     "5403": {
         "font": "regular",
@@ -3005,11 +3005,11 @@
     },
     "5405": {
         "font": "regular",
-        "string": "Je uitdaging is naar\n{arg player|0} verzonden!\n\n5/5\n\nJe kan geen uitdagingen meer verzenden,\ntot de volgende keer dat je MKWii speelt.",
+        "string": "Je uitdaging is naar\n{arg player|0} verzonden!\n\n5/5\n\nJe kan geen uitdagingen meer verzenden\ntot de volgende keer dat je Mario Kart Wii speelt.",
     },
     "5406": {
         "font": "regular",
-        "string": "Geest niet gevonden, dus\nde uitdaging is niet verzonden.",
+        "string": "Jouw geest was niet gevonden, dus\nde uitdaging is niet verzonden.",
     },
     "5407": {
         "font": "regular",
@@ -3017,7 +3017,7 @@
     },
     "5500": {
         "font": "regular",
-        "string": "Geestuitdaging lezen...",
+        "string": "Geesten lezen...",
     },
     "5501": {
         "font": "regular",
@@ -3025,15 +3025,15 @@
     },
     "5502": {
         "font": "regular",
-        "string": "Je gedownloade geestgegevens lijst is vol.\nJe kan nu geen uitdagingen\nvan je vrienden ontvangen.\n\nVerwijder een Ghost Data.",
+        "string": "Je gedownloade lijst met geesten is vol.\nJe kan nu geen uitdagingen\nvan je vrienden ontvangen.\n\nVerwijder een van jouw geesten.",
     },
     "5503": {
         "font": "regular",
-        "string": "Deze baan is nog niet beschikbaar.\n\nAls je genoeg trofeeën wint\nin Grand Prix modus, zul je nieuwe\nbanen vrijspelen.",
+        "string": "Dit circuit is nog niet beschikbaar.\n\nAls je genoeg bekers wint\nin de Grand Prix-modus, zal je nieuwe\ncircuits vrijspelen.",
     },
     "5504": {
         "font": "regular",
-        "string": "Een error deed zich voor tijdens\nhet downloaden van de Ghost Data.",
+        "string": "Een fout trad op tijdens het\ndownloaden van geesten.",
     },
     "5505": {
         "font": "regular",
@@ -3093,7 +3093,7 @@
     },
     "5619": {
         "font": "regular",
-        "string": "Caymaneilanden",
+        "string": "Kaaimaneilanden",
     },
     "5620": {
         "font": "regular",
@@ -3177,15 +3177,15 @@
     },
     "5643": {
         "font": "regular",
-        "string": "St Kitts en Nevis",
+        "string": "Saint Kitts en Nevis",
     },
     "5644": {
         "font": "regular",
-        "string": "St Lucia",
+        "string": "Saint Lucia",
     },
     "5645": {
         "font": "regular",
-        "string": "St Vincent en de Grenadines",
+        "string": "Saint Vincent en de Grenadines",
     },
     "5646": {
         "font": "regular",
@@ -3317,11 +3317,11 @@
     },
     "6000": {
         "font": "regular",
-        "string": "Kies een baan.",
+        "string": "Kies een circuit.",
     },
     "6001": {
         "font": "regular",
-        "string": "Vriend Rangen",
+        "string": "Vriendrangen",
     },
     "6002": {
         "font": "regular",
@@ -3337,7 +3337,7 @@
     },
     "6005": {
         "font": "regular",
-        "string": "{arg message|0} Vrienden Top 10",
+        "string": "{arg message|0} Vrienden-Top 10",
     },
     "6006": {
         "font": "regular",
@@ -3357,27 +3357,27 @@
     },
     "6010": {
         "font": "regular",
-        "string": "Start de Tijdrace",
+        "string": "Start Tijdrace",
     },
     "6011": {
         "font": "regular",
-        "string": "Daag deze Geest uit",
+        "string": "Daag deze geest uit",
     },
     "6012": {
         "font": "regular",
-        "string": "Bekijk de Herhaling",
+        "string": "Bekijk de herhaling",
     },
     "6013": {
         "font": "regular",
-        "string": "Verwijder Geest",
+        "string": "Verwijder geest",
     },
     "6014": {
         "font": "regular",
-        "string": "Verstuur Geest",
+        "string": "Verstuur geest",
     },
     "6015": {
         "font": "regular",
-        "string": "Daag deze Geest uit",
+        "string": "Daag deze geest uit",
     },
     "6016": {
         "font": "regular",
@@ -3441,7 +3441,7 @@
     },
     "6056": {
         "font": "regular",
-        "string": "Rivalerende Geest",
+        "string": "Rivalerende geest",
     },
     "6057": {
         "font": "regular",
@@ -3461,19 +3461,19 @@
     },
     "6061": {
         "font": "regular",
-        "string": "Familie Geesten",
+        "string": "Familiegeesten",
     },
     "6062": {
         "font": "regular",
-        "string": "Vrienden Geesten",
+        "string": "Vriendgeesten",
     },
     "6063": {
         "font": "regular",
-        "string": "Speciale Geesten",
+        "string": "Speciale geesten",
     },
     "6064": {
         "font": "regular",
-        "string": "Personeels Geesten",
+        "string": "Personeelsgeesten",
     },
     "6065": {
         "font": "regular",
@@ -3481,15 +3481,15 @@
     },
     "6100": {
         "font": "regular",
-        "string": "Er is geen Geest voor\n{arg message|0}.",
+        "string": "Er is geen geest voor\n{arg message|0}.",
     },
     "6101": {
         "font": "regular",
-        "string": "Er is geen Geest voor\n{arg license player|0}.",
+        "string": "Er is geen geest voor\n{arg license player|0}.",
     },
     "6102": {
         "font": "regular",
-        "string": "Er zijn geen gedownloade Geestgegevens.",
+        "string": "Er zijn geen gedownloade geesten.",
     },
     "6103": {
         "font": "regular",
@@ -3497,27 +3497,27 @@
     },
     "6110": {
         "font": "regular",
-        "string": "Ghost Data Downloaden...",
+        "string": "Geest downloaden...",
     },
     "6111": {
         "font": "regular",
-        "string": "Je gedownloade Geestlijst\nis vol. Je kunt geen Geest\nmeer bij downloaden.\n\nVerwijder een Geest\nuit je Gedownloade Geestgegevens lijst.",
+        "string": "Je gedownloade geestenlijst\nis vol. Je kunt geen geesten\nmeer downloaden.\n\nVerwijder een geest\nuit je gedownloade geestenlijst.",
     },
     "6112": {
         "font": "regular",
-        "string": "Een error deed zich voor bij\nhet downloaden van de Geestuitdaging.\n\nErrorcode: {arg integer|0 5}",
+        "string": "Een fout trad op bij\nhet downloaden van de geest.\n\nErrorcode: {arg integer|0 5}",
     },
     "6113": {
         "font": "regular",
-        "string": "De Geestuitdaging is gedownload.",
+        "string": "De geest is gedownload.",
     },
     "6114": {
         "font": "regular",
-        "string": "Top 10 Downloaden...",
+        "string": "De Top 10 aan het downloaden...",
     },
     "6115": {
         "font": "regular",
-        "string": "Een error deed zich voor bij\nhet downloaden van de Top 10.\n\nErrorcode: {arg integer|0 5}",
+        "string": "Een fout trad op bij\nhet downloaden van de Top 10.\n\nErrorcode: {arg integer|0 5}",
     },
     "6116": {
         "font": "regular",
@@ -3533,7 +3533,7 @@
     },
     "6121": {
         "font": "regular",
-        "string": "OK",
+        "string": "Oké",
     },
     "6122": {
         "font": "regular",
@@ -3541,7 +3541,7 @@
     },
     "6123": {
         "font": "regular",
-        "string": "De huidige Geest zal vervangen\nworden met de nieuwe Geest.\n\nWil je doorgaan?",
+        "string": "De huidige geest zal vervangen\nworden met de nieuwe geest.\n\nIs dit oké?",
     },
     "6124": {
         "font": "regular",
@@ -3549,7 +3549,7 @@
     },
     "6150": {
         "font": "regular",
-        "string": "Race tegen deze Geest.",
+        "string": "Race tegen deze geest.",
     },
     "6151": {
         "font": "regular",
@@ -3625,19 +3625,19 @@
     },
     "6250": {
         "font": "regular",
-        "string": "Begin een Tijdrace op deze baan.",
+        "string": "Begin een Tijdrace op dit circuit.",
     },
     "6251": {
         "font": "regular",
-        "string": "Bekijk {arg player|0}'s record.",
+        "string": "Bekijk het record van {arg player|0}.",
     },
     "6252": {
         "font": "regular",
-        "string": "Race tegen de Continentale Kampioen.",
+        "string": "Race tegen de continentale kampioen.",
     },
     "6253": {
         "font": "regular",
-        "string": "Race tegen de Wereldkampioen.",
+        "string": "Race tegen de wereldkampioen.",
     },
     "6254": {
         "font": "regular",
@@ -3645,7 +3645,7 @@
     },
     "6255": {
         "font": "regular",
-        "string": "Bekijk je Vrienden Top 10.",
+        "string": "Bekijk jouw Vrienden-Top 10.",
     },
     "6256": {
         "font": "regular",
@@ -3657,19 +3657,19 @@
     },
     "6258": {
         "font": "regular",
-        "string": "Race tegen Mario Kart Wii Personeels Geest.",
+        "string": "Race tegen een Mario Kart Wii-Personeelsgeest.",
     },
     "6259": {
         "font": "regular",
-        "string": "{arg player|0}'s record.",
+        "string": "Het record van {arg player|0}.",
     },
     "6260": {
         "font": "regular",
-        "string": "De Continentale Kampioen's record.",
+        "string": "Het record van de Continentale Kampioen.",
     },
     "6261": {
         "font": "regular",
-        "string": "De Wereldwijde Kampioen's record.",
+        "string": "Het record van de Wereldwijde Kampioen.",
     },
     "6262": {
         "font": "regular",
@@ -3677,7 +3677,7 @@
     },
     "6300": {
         "font": "regular",
-        "string": "Verstuur Geest",
+        "string": "Verstuur geest",
     },
     "6301": {
         "font": "regular",
@@ -3685,7 +3685,7 @@
     },
     "6302": {
         "font": "regular",
-        "string": "{arg player|0}'s huidige record voor\n{arg message|0} is {arg integer|0 2}:{arg integer|1 2}.{arg integer|2 3}.",
+        "string": "Het huidige record van {arg player|0} voor\n{arg message|0} is {arg integer|0 2}:{arg integer|1 2}.{arg integer|2 3}.",
     },
     "6303": {
         "font": "regular",
@@ -3693,7 +3693,7 @@
     },
     "6304": {
         "font": "regular",
-        "string": "{arg player|0}'s huidige record voor\n{arg message|0} is {arg integer|0 2}:{arg integer|1 2}.{arg integer|2 3}.",
+        "string": "Het huidige record van {arg player|0} voor\n{arg message|0} is {arg integer|0 2}:{arg integer|1 2}.{arg integer|2 3}.",
     },
     "6305": {
         "font": "regular",
@@ -3705,27 +3705,27 @@
     },
     "6310": {
         "font": "regular",
-        "string": "De WiiConnect24 service is\ntijdelijk niet beschikbaar.\nProbeer het later nog eens.\n\nErrorcode: {arg integer|0 6}",
+        "string": "De WiiConnect24-service is\ntijdelijk niet beschikbaar.\nProbeer het later nog eens.\n\nErrorcode: {arg integer|0 6}",
     },
     "6311": {
         "font": "regular",
-        "string": "Er kon geen verbinding worden gemaakt\nmet het Internet. WiiConnect24 kan niet\ngebruikt worden. Ga naar je Wii\nInstellingen en bekijk de Verbindingsinstellingen\nonder Internet. Voor details, bekijk\nde Wii Handleiding.\n\nErrorcode: {arg integer|0 6}",
+        "string": "Er kon geen verbinding worden gemaakt\nmet het internet. WiiConnect24 kan niet\nworden gebruikt. Ga naar je Wii-instellingen\nen bekijk de verbindingsinstellingen\nonder internet. Bekijk de\nde Wii-handleiding voor details.\n\nErrorcode: {arg integer|0 6}",
     },
     "6312": {
         "font": "regular",
-        "string": "Er is een probleem met het Wii Systeemgeheugen.\nWiiConnect24 kan niet gebruikt worden.\n\nErrorcode: {arg integer|0 6}",
+        "string": "Er is een probleem met het Wii-systeemgeheugen.\nWiiConnect24 kan niet gebruikt worden.\n\nErrorcode: {arg integer|0 6}",
     },
     "6313": {
         "font": "regular",
-        "string": "Om WiiConnect24 te kunnen gebruiken,\nheb je een Systeemupdate nodig.\nVoor details, raadpleeg de\nWii Handleiding.\n\nErrorcode: {arg integer|0 6}",
+        "string": "Om WiiConnect24 te kunnen gebruiken,\nheb je een systeemupdate nodig.\nBekijk de Wii-handleiding\nvoor details.\n\nErrorcode: {arg integer|0 6}",
     },
     "6314": {
         "font": "regular",
-        "string": "WiiConnect24 kan niet gebruikt\nworden omdat er een fout opgetreden\nis. Reset en probeer opnieuw.\n\nErrorcode: {arg integer|0 6}",
+        "string": "WiiConnect24 kan niet gebruikt\nworden omdat er een fout is opgetreden.\n\nReset en probeer opnieuw.\n\nErrorcode: {arg integer|0 6}",
     },
     "6315": {
         "font": "regular",
-        "string": "De WiiConnect24-optie staat uit.\nBekijk de instellingen onder\nWii Opties. Voor Details, raadpleeg\nde Wii Handleiding.\n\nErrorcode: {arg integer|0 6}",
+        "string": "De WiiConnect24-optie staat uit.\nBekijk de instellingen onder\nde Wii-opties. Bekijk de Wii-handleiding\nvoor details.\n\nErrorcode: {arg integer|0 6}",
     },
     "6316": {
         "font": "regular",
@@ -3733,19 +3733,19 @@
     },
     "6317": {
         "font": "regular",
-        "string": "Het gebruik van het internet\nis verboden. Ga naar de Wii Opties\nen bekijk het Ouderlijk Toezicht.",
+        "string": "Het gebruik van het internet is verboden.\n\nGa naar de Wii-opties\nen bekijk het Ouderlijk Toezicht.",
     },
     "6318": {
         "font": "regular",
-        "string": "Er is geen verbinding\nvastgesteld.\n\nGa naar Wii Opties en\nmaak verbinding in het\nInternetopties scherm.\n\nErrorcode: 50200",
+        "string": "Er is geen verbinding\nvastgesteld.\n\nGa naar de Wii-opties en\nmaak verbinding op het\ninternetopties-scherm.\n\nErrorcode: 50200",
     },
     "6319": {
         "font": "regular",
-        "string": "Het Mario Kart Kanaal gebruikt WiiConnect24\nom het volgende te ontvangen:\n\n・Vriendenuitdagingen\n・Records van spelers rond de wereld\n・Geestgegevens van speler die even\ngeävanceerd zijn als jij\n・Geplande competities",
+        "string": "Het Mario Kart-Kanaal gebruikt WiiConnect24\nom de volgende informatie te ontvangen:\n\n・Uitdagingen van vrienden\n・Records van spelers rond de wereld\n・Geesten van spelers die even\ngoed zijn als jij\n・Geplande competities",
     },
     "6320": {
         "font": "regular",
-        "string": "Je kan de WiiConnect24-opties\nin het Wii Opties menu wijzigen.\nBekijk de Wii Handleiding\nvoor meer informatie.",
+        "string": "Je kan de WiiConnect24-opties\nbij de Wii-opties wijzigen.\n\nBekijk de Wii-handleiding\nvoor meer informatie.",
     },
     "6321": {
         "font": "regular",
@@ -3765,11 +3765,11 @@
     },
     "6400": {
         "font": "regular",
-        "string": "Nieuwe Vriendenuitdaging!",
+        "string": "Nieuwe vriendenuitdaging!",
     },
     "6401": {
         "font": "regular",
-        "string": "Speciale Ghost Data is nu beschikbaar!",
+        "string": "Speciale geesten zijn nu beschikbaar!",
     },
     "6402": {
         "font": "regular",
@@ -3781,19 +3781,19 @@
     },
     "6404": {
         "font": "regular",
-        "string": "Start een Ghost Race!",
+        "string": "Start een geestrace!",
     },
     "6405": {
         "font": "regular",
-        "string": "Nieuwe Vriendenrecords beschikbaar!",
+        "string": "Nieuwe vriendenrecords beschikbaar!",
     },
     "6406": {
         "font": "regular",
-        "string": "Voeg het Mario Kart Kanaal toe!",
+        "string": "Voeg het Mario Kart-Kanaal toe!",
     },
     "6407": {
         "font": "regular",
-        "string": "Doe mee aan de Berichtenservice!",
+        "string": "Doe mee aan de berichtenservice!",
     },
     "6408": {
         "font": "regular",
@@ -3801,7 +3801,7 @@
     },
     "6409": {
         "font": "regular",
-        "string": "Vrienden uitnodigen via het Wii Berichtenbord!",
+        "string": "Nodig vrienden uit via het Wii-berichtenbord!",
     },
     "6410": {
         "font": "regular",
@@ -3817,47 +3817,47 @@
     },
     "6500": {
         "font": "regular",
-        "string": "Ga naar je Gedownloade Geestgegevens.",
+        "string": "Ga naar je gedownloade geestenlijst.",
     },
     "6501": {
         "font": "regular",
-        "string": "Ga naar het Tijdrace Klassement.",
+        "string": "Ga naar de Tijdrace-ranglijsten.",
     },
     "6502": {
         "font": "regular",
-        "string": "Ga naar Competities.",
+        "string": "Ga naar de competities.",
     },
     "6503": {
         "font": "regular",
-        "string": "Ga naar het Tijdrace Klassement.",
+        "string": "Ga naar de Tijdrace-ranglijsten.",
     },
     "6504": {
         "font": "regular",
-        "string": "Ga naar Geestrace.",
+        "string": "Ga naar de geestrace.",
     },
     "6505": {
         "font": "regular",
-        "string": "Ga naar het Tijdrace Klassement.",
+        "string": "Ga naar de Tijdrace-ranglijsten.",
     },
     "6506": {
         "font": "regular",
-        "string": "Ga naar Instellingen.",
+        "string": "Ga naar de instellingen.",
     },
     "6507": {
         "font": "regular",
-        "string": "Ga naar Instellingen.",
+        "string": "Ga naar de instellingen.",
     },
     "6508": {
         "font": "regular",
-        "string": "Ga naar Instellingen.",
+        "string": "Ga naar de instellingen.",
     },
     "6509": {
         "font": "regular",
-        "string": "Nodig mensen uit vrienden te worden.",
+        "string": "Nodig mensen uit om vrienden te worden.",
     },
     "6510": {
         "font": "regular",
-        "string": "Werk de rangen en competitiegegevens bij!",
+        "string": "Werk de ranglijsten en competitiegegevens bij!",
     },
     "6511": {
         "font": "regular",
@@ -3869,35 +3869,35 @@
     },
     "6550": {
         "font": "regular",
-        "string": "Competitie rangen zijn\nmomenteel niet beschikbaar.",
+        "string": "Competitieranglijsten zijn\nmomenteel niet beschikbaar.",
     },
     "6551": {
         "font": "regular",
-        "string": "Competitierangen Downloaden...",
+        "string": "Competitieranglijsten downloaden...",
     },
     "6552": {
         "font": "regular",
-        "string": "Er is een fout opgetreden bij het\ndownloaden van de competitieranglijst.\n\nErrorcode: {arg integer|0 5}",
+        "string": "Er is een fout opgetreden bij het\ndownloaden van de competitieranglijsten.\n\nErrorcode: {arg integer|0 5}",
     },
     "6553": {
         "font": "regular",
-        "string": "Je kan competitierangen vanaf\nde dag nadat de competitie start\nbekijken.\n\nNog even geduld.",
+        "string": "Je kan competitieranglijsten een dag nadat\nde competitie is gestart bekijken.\n\nNog even geduld.",
     },
     "6554": {
         "font": "regular",
-        "string": "Eerste Helft",
+        "string": "Eerste helft",
     },
     "6555": {
         "font": "regular",
-        "string": "Tweede Helft",
+        "string": "Tweede helft",
     },
     "6556": {
         "font": "regular",
-        "string": "Rangen zijn nog niet beschikbaar\nvoor deze competitie.\n\nProbeer het morgen opnieuw.",
+        "string": "Ranglijsten zijn nog niet beschikbaar\nvoor deze competitie.\n\nProbeer het morgen opnieuw.",
     },
     "6600": {
         "font": "regular",
-        "string": "Je kunt deelnemen in wereldwijde\nMario Kart Wii competities.\n\nVerbind je Wii met het Internet,\nzorg ervoor dat WiiConnect24 aanstaat\nen wacht tot er een competitie start!",
+        "string": "Je kunt deelnemen in wereldwijde\nMario Kart Wii-competities.\n\nVerbind je Wii met het internet,\nzorg ervoor dat WiiConnect24 aanstaat\nen wacht tot er een competitie start!",
     },
     "6601": {
         "font": "regular",
@@ -3917,7 +3917,7 @@
     },
     "6605": {
         "font": "regular",
-        "string": "Verstuur Competitierecord",
+        "string": "Verstuur competitierecord",
     },
     "6606": {
         "font": "regular",
@@ -3929,11 +3929,11 @@
     },
     "6608": {
         "font": "regular",
-        "string": "Je Competitierecord is verstuurd.",
+        "string": "Jouw competitierecord is verstuurd.",
     },
     "6609": {
         "font": "regular",
-        "string": "Het versturen van de\nCompetitierecord is mislukt.\n\nErrorcode: {arg integer|0 5}",
+        "string": "Het versturen van het\ncompetitierecord is mislukt.\n\nErrorcode: {arg integer|0 5}",
     },
     "6610": {
         "font": "regular",
@@ -3945,19 +3945,19 @@
     },
     "6700": {
         "font": "regular",
-        "string": "Wii Berichtenbord uitnodiging",
+        "string": "Wii-berichtenbord uitnodiging",
     },
     "6701": {
         "font": "regular",
-        "string": "Je kan een Wii Berichtenbord bericht\nversturen met jouw vriendcode naar\nje vrienden.\n\nHet is een snelle en makkelijkemanier\nom vrienden te worden in Mario Kart Wii!",
+        "string": "Je kan een Wii-berichtenbord bericht\nversturen naar jouw vrienden\nmet jouw vriendcode.\n\nHet is een snelle en makkelijke manier\nom vrienden te worden in Mario Kart Wii!",
     },
     "6702": {
         "font": "regular",
-        "string": "Kies een Wii Vriend om een uitnodiging naar te versturen.",
+        "string": "Kies een Wii-vriend om een uitnodiging naar te versturen.",
     },
     "6703": {
         "font": "regular",
-        "string": "Een uitnodiging zal naar {arg string|0}'s\nWii Berichtenbord worden verzonden.\n\nWil je doorgaan?",
+        "string": "Een uitnodiging zal naar het Wii-berichtenbord\nvan {arg string|0} worden verzonden.\n\nIs dit oké?",
     },
     "6704": {
         "font": "regular",
@@ -3965,11 +3965,11 @@
     },
     "6705": {
         "font": "regular",
-        "string": "De uitnodiging is verstuurd naar\n{arg string|0}'s Wii Berichten Bord.\n\nJe zal worden ingelicht\nals {arg string|0} je uitnodiging\nheeft geaccepteerd.",
+        "string": "De uitnodiging is verstuurd naar\nhet Wii-berichtenbord van {arg string|0}.\n\nJe zal een notificatie krijgen\nals {arg string|0} je uitnodiging\nheeft geaccepteerd.",
     },
     "6706": {
         "font": "regular",
-        "string": "Uitnodiging versturen mislukt.\n\nError Code: {arg integer|0 6}",
+        "string": "Het versturen van de uitnodiging is mislukt.\n\nErrorcode: {arg integer|0 6}",
     },
     "6707": {
         "font": "regular",
@@ -3977,7 +3977,7 @@
     },
     "6708": {
         "font": "regular",
-        "string": "Het Competitierecord is verzonden.\n\nJe zal nu naar de\ncompetitierangen gaan.",
+        "string": "Het competitierecord is verzonden.\n\nJe zal nu naar de\ncompetitieranglijsten gaan.",
     },
     "6709": {
         "font": "regular",
@@ -3989,11 +3989,11 @@
     },
     "6711": {
         "font": "regular",
-        "string": "Je hebt een uitnodiging gekregen\nvan {arg string|0}.\n\nAls je de vriendcode van deze\nspeler registreert in je vriendenlijst\nzal je vriendcode automatisch\nteruggestuurd worden.",
+        "string": "Je hebt een uitnodiging gekregen\nvan {arg string|0}.\n\nAls je de vriendcode van deze\nspeler registreert in jouw vriendenlijst,\nzal je vriendcode automatisch\nteruggestuurd worden.",
     },
     "6712": {
         "font": "regular",
-        "string": "Wil je {arg string|0}'s vriendcode registreren\nin je vriendenlijst?",
+        "string": "Wil je de vriendcode van {arg string|0}\nregistreren in jouw vriendenlijst?",
     },
     "6713": {
         "font": "regular",
@@ -4001,27 +4001,27 @@
     },
     "6714": {
         "font": "regular",
-        "string": "{arg string|0} vriendcode is geregistreerd\nin je vriendenlijst.",
+        "string": "De vriendcode van {arg string|0} is\ngeregistreerd in jouw vriendenlijst.",
     },
     "6715": {
         "font": "regular",
-        "string": "Registreren van de vriendcode mislukt.\n\nError Code: {arg integer|0 6}",
+        "string": "Het registreren van de vriendcode is mislukt.\n\nErrorcode: {arg integer|0 6}",
     },
     "6716": {
         "font": "regular",
-        "string": "Je hebt geen vriendcode.\n\nEen vriendcode is een 12 numerige\ncode dat automatisch wordt gegeven\nde eerste keer dat je verbinding maakt.\n\nLees de Wiihandleiding voor meer\ninformatie.",
+        "string": "Je hebt geen vriendcode.\n\nEen vriendcode is een 12-cijferige\ncode die automatisch wordt gegeven\nwanneer je voor de eerste keer verbinding maakt\nmet Nintendo WFC.\n\nLees de Mario Kart Wii-instructies voor meer\ninformatie.",
     },
     "6717": {
         "font": "regular",
-        "string": "Je hebt een uitnodiging ontvangen, maar\ner zijn al 30 vriendcodes geregistreerd\nin je vriendenlijst.\n\nJe kan niet meer vriendcodes\nregisteren.",
+        "string": "Je hebt een uitnodiging ontvangen, maar\ner zijn al 30 vriendcodes geregistreerd\nin jouw vriendenlijst.\n\nJe kan geen vriendcodes\nmeer registeren.",
     },
     "6718": {
         "font": "regular",
-        "string": "Je hebt een uitnodiging gekregen, maar\nde verstuurder is van je Wii Berichten\nbord verwijderd.\n\nStart het Mario Kart Kanaal opnieuw\nen registreer de vriendcode.",
+        "string": "Je hebt een uitnodiging gekregen, maar\nde verstuurder is van\njouw Wii-berichtenbord verwijderd.\n\nStart het Mario Kart-Kanaal opnieuw\nen registreer de vriendcode.",
     },
     "6719": {
         "font": "regular",
-        "string": "Je hebt een uitnodiging\nontvangen, maar de\nverstuurder is al geregistreerd\nin je vriendenlijst.",
+        "string": "Je hebt een uitnodiging\nontvangen, maar de\nverstuurder is al geregistreerd\nin jouw vriendenlijst.",
     },
     "6720": {
         "font": "regular",
@@ -4029,11 +4029,11 @@
     },
     "6800": {
         "font": "regular",
-        "string": "Download de Competitieranglijsten",
+        "string": "Download de competitieranglijsten",
     },
     "6801": {
         "font": "regular",
-        "string": "Competitierangen Downloaden...",
+        "string": "Competitieranglijsten downloaden...",
     },
     "6802": {
         "font": "regular",
@@ -4041,7 +4041,7 @@
     },
     "6803": {
         "font": "regular",
-        "string": "Downloaden van Competitie-\nranglijsten mislukt.\n\nError Code: {arg integer|0 5}",
+        "string": "Het downloaden van de\ncompetitieranglijsten is mislukt.\n\nErrorcode: {arg integer|0 5}",
     },
     "6804": {
         "font": "regular",
@@ -4065,7 +4065,7 @@
     },
     "6901": {
         "font": "regular",
-        "string": "De laatste Mario Kart Kanaal\ngegevens worden gedownload.",
+        "string": "De laatste Mario Kart-Kanaal-gegevens\nworden gedownload.",
     },
     "6902": {
         "font": "regular",
@@ -4073,11 +4073,11 @@
     },
     "6903": {
         "font": "regular",
-        "string": "De laatste Mario Kart Kanaal\ngegevens zijn gedownload.",
+        "string": "De laatste Mario Kart-Kanaal-gegevens\nzijn gedownload.",
     },
     "6904": {
         "font": "regular",
-        "string": "Er is een fout opgetreden bij het\ndownloaden van de laatste\ngegevens..\n\nError Code: {arg integer|0 6}",
+        "string": "Er is een fout opgetreden bij het\ndownloaden van de laatste gegevens.\n\nErrorcode: {arg integer|0 6}",
     },
     "6905": {
         "font": "regular",
@@ -4105,11 +4105,11 @@
     },
     "7100": {
         "font": "regular",
-        "string": "GCN Controller Trillingen",
+        "string": "GCN-controllertrillingen",
     },
     "7101": {
         "font": "regular",
-        "string": "Wil je de trilfunctie van de Nintendo\nGameCube Controller gebruiken?",
+        "string": "Wil je de trilfunctie van de Nintendo\nGameCube-controller gebruiken?",
     },
     "7102": {
         "font": "regular",
@@ -4121,11 +4121,11 @@
     },
     "7104": {
         "font": "regular",
-        "string": "Je hebt ervoor gekozen om de\nNintendo GameCube Controller\ntrilfunctie te gebruiken.",
+        "string": "Je hebt ervoor gekozen om de trilfunctie\nvan de Nintendo GameCube-controller\nte gebruiken.",
     },
     "7105": {
         "font": "regular",
-        "string": "Je hebt gekozen om niet de\nNintendo GameCube Controller\ntrilfunctie te gebruiken.",
+        "string": "Je hebt ervoor gekozen om de trilfunctie\nvan de Nintendo GameCube-controller\nniet te gebruiken.",
     },
     "7106": {
         "font": "regular",
@@ -4133,11 +4133,11 @@
     },
     "7200": {
         "font": "regular",
-        "string": "Regioinstelling",
+        "string": "Regio-instelling",
     },
     "7201": {
         "font": "regular",
-        "string": "Terug naar het Wii Menu om\njouw regioinstelling te veranderen?",
+        "string": "Terug naar het Wii-menu om\njouw regio-instelling te veranderen?",
     },
     "7202": {
         "font": "regular",
@@ -4153,15 +4153,15 @@
     },
     "7250": {
         "font": "regular",
-        "string": "Vlag en Regio",
+        "string": "Vlag- en regio-informatie",
     },
     "7251": {
         "font": "regular",
-        "string": "Mario Kart Wii kan je nationale vlag en\nregio laten zien op de volgende plekken:\n\n・als een locatie op de wereldbol\n・in je geestgegevens\n\nAls je ervoor kiest om deze informatie\nbeschrikbaar te stellen, wordt het\nverzonden naar andere spelers tijdens\nhet spelen op Nintendo WFC.",
+        "string": "Mario Kart Wii kan je nationale vlag en\nregio laten zien op de volgende plekken:\n\n・als een locatie op de wereldbol\n・in je geestgegevens\n\nAls je ervoor kiest om deze informatie\nbeschikbaar te stellen, wordt het\nverzonden naar andere spelers tijdens\nhet spelen op Nintendo WFC.",
     },
     "7252": {
         "font": "regular",
-        "string": "Wil je je nationale vlag en regio\nbeschrikbaar stellen op Nintendo WFC?\n",
+        "string": "Wil je je nationale vlag en regio\nbeschikbaar stellen op Nintendo WFC?\n",
     },
     "7253": {
         "font": "regular",
@@ -4177,7 +4177,7 @@
     },
     "7256": {
         "font": "regular",
-        "string": "Je hebt ervoor gekozen om je nationale\nvlag en regio niet op Nintendo WFC\nweer te geven.",
+        "string": "Je hebt ervoor gekozen om je nationale\nvlag en regio op Nintendo WFC\nniet weer te geven.",
     },
     "7257": {
         "font": "regular",
@@ -4189,11 +4189,11 @@
     },
     "7301": {
         "font": "regular",
-        "string": "Krijg de nieuwste updates van het\nMario Kart Kanaal op je Wii Prikbord\ndoor je aan te melden voor de berichtenservice\nJe kunt je ieder moment afmelden.\n\nBerichten zullen informatie bevatten over:\n\n・competities\n・speciale Geestendownloads",
+        "string": "Krijg de nieuwste updates van het\nMario Kart-Kanaal op je Wii-berichtenbord\nvia WiiConnect24 door je aan te melden\nvoor de berichtenservice.\nJe kunt je op ieder moment afmelden.\n\nBerichten zullen informatie bevatten over:\n\n・competities\n・speciale geestendownloads",
     },
     "7302": {
         "font": "regular",
-        "string": "Aanmelden voor de\nMario Kart Kanaal\nBerichtenservice?",
+        "string": "Aanmelden voor de\nMario Kart-Kanaal-\nberichtenservice?",
     },
     "7303": {
         "font": "regular",
@@ -4205,11 +4205,11 @@
     },
     "7305": {
         "font": "regular",
-        "string": "Je hebt je aangemeld voor\nde Mario Kart Kanaal Berichtenservice.",
+        "string": "Je hebt je aangemeld voor\nde Mario Kart-Kanaal-berichtenservice.",
     },
     "7306": {
         "font": "regular",
-        "string": "Je zult geen berichten ontvangen\nde Mario Kart Kanaal\nBerichtenservice. Is dit oké?",
+        "string": "Je zult geen berichten ontvangen\nde Mario Kart-Kanaal-\nberichtenservice. Is dit oké?",
     },
     "7307": {
         "font": "regular",
@@ -4217,47 +4217,47 @@
     },
     "7350": {
         "font": "regular",
-        "string": "Met deze instellingen zul je\nberichten van de Mario Kart\nKanaal Berichtenservice ontvangen op je Wii Prikbord.",
+        "string": "Met deze instellingen zul je\nberichten van de Mario Kart-Kanaal-\nberichtenservice ontvangen op jouw Wii-berichtenbord.",
     },
     "7351": {
         "font": "regular",
-        "string": "Selecteer de desgewenste\nberichtenservice instellingen.",
+        "string": "Selecteer de gewenste\ninstellingen voor de berichtenservice.",
     },
     "7352": {
         "font": "regular",
-        "string": "Afmelden voor de Mario Kart Kanaal\nBerichtenservice",
+        "string": "Afmelden voor de Mario Kart-Kanaal-\nberichtenservice",
     },
     "7353": {
         "font": "regular",
-        "string": "Afmelden voor alle\nBerichtenservices",
+        "string": "Afmelden voor alle kanaal-\nberichtenservices",
     },
     "7354": {
         "font": "regular",
-        "string": "Blijf Mario Kart Kanaal Berichten\nontvangen",
+        "string": "Blijf Mario Kart-Kanaal-berichten\nontvangen",
     },
     "7355": {
         "font": "regular",
-        "string": "Afmelden voor het ontvangen van berichten\nvan het Mario Kart Kanaal?",
+        "string": "Afmelden voor het ontvangen van berichten\nvan het Mario Kart-Kanaal?",
     },
     "7356": {
         "font": "regular",
-        "string": "Afmelden voor het ontvangen van berichten\nvan elk Kanaal?",
+        "string": "Afmelden voor het ontvangen van berichten\nvan elk kanaal?",
     },
     "7357": {
         "font": "regular",
-        "string": "Je zult berichten van\nhet Mario Kart Kanaal\nblijven ontvangen.",
+        "string": "Je zult berichten van\nhet Mario Kart-Kanaal\nblijven ontvangen.",
     },
     "7358": {
         "font": "regular",
-        "string": "Je hebt je niet aangemeld voor\nde Mario Kart Kanaal Berichtenservice.",
+        "string": "Je hebt je niet aangemeld voor\nde Mario Kart-Kanaal-berichtenservice.",
     },
     "7359": {
         "font": "regular",
-        "string": "Je hebt je afgemeld voor\nde Mario Kart Kanaal\nBerichtenservice.",
+        "string": "Je hebt je afgemeld voor\nde Mario Kart-Kanaal-\nberichtenservice.",
     },
     "7360": {
         "font": "regular",
-        "string": "Je hebt je voor elke\nBerichtenservice afgemeld.",
+        "string": "Je hebt je voor elke\nberichtenservice afgemeld.",
     },
     "7361": {
         "font": "regular",
@@ -4269,11 +4269,11 @@
     },
     "7401": {
         "font": "regular",
-        "string": "Wanneer je Mario Kart Wii via\nNintendo WFC speelt, zullen de\nvolgende gegevens naar Nintendo gestuurd worden:\n\n・Je Mii en gebruikersnaam\n・je records en Geesten\n\nDeze gegevens worden ook gedeeld\nmet andere spelers op Nintendo WFC.",
+        "string": "Wanneer je Mario Kart Wii via\nNintendo WFC speelt, zullen de volgende\ngegevens naar Nintendo gestuurd worden:\n\n・Je Mii en gebruikersnaam\n・je records en geesten\n\nDeze gegevens worden ook gedeeld\nmet andere spelers op Nintendo WFC.",
     },
     "7402": {
         "font": "regular",
-        "string": "Sta je toe gegevens\nnaar Nintendo te verzenden?",
+        "string": "Sta je het toe om gegevens\nnaar Nintendo te verzenden?",
     },
     "7403": {
         "font": "regular",
@@ -4285,19 +4285,19 @@
     },
     "7405": {
         "font": "regular",
-        "string": "Je hebt toegestaan gegevens\nnaar Nintendo te verzenden.",
+        "string": "Je hebt het toegestaan om gegevens\nnaar Nintendo te verzenden.",
     },
     "7406": {
         "font": "regular",
-        "string": "Weet je zeker dat dit oké is?\nJe zult geen Mario Kart Wii\nvia Nintendo WFC kunnen spelen met deze optie.",
+        "string": "Weet je zeker dat dit oké is?\nJe zult geen Mario Kart Wii via\nNintendo WFC kunnen spelen met deze optie.",
     },
     "7407": {
         "font": "regular",
-        "string": "Je hebt het niet toegestaan gegevens\nnaar Nintendo te verzenden.",
+        "string": "Je hebt het niet toegestaan om gegevens\nnaar Nintendo te verzenden.",
     },
     "7408": {
         "font": "regular",
-        "string": "Gebruik nooit je eigen naam of\nandere gegevens als de bijnaam van je\nMii. Als je dit toch hebt gedaan,\nvoer aub één van de volgende maatregelen\nuit om je privacy te beschermen:\n\n・Verander je Mii's bijnaam in het Mii Kanaal\n・Kies een Gast Mii in de Rijbewijsinstellingen.",
+        "string": "Gebruik nooit je eigen naam of\nandere gegevens als de bijnaam van je\nMii. Als je dit toch hebt gedaan,\nvoer een van de volgende maatregelen\nuit om je privacy te beschermen:\n\n・Verander je Mii's bijnaam in het Mii-Kanaal\n・Kies een gast-Mii in de rijbewijsinstellingen.",
     },
     "7409": {
         "font": "regular",
@@ -4305,7 +4305,7 @@
     },
     "7500": {
         "font": "regular",
-        "string": "Mii Display",
+        "string": "Mii-display",
     },
     "7501": {
         "font": "regular",
@@ -4313,7 +4313,7 @@
     },
     "7502": {
         "font": "regular",
-        "string": "Wil je het toestaan Mii's\nvan andere spelers weer\nte geven in Mario Kart Wii?",
+        "string": "Sta je het toe om Mii's\nvan andere spelers weer\nte geven in Mario Kart Wii?",
     },
     "7503": {
         "font": "regular",
@@ -4325,15 +4325,15 @@
     },
     "7505": {
         "font": "regular",
-        "string": "Je hebt het toegestaan Mii's\nvan andere spelers weer\nte geven in Mario Kart Wii.",
+        "string": "Je hebt het toegestaan om Mii's\nvan andere spelers weer\nte geven in Mario Kart Wii.",
     },
     "7506": {
         "font": "regular",
-        "string": "Je hebt het afgewezen Mii's\nvan andere spelers weer\nte geven in Mario Kart Wii.",
+        "string": "Je hebt het niet toegestaan om Mii's\nvan andere spelers weer\nte geven in Mario Kart Wii.",
     },
     "7507": {
         "font": "regular",
-        "string": "Mii's van andere spelers zullen\nworden vervangen door Mii's gemaakt door\nNintendo. Wil je doorgaan?",
+        "string": "Mii's van andere spelers zullen\nworden vervangen door Mii's gemaakt door\nNintendo.\n\nIs dit oké?",
     },
     "7508": {
         "font": "regular",
@@ -4365,7 +4365,7 @@
     },
     "7700": {
         "font": "regular",
-        "string": "Mario Kart Wii kan worden weergeven\nmet 60Hz (480i). De huidige mode is\n50Hz (576i). Als de TV - zoals de meeste -\n60Hz ondersteunt, verander dan deze\nmode bij de Wii Instellingen voor een\nbetere kwaliteit.\n\nGa naar het HOME Menu en vervolgens\nnaar het Wii Menu om de mode te\nveranderen naar 60Hz",
+        "string": "Mario Kart Wii kan worden weergeven\nmet 60Hz (480i). De huidige mode is\n50Hz (576i). Als de TV - zoals de meeste -\n60Hz ondersteunt, verander dan deze\ninstelling bij de Wii-instellingen voor een\nbetere kwaliteit.\n\nGa naar het HOME-menu en vervolgens\nnaar het Wii-menu om de instelling te\nveranderen naar 60Hz.",
     },
     "7701": {
         "font": "regular",
@@ -4377,7 +4377,7 @@
     },
     "7703": {
         "font": "regular",
-        "string": "Wil je deze foto posten op het Wii Prikbord?",
+        "string": "Wil je deze foto posten op het Wii-berichtenbord?",
     },
     "7704": {
         "font": "regular",
@@ -4385,23 +4385,23 @@
     },
     "7705": {
         "font": "regular",
-        "string": "De foto is geplaatst op\nhet Wii Prikbord!",
+        "string": "De foto is geplaatst op\nhet Wii-berichtenbord!",
     },
     "7706": {
         "font": "regular",
-        "string": "Onthoud dat je niet te veel foto's op het\nWii Prikbord plaatst omdat het Wii Prikbord\nvol kan raken.\n\nAls het Wii Prikbord vol is wordt ruimte\nvoor nieuwe berichten gemaakt door\noudere berichten te deleten.",
+        "string": "Onthoud dat je niet te veel foto's moet plaatsen,\nomdat dit het Wii-berichtenbord vol\nkan laten raken.\n\nAls het Wii-berichtenbord vol is, wordt ruimte\nvoor nieuwe berichten gemaakt door\noudere berichten te verwijderen,\nbeginnend met de oudste.",
     },
     "7707": {
         "font": "regular",
-        "string": "Bedankt voor het spelen ,\nen u kunt blijven\ngenieten van Mario Kart Wii!",
+        "string": "Bedankt voor het spelen,\nen geniet van Mario Kart Wii!",
     },
     "8000": {
         "font": "regular",
-        "string": "Gefeliciteerd!\nJe hebt het volgende vrijgespeeld:\n{arg message|0} {arg message|1}!",
+        "string": "Gefeliciteerd!\nJe hebt de \n{arg message|0} {arg message|1} vrijgespeeld!",
     },
     "8001": {
         "font": "regular",
-        "string": "Gefeliciteerd! Je hebt de spiegel modus vrijgespeeld",
+        "string": "Gefeliciteerd!\nJe hebt de gespiegelde modus vrijgespeeld!",
     },
     "8002": {
         "font": "regular",
@@ -4413,35 +4413,35 @@
     },
     "8004": {
         "font": "regular",
-        "string": "Gefeliciteerd! Je hebt een\nkleine kart vrijgespeeld!\nDe {arg message|0}!",
+        "string": "Gefeliciteerd! Je hebt een\nkleine kart vrijgespeeld,\nde {arg message|0}!",
     },
     "8005": {
         "font": "regular",
-        "string": "Gefeliciteerd! Je hebt een\nmiddelgrote kart vrijgespeeld!\nDe {arg message|0}!",
+        "string": "Gefeliciteerd! Je hebt een\nmedium kart vrijgespeeld,\nde {arg message|0}!",
     },
     "8006": {
         "font": "regular",
-        "string": "Gefeliciteerd! Je hebt een\ngrote kart vrijgespeeld!\nDe {arg message|0}!",
+        "string": "Gefeliciteerd! Je hebt een\ngrote kart vrijgespeeld,\nde {arg message|0}!",
     },
     "8007": {
         "font": "regular",
-        "string": "Gefeliciteerd! Je hebt een\nkleine motor vrijgespeeld!\nDe {arg message|0}!",
+        "string": "Gefeliciteerd! Je hebt een\nkleine motor vrijgespeeld,\nde {arg message|0}!",
     },
     "8008": {
         "font": "regular",
-        "string": "Gefeliciteerd! Je hebt een\nmiddelgrote motor vrijgespeeld!\nDe {arg message|0}!",
+        "string": "Gefeliciteerd! Je hebt een\nmedium motor vrijgespeeld,\nde {arg message|0}!",
     },
     "8009": {
         "font": "regular",
-        "string": "Gefeliciteerd! Je hebt een\ngrote motor vrijgespeeld!\nDe {arg message|0}!",
+        "string": "Gefeliciteerd! Je hebt een\ngrote motor vrijgespeeld,\nde {arg message|0}!",
     },
     "8010": {
         "font": "regular",
-        "string": "Gefeliciteerd!\nJe hebt de 50cc\nGrand Prix vrijgespeeld (karts en motoren)!",
+        "string": "Gefeliciteerd!\nJe hebt de 50cc\nGrand Prix vrijgespeeld (karts en motors)!",
     },
     "8011": {
         "font": "regular",
-        "string": "Gefeliciteerd!\nJe hebt de 100cc\nGrand Prix vrijgespeeld (karts en motoren)!",
+        "string": "Gefeliciteerd!\nJe hebt de 100cc\nGrand Prix vrijgespeeld (karts en motors)!",
     },
     "8012": {
         "font": "regular",
@@ -4449,23 +4449,23 @@
     },
     "8100": {
         "font": "regular",
-        "string": "Je hebt trofeeën verdiend in de  {arg message|0} Paddestoel cup en in de Bloem cup!",
+        "string": "Je hebt trofeeën verdiend in de {arg message|0} Paddestoelen- en Bloemenbeker!",
     },
     "8101": {
         "font": "regular",
-        "string": "Je hebt een trofee verdiend in de {arg message|0} Ster cup!",
+        "string": "Je hebt een trofee verdiend in de {arg message|0} Sterrenbeker!",
     },
     "8102": {
         "font": "regular",
-        "string": "Je hebt trofeeën verdiend in de schelp cup en in de {arg message|0} Banaan cup!",
+        "string": "Je hebt trofeeën verdiend in de {arg message|0} Schild- en Bananenbeker!",
     },
     "8103": {
         "font": "regular",
-        "string": "Je hebt een trofee verdiend in de {arg message|0} Blad cup!",
+        "string": "Je hebt een trofee verdiend in de {arg message|0} Blaadjesbeker!",
     },
     "8104": {
         "font": "regular",
-        "string": "Je hebt alle 150cc cups gewonnen!",
+        "string": "Je hebt alle 150cc bekers gewonnen!",
     },
     "8105": {
         "font": "regular",
@@ -4473,79 +4473,79 @@
     },
     "8110": {
         "font": "regular",
-        "string": "Je hebt de 100cc blad cup gewonnen!",
+        "string": "Je hebt de 100cc Blaadjesbeker gewonnen!",
     },
     "8111": {
         "font": "regular",
-        "string": "Je hebt Tijd Races gespeeld op alle banen!",
+        "string": "Je hebt Tijdraces gespeeld op alle circuits!",
     },
     "8112": {
         "font": "regular",
-        "string": "Je hebt 1000 keer gewonnen op Nintendo WFC!",
+        "string": "Je hebt 1.000 keer gewonnen op Nintendo WFC!",
     },
     "8113": {
         "font": "regular",
-        "string": "Je hebt {1 char|} rang verdiend in alle 50cc Wii Grand Prix cups!",
+        "string": "Je hebt rang {1 char|} verdiend in alle 50cc Wii Grand Prix bekers!",
     },
     "8114": {
         "font": "regular",
-        "string": "Je hebt 8 Expert Staff Geesten vrijgespeeld in Tijdrace!",
+        "string": "Je hebt 8 expertgeesten vrijgespeeld in Tijdraces!",
     },
     "8115": {
         "font": "regular",
-        "string": "Je hebt de 50cc bliksem cup gewonnen!",
+        "string": "Je hebt de 50cc Bliksembeker gewonnen!",
     },
     "8116": {
         "font": "regular",
-        "string": "Je hebt {1 char|} rang verdiend in alle 100cc Retro Grand Prix Cups!",
+        "string": "Je hebt rang {1 char|} verdiend in alle 100cc Retro Grand Prix bekers!",
     },
     "8117": {
         "font": "regular",
-        "string": "Je hebt de 150cc Speciaal Cup gewonnen",
+        "string": "Je hebt de 150cc Speciale Beker gewonnen",
     },
     "8118": {
         "font": "regular",
-        "string": "Je hebt Tijd Races op 16 verschillende banen gespeeld!",
+        "string": "Je hebt Tijdraces op 16 verschillende circuits gespeeld!",
     },
     "8119": {
         "font": "regular",
-        "string": "Je hebt {1 char|} rang verdiend op alle spiegel cups!",
+        "string": "Je hebt rang {1 char|} verdiend in alle spiegelbekers!",
     },
     "8120": {
         "font": "regular",
-        "string": "Je hebt een kado van Super Mario Galaxy!",
+        "string": "Je hebt een cadeau van Super Mario Galaxy!",
     },
     "8121": {
         "font": "regular",
-        "string": "Je hebt {1 char|} rang verdiend in alle 150cc wii Grand Prix cups!",
+        "string": "Je hebt rang {1 char|} verdiend in alle 150cc Wii Grand Prix bekers!",
     },
     "8122": {
         "font": "regular",
-        "string": "Je hebt 4 Expert Staff Geesten vrijgespeeld in Tijdrace!",
+        "string": "Je hebt 4 expertgeesten vrijgespeeld in Tijdraces!",
     },
     "8123": {
         "font": "regular",
-        "string": "Je hebt 25 Geest Races gewonnen!",
+        "string": "Je hebt 25 geestraces gewonnen!",
     },
     "8124": {
         "font": "regular",
-        "string": "Je hebt de 50cc Ster Cup gewonnen!",
+        "string": "Je hebt de 50cc Sterrenbeker gewonnen!",
     },
     "8125": {
         "font": "regular",
-        "string": "Je hebt de 100cc speciaal Cup Gewonnen!",
+        "string": "Je hebt de 100cc Speciale Beker gewonnen!",
     },
     "8126": {
         "font": "regular",
-        "string": "Je hebt alle 32 Expert Staff Geesten vrijgespeeld in Tijdrace!",
+        "string": "Je hebt alle 32 expertgeesten vrijgespeeld in Tijdraces!",
     },
     "8127": {
         "font": "regular",
-        "string": "Je hebt 5000 keer gewonnen op Nintendo WFC!",
+        "string": "Je hebt 5.000 keer gewonnen op Nintendo WFC!",
     },
     "8128": {
         "font": "regular",
-        "string": "Je hebt 100 Geest Races gewonnen!",
+        "string": "Je hebt 100 geestraces gewonnen!",
     },
     "8129": {
         "font": "regular",
@@ -4557,11 +4557,11 @@
     },
     "8140": {
         "font": "regular",
-        "string": "Je hebt {1 char|} rang verdiend in alle 50cc Retro Grand Prix cups!",
+        "string": "Je hebt rang {1 char|} verdiend in alle 50cc Retro Grand Prix bekers!",
     },
     "8141": {
         "font": "regular",
-        "string": "Je hebt een Expert Staff Geest vrijgespeeld in Tijdrace!",
+        "string": "Je hebt een expertgeest vrijgespeeld in Tijdraces!",
     },
     "8142": {
         "font": "regular",
@@ -4569,91 +4569,91 @@
     },
     "8143": {
         "font": "regular",
-        "string": "Je hebt de Spiegel Bliksem Cup gewonnen!",
+        "string": "Je hebt de gespiegelde Bliksembeker gewonnen!",
     },
     "8144": {
         "font": "regular",
-        "string": "Je hebt de 50cc Blad Cup gewonnen!",
+        "string": "Je hebt de 50cc Blaadjesbeker gewonnen!",
     },
     "8145": {
         "font": "regular",
-        "string": "Je hebt de 150cc Blad Cup gewonnen!",
+        "string": "Je hebt de 150cc Blaadjesbeker gewonnen!",
     },
     "8146": {
         "font": "regular",
-        "string": "Je hebt 24 Expert Staff Geesten vrijgespeeld in Tijdrace!",
+        "string": "Je hebt 24 expertgeesten vrijgespeeld in Tijdraces!",
     },
     "8147": {
         "font": "regular",
-        "string": "Je hebt de 50cc Speciaal Cup gewonnen!",
+        "string": "Je hebt de 50cc Speciale Beker gewonnen!",
     },
     "8148": {
         "font": "regular",
-        "string": "Je hebt {1 char|} rang in alle 150cc retro cups verdiend!",
+        "string": "Je hebt rang {1 char|} verdiend in alle 150cc Retro Grand Prix bekers!",
     },
     "8149": {
         "font": "regular",
-        "string": "Je hebt de 150cc Bliksem Cup gewonnen!",
+        "string": "Je hebt de 150cc Bliksembeker gewonnen!",
     },
     "8150": {
         "font": "regular",
-        "string": "Je hebt de 150cc Ster Cup gewonnen!",
+        "string": "Je hebt de 150cc Sterrenbeker gewonnen!",
     },
     "8151": {
         "font": "regular",
-        "string": "Je hebt Tijd Races gespeeld op 8 verschillende banen!",
+        "string": "Je hebt Tijdraces gespeeld op 8 verschillende circuits!",
     },
     "8152": {
         "font": "regular",
-        "string": "Je hebt 5 Geest Races gewonnen!",
+        "string": "Je hebt 5 geestraces gewonnen!",
     },
     "8153": {
         "font": "regular",
-        "string": "Je hebt de Spiegel Blad Cup gewonnen!",
+        "string": "Je hebt de gespiegelde Blaadjesbeker gewonnen!",
     },
     "8154": {
         "font": "regular",
-        "string": "Je hebt de 100cc Bliksem Cup gewonnen!",
+        "string": "Je hebt de 100cc Bliksembeker gewonnen!",
     },
     "8155": {
         "font": "regular",
-        "string": "Je hebt {1 char|} rang in alle 100cc Wii Grand Prix Cups!",
+        "string": "Je hebt rang {1 char|} verdiend in alle 100cc Wii Grand Prix bekers!",
     },
     "8156": {
         "font": "regular",
-        "string": "Je hebt de Spiegel Ster Cup gewonnen!",
+        "string": "Je hebt de gespiegelde Sterrenbeker gewonnen!",
     },
     "8157": {
         "font": "regular",
-        "string": "Je hebt de 100cc Ster Cup gewonnen!",
+        "string": "Je hebt de 100cc Sterrenbeker gewonnen!",
     },
     "8158": {
         "font": "regular",
-        "string": "Je hebt 12 Expert Staff Geesten vrijgespeeld in Tijdrace!",
+        "string": "Je hebt 12 expertgeesten vrijgespeeld in Tijdraces!",
     },
     "8159": {
         "font": "regular",
-        "string": "Je hebt 200 Geest Races gewonnen!",
+        "string": "Je hebt 200 geestraces gewonnen!",
     },
     "8160": {
         "font": "regular",
-        "string": "Je hebt de Spiegel Speciaal Cup gewonnen!",
+        "string": "Je hebt de gespiegelde Speciale Beker gewonnen!",
     },
     "8161": {
         "font": "regular",
-        "string": "Je hebt tropheeën gewonnen in alle 50cc Cups!",
+        "string": "Je hebt trofeeën gewonnen in alle 50cc bekers!",
     },
     "8162": {
         "font": "regular",
-        "string": "Je hebt tropheeën gewonnen in alle 100cc Cups!",
+        "string": "Je hebt trofeeën gewonnen in alle 100cc bekers!",
     },
     "8163": {
         "font": "regular",
-        "string": "Je hebt 3000 keer gewonnen op Nintendo WFC",
+        "string": "Je hebt 3.000 keer gewonnen op Nintendo WFC!",
     },
     "8164": {
         "font": "regular",
-        "string": "Je hebt Mario Kart Wii {arg integer|0 0} keer gespeeld",
+        "string": "Je hebt Mario Kart Wii {arg integer|0 0} keer gespeeld!",
     },
     "8165": {
         "font": "regular",
@@ -4661,31 +4661,31 @@
     },
     "8200": {
         "font": "regular",
-        "string": "Alle Records",
+        "string": "Alle records",
     },
     "8201": {
         "font": "regular",
-        "string": "Favoriten",
+        "string": "Favorieten",
     },
     "8202": {
         "font": "regular",
-        "string": "Records van Vrienden",
+        "string": "Records van vrienden",
     },
     "8203": {
         "font": "regular",
-        "string": "Nintendo WFC Records",
+        "string": "Nintendo WFC-records",
     },
     "8204": {
         "font": "regular",
-        "string": "Andere Records",
+        "string": "Andere records",
     },
     "8210": {
         "font": "regular",
-        "string": "Totale Rang",
+        "string": "Totale rang",
     },
     "8211": {
         "font": "regular",
-        "string": "Afstand Afgelegd",
+        "string": "Afgelegde afstand",
     },
     "8212": {
         "font": "regular",
@@ -4697,31 +4697,31 @@
     },
     "8214": {
         "font": "regular",
-        "string": "Wii Stuur gebruik",
+        "string": "Wii-Wheel gebruik",
     },
     "8215": {
         "font": "regular",
-        "string": "Sprongen gedaan",
+        "string": "Springboosts gedaan",
     },
     "8216": {
         "font": "regular",
-        "string": "Favoriete Personage",
+        "string": "Favoriete coureur",
     },
     "8217": {
         "font": "regular",
-        "string": "Favoriete Voertuig",
+        "string": "Favoriete voertuig",
     },
     "8218": {
         "font": "regular",
-        "string": "Favoriete Parcours",
+        "string": "Favoriete circuit",
     },
     "8219": {
         "font": "regular",
-        "string": "Favoriete Arena",
+        "string": "Favoriete arena",
     },
     "8220": {
         "font": "regular",
-        "string": "Nintendo WFC Records van Vrienden",
+        "string": "Nintendo WFC-records van vrienden",
     },
     "8221": {
         "font": "regular",
@@ -4729,11 +4729,11 @@
     },
     "8222": {
         "font": "regular",
-        "string": "Geestuitdagingen Verzonden",
+        "string": "Geestuitdagingen verzonden",
     },
     "8223": {
         "font": "regular",
-        "string": "Geestuitdagingen Ontvangen",
+        "string": "Geestuitdagingen ontvangen",
     },
     "8224": {
         "font": "regular",
@@ -4741,7 +4741,7 @@
     },
     "8225": {
         "font": "regular",
-        "string": "Versus Race Record",
+        "string": "VS race-record",
     },
     "8226": {
         "font": "regular",
@@ -4749,15 +4749,15 @@
     },
     "8227": {
         "font": "regular",
-        "string": "Gevecht Record",
+        "string": "Gevechtsecord",
     },
     "8228": {
         "font": "regular",
-        "string": "Aantal keren gewonnen",
+        "string": "Aantal keren 1e plaats",
     },
     "8229": {
         "font": "regular",
-        "string": "% van de Race Tijd 1e",
+        "string": "%-Racetijd in 1e plaats",
     },
     "8230": {
         "font": "regular",
@@ -4769,11 +4769,11 @@
     },
     "8232": {
         "font": "regular",
-        "string": "Geestrace Record",
+        "string": "Geestrace-record",
     },
     "8233": {
         "font": "regular",
-        "string": "Competities gereden",
+        "string": "Competities gedaan",
     },
     "8234": {
         "font": "regular",
@@ -4917,11 +4917,11 @@
     },
     "8405": {
         "font": "regular",
-        "string": "Gefeliciteerd,\n%ls!\n\nJe hebt voor elke Beker een trofee gehaald!\nOm het te vieren, hebben we\nje deze souvenir foto toegestuurd.\nBedankt voor het spelen,\nen we hopen dat je nog veel plezier\nbeleeft aan Mario Kart Wii!",
+        "string": "Gefeliciteerd,\n%ls!\n\nJe hebt trofeeën in alle bekers verdiend!\nOm het te vieren, hebben we\nje deze souvenirfoto toegestuurd.\nBedankt voor het spelen,\nen geniet van Mario Kart Wii!",
     },
     "8406": {
         "font": "regular",
-        "string": "Gefeliciteerd,\n%ls!\n\nJe hebt alle Mario Kart Wii\nBekers gewonnen! Om dit te vieren\nhebben we je deze souvenir\nfoto toegestuurd. Bedankt voor\nhet spelen, en we hopen dat je nog veel\nplezier beleeft aan Mario Kart Wii!",
+        "string": "Gefeliciteerd,\n%ls!\n\nJe hebt alle Mario Kart Wii\nbekers gewonnen! Om dit te vieren\nhebben we je deze souvenir\nfoto toegestuurd. Bedankt voor\nhet spelen, en we hopen dat je nog veel\nplezier beleeft aan Mario Kart Wii!",
     },
     "8407": {
         "font": "regular",
@@ -5109,7 +5109,7 @@
     },
     "8462": {
         "font": "regular",
-        "string": "Gefeliciteerd, %ls!\n\nAls prijs voor het winnen van trofeeën in\nelke 100cc Beker, krijg je\neen nieuwe Motorklasse:\n\n100cc (Karts en Bikes)",
+        "string": "Gefeliciteerd, %ls!\n\nAls prijs voor het verdienen van alle\ntrofeeën in alle 100cc bekers,\nkrijg je een nieuwe motorklasse:\n\n100cc (karts en motors)",
     },
     "8463": {
         "font": "regular",
@@ -5189,19 +5189,19 @@
     },
     "8490": {
         "font": "regular",
-        "string": "Dit is een bericht van het\nMario Kart Kanaal.\n\n{arg string|0}\n\n\n\nAls je geen verdere commerciële\nberichten van Nintendo meer wilt\nontvangen, selecteer dan de knop Afmelden\nin de rechterbovenhoek van het scherm.\n\nJe kunt je afmelden voor:\n(1) Berichten van het Mario\nKart Kanaal, of\n(2) Berichten van alle Kanalen\nen spellen.",
+        "string": "Dit is een bericht van het\nMario Kart-Kanaal.\n\n{arg string|0}\n\n\n\nAls je geen verdere commerciële\nberichten van Nintendo meer wilt\nontvangen, selecteer dan de afmeldingsknop\nrechtsboven op het scherm.\n\nJe kunt je afmelden voor:\n(1) berichten van het Mario\nKart-Kanaal, of\n(2) berichten van alle kanalen\nen spellen.",
     },
     "8491": {
         "font": "regular",
-        "string": "Dit is een bericht van het\nMario Kart Kanaal.\n\n{arg string|0}\n\n\n\nAls je geen verdere commerciële\nberichten van Nintendo meer wilt\nontvangen, selecteer dan de knop Afmelden\nin de rechterbovenhoek van het scherm.\n\nJe kunt je afmelden voor:\n(1) Berichten van het Mario\nKart Kanaal, of\n(2) Berichten van alle Kanalen\nen spellen.",
+        "string": "Dit is een bericht van het\nMario Kart-Kanaal.\n\n{arg string|0}\n\n\n\nAls je geen verdere commerciële\nberichten van Nintendo meer wilt\nontvangen, selecteer dan de afmeldingsknop\nrechtsboven op het scherm.\n\nJe kunt je afmelden voor:\n(1) berichten van het Mario\nKart-Kanaal, of\n(2) berichten van alle kanalen\nen spellen.",
     },
     "8492": {
         "font": "regular",
-        "string": "Je hebt een Vriendenuitnodiging\nontvangen van\n%ls!\n\nMario Kart Wii\nVriendencode: %04d-%04d-%04d\n\nDoor elkaar's Vriendencode te\nregistreren, kunnen jullie Mario Kart\nWii samenspelen via Nintendo Wi-Fi\nConnectie.\n\nAls je Mario Kart Wii én\nhet Mario Kart Kanaal in je Wii Menu\nhebt, kun je de START\nknop aan de rechterkant selecteren\nom te bevestigen.\n\nVeel plezier!",
+        "string": "Je hebt een vriendenuitnodiging\nontvangen van\n%ls!\n\nMario Kart Wii\nVriendencode: %04d-%04d-%04d\n\nDoor elkaars vriendencode te\nregistreren, kunnen jullie Mario Kart\nWii samen spelen via de Nintendo Wi-Fi\nConnectie.\n\nAls je Mario Kart Wii én\nhet Mario Kart-Kanaal in je Wii-menu\nhebt, kun je de START-knop\naan de rechterkant selecteren\nom te bevestigen.\n\nVeel plezier!",
     },
     "8493": {
         "font": "regular",
-        "string": "%ls heeft je\nVriendenuitnodiging geaccepteerd!\n\nMario Kart Wii\nVriendencode: %04d-%04d-%04d\n\nNotitie: Als er ruimte is op je Vrienden-\nrooster, zal deze Vriendencode\nautomatisch geregistreerd worden.\n\nAls je het Mario Kart Kanaal op je Wii Menu\nhebt, kun je de START knop aan\nde rechterkant indrukken om de\nVriendencode te bevestigen.\n\nVeel plezier!",
+        "string": "%ls heeft je\nvriendenuitnodiging geaccepteerd!\n\nMario Kart Wii\nVriendcode: %04d-%04d-%04d\n\nOpmerking: Als er ruimte is\njouw vriendenlijst, zal deze\nautomatisch geregistreerd worden.\n\nAls je het Mario Kart-Kanaal op je Wii Menu\nhebt, kun je de START-knop aan\nde rechterkant indrukken om de\nvriendcode te bevestigen.\n\nVeel plezier!",
     },
     "8494": {
         "font": "regular",
