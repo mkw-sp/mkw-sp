@@ -56,7 +56,7 @@ void IOSKeyboard_DumpEvent(const IOSKeyboard_Event *ev) {
 
     OSReport("MessageType: %u %s\n", ev->message,
             ev->message < 3 ? messages[ev->message] : "INVALID");
-    OSReport("Unknown: %u\n", messages[ev->unknown]);
+    OSReport("Unknown: %s\n", messages[ev->unknown]);
     OSReport("Modifiers:\n");
     if (ev->modifiers.left_control)
         OSReport("- Left control\n");

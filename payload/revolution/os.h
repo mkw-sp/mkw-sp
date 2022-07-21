@@ -78,7 +78,7 @@ typedef struct {
 
 void OSTicksToCalendarTime(OSTime ticks, OSCalendarTime *td);
 
-void OSReport(const char *msg, ...);
+__attribute((format(printf, 1, 2))) void OSReport(const char *msg, ...);
 void OSFatal(GXColor fg, GXColor bg, const char *msg);
 
 const char* OSGetAppGamename(void);

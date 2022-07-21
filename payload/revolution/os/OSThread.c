@@ -17,10 +17,10 @@ BOOL OSCreateThread_RandomizeThreadStackPointer(OSThread *thread, void *(*func)(
 
     if ((SP_DEBUG_LEVEL & SP_DEBUG_STACK_RANDOMIZE) == SP_DEBUG_STACK_RANDOMIZE) {
         OSReport("--------------------------------\n");
-        OSReport("[MEM] OSCreateThread: 0x%08X"  "\n", thread);
-        OSReport("[MEM] old_stack_base: 0x%08X"  "\n", old_stack_base);
+        OSReport("[MEM] OSCreateThread: %p"      "\n", (void *)thread);
+        OSReport("[MEM] old_stack_base: %p"      "\n", (void *)old_stack_base);
         OSReport("[MEM] old_stack_size: 0x%08X"  "\n", old_stack_size);
-        OSReport("[MEM] new_stack_base: 0x%08X"  "\n", new_stack_base);
+        OSReport("[MEM] new_stack_base: %p"      "\n", (void *)new_stack_base);
         OSReport("[MEM] new_stack_size: 0x%08X"  "\n", new_stack_size);
         OSReport("--------------------------------\n");
     }
