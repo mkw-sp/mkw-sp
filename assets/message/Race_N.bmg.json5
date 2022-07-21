@@ -153,7 +153,7 @@
     },
     "1105": {
         "font": "regular",
-        "string": "Gefeliciteerd!\nJe hebt het record van \z{802,120000} verslagen!\n\nWil je jouw geest naar\n\z{802,120000} versturen?",
+        "string": "Gefeliciteerd!\nJe hebt het record van {arg player|0} verslagen!\n\nWil je jouw geest naar\n{arg player|0} versturen?",
     },
     "1106": {
         "font": "regular",
