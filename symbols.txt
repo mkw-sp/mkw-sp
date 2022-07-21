@@ -885,6 +885,7 @@
 0x8070fec8 _ZN5Sound16ItemMusicManager7resolveEv
 0x80711ac4 _ZN5Sound16RaceSoundManager10transitionEj
 0x80716170 Snd_80716170
+0x80719044 Snd_80719044
 0x8071e270 JugemManager_createInstance
 0x8071e480 JugemManager_createJugems
 0x8071e638 JugemManager_init

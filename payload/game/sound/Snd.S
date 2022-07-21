@@ -70,3 +70,10 @@ PATCH_BL_START(Snd_80716170, 0xd0)
     cmpwi r3, 0x0 // Original instruction again
     b Snd_80716170 + 0xd4
 PATCH_BL_END(Snd_80716170, 0xd0)
+
+
+
+PATCH_REPLACE_START(Snd_80719044, 0x8f0)
+    // Remove 1st lap check. This fixes TF with dynamic speedup.
+    nop
+PATCH_REPLACE_END(Snd_80719044, 0x8f0)
