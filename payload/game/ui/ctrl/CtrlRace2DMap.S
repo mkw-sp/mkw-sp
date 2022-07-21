@@ -1,13 +1,34 @@
 #include <Common.S>
 
-PATCH_REPLACE_START(CtrlRace2DMap_load, 0x44)
-    // Always set the focused player icon scale to 0.8
-    lfs f1, 0x10 (r31)
-    stfs f1, 0x1c (r31)
+PATCH_B_START(CtrlRace2DMap_load, 0x38)
+    // Reset the unfocused icon and shadow scales
+    lis r3, 0x3f19
+    ori r3, r3, 0x999a
+    stw r3, 0x18 (r31)
+    lis r3, 0x3f26
+    ori r3, r3, 0x6666
+    stw r3, 0x1c (r31)
 
-    // Keep the non-focused one at 0.6
-    b 0xc
-PATCH_REPLACE_END(CtrlRace2DMap_load, 0x44)
+    cmpwi r0, 0x2 // Original instruction
+    b CtrlRace2DMap_load + 0x3c
+PATCH_B_END(CtrlRace2DMap_load, 0x38)
+
+PATCH_BL_START(CtrlRace2DMap_load, 0x48)
+    lfs f1, 0x10 (r31) // Original instruction
+
+    mflr r26
+    mr r25, r5
+    bl SaveManager_GetVanillaMode
+    mr r5, r25
+    mtlr r26
+
+    // If vanilla mode is enabled, change the unfocused icon and shadow scales.
+    cmpwi r3, 0x0
+    bnelr
+
+    // Otherwise, skip it.
+    b CtrlRace2DMap_load + 0x58
+PATCH_BL_END(CtrlRace2DMap_load, 0x48)
 
 PATCH_BL_START(CtrlRace2DMapCharacter_initSelf, 0x294)
     lwz r4, 0x20 + 0x8 + 0x10 (r3) // Get the player type
@@ -77,12 +98,7 @@ PATCH_B_START(CtrlRace2DMapCharacter_calcTransform, 0x298)
     b CtrlRace2DMapCharacter_calcTransform + 0x29c
 PATCH_B_END(CtrlRace2DMapCharacter_calcTransform, 0x298)
 
-// Always hide shadows
-PATCH_REPLACE_START(CtrlRace2DMapCharacter_calcTransform, 0x5b4)
-    stb r0, 0xbb (r3)
+// Fix copy-pasting mistake
+PATCH_REPLACE_START(CtrlRace2DMapCharacter_calcTransform, 0x5bc)
     lwz r3, 0x1c0 (r28)
-    lbz r0, 0xbb (r3)
-    rlwinm r0, r0, 0, 18, 30
-    stb r0, 0xbb (r3)
-    b 0x2c
-PATCH_REPLACE_END(CtrlRace2DMapCharacter_calcTransform, 0x5b4)
+PATCH_REPLACE_END(CtrlRace2DMapCharacter_calcTransform, 0x5bc)
