@@ -79,38 +79,6 @@
         "font": "regular",
         "string": "ゴーストのならびかえ",
     },
-    "10020": {
-        "font": "regular",
-        "string": "はやい順",
-    },
-    "10021": {
-        "font": "regular",
-        "string": "おそい順",
-    },
-    "10022": {
-        "font": "regular",
-        "string": "新しい順",
-    },
-    "10023": {
-        "font": "regular",
-        "string": "古い順",
-    },
-    "10024": {
-        "font": "regular",
-        "string": "ゴーストをはやい順からおそい順に  ならびかえます",
-    },
-    "10025": {
-        "font": "regular",
-        "string": "ゴーストをおそい順からはやい順に  ならびかえます",
-    },
-    "10026": {
-        "font": "regular",
-        "string": "ゴーストを新しい順から古い順に  ならびかえます",
-    },
-    "10027": {
-        "font": "regular",
-        "string": "ゴーストを古い順から新しい順に  ならびかえます",
-    },
     "10028": {
         "font": "regular",
         "string": "タグの表示",

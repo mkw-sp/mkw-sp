@@ -79,38 +79,6 @@
         "font": "regular",
         "string": "Ghost Sorting",
     },
-    "10020": {
-        "font": "regular",
-        "string": "Fastest",
-    },
-    "10021": {
-        "font": "regular",
-        "string": "Slowest",
-    },
-    "10022": {
-        "font": "regular",
-        "string": "Newest",
-    },
-    "10023": {
-        "font": "regular",
-        "string": "Oldest",
-    },
-    "10024": {
-        "font": "regular",
-        "string": "Sort ghosts from fastest to slowest.",
-    },
-    "10025": {
-        "font": "regular",
-        "string": "Sort ghosts from slowest to fastest.",
-    },
-    "10026": {
-        "font": "regular",
-        "string": "Sort ghosts from newest to oldest.",
-    },
-    "10027": {
-        "font": "regular",
-        "string": "Sort ghosts from oldest to newest.",
-    },
     "10028": {
         "font": "regular",
         "string": "Tag Visibility",
@@ -390,5 +358,229 @@
     "10125": {
         "font": "regular",
         "string": "Always show the position tracker.",
+    },
+    "10126": {
+        "font": "regular",
+        "string": "Sound",
+    },
+    "10127": {
+        "font": "regular",
+        "string": "Item Music",
+    },
+    "10128": {
+        "font": "regular",
+        "string": "None",
+    },
+    "10129": {
+        "font": "regular",
+        "string": "Shocked/Squashed Only",
+    },
+    "10130": {
+        "font": "regular",
+        "string": "All",
+    },
+    "10131": {
+        "font": "regular",
+        "string": "Do not let items affect the music.",
+    },
+    "10132": {
+        "font": "regular",
+        "string": "Only apply the shocked/squashed music effect.",
+    },
+    "10133": {
+        "font": "regular",
+        "string": "Let Stars, Mega Mushrooms and Lightnings affect the music.",
+    },
+    "10134": {
+        "font": "regular",
+        "string": "Last Lap Jingle",
+    },
+    "10135": {
+        "font": "regular",
+        "string": "Gameplay Only",
+    },
+    "10136": {
+        "font": "regular",
+        "string": "Always",
+    },
+    "10137": {
+        "font": "regular",
+        "string": "Use the final lap jingle for gameplay only.",
+    },
+    "10138": {
+        "font": "regular",
+        "string": "Use the final lap jingle for gameplay and replays.",
+    },
+    "10139": {
+        "font": "regular",
+        "string": "Last Lap Speedup",
+    },
+    "10140": {
+        "font": "regular",
+        "string": "None",
+    },
+    "10141": {
+        "font": "regular",
+        "string": "Static",
+    },
+    "10142": {
+        "font": "regular",
+        "string": "Dynamic",
+    },
+    "10143": {
+        "font": "regular",
+        "string": "Use the \"_N\" BRSTM on the final lap.",
+    },
+    "10144": {
+        "font": "regular",
+        "string": "Use the \"_F\" BRSTM on the final lap.",
+    },
+    "10145": {
+        "font": "regular",
+        "string": "Generate final lap music on the fly.",
+    },
+    "10146": {
+        "font": "regular",
+        "string": "Storage Benchmark",
+    },
+    "10147": {
+        "font": "regular",
+        "string": "What device do you want to benchmark?",
+    },
+    "10148": {
+        "font": "regular",
+        "string": "Benchmarking the {arg message|0} storage...\n{arg message|1}",
+    },
+    "10149": {
+        "font": "regular",
+        "string": "The {arg message|0} storage benchmark succeeded.\n{arg integer|0 0} KiB: R {arg string|0} MiB/s - W {arg string|1} MiB/s\n{arg integer|1 0} KiB: R {arg string|2} MiB/s - W {arg string|3} MiB/s\n{arg integer|2 0} KiB: R {arg string|4} MiB/s - W {arg string|5} MiB/s\n{arg integer|3 0} KiB: R {arg string|6} MiB/s - W {arg string|7} MiB/s",
+    },
+    "10150": {
+        "font": "regular",
+        "string": "The {arg message|0} storage benchmark failed!",
+    },
+    "10151": {
+        "font": "regular",
+        "string": "Initializing...",
+    },
+    "10152": {
+        "font": "regular",
+        "string": "Reading {arg integer|0 0} KiB chunks...",
+    },
+    "10153": {
+        "font": "regular",
+        "string": "Writing {arg integer|0 0} KiB chunks...",
+    },
+    "10154": {
+        "font": "regular",
+        "string": "SD card",
+    },
+    "10155": {
+        "font": "regular",
+        "string": "SD card",
+    },
+    "10156": {
+        "font": "regular",
+        "string": "USB",
+    },
+    "10157": {
+        "font": "regular",
+        "string": "USB",
+    },
+    "10158": {
+        "font": "regular",
+        "string": "Network",
+    },
+    "10159": {
+        "font": "regular",
+        "string": "network",
+    },
+    "10160": {
+        "font": "regular",
+        "string": "Missions",
+    },
+    "10161": {
+        "font": "regular",
+        "string": "Play missions with various objectives.",
+    },
+    "10162": {
+        "font": "regular",
+        "string": "Race {arg integer|0 0} {arg cond messages|0 10164 10165}",
+    },
+    "10163": {
+        "font": "regular",
+        "string": "Watch {arg integer|0 0} {arg cond messages|0 10164 10165}",
+    },
+    "10164": {
+        "font": "regular",
+        "string": "Ghost",
+    },
+    "10165": {
+        "font": "regular",
+        "string": "Ghosts",
+    },
+    "10166": {
+        "font": "regular",
+        "string": "Vanilla Mode",
+    },
+    "10167": {
+        "font": "regular",
+        "string": "Disable",
+    },
+    "10168": {
+        "font": "regular",
+        "string": "Enable",
+    },
+    "10169": {
+        "font": "regular",
+        "string": "Allow all MKW-SP changes.",
+    },
+    "10170": {
+        "font": "regular",
+        "string": "Disallow most MKW-SP changes.",
+    },
+    "10171": {
+        "font": "regular",
+        "string": "Time",
+    },
+    "10172": {
+        "font": "regular",
+        "string": "Date",
+    },
+    "10173": {
+        "font": "regular",
+        "string": "Flap",
+    },
+    "10174": {
+        "font": "regular",
+        "string": "Lap 2 Pace",
+    },
+    "10175": {
+        "font": "regular",
+        "string": "Lap 3 Pace",
+    },
+    "10176": {
+        "font": "regular",
+        "string": "Sort ghosts by their finish time.",
+    },
+    "10177": {
+        "font": "regular",
+        "string": "Sort ghosts by their creation date.",
+    },
+    "10178": {
+        "font": "regular",
+        "string": "Sort ghosts by their fastest lap.",
+    },
+    "10179": {
+        "font": "regular",
+        "string": "Sort ghosts by their pace into lap 2.",
+    },
+    "10180": {
+        "font": "regular",
+        "string": "Sort ghosts by their pace into lap 3.",
+    },
+    "10181": {
+        "font": "regular",
+        "string": "The {arg message|0} storage benchmark succeeded.\nRank: {arg message|1}\n{arg integer|0 0} KiB: R {arg string|0} MiB/s - W {arg string|1} MiB/s\n{arg integer|1 0} KiB: R {arg string|2} MiB/s - W {arg string|3} MiB/s\n{arg integer|2 0} KiB: R {arg string|4} MiB/s - W {arg string|5} MiB/s\n{arg integer|3 0} KiB: R {arg string|6} MiB/s - W {arg string|7} MiB/s",
     },
 }

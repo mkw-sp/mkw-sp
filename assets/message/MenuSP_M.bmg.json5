@@ -79,38 +79,6 @@
         "font": "regular",
         "string": "Orden de fantasmas",
     },
-    "10020": {
-        "font": "regular",
-        "string": "Más rápido",
-    },
-    "10021": {
-        "font": "regular",
-        "string": "Más lento",
-    },
-    "10022": {
-        "font": "regular",
-        "string": "Más nuevo",
-    },
-    "10023": {
-        "font": "regular",
-        "string": "Más antiguo",
-    },
-    "10024": {
-        "font": "regular",
-        "string": "Ordenar los fantasmas de más rápido a más lento.",
-    },
-    "10025": {
-        "font": "regular",
-        "string": "Ordenar los fantasmas de más lento a más rápido.",
-    },
-    "10026": {
-        "font": "regular",
-        "string": "Ordenar los fantasmas de más nuevo a más antiguo.",
-    },
-    "10027": {
-        "font": "regular",
-        "string": "Ordenar los fantasmas de más antiguo a más nuevo.",
-    },
     "10028": {
         "font": "regular",
         "string": "Visibilidad de etiquetas de fantasma",
@@ -446,5 +414,229 @@
     "10125": {
         "font": "regular",
         "string": "Siempre mostrar el rastreador de posición.",
+    },
+    "10126": {
+        "font": "regular",
+        "string": "Sonido",
+    },
+    "10127": {
+        "font": "regular",
+        "string": "Música de objetos",
+    },
+    "10128": {
+        "font": "regular",
+        "string": "Ninguno",
+    },
+    "10129": {
+        "font": "regular",
+        "string": "Solo electrocutado/aplastado",
+    },
+    "10130": {
+        "font": "regular",
+        "string": "Todos",
+    },
+    "10131": {
+        "font": "regular",
+        "string": "Ningún objeto afectará a la música del juego.",
+    },
+    "10132": {
+        "font": "regular",
+        "string": "Solo aplicar los efectos a la música al ser electrocutado o aplastado.",
+    },
+    "10133": {
+        "font": "regular",
+        "string": "Estrellas, Mega Champiñones y Rayos afectarán a la música del juego.",
+    },
+    "10134": {
+        "font": "regular",
+        "string": "Sonido de última vuelta",
+    },
+    "10135": {
+        "font": "regular",
+        "string": "Solo durante la carrera",
+    },
+    "10136": {
+        "font": "regular",
+        "string": "Siempre",
+    },
+    "10137": {
+        "font": "regular",
+        "string": "Usar un sonido diferente para la última vuelta (solo durante la carrera).",
+    },
+    "10138": {
+        "font": "regular",
+        "string": "Usar un sonido diferente para la última vuelta (durante la carrera y en repeticiones).",
+    },
+    "10139": {
+        "font": "regular",
+        "string": "Aceleración en la última vuelta",
+    },
+    "10140": {
+        "font": "regular",
+        "string": "Ninguna",
+    },
+    "10141": {
+        "font": "regular",
+        "string": "Estática",
+    },
+    "10142": {
+        "font": "regular",
+        "string": "Dinámica",
+    },
+    "10143": {
+        "font": "regular",
+        "string": "Usar el BRSTM \"_N\" en la última vuelta.",
+    },
+    "10144": {
+        "font": "regular",
+        "string": "Usar el BRSTM \"_F\" en la última vuelta.",
+    },
+    "10145": {
+        "font": "regular",
+        "string": "Generar música de última vuelta automáticamente.",
+    },
+    "10146": {
+        "font": "regular",
+        "string": "Prueba de almacenamiento",
+    },
+    "10147": {
+        "font": "regular",
+        "string": "¿Qué dispositivo quieres probar?",
+    },
+    "10148": {
+        "font": "regular",
+        "string": "Evaluando el almacenamiento en la {arg message|0}...\n{arg message|1}",
+    },
+    "10149": {
+        "font": "regular",
+        "string": "Se ha realizado con éxito la prueba de\nalmacenamiento en la {arg message|0}.\n(L = Lectura, E = Escritura)\n{arg integer|0 0} KiB: L {arg string|0} MiB/s - E {arg string|1} MiB/s\n{arg integer|1 0} KiB: L {arg string|2} MiB/s - E {arg string|3} MiB/s\n{arg integer|2 0} KiB: L {arg string|4} MiB/s - E {arg string|5} MiB/s\n{arg integer|3 0} KiB: L {arg string|6} MiB/s - E {arg string|7} MiB/s",
+    },
+    "10150": {
+        "font": "regular",
+        "string": "Ha ocurrido un error al realizar la prueba\nde almacenamiento en la {arg message|0}.",
+    },
+    "10151": {
+        "font": "regular",
+        "string": "Inicializando...",
+    },
+    "10152": {
+        "font": "regular",
+        "string": "Leyendo bloques de {arg integer|0 0} KiB...",
+    },
+    "10153": {
+        "font": "regular",
+        "string": "Escribiendo bloques de {arg integer|0 0} KiB...",
+    },
+    "10154": {
+        "font": "regular",
+        "string": "Tarjeta SD",
+    },
+    "10155": {
+        "font": "regular",
+        "string": "tarjeta SD",
+    },
+    "10156": {
+        "font": "regular",
+        "string": "Memoria USB",
+    },
+    "10157": {
+        "font": "regular",
+        "string": "memoria USB",
+    },
+    "10158": {
+        "font": "regular",
+        "string": "Red",
+    },
+    "10159": {
+        "font": "regular",
+        "string": "red",
+    },
+    "10160": {
+        "font": "regular",
+        "string": "Misiones",
+    },
+    "10161": {
+        "font": "regular",
+        "string": "¡Completa misiones con varios objetivos!",
+    },
+    "10162": {
+        "font": "regular",
+        "string": "Correr contra {arg integer|0 0} {arg cond messages|0 10164 10165}",
+    },
+    "10163": {
+        "font": "regular",
+        "string": "Ver {arg integer|0 0} {arg cond messages|0 10164 10165}",
+    },
+    "10164": {
+        "font": "regular",
+        "string": "fantasma",
+    },
+    "10165": {
+        "font": "regular",
+        "string": "fantasmas",
+    },
+    "10166": {
+        "font": "regular",
+        "string": "Modo original",
+    },
+    "10167": {
+        "font": "regular",
+        "string": "Desactivar",
+    },
+    "10168": {
+        "font": "regular",
+        "string": "Activar",
+    },
+    "10169": {
+        "font": "regular",
+        "string": "Activar todos los cambios de MKW-SP.",
+    },
+    "10170": {
+        "font": "regular",
+        "string": "Desactivar la mayoría de cambios de MKW-SP.",
+    },
+    "10171": {
+        "font": "regular",
+        "string": "Tiempo",
+    },
+    "10172": {
+        "font": "regular",
+        "string": "Fecha",
+    },
+    "10173": {
+        "font": "regular",
+        "string": "Mejor vuelta",
+    },
+    "10174": {
+        "font": "regular",
+        "string": "Vuelta 1",
+    },
+    "10175": {
+        "font": "regular",
+        "string": "Vueltas 1 y 2",
+    },
+    "10176": {
+        "font": "regular",
+        "string": "Ordenar fantasmas por el tiempo de finalización.",
+    },
+    "10177": {
+        "font": "regular",
+        "string": "Ordenar fantasmas por la fecha de creación.",
+    },
+    "10178": {
+        "font": "regular",
+        "string": "Ordenar fantasmas por la vuelta más rápida.",
+    },
+    "10179": {
+        "font": "regular",
+        "string": "Ordenar fantasmas por su tiempo de primera vuelta.",
+    },
+    "10180": {
+        "font": "regular",
+        "string": "Ordenar fantasmas por su tiempo de las dos primeras vueltas.",
+    },
+    "10181": {
+        "font": "regular",
+        "string": "Se ha realizado con éxito la prueba de\nalmacenamiento en la {arg message|0}.\nClase: {arg message|1}\n(L = Lectura, E = Escritura)\n{arg integer|0 0} KiB: L {arg string|0} MiB/s - E {arg string|1} MiB/s\n{arg integer|1 0} KiB: L {arg string|2} MiB/s - E {arg string|3} MiB/s\n{arg integer|2 0} KiB: L {arg string|4} MiB/s - E {arg string|5} MiB/s\n{arg integer|3 0} KiB: L {arg string|6} MiB/s - E {arg string|7} MiB/s",
     },
 }

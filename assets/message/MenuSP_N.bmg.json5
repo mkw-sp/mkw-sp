@@ -17,7 +17,7 @@
     },
     "10004": {
         "font": "regular",
-        "string": "HUD Labels",
+        "string": "HUD-tekst",
     },
     "10005": {
         "font": "regular",
@@ -29,15 +29,15 @@
     },
     "10007": {
         "font": "regular",
-        "string": "Verberg HUD controle labels.",
+        "string": "Verberg HUD-tekst.",
     },
     "10008": {
         "font": "regular",
-        "string": "Toon HUD controle labels.",
+        "string": "Toon HUD-tekst.",
     },
     "10009": {
         "font": "regular",
-        "string": "16:9 Gezichtsveld",
+        "string": "16:9-gezichtsveld",
     },
     "10010": {
         "font": "regular",
@@ -49,11 +49,11 @@
     },
     "10012": {
         "font": "regular",
-        "string": "Gebruik het standaard gezichtsveld in 16:9 modus.",
+        "string": "Gebruik het standaard gezichtsveld in 16:9-modus.",
     },
     "10013": {
         "font": "regular",
-        "string": "Gebruik het wijdere 4:3 gezichtsveld in 16:9 modus.",
+        "string": "Gebruik het wijdere 4:3-gezichtsveld in 16:9-modus.",
     },
     "10014": {
         "font": "regular",
@@ -69,7 +69,7 @@
     },
     "10017": {
         "font": "regular",
-        "string": "Gebruik karakters als minimapiconen.",
+        "string": "Gebruik coureurs als minimapiconen.",
     },
     "10018": {
         "font": "regular",
@@ -79,41 +79,9 @@
         "font": "regular",
         "string": "Geestsortering",
     },
-    "10020": {
-        "font": "regular",
-        "string": "Snelst",
-    },
-    "10021": {
-        "font": "regular",
-        "string": "Langzaamst",
-    },
-    "10022": {
-        "font": "regular",
-        "string": "Nieuwst",
-    },
-    "10023": {
-        "font": "regular",
-        "string": "Oudst",
-    },
-    "10024": {
-        "font": "regular",
-        "string": "Sorteer geesten van snel naar langzaam.",
-    },
-    "10025": {
-        "font": "regular",
-        "string": "Sorteer geesten van langzaam naar snel.",
-    },
-    "10026": {
-        "font": "regular",
-        "string": "Sorteer geesten van nieuw naar oud.",
-    },
-    "10027": {
-        "font": "regular",
-        "string": "Sorteer geesten van oud naar nieuw.",
-    },
     "10028": {
         "font": "regular",
-        "string": "Tag-Zichtbaarheid",
+        "string": "Tag-zichtbaarheid",
     },
     "10029": {
         "font": "regular",
@@ -137,11 +105,11 @@
     },
     "10034": {
         "font": "regular",
-        "string": "Geef alle tags van de geesten weer.",
+        "string": "Geef de tags van alle geesten weer.",
     },
     "10035": {
         "font": "regular",
-        "string": "Tag-Inhoud",
+        "string": "Tag-inhoud",
     },
     "10036": {
         "font": "regular",
@@ -169,7 +137,7 @@
     },
     "10042": {
         "font": "regular",
-        "string": "Solide Geesten",
+        "string": "Solide geesten",
     },
     "10043": {
         "font": "regular",
@@ -185,11 +153,11 @@
     },
     "10046": {
         "font": "regular",
-        "string": "Speel Tijdraces met deze regels.",
+        "string": "Speel tijdraces met deze regels.",
     },
     "10053": {
         "font": "regular",
-        "string": "Verkorte Tijd",
+        "string": "Verkorte tijd",
     },
     "10054": {
         "font": "regular",
@@ -197,7 +165,7 @@
     },
     "10055": {
         "font": "regular",
-        "string": "Gecko-codes zijn niet ondersteund en laten de game crashen. Druk op de A-knop als je weet wat je doet en reporteer GEEN bugs.",
+        "string": "Gecko-codes zijn NIET ONDERSTEUND en kunnen het spel laten crashen. Druk op de A-knop als je weet wat je doet en rapporteer GEEN bugs.",
     },
     "10056": {
         "font": "regular",
@@ -261,15 +229,15 @@
     },
     "10074": {
         "font": "regular",
-        "string": "Verander opties of jouw Mii!",
+        "string": "Verander instellingen of jouw Mii!",
     },
     "10075": {
         "font": "regular",
-        "string": "Er is iets fout gegaan bij het lezen of schrijven van de save",
+        "string": "Er is iets fout gegaan bij het lezen of schrijven van de spelgegevens.",
     },
     "10077": {
         "font": "regular",
-        "string": "Verander opties voor dit rijbewijs.",
+        "string": "Verander instellingen voor dit rijbewijs.",
     },
     "10078": {
         "font": "regular",
@@ -289,7 +257,7 @@
     },
     "10082": {
         "font": "regular",
-        "string": "MKW-SP Opties",
+        "string": "MKW-SP-instellingen",
     },
     "10083": {
         "font": "regular",
@@ -309,15 +277,15 @@
     },
     "10090": {
         "font": "regular",
-        "string": "Wanneer het MKW-SP-Kanaal is geïnstalleerd kan MKW-SP worden opgestart via het Wii-Menu en hoeft dat niet meer via het Homebrew-Kanaal of een andere exploit. Updates worden synchroon gehouden tussen de twee.",
+        "string": "Wanneer het MKW-SP-Kanaal is geïnstalleerd kan MKW-SP worden opgestart via het Wii-menu en hoeft dat niet meer via het Homebrew-Kanaal of een andere exploit. Updates worden synchroon gehouden tussen de twee.",
     },
     "10091": {
         "font": "regular",
-        "string": "Wil jij het MKW-SP-Kanaal installeren?",
+        "string": "Wil je het MKW-SP-Kanaal installeren?",
     },
     "10092": {
         "font": "regular",
-        "string": "Een update voor het MKW-SP-Kanaal is beschikbaar. Wil jij deze installeren?",
+        "string": "Een update voor het MKW-SP-Kanaal is beschikbaar. Wil je deze installeren?",
     },
     "10093": {
         "font": "regular",
@@ -365,7 +333,7 @@
     },
     "10104": {
         "font": "regular",
-        "string": "De nieuwste versie van MKW-SP {arg string|0} is al geïnstalleerd.",
+        "string": "De nieuwste versie van MKW-SP ({arg string|0}) is al geïnstalleerd.",
     },
     "10105": {
         "font": "regular",
@@ -373,7 +341,7 @@
     },
     "10106": {
         "font": "regular",
-        "string": "Wil jij MKW-SP updaten naar {arg string|0}?\nEr zijn {arg string|1} MiB ({arg integer|0 0} blokken) nodig in het Wii-Systeemgeheugen.",
+        "string": "Wil je MKW-SP updaten naar {arg string|0}?\nEr zijn {arg string|1} MiB ({arg integer|0 0} blokken) nodig in het Wii-systeemgeheugen.",
     },
     "10107": {
         "font": "regular",
@@ -389,7 +357,7 @@
     },
     "10110": {
         "font": "regular",
-        "string": "Wil jij MKW-SP nu opnieuw opstarten?",
+        "string": "Wil je MKW-SP nu opnieuw opstarten?",
     },
     "10111": {
         "font": "regular",
@@ -441,10 +409,234 @@
     },
     "10124": {
         "font": "regular",
-        "string": "Geef alleen de positietracker in GPs en VS races weer.",
+        "string": "Geef de positietracker alleen weer in GPs en VS races.",
     },
     "10125": {
         "font": "regular",
         "string": "Geef de positietracker altijd weer.",
+    },
+    "10126": {
+        "font": "regular",
+        "string": "Geluid",
+    },
+    "10127": {
+        "font": "regular",
+        "string": "Voorwerpmuziek",
+    },
+    "10128": {
+        "font": "regular",
+        "string": "Geen",
+    },
+    "10129": {
+        "font": "regular",
+        "string": "Alleen klein/plat",
+    },
+    "10130": {
+        "font": "regular",
+        "string": "Alles",
+    },
+    "10131": {
+        "font": "regular",
+        "string": "Laat voorwerpen de muziek niet veranderen.",
+    },
+    "10132": {
+        "font": "regular",
+        "string": "Pas alleen de kleine/platte muziekvariatie toe.",
+    },
+    "10133": {
+        "font": "regular",
+        "string": "Laat Sterren, Megapaddenstoelen en Bliksemschichten de muziek veranderen.",
+    },
+    "10134": {
+        "font": "regular",
+        "string": "Laaste ronde-jingle",
+    },
+    "10135": {
+        "font": "regular",
+        "string": "Alleen gameplay",
+    },
+    "10136": {
+        "font": "regular",
+        "string": "Altijd",
+    },
+    "10137": {
+        "font": "regular",
+        "string": "Gebruik de laatste ronde-jingle voor alleen gameplay.",
+    },
+    "10138": {
+        "font": "regular",
+        "string": "Gebruik de laatste ronde-jingle voor gameplay en herhalingen.",
+    },
+    "10139": {
+        "font": "regular",
+        "string": "Laatste ronde-versnelling",
+    },
+    "10140": {
+        "font": "regular",
+        "string": "Geen",
+    },
+    "10141": {
+        "font": "regular",
+        "string": "Standaard",
+    },
+    "10142": {
+        "font": "regular",
+        "string": "Dynamisch",
+    },
+    "10143": {
+        "font": "regular",
+        "string": "Gebruik de \"_N\" BRSTM tijdens de laatste ronde.",
+    },
+    "10144": {
+        "font": "regular",
+        "string": "Gebruik de \"_F\" BRSTM tijdens de laatste ronde.",
+    },
+    "10145": {
+        "font": "regular",
+        "string": "Genereer de laaste ronde-muziek automatisch.",
+    },
+    "10146": {
+        "font": "regular",
+        "string": "Opslag-benchmark",
+    },
+    "10147": {
+        "font": "regular",
+        "string": "Op welke apparatuur wil je een benchmark uitvoeren?",
+    },
+    "10148": {
+        "font": "regular",
+        "string": "Benchmark aan het uitvoeren op de {arg message|0}...\n{arg message|1}",
+    },
+    "10149": {
+        "font": "regular",
+        "string": "De benchmark op de {arg message|0} is gelukt.\n{arg integer|0 0} KiB: Lz. {arg string|0} MiB/s - Schr. {arg string|1} MiB/s\n{arg integer|1 0} KiB: Lz. {arg string|2} MiB/s - Schr. {arg string|3} MiB/s\n{arg integer|2 0} KiB: Lz. {arg string|4} MiB/s - Schr. {arg string|5} MiB/s\n{arg integer|3 0} KiB: Lz. {arg string|6} MiB/s - Schr. {arg string|7} MiB/s",
+    },
+    "10150": {
+        "font": "regular",
+        "string": "De benchmark op de {arg message|0} is mislukt!",
+    },
+    "10151": {
+        "font": "regular",
+        "string": "Initialiseren...",
+    },
+    "10152": {
+        "font": "regular",
+        "string": "{arg integer|0 0} KiB chunks aan het lezen...",
+    },
+    "10153": {
+        "font": "regular",
+        "string": "{arg integer|0 0} KiB chunks aan het schrijven...",
+    },
+    "10154": {
+        "font": "regular",
+        "string": "SD-kaart",
+    },
+    "10155": {
+        "font": "regular",
+        "string": "SD-kaartopslag",
+    },
+    "10156": {
+        "font": "regular",
+        "string": "USB",
+    },
+    "10157": {
+        "font": "regular",
+        "string": "USB-opslag",
+    },
+    "10158": {
+        "font": "regular",
+        "string": "Netwerk",
+    },
+    "10159": {
+        "font": "regular",
+        "string": "netwerkopslag",
+    },
+    "10160": {
+        "font": "regular",
+        "string": "Missies",
+    },
+    "10161": {
+        "font": "regular",
+        "string": "Speel missies met verschillende uitdagingen.",
+    },
+    "10162": {
+        "font": "regular",
+        "string": "Race {arg integer|0 0} {arg cond messages|0 10164 10165}",
+    },
+    "10163": {
+        "font": "regular",
+        "string": "Bekijk {arg integer|0 0} {arg cond messages|0 10164 10165}",
+    },
+    "10164": {
+        "font": "regular",
+        "string": "geest",
+    },
+    "10165": {
+        "font": "regular",
+        "string": "geesten",
+    },
+    "10166": {
+        "font": "regular",
+        "string": "Normale modus",
+    },
+    "10167": {
+        "font": "regular",
+        "string": "Uitschakelen",
+    },
+    "10168": {
+        "font": "regular",
+        "string": "Inschakelen",
+    },
+    "10169": {
+        "font": "regular",
+        "string": "Sta alle MKW-SP-veranderingen toe.",
+    },
+    "10170": {
+        "font": "regular",
+        "string": "Sta de meeste MKW-SP-veranderingen niet toe.",
+    },
+    "10171": {
+        "font": "regular",
+        "string": "Tijd",
+    },
+    "10172": {
+        "font": "regular",
+        "string": "Datum",
+    },
+    "10173": {
+        "font": "regular",
+        "string": "Snelste ronde",
+    },
+    "10174": {
+        "font": "regular",
+        "string": "Snelste tweede ronde",
+    },
+    "10175": {
+        "font": "regular",
+        "string": "Snelste derde ronde",
+    },
+    "10176": {
+        "font": "regular",
+        "string": "Sorteer geesten op basis van hun eindtijd.",
+    },
+    "10177": {
+        "font": "regular",
+        "string": "Sorteer geesten op basis van hun aanmaakdatum.",
+    },
+    "10178": {
+        "font": "regular",
+        "string": "Sorteer geesten op basis van hun snelste ronde.",
+    },
+    "10179": {
+        "font": "regular",
+        "string": "Sorteer geesten op basis van hun snelste eerste ronde.",
+    },
+    "10180": {
+        "font": "regular",
+        "string": "Sorteer geesten op basis van hun snelste eerste twee rondes.",
+    },
+    "10181": {
+        "font": "regular",
+        "string": "De benchmark op de {arg message|0} is gelukt.\nRang: {arg message|1}\n{arg integer|0 0} KiB: Lz. {arg string|0} MiB/s - Schr. {arg string|1} MiB/s\n{arg integer|1 0} KiB: Lz. {arg string|2} MiB/s - Schr. {arg string|3} MiB/s\n{arg integer|2 0} KiB: Lz. {arg string|4} MiB/s - Schr. {arg string|5} MiB/s\n{arg integer|3 0} KiB: Lz. {arg string|6} MiB/s - Schr. {arg string|7} MiB/s",
     },
 }

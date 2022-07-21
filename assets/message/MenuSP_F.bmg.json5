@@ -17,7 +17,7 @@
     },
     "10004": {
         "font": "regular",
-        "string": "Libellés de l'ATH",
+        "string": "Libellés de l'ATH (HUD)",
     },
     "10005": {
         "font": "regular",
@@ -78,38 +78,6 @@
     "10019": {
         "font": "regular",
         "string": "Tri des fantômes",
-    },
-    "10020": {
-        "font": "regular",
-        "string": "Plus rapide",
-    },
-    "10021": {
-        "font": "regular",
-        "string": "Plus lent",
-    },
-    "10022": {
-        "font": "regular",
-        "string": "Plus récent",
-    },
-    "10023": {
-        "font": "regular",
-        "string": "Plus ancien",
-    },
-    "10024": {
-        "font": "regular",
-        "string": "Trier les fantômes du plus rapide au plus lent.",
-    },
-    "10025": {
-        "font": "regular",
-        "string": "Trier les fantômes du plus lent au plus rapide.",
-    },
-    "10026": {
-        "font": "regular",
-        "string": "Trier les fantômes du plus récent au plus ancien.",
-    },
-    "10027": {
-        "font": "regular",
-        "string": "Trier les fantômes du plus ancien au plus récent.",
     },
     "10028": {
         "font": "regular",
@@ -447,6 +415,150 @@
         "font": "regular",
         "string": "Toujours afficher la place.",
     },
+    "10126": {
+        "font": "regular",
+        "string": "Son",
+    },
+    "10127": {
+        "font": "regular",
+        "string": "Musiques des objects",
+    },
+    "10128": {
+        "font": "regular",
+        "string": "Aucune",
+    },
+    "10129": {
+        "font": "regular",
+        "string": "Dégâts uniquement",
+    },
+    "10130": {
+        "font": "regular",
+        "string": "Toutes",
+    },
+    "10131": {
+        "font": "regular",
+        "string": "Ne pas laisser les objects affecter la musique.",
+    },
+    "10132": {
+        "font": "regular",
+        "string": "Appliquer un effet sur la musique uniquement lors d'une électrocution ou d'un écrasement.",
+    },
+    "10133": {
+        "font": "regular",
+        "string": "Laisser les Étoiles, Champignons Géants et Éclairs affecter la musique.",
+    },
+    "10134": {
+        "font": "regular",
+        "string": "Jingle du dernier tour",
+    },
+    "10135": {
+        "font": "regular",
+        "string": "Jeu uniquement",
+    },
+    "10136": {
+        "font": "regular",
+        "string": "Toujours",
+    },
+    "10137": {
+        "font": "regular",
+        "string": "Utiliser un jingle différent pour le dernier tour (jeu uniquement).",
+    },
+    "10138": {
+        "font": "regular",
+        "string": "Utiliser un jingle différent pour le dernier tour (jeu et rediffusion).",
+    },
+    "10139": {
+        "font": "regular",
+        "string": "Accélération du dernier tour",
+    },
+    "10140": {
+        "font": "regular",
+        "string": "Aucune",
+    },
+    "10141": {
+        "font": "regular",
+        "string": "Statique",
+    },
+    "10142": {
+        "font": "regular",
+        "string": "Dynamique",
+    },
+    "10143": {
+        "font": "regular",
+        "string": "Utiliser le BRSTM \"_N\" pour le dernier tour.",
+    },
+    "10144": {
+        "font": "regular",
+        "string": "Utiliser le BRSTM \"_F\" pour le dernier tour.",
+    },
+    "10145": {
+        "font": "regular",
+        "string": "Générer la musique du dernier tour à la volée.",
+    },
+    "10146": {
+        "font": "regular",
+        "string": "Test du stockage",
+    },
+    "10147": {
+        "font": "regular",
+        "string": "Quel périphérique voulez-vous tester ?",
+    },
+    "10148": {
+        "font": "regular",
+        "string": "Test du stockage {arg message|0}...\n{arg message|1}",
+    },
+    "10149": {
+        "font": "regular",
+        "string": "Le test du stockage {arg message|0} a réussi.\n{arg integer|0 0} Kio: L {arg string|0} Mio/s - É {arg string|1} Mio/s\n{arg integer|1 0} Kio: L {arg string|2} Mio/s - É {arg string|3} Mio/s\n{arg integer|2 0} Kio: L {arg string|4} Mio/s - É {arg string|5} Mio/s\n{arg integer|3 0} Kio: L {arg string|6} Mio/s - É {arg string|7} Mio/s",
+    },
+    "10150": {
+        "font": "regular",
+        "string": "Le test du stockage {arg message|0} a échoué !",
+    },
+    "10151": {
+        "font": "regular",
+        "string": "Initialisation...",
+    },
+    "10152": {
+        "font": "regular",
+        "string": "Lecture de blocs de {arg integer|0 0} Kio...",
+    },
+    "10153": {
+        "font": "regular",
+        "string": "Écriture de blocs de {arg integer|0 0} Kio...",
+    },
+    "10154": {
+        "font": "regular",
+        "string": "Carte SD",
+    },
+    "10155": {
+        "font": "regular",
+        "string": "SD",
+    },
+    "10156": {
+        "font": "regular",
+        "string": "USB",
+    },
+    "10157": {
+        "font": "regular",
+        "string": "USB",
+    },
+    "10158": {
+        "font": "regular",
+        "string": "Réseau",
+    },
+    "10159": {
+        "font": "regular",
+        "string": "réseau",
+    },
+    "10160": {
+        "font": "regular",
+        "string": "Missions",
+    },
+    "10161": {
+        "font": "regular",
+        "string": "Effectuez des missions avec des objectifs divers.",
+    },
     "10162": {
         "font": "regular",
         "string": "Affronter {arg integer|0 0} {arg cond messages|0 10164 10165}",
@@ -462,5 +574,69 @@
     "10165": {
         "font": "regular",
         "string": "fantômes",
+    },
+    "10166": {
+        "font": "regular",
+        "string": "Mode original",
+    },
+    "10167": {
+        "font": "regular",
+        "string": "Désactiver",
+    },
+    "10168": {
+        "font": "regular",
+        "string": "Activer",
+    },
+    "10169": {
+        "font": "regular",
+        "string": "Autoriser tous les changements de MKW-SP.",
+    },
+    "10170": {
+        "font": "regular",
+        "string": "Bloquer la plupart des changements de MKW-SP.",
+    },
+    "10171": {
+        "font": "regular",
+        "string": "Temps",
+    },
+    "10172": {
+        "font": "regular",
+        "string": "Date",
+    },
+    "10173": {
+        "font": "regular",
+        "string": "Meilleur tour",
+    },
+    "10174": {
+        "font": "regular",
+        "string": "Tour 1",
+    },
+    "10175": {
+        "font": "regular",
+        "string": "Tours 1 et 2",
+    },
+    "10176": {
+        "font": "regular",
+        "string": "Trier les fantômes par leur temps.",
+    },
+    "10177": {
+        "font": "regular",
+        "string": "Trier les fantômes par leur date de création.",
+    },
+    "10178": {
+        "font": "regular",
+        "string": "Trier les fantômes par leur meilleur tour.",
+    },
+    "10179": {
+        "font": "regular",
+        "string": "Trier les fantômes par leur premier tour.",
+    },
+    "10180": {
+        "font": "regular",
+        "string": "Trier les fantômes par leurs tours 1 et 2.",
+    },
+    "10181": {
+        "font": "regular",
+        "string": "Le test du stockage {arg message|0} a réussi.\nRang : {arg message|1}\n{arg integer|0 0} Kio: L {arg string|0} Mio/s - É {arg string|1} Mio/s\n{arg integer|1 0} Kio: L {arg string|2} Mio/s - É {arg string|3} Mio/s\n{arg integer|2 0} Kio: L {arg string|4} Mio/s - É {arg string|5} Mio/s\n{arg integer|3 0} Kio: L {arg string|6} Mio/s - É {arg string|7} Mio/s",
     },
 }
