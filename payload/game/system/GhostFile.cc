@@ -67,6 +67,10 @@ void SPFooter::OnRaceStart(const u8 *courseSHA1, bool speedModIsEnabled, bool is
     s_usedShrooms = 0;
 }
 
+void SPFooter::OnVanilla(bool isVanilla) {
+    s_instance.isVanilla = s_instance.isVanilla && isVanilla;
+}
+
 void SPFooter::OnLapEnd(u32 lap, f32 timeDiff) {
     s_instance.lapTimeDiffs[lap] = timeDiff;
 }

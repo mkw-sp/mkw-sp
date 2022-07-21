@@ -149,6 +149,9 @@ void SettingsPage::onSettingControlChange([[maybe_unused]] UpDownControl *contro
     text->setMessageAll(entry.valueMessageIds[index]);
     m_instructionText.setMessage(entry.valueExplanationMessageIds[index]);
     System::SaveManager::Instance()->setSetting(control->m_id >> 16, index);
+    if (control->m_id >> 16 == static_cast<u32>(SP::ClientSettings::Setting::VanillaMode)) {
+        System::SPFooter::OnVanilla(index);
+    }
 }
 
 void SettingsPage::onSettingControlFront([[maybe_unused]] UpDownControl *control,
@@ -166,7 +169,6 @@ void SettingsPage::onSettingControlSelect([[maybe_unused]] UpDownControl *contro
     u32 chosen = control->chosen();
     const SP::ClientSettings::Entry &entry = SP::ClientSettings::entries[control->m_id >> 16];
     m_instructionText.setMessage(entry.valueExplanationMessageIds[chosen]);
-    System::SaveManager::Instance()->setSetting(control->m_id >> 16, chosen);
 }
 
 void SettingsPage::onBackButtonFront([[maybe_unused]] PushButton *button,

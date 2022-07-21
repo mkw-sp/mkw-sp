@@ -79,6 +79,7 @@ struct SPFooter {
     bool checkSize(u32 size) const;
 
     static void OnRaceStart(const u8 *courseSHA1, bool speedModIsEnabled, bool isVanilla);
+    static void OnVanilla(bool isVanilla);
     static void OnLapEnd(u32 lap, f32 timeDiff);
     static void OnUltraShortcut();
     static void OnHWG();
