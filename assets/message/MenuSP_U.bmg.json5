@@ -461,11 +461,11 @@
     },
     "10137": {
         "font": "regular",
-        "string": "Use a different jingle for the final lap (gameplay only).",
+        "string": "Use the final lap jingle for gameplay only.",
     },
     "10138": {
         "font": "regular",
-        "string": "Use a different jingle for the final lap (gameplay and replay).",
+        "string": "Use the final lap jingle for gameplay and replays.",
     },
     "10139": {
         "font": "regular",
