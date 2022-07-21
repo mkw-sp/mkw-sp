@@ -120,7 +120,7 @@ void CtrlRaceSpeed::load(u32 localPlayerCount, u32 localPlayerId) {
 
     char variant[0x20];
     u32 variantId = localPlayerCount == 3 ? 4 : localPlayerCount;
-    snprintf(variant, std::size(variant), "CtrlRaceSpeed_%lu_%lu", variantId, localPlayerId);
+    snprintf(variant, std::size(variant), "CtrlRaceSpeed_%u_%u", variantId, localPlayerId);
     const char *groups[] = {
         "eAFInt0",
         "texture_pattern_0_9_0",

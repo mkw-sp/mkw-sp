@@ -68,7 +68,7 @@ static void VPrintf(const char *format, va_list args) {
     OSTime currentTime = OSGetTime();
     u32 secs = OSTicksToSeconds(currentTime - startTime);
     u32 msecs = OSTicksToMilliseconds(currentTime - startTime) % 1000;
-    u32 length = snprintf(buffers[index] + offset, maxLength, "[%lu.%03lu] ", secs, msecs);
+    u32 length = snprintf(buffers[index] + offset, maxLength, "[%u.%03u] ", secs, msecs);
     if (length >= maxLength) {
         offset = BUFFER_SIZE;
         return;

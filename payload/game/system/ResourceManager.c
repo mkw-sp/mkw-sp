@@ -86,7 +86,7 @@ MultiDvdArchive *my_ResourceManager_loadMission(ResourceManager *self, u32 cours
 
     // Fill kind and name for 2nd entry (1st one will be the track itself)
     multi->kinds[1] = RESOURCE_KIND_FILE_SINGLE_FORMAT;
-    snprintf(multi->names[1], 0x80, "Race/MissionRun/mr%02ld.szs", missionId);
+    snprintf(multi->names[1], 0x80, "Race/MissionRun/mr%02d.szs", missionId);
 
     // Load track into coursecache
     CourseCache_load2(&self->courseCache, courseId, splitScreen);

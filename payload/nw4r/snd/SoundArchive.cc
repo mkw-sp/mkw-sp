@@ -47,7 +47,7 @@ ut::FileStream *SoundArchive::openFileStream(u32 fileId, void *buffer, s32 size)
             "brbnk",
         };
         for (u32 i = 0; i < 3; i++) {
-            snprintf(path, sizeof(path), "%s/%lu.%s", prefixes[i], fileId, exts[i]);
+            snprintf(path, sizeof(path), "%s/%u.%s", prefixes[i], fileId, exts[i]);
             auto *stream = openExtStream(buffer, size, path, 0, length);
             if (stream) {
                 return stream;
@@ -82,7 +82,7 @@ ut::FileStream *SoundArchive::openFileStreamWaveData(u32 fileId, void *buffer, s
     u32 length = fileInfo.waveDataFileSize;
 
     char path[256];
-    snprintf(path, sizeof(path), "/sound/wave/%lu.brwar", fileId);
+    snprintf(path, sizeof(path), "/sound/wave/%u.brwar", fileId);
     auto *stream = openExtStream(buffer, size, path, 0, length);
     if (stream) {
         return stream;

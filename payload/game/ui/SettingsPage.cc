@@ -41,7 +41,7 @@ void SettingsPage::onInit() {
     m_categoryValue.load("ranking", "CategoryUpDownValue", "Value", "CategoryUpDownText", "Text");
     for (u32 i = 0; i < std::size(m_settingControls); i++) {
         char variant[0x20];
-        snprintf(variant, sizeof(variant), "UpDown%lu", i);
+        snprintf(variant, sizeof(variant), "UpDown%u", i);
         m_settingControls[i].load(1, 0, "control", "SettingUpDownBase", variant,
                 "VSSettingUpDownButtonR", "RightButton", "VSSettingUpDownButtonL", "LeftButton",
                 m_settingValues[i].animator(), 0x1, false, false, true, true);

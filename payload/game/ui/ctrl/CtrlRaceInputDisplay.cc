@@ -180,7 +180,7 @@ void CtrlRaceInputDisplay::load(u32 localPlayerCount, u32 localPlayerId) {
 
     char variant[0x20];
     u32 variantId = localPlayerCount == 3 ? 4 : localPlayerCount;
-    snprintf(variant, sizeof(variant), "InputDisplay_%lu_%lu", variantId, localPlayerId);
+    snprintf(variant, sizeof(variant), "InputDisplay_%u_%u", variantId, localPlayerId);
 
     const char *groups[] = {
         nullptr,
