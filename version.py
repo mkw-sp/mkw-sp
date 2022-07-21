@@ -8,7 +8,7 @@ import sys
 
 MAJOR = 0
 MINOR = 1
-PATCH = 7
+PATCH = 8
 
 
 def write_u16(out_file, val):
