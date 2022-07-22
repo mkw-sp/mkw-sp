@@ -28,6 +28,10 @@ namespace Loader {
 
 typedef void (*PayloadEntryFunc)(void);
 
+#define TMP_CONTENTS_PATH "/tmp/contents.arc"
+
+static void *contents = reinterpret_cast<void *>(0x80100000);
+
 static bool ReloadIOS(u64 titleID) {
     IOS::ES es;
     if (!es.ok()) {
@@ -85,12 +89,42 @@ std::optional<Apploader::GameEntryFunc> Run() {
     Console::Print(versionInfo.name);
     Console::Print("\n");
 
+    std::optional<u32> contentsSize{};
+    if (versionInfo.type != BUILD_TYPE_RELEASE) {
+        Console::Print("Saving contents.arc...");
+        IOS::FS fs;
+        if (!fs.ok()) {
+            Console::Print(" failed!\n");
+            return {};
+        }
+        contentsSize = fs.readFile(ALIGNED_STRING(TMP_CONTENTS_PATH), contents, 0x900000);
+        if (!contentsSize) {
+            Console::Print(" failed!\n");
+            return {};
+        }
+        Console::Print(" done.\n");
+    }
+
     Console::Print("Reloading IOS...");
     if (!ReloadIOS(UINT64_C(0x000000010000003a))) {
         Console::Print(" failed!\n");
         return {};
     }
     Console::Print(" done.\n");
+
+    if (versionInfo.type != BUILD_TYPE_RELEASE) {
+        Console::Print("Saving contents.arc...");
+        IOS::FS fs;
+        if (!fs.ok()) {
+            Console::Print(" failed!\n");
+            return {};
+        }
+        if (!fs.writeFile(ALIGNED_STRING(TMP_CONTENTS_PATH), contents, *contentsSize)) {
+            Console::Print(" failed!\n");
+            return {};
+        }
+        Console::Print(" done.\n");
+    }
 
     Console::Print("Escalating privileges...");
     if (!IOS::EscalatePrivileges()) {
