@@ -6,8 +6,9 @@ enum {
     OS_RESET_RESTART = 0,
 };
 
-// Not a public function
+// These functions aren't public
 void __OSShutdownDevices(u32 r3);
+void __OSReturnToMenuForError(void);
 
 void OSShutdownSystem(void);
 void OSRestart(u32 resetCode);

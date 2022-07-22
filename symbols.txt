@@ -236,6 +236,7 @@
 0x801a856c OSShutdownSystem
 0x801a8688 OSRestart
 0x801a8858 OSReturnToMenu
+0x801a8954 __OSReturnToMenuForError
 0x801A961C __OSThreadInit
 0x801a98b0 OSGetCurrentThread
 0x801a98bc OSIsThreadTerminated

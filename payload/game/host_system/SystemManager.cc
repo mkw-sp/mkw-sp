@@ -38,7 +38,10 @@ void SystemManager::returnToMenu() {
     VIFlush();
     VIWaitForRetrace();
     VIWaitForRetrace();
-    OSReturnToMenu();
+    OSDisableScheduler();
+    __OSShutdownDevices(6);
+    OSEnableScheduler();
+    __OSReturnToMenuForError();
 }
 
 void SystemManager::restart() {
