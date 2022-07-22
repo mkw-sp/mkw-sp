@@ -493,7 +493,7 @@
     },
     "10145": {
         "font": "regular",
-        "string": "Generate final lap music on the fly.",
+        "string": "Generate final lap music from the \"_N\" BRSTM.",
     },
     "10146": {
         "font": "regular",
@@ -605,7 +605,7 @@
     },
     "10173": {
         "font": "regular",
-        "string": "Flap",
+        "string": "Final Lap",
     },
     "10174": {
         "font": "regular",
