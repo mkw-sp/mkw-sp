@@ -39,6 +39,7 @@
 0x80023150 nw4r_db_Exception_Init
 0x800235A0 Exception_Printf_
 0x80023680 Exception_PrintCtx
+0x80023BC0 nw4r_db_ShowGPRMap_
 0x80025DC0 nw4r_db_ShowStack_
 
 0x8004D900 ResFile_CheckRevision

@@ -8,3 +8,8 @@ PATCH_REPLACE_END(nw4r_db_Exception_Init, 0x34)
 PATCH_BL_START(Exception_PrintCtx, 0x2AC)
     b StackTrace_TryDecryptLinkRegister
 PATCH_BL_END(Exception_PrintCtx, 0x2AC)
+
+// Loop over all of the General Purpose Registers
+PATCH_REPLACE_START(nw4r_db_ShowGPRMap_, 0x7C)
+    cmpwi r27, 32
+PATCH_REPLACE_END(nw4r_db_ShowGPRMap_, 0x7C)
