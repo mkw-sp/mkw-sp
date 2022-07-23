@@ -49,11 +49,11 @@
     },
     "2011": {
         "font": "regular",
-        "string": "Één Speler",
+        "string": "Één speler",
     },
     "2012": {
         "font": "regular",
-        "string": "Meerdere Spelers",
+        "string": "Meerdere spelers",
     },
     "2013": {
         "font": "regular",
@@ -61,7 +61,7 @@
     },
     "2014": {
         "font": "regular",
-        "string": "Mario Kart-Kanaal",
+        "string": "Mario Kart-kanaal",
     },
     "2015": {
         "font": "regular",
@@ -113,7 +113,7 @@
     },
     "2027": {
         "font": "regular",
-        "string": "Bekijk je records en verander je Mii!",
+        "string": "Bekijk je records en verander jouw Mii!",
     },
     "2028": {
         "font": "regular",
@@ -125,15 +125,15 @@
     },
     "2030": {
         "font": "regular",
-        "string": "Meerdere Spelers (2S)",
+        "string": "Meerdere spelers (2S)",
     },
     "2031": {
         "font": "regular",
-        "string": "Meerdere Spelers (3S)",
+        "string": "Meerdere spelers (3S)",
     },
     "2032": {
         "font": "regular",
-        "string": "Meerdere Spelers (4S)",
+        "string": "Meerdere spelers (4S)",
     },
     "2033": {
         "font": "regular",
@@ -429,7 +429,7 @@
     },
     "2202": {
         "font": "regular",
-        "string": "Wii Console",
+        "string": "Wii-console",
     },
     "2203": {
         "font": "regular",
@@ -521,19 +521,19 @@
     },
     "2301": {
         "font": "regular",
-        "string": "1\nSpeler",
+        "string": "1\nspeler",
     },
     "2302": {
         "font": "regular",
-        "string": "2\nSpelers",
+        "string": "2\nspelers",
     },
     "2303": {
         "font": "regular",
-        "string": "3\nSpelers",
+        "string": "3\nspelers",
     },
     "2304": {
         "font": "regular",
-        "string": "4\nSpelers",
+        "string": "4\nspelers",
     },
     "2305": {
         "font": "regular",
@@ -557,15 +557,15 @@
     },
     "2402": {
         "font": "regular",
-        "string": "Druk op A-knop op de controller van\nSpeler 2.",
+        "string": "Druk op A-knop op de controller van\nspeler 2.",
     },
     "2403": {
         "font": "regular",
-        "string": "Druk op A-knop op de controller van\nSpeler 3.",
+        "string": "Druk op A-knop op de controller van\nspeler 3.",
     },
     "2404": {
         "font": "regular",
-        "string": "Druk op A-knop op de controller van\nSpeler 4.",
+        "string": "Druk op A-knop op de controller van\nspeler 4.",
     },
     "2405": {
         "font": "regular",
@@ -597,19 +597,19 @@
     },
     "2502": {
         "font": "regular",
-        "string": "Druk op A-knop op de controller van\nSpeler 1.",
+        "string": "Druk op A-knop op de controller van\nspeler 1.",
     },
     "2503": {
         "font": "regular",
-        "string": "Druk op A-knop op de controller van\nSpeler 2.",
+        "string": "Druk op A-knop op de controller van\nspeler 2.",
     },
     "2504": {
         "font": "regular",
-        "string": "Druk op A-knop op de controller van\nSpeler 3.",
+        "string": "Druk op A-knop op de controller van\nspeler 3.",
     },
     "2505": {
         "font": "regular",
-        "string": "Druk op A-knop op de controller van\nSpeler 4.",
+        "string": "Druk op A-knop op de controller van\nspeler 4.",
     },
     "2506": {
         "font": "regular",
@@ -689,7 +689,7 @@
     },
     "2600": {
         "font": "regular",
-        "string": "Wil je het Mario Kart-Kanaal\ninstalleren? Hiervoor zijn\n{arg integer|0 0} blokken in\nhet geheugen nodig.",
+        "string": "Wil je het Mario Kart-kanaal\ninstalleren? Hiervoor zijn\n{arg integer|0 0} blokken in\nhet geheugen nodig.",
     },
     "2601": {
         "font": "regular",
@@ -717,15 +717,15 @@
     },
     "2607": {
         "font": "regular",
-        "string": "Voeg het Mario Kart-Kanaal toe",
+        "string": "Voeg het Mario Kart-kanaal toe",
     },
     "2608": {
         "font": "regular",
-        "string": "Voeg het Mario Kart-Kanaal aan\nhet Wii-menu toe, zodat je het kanaal\nkan openen zonder de\nMario Kart Wii-schijf!",
+        "string": "Voeg het Mario Kart-kanaal aan\nhet Wii-menu toe, zodat je het kanaal\nkan openen zonder de\nMario Kart Wii-schijf!",
     },
     "2609": {
         "font": "regular",
-        "string": "Het Mario Kart-Kanaal is al\ntoegevoegd aan het Wii-menu.",
+        "string": "Het Mario Kart-kanaal is al\ntoegevoegd aan het Wii-menu.",
     },
     "2610": {
         "font": "regular",
@@ -757,7 +757,7 @@
     },
     "3002": {
         "font": "regular",
-        "string": "VS race",
+        "string": "Versusrace",
     },
     "3003": {
         "font": "regular",
@@ -773,27 +773,27 @@
     },
     "3006": {
         "font": "regular",
-        "string": "50cc\n{font scale|50}Alleen Karts",
+        "string": "50 cc\n{font scale|50}Alleen karts",
     },
     "3007": {
         "font": "regular",
-        "string": "100cc\n{font scale|50}Alleen Motors",
+        "string": "100 cc\n{font scale|50}Alleen motors",
     },
     "3008": {
         "font": "regular",
-        "string": "150cc\n{font scale|50}Karts en Motors",
+        "string": "150 cc\n{font scale|50}Karts en motors",
     },
     "3009": {
         "font": "regular",
-        "string": "Gespiegeld\n{font scale|50}Karts en Motors",
+        "string": "Spiegel\n{font scale|50}Karts en motors",
     },
     "3010": {
         "font": "regular",
-        "string": "50cc\n{font scale|50}Karts en Motors",
+        "string": "50 cc\n{font scale|50}Karts en motors",
     },
     "3011": {
         "font": "regular",
-        "string": "100cc\n{font scale|50}Karts en Motors",
+        "string": "100 cc\n{font scale|50}Karts en motors",
     },
     "3012": {
         "font": "regular",
@@ -945,7 +945,7 @@
     },
     "3309": {
         "font": "regular",
-        "string": "■ Drift ■\nDrift laat je bochten nemen zonder\nsnelheid te verliezen. Er zijn twee drift-modi.\n\n■ Automatisch ■\nJe drift automatisch als je stuurt,\nmaar je kan geen {arg back button|0}sprongetje maken of een mini-turbo krijgen.\n\n■ Handmatig ■\nMaak een {arg back button|0}sprongetje in een bocht om te driften.\nBlijf driften om een mini-turbo te krijgen,\nwaardoor je extra snel vooruit gaat.",
+        "string": "■ Drift ■\nDrift laat je bochten nemen zonder\nsnelheid te verliezen. Er zijn twee drift-modi.\n\n■ Automatisch ■\nJe drift automatisch als je stuurt,\nmaar je kan geen {arg back button|0}sprong maken of een mini-turbo krijgen.\n\n■ Handmatig ■\nMaak een {arg back button|0}sprong in een bocht om te driften.\nBlijf driften om een mini-turbo te krijgen,\nwaardoor je extra snel vooruit gaat.",
     },
     "3310": {
         "font": "regular",
@@ -1009,7 +1009,7 @@
     },
     "3363": {
         "font": "regular",
-        "string": "{arg message|0} VS race",
+        "string": "{arg message|0} Versusrace",
     },
     "3364": {
         "font": "regular",
@@ -1021,7 +1021,7 @@
     },
     "3366": {
         "font": "regular",
-        "string": "{arg message|0} Team VS race",
+        "string": "{arg message|0} Team versusrace",
     },
     "3370": {
         "font": "regular",
@@ -1121,7 +1121,7 @@
     },
     "3409": {
         "font": "regular",
-        "string": "VS race",
+        "string": "Versusrace",
     },
     "3410": {
         "font": "regular",
@@ -1129,35 +1129,35 @@
     },
     "3411": {
         "font": "regular",
-        "string": "50cc",
+        "string": "50 cc",
     },
     "3412": {
         "font": "regular",
-        "string": "100cc",
+        "string": "100 cc",
     },
     "3413": {
         "font": "regular",
-        "string": "150cc",
+        "string": "150 cc",
     },
     "3414": {
         "font": "regular",
-        "string": "Gespiegeld",
+        "string": "Spiegel",
     },
     "3415": {
         "font": "regular",
-        "string": "50cc motorklasse voor beginners.",
+        "string": "50 cc motorklasse voor beginners.",
     },
     "3416": {
         "font": "regular",
-        "string": "100cc motorklasse voor gevorderden.",
+        "string": "100 cc motorklasse voor gevorderden.",
     },
     "3417": {
         "font": "regular",
-        "string": "150cc motorklasse voor experts.",
+        "string": "150 cc motorklasse voor experts.",
     },
     "3418": {
         "font": "regular",
-        "string": "150cc motorklasse met gespiegelde circuits.",
+        "string": "150 cc motorklasse met gespiegelde circuits.",
     },
     "3420": {
         "font": "regular",
@@ -1297,11 +1297,11 @@
     },
     "3462": {
         "font": "regular",
-        "string": "Team race",
+        "string": "Teamrace",
     },
     "3463": {
         "font": "regular",
-        "string": "Solo race",
+        "string": "Solorace",
     },
     "3464": {
         "font": "regular",
@@ -1329,7 +1329,7 @@
     },
     "3470": {
         "font": "regular",
-        "string": "Weet je zeker dat je\ndeze VS race wilt verlaten?",
+        "string": "Weet je zeker dat je\ndeze versusrace wilt verlaten?",
     },
     "3471": {
         "font": "regular",
@@ -1601,15 +1601,15 @@
     },
     "4111": {
         "font": "regular",
-        "string": "We spelen een Team Grand Prix!",
+        "string": "We spelen een team Grand Prix!",
     },
     "4112": {
         "font": "regular",
-        "string": "We spelen een Ballongevecht!",
+        "string": "We spelen een ballongevecht!",
     },
     "4113": {
         "font": "regular",
-        "string": "We spelen een Muntengevecht!",
+        "string": "We spelen een muntengevecht!",
     },
     "4114": {
         "font": "regular",
@@ -1661,7 +1661,7 @@
     },
     "4205": {
         "font": "regular",
-        "string": "Wereldwijde VS race",
+        "string": "Wereldwijde versusrace",
     },
     "4206": {
         "font": "regular",
@@ -1669,7 +1669,7 @@
     },
     "4207": {
         "font": "regular",
-        "string": "Continentale VS race",
+        "string": "Continentale versusrace",
     },
     "4208": {
         "font": "regular",
@@ -1697,11 +1697,11 @@
     },
     "4305": {
         "font": "regular",
-        "string": "VS race",
+        "string": "Versusrace",
     },
     "4306": {
         "font": "regular",
-        "string": "VS race",
+        "string": "Versusrace",
     },
     "4307": {
         "font": "regular",
@@ -1757,11 +1757,11 @@
     },
     "4320": {
         "font": "regular",
-        "string": "De volgende race is 100cc!",
+        "string": "De volgende race is 100 cc!",
     },
     "4321": {
         "font": "regular",
-        "string": "De volgende race is 150cc!",
+        "string": "De volgende race is 150 cc!",
     },
     "4322": {
         "font": "regular",
@@ -1777,11 +1777,11 @@
     },
     "4325": {
         "font": "regular",
-        "string": "De volgende race is 100cc!",
+        "string": "De volgende race is 100 cc!",
     },
     "4326": {
         "font": "regular",
-        "string": "De volgende race is 150cc!",
+        "string": "De volgende race is 150 cc!",
     },
     "4327": {
         "font": "regular",
@@ -1789,11 +1789,11 @@
     },
     "4328": {
         "font": "regular",
-        "string": "De volgende race is 100cc!",
+        "string": "De volgende race is 100 cc!",
     },
     "4329": {
         "font": "regular",
-        "string": "De volgende race is 150cc!",
+        "string": "De volgende race is 150 cc!",
     },
     "4330": {
         "font": "regular",
@@ -2013,7 +2013,7 @@
     },
     "4518": {
         "font": "regular",
-        "string": "Een Grand Prix of een Gevecht?",
+        "string": "Een Grand Prix of een gevecht?",
     },
     "4519": {
         "font": "regular",
@@ -2025,15 +2025,15 @@
     },
     "4521": {
         "font": "regular",
-        "string": "Laten we een Team Grand Prix spelen!",
+        "string": "Laten we een team Grand Prix spelen!",
     },
     "4522": {
         "font": "regular",
-        "string": "Laten we een Ballongevecht spelen!",
+        "string": "Laten we een ballongevecht spelen!",
     },
     "4523": {
         "font": "regular",
-        "string": "Laten we een Muntengevecht spelen!",
+        "string": "Laten we een muntengevecht spelen!",
     },
     "4524": {
         "font": "regular",
@@ -2169,7 +2169,7 @@
     },
     "4557": {
         "font": "regular",
-        "string": "GBA Shy Guy's Strand!",
+        "string": "GBA Shy Guys Strand!",
     },
     "4558": {
         "font": "regular",
@@ -2357,7 +2357,7 @@
     },
     "4604": {
         "font": "regular",
-        "string": "De Nintendo Wi-Fi Connectieservice voor\ndeze software is beëindigd. Bezoek\nsupport.nintendo.com voor een lijst met\nNintendo Wi-Fi Connectie-compatibele software.\n\nErrorcode: {arg integer|0 5}",
+        "string": "De Nintendo Wi-Fi Connectie-service voor\ndeze software is beëindigd. Bezoek\nsupport.nintendo.com voor een lijst\nmet compatibele Nintendo Wi-Fi\nConnectie-software.\n\nErrorcode: {arg integer|0 5}",
     },
     "4605": {
         "font": "regular",
@@ -2465,7 +2465,7 @@
     },
     "5000": {
         "font": "regular",
-        "string": "Mario Kart-Kanaal",
+        "string": "Mario Kart-kanaal",
     },
     "5001": {
         "font": "regular",
@@ -2525,7 +2525,7 @@
     },
     "5015": {
         "font": "regular",
-        "string": "Verbeter je Tijdrace-techniek\ndoor geesten van\nspelers rond de wereld uit\nte dagen in Nintendo WFC races!",
+        "string": "Verbeter je tijdrace-techniek\ndoor geesten van\nspelers rond de wereld uit\nte dagen in Nintendo WFC-races!",
     },
     "5016": {
         "font": "regular",
@@ -2533,35 +2533,35 @@
     },
     "5017": {
         "font": "regular",
-        "string": "Verbeter jouw Tijdrace-techniek\ndoor de geestgegevens van\nspelers rond de wereld uit\nte dagen in Nintendo WFC races!\n\nJe huidige record:\n{arg integer|0 0} {arg cond messages|0 5026 5027} - {arg integer|1 0} {arg cond messages|1 5028 5029}",
+        "string": "Verbeter jouw tijdrace-techniek\ndoor de geestgegevens van\nspelers rond de wereld uit\nte dagen in Nintendo WFC-races!\n\nJe huidige record:\n{arg integer|0 0} {arg cond messages|0 5026 5027} - {arg integer|1 0} {arg cond messages|1 5028 5029}",
     },
     "5018": {
         "font": "regular",
-        "string": "Verbeter jouw Tijdrace-techniek\ndoor de geestgegevens van\nspelers rond de wereld uit\nte dagen in Nintendo WFC races!\n\nJe huidige record:\n{arg integer|0 0} {arg cond messages|0 5026 5027} - {arg integer|1 0} {arg cond messages|1 5028 5029}",
+        "string": "Verbeter jouw tijdrace-techniek\ndoor de geestgegevens van\nspelers rond de wereld uit\nte dagen in Nintendo WFC-races!\n\nJe huidige record:\n{arg integer|0 0} {arg cond messages|0 5026 5027} - {arg integer|1 0} {arg cond messages|1 5028 5029}",
     },
     "5019": {
         "font": "regular",
-        "string": "Verbeter jouw Tijdrace-techniek\ndoor de geestgegevens van\nspelers rond de wereld uit\nte dagen in Nintendo WFC races!\n\nJe huidige record:\n{arg integer|0 0} {arg cond messages|0 5026 5027} - {arg integer|1 0} {arg cond messages|1 5028 5029}",
+        "string": "Verbeter jouw tijdrace-techniek\ndoor de geestgegevens van\nspelers rond de wereld uit\nte dagen in Nintendo WFC-races!\n\nJe huidige record:\n{arg integer|0 0} {arg cond messages|0 5026 5027} - {arg integer|1 0} {arg cond messages|1 5028 5029}",
     },
     "5020": {
         "font": "regular",
-        "string": "Verbeter jouw Tijdrace-techniek\ndoor de geestgegevens van\nspelers rond de wereld uit\nte dagen in Nintendo WFC races!\n\nJe huidige record:\n{arg integer|0 0} {arg cond messages|0 5026 5027} - {arg integer|1 0} {arg cond messages|1 5028 5029}",
+        "string": "Verbeter jouw tijdrace-techniek\ndoor de geestgegevens van\nspelers rond de wereld uit\nte dagen in Nintendo WFC-races!\n\nJe huidige record:\n{arg integer|0 0} {arg cond messages|0 5026 5027} - {arg integer|1 0} {arg cond messages|1 5028 5029}",
     },
     "5021": {
         "font": "regular",
-        "string": "Verbeter jouw Tijdrace-techniek\ndoor de geestgegevens van\nspelers rond de wereld uit\nte dagen in Nintendo WFC races!\n\nJe huidige record:\n{arg integer|0 0} {arg cond messages|0 5026 5027} - {arg integer|1 0} {arg cond messages|1 5028 5029}",
+        "string": "Verbeter jouw tijdrace-techniek\ndoor de geestgegevens van\nspelers rond de wereld uit\nte dagen in Nintendo WFC-races!\n\nJe huidige record:\n{arg integer|0 0} {arg cond messages|0 5026 5027} - {arg integer|1 0} {arg cond messages|1 5028 5029}",
     },
     "5022": {
         "font": "regular",
-        "string": "Verbeter jouw Tijdrace-techniek\ndoor de geestgegevens van\nspelers rond de wereld uit\nte dagen in Nintendo WFC races!\n\nJe huidige record:\n{arg integer|0 0} {arg cond messages|0 5026 5027} - {arg integer|1 0} {arg cond messages|1 5028 5029}",
+        "string": "Verbeter jouw tijdrace-techniek\ndoor de geestgegevens van\nspelers rond de wereld uit\nte dagen in Nintendo WFC-races!\n\nJe huidige record:\n{arg integer|0 0} {arg cond messages|0 5026 5027} - {arg integer|1 0} {arg cond messages|1 5028 5029}",
     },
     "5023": {
         "font": "regular",
-        "string": "Verbeter jouw Tijdrace-techniek\ndoor de geestgegevens van\nspelers rond de wereld uit\nte dagen in Nintendo WFC races!\n\nJe huidige record:\n{arg integer|0 0} {arg cond messages|0 5026 5027} - {arg integer|1 0} {arg cond messages|1 5028 5029}",
+        "string": "Verbeter jouw tijdrace-techniek\ndoor de geestgegevens van\nspelers rond de wereld uit\nte dagen in Nintendo WFC-races!\n\nJe huidige record:\n{arg integer|0 0} {arg cond messages|0 5026 5027} - {arg integer|1 0} {arg cond messages|1 5028 5029}",
     },
     "5024": {
         "font": "regular",
-        "string": "Verbeter jouw Tijdrace-techniek\ndoor de geestgegevens van\nspelers rond de wereld uit\nte dagen in Nintendo WFC races!\n\nJe huidige record:\n{arg integer|0 0} {arg cond messages|0 5026 5027} - {arg integer|1 0} {arg cond messages|1 5028 5029}",
+        "string": "Verbeter jouw tijdrace-techniek\ndoor de geestgegevens van\nspelers rond de wereld uit\nte dagen in Nintendo WFC-races!\n\nJe huidige record:\n{arg integer|0 0} {arg cond messages|0 5026 5027} - {arg integer|1 0} {arg cond messages|1 5028 5029}",
     },
     "5025": {
         "font": "regular",
@@ -2597,7 +2597,7 @@
     },
     "5052": {
         "font": "regular",
-        "string": "Tijdrace-scores",
+        "string": "Tijdracescores",
     },
     "5053": {
         "font": "regular",
@@ -2889,35 +2889,35 @@
     },
     "5307": {
         "font": "regular",
-        "string": "Ik speel een Wereldwijde VS race!",
+        "string": "Ik speel een wereldwijde versusrace!",
     },
     "5308": {
         "font": "regular",
-        "string": "Ik speel een Wereldwijd gevecht!",
+        "string": "Ik speel een wereldwijd gevecht!",
     },
     "5309": {
         "font": "regular",
-        "string": "Ik ben in een Continentale VS race!",
+        "string": "Ik speel in een continentale versusrace!",
     },
     "5310": {
         "font": "regular",
-        "string": "Ik speel een Continentaal gevecht!",
+        "string": "Ik speel een gontinentaal gevecht!",
     },
     "5311": {
         "font": "regular",
-        "string": "Ik leid een Grand Prix (1/4)!",
+        "string": "Ik organiseer een Grand Prix (1/4)!",
     },
     "5312": {
         "font": "regular",
-        "string": "Ik leid een Grand Prix (2/4)!",
+        "string": "Ik organiseer een Grand Prix (2/4)!",
     },
     "5313": {
         "font": "regular",
-        "string": "Ik leid een Grand Prix (3/4)!",
+        "string": "Ik organiseer een Grand Prix (3/4)!",
     },
     "5314": {
         "font": "regular",
-        "string": "Ik leid een Grand Prix (4/4)!",
+        "string": "Ik organiseer een Grand Prix (4/4)!",
     },
     "5315": {
         "font": "regular",
@@ -3325,11 +3325,11 @@
     },
     "6002": {
         "font": "regular",
-        "string": "Continentale Rangen",
+        "string": "Continentale rangen",
     },
     "6003": {
         "font": "regular",
-        "string": "Wereldwijde Rangen",
+        "string": "Wereldwijde rangen",
     },
     "6004": {
         "font": "regular",
@@ -3357,7 +3357,7 @@
     },
     "6010": {
         "font": "regular",
-        "string": "Start Tijdrace",
+        "string": "Start tijdrace",
     },
     "6011": {
         "font": "regular",
@@ -3381,7 +3381,7 @@
     },
     "6016": {
         "font": "regular",
-        "string": "Solo Tijdrace",
+        "string": "Solo-tijdrace",
     },
     "6017": {
         "font": "regular",
@@ -3433,7 +3433,7 @@
     },
     "6054": {
         "font": "regular",
-        "string": "Continentale Kampioen",
+        "string": "Continentale kampioen",
     },
     "6055": {
         "font": "regular",
@@ -3625,7 +3625,7 @@
     },
     "6250": {
         "font": "regular",
-        "string": "Begin een Tijdrace op dit circuit.",
+        "string": "Begin een tijdrace op dit circuit.",
     },
     "6251": {
         "font": "regular",
@@ -3645,19 +3645,19 @@
     },
     "6255": {
         "font": "regular",
-        "string": "Bekijk jouw Vrienden-Top 10.",
+        "string": "Bekijk jouw vrienden-Top 10.",
     },
     "6256": {
         "font": "regular",
-        "string": "Bekijk de Continentale Top 10.",
+        "string": "Bekijk de continentale Top 10.",
     },
     "6257": {
         "font": "regular",
-        "string": "Bekijk de Wereldwijde Top 10.",
+        "string": "Bekijk de wereldwijde Top 10.",
     },
     "6258": {
         "font": "regular",
-        "string": "Race tegen een Mario Kart Wii-Personeelsgeest.",
+        "string": "Race tegen een Mario Kart Wii-personeelsgeest.",
     },
     "6259": {
         "font": "regular",
@@ -3665,11 +3665,11 @@
     },
     "6260": {
         "font": "regular",
-        "string": "Het record van de Continentale Kampioen.",
+        "string": "Het record van de continentale kampioen.",
     },
     "6261": {
         "font": "regular",
-        "string": "Het record van de Wereldwijde Kampioen.",
+        "string": "Het record van de wereldwijde kampioen.",
     },
     "6262": {
         "font": "regular",
@@ -3729,7 +3729,7 @@
     },
     "6316": {
         "font": "regular",
-        "string": "Er is een probleem met het Wii Systeemgeheugen.\nWiiConnect24 kan niet gebruikt worden.\n\nErrorcode: {arg integer|0 6}",
+        "string": "Er is een probleem met het Wii-systeemgeheugen.\nWiiConnect24 kan niet gebruikt worden.\n\nErrorcode: {arg integer|0 6}",
     },
     "6317": {
         "font": "regular",
@@ -3741,7 +3741,7 @@
     },
     "6319": {
         "font": "regular",
-        "string": "Het Mario Kart-Kanaal gebruikt WiiConnect24\nom de volgende informatie te ontvangen:\n\n・Uitdagingen van vrienden\n・Records van spelers rond de wereld\n・Geesten van spelers die even\ngoed zijn als jij\n・Geplande competities",
+        "string": "Het Mario Kart-kanaal gebruikt WiiConnect24\nom de volgende informatie te ontvangen:\n\n・Uitdagingen van vrienden\n・Records van spelers rond de wereld\n・Geesten van spelers die even\ngoed zijn als jij\n・Geplande competities",
     },
     "6320": {
         "font": "regular",
@@ -3789,7 +3789,7 @@
     },
     "6406": {
         "font": "regular",
-        "string": "Voeg het Mario Kart-Kanaal toe!",
+        "string": "Voeg het Mario Kart-kanaal toe!",
     },
     "6407": {
         "font": "regular",
@@ -3821,7 +3821,7 @@
     },
     "6501": {
         "font": "regular",
-        "string": "Ga naar de Tijdrace-ranglijsten.",
+        "string": "Ga naar de tijdrace-ranglijsten.",
     },
     "6502": {
         "font": "regular",
@@ -3829,7 +3829,7 @@
     },
     "6503": {
         "font": "regular",
-        "string": "Ga naar de Tijdrace-ranglijsten.",
+        "string": "Ga naar de tijdrace-ranglijsten.",
     },
     "6504": {
         "font": "regular",
@@ -3837,7 +3837,7 @@
     },
     "6505": {
         "font": "regular",
-        "string": "Ga naar de Tijdrace-ranglijsten.",
+        "string": "Ga naar de tijdrace-ranglijsten.",
     },
     "6506": {
         "font": "regular",
@@ -3897,7 +3897,7 @@
     },
     "6600": {
         "font": "regular",
-        "string": "Je kunt deelnemen in wereldwijde\nMario Kart Wii-competities.\n\nVerbind je Wii met het internet,\nzorg ervoor dat WiiConnect24 aanstaat\nen wacht tot er een competitie start!",
+        "string": "Je kunt deelnemen in wereldwijde\nMario Kart Wii-competities.\n\nVerbind jouw Wii met het internet,\nzorg ervoor dat WiiConnect24 aanstaat\nen wacht tot er een competitie start!",
     },
     "6601": {
         "font": "regular",
@@ -4017,7 +4017,7 @@
     },
     "6718": {
         "font": "regular",
-        "string": "Je hebt een uitnodiging gekregen, maar\nde verstuurder is van\njouw Wii-berichtenbord verwijderd.\n\nStart het Mario Kart-Kanaal opnieuw\nen registreer de vriendcode.",
+        "string": "Je hebt een uitnodiging gekregen, maar\nde verstuurder is van\njouw Wii-berichtenbord verwijderd.\n\nStart het Mario Kart-kanaal opnieuw\nen registreer de vriendcode.",
     },
     "6719": {
         "font": "regular",
@@ -4065,7 +4065,7 @@
     },
     "6901": {
         "font": "regular",
-        "string": "De laatste Mario Kart-Kanaal-gegevens\nworden gedownload.",
+        "string": "De laatste Mario Kart-kanaalgegevens\nworden gedownload.",
     },
     "6902": {
         "font": "regular",
@@ -4073,7 +4073,7 @@
     },
     "6903": {
         "font": "regular",
-        "string": "De laatste Mario Kart-Kanaal-gegevens\nzijn gedownload.",
+        "string": "De laatste Mario Kart-kanaalgegevens\nzijn gedownload.",
     },
     "6904": {
         "font": "regular",
@@ -4189,11 +4189,11 @@
     },
     "7301": {
         "font": "regular",
-        "string": "Krijg de nieuwste updates van het\nMario Kart-Kanaal op je Wii-berichtenbord\nvia WiiConnect24 door je aan te melden\nvoor de berichtenservice.\nJe kunt je op ieder moment afmelden.\n\nBerichten zullen informatie bevatten over:\n\n・competities\n・speciale geestendownloads",
+        "string": "Krijg de nieuwste updates van het\nMario Kart-kanaal op je Wii-berichtenbord\nvia WiiConnect24 door je aan te melden\nvoor de berichtenservice.\nJe kunt je op ieder moment afmelden.\n\nBerichten zullen informatie bevatten over:\n\n・competities\n・speciale geestendownloads",
     },
     "7302": {
         "font": "regular",
-        "string": "Aanmelden voor de\nMario Kart-Kanaal-\nberichtenservice?",
+        "string": "Aanmelden voor de\nMario Kart-kanaal-\nberichtenservice?",
     },
     "7303": {
         "font": "regular",
@@ -4205,11 +4205,11 @@
     },
     "7305": {
         "font": "regular",
-        "string": "Je hebt je aangemeld voor\nde Mario Kart-Kanaal-berichtenservice.",
+        "string": "Je hebt je aangemeld voor\nde Mario Kart-kanaalberichtenservice.",
     },
     "7306": {
         "font": "regular",
-        "string": "Je zult geen berichten ontvangen\nde Mario Kart-Kanaal-\nberichtenservice. Is dit oké?",
+        "string": "Je zult geen berichten ontvangen\nde Mario Kart-kanaal-\nberichtenservice. Is dit oké?",
     },
     "7307": {
         "font": "regular",
@@ -4217,7 +4217,7 @@
     },
     "7350": {
         "font": "regular",
-        "string": "Met deze instellingen zul je\nberichten van de Mario Kart-Kanaal-\nberichtenservice ontvangen op jouw Wii-berichtenbord.",
+        "string": "Met deze instellingen zul je\nberichten van de Mario Kart-kanaal-\nberichtenservice ontvangen op jouw Wii-berichtenbord.",
     },
     "7351": {
         "font": "regular",
@@ -4225,7 +4225,7 @@
     },
     "7352": {
         "font": "regular",
-        "string": "Afmelden voor de Mario Kart-Kanaal-\nberichtenservice",
+        "string": "Afmelden voor de Mario Kart-kanaal-\nberichtenservice",
     },
     "7353": {
         "font": "regular",
@@ -4233,11 +4233,11 @@
     },
     "7354": {
         "font": "regular",
-        "string": "Blijf Mario Kart-Kanaal-berichten\nontvangen",
+        "string": "Blijf Mario Kart-kanaalberichten\nontvangen",
     },
     "7355": {
         "font": "regular",
-        "string": "Afmelden voor het ontvangen van berichten\nvan het Mario Kart-Kanaal?",
+        "string": "Afmelden voor het ontvangen van berichten\nvan het Mario Kart-kanaal?",
     },
     "7356": {
         "font": "regular",
@@ -4245,15 +4245,15 @@
     },
     "7357": {
         "font": "regular",
-        "string": "Je zult berichten van\nhet Mario Kart-Kanaal\nblijven ontvangen.",
+        "string": "Je zult berichten van\nhet Mario Kart-kanaal\nblijven ontvangen.",
     },
     "7358": {
         "font": "regular",
-        "string": "Je hebt je niet aangemeld voor\nde Mario Kart-Kanaal-berichtenservice.",
+        "string": "Je hebt je niet aangemeld voor\nde Mario Kart-kanaalberichtenservice.",
     },
     "7359": {
         "font": "regular",
-        "string": "Je hebt je afgemeld voor\nde Mario Kart-Kanaal-\nberichtenservice.",
+        "string": "Je hebt je afgemeld voor\nde Mario Kart-kanaal-\nberichtenservice.",
     },
     "7360": {
         "font": "regular",
@@ -4437,11 +4437,11 @@
     },
     "8010": {
         "font": "regular",
-        "string": "Gefeliciteerd!\nJe hebt de 50cc\nGrand Prix vrijgespeeld (karts en motors)!",
+        "string": "Gefeliciteerd!\nJe hebt de 50 cc\nGrand Prix vrijgespeeld (karts en motors)!",
     },
     "8011": {
         "font": "regular",
-        "string": "Gefeliciteerd!\nJe hebt de 100cc\nGrand Prix vrijgespeeld (karts en motors)!",
+        "string": "Gefeliciteerd!\nJe hebt de 100 cc\nGrand Prix vrijgespeeld (karts en motors)!",
     },
     "8012": {
         "font": "regular",
@@ -4449,7 +4449,7 @@
     },
     "8100": {
         "font": "regular",
-        "string": "Je hebt trofeeën verdiend in de {arg message|0} Paddestoelen- en Bloemenbeker!",
+        "string": "Je hebt trofeeën verdiend in de {arg message|0} Paddenstoel- en Bloemenbeker!",
     },
     "8101": {
         "font": "regular",
@@ -4465,7 +4465,7 @@
     },
     "8104": {
         "font": "regular",
-        "string": "Je hebt alle 150cc bekers gewonnen!",
+        "string": "Je hebt alle 150 cc bekers gewonnen!",
     },
     "8105": {
         "font": "regular",
@@ -4473,11 +4473,11 @@
     },
     "8110": {
         "font": "regular",
-        "string": "Je hebt de 100cc Blaadjesbeker gewonnen!",
+        "string": "Je hebt de 100 cc Blaadjesbeker gewonnen!",
     },
     "8111": {
         "font": "regular",
-        "string": "Je hebt Tijdraces gespeeld op alle circuits!",
+        "string": "Je hebt tijdraces gespeeld op alle circuits!",
     },
     "8112": {
         "font": "regular",
@@ -4485,7 +4485,7 @@
     },
     "8113": {
         "font": "regular",
-        "string": "Je hebt rang {1 char|} verdiend in alle 50cc Wii Grand Prix bekers!",
+        "string": "Je hebt rang {1 char|} verdiend in alle 50 cc Wii Grand Prix bekers!",
     },
     "8114": {
         "font": "regular",
@@ -4493,19 +4493,19 @@
     },
     "8115": {
         "font": "regular",
-        "string": "Je hebt de 50cc Bliksembeker gewonnen!",
+        "string": "Je hebt de 50 cc Bliksembeker gewonnen!",
     },
     "8116": {
         "font": "regular",
-        "string": "Je hebt rang {1 char|} verdiend in alle 100cc Retro Grand Prix bekers!",
+        "string": "Je hebt rang {1 char|} verdiend in alle 100 cc Retro Grand Prix bekers!",
     },
     "8117": {
         "font": "regular",
-        "string": "Je hebt de 150cc Speciale Beker gewonnen",
+        "string": "Je hebt de 150 cc Speciale Beker gewonnen",
     },
     "8118": {
         "font": "regular",
-        "string": "Je hebt Tijdraces op 16 verschillende circuits gespeeld!",
+        "string": "Je hebt tijdraces op 16 verschillende circuits gespeeld!",
     },
     "8119": {
         "font": "regular",
@@ -4517,11 +4517,11 @@
     },
     "8121": {
         "font": "regular",
-        "string": "Je hebt rang {1 char|} verdiend in alle 150cc Wii Grand Prix bekers!",
+        "string": "Je hebt rang {1 char|} verdiend in alle 150 cc Wii Grand Prix bekers!",
     },
     "8122": {
         "font": "regular",
-        "string": "Je hebt 4 expertgeesten vrijgespeeld in Tijdraces!",
+        "string": "Je hebt 4 expertgeesten vrijgespeeld in tijdraces!",
     },
     "8123": {
         "font": "regular",
@@ -4529,15 +4529,15 @@
     },
     "8124": {
         "font": "regular",
-        "string": "Je hebt de 50cc Sterrenbeker gewonnen!",
+        "string": "Je hebt de 50 cc Sterrenbeker gewonnen!",
     },
     "8125": {
         "font": "regular",
-        "string": "Je hebt de 100cc Speciale Beker gewonnen!",
+        "string": "Je hebt de 100 cc Speciale beker gewonnen!",
     },
     "8126": {
         "font": "regular",
-        "string": "Je hebt alle 32 expertgeesten vrijgespeeld in Tijdraces!",
+        "string": "Je hebt alle 32 expertgeesten vrijgespeeld in tijdraces!",
     },
     "8127": {
         "font": "regular",
@@ -4557,11 +4557,11 @@
     },
     "8140": {
         "font": "regular",
-        "string": "Je hebt rang {1 char|} verdiend in alle 50cc Retro Grand Prix bekers!",
+        "string": "Je hebt rang {1 char|} verdiend in alle 50 cc Retro Grand Prix bekers!",
     },
     "8141": {
         "font": "regular",
-        "string": "Je hebt een expertgeest vrijgespeeld in Tijdraces!",
+        "string": "Je hebt een expertgeest vrijgespeeld in tijdraces!",
     },
     "8142": {
         "font": "regular",
@@ -4573,35 +4573,35 @@
     },
     "8144": {
         "font": "regular",
-        "string": "Je hebt de 50cc Blaadjesbeker gewonnen!",
+        "string": "Je hebt de 50 cc Blaadjesbeker gewonnen!",
     },
     "8145": {
         "font": "regular",
-        "string": "Je hebt de 150cc Blaadjesbeker gewonnen!",
+        "string": "Je hebt de 150 cc Blaadjesbeker gewonnen!",
     },
     "8146": {
         "font": "regular",
-        "string": "Je hebt 24 expertgeesten vrijgespeeld in Tijdraces!",
+        "string": "Je hebt 24 expertgeesten vrijgespeeld in tijdraces!",
     },
     "8147": {
         "font": "regular",
-        "string": "Je hebt de 50cc Speciale Beker gewonnen!",
+        "string": "Je hebt de 50 cc Speciale beker gewonnen!",
     },
     "8148": {
         "font": "regular",
-        "string": "Je hebt rang {1 char|} verdiend in alle 150cc Retro Grand Prix bekers!",
+        "string": "Je hebt rang {1 char|} verdiend in alle 150 cc Retro Grand Prix bekers!",
     },
     "8149": {
         "font": "regular",
-        "string": "Je hebt de 150cc Bliksembeker gewonnen!",
+        "string": "Je hebt de 150 cc Bliksembeker gewonnen!",
     },
     "8150": {
         "font": "regular",
-        "string": "Je hebt de 150cc Sterrenbeker gewonnen!",
+        "string": "Je hebt de 150 cc Sterrenbeker gewonnen!",
     },
     "8151": {
         "font": "regular",
-        "string": "Je hebt Tijdraces gespeeld op 8 verschillende circuits!",
+        "string": "Je hebt tijdraces gespeeld op 8 verschillende circuits!",
     },
     "8152": {
         "font": "regular",
@@ -4613,11 +4613,11 @@
     },
     "8154": {
         "font": "regular",
-        "string": "Je hebt de 100cc Bliksembeker gewonnen!",
+        "string": "Je hebt de 100 cc Bliksembeker gewonnen!",
     },
     "8155": {
         "font": "regular",
-        "string": "Je hebt rang {1 char|} verdiend in alle 100cc Wii Grand Prix bekers!",
+        "string": "Je hebt rang {1 char|} verdiend in alle 100 cc Wii Grand Prix bekers!",
     },
     "8156": {
         "font": "regular",
@@ -4625,11 +4625,11 @@
     },
     "8157": {
         "font": "regular",
-        "string": "Je hebt de 100cc Sterrenbeker gewonnen!",
+        "string": "Je hebt de 100 cc Sterrenbeker gewonnen!",
     },
     "8158": {
         "font": "regular",
-        "string": "Je hebt 12 expertgeesten vrijgespeeld in Tijdraces!",
+        "string": "Je hebt 12 expertgeesten vrijgespeeld in tijdraces!",
     },
     "8159": {
         "font": "regular",
@@ -4637,15 +4637,15 @@
     },
     "8160": {
         "font": "regular",
-        "string": "Je hebt de gespiegelde Speciale Beker gewonnen!",
+        "string": "Je hebt de gespiegelde Speciale beker gewonnen!",
     },
     "8161": {
         "font": "regular",
-        "string": "Je hebt trofeeën gewonnen in alle 50cc bekers!",
+        "string": "Je hebt trofeeën gewonnen in alle 50 cc bekers!",
     },
     "8162": {
         "font": "regular",
-        "string": "Je hebt trofeeën gewonnen in alle 100cc bekers!",
+        "string": "Je hebt trofeeën gewonnen in alle 100 cc bekers!",
     },
     "8163": {
         "font": "regular",
@@ -4741,7 +4741,7 @@
     },
     "8225": {
         "font": "regular",
-        "string": "VS race-record",
+        "string": "Versusrace-record",
     },
     "8226": {
         "font": "regular",
@@ -5109,7 +5109,7 @@
     },
     "8462": {
         "font": "regular",
-        "string": "Gefeliciteerd, %ls!\n\nAls prijs voor het verdienen van alle\ntrofeeën in alle 100cc bekers,\nkrijg je een nieuwe motorklasse:\n\n100cc (karts en motors)",
+        "string": "Gefeliciteerd, %ls!\n\nAls prijs voor het verdienen van alle\ntrofeeën in alle 100 cc bekers,\nkrijg je een nieuwe motorklasse:\n\n100 cc (karts en motors)",
     },
     "8463": {
         "font": "regular",
@@ -5189,19 +5189,19 @@
     },
     "8490": {
         "font": "regular",
-        "string": "Dit is een bericht van het\nMario Kart-Kanaal.\n\n{arg string|0}\n\n\n\nAls je geen verdere commerciële\nberichten van Nintendo meer wilt\nontvangen, selecteer dan de afmeldingsknop\nrechtsboven op het scherm.\n\nJe kunt je afmelden voor:\n(1) berichten van het Mario\nKart-Kanaal, of\n(2) berichten van alle kanalen\nen spellen.",
+        "string": "Dit is een bericht van het\nMario Kart-kanaal.\n\n{arg string|0}\n\n\n\nAls je geen verdere commerciële\nberichten van Nintendo meer wilt\nontvangen, selecteer dan de afmeldingsknop\nrechtsboven op het scherm.\n\nJe kunt je afmelden voor:\n(1) berichten van het Mario\nKart-kanaal, of\n(2) berichten van alle kanalen\nen spellen.",
     },
     "8491": {
         "font": "regular",
-        "string": "Dit is een bericht van het\nMario Kart-Kanaal.\n\n{arg string|0}\n\n\n\nAls je geen verdere commerciële\nberichten van Nintendo meer wilt\nontvangen, selecteer dan de afmeldingsknop\nrechtsboven op het scherm.\n\nJe kunt je afmelden voor:\n(1) berichten van het Mario\nKart-Kanaal, of\n(2) berichten van alle kanalen\nen spellen.",
+        "string": "Dit is een bericht van het\nMario Kart-kanaal.\n\n{arg string|0}\n\n\n\nAls je geen verdere commerciële\nberichten van Nintendo meer wilt\nontvangen, selecteer dan de afmeldingsknop\nrechtsboven op het scherm.\n\nJe kunt je afmelden voor:\n(1) berichten van het Mario\nKart-kanaal, of\n(2) berichten van alle kanalen\nen spellen.",
     },
     "8492": {
         "font": "regular",
-        "string": "Je hebt een vriendenuitnodiging\nontvangen van\n%ls!\n\nMario Kart Wii\nVriendencode: %04d-%04d-%04d\n\nDoor elkaars vriendencode te\nregistreren, kunnen jullie Mario Kart\nWii samen spelen via de Nintendo Wi-Fi\nConnectie.\n\nAls je Mario Kart Wii én\nhet Mario Kart-Kanaal in je Wii-menu\nhebt, kun je de START-knop\naan de rechterkant selecteren\nom te bevestigen.\n\nVeel plezier!",
+        "string": "Je hebt een vriendenuitnodiging\nontvangen van\n%ls!\n\nMario Kart Wii\nVriendencode: %04d-%04d-%04d\n\nDoor elkaars vriendencode te\nregistreren, kunnen jullie Mario Kart\nWii samen spelen via de Nintendo Wi-Fi\nConnectie.\n\nAls je Mario Kart Wii én\nhet Mario Kart-kanaal in je Wii-menu\nhebt, kun je de START-knop\naan de rechterkant selecteren\nom te bevestigen.\n\nVeel plezier!",
     },
     "8493": {
         "font": "regular",
-        "string": "%ls heeft je\nvriendenuitnodiging geaccepteerd!\n\nMario Kart Wii\nVriendcode: %04d-%04d-%04d\n\nOpmerking: Als er ruimte is\njouw vriendenlijst, zal deze\nautomatisch geregistreerd worden.\n\nAls je het Mario Kart-Kanaal op je Wii Menu\nhebt, kun je de START-knop aan\nde rechterkant indrukken om de\nvriendcode te bevestigen.\n\nVeel plezier!",
+        "string": "%ls heeft je\nvriendenuitnodiging geaccepteerd!\n\nMario Kart Wii\nVriendcode: %04d-%04d-%04d\n\nOpmerking: Als er ruimte is\njouw vriendenlijst, zal deze\nautomatisch geregistreerd worden.\n\nAls je het Mario Kart-kanaal op je Wii Menu\nhebt, kun je de START-knop aan\nde rechterkant indrukken om de\nvriendcode te bevestigen.\n\nVeel plezier!",
     },
     "8494": {
         "font": "regular",

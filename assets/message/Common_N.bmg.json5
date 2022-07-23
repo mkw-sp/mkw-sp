@@ -121,15 +121,15 @@
     },
     "9100": {
         "font": "regular",
-        "string": "Standaard Kart S",
+        "string": "Standaardkart S",
     },
     "9101": {
         "font": "regular",
-        "string": "Standaard Kart M",
+        "string": "Standaardkart M",
     },
     "9102": {
         "font": "regular",
-        "string": "Standaard Kart L",
+        "string": "Standaardkart L",
     },
     "9103": {
         "font": "regular",
@@ -149,7 +149,7 @@
     },
     "9107": {
         "font": "regular",
-        "string": "Windglijder",
+        "string": "Windvleugel",
     },
     "9108": {
         "font": "regular",
@@ -157,19 +157,19 @@
     },
     "9109": {
         "font": "regular",
-        "string": "Super Cheep",
+        "string": "Super-Cheep",
     },
     "9110": {
         "font": "regular",
-        "string": "Turbo Blooper",
+        "string": "Turbo-Blooper",
     },
     "9111": {
         "font": "regular",
-        "string": "Piranha-Wurger",
+        "string": "Piranha-wurger",
     },
     "9112": {
         "font": "regular",
-        "string": "Minirally",
+        "string": "Kleine Reus",
     },
     "9113": {
         "font": "regular",
@@ -193,27 +193,27 @@
     },
     "9118": {
         "font": "regular",
-        "string": "Standaard Kart S",
+        "string": "Standaardkart S",
     },
     "9119": {
         "font": "regular",
-        "string": "Standaard Kart M",
+        "string": "Standaardkart M",
     },
     "9120": {
         "font": "regular",
-        "string": "Standaard Kart L",
+        "string": "Standaardkart L",
     },
     "9121": {
         "font": "regular",
-        "string": "Standaard Kart S",
+        "string": "Standaardkart S",
     },
     "9122": {
         "font": "regular",
-        "string": "Standaard Kart M",
+        "string": "Standaardkart M",
     },
     "9123": {
         "font": "regular",
-        "string": "Standaard Kart L",
+        "string": "Standaardkart L",
     },
     "9124": {
         "font": "regular",
@@ -221,31 +221,31 @@
     },
     "9150": {
         "font": "regular",
-        "string": "Standaard Motor S",
+        "string": "Standaardmotor S",
     },
     "9151": {
         "font": "regular",
-        "string": "Standaard Motor M",
+        "string": "Standaardmotor M",
     },
     "9152": {
         "font": "regular",
-        "string": "Standaard Motor L",
+        "string": "Standaardmotor L",
     },
     "9153": {
         "font": "regular",
-        "string": "Bullet-Motor",
+        "string": "Bullet-motor",
     },
     "9154": {
         "font": "regular",
-        "string": "Mach-Motor",
+        "string": "Mach-motor",
     },
     "9155": {
         "font": "regular",
-        "string": "Bowser-Motor",
+        "string": "Bowser-motor",
     },
     "9156": {
         "font": "regular",
-        "string": "Nano-Motor",
+        "string": "Nano-motor",
     },
     "9157": {
         "font": "regular",
@@ -253,7 +253,7 @@
     },
     "9158": {
         "font": "regular",
-        "string": "Wario-Motor",
+        "string": "Wario-motor",
     },
     "9159": {
         "font": "regular",
@@ -269,7 +269,7 @@
     },
     "9162": {
         "font": "regular",
-        "string": "Kamek-Cruiser",
+        "string": "Kamekruiser",
     },
     "9163": {
         "font": "regular",
@@ -281,7 +281,7 @@
     },
     "9165": {
         "font": "regular",
-        "string": "Bubbel-Motor",
+        "string": "Bubbelmotor",
     },
     "9166": {
         "font": "regular",
@@ -293,27 +293,27 @@
     },
     "9168": {
         "font": "regular",
-        "string": "Standaard Motor S",
+        "string": "Standaardmotor S",
     },
     "9169": {
         "font": "regular",
-        "string": "Standaard Motor M",
+        "string": "Standaardmotor M",
     },
     "9170": {
         "font": "regular",
-        "string": "Standaard Motor L",
+        "string": "Standaardmotor L",
     },
     "9171": {
         "font": "regular",
-        "string": "Standaard Motor S",
+        "string": "Standaardmotor S",
     },
     "9172": {
         "font": "regular",
-        "string": "Standaard Motor M",
+        "string": "Standaardmotor M",
     },
     "9173": {
         "font": "regular",
-        "string": "Standaard Motor L",
+        "string": "Standaardmotor L",
     },
     "9174": {
         "font": "regular",
@@ -321,7 +321,7 @@
     },
     "9200": {
         "font": "regular",
-        "string": "Paddestoelenbeker",
+        "string": "Paddenstoelbeker",
     },
     "9201": {
         "font": "regular",
@@ -481,7 +481,7 @@
     },
     "9331": {
         "font": "regular",
-        "string": "GBA Shy Guy's Strand",
+        "string": "GBA Shy Guys Strand",
     },
     "9350": {
         "font": "regular",
@@ -497,11 +497,11 @@
     },
     "9353": {
         "font": "regular",
-        "string": "Wii Arena's",
+        "string": "Wii-arena's",
     },
     "9354": {
         "font": "regular",
-        "string": "Retro Arena's",
+        "string": "Retro-arena's",
     },
     "9355": {
         "font": "regular",
@@ -633,7 +633,7 @@
     },
     "9391": {
         "font": "regular",
-        "string": "GBA Shy Guy's Strand",
+        "string": "GBA Shy Guys Strand",
     },
     "9392": {
         "font": "regular",

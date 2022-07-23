@@ -81,7 +81,7 @@
     },
     "1020": {
         "font": "regular",
-        "string": "Nintendo WFC-Menu",
+        "string": "Nintendo WFC-menu",
     },
     "1021": {
         "font": "regular",
@@ -141,7 +141,7 @@
     },
     "1102": {
         "font": "regular",
-        "string": "Naar het Mario Kart-Kanaal om de rangen te bekijken?",
+        "string": "Naar het Mario Kart-kanaal om de rangen te bekijken?",
     },
     "1103": {
         "font": "regular",
@@ -529,7 +529,7 @@
     },
     "1409": {
         "font": "regular",
-        "string": "{arg message|0} Team VS race - {arg integer|0 0} van {arg integer|1 0}",
+        "string": "{arg message|0} Team versusrace - {arg integer|0 0} van {arg integer|1 0}",
     },
     "1410": {
         "font": "regular",
@@ -549,7 +549,7 @@
     },
     "1414": {
         "font": "regular",
-        "string": "{arg message|0} VS Race - {arg integer|0 0} van {arg integer|1 0}",
+        "string": "{arg message|0} versusrace - {arg integer|0 0} van {arg integer|1 0}",
     },
     "1415": {
         "font": "regular",
@@ -561,15 +561,15 @@
     },
     "1417": {
         "font": "regular",
-        "string": "50cc",
+        "string": "50 cc",
     },
     "1418": {
         "font": "regular",
-        "string": "100cc",
+        "string": "100 cc",
     },
     "1419": {
         "font": "regular",
-        "string": "150cc",
+        "string": "150 cc",
     },
     "1420": {
         "font": "regular",
@@ -581,7 +581,7 @@
     },
     "1422": {
         "font": "regular",
-        "string": "{arg message|0} VS race",
+        "string": "{arg message|0} versusrace",
     },
     "1423": {
         "font": "regular",
@@ -633,7 +633,7 @@
     },
     "1435": {
         "font": "regular",
-        "string": "{arg message|0} Team VS race",
+        "string": "{arg message|0} Team versusrace",
     },
     "1436": {
         "font": "regular",
@@ -653,7 +653,7 @@
     },
     "1440": {
         "font": "regular",
-        "string": "{arg message|0} VS race {arg message|1}",
+        "string": "{arg message|0} versusrace {arg message|1}",
     },
     "1441": {
         "font": "regular",
