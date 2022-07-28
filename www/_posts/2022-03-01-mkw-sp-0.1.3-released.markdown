@@ -1,0 +1,12 @@
+---
+layout: post
+title:  "MKW-SP 0.1.3 Released"
+date:   2022-03-01 11:15:00 +0100
+author: stebler
+---
+
+Version 0.1.3 of Mario Kart Wii - Service Pack has been released. It's a minor release containing a single urgent bugfix described below. It can be downloaded [here](https://github.com/stblr/mkw-sp/releases/download/v0.1.3/mkw-sp-v0.1.3.zip).
+
+## Bugfix
+
+- The game no longer crashes when there is no Internet connectivity on console. [riidefi]

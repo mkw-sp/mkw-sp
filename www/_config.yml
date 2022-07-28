@@ -1,0 +1,22 @@
+title: MKW-SP
+baseurl: "" # the subpath of your site, e.g. /blog
+url: "https://mkw-sp.com" # the base hostname & protocol for your site, e.g. http://example.com
+
+header_pages:
+  - blog.markdown
+  - features.markdown
+  - download.markdown
+
+minima:
+  skin: dark
+
+remote_theme: jekyll/minima
+
+plugins:
+  - jekyll-feed
+  - jekyll-remote-theme
+
+markdown: kramdown
+kramdown:
+  input: GFM
+  syntax_highlighter: rouge

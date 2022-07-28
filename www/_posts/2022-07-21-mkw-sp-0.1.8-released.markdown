@@ -1,0 +1,40 @@
+---
+layout: post
+title:  "MKW-SP 0.1.8 Released"
+date:   2022-07-21 17:15:00 +0200
+author: stebler
+---
+
+Version 0.1.8 of Mario Kart Wii - Service Pack has been released. It's a minor release containing various bugfixes and improvements listed below. It can be installed from the in-game updater or downloaded from [here](https://github.com/stblr/mkw-sp/releases/download/v0.1.8/mkw-sp-v0.1.8.zip).
+
+# Sound
+
+- Multiple BRSTMs are now supported for a single track. To use that feature, create a folder with the name of the original file in your My Stuff folder, and put your BRSTMs in it (with any name). They will be selected at random. If you use the same name for an \_F BRSTM as an \_N one, it will be automatically picked. [stebler]
+- It is now possible to use BRSTMs with fewer tracks than expected for the slot without the music being cut off in most conditions. [stebler]
+- A setting to disable the last lap speedup or to apply it manually has been added. [stebler, Melg, CLF78]
+- A setting to disable the Mega Mushroom/Star music as well as the effect that's applied when shocked or crushed has been added. [stebler]
+- An option to play the last lap jingle instead of the regular one in ghost replays has been added. [stebler]
+
+# Other features
+
+- A vanilla mode has been introduced to disable most MKW-SP features with competitive time trials in mind. [stebler]
+- An SD/USB/network storage benchmark has been added. [stebler]
+- Korean discs can now be used with global consoles. [stebler, Palapeli]
+
+# Bugfixes
+
+- The channel now works on regular Wii. [stebler, Palapeli, Zach]
+- Writing to the log file no longer blocks the main thread. [stebler]
+- The VS speed class rule is now correct in split-screen. [stebler]
+- The correct class is now shown in awards if 200cc is enabled. [stebler]
+- The setting instruction text is now correctly reset. [stebler]
+- Crash screens now use a consistent background color scheme based on region lines. [Star]
+- Update checks have been removed from test and debug builds. [stebler]
+- A crash when going to battle mode from the Change Ghost Data option has been fixed. [stebler, JohnP55]
+- A potential crash with the GCN keyboard controller feature has been resolved. [Star]
+- Ghost files names now contain the Mii name and not the creator name. [stebler]
+
+# Other
+
+- The Dutch translation of the base game has been updated. [Krummers]
+- Work to support mission mode has been started. This is not exposed yet. [JohnP55, stebler]

@@ -1,0 +1,12 @@
+---
+layout: post
+title:  "MKW-SP 0.1.4 Released"
+date:   2022-03-01 13:30:00 +0100
+author: stebler
+---
+
+Version 0.1.4 of Mario Kart Wii - Service Pack has been released. It's a minor release containing a single urgent bugfix described below. It can be downloaded [here](https://github.com/stblr/mkw-sp/releases/download/v0.1.4/mkw-sp-v0.1.4.zip).
+
+## Bugfix
+
+- CTGP 200cc ghosts set with Baby Peach, Toad, Dry Bones, Mario, Peach, Diddy Kong, Waluigi or Donkey Kong no longer desync when accelerating from a low speed. [stebler]

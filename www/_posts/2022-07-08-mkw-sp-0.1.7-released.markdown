@@ -1,0 +1,15 @@
+---
+layout: post
+title:  "MKW-SP 0.1.7 Released"
+date:   2022-07-08 00:30:00 +0200
+author: stebler
+---
+
+Version 0.1.7 of Mario Kart Wii - Service Pack has been released. It's a minor release containing a few important bugfixes described below. It can be installed from the in-game updater or downloaded from [here](https://github.com/stblr/mkw-sp/releases/download/v0.1.7/mkw-sp-v0.1.7.zip).
+
+## Bugfixes
+
+- Fix a typo in the previous Dolphin bugfix. [stebler, alres]
+- Fix racy LogFile implementation. [stebler, Ackermann, Gaberboo, maxi, Krummers]
+- Fix various spammy log messages. [stebler, Zach, Gaberboo]
+- Fix Wii U detection. [stebler, Zach]

@@ -1,0 +1,70 @@
+---
+layout: post
+title:  "MKW-SP 0.1.5 Released"
+date:   2022-07-06 18:45:00 +0200
+author: stebler
+---
+
+Version 0.1.5 of Mario Kart Wii - Service Pack has been released. It's a minor release containing various new features, improvements and bugfixes. It can be downloaded [here](https://github.com/stblr/mkw-sp/releases/download/v0.1.5/mkw-sp-v0.1.5.zip).
+
+If upgrading from an older version, you can follow the standard [instructions](/download). The `mkw-sp/disc` folder and `mkw-sp/save.bin` file can be safely removed.
+
+## New application
+
+- MKW-SP no longer uses Riivolution, and is instead available as a standalone application that can be launched from the Homebrew Channel. [stebler, vabold, riidefi, Palapeli]
+- USB 2.0 is now supported (via IOS58). [stebler]
+- NTSC-K is now supported on console (NTSC-K consoles only for now). [stebler]
+- The settings system has been completely rewritten and is now in a human-readable (and writable) ini format. [riidefi, stebler]
+- A MKW-SP channel can now be installed to the Wii menu. It functions as a shortcut. [stebler, Palapeli, Zach]
+- MKW-SP can now be updated in-game. [stebler, Star, Palapeli, Zach]
+- The channel installer and the updater, as well as the version information, can now be accessed via a new Service Pack menu. [stebler]
+
+## Time Trials
+
+- The wheelie particle effect has been fixed with multi-ghost. [stebler]
+- The bug where the wrong race end animation was played in multi-ghost has been fixed. [stebler]
+- Dynamic ghost transparency now works for all vehicle parts. [stebler]
+- Invisible Lakitus are now muted. [stebler]
+
+## Performance
+
+- YAZ compression speed has been improved. [obluda3]
+- The initial ghost listing now happens in the background. [stebler]
+- Memory usage of font archives has been reduced. [stebler]
+- Archives can now be read and decompressed concurrently. [stebler]
+- The LZMA compression format is now supported aside from YAZ. All MKW-SP compressed files use it. [stebler]
+- Tracks can now be loaded in the menu in time trials mode. [stebler]
+- Dolphin clock overrides are now used in more cases and no longer produce sound glitches. [stebler]
+- The ghost count limit has been increased to 4096 (in total and per track). [stebler]
+
+## Graphics
+
+- The copy filter patch has been brought back (sharper image on progressive modes). [SwareJonge, stebler]
+- A BRRES anti-flicker has been added. [riidefi]
+- The loading screen color is now a hidden setting (black by default). [riidefi]
+
+## HUD
+
+- The layout of the input display has been improved. [LydeumZ]
+- The position tracker can now be shown in time trials. [stebler]
+- The HUD labels setting has been made dynamic. [stebler]
+
+## Security
+
+- Memory write-protection has been added to the remaining sections. [Star]
+- ASLR is now applied to thread stacks. [Star]
+- Code execution has been disabled in MEM2 and the top of MEM1. [Star]
+- Stack canaries have been added, both for game functions and for MKW-SP ones. [Star]
+
+## Misc
+
+- A Minecraft-like console is now available. It has to be used with GameCube keyboard controllers only for now. [riidefi]
+- Crash reports now contain more details. [Star, riidefi]
+
+## Staging area
+
+These features are part of the release but aren't user-friendly in their current state.
+
+- A way to replace files from a server on the local network has been added, akin to RiiFS. [riidefi]
+- It is now possible to replace BRSAR subfiles independently from each other. [stebler]
+- Multiple My Stuff folders are now supported at once. [stebler]

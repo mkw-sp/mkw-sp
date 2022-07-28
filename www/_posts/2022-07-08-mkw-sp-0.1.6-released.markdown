@@ -1,0 +1,13 @@
+---
+layout: post
+title:  "MKW-SP 0.1.6 Released"
+date:   2022-07-08 00:25:00 +0200
+author: stebler
+---
+
+Version 0.1.6 of Mario Kart Wii - Service Pack has been released. It's a minor release containing 2 important bugfixes described below. It can be installed from the in-game updater or downloaded from [here](https://github.com/stblr/mkw-sp/releases/download/v0.1.6/mkw-sp-v0.1.6.zip).
+
+## Bugfixes
+
+- Do not try to write to a protected memory region. [stebler, Ackermann]
+- Create some needed directories on default Dolphin NANDs. [stebler, riidefi]
