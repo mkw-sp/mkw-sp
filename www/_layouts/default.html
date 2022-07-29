@@ -13,6 +13,10 @@
       </div>
     </main>
 
+    {%- if page.script -%}
+      <script src="{{ page.script | relative_url }}"></script>
+    {%- endif -%}
+
   </body>
 
 </html>
