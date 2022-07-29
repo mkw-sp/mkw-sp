@@ -211,6 +211,7 @@ document.getElementById('open').onclick = () => {
         reader.onload = e => {
             try {
                 const new_output = document.createElement('div');
+                const all_details = [];
                 const brsar = new BRSAR(e.target.result);
 
                 const file_sounds = Array.from(Array(brsar.file_count()), () => new Array(0));
@@ -310,42 +311,69 @@ document.getElementById('open').onclick = () => {
 
                     const sound_count = file_sounds[file_id].length;
                     if (sound_count !== 0) {
-                        p.appendChild(document.createTextNode(' - '));
-                        const span = document.createElement('span');
-                        span.innerText = sound_count + (sound_count === 1 ? ' sound' : ' sounds');
-                        span.title = file_sounds[file_id].slice(0, 50).join('\n');
-                        if (sound_count > 50) {
-                            span.title += '\nand ' + (sound_count - 50) + ' more';
-                        }
-                        p.appendChild(span);
+                        const details = document.createElement('details');
+                        details.innerText = file_sounds[file_id].join('\n');
+                        const summary = document.createElement('summary');
+                        summary.innerText = sound_count +
+                                (sound_count === 1 ? ' sound' : ' sounds');
+                        details.appendChild(summary);
+                        p.appendChild(details);
+                        all_details.push(details);
                     }
 
                     const bank_count = file_banks[file_id].length;
                     if (bank_count !== 0) {
-                        p.appendChild(document.createTextNode(' - '));
-                        const span = document.createElement('span');
-                        span.innerText = bank_count + (bank_count === 1 ? ' bank' : ' banks');
-                        span.title = file_banks[file_id].slice(0, 50).join('\n');
-                        if (bank_count > 50) {
-                            span.title += '\nand ' + (bank_count - 50) + ' more';
-                        }
-                        p.appendChild(span);
+                        const details = document.createElement('details');
+                        details.innerText = file_banks[file_id].join('\n');
+                        const summary = document.createElement('summary');
+                        summary.innerText = bank_count + (bank_count === 1 ? ' bank' : ' banks');
+                        details.appendChild(summary);
+                        p.appendChild(details);
+                        all_details.push(details);
                     }
 
                     const group_count = file_groups[file_id].length;
                     if (group_count !== 0) {
-                        p.appendChild(document.createTextNode(' - '));
-                        const span = document.createElement('span');
-                        span.innerText = group_count + (group_count === 1 ? ' group' : ' groups');
-                        span.title = file_groups[file_id].slice(0, 50).join('\n');
-                        if (group_count > 50) {
-                            span.title += '\nand ' + (group_count - 50) + ' more';
-                        }
-                        p.appendChild(span);
+                        const details = document.createElement('details');
+                        details.innerText = file_groups[file_id].join('\n');
+                        const summary = document.createElement('summary');
+                        summary.innerText = group_count + (group_count === 1 ? ' group' : ' groups');
+                        details.appendChild(summary);
+                        p.appendChild(details);
+                        all_details.push(details);
                     }
 
                     new_output.appendChild(p);
                 }
+
+                new_output.prepend(document.createElement('p'));
+
+                {
+                    const button = document.createElement('button');
+                    button.innerText = 'Show all details';
+                    button.onclick = () => {
+                        for (const details of all_details) {
+                            details.open = true;
+                        }
+                    };
+                    new_output.prepend(button);
+                }
+
+                new_output.prepend(document.createTextNode(' - '));
+
+                {
+                    const button = document.createElement('button');
+                    button.innerText = 'Hide all details';
+                    button.onclick = () => {
+                        for (const details of all_details) {
+                            details.open = false;
+                        }
+                    };
+                    new_output.prepend(button);
+                }
+
+                new_output.id = 'output';
+
                 new_output.id = 'output';
                 output.replaceWith(new_output);
             } catch (e) {
