@@ -7,3 +7,5 @@ permalink: /tools/
 # Tools
 
 ## [BRSAR](/tools/brsar)
+
+## [BRWAR](/tools/brwar)
