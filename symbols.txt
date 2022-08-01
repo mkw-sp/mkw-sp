@@ -968,9 +968,10 @@
 0x807f06e8 CtrlRaceNameBalloon_calcSelf
 0x807f1094 CtrlRaceNameBalloon_calcPosition
 0x807f132c BalloonManager_calc
-0x807f1c34 BalloonManager_addNameControl
-0x807f1c58 BalloonManager_ct
-0x807f1d44 BalloonManager_init
+0x807f1c34 _ZN2UI14BalloonManager14addNameControlEPNS_19CtrlRaceNameBalloonE
+0x807f1c58 _ZN2UI14BalloonManagerC1Ev
+0x807f1c58 _ZN2UI14BalloonManagerC2Ev
+0x807f1d44 _ZN2UI14BalloonManager4initEh
 0x807f5f20 getResultCtrlName
 0x807f4a08 _ZN2UI15CtrlRaceRankNum8calcSelfEv
 0x807f4d40 _ZN2UI15CtrlRaceRankNum5vf_48Ev
@@ -1015,7 +1016,7 @@
 0x80857b08 _ZNK2UI8RacePage15getControlCountEj
 0x80857cc0 RacePage_initControls
 0x80857cc0 _ZN2UI8RacePage12initControlsEj
-0x80858864 BalloonManager_dt
+0x80858864 _ZN2UI14BalloonManager2dtEi
 0x808588cc CtrlRaceNameBalloon_ct
 0x80858a50 RacePage_calcItemBalloons
 0x80858ae4 RacePage_calcNameBalloons
@@ -1056,6 +1057,5 @@
 0x809c27f8 _ZN5Sound16RaceSoundManager10s_instanceE
 0x809c2850 _ZN5Sound17SceneSoundManager10s_instanceE
 0x809c2f38 s_driverManager
-0x809c38b8 s_raceGlobals
 0x809c4680 s_racePage
 0x809c4680 _ZN2UI8RacePage10s_instanceE

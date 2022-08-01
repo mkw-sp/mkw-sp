@@ -161,7 +161,7 @@ PATCH_B_START(CtrlRaceNameBalloon_calcSelf, 0x620)
     bl CtrlRaceNameBalloon_calcPosition // Original instruction
 
     mr r3, r31
-    bl CtrlRaceNameBalloon_calcVisibility
+    bl _ZN2UI19CtrlRaceNameBalloon14calcVisibilityEv
 
     b CtrlRaceNameBalloon_calcSelf + 0x624
 PATCH_B_END(CtrlRaceNameBalloon_calcSelf, 0x620)
@@ -209,7 +209,7 @@ PATCH_REPLACE_END(CtrlRaceNameBalloon_load, 0x17c)
 PATCH_B_START(CtrlRaceNameBalloon_refresh, 0x4d8)
     mr r3, r29
     mr r4, r30
-    bl CtrlRaceNameBalloon_refreshText
+    bl _ZN2UI19CtrlRaceNameBalloon11refreshTextEj
 
     b CtrlRaceNameBalloon_refresh + 0x540
 PATCH_B_END(CtrlRaceNameBalloon_refresh, 0x4d8)
