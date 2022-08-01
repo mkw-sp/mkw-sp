@@ -373,8 +373,6 @@ document.getElementById('open').onclick = () => {
                 }
 
                 new_output.id = 'output';
-
-                new_output.id = 'output';
                 output.replaceWith(new_output);
             } catch (e) {
                 output.innerText = 'Failed to load ' + file.name + ': ' + e;
