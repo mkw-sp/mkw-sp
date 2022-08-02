@@ -83,6 +83,13 @@ public:
                 continue;
             }
 
+            // Numeric value
+            if (!entry.valueNames) {
+                Print(ini, length, "%.*s = %u\n", entryName.length(), entryName.data(),
+                        m_values[i]);
+                continue;
+            }
+
             auto valueName = entry.valueNames[m_values[i]];
             Print(ini, length, "%.*s = %.*s\n", entryName.length(), entryName.data(),
                     valueName.length(), valueName.data());
@@ -158,6 +165,24 @@ private:
                 return;
             }
             SP_LOG("Setting %.*s::%.*s to %08x (%i)", categoryName.length(), categoryName.data(),
+                    entry.name.length(), entry.name.data(), v, v);
+            m_values[*setting] = v;
+            return;
+        }
+
+        // Numeric value
+        if (!entry.valueNames) {
+            char tmp[9];
+            snprintf(tmp, sizeof(tmp), "%.*s", value.length(), value.data());
+            char *end;
+            u32 v = strtoul(tmp, &end, 10);
+            if (*end != '\0' || v >= entry.valueCount) {
+                SP_LOG("Invalid value \"%.*s\" for %.*s::%.*s", value.length(), value.data(),
+                        categoryName.length(), categoryName.data(), entry.name.length(),
+                        entry.name.data());
+                return;
+            }
+            SP_LOG("Setting %.*s::%.*s to %u (%i)", categoryName.length(), categoryName.data(),
                     entry.name.length(), entry.name.data(), v, v);
             m_values[*setting] = v;
             return;

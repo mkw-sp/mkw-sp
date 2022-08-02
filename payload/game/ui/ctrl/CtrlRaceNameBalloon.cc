@@ -124,4 +124,27 @@ void BalloonManager::addNameControl(CtrlRaceNameBalloon *UNUSED(nameControl)) {
     m_nameCount++;
 }
 
+void BalloonManager::calc() {
+    const auto &raceScenario = System::RaceConfig::Instance()->raceScenario();
+    if (raceScenario.gameMode != System::RaceConfig::GameMode::TimeAttack) {
+        auto *saveManager = System::SaveManager::Instance();
+        u32 totalNameCount = saveManager->getSetting<SP::ClientSettings::Setting::PlayerTags>();
+        u32 localPlayerCount = raceScenario.localPlayerCount;
+        if (localPlayerCount == 0) {
+            localPlayerCount = 1;
+        }
+        u32 nameCount = totalNameCount / localPlayerCount;
+        nameCount += m_localPlayerId < (totalNameCount % localPlayerCount);
+        if (nameCount != m_nameCount) {
+            for (u32 i = 0; i < m_nameCount; i++) {
+                m_playerIds[i] = -1;
+                m_nameIsEnabled[i] = false;
+            }
+            m_nameCount = nameCount;
+        }
+    }
+
+    REPLACED(calc)();
+}
+
 } // namespace UI

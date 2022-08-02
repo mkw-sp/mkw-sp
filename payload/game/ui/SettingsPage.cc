@@ -140,9 +140,16 @@ void SettingsPage::onCategoryValueChange([[maybe_unused]] TextUpDownValueControl
         m_settingControls[i].setVisible(true);
         m_settingControls[i].setPlayerFlags(0x1);
         auto *shownText = m_settingValues[i].shownText();
-        shownText->setMessageAll(entry.valueMessageIds[chosen]);
         auto *hiddenText = m_settingValues[i].hiddenText();
-        hiddenText->setMessageAll(entry.valueMessageIds[chosen]);
+        if (entry.valueNames) {
+            shownText->setMessageAll(entry.valueMessageIds[chosen]);
+            hiddenText->setMessageAll(entry.valueMessageIds[chosen]);
+        } else {
+            MessageInfo info{};
+            info.intVals[0] = chosen;
+            shownText->setMessageAll(entry.valueMessageIds[0], &info);
+            hiddenText->setMessageAll(entry.valueMessageIds[0], &info);
+        }
         i++;
     }
     for (; i < std::size(m_settingControls); i++) {
@@ -155,8 +162,15 @@ void SettingsPage::onSettingControlChange([[maybe_unused]] UpDownControl *contro
         [[maybe_unused]] u32 localPlayerId, [[maybe_unused]] u32 index) {
     auto *text = m_settingValues[control->m_id & 0xffff].shownText();
     const SP::ClientSettings::Entry &entry = SP::ClientSettings::entries[control->m_id >> 16];
-    text->setMessageAll(entry.valueMessageIds[index]);
-    m_instructionText.setMessage(entry.valueExplanationMessageIds[index]);
+    if (entry.valueNames) {
+        text->setMessageAll(entry.valueMessageIds[index]);
+        m_instructionText.setMessage(entry.valueExplanationMessageIds[index]);
+    } else {
+        MessageInfo info{};
+        info.intVals[0] = index;
+        text->setMessageAll(entry.valueMessageIds[0], &info);
+        m_instructionText.setMessage(entry.valueExplanationMessageIds[0], &info);
+    }
     System::SaveManager::Instance()->setSetting(control->m_id >> 16, index);
     if (control->m_id >> 16 == static_cast<u32>(SP::ClientSettings::Setting::VanillaMode)) {
         System::SPFooter::OnVanilla(index);
@@ -177,7 +191,13 @@ void SettingsPage::onSettingControlSelect([[maybe_unused]] UpDownControl *contro
         [[maybe_unused]] u32 localPlayerId) {
     u32 chosen = control->chosen();
     const SP::ClientSettings::Entry &entry = SP::ClientSettings::entries[control->m_id >> 16];
-    m_instructionText.setMessage(entry.valueExplanationMessageIds[chosen]);
+    if (entry.valueNames) {
+        m_instructionText.setMessage(entry.valueExplanationMessageIds[chosen]);
+    } else {
+        MessageInfo info{};
+        info.intVals[0] = chosen;
+        m_instructionText.setMessage(entry.valueExplanationMessageIds[0], &info);
+    }
 }
 
 void SettingsPage::onBackButtonFront([[maybe_unused]] PushButton *button,

@@ -643,6 +643,26 @@
         "font": "regular",
         "string": "{arg message|0} ({arg integer|0 0}/{arg integer|1 0})",
     },
+    "10183": {
+        "font": "regular",
+        "string": "Player Tags",
+    },
+    "10184": {
+        "font": "regular",
+        "string": "{arg integer|0 0}",
+    },
+    "10185": {
+        "font": "regular",
+        "string": "Display at most {arg integer|0 0} {arg cond messages|0 10186 10187} at once.",
+    },
+    "10186": {
+        "font": "regular",
+        "string": "tag",
+    },
+    "10187": {
+        "font": "regular",
+        "string": "tags",
+    },
     "3700": {
         "font": "regular",
         "string": "Select Level",

@@ -8,8 +8,9 @@ enum class Setting {
     // Race
     DriftMode,
     VanillaMode,
-    HUDLabels,
     FOV169,
+    PlayerTags,
+    HUDLabels,
     MapIcons,
     InputDisplay,
     RankControl,
@@ -51,14 +52,14 @@ enum class VanillaMode {
     Enable,
 };
 
-enum class HUDLabels {
-    Hide,
-    Show,
-};
-
 enum class FOV169 {
     FOV169,
     FOV43,
+};
+
+enum class HUDLabels {
+    Hide,
+    Show,
 };
 
 enum class MapIcons {
@@ -165,13 +166,18 @@ struct Helper<ClientSettings::Setting, ClientSettings::Setting::VanillaMode> {
 };
 
 template <>
-struct Helper<ClientSettings::Setting, ClientSettings::Setting::HUDLabels> {
-    using type = SP::ClientSettings::HUDLabels;
+struct Helper<ClientSettings::Setting, ClientSettings::Setting::FOV169> {
+    using type = SP::ClientSettings::FOV169;
 };
 
 template <>
-struct Helper<ClientSettings::Setting, ClientSettings::Setting::FOV169> {
-    using type = SP::ClientSettings::FOV169;
+struct Helper<ClientSettings::Setting, ClientSettings::Setting::PlayerTags> {
+    using type = u32;
+};
+
+template <>
+struct Helper<ClientSettings::Setting, ClientSettings::Setting::HUDLabels> {
+    using type = SP::ClientSettings::HUDLabels;
 };
 
 template <>

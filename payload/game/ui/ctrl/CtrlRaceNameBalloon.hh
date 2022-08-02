@@ -14,8 +14,7 @@ private:
     void refreshTextTime(u32 playerId, bool leadingZeroes);
     void refreshTextDate(u32 playerId);
 
-    u8 _174[0x177 - 0x174];
-    u8 m_index; // Added (was padding)
+    u8 _174[0x178 - 0x174];
     s32 m_playerId;
     u8 _17c[0x188 - 0x17c];
 };
@@ -29,6 +28,8 @@ public:
 
     REPLACE void init(u8 localPlayerId);
     REPLACE void addNameControl(CtrlRaceNameBalloon *nameControl);
+    void REPLACED(calc)();
+    REPLACE void calc();
 
 private:
     u8 _00[0x03 - 0x00];
