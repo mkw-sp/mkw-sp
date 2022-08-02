@@ -24,6 +24,7 @@ struct Entry {
     const u32 *valueMessageIds;
     const u32 *valueExplanationMessageIds;
     std::optional<u32> vanillaValue{};
+    bool hidden = false;
 };
 
 template <typename C>

@@ -18,6 +18,7 @@ const Entry entries[] = {
         .valueNames = magic_enum::enum_names<DriftMode>().data(),
         .valueMessageIds = nullptr,
         .valueExplanationMessageIds = nullptr,
+        .hidden = true,
     },
     [static_cast<u32>(Setting::VanillaMode)] = {
         .category = Category::Race,

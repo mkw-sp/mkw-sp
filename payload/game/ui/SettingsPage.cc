@@ -34,10 +34,9 @@ void SettingsPage::onInit() {
     }
 
     m_pageTitleText.load(false);
-    m_categoryControl.load(magic_enum::enum_count<SP::ClientSettings::Category>(), 0, "control",
-            "CategoryUpDownBase", "Category", "CategoryUpDownButtonR", "RightButton",
-            "CategoryUpDownButtonL", "LeftButton", m_categoryValue.animator(), 0x1, false, false,
-            true, true);
+    m_categoryControl.load(getSheetCount(), 0, "control", "CategoryUpDownBase", "Category",
+            "CategoryUpDownButtonR", "RightButton", "CategoryUpDownButtonL", "LeftButton",
+            m_categoryValue.animator(), 0x1, false, false, true, true);
     m_categoryValue.load("ranking", "CategoryUpDownValue", "Value", "CategoryUpDownText", "Text");
     for (u32 i = 0; i < std::size(m_settingControls); i++) {
         char variant[0x20];
@@ -107,19 +106,29 @@ void SettingsPage::onCategoryControlSelect([[maybe_unused]] UpDownControl *contr
 
 void SettingsPage::onCategoryValueChange([[maybe_unused]] TextUpDownValueControl::TextControl *text,
         [[maybe_unused]] u32 index) {
-    text->setMessageAll(SP::ClientSettings::categoryMessageIds[index]);
+    auto categoryInfo = getCategoryInfo(index);
 
-    auto category = static_cast<SP::ClientSettings::Category>(index);
+    if (categoryInfo.categorySheetCount >= 2) {
+        MessageInfo info{};
+        info.messageIds[0] = SP::ClientSettings::categoryMessageIds[categoryInfo.categoryIndex];
+        info.intVals[0] = categoryInfo.categorySheetIndex + 1;
+        info.intVals[1] = categoryInfo.categorySheetCount;
+        text->setMessageAll(10182, &info);
+    } else {
+        text->setMessageAll(SP::ClientSettings::categoryMessageIds[categoryInfo.categoryIndex]);
+    }
+
+    auto category = static_cast<SP::ClientSettings::Category>(categoryInfo.categoryIndex);
     u32 i = 0;
-    for (u32 j = 0; j < SP::ClientSettings::entryCount && i < std::size(m_settingControls); j++) {
+    for (u32 j = categoryInfo.settingIndex; j < SP::ClientSettings::entryCount &&
+            i < std::size(m_settingControls); j++) {
         if (SP::ClientSettings::entries[j].category != category) {
             continue;
         }
         if (SP::ClientSettings::entries[j].valueCount == 0) {
             continue;
         }
-        // Already configurable in its dedicated page
-        if (static_cast<SP::ClientSettings::Setting>(j) == SP::ClientSettings::Setting::DriftMode) {
+        if (SP::ClientSettings::entries[j].hidden) {
             continue;
         }
         m_settingControls[i].m_id = j << 16 | i;
@@ -175,6 +184,64 @@ void SettingsPage::onBackButtonFront([[maybe_unused]] PushButton *button,
         [[maybe_unused]] u32 localPlayerId) {
     f32 delay = button->getDelay();
     startReplace(Anim::Prev, delay);
+}
+
+u32 SettingsPage::getSheetCount() const {
+    u32 sheetCount = 0;
+    for (u32 i = 0; i < magic_enum::enum_count<SP::ClientSettings::Category>(); i++) {
+        auto category = static_cast<SP::ClientSettings::Category>(i);
+        u32 settingCount = 0;
+        for (u32 j = 0; j < magic_enum::enum_count<SP::ClientSettings::Setting>(); j++) {
+            if (SP::ClientSettings::entries[j].category != category) {
+                continue;
+            }
+            if (SP::ClientSettings::entries[j].valueCount == 0) {
+                continue;
+            }
+            if (SP::ClientSettings::entries[j].hidden) {
+                continue;
+            }
+            settingCount++;
+        }
+        u32 controlCount = std::size(m_settingControls);
+        sheetCount += (settingCount + controlCount - 1) / controlCount;
+    }
+    return sheetCount;
+}
+
+SettingsPage::CategoryInfo SettingsPage::getCategoryInfo(u32 sheetIndex) const {
+    u32 controlCount = std::size(m_settingControls);
+    CategoryInfo info{};
+    u32 sheetCount = 0;
+    u32 categoryCount = magic_enum::enum_count<SP::ClientSettings::Category>();
+    for (; info.categoryIndex < categoryCount; info.categoryIndex++) {
+        auto category = static_cast<SP::ClientSettings::Category>(info.categoryIndex);
+        u32 settingCount = 0;
+        for (u32 i = 0; i < magic_enum::enum_count<SP::ClientSettings::Setting>(); i++) {
+            if (SP::ClientSettings::entries[i].category != category) {
+                continue;
+            }
+            if (SP::ClientSettings::entries[i].hidden) {
+                continue;
+            }
+            if (SP::ClientSettings::entries[i].valueCount == 0) {
+                continue;
+            }
+            if (settingCount % controlCount == 0) {
+                if (sheetCount == sheetIndex) {
+                    info.categorySheetIndex = settingCount / std::size(m_settingControls);
+                    info.settingIndex = i;
+                }
+                sheetCount++;
+            }
+            settingCount++;
+        }
+        if (sheetCount > sheetIndex) {
+            info.categorySheetCount = (settingCount + controlCount - 1) / controlCount;
+            return info;
+        }
+    }
+    assert(false);
 }
 
 } // namespace UI

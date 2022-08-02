@@ -23,6 +23,13 @@ public:
     void setReplacement(PageId pageId);
 
 private:
+    struct CategoryInfo {
+        u32 categoryIndex;
+        u32 categorySheetIndex;
+        u32 categorySheetCount;
+        u32 settingIndex;
+    };
+
     void onBack(u32 localPlayerId);
     void onCategoryControlFront(UpDownControl *control, u32 localPlayerId);
     void onCategoryControlSelect(UpDownControl *control, u32 localPlayerId);
@@ -31,6 +38,8 @@ private:
     void onSettingControlFront(UpDownControl *control, u32 localPlayerId);
     void onSettingControlSelect(UpDownControl *control, u32 localPlayerId);
     void onBackButtonFront(PushButton *button, u32 localPlayerId);
+    u32 getSheetCount() const;
+    CategoryInfo getCategoryInfo(u32 sheetIndex) const;
 
     template <typename T>
     using H = typename T::Handler<SettingsPage>;
