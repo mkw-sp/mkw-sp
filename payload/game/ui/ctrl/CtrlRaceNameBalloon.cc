@@ -9,10 +9,9 @@ namespace UI {
 
 void CtrlRaceNameBalloon::calcVisibility() {
     // An artificial 1 frame delay is added to match the camera.
-    u8 lastWatchedPlayerId = m_lastWatchedPlayerId;
     const auto *racePage = getPage()->downcast<RacePage>();
     assert(racePage);
-    m_lastWatchedPlayerId = racePage->watchedPlayerId();
+    u8 lastWatchedPlayerId = racePage->lastWatchedPlayerId();
 
     if (!getVisible()) {
         return;
@@ -20,6 +19,11 @@ void CtrlRaceNameBalloon::calcVisibility() {
 
     const auto &raceScenario = System::RaceConfig::Instance()->raceScenario();
     if (raceScenario.gameMode != System::RaceConfig::GameMode::TimeAttack) {
+        return;
+    }
+
+    if (racePage->watchedPlayerId() != lastWatchedPlayerId) {
+        setVisible(false);
         return;
     }
 

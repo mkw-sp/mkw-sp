@@ -31,8 +31,24 @@ u32 RacePage::watchedPlayerId() const {
     return m_watchedPlayerId;
 }
 
+u32 RacePage::lastWatchedPlayerId() const {
+    return m_lastWatchedPlayerId;
+}
+
 RacePage *RacePage::Instance() {
     return s_instance;
+}
+
+void RacePage::onInit() {
+    REPLACED(onInit)();
+
+    m_lastWatchedPlayerId = m_watchedPlayerId;
+}
+
+void RacePage::afterCalc() {
+    m_lastWatchedPlayerId = m_watchedPlayerId;
+
+    REPLACED(afterCalc)();
 }
 
 u8 RacePage::getControlCount(u32 controls) const {

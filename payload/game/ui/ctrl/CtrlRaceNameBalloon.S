@@ -157,6 +157,15 @@ PATCH_BL_START(BalloonManager_calc, 0x48)
     b BalloonManager_calc + 0x18c
 PATCH_BL_END(BalloonManager_calc, 0x48)
 
+PATCH_B_START(CtrlRaceNameBalloon_calcSelf, 0x4e8)
+    bl CtrlRaceNameBalloon_calcPosition // Original instruction
+
+    mr r3, r31
+    bl _ZN2UI19CtrlRaceNameBalloon14calcVisibilityEv
+
+    b CtrlRaceNameBalloon_calcSelf + 0x4ec
+PATCH_B_END(CtrlRaceNameBalloon_calcSelf, 0x4e8)
+
 PATCH_B_START(CtrlRaceNameBalloon_calcSelf, 0x620)
     bl CtrlRaceNameBalloon_calcPosition // Original instruction
 

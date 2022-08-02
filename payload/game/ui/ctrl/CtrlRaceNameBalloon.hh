@@ -15,7 +15,7 @@ private:
     void refreshTextDate(u32 playerId);
 
     u8 _174[0x177 - 0x174];
-    u8 m_lastWatchedPlayerId; // Added (was padding)
+    u8 m_index; // Added (was padding)
     s32 m_playerId;
     u8 _17c[0x188 - 0x17c];
 };
