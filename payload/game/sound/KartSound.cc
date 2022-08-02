@@ -49,11 +49,6 @@ void KartSound::calcLap() {
         m_maxLap = maxLap;
     }
 
-    u32 state = RaceSoundManager::Instance()->state();
-    if (state != 4 && state != 6) {
-        ItemMusicManager::Instance()->m_speedup = false;
-    }
-
     bool hasFinished = System::RaceManager::Instance()->player(playerId)->hasFinished();
     if (hasFinished && !m_hasFinished) {
         if (m_proxy->isGhost()) {

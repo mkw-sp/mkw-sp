@@ -1,5 +1,6 @@
 #include "ItemMusicManager.hh"
 
+#include "game/sound/RaceSoundManager.hh"
 #include "game/system/SaveManager.hh"
 
 namespace Sound {
@@ -38,6 +39,11 @@ void ItemMusicManager::resolve() {
 }
 
 f32 ItemMusicManager::pitch() const {
+    u32 state = RaceSoundManager::Instance()->state();
+    if (state < 4 || state > 6) {
+        return m_pitch;
+    }
+
     if (!m_speedup) {
         return m_pitch;
     }
