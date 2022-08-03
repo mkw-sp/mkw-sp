@@ -88,8 +88,14 @@ static void Init() {
     Console::Print(" done.\n");
 
     Console::Print("Initializing storage...");
-    bool storageWasInit = Storage::Init();
-    assert(storageWasInit);
+    if (!Storage::Init()) {
+        Console::Print(" failed!\n");
+        Console::Print("Please make sure that an SD or USB device is inserted.\n");
+        Console::Print("Trying again in a loop...");
+        do {
+            OSSleepMilliseconds(500);
+        } while (!Storage::Init());
+    }
     Console::Print(" done.\n");
 
     Console::Print("Initializing log file...");

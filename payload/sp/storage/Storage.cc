@@ -9,11 +9,11 @@
 
 namespace SP::Storage {
 
-static std::optional<NetStorage> netStorage;
-static std::optional<FATStorage> fatStorage;
-static std::optional<NANDArchiveStorage> nandArchiveStorage;
+static std::optional<NetStorage> netStorage{};
+static std::optional<FATStorage> fatStorage{};
+static std::optional<NANDArchiveStorage> nandArchiveStorage{};
 static DVDStorage dvdStorage;
-static std::optional<BenchmarkStatus> benchmarkStatus;
+static std::optional<BenchmarkStatus> benchmarkStatus{};
 
 FileHandle::FileHandle(IFile *file) : m_file(file) {}
 
@@ -80,13 +80,21 @@ std::optional<NodeInfo> DirHandle::read() {
 }
 
 bool Init() {
-    netStorage.emplace();
-    fatStorage.emplace();
+    if (!netStorage) {
+        netStorage.emplace();
+    }
+    if (!fatStorage) {
+        fatStorage.emplace();
+    }
     if (!fatStorage->ok()) {
+        fatStorage.reset();
         return false;
     }
-    nandArchiveStorage.emplace();
+    if (!nandArchiveStorage) {
+        nandArchiveStorage.emplace();
+    }
     if (!nandArchiveStorage->ok()) {
+        nandArchiveStorage.reset();
         return false;
     }
 

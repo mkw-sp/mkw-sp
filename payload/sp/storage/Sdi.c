@@ -327,9 +327,9 @@ static const FATStorage sdiStorage = {
 };
 
 bool SdiStorage_init(const FATStorage **fatStorage) {
-    assert(fd < 0);
-
-    fd = IOS_Open("/dev/sdio/slot0", 0);
+    if (fd < 0) {
+        fd = IOS_Open("/dev/sdio/slot0", 0);
+    }
     if (fd < 0) {
         SP_LOG("Failed to open /dev/sdio/slot0: Returned error %i", fd);
         return false;

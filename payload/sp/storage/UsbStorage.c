@@ -43,7 +43,7 @@ static u32 id;
 static u8 interface;
 static u8 outEndpoint;
 static u8 inEndpoint;
-static u8 *buffer;
+static u8 *buffer = NULL;
 static u32 tag = 0;
 static u8 lun;
 static u32 blockSize;
@@ -357,7 +357,9 @@ static const FATStorage usbStorage = {
 };
 
 bool UsbStorage_init(const FATStorage **fatStorage) {
-    buffer = OSAllocFromMEM2ArenaLo(0x4000, 0x20);
+    if (!buffer) {
+        buffer = OSAllocFromMEM2ArenaLo(0x4000, 0x20);
+    }
 
     Usb_addHandler(&handler);
 
