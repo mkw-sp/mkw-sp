@@ -50,6 +50,7 @@ const Entry entries[] = {
         .valueNames = nullptr,
         .valueMessageIds = (u32[]) { 10184 },
         .valueExplanationMessageIds = (u32[]) { 10185 },
+        .vanillaValue = 3,
     },
     [static_cast<u32>(Setting::HUDLabels)] = {
         .category = Category::Race,
@@ -104,6 +105,7 @@ const Entry entries[] = {
         .valueNames = magic_enum::enum_names<ItemMusic>().data(),
         .valueMessageIds = (u32[]) { 10128, 10129, 10130 },
         .valueExplanationMessageIds = (u32[]) { 10131, 10132, 10133 },
+        .vanillaValue = static_cast<u32>(ItemMusic::All),
     },
     [static_cast<u32>(Setting::LastLapJingle)] = {
         .category = Category::Sound,
@@ -114,6 +116,7 @@ const Entry entries[] = {
         .valueNames = magic_enum::enum_names<LastLapJingle>().data(),
         .valueMessageIds = (u32[]) { 10135, 10136 },
         .valueExplanationMessageIds = (u32[]) { 10137, 10138 },
+        .vanillaValue = static_cast<u32>(LastLapJingle::GameplayOnly),
     },
     [static_cast<u32>(Setting::LastLapSpeedup)] = {
         .category = Category::Sound,
@@ -124,6 +127,7 @@ const Entry entries[] = {
         .valueNames = magic_enum::enum_names<LastLapSpeedup>().data(),
         .valueMessageIds = (u32[]) { 10140, 10141, 10142 },
         .valueExplanationMessageIds = (u32[]) { 10143, 10144, 10145 },
+        .vanillaValue = static_cast<u32>(LastLapSpeedup::Static),
     },
     [static_cast<u32>(Setting::TAClass)] = {
         .category = Category::TA,
