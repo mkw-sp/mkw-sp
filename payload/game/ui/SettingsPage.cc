@@ -42,7 +42,7 @@ void SettingsPage::onInit() {
         char variant[0x20];
         snprintf(variant, sizeof(variant), "UpDown%u", i);
         m_settingControls[i].load(1, 0, "control", "SettingUpDownBase", variant,
-                "VSSettingUpDownButtonR", "RightButton", "VSSettingUpDownButtonL", "LeftButton",
+                "SettingUpDownButtonR", "RightButton", "SettingUpDownButtonL", "LeftButton",
                 m_settingValues[i].animator(), 0x1, false, false, true, true);
         m_settingValues[i].load("ranking", "SettingUpDownValue", "Value", "SettingUpDownText",
                 "Text");
