@@ -8,7 +8,6 @@ extern "C" {
 }
 extern "C" {
 #include "sp/Host.h"
-#include "sp/IOSDolphin.h"
 #include "sp/Patcher.h"
 }
 #include "sp/Rel.hh"
@@ -30,6 +29,7 @@ extern "C" {
 
 #include <common/Console.hh>
 #include <common/VI.hh>
+#include <game/host_system/SystemManager.hh>
 extern "C" {
 #include <libhydrogen/hydrogen.h>
 #include <revolution.h>
@@ -137,11 +137,7 @@ static void Init() {
     auto *mem1Hi = reinterpret_cast<u8 *>(OSGetMEM1ArenaHi());
     memset(OSGetMEM1ArenaLo(), 0, mem1Hi - mem1Lo);
 
-    IOSDolphin dolphin = IOSDolphin_Open();
-    if (dolphin >= 0) {
-        IOSDolphin_SetSpeedLimit(dolphin, 100);
-        IOSDolphin_Close(dolphin);
-    }
+    System::SystemManager::ResetDolphinSpeedLimit();
 }
 
 static void Run() {

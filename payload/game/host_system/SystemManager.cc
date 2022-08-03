@@ -8,22 +8,19 @@ extern "C" {
 
 namespace System {
 
-static void ResetDolphinSpeedLimit() {
-    IOSDolphin dolphin = IOSDolphin_Open();
-    if (IOSDolphin_IsOpen(dolphin)) {
-        IOSDolphin_SetSpeedLimit(dolphin, 100);
-        IOSDolphin_Close(dolphin);
-    }
-}
-
-static void LaunchTitle(u64 titleID) {
-    if (!OSIsTitleInstalled(titleID)) {
-        return;
-    }
-    __OSLaunchTitle(titleID);
-}
-
 void SystemManager::shutdownSystem() {
+    ShutdownSystem();
+}
+
+void SystemManager::returnToMenu() {
+    ReturnToMenu();
+}
+
+void SystemManager::restart() {
+    Restart();
+}
+
+void SystemManager::ShutdownSystem() {
     ResetDolphinSpeedLimit();
     VISetBlack(true);
     VIFlush();
@@ -32,7 +29,7 @@ void SystemManager::shutdownSystem() {
     OSShutdownSystem();
 }
 
-void SystemManager::returnToMenu() {
+void SystemManager::ReturnToMenu() {
     ResetDolphinSpeedLimit();
     VISetBlack(true);
     VIFlush();
@@ -44,7 +41,7 @@ void SystemManager::returnToMenu() {
     __OSReturnToMenuForError();
 }
 
-void SystemManager::restart() {
+void SystemManager::Restart() {
     ResetDolphinSpeedLimit();
     VISetBlack(true);
     VIFlush();
@@ -59,16 +56,19 @@ void SystemManager::restart() {
     LaunchTitle(UINT64_C(0x0000000100000002));
 }
 
+void SystemManager::ResetDolphinSpeedLimit() {
+    IOSDolphin dolphin = IOSDolphin_Open();
+    if (IOSDolphin_IsOpen(dolphin)) {
+        IOSDolphin_SetSpeedLimit(dolphin, 100);
+        IOSDolphin_Close(dolphin);
+    }
+}
+
+void SystemManager::LaunchTitle(u64 titleID) {
+    if (!OSIsTitleInstalled(titleID)) {
+        return;
+    }
+    __OSLaunchTitle(titleID);
+}
+
 } // namespace System
-
-extern "C" void my_SystemManager_shutdownSystem(SystemManager *self) {
-    reinterpret_cast<System::SystemManager *>(self)->shutdownSystem();
-}
-
-extern "C" void my_SystemManager_returnToMenu(SystemManager *self) {
-    reinterpret_cast<System::SystemManager *>(self)->returnToMenu();
-}
-
-extern "C" void my_SystemManager_restart(SystemManager *self) {
-    reinterpret_cast<System::SystemManager *>(self)->restart();
-}

@@ -12,9 +12,9 @@
 0x8000951c RkSystem_run
 0x80009820 EGG_ConfigurationData_onBeginFrame
 0x80009844 SceneManager_changeSiblingScene
-0x8000b154 SystemManager_shutdownSystem
-0x8000b188 SystemManager_returnToMenu
-0x8000b1bc SystemManager_restart
+0x8000b154 _ZN6System13SystemManager14shutdownSystemEv
+0x8000b188 _ZN6System13SystemManager12returnToMenuEv
+0x8000b1bc _ZN6System13SystemManager7restartEv
 0x8000b5c8 SystemManager_ripFromDisc
 
 0x8000f1f0 memmove

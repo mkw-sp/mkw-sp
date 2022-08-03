@@ -8,9 +8,15 @@ namespace System {
 
 class SystemManager {
 public:
-    void shutdownSystem();
-    void returnToMenu();
-    void restart();
+    REPLACE void shutdownSystem();
+    REPLACE void returnToMenu();
+    REPLACE void restart();
+
+    static void ShutdownSystem();
+    static void ReturnToMenu();
+    static void Restart();
+    static void ResetDolphinSpeedLimit();
+    static void LaunchTitle(u64 titleID);
 
 private:
     u8 _0000[0x1100 - 0x0000];
