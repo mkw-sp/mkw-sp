@@ -19,7 +19,7 @@ static u16 xfbHeight;
 u32 *const xfb = reinterpret_cast<u32 *>(0x81600000);
 
 void Init() {
-    bool isProgressive = visel & 1;
+    bool isProgressive = visel & 1 || dcr & 4;
     bool isNtsc = (dcr >> 8 & 3) == 0;
     xfbWidth = 640;
     xfbHeight = isProgressive || isNtsc ? 480 : 574;
