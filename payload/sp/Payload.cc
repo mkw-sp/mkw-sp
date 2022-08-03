@@ -42,6 +42,24 @@ extern void (*payload_ctors_end)(void);
 
 namespace SP::Payload {
 
+typedef void (*StubEntryFunc)(void);
+
+static void ReturnToLoader() {
+    if (!memcmp(reinterpret_cast<void *>(0x80001804), "STUBHAXX", 8)) {
+        StubEntryFunc stubEntry = reinterpret_cast<StubEntryFunc>(0x80001800);
+        if (stubEntry) {
+            stubEntry();
+        }
+        OSShutdownSystem();
+        return;
+    }
+    System::SystemManager::ResetDolphinSpeedLimit();
+    OSDisableScheduler();
+    __OSShutdownDevices(6);
+    OSEnableScheduler();
+    __OSReturnToMenuForError();
+}
+
 static void Init() {
     VI::Init();
 
@@ -61,7 +79,6 @@ static void Init() {
 #endif
 
     OSAllocFromMEM1ArenaLo(Payload_getSize(), 0x20);
-
 
     Memory_ProtectRangeModule(OS_PROTECT_CHANNEL_1, Dol_getInitSectionStart(), Dol_getRodataSectionEnd(), OS_PROTECT_PERMISSION_READ);
     Memory_ProtectRangeModule(OS_PROTECT_CHANNEL_2, Dol_getSdata2SectionStart(), Dol_getSbss2SectionEnd(), OS_PROTECT_PERMISSION_READ);
@@ -92,9 +109,15 @@ static void Init() {
         Console::Print(" failed!\n");
         Console::Print("Please make sure that an SD or USB device is inserted.\n");
         Console::Print("Trying again in a loop...");
-        do {
+        u32 i;
+        for (i = 0; i < 60 && !Storage::Init(); i++) {
             OSSleepMilliseconds(500);
-        } while (!Storage::Init());
+        }
+        if (i == 60) {
+            Console::Print(" failed!\n");
+            Console::Print("Returning to loader...");
+            ReturnToLoader();
+        }
     }
     Console::Print(" done.\n");
 
