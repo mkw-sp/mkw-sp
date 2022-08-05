@@ -239,6 +239,8 @@ asset_in_files = {
         os.path.join('control', 'ctrl', 'CategoryUpDownButtonL.brctr.json5'),
         os.path.join('control', 'ctrl', 'CategoryUpDownButtonR.brctr.json5'),
         os.path.join('control', 'ctrl', 'SettingUpDownBase.brctr.json5'),
+        os.path.join('control', 'ctrl', 'SettingUpDownButtonL.brctr.json5'),
+        os.path.join('control', 'ctrl', 'SettingUpDownButtonR.brctr.json5'),
         os.path.join('ranking', 'anim', 'area_select_window_free.brlan.json5'),
         os.path.join('ranking', 'anim', 'area_select_window_free_to_select.brlan.json5'),
         os.path.join('ranking', 'anim', 'area_select_window_fuchi_check_loop.brlan.json5'),
