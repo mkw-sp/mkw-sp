@@ -2,6 +2,7 @@
 
 namespace nw4r::snd {
 
+#if ENABLE_SASR
 bool SoundArchivePlayer::loadGroup(u32 groupId, void *r5, u32 UNUSED(r6)) {
     if (!isAvailable()) {
         return false;
@@ -67,5 +68,6 @@ void *SoundArchivePlayer::getFileAddress(u32 fileId) {
 void *SoundArchivePlayer::getFileWaveDataAddress(u32 fileId) {
     return m_fileTable->entries[fileId].waveDataAddress;
 }
+#endif
 
 } // namespace nw4r::snd

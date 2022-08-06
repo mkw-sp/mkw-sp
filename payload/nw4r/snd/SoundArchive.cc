@@ -14,6 +14,7 @@ void SoundArchive::dt(s32 type) {
     }
 }
 
+#if ENABLE_SASR
 // With the changes in SoundArchivePlayer, the 3 remaining uses of that function in the base game
 // all need the file count instead. And in loadGroup we simply use the REPLACED macro.
 u32 SoundArchive::getGroupCount() {
@@ -105,5 +106,6 @@ ut::FileStream *SoundArchive::openFileStreamWaveData(u32 fileId, void *buffer, s
     u32 offset = groupInfo.waveDataOffset + groupItemInfo.waveDataOffset;
     return openStream(buffer, size, offset, length);
 }
+#endif
 
 } // namespace nw4r::snd

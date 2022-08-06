@@ -3,6 +3,8 @@
 #include "nw4r/snd/SoundArchiveFileReader.hh"
 #include "nw4r/ut/FileStream.hh"
 
+#define ENABLE_SASR false
+
 namespace nw4r::snd {
 
 class SoundArchive {
@@ -55,8 +57,10 @@ protected:
     void shutdown();
 
 public:
+#if ENABLE_SASR
     u32 REPLACED(getGroupCount)();
     REPLACE u32 getGroupCount();
+#endif
     bool readGroupInfo(u32 groupId, GroupInfo *groupInfo);
     bool readGroupItemInfo(u32 groupId, u32 index, GroupItemInfo *groupItemInfo);
     u32 getFileCount();
