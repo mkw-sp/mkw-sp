@@ -203,7 +203,7 @@ void SaveManager::SaveSPSaveTask(void *UNUSED(arg)) {
 }
 
 void SaveManager::saveSPSave() {
-    char iniBuffer[512];
+    char iniBuffer[1024];
 
     for (size_t i = 0; i < m_spLicenseCount; ++i) {
         m_spLicenses[i].writeIni(iniBuffer, sizeof(iniBuffer));

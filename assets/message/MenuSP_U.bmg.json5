@@ -663,6 +663,18 @@
         "font": "regular",
         "string": "tags",
     },
+    "10188": {
+        "font": "regular",
+        "string": "Performance Overlay",
+    },
+    "10189": {
+        "font": "regular",
+        "string": "Do not display CPU, GPU and memory bars.",
+    },
+    "10190": {
+        "font": "regular",
+        "string": "Display CPU, GPU and memory bars.",
+    },
     "3700": {
         "font": "regular",
         "string": "Select Level",

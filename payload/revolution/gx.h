@@ -1,8 +1,14 @@
 #pragma once
 
-#include <revolution/gx/GXEnum.h>
-#include <revolution/gx/GXStruct.h>
-#include <revolution/gx/GXTev.h>
+#include "revolution/gx/GXEnum.h"
+#include "revolution/gx/GXStruct.h"
+#include "revolution/gx/GXGeometry.h"
+#include "revolution/gx/GXLighting.h"
+#include "revolution/gx/GXTev.h"
+#include "revolution/gx/GXBump.h"
+#include "revolution/gx/GXPixel.h"
+#include "revolution/gx/GXFifo.h"
+#include "revolution/gx/GXManage.h"
 
 void GXSetClipMode(GXClipMode clip);
 void GXSetCullMode(GXCullMode cull);
@@ -10,7 +16,7 @@ void GXSetZTexture(GXZTexOp op, GXTexFmt format, u32 bias);
 void GXSetZMode(GXBool compare, GXCompare comparison, GXBool update);
 void GXSetFog(GXFogType type, float start, float end, float near, float far,
         const GXColor *fogColor);
-void GXSetProjection(const float *mtx44, GXProjectionType type);
+void GXSetProjection(const float mtx[4][4], GXProjectionType type);
 void GXSetViewport(float x, float y, float width, float height, float near, float far);
 
 void GXSetScissor(u32 left, u32 top, u32 right, u32 bottom);
@@ -18,7 +24,7 @@ void GXSetScissorBoxOffset(u32 x, u32 y);
 
 void GXLoadTexObj(const GXTexObj *obj, GXTexMapID id);
 
-void GXLoadPosMtxImm(float *, u32);
+void GXLoadPosMtxImm(const float mtx[3][4], u32);
 void GXSetCurrentMtx(u32);
 void GXSetColorUpdate(u32);
 void GXBegin(u32, u32, u32);
@@ -44,4 +50,13 @@ static inline void GXPosition2s16(s16 a, s16 b) {
 static inline void GXTexCoord2u16(u16 a, u16 b) {
     WGPIPE._u16 = a;
     WGPIPE._u16 = b;
+}
+
+static inline void GXPosition2f32(f32 a, f32 b) {
+    WGPIPE.f = a;
+    WGPIPE.f = b;
+}
+static inline void GXTexCoord2f32(f32 a, f32 b) {
+    WGPIPE.f = a;
+    WGPIPE.f = b;
 }

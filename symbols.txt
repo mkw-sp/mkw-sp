@@ -142,10 +142,25 @@
 0x80168b00 EXIDeselect
 0x80169164 EXILock
 0x80169260 EXIUnlock
+0x8016cfa0 GXGetGPFifo
+0x8016d030 GXGetFifoPtrs
+0x8016d098 GXEnableBreakPt
+0x8016d138 GXDisableBreakPt
+0x8016dc34 GXClearVtxDesc
+0x8016dc68 GXSetVtxAttrFmt
+0x8016e5a4 GXSetNumTexGens
+0x8016e9fc GXSetDrawSync
+0x8016eab0 GXDrawDone
+0x8016ec88 GXSetDrawSyncCallback
 0x8016F0F0 GXBegin
 0x8016F3B8 GXSetCullMode
+0x80170474 GXSetChanMatColor
+0x8017054c GXSetNumChans
+0x80170570 GXSetChanCtrl
 0x80170F2C GXLoadTexObj
+0x80171b38 GXSetNumIndStages
 0x80171b58 GXSetTevDirect
+0x80171c4c GXSetTevOp
 0x80171ce0 GXSetTevColorIn
 0x80171d20 GXSetTevAlphaIn
 0x80171d60 GXSetTevColorOp
@@ -159,6 +174,7 @@
 0x8017214c GXSetTevOrder
 0x801722a8 GXSetNumTevStages
 0x801722CC GXSetFog
+0x8017277c GXSetBlendMode
 0x801727CC GXSetColorUpdate
 0x80172824 GXSetZMode
 0x8017301C GXSetProjection
@@ -176,6 +192,7 @@
 0x80194158 IOS_IoctlAsync
 0x80194290 IOS_Ioctl
 0x801945E0 IOS_Ioctlv
+0x80198658 MEMFindContainHeap
 0x80199038 MEMFreeToExpHeap
 0x801992A8 MEMVisitAllocatedForExpHeap
 0x80199D04 PSMTXIdentity
@@ -238,6 +255,7 @@
 0x801a8688 OSRestart
 0x801a8858 OSReturnToMenu
 0x801a8954 __OSReturnToMenuForError
+0x801a95ac OSSetSwitchThreadCallback
 0x801A961C __OSThreadInit
 0x801a98b0 OSGetCurrentThread
 0x801a98bc OSIsThreadTerminated
@@ -336,10 +354,15 @@
 0x801ee48c SOGetInterfaceOpt
 
 0x8020fb78 _ZN3EGG7Archive12loadFromDiscEPKcPNS_4HeapEl
+0x8020fe24 _ZN3EGG12AsyncDisplay10beginFrameEv
+0x8020ff98 _ZN3EGG12AsyncDisplay11beginRenderEv
+0x8020ff9c _ZN3EGG12AsyncDisplay9endRenderEv
+0x80210124 _ZN3EGG12AsyncDisplay15getTickPerFrameEv
 0x80215168 EGG_ColorFader_CT
 0x80215280 EGG_ColorFader_fadeIn
 0x802152A8 EGG_ColorFader_fadeOut
 0x80218098 EGG_CpuTexture_Construct
+0x80219fb0 _ZN3EGG7Display8endFrameEv
 0x80219fb4 EGG_Display_copyEFBToXFB
 0x80222470 EGG_DvdFile_openEntrynum
 0x802224e8 EGG_DvdFile_openPath
@@ -374,6 +397,7 @@
 0x80243d6c EGG_Video_configure
 
 0x802A4080 sRKSystem
+0x802A4080 _ZN3EGG7TSystem10s_instanceE
 
 0x80343680 Ecb
 0x803505C0 RDSTHandler

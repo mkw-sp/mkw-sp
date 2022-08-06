@@ -13,6 +13,8 @@ typedef struct {
 } OSThread;
 static_assert(sizeof(OSThread) == 0x318);
 
+typedef void (*OSSwitchThreadCallback)(OSThread *from, OSThread *to);
+
 void OSInitThreadQueue(OSThreadQueue *queue);
 
 OSThread *OSGetCurrentThread(void);
@@ -37,5 +39,7 @@ void OSSleepThread(OSThreadQueue *queue);
 void OSWakeupThread(OSThreadQueue *queue);
 
 void OSSleepTicks(OSTime ticks);
+
+OSSwitchThreadCallback OSSetSwitchThreadCallback(OSSwitchThreadCallback callback);
 
 #define OSSleepMilliseconds(msec) OSSleepTicks(OSMillisecondsToTicks((OSTime)msec))

@@ -33,6 +33,7 @@ enum class Setting {
     MiiClient,
     LoadingScreenColor,
     PageTransitions,
+    PerfOverlay,
 };
 
 enum class Category {
@@ -133,6 +134,11 @@ enum class TAGhostSound {
 };
 
 enum class PageTransitions {
+    Disable,
+    Enable,
+};
+
+enum class PerfOverlay {
     Disable,
     Enable,
 };
@@ -258,6 +264,11 @@ struct Helper<ClientSettings::Setting, ClientSettings::Setting::LoadingScreenCol
 template <>
 struct Helper<ClientSettings::Setting, ClientSettings::Setting::PageTransitions> {
     using type = SP::ClientSettings::PageTransitions;
+};
+
+template <>
+struct Helper<ClientSettings::Setting, ClientSettings::Setting::PerfOverlay> {
+    using type = SP::ClientSettings::PerfOverlay;
 };
 
 }

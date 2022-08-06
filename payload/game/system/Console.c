@@ -13,11 +13,11 @@ typedef struct {
     float proj_mtx[4][4];
     float width;
     float height;
-    float pos_mtx[4][4];
+    float pos_mtx[3][4];
 } ScreenDrawData;
 
 static void ScreenDrawData_create(ScreenDrawData *out) {
-    C_MTXOrtho(&out->proj_mtx[0][0], 0.0, 456.0f,  // Top/Bottom
+    C_MTXOrtho(out->proj_mtx, 0.0, 456.0f,  // Top/Bottom
             0.0, 608.0f,                           // Left/Right
             0.0f, -1.0f                            // Clip plane
     );
@@ -28,14 +28,14 @@ static void ScreenDrawData_create(ScreenDrawData *out) {
             0.0, 1.0                  // clip plane
     );
 
-    PSMTXIdentity(&out->pos_mtx);
+    PSMTXIdentity(out->pos_mtx);
 }
 static void ScreenDrawData_apply(ScreenDrawData *self, u32 matrix_slot) {
     GXSetScissor(0, 0,                           // Left/Top
             (u16)self->width, (u16)self->height  // width/height
     );
-    GXSetProjection(&self->proj_mtx[0][0], GX_ORTHOGRAPHIC);
-    GXLoadPosMtxImm(&self->pos_mtx[0][0], matrix_slot);
+    GXSetProjection(self->proj_mtx, GX_ORTHOGRAPHIC);
+    GXLoadPosMtxImm(self->pos_mtx, matrix_slot);
     GXSetCurrentMtx(matrix_slot);
 }
 

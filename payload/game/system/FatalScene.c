@@ -95,12 +95,12 @@ static void setupCamera(lyt_DrawInfo *drawInfo, lyt_Layout *lyt) {
 
     // OSReport("[FatalScene] Ortho Mtx: top=%f,bottom=%f,left=%f,right=%f\n", frame.top,
     //         frame.bottom, frame.left, frame.right);
-    C_MTXOrtho(&projMtx[0][0], frame.top, frame.bottom, frame.left, frame.right, znear,
+    C_MTXOrtho(projMtx, frame.top, frame.bottom, frame.left, frame.right, znear,
             zfar);
-    GXSetProjection(&projMtx[0][0], GX_ORTHOGRAPHIC);
+    GXSetProjection(projMtx, GX_ORTHOGRAPHIC);
 
     float viewMtx[3][4];
-    PSMTXIdentity(&viewMtx);
+    PSMTXIdentity(viewMtx);
     static_assert(sizeof(drawInfo->viewMtx) == sizeof(viewMtx));
     memcpy(drawInfo->viewMtx, viewMtx, sizeof(drawInfo->viewMtx));
     drawInfo->viewRect = frame;
@@ -196,7 +196,7 @@ static EGGScene_Vtable sFatalScene_Vtable = (EGGScene_Vtable){
     .outgoing_childCreate = FatalScene_outgoing_childCreate,
 };
 
-static void free_all_visitor(void *block, void *heap, u32 UNUSED(userParam)) {
+static void free_all_visitor(void *block, MEMHeapHandle heap, u32 UNUSED(userParam)) {
     MEMFreeToExpHeap(heap, block);
 }
 
