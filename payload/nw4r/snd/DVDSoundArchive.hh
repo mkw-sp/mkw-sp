@@ -2,6 +2,9 @@
 
 #include "nw4r/snd/SoundArchive.hh"
 
+extern "C" {
+#include <revolution.h>
+}
 #include <sp/storage/Storage.hh>
 
 namespace nw4r::snd {
@@ -38,6 +41,7 @@ private:
         u32 getBufferAlign() override;
         u32 getSize() override;
         void seek(s32 offset, SeekOrigin origin) override;
+        void cancel() override;
         bool canSeek() override;
         bool canCancel() override;
         u32 tell() override;
@@ -47,6 +51,10 @@ private:
         u32 m_start;
         u32 m_size;
         u32 m_offset = 0;
+        bool m_cancelled = false;
+
+        static OSMutex s_mutex;
+        static OSThreadQueue s_queue;
     };
 
     SoundArchiveFileReader m_fileReader;

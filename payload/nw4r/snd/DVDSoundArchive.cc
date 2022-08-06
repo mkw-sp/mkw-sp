@@ -1,5 +1,6 @@
 #include "DVDSoundArchive.hh"
 
+#include <sp/ScopeLock.hh>
 extern "C" {
 #include <vendor/libhydrogen/hydrogen.h>
 }
@@ -170,6 +171,7 @@ DVDSoundArchive::FileStream::~FileStream() = default;
 
 void DVDSoundArchive::FileStream::close() {
     m_file.reset();
+    m_cancelled = false;
 }
 
 s32 DVDSoundArchive::FileStream::read(void *dst, u32 size) {
@@ -177,7 +179,25 @@ s32 DVDSoundArchive::FileStream::read(void *dst, u32 size) {
         return -1;
     }
 
-    if (!m_file->read(dst, size, m_start + m_offset)) {
+    {
+        SP::ScopeLock<SP::NoInterrupts> lock;
+        while (!OSTryLockMutex(&s_mutex)) {
+            OSSleepThread(&s_queue);
+            if (m_cancelled) {
+                return -1;
+            }
+        }
+    }
+
+    bool result = m_file->read(dst, size, m_start + m_offset);
+
+    {
+        SP::ScopeLock<SP::NoInterrupts> lock;
+        OSUnlockMutex(&s_mutex);
+        OSWakeupThread(&s_queue);
+    }
+
+    if (!result) {
         return -1;
     }
 
@@ -231,6 +251,13 @@ void DVDSoundArchive::FileStream::seek(s32 offset, SeekOrigin origin) {
     }
 }
 
+void DVDSoundArchive::FileStream::cancel() {
+    SP::ScopeLock<SP::NoInterrupts> lock;
+
+    m_cancelled = true;
+    OSWakeupThread(&s_queue);
+}
+
 bool DVDSoundArchive::FileStream::canSeek() {
     return true;
 }
@@ -242,5 +269,8 @@ bool DVDSoundArchive::FileStream::canCancel() {
 u32 DVDSoundArchive::FileStream::tell() {
     return m_offset;
 }
+
+OSMutex DVDSoundArchive::FileStream::s_mutex{};
+OSThreadQueue DVDSoundArchive::FileStream::s_queue{};
 
 } // namespace nw4r::snd
