@@ -44,9 +44,9 @@ private:
 
     private:
         std::optional<SP::Storage::FileHandle> m_file;
-        u32 m_start = 0;
+        u32 m_start;
         u32 m_size;
-        u32 m_offset;
+        u32 m_offset = 0;
     };
 
     SoundArchiveFileReader m_fileReader;
