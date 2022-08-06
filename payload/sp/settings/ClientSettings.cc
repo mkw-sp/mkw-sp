@@ -223,6 +223,16 @@ const Entry entries[] = {
         .valueMessageIds = nullptr,
         .valueExplanationMessageIds = nullptr,
     },
+    [static_cast<u32>(Setting::GCPadRumble)] = {
+        .category = Category::License,
+        .name = magic_enum::enum_name(Setting::GCPadRumble),
+        .messageId = 10191,
+        .defaultValue = static_cast<u32>(GCPadRumble::Enable),
+        .valueCount = magic_enum::enum_count<GCPadRumble>(),
+        .valueNames = magic_enum::enum_names<GCPadRumble>().data(),
+        .valueMessageIds = (u32[]) { 10057, 10058 },
+        .valueExplanationMessageIds = (u32[]) { 10192, 10193 },
+    },
     [static_cast<u32>(Setting::PageTransitions)] = {
         .category = Category::License,
         .name = magic_enum::enum_name(Setting::PageTransitions),

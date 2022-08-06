@@ -237,6 +237,12 @@ void SaveManager::saveSPSave() {
     m_result = RK_NAND_RESULT_OK;
 }
 
+void SaveManager::refreshGCPadRumble() {
+    auto setting = getSetting<SP::ClientSettings::Setting::GCPadRumble>();
+    bool rumbleEnabled = setting == SP::ClientSettings::GCPadRumble::Enable;
+    m_rawSave->globalSettings = (m_rawSave->globalSettings & ~1) | rumbleEnabled;
+}
+
 u32 SaveManager::spLicenseCount() const {
     return m_spLicenseCount;
 }
@@ -265,10 +271,14 @@ std::optional<u32> SaveManager::spCurrentLicense() const {
 
 void SaveManager::selectSPLicense(u32 licenseId) {
     m_spCurrentLicense = licenseId;
+
+    refreshGCPadRumble();
 }
 
 void SaveManager::unselectSPLicense() {
     m_spCurrentLicense.reset();
+
+    refreshGCPadRumble();
 }
 
 u32 SaveManager::getSetting(u32 setting) const {
@@ -293,6 +303,8 @@ void SaveManager::setSetting(u32 setting, u32 value) {
     }
 
     m_spLicenses[*m_spCurrentLicense].set(setting, value);
+
+    refreshGCPadRumble();
 }
 
 void SaveManager::setSetting(const char *key, const char *value) {
@@ -301,6 +313,8 @@ void SaveManager::setSetting(const char *key, const char *value) {
     }
 
     m_spLicenses[*m_spCurrentLicense].set(key, value);
+
+    refreshGCPadRumble();
 }
 
 void SaveManager::setMiiId(MiiId miiId) {

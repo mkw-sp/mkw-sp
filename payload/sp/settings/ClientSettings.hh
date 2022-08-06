@@ -32,6 +32,7 @@ enum class Setting {
     MiiAvatar,
     MiiClient,
     LoadingScreenColor,
+    GCPadRumble,
     PageTransitions,
     PerfOverlay,
 };
@@ -131,6 +132,11 @@ enum class TAGhostSound {
     None,
     Watched,
     All,
+};
+
+enum class GCPadRumble {
+    Disable,
+    Enable,
 };
 
 enum class PageTransitions {
@@ -259,6 +265,11 @@ struct Helper<ClientSettings::Setting, ClientSettings::Setting::MiiClient> {
 template <>
 struct Helper<ClientSettings::Setting, ClientSettings::Setting::LoadingScreenColor> {
     using type = u32;
+};
+
+template <>
+struct Helper<ClientSettings::Setting, ClientSettings::Setting::GCPadRumble> {
+    using type = SP::ClientSettings::GCPadRumble;
 };
 
 template <>

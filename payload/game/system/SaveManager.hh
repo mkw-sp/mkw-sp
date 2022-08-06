@@ -27,6 +27,13 @@ private:
     };
     static_assert(sizeof(RawLicense) == 0x8cc0);
 
+    struct RawSave {
+        u8 _00000[0x2330c - 0x00000];
+        u32 globalSettings;
+        u8 _23310[0x28000 - 0x23310];
+    };
+    static_assert(sizeof(RawSave) == 0x28000);
+
     class License {
         wchar_t m_miiName[11];
         MiiId m_miiId;
@@ -81,6 +88,8 @@ public:
         }
 
         m_spLicenses[*m_spCurrentLicense].set<SP::ClientSettings::Setting, S>(value);
+
+        refreshGCPadRumble();
     }
 
     void setSetting(const char *key, const char *value);
@@ -113,6 +122,7 @@ private:
     void initGhost(SP::Storage::NodeId id);
 
     void saveSPSave();
+    void refreshGCPadRumble();
 
     void loadGhostHeaders();
     void loadGhosts();
@@ -134,7 +144,7 @@ private:
     static void ComputeCourseSHA1Task(void *arg);
 
     u8 _00000[0x00014 - 0x00000];
-    void *m_rawSave;
+    RawSave *m_rawSave;
     u8 *m_rawGhostFile;
     EGG::TaskThread *m_taskThread;
     u32 m_ghostCount; // Modified
@@ -147,7 +157,7 @@ private:
     s16 m_currentLicenseId;
     License m_licenses[4];
     u8 _24ff8[0x24ffc - 0x24ff8];
-    void *m_otherRawSave;
+    RawSave *m_otherRawSave;
     bool m_isBusy;
     bool m_isValid;
     bool m_canSave;

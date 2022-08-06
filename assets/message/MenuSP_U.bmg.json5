@@ -675,6 +675,18 @@
         "font": "regular",
         "string": "Display CPU, GPU and memory bars.",
     },
+    "10191": {
+        "font": "regular",
+        "string": "GCN Rumble",
+    },
+    "10192": {
+        "font": "regular",
+        "string": "Disable the rumble feature of the GCN controller.",
+    },
+    "10193": {
+        "font": "regular",
+        "string": "Enable the rumble feature of the GCN controller.",
+    },
     "3700": {
         "font": "regular",
         "string": "Select Level",
