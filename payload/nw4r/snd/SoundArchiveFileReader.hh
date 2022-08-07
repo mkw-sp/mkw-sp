@@ -14,6 +14,7 @@ public:
     u32 symbolDataSize() const;
     u32 infoOffset() const;
     u32 infoSize() const;
+    u32 getSoundCount() const;
 
 private:
     struct Header {
@@ -26,8 +27,21 @@ private:
     };
     static_assert(sizeof(Header) == 0x28);
 
+    struct Table {
+        u32 count;
+        // ...
+    };
+
+    struct Info {
+        u8 _00[0x04 - 0x00];
+        u32 soundTableOffset;
+        u8 _08[0x30 - 0x08];
+    };
+    static_assert(sizeof(Info) == 0x30);
+
     Header m_header;
-    u8 _28[0x44 - 0x28];
+    Info *m_info;
+    u8 _2c[0x44 - 0x2c];
 };
 static_assert(sizeof(SoundArchiveFileReader) == 0x44);
 

@@ -1,12 +1,11 @@
 #include "DVDSoundArchive.hh"
 
-#include <sp/ScopeLock.hh>
+#include "nw4r/snd/FileStream.hh"
+
 extern "C" {
 #include <vendor/libhydrogen/hydrogen.h>
 }
 
-#include <algorithm>
-#include <cstdio>
 #include <cstring>
 #include <iterator>
 
@@ -163,114 +162,5 @@ bool DVDSoundArchive::loadLabelStringData(void *buffer, u32 size) {
     m_fileReader.setStringChunk(buffer);
     return true;
 }
-
-DVDSoundArchive::FileStream::FileStream(SP::Storage::FileHandle file, u32 start, u32 size) :
-        m_file(std::move(file)), m_start(start), m_size(size) {}
-
-DVDSoundArchive::FileStream::~FileStream() = default;
-
-void DVDSoundArchive::FileStream::close() {
-    m_file.reset();
-    m_cancelled = false;
-}
-
-s32 DVDSoundArchive::FileStream::read(void *dst, u32 size) {
-    if (!m_file) {
-        return -1;
-    }
-
-    {
-        SP::ScopeLock<SP::NoInterrupts> lock;
-        while (!OSTryLockMutex(&s_mutex)) {
-            OSSleepThread(&s_queue);
-            if (m_cancelled) {
-                return -1;
-            }
-        }
-    }
-
-    bool result = m_file->read(dst, size, m_start + m_offset);
-
-    {
-        SP::ScopeLock<SP::NoInterrupts> lock;
-        OSUnlockMutex(&s_mutex);
-        OSWakeupThread(&s_queue);
-    }
-
-    if (!result) {
-        return -1;
-    }
-
-    m_offset += size;
-    return size;
-}
-
-bool DVDSoundArchive::FileStream::canAsync() {
-    return false;
-}
-
-bool DVDSoundArchive::FileStream::canRead() {
-    return true;
-}
-
-bool DVDSoundArchive::FileStream::canWrite() {
-    return false;
-}
-
-u32 DVDSoundArchive::FileStream::getOffsetAlign() {
-    return 0x20;
-}
-
-u32 DVDSoundArchive::FileStream::getSizeAlign() {
-    return 0x20;
-}
-
-u32 DVDSoundArchive::FileStream::getBufferAlign() {
-    return 0x20;
-}
-
-u32 DVDSoundArchive::FileStream::getSize() {
-    if (!m_file) {
-        return 0;
-    }
-
-    return std::min(m_file->size(), static_cast<u64>(m_size));
-}
-
-void DVDSoundArchive::FileStream::seek(s32 offset, SeekOrigin origin) {
-    switch (origin) {
-    case SeekOrigin::Start:
-        m_offset = offset;
-        break;
-    case SeekOrigin::Current:
-        m_offset += offset;
-        break;
-    case SeekOrigin::End:
-        m_offset = getSize() - offset;
-        break;
-    }
-}
-
-void DVDSoundArchive::FileStream::cancel() {
-    SP::ScopeLock<SP::NoInterrupts> lock;
-
-    m_cancelled = true;
-    OSWakeupThread(&s_queue);
-}
-
-bool DVDSoundArchive::FileStream::canSeek() {
-    return true;
-}
-
-bool DVDSoundArchive::FileStream::canCancel() {
-    return true;
-}
-
-u32 DVDSoundArchive::FileStream::tell() {
-    return m_offset;
-}
-
-OSMutex DVDSoundArchive::FileStream::s_mutex{};
-OSThreadQueue DVDSoundArchive::FileStream::s_queue{};
 
 } // namespace nw4r::snd
