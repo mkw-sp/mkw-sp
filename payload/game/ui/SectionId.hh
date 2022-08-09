@@ -47,6 +47,10 @@ enum class SectionId {
     SingleChangeMission = 0x4d,
 
     SingleChangeGhostData = 0x4e, // Replaces SingleMkChannelGhost
+
+    WifiSingle = 0x55,
+    WifiMulti = 0x5b,
+
     ServicePack = 0x7a, // Replaces Channel
 
     Unlock0 = 0x90,
