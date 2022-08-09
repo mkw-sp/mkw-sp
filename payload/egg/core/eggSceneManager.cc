@@ -4,6 +4,7 @@ extern "C" {
 #include <game/system/ResourceManager.h>
 #include <revolution.h>
 }
+#include <game/host_system/SystemManager.hh>
 #include <sp/IOSDolphin.hh>
 
 namespace EGG {
@@ -84,6 +85,8 @@ void SceneManager::createScene(s32 sceneId, Scene *parent) {
         PushDolphinSpeed(800);
     }
     ResourceManager_OnCreateScene(sceneId);
+    System::RichPresenceManager::Instance().onSceneChange(
+            static_cast<System::RKSceneID>(sceneId));
     REPLACED(createScene)(sceneId, parent);
     if (InitDolphinSpeed()) {
         PopDolphinSpeed();

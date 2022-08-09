@@ -161,6 +161,7 @@ static void Init() {
     memset(OSGetMEM1ArenaLo(), 0, mem1Hi - mem1Lo);
 
     System::SystemManager::ResetDolphinSpeedLimit();
+    System::RichPresenceManager::Init();
 }
 
 static void Run() {
