@@ -6,6 +6,7 @@ header_pages:
   - blog.markdown
   - features.markdown
   - download.markdown
+  - docs.markdown
   - tools.markdown
 
 minima:
