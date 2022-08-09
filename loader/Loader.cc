@@ -113,7 +113,7 @@ std::optional<Apploader::GameEntryFunc> Run() {
     Console::Print(" done.\n");
 
     if (versionInfo.type != BUILD_TYPE_RELEASE) {
-        Console::Print("Saving contents.arc...");
+        Console::Print("Restoring contents.arc...");
         IOS::FS fs;
         if (!fs.ok()) {
             Console::Print(" failed!\n");
