@@ -106,6 +106,10 @@ asset_in_files = {
         os.path.join('kart_kanji_font.brfnt'),
         os.path.join('tt_kart_font_rodan_ntlg_pro_b_R.brfnt'),
     ],
+    os.path.join('Scene', 'UI', 'GlobeSP.arc.lzma'): [
+        os.path.join('button', 'ctrl', 'OnlineTopButton.brctr.json5'),
+        os.path.join('button', 'ctrl', 'SettingsButton.brctr.json5'),
+    ],
     os.path.join('Scene', 'UI', 'MenuMultiSP.arc.lzma'): [
         # 200cc
         os.path.join('control', 'ctrl', 'VSSettingRadioOption.brctr.json5'),
@@ -391,9 +395,6 @@ asset_in_files = {
         os.path.join('button', 'blyt', 'common_w076_license_icon_center.brlyt.json5'),
         os.path.join('button', 'ctrl', 'LicenseSelect.brctr.json5'),
         os.path.join('button', 'timg', 'tt_license_icon_004.tpl'),
-        # WFC and channel removal
-        os.path.join('button', 'ctrl', 'TopMenuMultiWaku.brctr.json5'),
-        os.path.join('button', 'ctrl', 'TopMenuSingleWaku.brctr.json5'),
     ],
 }
 for language in LANGUAGES:
@@ -409,6 +410,10 @@ for language in LANGUAGES:
         os.path.join('message', f'Race_{language}.bmg.json5'),
     ]
     asset_in_files[os.path.join('Scene', 'UI', f'ChannelSP_{language}.arc.lzma')] = [
+        os.path.join('message', f'Common_{language}.bmg.json5'),
+        os.path.join('message', f'Menu_{language}.bmg.json5'),
+    ]
+    asset_in_files[os.path.join('Scene', 'UI', f'GlobeSP_{language}.arc.lzma')] = [
         os.path.join('message', f'Common_{language}.bmg.json5'),
         os.path.join('message', f'Menu_{language}.bmg.json5'),
     ]
@@ -863,6 +868,7 @@ code_in_files = {
         os.path.join('payload', 'game', 'ui', 'MiiGroup.cc'),
         os.path.join('payload', 'game', 'ui', 'Model.S'),
         os.path.join('payload', 'game', 'ui', 'ModelPage.cc'),
+        os.path.join('payload', 'game', 'ui', 'OnlineTopPage.cc'),
         os.path.join('payload', 'game', 'ui', 'Option.cc'),
         os.path.join('payload', 'game', 'ui', 'Page.cc'),
         os.path.join('payload', 'game', 'ui', 'RaceConfirmPage.cc'),

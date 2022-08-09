@@ -66,6 +66,8 @@ enum class PageId {
     MissionDrift = 0x7d,
     MissionTutorial = 0x7e,
 
+    OnlineTop = 0x8b, // Replaces WifiTop
+
     ServicePackTop = 0xa2, // Replaces ChannelTop
     StorageBenchmark = 0xa3, // Replaces ChannelRanking
     ChannelGhost = 0xa4,

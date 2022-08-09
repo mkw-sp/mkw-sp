@@ -687,6 +687,18 @@
         "font": "regular",
         "string": "Enable the rumble feature of the GCN controller.",
     },
+    "20000": {
+        "font": "regular",
+        "string": "Online",
+    },
+    "20001": {
+        "font": "regular",
+        "string": "Direct Connection",
+    },
+    "20002": {
+        "font": "regular",
+        "string": "Server Mode",
+    },
     "3700": {
         "font": "regular",
         "string": "Select Level",

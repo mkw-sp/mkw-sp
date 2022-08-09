@@ -2,6 +2,7 @@
 
 #include "game/ui/ChannelPage.hh"
 #include "game/ui/LicenseSelectPage.hh"
+#include "game/ui/OnlineTopPage.hh"
 #include "game/ui/SettingsPage.hh"
 #include "game/ui/ServicePackTopPage.hh"
 #include "game/ui/SingleTopPage.hh"
@@ -24,6 +25,42 @@ void Section::addPage(PageId pageId) {
         { SectionId::LicenseSettings, PageId::LicenseRecordsWFC },
         { SectionId::LicenseSettings, PageId::LicenseRecordsOther },
 
+        { SectionId::WifiSingle, (PageId)0x4c },
+        { SectionId::WifiSingle, (PageId)0x4d },
+        { SectionId::WifiSingle, (PageId)0x4e },
+        { SectionId::WifiSingle, (PageId)0x4f },
+        { SectionId::WifiSingle, (PageId)0x50 },
+        { SectionId::WifiSingle, (PageId)0x51 },
+        { SectionId::WifiSingle, (PageId)0x52 },
+        { SectionId::WifiSingle, (PageId)0x5e },
+        { SectionId::WifiSingle, (PageId)0x6b },
+        { SectionId::WifiSingle, (PageId)0x6c },
+        { SectionId::WifiSingle, (PageId)0x6d },
+        { SectionId::WifiSingle, (PageId)0x76 },
+        { SectionId::WifiSingle, (PageId)0x7f },
+        { SectionId::WifiSingle, (PageId)0x84 },
+        { SectionId::WifiSingle, (PageId)0x85 },
+        { SectionId::WifiSingle, (PageId)0x86 },
+        { SectionId::WifiSingle, (PageId)0x87 },
+        { SectionId::WifiSingle, (PageId)0x88 },
+        { SectionId::WifiSingle, (PageId)0x89 },
+        { SectionId::WifiSingle, (PageId)0x8c },
+        { SectionId::WifiSingle, (PageId)0x8d },
+        { SectionId::WifiSingle, (PageId)0x8f },
+        { SectionId::WifiSingle, (PageId)0x95 },
+        { SectionId::WifiSingle, (PageId)0x96 },
+        { SectionId::WifiSingle, (PageId)0x97 },
+        { SectionId::WifiSingle, (PageId)0x98 },
+        { SectionId::WifiSingle, (PageId)0x99 },
+        { SectionId::WifiSingle, (PageId)0x9b },
+        { SectionId::WifiSingle, (PageId)0x9c },
+        { SectionId::WifiSingle, (PageId)0x9d },
+        { SectionId::WifiSingle, (PageId)0x9e },
+        { SectionId::WifiSingle, (PageId)0xa5 },
+        { SectionId::WifiSingle, (PageId)0xa6 },
+        { SectionId::WifiSingle, (PageId)0xa7 },
+
+
         // The channel section is repurposed into the Service Pack section. Remove some pages that
         // aren't needed anymore.
         { SectionId::ServicePack, PageId::TimeAttackTop },
@@ -44,6 +81,13 @@ void Section::addPage(PageId pageId) {
 void Section::addActivePage(PageId pageId) {
     std::pair<SectionId, PageId> deletions[] = {
         { SectionId::SingleChangeGhostData, PageId::CharacterSelect },
+
+        { SectionId::WifiSingle, (PageId)0x88 },
+        { SectionId::WifiSingle, PageId::GhostManager },
+        { SectionId::WifiSingle, PageId::TopOverlay },
+        { SectionId::WifiSingle, (PageId)0x95 },
+        { SectionId::WifiSingle, (PageId)0x7f },
+        { SectionId::WifiSingle, (PageId)0x84 },
     };
     for (const auto &deletion : deletions) {
         if (deletion.first == m_id && deletion.second == pageId) {
@@ -168,12 +212,13 @@ void Section::addActivePages(SectionId id) {
     REPLACED(addActivePages)(id);
 
     std::pair<SectionId, PageId> additions[] = {
-
         // Change Ghost Data
         { SectionId::SingleChangeGhostData, PageId::TimeAttackTop },
 
         // Mission Mode
         { SectionId::SingleChangeMission, PageId::MissionLevelSelect },
+
+        { SectionId::WifiSingle, PageId::OnlineTop },
     };
     for (const auto &addition : additions) {
         if (addition.first == id) {
@@ -190,6 +235,8 @@ Page *Section::CreatePage(PageId pageId) {
         return new SingleTopPage;
     case PageId::TimeAttackGhostList:
         return new TimeAttackGhostListPage;
+    case PageId::OnlineTop:
+        return new OnlineTopPage;
     case PageId::ServicePackTop:
         return new ServicePackTopPage;
     case PageId::StorageBenchmark:
