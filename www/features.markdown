@@ -119,4 +119,4 @@ VS and battle settings aren't saved. See [issue 50](https://github.com/stblr/mkw
 
 On courses with the `pylon01` object, time trials with more than 4 players will desync. See [issue 94](https://github.com/stblr/mkw-sp/issues/94).
 
-Most gecko codes won't work because of the different memory map. A warning is shown on the title screen if they are enabled. When memory protection is implemented, support will be dropped altogether.
+Most gecko codes won't work because of the different memory map, and because of the memory protection. This won't be fixed.
