@@ -15,7 +15,7 @@ If upgrading from an older version, you can follow the standard [instructions](/
 - USB 2.0 is now supported (via IOS58). [stebler]
 - NTSC-K is now supported on console (NTSC-K consoles only for now). [stebler]
 - The settings system has been completely rewritten and is now in a human-readable (and writable) ini format. [riidefi, stebler]
-- A MKW-SP channel can now be installed to the Wii menu. It functions as a shortcut. [stebler, Palapeli, Zach]
+- An MKW-SP channel can now be installed to the Wii Menu. It functions as a shortcut. [stebler, Palapeli, Zach]
 - MKW-SP can now be updated in-game. [stebler, Star, Palapeli, Zach]
 - The channel installer and the updater, as well as the version information, can now be accessed via a new Service Pack menu. [stebler]
 

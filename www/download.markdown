@@ -4,7 +4,7 @@ title: Download
 permalink: /download/
 ---
 
-## Download
+# Download
 
 Latest version: [v0.1.8](https://github.com/stblr/mkw-sp/releases/download/v0.1.8/mkw-sp-v0.1.8.zip)
 
