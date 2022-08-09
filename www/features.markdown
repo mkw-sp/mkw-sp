@@ -103,7 +103,7 @@ Menu transitions can be disabled. This allows for faster navigation.
 Several security mitigations such as DEP, stack canaries or ASLR are implemented to make the game harder to exploit by malicious custom files or in case of a vulnerability in the networking code.
 
 **No NTSC-K Region-Lock** [stebler, Palapeli]<br />
-The NTSC-K game can be player on global consoles.
+The NTSC-K game can be played on global consoles.
 
 **Performance Overlay** [stebler]<br />
 The CPU, GPU and RAM usage can be displayed as bars on the screen.
