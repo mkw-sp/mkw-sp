@@ -21,7 +21,7 @@ In ghost replay mode, cinematic view is [replaced by rear view](/assets/rear-vie
 The position tracker can be enabled in time trials mode.
 
 **Ghost Settings** [stebler, riidefi]<br />
-Tag count, tag content, opacity and sound can be configured.
+Ghost sorting, tag count, tag content, opacity and sound can be configured.
 
 **Additional Ghost Metadata** [stebler, Chadderz, MrBean35000vr, CLF78]<br />
 The sha-1 of the track, whether 200cc was enabled, more precise finish times and detected glitches are saved at the end of the ghost file. The first two properties are used to only show ghosts for the correct track and engine class. The equivalent fields can be read from CTGP ghosts for the same purpose. The sha-1 computation doesn't take \_Dif files into account, allowing for e.g. custom textures.
