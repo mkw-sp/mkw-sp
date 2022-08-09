@@ -109,6 +109,10 @@ public:
     bool computeCourseSHA1Async(u32 courseId);
     const u8 *courseSHA1(u32 courseId) const;
 
+    void getLocation(u32 *location) const;
+    void getLatitude(u16 *latitude) const;
+    void getLongitude(u16 *longitude) const;
+
     static REPLACE SaveManager *CreateInstance();
     static SaveManager *Instance();
 

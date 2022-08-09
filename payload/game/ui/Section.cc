@@ -1,9 +1,12 @@
 #include "Section.hh"
 
 #include "game/ui/ChannelPage.hh"
+#include "game/ui/FriendMatchingPage.hh"
+#include "game/ui/FriendRoomBackPage.hh"
 #include "game/ui/LicenseSelectPage.hh"
 #include "game/ui/OnlineTopPage.hh"
 #include "game/ui/SettingsPage.hh"
+#include "game/ui/ServicePackToolsPage.hh"
 #include "game/ui/ServicePackTopPage.hh"
 #include "game/ui/SingleTopPage.hh"
 #include "game/ui/StorageBenchmarkPage.hh"
@@ -16,6 +19,15 @@ Page *Section::page(PageId pageId) {
     return m_pages[static_cast<size_t>(pageId)];
 }
 
+bool Section::isPageActive(PageId pageId) const {
+    for (u32 i = 0; i < m_activePageCount; i++) {
+        if (m_activePages[i]->id() == pageId) {
+            return true;
+        }
+    }
+    return false;
+}
+
 void Section::addPage(PageId pageId) {
     std::pair<SectionId, PageId> deletions[] = {
         // The game has 5 pages for the records, we only need 1 for the settings. Remove the 4
@@ -25,47 +37,97 @@ void Section::addPage(PageId pageId) {
         { SectionId::LicenseSettings, PageId::LicenseRecordsWFC },
         { SectionId::LicenseSettings, PageId::LicenseRecordsOther },
 
-        { SectionId::WifiSingle, (PageId)0x4c },
-        { SectionId::WifiSingle, (PageId)0x4d },
-        { SectionId::WifiSingle, (PageId)0x4e },
-        { SectionId::WifiSingle, (PageId)0x4f },
-        { SectionId::WifiSingle, (PageId)0x50 },
-        { SectionId::WifiSingle, (PageId)0x51 },
-        { SectionId::WifiSingle, (PageId)0x52 },
-        { SectionId::WifiSingle, (PageId)0x5e },
-        { SectionId::WifiSingle, (PageId)0x6b },
-        { SectionId::WifiSingle, (PageId)0x6c },
-        { SectionId::WifiSingle, (PageId)0x6d },
-        { SectionId::WifiSingle, (PageId)0x76 },
-        { SectionId::WifiSingle, (PageId)0x7f },
-        { SectionId::WifiSingle, (PageId)0x84 },
-        { SectionId::WifiSingle, (PageId)0x85 },
-        { SectionId::WifiSingle, (PageId)0x86 },
-        { SectionId::WifiSingle, (PageId)0x87 },
-        { SectionId::WifiSingle, (PageId)0x88 },
-        { SectionId::WifiSingle, (PageId)0x89 },
-        { SectionId::WifiSingle, (PageId)0x8c },
-        { SectionId::WifiSingle, (PageId)0x8d },
-        { SectionId::WifiSingle, (PageId)0x8f },
-        { SectionId::WifiSingle, (PageId)0x95 },
-        { SectionId::WifiSingle, (PageId)0x96 },
-        { SectionId::WifiSingle, (PageId)0x97 },
-        { SectionId::WifiSingle, (PageId)0x98 },
-        { SectionId::WifiSingle, (PageId)0x99 },
-        { SectionId::WifiSingle, (PageId)0x9b },
-        { SectionId::WifiSingle, (PageId)0x9c },
-        { SectionId::WifiSingle, (PageId)0x9d },
-        { SectionId::WifiSingle, (PageId)0x9e },
-        { SectionId::WifiSingle, (PageId)0xa5 },
-        { SectionId::WifiSingle, (PageId)0xa6 },
-        { SectionId::WifiSingle, (PageId)0xa7 },
+        { SectionId::OnlineSingle, (PageId)0x4c },
+        { SectionId::OnlineSingle, (PageId)0x4f },
+        { SectionId::OnlineSingle, (PageId)0x50 },
+        { SectionId::OnlineSingle, (PageId)0x51 },
+        { SectionId::OnlineSingle, (PageId)0x52 },
+        { SectionId::OnlineSingle, (PageId)0x6b },
+        { SectionId::OnlineSingle, (PageId)0x6c },
+        { SectionId::OnlineSingle, (PageId)0x6d },
+        { SectionId::OnlineSingle, (PageId)0x76 },
+        { SectionId::OnlineSingle, (PageId)0x7f },
+        { SectionId::OnlineSingle, (PageId)0x84 },
+        { SectionId::OnlineSingle, (PageId)0x85 },
+        { SectionId::OnlineSingle, (PageId)0x86 },
+        { SectionId::OnlineSingle, (PageId)0x87 },
+        { SectionId::OnlineSingle, (PageId)0x88 },
+        { SectionId::OnlineSingle, (PageId)0x89 },
+        { SectionId::OnlineSingle, (PageId)0x8c },
+        { SectionId::OnlineSingle, (PageId)0x8d },
+        { SectionId::OnlineSingle, (PageId)0x8f },
+        { SectionId::OnlineSingle, (PageId)0x96 },
+        { SectionId::OnlineSingle, (PageId)0x97 },
+        { SectionId::OnlineSingle, (PageId)0x98 },
+        { SectionId::OnlineSingle, (PageId)0x99 },
+        { SectionId::OnlineSingle, (PageId)0x9d },
+        { SectionId::OnlineSingle, (PageId)0x9e },
+        { SectionId::OnlineSingle, (PageId)0xa5 },
+        { SectionId::OnlineSingle, (PageId)0xa6 },
+        { SectionId::OnlineSingle, (PageId)0xa7 },
 
+        { SectionId::OnlineMulti, (PageId)0x4c },
+        { SectionId::OnlineMulti, (PageId)0x4f },
+        { SectionId::OnlineMulti, (PageId)0x50 },
+        { SectionId::OnlineMulti, (PageId)0x51 },
+        { SectionId::OnlineMulti, (PageId)0x52 },
+        { SectionId::OnlineMulti, (PageId)0x6b },
+        { SectionId::OnlineMulti, (PageId)0x76 },
+        { SectionId::OnlineMulti, (PageId)0x7f },
+        { SectionId::OnlineMulti, (PageId)0x81 },
+        { SectionId::OnlineMulti, (PageId)0x82 },
+        { SectionId::OnlineMulti, (PageId)0x84 },
+        { SectionId::OnlineMulti, (PageId)0x85 },
+        { SectionId::OnlineMulti, (PageId)0x86 },
+        { SectionId::OnlineMulti, (PageId)0x87 },
+        { SectionId::OnlineMulti, (PageId)0x88 },
+        { SectionId::OnlineMulti, (PageId)0x89 },
+        { SectionId::OnlineMulti, (PageId)0x8c },
+        { SectionId::OnlineMulti, (PageId)0x8d },
+        { SectionId::OnlineMulti, (PageId)0x8f },
+        { SectionId::OnlineMulti, (PageId)0x96 },
+        { SectionId::OnlineMulti, (PageId)0x97 },
+        { SectionId::OnlineMulti, (PageId)0x98 },
+        { SectionId::OnlineMulti, (PageId)0x99 },
+        { SectionId::OnlineMulti, (PageId)0x9d },
+        { SectionId::OnlineMulti, (PageId)0x9e },
+        { SectionId::OnlineMulti, (PageId)0xa5 },
+        { SectionId::OnlineMulti, (PageId)0xa6 },
+        { SectionId::OnlineMulti, (PageId)0xa7 },
 
         // The channel section is repurposed into the Service Pack section. Remove some pages that
         // aren't needed anymore.
         { SectionId::ServicePack, PageId::TimeAttackTop },
         { SectionId::ServicePack, PageId::MenuMessage },
-        { SectionId::ServicePack, PageId::ChannelGhost },
+
+        { SectionId::OnlineServer, (PageId)0x4c },
+        { SectionId::OnlineServer, (PageId)0x4f },
+        { SectionId::OnlineServer, (PageId)0x50 },
+        { SectionId::OnlineServer, (PageId)0x51 },
+        { SectionId::OnlineServer, (PageId)0x52 },
+        { SectionId::OnlineServer, (PageId)0x6b },
+        { SectionId::OnlineServer, (PageId)0x6c },
+        { SectionId::OnlineServer, (PageId)0x6d },
+        { SectionId::OnlineServer, (PageId)0x76 },
+        { SectionId::OnlineServer, (PageId)0x7f },
+        { SectionId::OnlineServer, (PageId)0x84 },
+        { SectionId::OnlineServer, (PageId)0x85 },
+        { SectionId::OnlineServer, (PageId)0x86 },
+        { SectionId::OnlineServer, (PageId)0x87 },
+        { SectionId::OnlineServer, (PageId)0x88 },
+        { SectionId::OnlineServer, (PageId)0x89 },
+        { SectionId::OnlineServer, (PageId)0x8e },
+        { SectionId::OnlineServer, (PageId)0x8f },
+        { SectionId::OnlineServer, (PageId)0x96 },
+        { SectionId::OnlineServer, (PageId)0x97 },
+        { SectionId::OnlineServer, (PageId)0x98 },
+        { SectionId::OnlineServer, (PageId)0x99 },
+        { SectionId::OnlineServer, (PageId)0x9a },
+        { SectionId::OnlineServer, (PageId)0x9d },
+        { SectionId::OnlineServer, (PageId)0x9e },
+        { SectionId::OnlineServer, (PageId)0xa5 },
+        { SectionId::OnlineServer, (PageId)0xa6 },
+        { SectionId::OnlineServer, (PageId)0xa7 },
     };
     for (const auto &deletion : deletions) {
         if (deletion.first == m_id && deletion.second == pageId) {
@@ -82,12 +144,20 @@ void Section::addActivePage(PageId pageId) {
     std::pair<SectionId, PageId> deletions[] = {
         { SectionId::SingleChangeGhostData, PageId::CharacterSelect },
 
-        { SectionId::WifiSingle, (PageId)0x88 },
-        { SectionId::WifiSingle, PageId::GhostManager },
-        { SectionId::WifiSingle, PageId::TopOverlay },
-        { SectionId::WifiSingle, (PageId)0x95 },
-        { SectionId::WifiSingle, (PageId)0x7f },
-        { SectionId::WifiSingle, (PageId)0x84 },
+        { SectionId::OnlineSingle, (PageId)0x88 },
+        { SectionId::OnlineSingle, PageId::GhostManager },
+        { SectionId::OnlineSingle, (PageId)0x7f },
+        { SectionId::OnlineSingle, (PageId)0x84 },
+
+        { SectionId::OnlineMulti, (PageId)0x88 },
+        { SectionId::OnlineMulti, PageId::GhostManager },
+        { SectionId::OnlineMulti, (PageId)0x7f },
+        { SectionId::OnlineMulti, (PageId)0x84 },
+
+        { SectionId::OnlineServer, (PageId)0x88 },
+        { SectionId::OnlineServer, PageId::GhostManager },
+        { SectionId::OnlineServer, (PageId)0x7f },
+        { SectionId::OnlineServer, (PageId)0x84 },
     };
     for (const auto &deletion : deletions) {
         if (deletion.first == m_id && deletion.second == pageId) {
@@ -191,6 +261,9 @@ void Section::addPages(SectionId id) {
         { SectionId::SingleChangeCourse, PageId::Settings },
         { SectionId::SingleChangeGhostData, PageId::Settings },
 
+        { SectionId::OnlineSingle, PageId::Settings },
+        { SectionId::OnlineMulti, PageId::Settings },
+
         // The channel section is repurposed into the Service Pack section. Add some additional
         // pages we need.
         { SectionId::ServicePack, PageId::OptionExplanation },
@@ -218,7 +291,11 @@ void Section::addActivePages(SectionId id) {
         // Mission Mode
         { SectionId::SingleChangeMission, PageId::MissionLevelSelect },
 
-        { SectionId::WifiSingle, PageId::OnlineTop },
+        { SectionId::OnlineSingle, PageId::OnlineTop },
+
+        { SectionId::OnlineMulti, PageId::OnlineTop },
+
+        { SectionId::OnlineServer, PageId::FriendMatching },
     };
     for (const auto &addition : additions) {
         if (addition.first == id) {
@@ -237,10 +314,16 @@ Page *Section::CreatePage(PageId pageId) {
         return new TimeAttackGhostListPage;
     case PageId::OnlineTop:
         return new OnlineTopPage;
+    case PageId::FriendMatching:
+        return new FriendMatchingPage;
+    case PageId::FriendRoomBack:
+        return new FriendRoomBackPage;
     case PageId::ServicePackTop:
         return new ServicePackTopPage;
     case PageId::StorageBenchmark:
         return new StorageBenchmarkPage;
+    case PageId::ServicePackTools:
+        return new ServicePackToolsPage;
     case PageId::GhostManager:
         return new GhostManagerPage;
     case PageId::Channel:

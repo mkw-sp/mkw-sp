@@ -19,7 +19,7 @@ public:
 
 private:
     void onBack(u32 localPlayerId);
-    void onStorageBenchmarkButtonFront(PushButton *button, u32 localPlayerId);
+    void onToolsButtonFront(PushButton *button, u32 localPlayerId);
     void onUpdateButtonFront(PushButton *button, u32 localPlayerId);
     void onChannelButtonFront(PushButton *button, u32 localPlayerId);
     void onAboutButtonFront(PushButton *button, u32 localPlayerId);
@@ -31,14 +31,13 @@ private:
 
     MultiControlInputManager m_inputManager;
     CtrlMenuPageTitleText m_pageTitleText;
-    PushButton m_storageBenchmarkButton;
+    PushButton m_toolsButton;
     PushButton m_updateButton;
     PushButton m_channelButton;
     PushButton m_aboutButton;
     CtrlMenuBackButton m_backButton;
     H<MultiControlInputManager> m_onBack{ this, &ServicePackTopPage::onBack };
-    H<PushButton> m_onStorageBenchmarkButtonFront{ this,
-            &ServicePackTopPage::onStorageBenchmarkButtonFront };
+    H<PushButton> m_onToolsButtonFront{ this, &ServicePackTopPage::onToolsButtonFront };
     H<PushButton> m_onUpdateButtonFront{ this, &ServicePackTopPage::onUpdateButtonFront };
     H<PushButton> m_onChannelButtonFront{ this, &ServicePackTopPage::onChannelButtonFront };
     H<PushButton> m_onAboutButtonFront{ this, &ServicePackTopPage::onAboutButtonFront };

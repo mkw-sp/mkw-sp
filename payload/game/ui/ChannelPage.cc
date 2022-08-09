@@ -3,8 +3,13 @@
 extern "C" {
 #include "game/system/GameScene.h"
 }
+#include "game/ui/AwaitPage.hh"
+#include "game/ui/ConfirmPage.hh"
+#include "game/ui/MessagePage.hh"
+#include "game/ui/Option.hh"
 #include "game/ui/SectionManager.hh"
-#include "sp/Channel.hh"
+
+#include <sp/Channel.hh>
 
 #include <new>
 
@@ -64,7 +69,6 @@ void ChannelPage::afterCalc() {
     case State::Install:
     case State::Update:
         if (OSIsThreadTerminated(&m_thread)) {
-            OSDetachThread(&m_thread);
             optionAwaitPage->pop();
         }
         break;
@@ -216,6 +220,7 @@ void ChannelPage::transition(State state) {
         break;
     case State::Install:
         OSCreateThread(&m_thread, Install, nullptr, stackTop, sizeof(m_stack), 24, 0);
+        OSDetachThread(&m_thread);
         OSResumeThread(&m_thread);
         optionAwaitPage->reset();
         optionAwaitPage->setTitleMessage(10088);
@@ -224,6 +229,7 @@ void ChannelPage::transition(State state) {
         break;
     case State::Update:
         OSCreateThread(&m_thread, Install, nullptr, stackTop, sizeof(m_stack), 24, 0);
+        OSDetachThread(&m_thread);
         OSResumeThread(&m_thread);
         optionAwaitPage->reset();
         optionAwaitPage->setTitleMessage(10088);

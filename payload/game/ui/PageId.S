@@ -20,8 +20,8 @@
 #define TaReplayPauseMenu 0x39 
 #define OnlinePleaseWait 0x48 
 #define RaceConfirm 0x4B 
-#define MessageWindowPopup 0x4D 
-#define VoteOrRandom 0x4E 
+#define MessagePopup 0x4D 
+#define YesNoPopup 0x4E 
 #define ReadingGhostData 0x4F 
 #define ConnectingNintendoWfc 0x50 
 #define MenuMessage 0x51 
@@ -55,7 +55,7 @@
 #define MissionTutorial 0x7e 
 #define ServicePackTop 0xa2 // Replaces ChannelTop 
 #define StorageBenchmark 0xa3 // Replaces ChannelRanking
-#define ChannelGhost 0xa4 
+#define ServicePackTools 0xa4 // Replaces ChannelGhost
 #define GhostManager 0xa7 
 #define OptionExplanation 0xc2 
 #define OptionSelect2 0xc3 

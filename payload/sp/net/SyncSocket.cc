@@ -1,4 +1,4 @@
-#include "Socket.hh"
+#include "SyncSocket.hh"
 
 extern "C" {
 #include "sp/Host.h"
@@ -6,13 +6,16 @@ extern "C" {
 #include "sp/net/Net.hh"
 
 #include <common/Bytes.hh>
+extern "C" {
+#include <revolution.h>
+}
 
-#include <cstdio>
 #include <cstring>
 
 namespace SP::Net {
 
-Socket::Socket(const char *hostname, u16 port, const u8 serverPK[hydro_kx_PUBLICKEYBYTES],
+// N variant, client-side
+SyncSocket::SyncSocket(const char *hostname, u16 port, const u8 serverPK[hydro_kx_PUBLICKEYBYTES],
         const char context[hydro_secretbox_CONTEXTBYTES]) {
     char service[0x10];
     snprintf(service, sizeof(service), "%u", port);
@@ -59,16 +62,17 @@ Socket::Socket(const char *hostname, u16 port, const u8 serverPK[hydro_kx_PUBLIC
         return;
     }
 
-    auto tmp = Alloc<u8>(hydro_kx_N_PACKET1BYTES);
-    if (hydro_kx_n_1(&m_keypair, tmp.get(), nullptr, serverPK) != 0) {
-        SP_LOG("Failed to generate key exchange packet");
+    auto n1 = Alloc<u8>(hydro_kx_N_PACKET1BYTES);
+    if (hydro_kx_n_1(&m_keypair, n1.get(), nullptr, serverPK) != 0) {
+        SP_LOG("Failed to generate key exchange packet N1");
         SOClose(m_handle);
         m_handle = -1;
         return;
     }
-    result = SOSend(m_handle, tmp.get(), GetSize(tmp), 0);
-    if (result != static_cast<s32>(GetSize(tmp))) {
-        SP_LOG("Failed to send key exchange packet, returned %d", result);
+
+    result = SOSend(m_handle, n1.get(), GetSize(n1), 0);
+    if (result != static_cast<s32>(GetSize(n1))) {
+        SP_LOG("Failed to send key exchange packet N1, returned %d", result);
         SOClose(m_handle);
         m_handle = -1;
         return;
@@ -78,29 +82,29 @@ Socket::Socket(const char *hostname, u16 port, const u8 serverPK[hydro_kx_PUBLIC
     memcpy(m_context, context, sizeof(m_context));
 }
 
-Socket::Socket(Socket &&that) : m_handle(that.m_handle), m_keypair(that.m_keypair),
+SyncSocket::SyncSocket(SyncSocket &&that) : m_handle(that.m_handle), m_keypair(that.m_keypair),
         m_messageID(that.m_messageID) {
     memcpy(m_context, that.m_context, sizeof(m_context));
     hydro_memzero(&that.m_keypair, sizeof(that.m_keypair));
     that.m_handle = -1;
 }
 
-Socket &Socket::operator=(Socket &&that) {
+SyncSocket &SyncSocket::operator=(SyncSocket &&that) {
     return that;
 }
 
-Socket::~Socket() {
+SyncSocket::~SyncSocket() {
     hydro_memzero(&m_keypair, sizeof(m_keypair));
     if (m_handle >= 0) {
         SOClose(m_handle);
     }
 }
 
-bool Socket::ok() const {
+bool SyncSocket::ok() const {
     return m_handle >= 0;
 }
 
-std::optional<u16> Socket::read(u8 *message, u16 maxSize) {
+std::optional<u16> SyncSocket::read(u8 *message, u16 maxSize) {
     auto tmp = Alloc<u8>(sizeof(u16) + hydro_secretbox_HEADERBYTES + maxSize);
     for (u16 offset = 0; offset < sizeof(u16);) {
         s32 result = SORecv(m_handle, tmp.get() + offset, sizeof(u16) - offset, 0);
@@ -136,7 +140,7 @@ std::optional<u16> Socket::read(u8 *message, u16 maxSize) {
     return size - hydro_secretbox_HEADERBYTES;
 }
 
-bool Socket::write(const u8 *message, u16 size) {
+bool SyncSocket::write(const u8 *message, u16 size) {
     const u8 *key = m_keypair.tx;
     auto tmp = Alloc<u8>(sizeof(u16) + hydro_secretbox_HEADERBYTES + size);
     assert(GetSize(tmp) - 2 <= UINT16_MAX);

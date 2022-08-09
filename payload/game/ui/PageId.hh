@@ -32,8 +32,8 @@ enum class PageId {
 
     OnlinePleaseWait = 0x48,
     RaceConfirm = 0x4B,
-    MessageWindowPopup = 0x4D,
-    VoteOrRandom = 0x4E,
+    MessagePopup = 0x4D,
+    YesNoPopup = 0x4E,
     ReadingGhostData = 0x4F,
     ConnectingNintendoWfc = 0x50,
     MenuMessage = 0x51,
@@ -41,7 +41,7 @@ enum class PageId {
     Title = 0x57,
     TopMenu = 0x5A,
     Model = 0x5C,
-    TopOverlay = 0x5E,
+    Obi = 0x5E,
     LicenseSelect = 0x65,
     LicenseSettingsTop = 0x67,
     SingleTop = 0x69,
@@ -67,10 +67,13 @@ enum class PageId {
     MissionTutorial = 0x7e,
 
     OnlineTop = 0x8b, // Replaces WifiTop
+    Globe = 0x95,
+    FriendMatching = 0x9b,
+    FriendRoomBack = 0x9c,
 
     ServicePackTop = 0xa2, // Replaces ChannelTop
     StorageBenchmark = 0xa3, // Replaces ChannelRanking
-    ChannelGhost = 0xa4,
+    ServicePackTools = 0xa4, // Replaces ChannelGhost
 
     GhostManager = 0xa7,
 

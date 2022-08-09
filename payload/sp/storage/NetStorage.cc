@@ -489,7 +489,7 @@ std::optional<NetStorageResponse> NetStorage::read() {
 void NetStorage::connect() {
 #if defined(NET_STORAGE_HOSTNAME) && defined(NET_STORAGE_PORT) && defined(NET_STORAGE_PK)
     while (true) {
-        Net::Socket socket(NET_STORAGE_HOSTNAME, NET_STORAGE_PORT, serverPK, "storage ");
+        Net::SyncSocket socket(NET_STORAGE_HOSTNAME, NET_STORAGE_PORT, serverPK, "storage ");
         if (socket.ok()) {
             m_socket = std::move(socket);
             return;

@@ -5,6 +5,11 @@
 namespace System {
 
 class ResourceManager {
+public:
+    ResourceManager();
+
+    static REPLACE ResourceManager *CreateInstance();
+
 private:
     void loadGlobe(u8 **dst);
 
@@ -15,9 +20,10 @@ private:
     u8 _60d[0x614 - 0x60d];
     EGG::Heap *m_globeHeap;
     u8 _618[0x61c - 0x618];
+    u8 *m_globe;
 
     static ResourceManager *s_instance;
 };
-static_assert(sizeof(ResourceManager) == 0x61c);
+static_assert(sizeof(ResourceManager) > 0x61c);
 
 } // namespace System

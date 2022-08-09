@@ -26,6 +26,15 @@ int SOWrite(int s, const void* buf, int len);
 
 #define SO_SO_RCVBUF 0x00001002
 
+#define SO_F_GETFL 3
+#define SO_F_SETFL 4
+#define SO_O_NONBLOCK 0x04
+
+#define SO_EADDRINUSE -3
+#define SO_EAGAIN -6
+#define SO_EALREADY -7
+#define SO_EINPROGRESS -26
+
 typedef struct SOInAddr {
     u32 addr;
 } SOInAddr;
@@ -62,6 +71,7 @@ int SORecv(int s, void *buf, int len, int flags);
 int SORead(int s, void *buf, int len);
 
 int SOSetSockOpt(int s, int level, int optname, const void *optval, int optlen);
+int SOFcntl(int s, int cmd, ...);
 
 int SOShutdown(int s, int how);
 

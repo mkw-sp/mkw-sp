@@ -1,0 +1,4 @@
+RoomRequest.Join.miis max_count:2
+RoomRequest.Join.miis max_size:76
+
+RoomEvent.Join.mii max_size:76

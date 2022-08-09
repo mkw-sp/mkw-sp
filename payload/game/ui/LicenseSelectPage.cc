@@ -104,7 +104,7 @@ void LicenseSelectPage::onLicenseButtonFront([[maybe_unused]] PushButton *button
         saveManager->selectSPLicense(index);
         const System::Mii *mii = m_miiGroup.get(index);
         if (mii) {
-            saveManager->createLicense(0, &mii->id, mii->name);
+            saveManager->createLicense(0, mii->id(), mii->name());
             saveManager->selectLicense(0);
             globalContext->m_localPlayerMiis.copy(&m_miiGroup, index, 0);
             m_replacement = PageId::TopMenu;

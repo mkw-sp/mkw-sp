@@ -6,6 +6,10 @@ MenuInputManager::~MenuInputManager() {
     dt(-1);
 }
 
+PageInputManager::~PageInputManager() {
+    dt(-1);
+}
+
 MultiControlInputManager::~MultiControlInputManager() {
     dt(-1);
 }

@@ -1,17 +1,24 @@
 #pragma once
 
-#include "game/ui/AwaitPage.hh"
-#include "game/ui/ConfirmPage.hh"
-#include "game/ui/GhostManagerPage.hh"
-#include "game/ui/MessagePage.hh"
-#include "game/ui/ModelPage.hh"
-#include "game/ui/Option.hh"
-#include "game/ui/RaceConfirmPage.hh"
+#include "game/ui/Page.hh"
 #include "game/ui/SectionId.hh"
-#include "game/ui/SettingsPage.hh"
-#include "game/ui/TimeAttackGhostListPage.hh"
 
 namespace UI {
+
+class ConfirmPage;
+class FriendRoomBackPage;
+class GhostManagerPage;
+class GlobePage;
+class MenuAwaitPage;
+class MenuMessagePage;
+class MessagePagePopup;
+class ModelPage;
+class OptionExplanationPage;
+class OptionSelectPage;
+class RaceConfirmPage;
+class SettingsPage;
+class TimeAttackGhostListPage;
+class YesNoPagePopup;
 
 class Section {
 private:
@@ -27,6 +34,8 @@ public:
     }
 
     SectionId id() const { return m_id; }
+    bool isPageFocused(const Page *page) const;
+    bool isPageActive(PageId pageId) const;
 
     static u32 GetSceneId(SectionId id);
 
@@ -46,13 +55,25 @@ private:
     SectionId m_id;
     u8 _004[0x008 - 0x004];
     Page *m_pages[static_cast<size_t>(PageId::Max)];
-    u8 _354[0x408 - 0x354];
+    Page *m_activePages[10];
+    u32 m_activePageCount;
+    u8 _380[0x408 - 0x380];
 };
 static_assert(sizeof(Section) == 0x408);
 
 template <>
 struct Section::PageIdHelper<PageId::RaceConfirm> {
     using type = RaceConfirmPage;
+};
+
+template <>
+struct Section::PageIdHelper<PageId::MessagePopup> {
+    using type = MessagePagePopup;
+};
+
+template <>
+struct Section::PageIdHelper<PageId::YesNoPopup> {
+    using type = YesNoPagePopup;
 };
 
 template <>
@@ -68,6 +89,16 @@ struct Section::PageIdHelper<PageId::Model> {
 template <>
 struct Section::PageIdHelper<PageId::TimeAttackGhostList> {
     using type = TimeAttackGhostListPage;
+};
+
+template <>
+struct Section::PageIdHelper<PageId::Globe> {
+    using type = GlobePage;
+};
+
+template <>
+struct Section::PageIdHelper<PageId::FriendRoomBack> {
+    using type = FriendRoomBackPage;
 };
 
 template <>

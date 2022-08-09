@@ -693,11 +693,83 @@
     },
     "20001": {
         "font": "regular",
-        "string": "Direct Connection",
+        "string": "Play online.",
     },
     "20002": {
         "font": "regular",
+        "string": "Play online with a friend.",
+    },
+    "20003": {
+        "font": "regular",
+        "string": "Online (1P)",
+    },
+    "20004": {
+        "font": "regular",
+        "string": "Online (2P)",
+    },
+    "20005": {
+        "font": "regular",
+        "string": "Direct Connection",
+    },
+    "20006": {
+        "font": "regular",
+        "string": "Tools",
+    },
+    "20007": {
+        "font": "regular",
         "string": "Server Mode",
+    },
+    "20008": {
+        "font": "regular",
+        "string": "Connecting...",
+    },
+    "20009": {
+        "font": "regular",
+        "string": "Setting up...",
+    },
+    "20010": {
+        "font": "regular",
+        "string": "Room (Server)",
+    },
+    "20011": {
+        "font": "regular",
+        "string": "Room (1P)",
+    },
+    "20012": {
+        "font": "regular",
+        "string": "Room (2P)",
+    },
+    "20013": {
+        "font": "regular",
+        "string": "The server failed to start!",
+    },
+    "20014": {
+        "font": "regular",
+        "string": "The server experienced a fatal error!",
+    },
+    "20015": {
+        "font": "regular",
+        "string": "The connection to the server failed!",
+    },
+    "20016": {
+        "font": "regular",
+        "string": "The connection with the server was interrupted!",
+    },
+    "20017": {
+        "font": "regular",
+        "string": "Do you want to cancel the server startup?",
+    },
+    "20018": {
+        "font": "regular",
+        "string": "Do you want to cancel the connection attempt?",
+    },
+    "20019": {
+        "font": "regular",
+        "string": "Do you want to stop the server?",
+    },
+    "20020": {
+        "font": "regular",
+        "string": "Do you want to leave the room?",
     },
     "3700": {
         "font": "regular",

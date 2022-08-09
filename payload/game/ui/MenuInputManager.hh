@@ -12,6 +12,32 @@ public:
         Option,
     };
 
+    class IHandler {
+    private:
+        virtual void dummy_00() {}
+        virtual void dummy_04() {}
+
+    public:
+        virtual void handle(u32 localPlayerId) = 0;
+    };
+
+    template <typename T>
+    class Handler : public IHandler {
+    public:
+        Handler(T *object, void (T::*function)(u32)) {
+            m_object = object;
+            m_function = function;
+        }
+
+        void handle(u32 localPlayerId) override {
+            (m_object->*m_function)(localPlayerId);
+        }
+
+    private:
+        T *m_object;
+        void (T::*m_function)(u32);
+    };
+
     MenuInputManager();
     ~MenuInputManager();
     void dt(s32 type);
@@ -21,6 +47,19 @@ private:
     u8 _0[0xf - 0x0];
 };
 static_assert(sizeof(MenuInputManager) == 0xf);
+
+class PageInputManager : public MenuInputManager {
+public:
+    PageInputManager();
+    ~PageInputManager();
+    void dt(s32 type);
+    void init(u32 playerFlags, bool isMultiPlayer);
+    void setHandler(InputId inputId, IHandler *handler, bool repeat);
+
+private:
+    u8 _00f[0x144 - 0x00f];
+};
+static_assert(sizeof(PageInputManager) == 0x144);
 
 class MultiControlInputManager;
 
@@ -84,32 +123,6 @@ public:
         Both,
         Y,
         Neither,
-    };
-
-    class IHandler {
-    private:
-        virtual void dummy_00() {}
-        virtual void dummy_04() {}
-
-    public:
-        virtual void handle(u32 localPlayerId) = 0;
-    };
-
-    template <typename T>
-    class Handler : public IHandler {
-    public:
-        Handler(T *object, void (T::*function)(u32)) {
-            m_object = object;
-            m_function = function;
-        }
-
-        void handle(u32 localPlayerId) override {
-            (m_object->*m_function)(localPlayerId);
-        }
-
-    private:
-        T *m_object;
-        void (T::*m_function)(u32);
     };
 
     MultiControlInputManager();

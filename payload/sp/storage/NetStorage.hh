@@ -1,7 +1,7 @@
 #pragma once
 
 #include "sp/ScopeLock.hh"
-#include "sp/net/Socket.hh"
+#include "sp/net/SyncSocket.hh"
 #include "sp/storage/Storage.hh"
 
 #include <protobuf/NetStorage.pb.h>
@@ -96,7 +96,7 @@ private:
     Mutex m_mutex{};
     OSThread m_thread;
     u8 m_stack[4096];
-    std::optional<Net::Socket> m_socket;
+    std::optional<Net::SyncSocket> m_socket;
     File m_files[32];
     Dir m_dirs[32];
 
