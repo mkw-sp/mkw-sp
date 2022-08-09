@@ -2,10 +2,6 @@
 
 #include "egg/core/eggScene.hh"
 
-extern "C" {
-#include <sp/IOSDolphin.h>
-}
-
 namespace EGG {
 
 class SceneManager {
@@ -29,7 +25,6 @@ private:
     u8 _00[0x2c - 0x00];
 
     static bool s_dolphinIsUnavailable;
-    static IOSDolphin s_dolphin;
     static u32 s_dolphinSpeedStack[8];
     static s32 s_dolphinSpeedStackSize;
 };

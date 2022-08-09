@@ -1,3 +1,4 @@
+extern "C" {
 #include "Host.h"
 
 #include <Common.h>
@@ -5,15 +6,17 @@
 #include <revolution.h>
 #include <revolution/ios.h>
 #include <revolution/nwc24/NWC24Utils.h>
-#include <sp/IOSDolphin.h>
 #include <sp/Version.h>
 #include <stdio.h>
 #include <string.h>
+}
+
+#include <sp/IOSDolphin.hh>
 
 static bool sHostIsInit = false;
 static HostPlatform sPlatform = HOST_UNKNOWN;
 static char sDolphinTag[HOST_PLATFORM_BUFFER_SIZE] = "Not dolphin";
-
+#undef PLATFORM_EMULATOR
 #ifndef PLATFORM_EMULATOR
 const RawCPU_ID sCpuId_PrehistoricDolphin = { 0, 0, 0, 0 };
 const RawCPU_ID sCpuId_Dolphin = { 0xd96e200, 0x1840c00d, 0x82bb08e8, 0 };
@@ -36,23 +39,21 @@ void Host_SetCPUID(RawCPU_ID id) {
     __asm__ volatile("mtspr 0x39c, %0" : "=r"(_39c));
     __asm__ volatile("mtspr 0x39d, %0" : "=r"(_39d));
     __asm__ volatile("mtspr 0x39e, %0" : "=r"(_39e));
-    __asm__ volatile("mtspr 0x39e, %0" : "=r"(_39f));
+    __asm__ volatile("mtspr 0x39f, %0" : "=r"(_39f));
 }
 
 static void DetectPlatform(void) {
     {
-        IOSDolphin iosDolphin = IOSDolphin_Open();
-        if (iosDolphin >= 0) {
+        if (SP::IOSDolphin::Open()) {
             sPlatform = HOST_DOLPHIN;
-            IOSDolphin_VersionQuery q = IOSDolphin_GetVersion(iosDolphin);
-            if (!q.hasValue) {
+            auto q = SP::IOSDolphin::GetVersion();
+            if (!q.has_value()) {
                 OSReport("[HOSTPLATFORM] Failed GetVersion query\n");
                 sPlatform = HOST_DOLPHIN_UNKNOWN;
             } else {
                 const char dolphinTagFormatString[] = "Dolphin %s";
-                snprintf(sDolphinTag, sizeof(sDolphinTag), dolphinTagFormatString, q.version);
+                snprintf(sDolphinTag, sizeof(sDolphinTag), dolphinTagFormatString, q->data());
             }
-            IOSDolphin_Close(iosDolphin);
             return;
         }
 

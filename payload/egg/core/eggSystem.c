@@ -7,7 +7,6 @@
 #include <game/ui/SectionManager.h>
 #include <sp/Commands.h>
 #include <sp/Host.h>
-#include <sp/IOSDolphin.h>
 #include <sp/StringView.h>
 #include <sp/keyboard/Keyboard.h>
 #include <stdio.h>
@@ -18,66 +17,6 @@ static const char *sOnOff[2] = { "OFF", "ON" };
 static const char *fmtBool(bool b) {
     return sOnOff[!!b];
 }
-
-static void emuspeed(IOSDolphin dolphin, u32 *out) {
-    IOSDolphin_SpeedLimitQuery emuspeed = IOSDolphin_GetSpeedLimit(dolphin);
-    OSReport("emuspeed: percent=%u,hasValue=%s\n", emuspeed.emulationSpeedPercent,
-            fmtBool(emuspeed.hasValue));
-
-    if (out != NULL && emuspeed.hasValue)
-        *out = emuspeed.emulationSpeedPercent;
-}
-static void set_emuspeed(IOSDolphin dolphin, u32 speed) {
-    const bool res = IOSDolphin_SetSpeedLimit(dolphin, speed);
-    OSReport("set_emuspeed: success=%s\n", fmtBool(res));
-}
-
-static void DolphinTest() {
-    // Open a IOS handle for this test
-    IOSDolphin dolphin = IOSDolphin_Open();
-    if (!IOSDolphin_IsOpen(dolphin)) {
-        OSReport("Failed to open IOSDolphin.\n");
-        return;
-    }
-
-    {
-        IOSDolphin_SystemTimeQuery systime = IOSDolphin_GetSystemTime(dolphin);
-        OSReport("systime: milliseconds=%u,hasValue=%s\n", systime.milliseconds,
-                fmtBool(systime.hasValue));
-    }
-    {
-        IOSDolphin_VersionQuery version = IOSDolphin_GetVersion(dolphin);
-        OSReport("version: version=%s,hasValue=%s\n", version.version,
-                fmtBool(version.hasValue));
-    }
-    {
-        IOSDolphin_CPUSpeedQuery cpuspeed = IOSDolphin_GetCPUSpeed(dolphin);
-        OSReport("cpuspeed: ticksPerSecond=%u,hasValue=%s\n", cpuspeed.ticksPerSecond,
-                fmtBool(cpuspeed.hasValue));
-    }
-    {
-        // Test GetSpeedLimit, SetSpeedLimit
-        u32 old_emu_speed = 0;
-        emuspeed(dolphin, &old_emu_speed);
-        if (old_emu_speed) {
-            set_emuspeed(dolphin, 50);
-            // Report changed speed
-            emuspeed(dolphin, NULL);
-            // Reset speed
-            set_emuspeed(dolphin, old_emu_speed);
-            // Report changed speed
-            emuspeed(dolphin, NULL);
-        } else {
-            OSReport("set_emuspeed: skipping\n");
-        }
-    }
-    {
-        IOSDolphin_RealProductCodeQuery prod = IOSDolphin_GetRealProductCode(dolphin);
-        OSReport("prod: code=%s,hasValue=%s\n", prod.code, fmtBool(prod.hasValue));
-    }
-    IOSDolphin_Close(dolphin);
-}
-
 static s32 GetMyPlayerID(void) {
     if (s_raceConfig == NULL) {
         OSReport("&cNot in a race.\n");
@@ -176,7 +115,7 @@ sp_define_command("/instant_menu", "Toggle instant menu transitions", const char
     }
     const bool menuTrans = !SaveManager_GetPageTransitions();
     SaveManager_SetPageTransitions(menuTrans);
-    OSReport("instant_menu: Menu transition animations toggled %s\n", sOnOff[menuTrans]);
+    OSReport("instant_menu: Menu transition animations toggled %s\n", fmtBool(menuTrans));
 }
 
 sp_define_command("/set", "Sets a .ini setting key-value", const char *tmp) {
@@ -225,11 +164,6 @@ sp_define_command("/section", "Transition to a certain game section", const char
     SectionManager_startChangeSection(s_sectionManager, 5, 0xff);
 }
 
-sp_define_command("/dolphin_test", "Test /dev/dolphin driver", const char *tmp) {
-    (void)tmp;
-
-    DolphinTest();
-}
 
 static void my_lineCallback(const char *buf, size_t len) {
     StringView view = (StringView){ .s = buf, .len = len };

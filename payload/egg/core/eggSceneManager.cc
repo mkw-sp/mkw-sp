@@ -4,11 +4,11 @@ extern "C" {
 #include <game/system/ResourceManager.h>
 #include <revolution.h>
 }
+#include <sp/IOSDolphin.hh>
 
 namespace EGG {
 
 bool SceneManager::s_dolphinIsUnavailable = false;
-IOSDolphin SceneManager::s_dolphin = -1;
 u32 SceneManager::s_dolphinSpeedStack[8];
 s32 SceneManager::s_dolphinSpeedStackSize;
 
@@ -17,32 +17,31 @@ bool SceneManager::InitDolphinSpeed() {
         return false;
     }
 
-    if (s_dolphin >= 0) {
+    if (SP::IOSDolphin::IsOpen()) {
         return true;
     }
 
-    s_dolphin = IOSDolphin_Open();
-    s_dolphinIsUnavailable = s_dolphin < 0;
+    s_dolphinIsUnavailable = !SP::IOSDolphin::Open();
     return !s_dolphinIsUnavailable;
 }
 
 bool SceneManager::SetDolphinSpeed(u32 percent) {
-    if (s_dolphin >= 0) {
+    if (SP::IOSDolphin::Open()) {
         SP_LOG("Set Dolphin speed to %u", percent);
-        return IOSDolphin_SetSpeedLimit(s_dolphin, percent);
+        return SP::IOSDolphin::SetSpeedLimit(percent) == IPC_OK;
     }
     return false;
 }
 
 u32 SceneManager::GetDolphinSpeedLimit() {
-    if (s_dolphin < 0)
+    if (!SP::IOSDolphin::Open())
         return 0;
 
-    IOSDolphin_SpeedLimitQuery q = IOSDolphin_GetSpeedLimit(s_dolphin);
-    if (!q.hasValue)
+    auto q = SP::IOSDolphin::GetSpeedLimit();
+    if (!q.has_value())
         return 0;
 
-    return q.emulationSpeedPercent;
+    return *q;
 }
 
 void SceneManager::PushDolphinSpeed(u32 percent) {

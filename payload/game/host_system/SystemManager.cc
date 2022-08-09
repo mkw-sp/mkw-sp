@@ -1,8 +1,7 @@
 #include "SystemManager.hh"
+#include <sp/IOSDolphin.hh>
 
 extern "C" {
-#include <sp/IOSDolphin.h>
-
 #include <revolution.h>
 }
 
@@ -57,10 +56,8 @@ void SystemManager::Restart() {
 }
 
 void SystemManager::ResetDolphinSpeedLimit() {
-    IOSDolphin dolphin = IOSDolphin_Open();
-    if (IOSDolphin_IsOpen(dolphin)) {
-        IOSDolphin_SetSpeedLimit(dolphin, 100);
-        IOSDolphin_Close(dolphin);
+    if (SP::IOSDolphin::Open()) {
+        SP::IOSDolphin::SetSpeedLimit(100);
     }
 }
 
@@ -71,4 +68,4 @@ void SystemManager::LaunchTitle(u64 titleID) {
     __OSLaunchTitle(titleID);
 }
 
-} // namespace System
+}  // namespace System
