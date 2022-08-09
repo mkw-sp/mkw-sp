@@ -4,13 +4,14 @@ extern "C" {
 #include "sp/Host.h"
 }
 #include "sp/net/Net.hh"
-#include "sp/net/Socket.hh"
+#include "sp/net/SyncSocket.hh"
 
 #include <common/Bytes.hh>
 #include <common/Paths.hh>
 
 #include <protobuf/Update.pb.h>
 extern "C" {
+#include <revolution.h>
 #include <revolution/nwc24/NWC24Utils.h>
 }
 #include <vendor/nanopb/pb_decode.h>
@@ -48,7 +49,7 @@ static bool Sync(bool update) {
     }
 
     status = Status::Connect;
-    SP::Net::Socket socket("update.mkw-sp.com", 21328, serverPK, "update  ");
+    SP::Net::SyncSocket socket("update.mkw-sp.com", 21328, serverPK, "update  ");
     if (!socket.ok()) {
         return false;
     }

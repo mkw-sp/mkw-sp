@@ -43,7 +43,14 @@
 
 #define SingleChangeGhostData 0x4e // Replaces SingleMkChannelGhost
 #define SingleLeaderboardGhost 0x4f
-#define ServicePack 0x7a           // Replaces Channel
+
+#define OnlineSingle 0x55 // Replaces WifiSingle
+#define OnlineMultiConfigure 0x5a // Replaces WifiMultiConfigure
+#define OnlineMulti 0x5b // Replaces WifiMulti
+
+#define ServicePack 0x7a // Replaces Channel
+
+#define OnlineServer 0x84 // Replaces FriendListFromChannel
 
 #define Unlock0 0x90
 #define Unlock1 0x91

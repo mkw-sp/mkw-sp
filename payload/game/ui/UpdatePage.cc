@@ -1,5 +1,7 @@
 #include "UpdatePage.hh"
 
+#include "game/ui/AwaitPage.hh"
+#include "game/ui/Option.hh"
 #include "game/ui/SectionManager.hh"
 
 #include <sp/Update.hh>
@@ -24,6 +26,7 @@ void UpdatePage::onInit() {
 
     u8 *stackTop = m_stack + sizeof(m_stack);
     OSCreateThread(&m_thread, Check, nullptr, stackTop, sizeof(m_stack), 24, 0);
+    OSDetachThread(&m_thread);
     OSResumeThread(&m_thread);
 }
 
@@ -33,7 +36,6 @@ void UpdatePage::onActivate() {
     m_state = State::Prev;
     if (versionInfo.type == BUILD_TYPE_RELEASE) {
         if (OSIsThreadTerminated(&m_thread)) {
-            OSDetachThread(&m_thread);
             if (!reinterpret_cast<u32>(m_thread.val)) {
                 u8 *stackTop = m_stack + sizeof(m_stack);
                 OSCreateThread(&m_thread, Check, nullptr, stackTop, sizeof(m_stack), 24, 0);
@@ -103,7 +105,6 @@ void UpdatePage::afterCalc() {
         }
         optionAwaitPage->setWindowMessage(messageId, &info);
         if (OSIsThreadTerminated(&m_thread)) {
-            OSDetachThread(&m_thread);
             optionAwaitPage->pop();
         }
         break;

@@ -8,6 +8,14 @@ Section *SectionManager::currentSection() {
     return m_currentSection;
 }
 
+SectionId SectionManager::nextSectionId() const {
+    return m_nextSectionId;
+}
+
+SectionId SectionManager::lastSectionId() const {
+    return m_lastSectionId;
+}
+
 SaveManagerProxy *SectionManager::saveManagerProxy() {
     return m_saveManagerProxy;
 }

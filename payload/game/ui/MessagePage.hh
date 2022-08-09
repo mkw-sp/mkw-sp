@@ -46,6 +46,16 @@ private:
     u8 _18c[0x1a5 - 0x18c];
 };
 
+class MessagePagePopup : public MessagePage {
+public:
+    void reset() override;
+    void setWindowMessage(u32 messageId, MessageInfo *info = nullptr) override;
+
+private:
+    u8 _1a5[0x604 - 0x1a5];
+};
+static_assert(sizeof(MessagePagePopup) == 0x604);
+
 class MenuMessagePage : public MessagePage {
 public:
     void reset() override;

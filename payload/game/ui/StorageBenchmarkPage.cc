@@ -1,5 +1,8 @@
 #include "StorageBenchmarkPage.hh"
 
+#include "game/ui/AwaitPage.hh"
+#include "game/ui/MessagePage.hh"
+#include "game/ui/Option.hh"
 #include "game/ui/SectionManager.hh"
 
 namespace UI {
@@ -9,7 +12,7 @@ StorageBenchmarkPage::StorageBenchmarkPage() = default;
 StorageBenchmarkPage::~StorageBenchmarkPage() = default;
 
 PageId StorageBenchmarkPage::getReplacement() {
-    return PageId::ServicePackTop;
+    return PageId::ServicePackTools;
 }
 
 void StorageBenchmarkPage::onInit() {

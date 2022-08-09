@@ -5,7 +5,9 @@ extern "C" {
 }
 #include "game/system/RaceConfig.hh"
 #include "game/system/SaveManager.hh"
+#include "game/ui/RaceConfirmPage.hh"
 #include "game/ui/SectionManager.hh"
+#include "game/ui/SettingsPage.hh"
 
 namespace UI {
 

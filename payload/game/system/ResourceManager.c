@@ -145,6 +145,7 @@ static void ResourceManager_initGlobeHeap(ResourceManager *self) {
 
 static void ResourceManager_deinitGlobeHeap(ResourceManager *self) {
     if (self->globeHeap) {
+        self->globe = NULL;
         EGG_ExpHeap_destroy((EGG_ExpHeap *)self->globeHeap);
         self->globeHeap = NULL;
         self->globeLoadingIsBusy = false;

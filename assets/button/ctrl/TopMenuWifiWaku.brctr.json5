@@ -1,0 +1,73 @@
+{
+    "main brlyt": "common_w069_title_large_waku",
+    "bmg": "Menu",
+    "picture source brlyt": "",
+    "groups": [
+        {
+            "name": "Select",
+            "pane": "free_select",
+            "first animation": 0,
+            "animation count": 4,
+        },
+    ],
+    "animations": [
+        {
+            "name": "Free",
+            "brlan": "common_w069_title_large_waku_free.brlan",
+            "next": "",
+            "reversed": false,
+            "speed": 1.0,
+        },
+        {
+            "name": "FreeToSelect",
+            "brlan": "common_w069_title_large_waku_free_to_select.brlan",
+            "next": "Select",
+            "reversed": false,
+            "speed": 1.0,
+        },
+        {
+            "name": "Select",
+            "brlan": "common_w069_title_large_waku_select.brlan",
+            "next": "",
+            "reversed": false,
+            "speed": 1.0,
+        },
+        {
+            "name": "SelectToFree",
+            "brlan": "common_w069_title_large_waku_select_to_free.brlan",
+            "next": "Free",
+            "reversed": false,
+            "speed": 1.0,
+        },
+    ],
+    "variants": [
+        {
+            "name": "TopMenuWifiWaku",
+            "opacity": 255,
+            "animated": true,
+            "animation delay": 2.0,
+            "translation x 4:3": -135.0,
+            "translation y 4:3": -77.0,
+            "translation z 4:3": -9.0,
+            "scale x 4:3": 0.9,
+            "scale y 4:3": 0.9,
+            "translation x 16:9": -135.0,
+            "translation y 16:9": -77.0,
+            "translation z 16:9": -9.0,
+            "scale x 16:9": 0.9,
+            "scale y 16:9": 0.9,
+            "first message": 0,
+            "message count": 1,
+            "first picture": 0,
+            "picture count": 0,
+        },
+    ],
+    "messages": [
+        {
+            "pane": "",
+            "name": "",
+            "message id": 20000,
+        },
+    ],
+    "pictures": [],
+}

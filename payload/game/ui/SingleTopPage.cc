@@ -1,6 +1,7 @@
 #include "SingleTopPage.hh"
 
 #include "game/system/RaceConfig.hh"
+#include "game/ui/ModelPage.hh"
 #include "game/ui/SectionManager.hh"
 #include "game/ui/page/MenuPage.hh"
 

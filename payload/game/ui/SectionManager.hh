@@ -9,6 +9,8 @@ namespace UI {
 class SectionManager {
 public:
     Section *currentSection();
+    SectionId nextSectionId() const;
+    SectionId lastSectionId() const;
     SaveManagerProxy *saveManagerProxy();
     GlobalContext *globalContext();
     void setNextSection(SectionId sectionId, Page::Anim anim);
@@ -19,7 +21,10 @@ public:
 
 private:
     Section *m_currentSection;
-    u8 _04[0x90 - 0x04];
+    u8 _04[0x0c - 0x04];
+    SectionId m_nextSectionId;
+    SectionId m_lastSectionId;
+    u8 _14[0x90 - 0x14];
     SaveManagerProxy *m_saveManagerProxy;
     u8 _94[0x98 - 0x94];
     GlobalContext *m_globalContext;

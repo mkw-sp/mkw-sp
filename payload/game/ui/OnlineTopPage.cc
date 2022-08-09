@@ -1,5 +1,8 @@
 #include "OnlineTopPage.hh"
 
+#include "game/ui/SectionManager.hh"
+#include "game/ui/SettingsPage.hh"
+
 namespace UI {
 
 OnlineTopPage::OnlineTopPage() = default;
@@ -15,26 +18,27 @@ void OnlineTopPage::onInit() {
     setInputManager(&m_inputManager);
     m_inputManager.setWrappingMode(MultiControlInputManager::WrappingMode::Neither);
 
-    initChildren(5);
+    initChildren(4);
     insertChild(0, &m_pageTitleText, 0);
     insertChild(1, &m_settingsButton, 0);
     insertChild(2, &m_connectButton, 0);
-    insertChild(3, &m_startServerButton, 0);
-    insertChild(4, &m_backButton, 0);
+    insertChild(3, &m_backButton, 0);
 
     m_pageTitleText.load(false);
     m_settingsButton.load("button", "SettingsButton", "Option", 0x1, false, false);
     m_connectButton.load("button", "OnlineTopButton", "Connect", 0x1, false, false);
-    m_startServerButton.load("button", "OnlineTopButton", "StartServer", 0x1, false, false);
     m_backButton.load("button", "Back", "ButtonBack", 0x1, false, true);
 
     m_inputManager.setHandler(MenuInputManager::InputId::Back, &m_onBack, false, false);
     m_settingsButton.setFrontHandler(&m_onSettingsButtonFront, false);
     m_connectButton.setFrontHandler(&m_onConnectButtonFront, false);
-    m_startServerButton.setFrontHandler(&m_onStartServerButtonFront, false);
     m_backButton.setFrontHandler(&m_onBackButtonFront, false);
 
-    m_pageTitleText.setMessage(20000);
+    if (SectionManager::Instance()->currentSection()->id() == SectionId::OnlineSingle) {
+        m_pageTitleText.setMessage(20003);
+    } else {
+        m_pageTitleText.setMessage(20004);
+    }
 
     m_connectButton.selectDefault(0);
 }
@@ -49,14 +53,19 @@ void OnlineTopPage::onBack([[maybe_unused]] u32 localPlayerId) {
 
 void OnlineTopPage::onSettingsButtonFront([[maybe_unused]] PushButton *button,
         [[maybe_unused]] u32 localPlayerId) {
+    auto *section = SectionManager::Instance()->currentSection();
+    auto *settingsPage = section->page<PageId::Settings>();
+    settingsPage->m_replacement = PageId::OnlineTop;
+    m_replacement = PageId::Settings;
+    f32 delay = button->getDelay();
+    startReplace(Anim::Next, delay);
 }
 
 void OnlineTopPage::onConnectButtonFront([[maybe_unused]] PushButton *button,
         [[maybe_unused]] u32 localPlayerId) {
-}
-
-void OnlineTopPage::onStartServerButtonFront([[maybe_unused]] PushButton *button,
-        [[maybe_unused]] u32 localPlayerId) {
+    m_replacement = PageId::FriendMatching;
+    f32 delay = button->getDelay();
+    startReplace(Anim::Next, delay);
 }
 
 void OnlineTopPage::onBackButtonFront([[maybe_unused]] PushButton *button,

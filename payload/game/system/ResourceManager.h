@@ -25,8 +25,9 @@ typedef struct {
     u8 _60d[0x614 - 0x60d];
     EGG_Heap *globeHeap;
     u8 _618[0x61c - 0x618];
+    u8 *globe;
 } ResourceManager;
-static_assert(sizeof(ResourceManager) == 0x61c);
+static_assert(offsetof(ResourceManager, globe) == 0x61c);
 
 extern ResourceManager *s_resourceManager;
 
