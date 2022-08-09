@@ -16,15 +16,15 @@ jobs:
         uses: actions/cache@v2
         with:
           path: cache
-          key: ${{ runner.os }}-cache-dkp
+          key: ${{ runner.os }}-cache-dkp-r41-2
       - name: Download devkitPPC
         if: steps.cache-1.outputs.cache-hit != 'true'
         run: | 
           mkdir cache && cd cache
-          wget "https://wii.leseratte10.de/devkitPro/devkitPPC/r40%20(2022-01)/devkitPPC-r40-1-linux_x86_64.pkg.tar.xz"
+          wget "https://pkg.devkitpro.org/packages/linux/x86_64/devkitPPC-r41-2-x86_64.pkg.tar.xz"
           cd ..
       - name: Extract devkitPPC
-        run: tar -xf cache/devkitPPC-r40-1-linux_x86_64.pkg.tar.xz
+        run: tar -xf cache/devkitPPC-r41-2-x86_64.pkg.tar.xz
       - name: Install ninja
         run: sudo apt install ninja-build
       - name: Install protoc
