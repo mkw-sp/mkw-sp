@@ -1,5 +1,4 @@
 #include "SystemManager.hh"
-#include <sp/IOSDolphin.hh>
 
 extern "C" {
 #include <revolution.h>
@@ -59,6 +58,61 @@ void SystemManager::ResetDolphinSpeedLimit() {
     if (SP::IOSDolphin::Open()) {
         SP::IOSDolphin::SetSpeedLimit(100);
     }
+}
+
+RichPresenceManager& RichPresenceManager::Instance() {
+    static RichPresenceManager manager;
+    return manager;
+}
+
+void RichPresenceManager::Init() {
+    auto &manager = Instance();
+    switch (manager.initConnection()) {
+    case ConnectionResult::Connected:
+        SP_LOG("Discord RPC enabled");
+        manager.sendStatus();
+        break;
+    case ConnectionResult::Blocked:
+        SP_LOG("Discord RPC could not be enabled because Config::MAIN_USE_DISCORD_PRESENCE is not set");
+        break;
+    case ConnectionResult::Unsupported:
+        break;
+    }
+}
+
+RichPresenceManager::ConnectionResult RichPresenceManager::initConnection() {
+    m_statusWasSent = false;
+    if (!SP::IOSDolphin::Open()) {
+        return ConnectionResult::Unsupported;
+    }
+
+    const IPCResult ec = SP::IOSDolphin::DiscordSetClient(s_applicationId);
+    switch (ec) {
+    case IPC_OK:
+        return ConnectionResult::Connected;
+    case IPC_EACCES:
+        return ConnectionResult::Blocked;
+    case IPC_EINVAL:
+    default:
+        return ConnectionResult::Unsupported;
+    }
+}
+void RichPresenceManager::terminateConnection() {
+    m_statusWasSent = false;
+    if (SP::IOSDolphin::Open()) {
+        SP::IOSDolphin::DiscordReset();
+    }
+}
+RichPresenceManager::PresenceData &RichPresenceManager::status() {
+    return m_cached;
+}
+bool RichPresenceManager::sendStatus() {
+    if (!SP::IOSDolphin::Open()) {
+        return false;
+    }
+    const bool result = SP::IOSDolphin::DiscordSetPresence(m_cached) == IPC_OK;
+    m_statusWasSent |= result;
+    return result;
 }
 
 void SystemManager::LaunchTitle(u64 titleID) {

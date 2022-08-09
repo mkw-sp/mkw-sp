@@ -6,6 +6,7 @@ typedef s32 IOSCommand;
 
 typedef enum {
     IPC_OK = 0,
+    IPC_EACCES = -1,
     IPC_EBUSY = -2,
     IPC_EINVAL = -4,
     IPC_ENOENT = -6,
@@ -26,7 +27,7 @@ enum IOSFlags {
 };
 
 s32 IOS_Open(const char *path, u32 flags);
-s32 real_IOS_Open(const char* path, u32 flags);
+s32 real_IOS_Open(const char *path, u32 flags);
 s32 real_IOS_OpenAsync(const char *path, u32 flags, void *cb, void *userdata);
 
 s32 IOS_Close(s32 handle);

@@ -26,6 +26,17 @@ enum class Ioctlv {
     //
     // Dolphin 5.0-12058
     GetRealProductCode = 6,  // Vector IN() OUT(char[])
+
+    // Merged in 4c2d707 August 7, 2022
+    //
+    // Dolphin 5.0-17155
+    //
+    // NOTE: As of 4c2d707/5.0-17155, `DiscordReset` is just a call to `DiscordSetClient`
+    // with an empty string.
+    DiscordSetClient = 7,    // Vector IN(char[]) OUT()
+    DiscordSetPresence = 8,  // Vector IN(char[], char[], char[], char[], char[], s64,
+                             // s64, u32, u32) OUT()
+    DiscordReset = 9,        // Vector IN() OUT()
 };
 
 static s32 sDevDolphin = -1;
@@ -47,18 +58,29 @@ void Close() {
 }
 
 namespace {
-IPCResult IssueCommand(Ioctlv cmd, u32 inputs, u32 outputs, IOVector &vec) {
-    const IPCResult result = static_cast<IPCResult>(
-            IOS_Ioctlv(sDevDolphin, static_cast<IOSCommand>(cmd), inputs, outputs, &vec));
+IPCResult IssueCommand(Ioctlv cmd, u32 inputs, u32 outputs, std::span<IOVector> vec) {
+    assert(inputs + outputs == vec.size());
+    const IPCResult result = static_cast<IPCResult>(IOS_Ioctlv(
+            sDevDolphin, static_cast<IOSCommand>(cmd), inputs, outputs, vec.data()));
     if (result == IPC_OK) {
         return IPC_OK;
     }
     const std::string_view cmd_string = magic_enum::enum_name(cmd);
     const std::string_view err_string = magic_enum::enum_name(result);
-    IOSDOLPHIN_LOG("%.*s: Failed with IPC error code %i (%.*s)\n", cmd_string.length(),
+    IOSDOLPHIN_LOG("%.*s: Failed with IPC error code %i (%.*s)", cmd_string.length(),
             cmd_string.data(), static_cast<int>(result), err_string.length(),
             err_string.data());
+    IOSDOLPHIN_LOG("-> IOS_Ioctlv(%i, %x, %i, %i, %p)", sDevDolphin,
+            static_cast<IOSCommand>(cmd), inputs, outputs, vec.data());
+    for (size_t i = 0; i < vec.size(); ++i) {
+        const auto &it = vec[i];
+        IOSDOLPHIN_LOG(" [%u] @%p: IOVector { .data = %p, .size = 0x%x }",
+                static_cast<unsigned>(i), &it, it.data, it.size);
+    }
     return result;
+}
+IPCResult IssueCommand(Ioctlv cmd, u32 inputs, u32 outputs, IOVector &vec) {
+    return IssueCommand(cmd, inputs, outputs, std::span<IOVector>(&vec, 1));
 }
 }  // namespace
 
@@ -147,6 +169,53 @@ Result<std::array<char, 3>> GetRealProductCode() {
     }
     const std::array<char, 3> arr = { query[0], query[1], query[2] };
     return arr;
+}
+
+IPCResult DiscordSetClient(std::string_view client) {
+    IOSDOLPHIN_LOG(
+            "DiscordSetClient: Setting client to %.*s", client.length(), client.data());
+    assert(IsOpen());
+    alignas(32) IOVector vec = {
+        .data = const_cast<char *>(client.data()),
+        .size = client.size(),
+    };
+    return IssueCommand(Ioctlv::DiscordSetClient, 1, 0, vec);
+}
+IPCResult DiscordSetPresence(const DolphinDiscordPresence &presence) {
+    IOSDOLPHIN_LOG("DiscordSetPresence: Setting presence");
+    assert(IsOpen());
+    alignas(32) std::array<IOVector, 10> vec = {};
+
+    const auto set = [&](size_t index, const auto span) {
+        vec[index] = IOVector{
+            .data = const_cast<decltype(span)::value_type *>(span.data()),
+            .size = span.size() * sizeof(span[0]),
+        };
+    };
+    const auto set_raw = [&](size_t index, const auto &thing) {
+        vec[index] = IOVector{
+            .data = const_cast<void *>(reinterpret_cast<const void *>(&thing)),
+            .size = sizeof(thing),
+        };
+    };
+
+    set(0, std::string_view(presence.details));
+    set(1, std::string_view(presence.state));
+    set(2, std::string_view(presence.largeImageKey));
+    set(3, std::string_view(presence.largeImageText));
+    set(4, std::string_view(presence.smallImageKey));
+    set(5, std::string_view(presence.smallImageText));
+    set_raw(6, presence.startTimestamp);
+    set_raw(7, presence.endTimestamp);
+    set_raw(8, presence.partySize);
+    set_raw(9, presence.partyMax);
+
+    return IssueCommand(Ioctlv::DiscordSetPresence, vec.size(), 0, vec);
+}
+IPCResult DiscordReset() {
+    IOSDOLPHIN_LOG("DiscordReset: Resetting client");
+    assert(IsOpen());
+    return IssueCommand(Ioctlv::DiscordReset, 0, 0, {});
 }
 
 }  // namespace SP::IOSDolphin
