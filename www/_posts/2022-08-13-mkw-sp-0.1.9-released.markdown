@@ -1,0 +1,30 @@
+---
+layout: post
+title:  "MKW-SP 0.1.9 Released"
+date:   2022-08-13 18:30:00 +0200
+author: stebler
+---
+
+Version 0.1.9 of Mario Kart Wii - Service Pack has been released. It's a minor release containing various bugfixes and improvements listed below. It can be installed from the in-game updater or downloaded from [here](https://github.com/stblr/mkw-sp/releases/download/v0.1.9/mkw-sp-v0.1.9.zip).
+
+## Features
+
+- A performance overlay showing CPU, GPU and memory usage has been added. You can see it in action in [this video](https://www.youtube.com/watch?v=KmO7rwbbsbg).
+- On Dolphin 5.0-17155 and later, MKW-SP can now configure a custom Discord status. [riidefi, IPG]
+- The GCN rumble setting has been added back. [stebler]
+- A tag count setting has been added. Any value between 0 and 12 can be selected. [stebler]
+
+## Improvements
+
+- The sound archive subfile replacement (SASR) has been completely rewritten and now works per sound id rather than per file id (the documentation can be found [here](/docs/my-stuff)). [stebler]
+- Thanks to the above change and a scheduling regression being fixed, loading times have been drastically reduced. [stebler]
+- If no storage device is found, MKW-SP will try again for 30 seconds. At that point, it will try to return to the loader (Wii Menu/HBC/close the window on Dolphin). [stebler, Palapeli, Star]
+- The "SPEED" HUD label has been translated to German. [Syara]
+- Dutch base game translations have been updated. [Krummers]
+- Setting names can now have a line break if they are too long. The box size has also been increased. [stebler]
+
+## Bugfixes
+
+- The "Race" and "Watch" buttons under the ghost list are now correctly positioned in 16:9. [stebler]
+- The result screen music now plays at the normal speed even when final lap dynamic speedup is enabled. [stebler]
+- An off-by-one error in the exception handler has been fixed. [Star]
