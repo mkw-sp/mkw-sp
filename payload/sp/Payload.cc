@@ -42,18 +42,16 @@ extern void (*payload_ctors_end)(void);
 
 namespace SP::Payload {
 
-typedef void (*StubEntryFunc)(void);
-
 static void ReturnToLoader() {
-    if (!memcmp(reinterpret_cast<void *>(0x80001804), "STUBHAXX", 8)) {
-        StubEntryFunc stubEntry = reinterpret_cast<StubEntryFunc>(0x80001800);
-        if (stubEntry) {
-            stubEntry();
-        }
-        OSShutdownSystem();
-        return;
-    }
     System::SystemManager::ResetDolphinSpeedLimit();
+    if (!memcmp(reinterpret_cast<void *>(0x80001804), "STUBHAXX", 8)) {
+        if (*reinterpret_cast<u32 *>(0x80001800)) {
+            System::SystemManager::LaunchTitle(UINT64_C(0x000100014f484243) /* OHBC */);
+            System::SystemManager::LaunchTitle(UINT64_C(0x000100014c554c5a) /* LULZ */);
+        } else {
+            OSShutdownSystem();
+        }
+    }
     OSDisableScheduler();
     __OSShutdownDevices(6);
     OSEnableScheduler();
