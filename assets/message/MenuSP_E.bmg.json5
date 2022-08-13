@@ -393,7 +393,7 @@
     },
     "10134": {
         "font": "regular",
-        "string": "Last Lap Jingle",
+        "string": "Final Lap Jingle",
     },
     "10135": {
         "font": "regular",
@@ -413,7 +413,7 @@
     },
     "10139": {
         "font": "regular",
-        "string": "Last Lap Speedup",
+        "string": "Final Lap Speedup",
     },
     "10140": {
         "font": "regular",
@@ -437,7 +437,7 @@
     },
     "10145": {
         "font": "regular",
-        "string": "Generate final lap music on the fly.",
+        "string": "Generate final lap music from the \"_N\" BRSTM.",
     },
     "10146": {
         "font": "regular",
@@ -549,7 +549,7 @@
     },
     "10173": {
         "font": "regular",
-        "string": "Flap",
+        "string": "Fastest Lap",
     },
     "10174": {
         "font": "regular",
@@ -582,5 +582,45 @@
     "10181": {
         "font": "regular",
         "string": "The {arg message|0} storage benchmark succeeded.\nRank: {arg message|1}\n{arg integer|0 0} KiB: R {arg string|0} MiB/s - W {arg string|1} MiB/s\n{arg integer|1 0} KiB: R {arg string|2} MiB/s - W {arg string|3} MiB/s\n{arg integer|2 0} KiB: R {arg string|4} MiB/s - W {arg string|5} MiB/s\n{arg integer|3 0} KiB: R {arg string|6} MiB/s - W {arg string|7} MiB/s",
+    },
+    "10183": {
+        "font": "regular",
+        "string": "Player Tags",
+    },
+    "10185": {
+        "font": "regular",
+        "string": "Display at most {arg integer|0 0} {arg cond messages|0 10186 10187} at once.",
+    },
+    "10186": {
+        "font": "regular",
+        "string": "tag",
+    },
+    "10187": {
+        "font": "regular",
+        "string": "tags",
+    },
+    "10188": {
+        "font": "regular",
+        "string": "Performance Overlay",
+    },
+    "10189": {
+        "font": "regular",
+        "string": "Do not display CPU, GPU and memory bars.",
+    },
+    "10190": {
+        "font": "regular",
+        "string": "Display CPU, GPU and memory bars.",
+    },
+    "10191": {
+        "font": "regular",
+        "string": "GCN Rumble",
+    },
+    "10192": {
+        "font": "regular",
+        "string": "Disable the rumble feature of the GCN controller.",
+    },
+    "10193": {
+        "font": "regular",
+        "string": "Enable the rumble feature of the GCN controller.",
     },
 }

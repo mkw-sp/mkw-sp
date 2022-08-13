@@ -125,15 +125,15 @@
     },
     "10039": {
         "font": "regular",
-        "string": "Geist name als Zeichen benutzen.",
+        "string": "Geister Name als Tag benutzen.",
     },
     "10040": {
         "font": "regular",
-        "string": "Geist Endzeit als Zeichen benutzen.",
+        "string": "Geister Endzeit als Tag benutzen.",
     },
     "10041": {
         "font": "regular",
-        "string": "Geist Erstell Datum als Zeichen benutzen.",
+        "string": "Geist Erstell Datum als Tag benutzen.",
     },
     "10042": {
         "font": "regular",
@@ -441,7 +441,7 @@
     },
     "10132": {
         "font": "regular",
-        "string": "Wenden den Musikeffekt nur geschockt/zerquetscht an.",
+        "string": "Wende den Musikeffekt nur geschockt/zerquetscht an.",
     },
     "10133": {
         "font": "regular",
@@ -461,11 +461,11 @@
     },
     "10137": {
         "font": "regular",
-        "string": "Benutze eine andere Musik für die letzte Runde (nur spiel)",
+        "string": "Benutze die Letze Runde Musik nur für das Gameplay",
     },
     "10138": {
         "font": "regular",
-        "string": "Benutze eine andere Musik für die letzte Runde (spiel und wiederholung)",
+        "string": "Benutze die Letze Runde Musik nur für das Gameplay und Wiederholungen",
     },
     "10139": {
         "font": "regular",
@@ -489,11 +489,11 @@
     },
     "10144": {
         "font": "regular",
-        "string": "Verwenden die \"_F\" BRSTM in der letzten Runde.",
+        "string": "Verwende die \"_F\" BRSTM in der letzten Runde.",
     },
     "10145": {
         "font": "regular",
-        "string": "Generiere die Musik für die Letzte Runde während des spielens.",
+        "string": "Generiere die Letze Runden Musik von der \"_N\" BRSTM.",
     },
     "10146": {
         "font": "regular",
@@ -505,7 +505,7 @@
     },
     "10148": {
         "font": "regular",
-        "string": "Benchmarking des Speichers {arg message|0}...\n{arg message|1}",
+        "string": "Benchmarking des {arg message|0} Speichers...\n{arg message|1}",
     },
     "10149": {
         "font": "regular",
@@ -521,11 +521,11 @@
     },
     "10152": {
         "font": "regular",
-        "string": "Lesen {arg integer|0 0} KiB Chunks...",
+        "string": "Lese {arg integer|0 0} KiB Chunks...",
     },
     "10153": {
         "font": "regular",
-        "string": "Schreiben {arg integer|0 0} KiB Chunks...",
+        "string": "Schreibe {arg integer|0 0} KiB Chunks...",
     },
     "10154": {
         "font": "regular",
@@ -549,7 +549,7 @@
     },
     "10159": {
         "font": "regular",
-        "string": "netzwerk",
+        "string": "Netzwerk",
     },
     "10160": {
         "font": "regular",
@@ -605,7 +605,7 @@
     },
     "10173": {
         "font": "regular",
-        "string": "Flap",
+        "string": "Schnellste Runde",
     },
     "10174": {
         "font": "regular",
@@ -638,5 +638,45 @@
     "10181": {
         "font": "regular",
         "string": "Der Speicherbenchmark {arg message|0} war erfolgreich.\nRang: {arg message|1}\n{arg integer|0 0} KiB: R {arg string|0} MiB/s - W {arg string|1} MiB/s\n{arg integer|1 0} KiB: R {arg string|2} MiB/s - W {arg string|3} MiB/s\n{arg integer|2 0} KiB: R {arg string|4} MiB/s - W {arg string|5} MiB/s\n{arg integer|3 0} KiB: R {arg string|6} MiB/s - W {arg string|7} MiB/s",
+    },
+    "10183": {
+        "font": "regular",
+        "string": "Spieler Tags",
+    },
+    "10185": {
+        "font": "regular",
+        "string": "Zeige maximal {arg integer|0 0} {arg cond messages|0 10186 10187} gleichzeitig.",
+    },
+    "10186": {
+        "font": "regular",
+        "string": "tag",
+    },
+    "10187": {
+        "font": "regular",
+        "string": "tags",
+    },
+    "10188": {
+        "font": "regular",
+        "string": "Leistungs Overlay",
+    },
+    "10189": {
+        "font": "regular",
+        "string": "Zeige kein CPU, GPU und Memory Leisten.",
+    },
+    "10190": {
+        "font": "regular",
+        "string": "Zeige CPU, GPU und Memory Leisten.",
+    },
+    "10191": {
+        "font": "regular",
+        "string": "GCN Vibration",
+    },
+    "10192": {
+        "font": "regular",
+        "string": "Deaktiviere die GCN Controller Vibration Funktion.",
+    },
+    "10193": {
+        "font": "regular",
+        "string": "Aktiviere die GCN Controller Vibration Funktion.",
     },
 }

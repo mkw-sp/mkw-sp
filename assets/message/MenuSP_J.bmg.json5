@@ -119,6 +119,10 @@
         "font": "regular",
         "string": "年月日",
     },
+    "10046": {
+        "font": "regular",
+        "string": "このルールで  タイムアタックをします",
+    },
     "10057": {
         "font": "regular",
         "string": "OFF",
@@ -177,7 +181,7 @@
     },
     "10082": {
         "font": "regular",
-        "string": "MKW-SP設定",
+        "string": "MKW-SPの設定",
     },
     "10083": {
         "font": "regular",
@@ -191,41 +195,53 @@
         "font": "regular",
         "string": "チャンネル",
     },
+    "10089": {
+        "font": "regular",
+        "string": "MKW-SPについて",
+    },
+    "10091": {
+        "font": "regular",
+        "string": "「MKW-SPチャンネル」を\nインストールしますか？",
+    },
     "10092": {
         "font": "regular",
         "string": "MKW-SPのアップデートが利用できます。\nインストールをしますか？",
     },
     "10093": {
         "font": "regular",
-        "string": "『MKW-SPチャンネル』は\nすでにインストールされています",
+        "string": "「MKW-SPチャンネル」は\nすでにインストールされています",
+    },
+    "10094": {
+        "font": "regular",
+        "string": "「MKW-SPチャンネル」の最新のバージョンは\nすでにインストールされています",
     },
     "10095": {
         "font": "regular",
-        "string": "『MKW-SPチャンネル』を\nインストールしています",
+        "string": "「MKW-SPチャンネル」を\nインストールしています",
     },
     "10096": {
         "font": "regular",
-        "string": "『MKW-SPチャンネル』を\nアップデートしています",
+        "string": "「MKW-SPチャンネル」を\nアップデートしています",
     },
     "10097": {
         "font": "regular",
-        "string": "『MKW-SPチャンネル』が\nインストールされました！",
+        "string": "「MKW-SPチャンネル」が\nインストールされました！",
     },
     "10098": {
         "font": "regular",
-        "string": "『MKW-SPチャンネル』の\nインストールに失敗しました。",
+        "string": "「MKW-SPチャンネル」の\nインストールに失敗しました。",
     },
     "10099": {
         "font": "regular",
-        "string": "『MKW-SPチャンネル』が\nアップデートされました！",
+        "string": "「MKW-SPチャンネル」が\nアップデートされました！",
     },
     "10100": {
         "font": "regular",
-        "string": "『MKW-SPチャンネル』の\nアップデートに失敗しました。",
+        "string": "「MKW-SPチャンネル」の\nアップデートに失敗しました。",
     },
     "10101": {
         "font": "regular",
-        "string": "『MKW-SPチャンネル』は\nリリースビルドからのみインストールできます",
+        "string": "「MKW-SPチャンネル」は\nリリースビルドからのみインストールできます",
     },
     "10102": {
         "font": "regular",
@@ -239,9 +255,21 @@
         "font": "regular",
         "string": "MKW-SPの最新のバージョン({arg string|0})は\nすでにインストールされています。",
     },
+    "10105": {
+        "font": "regular",
+        "string": "MKW-SPのアップデートの確認に失敗しました。",
+    },
+    "10107": {
+        "font": "regular",
+        "string": "MKW-SPをアップデートしています\n{arg message|0}",
+    },
     "10109": {
         "font": "regular",
         "string": "MKW-SPの\nアップデートに失敗しました。",
+    },
+    "10110": {
+        "font": "regular",
+        "string": "MKW-SPを起動しなおしますか？",
     },
     "10111": {
         "font": "regular",
@@ -250,6 +278,22 @@
     "10112": {
         "font": "regular",
         "string": "サーバーに接続しています",
+    },
+    "10113": {
+        "font": "regular",
+        "string": "バージョン情報を送信しています",
+    },
+    "10114": {
+        "font": "regular",
+        "string": "バージョン情報を受信しています",
+    },
+    "10115": {
+        "font": "regular",
+        "string": "コンテンツをダウンロードしています\n{arg string|0} MiB of {arg string|1} MiB - {arg string|2} MiB/s",
+    },
+    "10116": {
+        "font": "regular",
+        "string": "コンテンツを移動しています",
     },
     "10118": {
         "font": "regular",
@@ -266,5 +310,157 @@
     "10121": {
         "font": "regular",
         "string": "順位",
+    },
+    "10122": {
+        "font": "regular",
+        "string": "グランプリとVS",
+    },
+    "10123": {
+        "font": "regular",
+        "string": "つねに",
+    },
+    "10124": {
+        "font": "regular",
+        "string": "グランプリとVSのみ  順位を表示します",
+    },
+    "10125": {
+        "font": "regular",
+        "string": "つねに画面に  順位を表示します",
+    },
+    "10126": {
+        "font": "regular",
+        "string": "サウンド",
+    },
+    "10127": {
+        "font": "regular",
+        "string": "アイテムのBGM",
+    },
+    "10128": {
+        "font": "regular",
+        "string": "なし",
+    },
+    "10129": {
+        "font": "regular",
+        "string": "サンダー/つぶれた時のみ",
+    },
+    "10130": {
+        "font": "regular",
+        "string": "すべて",
+    },
+    "10134": {
+        "font": "regular",
+        "string": "ファイナルラップサウンド",
+    },
+    "10135": {
+        "font": "regular",
+        "string": "プレイ中のみ",
+    },
+    "10136": {
+        "font": "regular",
+        "string": "つねに",
+    },
+    "10137": {
+        "font": "regular",
+        "string": "プレイ時のみ  ファイナルラップのサウンドをならします",
+    },
+    "10138": {
+        "font": "regular",
+        "string": "リプレイ中でも  ファイナルラップのサウンドをならします",
+    },
+    "10139": {
+        "font": "regular",
+        "string": "ファイナルラップテンポ上げ",
+    },
+    "10140": {
+        "font": "regular",
+        "string": "なし",
+    },
+    "10141": {
+        "font": "regular",
+        "string": "ストイック",
+    },
+    "10142": {
+        "font": "regular",
+        "string": "ダイナミック",
+    },
+    "10143": {
+        "font": "regular",
+        "string": "ファイナルラップに  「_N」のBRSTMを使用します",
+    },
+    "10144": {
+        "font": "regular",
+        "string": "ファイナルラップに  「_F」のBRSTMを使用します",
+    },
+    "10145": {
+        "font": "regular",
+        "string": "「_N」のBRSTMから  ファイナルラップのBGMを生成します",
+    },
+    "10151": {
+        "font": "regular",
+        "string": "初期化しています",
+    },
+    "10154": {
+        "font": "regular",
+        "string": "SDカード",
+    },
+    "10155": {
+        "font": "regular",
+        "string": "SDカード",
+    },
+    "10156": {
+        "font": "regular",
+        "string": "USB",
+    },
+    "10157": {
+        "font": "regular",
+        "string": "USB",
+    },
+    "10158": {
+        "font": "regular",
+        "string": "ネットワーク",
+    },
+    "10159": {
+        "font": "regular",
+        "string": "ネットワーク",
+    },
+    "10160": {
+        "font": "regular",
+        "string": "ミッションラン",
+    },
+    "10161": {
+        "font": "regular",
+        "string": "いろいろなミッションを  あそびます",
+    },
+    "10167": {
+        "font": "regular",
+        "string": "OFF",
+    },
+    "10168": {
+        "font": "regular",
+        "string": "ON",
+    },
+    "10171": {
+        "font": "regular",
+        "string": "タイム",
+    },
+    "10172": {
+        "font": "regular",
+        "string": "日付",
+    },
+    "10173": {
+        "font": "regular",
+        "string": "最速ラップ",
+    },
+    "10176": {
+        "font": "regular",
+        "string": "ゴーストを終了タイム順に  ならべかえます",
+    },
+    "10177": {
+        "font": "regular",
+        "string": "ゴーストを作成された日付順に  ならべかえます",
+    },
+    "10178": {
+        "font": "regular",
+        "string": "ゴーストを最速タイム順に  ならべかえます",
     },
 }

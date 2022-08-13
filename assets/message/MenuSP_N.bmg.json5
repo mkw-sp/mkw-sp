@@ -93,7 +93,7 @@
     },
     "10031": {
         "font": "regular",
-        "string": "Allen",
+        "string": "Alle",
     },
     "10032": {
         "font": "regular",
@@ -165,7 +165,7 @@
     },
     "10055": {
         "font": "regular",
-        "string": "Gecko-codes zijn NIET ONDERSTEUND en kunnen het spel laten crashen. Druk op de A-knop als je weet wat je doet en rapporteer GEEN bugs.",
+        "string": "Gecko-codes zijn NIET ONDERSTEUND\nen kunnen het spel laten crashen.\nDruk op de A-knop als je weet wat\nje doet en rapporteer GEEN bugs.",
     },
     "10056": {
         "font": "regular",
@@ -185,7 +185,7 @@
     },
     "10060": {
         "font": "regular",
-        "string": "Behoud de standaard snelheid van de menutransities.",
+        "string": "Behoud de standaardsnelheid van de menutransities.",
     },
     "10061": {
         "font": "regular",
@@ -277,51 +277,51 @@
     },
     "10090": {
         "font": "regular",
-        "string": "Wanneer het MKW-SP-Kanaal is geïnstalleerd kan MKW-SP worden opgestart via het Wii-menu en hoeft dat niet meer via het Homebrew-Kanaal of een andere exploit. Updates worden synchroon gehouden tussen de twee.",
+        "string": "Wanneer het MKW-SP-kanaal is\ngeïnstalleerd, kan MKW-SP worden\nopgestart via het Wii-menu en\nhoeft dat niet meer via het\nHomebrew-kanaal of een andere exploit.\nUpdates worden synchroon gehouden\ntussen de twee.",
     },
     "10091": {
         "font": "regular",
-        "string": "Wil je het MKW-SP-Kanaal installeren?",
+        "string": "Wil je het MKW-SP-kanaal installeren?",
     },
     "10092": {
         "font": "regular",
-        "string": "Een update voor het MKW-SP-Kanaal is beschikbaar. Wil je deze installeren?",
+        "string": "Een update voor het MKW-SP-kanaal\nis beschikbaar. Wil je deze installeren?",
     },
     "10093": {
         "font": "regular",
-        "string": "Het MKW-SP-Kanaal is al geïnstalleerd.",
+        "string": "Het MKW-SP-kanaal is al geïnstalleerd.",
     },
     "10094": {
         "font": "regular",
-        "string": "Een nieuwere versie van het MKW-SP-Kanaal is al geïnstalleerd!",
+        "string": "Een nieuwere versie van het\nMKW-SP-kanaal is al geïnstalleerd!",
     },
     "10095": {
         "font": "regular",
-        "string": "Bezig met het installeren van het MKW-SP-Kanaal...",
+        "string": "Bezig met het installeren van het\nMKW-SP-kanaal...",
     },
     "10096": {
         "font": "regular",
-        "string": "Bezig met het updaten van het MKW-SP-Kanaal...",
+        "string": "Bezig met het updaten van het\nMKW-SP-kanaal...",
     },
     "10097": {
         "font": "regular",
-        "string": "De installatie van het MKW-SP-Kanaal is gelukt!",
+        "string": "De installatie van het\nMKW-SP-kanaal is gelukt!",
     },
     "10098": {
         "font": "regular",
-        "string": "De installatie van het MKW-SP-Kanaal is mislukt!",
+        "string": "De installatie van het\nMKW-SP-kanaal is mislukt!",
     },
     "10099": {
         "font": "regular",
-        "string": "De update van het MKW-SP-Kanaal is gelukt!",
+        "string": "De update van het\nMKW-SP-kanaal is gelukt!",
     },
     "10100": {
         "font": "regular",
-        "string": "De update van het MKW-SP-Kanaal is mislukt!",
+        "string": "De update van het\nMKW-SP-kanaal is mislukt!",
     },
     "10101": {
         "font": "regular",
-        "string": "Het MKW-SP-Kanaal kan alleen worden geïnstalleerd vanuit officiële releases!",
+        "string": "Het MKW-SP-kanaal kan alleen worden\ngeïnstalleerd vanuit officiële releases!",
     },
     "10102": {
         "font": "regular",
@@ -333,15 +333,15 @@
     },
     "10104": {
         "font": "regular",
-        "string": "De nieuwste versie van MKW-SP ({arg string|0}) is al geïnstalleerd.",
+        "string": "De nieuwste versie van MKW-SP ({arg string|0})\nis al geïnstalleerd.",
     },
     "10105": {
         "font": "regular",
-        "string": "Het is mislukt om te zoeken voor updates van MKW-SP!",
+        "string": "Het is mislukt om te zoeken voor\nupdates van MKW-SP!",
     },
     "10106": {
         "font": "regular",
-        "string": "Wil je MKW-SP updaten naar {arg string|0}?\nEr zijn {arg string|1} MiB ({arg integer|0 0} blokken) nodig in het Wii-systeemgeheugen.",
+        "string": "Wil je MKW-SP updaten naar {arg string|0}?\nEr zijn {arg string|1} MiB ({arg integer|0 0} blokken)\nnodig in het Wii-systeemgeheugen.",
     },
     "10107": {
         "font": "regular",
@@ -349,7 +349,7 @@
     },
     "10108": {
         "font": "regular",
-        "string": "Het is gelukt om MKW-SP te updaten van {arg string|0} naar {arg string|1}. Een herstart is nodig om de update toe te passen.",
+        "string": "Het is gelukt om MKW-SP te updaten van\n{arg string|0} naar {arg string|1}. Een herstart\nis nodig om de update toe te passen.",
     },
     "10109": {
         "font": "regular",
@@ -361,7 +361,7 @@
     },
     "10111": {
         "font": "regular",
-        "string": "MKW-SP kan alleen worden geïnstalleerd vanuit officiële releases!",
+        "string": "MKW-SP kan alleen worden geïnstalleerd\nvanuit officiële releases!",
     },
     "10112": {
         "font": "regular",
@@ -409,7 +409,7 @@
     },
     "10124": {
         "font": "regular",
-        "string": "Geef de positietracker alleen weer in GPs en VS races.",
+        "string": "Geef de positietracker alleen weer in GPs en versusraces.",
     },
     "10125": {
         "font": "regular",
@@ -493,7 +493,7 @@
     },
     "10145": {
         "font": "regular",
-        "string": "Genereer de laaste ronde-muziek automatisch.",
+        "string": "Genereer de laatste ronde-muziek van de \"_N\" BRSTM.",
     },
     "10146": {
         "font": "regular",
@@ -609,11 +609,11 @@
     },
     "10174": {
         "font": "regular",
-        "string": "Snelste tweede ronde",
+        "string": "Tweede ronde-tempo",
     },
     "10175": {
         "font": "regular",
-        "string": "Snelste derde ronde",
+        "string": "Derde ronde-tempo",
     },
     "10176": {
         "font": "regular",
@@ -629,14 +629,54 @@
     },
     "10179": {
         "font": "regular",
-        "string": "Sorteer geesten op basis van hun snelste eerste ronde.",
+        "string": "Sorteer geesten op basis van hun tempo naar de tweede ronde.",
     },
     "10180": {
         "font": "regular",
-        "string": "Sorteer geesten op basis van hun snelste eerste twee rondes.",
+        "string": "Sorteer geesten op basis van hun tempo naar de derde ronde.",
     },
     "10181": {
         "font": "regular",
         "string": "De benchmark op de {arg message|0} is gelukt.\nRang: {arg message|1}\n{arg integer|0 0} KiB: Lz. {arg string|0} MiB/s - Schr. {arg string|1} MiB/s\n{arg integer|1 0} KiB: Lz. {arg string|2} MiB/s - Schr. {arg string|3} MiB/s\n{arg integer|2 0} KiB: Lz. {arg string|4} MiB/s - Schr. {arg string|5} MiB/s\n{arg integer|3 0} KiB: Lz. {arg string|6} MiB/s - Schr. {arg string|7} MiB/s",
+    },
+    "10183": {
+        "font": "regular",
+        "string": "Spelertags",
+    },
+    "10185": {
+        "font": "regular",
+        "string": "Geef maximaal {arg integer|0 0} {arg cond messages|0 10186 10187} weer.",
+    },
+    "10186": {
+        "font": "regular",
+        "string": "tag",
+    },
+    "10187": {
+        "font": "regular",
+        "string": "tags",
+    },
+    "10188": {
+        "font": "regular",
+        "string": "Prestatie-overlay",
+    },
+    "10189": {
+        "font": "regular",
+        "string": "Geef de CPU-, GPU- en geheugenstaven niet weer.",
+    },
+    "10190": {
+        "font": "regular",
+        "string": "Geef de CPU-, GPU- en geheugenstaven weer.",
+    },
+    "10191": {
+        "font": "regular",
+        "string": "GCN-trillingen",
+    },
+    "10192": {
+        "font": "regular",
+        "string": "Schakel de trilfunctie van GCN-controllers uit.",
+    },
+    "10193": {
+        "font": "regular",
+        "string": "Schakel de trilfunctie van GCN-controllers in.",
     },
 }

@@ -437,15 +437,15 @@
     },
     "10131": {
         "font": "regular",
-        "string": "Ne pas laisser les objects affecter la musique.",
+        "string": "  Ne jamais modifier la musique.",
     },
     "10132": {
         "font": "regular",
-        "string": "Appliquer un effet sur la musique uniquement lors d'une électrocution ou d'un écrasement.",
+        "string": "Laisser les objets modifier, mais jamais remplacer, la musique.",
     },
     "10133": {
         "font": "regular",
-        "string": "Laisser les Étoiles, Champignons Géants et Éclairs affecter la musique.",
+        "string": "Laisser toutes modifications de musique.",
     },
     "10134": {
         "font": "regular",
@@ -493,7 +493,7 @@
     },
     "10145": {
         "font": "regular",
-        "string": "Générer la musique du dernier tour à la volée.",
+        "string": "Générer la musique du dernier tour à partir du BRSTM \"_N\".",
     },
     "10146": {
         "font": "regular",
@@ -638,5 +638,45 @@
     "10181": {
         "font": "regular",
         "string": "Le test du stockage {arg message|0} a réussi.\nRang : {arg message|1}\n{arg integer|0 0} Kio: L {arg string|0} Mio/s - É {arg string|1} Mio/s\n{arg integer|1 0} Kio: L {arg string|2} Mio/s - É {arg string|3} Mio/s\n{arg integer|2 0} Kio: L {arg string|4} Mio/s - É {arg string|5} Mio/s\n{arg integer|3 0} Kio: L {arg string|6} Mio/s - É {arg string|7} Mio/s",
+    },
+    "10183": {
+        "font": "regular",
+        "string": "Balises des joueurs",
+    },
+    "10185": {
+        "font": "regular",
+        "string": "Afficher au plus {arg integer|0 0} {arg cond messages|0 10186 10187} simultanément.",
+    },
+    "10186": {
+        "font": "regular",
+        "string": "balise",
+    },
+    "10187": {
+        "font": "regular",
+        "string": "balises",
+    },
+    "10188": {
+        "font": "regular",
+        "string": "Surcouche des performances",
+    },
+    "10189": {
+        "font": "regular",
+        "string": "Ne pas afficher les barres CPU, GPU et mémoire.",
+    },
+    "10190": {
+        "font": "regular",
+        "string": "Afficher les barres CPU, GPU et mémoire.",
+    },
+    "10191": {
+        "font": "regular",
+        "string": "Vibrations NGC",
+    },
+    "10192": {
+        "font": "regular",
+        "string": "Désactiver les vibrations de la manette GameCube.",
+    },
+    "10193": {
+        "font": "regular",
+        "string": "Activer les vibrations de la manette GameCube.",
     },
 }

@@ -493,7 +493,7 @@
     },
     "10145": {
         "font": "regular",
-        "string": "Generar música de última vuelta automáticamente.",
+        "string": "Generar música de última vuelta a partir del BRSTM \"_N\".",
     },
     "10146": {
         "font": "regular",
@@ -638,5 +638,45 @@
     "10181": {
         "font": "regular",
         "string": "Se ha realizado con éxito la prueba de\nalmacenamiento en la {arg message|0}.\nClase: {arg message|1}\n(L = Lectura, E = Escritura)\n{arg integer|0 0} KiB: L {arg string|0} MiB/s - E {arg string|1} MiB/s\n{arg integer|1 0} KiB: L {arg string|2} MiB/s - E {arg string|3} MiB/s\n{arg integer|2 0} KiB: L {arg string|4} MiB/s - E {arg string|5} MiB/s\n{arg integer|3 0} KiB: L {arg string|6} MiB/s - E {arg string|7} MiB/s",
+    },
+    "10183": {
+        "font": "regular",
+        "string": "Etiquetas de jugador",
+    },
+    "10185": {
+        "font": "regular",
+        "string": "Mostrar hasta {arg integer|0 0} {arg cond messages|0 10186 10187} a la vez.",
+    },
+    "10186": {
+        "font": "regular",
+        "string": "etiqueta",
+    },
+    "10187": {
+        "font": "regular",
+        "string": "etiquetas",
+    },
+    "10188": {
+        "font": "regular",
+        "string": "Interfaz de rendimiento",
+    },
+    "10189": {
+        "font": "regular",
+        "string": "No mostrar barras de CPU, GPU y memoria.",
+    },
+    "10190": {
+        "font": "regular",
+        "string": "Mostrar barras de CPU, GPU y memoria.",
+    },
+    "10191": {
+        "font": "regular",
+        "string": "Vibración GCN",
+    },
+    "10192": {
+        "font": "regular",
+        "string": "Desactivar la función de vibración del mando GCN.",
+    },
+    "10193": {
+        "font": "regular",
+        "string": "Activar la función de vibración del mando GCN.",
     },
 }
