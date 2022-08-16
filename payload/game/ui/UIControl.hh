@@ -56,6 +56,8 @@ public:
     void calc() override;
     void draw() override;
 
+    UIAnimator *getAnimator() { return &m_animator; }
+
 protected:
     void vf_28() override;
     void vf_2c() override;

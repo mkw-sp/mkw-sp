@@ -21,8 +21,9 @@ public:
     };
 
     enum class Anim {
-        Next,
-        Prev,
+        None = -1,
+        Next = 0,
+        Prev = 1,
     };
 
     Page();
