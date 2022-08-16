@@ -9,6 +9,7 @@ enum class Setting {
     DriftMode,
     VanillaMode,
     FOV169,
+    RegionLineColor,
     PlayerTags,
     HUDLabels,
     MapIcons,
@@ -57,6 +58,15 @@ enum class VanillaMode {
 enum class FOV169 {
     FOV169,
     FOV43,
+};
+
+enum class RegionLineColor {
+    Red,
+    Blue,
+    Green,
+    Yellow,
+    White,
+    Pink,
 };
 
 enum class HUDLabels {
@@ -180,6 +190,11 @@ struct Helper<ClientSettings::Setting, ClientSettings::Setting::VanillaMode> {
 template <>
 struct Helper<ClientSettings::Setting, ClientSettings::Setting::FOV169> {
     using type = SP::ClientSettings::FOV169;
+};
+
+template <>
+struct Helper<ClientSettings::Setting, ClientSettings::Setting::RegionLineColor> {
+    using type = SP::ClientSettings::RegionLineColor;
 };
 
 template <>

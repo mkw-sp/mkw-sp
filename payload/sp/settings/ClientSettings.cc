@@ -41,6 +41,17 @@ const Entry entries[] = {
         .valueExplanationMessageIds = (u32[]) { 10012, 10013 },
         .vanillaValue = static_cast<u32>(FOV169::FOV169),
     },
+    [static_cast<u32>(Setting::RegionLineColor)] = {
+        .category = Category::Race,
+        .name = magic_enum::enum_name(Setting::RegionLineColor),
+        .messageId = 10194,
+        .defaultValue = static_cast<u32>(RegionLineColor::Red),
+        .valueCount = magic_enum::enum_count<RegionLineColor>(),
+        .valueNames = magic_enum::enum_names<RegionLineColor>().data(),
+        .valueMessageIds = (u32[]) { 10195, 10196, 10197, 10198, 10199, 10200 },
+        .valueExplanationMessageIds = (u32[]) { 10201, 10202, 10203, 10204, 10205, 10206 },
+        .vanillaValue = static_cast<u32>(RegionLineColor::Red),
+    },
     [static_cast<u32>(Setting::PlayerTags)] = {
         .category = Category::Race,
         .name = magic_enum::enum_name(Setting::PlayerTags),

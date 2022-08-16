@@ -687,6 +687,58 @@
         "font": "regular",
         "string": "Enable the rumble feature of the GCN controller.",
     },
+    "10194": {
+        "font": "regular",
+        "string": "Region Line Color",
+    },
+    "10195": {
+        "font": "regular",
+        "string": "Red",
+    },
+    "10196": {
+        "font": "regular",
+        "string": "Blue",
+    },
+    "10197": {
+        "font": "regular",
+        "string": "Green",
+    },
+    "10198": {
+        "font": "regular",
+        "string": "Yellow",
+    },
+    "10199": {
+        "font": "regular",
+        "string": "White",
+    },
+    "10200": {
+        "font": "regular",
+        "string": "Pink",
+    },
+    "10201": {
+        "font": "regular",
+        "string": "The line under your name will be red.",
+    },
+    "10202": {
+        "font": "regular",
+        "string": "The line under your name will be blue.",
+    },
+    "10203": {
+        "font": "regular",
+        "string": "The line under your name will be green.",
+    },
+    "10204": {
+        "font": "regular",
+        "string": "The line under your name will be yellow.",
+    },
+    "10205": {
+        "font": "regular",
+        "string": "The line under your name will be white.",
+    },
+    "10206": {
+        "font": "regular",
+        "string": "The line under your name will be pink.",
+    },
     "3700": {
         "font": "regular",
         "string": "Select Level",
