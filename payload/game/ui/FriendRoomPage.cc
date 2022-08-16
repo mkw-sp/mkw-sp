@@ -8,6 +8,7 @@ FriendRoomPage::FriendRoomPage() = default;
 
 FriendRoomPage::~FriendRoomPage() = default;
 
+// Base function: 0x805d820c
 void FriendRoomPage::onInit() {
     m_inputManager.init(1, false);
     setInputManager(&m_inputManager);
@@ -59,12 +60,12 @@ void FriendRoomPage::onActivate() {
     switch (m_roomRole) {
     case RoomRole::Host:
         m_closeButton.setPlayerFlags(1);
-        m_closeButton.setVisible(false);
+        m_closeButton.setVisible(true);
         break;
     case RoomRole::Player:
     // case RoomRole::Spectator:
         m_closeButton.setPlayerFlags(0);
-        m_closeButton.setVisible(true);
+        m_closeButton.setVisible(false);
         break;
     default:
         break;
