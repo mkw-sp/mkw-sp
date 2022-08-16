@@ -111,6 +111,9 @@ The CPU, GPU and RAM usage can be displayed as bars on the screen.
 **Improved Logging And Crash Reports** [stebler, riidefi, Star]<br />
 A log is stored to a file on the SD/USB and crash reports contain more details. Some bugs in custom tracks have specific checks with associated explanation messages.
 
+**Custom Discord Status** [riidefi, IPG]<br />
+On Dolphin 5.0-17155 and later, MKW-SP can now configure a custom Discord status.
+
 ## Limitations and known bugs
 
 Ghost solidity is off by one frame when switching. See [issue 44](https://github.com/stblr/mkw-sp/issues/44).
