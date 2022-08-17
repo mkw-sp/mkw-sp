@@ -15,6 +15,11 @@ Convert Wii UI formats to JSON5 and vice versa.
 [^1]: Mario Kart Wii only.
 [^2]: U8 + Yaz0.
 
+## Requirements 
+
+- Python 3
+- pyjson5 (if installing from pip, the package is `json5` NOT `pyjson5`)
+
 ## How to use
 
 ```bash
