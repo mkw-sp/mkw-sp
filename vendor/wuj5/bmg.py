@@ -65,6 +65,9 @@ color_variants = [
     Variant('player 3', 0x32),
     Variant('player 4', 0x33),
     Variant('red', 0x40),
+    Variant('sp green', 0x50),
+    Variant('sp blue', 0x51),
+    Variant('sp pink', 0x52),
 ]
 
 def unpack_inf1(in_data, offset):
