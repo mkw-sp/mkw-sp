@@ -48,6 +48,8 @@ enum class SectionId {
 
     SingleChangeGhostData = 0x4e, // Replaces SingleMkChannelGhost
 
+    Multi = 0x54,
+
     OnlineSingle = 0x55, // Replaces WifiSingle
     OnlineMultiConfigure = 0x5a, // Replaces WifiMultiConfigure
     OnlineMulti = 0x5b, // Replaces WifiMulti

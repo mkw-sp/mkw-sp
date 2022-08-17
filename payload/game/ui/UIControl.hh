@@ -80,10 +80,12 @@ public:
 protected:
     UIAnimator m_animator;
     MainLayout m_mainLayout;
+
 private:
     MessageGroup m_specificMessageGroup;
     MessageGroup m_commonMessageGroup;
-    u8 _16c[0x174 - 0x16c];
+    void *_16c = nullptr;
+    void *_170 = nullptr;
 };
 static_assert(sizeof(LayoutUIControl) == 0x174);
 

@@ -6,6 +6,7 @@ namespace UI {
 
 class MessageGroup {
 public:
+    MessageGroup();
     void dt(s32 type);
 
 private:

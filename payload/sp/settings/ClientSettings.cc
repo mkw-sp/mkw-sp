@@ -335,6 +335,16 @@ const Entry entries[] = {
         .valueMessageIds = nullptr,
         .valueExplanationMessageIds = nullptr,
     },
+    [static_cast<u32>(Setting::ColorPalette)] = {
+        .category = Category::License,
+        .name = magic_enum::enum_name(Setting::ColorPalette),
+        .messageId = 30000,
+        .defaultValue = static_cast<u32>(ColorPalette::Vivid),
+        .valueCount = magic_enum::enum_count<ColorPalette>(),
+        .valueNames = magic_enum::enum_names<ColorPalette>().data(),
+        .valueMessageIds = (u32[]) { 30001, 30002 },
+        .valueExplanationMessageIds = (u32[]) { 30003, 30004},
+    },
     [static_cast<u32>(Setting::LoadingScreenColor)] = {
         .category = Category::License,
         .name = magic_enum::enum_name(Setting::LoadingScreenColor),

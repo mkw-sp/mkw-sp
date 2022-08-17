@@ -42,7 +42,7 @@
 #define TimeAttackGhostList 0x71 
 #define VsModeSelect 0x72 
 #define RaceRules 0x73 
-#define TeamsOverview 0x74 
+#define TeamConfirm 0x74 
 #define BattleModeSelect 0x75 
 #define BattleVehicleSelect 0x76 
 #define BattleRules 0x77 

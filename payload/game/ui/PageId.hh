@@ -54,7 +54,7 @@ enum class PageId {
     TimeAttackGhostList = 0x71,
     VsModeSelect = 0x72,
     RaceRules = 0x73,
-    TeamsOverview = 0x74,
+    TeamConfirm = 0x74,
     BattleModeSelect = 0x75,
     BattleVehicleSelect = 0x76,
     BattleRules = 0x77,

@@ -24,6 +24,7 @@ class OptionExplanationPage;
 class OptionSelectPage;
 class RaceConfirmPage;
 class SettingsPagePopup;
+class TeamConfirmPage;
 class TimeAttackGhostListPage;
 class YesNoPagePopup;
 
@@ -103,6 +104,11 @@ struct Section::PageIdHelper<PageId::DriftSelect> {
 template <>
 struct Section::PageIdHelper<PageId::TimeAttackGhostList> {
     using type = TimeAttackGhostListPage;
+};
+
+template <>
+struct Section::PageIdHelper<PageId::TeamConfirm> {
+    using type = TeamConfirmPage;
 };
 
 template <>

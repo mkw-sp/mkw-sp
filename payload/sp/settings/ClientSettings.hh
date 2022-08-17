@@ -47,6 +47,7 @@ enum class Setting {
     // License
     MiiAvatar,
     MiiClient,
+    ColorPalette,
     LoadingScreenColor,
     GCPadRumble,
     PageTransitions,
@@ -228,6 +229,11 @@ enum class RoomVehicles {
     OutsideDrift,
     Optimal,
     Random,
+};
+
+enum class ColorPalette {
+    Vivid,
+    Colorblind,
 };
 
 enum class GCPadRumble {
@@ -416,6 +422,11 @@ struct Helper<ClientSettings::Setting, ClientSettings::Setting::MiiAvatar> {
 template <>
 struct Helper<ClientSettings::Setting, ClientSettings::Setting::MiiClient> {
     using type = u32;
+};
+
+template <>
+struct Helper<ClientSettings::Setting, ClientSettings::Setting::ColorPalette> {
+    using type = SP::ClientSettings::ColorPalette;
 };
 
 template <>

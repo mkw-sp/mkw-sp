@@ -1067,6 +1067,26 @@
         "font": "regular",
         "string": "I updated the rules!",
     },
+    "30000": {
+        "font": "regular",
+        "string": "Color Palette",
+    },
+    "30001": {
+        "font": "regular",
+        "string": "Vivid",
+    },
+    "30002": {
+        "font": "regular",
+        "string": "Colorblind",
+    },
+    "30003": {
+        "font": "regular",
+        "string": "Use the vivid palette for team colors.",
+    },
+    "30004": {
+        "font": "regular",
+        "string": "Use the colorblind palette for team colors.",
+    },
     "3700": {
         "font": "regular",
         "string": "Select Level",

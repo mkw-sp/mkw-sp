@@ -15,6 +15,7 @@
 #include "game/ui/ServicePackTopPage.hh"
 #include "game/ui/SingleTopPage.hh"
 #include "game/ui/StorageBenchmarkPage.hh"
+#include "game/ui/TeamConfirmPage.hh"
 #include "game/ui/TimeAttackGhostListPage.hh"
 #include "game/ui/UpdatePage.hh"
 #include "game/ui/page/DriftSelectPage.hh"
@@ -280,18 +281,18 @@ void Section::addPages(SectionId id) {
         { SectionId::SingleChangeGhostData, PageId::TimeAttackGhostList },
         { SectionId::SingleChangeGhostData, PageId::VsModeSelect },
         { SectionId::SingleChangeGhostData, PageId::RaceRules },
-        { SectionId::SingleChangeGhostData, PageId::TeamsOverview },
+        { SectionId::SingleChangeGhostData, PageId::TeamConfirm },
         { SectionId::SingleChangeGhostData, PageId::BattleModeSelect },
         { SectionId::SingleChangeGhostData, PageId::BattleVehicleSelect },
         { SectionId::SingleChangeGhostData, PageId::BattleRules },
         { SectionId::SingleChangeGhostData, PageId::BattleCupSelect },
         { SectionId::SingleChangeGhostData, PageId::BattleCourseSelect },
 
-        // Support changing settings from the ghost list
         { SectionId::Single, PageId::MenuSettings },
         { SectionId::SingleChangeDriver, PageId::MenuSettings },
         { SectionId::SingleChangeCourse, PageId::MenuSettings },
         { SectionId::SingleChangeGhostData, PageId::MenuSettings },
+        { SectionId::Multi, PageId::MenuSettings },
 
         { SectionId::OnlineSingle, PageId::FriendRoomRules },
         { SectionId::OnlineSingle, PageId::MenuSettings },
@@ -348,6 +349,8 @@ Page *Section::CreatePage(PageId pageId) {
         return new SingleTopPage;
     case PageId::TimeAttackGhostList:
         return new TimeAttackGhostListPage;
+    case PageId::TeamConfirm:
+        return new TeamConfirmPage;
     case PageId::OnlineTop:
         return new OnlineTopPage;
     case PageId::VotingBack:

@@ -691,6 +691,7 @@
 0x805e5fe8 _ZN2UI9GlobePage14requestSpinFarEv
 0x805e8368 Layout_findPaneByName
 0x805e8368 _ZN2UI6Layout14findPaneByNameEPKc
+0x805e85a8 _ZN2UI6LayoutC2Ev
 0x805e8630 _ZN2UI10MainLayout2dtEi
 0x805e889c MainLayout_load
 0x805e9f80 PictureSourceLayoutList_load
@@ -731,6 +732,7 @@
 0x805f5520 Model_805f5520
 0x805f5c94 _ZN2UI15ModelRenderPage19onDriverModelLoadedEa
 0x805f5d58 _ZN2UI15ModelRenderPage19determineModelCountENS_9SectionIdE
+0x805f8b34 _ZN2UI12MessageGroupC1Ev
 0x805f8b50 _ZN2UI12MessageGroup2dtEi
 0x805f9224 MessageWindowPopupPage_reset
 0x805f9244 MessageWindowPopupPage_setMessage
@@ -897,6 +899,7 @@
 0x806393c8 TimeAttackTopPage_onReady
 0x8063ab6c TitlePage_onInit
 0x8063ad64 TitlePage_onActivate
+0x8063c3ec _ZN2UI10UIAnimatorC1Ev
 0x8063c404 _ZN2UI10UIAnimator2dtEi
 0x8063c820 UIAnimator_getGroup
 0x8063c820 _ZN2UI10UIAnimator8getGroupEj
@@ -904,6 +907,7 @@
 0x8063c91c _ZN2UI5Group12setAnimationEjf
 0x8063cb20 Group_setAnimationInactive
 0x8063cb20 _ZN2UI5Group20setAnimationInactiveEjf
+0x8063ce6c _ZN2UI9UIControlC2Ev
 0x8063d004 _ZN2UI9UIControl4initEv
 0x8063d044 _ZN2UI9UIControl4calcEv
 0x8063d084 _ZN2UI9UIControl4drawEv
@@ -920,8 +924,6 @@
 0x8063d788 LayoutUIControl_vf_2c
 0x8063d788 _ZN2UI15LayoutUIControl5vf_2cEv
 0x8063d798 LayoutUIControl_ct
-0x8063d798 _ZN2UI15LayoutUIControlC1Ev
-0x8063d798 _ZN2UI15LayoutUIControlC2Ev
 0x8063d8c0 LayoutUIControl_dt
 0x8063d954 LayoutUIControl_vf_38
 0x8063d954 _ZN2UI15LayoutUIControl5vf_38Ev
@@ -1106,6 +1108,7 @@
 0x8082cad8 ObjPylon01_ct
 0x8082cc64 ObjPylon01_vf_b0
 0x8082dbec ObjPylon01_vf_c0
+0x80833774 _ZN8Registry21GetCharacterMessageIdEjb
 0x80837a44 FUN_80837a44
 0x8083d55c CharacterSelectPage_onInit
 0x8083da78 CharacterSelectPage_onActivate
@@ -1118,6 +1121,8 @@
 0x8084ddfc DriftSelectPage_onInit
 0x8084e388 DriftSelectPage_onButtonFront
 0x8084e388 _ZN2UI15DriftSelectPage13onButtonFrontEPNS_10PushButtonE
+0x8084fc9c _ZN2UI15TeamConfirmPage3GetENS_6PageIdE
+0x8084ffc8 _ZN2UI15TeamConfirmPage20prepareOfflineSingleEv
 0x808503dc TopMenuPage_onInit
 0x80850db0 TopMenuPage_onActivate
 0x8085151c TopMenuPage_onButtonSelect
@@ -1151,6 +1156,7 @@
 0x8085bd58 _ZN2UI12RaceMenuPage11GetTypeInfoEv
 0x8085e3b4 RaceRankingPage_getReplacement
 0x80860acc getCharacterPane
+0x80860acc _ZN8Registry16GetCharacterPaneEj
 0x80863a9c DriverSound_init
 
 0x808b3984 courseFilenames
