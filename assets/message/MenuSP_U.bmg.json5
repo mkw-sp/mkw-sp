@@ -717,19 +717,19 @@
     },
     "10201": {
         "font": "regular",
-        "string": "The line under your name will be red.",
+        "string": "The line under your name will be {color|player 3}red{color|unspecified}.",
     },
     "10202": {
         "font": "regular",
-        "string": "The line under your name will be blue.",
+        "string": "The line under your name will be {color|sp blue}blue{color|unspecified}.",
     },
     "10203": {
         "font": "regular",
-        "string": "The line under your name will be green.",
+        "string": "The line under your name will be {color|sp green}green{color|unspecified}.",
     },
     "10204": {
         "font": "regular",
-        "string": "The line under your name will be yellow.",
+        "string": "The line under your name will be {color|player 1}yellow{color|unspecified}.",
     },
     "10205": {
         "font": "regular",
@@ -737,7 +737,7 @@
     },
     "10206": {
         "font": "regular",
-        "string": "The line under your name will be pink.",
+        "string": "The line under your name will be {color|sp pink}pink{color|unspecified}.",
     },
     "3700": {
         "font": "regular",

@@ -24,6 +24,9 @@ enum {
     COLOR_ID_PLAYER_3 = 0x32,
     COLOR_ID_PLAYER_4 = 0x33,
     COLOR_ID_RED = 0x40,
+    COLOR_ID_GREEN = 0x50,
+    COLOR_ID_BLUE = 0x51,
+    COLOR_ID_PINK = 0x52,
 };
 
 static GXColor GXColorS10ToGXColor(GXColorS10 color) {
@@ -160,6 +163,15 @@ static void my_GlyphRenderer_setupColors(GlyphRenderer *self, u32 formatId, u32 
         break;
     case COLOR_ID_RED:
         formatColor = (GXColor) { .r = 234, .g = 117, .b = 125, .a = 255 };
+        break;
+    case COLOR_ID_GREEN:
+        formatColor = (GXColor) { .r =   0, .g = 255, .b =   0, .a = 255 };
+        break;
+    case COLOR_ID_BLUE:
+        formatColor = (GXColor) { .r =   0, .g =   0, .b = 255, .a = 255 };
+        break;
+    case COLOR_ID_PINK:
+        formatColor = (GXColor) { .r = 255, .g =   0, .b = 255, .a = 255 };
         break;
     default:
         formatColor = (GXColor) { .r = 255, .g = 255, .b = 255, .a = 255 };
