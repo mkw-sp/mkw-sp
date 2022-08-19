@@ -739,6 +739,218 @@
         "font": "regular",
         "string": "The line under your name will be {color|sp pink}pink{color|unspecified}.",
     },
+    "10207": {
+        "font": "regular",
+        "string": "Team Size",
+    },
+    "10208": {
+        "font": "regular",
+        "string": "FFA",
+    },
+    "10209": {
+        "font": "regular",
+        "string": "2",
+    },
+    "10210": {
+        "font": "regular",
+        "string": "3",
+    },
+    "10211": {
+        "font": "regular",
+        "string": "4",
+    },
+    "10212": {
+        "font": "regular",
+        "string": "6",
+    },
+    "10213": {
+        "font": "regular",
+        "string": "Do not play in teams.",
+    },
+    "10214": {
+        "font": "regular",
+        "string": "Limit the team size to 2 players.",
+    },
+    "10215": {
+        "font": "regular",
+        "string": "Limit the team size to 3 players.",
+    },
+    "10215": {
+        "font": "regular",
+        "string": "Limit the team size to 4 players.",
+    },
+    "10216": {
+        "font": "regular",
+        "string": "Limit the team size to 6 players.",
+    },
+    "10217": {
+        "font": "regular",
+        "string": "Team Selection",
+    },
+    "10218": {
+        "font": "regular",
+        "string": "Random",
+    },
+    "10219": {
+        "font": "regular",
+        "string": "Host",
+    },
+    "10220": {
+        "font": "regular",
+        "string": "Players",
+    },
+    "10221": {
+        "font": "regular",
+        "string": "Teams are formed at random.",
+    },
+    "10222": {
+        "font": "regular",
+        "string": "Teams are formed by the host.",
+    },
+    "10223": {
+        "font": "regular",
+        "string": "Teams are chosen by each player.",
+    },
+    "10224": {
+        "font": "regular",
+        "string": "Race Count",
+    },
+    "10225": {
+        "font": "regular",
+        "string": "{arg integer|0 0}",
+    },
+    "10226": {
+        "font": "regular",
+        "string": "Play {arg integer|0 0} races.",
+    },
+    "10227": {
+        "font": "regular",
+        "string": "Course Selection",
+    },
+    "10228": {
+        "font": "regular",
+        "string": "Random",
+    },
+    "10229": {
+        "font": "regular",
+        "string": "Host",
+    },
+    "10230": {
+        "font": "regular",
+        "string": "Vote",
+    },
+    "10231": {
+        "font": "regular",
+        "string": "Courses are picked at random.",
+    },
+    "10232": {
+        "font": "regular",
+        "string": "Courses are picked by the host.",
+    },
+    "10233": {
+        "font": "regular",
+        "string": "Courses are voted for by the players.",
+    },
+    "10234": {
+        "font": "regular",
+        "string": "Class",
+    },
+    "10235": {
+        "font": "regular",
+        "string": "Mixed",
+    },
+    "10236": {
+        "font": "regular",
+        "string": "150cc",
+    },
+    "10237": {
+        "font": "regular",
+        "string": "Mirror",
+    },
+    "10238": {
+        "font": "regular",
+        "string": "200cc",
+    },
+    "10239": {
+        "font": "regular",
+        "string": "Races are 85% 150cc, 15% mirror.",
+    },
+    "10240": {
+        "font": "regular",
+        "string": "Races are always 150cc.",
+    },
+    "10241": {
+        "font": "regular",
+        "string": "Races are always mirror.",
+    },
+    "10242": {
+        "font": "regular",
+        "string": "Races are always 200cc.",
+    },
+    "10243": {
+        "font": "regular",
+        "string": "Vehicles",
+    },
+    "10244": {
+        "font": "regular",
+        "string": "All",
+    },
+    "10245": {
+        "font": "regular",
+        "string": "Karts",
+    },
+    "10246": {
+        "font": "regular",
+        "string": "Bikes",
+    },
+    "10247": {
+        "font": "regular",
+        "string": "Inside Drift",
+    },
+    "10248": {
+        "font": "regular",
+        "string": "Outside Drift",
+    },
+    "10249": {
+        "font": "regular",
+        "string": "Optimal",
+    },
+    "10250": {
+        "font": "regular",
+        "string": "Random",
+    },
+    "10251": {
+        "font": "regular",
+        "string": "Allow all vehicles.",
+    },
+    "10252": {
+        "font": "regular",
+        "string": "Only allow karts.",
+    },
+    "10253": {
+        "font": "regular",
+        "string": "Only allow bikes.",
+    },
+    "10254": {
+        "font": "regular",
+        "string": "Only allow inside-drifting vehicles.",
+    },
+    "10255": {
+        "font": "regular",
+        "string": "Only allow outside-drifting vehicles.",
+    },
+    "10256": {
+        "font": "regular",
+        "string": "Only allow the optimal vehicle for each character.",
+    },
+    "10257": {
+        "font": "regular",
+        "string": "Randomly choose a combination common to all players.",
+    },
+    "10258": {
+        "font": "regular",
+        "string": "Room",
+    },
     "20000": {
         "font": "regular",
         "string": "Online",

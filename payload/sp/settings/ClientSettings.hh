@@ -29,6 +29,14 @@ enum class Setting {
     TASolidGhosts,
     TAGhostSound,
 
+    // Room
+    RoomTeamSize,
+    RoomTeamSelection,
+    RoomRaceCount,
+    RoomCourseSelection,
+    RoomClass,
+    RoomVehicles,
+
     // License
     MiiAvatar,
     MiiClient,
@@ -42,6 +50,7 @@ enum class Category {
     Race,
     Sound,
     TA,
+    Room,
     License,
 };
 
@@ -142,6 +151,43 @@ enum class TAGhostSound {
     None,
     Watched,
     All,
+};
+
+enum class RoomTeamSize {
+    FFA,
+    Two,
+    Three,
+    Four,
+    Six,
+};
+
+enum class RoomTeamSelection {
+    Random,
+    Host,
+    Players,
+};
+
+enum class RoomCourseSelection {
+    Random,
+    Host,
+    Vote,
+};
+
+enum class RoomClass {
+    Mixed,
+    CC150,
+    Mirror,
+    CC200,
+};
+
+enum class RoomVehicles {
+    All,
+    Karts,
+    Bikes,
+    InsideDrift,
+    OutsideDrift,
+    Optimal,
+    Random,
 };
 
 enum class GCPadRumble {
@@ -265,6 +311,36 @@ struct Helper<ClientSettings::Setting, ClientSettings::Setting::TASolidGhosts> {
 template <>
 struct Helper<ClientSettings::Setting, ClientSettings::Setting::TAGhostSound> {
     using type = SP::ClientSettings::TAGhostSound;
+};
+
+template <>
+struct Helper<ClientSettings::Setting, ClientSettings::Setting::RoomTeamSize> {
+    using type = SP::ClientSettings::RoomTeamSize;
+};
+
+template <>
+struct Helper<ClientSettings::Setting, ClientSettings::Setting::RoomTeamSelection> {
+    using type = SP::ClientSettings::RoomTeamSelection;
+};
+
+template <>
+struct Helper<ClientSettings::Setting, ClientSettings::Setting::RoomRaceCount> {
+    using type = u32;
+};
+
+template <>
+struct Helper<ClientSettings::Setting, ClientSettings::Setting::RoomCourseSelection> {
+    using type = SP::ClientSettings::RoomCourseSelection;
+};
+
+template <>
+struct Helper<ClientSettings::Setting, ClientSettings::Setting::RoomClass> {
+    using type = SP::ClientSettings::RoomClass;
+};
+
+template <>
+struct Helper<ClientSettings::Setting, ClientSettings::Setting::RoomVehicles> {
+    using type = SP::ClientSettings::RoomVehicles;
 };
 
 template <>

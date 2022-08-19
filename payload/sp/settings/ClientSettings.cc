@@ -6,7 +6,7 @@ namespace SP::ClientSettings {
 
 const char name[] = "MKW-SP Settings";
 
-const u32 categoryMessageIds[] = { 10118, 10126, 10119, 10120 };
+const u32 categoryMessageIds[] = { 10118, 10126, 10119, 10258, 10120 };
 
 const Entry entries[] = {
     [static_cast<u32>(Setting::DriftMode)] = {
@@ -203,6 +203,66 @@ const Entry entries[] = {
         .valueMessageIds = (u32[]) { 10029, 10030, 10031 },
         .valueExplanationMessageIds = (u32[]) { 10067, 10068, 10069 },
         .vanillaValue = static_cast<u32>(TAGhostSound::Watched),
+    },
+    [static_cast<u32>(Setting::RoomTeamSize)] = {
+        .category = Category::Room,
+        .name = magic_enum::enum_name(Setting::RoomTeamSize),
+        .messageId = 10207,
+        .defaultValue = static_cast<u32>(RoomTeamSize::FFA),
+        .valueCount = magic_enum::enum_count<RoomTeamSize>(),
+        .valueNames = magic_enum::enum_names<RoomTeamSize>().data(),
+        .valueMessageIds = (u32[]) { 10208, 10209, 10210, 10211, 10212 },
+        .valueExplanationMessageIds = (u32[]) { 10213, 10214, 10215, 10216, 10217 },
+    },
+    [static_cast<u32>(Setting::RoomTeamSelection)] = {
+        .category = Category::Room,
+        .name = magic_enum::enum_name(Setting::RoomTeamSelection),
+        .messageId = 10217,
+        .defaultValue = static_cast<u32>(RoomTeamSelection::Random),
+        .valueCount = magic_enum::enum_count<RoomTeamSelection>(),
+        .valueNames = magic_enum::enum_names<RoomTeamSelection>().data(),
+        .valueMessageIds = (u32[]) { 10218, 10219, 10220 },
+        .valueExplanationMessageIds = (u32[]) { 10221, 10222, 10223 },
+    },
+    [static_cast<u32>(Setting::RoomRaceCount)] = {
+        .category = Category::Room,
+        .name = magic_enum::enum_name(Setting::RoomRaceCount),
+        .messageId = 10224,
+        .defaultValue = 4,
+        .valueCount = 32,
+        .valueNames = nullptr,
+        .valueMessageIds = (u32[]) { 10225 },
+        .valueExplanationMessageIds = (u32[]) { 10226 },
+    },
+    [static_cast<u32>(Setting::RoomCourseSelection)] = {
+        .category = Category::Room,
+        .name = magic_enum::enum_name(Setting::RoomCourseSelection),
+        .messageId = 10227,
+        .defaultValue = static_cast<u32>(RoomCourseSelection::Random),
+        .valueCount = magic_enum::enum_count<RoomCourseSelection>(),
+        .valueNames = magic_enum::enum_names<RoomCourseSelection>().data(),
+        .valueMessageIds = (u32[]) { 10228, 10229, 10230 },
+        .valueExplanationMessageIds = (u32[]) { 10231, 10232, 10233 },
+    },
+    [static_cast<u32>(Setting::RoomClass)] = {
+        .category = Category::Room,
+        .name = magic_enum::enum_name(Setting::RoomClass),
+        .messageId = 10234,
+        .defaultValue = static_cast<u32>(RoomClass::Mixed),
+        .valueCount = magic_enum::enum_count<RoomClass>(),
+        .valueNames = magic_enum::enum_names<RoomClass>().data(),
+        .valueMessageIds = (u32[]) { 10235, 10236, 10237, 10238 },
+        .valueExplanationMessageIds = (u32[]) { 10239, 10240, 10241, 10242 },
+    },
+    [static_cast<u32>(Setting::RoomVehicles)] = {
+        .category = Category::Room,
+        .name = magic_enum::enum_name(Setting::RoomVehicles),
+        .messageId = 10243,
+        .defaultValue = static_cast<u32>(RoomVehicles::All),
+        .valueCount = magic_enum::enum_count<RoomVehicles>(),
+        .valueNames = magic_enum::enum_names<RoomVehicles>().data(),
+        .valueMessageIds = (u32[]) { 10244, 10245, 10246, 10247, 10248, 10249, 10250 },
+        .valueExplanationMessageIds = (u32[]) { 10251, 10252, 10253, 10254, 10255, 10256, 10257 },
     },
     [static_cast<u32>(Setting::MiiAvatar)] = {
         .category = Category::License,
