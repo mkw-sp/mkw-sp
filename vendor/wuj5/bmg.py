@@ -49,7 +49,7 @@ tag_variants = [
 
 color_variants = [
     Variant('unspecified', 0x0),
-    Variant('white', 0x8),
+    Variant('transparent', 0x8),
     Variant('yor 0', 0x10),
     Variant('yor 1', 0x11),
     Variant('yor 2', 0x12),
