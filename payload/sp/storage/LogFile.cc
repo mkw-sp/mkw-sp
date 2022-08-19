@@ -27,7 +27,7 @@ static void *Run(void *UNUSED(arg)) {
 
     wchar_t logFilePath[48];
     swprintf(logFilePath, sizeof(logFilePath), L"/mkw-sp/logs/%04d-%02d-%02d-%02d-%02d-%02d.log",
-                                                time.year, time.mon, time.mday,
+                                                time.year, time.mon + 1, time.mday,
                                                 time.hour, time.min, time.sec);
 
     auto file = Storage::Open(logFilePath, "w");
