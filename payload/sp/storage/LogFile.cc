@@ -19,7 +19,8 @@ static OSThread thread;
 static u8 stack[4096];
 
 static void *Run(void *UNUSED(arg)) {
-    auto file = Storage::Open(L"/mkw-sp/log.txt", "w");
+    Storage::CreateDir(L"/mkw-sp/logs", false);
+    auto file = Storage::Open(L"/mkw-sp/logs/log.txt", "w");
     if (!file) {
         return nullptr;
     }
