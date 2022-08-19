@@ -6,6 +6,7 @@ extern "C" {
 #include "sp/storage/Storage.hh"
 
 #include <cstdio>
+#include <cwchar>
 
 namespace SP::LogFile {
 
@@ -20,7 +21,16 @@ static u8 stack[4096];
 
 static void *Run(void *UNUSED(arg)) {
     Storage::CreateDir(L"/mkw-sp/logs", true);
-    auto file = Storage::Open(L"/mkw-sp/logs/log.txt", "w");
+
+    OSCalendarTime time;
+    OSTicksToCalendarTime(OSGetTime(), &time);
+
+    wchar_t logFilePath[48];
+    swprintf(logFilePath, sizeof(logFilePath), L"/mkw-sp/logs/%04d-%02d-%02d-%02d-%02d-%02d.log",
+                                                time.year, time.mon + 1, time.mday,
+                                                time.hour, time.min, time.sec);
+
+    auto file = Storage::Open(logFilePath, "w");
     if (!file) {
         return nullptr;
     }
