@@ -101,6 +101,12 @@ struct Section::PageIdHelper<PageId::FriendRoomBack> {
     using type = FriendRoomBackPage;
 };
 
+// TODO: FriendRoomMessageSelectPage class doesn't exist yet!
+template <>
+struct Section::PageIdHelper<PageId::FriendRoomMessageSelectPage> {
+    using type = Page;
+};
+
 template <>
 struct Section::PageIdHelper<PageId::GhostManager> {
     using type = GhostManagerPage;
