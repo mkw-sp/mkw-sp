@@ -119,6 +119,11 @@ void FriendRoomBackPage::afterCalc() {
     m_queue.pop();
 }
 
+void FriendRoomBackPage::onRefocus() {
+    m_queue.reset();
+    startReplace(Anim::Prev, 0.0f);
+}
+
 void FriendRoomBackPage::pop() {
     m_queue.reset();
     startReplace(Anim::Prev, 0.0f);

@@ -21,6 +21,7 @@ public:
     void onActivate() override;
     void beforeInAnim() override;
     void afterCalc() override;
+    void onRefocus() override;
 
     void pop();
     void onPlayerJoin(System::RawMii mii, u32 location, u16 latitude, u16 longitude);

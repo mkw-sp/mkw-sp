@@ -2,7 +2,9 @@
 
 #include "game/ui/Section.hh"
 #include "game/ui/SectionManager.hh"
-#include "game/ui/YesNoPage.hh"
+
+#include <sp/cs/RoomClient.hh>
+#include <sp/cs/RoomServer.hh>
 
 namespace UI {
 
@@ -83,6 +85,13 @@ void FriendRoomPage::afterCalc() {
 // Base function: 0x805d8c98
 void FriendRoomPage::onRefocus() {
     // TODO: this function
+    auto *section = SectionManager::Instance()->currentSection();
+    auto sectionId = section->id();
+    if (sectionId == SectionId::OnlineServer) {
+        changeSection(SectionId::ServicePack, Anim::Prev, 0.0f);
+    } else {
+        startReplace(Anim::Prev, 0.0f);
+    }
 }
 
 // Base function: 0x805d8f84
@@ -123,9 +132,28 @@ void FriendRoomPage::onBack([[maybe_unused]] u32 localPlayerId) {
 
     yesNoPage->reset();
     yesNoPage->setWindowMessage((m_roomRole == RoomRole::Host) + 20019, nullptr);
-    yesNoPage->configureButton(0, 4012, nullptr, Anim::None, nullptr);
+    yesNoPage->configureButton(0, 4012, nullptr, Anim::None, &m_onBackConfirm);
     yesNoPage->configureButton(1, 4013, nullptr, Anim::None, nullptr);
     push(PageId::YesNoPopup, Anim::Next);
+}
+
+void FriendRoomPage::onBackConfirm([[maybe_unused]] s32 choice, [[maybe_unused]] PushButton *button) {
+    auto *section = SectionManager::Instance()->currentSection();
+    auto sectionId = section->id();
+    if (sectionId == SectionId::OnlineServer) {
+        auto *server = SP::RoomServer::Instance();
+        if (server) {
+            SP::RoomServer::DestroyInstance();
+        }
+    } else {
+        auto *client = SP::RoomClient::Instance();
+        if (client) {
+            SP::RoomClient::DestroyInstance();
+        }
+        if (section->isPageActive(PageId::FriendRoomPage)) {
+            startReplace(Anim::Prev, 0.0f);
+        }
+    }
 }
 
 } // namespace UI

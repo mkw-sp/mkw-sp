@@ -2,6 +2,7 @@
 
 #include "game/ui/Page.hh"
 #include "game/ui/MenuInputManager.hh"
+#include "game/ui/YesNoPage.hh"
 #include "game/ui/ctrl/CtrlMenuBackButton.hh"
 #include "game/ui/ctrl/CtrlMenuInstructionText.hh"
 
@@ -34,6 +35,7 @@ private:
     void onBackButtonFront(PushButton *button, u32 localPlayerId);
     void onButtonSelect(PushButton *button, u32 localPlayerId);
     void onBack(u32 localPlayerId);
+    void onBackConfirm(s32 choice, PushButton *button);
 
     template <typename T>
     using H = typename T::Handler<FriendRoomPage>;
@@ -52,6 +54,7 @@ private:
     H<PushButton> m_onRegisterButtonFront{ this, &FriendRoomPage::onRegisterButtonFront };
     H<PushButton> m_onBackButtonFront{ this, &FriendRoomPage::onBackButtonFront };
     H<PushButton> m_onButtonSelect{ this, &FriendRoomPage::onButtonSelect };
+    H<YesNoPage> m_onBackConfirm{ this, &FriendRoomPage::onBackConfirm };
 };
 
 } // namespace UI
