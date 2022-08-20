@@ -36,6 +36,7 @@ private:
                 override;
         void onPlayerLeave(u32 playerId) override;
         void onReceiveComment(u32 playerId, u32 messageId) override;
+        void onSettingsChange(const std::array<u32, SP::RoomSettings::count> &settings) override;
 
     private:
         FriendMatchingPage &m_page;
@@ -53,6 +54,7 @@ private:
                 override;
         void onPlayerLeave(u32 playerId) override;
         void onReceiveComment(u32 playerId, u32 messageId) override;
+        void onSettingsChange(const std::array<u32, SP::RoomSettings::count> &settings) override;
 
     private:
         FriendMatchingPage &m_page;

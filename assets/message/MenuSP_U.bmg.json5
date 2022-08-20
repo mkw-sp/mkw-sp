@@ -1035,6 +1035,26 @@
         "font": "regular",
         "string": "Do you want to leave the room?",
     },
+    "20021": {
+        "font": "regular",
+        "string": "Rules",
+    },
+    "20022": {
+        "font": "regular",
+        "string": "Change your personal settings.\nYou are the host, thus your room settings will be applied.",
+    },
+    "20023": {
+        "font": "regular",
+        "string": "Change your personal settings.\nYou are not the host, thus your room settings will be ignored.",
+    },
+    "20024": {
+        "font": "regular",
+        "string": "View the rules for this room.",
+    },
+    "20025": {
+        "font": "regular",
+        "string": "I updated the rules!",
+    },
     "3700": {
         "font": "regular",
         "string": "Select Level",

@@ -2,4 +2,4 @@
 
 #include <Common.h>
 
-void SettingsPage_SetReplacement(s32 pageId);
+void MenuSettingsPage_SetReplacement(s32 pageId);

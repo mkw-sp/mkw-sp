@@ -9,16 +9,18 @@ class ConfirmPage;
 class FriendRoomBackPage;
 class FriendRoomMessageSelectPage;
 class FriendRoomPage;
+class FriendRoomRulesPage;
 class GhostManagerPage;
 class GlobePage;
 class MenuAwaitPage;
 class MenuMessagePage;
+class MenuSettingsPage;
 class MessagePagePopup;
 class ModelPage;
 class OptionExplanationPage;
 class OptionSelectPage;
 class RaceConfirmPage;
-class SettingsPage;
+class SettingsPagePopup;
 class TimeAttackGhostListPage;
 class YesNoPagePopup;
 
@@ -99,6 +101,11 @@ struct Section::PageIdHelper<PageId::Globe> {
 };
 
 template <>
+struct Section::PageIdHelper<PageId::FriendRoomRules> {
+    using type = FriendRoomRulesPage;
+};
+
+template <>
 struct Section::PageIdHelper<PageId::FriendRoomBack> {
     using type = FriendRoomBackPage;
 };
@@ -149,8 +156,13 @@ struct Section::PageIdHelper<PageId::OptionConfirm> {
 };
 
 template <>
-struct Section::PageIdHelper<PageId::Settings> {
-    using type = SettingsPage;
+struct Section::PageIdHelper<PageId::MenuSettings> {
+    using type = MenuSettingsPage;
+};
+
+template <>
+struct Section::PageIdHelper<PageId::SettingsPopup> {
+    using type = SettingsPagePopup;
 };
 
 } // namespace UI

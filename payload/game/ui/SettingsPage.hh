@@ -1,5 +1,6 @@
 #pragma once
 
+#include "game/ui/BlackBackControl.hh"
 #include "game/ui/Page.hh"
 #include "game/ui/UpDownControl.hh"
 #include "game/ui/ctrl/CtrlMenuBackButton.hh"
@@ -10,17 +11,46 @@ namespace UI {
 
 class SettingsPage : public Page {
 public:
+    class IHandler {
+    private:
+        virtual void dummy_00() {}
+        virtual void dummy_04() {}
+
+    public:
+        virtual void handle(SettingsPage *page, PushButton *button) = 0;
+    };
+
+    template <typename T>
+    class Handler : public IHandler {
+    public:
+        Handler(T *object, void (T::*function)(SettingsPage *, PushButton *)) {
+            m_object = object;
+            m_function = function;
+        }
+
+        void handle(SettingsPage *page, PushButton *button) override {
+            (m_object->*m_function)(page, button);
+        }
+
+    private:
+        T *m_object;
+        void (T::*m_function)(SettingsPage *, PushButton *);
+    };
+
     SettingsPage();
     SettingsPage(const SettingsPage &) = delete;
     SettingsPage(SettingsPage &&) = delete;
     ~SettingsPage() override;
 
-    PageId getReplacement() override;
     void onInit() override;
     void onDeinit() override;
     void onActivate() override;
 
     void setReplacement(PageId pageId);
+
+protected:
+    virtual LayoutUIControl *instructionText() = 0;
+    virtual BlackBackControl *blackBack() = 0;
 
 private:
     struct CategoryInfo {
@@ -53,7 +83,6 @@ private:
     TextUpDownValueControl m_categoryValue;
     UpDownControl m_settingControls[6];
     TextUpDownValueControl m_settingValues[6];
-    CtrlMenuInstructionText m_instructionText;
     CtrlMenuBackButton m_backButton;
     H<MultiControlInputManager> m_onBack{ this, &SettingsPage::onBack };
     H<UpDownControl> m_onCategoryControlFront{ this, &SettingsPage::onCategoryControlFront };
@@ -64,7 +93,41 @@ private:
     H<UpDownControl> m_onSettingControlSelect { this, &SettingsPage::onSettingControlSelect };
     H<PushButton> m_onBackButtonFront{ this, &SettingsPage::onBackButtonFront };
 
+protected:
+    IHandler *m_handler = nullptr;
+};
+
+class SettingsPagePopup : public SettingsPage {
 public:
+    SettingsPagePopup();
+    ~SettingsPagePopup() override;
+
+    LayoutUIControl *instructionText() override;
+    BlackBackControl *blackBack() override;
+
+    void configure(IHandler *handler);
+
+private:
+    LayoutUIControl m_instructionText;
+    BlackBackControl m_blackBack;
+};
+
+class MenuSettingsPage : public SettingsPage {
+public:
+    MenuSettingsPage();
+    ~MenuSettingsPage() override;
+
+    PageId getReplacement() override;
+    void onInit() override;
+    void onActivate() override;
+
+    LayoutUIControl *instructionText() override;
+    BlackBackControl *blackBack() override;
+
+    void configure(IHandler *handler, PageId replacement);
+
+private:
+    CtrlMenuInstructionText m_instructionText;
     PageId m_replacement;
 };
 

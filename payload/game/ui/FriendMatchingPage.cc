@@ -156,6 +156,13 @@ void FriendMatchingPage::ServerHandler::onReceiveComment(u32 playerId, u32 messa
     friendRoomBackPage->onReceiveComment(playerId, messageId);
 }
 
+void FriendMatchingPage::ServerHandler::onSettingsChange(
+        const std::array<u32, SP::RoomSettings::count> &settings) {
+    Section *section = SectionManager::Instance()->currentSection();
+    auto *friendRoomBackPage = section->page<PageId::FriendRoomBack>();
+    friendRoomBackPage->onSettingsChange(settings);
+}
+
 FriendMatchingPage::ClientHandler::ClientHandler(FriendMatchingPage &page) : m_page(page) {}
 
 FriendMatchingPage::ClientHandler::~ClientHandler() = default;
@@ -186,6 +193,13 @@ void FriendMatchingPage::ClientHandler::onReceiveComment(u32 playerId, u32 messa
     Section *section = SectionManager::Instance()->currentSection();
     auto *friendRoomBackPage = section->page<PageId::FriendRoomBack>();
     friendRoomBackPage->onReceiveComment(playerId, messageId);
+}
+
+void FriendMatchingPage::ClientHandler::onSettingsChange(
+        const std::array<u32, SP::RoomSettings::count> &settings) {
+    Section *section = SectionManager::Instance()->currentSection();
+    auto *friendRoomBackPage = section->page<PageId::FriendRoomBack>();
+    friendRoomBackPage->onSettingsChange(settings);
 }
 
 } // namespace UI

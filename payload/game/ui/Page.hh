@@ -1,5 +1,6 @@
 #pragma once
 
+#include "game/sound/SoundId.hh"
 #include "game/ui/ControlGroup.hh"
 #include "game/ui/MenuInputManager.hh"
 #include "game/ui/PageId.hh"
@@ -87,7 +88,7 @@ protected:
     void insertChild(u32 index, UIControl *child, u32 drawPass);
     void startReplace(Anim anim, f32 delay);
     void calcAnim();
-    void playSfx(u32 sfxId, s32 r5);
+    void playSound(Sound::SoundId soundId, s32 r5);
     void setAnimSfxIds(u32 nextId, u32 prevId);
 
 private:

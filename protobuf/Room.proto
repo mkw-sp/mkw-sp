@@ -6,6 +6,7 @@ message RoomRequest {
         required uint32 location  = 2;
         required uint32 latitude  = 3;
         required uint32 longitude = 4;
+        repeated uint32 settings  = 5;
     }
 
     message Spectate {}
@@ -14,10 +15,15 @@ message RoomRequest {
         required uint32 messageId = 1;
     }
 
+    message Settings {
+        repeated uint32 settings = 1;
+    }
+
     oneof request {
         Join     join     = 1;
         Spectate spectate = 2;
         Comment  comment  = 3;
+        Settings settings = 4;
     }
 }
 
@@ -37,8 +43,8 @@ message RoomEvent {
         required uint32 count = 1;
     }
 
-    message Host {
-        required uint32 playerId = 1;
+    message Settings {
+        repeated uint32 settings = 1;
     }
 
     message Comment {
@@ -50,7 +56,7 @@ message RoomEvent {
         Join     join     = 1;
         Leave    leave    = 2;
         Spectate spectate = 3;
-        Host     host     = 4;
-        Comment  comment  = 5;
+        Comment  comment  = 4;
+        Settings settings = 5;
     }
 }

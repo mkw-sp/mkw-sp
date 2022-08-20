@@ -1,6 +1,7 @@
 #pragma once
 
 #include "sp/net/AsyncSocket.hh"
+#include "sp/settings/RoomSettings.hh"
 
 #include <game/system/Mii.hh>
 #include <protobuf/Room.pb.h>
@@ -20,11 +21,15 @@ public:
                 [[maybe_unused]] u32 location, [[maybe_unused]] u16 latitude,
                 [[maybe_unused]] u16 longitude) {}
         virtual void onPlayerLeave([[maybe_unused]] u32 playerId) {}
-        virtual void onReceiveComment([[maybe_unused]] u32 playerId, [[maybe_unused]] u32 commentId) {}
+        virtual void onReceiveComment([[maybe_unused]] u32 playerId,
+                [[maybe_unused]] u32 commentId) {}
+        virtual void onSettingsChange(
+                [[maybe_unused]] const std::array<u32, RoomSettings::count> &settings) {}
     };
 
     bool calc(Handler &handler);
     bool sendComment(u32 commentId);
+    void changeLocalSettings();
 
     static void OnCreateScene();
     static void OnDestroyScene();
@@ -61,11 +66,14 @@ private:
     bool read(std::optional<RoomEvent> &event);
     bool writeJoin();
     bool writeComment(u32 messageId);
+    bool writeSettings();
     bool write(RoomRequest request);
 
     u32 m_localPlayerCount;
     u32 m_localPlayerIds[2];
+    bool m_localSettingsChanged = false;
     u32 m_playerCount = 0;
+    std::array<u32, RoomSettings::count> m_settings;
     State m_state;
     Net::AsyncSocket m_socket;
 
