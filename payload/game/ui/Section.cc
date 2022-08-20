@@ -3,6 +3,7 @@
 #include "game/ui/ChannelPage.hh"
 #include "game/ui/FriendMatchingPage.hh"
 #include "game/ui/FriendRoomBackPage.hh"
+#include "game/ui/FriendRoomPage.hh"
 #include "game/ui/LicenseSelectPage.hh"
 #include "game/ui/OnlineTopPage.hh"
 #include "game/ui/SettingsPage.hh"
@@ -60,7 +61,6 @@ void Section::addPage(PageId pageId) {
         { SectionId::OnlineSingle, (PageId)0x97 },
         { SectionId::OnlineSingle, (PageId)0x98 },
         { SectionId::OnlineSingle, (PageId)0x99 },
-        { SectionId::OnlineSingle, (PageId)0x9d },
         { SectionId::OnlineSingle, (PageId)0x9e },
         { SectionId::OnlineSingle, (PageId)0xa5 },
         { SectionId::OnlineSingle, (PageId)0xa6 },
@@ -318,6 +318,8 @@ Page *Section::CreatePage(PageId pageId) {
         return new FriendMatchingPage;
     case PageId::FriendRoomBack:
         return new FriendRoomBackPage;
+    case PageId::FriendRoomPage:
+        return new FriendRoomPage;
     case PageId::ServicePackTop:
         return new ServicePackTopPage;
     case PageId::StorageBenchmark:

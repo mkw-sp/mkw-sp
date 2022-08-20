@@ -56,6 +56,8 @@ void FriendRoomBackPage::onActivate() {
         }
         m_queue.pop();
     }
+
+    push(PageId::FriendRoomPage, Anim::Next);
 }
 
 void FriendRoomBackPage::beforeInAnim() {

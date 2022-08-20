@@ -70,8 +70,8 @@ enum class PageId {
     Globe = 0x95,
     FriendMatching = 0x9b,
     FriendRoomBack = 0x9c,
-
-    FriendRoomMessageSelectPage = 0x9e, // possibly something more generic?
+    FriendRoomPage = 0x9d,
+    FriendRoomMessageSelectPage = 0x9e,
 
     ServicePackTop = 0xa2, // Replaces ChannelTop
     StorageBenchmark = 0xa3, // Replaces ChannelRanking
