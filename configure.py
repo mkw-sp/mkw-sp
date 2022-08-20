@@ -89,6 +89,12 @@ HUD_LANGUAGES = {
 
 asset_in_files = {
     os.path.join('Scene', 'UI', 'ChannelSP.arc.lzma'): [
+        # Explanation text with 2 lines
+        os.path.join('bg', 'blyt', 'obi_bottom.brlyt.json5'),
+        os.path.join('bg', 'blyt', 'obi_bottom_message.brlyt.json5'),
+        os.path.join('bg', 'timg', 'tt_obi_bottom_curve_000.tpl'),
+        os.path.join('bg', 'timg', 'tt_obi_bottom_right_000.tpl'),
+        #
         os.path.join('bg', 'ctrl', 'MenuObiTitleTextOption.brctr.json5'),
         os.path.join('button', 'ctrl', 'ServicePackToolsButton.brctr.json5'),
         os.path.join('button', 'ctrl', 'ServicePackTopButton.brctr.json5'),
@@ -181,10 +187,20 @@ asset_in_files = {
         os.path.join('ranking', 'timg', 'tt_pattern_chek_bokashi_32x32.tpl'),
     ],
     os.path.join('Scene', 'UI', 'MenuMultiSP.arc.lzma'): [
+        # Explanation text with 2 lines
+        os.path.join('bg', 'blyt', 'obi_bottom.brlyt.json5'),
+        os.path.join('bg', 'blyt', 'obi_bottom_message.brlyt.json5'),
+        os.path.join('bg', 'timg', 'tt_obi_bottom_curve_000.tpl'),
+        os.path.join('bg', 'timg', 'tt_obi_bottom_right_000.tpl'),
         # 200cc
         os.path.join('control', 'ctrl', 'VSSettingRadioOption.brctr.json5'),
     ],
     os.path.join('Scene', 'UI', 'MenuOtherSP.arc.lzma'): [
+        # Explanation text with 2 lines
+        os.path.join('bg', 'blyt', 'obi_bottom.brlyt.json5'),
+        os.path.join('bg', 'blyt', 'obi_bottom_message.brlyt.json5'),
+        os.path.join('bg', 'timg', 'tt_obi_bottom_curve_000.tpl'),
+        os.path.join('bg', 'timg', 'tt_obi_bottom_right_000.tpl'),
         # License display and license management
         os.path.join('button', 'ctrl', 'LicenseManagementButton.brctr.json5'),
         os.path.join('control', 'blyt', 'common_w076_license_icon_center.brlyt.json5'),
@@ -263,6 +279,11 @@ asset_in_files = {
         os.path.join('ranking', 'timg', 'tt_pattern_chek_bokashi_32x32.tpl'),
     ],
     os.path.join('Scene', 'UI', 'MenuSingleSP.arc.lzma'): [
+        # Explanation text with 2 lines
+        os.path.join('bg', 'blyt', 'obi_bottom.brlyt.json5'),
+        os.path.join('bg', 'blyt', 'obi_bottom_message.brlyt.json5'),
+        os.path.join('bg', 'timg', 'tt_obi_bottom_curve_000.tpl'),
+        os.path.join('bg', 'timg', 'tt_obi_bottom_right_000.tpl'),
         # GP removal
         os.path.join('button', 'blyt', 'common_w129_movie_button_single_top.brlyt.json5'),
         os.path.join('button', 'blyt', 'common_w129_movie_button_single_top_no_mr.brlyt.json5'),
@@ -461,6 +482,11 @@ asset_in_files = {
         os.path.join('game_image', 'timg', 'tt_d_number_3d_none.tpl'),
     ],
     os.path.join('Scene', 'UI', 'TitleSP.arc.lzma'): [
+        # Explanation text with 2 lines
+        os.path.join('bg', 'blyt', 'obi_bottom.brlyt.json5'),
+        os.path.join('bg', 'blyt', 'obi_bottom_message.brlyt.json5'),
+        os.path.join('bg', 'timg', 'tt_obi_bottom_curve_000.tpl'),
+        os.path.join('bg', 'timg', 'tt_obi_bottom_right_000.tpl'),
         # License selection
         os.path.join('button', 'blyt', 'common_w076_license_icon_center.brlyt.json5'),
         os.path.join('button', 'ctrl', 'LicenseSelect.brctr.json5'),
