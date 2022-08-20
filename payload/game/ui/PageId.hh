@@ -68,6 +68,7 @@ enum class PageId {
 
     OnlineTop = 0x8b, // Replaces WifiTop
     Globe = 0x95,
+    FriendRoomRules = 0x9a, // Replaces FriendJoin
     FriendMatching = 0x9b,
     FriendRoomBack = 0x9c,
     FriendRoom = 0x9d,
@@ -88,9 +89,9 @@ enum class PageId {
     Channel = 0xca, // Replaces ChannelExplanation
     Update = 0xcb, // Replaces ChannelConfirm
 
-    Settings = 0xce, // Replaces LicenseRecordsOverall
+    MenuSettings = 0xce, // Replaces LicenseRecordsOverall
+    SettingsPopup = 0xcf, // Replaces LicenseRecordsFavorites
     // Disabled {
-    LicenseRecordsFavorites = 0xcf,
     LicenseRecordsFriends = 0xd0,
     LicenseRecordsWFC = 0xd1,
     LicenseRecordsOther = 0xd2,

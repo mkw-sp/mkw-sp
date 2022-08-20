@@ -13,24 +13,21 @@ SettingsPage::SettingsPage() = default;
 
 SettingsPage::~SettingsPage() = default;
 
-PageId SettingsPage::getReplacement() {
-    return m_replacement;
-}
-
 void SettingsPage::onInit() {
-    auto sectionId = SectionManager::Instance()->currentSection()->id();
-
     m_inputManager.init(0x1, false);
     setInputManager(&m_inputManager);
     m_inputManager.setWrappingMode(MultiControlInputManager::WrappingMode::Y);
 
-    initChildren(4 + std::size(m_settingControls));
+    initChildren(4 + std::size(m_settingControls) + !!blackBack());
     insertChild(0, &m_pageTitleText, 0);
     insertChild(1, &m_categoryControl, 0);
-    insertChild(2, &m_instructionText, 0);
+    insertChild(2, instructionText(), 0);
     insertChild(3, &m_backButton, 0);
     for (u32 i = 0; i < std::size(m_settingControls); i++) {
         insertChild(4 + i, &m_settingControls[i], 0);
+    }
+    if (blackBack()) {
+        insertChild(4 + std::size(m_settingControls), blackBack(), 0);
     }
 
     m_pageTitleText.load(false);
@@ -47,11 +44,21 @@ void SettingsPage::onInit() {
         m_settingValues[i].load("ranking", "SettingUpDownValue", "Value", "SettingUpDownText",
                 "Text");
     }
-    m_instructionText.load();
-    if (Section::GetSceneId(sectionId) == 2 /* Race */) {
+    auto sectionId = SectionManager::Instance()->currentSection()->id();
+    if (blackBack()) {
+        instructionText()->load("bg", "ObiInstructionTextPopup", "ObiInstructionTextPopup",
+                nullptr);
+        m_backButton.load("button", "Back", "ButtonBackPopup", 0x1, false, true);
+    } else if (Section::GetSceneId(sectionId) == 2 /* Race */) {
         m_backButton.load("message_window", "Back", "ButtonBack", 0x1, false, true);
+        instructionText()->load("bg", "RaceObiInstructionText", "RaceObiInstructionText", nullptr);
     } else {
         m_backButton.load("button", "Back", "ButtonBack", 0x1, false, true);
+        instructionText()->load("bg", "MenuObiInstructionText", "MenuObiInstructionText", nullptr);
+    }
+    if (blackBack()) {
+        blackBack()->load("message_window", "BlackBack", "BlackBack");
+        blackBack()->m_zIndex = -1.0f;
     }
 
     m_inputManager.setHandler(MenuInputManager::InputId::Back, &m_onBack, false, false);
@@ -66,12 +73,6 @@ void SettingsPage::onInit() {
     }
 
     m_pageTitleText.setMessage(10076);
-
-    if (sectionId == SectionId::LicenseSettings) {
-        m_replacement = PageId::LicenseSettingsTop;
-    } else {
-        m_replacement = PageId::None; // Failsafe
-    }
 }
 
 void SettingsPage::onDeinit() {
@@ -79,18 +80,20 @@ void SettingsPage::onDeinit() {
 }
 
 void SettingsPage::onActivate() {
-    m_instructionText.setMessage(0);
+    instructionText()->setMessageAll(0);
 
     m_categoryControl.selectDefault(0);
+}
 
-    auto *section = SectionManager::Instance()->currentSection();
-    auto *raceMenuPage = section->page(m_replacement)->downcast<RaceMenuPage>();
-    if (raceMenuPage != nullptr) {
-        raceMenuPage->setReplacement(PageId::None);
-    }
+BlackBackControl *SettingsPage::blackBack() {
+    return nullptr;
 }
 
 void SettingsPage::onBack([[maybe_unused]] u32 localPlayerId) {
+    if (m_handler) {
+        m_handler->handle(this, nullptr);
+    }
+
     startReplace(Anim::Prev, 0.0f);
 }
 
@@ -101,7 +104,7 @@ void SettingsPage::onCategoryControlFront([[maybe_unused]] UpDownControl *contro
 
 void SettingsPage::onCategoryControlSelect([[maybe_unused]] UpDownControl *control,
         [[maybe_unused]] u32 localPlayerId) {
-    m_instructionText.setMessage(0);
+    instructionText()->setMessageAll(0);
 }
 
 void SettingsPage::onCategoryValueChange([[maybe_unused]] TextUpDownValueControl::TextControl *text,
@@ -164,12 +167,12 @@ void SettingsPage::onSettingControlChange([[maybe_unused]] UpDownControl *contro
     const SP::ClientSettings::Entry &entry = SP::ClientSettings::entries[control->m_id >> 16];
     if (entry.valueNames) {
         text->setMessageAll(entry.valueMessageIds[index]);
-        m_instructionText.setMessage(entry.valueExplanationMessageIds[index]);
+        instructionText()->setMessageAll(entry.valueExplanationMessageIds[index]);
     } else {
         MessageInfo info{};
         info.intVals[0] = index;
         text->setMessageAll(entry.valueMessageIds[0], &info);
-        m_instructionText.setMessage(entry.valueExplanationMessageIds[0], &info);
+        instructionText()->setMessageAll(entry.valueExplanationMessageIds[0], &info);
     }
     System::SaveManager::Instance()->setSetting(control->m_id >> 16, index);
     if (control->m_id >> 16 == static_cast<u32>(SP::ClientSettings::Setting::VanillaMode)) {
@@ -192,16 +195,20 @@ void SettingsPage::onSettingControlSelect([[maybe_unused]] UpDownControl *contro
     u32 chosen = control->chosen();
     const SP::ClientSettings::Entry &entry = SP::ClientSettings::entries[control->m_id >> 16];
     if (entry.valueNames) {
-        m_instructionText.setMessage(entry.valueExplanationMessageIds[chosen]);
+        instructionText()->setMessageAll(entry.valueExplanationMessageIds[chosen]);
     } else {
         MessageInfo info{};
         info.intVals[0] = chosen;
-        m_instructionText.setMessage(entry.valueExplanationMessageIds[0], &info);
+        instructionText()->setMessageAll(entry.valueExplanationMessageIds[0], &info);
     }
 }
 
 void SettingsPage::onBackButtonFront([[maybe_unused]] PushButton *button,
         [[maybe_unused]] u32 localPlayerId) {
+    if (m_handler) {
+        m_handler->handle(this, button);
+    }
+
     f32 delay = button->getDelay();
     startReplace(Anim::Prev, delay);
 }
@@ -264,11 +271,71 @@ SettingsPage::CategoryInfo SettingsPage::getCategoryInfo(u32 sheetIndex) const {
     assert(false);
 }
 
+SettingsPagePopup::SettingsPagePopup() = default;
+
+SettingsPagePopup::~SettingsPagePopup() = default;
+
+LayoutUIControl *SettingsPagePopup::instructionText() {
+    return &m_instructionText;
+}
+
+BlackBackControl *SettingsPagePopup::blackBack() {
+    return &m_blackBack;
+}
+
+void SettingsPagePopup::configure(IHandler *handler) {
+    m_handler = handler;
+}
+
+MenuSettingsPage::MenuSettingsPage() = default;
+
+MenuSettingsPage::~MenuSettingsPage() = default;
+
+PageId MenuSettingsPage::getReplacement() {
+    return m_replacement;
+}
+
+void MenuSettingsPage::onInit() {
+    SettingsPage::onInit();
+
+    auto sectionId = SectionManager::Instance()->currentSection()->id();
+    if (!blackBack() && sectionId == SectionId::LicenseSettings) {
+        m_replacement = PageId::LicenseSettingsTop;
+    } else {
+        m_replacement = PageId::None; // Failsafe
+    }
+}
+
+void MenuSettingsPage::onActivate() {
+    SettingsPage::onActivate();
+
+    if (m_replacement != PageId::None) {
+        auto *section = SectionManager::Instance()->currentSection();
+        auto *raceMenuPage = section->page(m_replacement)->downcast<RaceMenuPage>();
+        if (raceMenuPage != nullptr) {
+            raceMenuPage->setReplacement(PageId::None);
+        }
+    }
+}
+
+LayoutUIControl *MenuSettingsPage::instructionText() {
+    return &m_instructionText;
+}
+
+BlackBackControl *MenuSettingsPage::blackBack() {
+    return nullptr;
+}
+
+void MenuSettingsPage::configure(IHandler *handler, PageId replacement) {
+    m_handler = handler;
+    m_replacement = replacement;
+}
+
 } // namespace UI
 
 extern "C" {
-void SettingsPage_SetReplacement(s32 pageId) {
+void MenuSettingsPage_SetReplacement(s32 pageId) {
     auto *section = UI::SectionManager::Instance()->currentSection();
-    section->page<UI::PageId::Settings>()->m_replacement = static_cast<UI::PageId>(pageId);
+    section->page<UI::PageId::MenuSettings>()->configure(nullptr, static_cast<UI::PageId>(pageId));
 }
 }

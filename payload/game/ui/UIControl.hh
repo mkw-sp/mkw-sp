@@ -42,7 +42,11 @@ private:
     u8 _04[0x64 - 0x04];
     ControlGroup *m_controlGroup;
     ControlGroup m_children;
-    u8 _7c[0x80 - 0x7c];
+
+public:
+    f32 m_zIndex;
+
+private:
     bool m_isHidden;
     u8 _81[0x98 - 0x81];
 };
@@ -91,5 +95,6 @@ public:
     void vf_28() override;
     void vf_2c() override;
 };
+static_assert(sizeof(LayoutUIControlScaleFade) == 0x174);
 
 } // namespace UI

@@ -5,6 +5,7 @@
 #include "game/ui/ctrl/CtrlMenuPageTitleText.hh"
 
 #include <sp/CircularBuffer.hh>
+#include <sp/settings/RoomSettings.hh>
 
 #include <variant>
 
@@ -27,6 +28,7 @@ public:
     void onPlayerJoin(System::RawMii mii, u32 location, u16 latitude, u16 longitude);
     void onPlayerLeave(u32 playerId);
     void onReceiveComment(u32 playerId, u32 messageId);
+    void onSettingsChange(const std::array<u32, SP::RoomSettings::count> &settings);
 
 private:
     struct Join {
@@ -45,15 +47,22 @@ private:
         u32 messageId;
     };
 
+    struct Settings {
+        std::array<u32, SP::RoomSettings::count> settings;
+    };
+
     MenuInputManager m_inputManager;
     CtrlMenuPageTitleText m_pageTitleText;
     FriendMatchingPlayer m_players[12];
     MiiGroup m_miiGroup;
+    u32 m_locations[12];
+    u16 m_latitudes[12];
+    u16 m_longitudes[12];
     u32 m_playerCount;
     u32 m_indices[12];
     std::optional<u32> m_globePlayerId;
     u32 m_timer;
-    SP::CircularBuffer<std::variant<Join, Leave, Comment>, 24> m_queue;
+    SP::CircularBuffer<std::variant<Join, Leave, Comment, Settings>, 25> m_queue;
 };
 
 } // namespace UI
