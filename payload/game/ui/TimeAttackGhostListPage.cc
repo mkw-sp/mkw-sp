@@ -203,9 +203,9 @@ void TimeAttackGhostListPage::onBack([[maybe_unused]] u32 localPlayerId) {
 void TimeAttackGhostListPage::onSettingsButtonFront([[maybe_unused]] PushButton *button,
         [[maybe_unused]] u32 localPlayerId) {
     auto *section = SectionManager::Instance()->currentSection();
-    auto *settingsPage = section->page<PageId::Settings>();
-    settingsPage->m_replacement = PageId::TimeAttackGhostList;
-    m_replacement = PageId::Settings;
+    auto *menuSettingsPage = section->page<PageId::MenuSettings>();
+    menuSettingsPage->configure(nullptr, PageId::TimeAttackGhostList);
+    m_replacement = PageId::MenuSettings;
     f32 delay = button->getDelay();
     startReplace(Anim::Next, delay);
 }

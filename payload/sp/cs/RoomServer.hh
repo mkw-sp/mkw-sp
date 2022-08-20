@@ -2,6 +2,7 @@
 
 #include "sp/net/AsyncSocket.hh"
 #include "sp/net/AsyncListener.hh"
+#include "sp/settings/RoomSettings.hh"
 
 #include <game/system/Mii.hh>
 #include <protobuf/Room.pb.h>
@@ -20,6 +21,8 @@ public:
                 [[maybe_unused]] u32 location, [[maybe_unused]] u16 latitude,
                 [[maybe_unused]] u16 longitude) {}
         virtual void onPlayerLeave([[maybe_unused]] u32 playerId) {}
+        virtual void onSettingsChange(
+                [[maybe_unused]] const std::array<u32, RoomSettings::count> &settings) {}
     };
 
     bool calc(Handler &handler);
@@ -37,6 +40,7 @@ private:
         u32 location;
         u32 latitude;
         u32 longitude;
+        std::array<u32, RoomSettings::count> m_settings;
     };
 
     enum class State {
@@ -54,7 +58,7 @@ private:
 
         bool writeJoin(const System::RawMii *mii, u32 location, u32 latitude, u32 longitude);
         bool writeLeave(u32 playerId);
-        bool writeHost(u32 playerId);
+        bool writeSettings();
 
     private:
         enum class State {
@@ -68,6 +72,9 @@ private:
 
         std::optional<State> calcConnect();
         std::optional<State> calcSetup(Handler &handler);
+        std::optional<State> calcMain();
+
+        bool isHost() const;
 
         bool read(std::optional<RoomRequest> &request);
         bool write(RoomEvent event);
@@ -90,14 +97,16 @@ private:
     bool onMain(Handler &handler);
 
     bool onPlayerJoin(Handler &handler, u32 clientId, const System::RawMii *mii, u32 location,
-            u16 latitude, u16 longitude);
+            u16 latitude, u16 longitude, const std::array<u32, RoomSettings::count> &settings);
     void onPlayerLeave(Handler &handler, u32 playerId);
 
     void disconnectClient(u32 clientId);
 
     void writeJoin(const System::RawMii *mii, u32 location, u32 latitude, u32 longitude);
     void writeLeave(u32 playerId);
+    void writeSettings();
 
+    bool m_settingsChanged = false;
     u32 m_playerCount = 0;
     std::array<Player, 12> m_players;
     State m_state;

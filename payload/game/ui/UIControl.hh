@@ -42,7 +42,11 @@ private:
     u8 _04[0x64 - 0x04];
     ControlGroup *m_controlGroup;
     ControlGroup m_children;
-    u8 _7c[0x80 - 0x7c];
+
+public:
+    f32 m_zIndex;
+
+private:
     bool m_isHidden;
     u8 _81[0x98 - 0x81];
 };
@@ -82,5 +86,15 @@ private:
     u8 _16c[0x174 - 0x16c];
 };
 static_assert(sizeof(LayoutUIControl) == 0x174);
+
+class LayoutUIControlScaleFade : public LayoutUIControl {
+public:
+    LayoutUIControlScaleFade();
+    ~LayoutUIControlScaleFade() override;
+    void vf_20() override;
+    void vf_28() override;
+    void vf_2c() override;
+};
+static_assert(sizeof(LayoutUIControlScaleFade) == 0x174);
 
 } // namespace UI

@@ -35,6 +35,10 @@ bool RoomClient::calc(Handler &handler) {
     return true;
 }
 
+void RoomClient::changeLocalSettings() {
+    m_localSettingsChanged = true;
+}
+
 void RoomClient::OnCreateScene() {
     auto *sectionManager = UI::SectionManager::Instance();
     if (!sectionManager) {
@@ -164,7 +168,21 @@ std::optional<RoomClient::State> RoomClient::calcSetup(Handler &handler) {
             }
         }
         return State::Setup;
-    case RoomEvent_host_tag:
+    case RoomEvent_settings_tag:
+        if (m_playerCount == 0) {
+            auto *saveManager = System::SaveManager::Instance();
+            for (size_t i = 0; i < RoomSettings::count; i++) {
+                m_settings[i] = saveManager->getSetting(RoomSettings::offset + i);
+            }
+        } else {
+            if (event->event.settings.settings_count != RoomSettings::count) {
+                return {};
+            }
+            for (size_t i = 0; i < RoomSettings::count; i++) {
+                m_settings[i] = event->event.settings.settings[i];
+            }
+        }
+        handler.onSettingsChange(m_settings);
         return State::Main;
     default:
         return {};
@@ -172,6 +190,12 @@ std::optional<RoomClient::State> RoomClient::calcSetup(Handler &handler) {
 }
 
 std::optional<RoomClient::State> RoomClient::calcMain(Handler &handler) {
+    if (m_localSettingsChanged) {
+        if (!writeSettings()) {
+            return {};
+        }
+    }
+
     std::optional<RoomEvent> event{};
     if (!read(event)) {
         return {};
@@ -198,6 +222,20 @@ std::optional<RoomClient::State> RoomClient::calcMain(Handler &handler) {
     case RoomEvent_leave_tag:
         if (!onPlayerLeave(handler, event->event.leave.playerId)) {
             return {};
+        }
+        return State::Main;
+    case RoomEvent_settings_tag:
+        if (event->event.settings.settings_count != RoomSettings::count) {
+            return {};
+        } else {
+            bool changed = false;
+            for (size_t i = 0; i < RoomSettings::count; i++) {
+                changed = changed || event->event.settings.settings[i] != m_settings[i];
+                m_settings[i] = event->event.settings.settings[i];
+            }
+            if (changed) {
+                handler.onSettingsChange(m_settings);
+            }
         }
         return State::Main;
     default:
@@ -295,15 +333,30 @@ bool RoomClient::writeJoin() {
         memcpy(request.request.join.miis[i].bytes, &raw, sizeof(System::RawMii));
     }
     auto *saveManager = System::SaveManager::Instance();
-    u32 location;
-    saveManager->getLocation(&location);
+    saveManager->getLocation(&request.request.join.location);
     u16 latitude;
     saveManager->getLatitude(&latitude);
+    request.request.join.latitude = latitude;
     u16 longitude;
     saveManager->getLongitude(&longitude);
-    request.request.join.location = location;
-    request.request.join.latitude = latitude;
     request.request.join.longitude = longitude;
+    request.request.join.settings_count = RoomSettings::count;
+    for (size_t i = 0; i < RoomSettings::count; i++) {
+        request.request.join.settings[i] = saveManager->getSetting(RoomSettings::offset + i);
+    }
+    m_localSettingsChanged = false;
+    return write(request);
+}
+
+bool RoomClient::writeSettings() {
+    RoomRequest request;
+    request.which_request = RoomRequest_settings_tag;
+    request.request.settings.settings_count = RoomSettings::count;
+    auto *saveManager = System::SaveManager::Instance();
+    for (size_t i = 0; i < RoomSettings::count; i++) {
+        request.request.settings.settings[i] = saveManager->getSetting(RoomSettings::offset + i);
+    }
+    m_localSettingsChanged = false;
     return write(request);
 }
 

@@ -137,6 +137,13 @@ void FriendMatchingPage::ServerHandler::onPlayerLeave(u32 playerId) {
     friendRoomBackPage->onPlayerLeave(playerId);
 }
 
+void FriendMatchingPage::ServerHandler::onSettingsChange(
+        const std::array<u32, SP::RoomSettings::count> &settings) {
+    Section *section = SectionManager::Instance()->currentSection();
+    auto *friendRoomBackPage = section->page<PageId::FriendRoomBack>();
+    friendRoomBackPage->onSettingsChange(settings);
+}
+
 FriendMatchingPage::ClientHandler::ClientHandler(FriendMatchingPage &page) : m_page(page) {}
 
 FriendMatchingPage::ClientHandler::~ClientHandler() = default;
@@ -161,6 +168,13 @@ void FriendMatchingPage::ClientHandler::onPlayerLeave(u32 playerId) {
     Section *section = SectionManager::Instance()->currentSection();
     auto *friendRoomBackPage = section->page<PageId::FriendRoomBack>();
     friendRoomBackPage->onPlayerLeave(playerId);
+}
+
+void FriendMatchingPage::ClientHandler::onSettingsChange(
+        const std::array<u32, SP::RoomSettings::count> &settings) {
+    Section *section = SectionManager::Instance()->currentSection();
+    auto *friendRoomBackPage = section->page<PageId::FriendRoomBack>();
+    friendRoomBackPage->onSettingsChange(settings);
 }
 
 } // namespace UI

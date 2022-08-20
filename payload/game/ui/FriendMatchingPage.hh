@@ -35,6 +35,7 @@ private:
         void onPlayerJoin(const System::RawMii *mii, u32 location, u16 latitude, u16 longitude)
                 override;
         void onPlayerLeave(u32 playerId) override;
+        void onSettingsChange(const std::array<u32, SP::RoomSettings::count> &settings) override;
 
     private:
         FriendMatchingPage &m_page;
@@ -51,6 +52,7 @@ private:
         void onPlayerJoin(const System::RawMii *mii, u32 location, u16 latitude, u16 longitude)
                 override;
         void onPlayerLeave(u32 playerId) override;
+        void onSettingsChange(const std::array<u32, SP::RoomSettings::count> &settings) override;
 
     private:
         FriendMatchingPage &m_page;

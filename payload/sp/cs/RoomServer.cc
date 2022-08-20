@@ -45,6 +45,12 @@ bool RoomServer::calc(Handler &handler) {
         }
     }
 
+    if (m_settingsChanged) {
+        writeSettings();
+        handler.onSettingsChange(m_players[0].m_settings);
+        m_settingsChanged = false;
+    }
+
     while (!m_disconnectQueue.empty()) {
         for (u32 i = 0; i < m_playerCount; i++) {
             if (m_players[i].clientId == *m_disconnectQueue.front()) {
@@ -172,24 +178,39 @@ bool RoomServer::onMain(Handler &handler) {
 }
 
 bool RoomServer::onPlayerJoin(Handler &handler, u32 clientId, const System::RawMii *mii,
-        u32 location, u16 latitude, u16 longitude) {
+        u32 location, u16 latitude, u16 longitude,
+        const std::array<u32, RoomSettings::count> &settings) {
     if (m_playerCount == 12) {
         return false;
     }
 
-    m_players[m_playerCount] = { clientId, *mii, location, latitude, longitude };
+    m_players[m_playerCount] = { clientId, *mii, location, latitude, longitude, settings };
     m_playerCount++;
     writeJoin(mii, location, latitude, longitude);
     handler.onPlayerJoin(mii, location, latitude, longitude);
+    if (m_playerCount == 1) {
+        handler.onSettingsChange(settings);
+    }
     return true;
 }
 
 void RoomServer::onPlayerLeave(Handler &handler, u32 playerId) {
     handler.onPlayerLeave(playerId);
     writeLeave(playerId);
+    auto settings = m_players[playerId].m_settings;
     m_playerCount--;
     for (u32 i = playerId; i < m_playerCount; i++) {
         m_players[i] = m_players[i + 1];
+    }
+    if (playerId == 0 && m_playerCount > 0) {
+        bool changed = false;
+        for (size_t i = 0; i < RoomSettings::count; i++) {
+            changed = changed || m_players[0].m_settings[i] != settings[i];
+        }
+        if (changed) {
+            writeSettings();
+            handler.onSettingsChange(m_players[0].m_settings);
+        }
     }
 }
 
@@ -212,6 +233,16 @@ void RoomServer::writeLeave(u32 playerId) {
     for (size_t i = 0; i < m_clients.size(); i++) {
         if (m_clients[i] && m_clients[i]->ready()) {
             if (!m_clients[i]->writeLeave(playerId)) {
+                disconnectClient(i);
+            }
+        }
+    }
+}
+
+void RoomServer::writeSettings() {
+    for (size_t i = 0; i < m_clients.size(); i++) {
+        if (m_clients[i] && m_clients[i]->ready()) {
+            if (!m_clients[i]->writeSettings()) {
                 disconnectClient(i);
             }
         }
@@ -276,10 +307,19 @@ bool RoomServer::Client::writeLeave(u32 playerId) {
     return write(event);
 }
 
-bool RoomServer::Client::writeHost(u32 playerId) {
+bool RoomServer::Client::writeSettings() {
     RoomEvent event;
-    event.which_event = RoomEvent_host_tag;
-    event.event.host.playerId = playerId;
+    event.which_event = RoomEvent_settings_tag;
+    if (m_server.m_playerCount == 0) {
+        event.event.settings.settings_count = 0;
+    } else {
+        const Player &host = m_server.m_players[0];
+        assert(std::size(event.event.settings.settings) == std::size(host.m_settings));
+        event.event.settings.settings_count = std::size(host.m_settings);
+        for (size_t i = 0; i < std::size(host.m_settings); i++) {
+            event.event.settings.settings[i] = host.m_settings[i];
+        }
+    }
     return write(event);
 }
 
@@ -290,7 +330,7 @@ std::optional<RoomServer::Client::State> RoomServer::Client::resolve(Handler &ha
     case State::Setup:
         return calcSetup(handler);
     case State::Main:
-        break;
+        return calcMain();
     }
 
     return m_state;
@@ -342,12 +382,20 @@ std::optional<RoomServer::Client::State> RoomServer::Client::calcSetup(Handler &
                 return {};
             }
         }
+        if (request->request.join.settings_count != RoomSettings::count) {
+            return {};
+        }
+        std::array<u32, RoomSettings::count> settings;
+        for (size_t i = 0; i < RoomSettings::count; i++) {
+            settings[i] = request->request.join.settings[i];
+        }
         for (size_t i = 0; i < request->request.join.miis_count; i++) {
             auto *mii = reinterpret_cast<System::RawMii *>(request->request.join.miis[i].bytes);
             u32 location = request->request.join.location;
             u32 latitude = request->request.join.latitude;
             u32 longitude = request->request.join.longitude;
-            if (!m_server.onPlayerJoin(handler, m_id, mii, location, latitude, longitude)) {
+            if (!m_server.onPlayerJoin(handler, m_id, mii, location, latitude, longitude,
+                    settings)) {
                 // TODO spectate?
                 return {};
             }
@@ -358,13 +406,53 @@ std::optional<RoomServer::Client::State> RoomServer::Client::calcSetup(Handler &
                 return {};
             }
         }
-        if (!writeHost(0)) { // TODO fix
+        if (!writeSettings()) {
             return {};
         }
         return State::Main;
     default:
         return {};
     }
+}
+
+std::optional<RoomServer::Client::State> RoomServer::Client::calcMain() {
+    std::optional<RoomRequest> request{};
+    if (!read(request)) {
+        return {};
+    }
+
+    if (!request) {
+        return State::Main;
+    }
+
+    switch (request->which_request) {
+    case RoomRequest_settings_tag:
+        if (request->request.settings.settings_count != RoomSettings::count) {
+            return {};
+        }
+        std::array<u32, RoomSettings::count> settings;
+        for (size_t i = 0; i < RoomSettings::count; i++) {
+            settings[i] = request->request.settings.settings[i];
+        }
+        for (size_t i = 0; i < m_server.m_playerCount; i++) {
+            if (m_server.m_players[i].clientId == m_id) {
+                if (i == 0) {
+                    for (size_t j = 0; j < RoomSettings::count; j++) {
+                        m_server.m_settingsChanged = m_server.m_settingsChanged ||
+                                m_server.m_players[i].m_settings[j] != settings[j];
+                    }
+                }
+                m_server.m_players[i].m_settings = settings;
+            }
+        }
+        return State::Main;
+    default:
+        return {};
+    }
+}
+
+bool RoomServer::Client::isHost() const {
+    return m_server.m_playerCount > 0 && m_server.m_players[0].clientId == m_id;
 }
 
 bool RoomServer::Client::read(std::optional<RoomRequest> &request) {

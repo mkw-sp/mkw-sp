@@ -295,7 +295,7 @@ PATCH_B(EventPauseMenuPage_getButtons, my_EventPauseMenuPage_getButtons);
 
 void RaceMenuPage_onFrontSettings(
         RaceMenuPage *this, PushButton *pushButton, u32 UNUSED(localPlayerId)) {
-    SettingsPage_SetReplacement(this->id);
+    MenuSettingsPage_SetReplacement(this->id);
     const float pushDelay = PushButton_getDelay(pushButton);
     this->vt->nextPage(this, PAGE_ID_LICENSE_RECORDS);
     Page_startReplace((Page *)this, PAGE_ANIMATION_NEXT, pushDelay);

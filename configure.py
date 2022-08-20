@@ -114,9 +114,20 @@ asset_in_files = {
         os.path.join('tt_kart_font_rodan_ntlg_pro_b_R.brfnt'),
     ],
     os.path.join('Scene', 'UI', 'GlobeSP.arc.lzma'): [
+        # Explanation text with 2 lines
+        os.path.join('bg', 'blyt', 'obi_bottom.brlyt.json5'),
+        os.path.join('bg', 'blyt', 'obi_bottom_message.brlyt.json5'),
+        os.path.join('bg', 'timg', 'tt_obi_bottom_curve_000.tpl'),
+        os.path.join('bg', 'timg', 'tt_obi_bottom_right_000.tpl'),
+        #
+        os.path.join('button', 'ctrl', 'FriendRoom.brctr.json5'),
         os.path.join('button', 'ctrl', 'OnlineTopButton.brctr.json5'),
         os.path.join('button', 'ctrl', 'SettingsButton.brctr.json5'),
+        os.path.join('message_window', 'blyt', 'room_rules.brlyt.json5'),
+        os.path.join('message_window', 'ctrl', 'RoomRules.brctr.json5'),
         # Settings
+        os.path.join('bg', 'blyt', 'race_obi_bottom_message.brlyt.json5'),
+        os.path.join('bg', 'ctrl', 'ObiInstructionTextPopup.brctr.json5'),
         os.path.join('control', 'anim', 'common_w023_rule_menu_text_light_02_select.brlan.json5'),
         os.path.join('control', 'anim', 'common_w023_rule_menu_text_light_02_stop.brlan.json5'),
         os.path.join('control', 'anim', 'common_w134_rule_rap_yaji_l_chara_light_01_ok.brlan.json5'),
@@ -959,6 +970,7 @@ code_in_files = {
         os.path.join('payload', 'game', 'ui', 'FriendMatchingPlayer.cc'),
         os.path.join('payload', 'game', 'ui', 'FriendRoomBackPage.cc'),
         os.path.join('payload', 'game', 'ui', 'FriendRoomPage.cc'),
+        os.path.join('payload', 'game', 'ui', 'FriendRoomRulesPage.cc'),
         os.path.join('payload', 'game', 'ui', 'GhostManagerPage.cc'),
         os.path.join('payload', 'game', 'ui', 'GhostSelectButton.cc'),
         os.path.join('payload', 'game', 'ui', 'GhostSelectControl.cc'),
@@ -1116,6 +1128,7 @@ code_in_files = {
         os.path.join('payload', 'sp', 'security', 'Stack.c'),
         os.path.join('payload', 'sp', 'security', 'StackTrace.S'),
         os.path.join('payload', 'sp', 'settings', 'ClientSettings.cc'),
+        os.path.join('payload', 'sp', 'settings', 'RoomSettings.cc'),
         os.path.join('payload', 'sp', 'settings', 'IniReader.cc'),
         os.path.join('payload', 'sp', 'storage', 'DecompLoader.cc'),
         os.path.join('payload', 'sp', 'storage', 'DVDStorage.cc'),

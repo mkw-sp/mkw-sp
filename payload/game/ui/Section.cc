@@ -4,6 +4,7 @@
 #include "game/ui/FriendMatchingPage.hh"
 #include "game/ui/FriendRoomBackPage.hh"
 #include "game/ui/FriendRoomPage.hh"
+#include "game/ui/FriendRoomRulesPage.hh"
 #include "game/ui/LicenseSelectPage.hh"
 #include "game/ui/OnlineTopPage.hh"
 #include "game/ui/SettingsPage.hh"
@@ -33,7 +34,7 @@ void Section::addPage(PageId pageId) {
     std::pair<SectionId, PageId> deletions[] = {
         // The game has 5 pages for the records, we only need 1 for the settings. Remove the 4
         // others.
-        { SectionId::LicenseSettings, PageId::LicenseRecordsFavorites },
+        { SectionId::LicenseSettings, PageId::SettingsPopup },
         { SectionId::LicenseSettings, PageId::LicenseRecordsFriends },
         { SectionId::LicenseSettings, PageId::LicenseRecordsWFC },
         { SectionId::LicenseSettings, PageId::LicenseRecordsOther },
@@ -121,7 +122,6 @@ void Section::addPage(PageId pageId) {
         { SectionId::OnlineServer, (PageId)0x97 },
         { SectionId::OnlineServer, (PageId)0x98 },
         { SectionId::OnlineServer, (PageId)0x99 },
-        { SectionId::OnlineServer, (PageId)0x9a },
         { SectionId::OnlineServer, (PageId)0x9e },
         { SectionId::OnlineServer, (PageId)0xa5 },
         { SectionId::OnlineServer, (PageId)0xa6 },
@@ -182,29 +182,29 @@ void Section::addPages(SectionId id) {
         { SectionId::TAReplay, PageId::ConfirmQuit },
 
         // Support changing settings in-race
-        { SectionId::GP, PageId::Settings },
-        { SectionId::TA, PageId::Settings },
-        { SectionId::VS1P, PageId::Settings },
-        { SectionId::VS2P, PageId::Settings },
-        { SectionId::VS3P, PageId::Settings },
-        { SectionId::VS4P, PageId::Settings },
-        { SectionId::TeamVS1P, PageId::Settings },
-        { SectionId::TeamVS2P, PageId::Settings },
-        { SectionId::TeamVS3P, PageId::Settings },
-        { SectionId::TeamVS4P, PageId::Settings },
-        { SectionId::Battle1P, PageId::Settings },
-        { SectionId::Battle2P, PageId::Settings },
-        { SectionId::Battle3P, PageId::Settings },
-        { SectionId::Battle4P, PageId::Settings },
-        { SectionId::MRReplay, PageId::Settings },
-        { SectionId::TournamentReplay, PageId::Settings },
-        { SectionId::GPReplay, PageId::Settings },
-        { SectionId::TAReplay, PageId::Settings },
-        { SectionId::GhostTA, PageId::Settings },
-        { SectionId::GhostTAOnline, PageId::Settings },
-        { SectionId::GhostReplayChannel, PageId::Settings },
-        { SectionId::GhostReplayDownload, PageId::Settings },
-        { SectionId::GhostReplay, PageId::Settings },
+        { SectionId::GP, PageId::MenuSettings },
+        { SectionId::TA, PageId::MenuSettings },
+        { SectionId::VS1P, PageId::MenuSettings },
+        { SectionId::VS2P, PageId::MenuSettings },
+        { SectionId::VS3P, PageId::MenuSettings },
+        { SectionId::VS4P, PageId::MenuSettings },
+        { SectionId::TeamVS1P, PageId::MenuSettings },
+        { SectionId::TeamVS2P, PageId::MenuSettings },
+        { SectionId::TeamVS3P, PageId::MenuSettings },
+        { SectionId::TeamVS4P, PageId::MenuSettings },
+        { SectionId::Battle1P, PageId::MenuSettings },
+        { SectionId::Battle2P, PageId::MenuSettings },
+        { SectionId::Battle3P, PageId::MenuSettings },
+        { SectionId::Battle4P, PageId::MenuSettings },
+        { SectionId::MRReplay, PageId::MenuSettings },
+        { SectionId::TournamentReplay, PageId::MenuSettings },
+        { SectionId::GPReplay, PageId::MenuSettings },
+        { SectionId::TAReplay, PageId::MenuSettings },
+        { SectionId::GhostTA, PageId::MenuSettings },
+        { SectionId::GhostTAOnline, PageId::MenuSettings },
+        { SectionId::GhostReplayChannel, PageId::MenuSettings },
+        { SectionId::GhostReplayDownload, PageId::MenuSettings },
+        { SectionId::GhostReplay, PageId::MenuSettings },
 
         // Mission Mode
         { SectionId::MRReplay, PageId::CompetitionPersonalLeaderboard},
@@ -254,13 +254,17 @@ void Section::addPages(SectionId id) {
         { SectionId::SingleChangeGhostData, PageId::BattleCourseSelect },
 
         // Support changing settings from the ghost list
-        { SectionId::Single, PageId::Settings },
-        { SectionId::SingleChangeDriver, PageId::Settings },
-        { SectionId::SingleChangeCourse, PageId::Settings },
-        { SectionId::SingleChangeGhostData, PageId::Settings },
+        { SectionId::Single, PageId::MenuSettings },
+        { SectionId::SingleChangeDriver, PageId::MenuSettings },
+        { SectionId::SingleChangeCourse, PageId::MenuSettings },
+        { SectionId::SingleChangeGhostData, PageId::MenuSettings },
 
-        { SectionId::OnlineSingle, PageId::Settings },
-        { SectionId::OnlineMulti, PageId::Settings },
+        { SectionId::OnlineSingle, PageId::FriendRoomRules },
+        { SectionId::OnlineSingle, PageId::MenuSettings },
+        { SectionId::OnlineSingle, PageId::SettingsPopup },
+        { SectionId::OnlineMulti, PageId::FriendRoomRules },
+        { SectionId::OnlineMulti, PageId::MenuSettings },
+        { SectionId::OnlineMulti, PageId::SettingsPopup },
 
         // The channel section is repurposed into the Service Pack section. Add some additional
         // pages we need.
@@ -312,6 +316,8 @@ Page *Section::CreatePage(PageId pageId) {
         return new TimeAttackGhostListPage;
     case PageId::OnlineTop:
         return new OnlineTopPage;
+    case PageId::FriendRoomRules:
+        return new FriendRoomRulesPage;
     case PageId::FriendMatching:
         return new FriendMatchingPage;
     case PageId::FriendRoomBack:
@@ -330,8 +336,10 @@ Page *Section::CreatePage(PageId pageId) {
         return new ChannelPage;
     case PageId::Update:
         return new UpdatePage;
-    case PageId::Settings:
-        return new SettingsPage;
+    case PageId::MenuSettings:
+        return new MenuSettingsPage;
+    case PageId::SettingsPopup:
+        return new SettingsPagePopup;
     default:
         return REPLACED(CreatePage)(pageId);
     }
