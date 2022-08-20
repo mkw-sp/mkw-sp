@@ -316,7 +316,7 @@ Page *Section::CreatePage(PageId pageId) {
         return new FriendMatchingPage;
     case PageId::FriendRoomBack:
         return new FriendRoomBackPage;
-    case PageId::FriendRoomPage:
+    case PageId::FriendRoom:
         return new FriendRoomPage;
     case PageId::ServicePackTop:
         return new ServicePackTopPage;

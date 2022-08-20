@@ -103,13 +103,13 @@ struct Section::PageIdHelper<PageId::FriendRoomBack> {
 };
 
 template <>
-struct Section::PageIdHelper<PageId::FriendRoomPage> {
+struct Section::PageIdHelper<PageId::FriendRoom> {
     using type = FriendRoomPage;
 };
 
 // TODO: FriendRoomMessageSelectPage class doesn't exist yet!
 template <>
-struct Section::PageIdHelper<PageId::FriendRoomMessageSelectPage> {
+struct Section::PageIdHelper<PageId::FriendRoomMessageSelect> {
     using type = Page;
 };
 

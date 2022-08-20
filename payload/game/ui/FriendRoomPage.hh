@@ -25,8 +25,6 @@ public:
     void onInit() override;
     void onActivate() override;
     void onDeactivate() override;
-    void afterCalc() override;
-    void onRefocus() override;
 
 private:
     void onCommentButtonFront(PushButton *button, u32 localPlayerId);
