@@ -87,20 +87,12 @@ void FriendRoomPage::onRefocus() {
 
 // Base function: 0x805d8f84
 void FriendRoomPage::onCommentButtonFront([[maybe_unused]] PushButton *button, [[maybe_unused]] u32 localPlayerId) {
-    // TODO: FriendRoomMessageSelectPage class doesn't exist yet!
-    auto *section = SectionManager::Instance()->currentSection();
-    auto *page = section->page<PageId::FriendRoomMessageSelectPage>()->downcast<Page>();
-
     push(PageId::FriendRoomMessageSelectPage, Anim::Next);
     m_instructionText.setMessage(4371, 0);
 }
 
 // Base function: 0x805d930c
 void FriendRoomPage::onCloseButtonFront([[maybe_unused]] PushButton *button, [[maybe_unused]] u32 localPlayerId) {
-    // TODO: FriendRoomMessageSelectPage class doesn't exist yet!
-    auto *section = SectionManager::Instance()->currentSection();
-    auto *page = section->page<PageId::FriendRoomMessageSelectPage>()->downcast<Page>();
-
     push(PageId::FriendRoomMessageSelectPage, Anim::Next);
     m_instructionText.setMessage(4373, 0);
 }
@@ -110,7 +102,7 @@ void FriendRoomPage::onRegisterButtonFront([[maybe_unused]] PushButton *button, 
 
 // Base function: 0x805d9160
 void FriendRoomPage::onBackButtonFront([[maybe_unused]] PushButton *button, [[maybe_unused]] u32 localPlayerId) {
-    YesNoPage *yesNoPage = SectionManager::Instance()->currentSection()->page<PageId::YesNoPopup>()->downcast<YesNoPage>();
+    YesNoPagePopup *yesNoPage = SectionManager::Instance()->currentSection()->page<PageId::YesNoPopup>();
 
     yesNoPage->reset();
     yesNoPage->setWindowMessage((m_roomRole == RoomRole::Host) + 20019, nullptr);
@@ -127,7 +119,7 @@ void FriendRoomPage::onButtonSelect(PushButton *button, [[maybe_unused]] u32 loc
 
 // Base function: 0x805d930c
 void FriendRoomPage::onBack([[maybe_unused]] u32 localPlayerId) {
-    YesNoPage *yesNoPage = SectionManager::Instance()->currentSection()->page(PageId::YesNoPopup)->downcast<YesNoPage>();
+    YesNoPagePopup *yesNoPage = SectionManager::Instance()->currentSection()->page<PageId::YesNoPopup>();
 
     yesNoPage->reset();
     yesNoPage->setWindowMessage((m_roomRole == RoomRole::Host) + 20019, nullptr);
