@@ -7,6 +7,7 @@ namespace UI {
 
 class ConfirmPage;
 class FriendRoomBackPage;
+class FriendRoomPage;
 class GhostManagerPage;
 class GlobePage;
 class MenuAwaitPage;
@@ -99,6 +100,17 @@ struct Section::PageIdHelper<PageId::Globe> {
 template <>
 struct Section::PageIdHelper<PageId::FriendRoomBack> {
     using type = FriendRoomBackPage;
+};
+
+template <>
+struct Section::PageIdHelper<PageId::FriendRoom> {
+    using type = FriendRoomPage;
+};
+
+// TODO: FriendRoomMessageSelectPage class doesn't exist yet!
+template <>
+struct Section::PageIdHelper<PageId::FriendRoomMessageSelect> {
+    using type = Page;
 };
 
 template <>

@@ -56,6 +56,8 @@ void FriendRoomBackPage::onActivate() {
         }
         m_queue.pop();
     }
+
+    push(PageId::FriendRoom, Anim::Next);
 }
 
 void FriendRoomBackPage::beforeInAnim() {
@@ -115,6 +117,11 @@ void FriendRoomBackPage::afterCalc() {
         m_players[m_indices[m_playerCount]].hide();
     }
     m_queue.pop();
+}
+
+void FriendRoomBackPage::onRefocus() {
+    m_queue.reset();
+    startReplace(Anim::Prev, 0.0f);
 }
 
 void FriendRoomBackPage::pop() {

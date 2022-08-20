@@ -95,9 +95,9 @@ bool AsyncSocket::poll() {
 
     if (m_connectTask) {
         s32 result = SOConnect(m_handle, &m_connectTask->address);
-        if (result == SO_EALREADY) {
+        if (result == SO_EINPROGRESS || result == SO_EALREADY) {
             return true;
-        } else if (result != 0) {
+        } else if (result != SO_EISCONN && result != 0) {
             SP_LOG("Failed to connect, returned %d", result);
             return false;
         }
