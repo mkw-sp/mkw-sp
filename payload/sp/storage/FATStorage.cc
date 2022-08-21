@@ -67,6 +67,7 @@ FATStorage::FATStorage() {
         if (m_prefixCount == 0) {
             createDir(L"/mkw-sp/My Stuff", true);
         }
+
         SP_LOG("Successfully completed initialization");
         m_ok = true;
         return;
