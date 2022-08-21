@@ -67,7 +67,6 @@ FATStorage::FATStorage() {
         if (m_prefixCount == 0) {
             createDir(L"/mkw-sp/My Stuff", true);
         }
-
         SP_LOG("Successfully completed initialization");
         m_ok = true;
         return;
@@ -191,6 +190,8 @@ std::optional<NodeInfo> FATStorage::stat(const wchar_t *path) {
     } else {
         info.type = NodeType::File;
     }
+    info.date = fInfo.fdate;
+    info.time = fInfo.ftime;
     info.size = fInfo.fsize;
     static_assert(sizeof(fInfo.fname) <= sizeof(info.name));
     memcpy(info.name, fInfo.fname, sizeof(fInfo.fname));
@@ -351,6 +352,8 @@ std::optional<NodeInfo> FATStorage::Dir::read() {
     } else {
         info.type = NodeType::File;
     }
+    info.date = fInfo.fdate;
+    info.time = fInfo.ftime;
     info.size = fInfo.fsize;
     static_assert(sizeof(fInfo.fname) <= sizeof(info.name));
     memcpy(info.name, fInfo.fname, sizeof(fInfo.fname));

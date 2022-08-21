@@ -7,6 +7,7 @@ extern "C" {
 
 #include <cstdio>
 #include <cwchar>
+#include <wctype.h>
 
 namespace SP::LogFile {
 
@@ -20,13 +21,13 @@ static OSThread thread;
 static u8 stack[4096];
 
 static void *Run(void *UNUSED(arg)) {
-    Storage::CreateDir(L"/mkw-sp/logs", true);
+    Storage::CreateDir(LOG_FILE_DIRECTORY, true);
 
     OSCalendarTime time;
     OSTicksToCalendarTime(OSGetTime(), &time);
 
     wchar_t logFilePath[48];
-    swprintf(logFilePath, sizeof(logFilePath), L"/mkw-sp/logs/%04d-%02d-%02d-%02d-%02d-%02d.log",
+    swprintf(logFilePath, sizeof(logFilePath), LOG_FILE_DIRECTORY L"/%04d-%02d-%02d-%02d-%02d-%02d" LOG_FILE_EXTENSION,
                                                 time.year, time.mon + 1, time.mday,
                                                 time.hour, time.min, time.sec);
 
@@ -59,8 +60,86 @@ static void *Run(void *UNUSED(arg)) {
     }
 }
 
+static bool IsValidLogFile(Storage::NodeInfo nodeInfo)
+{
+    if (nodeInfo.type != Storage::NodeType::File)
+        return false;
+
+    // YYYY-MM-DD-HH-MM-SS
+    if (wcslen(nodeInfo.name) != LOG_FILE_NAME_LENGTH)
+        return false;
+
+    const bool fileNameTable[] =
+    {
+        1, 1, 1, 1,
+        0,
+        1, 1,
+        0,
+        1, 1,
+        0,
+        1, 1,
+        0,
+        1, 1,
+        0,
+        1, 1,
+    };
+    static_assert(sizeof(fileNameTable) == LOG_FILE_NAME_LENGTH - LOG_FILE_EXTENSION_LENGTH);
+
+    for (size_t n = 0; n < sizeof(fileNameTable); n++)
+    {
+        const wchar_t wc = nodeInfo.name[n];
+
+        if (fileNameTable[n]) {
+            if (!(iswdigit(wc))) {
+                return false;
+            }
+        }
+        else if (wc != L'-') {
+            return false;
+        }
+    }
+
+    // .log
+    return (!(wcscmp(nodeInfo.name + LOG_FILE_NAME_LENGTH - LOG_FILE_EXTENSION_LENGTH, LOG_FILE_EXTENSION)));
+}
+
+static bool ShouldDeleteLogFile(Storage::NodeInfo nodeInfo)
+{
+    OSCalendarTime time;
+    OSTicksToCalendarTime(OSGetTime(), &time);
+
+    return ((int)nodeInfo.GetYear()  != time.year    ||
+            (int)nodeInfo.GetMonth() != time.mon + 1 ||
+            (int)nodeInfo.GetDay()   != time.mday);
+}
+
+static void RemoveOldLogFiles()
+{
+    auto dir = Storage::OpenDir(LOG_FILE_DIRECTORY);
+    if (!dir)
+        return;
+
+    while (auto nodeInfo = dir->read())
+    {
+        if (!IsValidLogFile(*nodeInfo))
+            continue;
+
+        if (!ShouldDeleteLogFile(*nodeInfo))
+            continue;
+
+        wchar_t logFilePath[48];
+        swprintf(logFilePath, sizeof(logFilePath), LOG_FILE_DIRECTORY L"/%ls", nodeInfo->name);
+
+        if (!Storage::Remove(logFilePath, true)) {
+            SP_LOG("Failed to remove the log file '%ls'!", logFilePath);
+        }
+    }
+}
+
 static void Init() {
     startTime = OSGetTime();
+
+    RemoveOldLogFiles();
 
     OSCreateThread(&thread, Run, nullptr, stack + sizeof(stack), sizeof(stack), 31, 0);
     OSResumeThread(&thread);
