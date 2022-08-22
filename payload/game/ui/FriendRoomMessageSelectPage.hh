@@ -55,8 +55,8 @@ private:
     s32 m_maxPageIdx;
     s32 m_currentPageIdx;
 
-    /*H<MultiControlInputManager> m_onBack{ this, &FriendRoomMessageSelectPage::onBack };
-    H<PushButton> m_onCommentButtonFront{ this, &FriendRoomMessageSelectPage::onCommentButtonFront };
+    H<MultiControlInputManager> m_onBack{ this, &FriendRoomMessageSelectPage::onBack };
+    /*H<PushButton> m_onCommentButtonFront{ this, &FriendRoomMessageSelectPage::onCommentButtonFront };
     H<PushButton> m_onCloseButtonFront{ this, &FriendRoomMessageSelectPage::onCloseButtonFront };*/
 };
 

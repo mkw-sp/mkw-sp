@@ -33,7 +33,7 @@ void FriendRoomMessageSelectPage::onInit() {
     m_sheetSelect.setRightHandler(nullptr);
     m_sheetSelect.setLeftHandler(nullptr);
     m_backButton.setFrontHandler(nullptr, false);
-    m_inputManager.setHandler(MenuInputManager::InputId::Back, nullptr, false, false);
+    m_inputManager.setHandler(MenuInputManager::InputId::Back, &m_onBack, false, false);
     m_backButton.selectDefault(0);
 }
 
@@ -41,6 +41,10 @@ void FriendRoomMessageSelectPage::onActivate() {
     switch (m_menuType) {
     case MenuType::Comment:
         m_messageCount = 96;
+
+        m_commentSelectBG.setPaneVisible("blue_null", true);
+        m_commentSelectBG.setPaneVisible("yellow_null", false);
+        m_commentSelectBG.setPaneVisible("pink_null", false);
         break;
     case MenuType::Close:
         m_messageCount = 4;
@@ -54,12 +58,16 @@ void FriendRoomMessageSelectPage::onActivate() {
     }
 
     // Vanilla accounts for negative numbers, this doesn't
-    m_maxPageIdx = m_messageCount >> 2;
+    m_maxPageIdx = m_messageCount / 4 + 1;
     m_currentPageIdx = 0;
 }
 
 void FriendRoomMessageSelectPage::onDeactivate() {
     m_menuType = MenuType::None;
+}
+
+void FriendRoomMessageSelectPage::onBack([[maybe_unused]] u32 localPlayerId) {
+    startReplace(Anim::Prev, 0.0f);
 }
 
 } // namespace UI
