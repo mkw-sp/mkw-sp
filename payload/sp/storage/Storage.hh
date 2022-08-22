@@ -22,8 +22,8 @@ struct NodeInfo {
     NodeId id;
     NodeType type;
     u64 size;
-    u16 date;
-    u16 time;
+    u16 date = 0;
+    u16 time = 0;
     wchar_t name[255 + 1];
 
     u32 GetYear() { return (date >> 9) + 1980; }
