@@ -66,31 +66,18 @@ static bool IsValidLogFile(Storage::NodeInfo nodeInfo)
     if (nodeInfo.type != Storage::NodeType::File)
         return false;
 
-    // YYYY-MM-DD-HH-MM-SS
     if (wcslen(nodeInfo.name) != LOG_FILE_NAME_LENGTH)
         return false;
 
-    const bool fileNameTable[] =
-    {
-        true, true, true, true,
-        false,
-        true, true,
-        false,
-        true, true,
-        false,
-        true, true,
-        false,
-        true, true,
-        false,
-        true, true,
-    };
-    static_assert(sizeof(fileNameTable) == LOG_FILE_NAME_LENGTH - LOG_FILE_EXTENSION_LENGTH);
+    const char fileNameFormat[] = "DDDD-DD-DD-DD-DD-DD";
+    const size_t fileNameLength = sizeof(fileNameFormat) - 1;
+    static_assert(fileNameLength == LOG_FILE_NAME_LENGTH - LOG_FILE_EXTENSION_LENGTH);
 
-    for (size_t n = 0; n < sizeof(fileNameTable); n++)
+    for (size_t n = 0; n < fileNameLength; n++)
     {
         const wchar_t wc = nodeInfo.name[n];
 
-        if (fileNameTable[n]) {
+        if (fileNameFormat[n] == 'D') {
             if (!(iswdigit(wc))) {
                 return false;
             }
@@ -100,7 +87,6 @@ static bool IsValidLogFile(Storage::NodeInfo nodeInfo)
         }
     }
 
-    // .log
     return std::wstring_view(nodeInfo.name).ends_with(LOG_FILE_EXTENSION);
 }
 
