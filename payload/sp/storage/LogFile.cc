@@ -71,17 +71,17 @@ static bool IsValidLogFile(Storage::NodeInfo nodeInfo)
 
     const bool fileNameTable[] =
     {
-        1, 1, 1, 1,
-        0,
-        1, 1,
-        0,
-        1, 1,
-        0,
-        1, 1,
-        0,
-        1, 1,
-        0,
-        1, 1,
+        true, true, true, true,
+        false,
+        true, true,
+        false,
+        true, true,
+        false,
+        true, true,
+        false,
+        true, true,
+        false,
+        true, true,
     };
     static_assert(sizeof(fileNameTable) == LOG_FILE_NAME_LENGTH - LOG_FILE_EXTENSION_LENGTH);
 
