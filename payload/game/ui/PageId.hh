@@ -66,6 +66,7 @@ enum class PageId {
     MissionDrift = 0x7d,
     MissionTutorial = 0x7e,
 
+    DirectConnection = 0x84, // Replaces WifiConnect (or something)
     OnlineTop = 0x8b, // Replaces WifiTop
     Globe = 0x95,
     FriendRoomRules = 0x9a, // Replaces FriendJoin

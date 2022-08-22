@@ -1,6 +1,7 @@
 #include "Section.hh"
 
 #include "game/ui/ChannelPage.hh"
+#include "game/ui/DirectConnectionPage.hh"
 #include "game/ui/FriendMatchingPage.hh"
 #include "game/ui/FriendRoomBackPage.hh"
 #include "game/ui/FriendRoomPage.hh"
@@ -49,7 +50,6 @@ void Section::addPage(PageId pageId) {
         { SectionId::OnlineSingle, (PageId)0x6d },
         { SectionId::OnlineSingle, (PageId)0x76 },
         { SectionId::OnlineSingle, (PageId)0x7f },
-        { SectionId::OnlineSingle, (PageId)0x84 },
         { SectionId::OnlineSingle, (PageId)0x85 },
         { SectionId::OnlineSingle, (PageId)0x86 },
         { SectionId::OnlineSingle, (PageId)0x87 },
@@ -77,7 +77,6 @@ void Section::addPage(PageId pageId) {
         { SectionId::OnlineMulti, (PageId)0x7f },
         { SectionId::OnlineMulti, (PageId)0x81 },
         { SectionId::OnlineMulti, (PageId)0x82 },
-        { SectionId::OnlineMulti, (PageId)0x84 },
         { SectionId::OnlineMulti, (PageId)0x85 },
         { SectionId::OnlineMulti, (PageId)0x86 },
         { SectionId::OnlineMulti, (PageId)0x87 },
@@ -314,6 +313,8 @@ Page *Section::CreatePage(PageId pageId) {
         return new SingleTopPage;
     case PageId::TimeAttackGhostList:
         return new TimeAttackGhostListPage;
+    case PageId::DirectConnection:
+        return new DirectConnectionPage;
     case PageId::OnlineTop:
         return new OnlineTopPage;
     case PageId::FriendRoomRules:

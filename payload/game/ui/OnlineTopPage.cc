@@ -63,7 +63,7 @@ void OnlineTopPage::onSettingsButtonFront([[maybe_unused]] PushButton *button,
 
 void OnlineTopPage::onConnectButtonFront([[maybe_unused]] PushButton *button,
         [[maybe_unused]] u32 localPlayerId) {
-    m_replacement = PageId::FriendMatching;
+    m_replacement = PageId::DirectConnection;
     f32 delay = button->getDelay();
     startReplace(Anim::Next, delay);
 }
