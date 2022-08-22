@@ -7,6 +7,7 @@ extern "C" {
 
 #include <cstdio>
 #include <cwchar>
+#include <string_view>
 #include <wctype.h>
 
 namespace SP::LogFile {
@@ -100,7 +101,7 @@ static bool IsValidLogFile(Storage::NodeInfo nodeInfo)
     }
 
     // .log
-    return (!(wcscmp(nodeInfo.name + LOG_FILE_NAME_LENGTH - LOG_FILE_EXTENSION_LENGTH, LOG_FILE_EXTENSION)));
+    return std::wstring_view(nodeInfo.name).ends_with(LOG_FILE_EXTENSION);
 }
 
 static bool ShouldDeleteLogFile(Storage::NodeInfo nodeInfo)
