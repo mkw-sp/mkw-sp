@@ -6,9 +6,8 @@ extern "C" {
 #include "sp/storage/Storage.hh"
 
 #include <cstdio>
-#include <cwchar>
+#include <cwctype>
 #include <string_view>
-#include <wctype.h>
 
 namespace SP::LogFile {
 
