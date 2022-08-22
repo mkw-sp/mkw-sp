@@ -36,6 +36,7 @@ public:
     SheetSelectControl();
     ~SheetSelectControl() override;
     void dt(s32 type) override;
+    void init() override;
 
     void load(const char *dir, const char *rightFile, const char *rightVariant,
             const char *leftFile, const char *leftVariant, u32 playerFlags, bool r10,
@@ -64,5 +65,14 @@ private:
     SheetSelectButton m_leftButton;
 };
 static_assert(sizeof(SheetSelectControl) == 0x538);
+
+class SheetSelectControlScaleFade : public SheetSelectControl {
+public:
+    SheetSelectControlScaleFade();
+    ~SheetSelectControlScaleFade() override;
+    void vf_28() override;
+    void vf_2c() override;
+    virtual void vf_38();
+};
 
 } // namespace UI

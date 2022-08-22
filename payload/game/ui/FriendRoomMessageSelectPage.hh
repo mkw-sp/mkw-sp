@@ -27,6 +27,8 @@ public:
 private:
     class MessageSelectControl : public LayoutUIControl {
     public:
+        MessageSelectControl() = default;
+        ~MessageSelectControl() override = default;
         void load();
     private:
         PushButton m_buttons[4];
@@ -44,10 +46,10 @@ private:
     using H = typename T::Handler<FriendRoomMessageSelectPage>;
 
     MultiControlInputManager m_inputManager;
-    LayoutUIControl m_commentSelectBG;
+    LayoutUIControlScaleFade m_commentSelectBG;
     MessageSelectControl m_messageSelects[2];
-    SheetSelectControl m_sheetSelect;
-    LayoutUIControl m_messageSelectPageNum;
+    SheetSelectControlScaleFade m_sheetSelect;
+    LayoutUIControlScaleFade m_messageSelectPageNum;
     LayoutUIControl m_friendRoomMessageSelectObiBottom;
     CtrlMenuBackButton m_backButton;
     MenuType m_menuType;

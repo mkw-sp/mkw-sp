@@ -83,4 +83,13 @@ private:
 };
 static_assert(sizeof(LayoutUIControl) == 0x174);
 
+class LayoutUIControlScaleFade : public LayoutUIControl {
+public:
+    LayoutUIControlScaleFade();
+    ~LayoutUIControlScaleFade() override;
+    void vf_20() override;
+    void vf_28() override;
+    void vf_2c() override;
+};
+
 } // namespace UI
