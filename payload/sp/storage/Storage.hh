@@ -26,9 +26,9 @@ struct NodeInfo {
     u16 time = 0;
     wchar_t name[255 + 1];
 
-    u32 GetYear() { return (date >> 9) + 1980; }
-    u32 GetMonth() { return date >> 5 & 15; }
-    u32 GetDay() { return date & 31; }
+    constexpr u32 GetYear() { return (date >> 9) + 1980; }
+    constexpr u32 GetMonth() { return date >> 5 & 15; }
+    constexpr u32 GetDay() { return date & 31; }
 };
 
 class FileHandle;
