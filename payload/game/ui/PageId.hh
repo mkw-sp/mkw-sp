@@ -42,6 +42,7 @@ enum class PageId {
     TopMenu = 0x5A,
     Model = 0x5C,
     Obi = 0x5E,
+    MultiPadRegister = 0x61,
     LicenseSelect = 0x65,
     LicenseSettingsTop = 0x67,
     SingleTop = 0x69,
@@ -66,6 +67,7 @@ enum class PageId {
     MissionDrift = 0x7d,
     MissionTutorial = 0x7e,
     ModelRender = 0x7f,
+    MultiTop = 0x80,
 
     OnlineTop = 0x8b, // Replaces WifiTop
     VotingBack = 0x90, // Replaces CountDownTimer

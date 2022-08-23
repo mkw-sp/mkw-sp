@@ -7,17 +7,18 @@
 #include "game/ui/FriendRoomPage.hh"
 #include "game/ui/FriendRoomRulesPage.hh"
 #include "game/ui/LicenseSelectPage.hh"
-#include "game/ui/VotingBackPage.hh"
 #include "game/ui/ModelRenderPage.hh"
+#include "game/ui/MultiTopPage.hh"
 #include "game/ui/OnlineTopPage.hh"
-#include "game/ui/SettingsPage.hh"
 #include "game/ui/ServicePackToolsPage.hh"
 #include "game/ui/ServicePackTopPage.hh"
+#include "game/ui/SettingsPage.hh"
 #include "game/ui/SingleTopPage.hh"
 #include "game/ui/StorageBenchmarkPage.hh"
 #include "game/ui/TeamConfirmPage.hh"
 #include "game/ui/TimeAttackGhostListPage.hh"
 #include "game/ui/UpdatePage.hh"
+#include "game/ui/VotingBackPage.hh"
 #include "game/ui/page/DriftSelectPage.hh"
 
 namespace UI {
@@ -351,6 +352,8 @@ Page *Section::CreatePage(PageId pageId) {
         return new TimeAttackGhostListPage;
     case PageId::TeamConfirm:
         return new TeamConfirmPage;
+    case PageId::MultiTop:
+        return new MultiTopPage;
     case PageId::OnlineTop:
         return new OnlineTopPage;
     case PageId::VotingBack:

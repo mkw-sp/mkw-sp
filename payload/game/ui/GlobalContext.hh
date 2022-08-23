@@ -17,7 +17,9 @@ public:
 
     u8 _000[0x074 - 0x000];
     u32 _74;
-    u8 _078[0x12c - 0x078];
+    u8 _078[0x124 - 0x078];
+    u32 m_localPlayerCount;
+    u8 _128[0x12c - 0x128];
     u32 m_timeAttackCharacterId;
     u8 _130[0x13c - 0x130];
     u32 m_timeAttackVehicleId;

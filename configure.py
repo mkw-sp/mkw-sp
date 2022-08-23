@@ -212,6 +212,7 @@ asset_in_files = {
         os.path.join('button', 'anim', 'common_w083_earth_chat_message_text_light_02_select.brlan.json5'),
         os.path.join('button', 'anim', 'common_w083_earth_chat_message_text_light_02_stop.brlan.json5'),
         os.path.join('button', 'blyt', 'common_w083_earth_chat_message.brlyt.json5'),
+        os.path.join('button', 'blyt', 'common_w132_movie_button_multi.brlyt.json5'),
         os.path.join('button', 'ctrl', 'SettingsButton.brctr.json5'),
         # Explanation text with 2 lines
         os.path.join('bg', 'blyt', 'obi_bottom.brlyt.json5'),
@@ -1063,6 +1064,7 @@ code_in_files = {
         os.path.join('payload', 'game', 'ui', 'Model.S'),
         os.path.join('payload', 'game', 'ui', 'ModelPage.cc'),
         os.path.join('payload', 'game', 'ui', 'ModelRenderPage.cc'),
+        os.path.join('payload', 'game', 'ui', 'MultiTopPage.cc'),
         os.path.join('payload', 'game', 'ui', 'OnlineTopPage.cc'),
         os.path.join('payload', 'game', 'ui', 'Option.cc'),
         os.path.join('payload', 'game', 'ui', 'Page.cc'),
