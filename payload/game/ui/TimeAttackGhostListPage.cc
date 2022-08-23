@@ -54,7 +54,7 @@ void TimeAttackGhostListPage::onInit() {
     insertChild(10, &m_backButton, 0);
 
     m_titleText.load(/* isOptions = */ false);
-    m_settingsButton.load("button", "RuleSetting", "ButtonRuleSetting", 0x1, false, false);
+    m_settingsButton.load("button", "SettingsButton", "Option", 0x1, false, false);
     m_ghostSelects[0].load();
     m_ghostSelects[1].load();
     m_sheetSelect.load("button", "TimeAttackGhostListArrowRight", "ButtonArrowRight",
@@ -85,7 +85,6 @@ void TimeAttackGhostListPage::onInit() {
     m_backButton.setFrontHandler(&m_onBackButtonFront, false);
 
     m_titleText.setMessage(3407);
-    m_settingsButton.setMessageAll(10076);
     m_messageWindow.setMessageAll(3101);
 }
 

@@ -3,6 +3,7 @@
 #include "game/system/RaceConfig.hh"
 #include "game/ui/ModelPage.hh"
 #include "game/ui/SectionManager.hh"
+#include "game/ui/SettingsPage.hh"
 #include "game/ui/page/MenuPage.hh"
 
 namespace UI {
@@ -18,28 +19,31 @@ PageId SingleTopPage::getReplacement() {
 void SingleTopPage::onInit() {
     m_inputManager.init(0x1, false);
     setInputManager(&m_inputManager);
-    m_inputManager.setWrappingMode(MultiControlInputManager::WrappingMode::Both);
+    m_inputManager.setWrappingMode(MultiControlInputManager::WrappingMode::Neither);
 
 #if ENABLE_MR
+    initChildren(8);
+    insertChild(0, &m_pageTitleText, 0);
+    insertChild(1, &m_settingsButton, 0);
+    insertChild(2, &m_taButton, 0);
+    insertChild(3, &m_vsButton, 0);
+    insertChild(4, &m_btButton, 0);
+    insertChild(5, &m_mrButton, 0);
+    insertChild(6, &m_instructionText, 0);
+    insertChild(7, &m_backButton, 0);
+#else
     initChildren(7);
     insertChild(0, &m_pageTitleText, 0);
-    insertChild(1, &m_taButton, 0);
-    insertChild(2, &m_vsButton, 0);
-    insertChild(3, &m_btButton, 0);
-    insertChild(4, &m_mrButton, 0);
+    insertChild(1, &m_settingsButton, 0);
+    insertChild(2, &m_taButton, 0);
+    insertChild(3, &m_vsButton, 0);
+    insertChild(4, &m_btButton, 0);
     insertChild(5, &m_instructionText, 0);
     insertChild(6, &m_backButton, 0);
-#else
-    initChildren(6);
-    insertChild(0, &m_pageTitleText, 0);
-    insertChild(1, &m_taButton, 0);
-    insertChild(2, &m_vsButton, 0);
-    insertChild(3, &m_btButton, 0);
-    insertChild(4, &m_instructionText, 0);
-    insertChild(5, &m_backButton, 0);
 #endif
 
     m_pageTitleText.load(false);
+    m_settingsButton.load("button", "SettingsButton", "Option", 0x1, false, false);
 #if ENABLE_MR
     m_taButton.load("button", "SingleTop", "ButtonTA", 0x1, false, false);
     m_vsButton.load("button", "SingleTop", "ButtonVS", 0x1, false, false);
@@ -54,6 +58,8 @@ void SingleTopPage::onInit() {
     m_backButton.load("button", "Back", "ButtonBack", 0x1, false, true);
 
     m_inputManager.setHandler(MenuInputManager::InputId::Back, &m_onBack, false, false);
+    m_settingsButton.setFrontHandler(&m_onSettingsButtonFront, false);
+    m_settingsButton.setSelectHandler(&m_onSettingsButtonSelect, false);
     m_taButton.setFrontHandler(&m_onTAButtonFront, false);
     m_taButton.setSelectHandler(&m_onTAButtonSelect, false);
     m_vsButton.setFrontHandler(&m_onVSButtonFront, false);
@@ -94,6 +100,21 @@ void SingleTopPage::onActivate() {
 
 void SingleTopPage::onBack([[maybe_unused]] u32 localPlayerId) {
     changeSection(SectionId::TitleFromMenu, Anim::Prev, 0.0f);
+}
+
+void SingleTopPage::onSettingsButtonFront([[maybe_unused]] PushButton *button,
+        [[maybe_unused]] u32 localPlayerId) {
+    auto *section = SectionManager::Instance()->currentSection();
+    auto *settingsPage = section->page<PageId::Settings>();
+    settingsPage->m_replacement = PageId::SingleTop;
+    m_replacement = PageId::Settings;
+    f32 delay = button->getDelay();
+    startReplace(Anim::Next, delay);
+}
+
+void SingleTopPage::onSettingsButtonSelect([[maybe_unused]] PushButton *button,
+        [[maybe_unused]] u32 localPlayerId) {
+    m_instructionText.setMessage(10077);
 }
 
 void SingleTopPage::onTAButtonFront([[maybe_unused]] PushButton *button,

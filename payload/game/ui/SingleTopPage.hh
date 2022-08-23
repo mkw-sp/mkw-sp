@@ -22,6 +22,8 @@ public:
 
 private:
     void onBack(u32 localPlayerId);
+    void onSettingsButtonFront(PushButton *button, u32 localPlayerId);
+    void onSettingsButtonSelect(PushButton *button, u32 localPlayerId);
     void onTAButtonFront(PushButton *button, u32 localPlayerId);
     void onTAButtonSelect(PushButton *button, u32 localPlayerId);
     void onVSButtonFront(PushButton *button, u32 localPlayerId);
@@ -40,6 +42,7 @@ private:
 
     MultiControlInputManager m_inputManager;
     CtrlMenuPageTitleText m_pageTitleText;
+    PushButton m_settingsButton;
     PushButton m_taButton;
     PushButton m_vsButton;
     PushButton m_btButton;
@@ -49,6 +52,8 @@ private:
     CtrlMenuInstructionText m_instructionText;
     CtrlMenuBackButton m_backButton;
     H<MultiControlInputManager> m_onBack{ this, &SingleTopPage::onBack };
+    H<PushButton> m_onSettingsButtonFront{ this, &SingleTopPage::onSettingsButtonFront };
+    H<PushButton> m_onSettingsButtonSelect{ this, &SingleTopPage::onSettingsButtonSelect };
     H<PushButton> m_onTAButtonFront{ this, &SingleTopPage::onTAButtonFront };
     H<PushButton> m_onTAButtonSelect{ this, &SingleTopPage::onTAButtonSelect };
     H<PushButton> m_onVSButtonFront{ this, &SingleTopPage::onVSButtonFront };

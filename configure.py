@@ -288,6 +288,7 @@ asset_in_files = {
         os.path.join('button', 'blyt', 'common_w129_movie_button_single_top.brlyt.json5'),
         os.path.join('button', 'blyt', 'common_w129_movie_button_single_top_no_mr.brlyt.json5'),
         os.path.join('button', 'ctrl', 'MissionInstruction.brctr.json5'),
+        os.path.join('button', 'ctrl', 'SettingsButton.brctr.json5'),
         os.path.join('button', 'ctrl', 'SingleTop.brctr.json5'),
         os.path.join('button', 'ctrl', 'SingleTopNoMR.brctr.json5'),
         # Ghost list
