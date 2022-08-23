@@ -6,7 +6,7 @@ namespace SP::ClientSettings {
 
 const char name[] = "MKW-SP Settings";
 
-const u32 categoryMessageIds[] = { 10118, 10126, 10119, 10258, 10120 };
+const u32 categoryMessageIds[] = { 10118, 10126, 10119, 10262, 10258, 10120 };
 
 const Entry entries[] = {
     [static_cast<u32>(Setting::DriftMode)] = {
@@ -204,6 +204,56 @@ const Entry entries[] = {
         .valueExplanationMessageIds = (u32[]) { 10067, 10068, 10069 },
         .vanillaValue = static_cast<u32>(TAGhostSound::Watched),
     },
+    [static_cast<u32>(Setting::VSTeamSize)] = {
+        .category = Category::VS,
+        .name = magic_enum::enum_name(Setting::VSTeamSize),
+        .messageId = 10207,
+        .defaultValue = static_cast<u32>(VSTeamSize::FFA),
+        .valueCount = magic_enum::enum_count<VSTeamSize>(),
+        .valueNames = magic_enum::enum_names<VSTeamSize>().data(),
+        .valueMessageIds = (u32[]) { 10208, 10209, 10210, 10211, 10212 },
+        .valueExplanationMessageIds = (u32[]) { 10213, 10214, 10215, 10216, 10217 },
+    },
+    [static_cast<u32>(Setting::VSRaceCount)] = {
+        .category = Category::VS,
+        .name = magic_enum::enum_name(Setting::VSRaceCount),
+        .messageId = 10224,
+        .defaultValue = 4,
+        .valueCount = 32,
+        .valueNames = nullptr,
+        .valueMessageIds = (u32[]) { 10225 },
+        .valueExplanationMessageIds = (u32[]) { 10226 },
+    },
+    [static_cast<u32>(Setting::VSCourseSelection)] = {
+        .category = Category::VS,
+        .name = magic_enum::enum_name(Setting::VSCourseSelection),
+        .messageId = 10227,
+        .defaultValue = static_cast<u32>(VSCourseSelection::Choose),
+        .valueCount = magic_enum::enum_count<VSCourseSelection>(),
+        .valueNames = magic_enum::enum_names<VSCourseSelection>().data(),
+        .valueMessageIds = (u32[]) { 3441, 10228, 3443 },
+        .valueExplanationMessageIds = (u32[]) { 10260, 10231, 10261 },
+    },
+    [static_cast<u32>(Setting::VSClass)] = {
+        .category = Category::VS,
+        .name = magic_enum::enum_name(Setting::VSClass),
+        .messageId = 10234,
+        .defaultValue = static_cast<u32>(VSClass::Mixed),
+        .valueCount = magic_enum::enum_count<VSClass>(),
+        .valueNames = magic_enum::enum_names<VSClass>().data(),
+        .valueMessageIds = (u32[]) { 10235, 10236, 10237, 10238 },
+        .valueExplanationMessageIds = (u32[]) { 10239, 10240, 10241, 10242 },
+    },
+    [static_cast<u32>(Setting::VSVehicles)] = {
+        .category = Category::VS,
+        .name = magic_enum::enum_name(Setting::VSVehicles),
+        .messageId = 10243,
+        .defaultValue = static_cast<u32>(VSVehicles::All),
+        .valueCount = magic_enum::enum_count<VSVehicles>(),
+        .valueNames = magic_enum::enum_names<VSVehicles>().data(),
+        .valueMessageIds = (u32[]) { 10244, 10245, 10246, 10247, 10248, 10249, 10250 },
+        .valueExplanationMessageIds = (u32[]) { 10251, 10252, 10253, 10254, 10255, 10256, 10257 },
+    },
     [static_cast<u32>(Setting::RoomTeamSize)] = {
         .category = Category::Room,
         .name = magic_enum::enum_name(Setting::RoomTeamSize),
@@ -242,8 +292,8 @@ const Entry entries[] = {
         .defaultValue = static_cast<u32>(RoomCourseSelection::Random),
         .valueCount = magic_enum::enum_count<RoomCourseSelection>(),
         .valueNames = magic_enum::enum_names<RoomCourseSelection>().data(),
-        .valueMessageIds = (u32[]) { 10228, 10229, 10230 },
-        .valueExplanationMessageIds = (u32[]) { 10231, 10232, 10233 },
+        .valueMessageIds = (u32[]) { 10228, 3443, 10229, 10230 },
+        .valueExplanationMessageIds = (u32[]) { 10231, 10261, 10232, 10233 },
     },
     [static_cast<u32>(Setting::RoomClass)] = {
         .category = Category::Room,

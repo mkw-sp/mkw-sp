@@ -29,6 +29,13 @@ enum class Setting {
     TASolidGhosts,
     TAGhostSound,
 
+    // VS
+    VSTeamSize,
+    VSRaceCount,
+    VSCourseSelection,
+    VSClass,
+    VSVehicles,
+
     // Room
     RoomTeamSize,
     RoomTeamSelection,
@@ -50,6 +57,7 @@ enum class Category {
     Race,
     Sound,
     TA,
+    VS,
     Room,
     License,
 };
@@ -153,6 +161,37 @@ enum class TAGhostSound {
     All,
 };
 
+enum class VSTeamSize {
+    FFA,
+    Two,
+    Three,
+    Four,
+    Six,
+};
+
+enum class VSCourseSelection {
+    Choose,
+    Random,
+    InOrder,
+};
+
+enum class VSClass {
+    Mixed,
+    CC150,
+    Mirror,
+    CC200,
+};
+
+enum class VSVehicles {
+    All,
+    Karts,
+    Bikes,
+    InsideDrift,
+    OutsideDrift,
+    Optimal,
+    Random,
+};
+
 enum class RoomTeamSize {
     FFA,
     Two,
@@ -169,6 +208,7 @@ enum class RoomTeamSelection {
 
 enum class RoomCourseSelection {
     Random,
+    InOrder,
     Host,
     Vote,
 };
@@ -311,6 +351,31 @@ struct Helper<ClientSettings::Setting, ClientSettings::Setting::TASolidGhosts> {
 template <>
 struct Helper<ClientSettings::Setting, ClientSettings::Setting::TAGhostSound> {
     using type = SP::ClientSettings::TAGhostSound;
+};
+
+template <>
+struct Helper<ClientSettings::Setting, ClientSettings::Setting::VSTeamSize> {
+    using type = SP::ClientSettings::VSTeamSize;
+};
+
+template <>
+struct Helper<ClientSettings::Setting, ClientSettings::Setting::VSRaceCount> {
+    using type = u32;
+};
+
+template <>
+struct Helper<ClientSettings::Setting, ClientSettings::Setting::VSCourseSelection> {
+    using type = SP::ClientSettings::VSCourseSelection;
+};
+
+template <>
+struct Helper<ClientSettings::Setting, ClientSettings::Setting::VSClass> {
+    using type = SP::ClientSettings::VSClass;
+};
+
+template <>
+struct Helper<ClientSettings::Setting, ClientSettings::Setting::VSVehicles> {
+    using type = SP::ClientSettings::VSVehicles;
 };
 
 template <>

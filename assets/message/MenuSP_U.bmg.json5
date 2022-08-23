@@ -951,6 +951,18 @@
         "font": "regular",
         "string": "Team Selection",
     },
+    "10260": {
+        "font": "regular",
+        "string": "Courses are chosen individually.",
+    },
+    "10261": {
+        "font": "regular",
+        "string": "Courses are played in order.",
+    },
+    "10262": {
+        "font": "regular",
+        "string": "Offline VS",
+    },
     "20000": {
         "font": "regular",
         "string": "Online",
