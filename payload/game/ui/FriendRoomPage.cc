@@ -1,5 +1,6 @@
 #include "FriendRoomPage.hh"
 
+#include "game/ui/FriendRoomMessageSelectPage.hh"
 #include "game/ui/Section.hh"
 #include "game/ui/SectionManager.hh"
 
@@ -75,11 +76,17 @@ void FriendRoomPage::onDeactivate() {
 }
 
 void FriendRoomPage::onCommentButtonFront([[maybe_unused]] PushButton *button, [[maybe_unused]] u32 localPlayerId) {
+    FriendRoomMessageSelectPage *messageSelectPage = SectionManager::Instance()->currentSection()->page<PageId::FriendRoomMessageSelect>();
+    messageSelectPage->setMenuType(FriendRoomMessageSelectPage::MenuType::Comment);
+
     push(PageId::FriendRoomMessageSelect, Anim::Next);
     m_instructionText.setMessage(4371, 0);
 }
 
 void FriendRoomPage::onCloseButtonFront([[maybe_unused]] PushButton *button, [[maybe_unused]] u32 localPlayerId) {
+    FriendRoomMessageSelectPage *messageSelectPage = SectionManager::Instance()->currentSection()->page<PageId::FriendRoomMessageSelect>();
+    messageSelectPage->setMenuType(FriendRoomMessageSelectPage::MenuType::Close);
+
     push(PageId::FriendRoomMessageSelect, Anim::Next);
     m_instructionText.setMessage(4373, 0);
 }

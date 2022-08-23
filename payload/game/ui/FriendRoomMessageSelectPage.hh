@@ -23,6 +23,8 @@ public:
     void onInit() override;
     void onActivate() override;
     void onDeactivate() override;
+    void initText();
+    void setMenuType(MenuType menuType) { m_menuType = menuType; }
 
 private:
     class MessageSelectControl : public LayoutUIControl {
@@ -30,7 +32,7 @@ private:
         MessageSelectControl() = default;
         ~MessageSelectControl() override = default;
         void load();
-    private:
+
         PushButton m_buttons[4];
     };
 
@@ -54,12 +56,14 @@ private:
     CtrlMenuBackButton m_backButton;
     MenuType m_menuType;
     s32 m_messageCount;
-    s32 m_maxPageIdx;
+    s32 m_pageCount;
     s32 m_currentPageIdx;
+    s32 m_cachedSheetIdx;
+    s32 m_cachedButton;
 
     H<MultiControlInputManager> m_onBack{ this, &FriendRoomMessageSelectPage::onBack };
-    /*H<PushButton> m_onCommentButtonFront{ this, &FriendRoomMessageSelectPage::onCommentButtonFront };
-    H<PushButton> m_onCloseButtonFront{ this, &FriendRoomMessageSelectPage::onCloseButtonFront };*/
+    H<PushButton> m_onCommentButtonFront{ this, &FriendRoomMessageSelectPage::onCommentButtonFront };
+    /*H<PushButton> m_onCloseButtonFront{ this, &FriendRoomMessageSelectPage::onCloseButtonFront };*/
 };
 
 } // namespace UI

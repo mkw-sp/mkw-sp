@@ -1,5 +1,6 @@
 #include "FriendRoomMessageSelectPage.hh"
 
+#include "game/ui/Font.hh"
 #include "game/ui/MenuInputManager.hh"
 
 namespace UI {
@@ -35,6 +36,9 @@ void FriendRoomMessageSelectPage::onInit() {
     m_backButton.setFrontHandler(nullptr, false);
     m_inputManager.setHandler(MenuInputManager::InputId::Back, &m_onBack, false, false);
     m_backButton.selectDefault(0);
+
+    m_cachedSheetIdx = 0;
+    m_cachedButton = 0;
 }
 
 void FriendRoomMessageSelectPage::onActivate() {
@@ -42,32 +46,90 @@ void FriendRoomMessageSelectPage::onActivate() {
     case MenuType::Comment:
         m_messageCount = 96;
 
+        for (u8 i = 0; i < 4; i++) {
+            m_messageSelects[0].m_buttons[i].setFrontHandler(&m_onCommentButtonFront, false);
+            m_messageSelects[1].m_buttons[i].setFrontHandler(&m_onCommentButtonFront, false);
+        }
+
         m_commentSelectBG.setPaneVisible("blue_null", true);
         m_commentSelectBG.setPaneVisible("yellow_null", false);
         m_commentSelectBG.setPaneVisible("pink_null", false);
         break;
     case MenuType::Close:
         m_messageCount = 4;
+
+        m_commentSelectBG.setPaneVisible("blue_null", false);
+        m_commentSelectBG.setPaneVisible("yellow_null", false);
+        m_commentSelectBG.setPaneVisible("pink_null", true);
         break;
     case MenuType::Register:
         // m_messageCount should be set to non-friends in room
         // Requires online implementation
+
+        m_commentSelectBG.setPaneVisible("blue_null", false);
+        m_commentSelectBG.setPaneVisible("yellow_null", true);
+        m_commentSelectBG.setPaneVisible("pink_null", false);
         break;
     default:
         break;
     }
 
     // Vanilla accounts for negative numbers, this doesn't
-    m_maxPageIdx = m_messageCount / 4 + 1;
-    m_currentPageIdx = 0;
+    m_pageCount = (m_messageCount + 3) / 4;
+    m_currentPageIdx = m_menuType == MenuType::Comment ? m_cachedSheetIdx : 0;
+    m_sheetSelect.configure(m_pageCount > 1, m_pageCount > 1);
+    initText();
+
+    for (u8 i = 0; i < 4; i++) {
+        u32 flags = m_messageSelects[0].m_buttons[i].m_index < 0 ? 0 : 1;
+        m_messageSelects[0].m_buttons[i].setPlayerFlags(flags);
+        m_messageSelects[1].m_buttons[i].setPlayerFlags(0);
+    }
+
+    if (m_messageCount > 0) { return; }
+    if (m_menuType == MenuType::Comment) {
+        m_messageSelects[0].m_buttons[m_cachedButton].selectDefault(0);
+    } else {
+        m_messageSelects[0].m_buttons[0].selectDefault(0);
+    }
 }
 
 void FriendRoomMessageSelectPage::onDeactivate() {
     m_menuType = MenuType::None;
 }
 
+void FriendRoomMessageSelectPage::initText() {
+    for (s8 i = 0; i < 4; i++) {
+        s32 currentButton = i + m_currentPageIdx * 4;
+        if (currentButton < m_messageCount) {
+            switch (m_menuType) {
+            case MenuType::Comment:
+            case MenuType::Close:
+            case MenuType::Register:
+            default:
+                break;
+            }
+            m_messageSelects[0].m_buttons[i].m_index = i;
+            m_messageSelects[0].m_buttons[i].setVisible(i >= 0);
+        } else {
+            m_messageSelects[0].m_buttons[i].m_index = -1;
+            m_messageSelects[0].m_buttons[i].setVisible(false);
+        }
+    }
+    if (m_menuType == MenuType::Comment) {
+        MessageInfo messageInfo;
+        messageInfo.intVals[0] = m_currentPageIdx + 1;
+        messageInfo.intVals[1] = m_pageCount;
+        m_messageSelectPageNum.setMessageAll(2009, &messageInfo);
+    } else {
+        m_messageSelectPageNum.setMessageAll(0, nullptr);
+    }
+}
+
 void FriendRoomMessageSelectPage::onBack([[maybe_unused]] u32 localPlayerId) {
     startReplace(Anim::Prev, 0.0f);
 }
+
+void FriendRoomMessageSelectPage::onCommentButtonFront([[maybe_unused]] PushButton *button, [[maybe_unused]] u32 localPlayerId) {}
 
 } // namespace UI
