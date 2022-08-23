@@ -20,6 +20,7 @@ public:
                 [[maybe_unused]] u32 location, [[maybe_unused]] u16 latitude,
                 [[maybe_unused]] u16 longitude) {}
         virtual void onPlayerLeave([[maybe_unused]] u32 playerId) {}
+        virtual void onReceiveComment([[maybe_unused]] u32 playerId, [[maybe_unused]] u32 commentId) {}
     };
 
     bool calc(Handler &handler);
@@ -55,6 +56,7 @@ private:
         bool writeJoin(const System::RawMii *mii, u32 location, u32 latitude, u32 longitude);
         bool writeLeave(u32 playerId);
         bool writeHost(u32 playerId);
+        bool writeComment(u32 playerId, u32 messageId);
 
     private:
         enum class State {
@@ -68,6 +70,7 @@ private:
 
         std::optional<State> calcConnect();
         std::optional<State> calcSetup(Handler &handler);
+        std::optional<State> calcMain(Handler &handler);
 
         bool read(std::optional<RoomRequest> &request);
         bool write(RoomEvent event);
@@ -97,6 +100,7 @@ private:
 
     void writeJoin(const System::RawMii *mii, u32 location, u32 latitude, u32 longitude);
     void writeLeave(u32 playerId);
+    void writeComment(u32 playerId, u32 messageId);
 
     u32 m_playerCount = 0;
     std::array<Player, 12> m_players;

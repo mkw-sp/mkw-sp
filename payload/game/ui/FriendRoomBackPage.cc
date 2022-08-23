@@ -115,6 +115,11 @@ void FriendRoomBackPage::afterCalc() {
             m_players[m_indices[i]].move(i, m_playerCount);
         }
         m_players[m_indices[m_playerCount]].hide();
+    } else if (const auto *comment = std::get_if<Comment>(entry)) {
+        auto &callback = m_players[m_indices[comment->playerId]].callback();
+        auto *mii = m_miiGroup.get(m_indices[comment->playerId]); 
+        globePage->requestComment(mii, 0, 0, 0, comment->messageId + 4500, 0, nullptr, callback);
+        m_globePlayerId = m_playerCount;
     }
     m_queue.pop();
 }
@@ -139,6 +144,11 @@ void FriendRoomBackPage::onPlayerLeave(u32 playerId) {
     assert(!m_queue.full());
     // TODO optimize
     m_queue.push(Leave { playerId });
+}
+
+void FriendRoomBackPage::onReceiveComment(u32 playerId, u32 messageId) {
+    assert(!m_queue.full());
+    m_queue.push(Comment { playerId, messageId });
 }
 
 } // namespace UI

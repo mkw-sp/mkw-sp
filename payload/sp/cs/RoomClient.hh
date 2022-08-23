@@ -20,9 +20,11 @@ public:
                 [[maybe_unused]] u32 location, [[maybe_unused]] u16 latitude,
                 [[maybe_unused]] u16 longitude) {}
         virtual void onPlayerLeave([[maybe_unused]] u32 playerId) {}
+        virtual void onReceiveComment([[maybe_unused]] u32 playerId, [[maybe_unused]] u32 commentId) {}
     };
 
     bool calc(Handler &handler);
+    bool sendComment(u32 commentId);
 
     static void OnCreateScene();
     static void OnDestroyScene();
@@ -54,9 +56,11 @@ private:
     bool onPlayerJoin(Handler &handler, const System::RawMii *mii, u32 location, u16 latitude,
             u16 longitude);
     bool onPlayerLeave(Handler &handler, u32 playerId);
+    bool onReceiveComment(Handler &handler, u32 playerId, u32 messageId);
 
     bool read(std::optional<RoomEvent> &event);
     bool writeJoin();
+    bool writeComment(u32 messageId);
     bool write(RoomRequest request);
 
     u32 m_localPlayerCount;

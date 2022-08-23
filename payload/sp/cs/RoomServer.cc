@@ -218,6 +218,16 @@ void RoomServer::writeLeave(u32 playerId) {
     }
 }
 
+void RoomServer::writeComment(u32 playerId, u32 messageId) {
+    for (size_t i = 0; i < m_clients.size(); i++) {
+        if (m_clients[i] && m_clients[i]->ready()) {
+            if (!m_clients[i]->writeComment(playerId, messageId)) {
+                disconnectClient(i);
+            }
+        }
+    }
+}
+
 RoomServer::Client::Client(RoomServer &server, u32 id, s32 handle,
         const hydro_kx_keypair &serverKeypair) : m_id(id), m_server(server),
         m_state(State::Connect), m_socket(handle, serverKeypair, "room    ") {}
@@ -283,6 +293,14 @@ bool RoomServer::Client::writeHost(u32 playerId) {
     return write(event);
 }
 
+bool RoomServer::Client::writeComment(u32 playerId, u32 messageId) {
+    RoomEvent event;
+    event.which_event = RoomEvent_comment_tag;
+    event.event.comment.playerId = playerId;
+    event.event.comment.messageId = messageId;
+    return write(event);
+}
+
 std::optional<RoomServer::Client::State> RoomServer::Client::resolve(Handler &handler) {
     switch (m_state) {
     case State::Connect:
@@ -290,7 +308,7 @@ std::optional<RoomServer::Client::State> RoomServer::Client::resolve(Handler &ha
     case State::Setup:
         return calcSetup(handler);
     case State::Main:
-        break;
+        return calcMain(handler);
     }
 
     return m_state;
@@ -361,6 +379,27 @@ std::optional<RoomServer::Client::State> RoomServer::Client::calcSetup(Handler &
         if (!writeHost(0)) { // TODO fix
             return {};
         }
+        return State::Main;
+    default:
+        return {};
+    }
+}
+
+std::optional<RoomServer::Client::State> RoomServer::Client::calcMain(Handler &handler) {
+    std::optional<RoomRequest> request{};
+    if (!read(request)) {
+        return {};
+    }
+
+    if (!request) {
+        return State::Main;
+    }
+
+    switch (request->which_request) {
+    case RoomRequest_comment_tag:
+        handler.onReceiveComment(0, request->request.comment.messageId);
+        writeComment(0, request->request.comment.messageId);
+        // if (request->request.comment.messageId > 95)
         return State::Main;
     default:
         return {};

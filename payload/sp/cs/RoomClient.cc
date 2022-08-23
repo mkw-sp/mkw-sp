@@ -35,6 +35,10 @@ bool RoomClient::calc(Handler &handler) {
     return true;
 }
 
+bool RoomClient::sendComment(u32 commentId) {
+    return writeComment(commentId);
+}
+
 void RoomClient::OnCreateScene() {
     auto *sectionManager = UI::SectionManager::Instance();
     if (!sectionManager) {
@@ -200,6 +204,11 @@ std::optional<RoomClient::State> RoomClient::calcMain(Handler &handler) {
             return {};
         }
         return State::Main;
+    case RoomEvent_comment_tag:
+        if (!onReceiveComment(handler, event->event.comment.playerId, event->event.comment.messageId)) {
+            return {};
+        }
+        return State::Main;
     default:
         return State::Main;
     }
@@ -260,6 +269,13 @@ bool RoomClient::onPlayerLeave(Handler &handler, u32 playerId) {
     return true;
 }
 
+bool RoomClient::onReceiveComment(Handler &handler, u32 playerId, u32 messageId) {
+    if (playerId >= m_playerCount) { return false; }
+    if (messageId >= 96) { return false; }
+    handler.onReceiveComment(playerId, messageId);
+    return true;
+}
+
 bool RoomClient::read(std::optional<RoomEvent> &event) {
     u8 buffer[RoomEvent_size];
     std::optional<u16> size = m_socket.read(buffer, sizeof(buffer));
@@ -304,6 +320,13 @@ bool RoomClient::writeJoin() {
     request.request.join.location = location;
     request.request.join.latitude = latitude;
     request.request.join.longitude = longitude;
+    return write(request);
+}
+
+bool RoomClient::writeComment(u32 messageId) {
+    RoomRequest request;
+    request.which_request = RoomRequest_comment_tag;
+    request.request.comment.messageId = messageId;
     return write(request);
 }
 

@@ -29,9 +29,22 @@ public:
 private:
     class MessageSelectControl : public LayoutUIControl {
     public:
-        MessageSelectControl() = default;
-        ~MessageSelectControl() override = default;
+        MessageSelectControl();
+        ~MessageSelectControl() override;
+        void calcSelf() override;
+        void vf_20() override;
+        void vf_28() override;
+        void vf_2c() override;
+
         void load();
+        // Set animations
+        void show();
+        void hide();
+        void slideIn(bool isLeft);
+        void slideOut(bool isLeft);
+        // Get animations
+        bool isShown();
+        bool isHidden();
 
         PushButton m_buttons[4];
     };
@@ -39,8 +52,8 @@ private:
     void onCommentButtonFront(PushButton *button, u32 localPlayerId);
     void onCloseButtonFront(PushButton *button, u32 localPlayerId);
     void onRegisterButtonFront();
-    void onRight();
-    void onLeft();
+    void onRight(SheetSelectControl *control, u32 localPlayerId);
+    void onLeft(SheetSelectControl *control, u32 localPlayerId);
     void onBackButtonFront();
     void onBack(u32 localPlayerId);
 
@@ -54,6 +67,8 @@ private:
     LayoutUIControlScaleFade m_messageSelectPageNum;
     LayoutUIControl m_friendRoomMessageSelectObiBottom;
     CtrlMenuBackButton m_backButton;
+    MessageSelectControl *m_visibleMessageSelect;
+    MessageSelectControl *m_hiddenMessageSelect;
     MenuType m_menuType;
     s32 m_messageCount;
     s32 m_pageCount;
@@ -63,6 +78,8 @@ private:
 
     H<MultiControlInputManager> m_onBack{ this, &FriendRoomMessageSelectPage::onBack };
     H<PushButton> m_onCommentButtonFront{ this, &FriendRoomMessageSelectPage::onCommentButtonFront };
+    H<SheetSelectControl> m_onRight{this, &FriendRoomMessageSelectPage::onRight };
+    H<SheetSelectControl> m_onLeft{this, &FriendRoomMessageSelectPage::onLeft };
     /*H<PushButton> m_onCloseButtonFront{ this, &FriendRoomMessageSelectPage::onCloseButtonFront };*/
 };
 

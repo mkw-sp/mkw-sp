@@ -10,9 +10,14 @@ message RoomRequest {
 
     message Spectate {}
 
+    message Comment {
+        required uint32 messageId = 1;
+    }
+
     oneof request {
         Join     join     = 1;
         Spectate spectate = 2;
+        Comment  comment  = 3;
     }
 }
 
@@ -36,10 +41,16 @@ message RoomEvent {
         required uint32 playerId = 1;
     }
 
+    message Comment {
+        required uint32 playerId  = 1;
+        required uint32 messageId = 2;
+    }
+
     oneof event {
         Join     join     = 1;
         Leave    leave    = 2;
         Spectate spectate = 3;
         Host     host     = 4;
+        Comment  comment  = 5;
     }
 }
