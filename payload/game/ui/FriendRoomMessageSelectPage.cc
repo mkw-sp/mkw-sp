@@ -1,8 +1,6 @@
 #include "FriendRoomMessageSelectPage.hh"
 
-#include "game/ui/Font.hh"
-#include "game/ui/MenuInputManager.hh"
-#include "sp/cs/RoomClient.hh"
+#include <sp/cs/RoomClient.hh>
 
 namespace UI {
 
@@ -34,7 +32,7 @@ void FriendRoomMessageSelectPage::onInit() {
 
     m_sheetSelect.setRightHandler(&m_onRight);
     m_sheetSelect.setLeftHandler(&m_onLeft);
-    m_backButton.setFrontHandler(nullptr, false);
+    m_backButton.setFrontHandler(&m_onBackButtonFront, false);
     m_inputManager.setHandler(MenuInputManager::InputId::Back, &m_onBack, false, false);
     m_backButton.selectDefault(0);
 
@@ -79,10 +77,10 @@ void FriendRoomMessageSelectPage::onActivate() {
     }
 
     // Vanilla accounts for negative numbers, this doesn't
-    m_pageCount = (m_messageCount + 3) / 4;
-    m_currentPageIdx = m_menuType == MenuType::Comment ? m_cachedSheetIdx : 0;
-    m_sheetSelect.configure(m_pageCount > 1, m_pageCount > 1);
-    initText();
+    m_sheetCount = (m_messageCount + 3) / 4;
+    m_currentSheetIdx = m_menuType == MenuType::Comment ? m_cachedSheetIdx : 0;
+    m_sheetSelect.configure(m_sheetCount > 1, m_sheetCount > 1);
+    refresh();
 
     m_visibleMessageSelect->show();
     m_hiddenMessageSelect->hide();
@@ -99,9 +97,9 @@ void FriendRoomMessageSelectPage::onDeactivate() {
     m_menuType = MenuType::None;
 }
 
-void FriendRoomMessageSelectPage::initText() {
+void FriendRoomMessageSelectPage::refresh() {
     for (s8 i = 0; i < 4; i++) {
-        s32 currentButton = i + m_currentPageIdx * 4;
+        s32 currentButton = i + m_currentSheetIdx * 4;
         if (currentButton < m_messageCount) {
             MessageInfo messageInfo;
             s32 messageId = 0;
@@ -127,12 +125,16 @@ void FriendRoomMessageSelectPage::initText() {
 
     if (m_menuType == MenuType::Comment) {
         MessageInfo messageInfo;
-        messageInfo.intVals[0] = m_currentPageIdx + 1;
-        messageInfo.intVals[1] = m_pageCount;
+        messageInfo.intVals[0] = m_currentSheetIdx + 1;
+        messageInfo.intVals[1] = m_sheetCount;
         m_messageSelectPageNum.setMessageAll(2009, &messageInfo);
     } else {
         m_messageSelectPageNum.setMessageAll(0, nullptr);
     }
+}
+
+void FriendRoomMessageSelectPage::onBackButtonFront([[maybe_unused]] PushButton *button, [[maybe_unused]] u32 localPlayerId) {
+    startReplace(Anim::Prev, 0.0f);
 }
 
 void FriendRoomMessageSelectPage::onBack([[maybe_unused]] u32 localPlayerId) {
@@ -140,7 +142,7 @@ void FriendRoomMessageSelectPage::onBack([[maybe_unused]] u32 localPlayerId) {
 }
 
 void FriendRoomMessageSelectPage::onCommentButtonFront(PushButton *button, [[maybe_unused]] u32 localPlayerId) {
-    u32 messageId = button->m_index + m_currentPageIdx * 4;
+    u32 messageId = button->m_index + m_currentSheetIdx * 4;
     SP::RoomClient::Instance()->sendComment(messageId);
     startReplace(Anim::Next, button->getDelay());
 }
@@ -149,12 +151,12 @@ void FriendRoomMessageSelectPage::onRight([[maybe_unused]] SheetSelectControl *c
     if (!m_visibleMessageSelect->isShown() || !m_hiddenMessageSelect->isHidden()) { return; }
 
     m_visibleMessageSelect->slideOut(true);
-    m_currentPageIdx++;
-    if (m_currentPageIdx >= m_pageCount) { m_currentPageIdx = 0; }
+    m_currentSheetIdx++;
+    if (m_currentSheetIdx >= m_sheetCount) { m_currentSheetIdx = 0; }
 
     std::swap(m_visibleMessageSelect, m_hiddenMessageSelect);
 
-    initText();
+    refresh();
     m_visibleMessageSelect->slideIn(true);
 }
 
@@ -162,12 +164,12 @@ void FriendRoomMessageSelectPage::onLeft([[maybe_unused]] SheetSelectControl *co
     if (!m_visibleMessageSelect->isShown() || !m_hiddenMessageSelect->isHidden()) { return; }
 
     m_visibleMessageSelect->slideOut(false);
-    m_currentPageIdx--;
-    if (m_currentPageIdx < 0) { m_currentPageIdx = m_pageCount - 1; }
+    m_currentSheetIdx--;
+    if (m_currentSheetIdx < 0) { m_currentSheetIdx = m_sheetCount - 1; }
 
     std::swap(m_visibleMessageSelect, m_hiddenMessageSelect);
 
-    initText();
+    refresh();
     m_visibleMessageSelect->slideIn(false);
 }
 

@@ -23,7 +23,6 @@ public:
     void onInit() override;
     void onActivate() override;
     void onDeactivate() override;
-    void initText();
     void setMenuType(MenuType menuType) { m_menuType = menuType; }
 
 private:
@@ -49,12 +48,14 @@ private:
         PushButton m_buttons[4];
     };
 
+    void refresh();
+
     void onCommentButtonFront(PushButton *button, u32 localPlayerId);
     void onCloseButtonFront(PushButton *button, u32 localPlayerId);
     void onRegisterButtonFront();
     void onRight(SheetSelectControl *control, u32 localPlayerId);
     void onLeft(SheetSelectControl *control, u32 localPlayerId);
-    void onBackButtonFront();
+    void onBackButtonFront(PushButton *button, u32 localPlayerId);
     void onBack(u32 localPlayerId);
 
     template <typename T>
@@ -71,12 +72,13 @@ private:
     MessageSelectControl *m_hiddenMessageSelect;
     MenuType m_menuType;
     s32 m_messageCount;
-    s32 m_pageCount;
-    s32 m_currentPageIdx;
+    s32 m_sheetCount;
+    s32 m_currentSheetIdx;
     s32 m_cachedSheetIdx;
     s32 m_cachedButton;
 
     H<MultiControlInputManager> m_onBack{ this, &FriendRoomMessageSelectPage::onBack };
+    H<PushButton> m_onBackButtonFront{ this, &FriendRoomMessageSelectPage::onBackButtonFront };
     H<PushButton> m_onCommentButtonFront{ this, &FriendRoomMessageSelectPage::onCommentButtonFront };
     H<SheetSelectControl> m_onRight{this, &FriendRoomMessageSelectPage::onRight };
     H<SheetSelectControl> m_onLeft{this, &FriendRoomMessageSelectPage::onLeft };
