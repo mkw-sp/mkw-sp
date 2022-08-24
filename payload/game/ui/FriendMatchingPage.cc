@@ -103,8 +103,21 @@ void FriendMatchingPage::onBack([[maybe_unused]] u32 localPlayerId) {
 
 void FriendMatchingPage::onCloseConfirm([[maybe_unused]] s32 choice,
         [[maybe_unused]] PushButton *button) {
-    SP::RoomServer::DestroyInstance();
-    collapse();
+    auto *section = SectionManager::Instance()->currentSection();
+    auto sectionId = section->id();
+    if (sectionId == SectionId::OnlineServer) {
+        auto *server = SP::RoomServer::Instance();
+        if (server) {
+            SP::RoomServer::DestroyInstance();
+            collapse();
+        }
+    } else {
+        auto *client = SP::RoomClient::Instance();
+        if (client) {
+            SP::RoomClient::DestroyInstance();
+            collapse();
+        }
+    }
 }
 
 void FriendMatchingPage::collapse() {
