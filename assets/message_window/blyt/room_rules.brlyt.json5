@@ -79,7 +79,7 @@
                     "flags": {
                         "visible": true,
                         "influenced alpha": false,
-                        "location adjust": false,
+                        "location adjust": true,
                     },
                     "base position": "center",
                     "opacity": 255,
