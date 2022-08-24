@@ -294,7 +294,6 @@ bool RoomClient::onPlayerJoin(Handler &handler, const System::RawMii *mii, u32 l
 }
 
 bool RoomClient::onPlayerLeave(Handler &handler, u32 playerId) {
-    handler.onPlayerLeave(playerId);
     if (playerId >= m_playerCount) {
         return false;
     }
@@ -304,6 +303,7 @@ bool RoomClient::onPlayerLeave(Handler &handler, u32 playerId) {
         }
     }
     m_playerCount--;
+    handler.onPlayerLeave(playerId);
     return true;
 }
 
