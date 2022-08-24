@@ -87,6 +87,11 @@ struct Section::PageIdHelper<PageId::YesNoPopup> {
 };
 
 template <>
+struct Section::PageIdHelper<PageId::MenuMessage> {
+    using type = MenuMessagePage;
+};
+
+template <>
 struct Section::PageIdHelper<PageId::Confirm> {
     using type = ConfirmPage;
 };

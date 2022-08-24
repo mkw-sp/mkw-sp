@@ -963,6 +963,54 @@
         "font": "regular",
         "string": "Offline VS",
     },
+    "10263": {
+        "font": "regular",
+        "string": "Color Palette",
+    },
+    "10264": {
+        "font": "regular",
+        "string": "Vivid",
+    },
+    "10265": {
+        "font": "regular",
+        "string": "Colorblind",
+    },
+    "10266": {
+        "font": "regular",
+        "string": "Use the vivid palette for team colors.",
+    },
+    "10267": {
+        "font": "regular",
+        "string": "Use the colorblind palette for team colors.",
+    },
+    "10268": {
+        "font": "regular",
+        "string": "{color|sp blue}Blue Team",
+    },
+    "10269": {
+        "font": "regular",
+        "string": "{color|player 3}Red Team",
+    },
+    "10270": {
+        "font": "regular",
+        "string": "{color|player 1}Yellow Team",
+    },
+    "10271": {
+        "font": "regular",
+        "string": "{color|sp green}Green Team",
+    },
+    "10272": {
+        "font": "regular",
+        "string": "{color|sp pink}Pink Team",
+    },
+    "10273": {
+        "font": "regular",
+        "string": "White Team",
+    },
+    "10274": {
+        "font": "regular",
+        "string": "Teams are uneven.\n\nPlease choose again.",
+    },
     "20000": {
         "font": "regular",
         "string": "Online",
@@ -1066,26 +1114,6 @@
     "20025": {
         "font": "regular",
         "string": "I updated the rules!",
-    },
-    "30000": {
-        "font": "regular",
-        "string": "Color Palette",
-    },
-    "30001": {
-        "font": "regular",
-        "string": "Vivid",
-    },
-    "30002": {
-        "font": "regular",
-        "string": "Colorblind",
-    },
-    "30003": {
-        "font": "regular",
-        "string": "Use the vivid palette for team colors.",
-    },
-    "30004": {
-        "font": "regular",
-        "string": "Use the colorblind palette for team colors.",
     },
     "3700": {
         "font": "regular",

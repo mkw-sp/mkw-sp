@@ -1,5 +1,6 @@
 #include "TeamConfirmControl.hh"
 
+#include "game/ui/SectionManager.hh"
 #include "game/util/Registry.hh"
 
 namespace UI {
@@ -45,12 +46,14 @@ void TeamConfirmControl::load() {
 }
 
 void TeamConfirmControl::refresh(u32 playerId, u32 characterId, u32 colorId, u32 positionId) {
+    auto *context = SectionManager::Instance()->globalContext();
+    u32 localPlayerCount = context->m_localPlayerCount;
     setMessage("mii_name", Registry::GetCharacterMessageId(characterId, true));
     setPicture("chara_icon", Registry::GetCharacterPane(characterId));
     setPicture("chara_icon_sha", Registry::GetCharacterPane(characterId));
     m_animator.setAnimation(GroupId::Loop, 0, 0.0f);
-    m_animator.setAnimation(GroupId::Select, playerId != 0, 0.0f);
-    m_animator.setAnimation(GroupId::Select2, playerId != 0, 0.0f);
+    m_animator.setAnimation(GroupId::Select, playerId >= localPlayerCount, 0.0f);
+    m_animator.setAnimation(GroupId::Select2, playerId >= localPlayerCount, 0.0f);
     m_animator.setAnimationInactive(GroupId::Color, 0, colorId);
     m_animator.setAnimationInactive(GroupId::Position, 0, positionId);
 }

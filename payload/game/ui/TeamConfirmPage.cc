@@ -4,6 +4,7 @@
 #include "game/system/SaveManager.hh"
 #include "game/ui/SectionManager.hh"
 #include "game/ui/SettingsPage.hh"
+#include "game/ui/page/MenuPage.hh"
 
 extern "C" {
 #include <vendor/libhydrogen/hydrogen.h>
@@ -54,15 +55,15 @@ void TeamConfirmPage::onActivate() {
     auto *saveManager = System::SaveManager::Instance();
     auto setting = saveManager->getSetting<SP::ClientSettings::Setting::ColorPalette>();
     bool colorblind = setting == SP::ClientSettings::ColorPalette::Colorblind;
-    u32 maxPlayersPerTeam = 2;
     const auto &menuScenario = System::RaceConfig::Instance()->menuScenario();
-    u32 playersPerTeam[6]{};
+    u32 maxTeamSize = menuScenario.spMaxTeamSize;
+    u32 teamSizes[6]{};
     for (u32 playerId = 0; playerId < 12; playerId++) {
         u32 characterId = menuScenario.players[playerId].characterId;
         u32 teamId = menuScenario.players[playerId].spTeam;
         u32 colorId = colorblind * 6 + teamId;
-        u32 positionId = (maxPlayersPerTeam == 6 ? 0 : 5 - maxPlayersPerTeam) * 12;
-        positionId += teamId * maxPlayersPerTeam + playersPerTeam[teamId]++;
+        u32 positionId = (maxTeamSize == 6 ? 0 : 5 - maxTeamSize) * 12;
+        positionId += teamId * maxTeamSize + teamSizes[teamId]++;
         m_controls[playerId].refresh(playerId, characterId, colorId, positionId);
     }
 
@@ -72,18 +73,18 @@ void TeamConfirmPage::onActivate() {
 }
 
 void TeamConfirmPage::prepareOfflineSingle() {
-    u32 maxPlayersPerTeam = 2;
     auto &menuScenario = System::RaceConfig::Instance()->menuScenario();
+    u32 maxTeamSize = menuScenario.spMaxTeamSize;
     u32 playerCount = 12;
-    u32 teamCount = (playerCount + maxPlayersPerTeam - 1) / maxPlayersPerTeam;
-    maxPlayersPerTeam = (playerCount + teamCount - 1) / teamCount;
+    u32 teamCount = (playerCount + maxTeamSize - 1) / maxTeamSize;
+    maxTeamSize = (playerCount + teamCount - 1) / teamCount;
     assert(teamCount <= 6);
-    u32 playersPerTeam[6]{};
+    u32 teamSizes[6]{};
     for (u32 i = 0; i < playerCount; i++) {
         do {
             menuScenario.players[i].spTeam = hydro_random_uniform(teamCount);
-        } while (playersPerTeam[menuScenario.players[i].spTeam] >= maxPlayersPerTeam);
-        playersPerTeam[menuScenario.players[i].spTeam]++;
+        } while (teamSizes[menuScenario.players[i].spTeam] >= maxTeamSize);
+        teamSizes[menuScenario.players[i].spTeam]++;
     }
 }
 
@@ -97,6 +98,12 @@ TeamConfirmPage *TeamConfirmPage::Get(PageId id) {
 }
 
 void TeamConfirmPage::onBack([[maybe_unused]] u32 localPlayerId) {
+    auto sectionId = SectionManager::Instance()->currentSection()->id();
+    if (sectionId == SectionId::Multi) {
+        m_replacement = PageId::MultiTeamSelect;
+    } else {
+        m_replacement = PageId::CharacterSelect;
+    }
     startReplace(Anim::Prev, 0.0f);
 }
 
@@ -111,10 +118,26 @@ void TeamConfirmPage::onSettingsButtonFront([[maybe_unused]] PushButton *button,
 }
 
 void TeamConfirmPage::onOkButtonFront([[maybe_unused]] PushButton *button,
-        [[maybe_unused]] u32 localPlayerId) {}
+        [[maybe_unused]] u32 localPlayerId) {
+    auto *section = SectionManager::Instance()->currentSection();
+    auto sectionId = section->id();
+    auto pageId = sectionId == SectionId::Multi ? PageId::MultiVehicleSelect :
+            PageId::VehicleSelect;
+    auto *characterSelectPage = section->page(pageId)->downcast<MenuPage>();
+    characterSelectPage->m_prevId = PageId::TeamConfirm;
+    m_replacement = pageId;
+    f32 delay = button->getDelay();
+    startReplace(Anim::Next, delay);
+}
 
 void TeamConfirmPage::onBackButtonFront([[maybe_unused]] PushButton *button,
         [[maybe_unused]] u32 localPlayerId) {
+    auto sectionId = SectionManager::Instance()->currentSection()->id();
+    if (sectionId == SectionId::Multi) {
+        m_replacement = PageId::MultiTeamSelect;
+    } else {
+        m_replacement = PageId::CharacterSelect;
+    }
     f32 delay = button->getDelay();
     startReplace(Anim::Prev, delay);
 }

@@ -154,7 +154,7 @@ void SingleTopPage::onVSButtonFront([[maybe_unused]] PushButton *button,
     auto *saveManager = System::SaveManager::Instance();
     auto setting = saveManager->getSetting<SP::ClientSettings::Setting::VSTeamSize>();
     u32 maxTeamSize = setting == SP::ClientSettings::VSTeamSize::Six ? 6 :
-        static_cast<u32>(setting) - 1;
+            static_cast<u32>(setting) + 1;
 
     auto &menuScenario = System::RaceConfig::Instance()->menuScenario();
     menuScenario.gameMode = System::RaceConfig::GameMode::OfflineVS;

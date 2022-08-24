@@ -90,9 +90,9 @@ void MultiTopPage::onBack([[maybe_unused]] u32 localPlayerId) {
 void MultiTopPage::onSettingsButtonFront([[maybe_unused]] PushButton *button,
         [[maybe_unused]] u32 localPlayerId) {
     auto *section = SectionManager::Instance()->currentSection();
-    auto *settingsPage = section->page<PageId::Settings>();
-    settingsPage->m_replacement = PageId::MultiTop;
-    m_replacement = PageId::Settings;
+    auto *menuSettingsPage = section->page<PageId::MenuSettings>();
+    menuSettingsPage->configure(nullptr, PageId::MultiTop);
+    m_replacement = PageId::MenuSettings;
     f32 delay = button->getDelay();
     startReplace(Anim::Next, delay);
 }
@@ -107,14 +107,19 @@ void MultiTopPage::onVSButtonFront([[maybe_unused]] PushButton *button,
     auto *saveManager = System::SaveManager::Instance();
     auto setting = saveManager->getSetting<SP::ClientSettings::Setting::VSTeamSize>();
     u32 maxTeamSize = setting == SP::ClientSettings::VSTeamSize::Six ? 6 :
-        static_cast<u32>(setting) - 1;
+            static_cast<u32>(setting) + 1;
+
+    auto *context = SectionManager::Instance()->globalContext();
+    u32 localPlayerCount = context->m_localPlayerCount;
 
     auto &menuScenario = System::RaceConfig::Instance()->menuScenario();
     menuScenario.gameMode = System::RaceConfig::GameMode::OfflineVS;
     menuScenario.cameraMode = 5;
     menuScenario.spMaxTeamSize = maxTeamSize;
-    menuScenario.players[0].type = System::RaceConfig::Player::Type::Local;
-    for (u32 i = 1; i < 12; i++) {
+    for (u32 i = 0; i < localPlayerCount; i++) {
+        menuScenario.players[i].type = System::RaceConfig::Player::Type::Local;
+    }
+    for (u32 i = localPlayerCount; i < 12; i++) {
         menuScenario.players[i].type = System::RaceConfig::Player::Type::CPU;
     }
 
@@ -139,12 +144,17 @@ void MultiTopPage::onVSButtonSelect([[maybe_unused]] PushButton *button,
 
 void MultiTopPage::onBTButtonFront([[maybe_unused]] PushButton *button,
         [[maybe_unused]] u32 localPlayerId) {
+    auto *context = SectionManager::Instance()->globalContext();
+    u32 localPlayerCount = context->m_localPlayerCount;
+
     auto &menuScenario = System::RaceConfig::Instance()->menuScenario();
     menuScenario.engineClass = System::RaceConfig::EngineClass::CC50;
     menuScenario.gameMode = System::RaceConfig::GameMode::OfflineBT;
     menuScenario.cameraMode = 5;
-    menuScenario.players[0].type = System::RaceConfig::Player::Type::Local;
-    for (u32 i = 1; i < 12; i++) {
+    for (u32 i = 0; i < localPlayerCount; i++) {
+        menuScenario.players[i].type = System::RaceConfig::Player::Type::Local;
+    }
+    for (u32 i = localPlayerCount; i < 12; i++) {
         menuScenario.players[i].type = System::RaceConfig::Player::Type::CPU;
     }
 

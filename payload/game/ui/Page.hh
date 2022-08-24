@@ -80,6 +80,7 @@ protected:
 
 public:
     PageId id() const;
+    Anim anim() const;
     void setAnim(Anim anim);
     REPLACE void calc();
 
@@ -95,7 +96,9 @@ private:
     PageId m_id;
     State m_state;
     bool m_canProceed;
-    u8 _0d[0x24 - 0x0d];
+    u8 _0d[0x10 - 0x0d];
+    Anim m_anim;
+    u8 _14[0x24 - 0x14];
     ControlGroup m_controlGroup;
     MenuInputManager *m_inputManager;
     u8 _3c[0x44 - 0x3c];

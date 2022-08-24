@@ -51,7 +51,7 @@ public:
     REPLACE void saveLicensesAsync();
     void eraseLicense(u32 licenseId);
     void createLicense(u32 licenseId, const MiiId *miiId, const wchar_t *miiName);
-    void selectLicense(u32 licenseId);
+    REPLACE void selectLicense(u32 licenseId);
 
     u32 spLicenseCount() const;
     void eraseSPLicense();

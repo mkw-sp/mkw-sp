@@ -8,6 +8,7 @@
 #include "game/ui/FriendRoomRulesPage.hh"
 #include "game/ui/LicenseSelectPage.hh"
 #include "game/ui/ModelRenderPage.hh"
+#include "game/ui/MultiTeamSelectPage.hh"
 #include "game/ui/MultiTopPage.hh"
 #include "game/ui/OnlineTopPage.hh"
 #include "game/ui/ServicePackToolsPage.hh"
@@ -70,6 +71,22 @@ void Section::addPage(PageId pageId) {
         { SectionId::LicenseSettings, PageId::LicenseRecordsFriends },
         { SectionId::LicenseSettings, PageId::LicenseRecordsWFC },
         { SectionId::LicenseSettings, PageId::LicenseRecordsOther },
+
+        { SectionId::Single, PageId::VSSelect },
+        { SectionId::Single, PageId::VSSetting },
+        { SectionId::Single, PageId::BattleSetting },
+        { SectionId::SingleChangeDriver, PageId::VSSelect },
+        { SectionId::SingleChangeDriver, PageId::VSSetting },
+        { SectionId::SingleChangeDriver, PageId::BattleSetting },
+        { SectionId::SingleChangeCourse, PageId::VSSelect },
+        { SectionId::SingleChangeCourse, PageId::VSSetting },
+        { SectionId::SingleChangeCourse, PageId::BattleSetting },
+        { SectionId::SingleChangeMission, PageId::VSSelect },
+        { SectionId::SingleChangeMission, PageId::VSSetting },
+        { SectionId::SingleChangeMission, PageId::BattleSetting },
+        { SectionId::Multi, PageId::VSSelect },
+        { SectionId::Multi, PageId::VSSetting },
+        { SectionId::Multi, PageId::BattleSetting },
 
         { SectionId::OnlineSingle, (PageId)0x4c },
         { SectionId::OnlineSingle, (PageId)0x4f },
@@ -280,12 +297,9 @@ void Section::addPages(SectionId id) {
         { SectionId::SingleChangeGhostData, PageId::CourseSelect },
         { SectionId::SingleChangeGhostData, PageId::TimeAttackTop },
         { SectionId::SingleChangeGhostData, PageId::TimeAttackGhostList },
-        { SectionId::SingleChangeGhostData, PageId::VsModeSelect },
-        { SectionId::SingleChangeGhostData, PageId::RaceRules },
         { SectionId::SingleChangeGhostData, PageId::TeamConfirm },
         { SectionId::SingleChangeGhostData, PageId::BattleModeSelect },
         { SectionId::SingleChangeGhostData, PageId::BattleVehicleSelect },
-        { SectionId::SingleChangeGhostData, PageId::BattleRules },
         { SectionId::SingleChangeGhostData, PageId::BattleCupSelect },
         { SectionId::SingleChangeGhostData, PageId::BattleCourseSelect },
 
@@ -354,6 +368,8 @@ Page *Section::CreatePage(PageId pageId) {
         return new TeamConfirmPage;
     case PageId::MultiTop:
         return new MultiTopPage;
+    case PageId::MultiTeamSelect:
+        return new MultiTeamSelectPage;
     case PageId::OnlineTop:
         return new OnlineTopPage;
     case PageId::VotingBack:
