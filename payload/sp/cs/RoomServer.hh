@@ -36,6 +36,11 @@ public:
     static RoomServer *Instance();
 
 private:
+    struct Comment {
+        u32 playerId;
+        u32 messageId;
+    };
+
     struct Player {
         u32 clientId;
         System::RawMii mii;
@@ -102,6 +107,7 @@ private:
     bool onPlayerJoin(Handler &handler, u32 clientId, const System::RawMii *mii, u32 location,
             u16 latitude, u16 longitude, const std::array<u32, RoomSettings::count> &settings);
     void onPlayerLeave(Handler &handler, u32 playerId);
+    bool onReceiveComment(u32 playerId, u32 messageId);
 
     void disconnectClient(u32 clientId);
 
@@ -110,6 +116,8 @@ private:
     void writeComment(u32 playerId, u32 messageId);
     void writeSettings();
 
+    CircularBuffer<Comment, 18> m_commentQueue;
+    u32 m_commentTimer = 0;
     bool m_settingsChanged = false;
     u32 m_playerCount = 0;
     std::array<Player, 12> m_players;

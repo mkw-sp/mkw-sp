@@ -45,6 +45,18 @@ bool RoomServer::calc(Handler &handler) {
         }
     }
 
+    if (m_commentTimer > 0) {
+        m_commentTimer--;
+    } else {
+        if (!m_commentQueue.empty()) {
+            const auto *comment = m_commentQueue.front();
+            handler.onReceiveComment(comment->playerId, comment->messageId);
+            writeComment(comment->playerId, comment->messageId);
+            m_commentQueue.pop();
+            m_commentTimer = 90;
+        }
+    }
+
     if (m_settingsChanged) {
         writeSettings();
         handler.onSettingsChange(m_players[0].m_settings);
@@ -212,6 +224,20 @@ void RoomServer::onPlayerLeave(Handler &handler, u32 playerId) {
             handler.onSettingsChange(m_players[0].m_settings);
         }
     }
+}
+
+bool RoomServer::onReceiveComment(u32 playerId, u32 messageId) {
+    if (playerId >= m_playerCount) {
+        return false;
+    }
+    if (messageId >= 96) {
+        return false;
+    }
+    if (m_commentQueue.full()) {
+        return false;
+    }
+    m_commentQueue.push(Comment { playerId, messageId });
+    return true;
 }
 
 void RoomServer::disconnectClient(u32 clientId) {
@@ -445,9 +471,9 @@ std::optional<RoomServer::Client::State> RoomServer::Client::calcMain(Handler &h
 
     switch (request->which_request) {
     case RoomRequest_comment_tag:
-        handler.onReceiveComment(0, request->request.comment.messageId);
-        writeComment(0, request->request.comment.messageId);
-        // if (request->request.comment.messageId > 95)
+        if (!m_server.onReceiveComment(0, request->request.comment.messageId)) {
+            return {};
+        }
         return State::Main;
     case RoomRequest_settings_tag:
         if (request->request.settings.settings_count != RoomSettings::count) {
