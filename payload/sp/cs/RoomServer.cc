@@ -64,7 +64,7 @@ bool RoomServer::calc(Handler &handler) {
     }
 
     while (!m_disconnectQueue.empty()) {
-        for (u32 i = 0; i < m_playerCount; i++) {
+        for (u32 i = m_playerCount; i --> 0;) {
             if (m_players[i].clientId == *m_disconnectQueue.front()) {
                 onPlayerLeave(handler, i);
             }
