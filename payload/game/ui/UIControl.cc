@@ -35,4 +35,8 @@ LayoutUIControl::~LayoutUIControl() {
     m_animator.dt(-1);
 }
 
+LayoutUIControlScaleFade::LayoutUIControlScaleFade() = default;
+
+LayoutUIControlScaleFade::~LayoutUIControlScaleFade() = default;
+
 } // namespace UI

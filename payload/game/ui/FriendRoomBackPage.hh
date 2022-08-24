@@ -26,6 +26,7 @@ public:
     void pop();
     void onPlayerJoin(System::RawMii mii, u32 location, u16 latitude, u16 longitude);
     void onPlayerLeave(u32 playerId);
+    void onReceiveComment(u32 playerId, u32 messageId);
 
 private:
     struct Join {
@@ -39,6 +40,11 @@ private:
         u32 playerId;
     };
 
+    struct Comment {
+        u32 playerId;
+        u32 messageId;
+    };
+
     MenuInputManager m_inputManager;
     CtrlMenuPageTitleText m_pageTitleText;
     FriendMatchingPlayer m_players[12];
@@ -47,7 +53,7 @@ private:
     u32 m_indices[12];
     std::optional<u32> m_globePlayerId;
     u32 m_timer;
-    SP::CircularBuffer<std::variant<Join, Leave>, 24> m_queue;
+    SP::CircularBuffer<std::variant<Join, Leave, Comment>, 24> m_queue;
 };
 
 } // namespace UI

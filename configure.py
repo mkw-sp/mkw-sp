@@ -959,6 +959,7 @@ code_in_files = {
         os.path.join('payload', 'game', 'ui', 'FriendMatchingPage.cc'),
         os.path.join('payload', 'game', 'ui', 'FriendMatchingPlayer.cc'),
         os.path.join('payload', 'game', 'ui', 'FriendRoomBackPage.cc'),
+        os.path.join('payload', 'game', 'ui', 'FriendRoomMessageSelectPage.cc'),
         os.path.join('payload', 'game', 'ui', 'FriendRoomPage.cc'),
         os.path.join('payload', 'game', 'ui', 'GhostManagerPage.cc'),
         os.path.join('payload', 'game', 'ui', 'GhostSelectButton.cc'),

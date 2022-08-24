@@ -15,4 +15,8 @@ void SheetSelectControl::SheetSelectButton::setPointerOnly(bool pointerOnly) {
     m_inputManager.m_pointerOnly = pointerOnly;
 }
 
+SheetSelectControlScaleFade::SheetSelectControlScaleFade() = default;
+
+SheetSelectControlScaleFade::~SheetSelectControlScaleFade() = default;
+
 } // namespace UI

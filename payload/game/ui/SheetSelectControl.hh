@@ -36,10 +36,17 @@ public:
     SheetSelectControl();
     ~SheetSelectControl() override;
     void dt(s32 type) override;
+    void init() override;
+    void vf_28() override;
+    virtual void vf_38();
+    virtual void vf_3c();
+    virtual void vf_40();
+    virtual void vf_44();
 
     void load(const char *dir, const char *rightFile, const char *rightVariant,
             const char *leftFile, const char *leftVariant, u32 playerFlags, bool r10,
             bool pointerOnly);
+    void configure(bool enableLeftButton, bool enableRightButton);
     void setRightHandler(IHandler *handler);
     void setLeftHandler(IHandler *handler);
     void setPlayerFlags(u32 playerFlags);
@@ -64,5 +71,14 @@ private:
     SheetSelectButton m_leftButton;
 };
 static_assert(sizeof(SheetSelectControl) == 0x538);
+
+class SheetSelectControlScaleFade : public SheetSelectControl {
+public:
+    SheetSelectControlScaleFade();
+    ~SheetSelectControlScaleFade() override;
+    void vf_28() override;
+    void vf_2c() override;
+    void vf_44() override;
+};
 
 } // namespace UI
