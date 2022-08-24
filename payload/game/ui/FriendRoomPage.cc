@@ -88,7 +88,8 @@ void FriendRoomPage::pop() {
 }
 
 void FriendRoomPage::onBack([[maybe_unused]] u32 localPlayerId) {
-    YesNoPagePopup *yesNoPage = SectionManager::Instance()->currentSection()->page<PageId::YesNoPopup>();
+    auto *section = SectionManager::Instance()->currentSection();
+    auto *yesNoPage = section->page<PageId::YesNoPopup>();
 
     yesNoPage->reset();
     yesNoPage->setWindowMessage((m_roomRole == RoomRole::Host) + 20019, nullptr);
@@ -107,8 +108,10 @@ void FriendRoomPage::onSettingsButtonFront([[maybe_unused]] PushButton *button,
     push(PageId::SettingsPopup, Anim::Next);
 }
 
-void FriendRoomPage::onCommentButtonFront([[maybe_unused]] PushButton *button, [[maybe_unused]] u32 localPlayerId) {
-    FriendRoomMessageSelectPage *messageSelectPage = SectionManager::Instance()->currentSection()->page<PageId::FriendRoomMessageSelect>();
+void FriendRoomPage::onCommentButtonFront([[maybe_unused]] PushButton *button,
+        [[maybe_unused]] u32 localPlayerId) {
+    auto *section = SectionManager::Instance()->currentSection();
+    auto *messageSelectPage = section->page<PageId::FriendRoomMessageSelect>();
     messageSelectPage->setMenuType(FriendRoomMessageSelectPage::MenuType::Comment);
 
     push(PageId::FriendRoomMessageSelect, Anim::Next);
@@ -120,18 +123,23 @@ void FriendRoomPage::onRulesButtonFront([[maybe_unused]] PushButton *button,
     push(PageId::FriendRoomRules, Anim::Next);
 }
 
-void FriendRoomPage::onCloseButtonFront([[maybe_unused]] PushButton *button, [[maybe_unused]] u32 localPlayerId) {
-    FriendRoomMessageSelectPage *messageSelectPage = SectionManager::Instance()->currentSection()->page<PageId::FriendRoomMessageSelect>();
+void FriendRoomPage::onCloseButtonFront([[maybe_unused]] PushButton *button,
+        [[maybe_unused]] u32 localPlayerId) {
+    auto *section = SectionManager::Instance()->currentSection();
+    auto *messageSelectPage = section->page<PageId::FriendRoomMessageSelect>();
     messageSelectPage->setMenuType(FriendRoomMessageSelectPage::MenuType::Close);
 
     push(PageId::FriendRoomMessageSelect, Anim::Next);
     m_instructionText.setMessage(4373, 0);
 }
 
-void FriendRoomPage::onRegisterButtonFront([[maybe_unused]] PushButton *button, [[maybe_unused]] u32 localPlayerId) {}
+void FriendRoomPage::onRegisterButtonFront([[maybe_unused]] PushButton *button,
+        [[maybe_unused]] u32 localPlayerId) {}
 
-void FriendRoomPage::onBackButtonFront([[maybe_unused]] PushButton *button, [[maybe_unused]] u32 localPlayerId) {
-    YesNoPagePopup *yesNoPage = SectionManager::Instance()->currentSection()->page<PageId::YesNoPopup>();
+void FriendRoomPage::onBackButtonFront([[maybe_unused]] PushButton *button,
+        [[maybe_unused]] u32 localPlayerId) {
+    auto *section = SectionManager::Instance()->currentSection();
+    auto *yesNoPage = section->page<PageId::YesNoPopup>();
 
     yesNoPage->reset();
     yesNoPage->setWindowMessage((m_roomRole == RoomRole::Host) + 20019, nullptr);
@@ -144,7 +152,8 @@ void FriendRoomPage::onButtonSelect(PushButton *button, [[maybe_unused]] u32 loc
     m_instructionText.setMessage(button->m_index, nullptr);
 }
 
-void FriendRoomPage::onBackConfirm([[maybe_unused]] s32 choice, [[maybe_unused]] PushButton *button) {
+void FriendRoomPage::onBackConfirm([[maybe_unused]] s32 choice,
+        [[maybe_unused]] PushButton *button) {
     auto *section = SectionManager::Instance()->currentSection();
     auto sectionId = section->id();
     if (sectionId == SectionId::OnlineServer) {
