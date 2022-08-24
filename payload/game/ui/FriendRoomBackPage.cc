@@ -136,7 +136,7 @@ void FriendRoomBackPage::afterCalc() {
         auto &callback = m_players[m_indices[comment->playerId]].callback();
         globePage->requestComment(mii, latitude, longitude, location, messageId, 0, nullptr,
                 callback);
-        m_globePlayerId = m_playerCount;
+        m_globePlayerId = comment->playerId;
     } else if (const auto *settings = std::get_if<Settings>(entry)) {
         assert(m_playerCount > 0);
         auto *friendRoomRulesPage = section->page<PageId::FriendRoomRules>();
