@@ -178,19 +178,55 @@ void FriendRoomBackPage::onPlayerJoin(System::RawMii mii, u32 location, u16 lati
 
 void FriendRoomBackPage::onPlayerLeave(u32 playerId) {
     assert(!m_queue.full());
-    // TODO optimize
-    m_queue.push(Leave { playerId });
+    u32 joinPlayerId = playerId;
+    for (size_t i = m_queue.count(); i --> 0;) {
+        if (const auto *leave = std::get_if<Leave>(m_queue[i])) {
+            if (leave->playerId <= joinPlayerId) {
+                joinPlayerId++;
+            }
+        }
+    }
+    u32 joinPlayerCount = m_playerCount;
+    size_t index = m_queue.count();
+    for (size_t i = 0; i < m_queue.count(); i++) {
+        if (std::holds_alternative<Join>(*m_queue[i])) {
+            if (joinPlayerId == joinPlayerCount) {
+                index = i;
+            }
+            joinPlayerCount++;
+        } else if (std::holds_alternative<Leave>(*m_queue[i])) {
+            joinPlayerCount--;
+        }
+    }
+    if (index != m_queue.count()) {
+        m_queue.remove(index);
+    } else {
+        m_queue.push(Leave { playerId });
+    }
 }
 
 void FriendRoomBackPage::onReceiveComment(u32 playerId, u32 messageId) {
     assert(!m_queue.full());
-    m_queue.push(Comment { playerId, messageId });
+    size_t commentCount = 0;
+    for (size_t i = 0; i < m_queue.count(); i++) {
+        if (std::holds_alternative<Comment>(*m_queue[i])) {
+            commentCount++;
+        }
+    }
+    if (commentCount < 18) {
+        m_queue.push(Comment { playerId, messageId });
+    }
 }
 
 void FriendRoomBackPage::onSettingsChange(
         const std::array<u32, SP::RoomSettings::count> &settings) {
     assert(!m_queue.full());
-    // TODO optimize
+    for (size_t i = 0; i < m_queue.count(); i++) {
+        if (std::holds_alternative<Settings>(*m_queue[i])) {
+            m_queue.remove(i);
+            break;
+        }
+    }
     m_queue.push(Settings { settings });
 }
 

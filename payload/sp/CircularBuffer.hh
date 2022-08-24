@@ -55,6 +55,24 @@ public:
         m_count--;
     }
 
+    size_t count() const {
+        return m_count;
+    }
+
+    T *operator[](size_t index) {
+        return std::launder(reinterpret_cast<T *>(&m_vals[index]));
+    }
+
+    void remove(size_t index) {
+        std::destroy_at(std::launder(reinterpret_cast<T *>(&m_vals[(m_front + index) % N])));
+        for (; index < m_count - 1; index++) {
+            size_t i0 = (m_front + index) % N;
+            size_t i1 = (m_front + index + 1) % N;
+            new (&m_vals[i0]) T(std::move(*std::launder(reinterpret_cast<T *>(&m_vals[i1]))));
+        }
+        m_count--;
+    }
+
     void reset() {
         while (!empty()) {
             pop();

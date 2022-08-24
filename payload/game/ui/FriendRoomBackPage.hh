@@ -62,7 +62,11 @@ private:
     u32 m_indices[12];
     std::optional<u32> m_globePlayerId;
     u32 m_timer;
-    SP::CircularBuffer<std::variant<Join, Leave, Comment, Settings>, 25> m_queue;
+    // Join: 12
+    // Leave: 12
+    // Comment: 18
+    // Settings: 1
+    SP::CircularBuffer<std::variant<Join, Leave, Comment, Settings>, 43> m_queue;
 };
 
 } // namespace UI
