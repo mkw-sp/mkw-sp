@@ -138,7 +138,7 @@ void SettingsPage::onCategoryValueChange([[maybe_unused]] TextUpDownValueControl
         const SP::ClientSettings::Entry &entry = SP::ClientSettings::entries[j];
         m_settingControls[i].setMessageAll(entry.messageId);
         u32 count = entry.valueCount;
-        u32 chosen = System::SaveManager::Instance()->getSetting(j);
+        u32 chosen = System::SaveManager::Instance()->getSetting(j) - entry.valueOffset;
         m_settingControls[i].reconfigure(count, chosen);
         m_settingControls[i].setVisible(true);
         m_settingControls[i].setPlayerFlags(0x1);
@@ -149,7 +149,7 @@ void SettingsPage::onCategoryValueChange([[maybe_unused]] TextUpDownValueControl
             hiddenText->setMessageAll(entry.valueMessageIds[chosen]);
         } else {
             MessageInfo info{};
-            info.intVals[0] = chosen;
+            info.intVals[0] = chosen + entry.valueOffset;
             shownText->setMessageAll(entry.valueMessageIds[0], &info);
             hiddenText->setMessageAll(entry.valueMessageIds[0], &info);
         }
@@ -165,6 +165,7 @@ void SettingsPage::onSettingControlChange([[maybe_unused]] UpDownControl *contro
         [[maybe_unused]] u32 localPlayerId, [[maybe_unused]] u32 index) {
     auto *text = m_settingValues[control->m_id & 0xffff].shownText();
     const SP::ClientSettings::Entry &entry = SP::ClientSettings::entries[control->m_id >> 16];
+    index += entry.valueOffset;
     if (entry.valueNames) {
         text->setMessageAll(entry.valueMessageIds[index]);
         instructionText()->setMessageAll(entry.valueExplanationMessageIds[index]);

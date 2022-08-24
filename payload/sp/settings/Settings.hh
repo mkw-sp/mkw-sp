@@ -20,6 +20,7 @@ struct Entry {
     u32 messageId;
     u32 defaultValue;
     u32 valueCount;
+    u32 valueOffset = 0;
     const std::string_view *valueNames;
     const u32 *valueMessageIds;
     const u32 *valueExplanationMessageIds;
@@ -172,11 +173,13 @@ private:
 
         // Numeric value
         if (!entry.valueNames) {
+            u32 valueOffset = entry.valueOffset;
+            u32 valueCount = entry.valueCount;
             char tmp[9];
             snprintf(tmp, sizeof(tmp), "%.*s", value.length(), value.data());
             char *end;
             u32 v = strtoul(tmp, &end, 10);
-            if (*end != '\0' || v >= entry.valueCount) {
+            if (*end != '\0' || v < valueOffset || v >= valueOffset + valueCount) {
                 SP_LOG("Invalid value \"%.*s\" for %.*s::%.*s", value.length(), value.data(),
                         categoryName.length(), categoryName.data(), entry.name.length(),
                         entry.name.data());
