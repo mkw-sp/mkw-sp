@@ -460,6 +460,11 @@ std::optional<RoomServer::Client::State> RoomServer::Client::calcSetup(Handler &
 }
 
 std::optional<RoomServer::Client::State> RoomServer::Client::calcMain(Handler &handler) {
+    auto playerId = getPlayerId();
+    if (!playerId) {
+        return {};
+    }
+
     std::optional<RoomRequest> request{};
     if (!read(request)) {
         return {};
@@ -468,10 +473,9 @@ std::optional<RoomServer::Client::State> RoomServer::Client::calcMain(Handler &h
     if (!request) {
         return State::Main;
     }
-
     switch (request->which_request) {
     case RoomRequest_comment_tag:
-        if (!m_server.onReceiveComment(0, request->request.comment.messageId)) {
+        if (!m_server.onReceiveComment(*playerId, request->request.comment.messageId)) {
             return {};
         }
         return State::Main;
@@ -483,17 +487,13 @@ std::optional<RoomServer::Client::State> RoomServer::Client::calcMain(Handler &h
         for (size_t i = 0; i < RoomSettings::count; i++) {
             settings[i] = request->request.settings.settings[i];
         }
-        for (size_t i = 0; i < m_server.m_playerCount; i++) {
-            if (m_server.m_players[i].clientId == m_id) {
-                if (i == 0) {
-                    for (size_t j = 0; j < RoomSettings::count; j++) {
-                        m_server.m_settingsChanged = m_server.m_settingsChanged ||
-                                m_server.m_players[i].m_settings[j] != settings[j];
-                    }
-                }
-                m_server.m_players[i].m_settings = settings;
+        if (*playerId == 0) {
+            for (size_t i = 0; i < RoomSettings::count; i++) {
+                m_server.m_settingsChanged = m_server.m_settingsChanged ||
+                        m_server.m_players[*playerId].m_settings[i] != settings[i];
             }
         }
+        m_server.m_players[*playerId].m_settings = settings;
         return State::Main;
     default:
         return {};
@@ -502,6 +502,15 @@ std::optional<RoomServer::Client::State> RoomServer::Client::calcMain(Handler &h
 
 bool RoomServer::Client::isHost() const {
     return m_server.m_playerCount > 0 && m_server.m_players[0].clientId == m_id;
+}
+
+std::optional<u32> RoomServer::Client::getPlayerId() const {
+    for (size_t i = 0; i < m_server.m_playerCount; i++) {
+        if (m_server.m_players[i].clientId == m_id) {
+            return i;
+        }
+    }
+    return {};
 }
 
 bool RoomServer::Client::read(std::optional<RoomRequest> &request) {

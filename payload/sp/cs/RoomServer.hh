@@ -83,6 +83,7 @@ private:
         std::optional<State> calcMain(Handler &handler);
 
         bool isHost() const;
+        std::optional<u32> getPlayerId() const;
 
         bool read(std::optional<RoomRequest> &request);
         bool write(RoomEvent event);
