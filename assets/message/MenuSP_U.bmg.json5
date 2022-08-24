@@ -775,17 +775,13 @@
         "font": "regular",
         "string": "Limit the team size to 3 players.",
     },
-    "10215": {
+    "10216": {
         "font": "regular",
         "string": "Limit the team size to 4 players.",
     },
-    "10216": {
-        "font": "regular",
-        "string": "Limit the team size to 6 players.",
-    },
     "10217": {
         "font": "regular",
-        "string": "Team Selection",
+        "string": "Limit the team size to 6 players.",
     },
     "10218": {
         "font": "regular",
@@ -950,6 +946,10 @@
     "10258": {
         "font": "regular",
         "string": "Room",
+    },
+    "10259": {
+        "font": "regular",
+        "string": "Team Selection",
     },
     "20000": {
         "font": "regular",
