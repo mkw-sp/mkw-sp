@@ -26,6 +26,8 @@ public:
     void onActivate() override;
     void onDeactivate() override;
 
+    void pop();
+
 private:
     void onCommentButtonFront(PushButton *button, u32 localPlayerId);
     void onCloseButtonFront(PushButton *button, u32 localPlayerId);

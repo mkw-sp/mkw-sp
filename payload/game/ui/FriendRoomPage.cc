@@ -75,6 +75,10 @@ void FriendRoomPage::onDeactivate() {
     m_roomRole = RoomRole::None;
 }
 
+void FriendRoomPage::pop() {
+    startReplace(Anim::Prev, 0.0f); 
+}
+
 void FriendRoomPage::onCommentButtonFront([[maybe_unused]] PushButton *button, [[maybe_unused]] u32 localPlayerId) {
     FriendRoomMessageSelectPage *messageSelectPage = SectionManager::Instance()->currentSection()->page<PageId::FriendRoomMessageSelect>();
     messageSelectPage->setMenuType(FriendRoomMessageSelectPage::MenuType::Comment);
