@@ -1071,6 +1071,7 @@ code_in_files = {
         os.path.join('payload', 'nw4r', 'ut', 'IOStream.cc'),
         os.path.join('payload', 'platform', 'string.c'),
         os.path.join('payload', 'platform', 'wchar.c'),
+        os.path.join('payload', 'platform', 'wctype.c'),
         os.path.join('payload', 'revolution', 'arc.S'),
         os.path.join('payload', 'revolution', 'arc.c'),
         os.path.join('payload', 'revolution', 'ax.c'),

@@ -76,6 +76,7 @@ typedef struct {
     int usec;
 } OSCalendarTime;
 
+OSTime OSCalendarTimeToTicks(OSCalendarTime *time);
 void OSTicksToCalendarTime(OSTime ticks, OSCalendarTime *td);
 
 __attribute((format(printf, 1, 2))) void OSReport(const char *msg, ...);

@@ -10,6 +10,18 @@ extern "C" {
 
 namespace SP::Storage {
 
+OSTime FATStorage::ConvertTimeToTicks(u16 date, u16 time) {
+    OSCalendarTime calendarTime = {};
+    calendarTime.sec  = (time & 0x1F) << 1;
+    calendarTime.min  = (time >> 5) & 0x3F;
+    calendarTime.hour = time >> 11;
+    calendarTime.mday = date & 0x1F;
+    calendarTime.mon  = ((date >> 5) & 0x0F) - 1;
+    calendarTime.year = (date >> 9) + 1980;
+
+    return OSCalendarTimeToTicks(&calendarTime);
+}
+
 FATStorage::FATStorage() {
     if (s_storage) {
         return;
@@ -191,6 +203,7 @@ std::optional<NodeInfo> FATStorage::stat(const wchar_t *path) {
     } else {
         info.type = NodeType::File;
     }
+    info.tick = ConvertTimeToTicks(fInfo.fdate, fInfo.ftime);
     info.size = fInfo.fsize;
     static_assert(sizeof(fInfo.fname) <= sizeof(info.name));
     memcpy(info.name, fInfo.fname, sizeof(fInfo.fname));
@@ -351,6 +364,7 @@ std::optional<NodeInfo> FATStorage::Dir::read() {
     } else {
         info.type = NodeType::File;
     }
+    info.tick = ConvertTimeToTicks(fInfo.fdate, fInfo.ftime);
     info.size = fInfo.fsize;
     static_assert(sizeof(fInfo.fname) <= sizeof(info.name));
     memcpy(info.name, fInfo.fname, sizeof(fInfo.fname));

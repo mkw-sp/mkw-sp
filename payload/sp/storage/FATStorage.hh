@@ -38,6 +38,8 @@ public:
     static const ::FATStorage *Storage();
 
 private:
+    static OSTime convertTimeToTicks(NodeInfo info);
+
     class File : public IFile, private FIL {
     public:
         std::optional<FileHandle> clone() override;
@@ -78,6 +80,8 @@ private:
             return !node.m_isOpen;
         });
     }
+
+    static OSTime ConvertTimeToTicks(u16 date, u16 time);
 
     Mutex m_mutex{};
     FATFS m_fs;

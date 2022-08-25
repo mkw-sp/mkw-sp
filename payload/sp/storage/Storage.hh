@@ -4,6 +4,10 @@
 
 #include <Common.hh>
 
+extern "C" {
+#include <revolution.h>
+}
+
 namespace SP::Storage {
 
 class IStorage;
@@ -22,6 +26,7 @@ struct NodeInfo {
     NodeId id;
     NodeType type;
     u64 size;
+    OSTime tick = 0;
     wchar_t name[255 + 1];
 };
 
