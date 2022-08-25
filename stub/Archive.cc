@@ -95,11 +95,6 @@ std::variant<std::monostate, Archive::File, Archive::Dir> Archive::get(u32 entry
     }
 }
 
-// Helper for std::visit pattern matching
-// Source: https://en.cppreference.com/w/cpp/utility/variant/visit
-template <class... Ts>
-struct overloaded : Ts... { using Ts::operator()...; };
-
 std::variant<std::monostate, Archive::File, Archive::Dir> Archive::get(const char *path) const {
     u32 entrynum = 0;
     auto entry = get(entrynum);
@@ -111,10 +106,12 @@ std::variant<std::monostate, Archive::File, Archive::Dir> Archive::get(const cha
         Dir dir = std::get<Dir>(entry);
         for (entrynum = dir.entrynum + 1; entrynum < dir.next;) {
             entry = get(entrynum);
-            std::optional<const char *> name = std::visit(overloaded {
-                [](std::monostate UNUSED(monostate)) { return std::optional<const char *>{}; },
-                [](auto &entry) { return std::optional<const char *>{ entry.name }; },
-            }, entry);
+            std::optional<const char *> name{};
+            if (auto *file = std::get_if<File>(&entry)) {
+                name = file->name;
+            } else if (auto *dir = std::get_if<Dir>(&entry)) {
+                name = dir->name;
+            }
             if (!name) {
                 return std::monostate{};
             }
