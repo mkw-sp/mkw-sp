@@ -82,7 +82,7 @@ std::variant<std::monostate, Archive::File, Archive::Dir> Archive::get(u32 entry
         if (next <= entrynum) {
             return std::monostate{};
         }
-        return Dir{ entrynum, *name, parent, next };
+        return Dir{entrynum, *name, parent, next};
     } else {
         const u8 *data = m_data + read<u32>(offset + 0x4);
         u32 size = read<u32>(offset + 0x8);
@@ -91,7 +91,7 @@ std::variant<std::monostate, Archive::File, Archive::Dir> Archive::get(u32 entry
         if (startOffset > m_size || endOffset > m_size) {
             return std::monostate{};
         }
-        return File{ entrynum, *name, data, size };
+        return File{entrynum, *name, data, size};
     }
 }
 

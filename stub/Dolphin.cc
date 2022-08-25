@@ -3,9 +3,9 @@
 namespace IOS {
 
 namespace Ioctlv {
-    enum {
-        SetSpeedLimit = 4,
-    };
+enum {
+    SetSpeedLimit = 4,
+};
 } // namespace Ioctlv
 
 Dolphin::Dolphin() : Resource(ALIGNED_STRING("/dev/dolphin"), Mode::None) {}
