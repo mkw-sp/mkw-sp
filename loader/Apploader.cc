@@ -1,6 +1,5 @@
 #include "Apploader.hh"
 
-
 #include <common/Clock.hh>
 #include <common/Console.hh>
 #include <common/ICache.hh>
@@ -16,9 +15,9 @@ struct PartitionGroup {
 static_assert(sizeof(PartitionGroup) == 0x8);
 
 namespace PartitionType {
-    enum {
-        Data = 0,
-    };
+enum {
+    Data = 0,
+};
 } // namespace PartitionType
 
 struct Partition {
@@ -82,7 +81,7 @@ std::optional<GameEntryFunc> LoadAndRun(IOS::DI &di) {
     }
 
     *reinterpret_cast<u32 *>(0x80003180) = diskID[0];
-    char diskIDString[5] = { 0 };
+    char diskIDString[5] = {0};
     for (u8 i = 0; i < 4; i++) {
         diskIDString[i] = diskID[0] >> (24 - i * 8) & 0xff;
     }

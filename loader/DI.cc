@@ -5,25 +5,25 @@ namespace IOS {
 extern "C" u32 diskID[8];
 
 namespace Ioctl {
-    enum {
-        ReadDiskID = 0x70,
-        Read = 0x71,
-        GetCoverStatus = 0x88,
-        Reset = 0x8a,
-        ReadUnencrypted = 0x8d,
-    };
+enum {
+    ReadDiskID = 0x70,
+    Read = 0x71,
+    GetCoverStatus = 0x88,
+    Reset = 0x8a,
+    ReadUnencrypted = 0x8d,
+};
 } // namespace Ioctl
 
 namespace Ioctlv {
-    enum {
-        OpenPartition = 0x8b,
-    };
+enum {
+    OpenPartition = 0x8b,
+};
 } // namespace Ioctlv
 
 namespace Result {
-    enum {
-        Success = 1,
-    };
+enum {
+    Success = 1,
+};
 } // namespace Result
 
 DI::DI() : Resource(ALIGNED_STRING("/dev/di"), Mode::None) {}

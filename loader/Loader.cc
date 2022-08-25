@@ -71,7 +71,7 @@ static bool CopyNANDLoader(IOS::FS &fs) {
     alignas(0x20) const char *pathP1 = "/title/00010008/48414c50/content/00000006.app";
     alignas(0x20) const char *pathE1 = "/title/00010008/48414c45/content/00000006.app";
     alignas(0x20) const char *pathJ1 = "/title/00010008/48414c4a/content/00000006.app";
-    const char *const paths[] = { pathP2, pathE2, pathJ2, pathK2, pathP1, pathE1, pathJ1 };
+    const char *const paths[] = {pathP2, pathE2, pathJ2, pathK2, pathP1, pathE1, pathJ1};
     for (u32 i = 0; i < std::size(paths); i++) {
         if (fs.copyFile(paths[i], ALIGNED_STRING(TMP_NAND_LOADER_PATH))) {
             return true;
