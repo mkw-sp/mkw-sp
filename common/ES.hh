@@ -8,7 +8,7 @@ namespace IOS {
 
 class ES final : private Resource {
 public:
-    #pragma pack(push, 4)
+    PRAGMA("pack(push, 4)")
     struct Ticket {
         u32 signatureType;
         u8 _004[0x1dc - 0x004];
@@ -58,7 +58,7 @@ public:
         u8 _005a[0x205c - 0x005a];
     };
     static_assert(sizeof(TmdView) == 0x205c);
-    #pragma pack(pop)
+    PRAGMA("pack(pop)")
 
     ES();
     ~ES();

@@ -31,7 +31,8 @@ private:
     template <typename T>
     T read(u32 offset) const {
         T val = 0;
-        _Pragma("GCC unroll(8)") for (size_t i = 0; i < sizeof(T); i++) {
+        PRAGMA("GCC unroll(8)")
+        for (size_t i = 0; i < sizeof(T); i++) {
             val |= static_cast<T>(m_data[offset + i]) << (8 * (sizeof(T) - i - 1));
         }
         return val;
