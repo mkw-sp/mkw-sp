@@ -6,13 +6,13 @@
 namespace IOS {
 
 namespace Ioctl {
-    enum {
-        CreateDir = 0x3,
-        Delete = 0x7,
-        Rename = 0x8,
-        CreateFile = 0x9,
-        GetFileStats = 0xb,
-    };
+enum {
+    CreateDir = 0x3,
+    Delete = 0x7,
+    Rename = 0x8,
+    CreateFile = 0x9,
+    GetFileStats = 0xb,
+};
 } // namespace Ioctl
 
 FS::FS() : Resource(ALIGNED_STRING("/dev/fs"), Mode::None) {}

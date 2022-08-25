@@ -16,10 +16,10 @@ extern "C" volatile u32 armmsg;
 extern "C" volatile u32 irqmask;
 
 enum {
-    X1  = 1 << 0,
-    Y2  = 1 << 1,
-    Y1  = 1 << 2,
-    X2  = 1 << 3,
+    X1 = 1 << 0,
+    Y2 = 1 << 1,
+    Y1 = 1 << 2,
+    X2 = 1 << 3,
     IY1 = 1 << 4,
     IY2 = 1 << 5,
 };
@@ -29,7 +29,7 @@ void Init() {
     irqmask = 1 << 30;
     ppcctrl = X2;
 #else
-    //while ((ppcctrl & Y2) != Y2); HACK for Dolphin
+    // while ((ppcctrl & Y2) != Y2); HACK for Dolphin
     ppcctrl = Y2;
     ppcctrl = Y1;
 #endif
@@ -45,6 +45,7 @@ constexpr u32 syscall(SC id) {
     return 0xE6000010 | static_cast<u8>(id) << 5;
 }
 
+// clang-format off
 #ifdef SP_LOADER
 u32 armCode[] = {
     /* 0x00 */ 0xEA000000, // b       0x8
@@ -137,6 +138,7 @@ u32 armCode[] = {
     /* 0x60 */ 0xE12FFF1E, // bx      lr
 };
 #endif
+// clang-format on
 
 static bool IsDolphin() {
     // Modern versions
@@ -278,10 +280,10 @@ bool ImportNewCommonKey() {
     }
 
     // Find the common key in the Starlet SRAM.
-    u32 keyMask[] = { 0xFFFFFFFF, 0xFFFFFFFF, 0xFFFFFFFF, 0xFFFFFFFF, 0xFFFFFFFF, 0xFFFFFFFF,
-            0xFFFFFFFF, 0xFFFFFFFF, 0xFFFFFFFF };
-    u32 keyPattern[] = { 0x01EBE42A, 0x225E8593, 0xE448D9C5, 0x457381AA, 0xF7000000, 0x00000000,
-            0x00000000, 0x00000000, 0x00000000 };
+    u32 keyMask[] = {0xFFFFFFFF, 0xFFFFFFFF, 0xFFFFFFFF, 0xFFFFFFFF, 0xFFFFFFFF, 0xFFFFFFFF,
+            0xFFFFFFFF, 0xFFFFFFFF, 0xFFFFFFFF};
+    u32 keyPattern[] = {0x01EBE42A, 0x225E8593, 0xE448D9C5, 0x457381AA, 0xF7000000, 0x00000000,
+            0x00000000, 0x00000000, 0x00000000};
     const u32 *start = reinterpret_cast<u32 *>(0xCD410000);
     const u32 *end = reinterpret_cast<u32 *>(0xCD420000);
     start = Find(keyMask, keyPattern, start, end);
@@ -292,19 +294,19 @@ bool ImportNewCommonKey() {
     // The new common key should be at a fixed offset.
     start += 27;
     // For Korean Wiis, it's already there.
-    u32 newKeyMask[] = { 0xFFFFFFFF, 0xFFFFFFFF, 0xFFFFFFFF, 0xFFFFFFFF, 0xFFFFFFFF, 0xFFFFFFFF,
-            0xFFFFFFFF, 0xFFFFFFFF, 0xFFFFFFFF };
-    u32 newKeyPattern[] = { 0x0163B82B, 0xB4F4614E, 0x2E13F2FE, 0xFBBA4C9B, 0x7E000000, 0x00000000,
-            0x00000000, 0x00000000, 0x00000000 };
+    u32 newKeyMask[] = {0xFFFFFFFF, 0xFFFFFFFF, 0xFFFFFFFF, 0xFFFFFFFF, 0xFFFFFFFF, 0xFFFFFFFF,
+            0xFFFFFFFF, 0xFFFFFFFF, 0xFFFFFFFF};
+    u32 newKeyPattern[] = {0x0163B82B, 0xB4F4614E, 0x2E13F2FE, 0xFBBA4C9B, 0x7E000000, 0x00000000,
+            0x00000000, 0x00000000, 0x00000000};
     if (Compare(newKeyMask, newKeyPattern, start)) {
         return true;
     }
 
     // For other Wiis, it's all zeros instead.
-    u32 noKeyMask[] = { 0xFFFFFFFF, 0xFFFFFFFF, 0xFFFFFFFF, 0xFFFFFFFF, 0xFFFFFFFF, 0xFFFFFFFF,
-            0xFFFFFFFF, 0xFFFFFFFF, 0xFFFFFFFF };
-    u32 noKeyPattern[] = { 0x01000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000,
-            0x00000000, 0x00000000, 0x00000000 };
+    u32 noKeyMask[] = {0xFFFFFFFF, 0xFFFFFFFF, 0xFFFFFFFF, 0xFFFFFFFF, 0xFFFFFFFF, 0xFFFFFFFF,
+            0xFFFFFFFF, 0xFFFFFFFF, 0xFFFFFFFF};
+    u32 noKeyPattern[] = {0x01000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000,
+            0x00000000, 0x00000000, 0x00000000};
     if (!Compare(noKeyMask, noKeyPattern, start)) {
         return false;
     }

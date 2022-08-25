@@ -3,13 +3,12 @@
 namespace IOS {
 
 namespace Ioctlv {
-    enum {
-        LaunchTitle = 0x8,
-        GetTicketViewCount = 0x12,
-        GetTicketViews = 0x13,
-    };
+enum {
+    LaunchTitle = 0x8,
+    GetTicketViewCount = 0x12,
+    GetTicketViews = 0x13,
+};
 } // namespace Ioctlv
-
 
 ES::ES() : Resource(ALIGNED_STRING("/dev/es"), Mode::None) {}
 
