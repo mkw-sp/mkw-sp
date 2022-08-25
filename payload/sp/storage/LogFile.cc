@@ -66,8 +66,7 @@ static void *Run(void *UNUSED(arg)) {
     }
 }
 
-static bool IsValidLogFile(Storage::NodeInfo nodeInfo)
-{
+static bool IsValidLogFile(Storage::NodeInfo nodeInfo) {
     if (nodeInfo.type != Storage::NodeType::File)
         return false;
 
@@ -95,13 +94,11 @@ static bool IsValidLogFile(Storage::NodeInfo nodeInfo)
     return std::wstring_view(nodeInfo.name).ends_with(LOG_FILE_EXTENSION);
 }
 
-static bool ShouldDeleteLogFile(Storage::NodeInfo nodeInfo)
-{
+static bool ShouldDeleteLogFile(Storage::NodeInfo nodeInfo) {
     return nodeInfo.tick + LOG_FILE_RETENTION < OSGetTime();
 }
 
-static void RemoveOldLogFiles()
-{
+static void RemoveOldLogFiles() {
     auto dir = Storage::OpenDir(LOG_FILE_DIRECTORY);
     if (!dir)
         return;
