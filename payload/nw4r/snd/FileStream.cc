@@ -6,8 +6,8 @@
 
 namespace nw4r::snd {
 
-FileStream::FileStream(SP::Storage::FileHandle file, u32 start, u32 size) : m_file(std::move(file)),
-        m_start(start), m_size(size) {}
+FileStream::FileStream(SP::Storage::FileHandle file, u32 start, u32 size)
+    : m_file(std::move(file)), m_start(start), m_size(size) {}
 
 FileStream::~FileStream() = default;
 
