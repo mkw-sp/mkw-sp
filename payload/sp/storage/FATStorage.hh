@@ -81,6 +81,8 @@ private:
         });
     }
 
+    static OSTime ConvertTimeToTicks(u16 date, u16 time);
+
     Mutex m_mutex{};
     FATFS m_fs;
     File m_files[32];

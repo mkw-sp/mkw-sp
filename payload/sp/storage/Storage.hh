@@ -26,17 +26,8 @@ struct NodeInfo {
     NodeId id;
     NodeType type;
     u64 size;
-    u16 date = 0;
-    u16 time = 0;
     OSTime tick = 0;
     wchar_t name[255 + 1];
-
-    constexpr int GetYear() const { return (date >> 9) + 1980; }
-    constexpr int GetMon() const { return (date >> 5) & 0x0F; }
-    constexpr int GetDay() const { return date & 0x1F; }
-    constexpr int GetHour() const { return time >> 11; }
-    constexpr int GetMin() const { return (time >> 5) & 0x3F; }
-    constexpr int GetSec() const { return (time & 0x1F) << 1; }
 };
 
 class FileHandle;
