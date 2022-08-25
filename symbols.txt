@@ -283,6 +283,7 @@
 0x801AAD74 OSGetTick
 0x801aad7c __OSGetSystemTime
 0x801aafa8 OSTicksToCalendarTime
+0x801AB170 OSCalendarTimeToTicks
 0x801ada00 __OSLaunchTitle
 0x801ae4a0 OSIsTitleInstalled
 0x801b1d0c SCGetLanguage

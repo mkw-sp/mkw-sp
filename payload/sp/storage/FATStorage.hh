@@ -38,6 +38,8 @@ public:
     static const ::FATStorage *Storage();
 
 private:
+    static OSTime convertTimeToTicks(NodeInfo info);
+
     class File : public IFile, private FIL {
     public:
         std::optional<FileHandle> clone() override;

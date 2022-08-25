@@ -10,6 +10,18 @@ extern "C" {
 
 namespace SP::Storage {
 
+OSTime FATStorage::convertTimeToTicks(NodeInfo info) {
+    OSCalendarTime time = {};
+    time.sec  = info.GetSec();
+    time.min  = info.GetMin();
+    time.hour = info.GetHour();
+    time.mday = info.GetDay();
+    time.mon  = info.GetMon() - 1;
+    time.year = info.GetYear();
+
+    return OSCalendarTimeToTicks(&time);
+}
+
 FATStorage::FATStorage() {
     if (s_storage) {
         return;
@@ -193,6 +205,7 @@ std::optional<NodeInfo> FATStorage::stat(const wchar_t *path) {
     }
     info.date = fInfo.fdate;
     info.time = fInfo.ftime;
+    info.tick = convertTimeToTicks(info);
     info.size = fInfo.fsize;
     static_assert(sizeof(fInfo.fname) <= sizeof(info.name));
     memcpy(info.name, fInfo.fname, sizeof(fInfo.fname));
@@ -355,6 +368,7 @@ std::optional<NodeInfo> FATStorage::Dir::read() {
     }
     info.date = fInfo.fdate;
     info.time = fInfo.ftime;
+    info.tick = convertTimeToTicks(info);
     info.size = fInfo.fsize;
     static_assert(sizeof(fInfo.fname) <= sizeof(info.name));
     memcpy(info.name, fInfo.fname, sizeof(fInfo.fname));
