@@ -39,6 +39,10 @@ bool RoomClient::sendComment(u32 commentId) {
     return writeComment(commentId);
 }
 
+bool RoomClient::closeRoom(u32 gamemode) {
+    return writeClose(gamemode);
+}
+
 void RoomClient::changeLocalSettings() {
     m_localSettingsChanged = true;
 }
@@ -247,8 +251,29 @@ std::optional<RoomClient::State> RoomClient::calcMain(Handler &handler) {
             }
         }
         return State::Main;
+    case RoomEvent_close_tag:
+        if (!onRoomClose(handler, event->event.close.gamemode)) {
+            return {};
+        }
+        return State::Select;
     default:
         return State::Main;
+    }
+}
+
+std::optional<RoomClient::State> RoomClient::calcSelect(Handler &handler) {
+    std::optional<RoomEvent> event{};
+    if (!read(event)) {
+        return {};
+    }
+
+    if (!event) {
+        return State::Select;
+    }
+
+    switch (event->which_event) {
+    default:
+        return State::Select;
     }
 }
 
@@ -314,6 +339,12 @@ bool RoomClient::onReceiveComment(Handler &handler, u32 playerId, u32 messageId)
     return true;
 }
 
+bool RoomClient::onRoomClose(Handler &handler, u32 gamemode) {
+    if (gamemode >= 4) { return false; }
+    handler.onRoomClose(gamemode);
+    return true;
+}
+
 bool RoomClient::read(std::optional<RoomEvent> &event) {
     u8 buffer[RoomEvent_size];
     std::optional<u16> size = m_socket.read(buffer, sizeof(buffer));
@@ -368,6 +399,13 @@ bool RoomClient::writeComment(u32 messageId) {
     RoomRequest request;
     request.which_request = RoomRequest_comment_tag;
     request.request.comment.messageId = messageId;
+    return write(request);
+}
+
+bool RoomClient::writeClose(u32 gamemode) {
+    RoomRequest request;
+    request.which_request = RoomRequest_close_tag;
+    request.request.close.gamemode = gamemode;
     return write(request);
 }
 

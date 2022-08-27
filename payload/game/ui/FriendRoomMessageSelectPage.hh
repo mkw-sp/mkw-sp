@@ -82,7 +82,7 @@ private:
     H<PushButton> m_onCommentButtonFront{ this, &FriendRoomMessageSelectPage::onCommentButtonFront };
     H<SheetSelectControl> m_onRight{this, &FriendRoomMessageSelectPage::onRight };
     H<SheetSelectControl> m_onLeft{this, &FriendRoomMessageSelectPage::onLeft };
-    /*H<PushButton> m_onCloseButtonFront{ this, &FriendRoomMessageSelectPage::onCloseButtonFront };*/
+    H<PushButton> m_onCloseButtonFront{ this, &FriendRoomMessageSelectPage::onCloseButtonFront };
 };
 
 } // namespace UI

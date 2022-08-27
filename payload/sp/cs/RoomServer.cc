@@ -240,6 +240,16 @@ bool RoomServer::onReceiveComment(u32 playerId, u32 messageId) {
     return true;
 }
 
+bool RoomServer::onRoomClose(Handler &handler, u32 playerId, u32 gamemode) {
+    if (playerId != 0) { return false; }
+    if (gamemode >= 4) { return false; }
+    m_commentQueue.reset();
+
+    handler.onRoomClose(gamemode);
+    writeClose(gamemode);
+    return true;
+}
+
 void RoomServer::disconnectClient(u32 clientId) {
     m_clients[clientId].reset();
     m_disconnectQueue.push(std::move(clientId));
@@ -279,6 +289,16 @@ void RoomServer::writeSettings() {
     for (size_t i = 0; i < m_clients.size(); i++) {
         if (m_clients[i] && m_clients[i]->ready()) {
             if (!m_clients[i]->writeSettings()) {
+                disconnectClient(i);
+            }
+        }
+    }
+}
+
+void RoomServer::writeClose(u32 gamemode) {
+    for (size_t i = 0; i < m_clients.size(); i++) {
+        if (m_clients[i] && m_clients[i]->ready()) {
+            if (!m_clients[i]->writeClose(gamemode)) {
                 disconnectClient(i);
             }
         }
@@ -367,6 +387,13 @@ bool RoomServer::Client::writeComment(u32 playerId, u32 messageId) {
     return write(event);
 }
 
+bool RoomServer::Client::writeClose(u32 gamemode) {
+    RoomEvent event;
+    event.which_event = RoomEvent_close_tag;
+    event.event.close.gamemode = gamemode;
+    return write(event);
+}
+
 std::optional<RoomServer::Client::State> RoomServer::Client::resolve(Handler &handler) {
     switch (m_state) {
     case State::Connect:
@@ -375,6 +402,8 @@ std::optional<RoomServer::Client::State> RoomServer::Client::resolve(Handler &ha
         return calcSetup(handler);
     case State::Main:
         return calcMain(handler);
+    case State::Select:
+        return calcSelect(handler);
     }
 
     return m_state;
@@ -392,6 +421,8 @@ bool RoomServer::Client::transition(Handler &handler, State state) {
     case State::Setup:
         break;
     case State::Main:
+        break;
+    case State::Select:
         break;
     }
     m_state = state;
@@ -495,6 +526,32 @@ std::optional<RoomServer::Client::State> RoomServer::Client::calcMain(Handler &h
         }
         m_server.m_players[*playerId].m_settings = settings;
         return State::Main;
+    case RoomRequest_close_tag:
+        if (!m_server.onRoomClose(handler, *playerId, request->request.close.gamemode)) {
+            return {};
+        }
+        return State::Select;
+    default:
+        return {};
+    }
+}
+
+std::optional<RoomServer::Client::State> RoomServer::Client::calcSelect(Handler &handler) {
+    auto playerId = getPlayerId();
+    if (!playerId) {
+        return {};
+    }
+
+    std::optional<RoomRequest> request{};
+    if (!read(request)) {
+        return {};
+    }
+
+    if (!request) {
+        return State::Main;
+    }
+
+    switch (request->which_request) {
     default:
         return {};
     }

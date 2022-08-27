@@ -163,6 +163,12 @@ void FriendMatchingPage::ServerHandler::onSettingsChange(
     friendRoomBackPage->onSettingsChange(settings);
 }
 
+void FriendMatchingPage::ServerHandler::onRoomClose(u32 gamemode) {
+    Section *section = SectionManager::Instance()->currentSection();
+    auto *friendRoomBackPage = section->page<PageId::FriendRoomBack>();
+    friendRoomBackPage->onRoomClose(gamemode);
+}
+
 FriendMatchingPage::ClientHandler::ClientHandler(FriendMatchingPage &page) : m_page(page) {}
 
 FriendMatchingPage::ClientHandler::~ClientHandler() = default;
@@ -200,6 +206,12 @@ void FriendMatchingPage::ClientHandler::onSettingsChange(
     Section *section = SectionManager::Instance()->currentSection();
     auto *friendRoomBackPage = section->page<PageId::FriendRoomBack>();
     friendRoomBackPage->onSettingsChange(settings);
+}
+
+void FriendMatchingPage::ClientHandler::onRoomClose(u32 gamemode) {
+    Section *section = SectionManager::Instance()->currentSection();
+    auto *friendRoomBackPage = section->page<PageId::FriendRoomBack>();
+    friendRoomBackPage->onRoomClose(gamemode);
 }
 
 } // namespace UI

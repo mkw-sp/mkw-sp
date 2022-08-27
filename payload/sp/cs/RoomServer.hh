@@ -25,6 +25,7 @@ public:
                 [[maybe_unused]] u32 commentId) {}
         virtual void onSettingsChange(
                 [[maybe_unused]] const std::array<u32, RoomSettings::count> &settings) {}
+        virtual void onRoomClose([[maybe_unused]] u32 gamemode) {}
     };
 
     bool calc(Handler &handler);
@@ -67,12 +68,14 @@ private:
         bool writeLeave(u32 playerId);
         bool writeComment(u32 playerId, u32 messageId);
         bool writeSettings();
+        bool writeClose(u32 gamemode);
 
     private:
         enum class State {
             Connect,
             Setup,
             Main,
+            Select,
         };
 
         std::optional<State> resolve(Handler &handler);
@@ -81,6 +84,7 @@ private:
         std::optional<State> calcConnect();
         std::optional<State> calcSetup(Handler &handler);
         std::optional<State> calcMain(Handler &handler);
+        std::optional<State> calcSelect(Handler &handler);
 
         bool isHost() const;
         std::optional<u32> getPlayerId() const;
@@ -109,6 +113,7 @@ private:
             u16 latitude, u16 longitude, const std::array<u32, RoomSettings::count> &settings);
     void onPlayerLeave(Handler &handler, u32 playerId);
     bool onReceiveComment(u32 playerId, u32 messageId);
+    bool onRoomClose(Handler &handler, u32 playerId, u32 gamemode);
 
     void disconnectClient(u32 clientId);
 
@@ -116,6 +121,7 @@ private:
     void writeLeave(u32 playerId);
     void writeComment(u32 playerId, u32 messageId);
     void writeSettings();
+    void writeClose(u32 gamemode);
 
     CircularBuffer<Comment, 18> m_commentQueue;
     u32 m_commentTimer = 0;

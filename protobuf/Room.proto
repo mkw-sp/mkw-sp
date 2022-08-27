@@ -19,11 +19,16 @@ message RoomRequest {
         repeated uint32 settings = 1;
     }
 
+    message Close {
+        required uint32 gamemode = 1;
+    }
+
     oneof request {
         Join     join     = 1;
         Spectate spectate = 2;
         Comment  comment  = 3;
         Settings settings = 4;
+        Close    close    = 5;
     }
 }
 
@@ -52,11 +57,16 @@ message RoomEvent {
         required uint32 messageId = 2;
     }
 
+    message Close {
+        required uint32 gamemode = 1;
+    }
+
     oneof event {
         Join     join     = 1;
         Leave    leave    = 2;
         Spectate spectate = 3;
         Comment  comment  = 4;
         Settings settings = 5;
+        Close    close    = 6;
     }
 }

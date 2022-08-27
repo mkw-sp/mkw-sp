@@ -25,10 +25,12 @@ public:
                 [[maybe_unused]] u32 commentId) {}
         virtual void onSettingsChange(
                 [[maybe_unused]] const std::array<u32, RoomSettings::count> &settings) {}
+        virtual void onRoomClose([[maybe_unused]] u32 gamemode) {}
     };
 
     bool calc(Handler &handler);
     bool sendComment(u32 commentId);
+    bool closeRoom(u32 gamemode);
     void changeLocalSettings();
 
     static void OnCreateScene();
@@ -42,6 +44,7 @@ private:
         Connect,
         Setup,
         Main,
+        Select,
     };
 
     RoomClient(u32 localPlayerCount);
@@ -55,6 +58,7 @@ private:
     std::optional<State> calcConnect();
     std::optional<State> calcSetup(Handler &handler);
     std::optional<State> calcMain(Handler &handler);
+    std::optional<State> calcSelect(Handler &handler);
     bool onSetup(Handler &handler);
     bool onMain(Handler &handler);
 
@@ -62,10 +66,12 @@ private:
             u16 longitude);
     bool onPlayerLeave(Handler &handler, u32 playerId);
     bool onReceiveComment(Handler &handler, u32 playerId, u32 messageId);
+    bool onRoomClose(Handler &handler, u32 gamemode);
 
     bool read(std::optional<RoomEvent> &event);
     bool writeJoin();
     bool writeComment(u32 messageId);
+    bool writeClose(u32 gamemode);
     bool writeSettings();
     bool write(RoomRequest request);
 

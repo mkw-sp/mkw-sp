@@ -150,6 +150,17 @@ void FriendRoomBackPage::afterCalc() {
         globePage->requestComment(mii, latitude, longitude, location, 20025, 2, nullptr, callback);
         m_globePlayerId = 0;
         m_timer = 90;
+    } else if (const auto *close = std::get_if<Close>(entry)) {
+        auto *mii = m_miiGroup.get(m_indices[0]); 
+        u32 location = m_locations[m_indices[0]];
+        u16 latitude = m_latitudes[m_indices[0]];
+        u16 longitude = m_longitudes[m_indices[0]];
+        u32 messageId = close->messageId + 4110;
+        auto &callback = m_players[m_indices[0]].callback();
+        globePage->requestComment(mii, latitude, longitude, location, messageId, 2, nullptr,
+                callback);
+        m_globePlayerId = 0;
+        m_timer = 90;
     }
     m_queue.pop();
 }
@@ -228,6 +239,11 @@ void FriendRoomBackPage::onSettingsChange(
         }
     }
     m_queue.push(Settings { settings });
+}
+
+void FriendRoomBackPage::onRoomClose(u32 messageId) {
+    assert(!m_queue.full());
+    m_queue.push(Close { messageId });
 }
 
 } // namespace UI
