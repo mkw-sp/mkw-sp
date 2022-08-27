@@ -81,7 +81,7 @@ PATCH_B_START(CtrlRace2DMapCharacter_calcTransform, 0x138)
 PATCH_B_END(CtrlRace2DMapCharacter_calcTransform, 0x138)
 
 // Make the icon of the selected player appear over the other ones
-PATCH_B_START(CtrlRace2DMapCharacter_calcTransform, 0x298)
+PATCH_B_START(CtrlRace2DMapCharacter_calcTransform, 0x314)
     stfs f0, 0x48 (r3) // Original instruction
 
     lfs f3, 0x78 (r30)
@@ -95,8 +95,8 @@ PATCH_B_START(CtrlRace2DMapCharacter_calcTransform, 0x298)
     fadds f2, f2, f3
     stfs f2, 0x34 (r3)
 
-    b CtrlRace2DMapCharacter_calcTransform + 0x29c
-PATCH_B_END(CtrlRace2DMapCharacter_calcTransform, 0x298)
+    b CtrlRace2DMapCharacter_calcTransform + 0x318
+PATCH_B_END(CtrlRace2DMapCharacter_calcTransform, 0x314)
 
 // Fix copy-pasting mistake
 PATCH_REPLACE_START(CtrlRace2DMapCharacter_calcTransform, 0x5bc)
