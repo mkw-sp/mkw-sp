@@ -1,0 +1,21 @@
+{
+    "version": 10,
+    "sections": [
+        {
+            "magic": "pat1",
+            "id": 5,
+            "groups": [],
+            "name": "text_color_white",
+            "start frame": 80,
+            "end frame": 89,
+            "descending bind": true,
+        },
+        {
+            "magic": "pai1",
+            "frame count": 9,
+            "loop": true,
+            "tpls": [],
+            "contents": [],
+        },
+    ],
+}

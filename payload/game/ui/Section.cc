@@ -21,6 +21,7 @@
 #include "game/ui/UpdatePage.hh"
 #include "game/ui/VotingBackPage.hh"
 #include "game/ui/page/DriftSelectPage.hh"
+#include "game/ui/page/ResultTeamVSTotalPage.hh"
 
 namespace UI {
 
@@ -234,6 +235,11 @@ void Section::addPages(SectionId id) {
         { SectionId::Battle1P, PageId::ConfirmQuit },
         { SectionId::TAReplay, PageId::ConfirmQuit },
 
+        { SectionId::VS1P, PageId::ResultTeamVSTotal },
+        { SectionId::VS2P, PageId::ResultTeamVSTotal },
+        { SectionId::VS3P, PageId::ResultTeamVSTotal },
+        { SectionId::VS4P, PageId::ResultTeamVSTotal },
+
         // Support changing settings in-race
         { SectionId::GP, PageId::MenuSettings },
         { SectionId::TA, PageId::MenuSettings },
@@ -358,6 +364,8 @@ void Section::addActivePages(SectionId id) {
 
 Page *Section::CreatePage(PageId pageId) {
     switch (pageId) {
+    case PageId::ResultTeamVSTotal:
+        return new ResultTeamVSTotalPage;
     case PageId::LicenseSelect:
         return new LicenseSelectPage;
     case PageId::SingleTop:

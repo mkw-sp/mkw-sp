@@ -2,6 +2,10 @@
 
 namespace System {
 
+u8 RaceManager::Player::rank() const {
+    return m_rank;
+}
+
 u8 RaceManager::Player::maxLap() const {
     return m_maxLap;
 }

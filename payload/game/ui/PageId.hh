@@ -24,6 +24,10 @@ enum class PageId {
     CheckRankings = 0x2B,
     ConfirmQuit = 0x2C,
 
+    ResultRaceUpdate = 0x2f,
+    ResultRaceTotal = 0x30,
+    ResultTeamVSTotal = 0x32,
+
     CompetitionPersonalLeaderboard = 0x35,
 
     GhostReplayRace = 0x37,

@@ -168,7 +168,7 @@ static void my_GlyphRenderer_setupColors(GlyphRenderer *self, u32 formatId, u32 
         formatColor = (GXColor) { .r =   0, .g = 255, .b =   0, .a = 255 };
         break;
     case COLOR_ID_BLUE:
-        formatColor = (GXColor) { .r =   0, .g =   0, .b = 255, .a = 255 };
+        formatColor = (GXColor) { .r =   0, .g =  85, .b = 255, .a = 255 };
         break;
     case COLOR_ID_PINK:
         formatColor = (GXColor) { .r = 255, .g =   0, .b = 255, .a = 255 };

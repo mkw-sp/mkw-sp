@@ -7,16 +7,17 @@ namespace UI {
 class CtrlRaceNameBalloon : public LayoutUIControl {
 public:
     void calcVisibility();
-    void refreshText(u32 playerId);
 
 private:
-    void refreshTextName(u32 playerId);
+    REPLACE void refresh(u32 playerId);
+    void refreshTextMiiName(u32 playerId);
     void refreshTextTime(u32 playerId, bool leadingZeroes);
     void refreshTextDate(u32 playerId);
 
     u8 _174[0x178 - 0x174];
     s32 m_playerId;
-    u8 _17c[0x188 - 0x17c];
+    u8 _17c[0x184 - 0x17c];
+    nw4r::lyt::Pane *m_linePane;
 };
 static_assert(sizeof(CtrlRaceNameBalloon) == 0x188);
 

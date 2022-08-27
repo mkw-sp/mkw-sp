@@ -23,7 +23,10 @@ public:
         u8 _14[0xcc - 0x14];
         u32 team;
         s32 controllerId;
-        u8 _d4[0xf0 - 0xd4];
+        u8 _d4[0xd8 - 0xd4];
+        u16 prevRaceScore;
+        u16 raceScore;
+        u8 _dc[0xf0 - 0xdc];
     };
     static_assert(sizeof(Player) == 0xf0);
 

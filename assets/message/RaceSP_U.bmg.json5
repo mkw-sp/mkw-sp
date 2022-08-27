@@ -15,4 +15,32 @@
         "font": "regular",
         "string": "{arg integer|0 0}:{arg integer|1 0}.{arg integer|2 3}",
     },
+    "10275": {
+        "font": "red",
+        "string": "{color|sp blue}{arg integer|0 0}",
+    },
+    "10276": {
+        "font": "red",
+        "string": "{color|player 3}{arg integer|0 0}",
+    },
+    "10277": {
+        "font": "red",
+        "string": "{color|player 1}{arg integer|0 0}",
+    },
+    "10278": {
+        "font": "red",
+        "string": "{color|sp green}{arg integer|0 0}",
+    },
+    "10279": {
+        "font": "red",
+        "string": "{color|sp pink}{arg integer|0 0}",
+    },
+    "10280": {
+        "font": "red",
+        "string": "{arg integer|0 0}",
+    },
+    "10281": {
+        "font": "blue",
+        "string": "{arg integer|0 0}",
+    },
 }
