@@ -72,9 +72,6 @@ static void Init() {
     OSDisableCodeExecOnMEM1Hi16MB();
 #endif
 
-    Heap_RandomizeMEM1Heaps();
-    Heap_RandomizeMEM2Heaps();
-
 #ifdef GDB_COMPATIBLE
     OSSetMEM1ArenaLo((void*)0x809C4FA0);
 #else
@@ -82,6 +79,9 @@ static void Init() {
 #endif
 
     OSAllocFromMEM1ArenaLo(Payload_getSize(), 0x20);
+
+    Heap_RandomizeMEM1Heaps();
+    Heap_RandomizeMEM2Heaps();
 
     Memory_ProtectRangeModule(OS_PROTECT_CHANNEL_1, Dol_getInitSectionStart(), Dol_getRodataSectionEnd(), OS_PROTECT_PERMISSION_READ);
     Memory_ProtectRangeModule(OS_PROTECT_CHANNEL_2, Dol_getSdata2SectionStart(), Dol_getSbss2SectionEnd(), OS_PROTECT_PERMISSION_READ);
