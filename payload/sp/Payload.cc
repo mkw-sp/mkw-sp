@@ -17,6 +17,7 @@ extern "C" {
 }
 #include "sp/net/Net.hh"
 extern "C" {
+#include "sp/security/Heap.h"
 #include "sp/security/Memory.h"
 #include "sp/security/Stack.h"
 #include "sp/storage/LogFile.h"
@@ -66,9 +67,13 @@ static void Init() {
     Console::Print(versionInfo.name);
     Console::Print("\n");
 
+    Console::Print("Applying security patches...");
 #ifndef GDB_COMPATIBLE
     OSDisableCodeExecOnMEM1Hi16MB();
 #endif
+
+    Heap_RandomizeMEM1Heaps();
+    Heap_RandomizeMEM2Heaps();
 
 #ifdef GDB_COMPATIBLE
     OSSetMEM1ArenaLo((void*)0x809C4FA0);
@@ -80,6 +85,7 @@ static void Init() {
 
     Memory_ProtectRangeModule(OS_PROTECT_CHANNEL_1, Dol_getInitSectionStart(), Dol_getRodataSectionEnd(), OS_PROTECT_PERMISSION_READ);
     Memory_ProtectRangeModule(OS_PROTECT_CHANNEL_2, Dol_getSdata2SectionStart(), Dol_getSbss2SectionEnd(), OS_PROTECT_PERMISSION_READ);
+    Console::Print(" done.\n");
 
     Console::Print("Initializing RTC...");
     Time::Init();
