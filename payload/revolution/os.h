@@ -12,11 +12,27 @@
 #endif
 
 void *OSGetMEM1ArenaHi(void);
+void *OSGetMEM2ArenaHi(void);
 void *OSGetMEM1ArenaLo(void);
-void OSSetMEM1ArenaLo(void *lo);
-
 void *OSGetMEM2ArenaLo(void);
+void OSSetMEM1ArenaHi(void *hi);
+void OSSetMEM2ArenaHi(void *hi);
+void OSSetMEM1ArenaLo(void *lo);
 void OSSetMEM2ArenaLo(void *lo);
+
+static inline void *OSAllocFromMEM1ArenaHi(u32 size, u32 align) {
+    uintptr_t result = ROUND_DOWN((uintptr_t)OSGetMEM1ArenaHi(), align);
+
+    OSSetMEM1ArenaHi((void *)ROUND_DOWN(result - size, align));
+    return (void *)result;
+}
+
+static inline void *OSAllocFromMEM2ArenaHi(u32 size, u32 align) {
+    uintptr_t result = ROUND_DOWN((uintptr_t)OSGetMEM2ArenaHi(), align);
+
+    OSSetMEM2ArenaHi((void *)ROUND_DOWN(result - size, align));
+    return (void *)result;
+}
 
 void *OSAllocFromMEM1ArenaLo(u32 size, u32 align);
 

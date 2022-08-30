@@ -146,6 +146,7 @@ static size_t sp_wcslen(const wchar_t *w) {
 #define PHYSICAL_TO_VIRTUAL(addr) ((void *)((addr) | 0x80000000))
 
 #define ROUND_UP(n, a) (((uintptr_t)(n) + (a)-1) & ~((a)-1))
+#define ROUND_DOWN(n, a) ((uintptr_t)(n) & ~(a - 1))
 
 enum {
     REGION_P = 0x54a9,
