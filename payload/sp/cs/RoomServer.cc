@@ -45,24 +45,6 @@ bool RoomServer::calc(Handler &handler) {
         }
     }
 
-    if (m_commentTimer > 0) {
-        m_commentTimer--;
-    } else {
-        if (!m_commentQueue.empty()) {
-            const auto *comment = m_commentQueue.front();
-            handler.onReceiveComment(comment->playerId, comment->messageId);
-            writeComment(comment->playerId, comment->messageId);
-            m_commentQueue.pop();
-            m_commentTimer = 90;
-        }
-    }
-
-    if (m_settingsChanged) {
-        writeSettings();
-        handler.onSettingsChange(m_players[0].m_settings);
-        m_settingsChanged = false;
-    }
-
     while (!m_disconnectQueue.empty()) {
         for (u32 i = m_playerCount; i --> 0;) {
             if (m_players[i].clientId == *m_disconnectQueue.front()) {
@@ -153,6 +135,8 @@ std::optional<RoomServer::State> RoomServer::resolve(Handler &handler) {
     case State::Setup:
         return calcSetup();
     case State::Main:
+        return calcMain(handler);
+    case State::Select:
         break;
     }
 
@@ -171,6 +155,8 @@ bool RoomServer::transition(Handler &handler, State state) {
     case State::Main:
         result = onMain(handler);
         break;
+    case State::Select:
+        break;
     }
     m_state = state;
     return result;
@@ -182,6 +168,38 @@ std::optional<RoomServer::State> RoomServer::calcSetup() {
     }
 
     return State::Main;
+}
+
+std::optional<RoomServer::State> RoomServer::calcMain(Handler &handler) {
+    State state = State::Main;
+
+    if (m_commentTimer > 0) {
+        m_commentTimer--;
+    } else {
+        if (!m_commentQueue.empty()) {
+            const auto *comment = m_commentQueue.front();
+            handler.onReceiveComment(comment->playerId, comment->messageId);
+            writeComment(comment->playerId, comment->messageId);
+            m_commentQueue.pop();
+            m_commentTimer = 90;
+        }
+    }
+
+    if (m_settingsChanged) {
+        writeSettings();
+        handler.onSettingsChange(m_players[0].m_settings);
+        m_settingsChanged = false;
+        state = State::Select;
+    }
+
+    if (m_roomClosed) {
+        assert(m_gamemode != -1);
+        writeClose(m_gamemode);
+        m_roomClosed = false;
+        state = State::Select;
+    }
+
+    return state;
 }
 
 bool RoomServer::onMain(Handler &handler) {
@@ -240,9 +258,11 @@ bool RoomServer::onReceiveComment(u32 playerId, u32 messageId) {
     return true;
 }
 
-bool RoomServer::onRoomClose(Handler &handler, u32 playerId, u32 gamemode) {
+bool RoomServer::onRoomClose(Handler &handler, u32 playerId, s32 gamemode) {
     if (playerId != 0) { return false; }
     if (gamemode >= 4) { return false; }
+    if (gamemode < 0) { return false; }
+    m_gamemode = gamemode;
     m_commentQueue.reset();
 
     handler.onRoomClose(gamemode);
@@ -530,6 +550,7 @@ std::optional<RoomServer::Client::State> RoomServer::Client::calcMain(Handler &h
         if (!m_server.onRoomClose(handler, *playerId, request->request.close.gamemode)) {
             return {};
         }
+        m_server.m_roomClosed = true;
         return State::Select;
     default:
         return {};
