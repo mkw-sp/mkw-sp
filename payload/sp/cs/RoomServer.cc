@@ -195,6 +195,7 @@ std::optional<RoomServer::State> RoomServer::calcMain(Handler &handler) {
     if (m_roomClosed) {
         assert(m_gamemode != -1);
         writeClose(m_gamemode);
+        handler.onRoomClose(m_gamemode);
         m_roomClosed = false;
         state = State::Select;
     }
@@ -262,11 +263,9 @@ bool RoomServer::onRoomClose(Handler &handler, u32 playerId, s32 gamemode) {
     if (playerId != 0) { return false; }
     if (gamemode >= 4) { return false; }
     if (gamemode < 0) { return false; }
+
     m_gamemode = gamemode;
     m_commentQueue.reset();
-
-    handler.onRoomClose(gamemode);
-    writeClose(gamemode);
     return true;
 }
 
