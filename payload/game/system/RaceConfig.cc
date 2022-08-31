@@ -20,7 +20,9 @@ u8 (&RaceConfig::ghostBuffers())[2][11][0x2800] {
     return m_ghostBuffers;
 }
   
-void RaceConfig::RaceConfig_initRace() {
+void RaceConfig::initRace() {
+    REPLACED(initRace)();
+    
     auto *saveManager = System::SaveManager::Instance();
     auto setting = saveManager->getSetting<SP::ClientSettings::Setting::TAMirror>();
     if (m_raceScenario.gameMode == GameMode::TimeAttack && setting == SP::ClientSettings::TAMirror::Enable) {
