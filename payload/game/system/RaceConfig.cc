@@ -1,4 +1,6 @@
 #include "RaceConfig.hh"
+#include "SaveManager.hh"
+#include "sp/settings/ClientSettings.hh"
 
 namespace System {
 
@@ -16,6 +18,17 @@ RaceConfig::Scenario &RaceConfig::awardsScenario() {
 
 u8 (&RaceConfig::ghostBuffers())[2][11][0x2800] {
     return m_ghostBuffers;
+}
+  
+void RaceConfig::RaceConfig_initRace() {
+    auto *saveManager = System::SaveManager::Instance();
+    auto setting = saveManager->getSetting<SP::ClientSettings::Setting::TAMirror>();
+    if (m_raceScenario.gameMode == GameMode::TimeAttack && setting == SP::ClientSettings::TAMirror::Enable) {
+        m_raceScenario.mirror = true;
+    }
+    else {
+        m_raceScenario.mirror = false;
+    }
 }
 
 RaceConfig *RaceConfig::Instance() {
