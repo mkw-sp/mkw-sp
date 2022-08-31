@@ -71,8 +71,8 @@ public:
     Scenario &awardsScenario();
     u8 (&ghostBuffers())[2][11][0x2800];
     
-    void REPLACED(RaceConfig_initRace)();
-    REPLACE void RaceConfig_initRace();
+    void REPLACED(initRace)();
+    REPLACE void initRace();
 
     static RaceConfig *Instance();
 
