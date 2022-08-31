@@ -54,6 +54,7 @@ private:
     enum class State {
         Setup,
         Main,
+        Select,
     };
 
     class Client {
@@ -107,13 +108,14 @@ private:
     bool transition(Handler &handler, State state);
 
     std::optional<State> calcSetup();
+    std::optional<State> calcMain(Handler &handler);
     bool onMain(Handler &handler);
 
     bool onPlayerJoin(Handler &handler, u32 clientId, const System::RawMii *mii, u32 location,
             u16 latitude, u16 longitude, const std::array<u32, RoomSettings::count> &settings);
     void onPlayerLeave(Handler &handler, u32 playerId);
     bool onReceiveComment(u32 playerId, u32 messageId);
-    bool onRoomClose(Handler &handler, u32 playerId, u32 gamemode);
+    bool onRoomClose(Handler &handler, u32 playerId, s32 gamemode);
 
     void disconnectClient(u32 clientId);
 
@@ -126,6 +128,8 @@ private:
     CircularBuffer<Comment, 18> m_commentQueue;
     u32 m_commentTimer = 0;
     bool m_settingsChanged = false;
+    bool m_roomClosed = false;
+    s32 m_gamemode = -1;
     u32 m_playerCount = 0;
     std::array<Player, 12> m_players;
     State m_state;
