@@ -1,5 +1,6 @@
 #include "FriendRoomBackPage.hh"
 
+#include "game/ui/FriendMatchingPage.hh"
 #include "game/ui/FriendRoomPage.hh"
 #include "game/ui/FriendRoomRulesPage.hh"
 #include "game/ui/GlobePage.hh"
@@ -78,6 +79,13 @@ void FriendRoomBackPage::beforeInAnim() {
 void FriendRoomBackPage::afterCalc() {
     if (m_timer > 0) {
         m_timer--;
+        return;
+    }
+
+    if (m_roomClosed) {
+        Section *section = SectionManager::Instance()->currentSection();
+        auto *friendMatchingPage = section->page<PageId::FriendMatching>();
+        friendMatchingPage->start();
         return;
     }
 
@@ -161,6 +169,7 @@ void FriendRoomBackPage::afterCalc() {
                 callback);
         m_globePlayerId = 0;
         m_timer = 90;
+        m_roomClosed = true;
     }
     m_queue.pop();
 }
@@ -243,6 +252,9 @@ void FriendRoomBackPage::onSettingsChange(
 
 void FriendRoomBackPage::onRoomClose(u32 messageId) {
     assert(!m_queue.full());
+    for (size_t i = 0; i < m_queue.count(); i++) {
+        m_queue.remove(i);
+    }
     m_queue.push(Close { messageId });
 }
 

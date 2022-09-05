@@ -189,7 +189,6 @@ std::optional<RoomServer::State> RoomServer::calcMain(Handler &handler) {
         writeSettings();
         handler.onSettingsChange(m_players[0].m_settings);
         m_settingsChanged = false;
-        state = State::Select;
     }
 
     if (m_roomClosed) {
@@ -333,6 +332,7 @@ RoomServer::Client::~Client() = default;
 bool RoomServer::Client::ready() const {
     switch (m_state) {
     case State::Main:
+    case State::Select:
         return true;
     default:
         return false;

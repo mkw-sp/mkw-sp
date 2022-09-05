@@ -1,5 +1,6 @@
 #include "FriendMatchingPage.hh"
 
+#include "game/system/RaceConfig.hh"
 #include "game/ui/FriendRoomBackPage.hh"
 #include "game/ui/GlobePage.hh"
 #include "game/ui/MessagePage.hh"
@@ -90,6 +91,12 @@ void FriendMatchingPage::onRefocus() {
     }
 }
 
+void FriendMatchingPage::start() {
+    collapse();
+    push(PageId::CharacterSelect, Anim::Next);
+    System::RaceConfig::Instance()->menuScenario().gameMode = m_gamemode == 0 ? System::RaceConfig::GameMode::OnlinePrivateVS : System::RaceConfig::GameMode::OnlinePrivateBT;
+}
+
 void FriendMatchingPage::onBack([[maybe_unused]] u32 localPlayerId) {
     auto *section = SectionManager::Instance()->currentSection();
     auto sectionId = section->id();
@@ -164,6 +171,7 @@ void FriendMatchingPage::ServerHandler::onSettingsChange(
 }
 
 void FriendMatchingPage::ServerHandler::onRoomClose(u32 gamemode) {
+    m_page.m_gamemode = gamemode;
     Section *section = SectionManager::Instance()->currentSection();
     auto *friendRoomBackPage = section->page<PageId::FriendRoomBack>();
     friendRoomBackPage->onRoomClose(gamemode);
@@ -209,6 +217,7 @@ void FriendMatchingPage::ClientHandler::onSettingsChange(
 }
 
 void FriendMatchingPage::ClientHandler::onRoomClose(u32 gamemode) {
+    m_page.m_gamemode = gamemode;
     Section *section = SectionManager::Instance()->currentSection();
     auto *friendRoomBackPage = section->page<PageId::FriendRoomBack>();
     friendRoomBackPage->onRoomClose(gamemode);

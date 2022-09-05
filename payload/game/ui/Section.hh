@@ -6,6 +6,7 @@
 namespace UI {
 
 class ConfirmPage;
+class FriendMatchingPage;
 class FriendRoomBackPage;
 class FriendRoomMessageSelectPage;
 class FriendRoomPage;
@@ -98,6 +99,11 @@ struct Section::PageIdHelper<PageId::TimeAttackGhostList> {
 template <>
 struct Section::PageIdHelper<PageId::Globe> {
     using type = GlobePage;
+};
+
+template <>
+struct Section::PageIdHelper<PageId::FriendMatching> {
+    using type = FriendMatchingPage;
 };
 
 template <>

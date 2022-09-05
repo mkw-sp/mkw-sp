@@ -71,7 +71,9 @@ private:
     // Leave: 12
     // Comment: 18
     // Settings: 1
-    SP::CircularBuffer<std::variant<Join, Leave, Comment, Settings, Close>, 43> m_queue;
+    // Close: 1
+    SP::CircularBuffer<std::variant<Join, Leave, Comment, Settings, Close>, 44> m_queue;
+    bool m_roomClosed = false;
 };
 
 } // namespace UI

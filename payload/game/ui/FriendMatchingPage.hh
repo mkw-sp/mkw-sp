@@ -24,6 +24,8 @@ public:
     void afterCalc() override;
     void onRefocus() override;
 
+    void start();
+
 private:
     class ServerHandler : public SP::RoomServer::Handler {
     public:
@@ -77,6 +79,7 @@ private:
     PageId m_replacement;
     ServerHandler m_serverHandler;
     ClientHandler m_clientHandler;
+    s32 m_gamemode = -1;
 };
 
 } // namespace UI
