@@ -79,6 +79,8 @@ void FriendMatchingPage::afterCalc() {
 }
 
 void FriendMatchingPage::onRefocus() {
+    if (m_roomStarted) { return start(); }
+
     auto *section = SectionManager::Instance()->currentSection();
     auto *globePage = section->page<PageId::Globe>();
     globePage->requestSpinFar();
@@ -91,10 +93,12 @@ void FriendMatchingPage::onRefocus() {
     }
 }
 
-void FriendMatchingPage::start() {
+void FriendMatchingPage::prepareStart() {
+    auto *section = SectionManager::Instance()->currentSection();
+    auto *globePage = section->page<PageId::Globe>();
+    globePage->requestSpinClose();
     collapse();
-    push(PageId::CharacterSelect, Anim::Next);
-    System::RaceConfig::Instance()->menuScenario().gameMode = m_gamemode == 0 ? System::RaceConfig::GameMode::OnlinePrivateVS : System::RaceConfig::GameMode::OnlinePrivateBT;
+    m_roomStarted = true;
 }
 
 void FriendMatchingPage::onBack([[maybe_unused]] u32 localPlayerId) {
@@ -133,6 +137,11 @@ void FriendMatchingPage::collapse() {
         auto *friendRoomBackPage = section->page<PageId::FriendRoomBack>();
         friendRoomBackPage->pop();
     }
+}
+
+void FriendMatchingPage::start() {
+    push(PageId::CharacterSelect, Anim::Next);
+    System::RaceConfig::Instance()->menuScenario().gameMode = m_gamemode == 0 ? System::RaceConfig::GameMode::OnlinePrivateVS : System::RaceConfig::GameMode::OnlinePrivateBT;
 }
 
 FriendMatchingPage::ServerHandler::ServerHandler(FriendMatchingPage &page) : m_page(page) {}

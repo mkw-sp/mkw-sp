@@ -11,6 +11,8 @@ public:
             u32 messageId, u32 type, const System::Mii *localPlayerMii,
             FriendMatchingPlayer::Callback &callback);
     void requestSpinFar();
+    void requestSpinMid();
+    void requestSpinClose();
 
 private:
     u8 _044[0x4c8 - 0x044];

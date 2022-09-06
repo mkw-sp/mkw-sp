@@ -24,7 +24,7 @@ public:
     void afterCalc() override;
     void onRefocus() override;
 
-    void start();
+    void prepareStart();
 
 private:
     class ServerHandler : public SP::RoomServer::Handler {
@@ -67,6 +67,7 @@ private:
     void onBack(u32 localPlayerId);
     void onCloseConfirm(s32 choice, PushButton *button);
     void collapse();
+    void start();
 
     template <typename T>
     using H = typename T::Handler<FriendMatchingPage>;
@@ -80,6 +81,7 @@ private:
     ServerHandler m_serverHandler;
     ClientHandler m_clientHandler;
     s32 m_gamemode = -1;
+    bool m_roomStarted = false;
 };
 
 } // namespace UI

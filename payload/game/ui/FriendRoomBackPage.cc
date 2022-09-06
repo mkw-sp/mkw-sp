@@ -85,7 +85,7 @@ void FriendRoomBackPage::afterCalc() {
     if (m_roomClosed) {
         Section *section = SectionManager::Instance()->currentSection();
         auto *friendMatchingPage = section->page<PageId::FriendMatching>();
-        friendMatchingPage->start();
+        friendMatchingPage->prepareStart();
         return;
     }
 
