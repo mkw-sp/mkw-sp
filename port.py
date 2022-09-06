@@ -637,16 +637,18 @@ with open(args.out_path, 'w') as out_file:
     out_file.write('\n')
 
     # Write the start and end address for each section in the payload
-    out_file.write('    payload_text_start = ADDR(.text);\n');
-    out_file.write('    payload_text_end = payload_text_start + SIZEOF(.text);\n');
-    out_file.write('    payload_ctors_start = ADDR(.ctors);\n');
-    out_file.write('    payload_ctors_end = payload_ctors_start + SIZEOF(.ctors);\n');
-    out_file.write('    payload_patches_start = ADDR(patches);\n');
-    out_file.write('    payload_patches_end = payload_patches_start + SIZEOF(patches);\n');
-    out_file.write('    payload_rodata_start = ADDR(.rodata);\n');
-    out_file.write('    payload_rodata_end = payload_rodata_start + SIZEOF(.rodata);\n');
-    out_file.write('    payload_data_start = ADDR(.data);\n');
-    out_file.write('    payload_data_end = payload_data_start + SIZEOF(.data);\n');
+    out_file.write('    payload_text_start = ADDR(.text);\n')
+    out_file.write('    payload_text_end = payload_text_start + SIZEOF(.text);\n')
+    out_file.write('    payload_replacements_start = ADDR(replacements);\n')
+    out_file.write('    payload_replacements_end = payload_replacements_start + SIZEOF(replacements);\n')
+    out_file.write('    payload_ctors_start = ADDR(.ctors);\n')
+    out_file.write('    payload_ctors_end = payload_ctors_start + SIZEOF(.ctors);\n')
+    out_file.write('    payload_patches_start = ADDR(patches);\n')
+    out_file.write('    payload_patches_end = payload_patches_start + SIZEOF(patches);\n')
+    out_file.write('    payload_rodata_start = ADDR(.rodata);\n')
+    out_file.write('    payload_rodata_end = payload_rodata_start + SIZEOF(.rodata);\n')
+    out_file.write('    payload_data_start = ADDR(.data);\n')
+    out_file.write('    payload_data_end = payload_data_start + SIZEOF(.data);\n')
     out_file.write('\n')
 
     if args.base:

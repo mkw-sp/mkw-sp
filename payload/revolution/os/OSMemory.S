@@ -39,3 +39,23 @@ DisableInstsOnMEM1Hi16MB:
     mfspr     r3, LR
     mtspr     SRR0, r3
     rfi
+
+.globl EnableInstsOnPayload
+EnableInstsOnPayload:
+    li        r0, 0
+    li        r3, BAT_PP_RW
+    lis       r4, newIBAT1U@ha
+    rlwinm    r4, r4, 0, 3, 15
+    lwz       r4, newIBAT1U@l(r4)
+
+    mtspr     IBAT1U, r0
+    mtspr     IBAT1L, r3
+    mtspr     IBAT1U, r4
+    isync
+
+    mfmsr     r3
+    ori       r3, r3, MSR_DR | MSR_IR
+    mtspr     SRR1, r3
+    mfspr     r3, LR
+    mtspr     SRR0, r3
+    rfi

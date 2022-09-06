@@ -111,10 +111,11 @@
 #define MSR_IR (1 << 5)
 
 #define BAT_BL_8MB (0b00000111111 << 2)
-#define BAT_VS     (1 << 1)
-#define BAT_VP     (1 << 0)
 
-#define BAT_PP_RW  (0b10 << 0)
+#define BAT_VS (1 << 1)
+#define BAT_VP (1 << 0)
+
+#define BAT_PP_RW (0b10 << 0)
 
 #define PATCH_TYPE_WRITE 0x0
 #define PATCH_TYPE_BRANCH 0x1
