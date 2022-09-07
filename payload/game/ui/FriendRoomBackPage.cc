@@ -82,19 +82,15 @@ void FriendRoomBackPage::afterCalc() {
         return;
     }
 
-    if (m_roomClosed) {
-        Section *section = SectionManager::Instance()->currentSection();
-        auto *friendMatchingPage = section->page<PageId::FriendMatching>();
-        friendMatchingPage->prepareStart();
-        return;
-    }
+    auto *section = SectionManager::Instance()->currentSection();
+    auto *friendMatchingPage = section->page<PageId::FriendMatching>();
+    if (m_roomClosed) { return section->id() == SectionId::OnlineServer ? friendMatchingPage->prepareStartServer() : friendMatchingPage->prepareStartClient(); }
 
     auto *entry = m_queue.front();
     if (!entry) {
         return;
     }
 
-    Section *section = SectionManager::Instance()->currentSection();
     auto *globePage = section->page<PageId::Globe>();
     if (const auto *join = std::get_if<Join>(entry)) {
         assert(m_playerCount < std::size(m_players));

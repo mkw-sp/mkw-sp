@@ -24,7 +24,8 @@ public:
     void afterCalc() override;
     void onRefocus() override;
 
-    void prepareStart();
+    void prepareStartClient();
+    void prepareStartServer();
 
 private:
     class ServerHandler : public SP::RoomServer::Handler {
@@ -67,7 +68,8 @@ private:
     void onBack(u32 localPlayerId);
     void onCloseConfirm(s32 choice, PushButton *button);
     void collapse();
-    void start();
+    void startClient();
+    void startServer();
 
     template <typename T>
     using H = typename T::Handler<FriendMatchingPage>;

@@ -52,6 +52,15 @@ enum class SectionId {
     OnlineMultiConfigure = 0x5a, // Replaces WifiMultiConfigure
     OnlineMulti = 0x5b, // Replaces WifiMulti
 
+    Voting1PVS = 0x60,
+    VotingServer = 0x61, // Replaces Voting1PTeamVS
+    Voting1PBalloon = 0x62,
+    Voting1PCoin = 0x63,
+    Voting2PVS = 0x64,
+    // 0x65 replaces deprecated Voting2PTeamVS, free to use!
+    Voting2PBalloon = 0x66,
+    Voting2PCoin = 0x67,
+
     ServicePack = 0x7a, // Replaces Channel
 
     OnlineServer = 0x84, // Replaces FriendListFromChannel

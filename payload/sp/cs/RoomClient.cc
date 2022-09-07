@@ -53,17 +53,12 @@ void RoomClient::OnCreateScene() {
         return;
     }
 
-    switch (sectionManager->nextSectionId()) {
-    case UI::SectionId::OnlineSingle:
-    case UI::SectionId::OnlineMulti: {
-        assert(!s_block);
-        auto *heap = reinterpret_cast<EGG::Heap *>(s_rootScene->heapCollection.heaps[HEAP_ID_MEM2]);
-        s_block = heap->alloc(sizeof(RoomClient), 0x4);
-        break;
-    }
-    default:
-        break;
-    }
+    if (UI::Section::HasRoomClient(sectionManager->lastSectionId())) { return; }
+    if (!UI::Section::HasRoomClient(sectionManager->nextSectionId())) { return; }
+
+    assert(!s_block);
+    auto *heap = reinterpret_cast<EGG::Heap *>(s_rootScene->heapCollection.heaps[HEAP_ID_MEM2]);
+    s_block = heap->alloc(sizeof(RoomClient), 0x4);
 }
 
 void RoomClient::OnDestroyScene() {
@@ -72,21 +67,16 @@ void RoomClient::OnDestroyScene() {
         return;
     }
 
-    switch (sectionManager->lastSectionId()) {
-    case UI::SectionId::OnlineSingle:
-    case UI::SectionId::OnlineMulti: {
-        if (s_instance) {
-            DestroyInstance();
-        }
-        assert(s_block);
-        auto *heap = reinterpret_cast<EGG::Heap *>(s_rootScene->heapCollection.heaps[HEAP_ID_MEM2]);
-        heap->free(s_block);
-        s_block = nullptr;
-        break;
+    if (UI::Section::HasRoomClient(sectionManager->nextSectionId())) { return; }
+    if (!UI::Section::HasRoomClient(sectionManager->lastSectionId())) { return; }
+
+    if (s_instance) {
+        DestroyInstance();
     }
-    default:
-        break;
-    }
+    assert(s_block);
+    auto *heap = reinterpret_cast<EGG::Heap *>(s_rootScene->heapCollection.heaps[HEAP_ID_MEM2]);
+    heap->free(s_block);
+    s_block = nullptr;
 }
 
 RoomClient *RoomClient::CreateInstance(u32 localPlayerCount) {

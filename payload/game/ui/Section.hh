@@ -6,6 +6,7 @@
 namespace UI {
 
 class ConfirmPage;
+class DriftSelectPage;
 class FriendMatchingPage;
 class FriendRoomBackPage;
 class FriendRoomMessageSelectPage;
@@ -43,6 +44,8 @@ public:
     bool isPageActive(PageId pageId) const;
 
     static u32 GetSceneId(SectionId id);
+    static bool HasRoomClient(SectionId sectionId);
+    static bool HasRoomServer(SectionId sectionId);
 
 private:
     void REPLACED(addPage)(PageId pageId);
@@ -89,6 +92,11 @@ struct Section::PageIdHelper<PageId::Confirm> {
 template <>
 struct Section::PageIdHelper<PageId::Model> {
     using type = ModelPage;
+};
+
+template <>
+struct Section::PageIdHelper<PageId::DriftSelect> {
+    using type = DriftSelectPage;
 };
 
 template <>

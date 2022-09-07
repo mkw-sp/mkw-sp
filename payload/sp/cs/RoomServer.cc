@@ -71,16 +71,12 @@ void RoomServer::OnCreateScene() {
         return;
     }
 
-    switch (sectionManager->nextSectionId()) {
-    case UI::SectionId::OnlineServer: {
-        assert(!s_block);
-        auto *heap = reinterpret_cast<EGG::Heap *>(s_rootScene->heapCollection.heaps[HEAP_ID_MEM2]);
-        s_block = heap->alloc(sizeof(RoomServer), 0x4);
-        break;
-    }
-    default:
-        break;
-    }
+    if (UI::Section::HasRoomServer(sectionManager->lastSectionId())) { return; }
+    if (!UI::Section::HasRoomServer(sectionManager->nextSectionId())) { return; }
+
+    assert(!s_block);
+    auto *heap = reinterpret_cast<EGG::Heap *>(s_rootScene->heapCollection.heaps[HEAP_ID_MEM2]);
+    s_block = heap->alloc(sizeof(RoomServer), 0x4);
 }
 
 void RoomServer::OnDestroyScene() {
@@ -89,20 +85,16 @@ void RoomServer::OnDestroyScene() {
         return;
     }
 
-    switch (sectionManager->lastSectionId()) {
-    case UI::SectionId::OnlineServer: {
-        if (s_instance) {
-            DestroyInstance();
-        }
-        assert(s_block);
-        auto *heap = reinterpret_cast<EGG::Heap *>(s_rootScene->heapCollection.heaps[HEAP_ID_MEM2]);
-        heap->free(s_block);
-        s_block = nullptr;
-        break;
+    if (UI::Section::HasRoomServer(sectionManager->nextSectionId())) { return; }
+    if (!UI::Section::HasRoomServer(sectionManager->lastSectionId())) { return; }
+    
+    if (s_instance) {
+        DestroyInstance();
     }
-    default:
-        break;
-    }
+    assert(s_block);
+    auto *heap = reinterpret_cast<EGG::Heap *>(s_rootScene->heapCollection.heaps[HEAP_ID_MEM2]);
+    heap->free(s_block);
+    s_block = nullptr;
 }
 
 RoomServer *RoomServer::CreateInstance() {

@@ -1,6 +1,7 @@
 #include "FriendMatchingPage.hh"
 
 #include "game/system/RaceConfig.hh"
+#include "game/ui/page/DriftSelectPage.hh"
 #include "game/ui/FriendRoomBackPage.hh"
 #include "game/ui/GlobePage.hh"
 #include "game/ui/MessagePage.hh"
@@ -79,12 +80,14 @@ void FriendMatchingPage::afterCalc() {
 }
 
 void FriendMatchingPage::onRefocus() {
-    if (m_roomStarted) { return start(); }
-
     auto *section = SectionManager::Instance()->currentSection();
+    auto sectionId = section->id();
+    SP_LOG("We reach the check!");
+    if (m_roomStarted) { return sectionId == SectionId::OnlineServer ? startServer() : startClient(); }
+
+    SP_LOG("We reach the exit event!");
     auto *globePage = section->page<PageId::Globe>();
     globePage->requestSpinFar();
-    auto sectionId = section->id();
     if (sectionId == SectionId::OnlineServer) {
         changeSection(SectionId::ServicePack, Anim::Prev, 0.0f);
     } else {
@@ -93,10 +96,15 @@ void FriendMatchingPage::onRefocus() {
     }
 }
 
-void FriendMatchingPage::prepareStart() {
+void FriendMatchingPage::prepareStartClient() {
     auto *section = SectionManager::Instance()->currentSection();
     auto *globePage = section->page<PageId::Globe>();
     globePage->requestSpinClose();
+    collapse();
+    m_roomStarted = true;
+}
+
+void FriendMatchingPage::prepareStartServer() {
     collapse();
     m_roomStarted = true;
 }
@@ -139,9 +147,17 @@ void FriendMatchingPage::collapse() {
     }
 }
 
-void FriendMatchingPage::start() {
+void FriendMatchingPage::startClient() {
+    auto *section = SectionManager::Instance()->currentSection();
+    auto *driftSelectPage = section->page<PageId::DriftSelect>();
+    driftSelectPage->setReplacementSection((SectionId)(m_gamemode + 0x60));
+
     push(PageId::CharacterSelect, Anim::Next);
     System::RaceConfig::Instance()->menuScenario().gameMode = m_gamemode == 0 ? System::RaceConfig::GameMode::OnlinePrivateVS : System::RaceConfig::GameMode::OnlinePrivateBT;
+}
+
+void FriendMatchingPage::startServer() {
+    changeSection(SectionId::VotingServer, Anim::Next, 0.0f);
 }
 
 FriendMatchingPage::ServerHandler::ServerHandler(FriendMatchingPage &page) : m_page(page) {}
