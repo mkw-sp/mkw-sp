@@ -4,6 +4,8 @@
 
 extern u8 payload_text_start[];
 extern u8 payload_text_end[];
+extern u8 payload_replacements_start[];
+extern u8 payload_replacements_end[];
 extern u8 payload_patches_start[];
 extern u8 payload_patches_end[];
 extern u8 payload_rodata_start[];
@@ -21,6 +23,14 @@ static inline void *Payload_getTextSectionStart(void) {
 
 static inline void *Payload_getTextSectionEnd(void) {
     return payload_text_end;
+}
+
+static inline void *Payload_getReplacementsStart(void) {
+    return payload_replacements_start;
+}
+
+static inline void *Payload_getReplacementsEnd(void) {
+    return payload_replacements_end;
 }
 
 static inline void *Payload_getPatchesSectionStart(void) {
