@@ -152,10 +152,12 @@ void SingleTopPage::onTAButtonSelect([[maybe_unused]] PushButton *button,
 void SingleTopPage::onVSButtonFront([[maybe_unused]] PushButton *button,
         [[maybe_unused]] u32 localPlayerId) {
     auto *saveManager = System::SaveManager::Instance();
-    auto setting = saveManager->getSetting<SP::ClientSettings::Setting::VSTeamSize>();
-    u32 maxTeamSize = setting == SP::ClientSettings::VSTeamSize::Six ? 6 :
-            static_cast<u32>(setting) + 1;
+    auto *context = SectionManager::Instance()->globalContext();
+    context->m_raceCount = saveManager->getSetting<SP::ClientSettings::Setting::VSRaceCount>();
 
+    auto maxTeamSizeSetting = saveManager->getSetting<SP::ClientSettings::Setting::VSTeamSize>();
+    u32 maxTeamSize = maxTeamSizeSetting == SP::ClientSettings::VSTeamSize::Six ? 6 :
+            static_cast<u32>(maxTeamSizeSetting) + 1;
     auto &menuScenario = System::RaceConfig::Instance()->menuScenario();
     menuScenario.gameMode = System::RaceConfig::GameMode::OfflineVS;
     menuScenario.cameraMode = 5;

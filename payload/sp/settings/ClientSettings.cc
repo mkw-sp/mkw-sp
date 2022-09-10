@@ -220,6 +220,7 @@ const Entry entries[] = {
         .messageId = 10224,
         .defaultValue = 4,
         .valueCount = 32,
+        .valueOffset = 1,
         .valueNames = nullptr,
         .valueMessageIds = (u32[]) { 10225 },
         .valueExplanationMessageIds = (u32[]) { 10226 },
