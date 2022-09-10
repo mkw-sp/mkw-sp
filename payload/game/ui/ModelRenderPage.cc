@@ -28,7 +28,14 @@ void ModelRenderPage::onInit() {
         return;
     }
 
-    // MenuModelManager nullptr check?
+    if (!MenuModelManager::Instance()) {
+        _90 = 1;
+        m_inputManager.init(0, false);
+        setInputManager(&m_inputManager);
+        initChildren(0);
+        return;
+    }
+
     m_modelCount = determineModelCount(sectionId);
     auto *gameScene = GameScene_get();
     HeapCollection_setGroupIdAll(&gameScene->volatileHeapCollection, 0);
@@ -43,7 +50,7 @@ void ModelRenderPage::onInit() {
     MenuModelManager::Instance()->init(m_modelCount, &onDriverModelLoaded);
     HeapCollection_setGroupIdAll(&gameScene->volatileHeapCollection, 0);
     HeapCollection_setGroupIdAll(&gameScene->volatileHeapCollection, 6);
-    
+
     m_inputManager.init(0, false);
     setInputManager(&m_inputManager);
     initChildren(0);

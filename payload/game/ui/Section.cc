@@ -354,8 +354,8 @@ Page *Section::CreatePage(PageId pageId) {
         return new SingleTopPage;
     case PageId::TimeAttackGhostList:
         return new TimeAttackGhostListPage;
-    case PageId::ModelRender:
-        return new ModelRenderPage;
+    /*case PageId::ModelRender:
+        return new ModelRenderPage;*/
     case PageId::OnlineTop:
         return new OnlineTopPage;
     case PageId::FriendRoomRules:

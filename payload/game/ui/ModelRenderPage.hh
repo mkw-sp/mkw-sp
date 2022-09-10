@@ -6,9 +6,9 @@ namespace UI {
 
 class ModelRenderPage : public Page {
 public:
-    ModelRenderPage();
-    
-    void onInit() override;
+    // ModelRenderPage();
+
+    void REPLACE onInit() override;
 
     static u8 REPLACED(determineModelCount)(SectionId sectionId);
     static REPLACE u8 determineModelCount(SectionId sectionId);
