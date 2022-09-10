@@ -19,6 +19,7 @@ class MenuMessagePage;
 class MenuSettingsPage;
 class MessagePagePopup;
 class ModelPage;
+class ModelRenderPage;
 class OptionExplanationPage;
 class OptionSelectPage;
 class RaceConfirmPage;
@@ -102,6 +103,11 @@ struct Section::PageIdHelper<PageId::DriftSelect> {
 template <>
 struct Section::PageIdHelper<PageId::TimeAttackGhostList> {
     using type = TimeAttackGhostListPage;
+};
+
+template <>
+struct Section::PageIdHelper<PageId::ModelRender> {
+    using type = ModelRenderPage;
 };
 
 template <>

@@ -12,6 +12,7 @@
 0x8000951c RkSystem_run
 0x80009820 EGG_ConfigurationData_onBeginFrame
 0x80009844 SceneManager_changeSiblingScene
+0x80009bc0 _Z28HeapCollection_setGroupIdAllP14HeapCollectioni
 0x8000b154 _ZN6System13SystemManager14shutdownSystemEv
 0x8000b188 _ZN6System13SystemManager12returnToMenuEv
 0x8000b1bc _ZN6System13SystemManager7restartEv
@@ -435,6 +436,7 @@
 0x805195a4 DvdArchive_move
 0x805195d8 DvdArchive_loadOther
 0x8051bed0 GameScene_get
+0x8051bed0 _Z13GameScene_getv
 0x8051c120 _ZN6System12RawGhostFile7IsValidEPKh
 0x8051c7f4 _ZN6System9GhostFile11writeHeaderEPNS_14RawGhostHeaderE
 0x8051ce94 GhostGroup_ct
@@ -498,6 +500,7 @@
 0x805419ac ResourceManager_preloadCourseAsync
 0x80541ce0 ResourceManager_flush
 0x80541b58 CourseCache_load
+0x805422cc _ZN6System15ResourceManager15createMenuHeapsEji
 0x805425d0 _ZN6System15ResourceManager13LoadGlobeTaskEPv
 0x80542D4C RootScene_allocate
 0x80543db0 _ZN6System11SaveManager14CreateInstanceEv
@@ -553,6 +556,7 @@
 0x80596cfc KartSub_calcPass1
 0x8059783c KartSub_calcTransforms
 0x8059BC44 KartKiller_calcTracking
+0x8059e250 _ZN2UI16MenuModelManager4initEjPFvaE
 0x805a1d10 Camera_805a1d10
 0x805a2034 Camera_805a2034
 0x805a21d0 Camera_805a21d0
@@ -722,8 +726,11 @@
 0x805f20ec MultiControlInputManager_select
 0x805f20ec _ZN2UI24MultiControlInputManager6selectEjPNS_19ControlInputManagerEi
 0x805f2e84 _ZN2UI22BackGroundModelControl8setModelEj
+0x805f4fd0 _ZN2UI15ModelRenderPageC1Ev
 0x805f5230 Model_805f5230
 0x805f5520 Model_805f5520
+0x805f5c94 _ZN2UI15ModelRenderPage19onDriverModelLoadedEa
+0x805f5d58 _ZN2UI15ModelRenderPage19determineModelCountENS_9SectionIdE
 0x805f8b50 _ZN2UI12MessageGroup2dtEi
 0x805f9224 MessageWindowPopupPage_reset
 0x805f9244 MessageWindowPopupPage_setMessage
@@ -1162,6 +1169,7 @@
 0x809bd748 _ZN6System11SaveManager10s_instanceE
 0x809c18f8 s_kartObjectManager
 0x809c18f8 _ZN4Kart17KartObjectManager10s_instanceE
+0x809c4740 _ZN2UI16MenuModelManager10s_instanceE
 0x809c1e38 s_sectionManager
 0x809c1e38 _ZN2UI14SectionManager10s_instanceE
 0x809c21d0 s_effectManager

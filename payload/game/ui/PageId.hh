@@ -65,6 +65,7 @@ enum class PageId {
     MissionPrompt = 0x7c,
     MissionDrift = 0x7d,
     MissionTutorial = 0x7e,
+    ModelRender = 0x7f,
 
     OnlineTop = 0x8b, // Replaces WifiTop
     Globe = 0x95,

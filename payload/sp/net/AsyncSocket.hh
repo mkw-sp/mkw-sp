@@ -42,13 +42,13 @@ private:
     };
 
     struct ReadTask {
-        u8 buffer[4096];
+        u8 buffer[1024];
         u16 size = 0;
         u16 offset = 0;
     };
 
     struct WriteTask {
-        u8 buffer[4096];
+        u8 buffer[1024];
         u16 size = 0;
         u16 offset = 0;
     };

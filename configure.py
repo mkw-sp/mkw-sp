@@ -987,6 +987,7 @@ code_in_files = {
         os.path.join('payload', 'game', 'ui', 'MiiGroup.cc'),
         os.path.join('payload', 'game', 'ui', 'Model.S'),
         os.path.join('payload', 'game', 'ui', 'ModelPage.cc'),
+        os.path.join('payload', 'game', 'ui', 'ModelRenderPage.cc'),
         os.path.join('payload', 'game', 'ui', 'OnlineTopPage.cc'),
         os.path.join('payload', 'game', 'ui', 'Option.cc'),
         os.path.join('payload', 'game', 'ui', 'Page.cc'),
