@@ -4,7 +4,7 @@ namespace UI::TeamColors {
 
 GXColor Get(u32 teamId) {
     GXColor colors[12] = {
-        { 0, 85, 255, 255 },
+        { 0, 170, 255, 255 },
         { 255, 0, 0, 255 },
         { 255, 255, 0, 255 },
         { 0, 255, 0, 255 },

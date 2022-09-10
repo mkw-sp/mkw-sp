@@ -35,6 +35,9 @@ enum class SectionId {
     GhostReplayDownload = 0x33,
     GhostReplay = 0x34,
 
+    AwardsGP = 0x35,
+    AwardsVS = 0x36,
+
     TitleFromMenu = 0x41,
     TitleFromOptions = 0x43,
     MiiSelectCreate = 0x45,
@@ -44,6 +47,8 @@ enum class SectionId {
     Single = 0x48,
     SingleChangeDriver = 0x49,
     SingleChangeCourse = 0x4a,
+    SingleChooseVSCourse = 0x4b,
+    SingleChooseBattleCourse = 0x4c,
     SingleChangeMission = 0x4d,
 
     SingleChangeGhostData = 0x4e, // Replaces SingleMkChannelGhost

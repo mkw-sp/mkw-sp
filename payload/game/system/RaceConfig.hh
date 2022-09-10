@@ -24,9 +24,11 @@ public:
         u32 team;
         s32 controllerId;
         u8 _d4[0xd8 - 0xd4];
-        u16 prevRaceScore;
-        u16 raceScore;
-        u8 _dc[0xf0 - 0xdc];
+        u16 prevScore;
+        u16 score;
+        u8 _dc[0xe0 - 0xdc];
+        u8 rank;
+        u8 _e1[0xf0 - 0xe1];
     };
     static_assert(sizeof(Player) == 0xf0);
 
@@ -43,6 +45,7 @@ public:
         Mission = 4,
         OnlinePrivateVS = 7,
         OnlinePrivateBT = 10,
+        Awards = 11,
     };
 
     struct Scenario {
@@ -78,6 +81,7 @@ public:
     Scenario &menuScenario();
     Scenario &awardsScenario();
     u8 (&ghostBuffers())[2][11][0x2800];
+    void endRace();
 
     static RaceConfig *Instance();
 

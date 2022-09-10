@@ -817,7 +817,7 @@
     },
     "10226": {
         "font": "regular",
-        "string": "Play {arg integer|0 0} {arg cond messages|0 10275 10276}.",
+        "string": "Play {arg integer|0 0} {arg cond messages|0 10282 10283}.",
     },
     "10227": {
         "font": "regular",
@@ -1011,11 +1011,11 @@
         "font": "regular",
         "string": "Teams are uneven.\n\nPlease choose again.",
     },
-    "10275": {
+    "10282": {
         "font": "regular",
         "string": "race",
     },
-    "10276": {
+    "10283": {
         "font": "regular",
         "string": "races",
     },

@@ -2,7 +2,6 @@
 #include "game/system/RaceConfig.h"
 #include "game/ui/Button.h"
 #include "game/ui/SectionManager.h"
-#include "game/ui/SettingsPage.h"
 
 // Note: Could do these as an X-Macro
 
@@ -289,40 +288,3 @@ static const u32 *my_EventPauseMenuPage_getButtons(void) {
 }
 
 PATCH_B(EventPauseMenuPage_getButtons, my_EventPauseMenuPage_getButtons);
-
-
-// Custom button handlers
-
-void RaceMenuPage_onFrontSettings(
-        RaceMenuPage *this, PushButton *pushButton, u32 UNUSED(localPlayerId)) {
-    MenuSettingsPage_SetReplacement(this->id);
-    const float pushDelay = PushButton_getDelay(pushButton);
-    this->vt->nextPage(this, PAGE_ID_LICENSE_RECORDS);
-    Page_startReplace((Page *)this, PAGE_ANIMATION_NEXT, pushDelay);
-}
-
-void RaceMenuPage_onFrontChangeGhostData(RaceMenuPage *this, PushButton *pushButton, u32 UNUSED(localPlayerId)) {
-    PushButton_setPressSound(pushButton, 0xd5); // SE_RC_PAUSE_EXIT_GAME
-    const float pushDelay = PushButton_getDelay(pushButton);
-    s_raceConfig->menuScenario.gameMode = 0; // TIME_ATTACK
-    this->vt->changeSection((Page*)this, SECTION_ID_SINGLE_CHANGE_GHOST_DATA, PAGE_ANIMATION_NEXT, pushDelay);
-
-}
-
-bool RaceMenuPage_onFrontOther(
-        RaceMenuPage *this, PushButton *pushButton, u32 localPlayerId) {
-    PausePageButtonID buttonId = (PausePageButtonID)pushButton->index;
-
-    switch (buttonId) {
-    case kPausePageButtonID_EXTLicenseSettings:
-        RaceMenuPage_onFrontSettings(this, pushButton, localPlayerId);
-        return true;  // Handled
-    case kPausePageButtonID_EXTChangeGhostData:
-        RaceMenuPage_onFrontChangeGhostData(this, pushButton, localPlayerId);
-        return true;
-    default:
-        return false;  // Unhandled
-    }
-
-    // SaveManagerProxy_markLicensesDirty by caller
-}

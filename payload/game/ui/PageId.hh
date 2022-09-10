@@ -34,6 +34,8 @@ enum class PageId {
     GpReplayPauseMenu = 0x38,
     TaReplayPauseMenu = 0x39,
 
+    Award = 0x3c,
+
     OnlinePleaseWait = 0x48,
     RaceConfirm = 0x4B,
     MessagePopup = 0x4D,

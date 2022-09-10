@@ -2,9 +2,6 @@
 
 #include "game/system/SaveManager.hh"
 #include "game/ui/SectionManager.hh"
-extern "C" {
-#include "game/ui/SettingsPage.h"
-}
 #include "game/ui/page/RaceMenuPage.hh"
 
 namespace UI {
@@ -335,10 +332,3 @@ void MenuSettingsPage::configure(IHandler *handler, PageId replacement) {
 }
 
 } // namespace UI
-
-extern "C" {
-void MenuSettingsPage_SetReplacement(s32 pageId) {
-    auto *section = UI::SectionManager::Instance()->currentSection();
-    section->page<UI::PageId::MenuSettings>()->configure(nullptr, static_cast<UI::PageId>(pageId));
-}
-}

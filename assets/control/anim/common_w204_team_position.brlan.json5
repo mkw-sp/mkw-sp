@@ -95,12 +95,12 @@
                                         },
                                         {
                                             "frame": 13,
-                                            "value": 125,
+                                            "value": -125,
                                             "slope": 0,
                                         },
                                         {
                                             "frame": 14,
-                                            "value": -125,
+                                            "value": 125,
                                             "slope": 0,
                                         },
                                         {
@@ -115,12 +115,12 @@
                                         },
                                         {
                                             "frame": 17,
-                                            "value": 125,
+                                            "value": -125,
                                             "slope": 0,
                                         },
                                         {
                                             "frame": 18,
-                                            "value": -125,
+                                            "value": 125,
                                             "slope": 0,
                                         },
                                         {
@@ -135,12 +135,12 @@
                                         },
                                         {
                                             "frame": 21,
-                                            "value": 125,
+                                            "value": -125,
                                             "slope": 0,
                                         },
                                         {
                                             "frame": 22,
-                                            "value": -125,
+                                            "value": 125,
                                             "slope": 0,
                                         },
                                         {
@@ -342,12 +342,12 @@
                                         },
                                         {
                                             "frame": 13,
-                                            "value": 115,
+                                            "value": 75,
                                             "slope": 0,
                                         },
                                         {
                                             "frame": 14,
-                                            "value": 75,
+                                            "value": 115,
                                             "slope": 0,
                                         },
                                         {
@@ -362,12 +362,12 @@
                                         },
                                         {
                                             "frame": 17,
-                                            "value": 20,
+                                            "value": -20,
                                             "slope": 0,
                                         },
                                         {
                                             "frame": 18,
-                                            "value": -20,
+                                            "value": 20,
                                             "slope": 0,
                                         },
                                         {
@@ -382,12 +382,12 @@
                                         },
                                         {
                                             "frame": 21,
-                                            "value": -75,
+                                            "value": -115,
                                             "slope": 0,
                                         },
                                         {
                                             "frame": 22,
-                                            "value": -115,
+                                            "value": -75,
                                             "slope": 0,
                                         },
                                         {

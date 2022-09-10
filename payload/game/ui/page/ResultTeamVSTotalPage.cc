@@ -50,19 +50,19 @@ void ResultTeamVSTotalPage::onActivate() {
     auto setting = saveManager->getSetting<SP::ClientSettings::Setting::ColorPalette>();
     bool colorblind = setting == SP::ClientSettings::ColorPalette::Colorblind;
     const auto &raceScenario = System::RaceConfig::Instance()->raceScenario();
-    const auto &menuScenario = System::RaceConfig::Instance()->menuScenario();
+    auto &menuScenario = System::RaceConfig::Instance()->menuScenario();
     u32 playerCount = raceScenario.playerCount;
     u32 maxTeamSize = raceScenario.spMaxTeamSize;
     u32 teamCount = (playerCount + maxTeamSize - 1) / maxTeamSize;
     std::array<u32, 12> playerIds{};
     std::iota(playerIds.begin(), playerIds.begin() + playerCount, 0);
     std::sort(playerIds.begin(), playerIds.begin() + playerCount, [&](auto i0, auto i1) {
-        return menuScenario.players[i0].raceScore > menuScenario.players[i1].raceScore;
+        return menuScenario.players[i0].score > menuScenario.players[i1].score;
     });
     std::array<u32, 6> teamScores{};
     for (u32 playerId = 0; playerId < playerCount; playerId++) {
         u32 teamId = raceScenario.players[playerId].spTeam;
-        teamScores[teamId] += menuScenario.players[playerId].raceScore;
+        teamScores[teamId] += menuScenario.players[playerId].score;
     }
     std::array<u32, 6> teamIds{};
     std::iota(teamIds.begin(), teamIds.begin() + teamCount, 0);
@@ -83,9 +83,11 @@ void ResultTeamVSTotalPage::onActivate() {
         u32 characterId = raceScenario.players[playerId].characterId;
         u32 teamId = raceScenario.players[playerId].spTeam;
         u32 colorId = colorblind * 6 + teamId;
-        u32 positionId = (maxTeamSize == 6 ? 0 : 5 - maxTeamSize) * 12;
-        positionId += teamIndices[teamId] * maxTeamSize + teamSizes[teamId]++;
+        u32 rank = teamIndices[teamId] * maxTeamSize + teamSizes[teamId]++;
+        u32 positionId = (maxTeamSize == 6 ? 0 : 5 - maxTeamSize) * 12 + rank;
         m_controls[playerId].refresh(playerId, characterId, colorId, positionId);
+
+        menuScenario.players[playerId].rank = rank + 1;
     }
     for (u32 teamIndex = 0; teamIndex < teamCount; teamIndex++) {
         u32 teamId = teamIds[teamIndex];
@@ -97,9 +99,9 @@ void ResultTeamVSTotalPage::onActivate() {
     m_playerScores = {};
     m_teamScores = {};
     for (u32 playerId = 0; playerId < playerCount; playerId++) {
-        m_playerScores[playerId] = raceScenario.players[playerId].prevRaceScore;
+        m_playerScores[playerId] = raceScenario.players[playerId].prevScore;
         u32 teamId = raceScenario.players[playerId].spTeam;
-        m_teamScores[teamId] += raceScenario.players[playerId].prevRaceScore;
+        m_teamScores[teamId] += raceScenario.players[playerId].prevScore;
     }
     m_frame = 0;
     m_isBusy = true;
@@ -117,7 +119,7 @@ void ResultTeamVSTotalPage::beforeCalc() {
     u32 teamCount = (playerCount + maxTeamSize - 1) / maxTeamSize;
     std::array<u32, 6> teamScores{};
     for (u32 playerId = 0; playerId < playerCount; playerId++) {
-        if (m_playerScores[playerId] <= menuScenario.players[playerId].raceScore) {
+        if (m_playerScores[playerId] <= menuScenario.players[playerId].score) {
             m_controls[playerId].refresh(m_playerScores[playerId]);
             m_playerScores[playerId]++;
         }

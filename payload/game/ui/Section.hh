@@ -46,6 +46,7 @@ public:
     bool isPageActive(PageId pageId) const;
 
     static u32 GetSceneId(SectionId id);
+    static Sound::SoundId GetSoundId(SectionId id);
     static bool HasRoomClient(SectionId sectionId);
     static bool HasRoomServer(SectionId sectionId);
 

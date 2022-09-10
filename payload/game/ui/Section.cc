@@ -1,5 +1,6 @@
 #include "Section.hh"
 
+#include "game/ui/AwardPage.hh"
 #include "game/ui/ChannelPage.hh"
 #include "game/ui/FriendMatchingPage.hh"
 #include "game/ui/FriendRoomBackPage.hh"
@@ -366,6 +367,8 @@ Page *Section::CreatePage(PageId pageId) {
     switch (pageId) {
     case PageId::ResultTeamVSTotal:
         return new ResultTeamVSTotalPage;
+    case PageId::Award:
+        return new AwardPage;
     case PageId::LicenseSelect:
         return new LicenseSelectPage;
     case PageId::SingleTop:

@@ -153,7 +153,7 @@ void SingleTopPage::onVSButtonFront([[maybe_unused]] PushButton *button,
         [[maybe_unused]] u32 localPlayerId) {
     auto *saveManager = System::SaveManager::Instance();
     auto *context = SectionManager::Instance()->globalContext();
-    context->m_raceCount = saveManager->getSetting<SP::ClientSettings::Setting::VSRaceCount>();
+    context->m_matchCount = saveManager->getSetting<SP::ClientSettings::Setting::VSRaceCount>();
 
     auto maxTeamSizeSetting = saveManager->getSetting<SP::ClientSettings::Setting::VSTeamSize>();
     u32 maxTeamSize = maxTeamSizeSetting == SP::ClientSettings::VSTeamSize::Six ? 6 :

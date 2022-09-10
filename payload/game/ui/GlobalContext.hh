@@ -16,7 +16,7 @@ public:
     };
 
     u8 _000[0x064 - 0x000];
-    u32 m_raceCount;
+    u32 m_matchCount;
     u8 _068[0x074 - 0x068];
     u32 _74;
     u8 _078[0x124 - 0x078];
