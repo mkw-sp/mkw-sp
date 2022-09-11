@@ -82,10 +82,8 @@ void FriendMatchingPage::afterCalc() {
 void FriendMatchingPage::onRefocus() {
     auto *section = SectionManager::Instance()->currentSection();
     auto sectionId = section->id();
-    SP_LOG("We reach the check!");
     if (m_roomStarted) { return sectionId == SectionId::OnlineServer ? startServer() : startClient(); }
 
-    SP_LOG("We reach the exit event!");
     auto *globePage = section->page<PageId::Globe>();
     globePage->requestSpinFar();
     if (sectionId == SectionId::OnlineServer) {

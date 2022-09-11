@@ -194,6 +194,10 @@ std::optional<RoomServer::State> RoomServer::calcMain(Handler &handler) {
     return state;
 }
 
+std::optional<RoomServer::State> RoomServer::calcSelect() {
+    return State::Select;
+}
+
 bool RoomServer::onMain(Handler &handler) {
     handler.onMain();
     return true;
@@ -206,7 +210,7 @@ bool RoomServer::onPlayerJoin(Handler &handler, u32 clientId, const System::RawM
         return false;
     }
 
-    m_players[m_playerCount] = { clientId, *mii, location, latitude, longitude, settings };
+    m_players[m_playerCount] = { clientId, *mii, location, latitude, longitude, { -1, -1, false }, settings };
     m_playerCount++;
     writeJoin(mii, location, latitude, longitude);
     handler.onPlayerJoin(mii, location, latitude, longitude);
@@ -257,6 +261,28 @@ bool RoomServer::onRoomClose(Handler &handler, u32 playerId, s32 gamemode) {
 
     m_gamemode = gamemode;
     m_commentQueue.reset();
+    return true;
+}
+
+bool RoomServer::onReceiveProperties(u32 playerId, s32 characterId, s32 vehicleId, bool driftIsAuto) {
+    if (playerId >= m_playerCount) { return false; }
+
+    // Character validation
+    if (characterId >= 0x30) { return false; }
+    if (characterId < 0x00) { return false; }
+    if (characterId == 0x1C || characterId == 0x1D) { return false; }
+    if (characterId == 0x22 || characterId == 0x23) { return false; }
+    if (characterId == 0x28 || characterId == 0x29) { return false; }
+
+    // Vehicle validation
+    if (vehicleId >= 0x24) { return false; }
+    if (vehicleId < 0x00) { return false; }
+    if (getCharacterWeightClass(characterId) != getVehicleWeightClass(vehicleId)) { return false; }
+
+    SP_LOG("Properties received! Character ID: %d, Vehicle ID: %d, Drift Type: %d", characterId, vehicleId, driftIsAuto);
+    m_players[playerId].properties.characterId = characterId;
+    m_players[playerId].properties.vehicleId = vehicleId;
+    m_players[playerId].properties.driftIsAuto = driftIsAuto;
     return true;
 }
 
@@ -564,6 +590,11 @@ std::optional<RoomServer::Client::State> RoomServer::Client::calcSelect(Handler 
     }
 
     switch (request->which_request) {
+    case RoomRequest_properties_tag:
+        if (!m_server.onReceiveProperties(*playerId, request->request.properties.character, request->request.properties.vehicle, request->request.properties.driftType)) {
+            return {};
+        }
+        return State::Select;
     default:
         return {};
     }

@@ -47,6 +47,10 @@ void RoomClient::changeLocalSettings() {
     m_localSettingsChanged = true;
 }
 
+bool RoomClient::selectProperties(u32 characterId, u32 vehicleId, bool driftIsAuto) {
+    return writeProperties(characterId, vehicleId, driftIsAuto);
+}
+
 void RoomClient::OnCreateScene() {
     auto *sectionManager = UI::SectionManager::Instance();
     if (!sectionManager) {
@@ -408,6 +412,15 @@ bool RoomClient::writeSettings() {
         request.request.settings.settings[i] = saveManager->getSetting(RoomSettings::offset + i);
     }
     m_localSettingsChanged = false;
+    return write(request);
+}
+
+bool RoomClient::writeProperties(u32 characterId, u32 vehicleId, bool driftIsAuto) {
+    RoomRequest request;
+    request.which_request = RoomRequest_properties_tag;
+    request.request.properties.character = characterId;
+    request.request.properties.vehicle = vehicleId;
+    request.request.properties.driftType = driftIsAuto;
     return write(request);
 }
 

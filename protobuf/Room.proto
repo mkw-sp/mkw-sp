@@ -23,12 +23,19 @@ message RoomRequest {
         required uint32 gamemode = 1;
     }
 
+    message Properties {
+        required uint32 character = 1;
+        required uint32 vehicle   = 2;
+        required bool   driftType = 3;
+    }
+
     oneof request {
-        Join     join     = 1;
-        Spectate spectate = 2;
-        Comment  comment  = 3;
-        Settings settings = 4;
-        Close    close    = 5;
+        Join       join       = 1;
+        Spectate   spectate   = 2;
+        Comment    comment    = 3;
+        Settings   settings   = 4;
+        Close      close      = 5;
+        Properties properties = 6;
     }
 }
 

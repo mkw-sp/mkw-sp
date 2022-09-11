@@ -32,6 +32,7 @@ public:
     bool sendComment(u32 commentId);
     bool closeRoom(u32 gamemode);
     void changeLocalSettings();
+    bool selectProperties(u32 characterId, u32 vehicleId, bool driftIsAuto);
 
     static void OnCreateScene();
     static void OnDestroyScene();
@@ -73,6 +74,7 @@ private:
     bool writeComment(u32 messageId);
     bool writeClose(u32 gamemode);
     bool writeSettings();
+    bool writeProperties(u32 characterId, u32 vehicleId, bool driftIsAuto);
     bool write(RoomRequest request);
 
     u32 m_localPlayerCount;
