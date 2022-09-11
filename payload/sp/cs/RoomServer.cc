@@ -360,21 +360,26 @@ bool RoomServer::Client::ready() const {
 bool RoomServer::Client::calc(Handler &handler) {
     if (auto state = resolve(handler)) {
         if (!transition(handler, *state)) {
+            SP_LOG("Client::calc: First !transition");
             return false;
         }
     } else {
+        SP_LOG("Client::calc: First !resolve");
         return false;
     }
 
     if (!m_socket.poll()) {
+        SP_LOG("Client::calc: !m_socket.poll");
         return false;
     }
 
     if (auto state = resolve(handler)) {
         if (!transition(handler, *state)) {
+            SP_LOG("Client::calc: Second !transition");
             return false;
         }
     } else {
+        SP_LOG("Client::calc: Second !resolve");
         return false;
     }
 
@@ -586,7 +591,7 @@ std::optional<RoomServer::Client::State> RoomServer::Client::calcSelect(Handler 
     }
 
     if (!request) {
-        return State::Main;
+        return State::Select;
     }
 
     switch (request->which_request) {
@@ -617,10 +622,12 @@ bool RoomServer::Client::read(std::optional<RoomRequest> &request) {
     u8 buffer[RoomRequest_size];
     std::optional<u16> size = m_socket.read(buffer, sizeof(buffer));
     if (!size) {
+        // SP_LOG("Client::read: !size");
         return false;
     }
 
     if (*size == 0) {
+        // SP_LOG("Client::read: *size == 0");
         return true;
     }
 
@@ -628,6 +635,7 @@ bool RoomServer::Client::read(std::optional<RoomRequest> &request) {
 
     RoomRequest tmp;
     if (!pb_decode(&stream, RoomRequest_fields, &tmp)) {
+        // SP_LOG("Client::read: !pb_decode");
         return false;
     }
 

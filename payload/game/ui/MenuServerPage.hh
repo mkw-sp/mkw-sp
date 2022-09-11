@@ -11,7 +11,8 @@ class MenuServerPage : public Page {
 public:
     MenuServerPage();
     ~MenuServerPage() override;
-    // TODO: public interface functions
+    void onInit() override;
+    void afterCalc() override;
 
 private:
     class ServerHandler : public SP::RoomServer::Handler {
@@ -32,6 +33,7 @@ private:
         MenuServerPage &m_page;
     };
 
+    MenuInputManager m_inputManager;
     ServerHandler m_serverHandler;
     ClientHandler m_clientHandler;
 };
