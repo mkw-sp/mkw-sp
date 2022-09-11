@@ -907,6 +907,7 @@ code_in_files = {
         os.path.join('payload', 'game', 'kart', 'KartSub.S'),
         os.path.join('payload', 'game', 'missionrun', 'MissionRun.c'),
         os.path.join('payload', 'game', 'kart', 'VehiclePhysics.cc'),
+        os.path.join('payload', 'game', 'net', 'NWC24.S'),
         os.path.join('payload', 'game', 'net', 'NetManager.S'),
         os.path.join('payload', 'game', 'obj', 'ObjEffect.S'),
         os.path.join('payload', 'game', 'obj', 'ObjManager.c'),
