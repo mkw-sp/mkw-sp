@@ -8,7 +8,7 @@
 #include "game/ui/FriendRoomPage.hh"
 #include "game/ui/FriendRoomRulesPage.hh"
 #include "game/ui/LicenseSelectPage.hh"
-#include "game/ui/MenuServerPage.hh"
+#include "game/ui/VotingBackPage.hh"
 #include "game/ui/ModelRenderPage.hh"
 #include "game/ui/OnlineTopPage.hh"
 #include "game/ui/SettingsPage.hh"
@@ -119,8 +119,6 @@ void Section::addPage(PageId pageId) {
         { SectionId::OnlineMulti, (PageId)0xa6 },
         { SectionId::OnlineMulti, (PageId)0xa7 },
 
-        { SectionId::Voting1PVS, PageId::MenuServer },
-
         { SectionId::VotingServer, (PageId)0x4e },
         { SectionId::VotingServer, (PageId)0x51 },
         { SectionId::VotingServer, (PageId)0x6e },
@@ -190,8 +188,6 @@ void Section::addActivePage(PageId pageId) {
         { SectionId::OnlineServer, PageId::GhostManager },
         { SectionId::OnlineServer, (PageId)0x7f },
         { SectionId::OnlineServer, (PageId)0x84 },
-
-        { SectionId::Voting1PVS, PageId::MenuServer },
 
         { SectionId::VotingServer, (PageId)0x88 },
     };
@@ -354,8 +350,8 @@ Page *Section::CreatePage(PageId pageId) {
         return new TimeAttackGhostListPage;
     case PageId::OnlineTop:
         return new OnlineTopPage;
-    case PageId::MenuServer:
-        return new MenuServerPage;
+    case PageId::VotingBack:
+        return new VotingBackPage;
     case PageId::FriendRoomRules:
         return new FriendRoomRulesPage;
     case PageId::FriendMatching:

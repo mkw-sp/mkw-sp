@@ -148,7 +148,7 @@ void FriendMatchingPage::collapse() {
 void FriendMatchingPage::startClient() {
     auto *section = SectionManager::Instance()->currentSection();
     auto *driftSelectPage = section->page<PageId::DriftSelect>();
-    driftSelectPage->setReplacementSection((SectionId)(m_gamemode + 0x60));
+    driftSelectPage->setReplacementSection(static_cast<SectionId>(m_gamemode + 0x60));
 
     push(PageId::CharacterSelect, Anim::Next);
     System::RaceConfig::Instance()->menuScenario().gameMode = m_gamemode == 0 ? System::RaceConfig::GameMode::OnlinePrivateVS : System::RaceConfig::GameMode::OnlinePrivateBT;

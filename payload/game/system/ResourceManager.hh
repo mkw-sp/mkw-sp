@@ -8,9 +8,9 @@ class ResourceManager {
 public:
     ResourceManager();
 
-    static REPLACE ResourceManager *CreateInstance();
     void createMenuHeaps(u32 count, s32 heapIdx);
 
+    static REPLACE ResourceManager *CreateInstance();
     static ResourceManager *Instance() { return s_instance; }
 
 private:

@@ -7,30 +7,30 @@
 
 namespace UI {
 
-class MenuServerPage : public Page {
+class VotingBackPage : public Page {
 public:
-    MenuServerPage();
-    ~MenuServerPage() override;
+    VotingBackPage();
+    ~VotingBackPage() override;
     void onInit() override;
     void afterCalc() override;
 
 private:
     class ServerHandler : public SP::RoomServer::Handler {
     public:
-        ServerHandler(MenuServerPage &page);
+        ServerHandler(VotingBackPage &page);
         ~ServerHandler();
 
     private:
-        MenuServerPage &m_page;
+        VotingBackPage &m_page;
     };
 
     class ClientHandler : public SP::RoomClient::Handler {
     public:
-        ClientHandler(MenuServerPage &page);
+        ClientHandler(VotingBackPage &page);
         ~ClientHandler();
 
     private:
-        MenuServerPage &m_page;
+        VotingBackPage &m_page;
     };
 
     MenuInputManager m_inputManager;

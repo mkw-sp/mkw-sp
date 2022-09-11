@@ -18,16 +18,6 @@ void ModelRenderPage::onInit() {
     _88 = 0;
     _90 = 0;
 
-    auto sectionId = SectionManager::Instance()->currentSection()->id();
-    auto sceneId = Section::GetSceneId(sectionId);
-    if (sceneId != 1 && sceneId != 4) {
-        _90 = 1;
-        m_inputManager.init(0, false);
-        setInputManager(&m_inputManager);
-        initChildren(0);
-        return;
-    }
-
     if (!MenuModelManager::Instance()) {
         _90 = 1;
         m_inputManager.init(0, false);
@@ -36,19 +26,12 @@ void ModelRenderPage::onInit() {
         return;
     }
 
+    auto sectionId = SectionManager::Instance()->currentSection()->id();
     m_modelCount = determineModelCount(sectionId);
     auto *gameScene = GameScene_get();
-    HeapCollection_setGroupIdAll(&gameScene->volatileHeapCollection, 0);
     HeapCollection_setGroupIdAll(&gameScene->volatileHeapCollection, 3);
-
-    if (sectionId < (SectionId)0x7f || sectionId > (SectionId)0x81) {
-        System::ResourceManager::Instance()->createMenuHeaps(m_modelCount, 1);
-    } else {
-        System::ResourceManager::Instance()->createMenuHeaps(m_modelCount, 0);
-    }
-
+    System::ResourceManager::Instance()->createMenuHeaps(m_modelCount, 0);
     MenuModelManager::Instance()->init(m_modelCount, &onDriverModelLoaded);
-    HeapCollection_setGroupIdAll(&gameScene->volatileHeapCollection, 0);
     HeapCollection_setGroupIdAll(&gameScene->volatileHeapCollection, 6);
 
     m_inputManager.init(0, false);
