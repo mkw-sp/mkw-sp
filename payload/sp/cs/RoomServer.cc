@@ -3,6 +3,7 @@
 #include <egg/core/eggHeap.hh>
 extern "C" {
 #include <game/system/RootScene.h>
+#include <game/util/Registry.h>
 }
 #include <game/ui/SectionManager.hh>
 #include <vendor/nanopb/pb_decode.h>
@@ -210,7 +211,7 @@ bool RoomServer::onPlayerJoin(Handler &handler, u32 clientId, const System::RawM
         return false;
     }
 
-    m_players[m_playerCount] = { clientId, *mii, location, latitude, longitude, { -1, -1, false }, settings };
+    m_players[m_playerCount] = { clientId, *mii, location, latitude, longitude, 0xFFFFFFFF, {}, settings };
     m_playerCount++;
     writeJoin(mii, location, latitude, longitude);
     handler.onPlayerJoin(mii, location, latitude, longitude);
@@ -264,25 +265,26 @@ bool RoomServer::onRoomClose(Handler &handler, u32 playerId, s32 gamemode) {
     return true;
 }
 
-bool RoomServer::onReceiveProperties(u32 playerId, s32 characterId, s32 vehicleId, bool driftIsAuto) {
+bool RoomServer::onReceiveVote(u32 playerId, u32 course, std::optional<PlayerProperties>& properties) {
     if (playerId >= m_playerCount) { return false; }
+    // Course validation
 
+    if (properties) { return validateProperties(playerId, *properties); }
+    return true;
+}
+
+bool RoomServer::validateProperties(u32 playerId, PlayerProperties &properties) {
     // Character validation
-    if (characterId >= 0x30) { return false; }
-    if (characterId < 0x00) { return false; }
-    if (characterId == 0x1C || characterId == 0x1D) { return false; }
-    if (characterId == 0x22 || characterId == 0x23) { return false; }
-    if (characterId == 0x28 || characterId == 0x29) { return false; }
+    if (properties.characterId >= 0x30) { return false; }
+    if (properties.characterId == 0x1C || properties.characterId == 0x1D) { return false; }
+    if (properties.characterId == 0x22 || properties.characterId == 0x23) { return false; }
+    if (properties.characterId == 0x28 || properties.characterId == 0x29) { return false; }
 
     // Vehicle validation
-    if (vehicleId >= 0x24) { return false; }
-    if (vehicleId < 0x00) { return false; }
-    if (getCharacterWeightClass(characterId) != getVehicleWeightClass(vehicleId)) { return false; }
+    if (properties.vehicleId >= 0x24) { return false; }
+    if (getCharacterWeightClass(properties.characterId) != getVehicleWeightClass(properties.vehicleId)) { return false; }
 
-    SP_LOG("Properties received! Character ID: %d, Vehicle ID: %d, Drift Type: %d", characterId, vehicleId, driftIsAuto);
-    m_players[playerId].properties.characterId = characterId;
-    m_players[playerId].properties.vehicleId = vehicleId;
-    m_players[playerId].properties.driftIsAuto = driftIsAuto;
+    m_players[playerId].properties = properties;
     return true;
 }
 
@@ -533,6 +535,8 @@ std::optional<RoomServer::Client::State> RoomServer::Client::calcSetup(Handler &
 }
 
 std::optional<RoomServer::Client::State> RoomServer::Client::calcMain(Handler &handler) {
+    if (m_server.m_state == RoomServer::State::Select) { return State::Select; }
+
     auto playerId = getPlayerId();
     if (!playerId) {
         return {};
@@ -573,7 +577,7 @@ std::optional<RoomServer::Client::State> RoomServer::Client::calcMain(Handler &h
             return {};
         }
         m_server.m_roomClosed = true;
-        return State::Select;
+        return State::Main;
     default:
         return {};
     }
@@ -594,9 +598,13 @@ std::optional<RoomServer::Client::State> RoomServer::Client::calcSelect(Handler 
         return State::Select;
     }
 
+    std::optional<PlayerProperties> properties;
     switch (request->which_request) {
-    case RoomRequest_properties_tag:
-        if (!m_server.onReceiveProperties(*playerId, request->request.properties.character, request->request.properties.vehicle, request->request.properties.driftType)) {
+    case RoomRequest_vote_tag:
+        if (request->request.vote.has_properties) {
+            properties = { request->request.vote.properties.character, request->request.vote.properties.vehicle, request->request.vote.properties.driftType };
+        }
+        if (!m_server.onReceiveVote(*playerId, request->request.vote.course, properties)) {
             return {};
         }
         return State::Select;
@@ -622,12 +630,10 @@ bool RoomServer::Client::read(std::optional<RoomRequest> &request) {
     u8 buffer[RoomRequest_size];
     std::optional<u16> size = m_socket.read(buffer, sizeof(buffer));
     if (!size) {
-        // SP_LOG("Client::read: !size");
         return false;
     }
 
     if (*size == 0) {
-        // SP_LOG("Client::read: *size == 0");
         return true;
     }
 
@@ -635,7 +641,6 @@ bool RoomServer::Client::read(std::optional<RoomRequest> &request) {
 
     RoomRequest tmp;
     if (!pb_decode(&stream, RoomRequest_fields, &tmp)) {
-        // SP_LOG("Client::read: !pb_decode");
         return false;
     }
 

@@ -32,7 +32,7 @@ public:
     bool sendComment(u32 commentId);
     bool closeRoom(u32 gamemode);
     void changeLocalSettings();
-    bool selectProperties(u32 characterId, u32 vehicleId, bool driftIsAuto);
+    bool sendVote(u32 course, std::optional<u32> characterId, std::optional<u32> vehicleId, std::optional<bool> driftIsAuto);
 
     static void OnCreateScene();
     static void OnDestroyScene();
@@ -41,6 +41,12 @@ public:
     static RoomClient *Instance();
 
 private:
+    struct PlayerProperties {
+        u32 characterId;
+        u32 vehicleId;
+        bool driftIsAuto;
+    };
+
     enum class State {
         Connect,
         Setup,
@@ -74,7 +80,7 @@ private:
     bool writeComment(u32 messageId);
     bool writeClose(u32 gamemode);
     bool writeSettings();
-    bool writeProperties(u32 characterId, u32 vehicleId, bool driftIsAuto);
+    bool writeVote(u32 course, std::optional<PlayerProperties> properties);
     bool write(RoomRequest request);
 
     u32 m_localPlayerCount;

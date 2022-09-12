@@ -47,8 +47,12 @@ void RoomClient::changeLocalSettings() {
     m_localSettingsChanged = true;
 }
 
-bool RoomClient::selectProperties(u32 characterId, u32 vehicleId, bool driftIsAuto) {
-    return writeProperties(characterId, vehicleId, driftIsAuto);
+bool RoomClient::sendVote(u32 course, std::optional<u32> characterId, std::optional<u32> vehicleId, std::optional<bool> driftIsAuto) {
+    std::optional<PlayerProperties> properties;
+    if (characterId && vehicleId && driftIsAuto) {
+        properties = { *characterId, *vehicleId, *driftIsAuto };
+    }
+    return writeVote(course, properties);
 }
 
 void RoomClient::OnCreateScene() {
@@ -415,12 +419,11 @@ bool RoomClient::writeSettings() {
     return write(request);
 }
 
-bool RoomClient::writeProperties(u32 characterId, u32 vehicleId, bool driftIsAuto) {
+bool RoomClient::writeVote(u32 course, std::optional<PlayerProperties> properties) {
     RoomRequest request;
-    request.which_request = RoomRequest_properties_tag;
-    request.request.properties.character = characterId;
-    request.request.properties.vehicle = vehicleId;
-    request.request.properties.driftType = driftIsAuto;
+    request.which_request = RoomRequest_vote_tag;
+    request.request.vote.course = course;
+    if (properties) { request.request.vote.properties = { (*properties).characterId, (*properties).vehicleId, (*properties).driftIsAuto }; }
     return write(request);
 }
 

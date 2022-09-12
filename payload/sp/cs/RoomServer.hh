@@ -43,8 +43,8 @@ private:
     };
 
     struct PlayerProperties {
-        s32 characterId;
-        s32 vehicleId;
+        u32 characterId;
+        u32 vehicleId;
         bool driftIsAuto;
     };
 
@@ -54,7 +54,8 @@ private:
         u32 location;
         u32 latitude;
         u32 longitude;
-        PlayerProperties properties;
+        u32 course;
+        std::optional<PlayerProperties> properties;
         std::array<u32, RoomSettings::count> m_settings;
     };
 
@@ -124,7 +125,8 @@ private:
     void onPlayerLeave(Handler &handler, u32 playerId);
     bool onReceiveComment(u32 playerId, u32 messageId);
     bool onRoomClose(Handler &handler, u32 playerId, s32 gamemode);
-    bool onReceiveProperties(u32 playerId, s32 characterId, s32 vehicleId, bool driftIsAuto);
+    bool onReceiveVote(u32 playerId, u32 course, std::optional<PlayerProperties>& vote);
+    bool validateProperties(u32 playerId, PlayerProperties& properties);
 
     void disconnectClient(u32 clientId);
 
@@ -133,9 +135,6 @@ private:
     void writeComment(u32 playerId, u32 messageId);
     void writeSettings();
     void writeClose(u32 gamemode);
-
-    static u32 getCharacterWeightClass(u32 characterId);
-    static u32 getVehicleWeightClass(u32 vehicleId);
 
     CircularBuffer<Comment, 18> m_commentQueue;
     u32 m_commentTimer = 0;

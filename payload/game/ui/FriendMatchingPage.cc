@@ -1,11 +1,11 @@
 #include "FriendMatchingPage.hh"
 
 #include "game/system/RaceConfig.hh"
-#include "game/ui/page/DriftSelectPage.hh"
 #include "game/ui/FriendRoomBackPage.hh"
 #include "game/ui/GlobePage.hh"
 #include "game/ui/MessagePage.hh"
 #include "game/ui/SectionManager.hh"
+#include "game/ui/page/DriftSelectPage.hh"
 
 namespace UI {
 

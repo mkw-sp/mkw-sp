@@ -12,7 +12,7 @@
 0x8000951c RkSystem_run
 0x80009820 EGG_ConfigurationData_onBeginFrame
 0x80009844 SceneManager_changeSiblingScene
-0x80009bc0 _Z28HeapCollection_setGroupIdAllP14HeapCollectioni
+0x80009bc0 HeapCollection_setGroupIdAll
 0x8000b154 _ZN6System13SystemManager14shutdownSystemEv
 0x8000b188 _ZN6System13SystemManager12returnToMenuEv
 0x8000b1bc _ZN6System13SystemManager7restartEv
@@ -436,7 +436,6 @@
 0x805195a4 DvdArchive_move
 0x805195d8 DvdArchive_loadOther
 0x8051bed0 GameScene_get
-0x8051bed0 _Z13GameScene_getv
 0x8051c120 _ZN6System12RawGhostFile7IsValidEPKh
 0x8051c7f4 _ZN6System9GhostFile11writeHeaderEPNS_14RawGhostHeaderE
 0x8051ce94 GhostGroup_ct
@@ -1100,9 +1099,7 @@
 0x807f7ec0 _ZN2UI12CtrlRaceTime8calcSelfEv
 0x807f826c _ZNK2UI4Page2idEv
 0x8081cb70 getVehicleWeightClass
-0x8081cb70 _ZN2SP10RoomServer21getVehicleWeightClassEj
 0x8081cd3c getCharacterWeightClass
-0x8081cd3c _ZN2SP10RoomServer23getCharacterWeightClassEj
 0x8082a38c ObjManager_ct
 0x8082b3a0 ObjManager_groupInsert
 0x8082b3b8 ObjManager_groupGetCount

@@ -1,7 +1,6 @@
 #include "Section.hh"
 
 #include "game/ui/ChannelPage.hh"
-#include "game/ui/page/DriftSelectPage.hh"
 #include "game/ui/FriendMatchingPage.hh"
 #include "game/ui/FriendRoomBackPage.hh"
 #include "game/ui/FriendRoomMessageSelectPage.hh"
@@ -18,6 +17,7 @@
 #include "game/ui/StorageBenchmarkPage.hh"
 #include "game/ui/TimeAttackGhostListPage.hh"
 #include "game/ui/UpdatePage.hh"
+#include "game/ui/page/DriftSelectPage.hh"
 
 namespace UI {
 

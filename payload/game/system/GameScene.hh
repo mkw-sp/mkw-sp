@@ -28,8 +28,6 @@ public:
     virtual void vf_58();
     virtual void vf_5c();
 
-    static GameScene* Get();
-
 private:
     u8 _0c70[0x254c - 0x0c70];
 };

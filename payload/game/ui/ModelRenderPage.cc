@@ -1,6 +1,8 @@
 #include "ModelRenderPage.hh"
 
+extern "C" {
 #include "game/system/GameScene.h"
+}
 #include "game/system/ResourceManager.hh"
 #include "game/ui/SectionManager.hh"
 #include "game/ui/model/MenuModelManager.hh"

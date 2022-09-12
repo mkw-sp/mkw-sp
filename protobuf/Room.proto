@@ -29,13 +29,18 @@ message RoomRequest {
         required bool   driftType = 3;
     }
 
+    message Vote {
+        required uint32     course     = 1;
+        optional Properties properties = 2;
+    }
+
     oneof request {
         Join       join       = 1;
         Spectate   spectate   = 2;
         Comment    comment    = 3;
         Settings   settings   = 4;
         Close      close      = 5;
-        Properties properties = 6;
+        Vote       vote       = 6;
     }
 }
 
