@@ -7,6 +7,8 @@
 #include "game/ui/FriendRoomPage.hh"
 #include "game/ui/FriendRoomRulesPage.hh"
 #include "game/ui/LicenseSelectPage.hh"
+#include "game/ui/VotingBackPage.hh"
+#include "game/ui/ModelRenderPage.hh"
 #include "game/ui/OnlineTopPage.hh"
 #include "game/ui/SettingsPage.hh"
 #include "game/ui/ServicePackToolsPage.hh"
@@ -15,6 +17,7 @@
 #include "game/ui/StorageBenchmarkPage.hh"
 #include "game/ui/TimeAttackGhostListPage.hh"
 #include "game/ui/UpdatePage.hh"
+#include "game/ui/page/DriftSelectPage.hh"
 
 namespace UI {
 
@@ -31,6 +34,32 @@ bool Section::isPageActive(PageId pageId) const {
     return false;
 }
 
+bool Section::HasRoomClient(SectionId sectionId) {
+    switch(sectionId) {
+    case SectionId::OnlineSingle:
+    case SectionId::OnlineMulti:
+    case SectionId::Voting1PVS:
+    case SectionId::Voting1PBalloon:
+    case SectionId::Voting1PCoin:
+    case SectionId::Voting2PVS:
+    case SectionId::Voting2PBalloon:
+    case SectionId::Voting2PCoin:
+        return true;
+    default:
+        return false;
+    }
+}
+
+bool Section::HasRoomServer(SectionId sectionId) {
+    switch (sectionId) {
+    case SectionId::OnlineServer:
+    case SectionId::VotingServer:
+        return true;
+    default:
+        return false;
+    }
+}
+
 void Section::addPage(PageId pageId) {
     std::pair<SectionId, PageId> deletions[] = {
         // The game has 5 pages for the records, we only need 1 for the settings. Remove the 4
@@ -45,11 +74,7 @@ void Section::addPage(PageId pageId) {
         { SectionId::OnlineSingle, (PageId)0x50 },
         { SectionId::OnlineSingle, (PageId)0x51 },
         { SectionId::OnlineSingle, (PageId)0x52 },
-        { SectionId::OnlineSingle, (PageId)0x6b },
-        { SectionId::OnlineSingle, (PageId)0x6c },
-        { SectionId::OnlineSingle, (PageId)0x6d },
         { SectionId::OnlineSingle, (PageId)0x76 },
-        { SectionId::OnlineSingle, (PageId)0x7f },
         { SectionId::OnlineSingle, (PageId)0x84 },
         { SectionId::OnlineSingle, (PageId)0x85 },
         { SectionId::OnlineSingle, (PageId)0x86 },
@@ -93,6 +118,14 @@ void Section::addPage(PageId pageId) {
         { SectionId::OnlineMulti, (PageId)0xa5 },
         { SectionId::OnlineMulti, (PageId)0xa6 },
         { SectionId::OnlineMulti, (PageId)0xa7 },
+
+        { SectionId::VotingServer, (PageId)0x4e },
+        { SectionId::VotingServer, (PageId)0x51 },
+        { SectionId::VotingServer, (PageId)0x6e },
+        { SectionId::VotingServer, (PageId)0x6f },
+        { SectionId::VotingServer, (PageId)0x88 },
+        { SectionId::VotingServer, (PageId)0x91 },
+        { SectionId::VotingServer, (PageId)0x92 },
 
         // The channel section is repurposed into the Service Pack section. Remove some pages that
         // aren't needed anymore.
@@ -155,6 +188,8 @@ void Section::addActivePage(PageId pageId) {
         { SectionId::OnlineServer, PageId::GhostManager },
         { SectionId::OnlineServer, (PageId)0x7f },
         { SectionId::OnlineServer, (PageId)0x84 },
+
+        { SectionId::VotingServer, (PageId)0x88 },
     };
     for (const auto &deletion : deletions) {
         if (deletion.first == m_id && deletion.second == pageId) {
@@ -315,6 +350,8 @@ Page *Section::CreatePage(PageId pageId) {
         return new TimeAttackGhostListPage;
     case PageId::OnlineTop:
         return new OnlineTopPage;
+    case PageId::VotingBack:
+        return new VotingBackPage;
     case PageId::FriendRoomRules:
         return new FriendRoomRulesPage;
     case PageId::FriendMatching:

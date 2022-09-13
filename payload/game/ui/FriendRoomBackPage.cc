@@ -1,5 +1,6 @@
 #include "FriendRoomBackPage.hh"
 
+#include "game/ui/FriendMatchingPage.hh"
 #include "game/ui/FriendRoomPage.hh"
 #include "game/ui/FriendRoomRulesPage.hh"
 #include "game/ui/GlobePage.hh"
@@ -81,12 +82,15 @@ void FriendRoomBackPage::afterCalc() {
         return;
     }
 
+    auto *section = SectionManager::Instance()->currentSection();
+    auto *friendMatchingPage = section->page<PageId::FriendMatching>();
+    if (m_roomClosed) { return section->id() == SectionId::OnlineServer ? friendMatchingPage->prepareStartServer() : friendMatchingPage->prepareStartClient(); }
+
     auto *entry = m_queue.front();
     if (!entry) {
         return;
     }
 
-    Section *section = SectionManager::Instance()->currentSection();
     auto *globePage = section->page<PageId::Globe>();
     if (const auto *join = std::get_if<Join>(entry)) {
         assert(m_playerCount < std::size(m_players));
@@ -150,6 +154,18 @@ void FriendRoomBackPage::afterCalc() {
         globePage->requestComment(mii, latitude, longitude, location, 20025, 2, nullptr, callback);
         m_globePlayerId = 0;
         m_timer = 90;
+    } else if (const auto *close = std::get_if<Close>(entry)) {
+        auto *mii = m_miiGroup.get(m_indices[0]); 
+        u32 location = m_locations[m_indices[0]];
+        u16 latitude = m_latitudes[m_indices[0]];
+        u16 longitude = m_longitudes[m_indices[0]];
+        u32 messageId = close->messageId + 4110;
+        auto &callback = m_players[m_indices[0]].callback();
+        globePage->requestComment(mii, latitude, longitude, location, messageId, 2, nullptr,
+                callback);
+        m_globePlayerId = 0;
+        m_timer = 90;
+        m_roomClosed = true;
     }
     m_queue.pop();
 }
@@ -228,6 +244,14 @@ void FriendRoomBackPage::onSettingsChange(
         }
     }
     m_queue.push(Settings { settings });
+}
+
+void FriendRoomBackPage::onRoomClose(u32 messageId) {
+    assert(!m_queue.full());
+    for (size_t i = 0; i < m_queue.count(); i++) {
+        m_queue.remove(i);
+    }
+    m_queue.push(Close { messageId });
 }
 
 } // namespace UI

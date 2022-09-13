@@ -8,7 +8,10 @@ class ResourceManager {
 public:
     ResourceManager();
 
+    void createMenuHeaps(u32 count, s32 heapIdx);
+
     static REPLACE ResourceManager *CreateInstance();
+    static ResourceManager *Instance() { return s_instance; }
 
 private:
     void loadGlobe(u8 **dst);

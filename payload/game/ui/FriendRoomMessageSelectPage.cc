@@ -60,6 +60,11 @@ void FriendRoomMessageSelectPage::onActivate() {
     case MenuType::Close:
         m_messageCount = 4;
 
+        for (u8 i = 0; i < 4; i++) {
+            m_visibleMessageSelect->m_buttons[i].setFrontHandler(&m_onCloseButtonFront, false);
+            m_hiddenMessageSelect->m_buttons[i].setFrontHandler(&m_onCloseButtonFront, false);
+        }
+
         m_commentSelectBG.setPaneVisible("blue_null", false);
         m_commentSelectBG.setPaneVisible("yellow_null", false);
         m_commentSelectBG.setPaneVisible("pink_null", true);
@@ -142,8 +147,16 @@ void FriendRoomMessageSelectPage::onBack([[maybe_unused]] u32 localPlayerId) {
 }
 
 void FriendRoomMessageSelectPage::onCommentButtonFront(PushButton *button, [[maybe_unused]] u32 localPlayerId) {
+    m_cachedSheetIdx = m_currentSheetIdx;
+    m_cachedButton = button->m_index;
+
     u32 messageId = button->m_index + m_currentSheetIdx * 4;
     SP::RoomClient::Instance()->sendComment(messageId);
+    startReplace(Anim::Next, button->getDelay());
+}
+
+void FriendRoomMessageSelectPage::onCloseButtonFront(PushButton *button, [[maybe_unused]] u32 localPlayerId) {
+    SP::RoomClient::Instance()->closeRoom(button->m_index);
     startReplace(Anim::Next, button->getDelay());
 }
 

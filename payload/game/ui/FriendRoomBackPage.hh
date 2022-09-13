@@ -29,6 +29,7 @@ public:
     void onPlayerLeave(u32 playerId);
     void onReceiveComment(u32 playerId, u32 messageId);
     void onSettingsChange(const std::array<u32, SP::RoomSettings::count> &settings);
+    void onRoomClose(u32 gamemode);
 
 private:
     struct Join {
@@ -51,6 +52,10 @@ private:
         std::array<u32, SP::RoomSettings::count> settings;
     };
 
+    struct Close {
+        u32 messageId;
+    };
+
     MenuInputManager m_inputManager;
     CtrlMenuPageTitleText m_pageTitleText;
     FriendMatchingPlayer m_players[12];
@@ -66,7 +71,9 @@ private:
     // Leave: 12
     // Comment: 18
     // Settings: 1
-    SP::CircularBuffer<std::variant<Join, Leave, Comment, Settings>, 43> m_queue;
+    // Close: 1
+    SP::CircularBuffer<std::variant<Join, Leave, Comment, Settings, Close>, 44> m_queue;
+    bool m_roomClosed = false;
 };
 
 } // namespace UI

@@ -3,6 +3,7 @@
 #include <egg/core/eggHeap.hh>
 extern "C" {
 #include <game/system/RootScene.h>
+#include <game/util/Registry.h>
 }
 #include <game/ui/SectionManager.hh>
 #include <vendor/nanopb/pb_decode.h>
@@ -45,24 +46,6 @@ bool RoomServer::calc(Handler &handler) {
         }
     }
 
-    if (m_commentTimer > 0) {
-        m_commentTimer--;
-    } else {
-        if (!m_commentQueue.empty()) {
-            const auto *comment = m_commentQueue.front();
-            handler.onReceiveComment(comment->playerId, comment->messageId);
-            writeComment(comment->playerId, comment->messageId);
-            m_commentQueue.pop();
-            m_commentTimer = 90;
-        }
-    }
-
-    if (m_settingsChanged) {
-        writeSettings();
-        handler.onSettingsChange(m_players[0].m_settings);
-        m_settingsChanged = false;
-    }
-
     while (!m_disconnectQueue.empty()) {
         for (u32 i = m_playerCount; i --> 0;) {
             if (m_players[i].clientId == *m_disconnectQueue.front()) {
@@ -89,16 +72,12 @@ void RoomServer::OnCreateScene() {
         return;
     }
 
-    switch (sectionManager->nextSectionId()) {
-    case UI::SectionId::OnlineServer: {
-        assert(!s_block);
-        auto *heap = reinterpret_cast<EGG::Heap *>(s_rootScene->heapCollection.heaps[HEAP_ID_MEM2]);
-        s_block = heap->alloc(sizeof(RoomServer), 0x4);
-        break;
-    }
-    default:
-        break;
-    }
+    if (UI::Section::HasRoomServer(sectionManager->lastSectionId())) { return; }
+    if (!UI::Section::HasRoomServer(sectionManager->nextSectionId())) { return; }
+
+    assert(!s_block);
+    auto *heap = reinterpret_cast<EGG::Heap *>(s_rootScene->heapCollection.heaps[HEAP_ID_MEM2]);
+    s_block = heap->alloc(sizeof(RoomServer), 0x4);
 }
 
 void RoomServer::OnDestroyScene() {
@@ -107,20 +86,16 @@ void RoomServer::OnDestroyScene() {
         return;
     }
 
-    switch (sectionManager->lastSectionId()) {
-    case UI::SectionId::OnlineServer: {
-        if (s_instance) {
-            DestroyInstance();
-        }
-        assert(s_block);
-        auto *heap = reinterpret_cast<EGG::Heap *>(s_rootScene->heapCollection.heaps[HEAP_ID_MEM2]);
-        heap->free(s_block);
-        s_block = nullptr;
-        break;
+    if (UI::Section::HasRoomServer(sectionManager->nextSectionId())) { return; }
+    if (!UI::Section::HasRoomServer(sectionManager->lastSectionId())) { return; }
+    
+    if (s_instance) {
+        DestroyInstance();
     }
-    default:
-        break;
-    }
+    assert(s_block);
+    auto *heap = reinterpret_cast<EGG::Heap *>(s_rootScene->heapCollection.heaps[HEAP_ID_MEM2]);
+    heap->free(s_block);
+    s_block = nullptr;
 }
 
 RoomServer *RoomServer::CreateInstance() {
@@ -153,6 +128,8 @@ std::optional<RoomServer::State> RoomServer::resolve(Handler &handler) {
     case State::Setup:
         return calcSetup();
     case State::Main:
+        return calcMain(handler);
+    case State::Select:
         break;
     }
 
@@ -171,6 +148,8 @@ bool RoomServer::transition(Handler &handler, State state) {
     case State::Main:
         result = onMain(handler);
         break;
+    case State::Select:
+        break;
     }
     m_state = state;
     return result;
@@ -182,6 +161,42 @@ std::optional<RoomServer::State> RoomServer::calcSetup() {
     }
 
     return State::Main;
+}
+
+std::optional<RoomServer::State> RoomServer::calcMain(Handler &handler) {
+    State state = State::Main;
+
+    if (m_commentTimer > 0) {
+        m_commentTimer--;
+    } else {
+        if (!m_commentQueue.empty()) {
+            const auto *comment = m_commentQueue.front();
+            handler.onReceiveComment(comment->playerId, comment->messageId);
+            writeComment(comment->playerId, comment->messageId);
+            m_commentQueue.pop();
+            m_commentTimer = 90;
+        }
+    }
+
+    if (m_settingsChanged) {
+        writeSettings();
+        handler.onSettingsChange(m_players[0].m_settings);
+        m_settingsChanged = false;
+    }
+
+    if (m_roomClosed) {
+        assert(m_gamemode != -1);
+        writeClose(m_gamemode);
+        handler.onRoomClose(m_gamemode);
+        m_roomClosed = false;
+        state = State::Select;
+    }
+
+    return state;
+}
+
+std::optional<RoomServer::State> RoomServer::calcSelect() {
+    return State::Select;
 }
 
 bool RoomServer::onMain(Handler &handler) {
@@ -196,7 +211,7 @@ bool RoomServer::onPlayerJoin(Handler &handler, u32 clientId, const System::RawM
         return false;
     }
 
-    m_players[m_playerCount] = { clientId, *mii, location, latitude, longitude, settings };
+    m_players[m_playerCount] = { clientId, *mii, location, latitude, longitude, 0xFFFFFFFF, {}, settings };
     m_playerCount++;
     writeJoin(mii, location, latitude, longitude);
     handler.onPlayerJoin(mii, location, latitude, longitude);
@@ -237,6 +252,39 @@ bool RoomServer::onReceiveComment(u32 playerId, u32 messageId) {
         return false;
     }
     m_commentQueue.push(Comment { playerId, messageId });
+    return true;
+}
+
+bool RoomServer::onRoomClose(Handler &handler, u32 playerId, s32 gamemode) {
+    if (playerId != 0) { return false; }
+    if (gamemode >= 4) { return false; }
+    if (gamemode < 0) { return false; }
+
+    m_gamemode = gamemode;
+    m_commentQueue.reset();
+    return true;
+}
+
+bool RoomServer::onReceiveVote(u32 playerId, u32 course, std::optional<PlayerProperties>& properties) {
+    if (playerId >= m_playerCount) { return false; }
+    // Course validation
+
+    if (properties) { return validateProperties(playerId, *properties); }
+    return true;
+}
+
+bool RoomServer::validateProperties(u32 playerId, PlayerProperties &properties) {
+    // Character validation
+    if (properties.characterId >= 0x30) { return false; }
+    if (properties.characterId == 0x1C || properties.characterId == 0x1D) { return false; }
+    if (properties.characterId == 0x22 || properties.characterId == 0x23) { return false; }
+    if (properties.characterId == 0x28 || properties.characterId == 0x29) { return false; }
+
+    // Vehicle validation
+    if (properties.vehicleId >= 0x24) { return false; }
+    if (getCharacterWeightClass(properties.characterId) != getVehicleWeightClass(properties.vehicleId)) { return false; }
+
+    m_players[playerId].properties = properties;
     return true;
 }
 
@@ -285,6 +333,16 @@ void RoomServer::writeSettings() {
     }
 }
 
+void RoomServer::writeClose(u32 gamemode) {
+    for (size_t i = 0; i < m_clients.size(); i++) {
+        if (m_clients[i] && m_clients[i]->ready()) {
+            if (!m_clients[i]->writeClose(gamemode)) {
+                disconnectClient(i);
+            }
+        }
+    }
+}
+
 RoomServer::Client::Client(RoomServer &server, u32 id, s32 handle,
         const hydro_kx_keypair &serverKeypair) : m_id(id), m_server(server),
         m_state(State::Connect), m_socket(handle, serverKeypair, "room    ") {}
@@ -294,6 +352,7 @@ RoomServer::Client::~Client() = default;
 bool RoomServer::Client::ready() const {
     switch (m_state) {
     case State::Main:
+    case State::Select:
         return true;
     default:
         return false;
@@ -303,21 +362,26 @@ bool RoomServer::Client::ready() const {
 bool RoomServer::Client::calc(Handler &handler) {
     if (auto state = resolve(handler)) {
         if (!transition(handler, *state)) {
+            SP_LOG("Client::calc: First !transition");
             return false;
         }
     } else {
+        SP_LOG("Client::calc: First !resolve");
         return false;
     }
 
     if (!m_socket.poll()) {
+        SP_LOG("Client::calc: !m_socket.poll");
         return false;
     }
 
     if (auto state = resolve(handler)) {
         if (!transition(handler, *state)) {
+            SP_LOG("Client::calc: Second !transition");
             return false;
         }
     } else {
+        SP_LOG("Client::calc: Second !resolve");
         return false;
     }
 
@@ -367,6 +431,13 @@ bool RoomServer::Client::writeComment(u32 playerId, u32 messageId) {
     return write(event);
 }
 
+bool RoomServer::Client::writeClose(u32 gamemode) {
+    RoomEvent event;
+    event.which_event = RoomEvent_close_tag;
+    event.event.close.gamemode = gamemode;
+    return write(event);
+}
+
 std::optional<RoomServer::Client::State> RoomServer::Client::resolve(Handler &handler) {
     switch (m_state) {
     case State::Connect:
@@ -375,6 +446,8 @@ std::optional<RoomServer::Client::State> RoomServer::Client::resolve(Handler &ha
         return calcSetup(handler);
     case State::Main:
         return calcMain(handler);
+    case State::Select:
+        return calcSelect(handler);
     }
 
     return m_state;
@@ -392,6 +465,8 @@ bool RoomServer::Client::transition(Handler &handler, State state) {
     case State::Setup:
         break;
     case State::Main:
+        break;
+    case State::Select:
         break;
     }
     m_state = state;
@@ -460,6 +535,8 @@ std::optional<RoomServer::Client::State> RoomServer::Client::calcSetup(Handler &
 }
 
 std::optional<RoomServer::Client::State> RoomServer::Client::calcMain(Handler &handler) {
+    if (m_server.m_state == RoomServer::State::Select) { return State::Select; }
+
     auto playerId = getPlayerId();
     if (!playerId) {
         return {};
@@ -495,6 +572,42 @@ std::optional<RoomServer::Client::State> RoomServer::Client::calcMain(Handler &h
         }
         m_server.m_players[*playerId].m_settings = settings;
         return State::Main;
+    case RoomRequest_close_tag:
+        if (!m_server.onRoomClose(handler, *playerId, request->request.close.gamemode)) {
+            return {};
+        }
+        m_server.m_roomClosed = true;
+        return State::Main;
+    default:
+        return {};
+    }
+}
+
+std::optional<RoomServer::Client::State> RoomServer::Client::calcSelect(Handler &handler) {
+    auto playerId = getPlayerId();
+    if (!playerId) {
+        return {};
+    }
+
+    std::optional<RoomRequest> request{};
+    if (!read(request)) {
+        return {};
+    }
+
+    if (!request) {
+        return State::Select;
+    }
+
+    std::optional<PlayerProperties> properties;
+    switch (request->which_request) {
+    case RoomRequest_vote_tag:
+        if (request->request.vote.has_properties) {
+            properties = { request->request.vote.properties.character, request->request.vote.properties.vehicle, request->request.vote.properties.driftType };
+        }
+        if (!m_server.onReceiveVote(*playerId, request->request.vote.course, properties)) {
+            return {};
+        }
+        return State::Select;
     default:
         return {};
     }

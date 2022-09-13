@@ -39,8 +39,20 @@ bool RoomClient::sendComment(u32 commentId) {
     return writeComment(commentId);
 }
 
+bool RoomClient::closeRoom(u32 gamemode) {
+    return writeClose(gamemode);
+}
+
 void RoomClient::changeLocalSettings() {
     m_localSettingsChanged = true;
+}
+
+bool RoomClient::sendVote(u32 course, std::optional<u32> characterId, std::optional<u32> vehicleId, std::optional<bool> driftIsAuto) {
+    std::optional<PlayerProperties> properties;
+    if (characterId && vehicleId && driftIsAuto) {
+        properties = { *characterId, *vehicleId, *driftIsAuto };
+    }
+    return writeVote(course, properties);
 }
 
 void RoomClient::OnCreateScene() {
@@ -49,17 +61,12 @@ void RoomClient::OnCreateScene() {
         return;
     }
 
-    switch (sectionManager->nextSectionId()) {
-    case UI::SectionId::OnlineSingle:
-    case UI::SectionId::OnlineMulti: {
-        assert(!s_block);
-        auto *heap = reinterpret_cast<EGG::Heap *>(s_rootScene->heapCollection.heaps[HEAP_ID_MEM2]);
-        s_block = heap->alloc(sizeof(RoomClient), 0x4);
-        break;
-    }
-    default:
-        break;
-    }
+    if (UI::Section::HasRoomClient(sectionManager->lastSectionId())) { return; }
+    if (!UI::Section::HasRoomClient(sectionManager->nextSectionId())) { return; }
+
+    assert(!s_block);
+    auto *heap = reinterpret_cast<EGG::Heap *>(s_rootScene->heapCollection.heaps[HEAP_ID_MEM2]);
+    s_block = heap->alloc(sizeof(RoomClient), 0x4);
 }
 
 void RoomClient::OnDestroyScene() {
@@ -68,21 +75,16 @@ void RoomClient::OnDestroyScene() {
         return;
     }
 
-    switch (sectionManager->lastSectionId()) {
-    case UI::SectionId::OnlineSingle:
-    case UI::SectionId::OnlineMulti: {
-        if (s_instance) {
-            DestroyInstance();
-        }
-        assert(s_block);
-        auto *heap = reinterpret_cast<EGG::Heap *>(s_rootScene->heapCollection.heaps[HEAP_ID_MEM2]);
-        heap->free(s_block);
-        s_block = nullptr;
-        break;
+    if (UI::Section::HasRoomClient(sectionManager->nextSectionId())) { return; }
+    if (!UI::Section::HasRoomClient(sectionManager->lastSectionId())) { return; }
+
+    if (s_instance) {
+        DestroyInstance();
     }
-    default:
-        break;
-    }
+    assert(s_block);
+    auto *heap = reinterpret_cast<EGG::Heap *>(s_rootScene->heapCollection.heaps[HEAP_ID_MEM2]);
+    heap->free(s_block);
+    s_block = nullptr;
 }
 
 RoomClient *RoomClient::CreateInstance(u32 localPlayerCount) {
@@ -247,8 +249,29 @@ std::optional<RoomClient::State> RoomClient::calcMain(Handler &handler) {
             }
         }
         return State::Main;
+    case RoomEvent_close_tag:
+        if (!onRoomClose(handler, event->event.close.gamemode)) {
+            return {};
+        }
+        return State::Select;
     default:
         return State::Main;
+    }
+}
+
+std::optional<RoomClient::State> RoomClient::calcSelect(Handler &handler) {
+    std::optional<RoomEvent> event{};
+    if (!read(event)) {
+        return {};
+    }
+
+    if (!event) {
+        return State::Select;
+    }
+
+    switch (event->which_event) {
+    default:
+        return State::Select;
     }
 }
 
@@ -314,6 +337,12 @@ bool RoomClient::onReceiveComment(Handler &handler, u32 playerId, u32 messageId)
     return true;
 }
 
+bool RoomClient::onRoomClose(Handler &handler, u32 gamemode) {
+    if (gamemode >= 4) { return false; }
+    handler.onRoomClose(gamemode);
+    return true;
+}
+
 bool RoomClient::read(std::optional<RoomEvent> &event) {
     u8 buffer[RoomEvent_size];
     std::optional<u16> size = m_socket.read(buffer, sizeof(buffer));
@@ -371,6 +400,13 @@ bool RoomClient::writeComment(u32 messageId) {
     return write(request);
 }
 
+bool RoomClient::writeClose(u32 gamemode) {
+    RoomRequest request;
+    request.which_request = RoomRequest_close_tag;
+    request.request.close.gamemode = gamemode;
+    return write(request);
+}
+
 bool RoomClient::writeSettings() {
     RoomRequest request;
     request.which_request = RoomRequest_settings_tag;
@@ -380,6 +416,14 @@ bool RoomClient::writeSettings() {
         request.request.settings.settings[i] = saveManager->getSetting(RoomSettings::offset + i);
     }
     m_localSettingsChanged = false;
+    return write(request);
+}
+
+bool RoomClient::writeVote(u32 course, std::optional<PlayerProperties> properties) {
+    RoomRequest request;
+    request.which_request = RoomRequest_vote_tag;
+    request.request.vote.course = course;
+    if (properties) { request.request.vote.properties = { (*properties).characterId, (*properties).vehicleId, (*properties).driftIsAuto }; }
     return write(request);
 }
 

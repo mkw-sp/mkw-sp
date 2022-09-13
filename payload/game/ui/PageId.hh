@@ -65,8 +65,10 @@ enum class PageId {
     MissionPrompt = 0x7c,
     MissionDrift = 0x7d,
     MissionTutorial = 0x7e,
+    ModelRender = 0x7f,
 
     OnlineTop = 0x8b, // Replaces WifiTop
+    VotingBack = 0x90, // Replaces CountDownTimer
     Globe = 0x95,
     FriendRoomRules = 0x9a, // Replaces FriendJoin
     FriendMatching = 0x9b,

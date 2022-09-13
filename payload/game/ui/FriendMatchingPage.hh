@@ -24,6 +24,9 @@ public:
     void afterCalc() override;
     void onRefocus() override;
 
+    void prepareStartClient();
+    void prepareStartServer();
+
 private:
     class ServerHandler : public SP::RoomServer::Handler {
     public:
@@ -37,6 +40,7 @@ private:
         void onPlayerLeave(u32 playerId) override;
         void onReceiveComment(u32 playerId, u32 messageId) override;
         void onSettingsChange(const std::array<u32, SP::RoomSettings::count> &settings) override;
+        void onRoomClose(u32 messageId) override;
 
     private:
         FriendMatchingPage &m_page;
@@ -55,6 +59,7 @@ private:
         void onPlayerLeave(u32 playerId) override;
         void onReceiveComment(u32 playerId, u32 messageId) override;
         void onSettingsChange(const std::array<u32, SP::RoomSettings::count> &settings) override;
+        void onRoomClose(u32 messageId) override;
 
     private:
         FriendMatchingPage &m_page;
@@ -63,6 +68,8 @@ private:
     void onBack(u32 localPlayerId);
     void onCloseConfirm(s32 choice, PushButton *button);
     void collapse();
+    void startClient();
+    void startServer();
 
     template <typename T>
     using H = typename T::Handler<FriendMatchingPage>;
@@ -75,6 +82,8 @@ private:
     PageId m_replacement;
     ServerHandler m_serverHandler;
     ClientHandler m_clientHandler;
+    s32 m_gamemode = -1;
+    bool m_roomStarted = false;
 };
 
 } // namespace UI

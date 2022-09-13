@@ -288,7 +288,7 @@ bool AsyncSocket::recv(u8 *buffer, u16 size, u16 &offset) {
     if (result > 0) {
         offset += result;
     } else if (result != SO_EAGAIN) {
-        SP_LOG("Failed to send packet, returned %d", result);
+        SP_LOG("Failed to receive packet, returned %d", result);
         return false;
     }
     return true;

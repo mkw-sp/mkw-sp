@@ -36,6 +36,8 @@ public:
         TimeAttack = 2,
         OfflineBT = 3,
         Mission = 4,
+        OnlinePrivateVS = 7,
+        OnlinePrivateBT = 10,
     };
 
     struct Scenario {
