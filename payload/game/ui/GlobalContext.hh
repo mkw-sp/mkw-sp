@@ -21,7 +21,9 @@ public:
     u32 m_timeAttackCharacterId;
     u8 _130[0x13c - 0x130];
     u32 m_timeAttackVehicleId;
-    u8 _140[0x188 - 0x140];
+    u8 _140[0x164 - 0x140];
+    u32 m_driftIsAuto[4];
+    u8 _174[0x188 - 0x174];
     MiiGroup m_playerMiis;
     SelectPlayer m_selectPlayer[2];
     MiiGroup m_localPlayerMiis;
