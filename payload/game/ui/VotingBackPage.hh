@@ -14,6 +14,8 @@ public:
     void onInit() override;
     void afterCalc() override;
 
+    REPLACE s8 _80650b40_stub();
+
 private:
     class ServerHandler : public SP::RoomServer::Handler {
     public:

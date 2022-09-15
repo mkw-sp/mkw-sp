@@ -31,3 +31,9 @@ PATCH_BL_START(CourseSelectPage_onActivate, 0xd0)
     li r0, 10072
     b CourseSelectPage_onActivate + 0xe8
 PATCH_BL_END(CourseSelectPage_onActivate, 0xd0)
+
+
+
+PATCH_B_START(CourseSelectPage_afterCalc, 0x44)
+    b CourseSelectPage_afterCalc + 0x100
+PATCH_B_END(CourseSelectPage_afterCalc, 0x44)

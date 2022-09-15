@@ -119,6 +119,11 @@ void Section::addPage(PageId pageId) {
         { SectionId::OnlineMulti, (PageId)0xa6 },
         { SectionId::OnlineMulti, (PageId)0xa7 },
 
+        { SectionId::Voting1PVS, (PageId)0x50 },
+        { SectionId::Voting1PVS, (PageId)0x51 },
+        { SectionId::Voting1PVS, (PageId)0x88 },
+        { SectionId::Voting1PVS, (PageId)0x91 },
+
         { SectionId::VotingServer, (PageId)0x4e },
         { SectionId::VotingServer, (PageId)0x51 },
         { SectionId::VotingServer, (PageId)0x6e },
@@ -188,6 +193,8 @@ void Section::addActivePage(PageId pageId) {
         { SectionId::OnlineServer, PageId::GhostManager },
         { SectionId::OnlineServer, (PageId)0x7f },
         { SectionId::OnlineServer, (PageId)0x84 },
+
+        { SectionId::Voting1PVS, (PageId)0x88 },
 
         { SectionId::VotingServer, (PageId)0x88 },
     };
@@ -330,6 +337,8 @@ void Section::addActivePages(SectionId id) {
         { SectionId::OnlineSingle, PageId::OnlineTop },
 
         { SectionId::OnlineMulti, PageId::OnlineTop },
+
+        { SectionId::Voting1PVS, PageId::CupSelect },
 
         { SectionId::OnlineServer, PageId::FriendMatching },
     };

@@ -26,3 +26,9 @@ PATCH_BL_START(CupSelectPage_onActivate, 0x348)
     li r0, 10072
     b CupSelectPage_onActivate + 0x360
 PATCH_BL_END(CupSelectPage_onActivate, 0x348)
+
+
+
+PATCH_B_START(CupSelectPage_afterCalc, 0x5c)
+    b CupSelectPage_afterCalc + 0x140
+PATCH_B_END(CupSelectPage_afterCalc, 0x5c)

@@ -30,6 +30,8 @@ void VotingBackPage::afterCalc() {
     }
 }
 
+s8 VotingBackPage::_80650b40_stub() { return 0; }
+
 VotingBackPage::ServerHandler::ServerHandler(VotingBackPage &page) : m_page(page) {}
 
 VotingBackPage::ServerHandler::~ServerHandler() = default;
