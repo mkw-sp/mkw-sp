@@ -19,7 +19,7 @@ public:
 
         virtual void onPlayerJoin([[maybe_unused]] const System::RawMii *mii,
                 [[maybe_unused]] u32 location, [[maybe_unused]] u16 latitude,
-                [[maybe_unused]] u16 longitude) {}
+                [[maybe_unused]] u16 longitude, [[maybe_unused]] u32 regionLineColor) {}
         virtual void onPlayerLeave([[maybe_unused]] u32 playerId) {}
         virtual void onReceiveComment([[maybe_unused]] u32 playerId,
                 [[maybe_unused]] u32 commentId) {}
@@ -70,7 +70,7 @@ private:
     bool onMain(Handler &handler);
 
     bool onPlayerJoin(Handler &handler, const System::RawMii *mii, u32 location, u16 latitude,
-            u16 longitude);
+            u16 longitude, u32 regionLineColor);
     bool onPlayerLeave(Handler &handler, u32 playerId);
     bool onReceiveComment(Handler &handler, u32 playerId, u32 messageId);
     bool onRoomClose(Handler &handler, u32 gamemode);

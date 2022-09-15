@@ -35,8 +35,8 @@ private:
 
         void onMain() override;
 
-        void onPlayerJoin(const System::RawMii *mii, u32 location, u16 latitude, u16 longitude)
-                override;
+        void onPlayerJoin(const System::RawMii *mii, u32 location, u16 latitude, u16 longitude,
+                u32 regionLineColor) override;
         void onPlayerLeave(u32 playerId) override;
         void onReceiveComment(u32 playerId, u32 messageId) override;
         void onSettingsChange(const std::array<u32, SP::RoomSettings::count> &settings) override;
@@ -54,8 +54,8 @@ private:
         void onSetup() override;
         void onMain() override;
 
-        void onPlayerJoin(const System::RawMii *mii, u32 location, u16 latitude, u16 longitude)
-                override;
+        void onPlayerJoin(const System::RawMii *mii, u32 location, u16 latitude, u16 longitude,
+                u32 regionLineColor) override;
         void onPlayerLeave(u32 playerId) override;
         void onReceiveComment(u32 playerId, u32 messageId) override;
         void onSettingsChange(const std::array<u32, SP::RoomSettings::count> &settings) override;

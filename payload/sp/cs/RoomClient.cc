@@ -169,7 +169,8 @@ std::optional<RoomClient::State> RoomClient::calcSetup(Handler &handler) {
             u32 location = event->event.join.location;
             u16 latitude = event->event.join.latitude;
             u16 longitude = event->event.join.longitude;
-            if (!onPlayerJoin(handler, mii, location, latitude, longitude)) {
+            u32 regionLineColor = event->event.join.regionLineColor;
+            if (!onPlayerJoin(handler, mii, location, latitude, longitude, regionLineColor)) {
                 return {};
             }
         }
@@ -220,7 +221,8 @@ std::optional<RoomClient::State> RoomClient::calcMain(Handler &handler) {
             u32 location = event->event.join.location;
             u16 latitude = event->event.join.latitude;
             u16 longitude = event->event.join.longitude;
-            if (!onPlayerJoin(handler, mii, location, latitude, longitude)) {
+            u32 regionLineColor = event->event.join.regionLineColor;
+            if (!onPlayerJoin(handler, mii, location, latitude, longitude, regionLineColor)) {
                 return {};
             }
         }
@@ -297,7 +299,9 @@ bool RoomClient::onMain(Handler &handler) {
         saveManager->getLatitude(&latitude);
         u16 longitude;
         saveManager->getLongitude(&longitude);
-        if (!onPlayerJoin(handler, &raw, location, latitude, longitude)) {
+        u32 regionLineColor = static_cast<u32>(
+                saveManager->getSetting<SP::ClientSettings::Setting::RegionLineColor>());
+        if (!onPlayerJoin(handler, &raw, location, latitude, longitude, regionLineColor)) {
             // TODO spectate?
             return false;
         }
@@ -306,13 +310,13 @@ bool RoomClient::onMain(Handler &handler) {
 }
 
 bool RoomClient::onPlayerJoin(Handler &handler, const System::RawMii *mii, u32 location,
-        u16 latitude, u16 longitude) {
+        u16 latitude, u16 longitude, u32 regionLineColor) {
     if (m_playerCount == 12) {
         return false;
     }
 
     m_playerCount++;
-    handler.onPlayerJoin(mii, location, latitude, longitude);
+    handler.onPlayerJoin(mii, location, latitude, longitude, regionLineColor);
     return true;
 }
 
@@ -385,6 +389,8 @@ bool RoomClient::writeJoin() {
     u16 longitude;
     saveManager->getLongitude(&longitude);
     request.request.join.longitude = longitude;
+    request.request.join.regionLineColor = static_cast<u32>(
+            saveManager->getSetting<SP::ClientSettings::Setting::RegionLineColor>());
     request.request.join.settings_count = RoomSettings::count;
     for (size_t i = 0; i < RoomSettings::count; i++) {
         request.request.join.settings[i] = saveManager->getSetting(RoomSettings::offset + i);

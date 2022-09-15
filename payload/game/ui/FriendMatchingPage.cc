@@ -168,7 +168,7 @@ void FriendMatchingPage::ServerHandler::onMain() {
 }
 
 void FriendMatchingPage::ServerHandler::onPlayerJoin(const System::RawMii *mii, u32 location,
-        u16 latitude, u16 longitude) {
+        u16 latitude, u16 longitude, u32 UNUSED(regionLineColor)) {
     Section *section = SectionManager::Instance()->currentSection();
     auto *friendRoomBackPage = section->page<PageId::FriendRoomBack>();
     friendRoomBackPage->onPlayerJoin(*mii, location, latitude, longitude);
@@ -214,7 +214,7 @@ void FriendMatchingPage::ClientHandler::onMain() {
 }
 
 void FriendMatchingPage::ClientHandler::onPlayerJoin(const System::RawMii *mii, u32 location,
-        u16 latitude, u16 longitude) {
+        u16 latitude, u16 longitude, u32 UNUSED(regionLineColor)) {
     Section *section = SectionManager::Instance()->currentSection();
     auto *friendRoomBackPage = section->page<PageId::FriendRoomBack>();
     friendRoomBackPage->onPlayerJoin(*mii, location, latitude, longitude);
