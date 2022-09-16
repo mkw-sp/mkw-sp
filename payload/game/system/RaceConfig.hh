@@ -72,6 +72,9 @@ public:
     Scenario &menuScenario();
     Scenario &awardsScenario();
     u8 (&ghostBuffers())[2][11][0x2800];
+    
+    void REPLACED(initRace)();
+    REPLACE void initRace();
 
     static RaceConfig *Instance();
 
@@ -81,7 +84,7 @@ private:
     Scenario m_menuScenario;
     Scenario m_awardsScenario;
     u8 m_ghostBuffers[2][11][0x2800]; // Modified
-
+    
     static RaceConfig *s_instance;
 };
 
