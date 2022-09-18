@@ -117,6 +117,8 @@ std::optional<RoomClient::State> RoomClient::resolve(Handler &handler) {
         return calcSetup(handler);
     case State::Main:
         return calcMain(handler);
+    case State::Select:
+        break;
     }
 
     return m_state;
@@ -136,6 +138,8 @@ bool RoomClient::transition(Handler &handler, State state) {
         break;
     case State::Main:
         result = onMain(handler);
+        break;
+    case State::Select:
         break;
     }
     m_state = state;
