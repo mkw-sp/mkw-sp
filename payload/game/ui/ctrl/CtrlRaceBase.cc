@@ -14,6 +14,14 @@ CtrlRaceBase::~CtrlRaceBase() = default;
 
 void CtrlRaceBase::setPaneColor(const char *paneName, bool teamColors) {
     auto &raceScenario = System::RaceConfig::Instance()->raceScenario();
+    if (raceScenario.localPlayerCount < 2) {
+        auto *saveManager = System::SaveManager::Instance();
+        auto setting = saveManager->getSetting<SP::ClientSettings::Setting::TimerColor1P>();
+        if (setting == SP::ClientSettings::TimerColor1P::TeamColor) {
+            teamColors = true;
+        }
+    }
+
     if (raceScenario.spMaxTeamSize < 2 || !teamColors) {
         REPLACED(setPaneColor)(paneName, teamColors);
         return;

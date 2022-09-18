@@ -1019,6 +1019,26 @@
         "font": "regular",
         "string": "races",
     },
+    "10296": {
+        "font": "regular",
+        "string": "1P Timer Color",
+    },
+    "10297": {
+        "font": "regular",
+        "string": "Always Yellow",
+    },
+    "10298": {
+        "font": "regular",
+        "string": "Team Color",
+    },
+    "10299": {
+        "font": "regular",
+        "string": "In single player modes, always keep the timer yellow.",
+    },
+    "10300": {
+        "font": "regular",
+        "string": "In single player modes, adapt the timer color to the team.",
+    },
     "20000": {
         "font": "regular",
         "string": "Online",

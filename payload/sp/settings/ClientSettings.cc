@@ -74,6 +74,16 @@ const Entry entries[] = {
         .valueExplanationMessageIds = (u32[]) { 10007, 10008 },
         .vanillaValue = static_cast<u32>(HUDLabels::Show),
     },
+    [static_cast<u32>(Setting::TimerColor1P)] = {
+        .category = Category::Race,
+        .name = magic_enum::enum_name(Setting::TimerColor1P),
+        .messageId = 10296,
+        .defaultValue = static_cast<u32>(TimerColor1P::AlwaysYellow),
+        .valueCount = magic_enum::enum_count<TimerColor1P>(),
+        .valueNames = magic_enum::enum_names<TimerColor1P>().data(),
+        .valueMessageIds = (u32[]) { 10297, 10298 },
+        .valueExplanationMessageIds = (u32[]) { 10299, 10300 },
+    },
     [static_cast<u32>(Setting::MapIcons)] = {
         .category = Category::Race,
         .name = magic_enum::enum_name(Setting::MapIcons),
