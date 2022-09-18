@@ -29,7 +29,7 @@ public:
     void onPlayerLeave(u32 playerId);
     void onReceiveComment(u32 playerId, u32 messageId);
     void onSettingsChange(const std::array<u32, SP::RoomSettings::count> &settings);
-    void onRoomClose(u32 gamemode);
+    void onRoomStart(u32 gamemode);
 
 private:
     struct Join {
