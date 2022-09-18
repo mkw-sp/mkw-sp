@@ -12,7 +12,7 @@ enum class Setting {
     RegionLineColor,
     PlayerTags,
     HUDLabels,
-    TimerColor1P,
+    HUDTeamColors,
     MapIcons,
     InputDisplay,
     RankControl,
@@ -93,9 +93,9 @@ enum class HUDLabels {
     Show,
 };
 
-enum class TimerColor1P {
-    AlwaysYellow,
-    TeamColor,
+enum class HUDTeamColors {
+    Disable,
+    Enable,
 };
 
 enum class MapIcons {
@@ -306,8 +306,8 @@ struct Helper<ClientSettings::Setting, ClientSettings::Setting::HUDLabels> {
 };
 
 template <>
-struct Helper<ClientSettings::Setting, ClientSettings::Setting::TimerColor1P> {
-    using type = SP::ClientSettings::TimerColor1P;
+struct Helper<ClientSettings::Setting, ClientSettings::Setting::HUDTeamColors> {
+    using type = SP::ClientSettings::HUDTeamColors;
 };
 
 template <>

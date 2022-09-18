@@ -15,10 +15,14 @@ CtrlRaceBase::~CtrlRaceBase() = default;
 void CtrlRaceBase::setPaneColor(const char *paneName, bool teamColors) {
     auto &raceScenario = System::RaceConfig::Instance()->raceScenario();
     if (raceScenario.localPlayerCount < 2) {
+        teamColors = true;
+    }
+
+    if (teamColors) {
         auto *saveManager = System::SaveManager::Instance();
-        auto setting = saveManager->getSetting<SP::ClientSettings::Setting::TimerColor1P>();
-        if (setting == SP::ClientSettings::TimerColor1P::TeamColor) {
-            teamColors = true;
+        auto setting = saveManager->getSetting<SP::ClientSettings::Setting::HUDTeamColors>();
+        if (setting == SP::ClientSettings::HUDTeamColors::Disable) {
+            teamColors = false;
         }
     }
 

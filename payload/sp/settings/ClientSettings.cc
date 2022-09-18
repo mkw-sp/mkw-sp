@@ -74,13 +74,13 @@ const Entry entries[] = {
         .valueExplanationMessageIds = (u32[]) { 10007, 10008 },
         .vanillaValue = static_cast<u32>(HUDLabels::Show),
     },
-    [static_cast<u32>(Setting::TimerColor1P)] = {
+    [static_cast<u32>(Setting::HUDTeamColors)] = {
         .category = Category::Race,
-        .name = magic_enum::enum_name(Setting::TimerColor1P),
+        .name = magic_enum::enum_name(Setting::HUDTeamColors),
         .messageId = 10296,
-        .defaultValue = static_cast<u32>(TimerColor1P::AlwaysYellow),
-        .valueCount = magic_enum::enum_count<TimerColor1P>(),
-        .valueNames = magic_enum::enum_names<TimerColor1P>().data(),
+        .defaultValue = static_cast<u32>(HUDTeamColors::Enable),
+        .valueCount = magic_enum::enum_count<HUDTeamColors>(),
+        .valueNames = magic_enum::enum_names<HUDTeamColors>().data(),
         .valueMessageIds = (u32[]) { 10297, 10298 },
         .valueExplanationMessageIds = (u32[]) { 10299, 10300 },
     },
