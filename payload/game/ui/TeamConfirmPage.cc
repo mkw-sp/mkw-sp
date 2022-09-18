@@ -52,19 +52,15 @@ void TeamConfirmPage::onInit() {
 }
 
 void TeamConfirmPage::onActivate() {
-    auto *saveManager = System::SaveManager::Instance();
-    auto setting = saveManager->getSetting<SP::ClientSettings::Setting::ColorPalette>();
-    bool colorblind = setting == SP::ClientSettings::ColorPalette::Colorblind;
     const auto &menuScenario = System::RaceConfig::Instance()->menuScenario();
     u32 maxTeamSize = menuScenario.spMaxTeamSize;
     u32 teamSizes[6]{};
     for (u32 playerId = 0; playerId < 12; playerId++) {
         u32 characterId = menuScenario.players[playerId].characterId;
         u32 teamId = menuScenario.players[playerId].spTeam;
-        u32 colorId = colorblind * 6 + teamId;
         u32 positionId = (maxTeamSize == 6 ? 0 : 5 - maxTeamSize) * 12;
         positionId += teamId * maxTeamSize + teamSizes[teamId]++;
-        m_controls[playerId].refresh(playerId, characterId, colorId, positionId);
+        m_controls[playerId].refresh(playerId, characterId, teamId, positionId);
     }
 
     m_okButton.selectDefault(0);

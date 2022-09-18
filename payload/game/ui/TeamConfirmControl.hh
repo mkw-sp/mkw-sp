@@ -10,7 +10,7 @@ public:
     ~TeamConfirmControl() override;
 
     void load();
-    void refresh(u32 playerId, u32 characterId, u32 colorId, u32 positionId);
+    void refresh(u32 playerId, u32 characterId, u32 teamId, u32 positionId);
 };
 
 } // namespace UI

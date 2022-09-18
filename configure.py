@@ -313,7 +313,6 @@ asset_in_files = {
         os.path.join('ranking', 'timg', 'tt_pattern_chek_bokashi_32x32.tpl'),
         # Teams
         os.path.join('button', 'ctrl', 'TeamConfirmOK.brctr.json5'),
-        os.path.join('control', 'anim', 'common_w204_team_color.brlan.json5'),
         os.path.join('control', 'anim', 'common_w204_team_position.brlan.json5'),
         os.path.join('control', 'blyt', 'common_w204_team.brlyt.json5'),
         os.path.join('control', 'ctrl', 'TeamConfirm.brctr.json5'),
@@ -492,7 +491,6 @@ asset_in_files = {
         os.path.join('ranking', 'timg', 'tt_pattern_chek_bokashi_32x32.tpl'),
         # Teams
         os.path.join('button', 'ctrl', 'TeamConfirmOK.brctr.json5'),
-        os.path.join('control', 'anim', 'common_w204_team_color.brlan.json5'),
         os.path.join('control', 'anim', 'common_w204_team_position.brlan.json5'),
         os.path.join('control', 'blyt', 'common_w204_team.brlyt.json5'),
         os.path.join('control', 'ctrl', 'TeamConfirm.brctr.json5'),
