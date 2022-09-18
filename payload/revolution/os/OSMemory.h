@@ -16,5 +16,4 @@
 
 void OSProtectRange(u32 channel, void* address, u32 size, u32 permissions);
 
-void OSDisableCodeExecOnMEM1Hi16MB(void);
-void OSEnableCodeExecOnPayload(void);
+void OSEnableCodeExecOnExecSections(void);

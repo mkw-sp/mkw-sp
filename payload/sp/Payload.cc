@@ -69,8 +69,7 @@ static void Init() {
 
     Console::Print("Applying security patches...");
 #ifndef GDB_COMPATIBLE
-    OSDisableCodeExecOnMEM1Hi16MB();
-    OSEnableCodeExecOnPayload();
+    OSEnableCodeExecOnExecSections();
 #endif
 
 #ifdef GDB_COMPATIBLE
