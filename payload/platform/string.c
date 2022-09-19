@@ -1,7 +1,7 @@
 #include <Common.h>
 #include <string.h>
 
-extern void *memcpy_slow(void *dest, const void *src, size_t n);
+void *memcpy_slow(void *dest, const void *src, size_t n);
 
 // Use the optimized version of the function
 PATCH_B(memcpy_slow, memcpy);
