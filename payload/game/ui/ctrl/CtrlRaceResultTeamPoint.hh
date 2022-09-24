@@ -10,11 +10,11 @@ public:
     ~CtrlRaceResultTeamPoint() override;
 
     void load();
-    void refresh(u32 colorId, u32 positionId);
+    void refresh(u32 teamId, u32 positionId);
     void refresh(u32 score);
 
 private:
-    u32 m_colorId = 0;
+    u32 m_teamId = 0;
 };
 
 } // namespace UI

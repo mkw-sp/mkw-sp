@@ -1,6 +1,7 @@
 #include "CtrlRaceResultTeam.hh"
 
 #include "game/ui/SectionManager.hh"
+#include "game/ui/TeamColors.hh"
 #include "game/util/Registry.hh"
 
 namespace UI {
@@ -11,8 +12,7 @@ enum {
     Loop = 0,
     Select = 1,
     Select2 = 2,
-    Color = 3,
-    Position = 4,
+    Position = 3,
 };
 
 } // namespace GroupId
@@ -34,9 +34,6 @@ void CtrlRaceResultTeam::load() {
         "Select2On",
         "Select2Off",
         nullptr,
-        "Color",
-        "Color",
-        nullptr,
         "Position",
         "Position",
         nullptr,
@@ -45,7 +42,7 @@ void CtrlRaceResultTeam::load() {
     LayoutUIControl::load("result", "ResultTeam", "ResultTeam", groups);
 }
 
-void CtrlRaceResultTeam::refresh(u32 playerId, u32 characterId, u32 colorId, u32 positionId) {
+void CtrlRaceResultTeam::refresh(u32 playerId, u32 characterId, u32 teamId, u32 positionId) {
     auto *context = SectionManager::Instance()->globalContext();
     u32 localPlayerCount = context->m_localPlayerCount;
     setMessage("mii_name", Registry::GetCharacterMessageId(characterId, true));
@@ -54,8 +51,17 @@ void CtrlRaceResultTeam::refresh(u32 playerId, u32 characterId, u32 colorId, u32
     m_animator.setAnimation(GroupId::Loop, 0, 0.0f);
     m_animator.setAnimation(GroupId::Select, playerId >= localPlayerCount, 0.0f);
     m_animator.setAnimation(GroupId::Select2, playerId >= localPlayerCount, 0.0f);
-    m_animator.setAnimationInactive(GroupId::Color, 0, colorId);
     m_animator.setAnimationInactive(GroupId::Position, 0, positionId);
+    const char *paneNames[2] = { "black_parts_c_r", "black_parts_c_l" };
+    for (size_t i = 0; i < std::size(paneNames); i++) {
+        auto *pane = m_mainLayout.findPaneByName(paneNames[i]);
+        assert(pane);
+        auto *material = pane->getMaterial();
+        assert(material);
+        auto color = TeamColors::Get(teamId);
+        material->tevColors[0] = { color.r, color.g, color.b, color.a };
+        material->tevColors[1] = { color.r, color.g, color.b, color.a };
+    }
 }
 
 void CtrlRaceResultTeam::refresh(u32 score) {

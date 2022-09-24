@@ -27,15 +27,15 @@ void CtrlRaceResultTeamPoint::load() {
     LayoutUIControl::load("result", "ResultTeamPoint", "ResultTeamPoint", groups);
 }
 
-void CtrlRaceResultTeamPoint::refresh(u32 colorId, u32 positionId) {
+void CtrlRaceResultTeamPoint::refresh(u32 teamId, u32 positionId) {
     m_animator.setAnimationInactive(GroupId::Position, 0, positionId);
-    m_colorId = colorId;
+    m_teamId = teamId;
 }
 
 void CtrlRaceResultTeamPoint::refresh(u32 score) {
     MessageInfo info{};
     info.intVals[0] = score;
-    setMessage("point", 10275 + m_colorId, &info);
+    setMessage("point", 10275 + m_teamId, &info);
     setMessage("point_outline", 10281, &info);
 
     playSound(Sound::SoundId::SE_RSLT_POINT_UP, -1);

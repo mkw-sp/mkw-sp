@@ -613,7 +613,6 @@ asset_in_files = {
         os.path.join('game_image', 'timg', 'tt_d_number_3d_minus.tpl'),
         os.path.join('game_image', 'timg', 'tt_d_number_3d_none.tpl'),
         # Results
-        os.path.join('result', 'anim', 'common_w204_team_color.brlan.json5'),
         os.path.join('result', 'anim', 'common_w204_result_team_position.brlan.json5'),
         os.path.join('result', 'anim', 'position_12players_color_off.brlan.json5'),
         os.path.join('result', 'anim', 'position_12players_c_off.brlan.json5'),

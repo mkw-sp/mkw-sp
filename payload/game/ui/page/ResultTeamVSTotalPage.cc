@@ -1,7 +1,6 @@
 #include "ResultTeamVSTotalPage.hh"
 
 #include "game/system/RaceConfig.hh"
-#include "game/system/SaveManager.hh"
 
 #include <algorithm>
 #include <numeric>
@@ -46,9 +45,6 @@ void ResultTeamVSTotalPage::onInit() {
 void ResultTeamVSTotalPage::onActivate() {
     ResultPage::onActivate();
 
-    auto *saveManager = System::SaveManager::Instance();
-    auto setting = saveManager->getSetting<SP::ClientSettings::Setting::ColorPalette>();
-    bool colorblind = setting == SP::ClientSettings::ColorPalette::Colorblind;
     const auto &raceScenario = System::RaceConfig::Instance()->raceScenario();
     auto &menuScenario = System::RaceConfig::Instance()->menuScenario();
     u32 playerCount = raceScenario.playerCount;
@@ -82,18 +78,16 @@ void ResultTeamVSTotalPage::onActivate() {
         u32 playerId = playerIds[playerIndex];
         u32 characterId = raceScenario.players[playerId].characterId;
         u32 teamId = raceScenario.players[playerId].spTeam;
-        u32 colorId = colorblind * 6 + teamId;
         u32 rank = teamIndices[teamId] * maxTeamSize + teamSizes[teamId]++;
         u32 positionId = (maxTeamSize == 6 ? 0 : 5 - maxTeamSize) * 12 + rank;
-        m_controls[playerId].refresh(playerId, characterId, colorId, positionId);
+        m_controls[playerId].refresh(playerId, characterId, teamId, positionId);
 
         menuScenario.players[playerId].rank = rank + 1;
     }
     for (u32 teamIndex = 0; teamIndex < teamCount; teamIndex++) {
         u32 teamId = teamIds[teamIndex];
-        u32 colorId = colorblind * 6 + teamId;
         u32 positionId = (maxTeamSize == 6 ? 0 : 5 - maxTeamSize) * 6 + teamIndex;
-        m_pointControls[teamId].refresh(colorId, positionId);
+        m_pointControls[teamId].refresh(teamId, positionId);
     }
 
     m_playerScores = {};
