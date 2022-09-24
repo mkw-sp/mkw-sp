@@ -672,7 +672,7 @@
 0x805cdd00 TextBox_setMessage
 0x805cf154 Font_805cf154
 0x805cf2bc GlyphRenderer_setMaterial
-0x805cf7e4 GlyphRenderer_setupColors
+0x805cf7e4 _ZN2UI13GlyphRenderer11setupColorsEjj
 0x805d00b0 Font_805d00b0
 0x805d0f34 Font_ct
 0x805D0F80 Font_dt
