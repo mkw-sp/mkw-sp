@@ -30,6 +30,16 @@ const Entry entries[] = {
         .valueMessageIds = (u32[]) { 10167, 10168 },
         .valueExplanationMessageIds = (u32[]) { 10169, 10170 },
     },
+    [static_cast<u32>(Setting::SimplifiedControls)] = {
+        .category = Category::Race,
+        .name = magic_enum::enum_name(Setting::SimplifiedControls),
+        .messageId = 10301,
+        .defaultValue = static_cast<u32>(SimplifiedControls::Off),
+        .valueCount = magic_enum::enum_count<SimplifiedControls>(),
+        .valueNames = magic_enum::enum_names<SimplifiedControls>().data(),
+        .valueMessageIds = (u32[]) { 10302, 10303, 10304 },
+        .valueExplanationMessageIds = (u32[]) { 10305, 10306, 10307 },
+    },
     [static_cast<u32>(Setting::FOV169)] = {
         .category = Category::Race,
         .name = magic_enum::enum_name(Setting::FOV169),

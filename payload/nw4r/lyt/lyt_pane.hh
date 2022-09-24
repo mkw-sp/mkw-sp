@@ -43,7 +43,7 @@ private:
 public:
     Vec3 m_trans;
     Vec3 m_rot;
-    Vec2 m_scale;
+    Vec2<f32> m_scale;
     f32 m_width;
     f32 m_height;
 

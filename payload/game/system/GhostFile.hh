@@ -80,6 +80,7 @@ struct SPFooter {
 
     static void OnRaceStart(const u8 *courseSHA1, bool speedModIsEnabled, bool isVanilla);
     static void OnVanilla(bool isVanilla);
+    static void OnSimplifiedControls();
     static void OnLapEnd(u32 lap, f32 timeDiff);
     static void OnUltraShortcut();
     static void OnHWG();
@@ -95,9 +96,10 @@ struct SPFooter {
     bool hasWallride : 1;
     u32 shroomStrategy : 15;
     bool isVanilla : 1;
+    bool hasSimplifiedControls : 1;
 
     static constexpr u32 MAGIC = 0x53504744; // SPGD
-    static constexpr u32 VERSION = 3;
+    static constexpr u32 VERSION = 4;
     static SPFooter s_instance;
     static u32 s_usedShrooms;
 };

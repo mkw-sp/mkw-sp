@@ -1039,6 +1039,34 @@
         "font": "regular",
         "string": "Use team colors for HUD controls.",
     },
+    "10301": {
+        "font": "regular",
+        "string": "Simplified Controls",
+    },
+    "10302": {
+        "font": "regular",
+        "string": "Off",
+    },
+    "10303": {
+        "font": "regular",
+        "string": "Non-Exclusive",
+    },
+    "10304": {
+        "font": "regular",
+        "string": "Exclusive",
+    },
+    "10305": {
+        "font": "regular",
+        "string": "Use the default controls only to trick or wheelie.",
+    },
+    "10306": {
+        "font": "regular",
+        "string": "Use Y (GCN) or ZL (CC/CCP) to trick or wheelie.",
+    },
+    "10307": {
+        "font": "regular",
+        "string": "Use Y (GCN) or ZL (CC/CCP) only to trick or wheelie.",
+    },
     "20000": {
         "font": "regular",
         "string": "Online",

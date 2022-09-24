@@ -11,7 +11,8 @@ typedef struct lyt_Pane_Base {
     void *material;
     Vec3 trans;
     Vec3 rot;
-    Vec2 scale;
+    float scaleX;
+    float scaleY;
     float width;
     float height;
     u8 _54[0xbb - 0x54];

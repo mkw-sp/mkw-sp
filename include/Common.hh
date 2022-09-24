@@ -38,3 +38,9 @@ static inline std::strong_ordering operator<=>(const VersionInfo& lhs, const Ver
     }
     return std::strong_ordering::equal;
 }
+
+template <typename T>
+struct Vec2 {
+    T x;
+    T y;
+};

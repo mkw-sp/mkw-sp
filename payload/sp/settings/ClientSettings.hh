@@ -8,6 +8,7 @@ enum class Setting {
     // Race
     DriftMode,
     VanillaMode,
+    SimplifiedControls,
     FOV169,
     RegionLineColor,
     PlayerTags,
@@ -72,6 +73,12 @@ enum class DriftMode {
 enum class VanillaMode {
     Disable,
     Enable,
+};
+
+enum class SimplifiedControls {
+    Off,
+    NonExclusive,
+    Exclusive,
 };
 
 enum class FOV169 {
@@ -283,6 +290,11 @@ struct Helper<ClientSettings::Setting, ClientSettings::Setting::DriftMode> {
 template <>
 struct Helper<ClientSettings::Setting, ClientSettings::Setting::VanillaMode> {
     using type = SP::ClientSettings::VanillaMode;
+};
+
+template <>
+struct Helper<ClientSettings::Setting, ClientSettings::Setting::SimplifiedControls> {
+    using type = SP::ClientSettings::SimplifiedControls;
 };
 
 template <>

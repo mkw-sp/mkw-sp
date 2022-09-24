@@ -444,7 +444,9 @@
 0x8051d6a0 HomeButton_ct
 0x8051ed14 Pad_calc
 0x8051f410 WiiPad_processClassic
+0x8051f410 _ZN6System6WiiPad14processClassicEPvRNS_14RaceInputStateERNS_12UIInputStateE
 0x805201b0 GcPad_process
+0x805201b0 _ZN6System5GCPad7processERNS_14RaceInputStateERNS_12UIInputStateE
 0x80520730 GhostPad_ct
 0x80521554 PadProxy_setPad
 0x805215d4 GhostPadProxy_start
@@ -1227,6 +1229,7 @@
 0x808da318 vsRuleDescIds
 
 0x809bd70c s_inputManager
+0x809bd70c _ZN6System12InputManager10s_instanceE
 0x809bd728 s_raceConfig
 0x809bd728 _ZN6System10RaceConfig10s_instanceE
 0x809bd730 s_raceManager

@@ -50,6 +50,7 @@ bool SPFooter::checkSize(u32 size) const {
     case 0:
     case 1:
     case 2:
+    case 3:
         return size == 0x48;
     case VERSION:
         return size == sizeof(SPFooter);
@@ -64,11 +65,16 @@ void SPFooter::OnRaceStart(const u8 *courseSHA1, bool speedModIsEnabled, bool is
     memcpy(s_instance.courseSHA1, courseSHA1, std::size(s_instance.courseSHA1));
     s_instance.hasSpeedMod = speedModIsEnabled;
     s_instance.isVanilla = isVanilla;
+    s_instance.hasSimplifiedControls = false;
     s_usedShrooms = 0;
 }
 
 void SPFooter::OnVanilla(bool isVanilla) {
     s_instance.isVanilla = s_instance.isVanilla && isVanilla;
+}
+
+void SPFooter::OnSimplifiedControls() {
+    s_instance.hasSimplifiedControls = true;
 }
 
 void SPFooter::OnLapEnd(u32 lap, f32 timeDiff) {
