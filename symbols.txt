@@ -951,6 +951,7 @@
 0x8063d268 _ZN2UI9UIControl12initChildrenEj
 0x8063d278 UIControl_insertChild
 0x8063d278 _ZN2UI9UIControl11insertChildEjPS0_
+0x8063d3a4 _ZN2UI9UIControl11setSoundIdsEN5Sound7SoundIdES2_
 0x8063d3c0 _ZN2UI9UIControl5vf_2cEv
 0x8063d608 _ZN2UI9UIControl5vf_30Ev
 0x8063d74c UIControl_playSfx

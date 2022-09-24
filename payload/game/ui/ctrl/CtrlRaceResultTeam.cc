@@ -40,6 +40,8 @@ void CtrlRaceResultTeam::load() {
         nullptr,
     };
     LayoutUIControl::load("result", "ResultTeam", "ResultTeam", groups);
+
+    setSoundIds(Sound::SoundId::SE_RSLT_IN_TEAM, Sound::SoundId::SE_RSLT_OUT);
 }
 
 void CtrlRaceResultTeam::refresh(u32 playerId, u32 characterId, u32 teamId, u32 positionId) {
