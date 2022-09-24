@@ -56,3 +56,16 @@ RaceConfig *RaceConfig::Instance() {
 }
 
 } // namespace System
+
+extern "C" {
+
+bool RaceConfig_IsSameTeam(u32 p0, u32 p1) {
+    auto &raceScenario = System::RaceConfig::Instance()->raceScenario();
+    if (raceScenario.spMaxTeamSize < 2) {
+        return p0 == p1;
+    }
+
+    return raceScenario.players[p0].spTeam == raceScenario.players[p1].spTeam;
+}
+
+}
