@@ -1,8 +1,14 @@
 #include "TeamColors.hh"
 
+#include "game/system/SaveManager.hh"
+
 namespace UI::TeamColors {
 
 GXColor Get(u32 teamId) {
+    auto *saveManager = System::SaveManager::Instance();
+    auto setting = saveManager->getSetting<SP::ClientSettings::Setting::ColorPalette>();
+    bool colorblind = setting == SP::ClientSettings::ColorPalette::Colorblind;
+
     GXColor colors[12] = {
         { 0, 170, 255, 255 },
         { 255, 0, 0, 255 },
@@ -17,7 +23,7 @@ GXColor Get(u32 teamId) {
         { 204, 121, 167, 255 },
         { 255, 255, 255, 255 },
     };
-    return colors[teamId];
+    return colors[colorblind * 6 + teamId];
 }
 
 } // namespace UI::TeamColors
