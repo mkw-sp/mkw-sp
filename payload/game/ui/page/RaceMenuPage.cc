@@ -5,15 +5,23 @@
 #include "game/ui/SectionManager.hh"
 #include "game/ui/SettingsPage.hh"
 
+extern "C" {
+#include <vendor/libhydrogen/hydrogen.h>
+}
+
 namespace UI {
 
 void RaceMenuPage::onButtonFront([[maybe_unused]] PushButton *button,
         [[maybe_unused]] u32 localPlayerId) {
     auto &raceScenario = System::RaceConfig::Instance()->raceScenario();
+    auto &menuScenario = System::RaceConfig::Instance()->menuScenario();
 
     auto buttonId = static_cast<ButtonId>(button->m_index);
     switch (buttonId) {
     case ButtonId::Next:
+        if (menuScenario.mirrorRng) {
+            menuScenario.mirror = hydro_random_uniform(20) >= 17;
+        }
         if (raceScenario.gameMode == System::RaceConfig::GameMode::OfflineVS) {
             onNextButtonFront(button, localPlayerId);
             break;

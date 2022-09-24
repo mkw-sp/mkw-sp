@@ -69,7 +69,8 @@ public:
         u8 _26;
         u8 _27;
         u8 spMaxTeamSize : 3;
-        u32 _ : 27;
+        bool mirrorRng : 1;
+        u32 _ : 26;
         bool teams : 1;
         bool mirror : 1;
         u8 _b74[0xbec - 0xb74];
@@ -81,6 +82,7 @@ public:
     Scenario &menuScenario();
     Scenario &awardsScenario();
     u8 (&ghostBuffers())[2][11][0x2800];
+    void applyVSEngineClass();
     void endRace();
 
     static RaceConfig *Instance();

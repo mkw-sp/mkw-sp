@@ -74,6 +74,7 @@ void MultiTopPage::onActivate() {
     menuScenario.itemMode = 0;
     menuScenario.teams = false;
     menuScenario.mirror = false;
+    menuScenario.mirrorRng = false;
     menuScenario.spMaxTeamSize = 1;
     for (u32 i = 0; i < 12; i++) {
         menuScenario.players[i].team = 2;
@@ -112,6 +113,7 @@ void MultiTopPage::onVSButtonFront([[maybe_unused]] PushButton *button,
     auto *context = SectionManager::Instance()->globalContext();
     u32 localPlayerCount = context->m_localPlayerCount;
 
+    System::RaceConfig::Instance()->applyVSEngineClass();
     auto &menuScenario = System::RaceConfig::Instance()->menuScenario();
     menuScenario.gameMode = System::RaceConfig::GameMode::OfflineVS;
     menuScenario.cameraMode = 5;
