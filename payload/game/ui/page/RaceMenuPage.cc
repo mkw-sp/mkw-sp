@@ -93,6 +93,10 @@ void RaceMenuPage::onChangeGhostDataButtonFront([[maybe_unused]] PushButton *but
 
     auto &menuScenario = System::RaceConfig::Instance()->menuScenario();
     menuScenario.cameraMode = 0;
+    for (u32 i = 1; i < 12; i++) {
+        menuScenario.players[i].type = System::RaceConfig::Player::Type::None;
+    }
+
 
     f32 delay = button->getDelay();
     changeSection(SectionId::SingleChangeGhostData, Anim::Next, delay);
