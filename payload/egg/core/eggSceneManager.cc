@@ -29,10 +29,10 @@ bool SceneManager::InitDolphinSpeed() {
 }
 
 bool SceneManager::SetDolphinSpeed(u32 percent) {
-    if (SP::IOSDolphin::Open()) {
+    /*if (SP::IOSDolphin::Open()) {
         SP_LOG("Set Dolphin speed to %u", percent);
         return SP::IOSDolphin::SetSpeedLimit(percent) == IPC_OK;
-    }
+    }*/
     return false;
 }
 

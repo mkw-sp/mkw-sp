@@ -22,6 +22,8 @@ typedef void (*EntryFunction)(void);
 
 static EntryFunction entry = nullptr;
 
+extern "C" void *REPLACED(memset_slow)(void *s, int c, size_t n);
+
 bool Load() {
     auto file = Storage::OpenRO("/rel/StaticR.rel");
     if (!file) {
@@ -42,7 +44,7 @@ bool Load() {
     auto *dstHeader = reinterpret_cast<OSModuleHeader *>(dst);
 
     void *bss = reinterpret_cast<u8 *>(dst) + OSRoundUp32B(srcHeader->fixSize);
-    memset(bss, 0, srcHeader->bssSize);
+    REPLACED(memset_slow)(bss, 0, srcHeader->bssSize);
 
     dstHeader->info.sectionInfoOffset += reinterpret_cast<u32>(dst);
     auto *dstSectionInfo = reinterpret_cast<OSSectionInfo *>(dstHeader->info.sectionInfoOffset);
