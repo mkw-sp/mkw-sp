@@ -1,4 +1,4 @@
-0x80005F34 memcpy_slow
+0x80005f34 memcpy
 0x80006038 memset
 0x800060A4 __start
 0x80006210 __init_registers
@@ -319,7 +319,6 @@
 0x801b99ec VIWaitForRetrace
 0x801ba9a4 VIFlush
 0x801BAB2C VISetBlack
-0x801D17F8 memcpy
 0x801d1ca0 NETCalcCRC32
 0x801d24f4 NETSHA1Init
 0x801d2544 NETSHA1Update
