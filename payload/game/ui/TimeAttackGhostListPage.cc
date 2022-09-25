@@ -157,9 +157,10 @@ void TimeAttackGhostListPage::onRefocus() {
     context->m_timeAttackLicenseId = -1;
 
     context->m_timeAttackGhostCount = 0;
-    for (u32 i = 0; i < m_ghostIsChosen.size(); i++) {
-        if (m_ghostIsChosen[i]) {
-            context->m_timeAttackGhostIndices[context->m_timeAttackGhostCount++] = i;
+    for (u32 i = 0; i < m_ghostList->count(); i++) {
+        u32 ghostIndex = m_ghostList->indices()[i];
+        if (m_ghostIsChosen[ghostIndex]) {
+            context->m_timeAttackGhostIndices[context->m_timeAttackGhostCount++] = ghostIndex;
         }
     }
 
