@@ -34,18 +34,10 @@ void Pad::processSimplified(RaceInputState &raceInputState, bool isPressed) {
 
     SPFooter::OnSimplifiedControls();
 
-    if (raceInputState.rawStick.y < 7) {
-        raceInputState.rawTrick = Trick::Down;
+    if (std::abs(raceInputState.rawStick.x - 7) <= 2 * std::abs(raceInputState.rawStick.y - 7)) {
+        raceInputState.rawTrick = raceInputState.rawStick.y < 7 ? Trick::Down : Trick::Up;
     } else {
-        raceInputState.rawTrick = Trick::Up;
-    }
-
-    if (std::abs(raceInputState.rawStick.x - 7) > std::abs(raceInputState.rawStick.y - 7)) {
-        if (raceInputState.rawStick.x < 7) {
-            raceInputState.rawTrick = Trick::Left;
-        } else {
-            raceInputState.rawTrick = Trick::Right;
-        }
+        raceInputState.rawTrick = raceInputState.rawStick.x < 7 ? Trick::Left : Trick::Right;
     }
 
     bool isMirror = InputManager::Instance()->isMirror();
