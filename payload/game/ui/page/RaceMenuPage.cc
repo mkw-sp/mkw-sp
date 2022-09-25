@@ -62,6 +62,12 @@ void RaceMenuPage::onNextButtonFront([[maybe_unused]] PushButton *button,
                 isWin = true;
             }
         }
+        if (menuScenario.spMaxTeamSize >= 2 && menuScenario.draw) {
+            if (!isWin) {
+                menuScenario.draw = false;
+            }
+            isWin = false;
+        }
         menuScenario.cameraMode = isWin ? 8 : 12;
         menuScenario.courseId = isWin ? 0x37 : 0x38;
         menuScenario.gameMode = System::RaceConfig::GameMode::Awards;

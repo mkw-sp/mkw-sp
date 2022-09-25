@@ -33,7 +33,7 @@ void AwardPage::onInit() {
     }
 
     m_type.load("award", isWin ? "AwardTypeWin" : "AwardTypeLose", "Type", nullptr);
-    m_congratulations.load(isWin, /* isDraw */ false);
+    m_congratulations.load(isWin, awardsScenario.spMaxTeamSize >= 2 && awardsScenario.draw);
     for (size_t i = 0; i < m_playerCount; i++) {
         u32 positionId = (maxTeamSize == 6 ? 0 : 5 - maxTeamSize) * 12 + i;
         m_items[i].load(positionId, isWin, false);
@@ -71,6 +71,8 @@ void AwardPage::initCongratulations() {
         assert(winningPlayer);
         u32 winningTeam = winningPlayer->spTeam;
         m_congratulations.setMessageAll(10284 + winningTeam);
+    } else if (awardsScenario.draw) {
+        m_congratulations.setMessageAll(1218);
     } else {
         m_congratulations.setMessageAll(1222);
     }
@@ -95,6 +97,11 @@ void AwardPage::initItems() {
     std::array<u32, 12> soloRanks{};
     for (size_t i = 0; i < m_playerCount; i++) {
         soloRanks[playerIds[i]] = i + 1;
+
+        u32 score = awardsScenario.players[playerIds[i]].score;
+        for (size_t j = i; j-- > 0 && awardsScenario.players[playerIds[j]].score == score;) {
+            soloRanks[playerIds[i]] = j + 1;
+        }
     }
     for (size_t i = 0; i < m_playerCount; i++) {
         m_items[awardsScenario.players[i].rank - 1].refresh(i, m_localPlayerCount > 1,
@@ -129,6 +136,9 @@ void AwardPage::initTeams() {
         MessageInfo info{};
         info.intVals[0] = teamScores[teamIds[i]];
         info.messageIds[0] = 1301 + i;
+        for (size_t j = i; j-- > 0 && teamScores[teamIds[j]] == teamScores[teamIds[i]];) {
+            info.messageIds[0] = 1301 + j;
+        }
         m_teams[i].setMessageAll(10290 + teamIds[i], &info);
     }
 }

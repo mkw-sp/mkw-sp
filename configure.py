@@ -97,6 +97,7 @@ asset_in_files = {
         os.path.join('award', 'anim', 'congratulations_wait.brlan.json5'),
         os.path.join('award', 'blyt', 'congratulations.brlyt.json5'),
         os.path.join('award', 'blyt', 'team.brlyt.json5'),
+        os.path.join('award', 'ctrl', 'AwardCongratulationsDraw.brctr.json5'),
         os.path.join('award', 'ctrl', 'AwardCongratulationsLose.brctr.json5'),
         os.path.join('award', 'ctrl', 'AwardCongratulationsWin.brctr.json5'),
         os.path.join('award', 'ctrl', 'AwardItemLose.brctr.json5'),

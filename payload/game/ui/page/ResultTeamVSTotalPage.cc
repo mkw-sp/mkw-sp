@@ -90,6 +90,8 @@ void ResultTeamVSTotalPage::onActivate() {
         m_pointControls[teamId].refresh(teamId, positionId);
     }
 
+    menuScenario.draw = teamScores[teamIds[0]] == teamScores[teamIds[1]];
+
     m_playerScores = {};
     m_teamScores = {};
     for (u32 playerId = 0; playerId < playerCount; playerId++) {
