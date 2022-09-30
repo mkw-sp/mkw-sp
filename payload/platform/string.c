@@ -4,13 +4,20 @@
 #include <revolution/net/NETMisc.h>
 
 void *memcpy_slow(void *dst, const void *src, size_t n);
+void *memset_slow(void *dst, int c, size_t n);
 
-// Use the optimized version of the function
+// Use the optimized versions of the functions
 PATCH_B(memcpy_slow, memcpy);
+PATCH_B(memset_slow, memset);
 
-// Correct the return value of the function
+// Correct the return values of the functions
 void *memcpy(void *dst, const void *src, size_t n) {
     NETMemCpy(dst, src, n);
+    return dst;
+}
+
+void *memset(void *dst, int c, size_t n) {
+    NETMemSet(dst, c, n);
     return dst;
 }
 
