@@ -11,6 +11,10 @@ extern "C" {
 
 namespace SP {
 
+u32 RoomClient::gamemode() const {
+    return m_gamemode;
+}
+
 bool RoomClient::calc(Handler &handler) {
     if (auto state = resolve(handler)) {
         if (!transition(handler, *state)) {
@@ -117,6 +121,8 @@ std::optional<RoomClient::State> RoomClient::resolve(Handler &handler) {
         return calcSetup(handler);
     case State::Main:
         return calcMain(handler);
+    case State::TeamSelect:
+        break;
     case State::Select:
         break;
     }
@@ -139,7 +145,11 @@ bool RoomClient::transition(Handler &handler, State state) {
     case State::Main:
         result = onMain(handler);
         break;
+    case State::TeamSelect:
+        result = onTeamSelect(handler);
+        break;
     case State::Select:
+        result = onSelect(handler);
         break;
     }
     m_state = state;
@@ -258,8 +268,14 @@ std::optional<RoomClient::State> RoomClient::calcMain(Handler &handler) {
     case RoomEvent_close_tag:
         if (!onRoomClose(handler, event->event.close.gamemode)) {
             return {};
+        } else {
+            auto setting = getSetting<SP::ClientSettings::Setting::RoomTeamSize>();
+            if (setting == SP::ClientSettings::RoomTeamSize::FFA) {
+                return State::Select;
+            } else {
+                return State::TeamSelect;
+            }
         }
-        return State::Select;
     default:
         return State::Main;
     }
@@ -313,6 +329,16 @@ bool RoomClient::onMain(Handler &handler) {
     return true;
 }
 
+bool RoomClient::onTeamSelect(Handler &handler) {
+    handler.onTeamSelect();
+    return true;
+}
+
+bool RoomClient::onSelect(Handler &handler) {
+    handler.onSelect();
+    return true;
+}
+
 bool RoomClient::onPlayerJoin(Handler &handler, const System::RawMii *mii, u32 location,
         u16 latitude, u16 longitude, u32 regionLineColor) {
     if (m_playerCount == 12) {
@@ -346,8 +372,11 @@ bool RoomClient::onReceiveComment(Handler &handler, u32 playerId, u32 messageId)
 }
 
 bool RoomClient::onRoomClose(Handler &handler, u32 gamemode) {
-    if (gamemode >= 4) { return false; }
-    handler.onRoomClose(gamemode);
+    if (gamemode >= 3) {
+        return false;
+    }
+
+    m_gamemode = gamemode;
     return true;
 }
 

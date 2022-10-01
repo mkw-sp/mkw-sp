@@ -218,6 +218,9 @@ asset_in_files = {
         os.path.join('ranking', 'ctrl', 'SettingUpDownValue.brctr.json5'),
         os.path.join('ranking', 'timg', 'tt_pattern_chek_alpha_nasi_32x32.tpl'),
         os.path.join('ranking', 'timg', 'tt_pattern_chek_bokashi_32x32.tpl'),
+        # Teams
+        os.path.join('button', 'blyt', 'online_team_select.brlyt.json5'),
+        os.path.join('button', 'ctrl', 'OnlineTeamSelect.brctr.json5'),
     ],
     os.path.join('Scene', 'UI', 'MenuMultiSP.arc.lzma'): [
         os.path.join('button', 'anim', 'common_w083_earth_chat_message_fade_in.brlan.json5'),
@@ -1115,6 +1118,7 @@ code_in_files = {
         os.path.join('payload', 'game', 'ui', 'GhostManagerPage.cc'),
         os.path.join('payload', 'game', 'ui', 'GhostSelectButton.cc'),
         os.path.join('payload', 'game', 'ui', 'GhostSelectControl.cc'),
+        os.path.join('payload', 'game', 'ui', 'GlobePage.S'),
         os.path.join('payload', 'game', 'ui', 'Layout.S'),
         os.path.join('payload', 'game', 'ui', 'License.S'),
         os.path.join('payload', 'game', 'ui', 'License.c'),
@@ -1130,6 +1134,7 @@ code_in_files = {
         os.path.join('payload', 'game', 'ui', 'ModelRenderPage.cc'),
         os.path.join('payload', 'game', 'ui', 'MultiTeamSelectPage.cc'),
         os.path.join('payload', 'game', 'ui', 'MultiTopPage.cc'),
+        os.path.join('payload', 'game', 'ui', 'OnlineTeamSelectPage.cc'),
         os.path.join('payload', 'game', 'ui', 'OnlineTopPage.cc'),
         os.path.join('payload', 'game', 'ui', 'Option.cc'),
         os.path.join('payload', 'game', 'ui', 'Page.cc'),
