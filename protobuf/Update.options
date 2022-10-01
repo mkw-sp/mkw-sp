@@ -1,4 +1,0 @@
-UpdateRequest.gameName     max_length:4
-UpdateRequest.hostPlatform max_length:31
-
-UpdateResponse.signature max_size:64

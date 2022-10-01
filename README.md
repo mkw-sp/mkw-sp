@@ -1,50 +1,30 @@
-# Mario Kart Wii - Service Pack
+# wuj5
 
-Mario Kart Wii - Service Pack is an experimental, open-source, cross-platform mod for MKW aiming to provide a variety of features and improvements over the base game. More details on the [website](https://mkw-sp.com).
+Convert Wii UI formats to JSON5 and vice versa.
 
-## Building
+## Supported formats
 
-You need:
+| Format  | Read | Write | Check |
+| :------ | :--- | :---- | :---- |
+| BMG[^1] | WIP  | WIP   |       |
+| BRCTR   | Yes  | Yes   |       |
+| BRLAN   | Yes  | Yes   |       |
+| BRLYT   | WIP  | WIP   |       |
+| SZS[^2] | Yes  | Yes   |       |
 
-- devkitPPC (with the DEVKITPPC environment variable set)
-- ninja (samurai also works)
-- protoc
-- Python 3 (using PyPy can substantially reduce build times)
+[^1]: Mario Kart Wii only.
+[^2]: U8 + Yaz0.
+
+## Requirements 
+
+- Python 3
 - pyjson5 (if installing from pip, the package is `json5` NOT `pyjson5`)
-- pyelftools
-- itanium\_demangler
-- protobuf (the Python package)
 
-Generate the ninja file:
+## How to use
 
 ```bash
-./configure.py
+wuj5.py decode Control.brctr # Control.brctr -> Control.brctr.json5
+cp Control.brctr.json5 MyControl.brctr.json5
+# Do some changes to MyControl.brctr.json5 with a text editor
+wuj5.py encode MyControl.brctr.json5 # MyControl.brctr.json5 -> MyControl.brctr
 ```
-
-Execute it:
-
-```bash
-ninja
-```
-
-The `out` directory will contain the generated binaries and assets.
-
-On subsequent builds only the last command needs to be run.
-
-## Contributing
-
-If you are working on something please comment on the relevant issue (or open a new one if necessary).
-
-The codebase uses both C and asm, C should be preferred for full function replacements and for any kind of complex logic. No assumption about the use of registers by C code should be made other than the ABI. If necessary asm wrappers can be employed to restore and backup volatile registers.
-
-There is no automatic formatting yet but the codestyle is pretty consistent so sticking to it shouldn't be too hard.
-
-## Resources
-
-- [Ghidra project](https://drive.google.com/drive/folders/1I1VRfeut3NtPeddePutfAaZhduVdKhhc?usp=sharing) (by far the most complete resource)
-
-- [MKW decompilation](https://github.com/riidefi/mkw) (the most readable if it has what you need)
-
-- [mkw-structures](https://github.com/SeekyCt/mkw-structures) (if you still haven't found)
-
-- [Tockdom Wiki](http://wiki.tockdom.com/wiki/Main_Page) (file format documentation)

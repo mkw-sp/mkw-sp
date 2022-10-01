@@ -1,6 +1,0 @@
-{
-    "10071": {
-        "font": "regular",
-        "string": "{arg integer|0 0}:{arg integer|1 0}.{arg integer|2 3}",
-    },
-}
