@@ -1,0 +1,46 @@
+{
+    "main brlyt": "team_box",
+    "bmg": "Menu",
+    "picture source brlyt": "",
+    "groups": [
+        {
+            "name": "Position",
+            "pane": "position",
+            "first animation": 0,
+            "animation count": 1,
+        },
+    ],
+    "animations": [
+        {
+            "name": "Position",
+            "brlan": "team_box_position.brlan",
+            "next": "",
+            "reversed": false,
+            "speed": 1.0,
+        },
+    ],
+    "variants": [
+        {
+            "name": "TeamBox",
+            "opacity": 255,
+            "animated": true,
+            "animation delay": 0.0,
+            "translation x 4:3": 0.0,
+            "translation y 4:3": 8.0,
+            "translation z 4:3": 0.0,
+            "scale x 4:3": 1.0,
+            "scale y 4:3": 1.0,
+            "translation x 16:9": 0.0,
+            "translation y 16:9": 8.0,
+            "translation z 16:9": 0.0,
+            "scale x 16:9": 1.0,
+            "scale y 16:9": 1.0,
+            "first message": 0,
+            "message count": 0,
+            "first picture": 0,
+            "picture count": 0,
+        },
+    ],
+    "messages": [],
+    "pictures": [],
+}

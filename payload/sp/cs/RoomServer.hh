@@ -16,6 +16,8 @@ public:
     class Handler {
     public:
         virtual void onMain() {}
+        virtual void onTeamSelect() {}
+        virtual void onSelect() {}
 
         virtual void onPlayerJoin([[maybe_unused]] const System::RawMii *mii,
                 [[maybe_unused]] u32 location, [[maybe_unused]] u16 latitude,
@@ -25,8 +27,18 @@ public:
                 [[maybe_unused]] u32 commentId) {}
         virtual void onSettingsChange(
                 [[maybe_unused]] const std::array<u32, RoomSettings::count> &settings) {}
-        virtual void onRoomClose([[maybe_unused]] u32 gamemode) {}
     };
+
+    u32 gamemode() const;
+
+    template <SP::ClientSettings::Setting S>
+    SP::ClientSettings::Helper<S>::type getSetting() const {
+        static_assert(static_cast<u32>(S) >= RoomSettings::offset);
+        constexpr u32 setting = static_cast<u32>(S) - RoomSettings::offset;
+        static_assert(setting < RoomSettings::count);
+        const Player &host = m_players[0];
+        return static_cast<SP::ClientSettings::Helper<S>::type>(host.m_settings[setting]);
+    }
 
     bool calc(Handler &handler);
 
@@ -63,6 +75,7 @@ private:
     enum class State {
         Setup,
         Main,
+        TeamSelect,
         Select,
     };
 
@@ -86,6 +99,7 @@ private:
             Connect,
             Setup,
             Main,
+            TeamSelect,
             Select,
         };
 
@@ -121,13 +135,15 @@ private:
     std::optional<State> calcMain(Handler &handler);
     std::optional<State> calcSelect();
     bool onMain(Handler &handler);
+    bool onTeamSelect(Handler &handler);
+    bool onSelect(Handler &handler);
 
     bool onPlayerJoin(Handler &handler, u32 clientId, const System::RawMii *mii, u32 location,
             u16 latitude, u16 longitude, u32 regionLineColor,
             const std::array<u32, RoomSettings::count> &settings);
     void onPlayerLeave(Handler &handler, u32 playerId);
     bool onReceiveComment(u32 playerId, u32 messageId);
-    bool onRoomClose(Handler &handler, u32 playerId, s32 gamemode);
+    bool onRoomClose(Handler &handler, u32 playerId, u32 gamemode);
     bool onReceiveVote(u32 playerId, u32 course, std::optional<PlayerProperties>& vote);
     bool validateProperties(u32 playerId, PlayerProperties& properties);
 
@@ -144,7 +160,7 @@ private:
     u32 m_commentTimer = 0;
     bool m_settingsChanged = false;
     bool m_roomClosed = false;
-    s32 m_gamemode = -1;
+    u32 m_gamemode = 0;
     u32 m_playerCount = 0;
     std::array<Player, 12> m_players;
     State m_state;

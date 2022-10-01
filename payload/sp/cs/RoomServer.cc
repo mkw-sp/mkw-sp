@@ -11,6 +11,10 @@ extern "C" {
 
 namespace SP {
 
+u32 RoomServer::gamemode() const {
+    return m_gamemode;
+}
+
 bool RoomServer::calc(Handler &handler) {
     if (auto state = resolve(handler)) {
         if (!transition(handler, *state)) {
@@ -129,6 +133,8 @@ std::optional<RoomServer::State> RoomServer::resolve(Handler &handler) {
         return calcSetup();
     case State::Main:
         return calcMain(handler);
+    case State::TeamSelect:
+        break;
     case State::Select:
         break;
     }
@@ -148,7 +154,11 @@ bool RoomServer::transition(Handler &handler, State state) {
     case State::Main:
         result = onMain(handler);
         break;
+    case State::TeamSelect:
+        result = onTeamSelect(handler);
+        break;
     case State::Select:
+        result = onSelect(handler);
         break;
     }
     m_state = state;
@@ -185,11 +195,14 @@ std::optional<RoomServer::State> RoomServer::calcMain(Handler &handler) {
     }
 
     if (m_roomClosed) {
-        assert(m_gamemode != -1);
         writeClose(m_gamemode);
-        handler.onRoomClose(m_gamemode);
         m_roomClosed = false;
-        state = State::Select;
+        auto setting = getSetting<SP::ClientSettings::Setting::RoomTeamSize>();
+        if (setting == SP::ClientSettings::RoomTeamSize::FFA) {
+            state = State::Select;
+        } else {
+            state = State::TeamSelect;
+        }
     }
 
     return state;
@@ -203,6 +216,16 @@ bool RoomServer::onMain(Handler &handler) {
     handler.onMain();
     return true;
 }
+
+bool RoomServer::onTeamSelect(Handler &handler) {
+    handler.onTeamSelect();
+    return true;
+}       
+        
+bool RoomServer::onSelect(Handler &handler) {
+    handler.onSelect();
+    return true;
+} 
 
 bool RoomServer::onPlayerJoin(Handler &handler, u32 clientId, const System::RawMii *mii,
         u32 location, u16 latitude, u16 longitude, u32 regionLineColor,
@@ -255,13 +278,13 @@ bool RoomServer::onReceiveComment(u32 playerId, u32 messageId) {
     return true;
 }
 
-bool RoomServer::onRoomClose(Handler &handler, u32 playerId, s32 gamemode) {
+bool RoomServer::onRoomClose(Handler &handler, u32 playerId, u32 gamemode) {
     if (playerId != 0) { return false; }
-    if (gamemode >= 4) { return false; }
-    if (gamemode < 0) { return false; }
+    if (gamemode >= 3) { return false; }
 
     m_gamemode = gamemode;
     m_commentQueue.reset();
+    m_roomClosed = true;
     return true;
 }
 
@@ -448,6 +471,8 @@ std::optional<RoomServer::Client::State> RoomServer::Client::resolve(Handler &ha
         return calcSetup(handler);
     case State::Main:
         return calcMain(handler);
+    case State::TeamSelect:
+        break;
     case State::Select:
         return calcSelect(handler);
     }
@@ -467,6 +492,8 @@ bool RoomServer::Client::transition(Handler &handler, State state) {
     case State::Setup:
         break;
     case State::Main:
+        break;
+    case State::TeamSelect:
         break;
     case State::Select:
         break;
@@ -539,7 +566,14 @@ std::optional<RoomServer::Client::State> RoomServer::Client::calcSetup(Handler &
 }
 
 std::optional<RoomServer::Client::State> RoomServer::Client::calcMain(Handler &handler) {
-    if (m_server.m_state == RoomServer::State::Select) { return State::Select; }
+    switch (m_server.m_state) {
+    case RoomServer::State::TeamSelect:
+        return State::TeamSelect;
+    case RoomServer::State::Select:
+        return State::Select;
+    default:
+        break;
+    }
 
     auto playerId = getPlayerId();
     if (!playerId) {
@@ -580,7 +614,6 @@ std::optional<RoomServer::Client::State> RoomServer::Client::calcMain(Handler &h
         if (!m_server.onRoomClose(handler, *playerId, request->request.close.gamemode)) {
             return {};
         }
-        m_server.m_roomClosed = true;
         return State::Main;
     default:
         return {};

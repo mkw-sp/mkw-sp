@@ -32,7 +32,7 @@ public:
     virtual void vf_60();
     virtual void vf_64();
     virtual Material *getMaterial();
-    virtual void vf_6c();
+    virtual Material *getMaterial(u32 index);
     virtual void vf_70();
 
     void setVisible(bool visible);

@@ -246,11 +246,8 @@ void FriendRoomBackPage::onSettingsChange(
     m_queue.push(Settings { settings });
 }
 
-void FriendRoomBackPage::onRoomClose(u32 messageId) {
-    assert(!m_queue.full());
-    for (size_t i = 0; i < m_queue.count(); i++) {
-        m_queue.remove(i);
-    }
+void FriendRoomBackPage::onRoomStart(u32 messageId) {
+    m_queue.reset();
     m_queue.push(Close { messageId });
 }
 

@@ -16,6 +16,8 @@ public:
     public:
         virtual void onSetup() {}
         virtual void onMain() {}
+        virtual void onTeamSelect() {}
+        virtual void onSelect() {}
 
         virtual void onPlayerJoin([[maybe_unused]] const System::RawMii *mii,
                 [[maybe_unused]] u32 location, [[maybe_unused]] u16 latitude,
@@ -25,8 +27,17 @@ public:
                 [[maybe_unused]] u32 commentId) {}
         virtual void onSettingsChange(
                 [[maybe_unused]] const std::array<u32, RoomSettings::count> &settings) {}
-        virtual void onRoomClose([[maybe_unused]] u32 gamemode) {}
     };
+
+    u32 gamemode() const;
+
+    template <SP::ClientSettings::Setting S>
+    SP::ClientSettings::Helper<S>::type getSetting() const {
+        static_assert(static_cast<u32>(S) >= RoomSettings::offset);
+        constexpr u32 setting = static_cast<u32>(S) - RoomSettings::offset;
+        static_assert(setting < RoomSettings::count);
+        return static_cast<SP::ClientSettings::Helper<S>::type>(m_settings[setting]);
+    }
 
     bool calc(Handler &handler);
     bool sendComment(u32 commentId);
@@ -51,6 +62,7 @@ private:
         Connect,
         Setup,
         Main,
+        TeamSelect,
         Select,
     };
 
@@ -68,6 +80,8 @@ private:
     std::optional<State> calcSelect(Handler &handler);
     bool onSetup(Handler &handler);
     bool onMain(Handler &handler);
+    bool onTeamSelect(Handler &handler);
+    bool onSelect(Handler &handler);
 
     bool onPlayerJoin(Handler &handler, const System::RawMii *mii, u32 location, u16 latitude,
             u16 longitude, u32 regionLineColor);
@@ -88,6 +102,7 @@ private:
     bool m_localSettingsChanged = false;
     u32 m_playerCount = 0;
     std::array<u32, RoomSettings::count> m_settings;
+    u32 m_gamemode = 0;
     State m_state;
     Net::AsyncSocket m_socket;
 

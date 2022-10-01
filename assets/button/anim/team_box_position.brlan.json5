@@ -1,0 +1,197 @@
+{
+    "version": 10,
+    "sections": [
+        {
+            "magic": "pat1",
+            "id": 6,
+            "groups": [],
+            "name": "position",
+            "start frame": 0,
+            "end frame": 11,
+            "descending bind": true,
+        },
+        {
+            "magic": "pai1",
+            "frame count": 11,
+            "loop": false,
+            "tpls": [],
+            "contents": [
+                {
+                    "name": "null",
+                    "kind": "pane",
+                    "animations": [
+                        {
+                            "magic": "RLPA",
+                            "targets": [
+                                {
+                                    "id": 0,
+                                    "kind": "translate x",
+                                    "curve type": "hermite",
+                                    "keys": [
+                                        {
+                                            "frame": 0,
+                                            "value": -140,
+                                            "slope": 0,
+                                        },
+                                        {
+                                            "frame": 1,
+                                            "value": 140,
+                                            "slope": 0,
+                                        },
+                                        {
+                                            "frame": 6,
+                                            "value": 0,
+                                            "slope": 0,
+                                        },
+                                        {
+                                            "frame": 7,
+                                            "value": 0,
+                                            "slope": 0,
+                                        },
+                                        {
+                                            "frame": 8,
+                                            "value": 0,
+                                            "slope": 0,
+                                        },
+                                        {
+                                            "frame": 12,
+                                            "value": -140,
+                                            "slope": 0,
+                                        },
+                                        {
+                                            "frame": 13,
+                                            "value": 140,
+                                            "slope": 0,
+                                        },
+                                        {
+                                            "frame": 14,
+                                            "value": -140,
+                                            "slope": 0,
+                                        },
+                                        {
+                                            "frame": 15,
+                                            "value": 140,
+                                            "slope": 0,
+                                        },
+                                        {
+                                            "frame": 18,
+                                            "value": -139,
+                                            "slope": 0,
+                                        },
+                                        {
+                                            "frame": 19,
+                                            "value": 139,
+                                            "slope": 0,
+                                        },
+                                        {
+                                            "frame": 20,
+                                            "value": -139,
+                                            "slope": 0,
+                                        },
+                                        {
+                                            "frame": 21,
+                                            "value": 139,
+                                            "slope": 0,
+                                        },
+                                        {
+                                            "frame": 22,
+                                            "value": -139,
+                                            "slope": 0,
+                                        },
+                                        {
+                                            "frame": 23,
+                                            "value": 139,
+                                            "slope": 0,
+                                        },
+                                    ],
+                                },
+                                {
+                                    "id": 0,
+                                    "kind": "translate y",
+                                    "curve type": "hermite",
+                                    "keys": [
+                                        {
+                                            "frame": 0,
+                                            "value": 125,
+                                            "slope": 0,
+                                        },
+                                        {
+                                            "frame": 1,
+                                            "value": 125,
+                                            "slope": 0,
+                                        },
+                                        {
+                                            "frame": 6,
+                                            "value": 200,
+                                            "slope": 0,
+                                        },
+                                        {
+                                            "frame": 7,
+                                            "value": 45,
+                                            "slope": 0,
+                                        },
+                                        {
+                                            "frame": 8,
+                                            "value": -110,
+                                            "slope": 0,
+                                        },
+                                        {
+                                            "frame": 12,
+                                            "value": 170,
+                                            "slope": 0,
+                                        },
+                                        {
+                                            "frame": 13,
+                                            "value": 170,
+                                            "slope": 0,
+                                        },
+                                        {
+                                            "frame": 14,
+                                            "value": -40,
+                                            "slope": 0,
+                                        },
+                                        {
+                                            "frame": 15,
+                                            "value": -40,
+                                            "slope": 0,
+                                        },
+                                        {
+                                            "frame": 18,
+                                            "value": 108,
+                                            "slope": 0,
+                                        },
+                                        {
+                                            "frame": 19,
+                                            "value": 108,
+                                            "slope": 0,
+                                        },
+                                        {
+                                            "frame": 20,
+                                            "value": 0,
+                                            "slope": 0,
+                                        },
+                                        {
+                                            "frame": 21,
+                                            "value": 0,
+                                            "slope": 0,
+                                        },
+                                        {
+                                            "frame": 22,
+                                            "value": -108,
+                                            "slope": 0,
+                                        },
+                                        {
+                                            "frame": 23,
+                                            "value": -108,
+                                            "slope": 0,
+                                        },
+                                    ],
+                                },
+                            ],
+                        },
+                    ],
+                },
+            ],
+        },
+    ],
+}
