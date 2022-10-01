@@ -120,7 +120,7 @@ asset_in_files = {
         os.path.join('button', 'ctrl', 'ToolsButton.brctr.json5'),
     ],
     os.path.join('Scene', 'UI', 'CrashSP.arc.lzma'): [
-        os.path.join('fatal', 'blyt', 'Fatal.brlyt'),
+        os.path.join('fatal', 'blyt', 'Fatal.brlyt.json5'),
         os.path.join('fatal', 'font', 'sf_light_i8_utf16.brfnt'),
         os.path.join('fatal', 'font', 'sf_medium_basic.brfnt'),
     ],
@@ -587,7 +587,7 @@ asset_in_files = {
         os.path.join('game_image', 'anim', 'game_image_speed_texture_pattern_0_9.brlan.json5'),
         os.path.join('game_image', 'blyt', 'game_image_speed.brlyt.json5'),
         os.path.join('game_image', 'blyt', 'InputDisplay.brlyt.json5'),
-        os.path.join('game_image', 'blyt', 'race_message_half.brlyt'),
+        os.path.join('game_image', 'blyt', 'race_message_half.brlyt.json5'),
         os.path.join('game_image', 'ctrl', 'balloon.brctr.json5'),
         os.path.join('game_image', 'ctrl', 'battle_total_point.brctr.json5'),
         os.path.join('game_image', 'ctrl', 'InputDisplay.brctr.json5'),
