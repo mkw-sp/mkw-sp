@@ -2,9 +2,9 @@
 
 #include "game/system/RaceConfig.hh"
 #include "game/system/SaveManager.hh"
+#include "game/ui/page/RacePage.hh"
 #include "game/ui/SectionManager.hh"
 #include "game/ui/TeamColors.hh"
-#include "game/ui/page/RacePage.hh"
 #include "game/util/Registry.hh"
 
 namespace UI {
@@ -54,21 +54,19 @@ void CtrlRaceNameBalloon::refresh(u32 playerId) {
     auto *material = pane->getMaterial();
     assert(material);
     const auto &raceScenario = System::RaceConfig::Instance()->raceScenario();
-    GXColor color{ 255, 255, 255, 255 };
+    GXColor color{255, 255, 255, 255};
     if (raceScenario.spMaxTeamSize >= 2) {
         color = TeamColors::Get(raceScenario.players[m_playerId].spTeam);
     }
-    material->tevColors[1] = { color.r, color.g, color.b, color.a };
+    material->tevColors[1] = {color.r, color.g, color.b, color.a};
 
+    auto *saveManager = System::SaveManager::Instance();
     auto playerType = raceScenario.players[playerId].type;
     if (raceScenario.spMaxTeamSize < 2 && playerType == System::RaceConfig::Player::Type::Local) {
-        GXColor colors[4] = {
-            { 232, 212, 0, 255 },
-            { 9, 170, 255, 255 },
-            { 255, 39, 127, 255 },
-            { 38, 220, 65, 255 },
-        };
-        color = colors[playerId];
+        color = TeamColors::Get(
+                static_cast<u32>(
+                        saveManager->getSetting<SP::ClientSettings::Setting::RegionLineColor>()) ^
+                1);
     }
     for (size_t i = 0; i < 4; i++) {
         m_linePane->setVtxColor(i, color);
@@ -100,7 +98,6 @@ void CtrlRaceNameBalloon::refresh(u32 playerId) {
         return;
     }
 
-    auto *saveManager = System::SaveManager::Instance();
     switch (saveManager->getSetting<SP::ClientSettings::Setting::TAGhostTagContent>()) {
     case SP::ClientSettings::TAGhostTagContent::Name:
         refreshTextMiiName(playerId);
