@@ -4,8 +4,8 @@
 #include "game/system/SaveManager.hh"
 #include "game/ui/SectionManager.hh"
 #include "game/ui/TeamColors.hh"
-#include "game/util/Registry.hh"
 #include "game/ui/page/RacePage.hh"
+#include "game/util/Registry.hh"
 
 namespace UI {
 
