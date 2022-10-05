@@ -259,7 +259,6 @@
 0x801a75d0 OSGetPhysicalMem1Size
 0x801a75dc OSGetPhysicalMem2Size
 0x801A7684 OSProtectRange
-0x801A792C ConfigMEM2_56MB
 0x801A7C94 RealMode
 0x801a7eac OSInitMutex
 0x801a7ee4 OSLockMutex
