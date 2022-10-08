@@ -8,12 +8,15 @@ class RaceManager {
 public:
     class Player {
     public:
+        u8 rank() const;
         u8 maxLap() const;
         bool hasFinished() const;
         PadProxy *padProxy();
 
     private:
-        u8 _00[0x26 - 0x00];
+        u8 _00[0x20 - 0x00];
+        u8 m_rank;
+        u8 _21[0x26 - 0x21];
         u8 m_maxLap;
         u8 _27[0x38 - 0x27];
         u32 _pad0 : 30;

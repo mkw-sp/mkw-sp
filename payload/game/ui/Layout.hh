@@ -6,6 +6,7 @@ namespace UI {
 
 class Layout {
 public:
+    Layout();
     nw4r::lyt::Pane *findPaneByName(const char *name);
 
 private:

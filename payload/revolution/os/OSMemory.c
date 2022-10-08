@@ -77,11 +77,13 @@ static void SetNewIBAT1UValue(void) {
 }
 
 void OSDisableCodeExecOnMEM1Hi16MB(void) {
+    // clang-format off
     BOOL enabled = OSDisableInterrupts();
     {
         RealMode(DisableInstsOnMEM1Hi16MB);
     }
     OSRestoreInterrupts(enabled);
+    // clang-format on
 }
 
 void OSEnableCodeExecOnPayload(void) {
@@ -91,9 +93,11 @@ void OSEnableCodeExecOnPayload(void) {
 
     SetNewIBAT1UValue();
 
+    // clang-format off
     BOOL enabled = OSDisableInterrupts();
     {
         RealMode(EnableInstsOnPayload);
     }
     OSRestoreInterrupts(enabled);
+    // clang-format on
 }

@@ -23,3 +23,10 @@ PATCH_REPLACE_END(CharacterSelectPage_onActivate, 0x180)
 PATCH_REPLACE_START(CharacterSelectPage_8083e928, 0x27C)
     cmpwi r0, SingleLeaderboardGhost
 PATCH_REPLACE_END(CharacterSelectPage_8083e928, 0x27C)
+
+
+
+PATCH_REPLACE_START(CharacterSelectPage_8083dfa8, 0x564)
+    // Check the SP bits for team mode
+    rlwinm. r3, r0, 0, 0, 1
+PATCH_REPLACE_END(CharacterSelectPage_8083dfa8, 0x564)

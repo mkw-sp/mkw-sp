@@ -2,9 +2,6 @@
 
 #include "game/system/SaveManager.hh"
 #include "game/ui/SectionManager.hh"
-extern "C" {
-#include "game/ui/SettingsPage.h"
-}
 #include "game/ui/page/RaceMenuPage.hh"
 
 namespace UI {
@@ -148,8 +145,9 @@ void SettingsPage::onCategoryValueChange([[maybe_unused]] TextUpDownValueControl
             shownText->setMessageAll(entry.valueMessageIds[chosen]);
             hiddenText->setMessageAll(entry.valueMessageIds[chosen]);
         } else {
+            chosen += entry.valueOffset;
             MessageInfo info{};
-            info.intVals[0] = chosen + entry.valueOffset;
+            info.intVals[0] = chosen;
             shownText->setMessageAll(entry.valueMessageIds[0], &info);
             hiddenText->setMessageAll(entry.valueMessageIds[0], &info);
         }
@@ -165,11 +163,11 @@ void SettingsPage::onSettingControlChange([[maybe_unused]] UpDownControl *contro
         [[maybe_unused]] u32 localPlayerId, [[maybe_unused]] u32 index) {
     auto *text = m_settingValues[control->m_id & 0xffff].shownText();
     const SP::ClientSettings::Entry &entry = SP::ClientSettings::entries[control->m_id >> 16];
-    index += entry.valueOffset;
     if (entry.valueNames) {
         text->setMessageAll(entry.valueMessageIds[index]);
         instructionText()->setMessageAll(entry.valueExplanationMessageIds[index]);
     } else {
+        index += entry.valueOffset;
         MessageInfo info{};
         info.intVals[0] = index;
         text->setMessageAll(entry.valueMessageIds[0], &info);
@@ -198,6 +196,7 @@ void SettingsPage::onSettingControlSelect([[maybe_unused]] UpDownControl *contro
     if (entry.valueNames) {
         instructionText()->setMessageAll(entry.valueExplanationMessageIds[chosen]);
     } else {
+        chosen += entry.valueOffset;
         MessageInfo info{};
         info.intVals[0] = chosen;
         instructionText()->setMessageAll(entry.valueExplanationMessageIds[0], &info);
@@ -333,10 +332,3 @@ void MenuSettingsPage::configure(IHandler *handler, PageId replacement) {
 }
 
 } // namespace UI
-
-extern "C" {
-void MenuSettingsPage_SetReplacement(s32 pageId) {
-    auto *section = UI::SectionManager::Instance()->currentSection();
-    section->page<UI::PageId::MenuSettings>()->configure(nullptr, static_cast<UI::PageId>(pageId));
-}
-}

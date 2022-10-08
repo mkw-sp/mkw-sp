@@ -178,11 +178,6 @@ void delete (void *memBlock);
 typedef struct {
     f32 x;
     f32 y;
-} Vec2;
-
-typedef struct {
-    f32 x;
-    f32 y;
     f32 z;
 } Vec3;
 

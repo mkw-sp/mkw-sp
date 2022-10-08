@@ -161,7 +161,7 @@ void CtrlRaceInputDisplay::setTrigger(Trigger trigger, TriggerState state) {
     m_triggerStates[t] = state;
 }
 
-void CtrlRaceInputDisplay::setStick(Vec2 state) {
+void CtrlRaceInputDisplay::setStick(Vec2<f32> state) {
     if (state.x == m_stickState.x && state.y == m_stickState.y) {
         return;
     }

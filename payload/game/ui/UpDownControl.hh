@@ -111,7 +111,13 @@ public:
     u32 m_id;
 
 private:
-    u8 _210[0x218 - 0x210];
+    u8 _210[0x211 - 0x210];
+
+public:
+    bool m_enabled;
+
+private:
+    u8 _212[0x218 - 0x212];
     ControlInputManager m_inputManager;
     u8 _29c[0x2b4 - 0x29c];
     UpDownButton m_buttons[2];
@@ -170,6 +176,7 @@ public:
     void load(const char *dir, const char *file, const char *variant, const char *textFile,
             const char *textVariant);
     void setChangeHandler(IChangeHandler *handler);
+    f32 getDelay() const;
 
 private:
     UpDownAnimator m_animator;

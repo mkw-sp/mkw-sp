@@ -24,11 +24,17 @@ enum class PageId {
     CheckRankings = 0x2B,
     ConfirmQuit = 0x2C,
 
+    ResultRaceUpdate = 0x2f,
+    ResultRaceTotal = 0x30,
+    ResultTeamVSTotal = 0x32,
+
     CompetitionPersonalLeaderboard = 0x35,
 
     GhostReplayRace = 0x37,
     GpReplayPauseMenu = 0x38,
     TaReplayPauseMenu = 0x39,
+
+    Award = 0x3c,
 
     OnlinePleaseWait = 0x48,
     RaceConfirm = 0x4B,
@@ -42,6 +48,7 @@ enum class PageId {
     TopMenu = 0x5A,
     Model = 0x5C,
     Obi = 0x5E,
+    MultiPadRegister = 0x61,
     LicenseSelect = 0x65,
     LicenseSettingsTop = 0x67,
     SingleTop = 0x69,
@@ -52,12 +59,12 @@ enum class PageId {
     CourseSelect = 0x6f,
     TimeAttackTop = 0x70,
     TimeAttackGhostList = 0x71,
-    VsModeSelect = 0x72,
-    RaceRules = 0x73,
-    TeamsOverview = 0x74,
+    VSSelect = 0x72,
+    VSSetting = 0x73,
+    TeamConfirm = 0x74,
     BattleModeSelect = 0x75,
     BattleVehicleSelect = 0x76,
-    BattleRules = 0x77,
+    BattleSetting = 0x77,
     BattleCupSelect = 0x78,
     BattleCourseSelect = 0x79,
     MissionLevelSelect = 0x7a,
@@ -66,6 +73,9 @@ enum class PageId {
     MissionDrift = 0x7d,
     MissionTutorial = 0x7e,
     ModelRender = 0x7f,
+    MultiTop = 0x80,
+    MultiVehicleSelect = 0x81,
+    MultiTeamSelect = 0x83,
 
     OnlineTop = 0x8b, // Replaces WifiTop
     VotingBack = 0x90, // Replaces CountDownTimer

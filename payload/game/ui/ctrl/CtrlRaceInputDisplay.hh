@@ -45,7 +45,7 @@ private:
     void setDpad(DpadState state);
     void setAccel(AccelState state);
     void setTrigger(Trigger trigger, TriggerState state);
-    void setStick(Vec2 state);
+    void setStick(Vec2<f32> state);
 
     static constexpr u32 dpadStateCount = magic_enum::enum_count<DpadState>();
     static constexpr u32 accelStateCount = magic_enum::enum_count<DpadState>();
@@ -62,7 +62,7 @@ private:
     s8 m_dpadTimer = 0; // Hold the DPAD press for DPAD_HOLD_FOR_N_FRAMES frames
     AccelState m_accelState = AccelState::Off;
     TriggerState m_triggerStates[triggerCount]{};
-    Vec2 m_stickState{ 0.0f, 0.0f };
+    Vec2<f32> m_stickState{ 0.0f, 0.0f };
 
     u32 m_playerId;
 

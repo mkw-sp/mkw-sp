@@ -237,6 +237,10 @@ void SaveManager::saveSPSave() {
     m_result = RK_NAND_RESULT_OK;
 }
 
+void SaveManager::selectLicense(u32 licenseId) {
+    m_currentLicenseId = licenseId;
+}
+
 void SaveManager::refreshGCPadRumble() {
     auto setting = getSetting<SP::ClientSettings::Setting::GCPadRumble>();
     bool rumbleEnabled = setting == SP::ClientSettings::GCPadRumble::Enable;

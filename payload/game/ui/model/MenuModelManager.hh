@@ -39,7 +39,8 @@ public:
     DriverModelManager *driverModelManager();
 
     void init(u32 modelCount, GameEntryFunc onDriverModelLoaded);
-    static MenuModelManager *Instance() { return s_instance; }
+
+    static MenuModelManager *Instance();
 
 private:
     u8 _00[0x14 - 0x00];

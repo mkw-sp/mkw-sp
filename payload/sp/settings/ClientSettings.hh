@@ -8,10 +8,12 @@ enum class Setting {
     // Race
     DriftMode,
     VanillaMode,
+    SimplifiedControls,
     FOV169,
     RegionLineColor,
     PlayerTags,
     HUDLabels,
+    HUDTeamColors,
     MapIcons,
     InputDisplay,
     RankControl,
@@ -29,6 +31,13 @@ enum class Setting {
     TASolidGhosts,
     TAGhostSound,
 
+    // VS
+    VSTeamSize,
+    VSRaceCount,
+    VSCourseSelection,
+    VSClass,
+    VSVehicles,
+
     // Room
     RoomTeamSize,
     RoomTeamSelection,
@@ -40,6 +49,7 @@ enum class Setting {
     // License
     MiiAvatar,
     MiiClient,
+    ColorPalette,
     LoadingScreenColor,
     GCPadRumble,
     PageTransitions,
@@ -50,6 +60,7 @@ enum class Category {
     Race,
     Sound,
     TA,
+    VS,
     Room,
     License,
 };
@@ -62,6 +73,12 @@ enum class DriftMode {
 enum class VanillaMode {
     Disable,
     Enable,
+};
+
+enum class SimplifiedControls {
+    Off,
+    NonExclusive,
+    Exclusive,
 };
 
 enum class FOV169 {
@@ -81,6 +98,11 @@ enum class RegionLineColor {
 enum class HUDLabels {
     Hide,
     Show,
+};
+
+enum class HUDTeamColors {
+    Disable,
+    Enable,
 };
 
 enum class MapIcons {
@@ -153,6 +175,37 @@ enum class TAGhostSound {
     All,
 };
 
+enum class VSTeamSize {
+    FFA,
+    Two,
+    Three,
+    Four,
+    Six,
+};
+
+enum class VSCourseSelection {
+    Choose,
+    Random,
+    InOrder,
+};
+
+enum class VSClass {
+    Mixed,
+    CC150,
+    Mirror,
+    CC200,
+};
+
+enum class VSVehicles {
+    All,
+    Karts,
+    Bikes,
+    InsideDrift,
+    OutsideDrift,
+    Optimal,
+    Random,
+};
+
 enum class RoomTeamSize {
     FFA,
     Two,
@@ -169,6 +222,7 @@ enum class RoomTeamSelection {
 
 enum class RoomCourseSelection {
     Random,
+    InOrder,
     Host,
     Vote,
 };
@@ -188,6 +242,11 @@ enum class RoomVehicles {
     OutsideDrift,
     Optimal,
     Random,
+};
+
+enum class ColorPalette {
+    Vivid,
+    Colorblind,
 };
 
 enum class GCPadRumble {
@@ -234,6 +293,11 @@ struct Helper<ClientSettings::Setting, ClientSettings::Setting::VanillaMode> {
 };
 
 template <>
+struct Helper<ClientSettings::Setting, ClientSettings::Setting::SimplifiedControls> {
+    using type = SP::ClientSettings::SimplifiedControls;
+};
+
+template <>
 struct Helper<ClientSettings::Setting, ClientSettings::Setting::FOV169> {
     using type = SP::ClientSettings::FOV169;
 };
@@ -251,6 +315,11 @@ struct Helper<ClientSettings::Setting, ClientSettings::Setting::PlayerTags> {
 template <>
 struct Helper<ClientSettings::Setting, ClientSettings::Setting::HUDLabels> {
     using type = SP::ClientSettings::HUDLabels;
+};
+
+template <>
+struct Helper<ClientSettings::Setting, ClientSettings::Setting::HUDTeamColors> {
+    using type = SP::ClientSettings::HUDTeamColors;
 };
 
 template <>
@@ -314,6 +383,31 @@ struct Helper<ClientSettings::Setting, ClientSettings::Setting::TAGhostSound> {
 };
 
 template <>
+struct Helper<ClientSettings::Setting, ClientSettings::Setting::VSTeamSize> {
+    using type = SP::ClientSettings::VSTeamSize;
+};
+
+template <>
+struct Helper<ClientSettings::Setting, ClientSettings::Setting::VSRaceCount> {
+    using type = u32;
+};
+
+template <>
+struct Helper<ClientSettings::Setting, ClientSettings::Setting::VSCourseSelection> {
+    using type = SP::ClientSettings::VSCourseSelection;
+};
+
+template <>
+struct Helper<ClientSettings::Setting, ClientSettings::Setting::VSClass> {
+    using type = SP::ClientSettings::VSClass;
+};
+
+template <>
+struct Helper<ClientSettings::Setting, ClientSettings::Setting::VSVehicles> {
+    using type = SP::ClientSettings::VSVehicles;
+};
+
+template <>
 struct Helper<ClientSettings::Setting, ClientSettings::Setting::RoomTeamSize> {
     using type = SP::ClientSettings::RoomTeamSize;
 };
@@ -351,6 +445,11 @@ struct Helper<ClientSettings::Setting, ClientSettings::Setting::MiiAvatar> {
 template <>
 struct Helper<ClientSettings::Setting, ClientSettings::Setting::MiiClient> {
     using type = u32;
+};
+
+template <>
+struct Helper<ClientSettings::Setting, ClientSettings::Setting::ColorPalette> {
+    using type = SP::ClientSettings::ColorPalette;
 };
 
 template <>

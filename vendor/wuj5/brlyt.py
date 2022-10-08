@@ -22,6 +22,11 @@ def unpack_vwstring(in_data, offset, **kwargs):
     offset = voffset + unpack_u32(in_data, offset)
     return in_data[offset:].split(b'\0\0')[0].decode('utf-16-be')
 
+def unpack_pointer(in_data, offset, **kwargs):
+    voffset = kwargs['voffset']
+    offset = voffset + unpack_u32(in_data, offset)
+    return unpack_struct(in_data, offset, **kwargs)
+
 def unpack_array(in_data, offset, kind, **kwargs):
     size = kwargs['size']
     unpack = kwargs['unpack']
@@ -41,14 +46,25 @@ def unpack_array8(in_data, offset, **kwargs):
 def unpack_array16(in_data, offset, **kwargs):
     return unpack_array(in_data, offset, 'u16', **kwargs)
 
-def unpack_varray(in_data, offset, **kwargs):
+def unpack_varray(in_data, offset, kind, has_offset, **kwargs):
+    unpack = kwargs['unpack']
     voffset = kwargs['voffset']
-    count = unpack_u16(in_data, offset)
+    count = unpack[kind](in_data, offset)
+    if has_offset:
+        offset = voffset + unpack_u32(in_data, offset + 0x4)
+    else:
+        offset += 0x4
     vals = []
     for i in range(count):
-        val_offset = voffset + unpack_u32(in_data, offset + 0x4 + i * 0x4)
+        val_offset = voffset + unpack_u32(in_data, offset + i * 0x4)
         vals += [unpack_struct(in_data, val_offset, **kwargs)]
     return vals
+
+def unpack_varray8o(in_data, offset, **kwargs):
+    return unpack_varray(in_data, offset, 'u8', True, **kwargs)
+
+def unpack_varray16(in_data, offset, **kwargs):
+    return unpack_varray(in_data, offset, 'u16', False, **kwargs)
 
 def unpack_vstruct(in_data, offset, **kwargs):
     size = kwargs['size']
@@ -103,6 +119,12 @@ def pack_vwstring(val, **kwargs):
     buffer.push(val.encode('utf-16-be') + b'\0\0')
     return pack_u32(offset)
 
+def pack_pointer(val, **kwargs):
+    buffer = kwargs['buffer']
+    offset = buffer.size()
+    buffer.push(pack_struct(val, **kwargs))
+    return pack_u32(offset)
+
 def pack_array(vals, kind, **kwargs):
     size = kwargs['size']
     pack = kwargs['pack']
@@ -127,16 +149,33 @@ def pack_array8(vals, **kwargs):
 def pack_array16(vals, **kwargs):
     return pack_array(vals, 'u16', **kwargs)
 
-def pack_varray(vals, **kwargs):
+def pack_varray(vals, kind, has_offset, **kwargs):
+    size = kwargs['size']
+    pack = kwargs['pack']
     buffer = kwargs['buffer']
     out_data = b''.join([
-        pack_u16(len(vals)),
-        pack_pad16(None),
+        pack[kind](len(vals)),
+        b'\x00' * (4 - size[kind]),
     ])
-    for val in vals:
-        out_data += pack_u32(0x4 * len(vals) + buffer.size())
-        buffer.push(pack_struct(val, **kwargs))
+    if has_offset:
+        out_data += pack_u32(buffer.size())
+        val_offset = 0x4 * len(vals) + buffer.size()
+        val_data = b''
+        for val in vals:
+            buffer.push(pack_u32(val_offset + len(val_data)))
+            val_data += pack_struct(val, **kwargs)
+        buffer.push(val_data)
+    else:
+        for val in vals:
+            out_data += pack_u32(0x4 * len(vals) + buffer.size())
+            buffer.push(pack_struct(val, **kwargs))
     return out_data
+
+def pack_varray8o(vals, **kwargs):
+    return pack_varray(vals, 'u8', True, **kwargs)
+
+def pack_varray16(vals, **kwargs):
+    return pack_varray(vals, 'u16', False, **kwargs)
 
 def pack_vstruct(val, **kwargs):
     size = kwargs['size']
@@ -170,9 +209,11 @@ brlyt_size = {
     'string160': 0x14,
     'vstring': 0x4,
     'vwstring': 0x4,
+    'pointer': 0x4,
     'array8': 0x2,
     'array16': 0x4,
-    'varray': 0x4,
+    'varray8o': 0x8,
+    'varray16': 0x4,
     'vstruct': 0x4,
 }
 
@@ -183,9 +224,11 @@ brlyt_unpack = {
     'string160': unpack_string160,
     'vstring': unpack_vstring,
     'vwstring': unpack_vwstring,
+    'pointer': unpack_pointer,
     'array8': unpack_array8,
     'array16': unpack_array16,
-    'varray': unpack_varray,
+    'varray8o': unpack_varray8o,
+    'varray16': unpack_varray16,
     'vstruct': unpack_vstruct,
 }
 
@@ -196,9 +239,11 @@ brlyt_pack = {
     'string160': pack_string160,
     'vstring': pack_vstring,
     'vwstring': pack_vwstring,
+    'pointer': pack_pointer,
     'array8': pack_array8,
     'array16': pack_array16,
-    'varray': pack_varray,
+    'varray8o': pack_varray8o,
+    'varray16': pack_varray16,
     'vstruct': pack_vstruct,
 }
 
@@ -257,7 +302,7 @@ fnl1_fields = [
 
 mat1_fields = [
     *base_fields,
-    Field('varray', 'materials', fields = [
+    Field('varray16', 'materials', fields = [
         Field('string160', 'name'),
         Field('s16', 'tev color 0 r'),
         Field('s16', 'tev color 0 g'),
@@ -450,6 +495,42 @@ txt1_fields = [
 
 wnd1_fields = [
     *pan1_fields,
+    Field('f32', 'overlap left'),
+    Field('f32', 'overlap right'),
+    Field('f32', 'overlap top'),
+    Field('f32', 'overlap bottom'),
+    Field('pointer', 'content', fields = [
+        Field('u8', 'vertex color top left r'),
+        Field('u8', 'vertex color top left g'),
+        Field('u8', 'vertex color top left b'),
+        Field('u8', 'vertex color top left a'),
+        Field('u8', 'vertex color top right r'),
+        Field('u8', 'vertex color top right g'),
+        Field('u8', 'vertex color top right b'),
+        Field('u8', 'vertex color top right a'),
+        Field('u8', 'vertex color bottom left r'),
+        Field('u8', 'vertex color bottom left g'),
+        Field('u8', 'vertex color bottom left b'),
+        Field('u8', 'vertex color bottom left a'),
+        Field('u8', 'vertex color bottom right r'),
+        Field('u8', 'vertex color bottom right g'),
+        Field('u8', 'vertex color bottom right b'),
+        Field('u8', 'vertex color bottom right a'),
+        Field('u16', 'material'),
+        Field('array8', 'uv sets', fields = uv_set_fields),
+    ]),
+    Field('varray8o', 'frames', fields = [
+        Field('u16', 'material'),
+        Field('enum8', 'transform', variants = [
+            Variant('none', 0),
+            Variant('hflip', 1),
+            Variant('vflip', 2),
+            Variant('rotate 90', 3),
+            Variant('rotate 180', 4),
+            Variant('rotate 270', 5),
+        ]),
+        Field('pad8', None),
+    ]),
 ]
 
 grp1_fields = [
@@ -490,6 +571,14 @@ def unpack_sections(in_data, offset, parent_magic):
     last_section = None
     while offset < len(in_data):
         magic = unpack_magic(in_data, offset + 0x00)
+        # HACK: Group frame count and frame array offset to simplify unpacking
+        if magic == 'wnd1':
+            in_data = b''.join([
+                in_data[:offset + 0x5c],
+                in_data[offset + 0x60:offset + 0x64],
+                in_data[offset + 0x5c:offset + 0x60],
+                in_data[offset + 0x64:],
+            ])
         kwargs = {
             'size': brlyt_size,
             'unpack': brlyt_unpack,
@@ -545,6 +634,14 @@ def pack_section(section):
     out_data = pack_struct(section, **kwargs) + buffer.buffer
     out_data = out_data.ljust((len(out_data) + 0x3) & ~0x3, b'\x00')
     out_data = out_data[0x0:0x4] + pack_u32(len(out_data)) + out_data[0x8:]
+    # HACK: Ungroup back frame count and frame array offset
+    if magic == 'wnd1':
+        out_data = b''.join([
+            out_data[:0x5c],
+            out_data[0x60:0x64],
+            out_data[0x5c:0x60],
+            out_data[0x64:],
+        ])
     section_count = 1
     children = section.get('children')
     if children is not None:

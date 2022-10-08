@@ -73,7 +73,7 @@ void GhostSelectButton::onFront([[maybe_unused]] u32 localPlayerId) {
     m_chosen = !m_chosen;
     setChosen(m_chosen);
     if (m_chosen) {
-        playSfx(0xd, -1);
+        playSound(Sound::SoundId::SE_UI_TAB_OK, -1);
     }
 
     page->chooseGhost(m_index);

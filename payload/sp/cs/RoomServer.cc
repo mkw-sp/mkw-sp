@@ -205,16 +205,16 @@ bool RoomServer::onMain(Handler &handler) {
 }
 
 bool RoomServer::onPlayerJoin(Handler &handler, u32 clientId, const System::RawMii *mii,
-        u32 location, u16 latitude, u16 longitude,
+        u32 location, u16 latitude, u16 longitude, u32 regionLineColor,
         const std::array<u32, RoomSettings::count> &settings) {
     if (m_playerCount == 12) {
         return false;
     }
 
-    m_players[m_playerCount] = { clientId, *mii, location, latitude, longitude, 0xFFFFFFFF, {}, settings };
+    m_players[m_playerCount] = { clientId, *mii, location, latitude, longitude, regionLineColor, 0xFFFFFFFF, {}, settings };
     m_playerCount++;
-    writeJoin(mii, location, latitude, longitude);
-    handler.onPlayerJoin(mii, location, latitude, longitude);
+    writeJoin(mii, location, latitude, longitude, regionLineColor);
+    handler.onPlayerJoin(mii, location, latitude, longitude, regionLineColor);
     if (m_playerCount == 1) {
         handler.onSettingsChange(settings);
     }
@@ -293,10 +293,11 @@ void RoomServer::disconnectClient(u32 clientId) {
     m_disconnectQueue.push(std::move(clientId));
 }
 
-void RoomServer::writeJoin(const System::RawMii *mii, u32 location, u32 latitude, u32 longitude) {
+void RoomServer::writeJoin(const System::RawMii *mii, u32 location, u32 latitude, u32 longitude,
+        u32 regionLineColor) {
     for (size_t i = 0; i < m_clients.size(); i++) {
         if (m_clients[i] && m_clients[i]->ready()) {
-            if (!m_clients[i]->writeJoin(mii, location, latitude, longitude)) {
+            if (!m_clients[i]->writeJoin(mii, location, latitude, longitude, regionLineColor)) {
                 disconnectClient(i);
             }
         }
@@ -389,7 +390,7 @@ bool RoomServer::Client::calc(Handler &handler) {
 }
 
 bool RoomServer::Client::writeJoin(const System::RawMii *mii, u32 location, u32 latitude,
-        u32 longitude) {
+        u32 longitude, u32 regionLineColor) {
     RoomEvent event;
     event.which_event = RoomEvent_join_tag;
     event.event.join.mii.size = sizeof(System::RawMii);
@@ -397,6 +398,7 @@ bool RoomServer::Client::writeJoin(const System::RawMii *mii, u32 location, u32 
     event.event.join.location = location;
     event.event.join.latitude = latitude;
     event.event.join.longitude = longitude;
+    event.event.join.regionLineColor = regionLineColor;
     return write(event);
 }
 
@@ -513,15 +515,17 @@ std::optional<RoomServer::Client::State> RoomServer::Client::calcSetup(Handler &
             u32 location = request->request.join.location;
             u32 latitude = request->request.join.latitude;
             u32 longitude = request->request.join.longitude;
+            u32 regionLineColor = request->request.join.regionLineColor;
             if (!m_server.onPlayerJoin(handler, m_id, mii, location, latitude, longitude,
-                    settings)) {
+                        regionLineColor, settings)) {
                 // TODO spectate?
                 return {};
             }
         }
         for (size_t i = 0; i < m_server.m_playerCount - request->request.join.miis_count; i++) {
             const auto &player = m_server.m_players[i];
-            if (!writeJoin(&player.mii, player.location, player.latitude, player.longitude)) {
+            if (!writeJoin(&player.mii, player.location, player.latitude, player.longitude,
+                        player.regionLineColor)) {
                 return {};
             }
         }

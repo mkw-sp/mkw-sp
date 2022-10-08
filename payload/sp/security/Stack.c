@@ -1,9 +1,6 @@
 #include "Stack.h"
 
 #include <revolution/os.h>
-#include <sp/Version.h>
-
-#include <stdio.h>
 
 #define MAIN_THREAD_STACK_BITS_ENTROPY 11
 

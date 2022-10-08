@@ -3,7 +3,9 @@
 #include "game/system/RaceConfig.hh"
 #include "game/system/SaveManager.hh"
 #include "game/ui/SectionManager.hh"
+#include "game/ui/TeamColors.hh"
 #include "game/ui/page/RacePage.hh"
+#include "game/util/Registry.hh"
 
 namespace UI {
 
@@ -40,17 +42,64 @@ void CtrlRaceNameBalloon::calcVisibility() {
     }
 }
 
-void CtrlRaceNameBalloon::refreshText(u32 playerId) {
-    const auto &raceScenario = System::RaceConfig::Instance()->raceScenario();
-    if (raceScenario.players[playerId].type != System::RaceConfig::Player::Type::Ghost) {
-        refreshTextName(playerId);
+void CtrlRaceNameBalloon::refresh(u32 playerId) {
+    if (static_cast<s32>(playerId) == m_playerId) {
         return;
     }
 
+    m_playerId = playerId;
+
+    auto *pane = m_mainLayout.findPaneByName("chara_name");
+    assert(pane);
+    auto *material = pane->getMaterial();
+    assert(material);
+    const auto &raceScenario = System::RaceConfig::Instance()->raceScenario();
+    GXColor color{255, 255, 255, 255};
+    if (raceScenario.spMaxTeamSize >= 2) {
+        color = TeamColors::Get(raceScenario.players[m_playerId].spTeam);
+    }
+    material->tevColors[1] = {color.r, color.g, color.b, color.a};
+
     auto *saveManager = System::SaveManager::Instance();
+    auto playerType = raceScenario.players[playerId].type;
+    if (raceScenario.spMaxTeamSize < 2 && playerType == System::RaceConfig::Player::Type::Local) {
+        u32 regionLineColor = static_cast<u32>(
+                saveManager->getSetting<SP::ClientSettings::Setting::RegionLineColor>());
+        color = TeamColors::Get(regionLineColor ^ 1);
+    }
+    for (size_t i = 0; i < 4; i++) {
+        m_linePane->setVtxColor(i, color);
+    }
+
+    u32 characterId = raceScenario.players[playerId].characterId;
+    if (playerType == System::RaceConfig::Player::Type::CPU) {
+        setPaneVisible("chara", false);
+        setMessage("chara_name", Registry::GetCharacterMessageId(characterId, true));
+        return;
+    }
+
+    setPaneVisible("chara", true);
+
+    auto *context = SectionManager::Instance()->globalContext();
+    u32 localPlayerCount = context->m_localPlayerCount;
+    if (playerType == System::RaceConfig::Player::Type::Local && characterId < 0x18 &&
+            localPlayerCount > 1) {
+        setPicture("chara", Registry::GetCharacterPane(characterId));
+        setMessage("chara_name", Registry::GetCharacterMessageId(characterId, true));
+        return;
+    }
+
+    auto *miiGroup = &SectionManager::Instance()->globalContext()->m_playerMiis;
+    setMiiPicture("chara", miiGroup, playerId, 2);
+
+    if (raceScenario.players[playerId].type != System::RaceConfig::Player::Type::Ghost) {
+        refreshTextMiiName(playerId);
+        return;
+    }
+
     switch (saveManager->getSetting<SP::ClientSettings::Setting::TAGhostTagContent>()) {
     case SP::ClientSettings::TAGhostTagContent::Name:
-        refreshTextName(playerId);
+        refreshTextMiiName(playerId);
         break;
     case SP::ClientSettings::TAGhostTagContent::Time:
         refreshTextTime(playerId, /* leadingZeroes */ true);
@@ -64,7 +113,7 @@ void CtrlRaceNameBalloon::refreshText(u32 playerId) {
     }
 }
 
-void CtrlRaceNameBalloon::refreshTextName(u32 playerId) {
+void CtrlRaceNameBalloon::refreshTextMiiName(u32 playerId) {
     MessageInfo info{};
     info.miis[0] = SectionManager::Instance()->globalContext()->m_playerMiis.get(playerId);
     setMessage("chara_name", 9501, &info);
