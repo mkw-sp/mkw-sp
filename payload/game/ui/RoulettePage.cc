@@ -112,7 +112,7 @@ void RoulettePage::beforeCalc() {
         // Animate hovering over new player
         m_voteControl[prevHoverIdx].setAnimation(4, 0, 0.0);
         m_voteControl[m_hoverPlayerIdx].setAnimation(4, 1, 0.0);
-        m_voteControl[m_hoverPlayerIdx].playSfx(69, -1);
+        m_voteControl[m_hoverPlayerIdx].playSound(Sound::SoundId::SE_UI_CRS_ROULETTE, -1);
 
         // Finalize vote
         if (m_timeDelta > 0.05) {
@@ -125,7 +125,7 @@ void RoulettePage::beforeCalc() {
 
         m_voteControl[m_hoverPlayerIdx].setMessageAll(m_selectedTrackMessageId, nullptr);
         m_voteControl[m_hoverPlayerIdx].setAnimation(4, 2, 0.0);
-        m_voteControl[m_hoverPlayerIdx].playSfx(70, -1);
+        m_voteControl[m_hoverPlayerIdx].playSound(Sound::SoundId::SE_UI_CRS_ROULETTE_DECIDE, -1);
 
         m_delay = 180;
         m_stage = Stage::Selected;
@@ -200,7 +200,7 @@ void RoulettePage::VoteControl::onNewVote() {
     setAnimation(3, 0, 0.0);
     setAnimation(1, 1, 0.0);
     setVisible(true);
-    playSfx(68, -1);
+    playSound(Sound::SoundId::SE_UI_CRS_VOTE, -1);
 }
 
 } // namespace UI
