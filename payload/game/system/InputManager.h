@@ -32,7 +32,8 @@ typedef struct {
     void *_00;
     u16 buttons; // ButtonFlags
     u16 rawButtons;
-    Vec2 stick;
+    f32 stickX;
+    f32 stickY;
     u8 rawStick[2];
     u8 trick;
     u8 rawTrick;

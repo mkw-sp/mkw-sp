@@ -19,6 +19,7 @@ static_assert(sizeof(Group) == 0x44);
 
 class UIAnimator {
 public:
+    UIAnimator();
     void dt(s32 type);
     Group *getGroup(u32 groupId);
     

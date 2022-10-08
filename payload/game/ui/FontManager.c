@@ -39,7 +39,7 @@ static void my_FontManager_init(FontManager *this) {
     sDebugFont = this->fonts[1];
     FontManager_initFont(this, 2, "tt_kart_extension_font.brfnt");
     FontManager_initFont(this, 3, "indicator_font.brfnt");
-    FontManager_initFont(this, 4, "mario_font_number_red.brfnt");
-    FontManager_initFont(this, 5, "mario_font_number_blue.brfnt");
+    FontManager_initFont(this, 4, "mario_font_number_nocolor.brfnt");
+    FontManager_initFont(this, 5, "mario_font_number_outline.brfnt");
 }
 PATCH_B(FontManager_init, my_FontManager_init);

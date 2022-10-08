@@ -1,5 +1,6 @@
 #pragma once
 
+#include "game/sound/SoundId.hh"
 #include "game/ui/ControlGroup.hh"
 #include "game/ui/Font.hh"
 #include "game/ui/Layout.hh"
@@ -20,7 +21,8 @@ public:
 
     void initChildren(u32 count);
     void insertChild(u32 index, UIControl *child);
-    void playSfx(u32 sfxId, s32 r5);
+    void setSoundIds(Sound::SoundId inSoundId, Sound::SoundId outSoundId);
+    void playSound(Sound::SoundId soundId, s32 r5);
 
 protected:
     virtual void initSelf();
@@ -81,10 +83,12 @@ public:
 protected:
     UIAnimator m_animator;
     MainLayout m_mainLayout;
+
 private:
     MessageGroup m_specificMessageGroup;
     MessageGroup m_commonMessageGroup;
-    u8 _16c[0x174 - 0x16c];
+    void *_16c = nullptr;
+    void *_170 = nullptr;
 };
 static_assert(sizeof(LayoutUIControl) == 0x174);
 

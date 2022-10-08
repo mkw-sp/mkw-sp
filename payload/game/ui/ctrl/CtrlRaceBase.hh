@@ -19,7 +19,8 @@ protected:
     virtual bool vf_48();
     virtual void vf_4c();
 
-    void setPaneColor(const char *pane, bool teamColors);
+    void REPLACED(setPaneColor)(const char *pane, bool teamColors);
+    REPLACE void setPaneColor(const char *pane, bool teamColors);
 
 public:
     s8 REPLACED(getPlayerId)() const;

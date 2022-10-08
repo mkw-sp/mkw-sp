@@ -1,0 +1,21 @@
+{
+    "version": 10,
+    "sections": [
+        {
+            "magic": "pat1",
+            "id": 11,
+            "groups": [],
+            "name": "c_off",
+            "start frame": 10,
+            "end frame": 20,
+            "descending bind": true,
+        },
+        {
+            "magic": "pai1",
+            "frame count": 11,
+            "loop": false,
+            "tpls": [],
+            "contents": [],
+        },
+    ],
+}

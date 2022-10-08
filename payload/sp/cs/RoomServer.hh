@@ -19,7 +19,7 @@ public:
 
         virtual void onPlayerJoin([[maybe_unused]] const System::RawMii *mii,
                 [[maybe_unused]] u32 location, [[maybe_unused]] u16 latitude,
-                [[maybe_unused]] u16 longitude) {}
+                [[maybe_unused]] u16 longitude, [[maybe_unused]] u32 regionLineColor) {}
         virtual void onPlayerLeave([[maybe_unused]] u32 playerId) {}
         virtual void onReceiveComment([[maybe_unused]] u32 playerId,
                 [[maybe_unused]] u32 commentId) {}
@@ -56,6 +56,7 @@ private:
         u32 location;
         u32 latitude;
         u32 longitude;
+        u32 regionLineColor;
         u32 course;
         std::optional<PlayerProperties> properties;
         std::array<u32, RoomSettings::count> m_settings;
@@ -75,7 +76,8 @@ private:
         bool ready() const;
         bool calc(Handler &handler);
 
-        bool writeJoin(const System::RawMii *mii, u32 location, u32 latitude, u32 longitude);
+        bool writeJoin(const System::RawMii *mii, u32 location, u32 latitude, u32 longitude,
+                u32 regionLineColor);
         bool writeLeave(u32 playerId);
         bool writeComment(u32 playerId, u32 messageId);
         bool writeSettings();
@@ -123,7 +125,8 @@ private:
     bool onMain(Handler &handler);
 
     bool onPlayerJoin(Handler &handler, u32 clientId, const System::RawMii *mii, u32 location,
-            u16 latitude, u16 longitude, const std::array<u32, RoomSettings::count> &settings);
+            u16 latitude, u16 longitude, u32 regionLineColor,
+            const std::array<u32, RoomSettings::count> &settings);
     void onPlayerLeave(Handler &handler, u32 playerId);
     bool onReceiveComment(u32 playerId, u32 messageId);
     bool onRoomClose(Handler &handler, u32 playerId, s32 gamemode);
@@ -132,7 +135,8 @@ private:
 
     void disconnectClient(u32 clientId);
 
-    void writeJoin(const System::RawMii *mii, u32 location, u32 latitude, u32 longitude);
+    void writeJoin(const System::RawMii *mii, u32 location, u32 latitude, u32 longitude,
+            u32 regionLineColor);
     void writeLeave(u32 playerId);
     void writeComment(u32 playerId, u32 messageId);
     void writeSettings();

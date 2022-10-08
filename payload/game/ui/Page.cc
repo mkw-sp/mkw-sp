@@ -14,6 +14,10 @@ void Page::dt(s32 type) {
     }
 }
 
+Page::Anim Page::anim() const {
+    return m_anim;
+}
+
 void Page::calc() {
     switch (m_state) {
     case State::State3:

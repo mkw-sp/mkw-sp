@@ -25,6 +25,7 @@ class OptionSelectPage;
 class RaceConfirmPage;
 class RoulettePage;
 class SettingsPagePopup;
+class TeamConfirmPage;
 class TimeAttackGhostListPage;
 class VotingBackPage;
 class YesNoPagePopup;
@@ -47,6 +48,7 @@ public:
     bool isPageActive(PageId pageId) const;
 
     static u32 GetSceneId(SectionId id);
+    static Sound::SoundId GetSoundId(SectionId id);
     static bool HasRoomClient(SectionId sectionId);
     static bool HasRoomServer(SectionId sectionId);
 
@@ -88,6 +90,11 @@ struct Section::PageIdHelper<PageId::YesNoPopup> {
 };
 
 template <>
+struct Section::PageIdHelper<PageId::MenuMessage> {
+    using type = MenuMessagePage;
+};
+
+template <>
 struct Section::PageIdHelper<PageId::Confirm> {
     using type = ConfirmPage;
 };
@@ -105,6 +112,11 @@ struct Section::PageIdHelper<PageId::DriftSelect> {
 template <>
 struct Section::PageIdHelper<PageId::TimeAttackGhostList> {
     using type = TimeAttackGhostListPage;
+};
+
+template <>
+struct Section::PageIdHelper<PageId::TeamConfirm> {
+    using type = TeamConfirmPage;
 };
 
 template <>

@@ -80,6 +80,7 @@ protected:
 
 public:
     PageId id() const;
+    Anim anim() const;
     void setAnim(Anim anim);
     REPLACE void calc();
 
@@ -97,7 +98,9 @@ private:
     PageId m_id;
     State m_state;
     bool m_canProceed;
-    u8 _0d[0x18 - 0x0d];
+    u8 _0d[0x10 - 0xd];
+    Anim m_anim;
+    u8 _14[0x18 - 0x14];
     s32 m_frame;
     u8 _1c[0x24 - 0x1c];
     ControlGroup m_controlGroup;

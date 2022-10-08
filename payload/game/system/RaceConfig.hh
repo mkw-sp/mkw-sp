@@ -14,14 +14,21 @@ public:
             None = 5,
         };
 
-        u8 _00[0x08 - 0x00];
+        u8 _00[0x04 - 0x00];
+        u8 spTeam; // Added (was unused, but not padding)
+        u8 _05[0x08 - 0x05];
         u32 vehicleId;
         u32 characterId;
         Type type;
         u8 _14[0xcc - 0x14];
         u32 team;
         s32 controllerId;
-        u8 _d4[0xf0 - 0xd4];
+        u8 _d4[0xd8 - 0xd4];
+        u16 prevScore;
+        u16 score;
+        u8 _dc[0xe0 - 0xdc];
+        u8 rank;
+        u8 _e1[0xf0 - 0xe1];
     };
     static_assert(sizeof(Player) == 0xf0);
 
@@ -38,6 +45,7 @@ public:
         Mission = 4,
         OnlinePrivateVS = 7,
         OnlinePrivateBT = 10,
+        Awards = 11,
     };
 
     struct Scenario {
@@ -60,7 +68,10 @@ public:
         u8 lapCount;
         u8 _26;
         u8 _27;
-        u32 _ : 30;
+        u8 spMaxTeamSize : 3;
+        bool mirrorRng : 1;
+        bool draw : 1;
+        u32 _ : 25;
         bool teams : 1;
         bool mirror : 1;
         u8 _b74[0xbec - 0xb74];
@@ -72,6 +83,8 @@ public:
     Scenario &menuScenario();
     Scenario &awardsScenario();
     u8 (&ghostBuffers())[2][11][0x2800];
+    void applyVSEngineClass();
+    void endRace();
 
     static RaceConfig *Instance();
 

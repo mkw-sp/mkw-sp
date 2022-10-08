@@ -36,7 +36,7 @@ KeepEmptyLinesAtTheStartOfBlocks: False
 MaxEmptyLinesToKeep: 1
 Language: Cpp
 PointerAlignment: Right
-SortIncludes: CaseInsensitive
+SortIncludes: CaseSensitive
 SpaceAfterCStyleCast: False
 SpaceAfterLogicalNot: False
 SpaceBeforeAssignmentOperators: True

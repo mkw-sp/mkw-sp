@@ -817,7 +817,7 @@
     },
     "10226": {
         "font": "regular",
-        "string": "Play {arg integer|0 0} races.",
+        "string": "Play {arg integer|0 0} {arg cond messages|0 10282 10283}.",
     },
     "10227": {
         "font": "regular",
@@ -950,6 +950,122 @@
     "10259": {
         "font": "regular",
         "string": "Team Selection",
+    },
+    "10260": {
+        "font": "regular",
+        "string": "Courses are chosen individually.",
+    },
+    "10261": {
+        "font": "regular",
+        "string": "Courses are played in order.",
+    },
+    "10262": {
+        "font": "regular",
+        "string": "Offline VS",
+    },
+    "10263": {
+        "font": "regular",
+        "string": "Color Palette",
+    },
+    "10264": {
+        "font": "regular",
+        "string": "Vivid",
+    },
+    "10265": {
+        "font": "regular",
+        "string": "Colorblind",
+    },
+    "10266": {
+        "font": "regular",
+        "string": "Use the vivid palette for team colors.",
+    },
+    "10267": {
+        "font": "regular",
+        "string": "Use the colorblind palette for team colors.",
+    },
+    "10268": {
+        "font": "regular",
+        "string": "{color|sp blue}Blue Team",
+    },
+    "10269": {
+        "font": "regular",
+        "string": "{color|player 3}Red Team",
+    },
+    "10270": {
+        "font": "regular",
+        "string": "{color|player 1}Yellow Team",
+    },
+    "10271": {
+        "font": "regular",
+        "string": "{color|sp green}Green Team",
+    },
+    "10272": {
+        "font": "regular",
+        "string": "{color|sp pink}Pink Team",
+    },
+    "10273": {
+        "font": "regular",
+        "string": "White Team",
+    },
+    "10274": {
+        "font": "regular",
+        "string": "Teams are uneven.\n\nPlease choose again.",
+    },
+    "10282": {
+        "font": "regular",
+        "string": "race",
+    },
+    "10283": {
+        "font": "regular",
+        "string": "races",
+    },
+    "10296": {
+        "font": "regular",
+        "string": "HUD Team Colors",
+    },
+    "10297": {
+        "font": "regular",
+        "string": "Disable",
+    },
+    "10298": {
+        "font": "regular",
+        "string": "Enable",
+    },
+    "10299": {
+        "font": "regular",
+        "string": "Always use local player colors for HUD controls.",
+    },
+    "10300": {
+        "font": "regular",
+        "string": "Use team colors for HUD controls.",
+    },
+    "10301": {
+        "font": "regular",
+        "string": "Simplified Controls",
+    },
+    "10302": {
+        "font": "regular",
+        "string": "Off",
+    },
+    "10303": {
+        "font": "regular",
+        "string": "Non-Exclusive",
+    },
+    "10304": {
+        "font": "regular",
+        "string": "Exclusive",
+    },
+    "10305": {
+        "font": "regular",
+        "string": "Use the default controls only to trick or wheelie.",
+    },
+    "10306": {
+        "font": "regular",
+        "string": "Use Y (GCN) or ZL (CC/CCP) to trick or wheelie.",
+    },
+    "10307": {
+        "font": "regular",
+        "string": "Use Y (GCN) or ZL (CC/CCP) only to trick or wheelie.",
     },
     "20000": {
         "font": "regular",

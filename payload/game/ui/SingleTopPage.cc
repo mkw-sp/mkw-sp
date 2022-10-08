@@ -1,6 +1,7 @@
 #include "SingleTopPage.hh"
 
 #include "game/system/RaceConfig.hh"
+#include "game/system/SaveManager.hh"
 #include "game/ui/ModelPage.hh"
 #include "game/ui/SectionManager.hh"
 #include "game/ui/SettingsPage.hh"
@@ -93,6 +94,7 @@ void SingleTopPage::onActivate() {
     menuScenario.itemMode = 0;
     menuScenario.teams = false;
     menuScenario.mirror = false;
+    menuScenario.spMaxTeamSize = 1;
     for (u32 i = 0; i < 12; i++) {
         menuScenario.players[i].team = 2;
     }
@@ -149,20 +151,29 @@ void SingleTopPage::onTAButtonSelect([[maybe_unused]] PushButton *button,
 
 void SingleTopPage::onVSButtonFront([[maybe_unused]] PushButton *button,
         [[maybe_unused]] u32 localPlayerId) {
+    auto *saveManager = System::SaveManager::Instance();
+    auto *context = SectionManager::Instance()->globalContext();
+    context->m_matchCount = saveManager->getSetting<SP::ClientSettings::Setting::VSRaceCount>();
+
+    System::RaceConfig::Instance()->applyVSEngineClass();
+    auto maxTeamSizeSetting = saveManager->getSetting<SP::ClientSettings::Setting::VSTeamSize>();
+    u32 maxTeamSize = maxTeamSizeSetting == SP::ClientSettings::VSTeamSize::Six ? 6 :
+            static_cast<u32>(maxTeamSizeSetting) + 1;
     auto &menuScenario = System::RaceConfig::Instance()->menuScenario();
     menuScenario.gameMode = System::RaceConfig::GameMode::OfflineVS;
     menuScenario.cameraMode = 5;
+    menuScenario.spMaxTeamSize = maxTeamSize;
     menuScenario.players[0].type = System::RaceConfig::Player::Type::Local;
     for (u32 i = 1; i < 12; i++) {
         menuScenario.players[i].type = System::RaceConfig::Player::Type::CPU;
     }
 
     Section *section = SectionManager::Instance()->currentSection();
-    auto *page = section->page(PageId::VsModeSelect)->downcast<MenuPage>();
+    auto *page = section->page(PageId::CharacterSelect)->downcast<MenuPage>();
     assert(page);
     page->m_prevId = PageId::SingleTop;
 
-    m_replacement = PageId::VsModeSelect;
+    m_replacement = PageId::CharacterSelect;
     f32 delay = button->getDelay();
     startReplace(Anim::Next, delay);
 }

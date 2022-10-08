@@ -28,6 +28,8 @@ Page *UIControl::getPage() {
     return m_controlGroup->m_page;
 }
 
+LayoutUIControl::LayoutUIControl() = default;
+
 LayoutUIControl::~LayoutUIControl() {
     m_commonMessageGroup.dt(-1);
     m_specificMessageGroup.dt(-1);

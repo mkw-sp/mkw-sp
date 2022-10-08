@@ -1,6 +1,26 @@
 #include <Common.h>
 #include <string.h>
 
+#include <revolution/net/NETMisc.h>
+
+void *memcpy_slow(void *dst, const void *src, size_t n);
+void *memset_slow(void *dst, int c, size_t n);
+
+// Use the optimized versions of the functions
+PATCH_B(memcpy_slow, memcpy);
+PATCH_B(memset_slow, memset);
+
+// Correct the return values of the functions
+void *memcpy(void *dst, const void *src, size_t n) {
+    NETMemCpy(dst, src, n);
+    return dst;
+}
+
+void *memset(void *dst, int c, size_t n) {
+    NETMemSet(dst, c, n);
+    return dst;
+}
+
 // Based on https://github.com/llvm/llvm-project/blob/main/libc/src/string/strrchr.cpp#L15
 char *strrchr(const char *src, int c) {
     const char ch = c;
