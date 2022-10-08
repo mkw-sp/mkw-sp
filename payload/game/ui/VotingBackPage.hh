@@ -13,8 +13,16 @@ public:
     ~VotingBackPage() override;
     void onInit() override;
     void afterCalc() override;
+    void onRefocus() override;
 
     REPLACE s8 _80650b40_stub();
+    s8 getPlayerCount() { return m_playerCount; }
+    s32 getLocalVote() { return m_localVote; }
+
+    void setBattle(bool isBattle) { m_isBattle = isBattle; }
+    void setLocalVote(s32 course);
+
+    static VotingBackPage* Instance();
 
 private:
     class ServerHandler : public SP::RoomServer::Handler {
@@ -35,9 +43,23 @@ private:
         VotingBackPage &m_page;
     };
 
+    struct Packet {
+        s32 m_courseId;
+        s32 m_characterId;
+        s32 m_vehicleId;
+        bool m_driftIsAuto;
+    };
+
     MenuInputManager m_inputManager;
     ServerHandler m_serverHandler;
     ClientHandler m_clientHandler;
+    Packet m_packet[12];
+    MiiGroup m_miiGroup;
+
+    s32 m_localVote;
+    s8 m_playerCount;
+    bool m_isBattle;
+    bool m_submitted = false;
 };
 
 } // namespace UI

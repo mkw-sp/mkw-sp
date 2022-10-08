@@ -30,6 +30,8 @@ public:
 
     bool calc(Handler &handler);
 
+    inline u32 getPlayerCount() { return m_playerCount; }
+
     static void OnCreateScene();
     static void OnDestroyScene();
     static RoomServer *CreateInstance();

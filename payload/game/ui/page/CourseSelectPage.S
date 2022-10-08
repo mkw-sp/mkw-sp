@@ -37,3 +37,19 @@ PATCH_BL_END(CourseSelectPage_onActivate, 0xd0)
 PATCH_B_START(CourseSelectPage_afterCalc, 0x44)
     b CourseSelectPage_afterCalc + 0x100
 PATCH_B_END(CourseSelectPage_afterCalc, 0x44)
+
+
+
+PATCH_B_START(CourseSelectPage_onSelect, 0xf4)
+    bl _ZN2UI14VotingBackPage8InstanceEv
+    mr r4, r31
+    bl _ZN2UI14VotingBackPage12setLocalVoteEi
+    li r4, 1
+    stb r4, 0x1c2(r3)
+    mr r3, r30
+    bl PushButton_getDelay
+    mr r3, r29
+    li r4, 0
+    bl Page_startReplace
+    b CourseSelectPage_onSelect + 0x170
+PATCH_B_END(CourseSelectPage_onSelect, 0xf4)

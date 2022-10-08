@@ -1114,9 +1114,11 @@
 0x808402f4 CourseSelectPage_onInit
 0x808404a0 CourseSelectPage_onActivate
 0x8084060c CourseSelectPage_afterCalc
+0x80840830 CourseSelectPage_onSelect
 0x80840efc CupSelectPage_onInit
 0x80841110 CupSelectPage_onActivate
 0x808414b8 CupSelectPage_afterCalc
+0x80841de4 CupSelectPage_onRefocus
 0x80844d68 MachineSelectPage_onInit
 0x8084ddfc DriftSelectPage_onInit
 0x8084e388 DriftSelectPage_onButtonFront

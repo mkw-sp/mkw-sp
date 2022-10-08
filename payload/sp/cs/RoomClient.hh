@@ -34,6 +34,8 @@ public:
     void changeLocalSettings();
     bool sendVote(u32 course, std::optional<u32> characterId, std::optional<u32> vehicleId, std::optional<bool> driftIsAuto);
 
+    inline u32 getPlayerCount() { return m_playerCount; }
+
     static void OnCreateScene();
     static void OnDestroyScene();
     static RoomClient *CreateInstance(u32 localPlayerCount);

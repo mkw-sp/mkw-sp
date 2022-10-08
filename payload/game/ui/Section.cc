@@ -10,6 +10,7 @@
 #include "game/ui/VotingBackPage.hh"
 #include "game/ui/ModelRenderPage.hh"
 #include "game/ui/OnlineTopPage.hh"
+#include "game/ui/RoulettePage.hh"
 #include "game/ui/SettingsPage.hh"
 #include "game/ui/ServicePackToolsPage.hh"
 #include "game/ui/ServicePackTopPage.hh"
@@ -130,7 +131,6 @@ void Section::addPage(PageId pageId) {
         { SectionId::VotingServer, (PageId)0x6f },
         { SectionId::VotingServer, (PageId)0x88 },
         { SectionId::VotingServer, (PageId)0x91 },
-        { SectionId::VotingServer, (PageId)0x92 },
 
         // The channel section is repurposed into the Service Pack section. Remove some pages that
         // aren't needed anymore.
@@ -340,6 +340,8 @@ void Section::addActivePages(SectionId id) {
 
         { SectionId::Voting1PVS, PageId::CupSelect },
 
+        { SectionId::VotingServer, PageId::Roulette },
+
         { SectionId::OnlineServer, PageId::FriendMatching },
     };
     for (const auto &addition : additions) {
@@ -361,6 +363,8 @@ Page *Section::CreatePage(PageId pageId) {
         return new OnlineTopPage;
     case PageId::VotingBack:
         return new VotingBackPage;
+    case PageId::Roulette:
+        return new RoulettePage;
     case PageId::FriendRoomRules:
         return new FriendRoomRulesPage;
     case PageId::FriendMatching:

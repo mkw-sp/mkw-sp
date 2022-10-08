@@ -73,6 +73,10 @@ message RoomEvent {
         required uint32 gamemode = 1;
     }
 
+    message Vote {
+        required uint32 playerId = 1;
+    }
+
     oneof event {
         Join     join     = 1;
         Leave    leave    = 2;
@@ -80,5 +84,6 @@ message RoomEvent {
         Comment  comment  = 4;
         Settings settings = 5;
         Close    close    = 6;
+        Vote     vote     = 7;
     }
 }
