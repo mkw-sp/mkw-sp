@@ -2,6 +2,7 @@
 #include <sp/Payload.h>
 
 extern void DisableInstsOnMEM1Hi16MB(void);
+extern void DisableInstsOnMEM2(void);
 extern void EnableInstsOnPayload(void);
 
 void RealMode(void (*function)(void));
@@ -81,6 +82,16 @@ void OSDisableCodeExecOnMEM1Hi16MB(void) {
     BOOL enabled = OSDisableInterrupts();
     {
         RealMode(DisableInstsOnMEM1Hi16MB);
+    }
+    OSRestoreInterrupts(enabled);
+    // clang-format on
+}
+
+void OSDisableCodeExecOnMEM2(void) {
+    // clang-format off
+    BOOL enabled = OSDisableInterrupts();
+    {
+        RealMode(DisableInstsOnMEM2);
     }
     OSRestoreInterrupts(enabled);
     // clang-format on
