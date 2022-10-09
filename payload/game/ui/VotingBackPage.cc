@@ -1,5 +1,6 @@
 #include "VotingBackPage.hh"
 
+#include "game/ui/RoulettePage.hh"
 #include "game/ui/SectionManager.hh"
 
 namespace UI {
@@ -68,8 +69,18 @@ VotingBackPage::ServerHandler::ServerHandler(VotingBackPage &page) : m_page(page
 
 VotingBackPage::ServerHandler::~ServerHandler() = default;
 
+void VotingBackPage::ServerHandler::onSelect(u32 playerId) {
+    auto *roulettePage = SectionManager::Instance()->currentSection()->page<PageId::Roulette>();
+    roulettePage->setSelected(playerId);
+}
+
 VotingBackPage::ClientHandler::ClientHandler(VotingBackPage &page) : m_page(page) {}
 
 VotingBackPage::ClientHandler::~ClientHandler() = default;
+
+void VotingBackPage::ClientHandler::onSelect(u32 playerId) {
+    auto *roulettePage = SectionManager::Instance()->currentSection()->page<PageId::Roulette>();
+    roulettePage->setSelected(playerId);
+}
 
 } // namespace UI

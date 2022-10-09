@@ -26,6 +26,7 @@ public:
         virtual void onSettingsChange(
                 [[maybe_unused]] const std::array<u32, RoomSettings::count> &settings) {}
         virtual void onRoomClose([[maybe_unused]] u32 gamemode) {}
+        virtual void onSelect([[maybe_unused]] u32 playerId) {}
     };
 
     bool calc(Handler &handler);
@@ -82,6 +83,7 @@ private:
         bool writeComment(u32 playerId, u32 messageId);
         bool writeSettings();
         bool writeClose(u32 gamemode);
+        bool writeSelect(u32 playerId);
 
     private:
         enum class State {
@@ -121,7 +123,7 @@ private:
 
     std::optional<State> calcSetup();
     std::optional<State> calcMain(Handler &handler);
-    std::optional<State> calcSelect();
+    std::optional<State> calcSelect(Handler &handler);
     bool onMain(Handler &handler);
 
     bool onPlayerJoin(Handler &handler, u32 clientId, const System::RawMii *mii, u32 location,
@@ -141,13 +143,16 @@ private:
     void writeComment(u32 playerId, u32 messageId);
     void writeSettings();
     void writeClose(u32 gamemode);
+    void writeSelect(u32 playerId);
 
     CircularBuffer<Comment, 18> m_commentQueue;
     u32 m_commentTimer = 0;
     bool m_settingsChanged = false;
     bool m_roomClosed = false;
+    bool m_voteEvent = false;
     s32 m_gamemode = -1;
     u32 m_playerCount = 0;
+    bool m_voted[12] = {};
     std::array<Player, 12> m_players;
     State m_state;
     CircularBuffer<u32, 12> m_disconnectQueue;

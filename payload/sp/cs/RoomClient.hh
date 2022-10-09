@@ -26,6 +26,7 @@ public:
         virtual void onSettingsChange(
                 [[maybe_unused]] const std::array<u32, RoomSettings::count> &settings) {}
         virtual void onRoomClose([[maybe_unused]] u32 gamemode) {}
+        virtual void onSelect([[maybe_unused]] u32 playerId) {}
     };
 
     bool calc(Handler &handler);

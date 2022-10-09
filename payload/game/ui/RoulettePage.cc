@@ -82,7 +82,6 @@ void RoulettePage::beforeInAnim() {
 void RoulettePage::beforeCalc() {
     if (m_stage == Stage::Waiting) {
         if (frame() % 5 == 0) {
-            // FIXME: We enter this block every frame ... Section::calc() gone wrong?
             for (u8 i = 0; i < 12; i++) {
                 if (calcPlayer(i)) {
                     break;
@@ -155,7 +154,10 @@ bool RoulettePage::calcPlayer(u8 playerIdx) {
         return false;
     }
 
-    // TODO: add "submitted" check from RoomClient
+    // OPTIMIZE: we probably don't need this boolean array
+    if (!m_selected[playerIdx]) {
+        return false;
+    }
 
     m_voteControl[playerIdx].onNewVote();
     m_playerOrder[playerIdx] = m_currentPlayerIdx;

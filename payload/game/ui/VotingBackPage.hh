@@ -30,6 +30,8 @@ private:
         ServerHandler(VotingBackPage &page);
         ~ServerHandler();
 
+        void onSelect(u32 playerId) override;
+
     private:
         VotingBackPage &m_page;
     };
@@ -38,6 +40,8 @@ private:
     public:
         ClientHandler(VotingBackPage &page);
         ~ClientHandler();
+
+        void onSelect(u32 playerId) override;
 
     private:
         VotingBackPage &m_page;

@@ -75,8 +75,15 @@ message RoomEvent {
         required uint32 gamemode = 1;
     }
 
-    message Vote {
+    message Select {
         required uint32 playerId = 1;
+    }
+
+    message Vote {
+        required uint32 course    = 1;
+        required uint32 character = 2;
+        required uint32 vehicle   = 3;
+        required bool   driftType = 4;
     }
 
     oneof event {
@@ -86,6 +93,7 @@ message RoomEvent {
         Comment  comment  = 4;
         Settings settings = 5;
         Close    close    = 6;
-        Vote     vote     = 7;
+        Select   select   = 7;
+        Vote     vote     = 8;
     }
 }

@@ -130,7 +130,7 @@ std::optional<RoomServer::State> RoomServer::resolve(Handler &handler) {
     case State::Main:
         return calcMain(handler);
     case State::Select:
-        break;
+        return calcSelect(handler);
     }
 
     return m_state;
@@ -195,7 +195,18 @@ std::optional<RoomServer::State> RoomServer::calcMain(Handler &handler) {
     return state;
 }
 
-std::optional<RoomServer::State> RoomServer::calcSelect() {
+std::optional<RoomServer::State> RoomServer::calcSelect(Handler &handler) {
+    // OPTIMIZE: we probably don't need this boolean array
+    if (m_voteEvent) {
+        for (u8 i = 0; i < 12; i++) {
+            if (m_voted[i]) {
+                writeSelect(i);
+                handler.onSelect(i);
+                m_voted[i] = false;
+                break;
+            }
+        }
+    }
     return State::Select;
 }
 
@@ -269,7 +280,13 @@ bool RoomServer::onReceiveVote(u32 playerId, u32 course, std::optional<PlayerPro
     if (playerId >= m_playerCount) { return false; }
     // Course validation
 
-    if (properties) { return validateProperties(playerId, *properties); }
+    if (properties) {
+        if (!validateProperties(playerId, *properties)) {
+            return false; 
+        }
+    }
+
+    m_voted[playerId] = true;
     return true;
 }
 
@@ -338,6 +355,16 @@ void RoomServer::writeClose(u32 gamemode) {
     for (size_t i = 0; i < m_clients.size(); i++) {
         if (m_clients[i] && m_clients[i]->ready()) {
             if (!m_clients[i]->writeClose(gamemode)) {
+                disconnectClient(i);
+            }
+        }
+    }
+}
+
+void RoomServer::writeSelect(u32 playerId) {
+    for (size_t i = 0; i < m_clients.size(); i++) {
+        if (m_clients[i] && m_clients[i]->ready()) {
+            if (!m_clients[i]->writeSelect(playerId)) {
                 disconnectClient(i);
             }
         }
@@ -437,6 +464,13 @@ bool RoomServer::Client::writeClose(u32 gamemode) {
     RoomEvent event;
     event.which_event = RoomEvent_close_tag;
     event.event.close.gamemode = gamemode;
+    return write(event);
+}
+
+bool RoomServer::Client::writeSelect(u32 playerId) {
+    RoomEvent event;
+    event.which_event = RoomEvent_select_tag;
+    event.event.select.playerId = playerId;
     return write(event);
 }
 
@@ -611,6 +645,7 @@ std::optional<RoomServer::Client::State> RoomServer::Client::calcSelect(Handler 
         if (!m_server.onReceiveVote(*playerId, request->request.vote.course, properties)) {
             return {};
         }
+        m_server.m_voteEvent = true;
         return State::Select;
     default:
         return {};
