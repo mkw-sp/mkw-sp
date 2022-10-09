@@ -1115,6 +1115,7 @@ code_in_files = {
         os.path.join('payload', 'game', 'ui', 'GhostManagerPage.cc'),
         os.path.join('payload', 'game', 'ui', 'GhostSelectButton.cc'),
         os.path.join('payload', 'game', 'ui', 'GhostSelectControl.cc'),
+        os.path.join('payload', 'game', 'ui', 'GlobePage.S'),
         os.path.join('payload', 'game', 'ui', 'Layout.S'),
         os.path.join('payload', 'game', 'ui', 'License.S'),
         os.path.join('payload', 'game', 'ui', 'License.c'),
