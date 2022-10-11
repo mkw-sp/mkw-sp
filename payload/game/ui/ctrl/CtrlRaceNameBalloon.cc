@@ -7,6 +7,8 @@
 #include "game/ui/page/RacePage.hh"
 #include "game/util/Registry.hh"
 
+extern float playerTagRenderDistance;
+
 namespace UI {
 
 void CtrlRaceNameBalloon::calcVisibility() {
@@ -174,9 +176,16 @@ void BalloonManager::addNameControl(CtrlRaceNameBalloon *UNUSED(nameControl)) {
 }
 
 void BalloonManager::calc() {
+    auto *saveManager = System::SaveManager::Instance();
+
+    SP::ClientSettings::FarPlayerTags farPlayerTags =
+            saveManager->getSetting<SP::ClientSettings::Setting::FarPlayerTags>();
+    float newPlayerTagRenderDistance =
+            7500 * (farPlayerTags == SP::ClientSettings::FarPlayerTags::Disable ? 1 : 10);
+    playerTagRenderDistance = newPlayerTagRenderDistance;
+
     const auto &raceScenario = System::RaceConfig::Instance()->raceScenario();
     if (raceScenario.gameMode != System::RaceConfig::GameMode::TimeAttack) {
-        auto *saveManager = System::SaveManager::Instance();
         u32 totalNameCount = saveManager->getSetting<SP::ClientSettings::Setting::PlayerTags>();
         u32 localPlayerCount = raceScenario.localPlayerCount;
         if (localPlayerCount == 0) {

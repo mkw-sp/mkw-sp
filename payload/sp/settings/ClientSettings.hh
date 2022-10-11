@@ -11,6 +11,7 @@ enum class Setting {
     SimplifiedControls,
     FOV169,
     RegionLineColor,
+    FarPlayerTags,
     PlayerTags,
     HUDLabels,
     HUDTeamColors,
@@ -93,6 +94,11 @@ enum class RegionLineColor {
     Yellow,
     White,
     Pink,
+};
+
+enum class FarPlayerTags {
+    Disable,
+    Enable,
 };
 
 enum class HUDLabels {
@@ -305,6 +311,11 @@ struct Helper<ClientSettings::Setting, ClientSettings::Setting::FOV169> {
 template <>
 struct Helper<ClientSettings::Setting, ClientSettings::Setting::RegionLineColor> {
     using type = SP::ClientSettings::RegionLineColor;
+};
+
+template <>
+struct Helper<ClientSettings::Setting, ClientSettings::Setting::FarPlayerTags> {
+    using type = SP::ClientSettings::FarPlayerTags;
 };
 
 template <>

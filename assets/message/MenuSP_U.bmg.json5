@@ -1067,6 +1067,26 @@
         "font": "regular",
         "string": "Use Y (GCN) or ZL (CC/CCP) only to trick or wheelie.",
     },
+    "10308": {
+        "font": "regular",
+        "string": "Far Player Tags",
+    },
+    "10309": {
+        "font": "regular",
+        "string": "Disable",
+    },
+    "10310": {
+        "font": "regular",
+        "string": "Enable",
+    },
+    "10311": {
+        "font": "regular",
+        "string": "Use the default render distance of player tags.",
+    },
+    "10312": {
+        "font": "regular",
+        "string": "Increase the render distance of player tags.",
+    },
     "20000": {
         "font": "regular",
         "string": "Online",
