@@ -209,8 +209,3 @@ PATCH_REPLACE_END(BalloonManager_calc, 0x4ec)
 PATCH_REPLACE_START(BalloonManager_calc, 0x128)
     li r0, 300
 PATCH_REPLACE_END(BalloonManager_calc, 0x128)
-
-// Always use the battle maximum distance
-PATCH_REPLACE_START(CtrlRaceNameBalloon_load, 0x17c)
-    nop
-PATCH_REPLACE_END(CtrlRaceNameBalloon_load, 0x17c)
