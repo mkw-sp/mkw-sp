@@ -630,8 +630,9 @@ parser.add_argument('out_path')
 parser.add_argument('--base', action='store_true')
 args = parser.parse_args()
 
-if args.region != 'P' and args.region != 'E' and args.region != 'J' and args.region != 'K':
-    sys.exit(f'The specified region \'{args.region}\' is invalid! Valid regions include: P, E, J, and K!')
+validRegionList = ['P', 'E', 'J', 'K']
+if args.region not in validRegionList:
+    sys.exit(f'The specified region \'{args.region}\' is invalid! Valid regions include: {", ".join(validRegionList)}!')
 
 with open(args.out_path, 'w') as out_file:
     out_file.write('SECTIONS {\n')
