@@ -196,7 +196,6 @@ std::optional<RoomServer::State> RoomServer::calcMain(Handler &handler) {
 }
 
 std::optional<RoomServer::State> RoomServer::calcSelect(Handler &handler) {
-    // OPTIMIZE: we probably don't need this boolean array
     if (m_voteEvent) {
         for (u8 i = 0; i < 12; i++) {
             if (m_voted[i]) {
@@ -206,7 +205,9 @@ std::optional<RoomServer::State> RoomServer::calcSelect(Handler &handler) {
                 break;
             }
         }
+        m_voteEvent = false;
     }
+
     return State::Select;
 }
 

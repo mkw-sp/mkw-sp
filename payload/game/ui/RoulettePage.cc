@@ -154,8 +154,7 @@ bool RoulettePage::calcPlayer(u8 playerIdx) {
         return false;
     }
 
-    // OPTIMIZE: we probably don't need this boolean array
-    if (!m_selected[playerIdx]) {
+    if (!votingBackPage->hasSelected(playerIdx)) {
         return false;
     }
 

@@ -16,6 +16,7 @@ public:
     void onRefocus() override;
 
     REPLACE s8 _80650b40_stub();
+    bool hasSelected(u8 playerIdx) { return m_selected[playerIdx]; }
     s8 getPlayerCount() { return m_playerCount; }
     s32 getLocalVote() { return m_localVote; }
 
@@ -61,6 +62,7 @@ private:
     MiiGroup m_miiGroup;
 
     s32 m_localVote;
+    bool m_selected[12];
     s8 m_playerCount;
     bool m_isBattle;
     bool m_submitted = false;

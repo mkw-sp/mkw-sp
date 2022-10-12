@@ -39,7 +39,7 @@ PATCH_BL_START(CupSelectPage_onRefocus, 0x1c)
     lwz r29, 0x23d8(r3) // Original instruction
 
     bl _ZN2UI14VotingBackPage8InstanceEv
-    lbz r0, 0x1c2(r3)
+    lbz r0, 0x1ce(r3)
     mr r3, r31
     cmpwi r0,0
     beq end

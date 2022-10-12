@@ -77,6 +77,7 @@ private:
     bool onPlayerLeave(Handler &handler, u32 playerId);
     bool onReceiveComment(Handler &handler, u32 playerId, u32 messageId);
     bool onRoomClose(Handler &handler, u32 gamemode);
+    bool onSelect(Handler &handler, u32 playerId);
 
     bool read(std::optional<RoomEvent> &event);
     bool writeJoin();

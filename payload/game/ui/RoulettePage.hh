@@ -14,8 +14,6 @@ public:
     void beforeInAnim() override;
     void beforeCalc() override;
 
-    void setSelected(u8 playerIdx) { m_selected[playerIdx] = true; }
-
 private:
     bool calcPlayer(u8 playerIdx);
     void calcElements();
@@ -46,7 +44,6 @@ private:
     f32 m_timeDelta;
     s32 m_hoverPlayerIdx = -1;
     s8 m_playerOrder[12];
-    bool m_selected[12];
     s8 m_currentPlayerIdx = 0;
     s8 m_selectedPlayer = 0;
     u8 m_delay;

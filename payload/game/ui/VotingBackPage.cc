@@ -70,8 +70,7 @@ VotingBackPage::ServerHandler::ServerHandler(VotingBackPage &page) : m_page(page
 VotingBackPage::ServerHandler::~ServerHandler() = default;
 
 void VotingBackPage::ServerHandler::onSelect(u32 playerId) {
-    auto *roulettePage = SectionManager::Instance()->currentSection()->page<PageId::Roulette>();
-    roulettePage->setSelected(playerId);
+    m_page.m_selected[playerId] = true;
 }
 
 VotingBackPage::ClientHandler::ClientHandler(VotingBackPage &page) : m_page(page) {}
@@ -79,8 +78,7 @@ VotingBackPage::ClientHandler::ClientHandler(VotingBackPage &page) : m_page(page
 VotingBackPage::ClientHandler::~ClientHandler() = default;
 
 void VotingBackPage::ClientHandler::onSelect(u32 playerId) {
-    auto *roulettePage = SectionManager::Instance()->currentSection()->page<PageId::Roulette>();
-    roulettePage->setSelected(playerId);
+    m_page.m_selected[playerId] = true;
 }
 
 } // namespace UI

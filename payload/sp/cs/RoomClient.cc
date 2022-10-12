@@ -118,7 +118,7 @@ std::optional<RoomClient::State> RoomClient::resolve(Handler &handler) {
     case State::Main:
         return calcMain(handler);
     case State::Select:
-        break;
+        return calcSelect(handler);
     }
 
     return m_state;
@@ -276,6 +276,11 @@ std::optional<RoomClient::State> RoomClient::calcSelect(Handler &handler) {
     }
 
     switch (event->which_event) {
+    case RoomEvent_select_tag:
+        if (!onSelect(handler, event->event.select.playerId)) {
+            return {};
+        }
+        return State::Select;
     default:
         return State::Select;
     }
@@ -348,6 +353,12 @@ bool RoomClient::onReceiveComment(Handler &handler, u32 playerId, u32 messageId)
 bool RoomClient::onRoomClose(Handler &handler, u32 gamemode) {
     if (gamemode >= 4) { return false; }
     handler.onRoomClose(gamemode);
+    return true;
+}
+
+bool RoomClient::onSelect(Handler &handler, u32 playerId) {
+    if (playerId >= m_playerCount) { return false; }
+    handler.onSelect(playerId);
     return true;
 }
 
