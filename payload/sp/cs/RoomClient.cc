@@ -281,6 +281,11 @@ std::optional<RoomClient::State> RoomClient::calcSelect(Handler &handler) {
             return {};
         }
         return State::Select;
+    case RoomEvent_vote_tag:
+        if (!onReceiveVote(handler, *event)) {
+            return {};
+        }
+        return State::Select;
     default:
         return State::Select;
     }
@@ -359,6 +364,16 @@ bool RoomClient::onRoomClose(Handler &handler, u32 gamemode) {
 bool RoomClient::onSelect(Handler &handler, u32 playerId) {
     if (playerId >= m_playerCount) { return false; }
     handler.onSelect(playerId);
+    return true;
+}
+
+bool RoomClient::onReceiveVote(Handler &handler, RoomEvent event) {
+    for (u8 i = 0; i < event.event.vote.playerProperties_count; i++) {
+        RoomEvent_Properties &properties = event.event.vote.playerProperties[i];
+        m_players[i].courseId = properties.course;
+        m_players[i].properties = { properties.character, properties.vehicle, properties.driftType };
+        handler.onReceiveVote(i, properties.course, event.event.vote.selectedPlayer);
+    }
     return true;
 }
 

@@ -27,6 +27,7 @@ public:
                 [[maybe_unused]] const std::array<u32, RoomSettings::count> &settings) {}
         virtual void onRoomClose([[maybe_unused]] u32 gamemode) {}
         virtual void onSelect([[maybe_unused]] u32 playerId) {}
+        virtual void onReceiveVote([[maybe_unused]] u32 playerId, [[maybe_unused]] s32 course, [[maybe_unused]] u32 selectedPlayer) {}
     };
 
     bool calc(Handler &handler);
@@ -48,6 +49,11 @@ private:
         u32 characterId;
         u32 vehicleId;
         bool driftIsAuto;
+    };
+
+    struct Player {
+        PlayerProperties properties;
+        u32 courseId;
     };
 
     enum class State {
@@ -78,6 +84,7 @@ private:
     bool onReceiveComment(Handler &handler, u32 playerId, u32 messageId);
     bool onRoomClose(Handler &handler, u32 gamemode);
     bool onSelect(Handler &handler, u32 playerId);
+    bool onReceiveVote(Handler &handler, RoomEvent event);
 
     bool read(std::optional<RoomEvent> &event);
     bool writeJoin();
@@ -92,6 +99,7 @@ private:
     bool m_localSettingsChanged = false;
     u32 m_playerCount = 0;
     std::array<u32, RoomSettings::count> m_settings;
+    std::array<Player, 12> m_players;
     State m_state;
     Net::AsyncSocket m_socket;
 

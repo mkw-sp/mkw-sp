@@ -14,6 +14,8 @@ public:
     void beforeInAnim() override;
     void beforeCalc() override;
 
+    void initSelectingStage(u32 selectedPlayer);
+
 private:
     bool calcPlayer(u8 playerIdx);
     void calcElements();

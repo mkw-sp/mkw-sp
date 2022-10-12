@@ -59,7 +59,7 @@ private:
         u32 longitude;
         u32 regionLineColor;
         u32 course;
-        std::optional<PlayerProperties> properties;
+        PlayerProperties properties;
         std::array<u32, RoomSettings::count> m_settings;
     };
 
@@ -84,6 +84,7 @@ private:
         bool writeSettings();
         bool writeClose(u32 gamemode);
         bool writeSelect(u32 playerId);
+        bool writeVote(u32 selectedPlayer);
 
     private:
         enum class State {
@@ -144,6 +145,7 @@ private:
     void writeSettings();
     void writeClose(u32 gamemode);
     void writeSelect(u32 playerId);
+    void writeVote(u32 selectedPlayer);
 
     CircularBuffer<Comment, 18> m_commentQueue;
     u32 m_commentTimer = 0;
@@ -153,6 +155,7 @@ private:
     s32 m_gamemode = -1;
     u32 m_playerCount = 0;
     bool m_voted[12] = {};
+    u8 m_voteCount = 0;
     std::array<Player, 12> m_players;
     State m_state;
     CircularBuffer<u32, 12> m_disconnectQueue;

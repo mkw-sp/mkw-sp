@@ -144,6 +144,19 @@ void RoulettePage::beforeCalc() {
     }
 }
 
+void RoulettePage::initSelectingStage(u32 selectedPlayer) {
+    auto *votingBackPage = SectionManager::Instance()->currentSection()->page<PageId::VotingBack>();
+    for (u8 i = 0; i < votingBackPage->getPlayerCount(); i++) {
+        m_voteControl[i].setMessageAll(votingBackPage->getCourseVote(i) + 9300, nullptr);
+    }
+
+    m_timeDelta = 0.3;
+    m_timeTotal = 0.0;
+    m_hoverPlayerIdx = 0;
+    m_selectedPlayer = selectedPlayer;
+    m_stage = Stage::Selecting;
+}
+
 bool RoulettePage::calcPlayer(u8 playerIdx) {
     auto *votingBackPage = SectionManager::Instance()->currentSection()->page<PageId::VotingBack>();
     if (playerIdx >= votingBackPage->getPlayerCount()) {

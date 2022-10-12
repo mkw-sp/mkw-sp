@@ -81,4 +81,12 @@ void VotingBackPage::ClientHandler::onSelect(u32 playerId) {
     m_page.m_selected[playerId] = true;
 }
 
+void VotingBackPage::ClientHandler::onReceiveVote(u32 playerId, s32 course, u32 selectedPlayer) {
+    m_page.m_courseVotes[playerId] = course;
+    if (playerId + 1 == m_page.m_playerCount) {
+        auto *roulettePage = SectionManager::Instance()->currentSection()->page<PageId::Roulette>();
+        roulettePage->initSelectingStage(selectedPlayer);
+    }
+}
+
 } // namespace UI
