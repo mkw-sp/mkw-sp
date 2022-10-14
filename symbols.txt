@@ -1235,6 +1235,7 @@
 0x808d3698 s_CtrlMenuInstructionText_vt
 0x808d36d4 s_CtrlMenuPageTitleText_vt
 0x808d374c s_CtrlMenuBackButton_vt
+0x808D3E14 playerTagRenderDistance
 0x808da318 vsRuleDescIds
 
 0x809bd70c s_inputManager
