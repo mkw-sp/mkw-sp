@@ -54,7 +54,7 @@ void RaceMenuPage::onNextButtonFront([[maybe_unused]] PushButton *button,
     if (IsLastMatch()) {
         bool isWin = false;
         for (u32 playerId = 0; playerId < menuScenario.localPlayerCount; playerId++) {
-            u32 threshold = menuScenario.spMaxTeamSize;
+            u32 threshold = menuScenario.spMaxTeamSize * (1 + menuScenario.draw);
             if (threshold == 1) {
                 threshold = 3;
             }
@@ -64,7 +64,7 @@ void RaceMenuPage::onNextButtonFront([[maybe_unused]] PushButton *button,
         }
         if (menuScenario.spMaxTeamSize >= 2 && menuScenario.draw) {
             if (!isWin) {
-                menuScenario.draw = false;
+                menuScenario.draw = 0;
             }
             isWin = false;
         }
