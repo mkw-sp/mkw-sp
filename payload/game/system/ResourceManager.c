@@ -15,7 +15,7 @@ static void CourseCache_init(CourseCache *self) {
     if (!self->heap) {
         assert(!self->buffer);
         EGG_Heap *heap = s_rootScene->heapCollection.heaps[HEAP_ID_MEM2];
-        self->buffer = spAlloc(0xb00000 /* 11 MiB */, -0x20, heap);
+        self->buffer = EGG_Heap_alloc(0xb00000 /* 11 MiB */, -0x20, heap);
         self->heap = &EGG_ExpHeap_create2(self->buffer, 0xb00000, 1)->base;
         self->state = COURSE_CACHE_STATE_CLEARED;
     }
@@ -94,7 +94,8 @@ MultiDvdArchive *my_ResourceManager_loadMission(ResourceManager *self, u32 cours
     // Load coursecache's multi(which contains the track) into ResourceManager's multi
     MultiDvdArchive_loadOther(multi, self->courseCache.multi, heap);
 
-    // Load all archives (the one in coursecache is already loaded so this only serves to load the mission szs file)
+    // Load all archives (the one in coursecache is already loaded so this only serves to load the
+    // mission szs file)
     MultiDvdArchive_load(multi, "", heap, heap, 0);
 
     // Clear courseCache as the data inside is no longer needed
@@ -138,7 +139,7 @@ static void ResourceManager_initGlobeHeap(ResourceManager *self) {
     if (!self->globeHeap) {
         EGG_Heap *heap = s_rootScene->heapCollection.heaps[HEAP_ID_MEM2];
         size_t size = OSRoundUp32B(0x107d080 + 0x20400);
-        void *buffer = spAlloc(size, -0x20, heap);
+        void *buffer = EGG_Heap_alloc(size, -0x20, heap);
         self->globeHeap = &EGG_ExpHeap_create2(buffer, size, 1)->base;
     }
 }
