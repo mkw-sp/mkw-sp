@@ -155,7 +155,7 @@
             "translation z 4:3": 0.0,
             "scale x 4:3": 1.0,
             "scale y 4:3": 1.0,
-            "translation x 16:9": 150.0,
+            "translation x 16:9": -150.0,
             "translation y 16:9": -75.0,
             "translation z 16:9": 0.0,
             "scale x 16:9": 1.0,
