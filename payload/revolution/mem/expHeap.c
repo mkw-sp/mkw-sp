@@ -1,5 +1,15 @@
 #include "expHeap.h"
 
+void *REPLACED(MEMAllocFromExpHeapEx)(MEMHeapHandle heap, u32 size, int align);
+REPLACE void *MEMAllocFromExpHeapEx(MEMHeapHandle heap, u32 size, int align) {
+    void *memBlock = REPLACED(MEMAllocFromExpHeapEx)(heap, size, align);
+    if (!memBlock) {
+        panic("Out of memory!");
+        __builtin_unreachable();
+    }
+    return memBlock;
+}
+
 BOOL MEMExIsAllocatedFromExpHeap(MEMHeapHandle heap, const void *memBlock) {
     MEMiExpHeapHead *heapHead = (MEMiExpHeapHead *)(heap + 1);
     for (MEMiExpHeapMBlockHead *blockHead = heapHead->mbFreeList.head; blockHead;
