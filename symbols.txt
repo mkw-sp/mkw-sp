@@ -132,7 +132,6 @@
 
 0x80131800 BTA_Init
 0x80131980 btu_task_msg_handler
-
 0x8014F974 l2cu_find_ccb_by_cid
 
 0x8015df4c DVDConvertPathToEntrynum
