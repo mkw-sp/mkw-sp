@@ -1229,6 +1229,7 @@ code_in_files = {
         os.path.join('payload', 'revolution', 'arc.S'),
         os.path.join('payload', 'revolution', 'arc.c'),
         os.path.join('payload', 'revolution', 'ax.c'),
+        os.path.join('payload', 'revolution', 'bte', 'l2c_utils.S'),
         os.path.join('payload', 'revolution', 'dvd.c'),
         os.path.join('payload', 'revolution', 'es.c'),
         os.path.join('payload', 'revolution', 'exi.c'),
