@@ -17,6 +17,7 @@ extern "C" {
 }
 #include "sp/net/Net.hh"
 extern "C" {
+#include "sp/security/Function.h"
 #include "sp/security/Heap.h"
 #include "sp/security/Memory.h"
 #include "sp/security/Stack.h"
@@ -84,6 +85,8 @@ static void Init() {
 
     Heap_RandomizeMEM1Heaps();
     Heap_RandomizeMEM2Heaps();
+
+    Function_KillBlacklistedFunctions();
 
     Memory_ProtectRangeModule(OS_PROTECT_CHANNEL_1, Dol_getInitSectionStart(),
             Dol_getRodataSectionEnd(), OS_PROTECT_PERMISSION_READ);

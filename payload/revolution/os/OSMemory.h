@@ -16,6 +16,10 @@
 
 void OSProtectRange(u32 channel, void *address, u32 size, u32 permissions);
 
+void BATConfig(void);
+
 void OSDisableCodeExecOnMEM1Hi16MB(void);
 void OSDisableCodeExecOnMEM2(void);
 void OSEnableCodeExecOnPayload(void);
+
+void __OSInitMemoryProtection(void);

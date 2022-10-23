@@ -1283,6 +1283,7 @@ code_in_files = {
         os.path.join('payload', 'sp', 'net', 'AsyncSocket.cc'),
         os.path.join('payload', 'sp', 'net', 'Net.cc'),
         os.path.join('payload', 'sp', 'net', 'SyncSocket.cc'),
+        os.path.join('payload', 'sp', 'security', 'Function.c'),
         os.path.join('payload', 'sp', 'security', 'Heap.c'),
         os.path.join('payload', 'sp', 'security', 'Memory.c'),
         os.path.join('payload', 'sp', 'security', 'Stack.S'),

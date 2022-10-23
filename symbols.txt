@@ -264,6 +264,8 @@
 0x801a75dc OSGetPhysicalMem2Size
 0x801A7684 OSProtectRange
 0x801A7C94 RealMode
+0x801A7CAC BATConfig
+0x801A7DFC __OSInitMemoryProtection
 0x801a7eac OSInitMutex
 0x801a7ee4 OSLockMutex
 0x801a7fc0 OSUnlockMutex
