@@ -156,6 +156,7 @@ private:
     u32 m_playerCount = 0;
     bool m_voted[12] = {};
     u8 m_voteCount = 0;
+    s8 m_voteDelay = 15;
     std::array<Player, 12> m_players;
     State m_state;
     CircularBuffer<u32, 12> m_disconnectQueue;

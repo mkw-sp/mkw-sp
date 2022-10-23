@@ -218,8 +218,11 @@ std::optional<RoomServer::State> RoomServer::calcSelect(Handler &handler) {
     }
 
     if (m_voteCount == m_playerCount) {
+        if (m_voteDelay != 0) { m_voteDelay--; return State::Select; }
         u32 selectedPlayer = hydro_random_uniform(m_playerCount);
         writeVote(selectedPlayer);
+        // HACK: need this condition to reset
+        m_voteCount = 0;
         // NOTE: We will use the server handler to transition to the race section here
     }
 
@@ -304,7 +307,8 @@ bool RoomServer::onReceiveVote(u32 playerId, u32 course,
     if (playerId >= m_playerCount) {
         return false;
     }
-    // Course validation
+    // TODO: Course validation
+    m_players[playerId].course = course;
 
     if (properties) {
         if (!validateProperties(playerId, *properties)) {
