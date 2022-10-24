@@ -181,7 +181,7 @@ void BalloonManager::calc() {
     SP::ClientSettings::FarPlayerTags farPlayerTags =
             saveManager->getSetting<SP::ClientSettings::Setting::FarPlayerTags>();
     float newPlayerTagRenderDistance =
-            7500 * (farPlayerTags == SP::ClientSettings::FarPlayerTags::Disable ? 1 : 10);
+            7500.0f * (farPlayerTags == SP::ClientSettings::FarPlayerTags::Disable ? 1 : 10);
     playerTagRenderDistance = newPlayerTagRenderDistance;
 
     const auto &raceScenario = System::RaceConfig::Instance()->raceScenario();
