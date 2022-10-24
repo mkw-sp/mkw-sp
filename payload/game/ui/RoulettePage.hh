@@ -33,7 +33,7 @@ private:
         void initSelf() override;
         void calcSelf() override;
 
-        void onNewVote();
+        void onNewVote(MiiGroup *miiGroup, u8 playerIdx);
     };
 
     MenuInputManager m_inputManager;

@@ -37,6 +37,7 @@ public:
     bool sendVote(u32 course, std::optional<u32> characterId, std::optional<u32> vehicleId, std::optional<bool> driftIsAuto);
 
     inline u32 getPlayerCount() { return m_playerCount; }
+    inline System::RawMii *getPlayerMii(u8 i) { return &m_players[i].mii; }
 
     static void OnCreateScene();
     static void OnDestroyScene();
@@ -52,6 +53,7 @@ private:
     };
 
     struct Player {
+        System::RawMii mii;
         PlayerProperties properties;
         u32 courseId;
     };

@@ -329,6 +329,7 @@ bool RoomClient::onPlayerJoin(Handler &handler, const System::RawMii *mii, u32 l
         return false;
     }
 
+    m_players[m_playerCount].mii = *mii;
     m_playerCount++;
     handler.onPlayerJoin(mii, location, latitude, longitude, regionLineColor);
     return true;

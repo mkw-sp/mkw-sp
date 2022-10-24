@@ -20,11 +20,16 @@ void VotingBackPage::onInit() {
     if (sectionId == SectionId::VotingServer) {
         auto *server = SP::RoomServer::Instance();
         assert(server);
+
         m_playerCount = server->getPlayerCount();
     } else {
         auto *client = SP::RoomClient::Instance();
         assert(client);
+
         m_playerCount = client->getPlayerCount();
+        for (u8 i = 0; i < m_playerCount; i++) {
+            m_miiGroup.insertFromRaw(i, client->getPlayerMii(i));
+        }
     }
 
     // TODO: we need to sync player order here

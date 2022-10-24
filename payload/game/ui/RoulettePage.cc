@@ -172,7 +172,7 @@ bool RoulettePage::calcPlayer(u8 playerIdx) {
         return false;
     }
 
-    m_voteControl[m_currentPlayerIdx].onNewVote();
+    m_voteControl[m_currentPlayerIdx].onNewVote(votingBackPage->getMiiGroup(), playerIdx);
     m_playerOrder[playerIdx] = m_currentPlayerIdx;
     m_currentPlayerIdx++;
     return true;
@@ -209,8 +209,10 @@ void RoulettePage::VoteControl::initSelf() {
 
 void RoulettePage::VoteControl::calcSelf() {}
 
-void RoulettePage::VoteControl::onNewVote() {
-    // TODO: set Mii picture
+void RoulettePage::VoteControl::onNewVote(MiiGroup *miiGroup, u8 playerIdx) {
+    setMiiPicture("chara_icon", miiGroup, playerIdx, 2);
+    setMiiPicture("chara_icon_sha", miiGroup, playerIdx, 2);
+
     setAnimation(2, 0, 0.0);
     setAnimation(3, 0, 0.0);
     setAnimation(1, 1, 0.0);

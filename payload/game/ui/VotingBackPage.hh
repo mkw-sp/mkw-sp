@@ -29,6 +29,8 @@ public:
         return m_courseVotes[playerIdx];
     }
 
+    MiiGroup *getMiiGroup() { return &m_miiGroup; }
+
     void setBattle(bool isBattle) {
         m_isBattle = isBattle;
     }
