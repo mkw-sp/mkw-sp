@@ -24,6 +24,8 @@ static_assert(sizeof(MEMiExpHeapHead) == 0x14);
 
 typedef void (*MEMHeapVisitor)(void *memBlock, MEMHeapHandle heap, u32 userParam);
 
+void *MEMAllocFromExpHeapEx(MEMHeapHandle heap, u32 size, int align);
+
 void MEMFreeToExpHeap(MEMHeapHandle heap, void *memBlock);
 
 void MEMVisitAllocatedForExpHeap(MEMHeapHandle heap, MEMHeapVisitor visitor, u32 userParam);

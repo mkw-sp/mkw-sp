@@ -132,6 +132,7 @@
 
 0x80131800 BTA_Init
 0x80131980 btu_task_msg_handler
+0x8014F974 l2cu_find_ccb_by_cid
 
 0x8015df4c DVDConvertPathToEntrynum
 0x8015e254 DVDFastOpen
@@ -204,8 +205,11 @@
 0x80194290 IOS_Ioctl
 0x801945E0 IOS_Ioctlv
 0x80198658 MEMFindContainHeap
+0x80198D88 MEMAllocFromExpHeapEx
 0x80199038 MEMFreeToExpHeap
 0x801992A8 MEMVisitAllocatedForExpHeap
+0x801994E4 MEMAllocFromFrmHeapEx
+0x80199A30 MEMAllocFromUnitHeap
 0x80199D04 PSMTXIdentity
 0x8019AB4C C_MTXOrtho
 0x8019ac68 PSVECMag
@@ -260,6 +264,8 @@
 0x801a75dc OSGetPhysicalMem2Size
 0x801A7684 OSProtectRange
 0x801A7C94 RealMode
+0x801A7CAC BATConfig
+0x801A7DFC __OSInitMemoryProtection
 0x801a7eac OSInitMutex
 0x801a7ee4 OSLockMutex
 0x801a7fc0 OSUnlockMutex

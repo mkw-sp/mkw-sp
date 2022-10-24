@@ -70,8 +70,8 @@ public:
         u8 _27;
         u8 spMaxTeamSize : 3;
         bool mirrorRng : 1;
-        bool draw : 1;
-        u32 _ : 25;
+        u32 draw : 3;
+        u32 _ : 23;
         bool teams : 1;
         bool mirror : 1;
         u8 _b74[0xbec - 0xb74];

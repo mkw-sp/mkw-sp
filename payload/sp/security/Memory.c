@@ -1,20 +1,17 @@
 #include "Memory.h"
 
 #include <revolution/os.h>
-#include <stdint.h>
 
-void Memory_ProtectRangeModule(u32 channel, void* start, void* end, u32 permissions)
-{
-    assert(!(channel > OS_PROTECT_CHANNEL_3));
-    assert(!(permissions & ~OS_PROTECT_PERMISSION_RW));
+void Memory_ProtectRange(u32 channel, void *start, void *end, u32 permissions) {
+    char *startAddress = (char *)MemoryRoundUp1024B(start);
+    char *endAddress = (char *)MemoryRoundDown1024B(end);
+    permissions &= OS_PROTECT_PERMISSION_RW;
 
-    u32* start_address = (u32*)MemoryRoundUp1024B(start);
-    u32* end_address = (u32*)MemoryRoundDown1024B(end);
+    assert(channel <= OS_PROTECT_CHANNEL_3);
+    assert(startAddress < endAddress);
 
-    assert(!(end_address <= start_address));
-
-    OSReport("[MEM] OSProtectRange: 0x%08X - 0x%08X [CHAN: %u | PERMS: %c%c]\n", (u32)start_address, (u32)end_address, channel,
-                                                                                 (permissions & OS_PROTECT_PERMISSION_READ ) ? 'r' : '-',
-										 (permissions & OS_PROTECT_PERMISSION_WRITE) ? 'w' : '-');
-    OSProtectRange(channel, start_address, (u32)end_address - (u32)start_address, permissions);
+    OSReport("[MEM] OSProtectRange: %p - %p [CHAN: %u | PERMS: %c%c]\n", (void *)startAddress,
+            (void *)endAddress, channel, (permissions & OS_PROTECT_PERMISSION_READ) ? 'r' : '-',
+            (permissions & OS_PROTECT_PERMISSION_WRITE) ? 'w' : '-');
+    OSProtectRange(channel, startAddress, endAddress - startAddress, permissions);
 }
