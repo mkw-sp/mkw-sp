@@ -154,6 +154,7 @@ void RoulettePage::initSelectingStage(u32 selectedPlayer) {
     m_timeTotal = 0.0;
     m_hoverPlayerIdx = 0;
     m_selectedPlayer = selectedPlayer;
+    m_selectedTrackMessageId = votingBackPage->getCourseVote(selectedPlayer) + 9300;
     m_stage = Stage::Selecting;
 }
 
