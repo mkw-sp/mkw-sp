@@ -88,10 +88,10 @@ static void Init() {
 
     Function_KillBlacklistedFunctions();
 
-    Memory_ProtectRangeModule(OS_PROTECT_CHANNEL_1, Dol_getInitSectionStart(),
-            Dol_getRodataSectionEnd(), OS_PROTECT_PERMISSION_READ);
-    Memory_ProtectRangeModule(OS_PROTECT_CHANNEL_2, Dol_getSdata2SectionStart(),
-            Dol_getSbss2SectionEnd(), OS_PROTECT_PERMISSION_READ);
+    Memory_ProtectRange(OS_PROTECT_CHANNEL_0, Dol_getInitSectionStart(), Dol_getRodataSectionEnd(),
+            OS_PROTECT_PERMISSION_READ);
+    Memory_ProtectRange(OS_PROTECT_CHANNEL_1, Dol_getSdata2SectionStart(), Dol_getSbss2SectionEnd(),
+            OS_PROTECT_PERMISSION_READ);
     Console::Print(" done.\n");
 
     Console::Print("Initializing RTC...");

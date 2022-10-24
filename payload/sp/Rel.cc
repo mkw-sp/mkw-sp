@@ -87,10 +87,11 @@ void Run() {
             reinterpret_cast<u32 *>(Rel_getTextSectionEnd()));
 #endif
     Patcher_patch(PATCHER_BINARY_REL);
+    Memory_ProtectRange(OS_PROTECT_CHANNEL_2, Rel_getTextSectionStart(), Rel_getRodataSectionEnd(),
+            OS_PROTECT_PERMISSION_READ);
+    Memory_ProtectRange(OS_PROTECT_CHANNEL_3, Payload_getTextSectionStart(),
+            Payload_getRodataSectionEnd(), OS_PROTECT_PERMISSION_READ);
 
-    Memory_ProtectRangeModule(OS_PROTECT_CHANNEL_3, Rel_getTextSectionStart(), Rel_getRodataSectionEnd(), OS_PROTECT_PERMISSION_READ);
-    Memory_ProtectRangeModule(OS_PROTECT_CHANNEL_0, Payload_getTextSectionStart(), Payload_getRodataSectionEnd(), OS_PROTECT_PERMISSION_READ);
-    
     if (HostPlatform_IsDolphin(Host_GetPlatform())) {
         Console_init();
     }
