@@ -171,7 +171,7 @@ bool RoulettePage::calcPlayer(u8 playerIdx) {
         return false;
     }
 
-    m_voteControl[playerIdx].onNewVote();
+    m_voteControl[m_currentPlayerIdx].onNewVote();
     m_playerOrder[playerIdx] = m_currentPlayerIdx;
     m_currentPlayerIdx++;
     return true;
