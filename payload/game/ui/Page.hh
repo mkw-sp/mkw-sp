@@ -98,7 +98,7 @@ private:
     PageId m_id;
     State m_state;
     bool m_canProceed;
-    u8 _0d[0x10 - 0xd];
+    u8 _0d[0x10 - 0x0d];
     Anim m_anim;
     u8 _14[0x1c - 0x14];
     s32 m_frame;

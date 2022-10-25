@@ -75,7 +75,7 @@ message RoomEvent {
         required uint32 gamemode = 1;
     }
 
-    message Select {
+    message SelectPulse {
         required uint32 playerId = 1;
     }
 
@@ -86,19 +86,19 @@ message RoomEvent {
         required uint32 course    = 4;
     }
 
-    message Vote {
+    message SelectInfo {
         repeated Properties playerProperties = 1;
         required uint32     selectedPlayer   = 2;
     }
 
     oneof event {
-        Join     join     = 1;
-        Leave    leave    = 2;
-        Spectate spectate = 3;
-        Comment  comment  = 4;
-        Settings settings = 5;
-        Close    close    = 6;
-        Select   select   = 7;
-        Vote     vote     = 8;
+        Join        join        = 1;
+        Leave       leave       = 2;
+        Spectate    spectate    = 3;
+        Comment     comment     = 4;
+        Settings    settings    = 5;
+        Close       close       = 6;
+        SelectPulse selectPulse = 7;
+        SelectInfo  selectInfo  = 8;
     }
 }

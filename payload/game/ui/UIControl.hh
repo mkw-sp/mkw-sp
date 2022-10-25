@@ -78,7 +78,6 @@ public:
     void load(const char *dir, const char *file,
         const char *variant, const char *const *groups);
     void setParentPane(const char *pane);
-    void setAnimation(u32 groupId, u32 animationId, f32 frame) { m_animator.getGroup(groupId)->setAnimation(animationId, frame); }
 
 protected:
     UIAnimator m_animator;

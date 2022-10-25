@@ -8,6 +8,7 @@
 #include <protobuf/Room.pb.h>
 
 #include <array>
+#include <bitset>
 
 namespace SP {
 
@@ -132,7 +133,7 @@ private:
             const std::array<u32, RoomSettings::count> &settings);
     void onPlayerLeave(Handler &handler, u32 playerId);
     bool onReceiveComment(u32 playerId, u32 messageId);
-    bool onRoomClose(Handler &handler, u32 playerId, s32 gamemode);
+    bool onRoomClose(u32 playerId, s32 gamemode);
     bool onReceiveVote(u32 playerId, u32 course, std::optional<PlayerProperties>& vote);
     bool validateProperties(u32 playerId, PlayerProperties& properties);
 
@@ -154,7 +155,7 @@ private:
     bool m_voteEvent = false;
     s32 m_gamemode = -1;
     u32 m_playerCount = 0;
-    bool m_voted[12] = {};
+    std::bitset<12> m_voted;
     u8 m_voteCount = 0;
     s8 m_voteDelay = 15;
     std::array<Player, 12> m_players;

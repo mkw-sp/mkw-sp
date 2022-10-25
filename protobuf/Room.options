@@ -8,4 +8,4 @@ RoomEvent.Join.mii max_size:76
 
 RoomEvent.Settings.settings max_count:6
 
-RoomEvent.Vote.playerProperties max_count:12
+RoomEvent.SelectInfo.playerProperties max_count:12

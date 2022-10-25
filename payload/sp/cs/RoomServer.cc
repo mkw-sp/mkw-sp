@@ -286,7 +286,7 @@ bool RoomServer::onReceiveComment(u32 playerId, u32 messageId) {
     return true;
 }
 
-bool RoomServer::onRoomClose(Handler &handler, u32 playerId, s32 gamemode) {
+bool RoomServer::onRoomClose(u32 playerId, s32 gamemode) {
     if (playerId != 0) {
         return false;
     }
@@ -307,7 +307,19 @@ bool RoomServer::onReceiveVote(u32 playerId, u32 course,
     if (playerId >= m_playerCount) {
         return false;
     }
-    // TODO: Course validation
+
+    if (m_gamemode > 0) {
+        // Stage validation
+        if (course < 0x20 || course > 0x2f) {
+            return false;
+        }
+    } else {
+        // Course validation
+        if (course > 0x1f) {
+            return false;
+        }
+    }
+
     m_players[playerId].course = course;
 
     if (properties) {
@@ -523,21 +535,21 @@ bool RoomServer::Client::writeClose(u32 gamemode) {
 
 bool RoomServer::Client::writeSelect(u32 playerId) {
     RoomEvent event;
-    event.which_event = RoomEvent_select_tag;
-    event.event.select.playerId = playerId;
+    event.which_event = RoomEvent_selectPulse_tag;
+    event.event.selectPulse.playerId = playerId;
     return write(event);
 }
 
 bool RoomServer::Client::writeVote(u32 selectedPlayer) {
     RoomEvent event;
-    event.which_event = RoomEvent_vote_tag;
-    event.event.vote.playerProperties_count = m_server.m_playerCount;
+    event.which_event = RoomEvent_selectInfo_tag;
+    event.event.selectInfo.playerProperties_count = m_server.m_playerCount;
     for (u8 i = 0; i < m_server.m_playerCount; i++) {
         const Player &player = m_server.m_players[i];
-        event.event.vote.playerProperties[i] = { player.properties.characterId,
+        event.event.selectInfo.playerProperties[i] = { player.properties.characterId,
                 player.properties.vehicleId, player.properties.driftIsAuto, player.course };
     }
-    event.event.vote.selectedPlayer = selectedPlayer;
+    event.event.selectInfo.selectedPlayer = selectedPlayer;
     return write(event);
 }
 
@@ -680,7 +692,7 @@ std::optional<RoomServer::Client::State> RoomServer::Client::calcMain(Handler &h
         m_server.m_players[*playerId].m_settings = settings;
         return State::Main;
     case RoomRequest_close_tag:
-        if (!m_server.onRoomClose(handler, *playerId, request->request.close.gamemode)) {
+        if (!m_server.onRoomClose(*playerId, request->request.close.gamemode)) {
             return {};
         }
         m_server.m_roomClosed = true;

@@ -4,6 +4,8 @@
 #include "game/ui/ctrl/CtrlMenuInstructionText.hh"
 #include "game/ui/ctrl/CtrlMenuPageTitleText.hh"
 
+#include <array>
+
 namespace UI {
 
 class RoulettePage : public Page {
@@ -34,6 +36,10 @@ private:
         void calcSelf() override;
 
         void onNewVote(MiiGroup *miiGroup, u8 playerIdx);
+        
+        void dehoverOldPlayer();
+        void hoverNewPlayer();
+        void select(u32 messageId);
     };
 
     MenuInputManager m_inputManager;
@@ -45,12 +51,12 @@ private:
     f32 m_timeTotal;
     f32 m_timeDelta;
     s32 m_hoverPlayerIdx = -1;
-    s8 m_playerOrder[12];
+    std::array<s8, 12> m_playerOrder;
     s8 m_currentPlayerIdx = 0;
     s8 m_selectedPlayer = 0;
     u8 m_delay;
     bool m_isBattle;
-    s32 m_selectedTrackMessageId;
+    u32 m_selectedTrackMessageId;
 };
 
 } // namespace UI

@@ -1234,6 +1234,8 @@
 0x80863a9c DriverSound_init
 0x80868974 _ZN5Sound18DriverSoundManager15playSelectSoundEji
 
+0x808ad3c4 RaceCupSelectPage_zero
+
 0x808b3984 courseFilenames
 0x808b5b1c minDriftSpeedFactor
 0x808b5c78 boostAccelerations

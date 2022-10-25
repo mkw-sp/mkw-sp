@@ -7,15 +7,16 @@
 
 namespace UI {
 
-const char *animInfo[] = {"Loop", "Loop", nullptr, "Fade", "Hide", "Fadein", "Show", "Fadeout",
-        nullptr, "Local", "Local", "Network", nullptr, "Group", "Individual", "Blue", "Red",
-        nullptr, "Roulette", "Unselected", "Selected", "Decide", nullptr};
+const char *animInfo[] = {
+        "Loop", "Loop", nullptr, // group 0
+        "Fade", "Hide", "Fadein", "Show", "Fadeout", nullptr, // group 1
+        "Local", "Local", "Network", nullptr, // group 2
+        "Group", "Individual", "Blue", "Red", nullptr, // group 3
+        "Roulette", "Unselected", "Selected", "Decide", nullptr, // group 4
+        nullptr // end
+};
 
-RoulettePage::RoulettePage() {
-    for (u8 i = 0; i < 12; i++) {
-        m_playerOrder[i] = -1;
-    }
-}
+RoulettePage::RoulettePage() = default;
 
 RoulettePage::~RoulettePage() = default;
 
@@ -61,9 +62,7 @@ void RoulettePage::onInit() {
 void RoulettePage::beforeInAnim() {
     m_stage = Stage::Waiting;
 
-    for (u8 i = 0; i < 12; i++) {
-        m_playerOrder[i] = -1;
-    }
+    m_playerOrder.fill(-1);
 
     auto *section = SectionManager::Instance()->currentSection();
     if (section->id() == SectionId::VotingServer) {
@@ -95,7 +94,7 @@ void RoulettePage::beforeCalc() {
     if (m_stage == Stage::Selecting) {
         // Try hovering over new player
         m_timeTotal += m_timeDelta;
-        f32 delta = m_timeDelta - 0.001;
+        f32 delta = m_timeDelta - 0.001f;
         if (delta < 0.03) {
             delta = 0.03;
         }
@@ -109,9 +108,8 @@ void RoulettePage::beforeCalc() {
         }
 
         // Animate hovering over new player
-        m_voteControl[prevHoverIdx].setAnimation(4, 0, 0.0);
-        m_voteControl[m_hoverPlayerIdx].setAnimation(4, 1, 0.0);
-        m_voteControl[m_hoverPlayerIdx].playSound(Sound::SoundId::SE_UI_CRS_ROULETTE, -1);
+        m_voteControl[prevHoverIdx].dehoverOldPlayer();
+        m_voteControl[m_hoverPlayerIdx].hoverNewPlayer();
 
         // Finalize vote
         if (m_timeDelta > 0.05) {
@@ -122,9 +120,7 @@ void RoulettePage::beforeCalc() {
             return;
         }
 
-        m_voteControl[m_hoverPlayerIdx].setMessageAll(m_selectedTrackMessageId, nullptr);
-        m_voteControl[m_hoverPlayerIdx].setAnimation(4, 2, 0.0);
-        m_voteControl[m_hoverPlayerIdx].playSound(Sound::SoundId::SE_UI_CRS_ROULETTE_DECIDE, -1);
+        m_voteControl[m_hoverPlayerIdx].select(m_selectedTrackMessageId);
 
         m_delay = 180;
         m_stage = Stage::Selected;
@@ -199,11 +195,11 @@ RoulettePage::VoteControl::VoteControl() = default;
 RoulettePage::VoteControl::~VoteControl() = default;
 
 void RoulettePage::VoteControl::initSelf() {
-    setAnimation(0, 0, 0.0);
-    setAnimation(1, 0, 0.0);
-    setAnimation(2, 1, 0.0);
-    setAnimation(3, 0, 0.0);
-    setAnimation(4, 0, 0.0);
+    m_animator.setAnimation(0, 0, 0.0);
+    m_animator.setAnimation(1, 0, 0.0);
+    m_animator.setAnimation(2, 1, 0.0);
+    m_animator.setAnimation(3, 0, 0.0);
+    m_animator.setAnimation(4, 0, 0.0);
     setVisible(false);
 }
 
@@ -213,11 +209,26 @@ void RoulettePage::VoteControl::onNewVote(MiiGroup *miiGroup, u8 playerIdx) {
     setMiiPicture("chara_icon", miiGroup, playerIdx, 2);
     setMiiPicture("chara_icon_sha", miiGroup, playerIdx, 2);
 
-    setAnimation(2, 0, 0.0);
-    setAnimation(3, 0, 0.0);
-    setAnimation(1, 1, 0.0);
+    m_animator.setAnimation(2, 0, 0.0);
+    m_animator.setAnimation(3, 0, 0.0);
+    m_animator.setAnimation(1, 1, 0.0);
     setVisible(true);
     playSound(Sound::SoundId::SE_UI_CRS_VOTE, -1);
+}
+
+void RoulettePage::VoteControl::dehoverOldPlayer() {
+    m_animator.setAnimation(4, 0, 0.0);
+}
+
+void RoulettePage::VoteControl::hoverNewPlayer() {
+    m_animator.setAnimation(4, 1, 0.0);
+    playSound(Sound::SoundId::SE_UI_CRS_ROULETTE, -1);
+}
+
+void RoulettePage::VoteControl::select(u32 messageId) {
+    setMessageAll(messageId, nullptr);
+    m_animator.setAnimation(4, 2, 0.0);
+    playSound(Sound::SoundId::SE_UI_CRS_ROULETTE_DECIDE, -1);
 }
 
 } // namespace UI

@@ -44,8 +44,8 @@ PATCH_BL_START(CupSelectPage_onRefocus, 0x1c)
     cmpwi r0,0
     beq end
 
-    lis r4, 0x808b
-    lfs f1, -0x2c3c(r4)
+    lis r4, RaceCupSelectPage_zero@ha
+    lfs f1, RaceCupSelectPage_zero@l (r4)
     li r0, -1
     stw r0, 0x3e8(r3)
     li r4, 0

@@ -19,21 +19,27 @@ public:
     bool hasSelected(u8 playerIdx) {
         return m_selected[playerIdx];
     }
+
     s8 getPlayerCount() {
         return m_playerCount;
     }
+
     s32 getLocalVote() {
         return m_localVote;
     }
+
     s32 getCourseVote(u8 playerIdx) {
         return m_courseVotes[playerIdx];
     }
 
-    MiiGroup *getMiiGroup() { return &m_miiGroup; }
+    MiiGroup *getMiiGroup() {
+        return &m_miiGroup;
+    }
 
     void setBattle(bool isBattle) {
         m_isBattle = isBattle;
     }
+
     void setLocalVote(s32 course);
 
     static VotingBackPage *Instance();
@@ -70,7 +76,7 @@ private:
     s32 m_localVote;
     bool m_selected[12];
     s32 m_courseVotes[12];
-    s8 m_playerCount;
+    u8 m_playerCount;
     bool m_isBattle;
     bool m_submitted = false;
 };
