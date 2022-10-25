@@ -3,27 +3,30 @@
 
 #define THREAD_STACK_SIZE_RIGHT_SHIFT_AMOUNT 3
 
-extern BOOL j_OSCreateThread(OSThread *thread, void *(*func)(void *), void *param, void *stack, u32 stackSize, s32 priority, u16 attr);
+BOOL REPLACED(OSCreateThread)(OSThread *thread, void *(*func)(void *), void *param, void *stack,
+        u32 stackSize, s32 priority, u16 attr);
+REPLACE BOOL OSCreateThread(OSThread *thread, void *(*func)(void *), void *param, void *stack,
+        u32 stackSize, s32 priority, u16 attr) {
+    void *oldStackBase = stack;
+    u32 oldStackSize = stackSize;
 
-BOOL OSCreateThread_RandomizeThreadStackPointer(OSThread *thread, void *(*func)(void *), void *param, void *stack, u32 stackSize, s32 priority, u16 attr)
-{
-    void* old_stack_base = stack;
-    u32   old_stack_size = stackSize;
+    assert(oldStackSize >> THREAD_STACK_SIZE_RIGHT_SHIFT_AMOUNT != 0);
 
-    assert(old_stack_size >> THREAD_STACK_SIZE_RIGHT_SHIFT_AMOUNT != 0);
-
-    u32* new_stack_base = Stack_RandomizeStackPointer((u32*)old_stack_base, __builtin_ctz(old_stack_size >> THREAD_STACK_SIZE_RIGHT_SHIFT_AMOUNT));
-    u32  new_stack_size = old_stack_size - ((u32)old_stack_base - (u32)new_stack_base);
+    void *newStackBase = Stack_RandomizeStackPointer((u32 *)oldStackBase,
+            __builtin_ctz(oldStackSize >> THREAD_STACK_SIZE_RIGHT_SHIFT_AMOUNT));
+    u32 newStackSize = oldStackSize - ((char *)oldStackBase - (char *)newStackBase);
 
     if ((SP_DEBUG_LEVEL & SP_DEBUG_STACK_RANDOMIZE) == SP_DEBUG_STACK_RANDOMIZE) {
+        // clang-format off
         OSReport("--------------------------------\n");
         OSReport("[MEM] OSCreateThread: %p"      "\n", (void *)thread);
-        OSReport("[MEM] old_stack_base: %p"      "\n", (void *)old_stack_base);
-        OSReport("[MEM] old_stack_size: 0x%08X"  "\n", old_stack_size);
-        OSReport("[MEM] new_stack_base: %p"      "\n", (void *)new_stack_base);
-        OSReport("[MEM] new_stack_size: 0x%08X"  "\n", new_stack_size);
+        OSReport("[MEM] oldStackBase  : %p"      "\n", oldStackBase);
+        OSReport("[MEM] oldStackSize  : 0x%08x"  "\n", oldStackSize);
+        OSReport("[MEM] newStackBase  : %p"      "\n", newStackBase);
+        OSReport("[MEM] newStackSize  : 0x%08x"  "\n", newStackSize);
         OSReport("--------------------------------\n");
+        // clang-format on
     }
 
-    return j_OSCreateThread(thread, func, param, new_stack_base, new_stack_size, priority, attr);
+    return REPLACED(OSCreateThread)(thread, func, param, newStackBase, newStackSize, priority, attr);
 }
