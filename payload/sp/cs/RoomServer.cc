@@ -70,12 +70,14 @@ RoomServer *RoomServer::CreateInstance() {
     assert(s_block);
     assert(!s_instance);
     s_instance = new (s_block) RoomServer;
+    RoomManager::s_instance = s_instance;
     return s_instance;
 }
 
 void RoomServer::DestroyInstance() {
     assert(s_instance);
     s_instance->~RoomServer();
+    RoomManager::s_instance = nullptr;
     s_instance = nullptr;
 }
 

@@ -59,12 +59,14 @@ RoomClient *RoomClient::CreateInstance(u32 localPlayerCount) {
     assert(s_block);
     assert(!s_instance);
     s_instance = new (s_block) RoomClient(localPlayerCount);
+    RoomManager::s_instance = s_instance;
     return s_instance;
 }
 
 void RoomClient::DestroyInstance() {
     assert(s_instance);
     s_instance->~RoomClient();
+    RoomManager::s_instance = nullptr;
     s_instance = nullptr;
 }
 
@@ -73,7 +75,7 @@ RoomClient *RoomClient::Instance() {
 }
 
 RoomClient::RoomClient(u32 localPlayerCount) : m_localPlayerCount(localPlayerCount),
-        m_state(ClientState::Connect), m_socket(0xc0a8001f, 21330, "room    ") {}
+        m_state(ClientState::Connect), m_socket(0x7f000001, 21330, "room    ") {}
 
 RoomClient::~RoomClient() = default;
 

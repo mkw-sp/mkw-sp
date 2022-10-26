@@ -45,7 +45,7 @@ PATCH_B_START(CourseSelectPage_onSelect, 0xf4)
     mr r4, r31
     bl _ZN2UI14VotingBackPage12setLocalVoteEi
     li r4, 1
-    stb r4, 0x13e(r3)
+    stb r4, 0x136(r3)
     mr r3, r30
     bl PushButton_getDelay
     mr r3, r29
