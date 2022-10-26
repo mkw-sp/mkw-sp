@@ -5,7 +5,7 @@
 
 namespace UI {
 
-VotingBackPage::VotingBackPage() : m_serverHandler(*this), m_clientHandler(*this) {}
+VotingBackPage::VotingBackPage() : m_handler(*this) {}
 
 VotingBackPage::~VotingBackPage() = default;
 
@@ -28,7 +28,7 @@ void VotingBackPage::onInit() {
 
         m_playerCount = client->getPlayerCount();
         for (u8 i = 0; i < m_playerCount; i++) {
-            m_miiGroup.insertFromRaw(i, client->getPlayerMii(i));
+            m_miiGroup.insertFromRaw(i, client->getPlayer(i)->getMii());
         }
     }
 
@@ -40,12 +40,12 @@ void VotingBackPage::afterCalc() {
     auto sectionId = section->id();
     if (sectionId == SectionId::VotingServer) {
         auto *server = SP::RoomServer::Instance();
-        if (server && !server->calc(m_serverHandler)) {
+        if (server && !server->calc(m_handler)) {
             SP::RoomServer::DestroyInstance();
         }
     } else {
         auto *client = SP::RoomClient::Instance();
-        if (client && !client->calc(m_clientHandler)) {
+        if (client && !client->calc(m_handler)) {
             SP::RoomClient::DestroyInstance();
         }
     }
@@ -70,23 +70,15 @@ VotingBackPage *VotingBackPage::Instance() {
     return section->page<PageId::VotingBack>();
 }
 
-VotingBackPage::ServerHandler::ServerHandler(VotingBackPage &page) : m_page(page) {}
+VotingBackPage::Handler::Handler(VotingBackPage &page) : m_page(page) {}
 
-VotingBackPage::ServerHandler::~ServerHandler() = default;
+VotingBackPage::Handler::~Handler() = default;
 
-void VotingBackPage::ServerHandler::onSelect(u32 playerId) {
+void VotingBackPage::Handler::onReceivePulse(u32 playerId) {
     m_page.m_selected[playerId] = true;
 }
 
-VotingBackPage::ClientHandler::ClientHandler(VotingBackPage &page) : m_page(page) {}
-
-VotingBackPage::ClientHandler::~ClientHandler() = default;
-
-void VotingBackPage::ClientHandler::onSelect(u32 playerId) {
-    m_page.m_selected[playerId] = true;
-}
-
-void VotingBackPage::ClientHandler::onReceiveVote(u32 playerId, s32 course, u32 selectedPlayer) {
+void VotingBackPage::Handler::onReceiveInfo(u32 playerId, s32 course, u32 selectedPlayer) {
     m_page.m_courseVotes[playerId] = course;
     if (playerId + 1 == m_page.m_playerCount) {
         auto *roulettePage = SectionManager::Instance()->currentSection()->page<PageId::Roulette>();

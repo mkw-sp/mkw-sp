@@ -6,8 +6,7 @@ extern "C" {
 }
 #include <game/host_system/SystemManager.hh>
 #include <sp/IOSDolphin.hh>
-#include <sp/cs/RoomClient.hh>
-#include <sp/cs/RoomServer.hh>
+#include <sp/cs/RoomManager.hh>
 
 namespace EGG {
 
@@ -89,8 +88,7 @@ void SceneManager::createScene(s32 sceneId, Scene *parent) {
     ResourceManager_OnCreateScene(sceneId);
     System::RichPresenceManager::Instance().onSceneChange(
             static_cast<System::RKSceneID>(sceneId));
-    SP::RoomServer::OnCreateScene();
-    SP::RoomClient::OnCreateScene();
+    SP::RoomManager::OnCreateScene();
     REPLACED(createScene)(sceneId, parent);
     if (InitDolphinSpeed()) {
         PopDolphinSpeed();
@@ -102,8 +100,7 @@ void SceneManager::destroyScene(Scene *scene) {
         PushDolphinSpeed(800);
     }
     REPLACED(destroyScene)(scene);
-    SP::RoomClient::OnDestroyScene();
-    SP::RoomServer::OnDestroyScene();
+    SP::RoomManager::OnDestroyScene();
     if (InitDolphinSpeed()) {
         PopDolphinSpeed();
     }

@@ -1277,6 +1277,7 @@ code_in_files = {
         os.path.join('payload', 'sp', 'Yaz.c'),
         os.path.join('payload', 'sp', 'YAZDecoder.cc'),
         os.path.join('payload', 'sp', 'cs', 'RoomClient.cc'),
+        os.path.join('payload', 'sp', 'cs', 'RoomManager.cc'),
         os.path.join('payload', 'sp', 'cs', 'RoomServer.cc'),
         os.path.join('payload', 'sp', 'keyboard', 'Keyboard.c'),
         os.path.join('payload', 'sp', 'keyboard', 'SIKeyboard.c'),

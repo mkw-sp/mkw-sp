@@ -1,7 +1,8 @@
 #pragma once
 
-#include "sp/net/AsyncSocket.hh"
+#include "sp/cs/RoomManager.hh"
 #include "sp/net/AsyncListener.hh"
+#include "sp/net/AsyncSocket.hh"
 #include "sp/settings/RoomSettings.hh"
 
 #include <game/system/Mii.hh>
@@ -12,30 +13,13 @@
 
 namespace SP {
 
-class RoomServer final {
+// RoomServer is primarily responsible for reading requests and writing events
+// Its secondary responsibility is keeping track of comments in friend rooms
+class RoomServer final : public RoomManager {
 public:
-    class Handler {
-    public:
-        virtual void onMain() {}
-
-        virtual void onPlayerJoin([[maybe_unused]] const System::RawMii *mii,
-                [[maybe_unused]] u32 location, [[maybe_unused]] u16 latitude,
-                [[maybe_unused]] u16 longitude, [[maybe_unused]] u32 regionLineColor) {}
-        virtual void onPlayerLeave([[maybe_unused]] u32 playerId) {}
-        virtual void onReceiveComment([[maybe_unused]] u32 playerId,
-                [[maybe_unused]] u32 commentId) {}
-        virtual void onSettingsChange(
-                [[maybe_unused]] const std::array<u32, RoomSettings::count> &settings) {}
-        virtual void onRoomClose([[maybe_unused]] u32 gamemode) {}
-        virtual void onSelect([[maybe_unused]] u32 playerId) {}
-    };
-
+    // Main RoomServer update, called in networking pages (typically afterCalc())
     bool calc(Handler &handler);
 
-    inline u32 getPlayerCount() { return m_playerCount; }
-
-    static void OnCreateScene();
-    static void OnDestroyScene();
     static RoomServer *CreateInstance();
     static void DestroyInstance();
     static RoomServer *Instance();
@@ -46,30 +30,7 @@ private:
         u32 messageId;
     };
 
-    struct PlayerProperties {
-        u32 characterId;
-        u32 vehicleId;
-        bool driftIsAuto;
-    };
-
-    struct Player {
-        u32 clientId;
-        System::RawMii mii;
-        u32 location;
-        u32 latitude;
-        u32 longitude;
-        u32 regionLineColor;
-        u32 course;
-        PlayerProperties properties;
-        std::array<u32, RoomSettings::count> m_settings;
-    };
-
-    enum class State {
-        Setup,
-        Main,
-        Select,
-    };
-
+    // RoomServer::Client is responsible for sending events to individual clients
     class Client {
     public:
         Client(RoomServer &server, u32 id, s32 handle, const hydro_kx_keypair &serverKeypair);
@@ -78,30 +39,26 @@ private:
         bool ready() const;
         bool calc(Handler &handler);
 
+        // Event writing for clients
         bool writeJoin(const System::RawMii *mii, u32 location, u32 latitude, u32 longitude,
                 u32 regionLineColor);
         bool writeLeave(u32 playerId);
         bool writeComment(u32 playerId, u32 messageId);
         bool writeSettings();
         bool writeClose(u32 gamemode);
-        bool writeSelect(u32 playerId);
-        bool writeVote(u32 selectedPlayer);
+        bool writeSelectPulse(u32 playerId);
+        bool writeSelectInfo(u32 selectedPlayer);
 
     private:
-        enum class State {
-            Connect,
-            Setup,
-            Main,
-            Select,
-        };
+        // Used to update m_state
+        std::optional<ClientState> resolve(Handler &handler);
+        bool transition(Handler &handler, ClientState state);
 
-        std::optional<State> resolve(Handler &handler);
-        bool transition(Handler &handler, State state);
-
-        std::optional<State> calcConnect();
-        std::optional<State> calcSetup(Handler &handler);
-        std::optional<State> calcMain(Handler &handler);
-        std::optional<State> calcSelect(Handler &handler);
+        // Main state-specific update, used to receive requests
+        std::optional<ClientState> calcConnect();
+        std::optional<ClientState> calcSetup(Handler &handler);
+        std::optional<ClientState> calcMain(Handler &handler);
+        std::optional<ClientState> calcSelect(Handler &handler);
 
         bool isHost() const;
         std::optional<u32> getPlayerId() const;
@@ -111,61 +68,59 @@ private:
 
         u32 m_id;
         RoomServer &m_server;
-        State m_state;
+        ClientState m_state;
         Net::AsyncSocket m_socket;
     };
 
     RoomServer();
-    RoomServer(const RoomServer &) = delete;
-    RoomServer(RoomServer &&) = delete;
     ~RoomServer();
 
-    std::optional<State> resolve(Handler &handler);
-    bool transition(Handler &handler, State state);
+    // Used to update m_state
+    std::optional<ServerState> resolve(Handler &handler);
+    bool transition(Handler &handler, ServerState state);
 
-    std::optional<State> calcSetup();
-    std::optional<State> calcMain(Handler &handler);
-    std::optional<State> calcSelect(Handler &handler);
+    // Main state-specific update, used to send events
+    std::optional<ServerState> calcSetup();
+    std::optional<ServerState> calcMain(Handler &handler);
+    std::optional<ServerState> calcSelect(Handler &handler);
     bool onMain(Handler &handler);
 
+    // Server-side request reading - any validation checks should go here!
     bool onPlayerJoin(Handler &handler, u32 clientId, const System::RawMii *mii, u32 location,
             u16 latitude, u16 longitude, u32 regionLineColor,
             const std::array<u32, RoomSettings::count> &settings);
     void onPlayerLeave(Handler &handler, u32 playerId);
     bool onReceiveComment(u32 playerId, u32 messageId);
     bool onRoomClose(u32 playerId, s32 gamemode);
-    bool onReceiveVote(u32 playerId, u32 course, std::optional<PlayerProperties>& vote);
-    bool validateProperties(u32 playerId, PlayerProperties& properties);
+    bool onReceiveVote(u32 playerId, u32 course, std::optional<Player::Properties> &vote);
+    bool validateProperties(u32 playerId, Player::Properties &properties);
 
     void disconnectClient(u32 clientId);
 
+    // Event writing - should usually consist of a for loop for all clients!
     void writeJoin(const System::RawMii *mii, u32 location, u32 latitude, u32 longitude,
             u32 regionLineColor);
     void writeLeave(u32 playerId);
     void writeComment(u32 playerId, u32 messageId);
     void writeSettings();
     void writeClose(u32 gamemode);
-    void writeSelect(u32 playerId);
-    void writeVote(u32 selectedPlayer);
+    void writeSelectPulse(u32 playerId);
+    void writeSelectInfo(u32 selectedPlayer);
 
     CircularBuffer<Comment, 18> m_commentQueue;
     u32 m_commentTimer = 0;
     bool m_settingsChanged = false;
     bool m_roomClosed = false;
     bool m_voteEvent = false;
-    s32 m_gamemode = -1;
-    u32 m_playerCount = 0;
     std::bitset<12> m_voted;
     u8 m_voteCount = 0;
     s8 m_voteDelay = 15;
-    std::array<Player, 12> m_players;
-    State m_state;
+    ServerState m_state;
     CircularBuffer<u32, 12> m_disconnectQueue;
     std::array<std::optional<Client>, 12> m_clients;
     Net::AsyncListener m_listener;
     hydro_kx_keypair m_keypair;
 
-    static void *s_block;
     static RoomServer *s_instance;
 };
 

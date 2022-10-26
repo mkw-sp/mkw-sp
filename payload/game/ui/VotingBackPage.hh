@@ -45,32 +45,19 @@ public:
     static VotingBackPage *Instance();
 
 private:
-    class ServerHandler : public SP::RoomServer::Handler {
+    class Handler : public SP::RoomManager::Handler {
     public:
-        ServerHandler(VotingBackPage &page);
-        ~ServerHandler();
-
-        void onSelect(u32 playerId) override;
-
-    private:
-        VotingBackPage &m_page;
-    };
-
-    class ClientHandler : public SP::RoomClient::Handler {
-    public:
-        ClientHandler(VotingBackPage &page);
-        ~ClientHandler();
-
-        void onSelect(u32 playerId) override;
-        void onReceiveVote(u32 playerId, s32 course, u32 selectedPlayer) override;
-
+        Handler(VotingBackPage &page);
+        ~Handler();
+        
+        void onReceivePulse(u32 playerId) override;
+        void onReceiveInfo(u32 playerId, s32 course, u32 selectedPlayer) override;
     private:
         VotingBackPage &m_page;
     };
 
     MenuInputManager m_inputManager;
-    ServerHandler m_serverHandler;
-    ClientHandler m_clientHandler;
+    Handler m_handler;
     MiiGroup m_miiGroup;
 
     s32 m_localVote;
