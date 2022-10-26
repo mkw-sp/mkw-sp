@@ -67,6 +67,7 @@ static std::optional<LoaderEntryFunc> Run() {
 
     Console::Init();
     Console::Print("MKW-SP Stub\n");
+    Console::Print("\n");
 
     Console::Print("Initializing IOS...");
     IOS::Init();

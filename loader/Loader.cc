@@ -88,6 +88,7 @@ std::optional<Apploader::GameEntryFunc> Run() {
     Console::Print("MKW-SP v");
     Console::Print(versionInfo.name);
     Console::Print("\n");
+    Console::Print("\n");
 
     std::optional<u32> contentsSize{};
     if (versionInfo.type != BUILD_TYPE_RELEASE) {
