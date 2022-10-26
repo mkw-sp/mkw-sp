@@ -189,6 +189,7 @@
 0x8017277c GXSetBlendMode
 0x801727CC GXSetColorUpdate
 0x80172824 GXSetZMode
+0x80172F64 GXCallDisplayList
 0x8017301C GXSetProjection
 0x8017310C GXLoadPosMtxImm
 0x80173214 GXSetCurrentMtx
@@ -1240,6 +1241,7 @@
 0x808D3E14 playerTagRenderDistance
 0x808da318 vsRuleDescIds
 
+0x809BD6E8 _ZN6System9CourseMap10spInstanceE
 0x809bd70c s_inputManager
 0x809bd70c _ZN6System12InputManager10s_instanceE
 0x809bd728 s_raceConfig
