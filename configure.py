@@ -1011,6 +1011,7 @@ code_in_files = {
         os.path.join('payload', 'egg', 'core', 'eggSystem.S'),
         os.path.join('payload', 'egg', 'core', 'eggSystem.c'),
         os.path.join('payload', 'egg', 'core', 'eggSystem.cc'),
+        os.path.join('payload', 'egg', 'util', 'eggException.S'),
         os.path.join('payload', 'game', 'effect', 'Effect.S'),
         os.path.join('payload', 'game', 'gfx', 'Camera.S'),
         os.path.join('payload', 'game', 'gfx', 'CameraManager.S'),

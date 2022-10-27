@@ -392,6 +392,7 @@
 0x802224e8 EGG_DvdFile_openPath
 0x802226d8 _ZN3EGG9DVDRipper13LoadToMainRAMEPKcPhPNS_4HeapENS0_14AllocDirectionEjPjS7_
 0x802245AC EffectCreator_createEffect
+0x80226464 EGG_ExceptionCallBack_
 0x80226a1c EGG_ExpHeap_create2
 0x80226aC8 EGG_ExpHeap_create
 0x80226b94 EGG_ExpHeap_destroy
