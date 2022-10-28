@@ -33,7 +33,6 @@ public:
                 [[maybe_unused]] u32 selectedPlayer) {}
     };
 
-protected:
     class Player {
     public:
         struct Properties {
@@ -42,7 +41,9 @@ protected:
             bool m_driftIsAuto;
         };
 
-        inline System::RawMii *getMii() { return &m_mii; }
+        inline System::RawMii *getMii() {
+            return &m_mii;
+        }
 
         u32 m_clientId;
         std::array<u32, RoomSettings::count> m_settings;
@@ -55,9 +56,16 @@ protected:
         Properties m_properties;
     };
 
-public:
-    inline Player *getPlayer(u8 i) { return &m_players[i]; }
-    inline u32 getPlayerCount() { return m_playerCount; }
+    inline Player *getPlayer(u8 i) {
+        return &m_players[i];
+    }
+
+    inline u32 getPlayerCount() {
+        return m_playerCount;
+    }
+
+    static std::optional<Player::Properties> createPlayerProperties(std::optional<u32> character,
+            std::optional<u32> vehicle, std::optional<bool> driftType);
 
     // Static instance management is handled in RoomServer and RoomClient
     static void OnCreateScene();

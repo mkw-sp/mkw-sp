@@ -10,7 +10,10 @@ namespace UI {
 class VotingBackPage : public Page {
 public:
     VotingBackPage();
+    VotingBackPage(const VotingBackPage &) = delete;
+    VotingBackPage(VotingBackPage &&) = delete;
     ~VotingBackPage() override;
+
     void onInit() override;
     void afterCalc() override;
     void onRefocus() override;
@@ -49,9 +52,10 @@ private:
     public:
         Handler(VotingBackPage &page);
         ~Handler();
-        
+
         void onReceivePulse(u32 playerId) override;
         void onReceiveInfo(u32 playerId, s32 course, u32 selectedPlayer) override;
+
     private:
         VotingBackPage &m_page;
     };
@@ -61,7 +65,7 @@ private:
     MiiGroup m_miiGroup;
 
     s32 m_localVote;
-    bool m_selected[12];
+    std::bitset<12> m_selected;
     s32 m_courseVotes[12];
     u8 m_playerCount;
     bool m_isBattle;

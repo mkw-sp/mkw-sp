@@ -15,13 +15,22 @@ RoomManager::RoomManager() = default;
 
 RoomManager::~RoomManager() = default;
 
+std::optional<RoomManager::Player::Properties> RoomManager::createPlayerProperties(
+        std::optional<u32> character, std::optional<u32> vehicle, std::optional<bool> driftType) {
+    std::optional<Player::Properties> properties = {};
+    if (character && vehicle && driftType) {
+        properties = {*character, *vehicle, *driftType};
+    }
+    return properties;
+}
+
 void RoomManager::OnCreateScene() {
-    size_t size;
     auto *sectionManager = UI::SectionManager::Instance();
     if (!sectionManager) {
         return;
     }
 
+    size_t size;
     if (UI::Section::HasRoomClient(sectionManager->nextSectionId())) {
         // Client
         if (UI::Section::HasRoomClient(sectionManager->lastSectionId())) {

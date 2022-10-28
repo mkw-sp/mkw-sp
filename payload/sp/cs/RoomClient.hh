@@ -21,8 +21,7 @@ public:
     bool sendComment(u32 commentId);
     bool closeRoom(u32 gamemode);
     void changeLocalSettings();
-    bool sendVote(u32 course, std::optional<u32> characterId, std::optional<u32> vehicleId,
-            std::optional<bool> driftIsAuto);
+    bool sendVote(u32 course, std::optional<Player::Properties> properties);
 
     static RoomClient *CreateInstance(u32 localPlayerCount);
     static void DestroyInstance();
