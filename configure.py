@@ -1051,7 +1051,7 @@ code_in_files = {
         os.path.join('payload', 'game', 'race', 'DriverManager.c'),
         os.path.join('payload', 'game', 'race', 'Jugem.S'),
         os.path.join('payload', 'game', 'race', 'JugemManager.S'),
-        os.path.join('payload', 'game', 'race', 'JugemManager.c'),
+        os.path.join('payload', 'game', 'race', 'JugemManager.cc'),
         os.path.join('payload', 'game', 'rel', 'Rel.S'),
         os.path.join('payload', 'game', 'scene', 'MenuScene.S'),
         os.path.join('payload', 'game', 'scene', 'globe', 'GlobeManager.S'),
