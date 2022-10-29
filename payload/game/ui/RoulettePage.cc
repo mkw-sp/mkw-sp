@@ -1,5 +1,6 @@
 #include "RoulettePage.hh"
 
+#include "game/system/ResourceManager.hh"
 #include "game/ui/SectionManager.hh"
 #include "game/ui/VotingBackPage.hh"
 
@@ -21,15 +22,17 @@ RoulettePage::RoulettePage() = default;
 RoulettePage::~RoulettePage() = default;
 
 void RoulettePage::onInit() {
+    auto *roomManager = SP::RoomManager::Instance();
     switch (SectionManager::Instance()->currentSection()->id()) {
     case SectionId::Voting1PVS:
-        m_isBattle = true;
+        m_isBattle = false;
         break;
     case SectionId::Voting1PBalloon:
     case SectionId::Voting1PCoin:
-        m_isBattle = false;
+        m_isBattle = true;
         break;
     default:
+        m_isBattle = roomManager->getGamemode() > 0;
         break;
     }
 
@@ -37,18 +40,11 @@ void RoulettePage::onInit() {
     setInputManager(&m_inputManager);
     initChildren(15);
     insertChild(12, &m_pageTitleText, 0);
-    m_pageTitleText.load(false);
-
-    if (m_isBattle) {
-        m_pageTitleText.setMessage(4354, nullptr);
-    } else {
-        m_pageTitleText.setMessage(4355, nullptr);
-    }
-
     insertChild(13, &m_instructionText, 0);
-    m_instructionText.load();
-
     insertChild(14, &m_voteNum, 0);
+
+    m_pageTitleText.load(false);
+    m_instructionText.load();
     m_voteNum.load("control", "VoteNum", "VoteNum", nullptr);
 
     char buffer[15];
@@ -56,6 +52,20 @@ void RoulettePage::onInit() {
         insertChild(i, &m_voteControl[i], 0);
         snprintf(buffer, sizeof(buffer), "Vote%02d", i);
         m_voteControl[i].load("Control", "Vote", buffer, animInfo);
+    }
+
+    if (m_isBattle) {
+        m_pageTitleText.setMessage(4355, nullptr);
+    } else {
+        m_pageTitleText.setMessage(4354, nullptr);
+    }
+}
+
+void RoulettePage::onActivate() {
+    // Sync player order
+    auto *roomManager = SP::RoomManager::Instance();
+    for (u8 i = 0; i < m_playerOrder.size(); i++) {
+        m_playerOrder[i] = roomManager->getPlayerOrder(i);
     }
 }
 
@@ -81,6 +91,7 @@ void RoulettePage::beforeInAnim() {
 }
 
 void RoulettePage::beforeCalc() {
+    auto *votingBackPage = SectionManager::Instance()->currentSection()->page<PageId::VotingBack>();
     if (m_stage == Stage::Waiting) {
         if (frame() % 5 == 0) {
             for (u8 i = 0; i < 12; i++) {
@@ -122,7 +133,8 @@ void RoulettePage::beforeCalc() {
             return;
         }
 
-        m_voteControl[m_hoverPlayerIdx].select(m_selectedTrackMessageId);
+        m_voteControl[m_hoverPlayerIdx].select(
+                votingBackPage->getCourseVote(m_selectedPlayer) + 9300);
 
         m_delay = 180;
         m_stage = Stage::Selected;
@@ -152,7 +164,8 @@ void RoulettePage::initSelectingStage(u32 selectedPlayer) {
     m_timeTotal = 0.0;
     m_hoverPlayerIdx = 0;
     m_selectedPlayer = selectedPlayer;
-    m_selectedTrackMessageId = votingBackPage->getCourseVote(selectedPlayer) + 9300;
+    System::ResourceManager::Instance()->preloadCourseAsync(
+            votingBackPage->getCourseVote(selectedPlayer));
     m_stage = Stage::Selecting;
 }
 
@@ -162,7 +175,7 @@ bool RoulettePage::calcPlayer(u8 playerIdx) {
         return false;
     }
 
-    if (m_playerOrder[playerIdx] >= 0) {
+    if (m_processed[playerIdx]) {
         return false;
     }
 
@@ -170,8 +183,16 @@ bool RoulettePage::calcPlayer(u8 playerIdx) {
         return false;
     }
 
-    m_voteControl[m_currentPlayerIdx].onNewVote(votingBackPage->getMiiGroup(), playerIdx);
-    m_playerOrder[playerIdx] = m_currentPlayerIdx;
+    if (m_playerOrder[playerIdx] != -1) {
+        // Initialized before page activation
+        m_voteControl[m_playerOrder[playerIdx]].onNewVote(votingBackPage->getMiiGroup(), playerIdx);
+    } else {
+        // New vote arrived
+        m_voteControl[m_currentPlayerIdx].onNewVote(votingBackPage->getMiiGroup(), playerIdx);
+        m_playerOrder[playerIdx] = m_currentPlayerIdx;
+    }
+
+    m_processed[playerIdx] = true;
     m_currentPlayerIdx++;
     return true;
 }

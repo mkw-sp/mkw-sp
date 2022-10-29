@@ -43,12 +43,14 @@ PATCH_B_END(CourseSelectPage_afterCalc, 0x44)
 
 
 PATCH_B_START(CourseSelectPage_onSelect, 0xf4)
+    // Submit vote for online
     bl _ZN2UI14VotingBackPage8InstanceEv
     mr r28, r3
     mr r4, r31
     bl _ZN2UI14VotingBackPage12setLocalVoteEi
+    mr r3, r28
     li r4, 1
-    stb r4, 0x136(r28)
+    bl _ZN2UI14VotingBackPage12setSubmittedEb
     mr r3, r30
     bl PushButton_getDelay
     mr r3, r29

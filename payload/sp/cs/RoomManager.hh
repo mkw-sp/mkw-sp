@@ -56,12 +56,20 @@ public:
         Properties m_properties;
     };
 
+    inline s32 getGamemode() {
+        return m_gamemode;
+    }
+
     inline Player *getPlayer(u8 i) {
         return &m_players[i];
     }
 
     inline u32 getPlayerCount() {
         return m_playerCount;
+    }
+
+    inline s8 getPlayerOrder(u8 i) {
+        return m_votePlayerOrder[i];
     }
 
     static std::optional<Player::Properties> createPlayerProperties(std::optional<u32> character,
@@ -97,7 +105,8 @@ protected:
 
     u32 m_playerCount = 0;
     s32 m_gamemode = -1;
-    std::array<s8, 12> m_playerVoteOrder;
+    std::array<s8, 12> m_votePlayerOrder;
+    u8 m_voteCurrentPlayerIdx = 0;
     std::array<Player, 12> m_players;
 
     static void *s_block;

@@ -32,7 +32,7 @@ message RoomRequest {
 
     message Vote {
         required uint32     course     = 1;
-        optional Properties properties = 2;
+        required Properties properties = 2;
     }
 
     oneof request {

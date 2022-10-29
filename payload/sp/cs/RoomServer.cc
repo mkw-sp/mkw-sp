@@ -169,6 +169,9 @@ std::optional<RoomServer::ServerState> RoomServer::calcSelect(Handler &handler) 
     if (m_voteEvent) {
         for (u8 i = 0; i < 12; i++) {
             if (m_voted[i]) {
+                m_votePlayerOrder[i] = m_voteCurrentPlayerIdx;
+                m_voteCurrentPlayerIdx++;
+
                 m_voteCount++;
                 writeSelectPulse(i);
                 handler.onReceivePulse(i);
@@ -272,8 +275,7 @@ bool RoomServer::onRoomClose(u32 playerId, s32 gamemode) {
     return true;
 }
 
-bool RoomServer::onReceiveVote(u32 playerId, u32 course,
-        std::optional<Player::Properties> &properties) {
+bool RoomServer::onReceiveVote(u32 playerId, u32 course, Player::Properties &properties) {
     if (playerId >= m_playerCount) {
         return false;
     }
@@ -292,10 +294,8 @@ bool RoomServer::onReceiveVote(u32 playerId, u32 course,
 
     m_players[playerId].m_course = course;
 
-    if (properties) {
-        if (!validateProperties(playerId, *properties)) {
-            return false;
-        }
+    if (!validateProperties(playerId, properties)) {
+        return false;
     }
 
     m_voted[playerId] = true;
@@ -307,12 +307,15 @@ bool RoomServer::validateProperties(u32 playerId, Player::Properties &properties
     if (properties.m_character >= 0x30) {
         return false;
     }
+
     if (properties.m_character == 0x1C || properties.m_character == 0x1D) {
         return false;
     }
+
     if (properties.m_character == 0x22 || properties.m_character == 0x23) {
         return false;
     }
+
     if (properties.m_character == 0x28 || properties.m_character == 0x29) {
         return false;
     }
@@ -321,11 +324,13 @@ bool RoomServer::validateProperties(u32 playerId, Player::Properties &properties
     if (properties.m_vehicle >= 0x24) {
         return false;
     }
+
     if (getCharacterWeightClass(properties.m_character) !=
             getVehicleWeightClass(properties.m_vehicle)) {
         return false;
     }
 
+    // TODO: validate property changes depending on setting
     m_players[playerId].m_properties = properties;
     return true;
 }
@@ -687,14 +692,12 @@ std::optional<RoomServer::ClientState> RoomServer::Client::calcSelect(Handler &h
         return ClientState::Select;
     }
 
-    std::optional<Player::Properties> properties;
+    Player::Properties properties;
     switch (request->which_request) {
     case RoomRequest_vote_tag:
-        if (request->request.vote.has_properties) {
-            properties = {request->request.vote.properties.character,
-                    request->request.vote.properties.vehicle,
-                    request->request.vote.properties.driftType};
-        }
+        properties = {request->request.vote.properties.character,
+                request->request.vote.properties.vehicle,
+                request->request.vote.properties.driftType};
         if (!m_server.onReceiveVote(*playerId, request->request.vote.course, properties)) {
             return {};
         }

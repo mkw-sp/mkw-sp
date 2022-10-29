@@ -92,7 +92,7 @@ private:
     void onPlayerLeave(Handler &handler, u32 playerId);
     bool onReceiveComment(u32 playerId, u32 messageId);
     bool onRoomClose(u32 playerId, s32 gamemode);
-    bool onReceiveVote(u32 playerId, u32 course, std::optional<Player::Properties> &vote);
+    bool onReceiveVote(u32 playerId, u32 course, Player::Properties &properties);
     bool validateProperties(u32 playerId, Player::Properties &properties);
 
     void disconnectClient(u32 clientId);

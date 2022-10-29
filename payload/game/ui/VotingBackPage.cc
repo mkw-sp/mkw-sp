@@ -16,23 +16,22 @@ void VotingBackPage::onInit() {
 
     m_miiGroup.init(12, 4, nullptr);
 
-    auto sectionId = SectionManager::Instance()->currentSection()->id();
-    if (sectionId == SectionId::VotingServer) {
-        auto *server = SP::RoomServer::Instance();
-        assert(server);
+    auto *roomManager = SP::RoomManager::Instance();
+    assert(roomManager);
 
-        m_playerCount = server->getPlayerCount();
-    } else {
-        auto *client = SP::RoomClient::Instance();
-        assert(client);
+    m_playerCount = roomManager->getPlayerCount();
+    for (u8 i = 0; i < m_playerCount; i++) {
+        m_miiGroup.insertFromRaw(i, roomManager->getPlayer(i)->getMii());
+    }
+}
 
-        m_playerCount = client->getPlayerCount();
-        for (u8 i = 0; i < m_playerCount; i++) {
-            m_miiGroup.insertFromRaw(i, client->getPlayer(i)->getMii());
+void VotingBackPage::onActivate() {
+    auto *roomManager = SP::RoomManager::Instance();
+    for (u8 i = 0; i < m_selected.size(); i++) {
+        if (roomManager->getPlayerOrder(i) != -1) {
+            m_selected[i] = true;
         }
     }
-
-    // TODO: we need to sync player order here
 }
 
 void VotingBackPage::afterCalc() {
@@ -63,6 +62,14 @@ s8 VotingBackPage::_80650b40_stub() {
 
 void VotingBackPage::setLocalVote(s32 course) {
     m_localVote = course;
+}
+
+void VotingBackPage::setSubmitted(bool submitted) {
+    m_submitted = submitted;
+}
+
+bool VotingBackPage::getSubmitted() {
+    return m_submitted;
 }
 
 VotingBackPage *VotingBackPage::Instance() {

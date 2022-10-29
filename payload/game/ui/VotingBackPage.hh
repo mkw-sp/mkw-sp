@@ -15,6 +15,7 @@ public:
     ~VotingBackPage() override;
 
     void onInit() override;
+    void onActivate() override;
     void afterCalc() override;
     void onRefocus() override;
 
@@ -39,11 +40,14 @@ public:
         return &m_miiGroup;
     }
 
+    bool getSubmitted();
+
     void setBattle(bool isBattle) {
         m_isBattle = isBattle;
     }
 
     void setLocalVote(s32 course);
+    void setSubmitted(bool submitted);
 
     static VotingBackPage *Instance();
 

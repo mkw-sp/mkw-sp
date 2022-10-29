@@ -11,7 +11,9 @@ extern "C" {
 
 namespace SP {
 
-RoomManager::RoomManager() = default;
+RoomManager::RoomManager() {
+    m_votePlayerOrder.fill(-1);
+}
 
 RoomManager::~RoomManager() = default;
 

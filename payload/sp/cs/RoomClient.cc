@@ -343,6 +343,9 @@ bool RoomClient::onReceivePulse(Handler &handler, u32 playerId) {
     if (playerId >= m_playerCount) {
         return false;
     }
+
+    m_votePlayerOrder[playerId] = m_voteCurrentPlayerIdx;
+    m_voteCurrentPlayerIdx++;
     handler.onReceivePulse(playerId);
     return true;
 }
