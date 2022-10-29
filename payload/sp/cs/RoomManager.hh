@@ -72,9 +72,6 @@ public:
         return m_votePlayerOrder[i];
     }
 
-    static std::optional<Player::Properties> createPlayerProperties(std::optional<u32> character,
-            std::optional<u32> vehicle, std::optional<bool> driftType);
-
     // Static instance management is handled in RoomServer and RoomClient
     static void OnCreateScene();
     static void OnDestroyScene();
