@@ -528,7 +528,7 @@ bool RoomServer::Client::writeSelectInfo(u32 selectedPlayer) {
     return write(event);
 }
 
-std::optional<RoomServer::ClientState> RoomServer::Client::resolve(Handler &handler) {
+std::optional<RoomServer::Client::State> RoomServer::Client::resolve(Handler &handler) {
     switch (m_state) {
     case State::Connect:
         return calcConnect();
@@ -563,7 +563,7 @@ bool RoomServer::Client::transition(Handler &handler, ClientState state) {
     return result;
 }
 
-std::optional<RoomServer::ClientState> RoomServer::Client::calcConnect() {
+std::optional<RoomServer::Client::State> RoomServer::Client::calcConnect() {
     if (!m_socket.ready()) {
         return State::Connect;
     }
@@ -571,7 +571,7 @@ std::optional<RoomServer::ClientState> RoomServer::Client::calcConnect() {
     return State::Setup;
 }
 
-std::optional<RoomServer::ClientState> RoomServer::Client::calcSetup(Handler &handler) {
+std::optional<RoomServer::Client::State> RoomServer::Client::calcSetup(Handler &handler) {
     std::optional<RoomRequest> request{};
     if (!read(request)) {
         return {};
@@ -626,7 +626,7 @@ std::optional<RoomServer::ClientState> RoomServer::Client::calcSetup(Handler &ha
     }
 }
 
-std::optional<RoomServer::ClientState> RoomServer::Client::calcMain(Handler &handler) {
+std::optional<RoomServer::Client::State> RoomServer::Client::calcMain(Handler &handler) {
     if (m_server.m_state == ServerState::Select) {
         return State::Select;
     }
@@ -677,7 +677,7 @@ std::optional<RoomServer::ClientState> RoomServer::Client::calcMain(Handler &han
     }
 }
 
-std::optional<RoomServer::ClientState> RoomServer::Client::calcSelect(Handler &handler) {
+std::optional<RoomServer::Client::State> RoomServer::Client::calcSelect(Handler &handler) {
     auto playerId = getPlayerId();
     if (!playerId) {
         return {};
