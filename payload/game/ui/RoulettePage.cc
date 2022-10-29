@@ -8,7 +8,7 @@
 
 namespace UI {
 
-const char *animInfo[] = {
+static const char *animInfo[] = {
         "Loop", "Loop", nullptr, // group 0
         "Fade", "Hide", "Fadein", "Show", "Fadeout", nullptr, // group 1
         "Local", "Local", "Network", nullptr, // group 2
