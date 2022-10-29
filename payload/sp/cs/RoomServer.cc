@@ -413,15 +413,15 @@ void RoomServer::writeSelectInfo(u32 selectedPlayer) {
 
 RoomServer::Client::Client(RoomServer &server, u32 id, s32 handle,
         const hydro_kx_keypair &serverKeypair)
-    : m_id(id), m_server(server), m_state(ClientState::Connect),
+    : m_id(id), m_server(server), m_state(State::Connect),
       m_socket(handle, serverKeypair, "room    ") {}
 
 RoomServer::Client::~Client() = default;
 
 bool RoomServer::Client::ready() const {
     switch (m_state) {
-    case ClientState::Main:
-    case ClientState::Select:
+    case State::Main:
+    case State::Select:
         return true;
     default:
         return false;
@@ -530,13 +530,13 @@ bool RoomServer::Client::writeSelectInfo(u32 selectedPlayer) {
 
 std::optional<RoomServer::ClientState> RoomServer::Client::resolve(Handler &handler) {
     switch (m_state) {
-    case ClientState::Connect:
+    case State::Connect:
         return calcConnect();
-    case ClientState::Setup:
+    case State::Setup:
         return calcSetup(handler);
-    case ClientState::Main:
+    case State::Main:
         return calcMain(handler);
-    case ClientState::Select:
+    case State::Select:
         return calcSelect(handler);
     }
 
@@ -550,13 +550,13 @@ bool RoomServer::Client::transition(Handler &handler, ClientState state) {
 
     bool result = true;
     switch (state) {
-    case ClientState::Connect:
+    case State::Connect:
         break;
-    case ClientState::Setup:
+    case State::Setup:
         break;
-    case ClientState::Main:
+    case State::Main:
         break;
-    case ClientState::Select:
+    case State::Select:
         break;
     }
     m_state = state;
@@ -565,10 +565,10 @@ bool RoomServer::Client::transition(Handler &handler, ClientState state) {
 
 std::optional<RoomServer::ClientState> RoomServer::Client::calcConnect() {
     if (!m_socket.ready()) {
-        return ClientState::Connect;
+        return State::Connect;
     }
 
-    return ClientState::Setup;
+    return State::Setup;
 }
 
 std::optional<RoomServer::ClientState> RoomServer::Client::calcSetup(Handler &handler) {
@@ -578,7 +578,7 @@ std::optional<RoomServer::ClientState> RoomServer::Client::calcSetup(Handler &ha
     }
 
     if (!request) {
-        return ClientState::Setup;
+        return State::Setup;
     }
 
     switch (request->which_request) {
@@ -620,15 +620,15 @@ std::optional<RoomServer::ClientState> RoomServer::Client::calcSetup(Handler &ha
         if (!writeSettings()) {
             return {};
         }
-        return ClientState::Main;
+        return State::Main;
     default:
         return {};
     }
 }
 
 std::optional<RoomServer::ClientState> RoomServer::Client::calcMain(Handler &handler) {
-    if (m_server.m_state == State::Select) {
-        return ClientState::Select;
+    if (m_server.m_state == ServerState::Select) {
+        return State::Select;
     }
 
     auto playerId = getPlayerId();
@@ -642,14 +642,14 @@ std::optional<RoomServer::ClientState> RoomServer::Client::calcMain(Handler &han
     }
 
     if (!request) {
-        return ClientState::Main;
+        return State::Main;
     }
     switch (request->which_request) {
     case RoomRequest_comment_tag:
         if (!m_server.onReceiveComment(*playerId, request->request.comment.messageId)) {
             return {};
         }
-        return ClientState::Main;
+        return State::Main;
     case RoomRequest_settings_tag:
         if (request->request.settings.settings_count != RoomSettings::count) {
             return {};
@@ -665,13 +665,13 @@ std::optional<RoomServer::ClientState> RoomServer::Client::calcMain(Handler &han
             }
         }
         m_server.m_players[*playerId].m_settings = settings;
-        return ClientState::Main;
+        return State::Main;
     case RoomRequest_close_tag:
         if (!m_server.onRoomClose(*playerId, request->request.close.gamemode)) {
             return {};
         }
         m_server.m_roomClosed = true;
-        return ClientState::Main;
+        return State::Main;
     default:
         return {};
     }
@@ -689,7 +689,7 @@ std::optional<RoomServer::ClientState> RoomServer::Client::calcSelect(Handler &h
     }
 
     if (!request) {
-        return ClientState::Select;
+        return State::Select;
     }
 
     Player::Properties properties;
@@ -702,7 +702,7 @@ std::optional<RoomServer::ClientState> RoomServer::Client::calcSelect(Handler &h
             return {};
         }
         m_server.m_voteEvent = true;
-        return ClientState::Select;
+        return State::Select;
     default:
         return {};
     }

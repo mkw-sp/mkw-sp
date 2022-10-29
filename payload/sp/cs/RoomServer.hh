@@ -34,6 +34,8 @@ private:
     // RoomServer::Client is responsible for sending events to individual clients
     class Client {
     public:
+        using State = RoomServer::ClientState;
+        
         Client(RoomServer &server, u32 id, s32 handle, const hydro_kx_keypair &serverKeypair);
         ~Client();
 
