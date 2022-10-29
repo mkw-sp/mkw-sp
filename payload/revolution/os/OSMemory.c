@@ -52,7 +52,6 @@ static u32 MakeBATBLEncoding(u32 shiftAmount) {
 }
 
 static u32 MakePayloadBATBLEncoding(void) {
-    assert((char *)payload_replacements_end > (char *)GetBATEndAddress(GetIBAT0U()));
     const u32 payloadExecutableAreaSize =
             (char *)payload_replacements_end - (char *)GetBATEndAddress(GetIBAT0U());
 
