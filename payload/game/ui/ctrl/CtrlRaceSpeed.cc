@@ -1,6 +1,9 @@
 #include "CtrlRaceSpeed.hh"
 
+#include "game/kart/KartMove.hh"
 #include "game/kart/KartObjectManager.hh"
+#include "game/kart/KartState.hh"
+#include "game/kart/VehiclePhysics.hh"
 
 extern "C" {
 #include <revolution.h>

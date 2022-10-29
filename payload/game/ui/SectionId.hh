@@ -5,6 +5,8 @@ namespace UI {
 enum class SectionId {
     Restart = 0x5,
 
+    Thumbnails = 0x6, // Was unused
+
     GP = 0x1e,
     TA = 0x1f,
 

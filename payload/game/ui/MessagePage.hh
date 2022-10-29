@@ -64,7 +64,10 @@ public:
     void setTitleMessage(u32 messageId, MessageInfo *info = nullptr);
 
 private:
-    u8 _1a5[0x608 - 0x1a5];
+    u8 _1a5[0x604 - 0x1a5];
+
+public:
+    PageId m_replacement;
 };
 static_assert(sizeof(MenuMessagePage) == 0x608);
 

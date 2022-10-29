@@ -29,6 +29,8 @@ public:
     static_assert(sizeof(Player) == 0x54);
 
     Player *player(u32 playerId);
+    void REPLACED(calc)();
+    REPLACE void calc();
 
     static RaceManager *Instance();
     static u8 GetLapCount();
@@ -36,7 +38,9 @@ public:
 private:
     u8 _00[0x0c - 0x00];
     Player **m_players;
-    u8 _10[0x50 - 0x10];
+    u8 _10[0x20 - 0x10];
+    u32 m_frame;
+    u8 _24[0x50 - 0x24];
 
     static RaceManager *s_instance;
 };

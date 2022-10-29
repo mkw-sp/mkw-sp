@@ -79,7 +79,7 @@ PATCH_B(MultiDvdArchive_init, my_MultiDvdArchive_init);
 static const MultiDvdArchive_vt s_RaceMultiDvdArchive_vt;
 
 static RaceMultiDvdArchive *RaceMultiDvdArchive_ct(RaceMultiDvdArchive *this) {
-    MultiDvdArchive_ct(this, 4);
+    MultiDvdArchive_ct(this, 5);
     this->vt = &s_RaceMultiDvdArchive_vt;
 
     this->vt->init(this);
@@ -96,8 +96,9 @@ static void RaceMultiDvdArchive_init(MultiDvdArchive *base) {
     } else {
         snprintf(this->names[1], 0x80, "_%s.szs", getLanguageCode());
     }
-    snprintf(this->names[2], 0x80, "_Dif.szs");
-    snprintf(this->names[3], 0x80, "_%s_Dif.szs", getLanguageCode());
+    snprintf(this->names[2], 0x80, "SP.szs");
+    snprintf(this->names[3], 0x80, "_Dif.szs");
+    snprintf(this->names[4], 0x80, "_%s_Dif.szs", getLanguageCode());
 
     for (u32 i = 0; i < 4; i++) {
         this->kinds[i] = RESOURCE_KIND_FILE_DOUBLE_FORMAT;

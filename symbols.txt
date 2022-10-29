@@ -422,6 +422,7 @@
 0x80242c18 EGG_TaskThread_request
 0x80242c18 _ZN3EGG10TaskThread7requestEPFvPvES1_S1_
 0x80243d6c EGG_Video_configure
+0x802441ec _ZN3EGG3Xfb11CalcXfbSizeEtt
 
 0x802A4080 sRKSystem
 0x802A4080 _ZN3EGG7TSystem10s_instanceE
@@ -443,6 +444,7 @@
 0x805190f0 DvdArchive_rip
 0x805192cc DvdArchive_clear
 0x805193c8 DvdArchive_clearFile
+0x80519420 _ZN6System10DVDArchive7getFileEPKcPj
 0x80519508 DvdArchive_decompress
 0x805195a4 DvdArchive_move
 0x805195d8 DvdArchive_loadOther
@@ -499,6 +501,7 @@
 0x8052fe58 RaceConfig_createInstance
 0x8053015c RaceConfig_ct
 0x80531ce4 _ZN6System10RaceConfig7endRaceEv
+0x805331b4 _ZN6System11RaceManager4calcEv
 0x805336a4 _ZN6System11RaceManager11GetLapCountEv
 0x80533ed8 RaceManagerPlayer_ct
 0x805347f4 RaceManagerPlayer_endRace
@@ -534,8 +537,10 @@
 0x8054a9e0 _ZNK6System11SaveManager11getLatitudeEPt
 0x8054aa08 _ZNK6System11SaveManager12getLongitudeEPt
 0x8054aa64 SceneCreatorDynamic_create
+0x80553c50 RaceScene_vf_38
 0x80555040 MenuScene_vf_38
 0x805553B0 _unresolved
+0x8056a300 _ZN4Kart9KartBlink4calcEb
 0x8056ce98 KartBody_calcTransforms
 0x8056da88 BikeBody_calcTransforms
 0x8057257c KartCollide_checkItem
@@ -545,6 +550,7 @@
 0x8057b9ac KartMove_setKillerEndHardSpeedLimit
 0x8057b9bc KartMove_calcSpeed
 0x8057f3d8 KartMove_activateMushroom
+0x80581824 _ZN4Kart8KartMove9calcBlinkEv
 0x80584d58 KartMove_calcCannon
 0x805858ac KartMove_startKiller
 0x8058eebc KartObject_calcPass1
@@ -578,6 +584,7 @@
 0x805a2034 Camera_805a2034
 0x805a21d0 Camera_805a21d0
 0x805a8468 CameraManager_ct
+0x805a8fbc CameraManager_805a8fbc
 0x805bac84 _ZN2UI9AwaitPage3popEv
 0x805baf10 CtrlMenuPageTitleText_dt
 0x805bb210 _ZN2UI13MenuAwaitPage15setTitleMessageEjPNS_11MessageInfoE
@@ -885,6 +892,7 @@
 0x8062c3a4 _ZN2UI7Section8addPagesENS_9SectionIdE
 0x80630094 _ZN2UI7Section14addActivePagesENS_9SectionIdE
 0x80631588 _ZN2UI7Section10GetSceneIdENS_9SectionIdE
+0x80631734 _ZN2UI7Section15GetResourceNameENS_9SectionIdE
 0x80631c68 _ZN2UI7Section10GetSoundIdENS_9SectionIdE
 0x80632cc0 AfterTimeAttackMenuPage_getButtons
 0x80632ccc AfterTimeAttackMenuPage_getButtonCount
@@ -1055,6 +1063,7 @@
 0x8070fa08 _ZN5Sound16ItemMusicManager14CreateInstanceEv
 0x8070fd10 _ZN5Sound16ItemMusicManager4calcEv
 0x8070fec8 _ZN5Sound16ItemMusicManager7resolveEv
+0x80710688 RaceSoundManager_ct
 0x80711ac4 _ZN5Sound16RaceSoundManager10transitionEj
 0x80716170 Snd_80716170
 0x80719044 Snd_80719044
@@ -1242,6 +1251,7 @@
 0x808ad3c4 RaceCupSelectPage_zero
 
 0x808b3984 courseFilenames
+0x808b3984 _ZN8Registry15courseFilenamesE
 0x808b5b1c minDriftSpeedFactor
 0x808b5c78 boostAccelerations
 0x808cb550 ai_808cb550

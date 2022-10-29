@@ -1087,6 +1087,14 @@
         "font": "regular",
         "string": "Increase the render distance of player tags.",
     },
+    "10313": {
+        "font": "regular",
+        "string": "Thumbnails",
+    },
+    "10314": {
+        "font": "regular",
+        "string": "No track was found in the\n/mkw-sp/thumbnails folder.",
+    },
     "20000": {
         "font": "regular",
         "string": "Online",

@@ -1,10 +1,12 @@
 #pragma once
 
-#include "game/kart/KartMove.hh"
-#include "game/kart/KartState.hh"
-#include "game/kart/VehiclePhysics.hh"
+#include <Common.hh>
 
 namespace Kart {
+
+class KartState;
+class VehiclePhysics;
+class KartMove;
 
 struct KartAccessor {
     u8 _00[0x04 - 0x00];
@@ -25,8 +27,10 @@ public:
     u32 getPlayerId() const;
     f32 getInternalSpeed() const;
 
-private:
+protected:
     KartAccessor *m_accessor;
+
+private:
     u8 _0[0xc - 0x4];
 };
 static_assert(sizeof(KartObjectProxy) == 0xc);

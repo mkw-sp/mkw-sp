@@ -88,6 +88,9 @@ HUD_LANGUAGES = {
 }
 
 asset_in_files = {
+    os.path.join('Race', 'CommonSP.arc.lzma'): [
+        os.path.join('kartCameraParamThumbnails.bin'),
+    ],
     os.path.join('Scene', 'UI', 'AwardSP.arc.lzma'): [
         os.path.join('award', 'anim', 'common_w121_ending_team_blue_red_chara_point_dummy_color_clear.brlan.json5'),
         os.path.join('award', 'anim', 'common_w121_ending_team_blue_red_chara_point_dummy_team_color.brlan.json5'),
@@ -697,6 +700,7 @@ for target in asset_in_files:
     for in_file in asset_in_files[target]:
         base, ext = os.path.splitext(in_file)
         outext = {
+            '.bin': '.bin',
             '.brfna': '.brfna',
             '.brfnt': '.brfnt',
             '.brlyt': '.brlyt',
@@ -725,6 +729,7 @@ for target in asset_in_files:
             in_file = os.path.join('assets', in_file)
         if out_file not in out_files:
             rule = {
+                '.bin': 'cp',
                 '.brfna': 'cp',
                 '.brfnt': 'cp',
                 '.brlyt': 'cp',
@@ -1011,6 +1016,8 @@ code_in_files = {
         os.path.join('payload', 'egg', 'core', 'eggSystem.S'),
         os.path.join('payload', 'egg', 'core', 'eggSystem.c'),
         os.path.join('payload', 'egg', 'core', 'eggSystem.cc'),
+        os.path.join('payload', 'egg', 'core', 'eggXfb.cc'),
+        os.path.join('payload', 'egg', 'core', 'eggXfbManager.cc'),
         os.path.join('payload', 'egg', 'util', 'eggException.S'),
         os.path.join('payload', 'game', 'effect', 'Effect.S'),
         os.path.join('payload', 'game', 'gfx', 'Camera.S'),
@@ -1025,6 +1032,7 @@ code_in_files = {
         os.path.join('payload', 'game', 'item', 'ItemObjKouraMidori.S'),
         os.path.join('payload', 'game', 'kart', 'KartCollide.S'),
         os.path.join('payload', 'game', 'item', 'KartItem.S'),
+        os.path.join('payload', 'game', 'kart', 'KartBlink.cc'),
         os.path.join('payload', 'game', 'kart', 'KartBody.S'),
         os.path.join('payload', 'game', 'kart', 'KartMove.S'),
         os.path.join('payload', 'game', 'kart', 'KartMove.cc'),
@@ -1070,6 +1078,7 @@ code_in_files = {
         os.path.join('payload', 'game', 'system', 'CourseMap.S'),
         os.path.join('payload', 'game', 'system', 'DvdArchive.S'),
         os.path.join('payload', 'game', 'system', 'DvdArchive.c'),
+        os.path.join('payload', 'game', 'system', 'DVDArchive.cc'),
         os.path.join('payload', 'game', 'system', 'FatalScene.c'),
         os.path.join('payload', 'game', 'system', 'GhostFile.c'),
         os.path.join('payload', 'game', 'system', 'GhostFile.cc'),
@@ -1273,6 +1282,7 @@ code_in_files = {
         os.path.join('payload', 'sp', 'ScopeLock.cc'),
         os.path.join('payload', 'sp', 'Slab.c'),
         os.path.join('payload', 'sp', 'StackTrace.c'),
+        os.path.join('payload', 'sp', 'ThumbnailManager.cc'),
         os.path.join('payload', 'sp', 'Time.cc'),
         os.path.join('payload', 'sp', 'Update.cc'),
         os.path.join('payload', 'sp', 'Yaz.c'),

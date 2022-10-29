@@ -41,6 +41,24 @@ bool Section::isPageActive(PageId pageId) const {
     return false;
 }
 
+u32 Section::GetSceneId(SectionId id) {
+    switch (id) {
+    case SectionId::Thumbnails:
+        return 2; // Race
+    default:
+        return REPLACED(GetSceneId)(id);
+    }
+}
+
+const char *Section::GetResourceName(SectionId id) {
+    switch (id) {
+    case SectionId::Thumbnails:
+        return "/Scene/UI/Race";
+    default:
+        return REPLACED(GetResourceName)(id);
+    }
+}
+
 bool Section::HasRoomClient(SectionId sectionId) {
     switch(sectionId) {
     case SectionId::OnlineSingle:
@@ -157,7 +175,6 @@ void Section::addPage(PageId pageId) {
         // The channel section is repurposed into the Service Pack section. Remove some pages that
         // aren't needed anymore.
         { SectionId::ServicePack, PageId::TimeAttackTop },
-        { SectionId::ServicePack, PageId::MenuMessage },
 
         { SectionId::OnlineServer, (PageId)0x4c },
         { SectionId::OnlineServer, (PageId)0x4f },

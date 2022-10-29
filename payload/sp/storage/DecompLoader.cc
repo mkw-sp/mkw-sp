@@ -3,8 +3,11 @@
 #include "sp/Exchange.hh"
 #include "sp/LZ77Decoder.hh"
 #include "sp/LZMADecoder.hh"
+#include "sp/ThumbnailManager.hh"
 #include "sp/YAZDecoder.hh"
 #include "sp/storage/Storage.hh"
+
+#include <game/util/Registry.hh>
 
 #include <common/Bytes.hh>
 
@@ -26,8 +29,19 @@ static u8 stack[0x2000 /* 8 KiB */];
 alignas(0x20) static u8 srcs[2][0x20000 /* 128 KiB */];
 
 static std::optional<FileHandle> Open(const char *path) {
+    if (ThumbnailManager::IsActive()) {
+        char coursePath[128];
+        snprintf(coursePath, std::size(coursePath), "ro:/Race/Course/%s.szs",
+                Registry::courseFilenames[ThumbnailManager::CourseId()]);
+        if (!strcmp(path, coursePath)) {
+            auto thumbnailPath = ThumbnailManager::Path();
+            return Storage::Open(thumbnailPath.data(), "r");
+        }
+    }
+
     size_t length = strlen(path);
-    if (length >= strlen(".szs") && !strcmp(path + length - strlen(".szs"), ".szs")) {
+    if (!strncmp(path, "ro:/", strlen("ro:/")) && length >= strlen(".szs") &&
+            !strcmp(path + length - strlen(".szs"), ".szs")) {
         wchar_t lzmaPath[128];
         swprintf(lzmaPath, std::size(lzmaPath), L"%.*s.arc.lzma", length - strlen(".szs"), path);
         auto file = Storage::Open(lzmaPath, "r");

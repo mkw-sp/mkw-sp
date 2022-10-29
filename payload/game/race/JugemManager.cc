@@ -8,10 +8,14 @@ namespace Race {
 void JugemManager::calc() {
     for (u32 i = 0; i < m_count; i++) {
         m_jugems[i]->m_visible = true;
-        if (UI::SectionManager::Instance()->currentSection()->id() == UI::SectionId::GhostReplay) {
+        auto sectionId = UI::SectionManager::Instance()->currentSection()->id();
+        if (sectionId == UI::SectionId::GhostReplay) {
             if (m_jugems[i]->getPlayerId() != UI::RacePage::Instance()->watchedPlayerId()) {
                 m_jugems[i]->m_visible = false;
             }
+        }
+        if (sectionId == UI::SectionId::Thumbnails) {
+            m_jugems[i]->m_visible = false;
         }
 
         m_jugems[i]->calc();

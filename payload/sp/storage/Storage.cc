@@ -180,9 +180,9 @@ std::optional<u32> ReadFile(const wchar_t *path, void *dst, u32 size) {
 
 bool WriteFile(const wchar_t *path, const void *src, u32 size, bool overwrite) {
     if (overwrite) {
-        wchar_t newPath[64];
+        wchar_t newPath[256];
         swprintf(newPath, std::size(newPath), L"%ls.new", path);
-        wchar_t oldPath[64];
+        wchar_t oldPath[256];
         swprintf(oldPath, std::size(oldPath), L"%ls.old", path);
 
         {

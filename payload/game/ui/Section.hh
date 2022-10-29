@@ -47,7 +47,10 @@ public:
     bool isPageFocused(const Page *page) const;
     bool isPageActive(PageId pageId) const;
 
-    static u32 GetSceneId(SectionId id);
+    static u32 REPLACED(GetSceneId)(SectionId id);
+    static REPLACE u32 GetSceneId(SectionId id);
+    static const char *REPLACED(GetResourceName)(SectionId id);
+    static REPLACE const char *GetResourceName(SectionId id);
     static Sound::SoundId GetSoundId(SectionId id);
     static bool HasRoomClient(SectionId sectionId);
     static bool HasRoomServer(SectionId sectionId);
