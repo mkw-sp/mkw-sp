@@ -10,10 +10,10 @@ jobs:
     timeout-minutes: 20
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
       - name: Cache DevkitPPC
         id: cache-1
-        uses: actions/cache@v2
+        uses: actions/cache@v3
         with:
           path: cache
           key: ${{ runner.os }}-cache-dkp-r41-2
@@ -30,7 +30,7 @@ jobs:
       - name: Install protoc
         run: sudo apt install protobuf-compiler
       - name: Install PyPy
-        uses: actions/setup-python@v2
+        uses: actions/setup-python@v4
         with:
           python-version: 'pypy-3.8'
       - name: Install json5
@@ -46,7 +46,7 @@ jobs:
       - name: Compile
         run: ninja
       - name: Upload result
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         with: 
           name: mkw-sp
           path: out
