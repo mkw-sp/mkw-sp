@@ -47,56 +47,22 @@ void RoomClient::changeLocalSettings() {
     m_localSettingsChanged = true;
 }
 
-bool RoomClient::sendVote(u32 course, std::optional<u32> characterId, std::optional<u32> vehicleId, std::optional<bool> driftIsAuto) {
-    std::optional<PlayerProperties> properties;
-    if (characterId && vehicleId && driftIsAuto) {
-        properties = { *characterId, *vehicleId, *driftIsAuto };
-    }
+bool RoomClient::sendVote(u32 course, std::optional<Player::Properties> properties) {
     return writeVote(course, properties);
-}
-
-void RoomClient::OnCreateScene() {
-    auto *sectionManager = UI::SectionManager::Instance();
-    if (!sectionManager) {
-        return;
-    }
-
-    if (UI::Section::HasRoomClient(sectionManager->lastSectionId())) { return; }
-    if (!UI::Section::HasRoomClient(sectionManager->nextSectionId())) { return; }
-
-    assert(!s_block);
-    auto *heap = reinterpret_cast<EGG::Heap *>(s_rootScene->heapCollection.heaps[HEAP_ID_MEM2]);
-    s_block = heap->alloc(sizeof(RoomClient), 0x4);
-}
-
-void RoomClient::OnDestroyScene() {
-    auto *sectionManager = UI::SectionManager::Instance();
-    if (!sectionManager) {
-        return;
-    }
-
-    if (UI::Section::HasRoomClient(sectionManager->nextSectionId())) { return; }
-    if (!UI::Section::HasRoomClient(sectionManager->lastSectionId())) { return; }
-
-    if (s_instance) {
-        DestroyInstance();
-    }
-    assert(s_block);
-    auto *heap = reinterpret_cast<EGG::Heap *>(s_rootScene->heapCollection.heaps[HEAP_ID_MEM2]);
-    heap->free(s_block);
-    s_block = nullptr;
 }
 
 RoomClient *RoomClient::CreateInstance(u32 localPlayerCount) {
     assert(s_block);
     assert(!s_instance);
     s_instance = new (s_block) RoomClient(localPlayerCount);
+    RoomManager::s_instance = s_instance;
     return s_instance;
 }
 
 void RoomClient::DestroyInstance() {
     assert(s_instance);
     s_instance->~RoomClient();
+    RoomManager::s_instance = nullptr;
     s_instance = nullptr;
 }
 
@@ -104,8 +70,9 @@ RoomClient *RoomClient::Instance() {
     return s_instance;
 }
 
-RoomClient::RoomClient(u32 localPlayerCount) : m_localPlayerCount(localPlayerCount),
-        m_state(State::Connect), m_socket(0x7f000001, 21330, "room    ") {}
+RoomClient::RoomClient(u32 localPlayerCount)
+    : m_localPlayerCount(localPlayerCount), m_state(State::Connect),
+      m_socket(0x7f000001, 21330, "room    ") {}
 
 RoomClient::~RoomClient() = default;
 
@@ -118,7 +85,7 @@ std::optional<RoomClient::State> RoomClient::resolve(Handler &handler) {
     case State::Main:
         return calcMain(handler);
     case State::Select:
-        break;
+        return calcSelect(handler);
     }
 
     return m_state;
@@ -183,17 +150,18 @@ std::optional<RoomClient::State> RoomClient::calcSetup(Handler &handler) {
         if (m_playerCount == 0) {
             auto *saveManager = System::SaveManager::Instance();
             for (size_t i = 0; i < RoomSettings::count; i++) {
-                m_settings[i] = saveManager->getSetting(RoomSettings::offset + i);
+                m_players[m_localPlayerIds[0]].m_settings[i] =
+                        saveManager->getSetting(RoomSettings::offset + i);
             }
         } else {
             if (event->event.settings.settings_count != RoomSettings::count) {
                 return {};
             }
             for (size_t i = 0; i < RoomSettings::count; i++) {
-                m_settings[i] = event->event.settings.settings[i];
+                m_players[m_localPlayerIds[0]].m_settings[i] = event->event.settings.settings[i];
             }
         }
-        handler.onSettingsChange(m_settings);
+        handler.onSettingsChange(m_players[m_localPlayerIds[0]].m_settings);
         return State::Main;
     default:
         return {};
@@ -237,7 +205,8 @@ std::optional<RoomClient::State> RoomClient::calcMain(Handler &handler) {
         }
         return State::Main;
     case RoomEvent_comment_tag:
-        if (!onReceiveComment(handler, event->event.comment.playerId, event->event.comment.messageId)) {
+        if (!onReceiveComment(handler, event->event.comment.playerId,
+                    event->event.comment.messageId)) {
             return {};
         }
         return State::Main;
@@ -247,11 +216,13 @@ std::optional<RoomClient::State> RoomClient::calcMain(Handler &handler) {
         } else {
             bool changed = false;
             for (size_t i = 0; i < RoomSettings::count; i++) {
-                changed = changed || event->event.settings.settings[i] != m_settings[i];
-                m_settings[i] = event->event.settings.settings[i];
+                changed = changed ||
+                        event->event.settings.settings[i] !=
+                                m_players[m_localPlayerIds[0]].m_settings[i];
+                m_players[m_localPlayerIds[0]].m_settings[i] = event->event.settings.settings[i];
             }
             if (changed) {
-                handler.onSettingsChange(m_settings);
+                handler.onSettingsChange(m_players[m_localPlayerIds[0]].m_settings);
             }
         }
         return State::Main;
@@ -276,6 +247,16 @@ std::optional<RoomClient::State> RoomClient::calcSelect(Handler &handler) {
     }
 
     switch (event->which_event) {
+    case RoomEvent_selectPulse_tag:
+        if (!onReceivePulse(handler, event->event.selectPulse.playerId)) {
+            return {};
+        }
+        return State::Select;
+    case RoomEvent_selectInfo_tag:
+        if (!onReceiveInfo(handler, *event)) {
+            return {};
+        }
+        return State::Select;
     default:
         return State::Select;
     }
@@ -319,6 +300,7 @@ bool RoomClient::onPlayerJoin(Handler &handler, const System::RawMii *mii, u32 l
         return false;
     }
 
+    m_players[m_playerCount].m_mii = *mii;
     m_playerCount++;
     handler.onPlayerJoin(mii, location, latitude, longitude, regionLineColor);
     return true;
@@ -339,15 +321,43 @@ bool RoomClient::onPlayerLeave(Handler &handler, u32 playerId) {
 }
 
 bool RoomClient::onReceiveComment(Handler &handler, u32 playerId, u32 messageId) {
-    if (playerId >= m_playerCount) { return false; }
-    if (messageId >= 96) { return false; }
+    if (playerId >= m_playerCount) {
+        return false;
+    }
+    if (messageId >= 96) {
+        return false;
+    }
     handler.onReceiveComment(playerId, messageId);
     return true;
 }
 
 bool RoomClient::onRoomClose(Handler &handler, u32 gamemode) {
-    if (gamemode >= 4) { return false; }
+    if (gamemode >= 4) {
+        return false;
+    }
     handler.onRoomClose(gamemode);
+    return true;
+}
+
+bool RoomClient::onReceivePulse(Handler &handler, u32 playerId) {
+    if (playerId >= m_playerCount) {
+        return false;
+    }
+
+    m_votePlayerOrder[playerId] = m_voteCurrentPlayerIdx;
+    m_voteCurrentPlayerIdx++;
+    handler.onReceivePulse(playerId);
+    return true;
+}
+
+bool RoomClient::onReceiveInfo(Handler &handler, RoomEvent event) {
+    for (u8 i = 0; i < event.event.selectInfo.playerProperties_count; i++) {
+        RoomEvent_Properties &properties = event.event.selectInfo.playerProperties[i];
+        m_players[i].m_course = properties.course;
+        m_players[i].m_properties = {properties.character, properties.vehicle,
+                properties.driftType};
+        handler.onReceiveInfo(i, properties.course, event.event.selectInfo.selectedPlayer);
+    }
     return true;
 }
 
@@ -429,11 +439,14 @@ bool RoomClient::writeSettings() {
     return write(request);
 }
 
-bool RoomClient::writeVote(u32 course, std::optional<PlayerProperties> properties) {
+bool RoomClient::writeVote(u32 course, std::optional<Player::Properties> properties) {
     RoomRequest request;
     request.which_request = RoomRequest_vote_tag;
     request.request.vote.course = course;
-    if (properties) { request.request.vote.properties = { (*properties).characterId, (*properties).vehicleId, (*properties).driftIsAuto }; }
+    if (properties) {
+        request.request.vote.properties = {(*properties).m_character, (*properties).m_vehicle,
+                (*properties).m_driftIsAuto};
+    }
     return write(request);
 }
 
@@ -446,7 +459,6 @@ bool RoomClient::write(RoomRequest request) {
     return m_socket.write(buffer, stream.bytes_written);
 }
 
-void *RoomClient::s_block = nullptr;
 RoomClient *RoomClient::s_instance = nullptr;
 
 } // namespace SP

@@ -12,6 +12,8 @@
 #include "game/ui/MultiTeamSelectPage.hh"
 #include "game/ui/MultiTopPage.hh"
 #include "game/ui/OnlineTopPage.hh"
+#include "game/ui/RoulettePage.hh"
+#include "game/ui/SettingsPage.hh"
 #include "game/ui/ServicePackToolsPage.hh"
 #include "game/ui/ServicePackTopPage.hh"
 #include "game/ui/SettingsPage.hh"
@@ -140,13 +142,17 @@ void Section::addPage(PageId pageId) {
         { SectionId::OnlineMulti, (PageId)0xa6 },
         { SectionId::OnlineMulti, (PageId)0xa7 },
 
+        { SectionId::Voting1PVS, (PageId)0x50 },
+        { SectionId::Voting1PVS, (PageId)0x51 },
+        { SectionId::Voting1PVS, (PageId)0x88 },
+        { SectionId::Voting1PVS, (PageId)0x91 },
+
         { SectionId::VotingServer, (PageId)0x4e },
         { SectionId::VotingServer, (PageId)0x51 },
         { SectionId::VotingServer, (PageId)0x6e },
         { SectionId::VotingServer, (PageId)0x6f },
         { SectionId::VotingServer, (PageId)0x88 },
         { SectionId::VotingServer, (PageId)0x91 },
-        { SectionId::VotingServer, (PageId)0x92 },
 
         // The channel section is repurposed into the Service Pack section. Remove some pages that
         // aren't needed anymore.
@@ -209,6 +215,8 @@ void Section::addActivePage(PageId pageId) {
         { SectionId::OnlineServer, PageId::GhostManager },
         { SectionId::OnlineServer, (PageId)0x7f },
         { SectionId::OnlineServer, (PageId)0x84 },
+
+        { SectionId::Voting1PVS, (PageId)0x88 },
 
         { SectionId::VotingServer, (PageId)0x88 },
     };
@@ -354,6 +362,10 @@ void Section::addActivePages(SectionId id) {
 
         { SectionId::OnlineMulti, PageId::OnlineTop },
 
+        { SectionId::Voting1PVS, PageId::CupSelect },
+
+        { SectionId::VotingServer, PageId::Roulette },
+
         { SectionId::OnlineServer, PageId::FriendMatching },
     };
     for (const auto &addition : additions) {
@@ -385,6 +397,8 @@ Page *Section::CreatePage(PageId pageId) {
         return new OnlineTopPage;
     case PageId::VotingBack:
         return new VotingBackPage;
+    case PageId::Roulette:
+        return new RoulettePage;
     case PageId::FriendRoomRules:
         return new FriendRoomRulesPage;
     case PageId::FriendMatching:

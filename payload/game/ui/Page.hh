@@ -84,6 +84,8 @@ public:
     void setAnim(Anim anim);
     REPLACE void calc();
 
+    s32 frame() const { return m_frame; }
+
 protected:
     void initChildren(u32 count);
     void insertChild(u32 index, UIControl *child, u32 drawPass);
@@ -98,7 +100,9 @@ private:
     bool m_canProceed;
     u8 _0d[0x10 - 0x0d];
     Anim m_anim;
-    u8 _14[0x24 - 0x14];
+    u8 _14[0x1c - 0x14];
+    s32 m_frame;
+    u8 _1c[0x24 - 0x20];
     ControlGroup m_controlGroup;
     MenuInputManager *m_inputManager;
     u8 _3c[0x44 - 0x3c];

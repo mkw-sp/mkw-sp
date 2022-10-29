@@ -23,9 +23,11 @@ class ModelRenderPage;
 class OptionExplanationPage;
 class OptionSelectPage;
 class RaceConfirmPage;
+class RoulettePage;
 class SettingsPagePopup;
 class TeamConfirmPage;
 class TimeAttackGhostListPage;
+class VotingBackPage;
 class YesNoPagePopup;
 
 class Section {
@@ -120,6 +122,16 @@ struct Section::PageIdHelper<PageId::TeamConfirm> {
 template <>
 struct Section::PageIdHelper<PageId::ModelRender> {
     using type = ModelRenderPage;
+};
+
+template <>
+struct Section::PageIdHelper<PageId::VotingBack> {
+    using type = VotingBackPage;
+};
+
+template <>
+struct Section::PageIdHelper<PageId::Roulette> {
+    using type = RoulettePage;
 };
 
 template <>

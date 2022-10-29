@@ -9,6 +9,7 @@ public:
     ResourceManager();
 
     void createMenuHeaps(u32 count, s32 heapIdx);
+    void preloadCourseAsync(u32 courseId);
 
     static REPLACE ResourceManager *CreateInstance();
     static ResourceManager *Instance() { return s_instance; }
