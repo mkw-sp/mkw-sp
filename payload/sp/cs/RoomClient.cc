@@ -71,64 +71,64 @@ RoomClient *RoomClient::Instance() {
 }
 
 RoomClient::RoomClient(u32 localPlayerCount)
-    : m_localPlayerCount(localPlayerCount), m_state(ClientState::Connect),
+    : m_localPlayerCount(localPlayerCount), m_state(State::Connect),
       m_socket(0x7f000001, 21330, "room    ") {}
 
 RoomClient::~RoomClient() = default;
 
-std::optional<RoomClient::ClientState> RoomClient::resolve(Handler &handler) {
+std::optional<RoomClient::State> RoomClient::resolve(Handler &handler) {
     switch (m_state) {
-    case ClientState::Connect:
+    case State::Connect:
         return calcConnect();
-    case ClientState::Setup:
+    case State::Setup:
         return calcSetup(handler);
-    case ClientState::Main:
+    case State::Main:
         return calcMain(handler);
-    case ClientState::Select:
+    case State::Select:
         return calcSelect(handler);
     }
 
     return m_state;
 }
 
-bool RoomClient::transition(Handler &handler, ClientState state) {
+bool RoomClient::transition(Handler &handler, State state) {
     if (state == m_state) {
         return true;
     }
 
     bool result = true;
     switch (state) {
-    case ClientState::Connect:
+    case State::Connect:
         break;
-    case ClientState::Setup:
+    case State::Setup:
         result = onSetup(handler);
         break;
-    case ClientState::Main:
+    case State::Main:
         result = onMain(handler);
         break;
-    case ClientState::Select:
+    case State::Select:
         break;
     }
     m_state = state;
     return result;
 }
 
-std::optional<RoomClient::ClientState> RoomClient::calcConnect() {
+std::optional<RoomClient::State> RoomClient::calcConnect() {
     if (!m_socket.ready()) {
-        return ClientState::Connect;
+        return State::Connect;
     }
 
-    return ClientState::Setup;
+    return State::Setup;
 }
 
-std::optional<RoomClient::ClientState> RoomClient::calcSetup(Handler &handler) {
+std::optional<RoomClient::State> RoomClient::calcSetup(Handler &handler) {
     std::optional<RoomEvent> event{};
     if (!read(event)) {
         return {};
     }
 
     if (!event) {
-        return ClientState::Setup;
+        return State::Setup;
     }
 
     switch (event->which_event) {
@@ -145,7 +145,7 @@ std::optional<RoomClient::ClientState> RoomClient::calcSetup(Handler &handler) {
                 return {};
             }
         }
-        return ClientState::Setup;
+        return State::Setup;
     case RoomEvent_settings_tag:
         if (m_playerCount == 0) {
             auto *saveManager = System::SaveManager::Instance();
@@ -162,13 +162,13 @@ std::optional<RoomClient::ClientState> RoomClient::calcSetup(Handler &handler) {
             }
         }
         handler.onSettingsChange(m_players[m_localPlayerIds[0]].m_settings);
-        return ClientState::Main;
+        return State::Main;
     default:
         return {};
     }
 }
 
-std::optional<RoomClient::ClientState> RoomClient::calcMain(Handler &handler) {
+std::optional<RoomClient::State> RoomClient::calcMain(Handler &handler) {
     if (m_localSettingsChanged) {
         if (!writeSettings()) {
             return {};
@@ -181,7 +181,7 @@ std::optional<RoomClient::ClientState> RoomClient::calcMain(Handler &handler) {
     }
 
     if (!event) {
-        return ClientState::Main;
+        return State::Main;
     }
 
     switch (event->which_event) {
@@ -198,18 +198,18 @@ std::optional<RoomClient::ClientState> RoomClient::calcMain(Handler &handler) {
                 return {};
             }
         }
-        return ClientState::Main;
+        return State::Main;
     case RoomEvent_leave_tag:
         if (!onPlayerLeave(handler, event->event.leave.playerId)) {
             return {};
         }
-        return ClientState::Main;
+        return State::Main;
     case RoomEvent_comment_tag:
         if (!onReceiveComment(handler, event->event.comment.playerId,
                     event->event.comment.messageId)) {
             return {};
         }
-        return ClientState::Main;
+        return State::Main;
     case RoomEvent_settings_tag:
         if (event->event.settings.settings_count != RoomSettings::count) {
             return {};
@@ -225,25 +225,25 @@ std::optional<RoomClient::ClientState> RoomClient::calcMain(Handler &handler) {
                 handler.onSettingsChange(m_players[m_localPlayerIds[0]].m_settings);
             }
         }
-        return ClientState::Main;
+        return State::Main;
     case RoomEvent_close_tag:
         if (!onRoomClose(handler, event->event.close.gamemode)) {
             return {};
         }
-        return ClientState::Select;
+        return State::Select;
     default:
-        return ClientState::Main;
+        return State::Main;
     }
 }
 
-std::optional<RoomClient::ClientState> RoomClient::calcSelect(Handler &handler) {
+std::optional<RoomClient::State> RoomClient::calcSelect(Handler &handler) {
     std::optional<RoomEvent> event{};
     if (!read(event)) {
         return {};
     }
 
     if (!event) {
-        return ClientState::Select;
+        return State::Select;
     }
 
     switch (event->which_event) {
@@ -251,14 +251,14 @@ std::optional<RoomClient::ClientState> RoomClient::calcSelect(Handler &handler) 
         if (!onReceivePulse(handler, event->event.selectPulse.playerId)) {
             return {};
         }
-        return ClientState::Select;
+        return State::Select;
     case RoomEvent_selectInfo_tag:
         if (!onReceiveInfo(handler, *event)) {
             return {};
         }
-        return ClientState::Select;
+        return State::Select;
     default:
-        return ClientState::Select;
+        return State::Select;
     }
 }
 

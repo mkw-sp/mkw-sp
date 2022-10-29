@@ -14,6 +14,8 @@ namespace SP {
 // RoomClient is responsible for writing requests and reading events
 class RoomClient final : public RoomManager {
 public:
+    using State = RoomManager::ClientState;
+    
     // Main RoomClient update, called in networking pages (typically afterCalc())
     bool calc(Handler &handler);
 
@@ -33,14 +35,14 @@ private:
     ~RoomClient();
 
     // Used to update m_state
-    std::optional<ClientState> resolve(Handler &handler);
-    bool transition(Handler &handler, ClientState state);
+    std::optional<State> resolve(Handler &handler);
+    bool transition(Handler &handler, State state);
 
     // Main state-specific update, used to receive events
-    std::optional<ClientState> calcConnect();
-    std::optional<ClientState> calcSetup(Handler &handler);
-    std::optional<ClientState> calcMain(Handler &handler);
-    std::optional<ClientState> calcSelect(Handler &handler);
+    std::optional<State> calcConnect();
+    std::optional<State> calcSetup(Handler &handler);
+    std::optional<State> calcMain(Handler &handler);
+    std::optional<State> calcSelect(Handler &handler);
     bool onSetup(Handler &handler);
     bool onMain(Handler &handler);
 
@@ -65,7 +67,7 @@ private:
     u32 m_localPlayerCount;
     u32 m_localPlayerIds[2];
     bool m_localSettingsChanged = false;
-    ClientState m_state;
+    State m_state;
     Net::AsyncSocket m_socket;
 
     static RoomClient *s_instance;
