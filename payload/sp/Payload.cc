@@ -67,6 +67,7 @@ static void Init() {
     Console::Print("MKW-SP v");
     Console::Print(versionInfo.name);
     Console::Print("\n");
+    Console::Print("\n");
 
     Console::Print("Applying security patches...");
 #ifndef GDB_COMPATIBLE

@@ -30,19 +30,29 @@ void GXSetColorUpdate(u32);
 void GXBegin(u32, u32, u32);
 
 // bin_op(left_un_arg(ALPHA, left_un_arg), right_un_op(ALPHA, right_un_arg)
-void GXSetAlphaCompare(GXCompare left_un_op, u8 left_un_arg, GXAlphaOp bin_op, GXCompare right_un_op, u8 right_un_arg);
+void GXSetAlphaCompare(GXCompare left_un_op, u8 left_un_arg, GXAlphaOp bin_op,
+        GXCompare right_un_op, u8 right_un_arg);
 
 static inline void GXEnd(void) {}
 typedef union {
     char c;
+    u8 _u8;
     s16 _s16;
     u16 _u16;
+    s32 _s32;
+    u32 _u32;
     int i;
     void *p;
     float f;
 } WGPIPE_type;
 #define WGPIPE (*(volatile WGPIPE_type *)0xcc008000)
 
+static inline void GXColor1x8(u8 c) {
+    WGPIPE._u8 = c;
+}
+static inline void GXColor1u32(u32 c) {
+    WGPIPE._u32 = c;
+}
 static inline void GXPosition2s16(s16 a, s16 b) {
     WGPIPE._s16 = a;
     WGPIPE._s16 = b;
@@ -56,7 +66,14 @@ static inline void GXPosition2f32(f32 a, f32 b) {
     WGPIPE.f = a;
     WGPIPE.f = b;
 }
+static inline void GXPosition3f32(f32 a, f32 b, f32 c) {
+    WGPIPE.f = a;
+    WGPIPE.f = b;
+    WGPIPE.f = c;
+}
 static inline void GXTexCoord2f32(f32 a, f32 b) {
     WGPIPE.f = a;
     WGPIPE.f = b;
 }
+
+void GXCallDisplayList(const void *buf, u32 len);

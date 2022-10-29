@@ -189,6 +189,7 @@
 0x8017277c GXSetBlendMode
 0x801727CC GXSetColorUpdate
 0x80172824 GXSetZMode
+0x80172F64 GXCallDisplayList
 0x8017301C GXSetProjection
 0x8017310C GXLoadPosMtxImm
 0x80173214 GXSetCurrentMtx
@@ -391,6 +392,7 @@
 0x802224e8 EGG_DvdFile_openPath
 0x802226d8 _ZN3EGG9DVDRipper13LoadToMainRAMEPKcPhPNS_4HeapENS0_14AllocDirectionEjPjS7_
 0x802245AC EffectCreator_createEffect
+0x80226464 EGG_ExceptionCallBack_
 0x80226a1c EGG_ExpHeap_create2
 0x80226aC8 EGG_ExpHeap_create
 0x80226b94 EGG_ExpHeap_destroy
@@ -407,6 +409,8 @@
 0x80229e14 _ZdlPvj
 0x80229ee0 _ZdaPv
 0x80229ee0 _ZdaPvj
+0x8022F860 _ZN3EGG4MathIfE3sinEf
+0x8022F86C _ZN3EGG4MathIfE3cosEf
 0x80239338 EGG_ProcessMeter_draw
 0x8023ad10 EGG_Scene_CT
 0x8023ad84 EGG_Scene_DT
@@ -1057,14 +1061,14 @@
 0x8071e270 JugemManager_createInstance
 0x8071e480 JugemManager_createJugems
 0x8071e638 JugemManager_init
-0x8071e6c0 JugemManager_calc
+0x8071e6c0 _ZN4Race12JugemManager4calcEv
 0x8071e734 JugemManager_8071e734
-0x8071e7ac JugemManager_setVisible
+0x8071e7ac _ZN4Race12JugemManager10setVisibleEjb
 0x8071e82c JugemManager_8071e82c
 0x8071e8a4 JugemManager_8071e8a4
 0x8071e90c JugemManager_8071e90c
-0x80721090 Jugem_setVisible
-0x8072239c Jugem_getPlayerId
+0x80721090 _ZN4Race5Jugem10setVisibleEb
+0x8072239c _ZNK4Race5Jugem11getPlayerIdEv
 0x80724430 Jugem_80724430
 0x80724880 Jugem_80724880
 0x80745be4 Input_80745be4
@@ -1247,6 +1251,7 @@
 0x808D3E14 playerTagRenderDistance
 0x808da318 vsRuleDescIds
 
+0x809BD6E8 _ZN6System9CourseMap10spInstanceE
 0x809bd70c s_inputManager
 0x809bd70c _ZN6System12InputManager10s_instanceE
 0x809bd728 s_raceConfig
