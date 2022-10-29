@@ -17,6 +17,7 @@ namespace SP {
 // Its secondary responsibility is keeping track of comments in friend rooms
 class RoomServer final : public RoomManager {
 public:
+    using State = RoomManager::ServerState;
     // Main RoomServer update, called in networking pages (typically afterCalc())
     bool calc(Handler &handler);
 
@@ -76,13 +77,13 @@ private:
     ~RoomServer();
 
     // Used to update m_state
-    std::optional<ServerState> resolve(Handler &handler);
-    bool transition(Handler &handler, ServerState state);
+    std::optional<State> resolve(Handler &handler);
+    bool transition(Handler &handler, State state);
 
     // Main state-specific update, used to send events
-    std::optional<ServerState> calcSetup();
-    std::optional<ServerState> calcMain(Handler &handler);
-    std::optional<ServerState> calcSelect(Handler &handler);
+    std::optional<State> calcSetup();
+    std::optional<State> calcMain(Handler &handler);
+    std::optional<State> calcSelect(Handler &handler);
     bool onMain(Handler &handler);
 
     // Server-side request reading - any validation checks should go here!
@@ -115,7 +116,7 @@ private:
     std::bitset<12> m_voted;
     u8 m_voteCount = 0;
     s8 m_voteDelay = 15;
-    ServerState m_state;
+    State m_state;
     CircularBuffer<u32, 12> m_disconnectQueue;
     std::array<std::optional<Client>, 12> m_clients;
     Net::AsyncListener m_listener;

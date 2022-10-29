@@ -85,7 +85,7 @@ RoomServer *RoomServer::Instance() {
     return s_instance;
 }
 
-RoomServer::RoomServer() : m_state(ServerState::Setup), m_listener(21330) {
+RoomServer::RoomServer() : m_state(State::Setup), m_listener(21330) {
     hydro_kx_keygen(&m_keypair);
 }
 
@@ -93,48 +93,48 @@ RoomServer::~RoomServer() {
     hydro_memzero(&m_keypair, sizeof(m_keypair));
 }
 
-std::optional<RoomServer::ServerState> RoomServer::resolve(Handler &handler) {
+std::optional<RoomServer::State> RoomServer::resolve(Handler &handler) {
     switch (m_state) {
-    case ServerState::Setup:
+    case State::Setup:
         return calcSetup();
-    case ServerState::Main:
+    case State::Main:
         return calcMain(handler);
-    case ServerState::Select:
+    case State::Select:
         return calcSelect(handler);
     }
 
     return m_state;
 }
 
-bool RoomServer::transition(Handler &handler, ServerState state) {
+bool RoomServer::transition(Handler &handler, State state) {
     if (state == m_state) {
         return true;
     }
 
     bool result = true;
     switch (state) {
-    case ServerState::Setup:
+    case State::Setup:
         break;
-    case ServerState::Main:
+    case State::Main:
         result = onMain(handler);
         break;
-    case ServerState::Select:
+    case State::Select:
         break;
     }
     m_state = state;
     return result;
 }
 
-std::optional<RoomServer::ServerState> RoomServer::calcSetup() {
+std::optional<RoomServer::State> RoomServer::calcSetup() {
     if (!m_listener.ready()) {
-        return ServerState::Setup;
+        return State::Setup;
     }
 
-    return ServerState::Main;
+    return State::Main;
 }
 
-std::optional<RoomServer::ServerState> RoomServer::calcMain(Handler &handler) {
-    ServerState state = ServerState::Main;
+std::optional<RoomServer::State> RoomServer::calcMain(Handler &handler) {
+    State state = State::Main;
 
     if (m_commentTimer > 0) {
         m_commentTimer--;
@@ -159,13 +159,13 @@ std::optional<RoomServer::ServerState> RoomServer::calcMain(Handler &handler) {
         writeClose(m_gamemode);
         handler.onRoomClose(m_gamemode);
         m_roomClosed = false;
-        state = ServerState::Select;
+        state = State::Select;
     }
 
     return state;
 }
 
-std::optional<RoomServer::ServerState> RoomServer::calcSelect(Handler &handler) {
+std::optional<RoomServer::State> RoomServer::calcSelect(Handler &handler) {
     if (m_voteEvent) {
         for (u8 i = 0; i < 12; i++) {
             if (m_voted[i]) {
@@ -185,7 +185,7 @@ std::optional<RoomServer::ServerState> RoomServer::calcSelect(Handler &handler) 
     if (m_voteCount == m_playerCount) {
         if (m_voteDelay != 0) {
             m_voteDelay--;
-            return ServerState::Select;
+            return State::Select;
         }
         u32 selectedPlayer = hydro_random_uniform(m_playerCount);
         writeSelectInfo(selectedPlayer);
@@ -194,7 +194,7 @@ std::optional<RoomServer::ServerState> RoomServer::calcSelect(Handler &handler) 
         // NOTE: We will use the server handler to transition to the race section here
     }
 
-    return ServerState::Select;
+    return State::Select;
 }
 
 bool RoomServer::onMain(Handler &handler) {
@@ -627,7 +627,7 @@ std::optional<RoomServer::ClientState> RoomServer::Client::calcSetup(Handler &ha
 }
 
 std::optional<RoomServer::ClientState> RoomServer::Client::calcMain(Handler &handler) {
-    if (m_server.m_state == ServerState::Select) {
+    if (m_server.m_state == State::Select) {
         return ClientState::Select;
     }
 
