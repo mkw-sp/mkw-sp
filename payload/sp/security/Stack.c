@@ -1,246 +1,220 @@
 #include "Stack.h"
 
-#include <revolution/os.h>
+#include <revolution/os/OSCache.h>
 
 #define MAIN_THREAD_STACK_BITS_ENTROPY 11
 
-typedef bool (*FindFunction)(const u32* start_address);
+typedef bool (*Find)(u32 *startAddress);
 typedef void (*LinkRegisterFunction)(void);
 
-typedef struct LinkRegisterPatch
-{
-    FindFunction find_prologue_function;
-    FindFunction find_lr_save_function;
-    FindFunction find_lr_restore_function;
-    FindFunction find_epilogue_function;
+typedef struct LinkRegisterPatch {
+    Find findPrologue;
+    Find findLRSave;
+    Find findLRRestore;
+    Find findEpilogue;
 
-    size_t prologue_instruction_count;
-    size_t lr_save_instruction_count;
-    size_t lr_restore_instruction_count;
-    size_t epilogue_instruction_count;
+    u32 prologueInstCount;
+    u32 epilogueInstCount;
 
-    LinkRegisterFunction new_lr_save_function;
-    LinkRegisterFunction new_lr_restore_function;
+    LinkRegisterFunction newLRSaveFunc;
+    LinkRegisterFunction newLRRestoreFunc;
 } LinkRegisterPatch;
-
-extern u8* mem1ArenaHi;
-
-extern void* __init_registers;
-extern void* __OSThreadInit;
 
 extern void Stack_XORAlignedLinkRegisterSave(void);
 extern void Stack_XORAlignedLinkRegisterRestore(void);
 extern void Stack_XORLinkRegisterSave(void);
 extern void Stack_XORLinkRegisterRestore(void);
 
-static const u32 main_thread_stack_size = 0x10000;
+extern char *mem1ArenaHi;
 
-static const u32 blr  = 0x4E800020;
+static const u32 mainThreadStackSize = 0x10000;
+
+static const u32 blr = 0x4E800020;
 static const u32 mflr = 0x7C0802A6;
 static const u32 mtlr = 0x7C0803A6;
 
 u32 __stack_chk_guard;
 
-u32* main_thread_stack_pointer_bottom;
-u32* main_thread_stack_pointer_top;
+u32 *mainThreadSPBottom;
+u32 *mainThreadSPTop;
 
-void Stack_InitCanary(void)
-{
-    __stack_chk_guard = (OSGetTick() & 0x00FFFFFF) | (0x80 << 24);
+void Stack_InitCanary(void) {
+    __stack_chk_guard = (__builtin_ppc_mftb() & 0x00FFFFFF) | (0x80 << 24);
 }
 
-__attribute__((noreturn)) void __stack_chk_fail(void)
-{
+__attribute__((noreturn)) void __stack_chk_fail(void) {
     panic("Stack smashing detected!");
     __builtin_unreachable();
 }
 
-static void Stack_SetMainThreadStackPointer(const u32* stack_pointer_bottom, const u32* stack_pointer_top)
-{
-    main_thread_stack_pointer_bottom = (u32*)stack_pointer_bottom;
-    main_thread_stack_pointer_top = (u32*)stack_pointer_top;
-}
-
-static void* Stack_AllocFromMEM1ArenaHi(const u32 size)
-{
+static void *AllocFromMEM1ArenaHi(u32 size) {
     mem1ArenaHi -= size;
-    return (void*)mem1ArenaHi;
+    return (void *)mem1ArenaHi;
 }
 
-void Stack_RelocateMainThreadStackToMEM1End(void)
-{
-    const u32* stack_pointer_bottom = (u32*)Stack_AllocFromMEM1ArenaHi(main_thread_stack_size);
-    const u32* stack_pointer_top_max = (u32*)((u32)stack_pointer_bottom + main_thread_stack_size);
-    const u32* stack_pointer_top = (u32*)Stack_RandomizeStackPointer((u32*)stack_pointer_top_max, MAIN_THREAD_STACK_BITS_ENTROPY);
-    Stack_SetMainThreadStackPointer(stack_pointer_bottom, stack_pointer_top);
+void Stack_RelocateMainThreadStackToMEM1End(void) {
+    u32 *spBottom = AllocFromMEM1ArenaHi(mainThreadStackSize);
+    u32 *spTopMax = (u32 *)((u32)spBottom + mainThreadStackSize);
+    u32 *spTop = Stack_RandomizeStackPointer(spTopMax, MAIN_THREAD_STACK_BITS_ENTROPY);
+
+    mainThreadSPBottom = spBottom;
+    mainThreadSPTop = spTop;
 }
 
-static bool Stack_IsAlignedFunctionPrologue(const u32* start_address)
-{
+static bool IsAlignedPrologue(u32 *startAddress) {
     const u32 stwux = 0x7C21596E;
 
-    return start_address[0] == stwux && start_address[1] == mflr;
+    return startAddress[0] == stwux && startAddress[1] == mflr;
 }
 
-static bool Stack_IsAlignedLinkRegisterSaveInstruction(const u32* start_address)
-{
+static bool IsAlignedLinkRegisterSave(u32 *startAddress) {
     const u32 stw = 0x900C0004;
 
-    return start_address[0] == stw;
+    return startAddress[0] == stw;
 }
 
-static bool Stack_IsAlignedLinkRegisterRestoreInstruction(const u32* start_address)
-{
+static bool IsAlignedLinkRegisterRestore(u32 *startAddress) {
     const u32 lwz = 0x800A0004;
 
-    return start_address[0] == lwz;
+    return startAddress[0] == lwz;
 }
 
-static bool Stack_IsAlignedFunctionEpilogue(const u32* start_address)
-{
+static bool IsAlignedEpilogue(u32 *startAddress) {
     const u32 mr = 0x7D415378;
 
-    return start_address[0] == mtlr && start_address[1] == mr && start_address[2] == blr;
+    return startAddress[0] == mtlr && startAddress[1] == mr && startAddress[2] == blr;
 }
 
-static bool Stack_IsFunctionPrologue(const u32* start_address)
-{
+static bool IsPrologue(u32 *startAddress) {
     const u16 stwu = 0x9421;
 
-    return (start_address[0] >> 16) == stwu && start_address[1] == mflr;
+    return (startAddress[0] >> 16) == stwu && startAddress[1] == mflr;
 }
 
-static bool Stack_IsLinkRegisterSaveInstruction(const u32* start_address)
-{
+static bool IsLinkRegisterSave(u32 *startAddress) {
     const u16 stw = 0x9001;
 
-    return (start_address[0] >> 16) == stw;
+    return (startAddress[0] >> 16) == stw;
 }
 
-static bool Stack_IsLinkRegisterRestoreInstruction(const u32* start_address)
-{
+static bool IsLinkRegisterRestore(u32 *startAddress) {
     const u16 lwz = 0x8001;
 
-    return (start_address[0] >> 16) == lwz;
+    return (startAddress[0] >> 16) == lwz;
 }
 
-static bool Stack_IsFunctionEpilogue(const u32* start_address)
-{
+static bool IsEpilogue(u32 *startAddress) {
     const u16 addi = 0x3821;
 
-    return start_address[0] == mtlr && (start_address[1] >> 16) == addi && start_address[2] == blr;
+    return startAddress[0] == mtlr && (startAddress[1] >> 16) == addi && startAddress[2] == blr;
 }
 
-static const LinkRegisterPatch lr_patches[2] =
-{
-    {
-        .find_prologue_function = Stack_IsFunctionPrologue,
-        .find_lr_save_function = Stack_IsLinkRegisterSaveInstruction,
-        .find_lr_restore_function = Stack_IsLinkRegisterRestoreInstruction,
-        .find_epilogue_function = Stack_IsFunctionEpilogue,
+// clang-format off
+static const LinkRegisterPatch lrPatches[2] = {
+        {
+                .findPrologue = IsPrologue,
+                .findLRSave = IsLinkRegisterSave,
+                .findLRRestore = IsLinkRegisterRestore,
+                .findEpilogue = IsEpilogue,
 
-        .prologue_instruction_count = 2,
-        .lr_save_instruction_count = 1,
-        .lr_restore_instruction_count = 1,
-        .epilogue_instruction_count = 3,
+                .prologueInstCount = 2,
+                .epilogueInstCount = 3,
 
-        .new_lr_save_function = Stack_XORLinkRegisterSave,
-        .new_lr_restore_function = Stack_XORLinkRegisterRestore,
-    },
-    {
-        .find_prologue_function = Stack_IsAlignedFunctionPrologue,
-        .find_lr_save_function = Stack_IsAlignedLinkRegisterSaveInstruction,
-        .find_lr_restore_function = Stack_IsAlignedLinkRegisterRestoreInstruction,
-        .find_epilogue_function = Stack_IsAlignedFunctionEpilogue,
+                .newLRSaveFunc = Stack_XORLinkRegisterSave,
+                .newLRRestoreFunc = Stack_XORLinkRegisterRestore,
+        },
+        {
+                .findPrologue = IsAlignedPrologue,
+                .findLRSave = IsAlignedLinkRegisterSave,
+                .findLRRestore = IsAlignedLinkRegisterRestore,
+                .findEpilogue = IsAlignedEpilogue,
 
-        .prologue_instruction_count = 2,
-        .lr_save_instruction_count = 1,
-        .lr_restore_instruction_count = 1,
-        .epilogue_instruction_count = 3,
+                .prologueInstCount = 2,
+                .epilogueInstCount = 3,
 
-        .new_lr_save_function = Stack_XORAlignedLinkRegisterSave,
-        .new_lr_restore_function = Stack_XORAlignedLinkRegisterRestore
-    }
+                .newLRSaveFunc = Stack_XORAlignedLinkRegisterSave,
+                .newLRRestoreFunc = Stack_XORAlignedLinkRegisterRestore
+        },
 };
+// clang-format on
 
-static u32* Stack_FindFirstFunction(u32* start_address, u32* end_address, FindFunction find_function, size_t instruction_count)
-{
-    while (start_address + instruction_count <= end_address)
-    {
-        if (find_function(start_address))
-            return start_address;
-
-        start_address++;
+static u32 *FindFirst(u32 *startAddress, u32 *endAddress, Find find, u32 instCount) {
+    while (startAddress + instCount <= endAddress) {
+        if (find(startAddress)) {
+            return startAddress;
+        }
+        startAddress++;
     }
 
     return NULL;
 }
 
-static u32* Stack_FindLastFunction(u32* start_address, u32* end_address, FindFunction find_function, size_t instruction_count)
-{
-    while (end_address - instruction_count >= start_address)
-    {
-        if (find_function(end_address - instruction_count))
-            return end_address - instruction_count;
-
-        end_address--;
+static u32 *FindLast(u32 *startAddress, u32 *endAddress, Find find, u32 instCount) {
+    while (endAddress - instCount >= startAddress) {
+        if (find(endAddress - instCount)) {
+            return endAddress - instCount;
+        }
+        endAddress--;
     }
 
     return NULL;
 }
 
-static u32 Stack_CreateBranchLinkInstruction(const u32* source_address, const u32* destination_address)
-{
-    return (18 << 26) | (((u32)destination_address - (u32)source_address) & 0x3FFFFFC) | (1 << 0);
+static u32 CreateBranchLinkInstruction(u32 *sourceAddress, u32 *destinationAddress) {
+    return (18 << 26) | (((u32)destinationAddress - (u32)sourceAddress) & 0x3FFFFFC) | (1 << 0);
 }
 
-void Stack_DoLinkRegisterPatches(u32* start, u32* end)
-{
+void Stack_DoLinkRegisterPatches(u32 *start, u32 *end) {
     assert(((u32)start & 3) == 0);
     assert(((u32)end & 3) == 0);
 
-    for (size_t n = 0; n < ARRAY_SIZE(lr_patches); n++)
-    {
-        u32* start_address = start;
-        u32* end_address = end;
-        const LinkRegisterPatch* lr_patch = &lr_patches[n];
+    for (size_t n = 0; n < ARRAY_SIZE(lrPatches); n++) {
+        const LinkRegisterPatch *lrPatch = &lrPatches[n];
+        u32 *startAddress = start;
+        u32 *endAddress = end;
 
-        while (start_address < end_address)
-        {
-            u32* prologue = Stack_FindFirstFunction(start_address, end_address, lr_patch->find_prologue_function, lr_patch->prologue_instruction_count);
-            if (!prologue)
+        while (startAddress < endAddress) {
+            u32 *prologue = FindFirst(startAddress, endAddress, lrPatch->findPrologue,
+                    lrPatch->prologueInstCount);
+            if (!prologue) {
                 break;
+            }
 
-            u32* epilogue = Stack_FindFirstFunction(prologue + lr_patch->prologue_instruction_count, end_address, lr_patch->find_epilogue_function, lr_patch->epilogue_instruction_count);
-            if (!epilogue)
+            u32 *epilogue = FindFirst(prologue + lrPatch->prologueInstCount, endAddress,
+                    lrPatch->findEpilogue, lrPatch->epilogueInstCount);
+            if (!epilogue) {
                 break;
+            }
 
-            u32* lr_save_instruction = Stack_FindFirstFunction(prologue + lr_patch->prologue_instruction_count, epilogue, lr_patch->find_lr_save_function, lr_patch->lr_save_instruction_count);
-            if (!lr_save_instruction)
-                goto label_check_next_function;
+            u32 *lrSave = FindFirst(prologue + lrPatch->prologueInstCount, epilogue,
+                    lrPatch->findLRSave, 1);
+            if (!lrSave) {
+                goto LcheckNextFunction;
+            }
 
-            u32* lr_restore_instruction = Stack_FindLastFunction(lr_save_instruction + lr_patch->lr_save_instruction_count, epilogue, lr_patch->find_lr_restore_function, lr_patch->lr_restore_instruction_count);
-            if (!lr_restore_instruction)
-                goto label_check_next_function;
+            u32 *lrRestore = FindLast(lrSave + 1, epilogue, lrPatch->findLRRestore, 1);
+            if (!lrRestore) {
+                goto LcheckNextFunction;
+            }
 
             // Skip over functions that do not return
-            u32* next_prologue = Stack_FindFirstFunction(prologue + lr_patch->prologue_instruction_count, end_address, lr_patch->find_prologue_function, lr_patch->prologue_instruction_count);
-            if (next_prologue && !(next_prologue > epilogue))
-            {
-                start_address = next_prologue;
+            u32 *nextPrologue = FindFirst(prologue + lrPatch->prologueInstCount, endAddress,
+                    lrPatch->findPrologue, lrPatch->prologueInstCount);
+            if (nextPrologue && nextPrologue < epilogue) {
+                startAddress = nextPrologue;
                 continue;
             }
 
-            *lr_save_instruction = Stack_CreateBranchLinkInstruction(lr_save_instruction, (u32*)lr_patch->new_lr_save_function);
-            *lr_restore_instruction = Stack_CreateBranchLinkInstruction(lr_restore_instruction, (u32*)lr_patch->new_lr_restore_function);
+            *lrSave = CreateBranchLinkInstruction(lrSave, (u32 *)lrPatch->newLRSaveFunc);
+            *lrRestore = CreateBranchLinkInstruction(lrRestore, (u32 *)lrPatch->newLRRestoreFunc);
 
-            DCFlushRange(lr_save_instruction, sizeof(*lr_save_instruction));
-            DCFlushRange(lr_restore_instruction, sizeof(*lr_restore_instruction));
-            ICInvalidateRange(lr_save_instruction, sizeof(*lr_save_instruction));
-            ICInvalidateRange(lr_restore_instruction, sizeof(*lr_restore_instruction));
+            DCFlushRange(lrSave, sizeof(*lrSave));
+            DCFlushRange(lrRestore, sizeof(*lrRestore));
+            ICInvalidateRange(lrSave, sizeof(*lrSave));
+            ICInvalidateRange(lrRestore, sizeof(*lrRestore));
 
-label_check_next_function:
-            start_address = epilogue + lr_patch->epilogue_instruction_count;
+        LcheckNextFunction:
+            startAddress = epilogue + lrPatch->epilogueInstCount;
         }
     }
 }

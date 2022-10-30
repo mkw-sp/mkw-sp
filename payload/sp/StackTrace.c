@@ -38,8 +38,8 @@ bool StackTraceIterator_read(StackTraceIterator *it, void **addr) {
     }
 
     if (addr != NULL) {
-        void* lr = it->cur->LR;
-        *addr = Stack_IsLinkRegisterEncrypted((u32*)lr) ? (void*)Stack_XORLinkRegister((u32*)lr) : lr;
+        void *lr = it->cur->LR;
+        *addr = Stack_IsLinkRegisterEncrypted((u32 *)lr) ? Stack_XORLinkRegister((u32 *)lr) : lr;
     }
 
     ++it->depth;
@@ -105,8 +105,7 @@ size_t WriteStackTraceShort(char *buf, int capacity, void *sp) {
             break;
         }
 
-        l += snprintf(
-                buf + l, capacity - l, "@ %p%s %s\n", ported, pointerFlag, funcName);
+        l += snprintf(buf + l, capacity - l, "@ %p%s %s\n", ported, pointerFlag, funcName);
     }
 
     return l;
