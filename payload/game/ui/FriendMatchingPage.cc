@@ -4,6 +4,7 @@
 #include "game/ui/FriendRoomBackPage.hh"
 #include "game/ui/GlobePage.hh"
 #include "game/ui/MessagePage.hh"
+#include "game/ui/OnlineTeamSelectPage.hh"
 #include "game/ui/SectionManager.hh"
 #include "game/ui/page/DriftSelectPage.hh"
 
@@ -103,6 +104,15 @@ void FriendMatchingPage::prepareStartClient() {
 }
 
 void FriendMatchingPage::prepareStartServer() {
+    auto *server = SP::RoomServer::Instance();
+    if (server) {
+        auto setting = server->getSetting<SP::ClientSettings::Setting::RoomTeamSize>();
+        if (setting != SP::ClientSettings::RoomTeamSize::FFA) {
+            auto *section = SectionManager::Instance()->currentSection();
+            auto *globePage = section->page<PageId::Globe>();
+            globePage->requestSpinClose();
+        }
+    }
     collapse();
     m_roomStarted = true;
 }
@@ -146,16 +156,32 @@ void FriendMatchingPage::collapse() {
 }
 
 void FriendMatchingPage::startClient() {
-    auto *section = SectionManager::Instance()->currentSection();
-    auto *driftSelectPage = section->page<PageId::DriftSelect>();
-    driftSelectPage->setReplacementSection(static_cast<SectionId>(m_gamemode + 0x60));
+    auto *client = SP::RoomClient::Instance();
+    if (client) {
+        auto setting = client->getSetting<SP::ClientSettings::Setting::RoomTeamSize>();
+        if (setting == SP::ClientSettings::RoomTeamSize::FFA) {
+            auto *section = SectionManager::Instance()->currentSection();
+            auto *driftSelectPage = section->page<PageId::DriftSelect>();
+            driftSelectPage->setReplacementSection(static_cast<SectionId>(m_gamemode + 0x60));
 
-    push(PageId::CharacterSelect, Anim::Next);
-    System::RaceConfig::Instance()->menuScenario().gameMode = m_gamemode == 0 ? System::RaceConfig::GameMode::OnlinePrivateVS : System::RaceConfig::GameMode::OnlinePrivateBT;
+            push(PageId::CharacterSelect, Anim::Next);
+            System::RaceConfig::Instance()->menuScenario().gameMode = m_gamemode == 0 ? System::RaceConfig::GameMode::OnlinePrivateVS : System::RaceConfig::GameMode::OnlinePrivateBT;
+        } else {
+            push(PageId::OnlineTeamSelect, Anim::Next);
+        }
+    }
 }
 
 void FriendMatchingPage::startServer() {
-    changeSection(SectionId::VotingServer, Anim::Next, 0.0f);
+    auto *server = SP::RoomServer::Instance();
+    if (server) {
+        auto setting = server->getSetting<SP::ClientSettings::Setting::RoomTeamSize>();
+        if (setting == SP::ClientSettings::RoomTeamSize::FFA) {
+            changeSection(SectionId::VotingServer, Anim::Next, 0.0f);
+        } else {
+            push(PageId::OnlineTeamSelect, Anim::Next);
+        }
+    }
 }
 
 FriendMatchingPage::ServerHandler::ServerHandler(FriendMatchingPage &page) : m_page(page) {}
@@ -165,6 +191,20 @@ FriendMatchingPage::ServerHandler::~ServerHandler() = default;
 void FriendMatchingPage::ServerHandler::onMain() {
     m_page.m_messageWindow.hide();
     m_page.push(PageId::FriendRoomBack, Anim::Next);
+}
+
+void FriendMatchingPage::ServerHandler::onTeamSelect() {
+    m_page.m_gamemode = SP::RoomServer::Instance()->gamemode();
+    Section *section = SectionManager::Instance()->currentSection();
+    auto *friendRoomBackPage = section->page<PageId::FriendRoomBack>();
+    friendRoomBackPage->onRoomStart(m_page.m_gamemode);
+}
+
+void FriendMatchingPage::ServerHandler::onSelect() {
+    m_page.m_gamemode = SP::RoomServer::Instance()->gamemode();
+    Section *section = SectionManager::Instance()->currentSection();
+    auto *friendRoomBackPage = section->page<PageId::FriendRoomBack>();
+    friendRoomBackPage->onRoomStart(m_page.m_gamemode);
 }
 
 void FriendMatchingPage::ServerHandler::onPlayerJoin(const System::RawMii *mii, u32 location,
@@ -193,11 +233,10 @@ void FriendMatchingPage::ServerHandler::onSettingsChange(
     friendRoomBackPage->onSettingsChange(settings);
 }
 
-void FriendMatchingPage::ServerHandler::onRoomClose(u32 gamemode) {
-    m_page.m_gamemode = gamemode;
+void FriendMatchingPage::ServerHandler::onReceiveTeamSelect(u32 playerId, u32 teamId) {
     Section *section = SectionManager::Instance()->currentSection();
-    auto *friendRoomBackPage = section->page<PageId::FriendRoomBack>();
-    friendRoomBackPage->onRoomClose(gamemode);
+    auto *onlineTeamSelectPage = section->page<PageId::OnlineTeamSelect>();
+    onlineTeamSelectPage->onReceiveTeamSelect(playerId, teamId);
 }
 
 FriendMatchingPage::ClientHandler::ClientHandler(FriendMatchingPage &page) : m_page(page) {}
@@ -211,6 +250,20 @@ void FriendMatchingPage::ClientHandler::onSetup() {
 void FriendMatchingPage::ClientHandler::onMain() {
     m_page.m_messageWindow.hide();
     m_page.push(PageId::FriendRoomBack, Anim::Next);
+}
+
+void FriendMatchingPage::ClientHandler::onTeamSelect() {
+    m_page.m_gamemode = SP::RoomClient::Instance()->gamemode();
+    Section *section = SectionManager::Instance()->currentSection();
+    auto *friendRoomBackPage = section->page<PageId::FriendRoomBack>();
+    friendRoomBackPage->onRoomStart(m_page.m_gamemode);
+}
+
+void FriendMatchingPage::ClientHandler::onSelect() {
+    m_page.m_gamemode = SP::RoomClient::Instance()->gamemode();
+    Section *section = SectionManager::Instance()->currentSection();
+    auto *friendRoomBackPage = section->page<PageId::FriendRoomBack>();
+    friendRoomBackPage->onRoomStart(m_page.m_gamemode);
 }
 
 void FriendMatchingPage::ClientHandler::onPlayerJoin(const System::RawMii *mii, u32 location,
@@ -239,11 +292,10 @@ void FriendMatchingPage::ClientHandler::onSettingsChange(
     friendRoomBackPage->onSettingsChange(settings);
 }
 
-void FriendMatchingPage::ClientHandler::onRoomClose(u32 gamemode) {
-    m_page.m_gamemode = gamemode;
+void FriendMatchingPage::ClientHandler::onReceiveTeamSelect(u32 playerId, u32 teamId) {
     Section *section = SectionManager::Instance()->currentSection();
-    auto *friendRoomBackPage = section->page<PageId::FriendRoomBack>();
-    friendRoomBackPage->onRoomClose(gamemode);
+    auto *onlineTeamSelectPage = section->page<PageId::OnlineTeamSelect>();
+    onlineTeamSelectPage->onReceiveTeamSelect(playerId, teamId);
 }
 
 } // namespace UI

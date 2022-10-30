@@ -132,6 +132,7 @@ public:
     void setWrappingMode(WrappingMode wrappingMode);
     // TODO remaining args
     void setHandler(InputId inputId, IHandler *handler, bool r6 = false, bool r7 = false);
+    void reinit(u32 playerFlags, u32 playerFlags2, bool isMultiPlayer);
     // TODO r6
     void select(u32 localPlayerId, ControlInputManager *child, s32 r6);
 

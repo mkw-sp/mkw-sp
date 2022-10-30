@@ -1199,6 +1199,30 @@
         "font": "regular",
         "string": "I updated the rules!",
     },
+    "20026": {
+        "font": "regular",
+        "string": "{color|sp blue}{arg string|0}",
+    },
+    "20027": {
+        "font": "regular",
+        "string": "{color|player 3}{arg string|0}",
+    },
+    "20028": {
+        "font": "regular",
+        "string": "{color|player 1}{arg string|0}",
+    },
+    "20029": {
+        "font": "regular",
+        "string": "{color|sp green}{arg string|0}",
+    },
+    "20030": {
+        "font": "regular",
+        "string": "{color|sp pink}{arg string|0}",
+    },
+    "20031": {
+        "font": "regular",
+        "string": "{arg string|0}",
+    },
     "3700": {
         "font": "regular",
         "string": "Select Level",

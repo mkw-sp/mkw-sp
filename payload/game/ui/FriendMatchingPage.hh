@@ -34,13 +34,15 @@ private:
         ~ServerHandler();
 
         void onMain() override;
+        void onTeamSelect() override;
+        void onSelect() override;
 
         void onPlayerJoin(const System::RawMii *mii, u32 location, u16 latitude, u16 longitude,
                 u32 regionLineColor) override;
         void onPlayerLeave(u32 playerId) override;
         void onReceiveComment(u32 playerId, u32 messageId) override;
         void onSettingsChange(const std::array<u32, SP::RoomSettings::count> &settings) override;
-        void onRoomClose(u32 messageId) override;
+        void onReceiveTeamSelect(u32 playerId, u32 teamId) override;
 
     private:
         FriendMatchingPage &m_page;
@@ -53,13 +55,15 @@ private:
 
         void onSetup() override;
         void onMain() override;
+        void onTeamSelect() override;
+        void onSelect() override;
 
         void onPlayerJoin(const System::RawMii *mii, u32 location, u16 latitude, u16 longitude,
                 u32 regionLineColor) override;
         void onPlayerLeave(u32 playerId) override;
         void onReceiveComment(u32 playerId, u32 messageId) override;
         void onSettingsChange(const std::array<u32, SP::RoomSettings::count> &settings) override;
-        void onRoomClose(u32 messageId) override;
+        void onReceiveTeamSelect(u32 playerId, u32 teamId) override;
 
     private:
         FriendMatchingPage &m_page;

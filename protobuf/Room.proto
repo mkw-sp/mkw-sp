@@ -24,6 +24,11 @@ message RoomRequest {
         required uint32 gamemode = 1;
     }
 
+    message TeamSelect {
+        required uint32 playerId = 1;
+        required uint32 teamId   = 2;
+    }
+
     message Properties {
         required uint32 character = 1;
         required uint32 vehicle   = 2;
@@ -41,7 +46,8 @@ message RoomRequest {
         Comment    comment    = 3;
         Settings   settings   = 4;
         Close      close      = 5;
-        Vote       vote       = 6;
+        TeamSelect teamSelect = 6;
+        Vote       vote       = 7;
     }
 }
 
@@ -75,6 +81,11 @@ message RoomEvent {
         required uint32 gamemode = 1;
     }
 
+    message TeamSelect {
+        required uint32 playerId = 1;
+        required uint32 teamId   = 2;
+    }
+
     message SelectPulse {
         required uint32 playerId = 1;
     }
@@ -98,7 +109,8 @@ message RoomEvent {
         Comment     comment     = 4;
         Settings    settings    = 5;
         Close       close       = 6;
-        SelectPulse selectPulse = 7;
-        SelectInfo  selectInfo  = 8;
+        TeamSelect  teamSelect  = 7;
+        SelectPulse selectPulse = 8;
+        SelectInfo  selectInfo  = 9;
     }
 }

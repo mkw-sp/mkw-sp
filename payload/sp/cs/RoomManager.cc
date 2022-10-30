@@ -11,11 +11,17 @@ extern "C" {
 
 namespace SP {
 
-RoomManager::RoomManager() {
-    m_votePlayerOrder.fill(-1);
+u32 RoomManager::playerCount() const {
+    return m_playerCount;
 }
 
-RoomManager::~RoomManager() = default;
+const RoomManager::Player& RoomManager::player(u32 playerId) const {
+    return m_players[playerId];
+}
+
+u32 RoomManager::gamemode() const {
+    return m_gamemode;
+}
 
 void RoomManager::OnCreateScene() {
     auto *sectionManager = UI::SectionManager::Instance();
@@ -82,6 +88,12 @@ void RoomManager::OnDestroyScene() {
 RoomManager *RoomManager::Instance() {
     return s_instance;
 }
+
+RoomManager::RoomManager() {
+    m_votePlayerOrder.fill(-1);
+}
+
+RoomManager::~RoomManager() = default;
 
 void *RoomManager::s_block = nullptr;
 RoomManager *RoomManager::s_instance = nullptr;

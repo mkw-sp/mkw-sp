@@ -77,6 +77,7 @@ enum class PageId {
     MultiVehicleSelect = 0x81,
     MultiTeamSelect = 0x83,
 
+    OnlineTeamSelect = 0x88,
     OnlineTop = 0x8b, // Replaces WifiTop
     VotingBack = 0x90, // Replaces CountDownTimer
     Roulette = 0x92,

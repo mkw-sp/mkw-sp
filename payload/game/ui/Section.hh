@@ -20,6 +20,7 @@ class MenuSettingsPage;
 class MessagePagePopup;
 class ModelPage;
 class ModelRenderPage;
+class OnlineTeamSelectPage;
 class OptionExplanationPage;
 class OptionSelectPage;
 class RaceConfirmPage;
@@ -125,6 +126,11 @@ struct Section::PageIdHelper<PageId::TeamConfirm> {
 template <>
 struct Section::PageIdHelper<PageId::ModelRender> {
     using type = ModelRenderPage;
+};
+
+template <>
+struct Section::PageIdHelper<PageId::OnlineTeamSelect> {
+    using type = OnlineTeamSelectPage;
 };
 
 template <>

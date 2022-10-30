@@ -18,6 +18,8 @@ public:
     public:
         virtual void onSetup() {}
         virtual void onMain() {}
+        virtual void onTeamSelect() {}
+        virtual void onSelect() {}
 
         virtual void onPlayerJoin([[maybe_unused]] const System::RawMii *mii,
                 [[maybe_unused]] u32 location, [[maybe_unused]] u16 latitude,
@@ -27,12 +29,14 @@ public:
                 [[maybe_unused]] u32 commentId) {}
         virtual void onSettingsChange(
                 [[maybe_unused]] const std::array<u32, RoomSettings::count> &settings) {}
-        virtual void onRoomClose([[maybe_unused]] u32 gamemode) {}
+        virtual void onReceiveTeamSelect([[maybe_unused]] u32 playerId,
+                [[maybe_unused]] u32 teamId) {}
         virtual void onReceivePulse([[maybe_unused]] u32 playerId) {}
         virtual void onReceiveInfo([[maybe_unused]] u32 playerId, [[maybe_unused]] s32 course,
                 [[maybe_unused]] u32 selectedPlayer) {}
     };
 
+    // TODO cleanup
     class Player {
     public:
         struct Properties {
@@ -54,23 +58,45 @@ public:
         u32 m_regionLineColor;
         u32 m_course;
         Properties m_properties;
+        u32 m_teamId;
     };
 
-    inline s32 getGamemode() {
-        return m_gamemode;
-    }
-
+    // TODO remove
     inline Player *getPlayer(u8 i) {
         return &m_players[i];
     }
 
+    // TODO remove
     inline u32 getPlayerCount() {
         return m_playerCount;
     }
 
+    // TODO remove
     inline s8 getPlayerOrder(u8 i) {
         return m_votePlayerOrder[i];
     }
+
+    // TODO remove
+    inline s32 getGamemode() {
+        return m_gamemode;
+    }
+
+    u32 playerCount() const;
+    const Player& player(u32 playerId) const;
+    u32 gamemode() const;
+
+    // TODO remove get prefix
+    template <SP::ClientSettings::Setting S>
+    SP::ClientSettings::Helper<S>::type getSetting() const {
+        static_assert(static_cast<u32>(S) >= RoomSettings::offset);
+        constexpr u32 setting = static_cast<u32>(S) - RoomSettings::offset;
+        static_assert(setting < RoomSettings::count);
+        return static_cast<SP::ClientSettings::Helper<S>::type>(settings()[setting]);
+    }
+
+    virtual bool isPlayerLocal(u32 playerId) const = 0;
+    virtual bool canSelectTeam(u32 playerId) const = 0;
+    virtual bool canSelectTeam(u32 localPlayerId, u32 playerId) const = 0;
 
     // Static instance management is handled in RoomServer and RoomClient
     static void OnCreateScene();
@@ -83,6 +109,7 @@ protected:
         Connect,
         Setup,
         Main,
+        TeamSelect,
         Select,
     };
 
@@ -90,6 +117,7 @@ protected:
     enum class ServerState {
         Setup,
         Main,
+        TeamSelect,
         Select,
     };
 
@@ -100,11 +128,13 @@ protected:
     RoomManager(RoomManager &&) = delete;
     ~RoomManager();
 
+    virtual const std::array<u32, RoomSettings::count> &settings() const = 0;
+
     u32 m_playerCount = 0;
-    s32 m_gamemode = -1;
+    std::array<Player, 12> m_players;
+    u32 m_gamemode = 0;
     std::array<s8, 12> m_votePlayerOrder;
     u8 m_voteCurrentPlayerIdx = 0;
-    std::array<Player, 12> m_players;
 
     static void *s_block;
     static RoomManager *s_instance;

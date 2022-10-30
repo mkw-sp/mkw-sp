@@ -11,6 +11,7 @@
 #include "game/ui/ModelRenderPage.hh"
 #include "game/ui/MultiTeamSelectPage.hh"
 #include "game/ui/MultiTopPage.hh"
+#include "game/ui/OnlineTeamSelectPage.hh"
 #include "game/ui/OnlineTopPage.hh"
 #include "game/ui/RoulettePage.hh"
 #include "game/ui/SettingsPage.hh"
@@ -120,7 +121,6 @@ void Section::addPage(PageId pageId) {
         { SectionId::OnlineSingle, (PageId)0x85 },
         { SectionId::OnlineSingle, (PageId)0x86 },
         { SectionId::OnlineSingle, (PageId)0x87 },
-        { SectionId::OnlineSingle, (PageId)0x88 },
         { SectionId::OnlineSingle, (PageId)0x89 },
         { SectionId::OnlineSingle, (PageId)0x8c },
         { SectionId::OnlineSingle, (PageId)0x8d },
@@ -147,7 +147,6 @@ void Section::addPage(PageId pageId) {
         { SectionId::OnlineMulti, (PageId)0x85 },
         { SectionId::OnlineMulti, (PageId)0x86 },
         { SectionId::OnlineMulti, (PageId)0x87 },
-        { SectionId::OnlineMulti, (PageId)0x88 },
         { SectionId::OnlineMulti, (PageId)0x89 },
         { SectionId::OnlineMulti, (PageId)0x8c },
         { SectionId::OnlineMulti, (PageId)0x8d },
@@ -190,7 +189,6 @@ void Section::addPage(PageId pageId) {
         { SectionId::OnlineServer, (PageId)0x85 },
         { SectionId::OnlineServer, (PageId)0x86 },
         { SectionId::OnlineServer, (PageId)0x87 },
-        { SectionId::OnlineServer, (PageId)0x88 },
         { SectionId::OnlineServer, (PageId)0x89 },
         { SectionId::OnlineServer, (PageId)0x8e },
         { SectionId::OnlineServer, (PageId)0x8f },
@@ -410,6 +408,8 @@ Page *Section::CreatePage(PageId pageId) {
         return new MultiTopPage;
     case PageId::MultiTeamSelect:
         return new MultiTeamSelectPage;
+    case PageId::OnlineTeamSelect:
+        return new OnlineTeamSelectPage;
     case PageId::OnlineTop:
         return new OnlineTopPage;
     case PageId::VotingBack:

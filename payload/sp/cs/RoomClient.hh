@@ -15,14 +15,20 @@ namespace SP {
 class RoomClient final : public RoomManager {
 public:
     using State = RoomManager::ClientState;
+
+    bool isPlayerLocal(u32 playerId) const override;
+    bool canSelectTeam(u32 playerId) const override;
+    bool canSelectTeam(u32 localPlayerId, u32 playerId) const override;
     
     // Main RoomClient update, called in networking pages (typically afterCalc())
     bool calc(Handler &handler);
 
     // Request writing interface - new requests should go here!
+    // TODO these should return void and defer the actual sending
     bool sendComment(u32 commentId);
     bool closeRoom(u32 gamemode);
     void changeLocalSettings();
+    bool sendTeamSelect(u32 playerId);
     bool sendVote(u32 course, std::optional<Player::Properties> properties);
 
     static RoomClient *CreateInstance(u32 localPlayerCount);
@@ -34,6 +40,8 @@ private:
     RoomClient(u32 localPlayerCount);
     ~RoomClient();
 
+    const std::array<u32, RoomSettings::count> &settings() const override;
+
     // Used to update m_state
     std::optional<State> resolve(Handler &handler);
     bool transition(Handler &handler, State state);
@@ -42,9 +50,12 @@ private:
     std::optional<State> calcConnect();
     std::optional<State> calcSetup(Handler &handler);
     std::optional<State> calcMain(Handler &handler);
+    std::optional<State> calcTeamSelect(Handler &handler);
     std::optional<State> calcSelect(Handler &handler);
     bool onSetup(Handler &handler);
     bool onMain(Handler &handler);
+    bool onTeamSelect(Handler &handler);
+    bool onSelect(Handler &handler);
 
     // Event reading, called from above calc functions
     bool onPlayerJoin(Handler &handler, const System::RawMii *mii, u32 location, u16 latitude,
@@ -52,6 +63,7 @@ private:
     bool onPlayerLeave(Handler &handler, u32 playerId);
     bool onReceiveComment(Handler &handler, u32 playerId, u32 messageId);
     bool onRoomClose(Handler &handler, u32 gamemode);
+    bool onReceiveTeamSelect(Handler &handler, u32 playerId, u32 teamId);
     bool onReceivePulse(Handler &handler, u32 playerId);
     bool onReceiveInfo(Handler &handler, RoomEvent event);
 
@@ -61,12 +73,14 @@ private:
     bool writeComment(u32 messageId);
     bool writeClose(u32 gamemode);
     bool writeSettings();
+    bool writeTeamSelect(u32 playerId, u32 teamId);
     bool writeVote(u32 course, std::optional<Player::Properties> properties);
     bool write(RoomRequest request);
 
     u32 m_localPlayerCount;
     u32 m_localPlayerIds[2];
     bool m_localSettingsChanged = false;
+    std::array<u32, RoomSettings::count> m_settings;
     State m_state;
     Net::AsyncSocket m_socket;
 

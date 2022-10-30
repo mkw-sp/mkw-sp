@@ -11,6 +11,26 @@ extern "C" {
 
 namespace SP {
 
+bool RoomClient::isPlayerLocal([[maybe_unused]] u32 playerId) const {
+    for (size_t i = 0; i < m_localPlayerCount; i++) {
+        if (m_localPlayerIds[i] == playerId) {
+            return true;
+        }
+    }
+
+    return false;
+}
+
+bool RoomClient::canSelectTeam([[maybe_unused]] u32 playerId) const {
+    return isPlayerLocal(playerId);
+}
+
+bool RoomClient::canSelectTeam([[maybe_unused]] u32 localPlayerId,
+        [[maybe_unused]] u32 playerId) const {
+    assert(localPlayerId < m_localPlayerCount);
+    return m_localPlayerIds[localPlayerId] == playerId;
+}
+
 bool RoomClient::calc(Handler &handler) {
     if (auto state = resolve(handler)) {
         if (!transition(handler, *state)) {
@@ -47,6 +67,11 @@ void RoomClient::changeLocalSettings() {
     m_localSettingsChanged = true;
 }
 
+bool RoomClient::sendTeamSelect(u32 playerId) {
+    m_players[playerId].m_teamId = (m_players[playerId].m_teamId + 1) % 6;
+    return writeTeamSelect(playerId, m_players[playerId].m_teamId);
+}
+
 bool RoomClient::sendVote(u32 course, std::optional<Player::Properties> properties) {
     return writeVote(course, properties);
 }
@@ -76,6 +101,10 @@ RoomClient::RoomClient(u32 localPlayerCount)
 
 RoomClient::~RoomClient() = default;
 
+const std::array<u32, RoomSettings::count> &RoomClient::settings() const {
+    return m_settings;
+}
+
 std::optional<RoomClient::State> RoomClient::resolve(Handler &handler) {
     switch (m_state) {
     case State::Connect:
@@ -84,6 +113,8 @@ std::optional<RoomClient::State> RoomClient::resolve(Handler &handler) {
         return calcSetup(handler);
     case State::Main:
         return calcMain(handler);
+    case State::TeamSelect:
+        return calcTeamSelect(handler);
     case State::Select:
         return calcSelect(handler);
     }
@@ -106,7 +137,11 @@ bool RoomClient::transition(Handler &handler, State state) {
     case State::Main:
         result = onMain(handler);
         break;
+    case State::TeamSelect:
+        result = onTeamSelect(handler);
+        break;
     case State::Select:
+        result = onSelect(handler);
         break;
     }
     m_state = state;
@@ -150,18 +185,17 @@ std::optional<RoomClient::State> RoomClient::calcSetup(Handler &handler) {
         if (m_playerCount == 0) {
             auto *saveManager = System::SaveManager::Instance();
             for (size_t i = 0; i < RoomSettings::count; i++) {
-                m_players[m_localPlayerIds[0]].m_settings[i] =
-                        saveManager->getSetting(RoomSettings::offset + i);
+                m_settings[i] = saveManager->getSetting(RoomSettings::offset + i);
             }
         } else {
             if (event->event.settings.settings_count != RoomSettings::count) {
                 return {};
             }
             for (size_t i = 0; i < RoomSettings::count; i++) {
-                m_players[m_localPlayerIds[0]].m_settings[i] = event->event.settings.settings[i];
+                m_settings[i] = event->event.settings.settings[i];
             }
         }
-        handler.onSettingsChange(m_players[m_localPlayerIds[0]].m_settings);
+        handler.onSettingsChange(m_settings);
         return State::Main;
     default:
         return {};
@@ -216,23 +250,49 @@ std::optional<RoomClient::State> RoomClient::calcMain(Handler &handler) {
         } else {
             bool changed = false;
             for (size_t i = 0; i < RoomSettings::count; i++) {
-                changed = changed ||
-                        event->event.settings.settings[i] !=
-                                m_players[m_localPlayerIds[0]].m_settings[i];
-                m_players[m_localPlayerIds[0]].m_settings[i] = event->event.settings.settings[i];
+                changed = changed || event->event.settings.settings[i] != m_settings[i];
+                m_settings[i] = event->event.settings.settings[i];
             }
             if (changed) {
-                handler.onSettingsChange(m_players[m_localPlayerIds[0]].m_settings);
+                handler.onSettingsChange(m_settings);
             }
         }
         return State::Main;
     case RoomEvent_close_tag:
         if (!onRoomClose(handler, event->event.close.gamemode)) {
             return {};
+        } else {
+            auto setting = getSetting<SP::ClientSettings::Setting::RoomTeamSize>();
+            if (setting == SP::ClientSettings::RoomTeamSize::FFA) {
+                return State::Select;
+            } else {
+                return State::TeamSelect;
+            }
         }
-        return State::Select;
     default:
         return State::Main;
+    }
+}
+
+std::optional<RoomClient::State> RoomClient::calcTeamSelect(Handler &handler) {
+    std::optional<RoomEvent> event{};
+    if (!read(event)) {
+        return {};
+    }
+
+    if (!event) {
+        return State::TeamSelect;
+    }
+
+    switch (event->which_event) {
+    case RoomEvent_teamSelect_tag:
+        if (!onReceiveTeamSelect(handler, event->event.teamSelect.playerId,
+                event->event.teamSelect.teamId)) {
+            return {};
+        }
+        return State::TeamSelect;
+    default:
+        return State::TeamSelect;
     }
 }
 
@@ -294,13 +354,24 @@ bool RoomClient::onMain(Handler &handler) {
     return true;
 }
 
+bool RoomClient::onTeamSelect(Handler &handler) {
+    handler.onTeamSelect();
+    return true;
+}
+
+bool RoomClient::onSelect(Handler &handler) {
+    handler.onSelect();
+    return true;
+}
+
 bool RoomClient::onPlayerJoin(Handler &handler, const System::RawMii *mii, u32 location,
         u16 latitude, u16 longitude, u32 regionLineColor) {
     if (m_playerCount == 12) {
         return false;
     }
 
-    m_players[m_playerCount].m_mii = *mii;
+    m_players[m_playerCount] = {0xFFFFFFFF, {}, *mii, location, latitude, longitude,
+            regionLineColor, 0xFFFFFFFF, {}, 0};
     m_playerCount++;
     handler.onPlayerJoin(mii, location, latitude, longitude, regionLineColor);
     return true;
@@ -310,10 +381,8 @@ bool RoomClient::onPlayerLeave(Handler &handler, u32 playerId) {
     if (playerId >= m_playerCount) {
         return false;
     }
-    for (size_t i = 0; i < m_localPlayerCount; i++) {
-        if (playerId == m_localPlayerIds[i]) {
-            return false;
-        }
+    if (isPlayerLocal(playerId)) {
+        return false;
     }
     m_playerCount--;
     handler.onPlayerLeave(playerId);
@@ -332,10 +401,23 @@ bool RoomClient::onReceiveComment(Handler &handler, u32 playerId, u32 messageId)
 }
 
 bool RoomClient::onRoomClose(Handler &handler, u32 gamemode) {
-    if (gamemode >= 4) {
+    if (gamemode >= 3) {
         return false;
     }
-    handler.onRoomClose(gamemode);
+
+    m_gamemode = gamemode;
+    return true;
+}
+
+bool RoomClient::onReceiveTeamSelect(Handler &handler, u32 playerId, u32 teamId) {
+    if (playerId >= m_playerCount) {
+        return false;
+    }
+    if (teamId >= 6) {
+        return false;
+    }
+
+    handler.onReceiveTeamSelect(playerId, teamId);
     return true;
 }
 
@@ -436,6 +518,14 @@ bool RoomClient::writeSettings() {
         request.request.settings.settings[i] = saveManager->getSetting(RoomSettings::offset + i);
     }
     m_localSettingsChanged = false;
+    return write(request);
+}
+
+bool RoomClient::writeTeamSelect(u32 playerId, u32 teamId) {
+    RoomRequest request;
+    request.which_request = RoomRequest_teamSelect_tag;
+    request.request.teamSelect.playerId = playerId;
+    request.request.teamSelect.teamId = teamId;
     return write(request);
 }
 

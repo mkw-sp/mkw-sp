@@ -18,6 +18,11 @@ namespace SP {
 class RoomServer final : public RoomManager {
 public:
     using State = RoomManager::ServerState;
+
+    bool isPlayerLocal(u32 playerId) const override;
+    bool canSelectTeam(u32 playerId) const override;
+    bool canSelectTeam(u32 localPlayerId, u32 playerId) const override;
+
     // Main RoomServer update, called in networking pages (typically afterCalc())
     bool calc(Handler &handler);
 
@@ -49,6 +54,7 @@ private:
         bool writeComment(u32 playerId, u32 messageId);
         bool writeSettings();
         bool writeClose(u32 gamemode);
+        bool writeTeamSelect(u32 playerId, u32 teamId);
         bool writeSelectPulse(u32 playerId);
         bool writeSelectInfo(u32 selectedPlayer);
 
@@ -61,6 +67,7 @@ private:
         std::optional<ClientState> calcConnect();
         std::optional<ClientState> calcSetup(Handler &handler);
         std::optional<ClientState> calcMain(Handler &handler);
+        std::optional<ClientState> calcTeamSelect(Handler &handler);
         std::optional<ClientState> calcSelect(Handler &handler);
 
         bool isHost() const;
@@ -78,6 +85,8 @@ private:
     RoomServer();
     ~RoomServer();
 
+    const std::array<u32, RoomSettings::count> &settings() const override;
+
     // Used to update m_state
     std::optional<State> resolve(Handler &handler);
     bool transition(Handler &handler, State state);
@@ -87,6 +96,8 @@ private:
     std::optional<State> calcMain(Handler &handler);
     std::optional<State> calcSelect(Handler &handler);
     bool onMain(Handler &handler);
+    bool onTeamSelect(Handler &handler);
+    bool onSelect(Handler &handler);
 
     // Server-side request reading - any validation checks should go here!
     bool onPlayerJoin(Handler &handler, u32 clientId, const System::RawMii *mii, u32 location,
@@ -94,9 +105,10 @@ private:
             const std::array<u32, RoomSettings::count> &settings);
     void onPlayerLeave(Handler &handler, u32 playerId);
     bool onReceiveComment(u32 playerId, u32 messageId);
-    bool onRoomClose(u32 playerId, s32 gamemode);
-    bool onReceiveVote(u32 playerId, u32 course, Player::Properties &properties);
-    bool validateProperties(u32 playerId, Player::Properties &properties);
+    bool onRoomClose(u32 playerId, u32 gamemode);
+    bool onReceiveTeamSelect(Handler &handler, u32 playerId, u32 teamId);
+    bool onReceiveVote(u32 playerId, u32 course, Player::Properties& vote);
+    bool validateProperties(u32 playerId, Player::Properties& properties);
 
     void disconnectClient(u32 clientId);
 
@@ -107,6 +119,7 @@ private:
     void writeComment(u32 playerId, u32 messageId);
     void writeSettings();
     void writeClose(u32 gamemode);
+    void writeTeamSelect(u32 playerId, u32 teamId);
     void writeSelectPulse(u32 playerId);
     void writeSelectInfo(u32 selectedPlayer);
 
