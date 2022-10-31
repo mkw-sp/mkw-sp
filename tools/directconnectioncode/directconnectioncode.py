@@ -16,7 +16,6 @@ def parse_ip(ip: str) -> str:
         assert j >= 0 and j < 256, f"IP address octet {i + 1} exceeds accepted range: 0 - 255"
 
     ip = socket.inet_aton(ip)
-
     return ip
 
 
@@ -30,11 +29,11 @@ def generate(ip: str, port: int, passcode: int):
 
     hex_code = passcode + port + ip
     direct_code = str(struct.unpack(">Q", hex_code)[0])
-    assert len(direct_code) <= 18, "Direct connection code is unusable, report this to the MKW-SP Discord if you encounter this"
 
     direct_code = "0" * (18 - len(direct_code)) + direct_code
     direct_code = direct_code[:6] + '-' + \
         direct_code[6:12] + '-' + direct_code[-6:]
+    
     print(direct_code)
 
 
