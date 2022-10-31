@@ -165,7 +165,6 @@ void RoulettePage::initSelectingStage(u32 selectedPlayer) {
     m_selectedPlayer = selectedPlayer;
     System::ResourceManager::Instance()->preloadCourseAsync(
             votingBackPage->getCourseVote(selectedPlayer));
-    m_stage = Stage::Selecting;
 }
 
 bool RoulettePage::calcPlayer(u8 playerIdx) {
@@ -210,6 +209,10 @@ void RoulettePage::calcElements() {
 
     info.intVals[0] = voteCount;
     m_voteNum.setMessageAll(2009, &info);
+
+    if (voteCount == votingBackPage->getPlayerCount() && m_hoverPlayerIdx != -1) {
+        m_stage = Stage::Selecting;
+    }
 }
 
 RoulettePage::VoteControl::VoteControl() = default;

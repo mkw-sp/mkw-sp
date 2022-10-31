@@ -111,6 +111,7 @@ protected:
         Main,
         TeamSelect,
         Select,
+        Race,
     };
 
     // Used for RoomServer::m_state
@@ -119,6 +120,7 @@ protected:
         Main,
         TeamSelect,
         Select,
+        Race,
     };
 
     // The ctor and dtor is called in RoomServer/RoomClient's instance management

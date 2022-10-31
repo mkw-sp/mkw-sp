@@ -117,6 +117,8 @@ std::optional<RoomClient::State> RoomClient::resolve(Handler &handler) {
         return calcTeamSelect(handler);
     case State::Select:
         return calcSelect(handler);
+    case State::Race:
+        break;
     }
 
     return m_state;
@@ -142,6 +144,8 @@ bool RoomClient::transition(Handler &handler, State state) {
         break;
     case State::Select:
         result = onSelect(handler);
+        break;
+    case State::Race:
         break;
     }
     m_state = state;

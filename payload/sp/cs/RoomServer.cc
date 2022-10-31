@@ -120,6 +120,8 @@ std::optional<RoomServer::State> RoomServer::resolve(Handler &handler) {
         break;
     case State::Select:
         return calcSelect(handler);
+    case State::Race:
+        break;
     }
 
     return m_state;
@@ -142,6 +144,9 @@ bool RoomServer::transition(Handler &handler, State state) {
         break;
     case State::Select:
         result = onSelect(handler);
+        break;
+    case State::Race:
+        // NOTE: We will use the server handler to transition to the race section here
         break;
     }
     m_state = state;
@@ -209,15 +214,11 @@ std::optional<RoomServer::State> RoomServer::calcSelect(Handler &handler) {
     }
 
     if (m_voteCount == m_playerCount) {
-        if (m_voteDelay != 0) {
-            m_voteDelay--;
-            return State::Select;
-        }
         u32 selectedPlayer = hydro_random_uniform(m_playerCount);
         writeSelectInfo(selectedPlayer);
         // HACK: need this condition to reset
         m_voteCount = 0;
-        // NOTE: We will use the server handler to transition to the race section here
+        return State::Race;
     }
 
     return State::Select;
@@ -478,6 +479,7 @@ bool RoomServer::Client::ready() const {
     case State::Main:
     case State::TeamSelect:
     case State::Select:
+    case State::Race:
         return true;
     default:
         return false;
@@ -604,6 +606,8 @@ std::optional<RoomServer::Client::State> RoomServer::Client::resolve(Handler &ha
         return calcTeamSelect(handler);
     case State::Select:
         return calcSelect(handler);
+    case State::Race:
+        break;
     }
 
     return m_state;
@@ -625,6 +629,8 @@ bool RoomServer::Client::transition(Handler &handler, ClientState state) {
     case State::TeamSelect:
         break;
     case State::Select:
+        break;
+    case State::Race:
         break;
     }
     m_state = state;

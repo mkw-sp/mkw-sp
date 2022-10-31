@@ -130,7 +130,6 @@ private:
     bool m_voteEvent = false;
     std::bitset<12> m_voted;
     u8 m_voteCount = 0;
-    s8 m_voteDelay = 15;
     State m_state;
     CircularBuffer<u32, 12> m_disconnectQueue;
     std::array<std::optional<Client>, 12> m_clients;
