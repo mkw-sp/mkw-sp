@@ -26,6 +26,13 @@ PATCH_B_START(CtrlMenuCharacterSelect_loadDriverButton, 0x110)
     b       CtrlMenuCharacterSelect_loadDriverButton + 0x114
 PATCH_B_END(CtrlMenuCharacterSelect_loadDriverButton, 0x110)
 
+PATCH_BL_START(CtrlMenuCharacterSelect_onFront, 0xA8)
+    lbz     r0, 0x254(r3) // Is multiplayer button
+    cmpwi   r0, 0
+    bnelr
+    b       LayoutUIControl_setMessageAll
+PATCH_BL_END(CtrlMenuCharacterSelect_onFront, 0xA8)
+
 // Change the ctrl name to what it actually is
     .section .rodata
 CharacterSelectMultiCtrl_str:

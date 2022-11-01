@@ -15,24 +15,28 @@ void CtrlMenuCharacterSelect::ButtonDriver::initSelf() {
         if (auto *material = pane->getMaterial()) {
             material->tevColors[1] = { 255, 255, 255, 255 };
         }
+        setMessage("ok_text_1p", 2555);
     }
 
     if (auto *pane = m_mainLayout.findPaneByName("ok_text_2p")) {
         if (auto *material = pane->getMaterial()) {
             material->tevColors[1] = { 255, 255, 255, 255 };
         }
+        setMessage("ok_text_2p", 2555 + 1);
     }
 
     if (auto *pane = m_mainLayout.findPaneByName("ok_text_3p")) {
         if (auto *material = pane->getMaterial()) {
             material->tevColors[1] = { 255, 255, 255, 255 };
         }
+        setMessage("ok_text_3p", 2555 + 2);
     }
 
     if (auto *pane = m_mainLayout.findPaneByName("ok_text_4p")) {
         if (auto *material = pane->getMaterial()) {
             material->tevColors[1] = { 255, 255, 255, 255 };
         }
+        setMessage("ok_text_4p", 2555 + 3);
     }
 }
 
