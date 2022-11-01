@@ -234,6 +234,7 @@ asset_in_files = {
         os.path.join('button', 'ctrl', 'CharacterSelect4_1_Multi.brctr.json5'),
         os.path.join('button', 'ctrl', 'CharacterSelect4_2_Multi.brctr.json5'),
         os.path.join('button', 'ctrl', 'CharacterSelect4_3_Multi.brctr.json5'),
+        os.path.join('button', 'blyt', 'common_w117_mii_suit.brlyt.json5'),
     ],
     os.path.join('Scene', 'UI', 'MenuMultiSP.arc.lzma'): [
         os.path.join('button', 'anim', 'common_w083_earth_chat_message_fade_in.brlan.json5'),
@@ -338,6 +339,7 @@ asset_in_files = {
         os.path.join('button', 'ctrl', 'CharacterSelect4_1_Multi.brctr.json5'),
         os.path.join('button', 'ctrl', 'CharacterSelect4_2_Multi.brctr.json5'),
         os.path.join('button', 'ctrl', 'CharacterSelect4_3_Multi.brctr.json5'),
+        os.path.join('button', 'blyt', 'common_w117_mii_suit.brlyt.json5'),
     ],
     os.path.join('Scene', 'UI', 'MenuOtherSP.arc.lzma'): [
         # Explanation text with 2 lines
@@ -521,6 +523,7 @@ asset_in_files = {
         os.path.join('button', 'ctrl', 'CharacterSelect4_1_Multi.brctr.json5'),
         os.path.join('button', 'ctrl', 'CharacterSelect4_2_Multi.brctr.json5'),
         os.path.join('button', 'ctrl', 'CharacterSelect4_3_Multi.brctr.json5'),
+        os.path.join('button', 'blyt', 'common_w117_mii_suit.brlyt.json5'),
     ],
     os.path.join('Scene', 'UI', 'RaceSP.arc.lzma'): [
         # Menu
