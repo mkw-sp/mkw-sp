@@ -10,6 +10,30 @@ void CtrlMenuCharacterSelect::ButtonDriver::initSelf() {
             material->tevColors[1] = { 255, 255, 255, 255 };
         }
     }
+
+    if (auto *pane = m_mainLayout.findPaneByName("ok_text_1p")) {
+        if (auto *material = pane->getMaterial()) {
+            material->tevColors[1] = { 255, 255, 255, 255 };
+        }
+    }
+
+    if (auto *pane = m_mainLayout.findPaneByName("ok_text_2p")) {
+        if (auto *material = pane->getMaterial()) {
+            material->tevColors[1] = { 255, 255, 255, 255 };
+        }
+    }
+
+    if (auto *pane = m_mainLayout.findPaneByName("ok_text_3p")) {
+        if (auto *material = pane->getMaterial()) {
+            material->tevColors[1] = { 255, 255, 255, 255 };
+        }
+    }
+
+    if (auto *pane = m_mainLayout.findPaneByName("ok_text_4p")) {
+        if (auto *material = pane->getMaterial()) {
+            material->tevColors[1] = { 255, 255, 255, 255 };
+        }
+    }
 }
 
 } // namespace UI

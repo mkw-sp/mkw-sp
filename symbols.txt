@@ -540,6 +540,7 @@
 0x80553c50 RaceScene_vf_38
 0x80555040 MenuScene_vf_38
 0x805553B0 _unresolved
+0x8055f34c SetModelVisible
 0x8056a300 _ZN4Kart9KartBlink4calcEb
 0x8056ce98 KartBody_calcTransforms
 0x8056da88 BikeBody_calcTransforms
@@ -1103,6 +1104,9 @@
 0x807b54f4 Item_807b54f4
 0x807cb198 Driver_807cb198
 0x807dfc54 Map2DRenderer_init__createTexBuffer
+0x807e25a8 CtrlMenuCharacterSelect_load
+0x807e2928 CtrlMenuCharacterSelect_loadDriverButton
+0x807e3880 CtrlMenuCharacterSelect_onFrontMii
 0x807e3e10 _ZN2UI23CtrlMenuCharacterSelect12ButtonDriver8initSelfEv
 0x807e9214 _ZN2UI18CtrlMenuBackButton5vf_2cEv
 0x807e9220 _ZN2UI17CtrlMenuDummyBack5vf_2cEv
@@ -1184,6 +1188,13 @@
 0x8082cc64 ObjPylon01_vf_b0
 0x8082dbec ObjPylon01_vf_c0
 0x8082fb78 _ZN2UI11DriverModel7setAnimEjj
+0x80830180 CharacterModelManager_ct
+0x808307b0 CharacterModelManager_808307b0
+0x80830a80 CharacterModelManager_80830a80
+0x80830d00 CharacterModelManager_80830d00
+0x8083104c CharacterModelManager_8083104c
+0x80831100 CharacterModelManager_80831100
+0x80831534 CharacterModelManager_80831534
 0x80833774 _ZN8Registry21GetCharacterMessageIdEjb
 0x80837a44 FUN_80837a44
 0x8083d55c CharacterSelectPage_onInit

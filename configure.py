@@ -229,6 +229,11 @@ asset_in_files = {
         os.path.join('button', 'blyt', 'online_team_select.brlyt.json5'),
         os.path.join('button', 'ctrl', 'OnlineTeamSelect.brctr.json5'),
         os.path.join('button', 'timg', 'ht_squareWhite_00.tpl'),
+        # Multiplayer Character Select
+        os.path.join('button', 'ctrl', 'CharacterSelect4_0_Multi.brctr.json5'),
+        os.path.join('button', 'ctrl', 'CharacterSelect4_1_Multi.brctr.json5'),
+        os.path.join('button', 'ctrl', 'CharacterSelect4_2_Multi.brctr.json5'),
+        os.path.join('button', 'ctrl', 'CharacterSelect4_3_Multi.brctr.json5'),
     ],
     os.path.join('Scene', 'UI', 'MenuMultiSP.arc.lzma'): [
         os.path.join('button', 'anim', 'common_w083_earth_chat_message_fade_in.brlan.json5'),
@@ -328,6 +333,11 @@ asset_in_files = {
         os.path.join('control', 'anim', 'common_w204_team_position.brlan.json5'),
         os.path.join('control', 'blyt', 'common_w204_team.brlyt.json5'),
         os.path.join('control', 'ctrl', 'TeamConfirm.brctr.json5'),
+        # Multiplayer Character Select
+        os.path.join('button', 'ctrl', 'CharacterSelect4_0_Multi.brctr.json5'),
+        os.path.join('button', 'ctrl', 'CharacterSelect4_1_Multi.brctr.json5'),
+        os.path.join('button', 'ctrl', 'CharacterSelect4_2_Multi.brctr.json5'),
+        os.path.join('button', 'ctrl', 'CharacterSelect4_3_Multi.brctr.json5'),
     ],
     os.path.join('Scene', 'UI', 'MenuOtherSP.arc.lzma'): [
         # Explanation text with 2 lines
@@ -506,6 +516,11 @@ asset_in_files = {
         os.path.join('control', 'anim', 'common_w204_team_position.brlan.json5'),
         os.path.join('control', 'blyt', 'common_w204_team.brlyt.json5'),
         os.path.join('control', 'ctrl', 'TeamConfirm.brctr.json5'),
+        # Multiplayer Character Select
+        os.path.join('button', 'ctrl', 'CharacterSelect4_0_Multi.brctr.json5'),
+        os.path.join('button', 'ctrl', 'CharacterSelect4_1_Multi.brctr.json5'),
+        os.path.join('button', 'ctrl', 'CharacterSelect4_2_Multi.brctr.json5'),
+        os.path.join('button', 'ctrl', 'CharacterSelect4_3_Multi.brctr.json5'),
     ],
     os.path.join('Scene', 'UI', 'RaceSP.arc.lzma'): [
         # Menu
@@ -1187,6 +1202,7 @@ code_in_files = {
         os.path.join('payload', 'game', 'ui', 'VotingBackPage.cc'),
         os.path.join('payload', 'game', 'ui', 'Wipe.S'),
         os.path.join('payload', 'game', 'ui', 'ctrl', 'CtrlMenuBackButton.cc'),
+        os.path.join('payload', 'game', 'ui', 'ctrl', 'CtrlMenuCharacterSelect.S'),
         os.path.join('payload', 'game', 'ui', 'ctrl', 'CtrlMenuCharacterSelect.cc'),
         os.path.join('payload', 'game', 'ui', 'ctrl', 'CtrlMenuDummyBack.cc'),
         os.path.join('payload', 'game', 'ui', 'ctrl', 'CtrlMenuInstructionText.cc'),
@@ -1205,6 +1221,7 @@ code_in_files = {
         os.path.join('payload', 'game', 'ui', 'ctrl', 'CtrlRaceSpeed.cc'),
         os.path.join('payload', 'game', 'ui', 'ctrl', 'CtrlRaceTime.S'),
         os.path.join('payload', 'game', 'ui', 'ctrl', 'CtrlRaceTime.cc'),
+        os.path.join('payload', 'game', 'ui', 'model', 'CharacterModelManager.S'),
         os.path.join('payload', 'game', 'ui', 'model', 'MenuModelManager.cc'),
         os.path.join('payload', 'game', 'ui', 'page', 'CharacterSelectPage.S'),
         os.path.join('payload', 'game', 'ui', 'page', 'CourseSelectPage.S'),
