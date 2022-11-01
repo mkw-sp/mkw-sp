@@ -13,7 +13,7 @@ def parse_ip(ip: str) -> str:
 
     for i, j in enumerate(octets):
         j = int(j)
-        assert j >= 0 and j < 256, f"IP address octet {i + 1} exceeds accepted range: 0 - 255"
+        assert j >= 0 and j < 256, f"IP address octet {i + 1} exceeds expected range: 0 - 255"
 
     ip = socket.inet_aton(ip)
     return ip
