@@ -87,7 +87,8 @@ static void Init() {
     Heap_RandomizeMEM1Heaps();
     Heap_RandomizeMEM2Heaps();
 
-    Function_KillBlacklistedFunctions();
+    Function_KillBlacklistedFunction(reinterpret_cast<u32 *>(BATConfig),
+            reinterpret_cast<u32 *>(__OSInitMemoryProtection));
 
     Memory_ProtectRange(OS_PROTECT_CHANNEL_0, Dol_getInitSectionStart(), Dol_getRodataSectionEnd(),
             OS_PROTECT_PERMISSION_READ);
