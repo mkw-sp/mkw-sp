@@ -28,12 +28,12 @@ def generate(ip: str, port: int, passcode: int):
     passcode = struct.pack(">H", passcode)
 
     hex_code = passcode + port + ip
-    direct_code = str(struct.unpack(">Q", hex_code)[0])
+    direct_code = str(struct.unpack(">Q", hex_code)[0] + 0x3ed5142afa4755f)
 
     direct_code = "0" * (18 - len(direct_code)) + direct_code
     direct_code = direct_code[:6] + '-' + \
         direct_code[6:12] + '-' + direct_code[-6:]
-    
+
     print(direct_code)
 
 
