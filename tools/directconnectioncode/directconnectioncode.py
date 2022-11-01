@@ -20,7 +20,7 @@ def parse_ip(ip: str) -> str:
 
 
 def generate(ip: str, port: int, passcode: int):
-    assert port >= 0 and port < 65536, "Port exceeds accepted range: 0 - 65535"
+    assert port >= 1024 and port < 65536, "Port exceeds accepted range: 1024 - 65535"
     assert passcode >= 0 and passcode < 2048, "Passcode exceeds accepted range: 0 - 2047"
 
     ip = parse_ip(ip)
