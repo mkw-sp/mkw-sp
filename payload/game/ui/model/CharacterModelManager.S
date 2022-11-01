@@ -50,7 +50,7 @@ PATCH_B_START(CharacterModelManager_80830d00, 0x218)
 PATCH_B_END(CharacterModelManager_80830d00, 0x218)
 
 PATCH_B_START(CharacterModelManager_8083104c, 0x3C)
-    lbz     r5, 8(r3) // Player count
+    lbz     r5, 8(r29) // Player count
     subi    r5, r5, 1
     mulli   r5, r5, CHARA_COUNT
     add     r30, r30, r5
@@ -60,7 +60,7 @@ PATCH_B_START(CharacterModelManager_8083104c, 0x3C)
 PATCH_B_END(CharacterModelManager_8083104c, 0x3C)
 
 PATCH_B_START(CharacterModelManager_80831534, 0x90)
-    lbz     r5, 8(r3) // Player count
+    lbz     r5, 8(r28) // Player count
     subi    r5, r5, 1
     mulli   r5, r5, CHARA_COUNT
     add     r26, r26, r5
