@@ -83,16 +83,15 @@ PATCH_B_START(CharacterModelManager_ct, 0x228)
     // Check if pigtails have been allocated yet
     lwz     r3, 0x4C(r27)
     cmpwi   r3, 0
-    bne-    alreadyAllocated
+    bne-    allocated
 
     // Allocate new pigtails
     lbz     r3, 8(r27)
     mulli   r3, r3, 0x58
     bl      new
     stw     r3, 0x4C(r27)
-    b       alreadyAllocated
 
-alreadyAllocated:
+allocated:
     // To get player index
     li      r4, CHARA_COUNT
     divw    r4, r29, r4
