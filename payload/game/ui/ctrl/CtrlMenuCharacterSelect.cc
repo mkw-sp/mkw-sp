@@ -7,36 +7,19 @@ void CtrlMenuCharacterSelect::ButtonDriver::initSelf() {
 
     if (auto *pane = m_mainLayout.findPaneByName("ok_text")) {
         if (auto *material = pane->getMaterial()) {
-            material->tevColors[1] = { 255, 255, 255, 255 };
+            material->tevColors[1] = {255, 255, 255, 255};
         }
     }
 
-    if (auto *pane = m_mainLayout.findPaneByName("ok_text_1p")) {
-        if (auto *material = pane->getMaterial()) {
-            material->tevColors[1] = { 255, 255, 255, 255 };
-        }
-        setMessage("ok_text_1p", 2555);
-    }
+    const char *panes[4] = {"ok_text_1p", "ok_text_2p", "ok_text_3p", "ok_text_4p"};
 
-    if (auto *pane = m_mainLayout.findPaneByName("ok_text_2p")) {
-        if (auto *material = pane->getMaterial()) {
-            material->tevColors[1] = { 255, 255, 255, 255 };
+    for (u32 i = 0; i < 4; i++) {
+        if (auto *pane = m_mainLayout.findPaneByName(panes[i])) {
+            if (auto *material = pane->getMaterial()) {
+                material->tevColors[1] = {255, 255, 255, 255};
+            }
+            setMessage(panes[i], 2555 + i);
         }
-        setMessage("ok_text_2p", 2555 + 1);
-    }
-
-    if (auto *pane = m_mainLayout.findPaneByName("ok_text_3p")) {
-        if (auto *material = pane->getMaterial()) {
-            material->tevColors[1] = { 255, 255, 255, 255 };
-        }
-        setMessage("ok_text_3p", 2555 + 2);
-    }
-
-    if (auto *pane = m_mainLayout.findPaneByName("ok_text_4p")) {
-        if (auto *material = pane->getMaterial()) {
-            material->tevColors[1] = { 255, 255, 255, 255 };
-        }
-        setMessage("ok_text_4p", 2555 + 3);
     }
 }
 
