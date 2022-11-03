@@ -42,7 +42,6 @@ void FriendMatchingPage::beforeInAnim() {
         SP::RoomServer::CreateInstance();
         m_messageWindow.show(20009);
     } else {
-        SP::RoomClient::CreateInstance(sectionId == SectionId::OnlineSingle ? 1 : 2);
         m_messageWindow.show(20008);
     }
     skipInAnim();

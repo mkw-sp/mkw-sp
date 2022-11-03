@@ -54,6 +54,7 @@ public:
     void setPlayerFlags(u32 playerFlags);
     void setPointerOnly(bool pointerOnly);
     f32 getDelay() const;
+    bool isSelected() const;
 
 private:
     ControlInputManager m_inputManager;

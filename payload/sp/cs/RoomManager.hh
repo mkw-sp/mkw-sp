@@ -137,6 +137,7 @@ protected:
     u32 m_gamemode = 0;
     std::array<s8, 12> m_votePlayerOrder;
     u8 m_voteCurrentPlayerIdx = 0;
+    u16 m_passcode = 0;
 
     static void *s_block;
     static RoomManager *s_instance;

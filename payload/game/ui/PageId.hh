@@ -76,6 +76,7 @@ enum class PageId {
     MultiTop = 0x80,
     MultiVehicleSelect = 0x81,
     MultiTeamSelect = 0x83,
+    DirectConnection = 0x84, // Replaces WifiConnect (or something)
 
     OnlineTeamSelect = 0x88,
     OnlineTop = 0x8b, // Replaces WifiTop
