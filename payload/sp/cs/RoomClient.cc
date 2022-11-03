@@ -76,10 +76,10 @@ bool RoomClient::sendVote(u32 course, std::optional<Player::Properties> properti
     return writeVote(course, properties);
 }
 
-RoomClient *RoomClient::CreateInstance(u32 localPlayerCount) {
+RoomClient *RoomClient::CreateInstance(u32 localPlayerCount, u32 ip, u16 port, u16 passcode) {
     assert(s_block);
     assert(!s_instance);
-    s_instance = new (s_block) RoomClient(localPlayerCount);
+    s_instance = new (s_block) RoomClient(localPlayerCount, ip, port, passcode);
     RoomManager::s_instance = s_instance;
     return s_instance;
 }
@@ -95,9 +95,11 @@ RoomClient *RoomClient::Instance() {
     return s_instance;
 }
 
-RoomClient::RoomClient(u32 localPlayerCount)
+RoomClient::RoomClient(u32 localPlayerCount, u32 ip, u16 port, u16 passcode)
     : m_localPlayerCount(localPlayerCount), m_state(State::Connect),
-      m_socket(0x7f000001, 21330, "room    ") {}
+      m_socket(ip, port, "room    ") {
+    m_passcode = passcode;
+}
 
 RoomClient::~RoomClient() = default;
 
@@ -291,7 +293,7 @@ std::optional<RoomClient::State> RoomClient::calcTeamSelect(Handler &handler) {
     switch (event->which_event) {
     case RoomEvent_teamSelect_tag:
         if (!onReceiveTeamSelect(handler, event->event.teamSelect.playerId,
-                event->event.teamSelect.teamId)) {
+                    event->event.teamSelect.teamId)) {
             return {};
         }
         return State::TeamSelect;

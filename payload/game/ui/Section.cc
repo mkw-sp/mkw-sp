@@ -2,6 +2,7 @@
 
 #include "game/ui/AwardPage.hh"
 #include "game/ui/ChannelPage.hh"
+#include "game/ui/DirectConnectionPage.hh"
 #include "game/ui/FriendMatchingPage.hh"
 #include "game/ui/FriendRoomBackPage.hh"
 #include "game/ui/FriendRoomMessageSelectPage.hh"
@@ -117,7 +118,6 @@ void Section::addPage(PageId pageId) {
         { SectionId::OnlineSingle, (PageId)0x51 },
         { SectionId::OnlineSingle, (PageId)0x52 },
         { SectionId::OnlineSingle, (PageId)0x76 },
-        { SectionId::OnlineSingle, (PageId)0x84 },
         { SectionId::OnlineSingle, (PageId)0x85 },
         { SectionId::OnlineSingle, (PageId)0x86 },
         { SectionId::OnlineSingle, (PageId)0x87 },
@@ -143,7 +143,6 @@ void Section::addPage(PageId pageId) {
         { SectionId::OnlineMulti, (PageId)0x7f },
         { SectionId::OnlineMulti, (PageId)0x81 },
         { SectionId::OnlineMulti, (PageId)0x82 },
-        { SectionId::OnlineMulti, (PageId)0x84 },
         { SectionId::OnlineMulti, (PageId)0x85 },
         { SectionId::OnlineMulti, (PageId)0x86 },
         { SectionId::OnlineMulti, (PageId)0x87 },
@@ -408,6 +407,8 @@ Page *Section::CreatePage(PageId pageId) {
         return new MultiTopPage;
     case PageId::MultiTeamSelect:
         return new MultiTeamSelectPage;
+    case PageId::DirectConnection:
+        return new DirectConnectionPage;
     case PageId::OnlineTeamSelect:
         return new OnlineTeamSelectPage;
     case PageId::OnlineTop:

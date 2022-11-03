@@ -31,13 +31,13 @@ public:
     bool sendTeamSelect(u32 playerId);
     bool sendVote(u32 course, std::optional<Player::Properties> properties);
 
-    static RoomClient *CreateInstance(u32 localPlayerCount);
+    static RoomClient *CreateInstance(u32 localPlayerCount, u32 ip, u16 port, u16 passcode);
     static void DestroyInstance();
     static RoomClient *Instance();
 
 private:
     // These functions are handled in CreateInstance and DestroyInstance
-    RoomClient(u32 localPlayerCount);
+    RoomClient(u32 localPlayerCount, u32 ip, u16 port, u16 passcode);
     ~RoomClient();
 
     const std::array<u32, RoomSettings::count> &settings() const override;
