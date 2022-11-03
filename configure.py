@@ -1092,6 +1092,7 @@ code_in_files = {
         os.path.join('payload', 'game', 'race', 'JugemManager.S'),
         os.path.join('payload', 'game', 'race', 'JugemManager.cc'),
         os.path.join('payload', 'game', 'rel', 'Rel.S'),
+        os.path.join('payload', 'game', 'render', 'DrawMdl.cc'),
         os.path.join('payload', 'game', 'scene', 'MenuScene.S'),
         os.path.join('payload', 'game', 'scene', 'globe', 'GlobeManager.S'),
         os.path.join('payload', 'game', 'sound', 'DriverSound.S'),

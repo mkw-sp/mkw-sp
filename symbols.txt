@@ -44,6 +44,9 @@
 0x80025DC0 nw4r_db_ShowStack_
 
 0x8004D900 ResFile_CheckRevision
+0x8004E9F0 _ZNK4nw4r3g3d6ResMdl9GetResMatEj
+0x8004EA50 _ZNK4nw4r3g3d6ResMdl19GetResMatNumEntriesEv
+0x80050B30 _ZN4nw4r3g3d10ResGenMode13GXSetCullModeE10GXCullMode
 0x80052190 ResMat_Init
 0x80079cf0 GroupContainer_FindGroupByName
 0x8007A000 lyt_Layout_CT
@@ -542,6 +545,8 @@
 0x80553c50 RaceScene_vf_38
 0x80555040 MenuScene_vf_38
 0x805553B0 _unresolved
+0x8055B5BC _ZN6Render7DrawMdl2dtEi
+0x8055D6BC _ZN6Render7DrawMdl18ApplyMirrorPatchesERN4nw4r3g3d6ResMdlE
 0x8055f34c SetModelVisible
 0x8056a300 _ZN4Kart9KartBlink4calcEb
 0x8056ce98 KartBody_calcTransforms
@@ -1271,6 +1276,8 @@
 0x80860acc _ZN8Registry16GetCharacterPaneEj
 0x80863a9c DriverSound_init
 0x80868974 _ZN5Sound18DriverSoundManager15playSelectSoundEji
+
+0x808913C0 _ZN6Render7DrawMdl9sTag_MIRRE
 
 0x808ad3c4 RaceCupSelectPage_zero
 
