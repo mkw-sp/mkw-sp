@@ -15,6 +15,7 @@ public:
     void insert(u32 digit);
     void remove();
     bool isEmpty();
+    bool isFull();
     u64 getNumber();
 
 private:

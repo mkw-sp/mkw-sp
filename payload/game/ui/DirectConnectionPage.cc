@@ -1,6 +1,7 @@
 #include "DirectConnectionPage.hh"
 
 #include "game/ui/SectionManager.hh"
+
 #include <sp/cs/RoomClient.hh>
 
 namespace UI {
@@ -59,6 +60,7 @@ void DirectConnectionPage::onInit() {
         m_digitButtons[i].setMessageAll(5105, &info);
     }
 
+    m_okButton.setPlayerFlags(0);
     m_digitButtons[1].selectDefault(0);
 }
 
@@ -69,20 +71,41 @@ void DirectConnectionPage::onActivate() {
 void DirectConnectionPage::onBack([[maybe_unused]] u32 localPlayerId) {
     if (!m_editBox.isEmpty()) {
         m_editBox.remove();
+        m_okButton.setPlayerFlags(0);
+        if (m_okButton.isSelected()) {
+            m_digitButtons[1].select(0);
+        }
         return;
     }
 
     m_replacement = PageId::OnlineTop;
-    startReplace(Anim::Next, 0.0f);
+    startReplace(Anim::Prev, 0.0f);
 }
 
 void DirectConnectionPage::onDigitButtonFront([[maybe_unused]] PushButton *button,
         [[maybe_unused]] u32 localPlayerId) {
     m_editBox.insert(button->m_index);
+    if (m_editBox.isFull()) {
+        m_okButton.setPlayerFlags(1);
+        m_okButton.select(0);
+    }
 }
 
 void DirectConnectionPage::onOkButtonFront(PushButton *button, [[maybe_unused]] u32 localPlayerId) {
-    u64 directCode = m_editBox.getNumber() - 0x3ed5142afa4755f;
+    u64 directCode = m_editBox.getNumber();
+    if (directCode - 0x3ed5142afa4755f > directCode || directCode > 0xbed51428fa4755e) {
+        auto *messagePage =
+                SectionManager::Instance()->currentSection()->page<PageId::MenuMessage>();
+        messagePage->reset();
+        messagePage->setTitleMessage(20032);
+        messagePage->setWindowMessage(20033);
+        messagePage->m_handler = &m_onBadConnectCode;
+        m_replacement = PageId::MenuMessage;
+        f32 delay = button->getDelay();
+        startReplace(Anim::Next, delay);
+        return;
+    }
+    directCode -= 0x3ed5142afa4755f;
     u32 ip = directCode & 0xFFFFFFFF;
     u16 port = directCode >> 32 & 0xFFFF;
     u16 passcode = directCode >> 48 & 0x7FF;
@@ -99,13 +122,18 @@ void DirectConnectionPage::onOkButtonFront(PushButton *button, [[maybe_unused]] 
 void DirectConnectionPage::onBackspaceButtonFront([[maybe_unused]] PushButton *button,
         [[maybe_unused]] u32 localPlayerId) {
     m_editBox.remove();
+    m_okButton.setPlayerFlags(0);
 }
 
 void DirectConnectionPage::onBackButtonFront(PushButton *button,
         [[maybe_unused]] u32 localPlayerId) {
     m_replacement = PageId::OnlineTop;
     f32 delay = button->getDelay();
-    startReplace(Anim::Next, delay);
+    startReplace(Anim::Prev, delay);
+}
+
+void DirectConnectionPage::onBadConnectCode([[maybe_unused]] MessagePage *messagePage) {
+    reinterpret_cast<MenuMessagePage *>(messagePage)->m_replacement = PageId::OnlineTop;
 }
 
 } // namespace UI

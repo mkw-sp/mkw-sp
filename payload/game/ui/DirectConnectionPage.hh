@@ -1,5 +1,6 @@
 #pragma once
 
+#include "game/ui/MessagePage.hh"
 #include "game/ui/NumericEditBox.hh"
 #include "game/ui/Page.hh"
 #include "game/ui/ctrl/CtrlMenuBackButton.hh"
@@ -24,6 +25,7 @@ private:
     void onBackspaceButtonFront(PushButton *button, u32 localPlayerId);
     void onOkButtonFront(PushButton *button, u32 localPlayerId);
     void onBackButtonFront(PushButton *button, u32 localPlayerId);
+    void onBadConnectCode(MessagePage *messagePage);
 
     template <typename T>
     using H = typename T::Handler<DirectConnectionPage>;
@@ -40,6 +42,7 @@ private:
     H<PushButton> m_onOkButtonFront{ this, &DirectConnectionPage::onOkButtonFront };
     H<PushButton> m_onBackspaceButtonFront{ this, &DirectConnectionPage::onBackspaceButtonFront };
     H<PushButton> m_onBackButtonFront{ this, &DirectConnectionPage::onBackButtonFront };
+    H<MessagePage> m_onBadConnectCode{ this, &DirectConnectionPage::onBadConnectCode };
     PageId m_replacement;
     u32 m_ip;
     u16 m_port;

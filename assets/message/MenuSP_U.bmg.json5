@@ -1223,6 +1223,14 @@
         "font": "regular",
         "string": "{arg string|0}",
     },
+    "20032": {
+        "font": "regular",
+        "string": "Connection error!",
+    },
+    "20033": {
+        "font": "regular",
+        "string": "A direct connection couldn't be established.\nPlease ensure your connection code is correct.",
+    },
     "3700": {
         "font": "regular",
         "string": "Select Level",

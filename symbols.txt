@@ -663,6 +663,7 @@
 0x805bdbd4 _ZN2UI10PushButton14setPlayerFlagsEj
 0x805bdbe0 _ZN2UI10PushButton4initEv
 0x805bdd98 _ZN2UI10PushButton4calcEv
+0x805bdf44 _ZN2UI10PushButton10isSelectedEv
 0x805bdf88 PushButton_getDelay
 0x805bdf88 _ZNK2UI10PushButton8getDelayEv
 0x805be12c _ZN2UI10PushButton5vf_40Ev
@@ -690,6 +691,7 @@
 0x805c98a0 _ZN2UI14NumericEditBoxC1Ev
 0x805c99f8 _ZN2UI14NumericEditBoxD1Ev
 0x805c9a7c _ZN2UI14NumericEditBox4loadEjPKcS2_S2_S2_S2_jbb
+0x805c9fe8 _ZN2UI14NumericEditBox6isFullEv
 0x805ca028 _ZN2UI14NumericEditBox7isEmptyEv
 0x805ca068 _ZN2UI14NumericEditBox9getNumberEv
 0x805ca0c8 _ZN2UI14NumericEditBox6insertEj
