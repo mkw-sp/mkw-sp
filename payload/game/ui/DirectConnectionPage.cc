@@ -93,7 +93,7 @@ void DirectConnectionPage::onDigitButtonFront([[maybe_unused]] PushButton *butto
 
 void DirectConnectionPage::onOkButtonFront(PushButton *button, [[maybe_unused]] u32 localPlayerId) {
     u64 directCode = m_editBox.getNumber();
-    if (directCode - 0x3ed5142afa4755f > directCode || directCode > 0xbed51428fa4755e) {
+    if (directCode < 0x3ed5142afa4755f || directCode > 0xbed51428fa4755e) {
         auto *messagePage =
                 SectionManager::Instance()->currentSection()->page<PageId::MenuMessage>();
         messagePage->reset();
