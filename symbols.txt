@@ -663,7 +663,7 @@
 0x805bdbd4 _ZN2UI10PushButton14setPlayerFlagsEj
 0x805bdbe0 _ZN2UI10PushButton4initEv
 0x805bdd98 _ZN2UI10PushButton4calcEv
-0x805bdf44 _ZN2UI10PushButton10isSelectedEv
+0x805bdf44 _ZNK2UI10PushButton10isSelectedEv
 0x805bdf88 PushButton_getDelay
 0x805bdf88 _ZNK2UI10PushButton8getDelayEv
 0x805be12c _ZN2UI10PushButton5vf_40Ev
