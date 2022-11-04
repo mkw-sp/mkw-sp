@@ -9,6 +9,17 @@ PATCH_B_START(CharacterModelManager_ct, 0x14)
     b       CharacterModelManager_ct + 0x18
 PATCH_B_END(CharacterModelManager_ct, 0x14)
 
+// Handle the case where there are no local players (1/2)
+PATCH_BL_START(CharacterModelManager_ct, 0x188)
+    li      r29, 0 // Original instruction
+
+    lbz     r0, 8(r27)
+    cmpwi   r0, 0
+    bnelr
+
+    b CharacterModelManager_ct + 0x270
+PATCH_BL_END(CharacterModelManager_ct, 0x188)
+
 PATCH_B_START(CharacterModelManager_ct, 0x19C)
     // i % CHARA_COUNT
     mulli   r0, r4, CHARA_COUNT
