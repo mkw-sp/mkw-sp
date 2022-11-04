@@ -15,9 +15,9 @@
 
 // Read a compressed archive from disc
 static void *RipFromDiscAlloc(const char *path, EGG_Heap *heap) {
-    u8 *szs;
+    u8 *szs = NULL;
     size_t szsSize;
-    DecompLoader_Load(path, &szs, &szsSize, heap);
+    DecompLoader_LoadRO(path, &szs, &szsSize, heap);
     return szs;
 }
 
@@ -196,19 +196,29 @@ static EGGScene_Vtable sFatalScene_Vtable = (EGGScene_Vtable){
     .outgoing_childCreate = FatalScene_outgoing_childCreate,
 };
 
+static void PurgeHeap(MEMHeapHandle heap);
+
 static void free_all_visitor(void *block, MEMHeapHandle heap, u32 UNUSED(userParam)) {
-    MEMFreeToExpHeap(heap, block);
+    for (MEMHeapHandle child = NULL; (child = MEMGetNextListObject(&heap->childList, child));) {
+        PurgeHeap(child);
+    }
+    if (heap->signature == MEMi_EXPHEAP_SIGNATURE) {
+        MEMFreeToExpHeap(heap, block);
+    }
 }
 
 // Does not call dispose
-static void PurgeExpHeap(EGG_ExpHeap *expHeap) {
-    MEMVisitAllocatedForExpHeap(expHeap->base.heapHandle, &free_all_visitor, 0);
+static void PurgeHeap(MEMHeapHandle heap) {
+    MEMVisitAllocatedForExpHeap(heap, &free_all_visitor, 0);
+    if (heap->signature == MEMi_EXPHEAP_SIGNATURE) {
+        MEMDestroyExpHeap(heap);
+    }
 }
 
 void FatalScene_LeechCurrentScene(FatalScene *this) {
     // Reclaim MEM2
     EGGScene *curScene = sRKSystem.scnMgr->curScene;
-    PurgeExpHeap((EGG_ExpHeap *)curScene->heapMem2);
+    PurgeHeap(curScene->heapMem2->heapHandle);
     this->heapMem2 = curScene->heapMem2;
     // Unlock it
     this->heapMem2->_1c = 0;

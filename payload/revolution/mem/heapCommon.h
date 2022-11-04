@@ -1,6 +1,6 @@
 #pragma once
 
-#include <Common.h>
+#include "revolution/mem/list.h"
 
 enum {
     MEMi_EXPHEAP_SIGNATURE = 0x45585048,
@@ -10,7 +10,9 @@ enum {
 
 typedef struct {
     u32 signature;
-    u8 _04[0x3c - 0x04];
+    MEMLink link;
+    MEMList childList;
+    u8 _04[0x3c - 0x18];
 } MEMiHeapHead;
 static_assert(sizeof(MEMiHeapHead) == 0x3c);
 
