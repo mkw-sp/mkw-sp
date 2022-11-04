@@ -668,6 +668,12 @@ std::optional<RoomServer::Client::State> RoomServer::Client::calcSetup(Handler &
         if (request->request.join.settings_count != RoomSettings::count) {
             return {};
         }
+        for (size_t i = 0; i < RoomSettings::count; i++) {
+            const auto &entry = SP::ClientSettings::entries[SP::RoomSettings::offset + i];
+            if (request->request.join.settings[i] >= entry.valueCount) {
+                return {};
+            }
+        }
         std::array<u32, RoomSettings::count> settings;
         for (size_t i = 0; i < RoomSettings::count; i++) {
             settings[i] = request->request.join.settings[i];
@@ -732,6 +738,12 @@ std::optional<RoomServer::Client::State> RoomServer::Client::calcMain(Handler &h
     case RoomRequest_settings_tag:
         if (request->request.settings.settings_count != RoomSettings::count) {
             return {};
+        }
+        for (size_t i = 0; i < RoomSettings::count; i++) {
+            const auto &entry = SP::ClientSettings::entries[SP::RoomSettings::offset + i];
+            if (request->request.settings.settings[i] >= entry.valueCount) {
+                return {};
+            }
         }
         std::array<u32, RoomSettings::count> settings;
         for (size_t i = 0; i < RoomSettings::count; i++) {

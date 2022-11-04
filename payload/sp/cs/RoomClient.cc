@@ -198,6 +198,12 @@ std::optional<RoomClient::State> RoomClient::calcSetup(Handler &handler) {
                 return {};
             }
             for (size_t i = 0; i < RoomSettings::count; i++) {
+                const auto &entry = SP::ClientSettings::entries[SP::RoomSettings::offset + i];
+                if (event->event.settings.settings[i] >= entry.valueCount) {
+                    return {};
+                }
+            }
+            for (size_t i = 0; i < RoomSettings::count; i++) {
                 m_settings[i] = event->event.settings.settings[i];
             }
         }
@@ -254,6 +260,12 @@ std::optional<RoomClient::State> RoomClient::calcMain(Handler &handler) {
         if (event->event.settings.settings_count != RoomSettings::count) {
             return {};
         } else {
+            for (size_t i = 0; i < RoomSettings::count; i++) {
+                const auto &entry = SP::ClientSettings::entries[SP::RoomSettings::offset + i];
+                if (event->event.settings.settings[i] >= entry.valueCount) {
+                    return {};
+                }
+            }
             bool changed = false;
             for (size_t i = 0; i < RoomSettings::count; i++) {
                 changed = changed || event->event.settings.settings[i] != m_settings[i];
