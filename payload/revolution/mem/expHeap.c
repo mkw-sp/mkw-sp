@@ -1,5 +1,15 @@
 #include "expHeap.h"
 
+MEMHeapHandle REPLACED(MEMCreateExpHeapEx)(void *startAddress, u32 size, u16 flags);
+REPLACE MEMHeapHandle MEMCreateExpHeapEx(void *startAddress, u32 size, u16 flags) {
+    MEMHeapHandle heap = REPLACED(MEMCreateExpHeapEx)(startAddress, size, flags);
+    if (!heap) {
+        panic("Out of memory!");
+        __builtin_unreachable();
+    }
+    return heap;
+}
+
 void *REPLACED(MEMAllocFromExpHeapEx)(MEMHeapHandle heap, u32 size, int align);
 REPLACE void *MEMAllocFromExpHeapEx(MEMHeapHandle heap, u32 size, int align) {
     void *memBlock = REPLACED(MEMAllocFromExpHeapEx)(heap, size, align);
