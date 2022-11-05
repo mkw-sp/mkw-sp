@@ -98,6 +98,9 @@ public:
     virtual bool canSelectTeam(u32 playerId) const = 0;
     virtual bool canSelectTeam(u32 localPlayerId, u32 playerId) const = 0;
 
+    virtual void destroyInstance() = 0;
+    virtual bool calc(Handler &handler) = 0;
+
     // Static instance management is handled in RoomServer and RoomClient
     static void OnCreateScene();
     static void OnDestroyScene();

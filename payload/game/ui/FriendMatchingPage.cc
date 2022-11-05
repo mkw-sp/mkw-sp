@@ -8,9 +8,12 @@
 #include "game/ui/SectionManager.hh"
 #include "game/ui/page/DriftSelectPage.hh"
 
+#include <sp/cs/RoomClient.hh>
+#include <sp/cs/RoomServer.hh>
+
 namespace UI {
 
-FriendMatchingPage::FriendMatchingPage() : m_serverHandler(*this), m_clientHandler(*this) {}
+FriendMatchingPage::FriendMatchingPage() : m_handler(*this) {}
 
 FriendMatchingPage::~FriendMatchingPage() = default;
 
@@ -52,30 +55,21 @@ void FriendMatchingPage::beforeOutAnim() {
 }
 
 void FriendMatchingPage::afterCalc() {
-    auto *section = SectionManager::Instance()->currentSection();
-    auto sectionId = section->id();
-    if (sectionId == SectionId::OnlineServer) {
-        auto *server = SP::RoomServer::Instance();
-        if (server && !server->calc(m_serverHandler)) {
-            SP::RoomServer::DestroyInstance();
-            collapse();
-            auto *messagePagePopup = section->page<PageId::MessagePopup>();
-            messagePagePopup->reset();
-            u32 messageId = section->isPageActive(PageId::FriendRoomBack) ? 20014 : 20013;
-            messagePagePopup->setWindowMessage(messageId);
-            push(PageId::MessagePopup, Anim::Next);
+    auto *roomManager = SP::RoomManager::Instance();
+    if (roomManager && !roomManager->calc(m_handler)) {
+        roomManager->destroyInstance();
+        collapse();
+        auto *section = SectionManager::Instance()->currentSection();
+        auto *messagePagePopup = section->page<PageId::MessagePopup>();
+        messagePagePopup->reset();
+        u32 messageId;
+        if (section->id() == SectionId::OnlineServer) {
+            messageId = section->isPageActive(PageId::FriendRoomBack) ? 20014 : 20013;
+        } else {
+            messageId = section->isPageActive(PageId::FriendRoomBack) ? 20016 : 20015;
         }
-    } else {
-        auto *client = SP::RoomClient::Instance();
-        if (client && !client->calc(m_clientHandler)) {
-            SP::RoomClient::DestroyInstance();
-            collapse();
-            auto *messagePagePopup = section->page<PageId::MessagePopup>();
-            messagePagePopup->reset();
-            u32 messageId = section->isPageActive(PageId::FriendRoomBack) ? 20016 : 20015;
-            messagePagePopup->setWindowMessage(messageId);
-            push(PageId::MessagePopup, Anim::Next);
-        }
+        messagePagePopup->setWindowMessage(messageId);
+        push(PageId::MessagePopup, Anim::Next);
     }
 }
 
@@ -129,20 +123,10 @@ void FriendMatchingPage::onBack([[maybe_unused]] u32 localPlayerId) {
 
 void FriendMatchingPage::onCloseConfirm([[maybe_unused]] s32 choice,
         [[maybe_unused]] PushButton *button) {
-    auto *section = SectionManager::Instance()->currentSection();
-    auto sectionId = section->id();
-    if (sectionId == SectionId::OnlineServer) {
-        auto *server = SP::RoomServer::Instance();
-        if (server) {
-            SP::RoomServer::DestroyInstance();
-            collapse();
-        }
-    } else {
-        auto *client = SP::RoomClient::Instance();
-        if (client) {
-            SP::RoomClient::DestroyInstance();
-            collapse();
-        }
+    auto *roomManager = SP::RoomManager::Instance();
+    if (roomManager) {
+        roomManager->destroyInstance();
+        collapse();
     }
 }
 
@@ -183,115 +167,60 @@ void FriendMatchingPage::startServer() {
     }
 }
 
-FriendMatchingPage::ServerHandler::ServerHandler(FriendMatchingPage &page) : m_page(page) {}
+FriendMatchingPage::Handler::Handler(FriendMatchingPage &page) : m_page(page) {}
 
-FriendMatchingPage::ServerHandler::~ServerHandler() = default;
+FriendMatchingPage::Handler::~Handler() = default;
 
-void FriendMatchingPage::ServerHandler::onMain() {
-    m_page.m_messageWindow.hide();
-    m_page.push(PageId::FriendRoomBack, Anim::Next);
-}
-
-void FriendMatchingPage::ServerHandler::onTeamSelect() {
-    m_page.m_gamemode = SP::RoomServer::Instance()->gamemode();
-    Section *section = SectionManager::Instance()->currentSection();
-    auto *friendRoomBackPage = section->page<PageId::FriendRoomBack>();
-    friendRoomBackPage->onRoomStart(m_page.m_gamemode);
-}
-
-void FriendMatchingPage::ServerHandler::onSelect() {
-    m_page.m_gamemode = SP::RoomServer::Instance()->gamemode();
-    Section *section = SectionManager::Instance()->currentSection();
-    auto *friendRoomBackPage = section->page<PageId::FriendRoomBack>();
-    friendRoomBackPage->onRoomStart(m_page.m_gamemode);
-}
-
-void FriendMatchingPage::ServerHandler::onPlayerJoin(const System::RawMii *mii, u32 location,
-        u16 latitude, u16 longitude, u32 UNUSED(regionLineColor)) {
-    Section *section = SectionManager::Instance()->currentSection();
-    auto *friendRoomBackPage = section->page<PageId::FriendRoomBack>();
-    friendRoomBackPage->onPlayerJoin(*mii, location, latitude, longitude);
-}
-
-void FriendMatchingPage::ServerHandler::onPlayerLeave(u32 playerId) {
-    Section *section = SectionManager::Instance()->currentSection();
-    auto *friendRoomBackPage = section->page<PageId::FriendRoomBack>();
-    friendRoomBackPage->onPlayerLeave(playerId);
-}
-
-void FriendMatchingPage::ServerHandler::onReceiveComment(u32 playerId, u32 messageId) {
-    Section *section = SectionManager::Instance()->currentSection();
-    auto *friendRoomBackPage = section->page<PageId::FriendRoomBack>();
-    friendRoomBackPage->onReceiveComment(playerId, messageId);
-}
-
-void FriendMatchingPage::ServerHandler::onSettingsChange(
-        const std::array<u32, SP::RoomSettings::count> &settings) {
-    Section *section = SectionManager::Instance()->currentSection();
-    auto *friendRoomBackPage = section->page<PageId::FriendRoomBack>();
-    friendRoomBackPage->onSettingsChange(settings);
-}
-
-void FriendMatchingPage::ServerHandler::onReceiveTeamSelect(u32 playerId, u32 teamId) {
-    Section *section = SectionManager::Instance()->currentSection();
-    auto *onlineTeamSelectPage = section->page<PageId::OnlineTeamSelect>();
-    onlineTeamSelectPage->onReceiveTeamSelect(playerId, teamId);
-}
-
-FriendMatchingPage::ClientHandler::ClientHandler(FriendMatchingPage &page) : m_page(page) {}
-
-FriendMatchingPage::ClientHandler::~ClientHandler() = default;
-
-void FriendMatchingPage::ClientHandler::onSetup() {
+void FriendMatchingPage::Handler::onSetup() {
     m_page.m_messageWindow.show(20009);
 }
 
-void FriendMatchingPage::ClientHandler::onMain() {
+void FriendMatchingPage::Handler::onMain() {
     m_page.m_messageWindow.hide();
     m_page.push(PageId::FriendRoomBack, Anim::Next);
 }
 
-void FriendMatchingPage::ClientHandler::onTeamSelect() {
-    m_page.m_gamemode = SP::RoomClient::Instance()->gamemode();
+void FriendMatchingPage::Handler::onTeamSelect() {
+    m_page.m_gamemode = SP::RoomManager::Instance()->gamemode();
     Section *section = SectionManager::Instance()->currentSection();
     auto *friendRoomBackPage = section->page<PageId::FriendRoomBack>();
     friendRoomBackPage->onRoomStart(m_page.m_gamemode);
 }
 
-void FriendMatchingPage::ClientHandler::onSelect() {
-    m_page.m_gamemode = SP::RoomClient::Instance()->gamemode();
+void FriendMatchingPage::Handler::onSelect() {
+    m_page.m_gamemode = SP::RoomManager::Instance()->gamemode();
     Section *section = SectionManager::Instance()->currentSection();
     auto *friendRoomBackPage = section->page<PageId::FriendRoomBack>();
     friendRoomBackPage->onRoomStart(m_page.m_gamemode);
 }
 
-void FriendMatchingPage::ClientHandler::onPlayerJoin(const System::RawMii *mii, u32 location,
+void FriendMatchingPage::Handler::onPlayerJoin(const System::RawMii *mii, u32 location,
         u16 latitude, u16 longitude, u32 UNUSED(regionLineColor)) {
     Section *section = SectionManager::Instance()->currentSection();
     auto *friendRoomBackPage = section->page<PageId::FriendRoomBack>();
     friendRoomBackPage->onPlayerJoin(*mii, location, latitude, longitude);
 }
 
-void FriendMatchingPage::ClientHandler::onPlayerLeave(u32 playerId) {
+void FriendMatchingPage::Handler::onPlayerLeave(u32 playerId) {
     Section *section = SectionManager::Instance()->currentSection();
     auto *friendRoomBackPage = section->page<PageId::FriendRoomBack>();
     friendRoomBackPage->onPlayerLeave(playerId);
 }
 
-void FriendMatchingPage::ClientHandler::onReceiveComment(u32 playerId, u32 messageId) {
+void FriendMatchingPage::Handler::onReceiveComment(u32 playerId, u32 messageId) {
     Section *section = SectionManager::Instance()->currentSection();
     auto *friendRoomBackPage = section->page<PageId::FriendRoomBack>();
     friendRoomBackPage->onReceiveComment(playerId, messageId);
 }
 
-void FriendMatchingPage::ClientHandler::onSettingsChange(
+void FriendMatchingPage::Handler::onSettingsChange(
         const std::array<u32, SP::RoomSettings::count> &settings) {
     Section *section = SectionManager::Instance()->currentSection();
     auto *friendRoomBackPage = section->page<PageId::FriendRoomBack>();
     friendRoomBackPage->onSettingsChange(settings);
 }
 
-void FriendMatchingPage::ClientHandler::onReceiveTeamSelect(u32 playerId, u32 teamId) {
+void FriendMatchingPage::Handler::onReceiveTeamSelect(u32 playerId, u32 teamId) {
     Section *section = SectionManager::Instance()->currentSection();
     auto *onlineTeamSelectPage = section->page<PageId::OnlineTeamSelect>();
     onlineTeamSelectPage->onReceiveTeamSelect(playerId, teamId);

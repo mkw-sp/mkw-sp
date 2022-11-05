@@ -19,9 +19,10 @@ public:
     bool isPlayerLocal(u32 playerId) const override;
     bool canSelectTeam(u32 playerId) const override;
     bool canSelectTeam(u32 localPlayerId, u32 playerId) const override;
-    
+
+    void destroyInstance() override;
     // Main RoomClient update, called in networking pages (typically afterCalc())
-    bool calc(Handler &handler);
+    bool calc(Handler &handler) override;
 
     // Request writing interface - new requests should go here!
     // TODO these should return void and defer the actual sending

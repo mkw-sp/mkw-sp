@@ -23,8 +23,9 @@ public:
     bool canSelectTeam(u32 playerId) const override;
     bool canSelectTeam(u32 localPlayerId, u32 playerId) const override;
 
+    void destroyInstance() override;
     // Main RoomServer update, called in networking pages (typically afterCalc())
-    bool calc(Handler &handler);
+    bool calc(Handler &handler) override;
 
     static RoomServer *CreateInstance();
     static void DestroyInstance();

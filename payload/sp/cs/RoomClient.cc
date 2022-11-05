@@ -31,6 +31,10 @@ bool RoomClient::canSelectTeam([[maybe_unused]] u32 localPlayerId,
     return m_localPlayerIds[localPlayerId] == playerId;
 }
 
+void RoomClient::destroyInstance() {
+    DestroyInstance();
+}
+
 bool RoomClient::calc(Handler &handler) {
     if (auto state = resolve(handler)) {
         if (!transition(handler, *state)) {

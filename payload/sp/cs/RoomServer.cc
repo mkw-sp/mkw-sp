@@ -24,6 +24,10 @@ bool RoomServer::canSelectTeam([[maybe_unused]] u32 localPlayerId,
     return false;
 }
 
+void RoomServer::destroyInstance() {
+    DestroyInstance();
+}
+
 bool RoomServer::calc(Handler &handler) {
     if (auto state = resolve(handler)) {
         if (!transition(handler, *state)) {

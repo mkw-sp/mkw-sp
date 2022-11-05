@@ -4,8 +4,7 @@
 #include "game/ui/YesNoPage.hh"
 #include "game/ui/ctrl/CtrlMenuDummyBack.hh"
 
-#include <sp/cs/RoomClient.hh>
-#include <sp/cs/RoomServer.hh>
+#include <sp/cs/RoomManager.hh>
 
 namespace UI {
 
@@ -28,30 +27,10 @@ public:
     void prepareStartServer();
 
 private:
-    class ServerHandler : public SP::RoomServer::Handler {
+    class Handler : public SP::RoomManager::Handler {
     public:
-        ServerHandler(FriendMatchingPage &page);
-        ~ServerHandler();
-
-        void onMain() override;
-        void onTeamSelect() override;
-        void onSelect() override;
-
-        void onPlayerJoin(const System::RawMii *mii, u32 location, u16 latitude, u16 longitude,
-                u32 regionLineColor) override;
-        void onPlayerLeave(u32 playerId) override;
-        void onReceiveComment(u32 playerId, u32 messageId) override;
-        void onSettingsChange(const std::array<u32, SP::RoomSettings::count> &settings) override;
-        void onReceiveTeamSelect(u32 playerId, u32 teamId) override;
-
-    private:
-        FriendMatchingPage &m_page;
-    };
-
-    class ClientHandler : public SP::RoomClient::Handler {
-    public:
-        ClientHandler(FriendMatchingPage &page);
-        ~ClientHandler();
+        Handler(FriendMatchingPage &page);
+        ~Handler();
 
         void onSetup() override;
         void onMain() override;
@@ -84,8 +63,7 @@ private:
     H<PageInputManager> m_onBack{ this, &FriendMatchingPage::onBack };
     H<YesNoPage> m_onCloseConfirm{ this, &FriendMatchingPage::onCloseConfirm };
     PageId m_replacement;
-    ServerHandler m_serverHandler;
-    ClientHandler m_clientHandler;
+    Handler m_handler;
     s32 m_gamemode = -1;
     bool m_roomStarted = false;
 };
