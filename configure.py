@@ -137,6 +137,7 @@ asset_in_files = {
         os.path.join('kart_kanji_font.brfnt'),
         os.path.join('tt_kart_font_rodan_ntlg_pro_b_R.brfnt'),
         os.path.join('mario_font_number_nocolor.brfnt'),
+        os.path.join('mario_font_number_outline.brfnt'),
     ],
     os.path.join('Scene', 'UI', 'GlobeSP.arc.lzma'): [
         # Explanation text with 2 lines
