@@ -1231,6 +1231,10 @@
         "font": "regular",
         "string": "A direct connection couldn't be established.\nPlease ensure your connection code is correct.",
     },
+    "20034": {
+        "font": "regular",
+        "string": "×",
+    },
     "3700": {
         "font": "regular",
         "string": "Select Level",

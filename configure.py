@@ -152,6 +152,7 @@ asset_in_files = {
         os.path.join('button', 'ctrl', 'OnlineTopButton.brctr.json5'),
         os.path.join('button', 'ctrl', 'RoomCodeEditBox.brctr.json5'),
         os.path.join('button', 'ctrl', 'RoomCodeEditBoxLetter.brctr.json5'),
+        os.path.join('button', 'ctrl', 'RoomCodeKeyboard.brctr.json5'),
         os.path.join('button', 'ctrl', 'SettingsButton.brctr.json5'),
         os.path.join('message_window', 'blyt', 'room_rules.brlyt.json5'),
         os.path.join('message_window', 'ctrl', 'RoomRules.brctr.json5'),

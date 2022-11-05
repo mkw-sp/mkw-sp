@@ -12,6 +12,7 @@ public:
     void load(u32 digitCount, const char *dir, const char *boxFile, const char *boxVariant,
             const char *digitFile, const char *digitVariant, u32 playerFlags, bool stack_b,
             bool pointerOnly);
+    void reset();
     void insert(u32 digit);
     void remove();
     bool isEmpty();

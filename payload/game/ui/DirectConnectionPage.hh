@@ -23,6 +23,7 @@ private:
     void onBack(u32 localPlayerId);
     void onDigitButtonFront(PushButton *button, u32 localPlayerId);
     void onBackspaceButtonFront(PushButton *button, u32 localPlayerId);
+    void onResetButtonFront(PushButton *button, u32 localPlayerId);
     void onOkButtonFront(PushButton *button, u32 localPlayerId);
     void onBackButtonFront(PushButton *button, u32 localPlayerId);
     void onBadConnectCode(MessagePage *messagePage);
@@ -35,12 +36,14 @@ private:
     NumericEditBox m_editBox;
     PushButton m_digitButtons[10];
     PushButton m_backspaceButton;
+    PushButton m_resetButton;
     PushButton m_okButton;
     CtrlMenuBackButton m_backButton;
     H<MultiControlInputManager> m_onBack{ this, &DirectConnectionPage::onBack };
     H<PushButton> m_onDigitButtonFront{ this, &DirectConnectionPage::onDigitButtonFront };
-    H<PushButton> m_onOkButtonFront{ this, &DirectConnectionPage::onOkButtonFront };
     H<PushButton> m_onBackspaceButtonFront{ this, &DirectConnectionPage::onBackspaceButtonFront };
+    H<PushButton> m_onResetButtonFront{ this, &DirectConnectionPage::onResetButtonFront };
+    H<PushButton> m_onOkButtonFront{ this, &DirectConnectionPage::onOkButtonFront };
     H<PushButton> m_onBackButtonFront{ this, &DirectConnectionPage::onBackButtonFront };
     H<MessagePage> m_onBadConnectCode{ this, &DirectConnectionPage::onBadConnectCode };
     PageId m_replacement;

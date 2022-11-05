@@ -19,14 +19,15 @@ void DirectConnectionPage::onInit() {
     setInputManager(&m_inputManager);
     m_inputManager.setWrappingMode(MultiControlInputManager::WrappingMode::Neither);
 
-    initChildren(5 + std::size(m_digitButtons));
+    initChildren(6 + std::size(m_digitButtons));
     insertChild(0, &m_pageTitleText, 0);
     insertChild(1, &m_editBox, 0);
     insertChild(2, &m_backspaceButton, 0);
-    insertChild(3, &m_okButton, 0);
-    insertChild(4, &m_backButton, 0);
+    insertChild(3, &m_resetButton, 0);
+    insertChild(4, &m_okButton, 0);
+    insertChild(5, &m_backButton, 0);
     for (size_t i = 0; i < std::size(m_digitButtons); i++) {
-        insertChild(5 + i, &m_digitButtons[i], 0);
+        insertChild(6 + i, &m_digitButtons[i], 0);
     }
 
     m_pageTitleText.load(false);
@@ -35,18 +36,20 @@ void DirectConnectionPage::onInit() {
     for (size_t i = 0; i < std::size(m_digitButtons); i++) {
         char variant[0x20];
         snprintf(variant, std::size(variant), "Key%u", i);
-        m_digitButtons[i].load("button", "RegisterFriendKeyboard", variant, 0x1, false, false);
+        m_digitButtons[i].load("button", "RoomCodeKeyboard", variant, 0x1, false, false);
     }
-    m_backspaceButton.load("button", "RegisterFriendKeyboard", "KeyBackSpace", 0x1, false, false);
-    m_okButton.load("button", "RegisterFriendKeyboard", "OK", 0x1, false, false);
+    m_backspaceButton.load("button", "RoomCodeKeyboard", "KeyBackSpace", 0x1, false, false);
+    m_resetButton.load("button", "RoomCodeKeyboard", "KeyReset", 0x1, false, false);
+    m_okButton.load("button", "RoomCodeKeyboard", "OK", 0x1, false, false);
     m_backButton.load("button", "Back", "ButtonBack", 0x1, false, true);
 
     m_inputManager.setHandler(MenuInputManager::InputId::Back, &m_onBack, false, false);
     for (size_t i = 0; i < std::size(m_digitButtons); i++) {
         m_digitButtons[i].setFrontHandler(&m_onDigitButtonFront, false);
     }
-    m_okButton.setFrontHandler(&m_onOkButtonFront, false);
     m_backspaceButton.setFrontHandler(&m_onBackspaceButtonFront, false);
+    m_resetButton.setFrontHandler(&m_onResetButtonFront, false);
+    m_okButton.setFrontHandler(&m_onOkButtonFront, false);
     m_backButton.setFrontHandler(&m_onBackButtonFront, false);
 
     for (size_t i = 0; i < std::size(m_digitButtons); i++) {
@@ -91,6 +94,18 @@ void DirectConnectionPage::onDigitButtonFront([[maybe_unused]] PushButton *butto
     }
 }
 
+void DirectConnectionPage::onBackspaceButtonFront([[maybe_unused]] PushButton *button,
+        [[maybe_unused]] u32 localPlayerId) {
+    m_editBox.remove();
+    m_okButton.setPlayerFlags(0);
+}
+
+void DirectConnectionPage::onResetButtonFront([[maybe_unused]] PushButton *button,
+        [[maybe_unused]] u32 localPlayerId) {
+    m_editBox.reset();
+    m_okButton.setPlayerFlags(0);
+}
+
 void DirectConnectionPage::onOkButtonFront(PushButton *button, [[maybe_unused]] u32 localPlayerId) {
     u64 directCode = m_editBox.getNumber();
     if (directCode < 0x3ed5142afa4755f || directCode > 0xbed51428fa4755e) {
@@ -117,12 +132,6 @@ void DirectConnectionPage::onOkButtonFront(PushButton *button, [[maybe_unused]] 
     m_replacement = PageId::FriendMatching;
     f32 delay = button->getDelay();
     startReplace(Anim::Next, delay);
-}
-
-void DirectConnectionPage::onBackspaceButtonFront([[maybe_unused]] PushButton *button,
-        [[maybe_unused]] u32 localPlayerId) {
-    m_editBox.remove();
-    m_okButton.setPlayerFlags(0);
 }
 
 void DirectConnectionPage::onBackButtonFront(PushButton *button,
