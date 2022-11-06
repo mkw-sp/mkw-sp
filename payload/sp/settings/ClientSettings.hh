@@ -57,6 +57,9 @@ enum class Setting {
     GCPadRumble,
     PageTransitions,
     PerfOverlay,
+
+    // DebugOverlay
+    DebugCheckpoints,
 };
 
 enum class Category {
@@ -66,6 +69,7 @@ enum class Category {
     VS,
     Room,
     License,
+    DebugOverlay,
 };
 
 enum class DriftMode {
@@ -268,6 +272,11 @@ enum class PageTransitions {
 };
 
 enum class PerfOverlay {
+    Disable,
+    Enable,
+};
+
+enum class DebugCheckpoints {
     Disable,
     Enable,
 };
@@ -493,6 +502,11 @@ struct Helper<ClientSettings::Setting, ClientSettings::Setting::PageTransitions>
 template <>
 struct Helper<ClientSettings::Setting, ClientSettings::Setting::PerfOverlay> {
     using type = SP::ClientSettings::PerfOverlay;
+};
+
+template <>
+struct Helper<ClientSettings::Setting, ClientSettings::Setting::DebugCheckpoints> {
+    using type = SP::ClientSettings::DebugCheckpoints;
 };
 
 }
