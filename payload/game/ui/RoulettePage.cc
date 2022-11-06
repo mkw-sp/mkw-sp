@@ -149,7 +149,7 @@ void RoulettePage::beforeCalc() {
             return;
         }
 
-        changeSection((SectionId)0x70, Anim::None, 0.0f);
+        changeSection(SectionId::Online1PVS, Anim::None, 0.0f);
     }
 }
 
