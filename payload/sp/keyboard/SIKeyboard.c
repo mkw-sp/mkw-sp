@@ -398,7 +398,7 @@ void SIKeyboard_Disconnect(void) {
 
 void SIKeyboard_PollingHandler(void) {
     SP_SCOPED_NO_INTERRUPTS();
-    sIsInit = sSIChannel > 0;
+    sIsInit = sSIChannel >= 0;
 
     char keybuf[3];
     const size_t num_keys = SIKeyboard_Poll(keybuf, sizeof(keybuf));
