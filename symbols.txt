@@ -1201,6 +1201,7 @@
 0x8081cb70 getVehicleWeightClass
 0x8081cd3c getCharacterWeightClass
 0x8082a38c ObjManager_ct
+0x8082A884 _ZN3Geo11ObjDirector9drawDebugEv
 0x8082b3a0 ObjManager_groupInsert
 0x8082b3b8 ObjManager_groupGetCount
 0x8082cad8 ObjPylon01_ct
@@ -1304,6 +1305,7 @@
 0x809bd738 _ZN6System15ResourceManager10s_instanceE
 0x809bd740 s_rootScene
 0x809bd748 _ZN6System11SaveManager10s_instanceE
+0x809C1830 _ZN6Render8DrawList10spInstanceE
 0x809c18f8 s_kartObjectManager
 0x809c18f8 _ZN4Kart17KartObjectManager10s_instanceE
 0x809c1988 _ZN2UI16MenuModelManager10s_instanceE
