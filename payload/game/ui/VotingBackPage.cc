@@ -108,11 +108,16 @@ void VotingBackPage::Handler::onReceivePulse(u32 playerId) {
 
 void VotingBackPage::Handler::onReceiveInfo(u32 playerId, s32 course, u32 selectedPlayer,
         u32 character, u32 vehicle) {
+    SP::RoomManager *roomManager = SP::RoomManager::Instance();
     System::RaceConfig *raceConfig = System::RaceConfig::Instance();
     raceConfig->menuScenario().players[playerId].characterId = character;
     raceConfig->menuScenario().players[playerId].vehicleId = vehicle;
 
-    m_page.m_courseVotes[playerId] = course;
+    for (u8 i = 0; i < 12; i++) {
+        if (roomManager->getPlayerOrder(i) == playerId) {
+            m_page.m_courseVotes[playerId] = course;
+        }
+    }
 
     if (playerId + 1 == m_page.m_playerCount) {
         m_page.setPlayerTypes();
