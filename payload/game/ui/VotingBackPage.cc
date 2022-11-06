@@ -67,6 +67,24 @@ void VotingBackPage::setLocalVote(s32 course) {
     m_localVote = course;
 }
 
+void VotingBackPage::setPlayerTypes() {
+    SP::RoomManager *roomManager = SP::RoomManager::Instance();
+    System::RaceConfig::Scenario &menuScenario = System::RaceConfig::Instance()->menuScenario();
+    for (u8 i = 0; i < 12; i++) {
+        if (roomManager->isPlayerLocal(i)) {
+            menuScenario.players[i].type = System::RaceConfig::Player::Type::Local;
+            continue;
+        }
+
+        if (i < m_playerCount) {
+            menuScenario.players[i].type = System::RaceConfig::Player::Type::Online;
+            continue;
+        }
+
+        menuScenario.players[i].type = System::RaceConfig::Player::Type::None;
+    }
+}
+
 void VotingBackPage::setSubmitted(bool submitted) {
     m_submitted = submitted;
 }
@@ -95,11 +113,9 @@ void VotingBackPage::Handler::onReceiveInfo(u32 playerId, s32 course, u32 select
     raceConfig->menuScenario().players[playerId].vehicleId = vehicle;
 
     m_page.m_courseVotes[playerId] = course;
+
     if (playerId + 1 == m_page.m_playerCount) {
-        // HACK: we're going to do some trolling here
-        for (u8 i = m_page.m_playerCount; i < 12; i++) {
-            raceConfig->menuScenario().players[i].type = System::RaceConfig::Player::Type::None;
-        }
+        m_page.setPlayerTypes();
         auto *roulettePage = SectionManager::Instance()->currentSection()->page<PageId::Roulette>();
         roulettePage->initSelectingStage(selectedPlayer);
     }

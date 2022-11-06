@@ -11,6 +11,7 @@ public:
             Local = 0,
             CPU = 1,
             Ghost = 3,
+            Online = 4,
             None = 5,
         };
 

@@ -47,6 +47,7 @@ public:
     }
 
     void setLocalVote(s32 course);
+    void setPlayerTypes();
     void setSubmitted(bool submitted);
 
     static VotingBackPage *Instance();
