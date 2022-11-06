@@ -47,6 +47,18 @@ void RaceManager::calc() {
     }
 }
 
+void *RaceManager::initGamemode(RaceConfig::GameMode mode) {
+    switch (mode) {
+    case RaceConfig::GameMode::OnlinePrivateVS:
+    case RaceConfig::GameMode::OnlinePublicVS:
+        mode = RaceConfig::GameMode::OfflineVS;
+        break;
+    default:
+        break;
+    }
+    return REPLACED(initGamemode)(mode);
+}
+
 RaceManager *RaceManager::Instance() {
     return s_instance;
 }

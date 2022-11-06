@@ -44,6 +44,7 @@ public:
         OfflineBT = 3,
         Mission = 4,
         OnlinePrivateVS = 7,
+        OnlinePublicVS = 8,
         OnlinePrivateBT = 10,
         Awards = 11,
     };

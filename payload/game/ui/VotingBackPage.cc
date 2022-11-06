@@ -3,6 +3,9 @@
 #include "game/ui/RoulettePage.hh"
 #include "game/ui/SectionManager.hh"
 
+#include "game/system/RaceConfig.hh"
+#include "game/system/ResourceManager.hh"
+
 namespace UI {
 
 VotingBackPage::VotingBackPage() : m_handler(*this) {}
@@ -85,9 +88,18 @@ void VotingBackPage::Handler::onReceivePulse(u32 playerId) {
     m_page.m_selected[playerId] = true;
 }
 
-void VotingBackPage::Handler::onReceiveInfo(u32 playerId, s32 course, u32 selectedPlayer) {
+void VotingBackPage::Handler::onReceiveInfo(u32 playerId, s32 course, u32 selectedPlayer,
+        u32 character, u32 vehicle) {
+    System::RaceConfig *raceConfig = System::RaceConfig::Instance();
+    raceConfig->menuScenario().players[playerId].characterId = character;
+    raceConfig->menuScenario().players[playerId].vehicleId = vehicle;
+
     m_page.m_courseVotes[playerId] = course;
     if (playerId + 1 == m_page.m_playerCount) {
+        // HACK: we're going to do some trolling here
+        for (u8 i = m_page.m_playerCount; i < 12; i++) {
+            raceConfig->menuScenario().players[i].type = System::RaceConfig::Player::Type::None;
+        }
         auto *roulettePage = SectionManager::Instance()->currentSection()->page<PageId::Roulette>();
         roulettePage->initSelectingStage(selectedPlayer);
     }

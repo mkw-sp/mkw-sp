@@ -460,7 +460,8 @@ bool RoomClient::onReceiveInfo(Handler &handler, RoomEvent event) {
         m_players[i].m_course = properties.course;
         m_players[i].m_properties = {properties.character, properties.vehicle,
                 properties.driftType};
-        handler.onReceiveInfo(i, properties.course, event.event.selectInfo.selectedPlayer);
+        handler.onReceiveInfo(i, properties.course, event.event.selectInfo.selectedPlayer,
+                properties.character, properties.vehicle);
     }
     return true;
 }
