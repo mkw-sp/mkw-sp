@@ -1,5 +1,6 @@
 #include "DirectConnectionPage.hh"
 
+#include "game/system/SaveManager.hh"
 #include "game/ui/SectionManager.hh"
 
 #include <sp/cs/RoomClient.hh>
@@ -65,6 +66,25 @@ void DirectConnectionPage::onInit() {
 
     m_okButton.setPlayerFlags(0);
     m_digitButtons[1].selectDefault(0);
+
+    auto *saveManager = System::SaveManager::Instance();
+    u32 directCodeHigh = saveManager->getSetting<SP::ClientSettings::Setting::RoomCodeHigh>();
+    u32 directCodeLow = saveManager->getSetting<SP::ClientSettings::Setting::RoomCodeLow>();
+    u64 directCode = static_cast<u64>(directCodeHigh) << 32 | directCodeLow;
+    if (directCode != std::numeric_limits<u64>::max()) {
+        m_editBox.setNumber(directCode);
+        m_okButton.selectDefault(0);
+    }
+}
+
+void DirectConnectionPage::onDeinit() {
+    u64 directCode = m_editBox.isFull() ? m_editBox.getNumber() : std::numeric_limits<u64>::max();
+    u32 directCodeHigh = directCode >> 32;
+    u32 directCodeLow = directCode;
+    auto *saveManager = System::SaveManager::Instance();
+    saveManager->setSetting<SP::ClientSettings::Setting::RoomCodeHigh>(directCodeHigh);
+    saveManager->setSetting<SP::ClientSettings::Setting::RoomCodeLow>(directCodeLow);
+    SectionManager::Instance()->saveManagerProxy()->markLicensesDirty();
 }
 
 void DirectConnectionPage::onActivate() {

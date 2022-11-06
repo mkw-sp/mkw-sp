@@ -18,9 +18,20 @@ public:
     bool isEmpty();
     bool isFull();
     u64 getNumber();
+    void setNumber(u64 number);
 
 private:
-    u8 _174[0x274 - 0x174];
+    class EditLetter : public LayoutUIControl {
+    public:
+        u32 m_value;
+    };
+    static_assert(sizeof(EditLetter) == 0x178);
+
+    u8 _174[0x1dc - 0x174];
+    u32 m_digitCount;
+    u32 m_position;
+    u8 _1e4[0x270 - 0x1e4];
+    EditLetter *m_letters;
 };
 static_assert(sizeof(NumericEditBox) == 0x274);
 

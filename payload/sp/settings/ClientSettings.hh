@@ -46,6 +46,8 @@ enum class Setting {
     RoomCourseSelection,
     RoomClass,
     RoomVehicles,
+    RoomCodeHigh,
+    RoomCodeLow,
 
     // License
     MiiAvatar,
@@ -446,6 +448,16 @@ struct Helper<ClientSettings::Setting, ClientSettings::Setting::RoomClass> {
 template <>
 struct Helper<ClientSettings::Setting, ClientSettings::Setting::RoomVehicles> {
     using type = SP::ClientSettings::RoomVehicles;
+};
+
+template <>
+struct Helper<ClientSettings::Setting, ClientSettings::Setting::RoomCodeHigh> {
+    using type = u32;
+};
+
+template <>
+struct Helper<ClientSettings::Setting, ClientSettings::Setting::RoomCodeLow> {
+    using type = u32;
 };
 
 template <>
