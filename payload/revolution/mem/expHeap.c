@@ -4,7 +4,7 @@ MEMHeapHandle REPLACED(MEMCreateExpHeapEx)(void *startAddress, u32 size, u16 fla
 REPLACE MEMHeapHandle MEMCreateExpHeapEx(void *startAddress, u32 size, u16 flags) {
     MEMHeapHandle heap = REPLACED(MEMCreateExpHeapEx)(startAddress, size, flags);
     if (!heap) {
-        panic("Out of memory!");
+        panic("Heap allocation failed!");
         __builtin_unreachable();
     }
     return heap;
@@ -14,7 +14,7 @@ void *REPLACED(MEMAllocFromExpHeapEx)(MEMHeapHandle heap, u32 size, int align);
 REPLACE void *MEMAllocFromExpHeapEx(MEMHeapHandle heap, u32 size, int align) {
     void *memBlock = REPLACED(MEMAllocFromExpHeapEx)(heap, size, align);
     if (!memBlock) {
-        panic("Out of memory!");
+        panic("Memory allocation failed!");
         __builtin_unreachable();
     }
     return memBlock;
