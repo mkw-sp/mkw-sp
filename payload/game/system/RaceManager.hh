@@ -1,7 +1,6 @@
 #pragma once
 
 #include "game/system/InputManager.hh"
-#include "game/system/RaceConfig.hh"
 
 namespace System {
 
@@ -32,9 +31,6 @@ public:
     Player *player(u32 playerId);
     void REPLACED(calc)();
     REPLACE void calc();
-
-    void *REPLACED(initGamemode)(RaceConfig::GameMode mode);
-    REPLACE void *initGamemode(RaceConfig::GameMode mode);
 
     static RaceManager *Instance();
     static u8 GetLapCount();

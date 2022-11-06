@@ -506,7 +506,6 @@
 0x8052fe58 RaceConfig_createInstance
 0x8053015c RaceConfig_ct
 0x80531ce4 _ZN6System10RaceConfig7endRaceEv
-0x80532188 _ZN6System11RaceManager12initGamemodeENS_10RaceConfig8GameModeE
 0x805331b4 _ZN6System11RaceManager4calcEv
 0x805336a4 _ZN6System11RaceManager11GetLapCountEv
 0x80533ed8 RaceManagerPlayer_ct
@@ -544,7 +543,6 @@
 0x8054aa08 _ZNK6System11SaveManager12getLongitudeEPt
 0x8054aa64 SceneCreatorDynamic_create
 0x80553c50 RaceScene_vf_38
-0x8055472c RaceScene_initSubsystems
 0x80555040 MenuScene_vf_38
 0x805553B0 _unresolved
 0x8055B5BC _ZN6Render7DrawMdl2dtEi
