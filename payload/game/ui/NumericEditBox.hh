@@ -18,6 +18,9 @@ public:
     bool isEmpty();
     bool isFull();
     u64 getNumber();
+    
+    void onRight(u32 localPlayerId, s32 r5);
+    void onLeft(u32 localPlayerId, s32 r5);
     void setNumber(u64 number);
 
 private:

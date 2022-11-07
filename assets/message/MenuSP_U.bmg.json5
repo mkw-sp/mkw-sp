@@ -1095,6 +1095,30 @@
         "font": "regular",
         "string": "No track was found in the\n/mkw-sp/thumbnails folder.",
     },
+    "10315": {
+        "font": "regular",
+        "string": "Debug Overlay",
+    },
+    "10316": {
+        "font": "regular",
+        "string": "Checkpoints",
+    },
+    "10317": {
+        "font": "regular",
+        "string": "Disable",
+    },
+    "10318": {
+        "font": "regular",
+        "string": "Enable",
+    },
+    "10319": {
+        "font": "regular",
+        "string": "Don't display checkpoints.",
+    },
+    "10320": {
+        "font": "regular",
+        "string": "Standard checkpoint overlay.",
+    },
     "20000": {
         "font": "regular",
         "string": "Online",

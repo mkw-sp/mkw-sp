@@ -3,6 +3,9 @@
 #include "game/ui/RoulettePage.hh"
 #include "game/ui/SectionManager.hh"
 
+#include "game/system/RaceConfig.hh"
+#include "game/system/ResourceManager.hh"
+
 namespace UI {
 
 VotingBackPage::VotingBackPage() : m_handler(*this) {}
@@ -64,6 +67,24 @@ void VotingBackPage::setLocalVote(s32 course) {
     m_localVote = course;
 }
 
+void VotingBackPage::setPlayerTypes() {
+    SP::RoomManager *roomManager = SP::RoomManager::Instance();
+    System::RaceConfig::Scenario &menuScenario = System::RaceConfig::Instance()->menuScenario();
+    for (u8 i = 0; i < 12; i++) {
+        if (roomManager->isPlayerLocal(i)) {
+            menuScenario.players[i].type = System::RaceConfig::Player::Type::Local;
+            continue;
+        }
+
+        if (i < m_playerCount) {
+            menuScenario.players[i].type = System::RaceConfig::Player::Type::CPU;
+            continue;
+        }
+
+        menuScenario.players[i].type = System::RaceConfig::Player::Type::None;
+    }
+}
+
 void VotingBackPage::setSubmitted(bool submitted) {
     m_submitted = submitted;
 }
@@ -85,9 +106,21 @@ void VotingBackPage::Handler::onReceivePulse(u32 playerId) {
     m_page.m_selected[playerId] = true;
 }
 
-void VotingBackPage::Handler::onReceiveInfo(u32 playerId, s32 course, u32 selectedPlayer) {
-    m_page.m_courseVotes[playerId] = course;
+void VotingBackPage::Handler::onReceiveInfo(u32 playerId, s32 course, u32 selectedPlayer,
+        u32 character, u32 vehicle) {
+    SP::RoomManager *roomManager = SP::RoomManager::Instance();
+    System::RaceConfig *raceConfig = System::RaceConfig::Instance();
+    raceConfig->menuScenario().players[playerId].characterId = character;
+    raceConfig->menuScenario().players[playerId].vehicleId = vehicle;
+
+    for (u8 i = 0; i < 12; i++) {
+        if (roomManager->getPlayerOrder(i) == playerId) {
+            m_page.m_courseVotes[playerId] = course;
+        }
+    }
+
     if (playerId + 1 == m_page.m_playerCount) {
+        m_page.setPlayerTypes();
         auto *roulettePage = SectionManager::Instance()->currentSection()->page<PageId::Roulette>();
         roulettePage->initSelectingStage(selectedPlayer);
     }

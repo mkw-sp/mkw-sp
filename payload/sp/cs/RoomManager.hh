@@ -33,7 +33,8 @@ public:
                 [[maybe_unused]] u32 teamId) {}
         virtual void onReceivePulse([[maybe_unused]] u32 playerId) {}
         virtual void onReceiveInfo([[maybe_unused]] u32 playerId, [[maybe_unused]] s32 course,
-                [[maybe_unused]] u32 selectedPlayer) {}
+                [[maybe_unused]] u32 selectedPlayer, [[maybe_unused]] u32 character,
+                [[maybe_unused]] u32 vehicle) {}
     };
 
     // TODO cleanup
@@ -82,7 +83,7 @@ public:
     }
 
     u32 playerCount() const;
-    const Player& player(u32 playerId) const;
+    const Player &player(u32 playerId) const;
     u32 gamemode() const;
 
     // TODO remove get prefix
