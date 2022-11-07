@@ -38,6 +38,7 @@ enum class Setting {
     VSCourseSelection,
     VSClass,
     VSVehicles,
+    VSMegaClouds,
 
     // Room
     RoomTeamSize,
@@ -252,6 +253,12 @@ enum class RoomVehicles {
     Random,
 };
 
+enum class VSMegaClouds
+{
+    Disable,
+    Enable,
+};
+
 enum class ColorPalette {
     Vivid,
     Colorblind,
@@ -448,6 +455,11 @@ struct Helper<ClientSettings::Setting, ClientSettings::Setting::RoomClass> {
 template <>
 struct Helper<ClientSettings::Setting, ClientSettings::Setting::RoomVehicles> {
     using type = SP::ClientSettings::RoomVehicles;
+};
+
+template <>
+struct Helper<ClientSettings::Setting, ClientSettings::Setting::VSMegaClouds> {
+    using type = SP::ClientSettings::VSMegaClouds;
 };
 
 template <>

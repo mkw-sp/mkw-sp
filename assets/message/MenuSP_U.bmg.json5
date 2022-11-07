@@ -1235,6 +1235,18 @@
         "font": "regular",
         "string": "×",
     },
+    "20035": {
+        "font": "regular",
+        "string": "Mega Cloud",
+    },
+    "20036": {
+        "font": "regular",
+        "string": "Mega Clouds Enabled",
+    },
+    "20037": {
+        "font": "regular",
+        "string": "Mega Clouds Disabled",
+    },
     "3700": {
         "font": "regular",
         "string": "Select Level",
