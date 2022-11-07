@@ -77,7 +77,7 @@ void VotingBackPage::setPlayerTypes() {
         }
 
         if (i < m_playerCount) {
-            menuScenario.players[i].type = System::RaceConfig::Player::Type::Online;
+            menuScenario.players[i].type = System::RaceConfig::Player::Type::CPU;
             continue;
         }
 
