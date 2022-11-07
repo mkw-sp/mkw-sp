@@ -47,6 +47,7 @@ public:
     }
 
     void setLocalVote(s32 course);
+    void setPlayerTypes();
     void setSubmitted(bool submitted);
 
     static VotingBackPage *Instance();
@@ -58,7 +59,8 @@ private:
         ~Handler();
 
         void onReceivePulse(u32 playerId) override;
-        void onReceiveInfo(u32 playerId, s32 course, u32 selectedPlayer) override;
+        void onReceiveInfo(u32 playerId, s32 course, u32 selectedPlayer, u32 character,
+                u32 vehicle) override;
 
     private:
         VotingBackPage &m_page;

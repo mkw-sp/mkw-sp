@@ -220,8 +220,6 @@ std::optional<RoomServer::State> RoomServer::calcSelect(Handler &handler) {
     if (m_voteCount == m_playerCount) {
         u32 selectedPlayer = hydro_random_uniform(m_playerCount);
         writeSelectInfo(selectedPlayer);
-        // HACK: need this condition to reset
-        m_voteCount = 0;
         return State::Race;
     }
 
@@ -795,7 +793,7 @@ std::optional<RoomServer::Client::State> RoomServer::Client::calcTeamSelect(Hand
             return {};
         }
         if (!m_server.onReceiveTeamSelect(handler, request->request.teamSelect.playerId,
-                request->request.teamSelect.teamId)) {
+                    request->request.teamSelect.teamId)) {
             return {};
         }
         return State::TeamSelect;
