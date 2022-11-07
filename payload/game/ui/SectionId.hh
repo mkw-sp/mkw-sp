@@ -70,6 +70,8 @@ enum class SectionId {
     Voting2PBalloon = 0x66,
     Voting2PCoin = 0x67,
 
+    Online1PVS = 0x70,
+
     ServicePack = 0x7a, // Replaces Channel
 
     OnlineServer = 0x84, // Replaces FriendListFromChannel

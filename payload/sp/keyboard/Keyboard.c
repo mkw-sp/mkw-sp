@@ -13,14 +13,6 @@ typedef enum {
     kInputDeviceSI,
 } InputDevice;
 
-// Other values are characters
-typedef enum SimpleEvent {
-    kSimpleEvent_Enter = 0xff,
-    kSimpleEvent_Backspace = 0xfe,
-    kSimpleEvent_Escape = 0xfd,
-    kSimpleEvent_Tab = 0xfc,
-} SimpleEvent;
-
 // Dolphin can detect up background input if configured to do so
 // Mashing the keyboard will rarely yield 1, extra rarely 2 events
 // But background typing can be in the hundreds
@@ -28,7 +20,7 @@ typedef enum SimpleEvent {
 enum { MAX_BUFFERED_EVENTS = 2 };
 
 typedef struct SimpleEvents {
-    char events[MAX_BUFFERED_EVENTS * 6];
+    u16 events[MAX_BUFFERED_EVENTS * 6];
     size_t num_events;
 } SimpleEvents;
 
@@ -52,7 +44,7 @@ static void SimpleEvents_ReadIOS(IOSKeyboard keyboard, SimpleEvents *simpleEvent
             if (pressed == 0)
                 continue;
 
-            char *result = &simpleEvents->events[num_simple_events++];
+            u16 *result = &simpleEvents->events[num_simple_events++];
 
             switch (pressed) {
             case IOS_KEY_ENTER:
@@ -84,14 +76,17 @@ static void SimpleEvents_ReadIOS(IOSKeyboard keyboard, SimpleEvents *simpleEvent
 static void SimpleEvents_ReadSI(SimpleEvents *events) {
     assert(events != NULL);
 
-    events->num_events = SIKeyboard_ConsumeBuffer(events->events, sizeof(events->events));
+    char raw_events[ARRAY_SIZE(events->events)];
+    memset(raw_events, 0, sizeof(raw_events));
+    events->num_events = SIKeyboard_ConsumeBuffer(raw_events, sizeof(events->events));
 
     // Convert in-place
     bool shiftState = false;
+    bool ctrlState = false;
     size_t outIndex = 0;
     for (size_t i = 0; i < events->num_events; ++i) {
-        char ch = '\0';
-        switch (events->events[i]) {
+        u16 ch = '\0';
+        switch (raw_events[i]) {
         case SIKEY_ENTER:
             ch = kSimpleEvent_Enter;
             break;
@@ -104,16 +99,35 @@ static void SimpleEvents_ReadSI(SimpleEvents *events) {
         case SIKEY_ESC:
             ch = kSimpleEvent_Escape;
             break;
+        case SIKEY_LEFTARROW:
+            ch = kSimpleEvent_ArrowL;
+            break;
+        case SIKEY_RIGHTARROW:
+            ch = kSimpleEvent_ArrowR;
+            break;
+        case SIKEY_DOWNARROW:
+            ch = kSimpleEvent_ArrowD;
+            break;
+        case SIKEY_UPARROW:
+            ch = kSimpleEvent_ArrowU;
+            break;
         case SIKEY_NEXT_IS_SHIFTED:
             shiftState = true;
             break;
+        case SIKEY_LEFTCONTROL:
+            ctrlState = true;
+            break;
         default:
-            ch = SIKeyboard_KeycodeToCharacter(events->events[i], shiftState);
+            ch = SIKeyboard_KeycodeToCharacter(raw_events[i], shiftState);
             shiftState = false;
             break;
         }
-        if (ch == '\0') {
+        if ((ch & 0xff) == 0) {
             continue;
+        }
+        if (ctrlState) {
+            ch |= (kSimpleMods_CTRL << 8);
+            ctrlState = false;
         }
         events->events[outIndex++] = ch;
     }
@@ -124,6 +138,8 @@ typedef struct ConsoleInput {
     TypingBuffer mTypingBuffer;
     IOSKeyboard mKeyboard;
     SP_LineCallback mCallback;
+    SP_KeypressCallback mUnhandledKeypressCallback;
+    void *mUnhandledKeypressUser;
     bool mIsConsoleOpen : 1;
     InputDevice mInputDevice : 2;
 } ConsoleInput;
@@ -178,16 +194,21 @@ static void ConsoleInput_Process(ConsoleInput *input) {
     }
 
     for (size_t i = 0; i < events.num_events; ++i) {
-        SimpleEvent ev = events.events[i];
+        u16 ev = events.events[i];
 
         // Pressing the slash key opens the console
-        if (!input->mIsConsoleOpen && (char)ev == '/') {
+        if (!input->mIsConsoleOpen && ev == (u16)'/') {
             input->mIsConsoleOpen = true;
         }
 
         // No interaction: do nothing
-        if (!input->mIsConsoleOpen)
+        if (!input->mIsConsoleOpen) {
+            if (input->mUnhandledKeypressCallback != NULL) {
+                input->mUnhandledKeypressCallback(ev & 0xff, ev >> 8,
+                        input->mUnhandledKeypressUser);
+            }
             continue;
+        }
 
         switch (ev) {
         case kSimpleEvent_Enter:
@@ -244,6 +265,12 @@ void SP_ProcessConsoleInput(void) {
 void SP_SetLineCallback(SP_LineCallback callback) {
     assert(sConsoleInput_Ready);
     sConsoleInput.mCallback = callback;
+}
+
+void SP_SetKeypressCallback(SP_KeypressCallback callback, void *userdata) {
+    assert(sConsoleInput_Ready);
+    sConsoleInput.mUnhandledKeypressCallback = callback;
+    sConsoleInput.mUnhandledKeypressUser = userdata;
 }
 
 SP_Line SP_GetCurrentLine(void) {
