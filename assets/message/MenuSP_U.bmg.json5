@@ -1271,6 +1271,14 @@
         "font": "regular",
         "string": "Players will shrink on thunder cloud activation.",
     },
+    "20038": {
+        "font": "regular",
+        "string": "Disable",
+    },
+    "20039": {
+        "font": "regular",
+        "string": "Enable",
+    },
     "3700": {
         "font": "regular",
         "string": "Select Level",
