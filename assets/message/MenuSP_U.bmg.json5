@@ -1241,11 +1241,11 @@
     },
     "20036": {
         "font": "regular",
-        "string": "Mega Clouds Enabled",
+        "string": "Players will grow on thunder cloud activation.",
     },
     "20037": {
         "font": "regular",
-        "string": "Mega Clouds Disabled",
+        "string": "Players will shrink on thunder cloud activation.",
     },
     "3700": {
         "font": "regular",

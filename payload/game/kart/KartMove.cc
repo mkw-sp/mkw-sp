@@ -2,7 +2,13 @@
 
 #include "game/kart/KartState.hh"
 
+extern "C" {
+#include "game/system/SaveManager.h"
+}
+#include "game/system/SaveManager.hh"
+
 #include <sp/ThumbnailManager.hh>
+#include <sp/settings/ClientSettings.hh>
 
 namespace Kart {
 
@@ -24,7 +30,15 @@ void KartMove::calcBlink() {
 }
 
 bool KartMove::ThunderActive(int timer, int param_3, int param_4) {
-    KartMove::ActivateMega();
+    auto *saveManager = System::SaveManager::Instance();
+    auto setting = saveManager->getSetting<SP::ClientSettings::Setting::VSMegaClouds>();
+    if(setting == SP::ClientSettings::VSMegaClouds::Enable) {
+        KartMove::ActivateMega();
+        return false;
+    }
+
+    REPLACED(ThunderActive)(timer, param_3, param_4);
+
     return true;
 }
 
