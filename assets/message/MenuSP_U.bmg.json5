@@ -1151,15 +1151,15 @@
         "font": "regular",
         "string": "Speedometer displays the internal speed of the vehicle.",
     },
-    "10323": {
+    "10329": {
         "font": "regular",
         "string": "Speedometer displays the speed the vehicle moves.",
     },
-    "10324": {
+    "10330": {
         "font": "regular",
         "string": "Speedometer displays the speed the vehicle moves horizontally.",
     },
-    "10325": {
+    "10331": {
         "font": "regular",
         "string": "Speedometer displays the speed the vehicle moves vertically.",
     },
