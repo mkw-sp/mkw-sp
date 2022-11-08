@@ -1265,11 +1265,11 @@
     },
     "20036": {
         "font": "regular",
-        "string": "Players will grow on thunder cloud activation.",
+        "string": "Players will shrink on thunder cloud activation.",
     },
     "20037": {
         "font": "regular",
-        "string": "Players will shrink on thunder cloud activation.",
+        "string": "Players will grow on thunder cloud activation.",
     },
     "20038": {
         "font": "regular",

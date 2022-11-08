@@ -8,11 +8,11 @@ class KartMove : public KartObjectProxy {
 public:
     f32 hardSpeedLimit() const;
     const Vec3 *internalVelDir() const;
-    void ActivateMega();
+    void activateMega();
     void REPLACED(calcBlink)();
     REPLACE void calcBlink();
-    void REPLACED(ThunderActive)(int timer, int param_3, int param_4);
-    REPLACE bool ThunderActive(int timer, int param_3, int param_4);
+    void REPLACED(activateTc)();
+    REPLACE bool activateTc();
 
 private:
     u8 _00c[0x020 - 0x00c];

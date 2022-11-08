@@ -2,9 +2,6 @@
 
 #include "game/kart/KartState.hh"
 
-extern "C" {
-#include "game/system/SaveManager.h"
-}
 #include "game/system/SaveManager.hh"
 
 #include <sp/ThumbnailManager.hh>
@@ -29,15 +26,15 @@ void KartMove::calcBlink() {
     REPLACED(calcBlink)();
 }
 
-bool KartMove::ThunderActive(int timer, int param_3, int param_4) {
+bool KartMove::activateTc() {
     auto *saveManager = System::SaveManager::Instance();
     auto setting = saveManager->getSetting<SP::ClientSettings::Setting::VSMegaClouds>();
-    if(setting == SP::ClientSettings::VSMegaClouds::Enable) {
-        KartMove::ActivateMega();
+    if (setting == SP::ClientSettings::VSMegaClouds::Enable) {
+        KartMove::activateMega();
         return false;
     }
 
-    REPLACED(ThunderActive)(timer, param_3, param_4);
+    REPLACED(activateTc)();
 
     return true;
 }
