@@ -34,9 +34,7 @@ bool KartMove::activateTc() {
         return false;
     }
 
-    REPLACED(activateTc)();
-
-    return true;
+    return REPLACED(activateTc)();
 }
 
 } // namespace Kart

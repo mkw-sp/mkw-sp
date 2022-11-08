@@ -11,7 +11,7 @@ public:
     void activateMega();
     void REPLACED(calcBlink)();
     REPLACE void calcBlink();
-    void REPLACED(activateTc)();
+    bool REPLACED(activateTc)();
     REPLACE bool activateTc();
 
 private:
