@@ -97,6 +97,7 @@ void CtrlRaceSpeed::calcSelf() {
         break;
     }
     }
+
     s32 integral = speed;
     u32 fractional = (speed >= 0.0f ? speed - integral : integral - speed) * 100.0f + 0.5f;
     if (integral > 999) {
