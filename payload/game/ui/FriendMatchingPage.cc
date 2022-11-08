@@ -148,7 +148,7 @@ void FriendMatchingPage::startClient() {
             driftSelectPage->setReplacementSection(static_cast<SectionId>(m_gamemode + 0x60));
 
             push(PageId::CharacterSelect, Anim::Next);
-            System::RaceConfig::Instance()->menuScenario().gameMode = m_gamemode == 0 ? System::RaceConfig::GameMode::OnlinePrivateVS : System::RaceConfig::GameMode::OnlinePrivateBT;
+            System::RaceConfig::Instance()->menuScenario().gameMode = m_gamemode == 0 ? System::RaceConfig::GameMode::OfflineVS : System::RaceConfig::GameMode::OfflineBT;
         } else {
             push(PageId::OnlineTeamSelect, Anim::Next);
         }

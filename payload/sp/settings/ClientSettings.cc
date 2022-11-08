@@ -6,7 +6,7 @@ namespace SP::ClientSettings {
 
 const char name[] = "MKW-SP Settings";
 
-const u32 categoryMessageIds[] = { 10118, 10126, 10119, 10262, 10258, 10120 };
+const u32 categoryMessageIds[] = { 10118, 10126, 10119, 10262, 10258, 10120, 10315 };
 
 const Entry entries[] = {
     [static_cast<u32>(Setting::DriftMode)] = {
@@ -130,12 +130,12 @@ const Entry entries[] = {
     [static_cast<u32>(Setting::Speedometer)] = {
         .category = Category::Race,
         .name = magic_enum::enum_name(Setting::Speedometer),
-        .messageId = 10315,
+        .messageId = 10321,
         .defaultValue = static_cast<u32>(Speedometer::InternalPlus),
         .valueCount = magic_enum::enum_count<Speedometer>(),
         .valueNames = magic_enum::enum_names<Speedometer>().data(),
-        .valueMessageIds = (u32[]) { 10316, 10317, 10318, 10319, 10320 },
-        .valueExplanationMessageIds = (u32[]) { 10321, 10322, 10323, 10324, 10325 },
+        .valueMessageIds = (u32[]) { 10322, 10323, 10324, 10325, 10326 },
+        .valueExplanationMessageIds = (u32[]) { 10327, 10328, 10329, 10330, 10331 },
     },
     [static_cast<u32>(Setting::RankControl)] = {
         .category = Category::Race,
@@ -446,6 +446,16 @@ const Entry entries[] = {
         .valueNames = magic_enum::enum_names<PerfOverlay>().data(),
         .valueMessageIds = (u32[]) { 10057, 10058 },
         .valueExplanationMessageIds = (u32[]) { 10189, 10190 },
+    },
+    [static_cast<u32>(Setting::DebugCheckpoints)] = {
+        .category = Category::DebugOverlay,
+        .name = magic_enum::enum_name(Setting::DebugCheckpoints),
+        .messageId = 10316,
+        .defaultValue = static_cast<u32>(DebugCheckpoints::Disable),
+        .valueCount = magic_enum::enum_count<DebugCheckpoints>(),
+        .valueNames = magic_enum::enum_names<DebugCheckpoints>().data(),
+        .valueMessageIds = (u32[]) { 10317, 10318 },
+        .valueExplanationMessageIds = (u32[]) { 10319, 10320 },
     },
 };
 

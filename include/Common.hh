@@ -6,6 +6,8 @@ extern "C" {
 #include "Common.h"
 }
 
+#include <array>
+
 template <typename T>
 T AlignDown(T val, size_t alignment) {
     return val / alignment * alignment;
@@ -26,7 +28,7 @@ T *PhysicalToVirtual(uintptr_t addr) {
     return reinterpret_cast<T *>(addr | 0x80000000);
 }
 
-static inline std::strong_ordering operator<=>(const VersionInfo& lhs, const VersionInfo &rhs) {
+static inline std::strong_ordering operator<=>(const VersionInfo &lhs, const VersionInfo &rhs) {
     if (auto cmp = lhs.major <=> rhs.major; cmp != 0) {
         return cmp;
     }
@@ -44,3 +46,11 @@ struct Vec2 {
     T x;
     T y;
 };
+
+typedef float Mtx34[3][4];
+inline Mtx34 &Decay(std::array<float, 12> &arr) {
+    return reinterpret_cast<Mtx34 &>(*arr.data());
+}
+inline const Mtx34 &Decay(const std::array<float, 12> &arr) {
+    return reinterpret_cast<const Mtx34 &>(*arr.data());
+}

@@ -1,5 +1,6 @@
 #include "RoulettePage.hh"
 
+#include "game/system/RaceConfig.hh"
 #include "game/system/ResourceManager.hh"
 #include "game/ui/SectionManager.hh"
 #include "game/ui/VotingBackPage.hh"
@@ -148,8 +149,7 @@ void RoulettePage::beforeCalc() {
             return;
         }
 
-        // TODO: Change section to race
-        // Probably belongs in another PR
+        changeSection(SectionId::Online1PVS, Anim::None, 0.0f);
     }
 }
 
@@ -163,6 +163,7 @@ void RoulettePage::initSelectingStage(u32 selectedPlayer) {
     m_timeTotal = 0.0;
     m_hoverPlayerIdx = 0;
     m_selectedPlayer = selectedPlayer;
+    System::RaceConfig::Instance()->menuScenario().courseId = votingBackPage->getCourseVote(selectedPlayer);
     System::ResourceManager::Instance()->preloadCourseAsync(
             votingBackPage->getCourseVote(selectedPlayer));
 }

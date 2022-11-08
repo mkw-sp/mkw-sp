@@ -5,6 +5,10 @@
 
 #include <sp/cs/RoomClient.hh>
 
+extern "C" {
+#include <sp/keyboard/Keyboard.h>
+}
+
 namespace UI {
 
 DirectConnectionPage::DirectConnectionPage() = default;
@@ -75,9 +79,23 @@ void DirectConnectionPage::onInit() {
         m_editBox.setNumber(directCode);
         m_okButton.selectDefault(0);
     }
+    // TODO: Some linked-list callback queue (?)
+    if (SP_IsConsoleInputInit()) {
+        SP_SetKeypressCallback(
+                +[](char c, u8 mods, void *userdata) {
+                    auto *page = reinterpret_cast<DirectConnectionPage *>(userdata);
+                    const bool handled = page->onKeyCode(c, mods);
+                    (void)handled; // Ignore for now, would be used in multi-layered input system.
+                },
+                this);
+    }
 }
 
 void DirectConnectionPage::onDeinit() {
+    if (SP_IsConsoleInputInit()) {
+        SP_SetKeypressCallback(
+                +[](char, u8, void *) {}, nullptr);
+    }
     u64 directCode = m_editBox.isFull() ? m_editBox.getNumber() : std::numeric_limits<u64>::max();
     u32 directCodeHigh = directCode >> 32;
     u32 directCodeLow = directCode;
@@ -163,6 +181,48 @@ void DirectConnectionPage::onBackButtonFront(PushButton *button,
 
 void DirectConnectionPage::onBadConnectCode([[maybe_unused]] MessagePage *messagePage) {
     reinterpret_cast<MenuMessagePage *>(messagePage)->m_replacement = PageId::OnlineTop;
+}
+
+bool DirectConnectionPage::onKeyCode(char key, u8 mods) {
+    if (key == kSimpleEvent_Backspace) {
+        if (m_okButton.isSelected()) {
+            m_digitButtons[1].select(0);
+        }
+        if (mods & kSimpleMods_CTRL) {
+            // Note: This clears the entire line, including everything to the right of the cursor
+            m_resetButton.onFront(0 /* ? */, 0 /* ? */);
+        } else {
+            m_backspaceButton.onFront(0 /* ? */, 0 /* ? */);
+        }
+        return true;
+    }
+
+    if (key == kSimpleEvent_Enter) {
+        if (m_editBox.isFull()) {
+            m_okButton.onFront(0 /* ? */, 0 /* ? */);
+        }
+        return true;
+    }
+
+    if (key == kSimpleEvent_ArrowL) {
+        m_editBox.onLeft(0, 0 /* ? */);
+        return true;
+    }
+    if (key == kSimpleEvent_ArrowR) {
+        m_editBox.onRight(0, 0 /* ? */);
+        return true;
+    }
+
+    if (key <= '9' && key >= '0') {
+        const int digit = key - '0';
+        assert(digit >= 0 && digit <= std::ssize(m_digitButtons));
+        m_digitButtons[digit].select(0);
+        m_digitButtons[digit].onFront(0 /* ? */, 0 /* ? */);
+        return true;
+    }
+
+    // Did not consume this input
+    return false;
 }
 
 } // namespace UI
