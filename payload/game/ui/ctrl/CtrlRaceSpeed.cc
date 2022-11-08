@@ -65,41 +65,38 @@ void CtrlRaceSpeed::calcSelf() {
     }
     f32 speed = 0.0f;
     switch (setting) {
-        case SP::ClientSettings::Speedometer::InternalPlus:
-        case SP::ClientSettings::Speedometer::Internal:
-            {
-                f32 internalSpeed = object->getInternalSpeed();
-                speed = internalSpeed;
-                if (setting == SP::ClientSettings::Speedometer::InternalPlus) {
-                    const Vec3 *internalVelDir = object->getKartMove()->internalVelDir();
-                    const Vec3 *movingRoadVel = object->getVehiclePhysics()->movingRoadVel();
-                    const Vec3 *movingWaterVel = object->getVehiclePhysics()->movingWaterVel();
-                    speed += PSVECDotProduct(internalVelDir, movingRoadVel);
-                    speed += PSVECDotProduct(internalVelDir, movingWaterVel);
-                }
-                break;
-            }
-        case SP::ClientSettings::Speedometer::XYZ:
-        case SP::ClientSettings::Speedometer::XZ:
-        case SP::ClientSettings::Speedometer::Y:
-            {
-                const Vec3 *pos = object->getPos();
-                const Vec3 *lastPos = object->getLastPos();
-                Vec3 vel;
-                if (setting == SP::ClientSettings::Speedometer::XYZ) {
-                    vel = Vec3{ pos->x - lastPos->x, pos->y - lastPos->y, pos->z - lastPos->z };
-                } else if (setting == SP::ClientSettings::Speedometer::XZ) {
-                    vel = Vec3{ pos->x - lastPos->x, 0.0f , pos->z - lastPos->z };
-                } else if (setting == SP::ClientSettings::Speedometer::Y) {
-                    vel = Vec3{ 0.0f, pos->y - lastPos->y, 0.0f };
-                }
-                speed = PSVECMag(&vel);
-                break;
-            } 
+    case SP::ClientSettings::Speedometer::InternalPlus:
+    case SP::ClientSettings::Speedometer::Internal: {
+        f32 internalSpeed = object->getInternalSpeed();
+        speed = internalSpeed;
+        if (setting == SP::ClientSettings::Speedometer::InternalPlus) {
+            const Vec3 *internalVelDir = object->getKartMove()->internalVelDir();
+            const Vec3 *movingRoadVel = object->getVehiclePhysics()->movingRoadVel();
+            const Vec3 *movingWaterVel = object->getVehiclePhysics()->movingWaterVel();
+            speed += PSVECDotProduct(internalVelDir, movingRoadVel);
+            speed += PSVECDotProduct(internalVelDir, movingWaterVel);
+        }
+        f32 hardSpeedLimit = object->getKartMove()->hardSpeedLimit();
+        speed = std::min(speed, hardSpeedLimit);
+        break;
     }
-    f32 hardSpeedLimit = object->getKartMove()->hardSpeedLimit();
-    speed = std::min(speed, hardSpeedLimit);
-    
+    case SP::ClientSettings::Speedometer::XYZ:
+    case SP::ClientSettings::Speedometer::XZ:
+    case SP::ClientSettings::Speedometer::Y: {
+        const Vec3 *pos = object->getPos();
+        const Vec3 *lastPos = object->getLastPos();
+        Vec3 vel;
+        if (setting == SP::ClientSettings::Speedometer::XYZ) {
+            vel = Vec3{pos->x - lastPos->x, pos->y - lastPos->y, pos->z - lastPos->z};
+        } else if (setting == SP::ClientSettings::Speedometer::XZ) {
+            vel = Vec3{pos->x - lastPos->x, 0.0f, pos->z - lastPos->z};
+        } else if (setting == SP::ClientSettings::Speedometer::Y) {
+            vel = Vec3{0.0f, pos->y - lastPos->y, 0.0f};
+        }
+        speed = PSVECMag(&vel);
+        break;
+    }
+    }
     s32 integral = speed;
     u32 fractional = (speed >= 0.0f ? speed - integral : integral - speed) * 100.0f + 0.5f;
     if (integral > 999) {
