@@ -558,7 +558,7 @@
 0x8057b9ac KartMove_setKillerEndHardSpeedLimit
 0x8057b9bc KartMove_calcSpeed
 0x8057f3d8 KartMove_activateMushroom
-0x805805ec _ZN4Kart8KartMove10activateTcEv
+0x805805ec _ZN4Kart8KartMove19activateTcLightningEv
 0x80580b14 _ZN4Kart8KartMove12activateMegaEv
 0x80581824 _ZN4Kart8KartMove9calcBlinkEv
 0x80584d58 KartMove_calcCannon

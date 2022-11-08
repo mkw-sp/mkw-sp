@@ -1,7 +1,6 @@
 #include "KartMove.hh"
 
 #include "game/kart/KartState.hh"
-
 #include "game/system/SaveManager.hh"
 
 #include <sp/ThumbnailManager.hh>
@@ -26,7 +25,7 @@ void KartMove::calcBlink() {
     REPLACED(calcBlink)();
 }
 
-bool KartMove::activateTc() {
+bool KartMove::activateTcLightning() {
     auto *saveManager = System::SaveManager::Instance();
     auto setting = saveManager->getSetting<SP::ClientSettings::Setting::VSMegaClouds>();
     if (setting == SP::ClientSettings::VSMegaClouds::Enable) {
@@ -34,7 +33,7 @@ bool KartMove::activateTc() {
         return false;
     }
 
-    return REPLACED(activateTc)();
+    return REPLACED(activateTcLightning)();
 }
 
 } // namespace Kart

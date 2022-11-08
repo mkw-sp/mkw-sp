@@ -11,8 +11,8 @@ public:
     void activateMega();
     void REPLACED(calcBlink)();
     REPLACE void calcBlink();
-    bool REPLACED(activateTc)();
-    REPLACE bool activateTc();
+    bool REPLACED(activateTcLightning)();
+    REPLACE bool activateTcLightning();
 
 private:
     u8 _00c[0x020 - 0x00c];

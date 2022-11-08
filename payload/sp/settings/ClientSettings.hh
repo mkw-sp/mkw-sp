@@ -257,8 +257,7 @@ enum class RoomVehicles {
     Random,
 };
 
-enum class VSMegaClouds
-{
+enum class VSMegaClouds {
     Disable,
     Enable,
 };
