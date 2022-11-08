@@ -1095,6 +1095,50 @@
         "font": "regular",
         "string": "No track was found in the\n/mkw-sp/thumbnails folder.",
     },
+    "10315": {
+        "font": "regular",
+        "string": "Speedometer",
+    },
+    "10316": {
+        "font": "regular",
+        "string": "Internal + Terrain",
+    },
+    "10317": {
+        "font": "regular",
+        "string": "Internal",
+    },
+    "10318": {
+        "font": "regular",
+        "string": "XYZ",
+    },
+    "10319": {
+        "font": "regular",
+        "string": "XZ",
+    },
+    "10320": {
+        "font": "regular",
+        "string": "Y",
+    },
+    "10321": {
+        "font": "regular",
+        "string": "Speedometer displays the internal speed of the vehicle plus moving terrain.",
+    },
+    "10322": {
+        "font": "regular",
+        "string": "Speedometer displays the internal speed of the vehicle.",
+    },
+    "10323": {
+        "font": "regular",
+        "string": "Speedometer displays the speed the vehicle moves.",
+    },
+    "10324": {
+        "font": "regular",
+        "string": "Speedometer displays the speed the vehicle moves horizontally.",
+    },
+    "10325": {
+        "font": "regular",
+        "string": "Speedometer displays the speed the vehicle moves vertically.",
+    },
     "20000": {
         "font": "regular",
         "string": "Online",

@@ -17,6 +17,7 @@ enum class Setting {
     HUDTeamColors,
     MapIcons,
     InputDisplay,
+    Speedometer,
     RankControl,
 
     // Sound
@@ -121,6 +122,14 @@ enum class MapIcons {
 enum class InputDisplay {
     Disable,
     Simple,
+};
+
+enum class Speedometer {
+    InternalPlus,
+    Internal,
+    XYZ,
+    XZ,
+    Y,
 };
 
 enum class RankControl {
@@ -343,6 +352,11 @@ struct Helper<ClientSettings::Setting, ClientSettings::Setting::MapIcons> {
 template <>
 struct Helper<ClientSettings::Setting, ClientSettings::Setting::InputDisplay> {
     using type = SP::ClientSettings::InputDisplay;
+};
+
+template <>
+struct Helper<ClientSettings::Setting, ClientSettings::Setting::Speedometer> {
+    using type = SP::ClientSettings::Speedometer;
 };
 
 template <>
