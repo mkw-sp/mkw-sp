@@ -17,6 +17,7 @@ public:
 
     PageId getReplacement() override;
     void onInit() override;
+    void onDeinit() override;
     void onActivate() override;
 
 private:
@@ -27,6 +28,7 @@ private:
     void onOkButtonFront(PushButton *button, u32 localPlayerId);
     void onBackButtonFront(PushButton *button, u32 localPlayerId);
     void onBadConnectCode(MessagePage *messagePage);
+    bool onKeyCode(char key, u8 mods);
 
     template <typename T>
     using H = typename T::Handler<DirectConnectionPage>;

@@ -5,7 +5,7 @@
 #include "game/ui/SectionManager.hh"
 
 #include <sp/cs/RoomClient.hh>
-#include <sp/cs/RoomServer.hh>
+#include <sp/cs/RoomManager.hh>
 
 namespace UI {
 
@@ -60,6 +60,8 @@ void FriendRoomPage::onInit() {
 void FriendRoomPage::onActivate() {
     m_commentButton.selectDefault(0);
     m_instructionText.setMessage(4370, nullptr);
+
+    m_roomRole = SP::RoomManager::Instance()->isPlayerLocal(0) ? RoomRole::Host : RoomRole::Player;
 
     switch (m_roomRole) {
     case RoomRole::Host:
@@ -156,11 +158,10 @@ void FriendRoomPage::onBackConfirm([[maybe_unused]] s32 choice,
         [[maybe_unused]] PushButton *button) {
     auto *section = SectionManager::Instance()->currentSection();
     auto sectionId = section->id();
+    SP::RoomManager::Instance()->destroyInstance();
     if (sectionId == SectionId::OnlineServer) {
-        SP::RoomServer::DestroyInstance();
         changeSection(SectionId::ServicePack, Anim::Prev, 0.0f);
     } else {
-        SP::RoomClient::DestroyInstance();
         startReplace(Anim::Prev, 0.0f);
     }
 }

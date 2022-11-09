@@ -56,6 +56,8 @@ public:
     f32 getDelay() const;
     bool isSelected() const;
 
+    void onFront(u32 r4, u32 r5);
+
 private:
     ControlInputManager m_inputManager;
     u8 _1f8[0x240 - 0x1f8];

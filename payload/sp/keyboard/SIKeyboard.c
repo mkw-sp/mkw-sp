@@ -353,6 +353,20 @@ size_t SIKeyboard_Poll(char *pKeys, size_t max_keys) {
     }
 
     size_t num = 0;
+
+    // Move ctrls to front
+    // TODO: Redo this entire file
+    for (size_t i = 0; i < 3; ++i) {
+        if (keys.keys[i] == SIKEY_LEFTCONTROL) {
+            keys.keys[i] = 0;
+            if (num < max_keys) {
+                pKeys[num++] = SIKEY_LEFTCONTROL;
+            } else {
+                SP_LOG("SIKeyboard_Poll called with max_keys too small");
+            }
+        }
+    }
+
     for (size_t i = 0; i < 3; ++i) {
         const char keycode = keys.keys[i];
 
@@ -398,7 +412,7 @@ void SIKeyboard_Disconnect(void) {
 
 void SIKeyboard_PollingHandler(void) {
     SP_SCOPED_NO_INTERRUPTS();
-    sIsInit = sSIChannel > 0;
+    sIsInit = sSIChannel >= 0;
 
     char keybuf[3];
     const size_t num_keys = SIKeyboard_Poll(keybuf, sizeof(keybuf));
