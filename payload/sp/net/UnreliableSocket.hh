@@ -7,6 +7,8 @@ extern "C" {
 
 #include <optional>
 
+#include <Common.hh>
+
 namespace SP::Net {
 
 class UnreliableSocket {
@@ -16,8 +18,7 @@ public:
     UnreliableSocket(UnreliableSocket &&) = delete;
     ~UnreliableSocket();
 
-    bool ready() const;
-    std::optional<u16> UnreliableSocket::read(u8 *message, u16 maxSize);
+    std::optional<u16> read(u8 *message, u16 maxSize);
     bool write(const u8 *message, u16 size);
 
 private:

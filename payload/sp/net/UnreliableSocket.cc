@@ -3,6 +3,8 @@
 #include <common/Bytes.hh>
 #include <sp/cs/RoomManager.hh>
 
+#include <cstring>
+
 namespace SP::Net {
 
 UnreliableSocket::UnreliableSocket(hydro_kx_session_keypair keypair,
@@ -20,8 +22,8 @@ UnreliableSocket::UnreliableSocket(hydro_kx_session_keypair keypair,
         return;
     }
 
-    assert(strlen(context) == sizeof(context));
-    memcpy(m_context, context, sizeof(context));
+    assert(strlen(context) == sizeof(m_context));
+    memcpy(m_context, context, sizeof(m_context));
 }
 
 UnreliableSocket::~UnreliableSocket() {
@@ -29,10 +31,6 @@ UnreliableSocket::~UnreliableSocket() {
     if (m_handle >= 0) {
         SOClose(m_handle);
     }
-}
-
-bool UnreliableSocket::ready() const {
-    return m_handle >= 0;
 }
 
 std::optional<u16> UnreliableSocket::read(u8 *message, u16 maxSize) {
