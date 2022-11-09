@@ -8,7 +8,7 @@ namespace SP::Net {
 UnreliableSocket::UnreliableSocket(hydro_kx_session_keypair keypair,
         const char context[hydro_secretbox_CONTEXTBYTES])
     : m_keypair(keypair) {
-    m_handle = SOSocket(SO_PF_INET, SO_SOCK_STREAM, 0);
+    m_handle = SOSocket(SO_PF_INET, SO_SOCK_DGRAM, 0);
     if (m_handle < 0) {
         SP_LOG("Failed to create socket, returned %d", m_handle);
         return;
