@@ -16,6 +16,7 @@ public:
     // XX variant, server-side
     AsyncSocket(s32 handle, const hydro_kx_keypair &serverKeypair,
             const char context[hydro_secretbox_CONTEXTBYTES]);
+    AsyncSocket(const AsyncSocket &) = delete;
     AsyncSocket(AsyncSocket &&) = delete;
     ~AsyncSocket();
 
@@ -23,6 +24,18 @@ public:
     bool poll();
     std::optional<u16> read(u8 *message, u16 maxSize);
     bool write(const u8 *message, u16 size);
+
+    hydro_kx_session_keypair &getKeypair() {
+        return m_keypair;
+    }
+
+    u32 getIp() const {
+        return m_ip;
+    }
+
+    u16 getPort() const {
+        return m_port;
+    }
 
 private:
     struct ConnectTask {
@@ -67,6 +80,10 @@ private:
     u64 m_writeMessageID = 0;
     CircularBuffer<ReadTask, 32> m_readQueue;
     CircularBuffer<WriteTask, 32> m_writeQueue;
+
+    // NOTE: For now
+    u32 m_ip;
+    u16 m_port;
 };
 
 } // namespace SP::Net
