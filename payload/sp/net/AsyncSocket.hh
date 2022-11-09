@@ -16,6 +16,7 @@ public:
     // XX variant, server-side
     AsyncSocket(s32 handle, const hydro_kx_keypair &serverKeypair,
             const char context[hydro_secretbox_CONTEXTBYTES]);
+    AsyncSocket(const AsyncSocket &) = delete;
     AsyncSocket(AsyncSocket &&) = delete;
     ~AsyncSocket();
 

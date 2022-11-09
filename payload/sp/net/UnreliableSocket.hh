@@ -30,6 +30,7 @@ public:
             const char context[hydro_secretbox_CONTEXTBYTES]);
     UnreliableSocket(std::array<ConnectionInfo, 24> &connections,
             const char context[hydro_secretbox_CONTEXTBYTES], u32 connectionCount, u16 port);
+    UnreliableSocket(const UnreliableSocket &) = delete;
     UnreliableSocket(UnreliableSocket &&) = delete;
     ~UnreliableSocket();
 
