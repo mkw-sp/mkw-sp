@@ -286,6 +286,16 @@ const Entry entries[] = {
         .valueMessageIds = (u32[]) { 10244, 10245, 10246, 10247, 10248, 10249, 10250 },
         .valueExplanationMessageIds = (u32[]) { 10251, 10252, 10253, 10254, 10255, 10256, 10257 },
     },
+    [static_cast<u32>(Setting::VSMegaClouds)] = {
+        .category = Category::VS,
+        .name = magic_enum::enum_name(Setting::VSMegaClouds),
+        .messageId = 20035,
+        .defaultValue = static_cast<u32>(VSMegaClouds::Disable),
+        .valueCount = magic_enum::enum_count<VSMegaClouds>(),
+        .valueNames = magic_enum::enum_names<VSMegaClouds>().data(),
+        .valueMessageIds = (u32[]) { 20038, 20039 },
+        .valueExplanationMessageIds = (u32[]) { 20036, 20037 },
+    },
     [static_cast<u32>(Setting::RoomTeamSize)] = {
         .category = Category::Room,
         .name = magic_enum::enum_name(Setting::RoomTeamSize),
