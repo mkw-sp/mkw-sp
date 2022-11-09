@@ -81,7 +81,7 @@ void SaveManager::init() {
 
 void SaveManager::initSPSave() {
     // TODO: Hopefully this is enough. Can always stream the file if not.
-    char iniBuffer[1024];
+    char iniBuffer[2048];
 
     for (m_spLicenseCount = 0; m_spLicenseCount < std::size(m_spLicenses);) {
         wchar_t path[64];
@@ -203,7 +203,7 @@ void SaveManager::SaveSPSaveTask(void *UNUSED(arg)) {
 }
 
 void SaveManager::saveSPSave() {
-    char iniBuffer[1024];
+    char iniBuffer[2048];
 
     for (size_t i = 0; i < m_spLicenseCount; ++i) {
         m_spLicenses[i].writeIni(iniBuffer, sizeof(iniBuffer));
