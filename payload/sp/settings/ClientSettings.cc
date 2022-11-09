@@ -6,7 +6,7 @@ namespace SP::ClientSettings {
 
 const char name[] = "MKW-SP Settings";
 
-const u32 categoryMessageIds[] = { 10118, 10126, 10119, 10262, 10258, 10120 };
+const u32 categoryMessageIds[] = { 10118, 10126, 10119, 10262, 10258, 10120, 10315 };
 
 const Entry entries[] = {
     [static_cast<u32>(Setting::DriftMode)] = {
@@ -286,6 +286,16 @@ const Entry entries[] = {
         .valueMessageIds = (u32[]) { 10244, 10245, 10246, 10247, 10248, 10249, 10250 },
         .valueExplanationMessageIds = (u32[]) { 10251, 10252, 10253, 10254, 10255, 10256, 10257 },
     },
+    [static_cast<u32>(Setting::VSMegaClouds)] = {
+        .category = Category::VS,
+        .name = magic_enum::enum_name(Setting::VSMegaClouds),
+        .messageId = 20035,
+        .defaultValue = static_cast<u32>(VSMegaClouds::Disable),
+        .valueCount = magic_enum::enum_count<VSMegaClouds>(),
+        .valueNames = magic_enum::enum_names<VSMegaClouds>().data(),
+        .valueMessageIds = (u32[]) { 20038, 20039 },
+        .valueExplanationMessageIds = (u32[]) { 20036, 20037 },
+    },
     [static_cast<u32>(Setting::RoomTeamSize)] = {
         .category = Category::Room,
         .name = magic_enum::enum_name(Setting::RoomTeamSize),
@@ -346,6 +356,26 @@ const Entry entries[] = {
         .valueNames = magic_enum::enum_names<RoomVehicles>().data(),
         .valueMessageIds = (u32[]) { 10244, 10245, 10246, 10247, 10248, 10249, 10250 },
         .valueExplanationMessageIds = (u32[]) { 10251, 10252, 10253, 10254, 10255, 10256, 10257 },
+    },
+    [static_cast<u32>(Setting::RoomCodeHigh)] = {
+        .category = Category::Room,
+        .name = magic_enum::enum_name(Setting::RoomCodeHigh),
+        .messageId = 0,
+        .defaultValue = std::numeric_limits<u32>::max(),
+        .valueCount = 0,
+        .valueNames = nullptr,
+        .valueMessageIds = nullptr,
+        .valueExplanationMessageIds = nullptr,
+    },
+    [static_cast<u32>(Setting::RoomCodeLow)] = {
+        .category = Category::Room,
+        .name = magic_enum::enum_name(Setting::RoomCodeLow),
+        .messageId = 0,
+        .defaultValue = std::numeric_limits<u32>::max(),
+        .valueCount = 0,
+        .valueNames = nullptr,
+        .valueMessageIds = nullptr,
+        .valueExplanationMessageIds = nullptr,
     },
     [static_cast<u32>(Setting::MiiAvatar)] = {
         .category = Category::License,
@@ -416,6 +446,16 @@ const Entry entries[] = {
         .valueNames = magic_enum::enum_names<PerfOverlay>().data(),
         .valueMessageIds = (u32[]) { 10057, 10058 },
         .valueExplanationMessageIds = (u32[]) { 10189, 10190 },
+    },
+    [static_cast<u32>(Setting::DebugCheckpoints)] = {
+        .category = Category::DebugOverlay,
+        .name = magic_enum::enum_name(Setting::DebugCheckpoints),
+        .messageId = 10316,
+        .defaultValue = static_cast<u32>(DebugCheckpoints::Disable),
+        .valueCount = magic_enum::enum_count<DebugCheckpoints>(),
+        .valueNames = magic_enum::enum_names<DebugCheckpoints>().data(),
+        .valueMessageIds = (u32[]) { 10317, 10318 },
+        .valueExplanationMessageIds = (u32[]) { 10319, 10320 },
     },
 };
 
