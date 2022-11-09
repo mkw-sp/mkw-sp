@@ -28,11 +28,11 @@ public:
         return m_keypair;
     }
 
-    u32 getIp() {
+    u32 getIp() const {
         return m_ip;
     }
 
-    u16 getPort() {
+    u16 getPort() const {
         return m_port;
     }
 
