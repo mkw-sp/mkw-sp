@@ -43,6 +43,8 @@
 0x80023BC0 nw4r_db_ShowGPRMap_
 0x80025DC0 nw4r_db_ShowStack_
 
+0x8004C350 _ZNK4nw4r3g3d7ResFile9GetResMdlEj
+0x8004C3F0 _ZNK4nw4r3g3d7ResFile19GetResMdlNumEntriesEv
 0x8004D900 ResFile_CheckRevision
 0x8004E9F0 _ZNK4nw4r3g3d6ResMdl9GetResMatEj
 0x8004EA50 _ZNK4nw4r3g3d6ResMdl19GetResMatNumEntriesEv
@@ -159,6 +161,7 @@
 0x80169260 EXIUnlock
 0x8016cfa0 GXGetGPFifo
 0x8016d030 GXGetFifoPtrs
+0x8016D3A4 GXSetVtxDesc
 0x8016d098 GXEnableBreakPt
 0x8016d138 GXDisableBreakPt
 0x8016dc34 GXClearVtxDesc
@@ -169,6 +172,8 @@
 0x8016ec88 GXSetDrawSyncCallback
 0x8016F0F0 GXBegin
 0x8016F3B8 GXSetCullMode
+0x80170320 GXLoadLightObjImm
+0x8017039C GXSetChanAmbColor
 0x80170474 GXSetChanMatColor
 0x8017054c GXSetNumChans
 0x80170570 GXSetChanCtrl
@@ -191,10 +196,12 @@
 0x801722CC GXSetFog
 0x8017277c GXSetBlendMode
 0x801727CC GXSetColorUpdate
+0x801727F8 GXSetAlphaUpdate
 0x80172824 GXSetZMode
 0x80172F64 GXCallDisplayList
 0x8017301C GXSetProjection
 0x8017310C GXLoadPosMtxImm
+0x80173188 GXLoadNrmMtxImm
 0x80173214 GXSetCurrentMtx
 0x801733B4 GXSetViewport
 0x80173430 GXSetScissor
@@ -409,6 +416,7 @@
 0x80229dcc _Znwj
 0x80229de0 _ZnwjPN3EGG4HeapEi
 0x80229df0 _Znaj
+0x80229DFC _Znaji
 0x80229e04 _ZnajPN3EGG4HeapEi
 0x80229e14 delete
 0x80229e14 _ZdlPvj

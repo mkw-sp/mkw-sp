@@ -73,4 +73,11 @@ public:
 };
 static_assert_32bit(sizeof(ResMdl) == 4);
 
+class ResFile : public ResCommon<char> {
+public:
+    ResMdl GetResMdl(u32 idx) const;
+    u32 GetResMdlNumEntries() const;
+};
+static_assert_32bit(sizeof(ResFile) == 4);
+
 } // namespace nw4r::g3d

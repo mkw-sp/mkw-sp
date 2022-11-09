@@ -27,4 +27,5 @@ static_assert(sizeof(Heap) == 0x38);
 
 void *operator new(size_t size, EGG::Heap *heap, int align);
 
+void *operator new[](size_t size, int align);
 void *operator new[](size_t size, EGG::Heap *heap, int align);

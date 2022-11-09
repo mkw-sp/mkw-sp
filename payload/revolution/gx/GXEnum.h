@@ -452,3 +452,11 @@ typedef enum {
     GX_PASSCLR,
 } GXTevMode;
 static_assert(sizeof(GXTevMode) == 4);
+
+typedef enum {
+    GX_NONE,
+    GX_DIRECT,
+    GX_INDEX8,
+    GX_INDEX16,
+} GXAttrType;
+static_assert(sizeof(GXAttrType) == 4);

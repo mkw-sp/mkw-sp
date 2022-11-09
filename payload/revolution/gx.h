@@ -1,15 +1,16 @@
 #pragma once
 
+#include "revolution/gx/GXBump.h"
 #include "revolution/gx/GXEnum.h"
-#include "revolution/gx/GXStruct.h"
+#include "revolution/gx/GXFifo.h"
 #include "revolution/gx/GXGeometry.h"
 #include "revolution/gx/GXLighting.h"
-#include "revolution/gx/GXTev.h"
-#include "revolution/gx/GXBump.h"
-#include "revolution/gx/GXPixel.h"
-#include "revolution/gx/GXFifo.h"
 #include "revolution/gx/GXManage.h"
+#include "revolution/gx/GXPixel.h"
+#include "revolution/gx/GXStruct.h"
+#include "revolution/gx/GXTev.h"
 
+void GXSetAlphaUpdate(GXBool update_enable);
 void GXSetClipMode(GXClipMode clip);
 void GXSetCullMode(GXCullMode cull);
 void GXSetZTexture(GXZTexOp op, GXTexFmt format, u32 bias);
@@ -25,9 +26,20 @@ void GXSetScissorBoxOffset(u32 x, u32 y);
 void GXLoadTexObj(const GXTexObj *obj, GXTexMapID id);
 
 void GXLoadPosMtxImm(const float mtx[3][4], u32);
+void GXLoadNrmMtxImm(const f32 mtx[3][4], u32);
 void GXSetCurrentMtx(u32);
 void GXSetColorUpdate(u32);
 void GXBegin(u32, u32, u32);
+void GXSetChanAmbColor(GXChannelID, GXColor);
+struct GXLightObj {
+    u8 _00[0x0c - 0x00];
+    GXColor color;
+    f32 angle_attn[3];
+    f32 dist_attn[3];
+    Vec3 pos;
+    Vec3 dir;
+};
+void GXLoadLightObjImm(struct GXLightObj *, int);
 
 // bin_op(left_un_arg(ALPHA, left_un_arg), right_un_op(ALPHA, right_un_arg)
 void GXSetAlphaCompare(GXCompare left_un_op, u8 left_un_arg, GXAlphaOp bin_op,
