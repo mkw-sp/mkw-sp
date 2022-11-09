@@ -64,7 +64,7 @@ std::optional<UnreliableSocket::ReadInfo> UnreliableSocket::read(u8 *message, u1
         address.family = SO_PF_INET;
 
         u8 buffer[1024];
-        s32 result = SORecvFrom(m_handle, &buffer, sizeof(buffer), 0, &address);
+        s32 result = SORecvFrom(m_handle, buffer, sizeof(buffer), 0, &address);
 
         if (result == SO_EAGAIN) {
             return ReadInfo{0, 200};

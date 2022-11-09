@@ -16,7 +16,7 @@ int SOCleanup(void);
 
 int SOInit(const SOLibraryConfig *cfg);
 int SOSend(int s, const void* buf, int len, int flags);
-int SOSendTo(int s, const void* buf, int len, int flags, void* sockFrom);
+int SOSendTo(int s, const void* buf, int len, int flags, const void* sockFrom);
 int SOWrite(int s, const void* buf, int len);
 
 #define SO_PF_INET 2
