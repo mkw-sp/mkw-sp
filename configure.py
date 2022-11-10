@@ -1276,6 +1276,7 @@ code_in_files = {
         os.path.join('payload', 'nw4r', 'snd', 'StrmFileReader.cc'),
         os.path.join('payload', 'nw4r', 'ut', 'FileStream.cc'),
         os.path.join('payload', 'nw4r', 'ut', 'IOStream.cc'),
+        os.path.join('payload', 'platform', 'guard.c'),
         os.path.join('payload', 'platform', 'string.c'),
         os.path.join('payload', 'platform', 'wchar.c'),
         os.path.join('payload', 'platform', 'wctype.c'),
