@@ -1119,6 +1119,50 @@
         "font": "regular",
         "string": "Standard checkpoint overlay.",
     },
+    "10321": {
+        "font": "regular",
+        "string": "Speedometer",
+    },
+    "10322": {
+        "font": "regular",
+        "string": "Internal + Moving Road",
+    },
+    "10323": {
+        "font": "regular",
+        "string": "Internal",
+    },
+    "10324": {
+        "font": "regular",
+        "string": "XYZ",
+    },
+    "10325": {
+        "font": "regular",
+        "string": "XZ",
+    },
+    "10326": {
+        "font": "regular",
+        "string": "Y",
+    },
+    "10327": {
+        "font": "regular",
+        "string": "Speedometer displays the internal speed of the vehicle plus moving road.",
+    },
+    "10328": {
+        "font": "regular",
+        "string": "Speedometer displays the internal speed of the vehicle.",
+    },
+    "10329": {
+        "font": "regular",
+        "string": "Speedometer displays the speed the vehicle moves.",
+    },
+    "10330": {
+        "font": "regular",
+        "string": "Speedometer displays the speed the vehicle moves horizontally.",
+    },
+    "10331": {
+        "font": "regular",
+        "string": "Speedometer displays the speed the vehicle moves vertically.",
+    },
     "20000": {
         "font": "regular",
         "string": "Online",

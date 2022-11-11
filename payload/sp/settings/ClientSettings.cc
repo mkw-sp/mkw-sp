@@ -127,6 +127,16 @@ const Entry entries[] = {
         .valueExplanationMessageIds = (u32[]) { 10064, 10065 },
         .vanillaValue = static_cast<u32>(InputDisplay::Disable),
     },
+    [static_cast<u32>(Setting::Speedometer)] = {
+        .category = Category::Race,
+        .name = magic_enum::enum_name(Setting::Speedometer),
+        .messageId = 10321,
+        .defaultValue = static_cast<u32>(Speedometer::InternalPlus),
+        .valueCount = magic_enum::enum_count<Speedometer>(),
+        .valueNames = magic_enum::enum_names<Speedometer>().data(),
+        .valueMessageIds = (u32[]) { 10322, 10323, 10324, 10325, 10326 },
+        .valueExplanationMessageIds = (u32[]) { 10327, 10328, 10329, 10330, 10331 },
+    },
     [static_cast<u32>(Setting::RankControl)] = {
         .category = Category::Race,
         .name = magic_enum::enum_name(Setting::RankControl),
