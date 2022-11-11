@@ -41,6 +41,8 @@ void FriendRoomRulesPage::onInit() {
     }
 
     setAnimSfxIds(5, 0);
+
+    m_popRequested = false;
 }
 
 void FriendRoomRulesPage::beforeInAnim() {
@@ -51,10 +53,21 @@ void FriendRoomRulesPage::afterOutAnim() {
     playSound(Sound::SoundId::SE_UI_CTRL_WIN_POPDOWN, -1);
 }
 
+void FriendRoomRulesPage::beforeCalc() {
+    if (state() == State::State4 && m_popRequested) {
+        startReplace(Anim::Prev, 0.0f);
+        m_popRequested = false;
+    }
+}
+
 void FriendRoomRulesPage::afterCalc() {
     MessageInfo info{};
     info.playerIds[0] = 0;
     m_okKey.setMessageAll(9504, &info);
+}
+
+void FriendRoomRulesPage::pop() {
+    m_popRequested = true;
 }
 
 void FriendRoomRulesPage::refresh(const std::array<u32, SP::RoomSettings::count> &settings) {

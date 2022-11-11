@@ -102,14 +102,19 @@ public:
     SettingsPagePopup();
     ~SettingsPagePopup() override;
 
+    void onInit() override;
+    void beforeCalc() override;
+
     LayoutUIControl *instructionText() override;
     BlackBackControl *blackBack() override;
 
     void configure(IHandler *handler);
+    void pop();
 
 private:
     LayoutUIControl m_instructionText;
     BlackBackControl m_blackBack;
+    bool m_popRequested;
 };
 
 class MenuSettingsPage : public SettingsPage {

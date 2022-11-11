@@ -23,7 +23,10 @@ public:
     void onInit() override;
     void onActivate() override;
     void onDeactivate() override;
+    void beforeCalc() override;
+
     void setMenuType(MenuType menuType) { m_menuType = menuType; }
+    void pop();
 
 private:
     class MessageSelectControl : public LayoutUIControl {
@@ -70,6 +73,7 @@ private:
     CtrlMenuBackButton m_backButton;
     MessageSelectControl *m_visibleMessageSelect;
     MessageSelectControl *m_hiddenMessageSelect;
+    bool m_popRequested;
     MenuType m_menuType;
     s32 m_messageCount;
     s32 m_sheetCount;

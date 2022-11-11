@@ -275,6 +275,19 @@ SettingsPagePopup::SettingsPagePopup() = default;
 
 SettingsPagePopup::~SettingsPagePopup() = default;
 
+void SettingsPagePopup::onInit() {
+    SettingsPage::onInit();
+
+    m_popRequested = false;
+}
+
+void SettingsPagePopup::beforeCalc() {
+    if (state() == State::State4 && m_popRequested) {
+        startReplace(Anim::Prev, 0.0f);
+        m_popRequested = false;
+    }
+}
+
 LayoutUIControl *SettingsPagePopup::instructionText() {
     return &m_instructionText;
 }
@@ -285,6 +298,10 @@ BlackBackControl *SettingsPagePopup::blackBack() {
 
 void SettingsPagePopup::configure(IHandler *handler) {
     m_handler = handler;
+}
+
+void SettingsPagePopup::pop() {
+    m_popRequested = true;
 }
 
 MenuSettingsPage::MenuSettingsPage() = default;

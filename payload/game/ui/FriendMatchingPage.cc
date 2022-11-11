@@ -33,6 +33,9 @@ void FriendMatchingPage::onInit() {
     m_dummyBack.load("button", "Back", "ButtonBack", 0x1);
 
     m_inputManager.setHandler(MenuInputManager::InputId::Back, &m_onBack, false);
+
+    m_roomStarted = false;
+    m_roomHasError = false;
 }
 
 void FriendMatchingPage::onActivate() {
@@ -58,8 +61,29 @@ void FriendMatchingPage::afterCalc() {
     auto *roomManager = SP::RoomManager::Instance();
     if (roomManager && !roomManager->calc(m_handler)) {
         roomManager->destroyInstance();
-        collapse();
         auto *section = SectionManager::Instance()->currentSection();
+        if (section->isPageFocused(this)) {
+            auto *messagePagePopup = section->page<PageId::MessagePopup>();
+            messagePagePopup->reset();
+            u32 messageId;
+            if (section->id() == SectionId::OnlineServer) {
+                messageId = section->isPageActive(PageId::FriendRoomBack) ? 20014 : 20013;
+            } else {
+                messageId = section->isPageActive(PageId::FriendRoomBack) ? 20016 : 20015;
+            }
+            messagePagePopup->setWindowMessage(messageId);
+            push(PageId::MessagePopup, Anim::Next);
+        } else {
+            collapse();
+            m_roomHasError = true;
+        }
+    }
+}
+
+void FriendMatchingPage::onRefocus() {
+    auto *section = SectionManager::Instance()->currentSection();
+    if (m_roomHasError) {
+        m_roomHasError = false;
         auto *messagePagePopup = section->page<PageId::MessagePopup>();
         messagePagePopup->reset();
         u32 messageId;
@@ -70,13 +94,16 @@ void FriendMatchingPage::afterCalc() {
         }
         messagePagePopup->setWindowMessage(messageId);
         push(PageId::MessagePopup, Anim::Next);
+        return;
     }
-}
 
-void FriendMatchingPage::onRefocus() {
-    auto *section = SectionManager::Instance()->currentSection();
     auto sectionId = section->id();
-    if (m_roomStarted) { return sectionId == SectionId::OnlineServer ? startServer() : startClient(); }
+    if (m_roomStarted) {
+        m_roomStarted = false;
+        if (SP::RoomManager::Instance()) {
+            return sectionId == SectionId::OnlineServer ? startServer() : startClient();
+        }
+    }
 
     auto *globePage = section->page<PageId::Globe>();
     globePage->requestSpinFar();
@@ -85,6 +112,24 @@ void FriendMatchingPage::onRefocus() {
     } else {
         m_replacement = PageId::OnlineTop;
         startReplace(Anim::Prev, 0.0f);
+    }
+}
+
+void FriendMatchingPage::collapse() {
+    auto *section = SectionManager::Instance()->currentSection();
+    auto sectionId = section->id();
+    if (section->isPageFocused(this)) {
+        auto *globePage = section->page<PageId::Globe>();
+        globePage->requestSpinFar();
+        if (sectionId == SectionId::OnlineServer) {
+            changeSection(SectionId::ServicePack, Anim::Prev, 0.0f);
+        } else {
+            m_replacement = PageId::OnlineTop;
+            startReplace(Anim::Prev, 0.0f);
+        }
+    } else if (section->isPageActive(PageId::FriendRoomBack)) {
+        auto *friendRoomBackPage = section->page<PageId::FriendRoomBack>();
+        friendRoomBackPage->pop();
     }
 }
 
@@ -111,30 +156,10 @@ void FriendMatchingPage::prepareStartServer() {
 }
 
 void FriendMatchingPage::onBack([[maybe_unused]] u32 localPlayerId) {
-    auto *section = SectionManager::Instance()->currentSection();
-    auto sectionId = section->id();
-    auto *yesNoPagePopup = section->page<PageId::YesNoPopup>();
-    u32 windowMessageId = sectionId == SectionId::OnlineServer ? 20017 : 20018;
-    yesNoPagePopup->setWindowMessage(windowMessageId);
-    yesNoPagePopup->configureButton(0, 2002, nullptr, Anim::Prev, &m_onCloseConfirm);
-    yesNoPagePopup->configureButton(1, 2003, nullptr, Anim::Prev, nullptr);
-    push(PageId::YesNoPopup, Anim::Next);
-}
-
-void FriendMatchingPage::onCloseConfirm([[maybe_unused]] s32 choice,
-        [[maybe_unused]] PushButton *button) {
     auto *roomManager = SP::RoomManager::Instance();
     if (roomManager) {
         roomManager->destroyInstance();
         collapse();
-    }
-}
-
-void FriendMatchingPage::collapse() {
-    auto *section = SectionManager::Instance()->currentSection();
-    if (section->isPageActive(PageId::FriendRoomBack)) {
-        auto *friendRoomBackPage = section->page<PageId::FriendRoomBack>();
-        friendRoomBackPage->pop();
     }
 }
 

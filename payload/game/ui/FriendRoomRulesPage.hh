@@ -18,8 +18,10 @@ public:
     void onInit() override;
     void beforeInAnim() override;
     void afterOutAnim() override;
+    void beforeCalc() override;
     void afterCalc() override;
 
+    void pop();
     void refresh(const std::array<u32, SP::RoomSettings::count> &settings);
 
 private:
@@ -34,6 +36,7 @@ private:
     LayoutUIControlScaleFade m_okKey;
     BlackBackControl m_blackBack;
     H<PageInputManager> m_onFront{ this, &FriendRoomRulesPage::onFront };
+    bool m_popRequested;
 };
 
 } // namespace UI

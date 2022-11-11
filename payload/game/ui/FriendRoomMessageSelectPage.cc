@@ -36,6 +36,8 @@ void FriendRoomMessageSelectPage::onInit() {
     m_inputManager.setHandler(MenuInputManager::InputId::Back, &m_onBack, false, false);
     m_backButton.selectDefault(0);
 
+    m_popRequested = false;
+
     m_cachedSheetIdx = 0;
     m_cachedButton = 0;
 }
@@ -100,6 +102,17 @@ void FriendRoomMessageSelectPage::onActivate() {
 
 void FriendRoomMessageSelectPage::onDeactivate() {
     m_menuType = MenuType::None;
+}
+
+void FriendRoomMessageSelectPage::beforeCalc() {
+    if (state() == State::State4 && m_popRequested) {
+        startReplace(Anim::Prev, 0.0f);
+        m_popRequested = false;
+    }
+}
+
+void FriendRoomMessageSelectPage::pop() {
+    m_popRequested = true;
 }
 
 void FriendRoomMessageSelectPage::refresh() {

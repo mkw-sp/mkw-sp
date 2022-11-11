@@ -14,6 +14,10 @@ void Page::dt(s32 type) {
     }
 }
 
+Page::State Page::state() const {
+    return m_state;
+}
+
 Page::Anim Page::anim() const {
     return m_anim;
 }

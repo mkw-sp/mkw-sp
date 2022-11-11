@@ -1,6 +1,8 @@
 #include "FriendRoomPage.hh"
 
+#include "game/ui/FriendMatchingPage.hh"
 #include "game/ui/FriendRoomMessageSelectPage.hh"
+#include "game/ui/FriendRoomRulesPage.hh"
 #include "game/ui/Section.hh"
 #include "game/ui/SectionManager.hh"
 
@@ -55,6 +57,8 @@ void FriendRoomPage::onInit() {
     m_closeButton.m_index = 4372;
     m_registerButton.m_index = 4374;
     m_backButton.m_index = 0;
+
+    m_popRequested = false;
 }
 
 void FriendRoomPage::onActivate() {
@@ -85,8 +89,37 @@ void FriendRoomPage::onDeactivate() {
     m_roomRole = RoomRole::None;
 }
 
+void FriendRoomPage::beforeCalc() {
+    auto *section = SectionManager::Instance()->currentSection();
+    if (section->isPageFocused(this) && state() == State::State4 && m_popRequested) {
+        startReplace(Anim::Prev, 0.0f);
+        m_popRequested = false;
+    }
+}
+
+void FriendRoomPage::onRefocus() {
+    if (m_popRequested) {
+        startReplace(Anim::Prev, 0.0f);
+        m_popRequested = false;
+    }
+}
+
 void FriendRoomPage::pop() {
-    startReplace(Anim::Prev, 0.0f);
+    auto *section = SectionManager::Instance()->currentSection();
+    if (section->isPageActive(PageId::SettingsPopup)) {
+        auto *settingsPagePopup = section->page<PageId::SettingsPopup>();
+        settingsPagePopup->pop();
+    } else if (section->isPageActive(PageId::FriendRoomRules)) {
+        auto *rulesPage = section->page<PageId::FriendRoomRules>();
+        rulesPage->pop();
+    } else if (section->isPageActive(PageId::FriendRoomMessageSelect)) {
+        auto *messageSelectPage = section->page<PageId::FriendRoomMessageSelect>();
+        messageSelectPage->pop();
+    } else if (section->isPageActive(PageId::YesNoPopup)) {
+        auto *yesNoPagePopup = section->page<PageId::YesNoPopup>();
+        yesNoPagePopup->pop();
+    }
+    m_popRequested = true;
 }
 
 void FriendRoomPage::onBack([[maybe_unused]] u32 localPlayerId) {
@@ -156,14 +189,10 @@ void FriendRoomPage::onButtonSelect(PushButton *button, [[maybe_unused]] u32 loc
 
 void FriendRoomPage::onBackConfirm([[maybe_unused]] s32 choice,
         [[maybe_unused]] PushButton *button) {
-    auto *section = SectionManager::Instance()->currentSection();
-    auto sectionId = section->id();
     SP::RoomManager::Instance()->destroyInstance();
-    if (sectionId == SectionId::OnlineServer) {
-        changeSection(SectionId::ServicePack, Anim::Prev, 0.0f);
-    } else {
-        startReplace(Anim::Prev, 0.0f);
-    }
+    auto *section = SectionManager::Instance()->currentSection();
+    auto *friendMatchingPage = section->page<PageId::FriendMatching>();
+    friendMatchingPage->collapse();
 }
 
 void FriendRoomPage::onSettingsBack([[maybe_unused]] SettingsPage *settingsPage,

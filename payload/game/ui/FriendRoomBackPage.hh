@@ -21,6 +21,8 @@ public:
     void onInit() override;
     void onActivate() override;
     void beforeInAnim() override;
+    void afterInAnim() override;
+    void beforeCalc() override;
     void afterCalc() override;
     void onRefocus() override;
 
@@ -59,6 +61,7 @@ private:
     MenuInputManager m_inputManager;
     CtrlMenuPageTitleText m_pageTitleText;
     FriendMatchingPlayer m_players[12];
+    bool m_popRequested;
     MiiGroup m_miiGroup;
     u32 m_locations[12];
     u16 m_latitudes[12];

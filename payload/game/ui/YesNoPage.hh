@@ -37,9 +37,12 @@ public:
 
     void setWindowMessage(u32 messageId, MessageInfo *info = nullptr);
     void configureButton(u32 index, u32 messageId, MessageInfo *info, Anim anim, IHandler *handler);
+    void pop();
 
 private:
-    u8 _044[0x8b8 - 0x044];
+    u8 _044[0x8b4 - 0x044];
+    bool m_popRequested;
+    u8 _8b5[0x8b8 - 0x8b5];
 };
 
 class YesNoPagePopup : public YesNoPage {

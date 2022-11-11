@@ -1,7 +1,7 @@
 #pragma once
 
 #include "game/ui/MatchingMessageWindow.hh"
-#include "game/ui/YesNoPage.hh"
+#include "game/ui/Page.hh"
 #include "game/ui/ctrl/CtrlMenuDummyBack.hh"
 
 #include <sp/cs/RoomManager.hh>
@@ -23,6 +23,7 @@ public:
     void afterCalc() override;
     void onRefocus() override;
 
+    void collapse();
     void prepareStartClient();
     void prepareStartServer();
 
@@ -49,8 +50,6 @@ private:
     };
 
     void onBack(u32 localPlayerId);
-    void onCloseConfirm(s32 choice, PushButton *button);
-    void collapse();
     void startClient();
     void startServer();
 
@@ -61,11 +60,11 @@ private:
     MatchingMessageWindow m_messageWindow;
     CtrlMenuDummyBack m_dummyBack;
     H<PageInputManager> m_onBack{ this, &FriendMatchingPage::onBack };
-    H<YesNoPage> m_onCloseConfirm{ this, &FriendMatchingPage::onCloseConfirm };
     PageId m_replacement;
     Handler m_handler;
     s32 m_gamemode = -1;
-    bool m_roomStarted = false;
+    bool m_roomStarted;
+    bool m_roomHasError;
 };
 
 } // namespace UI

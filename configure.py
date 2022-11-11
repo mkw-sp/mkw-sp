@@ -1215,6 +1215,7 @@ code_in_files = {
         os.path.join('payload', 'game', 'ui', 'UpDownControl.cc'),
         os.path.join('payload', 'game', 'ui', 'VotingBackPage.cc'),
         os.path.join('payload', 'game', 'ui', 'Wipe.S'),
+        os.path.join('payload', 'game', 'ui', 'YesNoPage.cc'),
         os.path.join('payload', 'game', 'ui', 'ctrl', 'CtrlMenuBackButton.cc'),
         os.path.join('payload', 'game', 'ui', 'ctrl', 'CtrlMenuCharacterSelect.S'),
         os.path.join('payload', 'game', 'ui', 'ctrl', 'CtrlMenuCharacterSelect.cc'),

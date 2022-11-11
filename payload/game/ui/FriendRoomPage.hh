@@ -26,6 +26,8 @@ public:
     void onInit() override;
     void onActivate() override;
     void onDeactivate() override;
+    void beforeCalc() override;
+    void onRefocus() override;
 
     void pop();
 
@@ -52,6 +54,7 @@ private:
     PushButton m_registerButton;
     CtrlMenuBackButton m_backButton;
     CtrlMenuInstructionText m_instructionText;
+    bool m_popRequested;
     RoomRole m_roomRole;
 
     H<MultiControlInputManager> m_onBack{ this, &FriendRoomPage::onBack };

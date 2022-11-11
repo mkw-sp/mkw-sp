@@ -42,6 +42,8 @@ void FriendRoomBackPage::onInit() {
     } else {
         m_pageTitleText.setMessage(20012);
     }
+
+    m_popRequested = false;
 }
 
 void FriendRoomBackPage::onActivate() {
@@ -66,13 +68,23 @@ void FriendRoomBackPage::onActivate() {
         }
         m_queue.pop();
     }
-
-    push(PageId::FriendRoom, Anim::Next);
 }
 
 void FriendRoomBackPage::beforeInAnim() {
     for (size_t i = 0; i < m_playerCount; i++) {
         m_players[m_indices[i]].show(i, m_playerCount);
+    }
+}
+
+void FriendRoomBackPage::afterInAnim() {
+    push(PageId::FriendRoom, Anim::Next);
+}
+
+void FriendRoomBackPage::beforeCalc() {
+    auto *section = SectionManager::Instance()->currentSection();
+    if (section->isPageFocused(this) && state() == State::State4 && m_popRequested) {
+        startReplace(Anim::Prev, 0.0f);
+        m_popRequested = false;
     }
 }
 
@@ -172,18 +184,21 @@ void FriendRoomBackPage::afterCalc() {
 
 void FriendRoomBackPage::onRefocus() {
     m_queue.reset();
-    startReplace(Anim::Prev, 0.0f);
+    if (m_popRequested) {
+        startReplace(Anim::Prev, 0.0f);
+        m_popRequested = false;
+    }
 }
 
 void FriendRoomBackPage::pop() {
     m_queue.reset();
-    startReplace(Anim::Prev, 0.0f);
 
     auto *section = SectionManager::Instance()->currentSection();
     if (section->isPageActive(PageId::FriendRoom)) {
         auto friendRoomPage = section->page<PageId::FriendRoom>();
         friendRoomPage->pop();
     }
+    m_popRequested = true;
 }
 
 void FriendRoomBackPage::onPlayerJoin(System::RawMii mii, u32 location, u16 latitude,

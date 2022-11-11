@@ -12,6 +12,7 @@ namespace UI {
 
 class Page {
 public:
+    // TODO rename
     enum class State {
         State0,
         State1,
@@ -80,6 +81,7 @@ protected:
 
 public:
     PageId id() const;
+    State state() const;
     Anim anim() const;
     void setAnim(Anim anim);
     REPLACE void calc();
