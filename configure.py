@@ -650,6 +650,8 @@ asset_in_files = {
         os.path.join('game_image', 'timg', 'basic_trigger_r_on.tpl'),
         os.path.join('game_image', 'timg', 'tt_d_number_3d_minus.tpl'),
         os.path.join('game_image', 'timg', 'tt_d_number_3d_none.tpl'),
+        #MegaTC
+        os.path.join('game_image', 'timg', 'MegaTC_icon.tpl'),
         # Results
         os.path.join('result', 'anim', 'common_w204_result_team_position.brlan.json5'),
         os.path.join('result', 'anim', 'position_12players_color_off.brlan.json5'),
