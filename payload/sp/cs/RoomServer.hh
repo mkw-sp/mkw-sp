@@ -54,7 +54,7 @@ private:
         bool writeLeave(u32 playerId);
         bool writeComment(u32 playerId, u32 messageId);
         bool writeSettings();
-        bool writeClose(u32 gamemode);
+        bool writeStart(u32 gamemode);
         bool writeTeamSelect(u32 playerId, u32 teamId);
         bool writeSelectPulse(u32 playerId);
         bool writeSelectInfo(u32 selectedPlayer);
@@ -106,7 +106,7 @@ private:
             const std::array<u32, RoomSettings::count> &settings);
     void onPlayerLeave(Handler &handler, u32 playerId);
     bool onReceiveComment(u32 playerId, u32 messageId);
-    bool onRoomClose(u32 playerId, u32 gamemode);
+    bool onRoomStart(u32 playerId, u32 gamemode);
     bool onReceiveTeamSelect(Handler &handler, u32 playerId, u32 teamId);
     bool onReceiveVote(u32 playerId, u32 course, Player::Properties& vote);
     bool validateProperties(u32 playerId, Player::Properties& properties);
@@ -119,7 +119,7 @@ private:
     void writeLeave(u32 playerId);
     void writeComment(u32 playerId, u32 messageId);
     void writeSettings();
-    void writeClose(u32 gamemode);
+    void writeStart(u32 gamemode);
     void writeTeamSelect(u32 playerId, u32 teamId);
     void writeSelectPulse(u32 playerId);
     void writeSelectInfo(u32 selectedPlayer);
@@ -127,7 +127,7 @@ private:
     CircularBuffer<Comment, 18> m_commentQueue;
     u32 m_commentTimer = 0;
     bool m_settingsChanged = false;
-    bool m_roomClosed = false;
+    bool m_roomStarted = false;
     bool m_voteEvent = false;
     std::bitset<12> m_voted;
     u8 m_voteCount = 0;

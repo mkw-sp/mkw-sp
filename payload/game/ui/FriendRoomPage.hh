@@ -36,7 +36,7 @@ private:
     void onSettingsButtonFront(PushButton *button, u32 localPlayerId);
     void onCommentButtonFront(PushButton *button, u32 localPlayerId);
     void onRulesButtonFront(PushButton *button, u32 localPlayerId);
-    void onCloseButtonFront(PushButton *button, u32 localPlayerId);
+    void onStartButtonFront(PushButton *button, u32 localPlayerId);
     void onRegisterButtonFront(PushButton *button, u32 localPlayerId);
     void onBackButtonFront(PushButton *button, u32 localPlayerId);
     void onButtonSelect(PushButton *button, u32 localPlayerId);
@@ -50,7 +50,7 @@ private:
     PushButton m_settingsButton;
     PushButton m_commentButton;
     PushButton m_rulesButton;
-    PushButton m_closeButton;
+    PushButton m_startButton;
     PushButton m_registerButton;
     CtrlMenuBackButton m_backButton;
     CtrlMenuInstructionText m_instructionText;
@@ -61,7 +61,7 @@ private:
     H<PushButton> m_onSettingsButtonFront{ this, &FriendRoomPage::onSettingsButtonFront };
     H<PushButton> m_onCommentButtonFront{ this, &FriendRoomPage::onCommentButtonFront };
     H<PushButton> m_onRulesButtonFront{ this, &FriendRoomPage::onRulesButtonFront };
-    H<PushButton> m_onCloseButtonFront{ this, &FriendRoomPage::onCloseButtonFront };
+    H<PushButton> m_onStartButtonFront{ this, &FriendRoomPage::onStartButtonFront };
     H<PushButton> m_onRegisterButtonFront{ this, &FriendRoomPage::onRegisterButtonFront };
     H<PushButton> m_onBackButtonFront{ this, &FriendRoomPage::onBackButtonFront };
     H<PushButton> m_onButtonSelect{ this, &FriendRoomPage::onButtonSelect };

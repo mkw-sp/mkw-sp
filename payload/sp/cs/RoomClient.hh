@@ -27,7 +27,7 @@ public:
     // Request writing interface - new requests should go here!
     // TODO these should return void and defer the actual sending
     bool sendComment(u32 commentId);
-    bool closeRoom(u32 gamemode);
+    bool startRoom(u32 gamemode);
     void changeLocalSettings();
     bool sendTeamSelect(u32 playerId);
     bool sendVote(u32 course, std::optional<Player::Properties> properties);
@@ -63,7 +63,7 @@ private:
             u16 longitude, u32 regionLineColor);
     bool onPlayerLeave(Handler &handler, u32 playerId);
     bool onReceiveComment(Handler &handler, u32 playerId, u32 messageId);
-    bool onRoomClose(Handler &handler, u32 gamemode);
+    bool onRoomStart(Handler &handler, u32 gamemode);
     bool onReceiveTeamSelect(Handler &handler, u32 playerId, u32 teamId);
     bool onReceivePulse(Handler &handler, u32 playerId);
     bool onReceiveInfo(Handler &handler, RoomEvent event);
@@ -72,7 +72,7 @@ private:
     bool read(std::optional<RoomEvent> &event);
     bool writeJoin();
     bool writeComment(u32 messageId);
-    bool writeClose(u32 gamemode);
+    bool writeStart(u32 gamemode);
     bool writeSettings();
     bool writeTeamSelect(u32 playerId, u32 teamId);
     bool writeVote(u32 course, std::optional<Player::Properties> properties);

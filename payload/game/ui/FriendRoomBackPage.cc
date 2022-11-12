@@ -96,7 +96,7 @@ void FriendRoomBackPage::afterCalc() {
 
     auto *section = SectionManager::Instance()->currentSection();
     auto *friendMatchingPage = section->page<PageId::FriendMatching>();
-    if (m_roomClosed) { return section->id() == SectionId::OnlineServer ? friendMatchingPage->prepareStartServer() : friendMatchingPage->prepareStartClient(); }
+    if (m_roomStarted) { return section->id() == SectionId::OnlineServer ? friendMatchingPage->prepareStartServer() : friendMatchingPage->prepareStartClient(); }
 
     auto *entry = m_queue.front();
     if (!entry) {
@@ -166,18 +166,18 @@ void FriendRoomBackPage::afterCalc() {
         globePage->requestComment(mii, latitude, longitude, location, 20025, 2, nullptr, callback);
         m_globePlayerId = 0;
         m_timer = 90;
-    } else if (const auto *close = std::get_if<Close>(entry)) {
+    } else if (const auto *start = std::get_if<Start>(entry)) {
         auto *mii = m_miiGroup.get(m_indices[0]); 
         u32 location = m_locations[m_indices[0]];
         u16 latitude = m_latitudes[m_indices[0]];
         u16 longitude = m_longitudes[m_indices[0]];
-        u32 messageId = close->messageId + 4110;
+        u32 messageId = start->messageId + 4110;
         auto &callback = m_players[m_indices[0]].callback();
         globePage->requestComment(mii, latitude, longitude, location, messageId, 2, nullptr,
                 callback);
         m_globePlayerId = 0;
         m_timer = 90;
-        m_roomClosed = true;
+        m_roomStarted = true;
     }
     m_queue.pop();
 }
@@ -263,7 +263,7 @@ void FriendRoomBackPage::onSettingsChange(
 
 void FriendRoomBackPage::onRoomStart(u32 messageId) {
     m_queue.reset();
-    m_queue.push(Close { messageId });
+    m_queue.push(Start { messageId });
 }
 
 } // namespace UI

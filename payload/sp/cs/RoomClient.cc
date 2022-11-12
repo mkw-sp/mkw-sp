@@ -63,8 +63,8 @@ bool RoomClient::sendComment(u32 commentId) {
     return writeComment(commentId);
 }
 
-bool RoomClient::closeRoom(u32 gamemode) {
-    return writeClose(gamemode);
+bool RoomClient::startRoom(u32 gamemode) {
+    return writeStart(gamemode);
 }
 
 void RoomClient::changeLocalSettings() {
@@ -280,8 +280,8 @@ std::optional<RoomClient::State> RoomClient::calcMain(Handler &handler) {
             }
         }
         return State::Main;
-    case RoomEvent_close_tag:
-        if (!onRoomClose(handler, event->event.close.gamemode)) {
+    case RoomEvent_start_tag:
+        if (!onRoomStart(handler, event->event.start.gamemode)) {
             return {};
         } else {
             auto setting = getSetting<SP::ClientSettings::Setting::RoomTeamSize>();
@@ -422,7 +422,7 @@ bool RoomClient::onReceiveComment(Handler &handler, u32 playerId, u32 messageId)
     return true;
 }
 
-bool RoomClient::onRoomClose(Handler &handler, u32 gamemode) {
+bool RoomClient::onRoomStart(Handler &handler, u32 gamemode) {
     if (gamemode >= 3) {
         return false;
     }
@@ -525,10 +525,10 @@ bool RoomClient::writeComment(u32 messageId) {
     return write(request);
 }
 
-bool RoomClient::writeClose(u32 gamemode) {
+bool RoomClient::writeStart(u32 gamemode) {
     RoomRequest request;
-    request.which_request = RoomRequest_close_tag;
-    request.request.close.gamemode = gamemode;
+    request.which_request = RoomRequest_start_tag;
+    request.request.start.gamemode = gamemode;
     return write(request);
 }
 

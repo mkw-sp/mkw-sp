@@ -24,7 +24,7 @@ void FriendRoomPage::onInit() {
     insertChild(0, &m_settingsButton, 0);
     insertChild(1, &m_commentButton, 0);
     insertChild(2, &m_rulesButton, 0);
-    insertChild(3, &m_closeButton, 0);
+    insertChild(3, &m_startButton, 0);
     insertChild(4, &m_registerButton, 0);
     insertChild(5, &m_backButton, 0);
     insertChild(6, &m_instructionText, 0);
@@ -32,7 +32,7 @@ void FriendRoomPage::onInit() {
     m_settingsButton.load("button", "SettingsButton", "Option", 0x1, false, false);
     m_commentButton.load("button", "FriendRoom", "Comment", 1, false, false);
     m_rulesButton.load("button", "FriendRoom", "Rules", 1, false, false);
-    m_closeButton.load("button", "FriendRoom", "Close", 1, false, false);
+    m_startButton.load("button", "FriendRoom", "Close", 1, false, false);
     m_registerButton.load("button", "FriendRoom", "Register", 1, false, false);
     m_backButton.load("button", "Back", "ButtonBack", 1, false, true);
     m_instructionText.load();
@@ -44,8 +44,8 @@ void FriendRoomPage::onInit() {
     m_commentButton.setSelectHandler(&m_onButtonSelect, false);
     m_rulesButton.setFrontHandler(&m_onRulesButtonFront, false);
     m_rulesButton.setSelectHandler(&m_onButtonSelect, false);
-    m_closeButton.setFrontHandler(&m_onCloseButtonFront, false);
-    m_closeButton.setSelectHandler(&m_onButtonSelect, false);
+    m_startButton.setFrontHandler(&m_onStartButtonFront, false);
+    m_startButton.setSelectHandler(&m_onButtonSelect, false);
     m_registerButton.setFrontHandler(&m_onRegisterButtonFront, false);
     m_registerButton.setSelectHandler(&m_onButtonSelect, false);
     m_backButton.setFrontHandler(&m_onBackButtonFront, false);
@@ -54,7 +54,7 @@ void FriendRoomPage::onInit() {
     m_settingsButton.m_index = 20022;
     m_commentButton.m_index = 4370;
     m_rulesButton.m_index = 20024;
-    m_closeButton.m_index = 4372;
+    m_startButton.m_index = 4372;
     m_registerButton.m_index = 4374;
     m_backButton.m_index = 0;
 
@@ -69,13 +69,13 @@ void FriendRoomPage::onActivate() {
 
     switch (m_roomRole) {
     case RoomRole::Host:
-        m_closeButton.setPlayerFlags(1);
-        m_closeButton.setVisible(true);
+        m_startButton.setPlayerFlags(1);
+        m_startButton.setVisible(true);
         break;
     case RoomRole::Player:
     // case RoomRole::Spectator:
-        m_closeButton.setPlayerFlags(0);
-        m_closeButton.setVisible(false);
+        m_startButton.setPlayerFlags(0);
+        m_startButton.setVisible(false);
         break;
     default:
         break;
@@ -158,11 +158,11 @@ void FriendRoomPage::onRulesButtonFront([[maybe_unused]] PushButton *button,
     push(PageId::FriendRoomRules, Anim::Next);
 }
 
-void FriendRoomPage::onCloseButtonFront([[maybe_unused]] PushButton *button,
+void FriendRoomPage::onStartButtonFront([[maybe_unused]] PushButton *button,
         [[maybe_unused]] u32 localPlayerId) {
     auto *section = SectionManager::Instance()->currentSection();
     auto *messageSelectPage = section->page<PageId::FriendRoomMessageSelect>();
-    messageSelectPage->setMenuType(FriendRoomMessageSelectPage::MenuType::Close);
+    messageSelectPage->setMenuType(FriendRoomMessageSelectPage::MenuType::Start);
 
     push(PageId::FriendRoomMessageSelect, Anim::Next);
     m_instructionText.setMessage(4373, 0);

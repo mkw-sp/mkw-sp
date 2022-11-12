@@ -186,9 +186,9 @@ std::optional<RoomServer::State> RoomServer::calcMain(Handler &handler) {
         m_settingsChanged = false;
     }
 
-    if (m_roomClosed) {
-        writeClose(m_gamemode);
-        m_roomClosed = false;
+    if (m_roomStarted) {
+        writeStart(m_gamemode);
+        m_roomStarted = false;
         auto setting = getSetting<SP::ClientSettings::Setting::RoomTeamSize>();
         if (setting == SP::ClientSettings::RoomTeamSize::FFA) {
             state = State::Select;
@@ -296,7 +296,7 @@ bool RoomServer::onReceiveComment(u32 playerId, u32 messageId) {
     return true;
 }
 
-bool RoomServer::onRoomClose(u32 playerId, u32 gamemode) {
+bool RoomServer::onRoomStart(u32 playerId, u32 gamemode) {
     if (playerId != 0) {
         return false;
     }
@@ -307,7 +307,7 @@ bool RoomServer::onRoomClose(u32 playerId, u32 gamemode) {
 
     m_gamemode = gamemode;
     m_commentQueue.reset();
-    m_roomClosed = true;
+    m_roomStarted = true;
     return true;
 }
 
@@ -428,10 +428,10 @@ void RoomServer::writeSettings() {
     }
 }
 
-void RoomServer::writeClose(u32 gamemode) {
+void RoomServer::writeStart(u32 gamemode) {
     for (size_t i = 0; i < m_clients.size(); i++) {
         if (m_clients[i] && m_clients[i]->ready()) {
-            if (!m_clients[i]->writeClose(gamemode)) {
+            if (!m_clients[i]->writeStart(gamemode)) {
                 disconnectClient(i);
             }
         }
@@ -561,10 +561,10 @@ bool RoomServer::Client::writeComment(u32 playerId, u32 messageId) {
     return write(event);
 }
 
-bool RoomServer::Client::writeClose(u32 gamemode) {
+bool RoomServer::Client::writeStart(u32 gamemode) {
     RoomEvent event;
-    event.which_event = RoomEvent_close_tag;
-    event.event.close.gamemode = gamemode;
+    event.which_event = RoomEvent_start_tag;
+    event.event.start.gamemode = gamemode;
     return write(event);
 }
 
@@ -759,8 +759,8 @@ std::optional<RoomServer::Client::State> RoomServer::Client::calcMain(Handler &h
         }
         m_server.m_players[*playerId].m_settings = settings;
         return State::Main;
-    case RoomRequest_close_tag:
-        if (!m_server.onRoomClose(*playerId, request->request.close.gamemode)) {
+    case RoomRequest_start_tag:
+        if (!m_server.onRoomStart(*playerId, request->request.start.gamemode)) {
             return {};
         }
         return State::Main;

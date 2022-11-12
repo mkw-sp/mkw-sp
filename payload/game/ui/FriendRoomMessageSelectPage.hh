@@ -13,7 +13,7 @@ public:
         None = -1,
 
         Comment = 0,
-        Close = 1,
+        Start = 1,
         Register = 2,
     };
 
@@ -54,7 +54,7 @@ private:
     void refresh();
 
     void onCommentButtonFront(PushButton *button, u32 localPlayerId);
-    void onCloseButtonFront(PushButton *button, u32 localPlayerId);
+    void onStartButtonFront(PushButton *button, u32 localPlayerId);
     void onRegisterButtonFront();
     void onRight(SheetSelectControl *control, u32 localPlayerId);
     void onLeft(SheetSelectControl *control, u32 localPlayerId);
@@ -86,7 +86,7 @@ private:
     H<PushButton> m_onCommentButtonFront{ this, &FriendRoomMessageSelectPage::onCommentButtonFront };
     H<SheetSelectControl> m_onRight{this, &FriendRoomMessageSelectPage::onRight };
     H<SheetSelectControl> m_onLeft{this, &FriendRoomMessageSelectPage::onLeft };
-    H<PushButton> m_onCloseButtonFront{ this, &FriendRoomMessageSelectPage::onCloseButtonFront };
+    H<PushButton> m_onStartButtonFront{ this, &FriendRoomMessageSelectPage::onStartButtonFront };
 };
 
 } // namespace UI

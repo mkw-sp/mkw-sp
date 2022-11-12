@@ -59,12 +59,12 @@ void FriendRoomMessageSelectPage::onActivate() {
         m_commentSelectBG.setPaneVisible("yellow_null", false);
         m_commentSelectBG.setPaneVisible("pink_null", false);
         break;
-    case MenuType::Close:
+    case MenuType::Start:
         m_messageCount = 4;
 
         for (u8 i = 0; i < 4; i++) {
-            m_visibleMessageSelect->m_buttons[i].setFrontHandler(&m_onCloseButtonFront, false);
-            m_hiddenMessageSelect->m_buttons[i].setFrontHandler(&m_onCloseButtonFront, false);
+            m_visibleMessageSelect->m_buttons[i].setFrontHandler(&m_onStartButtonFront, false);
+            m_hiddenMessageSelect->m_buttons[i].setFrontHandler(&m_onStartButtonFront, false);
         }
 
         m_commentSelectBG.setPaneVisible("blue_null", false);
@@ -125,7 +125,7 @@ void FriendRoomMessageSelectPage::refresh() {
             case MenuType::Comment:
                 messageId = currentButton + 4500;
                 break;
-            case MenuType::Close:
+            case MenuType::Start:
                 messageId = currentButton + 4110;
                 break;
             case MenuType::Register:
@@ -168,8 +168,8 @@ void FriendRoomMessageSelectPage::onCommentButtonFront(PushButton *button, [[may
     startReplace(Anim::Next, button->getDelay());
 }
 
-void FriendRoomMessageSelectPage::onCloseButtonFront(PushButton *button, [[maybe_unused]] u32 localPlayerId) {
-    SP::RoomClient::Instance()->closeRoom(button->m_index);
+void FriendRoomMessageSelectPage::onStartButtonFront(PushButton *button, [[maybe_unused]] u32 localPlayerId) {
+    SP::RoomClient::Instance()->startRoom(button->m_index);
     startReplace(Anim::Next, button->getDelay());
 }
 

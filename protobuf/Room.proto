@@ -20,7 +20,7 @@ message RoomRequest {
         repeated uint32 settings = 1;
     }
 
-    message Close {
+    message Start {
         required uint32 gamemode = 1;
     }
 
@@ -45,7 +45,7 @@ message RoomRequest {
         Spectate   spectate   = 2;
         Comment    comment    = 3;
         Settings   settings   = 4;
-        Close      close      = 5;
+        Start      start      = 5;
         TeamSelect teamSelect = 6;
         Vote       vote       = 7;
     }
@@ -77,7 +77,7 @@ message RoomEvent {
         required uint32 messageId = 2;
     }
 
-    message Close {
+    message Start {
         required uint32 gamemode = 1;
     }
 
@@ -108,7 +108,7 @@ message RoomEvent {
         Spectate    spectate    = 3;
         Comment     comment     = 4;
         Settings    settings    = 5;
-        Close       close       = 6;
+        Start       start       = 6;
         TeamSelect  teamSelect  = 7;
         SelectPulse selectPulse = 8;
         SelectInfo  selectInfo  = 9;

@@ -54,7 +54,7 @@ private:
         std::array<u32, SP::RoomSettings::count> settings;
     };
 
-    struct Close {
+    struct Start {
         u32 messageId;
     };
 
@@ -74,9 +74,9 @@ private:
     // Leave: 12
     // Comment: 18
     // Settings: 1
-    // Close: 1
-    SP::CircularBuffer<std::variant<Join, Leave, Comment, Settings, Close>, 44> m_queue;
-    bool m_roomClosed = false;
+    // Start: 1
+    SP::CircularBuffer<std::variant<Join, Leave, Comment, Settings, Start>, 44> m_queue;
+    bool m_roomStarted = false;
 };
 
 } // namespace UI
