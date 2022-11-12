@@ -60,7 +60,7 @@ public:
     }
 
     T *operator[](size_t index) {
-        return std::launder(reinterpret_cast<T *>(&m_vals[index]));
+        return std::launder(reinterpret_cast<T *>(&m_vals[(m_front + index) % N]));
     }
 
     void remove(size_t index) {
