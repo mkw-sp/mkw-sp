@@ -3,7 +3,6 @@
 #include "sp/cs/RoomManager.hh"
 #include "sp/net/AsyncListener.hh"
 #include "sp/net/AsyncSocket.hh"
-#include "sp/settings/RoomSettings.hh"
 
 #include <game/system/Mii.hh>
 #include <protobuf/Room.pb.h>
@@ -85,8 +84,6 @@ private:
 
     RoomServer();
     ~RoomServer();
-
-    const std::array<u32, RoomSettings::count> &settings() const override;
 
     // Used to update m_state
     std::optional<State> resolve(Handler &handler);
