@@ -190,13 +190,14 @@ void FriendRoomBackPage::onRefocus() {
     }
 }
 
-void FriendRoomBackPage::pop() {
+void FriendRoomBackPage::pop(Anim anim) {
     m_queue.reset();
 
+    setAnim(anim);
     auto *section = SectionManager::Instance()->currentSection();
     if (section->isPageActive(PageId::FriendRoom)) {
         auto friendRoomPage = section->page<PageId::FriendRoom>();
-        friendRoomPage->pop();
+        friendRoomPage->pop(anim);
     }
     m_popRequested = true;
 }

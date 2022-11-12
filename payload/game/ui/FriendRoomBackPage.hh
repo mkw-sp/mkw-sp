@@ -26,7 +26,7 @@ public:
     void afterCalc() override;
     void onRefocus() override;
 
-    void pop();
+    void pop(Anim anim);
     void onPlayerJoin(System::RawMii mii, u32 location, u16 latitude, u16 longitude);
     void onPlayerLeave(u32 playerId);
     void onReceiveComment(u32 playerId, u32 messageId);

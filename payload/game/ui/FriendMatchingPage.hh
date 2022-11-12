@@ -23,7 +23,7 @@ public:
     void afterCalc() override;
     void onRefocus() override;
 
-    void collapse();
+    void collapse(Anim anim);
     void prepareStartClient();
     void prepareStartServer();
 

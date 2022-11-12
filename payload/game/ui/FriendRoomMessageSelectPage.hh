@@ -26,7 +26,7 @@ public:
     void beforeCalc() override;
 
     void setMenuType(MenuType menuType) { m_menuType = menuType; }
-    void pop();
+    void pop(Anim anim);
 
 private:
     class MessageSelectControl : public LayoutUIControl {

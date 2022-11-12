@@ -111,7 +111,8 @@ void FriendRoomMessageSelectPage::beforeCalc() {
     }
 }
 
-void FriendRoomMessageSelectPage::pop() {
+void FriendRoomMessageSelectPage::pop(Anim anim) {
+    setAnim(anim);
     m_popRequested = true;
 }
 

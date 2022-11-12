@@ -21,7 +21,7 @@ public:
     void beforeCalc() override;
     void afterCalc() override;
 
-    void pop();
+    void pop(Anim anim);
     void refresh(const std::array<u32, SP::RoomSettings::count> &settings);
 
 private:

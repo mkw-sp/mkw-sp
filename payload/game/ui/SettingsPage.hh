@@ -109,7 +109,7 @@ public:
     BlackBackControl *blackBack() override;
 
     void configure(IHandler *handler);
-    void pop();
+    void pop(Anim anim);
 
 private:
     LayoutUIControl m_instructionText;

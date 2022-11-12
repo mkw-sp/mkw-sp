@@ -66,7 +66,8 @@ void FriendRoomRulesPage::afterCalc() {
     m_okKey.setMessageAll(9504, &info);
 }
 
-void FriendRoomRulesPage::pop() {
+void FriendRoomRulesPage::pop(Anim anim) {
+    setAnim(anim);
     m_popRequested = true;
 }
 

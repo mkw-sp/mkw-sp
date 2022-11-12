@@ -104,20 +104,21 @@ void FriendRoomPage::onRefocus() {
     }
 }
 
-void FriendRoomPage::pop() {
+void FriendRoomPage::pop(Anim anim) {
+    setAnim(anim);
     auto *section = SectionManager::Instance()->currentSection();
     if (section->isPageActive(PageId::SettingsPopup)) {
         auto *settingsPagePopup = section->page<PageId::SettingsPopup>();
-        settingsPagePopup->pop();
+        settingsPagePopup->pop(anim);
     } else if (section->isPageActive(PageId::FriendRoomRules)) {
         auto *rulesPage = section->page<PageId::FriendRoomRules>();
-        rulesPage->pop();
+        rulesPage->pop(anim);
     } else if (section->isPageActive(PageId::FriendRoomMessageSelect)) {
         auto *messageSelectPage = section->page<PageId::FriendRoomMessageSelect>();
-        messageSelectPage->pop();
+        messageSelectPage->pop(anim);
     } else if (section->isPageActive(PageId::YesNoPopup)) {
         auto *yesNoPagePopup = section->page<PageId::YesNoPopup>();
-        yesNoPagePopup->pop();
+        yesNoPagePopup->pop(anim);
     }
     m_popRequested = true;
 }
@@ -192,7 +193,7 @@ void FriendRoomPage::onBackConfirm([[maybe_unused]] s32 choice,
     SP::RoomManager::Instance()->destroyInstance();
     auto *section = SectionManager::Instance()->currentSection();
     auto *friendMatchingPage = section->page<PageId::FriendMatching>();
-    friendMatchingPage->collapse();
+    friendMatchingPage->collapse(Anim::Prev);
 }
 
 void FriendRoomPage::onSettingsBack([[maybe_unused]] SettingsPage *settingsPage,

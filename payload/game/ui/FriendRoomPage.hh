@@ -29,7 +29,7 @@ public:
     void beforeCalc() override;
     void onRefocus() override;
 
-    void pop();
+    void pop(Anim anim);
 
 private:
     void onBack(u32 localPlayerId);

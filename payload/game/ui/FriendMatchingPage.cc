@@ -74,7 +74,7 @@ void FriendMatchingPage::afterCalc() {
             messagePagePopup->setWindowMessage(messageId);
             push(PageId::MessagePopup, Anim::Next);
         } else {
-            collapse();
+            collapse(Anim::None);
             m_roomHasError = true;
         }
     }
@@ -115,21 +115,22 @@ void FriendMatchingPage::onRefocus() {
     }
 }
 
-void FriendMatchingPage::collapse() {
+void FriendMatchingPage::collapse(Anim anim) {
+    setAnim(anim);
     auto *section = SectionManager::Instance()->currentSection();
     auto sectionId = section->id();
     if (section->isPageFocused(this)) {
         auto *globePage = section->page<PageId::Globe>();
         globePage->requestSpinFar();
         if (sectionId == SectionId::OnlineServer) {
-            changeSection(SectionId::ServicePack, Anim::Prev, 0.0f);
+            changeSection(SectionId::ServicePack, Anim::None, 0.0f);
         } else {
             m_replacement = PageId::OnlineTop;
-            startReplace(Anim::Prev, 0.0f);
+            startReplace(Anim::None, 0.0f);
         }
     } else if (section->isPageActive(PageId::FriendRoomBack)) {
         auto *friendRoomBackPage = section->page<PageId::FriendRoomBack>();
-        friendRoomBackPage->pop();
+        friendRoomBackPage->pop(anim);
     }
 }
 
@@ -137,7 +138,7 @@ void FriendMatchingPage::prepareStartClient() {
     auto *section = SectionManager::Instance()->currentSection();
     auto *globePage = section->page<PageId::Globe>();
     globePage->requestSpinClose();
-    collapse();
+    collapse(Anim::Next);
     m_roomStarted = true;
 }
 
@@ -151,7 +152,7 @@ void FriendMatchingPage::prepareStartServer() {
             globePage->requestSpinClose();
         }
     }
-    collapse();
+    collapse(Anim::Next);
     m_roomStarted = true;
 }
 
@@ -159,7 +160,7 @@ void FriendMatchingPage::onBack([[maybe_unused]] u32 localPlayerId) {
     auto *roomManager = SP::RoomManager::Instance();
     if (roomManager) {
         roomManager->destroyInstance();
-        collapse();
+        collapse(Anim::Prev);
     }
 }
 

@@ -2,7 +2,8 @@
 
 namespace UI {
 
-void YesNoPage::pop() {
+void YesNoPagePopup::pop(Anim anim) {
+    setAnim(anim);
     m_popRequested = true;
 }
 

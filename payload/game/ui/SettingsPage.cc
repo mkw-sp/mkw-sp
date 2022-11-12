@@ -300,7 +300,8 @@ void SettingsPagePopup::configure(IHandler *handler) {
     m_handler = handler;
 }
 
-void SettingsPagePopup::pop() {
+void SettingsPagePopup::pop(Anim anim) {
+    setAnim(anim);
     m_popRequested = true;
 }
 
