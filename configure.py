@@ -652,6 +652,7 @@ asset_in_files = {
         os.path.join('game_image', 'timg', 'tt_d_number_3d_none.tpl'),
         #MegaTC
         os.path.join('game_image', 'timg', 'MegaTC_icon.tpl'),
+        os.path.join('game_image', 'blyt', 'item.brlyt.json5'),
         # Results
         os.path.join('result', 'anim', 'common_w204_result_team_position.brlan.json5'),
         os.path.join('result', 'anim', 'position_12players_color_off.brlan.json5'),
@@ -1261,6 +1262,7 @@ code_in_files = {
         os.path.join('payload', 'game', 'ui', 'page', 'TopMenuPage.S'),
         os.path.join('payload', 'game', 'ui', 'page', 'TopMenuPage.c'),
         os.path.join('payload', 'game', 'util', 'Input.S'),
+        os.path.join('payload', 'game', 'util', 'Registry.cc'),
         os.path.join('payload', 'nw4r', 'db', 'dbAssert.S'),
         os.path.join('payload', 'nw4r', 'db', 'dbException.S'),
         os.path.join('payload', 'nw4r', 'db', 'dbException.c'),

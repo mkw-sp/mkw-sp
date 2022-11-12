@@ -27,9 +27,10 @@ void *DVDArchive::getFile(const char *path, size_t *size) {
         if (!strcmp(path, "kumo.brres")) {
             return REPLACED(getFile)("MegaTC.brres", size);
         }
-        if (!strcmp(path, "fm_item_pikakumo.tpl")) {
-            return REPLACED(getFile)("MegaTC_icon.tpl", size);
-        }
+        /*
+            if (!strcmp(path, "fm_item_pikakumo.tpl")) {
+                return REPLACED(getFile)("MegaTC_icon.tpl", size);
+            } */
     }
 
     return REPLACED(getFile)(path, size);

@@ -1281,6 +1281,7 @@
 0x8085e3b4 RaceRankingPage_getReplacement
 0x80860acc getCharacterPane
 0x80860acc _ZN8Registry16GetCharacterPaneEj
+0x80860af0 _ZN8Registry11getItemPaneEjj
 0x80863a9c DriverSound_init
 0x80868974 _ZN5Sound18DriverSoundManager15playSelectSoundEji
 
