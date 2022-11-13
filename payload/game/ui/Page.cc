@@ -22,6 +22,14 @@ Page::Anim Page::anim() const {
     return m_anim;
 }
 
+const MenuInputManager *Page::inputManager() const {
+    return m_inputManager;
+}
+
+MenuInputManager *Page::inputManager() {
+    return m_inputManager;
+}
+
 void Page::calc() {
     switch (m_state) {
     case State::State3:

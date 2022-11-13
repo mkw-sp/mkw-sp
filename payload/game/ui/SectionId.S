@@ -18,7 +18,8 @@
 #define Battle3P 0x2a
 #define Battle4P 0x2b
 
-#define MRReplay 0x2c
+#define MR 0x2c
+
 #define TournamentReplay 0x2d
 #define GPReplay 0x2e
 #define TAReplay 0x2f

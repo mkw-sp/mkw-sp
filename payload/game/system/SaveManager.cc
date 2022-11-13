@@ -708,12 +708,6 @@ void SaveManager_SetSetting(const char *key, const char *value) {
     saveManager->setSetting(key, value);
 }
 
-void SaveManager_SetDriftMode(u32 value) {
-    auto *saveManager = System::SaveManager::Instance();
-    auto v = static_cast<SP::ClientSettings::DriftMode>(value);
-    saveManager->setSetting<SP::ClientSettings::Setting::DriftMode>(v);
-}
-
 u32 SaveManager_GetVanillaMode(void) {
     auto *saveManager = System::SaveManager::Instance();
     auto value = saveManager->getSetting<SP::ClientSettings::Setting::VanillaMode>();

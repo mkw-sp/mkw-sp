@@ -55,6 +55,7 @@ public:
     void setPointerOnly(bool pointerOnly);
     f32 getDelay() const;
     bool isSelected() const;
+    void setFrontSoundId(Sound::SoundId soundId);
 
     void onFront(u32 r4, u32 r5);
 

@@ -9,6 +9,7 @@
 #include "revolution/gx/GXPixel.h"
 #include "revolution/gx/GXStruct.h"
 #include "revolution/gx/GXTev.h"
+#include "revolution/gx/GXTexture.h"
 
 void GXSetAlphaUpdate(GXBool update_enable);
 void GXSetClipMode(GXClipMode clip);

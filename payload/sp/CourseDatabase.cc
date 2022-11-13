@@ -1,25 +1,6 @@
 #include "CourseDatabase.hh"
 
-/*namespace SP::CourseDatabase {
-
-static const Entry entries[42] = {
-    { 3409, false, true, 33, 32 },
-};
-
-static Filter filter{false, false};
-static u32 count = 0;
-static u32 databaseIds[42];
-
-u32 Count(Filter filter) {
-    return count;
-}
-
-const Entry &Entry(Filter filter, u32 index) {
-
-}
-
-} // namespace SP::CourseDatabase
-*/
+#include <algorithm>
 
 namespace SP {
 
@@ -57,6 +38,10 @@ void CourseDatabase::refresh(Filter filter) {
 
         m_internalIndices[m_count++] = internalIndex;
     }
+
+    std::sort(m_internalIndices.begin(), m_internalIndices.end(), [&](auto i0, auto i1) {
+        return m_entries[i0].timestamp < m_entries[i1].timestamp;
+    });
 }
 
 } // namespace SP

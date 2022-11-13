@@ -3,9 +3,12 @@
 #include "game/ui/Page.hh"
 #include "game/ui/SectionId.hh"
 
+#include <nw4r/lyt/lyt_drawInfo.hh>
+
 namespace UI {
 
 class ConfirmPage;
+class CourseSelectPage;
 class DriftSelectPage;
 class FriendMatchingPage;
 class FriendRoomBackPage;
@@ -18,6 +21,7 @@ class MenuAwaitPage;
 class MenuMessagePage;
 class MenuSettingsPage;
 class MessagePagePopup;
+class MissionInstructionPage;
 class ModelPage;
 class ModelRenderPage;
 class OnlineTeamSelectPage;
@@ -47,6 +51,7 @@ public:
     SectionId id() const { return m_id; }
     bool isPageFocused(const Page *page) const;
     bool isPageActive(PageId pageId) const;
+    Vec2<f32> locationAdjustScale() const;
 
     static u32 REPLACED(GetSceneId)(SectionId id);
     static REPLACE u32 GetSceneId(SectionId id);
@@ -74,7 +79,9 @@ private:
     Page *m_pages[static_cast<size_t>(PageId::Max)];
     Page *m_activePages[10];
     u32 m_activePageCount;
-    u8 _380[0x408 - 0x380];
+    u8 _380[0x390 - 0x380];
+    nw4r::lyt::DrawInfo m_drawInfo;
+    u8 _3e4[0x408 - 0x3e4];
 };
 static_assert(sizeof(Section) == 0x408);
 
@@ -114,6 +121,11 @@ struct Section::PageIdHelper<PageId::DriftSelect> {
 };
 
 template <>
+struct Section::PageIdHelper<PageId::CourseSelect> {
+    using type = CourseSelectPage;
+};
+
+template <>
 struct Section::PageIdHelper<PageId::TimeAttackGhostList> {
     using type = TimeAttackGhostListPage;
 };
@@ -121,6 +133,11 @@ struct Section::PageIdHelper<PageId::TimeAttackGhostList> {
 template <>
 struct Section::PageIdHelper<PageId::TeamConfirm> {
     using type = TeamConfirmPage;
+};
+
+template <>
+struct Section::PageIdHelper<PageId::MissionInstruction> {
+    using type = MissionInstructionPage;
 };
 
 template <>

@@ -74,7 +74,7 @@ void RaceMenuPage::onNextButtonFront([[maybe_unused]] PushButton *button,
         sectionId = SectionId::AwardsVS;
     } else {
         menuScenario.cameraMode = 5;
-        sectionId = SectionId::SingleChooseVSCourse;
+        sectionId = SectionId::SingleSelectVSCourse;
     }
 
     f32 delay = button->getDelay();

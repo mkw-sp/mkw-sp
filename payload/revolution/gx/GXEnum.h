@@ -378,6 +378,14 @@ typedef enum {
 static_assert(sizeof(GXAttnFn) == 4);
 
 typedef enum {
+    GX_CLAMP,
+    GX_REPEAT,   
+    GX_MIRROR,
+    GX_MAX_TEXWRAPMODE,
+} GXTexWrapMode;
+static_assert(sizeof(GXTexWrapMode) == 4);
+
+typedef enum {
     GX_TEXMAP0,
     GX_TEXMAP1,
     GX_TEXMAP2,

@@ -84,6 +84,8 @@ public:
     State state() const;
     Anim anim() const;
     void setAnim(Anim anim);
+    const MenuInputManager *inputManager() const;
+    MenuInputManager *inputManager();
     REPLACE void calc();
 
     s32 frame() const { return m_frame; }

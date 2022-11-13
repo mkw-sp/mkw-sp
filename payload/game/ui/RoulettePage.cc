@@ -82,7 +82,7 @@ void RoulettePage::beforeInAnim() {
 
     auto *votingBackPage = section->page<PageId::VotingBack>();
     auto player = SectionManager::Instance()->globalContext()->m_selectPlayer[0];
-    bool driftType = SectionManager::Instance()->globalContext()->m_driftIsAuto[0];
+    bool driftType = SectionManager::Instance()->globalContext()->m_driftModes[0];
 
     SP_LOG("beforeInAnim: Vote sent!");
     SP::RoomManager::Player::Properties properties = {player.m_characterId, player.m_vehicleId,
