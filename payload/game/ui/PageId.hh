@@ -55,8 +55,8 @@ enum class PageId {
     CharacterSelect = 0x6B,
     VehicleSelect = 0x6C,
     DriftSelect = 0x6D,
-    CupSelect = 0x6E,
-    CourseSelect = 0x6f,
+    CourseSelect = 0x6E, // Replaces CupSelect
+    //CourseSelect = 0x6f,
     TimeAttackTop = 0x70,
     TimeAttackGhostList = 0x71,
     VSSelect = 0x72,

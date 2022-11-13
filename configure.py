@@ -1148,6 +1148,7 @@ code_in_files = {
         os.path.join('payload', 'game', 'ui', 'ConfirmPage.cc'),
         os.path.join('payload', 'game', 'ui', 'ControlGroup.cc'),
         os.path.join('payload', 'game', 'ui', 'ControlLoader.S'),
+        os.path.join('payload', 'game', 'ui', 'CourseSelectPage.cc'),
         os.path.join('payload', 'game', 'ui', 'DirectConnectionPage.cc'),
         os.path.join('payload', 'game', 'ui', 'Font.S'),
         os.path.join('payload', 'game', 'ui', 'Font.cc'),

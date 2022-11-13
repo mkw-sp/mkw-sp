@@ -2,6 +2,7 @@
 
 #include "game/ui/AwardPage.hh"
 #include "game/ui/ChannelPage.hh"
+#include "game/ui/CourseSelectPage.hh"
 #include "game/ui/DirectConnectionPage.hh"
 #include "game/ui/FriendMatchingPage.hh"
 #include "game/ui/FriendRoomBackPage.hh"
@@ -99,6 +100,7 @@ void Section::addPage(PageId pageId) {
         { SectionId::Single, PageId::VSSelect },
         { SectionId::Single, PageId::VSSetting },
         { SectionId::Single, PageId::BattleSetting },
+        { SectionId::Single, (PageId)0x6f },
         { SectionId::SingleChangeDriver, PageId::VSSelect },
         { SectionId::SingleChangeDriver, PageId::VSSetting },
         { SectionId::SingleChangeDriver, PageId::BattleSetting },
@@ -326,7 +328,6 @@ void Section::addPages(SectionId id) {
         { SectionId::SingleChangeGhostData, (PageId)83 },
         { SectionId::SingleChangeGhostData, PageId::SingleTop },
         { SectionId::SingleChangeGhostData, (PageId)106 },
-        { SectionId::SingleChangeGhostData, PageId::CupSelect },
         { SectionId::SingleChangeGhostData, PageId::CourseSelect },
         { SectionId::SingleChangeGhostData, PageId::TimeAttackTop },
         { SectionId::SingleChangeGhostData, PageId::TimeAttackGhostList },
@@ -380,7 +381,7 @@ void Section::addActivePages(SectionId id) {
 
         { SectionId::OnlineMulti, PageId::OnlineTop },
 
-        { SectionId::Voting1PVS, PageId::CupSelect },
+        { SectionId::Voting1PVS, PageId::CourseSelect },
 
         { SectionId::VotingServer, PageId::Roulette },
 
@@ -403,6 +404,8 @@ Page *Section::CreatePage(PageId pageId) {
         return new LicenseSelectPage;
     case PageId::SingleTop:
         return new SingleTopPage;
+    case PageId::CourseSelect:
+        return new CourseSelectPage;
     case PageId::TimeAttackGhostList:
         return new TimeAttackGhostListPage;
     case PageId::TeamConfirm:
