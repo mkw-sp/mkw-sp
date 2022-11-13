@@ -2,7 +2,6 @@
 
 #include "sp/cs/RoomManager.hh"
 #include "sp/net/AsyncSocket.hh"
-#include "sp/settings/RoomSettings.hh"
 
 #include <game/system/Mii.hh>
 #include <protobuf/Room.pb.h>
@@ -40,8 +39,6 @@ private:
     // These functions are handled in CreateInstance and DestroyInstance
     RoomClient(u32 localPlayerCount, u32 ip, u16 port, u16 passcode);
     ~RoomClient();
-
-    const std::array<u32, RoomSettings::count> &settings() const override;
 
     // Used to update m_state
     std::optional<State> resolve(Handler &handler);
@@ -81,7 +78,6 @@ private:
     u32 m_localPlayerCount;
     u32 m_localPlayerIds[2];
     bool m_localSettingsChanged = false;
-    std::array<u32, RoomSettings::count> m_settings;
     State m_state;
     Net::AsyncSocket m_socket;
 

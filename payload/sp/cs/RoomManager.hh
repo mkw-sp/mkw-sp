@@ -51,7 +51,6 @@ public:
         }
 
         u32 m_clientId;
-        std::array<u32, RoomSettings::count> m_settings;
         System::RawMii m_mii;
         u32 m_location;
         u32 m_latitude;
@@ -92,7 +91,7 @@ public:
         static_assert(static_cast<u32>(S) >= RoomSettings::offset);
         constexpr u32 setting = static_cast<u32>(S) - RoomSettings::offset;
         static_assert(setting < RoomSettings::count);
-        return static_cast<SP::ClientSettings::Helper<S>::type>(settings()[setting]);
+        return static_cast<SP::ClientSettings::Helper<S>::type>(m_settings[setting]);
     }
 
     virtual bool isPlayerLocal(u32 playerId) const = 0;
@@ -134,10 +133,9 @@ protected:
     RoomManager(RoomManager &&) = delete;
     ~RoomManager();
 
-    virtual const std::array<u32, RoomSettings::count> &settings() const = 0;
-
     u32 m_playerCount = 0;
     std::array<Player, 12> m_players;
+    std::array<u32, RoomSettings::count> m_settings;
     u32 m_gamemode = 0;
     std::array<s8, 12> m_votePlayerOrder;
     u8 m_voteCurrentPlayerIdx = 0;

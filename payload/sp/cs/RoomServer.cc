@@ -110,10 +110,6 @@ RoomServer::~RoomServer() {
     hydro_memzero(&m_keypair, sizeof(m_keypair));
 }
 
-const std::array<u32, RoomSettings::count> &RoomServer::settings() const {
-    return m_players[0].m_settings;
-}
-
 std::optional<RoomServer::State> RoomServer::resolve(Handler &handler) {
     switch (m_state) {
     case State::Setup:
@@ -182,7 +178,7 @@ std::optional<RoomServer::State> RoomServer::calcMain(Handler &handler) {
 
     if (m_settingsChanged) {
         writeSettings();
-        handler.onSettingsChange(m_players[0].m_settings);
+        handler.onSettingsChange(m_settings);
         m_settingsChanged = false;
     }
 
@@ -248,7 +244,7 @@ bool RoomServer::onPlayerJoin(Handler &handler, u32 clientId, const System::RawM
         return false;
     }
 
-    m_players[m_playerCount] = {clientId, settings, *mii, location, latitude, longitude,
+    m_players[m_playerCount] = {clientId, *mii, location, latitude, longitude,
             regionLineColor, 0xFFFFFFFF, {}, 0};
     m_playerCount++;
     writeJoin(mii, location, latitude, longitude, regionLineColor);
@@ -262,19 +258,15 @@ bool RoomServer::onPlayerJoin(Handler &handler, u32 clientId, const System::RawM
 void RoomServer::onPlayerLeave(Handler &handler, u32 playerId) {
     handler.onPlayerLeave(playerId);
     writeLeave(playerId);
-    auto settings = m_players[playerId].m_settings;
     m_playerCount--;
     for (u32 i = playerId; i < m_playerCount; i++) {
         m_players[i] = m_players[i + 1];
     }
-    if (playerId == 0 && m_playerCount > 0) {
-        bool changed = false;
-        for (size_t i = 0; i < RoomSettings::count; i++) {
-            changed = changed || m_players[0].m_settings[i] != settings[i];
-        }
-        if (changed) {
-            writeSettings();
-            handler.onSettingsChange(m_players[0].m_settings);
+    if (playerId == 0) {
+        for (u32 i = 0; i < m_clients.size(); i++) {
+            if (m_clients[i]) {
+                disconnectClient(i);
+            }
         }
     }
 }
@@ -543,11 +535,10 @@ bool RoomServer::Client::writeSettings() {
     if (m_server.m_playerCount == 0) {
         event.event.settings.settings_count = 0;
     } else {
-        const Player &host = m_server.m_players[0];
-        assert(std::size(event.event.settings.settings) == std::size(host.m_settings));
-        event.event.settings.settings_count = std::size(host.m_settings);
-        for (size_t i = 0; i < std::size(host.m_settings); i++) {
-            event.event.settings.settings[i] = host.m_settings[i];
+        assert(std::size(event.event.settings.settings) == std::size(m_server.m_settings));
+        event.event.settings.settings_count = std::size(m_server.m_settings);
+        for (size_t i = 0; i < std::size(m_server.m_settings); i++) {
+            event.event.settings.settings[i] = m_server.m_settings[i];
         }
     }
     return write(event);
@@ -738,6 +729,9 @@ std::optional<RoomServer::Client::State> RoomServer::Client::calcMain(Handler &h
         }
         return State::Main;
     case RoomRequest_settings_tag:
+        if (*playerId != 0) {
+            return {};
+        }
         if (request->request.settings.settings_count != RoomSettings::count) {
             return {};
         }
@@ -751,13 +745,12 @@ std::optional<RoomServer::Client::State> RoomServer::Client::calcMain(Handler &h
         for (size_t i = 0; i < RoomSettings::count; i++) {
             settings[i] = request->request.settings.settings[i];
         }
-        if (*playerId == 0) {
-            for (size_t i = 0; i < RoomSettings::count; i++) {
-                m_server.m_settingsChanged = m_server.m_settingsChanged ||
-                        m_server.m_players[*playerId].m_settings[i] != settings[i];
+        for (size_t i = 0; i < RoomSettings::count; i++) {
+            if (m_server.m_settings[i] != settings[i]) {
+                m_server.m_settingsChanged = true;
             }
         }
-        m_server.m_players[*playerId].m_settings = settings;
+        m_server.m_settings = settings;
         return State::Main;
     case RoomRequest_start_tag:
         if (!m_server.onRoomStart(*playerId, request->request.start.gamemode)) {

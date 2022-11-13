@@ -107,10 +107,6 @@ RoomClient::RoomClient(u32 localPlayerCount, u32 ip, u16 port, u16 passcode)
 
 RoomClient::~RoomClient() = default;
 
-const std::array<u32, RoomSettings::count> &RoomClient::settings() const {
-    return m_settings;
-}
-
 std::optional<RoomClient::State> RoomClient::resolve(Handler &handler) {
     switch (m_state) {
     case State::Connect:
@@ -220,9 +216,12 @@ std::optional<RoomClient::State> RoomClient::calcSetup(Handler &handler) {
 
 std::optional<RoomClient::State> RoomClient::calcMain(Handler &handler) {
     if (m_localSettingsChanged) {
-        if (!writeSettings()) {
-            return {};
+        if (isPlayerLocal(0)) {
+            if (!writeSettings()) {
+                return {};
+            }
         }
+        m_localSettingsChanged = false;
     }
 
     std::optional<RoomEvent> event{};
@@ -392,7 +391,7 @@ bool RoomClient::onPlayerJoin(Handler &handler, const System::RawMii *mii, u32 l
         return false;
     }
 
-    m_players[m_playerCount] = {0xFFFFFFFF, {}, *mii, location, latitude, longitude,
+    m_players[m_playerCount] = {0xFFFFFFFF, *mii, location, latitude, longitude,
             regionLineColor, 0xFFFFFFFF, {}, 0};
     m_playerCount++;
     handler.onPlayerJoin(mii, location, latitude, longitude, regionLineColor);
@@ -540,7 +539,6 @@ bool RoomClient::writeSettings() {
     for (size_t i = 0; i < RoomSettings::count; i++) {
         request.request.settings.settings[i] = saveManager->getSetting(RoomSettings::offset + i);
     }
-    m_localSettingsChanged = false;
     return write(request);
 }
 
