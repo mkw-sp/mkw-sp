@@ -21,16 +21,12 @@ void *DVDArchive::getFile(const char *path, size_t *size) {
         }
     }
 
-    auto* saveManager = System::SaveManager::Instance();
+    auto *saveManager = System::SaveManager::Instance();
     auto setting = saveManager->getSetting<SP::ClientSettings::Setting::VSMegaClouds>();
     if (setting == SP::ClientSettings::VSMegaClouds::Enable) {
         if (!strcmp(path, "kumo.brres")) {
             return REPLACED(getFile)("MegaTC.brres", size);
         }
-        /*
-            if (!strcmp(path, "fm_item_pikakumo.tpl")) {
-                return REPLACED(getFile)("MegaTC_icon.tpl", size);
-            } */
     }
 
     return REPLACED(getFile)(path, size);
