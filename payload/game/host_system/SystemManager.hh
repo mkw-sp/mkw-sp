@@ -3,9 +3,11 @@
 extern "C" {
 #include "SystemManager.h"
 }
+#include "Scene.hh"
+
+#include "game/ui/SectionManager.hh"
 
 #include <sp/IOSDolphin.hh>
-#include "Scene.hh"
 
 namespace System {
 
@@ -40,61 +42,40 @@ public:
 
     static constexpr std::string_view s_applicationId = "1006667953393111040";
     static constexpr PresenceData s_defaultPresence = {
-        .state = "Main Menu",
-        .details = "MKW-SP",
-        .startTimestamp = 0,
-        .endTimestamp = 0,
-        .largeImageKey = "logo",
-        .largeImageText = "MKW-SP",
-        .smallImageKey = "logo",
-        .smallImageText = "MKW-SP",
-        .partySize = 0,
-        .partyMax = 0,
+            .state = "Main Menu",
+            .details = "MKW-SP",
+            .startTimestamp = 0,
+            .endTimestamp = 0,
+            .largeImageKey = "logo",
+            .largeImageText = "MKW-SP",
+            .smallImageKey = "logo",
+            .smallImageText = "MKW-SP",
+            .partySize = 0,
+            .partyMax = 0,
     };
 
     enum class ConnectionResult {
-        Connected,    // Success
-        Blocked,      // Config::MAIN_USE_DISCORD_PRESENCE is not set.
-        Unsupported,  // Dolphin version is too old
+        Connected, // Success
+        Blocked, // Config::MAIN_USE_DISCORD_PRESENCE is not set.
+        Unsupported, // Dolphin version is too old
     };
 
     ConnectionResult initConnection();
     void terminateConnection();
 
-    void setGameState(std::string_view state) {
-        if (!state.empty() &&
-                (!m_statusWasSent || state != std::string_view(status().state))) {
-            status().state = state;
-            sendStatus();
-        }
-    }
-
-    // Internal
-    PresenceData &status();
-    bool sendStatus();
-
-    // TODO: Something more advanced, look at Section IDs
-    void onSceneChange(RKSceneID id) {
-        switch (id) {
-        case RKSceneID::Title:
-        case RKSceneID::Menu:
-            setGameState("Main Menu");
-            break;
-        case RKSceneID::Race:
-            setGameState("In a Race");
-            break;
-        case RKSceneID::Globe:
-            setGameState("Online Menu");
-            break;
-        case RKSceneID::Strap:
-        case RKSceneID::FlagOpen:
-            break;
-        }
-    }
+    void onSceneChange(RKSceneID id);
+    void onSectionChange(UI::SectionId sectionId);
 
 private:
+    inline PresenceData &status();
+    bool sendStatus();
+    void setGameState();
+
+    SP::FixedString<128> m_state;
     PresenceData m_cached = s_defaultPresence;
+    RKSceneID m_sceneId;
     bool m_statusWasSent = false;
+    bool m_finalizedStatus = false;
 };
 
 } // namespace System
