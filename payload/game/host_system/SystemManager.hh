@@ -55,27 +55,23 @@ public:
     };
 
     enum class ConnectionResult {
-        Connected, // Success
-        Blocked, // Config::MAIN_USE_DISCORD_PRESENCE is not set.
+        Connected,   // Success
+        Blocked,     // Config::MAIN_USE_DISCORD_PRESENCE is not set.
         Unsupported, // Dolphin version is too old
     };
 
     ConnectionResult initConnection();
     void terminateConnection();
 
-    void onSceneChange(RKSceneID id);
     void onSectionChange(UI::SectionId sectionId);
 
 private:
-    inline PresenceData &status();
+    PresenceData &status();
     bool sendStatus();
-    void setGameState();
+    void setGameState(std::string_view state, std::string_view details, s64 startTimestamp);
 
-    SP::FixedString<128> m_state;
     PresenceData m_cached = s_defaultPresence;
-    RKSceneID m_sceneId;
     bool m_statusWasSent = false;
-    bool m_finalizedStatus = false;
 };
 
 } // namespace System

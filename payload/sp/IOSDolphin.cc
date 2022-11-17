@@ -17,10 +17,10 @@ enum class Ioctlv {
     //
     // Dolphin 5.0-11186
     GetElapsedTime = 1, // Vector IN() OUT(u32)
-    GetVersion = 2, // Vector IN() OUT(char[])
-    GetSpeedLimit = 3, // Vector IN() OUT(u32)
-    SetSpeedLimit = 4, // Vector IN(u32) OUT()
-    GetCPUSpeed = 5, // Vector IN() OUT(u32)
+    GetVersion = 2,     // Vector IN() OUT(char[])
+    GetSpeedLimit = 3,  // Vector IN() OUT(u32)
+    SetSpeedLimit = 4,  // Vector IN(u32) OUT()
+    GetCPUSpeed = 5,    // Vector IN() OUT(u32)
 
     // Merged in 393ce52 May 22, 2020
     //
@@ -33,10 +33,10 @@ enum class Ioctlv {
     //
     // NOTE: As of 4c2d707/5.0-17155, `DiscordReset` is just a call to `DiscordSetClient`
     // with an empty string.
-    DiscordSetClient = 7, // Vector IN(char[]) OUT()
+    DiscordSetClient = 7,   // Vector IN(char[]) OUT()
     DiscordSetPresence = 8, // Vector IN(char[], char[], char[], char[], char[], s64,
                             // s64, u32, u32) OUT()
-    DiscordReset = 9, // Vector IN() OUT()
+    DiscordReset = 9,       // Vector IN() OUT()
 
     // Merged in 083b817 November 12, 2022
     //
