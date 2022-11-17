@@ -318,7 +318,7 @@ void RichPresenceManager::onSectionChange(UI::SectionId sectionId) {
 
     if (sceneId == RKSceneID::Race) {
         auto timestamp = SP::IOSDolphin::GetSystemTime();
-        startTimestamp = timestamp ? *timestamp : 0;
+        startTimestamp = timestamp ? *timestamp / 1000 : 0;
     }
 
     setGameState(state, details, startTimestamp);
@@ -339,12 +339,15 @@ bool RichPresenceManager::sendStatus() {
 
 void RichPresenceManager::setGameState(std::string_view state, std::string_view details,
         s64 startTimestamp) {
+    // NOTE (vabold): We do not check for details updates, since we assume the following:
+    // Two states can have the same detail, but two details cannot have the same state.
     if (!m_statusWasSent || state != std::string_view(status().state) ||
             startTimestamp != status().startTimestamp) {
         // TODO: replace m_state and details with BMG strings
         status().state = state;
         status().details = details;
         status().startTimestamp = startTimestamp;
+        m_statusWasSent = false;
         sendStatus();
     }
 }
