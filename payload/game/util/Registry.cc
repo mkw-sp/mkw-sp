@@ -4,7 +4,7 @@
 
 namespace Registry {
 
-const char *getItemPane(u32 itemId, u32 count) {
+const char *GetItemPane(u32 itemId, u32 count) {
     auto *saveManager = System::SaveManager::Instance();
     auto setting = saveManager->getSetting<SP::ClientSettings::Setting::VSMegaClouds>();
 
@@ -13,7 +13,7 @@ const char *getItemPane(u32 itemId, u32 count) {
         return "mega_c";
     }
 
-    return REPLACED(getItemPane)(itemId, count);
+    return REPLACED(GetItemPane)(itemId, count);
 }
 
 } // namespace Registry
