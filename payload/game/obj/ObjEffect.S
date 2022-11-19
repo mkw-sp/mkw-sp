@@ -1,5 +1,18 @@
 #include <Common.S>
 
+#define KCL_TYPE_A_BIT_FIELD 0b111
+
+PATCH_BL_START(ObjEfDirector_mountEffect, 0x9C)
+    lha       r0, 0x2A(r31)
+    cmplwi    r0, KCL_TYPE_A_BIT_FIELD
+    blelr+
+
+    lis       r3, LinvalidKCLBitFieldMessage@ha
+    addi      r3, r3, LinvalidKCLBitFieldMessage@l
+    crclr     4*cr1+eq
+    bl        panic
+PATCH_BL_END(ObjEfDirector_mountEffect, 0x9C)
+
 PATCH_B_START(ObjEfDirector_mountEffect, 0x2c8)
     cmpwi r3, 8
     bge TooManyEffects
@@ -29,3 +42,9 @@ PATCH_B_START(ObjEfDirector_mount, 0x4c)
     bl LogLoadedEffect
     b ObjEfDirector_mount + 0x50
 PATCH_B_END(ObjEfDirector_mount, 0x4c)
+
+
+.section .rodata
+
+LinvalidKCLBitFieldMessage:
+    .asciz "Invalid KCL bit field detected!"
