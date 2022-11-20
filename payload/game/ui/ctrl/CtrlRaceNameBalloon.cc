@@ -65,9 +65,19 @@ void CtrlRaceNameBalloon::refresh(u32 playerId) {
     auto *saveManager = System::SaveManager::Instance();
     auto playerType = raceScenario.players[playerId].type;
     if (raceScenario.spMaxTeamSize < 2 && playerType == System::RaceConfig::Player::Type::Local) {
-        u32 regionLineColor = static_cast<u32>(
-                saveManager->getSetting<SP::ClientSettings::Setting::RegionLineColor>());
-        color = TeamColors::Get(regionLineColor ^ 1);
+        if (raceScenario.isOnline()) {
+            u32 regionLineColor = static_cast<u32>(
+                    saveManager->getSetting<SP::ClientSettings::Setting::RegionLineColor>());
+            color = TeamColors::Get(regionLineColor ^ 1);
+        } else {
+            GXColor colors[4] = {
+                    {232, 212, 0, 255},
+                    {9, 170, 255, 255},
+                    {255, 39, 127, 255},
+                    {38, 220, 65, 255},
+            };
+            color = colors[playerId];
+        }
     }
     for (size_t i = 0; i < 4; i++) {
         m_linePane->setVtxColor(i, color);

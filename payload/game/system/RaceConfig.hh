@@ -50,6 +50,10 @@ public:
     };
 
     struct Scenario {
+        bool isOnline() const {
+            return gameMode >= GameMode::OnlinePrivateVS && gameMode <= GameMode::OnlinePrivateBT;
+        }
+
         u8 _000[0x004 - 0x000];
         u8 playerCount;
         u8 _005[0x006 - 0x005];
