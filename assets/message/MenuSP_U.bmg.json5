@@ -1163,6 +1163,18 @@
         "font": "regular",
         "string": "Speedometer displays the speed the vehicle moves vertically.",
     },
+    "10332": {
+        "font": "regular",
+        "string": "Region and Country Flag",
+    },
+    "10333": {
+        "font": "regular",
+        "string": "Do not display your flag and region information in-game",
+    },
+    "10334": {
+        "font": "regular",
+        "string": "Display your flag and region information in-game",
+    },
     "20000": {
         "font": "regular",
         "string": "Online",
