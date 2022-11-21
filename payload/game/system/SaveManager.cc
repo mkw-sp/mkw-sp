@@ -244,7 +244,7 @@ void SaveManager::selectLicense(u32 licenseId) {
 void SaveManager::refreshGCPadRumble() {
     auto setting = getSetting<SP::ClientSettings::Setting::GCPadRumble>();
     bool rumbleEnabled = setting == SP::ClientSettings::GCPadRumble::Enable;
-    m_rawSave->globalSettings = (m_rawSave->globalSettings & ~2) | rumbleEnabled;
+    m_rawSave->globalSettings = (m_rawSave->globalSettings & ~1) | rumbleEnabled;
 }
 
 u32 SaveManager::spLicenseCount() const {
