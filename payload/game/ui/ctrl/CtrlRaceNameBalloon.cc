@@ -1,5 +1,9 @@
 #include "CtrlRaceNameBalloon.hh"
 
+extern "C" {
+#include "game/host_system/SystemManager.h"
+}
+
 #include "game/system/RaceConfig.hh"
 #include "game/system/SaveManager.hh"
 #include "game/ui/SectionManager.hh"
@@ -66,8 +70,15 @@ void CtrlRaceNameBalloon::refresh(u32 playerId) {
     auto playerType = raceScenario.players[playerId].type;
     if (raceScenario.spMaxTeamSize < 2 && playerType == System::RaceConfig::Player::Type::Local) {
         if (raceScenario.isOnline()) {
-            u32 regionLineColor = static_cast<u32>(
-                    saveManager->getSetting<SP::ClientSettings::Setting::RegionLineColor>());
+            SP::ClientSettings::RegionLineColor regionLineColorSetting =
+                    saveManager->getSetting<SP::ClientSettings::Setting::RegionLineColor>();
+
+            u32 regionLineColor;
+            if (regionLineColorSetting == SP::ClientSettings::RegionLineColor::Default) {
+                regionLineColor = s_systemManager->matchingArea;
+            } else {
+                regionLineColor = static_cast<u32>(regionLineColorSetting);
+            }
             color = TeamColors::Get(regionLineColor ^ 1);
         } else {
             GXColor colors[4] = {

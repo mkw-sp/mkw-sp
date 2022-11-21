@@ -102,6 +102,7 @@ enum class RegionLineColor {
     Yellow,
     White,
     Pink,
+    Default,
 };
 
 enum class FarPlayerTags {

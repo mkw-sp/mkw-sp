@@ -717,27 +717,27 @@
     },
     "10201": {
         "font": "regular",
-        "string": "The line under your name will be {color|player 3}red{color|unspecified}.",
+        "string": "The color of the line under your name will be {color|player 3}red{color|unspecified}.",
     },
     "10202": {
         "font": "regular",
-        "string": "The line under your name will be {color|sp blue}blue{color|unspecified}.",
+        "string": "The color of the line under your name will be {color|sp blue}blue{color|unspecified}.",
     },
     "10203": {
         "font": "regular",
-        "string": "The line under your name will be {color|sp green}green{color|unspecified}.",
+        "string": "The color of the line under your name will be {color|sp green}green{color|unspecified}.",
     },
     "10204": {
         "font": "regular",
-        "string": "The line under your name will be {color|player 1}yellow{color|unspecified}.",
+        "string": "The color of the line under your name will be {color|player 1}yellow{color|unspecified}.",
     },
     "10205": {
         "font": "regular",
-        "string": "The line under your name will be white.",
+        "string": "The color of the line under your name will be white.",
     },
     "10206": {
         "font": "regular",
-        "string": "The line under your name will be {color|sp pink}pink{color|unspecified}.",
+        "string": "The color of the line under your name will be {color|sp pink}pink{color|unspecified}.",
     },
     "10207": {
         "font": "regular",
@@ -1162,6 +1162,14 @@
     "10331": {
         "font": "regular",
         "string": "Speedometer displays the speed the vehicle moves vertically.",
+    },
+    "10332": {
+        "font": "regular",
+        "string": "Default",
+    },
+    "10333": {
+        "font": "regular",
+        "string": "The color of the line under your name will be\ndetermined by the game.",
     },
     "20000": {
         "font": "regular",
