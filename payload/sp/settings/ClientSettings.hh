@@ -295,7 +295,7 @@ enum class PerfOverlay {
 enum class RegionFlagDisplay{
     Disable,
     Enable,
-}
+};
 
 enum class DebugCheckpoints {
     Disable,

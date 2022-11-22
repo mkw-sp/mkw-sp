@@ -464,7 +464,7 @@ const Entry entries[] = {
         .defaultValue = static_cast<u32>(RegionFlagDisplay::Enable),
         .valueCount = magic_enum::enum_count<RegionFlagDisplay>(),
         .valueNames = magic_enum::enum_names<RegionFlagDisplay>().data(),
-        .valueMessageIds = (u32[]) { 7254, 7253 },
+        .valueMessageIds = (u32[]) { 10335, 10336 },
         .valueExplanationMessageIds = (u32[]) { 10333, 10334 },
     },
     [static_cast<u32>(Setting::DebugCheckpoints)] = {

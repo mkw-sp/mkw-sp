@@ -1169,11 +1169,20 @@
     },
     "10333": {
         "font": "regular",
-        "string": "Do not display your flag and region information in-game",
+        "string": "Do not display your flag and region information in-game.",
     },
     "10334": {
         "font": "regular",
-        "string": "Display your flag and region information in-game",
+        "string": "Display your flag and region information in-game.",
+    },
+    //Taken from Menu_U id 7253/7254, but had to duplicate because PAL changed the messages.
+    "10335": {
+        "font": "regular",
+        "string": "Don't Display",
+    },
+    "10336": {
+        "font": "regular",
+        "string": "Display",
     },
     "20000": {
         "font": "regular",
