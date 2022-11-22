@@ -29,7 +29,9 @@ private:
 
     struct RawSave {
         u8 _00000[0x2330c - 0x00000];
-        u32 globalSettings;
+        u32 globalSettings : 30;
+        bool m_flagDisplay : 1;
+        bool m_rumble : 1;
         u8 _23310[0x28000 - 0x23310];
     };
     static_assert(sizeof(RawSave) == 0x28000);
@@ -90,6 +92,7 @@ public:
         m_spLicenses[*m_spCurrentLicense].set<SP::ClientSettings::Setting, S>(value);
 
         refreshGCPadRumble();
+        refreshRegionFlagDisplay();
     }
 
     void setSetting(const char *key, const char *value);
@@ -127,6 +130,7 @@ private:
 
     void saveSPSave();
     void refreshGCPadRumble();
+    void refreshRegionFlagDisplay();
 
     void loadGhostHeaders();
     void loadGhosts();
