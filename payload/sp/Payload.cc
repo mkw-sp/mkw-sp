@@ -21,6 +21,7 @@ extern "C" {
 #include "sp/security/Heap.h"
 #include "sp/security/Memory.h"
 #include "sp/security/Stack.h"
+#include "sp/security/PageTable.h"
 #include "sp/storage/LogFile.h"
 }
 #include "sp/storage/DecompLoader.hh"
@@ -71,6 +72,7 @@ static void Init() {
 
     Console::Print("Applying security patches...");
 #ifndef GDB_COMPATIBLE
+    PageTable_Init();
     OSDisableCodeExecOnMEM1Hi16MB();
     OSDisableCodeExecOnMEM2();
     OSEnableCodeExecOnPayload();

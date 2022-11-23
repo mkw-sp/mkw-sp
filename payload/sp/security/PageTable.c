@@ -2,6 +2,9 @@
 
 #include <Common.h>
 #include <string.h>
+#include "sp/Dol.h"
+#include "sp/Rel.h"
+#include "sp/Payload.h"
 
 #define PAGE_TABLE_MEMORY_POWER_OF_2 16 // 64 Kibibytes
 static_assert(PAGE_TABLE_MEMORY_POWER_OF_2 > 15 && PAGE_TABLE_MEMORY_POWER_OF_2 < 26);
@@ -28,9 +31,10 @@ typedef enum WIMG {
 
 typedef enum PP {
     // clang-format off
-    PP_NONE       = 0b00,
-    PP_READ_ONLY  = 0b01,
-    PP_READ_WRITE = 0b11,
+    PP_NONE           = 0b00,
+    PP_READ_ONLY      = 0b01,
+    PP_READ_WRITE     = 0b10,
+    PP_FULL_READ_ONLY = 0b11,
     // clang-format on
 } PP;
 
@@ -58,13 +62,15 @@ typedef union PageTableEntry {
 typedef struct PageTableEntryInfo {
     void *physicalAddress;
     void *effectiveAddress;
-    u32 size;
+    s32 size;
     WIMG wimg;
     PP pp;
     u32 sr;
 } PageTableEntryInfo;
 
 __attribute__((aligned(PAGE_TABLE_SIZE))) static char pageTable[PAGE_TABLE_SIZE];
+
+static bool AddEntryToPageTable(PageTableEntryInfo *pteInfo);
 
 static u32 GetSDR1(void) {
     u32 sdr1;
@@ -79,8 +85,55 @@ static void SetSDR1(u32 sdr1) {
 static void SetUpPageTable(void) {
     memset(pageTable, 0, sizeof(pageTable));
 
+    PageTableEntryInfo Dol[1] = {{
+        .physicalAddress = (void*)((u32)Dol_getInitSectionStart() & ~0x80000000),
+        .effectiveAddress = Dol_getInitSectionStart(),
+        .size = ((s32)Dol_getTextSectionEnd())-((s32)Dol_getInitSectionStart()&~0xFFF),
+        .wimg = 0,
+        .pp = PP_FULL_READ_ONLY,
+        .sr = GetSR(0x8)
+    }};
+    PageTableEntryInfo Rel[1] = {{
+        .physicalAddress = (void*)((u32)Rel_getTextSectionStart() & ~0x80000000),
+        .effectiveAddress = Rel_getTextSectionStart(),
+        .size = ((s32)Rel_getTextSectionEnd())-((s32)Rel_getTextSectionStart()&~0xFFF),
+        .wimg = 0,
+        .pp = PP_FULL_READ_ONLY,
+        .sr = GetSR(0x8)
+    }};
+    PageTableEntryInfo PayloadText[1] = {{
+        .physicalAddress = (void*)((u32)Payload_getTextSectionStart() & ~0x80000000),
+        .effectiveAddress = Payload_getTextSectionStart(),
+        .size = ((s32)Payload_getTextSectionEnd())-((s32)Payload_getTextSectionStart()&~0xFFF),
+        .wimg = 0,
+        .pp = PP_FULL_READ_ONLY,
+        .sr = GetSR(0x8)
+    }};
+     PageTableEntryInfo PayloadReplacements[1] = {{
+        .physicalAddress = (void*)((u32)Payload_getReplacementsStart() & ~0x80000000),
+        .effectiveAddress = Payload_getReplacementsStart(),
+        .size = ((s32)Payload_getReplacementsEnd())-((s32)Payload_getReplacementsStart()&~0xFFF),
+        .wimg = 0,
+        .pp = PP_FULL_READ_ONLY,
+        .sr = GetSR(0x8)
+    }};
+    PageTableEntryInfo *pageTableMaps[] = {
+        Dol,
+        Rel,
+        PayloadText,
+        PayloadReplacements,
+        0
+    };
+
     u32 HTABORG = (u32)pageTable & HTABORG_MASK;
     SetSDR1(HTABORG | HTABMASK);
+        for (size_t index = 0;pageTableMaps[index];index++) {
+            for (;pageTableMaps[index]->size > 0;pageTableMaps[index]->size -= 0x1000) {
+                assert(AddEntryToPageTable(pageTableMaps[index]));
+                pageTableMaps[index]->physicalAddress+=0x1000;
+                pageTableMaps[index]->effectiveAddress+=0x1000;
+            }
+        }
 }
 
 static bool AddEntryToPageTable(PageTableEntryInfo *pteInfo) {
@@ -113,7 +166,7 @@ static bool AddEntryToPageTable(PageTableEntryInfo *pteInfo) {
                     .H = hashIndex,
                     .API = (u32)pteInfo->effectiveAddress >> 22,
 
-                    .RPN = (u32)pteInfo->physicalAddress & 0xFFFFF000,
+                    .RPN = (u32)pteInfo->physicalAddress >> 12,
                     .R = 0,
                     .C = 0,
                     .WIMG = pteInfo->wimg,
