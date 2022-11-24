@@ -243,8 +243,12 @@ void SaveManager::selectLicense(u32 licenseId) {
 
 void SaveManager::refreshGCPadRumble() {
     auto setting = getSetting<SP::ClientSettings::Setting::GCPadRumble>();
-    bool rumbleEnabled = setting == SP::ClientSettings::GCPadRumble::Enable;
-    m_rawSave->globalSettings = (m_rawSave->globalSettings & ~1) | rumbleEnabled;
+    m_rawSave->m_rumble = setting == SP::ClientSettings::GCPadRumble::Enable;
+}
+
+void SaveManager::refreshRegionFlagDisplay() {
+    auto setting = getSetting<SP::ClientSettings::Setting::RegionFlagDisplay>();
+    m_rawSave->m_flagDisplay = setting == SP::ClientSettings::RegionFlagDisplay::Enable;
 }
 
 u32 SaveManager::spLicenseCount() const {
@@ -277,12 +281,14 @@ void SaveManager::selectSPLicense(u32 licenseId) {
     m_spCurrentLicense = licenseId;
 
     refreshGCPadRumble();
+    refreshRegionFlagDisplay();
 }
 
 void SaveManager::unselectSPLicense() {
     m_spCurrentLicense.reset();
 
     refreshGCPadRumble();
+    refreshRegionFlagDisplay();
 }
 
 u32 SaveManager::getSetting(u32 setting) const {
@@ -309,6 +315,7 @@ void SaveManager::setSetting(u32 setting, u32 value) {
     m_spLicenses[*m_spCurrentLicense].set(setting, value);
 
     refreshGCPadRumble();
+    refreshRegionFlagDisplay();
 }
 
 void SaveManager::setSetting(const char *key, const char *value) {
@@ -319,6 +326,7 @@ void SaveManager::setSetting(const char *key, const char *value) {
     m_spLicenses[*m_spCurrentLicense].set(key, value);
 
     refreshGCPadRumble();
+    refreshRegionFlagDisplay();
 }
 
 void SaveManager::setMiiId(MiiId miiId) {

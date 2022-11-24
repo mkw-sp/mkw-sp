@@ -59,6 +59,7 @@ enum class Setting {
     GCPadRumble,
     PageTransitions,
     PerfOverlay,
+    RegionFlagDisplay,
 
     // DebugOverlay
     DebugCheckpoints,
@@ -288,6 +289,11 @@ enum class PageTransitions {
 };
 
 enum class PerfOverlay {
+    Disable,
+    Enable,
+};
+
+enum class RegionFlagDisplay{
     Disable,
     Enable,
 };
@@ -528,6 +534,11 @@ struct Helper<ClientSettings::Setting, ClientSettings::Setting::PageTransitions>
 template <>
 struct Helper<ClientSettings::Setting, ClientSettings::Setting::PerfOverlay> {
     using type = SP::ClientSettings::PerfOverlay;
+};
+
+template <>
+struct Helper<ClientSettings::Setting, ClientSettings::Setting::RegionFlagDisplay> {
+    using type = SP::ClientSettings::RegionFlagDisplay;
 };
 
 template <>
