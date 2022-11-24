@@ -717,27 +717,27 @@
     },
     "10201": {
         "font": "regular",
-        "string": "The line under your name will be {color|player 3}red{color|unspecified}.",
+        "string": "The color of the line under your name will be {color|player 3}red{color|unspecified}.",
     },
     "10202": {
         "font": "regular",
-        "string": "The line under your name will be {color|sp blue}blue{color|unspecified}.",
+        "string": "The color of the line under your name will be {color|sp blue}blue{color|unspecified}.",
     },
     "10203": {
         "font": "regular",
-        "string": "The line under your name will be {color|sp green}green{color|unspecified}.",
+        "string": "The color of the line under your name will be {color|sp green}green{color|unspecified}.",
     },
     "10204": {
         "font": "regular",
-        "string": "The line under your name will be {color|player 1}yellow{color|unspecified}.",
+        "string": "The color of the line under your name will be {color|player 1}yellow{color|unspecified}.",
     },
     "10205": {
         "font": "regular",
-        "string": "The line under your name will be white.",
+        "string": "The color of the line under your name will be white.",
     },
     "10206": {
         "font": "regular",
-        "string": "The line under your name will be {color|sp pink}pink{color|unspecified}.",
+        "string": "The color of the line under your name will be {color|sp pink}pink{color|unspecified}.",
     },
     "10207": {
         "font": "regular",
@@ -1165,22 +1165,30 @@
     },
     "10332": {
         "font": "regular",
-        "string": "Region and Country Flag",
+        "string": "Default",
     },
     "10333": {
         "font": "regular",
-        "string": "Do not display your flag and region information in-game.",
+        "string": "The color of the line under your name will be\ndetermined by the game.",
     },
     "10334": {
+        "font": "regular",
+        "string": "Region and Country Flag",
+    },
+    "10335": {
+        "font": "regular",
+        "string": "Do not display your flag and region information in-game.",
+    },
+    "10336": {
         "font": "regular",
         "string": "Display your flag and region information in-game.",
     },
     //Taken from Menu_U id 7253/7254, but had to duplicate because PAL changed the messages.
-    "10335": {
+    "10337": {
         "font": "regular",
         "string": "Don't Display",
     },
-    "10336": {
+    "10338": {
         "font": "regular",
         "string": "Display",
     },
