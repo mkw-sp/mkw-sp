@@ -12,13 +12,14 @@ static_assert(PAGE_TABLE_MEMORY_POWER_OF_2 > 15 && PAGE_TABLE_MEMORY_POWER_OF_2 
 
 #define HTABORG_MASK 0xFFFF0000
 #define HTABMASK ~(~0U << (PAGE_TABLE_MEMORY_POWER_OF_2 - 16))
-
 #define GetSR(n) \
     ({ \
         u32 SR; \
         asm("mfsr %0, " SP_TOSTRING(n) : "=r"(SR)); \
         SR; \
     })
+
+extern void InitSRs(void);
 
 typedef enum WIMG {
     // clang-format off
@@ -180,5 +181,6 @@ static bool AddEntryToPageTable(PageTableEntryInfo *pteInfo) {
 }
 
 void PageTable_Init(void) {
+    InitSRs();
     SetUpPageTable();
 }
