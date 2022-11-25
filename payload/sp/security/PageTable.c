@@ -72,12 +72,6 @@ __attribute__((aligned(PAGE_TABLE_SIZE))) static char pageTable[PAGE_TABLE_SIZE]
 
 static bool AddEntryToPageTable(PageTableEntryInfo *pteInfo);
 
-static u32 GetSDR1(void) {
-    u32 sdr1;
-    asm("mfsdr1 %0" : "=r"(sdr1));
-    return sdr1;
-}
-
 static void SetSDR1(u32 sdr1) {
     asm("mtsdr1 %0" : : "r"(sdr1));
 }
@@ -126,7 +120,7 @@ static void SetUpPageTable(void) {
     };
 
     u32 HTABORG = (u32)pageTable & HTABORG_MASK;
-    SetSDR1(HTABORG | HTABMASK);
+    SetSDR1(VIRTUAL_TO_PHYSICAL(HTABORG) | HTABMASK);
         for (size_t index = 0;pageTableMaps[index];index++) {
             for (;pageTableMaps[index]->size > 0;pageTableMaps[index]->size -= 0x1000) {
                 assert(AddEntryToPageTable(pageTableMaps[index]));
@@ -148,10 +142,9 @@ static bool AddEntryToPageTable(PageTableEntryInfo *pteInfo) {
     };
     static_assert((sizeof(hashArray) / sizeof(u32)) == 2);
 
-    char *pageTableBase = (char *)(GetSDR1() & HTABORG_MASK);
     for (size_t hashIndex = 0; hashIndex < (sizeof(hashArray) / sizeof(u32)); hashIndex++) {
         u32 index = ((hashArray[hashIndex] & (HTABMASK << 10)) | (hashArray[hashIndex] & 0x3FF)) << 6;
-        PageTableEntry *pteg = (PageTableEntry *)(pageTableBase + index);
+        PageTableEntry *pteg = (PageTableEntry *)(pageTable + index);
 
         for (int entryIndex = 0; entryIndex < 8; entryIndex++) {
             PageTableEntry *pte = pteg + entryIndex;
