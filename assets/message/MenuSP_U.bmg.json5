@@ -445,7 +445,7 @@
     },
     "10133": {
         "font": "regular",
-        "string": "Let Stars, Mega Mushrooms and Lightnings affect the music.",
+        "string": "Let Stars, Mega Mushrooms and\nLightnings affect the music.",
     },
     "10134": {
         "font": "regular",
@@ -1145,7 +1145,7 @@
     },
     "10327": {
         "font": "regular",
-        "string": "Speedometer displays the internal speed of the vehicle plus moving road.",
+        "string": "Speedometer displays the internal speed\nof the vehicle plus moving road.",
     },
     "10328": {
         "font": "regular",
@@ -1157,11 +1157,11 @@
     },
     "10330": {
         "font": "regular",
-        "string": "Speedometer displays the speed the vehicle moves horizontally.",
+        "string": "Speedometer displays the speed\nthe vehicle moves horizontally.",
     },
     "10331": {
         "font": "regular",
-        "string": "Speedometer displays the speed the vehicle moves vertically.",
+        "string": "Speedometer displays the speed\nthe vehicle moves vertically.",
     },
     "10332": {
         "font": "regular",
