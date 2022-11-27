@@ -1183,6 +1183,7 @@
         "font": "regular",
         "string": "Display your flag and region information in-game.",
     },
+    //Taken from Menu_U id 7253/7254, but had to duplicate because PAL changed the messages.
     //Region flag options
     "10337": {
         "font": "regular",
