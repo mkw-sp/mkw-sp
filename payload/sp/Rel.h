@@ -28,6 +28,10 @@ static inline void *Rel_getTextSectionEnd(void) {
     return rel_text_end;
 }
 
+static inline u32 Rel_getTextSectionSize(void) {
+    return rel_text_end - rel_text_start;
+}
+
 static inline void *Rel_getRodataSectionEnd(void) {
     return rel_rodata_end;
 }

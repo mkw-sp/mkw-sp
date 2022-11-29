@@ -17,6 +17,14 @@ static inline size_t Payload_getSize(void) {
     return payload_data_end - payload_text_start;
 }
 
+static inline size_t Payload_getTextSectionSize(void) {
+    return payload_text_end - payload_text_start;
+}
+
+static inline size_t Payload_getReplacementsSectionSize(void) {
+    return payload_replacements_end - payload_replacements_start;
+}
+
 static inline void *Payload_getTextSectionStart(void) {
     return payload_text_start;
 }
@@ -25,11 +33,11 @@ static inline void *Payload_getTextSectionEnd(void) {
     return payload_text_end;
 }
 
-static inline void *Payload_getReplacementsStart(void) {
+static inline void *Payload_getReplacementsSectionStart(void) {
     return payload_replacements_start;
 }
 
-static inline void *Payload_getReplacementsEnd(void) {
+static inline void *Payload_getReplacementsSectionEnd(void) {
     return payload_replacements_end;
 }
 
