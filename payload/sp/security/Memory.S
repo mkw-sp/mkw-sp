@@ -1,26 +1,29 @@
 #include <Common.S>
+
 .globl InitSRs
 InitSRs:
-    li  r0,0
-    lis r3,0x8000
-    mtsr 0,r3
-    mtsr 1,r3
-    mtsr 2,r3
-    mtsr 3,r3
-    mtsr 4,r3
-    mtsr 5,r3
-    mtsr 6,r3
-    mtsr 7,r3
-    mtsr 8,r0
-    mtsr 9,r3
-    mtsr 10,r3
-    mtsr 11,r3
-    mtsr 12,r3
-    mtsr 13,r3
-    mtsr 14,r3
-    mtsr 15,r3
+    li        r0, 0
+    lis       r3, 0x8000
+
+    mtsr       0, r3
+    mtsr       1, r3
+    mtsr       2, r3
+    mtsr       3, r3
+    mtsr       4, r3
+    mtsr       5, r3
+    mtsr       6, r3
+    mtsr       7, r3
+    mtsr       8, r0
+    mtsr       9, r3
+    mtsr      10, r3
+    mtsr      11, r3
+    mtsr      12, r3
+    mtsr      13, r3
+    mtsr      14, r3
+    mtsr      15, r3
     isync
     blr
+
 .globl InvalidateAllIBATs
 InvalidateAllIBATs:
     li        r0, 0

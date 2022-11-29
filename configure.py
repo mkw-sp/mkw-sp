@@ -1552,7 +1552,7 @@ code_in_files = {
         os.path.join('payload', 'sp', 'security', 'Heap.c'),
         os.path.join('payload', 'sp', 'security', 'Memory.S'),
         os.path.join('payload', 'sp', 'security', 'Memory.c'),
-        os.path.join('payload', 'sp', 'security', 'PageTable.c'),
+        os.path.join('payload', 'sp', 'security', 'PageTable.cc'),
         os.path.join('payload', 'sp', 'security', 'Stack.S'),
         os.path.join('payload', 'sp', 'security', 'Stack.c'),
         os.path.join('payload', 'sp', 'security', 'StackTrace.S'),
