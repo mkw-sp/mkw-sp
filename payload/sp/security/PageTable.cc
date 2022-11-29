@@ -18,7 +18,7 @@ namespace SP::PageTable {
 #define PAGE_TABLE_MEMORY_POWER_OF_2 16 // 64 Kibibytes
 static_assert(PAGE_TABLE_MEMORY_POWER_OF_2 > 15 && PAGE_TABLE_MEMORY_POWER_OF_2 < 26);
 #define PAGE_TABLE_SIZE (1 << PAGE_TABLE_MEMORY_POWER_OF_2)
-#define PAGE_SIZE (2 << 11)
+#define PAGE_SIZE (1 << 12)
 
 #define HTABMASK ~(~0 << (PAGE_TABLE_MEMORY_POWER_OF_2 - 16))
 #define HTABORG_MASK 0xFFFF0000
@@ -85,8 +85,16 @@ static void SetSDR1(u32 sdr1) {
     asm("mtsdr1 %0" : : "r"(sdr1));
 }
 
+static void InvalidateAllTLBEntries() {
+    for (u32 entry = 0; entry < PAGE_SIZE * 64; entry += PAGE_SIZE) {
+        asm("tlbie %0, 0" : : "r"(entry));
+    }
+}
+
 static void InitPageTable() {
     u32 HTABORG = (u32)pageTable & HTABORG_MASK;
+
+    InvalidateAllTLBEntries();
     SetSDR1(VIRTUAL_TO_PHYSICAL(HTABORG) | HTABMASK);
 }
 
