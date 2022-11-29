@@ -17,14 +17,6 @@ static inline size_t Payload_getSize(void) {
     return payload_data_end - payload_text_start;
 }
 
-static inline size_t Payload_getTextSectionSize(void) {
-    return payload_text_end - payload_text_start;
-}
-
-static inline size_t Payload_getReplacementsSectionSize(void) {
-    return payload_replacements_end - payload_replacements_start;
-}
-
 static inline void *Payload_getTextSectionStart(void) {
     return payload_text_start;
 }

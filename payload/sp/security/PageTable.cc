@@ -143,7 +143,7 @@ static bool AddEntryToPageTable(const void *physicalAddress, const void *effecti
     return false;
 }
 
-static const std::array<PageTableEntryInfo, 4> pteInfoArray = {
+static const std::array<PageTableEntryInfo, 3> pteInfoArray = {
         PageTableEntryInfo{
                 (const void *)VIRTUAL_TO_PHYSICAL(Dol_getInitSectionStart()),
                 Dol_getInitSectionStart(),
@@ -163,15 +163,7 @@ static const std::array<PageTableEntryInfo, 4> pteInfoArray = {
         PageTableEntryInfo{
                 (const void *)VIRTUAL_TO_PHYSICAL(Payload_getTextSectionStart()),
                 Payload_getTextSectionStart(),
-                Payload_getTextSectionSize(),
-                WIMG_NONE,
-                PP_FULL_READ_ONLY,
-                GetSR<8>(),
-        },
-        PageTableEntryInfo{
-                (const void *)VIRTUAL_TO_PHYSICAL(Payload_getReplacementsSectionStart()),
-                Payload_getReplacementsSectionStart(),
-                Payload_getReplacementsSectionSize(),
+                (u32)Payload_getReplacementsSectionEnd() - (u32)Payload_getTextSectionStart(),
                 WIMG_NONE,
                 PP_FULL_READ_ONLY,
                 GetSR<8>(),
@@ -189,7 +181,7 @@ static void Init() {
                 (char *)ROUND_UP((char *)pteInfo.effectiveAddress + pteInfo.size, PAGE_SIZE);
         u32 size = effectiveEndAddress - effectiveStartAddress;
 
-        for (u32 offset = 0; size != 0; offset += PAGE_SIZE, size -= PAGE_SIZE) {
+        for (u32 offset = 0; offset != size; offset += PAGE_SIZE) {
             const void *physicalAddress = physicalStartAddress + offset;
             const void *effectiveAddress = effectiveStartAddress + offset;
 
