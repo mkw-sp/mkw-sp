@@ -448,13 +448,13 @@ const Entry entries[] = {
         .valueExplanationMessageIds = (u32[]) { 10059, 10060 },
     },
     [static_cast<u32>(Setting::PerfOverlay)] = {
-        .category = Category::License,
+        .category = Category::DebugOverlay,
         .name = magic_enum::enum_name(Setting::PerfOverlay),
         .messageId = 10188,
         .defaultValue = static_cast<u32>(PerfOverlay::Disable),
         .valueCount = magic_enum::enum_count<PerfOverlay>(),
         .valueNames = magic_enum::enum_names<PerfOverlay>().data(),
-        .valueMessageIds = (u32[]) { 10057, 10058 },
+        .valueMessageIds = (u32[]) { 10337, 10338 },
         .valueExplanationMessageIds = (u32[]) { 10189, 10190 },
     },
         [static_cast<u32>(Setting::RegionFlagDisplay)] = {
