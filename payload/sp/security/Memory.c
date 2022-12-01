@@ -5,7 +5,7 @@
 #define MemoryRoundDown1024B(address) (((u32)(address)) & ~0x3FF)
 #define MemoryRoundUp1024B(address) (((u32)(address) + 0x3FF) & ~0x3FF)
 
-extern void InvalidateAllIBATs(void);
+void InvalidateAllIBATs(void);
 
 void Memory_InvalidateAllIBATs(void) {
     // clang-format off
