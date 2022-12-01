@@ -109,6 +109,7 @@
 
 #define MSR_DR (1 << 4)
 #define MSR_IR (1 << 5)
+#define MSR_EE (1 << 15)
 
 #define PATCH_TYPE_WRITE 0x0
 #define PATCH_TYPE_BRANCH 0x1

@@ -12,6 +12,7 @@ extern "C" {
 }
 
 extern "C" void InitSRs();
+extern "C" void SetSDR1(u32 sdr1);
 
 namespace SP::PageTable {
 
@@ -81,10 +82,6 @@ static u32 GetSR() {
     return SR;
 }
 
-static void SetSDR1(u32 sdr1) {
-    asm("mtsdr1 %0" : : "r"(sdr1));
-}
-
 static void InvalidateAllTLBEntries() {
     for (u32 entry = 0; entry < PAGE_SIZE * 64; entry += PAGE_SIZE) {
         asm("tlbie %0, 0" : : "r"(entry));
@@ -110,37 +107,43 @@ static bool AddEntryToPageTable(const void *physicalAddress, const void *effecti
             secondaryHash,
     };
 
+    u32 hash;
+    PageTableEntry *pte = nullptr;
     for (size_t hashIndex = 0; hashIndex < hashArray.size(); hashIndex++) {
         u32 offset = ((hashArray[hashIndex] & (HTABMASK << 10)) | (hashArray[hashIndex] & 0x3FF)) << 6;
         PageTableEntry *pteg = (PageTableEntry *)(pageTable + offset);
 
-        PageTableEntry *pte = std::find_if(pteg, pteg + 8, [](PageTableEntry &pte) { return !pte.V; });
-        if (pte == pteg + 8) {
-            continue;
+        PageTableEntry *it = std::find_if(pteg, pteg + 8, [](PageTableEntry &pte) { return !pte.V; });
+        if (it != pteg + 8) {
+            hash = hashIndex;
+            pte = it;
+            break;
         }
-
-        const PageTableEntry entry = {
-                .V = 1,
-                .VSID = VSID,
-                .H = hashIndex,
-                .API = (u32)effectiveAddress >> 22,
-
-                .RPN = (u32)physicalAddress >> 12,
-                .R = 0,
-                .C = 0,
-                .WIMG = wimg,
-                .PP = pp,
-        };
-
-        pte->hilo[1] = entry.hilo[1];
-        asm volatile("eieio");
-        pte->hilo[0] = entry.hilo[0];
-        asm volatile("sync");
-
-        return true;
     }
 
-    return false;
+    if (!pte) {
+        return false;
+    }
+
+    const PageTableEntry entry = {
+            .V = 1,
+            .VSID = VSID,
+            .H = hash,
+            .API = (u32)effectiveAddress >> 22,
+
+            .RPN = (u32)physicalAddress >> 12,
+            .R = 0,
+            .C = 0,
+            .WIMG = wimg,
+            .PP = pp,
+    };
+
+    pte->hilo[1] = entry.hilo[1];
+    asm volatile("eieio");
+    pte->hilo[0] = entry.hilo[0];
+    asm volatile("sync");
+
+    return true;
 }
 
 static const std::array<PageTableEntryInfo, 3> pteInfoArray = {
@@ -180,6 +183,8 @@ static void Init() {
         char *effectiveEndAddress =
                 (char *)ROUND_UP((char *)pteInfo.effectiveAddress + pteInfo.size, PAGE_SIZE);
         u32 size = effectiveEndAddress - effectiveStartAddress;
+
+        assert(!(size % PAGE_SIZE));
 
         for (u32 offset = 0; offset != size; offset += PAGE_SIZE) {
             const void *physicalAddress = physicalStartAddress + offset;

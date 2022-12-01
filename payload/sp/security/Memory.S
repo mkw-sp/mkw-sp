@@ -1,9 +1,31 @@
 #include <Common.S>
 
+RealModeTrampoline:
+    mfmsr      r10
+    rlwinm     r9, r10, 0, ~(MSR_EE)
+    mtmsr      r9
+    rlwinm     r9, r9, 0, ~(MSR_IR | MSR_DR)
+    mtspr      SRR1, r9
+    mflr       r9
+    rlwinm     r9, r9, 0, 0x3FFFFFFF
+    mtspr      SRR0, r9
+    rfi
+
+.globl SetSDR1
+SetSDR1:
+    mflr       r8
+    bl         RealModeTrampoline
+
+    mtspr      SRR0, r8
+    mtspr      SRR1, r10
+    sync
+    mtsdr1     r3
+    rfi
+
 .globl InitSRs
 InitSRs:
-    li        r0, 0
-    lis       r3, 0x8000
+    li         r0, 0
+    lis        r3, 0x8000
 
     mtsr       0, r3
     mtsr       1, r3
