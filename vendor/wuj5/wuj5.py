@@ -59,7 +59,7 @@ def decode_u8_node(out_path, node, retained, renamed):
         else:
             val = unpack(in_data)
             out_data = json5.dumps(val, indent = 4, quote_keys = True)
-            with open(out_path + '.json5', 'w') as out_file:
+            with open(out_path + '.json5', 'w', encoding = 'utf-8') as out_file:
                 out_file.write(out_data)
 
 def decode_u8(in_path, out_path, retained, renamed):
@@ -105,7 +105,7 @@ def decode(in_path, out_path, retained, renamed):
     out_data = json5.dumps(val, ensure_ascii = False, indent = 4, quote_keys = True)
     if out_path is None:
         out_path = in_path + '.json5'
-    with open(out_path, 'w') as out_file:
+    with open(out_path, 'w', encoding = 'utf-8') as out_file:
         out_file.write(out_data)
 
 def encode_u8_node(in_path, retained, renamed):
@@ -169,7 +169,7 @@ def encode(in_path, out_path, retained, renamed):
     pack = ext_pack.get(ext)
     if pack is None:
         sys.exit(f'Unknown file format with binary extension {ext}.')
-    with open(in_path, 'r', encoding='utf-8') as in_file:
+    with open(in_path, 'r', encoding = 'utf-8') as in_file:
         in_data = in_file.read()
     val = json5.loads(in_data)
     out_data = pack(val)
