@@ -165,7 +165,13 @@ std::optional<Apploader::GameEntryFunc> Run() {
 
         while (!(gameEntry = Apploader::LoadAndRun(di))) {
             if (!di.isInserted()) {
-                Console::Print("Please insert a Mario Kart Wii disc.\n");
+                if (IOS::IsDolphin()) {
+                    Console::Print(
+                            "Set Mario Kart Wii as the default disc\nby right-clicking the ISO in "
+                            "the game list.\n");
+                } else {
+                    Console::Print("Please insert a Mario Kart Wii disc.\n");
+                }
 
                 while (!di.isInserted()) {
                     Clock::WaitMilliseconds(100);

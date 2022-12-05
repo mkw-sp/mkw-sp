@@ -140,7 +140,7 @@ u32 armCode[] = {
 #endif
 // clang-format on
 
-static bool IsDolphin() {
+bool IsDolphin() {
     // Modern versions
     Resource dolphin(ALIGNED_STRING("/dev/dolphin"), Mode::None);
     if (dolphin.ok()) {
