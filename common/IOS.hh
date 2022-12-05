@@ -8,6 +8,7 @@ void Init();
 bool EscalatePrivileges();
 void DeescalatePrivileges();
 bool ImportNewCommonKey();
+bool IsDolphin();
 
 enum class Mode : u32 {
     None = 0,
