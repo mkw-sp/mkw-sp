@@ -1578,6 +1578,7 @@ code_in_files = {
         os.path.join('vendor', 'nanopb', 'pb_common.c'),
         os.path.join('vendor', 'nanopb', 'pb_decode.c'),
         os.path.join('vendor', 'nanopb', 'pb_encode.c'),
+        os.path.join('vendor', 'tjpgd', 'tjpgd.c'),
     ],
     'loader': [
         os.path.join('common', 'Clock.cc'),
