@@ -172,19 +172,19 @@ SRC_BINARIES = {
 DST_BINARIES = {
     'P': {
         'dol': DstBinary(0x80004000, 0x8038917c),
-        'rel': DstBinary(0x80399180, 0x8076db50),
+        'rel': DstBinary(0x80399F2C, 0x8076E8FC),
     },
     'E': {
         'dol': DstBinary(0x80004000, 0x80384dfc),
-        'rel': DstBinary(0x80394e00, 0x807693f0),
+        'rel': DstBinary(0x80394F2C, 0x8076951C),
     },
     'J': {
         'dol': DstBinary(0x80004000, 0x80388afc),
-        'rel': DstBinary(0x80398b00, 0x8076cc90),
+        'rel': DstBinary(0x80398F2C, 0x8076D0BC),
     },
     'K': {
         'dol': DstBinary(0x80004000, 0x8037719c),
-        'rel': DstBinary(0x803871a0, 0x8075bfd0),
+        'rel': DstBinary(0x80387F2C, 0x8075CD5C),
     },
 }
 

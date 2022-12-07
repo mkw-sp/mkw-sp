@@ -13,6 +13,10 @@ extern u8 payload_rodata_end[];
 extern u8 payload_data_start[];
 extern u8 payload_data_end[];
 
+static inline void *Payload_getEnd(void) {
+    return payload_data_end;
+}
+
 static inline size_t Payload_getSize(void) {
     return payload_data_end - payload_text_start;
 }

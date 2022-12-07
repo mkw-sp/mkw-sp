@@ -1732,10 +1732,10 @@ for region in ['P', 'E', 'J', 'K']:
             suffix = 'D' if profile == 'DEBUG' else ''
             extension = 'bin' if fmt == 'binary' else 'elf'
             base = {
-                'P': '0x8076db60' if not args.gdb_compatible else '0x809C4FA0',
-                'E': '0x80769400',
-                'J': '0x8076cca0',
-                'K': '0x8075bfe0',
+                'P': '0x8076F000' if not args.gdb_compatible else '0x809C4FA0',
+                'E': '0x8076A000',
+                'J': '0x8076E000',
+                'K': '0x8075D000',
             }[region]
             n.build(
                 os.path.join('$builddir', 'bin', f'payload{region}{suffix}.{extension}'),

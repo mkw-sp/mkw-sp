@@ -76,13 +76,7 @@ static void Init() {
     Memory_InvalidateAllIBATs();
 #endif
 
-#ifdef GDB_COMPATIBLE
-    OSSetMEM1ArenaLo((void *)0x809C4FA0);
-#else
-    OSAllocFromMEM1ArenaLo(Rel_getSize(), 0x20);
-#endif
-
-    OSAllocFromMEM1ArenaLo(Payload_getSize(), 0x20);
+    OSSetMEM1ArenaLo(Payload_getEnd());
 
     Heap_RandomizeMEM1Heaps();
     Heap_RandomizeMEM2Heaps();

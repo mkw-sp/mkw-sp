@@ -195,23 +195,23 @@ std::optional<Apploader::GameEntryFunc> Run() {
 #ifdef GDB_COMPATIBLE
         payloadDst = reinterpret_cast<void *>(0x809C4FA0);
 #else
-        payloadDst = reinterpret_cast<void *>(0x8076db60);
+        payloadDst = reinterpret_cast<void *>(0x8076F000);
 #endif
         payloadSrc = &payloadP;
         payloadSize = payloadPSize;
         break;
     case REGION_E:
-        payloadDst = reinterpret_cast<void *>(0x80769400);
+        payloadDst = reinterpret_cast<void *>(0x8076A000);
         payloadSrc = &payloadE;
         payloadSize = payloadESize;
         break;
     case REGION_J:
-        payloadDst = reinterpret_cast<void *>(0x8076cca0);
+        payloadDst = reinterpret_cast<void *>(0x8076E000);
         payloadSrc = &payloadJ;
         payloadSize = payloadJSize;
         break;
     case REGION_K:
-        payloadDst = reinterpret_cast<void *>(0x8075bfe0);
+        payloadDst = reinterpret_cast<void *>(0x8075D000);
         payloadSrc = &payloadK;
         payloadSize = payloadKSize;
         break;
