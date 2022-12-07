@@ -1505,7 +1505,6 @@ code_in_files = {
         os.path.join('payload', 'revolution', 'os', 'OSContext.S'),
         os.path.join('payload', 'revolution', 'os', 'OSError.S'),
         os.path.join('payload', 'revolution', 'os', 'OSError.c'),
-        os.path.join('payload', 'revolution', 'os', 'OSThread.S'),
         os.path.join('payload', 'revolution', 'os', 'OSThread.c'),
         os.path.join('payload', 'revolution', 'os', 'OSTime.cc'),
         os.path.join('payload', 'revolution', 'so', 'SOBasic.S'),

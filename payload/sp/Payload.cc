@@ -176,7 +176,6 @@ static void Run() {
         (*ctor)();
     }
     Stack_InitCanary();
-    Stack_RelocateMainThreadStackToMEM1End();
 #ifndef GDB_COMPATIBLE
     Stack_DoLinkRegisterPatches(reinterpret_cast<u32 *>(Dol_getTextSectionStart()),
             reinterpret_cast<u32 *>(Dol_getTextSectionEnd()));
