@@ -167,8 +167,9 @@ std::optional<Apploader::GameEntryFunc> Run() {
             if (!di.isInserted()) {
                 if (IOS::IsDolphin()) {
                     Console::Print(
-                            "Set Mario Kart Wii as the default disc\nby right-clicking the ISO in "
-                            "the game list.\n");
+                            "\nInsert the Mario Kart Wii disc\nby right-clicking the game in "
+                            "the game list \nand select \"Change Disc\".\n\n"
+                            "To avoid this in the future, select \n\"Set as Default ISO\" as well.\n");
                 } else {
                     Console::Print("Please insert a Mario Kart Wii disc.\n");
                 }
