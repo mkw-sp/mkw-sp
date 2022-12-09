@@ -1511,6 +1511,7 @@ code_in_files = {
         os.path.join('payload', 'revolution', 'so', 'SOBasic.c'),
         os.path.join('payload', 'sp', 'Channel.cc'),
         os.path.join('payload', 'sp', 'Commands.c'),
+        os.path.join('payload', 'sp', 'CourseDatabase.cc'),
         os.path.join('payload', 'sp', 'Fatal.c'),
         os.path.join('payload', 'sp', 'FormattingCodes.c'),
         os.path.join('payload', 'sp', 'FlameGraph.c'),
