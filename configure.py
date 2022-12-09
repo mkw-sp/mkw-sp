@@ -60,6 +60,58 @@ n.rule(
 )
 n.newline()
 
+thumbnail_in_files = [
+    os.path.join('thumbnails', '3409.jpg'),
+    os.path.join('thumbnails', '3410.jpg'),
+    os.path.join('thumbnails', '3412.jpg'),
+    os.path.join('thumbnails', '3413.jpg'),
+    os.path.join('thumbnails', '3415.jpg'),
+    os.path.join('thumbnails', '3416.jpg'),
+    os.path.join('thumbnails', '3417.jpg'),
+    os.path.join('thumbnails', '3418.jpg'),
+    os.path.join('thumbnails', '3419.jpg'),
+    os.path.join('thumbnails', '3420.jpg'),
+    os.path.join('thumbnails', '3422.jpg'),
+    os.path.join('thumbnails', '3424.jpg'),
+    os.path.join('thumbnails', '3426.jpg'),
+    os.path.join('thumbnails', '3427.jpg'),
+    os.path.join('thumbnails', '3428.jpg'),
+    os.path.join('thumbnails', '3429.jpg'),
+    os.path.join('thumbnails', '3430.jpg'),
+    os.path.join('thumbnails', '3431.jpg'),
+    os.path.join('thumbnails', '3433.jpg'),
+    os.path.join('thumbnails', '3435.jpg'),
+    os.path.join('thumbnails', '3436.jpg'),
+    os.path.join('thumbnails', '3437.jpg'),
+    os.path.join('thumbnails', '3438.jpg'),
+    os.path.join('thumbnails', '3439.jpg'),
+    os.path.join('thumbnails', '3440.jpg'),
+    os.path.join('thumbnails', '3441.jpg'),
+    os.path.join('thumbnails', '3443.jpg'),
+    os.path.join('thumbnails', '3445.jpg'),
+    os.path.join('thumbnails', '3447.jpg'),
+    os.path.join('thumbnails', '3448.jpg'),
+    os.path.join('thumbnails', '3450.jpg'),
+    os.path.join('thumbnails', '3452.jpg'),
+    os.path.join('thumbnails', '3454.jpg'),
+    os.path.join('thumbnails', '3456.jpg'),
+    os.path.join('thumbnails', '3457.jpg'),
+    os.path.join('thumbnails', '3458.jpg'),
+    os.path.join('thumbnails', '3459.jpg'),
+    os.path.join('thumbnails', '3460.jpg'),
+    os.path.join('thumbnails', '3462.jpg'),
+    os.path.join('thumbnails', '3463.jpg'),
+    os.path.join('thumbnails', '3464.jpg'),
+    os.path.join('thumbnails', '3466.jpg'),
+]
+for in_file in thumbnail_in_files:
+    out_file = os.path.join('$builddir', 'contents.arc.d', in_file)
+    n.build(
+        out_file,
+        'cp',
+        in_file,
+    )
+
 LANGUAGES = [
     'E', # English (PAL)
     'F', # French (PAL)
@@ -1862,6 +1914,7 @@ for profile in ['DEBUG', 'TEST', 'RELEASE']:
     in_suffix = 'D' if profile == 'DEBUG' else ''
     out_suffix = profile[0]
     in_paths = [
+        *[os.path.join('$builddir', 'contents.arc.d', target) for target in thumbnail_in_files],
         *[os.path.join('$builddir', 'contents.arc.d', target) for target in asset_out_files],
         os.path.join('$builddir', 'contents.arc.d', 'bin', f'loader{in_suffix}.bin.lzma'),
         os.path.join('$builddir', 'contents.arc.d', 'bin', f'version{out_suffix}.bin'),
