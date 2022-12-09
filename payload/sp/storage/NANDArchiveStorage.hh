@@ -70,11 +70,14 @@ private:
         });
     }
 
+    static constexpr u32 BufferSize = 4096;
+
     Mutex m_mutex{};
     NANDFileInfo m_fileInfo{};
     ARCHandle m_handle{};
     File m_files[32];
     Dir m_dirs[32];
+    void *m_buffer;
     bool m_ok = false;
 };
 

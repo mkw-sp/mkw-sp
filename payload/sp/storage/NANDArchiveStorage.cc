@@ -46,6 +46,8 @@ NANDArchiveStorage::NANDArchiveStorage() {
         return;
     }
 
+    m_buffer = OSAllocFromMEM2ArenaLo(BufferSize, 0x20);
+
     m_ok = true;
 }
 
@@ -230,7 +232,22 @@ bool NANDArchiveStorage::File::read(void *dst, u32 size, u32 offset) {
         return false;
     }
     assert(size < INT32_MAX);
-    return NANDRead(&m_storage->m_fileInfo, dst, size) == static_cast<s32>(size);
+    if (reinterpret_cast<u32>(dst) % 32 || size % 32) {
+        while (size > 0) {
+            s32 chunkSize = std::min(size, BufferSize);
+            if (NANDRead(&m_storage->m_fileInfo, m_storage->m_buffer, chunkSize) != chunkSize) {
+                return false;
+            }
+            memcpy(dst, m_storage->m_buffer, chunkSize);
+            *reinterpret_cast<u8 **>(&dst) += chunkSize;
+            size -= chunkSize;
+        }
+    } else {
+        if (NANDRead(&m_storage->m_fileInfo, dst, size) != static_cast<s32>(size)) {
+            return false;
+        }
+    }
+    return true;
 }
 
 bool NANDArchiveStorage::File::write(const void *UNUSED(src), u32 UNUSED(size), u32 UNUSED(offset)) {
