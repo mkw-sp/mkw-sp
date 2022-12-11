@@ -2,14 +2,15 @@ extern "C" {
 #include "PageTable.h"
 }
 
-#include <Common.hh>
-#include <algorithm>
-
 extern "C" {
 #include "sp/Dol.h"
 #include "sp/Payload.h"
 #include "sp/Rel.h"
 }
+
+#include <algorithm>
+
+#include <Common.hh>
 
 extern "C" void InitSRs();
 extern "C" void SetSDR1(u32 sdr1);
@@ -24,7 +25,7 @@ static_assert(PAGE_TABLE_MEMORY_POWER_OF_2 > 15 && PAGE_TABLE_MEMORY_POWER_OF_2 
 #define HTABMASK ~(~0 << (PAGE_TABLE_MEMORY_POWER_OF_2 - 16))
 #define HTABORG_MASK 0xFFFF0000
 
-typedef enum WIMG {
+enum WIMG {
     // clang-format off
     WIMG_NONE              = 0 << 0,
     WIMG_GUARDED           = 1 << 0,
@@ -32,27 +33,27 @@ typedef enum WIMG {
     WIMG_CACHING_INHIBITED = 1 << 2,
     WIMG_WRITE_THROUGH     = 1 << 3,
     // clang-format on
-} WIMG;
+};
 
-typedef enum PP {
+enum PP {
     // clang-format off
     PP_NONE           = 0b00,
     PP_READ_ONLY      = 0b01,
     PP_READ_WRITE     = 0b10,
     PP_FULL_READ_ONLY = 0b11,
     // clang-format on
-} PP;
+};
 
-typedef struct PageTableEntryInfo {
+struct PageTableEntryInfo {
     const void *physicalAddress;
     const void *effectiveAddress;
     u32 size;
     WIMG wimg;
     PP pp;
     u32 sr;
-} PageTableEntryInfo;
+};
 
-typedef union PageTableEntry {
+union PageTableEntry {
     struct {
         // clang-format off
         u32 V    :  1;
@@ -71,9 +72,9 @@ typedef union PageTableEntry {
     };
 
     u32 hilo[2];
-} PageTableEntry;
+};
 
-__attribute__((aligned(PAGE_TABLE_SIZE))) static char pageTable[PAGE_TABLE_SIZE];
+alignas(PAGE_TABLE_SIZE) static char pageTable[PAGE_TABLE_SIZE];
 
 template <u32 n>
 static u32 GetSR() {
