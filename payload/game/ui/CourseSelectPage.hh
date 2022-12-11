@@ -24,6 +24,7 @@ public:
     void onInit() override;
     void onDeinit() override;
     void onActivate() override;
+    void afterCalc() override;
     void onRefocus() override;
 
     u32 sheetIndex() const;
@@ -87,6 +88,7 @@ private:
     u32 m_sheetIndex;
     u32 m_lastSelected;
     Request m_request;
+    std::array<bool, 9> m_thumbnailChanged;
     std::array<u32, 9> m_databaseIds;
     std::array<std::array<std::unique_ptr<u8[]>, 3>, 9> m_buffers;
     OSThreadQueue m_queue;

@@ -104,6 +104,21 @@ void CourseSelectPage::onActivate() {
     }
 }
 
+void CourseSelectPage::afterCalc() {
+    SP::ScopeLock<SP::NoInterrupts> lock;
+    bool changed = false;
+    for (size_t i = 0; i < m_buttons.size(); i++) {
+        if (m_thumbnailChanged[i]) {
+            m_thumbnailChanged[i] = false;
+            m_buttons[i].setPaneVisible("picture_base", true);
+            changed = true;
+        }
+    }
+    if (changed) {
+        GXInvalidateTexAll();
+    }
+}
+
 void CourseSelectPage::onRefocus() {
     auto *section = SectionManager::Instance()->currentSection();
     auto *raceConfirmPage = section->page<PageId::RaceConfirm>();
@@ -273,11 +288,12 @@ void CourseSelectPage::loadThumbnails() {
                 }
             }
             JRESULT result = loadThumbnail(i, databaseId);
+            SP::ScopeLock<SP::NoInterrupts> lock;
             if (m_request != Request::None) {
                 break;
             }
             if (result == JDR_OK) {
-                m_buttons[i].setPaneVisible("picture_base", true);
+                m_thumbnailChanged[i] = true;
             } else {
                 SP_LOG("Failed to read thumbnail with error %u", result);
             }
@@ -312,6 +328,7 @@ JRESULT CourseSelectPage::loadThumbnail(u32 i, u32 databaseId) {
     }
 
     for (u8 c = 0; c < m_buffers[i].size(); c++) {
+        DCFlushRange(m_buffers[i][c].get(), MaxThumbnailHeight * MaxThumbnailWidth);
         GXTexObj texObj;
         GXInitTexObj(&texObj, m_buffers[i][c].get(), jdec.width, jdec.height, GX_TF_I8, GX_CLAMP,
                 GX_CLAMP, GX_FALSE);

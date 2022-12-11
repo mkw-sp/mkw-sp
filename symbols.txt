@@ -184,6 +184,7 @@
 0x80170570 GXSetChanCtrl
 0x801707f8 GXInitTexObj
 0x80170F2C GXLoadTexObj
+0x80171110 GXInvalidateTexAll
 0x80171b38 GXSetNumIndStages
 0x80171b58 GXSetTevDirect
 0x80171c4c GXSetTevOp
