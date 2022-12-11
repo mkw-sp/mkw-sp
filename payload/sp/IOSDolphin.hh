@@ -21,7 +21,7 @@ bool IsOpen();
 void Close();
 
 // Result: Milliseconds
-Result<u32> GetSystemTime();
+Result<u32> GetElapsedTime();
 Result<std::array<char, 64>> GetVersion();
 // Result: Ticks per second
 Result<u32> GetCPUSpeed();
@@ -69,5 +69,8 @@ IPCResult DiscordSetPresence(const DolphinDiscordPresence &presence);
 //! NOTE: As of 4c2d707/5.0-17155, `DiscordReset` is just a call to
 //! `IOSDolphin::DiscordSetClient` with an empty string.
 IPCResult DiscordReset();
+
+// Result: Unix timestamp (milliseconds)
+Result<u64> GetSystemTime();
 
 }  // namespace SP::IOSDolphin

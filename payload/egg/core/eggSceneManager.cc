@@ -86,8 +86,6 @@ void SceneManager::createScene(s32 sceneId, Scene *parent) {
         PushDolphinSpeed(800);
     }
     ResourceManager_OnCreateScene(sceneId);
-    System::RichPresenceManager::Instance().onSceneChange(
-            static_cast<System::RKSceneID>(sceneId));
     SP::RoomManager::OnCreateScene();
     REPLACED(createScene)(sceneId, parent);
     if (InitDolphinSpeed()) {

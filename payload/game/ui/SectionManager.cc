@@ -1,5 +1,6 @@
 #include "SectionManager.hh"
 
+#include "game/host_system/SystemManager.hh"
 #include "game/system/SaveManager.hh"
 
 namespace UI {
@@ -22,6 +23,12 @@ SaveManagerProxy *SectionManager::saveManagerProxy() {
 
 GlobalContext *SectionManager::globalContext() {
     return m_globalContext;
+}
+
+void SectionManager::createSection() {
+    REPLACED(createSection)();
+
+    System::RichPresenceManager::Instance().onSectionChange(m_currentSection->id());
 }
 
 void SectionManager::startChangeSection(s32 delay, u32 color) {
