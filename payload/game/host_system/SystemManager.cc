@@ -321,6 +321,11 @@ void RichPresenceManager::onSectionChange(UI::SectionId sectionId) {
         startTimestamp = timestamp ? *timestamp / 1000 : 0;
     }
 
+    // NOTE (vabold): Two states can have the same detail, but two details cannot have the same
+    // state.
+    assert(!(state == std::string_view(status().state) &&
+            details != std::string_view(status().details)));
+
     setGameState(state, details, startTimestamp);
 }
 
@@ -339,9 +344,8 @@ bool RichPresenceManager::sendStatus() {
 
 void RichPresenceManager::setGameState(std::string_view state, std::string_view details,
         s64 startTimestamp) {
-    // NOTE (vabold): We do not check for details updates, since we assume the following:
-    // Two states can have the same detail, but two details cannot have the same state.
     if (!m_statusWasSent || state != std::string_view(status().state) ||
+            details != std::string_view(status().details) ||
             startTimestamp != status().startTimestamp) {
         // TODO: replace m_state and details with BMG strings
         status().state = state;
