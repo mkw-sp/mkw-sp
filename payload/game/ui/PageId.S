@@ -50,7 +50,7 @@
 #define BattleCourseSelect 0x79 
 #define MissionLevelSelect 0x7a 
 #define MissionStageSelect 0x7b 
-#define MissionPrompt 0x7c 
+#define MissionInstruction 0x7c
 #define MissionDrift 0x7d 
 #define MissionTutorial 0x7e 
 #define ServicePackTop 0xa2 // Replaces ChannelTop 

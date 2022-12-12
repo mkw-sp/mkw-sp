@@ -17,6 +17,10 @@ SectionId SectionManager::lastSectionId() const {
     return m_lastSectionId;
 }
 
+RegisteredPadManager &SectionManager::registeredPadManager() {
+    return m_registeredPadManager;
+}
+
 SaveManagerProxy *SectionManager::saveManagerProxy() {
     return m_saveManagerProxy;
 }

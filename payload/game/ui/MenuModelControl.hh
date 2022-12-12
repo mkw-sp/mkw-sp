@@ -33,4 +33,14 @@ private:
 };
 static_assert(sizeof(DriverModelControl) == 0x188);
 
+class NoteModelControl : public LayoutUIControl {
+public:
+    REPLACE void beforePageAnim(PageId pageId);
+
+private:
+    u8 _174[0x17c - 0x174];
+    bool m_hasPageAnim;
+};
+static_assert(sizeof(NoteModelControl) == 0x180);
+
 } // namespace UI

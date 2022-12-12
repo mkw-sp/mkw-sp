@@ -46,9 +46,11 @@ public:
     Vec2<f32> m_scale;
     f32 m_width;
     f32 m_height;
+    Mtx34 m_localMtx;
+    Mtx34 m_globalMtx;
 
 private:
-    u8 _54[0xb8 - 0x54];
+    u8 _b4[0xb8 - 0xb4];
 
 public:
     u8 m_alpha;

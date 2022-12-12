@@ -20,6 +20,7 @@ extern "C" {
 #include "sp/security/Function.h"
 #include "sp/security/Heap.h"
 #include "sp/security/Memory.h"
+#include "sp/security/PageTable.h"
 #include "sp/security/Stack.h"
 #include "sp/storage/LogFile.h"
 }
@@ -71,18 +72,11 @@ static void Init() {
 
     Console::Print("Applying security patches...");
 #ifndef GDB_COMPATIBLE
-    OSDisableCodeExecOnMEM1Hi16MB();
-    OSDisableCodeExecOnMEM2();
-    OSEnableCodeExecOnPayload();
+    PageTable_Init();
+    Memory_InvalidateAllIBATs();
 #endif
 
-#ifdef GDB_COMPATIBLE
-    OSSetMEM1ArenaLo((void *)0x809C4FA0);
-#else
-    OSAllocFromMEM1ArenaLo(Rel_getSize(), 0x20);
-#endif
-
-    OSAllocFromMEM1ArenaLo(Payload_getSize(), 0x20);
+    OSSetMEM1ArenaLo(Payload_getEnd());
 
     Heap_RandomizeMEM1Heaps();
     Heap_RandomizeMEM2Heaps();
@@ -182,7 +176,6 @@ static void Run() {
         (*ctor)();
     }
     Stack_InitCanary();
-    Stack_RelocateMainThreadStackToMEM1End();
 #ifndef GDB_COMPATIBLE
     Stack_DoLinkRegisterPatches(reinterpret_cast<u32 *>(Dol_getTextSectionStart()),
             reinterpret_cast<u32 *>(Dol_getTextSectionEnd()));

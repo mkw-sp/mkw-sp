@@ -134,16 +134,16 @@ void RichPresenceManager::onSectionChange(UI::SectionId sectionId) {
     case (UI::SectionId)0x15:
         state = "Error on launch!";
         break;
-    case (UI::SectionId)0x19:
+    case UI::SectionId::GPDemo:
         state = "Starting Grand Prix...";
         break;
-    case (UI::SectionId)0x1A:
+    case UI::SectionId::VSDemo:
         state = "Starting VS Race...";
         break;
-    case (UI::SectionId)0x1B:
+    case UI::SectionId::BTDemo:
         state = "Starting Battle Mode...";
         break;
-    case (UI::SectionId)0x1C:
+    case UI::SectionId::MRBossDemo:
         state = "Starting Mission Mode...";
         break;
     case (UI::SectionId)0x1D:
@@ -181,8 +181,8 @@ void RichPresenceManager::onSectionChange(UI::SectionId sectionId) {
     case UI::SectionId::Battle4P:
         state = "Playing a multiplayer battle!";
         break;
-    case UI::SectionId::MRReplay:
-        state = "Watching a mission replay!";
+    case UI::SectionId::MR:
+        state = "Playing a mission!";
         break;
     case UI::SectionId::TournamentReplay:
         state = "Watching a competition replay!";
@@ -230,8 +230,8 @@ void RichPresenceManager::onSectionChange(UI::SectionId sectionId) {
     case UI::SectionId::Single:
     case UI::SectionId::SingleChangeDriver:
     case UI::SectionId::SingleChangeCourse:
-    case UI::SectionId::SingleChooseVSCourse:
-    case UI::SectionId::SingleChooseBattleCourse:
+    case UI::SectionId::SingleSelectVSCourse:
+    case UI::SectionId::SingleSelectBTCourse:
     case UI::SectionId::SingleChangeMission:
     case UI::SectionId::SingleChangeGhostData:
     case (UI::SectionId)0x4F:

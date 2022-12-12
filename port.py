@@ -172,19 +172,19 @@ SRC_BINARIES = {
 DST_BINARIES = {
     'P': {
         'dol': DstBinary(0x80004000, 0x8038917c),
-        'rel': DstBinary(0x80399180, 0x8076db50),
+        'rel': DstBinary(0x80399F2C, 0x8076E8FC),
     },
     'E': {
         'dol': DstBinary(0x80004000, 0x80384dfc),
-        'rel': DstBinary(0x80394e00, 0x807693f0),
+        'rel': DstBinary(0x80394F2C, 0x8076951C),
     },
     'J': {
         'dol': DstBinary(0x80004000, 0x80388afc),
-        'rel': DstBinary(0x80398b00, 0x8076cc90),
+        'rel': DstBinary(0x80398F2C, 0x8076D0BC),
     },
     'K': {
         'dol': DstBinary(0x80004000, 0x8037719c),
-        'rel': DstBinary(0x803871a0, 0x8075bfd0),
+        'rel': DstBinary(0x80387F2C, 0x8075CD5C),
     },
 }
 
@@ -704,7 +704,6 @@ with open(args.out_path, 'w') as out_file:
         rel_previous_section_end_address = section.end
     out_file.write('\n')
 
-    write_symbol(out_file, 'mem1ArenaHi', 0x80003110)
     write_symbol(out_file, 'versionInfo', 0x80003f00)
     out_file.write('\n')
 
@@ -728,10 +727,10 @@ with open(args.out_path, 'w') as out_file:
                 sys.exit(f'Couldn\'t port symbol {name} to region {args.region}!')
             if is_rel_bss and not args.base:
                 address -= {
-                    'P': 0xe02e0,
-                    'E': 0xe0280,
-                    'J': 0xe0200,
-                    'K': 0xe04a0,
+                    'P': 0xe02ec,
+                    'E': 0xe028c,
+                    'J': 0xe020c,
+                    'K': 0xe048c,
                 }[args.region]
             address -= SRC_BINARIES[args.region][binary_name].start
             address += DST_BINARIES[args.region][binary_name].start

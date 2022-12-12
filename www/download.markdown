@@ -41,3 +41,5 @@ LZMA SDK: [public domain](https://www.7-zip.org/sdk.html)
 magic\_enum: [Expat License](https://github.com/Neargye/magic_enum/blob/master/LICENSE)
 
 nanopb: [zlib License](https://github.com/nanopb/nanopb/blob/master/LICENSE.txt)
+
+TJpgDec: [BSD 1-Clause License](http://elm-chan.org/fsw/tjpgd/en/appnote.html#license)

@@ -3,9 +3,16 @@
 namespace UI {
 
 enum class SectionId {
+    None = -1,
+
     Restart = 0x5,
 
     Thumbnails = 0x6, // Was unused
+
+    GPDemo = 0x19,
+    VSDemo = 0x1a,
+    BTDemo = 0x1b,
+    MRBossDemo = 0x1c,
 
     GP = 0x1e,
     TA = 0x1f,
@@ -25,7 +32,8 @@ enum class SectionId {
     Battle3P = 0x2a,
     Battle4P = 0x2b,
 
-    MRReplay = 0x2c,
+    MR = 0x2c,
+
     TournamentReplay = 0x2d,
     GPReplay = 0x2e,
     TAReplay = 0x2f,
@@ -49,8 +57,8 @@ enum class SectionId {
     Single = 0x48,
     SingleChangeDriver = 0x49,
     SingleChangeCourse = 0x4a,
-    SingleChooseVSCourse = 0x4b,
-    SingleChooseBattleCourse = 0x4c,
+    SingleSelectVSCourse = 0x4b,
+    SingleSelectBTCourse = 0x4c,
     SingleChangeMission = 0x4d,
 
     SingleChangeGhostData = 0x4e, // Replaces SingleMkChannelGhost

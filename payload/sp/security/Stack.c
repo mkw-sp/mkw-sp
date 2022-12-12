@@ -2,8 +2,6 @@
 
 #include <revolution/os/OSCache.h>
 
-#define MAIN_THREAD_STACK_BITS_ENTROPY 11
-
 typedef bool (*Find)(u32 *startAddress);
 typedef void (*LinkRegisterFunction)(void);
 
@@ -20,23 +18,16 @@ typedef struct LinkRegisterPatch {
     LinkRegisterFunction newLRRestoreFunc;
 } LinkRegisterPatch;
 
-extern void Stack_XORAlignedLinkRegisterSave(void);
-extern void Stack_XORAlignedLinkRegisterRestore(void);
-extern void Stack_XORLinkRegisterSave(void);
-extern void Stack_XORLinkRegisterRestore(void);
-
-extern char *mem1ArenaHi;
-
-static const u32 mainThreadStackSize = 0x10000;
+void Stack_XORAlignedLinkRegisterSave(void);
+void Stack_XORAlignedLinkRegisterRestore(void);
+void Stack_XORLinkRegisterSave(void);
+void Stack_XORLinkRegisterRestore(void);
 
 static const u32 blr = 0x4E800020;
 static const u32 mflr = 0x7C0802A6;
 static const u32 mtlr = 0x7C0803A6;
 
 u32 __stack_chk_guard;
-
-u32 *mainThreadSPBottom;
-u32 *mainThreadSPTop;
 
 void Stack_InitCanary(void) {
     __stack_chk_guard = (__builtin_ppc_mftb() & 0x00FFFFFF) | (0x80 << 24);
@@ -45,20 +36,6 @@ void Stack_InitCanary(void) {
 __attribute__((noreturn)) void __stack_chk_fail(void) {
     panic("Stack smashing detected!");
     __builtin_unreachable();
-}
-
-static void *AllocFromMEM1ArenaHi(u32 size) {
-    mem1ArenaHi -= size;
-    return (void *)mem1ArenaHi;
-}
-
-void Stack_RelocateMainThreadStackToMEM1End(void) {
-    u32 *spBottom = AllocFromMEM1ArenaHi(mainThreadStackSize);
-    u32 *spTopMax = (u32 *)((u32)spBottom + mainThreadStackSize);
-    u32 *spTop = Stack_RandomizeStackPointer(spTopMax, MAIN_THREAD_STACK_BITS_ENTROPY);
-
-    mainThreadSPBottom = spBottom;
-    mainThreadSPTop = spTop;
 }
 
 static bool IsAlignedPrologue(u32 *startAddress) {

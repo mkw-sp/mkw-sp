@@ -1,0 +1,140 @@
+{
+    "version": 10,
+    "sections": [
+        {
+            "magic": "pat1",
+            "id": 2,
+            "groups": [],
+            "name": "select",
+            "start frame": 103,
+            "end frame": 145,
+            "descending bind": true,
+        },
+        {
+            "magic": "pai1",
+            "frame count": 42,
+            "loop": true,
+            "tpls": [],
+            "contents": [
+                {
+                    "name": "pause_w_null",
+                    "kind": "pane",
+                    "animations": [
+                        {
+                            "magic": "RLPA",
+                            "targets": [
+                                {
+                                    "id": 0,
+                                    "kind": "scale x",
+                                    "curve type": "hermite",
+                                    "keys": [
+                                        {
+                                            "frame": 0.0,
+                                            "value": 1.0,
+                                            "slope": 0.0,
+                                        },
+                                    ],
+                                },
+                                {
+                                    "id": 0,
+                                    "kind": "scale y",
+                                    "curve type": "hermite",
+                                    "keys": [
+                                        {
+                                            "frame": 0.0,
+                                            "value": 1.0,
+                                            "slope": 0.0,
+                                        },
+                                    ],
+                                },
+                            ],
+                        },
+                    ],
+                },
+                {
+                    "name": "text",
+                    "kind": "material",
+                    "animations": [
+                        {
+                            "magic": "RLMC",
+                            "targets": [
+                                {
+                                    "id": 0,
+                                    "kind": "tev color 0 color r",
+                                    "curve type": "hermite",
+                                    "keys": [
+                                        {
+                                            "frame": 0.0,
+                                            "value": 140.0,
+                                            "slope": 0.0,
+                                        },
+                                    ],
+                                },
+                                {
+                                    "id": 0,
+                                    "kind": "tev color 0 color g",
+                                    "curve type": "hermite",
+                                    "keys": [
+                                        {
+                                            "frame": 0.0,
+                                            "value": 105.0,
+                                            "slope": 0.0,
+                                        },
+                                    ],
+                                },
+                                {
+                                    "id": 0,
+                                    "kind": "tev color 0 color b",
+                                    "curve type": "hermite",
+                                    "keys": [
+                                        {
+                                            "frame": 0.0,
+                                            "value": 20.0,
+                                            "slope": 0.0,
+                                        },
+                                    ],
+                                },
+                                {
+                                    "id": 0,
+                                    "kind": "tev color 1 color r",
+                                    "curve type": "hermite",
+                                    "keys": [
+                                        {
+                                            "frame": 0.0,
+                                            "value": 255.0,
+                                            "slope": 0.0,
+                                        },
+                                    ],
+                                },
+                                {
+                                    "id": 0,
+                                    "kind": "tev color 1 color g",
+                                    "curve type": "hermite",
+                                    "keys": [
+                                        {
+                                            "frame": 0.0,
+                                            "value": 255.0,
+                                            "slope": 0.0,
+                                        },
+                                    ],
+                                },
+                                {
+                                    "id": 0,
+                                    "kind": "tev color 1 color b",
+                                    "curve type": "hermite",
+                                    "keys": [
+                                        {
+                                            "frame": 0.0,
+                                            "value": 255.0,
+                                            "slope": 0.0,
+                                        },
+                                    ],
+                                },
+                            ],
+                        },
+                    ],
+                },
+            ],
+        },
+    ],
+}

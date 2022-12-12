@@ -27,7 +27,7 @@ void KartSound::calcLap() {
         } else if (!m_proxy->isGhost()) {
             u32 state = RaceSoundManager::Instance()->state();
             auto setting = saveManager->getSetting<SP::ClientSettings::Setting::LastLapSpeedup>();
-            if ((state == 4 || state == 6) && setting != SP::ClientSettings::LastLapSpeedup::None) {
+            if (state == 4 || state == 6) {
                 if (setting == SP::ClientSettings::LastLapSpeedup::Static) {
                     RaceSoundManager::Instance()->transition(5);
                 } else {

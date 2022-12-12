@@ -55,8 +55,8 @@ enum class PageId {
     CharacterSelect = 0x6B,
     VehicleSelect = 0x6C,
     DriftSelect = 0x6D,
-    CupSelect = 0x6E,
-    CourseSelect = 0x6f,
+    CourseSelect = 0x6E, // Replaces RaceCupSelect
+    // 0x6F: unused, was RaceCourseSelect
     TimeAttackTop = 0x70,
     TimeAttackGhostList = 0x71,
     VSSelect = 0x72,
@@ -65,11 +65,11 @@ enum class PageId {
     BattleModeSelect = 0x75,
     BattleVehicleSelect = 0x76,
     BattleSetting = 0x77,
-    BattleCupSelect = 0x78,
-    BattleCourseSelect = 0x79,
+    // 0x78: unused, was BattleCupSelect
+    // 0x79: unused, was BattleCourseSelect
     MissionLevelSelect = 0x7a,
     MissionStageSelect = 0x7b,
-    MissionPrompt = 0x7c,
+    MissionInstruction = 0x7c,
     MissionDrift = 0x7d,
     MissionTutorial = 0x7e,
     ModelRender = 0x7f,

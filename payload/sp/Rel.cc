@@ -41,7 +41,8 @@ bool Load() {
     ICInvalidateRange(dst, srcHeader->fixSize);
     auto *dstHeader = reinterpret_cast<OSModuleHeader *>(dst);
 
-    void *bss = reinterpret_cast<u8 *>(dst) + OSRoundUp32B(srcHeader->fixSize);
+    void *bss = reinterpret_cast<void *>(
+            AlignUp(reinterpret_cast<size_t>(dst) + srcHeader->fixSize, 0x20));
     memset(bss, 0, srcHeader->bssSize);
 
     dstHeader->info.sectionInfoOffset += reinterpret_cast<u32>(dst);

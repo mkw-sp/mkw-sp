@@ -36,7 +36,7 @@ bool GhostSelectControl::hasSlidIn() {
     switch (getSlideAnimation()) {
     case ANIM_ID_SLIDE_IN_FROM_LEFT:
     case ANIM_ID_SLIDE_IN_FROM_RIGHT:
-        return !m_animator.isActive(GROUP_ID_SLIDE);
+        return !m_animator.getActive(GROUP_ID_SLIDE);
     default:
         return false;
     }

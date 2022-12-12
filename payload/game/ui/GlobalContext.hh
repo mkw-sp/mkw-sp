@@ -7,7 +7,8 @@ namespace UI {
 struct GlobalContext {
 public:
     void copyPlayerMiis();
-    void onChangeLicense();
+    void REPLACED(onChangeLicense)();
+    REPLACE void onChangeLicense();
 
     struct SelectPlayer {
         u32 m_characterId;
@@ -25,8 +26,11 @@ public:
     u32 m_timeAttackCharacterId;
     u8 _130[0x13c - 0x130];
     u32 m_timeAttackVehicleId;
-    u8 _140[0x164 - 0x140];
-    u32 m_driftIsAuto[4];
+    u8 _140[0x14c - 0x140];
+    u32 m_raceCourseId;
+    u32 m_battleCourseId;
+    u8 _154[0x164 - 0x154];
+    u32 m_driftModes[4];
     u8 _174[0x188 - 0x174];
     MiiGroup m_playerMiis;
     SelectPlayer m_selectPlayer[2];
@@ -41,6 +45,6 @@ public:
     u32 m_timeAttackGhostCount; // Added
     u32 m_timeAttackGhostIndices[11]; // Added
 };
-static_assert(offsetof(GlobalContext, m_timeAttackGhostCount) == 0x510);
+static_assert(sizeof(GlobalContext) == 0x510 + sizeof(u32) * (1 + 11));
 
 } // namespace UI

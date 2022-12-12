@@ -1,9 +1,5 @@
 #pragma once
 
-#define OS_CACHED_BASE 0x80000000
-
-#ifndef __ASSEMBLER__
-
 #include "revolution/gx/GXStruct.h"
 
 #ifdef RVL_OS_NEEDS_IMPORT
@@ -111,5 +107,3 @@ const char* OSGetAppGamename(void);
 
 extern u32 OSDisableInterrupts(void);
 extern void OSRestoreInterrupts(u32);
-
-#endif // #ifndef __ASSEMBLER__

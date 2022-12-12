@@ -2,6 +2,7 @@
 
 #include "game/ui/AwardPage.hh"
 #include "game/ui/ChannelPage.hh"
+#include "game/ui/CourseSelectPage.hh"
 #include "game/ui/DirectConnectionPage.hh"
 #include "game/ui/FriendMatchingPage.hh"
 #include "game/ui/FriendRoomBackPage.hh"
@@ -41,6 +42,10 @@ bool Section::isPageActive(PageId pageId) const {
         }
     }
     return false;
+}
+
+Vec2<f32> Section::locationAdjustScale() const {
+    return m_drawInfo.locationAdjust ? m_drawInfo.locationAdjustScale : Vec2{1.0f, 1.0f};
 }
 
 u32 Section::GetSceneId(SectionId id) {
@@ -99,12 +104,24 @@ void Section::addPage(PageId pageId) {
         { SectionId::Single, PageId::VSSelect },
         { SectionId::Single, PageId::VSSetting },
         { SectionId::Single, PageId::BattleSetting },
+        { SectionId::Single, (PageId)0x6f },
+        { SectionId::Single, (PageId)0x78 },
+        { SectionId::Single, (PageId)0x79 },
+        { SectionId::SingleSelectVSCourse, (PageId)0x6f },
+        { SectionId::SingleSelectBTCourse, (PageId)0x78 },
+        { SectionId::SingleSelectBTCourse, (PageId)0x79 },
         { SectionId::SingleChangeDriver, PageId::VSSelect },
         { SectionId::SingleChangeDriver, PageId::VSSetting },
         { SectionId::SingleChangeDriver, PageId::BattleSetting },
+        { SectionId::SingleChangeDriver, (PageId)0x6f },
+        { SectionId::SingleChangeDriver, (PageId)0x78 },
+        { SectionId::SingleChangeDriver, (PageId)0x79 },
         { SectionId::SingleChangeCourse, PageId::VSSelect },
         { SectionId::SingleChangeCourse, PageId::VSSetting },
         { SectionId::SingleChangeCourse, PageId::BattleSetting },
+        { SectionId::SingleChangeCourse, (PageId)0x6f },
+        { SectionId::SingleChangeCourse, (PageId)0x78 },
+        { SectionId::SingleChangeCourse, (PageId)0x79 },
         { SectionId::SingleChangeMission, PageId::VSSelect },
         { SectionId::SingleChangeMission, PageId::VSSetting },
         { SectionId::SingleChangeMission, PageId::BattleSetting },
@@ -158,6 +175,7 @@ void Section::addPage(PageId pageId) {
 
         { SectionId::Voting1PVS, (PageId)0x50 },
         { SectionId::Voting1PVS, (PageId)0x51 },
+        { SectionId::Voting1PVS, (PageId)0x6f },
         { SectionId::Voting1PVS, (PageId)0x88 },
         { SectionId::Voting1PVS, (PageId)0x91 },
 
@@ -282,7 +300,7 @@ void Section::addPages(SectionId id) {
         { SectionId::Battle2P, PageId::MenuSettings },
         { SectionId::Battle3P, PageId::MenuSettings },
         { SectionId::Battle4P, PageId::MenuSettings },
-        { SectionId::MRReplay, PageId::MenuSettings },
+        { SectionId::MR, PageId::MenuSettings },
         { SectionId::TournamentReplay, PageId::MenuSettings },
         { SectionId::GPReplay, PageId::MenuSettings },
         { SectionId::TAReplay, PageId::MenuSettings },
@@ -293,32 +311,34 @@ void Section::addPages(SectionId id) {
         { SectionId::GhostReplay, PageId::MenuSettings },
 
         // Mission Mode
-        { SectionId::MRReplay, PageId::CompetitionPersonalLeaderboard},
+        { SectionId::MR, PageId::CompetitionPersonalLeaderboard},
         { SectionId::SingleChangeMission, PageId::MissionLevelSelect },
         { SectionId::SingleChangeMission, PageId::MissionStageSelect },
-        { SectionId::SingleChangeMission, PageId::MissionPrompt },
+        { SectionId::SingleChangeMission, PageId::MissionInstruction },
         { SectionId::SingleChangeMission, PageId::MissionDrift },
         { SectionId::SingleChangeMission, PageId::MissionTutorial },
         { SectionId::Single, PageId::MissionLevelSelect},
         { SectionId::Single, PageId::MissionStageSelect},
-        { SectionId::Single, PageId::MissionPrompt},
+        { SectionId::Single, PageId::MissionInstruction},
         { SectionId::Single, PageId::MissionDrift},
         { SectionId::Single, PageId::MissionTutorial},
         { SectionId::SingleChangeDriver, PageId::MissionLevelSelect},
         { SectionId::SingleChangeDriver, PageId::MissionStageSelect},
-        { SectionId::SingleChangeDriver, PageId::MissionPrompt},
+        { SectionId::SingleChangeDriver, PageId::MissionInstruction},
         { SectionId::SingleChangeDriver, PageId::MissionDrift},
         { SectionId::SingleChangeDriver, PageId::MissionTutorial},
         { SectionId::SingleChangeCourse, PageId::MissionLevelSelect},
         { SectionId::SingleChangeCourse, PageId::MissionStageSelect},
-        { SectionId::SingleChangeCourse, PageId::MissionPrompt},
+        { SectionId::SingleChangeCourse, PageId::MissionInstruction},
         { SectionId::SingleChangeCourse, PageId::MissionDrift},
         { SectionId::SingleChangeCourse, PageId::MissionTutorial},
         { SectionId::SingleChangeGhostData, PageId::MissionLevelSelect},
         { SectionId::SingleChangeGhostData, PageId::MissionStageSelect},
-        { SectionId::SingleChangeGhostData, PageId::MissionPrompt},
+        { SectionId::SingleChangeGhostData, PageId::MissionInstruction},
         { SectionId::SingleChangeGhostData, PageId::MissionDrift},
         { SectionId::SingleChangeGhostData, PageId::MissionTutorial},
+
+        { SectionId::SingleSelectBTCourse, PageId::CourseSelect },
 
         // Change Ghost Data
         { SectionId::SingleChangeGhostData, PageId::ReadingGhostData },
@@ -326,15 +346,12 @@ void Section::addPages(SectionId id) {
         { SectionId::SingleChangeGhostData, (PageId)83 },
         { SectionId::SingleChangeGhostData, PageId::SingleTop },
         { SectionId::SingleChangeGhostData, (PageId)106 },
-        { SectionId::SingleChangeGhostData, PageId::CupSelect },
         { SectionId::SingleChangeGhostData, PageId::CourseSelect },
         { SectionId::SingleChangeGhostData, PageId::TimeAttackTop },
         { SectionId::SingleChangeGhostData, PageId::TimeAttackGhostList },
         { SectionId::SingleChangeGhostData, PageId::TeamConfirm },
         { SectionId::SingleChangeGhostData, PageId::BattleModeSelect },
         { SectionId::SingleChangeGhostData, PageId::BattleVehicleSelect },
-        { SectionId::SingleChangeGhostData, PageId::BattleCupSelect },
-        { SectionId::SingleChangeGhostData, PageId::BattleCourseSelect },
 
         { SectionId::Single, PageId::MenuSettings },
         { SectionId::SingleChangeDriver, PageId::MenuSettings },
@@ -380,7 +397,7 @@ void Section::addActivePages(SectionId id) {
 
         { SectionId::OnlineMulti, PageId::OnlineTop },
 
-        { SectionId::Voting1PVS, PageId::CupSelect },
+        { SectionId::Voting1PVS, PageId::CourseSelect },
 
         { SectionId::VotingServer, PageId::Roulette },
 
@@ -403,6 +420,8 @@ Page *Section::CreatePage(PageId pageId) {
         return new LicenseSelectPage;
     case PageId::SingleTop:
         return new SingleTopPage;
+    case PageId::CourseSelect:
+        return new CourseSelectPage;
     case PageId::TimeAttackGhostList:
         return new TimeAttackGhostListPage;
     case PageId::TeamConfirm:

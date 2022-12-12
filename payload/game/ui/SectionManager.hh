@@ -1,6 +1,7 @@
 #pragma once
 
 #include "game/ui/GlobalContext.hh"
+#include "game/ui/RegisteredPadManager.hh"
 #include "game/ui/SaveManagerProxy.hh"
 #include "game/ui/Section.hh"
 
@@ -11,6 +12,7 @@ public:
     Section *currentSection();
     SectionId nextSectionId() const;
     SectionId lastSectionId() const;
+    RegisteredPadManager &registeredPadManager();
     SaveManagerProxy *saveManagerProxy();
     GlobalContext *globalContext();
     void setNextSection(SectionId sectionId, Page::Anim anim);
@@ -26,7 +28,8 @@ private:
     u8 _04[0x0c - 0x04];
     SectionId m_nextSectionId;
     SectionId m_lastSectionId;
-    u8 _14[0x90 - 0x14];
+    u8 _14[0x34 - 0x14];
+    RegisteredPadManager m_registeredPadManager;
     SaveManagerProxy *m_saveManagerProxy;
     u8 _94[0x98 - 0x94];
     GlobalContext *m_globalContext;
