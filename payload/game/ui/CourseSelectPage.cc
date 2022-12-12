@@ -64,6 +64,8 @@ void CourseSelectPage::onInit() {
     m_sheetSelect.setVisible(m_sheetCount > 1);
     m_sheetSelect.setPlayerFlags(m_sheetCount <= 1 ? 0x0 : 0x1);
 
+    m_backConfirmed = false;
+
     for (u32 i = 0; i < m_buffers.size(); i++) {
         for (u8 c = 0; c < m_buffers[i].size(); c++) {
             m_buffers[i][c].reset(new (0x20) u8[MaxThumbnailHeight * MaxThumbnailWidth]);
@@ -121,12 +123,22 @@ void CourseSelectPage::afterCalc() {
 
 void CourseSelectPage::onRefocus() {
     auto *section = SectionManager::Instance()->currentSection();
-    auto *raceConfirmPage = section->page<PageId::RaceConfirm>();
-    if (!raceConfirmPage->hasConfirmed()) {
+    auto sectionId = section->id();
+
+    if (Section::HasRoomClient(sectionId)) {
         return;
     }
 
-    changeSection(SectionId::VSDemo, Anim::Next, 0.0f);
+    if (m_backConfirmed) {
+        changeSection(SectionId::TitleFromMenu, Anim::Prev, 0.0f);
+        return;
+    }
+
+    auto *raceConfirmPage = section->page<PageId::RaceConfirm>();
+    if (raceConfirmPage->hasConfirmed()) {
+        changeSection(SectionId::VSDemo, Anim::Next, 0.0f);
+        return;
+    }
 }
 
 u32 CourseSelectPage::sheetIndex() const {
@@ -138,8 +150,7 @@ u32 CourseSelectPage::lastSelected() const {
 }
 
 void CourseSelectPage::onBack([[maybe_unused]] u32 localPlayerId) {
-    m_replacement = PageId::DriftSelect;
-    startReplace(Anim::Prev, 0.0f);
+    onBackCommon(0.0f);
 }
 
 void CourseSelectPage::onButtonFront([[maybe_unused]] PushButton *button,
@@ -219,9 +230,34 @@ void CourseSelectPage::onScrollBarChange([[maybe_unused]] ScrollBar *scrollBar,
 
 void CourseSelectPage::onBackButtonFront([[maybe_unused]] PushButton *button,
         [[maybe_unused]] u32 localPlayerId) {
-    m_replacement = PageId::DriftSelect;
     f32 delay = button->getDelay();
-    startReplace(Anim::Prev, delay);
+    onBackCommon(delay);
+}
+
+void CourseSelectPage::onBackConfirm([[maybe_unused]] s32 choice,
+        [[maybe_unused]] PushButton *button) {
+    m_backConfirmed = true;
+}
+
+void CourseSelectPage::onBackCommon(f32 delay) {
+    auto *section = SectionManager::Instance()->currentSection();
+    auto sectionId = section->id();
+
+    if (Section::HasRoomClient(sectionId)) {
+
+    } else if (sectionId == SectionId::SingleSelectVSCourse ||
+            sectionId == SectionId::SingleSelectBTCourse) {
+        auto *yesNoPage = section->page<PageId::YesNoPopup>();
+        yesNoPage->reset();
+        yesNoPage->setWindowMessage(3470, nullptr);
+        yesNoPage->configureButton(0, 2002, nullptr, Anim::None, &m_onBackConfirm);
+        yesNoPage->configureButton(1, 2003, nullptr, Anim::None, nullptr);
+        yesNoPage->setDefaultChoice(1);
+        push(PageId::YesNoPopup, Anim::Next);
+    } else {
+        m_replacement = PageId::DriftSelect;
+        startReplace(Anim::Prev, delay);
+    }
 }
 
 void CourseSelectPage::refresh() {

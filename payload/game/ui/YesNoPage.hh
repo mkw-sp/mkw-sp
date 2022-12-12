@@ -37,9 +37,14 @@ public:
 
     void setWindowMessage(u32 messageId, MessageInfo *info = nullptr);
     void configureButton(u32 index, u32 messageId, MessageInfo *info, Anim anim, IHandler *handler);
+    void setDefaultChoice(u32 defaultChoice);
 
 private:
-    u8 _044[0x8b4 - 0x044];
+    u8 _044[0x270 - 0x044];
+    u32 m_choice;
+    u8 _274[0x27c - 0x274];
+    u32 m_defaultChoice;
+    u8 _280[0x8b4 - 0x280];
 
 protected:
     bool m_popRequested;

@@ -1,9 +1,9 @@
 #pragma once
 
 #include "game/ui/CourseSelectButton.hh"
-#include "game/ui/Page.hh"
 #include "game/ui/ScrollBar.hh"
 #include "game/ui/SheetSelectControl.hh"
+#include "game/ui/YesNoPage.hh"
 #include "game/ui/ctrl/CtrlMenuBackButton.hh"
 #include "game/ui/ctrl/CtrlMenuPageTitleText.hh"
 
@@ -51,7 +51,9 @@ private:
     void onSheetSelectLeft(SheetSelectControl *control, u32 localPlayerId);
     void onScrollBarChange(ScrollBar *scrollBar, u32 localPlayerId, u32 chosen);
     void onBackButtonFront(PushButton *button, u32 localPlayerId);
+    void onBackConfirm(s32 choice, PushButton *button);
 
+    void onBackCommon(f32 delay);
     void refresh();
     void loadThumbnails();
     JRESULT loadThumbnail(u32 i, u32 courseId);
@@ -82,6 +84,8 @@ private:
     H<SheetSelectControl> m_onSheetSelectLeft{ this, &CourseSelectPage::onSheetSelectLeft };
     H<ScrollBar> m_onScrollBarChange{ this, &CourseSelectPage::onScrollBarChange };
     H<PushButton> m_onBackButtonFront{ this, &CourseSelectPage::onBackButtonFront };
+    H<YesNoPage> m_onBackConfirm{ this, &CourseSelectPage::onBackConfirm };
+    bool m_backConfirmed;
     PageId m_replacement;
     SP::CourseDatabase::Filter m_filter;
     u32 m_sheetCount;
