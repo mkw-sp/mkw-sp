@@ -727,10 +727,10 @@ with open(args.out_path, 'w') as out_file:
                 sys.exit(f'Couldn\'t port symbol {name} to region {args.region}!')
             if is_rel_bss and not args.base:
                 address -= {
-                    'P': 0xe02e0,
-                    'E': 0xe0280,
-                    'J': 0xe0200,
-                    'K': 0xe04a0,
+                    'P': 0xe02ec,
+                    'E': 0xe028c,
+                    'J': 0xe020c,
+                    'K': 0xe048c,
                 }[args.region]
             address -= SRC_BINARIES[args.region][binary_name].start
             address += DST_BINARIES[args.region][binary_name].start
