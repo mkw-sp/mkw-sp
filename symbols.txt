@@ -513,6 +513,7 @@
 0x8052f4e8 RaceConfigScenario_initPads
 0x8052fe58 RaceConfig_createInstance
 0x8053015c RaceConfig_ct
+0x80530f30 _ZN6System10RaceConfig6Player6setMiiEPNS_3MiiE
 0x80531ce4 _ZN6System10RaceConfig7endRaceEv
 0x80532188 _ZN6System11RaceManager8initModeENS_10RaceConfig8GameModeE
 0x805327a0 RaceManager_construct
@@ -847,6 +848,7 @@
 0x805f9f58 _ZN2UI8MiiGroup2dtEi
 0x805fa04c MiiGroup_init
 0x805fa04c _ZN2UI8MiiGroup4initEjjPN3EGG4HeapE
+0x805fa370 _ZN2UI8MiiGroup5clearEv
 0x805fa610 MiiGroup_insertFromRaw
 0x805fa610 _ZN2UI8MiiGroup13insertFromRawEjPKN6System6RawMiiE
 0x805fa6e0 MiiGroup_insertFromId

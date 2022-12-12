@@ -17,6 +17,7 @@ public:
     System::Mii *get(size_t index);
     void copy(const MiiGroup *srcGroup, size_t srcIndex, size_t index);
     void swap(u32 i0, u32 i1);
+    void clear();
 
 private:
     struct Texture {

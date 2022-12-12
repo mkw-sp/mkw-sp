@@ -2,11 +2,14 @@
 
 #include <Common.hh>
 
+#include "game/system/Mii.hh"
+
 namespace System {
 
 class RaceConfig {
 public:
-    struct Player {
+    class Player {
+    public:
         enum class Type {
             Local = 0,
             CPU = 1,
@@ -16,21 +19,25 @@ public:
             Remote = 6,
         };
 
+        void setMii(Mii *mii);
+
         u8 _00[0x04 - 0x00];
         u8 spTeam; // Added (was unused, but not padding)
         u8 _05[0x08 - 0x05];
         u32 vehicleId;
         u32 characterId;
         Type type;
-        u8 _14[0xcc - 0x14];
+        Mii mii;
         u32 team;
         s32 controllerId;
-        u8 _d4[0xd8 - 0xd4];
+        u32 _d4; // Unused
         u16 prevScore;
         u16 score;
-        u8 _dc[0xe0 - 0xdc];
+        u16 _dc; // Unused
+        u8 _de[0xe0 - 0xde];
         u8 rank;
-        u8 _e1[0xf0 - 0xe1];
+        u8 _e1[0xec - 0xe1];
+        u32 _ec; // Unused
     };
     static_assert(sizeof(Player) == 0xf0);
 
@@ -53,10 +60,6 @@ public:
     };
 
     struct Scenario {
-        bool isOnline() const {
-            return gameMode >= GameMode::OnlinePrivateVS && gameMode <= GameMode::OnlinePrivateBT;
-        }
-
         bool isSpOnline() const {
             return gameMode >= GameMode::OnlineClient;
         }

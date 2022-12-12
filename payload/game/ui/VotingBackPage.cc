@@ -19,12 +19,18 @@ void VotingBackPage::onInit() {
 
     m_miiGroup.init(12, 4, nullptr);
 
+    auto &group = SectionManager::Instance()->globalContext()->m_playerMiis;
+    group.clear();
+
     auto *roomManager = SP::RoomManager::Instance();
     assert(roomManager);
 
     m_playerCount = roomManager->getPlayerCount();
     for (u8 i = 0; i < m_playerCount; i++) {
         m_miiGroup.insertFromRaw(i, roomManager->getPlayer(i)->getMii());
+        System::RaceConfig::Instance()->menuScenario().players[i].setMii(m_miiGroup.get(i));
+        SectionManager::Instance()->globalContext()->m_playerMiis.insertFromRaw(i,
+                roomManager->getPlayer(i)->getMii());
     }
 }
 

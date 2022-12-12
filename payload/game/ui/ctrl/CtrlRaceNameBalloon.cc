@@ -69,7 +69,7 @@ void CtrlRaceNameBalloon::refresh(u32 playerId) {
     auto *saveManager = System::SaveManager::Instance();
     auto playerType = raceScenario.players[playerId].type;
     if (raceScenario.spMaxTeamSize < 2 && playerType == System::RaceConfig::Player::Type::Local) {
-        if (raceScenario.isOnline()) {
+        if (raceScenario.isSpOnline()) {
             SP::ClientSettings::RegionLineColor regionLineColorSetting =
                     saveManager->getSetting<SP::ClientSettings::Setting::RegionLineColor>();
 
