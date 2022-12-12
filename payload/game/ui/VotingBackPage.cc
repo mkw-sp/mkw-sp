@@ -115,7 +115,7 @@ void VotingBackPage::Handler::onReceiveInfo(u32 playerId, s32 course, u32 select
 
     for (u8 i = 0; i < 12; i++) {
         if (roomManager->getPlayerOrder(i) == playerId) {
-            m_page.m_courseVotes[playerId] = course;
+            m_page.m_courseVotes[i] = course;
         }
     }
 
