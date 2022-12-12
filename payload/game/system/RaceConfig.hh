@@ -48,13 +48,17 @@ public:
         OnlinePrivateVS = 7,
         OnlinePrivateBT = 10,
         Awards = 11,
-        OnlineClient = 13,
+        OnlineClient = 13, // Extended
         OnlineServer = 14,
     };
 
     struct Scenario {
         bool isOnline() const {
             return gameMode >= GameMode::OnlinePrivateVS && gameMode <= GameMode::OnlinePrivateBT;
+        }
+
+        bool isSpOnline() const {
+            return gameMode >= GameMode::OnlineClient;
         }
 
         u8 _000[0x004 - 0x000];

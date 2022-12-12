@@ -1,5 +1,18 @@
 #include <Common.S>
 
+// Prevent online countdown
+PATCH_B_START(RaceManager_construct, 0x4f8)
+    // Compare against new online
+    cmpwi r0, 0xD
+    // NOTE: If new gamemodes are added afterward, modify this check!
+    blt end
+    li r3, 1
+end:
+    b RaceManager_construct + 0x50c
+PATCH_B_END(RaceManager_construct, 0x4f8)
+
+
+
 PATCH_B_START(RaceManagerPlayer_ct, 0x298)
     mr r3, r30
     bl RaceManagerPlayer_setMultiGhostPadProxy

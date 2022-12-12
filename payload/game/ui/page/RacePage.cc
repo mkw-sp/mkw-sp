@@ -54,17 +54,23 @@ void RacePage::afterCalc() {
 u8 RacePage::getControlCount(u32 controls) const {
     u8 count = REPLACED(getControlCount)(controls);
 
+    u32 localPlayerCount = System::RaceConfig::Instance()->raceScenario().localPlayerCount;
+    localPlayerCount = std::max(localPlayerCount, static_cast<u32>(1));
+
     auto *saveManager = System::SaveManager::Instance();
     auto setting = saveManager->getSetting<SP::ClientSettings::Setting::VanillaMode>();
     if (setting == SP::ClientSettings::VanillaMode::Disable) {
-        u32 localPlayerCount = System::RaceConfig::Instance()->raceScenario().localPlayerCount;
-        localPlayerCount = std::max(localPlayerCount, static_cast<u32>(1));
         count += localPlayerCount; // CtrlRaceSpeed
         count += localPlayerCount; // CtrlRaceInputDisplay
     }
 
     if (getNameBalloonCount() != 0) {
         count += 12 - getNameBalloonCount();
+    }
+
+    // Extend vanilla online logic to SP
+    if (System::RaceConfig::Instance()->raceScenario().isSpOnline()) {
+        count += (localPlayerCount * 2) + 1;
     }
 
     return count;
