@@ -3,6 +3,7 @@
 #include "game/system/RaceConfig.hh"
 #include "game/ui/RaceConfirmPage.hh"
 #include "game/ui/SectionManager.hh"
+#include "game/ui/VotingBackPage.hh"
 
 #include <sp/ScopeLock.hh>
 
@@ -165,7 +166,10 @@ void CourseSelectPage::onButtonFront([[maybe_unused]] PushButton *button,
     sectionManager->globalContext()->m_raceCourseId = entry.courseId;
 
     if (Section::HasRoomClient(sectionId)) {
-
+        auto *votingBackPage = section->page<PageId::VotingBack>();
+        votingBackPage->setLocalVote(entry.courseId);
+        votingBackPage->setSubmitted(true);
+        startReplace(Anim::Next, button->getDelay());
     } else {
         auto &menuScenario = System::RaceConfig::Instance()->menuScenario();
         menuScenario.courseId = entry.courseId;

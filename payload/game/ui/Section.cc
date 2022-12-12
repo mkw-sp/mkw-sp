@@ -175,6 +175,7 @@ void Section::addPage(PageId pageId) {
 
         { SectionId::Voting1PVS, (PageId)0x50 },
         { SectionId::Voting1PVS, (PageId)0x51 },
+        { SectionId::Voting1PVS, (PageId)0x6f },
         { SectionId::Voting1PVS, (PageId)0x88 },
         { SectionId::Voting1PVS, (PageId)0x91 },
 
