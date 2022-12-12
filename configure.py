@@ -1255,6 +1255,7 @@ code_in_files = {
         os.path.join('payload', 'egg', 'core', 'eggXfbManager.cc'),
         os.path.join('payload', 'egg', 'util', 'eggException.S'),
         os.path.join('payload', 'game', 'effect', 'Effect.S'),
+        os.path.join('payload', 'game', 'effect', 'KartEffect.S'),
         os.path.join('payload', 'game', 'gfx', 'Camera.S'),
         os.path.join('payload', 'game', 'gfx', 'CameraManager.S'),
         os.path.join('payload', 'game', 'host_system', 'RkSystem.S'),

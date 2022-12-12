@@ -13,6 +13,7 @@ public:
             Ghost = 3,
             Online = 4,
             None = 5,
+            Remote = 6,
         };
 
         u8 _00[0x04 - 0x00];
@@ -47,6 +48,8 @@ public:
         OnlinePrivateVS = 7,
         OnlinePrivateBT = 10,
         Awards = 11,
+        OnlineClient = 13,
+        OnlineServer = 14,
     };
 
     struct Scenario {

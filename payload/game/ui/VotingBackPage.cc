@@ -77,7 +77,7 @@ void VotingBackPage::setPlayerTypes() {
         }
 
         if (i < m_playerCount) {
-            menuScenario.players[i].type = System::RaceConfig::Player::Type::CPU;
+            menuScenario.players[i].type = System::RaceConfig::Player::Type::Remote;
             continue;
         }
 

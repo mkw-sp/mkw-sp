@@ -1,5 +1,22 @@
 #include <Common.S>
 
+PATCH_BL_START(KartObject_Create, 0x38)
+    // Set "online" to true with custom gamemode
+    cmpwi r0, 0xD
+    // NOTE: If new gamemodes are added afterwards, modify this check!
+    ble end
+    li r4, 1
+end:
+    b KartObject_Create + 0x4c
+PATCH_BL_END(KartObject_Create, 0x38)
+
+PATCH_BL_START(KartObject_Create, 0x78)
+    // Compare against custom player type
+    cmpwi r0, 0x6
+PATCH_BL_END(KartObject_Create, 0x78)
+
+
+
 PATCH_BL_START(KartObject_calcPass1, 0x28)
     lwz r3, 0x18 (r30) // Original instruction
 

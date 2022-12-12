@@ -47,8 +47,40 @@ void RaceManager::calc() {
     }
 }
 
+void RaceManager::setSpectatorMode(bool toggle) {
+    m_spectatorMode = toggle;
+}
+
+bool RaceManager::spectatorMode() const {
+    return m_spectatorMode;
+}
+
 RaceManager *RaceManager::Instance() {
     return s_instance;
 }
+
+RaceManager::Mode *RaceManager::initMode(RaceConfig::GameMode mode) {
+    switch (mode) {
+    case RaceConfig::GameMode::OnlineClient:
+        return new OnlineClient(this);
+    case RaceConfig::GameMode::OnlineServer:
+        return new OnlineServer(this);
+    default:
+        return REPLACED(initMode)(mode);
+    }
+}
+
+RaceManager::Mode::Mode(RaceManager *manager) : m_manager(manager) {}
+
+// HACK: we need the virtual function offsets to match
+void RaceManager::Mode::vf_00() {}
+
+RaceManager::OnlineClient::OnlineClient(RaceManager *manager) : Mode(manager) {}
+
+void RaceManager::OnlineClient::calc() {}
+
+RaceManager::OnlineServer::OnlineServer(RaceManager *manager) : Mode(manager) {}
+
+void RaceManager::OnlineServer::calc() {}
 
 } // namespace System
