@@ -2,6 +2,9 @@
 
 #include "game/ui/Page.hh"
 
+#include "game/ui/ctrl/CtrlRaceWifiFinishMessage.hh"
+#include "game/ui/ctrl/CtrlRaceWifiStartMessage.hh"
+
 namespace UI {
 
 class RacePage : public Page {
@@ -38,7 +41,10 @@ private:
     u32 m_watchedPlayerId;
     u8 _068[0x069 - 0x068];
     u8 m_lastWatchedPlayerId; // Added (was padding)
-    u8 _06a[0x1dc - 0x06a];
+    u8 _06a[0x070 - 0x06a];
+    CtrlRaceWifiStartMessage **m_startMessages;
+    CtrlRaceWifiFinishMessage **m_finishMessages;
+    u8 _078[0x1dc - 0x078];
 
     static RacePage *s_instance;
 };

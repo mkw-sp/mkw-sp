@@ -34,18 +34,6 @@ PATCH_REPLACE_END(RacePage_initControls, 0x8d8)
 
 
 
-PATCH_B_START(RacePage_initControls, 0xa00)
-    // Compare against new online
-    cmpwi r0, 0xD
-    // NOTE: If new gamemodes are added afterward, modify this check!
-    blt end
-    li r3, 1
-end:
-    b RacePage_initControls + 0xa14
-PATCH_B_END(RacePage_initControls, 0xa00)
-
-
-
 PATCH_B_START(RacePage_beforeCalc, 0x3c)
     // Check if the section id is live replay
     cmpwi r0, 0x34

@@ -5,6 +5,7 @@
 #include "game/ui/SectionManager.hh"
 #include "game/ui/ctrl/CtrlRaceInputDisplay.hh"
 #include "game/ui/ctrl/CtrlRaceSpeed.hh"
+#include "game/ui/ctrl/CtrlRaceWaitSymbol.hh"
 
 namespace UI {
 
@@ -79,25 +80,39 @@ u8 RacePage::getControlCount(u32 controls) const {
 void RacePage::initControls(u32 controls) {
     REPLACED(initControls)(controls);
 
-    auto *saveManager = System::SaveManager::Instance();
-    auto setting = saveManager->getSetting<SP::ClientSettings::Setting::VanillaMode>();
-    if (setting == SP::ClientSettings::VanillaMode::Enable) {
-        return;
-    }
-
     u32 index = getControlCount(controls) - 1;
     u32 localPlayerCount = System::RaceConfig::Instance()->raceScenario().localPlayerCount;
     localPlayerCount = std::max(localPlayerCount, static_cast<u32>(1));
 
-    for (u32 i = 0; i < localPlayerCount; i++) {
-        auto *control = new CtrlRaceSpeed;
-        insertChild(index--, control, 0);
-        control->load(localPlayerCount, i);
+    auto *saveManager = System::SaveManager::Instance();
+    auto setting = saveManager->getSetting<SP::ClientSettings::Setting::VanillaMode>();
+    if (setting != SP::ClientSettings::VanillaMode::Enable) {
+        for (u32 i = 0; i < localPlayerCount; i++) {
+            auto *control = new CtrlRaceSpeed;
+            insertChild(index--, control, 0);
+            control->load(localPlayerCount, i);
+        }
+        for (u32 i = 0; i < localPlayerCount; i++) {
+            auto *control = new CtrlRaceInputDisplay;
+            insertChild(index--, control, 0);
+            control->load(localPlayerCount, i);
+        }
     }
-    for (u32 i = 0; i < localPlayerCount; i++) {
-        auto *control = new CtrlRaceInputDisplay;
+
+    if (System::RaceConfig::Instance()->raceScenario().isSpOnline()) {
+        for (u32 i = 0; i < localPlayerCount; i++) {
+            auto *control = new CtrlRaceWifiStartMessage;
+            insertChild(index--, control, 0);
+            control->load(localPlayerCount, i);
+        }
+        for (u32 i = 0; i < localPlayerCount; i++) {
+            auto *control = new CtrlRaceWifiFinishMessage;
+            insertChild(index--, control, 0);
+            control->load(localPlayerCount, i);
+        }
+        auto *control = new CtrlRaceWaitSymbol;
         insertChild(index--, control, 0);
-        control->load(localPlayerCount, i);
+        control->load(1, 0);
     }
 }
 
