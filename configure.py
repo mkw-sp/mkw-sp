@@ -1509,8 +1509,6 @@ code_in_files = {
         os.path.join('payload', 'game', 'ui', 'model', 'CharacterModelManager.S'),
         os.path.join('payload', 'game', 'ui', 'model', 'MenuModelManager.cc'),
         os.path.join('payload', 'game', 'ui', 'page', 'CharacterSelectPage.S'),
-        os.path.join('payload', 'game', 'ui', 'page', 'CourseSelectPage.S'),
-        os.path.join('payload', 'game', 'ui', 'page', 'CupSelectPage.S'),
         os.path.join('payload', 'game', 'ui', 'page', 'DemoPage.S'),
         os.path.join('payload', 'game', 'ui', 'page', 'DriftSelectPage.S'),
         os.path.join('payload', 'game', 'ui', 'page', 'DriftSelectPage.cc'),
