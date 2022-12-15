@@ -59,10 +59,10 @@ public:
         OnlineServer = 14,
     };
 
-    struct Scenario {
-        bool isSpOnline() const {
-            return gameMode >= GameMode::OnlineClient;
-        }
+    class Scenario {
+    public:
+        // _ZNK6System10RaceConfig8Scenario10isSpOnlineEv
+        bool isSpOnline() const;
 
         u8 _000[0x004 - 0x000];
         u8 playerCount;

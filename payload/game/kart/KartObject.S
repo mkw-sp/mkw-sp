@@ -1,19 +1,19 @@
 #include <Common.S>
 
-PATCH_BL_START(KartObject_Create, 0x38)
+PATCH_B_START(KartObject_Create, 0x34)
     // Set "online" to true with custom gamemode
-    cmpwi r0, 0xD
-    // NOTE: If new gamemodes are added afterwards, modify this check!
-    ble end
-    li r4, 1
-end:
+    mr r25, r3
+    addi r3, r25, 0x20
+    bl _ZNK6System10RaceConfig8Scenario10isSpOnlineEv
+    mr r4, r3
+    mr r3, r25
     b KartObject_Create + 0x4c
-PATCH_BL_END(KartObject_Create, 0x38)
+PATCH_B_END(KartObject_Create, 0x34)
 
-PATCH_BL_START(KartObject_Create, 0x78)
+PATCH_REPLACE_START(KartObject_Create, 0x78)
     // Compare against custom player type
     cmpwi r0, 0x6
-PATCH_BL_END(KartObject_Create, 0x78)
+PATCH_REPLACE_END(KartObject_Create, 0x78)
 
 
 

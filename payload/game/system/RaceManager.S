@@ -1,15 +1,14 @@
 #include <Common.S>
 
 // Prevent online countdown
-PATCH_B_START(RaceManager_construct, 0x4f8)
-    // Compare against new online
-    cmpwi r0, 0xD
-    // NOTE: If new gamemodes are added afterward, modify this check!
-    blt end
-    li r3, 1
-end:
+PATCH_B_START(RaceManager_construct, 0x4f4)
+    // Set "online" to true with custom gamemode
+    mr r31, r4
+    addi r3, r31, 0x20
+    bl _ZNK6System10RaceConfig8Scenario10isSpOnlineEv
+    mr r4, r31
     b RaceManager_construct + 0x50c
-PATCH_B_END(RaceManager_construct, 0x4f8)
+PATCH_B_END(RaceManager_construct, 0x4f4)
 
 
 

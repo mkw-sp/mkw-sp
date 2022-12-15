@@ -55,6 +55,16 @@ RaceConfig *RaceConfig::Instance() {
     return s_instance;
 }
 
+bool RaceConfig::Scenario::isSpOnline() const {
+    switch (gameMode) {
+    case GameMode::OnlineClient:
+    case GameMode::OnlineServer:
+        return true;
+    default:
+        return false;
+    }
+}
+
 } // namespace System
 
 extern "C" {
