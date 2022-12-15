@@ -1,5 +1,7 @@
 #include "RoomClient.hh"
 
+#include "sp/settings/RegionLineColor.hh"
+
 #include <egg/core/eggHeap.hh>
 extern "C" {
 #include <game/system/RootScene.h>
@@ -365,8 +367,9 @@ bool RoomClient::onMain(Handler &handler) {
         saveManager->getLatitude(&latitude);
         u16 longitude;
         saveManager->getLongitude(&longitude);
-        u32 regionLineColor = static_cast<u32>(
-                saveManager->getSetting<SP::ClientSettings::Setting::RegionLineColor>());
+        SP::ClientSettings::RegionLineColor regionLineColorSetting =
+                saveManager->getSetting<SP::ClientSettings::Setting::RegionLineColor>();
+        u32 regionLineColor = SP::RegionLineColor::Get(regionLineColorSetting);
         if (!onPlayerJoin(handler, &raw, location, latitude, longitude, regionLineColor)) {
             // TODO spectate?
             return false;
@@ -391,8 +394,8 @@ bool RoomClient::onPlayerJoin(Handler &handler, const System::RawMii *mii, u32 l
         return false;
     }
 
-    m_players[m_playerCount] = {0xFFFFFFFF, *mii, location, latitude, longitude,
-            regionLineColor, 0xFFFFFFFF, {}, 0};
+    m_players[m_playerCount] = {0xFFFFFFFF, *mii, location, latitude, longitude, regionLineColor,
+            0xFFFFFFFF, {}, 0};
     m_playerCount++;
     handler.onPlayerJoin(mii, location, latitude, longitude, regionLineColor);
     return true;
@@ -507,8 +510,9 @@ bool RoomClient::writeJoin() {
     u16 longitude;
     saveManager->getLongitude(&longitude);
     request.request.join.longitude = longitude;
-    request.request.join.regionLineColor = static_cast<u32>(
-            saveManager->getSetting<SP::ClientSettings::Setting::RegionLineColor>());
+    SP::ClientSettings::RegionLineColor regionLineColorSetting =
+            saveManager->getSetting<SP::ClientSettings::Setting::RegionLineColor>();
+    request.request.join.regionLineColor = SP::RegionLineColor::Get(regionLineColorSetting);
     request.request.join.settings_count = RoomSettings::count;
     for (size_t i = 0; i < RoomSettings::count; i++) {
         request.request.join.settings[i] = saveManager->getSetting(RoomSettings::offset + i);
