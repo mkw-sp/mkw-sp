@@ -5,6 +5,9 @@
 #include "game/ui/SectionManager.hh"
 #include "game/ui/ctrl/CtrlRaceInputDisplay.hh"
 #include "game/ui/ctrl/CtrlRaceSpeed.hh"
+#include "game/ui/ctrl/CtrlRaceWaitSymbol.hh"
+
+#include <sp/cs/RaceManager.hh>
 
 namespace UI {
 
@@ -54,11 +57,12 @@ void RacePage::afterCalc() {
 u8 RacePage::getControlCount(u32 controls) const {
     u8 count = REPLACED(getControlCount)(controls);
 
+    u32 localPlayerCount = System::RaceConfig::Instance()->raceScenario().localPlayerCount;
+    localPlayerCount = std::max(localPlayerCount, static_cast<u32>(1));
+
     auto *saveManager = System::SaveManager::Instance();
     auto setting = saveManager->getSetting<SP::ClientSettings::Setting::VanillaMode>();
     if (setting == SP::ClientSettings::VanillaMode::Disable) {
-        u32 localPlayerCount = System::RaceConfig::Instance()->raceScenario().localPlayerCount;
-        localPlayerCount = std::max(localPlayerCount, static_cast<u32>(1));
         count += localPlayerCount; // CtrlRaceSpeed
         count += localPlayerCount; // CtrlRaceInputDisplay
     }
@@ -67,31 +71,50 @@ u8 RacePage::getControlCount(u32 controls) const {
         count += 12 - getNameBalloonCount();
     }
 
+    // Extend vanilla online logic to SP
+    if (SP::RaceManager::Instance()) {
+        count += (localPlayerCount * 2) + 1;
+    }
+
     return count;
 }
 
 void RacePage::initControls(u32 controls) {
     REPLACED(initControls)(controls);
 
-    auto *saveManager = System::SaveManager::Instance();
-    auto setting = saveManager->getSetting<SP::ClientSettings::Setting::VanillaMode>();
-    if (setting == SP::ClientSettings::VanillaMode::Enable) {
-        return;
-    }
-
     u32 index = getControlCount(controls) - 1;
     u32 localPlayerCount = System::RaceConfig::Instance()->raceScenario().localPlayerCount;
     localPlayerCount = std::max(localPlayerCount, static_cast<u32>(1));
 
-    for (u32 i = 0; i < localPlayerCount; i++) {
-        auto *control = new CtrlRaceSpeed;
-        insertChild(index--, control, 0);
-        control->load(localPlayerCount, i);
+    auto *saveManager = System::SaveManager::Instance();
+    auto setting = saveManager->getSetting<SP::ClientSettings::Setting::VanillaMode>();
+    if (setting != SP::ClientSettings::VanillaMode::Enable) {
+        for (u32 i = 0; i < localPlayerCount; i++) {
+            auto *control = new CtrlRaceSpeed;
+            insertChild(index--, control, 0);
+            control->load(localPlayerCount, i);
+        }
+        for (u32 i = 0; i < localPlayerCount; i++) {
+            auto *control = new CtrlRaceInputDisplay;
+            insertChild(index--, control, 0);
+            control->load(localPlayerCount, i);
+        }
     }
-    for (u32 i = 0; i < localPlayerCount; i++) {
-        auto *control = new CtrlRaceInputDisplay;
+
+    if (SP::RaceManager::Instance()) {
+        for (u32 i = 0; i < localPlayerCount; i++) {
+            auto *control = new CtrlRaceWifiStartMessage;
+            insertChild(index--, control, 0);
+            control->load(localPlayerCount, i);
+        }
+        for (u32 i = 0; i < localPlayerCount; i++) {
+            auto *control = new CtrlRaceWifiFinishMessage;
+            insertChild(index--, control, 0);
+            control->load(localPlayerCount, i);
+        }
+        auto *control = new CtrlRaceWaitSymbol;
         insertChild(index--, control, 0);
-        control->load(localPlayerCount, i);
+        control->load(1, 0);
     }
 }
 

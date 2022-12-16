@@ -72,6 +72,10 @@ void RaceManager::OnDestroyScene() {
     s_block = nullptr;
 }
 
+RaceManager *RaceManager::Instance() {
+    return s_instance;
+}
+
 RaceManager::RaceManager() : m_roomManager(*RoomManager::Instance()) {}
 
 RaceManager::~RaceManager() = default;

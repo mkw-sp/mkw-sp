@@ -15,6 +15,7 @@ public:
 
     static void OnCreateScene();
     static void OnDestroyScene();
+    static RaceManager *Instance();
 
 protected:
     RaceManager();
