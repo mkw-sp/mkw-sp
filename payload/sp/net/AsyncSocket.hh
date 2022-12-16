@@ -25,7 +25,7 @@ public:
     std::optional<u16> read(u8 *message, u16 maxSize);
     bool write(const u8 *message, u16 size);
 
-    hydro_kx_session_keypair &getKeypair() {
+    hydro_kx_session_keypair getKeypair() const {
         return m_keypair;
     }
 

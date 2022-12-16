@@ -83,6 +83,14 @@ bool RoomServer::calc(Handler &handler) {
     return true;
 }
 
+std::optional<hydro_kx_session_keypair> RoomServer::clientKeypair(u32 clientId) const {
+    if (clientId >= m_clients.size() || !m_clients[clientId]) {
+        return {};
+    }
+
+    return m_clients[clientId]->keypair();
+}
+
 RoomServer *RoomServer::CreateInstance() {
     assert(s_block);
     assert(!s_instance);
@@ -486,6 +494,10 @@ bool RoomServer::Client::ready() const {
     default:
         return false;
     }
+}
+
+hydro_kx_session_keypair RoomServer::Client::keypair() const {
+    return m_socket.getKeypair();
 }
 
 bool RoomServer::Client::calc(Handler &handler) {

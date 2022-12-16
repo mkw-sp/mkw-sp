@@ -16,26 +16,32 @@ void RaceManager::OnCreateScene() {
         return;
     }
 
-    size_t size;
+    bool isServer = false;
     if (UI::Section::HasRaceClient(sectionManager->nextSectionId())) {
         // Client
         if (UI::Section::HasRaceClient(sectionManager->lastSectionId())) {
             return;
         }
-        size = sizeof(RaceClient);
+        isServer = false;
     } else if (UI::Section::HasRaceServer(sectionManager->nextSectionId())) {
         // Server
         if (UI::Section::HasRaceServer(sectionManager->lastSectionId())) {
             return;
         }
-        size = sizeof(RaceServer);
+        isServer = true;
     } else {
         return;
     }
 
     assert(!s_block);
     auto *heap = reinterpret_cast<EGG::Heap *>(s_rootScene->heapCollection.heaps[HEAP_ID_MEM2]);
-    s_block = heap->alloc(size, 0x4);
+    if (isServer) {
+        s_block = heap->alloc(sizeof(RaceServer), 0x4);
+        RaceServer::CreateInstance();
+    } else {
+        s_block = heap->alloc(sizeof(RaceClient), 0x4);
+        RaceClient::CreateInstance();
+    }
 }
 
 void RaceManager::OnDestroyScene() {

@@ -1,17 +1,26 @@
 #include "RaceServer.hh"
 
+#include "sp/cs/RoomServer.hh"
+
 namespace SP {
 
 void RaceServer::destroyInstance() {
     DestroyInstance();
 }
 
-RaceServer *RaceServer::CreateInstance(
-        std::array<Net::UnreliableSocket::ConnectionInfo, 24> &connections, u32 connectionCount,
-        u16 port) {
+RaceServer *RaceServer::CreateInstance() {
     assert(s_block);
     assert(!s_instance);
-    s_instance = new (s_block) RaceServer(connections, connectionCount, port);
+    auto *roomServer = RoomServer::Instance();
+    std::array<Net::UnreliableSocket::ConnectionInfo, 24> connections;
+    u32 connectionCount = 0;
+    for (u32 i = 0; i < 12; i++) {
+        if (auto keypair = roomServer->clientKeypair(i)) {
+            connections[connectionCount++] =
+                    SP::Net::UnreliableSocket::ConnectionInfo{0, 0, *keypair};
+        }
+    }
+    s_instance = new (s_block) RaceServer(connections, connectionCount, 21330);
     RaceManager::s_instance = s_instance;
     return s_instance;
 }

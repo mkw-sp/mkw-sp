@@ -26,6 +26,8 @@ public:
     // Main RoomServer update, called in networking pages (typically afterCalc())
     bool calc(Handler &handler) override;
 
+    std::optional<hydro_kx_session_keypair> clientKeypair(u32 clientId) const;
+
     static RoomServer *CreateInstance();
     static void DestroyInstance();
     static RoomServer *Instance();
@@ -45,6 +47,7 @@ private:
         ~Client();
 
         bool ready() const;
+        hydro_kx_session_keypair keypair() const;
         bool calc(Handler &handler);
 
         // Event writing for clients

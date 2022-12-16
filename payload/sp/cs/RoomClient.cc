@@ -61,6 +61,18 @@ bool RoomClient::calc(Handler &handler) {
     return true;
 }
 
+u32 RoomClient::ip() const {
+    return m_socket.getIp();
+}
+
+u16 RoomClient::port() const {
+    return m_socket.getPort();
+}
+
+hydro_kx_session_keypair RoomClient::keypair() const {
+    return m_socket.getKeypair();
+}
+
 bool RoomClient::sendComment(u32 commentId) {
     return writeComment(commentId);
 }

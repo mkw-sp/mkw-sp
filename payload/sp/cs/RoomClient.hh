@@ -23,6 +23,10 @@ public:
     // Main RoomClient update, called in networking pages (typically afterCalc())
     bool calc(Handler &handler) override;
 
+    u32 ip() const;
+    u16 port() const;
+    hydro_kx_session_keypair keypair() const;
+
     // Request writing interface - new requests should go here!
     // TODO these should return void and defer the actual sending
     bool sendComment(u32 commentId);
