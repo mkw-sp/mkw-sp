@@ -4,6 +4,7 @@
 #include "game/ui/SectionManager.hh"
 
 #include <sp/ThumbnailManager.hh>
+#include <sp/cs/RaceManager.hh>
 
 namespace System {
 
@@ -52,6 +53,9 @@ RaceManager *RaceManager::CreateInstance() {
     assert(s_instance);
 
     s_instance->m_spectatorMode = false;
+    if (SP::RaceManager::Instance()) {
+        s_instance->m_canStartCountdown = false;
+    }
 
     return s_instance;
 }

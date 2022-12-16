@@ -45,7 +45,8 @@ private:
     u32 m_frame;
     u8 _24[0x2d - 0x24];
     bool m_spectatorMode;
-    u8 _2e[0x4c - 0x2e];
+    bool m_canStartCountdown;
+    u8 _2e[0x4c - 0x2f];
 
     static RaceManager *s_instance;
 };
