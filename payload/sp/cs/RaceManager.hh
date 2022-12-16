@@ -13,6 +13,9 @@ public:
 
     virtual void destroyInstance() = 0;
 
+    static void OnCreateScene();
+    static void OnDestroyScene();
+
 protected:
     RaceManager();
     // Prevent copy/move

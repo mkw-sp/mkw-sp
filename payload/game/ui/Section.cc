@@ -76,6 +76,7 @@ bool Section::HasRoomClient(SectionId sectionId) {
     case SectionId::Voting2PVS:
     case SectionId::Voting2PBalloon:
     case SectionId::Voting2PCoin:
+    case SectionId::Online1PVS:
         return true;
     default:
         return false;
@@ -86,6 +87,25 @@ bool Section::HasRoomServer(SectionId sectionId) {
     switch (sectionId) {
     case SectionId::OnlineServer:
     case SectionId::VotingServer:
+    case SectionId::OnlineServerVS:
+        return true;
+    default:
+        return false;
+    }
+}
+
+bool Section::HasRaceClient(SectionId sectionId) {
+    switch (sectionId) {
+    case SectionId::Online1PVS:
+        return true;
+    default:
+        return false;
+    }
+}
+
+bool Section::HasRaceServer(SectionId sectionId) {
+    switch (sectionId) {
+    case SectionId::OnlineServerVS:
         return true;
     default:
         return false;
