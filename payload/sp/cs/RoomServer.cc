@@ -216,6 +216,11 @@ std::optional<RoomServer::State> RoomServer::calcSelect(Handler &handler) {
     if (m_voteCount == m_playerCount) {
         u32 selectedPlayer = hydro_random_uniform(m_playerCount);
         writeSelectInfo(selectedPlayer);
+        for (u8 i = 0; i < m_playerCount; i++) {
+            const Player &player = m_players[selectedPlayer];
+            handler.onReceiveInfo(i, player.m_course, selectedPlayer,
+                    player.m_properties.m_character, player.m_properties.m_vehicle);
+        }
         return State::Race;
     }
 

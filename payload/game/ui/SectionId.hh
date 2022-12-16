@@ -79,6 +79,7 @@ enum class SectionId {
     Voting2PCoin = 0x67,
 
     Online1PVS = 0x70,
+    OnlineServerVS = 0x71, // Replaces Wifi1PTeamVS
 
     ServicePack = 0x7a, // Replaces Channel
 

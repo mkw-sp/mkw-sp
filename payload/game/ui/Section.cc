@@ -193,6 +193,11 @@ void Section::addPage(PageId pageId) {
         { SectionId::Online1PVS, (PageId)0x48 },
         { SectionId::Online1PVS, (PageId)0x88 },
 
+        { SectionId::OnlineServerVS, (PageId)0x32 },
+        { SectionId::OnlineServerVS, (PageId)0x44 },
+        { SectionId::OnlineServerVS, (PageId)0x48 },
+        { SectionId::OnlineServerVS, (PageId)0x88 },
+
         // The channel section is repurposed into the Service Pack section. Remove some pages that
         // aren't needed anymore.
         { SectionId::ServicePack, PageId::TimeAttackTop },
@@ -258,6 +263,7 @@ void Section::addActivePage(PageId pageId) {
         { SectionId::VotingServer, (PageId)0x88 },
 
         { SectionId::Online1PVS, (PageId)0x88 },
+        { SectionId::OnlineServerVS, (PageId)0x88 },
     };
     for (const auto &deletion : deletions) {
         if (deletion.first == m_id && deletion.second == pageId) {
@@ -368,6 +374,8 @@ void Section::addPages(SectionId id) {
         { SectionId::OnlineMulti, PageId::FriendRoomRules },
         { SectionId::OnlineMulti, PageId::MenuSettings },
         { SectionId::OnlineMulti, PageId::SettingsPopup },
+
+        { SectionId::OnlineServerVS, PageId::ResultRaceTotal },
 
         // The channel section is repurposed into the Service Pack section. Add some additional
         // pages we need.

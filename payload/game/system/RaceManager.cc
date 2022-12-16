@@ -47,6 +47,15 @@ void RaceManager::calc() {
     }
 }
 
+RaceManager *RaceManager::CreateInstance() {
+    s_instance = new RaceManager;
+    assert(s_instance);
+
+    s_instance->m_spectatorMode = false;
+
+    return s_instance;
+}
+
 RaceManager *RaceManager::Instance() {
     return s_instance;
 }

@@ -32,18 +32,23 @@ public:
     void REPLACED(calc)();
     REPLACE void calc();
 
+    static REPLACE RaceManager *CreateInstance();
     static RaceManager *Instance();
     static u8 GetLapCount();
 
 private:
+    RaceManager();
+
     u8 _00[0x0c - 0x00];
     Player **m_players;
     u8 _10[0x20 - 0x10];
     u32 m_frame;
-    u8 _24[0x50 - 0x24];
+    u8 _24[0x2d - 0x24];
+    bool m_spectatorMode;
+    u8 _2e[0x4c - 0x2e];
 
     static RaceManager *s_instance;
 };
-static_assert(sizeof(RaceManager) == 0x50);
+static_assert(sizeof(RaceManager) == 0x4c);
 
 } // namespace System
