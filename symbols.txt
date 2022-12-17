@@ -493,6 +493,7 @@
 0x80523690 InputManager_reset
 0x805237e8 InputManager_calcPads
 0x805238f0 InputManager_calc
+0x805238f0 _ZN6System12InputManager4calcEv
 0x80524568 InputManager_startRace
 0x80524580 InputManager_startGhostProxies
 0x80526020 Mii_80526020

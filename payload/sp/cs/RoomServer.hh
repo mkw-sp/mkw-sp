@@ -43,7 +43,8 @@ private:
     public:
         using State = RoomServer::ClientState;
         
-        Client(RoomServer &server, u32 id, s32 handle, const hydro_kx_keypair &serverKeypair);
+        Client(RoomServer &server, u32 id, Net::AsyncListener::Connection connection,
+                const hydro_kx_keypair &serverKeypair);
         ~Client();
 
         bool ready() const;

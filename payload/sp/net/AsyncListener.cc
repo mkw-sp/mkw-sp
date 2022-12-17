@@ -2,7 +2,6 @@
 
 extern "C" {
 #include <libhydrogen/hydrogen.h>
-#include <revolution.h>
 }
 
 namespace SP::Net {
@@ -103,16 +102,18 @@ bool AsyncListener::poll() {
     return true;
 }
 
-std::optional<s32> AsyncListener::accept() {
+std::optional<AsyncListener::Connection> AsyncListener::accept() {
     if (m_bindTask) {
         return {};
     }
 
-    s32 result = SOAccept(m_handle, nullptr);
-    if (result < 0) {
+    SOSockAddrIn address{};
+    address.len = sizeof(address);
+    s32 handle = SOAccept(m_handle, &address);
+    if (handle < 0) {
         return {};
     }
-    return result;
+    return Connection{handle, address};
 }
 
 } // namespace SP::Net

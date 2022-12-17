@@ -82,7 +82,12 @@ RaceManager *RaceManager::Instance() {
     return s_instance;
 }
 
-RaceManager::RaceManager() : m_roomManager(*RoomManager::Instance()) {}
+RaceManager::RaceManager() : m_roomManager(*RoomManager::Instance()) {
+    m_playerCount = m_roomManager.playerCount();
+    for (u32 i = 0; i < m_playerCount; i++) {
+        m_players[i] = {m_roomManager.player(i).m_clientId};
+    }
+}
 
 RaceManager::~RaceManager() = default;
 

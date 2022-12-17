@@ -1,13 +1,20 @@
 #pragma once
 
-#include <optional>
+extern "C" {
+#include <revolution.h>
+}
 
-#include <Common.hh>
+#include <optional>
 
 namespace SP::Net {
 
 class AsyncListener {
 public:
+    struct Connection {
+        s32 handle;
+        SOSockAddrIn address;
+    };
+
     AsyncListener(u16 port);
     AsyncListener(const AsyncListener &) = delete;
     AsyncListener(AsyncListener &&) = delete;
@@ -15,7 +22,7 @@ public:
 
     bool ready() const;
     bool poll();
-    std::optional<s32> accept();
+    std::optional<Connection> accept();
 
 private:
     struct BindTask {

@@ -3,9 +3,10 @@
 #include "game/system/SaveManager.hh"
 
 extern "C" {
-#include <revolution.h>
 #include <revolution/kpad.h>
 }
+#include <sp/cs/RaceClient.hh>
+#include <sp/cs/RaceServer.hh>
 
 #include <cmath>
 
@@ -68,6 +69,18 @@ const RaceInputState &PadProxy::currentRaceInputState() const {
 
 bool InputManager::isMirror() const {
     return m_isMirror;
+}
+
+void InputManager::calc() {
+    if (auto *raceServer = SP::RaceServer::Instance()) {
+        raceServer->calcRead();
+    }
+
+    REPLACED(calc)();
+
+    if (auto *raceClient = SP::RaceClient::Instance()) {
+        raceClient->calcWrite();
+    }
 }
 
 InputManager *InputManager::Instance() {

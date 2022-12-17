@@ -62,15 +62,15 @@ bool RoomClient::calc(Handler &handler) {
 }
 
 u32 RoomClient::ip() const {
-    return m_socket.getIp();
+    return m_ip;
 }
 
 u16 RoomClient::port() const {
-    return m_socket.getPort();
+    return m_port;
 }
 
 hydro_kx_session_keypair RoomClient::keypair() const {
-    return m_socket.getKeypair();
+    return m_socket.keypair();
 }
 
 bool RoomClient::sendComment(u32 commentId) {
@@ -115,7 +115,7 @@ RoomClient *RoomClient::Instance() {
 
 RoomClient::RoomClient(u32 localPlayerCount, u32 ip, u16 port, u16 passcode)
     : m_localPlayerCount(localPlayerCount), m_state(State::Connect),
-      m_socket(ip, port, "room    ") {
+      m_socket(ip, port, "room    "), m_ip(ip), m_port(port) {
     m_passcode = passcode;
 }
 

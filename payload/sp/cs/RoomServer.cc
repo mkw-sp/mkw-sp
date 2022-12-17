@@ -41,17 +41,17 @@ bool RoomServer::calc(Handler &handler) {
         return false;
     }
 
-    if (auto handle = m_listener.accept()) {
+    if (auto connection = m_listener.accept()) {
         size_t i;
         for (i = 0; i < m_clients.size(); i++) {
             if (!m_clients[i]) {
-                m_clients[i].emplace(*this, i, *handle, m_keypair);
+                m_clients[i].emplace(*this, i, *connection, m_keypair);
                 break;
             }
         }
         if (i == m_clients.size()) {
             SP_LOG("No available slot for client");
-            SOClose(*handle);
+            SOClose(connection->handle);
         }
     }
 
@@ -476,10 +476,10 @@ void RoomServer::writeSelectInfo(u32 selectedPlayer) {
     }
 }
 
-RoomServer::Client::Client(RoomServer &server, u32 id, s32 handle,
-        const hydro_kx_keypair &serverKeypair)
+RoomServer::Client::Client(RoomServer &server, u32 id,
+        Net::AsyncListener::Connection connection, const hydro_kx_keypair &serverKeypair)
     : m_id(id), m_server(server), m_state(State::Connect),
-      m_socket(handle, serverKeypair, "room    ") {}
+      m_socket(connection.handle, serverKeypair, "room    ") {}
 
 RoomServer::Client::~Client() = default;
 
@@ -497,7 +497,7 @@ bool RoomServer::Client::ready() const {
 }
 
 hydro_kx_session_keypair RoomServer::Client::keypair() const {
-    return m_socket.getKeypair();
+    return m_socket.keypair();
 }
 
 bool RoomServer::Client::calc(Handler &handler) {

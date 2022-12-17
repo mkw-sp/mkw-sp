@@ -7,8 +7,8 @@ namespace SP {
 
 class RaceManager {
 public:
-    class Player {
-        // TODO: figure out what we need
+    struct Player {
+        u32 clientId;
     };
 
     virtual void destroyInstance() = 0;
@@ -25,6 +25,8 @@ protected:
     ~RaceManager();
 
     RoomManager &m_roomManager;
+    u32 m_playerCount;
+    std::array<Player, 12> m_players{};
 
     static void *s_block;
     static RaceManager *s_instance;

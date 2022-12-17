@@ -31,7 +31,13 @@ enum {
 
 struct RaceInputState {
     void *_00;
-    u16 buttons;
+    u16 _04 : 10;
+    bool lookBackwards : 1;
+    bool brakeDrift : 1;
+    bool drift : 1;
+    bool item : 1;
+    bool brake : 1;
+    bool accelerate : 1;
     u16 rawButtons;
     Vec2<f32> stick;
     Vec2<u8> rawStick;
@@ -110,6 +116,8 @@ static_assert(sizeof(PadProxy) == 0xd8);
 class InputManager {
 public:
     bool isMirror() const;
+    void REPLACED(calc)();
+    REPLACE void calc();
 
     static InputManager *Instance();
 

@@ -84,6 +84,8 @@ private:
     bool m_localSettingsChanged = false;
     State m_state;
     Net::AsyncSocket m_socket;
+    u32 m_ip;
+    u16 m_port;
 
     static RoomClient *s_instance;
 };

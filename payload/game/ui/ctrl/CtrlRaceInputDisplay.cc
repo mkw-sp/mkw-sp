@@ -103,11 +103,11 @@ void CtrlRaceInputDisplay::calcSelf() {
     u8 dpad = std::min(static_cast<u8>(magic_enum::enum_count<DpadState>()), input.trick);
     setDpad(static_cast<DpadState>(dpad));
 
-    setAccel(input.buttons & System::Button::Accel ? AccelState::Pressed : AccelState::Off);
+    setAccel(input.accelerate ? AccelState::Pressed : AccelState::Off);
 
-    bool l = input.buttons & System::Button::Item;
+    bool l = input.item;
     setTrigger(Trigger::L, l ? TriggerState::Pressed : TriggerState::Off);
-    bool r = input.buttons & (System::Button::Brake | System::Button::Drift);
+    bool r = input.brake || input.drift;
     setTrigger(Trigger::R, r ? TriggerState::Pressed : TriggerState::Off);
 
     assert(input.stick.x <= 1.0f && input.stick.x >= -1.0f);
@@ -119,7 +119,7 @@ void CtrlRaceInputDisplay::calcSelf() {
     setStick(input.stick);
 
     if (speedModIsEnabled) {
-        bool brakeDrift = input.buttons & System::Button::BrakeDrift;
+        bool brakeDrift = input.brakeDrift;
         setTrigger(Trigger::BD, brakeDrift ? TriggerState::Pressed : TriggerState::Off);
     }
 }

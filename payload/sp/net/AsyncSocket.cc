@@ -76,6 +76,10 @@ AsyncSocket::~AsyncSocket() {
     }
 }
 
+hydro_kx_session_keypair AsyncSocket::keypair() const {
+    return m_keypair;
+}
+
 bool AsyncSocket::ready() const {
     if (m_handle < 0) {
         return false;
