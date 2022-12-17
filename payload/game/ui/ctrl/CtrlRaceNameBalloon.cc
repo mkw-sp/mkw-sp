@@ -1,15 +1,13 @@
 #include "CtrlRaceNameBalloon.hh"
 
-extern "C" {
-#include "game/host_system/SystemManager.h"
-}
-
 #include "game/system/RaceConfig.hh"
 #include "game/system/SaveManager.hh"
 #include "game/ui/SectionManager.hh"
 #include "game/ui/TeamColors.hh"
 #include "game/ui/page/RacePage.hh"
 #include "game/util/Registry.hh"
+
+#include <sp/settings/RegionLineColor.hh>
 
 extern float playerTagRenderDistance;
 
@@ -73,12 +71,7 @@ void CtrlRaceNameBalloon::refresh(u32 playerId) {
             SP::ClientSettings::RegionLineColor regionLineColorSetting =
                     saveManager->getSetting<SP::ClientSettings::Setting::RegionLineColor>();
 
-            u32 regionLineColor;
-            if (regionLineColorSetting == SP::ClientSettings::RegionLineColor::Default) {
-                regionLineColor = s_systemManager->matchingArea;
-            } else {
-                regionLineColor = static_cast<u32>(regionLineColorSetting);
-            }
+            u32 regionLineColor = SP::RegionLineColor::Get(regionLineColorSetting);
             color = TeamColors::Get(regionLineColor ^ 1);
         } else {
             GXColor colors[4] = {

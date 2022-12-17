@@ -240,12 +240,15 @@ bool RoomServer::onSelect(Handler &handler) {
 bool RoomServer::onPlayerJoin(Handler &handler, u32 clientId, const System::RawMii *mii,
         u32 location, u16 latitude, u16 longitude, u32 regionLineColor,
         const std::array<u32, RoomSettings::count> &settings) {
+    if (regionLineColor >= static_cast<u32>(SP::ClientSettings::RegionLineColor::Default)) {
+        return false;
+    }
     if (m_playerCount == 12) {
         return false;
     }
 
-    m_players[m_playerCount] = {clientId, *mii, location, latitude, longitude,
-            regionLineColor, 0xFFFFFFFF, {}, 0};
+    m_players[m_playerCount] = {clientId, *mii, location, latitude, longitude, regionLineColor,
+            0xFFFFFFFF, {}, 0};
     m_playerCount++;
     writeJoin(mii, location, latitude, longitude, regionLineColor);
     handler.onPlayerJoin(mii, location, latitude, longitude, regionLineColor);
