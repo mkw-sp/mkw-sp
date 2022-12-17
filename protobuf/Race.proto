@@ -1,0 +1,22 @@
+syntax = "proto2";
+
+message RaceClientFrame {
+    message Player {
+        required bool   accelerate = 1;
+        required bool   brake      = 2;
+        required bool   item       = 3;
+        required bool   drift      = 4;
+        required bool   brakeDrift = 5;
+        required uint32 stickX     = 6;
+        required uint32 stickY     = 7;
+        required uint32 trick      = 8;
+    }
+
+    required uint32 id      = 1;
+    repeated Player players = 2;
+}
+
+message RaceServerFrame {
+    required uint32 id       = 1;
+    required uint32 clientId = 2;
+}
