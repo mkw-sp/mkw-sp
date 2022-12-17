@@ -1748,7 +1748,7 @@ for target in code_in_files:
                         *profile_cflags[profile],
                     ]),
                 },
-                implicit = [*protobuf_proto_files, *protobuf_h_files] if target == 'payload' else [],
+                order_only = [*protobuf_h_files] if target == 'payload' else [],
             )
         n.newline()
 
