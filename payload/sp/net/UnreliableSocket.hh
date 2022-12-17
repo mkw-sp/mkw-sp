@@ -6,7 +6,6 @@ extern "C" {
 }
 
 #include <optional>
-#include <span>
 
 #include <Common.hh>
 
@@ -21,6 +20,12 @@ public:
         hydro_kx_session_keypair keypair;
     };
 
+    class ConnectionGroup {
+    public:
+        virtual u32 count() = 0;
+        virtual Connection &operator[](u32 index) = 0;
+    };
+
     struct Read {
         u16 size;
         u8 playerIdx; // TODO rename
@@ -31,7 +36,7 @@ public:
     UnreliableSocket(UnreliableSocket &&) = delete;
     ~UnreliableSocket();
 
-    std::optional<Read> read(u8 *message, u16 maxSize, std::span<Connection> connections);
+    std::optional<Read> read(u8 *message, u16 maxSize, ConnectionGroup &connectionGroup);
     bool write(const u8 *message, u16 size, const Connection &connection);
 
 private:

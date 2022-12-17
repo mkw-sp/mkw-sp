@@ -32,7 +32,7 @@ UnreliableSocket::~UnreliableSocket() {
 }
 
 std::optional<UnreliableSocket::Read> UnreliableSocket::read(u8 *message, u16 maxSize,
-        std::span<Connection> connections) {
+        ConnectionGroup &connectionGroup) {
     assert(m_handle >= 0);
 
     if (m_port) {
@@ -71,12 +71,12 @@ std::optional<UnreliableSocket::Read> UnreliableSocket::read(u8 *message, u16 ma
             return {};
         }
 
-        for (u8 i = 0; i < connections.size(); i++) {
+        for (u8 i = 0; i < connectionGroup.count(); i++) {
             if (hydro_secretbox_decrypt(message, buffer, result, 0, m_context,
-                        connections[i].keypair.rx) == 0) {
+                        connectionGroup[i].keypair.rx) == 0) {
                 // TODO: this sucks
-                connections[i].ip = address.addr.addr;
-                connections[i].port = address.port;
+                connectionGroup[i].ip = address.addr.addr;
+                connectionGroup[i].port = address.port;
                 return Read{static_cast<u16>(result - hydro_secretbox_HEADERBYTES), i};
             }
         }

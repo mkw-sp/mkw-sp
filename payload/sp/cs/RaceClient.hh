@@ -11,18 +11,27 @@ public:
     void destroyInstance() override;
 
     void calcWrite();
+    void calcRead();
 
     static RaceClient *CreateInstance();
     static void DestroyInstance();
     static RaceClient *Instance();
 
 private:
+    struct ConnectionGroup : public Net::UnreliableSocket::ConnectionGroup {
+    public:
+        ConnectionGroup(RaceClient &client);
+
+        u32 count() override;
+        Net::UnreliableSocket::Connection &operator[](u32 index) override;
+
+    private:
+        RaceClient &m_client;
+    };
+
     RaceClient(u32 ip, u16 port, hydro_kx_session_keypair keypair);
     ~RaceClient();
 
-    void write(RaceClientFrame frame);
-
-    u32 m_frameId = 0;
     Net::UnreliableSocket::Connection m_connection;
     Net::UnreliableSocket m_socket;
 

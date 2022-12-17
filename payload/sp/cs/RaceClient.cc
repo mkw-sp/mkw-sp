@@ -31,7 +31,33 @@ void RaceClient::calcWrite() {
         frame.players[i].stickY = input.rawStick.y;
         frame.players[i].trick = input.rawTrick;
     }
-    write(frame);
+
+    u8 buffer[RaceClientFrame_size];
+    pb_ostream_t stream = pb_ostream_from_buffer(buffer, sizeof(buffer));
+
+    assert(pb_encode(&stream, RaceClientFrame_fields, &frame));
+
+    m_socket.write(buffer, stream.bytes_written, m_connection);
+}
+
+void RaceClient::calcRead() {
+    ConnectionGroup connectionGroup(*this);
+
+    u8 buffer[RaceServerFrame_size];
+    auto read = m_socket.read(buffer, sizeof(buffer), connectionGroup);
+    // TODO only return when we get EAGAIN
+    if (!read || read->size == 0) {
+        return;
+    }
+
+    pb_istream_t stream = pb_istream_from_buffer(buffer, read->size);
+
+    RaceServerFrame frame;
+    if (!pb_decode(&stream, RaceServerFrame_fields, &frame)) {
+        return;
+    }
+
+    System::RaceManager::Instance()->m_canStartCountdown = true;
 }
 
 RaceClient *RaceClient::CreateInstance() {
@@ -64,14 +90,17 @@ RaceClient::~RaceClient() {
     hydro_memzero(&m_connection, sizeof(m_connection));
 }
 
-void RaceClient::write(RaceClientFrame frame) {
-    u8 buffer[RaceClientFrame_size];
-    pb_ostream_t stream = pb_ostream_from_buffer(buffer, sizeof(buffer));
+RaceClient::ConnectionGroup::ConnectionGroup(RaceClient &client) : m_client(client) {}
 
-    assert(pb_encode(&stream, RaceClientFrame_fields, &frame));
-
-    m_socket.write(buffer, stream.bytes_written, m_connection);
+u32 RaceClient::ConnectionGroup::count() {
+    return 1;
 }
+
+Net::UnreliableSocket::Connection &RaceClient::ConnectionGroup::operator[](u32 index) {
+    assert(index == 0);
+    return m_client.m_connection;
+}
+
 
 RaceClient *RaceClient::s_instance = nullptr;
 

@@ -10,7 +10,8 @@ public:
     ~RaceScene() override;
     void vf_28() override;
     void vf_2c() override;
-    void vf_30() override;
+    void REPLACED(process)();
+    REPLACE void process() override;
     void vf_34() override;
     void vf_38() override;
     void vf_3c() override;

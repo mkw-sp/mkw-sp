@@ -13,20 +13,11 @@ void RaceServer::destroyInstance() {
 }
 
 void RaceServer::calcRead() {
-    std::array<u32, 12> clientIds{};
-    u32 connectionCount = 0;
-    std::array<Net::UnreliableSocket::Connection, 12> connections{};
-    for (u32 i = 0; i < 12; i++) {
-        if (m_clients[i]) {
-            clientIds[connectionCount] = i;
-            connections[connectionCount] = m_clients[i]->connection;
-            connectionCount++;
-        }
-    }
+    ConnectionGroup connectionGroup(*this);
 
     while (true) {
         u8 buffer[RaceClientFrame_size];
-        auto read = m_socket.read(buffer, sizeof(buffer), {connections.begin(), connectionCount});
+        auto read = m_socket.read(buffer, sizeof(buffer), connectionGroup);
         // TODO only break when we get EAGAIN
         if (!read || read->size == 0) {
             break;
@@ -39,7 +30,7 @@ void RaceServer::calcRead() {
             continue;
         }
 
-        u32 clientId = clientIds[read->playerIdx];
+        u32 clientId = connectionGroup.clientId(read->playerIdx);
         assert(m_clients[clientId]);
         if (!m_clients[clientId]->frame || frame.id > m_clients[clientId]->frame->id) {
             m_clients[clientId]->frame = frame;
@@ -53,6 +44,27 @@ void RaceServer::calcRead() {
     }
 
     System::RaceManager::Instance()->m_canStartCountdown = true;
+}
+
+void RaceServer::calcWrite() {
+    if (!System::RaceManager::Instance()->m_canStartCountdown) {
+        return;
+    }
+
+    for (u32 i = 0; i < 12; i++) {
+        if (m_clients[i] && m_clients[i]->frame) {
+            RaceServerFrame frame;
+            frame.id = m_frameId;
+            frame.clientId = m_clients[i]->frame->id;
+
+            u8 buffer[RaceServerFrame_size];
+            pb_ostream_t stream = pb_ostream_from_buffer(buffer, sizeof(buffer));
+
+            assert(pb_encode(&stream, RaceServerFrame_fields, &frame));
+
+            m_socket.write(buffer, stream.bytes_written, m_clients[i]->connection);
+        }
+    }
 }
 
 RaceServer *RaceServer::CreateInstance() {
@@ -86,6 +98,26 @@ RaceServer::RaceServer(std::array<std::optional<Client>, 12> clients, u16 port)
 
 RaceServer::~RaceServer() {
     hydro_memzero(&m_clients, sizeof(m_clients));
+}
+
+RaceServer::ConnectionGroup::ConnectionGroup(RaceServer &server) : m_server(server) {
+    for (u32 i = 0; i < 12; i++) {
+        if (m_server.m_clients[i]) {
+            m_clientIds[m_clientCount++] = i;
+        }
+    }
+}
+
+u32 RaceServer::ConnectionGroup::clientId(u32 index) const {
+    return m_clientIds[index];
+}
+
+u32 RaceServer::ConnectionGroup::count() {
+    return m_clientCount;
+}
+
+Net::UnreliableSocket::Connection &RaceServer::ConnectionGroup::operator[](u32 index) {
+    return m_server.m_clients[m_clientIds[index]]->connection;
 }
 
 RaceServer *RaceServer::s_instance = nullptr;

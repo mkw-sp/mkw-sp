@@ -15,7 +15,7 @@ public:
     void reinit() override;
     virtual void vf_28();
     virtual void vf_2c();
-    virtual void vf_30() = 0;
+    virtual void process() = 0;
     virtual void vf_34() = 0;
     virtual void vf_38() = 0;
     virtual void vf_3c() = 0;
