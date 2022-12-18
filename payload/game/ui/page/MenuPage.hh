@@ -28,6 +28,7 @@ protected:
     void onBackButtonFront(const PushButton *button);
     void requestChangeSection(SectionId sectionId, const PushButton *button);
     void pushMessage(u32 messageId, MessageInfo *info = nullptr);
+    bool checkAllMulti();
 
 private:
     u8 _044[0x048 - 0x044];

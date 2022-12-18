@@ -400,6 +400,18 @@ asset_in_files = {
         os.path.join('button', 'ctrl', 'CharacterSelect4_2_Multi.brctr.json5'),
         os.path.join('button', 'ctrl', 'CharacterSelect4_3_Multi.brctr.json5'),
         os.path.join('button', 'blyt', 'common_w117_mii_suit.brlyt.json5'),
+        # Course Select
+        os.path.join('button', 'anim', 'course_select_button_free.brlan.json5'),
+        os.path.join('button', 'anim', 'course_select_button_free_to_select.brlan.json5'),
+        os.path.join('button', 'anim', 'course_select_button_select.brlan.json5'),
+        os.path.join('button', 'anim', 'course_select_button_select_to_free.brlan.json5'),
+        os.path.join('button', 'blyt', 'course_select_button.brlyt.json5'),
+        os.path.join('button', 'blyt', 'course_select_scroll_bar.brlyt.json5'),
+        os.path.join('button', 'ctrl', 'CourseSelectArrowLeft.brctr.json5'),
+        os.path.join('button', 'ctrl', 'CourseSelectArrowRight.brctr.json5'),
+        os.path.join('button', 'ctrl', 'CourseSelectButton.brctr.json5'),
+        os.path.join('button', 'ctrl', 'CourseSelectScrollBar.brctr.json5'),
+        os.path.join('control', 'ctrl', 'TimeAttackGhostListPageNum.brctr.json5'),
     ],
     os.path.join('Scene', 'UI', 'MenuOtherSP.arc.lzma'): [
         # Explanation text with 2 lines
@@ -1514,6 +1526,7 @@ code_in_files = {
         os.path.join('payload', 'game', 'ui', 'page', 'DriftSelectPage.cc'),
         os.path.join('payload', 'game', 'ui', 'page', 'MachineSelectPage.S'),
         os.path.join('payload', 'game', 'ui', 'page', 'MissionInstructionPage.cc'),
+        os.path.join('payload', 'game', 'ui', 'page', 'MultiDriftSelectPage.cc'),
         os.path.join('payload', 'game', 'ui', 'page', 'RaceMenuPage.S'),
         os.path.join('payload', 'game', 'ui', 'page', 'RaceMenuPage.c'),
         os.path.join('payload', 'game', 'ui', 'page', 'RaceMenuPage.cc'),

@@ -214,6 +214,7 @@ public:
     void reinit(u32 playerFlags, u32 playerFlags2, bool isMultiPlayer);
     // TODO r6
     void select(u32 localPlayerId, ControlInputManager *child, s32 r6);
+    void setPerControl(u32 localPlayerId, bool perControl);
 
     static TypeInfo *GetTypeInfo();
 

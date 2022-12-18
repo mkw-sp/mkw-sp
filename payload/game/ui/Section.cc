@@ -125,9 +125,12 @@ void Section::addPage(PageId pageId) {
         { SectionId::SingleChangeMission, PageId::VSSelect },
         { SectionId::SingleChangeMission, PageId::VSSetting },
         { SectionId::SingleChangeMission, PageId::BattleSetting },
+        { SectionId::Multi, (PageId)0x6f },
         { SectionId::Multi, PageId::VSSelect },
         { SectionId::Multi, PageId::VSSetting },
         { SectionId::Multi, PageId::BattleSetting },
+        { SectionId::Multi, (PageId)0x78 },
+        { SectionId::Multi, (PageId)0x79 },
 
         { SectionId::OnlineSingle, (PageId)0x4c },
         { SectionId::OnlineSingle, (PageId)0x4f },
