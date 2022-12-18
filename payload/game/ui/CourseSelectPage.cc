@@ -89,7 +89,16 @@ void CourseSelectPage::onDeinit() {
 void CourseSelectPage::onActivate() {
     m_replacement = PageId::None;
 
-    SP::CourseDatabase::Filter filter{true, false};
+    SP::CourseDatabase::Filter filter{false, false};
+    auto &menuScenario = System::RaceConfig::Instance()->menuScenario();
+    if (menuScenario.isVs()) {
+        filter.race = true;
+    }
+
+    if (menuScenario.isBattle()) {
+        filter.battle = true;
+    }
+
     if (filter.race != m_filter.race || filter.battle != m_filter.battle) {
         m_filter = filter;
 
@@ -285,11 +294,15 @@ void CourseSelectPage::refresh() {
         OSWakeupThread(&m_queue);
     }
 
+    auto &menuScenario = System::RaceConfig::Instance()->menuScenario();
+    u32 messageOffset = menuScenario.isVs() ? 9360 : menuScenario.isBattle() ? 9400 : 0;
+
     for (size_t i = 0; i < m_buttons.size(); i++) {
         u32 courseIndex = m_sheetIndex * m_buttons.size() + i;
         if (courseIndex < SP::CourseDatabase::Instance().count(m_filter)) {
             auto &entry = SP::CourseDatabase::Instance().entry(m_filter, courseIndex);
-            m_buttons[i].refresh(9360 + entry.courseId);
+            u32 courseId = menuScenario.isBattle() ? entry.courseId - 32 : entry.courseId;
+            m_buttons[i].refresh(messageOffset + courseId);
         }
     }
 

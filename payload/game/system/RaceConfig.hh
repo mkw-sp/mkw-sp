@@ -54,6 +54,25 @@ public:
             return gameMode >= GameMode::OnlinePrivateVS && gameMode <= GameMode::OnlinePrivateBT;
         }
 
+        bool isVs() const {
+            switch (gameMode) {
+            case GameMode::OfflineVS:
+            case GameMode::TimeAttack:
+                return true;
+            default:
+                return false;
+            }
+        }
+
+        bool isBattle() const {
+            switch (gameMode) {
+            case GameMode::OfflineBT:
+                return true;
+            default:
+                return false;
+            }
+        }
+
         u8 _000[0x004 - 0x000];
         u8 playerCount;
         u8 _005[0x006 - 0x005];

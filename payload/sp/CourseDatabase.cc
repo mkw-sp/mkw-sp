@@ -39,9 +39,8 @@ void CourseDatabase::refresh(Filter filter) {
         m_internalIndices[m_count++] = internalIndex;
     }
 
-    std::sort(m_internalIndices.begin(), m_internalIndices.end(), [&](auto i0, auto i1) {
-        return m_entries[i0].timestamp < m_entries[i1].timestamp;
-    });
+    std::sort(m_internalIndices.begin(), m_internalIndices.begin() + m_count,
+            [&](auto i0, auto i1) { return m_entries[i0].timestamp < m_entries[i1].timestamp; });
 }
 
 } // namespace SP
