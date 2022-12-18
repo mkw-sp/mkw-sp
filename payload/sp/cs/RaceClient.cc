@@ -19,7 +19,7 @@ void RaceClient::calcWrite() {
     frame.id = m_frameId++;
     frame.players_count = raceScenario.localPlayerCount;
     for (u8 i = 0; i < raceScenario.localPlayerCount; i++) {
-        u8 playerId = raceScenario.localPlayerIds[i];
+        u8 playerId = raceScenario.screenPlayerIds[i];
         auto *player = System::RaceManager::Instance()->player(playerId);
         auto &input = player->padProxy()->currentRaceInputState();
         frame.players[i].accelerate = input.accelerate;

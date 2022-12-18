@@ -1,6 +1,6 @@
 #pragma once
 
-#include "InputManager.h"
+#include <Common.h>
 
 typedef struct {
     u8 _0[0x8 - 0x0];
@@ -20,9 +20,7 @@ typedef struct {
     u32 _pad0 : 30;
     bool hasFinished : 1;
     u32 _pad1 : 1;
-    u8 _3c[0x48 - 0x3c];
-    PadProxy *padProxy;
-    u8 _4c[0x54 - 0x4c];
+    u8 _3c[0x54 - 0x3c];
 } RaceManagerPlayer;
 static_assert(sizeof(RaceManagerPlayer) == 0x54);
 

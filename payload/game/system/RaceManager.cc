@@ -24,6 +24,10 @@ PadProxy *RaceManager::Player::padProxy() {
     return m_padProxy;
 }
 
+void RaceManager::Player::setExtraGhostPadProxy() {
+    m_padProxy = InputManager::Instance()->extraGhostProxy(m_playerId);
+}
+
 RaceManager::Player *RaceManager::player(u32 playerId) {
     return m_players[playerId];
 }
@@ -48,9 +52,25 @@ void RaceManager::calc() {
     }
 }
 
+void RaceManager::endPlayerRace(u32 playerId) {
+    const auto &raceScenario = RaceConfig::Instance()->raceScenario();
+    if (raceScenario.players[playerId].type == RaceConfig::Player::Type::Ghost) {
+        InputManager::Instance()->endExtraGhostProxy(playerId);
+    }
+
+    REPLACED(endPlayerRace)(playerId);
+}
+
 RaceManager *RaceManager::CreateInstance() {
     s_instance = new RaceManager;
     assert(s_instance);
+
+    const auto &raceScenario = RaceConfig::Instance()->raceScenario();
+    for (u32 i = 0; i < raceScenario.playerCount; i++) {
+        if (raceScenario.players[i].type == RaceConfig::Player::Type::Ghost) {
+            s_instance->m_players[i]->setExtraGhostPadProxy();
+        }
+    }
 
     s_instance->m_spectatorMode = false;
     if (SP::RaceManager::Instance()) {

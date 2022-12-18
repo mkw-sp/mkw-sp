@@ -12,9 +12,12 @@ public:
         u8 maxLap() const;
         bool hasFinished() const;
         PadProxy *padProxy();
+        void setExtraGhostPadProxy();
 
     private:
-        u8 _00[0x20 - 0x00];
+        u8 _00[0x08 - 0x00];
+        u8 m_playerId;
+        u8 _09[0x20 - 0x09];
         u8 m_rank;
         u8 _21[0x26 - 0x21];
         u8 m_maxLap;
@@ -31,6 +34,8 @@ public:
     Player *player(u32 playerId);
     void REPLACED(calc)();
     REPLACE void calc();
+    void REPLACED(endPlayerRace)(u32 playerId);
+    REPLACE void endPlayerRace(u32 playerId);
 
     static REPLACE RaceManager *CreateInstance();
     static RaceManager *Instance();

@@ -17,7 +17,9 @@ public:
 
         u8 _00[0x04 - 0x00];
         u8 spTeam; // Added (was unused, but not padding)
-        u8 _05[0x08 - 0x05];
+        s8 screenId;
+        s8 ghostProxyId;
+        u8 _07[0x08 - 0x07];
         u32 vehicleId;
         u32 characterId;
         Type type;
@@ -75,7 +77,7 @@ public:
 
         u8 _000[0x004 - 0x000];
         u8 playerCount;
-        u8 _005[0x006 - 0x005];
+        u8 screenCount;
         u8 localPlayerCount;
         u8 _007[0x008 - 0x007];
         Player players[12];
@@ -86,7 +88,7 @@ public:
         u32 battleType;
         u32 cpuMode;
         u32 itemMode;
-        u8 localPlayerIds[4];
+        s8 screenPlayerIds[4];
         u32 cupId;
         u8 raceNumber;
         u8 lapCount;
@@ -113,6 +115,8 @@ public:
     static RaceConfig *Instance();
 
 private:
+    REPLACE static void ConfigurePlayers(Scenario &scenario, u32 screenCount);
+
     u8 _0000[0x0020 - 0x0000];
     Scenario m_raceScenario;
     Scenario m_menuScenario;

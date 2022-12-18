@@ -1,5 +1,6 @@
 #include "RaceConfig.hh"
 
+#include "game/system/InputManager.hh"
 extern "C" {
 #include "game/system/SaveManager.h"
 }
@@ -53,6 +54,62 @@ void RaceConfig::applyVSEngineClass() {
 
 RaceConfig *RaceConfig::Instance() {
     return s_instance;
+}
+
+void RaceConfig::ConfigurePlayers(Scenario &scenario, u32 screenCount) {
+    auto *inputManager = InputManager::Instance();
+
+    u8 screenId = 0, ghostProxyId = 0;
+
+    for (u32 i = 0; i < 12; i++) {
+        if (scenario.players[i].type == Player::Type::Local) {
+            assert(screenId < screenCount);
+            assert(ghostProxyId < 4);
+
+            s32 controllerId = inputManager->ghostProxy(ghostProxyId)->pad()->getControllerId();
+            scenario.players[i].screenId = screenId;
+            scenario.players[i].ghostProxyId = ghostProxyId;
+            scenario.players[i].controllerId = controllerId;
+            scenario.screenPlayerIds[screenId] = i;
+
+            screenId++;
+            ghostProxyId++;
+        } else if (scenario.players[i].type == Player::Type::Ghost) {
+            u32 ghostId = scenario.players[0].type == Player::Type::Ghost ? i : i - 1;
+            const u8 *rawGhostFile = (*scenario.ghostBuffer)[ghostId];
+
+            if (RawGhostFile::IsValid(rawGhostFile)) {
+                auto *rawGhostHeader = reinterpret_cast<const RawGhostHeader *>(rawGhostFile);
+                bool driftIsAuto = rawGhostHeader->driftIsAuto;
+                inputManager->setGhostPad(i, rawGhostFile + 0x88, driftIsAuto);
+                scenario.players[i].characterId = rawGhostHeader->characterId;
+                scenario.players[i].vehicleId = rawGhostHeader->vehicleId;
+                scenario.players[i].controllerId = rawGhostHeader->controllerId;
+            } else {
+                inputManager->setGhostPad(i, rawGhostFile + 0x88, false);
+                scenario.players[i].characterId = 0; // Mario
+                scenario.players[i].vehicleId = 1; // Standard Kart M
+                scenario.players[i].controllerId = 0; // Wii Wheel
+            }
+        } else {
+            scenario.players[i].controllerId = -1;
+        }
+    }
+
+    for (u32 i = 0; i < 12 && screenId < screenCount; i++) {
+        if (scenario.players[i].type == Player::Type::None) {
+            continue;
+        }
+
+        if (scenario.players[i].screenId != -1) {
+            continue;
+        }
+
+        scenario.players[i].screenId = screenId;
+        scenario.screenPlayerIds[screenId] = i;
+
+        screenId++;
+    }
 }
 
 } // namespace System

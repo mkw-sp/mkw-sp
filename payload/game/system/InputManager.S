@@ -37,30 +37,3 @@ PATCH_BL_START(GcPad_process, 0xec)
     ori r8, r8, 0x10
     blr
 PATCH_BL_END(GcPad_process, 0xec)
-
-
-
-PATCH_B_START(InputManager_reset, 0x54)
-    mr r3, r30
-    bl InputManager_resetMultiGhostProxies
-
-    mr r3, r30 // Original instruction
-    b InputManager_reset + 0x58
-PATCH_B_END(InputManager_reset, 0x54)
-
-PATCH_B_START(InputManager_calcPads, 0xd0)
-    mr r3, r30
-    bl InputManager_calcMultiGhostPads
-
-    li r27, 0x0 // Original instruction
-    b InputManager_calcPads + 0xd4
-PATCH_B_END(InputManager_calcPads, 0xd0)
-
-PATCH_B_START(InputManager_calc, 0x6c)
-    mr r3, r29
-    lbz r4, 0x4154 (r29)
-    bl InputManager_calcMultiGhostProxies
-
-    lwz r12, 0x15b4 (r29) // Original instruction
-    b InputManager_calc + 0x70
-PATCH_B_END(InputManager_calc, 0x6c)

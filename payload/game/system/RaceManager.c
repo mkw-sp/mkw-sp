@@ -21,11 +21,3 @@ static bool my_TimeAttackGameMode_canEndRace(TimeAttackGameMode *UNUSED(this)) {
     return true;
 }
 PATCH_B(TimeAttackGameMode_canEndRace, my_TimeAttackGameMode_canEndRace);
-
-void RaceManagerPlayer_setMultiGhostPadProxy(RaceManagerPlayer *this) {
-    const RaceConfigScenario *raceScenario = &s_raceConfig->raceScenario;
-    if (raceScenario->players[this->id].type == PLAYER_TYPE_GHOST) {
-        u32 ghostId = raceScenario->players[0].type == PLAYER_TYPE_GHOST ? this->id : this->id - 1;
-        this->padProxy = &s_inputManager->multiGhostProxies[ghostId];
-    }
-}
