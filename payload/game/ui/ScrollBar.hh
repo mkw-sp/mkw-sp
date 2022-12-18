@@ -38,7 +38,8 @@ public:
     void load(u32 count, u32 chosen, const char *dir, const char *file, const char *variant,
             u32 playerFlags, bool isMultiPlayer, bool pointerOnly);
     void setChangeHandler(IHandler *handler);
-    void reconfigure(u32 count, u32 chosen);
+    void setPlayerFlags(u32 flags);
+    void reconfigure(u32 count, u32 chosen, u32 playerFlags);
 
 private:
     struct Sequence {

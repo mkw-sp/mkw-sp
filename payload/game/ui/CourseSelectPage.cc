@@ -96,7 +96,7 @@ void CourseSelectPage::onActivate() {
         m_sheetCount = (SP::CourseDatabase::Instance().count(m_filter) + 9 - 1) / 9;
         m_sheetIndex = 0;
         m_lastSelected = 0;
-        m_scrollBar.reconfigure(m_sheetCount, m_sheetIndex);
+        m_scrollBar.reconfigure(m_sheetCount, m_sheetIndex, m_sheetCount >= 4 ? 0x1 : 0x0);
 
         m_sheetSelect.setVisible(m_sheetCount > 1);
         m_sheetSelect.setPlayerFlags(m_sheetCount <= 1 ? 0x0 : 0x1);

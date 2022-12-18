@@ -127,19 +127,26 @@ void ScrollBar::load(u32 count, u32 chosen, const char *dir, const char *file, c
     m_animator.setAnimationInactive(GroupId::Loop, AnimId::Loop::Loop, 0.0f);
     m_animator.setAnimationInactive(GroupId::Select, AnimId::Select::Free, 0.0f);
 
-    reconfigure(count, chosen);
+    reconfigure(count, chosen, 0x1);
 }
 
 void ScrollBar::setChangeHandler(IHandler *handler) {
     m_changeHandler = handler;
 }
 
-void ScrollBar::reconfigure(u32 count, u32 chosen) {
+void ScrollBar::setPlayerFlags(u32 flags) {
+    m_inputManager.m_playerFlags = flags;
+}
+
+void ScrollBar::reconfigure(u32 count, u32 chosen, u32 playerFlags) {
     m_count = count;
     m_chosen = chosen;
 
     m_thumbFuchiPane->m_width = std::max((m_colorBasePane->m_width - 4.0f) / m_count, 5.0f);
     m_thumbPane->m_width = m_thumbFuchiPane->m_width - 4.5f;
+
+    setVisible(m_count >= 4);
+    setPlayerFlags(playerFlags);
 }
 
 void ScrollBar::onSelect([[maybe_unused]] u32 localPlayerId) {
