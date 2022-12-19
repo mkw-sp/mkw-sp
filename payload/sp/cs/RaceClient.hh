@@ -1,5 +1,6 @@
 #pragma once
 
+#include "sp/CircularBuffer.hh"
 #include "sp/cs/RaceManager.hh"
 
 #include <protobuf/Race.pb.h>
@@ -32,6 +33,10 @@ private:
     RaceClient(u32 ip, u16 port, hydro_kx_session_keypair keypair);
     ~RaceClient();
 
+    s32 m_drift = 0;
+    CircularBuffer<s32, 60> m_drifts;
+    std::optional<RaceServerFrame> m_frame{};
+    u32 m_frameId = 0;
     Net::UnreliableSocket::Connection m_connection;
     Net::UnreliableSocket m_socket;
 

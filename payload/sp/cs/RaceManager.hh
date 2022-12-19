@@ -27,7 +27,6 @@ protected:
     RoomManager &m_roomManager;
     u32 m_playerCount;
     std::array<Player, 12> m_players{};
-    u32 m_frameId = 0;
 
     static void *s_block;
     static RaceManager *s_instance;

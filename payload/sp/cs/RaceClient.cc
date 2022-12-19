@@ -58,6 +58,27 @@ void RaceClient::calcRead() {
     }
 
     System::RaceManager::Instance()->m_canStartCountdown = true;
+
+    if (!m_frame || frame.id > m_frame->id ||
+            (frame.id == m_frame->id && frame.clientId > m_frame->clientId)) {
+        m_frame = frame;
+    }
+
+    if (m_drifts.full()) {
+        m_drifts.pop();
+    }
+    s32 drift = 0;
+    drift += System::RaceManager::Instance()->frameId();
+    drift -= m_frameId;
+    drift -= m_frame->id;
+    drift += m_frame->clientId;
+    m_drifts.push(std::move(drift));
+
+    m_drift = 0;
+    for (size_t i = 0; i < m_drifts.count(); i++) {
+        m_drift += *m_drifts[i];
+    }
+    m_drift /= static_cast<s32>(m_drifts.count());
 }
 
 RaceClient *RaceClient::CreateInstance() {

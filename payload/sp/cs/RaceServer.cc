@@ -54,7 +54,7 @@ void RaceServer::calcWrite() {
     for (u32 i = 0; i < 12; i++) {
         if (m_clients[i] && m_clients[i]->frame) {
             RaceServerFrame frame;
-            frame.id = m_frameId;
+            frame.id = System::RaceManager::Instance()->frameId();
             frame.clientId = m_clients[i]->frame->id;
 
             u8 buffer[RaceServerFrame_size];

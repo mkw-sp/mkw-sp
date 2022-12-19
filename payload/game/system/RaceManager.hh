@@ -32,6 +32,7 @@ public:
     static_assert(sizeof(Player) == 0x54);
 
     Player *player(u32 playerId);
+    u32 frameId() const;
     void REPLACED(calc)();
     REPLACE void calc();
     void REPLACED(endPlayerRace)(u32 playerId);
@@ -47,7 +48,7 @@ private:
     u8 _00[0x0c - 0x00];
     Player **m_players;
     u8 _10[0x20 - 0x10];
-    u32 m_frame;
+    u32 m_frameId;
     u8 _24[0x2d - 0x24];
     bool m_spectatorMode;
 
