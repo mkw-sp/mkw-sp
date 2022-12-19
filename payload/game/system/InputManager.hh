@@ -180,6 +180,7 @@ public:
     GhostPadProxy *ghostProxy(u32 i);
     GhostPadProxy *extraGhostProxy(u32 i);
 
+    void resetExtraGhostProxy(u32 i);
     void setGhostPad(u32 i, const void *ghostInputs, bool driftIsAuto);
 
     void REPLACED(reset)();

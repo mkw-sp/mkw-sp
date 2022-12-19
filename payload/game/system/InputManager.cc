@@ -87,6 +87,10 @@ GhostPadProxy *InputManager::extraGhostProxy(u32 i) {
     return &m_extraGhostProxies[i];
 }
 
+void InputManager::resetExtraGhostProxy(u32 i) {
+    m_extraGhostProxies[i].PadProxy::setPad(&m_dummyPad, nullptr);
+}
+
 void InputManager::setGhostPad(u32 i, const void *ghostInputs, bool driftIsAuto) {
     m_extraGhostProxies[i].setPad(&m_extraGhostPads[i], ghostInputs, driftIsAuto);
 }

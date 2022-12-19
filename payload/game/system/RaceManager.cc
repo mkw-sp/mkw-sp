@@ -70,6 +70,12 @@ RaceManager *RaceManager::CreateInstance() {
         if (raceScenario.players[i].type == RaceConfig::Player::Type::Ghost) {
             s_instance->m_players[i]->setExtraGhostPadProxy();
         }
+
+        if (auto *roomManager = SP::RoomManager::Instance(); roomManager &&
+                !roomManager->isPlayerLocal(i)) {
+            InputManager::Instance()->resetExtraGhostProxy(i);
+            s_instance->m_players[i]->setExtraGhostPadProxy();
+        }
     }
 
     s_instance->m_spectatorMode = false;
