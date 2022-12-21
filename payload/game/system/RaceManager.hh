@@ -31,8 +31,16 @@ public:
     };
     static_assert(sizeof(Player) == 0x54);
 
+    enum class Stage {
+        Sync,
+        Countdown,
+        Race,
+        // ...
+    };
+
     Player *player(u32 playerId);
     u32 frameId() const;
+    bool hasReachedStage(Stage stage) const;
     void REPLACED(calc)();
     REPLACE void calc();
     void REPLACED(endPlayerRace)(u32 playerId);

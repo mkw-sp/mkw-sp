@@ -11,6 +11,9 @@ class RaceClient final : public RaceManager {
 public:
     void destroyInstance() override;
 
+    s32 drift() const;
+    void adjustDrift();
+
     void calcWrite();
     void calcRead();
 

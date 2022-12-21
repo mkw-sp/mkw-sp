@@ -18,6 +18,7 @@ public:
     void setNextSection(SectionId sectionId, Page::Anim anim);
     void REPLACED(createSection)();
     REPLACE void createSection();
+    void calc();
     void REPLACED(startChangeSection)(s32 delay, u32 color);
     REPLACE void startChangeSection(s32 delay, u32 color);
 

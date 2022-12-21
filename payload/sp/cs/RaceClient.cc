@@ -13,6 +13,22 @@ void RaceClient::destroyInstance() {
     DestroyInstance();
 }
 
+s32 RaceClient::drift() const {
+    return m_drift;
+}
+
+void RaceClient::adjustDrift() {
+    if (m_drift == 0) {
+        return;
+    }
+
+    s32 signum = (m_drift > 0) - (m_drift < 0);
+    for (size_t i = 0; i < m_drifts.count(); i++) {
+        *m_drifts[i] -= signum;
+    }
+    m_drift -= signum;
+}
+
 void RaceClient::calcWrite() {
     auto &raceScenario = System::RaceConfig::Instance()->raceScenario();
     RaceClientFrame frame;

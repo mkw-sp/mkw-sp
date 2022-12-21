@@ -9,4 +9,8 @@ void ObjDirector::drawDebug() {
     REPLACED(drawDebug)();
 }
 
+ObjDirector *ObjDirector::Instance() {
+    return s_instance;
+}
+
 } // namespace Geo

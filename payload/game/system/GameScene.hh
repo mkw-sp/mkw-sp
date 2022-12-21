@@ -15,7 +15,7 @@ public:
     void reinit() override;
     virtual void vf_28();
     virtual void vf_2c();
-    virtual void process() = 0;
+    virtual void calcSubsystems() = 0;
     virtual void vf_34() = 0;
     virtual void vf_38() = 0;
     virtual void vf_3c() = 0;
@@ -29,7 +29,19 @@ public:
     virtual void vf_5c();
 
 private:
-    u8 _0c70[0x254c - 0x0c70];
+    u8 _0c70[0x2534 - 0x0c70];
+
+protected:
+    u32 m_frameId;
+
+private:
+    u8 _2538[0x2540 - 0x2538];
+
+protected:
+    bool m_isPaused;
+
+private:
+    u8 _2541[0x254c - 0x2541];
 };
 static_assert(sizeof(GameScene) == 0x254c);
 

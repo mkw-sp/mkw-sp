@@ -10,8 +10,7 @@ public:
     ~RaceScene() override;
     void vf_28() override;
     void vf_2c() override;
-    void REPLACED(process)();
-    REPLACE void process() override;
+    REPLACE void calcSubsystems() override;
     void vf_34() override;
     void vf_38() override;
     void vf_3c() override;
@@ -24,6 +23,8 @@ public:
     void vf_58() override;
 
 private:
+    void calcSubsystems(s32 drift);
+
     u8 _254c[0x256c - 0x254c];
 };
 static_assert(sizeof(RaceScene) == 0x256c);

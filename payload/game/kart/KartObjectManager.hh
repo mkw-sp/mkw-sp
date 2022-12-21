@@ -8,6 +8,8 @@ class KartObjectManager {
 public:
     KartObject *object(u32 playerId);
 
+    void calc();
+
     static KartObjectManager *Instance();
 
 private:

@@ -529,6 +529,7 @@
 0x80533ed8 RaceManagerPlayer_ct
 0x80534df8 RaceManagerPlayer_calcCheckPoint
 0x80535d14 TimeAttackGameMode_canEndRace
+0x80536230 _ZNK6System11RaceManager15hasReachedStageENS0_5StageE
 0x8053fc4c _ZN6System15ResourceManager14CreateInstanceEv
 0x8053fcec _ZN6System15ResourceManagerC1Ev
 0x805400a0 ResourceManager_process
@@ -560,7 +561,7 @@
 0x8054aa08 _ZNK6System11SaveManager12getLongitudeEPt
 0x8054aa64 SceneCreatorDynamic_create
 0x80553c50 RaceScene_vf_38
-0x80554e6c _ZN5Scene9RaceScene7processEv
+0x80554e6c _ZN5Scene9RaceScene14calcSubsystemsEv
 0x80555040 MenuScene_vf_38
 0x805553B0 _unresolved
 0x8055B5BC _ZN6Render7DrawMdl2dtEi
@@ -585,6 +586,7 @@
 0x8058faa8 KartObjectManager_createInstance
 0x8058fb2c KartObjectManager_ct
 0x8058ffe8 KartObjectManager_calc
+0x8058ffe8 _ZN4Kart17KartObjectManager4calcEv
 0x80590100 _ZN4Kart17KartObjectManager6objectEj
 0x8059020c KartObjectProxy_getPos
 0x8059020c _ZNK4Kart15KartObjectProxy6getPosEv
@@ -993,6 +995,7 @@
 0x80634e44 SectionManager_init
 0x80634fbc _ZN2UI14SectionManager13createSectionEv
 0x8063519c _ZN2UI14SectionManager14destroySectionEv
+0x8063550c _ZN2UI14SectionManager4calcEv
 0x80635a3c SectionManager_setNextSection
 0x80635a3c _ZN2UI14SectionManager14setNextSectionENS_9SectionIdENS_4Page4AnimE
 0x80635ac8 SectionManager_startChangeSection
@@ -1128,6 +1131,7 @@
 0x8067bb34 ObjEfDirector_mount
 0x8067c4f4 _ZN6Effect13EffectManager11createKartsEv
 0x8067c5c0 ObjEfDirector_mountEffect
+0x8067cb88 _ZN6Effect13EffectManager4calcEv
 0x806979f0 Effect_806979f0
 0x80698028 Effect_80698028
 0x80698f70 Effect_80698f70
@@ -1159,10 +1163,12 @@
 0x80724430 Jugem_80724430
 0x80724880 Jugem_80724880
 0x8072624c _ZN5Enemy9KartEnemy5isCpuEv
+0x8073942c _ZN5Enemy12EnemyManager4calcEv
 0x80745be4 Input_80745be4
 0x80745de4 Input_80745de4
 0x8074fe8c GlobeManager_dt
 0x8074ff54 GlobeManager_init
+0x807859b0 _ZN4Race13BoxColManager4calcEv
 0x8078823c _ZN4Race13AwardsManager4initEv
 0x80789008 _ZN4Race13AwardsManager9initStandEv
 0x80789340 AwardsManager_initPlayers
@@ -1172,7 +1178,10 @@
 0x8078c9e8 DriverManager_createInstance
 0x8078ca5c DriverManager_ct
 0x8078cfa4 DriverManager_8078cfa4
+0x8078d824 _ZN4Race13DriverManager4calcEv
+0x8078ddb4 unk_8078ddb4
 0x8079864c KartItem_activateMushroom
+0x80799850 _ZN4Item11ItemManager4calcEv
 0x807aa688 ItemObjKouraAka_vf_20
 0x807aae78 ItemObjKouraAka_807aae78
 0x807ac49c ItemObjKouraAo_807ac49c
@@ -1287,6 +1296,8 @@
 0x8081cd3c getCharacterWeightClass
 0x8082a38c ObjManager_ct
 0x8082A884 _ZN3Geo11ObjDirector9drawDebugEv
+0x8082a8f4 _ZN3Geo11ObjDirector4calcEv
+0x8082aac0 _ZN3Geo11ObjDirector6calcBTEv
 0x8082b3a0 ObjManager_groupInsert
 0x8082b3b8 ObjManager_groupGetCount
 0x8082cad8 ObjPylon01_ct
@@ -1371,6 +1382,7 @@
 0x80860af0 _ZN8Registry11GetItemPaneEjj
 0x80863a9c DriverSound_init
 0x80868974 _ZN5Sound18DriverSoundManager15playSelectSoundEji
+0x80882b58 _ZN6Battle11CoinManager11calcScreensEv
 
 0x808913C0 _ZN6Render7DrawMdl9sTag_MIRRE
 
@@ -1388,6 +1400,7 @@
 0x808da318 vsRuleDescIds
 
 0x809BD6E8 _ZN6System9CourseMap10spInstanceE
+0x809bd6f8 _ZN6System10HBMManager10s_instanceE
 0x809bd70c s_inputManager
 0x809bd70c _ZN6System12InputManager10s_instanceE
 0x809bd728 s_raceConfig
@@ -1399,17 +1412,29 @@
 0x809bd740 s_rootScene
 0x809bd748 _ZN6System11SaveManager10s_instanceE
 0x809C1830 _ZN6Render8DrawList10spInstanceE
+0x809c1874 unk_809c1874
 0x809c18f8 s_kartObjectManager
 0x809c18f8 _ZN4Kart17KartObjectManager10s_instanceE
 0x809c1988 _ZN2UI16MenuModelManager10s_instanceE
+0x809c19a0 unk_809c19a0
 0x809c1e38 s_sectionManager
 0x809c1e38 _ZN2UI14SectionManager10s_instanceE
 0x809c21d0 s_effectManager
+0x809c21d0 _ZN6Effect13EffectManager10s_instanceE
+0x809c21d8 unk_809c21d8
 0x809c2328 _ZN5Sound22BackgroundMusicManager10s_instanceE
 0x809c27f0 _ZN5Sound16ItemMusicManager10s_instanceE
 0x809c27f8 _ZN5Sound16RaceSoundManager10s_instanceE
 0x809c2850 _ZN5Sound17SceneSoundManager10s_instanceE
+0x809c28b8 _ZN4Race12JugemManager10s_instanceE
+0x809c2be8 _ZN5Enemy12EnemyManager10s_instanceE
+0x809c2ef0 _ZN4Race13BoxColManager10s_instanceE
 0x809c2f38 s_driverManager
+0x809c2f38 _ZN4Race13DriverManager10s_instanceE
+0x809c2f3c unk_809c2f3c
+0x809c3618 _ZN4Item11ItemManager10s_instanceE
+0x809c4330 _ZN3Geo11ObjDirector10s_instanceE
 0x809c4680 s_racePage
 0x809c4680 _ZN2UI8RacePage10s_instanceE
 0x809c4740 _ZN5Sound18DriverSoundManager10s_instanceE
+0x809c496c _ZN6Battle11CoinManager10s_instanceE

@@ -19,4 +19,8 @@ void EffectManager::createKarts() {
     }
 }
 
+EffectManager *EffectManager::Instance() {
+    return s_instance;
+}
+
 } // namespace Effect

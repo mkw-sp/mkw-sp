@@ -33,4 +33,8 @@ void JugemManager::setVisible(u32 playerId, bool visible) {
     }
 }
 
+JugemManager *JugemManager::Instance() {
+    return s_instance;
+}
+
 } // namespace Race
