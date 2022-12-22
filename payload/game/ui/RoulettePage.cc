@@ -149,11 +149,12 @@ void RoulettePage::beforeCalc() {
             return;
         }
 
+        auto &menuScenario = System::RaceConfig::Instance()->menuScenario();
         if (SectionManager::Instance()->currentSection()->id() == SectionId::VotingServer) {
-            auto &menuScenario = System::RaceConfig::Instance()->menuScenario();
             menuScenario.cameraMode = 6;
             changeSection(SectionId::OnlineServerVS, Anim::None, 0.0f);
         } else {
+            menuScenario.cameraMode = 0;
             changeSection(SectionId::Online1PVS, Anim::None, 0.0f);
         }
     }
