@@ -44,6 +44,22 @@ void RaceServer::calcRead() {
     }
 
     System::RaceManager::Instance()->m_canStartCountdown = true;
+
+    if (System::RaceManager::Instance()->hasReachedStage(System::RaceManager::Stage::Countdown)) {
+        for (u32 i = 0; i < m_playerCount; i++) {
+            // TODO 2P
+            auto framePlayer = m_clients[m_players[i].clientId]->frame->players[0];
+            auto *pad = System::InputManager::Instance()->extraUserPad(i);
+            pad->m_userInputState.accelerate = framePlayer.accelerate;
+            pad->m_userInputState.brake = framePlayer.brake;
+            pad->m_userInputState.item = framePlayer.item;
+            pad->m_userInputState.drift = framePlayer.drift;
+            pad->m_userInputState.brakeDrift = framePlayer.brakeDrift; // TODO check for 200cc
+            System::RaceInputState::SetStickX(pad->m_userInputState, framePlayer.stickX); // TODO check value
+            System::RaceInputState::SetStickY(pad->m_userInputState, framePlayer.stickY); // TODO check value
+            System::RaceInputState::SetTrick(pad->m_userInputState, framePlayer.trick); // TODO check value
+        }
+    }
 }
 
 void RaceServer::calcWrite() {

@@ -30,7 +30,15 @@ enum {
 } // namespace Trick
 
 struct RaceInputState {
-    void *_00;
+    RaceInputState();
+    virtual ~RaceInputState();
+    virtual void dt(s32 type);
+
+    static void Reset(RaceInputState &state);
+    static void SetStickX(RaceInputState &state, u8 stickX);
+    static void SetStickY(RaceInputState &state, u8 stickY);
+    static void SetTrick(RaceInputState &state, u8 trick);
+
     u16 _04 : 10;
     bool lookBackwards : 1;
     bool brakeDrift : 1;
@@ -63,6 +71,19 @@ protected:
 
 public:
     virtual s32 getControllerId() const;
+    virtual void vf_14();
+    virtual void vf_18();
+    virtual void vf_1c();
+    virtual void vf_20();
+    virtual void vf_24();
+    virtual void vf_28();
+    virtual void vf_2c();
+    virtual void vf_30();
+    virtual void vf_34();
+    virtual void vf_38();
+    virtual void vf_3c();
+    virtual void vf_40();
+    virtual void vf_44();
 
 protected:
     void processSimplified(RaceInputState &raceInputState, bool isPressed);
@@ -84,6 +105,18 @@ public:
 
     void process(RaceInputState &raceInputState, UIInputState &uiInputState) override;
 };
+
+class UserPad : public Pad {
+public:
+    UserPad();
+    ~UserPad();
+
+    void process(RaceInputState &raceInputState, UIInputState &uiInputState) override;
+    s32 getControllerId() const override;
+
+    RaceInputState m_userInputState;
+};
+static_assert(sizeof(UserPad) == 0xa8);
 
 class WiiPad : public Pad {
 public:
@@ -178,9 +211,10 @@ class InputManager {
 public:
     bool isMirror() const;
     GhostPadProxy *ghostProxy(u32 i);
+    UserPad *extraUserPad(u32 i);
     GhostPadProxy *extraGhostProxy(u32 i);
 
-    void resetExtraGhostProxy(u32 i);
+    void setExtraUserPad(u32 i);
     void setGhostPad(u32 i, const void *ghostInputs, bool driftIsAuto);
 
     void REPLACED(reset)();
@@ -211,11 +245,12 @@ private:
     bool m_isPaused;
     bool m_isMirror;
     u8 _4156[0x415c - 0x4156];
+    UserPad *m_extraUserPads; // Added
     GhostPad *m_extraGhostPads; // Added
     GhostPadProxy *m_extraGhostProxies; // Added
 
     static InputManager *s_instance;
 };
-static_assert(sizeof(InputManager) == 0x415c + sizeof(void *) * 2);
+static_assert(sizeof(InputManager) == 0x415c + sizeof(void *) * 3);
 
 } // namespace System

@@ -13,6 +13,26 @@ extern "C" {
 
 namespace System {
 
+RaceInputState::RaceInputState() {
+    Reset(*this);
+}
+
+RaceInputState::~RaceInputState() = default;
+
+void RaceInputState::SetTrick(RaceInputState &state, u8 trick) {
+    if (InputManager::Instance()->isMirror()) {
+        if (trick == 3) {
+            trick = 4;
+        } else if (trick == 4) {
+            trick = 3;
+        }
+    }
+
+    state.trick = trick;
+}
+
+Pad::~Pad() = default;
+
 void Pad::processSimplified(RaceInputState &raceInputState, bool isPressed) {
     auto *saveManager = System::SaveManager::Instance();
     auto setting = saveManager->getSetting<SP::ClientSettings::Setting::SimplifiedControls>();
@@ -52,6 +72,10 @@ void Pad::processSimplified(RaceInputState &raceInputState, bool isPressed) {
     }
 }
 
+UserPad::UserPad() = default;
+
+UserPad::~UserPad() = default;
+
 void WiiPad::processClassic(void *r4, RaceInputState &raceInputState, UIInputState &uiInputState) {
     REPLACED(processClassic)(r4, raceInputState, uiInputState);
 
@@ -84,12 +108,16 @@ GhostPadProxy *InputManager::ghostProxy(u32 i) {
     return &m_ghostProxies[i];
 }
 
+UserPad *InputManager::extraUserPad(u32 i) {
+    return &m_extraUserPads[i];
+}
+
 GhostPadProxy *InputManager::extraGhostProxy(u32 i) {
     return &m_extraGhostProxies[i];
 }
 
-void InputManager::resetExtraGhostProxy(u32 i) {
-    m_extraGhostProxies[i].PadProxy::setPad(&m_dummyPad, nullptr);
+void InputManager::setExtraUserPad(u32 i) {
+    m_extraGhostProxies[i].PadProxy::setPad(&m_extraUserPads[i], nullptr);
 }
 
 void InputManager::setGhostPad(u32 i, const void *ghostInputs, bool driftIsAuto) {
@@ -106,6 +134,10 @@ void InputManager::reset() {
 
 void InputManager::calcPads(bool isPaused) {
     REPLACED(calcPads)(isPaused);
+
+    for (u32 i = 0; i < 12; i++) {
+        m_extraUserPads[i].calc();
+    }
 
     if (!isPaused) {
         for (u32 i = 0; i < 12; i++) {
@@ -165,6 +197,7 @@ InputManager *InputManager::CreateInstance() {
     s_instance = new InputManager;
     assert(s_instance);
 
+    s_instance->m_extraUserPads = new UserPad[12];
     s_instance->m_extraGhostPads = new GhostPad[12];
     s_instance->m_extraGhostProxies = new GhostPadProxy[12];
     for (u32 i = 0; i < 12; i++) {

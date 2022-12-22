@@ -81,7 +81,7 @@ RaceManager *RaceManager::CreateInstance() {
 
         if (auto *roomManager = SP::RoomManager::Instance(); roomManager &&
                 !roomManager->isPlayerLocal(i)) {
-            InputManager::Instance()->resetExtraGhostProxy(i);
+            InputManager::Instance()->setExtraUserPad(i);
             s_instance->m_players[i]->setExtraGhostPadProxy();
         }
     }
