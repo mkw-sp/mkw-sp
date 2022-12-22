@@ -316,7 +316,7 @@ void RichPresenceManager::onSectionChange(UI::SectionId sectionId) {
         break;
     }
 
-    if (sceneId == RKSceneID::Race) {
+    if (SP::IOSDolphin::Open() && (sceneId == RKSceneID::Race)) {
         auto timestamp = SP::IOSDolphin::GetSystemTime();
         startTimestamp = timestamp ? *timestamp / 1000 : 0;
     }
