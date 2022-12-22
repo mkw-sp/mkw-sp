@@ -1,5 +1,6 @@
 #include "InputManager.hh"
 
+#include "game/gfx/CameraManager.hh"
 #include "game/system/SaveManager.hh"
 
 extern "C" {
@@ -124,8 +125,11 @@ void InputManager::calc() {
         m_extraGhostProxies[i].calc(m_isPaused);
     }
 
-    if (auto *raceClient = SP::RaceClient::Instance()) {
-        raceClient->calcWrite();
+    if (auto *cameraManager = Graphics::CameraManager::Instance(); cameraManager &&
+            cameraManager->isReady()) {
+        if (auto *raceClient = SP::RaceClient::Instance()) {
+            raceClient->calcWrite();
+        }
     }
 }
 

@@ -617,6 +617,7 @@
 0x805a21d0 Camera_805a21d0
 0x805a8468 CameraManager_ct
 0x805a8fbc CameraManager_805a8fbc
+0x805a8fbc _ZNK8Graphics13CameraManager7isReadyEv
 0x805bac84 _ZN2UI9AwaitPage3popEv
 0x805baf10 CtrlMenuPageTitleText_dt
 0x805bb210 _ZN2UI13MenuAwaitPage15setTitleMessageEjPNS_11MessageInfoE
@@ -1418,6 +1419,7 @@
 0x809c18f8 _ZN4Kart17KartObjectManager10s_instanceE
 0x809c1988 _ZN2UI16MenuModelManager10s_instanceE
 0x809c19a0 unk_809c19a0
+0x809c19b8 _ZN8Graphics13CameraManager10s_instanceE
 0x809c1e38 s_sectionManager
 0x809c1e38 _ZN2UI14SectionManager10s_instanceE
 0x809c21d0 s_effectManager

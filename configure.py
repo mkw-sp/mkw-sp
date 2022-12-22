@@ -1337,6 +1337,7 @@ code_in_files = {
         os.path.join('payload', 'game', 'enemy', 'KartEnemy.cc'),
         os.path.join('payload', 'game', 'gfx', 'Camera.S'),
         os.path.join('payload', 'game', 'gfx', 'CameraManager.S'),
+        os.path.join('payload', 'game', 'gfx', 'CameraManager.cc'),
         os.path.join('payload', 'game', 'host_system', 'RkSystem.S'),
         os.path.join('payload', 'game', 'host_system', 'RkSystem.c'),
         os.path.join('payload', 'game', 'host_system', 'SceneManager.S'),
