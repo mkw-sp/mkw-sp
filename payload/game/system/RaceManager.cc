@@ -28,6 +28,10 @@ void RaceManager::Player::setExtraGhostPadProxy() {
     m_padProxy = InputManager::Instance()->extraGhostProxy(m_playerId);
 }
 
+Util::Random *RaceManager::dynamicRandom() {
+    return m_dynamicRandom;
+}
+
 RaceManager::Player *RaceManager::player(u32 playerId) {
     return m_players[playerId];
 }

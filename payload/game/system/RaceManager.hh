@@ -1,6 +1,7 @@
 #pragma once
 
 #include "game/system/InputManager.hh"
+#include "game/util/Random.hh"
 
 namespace System {
 
@@ -38,6 +39,7 @@ public:
         // ...
     };
 
+    Util::Random *dynamicRandom();
     Player *player(u32 playerId);
     u32 frameId() const;
     bool hasReachedStage(Stage stage) const;
@@ -53,7 +55,9 @@ public:
 private:
     RaceManager();
 
-    u8 _00[0x0c - 0x00];
+    u8 _00[0x04 - 0x00];
+    Util::Random *m_dynamicRandom;
+    Util::Random *m_staticRandom;
     Player **m_players;
     u8 _10[0x20 - 0x10];
     u32 m_frameId;

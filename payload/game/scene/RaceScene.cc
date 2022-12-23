@@ -100,7 +100,7 @@ void RaceScene::calcSubsystems(s32 drift) {
             Effect::EffectManager::Instance()->calc();
         }
 
-        // TODO random
+        raceManager->dynamicRandom()->nextU32();
     }
 
     if (!System::HBMManager::Instance()->isActive()) {
