@@ -41,6 +41,8 @@ private:
     RaceServer(std::array<std::optional<Client>, 12> clients, u16 port);
     ~RaceServer();
 
+    bool isFrameValid(const RaceClientFrame &frame, u32 clientId);
+
     std::array<std::optional<Client>, 12> m_clients{};
     Net::UnreliableSocket m_socket;
     static RaceServer *s_instance;

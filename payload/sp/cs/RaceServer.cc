@@ -32,7 +32,7 @@ void RaceServer::calcRead() {
 
         u32 clientId = connectionGroup.clientId(read->playerIdx);
         assert(m_clients[clientId]);
-        if (!m_clients[clientId]->frame || frame.id > m_clients[clientId]->frame->id) {
+        if (isFrameValid(frame, clientId)) {
             m_clients[clientId]->frame = frame;
         }
     }
@@ -55,9 +55,9 @@ void RaceServer::calcRead() {
             pad->m_userInputState.item = framePlayer.item;
             pad->m_userInputState.drift = framePlayer.drift;
             pad->m_userInputState.brakeDrift = framePlayer.brakeDrift; // TODO check for 200cc
-            System::RaceInputState::SetStickX(pad->m_userInputState, framePlayer.stickX); // TODO check value
-            System::RaceInputState::SetStickY(pad->m_userInputState, framePlayer.stickY); // TODO check value
-            System::RaceInputState::SetTrick(pad->m_userInputState, framePlayer.trick); // TODO check value
+            System::RaceInputState::SetStickX(pad->m_userInputState, framePlayer.stickX);
+            System::RaceInputState::SetStickY(pad->m_userInputState, framePlayer.stickY);
+            System::RaceInputState::SetTrick(pad->m_userInputState, framePlayer.trick);
         }
     }
 }
@@ -114,6 +114,28 @@ RaceServer::RaceServer(std::array<std::optional<Client>, 12> clients, u16 port)
 
 RaceServer::~RaceServer() {
     hydro_memzero(&m_clients, sizeof(m_clients));
+}
+
+bool RaceServer::isFrameValid(const RaceClientFrame &frame, u32 clientId) {
+    if (m_clients[clientId]->frame && frame.id <= m_clients[clientId]->frame->id) {
+        return false;
+    }
+
+    for (u32 i = 0; i < frame.players_count; i++) {
+        if (frame.players[i].stickX > 14) {
+            return false;
+        }
+
+        if (frame.players[i].stickY > 14) {
+            return false;
+        }
+
+        if (frame.players[i].trick > 4) {
+            return false;
+        }
+    }
+
+    return true;
 }
 
 RaceServer::ConnectionGroup::ConnectionGroup(RaceServer &server) : m_server(server) {
