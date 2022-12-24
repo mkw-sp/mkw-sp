@@ -6,11 +6,14 @@ namespace Kart {
 
 class VehiclePhysics {
 public:
+    const Vec3 *externalVel() const;
     const Vec3 *movingRoadVel() const;
     const Vec3 *movingWaterVel() const;
 
 private:
-    u8 _000[0x0b0 - 0x000];
+    u8 _000[0x074 - 0x000];
+    Vec3 m_externalVel;
+    u8 _080[0x0b0 - 0x080];
     Vec3 m_movingRoadVel;
     u8 _0bc[0x0c8 - 0x0bc];
     Vec3 m_movingWaterVel;

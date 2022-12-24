@@ -2,6 +2,7 @@
 
 #include "sp/cs/RoomServer.hh"
 
+#include <game/kart/KartObjectManager.hh>
 #include <game/system/RaceManager.hh>
 #include <vendor/nanopb/pb_decode.h>
 #include <vendor/nanopb/pb_encode.h>
@@ -66,9 +67,17 @@ void RaceServer::calcWrite() {
         return;
     }
 
+    RaceServerFrame frame;
+    frame.players_count = m_playerCount;
+    for (u32 i = 0; i < m_playerCount; i++) {
+        auto *object = Kart::KartObjectManager::Instance()->object(i);
+        const Vec3 *pos = object->getPos();
+        frame.players[i].posX = pos->x;
+        frame.players[i].posY = pos->y;
+        frame.players[i].posZ = pos->z;
+    }
     for (u32 i = 0; i < 12; i++) {
         if (m_clients[i] && m_clients[i]->frame) {
-            RaceServerFrame frame;
             frame.id = System::RaceManager::Instance()->frameId();
             frame.clientId = m_clients[i]->frame->id;
 

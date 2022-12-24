@@ -13,6 +13,10 @@ void RaceClient::destroyInstance() {
     DestroyInstance();
 }
 
+const std::optional<RaceServerFrame> &RaceClient::frame() const {
+    return m_frame;
+}
+
 s32 RaceClient::drift() const {
     return m_drift;
 }

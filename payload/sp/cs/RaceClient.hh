@@ -11,6 +11,7 @@ class RaceClient final : public RaceManager {
 public:
     void destroyInstance() override;
 
+    const std::optional<RaceServerFrame> &frame() const;
     s32 drift() const;
     void adjustDrift();
 

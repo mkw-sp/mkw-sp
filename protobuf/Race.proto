@@ -17,6 +17,13 @@ message RaceClientFrame {
 }
 
 message RaceServerFrame {
+    message Player {
+        required float posX = 1;
+        required float posY = 2;
+        required float posZ = 3;
+    }
+
     required uint32 id       = 1;
     required uint32 clientId = 2;
+    repeated Player players  = 3;
 }

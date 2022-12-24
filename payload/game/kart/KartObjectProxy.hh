@@ -4,21 +4,27 @@
 
 namespace Kart {
 
+class KartMove;
+class KartRollback;
 class KartState;
 class VehiclePhysics;
-class KartMove;
 
 struct KartAccessor {
     u8 _00[0x04 - 0x00];
     KartState *state;
-    u8 _08[0x64 - 0x08];
+    u8 _08[0x3c - 0x08];
+    KartRollback *rollback; // Replaced
+    u8 _40[0x64 - 0x40];
 };
 static_assert(sizeof(KartAccessor) == 0x64);
 
 class KartObjectProxy {
 public:
+    KartObjectProxy();
+
     const Vec3 *getPos() const;
     const Vec3 *getLastPos() const;
+    void setPos(const Vec3 *pos);
     KartState *getKartState();
     VehiclePhysics *getVehiclePhysics();
     bool isCPU() const;

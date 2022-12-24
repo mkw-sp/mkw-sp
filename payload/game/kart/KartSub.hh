@@ -10,6 +10,7 @@ class KartSub {
 public:
     void REPLACED(createComponents)(KartSettings *settings);
     REPLACE void createComponents(KartSettings *settings);
+    void calcEarly();
 
 private:
     u8 _00[0x1c - 0x00];
