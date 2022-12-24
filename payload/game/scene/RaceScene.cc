@@ -36,11 +36,7 @@ void RaceScene::calcSubsystems() {
         raceClient->adjustDrift();
     }
 
-    if (drift > 0 && m_frameId & 1) {
-        calcSubsystems(0);
-    } else {
-        calcSubsystems(drift);
-    }
+    calcSubsystems(drift);
     if (drift < 0) {
         calcSubsystems(0);
     }
@@ -76,9 +72,7 @@ void RaceScene::calcSubsystems(s32 drift) {
                 Race::BoxColManager::Instance()->calc();
                 Geo::ObjDirector::Instance()->calc();
             }
-        }
 
-        if (drift >= 0) {
             Enemy::EnemyManager::Instance()->calc();
             Race::DriverManager::Instance()->calc();
             Kart::KartObjectManager::Instance()->calc();
@@ -87,16 +81,12 @@ void RaceScene::calcSubsystems(s32 drift) {
             if (raceManager->hasReachedStage(System::RaceManager::Stage::Countdown)) {
                 Item::ItemManager::Instance()->calc();
             }
-        }
 
-        if (drift <= 0) {
             if (!SP::RoomManager::Instance() ||
                     raceManager->hasReachedStage(System::RaceManager::Stage::Countdown)) {
                 Geo::ObjDirector::Instance()->calcBT();
             }
-        }
 
-        if (drift >= 0) {
             Effect::EffectManager::Instance()->calc();
         }
 

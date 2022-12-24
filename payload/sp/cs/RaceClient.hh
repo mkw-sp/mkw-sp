@@ -39,7 +39,6 @@ private:
     s32 m_drift = 0;
     CircularBuffer<s32, 60> m_drifts;
     std::optional<RaceServerFrame> m_frame{};
-    u32 m_frameId = 0;
     Net::UnreliableSocket::Connection m_connection;
     Net::UnreliableSocket m_socket;
 

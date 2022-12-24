@@ -32,7 +32,7 @@ void RaceClient::adjustDrift() {
 void RaceClient::calcWrite() {
     auto &raceScenario = System::RaceConfig::Instance()->raceScenario();
     RaceClientFrame frame;
-    frame.id = m_frameId++;
+    frame.id = System::RaceManager::Instance()->frameId();
     frame.players_count = raceScenario.localPlayerCount;
     for (u8 i = 0; i < raceScenario.localPlayerCount; i++) {
         u8 playerId = raceScenario.screenPlayerIds[i];
@@ -59,35 +59,36 @@ void RaceClient::calcWrite() {
 void RaceClient::calcRead() {
     ConnectionGroup connectionGroup(*this);
 
-    u8 buffer[RaceServerFrame_size];
-    auto read = m_socket.read(buffer, sizeof(buffer), connectionGroup);
-    // TODO only return when we get EAGAIN
-    if (!read || read->size == 0) {
-        return;
+    while (true) {
+        u8 buffer[RaceServerFrame_size];
+        auto read = m_socket.read(buffer, sizeof(buffer), connectionGroup);
+        if (!read) {
+            break;
+        }
+
+        pb_istream_t stream = pb_istream_from_buffer(buffer, read->size);
+
+        RaceServerFrame frame;
+        if (!pb_decode(&stream, RaceServerFrame_fields, &frame)) {
+            continue;
+        }
+
+        if (!m_frame || frame.id > m_frame->id ||
+                (frame.id == m_frame->id && frame.clientId > m_frame->clientId)) {
+            m_frame = frame;
+        }
     }
 
-    pb_istream_t stream = pb_istream_from_buffer(buffer, read->size);
-
-    RaceServerFrame frame;
-    if (!pb_decode(&stream, RaceServerFrame_fields, &frame)) {
+    if (!m_frame) {
         return;
     }
 
     System::RaceManager::Instance()->m_canStartCountdown = true;
 
-    if (!m_frame || frame.id > m_frame->id ||
-            (frame.id == m_frame->id && frame.clientId > m_frame->clientId)) {
-        m_frame = frame;
-    }
-
     if (m_drifts.full()) {
         m_drifts.pop();
     }
-    s32 drift = 0;
-    drift += System::RaceManager::Instance()->frameId();
-    drift -= m_frameId;
-    drift -= m_frame->id;
-    drift += m_frame->clientId;
+    s32 drift = static_cast<s32>(m_frame->clientId) - static_cast<s32>(m_frame->id);
     m_drifts.push(std::move(drift));
 
     m_drift = 0;

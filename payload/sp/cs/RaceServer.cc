@@ -18,8 +18,7 @@ void RaceServer::calcRead() {
     while (true) {
         u8 buffer[RaceClientFrame_size];
         auto read = m_socket.read(buffer, sizeof(buffer), connectionGroup);
-        // TODO only break when we get EAGAIN
-        if (!read || read->size == 0) {
+        if (!read) {
             break;
         }
 
@@ -30,7 +29,7 @@ void RaceServer::calcRead() {
             continue;
         }
 
-        u32 clientId = connectionGroup.clientId(read->playerIdx);
+        u32 clientId = connectionGroup.clientId(read->index);
         assert(m_clients[clientId]);
         if (isFrameValid(frame, clientId)) {
             m_clients[clientId]->frame = frame;
