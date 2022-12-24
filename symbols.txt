@@ -233,6 +233,8 @@
 0x80199CE4 MEMGetNextListObject
 0x80199D04 PSMTXIdentity
 0x8019a91c PSMTXMultVec
+0x8019ae08 PSQUATMultiply
+0x8019aef4 PSQUATInverse
 0x8019AB4C C_MTXOrtho
 0x8019ac68 PSVECMag
 0x8019acac PSVECDotProduct
@@ -620,9 +622,9 @@
 0x8059020c _ZNK4Kart15KartObjectProxy6getPosEv
 0x80590224 KartObjectProxy_getLastPos
 0x80590224 _ZNK4Kart15KartObjectProxy10getLastPosEv
-0x80590238 _ZN4Kart15KartObjectProxy6setPosEPK4Vec3
 0x805903cc KartObjectProxy_getVehiclePhysics
 0x805903cc _ZN4Kart15KartObjectProxy17getVehiclePhysicsEv
+0x805903e0 _ZNK4Kart15KartObjectProxy17getVehiclePhysicsEv
 0x805903f4 KartObjectProxy_getPadProxy
 0x80590664 _ZNK4Kart15KartObjectProxy5isCPUEv
 0x80590678 KartObjectProxy_isGhost

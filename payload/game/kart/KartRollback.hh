@@ -17,6 +17,7 @@ private:
     struct Frame {
         u32 id;
         Vec3 pos;
+        Quat mainRot;
     };
 
     SP::CircularBuffer<Frame, 60> m_frames;

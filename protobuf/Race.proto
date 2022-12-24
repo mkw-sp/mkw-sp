@@ -17,10 +17,22 @@ message RaceClientFrame {
 }
 
 message RaceServerFrame {
+    message Vec3 {
+        required float x = 1;
+        required float y = 2;
+        required float z = 3;
+    }
+
+    message Quat {
+        required float x = 1;
+        required float y = 2;
+        required float z = 3;
+        required float w = 4;
+    }
+
     message Player {
-        required float posX = 1;
-        required float posY = 2;
-        required float posZ = 3;
+        required Vec3 pos     = 1;
+        required Quat mainRot = 2;
     }
 
     required uint32 id       = 1;

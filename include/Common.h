@@ -181,6 +181,13 @@ typedef struct {
     f32 z;
 } Vec3;
 
+typedef struct {
+    f32 x;
+    f32 y;
+    f32 z;
+    f32 w;
+} Quat;
+
 enum {
     PATCH_TYPE_WRITE = 0x0,
     PATCH_TYPE_BRANCH = 0x1,

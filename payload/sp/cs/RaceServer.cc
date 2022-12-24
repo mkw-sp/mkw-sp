@@ -71,10 +71,15 @@ void RaceServer::calcWrite() {
     frame.players_count = m_playerCount;
     for (u32 i = 0; i < m_playerCount; i++) {
         auto *object = Kart::KartObjectManager::Instance()->object(i);
-        const Vec3 *pos = object->getPos();
-        frame.players[i].posX = pos->x;
-        frame.players[i].posY = pos->y;
-        frame.players[i].posZ = pos->z;
+        auto *pos = object->getPos();
+        frame.players[i].pos.x = pos->x;
+        frame.players[i].pos.y = pos->y;
+        frame.players[i].pos.z = pos->z;
+        auto *mainRot = object->getMainRot();
+        frame.players[i].mainRot.x = mainRot->x;
+        frame.players[i].mainRot.y = mainRot->y;
+        frame.players[i].mainRot.z = mainRot->z;
+        frame.players[i].mainRot.w = mainRot->w;
     }
     for (u32 i = 0; i < 12; i++) {
         if (m_clients[i] && m_clients[i]->frame) {

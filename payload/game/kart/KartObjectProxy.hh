@@ -24,8 +24,9 @@ public:
 
     const Vec3 *getPos() const;
     const Vec3 *getLastPos() const;
-    void setPos(const Vec3 *pos);
+    const Quat *getMainRot() const;
     KartState *getKartState();
+    const VehiclePhysics *getVehiclePhysics() const;
     VehiclePhysics *getVehiclePhysics();
     bool isCPU() const;
     bool isGhost() const;
