@@ -477,6 +477,16 @@ const Entry entries[] = {
         .valueMessageIds = (u32[]) { 10317, 10318 },
         .valueExplanationMessageIds = (u32[]) { 10319, 10320 },
     },
+    [static_cast<u32>(Setting::DebugKCL)] = {
+        .category = Category::DebugOverlay,
+        .name = magic_enum::enum_name(Setting::DebugKCL),
+        .messageId = 10341,
+        .defaultValue = static_cast<u32>(DebugKCL::Disable),
+        .valueCount = magic_enum::enum_count<DebugKCL>(),
+        .valueNames = magic_enum::enum_names<DebugKCL>().data(),
+        .valueMessageIds = (u32[]) { 10342, 10344, 10346 },
+        .valueExplanationMessageIds = (u32[]) { 10343, 10345, 10347 },
+    },
 };
 
 } // namespace SP::ClientSettings

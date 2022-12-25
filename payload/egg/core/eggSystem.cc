@@ -8,7 +8,7 @@ extern "C" {
 namespace {
 
 const char *fmtBool(bool b) {
-    constexpr const char *sOnOff[2] = { "OFF", "ON" };
+    constexpr const char *sOnOff[2] = {"OFF", "ON"};
     return sOnOff[!!b];
 }
 
@@ -33,8 +33,8 @@ void DolphinTest() {
 
     {
         auto result = SP::IOSDolphin::GetSystemTime();
-        OSReport("systime: milliseconds=%u,hasValue=%s\n",
-                result.has_value() ? *result : 0, fmtBool(result.has_value()));
+        OSReport("systime: milliseconds=%llu,hasValue=%s\n", result.has_value() ? *result : 0,
+                fmtBool(result.has_value()));
     }
     {
         auto version = SP::IOSDolphin::GetVersion();
@@ -74,7 +74,7 @@ sp_define_command("/dolphin_test", "Test /dev/dolphin driver", const char *tmp) 
 
     DolphinTest();
 }
-}  // namespace
+} // namespace
 
 namespace EGG {
 

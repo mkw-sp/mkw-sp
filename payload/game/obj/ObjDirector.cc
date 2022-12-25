@@ -5,7 +5,7 @@
 namespace Geo {
 
 void ObjDirector::drawDebug() {
-    SP::DrawDebug();
+    SP::DrawDebug(false);
     REPLACED(drawDebug)();
 }
 

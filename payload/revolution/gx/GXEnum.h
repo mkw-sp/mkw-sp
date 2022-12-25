@@ -316,6 +316,86 @@ typedef enum {
 static_assert(sizeof(GXTexCoordID) == 4);
 
 typedef enum {
+    GX_TG_MTX3x4,
+    GX_TG_MTX2x4,
+    GX_TG_BUMP0,
+    GX_TG_BUMP1,
+    GX_TG_BUMP2,
+    GX_TG_BUMP3,
+    GX_TG_BUMP4,
+    GX_TG_BUMP5,
+    GX_TG_BUMP6,
+    GX_TG_BUMP7,
+    GX_TG_SRTG,
+} GXTexGenType;
+static_assert(sizeof(GXTexGenType) == 4);
+
+typedef enum {
+    GX_TG_POS,
+    GX_TG_NRM,
+    GX_TG_BINRM,
+    GX_TG_TANGENT,
+    GX_TG_TEX0,
+    GX_TG_TEX1,
+    GX_TG_TEX2,
+    GX_TG_TEX3,
+    GX_TG_TEX4,
+    GX_TG_TEX5,
+    GX_TG_TEX6,
+    GX_TG_TEX7,
+    GX_TG_TEXCOORD0,
+    GX_TG_TEXCOORD1,
+    GX_TG_TEXCOORD2,
+    GX_TG_TEXCOORD3,
+    GX_TG_TEXCOORD4,
+    GX_TG_TEXCOORD5,
+    GX_TG_TEXCOORD6,
+    GX_TG_COLOR0,
+    GX_TG_COLOR1
+} GXTexGenSrc;
+static_assert(sizeof(GXTexGenSrc) == 4);
+
+typedef enum {
+    GX_TEXMTX0 = 30,
+    GX_TEXMTX1 = 33,
+    GX_TEXMTX2 = 36,
+    GX_TEXMTX3 = 39,
+    GX_TEXMTX4 = 42,
+    GX_TEXMTX5 = 45,
+    GX_TEXMTX6 = 48,
+    GX_TEXMTX7 = 51,
+    GX_TEXMTX8 = 54,
+    GX_TEXMTX9 = 57,
+    GX_IDENTITY = 60,
+} GXTexMtx;
+static_assert(sizeof(GXTexMtx) == 4);
+
+typedef enum {
+    GX_PTTEXMTX0 = 64,
+    GX_PTTEXMTX1 = 67,
+    GX_PTTEXMTX2 = 70,
+    GX_PTTEXMTX3 = 73,
+    GX_PTTEXMTX4 = 76,
+    GX_PTTEXMTX5 = 79,
+    GX_PTTEXMTX6 = 82,
+    GX_PTTEXMTX7 = 85,
+    GX_PTTEXMTX8 = 88,
+    GX_PTTEXMTX9 = 91,
+    GX_PTTEXMTX10 = 94,
+    GX_PTTEXMTX11 = 97,
+    GX_PTTEXMTX12 = 100,
+    GX_PTTEXMTX13 = 103,
+    GX_PTTEXMTX14 = 106,
+    GX_PTTEXMTX15 = 109,
+    GX_PTTEXMTX16 = 112,
+    GX_PTTEXMTX17 = 115,
+    GX_PTTEXMTX18 = 118,
+    GX_PTTEXMTX19 = 121,
+    GX_PTIDENTITY = 125,
+} GXPTTexMtx;
+static_assert(sizeof(GXPTTexMtx) == 4);
+
+typedef enum {
     GX_POS_XY = 0,
     GX_POS_XYZ = 1,
     GX_NRM_XYZ = 0,
@@ -379,7 +459,7 @@ static_assert(sizeof(GXAttnFn) == 4);
 
 typedef enum {
     GX_CLAMP,
-    GX_REPEAT,   
+    GX_REPEAT,
     GX_MIRROR,
     GX_MAX_TEXWRAPMODE,
 } GXTexWrapMode;

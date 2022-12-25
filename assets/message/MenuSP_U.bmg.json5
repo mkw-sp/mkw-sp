@@ -1202,6 +1202,34 @@
         "font": "regular",
         "string": "Display",
     },
+    "10341": {
+        "font": "regular",
+        "string": "Visual course.kcl",
+    },
+    "10342": {
+        "font": "regular",
+        "string": "Off",
+    },
+    "10343": {
+        "font": "regular",
+        "string": "Default",
+    },
+    "10344": {
+        "font": "regular",
+        "string": "Overlay",
+    },
+    "10345": {
+        "font": "regular",
+        "string": "Show on top of course_model.brres",
+    },
+    "10346": {
+        "font": "regular",
+        "string": "Replace course_model.brres",
+    },
+    "10347": {
+        "font": "regular",
+        "string": "Hide course_model.brres",
+    },
     "20000": {
         "font": "regular",
         "string": "Online",

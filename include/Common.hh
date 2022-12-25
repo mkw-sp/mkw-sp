@@ -54,3 +54,28 @@ inline Mtx34 &Decay(std::array<float, 12> &arr) {
 inline const Mtx34 &Decay(const std::array<float, 12> &arr) {
     return reinterpret_cast<const Mtx34 &>(*arr.data());
 }
+
+inline Vec3 cross(Vec3 lhs, Vec3 rhs) {
+    return {
+            lhs.y * rhs.z - lhs.z * rhs.y,
+            lhs.z * rhs.x - lhs.x * rhs.z,
+            lhs.x * rhs.y - lhs.y * rhs.x,
+    };
+}
+inline f32 dot(Vec3 lhs, Vec3 rhs) {
+    return lhs.x * rhs.x + lhs.y * rhs.y + lhs.z * rhs.z;
+}
+inline Vec3 operator*(Vec3 lhs, f32 rhs) {
+    return {
+            lhs.x * rhs,
+            lhs.y * rhs,
+            lhs.z * rhs,
+    };
+}
+inline Vec3 operator+(Vec3 lhs, Vec3 rhs) {
+    return {
+            lhs.x + rhs.x,
+            lhs.y + rhs.y,
+            lhs.z + rhs.z,
+    };
+}
