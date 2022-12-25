@@ -48,7 +48,7 @@ bool StackTraceIterator_read(StackTraceIterator *it, void **addr) {
 }
 
 BinaryType ClassifyPointer(void *p) {
-    if (p >= Payload_getTextSectionStart() && p < Payload_getTextSectionEnd()) {
+    if (p >= Payload_getTextSectionStart() && p < Payload_getReplacementsSectionEnd()) {
         return BINARY_SP;
     }
     if (p >= Rel_getTextSectionStart() && p < Rel_getTextSectionEnd()) {
