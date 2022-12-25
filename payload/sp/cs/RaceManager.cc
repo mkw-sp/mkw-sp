@@ -10,6 +10,10 @@ extern "C" {
 
 namespace SP {
 
+RoomManager &RaceManager::roomManager() {
+    return m_roomManager;
+}
+
 void RaceManager::OnCreateScene() {
     auto *sectionManager = UI::SectionManager::Instance();
     if (!sectionManager) {
@@ -90,6 +94,22 @@ RaceManager::RaceManager() : m_roomManager(*RoomManager::Instance()) {
 }
 
 RaceManager::~RaceManager() = default;
+
+bool RaceManager::IsInputStateValid(const InputState &inputState) {
+    if (inputState.stickX > 14) {
+        return false;
+    }
+
+    if (inputState.stickY > 14) {
+        return false;
+    }
+
+    if (inputState.trick > 4) {
+        return false;
+    }
+
+    return true;
+}
 
 void *RaceManager::s_block = nullptr;
 RaceManager *RaceManager::s_instance = nullptr;

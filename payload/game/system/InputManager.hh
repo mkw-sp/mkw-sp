@@ -1,6 +1,6 @@
 #pragma once
 
-#include <Common.hh>
+#include <sp/CircularBuffer.hh>
 
 namespace System {
 
@@ -168,7 +168,7 @@ public:
     virtual void dt(s32 type);
     virtual void calc(bool isPaused);
     virtual void reset();
-    virtual void vf_14();
+    virtual void setRaceInputState(const RaceInputState &inputState);
     virtual void vf_18();
     virtual void vf_1c();
     virtual void vf_20();
@@ -207,10 +207,40 @@ private:
     u8 _e5[0xec - 0xe5];
 };
 
+class UserPadProxy : public PadProxy {
+public:
+    UserPadProxy();
+    ~UserPadProxy() override;
+    void dt(s32 type) override;
+    void setRaceInputState(const RaceInputState &inputState) override;
+
+private:
+    UserPad m_userPad;
+};
+static_assert(sizeof(UserPadProxy) == 0x180);
+
+class PadRollback {
+public:
+    PadRollback();
+
+    void calc(u32 playerId);
+    void reset();
+
+private:
+    struct Frame {
+        u32 id;
+        RaceInputState inputState;
+    };
+
+    u32 m_playerId;
+    SP::CircularBuffer<Frame, 60> m_frames;
+};
+
 class InputManager {
 public:
     bool isMirror() const;
     GhostPadProxy *ghostProxy(u32 i);
+    UserPadProxy *userProxy(u32 i);
     UserPad *extraUserPad(u32 i);
     GhostPadProxy *extraGhostProxy(u32 i);
 
@@ -230,6 +260,7 @@ public:
     void endExtraGhostProxy(u32 playerId);
     void REPLACED(endGhostProxies)();
     REPLACE void endGhostProxies();
+    void calcRollbacks();
 
     static REPLACE InputManager *CreateInstance();
     static InputManager *Instance();
@@ -239,7 +270,8 @@ private:
 
     u8 _0000[0x0004 - 0x0000];
     GhostPadProxy m_ghostProxies[4];
-    u8 _03b4[0x1690 - 0x03b4];
+    UserPadProxy m_userProxies[12];
+    u8 _15b4[0x1690 - 0x15b4];
     DummyPad m_dummyPad;
     u8 _1720[0x4154 - 0x1720];
     bool m_isPaused;
@@ -248,9 +280,10 @@ private:
     UserPad *m_extraUserPads; // Added
     GhostPad *m_extraGhostPads; // Added
     GhostPadProxy *m_extraGhostProxies; // Added
+    PadRollback *m_rollbacks; // Added
 
     static InputManager *s_instance;
 };
-static_assert(sizeof(InputManager) == 0x415c + sizeof(void *) * 3);
+static_assert(sizeof(InputManager) == 0x415c + sizeof(void *) * 4);
 
 } // namespace System

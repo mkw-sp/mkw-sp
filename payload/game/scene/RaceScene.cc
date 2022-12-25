@@ -67,6 +67,10 @@ void RaceScene::calcSubsystems(s32 drift) {
         if (drift <= 0) {
             raceManager->calc();
 
+            if (SP::RaceClient::Instance()) {
+                System::InputManager::Instance()->calcRollbacks();
+            }
+
             if (!SP::RoomManager::Instance() ||
                     raceManager->hasReachedStage(System::RaceManager::Stage::Countdown)) {
                 Race::BoxColManager::Instance()->calc();

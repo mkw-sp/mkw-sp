@@ -7,6 +7,8 @@
 #include <vendor/nanopb/pb_decode.h>
 #include <vendor/nanopb/pb_encode.h>
 
+#include <cmath>
+
 namespace SP {
 
 void RaceClient::destroyInstance() {
@@ -41,15 +43,15 @@ void RaceClient::calcWrite() {
     for (u8 i = 0; i < raceScenario.localPlayerCount; i++) {
         u8 playerId = raceScenario.screenPlayerIds[i];
         auto *player = System::RaceManager::Instance()->player(playerId);
-        auto &input = player->padProxy()->currentRaceInputState();
-        frame.players[i].accelerate = input.accelerate;
-        frame.players[i].brake = input.brake;
-        frame.players[i].item = input.item;
-        frame.players[i].drift = input.drift;
-        frame.players[i].brakeDrift = input.brakeDrift;
-        frame.players[i].stickX = input.rawStick.x;
-        frame.players[i].stickY = input.rawStick.y;
-        frame.players[i].trick = input.rawTrick;
+        auto &inputState = player->padProxy()->currentRaceInputState();
+        frame.players[i].inputState.accelerate = inputState.accelerate;
+        frame.players[i].inputState.brake = inputState.brake;
+        frame.players[i].inputState.item = inputState.item;
+        frame.players[i].inputState.drift = inputState.drift;
+        frame.players[i].inputState.brakeDrift = inputState.brakeDrift;
+        frame.players[i].inputState.stickX = inputState.rawStick.x;
+        frame.players[i].inputState.stickY = inputState.rawStick.y;
+        frame.players[i].inputState.trick = inputState.rawTrick;
     }
 
     u8 buffer[RaceClientFrame_size];
@@ -77,8 +79,7 @@ void RaceClient::calcRead() {
             continue;
         }
 
-        if (!m_frame || frame.id > m_frame->id ||
-                (frame.id == m_frame->id && frame.clientId > m_frame->clientId)) {
+        if (isFrameValid(frame)) {
             m_frame = frame;
         }
     }
@@ -130,6 +131,64 @@ RaceClient::RaceClient(u32 ip, u16 port, hydro_kx_session_keypair keypair) :
 
 RaceClient::~RaceClient() {
     hydro_memzero(&m_connection, sizeof(m_connection));
+}
+
+bool RaceClient::isFrameValid(const RaceServerFrame &frame) {
+    if (m_frame && frame.id <= m_frame->id) {
+        return false;
+    }
+
+    for (u32 i = 0; i < frame.players_count; i++) {
+        if (!IsInputStateValid(frame.players[i].inputState)) {
+            return false;
+        }
+
+        if (!IsVec3Valid(frame.players[i].pos)) {
+            return false;
+        }
+
+        if (!IsQuatValid(frame.players[i].mainRot)) {
+            return false;
+        }
+    }
+
+    return true;
+}
+
+bool RaceClient::IsVec3Valid(const RaceServerFrame_Vec3 &v) {
+    if (std::isnan(v.x) || v.x < -1e6f || v.x > 1e6f) {
+        return false;
+    }
+
+    if (std::isnan(v.y) || v.y < -1e6f || v.y > 1e6f) {
+        return false;
+    }
+
+    if (std::isnan(v.z) || v.z < -1e6f || v.z > 1e6f) {
+        return false;
+    }
+
+    return true;
+}
+
+bool RaceClient::IsQuatValid(const RaceServerFrame_Quat &q) {
+    if (std::isnan(q.x) || q.x < -1.0f || q.x > 1.0f) {
+        return false;
+    }
+
+    if (std::isnan(q.y) || q.y < -1.0f || q.y > 1.0f) {
+        return false;
+    }
+
+    if (std::isnan(q.z) || q.z < -1.0f || q.z > 1.0f) {
+        return false;
+    }
+
+    if (std::isnan(q.w) || q.w < -1.0f || q.w > 1.0f) {
+        return false;
+    }
+
+    return true;
 }
 
 RaceClient::ConnectionGroup::ConnectionGroup(RaceClient &client) : m_client(client) {}

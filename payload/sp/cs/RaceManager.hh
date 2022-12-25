@@ -3,6 +3,8 @@
 #include "sp/cs/RoomManager.hh"
 #include "sp/net/UnreliableSocket.hh"
 
+#include <protobuf/Race.pb.h>
+
 namespace SP {
 
 class RaceManager {
@@ -12,6 +14,8 @@ public:
     };
 
     virtual void destroyInstance() = 0;
+
+    RoomManager &roomManager();
 
     static void OnCreateScene();
     static void OnDestroyScene();
@@ -23,6 +27,8 @@ protected:
     RaceManager(const RaceManager &) = delete;
     RaceManager(RaceManager &&) = delete;
     ~RaceManager();
+
+    static bool IsInputStateValid(const InputState &inputState);
 
     RoomManager &m_roomManager;
     u32 m_playerCount;

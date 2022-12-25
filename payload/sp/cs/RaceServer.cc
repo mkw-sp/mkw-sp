@@ -48,16 +48,16 @@ void RaceServer::calcRead() {
     if (System::RaceManager::Instance()->hasReachedStage(System::RaceManager::Stage::Countdown)) {
         for (u32 i = 0; i < m_playerCount; i++) {
             // TODO 2P
-            auto framePlayer = m_clients[m_players[i].clientId]->frame->players[0];
+            auto &framePlayer = m_clients[m_players[i].clientId]->frame->players[0];
             auto *pad = System::InputManager::Instance()->extraUserPad(i);
-            pad->m_userInputState.accelerate = framePlayer.accelerate;
-            pad->m_userInputState.brake = framePlayer.brake;
-            pad->m_userInputState.item = framePlayer.item;
-            pad->m_userInputState.drift = framePlayer.drift;
-            pad->m_userInputState.brakeDrift = framePlayer.brakeDrift; // TODO check for 200cc
-            System::RaceInputState::SetStickX(pad->m_userInputState, framePlayer.stickX);
-            System::RaceInputState::SetStickY(pad->m_userInputState, framePlayer.stickY);
-            System::RaceInputState::SetTrick(pad->m_userInputState, framePlayer.trick);
+            pad->m_userInputState.accelerate = framePlayer.inputState.accelerate;
+            pad->m_userInputState.brake = framePlayer.inputState.brake;
+            pad->m_userInputState.item = framePlayer.inputState.item;
+            pad->m_userInputState.drift = framePlayer.inputState.drift;
+            pad->m_userInputState.brakeDrift = framePlayer.inputState.brakeDrift; // TODO check for 200cc
+            System::RaceInputState::SetStickX(pad->m_userInputState, framePlayer.inputState.stickX);
+            System::RaceInputState::SetStickY(pad->m_userInputState, framePlayer.inputState.stickY);
+            System::RaceInputState::SetTrick(pad->m_userInputState, framePlayer.inputState.trick);
         }
     }
 }
@@ -80,6 +80,16 @@ void RaceServer::calcWrite() {
         frame.players[i].mainRot.y = mainRot->y;
         frame.players[i].mainRot.z = mainRot->z;
         frame.players[i].mainRot.w = mainRot->w;
+        auto *inputManager = System::InputManager::Instance();
+        auto &inputState = inputManager->extraGhostProxy(i)->currentRaceInputState();
+        frame.players[i].inputState.accelerate = inputState.accelerate;
+        frame.players[i].inputState.brake = inputState.brake;
+        frame.players[i].inputState.item = inputState.item;
+        frame.players[i].inputState.drift = inputState.drift;
+        frame.players[i].inputState.brakeDrift = inputState.brakeDrift;
+        frame.players[i].inputState.stickX = inputState.rawStick.x;
+        frame.players[i].inputState.stickY = inputState.rawStick.y;
+        frame.players[i].inputState.trick = inputState.rawTrick;
     }
     for (u32 i = 0; i < 12; i++) {
         if (m_clients[i] && m_clients[i]->frame) {
@@ -135,15 +145,7 @@ bool RaceServer::isFrameValid(const RaceClientFrame &frame, u32 clientId) {
     }
 
     for (u32 i = 0; i < frame.players_count; i++) {
-        if (frame.players[i].stickX > 14) {
-            return false;
-        }
-
-        if (frame.players[i].stickY > 14) {
-            return false;
-        }
-
-        if (frame.players[i].trick > 4) {
+        if (!IsInputStateValid(frame.players[i].inputState)) {
             return false;
         }
     }

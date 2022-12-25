@@ -1,15 +1,19 @@
 syntax = "proto2";
 
+message InputState {
+    required bool   accelerate = 1;
+    required bool   brake      = 2;
+    required bool   item       = 3;
+    required bool   drift      = 4;
+    required bool   brakeDrift = 5;
+    required uint32 stickX     = 6;
+    required uint32 stickY     = 7;
+    required uint32 trick      = 8;
+}
+
 message RaceClientFrame {
     message Player {
-        required bool   accelerate = 1;
-        required bool   brake      = 2;
-        required bool   item       = 3;
-        required bool   drift      = 4;
-        required bool   brakeDrift = 5;
-        required uint32 stickX     = 6;
-        required uint32 stickY     = 7;
-        required uint32 trick      = 8;
+        required InputState inputState = 1;
     }
 
     required uint32 id      = 1;
@@ -31,8 +35,9 @@ message RaceServerFrame {
     }
 
     message Player {
-        required Vec3 pos     = 1;
-        required Quat mainRot = 2;
+        required InputState inputState  = 1;
+        required Vec3       pos         = 2;
+        required Quat       mainRot     = 3;
     }
 
     required uint32 id       = 1;

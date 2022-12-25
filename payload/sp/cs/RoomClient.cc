@@ -23,6 +23,10 @@ bool RoomClient::isPlayerLocal([[maybe_unused]] u32 playerId) const {
     return false;
 }
 
+bool RoomClient::isPlayerRemote([[maybe_unused]] u32 playerId) const {
+    return playerId < m_playerCount && !isPlayerLocal(playerId);
+}
+
 bool RoomClient::canSelectTeam([[maybe_unused]] u32 playerId) const {
     return isPlayerLocal(playerId);
 }
