@@ -1,5 +1,6 @@
 #include "KartRollback.hh"
 
+#include "game/kart/KartCollide.hh"
 #include "game/kart/VehiclePhysics.hh"
 #include "game/system/RaceManager.hh"
 
@@ -62,8 +63,13 @@ void KartRollback::calcEarly() {
         for (u32 i = 0; i < m_frames.count(); i++) {
             if (m_frames[i]->id == frameId - 1) {
                 auto *vehiclePhysics = getVehiclePhysics();
+                Vec3 pos = vehiclePhysics->m_pos;
                 vehiclePhysics->m_pos = m_frames[i]->pos;
                 vehiclePhysics->m_mainRot = m_frames[i]->mainRot;
+                auto *kartCollide = getKartCollide();
+                kartCollide->m_movement.x += vehiclePhysics->m_pos.x - pos.x;
+                kartCollide->m_movement.y += vehiclePhysics->m_pos.y - pos.y;
+                kartCollide->m_movement.z += vehiclePhysics->m_pos.z - pos.z;
                 break;
             }
         }

@@ -4,6 +4,7 @@
 
 namespace Kart {
 
+class KartCollide;
 class KartMove;
 class KartRollback;
 class KartState;
@@ -31,6 +32,7 @@ public:
     bool isCPU() const;
     bool isGhost() const;
     KartMove *getKartMove();
+    KartCollide *getKartCollide();
     u32 getPlayerId() const;
     f32 getInternalSpeed() const;
 
