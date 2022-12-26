@@ -64,8 +64,12 @@ void KartRollback::calcEarly() {
             if (m_frames[i]->id == frameId - 1) {
                 auto *vehiclePhysics = getVehiclePhysics();
                 Vec3 pos = vehiclePhysics->m_pos;
-                vehiclePhysics->m_pos = m_frames[i]->pos;
-                vehiclePhysics->m_mainRot = m_frames[i]->mainRot;
+                f32 t = 0.2f;
+                vehiclePhysics->m_pos.x = (1.0f - t) * m_frames[i]->pos.x + t * m_frames[i]->pos.x;
+                vehiclePhysics->m_pos.y = (1.0f - t) * m_frames[i]->pos.y + t * m_frames[i]->pos.y;
+                vehiclePhysics->m_pos.z = (1.0f - t) * m_frames[i]->pos.z + t * m_frames[i]->pos.z;
+                C_QUATSlerp(&vehiclePhysics->m_mainRot, &m_frames[i]->mainRot,
+                        &vehiclePhysics->m_mainRot, t);
                 auto *kartCollide = getKartCollide();
                 kartCollide->m_movement.x += vehiclePhysics->m_pos.x - pos.x;
                 kartCollide->m_movement.y += vehiclePhysics->m_pos.y - pos.y;

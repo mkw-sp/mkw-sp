@@ -14,3 +14,5 @@ f32 PSVECDotProduct(const Vec3 *a, const Vec3 *b);
 
 void PSQUATMultiply(const Quat *p, const Quat *q, Quat *pq);
 void PSQUATInverse(const Quat *src, Quat *inv);
+
+void C_QUATSlerp(const Quat *p, const Quat *q, Quat *r, f32 t);
