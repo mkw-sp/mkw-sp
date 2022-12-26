@@ -172,19 +172,19 @@ bool RaceClient::IsVec3Valid(const RaceServerFrame_Vec3 &v) {
 }
 
 bool RaceClient::IsQuatValid(const RaceServerFrame_Quat &q) {
-    if (std::isnan(q.x) || q.x < -1.0f || q.x > 1.0f) {
+    if (std::isnan(q.x) || q.x < -1.001f || q.x > 1.001f) {
         return false;
     }
 
-    if (std::isnan(q.y) || q.y < -1.0f || q.y > 1.0f) {
+    if (std::isnan(q.y) || q.y < -1.001f || q.y > 1.001f) {
         return false;
     }
 
-    if (std::isnan(q.z) || q.z < -1.0f || q.z > 1.0f) {
+    if (std::isnan(q.z) || q.z < -1.001f || q.z > 1.001f) {
         return false;
     }
 
-    if (std::isnan(q.w) || q.w < -1.0f || q.w > 1.0f) {
+    if (std::isnan(q.w) || q.w < -1.001f || q.w > 1.001f) {
         return false;
     }
 
