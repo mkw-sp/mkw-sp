@@ -457,7 +457,7 @@ const Entry entries[] = {
         .valueMessageIds = (u32[]) { 10337, 10338 },
         .valueExplanationMessageIds = (u32[]) { 10189, 10190 },
     },
-        [static_cast<u32>(Setting::RegionFlagDisplay)] = {
+    [static_cast<u32>(Setting::RegionFlagDisplay)] = {
         .category = Category::License,
         .name = magic_enum::enum_name(Setting::RegionFlagDisplay),
         .messageId = 10334,
@@ -476,6 +476,16 @@ const Entry entries[] = {
         .valueNames = magic_enum::enum_names<DebugCheckpoints>().data(),
         .valueMessageIds = (u32[]) { 10317, 10318 },
         .valueExplanationMessageIds = (u32[]) { 10319, 10320 },
+    },
+    [static_cast<u32>(Setting::DebugPanel)] = {
+        .category = Category::DebugOverlay,
+        .name = magic_enum::enum_name(Setting::DebugPanel),
+        .messageId = 10341,
+        .defaultValue = static_cast<u32>(DebugPanel::Disable),
+        .valueCount = magic_enum::enum_count<DebugPanel>(),
+        .valueNames = magic_enum::enum_names<DebugPanel>().data(),
+        .valueMessageIds = (u32[]) { 10342, 10343, 10344 },
+        .valueExplanationMessageIds = (u32[]) { 10345, 10346, 10347 },
     },
 };
 

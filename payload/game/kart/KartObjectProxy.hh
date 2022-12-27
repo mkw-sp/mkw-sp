@@ -33,6 +33,7 @@ public:
     bool isGhost() const;
     KartMove *getKartMove();
     KartCollide *getKartCollide();
+    const KartRollback *getKartRollback() const;
     u32 getPlayerId() const;
     f32 getInternalSpeed() const;
 

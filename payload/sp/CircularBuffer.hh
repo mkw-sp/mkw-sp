@@ -59,6 +59,10 @@ public:
         return m_count;
     }
 
+    const T *operator[](size_t index) const {
+        return std::launder(reinterpret_cast<const T *>(&m_vals[(m_front + index) % N]));
+    }
+
     T *operator[](size_t index) {
         return std::launder(reinterpret_cast<T *>(&m_vals[(m_front + index) % N]));
     }

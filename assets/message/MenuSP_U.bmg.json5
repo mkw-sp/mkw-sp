@@ -1202,6 +1202,34 @@
         "font": "regular",
         "string": "Display",
     },
+    "10341": {
+        "font": "regular",
+        "string": "Panel",
+    },
+    "10342": {
+        "font": "regular",
+        "string": "Disable",
+    },
+    "10343": {
+        "font": "regular",
+        "string": "Player",
+    },
+    "10344": {
+        "font": "regular",
+        "string": "Online",
+    },
+    "10345": {
+        "font": "regular",
+        "string": "Do not show the debug panel.",
+    },
+    "10346": {
+        "font": "regular",
+        "string": "Show player information on the debug panel.",
+    },
+    "10347": {
+        "font": "regular",
+        "string": "Show online information on the debug panel.",
+    },
     "20000": {
         "font": "regular",
         "string": "Online",

@@ -12,4 +12,8 @@ KartState *KartObjectProxy::getKartState() {
     return m_accessor->state;
 }
 
+const KartRollback *KartObjectProxy::getKartRollback() const {
+    return m_accessor->rollback;
+}
+
 } // namespace Kart

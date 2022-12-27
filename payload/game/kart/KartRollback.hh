@@ -10,6 +10,8 @@ class KartRollback : public KartObjectProxy {
 public:
     KartRollback();
 
+    Vec3 posDelta() const;
+    Quat mainRotDelta() const;
     void calcEarly();
     void calcLate();
 
@@ -21,6 +23,8 @@ private:
     };
 
     SP::CircularBuffer<Frame, 60> m_frames;
+    Vec3 m_posDelta{};
+    Quat m_mainRotDelta{};
 };
 
 } // namespace Kart

@@ -10,6 +10,7 @@ class VehiclePhysics {
 
 public:
     const Vec3 *externalVel() const;
+    const Vec3 *internalVel() const;
     const Vec3 *movingRoadVel() const;
     const Vec3 *movingWaterVel() const;
 
@@ -23,7 +24,9 @@ private:
     Vec3 m_movingWaterVel;
     u8 _0d4[0x0f0 - 0x0d4];
     Quat m_mainRot;
-    u8 _100[0x1b4 - 0x100];
+    u8 _100[0x14c - 0x100];
+    Vec3 m_internalVel;
+    u8 _158[0x1b4 - 0x158];
 };
 static_assert(sizeof(VehiclePhysics) == 0x1b4);
 

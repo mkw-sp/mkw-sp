@@ -10,7 +10,18 @@ namespace Kart {
 
 KartRollback::KartRollback() = default;
 
+Vec3 KartRollback::posDelta() const {
+    return m_posDelta;
+}
+
+Quat KartRollback::mainRotDelta() const {
+    return m_mainRotDelta;
+}
+
 void KartRollback::calcEarly() {
+    m_posDelta = {0.0f, 0.0f, 0.0f};
+    m_mainRotDelta = {0.0f, 0.0f, 0.0f, 1.0f};
+
     if (auto serverFrame = SP::RaceClient::Instance()->frame()) {
         u32 frameId = System::RaceManager::Instance()->frameId();
         s32 delay = static_cast<s32>(frameId) - static_cast<s32>(serverFrame->id);

@@ -3,6 +3,7 @@
 #include "game/system/RaceConfig.hh"
 #include "game/system/SaveManager.hh"
 #include "game/ui/SectionManager.hh"
+#include "game/ui/ctrl/CtrlRaceDebugPanel.hh"
 #include "game/ui/ctrl/CtrlRaceInputDisplay.hh"
 #include "game/ui/ctrl/CtrlRaceSpeed.hh"
 #include "game/ui/ctrl/CtrlRaceWaitSymbol.hh"
@@ -65,6 +66,7 @@ u8 RacePage::getControlCount(u32 controls) const {
     if (setting == SP::ClientSettings::VanillaMode::Disable) {
         count += localPlayerCount; // CtrlRaceSpeed
         count += localPlayerCount; // CtrlRaceInputDisplay
+        count += localPlayerCount < 2; // CtrlRaceDebugPanel
     }
 
     if (getNameBalloonCount() != 0) {
@@ -98,6 +100,11 @@ void RacePage::initControls(u32 controls) {
             auto *control = new CtrlRaceInputDisplay;
             insertChild(index--, control, 0);
             control->load(localPlayerCount, i);
+        }
+        if (localPlayerCount < 2) {
+            auto *control = new CtrlRaceDebugPanel;
+            insertChild(index--, control, 0);
+            control->load();
         }
     }
 

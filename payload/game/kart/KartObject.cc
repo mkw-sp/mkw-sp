@@ -11,6 +11,8 @@ void KartObject::init() {
 
     if (SP::RoomClient::Instance()) {
         m_accessor.rollback = new KartRollback;
+    } else {
+        m_accessor.rollback = nullptr;
     }
 }
 
