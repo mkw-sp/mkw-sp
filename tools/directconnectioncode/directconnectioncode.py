@@ -1,3 +1,4 @@
+import argparse
 import re
 import socket
 import struct
@@ -37,9 +38,17 @@ def generate(ip: str, port: int, passcode: int):
 
 
 if __name__ == '__main__':
-    # Prompt the user to input their own IP, port, and passcode
-    ip = input("Enter the IP address for the server: ")
-    port = int(input("Enter the port number for the server: "))
-    passcode = int(input("Enter the passcode for the server: "))
+    # Use argument parsing to allow the user to input their own IP, port, and passcode from the command line
+    parser = argparse.ArgumentParser()
+    parser.add_argument('ip', type=str, nargs='?', help="IP address for the server")
+    parser.add_argument('port', type=int, nargs='?', help="Port number for the server")
+    parser.add_argument('passcode', type=int, nargs='?', help="Passcode for the server")
+    args = parser.parse_args()
 
-    generate(ip, port, passcode)
+    # If the user did not provide all three arguments, prompt them to input the missing values
+    if args.ip is None and args.port is None and args.passcode is None:
+            args.ip = input("Enter the IP address for the server: ")
+            args.port = int(input("Enter the port number for the server (Default Port: 21330): "))
+            args.passcode = int(input("Enter the passcode for the server: "))
+
+    generate(args.ip, args.port, args.passcode)
