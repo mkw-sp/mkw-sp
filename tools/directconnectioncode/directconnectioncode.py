@@ -1,4 +1,3 @@
-from argparse import ArgumentParser
 import re
 import socket
 import struct
@@ -33,14 +32,14 @@ def generate(ip: str, port: int, passcode: int):
     direct_code = direct_code[:6] + '-' + \
         direct_code[6:12] + '-' + direct_code[-6:]
 
-    print(direct_code)
+    print("Your direct connection code is \"" + direct_code + "\".")
+    print("Please have other clients use this code to connect to your server.")
 
 
 if __name__ == '__main__':
-    parser = ArgumentParser()
-    parser.add_argument('ip', type=str)
-    parser.add_argument('port', type=int)
-    parser.add_argument('passcode', type=int)
-    args = parser.parse_args()
+    # Prompt the user to input their own IP, port, and passcode
+    ip = input("Enter the IP address for the server: ")
+    port = int(input("Enter the port number for the server: "))
+    passcode = int(input("Enter the passcode for the server: "))
 
-    generate(args.ip, args.port, args.passcode)
+    generate(ip, port, passcode)
