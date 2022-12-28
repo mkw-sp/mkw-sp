@@ -44,7 +44,7 @@ if __name__ == '__main__':
     parser.add_argument('passcode', type=int, nargs='?', help="Passcode for the server")
     args = parser.parse_args()
 
-    # If the user did not provide all three arguments, prompt them to input the missing values
+    # If arguement parsing was not used, make the user input own arguments
     if args.ip is None or args.port is None or args.passcode is None:
             args.ip = input("Enter the IP address for the server: ")
             args.port = int(input("Enter the port number for the server: "))
