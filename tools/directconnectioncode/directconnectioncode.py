@@ -33,8 +33,7 @@ def generate(ip: str, port: int, passcode: int):
     direct_code = direct_code[:6] + '-' + \
         direct_code[6:12] + '-' + direct_code[-6:]
 
-    print("Your direct connection code is \"" + direct_code + "\".")
-    print("Please have other clients use this code to connect to your server.")
+    return direct_code
 
 
 if __name__ == '__main__':
@@ -46,9 +45,12 @@ if __name__ == '__main__':
     args = parser.parse_args()
 
     # If the user did not provide all three arguments, prompt them to input the missing values
-    if args.ip is None and args.port is None and args.passcode is None:
+    if args.ip is None or args.port is None or args.passcode is None:
             args.ip = input("Enter the IP address for the server: ")
-            args.port = int(input("Enter the port number for the server (Default Port: 21330): "))
+            args.port = int(input("Enter the port number for the server: "))
             args.passcode = int(input("Enter the passcode for the server: "))
+            
+    direct_code = generate(args.ip, args.port, args.passcode)
 
-    generate(args.ip, args.port, args.passcode)
+    print("Your direct connection code is \"" + direct_code + "\".")
+    print("Please have other clients use this code to connect to your server.")
