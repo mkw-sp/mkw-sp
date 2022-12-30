@@ -234,6 +234,7 @@
 0x80199CE4 MEMGetNextListObject
 0x80199D04 PSMTXIdentity
 0x8019a91c PSMTXMultVec
+0x8019ac68 _ZN4Vec34normERKS_
 0x8019ae08 PSQUATMultiply
 0x8019aef4 PSQUATInverse
 0x8019AB4C C_MTXOrtho
@@ -447,6 +448,7 @@
 0x80242504 EGG_ConfigurationData_initMemory
 0x80242c18 EGG_TaskThread_request
 0x80242c18 _ZN3EGG10TaskThread7requestEPFvPvES1_S1_
+0x80243adc _ZN4Vec39normalizeERS_
 0x80243d6c EGG_Video_configure
 0x802441ec _ZN3EGG3Xfb11CalcXfbSizeEtt
 
@@ -652,6 +654,7 @@
 0x805a8468 CameraManager_ct
 0x805a8fbc CameraManager_805a8fbc
 0x805a8fbc _ZNK8Graphics13CameraManager7isReadyEv
+0x805aeb88 _ZN4Vec38projUnitERS_RKS_S2_
 0x805b9344 _ZN2UI14ArgumentParser5parseEv
 0x805bac84 _ZN2UI9AwaitPage3popEv
 0x805baf10 CtrlMenuPageTitleText_dt

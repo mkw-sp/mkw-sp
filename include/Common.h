@@ -175,7 +175,13 @@ void delete (void *memBlock);
 #define BASE(x) x
 #endif
 
-typedef struct {
+typedef struct Vec3 {
+#ifdef __cplusplus
+    static f32 norm(const Vec3 &v);
+    static f32 normalize(Vec3 &v);
+    static void projUnit(Vec3 &r, const Vec3 &v0, const Vec3 &v1);
+#endif
+
     f32 x;
     f32 y;
     f32 z;

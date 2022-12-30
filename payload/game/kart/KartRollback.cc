@@ -1,6 +1,7 @@
 #include "KartRollback.hh"
 
 #include "game/kart/KartCollide.hh"
+#include "game/kart/KartMove.hh"
 #include "game/kart/VehiclePhysics.hh"
 #include "game/system/RaceManager.hh"
 
@@ -74,17 +75,27 @@ void KartRollback::calcEarly() {
         for (u32 i = 0; i < m_frames.count(); i++) {
             if (m_frames[i]->id == frameId - 1) {
                 auto *vehiclePhysics = getVehiclePhysics();
-                Vec3 pos = vehiclePhysics->m_pos;
                 f32 t = 0.2f;
-                vehiclePhysics->m_pos.x = (1.0f - t) * m_frames[i]->pos.x + t * m_frames[i]->pos.x;
-                vehiclePhysics->m_pos.y = (1.0f - t) * m_frames[i]->pos.y + t * m_frames[i]->pos.y;
-                vehiclePhysics->m_pos.z = (1.0f - t) * m_frames[i]->pos.z + t * m_frames[i]->pos.z;
+                m_posDelta.x = m_frames[i]->pos.x - vehiclePhysics->m_pos.x;
+                m_posDelta.y = m_frames[i]->pos.y - vehiclePhysics->m_pos.y;
+                m_posDelta.z = m_frames[i]->pos.z - vehiclePhysics->m_pos.z;
+                Vec3 proj;
+                Vec3::projUnit(proj, m_posDelta, getKartMove()->m_up);
+                f32 norm = Vec3::norm(proj);
+                if (norm < 300.0f) {
+                    m_posDelta.x -= proj.x;
+                    m_posDelta.y -= proj.y;
+                    m_posDelta.z -= proj.z;
+                }
+                vehiclePhysics->m_pos.x += t * m_posDelta.x;
+                vehiclePhysics->m_pos.y += t * m_posDelta.y;
+                vehiclePhysics->m_pos.z += t * m_posDelta.z;
                 C_QUATSlerp(&vehiclePhysics->m_mainRot, &m_frames[i]->mainRot,
                         &vehiclePhysics->m_mainRot, t);
                 auto *kartCollide = getKartCollide();
-                kartCollide->m_movement.x += vehiclePhysics->m_pos.x - pos.x;
-                kartCollide->m_movement.y += vehiclePhysics->m_pos.y - pos.y;
-                kartCollide->m_movement.z += vehiclePhysics->m_pos.z - pos.z;
+                kartCollide->m_movement.x += t * m_posDelta.x;
+                kartCollide->m_movement.y += t * m_posDelta.y;
+                kartCollide->m_movement.z += t * m_posDelta.z;
                 break;
             }
         }
