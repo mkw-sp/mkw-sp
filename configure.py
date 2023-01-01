@@ -1652,7 +1652,6 @@ code_in_files = {
         os.path.join('payload', 'sp', 'security', 'StackTrace.S'),
         os.path.join('payload', 'sp', 'settings', 'ClientSettings.cc'),
         os.path.join('payload', 'sp', 'settings', 'RegionLineColor.cc'),
-        os.path.join('payload', 'sp', 'settings', 'RoomSettings.cc'),
         os.path.join('payload', 'sp', 'settings', 'IniReader.cc'),
         os.path.join('payload', 'sp', 'storage', 'DecompLoader.cc'),
         os.path.join('payload', 'sp', 'storage', 'DVDStorage.cc'),
