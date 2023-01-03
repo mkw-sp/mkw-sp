@@ -21,11 +21,16 @@ void VotingBackPage::onInit() {
 
     auto *roomManager = SP::RoomManager::Instance();
     assert(roomManager);
+    auto *globalContext = SectionManager::Instance()->globalContext();
 
     m_playerCount = roomManager->getPlayerCount();
     for (u8 i = 0; i < m_playerCount; i++) {
-        m_miiGroup.insertFromRaw(i, roomManager->getPlayer(i)->getMii());
+        auto *mii = &roomManager->player(i).m_mii;
+        m_miiGroup.insertFromRaw(i, mii);
+        globalContext->m_playerMiis.insertFromRaw(i, mii);
     }
+
+    globalContext->copyPlayerMiis();
 }
 
 void VotingBackPage::onActivate() {
@@ -115,7 +120,7 @@ void VotingBackPage::Handler::onReceiveInfo(u32 playerId, s32 course, u32 select
 
     for (u8 i = 0; i < 12; i++) {
         if (roomManager->getPlayerOrder(i) == playerId) {
-            m_page.m_courseVotes[playerId] = course;
+            m_page.m_courseVotes[i] = course;
         }
     }
 

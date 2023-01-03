@@ -48,7 +48,7 @@ bool StackTraceIterator_read(StackTraceIterator *it, void **addr) {
 }
 
 BinaryType ClassifyPointer(void *p) {
-    if (p >= Payload_getTextSectionStart() && p < Payload_getTextSectionEnd()) {
+    if (p >= Payload_getTextSectionStart() && p < Payload_getReplacementsSectionEnd()) {
         return BINARY_SP;
     }
     if (p >= Rel_getTextSectionStart() && p < Rel_getTextSectionEnd()) {
@@ -63,11 +63,18 @@ BinaryType ClassifyPointer(void *p) {
 
 void *PortPointer(void *p) {
     if (ClassifyPointer(p) == BINARY_REL) {
+        u32 portedPointer = (u32)p - (u32)Rel_getTextSectionStart();
+
         switch (REGION) {
+        case REGION_E:
+            return (void *)(portedPointer + 0x8050C034);
         case REGION_P:
-            return (void *)((u32)p - (u32)Rel_getTextSectionStart() + 0x805103B4);
+            return (void *)(portedPointer + 0x805103B4);
+        case REGION_J:
+            return (void *)(portedPointer + 0x8050FD34);
+        case REGION_K:
+            return (void *)(portedPointer + 0x804FE3D4);
         default:
-            // No developers are on other regions
             return p;
         }
     }

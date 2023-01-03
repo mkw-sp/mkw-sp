@@ -28,7 +28,7 @@ public:
 
     struct Read {
         u16 size;
-        u8 playerIdx; // TODO rename
+        u32 index;
     };
 
     UnreliableSocket(const char context[hydro_secretbox_CONTEXTBYTES], std::optional<u16> port);

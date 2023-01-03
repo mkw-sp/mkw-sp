@@ -2,8 +2,6 @@
 
 #include "sp/cs/RaceManager.hh"
 
-#include <protobuf/Race.pb.h>
-
 namespace SP {
 
 class RaceServer final : public RaceManager {

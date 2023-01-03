@@ -1,1 +1,2 @@
 RaceClientFrame.players max_count:2
+RaceServerFrame.players max_count:12

@@ -101,6 +101,12 @@ void FriendMatchingPage::onRefocus() {
     if (m_roomStarted) {
         m_roomStarted = false;
         if (SP::RoomManager::Instance()) {
+            auto &menuScenario = System::RaceConfig::Instance()->menuScenario();
+            if (m_gamemode == 0) {
+                menuScenario.gameMode = System::RaceConfig::GameMode::OfflineVS;
+            } else {
+                menuScenario.gameMode = System::RaceConfig::GameMode::OfflineBT;
+            }
             return sectionId == SectionId::OnlineServer ? startServer() : startClient();
         }
     }
@@ -174,7 +180,6 @@ void FriendMatchingPage::startClient() {
             driftSelectPage->setReplacementSection(static_cast<SectionId>(m_gamemode + 0x60));
 
             push(PageId::CharacterSelect, Anim::Next);
-            System::RaceConfig::Instance()->menuScenario().gameMode = m_gamemode == 0 ? System::RaceConfig::GameMode::OfflineVS : System::RaceConfig::GameMode::OfflineBT;
         } else {
             push(PageId::OnlineTeamSelect, Anim::Next);
         }

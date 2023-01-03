@@ -12,7 +12,7 @@ void EffectManager::createKarts() {
     if (auto *roomManager = SP::RoomManager::Instance()) {
         const auto &raceScenario = System::RaceConfig::Instance()->raceScenario();
         for (u32 i = 0; i < raceScenario.playerCount; i++) {
-            if (!roomManager->isPlayerLocal(i)) {
+            if (roomManager->isPlayerRemote(i)) {
                 m_karts[i]->m_isLod = true;
             }
         }

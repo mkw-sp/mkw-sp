@@ -42,7 +42,7 @@ std::optional<UnreliableSocket::Read> UnreliableSocket::read(u8 *message, u16 ma
         address.port = *m_port;
         s32 result = SOBind(m_handle, &address);
         if (result == SO_EINPROGRESS || result == SO_EALREADY) {
-            return Read{0, 200};
+            return {};
         } else if (result != 0) {
             SP_LOG("Failed to bind address to socket, returned %d", result);
             return {};
@@ -60,7 +60,7 @@ std::optional<UnreliableSocket::Read> UnreliableSocket::read(u8 *message, u16 ma
         s32 result = SORecvFrom(m_handle, buffer, sizeof(buffer), 0, &address);
 
         if (result == SO_EAGAIN) {
-            return Read{0, 200};
+            return {};
         } else if (result < 0) {
             SP_LOG("Failed to receive packet, returned %d", result);
             return {};
@@ -68,7 +68,7 @@ std::optional<UnreliableSocket::Read> UnreliableSocket::read(u8 *message, u16 ma
 
         if (hydro_secretbox_HEADERBYTES + maxSize < result) {
             SP_LOG("Failed to decrypt message");
-            return {};
+            continue;
         }
 
         for (u8 i = 0; i < connectionGroup.count(); i++) {
@@ -82,7 +82,7 @@ std::optional<UnreliableSocket::Read> UnreliableSocket::read(u8 *message, u16 ma
         }
     }
 
-    return Read{0, 200};
+    return {};
 }
 
 bool UnreliableSocket::write(const u8 *message, u16 size, const Connection &connection) {
@@ -104,7 +104,7 @@ bool UnreliableSocket::write(const u8 *message, u16 size, const Connection &conn
     address.addr.addr = connection.ip;
     s32 result = SOSendTo(m_handle, buffer, size, 0, &address);
     if (result == SO_EAGAIN) {
-        return true;
+        return false;
     } else if (result < 0) {
         SP_LOG("Failed to send packet, returned %d", result);
         return false;

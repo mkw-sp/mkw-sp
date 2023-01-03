@@ -4,7 +4,7 @@
 #include "game/ui/SectionManager.hh"
 
 #include <sp/ThumbnailManager.hh>
-#include <sp/cs/RaceManager.hh>
+#include <sp/cs/RaceServer.hh>
 
 namespace System {
 
@@ -79,8 +79,7 @@ RaceManager *RaceManager::CreateInstance() {
             s_instance->m_players[i]->setExtraGhostPadProxy();
         }
 
-        if (auto *roomManager = SP::RoomManager::Instance(); roomManager &&
-                !roomManager->isPlayerLocal(i)) {
+        if (SP::RaceServer::Instance()) {
             InputManager::Instance()->setExtraUserPad(i);
             s_instance->m_players[i]->setExtraGhostPadProxy();
         }

@@ -1204,29 +1204,57 @@
     },
     "10341": {
         "font": "regular",
-        "string": "Visual course.kcl",
+        "string": "Panel",
     },
     "10342": {
         "font": "regular",
-        "string": "Off",
+        "string": "Disable",
     },
     "10343": {
         "font": "regular",
-        "string": "Default",
+        "string": "Player",
     },
     "10344": {
         "font": "regular",
-        "string": "Overlay",
+        "string": "Online",
     },
     "10345": {
         "font": "regular",
-        "string": "Show on top of course_model.brres",
+        "string": "Do not show the debug panel.",
     },
     "10346": {
         "font": "regular",
-        "string": "Replace course_model.brres",
+        "string": "Show player information on the debug panel.",
     },
     "10347": {
+        "font": "regular",
+        "string": "Show online information on the debug panel.",
+    },
+    "10348": {
+        "font": "regular",
+        "string": "Visual course.kcl",
+    },
+    "10349": {
+        "font": "regular",
+        "string": "Off",
+    },
+    "10350": {
+        "font": "regular",
+        "string": "Default",
+    },
+    "10351": {
+        "font": "regular",
+        "string": "Overlay",
+    },
+    "10352": {
+        "font": "regular",
+        "string": "Show on top of course_model.brres",
+    },
+    "10353": {
+        "font": "regular",
+        "string": "Replace course_model.brres",
+    },
+    "10354": {
         "font": "regular",
         "string": "Hide course_model.brres",
     },

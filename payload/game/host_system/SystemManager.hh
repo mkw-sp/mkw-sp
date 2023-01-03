@@ -13,6 +13,8 @@ namespace System {
 
 class SystemManager {
 public:
+    void REPLACED(init)();
+    REPLACE void init();
     REPLACE void shutdownSystem();
     REPLACE void returnToMenu();
     REPLACE void restart();
@@ -24,7 +26,9 @@ public:
     static void LaunchTitle(u64 titleID);
 
 private:
-    u8 _0000[0x1100 - 0x0000];
+    u8 _0000[0x0070 - 0x0000];
+    u32 m_launchType;
+    u8 _0074[0x1100 - 0x0074];
 };
 static_assert(sizeof(SystemManager) == 0x1100);
 

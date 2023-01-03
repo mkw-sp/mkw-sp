@@ -7,6 +7,7 @@
 #include "game/ui/page/RacePage.hh"
 #include "game/util/Registry.hh"
 
+#include <sp/cs/RoomManager.hh>
 #include <sp/settings/RegionLineColor.hh>
 
 extern float playerTagRenderDistance;
@@ -53,6 +54,10 @@ void CtrlRaceNameBalloon::refresh(u32 playerId) {
 
     m_playerId = playerId;
 
+    auto *roomManager = SP::RoomManager::Instance();
+    bool isOnline = roomManager;
+    bool isRemote = roomManager && roomManager->isPlayerRemote(playerId);
+
     auto *pane = m_mainLayout.findPaneByName("chara_name");
     assert(pane);
     auto *material = pane->getMaterial();
@@ -67,7 +72,7 @@ void CtrlRaceNameBalloon::refresh(u32 playerId) {
     auto *saveManager = System::SaveManager::Instance();
     auto playerType = raceScenario.players[playerId].type;
     if (raceScenario.spMaxTeamSize < 2 && playerType == System::RaceConfig::Player::Type::Local) {
-        if (raceScenario.isOnline()) {
+        if (isOnline) {
             SP::ClientSettings::RegionLineColor regionLineColorSetting =
                     saveManager->getSetting<SP::ClientSettings::Setting::RegionLineColor>();
 
@@ -88,7 +93,7 @@ void CtrlRaceNameBalloon::refresh(u32 playerId) {
     }
 
     u32 characterId = raceScenario.players[playerId].characterId;
-    if (playerType == System::RaceConfig::Player::Type::CPU) {
+    if (playerType == System::RaceConfig::Player::Type::CPU && !isRemote) {
         setPaneVisible("chara", false);
         setMessage("chara_name", Registry::GetCharacterMessageId(characterId, true));
         return;
@@ -98,7 +103,7 @@ void CtrlRaceNameBalloon::refresh(u32 playerId) {
 
     auto *context = SectionManager::Instance()->globalContext();
     u32 localPlayerCount = context->m_localPlayerCount;
-    if (playerType == System::RaceConfig::Player::Type::Local && characterId < 0x18 &&
+    if (!isOnline && playerType == System::RaceConfig::Player::Type::Local && characterId < 0x18 &&
             localPlayerCount > 1) {
         setPicture("chara", Registry::GetCharacterPane(characterId));
         setMessage("chara_name", Registry::GetCharacterMessageId(characterId, true));

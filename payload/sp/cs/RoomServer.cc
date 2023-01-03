@@ -15,6 +15,10 @@ bool RoomServer::isPlayerLocal([[maybe_unused]] u32 playerId) const {
     return false;
 }
 
+bool RoomServer::isPlayerRemote([[maybe_unused]] u32 playerId) const {
+    return playerId < m_playerCount;
+}
+
 bool RoomServer::canSelectTeam([[maybe_unused]] u32 playerId) const {
     return false;
 }
@@ -832,6 +836,8 @@ std::optional<RoomServer::Client::State> RoomServer::Client::calcSelect(Handler 
 
     Player::Properties properties;
     switch (request->which_request) {
+    case RoomRequest_comment_tag:
+        return State::Select;
     case RoomRequest_vote_tag:
         properties = {request->request.vote.properties.character,
                 request->request.vote.properties.vehicle,

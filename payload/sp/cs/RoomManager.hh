@@ -95,6 +95,7 @@ public:
     }
 
     virtual bool isPlayerLocal(u32 playerId) const = 0;
+    virtual bool isPlayerRemote(u32 playerId) const = 0;
     virtual bool canSelectTeam(u32 playerId) const = 0;
     virtual bool canSelectTeam(u32 localPlayerId, u32 playerId) const = 0;
 

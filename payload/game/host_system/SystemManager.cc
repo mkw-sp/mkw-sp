@@ -8,6 +8,12 @@ extern "C" {
 
 namespace System {
 
+void SystemManager::init() {
+    REPLACED(init)();
+
+    m_launchType = 1;
+}
+
 void SystemManager::shutdownSystem() {
     ShutdownSystem();
 }

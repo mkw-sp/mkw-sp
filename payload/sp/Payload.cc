@@ -22,6 +22,9 @@ extern "C" {
 #include "sp/security/Memory.h"
 #include "sp/security/PageTable.h"
 #include "sp/security/Stack.h"
+}
+#include "sp/settings/GlobalSettings.hh"
+extern "C" {
 #include "sp/storage/LogFile.h"
 }
 #include "sp/storage/DecompLoader.hh"
@@ -139,6 +142,10 @@ static void Init() {
     //     Built Mar  2 2022 at 23:22:40, GCC 10.2.0
     //     --------------------------------
     Host_PrintMkwSpInfo(OSReport);
+
+    Console::Print("Initializing global settings...");
+    GlobalSettings::Init();
+    Console::Print(" done.\n");
 
     Console::Print("Initializing concurrent decompressor...");
     Storage::DecompLoader::Init();

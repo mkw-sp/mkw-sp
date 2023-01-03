@@ -3,14 +3,13 @@
 #include "sp/CircularBuffer.hh"
 #include "sp/cs/RaceManager.hh"
 
-#include <protobuf/Race.pb.h>
-
 namespace SP {
 
 class RaceClient final : public RaceManager {
 public:
     void destroyInstance() override;
 
+    const std::optional<RaceServerFrame> &frame() const;
     s32 drift() const;
     void adjustDrift();
 
@@ -36,10 +35,14 @@ private:
     RaceClient(u32 ip, u16 port, hydro_kx_session_keypair keypair);
     ~RaceClient();
 
+    bool isFrameValid(const RaceServerFrame &frame);
+
+    static bool IsVec3Valid(const RaceServerFrame_Vec3 &v);
+    static bool IsQuatValid(const RaceServerFrame_Quat &q);
+
     s32 m_drift = 0;
     CircularBuffer<s32, 60> m_drifts;
     std::optional<RaceServerFrame> m_frame{};
-    u32 m_frameId = 0;
     Net::UnreliableSocket::Connection m_connection;
     Net::UnreliableSocket m_socket;
 

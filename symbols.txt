@@ -13,6 +13,7 @@
 0x80009820 EGG_ConfigurationData_onBeginFrame
 0x80009844 SceneManager_changeSiblingScene
 0x80009bc0 HeapCollection_setGroupIdAll
+0x8000ac50 _ZN6System13SystemManager4initEv
 0x8000b154 _ZN6System13SystemManager14shutdownSystemEv
 0x8000b188 _ZN6System13SystemManager12returnToMenuEv
 0x8000b1bc _ZN6System13SystemManager7restartEv
@@ -33,6 +34,7 @@
 0x800152a8 strtoul
 0x80015650 wmemcpy
 0x80017814 swprintf
+0x8001790c vswprintf
 0x80017998 wcslen
 0x80017a14 wcscmp
 0x80021254 strlen
@@ -235,9 +237,13 @@
 0x80199CE4 MEMGetNextListObject
 0x80199D04 PSMTXIdentity
 0x8019a91c PSMTXMultVec
+0x8019ac68 _ZN4Vec34normERKS_
+0x8019ae08 PSQUATMultiply
+0x8019aef4 PSQUATInverse
 0x8019AB4C C_MTXOrtho
 0x8019ac68 PSVECMag
 0x8019acac PSVECDotProduct
+0x8019b178 C_QUATSlerp
 0x8019b4b0 NANDPrivateCreate
 0x8019b64c NANDPrivateDelete
 0x8019b7a4 NANDRead
@@ -449,6 +455,7 @@
 0x80242504 EGG_ConfigurationData_initMemory
 0x80242c18 EGG_TaskThread_request
 0x80242c18 _ZN3EGG10TaskThread7requestEPFvPvES1_S1_
+0x80243adc _ZN4Vec39normalizeERS_
 0x80243d6c EGG_Video_configure
 0x802441ec _ZN3EGG3Xfb11CalcXfbSizeEtt
 
@@ -612,24 +619,30 @@
 0x80581824 _ZN4Kart8KartMove9calcBlinkEv
 0x80584d58 KartMove_calcCannon
 0x805858ac KartMove_startKiller
+0x8058e22c _ZN4Kart10KartObject4initEv
+0x8058eeb4 _ZN4Kart10KartObject9calcEarlyEv
 0x8058eebc KartObject_calcPass1
+0x8058eebc _ZN4Kart10KartObject8calcLateEv
 0x8058faa8 KartObjectManager_createInstance
 0x8058fb2c KartObjectManager_ct
 0x8058ffe8 KartObjectManager_calc
 0x8058ffe8 _ZN4Kart17KartObjectManager4calcEv
 0x80590100 _ZN4Kart17KartObjectManager6objectEj
+0x8059018c _ZN4Kart15KartObjectProxyC2Ev
 0x8059020c KartObjectProxy_getPos
 0x8059020c _ZNK4Kart15KartObjectProxy6getPosEv
 0x80590224 KartObjectProxy_getLastPos
 0x80590224 _ZNK4Kart15KartObjectProxy10getLastPosEv
 0x805903cc KartObjectProxy_getVehiclePhysics
 0x805903cc _ZN4Kart15KartObjectProxy17getVehiclePhysicsEv
+0x805903e0 _ZNK4Kart15KartObjectProxy17getVehiclePhysicsEv
 0x805903f4 KartObjectProxy_getPadProxy
 0x80590664 _ZNK4Kart15KartObjectProxy5isCPUEv
 0x80590678 KartObjectProxy_isGhost
 0x80590678 _ZNK4Kart15KartObjectProxy7isGhostEv
 0x8059077c KartObjectProxy_getKartMove
 0x8059077c _ZN4Kart15KartObjectProxy11getKartMoveEv
+0x8059084c _ZN4Kart15KartObjectProxy14getKartCollideEv
 0x80590a5c _ZNK4Kart15KartObjectProxy11getPlayerIdEv
 0x80590cf8 KartObjectProxy_getInternalSpeed
 0x80590cf8 _ZNK4Kart15KartObjectProxy16getInternalSpeedEv
@@ -637,6 +650,7 @@
 0x80594bd4 KartState_calcCollisions
 0x80595d48 _ZN4Kart7KartSub16createComponentsEPNS_12KartSettingsE
 0x80596480 KartSub_calcPass0
+0x80596480 _ZN4Kart7KartSub9calcEarlyEv
 0x80596cfc KartSub_calcPass1
 0x8059783c KartSub_calcTransforms
 0x8059BC44 KartKiller_calcTracking
@@ -647,6 +661,8 @@
 0x805a8468 CameraManager_ct
 0x805a8fbc CameraManager_805a8fbc
 0x805a8fbc _ZNK8Graphics13CameraManager7isReadyEv
+0x805aeb88 _ZN4Vec38projUnitERS_RKS_S2_
+0x805b9344 _ZN2UI14ArgumentParser5parseEv
 0x805bac84 _ZN2UI9AwaitPage3popEv
 0x805baf10 CtrlMenuPageTitleText_dt
 0x805bb210 _ZN2UI13MenuAwaitPage15setTitleMessageEjPNS_11MessageInfoE
@@ -981,6 +997,7 @@
 0x80607d88 _ZN2UI21MatchingMessageWindow5vf_2cEv
 0x8061b358 RegisteredPadManager_getFlags
 0x8061b420 _ZN2UI20RegisteredPadManager14setDriftIsAutoEjb
+0x8061b490 _ZN2UI20RegisteredPadManager8setFlagsEjj
 0x806201fc SaveFailedPage_onActivate
 0x80620c5c SaveManagerProxy_init
 0x80620dd8 SaveManagerProxy_processRequest
@@ -1195,6 +1212,7 @@
 0x80724880 Jugem_80724880
 0x8072624c _ZN5Enemy9KartEnemy5isCpuEv
 0x8073942c _ZN5Enemy12EnemyManager4calcEv
+0x807397bc _ZNK5Enemy12EnemyManager7hasCpusEv
 0x80745be4 Input_80745be4
 0x80745de4 Input_80745de4
 0x8074fe8c GlobeManager_dt

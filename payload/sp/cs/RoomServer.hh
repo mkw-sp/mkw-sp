@@ -19,6 +19,7 @@ public:
     using State = RoomManager::ServerState;
 
     bool isPlayerLocal(u32 playerId) const override;
+    bool isPlayerRemote(u32 playerId) const override;
     bool canSelectTeam(u32 playerId) const override;
     bool canSelectTeam(u32 localPlayerId, u32 playerId) const override;
 

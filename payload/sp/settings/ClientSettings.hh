@@ -63,6 +63,7 @@ enum class Setting {
 
     // DebugOverlay
     DebugCheckpoints,
+    DebugPanel,
     DebugKCL,
 };
 
@@ -308,6 +309,12 @@ enum class DebugKCL {
     Disable,
     Overlay,
     Replace,
+};
+
+enum class DebugPanel {
+    Disable,
+    Player,
+    Online,
 };
 
 typedef Settings::Group<Category> Group;
@@ -556,6 +563,11 @@ struct Helper<ClientSettings::Setting, ClientSettings::Setting::DebugCheckpoints
 template <>
 struct Helper<ClientSettings::Setting, ClientSettings::Setting::DebugKCL> {
     using type = SP::ClientSettings::DebugKCL;
+};
+
+template <>
+struct Helper<ClientSettings::Setting, ClientSettings::Setting::DebugPanel> {
+    using type = SP::ClientSettings::DebugPanel;
 };
 
 }
