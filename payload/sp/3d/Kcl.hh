@@ -64,6 +64,7 @@ struct KclFile {
 class KclVis {
 public:
     KclVis(std::span<const u8> file);
+    ~KclVis();
 
     void render(const float mtx[3][4], bool overlay);
 

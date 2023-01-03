@@ -191,6 +191,10 @@ inline std::array<Vec3, 3> FromPrism(float height, const Vec3 &pos, const Vec3 &
 KclVis::KclVis(std::span<const u8> file) : m_file(file) {
     prepare();
 }
+KclVis::~KclVis() {
+    SP_LOG("Freeing KclVis (%u bytes)", m_DLSize);
+    m_DL.reset();
+}
 static GXColor TransformHRadians(GXColor in, // color to transform
         float H) {
     float U = EGG::Math<float>::cos(H);
@@ -286,6 +290,7 @@ void KclVis::prepare() {
     }
 
     if (!trussBound) {
+        trussBound = true;
         YAZDecoder::Decode(TRUSS_SZS, sizeof(TRUSS_SZS), TRUSS_TPL, sizeof(TRUSS_TPL));
         TPLBind(TRUSS_TPL);
         TPLGetGXTexObjFromPalette(TRUSS_TPL, &TRUSS_OBJ, 0);
@@ -307,8 +312,6 @@ void KclVis::render(const float mtx[3][4], [[maybe_unused]] bool overlay) {
         u32 color;
         Vec3 view_pos;
     };
-    // RED: 0xFF0900FF
-    // BLUE: 0x00F6FFFF
     Light lights[2] = {
             {0xff, {0.0f, 4000.0f, 5000.0f}},
             {0xF6F6F6FF, {0, 4000.0f, 0.0f}},
@@ -346,7 +349,9 @@ void KclVis::render(const float mtx[3][4], [[maybe_unused]] bool overlay) {
             GX_AF_NONE         // attn_fn
     );
 
+    GXSetNumIndStages(0);
     GXSetNumTevStages(1);
+    GXSetTevDirect(GX_TEVSTAGE0);
     GXSetTevOrder(GX_TEVSTAGE0, GX_TEXCOORD0, GX_TEXMAP0, GX_COLOR0A0);
     {
         GXSetTevColorIn(GX_TEVSTAGE0, GX_CC_ZERO, GX_CC_RASC, GX_CC_TEXC, GX_CC_ZERO);

@@ -494,7 +494,7 @@ const Entry entries[] = {
         .defaultValue = static_cast<u32>(DebugKCL::Disable),
         .valueCount = magic_enum::enum_count<DebugKCL>(),
         .valueNames = magic_enum::enum_names<DebugKCL>().data(),
-        .valueMessageIds = (u32[]) { 10349, 10351, 103533 },
+        .valueMessageIds = (u32[]) { 10349, 10351, 10353 },
         .valueExplanationMessageIds = (u32[]) { 10350, 10352, 10354 },
     },
 };

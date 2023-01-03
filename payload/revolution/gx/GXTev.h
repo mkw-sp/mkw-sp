@@ -16,5 +16,6 @@ void GXSetTevColor(GXTevRegID id, GXColor color);
 void GXSetTevColorS10(GXTevRegID id, GXColorS10 color);
 void GXSetTevOrder(GXTevStageID stage, GXTexCoordID coord, GXTexMapID map, GXChannelID color);
 void GXSetNumTevStages(u8 nStages);
+void GXSetTevDirect(GXTevStageID stage);
 
 void GXSetTevKAlphaSel(GXTevStageID stage, GXTevKAlphaSel sel);

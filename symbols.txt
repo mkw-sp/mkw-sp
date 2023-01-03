@@ -1485,7 +1485,7 @@
 0x809c2f38 s_driverManager
 0x809c2f38 _ZN4Race13DriverManager10s_instanceE
 0x809c2f3c unk_809c2f3c
-0x809C2F44 _ZN2SP9GndMdlMgr10spInstanceE
+0x809C2F44 _ZN4Race13FieldDirector10s_instanceE
 0x809c3618 _ZN4Item11ItemManager10s_instanceE
 0x809c4330 _ZN3Geo11ObjDirector10s_instanceE
 0x809c4680 s_racePage
