@@ -1222,6 +1222,7 @@
 0x8078d824 _ZN4Race13DriverManager4calcEv
 0x8078ddb4 unk_8078ddb4
 0x8079864c KartItem_activateMushroom
+0x80798c38 _ZN4Item8KartItem7setItemEjjj
 0x80799850 _ZN4Item11ItemManager4calcEv
 0x807aa688 ItemObjKouraAka_vf_20
 0x807aae78 ItemObjKouraAka_807aae78
