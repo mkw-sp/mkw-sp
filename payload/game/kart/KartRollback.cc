@@ -67,6 +67,9 @@ void KartRollback::calcEarly() {
                     m_posDelta -= proj;
                 }
                 vehiclePhysics->m_pos += t * m_posDelta;
+                Quat inverse;
+                Quat::Inverse(vehiclePhysics->m_mainRot, inverse);
+                m_mainRotDelta = m_frames[i]->mainRot * inverse;
                 Quat::Slerp(vehiclePhysics->m_mainRot, m_frames[i]->mainRot,
                         vehiclePhysics->m_mainRot, t);
                 auto *kartCollide = getKartCollide();

@@ -438,6 +438,7 @@
 0x8022F860 _ZN3EGG4MathIfE3sinEf
 0x8022F86C _ZN3EGG4MathIfE3cosEf
 0x80239338 EGG_ProcessMeter_draw
+0x8023a2d0 _ZN4Quat6RotateERKS_RK4Vec3RS2_
 0x8023ad10 EGG_Scene_CT
 0x8023ad84 EGG_Scene_DT
 0x8023aef8 _ZN3EGG12SceneManager18reinitCurrentSceneEv

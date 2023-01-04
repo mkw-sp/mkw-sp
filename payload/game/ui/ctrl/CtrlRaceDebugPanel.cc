@@ -24,6 +24,8 @@ private:
     void write(const wchar_t *restrict format, ...);
     void write(const char *name, const Vec3 &v0);
     void write(const char *name, const Vec3 &v0, const Vec3 &v1);
+    void write(const char *name, const Quat &q0);
+    void write(const char *name, const Quat &q0, const Quat &q1);
 
     std::array<wchar_t, 256> m_buffer{};
     size_t m_offset = 0;
@@ -63,8 +65,10 @@ void WStringWriter::writeOnline(u32 playerId) {
     auto *object = Kart::KartObjectManager::Instance()->object(playerId);
     if (auto *rollback = object->getKartRollback()) {
         write("P/RP", *object->getPos(), rollback->posDelta());
+        write("MR/RMR", *object->getMainRot(), rollback->mainRotDelta());
     } else {
         write("P", *object->getPos());
+        write("MR", *object->getMainRot());
     }
     write("EV", *object->getVehiclePhysics()->externalVel());
     write("IV", *object->getVehiclePhysics()->internalVel());
@@ -93,6 +97,20 @@ void WStringWriter::write(const char *name, const Vec3 &v0) {
 
 void WStringWriter::write(const char *name, const Vec3 &v0, const Vec3 &v1) {
     write(L"%s %.2f %.2f %.2f %.2f %.2f %.2f\n", name, v0.x, v0.y, v0.z, v1.x, v1.y, v1.z);
+}
+
+void WStringWriter::write(const char *name, const Quat &q0) {
+    Vec3 v0{0.0f, 0.0f, 1.0f};
+    Quat::Rotate(q0, v0, v0);
+    write(name, v0);
+}
+
+void WStringWriter::write(const char *name, const Quat &q0, const Quat &q1) {
+    Vec3 v0{0.0f, 0.0f, 1.0f};
+    Quat::Rotate(q0, v0, v0);
+    Vec3 v1{0.0f, 0.0f, 1.0f};
+    Quat::Rotate(q1, v1, v1);
+    write(name, v0, v1);
 }
 
 CtrlRaceDebugPanel::CtrlRaceDebugPanel() = default;

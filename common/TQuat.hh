@@ -2,6 +2,8 @@
 
 #include <Common.hh>
 
+struct Vec3;
+
 struct _RaceServerFrame_Quat;
 
 template <typename T>
@@ -23,6 +25,7 @@ struct Quat : TQuatBase<f32> {
 
     static void Inverse(const Quat &q0, const Quat &q);
     static void Slerp(const Quat &q0, const Quat &q1, Quat &q, f32 t);
+    static void Rotate(const Quat &q0, const Vec3 &v0, Vec3 &v);
 };
 
 Quat operator*(const Quat &q0, const Quat &q1);
