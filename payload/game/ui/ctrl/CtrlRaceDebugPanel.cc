@@ -66,6 +66,7 @@ void WStringWriter::writeOnline(u32 playerId) {
     if (auto *rollback = object->getKartRollback()) {
         write("P/RP", *object->getPos(), rollback->posDelta());
         write("MR/RMR", *object->getMainRot(), rollback->mainRotDelta());
+        write(L"IS/RIS %f %f\n", object->getInternalSpeed(), rollback->internalSpeedDelta());
     } else {
         write("P", *object->getPos());
         write("MR", *object->getMainRot());

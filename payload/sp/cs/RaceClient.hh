@@ -39,6 +39,7 @@ private:
 
     static bool IsVec3Valid(const RaceServerFrame_Vec3 &v);
     static bool IsQuatValid(const RaceServerFrame_Quat &q);
+    static bool IsF32Valid(f32 s);
 
     s32 m_drift = 0;
     CircularBuffer<s32, 60> m_drifts;

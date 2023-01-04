@@ -7,6 +7,8 @@
 
 #include <sp/cs/RaceClient.hh>
 
+#include <algorithm>
+
 namespace Kart {
 
 KartRollback::KartRollback() = default;
@@ -19,6 +21,10 @@ Quat KartRollback::mainRotDelta() const {
     return m_mainRotDelta;
 }
 
+f32 KartRollback::internalSpeedDelta() const {
+    return m_internalSpeedDelta;
+}
+
 void KartRollback::calcEarly() {
     if (auto serverFrame = SP::RaceClient::Instance()->frame()) {
         u32 frameId = System::RaceManager::Instance()->frameId();
@@ -26,6 +32,7 @@ void KartRollback::calcEarly() {
         u32 playerId = getPlayerId();
         auto *vehiclePhysics = getVehiclePhysics();
         auto *kartCollide = getKartCollide();
+        auto *kartMove = getKartMove();
         if (delay <= 0) {
             while (m_frames.front() && m_frames.front()->id < frameId) {
                 m_frames.pop();
@@ -33,7 +40,8 @@ void KartRollback::calcEarly() {
             if (!m_frames.full()) {
                 Vec3 pos(serverFrame->players[playerId].pos);
                 Quat mainRot(serverFrame->players[playerId].mainRot);
-                m_frames.push({serverFrame->id, pos, mainRot});
+                f32 internalSpeed = serverFrame->players[playerId].internalSpeed;
+                m_frames.push({serverFrame->id, pos, mainRot, internalSpeed});
             }
         } else {
             while (m_frames.front() && m_frames.front()->id < serverFrame->id) {
@@ -42,15 +50,16 @@ void KartRollback::calcEarly() {
             auto *rollbackFrame = m_frames.front();
             if (rollbackFrame && rollbackFrame->id == serverFrame->id) {
                 auto posDelta = rollbackFrame->pos - Vec3(serverFrame->players[playerId].pos);
-                for (u32 i = 0; i < m_frames.count(); i++) {
-                    m_frames[i]->pos -= posDelta;
-                }
                 Quat tmp(serverFrame->players[playerId].mainRot);
                 Quat inverse;
                 Quat::Inverse(rollbackFrame->mainRot, inverse);
                 Quat mainRotDelta = tmp * inverse;
+                f32 internalSpeedDelta = rollbackFrame->internalSpeed -
+                        serverFrame->players[playerId].internalSpeed;
                 for (u32 i = 0; i < m_frames.count(); i++) {
+                    m_frames[i]->pos -= posDelta;
                     m_frames[i]->mainRot = mainRotDelta * m_frames[i]->mainRot;
+                    m_frames[i]->internalSpeed -= internalSpeedDelta;
                 }
             }
         }
@@ -69,12 +78,16 @@ void KartRollback::calcEarly() {
                 Quat::Inverse(vehiclePhysics->m_mainRot, inverse);
                 Quat mainRotDelta = m_frames[i]->mainRot * inverse;
                 Quat::Slerp(m_mainRotDelta, mainRotDelta, m_mainRotDelta, t);
+                f32 internalSpeedDelta = m_frames[i]->internalSpeed - kartMove->m_internalSpeed;
+                m_internalSpeedDelta = (1.0f - t) * m_internalSpeedDelta + t * internalSpeedDelta;
                 break;
             }
         }
         vehiclePhysics->m_pos += m_posDelta;
         kartCollide->m_movement += m_posDelta;
         vehiclePhysics->m_mainRot = m_mainRotDelta * vehiclePhysics->m_mainRot;
+        kartMove->m_internalSpeed += m_internalSpeedDelta;
+        kartMove->m_internalSpeed = std::clamp(kartMove->m_internalSpeed, -20.0f, 120.0f);
     }
 }
 
@@ -84,7 +97,7 @@ void KartRollback::calcLate() {
         if (m_frames.full()) {
             m_frames.pop();
         }
-        m_frames.push(Frame{frameId, *getPos(), *getMainRot()});
+        m_frames.push(Frame{frameId, *getPos(), *getMainRot(), getInternalSpeed()});
     }
 }
 

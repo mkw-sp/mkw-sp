@@ -150,6 +150,10 @@ bool RaceClient::isFrameValid(const RaceServerFrame &frame) {
         if (!IsQuatValid(frame.players[i].mainRot)) {
             return false;
         }
+
+        if (!IsF32Valid(frame.players[i].internalSpeed)) {
+            return false;
+        }
     }
 
     return true;
@@ -189,6 +193,10 @@ bool RaceClient::IsQuatValid(const RaceServerFrame_Quat &q) {
     }
 
     return true;
+}
+
+bool RaceClient::IsF32Valid(f32 s) {
+    return !std::isnan(s) && s >= -20.0f && s <= 120.0f;
 }
 
 RaceClient::ConnectionGroup::ConnectionGroup(RaceClient &client) : m_client(client) {}

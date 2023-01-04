@@ -35,9 +35,10 @@ message RaceServerFrame {
     }
 
     message Player {
-        required InputState inputState  = 1;
-        required Vec3       pos         = 2;
-        required Quat       mainRot     = 3;
+        required InputState inputState    = 1;
+        required Vec3       pos           = 2;
+        required Quat       mainRot       = 3;
+        required float      internalSpeed = 4;
     }
 
     required uint32 id       = 1;

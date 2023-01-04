@@ -12,6 +12,7 @@ public:
 
     Vec3 posDelta() const;
     Quat mainRotDelta() const;
+    f32 internalSpeedDelta() const;
     void calcEarly();
     void calcLate();
 
@@ -20,11 +21,13 @@ private:
         u32 id;
         Vec3 pos;
         Quat mainRot;
+        f32 internalSpeed;
     };
 
     SP::CircularBuffer<Frame, 60> m_frames;
     Vec3 m_posDelta{};
     Quat m_mainRotDelta{};
+    f32 m_internalSpeedDelta = 0.0f;
 };
 
 } // namespace Kart
