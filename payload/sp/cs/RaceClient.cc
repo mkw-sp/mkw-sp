@@ -15,6 +15,10 @@ void RaceClient::destroyInstance() {
     DestroyInstance();
 }
 
+u32 RaceClient::frameCount() const {
+    return m_frameCount;
+}
+
 const std::optional<RaceServerFrame> &RaceClient::frame() const {
     return m_frame;
 }
@@ -80,6 +84,7 @@ void RaceClient::calcRead() {
         }
 
         if (isFrameValid(frame)) {
+            m_frameCount++;
             m_frame = frame;
         }
     }

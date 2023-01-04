@@ -53,11 +53,13 @@ void WStringWriter::writeOnline(u32 playerId) {
     u32 frameId = System::RaceManager::Instance()->frameId();
     if (auto *raceClient = SP::RaceClient::Instance()) {
         s32 drift = raceClient->drift();
+        u32 serverFrameCount = raceClient->frameCount();
         auto frame = raceClient->frame();
         if (frame) {
-            write(L"F/D/SF/CF %u %d %u %u\n", frameId, drift, frame->id, frame->clientId);
+            write(L"F/D/SF/CF/SFC %u %d %u %u %u\n", frameId, drift, frame->id, frame->clientId,
+                    serverFrameCount);
         } else {
-            write(L"F/D %u %d\n", frameId, drift);
+            write(L"F/D/SFC %u %d %u\n", frameId, drift, serverFrameCount);
         }
     } else {
         write(L"F %u\n", frameId);
