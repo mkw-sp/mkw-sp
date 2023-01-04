@@ -70,11 +70,11 @@ void CtrlRaceSpeed::calcSelf() {
         f32 internalSpeed = object->getInternalSpeed();
         speed = internalSpeed;
         if (setting == SP::ClientSettings::Speedometer::InternalPlus) {
-            const Vec3 *internalVelDir = object->getKartMove()->internalVelDir();
-            const Vec3 *movingRoadVel = object->getVehiclePhysics()->movingRoadVel();
-            const Vec3 *movingWaterVel = object->getVehiclePhysics()->movingWaterVel();
-            speed += PSVECDotProduct(internalVelDir, movingRoadVel);
-            speed += PSVECDotProduct(internalVelDir, movingWaterVel);
+            const auto *internalVelDir = object->getKartMove()->internalVelDir();
+            const auto *movingRoadVel = object->getVehiclePhysics()->movingRoadVel();
+            const auto *movingWaterVel = object->getVehiclePhysics()->movingWaterVel();
+            speed += Vec3::Dot(*internalVelDir, *movingRoadVel);
+            speed += Vec3::Dot(*internalVelDir, *movingWaterVel);
         }
         f32 hardSpeedLimit = object->getKartMove()->hardSpeedLimit();
         speed = std::min(speed, hardSpeedLimit);
@@ -83,17 +83,17 @@ void CtrlRaceSpeed::calcSelf() {
     case SP::ClientSettings::Speedometer::XYZ:
     case SP::ClientSettings::Speedometer::XZ:
     case SP::ClientSettings::Speedometer::Y: {
-        const Vec3 *pos = object->getPos();
-        const Vec3 *lastPos = object->getLastPos();
+        const auto *pos = object->getPos();
+        const auto *lastPos = object->getLastPos();
         Vec3 vel;
         if (setting == SP::ClientSettings::Speedometer::XYZ) {
-            vel = Vec3{pos->x - lastPos->x, pos->y - lastPos->y, pos->z - lastPos->z};
+            vel = {pos->x - lastPos->x, pos->y - lastPos->y, pos->z - lastPos->z};
         } else if (setting == SP::ClientSettings::Speedometer::XZ) {
-            vel = Vec3{pos->x - lastPos->x, 0.0f, pos->z - lastPos->z};
+            vel = {pos->x - lastPos->x, 0.0f, pos->z - lastPos->z};
         } else if (setting == SP::ClientSettings::Speedometer::Y) {
-            vel = Vec3{0.0f, pos->y - lastPos->y, 0.0f};
+            vel = {0.0f, pos->y - lastPos->y, 0.0f};
         }
-        speed = PSVECMag(&vel);
+        speed = Vec3::Norm(vel);
         break;
     }
     }

@@ -37,8 +37,8 @@ struct GXLightObj {
     GXColor color;
     f32 angle_attn[3];
     f32 dist_attn[3];
-    Vec3 pos;
-    Vec3 dir;
+    f32 pos[3];
+    f32 dir[3];
 };
 void GXLoadLightObjImm(struct GXLightObj *, int);
 

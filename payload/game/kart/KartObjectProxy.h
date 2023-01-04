@@ -1,8 +1,6 @@
 #pragma once
 
-#include "KartMove.h"
 #include "KartState.h"
-#include "VehiclePhysics.h"
 
 #include "../race/Driver.h"
 
@@ -24,13 +22,3 @@ typedef struct {
     u8 _0[0xc - 0x4];
 } KartObjectProxy;
 static_assert(sizeof(KartObjectProxy) == 0xc);
-
-Vec3 *KartObjectProxy_getPos(KartObjectProxy *this);
-
-Vec3 *KartObjectProxy_getLastPos(KartObjectProxy *this);
-
-VehiclePhysics *KartObjectProxy_getVehiclePhysics(KartObjectProxy *this);
-
-KartMove *KartObjectProxy_getKartMove(KartObjectProxy *this);
-
-f32 KartObjectProxy_getInternalSpeed(KartObjectProxy *this);

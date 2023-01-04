@@ -1,6 +1,7 @@
 #pragma once
 
-#include <Common.hh>
+#include <common/TQuat.hh>
+#include <common/TVec3.hh>
 
 namespace Kart {
 

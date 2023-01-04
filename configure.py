@@ -141,9 +141,12 @@ HUD_LANGUAGES = {
 
 asset_in_files = {
     os.path.join('Race', 'CommonSP.arc.lzma'): [
+        # Thumbnails
         os.path.join('kartCameraParamThumbnails.bin'),
-        #MegaCloud
+        # Mega TC
         os.path.join('MegaTC.brres'),
+        # Online mode
+        os.path.join('ItemSlotOnline.bin'),
     ],
     os.path.join('Scene', 'UI', 'AwardSP.arc.lzma'): [
         os.path.join('award', 'anim', 'common_w121_ending_team_blue_red_chara_point_dummy_color_clear.brlan.json5'),
@@ -1316,6 +1319,10 @@ code_in_files = {
         os.path.join('common', 'DCache.cc'),
         os.path.join('common', 'Font.c'),
         os.path.join('common', 'Font.cc'),
+        os.path.join('common', 'TQuat.S'),
+        os.path.join('common', 'TQuat.cc'),
+        os.path.join('common', 'TVec3.S'),
+        os.path.join('common', 'TVec3.cc'),
         os.path.join('common', 'VI.cc'),
         os.path.join('payload', 'egg', 'core', 'eggAsyncDisplay.cc'),
         os.path.join('payload', 'egg', 'core', 'eggColorFader.c'),

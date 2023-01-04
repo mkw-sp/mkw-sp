@@ -175,24 +175,27 @@ public:
 
         constexpr int NUM_QUADS = 4;
 
-        Vertex faces[NUM_QUADS][4] = {// Front face
-                {{{ckpt->left.x, top, ckpt->left.y}, 0}, {{ckpt->left.x, bottom, ckpt->left.y}, 0},
-                        {{ckpt->right.x, bottom, ckpt->right.y}, 0},
-                        {{ckpt->right.x, top, ckpt->right.y}, 0}},
+        Vertex faces[NUM_QUADS][4] = {
+                // Front face
+                {{{ckpt->left.x, top, ckpt->left.y}, 0},
+                {{ckpt->left.x, bottom, ckpt->left.y}, 0},
+                {{ckpt->right.x, bottom, ckpt->right.y}, 0},
+                {{ckpt->right.x, top, ckpt->right.y}, 0}},
                 // Left face
-                {{{ckpt->left.x, top, ckpt->left.y}, 0}, {{ckpt->left.x, bottom, ckpt->left.y}, 0},
-                        {{next->left.x, next_bottom, next->left.y}, VTX_TRANS},
-                        {{next->left.x, next_top, next->left.y}, VTX_TRANS}},
+                {{{ckpt->left.x, top, ckpt->left.y}, 0},
+                {{ckpt->left.x, bottom, ckpt->left.y}, 0},
+                {{next->left.x, next_bottom, next->left.y}, VTX_TRANS},
+                {{next->left.x, next_top, next->left.y}, VTX_TRANS}},
                 // Right face
                 {{{ckpt->right.x, top, ckpt->right.y}, 0},
-                        {{ckpt->right.x, bottom, ckpt->right.y}, 0},
-                        {{next->right.x, next_bottom, next->right.y}, VTX_TRANS},
-                        {{next->right.x, next_top, next->right.y}, VTX_TRANS}},
+                {{ckpt->right.x, bottom, ckpt->right.y}, 0},
+                {{next->right.x, next_bottom, next->right.y}, VTX_TRANS},
+                {{next->right.x, next_top, next->right.y}, VTX_TRANS}},
                 // Back face
                 {{{next->left.x, next_top, next->left.y}, VTX_TRANS},
-                        {{next->left.x, next_bottom, next->left.y}, VTX_TRANS},
-                        {{next->right.x, next_bottom, next->right.y}, VTX_TRANS},
-                        {{next->right.x, next_top, next->right.y}, VTX_TRANS}}};
+                {{next->left.x, next_bottom, next->left.y}, VTX_TRANS},
+                {{next->right.x, next_bottom, next->right.y}, VTX_TRANS},
+                {{next->right.x, next_top, next->right.y}, VTX_TRANS}}};
 
         int to_draw_quads = NUM_QUADS;
 

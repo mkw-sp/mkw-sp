@@ -2,6 +2,8 @@
 
 #include "nw4r/lyt/lyt_material.hh"
 
+#include <common/TVec3.hh>
+
 namespace nw4r::lyt {
 
 class Pane {

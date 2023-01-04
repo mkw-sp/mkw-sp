@@ -1,6 +1,6 @@
 #pragma once
 
-#include <Common.hh>
+#include <common/TVec3.hh>
 
 namespace System {
 

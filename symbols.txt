@@ -237,13 +237,12 @@
 0x80199CE4 MEMGetNextListObject
 0x80199D04 PSMTXIdentity
 0x8019a91c PSMTXMultVec
-0x8019ac68 _ZN4Vec34normERKS_
-0x8019ae08 PSQUATMultiply
-0x8019aef4 PSQUATInverse
 0x8019AB4C C_MTXOrtho
-0x8019ac68 PSVECMag
-0x8019acac PSVECDotProduct
-0x8019b178 C_QUATSlerp
+0x8019abe4 _ZplRK4Vec3IfES2_
+0x8019ac68 _ZN4Vec34NormERKS_
+0x8019acac _ZN4Vec33DotERKS_S1_
+0x8019aef4 _ZN4Quat7InverseERKS_S1_
+0x8019b178 _ZN4Quat5SlerpERKS_S1_RS_f
 0x8019b4b0 NANDPrivateCreate
 0x8019b64c NANDPrivateDelete
 0x8019b7a4 NANDRead
@@ -446,6 +445,7 @@
 0x8022F860 _ZN3EGG4MathIfE3sinEf
 0x8022F86C _ZN3EGG4MathIfE3cosEf
 0x80239338 EGG_ProcessMeter_draw
+0x8023a2d0 _ZN4Quat6RotateERKS_RK4Vec3RS2_
 0x8023ad10 EGG_Scene_CT
 0x8023ad84 EGG_Scene_DT
 0x8023aef8 _ZN3EGG12SceneManager18reinitCurrentSceneEv
@@ -455,7 +455,6 @@
 0x80242504 EGG_ConfigurationData_initMemory
 0x80242c18 EGG_TaskThread_request
 0x80242c18 _ZN3EGG10TaskThread7requestEPFvPvES1_S1_
-0x80243adc _ZN4Vec39normalizeERS_
 0x80243d6c EGG_Video_configure
 0x802441ec _ZN3EGG3Xfb11CalcXfbSizeEtt
 
@@ -474,6 +473,7 @@
 
 0x80511e7c CourseMap_computeFinishTime
 0x80511ec8 CheckPoint_computeFinishTime
+0x8051486c _ZmiRK4Vec3S1_
 0x80518dcc DvdArchive_mount
 0x80518e10 DvdArchive_load
 0x805190f0 DvdArchive_rip
@@ -661,7 +661,6 @@
 0x805a8468 CameraManager_ct
 0x805a8fbc CameraManager_805a8fbc
 0x805a8fbc _ZNK8Graphics13CameraManager7isReadyEv
-0x805aeb88 _ZN4Vec38projUnitERS_RKS_S2_
 0x805b9344 _ZN2UI14ArgumentParser5parseEv
 0x805bac84 _ZN2UI9AwaitPage3popEv
 0x805baf10 CtrlMenuPageTitleText_dt
