@@ -20,13 +20,12 @@ Quat KartRollback::mainRotDelta() const {
 }
 
 void KartRollback::calcEarly() {
-    m_posDelta = {0.0f, 0.0f, 0.0f};
-    m_mainRotDelta = {0.0f, 0.0f, 0.0f, 1.0f};
-
     if (auto serverFrame = SP::RaceClient::Instance()->frame()) {
         u32 frameId = System::RaceManager::Instance()->frameId();
         s32 delay = static_cast<s32>(frameId) - static_cast<s32>(serverFrame->id);
         u32 playerId = getPlayerId();
+        auto *vehiclePhysics = getVehiclePhysics();
+        auto *kartCollide = getKartCollide();
         if (delay <= 0) {
             while (m_frames.front() && m_frames.front()->id < frameId) {
                 m_frames.pop();
@@ -57,26 +56,25 @@ void KartRollback::calcEarly() {
         }
         for (u32 i = 0; i < m_frames.count(); i++) {
             if (m_frames[i]->id == frameId - 1) {
-                auto *vehiclePhysics = getVehiclePhysics();
-                f32 t = 0.2f;
-                m_posDelta = m_frames[i]->pos - vehiclePhysics->m_pos;
+                f32 t = 0.25f;
+                Vec3 posDelta = m_frames[i]->pos - vehiclePhysics->m_pos;
                 Vec3 proj;
-                Vec3::ProjUnit(m_posDelta, getKartMove()->m_up, proj);
+                Vec3::ProjUnit(posDelta, getKartMove()->m_up, proj);
                 f32 norm = Vec3::Norm(proj);
                 if (norm < 300.0f) {
-                    m_posDelta -= proj;
+                    posDelta -= proj;
                 }
-                vehiclePhysics->m_pos += t * m_posDelta;
+                m_posDelta = (1.0f - t) * m_posDelta + t * posDelta;
                 Quat inverse;
                 Quat::Inverse(vehiclePhysics->m_mainRot, inverse);
-                m_mainRotDelta = m_frames[i]->mainRot * inverse;
-                Quat::Slerp(vehiclePhysics->m_mainRot, m_frames[i]->mainRot,
-                        vehiclePhysics->m_mainRot, t);
-                auto *kartCollide = getKartCollide();
-                kartCollide->m_movement += t * m_posDelta;
+                Quat mainRotDelta = m_frames[i]->mainRot * inverse;
+                Quat::Slerp(m_mainRotDelta, mainRotDelta, m_mainRotDelta, t);
                 break;
             }
         }
+        vehiclePhysics->m_pos += m_posDelta;
+        kartCollide->m_movement += m_posDelta;
+        vehiclePhysics->m_mainRot = m_mainRotDelta * vehiclePhysics->m_mainRot;
     }
 }
 

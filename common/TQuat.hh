@@ -8,10 +8,10 @@ struct _RaceServerFrame_Quat;
 
 template <typename T>
 struct TQuatBase {
-    T x{};
-    T y{};
-    T z{};
-    T w{};
+    T x;
+    T y;
+    T z;
+    T w;
 };
 
 template<typename T>

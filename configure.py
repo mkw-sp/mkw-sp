@@ -1321,6 +1321,7 @@ code_in_files = {
         os.path.join('common', 'Font.cc'),
         os.path.join('common', 'TQuat.S'),
         os.path.join('common', 'TQuat.cc'),
+        os.path.join('common', 'TVec3.S'),
         os.path.join('common', 'TVec3.cc'),
         os.path.join('common', 'VI.cc'),
         os.path.join('payload', 'egg', 'core', 'eggAsyncDisplay.cc'),
