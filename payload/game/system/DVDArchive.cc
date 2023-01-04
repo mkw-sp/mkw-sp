@@ -1,7 +1,7 @@
 #include "DVDArchive.hh"
 
 #include <sp/ThumbnailManager.hh>
-
+#include <sp/cs/RoomManager.hh>
 #include <sp/settings/ClientSettings.hh>
 
 #include "game/system/SaveManager.hh"
@@ -26,6 +26,12 @@ void *DVDArchive::getFile(const char *path, size_t *size) {
     if (setting == SP::ClientSettings::VSMegaClouds::Enable) {
         if (!strcmp(path, "kumo.brres")) {
             return REPLACED(getFile)("MegaTC.brres", size);
+        }
+    }
+
+    if (SP::RoomManager::Instance()) {
+        if (!strcmp(path, "ItemSlot.bin")) {
+            return REPLACED(getFile)("ItemSlotOnline.bin", size);
         }
     }
 
