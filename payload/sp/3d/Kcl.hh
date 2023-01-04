@@ -4,6 +4,7 @@
 
 #include "Common.hh"
 #include <array>
+#include <common/TVec3.hh>
 #include <memory>
 #include <sp/FixedString.hh>
 #include <span>

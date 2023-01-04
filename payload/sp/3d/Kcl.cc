@@ -332,7 +332,9 @@ void KclVis::render(const float mtx[3][4], [[maybe_unused]] bool overlay) {
         light_obj.color.g = light.color >> 8;
         light_obj.color.b = light.color >> 16;
         light_obj.color.a = light.color >> 24;
-        light_obj.pos = light.view_pos;
+        light_obj.pos[0] = light.view_pos.x;
+        light_obj.pos[1] = light.view_pos.y;
+        light_obj.pos[2] = light.view_pos.z;
         GXLoadLightObjImm(&light_obj, (1 << i));
     }
 
