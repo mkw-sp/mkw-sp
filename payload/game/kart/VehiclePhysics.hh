@@ -1,5 +1,6 @@
 #pragma once
 
+#include <common/Quat.hh>
 #include <common/Vec3.hh>
 
 namespace Kart {
@@ -23,7 +24,7 @@ private:
     u8 _0bc[0x0c8 - 0x0bc];
     Vec3<f32> m_movingWaterVel;
     u8 _0d4[0x0f0 - 0x0d4];
-    Quat m_mainRot;
+    Quat<f32> m_mainRot;
     u8 _100[0x14c - 0x100];
     Vec3<f32> m_internalVel;
     u8 _158[0x1b4 - 0x158];

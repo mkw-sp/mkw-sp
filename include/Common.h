@@ -175,13 +175,6 @@ void delete (void *memBlock);
 #define BASE(x) x
 #endif
 
-typedef struct {
-    f32 x;
-    f32 y;
-    f32 z;
-    f32 w;
-} Quat;
-
 enum {
     PATCH_TYPE_WRITE = 0x0,
     PATCH_TYPE_BRANCH = 0x1,

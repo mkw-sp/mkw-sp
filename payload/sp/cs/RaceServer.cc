@@ -72,11 +72,7 @@ void RaceServer::calcWrite() {
     for (u32 i = 0; i < m_playerCount; i++) {
         auto *object = Kart::KartObjectManager::Instance()->object(i);
         frame.players[i].pos = *object->getPos();
-        auto *mainRot = object->getMainRot();
-        frame.players[i].mainRot.x = mainRot->x;
-        frame.players[i].mainRot.y = mainRot->y;
-        frame.players[i].mainRot.z = mainRot->z;
-        frame.players[i].mainRot.w = mainRot->w;
+        frame.players[i].mainRot = *object->getMainRot();
         auto *inputManager = System::InputManager::Instance();
         auto &inputState = inputManager->extraGhostProxy(i)->currentRaceInputState();
         frame.players[i].inputState.accelerate = inputState.accelerate;

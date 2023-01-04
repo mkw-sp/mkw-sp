@@ -22,7 +22,7 @@ struct Vec3<f32> : Vec3Base<f32> {
     operator _RaceServerFrame_Vec3() const;
 
     static f32 Dot(const Vec3<f32> &v0, const Vec3<f32> &v1);
-    static void ProjUnit(Vec3<f32> &v, const Vec3<f32> &v0, const Vec3<f32> &v1);
+    static void ProjUnit(const Vec3<f32> &v0, const Vec3<f32> &v1, Vec3<f32> &v);
     static f32 Norm(const Vec3<f32> &v);
 };
 

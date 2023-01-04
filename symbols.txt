@@ -238,9 +238,8 @@
 0x8019abe4 _ZplRK4Vec3IfES2_
 0x8019ac68 _ZN4Vec3IfE4NormERKS0_
 0x8019acac _ZN4Vec3IfE3DotERKS0_S2_
-0x8019ae08 PSQUATMultiply
-0x8019aef4 PSQUATInverse
-0x8019b178 C_QUATSlerp
+0x8019aef4 _ZN4QuatIfE7InverseERKS0_S2_
+0x8019b178 _ZN4QuatIfE5SlerpERKS0_S2_RS0_f
 0x8019b4b0 NANDPrivateCreate
 0x8019b64c NANDPrivateDelete
 0x8019b7a4 NANDRead
@@ -654,7 +653,6 @@
 0x805a8468 CameraManager_ct
 0x805a8fbc CameraManager_805a8fbc
 0x805a8fbc _ZNK8Graphics13CameraManager7isReadyEv
-0x805aeb88 _ZN4Vec3IfE8ProjUnitERS0_RKS0_S3_
 0x805b9344 _ZN2UI14ArgumentParser5parseEv
 0x805bac84 _ZN2UI9AwaitPage3popEv
 0x805baf10 CtrlMenuPageTitleText_dt

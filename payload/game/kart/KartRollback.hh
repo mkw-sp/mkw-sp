@@ -11,7 +11,7 @@ public:
     KartRollback();
 
     Vec3<f32> posDelta() const;
-    Quat mainRotDelta() const;
+    Quat<f32> mainRotDelta() const;
     void calcEarly();
     void calcLate();
 
@@ -19,12 +19,12 @@ private:
     struct Frame {
         u32 id;
         Vec3<f32> pos;
-        Quat mainRot;
+        Quat<f32> mainRot;
     };
 
     SP::CircularBuffer<Frame, 60> m_frames;
     Vec3<f32> m_posDelta{};
-    Quat m_mainRotDelta{};
+    Quat<f32> m_mainRotDelta{};
 };
 
 } // namespace Kart

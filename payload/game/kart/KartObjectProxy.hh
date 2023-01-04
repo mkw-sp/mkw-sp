@@ -1,5 +1,6 @@
 #pragma once
 
+#include <common/Quat.hh>
 #include <common/Vec3.hh>
 
 namespace Kart {
@@ -25,7 +26,7 @@ public:
 
     const Vec3<f32> *getPos() const;
     const Vec3<f32> *getLastPos() const;
-    const Quat *getMainRot() const;
+    const Quat<f32> *getMainRot() const;
     KartState *getKartState();
     const VehiclePhysics *getVehiclePhysics() const;
     VehiclePhysics *getVehiclePhysics();

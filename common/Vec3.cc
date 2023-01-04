@@ -12,6 +12,11 @@ Vec3<f32>::operator _RaceServerFrame_Vec3() const {
     return {x, y, z};
 }
 
+void Vec3<f32>::ProjUnit(const Vec3<f32> &v0, const Vec3<f32> &v1, Vec3<f32> &v) {
+    f32 dot = v0.x * v1.x + v0.y * v1.y + v0.z * v1.z;
+    v = dot * v1;
+}
+
 Vec3<f32> operator*(const f32 &s, const Vec3<f32> &v0) {
     return {s * v0.x, s * v0.y, s * v0.z};
 }
