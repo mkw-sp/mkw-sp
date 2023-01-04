@@ -9,8 +9,8 @@ typedef enum {
 typedef struct lyt_Pane_Base {
     u8 _04[0x28 - 0x04];
     void *material;
-    Vec3 trans;
-    Vec3 rot;
+    f32 trans[3];
+    f32 rot[3];
     float scaleX;
     float scaleY;
     float width;

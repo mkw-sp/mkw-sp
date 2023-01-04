@@ -2,19 +2,19 @@
 
 namespace Kart {
 
-const Vec3 *VehiclePhysics::externalVel() const {
+const Vec3<f32> *VehiclePhysics::externalVel() const {
     return &m_externalVel;
 }
 
-const Vec3 *VehiclePhysics::internalVel() const {
+const Vec3<f32> *VehiclePhysics::internalVel() const {
     return &m_internalVel;
 }
 
-const Vec3 *VehiclePhysics::movingRoadVel() const {
+const Vec3<f32> *VehiclePhysics::movingRoadVel() const {
     return &m_movingRoadVel;
 }
 
-const Vec3 *VehiclePhysics::movingWaterVel() const {
+const Vec3<f32> *VehiclePhysics::movingWaterVel() const {
     return &m_movingWaterVel;
 }
 

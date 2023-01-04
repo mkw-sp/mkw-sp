@@ -10,7 +10,7 @@ public:
     CtrlRace2DMapObject();
     ~CtrlRace2DMapObject() override;
 
-    virtual void calcTransform(Vec3 *pos, void *r5, void *r6);
+    virtual void calcTransform(Vec3<f32> *pos, void *r5, void *r6);
     virtual void vf_54();
     virtual void vf_58();
     virtual void vf_5c();
@@ -25,8 +25,8 @@ public:
     CtrlRace2DMapCharacter();
     ~CtrlRace2DMapCharacter() override;
 
-    void REPLACED(calcTransform)(Vec3 *pos, void *r5, void *r6);
-    REPLACE void calcTransform(Vec3 *pos, void *r5, void *r6) override;
+    void REPLACED(calcTransform)(Vec3<f32> *pos, void *r5, void *r6);
+    REPLACE void calcTransform(Vec3<f32> *pos, void *r5, void *r6) override;
 
     REPLACE virtual void load(u32 playerId);
 

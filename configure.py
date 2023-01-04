@@ -1319,6 +1319,7 @@ code_in_files = {
         os.path.join('common', 'DCache.cc'),
         os.path.join('common', 'Font.c'),
         os.path.join('common', 'Font.cc'),
+        os.path.join('common', 'Vec3.cc'),
         os.path.join('common', 'VI.cc'),
         os.path.join('payload', 'egg', 'core', 'eggAsyncDisplay.cc'),
         os.path.join('payload', 'egg', 'core', 'eggColorFader.c'),

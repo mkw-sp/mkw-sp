@@ -164,11 +164,7 @@ void CtrlRaceNameBalloon::refreshTextDate(u32 playerId) {
     setMessage("chara_name", 10048, &info);
 }
 
-BalloonManager::BalloonManager() : m_namePositions(new Vec3[12]) {
-    for (size_t i = 0; i < 12; i++) {
-        m_namePositions[i] = {};
-    }
-}
+BalloonManager::BalloonManager() : m_namePositions(new Vec3<f32>[12]) {}
 
 BalloonManager::~BalloonManager() = default;
 

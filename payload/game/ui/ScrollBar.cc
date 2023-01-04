@@ -190,14 +190,14 @@ void ScrollBar::onFront([[maybe_unused]] u32 localPlayerId) {
     auto pointerPos = parentInputManager->pointerPos(localPlayerId);
     f32 width = m_colorBasePane->m_width;
     f32 height = m_colorBasePane->m_height;
-    Vec3 localPanePos0{-0.5f * (width - 4.0f), -0.5f * (height + 4.0f), 0.0f};
-    Vec3 globalPanePos0;
-    PSMTXMultVec(m_colorBasePane->m_globalMtx, &localPanePos0, &globalPanePos0);
-    Vec3 localPanePos1{0.5f * (width - 4.0f), 0.5f * (height + 4.0f), 0.0f};
-    Vec3 globalPanePos1;
-    PSMTXMultVec(m_colorBasePane->m_globalMtx, &localPanePos1, &globalPanePos1);
-    if (pointerPos.y >= globalPanePos0.y && pointerPos.y < globalPanePos1.y) {
-        f32 t = (pointerPos.x - globalPanePos0.x) / (globalPanePos1.x - globalPanePos0.x);
+    f32 localPanePos0[3] = {-0.5f * (width - 4.0f), -0.5f * (height + 4.0f), 0.0f};
+    f32 globalPanePos0[3];
+    PSMTXMultVec(m_colorBasePane->m_globalMtx, localPanePos0, globalPanePos0);
+    f32 localPanePos1[3] = {0.5f * (width - 4.0f), 0.5f * (height + 4.0f), 0.0f};
+    f32 globalPanePos1[3];
+    PSMTXMultVec(m_colorBasePane->m_globalMtx, localPanePos1, globalPanePos1);
+    if (pointerPos.y >= globalPanePos0[1] && pointerPos.y < globalPanePos1[1]) {
+        f32 t = (pointerPos.x - globalPanePos0[0]) / (globalPanePos1[0] - globalPanePos0[0]);
         s32 chosen = t * m_count;
         if (chosen >= 0 && static_cast<u32>(chosen) < m_count &&
                 static_cast<u32>(chosen) != m_chosen) {

@@ -1,6 +1,6 @@
 #pragma once
 
-#include <Common.hh>
+#include <common/Vec3.hh>
 
 namespace Kart {
 
@@ -9,7 +9,7 @@ class KartCollide {
 
 private:
     u8 _00[0x3c - 0x00];
-    Vec3 m_movement;
+    Vec3<f32> m_movement;
     u8 _48[0x74 - 0x48];
 };
 static_assert(sizeof(KartCollide) == 0x74);

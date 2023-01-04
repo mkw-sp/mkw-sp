@@ -1,6 +1,6 @@
 #pragma once
 
-#include <Common.hh>
+#include <common/Vec3.hh>
 
 namespace Kart {
 
@@ -23,8 +23,8 @@ class KartObjectProxy {
 public:
     KartObjectProxy();
 
-    const Vec3 *getPos() const;
-    const Vec3 *getLastPos() const;
+    const Vec3<f32> *getPos() const;
+    const Vec3<f32> *getLastPos() const;
     const Quat *getMainRot() const;
     KartState *getKartState();
     const VehiclePhysics *getVehiclePhysics() const;
