@@ -2,7 +2,7 @@
 
 #include "nw4r/lyt/lyt_material.hh"
 
-#include <common/Vec3.hh>
+#include <common/TVec3.hh>
 
 namespace nw4r::lyt {
 
@@ -43,8 +43,8 @@ private:
     u8 _04[0x2c - 0x04];
 
 public:
-    Vec3<f32> m_trans;
-    Vec3<f32> m_rot;
+    Vec3 m_trans;
+    Vec3 m_rot;
     Vec2<f32> m_scale;
     f32 m_width;
     f32 m_height;

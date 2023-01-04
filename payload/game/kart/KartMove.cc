@@ -12,7 +12,7 @@ f32 KartMove::hardSpeedLimit() const {
     return m_hardSpeedLimit;
 }
 
-const Vec3<f32> *KartMove::internalVelDir() const {
+const Vec3 *KartMove::internalVelDir() const {
     return &m_internalVelDir;
 }
 

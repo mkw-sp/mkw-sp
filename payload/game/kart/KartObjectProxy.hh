@@ -1,7 +1,7 @@
 #pragma once
 
-#include <common/Quat.hh>
-#include <common/Vec3.hh>
+#include <common/TQuat.hh>
+#include <common/TVec3.hh>
 
 namespace Kart {
 
@@ -24,9 +24,9 @@ class KartObjectProxy {
 public:
     KartObjectProxy();
 
-    const Vec3<f32> *getPos() const;
-    const Vec3<f32> *getLastPos() const;
-    const Quat<f32> *getMainRot() const;
+    const Vec3 *getPos() const;
+    const Vec3 *getLastPos() const;
+    const Quat *getMainRot() const;
     KartState *getKartState();
     const VehiclePhysics *getVehiclePhysics() const;
     VehiclePhysics *getVehiclePhysics();

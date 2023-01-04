@@ -56,7 +56,7 @@ private:
     nw4r::lyt::Pane *m_accelPanes[accelStateCount];
     nw4r::lyt::Pane *m_triggerPanes[triggerCount][triggerStateCount];
     nw4r::lyt::Pane *m_stickPane;
-    Vec3<f32> m_stickOrigin;
+    Vec3 m_stickOrigin;
 
     DpadState m_dpadState = DpadState::Off;
     s8 m_dpadTimer = 0; // Hold the DPAD press for DPAD_HOLD_FOR_N_FRAMES frames

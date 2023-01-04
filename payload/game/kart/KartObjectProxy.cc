@@ -4,7 +4,7 @@
 
 namespace Kart {
 
-const Quat<f32> *KartObjectProxy::getMainRot() const {
+const Quat *KartObjectProxy::getMainRot() const {
     return &getVehiclePhysics()->m_mainRot;
 }
 

@@ -22,8 +22,8 @@ public:
 
 private:
     void write(const wchar_t *restrict format, ...);
-    void write(const char *name, const Vec3<f32> &v0);
-    void write(const char *name, const Vec3<f32> &v0, const Vec3<f32> &v1);
+    void write(const char *name, const Vec3 &v0);
+    void write(const char *name, const Vec3 &v0, const Vec3 &v1);
 
     std::array<wchar_t, 256> m_buffer{};
     size_t m_offset = 0;
@@ -87,11 +87,11 @@ void WStringWriter::write(const wchar_t *restrict format, ...) {
     }
 }
 
-void WStringWriter::write(const char *name, const Vec3<f32> &v0) {
+void WStringWriter::write(const char *name, const Vec3 &v0) {
     write(L"%s %.2f %.2f %.2f\n", name, v0.x, v0.y, v0.z);
 }
 
-void WStringWriter::write(const char *name, const Vec3<f32> &v0, const Vec3<f32> &v1) {
+void WStringWriter::write(const char *name, const Vec3 &v0, const Vec3 &v1) {
     write(L"%s %.2f %.2f %.2f %.2f %.2f %.2f\n", name, v0.x, v0.y, v0.z, v1.x, v1.y, v1.z);
 }
 

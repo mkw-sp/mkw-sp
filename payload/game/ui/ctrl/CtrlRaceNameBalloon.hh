@@ -39,7 +39,7 @@ private:
     u8 _08[0x14 - 0x08];
     s32 m_playerIds[12];
     bool m_nameIsEnabled[12]; // Moved
-    std::unique_ptr<Vec3<f32>[]> m_namePositions; // Modified
+    std::unique_ptr<Vec3[]> m_namePositions; // Modified
     u8 _54[0xc4 - 0x54];
 };
 static_assert(sizeof(BalloonManager) == 0xc4);

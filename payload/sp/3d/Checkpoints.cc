@@ -165,7 +165,7 @@ public:
         next_bottom += npt->position.y;
 
         struct Vertex {
-            Vec3<f32> pos;
+            Vec3 pos;
             u32 flags;
         };
 

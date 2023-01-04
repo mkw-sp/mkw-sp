@@ -73,8 +73,8 @@ void CtrlRaceSpeed::calcSelf() {
             const auto *internalVelDir = object->getKartMove()->internalVelDir();
             const auto *movingRoadVel = object->getVehiclePhysics()->movingRoadVel();
             const auto *movingWaterVel = object->getVehiclePhysics()->movingWaterVel();
-            speed += Vec3<f32>::Dot(*internalVelDir, *movingRoadVel);
-            speed += Vec3<f32>::Dot(*internalVelDir, *movingWaterVel);
+            speed += Vec3::Dot(*internalVelDir, *movingRoadVel);
+            speed += Vec3::Dot(*internalVelDir, *movingWaterVel);
         }
         f32 hardSpeedLimit = object->getKartMove()->hardSpeedLimit();
         speed = std::min(speed, hardSpeedLimit);
@@ -85,7 +85,7 @@ void CtrlRaceSpeed::calcSelf() {
     case SP::ClientSettings::Speedometer::Y: {
         const auto *pos = object->getPos();
         const auto *lastPos = object->getLastPos();
-        Vec3<f32> vel;
+        Vec3 vel;
         if (setting == SP::ClientSettings::Speedometer::XYZ) {
             vel = {pos->x - lastPos->x, pos->y - lastPos->y, pos->z - lastPos->z};
         } else if (setting == SP::ClientSettings::Speedometer::XZ) {
@@ -93,7 +93,7 @@ void CtrlRaceSpeed::calcSelf() {
         } else if (setting == SP::ClientSettings::Speedometer::Y) {
             vel = {0.0f, pos->y - lastPos->y, 0.0f};
         }
-        speed = Vec3<f32>::Norm(vel);
+        speed = Vec3::Norm(vel);
         break;
     }
     }

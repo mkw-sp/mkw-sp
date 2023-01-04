@@ -1,6 +1,6 @@
 #pragma once
 
-#include <common/Vec3.hh>
+#include <common/TVec3.hh>
 
 namespace System {
 
@@ -33,7 +33,7 @@ struct MapdataCheckPoint {
 };
 struct MapdataJugemPoint {
     struct SData {
-        Vec3<f32> position, rotation;
+        Vec3 position, rotation;
         u16 id;
         s16 range;
     };

@@ -1,7 +1,7 @@
 #include <Common.S>
 
-.global _ZmlRK4QuatIfES2_
-_ZmlRK4QuatIfES2_:
+.global _ZmlRK4QuatS1_
+_ZmlRK4QuatS1_:
     psq_l      f0, 0x0 (r4), 0x0, GQR0
     psq_l      f1, 0x8 (r4), 0x0, GQR0
     ps_neg     f5, f0
@@ -25,4 +25,4 @@ _ZmlRK4QuatIfES2_:
     psq_st     f7, 0x0 (r3), 0x0, GQR0
     psq_st     f5, 0x8 (r3), 0x0, GQR0
     blr
-.size _ZmlRK4QuatIfES2_, . - _ZmlRK4QuatIfES2_
+.size _ZmlRK4QuatS1_, . - _ZmlRK4QuatS1_

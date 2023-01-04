@@ -11,11 +11,11 @@ namespace Kart {
 
 KartRollback::KartRollback() = default;
 
-Vec3<f32> KartRollback::posDelta() const {
+Vec3 KartRollback::posDelta() const {
     return m_posDelta;
 }
 
-Quat<f32> KartRollback::mainRotDelta() const {
+Quat KartRollback::mainRotDelta() const {
     return m_mainRotDelta;
 }
 
@@ -32,8 +32,8 @@ void KartRollback::calcEarly() {
                 m_frames.pop();
             }
             if (!m_frames.full()) {
-                Vec3<f32> pos(serverFrame->players[playerId].pos);
-                Quat<f32> mainRot(serverFrame->players[playerId].mainRot);
+                Vec3 pos(serverFrame->players[playerId].pos);
+                Quat mainRot(serverFrame->players[playerId].mainRot);
                 m_frames.push({serverFrame->id, pos, mainRot});
             }
         } else {
@@ -42,13 +42,13 @@ void KartRollback::calcEarly() {
             }
             auto *rollbackFrame = m_frames.front();
             if (rollbackFrame && rollbackFrame->id == serverFrame->id) {
-                auto posDelta = rollbackFrame->pos - Vec3<f32>(serverFrame->players[playerId].pos);
+                auto posDelta = rollbackFrame->pos - Vec3(serverFrame->players[playerId].pos);
                 for (u32 i = 0; i < m_frames.count(); i++) {
                     m_frames[i]->pos -= posDelta;
                 }
-                Quat<f32> tmp(serverFrame->players[playerId].mainRot);
-                Quat<f32> inverse;
-                Quat<f32>::Inverse(rollbackFrame->mainRot, inverse);
+                Quat tmp(serverFrame->players[playerId].mainRot);
+                Quat inverse;
+                Quat::Inverse(rollbackFrame->mainRot, inverse);
                 Quat mainRotDelta = tmp * inverse;
                 for (u32 i = 0; i < m_frames.count(); i++) {
                     m_frames[i]->mainRot = mainRotDelta * m_frames[i]->mainRot;
@@ -60,14 +60,14 @@ void KartRollback::calcEarly() {
                 auto *vehiclePhysics = getVehiclePhysics();
                 f32 t = 0.2f;
                 m_posDelta = m_frames[i]->pos - vehiclePhysics->m_pos;
-                Vec3<f32> proj;
-                Vec3<f32>::ProjUnit(m_posDelta, getKartMove()->m_up, proj);
-                f32 norm = Vec3<f32>::Norm(proj);
+                Vec3 proj;
+                Vec3::ProjUnit(m_posDelta, getKartMove()->m_up, proj);
+                f32 norm = Vec3::Norm(proj);
                 if (norm < 300.0f) {
                     m_posDelta -= proj;
                 }
                 vehiclePhysics->m_pos += t * m_posDelta;
-                Quat<f32>::Slerp(vehiclePhysics->m_mainRot, m_frames[i]->mainRot,
+                Quat::Slerp(vehiclePhysics->m_mainRot, m_frames[i]->mainRot,
                         vehiclePhysics->m_mainRot, t);
                 auto *kartCollide = getKartCollide();
                 kartCollide->m_movement += t * m_posDelta;

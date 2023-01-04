@@ -22,7 +22,7 @@ void CtrlRace2DMapCharacter::load(u32 playerId) {
     LayoutUIControl::load("game_image", "map_chara", "map_chara", groups);
 }
 
-void CtrlRace2DMapCharacter::calcTransform(Vec3<f32> *pos, void *r5, void *r6) {
+void CtrlRace2DMapCharacter::calcTransform(Vec3 *pos, void *r5, void *r6) {
     REPLACED(calcTransform)(pos, r5, r6);
 
     auto &raceScenario = System::RaceConfig::Instance()->raceScenario();
