@@ -257,6 +257,9 @@ bool RoomServer::onSelect(Handler &handler) {
 bool RoomServer::onPlayerJoin(Handler &handler, u32 clientId, const System::RawMii *mii,
         u32 location, u16 latitude, u16 longitude, u32 regionLineColor,
         const std::array<u32, RoomSettings::count> &settings) {
+    if (m_state != State::Main) {
+        return false;
+    }
     if (regionLineColor >= static_cast<u32>(SP::ClientSettings::RegionLineColor::Default)) {
         return false;
     }
