@@ -675,7 +675,8 @@ std::optional<RoomServer::Client::State> RoomServer::Client::calcSetup(Handler &
 
     switch (request->which_request) {
     case RoomRequest_join_tag:
-        if (request->request.join.miis_count < 1 || request->request.join.miis_count > 2) {
+        // TODO properly support 2P
+        if (request->request.join.miis_count < 1 || request->request.join.miis_count > 1) {
             return {};
         }
         for (size_t i = 0; i < request->request.join.miis_count; i++) {
