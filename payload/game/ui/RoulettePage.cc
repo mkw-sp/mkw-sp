@@ -150,6 +150,7 @@ void RoulettePage::beforeCalc() {
         }
 
         auto &menuScenario = System::RaceConfig::Instance()->menuScenario();
+        menuScenario.engineClass = System::RaceConfig::EngineClass::CC150;
         if (SectionManager::Instance()->currentSection()->id() == SectionId::VotingServer) {
             menuScenario.cameraMode = 6;
             changeSection(SectionId::OnlineServerVS, Anim::None, 0.0f);
