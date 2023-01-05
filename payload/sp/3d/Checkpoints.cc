@@ -235,6 +235,7 @@ public:
 
 void DrawCheckpoints(const float viewMtx[3][4]) {
     GXLoadPosMtxImm(viewMtx, 0);
+    GXSetCurrentMtx(0);
     Checkpoints::onDraw();
 }
 

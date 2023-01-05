@@ -32,3 +32,21 @@ Vec3 operator*(const f32 &s, const Vec3 &v0);
 
 Vec3 &operator+=(Vec3 &v, const Vec3 &v0);
 Vec3 &operator-=(Vec3 &v, const Vec3 &v0);
+
+inline Vec3 cross(Vec3 lhs, Vec3 rhs) {
+    return {
+            lhs.y * rhs.z - lhs.z * rhs.y,
+            lhs.z * rhs.x - lhs.x * rhs.z,
+            lhs.x * rhs.y - lhs.y * rhs.x,
+    };
+}
+inline f32 dot(Vec3 lhs, Vec3 rhs) {
+    return lhs.x * rhs.x + lhs.y * rhs.y + lhs.z * rhs.z;
+}
+inline Vec3 operator*(Vec3 lhs, f32 rhs) {
+    return {
+            lhs.x * rhs,
+            lhs.y * rhs,
+            lhs.z * rhs,
+    };
+}

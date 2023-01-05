@@ -48,6 +48,8 @@
 0x8004C350 _ZNK4nw4r3g3d7ResFile9GetResMdlEj
 0x8004C3F0 _ZNK4nw4r3g3d7ResFile19GetResMdlNumEntriesEv
 0x8004D900 ResFile_CheckRevision
+0x8004E3A0 _ZNK4nw4r3g3d6ResMdl10GetResNodeEj
+0x8004E400 _ZNK4nw4r3g3d6ResMdl20GetResNodeNumEntriesEv
 0x8004E9F0 _ZNK4nw4r3g3d6ResMdl9GetResMatEj
 0x8004EA50 _ZNK4nw4r3g3d6ResMdl19GetResMatNumEntriesEv
 0x80050B30 _ZN4nw4r3g3d10ResGenMode13GXSetCullModeE10GXCullMode
@@ -173,6 +175,7 @@
 0x8016d138 GXDisableBreakPt
 0x8016dc34 GXClearVtxDesc
 0x8016dc68 GXSetVtxAttrFmt
+0x8016e37c GXSetTexCoordGen2
 0x8016e5a4 GXSetNumTexGens
 0x8016e9fc GXSetDrawSync
 0x8016eab0 GXDrawDone
@@ -345,6 +348,10 @@
 0x801b39bc SIGetTypeAsync
 0x801b3acc SISetSamplingRate
 0x801b3ba4 SIRefreshSamplingRate
+
+0x801B7410 TPLBind
+0x801B7524 TPLGet
+0x801B7544 TPLGetGXTexObjFromPalette
 
 0x801B94A4 VIInit
 0x801b99ec VIWaitForRetrace
@@ -1232,6 +1239,8 @@
 0x807ad958 ItemObjKouraAo_807ad958
 0x807aec64 ItemObjKouraMidori_807aec64
 0x807b54f4 Item_807b54f4
+0x807C2884 _ZN2SP14KCLManager_dsiEPv
+0x807C28D8 _ZN2SP19KCLManager_fromFileEPvS0_
 0x807cb198 Driver_807cb198
 0x807dfc54 Map2DRenderer_init__createTexBuffer
 0x807e25a8 CtrlMenuCharacterSelect_load
@@ -1334,6 +1343,7 @@
 0x807f91dc _ZN2UI25CtrlRaceWifiFinishMessage5vf_28Ev
 0x807f91e8 _ZN2UI24CtrlRaceWifiStartMessage5vf_44Ev
 0x807f924c _ZN2UI24CtrlRaceWifiStartMessage5vf_28Ev
+0x8081B5A8 _ZN2SP13OpaquePass_DoEPNS_10OpaquePassE
 0x8081cb70 getVehicleWeightClass
 0x8081cd3c getCharacterWeightClass
 0x8082a38c ObjManager_ct
@@ -1475,6 +1485,7 @@
 0x809c2f38 s_driverManager
 0x809c2f38 _ZN4Race13DriverManager10s_instanceE
 0x809c2f3c unk_809c2f3c
+0x809C2F44 _ZN4Race13FieldDirector10s_instanceE
 0x809c3618 _ZN4Item11ItemManager10s_instanceE
 0x809c4330 _ZN3Geo11ObjDirector10s_instanceE
 0x809c4680 s_racePage

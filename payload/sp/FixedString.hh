@@ -12,8 +12,12 @@ struct FixedString {
     constexpr FixedString() = default;
     constexpr FixedString(const FixedString &) = default;
     constexpr ~FixedString() = default;
-    constexpr FixedString(std::string_view view) { set(view); }
-    constexpr FixedString(const char *cstr) { set(cstr); }
+    constexpr FixedString(std::string_view view) {
+        set(view);
+    }
+    constexpr FixedString(const char *cstr) {
+        set(cstr);
+    }
     constexpr operator std::string_view() const {
         return std::string_view(m_buf.data(), m_len);
     }
@@ -26,6 +30,11 @@ struct FixedString {
 
     constexpr bool operator==(const FixedString &) const = default;
     constexpr bool operator!=(const FixedString &) const = default;
+
+    const char *c_str() {
+        // Always null terminated
+        return m_buf.data();
+    }
 
     size_t m_len = 0;
     // Null terminated, just in case

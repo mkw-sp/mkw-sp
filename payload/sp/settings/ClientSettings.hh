@@ -64,6 +64,7 @@ enum class Setting {
     // DebugOverlay
     DebugCheckpoints,
     DebugPanel,
+    DebugKCL,
 };
 
 enum class Category {
@@ -302,6 +303,12 @@ enum class RegionFlagDisplay{
 enum class DebugCheckpoints {
     Disable,
     Enable,
+};
+
+enum class DebugKCL {
+    Disable,
+    Overlay,
+    Replace,
 };
 
 enum class DebugPanel {
@@ -551,6 +558,11 @@ struct Helper<ClientSettings::Setting, ClientSettings::Setting::RegionFlagDispla
 template <>
 struct Helper<ClientSettings::Setting, ClientSettings::Setting::DebugCheckpoints> {
     using type = SP::ClientSettings::DebugCheckpoints;
+};
+
+template <>
+struct Helper<ClientSettings::Setting, ClientSettings::Setting::DebugKCL> {
+    using type = SP::ClientSettings::DebugKCL;
 };
 
 template <>

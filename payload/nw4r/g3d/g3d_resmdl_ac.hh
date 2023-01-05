@@ -32,6 +32,10 @@ public:
         return *m_data;
     }
 
+    bool IsValid() const {
+        return m_data != nullptr;
+    }
+
 private:
     T *m_data = nullptr;
 };
@@ -39,6 +43,7 @@ private:
 struct ResMdlData {
     u8 _00[0x44];
     u32 ofsUserData;
+    s32 name;
     // ...
 };
 
@@ -66,10 +71,37 @@ public:
 };
 static_assert_32bit(sizeof(ResMat) == 4);
 
+class ResNode : public ResCommon<char> {
+public:
+    enum {
+        FLAG_VISIBLE = 0x100,
+    };
+    void SetVisibility(bool visible) {
+        // See 807C7FC8 for instance
+        assert(IsValid());
+        if (IsValid()) {
+            u32 &flag = *reinterpret_cast<u32 *>(&ref() + 0x14);
+            if (visible) {
+                flag |= FLAG_VISIBLE;
+            } else {
+                flag &= ~FLAG_VISIBLE;
+            }
+        }
+    }
+};
+static_assert_32bit(sizeof(ResNode) == 4);
+
 class ResMdl : public ResCommon<ResMdlData> {
 public:
     ResMat GetResMat(u32 idx) const;
     u32 GetResMatNumEntries() const;
+
+    ResNode GetResNode(u32 idx) const;
+    u32 GetResNodeNumEntries() const;
+
+    const char *GetName() const {
+        return reinterpret_cast<const char *>(&ref()) + ref().name;
+    }
 };
 static_assert_32bit(sizeof(ResMdl) == 4);
 

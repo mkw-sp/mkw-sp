@@ -1230,6 +1230,34 @@
         "font": "regular",
         "string": "Show online information on the debug panel.",
     },
+    "10348": {
+        "font": "regular",
+        "string": "Visual course.kcl",
+    },
+    "10349": {
+        "font": "regular",
+        "string": "Off",
+    },
+    "10350": {
+        "font": "regular",
+        "string": "Default",
+    },
+    "10351": {
+        "font": "regular",
+        "string": "Overlay",
+    },
+    "10352": {
+        "font": "regular",
+        "string": "Show on top of course_model.brres",
+    },
+    "10353": {
+        "font": "regular",
+        "string": "Replace Course Model",
+    },
+    "10354": {
+        "font": "regular",
+        "string": "Hide course_model.brres",
+    },
     "20000": {
         "font": "regular",
         "string": "Online",
