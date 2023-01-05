@@ -270,6 +270,7 @@ bool RoomServer::onPlayerJoin(Handler &handler, u32 clientId, const System::RawM
     writeJoin(mii, location, latitude, longitude, regionLineColor);
     handler.onPlayerJoin(mii, location, latitude, longitude, regionLineColor);
     if (m_playerCount == 1) {
+        m_settings = settings;
         handler.onSettingsChange(settings);
     }
     return true;
