@@ -20,18 +20,6 @@ RaceInputState::RaceInputState() {
 
 RaceInputState::~RaceInputState() = default;
 
-void RaceInputState::SetTrick(RaceInputState &state, u8 trick) {
-    if (InputManager::Instance()->isMirror()) {
-        if (trick == 3) {
-            trick = 4;
-        } else if (trick == 4) {
-            trick = 3;
-        }
-    }
-
-    state.trick = trick;
-}
-
 Pad::~Pad() = default;
 
 void Pad::processSimplified(RaceInputState &raceInputState, bool isPressed) {
