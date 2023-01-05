@@ -1,6 +1,6 @@
 #pragma once
 
-#include <common.h>
+#include <Common.h>
 #include <nw4r/g3d/g3d_resmdl_ac.hh>
 
 namespace Race {
