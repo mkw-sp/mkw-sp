@@ -175,10 +175,10 @@
 0x8016d138 GXDisableBreakPt
 0x8016dc34 GXClearVtxDesc
 0x8016dc68 GXSetVtxAttrFmt
+0x8016e37c GXSetTexCoordGen2
 0x8016e5a4 GXSetNumTexGens
 0x8016e9fc GXSetDrawSync
 0x8016eab0 GXDrawDone
-0x8016e37c GXSetTexCoordGen2
 0x8016ec88 GXSetDrawSyncCallback
 0x8016F0F0 GXBegin
 0x8016F3B8 GXSetCullMode
