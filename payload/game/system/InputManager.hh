@@ -228,7 +228,7 @@ public:
 
 private:
     struct Frame {
-        u32 id;
+        u32 time;
         RaceInputState inputState;
     };
 

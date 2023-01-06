@@ -18,7 +18,7 @@ public:
 
 private:
     struct Frame {
-        u32 id;
+        u32 time;
         s16 timeBeforeRespawn;
         s16 timeInRespawn;
         Vec3 pos;

@@ -41,7 +41,7 @@ public:
 
     Util::Random *dynamicRandom();
     Player *player(u32 playerId);
-    u32 frameId() const;
+    u32 time() const;
     bool hasReachedStage(Stage stage) const;
     void REPLACED(calc)();
     REPLACE void calc();
@@ -60,7 +60,7 @@ private:
     Util::Random *m_staticRandom;
     Player **m_players;
     u8 _10[0x20 - 0x10];
-    u32 m_frameId;
+    u32 m_time;
     u8 _24[0x2d - 0x24];
     bool m_spectatorMode;
 

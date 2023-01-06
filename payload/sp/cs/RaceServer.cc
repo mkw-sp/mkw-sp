@@ -109,8 +109,8 @@ void RaceServer::calcWrite() {
     }
     for (u32 i = 0; i < 12; i++) {
         if (m_clients[i] && m_clients[i]->frame) {
-            frame.id = System::RaceManager::Instance()->frameId();
-            frame.clientId = m_clients[i]->frame->id;
+            frame.time = System::RaceManager::Instance()->time();
+            frame.clientTime = m_clients[i]->frame->time;
 
             u8 buffer[RaceServerFrame_size];
             pb_ostream_t stream = pb_ostream_from_buffer(buffer, sizeof(buffer));
@@ -156,7 +156,7 @@ RaceServer::~RaceServer() {
 }
 
 bool RaceServer::isFrameValid(const RaceClientFrame &frame, u32 clientId) {
-    if (m_clients[clientId]->frame && frame.id <= m_clients[clientId]->frame->id) {
+    if (m_clients[clientId]->frame && frame.time <= m_clients[clientId]->frame->time) {
         return false;
     }
 

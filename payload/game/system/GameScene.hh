@@ -32,7 +32,7 @@ private:
     u8 _0c70[0x2534 - 0x0c70];
 
 protected:
-    u32 m_frameId;
+    u32 m_time;
 
 private:
     u8 _2538[0x2540 - 0x2538];

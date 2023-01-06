@@ -40,7 +40,7 @@ const wchar_t *WStringWriter::data() const {
 }
 
 void WStringWriter::writePlayer(u32 playerId) {
-    write(L"F %u\n", System::RaceManager::Instance()->frameId());
+    write(L"T %u\n", System::RaceManager::Instance()->time());
     auto *object = Kart::KartObjectManager::Instance()->object(playerId);
     write("P", *object->getPos());
     write("EV", *object->getVehiclePhysics()->externalVel());
@@ -50,19 +50,19 @@ void WStringWriter::writePlayer(u32 playerId) {
 }
 
 void WStringWriter::writeOnline(u32 playerId) {
-    u32 frameId = System::RaceManager::Instance()->frameId();
+    u32 time = System::RaceManager::Instance()->time();
     if (auto *raceClient = SP::RaceClient::Instance()) {
         s32 drift = raceClient->drift();
         u32 serverFrameCount = raceClient->frameCount();
         auto frame = raceClient->frame();
         if (frame) {
-            write(L"F/D/SF/CF/SFC %u %d %u %u %u\n", frameId, drift, frame->id, frame->clientId,
+            write(L"T/D/ST/CT/SFC %u %d %u %u %u\n", time, drift, frame->time, frame->clientTime,
                     serverFrameCount);
         } else {
-            write(L"F/D/SFC %u %d %u\n", frameId, drift, serverFrameCount);
+            write(L"T/D/SFC %u %d %u\n", time, drift, serverFrameCount);
         }
     } else {
-        write(L"F %u\n", frameId);
+        write(L"T %u\n", time);
     }
     auto *object = Kart::KartObjectManager::Instance()->object(playerId);
     if (auto *rollback = object->getKartRollback()) {

@@ -28,7 +28,7 @@ private:
     u8 _050[0x074 - 0x050];
     Vec3 m_internalVelDir;
     u8 _080[0x1a8 - 0x080];
-    s16 m_blinkTimer;
+    s16 m_timeBeforeBlinkEnd;
     u8 _1aa[0x234 - 0x1aa];
     u16 m_timeInRespawn;
     u8 _236[0x294 - 0x236];

@@ -16,7 +16,7 @@ message RaceClientFrame {
         required InputState inputState = 1;
     }
 
-    required uint32 id      = 1;
+    required uint32 time    = 1;
     repeated Player players = 2;
 }
 
@@ -43,7 +43,7 @@ message RaceServerFrame {
         required float      internalSpeed     = 6;
     }
 
-    required uint32 id       = 1;
-    required uint32 clientId = 2;
-    repeated Player players  = 3;
+    required uint32 time       = 1;
+    required uint32 clientTime = 2;
+    repeated Player players    = 3;
 }

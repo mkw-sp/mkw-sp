@@ -42,7 +42,7 @@ void RaceClient::adjustDrift() {
 void RaceClient::calcWrite() {
     auto &raceScenario = System::RaceConfig::Instance()->raceScenario();
     RaceClientFrame frame;
-    frame.id = System::RaceManager::Instance()->frameId();
+    frame.time = System::RaceManager::Instance()->time();
     frame.players_count = raceScenario.localPlayerCount;
     for (u8 i = 0; i < raceScenario.localPlayerCount; i++) {
         u8 playerId = raceScenario.screenPlayerIds[i];
@@ -98,7 +98,7 @@ void RaceClient::calcRead() {
     if (m_drifts.full()) {
         m_drifts.pop_front();
     }
-    s32 drift = static_cast<s32>(m_frame->clientId) - static_cast<s32>(m_frame->id);
+    s32 drift = static_cast<s32>(m_frame->clientTime) - static_cast<s32>(m_frame->time);
     m_drifts.push_back(std::move(drift));
 
     m_drift = 0;
@@ -139,7 +139,7 @@ RaceClient::~RaceClient() {
 }
 
 bool RaceClient::isFrameValid(const RaceServerFrame &frame) {
-    if (m_frame && frame.id <= m_frame->id) {
+    if (m_frame && frame.time <= m_frame->time) {
         return false;
     }
 

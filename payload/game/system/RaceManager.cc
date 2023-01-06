@@ -36,8 +36,8 @@ RaceManager::Player *RaceManager::player(u32 playerId) {
     return m_players[playerId];
 }
 
-u32 RaceManager::frameId() const {
-    return m_frameId;
+u32 RaceManager::time() const {
+    return m_time;
 }
 
 void RaceManager::calc() {
@@ -45,7 +45,7 @@ void RaceManager::calc() {
 
     auto *sectionManager = UI::SectionManager::Instance();
     if (sectionManager->currentSection()->id() == UI::SectionId::Thumbnails) {
-        if (m_frameId == 25) {
+        if (m_time == 25) {
             UI::SectionId sectionId;
             if (SP::ThumbnailManager::Continue()) {
                 auto &menuScenario = System::RaceConfig::Instance()->menuScenario();

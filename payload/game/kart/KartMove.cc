@@ -18,7 +18,7 @@ const Vec3 *KartMove::internalVelDir() const {
 
 void KartMove::calcBlink() {
     if (SP::ThumbnailManager::IsActive()) {
-        m_blinkTimer = 150;
+        m_timeBeforeBlinkEnd = 150;
         getKartState()->m_blinking = true;
     }
 

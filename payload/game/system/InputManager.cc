@@ -97,10 +97,10 @@ void PadRollback::calc(u32 playerId) {
         return;
     }
 
-    u32 frameId = RaceManager::Instance()->frameId();
+    u32 time = RaceManager::Instance()->time();
     auto *proxy = System::InputManager::Instance()->userProxy(playerId);
     if (auto serverFrame = raceClient->frame()) {
-        s32 delay = static_cast<s32>(frameId) - static_cast<s32>(serverFrame->id);
+        s32 delay = static_cast<s32>(time) - static_cast<s32>(serverFrame->time);
         auto &framePlayer = serverFrame->players[playerId];
         RaceInputState inputState;
         inputState.accelerate = framePlayer.inputState.accelerate;
@@ -112,36 +112,36 @@ void PadRollback::calc(u32 playerId) {
         System::RaceInputState::SetStickY(inputState, framePlayer.inputState.stickY);
         System::RaceInputState::SetTrick(inputState, framePlayer.inputState.trick);
         if (delay <= 0) {
-            while (m_frames.front() && m_frames.front()->id < frameId) {
+            while (m_frames.front() && m_frames.front()->time < time) {
                 m_frames.pop_front();
             }
             if (!m_frames.full()) {
-                m_frames.push_back({serverFrame->id, inputState});
+                m_frames.push_back({serverFrame->time, inputState});
             }
         } else {
-            while (m_frames.front() && m_frames.front()->id < serverFrame->id) {
+            while (m_frames.front() && m_frames.front()->time < serverFrame->time) {
                 m_frames.pop_front();
             }
             auto *rollbackFrame = m_frames.front();
-            if (rollbackFrame && rollbackFrame->id == serverFrame->id) {
+            if (rollbackFrame && rollbackFrame->time == serverFrame->time) {
                 for (u32 i = 0; i < m_frames.count(); i++) {
                     m_frames[i]->inputState = inputState;
                 }
             }
         }
         for (u32 i = 0; i < m_frames.count(); i++) {
-            if (m_frames[i]->id == frameId - 1) {
+            if (m_frames[i]->time == time - 1) {
                 proxy->setRaceInputState(m_frames[i]->inputState);
                 break;
             }
         }
     }
 
-    if (!m_frames.back() || m_frames.back()->id < frameId) {
+    if (!m_frames.back() || m_frames.back()->time < time) {
         if (m_frames.full()) {
             m_frames.pop_front();
         }
-        m_frames.push_back({frameId, proxy->currentRaceInputState()});
+        m_frames.push_back({time, proxy->currentRaceInputState()});
     }
 }
 
