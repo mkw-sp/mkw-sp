@@ -113,7 +113,6 @@ void KartRollback::handlePastFrame(const Frame &frame) {
     if (rollbackFrame && rollbackFrame->time == frame.time) {
         s16 timeBeforeRespawn = frame.timeBeforeRespawn;
         s16 timeInRespawn = frame.timeInRespawn;
-        auto timesBeforeBoostEnd = frame.timesBeforeBoostEnd;
         for (u32 i = 0; i < m_frames.count(); i++) {
             if (timeBeforeRespawn) {
                 if (m_frames[i]->timeInRespawn) {
@@ -139,15 +138,21 @@ void KartRollback::handlePastFrame(const Frame &frame) {
                 m_frames[i]->timeBeforeRespawn = 0;
                 m_frames[i]->timeInRespawn = 0;
             }
-            for (u32 j = 0; j < 3; j++) {
-                m_frames[i]->timesBeforeBoostEnd[j] = timesBeforeBoostEnd[j];
-                if (timesBeforeBoostEnd[j]) {
-                    timesBeforeBoostEnd[j]--;
-                }
-            }
         }
         if (!!rollbackFrame->timeBeforeRespawn == !!frame.timeBeforeRespawn &&
                 !!rollbackFrame->timeInRespawn == !!frame.timeInRespawn) {
+            for (u32 i = 0; i < 3; i++) {
+                s16 timeBeforeBoostEnd = frame.timesBeforeBoostEnd[i];
+                if (timeBeforeBoostEnd == rollbackFrame->timesBeforeBoostEnd[i]) {
+                    continue;
+                }
+                for (u32 j = 0; j < m_frames.count(); j++) {
+                    m_frames[j]->timesBeforeBoostEnd[i] = timeBeforeBoostEnd;
+                    if (timeBeforeBoostEnd) {
+                        timeBeforeBoostEnd--;
+                    }
+                }
+            }
             auto posDelta = rollbackFrame->pos - frame.pos;
             Quat inverse;
             Quat::Inverse(rollbackFrame->mainRot, inverse);
