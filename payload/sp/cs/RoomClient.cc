@@ -425,6 +425,14 @@ bool RoomClient::onPlayerLeave(Handler &handler, u32 playerId) {
         return false;
     }
     m_playerCount--;
+    for (u32 i = playerId; i < m_playerCount; i++) {
+        m_players[i] = m_players[i + 1];
+    }
+    for (u32 i = 0; i < m_localPlayerCount; i++) {
+        if (m_localPlayerIds[i] > playerId) {
+            m_localPlayerIds[i]--;
+        }
+    }
     handler.onPlayerLeave(playerId);
     return true;
 }
