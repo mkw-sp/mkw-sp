@@ -2,6 +2,7 @@
 
 #include "game/kart/KartCollide.hh"
 #include "game/kart/KartMove.hh"
+#include "game/kart/KartState.hh"
 #include "game/kart/VehiclePhysics.hh"
 #include "game/system/RaceManager.hh"
 
@@ -30,18 +31,23 @@ void KartRollback::calcEarly() {
         u32 frameId = System::RaceManager::Instance()->frameId();
         s32 delay = static_cast<s32>(frameId) - static_cast<s32>(serverFrame->id);
         u32 playerId = getPlayerId();
+        auto &player = serverFrame->players[playerId];
         auto *vehiclePhysics = getVehiclePhysics();
         auto *kartCollide = getKartCollide();
         auto *kartMove = getKartMove();
+        auto *kartState = getKartState();
         if (delay <= 0) {
             while (m_frames.front() && m_frames.front()->id < frameId) {
                 m_frames.pop();
             }
             if (!m_frames.full()) {
+                s16 timeBeforeRespawn = serverFrame->players[playerId].timeBeforeRespawn;
+                s16 timeInRespawn = serverFrame->players[playerId].timeInRespawn;
                 Vec3 pos(serverFrame->players[playerId].pos);
                 Quat mainRot(serverFrame->players[playerId].mainRot);
                 f32 internalSpeed = serverFrame->players[playerId].internalSpeed;
-                m_frames.push({serverFrame->id, pos, mainRot, internalSpeed});
+                m_frames.push({serverFrame->id, timeBeforeRespawn, timeInRespawn, pos, mainRot,
+                        internalSpeed});
             }
         } else {
             while (m_frames.front() && m_frames.front()->id < serverFrame->id) {
@@ -49,22 +55,74 @@ void KartRollback::calcEarly() {
             }
             auto *rollbackFrame = m_frames.front();
             if (rollbackFrame && rollbackFrame->id == serverFrame->id) {
-                auto posDelta = rollbackFrame->pos - Vec3(serverFrame->players[playerId].pos);
-                Quat tmp(serverFrame->players[playerId].mainRot);
-                Quat inverse;
-                Quat::Inverse(rollbackFrame->mainRot, inverse);
-                Quat mainRotDelta = tmp * inverse;
-                f32 internalSpeedDelta = rollbackFrame->internalSpeed -
-                        serverFrame->players[playerId].internalSpeed;
+                s16 timeBeforeRespawn = player.timeBeforeRespawn;
+                s16 timeInRespawn = player.timeInRespawn;
                 for (u32 i = 0; i < m_frames.count(); i++) {
-                    m_frames[i]->pos -= posDelta;
-                    m_frames[i]->mainRot = mainRotDelta * m_frames[i]->mainRot;
-                    m_frames[i]->internalSpeed -= internalSpeedDelta;
+                    if (timeBeforeRespawn) {
+                        if (m_frames[i]->timeInRespawn) {
+                            m_frames[i]->timeInRespawn = 1;
+                        } else {
+                            m_frames[i]->timeBeforeRespawn = timeBeforeRespawn;
+                        }
+                        timeBeforeRespawn--;
+                        if (!timeBeforeRespawn) {
+                            timeInRespawn = 1;
+                        }
+                    } else if (timeInRespawn) {
+                        if (m_frames[i]->timeBeforeRespawn) {
+                            m_frames[i]->timeBeforeRespawn = 1;
+                        } else {
+                            m_frames[i]->timeInRespawn = timeInRespawn;
+                        }
+                        timeInRespawn++;
+                        if (timeInRespawn > 110) {
+                            timeInRespawn = 0;
+                        }
+                    } else {
+                        m_frames[i]->timeBeforeRespawn = 0;
+                        m_frames[i]->timeInRespawn = 0;
+                    }
+                }
+                if (!!rollbackFrame->timeBeforeRespawn == !!player.timeBeforeRespawn &&
+                        !!rollbackFrame->timeInRespawn == !!player.timeInRespawn) {
+                    auto posDelta = rollbackFrame->pos - Vec3(serverFrame->players[playerId].pos);
+                    Quat tmp(serverFrame->players[playerId].mainRot);
+                    Quat inverse;
+                    Quat::Inverse(rollbackFrame->mainRot, inverse);
+                    Quat mainRotDelta = tmp * inverse;
+                    f32 internalSpeedDelta = rollbackFrame->internalSpeed -
+                            serverFrame->players[playerId].internalSpeed;
+                    for (u32 i = 0; i < m_frames.count(); i++) {
+                        m_frames[i]->pos -= posDelta;
+                        m_frames[i]->mainRot = mainRotDelta * m_frames[i]->mainRot;
+                        m_frames[i]->internalSpeed -= internalSpeedDelta;
+                    }
                 }
             }
         }
         for (u32 i = 0; i < m_frames.count(); i++) {
             if (m_frames[i]->id == frameId - 1) {
+                if (m_frames[i]->timeBeforeRespawn) {
+                    if (kartCollide->m_timeBeforeRespawn) {
+                        kartCollide->m_timeBeforeRespawn = m_frames[i]->timeBeforeRespawn;
+                    } else {
+                        // TODO implement?
+                    }
+                } else if (m_frames[i]->timeInRespawn) {
+                    if (kartMove->m_timeInRespawn) {
+                        kartMove->m_timeInRespawn = m_frames[i]->timeInRespawn;
+                    } else {
+                        // TODO implement?
+                    }
+                } else {
+                    if (kartCollide->m_timeBeforeRespawn) {
+                        kartState->m_beforeRespawn = false;
+                        kartCollide->m_timeBeforeRespawn = 0;
+                        // TODO WipeControl
+                    } else if (kartMove->m_timeInRespawn) {
+                        kartMove->m_timeInRespawn = 140;
+                    }
+                }
                 f32 t = 0.25f;
                 Vec3 posDelta = m_frames[i]->pos - vehiclePhysics->m_pos;
                 Vec3 proj;
@@ -97,7 +155,8 @@ void KartRollback::calcLate() {
         if (m_frames.full()) {
             m_frames.pop();
         }
-        m_frames.push(Frame{frameId, *getPos(), *getMainRot(), getInternalSpeed()});
+        m_frames.push(Frame{frameId, getTimeBeforeRespawn(), static_cast<s16>(getTimeInRespawn()),
+                *getPos(), *getMainRot(), getInternalSpeed()});
     }
 }
 

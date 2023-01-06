@@ -6,13 +6,17 @@ namespace Kart {
 
 class KartState {
     friend class KartMove;
+    friend class KartRollback;
     friend class KartSub;
 
 public:
     bool inCannon() const;
 
 private:
-    u8 _00[0x08 - 0x00];
+    u8 _00[0x04 - 0x00];
+    u32 : 27;
+    bool m_beforeRespawn : 1;
+    u32 : 4;
     u32 : 23;
     bool m_blinking : 1;
     u32 : 3;

@@ -19,6 +19,8 @@ public:
 private:
     struct Frame {
         u32 id;
+        s16 timeBeforeRespawn;
+        s16 timeInRespawn;
         Vec3 pos;
         Quat mainRot;
         f32 internalSpeed;

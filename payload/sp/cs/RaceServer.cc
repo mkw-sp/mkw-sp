@@ -101,6 +101,8 @@ void RaceServer::calcWrite() {
         frame.players[i].inputState.stickY = inputState.rawStick.y;
         frame.players[i].inputState.trick = inputState.rawTrick;
         auto *object = Kart::KartObjectManager::Instance()->object(i);
+        frame.players[i].timeBeforeRespawn = object->getTimeBeforeRespawn();
+        frame.players[i].timeInRespawn = object->getTimeInRespawn();
         frame.players[i].pos = *object->getPos();
         frame.players[i].mainRot = *object->getMainRot();
         frame.players[i].internalSpeed = object->getInternalSpeed();

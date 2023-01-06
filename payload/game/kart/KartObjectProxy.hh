@@ -14,7 +14,11 @@ class VehiclePhysics;
 struct KartAccessor {
     u8 _00[0x04 - 0x00];
     KartState *state;
-    u8 _08[0x3c - 0x08];
+    u8 _08[0x28 - 0x08];
+    KartMove *move;
+    u8 _2c[0x30 - 0x2c];
+    KartCollide *collide;
+    u8 _34[0x3c - 0x34];
     KartRollback *rollback; // Replaced
     u8 _40[0x64 - 0x40];
 };
@@ -37,6 +41,8 @@ public:
     const KartRollback *getKartRollback() const;
     u32 getPlayerId() const;
     f32 getInternalSpeed() const;
+    s16 getTimeBeforeRespawn() const;
+    u16 getTimeInRespawn() const;
 
 protected:
     KartAccessor *m_accessor;

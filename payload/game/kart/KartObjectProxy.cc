@@ -1,5 +1,7 @@
 #include "KartObjectProxy.hh"
 
+#include "game/kart/KartCollide.hh"
+#include "game/kart/KartMove.hh"
 #include "game/kart/VehiclePhysics.hh"
 
 namespace Kart {
@@ -14,6 +16,14 @@ KartState *KartObjectProxy::getKartState() {
 
 const KartRollback *KartObjectProxy::getKartRollback() const {
     return m_accessor->rollback;
+}
+
+s16 KartObjectProxy::getTimeBeforeRespawn() const {
+    return m_accessor->collide->m_timeBeforeRespawn;
+}
+
+u16 KartObjectProxy::getTimeInRespawn() const {
+    return m_accessor->move->m_timeInRespawn;
 }
 
 } // namespace Kart

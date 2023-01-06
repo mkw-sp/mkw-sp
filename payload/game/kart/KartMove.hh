@@ -5,6 +5,7 @@
 namespace Kart {
 
 class KartMove : public KartObjectProxy {
+    friend class KartObjectProxy;
     friend class KartRollback;
 
 public:
@@ -28,7 +29,9 @@ private:
     Vec3 m_internalVelDir;
     u8 _080[0x1a8 - 0x080];
     s16 m_blinkTimer;
-    u8 _1aa[0x294 - 0x1aa];
+    u8 _1aa[0x234 - 0x1aa];
+    u16 m_timeInRespawn;
+    u8 _236[0x294 - 0x236];
 };
 static_assert(sizeof(KartMove) == 0x294);
 

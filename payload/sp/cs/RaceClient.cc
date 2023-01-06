@@ -148,6 +148,18 @@ bool RaceClient::isFrameValid(const RaceServerFrame &frame) {
             return false;
         }
 
+        if (frame.players[i].timeBeforeRespawn > 190) {
+            return false;
+        }
+
+        if (frame.players[i].timeInRespawn > 140) {
+            return false;
+        }
+
+        if (frame.players[i].timeBeforeRespawn && frame.players[i].timeInRespawn) {
+            return false;
+        }
+
         if (!IsVec3Valid(frame.players[i].pos)) {
             return false;
         }
