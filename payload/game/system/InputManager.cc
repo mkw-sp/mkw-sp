@@ -98,40 +98,16 @@ void PadRollback::calc(u32 playerId) {
     }
 
     u32 time = RaceManager::Instance()->time();
-    auto *proxy = System::InputManager::Instance()->userProxy(playerId);
-    if (auto serverFrame = raceClient->frame()) {
-        s32 delay = static_cast<s32>(time) - static_cast<s32>(serverFrame->time);
-        auto &framePlayer = serverFrame->players[playerId];
-        RaceInputState inputState;
-        inputState.accelerate = framePlayer.inputState.accelerate;
-        inputState.brake = framePlayer.inputState.brake;
-        inputState.item = false;
-        inputState.drift = framePlayer.inputState.drift;
-        inputState.brakeDrift = framePlayer.inputState.brakeDrift; // TODO check for 200cc
-        System::RaceInputState::SetStickX(inputState, framePlayer.inputState.stickX);
-        System::RaceInputState::SetStickY(inputState, framePlayer.inputState.stickY);
-        System::RaceInputState::SetTrick(inputState, framePlayer.inputState.trick);
+    if (auto frame = serverFrame(playerId)) {
+        s32 delay = static_cast<s32>(time) - static_cast<s32>(frame->time);
         if (delay <= 0) {
-            while (m_frames.front() && m_frames.front()->time < time) {
-                m_frames.pop_front();
-            }
-            if (!m_frames.full()) {
-                m_frames.push_back({serverFrame->time, inputState});
-            }
+            handleFutureFrame(*frame);
         } else {
-            while (m_frames.front() && m_frames.front()->time < serverFrame->time) {
-                m_frames.pop_front();
-            }
-            auto *rollbackFrame = m_frames.front();
-            if (rollbackFrame && rollbackFrame->time == serverFrame->time) {
-                for (u32 i = 0; i < m_frames.count(); i++) {
-                    m_frames[i]->inputState = inputState;
-                }
-            }
+            handlePastFrame(*frame);
         }
         for (u32 i = 0; i < m_frames.count(); i++) {
             if (m_frames[i]->time == time - 1) {
-                proxy->setRaceInputState(m_frames[i]->inputState);
+                applyFrame(playerId, *m_frames[i]);
                 break;
             }
         }
@@ -141,8 +117,56 @@ void PadRollback::calc(u32 playerId) {
         if (m_frames.full()) {
             m_frames.pop_front();
         }
+        auto *proxy = System::InputManager::Instance()->userProxy(playerId);
         m_frames.push_back({time, proxy->currentRaceInputState()});
     }
+}
+
+std::optional<PadRollback::Frame> PadRollback::serverFrame(u32 playerId) const {
+    auto serverFrame = SP::RaceClient::Instance()->frame();
+    if (!serverFrame) {
+        return {};
+    }
+
+    u32 time = serverFrame->time;
+    const auto &player = serverFrame->players[playerId];
+    RaceInputState inputState;
+    inputState.accelerate = player.inputState.accelerate;
+    inputState.brake = player.inputState.brake;
+    inputState.item = false;
+    inputState.drift = player.inputState.drift;
+    inputState.brakeDrift = player.inputState.brakeDrift; // TODO check for 200cc
+    System::RaceInputState::SetStickX(inputState, player.inputState.stickX);
+    System::RaceInputState::SetStickY(inputState, player.inputState.stickY);
+    System::RaceInputState::SetTrick(inputState, player.inputState.trick);
+    return {{time, inputState}};
+}
+
+void PadRollback::handleFutureFrame(const Frame &frame) {
+    u32 time = System::RaceManager::Instance()->time();
+    while (m_frames.front() && m_frames.front()->time < time) {
+        m_frames.pop_front();
+    }
+    if (!m_frames.full()) {
+        m_frames.push_back(std::move(frame));
+    }
+}
+
+void PadRollback::handlePastFrame(const Frame &frame) {
+    while (m_frames.front() && m_frames.front()->time < frame.time) {
+        m_frames.pop_front();
+    }
+    auto *rollbackFrame = m_frames.front();
+    if (rollbackFrame && rollbackFrame->time == frame.time) {
+        for (u32 i = 0; i < m_frames.count(); i++) {
+            m_frames[i]->inputState = frame.inputState;
+        }
+    }
+}
+
+void PadRollback::applyFrame(u32 playerId, const Frame &frame) {
+    auto *proxy = System::InputManager::Instance()->userProxy(playerId);
+    proxy->setRaceInputState(frame.inputState);
 }
 
 void PadRollback::reset() {

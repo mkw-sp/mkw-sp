@@ -232,6 +232,11 @@ private:
         RaceInputState inputState;
     };
 
+    std::optional<Frame> serverFrame(u32 playerId) const;
+    void handleFutureFrame(const Frame &frame);
+    void handlePastFrame(const Frame &frame);
+    void applyFrame(u32 playerId, const Frame &frame);
+
     u32 m_playerId;
     SP::CircularBuffer<Frame, 60> m_frames;
 };
