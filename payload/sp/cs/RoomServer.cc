@@ -75,7 +75,7 @@ bool RoomServer::calc(Handler &handler) {
                 }
             }
         }
-        m_disconnectQueue.pop();
+        m_disconnectQueue.pop_front();
     }
 
     if (auto state = resolve(handler)) {
@@ -185,7 +185,7 @@ std::optional<RoomServer::State> RoomServer::calcMain(Handler &handler) {
             const auto *comment = m_commentQueue.front();
             handler.onReceiveComment(comment->playerId, comment->messageId);
             writeComment(comment->playerId, comment->messageId);
-            m_commentQueue.pop();
+            m_commentQueue.pop_front();
             m_commentTimer = 90;
         }
     }
@@ -307,7 +307,7 @@ bool RoomServer::onReceiveComment(u32 playerId, u32 messageId) {
         return false;
     }
 
-    m_commentQueue.push(Comment{playerId, messageId});
+    m_commentQueue.push_back(Comment{playerId, messageId});
     return true;
 }
 
@@ -399,7 +399,7 @@ bool RoomServer::validateProperties(u32 playerId, Player::Properties &properties
 
 void RoomServer::disconnectClient(u32 clientId) {
     m_clients[clientId].reset();
-    m_disconnectQueue.push(std::move(clientId));
+    m_disconnectQueue.push_back(std::move(clientId));
 }
 
 void RoomServer::writeJoin(const System::RawMii *mii, u32 location, u32 latitude, u32 longitude,

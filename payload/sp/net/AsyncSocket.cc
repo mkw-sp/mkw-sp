@@ -192,14 +192,14 @@ bool AsyncSocket::poll() {
         }
 
         if (writeTask->offset == writeTask->size) {
-            m_writeQueue.pop();
+            m_writeQueue.pop_front();
         }
     }
 
     {
         auto *readTask = m_readQueue.back();
         if (!readTask || readTask->offset == sizeof(u16) + readTask->size) {
-            m_readQueue.push({});
+            m_readQueue.push_back({});
         }
     }
 
@@ -252,7 +252,7 @@ std::optional<u16> AsyncSocket::read(u8 *message, u16 maxSize) {
         return {};
     }
     u16 size = readTask->size - hydro_secretbox_HEADERBYTES;
-    m_readQueue.pop();
+    m_readQueue.pop_front();
     return size;
 }
 
@@ -268,7 +268,7 @@ bool AsyncSocket::write(const u8 *message, u16 size) {
         SP_LOG("Failed to encrypt message");
         return false;
     }
-    return m_writeQueue.push(std::move(writeTask));
+    return m_writeQueue.push_back(std::move(writeTask));
 }
 
 bool AsyncSocket::makeNonBlocking() {

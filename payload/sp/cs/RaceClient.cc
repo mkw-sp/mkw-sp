@@ -96,10 +96,10 @@ void RaceClient::calcRead() {
     System::RaceManager::Instance()->m_canStartCountdown = true;
 
     if (m_drifts.full()) {
-        m_drifts.pop();
+        m_drifts.pop_front();
     }
     s32 drift = static_cast<s32>(m_frame->clientId) - static_cast<s32>(m_frame->id);
-    m_drifts.push(std::move(drift));
+    m_drifts.push_back(std::move(drift));
 
     m_drift = 0;
     for (size_t i = 0; i < m_drifts.count(); i++) {

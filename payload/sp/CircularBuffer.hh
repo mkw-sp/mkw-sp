@@ -39,7 +39,7 @@ public:
         return std::launder(reinterpret_cast<T *>(&m_vals[(m_front + m_count - 1) % N]));
     }
 
-    bool push(T &&val) {
+    bool push_back(T &&val) {
         if (full()) {
             return false;
         }
@@ -49,7 +49,7 @@ public:
         return true;
     }
 
-    void pop() {
+    void pop_front() {
         std::destroy_at(std::launder(reinterpret_cast<T *>(&m_vals[m_front])));
         m_front = (m_front + 1) % N;
         m_count--;
@@ -79,7 +79,7 @@ public:
 
     void reset() {
         while (!empty()) {
-            pop();
+            pop_front();
         }
     }
 

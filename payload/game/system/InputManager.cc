@@ -113,14 +113,14 @@ void PadRollback::calc(u32 playerId) {
         System::RaceInputState::SetTrick(inputState, framePlayer.inputState.trick);
         if (delay <= 0) {
             while (m_frames.front() && m_frames.front()->id < frameId) {
-                m_frames.pop();
+                m_frames.pop_front();
             }
             if (!m_frames.full()) {
-                m_frames.push({serverFrame->id, inputState});
+                m_frames.push_back({serverFrame->id, inputState});
             }
         } else {
             while (m_frames.front() && m_frames.front()->id < serverFrame->id) {
-                m_frames.pop();
+                m_frames.pop_front();
             }
             auto *rollbackFrame = m_frames.front();
             if (rollbackFrame && rollbackFrame->id == serverFrame->id) {
@@ -139,9 +139,9 @@ void PadRollback::calc(u32 playerId) {
 
     if (!m_frames.back() || m_frames.back()->id < frameId) {
         if (m_frames.full()) {
-            m_frames.pop();
+            m_frames.pop_front();
         }
-        m_frames.push({frameId, proxy->currentRaceInputState()});
+        m_frames.push_back({frameId, proxy->currentRaceInputState()});
     }
 }
 

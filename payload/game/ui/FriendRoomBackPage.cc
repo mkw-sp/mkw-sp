@@ -66,7 +66,7 @@ void FriendRoomBackPage::onActivate() {
         } else {
             assert(!"Unexpected variant!");
         }
-        m_queue.pop();
+        m_queue.pop_front();
     }
 }
 
@@ -179,7 +179,7 @@ void FriendRoomBackPage::afterCalc() {
         m_timer = 90;
         m_roomStarted = true;
     }
-    m_queue.pop();
+    m_queue.pop_front();
 }
 
 void FriendRoomBackPage::onRefocus() {
@@ -205,7 +205,7 @@ void FriendRoomBackPage::pop(Anim anim) {
 void FriendRoomBackPage::onPlayerJoin(System::RawMii mii, u32 location, u16 latitude,
         u16 longitude) {
     assert(!m_queue.full());
-    m_queue.push(Join { mii, location, latitude, longitude });
+    m_queue.push_back(Join { mii, location, latitude, longitude });
 }
 
 void FriendRoomBackPage::onPlayerLeave(u32 playerId) {
@@ -233,7 +233,7 @@ void FriendRoomBackPage::onPlayerLeave(u32 playerId) {
     if (index != m_queue.count()) {
         m_queue.remove(index);
     } else {
-        m_queue.push(Leave { playerId });
+        m_queue.push_back(Leave { playerId });
     }
 }
 
@@ -246,7 +246,7 @@ void FriendRoomBackPage::onReceiveComment(u32 playerId, u32 messageId) {
         }
     }
     if (commentCount < 18) {
-        m_queue.push(Comment { playerId, messageId });
+        m_queue.push_back(Comment { playerId, messageId });
     }
 }
 
@@ -259,12 +259,12 @@ void FriendRoomBackPage::onSettingsChange(
             break;
         }
     }
-    m_queue.push(Settings { settings });
+    m_queue.push_back(Settings { settings });
 }
 
 void FriendRoomBackPage::onRoomStart(u32 messageId) {
     m_queue.reset();
-    m_queue.push(Start { messageId });
+    m_queue.push_back(Start { messageId });
 }
 
 } // namespace UI

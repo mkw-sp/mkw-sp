@@ -38,7 +38,7 @@ void KartRollback::calcEarly() {
         auto *kartState = getKartState();
         if (delay <= 0) {
             while (m_frames.front() && m_frames.front()->id < frameId) {
-                m_frames.pop();
+                m_frames.pop_front();
             }
             if (!m_frames.full()) {
                 s16 timeBeforeRespawn = serverFrame->players[playerId].timeBeforeRespawn;
@@ -46,12 +46,12 @@ void KartRollback::calcEarly() {
                 Vec3 pos(serverFrame->players[playerId].pos);
                 Quat mainRot(serverFrame->players[playerId].mainRot);
                 f32 internalSpeed = serverFrame->players[playerId].internalSpeed;
-                m_frames.push({serverFrame->id, timeBeforeRespawn, timeInRespawn, pos, mainRot,
+                m_frames.push_back({serverFrame->id, timeBeforeRespawn, timeInRespawn, pos, mainRot,
                         internalSpeed});
             }
         } else {
             while (m_frames.front() && m_frames.front()->id < serverFrame->id) {
-                m_frames.pop();
+                m_frames.pop_front();
             }
             auto *rollbackFrame = m_frames.front();
             if (rollbackFrame && rollbackFrame->id == serverFrame->id) {
@@ -153,10 +153,11 @@ void KartRollback::calcLate() {
     u32 frameId = System::RaceManager::Instance()->frameId();
     if (!m_frames.back() || m_frames.back()->id < frameId) {
         if (m_frames.full()) {
-            m_frames.pop();
+            m_frames.pop_front();
         }
-        m_frames.push(Frame{frameId, getTimeBeforeRespawn(), static_cast<s16>(getTimeInRespawn()),
-                *getPos(), *getMainRot(), getInternalSpeed()});
+        m_frames.push_back(Frame{frameId, getTimeBeforeRespawn(),
+                static_cast<s16>(getTimeInRespawn()), *getPos(), *getMainRot(),
+                getInternalSpeed()});
     }
 }
 
