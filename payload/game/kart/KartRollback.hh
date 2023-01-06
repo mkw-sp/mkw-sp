@@ -26,6 +26,11 @@ private:
         f32 internalSpeed;
     };
 
+    std::optional<Frame> serverFrame(u32 playerId) const;
+    void handleFutureFrame(const Frame &frame);
+    void handlePastFrame(const Frame &frame);
+    void applyFrame(const Frame &frame);
+
     SP::CircularBuffer<Frame, 60> m_frames;
     Vec3 m_posDelta{};
     Quat m_mainRotDelta{};

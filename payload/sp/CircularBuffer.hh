@@ -39,7 +39,7 @@ public:
         return std::launder(reinterpret_cast<T *>(&m_vals[(m_front + m_count - 1) % N]));
     }
 
-    bool push_back(T &&val) {
+    bool push_back(const T &&val) {
         if (full()) {
             return false;
         }
