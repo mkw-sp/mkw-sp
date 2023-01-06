@@ -70,7 +70,9 @@ bool RoomServer::calc(Handler &handler) {
     while (!m_disconnectQueue.empty()) {
         for (u32 i = m_playerCount; i-- > 0;) {
             if (m_players[i].m_clientId == *m_disconnectQueue.front()) {
-                onPlayerLeave(handler, i);
+                if (!onPlayerLeave(handler, i)) {
+                    return false;
+                }
             }
         }
         m_disconnectQueue.pop();
@@ -279,20 +281,17 @@ bool RoomServer::onPlayerJoin(Handler &handler, u32 clientId, const System::RawM
     return true;
 }
 
-void RoomServer::onPlayerLeave(Handler &handler, u32 playerId) {
-    handler.onPlayerLeave(playerId);
+bool RoomServer::onPlayerLeave(Handler &handler, u32 playerId) {
+    if (playerId == 0) {
+        return false;
+    }
     writeLeave(playerId);
     m_playerCount--;
     for (u32 i = playerId; i < m_playerCount; i++) {
         m_players[i] = m_players[i + 1];
     }
-    if (playerId == 0) {
-        for (u32 i = 0; i < m_clients.size(); i++) {
-            if (m_clients[i]) {
-                disconnectClient(i);
-            }
-        }
-    }
+    handler.onPlayerLeave(playerId);
+    return true;
 }
 
 bool RoomServer::onReceiveComment(u32 playerId, u32 messageId) {

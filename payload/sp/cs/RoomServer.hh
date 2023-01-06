@@ -106,7 +106,7 @@ private:
     bool onPlayerJoin(Handler &handler, u32 clientId, const System::RawMii *mii, u32 location,
             u16 latitude, u16 longitude, u32 regionLineColor,
             const std::array<u32, RoomSettings::count> &settings);
-    void onPlayerLeave(Handler &handler, u32 playerId);
+    bool onPlayerLeave(Handler &handler, u32 playerId);
     bool onReceiveComment(u32 playerId, u32 messageId);
     bool onRoomStart(u32 playerId, u32 gamemode);
     bool onReceiveTeamSelect(Handler &handler, u32 playerId, u32 teamId);
