@@ -105,7 +105,7 @@ void PadRollback::calc(u32 playerId) {
         RaceInputState inputState;
         inputState.accelerate = framePlayer.inputState.accelerate;
         inputState.brake = framePlayer.inputState.brake;
-        inputState.item = framePlayer.inputState.item;
+        inputState.item = false;
         inputState.drift = framePlayer.inputState.drift;
         inputState.brakeDrift = framePlayer.inputState.brakeDrift; // TODO check for 200cc
         System::RaceInputState::SetStickX(inputState, framePlayer.inputState.stickX);
