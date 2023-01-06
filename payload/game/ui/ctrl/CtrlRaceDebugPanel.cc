@@ -47,6 +47,11 @@ void WStringWriter::writePlayer(u32 playerId) {
     write("IV", *object->getVehiclePhysics()->internalVel());
     write("MRV", *object->getVehiclePhysics()->movingRoadVel());
     write("MWV", *object->getVehiclePhysics()->movingWaterVel());
+    write(L"MTB/MBPB/TZB");
+    for (u32 i = 0; i < 3; i++) {
+        write(L" %d", object->getTimeBeforeBoostEnd(i * 2));
+    }
+    write(L"\n");
 }
 
 void WStringWriter::writeOnline(u32 playerId) {
@@ -75,6 +80,11 @@ void WStringWriter::writeOnline(u32 playerId) {
     }
     write("EV", *object->getVehiclePhysics()->externalVel());
     write("IV", *object->getVehiclePhysics()->internalVel());
+    write(L"MTB/MBPB/TZB");
+    for (u32 i = 0; i < 3; i++) {
+        write(L" %d", object->getTimeBeforeBoostEnd(i * 2));
+    }
+    write(L"\n");
 }
 
 void WStringWriter::write(const wchar_t *restrict format, ...) {
