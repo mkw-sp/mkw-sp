@@ -1,5 +1,6 @@
 #pragma once
 
+#include "game/kart/KartBoost.hh"
 #include "game/kart/KartObjectProxy.hh"
 
 namespace Kart {
@@ -11,6 +12,7 @@ class KartMove : public KartObjectProxy {
 public:
     f32 hardSpeedLimit() const;
     const Vec3 *internalVelDir() const;
+    void activateBoost(u8 type, s16 duration);
     void activateMega();
     void REPLACED(calcBlink)();
     REPLACE void calcBlink();
@@ -27,7 +29,9 @@ private:
     Vec3 m_rawUp;
     u8 _050[0x074 - 0x050];
     Vec3 m_internalVelDir;
-    u8 _080[0x1a8 - 0x080];
+    u8 _080[0x108 - 0x080];
+    KartBoost m_boost;
+    u8 _12c[0x1a8 - 0x12c];
     s16 m_timeBeforeBlinkEnd;
     u8 _1aa[0x234 - 0x1aa];
     u16 m_timeInRespawn;

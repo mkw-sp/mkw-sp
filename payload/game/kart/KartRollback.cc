@@ -59,8 +59,18 @@ void KartRollback::calcLate() {
         if (m_frames.full()) {
             m_frames.pop_front();
         }
-        m_frames.push_back(Frame{time, getTimeBeforeRespawn(), static_cast<s16>(getTimeInRespawn()),
-                *getPos(), *getMainRot(), getInternalSpeed()});
+        s16 timeBeforeRespawn = getTimeBeforeRespawn();
+        s16 timeInRespawn = getTimeInRespawn();
+        std::array<s16, 3> timesBeforeBoostEnd;
+        for (u32 i = 0; i < 3; i++) {
+            timesBeforeBoostEnd[i] = getTimeBeforeBoostEnd(i * 2);
+        }
+        Vec3 pos = *getPos();
+        Quat mainRot = *getMainRot();
+        f32 internalSpeed = getInternalSpeed();
+        Frame frame{time, timeBeforeRespawn, timeInRespawn, timesBeforeBoostEnd, pos, mainRot,
+                internalSpeed};
+        m_frames.push_back(std::move(frame));
     }
 }
 
@@ -74,10 +84,15 @@ std::optional<KartRollback::Frame> KartRollback::serverFrame(u32 playerId) const
     const auto &player = serverFrame->players[playerId];
     s16 timeBeforeRespawn = player.timeBeforeRespawn;
     s16 timeInRespawn = player.timeInRespawn;
+    std::array<s16, 3> timesBeforeBoostEnd;
+    for (u32 i = 0; i < 3; i++) {
+        timesBeforeBoostEnd[i] = player.timesBeforeBoostEnd[i];
+    }
     Vec3 pos(player.pos);
     Quat mainRot(player.mainRot);
     f32 internalSpeed = player.internalSpeed;
-    return {{time, timeBeforeRespawn, timeInRespawn, pos, mainRot, internalSpeed}};
+    return {{time, timeBeforeRespawn, timeInRespawn, timesBeforeBoostEnd, pos, mainRot,
+            internalSpeed}};
 }
 
 void KartRollback::handleFutureFrame(const Frame &frame) {
@@ -98,6 +113,7 @@ void KartRollback::handlePastFrame(const Frame &frame) {
     if (rollbackFrame && rollbackFrame->time == frame.time) {
         s16 timeBeforeRespawn = frame.timeBeforeRespawn;
         s16 timeInRespawn = frame.timeInRespawn;
+        auto timesBeforeBoostEnd = frame.timesBeforeBoostEnd;
         for (u32 i = 0; i < m_frames.count(); i++) {
             if (timeBeforeRespawn) {
                 if (m_frames[i]->timeInRespawn) {
@@ -122,6 +138,12 @@ void KartRollback::handlePastFrame(const Frame &frame) {
             } else {
                 m_frames[i]->timeBeforeRespawn = 0;
                 m_frames[i]->timeInRespawn = 0;
+            }
+            for (u32 j = 0; j < 3; j++) {
+                m_frames[i]->timesBeforeBoostEnd[j] = timesBeforeBoostEnd[j];
+                if (timesBeforeBoostEnd[j]) {
+                    timesBeforeBoostEnd[j]--;
+                }
             }
         }
         if (!!rollbackFrame->timeBeforeRespawn == !!frame.timeBeforeRespawn &&
@@ -164,6 +186,18 @@ void KartRollback::applyFrame(const Frame &frame) {
             // TODO WipeControl
         } else if (kartMove->m_timeInRespawn) {
             kartMove->m_timeInRespawn = 140;
+        }
+    }
+    for (u32 i = 0; i < 3; i++) {
+        if (frame.timesBeforeBoostEnd[i]) {
+            if (kartMove->m_boost.m_timesBeforeEnd[i * 2]) {
+                kartMove->m_boost.m_timesBeforeEnd[i * 2] = frame.timesBeforeBoostEnd[i];
+            } else {
+                kartMove->activateBoost(i * 2, frame.timesBeforeBoostEnd[i]);
+            }
+        } else {
+            kartMove->m_boost.m_timesBeforeEnd[i * 2] = 0;
+            kartMove->m_boost.m_types &= ~(1 << (i * 2));
         }
     }
     f32 t = 0.25f;

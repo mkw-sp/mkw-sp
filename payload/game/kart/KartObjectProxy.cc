@@ -26,4 +26,8 @@ u16 KartObjectProxy::getTimeInRespawn() const {
     return m_accessor->move->m_timeInRespawn;
 }
 
+s16 KartObjectProxy::getTimeBeforeBoostEnd(u8 type) const {
+    return m_accessor->move->m_boost.m_timesBeforeEnd[type];
+}
+
 } // namespace Kart

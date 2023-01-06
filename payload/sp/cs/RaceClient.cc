@@ -160,6 +160,15 @@ bool RaceClient::isFrameValid(const RaceServerFrame &frame) {
             return false;
         }
 
+        if (frame.players[i].timesBeforeBoostEnd_count != 3) {
+            return false;
+        }
+        for (u32 j = 0; j < 3; j++) {
+            if (frame.players[i].timesBeforeBoostEnd[j] > 180) {
+                return false;
+            }
+        }
+
         if (!IsVec3Valid(frame.players[i].pos)) {
             return false;
         }

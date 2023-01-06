@@ -35,12 +35,13 @@ message RaceServerFrame {
     }
 
     message Player {
-        required InputState inputState        = 1;
-        required uint32     timeBeforeRespawn = 2;
-        required uint32     timeInRespawn     = 3;
-        required Vec3       pos               = 4;
-        required Quat       mainRot           = 5;
-        required float      internalSpeed     = 6;
+        required InputState inputState          = 1;
+        required uint32     timeBeforeRespawn   = 2;
+        required uint32     timeInRespawn       = 3;
+        repeated uint32     timesBeforeBoostEnd = 4;
+        required Vec3       pos                 = 5;
+        required Quat       mainRot             = 6;
+        required float      internalSpeed       = 7;
     }
 
     required uint32 time       = 1;

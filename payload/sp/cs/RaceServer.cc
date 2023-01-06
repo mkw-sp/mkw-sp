@@ -103,6 +103,10 @@ void RaceServer::calcWrite() {
         auto *object = Kart::KartObjectManager::Instance()->object(i);
         frame.players[i].timeBeforeRespawn = object->getTimeBeforeRespawn();
         frame.players[i].timeInRespawn = object->getTimeInRespawn();
+        frame.players[i].timesBeforeBoostEnd_count = 3;
+        for (u32 j = 0; j < 3; j++) {
+            frame.players[i].timesBeforeBoostEnd[j] = object->getTimeBeforeBoostEnd(j * 2);
+        }
         frame.players[i].pos = *object->getPos();
         frame.players[i].mainRot = *object->getMainRot();
         frame.players[i].internalSpeed = object->getInternalSpeed();

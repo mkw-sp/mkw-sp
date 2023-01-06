@@ -43,6 +43,7 @@ public:
     f32 getInternalSpeed() const;
     s16 getTimeBeforeRespawn() const;
     u16 getTimeInRespawn() const;
+    s16 getTimeBeforeBoostEnd(u8 type) const;
 
 protected:
     KartAccessor *m_accessor;

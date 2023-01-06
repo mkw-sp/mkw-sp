@@ -21,6 +21,7 @@ private:
         u32 time;
         s16 timeBeforeRespawn;
         s16 timeInRespawn;
+        std::array<s16, 3> timesBeforeBoostEnd;
         Vec3 pos;
         Quat mainRot;
         f32 internalSpeed;
