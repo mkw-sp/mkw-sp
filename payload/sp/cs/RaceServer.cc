@@ -14,15 +14,7 @@ void RaceServer::destroyInstance() {
 }
 
 void RaceServer::calcRead() {
-    if (System::RaceManager::Instance()->hasReachedStage(System::RaceManager::Stage::Countdown)) {
-        for (u32 i = 0; i < m_playerCount; i++) {
-            // TODO 2P
-            auto &framePlayer = m_clients[m_players[i].clientId]->frame->players[0];
-            framePlayer.inputState.item = false;
-            framePlayer.inputState.trick = 0;
-        }
-    }
-
+    std::bitset<12> stacked;
     ConnectionGroup connectionGroup(*this);
 
     while (true) {
@@ -42,7 +34,7 @@ void RaceServer::calcRead() {
         u32 clientId = connectionGroup.clientId(read->index);
         assert(m_clients[clientId]);
         if (isFrameValid(frame, clientId)) {
-            if (m_clients[clientId]->frame) {
+            if (stacked[clientId]) {
                 // TODO 2P
                 auto &framePlayer = frame.players[0];
                 auto &prevFramePlayer = m_clients[clientId]->frame->players[0];
@@ -54,6 +46,7 @@ void RaceServer::calcRead() {
                 }
             }
             m_clients[clientId]->frame = frame;
+            stacked[clientId] = true;
         }
     }
 
