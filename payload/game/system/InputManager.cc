@@ -75,6 +75,17 @@ void GCPad::process(RaceInputState &raceInputState, UIInputState &uiInputState) 
     REPLACED(process)(raceInputState, uiInputState);
 
     processSimplified(raceInputState, raceInputState.rawButtons & PAD_BUTTON_Y);
+
+    auto *inputBuffer = InputManager::Instance()->gcInputBuffer(m_chan);
+    if (inputBuffer->full()) {
+        auto tmp = *inputBuffer->front();
+        inputBuffer->pop_front();
+        inputBuffer->push_back(std::move(raceInputState));
+        raceInputState = tmp;
+    } else {
+        inputBuffer->push_back(std::move(raceInputState));
+        RaceInputState::Reset(raceInputState);
+    }
 }
 
 const Pad *PadProxy::pad() const {
@@ -193,6 +204,10 @@ GhostPadProxy *InputManager::extraGhostProxy(u32 i) {
     return &m_extraGhostProxies[i];
 }
 
+SP::CircularBuffer<RaceInputState, InputManager::Delay> *InputManager::gcInputBuffer(u32 i) {
+    return &m_gcInputBuffers[i];
+}
+
 void InputManager::setExtraUserPad(u32 i) {
     m_extraGhostProxies[i].PadProxy::setPad(&m_extraUserPads[i], nullptr);
 }
@@ -291,6 +306,7 @@ InputManager *InputManager::CreateInstance() {
         s_instance->m_extraGhostProxies[i].PadProxy::setPad(&s_instance->m_dummyPad, nullptr);
     }
     s_instance->m_rollbacks = new PadRollback[12];
+    s_instance->m_gcInputBuffers = new SP::CircularBuffer<RaceInputState, Delay>[4];
 
     return s_instance;
 }

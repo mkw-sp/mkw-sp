@@ -144,7 +144,9 @@ protected:
     REPLACE void process(RaceInputState &raceInputState, UIInputState &uiInputState) override;
 
 private:
-    u8 _90[0xb0 - 0x90];
+    u8 _90[0x9c - 0x90];
+    s32 m_chan;
+    u8 _a0[0xb0 - 0xa0];
 };
 static_assert(sizeof(GCPad) == 0xb0);
 
@@ -243,11 +245,14 @@ private:
 
 class InputManager {
 public:
+    static const u32 Delay = 3;
+
     bool isMirror() const;
     GhostPadProxy *ghostProxy(u32 i);
     UserPadProxy *userProxy(u32 i);
     UserPad *extraUserPad(u32 i);
     GhostPadProxy *extraGhostProxy(u32 i);
+    SP::CircularBuffer<RaceInputState, Delay> *gcInputBuffer(u32 i);
 
     void setExtraUserPad(u32 i);
     void setGhostPad(u32 i, const void *ghostInputs, bool driftIsAuto);
@@ -286,9 +291,10 @@ private:
     GhostPad *m_extraGhostPads; // Added
     GhostPadProxy *m_extraGhostProxies; // Added
     PadRollback *m_rollbacks; // Added
+    SP::CircularBuffer<RaceInputState, Delay> *m_gcInputBuffers; // Added
 
     static InputManager *s_instance;
 };
-static_assert(sizeof(InputManager) == 0x415c + sizeof(void *) * 4);
+static_assert(sizeof(InputManager) == 0x415c + sizeof(void *) * 5);
 
 } // namespace System
