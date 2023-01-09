@@ -131,6 +131,10 @@ static void Init() {
     }
     Console::Print(" done.\n");
 
+    Console::Print("Initializing global settings...");
+    GlobalSettings::Init();
+    Console::Print(" done.\n");
+
     Console::Print("Initializing log file...");
     LogFile_Init();
     Console::Print(" done.\n");
@@ -142,10 +146,6 @@ static void Init() {
     //     Built Mar  2 2022 at 23:22:40, GCC 10.2.0
     //     --------------------------------
     Host_PrintMkwSpInfo(OSReport);
-
-    Console::Print("Initializing global settings...");
-    GlobalSettings::Init();
-    Console::Print(" done.\n");
 
     Console::Print("Initializing concurrent decompressor...");
     Storage::DecompLoader::Init();

@@ -6,10 +6,12 @@ namespace SP::GlobalSettings {
 
 enum class Setting {
     BootSection,
+    LogFileRetention,
 };
 
 enum class Category {
     UI,
+    Miscellaneous,
 };
 
 typedef Settings::Group<Category> Group;
@@ -40,6 +42,11 @@ namespace SP::Settings {
 
 template <>
 struct Helper<GlobalSettings::Setting, GlobalSettings::Setting::BootSection> {
+    using type = u32;
+};
+
+template <>
+struct Helper<GlobalSettings::Setting, GlobalSettings::Setting::LogFileRetention> {
     using type = u32;
 };
 

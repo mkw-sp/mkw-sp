@@ -21,6 +21,16 @@ const Entry entries[] = {
         .valueMessageIds = nullptr,
         .valueExplanationMessageIds = nullptr,
     },
+    [static_cast<u32>(Setting::LogFileRetention)] = {
+        .category = Category::Miscellaneous,
+        .name = magic_enum::enum_name(Setting::LogFileRetention),
+        .messageId = 0,
+        .defaultValue = 7,
+        .valueCount = 0,
+        .valueNames = nullptr,
+        .valueMessageIds = nullptr,
+        .valueExplanationMessageIds = nullptr,
+    },
 };
 
 static Settings instance{};
