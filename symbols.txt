@@ -120,6 +120,7 @@
 0x800a2a90 _ZN4nw4r3snd18SoundArchivePlayer14invalidateDataEPKvS3_
 0x800a4fb0 _ZN4nw4r3snd14StrmFileReader17readStrmTrackInfoEPvj
 0x800aef80 ut_List_Append
+0x800AF110 ut_List_Remove
 0x800afea0 _ZN4nw4r2ut8IOStream5vf_18Ev
 0x800afeb0 _ZN4nw4r2ut8IOStream5vf_1cEv
 0x800afec0 _ZN4nw4r2ut8IOStream5vf_20Ev
@@ -431,6 +432,7 @@
 0x80226dc0 EGG_ExpHeap_InitAlloc
 0x802289DC g3dutil_SearchSamplers
 0x80229814 EGG_Heap_alloc
+0x80229ADC _ZN3EGG4Heap15findContainHeapEPKv
 0x80229b84 EGG_Heap_free
 0x80229dcc new
 0x80229dcc _Znwj

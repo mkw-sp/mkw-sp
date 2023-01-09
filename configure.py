@@ -1328,6 +1328,7 @@ code_in_files = {
         os.path.join('payload', 'egg', 'core', 'eggColorFader.c'),
         os.path.join('payload', 'egg', 'core', 'eggDisplay.S'),
         os.path.join('payload', 'egg', 'core', 'eggDisplay.cc'),
+        os.path.join('payload', 'egg', 'core', 'eggDisposer.cc'),
         os.path.join('payload', 'egg', 'core', 'eggDVDRipper.cc'),
         os.path.join('payload', 'egg', 'core', 'eggEffectCreator.S'),
         os.path.join('payload', 'egg', 'core', 'eggG3dUtil.S'),

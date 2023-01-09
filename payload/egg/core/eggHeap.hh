@@ -1,8 +1,13 @@
 #pragma once
 
 #include <Common.hh>
+extern "C" {
+#include <nw4r/ut/ut_list.h>
+}
 
 namespace EGG {
+
+class Disposer;
 
 class Heap {
 public:
@@ -18,8 +23,19 @@ public:
     virtual void vf_24() = 0;
     virtual void vf_28() = 0;
 
+    static Heap *findContainHeap(const void *block);
+
+    void appendDisposer(Disposer *disposer) {
+        ut_List_Append(&m_disposers, disposer);
+    }
+    void removeDisposer(Disposer *disposer) {
+        ut_List_Remove(&m_disposers, disposer);
+    }
+
 private:
-    u8 _04[0x38 - 0x04];
+    u8 _04[0x28 - 0x04];
+    ut_List m_disposers;
+    u8 _34[0x38 - 0x34];
 };
 static_assert(sizeof(Heap) == 0x38);
 
