@@ -45,7 +45,8 @@ static void my_KartObjectManager_createInstance(void) {
     if (s_raceConfig->raceScenario.playerCount > 2) {
         isVanilla = false;
     }
-    SPFooter_OnRaceStart(courseSha1, speedModIsEnabled, isVanilla);
+
+    SPFooter_OnRaceStart(courseSha1, speedModIsEnabled, isVanilla, s_raceConfig->raceScenario.modeFlags);
 
     s_kartObjectManager = new(sizeof(KartObjectManager));
     KartObjectManager_ct(s_kartObjectManager);

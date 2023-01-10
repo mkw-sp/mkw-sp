@@ -9,6 +9,9 @@ extern "C" {
 #include <sp/cs/RaceManager.hh>
 #include <sp/cs/RoomManager.hh>
 
+#include <game/system/RaceConfig.hh>
+#include <game/system/SaveManager.hh>
+
 namespace EGG {
 
 bool SceneManager::s_dolphinIsUnavailable = false;
@@ -76,7 +79,21 @@ void SceneManager::reinitCurrentScene() {
     if (InitDolphinSpeed()) {
         PushDolphinSpeed(800);
     }
-    REPLACED(reinitCurrentScene)();
+
+    auto *rc = System::RaceConfig::Instance();
+    auto *saveManager = System::SaveManager::Instance();
+    auto setting = saveManager->getSetting<SP::ClientSettings::Setting::TAMirror>();
+    // This is a hack to get mirror TTs working. Restarting a race from mirror to non mirror causes graphical bugs. Opted to reload the entire track as a simple fix.
+    if (rc->raceScenario().mirror && (setting == SP::ClientSettings::TAMirror::Disable)) {
+        Scene *parent = currScene->getParent();
+        u32 sceneID = currScene->getSceneID();
+        destroyScene(currScene);
+        createScene(sceneID, parent);
+    }
+    else {
+        REPLACED(reinitCurrentScene)();
+    }
+
     if (InitDolphinSpeed()) {
         PopDolphinSpeed();
     }

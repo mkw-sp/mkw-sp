@@ -5,6 +5,7 @@ extern "C" {
 #include "game/system/SaveManager.h"
 }
 #include "game/system/SaveManager.hh"
+#include <sp/settings/ClientSettings.hh>
 
 extern "C" {
 #include <vendor/libhydrogen/hydrogen.h>
@@ -109,6 +110,19 @@ void RaceConfig::ConfigurePlayers(Scenario &scenario, u32 screenCount) {
         scenario.screenPlayerIds[screenId] = i;
 
         screenId++;
+    }
+}
+
+void RaceConfig::initRace() {
+    REPLACED(initRace)();
+    auto *saveManager = System::SaveManager::Instance();
+    auto setting = saveManager->getSetting<SP::ClientSettings::Setting::TAMirror>();
+    // Switch the race to mirror if the mirror TT setting is enabled.
+    if (m_raceScenario.gameMode == GameMode::TimeAttack && setting == SP::ClientSettings::TAMirror::Enable) {
+        m_raceScenario.mirror = true;
+    }
+    else if (m_raceScenario.gameMode == GameMode::TimeAttack && setting == SP::ClientSettings::TAMirror::Disable) {
+        m_raceScenario.mirror = false;
     }
 }
 

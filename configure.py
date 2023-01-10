@@ -1419,6 +1419,7 @@ code_in_files = {
         os.path.join('payload', 'game', 'system', 'FatalScene.c'),
         os.path.join('payload', 'game', 'system', 'GhostFile.c'),
         os.path.join('payload', 'game', 'system', 'GhostFile.cc'),
+        os.path.join('payload', 'game', 'system', 'GhostWriter.cc'),
         os.path.join('payload', 'game', 'system', 'HBMManager.cc'),
         os.path.join('payload', 'game', 'system', 'HomeButton.S'),
         os.path.join('payload', 'game', 'system', 'HomeButton.c'),

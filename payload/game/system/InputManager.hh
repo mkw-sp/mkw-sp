@@ -154,7 +154,8 @@ public:
     ~GhostPad() override;
 
 protected:
-    void process(RaceInputState &raceInputState, UIInputState &uiInputState) override;
+    void REPLACED(process)(RaceInputState &raceInputState, UIInputState &uiInputState);
+    REPLACE void process(RaceInputState &raceInputState, UIInputState &uiInputState) override;
 
 private:
     u8 _90[0xa8 - 0x90];
