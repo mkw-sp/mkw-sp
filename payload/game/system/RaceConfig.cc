@@ -1,10 +1,11 @@
 #include "RaceConfig.hh"
 
 #include "game/system/InputManager.hh"
+#include "game/system/SaveManager.hh"
+
 extern "C" {
 #include "game/system/SaveManager.h"
 }
-#include "game/system/SaveManager.hh"
 #include <sp/settings/ClientSettings.hh>
 
 extern "C" {
@@ -88,8 +89,8 @@ void RaceConfig::ConfigurePlayers(Scenario &scenario, u32 screenCount) {
                 scenario.players[i].controllerId = rawGhostHeader->controllerId;
             } else {
                 inputManager->setGhostPad(i, rawGhostFile + 0x88, false);
-                scenario.players[i].characterId = 0; // Mario
-                scenario.players[i].vehicleId = 1; // Standard Kart M
+                scenario.players[i].characterId = 0;  // Mario
+                scenario.players[i].vehicleId = 1;    // Standard Kart M
                 scenario.players[i].controllerId = 0; // Wii Wheel
             }
         } else {
@@ -118,10 +119,11 @@ void RaceConfig::initRace() {
     auto *saveManager = System::SaveManager::Instance();
     auto setting = saveManager->getSetting<SP::ClientSettings::Setting::TAMirror>();
     // Switch the race to mirror if the mirror TT setting is enabled.
-    if (m_raceScenario.gameMode == GameMode::TimeAttack && setting == SP::ClientSettings::TAMirror::Enable) {
+    if (m_raceScenario.gameMode == GameMode::TimeAttack &&
+            setting == SP::ClientSettings::TAMirror::Enable) {
         m_raceScenario.mirror = true;
-    }
-    else if (m_raceScenario.gameMode == GameMode::TimeAttack && setting == SP::ClientSettings::TAMirror::Disable) {
+    } else if (m_raceScenario.gameMode == GameMode::TimeAttack &&
+            setting == SP::ClientSettings::TAMirror::Disable) {
         m_raceScenario.mirror = false;
     }
 }

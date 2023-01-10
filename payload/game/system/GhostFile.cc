@@ -51,6 +51,7 @@ bool SPFooter::checkSize(u32 size) const {
     case 1:
     case 2:
     case 3:
+    case 4:
         return size == 0x48;
     case VERSION:
         return size == sizeof(SPFooter);

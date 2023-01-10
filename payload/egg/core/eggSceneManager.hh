@@ -23,7 +23,7 @@ private:
     static void PopDolphinSpeed();
 
     u8 _00[0x0c - 0x00];
-    Scene *currScene;
+    Scene *m_currScene;
     u8 _10[0x2c - 0x10];
 
     static bool s_dolphinIsUnavailable;

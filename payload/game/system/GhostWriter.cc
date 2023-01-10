@@ -1,9 +1,10 @@
 #include "GhostWriter.hh"
-#include "RaceConfig.hh"
-#include "InputManager.hh"
+
+#include "game/system/InputManager.hh"
+#include "game/system/RaceConfig.hh"
 
 extern "C" {
-    #include "revolution.h"
+#include <revolution.h>
 }
 
 namespace System {
@@ -17,18 +18,16 @@ void GhostWriter::writeFrame(u16 rawButtons, u8 rawStickX, u8 rawStickY, u32 raw
     if (rc->raceScenario().mirror) {
         if (rawStickX < neutral) {
             newStickX = neutral + (neutral - rawStickX);
-        }
-        else if (rawStickX > neutral) {
+        } else if (rawStickX > neutral) {
             newStickX = neutral - (rawStickX - neutral);
         }
         if (rawTrick == System::Trick::Left) {
             newTrick = System::Trick::Right;
-        }
-        else if (rawTrick == System::Trick::Right) {
+        } else if (rawTrick == System::Trick::Right) {
             newTrick = System::Trick::Left;
         }
-    } 
+    }
     REPLACED(writeFrame)(rawButtons, newStickX, rawStickY, newTrick);
 }
 
-}
+} // namespace System

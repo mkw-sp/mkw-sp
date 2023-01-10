@@ -17,23 +17,23 @@ public:
     virtual void incoming_childDestroy();
     virtual void outgoing_childCreate();
 
-    Scene *getParent() {
-        return parent;
+    Scene *getParent() const {
+        return m_parent;
     }
 
-    Scene *getChild() {
-        return child;
+    Scene *getChild() const {
+        return m_child;
     }
 
-    u32 getSceneID() {
-        return sceneID;
+    u32 getSceneID() const {
+        return m_sceneID;
     }
 
 private:
     u8 _04[0x20 - 0x04];
-    Scene *parent;
-    Scene *child;
-    u32 sceneID;
+    Scene *m_parent;
+    Scene *m_child;
+    u32 m_sceneID;
     u8 _2c[0x30 - 0x2c];
 };
 static_assert(sizeof(Scene) == 0x30);
