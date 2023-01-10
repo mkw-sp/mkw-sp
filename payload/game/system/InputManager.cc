@@ -1,6 +1,6 @@
 #include "InputManager.hh"
 
-#include "RaceConfig.hh"
+#include "game/system/RaceConfig.hh"
 
 #include "game/gfx/CameraManager.hh"
 #include "game/system/RaceManager.hh"

@@ -6,11 +6,12 @@
 extern "C" {
 #include "game/system/SaveManager.h"
 }
-#include <sp/settings/ClientSettings.hh>
 
 extern "C" {
 #include <vendor/libhydrogen/hydrogen.h>
 }
+
+#include <sp/settings/ClientSettings.hh>
 
 namespace System {
 
