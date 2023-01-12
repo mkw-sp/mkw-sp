@@ -87,6 +87,7 @@ static void InvalidateAllTLBEntries() {
     for (u32 entry = 0; entry < PAGE_SIZE * 64; entry += PAGE_SIZE) {
         asm("tlbie %0, 0" : : "r"(entry));
     }
+    asm("tlbsync");
 }
 
 static void InitPageTable() {
