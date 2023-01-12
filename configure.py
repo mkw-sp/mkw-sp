@@ -1336,6 +1336,7 @@ code_in_files = {
         os.path.join('payload', 'egg', 'core', 'eggSystem.S'),
         os.path.join('payload', 'egg', 'core', 'eggSystem.c'),
         os.path.join('payload', 'egg', 'core', 'eggSystem.cc'),
+        os.path.join('payload', 'egg', 'core', 'eggThread.cc'),
         os.path.join('payload', 'egg', 'core', 'eggXfb.cc'),
         os.path.join('payload', 'egg', 'core', 'eggXfbManager.cc'),
         os.path.join('payload', 'egg', 'util', 'eggException.S'),
