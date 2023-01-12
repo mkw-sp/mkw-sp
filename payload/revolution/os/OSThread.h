@@ -1,6 +1,8 @@
 #pragma once
 
-#include <Common.h>
+#include <revolution/os.h>
+
+#define OS_THREAD_STACK_TOP_MAGIC 0xDEADBABE
 
 typedef struct {
     u8 _0[0x8 - 0x0];
@@ -9,7 +11,9 @@ typedef struct {
 typedef struct {
     u8 _000[0x2d8 - 0x000];
     void *val;
-    u8 _2dc[0x318 - 0x2dc];
+    u8 _2dc[0x308 - 0x2dc];
+    u32 *stackTop;
+    u8 _30c[0x318 - 0x30c];
 } OSThread;
 static_assert(sizeof(OSThread) == 0x318);
 

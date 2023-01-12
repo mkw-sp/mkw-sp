@@ -455,6 +455,7 @@
 0x80242504 EGG_ConfigurationData_initMemory
 0x80242c18 EGG_TaskThread_request
 0x80242c18 _ZN3EGG10TaskThread7requestEPFvPvES1_S1_
+0x802435DC _ZN3EGG6Thread20switchThreadCallbackEP8OSThreadS2_
 0x80243d6c EGG_Video_configure
 0x802441ec _ZN3EGG3Xfb11CalcXfbSizeEtt
 
