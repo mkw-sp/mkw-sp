@@ -22,7 +22,9 @@ private:
     static void PushDolphinSpeed(u32 percent);
     static void PopDolphinSpeed();
 
-    u8 _00[0x2c - 0x00];
+    u8 _00[0x0c - 0x00];
+    Scene *m_currScene;
+    u8 _10[0x2c - 0x10];
 
     static bool s_dolphinIsUnavailable;
     static u32 s_dolphinSpeedStack[8];

@@ -191,6 +191,16 @@ const Entry entries[] = {
         .valueMessageIds = (u32[]) { 3413, 10072 },
         .valueExplanationMessageIds = (u32[]) { 10079, 10081 },
     },
+    [static_cast<u32>(Setting::TAMirror)] = {
+        .category = Category::TA,
+        .name = magic_enum::enum_name(Setting::TAMirror),
+        .messageId = 10355,
+        .defaultValue = static_cast<u32>(TAMirror::Disable),
+        .valueCount = magic_enum::enum_count<TAMirror>(),
+        .valueNames = magic_enum::enum_names<TAMirror>().data(),
+        .valueMessageIds = (u32[]) { 10356, 10357 },
+        .valueExplanationMessageIds = (u32[]) { 10358, 10359 },
+    },
     [static_cast<u32>(Setting::TAGhostSorting)] = {
         .category = Category::TA,
         .name = magic_enum::enum_name(Setting::TAGhostSorting),

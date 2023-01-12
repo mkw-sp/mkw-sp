@@ -1,5 +1,7 @@
 #include "InputManager.hh"
 
+#include "game/system/RaceConfig.hh"
+
 #include "game/gfx/CameraManager.hh"
 #include "game/system/RaceManager.hh"
 #include "game/system/SaveManager.hh"
@@ -75,6 +77,16 @@ void GCPad::process(RaceInputState &raceInputState, UIInputState &uiInputState) 
     REPLACED(process)(raceInputState, uiInputState);
 
     processSimplified(raceInputState, raceInputState.rawButtons & PAD_BUTTON_Y);
+}
+
+void GhostPad::process(RaceInputState &raceInputState, UIInputState &uiInputState) {
+    REPLACED(process)(raceInputState, uiInputState);
+    auto *rc = System::RaceConfig::Instance();
+    // Flips the inputs of ghosts whenever the mode is mirror
+    if (rc->raceScenario().mirror) {
+        raceInputState.stick.x *= -1;
+        raceInputState.SetTrick(raceInputState, raceInputState.trick); 
+    }
 }
 
 const Pad *PadProxy::pad() const {
