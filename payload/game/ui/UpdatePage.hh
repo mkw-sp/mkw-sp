@@ -54,8 +54,8 @@ private:
     H<MessagePage> m_onCheckOkFront{ this, &UpdatePage::onCheckOkFront };
     PageId m_replacement;
     State m_state;
-    OSThread m_thread;
     u8 m_stack[0x4000 /* 16 KiB */];
+    OSThread m_thread;
 };
 
 } // namespace UI

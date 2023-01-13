@@ -48,8 +48,8 @@ private:
 
     MenuInputManager m_inputManager;
     State m_state;
-    OSThread m_thread;
     u8 m_stack[0x1000 /* 4 KiB */];
+    OSThread m_thread;
     SP::Storage::StorageType m_type;
     u8 m_buffer[SP::Storage::BENCHMARK_BUFFER_SIZE];
     std::optional<SP::Storage::Throughputs> m_throughputs;
