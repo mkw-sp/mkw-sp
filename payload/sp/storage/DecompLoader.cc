@@ -24,8 +24,8 @@ struct StartInfo {
 
 static Exchange<StartInfo, Empty> startExchange;
 static Exchange<bool, s32> updateExchange;
-static OSThread thread;
 static u8 stack[0x2000 /* 8 KiB */];
+static OSThread thread;
 alignas(0x20) static u8 srcs[2][0x20000 /* 128 KiB */];
 
 static std::optional<FileHandle> Open(const char *path) {

@@ -83,8 +83,8 @@ static_assert(sizeof(DeviceEntry) == 0xc);
 static OSMutex mutex;
 static OSMessage message;
 static OSMessageQueue queue;
-static OSThread thread;
 static u8 stack[0x2000] = { 0 }; // 8 KiB
+static OSThread thread;
 static bool isInit;
 static s32 fd = -1;
 static UsbHandler *head = NULL;

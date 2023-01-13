@@ -9,8 +9,8 @@ namespace SP::Net {
 
 static Mutex mutex;
 static OSThreadQueue queue;
-static OSThread thread;
 static u8 stack[0x1000 /* 4 KiB */];
+static OSThread thread;
 static int res = INT_MIN;
 
 void *Alloc(s32 size) {

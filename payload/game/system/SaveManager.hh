@@ -174,8 +174,8 @@ private:
     u32 m_spLicenseCount; // Added
     SP::ClientSettings::Settings m_spLicenses[6]; // Added
     std::optional<u8> m_spCurrentLicense; // Added
-    OSThread m_ghostInitThread; // Added
     u8 m_ghostInitStack[0x8000 /* 32 KiB */]; // Added
+    OSThread m_ghostInitThread; // Added
     bool m_courseSHA1IsValid[32]; // Added
     u8 m_courseSHA1s[32][0x14]; // Added
 

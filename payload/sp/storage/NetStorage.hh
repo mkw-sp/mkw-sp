@@ -94,8 +94,8 @@ private:
     }
 
     Mutex m_mutex{};
-    OSThread m_thread;
     u8 m_stack[4096];
+    OSThread m_thread;
     std::optional<Net::SyncSocket> m_socket;
     File m_files[32];
     Dir m_dirs[32];

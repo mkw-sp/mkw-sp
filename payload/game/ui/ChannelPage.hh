@@ -50,8 +50,8 @@ private:
     MenuInputManager m_inputManager;
     PageId m_replacement;
     State m_state;
-    OSThread m_thread;
     u8 m_stack[0x6000 /* 24 KiB */];
+    OSThread m_thread;
 };
 
 } // namespace UI

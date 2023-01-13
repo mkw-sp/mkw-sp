@@ -96,8 +96,8 @@ private:
     std::array<u32, 9> m_databaseIds;
     std::array<std::array<std::unique_ptr<u8[]>, 3>, 9> m_buffers;
     OSThreadQueue m_queue;
-    OSThread m_thread;
     u8 m_stack[0x5000 /* 20 KiB */];
+    OSThread m_thread;
 };
 
 } // namespace UI
