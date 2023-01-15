@@ -2,9 +2,11 @@ on:
   push:
     paths:
       - tools/
+      - .github/workflows/build_tools.yml
   pull_request:
     paths:
       - tools/
+      - .github/workflows/build_tools.yml
 
 
 name: Build Tools
