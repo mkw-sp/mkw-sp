@@ -1,4 +1,11 @@
-on: [push, pull_request]
+on: 
+  push:
+    paths:
+      - tools/
+  pull_request:
+    paths:
+      - tools/
+
 
 name: Build Tools
 
