@@ -146,8 +146,17 @@ void CourseSelectPage::onRefocus() {
 
     auto *raceConfirmPage = section->page<PageId::RaceConfirm>();
     if (raceConfirmPage->hasConfirmed()) {
-        changeSection(SectionId::VSDemo, Anim::Next, 0.0f);
-        return;
+        auto menuScenario = System::RaceConfig::Instance()->menuScenario();
+
+        switch (menuScenario.gameMode) {
+            case System::RaceConfig::GameMode::OfflineBT:
+                changeSection(SectionId::BTDemo, Anim::Next, 0.0f);
+                break;
+            default:
+                changeSection(SectionId::VSDemo, Anim::Next, 0.0f);
+                break;
+        }
+
     }
 }
 
