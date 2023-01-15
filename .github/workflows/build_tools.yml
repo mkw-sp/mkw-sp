@@ -1,0 +1,33 @@
+on: [push, pull_request]
+
+name: Build Tools
+
+jobs:
+  build:
+    name: Build
+    strategy:
+      fail-fast: false
+      matrix:
+        tool:
+          - netstorageserver
+          - portfinder
+          - updateserver
+          - sign
+        os:
+          - windows-latest
+          - ubuntu-latest
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions-rs/cargo@v1
+        with:
+          use-cross: false
+          command: build
+          args: --manifest-path tools/${{ matrix.tool }}/Cargo.toml --release
+      - name: Upload result
+        uses: actions/upload-artifact@v3
+        with:
+          name: ${{ matrix.tool }}_${{ matrix.os }}
+          path: |
+            tools/${{ matrix.tool }}/target/release/${{ matrix.tool }}*
+            tools/${{ matrix.tool }}/target/release/${{ matrix.tool }}.d
