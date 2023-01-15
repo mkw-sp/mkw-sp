@@ -18,6 +18,7 @@ enum class PageId {
 
     AfterTaMenu = 0x21,
     AfterVsMenu = 0x22,
+    AfterBTMenu = 0x23,
     AfterMrMenu = 0x25,
     AfterTournamentMenu = 0x26,
     SendTournamentRecord = 0x2A,
@@ -27,6 +28,7 @@ enum class PageId {
     ResultRaceUpdate = 0x2f,
     ResultRaceTotal = 0x30,
     ResultTeamVSTotal = 0x32,
+    ResultTeamBTTotal = 0x33,
 
     CompetitionPersonalLeaderboard = 0x35,
 

@@ -11,6 +11,7 @@ public:
     static EnemyManager *Instance();
 
 private:
+    REPLACE static bool isOfflineBattle(void);
     bool REPLACED(hasCpus)() const;
     REPLACE bool hasCpus() const;
 

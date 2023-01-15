@@ -77,7 +77,7 @@ void RaceScene::calcSubsystems(s32 drift) {
                 Geo::ObjDirector::Instance()->calc();
             }
 
-            // Enemy::EnemyManager::Instance()->calc();
+            Enemy::EnemyManager::Instance()->calc();
             Race::DriverManager::Instance()->calc();
             Kart::KartObjectManager::Instance()->calc();
             Race::JugemManager::Instance()->calc();

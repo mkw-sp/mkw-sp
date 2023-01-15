@@ -1218,6 +1218,7 @@
 0x8072624c _ZN5Enemy9KartEnemy5isCpuEv
 0x8073942c _ZN5Enemy12EnemyManager4calcEv
 0x807397bc _ZNK5Enemy12EnemyManager7hasCpusEv
+0x80739740 _ZN5Enemy12EnemyManager15isOfflineBattleEv
 0x80745be4 Input_80745be4
 0x80745de4 Input_80745de4
 0x8074fe8c GlobeManager_dt

@@ -8,6 +8,10 @@ EnemyManager *EnemyManager::Instance() {
     return s_instance;
 }
 
+bool EnemyManager::isOfflineBattle() {
+    return false;
+}
+
 bool EnemyManager::hasCpus() const {
     if (SP::RoomManager::Instance()) {
         return false;
