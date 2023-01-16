@@ -4,10 +4,9 @@
 
 namespace Registry {
 
-// HACK: This prevents MKwii loading the red/blue
-// character differences, fixing missing thumbnails
-// in the character select screen.
-u32 isBattle() {
+// This disables trying to load red/blue thumbnails and models
+// for all the vehicles in the vehicle select screen
+u32 UseBattleRenders() {
     return false;
 }
 
