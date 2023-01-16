@@ -1439,6 +1439,7 @@
 0x80860acc getCharacterPane
 0x80860acc _ZN8Registry16GetCharacterPaneEj
 0x80860af0 _ZN8Registry11GetItemPaneEjj
+0x80860a8c _ZN8Registry8isBattleEv
 0x80863a9c DriverSound_init
 0x80868974 _ZN5Sound18DriverSoundManager15playSelectSoundEji
 0x80882b58 _ZN6Battle11CoinManager11calcScreensEv

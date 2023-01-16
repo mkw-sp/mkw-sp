@@ -7,6 +7,7 @@ namespace Registry {
 extern const char *courseFilenames[0x28];
 
 u32 GetCharacterMessageId(u32 characterId, bool resolveMiiNames);
+REPLACE u32 isBattle();
 
 const char *GetCharacterPane(u32 characterId);
 

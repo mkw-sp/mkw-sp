@@ -4,6 +4,13 @@
 
 namespace Registry {
 
+// HACK: This prevents MKwii loading the red/blue
+// character differences, fixing missing thumbnails
+// in the character select screen.
+u32 isBattle() {
+    return false;
+}
+
 const char *GetItemPane(u32 itemId, u32 count) {
     auto *saveManager = System::SaveManager::Instance();
     auto setting = saveManager->getSetting<SP::ClientSettings::Setting::VSMegaClouds>();
