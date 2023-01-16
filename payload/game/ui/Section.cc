@@ -263,6 +263,9 @@ void Section::addActivePage(PageId pageId) {
     std::pair<SectionId, PageId> deletions[] = {
         { SectionId::SingleChangeGhostData, PageId::CharacterSelect },
 
+        { SectionId::SingleSelectBTCourse, (PageId)0x78 },
+        { SectionId::SingleSelectBTCourse, (PageId)0x79 },
+
         { SectionId::OnlineSingle, (PageId)0x88 },
         { SectionId::OnlineSingle, PageId::GhostManager },
         { SectionId::OnlineSingle, (PageId)0x7f },
@@ -373,6 +376,7 @@ void Section::addPages(SectionId id) {
         { SectionId::SingleChangeGhostData, PageId::MissionTutorial},
 
         { SectionId::SingleSelectBTCourse, PageId::CourseSelect },
+        { SectionId::SingleSelectBTCourse, PageId::GhostManager },
 
         // Change Ghost Data
         { SectionId::SingleChangeGhostData, PageId::ReadingGhostData },
@@ -425,6 +429,7 @@ void Section::addActivePages(SectionId id) {
     std::pair<SectionId, PageId> additions[] = {
         // Change Ghost Data
         { SectionId::SingleChangeGhostData, PageId::TimeAttackTop },
+        { SectionId::SingleSelectBTCourse, PageId::CourseSelect },
 
         // Mission Mode
         { SectionId::SingleChangeMission, PageId::MissionLevelSelect },

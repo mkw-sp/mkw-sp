@@ -12,7 +12,12 @@ ResultTeamVSTotalPage::ResultTeamVSTotalPage() = default;
 ResultTeamVSTotalPage::~ResultTeamVSTotalPage() = default;
 
 PageId ResultTeamVSTotalPage::getReplacement() {
-    return PageId::AfterVsMenu;
+    auto raceScenario = System::RaceConfig::Instance()->raceScenario();
+    if (raceScenario.isBattle()) {
+        return PageId::AfterBTMenu;
+    } else {
+        return PageId::AfterVsMenu;
+    }
 }
 
 void ResultTeamVSTotalPage::onInit() {
