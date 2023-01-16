@@ -116,7 +116,7 @@ void TeamConfirmPage::onOkButtonFront([[maybe_unused]] PushButton *button,
         [[maybe_unused]] u32 localPlayerId) {
     auto &menuScenario = System::RaceConfig::Instance()->menuScenario();
     if (menuScenario.gameMode == System::RaceConfig::GameMode::OfflineVS) {
-        System::RaceConfig::Instance()->applyVSEngineClass();
+        System::RaceConfig::Instance()->applyEngineClass();
     }
 
     auto *section = SectionManager::Instance()->currentSection();

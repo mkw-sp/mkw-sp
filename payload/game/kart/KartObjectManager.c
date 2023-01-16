@@ -24,6 +24,7 @@ KartObjectManager *KartObjectManager_ct(KartObjectManager *this);
 static void my_KartObjectManager_createInstance(void) {
     switch (s_raceConfig->raceScenario.gameMode) {
     case GAME_MODE_OFFLINE_VS:
+    case GAME_MODE_BATTLE:
         speedModIsEnabled = vsSpeedModIsEnabled;
         break;
     case GAME_MODE_TIME_ATTACK:

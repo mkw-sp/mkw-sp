@@ -106,18 +106,19 @@ void MultiTopPage::onSettingsButtonSelect([[maybe_unused]] PushButton *button,
 void MultiTopPage::onVSButtonFront([[maybe_unused]] PushButton *button,
         [[maybe_unused]] u32 localPlayerId) {
     auto *saveManager = System::SaveManager::Instance();
-    auto setting = saveManager->getSetting<SP::ClientSettings::Setting::VSTeamSize>();
-    u32 maxTeamSize = setting == SP::ClientSettings::VSTeamSize::Six ? 6 :
-            static_cast<u32>(setting) + 1;
+    auto teamsizeSetting = saveManager->getSetting<SP::ClientSettings::Setting::VSTeamSize>();
+    u32 maxTeamSize = teamsizeSetting == SP::ClientSettings::TeamSize::Six ? 6 :
+            static_cast<u32>(teamsizeSetting) + 1;
 
     auto *context = SectionManager::Instance()->globalContext();
     u32 localPlayerCount = context->m_localPlayerCount;
 
-    System::RaceConfig::Instance()->applyVSEngineClass();
     auto &menuScenario = System::RaceConfig::Instance()->menuScenario();
     menuScenario.gameMode = System::RaceConfig::GameMode::OfflineVS;
-    menuScenario.cameraMode = 5;
     menuScenario.spMaxTeamSize = maxTeamSize;
+    menuScenario.cameraMode = 5;
+
+    System::RaceConfig::Instance()->applyEngineClass();
     for (u32 i = 0; i < localPlayerCount; i++) {
         menuScenario.players[i].type = System::RaceConfig::Player::Type::Local;
     }

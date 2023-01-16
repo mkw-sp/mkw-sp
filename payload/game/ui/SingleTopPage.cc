@@ -155,14 +155,16 @@ void SingleTopPage::onVSButtonFront([[maybe_unused]] PushButton *button,
     auto *context = SectionManager::Instance()->globalContext();
     context->m_matchCount = saveManager->getSetting<SP::ClientSettings::Setting::VSRaceCount>();
 
-    System::RaceConfig::Instance()->applyVSEngineClass();
     auto maxTeamSizeSetting = saveManager->getSetting<SP::ClientSettings::Setting::VSTeamSize>();
-    u32 maxTeamSize = maxTeamSizeSetting == SP::ClientSettings::VSTeamSize::Six ? 6 :
+    u32 maxTeamSize = maxTeamSizeSetting == SP::ClientSettings::TeamSize::Six ? 6 :
             static_cast<u32>(maxTeamSizeSetting) + 1;
+
     auto &menuScenario = System::RaceConfig::Instance()->menuScenario();
     menuScenario.gameMode = System::RaceConfig::GameMode::OfflineVS;
-    menuScenario.cameraMode = 5;
     menuScenario.spMaxTeamSize = maxTeamSize;
+    menuScenario.cameraMode = 5;
+
+    System::RaceConfig::Instance()->applyEngineClass();
     menuScenario.players[0].type = System::RaceConfig::Player::Type::Local;
     for (u32 i = 1; i < 12; i++) {
         menuScenario.players[i].type = System::RaceConfig::Player::Type::CPU;
@@ -189,10 +191,20 @@ void SingleTopPage::onVSButtonSelect([[maybe_unused]] PushButton *button,
 
 void SingleTopPage::onBTButtonFront([[maybe_unused]] PushButton *button,
         [[maybe_unused]] u32 localPlayerId) {
+    auto *saveManager = System::SaveManager::Instance();
+    auto *context = SectionManager::Instance()->globalContext();
+    context->m_matchCount = saveManager->getSetting<SP::ClientSettings::Setting::VSRaceCount>();
+
+    auto maxTeamSizeSetting = saveManager->getSetting<SP::ClientSettings::Setting::BTTeamSize>();
+    u32 maxTeamSize = maxTeamSizeSetting == SP::ClientSettings::TeamSize::Six ? 6 :
+            static_cast<u32>(maxTeamSizeSetting) + 1;
+
     auto &menuScenario = System::RaceConfig::Instance()->menuScenario();
-    menuScenario.engineClass = System::RaceConfig::EngineClass::CC50;
     menuScenario.gameMode = System::RaceConfig::GameMode::OfflineBT;
+    menuScenario.spMaxTeamSize = maxTeamSize;
     menuScenario.cameraMode = 5;
+
+    System::RaceConfig::Instance()->applyEngineClass();
     menuScenario.players[0].type = System::RaceConfig::Player::Type::Local;
     for (u32 i = 1; i < 12; i++) {
         menuScenario.players[i].type = System::RaceConfig::Player::Type::CPU;

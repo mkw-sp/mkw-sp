@@ -42,6 +42,13 @@ enum class Setting {
     VSVehicles,
     VSMegaClouds,
 
+    // Battle
+    BTTeamSize,
+    BTRaceCount,
+    BTCourseSelection,
+    BTClass,
+    BTVehicles,
+
     // Room
     RoomTeamSize,
     RoomTeamSelection,
@@ -73,10 +80,46 @@ enum class Category {
     Sound,
     TA,
     VS,
+    BT,
     Room,
     License,
     DebugOverlay,
 };
+
+// Shared in VS, BT, and/or Room
+enum class Classes {
+    Mixed,
+    CC150,
+    CC200,
+    Mirror,
+    CC50,
+    CC100,
+};
+
+enum class CourseSelection {
+    Choose,
+    Random,
+    InOrder,
+};
+
+enum class Vehicles {
+    All,
+    Karts,
+    Bikes,
+    InsideDrift,
+    OutsideDrift,
+    Optimal,
+    Random,
+};
+
+enum class TeamSize {
+    FFA,
+    Two,
+    Three,
+    Four,
+    Six,
+};
+//
 
 enum class DriftMode {
     Manual,
@@ -207,45 +250,6 @@ enum class TAGhostSound {
     All,
 };
 
-enum class VSTeamSize {
-    FFA,
-    Two,
-    Three,
-    Four,
-    Six,
-};
-
-enum class VSCourseSelection {
-    Choose,
-    Random,
-    InOrder,
-};
-
-enum class VSClass {
-    Mixed,
-    CC150,
-    Mirror,
-    CC200,
-};
-
-enum class VSVehicles {
-    All,
-    Karts,
-    Bikes,
-    InsideDrift,
-    OutsideDrift,
-    Optimal,
-    Random,
-};
-
-enum class RoomTeamSize {
-    FFA,
-    Two,
-    Three,
-    Four,
-    Six,
-};
-
 enum class RoomTeamSelection {
     Random,
     Host,
@@ -257,23 +261,6 @@ enum class RoomCourseSelection {
     InOrder,
     Host,
     Vote,
-};
-
-enum class RoomClass {
-    Mixed,
-    CC150,
-    Mirror,
-    CC200,
-};
-
-enum class RoomVehicles {
-    All,
-    Karts,
-    Bikes,
-    InsideDrift,
-    OutsideDrift,
-    Optimal,
-    Random,
 };
 
 enum class VSMegaClouds {
@@ -458,7 +445,7 @@ struct Helper<ClientSettings::Setting, ClientSettings::Setting::TAGhostSound> {
 
 template <>
 struct Helper<ClientSettings::Setting, ClientSettings::Setting::VSTeamSize> {
-    using type = SP::ClientSettings::VSTeamSize;
+    using type = SP::ClientSettings::TeamSize;
 };
 
 template <>
@@ -468,22 +455,47 @@ struct Helper<ClientSettings::Setting, ClientSettings::Setting::VSRaceCount> {
 
 template <>
 struct Helper<ClientSettings::Setting, ClientSettings::Setting::VSCourseSelection> {
-    using type = SP::ClientSettings::VSCourseSelection;
+    using type = SP::ClientSettings::CourseSelection;
 };
 
 template <>
 struct Helper<ClientSettings::Setting, ClientSettings::Setting::VSClass> {
-    using type = SP::ClientSettings::VSClass;
+    using type = SP::ClientSettings::Classes;
 };
 
 template <>
 struct Helper<ClientSettings::Setting, ClientSettings::Setting::VSVehicles> {
-    using type = SP::ClientSettings::VSVehicles;
+    using type = SP::ClientSettings::Vehicles;
+};
+
+template <>
+struct Helper<ClientSettings::Setting, ClientSettings::Setting::BTTeamSize> {
+    using type = SP::ClientSettings::TeamSize;
+};
+
+template <>
+struct Helper<ClientSettings::Setting, ClientSettings::Setting::BTRaceCount> {
+    using type = u32;
+};
+
+template <>
+struct Helper<ClientSettings::Setting, ClientSettings::Setting::BTCourseSelection> {
+    using type = SP::ClientSettings::CourseSelection;
+};
+
+template <>
+struct Helper<ClientSettings::Setting, ClientSettings::Setting::BTClass> {
+    using type = SP::ClientSettings::Classes;
+};
+
+template <>
+struct Helper<ClientSettings::Setting, ClientSettings::Setting::BTVehicles> {
+    using type = SP::ClientSettings::Vehicles;
 };
 
 template <>
 struct Helper<ClientSettings::Setting, ClientSettings::Setting::RoomTeamSize> {
-    using type = SP::ClientSettings::RoomTeamSize;
+    using type = SP::ClientSettings::TeamSize;
 };
 
 template <>
@@ -503,12 +515,12 @@ struct Helper<ClientSettings::Setting, ClientSettings::Setting::RoomCourseSelect
 
 template <>
 struct Helper<ClientSettings::Setting, ClientSettings::Setting::RoomClass> {
-    using type = SP::ClientSettings::RoomClass;
+    using type = SP::ClientSettings::Classes;
 };
 
 template <>
 struct Helper<ClientSettings::Setting, ClientSettings::Setting::RoomVehicles> {
-    using type = SP::ClientSettings::RoomVehicles;
+    using type = SP::ClientSettings::Vehicles;
 };
 
 template <>

@@ -152,7 +152,7 @@ void FriendMatchingPage::prepareStartServer() {
     auto *server = SP::RoomServer::Instance();
     if (server) {
         auto setting = server->getSetting<SP::ClientSettings::Setting::RoomTeamSize>();
-        if (setting != SP::ClientSettings::RoomTeamSize::FFA) {
+        if (setting != SP::ClientSettings::TeamSize::FFA) {
             auto *section = SectionManager::Instance()->currentSection();
             auto *globePage = section->page<PageId::Globe>();
             globePage->requestSpinClose();
@@ -174,7 +174,7 @@ void FriendMatchingPage::startClient() {
     auto *client = SP::RoomClient::Instance();
     if (client) {
         auto setting = client->getSetting<SP::ClientSettings::Setting::RoomTeamSize>();
-        if (setting == SP::ClientSettings::RoomTeamSize::FFA) {
+        if (setting == SP::ClientSettings::TeamSize::FFA) {
             auto *section = SectionManager::Instance()->currentSection();
             auto *driftSelectPage = section->page<PageId::DriftSelect>();
             driftSelectPage->setReplacementSection(static_cast<SectionId>(m_gamemode + 0x60));
@@ -190,7 +190,7 @@ void FriendMatchingPage::startServer() {
     auto *server = SP::RoomServer::Instance();
     if (server) {
         auto setting = server->getSetting<SP::ClientSettings::Setting::RoomTeamSize>();
-        if (setting == SP::ClientSettings::RoomTeamSize::FFA) {
+        if (setting == SP::ClientSettings::TeamSize::FFA) {
             changeSection(SectionId::VotingServer, Anim::Next, 0.0f);
         } else {
             push(PageId::OnlineTeamSelect, Anim::Next);

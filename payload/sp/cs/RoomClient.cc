@@ -302,7 +302,7 @@ std::optional<RoomClient::State> RoomClient::calcMain(Handler &handler) {
             return {};
         } else {
             auto setting = getSetting<SP::ClientSettings::Setting::RoomTeamSize>();
-            if (setting == SP::ClientSettings::RoomTeamSize::FFA) {
+            if (setting == SP::ClientSettings::TeamSize::FFA) {
                 return State::Select;
             } else {
                 return State::TeamSelect;

@@ -1278,6 +1278,26 @@
         "font": "regular",
         "string": "Enables Mirror in TTs",
     },
+    "10360": {
+        "font": "regular",
+        "string": "Battle",
+    },
+    "10361": {
+        "font": "regular",
+        "string": "Races are always 50cc.",
+    },
+    "10362": {
+        "font": "regular",
+        "string": "Races are always 100cc.",
+    },
+    "10363": {
+        "font": "regular",
+        "string": "50cc"
+    },
+    "10364": {
+        "font": "regular",
+        "string": "100cc"
+    },
     "20000": {
         "font": "regular",
         "string": "Online",

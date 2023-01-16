@@ -31,26 +31,44 @@ u8 (&RaceConfig::ghostBuffers())[2][11][0x2800] {
     return m_ghostBuffers;
 }
 
-void RaceConfig::applyVSEngineClass() {
-    m_menuScenario.engineClass = EngineClass::CC150;
-    m_menuScenario.mirror = false;
+void RaceConfig::applyEngineClass() {
+    auto *saveManager = SaveManager::Instance();
+    SP::ClientSettings::Classes setting;
+
+    switch (m_menuScenario.gameMode) {
+    case RaceConfig::GameMode::OfflineVS:
+        setting = saveManager->getSetting<SP::ClientSettings::Setting::VSClass>();
+        break;
+    case RaceConfig::GameMode::OfflineBT:
+        setting = saveManager->getSetting<SP::ClientSettings::Setting::BTClass>();
+        break;
+    default:
+        assert(false);
+    }
+
     m_menuScenario.mirrorRng = false;
+    m_menuScenario.mirror = false;
     vsSpeedModIsEnabled = false;
 
-    auto *saveManager = SaveManager::Instance();
-    auto setting = saveManager->getSetting<SP::ClientSettings::Setting::VSClass>();
     switch (setting) {
-    case SP::ClientSettings::VSClass::Mixed:
+    case SP::ClientSettings::Classes::Mixed:
         m_menuScenario.mirror = hydro_random_uniform(20) >= 17;
         m_menuScenario.mirrorRng = true;
         break;
-    case SP::ClientSettings::VSClass::CC150:
-        break;
-    case SP::ClientSettings::VSClass::Mirror:
+    case SP::ClientSettings::Classes::Mirror:
         m_menuScenario.mirror = true;
         break;
-    case SP::ClientSettings::VSClass::CC200:
+    case SP::ClientSettings::Classes::CC200:
         vsSpeedModIsEnabled = true;
+        break;
+    case SP::ClientSettings::Classes::CC150:
+        m_menuScenario.engineClass = EngineClass::CC150;
+        break;
+    case SP::ClientSettings::Classes::CC100:
+        m_menuScenario.engineClass = EngineClass::CC150;
+        break;
+    case SP::ClientSettings::Classes::CC50:
+        m_menuScenario.engineClass = EngineClass::CC150;
         break;
     }
 }
