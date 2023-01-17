@@ -264,22 +264,27 @@ void CourseSelectPage::onBackConfirm([[maybe_unused]] s32 choice,
 void CourseSelectPage::onBackCommon(f32 delay) {
     auto *section = SectionManager::Instance()->currentSection();
     auto sectionId = section->id();
+    u32 backMessageId;
 
     if (Section::HasRoomClient(sectionId)) {
-
-    } else if (sectionId == SectionId::SingleSelectVSCourse ||
-            sectionId == SectionId::SingleSelectBTCourse) {
-        auto *yesNoPage = section->page<PageId::YesNoPopup>();
-        yesNoPage->reset();
-        yesNoPage->setWindowMessage(3470, nullptr);
-        yesNoPage->configureButton(0, 2002, nullptr, Anim::None, &m_onBackConfirm);
-        yesNoPage->configureButton(1, 2003, nullptr, Anim::None, nullptr);
-        yesNoPage->setDefaultChoice(1);
-        push(PageId::YesNoPopup, Anim::Next);
+        return;
+    } else if (sectionId == SectionId::SingleSelectVSCourse) {
+        backMessageId = 3470;
+    } else if (sectionId == SectionId::SingleSelectBTCourse) {
+        backMessageId = 3471;
     } else {
         m_replacement = PageId::DriftSelect;
         startReplace(Anim::Prev, delay);
+        return;
     }
+
+    auto *yesNoPage = section->page<PageId::YesNoPopup>();
+    yesNoPage->reset();
+    yesNoPage->setWindowMessage(backMessageId, nullptr);
+    yesNoPage->configureButton(0, 2002, nullptr, Anim::None, &m_onBackConfirm);
+    yesNoPage->configureButton(1, 2003, nullptr, Anim::None, nullptr);
+    yesNoPage->setDefaultChoice(1);
+    push(PageId::YesNoPopup, Anim::Next);
 }
 
 void CourseSelectPage::refresh() {
