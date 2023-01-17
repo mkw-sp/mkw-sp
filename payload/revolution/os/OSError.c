@@ -1,9 +1,12 @@
-#include <stdarg.h>
-#include <stdio.h>
-#include "game/system/Console.h"
+#include "revolution/nwc24/NWC24Utils.h"
 #include "revolution/os.h"
-#include "sp/StackTrace.h"
-#include "sp/storage/LogFile.h"
+
+#include <game/system/Console.h>
+#include <sp/StackTrace.h>
+#include <sp/storage/LogFile.h>
+
+#include <stdio.h>
+#include <string.h>
 
 static const char *GetPrefix(BinaryType bin) {
     switch (bin) {
@@ -37,6 +40,24 @@ static inline BinaryType ClassifyCaller(void *sp) {
         assert(res);
     }
     return ClassifyPointer(addr);
+}
+
+__attribute__((noreturn)) REPLACE void OSPanic(const char *UNUSED(filename), int UNUSED(lineNumber),
+        const char *message, ...) {
+    char messageFormat[256];
+    NWC24iStrLCpy(messageFormat, message, sizeof(messageFormat));
+    if (messageFormat[strlen(messageFormat) - 1] == '\n') {
+        messageFormat[strlen(messageFormat) - 1] = '\0';
+    }
+
+    char panicMessage[256];
+    va_list args;
+    va_start(args, message);
+    vsnprintf(panicMessage, sizeof(panicMessage), messageFormat, args);
+    va_end(args);
+
+    panic(panicMessage);
+    __builtin_unreachable();
 }
 
 void my_OSReport(const char *msg, ...) {

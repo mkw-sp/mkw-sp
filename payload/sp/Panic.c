@@ -8,7 +8,7 @@
 #include <string.h>
 
 void panic(const char *format, ...) {
-    char messageFormat[128];
+    char messageFormat[288];
     snprintf(messageFormat, sizeof(messageFormat),
             "MKW-SP v%s\n\n"
             "%s\n\n",
