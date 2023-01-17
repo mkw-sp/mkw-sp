@@ -193,7 +193,7 @@ void SingleTopPage::onBTButtonFront([[maybe_unused]] PushButton *button,
         [[maybe_unused]] u32 localPlayerId) {
     auto *saveManager = System::SaveManager::Instance();
     auto *context = SectionManager::Instance()->globalContext();
-    context->m_matchCount = saveManager->getSetting<SP::ClientSettings::Setting::VSRaceCount>();
+    context->m_matchCount = saveManager->getSetting<SP::ClientSettings::Setting::BTRaceCount>();
 
     auto maxTeamSizeSetting = saveManager->getSetting<SP::ClientSettings::Setting::BTTeamSize>();
     u32 maxTeamSize = maxTeamSizeSetting == SP::ClientSettings::TeamSize::Six ? 6 :

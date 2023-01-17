@@ -19,6 +19,7 @@ enum class PageId {
     AfterTaMenu = 0x21,
     AfterVsMenu = 0x22,
     AfterBtMenu = 0x23,
+    AfterBtFinal = 0x24,
     AfterMrMenu = 0x25,
     AfterTournamentMenu = 0x26,
     SendTournamentRecord = 0x2A,

@@ -17,7 +17,8 @@ public:
     static TypeInfo *GetTypeInfo();
 
 protected:
-    static bool IsLastMatch();
+    static bool REPLACED(IsLastMatch)();
+    REPLACE static bool IsLastMatch();
 
 private:
     enum class ButtonId {
