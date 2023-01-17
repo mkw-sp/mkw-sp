@@ -14,7 +14,7 @@ ResultTeamTotalPage::~ResultTeamTotalPage() = default;
 PageId ResultTeamTotalPage::getReplacement() {
     auto raceScenario = System::RaceConfig::Instance()->raceScenario();
     if (raceScenario.isBattle()) {
-        return PageId::AfterBTMenu;
+        return PageId::AfterBtMenu;
     } else {
         return PageId::AfterVsMenu;
     }

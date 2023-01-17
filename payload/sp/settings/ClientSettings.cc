@@ -293,7 +293,7 @@ const Entry entries[] = {
         .defaultValue = static_cast<u32>(Classes::Mixed),
         .valueCount = magic_enum::enum_count<Classes>(),
         .valueNames = magic_enum::enum_names<Classes>().data(),
-        .valueMessageIds = (u32[]) { 10235, 10236, 10237, 10238, 10364, 10363 },
+        .valueMessageIds = (u32[]) { 10235, 10236, 10237, 10238, 10366, 10365 },
         .valueExplanationMessageIds = (u32[]) { 10239, 10240, 10241, 10242, 10361, 10362 },
     },
     [static_cast<u32>(Setting::VSVehicles)] = {
@@ -345,7 +345,7 @@ const Entry entries[] = {
         .valueCount = magic_enum::enum_count<CourseSelection>(),
         .valueNames = magic_enum::enum_names<CourseSelection>().data(),
         .valueMessageIds = (u32[]) { 3441, 10228, 3443 },
-        .valueExplanationMessageIds = (u32[]) { 10260, 10231, 10261, 10361, 10362 },
+        .valueExplanationMessageIds = (u32[]) { 10260, 10231, 10261 },
     },
     [static_cast<u32>(Setting::BTClass)] = {
         .category = Category::BT,
@@ -354,8 +354,8 @@ const Entry entries[] = {
         .defaultValue = static_cast<u32>(Classes::CC50),
         .valueCount = magic_enum::enum_count<Classes>(),
         .valueNames = magic_enum::enum_names<Classes>().data(),
-        .valueMessageIds = (u32[]) { 10235, 10236, 10237, 10238, 10364, 10363 },
-        .valueExplanationMessageIds = (u32[]) { 10239, 10240, 10241, 10242, 10361, 10362 },
+        .valueMessageIds = (u32[]) { 10235, 10236, 10237, 10238, 10366, 10365 },
+        .valueExplanationMessageIds = (u32[]) { 10239, 10240, 10241, 10242, 10363, 10364 },
     },
     [static_cast<u32>(Setting::BTVehicles)] = {
         .category = Category::BT,
@@ -415,7 +415,7 @@ const Entry entries[] = {
         .defaultValue = static_cast<u32>(Classes::Mixed),
         .valueCount = magic_enum::enum_count<Classes>(),
         .valueNames = magic_enum::enum_names<Classes>().data(),
-        .valueMessageIds = (u32[]) { 10235, 10236, 10237, 10238, 10364, 10363 },
+        .valueMessageIds = (u32[]) { 10235, 10236, 10237, 10238, 10366, 10365 },
         .valueExplanationMessageIds = (u32[]) { 10239, 10240, 10241, 10242, 10361, 10362 },
     },
     [static_cast<u32>(Setting::RoomVehicles)] = {

@@ -1292,9 +1292,17 @@
     },
     "10363": {
         "font": "regular",
-        "string": "50cc"
+        "string": "Battles are always 50cc.",
     },
     "10364": {
+        "font": "regular",
+        "string": "Battles are always 100cc.",
+    },
+    "10365": {
+        "font": "regular",
+        "string": "50cc"
+    },
+    "10366": {
         "font": "regular",
         "string": "100cc"
     },

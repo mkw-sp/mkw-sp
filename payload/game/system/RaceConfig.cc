@@ -43,6 +43,7 @@ void RaceConfig::applyEngineClass() {
         setting = saveManager->getSetting<SP::ClientSettings::Setting::BTClass>();
         break;
     default:
+        SP_LOG("applyEngineClass called with invalid GameMode");
         assert(false);
     }
 

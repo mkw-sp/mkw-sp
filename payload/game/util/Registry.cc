@@ -6,7 +6,7 @@ namespace Registry {
 
 // This disables trying to load red/blue thumbnails and models
 // for all the vehicles in the vehicle select screen
-u32 UseBattleRenders() {
+bool UseBattleRenders() {
     return false;
 }
 

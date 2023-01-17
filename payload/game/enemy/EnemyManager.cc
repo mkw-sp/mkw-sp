@@ -8,7 +8,7 @@ EnemyManager *EnemyManager::Instance() {
     return s_instance;
 }
 
-bool EnemyManager::isOfflineBattle() {
+bool EnemyManager::IsOfflineBattle() {
     return false;
 }
 
