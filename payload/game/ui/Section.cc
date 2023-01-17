@@ -27,7 +27,7 @@
 #include "game/ui/UpdatePage.hh"
 #include "game/ui/VotingBackPage.hh"
 #include "game/ui/page/DriftSelectPage.hh"
-#include "game/ui/page/ResultTeamVSTotalPage.hh"
+#include "game/ui/page/ResultTeamTotalPage.hh"
 
 namespace UI {
 
@@ -455,7 +455,7 @@ Page *Section::CreatePage(PageId pageId) {
     switch (pageId) {
     case PageId::ResultTeamVSTotal:
     case PageId::ResultTeamBTTotal:
-        return new ResultTeamVSTotalPage;
+        return new ResultTeamTotalPage;
     case PageId::Award:
         return new AwardPage;
     case PageId::LicenseSelect:

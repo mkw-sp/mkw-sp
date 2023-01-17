@@ -1562,7 +1562,7 @@ code_in_files = {
         os.path.join('payload', 'game', 'ui', 'page', 'RacePage.S'),
         os.path.join('payload', 'game', 'ui', 'page', 'RacePage.cc'),
         os.path.join('payload', 'game', 'ui', 'page', 'ResultPlayerPage.cc'),
-        os.path.join('payload', 'game', 'ui', 'page', 'ResultTeamVSTotalPage.cc'),
+        os.path.join('payload', 'game', 'ui', 'page', 'ResultTeamTotalPage.cc'),
         os.path.join('payload', 'game', 'ui', 'page', 'TimeAttackSplitsPage.S'),
         os.path.join('payload', 'game', 'ui', 'page', 'TimeAttackSplitsPage.c'),
         os.path.join('payload', 'game', 'ui', 'page', 'TopMenuPage.S'),
