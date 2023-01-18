@@ -47,6 +47,7 @@ void RaceConfig::applyEngineClass() {
         assert(false);
     }
 
+    m_menuScenario.engineClass = EngineClass::CC150;
     m_menuScenario.mirrorRng = false;
     m_menuScenario.mirror = false;
     vsSpeedModIsEnabled = false;
@@ -56,21 +57,19 @@ void RaceConfig::applyEngineClass() {
         m_menuScenario.mirror = hydro_random_uniform(20) >= 17;
         m_menuScenario.mirrorRng = true;
         break;
-    case SP::ClientSettings::Classes::Mirror:
-        m_menuScenario.mirror = true;
+    case SP::ClientSettings::Classes::CC50:
+        m_menuScenario.engineClass = EngineClass::CC50;
+        break;
+    case SP::ClientSettings::Classes::CC100:
+        m_menuScenario.engineClass = EngineClass::CC100;
+        break;
+    case SP::ClientSettings::Classes::CC150:
         break;
     case SP::ClientSettings::Classes::CC200:
         vsSpeedModIsEnabled = true;
         break;
-    case SP::ClientSettings::Classes::CC150:
-        m_menuScenario.engineClass = EngineClass::CC150;
-        break;
-    case SP::ClientSettings::Classes::CC100:
-        m_menuScenario.engineClass = EngineClass::CC150;
-        break;
-    case SP::ClientSettings::Classes::CC50:
-        m_menuScenario.engineClass = EngineClass::CC150;
-        break;
+    case SP::ClientSettings::Classes::Mirror:
+        m_menuScenario.mirror = true;
     }
 }
 
