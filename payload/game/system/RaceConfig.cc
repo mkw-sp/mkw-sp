@@ -32,20 +32,12 @@ u8 (&RaceConfig::ghostBuffers())[2][11][0x2800] {
 }
 
 void RaceConfig::applyEngineClass() {
-    auto *saveManager = SaveManager::Instance();
-    SP::ClientSettings::Classes setting;
-
-    switch (m_menuScenario.gameMode) {
-    case RaceConfig::GameMode::OfflineVS:
-        setting = saveManager->getSetting<SP::ClientSettings::Setting::VSClass>();
-        break;
-    case RaceConfig::GameMode::OfflineBT:
-        setting = saveManager->getSetting<SP::ClientSettings::Setting::BTClass>();
-        break;
-    default:
+    if (m_menuScenario.gameMode != RaceConfig::GameMode::OfflineVS) {
         SP_LOG("applyEngineClass called with invalid GameMode");
         assert(false);
     }
+
+    auto setting = SaveManager::Instance()->getSetting<SP::ClientSettings::Setting::VSClass>();
 
     m_menuScenario.engineClass = EngineClass::CC150;
     m_menuScenario.mirrorRng = false;

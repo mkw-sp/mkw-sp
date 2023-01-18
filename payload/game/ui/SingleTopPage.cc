@@ -204,7 +204,6 @@ void SingleTopPage::onBTButtonFront([[maybe_unused]] PushButton *button,
     menuScenario.spMaxTeamSize = maxTeamSize;
     menuScenario.cameraMode = 5;
 
-    System::RaceConfig::Instance()->applyEngineClass();
     menuScenario.players[0].type = System::RaceConfig::Player::Type::Local;
     for (u32 i = 1; i < 12; i++) {
         menuScenario.players[i].type = System::RaceConfig::Player::Type::CPU;

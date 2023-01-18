@@ -347,16 +347,6 @@ const Entry entries[] = {
         .valueMessageIds = (u32[]) { 3441, 10228, 3443 },
         .valueExplanationMessageIds = (u32[]) { 10260, 10231, 10261 },
     },
-    [static_cast<u32>(Setting::BTClass)] = {
-        .category = Category::BT,
-        .name = magic_enum::enum_name(Setting::BTClass),
-        .messageId = 10234,
-        .defaultValue = static_cast<u32>(Classes::CC50),
-        .valueCount = magic_enum::enum_count<Classes>(),
-        .valueNames = magic_enum::enum_names<Classes>().data(),
-        .valueMessageIds = (u32[]) { 10235, 10236, 10237, 10238, 10366, 10365 },
-        .valueExplanationMessageIds = (u32[]) { 10239, 10240, 10241, 10242, 10363, 10364 },
-    },
     [static_cast<u32>(Setting::BTVehicles)] = {
         .category = Category::BT,
         .name = magic_enum::enum_name(Setting::BTVehicles),

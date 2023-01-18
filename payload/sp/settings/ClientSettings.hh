@@ -46,7 +46,6 @@ enum class Setting {
     BTTeamSize,
     BTRaceCount,
     BTCourseSelection,
-    BTClass,
     BTVehicles,
 
     // Room
@@ -481,11 +480,6 @@ struct Helper<ClientSettings::Setting, ClientSettings::Setting::BTRaceCount> {
 template <>
 struct Helper<ClientSettings::Setting, ClientSettings::Setting::BTCourseSelection> {
     using type = SP::ClientSettings::CourseSelection;
-};
-
-template <>
-struct Helper<ClientSettings::Setting, ClientSettings::Setting::BTClass> {
-    using type = SP::ClientSettings::Classes;
 };
 
 template <>
