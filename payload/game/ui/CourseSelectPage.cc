@@ -148,15 +148,11 @@ void CourseSelectPage::onRefocus() {
     if (raceConfirmPage->hasConfirmed()) {
         auto menuScenario = System::RaceConfig::Instance()->menuScenario();
 
-        switch (menuScenario.gameMode) {
-            case System::RaceConfig::GameMode::OfflineBT:
-                changeSection(SectionId::BTDemo, Anim::Next, 0.0f);
-                break;
-            default:
-                changeSection(SectionId::VSDemo, Anim::Next, 0.0f);
-                break;
+        if (menuScenario.gameMode == System::RaceConfig::GameMode::OfflineBT) {
+            changeSection(SectionId::BTDemo, Anim::Next, 0.0f);
+        } else {
+            changeSection(SectionId::VSDemo, Anim::Next, 0.0f);
         }
-
     }
 }
 

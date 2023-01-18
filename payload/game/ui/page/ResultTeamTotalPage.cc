@@ -2,6 +2,7 @@
 
 #include "game/system/RaceConfig.hh"
 #include "game/system/SaveManager.hh"
+#include "game/ui/page/RaceMenuPage.hh"
 
 #include <sp/settings/ClientSettings.hh>
 
@@ -17,10 +18,7 @@ ResultTeamTotalPage::~ResultTeamTotalPage() = default;
 PageId ResultTeamTotalPage::getReplacement() {
     auto raceScenario = System::RaceConfig::Instance()->raceScenario();
     if (raceScenario.isBattle()) {
-        auto *saveManager = System::SaveManager::Instance();
-        auto maxRaceCount = saveManager->getSetting<SP::ClientSettings::Setting::BTRaceCount>();
-
-        if (maxRaceCount == (raceScenario.raceNumber + 1)) {
+        if (RaceMenuPage::IsLastMatch()) {
             return PageId::AfterBtFinal;
         }
         return PageId::AfterBtMenu;
