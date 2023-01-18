@@ -26,6 +26,7 @@
 #include "game/ui/TimeAttackGhostListPage.hh"
 #include "game/ui/UpdatePage.hh"
 #include "game/ui/VotingBackPage.hh"
+#include "game/ui/page/BattleModeSelectPage.hh"
 #include "game/ui/page/DriftSelectPage.hh"
 #include "game/ui/page/ResultTeamTotalPage.hh"
 

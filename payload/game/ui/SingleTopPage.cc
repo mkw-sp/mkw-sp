@@ -211,11 +211,11 @@ void SingleTopPage::onBTButtonFront([[maybe_unused]] PushButton *button,
     }
 
     Section *section = SectionManager::Instance()->currentSection();
-    auto *page = section->page(PageId::BattleModeSelect)->downcast<MenuPage>();
-    assert(page);
-    page->m_prevId = PageId::SingleTop;
+    auto *page = section->page<PageId::BattleModeSelect>();
 
+    page->m_prevId = PageId::SingleTop;
     m_replacement = PageId::BattleModeSelect;
+
     f32 delay = button->getDelay();
     startReplace(Anim::Next, delay);
 }

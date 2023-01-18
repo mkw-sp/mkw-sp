@@ -1549,6 +1549,7 @@ code_in_files = {
         os.path.join('payload', 'game', 'ui', 'ctrl', 'CtrlRaceWifiStartMessage.cc'),
         os.path.join('payload', 'game', 'ui', 'model', 'CharacterModelManager.S'),
         os.path.join('payload', 'game', 'ui', 'model', 'MenuModelManager.cc'),
+        os.path.join('payload', 'game', 'ui', 'page', 'BattleModeSelectPage.cc'),
         os.path.join('payload', 'game', 'ui', 'page', 'CharacterSelectPage.S'),
         os.path.join('payload', 'game', 'ui', 'page', 'DemoPage.S'),
         os.path.join('payload', 'game', 'ui', 'page', 'DriftSelectPage.S'),

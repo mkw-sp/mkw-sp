@@ -2,6 +2,7 @@
 
 #include "game/ui/Page.hh"
 #include "game/ui/SectionId.hh"
+#include "game/ui/page/BattleModeSelectPage.hh"
 
 #include <nw4r/lyt/lyt_drawInfo.hh>
 
@@ -235,6 +236,11 @@ struct Section::PageIdHelper<PageId::MenuSettings> {
 template <>
 struct Section::PageIdHelper<PageId::SettingsPopup> {
     using type = SettingsPagePopup;
+};
+
+template <>
+struct Section::PageIdHelper<PageId::BattleModeSelect> {
+    using type = BattleModeSelectPage;
 };
 
 } // namespace UI

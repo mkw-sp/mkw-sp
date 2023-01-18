@@ -1363,6 +1363,7 @@
 0x8082cc64 ObjPylon01_vf_b0
 0x8082dbec ObjPylon01_vf_c0
 0x8082fb78 _ZN2UI11DriverModel7setAnimEjj
+0x8083b8d0 _ZN2UI20BattleModeSelectPage13onButtonFrontEPKNS_10PushButtonE
 0x80830180 CharacterModelManager_ct
 0x808307b0 CharacterModelManager_808307b0
 0x80830a80 CharacterModelManager_80830a80
