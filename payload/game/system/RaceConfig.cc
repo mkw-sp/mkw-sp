@@ -76,7 +76,6 @@ void RaceConfig::ConfigurePlayers(Scenario &scenario, u32 screenCount) {
 
     for (u32 i = 0; i < 12; i++) {
         if (scenario.players[i].type == Player::Type::Local) {
-            assert(screenId < screenCount);
             assert(ghostProxyId < 4);
 
             s32 controllerId = inputManager->ghostProxy(ghostProxyId)->pad()->getControllerId();

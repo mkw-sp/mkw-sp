@@ -53,6 +53,7 @@ public:
     bool isPageFocused(const Page *page) const;
     bool isPageActive(PageId pageId) const;
     Vec2<f32> locationAdjustScale() const;
+    void loadTHP();
 
     static u32 REPLACED(GetSceneId)(SectionId id);
     static REPLACE u32 GetSceneId(SectionId id);

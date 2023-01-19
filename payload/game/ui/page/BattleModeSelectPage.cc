@@ -25,7 +25,7 @@ void BattleModeSelectPage::onButtonFront(const PushButton *button) {
         menuScenario.battleType = 1;
         break;
     case 2: // Settings
-        auto *section = UI::SectionManager::Instance()->currentSection();
+        auto *section = SectionManager::Instance()->currentSection();
         auto *settingsPage = section->page<PageId::MenuSettings>();
 
         settingsPage->configure(nullptr, PageId::BattleModeSelect);

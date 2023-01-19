@@ -147,12 +147,19 @@ void MultiTopPage::onVSButtonSelect([[maybe_unused]] PushButton *button,
 
 void MultiTopPage::onBTButtonFront([[maybe_unused]] PushButton *button,
         [[maybe_unused]] u32 localPlayerId) {
+    auto *saveManager = System::SaveManager::Instance();
     auto *context = SectionManager::Instance()->globalContext();
+    context->m_matchCount = saveManager->getSetting<SP::ClientSettings::Setting::BTRaceCount>();
+
     u32 localPlayerCount = context->m_localPlayerCount;
+    auto teamsizeSetting = saveManager->getSetting<SP::ClientSettings::Setting::BTTeamSize>();
+    u32 maxTeamSize = teamsizeSetting == SP::ClientSettings::TeamSize::Six ? 6 :
+            static_cast<u32>(teamsizeSetting) + 1;
 
     auto &menuScenario = System::RaceConfig::Instance()->menuScenario();
     menuScenario.engineClass = System::RaceConfig::EngineClass::CC50;
     menuScenario.gameMode = System::RaceConfig::GameMode::OfflineBT;
+    menuScenario.spMaxTeamSize = maxTeamSize;
     menuScenario.cameraMode = 5;
     for (u32 i = 0; i < localPlayerCount; i++) {
         menuScenario.players[i].type = System::RaceConfig::Player::Type::Local;
@@ -186,7 +193,7 @@ void MultiTopPage::onBackButtonFront([[maybe_unused]] PushButton *button,
 
     m_replacement = PageId::MultiPadRegister;
     f32 delay = button->getDelay();
-    startReplace(Anim::Next, delay);
+    startReplace(Anim::Prev, delay);
 }
 
 void MultiTopPage::onBackButtonSelect([[maybe_unused]] PushButton *button,
