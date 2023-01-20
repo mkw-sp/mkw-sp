@@ -1,12 +1,8 @@
-#include "game/ui/page/BattleModeSelectPage.hh"
+#include "BattleModeSelectPage.hh"
+
 #include "game/ui/SectionManager.hh"
 #include "game/ui/SettingsPage.hh"
 #include "game/system/RaceConfig.hh"
-
-extern "C" {
-#include <revolution.h>
-#include <sp/StackTrace.h>
-}
 
 namespace UI {
 
