@@ -3,12 +3,12 @@ name: Build MKW-SP
 on: 
   push:
     paths-ignore:
-      - tools/
-      - .github/workflows/build_tools.yml
+      - 'tools/**'
+      - '.github/workflows/build_tools.yml'
   pull_request:
     paths-ignore:
-      - tools/
-      - .github/workflows/build_tools.yml
+      - 'tools/**'
+      - '.github/workflows/build_tools.yml'
 
 jobs:
   build:
