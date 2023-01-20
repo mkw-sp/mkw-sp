@@ -47,6 +47,7 @@ enum class SectionId {
 
     AwardsGP = 0x35,
     AwardsVS = 0x36,
+    AwardsBT = 0x38,
 
     TitleFromBoot = 0x3f,
     TitleFromMenu = 0x41,

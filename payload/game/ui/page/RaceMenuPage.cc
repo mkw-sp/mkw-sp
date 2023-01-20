@@ -75,18 +75,21 @@ void RaceMenuPage::onNextButtonFront([[maybe_unused]] PushButton *button,
             }
             isWin = false;
         }
+        if (menuScenario.isBattle()) {
+            sectionId = SectionId::AwardsBT;
+        } else {
+            sectionId = SectionId::AwardsVS;
+        }
         menuScenario.cameraMode = isWin ? 8 : 12;
         menuScenario.courseId = isWin ? 0x37 : 0x38;
         menuScenario.gameMode = System::RaceConfig::GameMode::Awards;
-        sectionId = SectionId::AwardsVS;
     } else {
         menuScenario.cameraMode = 5;
-        sectionId = SectionId::SingleSelectVSCourse;
-    }
-
-    // AwardsVS -> AwardsBT, VSCourse -> BTCourse
-    if (menuScenario.isBattle()) {
-        sectionId = (SectionId)((u32)sectionId + 1);
+        if (menuScenario.isBattle()) {
+            sectionId = SectionId::SingleSelectBTCourse;
+        } else {
+            sectionId = SectionId::SingleSelectVSCourse;
+        };
     }
 
     f32 delay = button->getDelay();
