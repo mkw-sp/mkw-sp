@@ -86,7 +86,7 @@ enum class Category {
 };
 
 // Shared in VS, BT, and/or Room
-enum class Classes {
+enum class EngineClass {
     Mixed,
     CC150,
     CC200,
@@ -459,7 +459,7 @@ struct Helper<ClientSettings::Setting, ClientSettings::Setting::VSCourseSelectio
 
 template <>
 struct Helper<ClientSettings::Setting, ClientSettings::Setting::VSClass> {
-    using type = SP::ClientSettings::Classes;
+    using type = SP::ClientSettings::EngineClass;
 };
 
 template <>
@@ -509,7 +509,7 @@ struct Helper<ClientSettings::Setting, ClientSettings::Setting::RoomCourseSelect
 
 template <>
 struct Helper<ClientSettings::Setting, ClientSettings::Setting::RoomClass> {
-    using type = SP::ClientSettings::Classes;
+    using type = SP::ClientSettings::EngineClass;
 };
 
 template <>
