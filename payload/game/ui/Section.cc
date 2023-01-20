@@ -323,11 +323,6 @@ void Section::addPages(SectionId id) {
         { SectionId::VS3P, PageId::ResultTeamVSTotal },
         { SectionId::VS4P, PageId::ResultTeamVSTotal },
 
-        { SectionId::Battle1P, PageId::ResultTeamVSTotal },
-        { SectionId::Battle2P, PageId::ResultTeamVSTotal },
-        { SectionId::Battle3P, PageId::ResultTeamVSTotal },
-        { SectionId::Battle4P, PageId::ResultTeamVSTotal },
-
         // Support changing settings in-race
         { SectionId::GP, PageId::MenuSettings },
         { SectionId::TA, PageId::MenuSettings },
