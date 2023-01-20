@@ -18,6 +18,7 @@ jobs:
       fail-fast: false
       matrix:
         tool:
+          - gameserver
           - netstorageserver
           - portfinder
           - updateserver
@@ -26,8 +27,13 @@ jobs:
           - windows-latest
           - ubuntu-latest
     runs-on: ${{ matrix.os }}
-    steps: 
-      - uses: actions/checkout@v3
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Install protoc
+        uses: arduino/setup-protoc@6d13ebf0ad347646e03d7e7792110174fe20745d
+        with:
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
       - name: Build ${{ matrix.tool }}
         run: cargo build --manifest-path tools/${{ matrix.tool }}/Cargo.toml --release
       - name: Upload result
