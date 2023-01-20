@@ -30,7 +30,8 @@ fn main() -> Result<(), Box<dyn Error + Send + Sync>> {
         let (tx, rx) = mpsc::channel::<Request>(32);
 
         let server_task = tokio::spawn(async {
-            Server::new(rx).handle().await
+            Server::new(rx).handle().await;
+            Ok(())
         });
 
         let listener_task = tokio::spawn(async move {

@@ -2,6 +2,7 @@ use tokio::sync::{broadcast, oneshot};
 
 use crate::event::Event;
 use crate::room_protocol::{room_request, RoomEvent};
+use crate::server::ClientKey;
 
 #[derive(Debug)]
 pub enum Request {
@@ -13,6 +14,7 @@ pub enum Request {
 
 #[derive(Debug)]
 pub struct JoinResponse {
-    pub events: Vec<RoomEvent>,
     pub rx: broadcast::Receiver<Event>,
+    pub client_key: ClientKey,
+    pub events: Vec<RoomEvent>,
 }

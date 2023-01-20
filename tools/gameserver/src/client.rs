@@ -9,11 +9,14 @@ use crate::async_stream::AsyncStream;
 use crate::event::Event;
 use crate::request::{JoinResponse, Request};
 use crate::room_protocol::{room_request, RoomRequest};
+use crate::server::ClientKey;
 
+#[derive(Debug)]
 pub struct Client {
     stream: AsyncStream,
     tx: mpsc::Sender<Request>,
     rx: broadcast::Receiver<Event>,
+    _client_key: ClientKey,
 }
 
 impl Client {
@@ -51,7 +54,7 @@ impl Client {
             tx: join_tx,
         };
         tx.send(request).await?;
-        let JoinResponse { events, rx } = join_rx.await?;
+        let JoinResponse { rx, client_key, events } = join_rx.await?;
 
         for event in events {
             stream.write(event).await?;
@@ -61,19 +64,32 @@ impl Client {
             stream,
             tx,
             rx,
+            _client_key: client_key,
         })
     }
 
     pub async fn handle(&mut self) -> Result<(), Box<dyn Error + Send + Sync>> {
         loop {
-            let event = self.rx.recv().await?;
-            match event {
-                Event::Forward { inner } => {
-                    self.stream.write(inner).await?;
-                },
+            tokio::select! {
+                request = self.stream.read() => self.handle_request(request?),
+                event = self.rx.recv() => self.handle_event(event?).await?,
             }
         }
 
         Ok(())
+    }
+
+    async fn handle_event(&mut self, event: Event) -> Result<(), Box<dyn Error + Send + Sync>> {
+        match event {
+            Event::Forward { inner } => {
+                self.stream.write(inner).await?;
+            },
+        }
+
+        Ok(())
+    }
+
+    fn handle_request(&mut self, request: RoomRequest) {
+
     }
 }

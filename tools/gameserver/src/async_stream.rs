@@ -5,6 +5,7 @@ use prost::Message;
 use tokio::io::{AsyncReadExt, AsyncWriteExt};
 use tokio::net::TcpStream;
 
+#[derive(Debug)]
 pub struct AsyncStream {
     stream: TcpStream,
     context: secretbox::Context,
