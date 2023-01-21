@@ -58,9 +58,9 @@ fn main() -> Result<()> {
                     };
 
                     tracing::info!("{peer_addr}: Created client");
-                    loop {
-                        let Err(err) = client.handle().await else {continue};
-                        return tracing::error!("Failed to handle client message: {err}");
+                    match client.handle().await {
+                        Ok(_) => tracing::info!("{peer_addr}: Client disconnected"),
+                        Err(err) => tracing::error!("{peer_addr}: Client disconnected: {err}"),
                     }
                 });
             }

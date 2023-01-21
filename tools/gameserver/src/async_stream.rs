@@ -50,18 +50,39 @@ impl AsyncStream {
         })
     }
 
-    pub async fn read<M>(&mut self) -> Result<M>
+
+    async fn read_exact(&mut self, buf: &mut [u8]) -> Result<bool> {
+        match self.stream.read_exact(buf).await {
+            Ok(_) => Ok(true),
+            Err(e) => {
+                if e.kind() == std::io::ErrorKind::UnexpectedEof {
+                    Ok(false)
+                } else {
+                    Err(e.into())
+                }
+            }
+        }
+    }
+
+    pub async fn read<M>(&mut self) -> Result<Option<M>>
     where
         M: Message + Default,
     {
         let mut size = [0u8; 2];
-        self.stream.read_exact(&mut size).await?;
+        if !self.read_exact(&mut size).await? {
+            return Ok(None);
+        };
+
         let size = u16::from_be_bytes(size);
-        let mut tmp = vec![0; size as usize];
-        self.stream.read_exact(&mut tmp).await?;
-        let tmp = secretbox::decrypt(&tmp, self.read_message_id, &self.context, &self.read_key)?;
+        let mut msg_enc = vec![0; size as usize];
+        if !self.read_exact(&mut msg_enc).await? {
+            return Ok(None);
+        };
+
+        let msg = secretbox::decrypt(&msg_enc, self.read_message_id, &self.context, &self.read_key)?;
         self.read_message_id += 1;
-        Ok(M::decode(&*tmp)?)
+
+        Ok(Some(M::decode(&*msg)?))
     }
 
     pub async fn write<M: Message>(&mut self, message: M) -> Result<()>

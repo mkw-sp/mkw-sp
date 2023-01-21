@@ -2,6 +2,7 @@ use anyhow::{anyhow, Result};
 use libhydrogen::{kx, secretbox};
 use tokio::net::TcpStream;
 use tokio::sync::{broadcast, mpsc, oneshot};
+use tokio::sync::broadcast::error::RecvError as BroadcastRecvError;
 
 use crate::async_stream::AsyncStream;
 use crate::event::Event;
@@ -38,7 +39,7 @@ impl Client {
         let context = secretbox::Context::from(*b"room    ");
         let mut stream = AsyncStream::new(stream, server_keypair, context).await?;
 
-        let request: RoomRequestOpt = stream.read().await?;
+        let request: RoomRequestOpt = stream.read().await?.ok_or(anyhow!("Connection closed unexpectedly!"))?;
         let request = request.request.ok_or(anyhow!("Unknown request type!"))?;
         let join = match request {
             room_request::Request::Join(join) => join,
@@ -81,8 +82,21 @@ impl Client {
     pub async fn handle(&mut self) -> Result<()> {
         loop {
             tokio::select! {
-                request = self.stream.read() => self.handle_request(request?).await,
-                event = self.rx.recv() => self.handle_event(event?).await,
+                request = self.stream.read() => {
+                    tracing::info!("Received request: {request:?}");
+                    if let Some(request) = request? {
+                        self.handle_request(request).await
+                    } else {
+                        break Ok(())
+                    }
+                },
+                event = self.rx.recv() => {
+                    match event {
+                        Ok(event) => self.handle_event(event).await,
+                        Err(BroadcastRecvError::Closed) => break Ok(()),
+                        Err(err) => break Err(err.into()),
+                    }
+                },
             }?
         }
     }
