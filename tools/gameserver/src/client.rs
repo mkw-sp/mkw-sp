@@ -83,7 +83,7 @@ impl Client {
         loop {
             tokio::select! {
                 request = self.stream.read() => {
-                    tracing::info!("Received request: {request:?}");
+                    tracing::debug!("Received request: {request:?}");
                     if let Some(request) = request? {
                         self.handle_request(request).await
                     } else {
@@ -124,7 +124,7 @@ impl Client {
 
                 self.tx.send(Request::Comment {inner: event}).await?;
             },
-            _ => unimplemented!("Request type not implemented!")
+            _ => anyhow::bail!("Request type not implemented!")
         }
 
         Ok(())
