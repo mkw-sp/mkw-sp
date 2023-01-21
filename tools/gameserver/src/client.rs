@@ -11,10 +11,14 @@ use crate::request::{JoinResponse, Request};
 use crate::room_protocol::{room_request, RoomRequest};
 use crate::server::ClientKey;
 
+/// Represents a MKW-SP client connected to the server.
 #[derive(Debug)]
 pub struct Client {
+    /// The stream used to communicate with the client.
     stream: AsyncStream,
+    /// The channel to send [`Request`]s to the server.
     tx: mpsc::Sender<Request>,
+    /// The channel to recieve broadcasted [`Event`]s from the server.
     rx: broadcast::Receiver<Event>,
     _client_key: ClientKey,
 }
@@ -75,13 +79,11 @@ impl Client {
                 event = self.rx.recv() => self.handle_event(event?).await?,
             }
         }
-
-        Ok(())
     }
 
     async fn handle_event(&mut self, event: Event) -> Result<(), Box<dyn Error + Send + Sync>> {
         match event {
-            Event::Forward { inner } => {
+            Event::Forward {inner} => {
                 self.stream.write(inner).await?;
             },
         }

@@ -21,9 +21,10 @@ mod room_protocol {
 
 fn main() -> Result<(), Box<dyn Error + Send + Sync>> {
     libhydrogen::init()?;
+    tracing_subscriber::fmt::init();
 
     let server_keypair = kx::KeyPair::gen();
-    eprintln!("Public key: {:02x?}", server_keypair.public_key.as_ref());
+    tracing::debug!("Public key: {:02x?}", server_keypair.public_key.as_ref());
 
     let runtime = Runtime::new()?;
     runtime.block_on(async {
@@ -36,16 +37,33 @@ fn main() -> Result<(), Box<dyn Error + Send + Sync>> {
 
         let listener_task = tokio::spawn(async move {
             let listener = TcpListener::bind("0.0.0.0:21330").await?;
+
             loop {
-                if let Ok((stream, _)) = listener.accept().await {
-                    let server_keypair = server_keypair.clone();
-                    let tx = tx.clone();
-                    tokio::spawn(async move {
-                        if let Ok(mut client) = Client::new(stream, server_keypair, tx).await {
-                            let _ = client.handle().await;
-                        }
-                    });
-                }
+                let stream = match listener.accept().await {
+                    Ok((stream, _)) => stream,
+                    Err(err) => {
+                        tracing::error!("Failed to accept connection: {err}");
+                        continue;
+                    }
+                };
+
+                let peer_addr = stream.peer_addr()?;
+                tracing::info!("{peer_addr}: Accepted connection");
+
+                let server_keypair = server_keypair.clone();
+                let tx = tx.clone();
+                tokio::spawn(async move {
+                    let mut client = match Client::new(stream, server_keypair, tx).await {
+                        Ok(client) => client,
+                        Err(err) => return tracing::error!("Failed to create client: {err}"),
+                    };
+
+                    tracing::info!("{peer_addr}: Created client");
+                    loop {
+                        let Err(err) = client.handle().await else {continue};
+                        return tracing::error!("Failed to handle client message: {err}");
+                    }
+                });
             }
         });
 

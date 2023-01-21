@@ -8,6 +8,8 @@ libhydrogen = "0.4"
 prost = "0.11"
 slab = "0.4.7"
 tokio = { version = "~1.20", features = ["rt-multi-thread", "io-util", "net", "macros", "sync"] }
+tracing = "0.1.37"
+tracing-subscriber = { version = "0.3.16", features = ["fmt", "env-filter"] }
 
 [build-dependencies]
 prost-build = "0.11"
