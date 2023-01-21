@@ -110,7 +110,6 @@ impl Server {
                         region_line_color: inner.region_line_color,
                     };
                     let event = room_event::Event::Join(event);
-                    let event = RoomEvent { event: Some(event) };
                     let event = Event::Forward { inner: event };
                     let _ = self.tx.send(event);
                 }
@@ -119,6 +118,9 @@ impl Server {
                 let response = JoinResponse { rx, client_key, events };
                 let _ = join_tx.send(response);
             },
+            Request::Comment {inner} => {
+                self.tx.send(Event::Forward { inner: room_event::Event::Comment(inner) });
+            }
         }
     }
 
@@ -133,7 +135,6 @@ impl Server {
                 player_id: i as u32,
             };
             let event = room_event::Event::Leave(event);
-            let event = RoomEvent { event: Some(event) };
             let event = Event::Forward { inner: event };
             let _ = self.tx.send(event);
         }
@@ -144,7 +145,7 @@ impl Server {
 
 #[derive(Debug)]
 pub struct ClientKey {
-    inner: usize,
+    pub inner: usize,
     leave_tx: mpsc::Sender<usize>,
 }
 

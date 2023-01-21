@@ -6,7 +6,15 @@ use tokio::sync::{broadcast, mpsc, oneshot};
 use crate::async_stream::AsyncStream;
 use crate::event::Event;
 use crate::request::{JoinResponse, Request};
-use crate::room_protocol::{room_request, RoomRequest};
+use crate::room_protocol::{
+    room_event,
+    room_request,
+
+    RoomRequest as RoomRequestOpt,
+    room_request::Request as RoomRequest,
+
+    RoomEvent as RoomEventOpt,
+};
 use crate::server::ClientKey;
 
 /// Represents a MKW-SP client connected to the server.
@@ -18,7 +26,7 @@ pub struct Client {
     tx: mpsc::Sender<Request>,
     /// The channel to recieve broadcasted [`Event`]s from the server.
     rx: broadcast::Receiver<Event>,
-    _client_key: ClientKey,
+    client_key: ClientKey,
 }
 
 impl Client {
@@ -30,7 +38,7 @@ impl Client {
         let context = secretbox::Context::from(*b"room    ");
         let mut stream = AsyncStream::new(stream, server_keypair, context).await?;
 
-        let request: RoomRequest = stream.read().await?;
+        let request: RoomRequestOpt = stream.read().await?;
         let request = request.request.ok_or(anyhow!("Unknown request type!"))?;
         let join = match request {
             room_request::Request::Join(join) => join,
@@ -66,14 +74,14 @@ impl Client {
             stream,
             tx,
             rx,
-            _client_key: client_key,
+            client_key,
         })
     }
 
     pub async fn handle(&mut self) -> Result<()> {
         loop {
             tokio::select! {
-                request = self.stream.read() => self.handle_request(request?),
+                request = self.stream.read() => self.handle_request(request?).await,
                 event = self.rx.recv() => self.handle_event(event?).await,
             }?
         }
@@ -82,14 +90,29 @@ impl Client {
     async fn handle_event(&mut self, event: Event) -> Result<()> {
         match event {
             Event::Forward {inner} => {
-                self.stream.write(inner).await?;
+                let wrapped_event = RoomEventOpt {event: Some(inner)};
+                self.stream.write(wrapped_event).await?;
             },
         }
 
         Ok(())
     }
 
-    fn handle_request(&mut self, request: RoomRequest) -> Result<()> {
+    async fn handle_request(&mut self, request: RoomRequestOpt) -> Result<()> {
+        let request = request.request.ok_or(anyhow!("Unknown request type!"))?;
+
+        match request {
+            RoomRequest::Comment(room_request::Comment {message_id}) => {
+                let event = room_event::Comment {
+                    player_id: self.client_key.inner as u32,
+                    message_id,
+                };
+
+                self.tx.send(Request::Comment {inner: event}).await?;
+            },
+            _ => unimplemented!("Request type not implemented!")
+        }
+
         Ok(())
     }
 }

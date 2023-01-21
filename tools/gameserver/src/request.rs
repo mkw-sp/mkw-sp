@@ -1,7 +1,7 @@
 use tokio::sync::{broadcast, oneshot};
 
 use crate::event::Event;
-use crate::room_protocol::{room_request, RoomEvent};
+use crate::room_protocol::{room_event, room_request, RoomEvent};
 use crate::server::ClientKey;
 
 /// Internal data type used for communication between
@@ -12,6 +12,9 @@ pub enum Request {
         inner: room_request::Join,
         tx: oneshot::Sender<JoinResponse>,
     },
+    Comment {
+        inner: room_event::Comment,
+    }
 }
 
 #[derive(Debug)]
