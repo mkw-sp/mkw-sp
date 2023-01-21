@@ -145,8 +145,14 @@ impl Server {
 
 #[derive(Debug)]
 pub struct ClientKey {
-    pub inner: usize,
+    inner: usize,
     leave_tx: mpsc::Sender<usize>,
+}
+
+impl ClientKey {
+    pub fn get(&self) -> usize {
+        self.inner
+    }
 }
 
 impl Drop for ClientKey {

@@ -118,7 +118,7 @@ impl Client {
         match request {
             RoomRequest::Comment(room_request::Comment {message_id}) => {
                 let event = room_event::Comment {
-                    player_id: self.client_key.inner as u32,
+                    player_id: self.client_key.get() as u32,
                     message_id,
                 };
 
