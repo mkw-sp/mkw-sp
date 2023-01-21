@@ -43,3 +43,21 @@ jobs:
           path: |
             tools/${{ matrix.tool }}/target/release/${{ matrix.tool }}*
             tools/${{ matrix.tool }}/target/release/${{ matrix.tool }}.d
+
+  format:
+    name: Format
+    strategy:
+      fail-fast: false
+      matrix:
+        tool:
+          - gameserver
+          - netstorageserver
+          - portfinder
+          - updateserver
+          - sign
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Format ${{ matrix.tool }}
+        run: cargo fmt --manifest-path tools/${{ matrix.tool }}/Cargo.toml --check
