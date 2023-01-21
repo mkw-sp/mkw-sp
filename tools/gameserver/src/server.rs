@@ -3,7 +3,7 @@ use tokio::sync::{broadcast, mpsc};
 
 use crate::event::Event;
 use crate::request::{JoinResponse, Request};
-use crate::room_protocol::{room_event, RoomEvent};
+use crate::room_protocol::*;
 
 #[derive(Debug)]
 pub struct Server {
@@ -77,8 +77,8 @@ impl Server {
                         longitude: player.longitude,
                         region_line_color: player.region_line_color,
                     };
-                    let event = room_event::Event::Join(event);
-                    let event = RoomEvent { event: Some(event) };
+                    let event = RoomEvent::Join(event);
+                    let event = RoomEventOpt { event: Some(event) };
                     events.push(event);
                 }
                 for mii in &inner.miis {
@@ -97,8 +97,8 @@ impl Server {
                 let event = room_event::Settings {
                     settings: settings.clone(),
                 };
-                let event = room_event::Event::Settings(event);
-                let event = RoomEvent { event: Some(event) };
+                let event = RoomEvent::Settings(event);
+                let event = RoomEventOpt { event: Some(event) };
                 events.push(event);
 
                 for mii in inner.miis {
@@ -119,7 +119,7 @@ impl Server {
                 let _ = join_tx.send(response);
             },
             Request::Comment {inner} => {
-                self.tx.send(Event::Forward { inner: room_event::Event::Comment(inner) });
+                let _ = self.tx.send(Event::Forward { inner: room_event::Event::Comment(inner) });
             }
         }
     }

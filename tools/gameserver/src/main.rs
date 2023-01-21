@@ -15,7 +15,19 @@ use crate::request::Request;
 use crate::server::Server;
 
 mod room_protocol {
-    include!(concat!(env!("OUT_DIR"), "/_.rs"));
+    mod inner {
+        include!(concat!(env!("OUT_DIR"), "/_.rs"));
+    }
+
+    pub use inner::{
+        room_request, room_event,
+
+        RoomRequest as RoomRequestOpt,
+        room_request::Request as RoomRequest,
+
+        RoomEvent as RoomEventOpt,
+        room_event::Event as RoomEvent,
+    };
 }
 
 fn main() -> Result<()> {

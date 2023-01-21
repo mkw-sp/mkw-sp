@@ -7,15 +7,7 @@ use tokio::sync::broadcast::error::RecvError as BroadcastRecvError;
 use crate::async_stream::AsyncStream;
 use crate::event::Event;
 use crate::request::{JoinResponse, Request};
-use crate::room_protocol::{
-    room_event,
-    room_request,
-
-    RoomRequest as RoomRequestOpt,
-    room_request::Request as RoomRequest,
-
-    RoomEvent as RoomEventOpt,
-};
+use crate::room_protocol::*;
 use crate::server::ClientKey;
 
 /// Represents a MKW-SP client connected to the server.
