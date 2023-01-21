@@ -4,8 +4,7 @@ mod event;
 mod request;
 mod server;
 
-use std::error::Error;
-
+use anyhow::Result;
 use libhydrogen::kx;
 use tokio::net::TcpListener;
 use tokio::runtime::Runtime;
@@ -19,7 +18,7 @@ mod room_protocol {
     include!(concat!(env!("OUT_DIR"), "/_.rs"));
 }
 
-fn main() -> Result<(), Box<dyn Error + Send + Sync>> {
+fn main() -> Result<()> {
     libhydrogen::init()?;
     tracing_subscriber::fmt::init();
 

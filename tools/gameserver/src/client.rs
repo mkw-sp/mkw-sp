@@ -1,6 +1,4 @@
-use std::error::Error;
-
-use libhydrogen::errors::anyhow;
+use anyhow::{anyhow, Result};
 use libhydrogen::{kx, secretbox};
 use tokio::net::TcpStream;
 use tokio::sync::{broadcast, mpsc, oneshot};
@@ -28,7 +26,7 @@ impl Client {
         stream: TcpStream,
         server_keypair: kx::KeyPair,
         tx: mpsc::Sender<Request>,
-    ) -> Result<Client, Box<dyn Error + Send + Sync>> {
+    ) -> Result<Client> {
         let context = secretbox::Context::from(*b"room    ");
         let mut stream = AsyncStream::new(stream, server_keypair, context).await?;
 
@@ -72,16 +70,16 @@ impl Client {
         })
     }
 
-    pub async fn handle(&mut self) -> Result<(), Box<dyn Error + Send + Sync>> {
+    pub async fn handle(&mut self) -> Result<()> {
         loop {
             tokio::select! {
                 request = self.stream.read() => self.handle_request(request?),
-                event = self.rx.recv() => self.handle_event(event?).await?,
-            }
+                event = self.rx.recv() => self.handle_event(event?).await,
+            }?
         }
     }
 
-    async fn handle_event(&mut self, event: Event) -> Result<(), Box<dyn Error + Send + Sync>> {
+    async fn handle_event(&mut self, event: Event) -> Result<()> {
         match event {
             Event::Forward {inner} => {
                 self.stream.write(inner).await?;
@@ -91,7 +89,7 @@ impl Client {
         Ok(())
     }
 
-    fn handle_request(&mut self, request: RoomRequest) {
-
+    fn handle_request(&mut self, request: RoomRequest) -> Result<()> {
+        Ok(())
     }
 }

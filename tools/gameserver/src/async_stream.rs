@@ -1,5 +1,4 @@
-use std::error::Error;
-
+use anyhow::Result;
 use libhydrogen::{kx, secretbox};
 use prost::Message;
 use tokio::io::{AsyncReadExt, AsyncWriteExt};
@@ -20,7 +19,7 @@ impl AsyncStream {
         mut stream: TcpStream,
         server_keypair: kx::KeyPair,
         context: secretbox::Context,
-    ) -> Result<AsyncStream, Box<dyn Error + Send + Sync>> {
+    ) -> Result<AsyncStream> {
         let mut state = kx::State::new();
 
         let mut xx1 = [0u8; kx::XX_PACKET1BYTES];
@@ -51,7 +50,7 @@ impl AsyncStream {
         })
     }
 
-    pub async fn read<M>(&mut self) -> Result<M, Box<dyn Error + Send + Sync>>
+    pub async fn read<M>(&mut self) -> Result<M>
     where
         M: Message + Default,
     {
@@ -65,7 +64,7 @@ impl AsyncStream {
         Ok(M::decode(&*tmp)?)
     }
 
-    pub async fn write<M: Message>(&mut self, message: M) -> Result<(), Box<dyn Error + Send + Sync>>
+    pub async fn write<M: Message>(&mut self, message: M) -> Result<()>
     where
         M: Message,
     {
