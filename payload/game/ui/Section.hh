@@ -2,6 +2,7 @@
 
 #include "game/ui/Page.hh"
 #include "game/ui/SectionId.hh"
+#include "game/ui/page/BattleModeSelectPage.hh"
 
 #include <nw4r/lyt/lyt_drawInfo.hh>
 
@@ -52,6 +53,7 @@ public:
     bool isPageFocused(const Page *page) const;
     bool isPageActive(PageId pageId) const;
     Vec2<f32> locationAdjustScale() const;
+    void loadTHP();
 
     static u32 REPLACED(GetSceneId)(SectionId id);
     static REPLACE u32 GetSceneId(SectionId id);
@@ -235,6 +237,11 @@ struct Section::PageIdHelper<PageId::MenuSettings> {
 template <>
 struct Section::PageIdHelper<PageId::SettingsPopup> {
     using type = SettingsPagePopup;
+};
+
+template <>
+struct Section::PageIdHelper<PageId::BattleModeSelect> {
+    using type = BattleModeSelectPage;
 };
 
 } // namespace UI

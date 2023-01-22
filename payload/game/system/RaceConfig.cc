@@ -31,27 +31,37 @@ u8 (&RaceConfig::ghostBuffers())[2][11][0x2800] {
     return m_ghostBuffers;
 }
 
-void RaceConfig::applyVSEngineClass() {
+void RaceConfig::applyEngineClass() {
+    if (m_menuScenario.gameMode != RaceConfig::GameMode::OfflineVS) {
+        SP_LOG("applyEngineClass called with invalid GameMode");
+        assert(false);
+    }
+
+    auto setting = SaveManager::Instance()->getSetting<SP::ClientSettings::Setting::VSClass>();
+
     m_menuScenario.engineClass = EngineClass::CC150;
-    m_menuScenario.mirror = false;
     m_menuScenario.mirrorRng = false;
+    m_menuScenario.mirror = false;
     vsSpeedModIsEnabled = false;
 
-    auto *saveManager = SaveManager::Instance();
-    auto setting = saveManager->getSetting<SP::ClientSettings::Setting::VSClass>();
     switch (setting) {
-    case SP::ClientSettings::VSClass::Mixed:
+    case SP::ClientSettings::EngineClass::Mixed:
         m_menuScenario.mirror = hydro_random_uniform(20) >= 17;
         m_menuScenario.mirrorRng = true;
         break;
-    case SP::ClientSettings::VSClass::CC150:
+    case SP::ClientSettings::EngineClass::CC50:
+        m_menuScenario.engineClass = EngineClass::CC50;
         break;
-    case SP::ClientSettings::VSClass::Mirror:
-        m_menuScenario.mirror = true;
+    case SP::ClientSettings::EngineClass::CC100:
+        m_menuScenario.engineClass = EngineClass::CC100;
         break;
-    case SP::ClientSettings::VSClass::CC200:
+    case SP::ClientSettings::EngineClass::CC150:
+        break;
+    case SP::ClientSettings::EngineClass::CC200:
         vsSpeedModIsEnabled = true;
         break;
+    case SP::ClientSettings::EngineClass::Mirror:
+        m_menuScenario.mirror = true;
     }
 }
 
@@ -66,7 +76,6 @@ void RaceConfig::ConfigurePlayers(Scenario &scenario, u32 screenCount) {
 
     for (u32 i = 0; i < 12; i++) {
         if (scenario.players[i].type == Player::Type::Local) {
-            assert(screenId < screenCount);
             assert(ghostProxyId < 4);
 
             s32 controllerId = inputManager->ghostProxy(ghostProxyId)->pad()->getControllerId();

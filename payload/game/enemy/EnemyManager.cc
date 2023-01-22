@@ -16,4 +16,8 @@ bool EnemyManager::hasCpus() const {
     return REPLACED(hasCpus)();
 }
 
+bool EnemyManager::IsOfflineBattle() {
+    return false;
+}
+
 } // namespace Enemy

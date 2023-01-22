@@ -8,10 +8,10 @@
 
 namespace UI {
 
-class ResultTeamVSTotalPage : public ResultPage {
+class ResultTeamTotalPage : public ResultPage {
 public:
-    ResultTeamVSTotalPage();
-    ~ResultTeamVSTotalPage() override;
+    ResultTeamTotalPage();
+    ~ResultTeamTotalPage() override;
     PageId getReplacement() override;
     void onInit() override;
     void onActivate() override;

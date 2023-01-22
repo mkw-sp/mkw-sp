@@ -4,6 +4,12 @@
 
 namespace Registry {
 
+// This disables trying to load red/blue thumbnails and models
+// for all the vehicles in the vehicle select screen
+bool UseBattleRenders() {
+    return false;
+}
+
 const char *GetItemPane(u32 itemId, u32 count) {
     auto *saveManager = System::SaveManager::Instance();
     auto setting = saveManager->getSetting<SP::ClientSettings::Setting::VSMegaClouds>();

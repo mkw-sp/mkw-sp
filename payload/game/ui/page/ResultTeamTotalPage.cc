@@ -1,21 +1,32 @@
-#include "ResultTeamVSTotalPage.hh"
+#include "ResultTeamTotalPage.hh"
 
 #include "game/system/RaceConfig.hh"
+#include "game/system/SaveManager.hh"
+#include "game/ui/page/RaceMenuPage.hh"
+
+#include <sp/settings/ClientSettings.hh>
 
 #include <algorithm>
 #include <numeric>
 
 namespace UI {
 
-ResultTeamVSTotalPage::ResultTeamVSTotalPage() = default;
+ResultTeamTotalPage::ResultTeamTotalPage() = default;
 
-ResultTeamVSTotalPage::~ResultTeamVSTotalPage() = default;
+ResultTeamTotalPage::~ResultTeamTotalPage() = default;
 
-PageId ResultTeamVSTotalPage::getReplacement() {
+PageId ResultTeamTotalPage::getReplacement() {
+    auto raceScenario = System::RaceConfig::Instance()->raceScenario();
+    if (raceScenario.isBattle()) {
+        if (RaceMenuPage::IsLastMatch()) {
+            return PageId::AfterBtFinal;
+        }
+        return PageId::AfterBtMenu;
+    }
     return PageId::AfterVsMenu;
 }
 
-void ResultTeamVSTotalPage::onInit() {
+void ResultTeamTotalPage::onInit() {
     const auto &raceScenario = System::RaceConfig::Instance()->raceScenario();
     u32 maxTeamSize = raceScenario.spMaxTeamSize;
     if (maxTeamSize == 1) {
@@ -42,7 +53,7 @@ void ResultTeamVSTotalPage::onInit() {
     }
 }
 
-void ResultTeamVSTotalPage::onActivate() {
+void ResultTeamTotalPage::onActivate() {
     ResultPage::onActivate();
 
     const auto &raceScenario = System::RaceConfig::Instance()->raceScenario();
@@ -105,7 +116,7 @@ void ResultTeamVSTotalPage::onActivate() {
     m_isBusy = true;
 }
 
-void ResultTeamVSTotalPage::beforeCalc() {
+void ResultTeamTotalPage::beforeCalc() {
     if (m_frame++ % 2 != 0) {
         return;
     }
@@ -133,10 +144,10 @@ void ResultTeamVSTotalPage::beforeCalc() {
     }
 }
 
-bool ResultTeamVSTotalPage::isBusy() {
+bool ResultTeamTotalPage::isBusy() {
     return m_isBusy;
 }
 
-void ResultTeamVSTotalPage::vf_68() {}
+void ResultTeamTotalPage::vf_68() {}
 
 } // namespace UI

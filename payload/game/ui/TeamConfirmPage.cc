@@ -51,7 +51,7 @@ void TeamConfirmPage::onInit() {
 }
 
 void TeamConfirmPage::onActivate() {
-    const auto &menuScenario = System::RaceConfig::Instance()->menuScenario();
+    auto &menuScenario = System::RaceConfig::Instance()->menuScenario();
     u32 maxTeamSize = menuScenario.spMaxTeamSize;
     u32 teamSizes[6]{};
     for (u32 playerId = 0; playerId < 12; playerId++) {
@@ -62,13 +62,14 @@ void TeamConfirmPage::onActivate() {
         m_controls[playerId].refresh(playerId, characterId, teamId, positionId);
     }
 
+    menuScenario.teams = 0;
     m_okButton.selectDefault(0);
-
     m_replacement = PageId::None;
 }
 
 void TeamConfirmPage::prepareOfflineSingle() {
     auto &menuScenario = System::RaceConfig::Instance()->menuScenario();
+
     u32 maxTeamSize = menuScenario.spMaxTeamSize;
     u32 playerCount = 12;
     u32 teamCount = (playerCount + maxTeamSize - 1) / maxTeamSize;
@@ -116,7 +117,7 @@ void TeamConfirmPage::onOkButtonFront([[maybe_unused]] PushButton *button,
         [[maybe_unused]] u32 localPlayerId) {
     auto &menuScenario = System::RaceConfig::Instance()->menuScenario();
     if (menuScenario.gameMode == System::RaceConfig::GameMode::OfflineVS) {
-        System::RaceConfig::Instance()->applyVSEngineClass();
+        System::RaceConfig::Instance()->applyEngineClass();
     }
 
     auto *section = SectionManager::Instance()->currentSection();

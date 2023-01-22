@@ -109,7 +109,7 @@ public:
     Scenario &menuScenario();
     Scenario &awardsScenario();
     u8 (&ghostBuffers())[2][11][0x2800];
-    void applyVSEngineClass();
+    void applyEngineClass();
     void endRace();
 
     void REPLACED(initRace)();

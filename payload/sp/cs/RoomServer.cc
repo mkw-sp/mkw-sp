@@ -200,7 +200,7 @@ std::optional<RoomServer::State> RoomServer::calcMain(Handler &handler) {
         writeStart(m_gamemode);
         m_roomStarted = false;
         auto setting = getSetting<SP::ClientSettings::Setting::RoomTeamSize>();
-        if (setting == SP::ClientSettings::RoomTeamSize::FFA) {
+        if (setting == SP::ClientSettings::TeamSize::FFA) {
             state = State::Select;
         } else {
             state = State::TeamSelect;

@@ -14,10 +14,9 @@ public:
     virtual void vf_74();
     virtual void vf_78();
 
+    static bool REPLACED(IsLastMatch)();
+    REPLACE static bool IsLastMatch();
     static TypeInfo *GetTypeInfo();
-
-protected:
-    static bool IsLastMatch();
 
 private:
     enum class ButtonId {

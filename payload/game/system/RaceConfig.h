@@ -28,6 +28,7 @@ enum {
 enum {
     GAME_MODE_OFFLINE_VS = 0x1,
     GAME_MODE_TIME_ATTACK = 0x2,
+    GAME_MODE_BATTLE = 0x3,
 };
 
 enum {

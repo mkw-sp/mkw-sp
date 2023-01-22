@@ -1,9 +1,12 @@
 #include "RaceMenuPage.hh"
 
 #include "game/sound/util/BackgroundMusicManager.hh"
+#include "game/system/SaveManager.hh"
 #include "game/system/RaceConfig.hh"
 #include "game/ui/SectionManager.hh"
 #include "game/ui/SettingsPage.hh"
+
+#include <sp/settings/ClientSettings.hh>
 
 extern "C" {
 #include <vendor/libhydrogen/hydrogen.h>
@@ -22,7 +25,11 @@ void RaceMenuPage::onButtonFront([[maybe_unused]] PushButton *button,
         if (menuScenario.mirrorRng) {
             menuScenario.mirror = hydro_random_uniform(20) >= 17;
         }
-        if (raceScenario.gameMode == System::RaceConfig::GameMode::OfflineVS) {
+
+        if (
+            raceScenario.gameMode == System::RaceConfig::GameMode::OfflineVS ||
+            raceScenario.gameMode == System::RaceConfig::GameMode::OfflineBT
+        ) {
             onNextButtonFront(button, localPlayerId);
             break;
         } else {
@@ -68,13 +75,21 @@ void RaceMenuPage::onNextButtonFront([[maybe_unused]] PushButton *button,
             }
             isWin = false;
         }
+        if (menuScenario.isBattle()) {
+            sectionId = SectionId::AwardsBT;
+        } else {
+            sectionId = SectionId::AwardsVS;
+        }
         menuScenario.cameraMode = isWin ? 8 : 12;
         menuScenario.courseId = isWin ? 0x37 : 0x38;
         menuScenario.gameMode = System::RaceConfig::GameMode::Awards;
-        sectionId = SectionId::AwardsVS;
     } else {
         menuScenario.cameraMode = 5;
-        sectionId = SectionId::SingleSelectVSCourse;
+        if (menuScenario.isBattle()) {
+            sectionId = SectionId::SingleSelectBTCourse;
+        } else {
+            sectionId = SectionId::SingleSelectVSCourse;
+        };
     }
 
     f32 delay = button->getDelay();
@@ -106,6 +121,19 @@ void RaceMenuPage::onChangeGhostDataButtonFront([[maybe_unused]] PushButton *but
 
     f32 delay = button->getDelay();
     changeSection(SectionId::SingleChangeGhostData, Anim::Next, delay);
+}
+
+bool RaceMenuPage::IsLastMatch() {
+    auto raceScenario = System::RaceConfig::Instance()->raceScenario();
+
+    if (raceScenario.isBattle()) {
+        auto *saveManager = System::SaveManager::Instance();
+        auto maxRaceCount = saveManager->getSetting<SP::ClientSettings::Setting::BTRaceCount>();
+
+        return maxRaceCount <= (raceScenario.raceNumber + 1);
+    }
+
+    return REPLACED(IsLastMatch)();
 }
 
 } // namespace UI
