@@ -86,8 +86,7 @@ impl Server {
 
                 let is_host = self.settings.is_none();
                 let client = Client {
-                    is_host,
-                    properties: None,
+                    is_host, is_spectator: false
                 };
 
                 let client_key = self.clients.insert(client);
@@ -117,6 +116,7 @@ impl Server {
                     let player = Player {
                         client_key: client_key.inner,
                         mii: mii.clone(),
+                        properties: None,
                         location: inner.location,
                         latitude: inner.latitude,
                         longitude: inner.longitude,
@@ -191,7 +191,7 @@ impl Server {
                 properties,
             } => {
                 let RoomState::Voting { gamemode } = self.room_state else {return};
-                let Some(client) = self.clients.get_mut(player_id as usize) else {return};
+                let Some(client) = self.players.get_mut(player_id as usize) else {return};
 
                 if client.properties.is_some() {
                     return;
@@ -205,9 +205,9 @@ impl Server {
                     }),
                 });
 
-                if self.clients.iter().all(|(_, client)| client.properties.is_some()) {
+                if self.players.iter().all(|p| p.properties.is_some()) {
                     let winning_vote = rand::thread_rng().gen_range(0..self.clients.len());
-                    let course = self.clients[winning_vote].properties.as_ref().unwrap().course;
+                    let course = self.players[winning_vote].properties.as_ref().unwrap().course;
 
                     self.room_state = RoomState::Playing {
                         course,
@@ -215,9 +215,9 @@ impl Server {
                     };
 
                     let player_properties: Vec<_> = self
-                        .clients
+                        .players
                         .iter_mut()
-                        .map(|(_, client)| client.properties.take().unwrap())
+                        .map(|p| p.properties.take().unwrap())
                         .collect();
 
                     let _ = self.tx.send(Event::Forward {
@@ -275,10 +275,11 @@ impl Drop for ClientKey {
     }
 }
 
+/// Represents a connection to the room, is either a player (host/client) or a spectator.
 #[derive(Debug)]
 struct Client {
     is_host: bool,
-    properties: Option<Properties>,
+    is_spectator: bool,
 }
 
 #[derive(Debug)]
@@ -289,4 +290,5 @@ struct Player {
     latitude: u32,
     longitude: u32,
     region_line_color: u32,
+    properties: Option<Properties>,
 }
