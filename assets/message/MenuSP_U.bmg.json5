@@ -1,4 +1,12 @@
 {
+    "3400": {
+        "font": "regular",
+        "string": "Settings",
+    },
+    "3475": {
+        "font": "regular",
+        "string": "Change settings for this licence.",
+    },
     "10004": {
         "font": "regular",
         "string": "HUD Labels",
