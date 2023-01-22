@@ -57,7 +57,10 @@ public:
     static REPLACE u32 GetSceneId(SectionId id);
     static const char *REPLACED(GetResourceName)(SectionId id);
     static REPLACE const char *GetResourceName(SectionId id);
-    static Sound::SoundId GetSoundId(SectionId id);
+    static Sound::SoundId REPLACED(GetSoundId)(SectionId id);
+    static REPLACE Sound::SoundId GetSoundId(SectionId id);
+    static u32 REPLACED(GetRaceSoundState)(SectionId id);
+    static REPLACE u32 GetRaceSoundState(SectionId id);
     static bool HasRoomClient(SectionId sectionId);
     static bool HasRoomServer(SectionId sectionId);
     static bool HasRaceClient(SectionId sectionId);

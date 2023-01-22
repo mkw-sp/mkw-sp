@@ -66,6 +66,24 @@ const char *Section::GetResourceName(SectionId id) {
     }
 }
 
+Sound::SoundId Section::GetSoundId(SectionId id) {
+    switch (id) {
+    case SectionId::GhostReplay:
+        return Sound::SoundId::STRM_O_START2_FAN;
+    default:
+        return REPLACED(GetSoundId)(id);
+    }
+}
+
+u32 Section::GetRaceSoundState(SectionId id) {
+    switch (id) {
+    case SectionId::GhostReplay:
+        return 3;
+    default:
+        return REPLACED(GetRaceSoundState)(id);
+    }
+}
+
 bool Section::HasRoomClient(SectionId sectionId) {
     switch(sectionId) {
     case SectionId::OnlineSingle:
