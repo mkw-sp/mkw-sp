@@ -120,6 +120,8 @@ impl Client {
             RoomRequest::Comment(room_request::Comment {
                 message_id,
             }) => {
+                anyhow::ensure!(message_id < 96, "Invalid message id!");
+
                 let event = room_event::Comment {
                     player_id: self.client_key.get() as u32,
                     message_id,
