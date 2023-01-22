@@ -1,16 +1,18 @@
-use slab::Slab;
 use rand::Rng;
+use slab::Slab;
 use tokio::sync::{broadcast, mpsc};
 
 use crate::event::Event;
 use crate::request::{JoinResponse, Request};
-use crate::room_protocol::*;
 use crate::room_protocol::room_event::Properties;
+use crate::room_protocol::*;
 
 #[derive(Debug, PartialEq)]
 enum RoomState {
     Lobby,
-    Voting { gamemode: u8 },
+    Voting {
+        gamemode: u8,
+    },
     Playing {
         gamemode: u8,
         course: u32,
@@ -85,7 +87,7 @@ impl Server {
                 let is_host = self.settings.is_none();
                 let client = Client {
                     is_host,
-                    properties: None
+                    properties: None,
                 };
 
                 let client_key = self.clients.insert(client);
@@ -174,15 +176,20 @@ impl Server {
                     return;
                 }
 
-                self.room_state = RoomState::Voting {gamemode};
+                self.room_state = RoomState::Voting {
+                    gamemode,
+                };
 
                 let _ = self.tx.send(Event::Forward {
                     inner: room_event::Event::Start(room_event::Start {
                         gamemode: gamemode as u32,
                     }),
                 });
-            },
-            Request::Vote { player_id, properties } => {
+            }
+            Request::Vote {
+                player_id,
+                properties,
+            } => {
                 let RoomState::Voting { gamemode } = self.room_state else {return};
                 let Some(client) = self.clients.get_mut(player_id as usize) else {return};
 
@@ -195,14 +202,18 @@ impl Server {
                 let _ = self.tx.send(Event::Forward {
                     inner: room_event::Event::SelectPulse(room_event::SelectPulse {
                         player_id,
-                    })
+                    }),
                 });
 
                 if self.clients.iter().all(|(_, client)| client.properties.is_some()) {
-                    self.room_state = RoomState::Playing { gamemode, course: 0x06 };
+                    self.room_state = RoomState::Playing {
+                        gamemode,
+                        course: 0x06,
+                    };
 
                     let winning_vote = rand::thread_rng().gen_range(0..self.clients.len());
-                    let player_properties: Vec<_> = self.clients
+                    let player_properties: Vec<_> = self
+                        .clients
                         .iter_mut()
                         .map(|(_, client)| client.properties.take().unwrap())
                         .collect();
@@ -210,11 +221,11 @@ impl Server {
                     let _ = self.tx.send(Event::Forward {
                         inner: room_event::Event::SelectInfo(room_event::SelectInfo {
                             player_properties,
-                            selected_player: winning_vote as u32
-                        })
+                            selected_player: winning_vote as u32,
+                        }),
                     });
                 }
-            },
+            }
         }
     }
 
