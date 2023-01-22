@@ -15,6 +15,13 @@ pub enum Request {
     Comment {
         inner: room_event::Comment,
     },
+    Start {
+        gamemode: u8,
+    },
+    Vote {
+        player_id: u32,
+        properties: room_event::Properties,
+    },
 }
 
 #[derive(Debug)]

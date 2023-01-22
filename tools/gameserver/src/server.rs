@@ -1,9 +1,21 @@
 use slab::Slab;
+use rand::Rng;
 use tokio::sync::{broadcast, mpsc};
 
 use crate::event::Event;
 use crate::request::{JoinResponse, Request};
 use crate::room_protocol::*;
+use crate::room_protocol::room_event::Properties;
+
+#[derive(Debug, PartialEq)]
+enum RoomState {
+    Lobby,
+    Voting { gamemode: u8 },
+    Playing {
+        gamemode: u8,
+        course: u32,
+    },
+}
 
 #[derive(Debug)]
 pub struct Server {
@@ -14,6 +26,8 @@ pub struct Server {
     clients: Slab<Client>,
     players: Vec<Player>,
     settings: Option<Vec<u32>>,
+
+    room_state: RoomState,
 }
 
 impl Server {
@@ -32,6 +46,8 @@ impl Server {
             clients: Slab::new(),
             players: vec![],
             settings: None,
+
+            room_state: RoomState::Lobby,
         }
     }
 
@@ -56,6 +72,9 @@ impl Server {
                 inner,
                 tx: join_tx,
             } => {
+                if self.room_state != RoomState::Lobby {
+                    return;
+                }
                 if self.clients.len() + 1 > Self::MAX_CLIENT_COUNT {
                     return;
                 }
@@ -63,11 +82,15 @@ impl Server {
                     return;
                 }
 
+                let is_host = self.settings.is_none();
                 let client = Client {
-                    is_host: self.settings.is_none(),
+                    is_host,
+                    properties: None
                 };
+
                 let client_key = self.clients.insert(client);
                 let client_key = ClientKey {
+                    is_host,
                     inner: client_key,
                     leave_tx: self.leave_tx.clone(),
                 };
@@ -136,10 +159,62 @@ impl Server {
             Request::Comment {
                 inner,
             } => {
+                if self.room_state != RoomState::Lobby {
+                    return;
+                }
+
                 let _ = self.tx.send(Event::Forward {
                     inner: room_event::Event::Comment(inner),
                 });
             }
+            Request::Start {
+                gamemode,
+            } => {
+                if self.room_state != RoomState::Lobby {
+                    return;
+                }
+
+                self.room_state = RoomState::Voting {gamemode};
+
+                let _ = self.tx.send(Event::Forward {
+                    inner: room_event::Event::Start(room_event::Start {
+                        gamemode: gamemode as u32,
+                    }),
+                });
+            },
+            Request::Vote { player_id, properties } => {
+                let RoomState::Voting { gamemode } = self.room_state else {return};
+                let Some(client) = self.clients.get_mut(player_id as usize) else {return};
+
+                if client.properties.is_some() {
+                    return;
+                }
+
+                client.properties = Some(properties);
+
+                let _ = self.tx.send(Event::Forward {
+                    inner: room_event::Event::SelectPulse(room_event::SelectPulse {
+                        player_id,
+                    })
+                });
+
+                if self.clients.iter().all(|(_, client)| client.properties.is_some()) {
+                    self.room_state = RoomState::Playing { gamemode, course: 0x06 };
+
+                    let winning_vote = rand::thread_rng().gen_range(0..self.clients.len());
+                    let player_properties: Vec<_> = self.clients
+                        .iter_mut()
+                        .map(|(_, client)| client.properties.take().unwrap())
+                        .collect();
+
+                    let _ = self.tx.send(Event::Forward {
+                        inner: room_event::Event::SelectInfo(room_event::SelectInfo {
+                            player_properties,
+                            selected_player: winning_vote as u32
+                        })
+                    });
+                }
+            },
         }
     }
 
@@ -167,12 +242,17 @@ impl Server {
 #[derive(Debug)]
 pub struct ClientKey {
     inner: usize,
+    is_host: bool,
     leave_tx: mpsc::Sender<usize>,
 }
 
 impl ClientKey {
     pub fn get(&self) -> usize {
         self.inner
+    }
+
+    pub fn is_host(&self) -> bool {
+        self.is_host
     }
 }
 
@@ -185,6 +265,7 @@ impl Drop for ClientKey {
 #[derive(Debug)]
 struct Client {
     is_host: bool,
+    properties: Option<Properties>,
 }
 
 #[derive(Debug)]
