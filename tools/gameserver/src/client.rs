@@ -133,7 +133,37 @@ impl Client {
                     })
                     .await?;
             }
-            _ => anyhow::bail!("Request type not implemented!"),
+            RoomRequest::Start(room_request::Start {
+                gamemode,
+            }) => {
+                anyhow::ensure!(gamemode < 4, "Invalid gamemode!");
+                anyhow::ensure!(self.client_key.is_host(), "Not the host!");
+
+                self.tx
+                    .send(Request::Start {
+                        gamemode: gamemode as u8,
+                    })
+                    .await?;
+            }
+            RoomRequest::Vote(room_request::Vote {
+                course,
+                properties,
+            }) => {
+                let properties = room_event::Properties {
+                    drift_type: properties.drift_type,
+                    character: properties.character,
+                    vehicle: properties.vehicle,
+                    course,
+                };
+
+                self.tx
+                    .send(Request::Vote {
+                        properties,
+                        player_id: self.client_key.get() as u32,
+                    })
+                    .await?;
+            }
+            request => anyhow::bail!("Request type not implemented: {request:?}"),
         }
 
         Ok(())
