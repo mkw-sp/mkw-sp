@@ -1,5 +1,5 @@
-use std::collections::HashMap;
 use std::collections::hash_map::Entry;
+use std::collections::HashMap;
 use std::env;
 use std::io::{ErrorKind, Read, SeekFrom, Write};
 use std::path::{Path, PathBuf};
@@ -31,8 +31,11 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
             file.read_exact(&mut *pk)?;
             let mut sk = Zeroizing::new([0u8; 32]);
             file.read_exact(&mut *sk)?;
-            kx::KeyPair { public_key: (*pk).into(), secret_key: (*sk).into() }
-        },
+            kx::KeyPair {
+                public_key: (*pk).into(),
+                secret_key: (*sk).into(),
+            }
+        }
         Err(e) if e.kind() == ErrorKind::NotFound => {
             let server_keypair = kx::KeyPair::gen();
             let pk = server_keypair.public_key.clone();
@@ -43,7 +46,7 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
             file.write_all(&*pk)?;
             file.write_all(&*sk)?;
             server_keypair
-        },
+        }
         Err(e) => Err(e)?,
     };
     println!("Public key: {:02x?}", server_keypair.public_key.as_ref());
@@ -56,7 +59,10 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
             let mut paths = vec![];
             while let Some(request) = rx.recv().await {
                 match request {
-                    ConversionRequest::PathToId { path, tx } => {
+                    ConversionRequest::PathToId {
+                        path,
+                        tx,
+                    } => {
                         let id = match ids.entry(path.clone()) {
                             Entry::Occupied(occupied) => *occupied.get(),
                             Entry::Vacant(vacant) => {
@@ -66,11 +72,14 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
                             }
                         };
                         let _ = tx.send(id as u32);
-                    },
-                    ConversionRequest::IdToPath { id, tx } => {
+                    }
+                    ConversionRequest::IdToPath {
+                        id,
+                        tx,
+                    } => {
                         let path = paths.get(id as usize).map(|path| path.clone());
                         let _ = tx.send(path);
-                    },
+                    }
                 }
             }
         });
@@ -161,7 +170,7 @@ impl Stream {
                     Some(path) => {
                         let path = path.clone();
                         self.open_file(path, "r").await?
-                    },
+                    }
                     None => self.error().await?,
                 },
                 Close(close) => self.close_file(close.handle).await?,
@@ -179,7 +188,7 @@ impl Stream {
                     Some(dir) => {
                         let path = dir.path.clone();
                         self.open_dir(path).await?
-                    },
+                    }
                     None => self.error().await?,
                 },
                 CloseDir(close_dir) => self.close_dir(close_dir.handle).await?,
@@ -193,7 +202,11 @@ impl Stream {
         }
     }
 
-    async fn open_file(&mut self, path: PathBuf, mode: &str) -> Result<(), Box<dyn std::error::Error>> {
+    async fn open_file(
+        &mut self,
+        path: PathBuf,
+        mode: &str,
+    ) -> Result<(), Box<dyn std::error::Error>> {
         if mode != "r" {
             return self.error().await;
         }
@@ -209,10 +222,16 @@ impl Stream {
             Ok(metadata) => metadata.len(),
             Err(_) => return self.error().await,
         };
-        let _ = self.files[handle].insert(File { file, path: Some(path) });
+        let _ = self.files[handle].insert(File {
+            file,
+            path: Some(path),
+        });
         let handle = handle as u32;
         let response = NetStorageResponse {
-            response: Some(Response::Open(net_storage_response::Open { handle, size })),
+            response: Some(Response::Open(net_storage_response::Open {
+                handle,
+                size,
+            })),
         };
         self.write_message(response).await
     }
@@ -228,7 +247,12 @@ impl Stream {
         }
     }
 
-    async fn read_file(&mut self, handle: u32, size: u32, offset: u64) -> Result<(), Box<dyn std::error::Error>> {
+    async fn read_file(
+        &mut self,
+        handle: u32,
+        size: u32,
+        offset: u64,
+    ) -> Result<(), Box<dyn std::error::Error>> {
         let file = match self.file_mut(handle) {
             Some(file) => file,
             None => return self.error().await,
@@ -247,7 +271,12 @@ impl Stream {
         Ok(())
     }
 
-    async fn write_file(&mut self, handle: u32, mut size: u32, offset: u64) -> Result<(), Box<dyn std::error::Error>> {
+    async fn write_file(
+        &mut self,
+        handle: u32,
+        mut size: u32,
+        offset: u64,
+    ) -> Result<(), Box<dyn std::error::Error>> {
         let mut data = vec![];
         while size > 0 {
             let chunk = self.read().await?;
@@ -278,10 +307,15 @@ impl Stream {
             Ok(dir) => dir,
             Err(_) => return self.error().await,
         };
-        let _ = self.dirs[handle].insert(Dir { dir, path });
+        let _ = self.dirs[handle].insert(Dir {
+            dir,
+            path,
+        });
         let handle = handle as u32;
         let response = NetStorageResponse {
-            response: Some(Response::OpenDir(net_storage_response::OpenDir { handle })),
+            response: Some(Response::OpenDir(net_storage_response::OpenDir {
+                handle,
+            })),
         };
         self.write_message(response).await
     }
@@ -374,10 +408,16 @@ impl Stream {
             Ok(metadata) => metadata.len(),
             Err(_) => return self.error().await,
         };
-        let _ = self.files[handle].insert(File { file, path: None });
+        let _ = self.files[handle].insert(File {
+            file,
+            path: None,
+        });
         let handle = handle as u32;
         let response = NetStorageResponse {
-            response: Some(Response::Open(net_storage_response::Open { handle, size })),
+            response: Some(Response::Open(net_storage_response::Open {
+                handle,
+                size,
+            })),
         };
         self.write_message(response).await
     }
@@ -437,7 +477,15 @@ impl Stream {
 
     async fn path_to_id(&self, path: PathBuf) -> Option<u32> {
         let (tx, rx) = oneshot::channel();
-        if self.tx.send(ConversionRequest::PathToId { path, tx }).await.is_err() {
+        if self
+            .tx
+            .send(ConversionRequest::PathToId {
+                path,
+                tx,
+            })
+            .await
+            .is_err()
+        {
             return None;
         }
         rx.await.ok()
@@ -445,7 +493,15 @@ impl Stream {
 
     async fn id_to_path(&self, id: u32) -> Option<PathBuf> {
         let (tx, rx) = oneshot::channel();
-        if self.tx.send(ConversionRequest::IdToPath { id, tx }).await.is_err() {
+        if self
+            .tx
+            .send(ConversionRequest::IdToPath {
+                id,
+                tx,
+            })
+            .await
+            .is_err()
+        {
             return None;
         }
         rx.await.ok().flatten()
