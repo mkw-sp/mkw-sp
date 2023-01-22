@@ -206,12 +206,14 @@ impl Server {
                 });
 
                 if self.clients.iter().all(|(_, client)| client.properties.is_some()) {
+                    let winning_vote = rand::thread_rng().gen_range(0..self.clients.len());
+                    let course = self.clients[winning_vote].properties.as_ref().unwrap().course;
+
                     self.room_state = RoomState::Playing {
+                        course,
                         gamemode,
-                        course: 0x06,
                     };
 
-                    let winning_vote = rand::thread_rng().gen_range(0..self.clients.len());
                     let player_properties: Vec<_> = self
                         .clients
                         .iter_mut()
