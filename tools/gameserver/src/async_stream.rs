@@ -50,7 +50,6 @@ impl AsyncStream {
         })
     }
 
-
     async fn read_exact(&mut self, buf: &mut [u8]) -> Result<bool> {
         match self.stream.read_exact(buf).await {
             Ok(_) => Ok(true),
@@ -79,7 +78,8 @@ impl AsyncStream {
             return Ok(None);
         };
 
-        let msg = secretbox::decrypt(&msg_enc, self.read_message_id, &self.context, &self.read_key)?;
+        let msg =
+            secretbox::decrypt(&msg_enc, self.read_message_id, &self.context, &self.read_key)?;
         self.read_message_id += 1;
 
         Ok(Some(M::decode(&*msg)?))

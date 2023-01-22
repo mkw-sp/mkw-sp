@@ -14,7 +14,7 @@ pub enum Request {
     },
     Comment {
         inner: room_event::Comment,
-    }
+    },
 }
 
 #[derive(Debug)]

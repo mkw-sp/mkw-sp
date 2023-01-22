@@ -52,7 +52,10 @@ impl Server {
 
     fn handle_request(&mut self, request: Request) {
         match request {
-            Request::Join { inner, tx: join_tx } => {
+            Request::Join {
+                inner,
+                tx: join_tx,
+            } => {
                 if self.clients.len() + 1 > Self::MAX_CLIENT_COUNT {
                     return;
                 }
@@ -60,7 +63,9 @@ impl Server {
                     return;
                 }
 
-                let client = Client { is_host: self.settings.is_none() };
+                let client = Client {
+                    is_host: self.settings.is_none(),
+                };
                 let client_key = self.clients.insert(client);
                 let client_key = ClientKey {
                     inner: client_key,
@@ -78,7 +83,9 @@ impl Server {
                         region_line_color: player.region_line_color,
                     };
                     let event = RoomEvent::Join(event);
-                    let event = RoomEventOpt { event: Some(event) };
+                    let event = RoomEventOpt {
+                        event: Some(event),
+                    };
                     events.push(event);
                 }
                 for mii in &inner.miis {
@@ -98,7 +105,9 @@ impl Server {
                     settings: settings.clone(),
                 };
                 let event = RoomEvent::Settings(event);
-                let event = RoomEventOpt { event: Some(event) };
+                let event = RoomEventOpt {
+                    event: Some(event),
+                };
                 events.push(event);
 
                 for mii in inner.miis {
@@ -110,16 +119,26 @@ impl Server {
                         region_line_color: inner.region_line_color,
                     };
                     let event = room_event::Event::Join(event);
-                    let event = Event::Forward { inner: event };
+                    let event = Event::Forward {
+                        inner: event,
+                    };
                     let _ = self.tx.send(event);
                 }
 
                 let rx = self.tx.subscribe();
-                let response = JoinResponse { rx, client_key, events };
+                let response = JoinResponse {
+                    rx,
+                    client_key,
+                    events,
+                };
                 let _ = join_tx.send(response);
-            },
-            Request::Comment {inner} => {
-                let _ = self.tx.send(Event::Forward { inner: room_event::Event::Comment(inner) });
+            }
+            Request::Comment {
+                inner,
+            } => {
+                let _ = self.tx.send(Event::Forward {
+                    inner: room_event::Event::Comment(inner),
+                });
             }
         }
     }
@@ -135,7 +154,9 @@ impl Server {
                 player_id: i as u32,
             };
             let event = room_event::Event::Leave(event);
-            let event = Event::Forward { inner: event };
+            let event = Event::Forward {
+                inner: event,
+            };
             let _ = self.tx.send(event);
         }
 

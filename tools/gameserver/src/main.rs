@@ -20,13 +20,9 @@ mod room_protocol {
     }
 
     pub use inner::{
-        room_request, room_event,
-
+        room_event, room_event::Event as RoomEvent, room_request,
+        room_request::Request as RoomRequest, RoomEvent as RoomEventOpt,
         RoomRequest as RoomRequestOpt,
-        room_request::Request as RoomRequest,
-
-        RoomEvent as RoomEventOpt,
-        room_event::Event as RoomEvent,
     };
 }
 

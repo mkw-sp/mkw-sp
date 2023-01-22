@@ -1,8 +1,8 @@
 use anyhow::{anyhow, Result};
 use libhydrogen::{kx, secretbox};
 use tokio::net::TcpStream;
-use tokio::sync::{broadcast, mpsc, oneshot};
 use tokio::sync::broadcast::error::RecvError as BroadcastRecvError;
+use tokio::sync::{broadcast, mpsc, oneshot};
 
 use crate::async_stream::AsyncStream;
 use crate::event::Event;
@@ -31,7 +31,8 @@ impl Client {
         let context = secretbox::Context::from(*b"room    ");
         let mut stream = AsyncStream::new(stream, server_keypair, context).await?;
 
-        let request: RoomRequestOpt = stream.read().await?.ok_or(anyhow!("Connection closed unexpectedly!"))?;
+        let request: RoomRequestOpt =
+            stream.read().await?.ok_or(anyhow!("Connection closed unexpectedly!"))?;
         let request = request.request.ok_or(anyhow!("Unknown request type!"))?;
         let join = match request {
             room_request::Request::Join(join) => join,
@@ -57,7 +58,11 @@ impl Client {
             tx: join_tx,
         };
         tx.send(request).await?;
-        let JoinResponse { rx, client_key, events } = join_rx.await?;
+        let JoinResponse {
+            rx,
+            client_key,
+            events,
+        } = join_rx.await?;
 
         for event in events {
             stream.write(event).await?;
@@ -95,10 +100,14 @@ impl Client {
 
     async fn handle_event(&mut self, event: Event) -> Result<()> {
         match event {
-            Event::Forward {inner} => {
-                let wrapped_event = RoomEventOpt {event: Some(inner)};
+            Event::Forward {
+                inner,
+            } => {
+                let wrapped_event = RoomEventOpt {
+                    event: Some(inner),
+                };
                 self.stream.write(wrapped_event).await?;
-            },
+            }
         }
 
         Ok(())
@@ -108,15 +117,21 @@ impl Client {
         let request = request.request.ok_or(anyhow!("Unknown request type!"))?;
 
         match request {
-            RoomRequest::Comment(room_request::Comment {message_id}) => {
+            RoomRequest::Comment(room_request::Comment {
+                message_id,
+            }) => {
                 let event = room_event::Comment {
                     player_id: self.client_key.get() as u32,
                     message_id,
                 };
 
-                self.tx.send(Request::Comment {inner: event}).await?;
-            },
-            _ => anyhow::bail!("Request type not implemented!")
+                self.tx
+                    .send(Request::Comment {
+                        inner: event,
+                    })
+                    .await?;
+            }
+            _ => anyhow::bail!("Request type not implemented!"),
         }
 
         Ok(())
