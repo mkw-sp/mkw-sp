@@ -6,6 +6,13 @@
 
 namespace UI {
 
+void BattleModeSelectPage::onInit() {
+    auto section = SectionManager::Instance()->currentSection();
+    section->loadTHP();
+
+    REPLACED(onInit)();
+}
+
 void BattleModeSelectPage::onButtonFront(const PushButton *button) {
     if (button->m_index == -100) {
         onBackButtonFront(button);

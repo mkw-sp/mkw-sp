@@ -303,11 +303,6 @@ void Section::addActivePage(PageId pageId) {
 void Section::addPages(SectionId id) {
     SP_LOG("&7DEBUG: Constructing section %u (0x%x)", id, id);
 
-    // Pages may use the Section's THPManager, however the
-    // stock game is unreliable in checking if it is initalised
-    // before using it. We initialise it here to avoid crashes.
-    loadTHP();
-
     REPLACED(addPages)(id);
 
     std::pair<SectionId, PageId> additions[] = {
