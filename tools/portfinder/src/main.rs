@@ -35,7 +35,7 @@ fn main() -> Result<(), Error> {
             let source_base = usize::from_str_radix(&args[3], 16)?;
             let target_base = usize::from_str_radix(&args[4], 16)?;
             (parse_rel(source, source_base)?, parse_rel(target, target_base)?)
-        },
+        }
         _ => return Err(Error::InvalidExtension),
     };
     if source_sections.len() != target_sections.len() {
@@ -94,7 +94,11 @@ fn parse_dol(dol: Vec<u8>) -> Result<Vec<Section>, Error> {
         if offset % 4 != 0 || address % 4 != 0 || size % 4 != 0 {
             return Err(Error::Invalid);
         }
-        let kind = if i < 7 { SectionKind::Text } else { SectionKind::Data };
+        let kind = if i < 7 {
+            SectionKind::Text
+        } else {
+            SectionKind::Data
+        };
         let slice = dol.get(offset..offset + size).ok_or(Error::Oob)?;
         let mut vals: Vec<u32> = slice
             .chunks_exact(4)
@@ -138,7 +142,11 @@ fn parse_dol(dol: Vec<u8>) -> Result<Vec<Section>, Error> {
                 }
             }
         }
-        sections.push(Section { address, kind, vals });
+        sections.push(Section {
+            address,
+            kind,
+            vals,
+        });
     }
     return Ok(sections);
 }
@@ -176,13 +184,18 @@ fn parse_rel(rel: Vec<u8>, base: usize) -> Result<Vec<Section>, Error> {
             .collect();
         if kind == SectionKind::Text {
             for inst in &mut vals {
-                if *inst & 0xfc000000 == 0x48000000 { // b, bl
+                // b, bl
+                if *inst & 0xfc000000 == 0x48000000 {
                     *inst &= 0xfc000001;
                 }
             }
         }
         let address = offset + base;
-        sections.push(Section { address, kind, vals });
+        sections.push(Section {
+            address,
+            kind,
+            vals,
+        });
     }
     return Ok(sections);
 }
@@ -262,7 +275,12 @@ impl Match {
     }
 }
 
-fn find_best_match(min_size: usize, source: &Section, target: &Section, matches: &[Match]) -> Option<Match> {
+fn find_best_match(
+    min_size: usize,
+    source: &Section,
+    target: &Section,
+    matches: &[Match],
+) -> Option<Match> {
     let mut best_match = None;
     for source_offset in (min_size / 2..source.vals.len()).step_by(min_size) {
         if matches.iter().any(|m| m.contains_source(source_offset)) {
@@ -296,12 +314,19 @@ fn find_best_match(min_size: usize, source: &Section, target: &Section, matches:
             let size = left_size + right_size;
             if size >= min_size {
                 match best_match {
-                    Some(Match { size: best_size, .. }) if best_size > size => (),
+                    Some(Match {
+                        size: best_size,
+                        ..
+                    }) if best_size > size => (),
                     _ => {
                         let source_start = source_offset - left_size;
                         let target_start = target_offset - left_size;
-                        best_match = Some(Match { source_start, target_start, size })
-                    },
+                        best_match = Some(Match {
+                            source_start,
+                            target_start,
+                            size,
+                        })
+                    }
                 }
             }
             target_offset += 0x1;
