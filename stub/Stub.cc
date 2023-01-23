@@ -228,8 +228,8 @@ static std::optional<LoaderEntryFunc> Run() {
     }
     Console::Print(" done.\n");
     Console::Print("Decompressing the loader...");
-    u8 *loader = reinterpret_cast<u8 *>(0x80b00000);
-    std::optional<size_t> loaderSize = LZMA::Decode(file->data, loader, file->size, 0xb00000);
+    u8 *loader = reinterpret_cast<u8 *>(0x80c00000);
+    std::optional<size_t> loaderSize = LZMA::Decode(file->data, loader, file->size, 0x600000);
     if (!loaderSize) {
         Console::Print(" failed!\n");
         return {};
