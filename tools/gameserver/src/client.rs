@@ -170,7 +170,7 @@ impl Client {
                 if gamemode > 0 {
                     anyhow::ensure!(!(0x20..=0x29).contains(&course), "Invalid stage!")
                 } else {
-                    anyhow::ensure!(course <= 0x1c, "Invalid course!")
+                    anyhow::ensure!(course <= 0x1F, "Invalid course!")
                 }
 
                 assert_valid_character(properties.character)?;
