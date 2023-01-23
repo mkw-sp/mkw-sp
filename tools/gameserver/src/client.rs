@@ -19,6 +19,9 @@ pub struct Client {
     tx: mpsc::Sender<Request>,
     /// The channel to recieve broadcasted [`Event`]s from the server.
     rx: broadcast::Receiver<Event>,
+    /// The current gamemode of the room, if Start has been processed.
+    gamemode: Option<u8>,
+
     client_key: ClientKey,
 }
 
@@ -73,6 +76,7 @@ impl Client {
             tx,
             rx,
             client_key,
+            gamemode: None,
         })
     }
 
@@ -107,6 +111,18 @@ impl Client {
                     event: Some(inner),
                 };
                 self.stream.write(wrapped_event).await?;
+            }
+            Event::Start {
+                gamemode,
+            } => {
+                self.gamemode = Some(gamemode);
+                self.stream
+                    .write(RoomEventOpt {
+                        event: Some(RoomEvent::Start(room_event::Start {
+                            gamemode: gamemode as u32,
+                        })),
+                    })
+                    .await?;
             }
         }
 
@@ -149,6 +165,22 @@ impl Client {
                 course,
                 properties,
             }) => {
+                let gamemode = self.gamemode.ok_or(anyhow!("Start not processed!"))?;
+
+                if gamemode > 0 {
+                    anyhow::ensure!(!(0x20..=0x29).contains(&course), "Invalid stage!")
+                } else {
+                    anyhow::ensure!(course <= 0x1c, "Invalid course!")
+                }
+
+                assert_valid_character(properties.character)?;
+
+                let character_weight_class = get_character_weight_class(properties.character);
+                let vehicle_weight_class = get_vehicle_weight_class(properties.vehicle);
+
+                anyhow::ensure!(character_weight_class == vehicle_weight_class);
+                anyhow::ensure!(character_weight_class.is_some());
+
                 let properties = room_event::Properties {
                     drift_type: properties.drift_type,
                     character: properties.character,
@@ -167,5 +199,53 @@ impl Client {
         }
 
         Ok(())
+    }
+}
+
+fn assert_valid_character(character: u32) -> Result<()> {
+    anyhow::ensure!(character < 0x30);
+
+    let unused_character_ids = [0x1C, 0x1D, 0x22, 0x23, 0x28, 0x29];
+    anyhow::ensure!(!unused_character_ids.contains(&character), "Tried using Mii Outfit C");
+
+    Ok(())
+}
+
+#[derive(Debug, PartialEq)]
+enum WeightClass {
+    Light,
+    Medium,
+    Heavy,
+}
+
+fn get_character_weight_class(character: u32) -> Option<WeightClass> {
+    let small_characters = [0x6, 0xC, 0x1, 0x4, 0x8, 0xD, 0xE, 0x5, 0x18, 0x19, 0x1A, 0x1B];
+    let medium_characters = [0x0, 0x7, 0x10, 0xF, 0xA, 0x11, 0x12, 0x14, 0x1e, 0x1f, 0x20, 0x21];
+    let large_characters = [0xB, 0x2, 0x9, 0x3, 0x13, 0x17, 0x16, 0x15, 0x24, 0x25, 0x26, 0x27];
+
+    if small_characters.contains(&character) {
+        Some(WeightClass::Light)
+    } else if medium_characters.contains(&character) {
+        Some(WeightClass::Medium)
+    } else if large_characters.contains(&character) {
+        Some(WeightClass::Heavy)
+    } else {
+        None
+    }
+}
+
+fn get_vehicle_weight_class(vehicles: u32) -> Option<WeightClass> {
+    let small_vehicles = [0x0, 0x12, 0x3, 0x15, 0x6, 0x18, 0x9, 0x1B, 0xC, 0x1E, 0xF, 0x21];
+    let medium_vehicles = [0x1, 0x13, 0x4, 0x16, 0x7, 0x19, 0xA, 0x1C, 0xD, 0x1F, 0x10, 0x22];
+    let large_vehicles = [0x2, 0x14, 0x5, 0x17, 0x8, 0x1A, 0xB, 0x1D, 0xE, 0x20, 0x11, 0x23];
+
+    if small_vehicles.contains(&vehicles) {
+        Some(WeightClass::Light)
+    } else if medium_vehicles.contains(&vehicles) {
+        Some(WeightClass::Medium)
+    } else if large_vehicles.contains(&vehicles) {
+        Some(WeightClass::Heavy)
+    } else {
+        None
     }
 }

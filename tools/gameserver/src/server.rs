@@ -86,7 +86,8 @@ impl Server {
 
                 let is_host = self.settings.is_none();
                 let client = Client {
-                    is_host, is_spectator: false
+                    is_host,
+                    is_spectator: false,
                 };
 
                 let client_key = self.clients.insert(client);
@@ -180,10 +181,8 @@ impl Server {
                     gamemode,
                 };
 
-                let _ = self.tx.send(Event::Forward {
-                    inner: room_event::Event::Start(room_event::Start {
-                        gamemode: gamemode as u32,
-                    }),
+                let _ = self.tx.send(Event::Start {
+                    gamemode,
                 });
             }
             Request::Vote {
@@ -214,11 +213,8 @@ impl Server {
                         gamemode,
                     };
 
-                    let player_properties: Vec<_> = self
-                        .players
-                        .iter_mut()
-                        .map(|p| p.properties.take().unwrap())
-                        .collect();
+                    let player_properties: Vec<_> =
+                        self.players.iter_mut().map(|p| p.properties.take().unwrap()).collect();
 
                     let _ = self.tx.send(Event::Forward {
                         inner: room_event::Event::SelectInfo(room_event::SelectInfo {
