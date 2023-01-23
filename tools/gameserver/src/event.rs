@@ -6,4 +6,7 @@ pub enum Event {
     Forward {
         inner: RoomEvent,
     },
+    Start {
+        gamemode: u8,
+    },
 }
