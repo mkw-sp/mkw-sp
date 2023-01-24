@@ -13,6 +13,10 @@ pub mod room_protocol {
     };
 }
 
+pub mod race_protocol {
+    pub use super::inner::{RaceClientFrame, RaceClientPing, RaceServerFrame};
+}
+
 pub mod matchmaking {
     pub use super::inner::{
         LoginInfo,

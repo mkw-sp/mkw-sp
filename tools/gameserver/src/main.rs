@@ -3,6 +3,7 @@ mod event;
 mod matchmaking;
 mod request;
 mod room;
+mod unreliable_socket;
 
 use anyhow::Result;
 use clap::Parser;
@@ -23,7 +24,7 @@ use crate::room::Room;
 use matchmaking::Message;
 use netprotocol::{
     matchmaking::{gts_message, stg_message, GTSMessage, GTSMessageOpt, STGMessage, STGMessageOpt},
-    room_protocol,
+    race_protocol, room_protocol,
 };
 
 #[derive(Clone, Debug)]

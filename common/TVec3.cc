@@ -6,9 +6,9 @@ Vec3::Vec3() = default;
 
 Vec3::Vec3(f32 x, f32 y, f32 z) : TVec3Base{x, y, z} {}
 
-Vec3::Vec3(const _RaceServerFrame_Vec3 &v) : Vec3(v.x, v.y, v.z) {}
+Vec3::Vec3(const _PlayerFrame_Vec3 &v) : Vec3(v.x, v.y, v.z) {}
 
-Vec3::operator _RaceServerFrame_Vec3() const {
+Vec3::operator _PlayerFrame_Vec3() const {
     return {x, y, z};
 }
 

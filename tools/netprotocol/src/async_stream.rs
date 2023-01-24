@@ -55,6 +55,14 @@ impl<R: Message + Default, W: Message> AsyncStream<R, W> {
         })
     }
 
+    pub fn read_key(&self) -> &secretbox::Key {
+        &self.read_key
+    }
+
+    pub fn write_key(&self) -> &secretbox::Key {
+        &self.write_key
+    }
+
     async fn read_exact(&mut self, buf: &mut [u8]) -> Result<bool> {
         match self.stream.read_exact(buf).await {
             Ok(_) => Ok(true),
@@ -69,6 +77,10 @@ impl<R: Message + Default, W: Message> AsyncStream<R, W> {
     }
 
     pub async fn read(&mut self) -> Result<Option<R>> {
+        self.read_as().await
+    }
+
+    pub async fn read_as<S: Message + Default>(&mut self) -> Result<Option<S>> {
         let mut size = [0u8; 2];
         if !self.read_exact(&mut size).await? {
             return Ok(None);
@@ -84,10 +96,10 @@ impl<R: Message + Default, W: Message> AsyncStream<R, W> {
             secretbox::decrypt(&msg_enc, self.read_message_id, &self.context, &self.read_key)?;
         self.read_message_id += 1;
 
-        Ok(Some(R::decode(&*msg)?))
+        Ok(Some(S::decode(&*msg)?))
     }
 
-    pub async fn write(&mut self, message: W) -> Result<()> {
+    pub async fn write(&mut self, message: &W) -> Result<()> {
         let tmp = message.encode_to_vec();
         let tmp = secretbox::encrypt(&tmp, self.write_message_id, &self.context, &self.write_key);
         self.write_message_id += 1;

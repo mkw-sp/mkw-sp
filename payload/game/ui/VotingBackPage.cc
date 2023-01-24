@@ -61,6 +61,7 @@ void VotingBackPage::afterCalc() {
 void VotingBackPage::onRefocus() {
     if (m_submitted) {
         push(PageId::Roulette, Anim::Next);
+        m_submitted = false;
     }
 }
 

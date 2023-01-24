@@ -27,6 +27,7 @@ public:
     u32 ip() const;
     u16 port() const;
     hydro_kx_session_keypair keypair() const;
+    Net::AsyncSocket &socket();
 
     // Request writing interface - new requests should go here!
     // TODO these should return void and defer the actual sending

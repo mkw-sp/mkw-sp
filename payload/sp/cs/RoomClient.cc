@@ -77,6 +77,10 @@ hydro_kx_session_keypair RoomClient::keypair() const {
     return m_socket.keypair();
 }
 
+Net::AsyncSocket &RoomClient::socket() {
+    return m_socket;
+}
+
 bool RoomClient::sendComment(u32 commentId) {
     return writeComment(commentId);
 }

@@ -283,13 +283,12 @@ private:
     bool m_isPaused;
     bool m_isMirror;
     u8 _4156[0x415c - 0x4156];
-    UserPad *m_extraUserPads; // Added
     GhostPad *m_extraGhostPads; // Added
     GhostPadProxy *m_extraGhostProxies; // Added
     PadRollback *m_rollbacks; // Added
 
     static InputManager *s_instance;
 };
-static_assert(sizeof(InputManager) == 0x415c + sizeof(void *) * 4);
+static_assert(sizeof(InputManager) == 0x415c + sizeof(void *) * 3);
 
 } // namespace System

@@ -1,12 +1,17 @@
+use anyhow::Result;
+use libhydrogen::secretbox;
 use rand::Rng;
 use slab::Slab;
+use tokio::net::UdpSocket;
 use tokio::sync::{broadcast, mpsc};
 
 use crate::event::Event;
 use crate::matchmaking;
+use crate::race_protocol::{RaceClientPing, RaceServerFrame};
 use crate::request::{JoinResponse, Request};
 use crate::room_protocol::room_event::Properties;
 use crate::room_protocol::*;
+use crate::unreliable_socket::{Connection, UnreliableSocket};
 
 #[derive(Debug, PartialEq)]
 enum RoomState {
@@ -56,39 +61,107 @@ impl Room {
         }
     }
 
-    pub async fn handle(&mut self) {
+    pub async fn handle(&mut self) -> Result<()> {
         loop {
             tokio::select! {
-                Some(request) = self.rx.recv() => self.handle_request(request),
+                Some(request) = self.rx.recv() => self.handle_request(request)?,
                 Some((client_key, is_host)) = self.leave_rx.recv() => {
                     let client = self.handle_leave(client_key, is_host);
                     if client.is_host {
-                        return;
+                        break;
                     }
                 },
-                else => return,
+                else => break,
+            }
+
+            if let RoomState::Playing {
+                ..
+            } = self.room_state
+            {
+                self.handle_race().await?;
             }
         }
+
+        Ok(())
     }
 
-    fn handle_request(&mut self, request: Request) {
+    async fn handle_race(&mut self) -> Result<()> {
+        let socket = UdpSocket::bind("0.0.0.0:21330").await?;
+        let context = secretbox::Context::from(*b"race    ");
+        let connections = self
+            .clients
+            .iter()
+            .map(|(_, client)| Connection::new(client.read_key.clone(), client.write_key.clone()))
+            .collect();
+        let mut unreliable_socket = UnreliableSocket::new(socket, context, connections);
+
+        let mut pending_clients = (0..self.clients.len()).collect::<Vec<_>>();
+        while !pending_clients.is_empty() {
+            let (index, _) = unreliable_socket.read::<RaceClientPing>().await?;
+            pending_clients.retain(|i| *i != index);
+        }
+
+        let mut player_frames = vec![None; self.players.len()];
+        let mut player_frames = loop {
+            let Some(request) = self.rx.recv().await else {return Ok(())};
+            let Request::ClientFrame { player_id, inner: client_frame } = request else {
+                anyhow::bail!("Unexpected request type!");
+            };
+            tracing::info!("{:?} {:?}", player_id, client_frame);
+            player_frames[player_id as usize] = Some(client_frame);
+
+            let player_frames: Option<Vec<_>> = player_frames.iter().cloned().collect();
+            if let Some(player_frames) = player_frames {
+                break player_frames;
+            }
+        };
+
+        for time in 0.. {
+            let Some(request) = self.rx.recv().await else {return Ok(())};
+            let Request::ClientFrame { player_id, inner: client_frame } = request else {
+                anyhow::bail!("Unexpected request type!");
+            };
+            tracing::info!("{:?} {:?}", player_id, client_frame);
+            player_frames[player_id as usize] = client_frame;
+            let player_times = player_frames.iter().map(|player_frame| player_frame.time).collect();
+            let players =
+                player_frames.iter().map(|player_frame| player_frame.players[0].clone()).collect();
+            let server_frame = RaceServerFrame {
+                time,
+                player_times,
+                players,
+            };
+            tracing::info!("{:?}", server_frame);
+            for index in 0..self.clients.len() {
+                unreliable_socket.write(index, &server_frame).await?;
+            }
+        }
+
+        Ok(())
+    }
+
+    fn handle_request(&mut self, request: Request) -> Result<()> {
         match request {
             Request::Join {
+                read_key,
+                write_key,
                 inner,
                 tx: join_tx,
             } => {
                 if self.room_state != RoomState::Lobby {
-                    return;
+                    return Ok(());
                 }
                 if self.clients.len() + 1 > Self::MAX_CLIENT_COUNT {
-                    return;
+                    return Ok(());
                 }
                 if self.players.len() + inner.miis.len() > Self::MAX_PLAYER_COUNT {
-                    return;
+                    return Ok(());
                 }
 
                 let is_host = self.settings.is_none();
                 let client = Client {
+                    read_key,
+                    write_key,
                     is_host,
                     is_spectator: false,
                 };
@@ -98,7 +171,7 @@ impl Room {
                 // Must occur before ClientKey construction, as client_lookup is assumed to be filled
                 // once it is dropped
                 if let Some(matchmaking_state) = &mut self.matchmaking_state {
-                    let Some(login_info) = inner.login_info else {return};
+                    let Some(login_info) = inner.login_info else {return Ok(())};
 
                     matchmaking_state
                         .client_lookup
@@ -184,7 +257,7 @@ impl Room {
                 inner,
             } => {
                 if self.room_state != RoomState::Lobby {
-                    return;
+                    return Ok(());
                 }
 
                 let _ = self.tx.send(Event::Forward {
@@ -195,7 +268,7 @@ impl Room {
                 gamemode,
             } => {
                 if self.room_state != RoomState::Lobby {
-                    return;
+                    return Ok(());
                 }
 
                 self.room_state = RoomState::Voting {
@@ -210,11 +283,11 @@ impl Room {
                 player_id,
                 properties,
             } => {
-                let RoomState::Voting { gamemode } = self.room_state else {return};
-                let Some(client) = self.players.get_mut(player_id as usize) else {return};
+                let RoomState::Voting { gamemode } = self.room_state else {return Ok(())};
+                let Some(client) = self.players.get_mut(player_id as usize) else {return Ok(())};
 
                 if client.properties.is_some() {
-                    return;
+                    return Ok(());
                 }
 
                 client.properties = Some(properties);
@@ -245,7 +318,10 @@ impl Room {
                     });
                 }
             }
+            request => anyhow::bail!("Request type not implemented: {request:?}"),
         }
+
+        Ok(())
     }
 
     fn handle_leave(&mut self, client_key: usize, is_host: bool) -> Client {
@@ -310,6 +386,8 @@ impl Drop for ClientKey {
 /// Represents a connection to the room, is either a player (host/client) or a spectator.
 #[derive(Debug)]
 struct Client {
+    read_key: secretbox::Key,
+    write_key: secretbox::Key,
     is_host: bool,
     is_spectator: bool,
 }

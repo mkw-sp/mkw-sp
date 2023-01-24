@@ -2,6 +2,7 @@ use std::io::Result;
 
 fn main() -> Result<()> {
     let files = [
+        "../../protobuf/Race.proto",
         "../../protobuf/Room.proto",
         "../../protobuf/Matchmaking.proto",
     ];

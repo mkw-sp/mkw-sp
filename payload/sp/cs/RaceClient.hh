@@ -2,6 +2,7 @@
 
 #include "sp/CircularBuffer.hh"
 #include "sp/cs/RaceManager.hh"
+#include "sp/cs/RoomClient.hh"
 
 namespace SP {
 
@@ -11,8 +12,8 @@ public:
 
     u32 frameCount() const;
     const std::optional<RaceServerFrame> &frame() const;
-    s32 drift() const;
-    void adjustDrift();
+    /*s32 drift() const;
+    void adjustDrift();*/
 
     void calcWrite();
     void calcRead();
@@ -33,21 +34,22 @@ private:
         RaceClient &m_client;
     };
 
-    RaceClient(u32 ip, u16 port, hydro_kx_session_keypair keypair);
+    RaceClient(RoomClient &roomClient);
     ~RaceClient();
 
     bool isFrameValid(const RaceServerFrame &frame);
 
-    static bool IsVec3Valid(const RaceServerFrame_Vec3 &v);
-    static bool IsQuatValid(const RaceServerFrame_Quat &q);
+    static bool IsVec3Valid(const PlayerFrame_Vec3 &v);
+    static bool IsQuatValid(const PlayerFrame_Quat &q);
     static bool IsF32Valid(f32 s);
 
-    s32 m_drift = 0;
-    CircularBuffer<s32, 60> m_drifts;
-    std::optional<RaceServerFrame> m_frame{};
-    u32 m_frameCount = 0;
-    Net::UnreliableSocket::Connection m_connection;
+    RoomClient &m_roomClient;
     Net::UnreliableSocket m_socket;
+    Net::UnreliableSocket::Connection m_connection;
+    u32 m_frameCount = 0;
+    std::optional<RaceServerFrame> m_frame{};
+    /*CircularBuffer<s32, 60> m_drifts;
+    s32 m_drift = 0;*/
 
     static RaceClient *s_instance;
 };

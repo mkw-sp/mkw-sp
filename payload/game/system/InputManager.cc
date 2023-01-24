@@ -2,7 +2,6 @@
 
 #include "game/system/RaceConfig.hh"
 
-#include "game/gfx/CameraManager.hh"
 #include "game/system/RaceManager.hh"
 #include "game/system/SaveManager.hh"
 
@@ -10,7 +9,6 @@ extern "C" {
 #include <revolution/kpad.h>
 }
 #include <sp/cs/RaceClient.hh>
-#include <sp/cs/RaceServer.hh>
 
 #include <cmath>
 
@@ -197,16 +195,8 @@ UserPadProxy *InputManager::userProxy(u32 i) {
     return &m_userProxies[i];
 }
 
-UserPad *InputManager::extraUserPad(u32 i) {
-    return &m_extraUserPads[i];
-}
-
 GhostPadProxy *InputManager::extraGhostProxy(u32 i) {
     return &m_extraGhostProxies[i];
-}
-
-void InputManager::setExtraUserPad(u32 i) {
-    m_extraGhostProxies[i].PadProxy::setPad(&m_extraUserPads[i], nullptr);
 }
 
 void InputManager::setGhostPad(u32 i, const void *ghostInputs, bool driftIsAuto) {
@@ -228,10 +218,6 @@ void InputManager::reset() {
 void InputManager::calcPads(bool isPaused) {
     REPLACED(calcPads)(isPaused);
 
-    for (u32 i = 0; i < 12; i++) {
-        m_extraUserPads[i].calc();
-    }
-
     if (!isPaused) {
         for (u32 i = 0; i < 12; i++) {
             m_extraGhostPads[i].calc();
@@ -240,21 +226,10 @@ void InputManager::calcPads(bool isPaused) {
 }
 
 void InputManager::calc() {
-    if (auto *raceServer = SP::RaceServer::Instance()) {
-        raceServer->calcRead();
-    }
-
     REPLACED(calc)();
 
     for (u32 i = 0; i < 12; i++) {
         m_extraGhostProxies[i].calc(m_isPaused);
-    }
-
-    if (auto *cameraManager = Graphics::CameraManager::Instance(); cameraManager &&
-            cameraManager->isReady()) {
-        if (auto *raceClient = SP::RaceClient::Instance()) {
-            raceClient->calcWrite();
-        }
     }
 }
 
@@ -296,7 +271,6 @@ InputManager *InputManager::CreateInstance() {
     s_instance = new InputManager;
     assert(s_instance);
 
-    s_instance->m_extraUserPads = new UserPad[12];
     s_instance->m_extraGhostPads = new GhostPad[12];
     s_instance->m_extraGhostProxies = new GhostPadProxy[12];
     for (u32 i = 0; i < 12; i++) {

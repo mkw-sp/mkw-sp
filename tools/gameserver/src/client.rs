@@ -75,6 +75,8 @@ impl Client {
 
         let (join_tx, join_rx) = oneshot::channel();
         let request = Request::Join {
+            read_key: stream.read_key().clone(),
+            write_key: stream.write_key().clone(),
             inner: join,
             tx: join_tx,
         };
@@ -86,7 +88,7 @@ impl Client {
         } = join_rx.await?;
 
         for event in events {
-            stream.write(event).await?;
+            stream.write(&event).await?;
         }
 
         Ok(Client {
@@ -104,38 +106,57 @@ impl Client {
                 request = self.stream.read() => {
                     tracing::debug!("Received request: {request:?}");
                     if let Some(request) = request? {
-                        self.handle_request(request).await
+                        self.handle_request(request).await?;
                     } else {
-                        break Ok(())
+                        return Ok(());
                     }
                 },
                 event = self.rx.recv() => {
-                    match event {
+                    let is_ready = match event {
                         Ok(event) => self.handle_event(event).await,
-                        Err(BroadcastRecvError::Closed) => break Ok(()),
-                        Err(err) => break Err(err.into()),
+                        Err(BroadcastRecvError::Closed) => return Ok(()),
+                        Err(err) => return Err(err.into()),
+                    }?;
+                    if is_ready {
+                        break;
                     }
                 },
-            }?
+            }
+        }
+
+        loop {
+            let Some(client_frame) = self.stream.read_as().await? else {return Ok(())};
+            self.tx
+                .send(Request::ClientFrame {
+                    inner: client_frame,
+                    player_id: self.client_key.get() as u32, // FIXME hack
+                })
+                .await?;
         }
     }
 
-    async fn handle_event(&mut self, event: Event) -> Result<()> {
+    async fn handle_event(&mut self, event: Event) -> Result<bool> {
         match event {
             Event::Forward {
                 inner,
             } => {
                 let wrapped_event = RoomEventOpt {
-                    event: Some(inner),
+                    event: Some(inner.clone()),
                 };
-                self.stream.write(wrapped_event).await?;
+                self.stream.write(&wrapped_event).await?;
+                if let room_event::Event::SelectInfo {
+                    ..
+                } = inner
+                {
+                    return Ok(true);
+                }
             }
             Event::Start {
                 gamemode,
             } => {
                 self.gamemode = Some(gamemode);
                 self.stream
-                    .write(RoomEventOpt {
+                    .write(&RoomEventOpt {
                         event: Some(RoomEvent::Start(room_event::Start {
                             gamemode: gamemode as u32,
                         })),
@@ -144,7 +165,7 @@ impl Client {
             }
         }
 
-        Ok(())
+        Ok(false)
     }
 
     async fn handle_request(&mut self, request: RoomRequestOpt) -> Result<()> {
@@ -209,7 +230,7 @@ impl Client {
                 self.tx
                     .send(Request::Vote {
                         properties,
-                        player_id: self.client_key.get() as u32,
+                        player_id: self.client_key.get() as u32, // FIXME hack
                     })
                     .await?;
             }

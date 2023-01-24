@@ -1,6 +1,8 @@
+use libhydrogen::secretbox;
 use tokio::sync::{broadcast, oneshot};
 
 use crate::event::Event;
+use crate::race_protocol::RaceClientFrame;
 use crate::room::ClientKey;
 use crate::room_protocol::{room_event, room_request, RoomEventOpt};
 
@@ -9,6 +11,8 @@ use crate::room_protocol::{room_event, room_request, RoomEventOpt};
 #[derive(Debug)]
 pub enum Request {
     Join {
+        read_key: secretbox::Key,
+        write_key: secretbox::Key,
         inner: room_request::Join,
         tx: oneshot::Sender<JoinResponse>,
     },
@@ -21,6 +25,10 @@ pub enum Request {
     Vote {
         player_id: u32,
         properties: room_event::Properties,
+    },
+    ClientFrame {
+        player_id: u32,
+        inner: RaceClientFrame,
     },
 }
 

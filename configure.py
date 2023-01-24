@@ -1653,7 +1653,6 @@ code_in_files = {
         os.path.join('payload', 'sp', '3d', 'Kcl.cc'),
         os.path.join('payload', 'sp', 'cs', 'RaceClient.cc'),
         os.path.join('payload', 'sp', 'cs', 'RaceManager.cc'),
-        os.path.join('payload', 'sp', 'cs', 'RaceServer.cc'),
         os.path.join('payload', 'sp', 'cs', 'RoomClient.cc'),
         os.path.join('payload', 'sp', 'cs', 'RoomManager.cc'),
         os.path.join('payload', 'sp', 'cs', 'RoomServer.cc'),
