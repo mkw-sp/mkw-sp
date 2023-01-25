@@ -1258,6 +1258,26 @@
         "font": "regular",
         "string": "Hide course_model.brres",
     },
+    "10355": {
+        "font": "regular",
+        "string": "MiniMap",
+    },
+    "10356": {
+        "font": "regular",
+        "string": "Disable",
+    },
+    "10357": {
+        "font": "regular",
+        "string": "Enable",
+    },
+    "10358": {
+        "font": "regular",
+        "string": "MiniMap will be disabled",
+    },
+    "10359": {
+        "font": "regular",
+        "string": "MiniMap will be enabled",
+    },
     "20000": {
         "font": "regular",
         "string": "Online",
