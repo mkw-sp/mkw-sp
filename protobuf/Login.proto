@@ -1,0 +1,19 @@
+syntax = "proto2";
+
+message LoggedInId {
+    required uint32 device  = 1;
+    required uint32 licence = 2;
+}
+
+message ClientId {
+    oneof inner {
+        LoggedInId logged_in = 1;
+        uint32     guest     = 2;
+    }
+}
+
+message LoginInfo {
+    required ClientId client_id = 1;
+    required uint32   room_id   = 2;
+    required uint32   token     = 3;
+}

@@ -1,3 +1,5 @@
+use std::marker::PhantomData;
+
 use anyhow::Result;
 use libhydrogen::{kx, secretbox};
 use prost::Message;
@@ -5,21 +7,23 @@ use tokio::io::{AsyncReadExt, AsyncWriteExt};
 use tokio::net::TcpStream;
 
 #[derive(Debug)]
-pub struct AsyncStream {
+pub struct AsyncStream<R, W> {
     stream: TcpStream,
     context: secretbox::Context,
     read_key: secretbox::Key,
     write_key: secretbox::Key,
     read_message_id: u64,
     write_message_id: u64,
+
+    _marker: PhantomData<(R, W)>
 }
 
-impl AsyncStream {
+impl<R: Message + Default, W: Message> AsyncStream<R, W> {
     pub async fn new(
         mut stream: TcpStream,
         server_keypair: kx::KeyPair,
         context: secretbox::Context,
-    ) -> Result<AsyncStream> {
+    ) -> Result<Self> {
         let mut state = kx::State::new();
 
         let mut xx1 = [0u8; kx::XX_PACKET1BYTES];
@@ -40,6 +44,9 @@ impl AsyncStream {
         let write_key: [u8; 32] = keypair.tx.into();
         let write_key = secretbox::Key::from(write_key);
 
+        tracing::debug!("Public Key: {:x?}", server_keypair.public_key);
+        tracing::debug!("Secret Key: {:x?}", server_keypair.secret_key.as_ref());
+
         Ok(AsyncStream {
             stream,
             context,
@@ -47,6 +54,7 @@ impl AsyncStream {
             write_key,
             read_message_id: 0,
             write_message_id: 0,
+            _marker: PhantomData,
         })
     }
 
@@ -63,10 +71,7 @@ impl AsyncStream {
         }
     }
 
-    pub async fn read<M>(&mut self) -> Result<Option<M>>
-    where
-        M: Message + Default,
-    {
+    pub async fn read(&mut self) -> Result<Option<R>> {
         let mut size = [0u8; 2];
         if !self.read_exact(&mut size).await? {
             return Ok(None);
@@ -82,13 +87,11 @@ impl AsyncStream {
             secretbox::decrypt(&msg_enc, self.read_message_id, &self.context, &self.read_key)?;
         self.read_message_id += 1;
 
-        Ok(Some(M::decode(&*msg)?))
+        tracing::debug!("Recieved message!");
+        Ok(Some(R::decode(&*msg)?))
     }
 
-    pub async fn write<M: Message>(&mut self, message: M) -> Result<()>
-    where
-        M: Message,
-    {
+    pub async fn write(&mut self, message: W) -> Result<()> {
         let tmp = message.encode_to_vec();
         let tmp = secretbox::encrypt(&tmp, self.write_message_id, &self.context, &self.write_key);
         self.write_message_id += 1;
@@ -97,6 +100,7 @@ impl AsyncStream {
         let size = (size as u16).to_be_bytes();
         self.stream.write_all(&size).await?;
         self.stream.write_all(&tmp).await?;
+        tracing::debug!("Wrote message!");
         Ok(())
     }
 }

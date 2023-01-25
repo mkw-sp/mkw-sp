@@ -1,0 +1,107 @@
+syntax = "proto2";
+
+import public "Login.proto";
+
+message GTSMessage {
+    message AddServer {
+        required uint32 gameserver_id = 1;
+        required uint32 max_rooms     = 2;
+    }
+
+    message ClientUpdate {
+        required uint32   room_id   = 1;
+        required ClientId client_id = 2;
+        required bool     is_join   = 3;
+    }
+
+    message RaceFinish {
+        message RaceClient {
+            required ClientId client_id  = 1;
+            required int32    raceRating = 2;
+        }
+
+        repeated RaceClient clients = 1;
+    }
+
+    message TokenResponse {
+        required LoginInfo login_info = 1;
+        required uint32    room_ip    = 2;
+    }
+
+    oneof message {
+        AddServer        add_server        = 1;
+        TokenResponse    token_response    = 2;
+        ClientUpdate     client_update     = 3;
+        RaceFinish       finish            = 4;
+    }
+}
+
+message STGMessage {
+    message RequestToken {
+        required ClientId client_id = 1;
+        optional uint32   room_id   = 2;
+    }
+
+    oneof message {
+        RequestToken token_request = 1;
+    }
+}
+
+message CTSMessage {
+    message Login {
+        optional LoggedInId client_id = 1;
+    }
+
+    message LoginChallengeAnswer {
+        required bytes challenge_signed = 1;
+    }
+
+    message StartMatchmaking {
+        required uint32 gamemode = 1;
+    }
+
+    message CancelMatchmaking {}
+
+    oneof message {
+        Login login                                 = 1;
+        LoginChallengeAnswer login_challenge_answer = 2;
+
+        StartMatchmaking     start_matchmaking      = 3;
+        CancelMatchmaking    cancel_matchmaking     = 4;
+    }
+}
+
+message STCMessage {
+    message LoginGuest {}
+
+    message LoginChallenge {
+        required bytes challenge = 1;
+    }
+
+    message LoginResponse {
+        message Friend {
+            required LoggedInId client_id     = 1;
+            required string     friend_suffix = 2;
+            required int32      location      = 3;
+            required int32      latitude      = 4;
+            required int32      longitude     = 5;
+            required bytes      mii           = 6;
+        }
+
+        required int32  race_rating = 1;
+        repeated Friend friends     = 2;
+    }
+
+    message FoundMatch {
+        required LoginInfo login_info = 1;
+        required uint32    room_ip    = 2;
+    }
+
+    oneof message {
+        LoginChallenge  challenge      = 1;
+        LoginResponse   response       = 2;
+        LoginGuest      guest_response = 3;
+
+        FoundMatch      found_match = 4;
+    }
+}

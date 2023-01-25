@@ -1107,7 +1107,7 @@ n.newline()
 
 n.rule(
     'nanopb',
-    command = f'{sys.executable} $nanopb $in -L "#include <vendor/nanopb/%s>" -D build -q',
+    command = f'{sys.executable} $nanopb $in -I protobuf -L "#include <vendor/nanopb/%s>" -D build/protobuf -q',
     description = 'NANOPB $out',
 )
 n.newline()
@@ -1287,6 +1287,8 @@ n.rule(
 n.newline()
 
 protobuf_proto_files = [
+    os.path.join('protobuf', 'Login.proto'),
+    os.path.join('protobuf', 'Matchmaking.proto'),
     os.path.join('protobuf', 'NetStorage.proto'),
     os.path.join('protobuf', 'Race.proto'),
     os.path.join('protobuf', 'Room.proto'),
@@ -1569,6 +1571,7 @@ code_in_files = {
         os.path.join('payload', 'game', 'ui', 'page', 'TimeAttackSplitsPage.c'),
         os.path.join('payload', 'game', 'ui', 'page', 'TopMenuPage.S'),
         os.path.join('payload', 'game', 'ui', 'page', 'TopMenuPage.c'),
+        os.path.join('payload', 'game', 'ui', 'MatchmakingPage.cc'),
         os.path.join('payload', 'game', 'util', 'Input.S'),
         os.path.join('payload', 'game', 'util', 'Registry.cc'),
         os.path.join('payload', 'nw4r', 'db', 'dbAssert.S'),

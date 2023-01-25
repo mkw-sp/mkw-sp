@@ -1,20 +1,20 @@
-use anyhow::{anyhow, Result};
+use anyhow::{ Context, Result};
 use libhydrogen::{kx, secretbox};
 use tokio::net::TcpStream;
 use tokio::sync::broadcast::error::RecvError as BroadcastRecvError;
 use tokio::sync::{broadcast, mpsc, oneshot};
 
-use crate::async_stream::AsyncStream;
 use crate::event::Event;
 use crate::request::{JoinResponse, Request};
-use crate::room_protocol::*;
-use crate::server::ClientKey;
+use crate::room::ClientKey;
+use crate::{room_protocol::*, ServerConnection};
+use netprotocol::async_stream::AsyncStream;
 
 /// Represents a MKW-SP client connected to the server.
 #[derive(Debug)]
 pub struct Client {
     /// The stream used to communicate with the client.
-    stream: AsyncStream,
+    stream: AsyncStream<RoomRequestOpt, RoomEventOpt>,
     /// The channel to send [`Request`]s to the server.
     tx: mpsc::Sender<Request>,
     /// The channel to recieve broadcasted [`Event`]s from the server.
@@ -29,30 +29,47 @@ impl Client {
     pub async fn new(
         stream: TcpStream,
         server_keypair: kx::KeyPair,
-        tx: mpsc::Sender<Request>,
+        server_conn: ServerConnection,
     ) -> Result<Client> {
         let context = secretbox::Context::from(*b"room    ");
         let mut stream = AsyncStream::new(stream, server_keypair, context).await?;
 
-        let request: RoomRequestOpt =
-            stream.read().await?.ok_or(anyhow!("Connection closed unexpectedly!"))?;
-        let request = request.request.ok_or(anyhow!("Unknown request type!"))?;
+        let request: RoomRequestOpt = stream.read().await?.context("Connection closed unexpectedly!")?;
+        let request = request.request.context("Unknown request type!")?;
         let join = match request {
             room_request::Request::Join(join) => join,
-            _ => return Err(anyhow!("Unexpected request type!"))?,
+            _ => anyhow::bail!("Unexpected request type!"),
         };
+
+        let tx = match &join.login_info {
+            Some(login_info) => {
+                let ServerConnection::Matchmaking(rooms) = server_conn else {
+                    anyhow::bail!("Provided connection token to private room!");
+                };
+
+                let room_id = login_info.room_id as u16;
+                let conn = rooms.get(&room_id).context("Invalid connection token!")?;
+
+                conn.clone()
+            }
+            None => match server_conn {
+                ServerConnection::Client(tx) => tx,
+                ServerConnection::Matchmaking(_) => anyhow::bail!("No connection token provided!"),
+            },
+        };
+
         if join.miis.len() != 1 {
-            return Err(anyhow!("Invalid Mii count!"))?;
+            anyhow::bail!("Invalid Mii count!");
         }
         if join.miis.iter().any(|mii| mii.len() != 76) {
-            return Err(anyhow!("Invalid Mii size!"))?;
+            anyhow::bail!("Invalid Mii size!");
         }
         if join.region_line_color >= 6 {
-            return Err(anyhow!("Invalid region line color!"))?;
+            anyhow::bail!("Invalid region line color!");
         }
         // TODO move settings to the protocol for better checks
         if join.settings.len() != 6 {
-            return Err(anyhow!("Invalid setting count!"))?;
+            anyhow::bail!("Invalid setting count!");
         }
 
         let (join_tx, join_rx) = oneshot::channel();
@@ -130,7 +147,7 @@ impl Client {
     }
 
     async fn handle_request(&mut self, request: RoomRequestOpt) -> Result<()> {
-        let request = request.request.ok_or(anyhow!("Unknown request type!"))?;
+        let request = request.request.context("Unknown request type!")?;
 
         match request {
             RoomRequest::Comment(room_request::Comment {
@@ -165,7 +182,7 @@ impl Client {
                 course,
                 properties,
             }) => {
-                let gamemode = self.gamemode.ok_or(anyhow!("Start not processed!"))?;
+                let gamemode = self.gamemode.context("Start not processed!")?;
 
                 if gamemode > 0 {
                     anyhow::ensure!(!(0x20..=0x29).contains(&course), "Invalid stage!")

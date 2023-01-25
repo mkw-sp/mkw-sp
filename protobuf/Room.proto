@@ -1,13 +1,16 @@
 syntax = "proto2";
 
+import public "Login.proto";
+
 message RoomRequest {
     message Join {
-        repeated bytes  miis            = 1;
-        required uint32 location        = 2;
-        required uint32 latitude        = 3;
-        required uint32 longitude       = 4;
-        required uint32 regionLineColor = 5;
-        repeated uint32 settings        = 6;
+        repeated bytes     miis            = 1;
+        required uint32    location        = 2;
+        required uint32    latitude        = 3;
+        required uint32    longitude       = 4;
+        required uint32    regionLineColor = 5;
+        repeated uint32    settings        = 6;
+        optional LoginInfo login_info      = 7;
     }
 
     message Spectate {}

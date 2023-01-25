@@ -4,6 +4,8 @@
 #include "game/ui/SectionManager.hh"
 
 #include <sp/cs/RoomClient.hh>
+#include <sp/net/AsyncSocket.hh>
+
 
 extern "C" {
 #include <sp/keyboard/Keyboard.h>
@@ -146,6 +148,11 @@ void DirectConnectionPage::onResetButtonFront([[maybe_unused]] PushButton *butto
 
 void DirectConnectionPage::onOkButtonFront(PushButton *button, [[maybe_unused]] u32 localPlayerId) {
     u64 directCode = m_editBox.getNumber();
+    if (directCode == 0) {
+        m_replacement = PageId::MatchmakingConnect;
+        return startReplace(Anim::Next, 0);
+    }
+
     if (directCode < 0x3ed5142afa4755f || directCode > 0xbed51428fa4755e) {
         auto *messagePage =
                 SectionManager::Instance()->currentSection()->page<PageId::MenuMessage>();
@@ -164,8 +171,7 @@ void DirectConnectionPage::onOkButtonFront(PushButton *button, [[maybe_unused]] 
     u16 passcode = directCode >> 48 & 0x7FF;
 
     auto sectionId = SectionManager::Instance()->currentSection()->id();
-    SP::RoomClient::CreateInstance(sectionId == SectionId::OnlineSingle ? 1 : 2, ip, port,
-            passcode);
+    SP::RoomClient::CreateInstance(sectionId == SectionId::OnlineSingle ? 1 : 2, ip, port, passcode, std::nullopt);
 
     m_replacement = PageId::FriendMatching;
     f32 delay = button->getDelay();
