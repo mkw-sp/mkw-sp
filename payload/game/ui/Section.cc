@@ -10,6 +10,7 @@
 #include "game/ui/FriendRoomPage.hh"
 #include "game/ui/FriendRoomRulesPage.hh"
 #include "game/ui/LicenseSelectPage.hh"
+#include "game/ui/MatchmakingPage.hh"
 #include "game/ui/ModelRenderPage.hh"
 #include "game/ui/MultiTeamSelectPage.hh"
 #include "game/ui/MultiTopPage.hh"
@@ -199,14 +200,12 @@ void Section::addPage(PageId pageId) {
 
         { SectionId::Voting1PVS, (PageId)0x50 },
         { SectionId::Voting1PVS, (PageId)0x51 },
-        { SectionId::Voting1PVS, (PageId)0x6f },
         { SectionId::Voting1PVS, (PageId)0x88 },
         { SectionId::Voting1PVS, (PageId)0x91 },
 
         { SectionId::VotingServer, (PageId)0x4e },
         { SectionId::VotingServer, (PageId)0x51 },
         { SectionId::VotingServer, (PageId)0x6e },
-        { SectionId::VotingServer, (PageId)0x6f },
         { SectionId::VotingServer, (PageId)0x88 },
         { SectionId::VotingServer, (PageId)0x91 },
 
@@ -396,6 +395,7 @@ void Section::addPages(SectionId id) {
         { SectionId::OnlineSingle, PageId::FriendRoomRules },
         { SectionId::OnlineSingle, PageId::MenuSettings },
         { SectionId::OnlineSingle, PageId::SettingsPopup },
+        { SectionId::OnlineSingle, PageId::MatchmakingConnect },
         { SectionId::OnlineMulti, PageId::FriendRoomRules },
         { SectionId::OnlineMulti, PageId::MenuSettings },
         { SectionId::OnlineMulti, PageId::SettingsPopup },
@@ -464,6 +464,8 @@ Page *Section::CreatePage(PageId pageId) {
         return new TimeAttackGhostListPage;
     case PageId::TeamConfirm:
         return new TeamConfirmPage;
+    case PageId::MatchmakingConnect:
+        return new MatchmakingPage;
     case PageId::MultiTop:
         return new MultiTopPage;
     case PageId::MultiTeamSelect:

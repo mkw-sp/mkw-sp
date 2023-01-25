@@ -2,6 +2,7 @@ use rand::Rng;
 use slab::Slab;
 use tokio::sync::{broadcast, mpsc};
 
+use crate::matchmaking;
 use crate::event::Event;
 use crate::request::{JoinResponse, Request};
 use crate::room_protocol::room_event::Properties;
@@ -19,8 +20,9 @@ enum RoomState {
     },
 }
 
+
 #[derive(Debug)]
-pub struct Server {
+pub struct Room {
     rx: mpsc::Receiver<Request>,
     tx: broadcast::Sender<Event>,
     leave_tx: mpsc::Sender<usize>,
@@ -29,18 +31,19 @@ pub struct Server {
     players: Vec<Player>,
     settings: Option<Vec<u32>>,
 
+    matchmaking_state: Option<matchmaking::State>,
     room_state: RoomState,
 }
 
-impl Server {
+impl Room {
     const MAX_CLIENT_COUNT: usize = 32;
     const MAX_PLAYER_COUNT: usize = 12;
 
-    pub fn new(rx: mpsc::Receiver<Request>) -> Server {
+    pub fn new(rx: mpsc::Receiver<Request>, match_state: Option<matchmaking::State>) -> Room {
         let (tx, _) = broadcast::channel(32);
         let (leave_tx, leave_rx) = mpsc::channel(Self::MAX_CLIENT_COUNT);
 
-        Server {
+        Room {
             rx,
             tx,
             leave_tx,
@@ -50,6 +53,7 @@ impl Server {
             settings: None,
 
             room_state: RoomState::Lobby,
+            matchmaking_state: match_state,
         }
     }
 
@@ -91,6 +95,20 @@ impl Server {
                 };
 
                 let client_key = self.clients.insert(client);
+
+                // Must occur before ClientKey construction, as client_lookup is assumed to be filled
+                // once it is dropped
+                if let Some(matchmaking_state) = &mut self.matchmaking_state {
+                    let Some(login_info) = inner.login_info else {return};
+
+                    matchmaking_state.client_lookup.insert(client_key, login_info.client_id.clone());
+                    let _ = matchmaking_state.ws_conn.send(matchmaking::Message::Update {
+                        room_id: matchmaking_state.room_id,
+                        client_id: login_info.client_id,
+                        is_join: true,
+                    });
+                }
+
                 let client_key = ClientKey {
                     is_host,
                     inner: client_key,
@@ -243,6 +261,16 @@ impl Server {
             };
             let _ = self.tx.send(event);
         }
+
+        if let Some(matchmaking_state) = &self.matchmaking_state {
+            // This panic will never fire as handle_leave is only fired when leave_tx is triggered
+            // which cannot happen as the client only gets the leave_rx once the IDs are inserted
+            let _ = matchmaking_state.ws_conn.send(matchmaking::Message::Update {
+                client_id: matchmaking_state.client_lookup.get(&client_key).expect("Missing client ID in lookup!").clone(),
+                room_id: matchmaking_state.room_id,
+                is_join: false
+            });
+        };
 
         self.clients.remove(client_key)
     }

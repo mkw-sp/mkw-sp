@@ -59,7 +59,7 @@ enum class PageId {
     VehicleSelect = 0x6C,
     DriftSelect = 0x6D,
     CourseSelect = 0x6E, // Replaces RaceCupSelect
-    // 0x6F: unused, was RaceCourseSelect
+    MatchmakingConnect = 0x6F,
     TimeAttackTop = 0x70,
     TimeAttackGhostList = 0x71,
     VSSelect = 0x72,
