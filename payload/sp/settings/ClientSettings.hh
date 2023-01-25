@@ -15,6 +15,7 @@ enum class Setting {
     PlayerTags,
     HUDLabels,
     HUDTeamColors,
+    MiniMap,
     MapIcons,
     InputDisplay,
     Speedometer,
@@ -164,6 +165,11 @@ enum class HUDLabels {
 enum class HUDTeamColors {
     Disable,
     Enable,
+};
+
+enum class MiniMap {
+    Enable,
+    Disable,
 };
 
 enum class MapIcons {
@@ -370,6 +376,11 @@ struct Helper<ClientSettings::Setting, ClientSettings::Setting::HUDLabels> {
 template <>
 struct Helper<ClientSettings::Setting, ClientSettings::Setting::HUDTeamColors> {
     using type = SP::ClientSettings::HUDTeamColors;
+};
+
+template <>
+struct Helper<ClientSettings::Setting, ClientSettings::Setting::MiniMap> {
+    using type = SP::ClientSettings::MiniMap;
 };
 
 template <>
