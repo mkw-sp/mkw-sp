@@ -10,12 +10,12 @@
 namespace UI {
 
 static const char *animInfo[] = {
-        "Loop", "Loop", nullptr, // group 0
-        "Fade", "Hide", "Fadein", "Show", "Fadeout", nullptr, // group 1
-        "Local", "Local", "Network", nullptr, // group 2
-        "Group", "Individual", "Blue", "Red", nullptr, // group 3
+        "Loop", "Loop", nullptr,                                 // group 0
+        "Fade", "Hide", "Fadein", "Show", "Fadeout", nullptr,    // group 1
+        "Local", "Local", "Network", nullptr,                    // group 2
+        "Group", "Individual", "Blue", "Red", nullptr,           // group 3
         "Roulette", "Unselected", "Selected", "Decide", nullptr, // group 4
-        nullptr // end
+        nullptr                                                  // end
 };
 
 RoulettePage::RoulettePage() = default;
@@ -171,7 +171,8 @@ void RoulettePage::initSelectingStage(u32 selectedPlayer) {
     m_timeTotal = 0.0;
     m_hoverPlayerIdx = 0;
     m_selectedPlayer = selectedPlayer;
-    System::RaceConfig::Instance()->menuScenario().courseId = votingBackPage->getCourseVote(selectedPlayer);
+    System::RaceConfig::Instance()->menuScenario().courseId =
+            votingBackPage->getCourseVote(selectedPlayer);
     System::ResourceManager::Instance()->preloadCourseAsync(
             votingBackPage->getCourseVote(selectedPlayer));
 }
@@ -246,7 +247,11 @@ void RoulettePage::VoteControl::onNewVote(MiiGroup *miiGroup, u8 playerIdx) {
     m_animator.setAnimation(2, 0, 0.0);
     m_animator.setAnimation(3, 0, 0.0);
     m_animator.setAnimation(1, 1, 0.0);
+
+    setMessageAll(20040);
+
     setVisible(true);
+
     playSound(Sound::SoundId::SE_UI_CRS_VOTE, -1);
 }
 

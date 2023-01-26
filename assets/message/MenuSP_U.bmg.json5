@@ -1474,6 +1474,10 @@
         "font": "regular",
         "string": "Enable",
     },
+    "20040": {
+        "font": "regular",
+        "string": "Voted!",
+    },
     "3700": {
         "font": "regular",
         "string": "Select Level",
