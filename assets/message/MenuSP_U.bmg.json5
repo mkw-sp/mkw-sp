@@ -1258,23 +1258,23 @@
         "font": "regular",
         "string": "Hide course_model.brres",
     },
-    "10355": {
+    "10367": {
         "font": "regular",
         "string": "Minimap",
     },
-    "10356": {
+    "10368": {
         "font": "regular",
         "string": "Disable",
     },
-    "10357": {
+    "10369": {
         "font": "regular",
         "string": "Enable",
     },
-    "10358": {
+    "10370": {
         "font": "regular",
         "string": "Minimap will be disabled",
     },
-    "10359": {
+    "10371": {
         "font": "regular",
         "string": "Minimap will be enabled",
     },
