@@ -1268,7 +1268,11 @@
     },
     "10355": {
         "font": "regular",
+<<<<<<< HEAD
         "string": "Mirror TTs",
+=======
+        "string": "Minimap",
+>>>>>>> 5100a2f (Made CtrlRace2DMap class, and CtrlRace2DMap::calcSelf, and fixed capitalization mistake)
     },
     "10356": {
         "font": "regular",
@@ -1280,6 +1284,7 @@
     },
     "10358": {
         "font": "regular",
+<<<<<<< HEAD
         "string": "Disables Mirror in TTs",
     },
     "10359": {
@@ -1333,6 +1338,13 @@
     "10371": {
         "font": "regular",
         "string": "The Minimap will be enabled",
+=======
+        "string": "Minimap will be disabled",
+    },
+    "10359": {
+        "font": "regular",
+        "string": "Minimap will be enabled",
+>>>>>>> 5100a2f (Made CtrlRace2DMap class, and CtrlRace2DMap::calcSelf, and fixed capitalization mistake)
     },
     "20000": {
         "font": "regular",

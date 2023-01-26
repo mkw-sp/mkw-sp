@@ -3,9 +3,24 @@
 #include "game/kart/KartObjectManager.hh"
 #include "game/system/RaceConfig.hh"
 #include "game/ui/TeamColors.hh"
+#include "game/system/SaveManager.hh"
+
+#include <sp/settings/ClientSettings.hh>
 
 namespace UI {
 
+void CtrlRace2DMap::calcSelf() {
+    auto *saveManager = System::SaveManager::Instance();
+    auto setting = saveManager->getSetting<SP::ClientSettings::Setting::MiniMap>();
+    if (setting == SP::ClientSettings::MiniMap::Disable) {
+	setVisible(true);
+    } 
+    else {
+	setVisible(false);
+    }
+    REPLACED(calcSelf)();
+}
+	
 void CtrlRace2DMapCharacter::load(u32 playerId) {
     m_playerId = playerId;
     m_object = Kart::KartObjectManager::Instance()->object(playerId);
