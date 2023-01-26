@@ -78,27 +78,17 @@ u8 RacePage::getControlCount(u32 controls) const {
         count += (localPlayerCount * 2) + 1;
     }
 
-    auto miniMapSetting = saveManager->getSetting<SP::ClientSettings::Setting::MiniMap>();
-    if (miniMapSetting == SP::ClientSettings::MiniMap::Disable) {
-        count--;
-    }
     return count;
 }
 
 void RacePage::initControls(u32 controls) {
-    auto *saveManager = System::SaveManager::Instance();
-    auto miniMapSetting = saveManager->getSetting<SP::ClientSettings::Setting::MiniMap>();
-    if (miniMapSetting == SP::ClientSettings::MiniMap::Disable) {
-        REPLACED(initControls)(controls & ~Control::Map);
-    }
-    else {
-        REPLACED(initControls)(controls);
-    }
+    REPLACED(initControls)(controls);
 
     u32 index = getControlCount(controls) - 1;
     u32 localPlayerCount = System::RaceConfig::Instance()->raceScenario().localPlayerCount;
     localPlayerCount = std::max(localPlayerCount, static_cast<u32>(1));
 
+    auto *saveManager = System::SaveManager::Instance();
     auto setting = saveManager->getSetting<SP::ClientSettings::Setting::VanillaMode>();
     if (setting != SP::ClientSettings::VanillaMode::Enable) {
         for (u32 i = 0; i < localPlayerCount; i++) {

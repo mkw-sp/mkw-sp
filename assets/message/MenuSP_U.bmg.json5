@@ -1260,7 +1260,7 @@
     },
     "10355": {
         "font": "regular",
-        "string": "MiniMap",
+        "string": "Minimap",
     },
     "10356": {
         "font": "regular",
@@ -1272,11 +1272,11 @@
     },
     "10358": {
         "font": "regular",
-        "string": "MiniMap will be disabled",
+        "string": "Minimap will be disabled",
     },
     "10359": {
         "font": "regular",
-        "string": "MiniMap will be enabled",
+        "string": "Minimap will be enabled",
     },
     "20000": {
         "font": "regular",
