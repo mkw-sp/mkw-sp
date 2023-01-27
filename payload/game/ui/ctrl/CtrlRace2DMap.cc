@@ -12,12 +12,7 @@ namespace UI {
 void CtrlRace2DMap::calcSelf() {
     auto *saveManager = System::SaveManager::Instance();
     auto setting = saveManager->getSetting<SP::ClientSettings::Setting::MiniMap>();
-    if (setting == SP::ClientSettings::MiniMap::Disable) {
-	setVisible(true);
-    } 
-    else {
-	setVisible(false);
-    }
+	setVisible(setting == SP::ClientSettings::MiniMap::Disable);
     REPLACED(calcSelf)();
 }
 	
