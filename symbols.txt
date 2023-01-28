@@ -1281,6 +1281,7 @@
 0x807e9cd0 CtrlMenuPressStart_load
 0x807ea27c CtrlRace2DMap_load
 0x807ea8d8 CtrlRaceBase_dt
+0x807eab3c _ZN2UI13CtrlRace2DMap8calcSelfEv
 0x807eae00 _ZN2UI22CtrlRace2DMapCharacter4loadEj
 0x807eaecc CtrlRace2DMapCharacter_initSelf
 0x807eb3cc CtrlRace2DMapCharacter_calcTransform

@@ -105,6 +105,17 @@ const Entry entries[] = {
         .valueMessageIds = (u32[]) { 10297, 10298 },
         .valueExplanationMessageIds = (u32[]) { 10299, 10300 },
     },
+    [static_cast<u32>(Setting::MiniMap)] = {
+        .category = Category::Race,
+        .name = magic_enum::enum_name(Setting::MiniMap),
+        .messageId = 10367,
+        .defaultValue = static_cast<u32>(MiniMap::Enable),
+        .valueCount = magic_enum::enum_count<MiniMap>(),
+        .valueNames = magic_enum::enum_names<MiniMap>().data(),
+        .valueMessageIds = (u32[]) { 10368, 10369 },
+        .valueExplanationMessageIds = (u32[]) { 10370, 10371 },
+        .vanillaValue = static_cast<u32>(MiniMap::Enable),
+    },
     [static_cast<u32>(Setting::MapIcons)] = {
         .category = Category::Race,
         .name = magic_enum::enum_name(Setting::MapIcons),

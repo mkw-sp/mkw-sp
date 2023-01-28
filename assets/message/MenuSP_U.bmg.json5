@@ -1314,6 +1314,26 @@
         "font": "regular",
         "string": "100cc"
     },
+    "10367": {
+        "font": "regular",
+        "string": "Minimap",
+    },
+    "10368": {
+        "font": "regular",
+        "string": "Enable",
+    },
+    "10369": {
+        "font": "regular",
+        "string": "Disable",
+    },
+    "10370": {
+        "font": "regular",
+        "string": "The Minimap will be enabled",
+    },
+    "10371": {
+        "font": "regular",
+        "string": "The Minimap will be disabled",
+    },
     "20000": {
         "font": "regular",
         "string": "Online",
