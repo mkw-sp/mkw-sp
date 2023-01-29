@@ -1334,6 +1334,30 @@
         "font": "regular",
         "string": "The Minimap will be disabled",
     },
+    "10372": {
+        "font": "regular",
+        "string": "Volume",
+    },
+    "10373": {
+        "font": "regular",
+        "string": "{arg integer|0 0} / 10",
+    },
+    "10374": {
+        "font": "regular",
+        "string": "Set the volume to {arg integer|0 0} / 10.",
+    },
+    "10375": {
+        "font": "regular",
+        "string": "Music Volume",
+    },
+    "10376": {
+        "font": "regular",
+        "string": "{arg integer|0 0} / 10",
+    },
+    "10377": {
+        "font": "regular",
+        "string": "Set the music volume to {arg integer|0 0} / 10.",
+    },
     "20000": {
         "font": "regular",
         "string": "Online",

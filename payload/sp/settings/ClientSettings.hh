@@ -22,6 +22,8 @@ enum class Setting {
     RankControl,
 
     // Sound
+    Volume,
+    MusicVolume,
     ItemMusic,
     LastLapJingle,
     LastLapSpeedup,
@@ -401,6 +403,16 @@ struct Helper<ClientSettings::Setting, ClientSettings::Setting::Speedometer> {
 template <>
 struct Helper<ClientSettings::Setting, ClientSettings::Setting::RankControl> {
     using type = SP::ClientSettings::RankControl;
+};
+
+template <>
+struct Helper<ClientSettings::Setting, ClientSettings::Setting::Volume> {
+    using type = u32;
+};
+
+template <>
+struct Helper<ClientSettings::Setting, ClientSettings::Setting::MusicVolume> {
+    using type = u32;
 };
 
 template <>

@@ -2,6 +2,8 @@
 
 #include "nw4r/snd/FileStream.hh"
 
+#include <game/sound/PlayerId.hh>
+#include <game/system/SaveManager.hh>
 #include <sp/storage/Storage.hh>
 
 #include <algorithm>
@@ -28,6 +30,18 @@ bool SoundArchivePlayer::setupMram(SoundArchive *archive, void *buffer, u32 buff
     std::fill(soundStreams(), soundStreams() + archive->getSoundCount(), nullptr);
 
     return true;
+}
+
+void SoundArchivePlayer::update() {
+    auto *saveManager = System::SaveManager::Instance();
+    u32 volume = saveManager->getSetting<SP::ClientSettings::Setting::Volume>();
+    for (u32 playerId = 0; playerId < m_playerCount; playerId++) {
+        m_players[playerId].m_mainOutVolume = volume / 10.0f;
+    }
+    u32 musicVolume = saveManager->getSetting<SP::ClientSettings::Setting::MusicVolume>();
+    m_players[static_cast<u32>(Sound::PlayerId::PL_BGM)].m_mainOutVolume *= musicVolume / 10.0f;
+
+    REPLACED(update)();
 }
 
 u32 SoundArchivePlayer::setupSoundImpl(SoundHandle *handle, u32 soundId, void *r6, void *r7,

@@ -3,12 +3,15 @@
 #include "nw4r/snd/SoundArchiveLoader.hh"
 #include "nw4r/snd/SoundHandle.hh"
 #include "nw4r/snd/SoundMemoryAllocatable.hh"
+#include "nw4r/snd/SoundPlayer.hh"
 
 namespace nw4r::snd {
 
 class SoundArchivePlayer {
 public:
     bool isAvailable() const;
+    void REPLACED(update)();
+    REPLACE void update();
     u32 REPLACED(setupSoundImpl)(SoundHandle *handle, u32 soundId, void *r6, void *r7, bool r8,
             void *r9);
     REPLACE u32 setupSoundImpl(SoundHandle *handle, u32 soundId, void *r6, void *r7, bool r8,
@@ -42,7 +45,10 @@ private:
 
     u8 _00[0x10 - 0x00];
     SoundArchive *m_archive;
-    u8 _14[0xd8 - 0x14];
+    u8 _14[0x30 - 0x14];
+    u32 m_playerCount;
+    SoundPlayer *m_players;
+    u8 _38[0xd8 - 0x38];
     void *m_buffer;
     u32 m_bufferSize;
 };
