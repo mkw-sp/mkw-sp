@@ -1,7 +1,8 @@
+use std::net::SocketAddr;
+
 use anyhow::{anyhow, Result};
 use libhydrogen::secretbox;
 use prost::Message;
-use std::net::SocketAddr;
 use tokio::net::UdpSocket;
 
 #[derive(Debug)]
@@ -32,14 +33,15 @@ impl UnreliableSocket {
     where
         M: Message + Default,
     {
-        let mut tmp = [0u8; 1024]; // TODO make that configurable
+        let mut message = [0u8; 1024]; // TODO make that configurable
         loop {
-            let (size, addr) = self.socket.recv_from(&mut tmp).await?;
+            let (size, addr) = self.socket.recv_from(&mut message).await?;
             for (index, connection) in self.connections.iter_mut().enumerate() {
-                let tmp = secretbox::decrypt(&tmp[0..size], 0, &self.context, &connection.read_key);
-                let Ok(tmp) = tmp else {continue};
+                let message =
+                    secretbox::decrypt(&message[0..size], 0, &self.context, &connection.read_key);
+                let Ok(message) = message else {continue};
                 connection.addr = Some(addr);
-                let Ok(message) = M::decode(&*tmp) else {break};
+                let Ok(message) = M::decode(&*message) else {break};
                 return Ok((index, message));
             }
         }
@@ -51,9 +53,9 @@ impl UnreliableSocket {
     {
         let connection = &self.connections[index];
         let addr = connection.addr.ok_or(anyhow!("Unknown connection address!"))?;
-        let tmp = message.encode_to_vec();
-        let tmp = secretbox::encrypt(&tmp, 0, &self.context, &connection.write_key);
-        self.socket.send_to(&tmp, addr).await?;
+        let message = message.encode_to_vec();
+        let message = secretbox::encrypt(&message, 0, &self.context, &connection.write_key);
+        self.socket.send_to(&message, addr).await?;
         Ok(())
     }
 }

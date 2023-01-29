@@ -78,7 +78,7 @@ impl ClientForwarder {
         {
             tracing::info!("Guest login");
             stream
-                .write(STCMessageOpt {
+                .write(&STCMessageOpt {
                     message: Some(STCMessage::GuestResponse(stc_message::LoginGuest {})),
                 })
                 .await?;
@@ -93,7 +93,7 @@ impl ClientForwarder {
 
         let challenge = Vec::new();
         stream
-            .write(STCMessageOpt {
+            .write(&STCMessageOpt {
                 message: Some(STCMessage::Challenge(stc_message::LoginChallenge {
                     challenge: challenge.clone(),
                 })),
@@ -117,7 +117,7 @@ impl ClientForwarder {
         .await?;
 
         stream
-            .write(STCMessageOpt {
+            .write(&STCMessageOpt {
                 message: Some(STCMessage::Response(stc_message::LoginResponse {
                     race_rating: rr_record.race_rating,
                     friends: fetch_friend_data(&mut db_connection, device_id, licence_id).await?,

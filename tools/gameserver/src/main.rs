@@ -1,36 +1,35 @@
-mod client;
-mod event;
 mod matchmaking;
-mod request;
 mod room;
 mod unreliable_socket;
 
-use anyhow::Result;
+use std::sync::Arc;
+
+use anyhow::{Context, Result};
 use clap::Parser;
 use dashmap::mapref::entry::Entry;
 use dashmap::DashMap;
 use futures_util::{SinkExt, StreamExt};
-use libhydrogen::kx;
+use libhydrogen::{kx, secretbox};
 use prost::Message as _;
-use std::collections::HashMap;
-use std::sync::Arc;
 use tokio::net::{TcpListener, TcpStream};
 use tokio::sync::mpsc;
 use tokio_tungstenite::{MaybeTlsStream, WebSocketStream};
 
-use crate::client::Client;
-use crate::request::Request;
 use crate::room::Room;
 use matchmaking::Message;
 use netprotocol::{
+    async_stream::AsyncStream,
     matchmaking::{gts_message, stg_message, GTSMessage, GTSMessageOpt, STGMessage, STGMessageOpt},
-    race_protocol, room_protocol,
+    room_protocol,
+    room_protocol::{room_request, RoomEventOpt, RoomRequest, RoomRequestOpt},
 };
+
+type RoomAsyncStream = AsyncStream<RoomRequestOpt, RoomEventOpt>;
 
 #[derive(Clone, Debug)]
 pub enum ServerConnection {
-    Client(mpsc::Sender<Request>),
-    Matchmaking(Arc<DashMap<u16, mpsc::Sender<Request>>>),
+    Client(mpsc::Sender<(RoomAsyncStream, room_request::Join)>),
+    Matchmaking(Arc<DashMap<u16, mpsc::Sender<(RoomAsyncStream, room_request::Join)>>>),
 }
 
 #[derive(clap::Parser, Debug)]
@@ -88,30 +87,28 @@ async fn client_listener(server_keypair: kx::KeyPair, server_conn: ServerConnect
     tracing::info!("Listening on 21330!");
 
     loop {
-        let stream = match listener.accept().await {
-            Ok((stream, _)) => stream,
-            Err(err) => {
-                tracing::error!("Failed to accept connection: {err}");
+        let (stream, peer_addr) = match listener.accept().await {
+            Ok((stream, peer_addr)) => {
+                tracing::info!("{peer_addr}: Accepted connection");
+                (stream, peer_addr)
+            }
+            Err(e) => {
+                tracing::error!("Failed to accept connection: {e}");
                 continue;
             }
         };
-
-        let peer_addr = stream.peer_addr()?;
-        tracing::info!("{peer_addr}: Accepted connection");
 
         let server_keypair = server_keypair.clone();
         let server_conn = server_conn.clone();
 
         tokio::spawn(async move {
-            let mut client = match Client::new(stream, server_keypair, server_conn).await {
-                Ok(client) => client,
-                Err(err) => return tracing::error!("Failed to create client: {err}"),
-            };
-
-            tracing::info!("{peer_addr}: Created client");
-            match client.handle().await {
-                Ok(_) => tracing::info!("{peer_addr}: Client disconnected"),
-                Err(err) => tracing::error!("{peer_addr}: Client disconnected: {err}"),
+            match handle_client(stream, server_keypair, server_conn).await {
+                Ok(()) => {
+                    tracing::info!("{peer_addr}: Successfully initialized client");
+                }
+                Err(e) => {
+                    tracing::error!("{peer_addr}: Failed to initialize client: {e}");
+                }
             }
         });
     }
@@ -119,7 +116,7 @@ async fn client_listener(server_keypair: kx::KeyPair, server_conn: ServerConnect
 
 async fn central_listener(
     mut ws: WebSocketStream<MaybeTlsStream<TcpStream>>,
-    rooms: Arc<DashMap<u16, mpsc::Sender<Request>>>,
+    rooms: Arc<DashMap<u16, mpsc::Sender<(RoomAsyncStream, room_request::Join)>>>,
     room_ip: std::net::Ipv4Addr,
     gameserver_id: u16,
     max_rooms: u16,
@@ -181,7 +178,6 @@ async fn central_listener(
                                 entry.insert(spawn_room(Some(matchmaking::State {
                                     room_id,
                                     ws_conn: ws_send.clone(),
-                                    client_lookup: HashMap::new(),
                                 })));
                                 break room_id;
                             }
@@ -213,13 +209,65 @@ async fn central_listener(
     Ok(())
 }
 
-fn spawn_room(match_state: Option<matchmaking::State>) -> mpsc::Sender<Request> {
-    let (tx, rx) = mpsc::channel(32);
+fn spawn_room(
+    match_state: Option<matchmaking::State>,
+) -> mpsc::Sender<(RoomAsyncStream, room_request::Join)> {
+    let (connect_tx, connect_rx) = mpsc::channel(32);
 
     tokio::spawn(async move {
-        let mut room = Room::new(rx, match_state);
+        let mut room = Room::new(connect_rx, match_state);
         room.handle().await
     });
 
-    tx
+    connect_tx
+}
+
+async fn handle_client(
+    stream: TcpStream,
+    server_keypair: kx::KeyPair,
+    server_conn: ServerConnection,
+) -> Result<()> {
+    let context = secretbox::Context::from(*b"room    ");
+    let mut stream = AsyncStream::new(stream, server_keypair, context).await?;
+
+    let request: RoomRequestOpt =
+        stream.read().await?.context("Connection closed unexpectedly!")?;
+    let join = match request.request {
+        Some(RoomRequest::Join(join)) => join,
+        _ => anyhow::bail!("Unexpected request type!"),
+    };
+
+    let connect_tx = match &join.login_info {
+        Some(login_info) => {
+            let ServerConnection::Matchmaking(rooms) = server_conn else {
+                anyhow::bail!("Provided connection token to private room!");
+            };
+
+            let room_id = login_info.room_id as u16;
+            let conn = rooms.get(&room_id).context("Invalid connection token!")?;
+
+            conn.clone()
+        }
+        None => match server_conn {
+            ServerConnection::Client(connect_tx) => connect_tx,
+            ServerConnection::Matchmaking(_) => anyhow::bail!("No connection token provided!"),
+        },
+    };
+
+    if join.miis.len() != 1 {
+        anyhow::bail!("Invalid Mii count!");
+    }
+    if join.miis.iter().any(|mii| mii.len() != 76) {
+        anyhow::bail!("Invalid Mii size!");
+    }
+    if join.region_line_color >= 6 {
+        anyhow::bail!("Invalid region line color!");
+    }
+    // TODO move settings to the protocol for better checks
+    if join.settings.len() != 6 {
+        anyhow::bail!("Invalid setting count!");
+    }
+
+    connect_tx.send((stream, join)).await?;
+    Ok(())
 }

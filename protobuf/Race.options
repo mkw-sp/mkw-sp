@@ -1,6 +1,0 @@
-PlayerFrame.timesBeforeBoostEnd max_count:3
-
-RaceClientFrame.players max_count:2
-
-RaceServerFrame.playerTimes max_count:12
-RaceServerFrame.players     max_count:12

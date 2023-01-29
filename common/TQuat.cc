@@ -1,6 +1,6 @@
 #include "TQuat.hh"
 
-#include <protobuf/Race.pb.h>
+#include <protobuf/Room.pb.h>
 
 Quat::Quat() : TQuatBase{0.0f, 0.0f, 0.0f, 1.0f} {}
 

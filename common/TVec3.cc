@@ -1,6 +1,6 @@
 #include "TVec3.hh"
 
-#include <protobuf/Race.pb.h>
+#include <protobuf/Room.pb.h>
 
 Vec3::Vec3() = default;
 

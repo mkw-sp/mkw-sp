@@ -8,7 +8,6 @@ anyhow = "1.0.68"
 libhydrogen = "0.4"
 prost = "0.11"
 rand = "0.8.5"
-slab = "0.4.7"
 tokio = { version = "~1.20", features = ["rt-multi-thread", "io-util", "net", "macros", "sync"] }
 tracing = "0.1.37"
 tracing-subscriber = { version = "0.3.16", features = ["fmt", "env-filter"] }
@@ -17,6 +16,7 @@ tokio-tungstenite = { version = "0.18.0", features = ["native-tls"] }
 futures-util = "0.3.25"
 clap = { version = "4.1.4", features = ["derive"] }
 url = "2.3.1"
+slab = "0.4.7"
 
 [dependencies.netprotocol]
 path = "../netprotocol"

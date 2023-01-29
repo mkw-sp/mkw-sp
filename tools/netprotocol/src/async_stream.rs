@@ -1,4 +1,5 @@
 use std::marker::PhantomData;
+use std::slice::SliceIndex;
 
 use anyhow::Result;
 use libhydrogen::{kx, secretbox};
@@ -6,16 +7,20 @@ use prost::Message;
 use tokio::io::{AsyncReadExt, AsyncWriteExt};
 use tokio::net::TcpStream;
 
+const MAX_MESSAGE_SIZE: usize = 1024;
+
 #[derive(Debug)]
-pub struct AsyncStream<R, W> {
+pub struct AsyncStream<R: Message + Default, W: Message> {
     stream: TcpStream,
+    public_key: kx::PublicKey,
     context: secretbox::Context,
     read_key: secretbox::Key,
-    write_key: secretbox::Key,
     read_message_id: u64,
+    read_buffer: [u8; MAX_MESSAGE_SIZE],
+    read_offset: usize,
+    write_key: secretbox::Key,
     write_message_id: u64,
-
-    _marker: PhantomData<(R, W)>
+    _marker: PhantomData<(R, W)>,
 }
 
 impl<R: Message + Default, W: Message> AsyncStream<R, W> {
@@ -38,7 +43,8 @@ impl<R: Message + Default, W: Message> AsyncStream<R, W> {
         stream.read_exact(&mut xx3).await?;
         let xx3 = kx::XXPacket3::from(xx3);
 
-        let keypair = kx::xx_4(&mut state, None, &xx3, None)?;
+        let mut public_key = kx::PublicKey::from([0u8; kx::PUBLICKEYBYTES]);
+        let keypair = kx::xx_4(&mut state, Some(&mut public_key), &xx3, None)?;
         let read_key: [u8; 32] = keypair.rx.into();
         let read_key = secretbox::Key::from(read_key);
         let write_key: [u8; 32] = keypair.tx.into();
@@ -46,13 +52,20 @@ impl<R: Message + Default, W: Message> AsyncStream<R, W> {
 
         Ok(AsyncStream {
             stream,
+            public_key,
             context,
             read_key,
-            write_key,
             read_message_id: 0,
+            read_buffer: [0; MAX_MESSAGE_SIZE],
+            read_offset: 0,
+            write_key,
             write_message_id: 0,
             _marker: PhantomData,
         })
+    }
+
+    pub fn public_key(&self) -> &kx::PublicKey {
+        &self.public_key
     }
 
     pub fn read_key(&self) -> &secretbox::Key {
@@ -63,51 +76,57 @@ impl<R: Message + Default, W: Message> AsyncStream<R, W> {
         &self.write_key
     }
 
-    async fn read_exact(&mut self, buf: &mut [u8]) -> Result<bool> {
-        match self.stream.read_exact(buf).await {
-            Ok(_) => Ok(true),
-            Err(e) => {
-                if e.kind() == std::io::ErrorKind::UnexpectedEof {
-                    Ok(false)
-                } else {
-                    Err(e.into())
-                }
+    async fn read_internal<I>(&mut self, index: I) -> Result<bool>
+    where
+        I: SliceIndex<[u8], Output = [u8]>,
+    {
+        match self.stream.read(&mut self.read_buffer[index]).await {
+            Ok(0) => Ok(false),
+            Ok(size) => {
+                self.read_offset += size;
+                Ok(true)
             }
+            Err(e) => Err(e.into()),
         }
     }
 
     pub async fn read(&mut self) -> Result<Option<R>> {
-        self.read_as().await
-    }
-
-    pub async fn read_as<S: Message + Default>(&mut self) -> Result<Option<S>> {
-        let mut size = [0u8; 2];
-        if !self.read_exact(&mut size).await? {
-            return Ok(None);
-        };
-
-        let size = u16::from_be_bytes(size);
-        let mut msg_enc = vec![0; size as usize];
-        if !self.read_exact(&mut msg_enc).await? {
-            return Ok(None);
-        };
-
-        let msg =
-            secretbox::decrypt(&msg_enc, self.read_message_id, &self.context, &self.read_key)?;
+        while self.read_offset < 2 {
+            if !self.read_internal(self.read_offset..2).await? {
+                anyhow::ensure!(self.read_offset == 0, "Unexpected eof!");
+                return Ok(None);
+            }
+        }
+        let size = u16::from_be_bytes(<[u8; 2]>::try_from(&self.read_buffer[..2]).unwrap());
+        let size = size as usize + 2;
+        anyhow::ensure!(size <= MAX_MESSAGE_SIZE, "Invalid message size!");
+        while self.read_offset < size {
+            if !self.read_internal(2..size).await? {
+                anyhow::ensure!(self.read_offset == 0, "Unexpected eof!");
+            }
+        }
+        let message = secretbox::decrypt(
+            &self.read_buffer[2..size],
+            self.read_message_id,
+            &self.context,
+            &self.read_key,
+        )?;
         self.read_message_id += 1;
-
-        Ok(Some(S::decode(&*msg)?))
+        let message = R::decode(&*message)?;
+        self.read_offset = 0;
+        Ok(Some(message))
     }
 
     pub async fn write(&mut self, message: &W) -> Result<()> {
-        let tmp = message.encode_to_vec();
-        let tmp = secretbox::encrypt(&tmp, self.write_message_id, &self.context, &self.write_key);
+        let message = message.encode_to_vec();
+        let message =
+            secretbox::encrypt(&message, self.write_message_id, &self.context, &self.write_key);
         self.write_message_id += 1;
-        let size = tmp.len();
+        let size = message.len();
         assert!(size <= u16::MAX as usize);
         let size = (size as u16).to_be_bytes();
         self.stream.write_all(&size).await?;
-        self.stream.write_all(&tmp).await?;
+        self.stream.write_all(&message).await?;
         Ok(())
     }
 }

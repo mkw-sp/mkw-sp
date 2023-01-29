@@ -51,38 +51,40 @@ void RaceClient::calcWrite() {
     }
 
     auto &raceScenario = System::RaceConfig::Instance()->raceScenario();
-    RaceClientFrame frame;
-    frame.time = System::RaceManager::Instance()->time();
-    frame.serverTime = m_frame ? m_frame->time : 0;
-    frame.players_count = raceScenario.localPlayerCount;
+    RoomRequest request;
+    request.which_request = RoomRequest_race_tag;
+    request.request.race.time = System::RaceManager::Instance()->time();
+    request.request.race.serverTime = m_frame ? m_frame->time : 0;
+    request.request.race.players_count = raceScenario.localPlayerCount;
     for (u8 i = 0; i < raceScenario.localPlayerCount; i++) {
         u8 playerId = raceScenario.screenPlayerIds[i];
         auto *player = System::RaceManager::Instance()->player(playerId);
         auto &inputState = player->padProxy()->currentRaceInputState();
-        frame.players[i].inputState.accelerate = inputState.accelerate;
-        frame.players[i].inputState.brake = inputState.brake;
-        frame.players[i].inputState.item = inputState.item;
-        frame.players[i].inputState.drift = inputState.drift;
-        frame.players[i].inputState.brakeDrift = inputState.brakeDrift;
-        frame.players[i].inputState.stickX = inputState.rawStick.x;
-        frame.players[i].inputState.stickY = inputState.rawStick.y;
-        frame.players[i].inputState.trick = inputState.rawTrick;
+        request.request.race.players[i].inputState.accelerate = inputState.accelerate;
+        request.request.race.players[i].inputState.brake = inputState.brake;
+        request.request.race.players[i].inputState.item = inputState.item;
+        request.request.race.players[i].inputState.drift = inputState.drift;
+        request.request.race.players[i].inputState.brakeDrift = inputState.brakeDrift;
+        request.request.race.players[i].inputState.stickX = inputState.rawStick.x;
+        request.request.race.players[i].inputState.stickY = inputState.rawStick.y;
+        request.request.race.players[i].inputState.trick = inputState.rawTrick;
         auto *object = Kart::KartObjectManager::Instance()->object(playerId);
-        frame.players[i].timeBeforeRespawn = object->getTimeBeforeRespawn();
-        frame.players[i].timeInRespawn = object->getTimeInRespawn();
-        frame.players[i].timesBeforeBoostEnd_count = 3;
+        request.request.race.players[i].timeBeforeRespawn = object->getTimeBeforeRespawn();
+        request.request.race.players[i].timeInRespawn = object->getTimeInRespawn();
+        request.request.race.players[i].timesBeforeBoostEnd_count = 3;
         for (u32 j = 0; j < 3; j++) {
-            frame.players[i].timesBeforeBoostEnd[j] = object->getTimeBeforeBoostEnd(j * 2);
+            request.request.race.players[i].timesBeforeBoostEnd[j] =
+                    object->getTimeBeforeBoostEnd(j * 2);
         }
-        frame.players[i].pos = *object->getPos();
-        frame.players[i].mainRot = *object->getMainRot();
-        frame.players[i].internalSpeed = object->getInternalSpeed();
+        request.request.race.players[i].pos = *object->getPos();
+        request.request.race.players[i].mainRot = *object->getMainRot();
+        request.request.race.players[i].internalSpeed = object->getInternalSpeed();
     }
 
-    u8 buffer[RaceClientFrame_size];
+    u8 buffer[RoomRequest_size];
     pb_ostream_t stream = pb_ostream_from_buffer(buffer, sizeof(buffer));
 
-    assert(pb_encode(&stream, RaceClientFrame_fields, &frame));
+    assert(pb_encode(&stream, RoomRequest_fields, &request));
 
     // TODO proper error handling
     assert(m_roomClient.socket().write(buffer, stream.bytes_written));

@@ -147,7 +147,7 @@ impl Server {
                         room_ip: server_resp.room_ip,
                     };
 
-                    tcp.write(STCMessageOpt {
+                    tcp.write(&STCMessageOpt {
                         message: Some(STCMessage::FoundMatch(client_resp)),
                     })
                     .await?;
