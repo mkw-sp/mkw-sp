@@ -121,7 +121,6 @@ enum class TeamSize {
     Four,
     Six,
 };
-//
 
 enum class DriftMode {
     Manual,

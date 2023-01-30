@@ -1358,6 +1358,38 @@
         "font": "regular",
         "string": "Set the music volume to {arg integer|0 0} / 10.",
     },
+    "10378": {
+        "font": "regular",
+        "string": "My Stuff",
+    },
+    "10379": {
+        "font": "regular",
+        "string": "File Replacement",
+    },
+    "10380": {
+        "font": "regular",
+        "string": "Off",
+    },
+    "10381": {
+        "font": "regular",
+        "string": "BRSTMs Only",
+    },
+    "10382": {
+        "font": "regular",
+        "string": "All",
+    },
+    "10383": {
+        "font": "regular",
+        "string": "Do not allow any files to be replaced.",
+    },
+    "10384": {
+        "font": "regular",
+        "string": "Allow '.brstm' files to be replaced.",
+    },
+    "10385": {
+        "font": "regular",
+        "string": "Allow all files to be replaced.",
+    },
     "20000": {
         "font": "regular",
         "string": "Online",

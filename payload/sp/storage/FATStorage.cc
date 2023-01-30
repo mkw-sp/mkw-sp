@@ -1,5 +1,8 @@
 #include "FATStorage.hh"
 
+#include "sp/settings/FileReplacement.hh"
+#include "sp/settings/GlobalSettings.hh"
+
 extern "C" {
 #include "sp/storage/Sdi.h"
 #include "sp/storage/UsbStorage.h"
@@ -12,11 +15,11 @@ namespace SP::Storage {
 
 OSTime FATStorage::ConvertTimeToTicks(u16 date, u16 time) {
     OSCalendarTime calendarTime = {};
-    calendarTime.sec  = (time & 0x1F) << 1;
-    calendarTime.min  = (time >> 5) & 0x3F;
+    calendarTime.sec = (time & 0x1F) << 1;
+    calendarTime.min = (time >> 5) & 0x3F;
     calendarTime.hour = time >> 11;
     calendarTime.mday = date & 0x1F;
-    calendarTime.mon  = ((date >> 5) & 0x0F) - 1;
+    calendarTime.mon = ((date >> 5) & 0x0F) - 1;
     calendarTime.year = (date >> 9) + 1980;
 
     return OSCalendarTimeToTicks(&calendarTime);
@@ -388,10 +391,27 @@ std::optional<FATStorage::Path> FATStorage::convertPath(const wchar_t *path) {
         return {};
     }
 
-    for (u32 i = m_prefixCount; i --> 0;) {
+    SP::GlobalSettings::FileReplacement fileReplacement =
+            SP::GlobalSettings::Get<SP::GlobalSettings::Setting::FileReplacement>();
+    switch (fileReplacement) {
+    case SP::GlobalSettings::FileReplacement::Off: {
+        return {};
+    }
+    case SP::GlobalSettings::FileReplacement::BRSTMsOnly: {
+        if (!SP::FileReplacement::IsBRSTMFile(path)) {
+            return {};
+        }
+        break;
+    }
+    case SP::GlobalSettings::FileReplacement::All: {
+        break;
+    }
+    }
+
+    for (u32 i = m_prefixCount; i-- > 0;) {
         FILINFO fInfo;
         swprintf(nodePath.path, std::size(nodePath.path), L"%ls/%ls", m_prefixes[i],
-            path + wcslen(L"ro:/"));
+                path + wcslen(L"ro:/"));
         if (f_stat(nodePath.path, &fInfo) == FR_OK) {
             return nodePath;
         }

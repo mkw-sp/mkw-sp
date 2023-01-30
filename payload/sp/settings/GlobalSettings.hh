@@ -5,13 +5,21 @@
 namespace SP::GlobalSettings {
 
 enum class Setting {
+    FileReplacement,
     BootSection,
     LogFileRetention,
 };
 
 enum class Category {
+    MyStuff,
     UI,
     Miscellaneous,
+};
+
+enum class FileReplacement {
+    Off,
+    BRSTMsOnly,
+    All,
 };
 
 typedef Settings::Group<Category> Group;
@@ -39,6 +47,11 @@ Helper<S>::type Get() {
 } // namespace SP::GlobalSettings
 
 namespace SP::Settings {
+
+template <>
+struct Helper<GlobalSettings::Setting, GlobalSettings::Setting::FileReplacement> {
+    using type = SP::GlobalSettings::FileReplacement;
+};
 
 template <>
 struct Helper<GlobalSettings::Setting, GlobalSettings::Setting::BootSection> {

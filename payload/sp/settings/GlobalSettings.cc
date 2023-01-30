@@ -8,9 +8,19 @@ namespace SP::GlobalSettings {
 
 const char name[] = "Global Settings";
 
-const u32 categoryMessageIds[] = { 0 };
+const u32 categoryMessageIds[] = { 10378 };
 
 const Entry entries[] = {
+    [static_cast<u32>(Setting::FileReplacement)] = {
+        .category = Category::MyStuff,
+        .name = magic_enum::enum_name(Setting::FileReplacement),
+        .messageId = 10379,
+        .defaultValue = static_cast<u32>(FileReplacement::All),
+        .valueCount = magic_enum::enum_count<FileReplacement>(),
+        .valueNames = magic_enum::enum_names<FileReplacement>().data(),
+        .valueMessageIds = (u32[]) { 10380, 10381, 10382 },
+        .valueExplanationMessageIds = (u32[]) { 10383, 10384, 10385 },
+    },
     [static_cast<u32>(Setting::BootSection)] = {
         .category = Category::UI,
         .name = magic_enum::enum_name(Setting::BootSection),
