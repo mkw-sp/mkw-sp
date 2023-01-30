@@ -44,9 +44,6 @@ impl<R: Message + Default, W: Message> AsyncStream<R, W> {
         let write_key: [u8; 32] = keypair.tx.into();
         let write_key = secretbox::Key::from(write_key);
 
-        tracing::debug!("Public Key: {:x?}", server_keypair.public_key);
-        tracing::debug!("Secret Key: {:x?}", server_keypair.secret_key.as_ref());
-
         Ok(AsyncStream {
             stream,
             context,
@@ -87,7 +84,6 @@ impl<R: Message + Default, W: Message> AsyncStream<R, W> {
             secretbox::decrypt(&msg_enc, self.read_message_id, &self.context, &self.read_key)?;
         self.read_message_id += 1;
 
-        tracing::debug!("Recieved message!");
         Ok(Some(R::decode(&*msg)?))
     }
 
@@ -100,7 +96,6 @@ impl<R: Message + Default, W: Message> AsyncStream<R, W> {
         let size = (size as u16).to_be_bytes();
         self.stream.write_all(&size).await?;
         self.stream.write_all(&tmp).await?;
-        tracing::debug!("Wrote message!");
         Ok(())
     }
 }
