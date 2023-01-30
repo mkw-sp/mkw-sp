@@ -394,18 +394,17 @@ std::optional<FATStorage::Path> FATStorage::convertPath(const wchar_t *path) {
     SP::GlobalSettings::FileReplacement fileReplacement =
             SP::GlobalSettings::Get<SP::GlobalSettings::Setting::FileReplacement>();
     switch (fileReplacement) {
-    case SP::GlobalSettings::FileReplacement::Off: {
+    case SP::GlobalSettings::FileReplacement::Off:
         return {};
-    }
-    case SP::GlobalSettings::FileReplacement::BRSTMsOnly: {
+
+    case SP::GlobalSettings::FileReplacement::BRSTMsOnly:
         if (!SP::FileReplacement::IsBRSTMFile(path)) {
             return {};
         }
         break;
-    }
-    case SP::GlobalSettings::FileReplacement::All: {
+
+    case SP::GlobalSettings::FileReplacement::All:
         break;
-    }
     }
 
     for (u32 i = m_prefixCount; i-- > 0;) {
