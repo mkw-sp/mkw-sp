@@ -7,7 +7,7 @@ fn main() -> Result<()> {
     ];
 
     for file in &files {
-        println!("cargo:rerun-if-changed={}", file);
+        println!("cargo:rerun-if-changed={file}");
     }
     prost_build::compile_protos(&files, &["../../protobuf"])?;
     Ok(())
