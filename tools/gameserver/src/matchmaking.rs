@@ -3,10 +3,13 @@ use std::collections::HashMap;
 pub use netprotocol::matchmaking::*;
 use tokio::sync::mpsc;
 
-
 #[derive(Debug)]
 pub enum Message {
-    Update {room_id: u16, client_id: ClientIdOpt, is_join: bool },
+    Update {
+        room_id: u16,
+        client_id: ClientIdOpt,
+        is_join: bool,
+    },
 }
 
 #[derive(Debug)]
@@ -17,4 +20,3 @@ pub struct State {
     pub ws_conn: mpsc::UnboundedSender<Message>,
     pub room_id: u16,
 }
-

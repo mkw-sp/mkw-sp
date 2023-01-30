@@ -2,8 +2,8 @@ use rand::Rng;
 use slab::Slab;
 use tokio::sync::{broadcast, mpsc};
 
-use crate::matchmaking;
 use crate::event::Event;
+use crate::matchmaking;
 use crate::request::{JoinResponse, Request};
 use crate::room_protocol::room_event::Properties;
 use crate::room_protocol::*;
@@ -19,7 +19,6 @@ enum RoomState {
         course: u32,
     },
 }
-
 
 #[derive(Debug)]
 pub struct Room {
@@ -101,7 +100,9 @@ impl Room {
                 if let Some(matchmaking_state) = &mut self.matchmaking_state {
                     let Some(login_info) = inner.login_info else {return};
 
-                    matchmaking_state.client_lookup.insert(client_key, login_info.client_id.clone());
+                    matchmaking_state
+                        .client_lookup
+                        .insert(client_key, login_info.client_id.clone());
                     let _ = matchmaking_state.ws_conn.send(matchmaking::Message::Update {
                         room_id: matchmaking_state.room_id,
                         client_id: login_info.client_id,
@@ -266,9 +267,13 @@ impl Room {
             // This panic will never fire as handle_leave is only fired when leave_tx is triggered
             // which cannot happen as the client only gets the leave_rx once the IDs are inserted
             let _ = matchmaking_state.ws_conn.send(matchmaking::Message::Update {
-                client_id: matchmaking_state.client_lookup.get(&client_key).expect("Missing client ID in lookup!").clone(),
+                client_id: matchmaking_state
+                    .client_lookup
+                    .get(&client_key)
+                    .expect("Missing client ID in lookup!")
+                    .clone(),
                 room_id: matchmaking_state.room_id,
-                is_join: false
+                is_join: false,
             });
         };
 

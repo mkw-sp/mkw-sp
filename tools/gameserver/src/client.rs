@@ -1,4 +1,4 @@
-use anyhow::{ Context, Result};
+use anyhow::{Context, Result};
 use libhydrogen::{kx, secretbox};
 use tokio::net::TcpStream;
 use tokio::sync::broadcast::error::RecvError as BroadcastRecvError;
@@ -34,7 +34,8 @@ impl Client {
         let context = secretbox::Context::from(*b"room    ");
         let mut stream = AsyncStream::new(stream, server_keypair, context).await?;
 
-        let request: RoomRequestOpt = stream.read().await?.context("Connection closed unexpectedly!")?;
+        let request: RoomRequestOpt =
+            stream.read().await?.context("Connection closed unexpectedly!")?;
         let request = request.request.context("Unknown request type!")?;
         let join = match request {
             room_request::Request::Join(join) => join,
