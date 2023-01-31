@@ -165,10 +165,16 @@ impl Server {
                         let _ = resp_chan.send(inner);
                     };
                 },
-                GTSMessage::ClientUpdate(gts_message::ClientUpdate { room_id, client_id, is_join }) => {
+                GTSMessage::ClientUpdate(gts_message::ClientUpdate { room_id, client_id, is_join, is_host }) => {
                     let room_id = RoomId(room_id as u16);
                     
                     let mut gameserver = self.gameservers.get_mut(&gameserver_id).unwrap();
+                    // "Host" left, remove room
+                    if is_host && !is_join {
+                        gameserver.rooms.remove(&room_id);
+                        continue;
+                    }
+
                     let room = gameserver.rooms.entry(room_id).or_default();
 
                     if is_join {

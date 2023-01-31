@@ -12,6 +12,7 @@ message GTSMessage {
         required uint32   room_id   = 1;
         required ClientId client_id = 2;
         required bool     is_join   = 3;
+        required bool     is_host   = 4;
     }
 
     message RaceFinish {

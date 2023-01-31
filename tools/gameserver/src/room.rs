@@ -24,8 +24,8 @@ enum RoomState {
 pub struct Room {
     rx: mpsc::Receiver<Request>,
     tx: broadcast::Sender<Event>,
-    leave_tx: mpsc::Sender<usize>,
-    leave_rx: mpsc::Receiver<usize>,
+    leave_tx: mpsc::Sender<(usize, bool)>,
+    leave_rx: mpsc::Receiver<(usize, bool)>,
     clients: Slab<Client>,
     players: Vec<Player>,
     settings: Option<Vec<u32>>,
@@ -60,8 +60,8 @@ impl Room {
         loop {
             tokio::select! {
                 Some(request) = self.rx.recv() => self.handle_request(request),
-                Some(client_key) = self.leave_rx.recv() => {
-                    let client = self.handle_leave(client_key);
+                Some((client_key, is_host)) = self.leave_rx.recv() => {
+                    let client = self.handle_leave(client_key, is_host);
                     if client.is_host {
                         return;
                     }
@@ -103,10 +103,12 @@ impl Room {
                     matchmaking_state
                         .client_lookup
                         .insert(client_key, login_info.client_id.clone());
+
                     let _ = matchmaking_state.ws_conn.send(matchmaking::Message::Update {
                         room_id: matchmaking_state.room_id,
                         client_id: login_info.client_id,
                         is_join: true,
+                        is_host
                     });
                 }
 
@@ -246,7 +248,7 @@ impl Room {
         }
     }
 
-    fn handle_leave(&mut self, client_key: usize) -> Client {
+    fn handle_leave(&mut self, client_key: usize, is_host: bool) -> Client {
         for i in (0..self.players.len()).rev() {
             if self.players[i].client_key != client_key {
                 continue;
@@ -274,6 +276,7 @@ impl Room {
                     .clone(),
                 room_id: matchmaking_state.room_id,
                 is_join: false,
+                is_host,
             });
         };
 
@@ -285,7 +288,7 @@ impl Room {
 pub struct ClientKey {
     inner: usize,
     is_host: bool,
-    leave_tx: mpsc::Sender<usize>,
+    leave_tx: mpsc::Sender<(usize, bool)>,
 }
 
 impl ClientKey {
@@ -300,7 +303,7 @@ impl ClientKey {
 
 impl Drop for ClientKey {
     fn drop(&mut self) {
-        let _ = self.leave_tx.try_send(self.inner);
+        let _ = self.leave_tx.try_send((self.inner, self.is_host));
     }
 }
 
