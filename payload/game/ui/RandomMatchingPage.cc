@@ -7,7 +7,7 @@
 
 namespace UI {
 
-RandomMatchingPage::RandomMatchingPage() : m_socket{2130706433, 20036, "match   "} {
+RandomMatchingPage::RandomMatchingPage() : m_socket{0x7F000001, 20036, "match   "} {
     m_state = State::Login;
 };
 
