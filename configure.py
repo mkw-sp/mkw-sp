@@ -1571,7 +1571,7 @@ code_in_files = {
         os.path.join('payload', 'game', 'ui', 'page', 'TimeAttackSplitsPage.c'),
         os.path.join('payload', 'game', 'ui', 'page', 'TopMenuPage.S'),
         os.path.join('payload', 'game', 'ui', 'page', 'TopMenuPage.c'),
-        os.path.join('payload', 'game', 'ui', 'MatchmakingPage.cc'),
+        os.path.join('payload', 'game', 'ui', 'RandomMatchingPage.cc'),
         os.path.join('payload', 'game', 'util', 'Input.S'),
         os.path.join('payload', 'game', 'util', 'Registry.cc'),
         os.path.join('payload', 'nw4r', 'db', 'dbAssert.S'),

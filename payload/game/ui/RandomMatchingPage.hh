@@ -4,9 +4,9 @@
 
 namespace UI {
 
-class MatchmakingPage : public Page {
+class RandomMatchingPage : public Page {
 public:
-    MatchmakingPage();
+    RandomMatchingPage();
     void onInit() override;
     void afterCalc() override;
     PageId getReplacement() override;
