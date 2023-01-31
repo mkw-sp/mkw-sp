@@ -1,5 +1,7 @@
-#include "Page.hh"
+#include "game/ui/Page.hh"
+
 #include "sp/net/AsyncSocket.hh"
+
 #include <protobuf/Matchmaking.pb.h>
 
 namespace UI {
@@ -32,4 +34,4 @@ private:
     State m_state;
 };
 
-}
+} // namespace UI

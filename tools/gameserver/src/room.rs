@@ -108,7 +108,7 @@ impl Room {
                         room_id: matchmaking_state.room_id,
                         client_id: login_info.client_id,
                         is_join: true,
-                        is_host
+                        is_host,
                     });
                 }
 
