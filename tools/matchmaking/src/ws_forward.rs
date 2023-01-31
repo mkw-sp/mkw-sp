@@ -4,8 +4,7 @@ use prost::Message;
 use tokio::net::{TcpStream, ToSocketAddrs};
 use tokio_tungstenite::WebSocketStream;
 
-use crate::{Fallible, GameserverID, Result, Server, Gameserver, GTSMessage, GTSMessageOpt};
-
+use crate::{Fallible, GTSMessage, GTSMessageOpt, Gameserver, GameserverID, Result, Server};
 
 pub struct WebsocketListener {
     listener: tokio::net::TcpListener,
@@ -37,10 +36,7 @@ impl WebsocketListener {
         }
     }
 
-    async fn handle_connection(
-        mut ws: WebSocketStream<TcpStream>,
-        server: Server,
-    ) -> Fallible {
+    async fn handle_connection(mut ws: WebSocketStream<TcpStream>, server: Server) -> Fallible {
         let Some(initial_message) = ws.next().await.transpose()? else {bail!("No initial message")};
         let initial_message = GTSMessageOpt::decode(&*initial_message.into_data())?;
         let Some(GTSMessage::AddServer (initial_message)) = initial_message.message else {bail!("Wrong initial message sent")};

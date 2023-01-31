@@ -1,0 +1,108 @@
+{
+  "db": "PostgreSQL",
+  "3be1a86be8d3af3f574fdcfa4e5a18e13b5e7e970478c5b8035fcfef98fe6d4b": {
+    "describe": {
+      "columns": [
+        {
+          "name": "device_id",
+          "ordinal": 0,
+          "type_info": "Int4"
+        },
+        {
+          "name": "licence_id",
+          "ordinal": 1,
+          "type_info": "Int2"
+        },
+        {
+          "name": "friend_suffix",
+          "ordinal": 2,
+          "type_info": "Text"
+        },
+        {
+          "name": "mii",
+          "ordinal": 3,
+          "type_info": "Bytea"
+        },
+        {
+          "name": "location",
+          "ordinal": 4,
+          "type_info": "Int4"
+        },
+        {
+          "name": "latitude",
+          "ordinal": 5,
+          "type_info": "Int4"
+        },
+        {
+          "name": "longitude",
+          "ordinal": 6,
+          "type_info": "Int4"
+        }
+      ],
+      "nullable": [
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false
+      ],
+      "parameters": {
+        "Left": [
+          "Int4",
+          "Int2"
+        ]
+      }
+    },
+    "query": "SELECT device_id, licence_id, friend_suffix, mii, location, latitude, longitude FROM users WHERE device_id = $1 AND licence_id = $2"
+  },
+  "3c0084500cc7ac3dbab8c4a9654423992fb46752b15c260a977568be7b8a691b": {
+    "describe": {
+      "columns": [
+        {
+          "name": "race_rating",
+          "ordinal": 0,
+          "type_info": "Int4"
+        }
+      ],
+      "nullable": [
+        false
+      ],
+      "parameters": {
+        "Left": [
+          "Int4",
+          "Int2"
+        ]
+      }
+    },
+    "query": "SELECT race_rating FROM users WHERE device_id = $1 AND licence_id = $2"
+  },
+  "f1d76a01b8be0ce140b873ec8ce84ff9eadf1a908febe05c7ba6efa3db517e3f": {
+    "describe": {
+      "columns": [
+        {
+          "name": "friendee_device_id",
+          "ordinal": 0,
+          "type_info": "Int4"
+        },
+        {
+          "name": "friendee_licence_id",
+          "ordinal": 1,
+          "type_info": "Int2"
+        }
+      ],
+      "nullable": [
+        false,
+        false
+      ],
+      "parameters": {
+        "Left": [
+          "Int4",
+          "Int2"
+        ]
+      }
+    },
+    "query": "SELECT friendee_device_id, friendee_licence_id FROM friendships\n        WHERE friender_device_id = $1 AND friender_licence_id = $2"
+  }
+}
