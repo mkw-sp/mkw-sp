@@ -98,10 +98,10 @@ bool RoomClient::sendVote(u32 course, std::optional<Player::Properties> properti
     return writeVote(course, properties);
 }
 
-RoomClient *RoomClient::CreateInstance(u32 localPlayerCount, u32 ip, u16 port, u16 passcode, std::optional<LoginInfo> login_info) {
+RoomClient *RoomClient::CreateInstance(u32 localPlayerCount, u32 ip, u16 port, u16 passcode, std::optional<LoginInfo> loginInfo) {
     assert(s_block);
     assert(!s_instance);
-    s_instance = new (s_block) RoomClient(localPlayerCount, ip, port, passcode, login_info);
+    s_instance = new (s_block) RoomClient(localPlayerCount, ip, port, passcode, loginInfo);
     RoomManager::s_instance = s_instance;
     return s_instance;
 }
@@ -117,10 +117,10 @@ RoomClient *RoomClient::Instance() {
     return s_instance;
 }
 
-RoomClient::RoomClient(u32 localPlayerCount, u32 ip, u16 port, u16 passcode, std::optional<LoginInfo> login_info)
+RoomClient::RoomClient(u32 localPlayerCount, u32 ip, u16 port, u16 passcode, std::optional<LoginInfo> loginInfo)
     : m_localPlayerCount(localPlayerCount), m_state(State::Connect),
       m_socket(ip, port, "room    "), m_ip(ip), m_port(port) {
-    m_login_info = login_info;
+    m_loginInfo = loginInfo;
     m_passcode = passcode;
 }
 
@@ -519,8 +519,8 @@ bool RoomClient::writeJoin() {
     RoomRequest request;
     request.which_request = RoomRequest_join_tag;
     request.request.join.miis_count = m_localPlayerCount;
-    if (m_login_info) {
-        request.request.join.login_info = *m_login_info;
+    if (m_loginInfo) {
+        request.request.join.login_info = *m_loginInfo;
         request.request.join.has_login_info = true;
     }  else {
         request.request.join.has_login_info = false;

@@ -464,8 +464,6 @@ Page *Section::CreatePage(PageId pageId) {
         return new TimeAttackGhostListPage;
     case PageId::TeamConfirm:
         return new TeamConfirmPage;
-    case PageId::RandomMatching:
-        return new RandomMatchingPage;
     case PageId::MultiTop:
         return new MultiTopPage;
     case PageId::MultiTeamSelect:
@@ -476,6 +474,8 @@ Page *Section::CreatePage(PageId pageId) {
         return new OnlineTeamSelectPage;
     case PageId::OnlineTop:
         return new OnlineTopPage;
+    case PageId::RandomMatching:
+        return new RandomMatchingPage;
     case PageId::VotingBack:
         return new VotingBackPage;
     case PageId::Roulette:

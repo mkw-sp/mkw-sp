@@ -91,15 +91,13 @@ void RandomMatchingPage::transitionToRoom(const STCMessage &event) {
 
     auto port = 21330;
     auto ip = event.message.found_match.room_ip;
-    auto login_info = event.message.found_match.login_info;
+    auto loginInfo = event.message.found_match.login_info;
 
-    SP::RoomClient::CreateInstance(1, ip, port, 0000, login_info);
+    SP::RoomClient::CreateInstance(1, ip, port, 0000, loginInfo);
     startReplace(Anim::Next, 0);
 
     m_state = State::Transitioning;
 }
-
-
 
 bool RandomMatchingPage::read(std::optional<STCMessage> &event) {
     u8 buffer[1024];
