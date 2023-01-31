@@ -1,5 +1,6 @@
 #include "RandomMatchingPage.hh"
-#include "sp/cs/RoomClient.hh"
+
+#include <sp/cs/RoomClient.hh>
 
 #include <protobuf/Matchmaking.pb.h>
 #include <vendor/nanopb/pb_decode.h>
