@@ -81,7 +81,6 @@ void FriendMatchingPage::afterCalc() {
 }
 
 void FriendMatchingPage::onRefocus() {
-    SP_LOG("FriendMatchingPage::onRefocus");
     auto *section = SectionManager::Instance()->currentSection();
     if (m_roomHasError) {
         m_roomHasError = false;
@@ -142,7 +141,6 @@ void FriendMatchingPage::collapse(Anim anim) {
 }
 
 void FriendMatchingPage::prepareStartClient() {
-    SP_LOG("FriendMatchingPage::prepareStartClient");
     auto *section = SectionManager::Instance()->currentSection();
     auto *globePage = section->page<PageId::Globe>();
     globePage->requestSpinClose();

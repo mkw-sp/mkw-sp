@@ -127,7 +127,6 @@ RoomClient::RoomClient(u32 localPlayerCount, u32 ip, u16 port, u16 passcode, std
 RoomClient::~RoomClient() = default;
 
 std::optional<RoomClient::State> RoomClient::resolve(Handler &handler) {
-    SP_LOG("RoomClient::resolve(m_state: %d)", m_state);
     switch (m_state) {
     case State::Connect:
         return calcConnect();

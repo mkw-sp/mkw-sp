@@ -98,7 +98,6 @@ bool AsyncSocket::poll() {
     }
 
     if (m_connectTask) {
-        OSReport("Connecting to %u:%u", m_connectTask->address.addr.addr, m_connectTask->address.port);
         s32 result = SOConnect(m_handle, &m_connectTask->address);
         if (result == SO_EINPROGRESS || result == SO_EALREADY) {
             return true;
