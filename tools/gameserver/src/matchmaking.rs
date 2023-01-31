@@ -9,6 +9,7 @@ pub enum Message {
         room_id: u16,
         client_id: ClientIdOpt,
         is_join: bool,
+        is_host: bool,
     },
 }
 

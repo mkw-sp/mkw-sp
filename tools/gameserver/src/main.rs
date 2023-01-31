@@ -124,9 +124,14 @@ async fn central_listener(
             msg = ws.next() => if let Some(msg) = msg {msg} else {break},
             msg = ws_recv.recv() => {
                 match msg {
-                    Some(Message::Update {room_id, client_id, is_join}) => {
+                    Some(Message::Update {room_id, client_id, is_join, is_host}) => {
+                        if is_host && !is_join {
+                            rooms.remove(&room_id);
+                        }
+
                         ws.send(GTSMessageOpt{message: Some(GTSMessage::ClientUpdate(gts_message::ClientUpdate {
                             is_join,
+                            is_host,
                             client_id,
                             room_id: room_id as u32,
                         }))}.encode_to_vec().into()).await?;
