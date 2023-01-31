@@ -1,4 +1,4 @@
-#include "MatchmakingPage.hh"
+#include "RandomMatchingPage.hh"
 #include "sp/cs/RoomClient.hh"
 
 #include <protobuf/Matchmaking.pb.h>
@@ -7,22 +7,22 @@
 
 namespace UI {
 
-MatchmakingPage::MatchmakingPage() : m_socket{2130706433, 20036, "match   "} {
+RandomMatchingPage::RandomMatchingPage() : m_socket{2130706433, 20036, "match   "} {
     m_state = State::Login;
 };
 
-PageId MatchmakingPage::getReplacement() {
+PageId RandomMatchingPage::getReplacement() {
     return PageId::FriendMatching;
 }
 
-void MatchmakingPage::onInit() {
+void RandomMatchingPage::onInit() {
     m_inputManager.init(0, false);
     setInputManager(&m_inputManager);
     initChildren(0);
     setAnimSfxIds(0, 0);
 }
 
-void MatchmakingPage::afterCalc() {
+void RandomMatchingPage::afterCalc() {
     std::optional<STCMessage> event;
     assert(m_socket.poll());
     if (!m_socket.ready()) {
@@ -51,7 +51,7 @@ void MatchmakingPage::afterCalc() {
     }
 }
 
-void MatchmakingPage::respondToLogin() {
+void RandomMatchingPage::respondToLogin() {
     CTSMessage response;
 
     response.which_message = CTSMessage_login_tag;
@@ -62,7 +62,7 @@ void MatchmakingPage::respondToLogin() {
     m_state = State::WaitForChallenge;
 }
 
-void MatchmakingPage::respondToChallenge(const STCMessage &event) {
+void RandomMatchingPage::respondToChallenge(const STCMessage &event) {
     CTSMessage response;
 
     switch (event.which_message) {
@@ -84,7 +84,7 @@ void MatchmakingPage::respondToChallenge(const STCMessage &event) {
     }
 }
 
-void MatchmakingPage::transitionToRoom(const STCMessage &event) {
+void RandomMatchingPage::transitionToRoom(const STCMessage &event) {
     if (event.which_message != STCMessage_found_match_tag) {
         panic("unexpected event");
     }
@@ -101,7 +101,7 @@ void MatchmakingPage::transitionToRoom(const STCMessage &event) {
 
 
 
-bool MatchmakingPage::read(std::optional<STCMessage> &event) {
+bool RandomMatchingPage::read(std::optional<STCMessage> &event) {
     u8 buffer[1024];
     STCMessage tmp;
 
@@ -123,7 +123,7 @@ bool MatchmakingPage::read(std::optional<STCMessage> &event) {
     return true;
 }
 
-bool MatchmakingPage::write(CTSMessage message) {
+bool RandomMatchingPage::write(CTSMessage message) {
     u8 buffer[1024];
 
     pb_ostream_t stream = pb_ostream_from_buffer(buffer, sizeof(buffer));

@@ -149,7 +149,7 @@ void DirectConnectionPage::onResetButtonFront([[maybe_unused]] PushButton *butto
 void DirectConnectionPage::onOkButtonFront(PushButton *button, [[maybe_unused]] u32 localPlayerId) {
     u64 directCode = m_editBox.getNumber();
     if (directCode == 0) {
-        m_replacement = PageId::MatchmakingConnect;
+        m_replacement = PageId::RandomMatching;
         return startReplace(Anim::Next, 0);
     }
 
