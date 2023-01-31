@@ -25,6 +25,9 @@ void MatchmakingPage::onInit() {
 void MatchmakingPage::afterCalc() {
     std::optional<STCMessage> event;
     assert(m_socket.poll());
+    if (!m_socket.ready()) {
+        return;
+    }
 
     switch (m_state) {
     case State::Login:
