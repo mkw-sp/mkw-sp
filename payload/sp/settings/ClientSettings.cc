@@ -326,8 +326,8 @@ const Entry entries[] = {
         .defaultValue = static_cast<u32>(EngineClass::Mixed),
         .valueCount = magic_enum::enum_count<EngineClass>(),
         .valueNames = magic_enum::enum_names<EngineClass>().data(),
-        .valueMessageIds = (u32[]) { 10235, 10236, 10237, 10238, 10366, 10365 },
-        .valueExplanationMessageIds = (u32[]) { 10239, 10240, 10241, 10242, 10361, 10362 },
+        .valueMessageIds = (u32[]) { 10235, 10236, 10238, 10237, 10365, 10366 },
+        .valueExplanationMessageIds = (u32[]) { 10239, 10240, 10242, 10241, 10361, 10362 },
     },
     [static_cast<u32>(Setting::VSVehicles)] = {
         .category = Category::VS,
@@ -438,8 +438,8 @@ const Entry entries[] = {
         .defaultValue = static_cast<u32>(EngineClass::Mixed),
         .valueCount = magic_enum::enum_count<EngineClass>(),
         .valueNames = magic_enum::enum_names<EngineClass>().data(),
-        .valueMessageIds = (u32[]) { 10235, 10236, 10237, 10238, 10366, 10365 },
-        .valueExplanationMessageIds = (u32[]) { 10239, 10240, 10241, 10242, 10361, 10362 },
+        .valueMessageIds = (u32[]) { 10235, 10236, 10238, 10237, 10365, 10366 },
+        .valueExplanationMessageIds = (u32[]) { 10239, 10240, 10242, 10241, 10361, 10362 },
     },
     [static_cast<u32>(Setting::RoomVehicles)] = {
         .category = Category::Room,
