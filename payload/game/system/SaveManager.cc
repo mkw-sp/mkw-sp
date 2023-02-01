@@ -4,8 +4,8 @@ extern "C" {
 #include "game/system/NandHelper.h"
 }
 #include "game/system/RaceConfig.hh"
+#include "game/system/ResourceManager.hh"
 extern "C" {
-#include "game/system/ResourceManager.h"
 #include "game/system/RootScene.h"
 #include "game/system/SaveManager.h"
 }
@@ -543,7 +543,7 @@ void SaveManager::ComputeCourseSHA1Task(void *arg) {
 }
 
 void SaveManager::computeCourseSHA1(u32 courseId) {
-    ResourceManager_ComputeCourseSHA1(courseId, m_courseSHA1s[courseId]);
+    ResourceManager::ComputeCourseSHA1(courseId, m_courseSHA1s[courseId]);
     m_courseSHA1IsValid[courseId] = true;
 
     m_isBusy = false;
