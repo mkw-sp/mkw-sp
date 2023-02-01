@@ -26,5 +26,4 @@ void *ControlCheckValid(void *result, const char *path) {
     }
 
     panic("Failed to load '%s'!", path);
-    __builtin_unreachable();
 }

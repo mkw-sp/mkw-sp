@@ -20,8 +20,7 @@ static const char *GetPrefix(BinaryType bin) {
         return "&8[?] &7";
     }
 
-    assert(!"Invalid caller");
-    __builtin_unreachable();
+    panic("Invalid caller");
 }
 
 static inline BinaryType ClassifyCaller(void *sp) {
@@ -57,7 +56,6 @@ __attribute__((noreturn)) REPLACE void OSPanic(const char *UNUSED(filename), int
     va_end(args);
 
     panic(panicMessage);
-    __builtin_unreachable();
 }
 
 void my_OSReport(const char *msg, ...) {

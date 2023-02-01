@@ -61,5 +61,4 @@ void panic(const char *format, ...) {
     }
 
     OSFatal(foreground, background, message);
-    __builtin_unreachable();
 }

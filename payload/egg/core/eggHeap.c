@@ -6,7 +6,6 @@ void *spAlloc(size_t size, s32 align, EGG_Heap *heap) {
     void *memBlock = EGG_Heap_alloc(size, align, heap);
     if (!memBlock) {
         panic("Couldn't allocate memory!");
-        __builtin_unreachable();
     }
     SP_LOG("alloc %p (%zu)", memBlock, size);
     return memBlock;
