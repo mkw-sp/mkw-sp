@@ -21,5 +21,4 @@ __attribute__((noreturn)) void __assert_func(
     }
 
     panic("[%s:%i] %s: %s\n\n" "%s", filename, line, assertFunc, expr, stacktrace);
-    __builtin_unreachable();
 }
