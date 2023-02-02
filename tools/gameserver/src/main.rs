@@ -5,6 +5,7 @@ mod request;
 mod room;
 
 use anyhow::Result;
+use clap::Parser;
 use dashmap::mapref::entry::Entry;
 use dashmap::DashMap;
 use futures_util::{SinkExt, StreamExt};
@@ -31,31 +32,48 @@ pub enum ServerConnection {
     Matchmaking(Arc<DashMap<u16, mpsc::Sender<Request>>>),
 }
 
+#[derive(clap::Parser, Debug)]
+#[command(about)]
+struct Args {
+    #[arg(long)]
+    /// Websocket address to central server.
+    central_address: url::Url,
+    #[arg(long)]
+    /// ID for the gameserver, must be unique.
+    gameserver_id: u16,
+    #[arg(long)]
+    /// IP address for clients to connect to reach this gameserver
+    gameserver_ip: std::net::Ipv4Addr,
+    #[arg(long)]
+    /// Maximum number of rooms to host.
+    max_rooms: u16,
+}
+
 #[tokio::main]
 async fn main() -> Result<()> {
     libhydrogen::init()?;
     tracing_subscriber::fmt::init();
 
-    let mut args = std::env::args().skip(1);
-
+    let arg_count = std::env::args().skip(1).len();
     let server_conn;
-    match (args.next(), args.next(), args.next(), args.next()) {
-        (Some(central_address), Some(gameserver_id), Some(gameserver_ip), Some(max_rooms)) => {
-            let rooms = Arc::new(DashMap::new());
-            server_conn = ServerConnection::Matchmaking(rooms.clone());
+    if arg_count == 0 {
+        tracing::info!("No arguments passed, starting as standalone server.");
+        server_conn = ServerConnection::Client(spawn_room(None));
+    } else {
+        tracing::info!("Arguments passed, starting as part of matchmaking pool.");
 
-            let ws = tokio_tungstenite::connect_async(central_address).await?.0;
-            tokio::spawn(central_listener(
-                ws,
-                rooms,
-                gameserver_ip.parse()?,
-                gameserver_id.parse()?,
-                max_rooms.parse()?,
-            ));
-        }
-        _ => {
-            server_conn = ServerConnection::Client(spawn_room(None));
-        }
+        let args = Args::parse();
+        let rooms = Arc::new(DashMap::new());
+        server_conn = ServerConnection::Matchmaking(rooms.clone());
+
+        let ws = tokio_tungstenite::connect_async(args.central_address).await?.0;
+        tokio::spawn(central_listener(
+            ws,
+            rooms,
+            args.gameserver_ip,
+            args.gameserver_id,
+            args.max_rooms,
+        ));
     }
 
     let server_keypair = kx::KeyPair::gen();
