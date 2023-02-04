@@ -92,16 +92,22 @@ impl ClientForwarder {
         let licence_id = client_id.licence as i16;
 
         let challenge = Vec::new();
-        stream
-            .write(&STCMessageOpt {
-                message: Some(STCMessage::Challenge(stc_message::LoginChallenge {
-                    challenge: challenge.clone(),
-                })),
-            })
-            .await?;
+        let message = STCMessageOpt {
+            message: Some(STCMessage::Challenge(stc_message::LoginChallenge {
+                challenge: challenge.clone(),
+            })),
+        };
+
+        stream.write(&message).await?;
 
         let Some(message) = stream.read().await? else {bail!("No login response")};
-        let Some(CTSMessage::LoginChallengeAnswer(cts_message::LoginChallengeAnswer {challenge_signed})) = message.message else {bail!("Invalid login response")};
+        let Some(CTSMessage::LoginChallengeAnswer(cts_message::LoginChallengeAnswer {
+            challenge_signed,
+            location,
+            latitude,
+            longitude,
+            mii,
+        })) = message.message else {bail!("Invalid login response")};
 
         if !verify_challenge_response(&challenge, &challenge_signed) {
             bail!("Challenge response verification failed");
@@ -109,22 +115,38 @@ impl ClientForwarder {
 
         let mut db_connection = db_pool.acquire().await?;
         let rr_record = sqlx::query!(
-            "SELECT race_rating FROM users WHERE device_id = $1 AND licence_id = $2",
+            "
+            INSERT INTO
+                users(device_id, licence_id, mii, friend_suffix, location, latitude, longitude)
+            VALUES
+                ($1, $2, $3, $4, $5, $6, $7)
+            ON CONFLICT (device_id, licence_id) DO UPDATE SET
+                mii = $3,
+                location = $5,
+                latitude = $6,
+                longitude = $7
+            RETURNING race_rating
+        ",
             device_id,
-            licence_id
+            licence_id,
+            mii,
+            rand::random::<i8>() as i16,
+            location,
+            latitude,
+            longitude
         )
         .fetch_one(&mut db_connection)
         .await?;
 
-        stream
-            .write(&STCMessageOpt {
-                message: Some(STCMessage::Response(stc_message::LoginResponse {
-                    race_rating: rr_record.race_rating,
-                    friends: fetch_friend_data(&mut db_connection, device_id, licence_id).await?,
-                })),
-            })
-            .await?;
+        let friends = fetch_friend_data(&mut db_connection, device_id, licence_id).await?;
+        let message = STCMessageOpt {
+            message: Some(STCMessage::Response(stc_message::LoginResponse {
+                race_rating: rr_record.race_rating,
+                friends,
+            })),
+        };
 
+        stream.write(&message).await?;
         Ok(ClientId::new(Some((device_id as u32, licence_id as u16))))
     }
 }
@@ -160,7 +182,7 @@ async fn fetch_friend_data(
                 device: friend.device_id as u32,
                 licence: friend.licence_id as u32,
             },
-            friend_suffix: friend.friend_suffix,
+            friend_suffix: friend.friend_suffix as i32,
             mii: friend.mii,
             location: friend.location,
             latitude: friend.latitude,

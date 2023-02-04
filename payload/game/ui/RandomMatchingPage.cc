@@ -1,12 +1,20 @@
 #include "RandomMatchingPage.hh"
 
+#include <game/system/SaveManager.hh>
+#include <game/ui/SectionManager.hh>
 #include <sp/cs/RoomClient.hh>
 
 #include <protobuf/Matchmaking.pb.h>
 #include <vendor/nanopb/pb_decode.h>
 #include <vendor/nanopb/pb_encode.h>
 
+extern "C" {
+#include <revolution/es.h>
+}
+
 namespace UI {
+
+constexpr u32 DOLPHIN_DEFAULT_DEVICE_ID = 0x0403AC68;
 
 RandomMatchingPage::RandomMatchingPage() : m_socket{0x7F000001, 21331, "match   "} {
     m_state = State::Login;
@@ -39,6 +47,12 @@ void RandomMatchingPage::afterCalc() {
         }
 
         return respondToChallenge(*event);
+    case State::WaitForResponse:
+        if (!read(event) || !event) {
+            return;
+        }
+
+        return respondToResponse(*event);
     case State::WaitForMatch:
         if (!read(event) || !event) {
             return;
@@ -55,34 +69,74 @@ void RandomMatchingPage::afterCalc() {
 void RandomMatchingPage::respondToLogin() {
     CTSMessage response;
 
+    u32 deviceId;
+    s32 deviceIdRes = ESP_GetDeviceId(&deviceId);
+    if (deviceIdRes != 0) {
+        panic("Failed to get device id: %d", deviceIdRes);
+    }
+
     response.which_message = CTSMessage_login_tag;
-    response.message.login.has_client_id = false;
+    if (deviceId == DOLPHIN_DEFAULT_DEVICE_ID) {
+        response.message.login.has_client_id = false;
+        m_state = State::WaitForResponse;
+    } else {
+        response.message.login.has_client_id = true;
+        response.message.login.client_id = LoggedInId{
+            device : deviceId,
+            licence : *System::SaveManager::Instance()->spCurrentLicense(),
+        };
+
+        m_state = State::WaitForChallenge;
+    }
 
     assert(write(response));
-
-    m_state = State::WaitForChallenge;
 }
 
 void RandomMatchingPage::respondToChallenge(const STCMessage &event) {
     CTSMessage response;
+    u16 longitude;
+    u16 latitude;
+    u32 location;
+
+    auto *saveManager = System::SaveManager::Instance();
+    auto globalContext = UI::SectionManager::Instance()->globalContext();
+
+    saveManager->getLongitude(&longitude);
+    saveManager->getLocation(&location);
+    saveManager->getLatitude(&latitude);
+
+    response.which_message = CTSMessage_login_challenge_answer_tag;
+
+    response.message.login_challenge_answer.location = location;
+    response.message.login_challenge_answer.latitude = latitude;
+    response.message.login_challenge_answer.longitude = longitude;
+    response.message.login_challenge_answer.challenge_signed =
+    CTSMessage_LoginChallengeAnswer_challenge_signed_t{size : 0, bytes : {}};
+
+    auto rawMii = globalContext->m_localPlayerMiis.get(0)->id()->getRaw();
+    response.message.login_challenge_answer.mii.size = sizeof(System::RawMii);
+    memcpy(response.message.login_challenge_answer.mii.bytes, &rawMii, sizeof(System::RawMii));
+
+    m_state = State::WaitForResponse;
+    assert(write(response));
+}
+
+void RandomMatchingPage::respondToResponse(const STCMessage &event) {
+    CTSMessage response;
 
     switch (event.which_message) {
-
-    case STCMessage_challenge_tag:
-        m_state = State::WaitForResponse;
-        panic("unimplemented: verify device id");
+    case STCMessage_response_tag:
     case STCMessage_guest_response_tag:
         response.which_message = CTSMessage_start_matchmaking_tag;
         response.message.start_matchmaking.gamemode = 0;
-
-        assert(write(response));
 
         m_state = State::WaitForMatch;
         break;
     default:
         panic("unexpected event");
-
     }
+
+    assert(write(response));
 }
 
 void RandomMatchingPage::transitionToRoom(const STCMessage &event) {

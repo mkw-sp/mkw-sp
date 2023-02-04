@@ -19,6 +19,7 @@ libhydrogen = "0.4.1"
 uuid = { version = "1.2.2", features = ["v4", "fast-rng"] }
 sqlx = { version = "0.6.2", features = ["postgres", "runtime-tokio-native-tls", "offline"] }
 async-recursion = "1.0.2"
+rand = "0.8.5"
 
 [dependencies.netprotocol]
 path = "../netprotocol"

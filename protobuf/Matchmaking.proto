@@ -55,6 +55,10 @@ message CTSMessage {
 
     message LoginChallengeAnswer {
         required bytes challenge_signed = 1;
+        required bytes mii              = 2;
+        required int32 location         = 3;
+        required int32 latitude         = 4;
+        required int32 longitude        = 5;
     }
 
     message StartMatchmaking {
@@ -82,7 +86,7 @@ message STCMessage {
     message LoginResponse {
         message Friend {
             required LoggedInId client_id     = 1;
-            required string     friend_suffix = 2;
+            required int32      friend_suffix = 2;
             required int32      location      = 3;
             required int32      latitude      = 4;
             required int32      longitude     = 5;

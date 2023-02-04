@@ -27,6 +27,7 @@ private:
 
     void respondToLogin();
     void respondToChallenge(const STCMessage &event);
+    void respondToResponse(const STCMessage &event);
     void transitionToRoom(const STCMessage &event);
 
     PageInputManager m_inputManager;

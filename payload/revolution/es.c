@@ -5,10 +5,19 @@
 #include <stdalign.h>
 
 enum {
+    IOCTLV_GETDEVICEID = 0x07,
     IOCTLV_SIGN = 0x30,
 };
 
 extern s32 es_fd;
+
+s32 ESP_GetDeviceId(u32 *deviceId) {
+    alignas(0x20) IOVector vec;
+    vec.data = deviceId;
+    vec.size = 4;
+
+    return IOS_Ioctlv(es_fd, IOCTLV_GETDEVICEID, 0, 1, &vec);
+}
 
 s32 ESP_Sign(const void *data, u32 size, u8 signature[0x3c], u8 certificate[0x180]) {
     if (!data != !size) {
