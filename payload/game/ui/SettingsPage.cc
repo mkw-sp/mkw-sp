@@ -72,10 +72,6 @@ void SettingsPage::onInit() {
     m_pageTitleText.setMessage(10076);
 }
 
-void SettingsPage::onDeinit() {
-    SectionManager::Instance()->saveManagerProxy()->markLicensesDirty();
-}
-
 void SettingsPage::onActivate() {
     instructionText()->setMessageAll(0);
 

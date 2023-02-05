@@ -97,11 +97,11 @@ void LicenseSelectPage::onLicenseButtonFront([[maybe_unused]] PushButton *button
     System::SaveManager *saveManager = System::SaveManager::Instance();
     SectionManager *sectionManager = SectionManager::Instance();
     GlobalContext *globalContext = sectionManager->globalContext();
-    globalContext->onChangeLicense();
 
     u32 index = button->m_index;
     if (index < saveManager->spLicenseCount()) {
         saveManager->selectSPLicense(index);
+        globalContext->onChangeLicense();
         const System::Mii *mii = m_miiGroup.get(index);
         if (mii) {
             saveManager->createLicense(0, mii->id(), mii->name());
@@ -123,6 +123,7 @@ void LicenseSelectPage::onLicenseButtonFront([[maybe_unused]] PushButton *button
         }
     } else if (index == saveManager->spLicenseCount()) {
         saveManager->unselectSPLicense();
+        globalContext->onChangeLicense();
         auto *confirmPage = sectionManager->currentSection()->page<PageId::Confirm>();
         confirmPage->reset();
         confirmPage->setTitleMessage(2102);

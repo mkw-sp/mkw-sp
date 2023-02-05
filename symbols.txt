@@ -1010,7 +1010,6 @@
 0x80620c5c SaveManagerProxy_init
 0x80620dd8 SaveManagerProxy_processRequest
 0x806212fc SaveManagerProxy_hasPendingRequests
-0x80621410 SaveManagerProxy_markLicensesDirty
 0x80621410 _ZN2UI16SaveManagerProxy17markLicensesDirtyEv
 0x80621e00 Section_init
 0x80622c68 _ZN2UI7Section7loadTHPEv

@@ -104,7 +104,6 @@ void DirectConnectionPage::onDeinit() {
     auto *saveManager = System::SaveManager::Instance();
     saveManager->setSetting<SP::ClientSettings::Setting::RoomCodeHigh>(directCodeHigh);
     saveManager->setSetting<SP::ClientSettings::Setting::RoomCodeLow>(directCodeLow);
-    SectionManager::Instance()->saveManagerProxy()->markLicensesDirty();
 }
 
 void DirectConnectionPage::onActivate() {

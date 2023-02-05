@@ -1499,6 +1499,7 @@ code_in_files = {
         os.path.join('payload', 'game', 'ui', 'RoulettePage.cc'),
         os.path.join('payload', 'game', 'ui', 'Save.S'),
         os.path.join('payload', 'game', 'ui', 'SaveManagerProxy.S'),
+        os.path.join('payload', 'game', 'ui', 'SaveManagerProxy.cc'),
         os.path.join('payload', 'game', 'ui', 'ScrollBar.cc'),
         os.path.join('payload', 'game', 'ui', 'Section.S'),
         os.path.join('payload', 'game', 'ui', 'Section.cc'),

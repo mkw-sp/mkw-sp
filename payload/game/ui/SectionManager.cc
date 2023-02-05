@@ -35,6 +35,12 @@ void SectionManager::createSection() {
     System::RichPresenceManager::Instance().onSectionChange(m_currentSection->id());
 }
 
+void SectionManager::destroySection() {
+    m_saveManagerProxy->REPLACED(markLicensesDirty)();
+
+    REPLACED(destroySection)();
+}
+
 void SectionManager::startChangeSection(s32 delay, u32 color) {
     if (color == 0xFF) {
         auto *saveManager = System::SaveManager::Instance();

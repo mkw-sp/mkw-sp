@@ -26,7 +26,6 @@ void DriftSelectPage::onButtonFront([[maybe_unused]] PushButton *button,
         sectionManager->registeredPadManager().setDriftIsAuto(0, button->m_index);
         System::SaveManager::Instance()->setSetting<SP::ClientSettings::Setting::DriftMode>(
                 static_cast<SP::ClientSettings::DriftMode>(button->m_index));
-        sectionManager->saveManagerProxy()->markLicensesDirty();
         sectionManager->globalContext()->m_driftModes[0] = button->m_index;
         if (Section::GetSceneId(sectionId) == 4 /* Globe */) {
             if (m_replacementSection == SectionId::None) {

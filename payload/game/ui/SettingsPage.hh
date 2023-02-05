@@ -43,7 +43,6 @@ public:
     ~SettingsPage() override;
 
     void onInit() override;
-    void onDeinit() override;
     void onActivate() override;
 
     void setReplacement(PageId pageId);

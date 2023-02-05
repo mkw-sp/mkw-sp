@@ -28,7 +28,6 @@ void MultiDriftSelectPage::onButtonFront([[maybe_unused]] PushButton *button,
     if (localPlayerId == 0) {
         System::SaveManager::Instance()->setSetting<SP::ClientSettings::Setting::DriftMode>(
                 static_cast<SP::ClientSettings::DriftMode>(selection));
-        sectionManager->saveManagerProxy()->markLicensesDirty();
     }
 
     // Hide non-selected button
