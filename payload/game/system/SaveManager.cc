@@ -188,6 +188,12 @@ bool SaveManager::saveGhostResult() const {
 }
 
 void SaveManager::saveLicensesAsync() {
+    if (m_spCurrentLicense) {
+        auto *context = UI::SectionManager::Instance()->globalContext();
+        auto driftMode = static_cast<SP::ClientSettings::DriftMode>(context->m_driftModes[0] - 1);
+        setSetting<SP::ClientSettings::Setting::DriftMode>(driftMode);
+    }
+
     if (!m_spCanSave) {
         m_isBusy = false;
         m_result = RK_NAND_RESULT_OK;
