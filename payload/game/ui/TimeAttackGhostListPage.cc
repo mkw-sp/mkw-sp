@@ -28,8 +28,8 @@ void TimeAttackGhostListPage::onInit() {
     case SectionId::SingleChangeGhostData: {
         const GlobalContext *context = sectionManager->globalContext();
         player.type = System::RaceConfig::Player::Type::Local;
-        player.vehicleId = context->m_timeAttackVehicleId;
-        player.characterId = context->m_timeAttackCharacterId;
+        player.vehicleId = static_cast<u32>(context->m_localVehicleIds[0]);
+        player.characterId = static_cast<u32>(context->m_localCharacterIds[0]);
         break;
     }
     default:
@@ -59,15 +59,13 @@ void TimeAttackGhostListPage::onInit() {
     m_ghostSelects[1].load();
     m_sheetSelect.load("button", "TimeAttackGhostListArrowRight", "ButtonArrowRight",
             "TimeAttackGhostListArrowLeft", "ButtonArrowLeft", 0x1, false, false);
-    m_sheetLabel.load(
-            "control", "TimeAttackGhostListPageNum", "TimeAttackGhostListPageNum", NULL);
+    m_sheetLabel.load("control", "TimeAttackGhostListPageNum", "TimeAttackGhostListPageNum", NULL);
     m_messageWindow.load("message_window", "TimeAttackGhostListMessageWindowHalf",
             "MessageWindowHalf");
     m_aloneButton.load("button", "TimeAttackGhostList", "Alone", 0x1, false, false);
     m_raceButton.load("button", "TimeAttackGhostListHalf", "Race", 0x1, false, false);
     m_watchButton.load("button", "TimeAttackGhostListHalf", "Watch", 0x1, false, false);
-    m_backButton.load(
-            "button", "Back", "ButtonBackPopup", 0x1, false, /* pointerOnly = */ true);
+    m_backButton.load("button", "Back", "ButtonBackPopup", 0x1, false, /* pointerOnly = */ true);
 
     m_input.setHandler(MenuInputManager::InputId::Back, &m_onBack);
     m_settingsButton.setFrontHandler(&m_onSettingsButtonFront, false);
