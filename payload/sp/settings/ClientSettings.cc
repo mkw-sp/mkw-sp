@@ -9,6 +9,28 @@ const char name[] = "MKW-SP Settings";
 const u32 categoryMessageIds[] = { 10118, 10126, 10119, 10262, 10360, 10258, 10120, 10315 };
 
 const Entry entries[] = {
+    [static_cast<u32>(Setting::Character)] = {
+        .category = Category::Race,
+        .name = magic_enum::enum_name(Setting::Character),
+        .messageId = 0,
+        .defaultValue = static_cast<u32>(Registry::Character::Mario),
+        .valueCount = magic_enum::enum_count<Registry::Character>(),
+        .valueNames = magic_enum::enum_names<Registry::Character>().data(),
+        .valueMessageIds = nullptr,
+        .valueExplanationMessageIds = nullptr,
+        .hidden = true,
+    },
+    [static_cast<u32>(Setting::Vehicle)] = {
+        .category = Category::Race,
+        .name = magic_enum::enum_name(Setting::Vehicle),
+        .messageId = 0,
+        .defaultValue = static_cast<u32>(Registry::Vehicle::StandardKartMedium),
+        .valueCount = magic_enum::enum_count<Registry::Vehicle>(),
+        .valueNames = magic_enum::enum_names<Registry::Vehicle>().data(),
+        .valueMessageIds = nullptr,
+        .valueExplanationMessageIds = nullptr,
+        .hidden = true,
+    },
     [static_cast<u32>(Setting::DriftMode)] = {
         .category = Category::Race,
         .name = magic_enum::enum_name(Setting::DriftMode),

@@ -1,10 +1,11 @@
 #pragma once
 
 #include "game/ui/MiiGroup.hh"
+#include "game/util/Registry.hh"
 
 namespace UI {
 
-struct GlobalContext {
+class GlobalContext {
 public:
     void copyPlayerMiis();
     void REPLACED(onChangeLicense)();
@@ -23,10 +24,8 @@ public:
     u8 _078[0x124 - 0x078];
     u32 m_localPlayerCount;
     u8 _128[0x12c - 0x128];
-    u32 m_timeAttackCharacterId;
-    u8 _130[0x13c - 0x130];
-    u32 m_timeAttackVehicleId;
-    u8 _140[0x14c - 0x140];
+    Registry::Character m_localCharacterIds[4];
+    Registry::Vehicle m_localVehicleIds[4];
     u32 m_raceCourseId;
     u32 m_battleCourseId;
     u8 _154[0x164 - 0x154];

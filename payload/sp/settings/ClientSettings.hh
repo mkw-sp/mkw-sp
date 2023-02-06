@@ -1,11 +1,15 @@
 #pragma once
 
+#include <game/util/Registry.hh>
+
 #include "sp/settings/Settings.hh"
 
 namespace SP::ClientSettings {
 
 enum class Setting {
     // Race
+    Character,
+    Vehicle,
     DriftMode,
     VanillaMode,
     SimplifiedControls,
@@ -333,6 +337,16 @@ typedef Settings::Settings<Category, ClientSettings::group> Settings;
 } // namespace SP::ClientSettings
 
 namespace SP::Settings {
+
+template <>
+struct Helper<ClientSettings::Setting, ClientSettings::Setting::Character> {
+    using type = Registry::Character;
+};
+
+template <>
+struct Helper<ClientSettings::Setting, ClientSettings::Setting::Vehicle> {
+    using type = Registry::Vehicle;
+};
 
 template <>
 struct Helper<ClientSettings::Setting, ClientSettings::Setting::DriftMode> {
