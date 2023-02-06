@@ -6,7 +6,7 @@ namespace SP::ClientSettings {
 
 const char name[] = "MKW-SP Settings";
 
-const u32 categoryMessageIds[] = { 10118, 10126, 10119, 10262, 10360, 10258, 10120, 10315 };
+const u32 categoryMessageIds[] = { 10118, 10386, 10126, 10119, 10262, 10360, 10258, 10120, 10315 };
 
 const Entry entries[] = {
     [static_cast<u32>(Setting::DriftMode)] = {
@@ -41,7 +41,7 @@ const Entry entries[] = {
         .valueExplanationMessageIds = (u32[]) { 10305, 10306, 10307 },
     },
     [static_cast<u32>(Setting::FOV169)] = {
-        .category = Category::Race,
+        .category = Category::Graphics,
         .name = magic_enum::enum_name(Setting::FOV169),
         .messageId = 10009,
         .defaultValue = static_cast<u32>(FOV169::FOV169),
@@ -52,7 +52,7 @@ const Entry entries[] = {
         .vanillaValue = static_cast<u32>(FOV169::FOV169),
     },
     [static_cast<u32>(Setting::RegionLineColor)] = {
-        .category = Category::Race,
+        .category = Category::Graphics,
         .name = magic_enum::enum_name(Setting::RegionLineColor),
         .messageId = 10194,
         .defaultValue = static_cast<u32>(RegionLineColor::Default),
@@ -63,7 +63,7 @@ const Entry entries[] = {
         .vanillaValue = static_cast<u32>(RegionLineColor::Default),
     },
     [static_cast<u32>(Setting::FarPlayerTags)] = {
-        .category = Category::Race,
+        .category = Category::Graphics,
         .name = magic_enum::enum_name(Setting::FarPlayerTags),
         .messageId = 10308,
         .defaultValue = static_cast<u32>(FarPlayerTags::Disable),
@@ -74,7 +74,7 @@ const Entry entries[] = {
         .vanillaValue = static_cast<u32>(FarPlayerTags::Disable),
     },
     [static_cast<u32>(Setting::PlayerTags)] = {
-        .category = Category::Race,
+        .category = Category::Graphics,
         .name = magic_enum::enum_name(Setting::PlayerTags),
         .messageId = 10183,
         .defaultValue = 3,
@@ -85,7 +85,7 @@ const Entry entries[] = {
         .vanillaValue = 3,
     },
     [static_cast<u32>(Setting::HUDLabels)] = {
-        .category = Category::Race,
+        .category = Category::Graphics,
         .name = magic_enum::enum_name(Setting::HUDLabels),
         .messageId = 10004,
         .defaultValue = static_cast<u32>(HUDLabels::Show),
@@ -96,7 +96,7 @@ const Entry entries[] = {
         .vanillaValue = static_cast<u32>(HUDLabels::Show),
     },
     [static_cast<u32>(Setting::HUDTeamColors)] = {
-        .category = Category::Race,
+        .category = Category::Graphics,
         .name = magic_enum::enum_name(Setting::HUDTeamColors),
         .messageId = 10296,
         .defaultValue = static_cast<u32>(HUDTeamColors::Enable),
@@ -106,7 +106,7 @@ const Entry entries[] = {
         .valueExplanationMessageIds = (u32[]) { 10299, 10300 },
     },
     [static_cast<u32>(Setting::MiniMap)] = {
-        .category = Category::Race,
+        .category = Category::Graphics,
         .name = magic_enum::enum_name(Setting::MiniMap),
         .messageId = 10367,
         .defaultValue = static_cast<u32>(MiniMap::Enable),
@@ -117,7 +117,7 @@ const Entry entries[] = {
         .vanillaValue = static_cast<u32>(MiniMap::Enable),
     },
     [static_cast<u32>(Setting::MapIcons)] = {
-        .category = Category::Race,
+        .category = Category::Graphics,
         .name = magic_enum::enum_name(Setting::MapIcons),
         .messageId = 10014,
         .defaultValue = static_cast<u32>(MapIcons::Miis),
@@ -128,7 +128,7 @@ const Entry entries[] = {
         .vanillaValue = static_cast<u32>(MapIcons::Characters),
     },
     [static_cast<u32>(Setting::InputDisplay)] = {
-        .category = Category::Race,
+        .category = Category::Graphics,
         .name = magic_enum::enum_name(Setting::InputDisplay),
         .messageId = 10061,
         .defaultValue = static_cast<u32>(InputDisplay::Simple),
@@ -139,7 +139,7 @@ const Entry entries[] = {
         .vanillaValue = static_cast<u32>(InputDisplay::Disable),
     },
     [static_cast<u32>(Setting::Speedometer)] = {
-        .category = Category::Race,
+        .category = Category::Graphics,
         .name = magic_enum::enum_name(Setting::Speedometer),
         .messageId = 10321,
         .defaultValue = static_cast<u32>(Speedometer::InternalPlus),
@@ -149,7 +149,7 @@ const Entry entries[] = {
         .valueExplanationMessageIds = (u32[]) { 10327, 10328, 10329, 10330, 10331 },
     },
     [static_cast<u32>(Setting::RankControl)] = {
-        .category = Category::Race,
+        .category = Category::Graphics,
         .name = magic_enum::enum_name(Setting::RankControl),
         .messageId = 10121,
         .defaultValue = static_cast<u32>(RankControl::GPVS),

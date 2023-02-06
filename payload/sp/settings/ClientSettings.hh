@@ -9,6 +9,8 @@ enum class Setting {
     DriftMode,
     VanillaMode,
     SimplifiedControls,
+
+    // Graphics
     FOV169,
     RegionLineColor,
     FarPlayerTags,
@@ -79,6 +81,7 @@ enum class Setting {
 
 enum class Category {
     Race,
+    Graphics,
     Sound,
     TA,
     VS,

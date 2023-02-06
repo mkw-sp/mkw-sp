@@ -1390,6 +1390,10 @@
         "font": "regular",
         "string": "Allow all files to be replaced.",
     },
+    "10386": {
+        "font": "regular",
+        "string": "Graphics",
+    },
     "20000": {
         "font": "regular",
         "string": "Online",
