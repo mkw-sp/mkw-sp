@@ -29,6 +29,8 @@ public:
     virtual void vf_5c();
 
 private:
+    void REPLACED(setFramerate)(bool is_30);
+    REPLACE void setFramerate(bool is_30);
     u8 _0c70[0x2534 - 0x0c70];
 
 protected:

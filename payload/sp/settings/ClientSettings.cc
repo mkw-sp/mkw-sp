@@ -181,6 +181,17 @@ const Entry entries[] = {
         .valueExplanationMessageIds = (u32[]) { 10124, 10125 },
         .vanillaValue = static_cast<u32>(RankControl::GPVS),
     },
+    [static_cast<u32>(Setting::FPSMode)] = {
+        .category = Category::Race,
+        .name = magic_enum::enum_name(Setting::FPSMode),
+        .messageId = 10386,
+        .defaultValue = static_cast<u32>(FPSMode::Vanilla),
+        .valueCount = magic_enum::enum_count<FPSMode>(),
+        .valueNames = magic_enum::enum_names<FPSMode>().data(),
+        .valueMessageIds = (u32[]) { 10387, 10388, 10389 },
+        .valueExplanationMessageIds = (u32[]) { 10390, 10391, 10392 },
+        .vanillaValue = static_cast<u32>(FPSMode::Vanilla),
+    },
     [static_cast<u32>(Setting::Volume)] = {
         .category = Category::Sound,
         .name = magic_enum::enum_name(Setting::Volume),
