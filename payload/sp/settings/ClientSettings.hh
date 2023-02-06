@@ -20,6 +20,7 @@ enum class Setting {
     InputDisplay,
     Speedometer,
     RankControl,
+    FPSMode,
 
     // Sound
     Volume,
@@ -194,6 +195,12 @@ enum class Speedometer {
 enum class RankControl {
     GPVS,
     Always,
+};
+
+enum class FPSMode {
+    Vanilla,
+    Force60,
+    Force30,
 };
 
 enum class ItemMusic {
@@ -402,6 +409,11 @@ struct Helper<ClientSettings::Setting, ClientSettings::Setting::Speedometer> {
 template <>
 struct Helper<ClientSettings::Setting, ClientSettings::Setting::RankControl> {
     using type = SP::ClientSettings::RankControl;
+};
+
+template <>
+struct Helper<ClientSettings::Setting, ClientSettings::Setting::FPSMode> {
+    using type = SP::ClientSettings::FPSMode;
 };
 
 template <>

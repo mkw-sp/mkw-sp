@@ -1421,6 +1421,7 @@ code_in_files = {
         os.path.join('payload', 'game', 'system', 'DvdArchive.c'),
         os.path.join('payload', 'game', 'system', 'DVDArchive.cc'),
         os.path.join('payload', 'game', 'system', 'FatalScene.c'),
+        os.path.join('payload', 'game', 'system', 'GameScene.cc'),
         os.path.join('payload', 'game', 'system', 'GhostFile.c'),
         os.path.join('payload', 'game', 'system', 'GhostFile.cc'),
         os.path.join('payload', 'game', 'system', 'GhostWriter.cc'),

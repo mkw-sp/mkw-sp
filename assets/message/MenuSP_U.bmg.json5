@@ -1390,6 +1390,34 @@
         "font": "regular",
         "string": "Allow all files to be replaced.",
     },
+    "10386": {
+        "font": "regular",
+        "string": "FPS Mode",
+    },
+    "10387": {
+        "font": "regular",
+        "string": "Vanilla",
+    },
+    "10388": {
+        "font": "regular",
+        "string": "Force 60 FPS",
+    },
+    "10389": {
+        "font": "regular",
+        "string": "Force 30 FPS",
+    },
+    "10390": {
+        "font": "regular",
+        "string": "Uses 60fps, except for 3+ player splitscreen.",
+    },
+    "10391": {
+        "font": "regular",
+        "string": "Forces 60fps, even in 3+ player splitscreen.",
+    },
+    "10392": {
+        "font": "regular",
+        "string": "Forces 30fps, helps with Dolphin performance.",
+    },
     "20000": {
         "font": "regular",
         "string": "Online",

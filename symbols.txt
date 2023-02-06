@@ -487,6 +487,7 @@
 0x80519508 DvdArchive_decompress
 0x805195a4 DvdArchive_move
 0x805195d8 DvdArchive_loadOther
+0x8051af84 _ZN6System9GameScene12setFramerateEb
 0x8051bed0 GameScene_get
 0x8051c120 _ZN6System12RawGhostFile7IsValidEPKh
 0x8051c7f4 _ZN6System9GhostFile11writeHeaderEPNS_14RawGhostHeaderE
