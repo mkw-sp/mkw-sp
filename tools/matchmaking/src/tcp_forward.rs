@@ -1,4 +1,7 @@
+use std::sync::Arc;
+
 use anyhow::bail;
+use dashmap::DashSet;
 use libhydrogen::{kx, secretbox};
 use netprotocol::{
     async_stream::AsyncStream,
@@ -31,6 +34,7 @@ impl ClientForwarder {
 
     pub async fn accept_loop(self) {
         let server_keypair = kx::KeyPair::gen();
+        let logged_in_clients = Arc::new(DashSet::new());
 
         loop {
             let Ok((stream, addr)) = self.listener.accept().await else {continue};
@@ -39,6 +43,7 @@ impl ClientForwarder {
             let server = self.server.clone();
             let db_pool = self.db_pool.clone();
             let server_keypair = server_keypair.clone();
+            let logged_in_clients = logged_in_clients.clone();
 
             tokio::spawn(async move {
                 let context = secretbox::Context::from(*b"match   ");
@@ -47,7 +52,7 @@ impl ClientForwarder {
                     return;
                 };
 
-                if let Err(err) = Self::handle_connection(stream, db_pool, server).await {
+                if let Err(err) = Self::handle_connection(stream, logged_in_clients, db_pool, server).await {
                     tracing::error!("Error in tcp connection handler: {err}")
                 };
             });
@@ -56,11 +61,18 @@ impl ClientForwarder {
 
     async fn handle_connection(
         mut stream: AsyncStream<CTSMessageOpt, STCMessageOpt>,
+        logged_in_clients: Arc<DashSet<ClientId>>,
         db_pool: sqlx::PgPool,
         server: Server,
     ) -> Fallible {
         let client_id = Self::handle_login_flow(&mut stream, &db_pool).await?;
-        server.client_listener(stream, client_id).await
+        if logged_in_clients.insert(client_id) {
+            let res = server.client_listener(stream, client_id).await;
+            logged_in_clients.remove(&client_id);
+            res
+        } else {
+            anyhow::bail!("Client already logged in")
+        }
     }
 
     /// Returns Ok(true) if the login was successful, Ok(false) if logging in as guest, Err if login failed
