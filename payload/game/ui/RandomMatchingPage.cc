@@ -1,16 +1,12 @@
 #include "RandomMatchingPage.hh"
 
-#include <game/system/SaveManager.hh>
-#include <game/ui/SectionManager.hh>
-#include <sp/cs/RoomClient.hh>
+#include "game/system/SaveManager.hh"
+#include "game/ui/SectionManager.hh"
 
 #include <protobuf/Matchmaking.pb.h>
+#include <sp/cs/RoomClient.hh>
 #include <vendor/nanopb/pb_decode.h>
 #include <vendor/nanopb/pb_encode.h>
-
-extern "C" {
-#include <revolution/es.h>
-}
 
 namespace UI {
 
