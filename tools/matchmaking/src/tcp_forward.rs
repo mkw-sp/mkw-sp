@@ -52,7 +52,9 @@ impl ClientForwarder {
                     return;
                 };
 
-                if let Err(err) = Self::handle_connection(stream, logged_in_clients, db_pool, server).await {
+                if let Err(err) =
+                    Self::handle_connection(stream, logged_in_clients, db_pool, server).await
+                {
                     tracing::error!("Error in tcp connection handler: {err}")
                 };
             });
