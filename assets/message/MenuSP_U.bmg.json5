@@ -1408,15 +1408,15 @@
     },
     "10390": {
         "font": "regular",
-        "string": "Uses 60fps, except for 3+ player splitscreen.",
+        "string": "Uses 60fps, except in intensive scenes.",
     },
     "10391": {
         "font": "regular",
-        "string": "Forces 60fps, even in 3+ player splitscreen.",
+        "string": "Forces 60fps, even in intensive scenes.",
     },
     "10392": {
         "font": "regular",
-        "string": "Forces 30fps, helps with Dolphin performance.",
+        "string": "Forces 30fps, can help with Dolphin performance.",
     },
     "20000": {
         "font": "regular",
