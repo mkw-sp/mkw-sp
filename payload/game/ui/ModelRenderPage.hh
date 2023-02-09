@@ -8,8 +8,7 @@ class ModelRenderPage : public Page {
 public:
     void REPLACE onInit() override;
 
-    static u8 REPLACED(determineModelCount)(SectionId sectionId);
-    static REPLACE u8 determineModelCount(SectionId sectionId);
+    static u8 determineModelCount(SectionId sectionId);
 
     static void onDriverModelLoaded(s8 idx);
 

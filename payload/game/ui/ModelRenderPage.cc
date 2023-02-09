@@ -41,9 +41,4 @@ void ModelRenderPage::onInit() {
     initChildren(0);
 }
 
-u8 ModelRenderPage::determineModelCount(SectionId sectionId) {
-    if (sectionId == SectionId::VotingServer) { return 0; }
-    return REPLACED(determineModelCount)(sectionId);
-}
-
 } // namespace UI

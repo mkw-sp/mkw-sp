@@ -3,7 +3,8 @@
 #include "game/ui/Page.hh"
 
 #include <sp/cs/RoomClient.hh>
-#include <sp/cs/RoomServer.hh>
+
+#include <bitset>
 
 namespace UI {
 

@@ -268,10 +268,6 @@ void RichPresenceManager::onSectionChange(UI::SectionId sectionId) {
     case UI::SectionId::Voting2PCoin:
         state = "Voting for online track!";
         break;
-    case UI::SectionId::VotingServer:
-        state = "Selecting online track...";
-        details = "Server Mode";
-        break;
     case (UI::SectionId)0x68:
     case (UI::SectionId)0x69:
     case UI::SectionId::Online1PVS:
@@ -299,10 +295,6 @@ void RichPresenceManager::onSectionChange(UI::SectionId sectionId) {
     case (UI::SectionId)0x78:
     case (UI::SectionId)0x79:
         state = "Disconnected from online race!";
-        break;
-    case UI::SectionId::OnlineServer:
-        state = "Hosting a room...";
-        details = "Server Mode";
         break;
     case (UI::SectionId)0x94:
         state = "Configuring mission mode...";

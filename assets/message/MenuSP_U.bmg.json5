@@ -1460,7 +1460,7 @@
     },
     "20010": {
         "font": "regular",
-        "string": "Room (Server)",
+        "string": "Server Mode has been removed and rewritten.\nSee tools/gameserver.",
     },
     "20011": {
         "font": "regular",
@@ -1469,14 +1469,6 @@
     "20012": {
         "font": "regular",
         "string": "Room (2P)",
-    },
-    "20013": {
-        "font": "regular",
-        "string": "The server failed to start!",
-    },
-    "20014": {
-        "font": "regular",
-        "string": "The server experienced a fatal error!",
     },
     "20015": {
         "font": "regular",

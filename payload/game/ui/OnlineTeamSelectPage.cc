@@ -17,9 +17,6 @@ PageId OnlineTeamSelectPage::getReplacement() {
 void OnlineTeamSelectPage::onInit() {
     auto *context = SectionManager::Instance()->globalContext();
     m_localPlayerCount = context->m_localPlayerCount;
-    if (SectionManager::Instance()->currentSection()->id() == SectionId::OnlineServer) {
-        m_localPlayerCount = 0;
-    }
 
     m_inputManager.init((1 << m_localPlayerCount) - 1, false);
     setInputManager(&m_inputManager);

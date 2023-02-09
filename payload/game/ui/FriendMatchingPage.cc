@@ -9,7 +9,6 @@
 #include "game/ui/page/DriftSelectPage.hh"
 
 #include <sp/cs/RoomClient.hh>
-#include <sp/cs/RoomServer.hh>
 
 namespace UI {
 
@@ -43,13 +42,7 @@ void FriendMatchingPage::onActivate() {
 }
 
 void FriendMatchingPage::beforeInAnim() {
-    auto sectionId = SectionManager::Instance()->currentSection()->id();
-    if (sectionId == SectionId::OnlineServer) {
-        SP::RoomServer::CreateInstance();
-        m_messageWindow.show(20009);
-    } else {
-        m_messageWindow.show(20008);
-    }
+    m_messageWindow.show(20008);
     skipInAnim();
 }
 
@@ -65,12 +58,7 @@ void FriendMatchingPage::afterCalc() {
         if (section->isPageFocused(this)) {
             auto *messagePagePopup = section->page<PageId::MessagePopup>();
             messagePagePopup->reset();
-            u32 messageId;
-            if (section->id() == SectionId::OnlineServer) {
-                messageId = section->isPageActive(PageId::FriendRoomBack) ? 20014 : 20013;
-            } else {
-                messageId = section->isPageActive(PageId::FriendRoomBack) ? 20016 : 20015;
-            }
+            u32 messageId = section->isPageActive(PageId::FriendRoomBack) ? 20016 : 20015;
             messagePagePopup->setWindowMessage(messageId);
             push(PageId::MessagePopup, Anim::Next);
         } else {
@@ -86,18 +74,13 @@ void FriendMatchingPage::onRefocus() {
         m_roomHasError = false;
         auto *messagePagePopup = section->page<PageId::MessagePopup>();
         messagePagePopup->reset();
-        u32 messageId;
-        if (section->id() == SectionId::OnlineServer) {
-            messageId = section->isPageActive(PageId::FriendRoomBack) ? 20014 : 20013;
-        } else {
-            messageId = section->isPageActive(PageId::FriendRoomBack) ? 20016 : 20015;
-        }
+
+        u32 messageId = section->isPageActive(PageId::FriendRoomBack) ? 20016 : 20015;
         messagePagePopup->setWindowMessage(messageId);
         push(PageId::MessagePopup, Anim::Next);
         return;
     }
 
-    auto sectionId = section->id();
     if (m_roomStarted) {
         m_roomStarted = false;
         if (SP::RoomManager::Instance()) {
@@ -107,18 +90,15 @@ void FriendMatchingPage::onRefocus() {
             } else {
                 menuScenario.gameMode = System::RaceConfig::GameMode::OfflineBT;
             }
-            return sectionId == SectionId::OnlineServer ? startServer() : startClient();
+            return startClient();
         }
     }
 
     auto *globePage = section->page<PageId::Globe>();
     globePage->requestSpinFar();
-    if (sectionId == SectionId::OnlineServer) {
-        changeSection(SectionId::ServicePack, Anim::Prev, 0.0f);
-    } else {
-        m_replacement = PageId::OnlineTop;
-        startReplace(Anim::Prev, 0.0f);
-    }
+
+    m_replacement = PageId::OnlineTop;
+    startReplace(Anim::Prev, 0.0f);
 }
 
 void FriendMatchingPage::collapse(Anim anim) {
@@ -128,12 +108,9 @@ void FriendMatchingPage::collapse(Anim anim) {
     if (section->isPageFocused(this)) {
         auto *globePage = section->page<PageId::Globe>();
         globePage->requestSpinFar();
-        if (sectionId == SectionId::OnlineServer) {
-            changeSection(SectionId::ServicePack, Anim::None, 0.0f);
-        } else {
-            m_replacement = PageId::OnlineTop;
-            startReplace(Anim::None, 0.0f);
-        }
+
+        m_replacement = PageId::OnlineTop;
+        startReplace(Anim::None, 0.0f);
     } else if (section->isPageActive(PageId::FriendRoomBack)) {
         auto *friendRoomBackPage = section->page<PageId::FriendRoomBack>();
         friendRoomBackPage->pop(anim);
@@ -144,20 +121,6 @@ void FriendMatchingPage::prepareStartClient() {
     auto *section = SectionManager::Instance()->currentSection();
     auto *globePage = section->page<PageId::Globe>();
     globePage->requestSpinClose();
-    collapse(Anim::Next);
-    m_roomStarted = true;
-}
-
-void FriendMatchingPage::prepareStartServer() {
-    auto *server = SP::RoomServer::Instance();
-    if (server) {
-        auto setting = server->getSetting<SP::ClientSettings::Setting::RoomTeamSize>();
-        if (setting != SP::ClientSettings::TeamSize::FFA) {
-            auto *section = SectionManager::Instance()->currentSection();
-            auto *globePage = section->page<PageId::Globe>();
-            globePage->requestSpinClose();
-        }
-    }
     collapse(Anim::Next);
     m_roomStarted = true;
 }
@@ -180,18 +143,6 @@ void FriendMatchingPage::startClient() {
             driftSelectPage->setReplacementSection(static_cast<SectionId>(m_gamemode + 0x60));
 
             push(PageId::CharacterSelect, Anim::Next);
-        } else {
-            push(PageId::OnlineTeamSelect, Anim::Next);
-        }
-    }
-}
-
-void FriendMatchingPage::startServer() {
-    auto *server = SP::RoomServer::Instance();
-    if (server) {
-        auto setting = server->getSetting<SP::ClientSettings::Setting::RoomTeamSize>();
-        if (setting == SP::ClientSettings::TeamSize::FFA) {
-            changeSection(SectionId::VotingServer, Anim::Next, 0.0f);
         } else {
             push(PageId::OnlineTeamSelect, Anim::Next);
         }

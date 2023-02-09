@@ -43,18 +43,9 @@ void VotingBackPage::onActivate() {
 }
 
 void VotingBackPage::afterCalc() {
-    auto *section = SectionManager::Instance()->currentSection();
-    auto sectionId = section->id();
-    if (sectionId == SectionId::VotingServer) {
-        auto *server = SP::RoomServer::Instance();
-        if (server && !server->calc(m_handler)) {
-            SP::RoomServer::DestroyInstance();
-        }
-    } else {
-        auto *client = SP::RoomClient::Instance();
-        if (client && !client->calc(m_handler)) {
-            SP::RoomClient::DestroyInstance();
-        }
+    auto *client = SP::RoomClient::Instance();
+    if (client && !client->calc(m_handler)) {
+        SP::RoomClient::DestroyInstance();
     }
 }
 
