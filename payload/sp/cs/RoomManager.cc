@@ -7,7 +7,6 @@ extern "C" {
 #include <game/ui/SectionManager.hh>
 
 #include "sp/cs/RoomClient.hh"
-#include "sp/cs/RoomServer.hh"
 
 namespace SP {
 
@@ -35,13 +34,8 @@ void RoomManager::OnCreateScene() {
         if (UI::Section::HasRoomClient(sectionManager->lastSectionId())) {
             return;
         }
+
         size = sizeof(RoomClient);
-    } else if (UI::Section::HasRoomServer(sectionManager->nextSectionId())) {
-        // Server
-        if (UI::Section::HasRoomServer(sectionManager->lastSectionId())) {
-            return;
-        }
-        size = sizeof(RoomServer);
     } else {
         return;
     }
@@ -58,22 +52,12 @@ void RoomManager::OnDestroyScene() {
     }
 
     if (UI::Section::HasRoomClient(sectionManager->lastSectionId())) {
-        // Client
         if (UI::Section::HasRoomClient(sectionManager->nextSectionId())) {
             return;
         }
 
         if (RoomClient::Instance()) {
             RoomClient::DestroyInstance();
-        }
-    } else if (UI::Section::HasRoomServer(sectionManager->lastSectionId())) {
-        // Server
-        if (UI::Section::HasRoomServer(sectionManager->nextSectionId())) {
-            return;
-        }
-
-        if (RoomServer::Instance()) {
-            RoomServer::DestroyInstance();
         }
     } else {
         return;

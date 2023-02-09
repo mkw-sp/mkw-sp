@@ -35,9 +35,7 @@ void FriendRoomBackPage::onInit() {
 
     m_miiGroup.init(12, 0x4, nullptr);
     auto sectionId = SectionManager::Instance()->currentSection()->id();
-    if (sectionId == SectionId::OnlineServer) {
-        m_pageTitleText.setMessage(20010);
-    } else if (sectionId == SectionId::OnlineSingle) {
+    if (sectionId == SectionId::OnlineSingle) {
         m_pageTitleText.setMessage(20011);
     } else {
         m_pageTitleText.setMessage(20012);
@@ -96,7 +94,7 @@ void FriendRoomBackPage::afterCalc() {
 
     auto *section = SectionManager::Instance()->currentSection();
     auto *friendMatchingPage = section->page<PageId::FriendMatching>();
-    if (m_roomStarted) { return section->id() == SectionId::OnlineServer ? friendMatchingPage->prepareStartServer() : friendMatchingPage->prepareStartClient(); }
+    if (m_roomStarted) { return friendMatchingPage->prepareStartClient(); }
 
     auto *entry = m_queue.front();
     if (!entry) {

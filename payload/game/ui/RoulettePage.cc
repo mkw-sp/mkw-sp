@@ -75,14 +75,12 @@ void RoulettePage::beforeInAnim() {
 
     m_playerOrder.fill(-1);
 
-    auto *section = SectionManager::Instance()->currentSection();
-    if (section->id() == SectionId::VotingServer) {
-        return;
-    }
-
+    auto sectionManager = SectionManager::Instance();
+    auto *section = sectionManager->currentSection();
     auto *votingBackPage = section->page<PageId::VotingBack>();
-    auto player = SectionManager::Instance()->globalContext()->m_selectPlayer[0];
-    bool driftIsAuto = SectionManager::Instance()->globalContext()->m_driftModes[0] != 1;
+
+    auto player = sectionManager->globalContext()->m_selectPlayer[0];
+    bool driftIsAuto = sectionManager->globalContext()->m_driftModes[0] != 1;
 
     SP_LOG("beforeInAnim: Vote sent!");
     SP::RoomManager::Player::Properties properties = {player.m_characterId, player.m_vehicleId,
@@ -151,13 +149,9 @@ void RoulettePage::beforeCalc() {
 
         auto &menuScenario = System::RaceConfig::Instance()->menuScenario();
         menuScenario.engineClass = System::RaceConfig::EngineClass::CC150;
-        if (SectionManager::Instance()->currentSection()->id() == SectionId::VotingServer) {
-            menuScenario.cameraMode = 6;
-            changeSection(SectionId::OnlineServerVS, Anim::None, 0.0f);
-        } else {
-            menuScenario.cameraMode = 0;
-            changeSection(SectionId::Online1PVS, Anim::None, 0.0f);
-        }
+        menuScenario.cameraMode = 0;
+
+        changeSection(SectionId::Online1PVS, Anim::None, 0.0f);
     }
 }
 

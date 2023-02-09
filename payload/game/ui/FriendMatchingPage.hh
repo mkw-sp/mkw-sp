@@ -25,7 +25,6 @@ public:
 
     void collapse(Anim anim);
     void prepareStartClient();
-    void prepareStartServer();
 
 private:
     class Handler : public SP::RoomManager::Handler {
@@ -51,7 +50,6 @@ private:
 
     void onBack(u32 localPlayerId);
     void startClient();
-    void startServer();
 
     template <typename T>
     using H = typename T::Handler<FriendMatchingPage>;

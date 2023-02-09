@@ -97,8 +97,16 @@ void ServicePackToolsPage::onThumbnailsButtonFront([[maybe_unused]] PushButton *
 
 void ServicePackToolsPage::onServerModeButtonFront([[maybe_unused]] PushButton *button,
         [[maybe_unused]] u32 localPlayerId) {
+    Section *section = SectionManager::Instance()->currentSection();
+    auto *messagePage = section->page<PageId::MenuMessage>();
+    messagePage->reset();
+    messagePage->setTitleMessage(20007);
+    messagePage->setWindowMessage(20010);
+    messagePage->m_handler = &m_onThumbnailsNoCoursePop;
+
+    m_replacement = PageId::MenuMessage;
     f32 delay = button->getDelay();
-    changeSection(SectionId::OnlineServer, Anim::Next, delay);
+    startReplace(Anim::None, delay);
 }
 
 void ServicePackToolsPage::onBackButtonFront([[maybe_unused]] PushButton *button,

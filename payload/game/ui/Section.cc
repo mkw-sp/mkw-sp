@@ -85,29 +85,9 @@ bool Section::HasRoomClient(SectionId sectionId) {
     }
 }
 
-bool Section::HasRoomServer(SectionId sectionId) {
-    switch (sectionId) {
-    case SectionId::OnlineServer:
-    case SectionId::VotingServer:
-    case SectionId::OnlineServerVS:
-        return true;
-    default:
-        return false;
-    }
-}
-
 bool Section::HasRaceClient(SectionId sectionId) {
     switch (sectionId) {
     case SectionId::Online1PVS:
-        return true;
-    default:
-        return false;
-    }
-}
-
-bool Section::HasRaceServer(SectionId sectionId) {
-    switch (sectionId) {
-    case SectionId::OnlineServerVS:
         return true;
     default:
         return false;
@@ -199,54 +179,16 @@ void Section::addPage(PageId pageId) {
         { SectionId::Voting1PVS, (PageId)0x50 },
         { SectionId::Voting1PVS, (PageId)0x51 },
         { SectionId::Voting1PVS, (PageId)0x6f },
-        { SectionId::Voting1PVS, (PageId)0x88 },
+        { SectionId::Voting1PVS, PageId::OnlineTeamSelect },
         { SectionId::Voting1PVS, (PageId)0x91 },
-
-        { SectionId::VotingServer, (PageId)0x4e },
-        { SectionId::VotingServer, (PageId)0x51 },
-        { SectionId::VotingServer, (PageId)0x6e },
-        { SectionId::VotingServer, (PageId)0x6f },
-        { SectionId::VotingServer, (PageId)0x88 },
-        { SectionId::VotingServer, (PageId)0x91 },
 
         { SectionId::Online1PVS, (PageId)0x44 },
         { SectionId::Online1PVS, (PageId)0x48 },
-        { SectionId::Online1PVS, (PageId)0x88 },
-
-        { SectionId::OnlineServerVS, (PageId)0x32 },
-        { SectionId::OnlineServerVS, (PageId)0x44 },
-        { SectionId::OnlineServerVS, (PageId)0x48 },
-        { SectionId::OnlineServerVS, (PageId)0x88 },
+        { SectionId::Online1PVS, PageId::OnlineTeamSelect },
 
         // The channel section is repurposed into the Service Pack section. Remove some pages that
         // aren't needed anymore.
         { SectionId::ServicePack, PageId::TimeAttackTop },
-
-        { SectionId::OnlineServer, (PageId)0x4c },
-        { SectionId::OnlineServer, (PageId)0x4f },
-        { SectionId::OnlineServer, (PageId)0x50 },
-        { SectionId::OnlineServer, (PageId)0x51 },
-        { SectionId::OnlineServer, (PageId)0x52 },
-        { SectionId::OnlineServer, (PageId)0x6b },
-        { SectionId::OnlineServer, (PageId)0x6c },
-        { SectionId::OnlineServer, (PageId)0x6d },
-        { SectionId::OnlineServer, (PageId)0x76 },
-        { SectionId::OnlineServer, (PageId)0x7f },
-        { SectionId::OnlineServer, (PageId)0x84 },
-        { SectionId::OnlineServer, (PageId)0x85 },
-        { SectionId::OnlineServer, (PageId)0x86 },
-        { SectionId::OnlineServer, (PageId)0x87 },
-        { SectionId::OnlineServer, (PageId)0x89 },
-        { SectionId::OnlineServer, (PageId)0x8e },
-        { SectionId::OnlineServer, (PageId)0x8f },
-        { SectionId::OnlineServer, (PageId)0x96 },
-        { SectionId::OnlineServer, (PageId)0x97 },
-        { SectionId::OnlineServer, (PageId)0x98 },
-        { SectionId::OnlineServer, (PageId)0x99 },
-        { SectionId::OnlineServer, (PageId)0x9e },
-        { SectionId::OnlineServer, (PageId)0xa5 },
-        { SectionId::OnlineServer, (PageId)0xa6 },
-        { SectionId::OnlineServer, (PageId)0xa7 },
     };
     for (const auto &deletion : deletions) {
         if (deletion.first == m_id && deletion.second == pageId) {
@@ -266,27 +208,19 @@ void Section::addActivePage(PageId pageId) {
         { SectionId::SingleSelectBTCourse, (PageId)0x78 },
         { SectionId::SingleSelectBTCourse, (PageId)0x79 },
 
-        { SectionId::OnlineSingle, (PageId)0x88 },
+        { SectionId::OnlineSingle, PageId::OnlineTeamSelect },
         { SectionId::OnlineSingle, PageId::GhostManager },
         { SectionId::OnlineSingle, (PageId)0x7f },
         { SectionId::OnlineSingle, (PageId)0x84 },
 
-        { SectionId::OnlineMulti, (PageId)0x88 },
+        { SectionId::OnlineMulti, PageId::OnlineTeamSelect },
         { SectionId::OnlineMulti, PageId::GhostManager },
         { SectionId::OnlineMulti, (PageId)0x7f },
         { SectionId::OnlineMulti, (PageId)0x84 },
 
-        { SectionId::OnlineServer, (PageId)0x88 },
-        { SectionId::OnlineServer, PageId::GhostManager },
-        { SectionId::OnlineServer, (PageId)0x7f },
-        { SectionId::OnlineServer, (PageId)0x84 },
+        { SectionId::Voting1PVS, PageId::OnlineTeamSelect },
 
-        { SectionId::Voting1PVS, (PageId)0x88 },
-
-        { SectionId::VotingServer, (PageId)0x88 },
-
-        { SectionId::Online1PVS, (PageId)0x88 },
-        { SectionId::OnlineServerVS, (PageId)0x88 },
+        { SectionId::Online1PVS, PageId::OnlineTeamSelect },
     };
     for (const auto &deletion : deletions) {
         if (deletion.first == m_id && deletion.second == pageId) {
@@ -400,8 +334,6 @@ void Section::addPages(SectionId id) {
         { SectionId::OnlineMulti, PageId::MenuSettings },
         { SectionId::OnlineMulti, PageId::SettingsPopup },
 
-        { SectionId::OnlineServerVS, PageId::ResultRaceTotal },
-
         // The channel section is repurposed into the Service Pack section. Add some additional
         // pages we need.
         { SectionId::ServicePack, PageId::OptionExplanation },
@@ -435,10 +367,6 @@ void Section::addActivePages(SectionId id) {
         { SectionId::OnlineMulti, PageId::OnlineTop },
 
         { SectionId::Voting1PVS, PageId::CourseSelect },
-
-        { SectionId::VotingServer, PageId::Roulette },
-
-        { SectionId::OnlineServer, PageId::FriendMatching },
     };
     for (const auto &addition : additions) {
         if (addition.first == id) {

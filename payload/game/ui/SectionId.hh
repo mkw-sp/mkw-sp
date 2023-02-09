@@ -72,7 +72,7 @@ enum class SectionId {
     OnlineMulti = 0x5b, // Replaces WifiMulti
 
     Voting1PVS = 0x60,
-    VotingServer = 0x61, // Replaces Voting1PTeamVS
+    // 0x61 replaces VotingServer, free to use!
     Voting1PBalloon = 0x62,
     Voting1PCoin = 0x63,
     Voting2PVS = 0x64,
@@ -81,11 +81,11 @@ enum class SectionId {
     Voting2PCoin = 0x67,
 
     Online1PVS = 0x70,
-    OnlineServerVS = 0x71, // Replaces Wifi1PTeamVS
+    // 0x71 replaces Wifi1PTeamVS/OnlineServerVS, free to use!
 
     ServicePack = 0x7a, // Replaces Channel
 
-    OnlineServer = 0x84, // Replaces FriendListFromChannel
+    // 0x84 replaces OnlineServer, free to use!
 
     Unlock0 = 0x90,
     Unlock1 = 0x91,
