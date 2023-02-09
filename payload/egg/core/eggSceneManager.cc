@@ -1,11 +1,11 @@
 #include "eggSceneManager.hh"
 
 extern "C" {
-#include <game/system/ResourceManager.h>
 #include <revolution.h>
 }
 #include <game/host_system/SystemManager.hh>
 #include <game/system/RaceConfig.hh>
+#include <game/system/ResourceManager.hh>
 #include <game/system/SaveManager.hh>
 #include <sp/IOSDolphin.hh>
 #include <sp/cs/RaceManager.hh>
@@ -104,7 +104,7 @@ void SceneManager::createScene(s32 sceneId, Scene *parent) {
     if (InitDolphinSpeed()) {
         PushDolphinSpeed(800);
     }
-    ResourceManager_OnCreateScene(sceneId);
+    System::ResourceManager::OnCreateScene(static_cast<System::RKSceneID>(sceneId));
     SP::RoomManager::OnCreateScene();
     SP::RaceManager::OnCreateScene();
     REPLACED(createScene)(sceneId, parent);
