@@ -10,6 +10,7 @@ public:
     class Player {
     public:
         u8 rank() const;
+        u16 battleScore() const;
         u8 maxLap() const;
         bool hasFinished() const;
         PadProxy *padProxy();
@@ -20,7 +21,9 @@ public:
         u8 m_playerId;
         u8 _09[0x20 - 0x09];
         u8 m_rank;
-        u8 _21[0x26 - 0x21];
+        u8 _21[0x22 - 0x21];
+        u16 m_battleScore;
+        u8 _24[0x26 - 0x24];
         u8 m_maxLap;
         u8 _27[0x38 - 0x27];
         u32 _pad0 : 30;

@@ -71,6 +71,7 @@ protected:
 public:
     void setMessage(const char *pane, u32 messageId, MessageInfo *info = nullptr);
     void setMessageAll(u32 messageId, MessageInfo *info = nullptr);
+    void clearMessage(const char *pane);
     void setPicture(const char *dstPane, const char *srcPane);
     bool hasPictureSourcePane(const char *pane);
     void setMiiPicture(const char *pane, MiiGroup *miiGroup, size_t index, u32 preset);

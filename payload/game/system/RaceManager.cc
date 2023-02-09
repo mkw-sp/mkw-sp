@@ -13,6 +13,10 @@ u8 RaceManager::Player::rank() const {
     return m_rank;
 }
 
+u16 RaceManager::Player::battleScore() const {
+    return m_battleScore;
+}
+
 u8 RaceManager::Player::maxLap() const {
     return m_maxLap;
 }

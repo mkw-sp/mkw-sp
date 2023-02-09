@@ -2,6 +2,7 @@
 
 #include "game/kart/KartObjectManager.hh"
 #include "game/system/RaceConfig.hh"
+#include "game/system/RaceManager.hh"
 #include "game/system/SaveManager.hh"
 #include "game/ui/TeamColors.hh"
 
@@ -35,7 +36,27 @@ void CtrlRace2DMapCharacter::load(u32 playerId) {
 void CtrlRace2DMapCharacter::calcTransform(Vec3 *pos, void *r5, void *r6) {
     REPLACED(calcTransform)(pos, r5, r6);
 
+    auto *scorePane = m_mainLayout.findPaneByName("score");
+    assert(scorePane);
+    scorePane->m_trans.x = m_charaPane->m_trans.x + 10.0f * m_charaPane->m_scale.x;
+    scorePane->m_trans.y = m_charaPane->m_trans.y - 10.0f * m_charaPane->m_scale.y;
+    scorePane->m_alpha = m_charaPane->m_alpha;
+
     auto &raceScenario = System::RaceConfig::Instance()->raceScenario();
+
+    u16 battleScore = System::RaceManager::Instance()->player(m_playerId)->battleScore();
+    if (battleScore == 0) {
+        clearMessage("score");
+    } else {
+        MessageInfo info{};
+        info.intVals[0] = battleScore;
+        u32 messageId = 10398;
+        if (raceScenario.spMaxTeamSize >= 2) {
+            messageId = 10393 + raceScenario.players[m_playerId].spTeam;
+        }
+        setMessage("score", messageId, &info);
+    }
+
     if (raceScenario.spMaxTeamSize < 2) {
         return;
     }

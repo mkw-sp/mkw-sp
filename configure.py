@@ -898,6 +898,7 @@ asset_in_files = {
         os.path.join('game_image', 'anim', 'chara_name_text_color_dummy.brlan.json5'),
         os.path.join('game_image', 'anim', 'common_w039_map_chara_icon_dummy.brlan.json5'),
         os.path.join('game_image', 'anim', 'game_image_speed_texture_pattern_0_9.brlan.json5'),
+        os.path.join('game_image', 'blyt', 'common_w039_map_chara_icon.brlyt.json5'),
         os.path.join('game_image', 'blyt', 'debug_panel.brlyt.json5'),
         os.path.join('game_image', 'blyt', 'game_image_speed.brlyt.json5'),
         os.path.join('game_image', 'blyt', 'InputDisplay.brlyt.json5'),

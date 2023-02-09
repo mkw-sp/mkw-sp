@@ -38,10 +38,10 @@ public:
     CtrlRace2DMapCharacter();
     ~CtrlRace2DMapCharacter() override;
 
+    REPLACE virtual void load(u32 playerId);
+
     void REPLACED(calcTransform)(Vec3 *pos, void *r5, void *r6);
     REPLACE void calcTransform(Vec3 *pos, void *r5, void *r6) override;
-
-    REPLACE virtual void load(u32 playerId);
 
 private:
     u8 m_playerId;

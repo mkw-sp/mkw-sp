@@ -91,4 +91,28 @@
         "font": "regular",
         "string": "{arg message|0} - {arg integer|0 0}{arg cond messages|0 1316 1317}",
     },
+    "10393": {
+        "font": "regular",
+        "string": "{color|sp blue}{arg integer|0 0}",
+    },
+    "10394": {
+        "font": "regular",
+        "string": "{color|player 3}{arg integer|0 0}",
+    },
+    "10395": {
+        "font": "regular",
+        "string": "{color|player 1}{arg integer|0 0}",
+    },
+    "10396": {
+        "font": "regular",
+        "string": "{color|sp green}{arg integer|0 0}",
+    },
+    "10397": {
+        "font": "regular",
+        "string": "{color|sp pink}{arg integer|0 0}",
+    },
+    "10398": {
+        "font": "regular",
+        "string": "{arg integer|0 0}",
+    },
 }
