@@ -3,7 +3,7 @@
 #include "sp/cs/RoomManager.hh"
 #include "sp/net/UnreliableSocket.hh"
 
-#include <protobuf/Race.pb.h>
+#include <protobuf/Room.pb.h>
 
 namespace SP {
 

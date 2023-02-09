@@ -27,6 +27,7 @@ public:
     u32 ip() const;
     u16 port() const;
     hydro_kx_session_keypair keypair() const;
+    Net::AsyncSocket &socket();
 
     // Request writing interface - new requests should go here!
     // TODO these should return void and defer the actual sending
@@ -36,13 +37,13 @@ public:
     bool sendTeamSelect(u32 playerId);
     bool sendVote(u32 course, std::optional<Player::Properties> properties);
 
-    static RoomClient *CreateInstance(u32 localPlayerCount, u32 ip, u16 port, u16 passcode);
+    static RoomClient *CreateInstance(u32 localPlayerCount, u32 ip, u16 port, u16 passcode, std::optional<LoginInfo> loginInfo);
     static void DestroyInstance();
     static RoomClient *Instance();
 
 private:
     // These functions are handled in CreateInstance and DestroyInstance
-    RoomClient(u32 localPlayerCount, u32 ip, u16 port, u16 passcode);
+    RoomClient(u32 localPlayerCount, u32 ip, u16 port, u16 passcode, std::optional<LoginInfo> loginInfo);
     ~RoomClient();
 
     // Used to update m_state
@@ -87,6 +88,7 @@ private:
     Net::AsyncSocket m_socket;
     u32 m_ip;
     u16 m_port;
+    std::optional<LoginInfo> m_loginInfo;
 
     static RoomClient *s_instance;
 };

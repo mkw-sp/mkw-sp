@@ -1,10 +1,11 @@
 #include "RaceManager.hh"
 
+#include "game/gfx/CameraManager.hh"
 #include "game/system/RaceConfig.hh"
 #include "game/ui/SectionManager.hh"
 
 #include <sp/ThumbnailManager.hh>
-#include <sp/cs/RaceServer.hh>
+#include <sp/cs/RaceManager.hh>
 
 namespace System {
 
@@ -76,11 +77,6 @@ RaceManager *RaceManager::CreateInstance() {
     const auto &raceScenario = RaceConfig::Instance()->raceScenario();
     for (u32 i = 0; i < raceScenario.playerCount; i++) {
         if (raceScenario.players[i].type == RaceConfig::Player::Type::Ghost) {
-            s_instance->m_players[i]->setExtraGhostPadProxy();
-        }
-
-        if (SP::RaceServer::Instance()) {
-            InputManager::Instance()->setExtraUserPad(i);
             s_instance->m_players[i]->setExtraGhostPadProxy();
         }
     }

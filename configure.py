@@ -1107,7 +1107,7 @@ n.newline()
 
 n.rule(
     'nanopb',
-    command = f'{sys.executable} $nanopb $in -L "#include <vendor/nanopb/%s>" -D build -q',
+    command = f'{sys.executable} $nanopb $in -I protobuf -L "#include <vendor/nanopb/%s>" -D build/protobuf -q',
     description = 'NANOPB $out',
 )
 n.newline()
@@ -1287,8 +1287,9 @@ n.rule(
 n.newline()
 
 protobuf_proto_files = [
+    os.path.join('protobuf', 'Login.proto'),
+    os.path.join('protobuf', 'Matchmaking.proto'),
     os.path.join('protobuf', 'NetStorage.proto'),
-    os.path.join('protobuf', 'Race.proto'),
     os.path.join('protobuf', 'Room.proto'),
     os.path.join('protobuf', 'Update.proto'),
 ]
@@ -1417,6 +1418,7 @@ code_in_files = {
         os.path.join('payload', 'game', 'system', 'CourseMap.S'),
         os.path.join('payload', 'game', 'system', 'DvdArchive.cc'),
         os.path.join('payload', 'game', 'system', 'FatalScene.c'),
+        os.path.join('payload', 'game', 'system', 'GameScene.cc'),
         os.path.join('payload', 'game', 'system', 'GhostFile.c'),
         os.path.join('payload', 'game', 'system', 'GhostFile.cc'),
         os.path.join('payload', 'game', 'system', 'GhostWriter.cc'),
@@ -1490,9 +1492,11 @@ code_in_files = {
         os.path.join('payload', 'game', 'ui', 'Page.cc'),
         os.path.join('payload', 'game', 'ui', 'RaceConfirmPage.cc'),
         os.path.join('payload', 'game', 'ui', 'RadioButtonControl.cc'),
+        os.path.join('payload', 'game', 'ui', 'RandomMatchingPage.cc'),
         os.path.join('payload', 'game', 'ui', 'RoulettePage.cc'),
         os.path.join('payload', 'game', 'ui', 'Save.S'),
         os.path.join('payload', 'game', 'ui', 'SaveManagerProxy.S'),
+        os.path.join('payload', 'game', 'ui', 'SaveManagerProxy.cc'),
         os.path.join('payload', 'game', 'ui', 'ScrollBar.cc'),
         os.path.join('payload', 'game', 'ui', 'Section.S'),
         os.path.join('payload', 'game', 'ui', 'Section.cc'),
@@ -1646,7 +1650,6 @@ code_in_files = {
         os.path.join('payload', 'sp', '3d', 'Kcl.cc'),
         os.path.join('payload', 'sp', 'cs', 'RaceClient.cc'),
         os.path.join('payload', 'sp', 'cs', 'RaceManager.cc'),
-        os.path.join('payload', 'sp', 'cs', 'RaceServer.cc'),
         os.path.join('payload', 'sp', 'cs', 'RoomClient.cc'),
         os.path.join('payload', 'sp', 'cs', 'RoomManager.cc'),
         os.path.join('payload', 'sp', 'cs', 'RoomServer.cc'),

@@ -15,6 +15,7 @@ typedef struct {
 static_assert(sizeof(TmdView) == 0x205c);
 
 s32 ESP_InitLib();
+s32 ESP_GetDeviceId(u32 *deviceId);
 s32 ESP_GetTicketViews(u64 titleID, TicketView *views, u32 *count);
 s32 ESP_GetTmdView(u64 titleID, TmdView *view, u32 *size);
 s32 ESP_ListTitleContentsOnCard(u64 titleID, u32 *contentIds, u32 *count);

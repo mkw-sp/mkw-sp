@@ -83,6 +83,7 @@ enum class PageId {
 
     OnlineTeamSelect = 0x88,
     OnlineTop = 0x8b, // Replaces WifiTop
+    RandomMatching = 0x8F,
     VotingBack = 0x90, // Replaces CountDownTimer
     Roulette = 0x92,
     Globe = 0x95,

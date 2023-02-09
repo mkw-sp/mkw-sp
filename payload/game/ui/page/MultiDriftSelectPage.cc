@@ -1,6 +1,5 @@
 #include "MultiDriftSelectPage.hh"
 
-#include "game/system/SaveManager.hh"
 #include "game/ui/SectionManager.hh"
 
 namespace UI {
@@ -23,13 +22,7 @@ void MultiDriftSelectPage::onButtonFront([[maybe_unused]] PushButton *button,
     u8 selection = buttonIdx % 2 == 0 ? 1 : 0;
 
     sectionManager->registeredPadManager().setDriftIsAuto(localPlayerId, selection);
-    sectionManager->globalContext()->m_driftModes[localPlayerId] = selection;
-
-    if (localPlayerId == 0) {
-        System::SaveManager::Instance()->setSetting<SP::ClientSettings::Setting::DriftMode>(
-                static_cast<SP::ClientSettings::DriftMode>(selection));
-        sectionManager->saveManagerProxy()->markLicensesDirty();
-    }
+    sectionManager->globalContext()->m_driftModes[localPlayerId] = selection + 1;
 
     // Hide non-selected button
     s8 inverse = selection == 0 ? -1 : 1;

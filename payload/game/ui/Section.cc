@@ -15,6 +15,7 @@
 #include "game/ui/MultiTopPage.hh"
 #include "game/ui/OnlineTeamSelectPage.hh"
 #include "game/ui/OnlineTopPage.hh"
+#include "game/ui/RandomMatchingPage.hh"
 #include "game/ui/RoulettePage.hh"
 #include "game/ui/SettingsPage.hh"
 #include "game/ui/ServicePackToolsPage.hh"
@@ -164,7 +165,6 @@ void Section::addPage(PageId pageId) {
         { SectionId::OnlineSingle, (PageId)0x89 },
         { SectionId::OnlineSingle, (PageId)0x8c },
         { SectionId::OnlineSingle, (PageId)0x8d },
-        { SectionId::OnlineSingle, (PageId)0x8f },
         { SectionId::OnlineSingle, (PageId)0x96 },
         { SectionId::OnlineSingle, (PageId)0x97 },
         { SectionId::OnlineSingle, (PageId)0x98 },
@@ -188,7 +188,6 @@ void Section::addPage(PageId pageId) {
         { SectionId::OnlineMulti, (PageId)0x89 },
         { SectionId::OnlineMulti, (PageId)0x8c },
         { SectionId::OnlineMulti, (PageId)0x8d },
-        { SectionId::OnlineMulti, (PageId)0x8f },
         { SectionId::OnlineMulti, (PageId)0x96 },
         { SectionId::OnlineMulti, (PageId)0x97 },
         { SectionId::OnlineMulti, (PageId)0x98 },
@@ -396,6 +395,7 @@ void Section::addPages(SectionId id) {
         { SectionId::OnlineSingle, PageId::FriendRoomRules },
         { SectionId::OnlineSingle, PageId::MenuSettings },
         { SectionId::OnlineSingle, PageId::SettingsPopup },
+        { SectionId::OnlineSingle, PageId::RandomMatching },
         { SectionId::OnlineMulti, PageId::FriendRoomRules },
         { SectionId::OnlineMulti, PageId::MenuSettings },
         { SectionId::OnlineMulti, PageId::SettingsPopup },
@@ -474,6 +474,8 @@ Page *Section::CreatePage(PageId pageId) {
         return new OnlineTeamSelectPage;
     case PageId::OnlineTop:
         return new OnlineTopPage;
+    case PageId::RandomMatching:
+        return new RandomMatchingPage;
     case PageId::VotingBack:
         return new VotingBackPage;
     case PageId::Roulette:

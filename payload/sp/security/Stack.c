@@ -35,7 +35,6 @@ void Stack_InitCanary(void) {
 
 __attribute__((noreturn)) void __stack_chk_fail(void) {
     panic("Stack smashing detected!");
-    __builtin_unreachable();
 }
 
 static bool IsAlignedPrologue(u32 *startAddress) {

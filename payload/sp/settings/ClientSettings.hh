@@ -1,11 +1,15 @@
 #pragma once
 
+#include <game/util/Registry.hh>
+
 #include "sp/settings/Settings.hh"
 
 namespace SP::ClientSettings {
 
 enum class Setting {
     // Race
+    Character,
+    Vehicle,
     DriftMode,
     VanillaMode,
     SimplifiedControls,
@@ -20,6 +24,7 @@ enum class Setting {
     InputDisplay,
     Speedometer,
     RankControl,
+    FPSMode,
 
     // Sound
     Volume,
@@ -196,6 +201,12 @@ enum class RankControl {
     Always,
 };
 
+enum class FPSMode {
+    Vanilla,
+    Force60,
+    Force30,
+};
+
 enum class ItemMusic {
     None,
     DamageOnly,
@@ -335,6 +346,16 @@ typedef Settings::Settings<Category, ClientSettings::group> Settings;
 namespace SP::Settings {
 
 template <>
+struct Helper<ClientSettings::Setting, ClientSettings::Setting::Character> {
+    using type = Registry::Character;
+};
+
+template <>
+struct Helper<ClientSettings::Setting, ClientSettings::Setting::Vehicle> {
+    using type = Registry::Vehicle;
+};
+
+template <>
 struct Helper<ClientSettings::Setting, ClientSettings::Setting::DriftMode> {
     using type = SP::ClientSettings::DriftMode;
 };
@@ -402,6 +423,11 @@ struct Helper<ClientSettings::Setting, ClientSettings::Setting::Speedometer> {
 template <>
 struct Helper<ClientSettings::Setting, ClientSettings::Setting::RankControl> {
     using type = SP::ClientSettings::RankControl;
+};
+
+template <>
+struct Helper<ClientSettings::Setting, ClientSettings::Setting::FPSMode> {
+    using type = SP::ClientSettings::FPSMode;
 };
 
 template <>

@@ -1,0 +1,8 @@
+services:
+    database:
+        image: postgres:15
+        ports: [5432:5432]
+        environment: 
+            POSTGRES_USER: matchmaking_changeme
+            POSTGRES_PASSWORD: matchmaking_changeme
+            POSTGRES_DATABASE: matchmaking

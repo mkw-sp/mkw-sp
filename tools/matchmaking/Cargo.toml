@@ -1,0 +1,25 @@
+[package]
+name = "matchmaking"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+tokio = { version = "1.24.2", features = ["full"] }
+anyhow = "1.0.68"
+tokio-tungstenite = "0.18.0"
+tracing = "0.1.37"
+tracing-subscriber = "0.3.16"
+dashmap = "5.4.0"
+futures-util = "0.3.25"
+prost = "0.11.6"
+reqwest = "0.11.14"
+libhydrogen = "0.4.1"
+uuid = { version = "1.2.2", features = ["v4", "fast-rng"] }
+sqlx = { version = "0.6.2", features = ["postgres", "runtime-tokio-native-tls", "offline"] }
+async-recursion = "1.0.2"
+rand = "0.8.5"
+
+[dependencies.netprotocol]
+path = "../netprotocol"

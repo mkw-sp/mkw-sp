@@ -1,13 +1,50 @@
 syntax = "proto2";
 
+import public "Login.proto";
+
+message InputState {
+    required bool   accelerate = 1;
+    required bool   brake      = 2;
+    required bool   item       = 3;
+    required bool   drift      = 4;
+    required bool   brakeDrift = 5;
+    required uint32 stickX     = 6;
+    required uint32 stickY     = 7;
+    required uint32 trick      = 8;
+}
+
+message PlayerFrame {
+    message Vec3 {
+        required float x = 1;
+        required float y = 2;
+        required float z = 3;
+    }
+
+    message Quat {
+        required float x = 1;
+        required float y = 2;
+        required float z = 3;
+        required float w = 4;
+    }
+
+    required InputState inputState          = 1;
+    required uint32     timeBeforeRespawn   = 2;
+    required uint32     timeInRespawn       = 3;
+    repeated uint32     timesBeforeBoostEnd = 4;
+    required Vec3       pos                 = 5;
+    required Quat       mainRot             = 6;
+    required float      internalSpeed       = 7;
+}
+
 message RoomRequest {
     message Join {
-        repeated bytes  miis            = 1;
-        required uint32 location        = 2;
-        required uint32 latitude        = 3;
-        required uint32 longitude       = 4;
-        required uint32 regionLineColor = 5;
-        repeated uint32 settings        = 6;
+        repeated bytes     miis            = 1;
+        required uint32    location        = 2;
+        required uint32    latitude        = 3;
+        required uint32    longitude       = 4;
+        required uint32    regionLineColor = 5;
+        repeated uint32    settings        = 6;
+        optional LoginInfo login_info      = 7;
     }
 
     message Spectate {}
@@ -40,6 +77,12 @@ message RoomRequest {
         required Properties properties = 2;
     }
 
+    message Race {
+        required uint32      time       = 1;
+        required uint32      serverTime = 2;
+        repeated PlayerFrame players    = 3;
+    }
+
     oneof request {
         Join       join       = 1;
         Spectate   spectate   = 2;
@@ -48,6 +91,7 @@ message RoomRequest {
         Start      start      = 5;
         TeamSelect teamSelect = 6;
         Vote       vote       = 7;
+        Race       race       = 8;
     }
 }
 
@@ -113,4 +157,12 @@ message RoomEvent {
         SelectPulse selectPulse = 8;
         SelectInfo  selectInfo  = 9;
     }
+}
+
+message RaceClientPing {}
+
+message RaceServerFrame {
+    required uint32      time        = 1;
+    repeated uint32      playerTimes = 2;
+    repeated PlayerFrame players     = 3;
 }

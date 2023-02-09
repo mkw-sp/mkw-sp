@@ -1,0 +1,2 @@
+CTSMessage.LoginChallengeAnswer.challenge_signed max_size:512
+CTSMessage.LoginChallengeAnswer.mii              max_size:76

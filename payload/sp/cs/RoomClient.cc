@@ -77,6 +77,10 @@ hydro_kx_session_keypair RoomClient::keypair() const {
     return m_socket.keypair();
 }
 
+Net::AsyncSocket &RoomClient::socket() {
+    return m_socket;
+}
+
 bool RoomClient::sendComment(u32 commentId) {
     return writeComment(commentId);
 }
@@ -98,10 +102,10 @@ bool RoomClient::sendVote(u32 course, std::optional<Player::Properties> properti
     return writeVote(course, properties);
 }
 
-RoomClient *RoomClient::CreateInstance(u32 localPlayerCount, u32 ip, u16 port, u16 passcode) {
+RoomClient *RoomClient::CreateInstance(u32 localPlayerCount, u32 ip, u16 port, u16 passcode, std::optional<LoginInfo> loginInfo) {
     assert(s_block);
     assert(!s_instance);
-    s_instance = new (s_block) RoomClient(localPlayerCount, ip, port, passcode);
+    s_instance = new (s_block) RoomClient(localPlayerCount, ip, port, passcode, loginInfo);
     RoomManager::s_instance = s_instance;
     return s_instance;
 }
@@ -117,9 +121,10 @@ RoomClient *RoomClient::Instance() {
     return s_instance;
 }
 
-RoomClient::RoomClient(u32 localPlayerCount, u32 ip, u16 port, u16 passcode)
+RoomClient::RoomClient(u32 localPlayerCount, u32 ip, u16 port, u16 passcode, std::optional<LoginInfo> loginInfo)
     : m_localPlayerCount(localPlayerCount), m_state(State::Connect),
       m_socket(ip, port, "room    "), m_ip(ip), m_port(port) {
+    m_loginInfo = loginInfo;
     m_passcode = passcode;
 }
 
@@ -518,6 +523,13 @@ bool RoomClient::writeJoin() {
     RoomRequest request;
     request.which_request = RoomRequest_join_tag;
     request.request.join.miis_count = m_localPlayerCount;
+    if (m_loginInfo) {
+        request.request.join.login_info = *m_loginInfo;
+        request.request.join.has_login_info = true;
+    }  else {
+        request.request.join.has_login_info = false;
+    }
+
     auto *globalContext = UI::SectionManager::Instance()->globalContext();
     for (size_t i = 0; i < m_localPlayerCount; i++) {
         System::Mii *mii = globalContext->m_localPlayerMiis.get(i);

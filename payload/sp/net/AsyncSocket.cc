@@ -258,6 +258,9 @@ std::optional<u16> AsyncSocket::read(u8 *message, u16 maxSize) {
 
 bool AsyncSocket::write(const u8 *message, u16 size) {
     assert(m_handle >= 0);
+    if (!ready()) {
+        panic("Cannot write messages until socket is ready!");
+    }
 
     WriteTask writeTask{};
     writeTask.size = sizeof(u16) + hydro_secretbox_HEADERBYTES + size;

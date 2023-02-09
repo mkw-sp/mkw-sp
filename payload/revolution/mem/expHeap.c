@@ -5,7 +5,6 @@ REPLACE void *MEMAllocFromExpHeapEx(MEMHeapHandle heap, u32 size, int align) {
     void *memBlock = REPLACED(MEMAllocFromExpHeapEx)(heap, size, align);
     if (!memBlock) {
         panic("Out of memory!");
-        __builtin_unreachable();
     }
     return memBlock;
 }

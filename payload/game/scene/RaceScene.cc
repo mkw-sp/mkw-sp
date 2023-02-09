@@ -3,6 +3,7 @@
 #include "game/battle/CoinManager.hh"
 #include "game/effect/EffectManager.hh"
 #include "game/enemy/EnemyManager.hh"
+#include "game/gfx/CameraManager.hh"
 #include "game/item/ItemManager.hh"
 #include "game/kart/KartObjectManager.hh"
 #include "game/obj/ObjDirector.hh"
@@ -14,7 +15,6 @@
 #include "game/ui/SectionManager.hh"
 
 #include <sp/cs/RaceClient.hh>
-#include <sp/cs/RaceServer.hh>
 
 namespace Scene {
 
@@ -32,17 +32,20 @@ void RaceScene::calcSubsystems() {
 
     if (auto *raceClient = SP::RaceClient::Instance()) {
         raceClient->calcRead();
-        drift = raceClient->drift();
-        raceClient->adjustDrift();
+        /*drift = raceClient->drift();
+        raceClient->adjustDrift();*/
     }
 
     calcSubsystems(drift);
-    if (drift < 0) {
+    /*if (drift < 0) {
         calcSubsystems(0);
-    }
+    }*/
 
-    if (auto *raceServer = SP::RaceServer::Instance()) {
-        raceServer->calcWrite();
+    if (auto *cameraManager = Graphics::CameraManager::Instance(); cameraManager &&
+            cameraManager->isReady()) {
+        if (auto *raceClient = SP::RaceClient::Instance()) {
+            raceClient->calcWrite();
+        }
     }
 }
 

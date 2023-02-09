@@ -100,22 +100,29 @@ void CtrlRaceInputDisplay::calcSelf() {
     }
 
     assert(input.trick < magic_enum::enum_count<DpadState>());
-    u8 dpad = std::min(static_cast<u8>(magic_enum::enum_count<DpadState>()), input.trick);
-    setDpad(static_cast<DpadState>(dpad));
+    assert(input.stick.x <= 1.0f && input.stick.x >= -1.0f);
+    assert(input.stick.y <= 1.0f && input.stick.y >= -1.0f);
 
+    auto dpad = static_cast<DpadState>(input.trick);
+
+    // Mirror mode inverts stick and dpad inputs
+    if (System::RaceConfig::Instance()->raceScenario().mirror) {
+        if (dpad == DpadState::Left) {
+            dpad = DpadState::Right;
+        } else if (dpad == DpadState::Right) {
+            dpad = DpadState::Left;
+        }
+
+        input.stick.x *= -1.0f;
+    }
+
+    setDpad(dpad);
     setAccel(input.accelerate ? AccelState::Pressed : AccelState::Off);
 
     bool l = input.item;
     setTrigger(Trigger::L, l ? TriggerState::Pressed : TriggerState::Off);
     bool r = input.brake || input.drift;
     setTrigger(Trigger::R, r ? TriggerState::Pressed : TriggerState::Off);
-
-    assert(input.stick.x <= 1.0f && input.stick.x >= -1.0f);
-    assert(input.stick.y <= 1.0f && input.stick.y >= -1.0f);
-    // Mirror mode inverts stick inputs
-    if (System::RaceConfig::Instance()->raceScenario().mirror) {
-        input.stick.x *= -1.0f;
-    }
     setStick(input.stick);
 
     if (speedModIsEnabled) {

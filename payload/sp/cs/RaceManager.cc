@@ -6,7 +6,6 @@ extern "C" {
 #include <game/ui/SectionManager.hh>
 
 #include "sp/cs/RaceClient.hh"
-#include "sp/cs/RaceServer.hh"
 
 namespace SP {
 
@@ -20,32 +19,18 @@ void RaceManager::OnCreateScene() {
         return;
     }
 
-    bool isServer = false;
     if (UI::Section::HasRaceClient(sectionManager->nextSectionId())) {
-        // Client
         if (UI::Section::HasRaceClient(sectionManager->lastSectionId())) {
             return;
         }
-        isServer = false;
-    } else if (UI::Section::HasRaceServer(sectionManager->nextSectionId())) {
-        // Server
-        if (UI::Section::HasRaceServer(sectionManager->lastSectionId())) {
-            return;
-        }
-        isServer = true;
     } else {
         return;
     }
 
     assert(!s_block);
     auto *heap = reinterpret_cast<EGG::Heap *>(s_rootScene->heapCollection.heaps[HEAP_ID_MEM2]);
-    if (isServer) {
-        s_block = heap->alloc(sizeof(RaceServer), 0x4);
-        RaceServer::CreateInstance();
-    } else {
-        s_block = heap->alloc(sizeof(RaceClient), 0x4);
-        RaceClient::CreateInstance();
-    }
+    s_block = heap->alloc(sizeof(RaceClient), 0x4);
+    RaceClient::CreateInstance();
 }
 
 void RaceManager::OnDestroyScene() {
@@ -55,22 +40,12 @@ void RaceManager::OnDestroyScene() {
     }
 
     if (UI::Section::HasRaceClient(sectionManager->lastSectionId())) {
-        // Client
         if (UI::Section::HasRaceClient(sectionManager->nextSectionId())) {
             return;
         }
 
         if (RaceClient::Instance()) {
             RaceClient::DestroyInstance();
-        }
-    } else if (UI::Section::HasRaceServer(sectionManager->lastSectionId())) {
-        // Server
-        if (UI::Section::HasRaceServer(sectionManager->nextSectionId())) {
-            return;
-        }
-
-        if (RaceServer::Instance()) {
-            RaceServer::DestroyInstance();
         }
     } else {
         return;

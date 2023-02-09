@@ -188,6 +188,18 @@ bool SaveManager::saveGhostResult() const {
 }
 
 void SaveManager::saveLicensesAsync() {
+    if (m_spCurrentLicense) {
+        auto *context = UI::SectionManager::Instance()->globalContext();
+
+        Registry::Character character = context->m_localCharacterIds[0];
+        Registry::Vehicle vehicle = context->m_localVehicleIds[0];
+        setSetting<SP::ClientSettings::Setting::Character>(character);
+        setSetting<SP::ClientSettings::Setting::Vehicle>(vehicle);
+
+        auto driftMode = static_cast<SP::ClientSettings::DriftMode>(context->m_driftModes[0] - 1);
+        setSetting<SP::ClientSettings::Setting::DriftMode>(driftMode);
+    }
+
     if (!m_spCanSave) {
         m_isBusy = false;
         m_result = RK_NAND_RESULT_OK;
@@ -688,7 +700,8 @@ void SaveManager_EraseSPLicense(void) {
 }
 
 void SaveManager_CreateSPLicense(const MiiId *miiId) {
-    System::SaveManager::Instance()->createSPLicense(reinterpret_cast<const System::MiiId *>(miiId));
+    System::SaveManager::Instance()->createSPLicense(
+            reinterpret_cast<const System::MiiId *>(miiId));
 }
 
 s32 SaveManager_SPCurrentLicense(void) {

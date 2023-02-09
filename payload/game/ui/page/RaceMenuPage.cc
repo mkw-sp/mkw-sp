@@ -46,8 +46,6 @@ void RaceMenuPage::onButtonFront([[maybe_unused]] PushButton *button,
         REPLACED(onButtonFront)(button, localPlayerId);
         return;
     }
-
-    SectionManager::Instance()->saveManagerProxy()->markLicensesDirty();
 }
 
 void RaceMenuPage::onNextButtonFront([[maybe_unused]] PushButton *button,

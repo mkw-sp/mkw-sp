@@ -1,7 +1,6 @@
 #include "DriftSelectPage.hh"
 
 #include "game/system/RaceConfig.hh"
-#include "game/system/SaveManager.hh"
 #include "game/ui/SectionManager.hh"
 #include "game/ui/page/MissionInstructionPage.hh"
 
@@ -11,7 +10,7 @@ void DriftSelectPage::onActivate() {
     REPLACED(onActivate)();
 
     auto *sectionManager = SectionManager::Instance();
-    selectDefault(m_buttons[sectionManager->globalContext()->m_driftModes[0] != 0]);
+    selectDefault(m_buttons[sectionManager->globalContext()->m_driftModes[0] != 1]);
 }
 
 void DriftSelectPage::onButtonFront([[maybe_unused]] PushButton *button,
@@ -24,10 +23,7 @@ void DriftSelectPage::onButtonFront([[maybe_unused]] PushButton *button,
     case 0:
     case 1:
         sectionManager->registeredPadManager().setDriftIsAuto(0, button->m_index);
-        System::SaveManager::Instance()->setSetting<SP::ClientSettings::Setting::DriftMode>(
-                static_cast<SP::ClientSettings::DriftMode>(button->m_index));
-        sectionManager->saveManagerProxy()->markLicensesDirty();
-        sectionManager->globalContext()->m_driftModes[0] = button->m_index;
+        sectionManager->globalContext()->m_driftModes[0] = button->m_index + 1;
         if (Section::GetSceneId(sectionId) == 4 /* Globe */) {
             if (m_replacementSection == SectionId::None) {
                 m_replacement = PageId::None;

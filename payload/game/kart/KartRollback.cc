@@ -28,6 +28,11 @@ f32 KartRollback::internalSpeedDelta() const {
 
 void KartRollback::calcEarly() {
     u32 playerId = getPlayerId();
+    auto *raceClient = SP::RaceClient::Instance();
+    if (!raceClient->roomManager().isPlayerRemote(playerId)) {
+        return;
+    }
+
     if (auto frame = serverFrame(playerId)) {
         u32 time = System::RaceManager::Instance()->time();
         s32 delay = static_cast<s32>(time) - static_cast<s32>(frame->time);
@@ -54,6 +59,12 @@ void KartRollback::calcEarly() {
 }
 
 void KartRollback::calcLate() {
+    u32 playerId = getPlayerId();
+    auto *raceClient = SP::RaceClient::Instance();
+    if (!raceClient->roomManager().isPlayerRemote(playerId)) {
+        return;
+    }
+
     u32 time = System::RaceManager::Instance()->time();
     if (!m_frames.back() || m_frames.back()->time < time) {
         if (m_frames.full()) {
@@ -80,7 +91,7 @@ std::optional<KartRollback::Frame> KartRollback::serverFrame(u32 playerId) const
         return {};
     }
 
-    u32 time = serverFrame->time;
+    u32 time = serverFrame->playerTimes[playerId];
     const auto &player = serverFrame->players[playerId];
     s16 timeBeforeRespawn = player.timeBeforeRespawn;
     s16 timeInRespawn = player.timeInRespawn;

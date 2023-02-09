@@ -9,6 +9,28 @@ const char name[] = "MKW-SP Settings";
 const u32 categoryMessageIds[] = { 10118, 10126, 10119, 10262, 10360, 10258, 10120, 10315 };
 
 const Entry entries[] = {
+    [static_cast<u32>(Setting::Character)] = {
+        .category = Category::Race,
+        .name = magic_enum::enum_name(Setting::Character),
+        .messageId = 0,
+        .defaultValue = static_cast<u32>(Registry::Character::Mario),
+        .valueCount = magic_enum::enum_count<Registry::Character>(),
+        .valueNames = magic_enum::enum_names<Registry::Character>().data(),
+        .valueMessageIds = nullptr,
+        .valueExplanationMessageIds = nullptr,
+        .hidden = true,
+    },
+    [static_cast<u32>(Setting::Vehicle)] = {
+        .category = Category::Race,
+        .name = magic_enum::enum_name(Setting::Vehicle),
+        .messageId = 0,
+        .defaultValue = static_cast<u32>(Registry::Vehicle::StandardKartMedium),
+        .valueCount = magic_enum::enum_count<Registry::Vehicle>(),
+        .valueNames = magic_enum::enum_names<Registry::Vehicle>().data(),
+        .valueMessageIds = nullptr,
+        .valueExplanationMessageIds = nullptr,
+        .hidden = true,
+    },
     [static_cast<u32>(Setting::DriftMode)] = {
         .category = Category::Race,
         .name = magic_enum::enum_name(Setting::DriftMode),
@@ -158,6 +180,17 @@ const Entry entries[] = {
         .valueMessageIds = (u32[]) { 10122, 10123 },
         .valueExplanationMessageIds = (u32[]) { 10124, 10125 },
         .vanillaValue = static_cast<u32>(RankControl::GPVS),
+    },
+    [static_cast<u32>(Setting::FPSMode)] = {
+        .category = Category::Race,
+        .name = magic_enum::enum_name(Setting::FPSMode),
+        .messageId = 10386,
+        .defaultValue = static_cast<u32>(FPSMode::Vanilla),
+        .valueCount = magic_enum::enum_count<FPSMode>(),
+        .valueNames = magic_enum::enum_names<FPSMode>().data(),
+        .valueMessageIds = (u32[]) { 10387, 10388, 10389 },
+        .valueExplanationMessageIds = (u32[]) { 10390, 10391, 10392 },
+        .vanillaValue = static_cast<u32>(FPSMode::Vanilla),
     },
     [static_cast<u32>(Setting::Volume)] = {
         .category = Category::Sound,
@@ -326,8 +359,8 @@ const Entry entries[] = {
         .defaultValue = static_cast<u32>(EngineClass::Mixed),
         .valueCount = magic_enum::enum_count<EngineClass>(),
         .valueNames = magic_enum::enum_names<EngineClass>().data(),
-        .valueMessageIds = (u32[]) { 10235, 10236, 10237, 10238, 10366, 10365 },
-        .valueExplanationMessageIds = (u32[]) { 10239, 10240, 10241, 10242, 10361, 10362 },
+        .valueMessageIds = (u32[]) { 10235, 10236, 10238, 10237, 10365, 10366 },
+        .valueExplanationMessageIds = (u32[]) { 10239, 10240, 10242, 10241, 10361, 10362 },
     },
     [static_cast<u32>(Setting::VSVehicles)] = {
         .category = Category::VS,
@@ -438,8 +471,8 @@ const Entry entries[] = {
         .defaultValue = static_cast<u32>(EngineClass::Mixed),
         .valueCount = magic_enum::enum_count<EngineClass>(),
         .valueNames = magic_enum::enum_names<EngineClass>().data(),
-        .valueMessageIds = (u32[]) { 10235, 10236, 10237, 10238, 10366, 10365 },
-        .valueExplanationMessageIds = (u32[]) { 10239, 10240, 10241, 10242, 10361, 10362 },
+        .valueMessageIds = (u32[]) { 10235, 10236, 10238, 10237, 10365, 10366 },
+        .valueExplanationMessageIds = (u32[]) { 10239, 10240, 10242, 10241, 10361, 10362 },
     },
     [static_cast<u32>(Setting::RoomVehicles)] = {
         .category = Category::Room,

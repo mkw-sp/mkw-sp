@@ -2,6 +2,7 @@
 
 #include "sp/cs/RoomClient.hh"
 
+#include <game/kart/KartObjectManager.hh>
 #include <game/system/RaceConfig.hh>
 #include <game/system/RaceManager.hh>
 #include <vendor/nanopb/pb_decode.h>
@@ -23,7 +24,7 @@ const std::optional<RaceServerFrame> &RaceClient::frame() const {
     return m_frame;
 }
 
-s32 RaceClient::drift() const {
+/*s32 RaceClient::drift() const {
     return m_drift;
 }
 
@@ -37,33 +38,57 @@ void RaceClient::adjustDrift() {
         *m_drifts[i] -= signum;
     }
     m_drift -= signum;
-}
+}*/
 
 void RaceClient::calcWrite() {
+    if (!m_frame) {
+        u8 buffer[RaceClientPing_size];
+        pb_ostream_t stream = pb_ostream_from_buffer(buffer, sizeof(buffer));
+
+        assert(pb_encode(&stream, RaceClientPing_fields, nullptr));
+
+        m_socket.write(buffer, stream.bytes_written, m_connection);
+    }
+
     auto &raceScenario = System::RaceConfig::Instance()->raceScenario();
-    RaceClientFrame frame;
-    frame.time = System::RaceManager::Instance()->time();
-    frame.players_count = raceScenario.localPlayerCount;
+    RoomRequest request;
+    request.which_request = RoomRequest_race_tag;
+    request.request.race.time = System::RaceManager::Instance()->time();
+    request.request.race.serverTime = m_frame ? m_frame->time : 0;
+    request.request.race.players_count = raceScenario.localPlayerCount;
     for (u8 i = 0; i < raceScenario.localPlayerCount; i++) {
         u8 playerId = raceScenario.screenPlayerIds[i];
         auto *player = System::RaceManager::Instance()->player(playerId);
         auto &inputState = player->padProxy()->currentRaceInputState();
-        frame.players[i].inputState.accelerate = inputState.accelerate;
-        frame.players[i].inputState.brake = inputState.brake;
-        frame.players[i].inputState.item = inputState.item;
-        frame.players[i].inputState.drift = inputState.drift;
-        frame.players[i].inputState.brakeDrift = inputState.brakeDrift;
-        frame.players[i].inputState.stickX = inputState.rawStick.x;
-        frame.players[i].inputState.stickY = inputState.rawStick.y;
-        frame.players[i].inputState.trick = inputState.rawTrick;
+        request.request.race.players[i].inputState.accelerate = inputState.accelerate;
+        request.request.race.players[i].inputState.brake = inputState.brake;
+        request.request.race.players[i].inputState.item = inputState.item;
+        request.request.race.players[i].inputState.drift = inputState.drift;
+        request.request.race.players[i].inputState.brakeDrift = inputState.brakeDrift;
+        request.request.race.players[i].inputState.stickX = inputState.rawStick.x;
+        request.request.race.players[i].inputState.stickY = inputState.rawStick.y;
+        request.request.race.players[i].inputState.trick = inputState.rawTrick;
+        auto *object = Kart::KartObjectManager::Instance()->object(playerId);
+        request.request.race.players[i].timeBeforeRespawn = object->getTimeBeforeRespawn();
+        request.request.race.players[i].timeInRespawn = object->getTimeInRespawn();
+        request.request.race.players[i].timesBeforeBoostEnd_count = 3;
+        for (u32 j = 0; j < 3; j++) {
+            request.request.race.players[i].timesBeforeBoostEnd[j] =
+                    object->getTimeBeforeBoostEnd(j * 2);
+        }
+        request.request.race.players[i].pos = *object->getPos();
+        request.request.race.players[i].mainRot = *object->getMainRot();
+        request.request.race.players[i].internalSpeed = object->getInternalSpeed();
     }
 
-    u8 buffer[RaceClientFrame_size];
+    u8 buffer[RoomRequest_size];
     pb_ostream_t stream = pb_ostream_from_buffer(buffer, sizeof(buffer));
 
-    assert(pb_encode(&stream, RaceClientFrame_fields, &frame));
+    assert(pb_encode(&stream, RoomRequest_fields, &request));
 
-    m_socket.write(buffer, stream.bytes_written, m_connection);
+    // TODO proper error handling
+    assert(m_roomClient.socket().write(buffer, stream.bytes_written));
+    assert(m_roomClient.socket().poll());
 }
 
 void RaceClient::calcRead() {
@@ -95,7 +120,7 @@ void RaceClient::calcRead() {
 
     System::RaceManager::Instance()->m_canStartCountdown = true;
 
-    if (m_drifts.full()) {
+    /*if (m_drifts.full()) {
         m_drifts.pop_front();
     }
     s32 drift = static_cast<s32>(m_frame->clientTime) - static_cast<s32>(m_frame->time);
@@ -105,17 +130,14 @@ void RaceClient::calcRead() {
     for (size_t i = 0; i < m_drifts.count(); i++) {
         m_drift += *m_drifts[i];
     }
-    m_drift /= static_cast<s32>(m_drifts.count());
+    m_drift /= static_cast<s32>(m_drifts.count());*/
 }
 
 RaceClient *RaceClient::CreateInstance() {
     assert(s_block);
     assert(!s_instance);
     auto *roomClient = RoomClient::Instance();
-    u32 ip = roomClient->ip();
-    u16 port = roomClient->port();
-    hydro_kx_session_keypair keypair = roomClient->keypair();
-    s_instance = new (s_block) RaceClient(ip, port, keypair);
+    s_instance = new (s_block) RaceClient(*roomClient);
     RaceManager::s_instance = s_instance;
     return s_instance;
 }
@@ -131,8 +153,8 @@ RaceClient *RaceClient::Instance() {
     return s_instance;
 }
 
-RaceClient::RaceClient(u32 ip, u16 port, hydro_kx_session_keypair keypair) :
-        m_connection{ip, port, keypair}, m_socket("race    ", {}) {}
+RaceClient::RaceClient(RoomClient &roomClient) : m_roomClient(roomClient), m_socket("race    ", {}),
+        m_connection{roomClient.ip(), roomClient.port(), roomClient.keypair()} {}
 
 RaceClient::~RaceClient() {
     hydro_memzero(&m_connection, sizeof(m_connection));
@@ -143,6 +165,21 @@ bool RaceClient::isFrameValid(const RaceServerFrame &frame) {
         return false;
     }
 
+    // TODO check player times
+    if (frame.playerTimes_count != m_roomClient.playerCount()) {
+        return false;
+    }
+    if (m_frame) {
+        for (u32 i = 0; i < frame.players_count; i++) {
+            if (frame.playerTimes[i] < m_frame->playerTimes[i]) {
+                return false;
+            }
+        }
+    }
+
+    if (frame.players_count != m_roomClient.playerCount()) {
+        return false;
+    }
     for (u32 i = 0; i < frame.players_count; i++) {
         if (!IsInputStateValid(frame.players[i].inputState)) {
             return false;
@@ -185,7 +222,7 @@ bool RaceClient::isFrameValid(const RaceServerFrame &frame) {
     return true;
 }
 
-bool RaceClient::IsVec3Valid(const RaceServerFrame_Vec3 &v) {
+bool RaceClient::IsVec3Valid(const PlayerFrame_Vec3 &v) {
     if (std::isnan(v.x) || v.x < -1e6f || v.x > 1e6f) {
         return false;
     }
@@ -201,7 +238,7 @@ bool RaceClient::IsVec3Valid(const RaceServerFrame_Vec3 &v) {
     return true;
 }
 
-bool RaceClient::IsQuatValid(const RaceServerFrame_Quat &q) {
+bool RaceClient::IsQuatValid(const PlayerFrame_Quat &q) {
     if (std::isnan(q.x) || q.x < -1.001f || q.x > 1.001f) {
         return false;
     }
