@@ -46,7 +46,7 @@ void DvdArchive::loadOther(DvdArchive *other, EGG::Heap *UNUSED(unused)) {
     other->m_archiveBuffer = nullptr;
     other->m_archiveSize = 0;
     other->m_archiveHeap = nullptr;
-    other->clearFile();
+    other->clear();
 }
 
 void *DvdArchive::getFile(const char *path, size_t *size) {

@@ -29,7 +29,7 @@ public:
     State state() const;
 
 private:
-    void clearFile();
+    void clear();
     bool decompress(const char *path, EGG::Heap *archiveHeap);
     void mount(EGG::Heap *archiveHeap);
     void move();
