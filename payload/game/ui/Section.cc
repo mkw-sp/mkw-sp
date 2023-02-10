@@ -78,7 +78,7 @@ bool Section::HasRoomClient(SectionId sectionId) {
     case SectionId::Voting2PVS:
     case SectionId::Voting2PBalloon:
     case SectionId::Voting2PCoin:
-    case SectionId::Online1PVS:
+    case SectionId::OnlineFriend1PVS:
         return true;
     default:
         return false;
@@ -87,7 +87,7 @@ bool Section::HasRoomClient(SectionId sectionId) {
 
 bool Section::HasRaceClient(SectionId sectionId) {
     switch (sectionId) {
-    case SectionId::Online1PVS:
+    case SectionId::OnlineFriend1PVS:
         return true;
     default:
         return false;
@@ -182,9 +182,9 @@ void Section::addPage(PageId pageId) {
         { SectionId::Voting1PVS, PageId::OnlineTeamSelect },
         { SectionId::Voting1PVS, PageId::WifiPlayerList },
 
-        { SectionId::Online1PVS, PageId::Unknown44 },
-        { SectionId::Online1PVS, PageId::OnlinePleaseWait },
-        { SectionId::Online1PVS, PageId::OnlineTeamSelect },
+        { SectionId::OnlineFriend1PVS, PageId::Unknown44 },
+        { SectionId::OnlineFriend1PVS, PageId::OnlinePleaseWait },
+        { SectionId::OnlineFriend1PVS, PageId::OnlineTeamSelect },
 
         // The channel section is repurposed into the Service Pack section. Remove some pages that
         // aren't needed anymore.
@@ -220,7 +220,7 @@ void Section::addActivePage(PageId pageId) {
 
         { SectionId::Voting1PVS, PageId::OnlineTeamSelect },
 
-        { SectionId::Online1PVS, PageId::OnlineTeamSelect },
+        { SectionId::OnlineFriend1PVS, PageId::OnlineTeamSelect },
     };
     for (const auto &deletion : deletions) {
         if (deletion.first == m_id && deletion.second == pageId) {

@@ -151,7 +151,7 @@ void RoulettePage::beforeCalc() {
         menuScenario.engineClass = System::RaceConfig::EngineClass::CC150;
         menuScenario.cameraMode = 0;
 
-        changeSection(SectionId::Online1PVS, Anim::None, 0.0f);
+        changeSection(SectionId::OnlineFriend1PVS, Anim::None, 0.0f);
     }
 }
 

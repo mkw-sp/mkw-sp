@@ -130,14 +130,14 @@ void RichPresenceManager::onSectionChange(UI::SectionId sectionId) {
     case UI::SectionId::Thumbnails:
         state = "Generating thumbnails...";
         break;
-    case (UI::SectionId)0x10:
+    case UI::SectionId::CreateSave:
         state = "Creating new save...";
         break;
-    case (UI::SectionId)0x11:
-    case (UI::SectionId)0x12:
-    case (UI::SectionId)0x13:
-    case (UI::SectionId)0x14:
-    case (UI::SectionId)0x15:
+    case UI::SectionId::CorruptSave:
+    case UI::SectionId::CountryChanged:
+    case UI::SectionId::CannotSave:
+    case UI::SectionId::CannotAccessNand:
+    case UI::SectionId::CannotAccessMiis:
         state = "Error on launch!";
         break;
     case UI::SectionId::GPDemo:
@@ -152,7 +152,7 @@ void RichPresenceManager::onSectionChange(UI::SectionId sectionId) {
     case UI::SectionId::MRBossDemo:
         state = "Starting Mission Mode...";
         break;
-    case (UI::SectionId)0x1D:
+    case UI::SectionId::CoBossDemo:
         state = "Starting competition...";
         break;
     case UI::SectionId::GP:
@@ -206,27 +206,27 @@ void RichPresenceManager::onSectionChange(UI::SectionId sectionId) {
         break;
     case UI::SectionId::AwardsGP:
     case UI::SectionId::AwardsVS:
-    case (UI::SectionId)0x37:
-    case (UI::SectionId)0x38:
+    case UI::SectionId::Unknown37:
+    case UI::SectionId::AwardsBT:
         state = "In an awards ceremony!";
         break;
-    case (UI::SectionId)0x39:
-    case (UI::SectionId)0x3A:
-    case (UI::SectionId)0x3B:
-    case (UI::SectionId)0x3C:
-    case (UI::SectionId)0x3D:
-    case (UI::SectionId)0x3E:
+    case UI::SectionId::CreditsP1:
+    case UI::SectionId::CreditsP1True:
+    case UI::SectionId::CreditsP2:
+    case UI::SectionId::CreditsP2True:
+    case UI::SectionId::Congratulations:
+    case UI::SectionId::CongratulationsTrue:
         state = "Playing credits!";
         break;
-    case (UI::SectionId)0x3F:
-    case (UI::SectionId)0x40:
+    case UI::SectionId::TitleFromBoot:
+    case UI::SectionId::TitleFromReset:
     case UI::SectionId::TitleFromMenu:
-    case (UI::SectionId)0x42:
+    case UI::SectionId::TitleFromNewLicence:
     case UI::SectionId::TitleFromOptions:
         state = "Selecting license/game type...";
         break;
-    case (UI::SectionId)0x44:
-        state = "In a... demo?";
+    case UI::SectionId::Demo:
+        state = "Watching the intro movie!";
         break;
     case UI::SectionId::MiiSelectCreate:
     case UI::SectionId::MiiSelectChange:
@@ -240,26 +240,27 @@ void RichPresenceManager::onSectionChange(UI::SectionId sectionId) {
     case UI::SectionId::SingleSelectBTCourse:
     case UI::SectionId::SingleChangeMission:
     case UI::SectionId::SingleChangeGhostData:
-    case (UI::SectionId)0x4F:
-    case (UI::SectionId)0x50:
         state = "Configuring singleplayer race...";
         break;
     case UI::SectionId::Multi:
         state = "Configuring multiplayer race...";
         break;
     case UI::SectionId::OnlineSingle:
-    case (UI::SectionId)0x56:
-    case (UI::SectionId)0x57:
     case UI::SectionId::OnlineMultiConfigure:
     case UI::SectionId::OnlineMulti:
-    case (UI::SectionId)0x5C:
-    case (UI::SectionId)0x5D:
         state = "Searching for a room...";
         break;
-    case (UI::SectionId)0x58:
-    case (UI::SectionId)0x59:
-    case (UI::SectionId)0x5E:
-    case (UI::SectionId)0x5F:
+    case UI::SectionId::WifiSingleDisconnected:
+    case UI::SectionId::WifiMultiDisconnected:
+        state = "Disconnected from the server!";
+        break;
+    case UI::SectionId::WifiSingleFriendList:
+        state = "Viewing friend list...";
+        break;
+    case UI::SectionId::WifiSingleVsVoting:
+    case UI::SectionId::WifiSingleBtVoting:
+    case UI::SectionId::WifiMultiVsVoting:
+    case UI::SectionId::WifiMultiBtVoting:
     case UI::SectionId::Voting1PVS:
     case UI::SectionId::Voting1PBalloon:
     case UI::SectionId::Voting1PCoin:
@@ -268,35 +269,33 @@ void RichPresenceManager::onSectionChange(UI::SectionId sectionId) {
     case UI::SectionId::Voting2PCoin:
         state = "Voting for online track!";
         break;
-    case (UI::SectionId)0x68:
-    case (UI::SectionId)0x69:
-    case UI::SectionId::Online1PVS:
-    case (UI::SectionId)0x71:
-    case (UI::SectionId)0x74:
-    case (UI::SectionId)0x75:
+    case UI::SectionId::WifiVS:
+    case UI::SectionId::WifiMultiVS:
+    case UI::SectionId::OnlineFriend1PVS:
+    case UI::SectionId::OnlineFriend2PVS:
         state = "Playing in an online VS race!";
         break;
-    case (UI::SectionId)0x6A:
-    case (UI::SectionId)0x6B:
+    case UI::SectionId::WifiVSSpectate:
+    case UI::SectionId::WifiVSMultiSpectate:
         state = "Spectating an online race!";
         break;
-    case (UI::SectionId)0x6C:
-    case (UI::SectionId)0x6D:
-    case (UI::SectionId)0x72:
-    case (UI::SectionId)0x73:
-    case (UI::SectionId)0x76:
-    case (UI::SectionId)0x77:
+    case UI::SectionId::WifiBT:
+    case UI::SectionId::WifiMultiBT:
+    case UI::SectionId::OnlineFriend1PBalloon:
+    case UI::SectionId::OnlineFriend1PCoin:
+    case UI::SectionId::OnlineFriend2PBalloon:
+    case UI::SectionId::OnlineFriend2PCoin:
         state = "Playing in an online battle!";
         break;
-    case (UI::SectionId)0x6E:
-    case (UI::SectionId)0x6F:
+    case UI::SectionId::WifiBTSpectate:
+    case UI::SectionId::WifiBTMultiSpectate:
         state = "Spectating an online battle!";
         break;
-    case (UI::SectionId)0x78:
-    case (UI::SectionId)0x79:
+    case UI::SectionId::OnlineDisconnected:
+    case UI::SectionId::OnlineDisconnectedGeneric:
         state = "Disconnected from online race!";
         break;
-    case (UI::SectionId)0x94:
+    case UI::SectionId::MissionMenu:
         state = "Configuring mission mode...";
         break;
     default:

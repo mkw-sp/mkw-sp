@@ -4,18 +4,33 @@ namespace UI {
 
 enum class SectionId {
     None = -1,
+    PowerOffWii = 0x0,
 
+    MkChannelInstaller = 0x2,
+    WiiMenuRegionSelect = 0x3,
+    ReturnToWiiMenu = 0x4,
     Restart = 0x5,
-
     Thumbnails = 0x6, // Was unused
 
-    GPDemo = 0x19,
-    VSDemo = 0x1a,
-    BTDemo = 0x1b,
-    MRBossDemo = 0x1c,
+    CreateSave = 0x10,
+    CorruptSave = 0x11,
+    CountryChanged = 0x12,
+    CannotSave = 0x13,
+    CannotAccessNand = 0x14,
+    CannotAccessMiis = 0x15,
 
-    GP = 0x1e,
-    TA = 0x1f,
+    ESRBWarning = 0x16,
+    FPSWarning1 = 0x17,
+    FpsWarning2 = 0x18,
+
+    GPDemo = 0x19,
+    VSDemo = 0x1A,
+    BTDemo = 0x1B,
+    MRBossDemo = 0x1C,
+    CoBossDemo = 0x1D,
+
+    GP = 0x1E,
+    TA = 0x1F,
 
     VS1P = 0x20,
     VS2P = 0x21,
@@ -29,14 +44,14 @@ enum class SectionId {
 
     Battle1P = 0x28,
     Battle2P = 0x29,
-    Battle3P = 0x2a,
-    Battle4P = 0x2b,
+    Battle3P = 0x2A,
+    Battle4P = 0x2B,
 
-    MR = 0x2c,
+    MR = 0x2C,
 
-    TournamentReplay = 0x2d,
-    GPReplay = 0x2e,
-    TAReplay = 0x2f,
+    TournamentReplay = 0x2D,
+    GPReplay = 0x2E,
+    TAReplay = 0x2F,
 
     GhostTA = 0x30,
     GhostTAOnline = 0x31,
@@ -47,50 +62,115 @@ enum class SectionId {
 
     AwardsGP = 0x35,
     AwardsVS = 0x36,
+    Unknown37 = 0x37, // Seems to be the same as 0x36
     AwardsBT = 0x38,
 
-    TitleFromBoot = 0x3f,
+    // Unreachable, due to no GP {
+    CreditsP1 = 0x39,
+    CreditsP1True = 0x3A,
+    CreditsP2 = 0x3B,
+    CreditsP2True = 0x3C,
+    Congratulations = 0x3D,
+    CongratulationsTrue = 0x3E,
+    // }
+
+    TitleFromBoot = 0x3F,
+    TitleFromReset = 0x40,
     TitleFromMenu = 0x41,
+    TitleFromNewLicence = 0x42,
     TitleFromOptions = 0x43,
+
+    Demo = 0x44,
+
     MiiSelectCreate = 0x45,
     MiiSelectChange = 0x46,
     LicenseSettings = 0x47,
 
     Single = 0x48,
     SingleChangeDriver = 0x49,
-    SingleChangeCourse = 0x4a,
-    SingleSelectVSCourse = 0x4b,
-    SingleSelectBTCourse = 0x4c,
-    SingleChangeMission = 0x4d,
+    SingleChangeCourse = 0x4A,
+    SingleSelectVSCourse = 0x4B,
+    SingleSelectBTCourse = 0x4C,
+    SingleChangeMission = 0x4D,
+    SingleChangeGhostData = 0x4E, // Replaces SingleMkChannelGhost
+    SingleChannelLeaderboardChallenge = 0x4F,
+    SingleGhostListChallenge = 0x50,
 
-    SingleChangeGhostData = 0x4e, // Replaces SingleMkChannelGhost
+    // From Mario Kart Channel {
+    SendGhostDataToFriend = 0x51,
+    ChallengeGhost = 0x52,
+    WatchReplay = 0x53,
+    // }
 
     Multi = 0x54,
 
     OnlineSingle = 0x55, // Replaces WifiSingle
-    OnlineMultiConfigure = 0x5a, // Replaces WifiMultiConfigure
-    OnlineMulti = 0x5b, // Replaces WifiMulti
+    WifiSingleDisconnected = 0x56,
+    WifiSingleFriendList = 0x57,
+    WifiSingleVsVoting = 0x58,
+    WifiSingleBtVoting = 0x59,
+
+    OnlineMultiConfigure = 0x5A, // Replaces WifiMultiMiiConfigure
+    OnlineMulti = 0x5B, // Replaces WifiMulti
+    WifiMultiDisconnected = 0x5C,
+    Unknown5D = 0x5D,
+    WifiMultiVsVoting = 0x5E,
+    WifiMultiBtVoting = 0x5F,
 
     Voting1PVS = 0x60,
-    // 0x61 replaces VotingServer, free to use!
+    VotingServer = 0x61, // Unused, free to use!
     Voting1PBalloon = 0x62,
     Voting1PCoin = 0x63,
     Voting2PVS = 0x64,
-    // 0x65 replaces deprecated Voting2PTeamVS, free to use!
+    Voting2PTeamVS = 0x65, // Unused, free to use!
     Voting2PBalloon = 0x66,
     Voting2PCoin = 0x67,
 
-    Online1PVS = 0x70,
-    // 0x71 replaces Wifi1PTeamVS/OnlineServerVS, free to use!
+    WifiVS = 0x68,
+    WifiMultiVS = 0x69,
+    WifiVSSpectate = 0x6A,
+    WifiVSMultiSpectate = 0x6B,
 
-    ServicePack = 0x7a, // Replaces Channel
+    WifiBT = 0x6C,
+    WifiMultiBT = 0x6D,
+    WifiBTSpectate = 0x6E,
+    WifiBTMultiSpectate = 0x6F,
 
+    OnlineFriend1PVS = 0x70,
+    OnlineServerVS = 0x71, // Unused, free to use!
+    OnlineFriend1PBalloon = 0x72,
+    OnlineFriend1PCoin = 0x73,
+
+    OnlineFriend2PVS = 0x74,
+    OnlineFriend2PTeamVS = 0x75, // Unused, free to use!
+    OnlineFriend2PBalloon = 0x76,
+    OnlineFriend2PCoin = 0x77,
+
+    OnlineDisconnected = 0x78,
+    OnlineDisconnectedGeneric = 0x79,
+
+    ServicePack = 0x7A, // Replaces Channel
+    // ^^ All channel sections vv 
     // 0x84 replaces OnlineServer, free to use!
+
+    CompetitionChannel = 0x85,
+    CompetitionChangeCharacter = 0x86,
+    CompetitionSubmitRecord = 0x87,
+    CompetitionWheelOnly = 0x88,
+    CompetitionWheelOnlyBosses = 0x89,
+
+    InviteFriend = 0x8A,
+    ChannelDownloadData = 0x8B,
+
+    Options = 0x8C,
+    AddMkChannel = 0x8D,
+    EnableMessageService = 0x8E,
 
     Unlock0 = 0x90,
     Unlock1 = 0x91,
     Unlock2 = 0x92,
     Unlock3 = 0x93,
+    MissionMenu = 0x94,
 
     Max = 0x95,
 };
