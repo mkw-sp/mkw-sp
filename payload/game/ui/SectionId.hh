@@ -118,7 +118,7 @@ enum class SectionId {
     WifiMultiBtVoting = 0x5F,
 
     Voting1PVS = 0x60,
-    VotingServer = 0x61, // Unused, free to use!
+    Voting1PTeamVS = 0x61, // Unused, free to use!
     Voting1PBalloon = 0x62,
     Voting1PCoin = 0x63,
     Voting2PVS = 0x64,
@@ -137,7 +137,7 @@ enum class SectionId {
     WifiBTMultiSpectate = 0x6F,
 
     OnlineFriend1PVS = 0x70,
-    OnlineServerVS = 0x71, // Unused, free to use!
+    OnlineFriend1PTeamVS = 0x71, // Unused, free to use!
     OnlineFriend1PBalloon = 0x72,
     OnlineFriend1PCoin = 0x73,
 
