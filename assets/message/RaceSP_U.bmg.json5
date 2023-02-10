@@ -115,4 +115,32 @@
         "font": "regular",
         "string": "{arg integer|0 0}",
     },
+    "10399": {
+        "font": "red",
+        "string": "{color|sp blue}{arg signed integer|0 0}",
+    },
+    "10400": {
+        "font": "red",
+        "string": "{color|player 3}{arg signed integer|0 0}",
+    },
+    "10401": {
+        "font": "red",
+        "string": "{color|player 1}{arg signed integer|0 0}",
+    },
+    "10402": {
+        "font": "red",
+        "string": "{color|sp green}{arg signed integer|0 0}",
+    },
+    "10403": {
+        "font": "red",
+        "string": "{color|sp pink}{arg signed integer|0 0}",
+    },
+    "10404": {
+        "font": "red",
+        "string": "{arg signed integer|0 0}",
+    },
+    "10405": {
+        "font": "blue",
+        "string": "{arg signed integer|0 0}",
+    },
 }

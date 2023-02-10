@@ -31,7 +31,9 @@ private:
     u8 _36[0x38 - 0x36];
     u32 m_currentAnimation;
     f32 m_frame;
-    u8 _40[0x44 - 0x40];
+
+public:
+    f32 m_speed;
 };
 static_assert(sizeof(Group) == 0x44);
 
