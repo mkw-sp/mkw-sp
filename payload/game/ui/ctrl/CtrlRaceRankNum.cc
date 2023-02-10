@@ -76,7 +76,7 @@ void CtrlRaceRankNum::load(const char *variant, u32 localPlayerId) {
 
 bool CtrlRaceRankNum::isDisabled() const {
     auto pageId = getPage()->id();
-    if (pageId != PageId::TARace && pageId != PageId::GhostReplayRace) {
+    if (pageId != PageId::TaHud && pageId != PageId::GhostReplayHud) {
         return false;
     }
 

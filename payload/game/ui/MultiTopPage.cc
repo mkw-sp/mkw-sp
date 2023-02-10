@@ -84,7 +84,7 @@ void MultiTopPage::onActivate() {
 void MultiTopPage::onBack([[maybe_unused]] u32 localPlayerId) {
     m_reset = true;
 
-    m_replacement = PageId::MultiPadRegister;
+    m_replacement = PageId::ControllerBoxes;
     startReplace(Anim::Next, 0.0f);
 }
 
@@ -191,7 +191,7 @@ void MultiTopPage::onBackButtonFront([[maybe_unused]] PushButton *button,
         [[maybe_unused]] u32 localPlayerId) {
     m_reset = true;
 
-    m_replacement = PageId::MultiPadRegister;
+    m_replacement = PageId::ControllerBoxes;
     f32 delay = button->getDelay();
     startReplace(Anim::Prev, delay);
 }

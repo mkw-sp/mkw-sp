@@ -957,6 +957,7 @@
 0x80601a60 Page_init
 0x80601ad8 Page_onInit
 0x80601ad8 _ZN2UI4Page6onInitEv
+0x80601aec _ZN2UI4Page8activateEv
 0x806022cc _ZN2UI4Page4calcEv
 0x8060244c _ZN2UI4Page7setAnimENS0_4AnimE
 0x8060245c Page_initChildren

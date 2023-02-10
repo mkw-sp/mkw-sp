@@ -2,6 +2,7 @@
 
 #include "game/system/SaveManager.hh"
 #include "game/ui/SectionManager.hh"
+#include "game/ui/Page.hh"
 
 #include <cstdio>
 #include <new>
