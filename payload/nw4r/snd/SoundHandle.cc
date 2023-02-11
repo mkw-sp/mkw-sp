@@ -10,4 +10,12 @@ void SoundHandle::setPitch(f32 pitch) {
     m_basicSound->setPitch(pitch);
 }
 
+void SoundHandle::setPan(f32 pan) {
+    if (m_basicSound == nullptr) {
+        return;
+    }
+
+    m_basicSound->setPan(pan);
+}
+
 } // namespace nw4r::snd

@@ -3,6 +3,9 @@
 #include "game/system/RaceConfig.hh"
 #include "game/system/SaveManager.hh"
 #include "game/ui/SectionManager.hh"
+#include "game/ui/ctrl/CtrlRaceBattleAddPoint.hh"
+#include "game/ui/ctrl/CtrlRaceBattlePoint.hh"
+#include "game/ui/ctrl/CtrlRaceBattleTotalPoint.hh"
 #include "game/ui/ctrl/CtrlRaceDebugPanel.hh"
 #include "game/ui/ctrl/CtrlRaceInputDisplay.hh"
 #include "game/ui/ctrl/CtrlRaceSpeed.hh"
@@ -58,13 +61,21 @@ void RacePage::afterCalc() {
 u8 RacePage::getControlCount(u32 controls) const {
     u8 count = REPLACED(getControlCount)(controls);
 
-    u32 localPlayerCount = System::RaceConfig::Instance()->raceScenario().localPlayerCount;
-    localPlayerCount = std::max(localPlayerCount, static_cast<u32>(1));
+    auto &raceScenario = System::RaceConfig::Instance()->raceScenario();
+    u32 localPlayerCount = std::max(raceScenario.localPlayerCount, static_cast<u8>(1));
+
+    if (controls & Control::Point) {
+        if (raceScenario.spMaxTeamSize < 2) {
+            count--; // CtrlRaceBattleTotalPoint
+        }
+    }
 
     auto *saveManager = System::SaveManager::Instance();
     auto setting = saveManager->getSetting<SP::ClientSettings::Setting::VanillaMode>();
     if (setting == SP::ClientSettings::VanillaMode::Disable) {
-        count += localPlayerCount; // CtrlRaceSpeed
+        if (localPlayerCount <= 2 || !(controls & Control::Point)) {
+            count += localPlayerCount; // CtrlRaceSpeed
+        }
         count += localPlayerCount; // CtrlRaceInputDisplay
         count += localPlayerCount < 2; // CtrlRaceDebugPanel
     }
@@ -82,19 +93,45 @@ u8 RacePage::getControlCount(u32 controls) const {
 }
 
 void RacePage::initControls(u32 controls) {
-    REPLACED(initControls)(controls);
+    REPLACED(initControls)(controls & ~Control::Point);
 
     u32 index = getControlCount(controls) - 1;
-    u32 localPlayerCount = System::RaceConfig::Instance()->raceScenario().localPlayerCount;
-    localPlayerCount = std::max(localPlayerCount, static_cast<u32>(1));
+    auto &raceScenario = System::RaceConfig::Instance()->raceScenario();
+    u32 localPlayerCount = std::max(raceScenario.localPlayerCount, static_cast<u8>(1));
+
+    if (controls & Control::Point) {
+        for (u32 i = 0; i < localPlayerCount; i++) {
+            auto *control = new CtrlRaceBattlePoint;
+            insertChild(index--, control, 0);
+            u32 screenCount = localPlayerCount == 3 ? 4 : localPlayerCount;
+            char variant[0x20];
+            snprintf(variant, std::size(variant), "CtrlRacePoint_%u_%u", screenCount, i);
+            control->load(variant, i);
+        }
+        for (u32 i = 0; i < localPlayerCount; i++) {
+            auto *control = new CtrlRaceBattleAddPoint;
+            insertChild(index--, control, 0);
+            u32 screenCount = localPlayerCount == 3 ? 4 : localPlayerCount;
+            char variant[0x20];
+            snprintf(variant, std::size(variant), "BattleAddPoint_%u_%u", screenCount, i);
+            control->load(variant, i);
+        }
+        if (raceScenario.spMaxTeamSize >= 2) {
+            auto *control = new CtrlRaceBattleTotalPoint;
+            insertChild(index--, control, 0);
+            control->load();
+        }
+    }
 
     auto *saveManager = System::SaveManager::Instance();
     auto setting = saveManager->getSetting<SP::ClientSettings::Setting::VanillaMode>();
     if (setting != SP::ClientSettings::VanillaMode::Enable) {
-        for (u32 i = 0; i < localPlayerCount; i++) {
-            auto *control = new CtrlRaceSpeed;
-            insertChild(index--, control, 0);
-            control->load(localPlayerCount, i);
+        if (localPlayerCount <= 2 || !(controls & Control::Point)) {
+            for (u32 i = 0; i < localPlayerCount; i++) {
+                auto *control = new CtrlRaceSpeed;
+                insertChild(index--, control, 0);
+                control->load(localPlayerCount, i);
+            }
         }
         for (u32 i = 0; i < localPlayerCount; i++) {
             auto *control = new CtrlRaceInputDisplay;

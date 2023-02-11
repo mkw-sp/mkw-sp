@@ -5,7 +5,11 @@
 
 namespace UI {
 
-void CtrlRaceBattlePoint::initSelf() {
+CtrlRaceBattlePoint::CtrlRaceBattlePoint() = default;
+
+CtrlRaceBattlePoint::~CtrlRaceBattlePoint() = default;
+
+void CtrlRaceBattlePoint::init() {
     u32 playerId = getPlayerId();
     u16 score = System::RaceManager::Instance()->player(playerId)->battleScore();
     refresh(score);

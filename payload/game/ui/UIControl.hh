@@ -22,7 +22,7 @@ public:
     void initChildren(u32 count);
     void insertChild(u32 index, UIControl *child);
     void setSoundIds(Sound::SoundId inSoundId, Sound::SoundId outSoundId);
-    void playSound(Sound::SoundId soundId, s32 r5);
+    bool playSound(Sound::SoundId soundId, s32 r5);
 
 protected:
     virtual void initSelf();

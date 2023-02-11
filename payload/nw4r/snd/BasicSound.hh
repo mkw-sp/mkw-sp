@@ -7,6 +7,7 @@ namespace nw4r::snd {
 class BasicSound {
 public:
     void setPitch(f32 pitch);
+    void setPan(f32 pan);
     void REPLACED(setId)(u32 soundId);
     REPLACE void setId(u32 soundId);
 

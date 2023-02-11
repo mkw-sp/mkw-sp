@@ -6,7 +6,15 @@ namespace UI {
 
 class CtrlRaceBattleAddPoint : public CtrlRaceBase {
 public:
+    CtrlRaceBattleAddPoint();
+    ~CtrlRaceBattleAddPoint() override;
+
+    void initSelf() override;
     REPLACE void calcSelf() override;
+    void vf_28() override;
+    void vf_2c() override;
+
+    void load(const char *variant, u32 screenId);
 
 private:
     u32 m_score;

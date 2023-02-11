@@ -23,6 +23,10 @@ enum {
 
 } // namespace AnimId::OnOff
 
+CtrlRaceBattleAddPoint::CtrlRaceBattleAddPoint() = default;
+
+CtrlRaceBattleAddPoint::~CtrlRaceBattleAddPoint() = default;
+
 void CtrlRaceBattleAddPoint::calcSelf() {
     process();
 

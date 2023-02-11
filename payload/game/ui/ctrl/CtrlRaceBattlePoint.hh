@@ -6,8 +6,17 @@ namespace UI {
 
 class CtrlRaceBattlePoint : public CtrlRaceBase {
 public:
-    REPLACE void initSelf() override;
+    CtrlRaceBattlePoint();
+    ~CtrlRaceBattlePoint() override;
+
+    REPLACE void init() override;
     REPLACE void calcSelf() override;
+    void vf_20() override;
+    void vf_28() override;
+    void vf_2c() override;
+    void vf_40() override;
+
+    void load(const char *variant, u32 screenId);
 
 private:
     void refresh(u32 score);

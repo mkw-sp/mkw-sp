@@ -10,6 +10,7 @@ public:
     ~SoundHandle();
 
     void setPitch(f32 pitch);
+    void setPan(f32 pan);
 
 private:
     BasicSound *m_basicSound;
