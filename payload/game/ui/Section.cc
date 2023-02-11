@@ -378,7 +378,7 @@ void Section::addActivePages(SectionId id) {
 Page *Section::CreatePage(PageId pageId) {
     switch (pageId) {
     case PageId::ResultTeamVSTotal:
-    case PageId::ResultBattleTotal:
+    case PageId::ResultBattleUpdate:
         return new ResultTeamTotalPage;
     case PageId::AwardInterface:
         return new AwardPage;
