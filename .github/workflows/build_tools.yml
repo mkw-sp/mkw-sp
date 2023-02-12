@@ -20,7 +20,7 @@ jobs:
         tool:
           - gameserver
           - matchmaking
-          - netstorageserver
+          - netstorageserver-cli
           - portfinder
           - updateserver
           - sign
@@ -53,7 +53,7 @@ jobs:
         tool:
           - gameserver
           - matchmaking
-          - netstorageserver
+          - netstorageserver-cli
           - portfinder
           - updateserver
           - sign

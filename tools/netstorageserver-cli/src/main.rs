@@ -19,7 +19,7 @@ use net_storage_response::Response;
 fn main() -> Result<(), Box<dyn std::error::Error>> {
     let args: Vec<String> = env::args().collect();
     if args.len() != 2 {
-        Err(anyhow!("Usage: netstorageserver <root>"))?;
+        Err(anyhow!("Usage: netstorageserver-cli <root>"))?;
     }
     let root = Path::new(&args[1]).canonicalize()?;
 
