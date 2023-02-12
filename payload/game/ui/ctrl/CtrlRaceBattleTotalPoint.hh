@@ -17,10 +17,10 @@ public:
     REPLACE void load();
 
 private:
-    u32 m_scores[6]; // Replaced
-    u32 m_playerCount; // Replaced
-    u32 m_teamCount; // Replaced
+    u32 m_teamCount;
+    std::array<u32, 6> m_teamScores;
+    std::array<u32, 6> m_teamIds;
+    std::array<u32, 6> m_scores;
 };
-static_assert(sizeof(CtrlRaceBattleTotalPoint) == 0x1b8);
 
 } // namespace UI

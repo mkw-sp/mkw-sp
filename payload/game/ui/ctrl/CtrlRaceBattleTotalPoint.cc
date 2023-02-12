@@ -4,6 +4,9 @@
 #include "game/system/RaceConfig.hh"
 #include "game/system/RaceManager.hh"
 
+#include <algorithm>
+#include <numeric>
+
 namespace UI {
 
 namespace AnimId {
@@ -21,6 +24,10 @@ CtrlRaceBattleTotalPoint::CtrlRaceBattleTotalPoint() = default;
 CtrlRaceBattleTotalPoint::~CtrlRaceBattleTotalPoint() = default;
 
 void CtrlRaceBattleTotalPoint::init() {
+    std::fill(m_teamScores.begin(), m_teamScores.begin() + m_teamCount, 0);
+    std::iota(m_teamIds.begin(), m_teamIds.begin() + m_teamCount, 0);
+    std::fill(m_scores.begin(), m_scores.begin() + m_teamCount, 0);
+
     for (u32 i = 0; i < 6; i++) {
         MessageInfo info{};
         info.intVals[0] = 0;
@@ -32,8 +39,6 @@ void CtrlRaceBattleTotalPoint::init() {
 
         m_animator.setAnimation(i, AnimId::On, 0.0f);
 
-        m_scores[i] = 0;
-
         snprintf(paneName, std::size(paneName), "null_%u", i);
         setPaneVisible(paneName, i < m_teamCount);
     }
@@ -44,51 +49,62 @@ void CtrlRaceBattleTotalPoint::calcSelf() {
     process();
 
     auto &raceScenario = System::RaceConfig::Instance()->raceScenario();
+    std::array<u32, 6> teamScores{};
+    for (u32 i = 0; i < raceScenario.playerCount; i++) {
+        u32 teamId = raceScenario.players[i].spTeam;
+        teamScores[teamId] += System::RaceManager::Instance()->player(i)->battleScore();
+    }
+
+    std::array<u32, 6> teamIds = m_teamIds;
+    // std::stable_sort allocates memory so we just use insertion sort here
     for (u32 i = 0; i < m_teamCount; i++) {
-        u32 score = 0;
-        for (u32 j = 0; j < m_playerCount; j++) {
-            if (raceScenario.players[j].spTeam != i) {
-                continue;
-            }
-
-            score += System::RaceManager::Instance()->player(j)->battleScore();
+        for (u32 j = i; j > 0 && teamScores[teamIds[j - 1]] < teamScores[teamIds[j]]; j--) {
+            std::swap(teamIds[j - 1], teamIds[j]);
         }
+    }
 
-        if (score == m_scores[i]) {
+    std::array<u32, 6> scores{};
+    for (u32 i = 0; i < m_teamCount; i++) {
+        scores[i] = teamScores[teamIds[i]];
+    }
+
+    for (u32 i = 0; i < m_teamCount; i++) {
+        if (teamIds[i] == m_teamIds[i] && scores[i] == m_scores[i]) {
             continue;
         }
 
         MessageInfo info{};
-        info.intVals[0] = score;
+        info.intVals[0] = scores[i];
         char paneName[0x20];
         snprintf(paneName, std::size(paneName), "point_%u", i);
-        setMessage(paneName, 10275 + i, &info);
+        setMessage(paneName, 10275 + teamIds[i], &info);
         snprintf(paneName, std::size(paneName), "point_outline_%u", i);
         setMessage(paneName, 10281, &info);
 
         m_animator.setAnimation(i, AnimId::Off, 0.0f);
 
         f32 pan = 2.0f * i / (m_teamCount - 1);
-        if (score > m_scores[i]) {
+        if (teamScores[teamIds[i]] > m_teamScores[teamIds[i]]) {
             if (playSound(Sound::SoundId::SE_RC_BTL_POINT_UP_RED, -1)) {
                 Sound::SceneSoundManager::Handle().setPan(pan);
             }
-        } else {
+        } else if (teamScores[teamIds[i]] < m_teamScores[teamIds[i]]) {
             if (playSound(Sound::SoundId::SE_RC_BTL_POINT_DOWN_RED, -1)) {
                 Sound::SceneSoundManager::Handle().setPan(pan);
             }
         }
-
-        m_scores[i] = score;
     }
+
+    m_teamScores = teamScores;
+    m_teamIds = teamIds;
+    m_scores = scores;
 }
 
 void CtrlRaceBattleTotalPoint::load() {
     auto &raceScenario = System::RaceConfig::Instance()->raceScenario();
 
-    m_playerCount = raceScenario.playerCount;
     u32 maxTeamSize = raceScenario.spMaxTeamSize;
-    m_teamCount = (m_playerCount + maxTeamSize - 1) / maxTeamSize;
+    m_teamCount = (raceScenario.playerCount + maxTeamSize - 1) / maxTeamSize;
 
     u32 screenCount = raceScenario.screenCount == 3 ? 4 : raceScenario.screenCount;
     char variant[0x20];
