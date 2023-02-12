@@ -161,15 +161,15 @@
     },
     "10056": {
         "font": "regular",
-        "string": "Menu Transitions",
+        "string": "Instant Menus",
     },
     "10057": {
         "font": "regular",
-        "string": "Disable",
+        "string": "Enable",
     },
     "10058": {
         "font": "regular",
-        "string": "Enable",
+        "string": "Disable",
     },
     "10059": {
         "font": "regular",
