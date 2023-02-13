@@ -1,6 +1,7 @@
 #include "RaceManager.hh"
 
 #include "game/gfx/CameraManager.hh"
+#include "game/system/CourseMap.hh"
 #include "game/system/RaceConfig.hh"
 #include "game/ui/SectionManager.hh"
 
@@ -43,6 +44,42 @@ RaceManager::Player *RaceManager::player(u32 playerId) {
 
 u32 RaceManager::time() const {
     return m_time;
+}
+
+void RaceManager::getStartTransform(Vec3 *pos, Vec3 *rot, u32 playerId) {
+    const auto &raceScenario = RaceConfig::Instance()->raceScenario();
+    if (raceScenario.gameMode != RaceConfig::GameMode::OfflineBT) {
+        REPLACED(getStartTransform)(pos, rot, playerId);
+        return;
+    }
+
+    s16 id = playerId;
+    if (raceScenario.spMaxTeamSize >= 2) {
+        id = 0;
+        for (u32 i = 0; i < playerId; i++) {
+            if (raceScenario.players[i].spTeam == raceScenario.players[playerId].spTeam) {
+                id++;
+            }
+        }
+        id = (id + m_battleKartPointStart) % raceScenario.spMaxTeamSize;
+        id += raceScenario.players[playerId].spTeam * raceScenario.spMaxTeamSize;
+    }
+
+    auto *courseMap = CourseMap::Instance();
+    u32 index;
+    for (index = 0; index < courseMap->kartPoint()->m_numEntries; index++) {
+        if (courseMap->kartPoint()->m_entryAccessors[index]->m_data->id == id) {
+            break;
+        }
+    }
+
+    if (index == courseMap->kartPoint()->m_numEntries) {
+        *pos = {0.0f, 0.0f, 0.0f};
+        *rot = {1.0f, 0.0f, 0.0f}; // Sneaky 1 for some reason
+    } else {
+        auto *kartPoint = courseMap->kartPoint()->m_entryAccessors[index];
+        kartPoint->getTransform(pos, rot, 1, 1);
+    }
 }
 
 void RaceManager::calc() {

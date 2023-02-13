@@ -39,13 +39,13 @@ void bypassSend(u32 regval) {
 } // namespace lgx
 
 System::MapdataJugemPointAccessor *JugemPoints() {
-    return System::CourseMap::spInstance->mpJugemPoint;
+    return System::CourseMap::Instance()->mpJugemPoint;
 }
 System::MapdataCheckPointAccessor *CheckPoints() {
-    return System::CourseMap::spInstance->mpCheckPoint;
+    return System::CourseMap::Instance()->mpCheckPoint;
 }
 System::MapdataCheckPathAccessor *CheckPaths() {
-    return System::CourseMap::spInstance->mpCheckPath;
+    return System::CourseMap::Instance()->mpCheckPath;
 }
 
 struct TranslucentVertexColors {
@@ -88,7 +88,7 @@ public:
         TranslucentVertexColors mMaterial;
         mMaterial.use();
 
-        for (int i = 0; i < CheckPaths()->mNumEntries; ++i) {
+        for (int i = 0; i < CheckPaths()->m_numEntries; ++i) {
             auto *ckph = CheckPaths()->cdata(i);
 
             drawCheckPath(ckph);
@@ -133,7 +133,7 @@ public:
                 // TODO: Maybe make color match depth
                 u32 clr = 0xAAAAAA33;
                 if (ckpt->lapCheck != 0xFF)
-                    clr = calcColor(j, System::CourseMap::spInstance->mpCheckPoint->mNumEntries);
+                    clr = calcColor(j, System::CourseMap::Instance()->mpCheckPoint->m_numEntries);
                 drawCheckPoint(ckpt, next, clr);
             }
         }

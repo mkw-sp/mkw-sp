@@ -3,6 +3,8 @@
 #include "game/system/InputManager.hh"
 #include "game/util/Random.hh"
 
+#include <common/TVec3.hh>
+
 namespace System {
 
 class RaceManager {
@@ -46,6 +48,8 @@ public:
     Player *player(u32 playerId);
     u32 time() const;
     bool hasReachedStage(Stage stage) const;
+    void REPLACED(getStartTransform)(Vec3 *pos, Vec3 *rot, u32 playerId);
+    REPLACE void getStartTransform(Vec3 *pos, Vec3 *rot, u32 playerId);
     void REPLACED(calc)();
     REPLACE void calc();
     void REPLACED(endPlayerRace)(u32 playerId);
@@ -64,7 +68,8 @@ private:
     Player **m_players;
     u8 _10[0x20 - 0x10];
     u32 m_time;
-    u8 _24[0x2d - 0x24];
+    u8 m_battleKartPointStart;
+    u8 _25[0x2d - 0x25];
     bool m_spectatorMode;
 
 public:

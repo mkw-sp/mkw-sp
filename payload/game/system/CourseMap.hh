@@ -4,6 +4,22 @@
 
 namespace System {
 
+struct MapdataKartPoint {
+    struct SData {
+        Vec3 pos;
+        Vec3 rot;
+        s16 id;
+        u8 _1a[0x1c - 0x1a];
+    };
+    static_assert(sizeof(SData) == 0x1c);
+
+    void getTransform(Vec3 *pos, Vec3 *rot, u32 rank, u32 playerCount);
+
+    MapdataKartPoint(SData *sdata) : m_data(sdata) {}
+    const SData *m_data;
+    // ...
+};
+
 struct MapdataCheckPath {
     struct SData {
         u8 start; //!< [+0x00]
@@ -13,9 +29,10 @@ struct MapdataCheckPath {
         u8 next[6]; //!< [+0x08]
     };
     MapdataCheckPath(SData *sdata) : m_data(sdata) {}
-    SData *m_data;
+    const SData *m_data;
     // ...
 };
+
 struct MapdataCheckPoint {
     struct SData {
         Vec2<float> left; //!< [+0x00] First point of the checkpoint.
@@ -28,9 +45,10 @@ struct MapdataCheckPoint {
     };
 
     MapdataCheckPoint(SData *sdata) : m_data(sdata) {}
-    SData *m_data;
+    const SData *m_data;
     // ...
 };
+
 struct MapdataJugemPoint {
     struct SData {
         Vec3 position, rotation;
@@ -38,7 +56,7 @@ struct MapdataJugemPoint {
         s16 range;
     };
     MapdataJugemPoint(SData *sdata) : m_data(sdata) {}
-    SData *m_data;
+    const SData *m_data;
     // ...
 };
 
@@ -60,18 +78,22 @@ struct ResSectionHeader {
 // hacky res definition
 template <typename T, typename TData>
 struct MapdataAccessorBase {
-    T **mEntryAccessors; //!< [+0x00]
-    u16 mNumEntries; //!< [+0x04]
+    T **m_entryAccessors; //!< [+0x00]
+    u16 m_numEntries; //!< [+0x04]
     ResSectionHeader *mpSection; //!< [+0x08]
 
     const TData *cdata(size_t i) const {
-        if (i < 0 || i > mNumEntries) {
+        if (i < 0 || i > m_numEntries) {
             return nullptr;
         }
-        return mEntryAccessors[i]->m_data;
+        return m_entryAccessors[i]->m_data;
     }
 };
 
+struct MapdataKartPointAccessor
+    : public MapdataAccessorBase<MapdataKartPoint, MapdataKartPoint::SData> {
+    // ...
+};
 struct MapdataCheckPointAccessor
     : public MapdataAccessorBase<MapdataCheckPoint, MapdataCheckPoint::SData> {
     // ...
@@ -91,11 +113,13 @@ public:
     virtual void vf04() = 0;
     virtual void dt() = 0;
 
-    static CourseMap *spInstance;
+    const MapdataKartPointAccessor *kartPoint() const;
+
+    static CourseMap *Instance();
 
     void *mpCourse;
 
-    void *mpKartPoint;
+    MapdataKartPointAccessor *m_kartPoint;
     void *mpEnemyPath;
     void *mpEnemyPoint;
     void *mpItemPath;
@@ -115,6 +139,10 @@ public:
     void *mType9Camera;
     void *mOpeningPanCamera;
     u32 _50; // UNK
+
+private:
+    static CourseMap *s_instance;
 };
+static_assert(sizeof(CourseMap) == 0x54);
 
 } // namespace System

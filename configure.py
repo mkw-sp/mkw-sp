@@ -1426,6 +1426,7 @@ code_in_files = {
         os.path.join('payload', 'game', 'system', 'BugCheck.c'),
         os.path.join('payload', 'game', 'system', 'Console.c'),
         os.path.join('payload', 'game', 'system', 'CourseMap.S'),
+        os.path.join('payload', 'game', 'system', 'CourseMap.cc'),
         os.path.join('payload', 'game', 'system', 'DvdArchive.cc'),
         os.path.join('payload', 'game', 'system', 'FatalScene.c'),
         os.path.join('payload', 'game', 'system', 'GameScene.cc'),
