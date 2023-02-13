@@ -1485,6 +1485,7 @@ code_in_files = {
         os.path.join('payload', 'game', 'ui', 'MultiTeamSelectPage.cc'),
         os.path.join('payload', 'game', 'ui', 'MultiTopPage.cc'),
         os.path.join('payload', 'game', 'ui', 'NumericEditBox.cc'),
+        os.path.join('payload', 'game', 'ui', 'OnlineModeSelectPage.cc'),
         os.path.join('payload', 'game', 'ui', 'OnlineTeamSelectButton.cc'),
         os.path.join('payload', 'game', 'ui', 'OnlineTeamSelectPage.cc'),
         os.path.join('payload', 'game', 'ui', 'OnlineTopPage.cc'),

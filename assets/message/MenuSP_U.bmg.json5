@@ -1,4 +1,12 @@
 {
+    "2033": {
+        "font": "regular",
+        "string": "MKW-SP Online",
+    },
+    "2034": {
+        "font": "regular",
+        "string": "MKW-SP Online (2P)",
+    },
     "3400": {
         "font": "regular",
         "string": "Settings",
@@ -6,6 +14,22 @@
     "3475": {
         "font": "regular",
         "string": "Change settings for this licence.",
+    },
+    "4000": {
+        "font": "regular",
+        "string": "Nintendo Wordwides",
+    },
+    "4001": {
+        "font": "regular",
+        "string": "Track Packs",
+    },
+    "4310": {
+        "font": "regular",
+        "string": "Find a room on official Nintendo courses.",
+    },
+    "4311": {
+        "font": "regular",
+        "string": "Select a Track Pack to play online.",
     },
     "10004": {
         "font": "regular",

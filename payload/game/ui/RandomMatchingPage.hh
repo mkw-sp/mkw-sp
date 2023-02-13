@@ -1,3 +1,5 @@
+#pragma once
+
 #include "game/ui/Page.hh"
 
 #include <sp/net/AsyncSocket.hh>
@@ -13,6 +15,7 @@ public:
     void afterCalc() override;
     PageId getReplacement() override;
 
+    u32 m_trackpack;
 private:
     enum class State {
         Login,

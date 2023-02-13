@@ -2,6 +2,7 @@
 
 #include "game/ui/Page.hh"
 #include "game/ui/SectionId.hh"
+#include "game/ui/RandomMatchingPage.hh"
 #include "game/ui/page/BattleModeSelectPage.hh"
 
 #include <nw4r/lyt/lyt_drawInfo.hh>
@@ -165,6 +166,11 @@ struct Section::PageIdHelper<PageId::Roulette> {
 template <>
 struct Section::PageIdHelper<PageId::Globe> {
     using type = GlobePage;
+};
+
+template<>
+struct Section::PageIdHelper<PageId::RandomMatching> {
+    using type = RandomMatchingPage;
 };
 
 template <>
