@@ -143,4 +143,52 @@
         "font": "blue",
         "string": "{arg signed integer|0 0}",
     },
+    "10406": {
+        "font": "regular",
+        "string": "{color|player 1}{arg integer|0 0}",
+    },
+    "10407": {
+        "font": "regular",
+        "string": "{color|player 2}{arg integer|0 0}",
+    },
+    "10408": {
+        "font": "regular",
+        "string": "{color|player 3}{arg integer|0 0}",
+    },
+    "10409": {
+        "font": "regular",
+        "string": "{color|player 4}{arg integer|0 0}",
+    },
+    "10410": {
+        "font": "red",
+        "string": "{color|player 1}{arg integer|0 0}",
+    },
+    "10411": {
+        "font": "red",
+        "string": "{color|player 2}{arg integer|0 0}",
+    },
+    "10412": {
+        "font": "red",
+        "string": "{color|player 3}{arg integer|0 0}",
+    },
+    "10413": {
+        "font": "red",
+        "string": "{color|player 4}{arg integer|0 0}",
+    },
+    "10414": {
+        "font": "red",
+        "string": "{color|player 1}{arg signed integer|0 0}",
+    },
+    "10415": {
+        "font": "red",
+        "string": "{color|player 2}{arg signed integer|0 0}",
+    },
+    "10416": {
+        "font": "red",
+        "string": "{color|player 3}{arg signed integer|0 0}",
+    },
+    "10417": {
+        "font": "red",
+        "string": "{color|player 4}{arg signed integer|0 0}",
+    },
 }

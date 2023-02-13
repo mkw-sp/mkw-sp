@@ -29,14 +29,18 @@ void CtrlRaceBattlePoint::calcSelf() {
 }
 
 void CtrlRaceBattlePoint::refresh(u32 score) {
-    u32 playerId = getPlayerId();
-
     auto &raceScenario = System::RaceConfig::Instance()->raceScenario();
-    u32 teamId = raceScenario.players[playerId].spTeam;
 
     MessageInfo info{};
     info.intVals[0] = score;
-    setMessage("point", 10275 + teamId, &info);
+    u32 messageId;
+    if (raceScenario.spMaxTeamSize >= 2) {
+        u32 playerId = getPlayerId();
+        messageId = 10275 + raceScenario.players[playerId].spTeam;
+    } else {
+        messageId = 10410 + m_localPlayerId;
+    }
+    setMessage("point", messageId, &info);
     setMessage("point_outline", 10281, &info);
 
     m_score = score;

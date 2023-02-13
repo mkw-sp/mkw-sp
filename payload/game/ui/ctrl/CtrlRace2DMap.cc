@@ -5,6 +5,7 @@
 #include "game/system/RaceManager.hh"
 #include "game/system/SaveManager.hh"
 #include "game/ui/TeamColors.hh"
+#include "game/ui/page/RacePage.hh"
 
 #include <sp/settings/ClientSettings.hh>
 
@@ -53,6 +54,11 @@ void CtrlRace2DMapCharacter::calcTransform(Vec3 *pos, void *r5, void *r6) {
         u32 messageId = 10398;
         if (raceScenario.spMaxTeamSize >= 2) {
             messageId = 10393 + raceScenario.players[m_playerId].spTeam;
+        } else if (raceScenario.players[m_playerId].type ==
+                System::RaceConfig::Player::Type::Local) {
+            messageId = 10406 + raceScenario.players[m_playerId].screenId;
+        } else if (m_playerId == RacePage::Instance()->watchedPlayerId()) {
+            messageId = 10406;
         }
         setMessage("score", messageId, &info);
     }

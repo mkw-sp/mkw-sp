@@ -38,11 +38,17 @@ void CtrlRaceBattleAddPoint::calcSelf() {
                 m_animator.getAnimation(GroupId::OnOff) == AnimId::OnOff::Off) {
             if (m_scoreDiffCount != 0) {
                 auto &raceScenario = System::RaceConfig::Instance()->raceScenario();
-                u32 teamId = raceScenario.players[playerId].spTeam;
 
                 MessageInfo info{};
                 info.intVals[0] = m_scoreDiffs[0];
-                setMessage("point", 10399 + teamId, &info);
+                u32 messageId;
+                if (raceScenario.spMaxTeamSize >= 2) {
+                    u32 playerId = getPlayerId();
+                    messageId = 10399 + raceScenario.players[playerId].spTeam;
+                } else {
+                    messageId = 10414 + m_localPlayerId;
+                }
+                setMessage("point", messageId, &info);
                 setMessage("point_outline", 10405, &info);
 
                 for (u32 i = 0; i < m_scoreDiffCount - 1; i++) {
