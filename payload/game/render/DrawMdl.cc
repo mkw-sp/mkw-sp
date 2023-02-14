@@ -15,6 +15,10 @@ void DrawMdl::dt(s32 type) {
     }
 }
 
+nw4r::g3d::ScnMdl **DrawMdl::scnMdl(u32 i) {
+    return m_scnMdls[i];
+}
+
 void DrawMdl::revertMirrorPatches() {
     const u32 mask = 0xffff'ff00; // Account for two MIRR definitions adjacent (string
                                   // merging disabled for some reason)

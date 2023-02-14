@@ -167,6 +167,15 @@ typedef enum {
 static_assert(sizeof(GXTevKColorSel) == 4);
 
 typedef enum {
+    GX_KCOLOR0,
+    GX_KCOLOR1,
+    GX_KCOLOR2,
+    GX_KCOLOR3,
+    GX_MAX_KCOLOR,
+} GXTevKColorID;
+static_assert(sizeof(GXTevKColorID) == 4);
+
+typedef enum {
     GX_TEV_KASEL_8_8 = 0x00,
     GX_TEV_KASEL_7_8 = 0x01,
     GX_TEV_KASEL_6_8 = 0x02,

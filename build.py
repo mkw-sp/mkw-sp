@@ -136,6 +136,8 @@ asset_in_files = {
         os.path.join('kartCameraParamThumbnails.bin'),
         # Mega TC
         os.path.join('MegaTC.brres'),
+        # Battle mode
+        os.path.join('balloon.brres'),
         # Online mode
         os.path.join('ItemSlotOnline.bin'),
     ],
