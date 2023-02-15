@@ -86,8 +86,8 @@ void OnlineTopPage::onButtonSelect(PushButton* button, [[maybe_unused]] u32 loca
 
 void OnlineTopPage::onWorldwideButtonFront(PushButton* button, [[maybe_unused]] u32 localPlayerId) {
     auto section = SectionManager::Instance()->currentSection();
-    auto matchingPage = section->page<PageId::RandomMatching>();
-    matchingPage->m_trackpack = 0;
+    auto connectionManager = section->page<PageId::OnlineConnectionManager>();
+    connectionManager->setTrackpack(0);
 
     m_replacement = PageId::WifiModeSelect;
     startReplace(Anim::Next, button->getDelay());

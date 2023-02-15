@@ -9,14 +9,28 @@ namespace UI {
 // which we replaced and is therefore invalid.
 void OnlineModeSelectPage::onActivate() {
     auto section = SectionManager::Instance()->currentSection();
-    auto matchingPage = section->page<PageId::RandomMatching>();
+    auto connectionManager = section->page<PageId::OnlineConnectionManager>();
 
-    if (matchingPage->m_trackpack == 0) {
-        m_pageTitleText.setMessage(0xfa0);
-    } else {
+    if (connectionManager->isCustomTrackpack()) {
         // TODO: Show the name of the pack selected?
         m_pageTitleText.setMessage(0xfa1);
+    } else {
+        m_pageTitleText.setMessage(0xfa0);
     }
+}
+
+void OnlineModeSelectPage::onButtonFront(PushButton *button, u32 localPlayerId) {
+    auto section = SectionManager::Instance()->currentSection();
+    auto connectionManager = section->page<PageId::OnlineConnectionManager>();
+
+    if (button->m_index == 1) {
+        connectionManager->setGamemode(0);
+    } else if (button->m_index == 2) {
+        connectionManager->setGamemode(1);
+    }
+
+    m_replacement = PageId::RandomMatching;
+    startReplace(Anim::Next, button->getDelay());
 }
 
 }

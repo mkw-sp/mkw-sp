@@ -1494,6 +1494,7 @@ code_in_files = {
         os.path.join('payload', 'game', 'ui', 'RaceConfirmPage.cc'),
         os.path.join('payload', 'game', 'ui', 'RadioButtonControl.cc'),
         os.path.join('payload', 'game', 'ui', 'RandomMatchingPage.cc'),
+        os.path.join('payload', 'game', 'ui', 'OnlineConnectionManagerPage.cc'),
         os.path.join('payload', 'game', 'ui', 'RoulettePage.cc'),
         os.path.join('payload', 'game', 'ui', 'Save.S'),
         os.path.join('payload', 'game', 'ui', 'SaveManagerProxy.S'),

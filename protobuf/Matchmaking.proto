@@ -62,7 +62,8 @@ message CTSMessage {
     }
 
     message StartMatchmaking {
-        required uint32 gamemode = 1;
+        required uint32 trackpack = 1;
+        required uint32 gamemode  = 2;
     }
 
     message CancelMatchmaking {}

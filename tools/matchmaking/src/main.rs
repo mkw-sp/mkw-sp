@@ -139,7 +139,7 @@ impl Server {
 
             match msg {
                 CTSMessage::StartMatchmaking(cts_message::StartMatchmaking {
-                    gamemode,
+                    gamemode, trackpack
                 }) => {
                     let server_resp = self.request_room(client_id, gamemode).await?;
                     let client_resp = stc_message::FoundMatch {

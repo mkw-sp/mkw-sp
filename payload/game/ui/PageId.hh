@@ -145,13 +145,13 @@ enum class PageId {
     WifiFirstPlay = 0x85,
     WifiDataConsent = 0x86,
     WifiDisconnect = 0x87, // "Disconnects you"
-    OnlineTeamSelect = 0x88,
+    OnlineConnectionManager = 0x88, // Replaces unknown page
     WifiConnectionFailed = 0x89,
-    Unknown8A = 0x8A, // "Dummy? Seems to redirect to 0x52"
+    WifiMultiConfirm = 0x8A,
     OnlineTop = 0x8B, // Replaces WifiTop
     WifiModeSelect = 0x8C,
     WifiFriendMenu = 0x8D,
-    MkChannelFriendMenu = 0x8E,
+    OnlineTeamSelect = 0x8E, // Replaces MkChannelFriendMenu
     RandomMatching = 0x8F, // Replaces Global Search Manager
     VotingBack = 0x90, // Replaces CountDownTimer
     WifiPlayerList = 0x91,

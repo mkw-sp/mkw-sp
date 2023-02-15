@@ -2,8 +2,8 @@
 
 #include "game/ui/Page.hh"
 #include "game/ui/SectionId.hh"
-#include "game/ui/RandomMatchingPage.hh"
 #include "game/ui/page/BattleModeSelectPage.hh"
+#include "game/ui/OnlineConnectionManagerPage.hh"
 
 #include <nw4r/lyt/lyt_drawInfo.hh>
 
@@ -169,8 +169,8 @@ struct Section::PageIdHelper<PageId::Globe> {
 };
 
 template<>
-struct Section::PageIdHelper<PageId::RandomMatching> {
-    using type = RandomMatchingPage;
+struct Section::PageIdHelper<PageId::OnlineConnectionManager> {
+    using type = OnlineConnectionManagerPage;
 };
 
 template <>
