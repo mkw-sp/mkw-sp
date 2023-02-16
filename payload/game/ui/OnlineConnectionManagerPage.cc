@@ -3,6 +3,7 @@
 #include "game/system/SaveManager.hh"
 #include "game/system/RaceConfig.hh"
 #include "game/ui/SectionManager.hh"
+#include "game/ui/GlobalContext.hh"
 
 #include <protobuf/Matchmaking.pb.h>
 #include <sp/cs/RoomClient.hh>
@@ -26,7 +27,14 @@ void OnlineConnectionManagerPage::onInit() {
 
 void OnlineConnectionManagerPage::afterCalc() {
     std::optional<STCMessage> event;
-    assert(m_socket.poll());
+    if (!m_socket.poll()) {
+        auto globalContext = SectionManager::Instance()->globalContext();
+        globalContext->m_onlineDisconnectInfo.m_category = OnlineErrorCategory::ErrorCode;
+        globalContext->m_onlineDisconnectInfo.m_errorCode = 30000;
+
+        changeSection(SectionId::OnlineDisconnected, Anim::None, 0);
+    }
+
     if (!m_socket.ready()) {
         return;
     }
@@ -109,7 +117,7 @@ void OnlineConnectionManagerPage::startLogin() {
         m_state = State::WaitForLoginChallenge;
     }
 
-    assert(write(response));
+    write(response);
 }
 
 void OnlineConnectionManagerPage::respondToChallenge(const STCMessage &event) {
@@ -138,7 +146,7 @@ void OnlineConnectionManagerPage::respondToChallenge(const STCMessage &event) {
     memcpy(response.message.login_challenge_answer.mii.bytes, &rawMii, sizeof(System::RawMii));
 
     m_state = State::WaitForLoginResponse;
-    assert(write(response));
+    write(response);
 }
 
 void OnlineConnectionManagerPage::sendSearchMessage() {
@@ -147,7 +155,7 @@ void OnlineConnectionManagerPage::sendSearchMessage() {
     response.message.start_matchmaking.gamemode = m_gamemode;
     response.message.start_matchmaking.trackpack = m_trackpack;
 
-    assert(write(response));
+    write(response);
     m_searchStarted = false;
     m_state = State::WaitForSearchResponse;
 }
@@ -183,12 +191,19 @@ bool OnlineConnectionManagerPage::read(std::optional<STCMessage> &event) {
     return true;
 }
 
-bool OnlineConnectionManagerPage::write(CTSMessage message) {
+void OnlineConnectionManagerPage::write(CTSMessage message) {
     u8 buffer[1024];
 
     pb_ostream_t stream = pb_ostream_from_buffer(buffer, sizeof(buffer));
     assert(pb_encode(&stream, CTSMessage_fields, &message));
-    return m_socket.write(buffer, stream.bytes_written);
+
+    if (!m_socket.write(buffer, stream.bytes_written)) {
+        auto globalContext = SectionManager::Instance()->globalContext();
+        globalContext->m_onlineDisconnectInfo.m_category = OnlineErrorCategory::ErrorCode;
+        globalContext->m_onlineDisconnectInfo.m_errorCode = 30002;
+
+        changeSection(SectionId::OnlineDisconnected, Anim::None, 0);
+    }
 }
 
 } // namespace UI

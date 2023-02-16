@@ -44,8 +44,12 @@ void VotingBackPage::onActivate() {
 
 void VotingBackPage::afterCalc() {
     auto *client = SP::RoomClient::Instance();
-    if (client && !client->calc(m_handler)) {
-        SP::RoomClient::DestroyInstance();
+    if (!client) {
+        return SP::RoomClient::TransitionToError(30004);
+    }
+
+    if (!client->calc(m_handler)) {
+        return SP::RoomClient::TransitionToError(30001);
     }
 }
 

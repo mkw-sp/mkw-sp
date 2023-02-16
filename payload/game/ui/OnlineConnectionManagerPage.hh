@@ -35,7 +35,7 @@ public:
     u32 m_gamemode;
 private:
     bool read(std::optional<STCMessage> &event);
-    bool write(CTSMessage message);
+    void write(CTSMessage message);
 
     void startLogin();
     void sendSearchMessage();

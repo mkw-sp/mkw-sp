@@ -7,6 +7,8 @@ extern "C" {
 #include <game/system/RootScene.h>
 }
 #include <game/system/SaveManager.hh>
+#include <game/ui/GlobalContext.hh>
+#include <game/ui/SectionId.hh>
 #include <game/ui/SectionManager.hh>
 #include <vendor/nanopb/pb_decode.h>
 #include <vendor/nanopb/pb_encode.h>
@@ -81,11 +83,11 @@ Net::AsyncSocket &RoomClient::socket() {
     return m_socket;
 }
 
-bool RoomClient::sendComment(u32 commentId) {
+void RoomClient::sendComment(u32 commentId) {
     return writeComment(commentId);
 }
 
-bool RoomClient::startRoom(u32 gamemode) {
+void RoomClient::startRoom(u32 gamemode) {
     return writeStart(gamemode);
 }
 
@@ -93,12 +95,12 @@ void RoomClient::changeLocalSettings() {
     m_localSettingsChanged = true;
 }
 
-bool RoomClient::sendTeamSelect(u32 playerId) {
+void RoomClient::sendTeamSelect(u32 playerId) {
     m_players[playerId].m_teamId = (m_players[playerId].m_teamId + 1) % 6;
     return writeTeamSelect(playerId, m_players[playerId].m_teamId);
 }
 
-bool RoomClient::sendVote(u32 course, std::optional<Player::Properties> properties) {
+void RoomClient::sendVote(u32 course, std::optional<Player::Properties> properties) {
     return writeVote(course, properties);
 }
 
@@ -253,9 +255,7 @@ std::optional<RoomClient::State> RoomClient::calcSetup(Handler &handler) {
 std::optional<RoomClient::State> RoomClient::calcMain(Handler &handler) {
     if (m_localSettingsChanged) {
         if (isPlayerLocal(0)) {
-            if (!writeSettings()) {
-                return {};
-            }
+            writeSettings();
         }
         m_localSettingsChanged = false;
     }
@@ -381,8 +381,8 @@ std::optional<RoomClient::State> RoomClient::calcSelect(Handler &handler) {
 
 bool RoomClient::onSetup(Handler &handler) {
     handler.onSetup();
-
-    return writeJoin();
+    writeJoin();
+    return true;
 }
 
 bool RoomClient::onMain(Handler &handler) {
@@ -532,7 +532,7 @@ bool RoomClient::read(std::optional<RoomEvent> &event) {
     return true;
 }
 
-bool RoomClient::writeJoin() {
+void RoomClient::writeJoin() {
     RoomRequest request;
     request.which_request = RoomRequest_join_tag;
     request.request.join.miis_count = m_localPlayerCount;
@@ -570,21 +570,21 @@ bool RoomClient::writeJoin() {
     return write(request);
 }
 
-bool RoomClient::writeComment(u32 messageId) {
+void RoomClient::writeComment(u32 messageId) {
     RoomRequest request;
     request.which_request = RoomRequest_comment_tag;
     request.request.comment.messageId = messageId;
     return write(request);
 }
 
-bool RoomClient::writeStart(u32 gamemode) {
+void RoomClient::writeStart(u32 gamemode) {
     RoomRequest request;
     request.which_request = RoomRequest_start_tag;
     request.request.start.gamemode = gamemode;
     return write(request);
 }
 
-bool RoomClient::writeSettings() {
+void RoomClient::writeSettings() {
     RoomRequest request;
     request.which_request = RoomRequest_settings_tag;
     request.request.settings.settings_count = RoomSettings::count;
@@ -595,7 +595,7 @@ bool RoomClient::writeSettings() {
     return write(request);
 }
 
-bool RoomClient::writeTeamSelect(u32 playerId, u32 teamId) {
+void RoomClient::writeTeamSelect(u32 playerId, u32 teamId) {
     RoomRequest request;
     request.which_request = RoomRequest_teamSelect_tag;
     request.request.teamSelect.playerId = playerId;
@@ -603,7 +603,7 @@ bool RoomClient::writeTeamSelect(u32 playerId, u32 teamId) {
     return write(request);
 }
 
-bool RoomClient::writeVote(u32 course, std::optional<Player::Properties> properties) {
+void RoomClient::writeVote(u32 course, std::optional<Player::Properties> properties) {
     RoomRequest request;
     request.which_request = RoomRequest_vote_tag;
     request.request.vote.course = course;
@@ -614,13 +614,26 @@ bool RoomClient::writeVote(u32 course, std::optional<Player::Properties> propert
     return write(request);
 }
 
-bool RoomClient::write(RoomRequest request) {
+void RoomClient::write(RoomRequest request) {
     u8 buffer[RoomRequest_size];
     pb_ostream_t stream = pb_ostream_from_buffer(buffer, sizeof(buffer));
 
     assert(pb_encode(&stream, RoomRequest_fields, &request));
 
-    return m_socket.write(buffer, stream.bytes_written);
+    if (!m_socket.write(buffer, stream.bytes_written)) {
+        TransitionToError(30003);
+    }
+}
+
+void RoomClient::TransitionToError(u32 errorCode) {
+    auto *sectionManager = UI::SectionManager::Instance();
+    auto *globalContext = sectionManager->globalContext();
+
+    globalContext->m_onlineDisconnectInfo.m_category = UI::OnlineErrorCategory::ErrorCode;
+    globalContext->m_onlineDisconnectInfo.m_errorCode = errorCode;
+
+    sectionManager->setNextSection(UI::SectionId::OnlineDisconnected, UI::Page::Anim::None);
+    sectionManager->startChangeSection(0, 0);
 }
 
 RoomClient *RoomClient::s_instance = nullptr;

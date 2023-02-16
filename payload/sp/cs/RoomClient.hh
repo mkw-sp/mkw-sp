@@ -31,17 +31,19 @@ public:
 
     // Request writing interface - new requests should go here!
     // TODO these should return void and defer the actual sending
-    bool sendComment(u32 commentId);
-    bool startRoom(u32 gamemode);
+    void sendComment(u32 commentId);
+    void startRoom(u32 gamemode);
     void changeLocalSettings();
-    bool sendTeamSelect(u32 playerId);
-    bool sendVote(u32 course, std::optional<Player::Properties> properties);
+    void sendTeamSelect(u32 playerId);
+    void sendVote(u32 course, std::optional<Player::Properties> properties);
 
     static RoomClient *CreateInstance(u32 localPlayerCount, u32 ip, u16 port, u16 passcode);
     static RoomClient *CreateInstance(u32 localPlayerCount, u32 ip, u16 port, LoginInfo loginInfo);
     static void DestroyInstance();
     static RoomClient *Instance();
 
+    // Transitions to the OnlineDisconnected section, for a connection failure.
+    static void TransitionToError(u32 error_code);
 private:
     // These functions are handled in CreateInstance and DestroyInstance
     RoomClient(u32 localPlayerCount, u32 ip, u16 port, u16 passcode);
@@ -75,13 +77,13 @@ private:
 
     // Request writing - interface should call these!
     bool read(std::optional<RoomEvent> &event);
-    bool writeJoin();
-    bool writeComment(u32 messageId);
-    bool writeStart(u32 gamemode);
-    bool writeSettings();
-    bool writeTeamSelect(u32 playerId, u32 teamId);
-    bool writeVote(u32 course, std::optional<Player::Properties> properties);
-    bool write(RoomRequest request);
+    void writeJoin();
+    void writeComment(u32 messageId);
+    void writeStart(u32 gamemode);
+    void writeSettings();
+    void writeTeamSelect(u32 playerId, u32 teamId);
+    void writeVote(u32 course, std::optional<Player::Properties> properties);
+    void write(RoomRequest request);
 
     u32 m_localPlayerCount;
     u32 m_localPlayerIds[2];

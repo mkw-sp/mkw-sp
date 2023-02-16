@@ -1606,4 +1606,25 @@
         "font": "regular",
         "string": "Select Stage",
     },
+    // Message IDs after 30000 are reserved for Online error codes.
+    "30000": {
+        "font": "regular",
+        "string": "Your connection to the central server has been lost.",
+    },
+    "30001": {
+        "font": "regular",
+        "string": "Your connection to the game server has been lost.",
+    },
+    "30002": {
+        "font": "regular",
+        "string": "Your connection to the central server has failed.\n\nReason: AsyncSocket write buffer full",
+    },
+    "30003": {
+        "font": "regular",
+        "string": "Your connection to the game server has failed.\n\nReason: AsyncSocket write buffer full",
+    },
+    "30004": {
+        "font": "regular",
+        "string": "Your connection to the game server has failed.\n\nReason: Missing RoomClient?",
+    },
 }

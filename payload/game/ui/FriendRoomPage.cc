@@ -202,6 +202,8 @@ void FriendRoomPage::onSettingsBack([[maybe_unused]] SettingsPage *settingsPage,
 
     if (auto *client = SP::RoomClient::Instance()) {
         client->changeLocalSettings();
+    } else {
+        SP::RoomClient::TransitionToError(30004);
     }
 }
 

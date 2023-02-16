@@ -146,6 +146,8 @@ void FriendMatchingPage::startClient() {
         } else {
             push(PageId::OnlineTeamSelect, Anim::Next);
         }
+    } else {
+        SP::RoomClient::TransitionToError(30004);
     }
 }
 

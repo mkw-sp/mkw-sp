@@ -110,4 +110,8 @@ const char *GetCharacterPane(u32 characterId);
 const char *REPLACED(GetItemPane)(u32 itemId, u32 count);
 REPLACE const char *GetItemPane(u32 itemId, u32 count);
 
+// Returns the message ID for the given error code.
+int REPLACED(WifiErrorExplain)(u32 error_code);
+REPLACE u32 WifiErrorExplain(u32 error_code);
+
 } // namespace Registry
