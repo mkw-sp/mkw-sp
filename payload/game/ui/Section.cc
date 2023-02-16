@@ -167,6 +167,7 @@ void Section::addPage(PageId pageId) {
 
         { SectionId::OnlineFriend1PVS, PageId::Unknown44 },
         { SectionId::OnlineFriend1PVS, PageId::OnlinePleaseWait },
+        { SectionId::OnlineFriend1PVS, PageId::OnlineTeamSelect },
         { SectionId::OnlineFriend1PVS, PageId::OnlineConnectionManager },
 
         // The channel section is repurposed into the Service Pack section. Remove some pages that
@@ -198,8 +199,10 @@ void Section::addActivePage(PageId pageId) {
         { SectionId::OnlineMulti, PageId::ModelRender },
         { SectionId::OnlineMulti, PageId::DirectConnection },
 
+        { SectionId::Voting1PVS, PageId::OnlineConnectionManager },
         { SectionId::Voting1PVS, PageId::OnlineTeamSelect },
 
+        { SectionId::OnlineFriend1PVS, PageId::OnlineConnectionManager },
         { SectionId::OnlineFriend1PVS, PageId::OnlineTeamSelect },
     };
     for (const auto &deletion : deletions) {
@@ -346,6 +349,7 @@ void Section::addActivePages(SectionId id) {
         { SectionId::OnlineMulti, PageId::OnlineTop },
 
         { SectionId::Voting1PVS, PageId::CourseSelect },
+        { SectionId::Voting1PVS, PageId::OnlineConnectionManager },
     };
     for (const auto &addition : additions) {
         if (addition.first == id) {

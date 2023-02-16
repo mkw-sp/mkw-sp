@@ -37,13 +37,15 @@ public:
     bool sendTeamSelect(u32 playerId);
     bool sendVote(u32 course, std::optional<Player::Properties> properties);
 
-    static RoomClient *CreateInstance(u32 localPlayerCount, u32 ip, u16 port, u16 passcode, std::optional<LoginInfo> loginInfo);
+    static RoomClient *CreateInstance(u32 localPlayerCount, u32 ip, u16 port, u16 passcode);
+    static RoomClient *CreateInstance(u32 localPlayerCount, u32 ip, u16 port, LoginInfo loginInfo);
     static void DestroyInstance();
     static RoomClient *Instance();
 
 private:
     // These functions are handled in CreateInstance and DestroyInstance
-    RoomClient(u32 localPlayerCount, u32 ip, u16 port, u16 passcode, std::optional<LoginInfo> loginInfo);
+    RoomClient(u32 localPlayerCount, u32 ip, u16 port, u16 passcode);
+    RoomClient(u32 localPlayerCount, u32 ip, u16 port, LoginInfo loginInfo);
     ~RoomClient();
 
     // Used to update m_state

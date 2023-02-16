@@ -23,11 +23,7 @@ void OnlineModeSelectPage::onButtonFront(PushButton *button, u32 localPlayerId) 
     auto section = SectionManager::Instance()->currentSection();
     auto connectionManager = section->page<PageId::OnlineConnectionManager>();
 
-    if (button->m_index == 1) {
-        connectionManager->setGamemode(0);
-    } else if (button->m_index == 2) {
-        connectionManager->setGamemode(1);
-    }
+    connectionManager->m_gamemode = button->m_index;
 
     m_replacement = PageId::RandomMatching;
     startReplace(Anim::Next, button->getDelay());

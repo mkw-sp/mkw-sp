@@ -25,13 +25,14 @@ public:
 
     void setTrackpack(u32 trackpack) { m_trackpack = trackpack; }
     void startSearch() { m_searchStarted = true; }
-    void setGamemode(u32 gamemode);
 
     bool isCustomTrackpack() const { return m_trackpack != 0; }
     State getState() const { return m_state; }
 
     std::optional<STCMessage> takeLoginResponse();
     std::optional<STCMessage_FoundMatch> takeMatchResponse();
+
+    u32 m_gamemode;
 private:
     bool read(std::optional<STCMessage> &event);
     bool write(CTSMessage message);
@@ -43,7 +44,6 @@ private:
 
     bool m_searchStarted = false;
     u32 m_trackpack;
-    u32 m_gamemode;
 
     std::optional<STCMessage> m_loginResponse;
     std::optional<STCMessage_FoundMatch> m_matchResponse;

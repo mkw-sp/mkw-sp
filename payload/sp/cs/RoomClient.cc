@@ -102,10 +102,18 @@ bool RoomClient::sendVote(u32 course, std::optional<Player::Properties> properti
     return writeVote(course, properties);
 }
 
-RoomClient *RoomClient::CreateInstance(u32 localPlayerCount, u32 ip, u16 port, u16 passcode, std::optional<LoginInfo> loginInfo) {
+RoomClient *RoomClient::CreateInstance(u32 localPlayerCount, u32 ip, u16 port, u16 passcode) {
     assert(s_block);
     assert(!s_instance);
-    s_instance = new (s_block) RoomClient(localPlayerCount, ip, port, passcode, loginInfo);
+    s_instance = new (s_block) RoomClient(localPlayerCount, ip, port, passcode);
+    RoomManager::s_instance = s_instance;
+    return s_instance;
+}
+
+RoomClient *RoomClient::CreateInstance(u32 localPlayerCount, u32 ip, u16 port, LoginInfo loginInfo) {
+    assert(s_block);
+    assert(!s_instance);
+    s_instance = new (s_block) RoomClient(localPlayerCount, ip, port, loginInfo);
     RoomManager::s_instance = s_instance;
     return s_instance;
 }
@@ -121,11 +129,16 @@ RoomClient *RoomClient::Instance() {
     return s_instance;
 }
 
-RoomClient::RoomClient(u32 localPlayerCount, u32 ip, u16 port, u16 passcode, std::optional<LoginInfo> loginInfo)
+RoomClient::RoomClient(u32 localPlayerCount, u32 ip, u16 port, u16 passcode)
+    : m_localPlayerCount(localPlayerCount), m_state(State::Connect),
+      m_socket(ip, port, "room    "), m_ip(ip), m_port(port) {
+    m_passcode = passcode;
+}
+
+RoomClient::RoomClient(u32 localPlayerCount, u32 ip, u16 port, LoginInfo loginInfo)
     : m_localPlayerCount(localPlayerCount), m_state(State::Connect),
       m_socket(ip, port, "room    "), m_ip(ip), m_port(port) {
     m_loginInfo = loginInfo;
-    m_passcode = passcode;
 }
 
 RoomClient::~RoomClient() = default;

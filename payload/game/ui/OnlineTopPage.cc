@@ -98,7 +98,8 @@ void OnlineTopPage::onTrackpackButtonFront(PushButton* button, [[maybe_unused]] 
 }
 
 void OnlineTopPage::onFriendButtonFront(PushButton* button, [[maybe_unused]] u32 localPlayerId) {
-    SP_LOG("OnlineTopPage::onFriendButtonFront");
+    m_replacement = PageId::DirectConnection;
+    startReplace(Anim::Next, button->getDelay());
 }
 
 void OnlineTopPage::onBackButtonFront([[maybe_unused]] PushButton* button, u32 localPlayerId) {

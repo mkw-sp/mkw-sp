@@ -1,10 +1,15 @@
 #include "RandomMatchingPage.hh"
 
+#include "payload/game/system/RaceConfig.hh"
 #include "payload/game/ui/SectionManager.hh"
+#include "payload/game/ui/FriendRoomBackPage.hh"
 
 #include <payload/sp/cs/RoomClient.hh>
 
 namespace UI {
+
+RandomMatchingPage::RandomMatchingPage(): m_handler(*this) {}
+RandomMatchingPage::~RandomMatchingPage() = default;
 
 PageId RandomMatchingPage::getReplacement() {
     return PageId::FriendMatching;
@@ -41,8 +46,16 @@ void RandomMatchingPage::onRefocus() {
 }
 
 void RandomMatchingPage::afterCalc() {
-    auto section = SectionManager::Instance()->currentSection();
+    auto sectionManager = SectionManager::Instance();
+    auto section = sectionManager->currentSection();
     if (!section->isPageFocused(this)) {
+        return;
+    }
+
+    // Check if we found a match, if so, drive the RoomClient.
+    auto roomClient = SP::RoomClient::Instance();
+    if (roomClient) {
+        assert(roomClient->calc(m_handler));
         return;
     }
 
@@ -53,13 +66,23 @@ void RandomMatchingPage::afterCalc() {
         SP_LOG("RandomMatchingPage: Found match!");
         auto foundMatch = *foundMatchOpt;
 
+        auto &menuScenario = System::RaceConfig::Instance()->menuScenario();
+        menuScenario.gameMode = static_cast<System::RaceConfig::GameMode>(onlineManager->m_gamemode);
+
         auto port = 21330;
         auto ip = foundMatch.room_ip;
         auto loginInfo = foundMatch.login_info;
 
-        SP::RoomClient::CreateInstance(1, ip, port, 0000, loginInfo);
-        startReplace(Anim::Next, 0);
+        SP::RoomClient::CreateInstance(1, ip, port, loginInfo);
     }
 }
+
+RandomMatchingPage::Handler::Handler(RandomMatchingPage &page): m_page(page) {}
+RandomMatchingPage::Handler::~Handler() = default;
+
+void RandomMatchingPage::Handler::onSelect() {
+    m_page.changeSection(SectionId::Voting1PVS, Anim::Next, 0);
+}
+
 
 }

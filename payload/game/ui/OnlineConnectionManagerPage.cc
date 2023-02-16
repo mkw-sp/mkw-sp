@@ -69,18 +69,6 @@ void OnlineConnectionManagerPage::afterCalc() {
     }
 }
 
-void OnlineConnectionManagerPage::setGamemode(u32 gamemode) {
-    auto menuScenario = System::RaceConfig::Instance()->menuScenario();
-
-    if (gamemode == 0) {
-        menuScenario.gameMode = System::RaceConfig::GameMode::OfflineVS;
-    } else {
-        menuScenario.gameMode = System::RaceConfig::GameMode::OfflineBT;
-    }
-
-    m_gamemode = gamemode;
-}
-
 std::optional<STCMessage> OnlineConnectionManagerPage::takeLoginResponse() {
     auto response = m_loginResponse;
     m_loginResponse = std::nullopt;
