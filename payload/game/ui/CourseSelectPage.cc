@@ -269,7 +269,11 @@ void CourseSelectPage::onBackCommon(f32 delay) {
     } else if (sectionId == SectionId::SingleSelectBTCourse) {
         backMessageId = 3471;
     } else {
-        m_replacement = PageId::DriftSelect;
+        if (sectionId == SectionId::Multi) {
+            m_replacement = PageId::MultiDriftSelect;
+        } else {
+            m_replacement = PageId::DriftSelect;
+        }
         startReplace(Anim::Prev, delay);
         return;
     }
