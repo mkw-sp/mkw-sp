@@ -2,6 +2,7 @@
 
 #include "game/ui/SectionManager.hh"
 #include "game/ui/SettingsPage.hh"
+#include "game/ui/YesNoPage.hh"
 
 namespace UI {
 
@@ -9,6 +10,7 @@ enum ButtonId {
     Worldwide,
     Trackpack,
     Friend,
+    Direct,
 };
 
 OnlineTopPage::OnlineTopPage() = default;
@@ -31,13 +33,14 @@ void OnlineTopPage::onInit() {
     m_inputManager.setWrappingMode(MultiControlInputManager::WrappingMode::Y);
     m_inputManager.setHandler(MenuInputManager::InputId::Back, &m_onBack, false);
 
-    initChildren(6);
+    initChildren(7);
     insertChild(0, &m_worldwideButton, 0);
     insertChild(1, &m_trackpackButton, 0);
     insertChild(2, &m_friendButton, 0);
-    insertChild(3, &m_backButton, 0);
-    insertChild(4, &m_pageTitleText, 0);
-    insertChild(5, &m_instructionText, 0);
+    insertChild(3, &m_directButton, 0);
+    insertChild(4, &m_backButton, 0);
+    insertChild(5, &m_pageTitleText, 0);
+    insertChild(6, &m_instructionText, 0);
 
     m_worldwideButton.load("button", "WifiMenuSingleTop", "ButtonWorld", 1, 0, false);
     m_worldwideButton.setFrontHandler(&m_onWorldWideButtonFront, false);
@@ -55,6 +58,11 @@ void OnlineTopPage::onInit() {
     m_friendButton.m_animator.getGroup(4)->setAnimation(0, 0.0);
     m_friendButton.m_animator.getGroup(5)->setAnimation(0, 0.0);
     m_friendButton.m_index = ButtonId::Friend;
+
+    m_directButton.load("button", "WifiMenuSingleTop", "ButtonGhostBattle", 1, 0, false);
+    m_directButton.setFrontHandler(&m_onDirectButtonFront, false);
+    m_directButton.setSelectHandler(&m_onButtonSelect, false);
+    m_directButton.m_index = ButtonId::Direct;
 
     m_backButton.load("button", "Back", "ButtonBack", 1, 0, false);
     m_backButton.setFrontHandler(&m_onBackButtonFront, false);
@@ -98,12 +106,31 @@ void OnlineTopPage::onTrackpackButtonFront(PushButton* button, [[maybe_unused]] 
 }
 
 void OnlineTopPage::onFriendButtonFront(PushButton* button, [[maybe_unused]] u32 localPlayerId) {
-    m_replacement = PageId::DirectConnection;
-    startReplace(Anim::Next, button->getDelay());
+    SP_LOG("OnlineTopPage::onFriendButtonFront");
+}
+
+void OnlineTopPage::onDirectButtonFront(PushButton* button, [[maybe_unused]] u32 localPlayerId) {
+    auto section = SectionManager::Instance()->currentSection();
+    auto confirmPopup = section->page<PageId::YesNoPopup>();
+
+    confirmPopup->reset();
+    confirmPopup->setWindowMessage(20041);
+    confirmPopup->configureButton(0, 20042, nullptr, Anim::Next, &m_onDirectConfirm);
+    confirmPopup->configureButton(1, 20043, nullptr, Anim::Next, &m_onDirectConfirm);
+
+    push(PageId::YesNoPopup, Anim::Next);
 }
 
 void OnlineTopPage::onBackButtonFront([[maybe_unused]] PushButton* button, u32 localPlayerId) {
     onBack(localPlayerId);
+}
+
+
+void OnlineTopPage::onDirectConfirm(s32 choice, PushButton *button) {
+    if (choice == 0) {
+        m_replacement = PageId::DirectConnection;
+        startReplace(Anim::Next, button->getDelay());
+    }
 }
 
 } // namespace UI

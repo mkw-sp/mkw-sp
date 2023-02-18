@@ -15,6 +15,14 @@
         "font": "regular",
         "string": "Change settings for this licence.",
     },
+    "3700": {
+        "font": "regular",
+        "string": "Select Level",
+    },
+    "3701": {
+        "font": "regular",
+        "string": "Select Stage",
+    },
     "4000": {
         "font": "regular",
         "string": "Nintendo Worldwides",
@@ -23,6 +31,10 @@
         "font": "regular",
         "string": "Track Packs",
     },
+    "4003": {
+        "font": "regular",
+        "string": "Direct Connection",
+    },
     "4310": {
         "font": "regular",
         "string": "Find a room on official Nintendo courses.",
@@ -30,6 +42,10 @@
     "4311": {
         "font": "regular",
         "string": "Select a Track Pack to play online.",
+    },
+    "4313": {
+        "font": "regular",
+        "string": "Connect directly to a hosted Gameserver.",
     },
     "10004": {
         "font": "regular",
@@ -1598,13 +1614,17 @@
         "font": "regular",
         "string": "Voted!",
     },
-    "3700": {
+    "20041": {
         "font": "regular",
-        "string": "Select Level",
+        "string": "This is for connecting to a self-hosted gameserver.\nOnly use this if you know what you're doing.",
     },
-    "3701": {
+    "20042": {
         "font": "regular",
-        "string": "Select Stage",
+        "string": "I know what I'm doing.",
+    },
+    "20043": {
+        "font": "regular",
+        "string": "Take me back to safety!",
     },
     // Message IDs after 30000 are reserved for Online error codes.
     "30000": {
