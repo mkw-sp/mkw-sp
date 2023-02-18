@@ -191,7 +191,7 @@ async fn central_listener(
                                 break (room_id, waiting_client.take());
                             }
                         }
-                    }
+                    },
                 };
 
                 let client_ids = Some(client_id).into_iter().chain(waiting_client.into_iter());
@@ -211,7 +211,8 @@ async fn central_listener(
                         }
                         .encode_to_vec()
                         .into(),
-                    ).await?;
+                    )
+                    .await?;
                 }
             }
         }

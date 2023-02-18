@@ -360,7 +360,10 @@ impl Room {
             self.players.push(player);
         }
 
-        tracing::info!("Room {}: Join: Now have {client_key} players", self.matchmaking_state.as_ref().map(|m| m.room_id).unwrap_or(0));
+        tracing::info!(
+            "Room {}: Join: Now have {client_key} players",
+            self.matchmaking_state.as_ref().map(|m| m.room_id).unwrap_or(0)
+        );
         if self.matchmaking_state.is_some() && self.players.len() >= 2 {
             self.start_lobby(0);
             Ok(Some(0))
