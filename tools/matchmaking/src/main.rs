@@ -156,6 +156,7 @@ impl Server {
             }
         }
 
+        tracing::info!("{client_id}: Disconnected");
         Success
     }
 
