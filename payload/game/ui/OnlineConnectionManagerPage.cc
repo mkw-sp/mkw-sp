@@ -62,10 +62,7 @@ void OnlineConnectionManagerPage::afterCalc() {
             return;
         }
 
-        SP_LOG("OnlineConnectionManagerPage: Got login response");
-        m_state = State::WaitForSearchStart;
-        m_loginResponse = event;
-        break;
+        return setupRatings(*event);
     case State::WaitForSearchStart:
         if (!m_searchStarted) {
             return;
@@ -83,12 +80,6 @@ void OnlineConnectionManagerPage::afterCalc() {
     case State::FoundMatch:
         return;
     }
-}
-
-std::optional<STCMessage> OnlineConnectionManagerPage::takeLoginResponse() {
-    auto response = m_loginResponse;
-    m_loginResponse = std::nullopt;
-    return response;
 }
 
 std::optional<STCMessage_FoundMatch> OnlineConnectionManagerPage::takeMatchResponse() {
@@ -155,6 +146,21 @@ void OnlineConnectionManagerPage::respondToChallenge(const STCMessage &event) {
 
     m_state = State::WaitForLoginResponse;
     write(response);
+}
+
+void OnlineConnectionManagerPage::setupRatings(const STCMessage &event) {
+    SP_LOG("OnlineConnectionManagerPage: Got login response");
+
+    if (event.which_message == STCMessage_response_tag) {
+        auto section = SectionManager::Instance()->currentSection();
+        auto modeSelectPage = section->page<PageId::OnlineModeSelect>();
+
+        m_vs_rating = event.message.response.vs_rating;
+        m_bt_rating = event.message.response.bt_rating;
+        modeSelectPage->setRatings(*m_vs_rating, *m_bt_rating);
+    }
+
+    m_state = State::WaitForSearchStart;
 }
 
 void OnlineConnectionManagerPage::sendSearchMessage() {

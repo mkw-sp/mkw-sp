@@ -139,7 +139,7 @@ impl ClientForwarder {
                 location = $5,
                 latitude = $6,
                 longitude = $7
-            RETURNING race_rating
+            RETURNING vs_rating, bt_rating
         ",
             device_id,
             licence_id,
@@ -155,7 +155,8 @@ impl ClientForwarder {
         let friends = fetch_friend_data(&mut db_connection, device_id, licence_id).await?;
         let message = STCMessageOpt {
             message: Some(STCMessage::Response(stc_message::LoginResponse {
-                race_rating: rr_record.race_rating,
+                vs_rating: rr_record.vs_rating,
+                bt_rating: rr_record.bt_rating,
                 friends,
             })),
         };

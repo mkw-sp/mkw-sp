@@ -149,7 +149,7 @@ enum class PageId {
     WifiConnectionFailed = 0x89,
     WifiMultiConfirm = 0x8A,
     OnlineTop = 0x8B, // Replaces WifiTop
-    WifiModeSelect = 0x8C,
+    OnlineModeSelect = 0x8C, // Replaces OnlineModeSelect
     WifiFriendMenu = 0x8D,
     OnlineTeamSelect = 0x8E, // Replaces MkChannelFriendMenu
     RandomMatching = 0x8F, // Replaces Global Search Manager

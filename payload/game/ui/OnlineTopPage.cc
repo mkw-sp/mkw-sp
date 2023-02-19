@@ -13,10 +13,6 @@ enum ButtonId {
     Direct,
 };
 
-OnlineTopPage::OnlineTopPage() = default;
-
-OnlineTopPage::~OnlineTopPage() = default;
-
 PageId OnlineTopPage::getReplacement() {
     return m_replacement;
 }
@@ -97,7 +93,7 @@ void OnlineTopPage::onWorldwideButtonFront(PushButton* button, [[maybe_unused]] 
     auto connectionManager = section->page<PageId::OnlineConnectionManager>();
     connectionManager->setTrackpack(0);
 
-    m_replacement = PageId::WifiModeSelect;
+    m_replacement = PageId::OnlineModeSelect;
     startReplace(Anim::Next, button->getDelay());
 }
 

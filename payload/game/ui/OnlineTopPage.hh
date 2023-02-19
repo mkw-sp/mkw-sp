@@ -11,8 +11,8 @@ namespace UI {
 
 class OnlineTopPage : public Page {
 public:
-    OnlineTopPage();
-    ~OnlineTopPage() override;
+    OnlineTopPage() = default;
+    ~OnlineTopPage() override = default;
 
     PageId getReplacement() override;
     void onInit() override;
