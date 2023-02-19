@@ -20,13 +20,13 @@ public:
 private:
     void onFront(u32 localPlayerId);
 
-    void initConfig();
-    void initType();
+    REPLACE void initConfig();
+    REPLACE void initType();
     void REPLACED(initCongratulations)();
     REPLACE void initCongratulations();
-    void initItems();
+    REPLACE void initItems();
     void initTeams();
-    void initCup();
+    REPLACE void initCup();
 
     template <typename T>
     using H = typename T::Handler<AwardPage>;
@@ -34,7 +34,7 @@ private:
     PageInputManager m_inputManager;
     H<PageInputManager> m_onFront{this, &AwardPage::onFront};
     u8 _0054[0x005c - 0x0054]; // The first 4 bytes are unused
-    LayoutUIControl m_type;
+    LayoutUIControl m_cupDisplay;
     u8 _0314[0x0488 - 0x0314]; // Unused
     AwardDemoCongratulations m_congratulations;
     AwardDemoResultItem m_items[12];

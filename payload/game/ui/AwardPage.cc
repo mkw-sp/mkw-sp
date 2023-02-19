@@ -1,7 +1,10 @@
 #include "AwardPage.hh"
 
-#include "game/system/RaceConfig.hh"
 #include "game/ui/SectionManager.hh"
+#include "game/system/RaceConfig.hh"
+extern "C" {
+#include "game/kart/KartObjectManager.h" // speedModIsEnabled
+}
 
 #include <algorithm>
 #include <array>
@@ -25,7 +28,7 @@ void AwardPage::onInit() {
     u32 teamCount = (m_playerCount + maxTeamSize - 1) / maxTeamSize;
 
     initChildren(2 + m_playerCount + (maxTeamSize == 1 ? 0 : teamCount));
-    insertChild(0, &m_type, 0);
+    insertChild(0, &m_cupDisplay, 0);
     insertChild(1, &m_congratulations, 0);
     for (size_t i = 0; i < m_playerCount; i++) {
         insertChild(2 + i, &m_items[i], 0);
@@ -34,7 +37,7 @@ void AwardPage::onInit() {
         insertChild(2 + m_playerCount + i, &m_teams[i], 0);
     }
 
-    m_type.load("award", isWin ? "AwardTypeWin" : "AwardTypeLose", "Type", nullptr);
+    m_cupDisplay.load("award", isWin ? "AwardTypeWin" : "AwardTypeLose", "Type", nullptr);
     m_congratulations.load(isWin, awardsScenario.spMaxTeamSize >= 2 && awardsScenario.draw);
     for (size_t i = 0; i < m_playerCount; i++) {
         u32 positionId = (maxTeamSize == 6 ? 0 : 5 - maxTeamSize) * 12 + i;
@@ -55,6 +58,57 @@ void AwardPage::onInit() {
     initItems();
     initTeams();
     initCup();
+}
+
+void AwardPage::initType() {
+    auto awardsScenario = System::RaceConfig::Instance()->awardsScenario();
+    auto currentSectionId = SectionManager::Instance()->currentSection()->id();
+
+    u32 messageId;
+    const char * srcPane;
+    MessageInfo cupInfo = {};
+
+    if (currentSectionId == SectionId::AwardsGP || currentSectionId == SectionId::AwardsVS) {
+        switch (awardsScenario.engineClass) {
+        case System::RaceConfig::EngineClass::CC50:
+            cupInfo.messageIds[0] = 0x589;
+            break;
+        case System::RaceConfig::EngineClass::CC100:
+            cupInfo.messageIds[0] = 0x58a;
+            break;
+        case System::RaceConfig::EngineClass::CC150:
+            if (speedModIsEnabled) {
+                cupInfo.messageIds[0] = 10072;
+            } else if (awardsScenario.mirror) {
+                cupInfo.messageIds[0] = 0x58c;
+            } else {
+                cupInfo.messageIds[0] = 0x58b;
+            }
+        };
+
+        if (currentSectionId == SectionId::AwardsGP) {
+            cupInfo.messageIds[1] = Registry::GetCupMessageId(awardsScenario.cupId);
+            srcPane = Registry::GetCupIconName(awardsScenario.cupId);
+            messageId = 0x58d;
+        } else {
+            srcPane = "icon_11_flag";
+            messageId = 0x58e;
+        }
+    } else if (currentSectionId == SectionId::AwardsBT) {
+        auto battleType = awardsScenario.battleType;
+        if (battleType == 0) {
+            messageId = 0x587;
+            srcPane = "icon_09_balloon";
+        } else if (battleType == 1) {
+            messageId = 0x588;
+            srcPane = "icon_10_coin";
+        }
+    } else {
+        panic("Unknown section 0x%X, please report to MKW-SP devs!", static_cast<s32>(currentSectionId));
+    }
+
+    m_cupDisplay.setPicture("cup_icon", srcPane);
+    m_cupDisplay.setMessage("cup_name", messageId, &cupInfo);
 }
 
 void AwardPage::initCongratulations() {
