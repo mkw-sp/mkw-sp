@@ -29,7 +29,8 @@ public:
         u32 m_errorCode;
     };
 
-    u8 _000[0x064 - 0x000];
+    u8 _000[0x060 - 0x000];
+    u32 m_match;
     u32 m_matchCount;
     u8 _068[0x074 - 0x068];
     u32 _74;

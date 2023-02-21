@@ -71,18 +71,18 @@ void AwardPage::initType() {
     if (currentSectionId == SectionId::AwardsGP || currentSectionId == SectionId::AwardsVS) {
         switch (awardsScenario.engineClass) {
         case System::RaceConfig::EngineClass::CC50:
-            cupInfo.messageIds[0] = 0x589;
+            cupInfo.messageIds[0] = 1417;
             break;
         case System::RaceConfig::EngineClass::CC100:
-            cupInfo.messageIds[0] = 0x58a;
+            cupInfo.messageIds[0] = 1418;
             break;
         case System::RaceConfig::EngineClass::CC150:
-            if (speedModIsEnabled) {
+            if (awardsScenario.mirror) {
+                cupInfo.messageIds[0] = 1420;
+            } else if (speedModIsEnabled) {
                 cupInfo.messageIds[0] = 10072;
-            } else if (awardsScenario.mirror) {
-                cupInfo.messageIds[0] = 0x58c;
             } else {
-                cupInfo.messageIds[0] = 0x58b;
+                cupInfo.messageIds[0] = 1419;
             }
         };
 
