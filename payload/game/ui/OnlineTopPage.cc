@@ -73,9 +73,9 @@ void OnlineTopPage::onActivate() {
     m_instructionText.setMessage(0x10d6);
 
     if (SectionManager::Instance()->currentSection()->id() == SectionId::OnlineSingle) {
-        m_pageTitleText.setMessage(0x7f1);
+        m_pageTitleText.setMessage(2033);
     } else {
-        m_pageTitleText.setMessage(0x7f2);
+        m_pageTitleText.setMessage(2034);
     }
 }
 
