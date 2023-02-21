@@ -136,6 +136,7 @@ impl Room {
                     }
                     match self.handle_select_request(client_key, request, gamemode) {
                         Ok(Some(gamemode)) => return Ok(Some(gamemode)),
+                        // TODO: Handle error properly
                         Err(err) => tracing::error!("Failed to handle select request: {err}"),
                         Ok(None) => tracing::info!("{client_key} sent a select request"),
                     }
