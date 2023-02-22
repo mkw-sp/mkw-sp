@@ -1,5 +1,3 @@
-#include "game/ui/SectionId.S"
-
 #include <Common.S>
 
 PATCH_B_START(TopMenuPage_onInit, 0x20)
