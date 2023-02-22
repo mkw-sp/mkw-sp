@@ -53,7 +53,9 @@ public:
     u32 m_timeAttackGhostType;
     s32 m_timeAttackCourseId;
     s32 m_timeAttackLicenseId;
-    u8 _3d0[0x500 - 0x3d0];
+    u8 _3d0[0x4c8 - 0x3d0];
+    u32 m_lastTitleBackground;
+    u8 _4cc[0x500 - 0x4cc];
     OnlineDisconnectInfo m_onlineDisconnectInfo;
     u8 _508[0x510 - 0x508];
     u32 m_timeAttackGhostCount;       // Added
