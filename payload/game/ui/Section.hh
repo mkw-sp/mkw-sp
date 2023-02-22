@@ -55,6 +55,8 @@ public:
     Vec2<f32> locationAdjustScale() const;
     void loadTHP();
 
+    void logDebuggingInfo(bool verbose);
+
     static u32 REPLACED(GetSceneId)(SectionId id);
     static REPLACE u32 GetSceneId(SectionId id);
     static const char *REPLACED(GetResourceName)(SectionId id);
@@ -75,6 +77,8 @@ private:
 
     static Page *REPLACED(CreatePage)(PageId pageId);
     static REPLACE Page *CreatePage(PageId pageId);
+
+    static bool logPageInfo(Page *page);
 
     SectionId m_id;
     u8 _004[0x008 - 0x004];

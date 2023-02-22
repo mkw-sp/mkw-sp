@@ -1,5 +1,6 @@
 #include "Section.hh"
 
+#include "game/ui/SectionManager.hh"
 #include "game/ui/AwardPage.hh"
 #include "game/ui/ChannelPage.hh"
 #include "game/ui/CourseSelectPage.hh"
@@ -437,6 +438,50 @@ Page *Section::CreatePage(PageId pageId) {
     default:
         return REPLACED(CreatePage)(pageId);
     }
+}
+
+bool Section::logPageInfo(Page *page) {
+    if (page == nullptr) {
+        return false;
+    }
+
+    auto pageId = page->id();
+    auto pageName = magic_enum::enum_name<PageId>(pageId);
+
+    OSReport("    %s (0x%x)\n", pageName.data(), static_cast<u32>(pageId));
+    return true;
+}
+
+extern "C" {
+void Section::logDebuggingInfo(bool verbose) {
+    auto sectionManager = SectionManager::Instance();
+    auto lastSectionId = sectionManager->nextSectionId();
+    auto nextSectionId = sectionManager->nextSectionId();
+
+    auto sectionName = magic_enum::enum_name<SectionId>(m_id);
+    auto lastSectionName = magic_enum::enum_name<SectionId>(lastSectionId);
+    auto nextSectionName = magic_enum::enum_name<SectionId>(nextSectionId);
+
+    OSReport("Last Section: %s (0x%x)\n", lastSectionName.data(), static_cast<u32>(lastSectionId));
+    OSReport("Current Section: %s (0x%x)\n", sectionName.data(), static_cast<u32>(m_id));
+    OSReport("Next Section: %s (0x%x)\n", nextSectionName.data(), static_cast<u32>(nextSectionId));
+
+    OSReport("Active Pages:\n");
+    for (auto page : m_activePages) {
+        if (!logPageInfo(page)) {
+            break;
+        }
+    }
+
+    if (!verbose) {
+        return;
+    }
+
+    OSReport("Loaded Pages:\n");
+    for (u16 i = 0; i < static_cast<u16>(PageId::Max); i += 1) {
+        logPageInfo(m_pages[i]);
+    }
+}
 }
 
 } // namespace UI
