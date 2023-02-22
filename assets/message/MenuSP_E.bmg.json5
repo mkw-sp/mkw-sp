@@ -1,4 +1,7 @@
 {
+    "2053": {
+        string: "Something went wrong when reading from\nor writing to the save.",
+    },
     "10000": {
         string: "Race Against 1 Ghost",
     },
@@ -130,9 +133,6 @@
     },
     "10074": {
         string: "Edit settings or change your Mii!",
-    },
-    "10075": {
-        string: "Something went wrong when reading from\nor writing to the save.",
     },
     "10077": {
         string: "Change settings for this licence.",

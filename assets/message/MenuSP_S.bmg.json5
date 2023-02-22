@@ -1,4 +1,7 @@
 {
+    "2053": {
+        string: "Ha ocurrido un error al leer o guardar los datos de guardado.",
+    },
     "10000": {
         string: "Correr contra 1 fantasma",
     },
@@ -172,9 +175,6 @@
     },
     "10074": {
         string: "¡Modifica ajustes o cambia tu Mii!",
-    },
-    "10075": {
-        string: "Ha ocurrido un error al leer o guardar los datos de guardado.",
     },
     "10077": {
         string: "Cambia los ajustes para esta licencia.",

@@ -1,4 +1,7 @@
 {
+    "2053": {
+        string: "Irgendetwas ist fehlgeschlagen beim lesen oder schreiben zur Save.",
+    },
     "10000": {
         string: "Gegen 1 Geist fahren",
     },
@@ -172,9 +175,6 @@
     },
     "10074": {
         string: "Einstellungen ändern oder den Mii ändern!",
-    },
-    "10075": {
-        string: "Irgendetwas ist fehlgeschlagen beim lesen oder schreiben zur Save.",
     },
     "10077": {
         string: "Für diese Lizenz Einstellungen ändern",

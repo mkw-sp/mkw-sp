@@ -1,4 +1,7 @@
 {
+    "2053": {
+        string: "Er is iets fout gegaan bij het lezen of schrijven van de spelgegevens.",
+    },
     "10000": {
         string: "Race tegen 1 geest",
     },
@@ -172,9 +175,6 @@
     },
     "10074": {
         string: "Verander instellingen of jouw Mii!",
-    },
-    "10075": {
-        string: "Er is iets fout gegaan bij het lezen of schrijven van de spelgegevens.",
     },
     "10077": {
         string: "Verander instellingen voor dit rijbewijs.",
