@@ -1,8 +1,5 @@
 #include "SaveManager.hh"
 
-extern "C" {
-#include "game/system/NandHelper.h"
-}
 #include "game/system/RaceConfig.hh"
 #include "game/system/ResourceManager.hh"
 extern "C" {
@@ -176,7 +173,7 @@ void SaveManager::resetAsync() {
     m_canSave = false;
 
     m_isBusy = false;
-    m_result = RK_NAND_RESULT_OK;
+    m_result = NandResult::Ok;
 }
 
 bool SaveManager::isBusy() const {
@@ -202,7 +199,7 @@ void SaveManager::saveLicensesAsync() {
 
     if (!m_spCanSave) {
         m_isBusy = false;
-        m_result = RK_NAND_RESULT_OK;
+        m_result = NandResult::Ok;
     }
 
     m_isBusy = true;
@@ -227,7 +224,7 @@ void SaveManager::saveSPSave() {
             SP_LOG("Failed to save %ls", path);
             m_spCanSave = false;
             m_isBusy = false;
-            m_result = RK_NAND_RESULT_NOSPACE;
+            m_result = NandResult::NoSpace;
             return;
         }
     }
@@ -240,13 +237,13 @@ void SaveManager::saveSPSave() {
             SP_LOG("Failed to delete %ls", path);
             m_spCanSave = false;
             m_isBusy = false;
-            m_result = RK_NAND_RESULT_NOSPACE;
+            m_result = NandResult::NoSpace;
             return;
         }
     }
 
     m_isBusy = false;
-    m_result = RK_NAND_RESULT_OK;
+    m_result = NandResult::Ok;
 }
 
 void SaveManager::selectLicense(u32 licenseId) {
@@ -387,7 +384,7 @@ void SaveManager::loadGhostHeaders() {
     }
 
     m_isBusy = false;
-    m_result = RK_NAND_RESULT_OK;
+    m_result = NandResult::Ok;
 }
 
 void SaveManager::loadGhostAsync(s32 UNUSED(licenseId), u32 UNUSED(category), u32 UNUSED(index),

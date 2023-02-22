@@ -2,6 +2,7 @@
 
 #include "game/system/GhostFile.hh"
 #include "game/system/Mii.hh"
+#include "game/system/NandHelper.hh"
 
 #include <egg/core/eggTaskThread.hh>
 #include <sp/settings/ClientSettings.hh>
@@ -170,7 +171,7 @@ private:
     bool m_isValid;
     bool m_canSave;
     bool m_spCanSave; // Added (was padding)
-    u32 m_result;
+    NandResult m_result;
     u32 m_spLicenseCount; // Added
     SP::ClientSettings::Settings m_spLicenses[6]; // Added
     std::optional<u8> m_spCurrentLicense; // Added
