@@ -90,7 +90,7 @@ enum class PageId {
     Confirm = 0x52,
     MessageBoardPopup = 0x53,
     Unknown54 = 0x54, // "Behind main menu?" however isn't activated on main menu.
-    Unknown55 = 0x55, // "Dummy? Goes to 0x5A" however is activated after 0x5A?
+    LowBatteryPopupManager = 0x55,
     LowBatteryPopup = 0x56,
     Title = 0x57,
     Unknown58 = 0x58, // "Behind main menu?" however isn't activated on main menu.
