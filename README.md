@@ -29,7 +29,8 @@ ninja
 
 The `out` directory will contain the generated binaries and assets.
 
-On subsequent builds only the last command needs to be run.
+The `configure.py` command only needs to be run when new files have been
+added to the project, and can be skipped if only recompiling with changed files.
 
 ## Contributing
 
