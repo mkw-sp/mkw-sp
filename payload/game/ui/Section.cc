@@ -452,7 +452,6 @@ bool Section::logPageInfo(Page *page) {
     return true;
 }
 
-extern "C" {
 void Section::logDebuggingInfo(bool verbose) {
     auto sectionManager = SectionManager::Instance();
     auto lastSectionId = sectionManager->nextSectionId();
@@ -481,7 +480,6 @@ void Section::logDebuggingInfo(bool verbose) {
     for (u16 i = 0; i < static_cast<u16>(PageId::Max); i += 1) {
         logPageInfo(m_pages[i]);
     }
-}
 }
 
 } // namespace UI
