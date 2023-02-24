@@ -21,7 +21,7 @@ namespace SP::LogFile {
 static const size_t BUFFER_SIZE = 4096;
 static bool isInit = false;
 static OSTime startTime;
-static char buffers[BUFFER_SIZE][2];
+static char buffers[2][BUFFER_SIZE];
 static u8 index = 0;
 static u16 offset = 0;
 static u8 stack[8192];
