@@ -166,7 +166,7 @@ static void Init() {
         Console::Print(" failed!\n");
         Console::Print(
                 "Please ensure that the file 'StaticR.rel' exists on the\n"
-                "game disk and is not modified in any capacity!\n");
+                "game disk and that it is not modified in any capacity!\n");
         Console::Print("Returning to the loader...");
         System::SystemManager::ResetDolphinSpeedLimit();
         OSSleepMilliseconds(10000);
