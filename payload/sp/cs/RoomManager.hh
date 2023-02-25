@@ -35,6 +35,7 @@ public:
         virtual void onReceiveInfo([[maybe_unused]] u32 playerId, [[maybe_unused]] s32 course,
                 [[maybe_unused]] u32 selectedPlayer, [[maybe_unused]] u32 character,
                 [[maybe_unused]] u32 vehicle) {}
+        virtual void onError(u32 errorCode);
     };
 
     // TODO cleanup

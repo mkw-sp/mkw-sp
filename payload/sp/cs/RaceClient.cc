@@ -89,7 +89,7 @@ void RaceClient::calcWrite() {
     // TODO proper error handling
     m_roomClient.socket().write(buffer, stream.bytes_written);
     if (!m_roomClient.socket().poll()) {
-        m_roomClient.TransitionToError(30001);
+        m_roomClient.handleError(30001);
     };
 }
 

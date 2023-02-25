@@ -44,6 +44,14 @@ void RoomClient::destroyInstance() {
 }
 
 bool RoomClient::calc(Handler &handler) {
+    if (m_errorCode.has_value()) {
+        if (!m_reportedError) {
+            handler.onError(*m_errorCode);
+        }
+
+        return true;
+    }
+
     if (auto state = resolve(handler)) {
         if (!transition(handler, *state)) {
             return false;
@@ -102,6 +110,16 @@ void RoomClient::sendTeamSelect(u32 playerId) {
 
 void RoomClient::sendVote(u32 course, std::optional<Player::Properties> properties) {
     return writeVote(course, properties);
+}
+
+void RoomClient::handleError(u32 errorCode) {
+    if (m_errorCode.has_value()) {
+        SP_LOG("RoomClient::handleError: additional error reported: %d", errorCode);
+        return;
+    }
+
+    m_errorCode = errorCode;
+    m_reportedError = false;
 }
 
 RoomClient *RoomClient::CreateInstance(u32 localPlayerCount, u32 ip, u16 port, u16 passcode) {
@@ -621,19 +639,8 @@ void RoomClient::write(RoomRequest request) {
     assert(pb_encode(&stream, RoomRequest_fields, &request));
 
     if (!m_socket.write(buffer, stream.bytes_written)) {
-        TransitionToError(30003);
+        handleError(30003);
     }
-}
-
-void RoomClient::TransitionToError(u32 errorCode) {
-    auto *sectionManager = UI::SectionManager::Instance();
-    auto *globalContext = sectionManager->globalContext();
-
-    globalContext->m_onlineDisconnectInfo.m_category = UI::OnlineErrorCategory::ErrorCode;
-    globalContext->m_onlineDisconnectInfo.m_errorCode = errorCode;
-
-    sectionManager->setNextSection(UI::SectionId::OnlineDisconnected, UI::Page::Anim::None);
-    sectionManager->startChangeSection(0, 0);
 }
 
 RoomClient *RoomClient::s_instance = nullptr;

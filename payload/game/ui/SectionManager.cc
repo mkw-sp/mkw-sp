@@ -50,6 +50,14 @@ void SectionManager::startChangeSection(s32 delay, u32 color) {
     REPLACED(startChangeSection)(delay, color);
 }
 
+void SectionManager::transitionToError(u32 errorCode) {
+    m_globalContext->m_onlineDisconnectInfo.m_category = UI::OnlineErrorCategory::ErrorCode;
+    m_globalContext->m_onlineDisconnectInfo.m_errorCode = errorCode;
+
+    setNextSection(UI::SectionId::OnlineDisconnected, UI::Page::Anim::None);
+    startChangeSection(0, 0);
+}
+
 SectionManager *SectionManager::Instance() {
     return s_instance;
 }

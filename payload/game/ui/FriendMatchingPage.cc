@@ -147,7 +147,8 @@ void FriendMatchingPage::startClient() {
             push(PageId::OnlineTeamSelect, Anim::Next);
         }
     } else {
-        SP::RoomClient::TransitionToError(30004);
+        auto sectionManager = SectionManager::Instance();
+        sectionManager->transitionToError(30004);
     }
 }
 
@@ -208,6 +209,13 @@ void FriendMatchingPage::Handler::onReceiveTeamSelect(u32 playerId, u32 teamId) 
     Section *section = SectionManager::Instance()->currentSection();
     auto *onlineTeamSelectPage = section->page<PageId::OnlineTeamSelect>();
     onlineTeamSelectPage->onReceiveTeamSelect(playerId, teamId);
+}
+
+void FriendMatchingPage::Handler::onError(u32 errorCode) {
+    SP_LOG("FriendMatchingPage::Handler::onError(%d)", errorCode);
+
+    m_page.m_roomHasError = true;
+    m_page.collapse(Anim::Next);
 }
 
 } // namespace UI

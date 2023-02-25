@@ -36,14 +36,12 @@ public:
     void changeLocalSettings();
     void sendTeamSelect(u32 playerId);
     void sendVote(u32 course, std::optional<Player::Properties> properties);
+    void handleError(u32 error_code);
 
     static RoomClient *CreateInstance(u32 localPlayerCount, u32 ip, u16 port, u16 passcode);
     static RoomClient *CreateInstance(u32 localPlayerCount, u32 ip, u16 port, LoginInfo loginInfo);
     static void DestroyInstance();
     static RoomClient *Instance();
-
-    // Transitions to the OnlineDisconnected section, for a connection failure.
-    static void TransitionToError(u32 error_code);
 private:
     // These functions are handled in CreateInstance and DestroyInstance
     RoomClient(u32 localPlayerCount, u32 ip, u16 port, u16 passcode);
@@ -93,6 +91,8 @@ private:
     u32 m_ip;
     u16 m_port;
     std::optional<LoginInfo> m_loginInfo;
+    std::optional<u32> m_errorCode;
+    bool m_reportedError;
 
     static RoomClient *s_instance;
 };

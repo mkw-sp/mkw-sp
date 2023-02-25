@@ -45,11 +45,12 @@ void VotingBackPage::onActivate() {
 void VotingBackPage::afterCalc() {
     auto *client = SP::RoomClient::Instance();
     if (!client) {
-        return SP::RoomClient::TransitionToError(30004);
+        auto sectionManager = SectionManager::Instance();
+        sectionManager->transitionToError(30004);
     }
 
     if (!client->calc(m_handler)) {
-        return SP::RoomClient::TransitionToError(30001);
+        return client->handleError(30001);
     }
 }
 

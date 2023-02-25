@@ -23,6 +23,7 @@ public:
     void calc();
     void REPLACED(startChangeSection)(s32 delay, u32 color);
     REPLACE void startChangeSection(s32 delay, u32 color);
+    void transitionToError(u32 errorCode);
 
     static SectionManager *Instance();
 
