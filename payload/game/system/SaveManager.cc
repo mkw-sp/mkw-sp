@@ -278,8 +278,8 @@ void SaveManager::eraseSPLicense() {
 void SaveManager::createSPLicense(const MiiId *miiId) {
     SP::ClientSettings::Settings &license = m_spLicenses[m_spLicenseCount++];
     license.reset();
-    setMiiId(*miiId);
     m_spCurrentLicense = m_spLicenseCount - 1;
+    setMiiId(*miiId);
 }
 
 std::optional<u32> SaveManager::spCurrentLicense() const {
