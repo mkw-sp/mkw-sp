@@ -1453,6 +1453,7 @@
 0x80857cc0 _ZN2UI8RacePage12initControlsEj
 0x80858864 _ZN2UI14BalloonManager2dtEi
 0x808588cc CtrlRaceNameBalloon_ct
+0x80858a24 _ZN2UI8RacePage8onDeinitEv
 0x80858a50 RacePage_calcItemBalloons
 0x80858ae4 RacePage_calcNameBalloons
 0x80858c10 _ZN2UI8RacePage11GetTypeInfoEv

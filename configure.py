@@ -1378,6 +1378,7 @@ code_in_files = {
         os.path.join('payload', 'game', 'kart', 'KartMove.cc'),
         os.path.join('payload', 'game', 'kart', 'KartObject.S'),
         os.path.join('payload', 'game', 'kart', 'KartObject.cc'),
+        os.path.join('payload', 'game', 'kart', 'KartSaveState.cc'),
         os.path.join('payload', 'game', 'kart', 'KartObjectManager.S'),
         os.path.join('payload', 'game', 'kart', 'KartObjectManager.c'),
         os.path.join('payload', 'game', 'kart', 'KartObjectManager.cc'),

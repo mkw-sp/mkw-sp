@@ -10,18 +10,34 @@ class KartMove;
 class KartRollback;
 class KartState;
 class VehiclePhysics;
+class KartBody;
+class KartAction;
+class KartSus;
+class KartSettings;
+class Kart5c;
+class KartSub;
+class KartTire;
+class PlayerModel;
 
 struct KartAccessor {
-    u8 _00[0x04 - 0x00];
+    KartSettings *settings;
     KartState *state;
-    u8 _08[0x28 - 0x08];
+    KartBody *body;
+    KartSus **sus;
+    KartTire **tire;
+    PlayerModel *playerModel;
+    KartSub *sub;
+    u8 _1c[0x28 - 0x1c];
     KartMove *move;
-    u8 _2c[0x30 - 0x2c];
+    KartAction *action;
     KartCollide *collide;
     u8 _34[0x3c - 0x34];
     KartRollback *rollback; // Replaced
-    u8 _40[0x64 - 0x40];
+    u8 _40[0x5c - 0x40];
+    Kart5c *unk5c;
+    u8 _44[0x64 - 0x60];
 };
+
 static_assert(sizeof(KartAccessor) == 0x64);
 
 class KartObjectProxy {

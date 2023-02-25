@@ -11,6 +11,8 @@ public:
     ~RacePage() override;
     void REPLACED(onInit)();
     REPLACE void onInit() override;
+    void REPLACED(onDeinit)();
+    REPLACE void onDeinit() override;
     void REPLACED(afterCalc)();
     REPLACE void afterCalc() override;
     // ...

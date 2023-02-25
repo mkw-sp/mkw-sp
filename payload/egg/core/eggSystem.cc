@@ -6,6 +6,8 @@ extern "C" {
 #include <sp/Commands.h>
 #include <sp/IOSDolphin.hh>
 #include <game/ui/SectionManager.hh>
+#include <game/kart/KartSaveState.hh>
+#include <game/kart/KartObjectManager.hh>
 
 #include <cstring>
 
@@ -81,9 +83,31 @@ sp_define_command("/dolphin_test", "Test /dev/dolphin driver", const char *tmp) 
 } // namespace
 
 sp_define_command("/ui_info", "Dump information about the UI state to the console", const char *tmp) {
+    (void)tmp;
+
     auto sectionManager = UI::SectionManager::Instance();
     auto section = sectionManager->currentSection();
     section->logDebuggingInfo(!strcmp(tmp, "/ui_info v"));
+}
+
+sp_define_command("/store", "", const char *tmp) {
+    (void)tmp;
+
+    auto kartObjectManager = Kart::KartObjectManager::Instance();
+    auto kartObject = kartObjectManager->object(0);
+    auto physics = kartObject->getVehiclePhysics();
+
+    Kart::kartSaveState->save(kartObject->m_accessor, physics);
+}
+
+sp_define_command("/reload", "", const char *tmp) {
+    (void)tmp;
+
+    auto kartObjectManager = Kart::KartObjectManager::Instance();
+    auto kartObject = kartObjectManager->object(0);
+    auto physics = kartObject->getVehiclePhysics();
+
+    Kart::kartSaveState->reload(kartObject->m_accessor, physics);
 }
 
 namespace EGG {
