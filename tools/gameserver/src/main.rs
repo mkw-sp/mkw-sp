@@ -135,6 +135,8 @@ async fn central_listener(
         .into(),
     )
     .await?;
+
+    let mut waiting_client: Option<matchmaking::ClientIdOpt> = None;
     loop {
         let msg = tokio::select! {
             msg = ws.next() => if let Some(msg) = msg {msg} else {break},
@@ -167,9 +169,15 @@ async fn central_listener(
                 client_id,
                 room_id,
             }) => {
-                let room_id = match room_id {
-                    Some(room_id) => room_id as u16,
-                    None => loop {
+                let (room_id, waiting_client) = match (room_id, waiting_client.clone()) {
+                    (Some(room_id), _) => (room_id as u16, None),
+                    (None, None) => {
+                        // No waiting client, and new room needs making, wait
+                        // until another client joins until sending a response.
+                        waiting_client = Some(client_id);
+                        continue;
+                    }
+                    (None, Some(_)) => loop {
                         let room_id = rand::random::<u16>();
 
                         match rooms.entry(room_id) {
@@ -179,29 +187,33 @@ async fn central_listener(
                                     room_id,
                                     ws_conn: ws_send.clone(),
                                 })));
-                                break room_id;
+
+                                break (room_id, waiting_client.take());
                             }
                         }
                     },
                 };
 
-                // TODO: Actually check if the client is allowed to join the room
-                let token = 0;
-                ws.send(
-                    GTSMessageOpt {
-                        message: Some(GTSMessage::TokenResponse(gts_message::TokenResponse {
-                            room_ip: room_ip.into(),
-                            login_info: matchmaking::LoginInfo {
-                                token,
-                                client_id,
-                                room_id: room_id as u32,
-                            },
-                        })),
-                    }
-                    .encode_to_vec()
-                    .into(),
-                )
-                .await?;
+                let client_ids = Some(client_id).into_iter().chain(waiting_client.into_iter());
+                for client_id in client_ids {
+                    // TODO: Actually check if the client is allowed to join the room
+                    let token = 0;
+                    ws.send(
+                        GTSMessageOpt {
+                            message: Some(GTSMessage::TokenResponse(gts_message::TokenResponse {
+                                room_ip: room_ip.into(),
+                                login_info: matchmaking::LoginInfo {
+                                    token,
+                                    client_id,
+                                    room_id: room_id as u32,
+                                },
+                            })),
+                        }
+                        .encode_to_vec()
+                        .into(),
+                    )
+                    .await?;
+                }
             }
         }
     }

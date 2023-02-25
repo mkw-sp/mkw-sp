@@ -74,6 +74,18 @@ impl Room {
         self.client_players(client_key).skip(client_player_id).next()
     }
 
+    fn start_lobby(&mut self, gamemode: u32) {
+        let event = room_event::Start {
+            gamemode,
+        };
+        let event = room_event::Event::Start(event);
+        let event = RoomEventOpt {
+            event: Some(event),
+        };
+
+        let _ = self.write_tx.send(event);
+    }
+
     pub async fn handle(&mut self) -> Result<()> {
         let Some(gamemode) = self.handle_lobby().await? else { return Ok(()) };
 
@@ -88,8 +100,10 @@ impl Room {
         loop {
             tokio::select! {
                 Some((stream, join)) = self.connect_rx.recv() => {
-                    if let Err(e) = self.handle_lobby_connect(stream, join) {
-                        tracing::error!("Failed to join: {e}");
+                    match self.handle_lobby_connect(stream, join) {
+                        Ok(Some(gamemode)) => return Ok(Some(gamemode)),
+                        Err(e) => tracing::error!("Failed to join: {e}"),
+                        Ok(None) => (),
                     }
                 },
                 Some(client_key) = self.disconnect_rx.recv() => {
@@ -102,6 +116,7 @@ impl Room {
                     match self.handle_lobby_request(client_key, request) {
                         Ok(Some(gamemode)) => return Ok(Some(gamemode)),
                         Err(e) => {
+                            tracing::error!("Failed to handle lobby request: {e}");
                             self.handle_lobby_disconnect(client_key);
                         },
                         _ => (),
@@ -121,10 +136,9 @@ impl Room {
                     }
                     match self.handle_select_request(client_key, request, gamemode) {
                         Ok(Some(gamemode)) => return Ok(Some(gamemode)),
-                        Err(e) => {
-                            // TODO handle
-                        },
-                        _ => (),
+                        // TODO: Handle error properly
+                        Err(err) => tracing::error!("Failed to handle select request: {err}"),
+                        Ok(None) => tracing::info!("{client_key} sent a select request"),
                     }
                 },
                 else => return Ok(None),
@@ -209,7 +223,7 @@ impl Room {
         &mut self,
         mut stream: RoomAsyncStream,
         join: room_request::Join,
-    ) -> Result<()> {
+    ) -> Result<Option<u32>> {
         anyhow::ensure!(
             self.clients.len() + 1 <= Self::MAX_CLIENT_COUNT,
             "Max client count reached!",
@@ -258,7 +272,7 @@ impl Room {
         }
         let settings = self.settings.clone().unwrap_or(join.settings);
         let event = room_event::Settings {
-            settings: settings.clone(),
+            settings,
         };
         let event = RoomEvent::Settings(event);
         let event = RoomEventOpt {
@@ -347,7 +361,16 @@ impl Room {
             self.players.push(player);
         }
 
-        Ok(())
+        tracing::info!(
+            "Room {}: Join: Now have {client_key} players",
+            self.matchmaking_state.as_ref().map(|m| m.room_id).unwrap_or(0)
+        );
+        if self.matchmaking_state.is_some() && self.players.len() >= 2 {
+            self.start_lobby(0);
+            Ok(Some(0))
+        } else {
+            Ok(None)
+        }
     }
 
     fn handle_lobby_disconnect(&mut self, client_key: usize) {
@@ -415,15 +438,7 @@ impl Room {
                 // FIXME
                 anyhow::ensure!(gamemode < 4, "Invalid gamemode!");
 
-                let event = room_event::Start {
-                    gamemode,
-                };
-                let event = room_event::Event::Start(event);
-                let event = RoomEventOpt {
-                    event: Some(event),
-                };
-                let _ = self.write_tx.send(event);
-
+                self.start_lobby(gamemode);
                 Ok(Some(gamemode))
             }
             _ => anyhow::bail!("Invalid request type!"),

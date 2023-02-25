@@ -113,7 +113,7 @@ enum class SectionId {
     OnlineMultiConfigure = 0x5A, // Replaces WifiMultiMiiConfigure
     OnlineMulti = 0x5B, // Replaces WifiMulti
     WifiMultiDisconnected = 0x5C,
-    Unknown5D = 0x5D,
+    WifiMultiFriendList = 0x5D,
     WifiMultiVsVoting = 0x5E,
     WifiMultiBtVoting = 0x5F,
 

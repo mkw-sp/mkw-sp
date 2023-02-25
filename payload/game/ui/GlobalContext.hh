@@ -5,6 +5,13 @@
 
 namespace UI {
 
+enum class OnlineErrorCategory {
+    ErrorCode = 0x1,
+    MiiInvalid = 0x2,
+    GeneralDisconnect = 0x4,
+    UnrecoverableDisconnect = 0x5,
+};
+
 class GlobalContext {
 public:
     void copyPlayerMiis();
@@ -15,6 +22,11 @@ public:
         u32 m_characterId;
         u32 m_vehicleId;
         u8 _08;
+    };
+
+    struct OnlineDisconnectInfo {
+        OnlineErrorCategory m_category;
+        u32 m_errorCode;
     };
 
     u8 _000[0x064 - 0x000];
@@ -40,7 +52,9 @@ public:
     u32 m_timeAttackGhostType;
     s32 m_timeAttackCourseId;
     s32 m_timeAttackLicenseId;
-    u8 _3d0[0x510 - 0x3d0];
+    u8 _3d0[0x500 - 0x3d0];
+    OnlineDisconnectInfo m_onlineDisconnectInfo;
+    u8 _508[0x510 - 0x508];
     u32 m_timeAttackGhostCount; // Added
     u32 m_timeAttackGhostIndices[11]; // Added
 };

@@ -62,7 +62,8 @@ message CTSMessage {
     }
 
     message StartMatchmaking {
-        required uint32 gamemode = 1;
+        required uint32 trackpack = 1;
+        required uint32 gamemode  = 2;
     }
 
     message CancelMatchmaking {}
@@ -93,8 +94,9 @@ message STCMessage {
             required bytes      mii           = 6;
         }
 
-        required int32  race_rating = 1;
-        repeated Friend friends     = 2;
+        required int32  vs_rating = 1;
+        required int32  bt_rating = 2;
+        repeated Friend friends   = 3;
     }
 
     message FoundMatch {

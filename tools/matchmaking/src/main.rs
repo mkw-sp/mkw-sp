@@ -140,6 +140,7 @@ impl Server {
             match msg {
                 CTSMessage::StartMatchmaking(cts_message::StartMatchmaking {
                     gamemode,
+                    trackpack,
                 }) => {
                     let server_resp = self.request_room(client_id, gamemode).await?;
                     let client_resp = stc_message::FoundMatch {
@@ -156,6 +157,7 @@ impl Server {
             }
         }
 
+        tracing::info!("{client_id}: Disconnected");
         Success
     }
 

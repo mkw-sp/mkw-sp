@@ -1,38 +1,37 @@
-#include "game/ui/Page.hh"
+#pragma once
 
-#include <sp/net/AsyncSocket.hh>
+#include "payload/game/ui/Page.hh"
+#include "payload/game/ui/ctrl/CtrlMenuPageTitleText.hh"
 
-#include <protobuf/Matchmaking.pb.h>
+#include <payload/sp/cs/RoomManager.hh>
 
 namespace UI {
 
 class RandomMatchingPage : public Page {
 public:
     RandomMatchingPage();
-    void onInit() override;
-    void afterCalc() override;
+    ~RandomMatchingPage();
+
     PageId getReplacement() override;
+    void onInit() override;
+    void onActivate() override;
+    void onRefocus() override;
+    void afterCalc() override;
 
 private:
-    enum class State {
-        Login,
-        WaitForChallenge,
-        WaitForResponse,
-        WaitForMatch,
-        Transitioning,
+    class Handler : public SP::RoomManager::Handler {
+    public:
+        Handler(RandomMatchingPage &page);
+        ~Handler();
+
+        void onSelect() override;
+    private:
+        RandomMatchingPage &m_page;
     };
 
-    bool read(std::optional<STCMessage> &event);
-    bool write(CTSMessage message);
-
-    void respondToLogin();
-    void respondToChallenge(const STCMessage &event);
-    void respondToResponse(const STCMessage &event);
-    void transitionToRoom(const STCMessage &event);
-
+    CtrlMenuPageTitleText m_title;
     PageInputManager m_inputManager;
-    SP::Net::AsyncSocket m_socket;
-    State m_state;
+    Handler m_handler;
 };
 
-} // namespace UI
+}

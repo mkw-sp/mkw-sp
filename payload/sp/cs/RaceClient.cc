@@ -87,8 +87,10 @@ void RaceClient::calcWrite() {
     assert(pb_encode(&stream, RoomRequest_fields, &request));
 
     // TODO proper error handling
-    assert(m_roomClient.socket().write(buffer, stream.bytes_written));
-    assert(m_roomClient.socket().poll());
+    m_roomClient.socket().write(buffer, stream.bytes_written);
+    if (!m_roomClient.socket().poll()) {
+        m_roomClient.handleError(30001);
+    };
 }
 
 void RaceClient::calcRead() {

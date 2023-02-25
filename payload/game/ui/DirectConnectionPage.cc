@@ -170,7 +170,7 @@ void DirectConnectionPage::onOkButtonFront(PushButton *button, [[maybe_unused]] 
     u16 passcode = directCode >> 48 & 0x7FF;
 
     auto sectionId = SectionManager::Instance()->currentSection()->id();
-    SP::RoomClient::CreateInstance(sectionId == SectionId::OnlineSingle ? 1 : 2, ip, port, passcode, std::nullopt);
+    SP::RoomClient::CreateInstance(sectionId == SectionId::OnlineSingle ? 1 : 2, ip, port, passcode);
 
     m_replacement = PageId::FriendMatching;
     f32 delay = button->getDelay();

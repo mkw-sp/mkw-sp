@@ -3,6 +3,8 @@
 #include "game/ui/Page.hh"
 #include "game/ui/SectionId.hh"
 #include "game/ui/page/BattleModeSelectPage.hh"
+#include "game/ui/OnlineConnectionManagerPage.hh"
+#include "game/ui/OnlineModeSelectPage.hh"
 
 #include <nw4r/lyt/lyt_drawInfo.hh>
 
@@ -171,6 +173,11 @@ struct Section::PageIdHelper<PageId::Globe> {
     using type = GlobePage;
 };
 
+template<>
+struct Section::PageIdHelper<PageId::OnlineConnectionManager> {
+    using type = OnlineConnectionManagerPage;
+};
+
 template <>
 struct Section::PageIdHelper<PageId::FriendMatching> {
     using type = FriendMatchingPage;
@@ -244,6 +251,11 @@ struct Section::PageIdHelper<PageId::SettingsPopup> {
 template <>
 struct Section::PageIdHelper<PageId::BattleModeSelect> {
     using type = BattleModeSelectPage;
+};
+
+template <>
+struct Section::PageIdHelper<PageId::OnlineModeSelect> {
+    using type = OnlineModeSelectPage;
 };
 
 } // namespace UI

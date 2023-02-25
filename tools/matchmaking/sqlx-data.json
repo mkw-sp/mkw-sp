@@ -57,6 +57,38 @@
     },
     "query": "SELECT device_id, licence_id, friend_suffix, mii, location, latitude, longitude FROM users WHERE device_id = $1 AND licence_id = $2"
   },
+  "c7620dcde5b119a7661c30a85cf2ae05d148fbe28d51e18c7ab15681a07f9a57": {
+    "describe": {
+      "columns": [
+        {
+          "name": "vs_rating",
+          "ordinal": 0,
+          "type_info": "Int4"
+        },
+        {
+          "name": "bt_rating",
+          "ordinal": 1,
+          "type_info": "Int4"
+        }
+      ],
+      "nullable": [
+        false,
+        false
+      ],
+      "parameters": {
+        "Left": [
+          "Int4",
+          "Int2",
+          "Bytea",
+          "Int2",
+          "Int4",
+          "Int4",
+          "Int4"
+        ]
+      }
+    },
+    "query": "\n            INSERT INTO\n                users(device_id, licence_id, mii, friend_suffix, location, latitude, longitude)\n            VALUES\n                ($1, $2, $3, $4, $5, $6, $7)\n            ON CONFLICT (device_id, licence_id) DO UPDATE SET\n                mii = $3,\n                location = $5,\n                latitude = $6,\n                longitude = $7\n            RETURNING vs_rating, bt_rating\n        "
+  },
   "f1d76a01b8be0ce140b873ec8ce84ff9eadf1a908febe05c7ba6efa3db517e3f": {
     "describe": {
       "columns": [
@@ -83,31 +115,5 @@
       }
     },
     "query": "SELECT friendee_device_id, friendee_licence_id FROM friendships\n        WHERE friender_device_id = $1 AND friender_licence_id = $2"
-  },
-  "f87808cb42d814f99cc4cd331c1e33119d3dbcc64b022f8a052aa7447bf20526": {
-    "describe": {
-      "columns": [
-        {
-          "name": "race_rating",
-          "ordinal": 0,
-          "type_info": "Int4"
-        }
-      ],
-      "nullable": [
-        false
-      ],
-      "parameters": {
-        "Left": [
-          "Int4",
-          "Int2",
-          "Bytea",
-          "Int2",
-          "Int4",
-          "Int4",
-          "Int4"
-        ]
-      }
-    },
-    "query": "\n            INSERT INTO\n                users(device_id, licence_id, mii, friend_suffix, location, latitude, longitude)\n            VALUES\n                ($1, $2, $3, $4, $5, $6, $7)\n            ON CONFLICT (device_id, licence_id) DO UPDATE SET\n                mii = $3,\n                location = $5,\n                latitude = $6,\n                longitude = $7\n            RETURNING race_rating\n        "
   }
 }

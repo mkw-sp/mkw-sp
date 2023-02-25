@@ -80,8 +80,8 @@ public:
         const char *variant, const char *const *groups);
     void setParentPane(const char *pane);
 
-protected:
     UIAnimator m_animator;
+protected:
     MainLayout m_mainLayout;
 
 private:
