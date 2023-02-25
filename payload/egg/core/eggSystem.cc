@@ -6,8 +6,8 @@ extern "C" {
 #include <sp/Commands.h>
 #include <sp/IOSDolphin.hh>
 #include <game/ui/SectionManager.hh>
-#include <game/kart/KartSaveState.hh>
 #include <game/kart/KartObjectManager.hh>
+#include <game/kart/KartSaveState.hh>
 
 #include <cstring>
 

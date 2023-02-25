@@ -5,19 +5,19 @@
 
 namespace Kart {
 
+class Kart5c;
+class KartAction;
+class KartBody;
 class KartCollide;
 class KartMove;
 class KartRollback;
-class KartState;
-class VehiclePhysics;
-class KartBody;
-class KartAction;
-class KartSus;
 class KartSettings;
-class Kart5c;
+class KartState;
 class KartSub;
+class KartSus;
 class KartTire;
 class PlayerModel;
+class VehiclePhysics;
 
 struct KartAccessor {
     KartSettings *settings;

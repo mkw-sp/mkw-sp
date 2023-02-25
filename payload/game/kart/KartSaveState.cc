@@ -14,14 +14,12 @@ void KartSaveState::save(KartAccessor accessor, VehiclePhysics* physics) {
     m_action = *accessor.action;
     m_collide = *accessor.collide;
 
-    auto susCount = accessor.settings->wheelCount0;
-    for (u8 i = 0; i < susCount; i++) {
+    for (u8 i = 0; i < accessor.settings->susCount; i++) {
         m_sus[i].base = *accessor.sus[i];
         m_sus[i].physics = *accessor.sus[i]->m_physics;
     }
 
-    auto tireCount = accessor.settings->wheelCount1;
-    for (u8 i = 0; i < tireCount; i++) {
+    for (u8 i = 0; i < accessor.settings->tireCount; i++) {
         m_tire[i].tire = *accessor.tire[i];
         m_tire[i].physics = *accessor.tire[i]->m_wheelPhysics;
     }
@@ -37,14 +35,12 @@ void KartSaveState::reload(KartAccessor accessor, VehiclePhysics* physics) {
     *accessor.action = m_action;
     *accessor.collide = m_collide;
 
-    auto susCount = accessor.settings->wheelCount0;
-    for (u8 i = 0; i < susCount; i++) {
+    for (u8 i = 0; i < accessor.settings->susCount; i++) {
         *accessor.sus[i] = m_sus[i].base;
         *accessor.sus[i]->m_physics = m_sus[i].physics;
     }
 
-    auto tireCount = accessor.settings->wheelCount1;
-    for (u8 i = 0; i < tireCount; i++) {
+    for (u8 i = 0; i < accessor.settings->tireCount; i++) {
         *accessor.tire[i] = m_tire[i].tire;
         *accessor.tire[i]->m_wheelPhysics = m_tire[i].physics;
     }
