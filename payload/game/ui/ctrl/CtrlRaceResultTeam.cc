@@ -46,10 +46,18 @@ void CtrlRaceResultTeam::load() {
 
 void CtrlRaceResultTeam::refresh(u32 playerId, u32 characterId, u32 teamId, u32 positionId) {
     auto *context = SectionManager::Instance()->globalContext();
+    if (characterId < 0x18) {
+        setMessage("mii_name", Registry::GetCharacterMessageId(characterId, true));
+        setPicture("chara_icon", Registry::GetCharacterPane(characterId));
+        setPicture("chara_icon_sha", Registry::GetCharacterPane(characterId));
+    } else {
+        MessageInfo info{};
+        info.miis[0] = context->m_playerMiis.get(playerId);
+        setMessage("mii_name", 9501, &info);
+        setMiiPicture("chara_icon", &context->m_playerMiis, playerId, 2);
+        setMiiPicture("chara_icon_sha", &context->m_playerMiis, playerId, 2);
+    }
     u32 localPlayerCount = context->m_localPlayerCount;
-    setMessage("mii_name", Registry::GetCharacterMessageId(characterId, true));
-    setPicture("chara_icon", Registry::GetCharacterPane(characterId));
-    setPicture("chara_icon_sha", Registry::GetCharacterPane(characterId));
     m_animator.setAnimation(GroupId::Loop, 0, 0.0f);
     m_animator.setAnimation(GroupId::Select, playerId >= localPlayerCount, 0.0f);
     m_animator.setAnimation(GroupId::Select2, playerId >= localPlayerCount, 0.0f);
