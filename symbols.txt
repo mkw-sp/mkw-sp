@@ -618,6 +618,7 @@
 0x8055D6BC _ZN6Render7DrawMdl18ApplyMirrorPatchesERN4nw4r3g3d6ResMdlE
 0x8055f34c SetModelVisible
 0x8056a300 _ZN4Kart9KartBlink4calcEb
+0x8056c0cc _ZN4Kart8KartPartD2Ev
 0x8056ce98 KartBody_calcTransforms
 0x8056da88 BikeBody_calcTransforms
 0x8057257c KartCollide_checkItem
@@ -661,6 +662,7 @@
 0x80590cf8 KartObjectProxy_getInternalSpeed
 0x80590cf8 _ZNK4Kart15KartObjectProxy16getInternalSpeedEv
 0x80591fa4 KartParam_compute
+0x80592848 _ZN4Kart8KartPartC2Ev
 0x80594bd4 KartState_calcCollisions
 0x80595d48 _ZN4Kart7KartSub16createComponentsEPNS_12KartSettingsE
 0x80596480 KartSub_calcPass0

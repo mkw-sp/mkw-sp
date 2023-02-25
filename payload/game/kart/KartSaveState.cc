@@ -16,7 +16,7 @@ void KartSaveState::save(KartAccessor accessor, VehiclePhysics* physics) {
 
     auto susCount = accessor.settings->wheelCount0;
     for (u8 i = 0; i < susCount; i++) {
-        m_sus[i].base = accessor.sus[i]->m_base;
+        m_sus[i].base = *accessor.sus[i];
         m_sus[i].physics = *accessor.sus[i]->m_physics;
     }
 
@@ -39,7 +39,7 @@ void KartSaveState::reload(KartAccessor accessor, VehiclePhysics* physics) {
 
     auto susCount = accessor.settings->wheelCount0;
     for (u8 i = 0; i < susCount; i++) {
-        accessor.sus[i]->m_base = m_sus[i].base;
+        *accessor.sus[i] = m_sus[i].base;
         *accessor.sus[i]->m_physics = m_sus[i].physics;
     }
 

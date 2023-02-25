@@ -17,7 +17,7 @@ namespace Kart {
 extern Kart::KartSaveState* kartSaveState;
 
 struct KartSusFlat {
-    KartSusBase base;
+    KartSus base;
     KartSusPhysics physics;
 };
 
