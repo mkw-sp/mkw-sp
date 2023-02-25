@@ -70,7 +70,7 @@ void OnlineTopPage::onInit() {
 void OnlineTopPage::onActivate() {
     m_replacement = PageId::None;
     m_worldwideButton.selectDefault(0);
-    m_instructionText.setMessage(0x10d6);
+    m_instructionText.setMessage(4310);
 
     if (SectionManager::Instance()->currentSection()->id() == SectionId::OnlineSingle) {
         m_pageTitleText.setMessage(2033);
@@ -85,7 +85,7 @@ void OnlineTopPage::onBack(u32 localPlayerId) {
 }
 
 void OnlineTopPage::onButtonSelect(PushButton* button, [[maybe_unused]] u32 localPlayerId) {
-    m_instructionText.setMessage(0x10d6 + button->m_index);
+    m_instructionText.setMessage(4310 + button->m_index);
 }
 
 void OnlineTopPage::onWorldwideButtonFront(PushButton* button, [[maybe_unused]] u32 localPlayerId) {

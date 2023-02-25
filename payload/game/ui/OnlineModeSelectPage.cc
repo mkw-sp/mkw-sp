@@ -8,10 +8,10 @@ void OnlineModeSelectPage::setRatings(u16 vsRating, u16 btRating) {
     MessageInfo info = {};
 
     info.intVals[0] = vsRating;
-    m_raceButton.setMessage("go", 0x106a, &info);
+    m_raceButton.setMessage("go", 4202, &info);
 
     info.intVals[0] = btRating;
-    m_battleButton.setMessage("go", 0x106b, &info);
+    m_battleButton.setMessage("go", 4203, &info);
 }
 
 // Replacement needed to set VR and BR from the OnlineConnectionManager
@@ -60,9 +60,9 @@ void OnlineModeSelectPage::onActivate() {
 
     if (connectionManager->isCustomTrackpack()) {
         // TODO: Show the name of the pack selected?
-        m_titleText.setMessage(0xfa1);
+        m_titleText.setMessage(4001);
     } else {
-        m_titleText.setMessage(0xfa0);
+        m_titleText.setMessage(4000);
     }
 
     auto vsRating = connectionManager->getVsRating();

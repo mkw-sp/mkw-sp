@@ -39,9 +39,9 @@ void RandomMatchingPage::onRefocus() {
     auto onlineManager = section->page<PageId::OnlineConnectionManager>();
 
     if (onlineManager->isCustomTrackpack()) {
-        m_title.setMessage(0xfa1);
+        m_title.setMessage(4001);
     } else {
-        m_title.setMessage(0xfa0);
+        m_title.setMessage(4000);
     }
 }
 
