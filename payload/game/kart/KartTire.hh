@@ -7,8 +7,11 @@ private:
     u8 _0c[0x84 - 0x0c];
 };
 
-struct KartTire {
-    u8 _00[0x98 - 0x00];
+class KartTire: public KartPart {
+    friend class KartSaveState;
+
+private:
+    u8 _90[0x98 - 0x90];
     WheelPhysics *m_wheelPhysics;
     u8 _9c[0xd0 - 0x9c];
 };
