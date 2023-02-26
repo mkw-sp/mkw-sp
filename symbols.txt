@@ -610,6 +610,8 @@
 0x8054aa08 _ZNK6System11SaveManager12getLongitudeEPt
 0x8054aa64 SceneCreatorDynamic_create
 0x80553c50 RaceScene_vf_38
+0x80554208 _ZN5Scene9RaceScene16createSubsystemsEv
+0x805549b0 _ZN5Scene9RaceScene17destroySubsystemsEv
 0x80554e6c _ZN5Scene9RaceScene14calcSubsystemsEv
 0x80555040 MenuScene_vf_38
 0x805553B0 _unresolved

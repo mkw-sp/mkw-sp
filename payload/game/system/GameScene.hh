@@ -16,11 +16,11 @@ public:
     virtual void vf_28();
     virtual void vf_2c();
     virtual void calcSubsystems() = 0;
-    virtual void vf_34() = 0;
+    virtual void destroySubsystems() = 0;
     virtual void vf_38() = 0;
     virtual void vf_3c() = 0;
     virtual void vf_40();
-    virtual void vf_44() = 0;
+    virtual void createSubsystems() = 0;
     virtual void vf_48();
     virtual void vf_4c();
     virtual void vf_50();

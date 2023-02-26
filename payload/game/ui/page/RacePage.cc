@@ -51,14 +51,7 @@ RacePage *RacePage::Instance() {
 void RacePage::onInit() {
     REPLACED(onInit)();
 
-    SP::SaveStateManager::CreateInstance();
     m_lastWatchedPlayerId = m_watchedPlayerId;
-}
-
-void RacePage::onDeinit() {
-    REPLACED(onDeinit)();
-
-    SP::SaveStateManager::DestroyInstance();
 }
 
 void RacePage::afterCalc() {

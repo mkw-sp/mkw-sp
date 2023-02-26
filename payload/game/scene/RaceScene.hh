@@ -11,11 +11,13 @@ public:
     void vf_28() override;
     void vf_2c() override;
     REPLACE void calcSubsystems() override;
-    void vf_34() override;
+    void REPLACED(destroySubsystems)();
+    REPLACE void destroySubsystems() override;
     void vf_38() override;
     void vf_3c() override;
     void vf_40() override;
-    void vf_44() override;
+    void REPLACED(createSubsystems)();
+    REPLACE void createSubsystems() override;
     void vf_48() override;
     void vf_4c() override;
     void vf_50() override;

@@ -15,6 +15,7 @@
 #include "game/ui/SectionManager.hh"
 
 #include <sp/cs/RaceClient.hh>
+#include <sp/SaveStateManager.hh>
 
 namespace Scene {
 
@@ -108,6 +109,16 @@ void RaceScene::calcSubsystems(s32 drift) {
             }
         }
     }
+}
+
+void RaceScene::destroySubsystems() {
+    REPLACED(destroySubsystems)();
+    SP::SaveStateManager::DestroyInstance();
+}
+
+void RaceScene::createSubsystems() {
+    REPLACED(createSubsystems)();
+    SP::SaveStateManager::CreateInstance();
 }
 
 } // namespace Scene
