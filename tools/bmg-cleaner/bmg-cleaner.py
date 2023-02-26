@@ -1,4 +1,4 @@
-import json, json5
+import json5
 import pathlib
 import multiprocessing
 
