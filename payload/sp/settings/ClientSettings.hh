@@ -194,6 +194,7 @@ enum class Speedometer {
     XYZ,
     XZ,
     Y,
+    Off,
 };
 
 enum class RankControl {

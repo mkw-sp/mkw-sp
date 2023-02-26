@@ -72,10 +72,14 @@ u8 RacePage::getControlCount(u32 controls) const {
 
     auto *saveManager = System::SaveManager::Instance();
     auto setting = saveManager->getSetting<SP::ClientSettings::Setting::VanillaMode>();
-    if (setting == SP::ClientSettings::VanillaMode::Disable) {
+    auto speedometer = saveManager->getSetting<SP::ClientSettings::Setting::Speedometer>();
+    if (speedometer != SP::ClientSettings::Speedometer::Off) {
         if (localPlayerCount <= 2 || !(controls & Control::Point)) {
             count += localPlayerCount; // CtrlRaceSpeed
         }
+    }
+
+    if (setting == SP::ClientSettings::VanillaMode::Disable) {
         count += localPlayerCount; // CtrlRaceInputDisplay
         count += localPlayerCount < 2; // CtrlRaceDebugPanel
     }
@@ -124,8 +128,8 @@ void RacePage::initControls(u32 controls) {
     }
 
     auto *saveManager = System::SaveManager::Instance();
-    auto setting = saveManager->getSetting<SP::ClientSettings::Setting::VanillaMode>();
-    if (setting != SP::ClientSettings::VanillaMode::Enable) {
+    auto speedometer = saveManager->getSetting<SP::ClientSettings::Setting::Speedometer>();
+    if (speedometer != SP::ClientSettings::Speedometer::Off) {
         if (localPlayerCount <= 2 || !(controls & Control::Point)) {
             for (u32 i = 0; i < localPlayerCount; i++) {
                 auto *control = new CtrlRaceSpeed;
@@ -133,6 +137,10 @@ void RacePage::initControls(u32 controls) {
                 control->load(localPlayerCount, i);
             }
         }
+    }
+
+    auto vanillaMode = saveManager->getSetting<SP::ClientSettings::Setting::VanillaMode>();
+    if (vanillaMode != SP::ClientSettings::VanillaMode::Enable) {
         for (u32 i = 0; i < localPlayerCount; i++) {
             auto *control = new CtrlRaceInputDisplay;
             insertChild(index--, control, 0);

@@ -1217,6 +1217,12 @@
     "20043": {
         string: "Take me back to safety!",
     },
+    "20044": {
+        string: "Off",
+    },
+    "20045": {
+        string: "Speedometer does not display.",
+    },
     "30000": {
         string: "Your connection to the central server has been lost.",
     },
