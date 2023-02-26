@@ -66,11 +66,11 @@ void SaveStateManager::processInput(bool isPressed) {
         }
 
         if (m_framesHeld >= 60) {
-            SP_LOG("Saved!");
-            save();
-        } else {
             SP_LOG("Reloading!");
             reload();
+        } else {
+            SP_LOG("Saved!");
+            save();
         };
 
         m_framesHeld = 0;
