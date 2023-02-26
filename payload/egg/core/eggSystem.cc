@@ -5,9 +5,9 @@ extern "C" {
 }
 #include <sp/Commands.h>
 #include <sp/IOSDolphin.hh>
+#include <sp/SaveStateManager.hh>
 #include <game/ui/SectionManager.hh>
 #include <game/kart/KartObjectManager.hh>
-#include <game/kart/KartSaveState.hh>
 
 #include <cstring>
 
@@ -93,21 +93,21 @@ sp_define_command("/ui_info", "Dump information about the UI state to the consol
 sp_define_command("/store", "", const char *tmp) {
     (void)tmp;
 
-    auto kartObjectManager = Kart::KartObjectManager::Instance();
-    auto kartObject = kartObjectManager->object(0);
-    auto physics = kartObject->getVehiclePhysics();
-
-    Kart::kartSaveState->save(kartObject->m_accessor, physics);
+    if (auto saveStateManager = SP::SaveStateManager::Instance()) {
+        saveStateManager->save();
+    } else {
+        OSReport("SaveStateManager not initialized\n");
+    }
 }
 
 sp_define_command("/reload", "", const char *tmp) {
     (void)tmp;
 
-    auto kartObjectManager = Kart::KartObjectManager::Instance();
-    auto kartObject = kartObjectManager->object(0);
-    auto physics = kartObject->getVehiclePhysics();
-
-    Kart::kartSaveState->reload(kartObject->m_accessor, physics);
+    if (auto saveStateManager = SP::SaveStateManager::Instance()) {
+        saveStateManager->reload();
+    } else {
+        OSReport("SaveStateManager not initialized\n");
+    }
 }
 
 namespace EGG {

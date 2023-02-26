@@ -2,8 +2,6 @@
 
 namespace Kart {
 
-Kart::KartSaveState* kartSaveState = nullptr;
-
 void KartSaveState::save(KartAccessor accessor, VehiclePhysics* physics) {
     m_physics = *physics;
     m_5c = *accessor.unk5c;

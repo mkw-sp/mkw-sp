@@ -1655,6 +1655,7 @@ code_in_files = {
         os.path.join('payload', 'sp', 'PerfOverlay.cc'),
         os.path.join('payload', 'sp', 'Rel.cc'),
         os.path.join('payload', 'sp', 'ScopeLock.cc'),
+        os.path.join('payload', 'sp', 'SaveStateManager.cc'),
         os.path.join('payload', 'sp', 'Slab.c'),
         os.path.join('payload', 'sp', 'StackTrace.c'),
         os.path.join('payload', 'sp', 'ThumbnailManager.cc'),

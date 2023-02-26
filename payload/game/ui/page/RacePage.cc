@@ -2,6 +2,8 @@
 
 #include "game/system/RaceConfig.hh"
 #include "game/system/SaveManager.hh"
+
+#include <sp/SaveStateManager.hh>
 #include "game/ui/SectionManager.hh"
 #include "game/ui/ctrl/CtrlRaceBattleAddPoint.hh"
 #include "game/ui/ctrl/CtrlRaceBattlePoint.hh"
@@ -10,7 +12,6 @@
 #include "game/ui/ctrl/CtrlRaceInputDisplay.hh"
 #include "game/ui/ctrl/CtrlRaceSpeed.hh"
 #include "game/ui/ctrl/CtrlRaceWaitSymbol.hh"
-#include "game/kart/KartSaveState.hh"
 
 #include <sp/cs/RaceManager.hh>
 
@@ -50,14 +51,14 @@ RacePage *RacePage::Instance() {
 void RacePage::onInit() {
     REPLACED(onInit)();
 
-    Kart::kartSaveState = new Kart::KartSaveState;
+    SP::SaveStateManager::CreateInstance();
     m_lastWatchedPlayerId = m_watchedPlayerId;
 }
 
 void RacePage::onDeinit() {
     REPLACED(onDeinit)();
 
-    delete Kart::kartSaveState;
+    SP::SaveStateManager::DestroyInstance();
 }
 
 void RacePage::afterCalc() {

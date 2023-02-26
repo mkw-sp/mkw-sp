@@ -1,3 +1,9 @@
+// Handles storing and restoring as much state about the kart as possible
+// to allow for faster dolphin-like save states on console for practicing.
+//
+// This class is only for low level management, further functionality should
+// most likely be added to SP::SaveStateManager.
+
 #pragma once
 
 #include "Kart5c.hh"
@@ -13,8 +19,6 @@
 #include "VehiclePhysics.hh"
 
 namespace Kart {
-
-extern Kart::KartSaveState* kartSaveState;
 
 struct KartSusFlat {
     KartSus base;

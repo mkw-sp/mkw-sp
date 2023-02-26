@@ -1,13 +1,13 @@
 #include "InputManager.hh"
 
 #include "game/system/RaceConfig.hh"
-
 #include "game/system/RaceManager.hh"
 #include "game/system/SaveManager.hh"
 
 extern "C" {
 #include <revolution/kpad.h>
 }
+#include <sp/SaveStateManager.hh>
 #include <sp/cs/RaceClient.hh>
 
 #include <cmath>
@@ -69,6 +69,10 @@ void WiiPad::processClassic(void *r4, RaceInputState &raceInputState, UIInputSta
     REPLACED(processClassic)(r4, raceInputState, uiInputState);
 
     processSimplified(raceInputState, raceInputState.rawButtons & KPAD_CL_TRIGGER_ZL);
+
+    if (auto saveStateManager = SP::SaveStateManager::Instance()) {
+        saveStateManager->processInput(raceInputState.rawButtons & KPAD_CL_BUTTON_MINUS);
+    }
 }
 
 void GCPad::process(RaceInputState &raceInputState, UIInputState &uiInputState) {
