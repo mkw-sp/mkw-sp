@@ -1,14 +1,11 @@
 {
     "10047": {
-        "font": "regular",
-        "string": "Salvando i dati fantasma...",
+        string: "Salvando i dati fantasma...",
     },
     "10070": {
-        "font": "regular",
-        "string": "I dati fantasma verranno troncati.",
+        string: "I dati fantasma verranno troncati.",
     },
     "10071": {
-        "font": "regular",
-        "string": "{arg integer|0 0}:{arg integer|1 0}.{arg integer|2 3}",
+        string: "{arg integer|0 0}:{arg integer|1 0}.{arg integer|2 3}",
     },
 }

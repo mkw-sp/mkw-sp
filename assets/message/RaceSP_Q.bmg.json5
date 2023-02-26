@@ -1,14 +1,11 @@
 {
     "10047": {
-        "font": "regular",
-        "string": "Sauvegarde du fantôme...",
+        string: "Sauvegarde du fantôme...",
     },
     "10070": {
-        "font": "regular",
-        "string": "Le fantôme va être tronqué.",
+        string: "Le fantôme va être tronqué.",
     },
     "10071": {
-        "font": "regular",
-        "string": "{arg integer|0 0}:{arg integer|1 0}.{arg integer|2 3}",
+        string: "{arg integer|0 0}:{arg integer|1 0}.{arg integer|2 3}",
     },
 }

@@ -1,990 +1,743 @@
 {
     "9000": {
-        "font": "regular",
-        "string": "마리오",
+        string: "마리오",
     },
     "9001": {
-        "font": "regular",
-        "string": "베이비피치",
+        string: "베이비피치",
     },
     "9002": {
-        "font": "regular",
-        "string": "와루이지",
+        string: "와루이지",
     },
     "9003": {
-        "font": "regular",
-        "string": "쿠파",
+        string: "쿠파",
     },
     "9004": {
-        "font": "regular",
-        "string": "베이비데이지",
+        string: "베이비데이지",
     },
     "9005": {
-        "font": "regular",
-        "string": "와르르",
+        string: "와르르",
     },
     "9006": {
-        "font": "regular",
-        "string": "베이비마리오",
+        string: "베이비마리오",
     },
     "9007": {
-        "font": "regular",
-        "string": "루이지",
+        string: "루이지",
     },
     "9008": {
-        "font": "regular",
-        "string": "키노피오",
+        string: "키노피오",
     },
     "9009": {
-        "font": "regular",
-        "string": "동키콩",
+        string: "동키콩",
     },
     "9010": {
-        "font": "regular",
-        "string": "요시",
+        string: "요시",
     },
     "9011": {
-        "font": "regular",
-        "string": "와리오",
+        string: "와리오",
     },
     "9012": {
-        "font": "regular",
-        "string": "베이비루이지",
+        string: "베이비루이지",
     },
     "9013": {
-        "font": "regular",
-        "string": "키노피코",
+        string: "키노피코",
     },
     "9014": {
-        "font": "regular",
-        "string": "엉금엉금",
+        string: "엉금엉금",
     },
     "9015": {
-        "font": "regular",
-        "string": "데이지",
+        string: "데이지",
     },
     "9016": {
-        "font": "regular",
-        "string": "피치",
+        string: "피치",
     },
     "9017": {
-        "font": "regular",
-        "string": "캐서린",
+        string: "캐서린",
     },
     "9018": {
-        "font": "regular",
-        "string": "디디콩",
+        string: "디디콩",
     },
     "9019": {
-        "font": "regular",
-        "string": "킹부끄",
+        string: "킹부끄",
     },
     "9020": {
-        "font": "regular",
-        "string": "쿠파주니어",
+        string: "쿠파주니어",
     },
     "9021": {
-        "font": "regular",
-        "string": "좀비쿠파",
+        string: "좀비쿠파",
     },
     "9022": {
-        "font": "regular",
-        "string": "펑키콩",
+        string: "펑키콩",
     },
     "9023": {
-        "font": "regular",
-        "string": "로젤리나",
+        string: "로젤리나",
     },
     "9024": {
-        "font": "regular",
-        "string": "Mii",
+        string: "Mii",
     },
     "9050": {
-        "font": "regular",
-        "string": "{arg player|0}",
+        string: "{arg player|0}",
     },
     "9051": {
-        "font": "regular",
-        "string": "{arg player|0}",
+        string: "{arg player|0}",
     },
     "9052": {
-        "font": "regular",
-        "string": "Mii 레이싱복 A",
+        string: "Mii 레이싱복 A",
     },
     "9053": {
-        "font": "regular",
-        "string": "Mii 레이싱복 B",
+        string: "Mii 레이싱복 B",
     },
     "9054": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "9100": {
-        "font": "regular",
-        "string": "스탠더드카트S",
+        string: "스탠더드카트S",
     },
     "9101": {
-        "font": "regular",
-        "string": "스탠더드카트M",
+        string: "스탠더드카트M",
     },
     "9102": {
-        "font": "regular",
-        "string": "스탠더드카트L",
+        string: "스탠더드카트L",
     },
     "9103": {
-        "font": "regular",
-        "string": "슈퍼유모차",
+        string: "슈퍼유모차",
     },
     "9104": {
-        "font": "regular",
-        "string": "노스텔지아",
+        string: "노스텔지아",
     },
     "9105": {
-        "font": "regular",
-        "string": "서바이벌카고",
+        string: "서바이벌카고",
     },
     "9106": {
-        "font": "regular",
-        "string": "미니비스트",
+        string: "미니비스트",
     },
     "9107": {
-        "font": "regular",
-        "string": "와일드스타",
+        string: "와일드스타",
     },
     "9108": {
-        "font": "regular",
-        "string": "파이어카트",
+        string: "파이어카트",
     },
     "9109": {
-        "font": "regular",
-        "string": "슈퍼뽀꾸뽀꾸",
+        string: "슈퍼뽀꾸뽀꾸",
     },
     "9110": {
-        "font": "regular",
-        "string": "슈퍼징오징오",
+        string: "슈퍼징오징오",
     },
     "9111": {
-        "font": "regular",
-        "string": "뻐끔카트",
+        string: "뻐끔카트",
     },
     "9112": {
-        "font": "regular",
-        "string": "오프로드카고",
+        string: "오프로드카고",
     },
     "9113": {
-        "font": "regular",
-        "string": "판타지아",
+        string: "판타지아",
     },
     "9114": {
-        "font": "regular",
-        "string": "제트글라이드",
+        string: "제트글라이드",
     },
     "9115": {
-        "font": "regular",
-        "string": "블루팔콘",
+        string: "블루팔콘",
     },
     "9116": {
-        "font": "regular",
-        "string": "뉴B대시",
+        string: "뉴B대시",
     },
     "9117": {
-        "font": "regular",
-        "string": "트릭키",
+        string: "트릭키",
     },
     "9118": {
-        "font": "regular",
-        "string": "스탠더드카트S",
+        string: "스탠더드카트S",
     },
     "9119": {
-        "font": "regular",
-        "string": "스탠더드카트M",
+        string: "스탠더드카트M",
     },
     "9120": {
-        "font": "regular",
-        "string": "스탠더드카트L",
+        string: "스탠더드카트L",
     },
     "9121": {
-        "font": "regular",
-        "string": "스탠더드카트S",
+        string: "스탠더드카트S",
     },
     "9122": {
-        "font": "regular",
-        "string": "스탠더드카트M",
+        string: "스탠더드카트M",
     },
     "9123": {
-        "font": "regular",
-        "string": "스탠더드카트L",
+        string: "스탠더드카트L",
     },
     "9124": {
-        "font": "regular",
-        "string": "",
+        string: "",
     },
     "9150": {
-        "font": "regular",
-        "string": "스탠더드바이크S",
+        string: "스탠더드바이크S",
     },
     "9151": {
-        "font": "regular",
-        "string": "스탠더드바이크M",
+        string: "스탠더드바이크M",
     },
     "9152": {
-        "font": "regular",
-        "string": "스탠더드바이크L",
+        string: "스탠더드바이크L",
     },
     "9153": {
-        "font": "regular",
-        "string": "로켓킬러",
+        string: "로켓킬러",
     },
     "9154": {
-        "font": "regular",
-        "string": "마하바이크",
+        string: "마하바이크",
     },
     "9155": {
-        "font": "regular",
-        "string": "쿠파라이더",
+        string: "쿠파라이더",
     },
     "9156": {
-        "font": "regular",
-        "string": "비트바이크",
+        string: "비트바이크",
     },
     "9157": {
-        "font": "regular",
-        "string": "캔디스쿠터",
+        string: "캔디스쿠터",
     },
     "9158": {
-        "font": "regular",
-        "string": "와리오바이크",
+        string: "와리오바이크",
     },
     "9159": {
-        "font": "regular",
-        "string": "스피드스완",
+        string: "스피드스완",
     },
     "9160": {
-        "font": "regular",
-        "string": "하바네로",
+        string: "하바네로",
     },
     "9161": {
-        "font": "regular",
-        "string": "슈팅스타",
+        string: "슈팅스타",
     },
     "9162": {
-        "font": "regular",
-        "string": "마귀라이더",
+        string: "마귀라이더",
     },
     "9163": {
-        "font": "regular",
-        "string": "인터셉터",
+        string: "인터셉터",
     },
     "9164": {
-        "font": "regular",
-        "string": "와일드스피어",
+        string: "와일드스피어",
     },
     "9165": {
-        "font": "regular",
-        "string": "제트볼",
+        string: "제트볼",
     },
     "9166": {
-        "font": "regular",
-        "string": "돌핀킥",
+        string: "돌핀킥",
     },
     "9167": {
-        "font": "regular",
-        "string": "팬텀",
+        string: "팬텀",
     },
     "9168": {
-        "font": "regular",
-        "string": "스탠더드바이크S",
+        string: "스탠더드바이크S",
     },
     "9169": {
-        "font": "regular",
-        "string": "스탠더드바이크M",
+        string: "스탠더드바이크M",
     },
     "9170": {
-        "font": "regular",
-        "string": "스탠더드바이크L",
+        string: "스탠더드바이크L",
     },
     "9171": {
-        "font": "regular",
-        "string": "스탠더드바이크S",
+        string: "스탠더드바이크S",
     },
     "9172": {
-        "font": "regular",
-        "string": "스탠더드바이크M",
+        string: "스탠더드바이크M",
     },
     "9173": {
-        "font": "regular",
-        "string": "스탠더드바이크L",
+        string: "스탠더드바이크L",
     },
     "9174": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "9200": {
-        "font": "regular",
-        "string": "버섯 컵",
+        string: "버섯 컵",
     },
     "9201": {
-        "font": "regular",
-        "string": "플라워 컵",
+        string: "플라워 컵",
     },
     "9202": {
-        "font": "regular",
-        "string": "스타 컵",
+        string: "스타 컵",
     },
     "9203": {
-        "font": "regular",
-        "string": "스페셜 컵",
+        string: "스페셜 컵",
     },
     "9204": {
-        "font": "regular",
-        "string": "등껍질 컵",
+        string: "등껍질 컵",
     },
     "9205": {
-        "font": "regular",
-        "string": "바나나 컵",
+        string: "바나나 컵",
     },
     "9206": {
-        "font": "regular",
-        "string": "리프 컵",
+        string: "리프 컵",
     },
     "9207": {
-        "font": "regular",
-        "string": "번개 컵",
+        string: "번개 컵",
     },
     "9208": {
-        "font": "regular",
-        "string": "갤럭시 콜로세움",
+        string: "갤럭시 콜로세움",
     },
     "9300": {
-        "font": "regular",
-        "string": "마리오 서킷",
+        string: "마리오 서킷",
     },
     "9301": {
-        "font": "regular",
-        "string": "음매음매 컨트리",
+        string: "음매음매 컨트리",
     },
     "9302": {
-        "font": "regular",
-        "string": "버섯 캐니언",
+        string: "버섯 캐니언",
     },
     "9303": {
-        "font": "regular",
-        "string": "이글이글 화산",
+        string: "이글이글 화산",
     },
     "9304": {
-        "font": "regular",
-        "string": "키노피오 팩토리",
+        string: "키노피오 팩토리",
     },
     "9305": {
-        "font": "regular",
-        "string": "코코넛 몰",
+        string: "코코넛 몰",
     },
     "9306": {
-        "font": "regular",
-        "string": "DK 스노보드 경기장",
+        string: "DK 스노보드 경기장",
     },
     "9307": {
-        "font": "regular",
-        "string": "와리오 광산",
+        string: "와리오 광산",
     },
     "9308": {
-        "font": "regular",
-        "string": "루이지 서킷",
+        string: "루이지 서킷",
     },
     "9309": {
-        "font": "regular",
-        "string": "데이지 서킷",
+        string: "데이지 서킷",
     },
     "9310": {
-        "font": "regular",
-        "string": "달맞이 하이웨이",
+        string: "달맞이 하이웨이",
     },
     "9311": {
-        "font": "regular",
-        "string": "단풍나무 로드",
+        string: "단풍나무 로드",
     },
     "9312": {
-        "font": "regular",
-        "string": "쿠파 성",
+        string: "쿠파 성",
     },
     "9313": {
-        "font": "regular",
-        "string": "무지개 로드",
+        string: "무지개 로드",
     },
     "9314": {
-        "font": "regular",
-        "string": "메마른 유적",
+        string: "메마른 유적",
     },
     "9315": {
-        "font": "regular",
-        "string": "엉금엉금 케이프",
+        string: "엉금엉금 케이프",
     },
     "9316": {
-        "font": "regular",
-        "string": "GC 피치 비치",
+        string: "GC 피치 비치",
     },
     "9317": {
-        "font": "regular",
-        "string": "GC 마리오 서킷",
+        string: "GC 마리오 서킷",
     },
     "9318": {
-        "font": "regular",
-        "string": "GC 와루이지 스타디움",
+        string: "GC 와루이지 스타디움",
     },
     "9319": {
-        "font": "regular",
-        "string": "GC DK 마운틴",
+        string: "GC DK 마운틴",
     },
     "9320": {
-        "font": "regular",
-        "string": "DS 요시알 폭포",
+        string: "DS 요시알 폭포",
     },
     "9321": {
-        "font": "regular",
-        "string": "DS 썬썬 사막",
+        string: "DS 썬썬 사막",
     },
     "9322": {
-        "font": "regular",
-        "string": "DS 피치 가든",
+        string: "DS 피치 가든",
     },
     "9323": {
-        "font": "regular",
-        "string": "DS 몬테 타운",
+        string: "DS 몬테 타운",
     },
     "9324": {
-        "font": "regular",
-        "string": "SFC 마리오 서킷3",
+        string: "SFC 마리오 서킷3",
     },
     "9325": {
-        "font": "regular",
-        "string": "SFC 유령의 늪2",
+        string: "SFC 유령의 늪2",
     },
     "9326": {
-        "font": "regular",
-        "string": "64 마리오 서킷",
+        string: "64 마리오 서킷",
     },
     "9327": {
-        "font": "regular",
-        "string": "64 샤베트 랜드",
+        string: "64 샤베트 랜드",
     },
     "9328": {
-        "font": "regular",
-        "string": "64 쿠파 성",
+        string: "64 쿠파 성",
     },
     "9329": {
-        "font": "regular",
-        "string": "64 DK 정글 파크",
+        string: "64 DK 정글 파크",
     },
     "9330": {
-        "font": "regular",
-        "string": "GBA 쿠파 성3",
+        string: "GBA 쿠파 성3",
     },
     "9331": {
-        "font": "regular",
-        "string": "GBA 헤이호 비치",
+        string: "GBA 헤이호 비치",
     },
     "9350": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "9351": {
-        "font": "regular",
-        "string": "풍선 배틀!",
+        string: "풍선 배틀!",
     },
     "9352": {
-        "font": "regular",
-        "string": "코인을 모아라!",
+        string: "코인을 모아라!",
     },
     "9353": {
-        "font": "regular",
-        "string": "Wii 스테이지",
+        string: "Wii 스테이지",
     },
     "9354": {
-        "font": "regular",
-        "string": "레트로 스테이지",
+        string: "레트로 스테이지",
     },
     "9355": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "9360": {
-        "font": "regular",
-        "string": "마리오 서킷",
+        string: "마리오 서킷",
     },
     "9361": {
-        "font": "regular",
-        "string": "음매음매 컨트리",
+        string: "음매음매 컨트리",
     },
     "9362": {
-        "font": "regular",
-        "string": "버섯 캐니언",
+        string: "버섯 캐니언",
     },
     "9363": {
-        "font": "regular",
-        "string": "이글이글 화산",
+        string: "이글이글 화산",
     },
     "9364": {
-        "font": "regular",
-        "string": "키노피오 팩토리",
+        string: "키노피오 팩토리",
     },
     "9365": {
-        "font": "regular",
-        "string": "코코넛 몰",
+        string: "코코넛 몰",
     },
     "9366": {
-        "font": "regular",
-        "string": "DK 스노보드 경기장",
+        string: "DK 스노보드 경기장",
     },
     "9367": {
-        "font": "regular",
-        "string": "와리오 광산",
+        string: "와리오 광산",
     },
     "9368": {
-        "font": "regular",
-        "string": "루이지 서킷",
+        string: "루이지 서킷",
     },
     "9369": {
-        "font": "regular",
-        "string": "데이지 서킷",
+        string: "데이지 서킷",
     },
     "9370": {
-        "font": "regular",
-        "string": "달맞이 하이웨이",
+        string: "달맞이 하이웨이",
     },
     "9371": {
-        "font": "regular",
-        "string": "단풍나무 로드",
+        string: "단풍나무 로드",
     },
     "9372": {
-        "font": "regular",
-        "string": "쿠파 성",
+        string: "쿠파 성",
     },
     "9373": {
-        "font": "regular",
-        "string": "무지개 로드",
+        string: "무지개 로드",
     },
     "9374": {
-        "font": "regular",
-        "string": "메마른 유적",
+        string: "메마른 유적",
     },
     "9375": {
-        "font": "regular",
-        "string": "엉금엉금 케이프",
+        string: "엉금엉금 케이프",
     },
     "9376": {
-        "font": "regular",
-        "string": "GC 피치 비치",
+        string: "GC 피치 비치",
     },
     "9377": {
-        "font": "regular",
-        "string": "GC 마리오 서킷",
+        string: "GC 마리오 서킷",
     },
     "9378": {
-        "font": "regular",
-        "string": "GC 와루이지 스타디움",
+        string: "GC 와루이지 스타디움",
     },
     "9379": {
-        "font": "regular",
-        "string": "GC DK 마운틴",
+        string: "GC DK 마운틴",
     },
     "9380": {
-        "font": "regular",
-        "string": "DS 요시알 폭포",
+        string: "DS 요시알 폭포",
     },
     "9381": {
-        "font": "regular",
-        "string": "DS 썬썬 사막",
+        string: "DS 썬썬 사막",
     },
     "9382": {
-        "font": "regular",
-        "string": "DS 피치 가든",
+        string: "DS 피치 가든",
     },
     "9383": {
-        "font": "regular",
-        "string": "DS 몬테 타운",
+        string: "DS 몬테 타운",
     },
     "9384": {
-        "font": "regular",
-        "string": "SFC 마리오 서킷3",
+        string: "SFC 마리오 서킷3",
     },
     "9385": {
-        "font": "regular",
-        "string": "SFC 유령의 늪2",
+        string: "SFC 유령의 늪2",
     },
     "9386": {
-        "font": "regular",
-        "string": "64 마리오 서킷",
+        string: "64 마리오 서킷",
     },
     "9387": {
-        "font": "regular",
-        "string": "64 샤베트 랜드",
+        string: "64 샤베트 랜드",
     },
     "9388": {
-        "font": "regular",
-        "string": "64 쿠파 성",
+        string: "64 쿠파 성",
     },
     "9389": {
-        "font": "regular",
-        "string": "64 DK 정글 파크",
+        string: "64 DK 정글 파크",
     },
     "9390": {
-        "font": "regular",
-        "string": "GBA 쿠파 성3",
+        string: "GBA 쿠파 성3",
     },
     "9391": {
-        "font": "regular",
-        "string": "GBA 헤이호 비치",
+        string: "GBA 헤이호 비치",
     },
     "9392": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "9400": {
-        "font": "regular",
-        "string": "아쿠아 리조트",
+        string: "아쿠아 리조트",
     },
     "9401": {
-        "font": "regular",
-        "string": "블록 광장",
+        string: "블록 광장",
     },
     "9402": {
-        "font": "regular",
-        "string": "멍멍이 룰렛",
+        string: "멍멍이 룰렛",
     },
     "9403": {
-        "font": "regular",
-        "string": "펑키 스타디움",
+        string: "펑키 스타디움",
     },
     "9404": {
-        "font": "regular",
-        "string": "쿵쿵 사막",
+        string: "쿵쿵 사막",
     },
     "9405": {
-        "font": "regular",
-        "string": "GC 쿠키 랜드",
+        string: "GC 쿠키 랜드",
     },
     "9406": {
-        "font": "regular",
-        "string": "DS 어두컴COME!",
+        string: "DS 어두컴COME!",
     },
     "9407": {
-        "font": "regular",
-        "string": "SFC 배틀 코스4",
+        string: "SFC 배틀 코스4",
     },
     "9408": {
-        "font": "regular",
-        "string": "GBA 배틀 코스3",
+        string: "GBA 배틀 코스3",
     },
     "9409": {
-        "font": "regular",
-        "string": "64 마천루",
+        string: "64 마천루",
     },
     "9410": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "9420": {
-        "font": "regular",
-        "string": "아쿠아 리조트",
+        string: "아쿠아 리조트",
     },
     "9421": {
-        "font": "regular",
-        "string": "블록 광장",
+        string: "블록 광장",
     },
     "9422": {
-        "font": "regular",
-        "string": "멍멍이 룰렛",
+        string: "멍멍이 룰렛",
     },
     "9423": {
-        "font": "regular",
-        "string": "펑키 스타디움",
+        string: "펑키 스타디움",
     },
     "9424": {
-        "font": "regular",
-        "string": "쿵쿵 사막",
+        string: "쿵쿵 사막",
     },
     "9425": {
-        "font": "regular",
-        "string": "GC 쿠키 랜드",
+        string: "GC 쿠키 랜드",
     },
     "9426": {
-        "font": "regular",
-        "string": "DS 어두컴COME!",
+        string: "DS 어두컴COME!",
     },
     "9427": {
-        "font": "regular",
-        "string": "SFC 배틀 코스4",
+        string: "SFC 배틀 코스4",
     },
     "9428": {
-        "font": "regular",
-        "string": "GBA 배틀 코스3",
+        string: "GBA 배틀 코스3",
     },
     "9429": {
-        "font": "regular",
-        "string": "64 마천루",
+        string: "64 마천루",
     },
     "9430": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "9450": {
-        "font": "regular",
-        "string": "GC 쿠키 랜드",
+        string: "GC 쿠키 랜드",
     },
     "9451": {
-        "font": "regular",
-        "string": "DS 어두컴COME!",
+        string: "DS 어두컴COME!",
     },
     "9452": {
-        "font": "regular",
-        "string": "SFC 배틀 코스4",
+        string: "SFC 배틀 코스4",
     },
     "9453": {
-        "font": "regular",
-        "string": "GBA 배틀 코스3",
+        string: "GBA 배틀 코스3",
     },
     "9454": {
-        "font": "regular",
-        "string": "64 마천루",
+        string: "64 마천루",
     },
     "9455": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "9500": {
-        "font": "regular",
-        "string": "Player {arg player|0}",
+        string: "Player {arg player|0}",
     },
     "9501": {
-        "font": "regular",
-        "string": "{arg player|0}",
+        string: "{arg player|0}",
     },
     "9502": {
-        "font": "regular",
-        "string": "{arg border|0}",
+        string: "{arg border|0}",
     },
     "9503": {
-        "font": "regular",
-        "string": "{arg question mark|0}",
+        string: "{arg question mark|0}",
     },
     "9504": {
-        "font": "regular",
-        "string": "{arg front button|0}",
+        string: "{arg front button|0}",
     },
     "9505": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "9550": {
-        "font": "regular",
-        "string": "1P",
+        string: "1P",
     },
     "9551": {
-        "font": "regular",
-        "string": "2P",
+        string: "2P",
     },
     "9552": {
-        "font": "regular",
-        "string": "3P",
+        string: "3P",
     },
     "9553": {
-        "font": "regular",
-        "string": "4P",
+        string: "4P",
     },
     "9554": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "9600": {
-        "font": "regular",
-        "string": "{1 char|①}",
+        string: "{1 char|①}",
     },
     "9601": {
-        "font": "regular",
-        "string": "{1 char|②}",
+        string: "{1 char|②}",
     },
     "9602": {
-        "font": "regular",
-        "string": "{1 char|③}",
+        string: "{1 char|③}",
     },
     "9603": {
-        "font": "regular",
-        "string": "{1 char|④}",
+        string: "{1 char|④}",
     },
     "9604": {
-        "font": "regular",
-        "string": "{1 char|⑤}",
+        string: "{1 char|⑤}",
     },
     "9605": {
-        "font": "regular",
-        "string": "{1 char|⑥}",
+        string: "{1 char|⑥}",
     },
     "9606": {
-        "font": "regular",
-        "string": "{1 char|⑦}",
+        string: "{1 char|⑦}",
     },
     "9607": {
-        "font": "regular",
-        "string": "{1 char|⑧}",
+        string: "{1 char|⑧}",
     },
     "9608": {
-        "font": "regular",
-        "string": "{1 char|⑨}",
+        string: "{1 char|⑨}",
     },
     "9609": {
-        "font": "regular",
-        "string": "{1 char|⑩}",
+        string: "{1 char|⑩}",
     },
     "9610": {
-        "font": "regular",
-        "string": "{1 char|⑪}",
+        string: "{1 char|⑪}",
     },
     "9611": {
-        "font": "regular",
-        "string": "{1 char|⑫}",
+        string: "{1 char|⑫}",
     },
     "9612": {
-        "font": "regular",
-        "string": "/{1 char|⑬}",
+        string: "/{1 char|⑬}",
     },
     "9613": {
-        "font": "regular",
-        "string": "-{1 char|⑭}",
+        string: "-{1 char|⑭}",
     },
     "9614": {
-        "font": "regular",
-        "string": "+{1 char|⑮}",
+        string: "+{1 char|⑮}",
     },
     "9615": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "9650": {
-        "font": "regular",
-        "string": "{arg message|0}{arg message|1}{arg message|2}{arg message|3}{arg message|4}{arg message|5}{arg message|6}{arg message|7}{arg message|8}",
+        string: "{arg message|0}{arg message|1}{arg message|2}{arg message|3}{arg message|4}{arg message|5}{arg message|6}{arg message|7}{arg message|8}",
     },
     "9651": {
-        "font": "regular",
-        "string": "{1 char|⑭}{arg message|0}{arg message|1}{arg message|2}{arg message|3}{arg message|4}{arg message|5}{arg message|6}{arg message|7}{arg message|8}",
+        string: "{1 char|⑭}{arg message|0}{arg message|1}{arg message|2}{arg message|3}{arg message|4}{arg message|5}{arg message|6}{arg message|7}{arg message|8}",
     },
     "9652": {
-        "font": "regular",
-        "string": "{1 char|⑮}{arg message|0}{arg message|1}{arg message|2}{arg message|3}{arg message|4}{arg message|5}{arg message|6}{arg message|7}{arg message|8}",
+        string: "{1 char|⑮}{arg message|0}{arg message|1}{arg message|2}{arg message|3}{arg message|4}{arg message|5}{arg message|6}{arg message|7}{arg message|8}",
     },
     "9653": {
-        "font": "regular",
-        "string": "{arg message|0}{font scale|70}/{arg message|1}",
+        string: "{arg message|0}{font scale|70}/{arg message|1}",
     },
     "9654": {
-        "font": "regular",
-        "string": "{arg message|0}{arg message|1}{font scale|70}/{arg message|2}{arg message|3}",
+        string: "{arg message|0}{arg message|1}{font scale|70}/{arg message|2}{arg message|3}",
     },
     "9655": {
-        "font": "regular",
-        "string": "{arg message|0}{arg message|1}{arg message|2}{font scale|70}/{arg message|3}{arg message|4}{arg message|5}",
+        string: "{arg message|0}{arg message|1}{arg message|2}{font scale|70}/{arg message|3}{arg message|4}{arg message|5}",
     },
     "9656": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "9700": {
-        "font": "regular",
-        "string": "VR",
+        string: "VR",
     },
     "9701": {
-        "font": "regular",
-        "string": "BR",
+        string: "BR",
     },
     "9702": {
-        "font": "regular",
-        "string": "랭크",
+        string: "랭크",
     },
     "9703": {
-        "font": "regular",
-        "string": "게스트",
+        string: "게스트",
     },
     "9704": {
-        "font": "regular",
-        "string": "----",
+        string: "----",
     },
     "9705": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "9710": {
-        "font": "regular",
-        "string": "{1 char|}",
+        string: "{1 char|}",
     },
     "9711": {
-        "font": "regular",
-        "string": "{1 char|}",
+        string: "{1 char|}",
     },
     "9712": {
-        "font": "regular",
-        "string": "{1 char|}",
+        string: "{1 char|}",
     },
     "9713": {
-        "font": "regular",
-        "string": "{1 char|}",
+        string: "{1 char|}",
     },
     "9714": {
-        "font": "regular",
-        "string": "{1 char|}",
+        string: "{1 char|}",
     },
     "9715": {
-        "font": "regular",
-        "string": "{1 char|}",
+        string: "{1 char|}",
     },
     "9716": {
-        "font": "regular",
-        "string": "{1 char|}",
+        string: "{1 char|}",
     },
     "9717": {
-        "font": "regular",
-        "string": "{1 char|}",
+        string: "{1 char|}",
     },
     "9718": {
-        "font": "regular",
-        "string": "{1 char|}",
+        string: "{1 char|}",
     },
     "9719": {
-        "font": "regular",
-        "string": "{1 char|}",
+        string: "{1 char|}",
     },
     "9720": {
-        "font": "regular",
-        "string": "{1 char|}",
+        string: "{1 char|}",
     },
     "9721": {
-        "font": "regular",
-        "string": "{1 char|}",
+        string: "{1 char|}",
     },
     "9722": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "9900": {
-        "font": "regular",
-        "string": "컨트롤러의 연결이 끊겼습니다.\n버튼을 눌러 주십시오.",
+        string: "컨트롤러의 연결이 끊겼습니다.\n버튼을 눌러 주십시오.",
     },
     "9901": {
-        "font": "regular",
-        "string": "컨트롤러가 변경되었습니다.\n버튼을 눌러 주십시오.",
+        string: "컨트롤러가 변경되었습니다.\n버튼을 눌러 주십시오.",
     },
     "9902": {
-        "font": "regular",
-        "string": "경기 중에는 컨트롤러를\n변경할 수 없습니다.\n원래대로 바꿔 주십시오.",
+        string: "경기 중에는 컨트롤러를\n변경할 수 없습니다.\n원래대로 바꿔 주십시오.",
     },
     "9903": {
-        "font": "regular",
-        "string": "Wi-Fi 대전 중에는 컨트롤러를\n변경할 수 없습니다.\n원래대로 바꿔 주십시오.",
+        string: "Wi-Fi 대전 중에는 컨트롤러를\n변경할 수 없습니다.\n원래대로 바꿔 주십시오.",
     },
     "9904": {
-        "font": "regular",
-        "string": "｢Wii 핸들｣로만 참가하는 대회입니다.\nWii 리모컨과 Wii 핸들을\n준비하고 버튼을 눌러 주십시오.",
+        string: "｢Wii 핸들｣로만 참가하는 대회입니다.\nWii 리모컨과 Wii 핸들을\n준비하고 버튼을 눌러 주십시오.",
     },
     "9999": {
-        "font": "regular",
-        "string": "?",
+        string: "?",
     },
 }

@@ -1,10 +1,8 @@
 {
     "10076": {
-        "font": "regular",
-        "string": "Réglages",
+        string: "Réglages",
     },
     "10072": {
-        "font": "regular",
-        "string": "200cc",
+        string: "200cc",
     },
 }

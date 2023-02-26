@@ -1,990 +1,743 @@
 {
     "9000": {
-        "font": "regular",
-        "string": "Mario",
+        string: "Mario",
     },
     "9001": {
-        "font": "regular",
-        "string": "Baby Peach",
+        string: "Baby Peach",
     },
     "9002": {
-        "font": "regular",
-        "string": "Waluigi",
+        string: "Waluigi",
     },
     "9003": {
-        "font": "regular",
-        "string": "Bowser",
+        string: "Bowser",
     },
     "9004": {
-        "font": "regular",
-        "string": "Baby Daisy",
+        string: "Baby Daisy",
     },
     "9005": {
-        "font": "regular",
-        "string": "Knochentrocken",
+        string: "Knochentrocken",
     },
     "9006": {
-        "font": "regular",
-        "string": "Baby Mario",
+        string: "Baby Mario",
     },
     "9007": {
-        "font": "regular",
-        "string": "Luigi",
+        string: "Luigi",
     },
     "9008": {
-        "font": "regular",
-        "string": "Toad",
+        string: "Toad",
     },
     "9009": {
-        "font": "regular",
-        "string": "Donkey Kong",
+        string: "Donkey Kong",
     },
     "9010": {
-        "font": "regular",
-        "string": "Yoshi",
+        string: "Yoshi",
     },
     "9011": {
-        "font": "regular",
-        "string": "Wario",
+        string: "Wario",
     },
     "9012": {
-        "font": "regular",
-        "string": "Baby Luigi",
+        string: "Baby Luigi",
     },
     "9013": {
-        "font": "regular",
-        "string": "Toadette",
+        string: "Toadette",
     },
     "9014": {
-        "font": "regular",
-        "string": "Koopa",
+        string: "Koopa",
     },
     "9015": {
-        "font": "regular",
-        "string": "Daisy",
+        string: "Daisy",
     },
     "9016": {
-        "font": "regular",
-        "string": "Peach",
+        string: "Peach",
     },
     "9017": {
-        "font": "regular",
-        "string": "Birdo",
+        string: "Birdo",
     },
     "9018": {
-        "font": "regular",
-        "string": "Diddy Kong",
+        string: "Diddy Kong",
     },
     "9019": {
-        "font": "regular",
-        "string": "König Buu Huu",
+        string: "König Buu Huu",
     },
     "9020": {
-        "font": "regular",
-        "string": "Bowser Jr.",
+        string: "Bowser Jr.",
     },
     "9021": {
-        "font": "regular",
-        "string": "Knochen-Bowser",
+        string: "Knochen-Bowser",
     },
     "9022": {
-        "font": "regular",
-        "string": "Funky Kong",
+        string: "Funky Kong",
     },
     "9023": {
-        "font": "regular",
-        "string": "Rosalina",
+        string: "Rosalina",
     },
     "9024": {
-        "font": "regular",
-        "string": "Mii",
+        string: "Mii",
     },
     "9050": {
-        "font": "regular",
-        "string": "{arg player|0}",
+        string: "{arg player|0}",
     },
     "9051": {
-        "font": "regular",
-        "string": "{arg player|0}",
+        string: "{arg player|0}",
     },
     "9052": {
-        "font": "regular",
-        "string": "Mii (Outfit A)",
+        string: "Mii (Outfit A)",
     },
     "9053": {
-        "font": "regular",
-        "string": "Mii (Outfit B)",
+        string: "Mii (Outfit B)",
     },
     "9054": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "9100": {
-        "font": "regular",
-        "string": "Mini-Kart",
+        string: "Mini-Kart",
     },
     "9101": {
-        "font": "regular",
-        "string": "Medi-Kart",
+        string: "Medi-Kart",
     },
     "9102": {
-        "font": "regular",
-        "string": "Maxi-Kart",
+        string: "Maxi-Kart",
     },
     "9103": {
-        "font": "regular",
-        "string": "Baby-Booster",
+        string: "Baby-Booster",
     },
     "9104": {
-        "font": "regular",
-        "string": "Nostalgia 1",
+        string: "Nostalgia 1",
     },
     "9105": {
-        "font": "regular",
-        "string": "Offroader",
+        string: "Offroader",
     },
     "9106": {
-        "font": "regular",
-        "string": "Minibiest",
+        string: "Minibiest",
     },
     "9107": {
-        "font": "regular",
-        "string": "Windschnitte",
+        string: "Windschnitte",
     },
     "9108": {
-        "font": "regular",
-        "string": "Feuerschleuder",
+        string: "Feuerschleuder",
     },
     "9109": {
-        "font": "regular",
-        "string": "Bob-Cheep",
+        string: "Bob-Cheep",
     },
     "9110": {
-        "font": "regular",
-        "string": "Blooper-Bolide",
+        string: "Blooper-Bolide",
     },
     "9111": {
-        "font": "regular",
-        "string": "Pistenpiranha",
+        string: "Pistenpiranha",
     },
     "9112": {
-        "font": "regular",
-        "string": "Monztruck",
+        string: "Monztruck",
     },
     "9113": {
-        "font": "regular",
-        "string": "Cabriosa",
+        string: "Cabriosa",
     },
     "9114": {
-        "font": "regular",
-        "string": "Sterngleiter",
+        string: "Sterngleiter",
     },
     "9115": {
-        "font": "regular",
-        "string": "Blue Falcon",
+        string: "Blue Falcon",
     },
     "9116": {
-        "font": "regular",
-        "string": "Glory",
+        string: "Glory",
     },
     "9117": {
-        "font": "regular",
-        "string": "Turbetto",
+        string: "Turbetto",
     },
     "9118": {
-        "font": "regular",
-        "string": "Mini-Kart",
+        string: "Mini-Kart",
     },
     "9119": {
-        "font": "regular",
-        "string": "Medi-Kart",
+        string: "Medi-Kart",
     },
     "9120": {
-        "font": "regular",
-        "string": "Maxi-Kart",
+        string: "Maxi-Kart",
     },
     "9121": {
-        "font": "regular",
-        "string": "Mini-Kart",
+        string: "Mini-Kart",
     },
     "9122": {
-        "font": "regular",
-        "string": "Medi-Kart",
+        string: "Medi-Kart",
     },
     "9123": {
-        "font": "regular",
-        "string": "Maxi-Kart",
+        string: "Maxi-Kart",
     },
     "9124": {
-        "font": "regular",
-        "string": "",
+        string: "",
     },
     "9150": {
-        "font": "regular",
-        "string": "Mini-Bike",
+        string: "Mini-Bike",
     },
     "9151": {
-        "font": "regular",
-        "string": "Medi-Bike",
+        string: "Medi-Bike",
     },
     "9152": {
-        "font": "regular",
-        "string": "Maxi-Bike",
+        string: "Maxi-Bike",
     },
     "9153": {
-        "font": "regular",
-        "string": "Willi-Bike",
+        string: "Willi-Bike",
     },
     "9154": {
-        "font": "regular",
-        "string": "Mach-Bike",
+        string: "Mach-Bike",
     },
     "9155": {
-        "font": "regular",
-        "string": "Bowser-Bike",
+        string: "Bowser-Bike",
     },
     "9156": {
-        "font": "regular",
-        "string": "Blitzer",
+        string: "Blitzer",
     },
     "9157": {
-        "font": "regular",
-        "string": "Bonbon-Bike",
+        string: "Bonbon-Bike",
     },
     "9158": {
-        "font": "regular",
-        "string": "Wario-Bike",
+        string: "Wario-Bike",
     },
     "9159": {
-        "font": "regular",
-        "string": "Quakquak",
+        string: "Quakquak",
     },
     "9160": {
-        "font": "regular",
-        "string": "Rapido",
+        string: "Rapido",
     },
     "9161": {
-        "font": "regular",
-        "string": "Schnuppe",
+        string: "Schnuppe",
     },
     "9162": {
-        "font": "regular",
-        "string": "Kameknaller",
+        string: "Kameknaller",
     },
     "9163": {
-        "font": "regular",
-        "string": "Pistensturm",
+        string: "Pistensturm",
     },
     "9164": {
-        "font": "regular",
-        "string": "Torped",
+        string: "Torped",
     },
     "9165": {
-        "font": "regular",
-        "string": "Jet-A",
+        string: "Jet-A",
     },
     "9166": {
-        "font": "regular",
-        "string": "Flippster",
+        string: "Flippster",
     },
     "9167": {
-        "font": "regular",
-        "string": "Phantom",
+        string: "Phantom",
     },
     "9168": {
-        "font": "regular",
-        "string": "Mini-Bike",
+        string: "Mini-Bike",
     },
     "9169": {
-        "font": "regular",
-        "string": "Medi-Bike",
+        string: "Medi-Bike",
     },
     "9170": {
-        "font": "regular",
-        "string": "Maxi-Bike",
+        string: "Maxi-Bike",
     },
     "9171": {
-        "font": "regular",
-        "string": "Mini-Bike",
+        string: "Mini-Bike",
     },
     "9172": {
-        "font": "regular",
-        "string": "Medi-Bike",
+        string: "Medi-Bike",
     },
     "9173": {
-        "font": "regular",
-        "string": "Maxi-Bike",
+        string: "Maxi-Bike",
     },
     "9174": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "9200": {
-        "font": "regular",
-        "string": "Pilz-Cup",
+        string: "Pilz-Cup",
     },
     "9201": {
-        "font": "regular",
-        "string": "Blumen-Cup",
+        string: "Blumen-Cup",
     },
     "9202": {
-        "font": "regular",
-        "string": "Stern-Cup",
+        string: "Stern-Cup",
     },
     "9203": {
-        "font": "regular",
-        "string": "Spezial-Cup",
+        string: "Spezial-Cup",
     },
     "9204": {
-        "font": "regular",
-        "string": "Panzer-Cup",
+        string: "Panzer-Cup",
     },
     "9205": {
-        "font": "regular",
-        "string": "Bananen-Cup",
+        string: "Bananen-Cup",
     },
     "9206": {
-        "font": "regular",
-        "string": "Blatt-Cup",
+        string: "Blatt-Cup",
     },
     "9207": {
-        "font": "regular",
-        "string": "Blitz-Cup",
+        string: "Blitz-Cup",
     },
     "9208": {
-        "font": "regular",
-        "string": "Galaxis-Arena",
+        string: "Galaxis-Arena",
     },
     "9300": {
-        "font": "regular",
-        "string": "Marios Piste",
+        string: "Marios Piste",
     },
     "9301": {
-        "font": "regular",
-        "string": "Kuhmuh-Weide",
+        string: "Kuhmuh-Weide",
     },
     "9302": {
-        "font": "regular",
-        "string": "Pilz-Schlucht",
+        string: "Pilz-Schlucht",
     },
     "9303": {
-        "font": "regular",
-        "string": "Vulkangrollen",
+        string: "Vulkangrollen",
     },
     "9304": {
-        "font": "regular",
-        "string": "Toads Fabrik",
+        string: "Toads Fabrik",
     },
     "9305": {
-        "font": "regular",
-        "string": "Kokos-Promenade",
+        string: "Kokos-Promenade",
     },
     "9306": {
-        "font": "regular",
-        "string": "DK Skikane",
+        string: "DK Skikane",
     },
     "9307": {
-        "font": "regular",
-        "string": "Warios Goldmine",
+        string: "Warios Goldmine",
     },
     "9308": {
-        "font": "regular",
-        "string": "Luigis Piste",
+        string: "Luigis Piste",
     },
     "9309": {
-        "font": "regular",
-        "string": "Daisys Piste",
+        string: "Daisys Piste",
     },
     "9310": {
-        "font": "regular",
-        "string": "Mondblickstraße",
+        string: "Mondblickstraße",
     },
     "9311": {
-        "font": "regular",
-        "string": "Blätterwald",
+        string: "Blätterwald",
     },
     "9312": {
-        "font": "regular",
-        "string": "Bowsers Festung",
+        string: "Bowsers Festung",
     },
     "9313": {
-        "font": "regular",
-        "string": "Regenbogen-Boulevard",
+        string: "Regenbogen-Boulevard",
     },
     "9314": {
-        "font": "regular",
-        "string": "Staubtrockene Ruinen",
+        string: "Staubtrockene Ruinen",
     },
     "9315": {
-        "font": "regular",
-        "string": "Koopa-Kap",
+        string: "Koopa-Kap",
     },
     "9316": {
-        "font": "regular",
-        "string": "GCN Peach Beach",
+        string: "GCN Peach Beach",
     },
     "9317": {
-        "font": "regular",
-        "string": "GCN Marios Piste",
+        string: "GCN Marios Piste",
     },
     "9318": {
-        "font": "regular",
-        "string": "GCN Waluigi-Arena",
+        string: "GCN Waluigi-Arena",
     },
     "9319": {
-        "font": "regular",
-        "string": "GCN DK Bergland",
+        string: "GCN DK Bergland",
     },
     "9320": {
-        "font": "regular",
-        "string": "DS Yoshi-Kaskaden",
+        string: "DS Yoshi-Kaskaden",
     },
     "9321": {
-        "font": "regular",
-        "string": "DS Glühheiße Wüste",
+        string: "DS Glühheiße Wüste",
     },
     "9322": {
-        "font": "regular",
-        "string": "DS Peachs Schlossgarten",
+        string: "DS Peachs Schlossgarten",
     },
     "9323": {
-        "font": "regular",
-        "string": "DS Piazzale Delfino",
+        string: "DS Piazzale Delfino",
     },
     "9324": {
-        "font": "regular",
-        "string": "SNES Marios Piste 3",
+        string: "SNES Marios Piste 3",
     },
     "9325": {
-        "font": "regular",
-        "string": "SNES Geistertal 2",
+        string: "SNES Geistertal 2",
     },
     "9326": {
-        "font": "regular",
-        "string": "N64 Marios Rennpiste",
+        string: "N64 Marios Rennpiste",
     },
     "9327": {
-        "font": "regular",
-        "string": "N64 Sorbet-Land",
+        string: "N64 Sorbet-Land",
     },
     "9328": {
-        "font": "regular",
-        "string": "N64 Bowsers Festung",
+        string: "N64 Bowsers Festung",
     },
     "9329": {
-        "font": "regular",
-        "string": "N64 DKs Dschungelpark",
+        string: "N64 DKs Dschungelpark",
     },
     "9330": {
-        "font": "regular",
-        "string": "GBA Bowsers Festung 3",
+        string: "GBA Bowsers Festung 3",
     },
     "9331": {
-        "font": "regular",
-        "string": "GBA Shy Guy-Strand",
+        string: "GBA Shy Guy-Strand",
     },
     "9350": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "9351": {
-        "font": "regular",
-        "string": "Ballonbalgerei",
+        string: "Ballonbalgerei",
     },
     "9352": {
-        "font": "regular",
-        "string": "Münzenjäger",
+        string: "Münzenjäger",
     },
     "9353": {
-        "font": "regular",
-        "string": "Wii-Arenen",
+        string: "Wii-Arenen",
     },
     "9354": {
-        "font": "regular",
-        "string": "Retro-Arenen",
+        string: "Retro-Arenen",
     },
     "9355": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "9360": {
-        "font": "regular",
-        "string": "Marios Piste",
+        string: "Marios Piste",
     },
     "9361": {
-        "font": "regular",
-        "string": "Kuhmuh-Weide",
+        string: "Kuhmuh-Weide",
     },
     "9362": {
-        "font": "regular",
-        "string": "Pilz-Schlucht",
+        string: "Pilz-Schlucht",
     },
     "9363": {
-        "font": "regular",
-        "string": "Vulkangrollen",
+        string: "Vulkangrollen",
     },
     "9364": {
-        "font": "regular",
-        "string": "Toads Fabrik",
+        string: "Toads Fabrik",
     },
     "9365": {
-        "font": "regular",
-        "string": "Kokos-Promenade",
+        string: "Kokos-Promenade",
     },
     "9366": {
-        "font": "regular",
-        "string": "DK Skikane",
+        string: "DK Skikane",
     },
     "9367": {
-        "font": "regular",
-        "string": "Warios Goldmine",
+        string: "Warios Goldmine",
     },
     "9368": {
-        "font": "regular",
-        "string": "Luigis Piste",
+        string: "Luigis Piste",
     },
     "9369": {
-        "font": "regular",
-        "string": "Daisys Piste",
+        string: "Daisys Piste",
     },
     "9370": {
-        "font": "regular",
-        "string": "Mondblickstraße",
+        string: "Mondblickstraße",
     },
     "9371": {
-        "font": "regular",
-        "string": "Blätterwald",
+        string: "Blätterwald",
     },
     "9372": {
-        "font": "regular",
-        "string": "Bowsers Festung",
+        string: "Bowsers Festung",
     },
     "9373": {
-        "font": "regular",
-        "string": "Regenbogen-Boulevard",
+        string: "Regenbogen-Boulevard",
     },
     "9374": {
-        "font": "regular",
-        "string": "Staubtrockene Ruinen",
+        string: "Staubtrockene Ruinen",
     },
     "9375": {
-        "font": "regular",
-        "string": "Koopa-Kap",
+        string: "Koopa-Kap",
     },
     "9376": {
-        "font": "regular",
-        "string": "GCN Peach Beach",
+        string: "GCN Peach Beach",
     },
     "9377": {
-        "font": "regular",
-        "string": "GCN Marios Piste",
+        string: "GCN Marios Piste",
     },
     "9378": {
-        "font": "regular",
-        "string": "GCN Waluigi-Arena",
+        string: "GCN Waluigi-Arena",
     },
     "9379": {
-        "font": "regular",
-        "string": "GCN DK Bergland",
+        string: "GCN DK Bergland",
     },
     "9380": {
-        "font": "regular",
-        "string": "DS Yoshi-Kaskaden",
+        string: "DS Yoshi-Kaskaden",
     },
     "9381": {
-        "font": "regular",
-        "string": "DS Glühheiße Wüste",
+        string: "DS Glühheiße Wüste",
     },
     "9382": {
-        "font": "regular",
-        "string": "DS Peachs Schlossgarten",
+        string: "DS Peachs Schlossgarten",
     },
     "9383": {
-        "font": "regular",
-        "string": "DS Piazzale Delfino",
+        string: "DS Piazzale Delfino",
     },
     "9384": {
-        "font": "regular",
-        "string": "SNES Marios Piste 3",
+        string: "SNES Marios Piste 3",
     },
     "9385": {
-        "font": "regular",
-        "string": "SNES Geistertal 2",
+        string: "SNES Geistertal 2",
     },
     "9386": {
-        "font": "regular",
-        "string": "N64 Marios Rennpiste",
+        string: "N64 Marios Rennpiste",
     },
     "9387": {
-        "font": "regular",
-        "string": "N64 Sorbet-Land",
+        string: "N64 Sorbet-Land",
     },
     "9388": {
-        "font": "regular",
-        "string": "N64 Bowsers Festung",
+        string: "N64 Bowsers Festung",
     },
     "9389": {
-        "font": "regular",
-        "string": "N64 DKs Dschungelpark",
+        string: "N64 DKs Dschungelpark",
     },
     "9390": {
-        "font": "regular",
-        "string": "GBA Bowsers Festung 3",
+        string: "GBA Bowsers Festung 3",
     },
     "9391": {
-        "font": "regular",
-        "string": "GBA Shy Guy-Strand",
+        string: "GBA Shy Guy-Strand",
     },
     "9392": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "9400": {
-        "font": "regular",
-        "string": "Delfino-Pier",
+        string: "Delfino-Pier",
     },
     "9401": {
-        "font": "regular",
-        "string": "Block-Plaza",
+        string: "Block-Plaza",
     },
     "9402": {
-        "font": "regular",
-        "string": "Kettenhund-Roulette",
+        string: "Kettenhund-Roulette",
     },
     "9403": {
-        "font": "regular",
-        "string": "Funky-Stadion",
+        string: "Funky-Stadion",
     },
     "9404": {
-        "font": "regular",
-        "string": "Steinwüste",
+        string: "Steinwüste",
     },
     "9405": {
-        "font": "regular",
-        "string": "GCN Keks-Land",
+        string: "GCN Keks-Land",
     },
     "9406": {
-        "font": "regular",
-        "string": "DS Finstervilla",
+        string: "DS Finstervilla",
     },
     "9407": {
-        "font": "regular",
-        "string": "SNES Kampfkurs 4",
+        string: "SNES Kampfkurs 4",
     },
     "9408": {
-        "font": "regular",
-        "string": "GBA Kampfkurs 3",
+        string: "GBA Kampfkurs 3",
     },
     "9409": {
-        "font": "regular",
-        "string": "N64 Wolkenkratzer",
+        string: "N64 Wolkenkratzer",
     },
     "9410": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "9420": {
-        "font": "regular",
-        "string": "Delfino-Pier",
+        string: "Delfino-Pier",
     },
     "9421": {
-        "font": "regular",
-        "string": "Block-Plaza",
+        string: "Block-Plaza",
     },
     "9422": {
-        "font": "regular",
-        "string": "Kettenhund-Roulette",
+        string: "Kettenhund-Roulette",
     },
     "9423": {
-        "font": "regular",
-        "string": "Funky-Stadion",
+        string: "Funky-Stadion",
     },
     "9424": {
-        "font": "regular",
-        "string": "Steinwüste",
+        string: "Steinwüste",
     },
     "9425": {
-        "font": "regular",
-        "string": "GCN Keks-Land",
+        string: "GCN Keks-Land",
     },
     "9426": {
-        "font": "regular",
-        "string": "DS Finstervilla",
+        string: "DS Finstervilla",
     },
     "9427": {
-        "font": "regular",
-        "string": "SNES Kampfkurs 4",
+        string: "SNES Kampfkurs 4",
     },
     "9428": {
-        "font": "regular",
-        "string": "GBA Kampfkurs 3",
+        string: "GBA Kampfkurs 3",
     },
     "9429": {
-        "font": "regular",
-        "string": "N64 Wolkenkratzer",
+        string: "N64 Wolkenkratzer",
     },
     "9430": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "9450": {
-        "font": "regular",
-        "string": "GCN Keks-Land",
+        string: "GCN Keks-Land",
     },
     "9451": {
-        "font": "regular",
-        "string": "DS Finstervilla",
+        string: "DS Finstervilla",
     },
     "9452": {
-        "font": "regular",
-        "string": "SNES Kampfkurs 4",
+        string: "SNES Kampfkurs 4",
     },
     "9453": {
-        "font": "regular",
-        "string": "GBA Kampfkurs 3",
+        string: "GBA Kampfkurs 3",
     },
     "9454": {
-        "font": "regular",
-        "string": "N64 Wolkenkratzer",
+        string: "N64 Wolkenkratzer",
     },
     "9455": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "9500": {
-        "font": "regular",
-        "string": "Spieler {arg player|0}",
+        string: "Spieler {arg player|0}",
     },
     "9501": {
-        "font": "regular",
-        "string": "{arg player|0}",
+        string: "{arg player|0}",
     },
     "9502": {
-        "font": "regular",
-        "string": "{arg border|0}",
+        string: "{arg border|0}",
     },
     "9503": {
-        "font": "regular",
-        "string": "{arg question mark|0}",
+        string: "{arg question mark|0}",
     },
     "9504": {
-        "font": "regular",
-        "string": "{arg front button|0}",
+        string: "{arg front button|0}",
     },
     "9505": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "9550": {
-        "font": "regular",
-        "string": "S1",
+        string: "S1",
     },
     "9551": {
-        "font": "regular",
-        "string": "S2",
+        string: "S2",
     },
     "9552": {
-        "font": "regular",
-        "string": "S3",
+        string: "S3",
     },
     "9553": {
-        "font": "regular",
-        "string": "S4",
+        string: "S4",
     },
     "9554": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "9600": {
-        "font": "regular",
-        "string": "{1 char|①}",
+        string: "{1 char|①}",
     },
     "9601": {
-        "font": "regular",
-        "string": "{1 char|②}",
+        string: "{1 char|②}",
     },
     "9602": {
-        "font": "regular",
-        "string": "{1 char|③}",
+        string: "{1 char|③}",
     },
     "9603": {
-        "font": "regular",
-        "string": "{1 char|④}",
+        string: "{1 char|④}",
     },
     "9604": {
-        "font": "regular",
-        "string": "{1 char|⑤}",
+        string: "{1 char|⑤}",
     },
     "9605": {
-        "font": "regular",
-        "string": "{1 char|⑥}",
+        string: "{1 char|⑥}",
     },
     "9606": {
-        "font": "regular",
-        "string": "{1 char|⑦}",
+        string: "{1 char|⑦}",
     },
     "9607": {
-        "font": "regular",
-        "string": "{1 char|⑧}",
+        string: "{1 char|⑧}",
     },
     "9608": {
-        "font": "regular",
-        "string": "{1 char|⑨}",
+        string: "{1 char|⑨}",
     },
     "9609": {
-        "font": "regular",
-        "string": "{1 char|⑩}",
+        string: "{1 char|⑩}",
     },
     "9610": {
-        "font": "regular",
-        "string": "{1 char|⑪}",
+        string: "{1 char|⑪}",
     },
     "9611": {
-        "font": "regular",
-        "string": "{1 char|⑫}",
+        string: "{1 char|⑫}",
     },
     "9612": {
-        "font": "regular",
-        "string": "/{1 char|⑬}",
+        string: "/{1 char|⑬}",
     },
     "9613": {
-        "font": "regular",
-        "string": "-{1 char|⑭}",
+        string: "-{1 char|⑭}",
     },
     "9614": {
-        "font": "regular",
-        "string": "+{1 char|⑮}",
+        string: "+{1 char|⑮}",
     },
     "9615": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "9650": {
-        "font": "regular",
-        "string": "{arg message|0}{arg message|1}{arg message|2}{arg message|3}{arg message|4}{arg message|5}{arg message|6}{arg message|7}{arg message|8}",
+        string: "{arg message|0}{arg message|1}{arg message|2}{arg message|3}{arg message|4}{arg message|5}{arg message|6}{arg message|7}{arg message|8}",
     },
     "9651": {
-        "font": "regular",
-        "string": "{1 char|⑭}{arg message|0}{arg message|1}{arg message|2}{arg message|3}{arg message|4}{arg message|5}{arg message|6}{arg message|7}{arg message|8}",
+        string: "{1 char|⑭}{arg message|0}{arg message|1}{arg message|2}{arg message|3}{arg message|4}{arg message|5}{arg message|6}{arg message|7}{arg message|8}",
     },
     "9652": {
-        "font": "regular",
-        "string": "{1 char|⑮}{arg message|0}{arg message|1}{arg message|2}{arg message|3}{arg message|4}{arg message|5}{arg message|6}{arg message|7}{arg message|8}",
+        string: "{1 char|⑮}{arg message|0}{arg message|1}{arg message|2}{arg message|3}{arg message|4}{arg message|5}{arg message|6}{arg message|7}{arg message|8}",
     },
     "9653": {
-        "font": "regular",
-        "string": "{arg message|0}{font scale|70}/{arg message|1}",
+        string: "{arg message|0}{font scale|70}/{arg message|1}",
     },
     "9654": {
-        "font": "regular",
-        "string": "{arg message|0}{arg message|1}{font scale|70}/{arg message|2}{arg message|3}",
+        string: "{arg message|0}{arg message|1}{font scale|70}/{arg message|2}{arg message|3}",
     },
     "9655": {
-        "font": "regular",
-        "string": "{arg message|0}{arg message|1}{arg message|2}{font scale|70}/{arg message|3}{arg message|4}{arg message|5}",
+        string: "{arg message|0}{arg message|1}{arg message|2}{font scale|70}/{arg message|3}{arg message|4}{arg message|5}",
     },
     "9656": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "9700": {
-        "font": "regular",
-        "string": "R-Punkte",
+        string: "R-Punkte",
     },
     "9701": {
-        "font": "regular",
-        "string": "W-Punkte",
+        string: "W-Punkte",
     },
     "9702": {
-        "font": "regular",
-        "string": "RANG",
+        string: "RANG",
     },
     "9703": {
-        "font": "regular",
-        "string": "Gast",
+        string: "Gast",
     },
     "9704": {
-        "font": "regular",
-        "string": "----",
+        string: "----",
     },
     "9705": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "9710": {
-        "font": "regular",
-        "string": "{1 char|}",
+        string: "{1 char|}",
     },
     "9711": {
-        "font": "regular",
-        "string": "{1 char|}",
+        string: "{1 char|}",
     },
     "9712": {
-        "font": "regular",
-        "string": "{1 char|}",
+        string: "{1 char|}",
     },
     "9713": {
-        "font": "regular",
-        "string": "{1 char|}",
+        string: "{1 char|}",
     },
     "9714": {
-        "font": "regular",
-        "string": "{1 char|}",
+        string: "{1 char|}",
     },
     "9715": {
-        "font": "regular",
-        "string": "{1 char|}",
+        string: "{1 char|}",
     },
     "9716": {
-        "font": "regular",
-        "string": "{1 char|}",
+        string: "{1 char|}",
     },
     "9717": {
-        "font": "regular",
-        "string": "{1 char|}",
+        string: "{1 char|}",
     },
     "9718": {
-        "font": "regular",
-        "string": "{1 char|}",
+        string: "{1 char|}",
     },
     "9719": {
-        "font": "regular",
-        "string": "{1 char|}",
+        string: "{1 char|}",
     },
     "9720": {
-        "font": "regular",
-        "string": "{1 char|}",
+        string: "{1 char|}",
     },
     "9721": {
-        "font": "regular",
-        "string": "{1 char|}",
+        string: "{1 char|}",
     },
     "9722": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "9900": {
-        "font": "regular",
-        "string": "Die Verbindung zum\nController wurde unterbrochen.\nBitte den A-Knopf drücken.",
+        string: "Die Verbindung zum\nController wurde unterbrochen.\nBitte den A-Knopf drücken.",
     },
     "9901": {
-        "font": "regular",
-        "string": "Controllerwechsel!\nBitte den A-Knopf drücken.",
+        string: "Controllerwechsel!\nBitte den A-Knopf drücken.",
     },
     "9902": {
-        "font": "regular",
-        "string": "Während eines Matchs kann der\nController nicht gewechselt werden.\nBitte vorherigen Controller verwenden.",
+        string: "Während eines Matchs kann der\nController nicht gewechselt werden.\nBitte vorherigen Controller verwenden.",
     },
     "9903": {
-        "font": "regular",
-        "string": "Während eines Matchs via Nintendo WFC\nkann der Controller nicht gewechselt werden\nBitte vorherigen Controller verwenden.",
+        string: "Während eines Matchs via Nintendo WFC\nkann der Controller nicht gewechselt werden\nBitte vorherigen Controller verwenden.",
     },
     "9904": {
-        "font": "regular",
-        "string": "In diesem Wettbewerb wird das Wii Wheel\nbenötigt. Bitte lege die Wii-Fernbedienung in\ndas Wii Wheel ein und drücke den A-Knopf.",
+        string: "In diesem Wettbewerb wird das Wii Wheel\nbenötigt. Bitte lege die Wii-Fernbedienung in\ndas Wii Wheel ein und drücke den A-Knopf.",
     },
     "9999": {
-        "font": "regular",
-        "string": "?",
+        string: "?",
     },
 }

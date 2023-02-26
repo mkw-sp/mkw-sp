@@ -1,30 +1,23 @@
 {
     "10010": {
-        "font": "regular",
-        "string": "보통",
+        string: "보통",
     },
     "10015": {
-        "font": "regular",
-        "string": "캐릭터",
+        string: "캐릭터",
     },
     "10016": {
-        "font": "regular",
-        "string": "Mii",
+        string: "Mii",
     },
     "10057": {
-        "font": "regular",
-        "string": "OFF",
+        string: "OFF",
     },
     "10058": {
-        "font": "regular",
-        "string": "ON",
+        string: "ON",
     },
     "10062": {
-        "font": "regular",
-        "string": "OFF",
+        string: "OFF",
     },
     "10063": {
-        "font": "regular",
-        "string": "ON",
+        string: "ON",
     },
 }

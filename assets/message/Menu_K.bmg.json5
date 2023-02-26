@@ -1,5562 +1,4172 @@
 {
     "1": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "2000": {
-        "font": "regular",
-        "string": "OK",
+        string: "OK",
     },
     "2001": {
-        "font": "regular",
-        "string": "←{arg back button|0}뒤로",
+        string: "←{arg back button|0}뒤로",
     },
     "2002": {
-        "font": "regular",
-        "string": "예",
+        string: "예",
     },
     "2003": {
-        "font": "regular",
-        "string": "아니요",
+        string: "아니요",
     },
     "2004": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "2005": {
-        "font": "regular",
-        "string": "→",
+        string: "→",
     },
     "2006": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "2007": {
-        "font": "regular",
-        "string": "←",
+        string: "←",
     },
     "2008": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "2009": {
-        "font": "regular",
-        "string": "{arg integer|0 0}/{arg integer|1 0}",
+        string: "{arg integer|0 0}/{arg integer|1 0}",
     },
     "2010": {
-        "font": "regular",
-        "string": "Mario Kart Wii",
+        string: "Mario Kart Wii",
     },
     "2011": {
-        "font": "regular",
-        "string": "싱글 플레이",
+        string: "싱글 플레이",
     },
     "2012": {
-        "font": "regular",
-        "string": "멀티 플레이",
+        string: "멀티 플레이",
     },
     "2013": {
-        "font": "regular",
-        "string": "Wi-Fi",
+        string: "Wi-Fi",
     },
     "2014": {
-        "font": "regular",
-        "string": "마리오 카트 채널",
+        string: "마리오 카트 채널",
     },
     "2015": {
-        "font": "regular",
-        "string": "라이센스 설정",
+        string: "라이센스 설정",
     },
     "2016": {
-        "font": "regular",
-        "string": "기록",
+        string: "기록",
     },
     "2017": {
-        "font": "regular",
-        "string": "PRESS (A) BUTTON",
+        string: "PRESS (A) BUTTON",
     },
     "2018": {
-        "font": "regular",
-        "string": "메인 메뉴",
+        string: "메인 메뉴",
     },
     "2019": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "2020": {
-        "font": "regular",
-        "string": "그랑프리 등을 혼자 플레이합니다",
+        string: "그랑프리 등을 혼자 플레이합니다",
     },
     "2021": {
-        "font": "regular",
-        "string": "VS와 배틀을 2명이 플레이합니다",
+        string: "VS와 배틀을 2명이 플레이합니다",
     },
     "2022": {
-        "font": "regular",
-        "string": "VS와 배틀을 3명이 플레이합니다",
+        string: "VS와 배틀을 3명이 플레이합니다",
     },
     "2023": {
-        "font": "regular",
-        "string": "VS와 배틀을 4명이 플레이합니다",
+        string: "VS와 배틀을 4명이 플레이합니다",
     },
     "2024": {
-        "font": "regular",
-        "string": "인터넷상에서 플레이합니다",
+        string: "인터넷상에서 플레이합니다",
     },
     "2025": {
-        "font": "regular",
-        "string": "인터넷상에서 2명이 플레이합니다",
+        string: "인터넷상에서 2명이 플레이합니다",
     },
     "2026": {
-        "font": "regular",
-        "string": "랭킹을 보거나 대회에 참가합니다",
+        string: "랭킹을 보거나 대회에 참가합니다",
     },
     "2027": {
-        "font": "regular",
-        "string": "기록을 보거나 Mii를 변경합니다",
+        string: "기록을 보거나 Mii를 변경합니다",
     },
     "2028": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "2029": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "2030": {
-        "font": "regular",
-        "string": "멀티 플레이 (2명)",
+        string: "멀티 플레이 (2명)",
     },
     "2031": {
-        "font": "regular",
-        "string": "멀티 플레이 (3명)",
+        string: "멀티 플레이 (3명)",
     },
     "2032": {
-        "font": "regular",
-        "string": "멀티 플레이 (4명)",
+        string: "멀티 플레이 (4명)",
     },
     "2033": {
-        "font": "regular",
-        "string": "Wi-Fi (1명)",
+        string: "Wi-Fi (1명)",
     },
     "2034": {
-        "font": "regular",
-        "string": "Wi-Fi (2명)",
+        string: "Wi-Fi (2명)",
     },
     "2035": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "2050": {
-        "font": "regular",
-        "string": "「마리오 카트 Wii」를\n시작합니다.\n\nWii 본체에 디스크를 넣고\n잠시 기다려 주십시오.",
+        string: "「마리오 카트 Wii」를\n시작합니다.\n\nWii 본체에 디스크를 넣고\n잠시 기다려 주십시오.",
     },
     "2051": {
-        "font": "regular",
-        "string": "디스크를 불러오지 못했습니다.\n자세한 내용은 Wii 본체\n사용설명서를 읽어 주십시오.",
+        string: "디스크를 불러오지 못했습니다.\n자세한 내용은 Wii 본체\n사용설명서를 읽어 주십시오.",
     },
     "2052": {
-        "font": "regular",
-        "string": "에러가 발생했습니다.\n\n꺼냄 버튼을 눌러 디스크를\n꺼낸 다음, 본체 전원을 끄고\n본체 사용설명서의 \n지시에 따라 주십시오.",
+        string: "에러가 발생했습니다.\n\n꺼냄 버튼을 눌러 디스크를\n꺼낸 다음, 본체 전원을 끄고\n본체 사용설명서의 \n지시에 따라 주십시오.",
     },
     "2053": {
-        "font": "regular",
-        "string": "Wii 본체 저장 메모리의\n빈 용량이 부족합니다.\n저장 데이터 관리 화면에서\n데이터를 SD 카드로 이동하거나\n데이터를 삭제하여 23블록의\n여유 공간을 확보해 주십시오.",
+        string: "Wii 본체 저장 메모리의\n빈 용량이 부족합니다.\n저장 데이터 관리 화면에서\n데이터를 SD 카드로 이동하거나\n데이터를 삭제하여 23블록의\n여유 공간을 확보해 주십시오.",
     },
     "2054": {
-        "font": "regular",
-        "string": "Wii 본체 저장 메모리가 손상되어\n있습니다. 자세한 내용은 Wii 본체\n사용설명서를 읽어 주십시오.",
+        string: "Wii 본체 저장 메모리가 손상되어\n있습니다. 자세한 내용은 Wii 본체\n사용설명서를 읽어 주십시오.",
     },
     "2055": {
-        "font": "regular",
-        "string": "데이터가 손상되어 있어\n본 파일은 사용할 수 없습니다.\n파일을 삭제하고 새로운 파일을\n작성하겠습니까?",
+        string: "데이터가 손상되어 있어\n본 파일은 사용할 수 없습니다.\n파일을 삭제하고 새로운 파일을\n작성하겠습니까?",
     },
     "2056": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "2057": {
-        "font": "regular",
-        "string": "Wii 본체 저장 메모리의\n읽기/쓰기를 할 수 없습니다.\n\n자세한 내용은 Wii 본체\n사용설명서를 읽어 주십시오.",
+        string: "Wii 본체 저장 메모리의\n읽기/쓰기를 할 수 없습니다.\n\n자세한 내용은 Wii 본체\n사용설명서를 읽어 주십시오.",
     },
     "2058": {
-        "font": "regular",
-        "string": "Wii 메뉴로 돌아갑니다.",
+        string: "Wii 메뉴로 돌아갑니다.",
     },
     "2059": {
-        "font": "regular",
-        "string": "저장하지 않고 플레이",
+        string: "저장하지 않고 플레이",
     },
     "2060": {
-        "font": "regular",
-        "string": "Wii 메뉴로 돌아가기",
+        string: "Wii 메뉴로 돌아가기",
     },
     "2061": {
-        "font": "regular",
-        "string": "저장 파일이 없어\n이 메뉴는 선택할 수 없습니다.",
+        string: "저장 파일이 없어\n이 메뉴는 선택할 수 없습니다.",
     },
     "2062": {
-        "font": "regular",
-        "string": "저장 파일을\n읽지 못했습니다.\n\n「마리오 카트 Wii」\n디스크를 넣어 주십시오.",
+        string: "저장 파일을\n읽지 못했습니다.\n\n「마리오 카트 Wii」\n디스크를 넣어 주십시오.",
     },
     "2063": {
-        "font": "regular",
-        "string": "디스크 시작",
+        string: "디스크 시작",
     },
     "2064": {
-        "font": "regular",
-        "string": "Wii 메뉴로 돌아가겠습니까?",
+        string: "Wii 메뉴로 돌아가겠습니까?",
     },
     "2065": {
-        "font": "regular",
-        "string": "저장 중입니다.\n전원 버튼 또는 리셋 버튼을\n건드리지 마십시오.",
+        string: "저장 중입니다.\n전원 버튼 또는 리셋 버튼을\n건드리지 마십시오.",
     },
     "2066": {
-        "font": "regular",
-        "string": "「Mii 채널」의 저장 데이터를\n읽지 못했습니다.\n\n「Mii 채널」에서\n확인해 주십시오.",
+        string: "「Mii 채널」의 저장 데이터를\n읽지 못했습니다.\n\n「Mii 채널」에서\n확인해 주십시오.",
     },
     "2067": {
-        "font": "regular",
-        "string": "지금 선택한 Mii를\n「Mii 채널」에서 삭제하면\n「마리오 카트 Wii」에서 사용하는\nMii도 삭제되어 버립니다.\n\n주의해 주십시오.",
+        string: "지금 선택한 Mii를\n「Mii 채널」에서 삭제하면\n「마리오 카트 Wii」에서 사용하는\nMii도 삭제되어 버립니다.\n\n주의해 주십시오.",
     },
     "2068": {
-        "font": "regular",
-        "string": "게스트의 Mii로\n라이센스를 만들었습니다.\n\n새로운 Mii는\n「Mii 채널」에서\n만들 수 있습니다.",
+        string: "게스트의 Mii로\n라이센스를 만들었습니다.\n\n새로운 Mii는\n「Mii 채널」에서\n만들 수 있습니다.",
     },
     "2069": {
-        "font": "regular",
-        "string": "한 번에 보낼 수 있는 고스트\n도전장은 5통까지입니다.\n\n다시 보낼 수 있게 될 때까지\n잠시 기다려 주십시오.\n\n「마리오 카트 Wii」를 다시\n플레이할 때 시도해 주십시오.",
+        string: "한 번에 보낼 수 있는 고스트\n도전장은 5통까지입니다.\n\n다시 보낼 수 있게 될 때까지\n잠시 기다려 주십시오.\n\n「마리오 카트 Wii」를 다시\n플레이할 때 시도해 주십시오.",
     },
     "2070": {
-        "font": "regular",
-        "string": "저장 데이터가 없기 때문에\n이 모드는 이용할 수 없습니다.\n\nWii 본체 저장 메모리는\nWii 본체 저장 데이터 관리\n화면에서 정리할 수 있습니다.",
+        string: "저장 데이터가 없기 때문에\n이 모드는 이용할 수 없습니다.\n\nWii 본체 저장 메모리는\nWii 본체 저장 데이터 관리\n화면에서 정리할 수 있습니다.",
     },
     "2071": {
-        "font": "regular",
-        "string": "Wii 본체 저장 메모리의\n빈 파일 수가 부족합니다.\n저장 데이터 관리 화면에서\n데이터를 SD 카드로 이동하거나\n데이터를 삭제해 주십시오.",
+        string: "Wii 본체 저장 메모리의\n빈 파일 수가 부족합니다.\n저장 데이터 관리 화면에서\n데이터를 SD 카드로 이동하거나\n데이터를 삭제해 주십시오.",
     },
     "2072": {
-        "font": "regular",
-        "string": "Wi-Fi 커넥션을 종료하고\n메인 메뉴로 돌아갑니다.",
+        string: "Wi-Fi 커넥션을 종료하고\n메인 메뉴로 돌아갑니다.",
     },
     "2073": {
-        "font": "regular",
-        "string": "국가 설정이 변경되어 저장 파일\n을 다시 만들어야 합니다. 저장\n파일을 다시 만들지 않으려면 Wii\n메뉴의 국가 설정을 되돌려 주십시오.",
+        string: "국가 설정이 변경되어 저장 파일\n을 다시 만들어야 합니다. 저장\n파일을 다시 만들지 않으려면 Wii\n메뉴의 국가 설정을 되돌려 주십시오.",
     },
     "2074": {
-        "font": "regular",
-        "string": "저장 파일을 다시 만들기",
+        string: "저장 파일을 다시 만들기",
     },
     "2075": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "2100": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "2101": {
-        "font": "regular",
-        "string": "「마리오 카트 Wii」를 즐기기 위한\n새로운 라이센스를 만듭니다.",
+        string: "「마리오 카트 Wii」를 즐기기 위한\n새로운 라이센스를 만듭니다.",
     },
     "2102": {
-        "font": "regular",
-        "string": "라이센스 작성",
+        string: "라이센스 작성",
     },
     "2103": {
-        "font": "regular",
-        "string": "라이센스 삭제",
+        string: "라이센스 삭제",
     },
     "2104": {
-        "font": "regular",
-        "string": "라이센스 선택",
+        string: "라이센스 선택",
     },
     "2105": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "2106": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "2107": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "2108": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "2109": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "2110": {
-        "font": "regular",
-        "string": "{arg integer|0 4}-{arg integer|1 4}-{arg integer|2 4}",
+        string: "{arg integer|0 4}-{arg integer|1 4}-{arg integer|2 4}",
     },
     "2111": {
-        "font": "regular",
-        "string": "{arg player|0} 님의\n라이센스를 만들겠습니까?",
+        string: "{arg player|0} 님의\n라이센스를 만들겠습니까?",
     },
     "2112": {
-        "font": "regular",
-        "string": "라이센스의 Mii를\n{arg player|0} 님으로\n변경하겠습니까?",
+        string: "라이센스의 Mii를\n{arg player|0} 님으로\n변경하겠습니까?",
     },
     "2113": {
-        "font": "regular",
-        "string": "{current player|} 님과\n{arg player|0} 님이\nWi-Fi 커넥션에 접속합니다.",
+        string: "{current player|} 님과\n{arg player|0} 님이\nWi-Fi 커넥션에 접속합니다.",
     },
     "2114": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "2120": {
-        "font": "regular",
-        "string": "기록 확인",
+        string: "기록 확인",
     },
     "2121": {
-        "font": "regular",
-        "string": "{current player|} 님의 기록을 확인합니다",
+        string: "{current player|} 님의 기록을 확인합니다",
     },
     "2122": {
-        "font": "regular",
-        "string": "라이센스의 Mii를 변경합니다",
+        string: "라이센스의 Mii를 변경합니다",
     },
     "2123": {
-        "font": "regular",
-        "string": "Mii를 선택해 주십시오",
+        string: "Mii를 선택해 주십시오",
     },
     "2124": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "2125": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "2126": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "2127": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "2128": {
-        "font": "regular",
-        "string": "{current player|} 님의 라이센스를 삭제합니다",
+        string: "{current player|} 님의 라이센스를 삭제합니다",
     },
     "2129": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "2130": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "2131": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "2132": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "2133": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "2134": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "2135": {
-        "font": "regular",
-        "string": "닫기",
+        string: "닫기",
     },
     "2136": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "2150": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "2151": {
-        "font": "regular",
-        "string": "새로운 라이센스가 준비되었습니다.",
+        string: "새로운 라이센스가 준비되었습니다.",
     },
     "2152": {
-        "font": "regular",
-        "string": "{current player|} 님의\n라이센스를 삭제해도 되겠습니까?",
+        string: "{current player|} 님의\n라이센스를 삭제해도 되겠습니까?",
     },
     "2153": {
-        "font": "regular",
-        "string": "{current player|} 님의\n라이센스를 삭제했습니다.",
+        string: "{current player|} 님의\n라이센스를 삭제했습니다.",
     },
     "2154": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "2155": {
-        "font": "regular",
-        "string": "라이센스의 Mii가 변경되었습니다.",
+        string: "라이센스의 Mii가 변경되었습니다.",
     },
     "2156": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "2157": {
-        "font": "regular",
-        "string": "라이센스를 삭제하고 있습니다",
+        string: "라이센스를 삭제하고 있습니다",
     },
     "2158": {
-        "font": "regular",
-        "string": "친구 목록이나 고스트 등도\n모두 삭제됩니다.\n정말로 삭제하겠습니까?",
+        string: "친구 목록이나 고스트 등도\n모두 삭제됩니다.\n정말로 삭제하겠습니까?",
     },
     "2159": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "2200": {
-        "font": "regular",
-        "string": "Mii 변경",
+        string: "Mii 변경",
     },
     "2201": {
-        "font": "regular",
-        "string": "Mii를 선택해 주십시오",
+        string: "Mii를 선택해 주십시오",
     },
     "2202": {
-        "font": "regular",
-        "string": "Wii 본체",
+        string: "Wii 본체",
     },
     "2203": {
-        "font": "regular",
-        "string": "게스트",
+        string: "게스트",
     },
     "2204": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "2205": {
-        "font": "regular",
-        "string": "라이센스의 Mii가\n「Mii 채널」에서 삭제되었습니다.\nMii를 다시 선택해 주십시오.",
+        string: "라이센스의 Mii가\n「Mii 채널」에서 삭제되었습니다.\nMii를 다시 선택해 주십시오.",
     },
     "2206": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "2207": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "2208": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "2209": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "2210": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "2250": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "2251": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "2252": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "2253": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "2254": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "2255": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "2256": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "2257": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "2258": {
-        "font": "regular",
-        "string": "Wii 리모컨의 전지가\n얼마 남지 않았습니다.",
+        string: "Wii 리모컨의 전지가\n얼마 남지 않았습니다.",
     },
     "2259": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "2260": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "2261": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "2262": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "2300": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "2301": {
-        "font": "regular",
-        "string": "1{font scale|60}명",
+        string: "1{font scale|60}명",
     },
     "2302": {
-        "font": "regular",
-        "string": "2{font scale|60}명",
+        string: "2{font scale|60}명",
     },
     "2303": {
-        "font": "regular",
-        "string": "3{font scale|60}명",
+        string: "3{font scale|60}명",
     },
     "2304": {
-        "font": "regular",
-        "string": "4{font scale|60}명",
+        string: "4{font scale|60}명",
     },
     "2305": {
-        "font": "regular",
-        "string": "{2 chars| }",
+        string: "{2 chars| }",
     },
     "2306": {
-        "font": "regular",
-        "string": "{2 chars| }",
+        string: "{2 chars| }",
     },
     "2307": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "2400": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "2401": {
-        "font": "regular",
-        "string": "컨트롤러 등록",
+        string: "컨트롤러 등록",
     },
     "2402": {
-        "font": "regular",
-        "string": "2P가 사용할 컨트롤러의 A 버튼을 눌러 주십시오",
+        string: "2P가 사용할 컨트롤러의 A 버튼을 눌러 주십시오",
     },
     "2403": {
-        "font": "regular",
-        "string": "3P가 사용할 컨트롤러의 A 버튼을 눌러 주십시오",
+        string: "3P가 사용할 컨트롤러의 A 버튼을 눌러 주십시오",
     },
     "2404": {
-        "font": "regular",
-        "string": "4P가 사용할 컨트롤러의 A 버튼을 눌러 주십시오",
+        string: "4P가 사용할 컨트롤러의 A 버튼을 눌러 주십시오",
     },
     "2405": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "2406": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "2407": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "2408": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "2409": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "2500": {
-        "font": "regular",
-        "string": "이렇게 하겠습니까?",
+        string: "이렇게 하겠습니까?",
     },
     "2501": {
-        "font": "regular",
-        "string": "변경",
+        string: "변경",
     },
     "2502": {
-        "font": "regular",
-        "string": "1번째 컨트롤러의 A 버튼을 눌러 주십시오",
+        string: "1번째 컨트롤러의 A 버튼을 눌러 주십시오",
     },
     "2503": {
-        "font": "regular",
-        "string": "2번째 컨트롤러의 A 버튼을 눌러 주십시오",
+        string: "2번째 컨트롤러의 A 버튼을 눌러 주십시오",
     },
     "2504": {
-        "font": "regular",
-        "string": "3번째 컨트롤러의 A 버튼을 눌러 주십시오",
+        string: "3번째 컨트롤러의 A 버튼을 눌러 주십시오",
     },
     "2505": {
-        "font": "regular",
-        "string": "4번째 컨트롤러의 A 버튼을 눌러 주십시오",
+        string: "4번째 컨트롤러의 A 버튼을 눌러 주십시오",
     },
     "2506": {
-        "font": "regular",
-        "string": "이 컨트롤러로 플레이합니다",
+        string: "이 컨트롤러로 플레이합니다",
     },
     "2507": {
-        "font": "regular",
-        "string": "컨트롤러를 변경합니다",
+        string: "컨트롤러를 변경합니다",
     },
     "2508": {
-        "font": "regular",
-        "string": "{arg message|0}리모컨 추가",
+        string: "{arg message|0}리모컨 추가",
     },
     "2509": {
-        "font": "regular",
-        "string": "{1 char|}과 {1 char|}를 동시에 눌러 주십시오",
+        string: "{1 char|}과 {1 char|}를 동시에 눌러 주십시오",
     },
     "2510": {
-        "font": "regular",
-        "string": "{arg message|0}결정",
+        string: "{arg message|0}결정",
     },
     "2511": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "2512": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "2513": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "2514": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "2550": {
-        "font": "regular",
-        "string": "{1 char|}",
+        string: "{1 char|}",
     },
     "2551": {
-        "font": "regular",
-        "string": "{1 char|}",
+        string: "{1 char|}",
     },
     "2552": {
-        "font": "regular",
-        "string": "{1 char|}",
+        string: "{1 char|}",
     },
     "2553": {
-        "font": "regular",
-        "string": "{1 char|}",
+        string: "{1 char|}",
     },
     "2554": {
-        "font": "regular",
-        "string": "{1 char|}",
+        string: "{1 char|}",
     },
     "2555": {
-        "font": "regular",
-        "string": "{color|player 1}OK",
+        string: "{color|player 1}OK",
     },
     "2556": {
-        "font": "regular",
-        "string": "{color|player 2}OK",
+        string: "{color|player 2}OK",
     },
     "2557": {
-        "font": "regular",
-        "string": "{color|player 3}OK",
+        string: "{color|player 3}OK",
     },
     "2558": {
-        "font": "regular",
-        "string": "{color|player 4}OK",
+        string: "{color|player 4}OK",
     },
     "2559": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "2600": {
-        "font": "regular",
-        "string": "「마리오 카트 채널」\n（{arg integer|0 0}블록）\n을 Wii 본체에 저장하겠습니까?",
+        string: "「마리오 카트 채널」\n（{arg integer|0 0}블록）\n을 Wii 본체에 저장하겠습니까?",
     },
     "2601": {
-        "font": "regular",
-        "string": "예",
+        string: "예",
     },
     "2602": {
-        "font": "regular",
-        "string": "아니요",
+        string: "아니요",
     },
     "2603": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "2604": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "2605": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "2606": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "2607": {
-        "font": "regular",
-        "string": "마리오 카트 채널의 저장",
+        string: "마리오 카트 채널의 저장",
     },
     "2608": {
-        "font": "regular",
-        "string": "「마리오 카트 채널」을\nWii 본체에 저장할 수 있습니다.\n\nWii 디스크를 넣지 않아도\n「마리오 카트 채널」을\n이용할 수 있게 됩니다.",
+        string: "「마리오 카트 채널」을\nWii 본체에 저장할 수 있습니다.\n\nWii 디스크를 넣지 않아도\n「마리오 카트 채널」을\n이용할 수 있게 됩니다.",
     },
     "2609": {
-        "font": "regular",
-        "string": "「마리오 카트 채널」은\nWii 본체에 저장되어 있습니다.",
+        string: "「마리오 카트 채널」은\nWii 본체에 저장되어 있습니다.",
     },
     "2610": {
-        "font": "regular",
-        "string": "Wii 본체 저장 메모리의\n빈 용량이 부족합니다.\n\n저장 데이터 관리 화면에서\n데이터를 SD 카드로 이동하거나\n데이터를 삭제하여\n{arg integer|0 0}블록의 여유 공간을\n확보해 주십시오.",
+        string: "Wii 본체 저장 메모리의\n빈 용량이 부족합니다.\n\n저장 데이터 관리 화면에서\n데이터를 SD 카드로 이동하거나\n데이터를 삭제하여\n{arg integer|0 0}블록의 여유 공간을\n확보해 주십시오.",
     },
     "2611": {
-        "font": "regular",
-        "string": "Wii 본체 저장 메모리의\n빈 파일 수가 부족합니다.\n\n저장 데이터 관리 화면에서\n데이터를 SD 카드로 이동하거나\n데이터를 삭제해 주십시오.",
+        string: "Wii 본체 저장 메모리의\n빈 파일 수가 부족합니다.\n\n저장 데이터 관리 화면에서\n데이터를 SD 카드로 이동하거나\n데이터를 삭제해 주십시오.",
     },
     "2612": {
-        "font": "regular",
-        "string": "빈 채널 수가 부족합니다.\n\nWii 메뉴의 저장 데이터 관리 화면\n에서 채널을 SD 카드로 복사하거\n나 채널을 삭제해 주십시오.",
+        string: "빈 채널 수가 부족합니다.\n\nWii 메뉴의 저장 데이터 관리 화면\n에서 채널을 SD 카드로 복사하거\n나 채널을 삭제해 주십시오.",
     },
     "2613": {
-        "font": "regular",
-        "string": "시스템 파일이\n손상되어 있습니다.\n\n자세한 내용은 Wii 본체\n사용설명서를 읽어 주십시오.",
+        string: "시스템 파일이\n손상되어 있습니다.\n\n자세한 내용은 Wii 본체\n사용설명서를 읽어 주십시오.",
     },
     "2614": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "3000": {
-        "font": "regular",
-        "string": "그랑프리",
+        string: "그랑프리",
     },
     "3001": {
-        "font": "regular",
-        "string": "타임 어택",
+        string: "타임 어택",
     },
     "3002": {
-        "font": "regular",
-        "string": "VS",
+        string: "VS",
     },
     "3003": {
-        "font": "regular",
-        "string": "배틀",
+        string: "배틀",
     },
     "3004": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "3005": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "3006": {
-        "font": "regular",
-        "string": "50cc\n{font scale|50}카트 한정",
+        string: "50cc\n{font scale|50}카트 한정",
     },
     "3007": {
-        "font": "regular",
-        "string": "100cc\n{font scale|50}바이크 한정",
+        string: "100cc\n{font scale|50}바이크 한정",
     },
     "3008": {
-        "font": "regular",
-        "string": "150cc\n{font scale|50}카트＆바이크",
+        string: "150cc\n{font scale|50}카트＆바이크",
     },
     "3009": {
-        "font": "regular",
-        "string": "미러\n{font scale|50}카트＆바이크",
+        string: "미러\n{font scale|50}카트＆바이크",
     },
     "3010": {
-        "font": "regular",
-        "string": "50cc\n{font scale|50}카트＆바이크",
+        string: "50cc\n{font scale|50}카트＆바이크",
     },
     "3011": {
-        "font": "regular",
-        "string": "100cc\n{font scale|50}카트＆바이크",
+        string: "100cc\n{font scale|50}카트＆바이크",
     },
     "3012": {
-        "font": "regular",
-        "string": "{arg message|0}전환",
+        string: "{arg message|0}전환",
     },
     "3013": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "3050": {
-        "font": "regular",
-        "string": "우승컵을 목표로 경기에 참가합니다",
+        string: "우승컵을 목표로 경기에 참가합니다",
     },
     "3051": {
-        "font": "regular",
-        "string": "혼자서 최고 기록에 도전합니다",
+        string: "혼자서 최고 기록에 도전합니다",
     },
     "3052": {
-        "font": "regular",
-        "string": "선호하는 설정으로 레이스를 펼칩니다",
+        string: "선호하는 설정으로 레이스를 펼칩니다",
     },
     "3053": {
-        "font": "regular",
-        "string": "선호하는 설정으로 레이스를 펼칩니다",
+        string: "선호하는 설정으로 레이스를 펼칩니다",
     },
     "3054": {
-        "font": "regular",
-        "string": "2팀으로 나눠 배틀을 펼칩니다",
+        string: "2팀으로 나눠 배틀을 펼칩니다",
     },
     "3055": {
-        "font": "regular",
-        "string": "2팀으로 나눠 배틀을 펼칩니다",
+        string: "2팀으로 나눠 배틀을 펼칩니다",
     },
     "3056": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "3057": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "3058": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "3059": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "3060": {
-        "font": "regular",
-        "string": "초보자를 위한 그랑프리입니다(카트 한정)",
+        string: "초보자를 위한 그랑프리입니다(카트 한정)",
     },
     "3061": {
-        "font": "regular",
-        "string": "평균적인 그랑프리입니다(바이크 한정)",
+        string: "평균적인 그랑프리입니다(바이크 한정)",
     },
     "3062": {
-        "font": "regular",
-        "string": "전문가를 위한 그랑프리입니다(카트＆바이크)",
+        string: "전문가를 위한 그랑프리입니다(카트＆바이크)",
     },
     "3063": {
-        "font": "regular",
-        "string": "좌우가 뒤바뀐 그랑프리입니다(카트＆바이크)",
+        string: "좌우가 뒤바뀐 그랑프리입니다(카트＆바이크)",
     },
     "3064": {
-        "font": "regular",
-        "string": "초보자를 위한 그랑프리입니다(카트＆바이크)",
+        string: "초보자를 위한 그랑프리입니다(카트＆바이크)",
     },
     "3065": {
-        "font": "regular",
-        "string": "평균적인 그랑프리입니다(카트＆바이크)",
+        string: "평균적인 그랑프리입니다(카트＆바이크)",
     },
     "3066": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "3100": {
-        "font": "regular",
-        "string": "타임 어택 메뉴",
+        string: "타임 어택 메뉴",
     },
     "3101": {
-        "font": "regular",
-        "string": "이 코스는 고스트가 없습니다",
+        string: "이 코스는 고스트가 없습니다",
     },
     "3102": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "3103": {
-        "font": "regular",
-        "string": "랭킹 확인",
+        string: "랭킹 확인",
     },
     "3104": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "3200": {
-        "font": "regular",
-        "string": "배틀 선택",
+        string: "배틀 선택",
     },
     "3201": {
-        "font": "regular",
-        "string": "풍선 배틀!",
+        string: "풍선 배틀!",
     },
     "3202": {
-        "font": "regular",
-        "string": "코인을 모아라!",
+        string: "코인을 모아라!",
     },
     "3203": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "3204": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "3250": {
-        "font": "regular",
-        "string": "상대 팀의 풍선을 터뜨리는 게임입니다",
+        string: "상대 팀의 풍선을 터뜨리는 게임입니다",
     },
     "3251": {
-        "font": "regular",
-        "string": "스테이지의 코인을 획득하는 게임입니다",
+        string: "스테이지의 코인을 획득하는 게임입니다",
     },
     "3252": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "3253": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "3305": {
-        "font": "regular",
-        "string": "드리프트 모드",
+        string: "드리프트 모드",
     },
     "3306": {
-        "font": "regular",
-        "string": "자동 드리프트",
+        string: "자동 드리프트",
     },
     "3307": {
-        "font": "regular",
-        "string": "수동 드리프트",
+        string: "수동 드리프트",
     },
     "3308": {
-        "font": "regular",
-        "string": "도움말",
+        string: "도움말",
     },
     "3309": {
-        "font": "regular",
-        "string": "■ 자동 드리프트 ■\n1. 핸들을 꺾으면 자동으로 드리프트합니다\n2. 속도를 줄이지 않고 코너를 돌 수 있습니다!\n({arg back button|0}미니 점프와 미니 터보는 사용할 수 없습니다)\n\n■ 수동 드리프트 ■\n1. {arg back button|0}미니 점프 후에 드리프트합니다\n2. 드리프트를 계속하면 미니 터보가 쌓입니다\n3. 미니 터보를 사용하면 속도가 빨라집니다!",
+        string: "■ 자동 드리프트 ■\n1. 핸들을 꺾으면 자동으로 드리프트합니다\n2. 속도를 줄이지 않고 코너를 돌 수 있습니다!\n({arg back button|0}미니 점프와 미니 터보는 사용할 수 없습니다)\n\n■ 수동 드리프트 ■\n1. {arg back button|0}미니 점프 후에 드리프트합니다\n2. 드리프트를 계속하면 미니 터보가 쌓입니다\n3. 미니 터보를 사용하면 속도가 빨라집니다!",
     },
     "3310": {
-        "font": "regular",
-        "string": "드리프트 모드 설명을 확인합니다",
+        string: "드리프트 모드 설명을 확인합니다",
     },
     "3311": {
-        "font": "regular",
-        "string": "스피드",
+        string: "스피드",
     },
     "3312": {
-        "font": "regular",
-        "string": "무게",
+        string: "무게",
     },
     "3313": {
-        "font": "regular",
-        "string": "가속",
+        string: "가속",
     },
     "3314": {
-        "font": "regular",
-        "string": "핸들링",
+        string: "핸들링",
     },
     "3315": {
-        "font": "regular",
-        "string": "드리프트",
+        string: "드리프트",
     },
     "3316": {
-        "font": "regular",
-        "string": "악로 주행",
+        string: "악로 주행",
     },
     "3317": {
-        "font": "regular",
-        "string": "미니 터보",
+        string: "미니 터보",
     },
     "3318": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "3350": {
-        "font": "regular",
-        "string": "자동으로 드리프트합니다(미니 터보 없음)",
+        string: "자동으로 드리프트합니다(미니 터보 없음)",
     },
     "3351": {
-        "font": "regular",
-        "string": "버튼으로 드리프트합니다(미니 터보 있음)",
+        string: "버튼으로 드리프트합니다(미니 터보 있음)",
     },
     "3352": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "3360": {
-        "font": "regular",
-        "string": "{arg message|0} 트로피：{arg message|1} 랭크：{arg message|2}",
+        string: "{arg message|0} 트로피：{arg message|1} 랭크：{arg message|2}",
     },
     "3361": {
-        "font": "regular",
-        "string": "타임 어택",
+        string: "타임 어택",
     },
     "3362": {
-        "font": "regular",
-        "string": "{arg message|0}",
+        string: "{arg message|0}",
     },
     "3363": {
-        "font": "regular",
-        "string": "{arg message|0} VS",
+        string: "{arg message|0} VS",
     },
     "3364": {
-        "font": "regular",
-        "string": "{1 char|} 풍선 배틀!",
+        string: "{1 char|} 풍선 배틀!",
     },
     "3365": {
-        "font": "regular",
-        "string": "{1 char|} 코인을 모아라!",
+        string: "{1 char|} 코인을 모아라!",
     },
     "3366": {
-        "font": "regular",
-        "string": "{arg message|0} VS 단체전",
+        string: "{arg message|0} VS 단체전",
     },
     "3370": {
-        "font": "regular",
-        "string": "{1 char|}",
+        string: "{1 char|}",
     },
     "3371": {
-        "font": "regular",
-        "string": "{1 char|}",
+        string: "{1 char|}",
     },
     "3372": {
-        "font": "regular",
-        "string": "{1 char|}",
+        string: "{1 char|}",
     },
     "3373": {
-        "font": "regular",
-        "string": "{1 char|}",
+        string: "{1 char|}",
     },
     "3374": {
-        "font": "regular",
-        "string": "{1 char|}",
+        string: "{1 char|}",
     },
     "3375": {
-        "font": "regular",
-        "string": "{1 char|}",
+        string: "{1 char|}",
     },
     "3376": {
-        "font": "regular",
-        "string": "{1 char|}",
+        string: "{1 char|}",
     },
     "3377": {
-        "font": "regular",
-        "string": "{1 char|}",
+        string: "{1 char|}",
     },
     "3378": {
-        "font": "regular",
-        "string": "{1 char|}",
+        string: "{1 char|}",
     },
     "3379": {
-        "font": "regular",
-        "string": "{1 char|}",
+        string: "{1 char|}",
     },
     "3380": {
-        "font": "regular",
-        "string": "{1 char|}",
+        string: "{1 char|}",
     },
     "3381": {
-        "font": "regular",
-        "string": "F",
+        string: "F",
     },
     "3382": {
-        "font": "regular",
-        "string": "{1 char|}",
+        string: "{1 char|}",
     },
     "3383": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "3384": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "3400": {
-        "font": "regular",
-        "string": "규칙 설정",
+        string: "규칙 설정",
     },
     "3401": {
-        "font": "regular",
-        "string": "클래스 선택",
+        string: "클래스 선택",
     },
     "3402": {
-        "font": "regular",
-        "string": "캐릭터 선택",
+        string: "캐릭터 선택",
     },
     "3403": {
-        "font": "regular",
-        "string": "머신 선택",
+        string: "머신 선택",
     },
     "3404": {
-        "font": "regular",
-        "string": "컵 선택",
+        string: "컵 선택",
     },
     "3405": {
-        "font": "regular",
-        "string": "코스 선택",
+        string: "코스 선택",
     },
     "3406": {
-        "font": "regular",
-        "string": "스테이지 선택",
+        string: "스테이지 선택",
     },
     "3407": {
-        "font": "regular",
-        "string": "고스트 선택",
+        string: "고스트 선택",
     },
     "3408": {
-        "font": "regular",
-        "string": "배틀",
+        string: "배틀",
     },
     "3409": {
-        "font": "regular",
-        "string": "VS",
+        string: "VS",
     },
     "3410": {
-        "font": "regular",
-        "string": "클래스",
+        string: "클래스",
     },
     "3411": {
-        "font": "regular",
-        "string": "50cc",
+        string: "50cc",
     },
     "3412": {
-        "font": "regular",
-        "string": "100cc",
+        string: "100cc",
     },
     "3413": {
-        "font": "regular",
-        "string": "150cc",
+        string: "150cc",
     },
     "3414": {
-        "font": "regular",
-        "string": "미러",
+        string: "미러",
     },
     "3415": {
-        "font": "regular",
-        "string": "초보자를 위한 50cc 스피드입니다",
+        string: "초보자를 위한 50cc 스피드입니다",
     },
     "3416": {
-        "font": "regular",
-        "string": "평균적인 100cc 스피드입니다",
+        string: "평균적인 100cc 스피드입니다",
     },
     "3417": {
-        "font": "regular",
-        "string": "전문가를 위한 150cc 스피드입니다",
+        string: "전문가를 위한 150cc 스피드입니다",
     },
     "3418": {
-        "font": "regular",
-        "string": "좌우가 뒤바뀐 코스에서 150cc 스피드입니다",
+        string: "좌우가 뒤바뀐 코스에서 150cc 스피드입니다",
     },
     "3420": {
-        "font": "regular",
-        "string": "COM",
+        string: "COM",
     },
     "3421": {
-        "font": "regular",
-        "string": "약함",
+        string: "약함",
     },
     "3422": {
-        "font": "regular",
-        "string": "보통",
+        string: "보통",
     },
     "3423": {
-        "font": "regular",
-        "string": "강함",
+        string: "강함",
     },
     "3424": {
-        "font": "regular",
-        "string": "없음",
+        string: "없음",
     },
     "3425": {
-        "font": "regular",
-        "string": "COM 캐릭터를 약하게 설정합니다",
+        string: "COM 캐릭터를 약하게 설정합니다",
     },
     "3426": {
-        "font": "regular",
-        "string": "COM 캐릭터를 보통으로 설정합니다",
+        string: "COM 캐릭터를 보통으로 설정합니다",
     },
     "3427": {
-        "font": "regular",
-        "string": "COM 캐릭터를 강하게 설정합니다",
+        string: "COM 캐릭터를 강하게 설정합니다",
     },
     "3428": {
-        "font": "regular",
-        "string": "COM 캐릭터를 등장시키지 않습니다",
+        string: "COM 캐릭터를 등장시키지 않습니다",
     },
     "3430": {
-        "font": "regular",
-        "string": "COM 머신",
+        string: "COM 머신",
     },
     "3431": {
-        "font": "regular",
-        "string": "카트 한정",
+        string: "카트 한정",
     },
     "3432": {
-        "font": "regular",
-        "string": "바이크 한정",
+        string: "바이크 한정",
     },
     "3433": {
-        "font": "regular",
-        "string": "카트＆바이크",
+        string: "카트＆바이크",
     },
     "3434": {
-        "font": "regular",
-        "string": "COM 머신을 카트만 등장시킵니다",
+        string: "COM 머신을 카트만 등장시킵니다",
     },
     "3435": {
-        "font": "regular",
-        "string": "COM 머신을 바이크만 등장시킵니다",
+        string: "COM 머신을 바이크만 등장시킵니다",
     },
     "3436": {
-        "font": "regular",
-        "string": "COM 머신을 카트＆바이크로 설정합니다",
+        string: "COM 머신을 카트＆바이크로 설정합니다",
     },
     "3437": {
-        "font": "regular",
-        "string": "COM 머신을 카트만 등장시킵니다",
+        string: "COM 머신을 카트만 등장시킵니다",
     },
     "3438": {
-        "font": "regular",
-        "string": "COM 머신을 바이크만 등장시킵니다",
+        string: "COM 머신을 바이크만 등장시킵니다",
     },
     "3439": {
-        "font": "regular",
-        "string": "COM 머신을 카트＆바이크로 설정합니다",
+        string: "COM 머신을 카트＆바이크로 설정합니다",
     },
     "3440": {
-        "font": "regular",
-        "string": "코스",
+        string: "코스",
     },
     "3441": {
-        "font": "regular",
-        "string": "선택",
+        string: "선택",
     },
     "3442": {
-        "font": "regular",
-        "string": "랜덤",
+        string: "랜덤",
     },
     "3443": {
-        "font": "regular",
-        "string": "차례대로",
+        string: "차례대로",
     },
     "3444": {
-        "font": "regular",
-        "string": "매 레이스마다 코스를 선택합니다",
+        string: "매 레이스마다 코스를 선택합니다",
     },
     "3445": {
-        "font": "regular",
-        "string": "자동으로 코스가 선택됩니다",
+        string: "자동으로 코스가 선택됩니다",
     },
     "3446": {
-        "font": "regular",
-        "string": "컵 순서대로 코스가 선택됩니다",
+        string: "컵 순서대로 코스가 선택됩니다",
     },
     "3447": {
-        "font": "regular",
-        "string": "매 배틀마다 스테이지를 선택합니다",
+        string: "매 배틀마다 스테이지를 선택합니다",
     },
     "3448": {
-        "font": "regular",
-        "string": "자동으로 스테이지가 선택됩니다",
+        string: "자동으로 스테이지가 선택됩니다",
     },
     "3449": {
-        "font": "regular",
-        "string": "순서대로 스테이지가 선택됩니다",
+        string: "순서대로 스테이지가 선택됩니다",
     },
     "3450": {
-        "font": "regular",
-        "string": "레이스 횟수",
+        string: "레이스 횟수",
     },
     "3451": {
-        "font": "regular",
-        "string": "{arg integer|0 1} 레이스",
+        string: "{arg integer|0 1} 레이스",
     },
     "3452": {
-        "font": "regular",
-        "string": "승리 횟수",
+        string: "승리 횟수",
     },
     "3460": {
-        "font": "regular",
-        "string": "{arg integer|0 1}승",
+        string: "{arg integer|0 1}승",
     },
     "3461": {
-        "font": "regular",
-        "string": "단체전",
+        string: "단체전",
     },
     "3462": {
-        "font": "regular",
-        "string": "단체전",
+        string: "단체전",
     },
     "3463": {
-        "font": "regular",
-        "string": "개인전",
+        string: "개인전",
     },
     "3464": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "3465": {
-        "font": "regular",
-        "string": "레이스 횟수를 설정합니다",
+        string: "레이스 횟수를 설정합니다",
     },
     "3466": {
-        "font": "regular",
-        "string": "",
+        string: "",
     },
     "3467": {
-        "font": "regular",
-        "string": "2팀으로 나눠 점수로 우승을 가립니다",
+        string: "2팀으로 나눠 점수로 우승을 가립니다",
     },
     "3468": {
-        "font": "regular",
-        "string": "개인 점수로 종합 순위를 겨룹니다",
+        string: "개인 점수로 종합 순위를 겨룹니다",
     },
     "3469": {
-        "font": "regular",
-        "string": "스테이지",
+        string: "스테이지",
     },
     "3470": {
-        "font": "regular",
-        "string": "VS를 마치겠습니까?",
+        string: "VS를 마치겠습니까?",
     },
     "3471": {
-        "font": "regular",
-        "string": "배틀을 마치겠습니까?",
+        string: "배틀을 마치겠습니까?",
     },
     "3472": {
-        "font": "regular",
-        "string": "이 규칙으로 레이스를 펼칩니다",
+        string: "이 규칙으로 레이스를 펼칩니다",
     },
     "3473": {
-        "font": "regular",
-        "string": "이 규칙으로 배틀을 펼칩니다",
+        string: "이 규칙으로 배틀을 펼칩니다",
     },
     "3474": {
-        "font": "regular",
-        "string": "레이스의 규칙을 설정합니다",
+        string: "레이스의 규칙을 설정합니다",
     },
     "3475": {
-        "font": "regular",
-        "string": "배틀의 규칙을 설정합니다",
+        string: "배틀의 규칙을 설정합니다",
     },
     "3476": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "3480": {
-        "font": "regular",
-        "string": "아이템",
+        string: "아이템",
     },
     "3481": {
-        "font": "regular",
-        "string": "기본",
+        string: "기본",
     },
     "3482": {
-        "font": "regular",
-        "string": "다이나믹",
+        string: "다이나믹",
     },
     "3483": {
-        "font": "regular",
-        "string": "테크닉 중심",
+        string: "테크닉 중심",
     },
     "3484": {
-        "font": "regular",
-        "string": "없음",
+        string: "없음",
     },
     "3485": {
-        "font": "regular",
-        "string": "각 아이템이 골고루 등장합니다",
+        string: "각 아이템이 골고루 등장합니다",
     },
     "3486": {
-        "font": "regular",
-        "string": "강력한 아이템이 쉽게 등장합니다",
+        string: "강력한 아이템이 쉽게 등장합니다",
     },
     "3487": {
-        "font": "regular",
-        "string": "강력한 아이템은 좀처럼 안 나옵니다",
+        string: "강력한 아이템은 좀처럼 안 나옵니다",
     },
     "3488": {
-        "font": "regular",
-        "string": "아이템을 등장시키지 않습니다",
+        string: "아이템을 등장시키지 않습니다",
     },
     "3489": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "3500": {
-        "font": "regular",
-        "string": "팀 설정",
+        string: "팀 설정",
     },
     "3501": {
-        "font": "regular",
-        "string": "블루\n팀",
+        string: "블루\n팀",
     },
     "3502": {
-        "font": "regular",
-        "string": "레드\n팀",
+        string: "레드\n팀",
     },
     "3503": {
-        "font": "regular",
-        "string": "팀 확인",
+        string: "팀 확인",
     },
     "3504": {
-        "font": "regular",
-        "string": "이 팀으로 플레이합니다",
+        string: "이 팀으로 플레이합니다",
     },
     "3505": {
-        "font": "regular",
-        "string": "멤버 확인",
+        string: "멤버 확인",
     },
     "3506": {
-        "font": "regular",
-        "string": "{color|team blue}블루\n팀",
+        string: "{color|team blue}블루\n팀",
     },
     "3507": {
-        "font": "regular",
-        "string": "{color|team red}레드\n팀",
+        string: "{color|team red}레드\n팀",
     },
     "3508": {
-        "font": "regular",
-        "string": "모두 같은 팀으로 설정되었습니다.\n\n다시 선택해 주십시오.",
+        string: "모두 같은 팀으로 설정되었습니다.\n\n다시 선택해 주십시오.",
     },
     "3509": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "3550": {
-        "font": "regular",
-        "string": "레이스를 시작합니다",
+        string: "레이스를 시작합니다",
     },
     "3551": {
-        "font": "regular",
-        "string": "배틀을 시작합니다",
+        string: "배틀을 시작합니다",
     },
     "3552": {
-        "font": "regular",
-        "string": "대회를 시작합니다",
+        string: "대회를 시작합니다",
     },
     "3553": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "4000": {
-        "font": "regular",
-        "string": "세계의 누군가와",
+        string: "세계의 누군가와",
     },
     "4001": {
-        "font": "regular",
-        "string": "국내의 누군가와",
+        string: "국내의 누군가와",
     },
     "4002": {
-        "font": "regular",
-        "string": "친구와",
+        string: "친구와",
     },
     "4003": {
-        "font": "regular",
-        "string": "고스트 배틀",
+        string: "고스트 배틀",
     },
     "4004": {
-        "font": "regular",
-        "string": "네트워크 설정",
+        string: "네트워크 설정",
     },
     "4005": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "4006": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "4007": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "4008": {
-        "font": "regular",
-        "string": "친구가 등록되지 않았습니다.\n\n친구를 「친구 등록」하면\n함께 플레이할 수 있습니다.",
+        string: "친구가 등록되지 않았습니다.\n\n친구를 「친구 등록」하면\n함께 플레이할 수 있습니다.",
     },
     "4009": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "4010": {
-        "font": "regular",
-        "string": "Wi-Fi 커넥션에 접속하고 있습니다",
+        string: "Wi-Fi 커넥션에 접속하고 있습니다",
     },
     "4011": {
-        "font": "regular",
-        "string": "Wi-Fi 커넥션을 종료하겠습니까?",
+        string: "Wi-Fi 커넥션을 종료하겠습니까?",
     },
     "4012": {
-        "font": "regular",
-        "string": "예",
+        string: "예",
     },
     "4013": {
-        "font": "regular",
-        "string": "아니요",
+        string: "아니요",
     },
     "4014": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "4015": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "4016": {
-        "font": "regular",
-        "string": "사용 중인 Mii의 닉네임은 Wi-Fi\n커넥션에서 사용할 수 없습니다.\n\nMii의 닉네임을 변경한 후\n다시 접속해 주십시오.",
+        string: "사용 중인 Mii의 닉네임은 Wi-Fi\n커넥션에서 사용할 수 없습니다.\n\nMii의 닉네임을 변경한 후\n다시 접속해 주십시오.",
     },
     "4017": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "4018": {
-        "font": "regular",
-        "string": "멤버와의 접속이 종료되었습니다.",
+        string: "멤버와의 접속이 종료되었습니다.",
     },
     "4019": {
-        "font": "regular",
-        "string": "친구 룸에서 나가겠습니까?",
+        string: "친구 룸에서 나가겠습니까?",
     },
     "4020": {
-        "font": "regular",
-        "string": "친구 룸을 닫겠습니까?",
+        string: "친구 룸을 닫겠습니까?",
     },
     "4021": {
-        "font": "regular",
-        "string": "친구 룸을 연 사람과의\n접속이 종료되었습니다.\n\n친구 목록으로 돌아갑니다.",
+        string: "친구 룸을 연 사람과의\n접속이 종료되었습니다.\n\n친구 목록으로 돌아갑니다.",
     },
     "4022": {
-        "font": "regular",
-        "string": "친구와 합류하지\n못했습니다.\n\n잠시 후\n다시 시도해 주십시오.",
+        string: "친구와 합류하지\n못했습니다.\n\n잠시 후\n다시 시도해 주십시오.",
     },
     "4023": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "4024": {
-        "font": "regular",
-        "string": "멤버 소개",
+        string: "멤버 소개",
     },
     "4025": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "4100": {
-        "font": "regular",
-        "string": "친구 룸",
+        string: "친구 룸",
     },
     "4101": {
-        "font": "regular",
-        "string": "레이스 주최",
+        string: "레이스 주최",
     },
     "4102": {
-        "font": "regular",
-        "string": "친구와 합류하고 있습니다",
+        string: "친구와 합류하고 있습니다",
     },
     "4103": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "4104": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "4105": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "4106": {
-        "font": "regular",
-        "string": "대전 상대를 찾고 있습니다",
+        string: "대전 상대를 찾고 있습니다",
     },
     "4107": {
-        "font": "regular",
-        "string": "대전 상대가 결정되었습니다!",
+        string: "대전 상대가 결정되었습니다!",
     },
     "4108": {
-        "font": "regular",
-        "string": "친구를 기다리고 있습니다",
+        string: "친구를 기다리고 있습니다",
     },
     "4109": {
-        "font": "regular",
-        "string": "마감",
+        string: "마감",
     },
     "4110": {
-        "font": "regular",
-        "string": "그랑프리 개인전으로 결정되었습니다!",
+        string: "그랑프리 개인전으로 결정되었습니다!",
     },
     "4111": {
-        "font": "regular",
-        "string": "그랑프리 단체전으로 결정되었습니다!",
+        string: "그랑프리 단체전으로 결정되었습니다!",
     },
     "4112": {
-        "font": "regular",
-        "string": "풍선 배틀!로 결정되었습니다!",
+        string: "풍선 배틀!로 결정되었습니다!",
     },
     "4113": {
-        "font": "regular",
-        "string": "코인을 모아라!로 결정되었습니다!",
+        string: "코인을 모아라!로 결정되었습니다!",
     },
     "4114": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "4150": {
-        "font": "regular",
-        "string": "등록",
+        string: "등록",
     },
     "4151": {
-        "font": "regular",
-        "string": "{arg player|0} 님 친구 등록 부탁드려요!",
+        string: "{arg player|0} 님 친구 등록 부탁드려요!",
     },
     "4152": {
-        "font": "regular",
-        "string": "새로 친구가 될 사람은 없나 봅니다",
+        string: "새로 친구가 될 사람은 없나 봅니다",
     },
     "4153": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "4154": {
-        "font": "regular",
-        "string": "{arg player|0} 님 친구 등록했어요!",
+        string: "{arg player|0} 님 친구 등록했어요!",
     },
     "4155": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "4200": {
-        "font": "regular",
-        "string": "메시지",
+        string: "메시지",
     },
     "4201": {
-        "font": "regular",
-        "string": "{arg integer|0 2}/{arg integer|1 2}",
+        string: "{arg integer|0 2}/{arg integer|1 2}",
     },
     "4202": {
-        "font": "regular",
-        "string": "{arg integer|0 0}{font scale|70}VR",
+        string: "{arg integer|0 0}{font scale|70}VR",
     },
     "4203": {
-        "font": "regular",
-        "string": "{arg integer|0 0}{font scale|70}BR",
+        string: "{arg integer|0 0}{font scale|70}BR",
     },
     "4204": {
-        "font": "regular",
-        "string": "잠시 기다려 주십시오",
+        string: "잠시 기다려 주십시오",
     },
     "4205": {
-        "font": "regular",
-        "string": "세계 VS",
+        string: "세계 VS",
     },
     "4206": {
-        "font": "regular",
-        "string": "세계 배틀",
+        string: "세계 배틀",
     },
     "4207": {
-        "font": "regular",
-        "string": "국내 VS",
+        string: "국내 VS",
     },
     "4208": {
-        "font": "regular",
-        "string": "국내 배틀",
+        string: "국내 배틀",
     },
     "4300": {
-        "font": "regular",
-        "string": "플레이 방법을 선택해 주십시오",
+        string: "플레이 방법을 선택해 주십시오",
     },
     "4301": {
-        "font": "regular",
-        "string": "잠시 기다려 주십시오",
+        string: "잠시 기다려 주십시오",
     },
     "4302": {
-        "font": "regular",
-        "string": "플레이 방법이 결정되었습니다",
+        string: "플레이 방법이 결정되었습니다",
     },
     "4303": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "4304": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "4305": {
-        "font": "regular",
-        "string": "VS",
+        string: "VS",
     },
     "4306": {
-        "font": "regular",
-        "string": "VS",
+        string: "VS",
     },
     "4307": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "4308": {
-        "font": "regular",
-        "string": "배틀",
+        string: "배틀",
     },
     "4309": {
-        "font": "regular",
-        "string": "배틀",
+        string: "배틀",
     },
     "4310": {
-        "font": "regular",
-        "string": "세계 사람들과 함께 플레이합니다",
+        string: "세계 사람들과 함께 플레이합니다",
     },
     "4311": {
-        "font": "regular",
-        "string": "국내 사람들과 함께 플레이합니다",
+        string: "국내 사람들과 함께 플레이합니다",
     },
     "4312": {
-        "font": "regular",
-        "string": "친구와 함께 플레이합니다",
+        string: "친구와 함께 플레이합니다",
     },
     "4313": {
-        "font": "regular",
-        "string": "세계 각지의 고스트와 차례로 대전합니다",
+        string: "세계 각지의 고스트와 차례로 대전합니다",
     },
     "4314": {
-        "font": "regular",
-        "string": "최대 12명이 모여 레이스를 펼칩니다",
+        string: "최대 12명이 모여 레이스를 펼칩니다",
     },
     "4315": {
-        "font": "regular",
-        "string": "최대 6명 VS 6명이 배틀을 펼칩니다",
+        string: "최대 6명 VS 6명이 배틀을 펼칩니다",
     },
     "4316": {
-        "font": "regular",
-        "string": "친구 룸을 만들어 멤버를 기다립니다",
+        string: "친구 룸을 만들어 멤버를 기다립니다",
     },
     "4317": {
-        "font": "regular",
-        "string": "친구 목록의 친구와 합류합니다",
+        string: "친구 목록의 친구와 합류합니다",
     },
     "4318": {
-        "font": "regular",
-        "string": "친구의 친구 코드를 등록합니다",
+        string: "친구의 친구 코드를 등록합니다",
     },
     "4319": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "4320": {
-        "font": "regular",
-        "string": "다음 레이스는 100cc입니다",
+        string: "다음 레이스는 100cc입니다",
     },
     "4321": {
-        "font": "regular",
-        "string": "다음 레이스는 150cc입니다!",
+        string: "다음 레이스는 150cc입니다!",
     },
     "4322": {
-        "font": "regular",
-        "string": "다음 레이스는 미러입니다!!",
+        string: "다음 레이스는 미러입니다!!",
     },
     "4323": {
-        "font": "regular",
-        "string": "{1 char|} 풍선 배틀!",
+        string: "{1 char|} 풍선 배틀!",
     },
     "4324": {
-        "font": "regular",
-        "string": "{1 char|} 코인을 모아라!",
+        string: "{1 char|} 코인을 모아라!",
     },
     "4325": {
-        "font": "regular",
-        "string": "다음 레이스는 100cc입니다",
+        string: "다음 레이스는 100cc입니다",
     },
     "4326": {
-        "font": "regular",
-        "string": "다음 레이스는 150cc입니다!",
+        string: "다음 레이스는 150cc입니다!",
     },
     "4327": {
-        "font": "regular",
-        "string": "다음 레이스는 미러입니다!!",
+        string: "다음 레이스는 미러입니다!!",
     },
     "4328": {
-        "font": "regular",
-        "string": "다음 레이스는 100cc입니다",
+        string: "다음 레이스는 100cc입니다",
     },
     "4329": {
-        "font": "regular",
-        "string": "다음 레이스는 150cc입니다!",
+        string: "다음 레이스는 150cc입니다!",
     },
     "4330": {
-        "font": "regular",
-        "string": "다음 레이스는 미러입니다!!",
+        string: "다음 레이스는 미러입니다!!",
     },
     "4331": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "4332": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "4333": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "4334": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "4350": {
-        "font": "regular",
-        "string": "코스를 선택하겠습니까?",
+        string: "코스를 선택하겠습니까?",
     },
     "4351": {
-        "font": "regular",
-        "string": "선택",
+        string: "선택",
     },
     "4352": {
-        "font": "regular",
-        "string": "랜덤",
+        string: "랜덤",
     },
     "4353": {
-        "font": "regular",
-        "string": "?",
+        string: "?",
     },
     "4354": {
-        "font": "regular",
-        "string": "코스 투표",
+        string: "코스 투표",
     },
     "4355": {
-        "font": "regular",
-        "string": "스테이지 투표",
+        string: "스테이지 투표",
     },
     "4356": {
-        "font": "regular",
-        "string": "스테이지를 선택하겠습니까?",
+        string: "스테이지를 선택하겠습니까?",
     },
     "4357": {
-        "font": "regular",
-        "string": "레이스를 준비 중입니다",
+        string: "레이스를 준비 중입니다",
     },
     "4358": {
-        "font": "regular",
-        "string": "배틀을 준비 중입니다",
+        string: "배틀을 준비 중입니다",
     },
     "4359": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "4360": {
-        "font": "regular",
-        "string": "모두의 투표를 기다리고 있습니다",
+        string: "모두의 투표를 기다리고 있습니다",
     },
     "4361": {
-        "font": "regular",
-        "string": "",
+        string: "",
     },
     "4362": {
-        "font": "regular",
-        "string": "코스가 결정되었습니다!",
+        string: "코스가 결정되었습니다!",
     },
     "4363": {
-        "font": "regular",
-        "string": "스테이지가 결정되었습니다!",
+        string: "스테이지가 결정되었습니다!",
     },
     "4364": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "4370": {
-        "font": "regular",
-        "string": "멤버 전원에게 메시지를 보냅니다",
+        string: "멤버 전원에게 메시지를 보냅니다",
     },
     "4371": {
-        "font": "regular",
-        "string": "메시지를 선택해 주십시오",
+        string: "메시지를 선택해 주십시오",
     },
     "4372": {
-        "font": "regular",
-        "string": "멤버 모집을 마칩니다",
+        string: "멤버 모집을 마칩니다",
     },
     "4373": {
-        "font": "regular",
-        "string": "플레이 방법을 선택해 주십시오",
+        string: "플레이 방법을 선택해 주십시오",
     },
     "4374": {
-        "font": "regular",
-        "string": "친구 등록 메시지를 보냅니다",
+        string: "친구 등록 메시지를 보냅니다",
     },
     "4375": {
-        "font": "regular",
-        "string": "특정 친구에게 메시지를 보냅니다",
+        string: "특정 친구에게 메시지를 보냅니다",
     },
     "4376": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "4390": {
-        "font": "regular",
-        "string": "친구 코드를 등록해 주십시오",
+        string: "친구 코드를 등록해 주십시오",
     },
     "4391": {
-        "font": "regular",
-        "string": "이 친구 코드를 등록합니다",
+        string: "이 친구 코드를 등록합니다",
     },
     "4392": {
-        "font": "regular",
-        "string": "친구와 함께 플레이합니다",
+        string: "친구와 함께 플레이합니다",
     },
     "4393": {
-        "font": "regular",
-        "string": "친구 목록에서 삭제합니다",
+        string: "친구 목록에서 삭제합니다",
     },
     "4394": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "4395": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "4396": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "4397": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "4499": {
-        "font": "regular",
-        "string": "저 들어왔어요!",
+        string: "저 들어왔어요!",
     },
     "4500": {
-        "font": "regular",
-        "string": "안녕하세요!",
+        string: "안녕하세요!",
     },
     "4501": {
-        "font": "regular",
-        "string": "반갑습니다!",
+        string: "반갑습니다!",
     },
     "4502": {
-        "font": "regular",
-        "string": "오랜만이에요～!",
+        string: "오랜만이에요～!",
     },
     "4503": {
-        "font": "regular",
-        "string": "잘 부탁드려요!",
+        string: "잘 부탁드려요!",
     },
     "4504": {
-        "font": "regular",
-        "string": "많이 기다리셨죠!",
+        string: "많이 기다리셨죠!",
     },
     "4505": {
-        "font": "regular",
-        "string": "어서 오세요!",
+        string: "어서 오세요!",
     },
     "4506": {
-        "font": "regular",
-        "string": "다들 모이셨나요?",
+        string: "다들 모이셨나요?",
     },
     "4507": {
-        "font": "regular",
-        "string": "잠시만 기다리세요!",
+        string: "잠시만 기다리세요!",
     },
     "4508": {
-        "font": "regular",
-        "string": "준비되셨나요?",
+        string: "준비되셨나요?",
     },
     "4509": {
-        "font": "regular",
-        "string": "이제 시작할까요?",
+        string: "이제 시작할까요?",
     },
     "4510": {
-        "font": "regular",
-        "string": "3분만 기다려요",
+        string: "3분만 기다려요",
     },
     "4511": {
-        "font": "regular",
-        "string": "조금 쉴게요...Zzz",
+        string: "조금 쉴게요...Zzz",
     },
     "4512": {
-        "font": "regular",
-        "string": "OK!",
+        string: "OK!",
     },
     "4513": {
-        "font": "regular",
-        "string": "그럼 시작해요!",
+        string: "그럼 시작해요!",
     },
     "4514": {
-        "font": "regular",
-        "string": "살살 하세요～",
+        string: "살살 하세요～",
     },
     "4515": {
-        "font": "regular",
-        "string": "열심히 할게요!",
+        string: "열심히 할게요!",
     },
     "4516": {
-        "font": "regular",
-        "string": "뭐하고 놀까요?",
+        string: "뭐하고 놀까요?",
     },
     "4517": {
-        "font": "regular",
-        "string": "하고 싶은 거 있어요?",
+        string: "하고 싶은 거 있어요?",
     },
     "4518": {
-        "font": "regular",
-        "string": "그랑프리? 배틀?",
+        string: "그랑프리? 배틀?",
     },
     "4519": {
-        "font": "regular",
-        "string": "난 자신 없는데... T.T",
+        string: "난 자신 없는데... T.T",
     },
     "4520": {
-        "font": "regular",
-        "string": "그랑프리 개인전!",
+        string: "그랑프리 개인전!",
     },
     "4521": {
-        "font": "regular",
-        "string": "그랑프리 단체전!",
+        string: "그랑프리 단체전!",
     },
     "4522": {
-        "font": "regular",
-        "string": "풍선 배틀!",
+        string: "풍선 배틀!",
     },
     "4523": {
-        "font": "regular",
-        "string": "코인을 모아라!",
+        string: "코인을 모아라!",
     },
     "4524": {
-        "font": "regular",
-        "string": "경량급 캐릭터를 사용할래요!",
+        string: "경량급 캐릭터를 사용할래요!",
     },
     "4525": {
-        "font": "regular",
-        "string": "중량급 캐릭터를 사용할래요!",
+        string: "중량급 캐릭터를 사용할래요!",
     },
     "4526": {
-        "font": "regular",
-        "string": "무제한급 캐릭터를 사용할래요!",
+        string: "무제한급 캐릭터를 사용할래요!",
     },
     "4527": {
-        "font": "regular",
-        "string": "Mii를 사용할래요!",
+        string: "Mii를 사용할래요!",
     },
     "4528": {
-        "font": "regular",
-        "string": "Wii 핸들을 사용할게요!",
+        string: "Wii 핸들을 사용할게요!",
     },
     "4529": {
-        "font": "regular",
-        "string": "카트로 달릴게요!",
+        string: "카트로 달릴게요!",
     },
     "4530": {
-        "font": "regular",
-        "string": "바이크로 달릴게요!",
+        string: "바이크로 달릴게요!",
     },
     "4531": {
-        "font": "regular",
-        "string": "뭘로 할까～～",
+        string: "뭘로 할까～～",
     },
     "4532": {
-        "font": "regular",
-        "string": "어떤 코스가 좋아요?",
+        string: "어떤 코스가 좋아요?",
     },
     "4533": {
-        "font": "regular",
-        "string": "음～～",
+        string: "음～～",
     },
     "4534": {
-        "font": "regular",
-        "string": "랜덤으로 할래요!",
+        string: "랜덤으로 할래요!",
     },
     "4535": {
-        "font": "regular",
-        "string": "아직 안 해 본 코스!",
+        string: "아직 안 해 본 코스!",
     },
     "4536": {
-        "font": "regular",
-        "string": "루이지 서킷!",
+        string: "루이지 서킷!",
     },
     "4537": {
-        "font": "regular",
-        "string": "음매음매 컨트리!",
+        string: "음매음매 컨트리!",
     },
     "4538": {
-        "font": "regular",
-        "string": "버섯 캐니언!",
+        string: "버섯 캐니언!",
     },
     "4539": {
-        "font": "regular",
-        "string": "키노피오 팩토리!",
+        string: "키노피오 팩토리!",
     },
     "4540": {
-        "font": "regular",
-        "string": "마리오 서킷!",
+        string: "마리오 서킷!",
     },
     "4541": {
-        "font": "regular",
-        "string": "코코넛 몰!",
+        string: "코코넛 몰!",
     },
     "4542": {
-        "font": "regular",
-        "string": "DK 스노보드 경기장!",
+        string: "DK 스노보드 경기장!",
     },
     "4543": {
-        "font": "regular",
-        "string": "와리오 광산!",
+        string: "와리오 광산!",
     },
     "4544": {
-        "font": "regular",
-        "string": "데이지 서킷!",
+        string: "데이지 서킷!",
     },
     "4545": {
-        "font": "regular",
-        "string": "엉금엉금 케이프!",
+        string: "엉금엉금 케이프!",
     },
     "4546": {
-        "font": "regular",
-        "string": "단풍나무 로드!",
+        string: "단풍나무 로드!",
     },
     "4547": {
-        "font": "regular",
-        "string": "이글이글 화산!",
+        string: "이글이글 화산!",
     },
     "4548": {
-        "font": "regular",
-        "string": "메마른 유적!",
+        string: "메마른 유적!",
     },
     "4549": {
-        "font": "regular",
-        "string": "달맞이 하이웨이!",
+        string: "달맞이 하이웨이!",
     },
     "4550": {
-        "font": "regular",
-        "string": "쿠파 성!",
+        string: "쿠파 성!",
     },
     "4551": {
-        "font": "regular",
-        "string": "무지개 로드!",
+        string: "무지개 로드!",
     },
     "4552": {
-        "font": "regular",
-        "string": "GC 피치 비치!",
+        string: "GC 피치 비치!",
     },
     "4553": {
-        "font": "regular",
-        "string": "DS 요시알 폭포!",
+        string: "DS 요시알 폭포!",
     },
     "4554": {
-        "font": "regular",
-        "string": "SFC 유령의 늪2!",
+        string: "SFC 유령의 늪2!",
     },
     "4555": {
-        "font": "regular",
-        "string": "64 마리오 서킷!",
+        string: "64 마리오 서킷!",
     },
     "4556": {
-        "font": "regular",
-        "string": "64 샤베트 랜드!",
+        string: "64 샤베트 랜드!",
     },
     "4557": {
-        "font": "regular",
-        "string": "GBA 헤이호 비치!",
+        string: "GBA 헤이호 비치!",
     },
     "4558": {
-        "font": "regular",
-        "string": "DS 몬테 타운!",
+        string: "DS 몬테 타운!",
     },
     "4559": {
-        "font": "regular",
-        "string": "GC 와루이지 스타디움!",
+        string: "GC 와루이지 스타디움!",
     },
     "4560": {
-        "font": "regular",
-        "string": "DS 썬썬 사막!",
+        string: "DS 썬썬 사막!",
     },
     "4561": {
-        "font": "regular",
-        "string": "GBA 쿠파 성3!",
+        string: "GBA 쿠파 성3!",
     },
     "4562": {
-        "font": "regular",
-        "string": "64 DK 정글 파크!",
+        string: "64 DK 정글 파크!",
     },
     "4563": {
-        "font": "regular",
-        "string": "GC 마리오 서킷!",
+        string: "GC 마리오 서킷!",
     },
     "4564": {
-        "font": "regular",
-        "string": "SFC 마리오 서킷3!",
+        string: "SFC 마리오 서킷3!",
     },
     "4565": {
-        "font": "regular",
-        "string": "DS 피치 가든!",
+        string: "DS 피치 가든!",
     },
     "4566": {
-        "font": "regular",
-        "string": "GC DK 마운틴!",
+        string: "GC DK 마운틴!",
     },
     "4567": {
-        "font": "regular",
-        "string": "64 쿠파 성!",
+        string: "64 쿠파 성!",
     },
     "4568": {
-        "font": "regular",
-        "string": "블록 광장!",
+        string: "블록 광장!",
     },
     "4569": {
-        "font": "regular",
-        "string": "아쿠아 리조트!",
+        string: "아쿠아 리조트!",
     },
     "4570": {
-        "font": "regular",
-        "string": "펑키 스타디움!",
+        string: "펑키 스타디움!",
     },
     "4571": {
-        "font": "regular",
-        "string": "멍멍이 룰렛!",
+        string: "멍멍이 룰렛!",
     },
     "4572": {
-        "font": "regular",
-        "string": "쿵쿵 사막!",
+        string: "쿵쿵 사막!",
     },
     "4573": {
-        "font": "regular",
-        "string": "SFC 배틀 코스4!",
+        string: "SFC 배틀 코스4!",
     },
     "4574": {
-        "font": "regular",
-        "string": "GBA 배틀 코스3!",
+        string: "GBA 배틀 코스3!",
     },
     "4575": {
-        "font": "regular",
-        "string": "64 마천루!",
+        string: "64 마천루!",
     },
     "4576": {
-        "font": "regular",
-        "string": "GC 쿠키 랜드!",
+        string: "GC 쿠키 랜드!",
     },
     "4577": {
-        "font": "regular",
-        "string": "DS 어두컴COME!!",
+        string: "DS 어두컴COME!!",
     },
     "4578": {
-        "font": "regular",
-        "string": "레드 팀 만세!",
+        string: "레드 팀 만세!",
     },
     "4579": {
-        "font": "regular",
-        "string": "블루 팀 만세!",
+        string: "블루 팀 만세!",
     },
     "4580": {
-        "font": "regular",
-        "string": "이겼다!",
+        string: "이겼다!",
     },
     "4581": {
-        "font": "regular",
-        "string": "일등이다!",
+        string: "일등이다!",
     },
     "4582": {
-        "font": "regular",
-        "string": "다들 빠르네요～ *.*",
+        string: "다들 빠르네요～ *.*",
     },
     "4583": {
-        "font": "regular",
-        "string": "축하축하!",
+        string: "축하축하!",
     },
     "4584": {
-        "font": "regular",
-        "string": "재밌었어요!",
+        string: "재밌었어요!",
     },
     "4585": {
-        "font": "regular",
-        "string": "너무 즐거워요!",
+        string: "너무 즐거워요!",
     },
     "4586": {
-        "font": "regular",
-        "string": "아깝다!",
+        string: "아깝다!",
     },
     "4587": {
-        "font": "regular",
-        "string": "다음엔 이길 거예요!",
+        string: "다음엔 이길 거예요!",
     },
     "4588": {
-        "font": "regular",
-        "string": "한 번 더 해요!",
+        string: "한 번 더 해요!",
     },
     "4589": {
-        "font": "regular",
-        "string": "지금부터 시작이에요!",
+        string: "지금부터 시작이에요!",
     },
     "4590": {
-        "font": "regular",
-        "string": "다음 레이스까지만 해요!",
+        string: "다음 레이스까지만 해요!",
     },
     "4591": {
-        "font": "regular",
-        "string": "이제 나갈게요",
+        string: "이제 나갈게요",
     },
     "4592": {
-        "font": "regular",
-        "string": "수고하셨어요!",
+        string: "수고하셨어요!",
     },
     "4593": {
-        "font": "regular",
-        "string": "고마워요!",
+        string: "고마워요!",
     },
     "4594": {
-        "font": "regular",
-        "string": "안녕히 주무세요",
+        string: "안녕히 주무세요",
     },
     "4595": {
-        "font": "regular",
-        "string": "또 만나요!",
+        string: "또 만나요!",
     },
     "4596": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "4597": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "4598": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "4599": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "4600": {
-        "font": "regular",
-        "string": "통신 에러가 발생했습니다.\n메인 메뉴로 돌아갑니다.\n\n에러 코드：{arg integer|0 5}",
+        string: "통신 에러가 발생했습니다.\n메인 메뉴로 돌아갑니다.\n\n에러 코드：{arg integer|0 5}",
     },
     "4601": {
-        "font": "regular",
-        "string": "인터넷에 접속할 수 없습니다.\n\nWii 본체 설정에서 인터넷 설정을\n확인해 주십시오.\n\n에러 코드：{arg integer|0 5}",
+        string: "인터넷에 접속할 수 없습니다.\n\nWii 본체 설정에서 인터넷 설정을\n확인해 주십시오.\n\n에러 코드：{arg integer|0 5}",
     },
     "4602": {
-        "font": "regular",
-        "string": "Wi-Fi 커넥션에 접속이 집중\n되었거나 서비스가 정지되어\n접속할 수 없습니다.\n잠시 후 다시 시도해 주십시오.\n\n에러 코드：{arg integer|0 5}",
+        string: "Wi-Fi 커넥션에 접속이 집중\n되었거나 서비스가 정지되어\n접속할 수 없습니다.\n잠시 후 다시 시도해 주십시오.\n\n에러 코드：{arg integer|0 5}",
     },
     "4603": {
-        "font": "regular",
-        "string": "Wi-Fi 커넥션에 접속할 수\n없습니다. 자세한 내용은\n사용설명서를 읽어 주십시오.\n\n에러 코드：{arg integer|0 5}",
+        string: "Wi-Fi 커넥션에 접속할 수\n없습니다. 자세한 내용은\n사용설명서를 읽어 주십시오.\n\n에러 코드：{arg integer|0 5}",
     },
     "4604": {
-        "font": "regular",
-        "string": "본 소프트웨어의 Wi-Fi 커넥션\n서비스는 종료되었습니다.\n이용해 주셔서 감사합니다.\n\n에러 코드：{arg integer|0 5}",
+        string: "본 소프트웨어의 Wi-Fi 커넥션\n서비스는 종료되었습니다.\n이용해 주셔서 감사합니다.\n\n에러 코드：{arg integer|0 5}",
     },
     "4605": {
-        "font": "regular",
-        "string": "Wi-Fi 커넥션에 접속할 수\n없습니다. 자세한 내용은\n사용설명서를 읽어 주십시오.\n\n에러 코드：{arg integer|0 5}",
+        string: "Wi-Fi 커넥션에 접속할 수\n없습니다. 자세한 내용은\n사용설명서를 읽어 주십시오.\n\n에러 코드：{arg integer|0 5}",
     },
     "4606": {
-        "font": "regular",
-        "string": "Wi-Fi 커넥션에 접속이 집중\n되었거나 서비스가 정지되어\n접속할 수 없습니다.\n잠시 후 다시 시도해 주십시오.\n\n에러 코드：{arg integer|0 5}",
+        string: "Wi-Fi 커넥션에 접속이 집중\n되었거나 서비스가 정지되어\n접속할 수 없습니다.\n잠시 후 다시 시도해 주십시오.\n\n에러 코드：{arg integer|0 5}",
     },
     "4607": {
-        "font": "regular",
-        "string": "Wii 본체 저장 메모리의\n빈 용량이 부족합니다.\n\n에러 코드：{arg integer|0 5}",
+        string: "Wii 본체 저장 메모리의\n빈 용량이 부족합니다.\n\n에러 코드：{arg integer|0 5}",
     },
     "4608": {
-        "font": "regular",
-        "string": "Wii 본체 저장 메모리가 손상되어\n있습니다. 자세한 내용은 Wii\n본체의 사용설명서를 읽어 주십시오.\n\n에러 코드：{arg integer|0 5}",
+        string: "Wii 본체 저장 메모리가 손상되어\n있습니다. 자세한 내용은 Wii\n본체의 사용설명서를 읽어 주십시오.\n\n에러 코드：{arg integer|0 5}",
     },
     "4609": {
-        "font": "regular",
-        "string": "통신 에러로 인해\n인터넷 접속이\n종료되었습니다.\n\n에러 코드：{arg integer|0 5}",
+        string: "통신 에러로 인해\n인터넷 접속이\n종료되었습니다.\n\n에러 코드：{arg integer|0 5}",
     },
     "4610": {
-        "font": "regular",
-        "string": "다운로드에 실패했습니다.\n\n에러 코드：{arg integer|0 5}",
+        string: "다운로드에 실패했습니다.\n\n에러 코드：{arg integer|0 5}",
     },
     "4611": {
-        "font": "regular",
-        "string": "통신 에러로 인해\n인터넷 접속이 종료되었습니다.\n\n에러 코드：{arg integer|0 5}",
+        string: "통신 에러로 인해\n인터넷 접속이 종료되었습니다.\n\n에러 코드：{arg integer|0 5}",
     },
     "4612": {
-        "font": "regular",
-        "string": "통신 에러로 인해\n인터넷 접속이 종료되었습니다.\n\n에러 코드：{arg integer|0 5}",
+        string: "통신 에러로 인해\n인터넷 접속이 종료되었습니다.\n\n에러 코드：{arg integer|0 5}",
     },
     "4613": {
-        "font": "regular",
-        "string": "통신 에러로 인해\n인터넷 접속이 종료되었습니다.\n\n에러 코드：{arg integer|0 5}",
+        string: "통신 에러로 인해\n인터넷 접속이 종료되었습니다.\n\n에러 코드：{arg integer|0 5}",
     },
     "4614": {
-        "font": "regular",
-        "string": "통신 에러로 인해\n인터넷 접속이 종료되었습니다.\n\n에러 코드：{arg integer|0 5}",
+        string: "통신 에러로 인해\n인터넷 접속이 종료되었습니다.\n\n에러 코드：{arg integer|0 5}",
     },
     "4615": {
-        "font": "regular",
-        "string": "통신 에러로 인해\n인터넷 접속이 종료되었습니다.\n\n에러 코드：{arg integer|0 5}",
+        string: "통신 에러로 인해\n인터넷 접속이 종료되었습니다.\n\n에러 코드：{arg integer|0 5}",
     },
     "4616": {
-        "font": "regular",
-        "string": "인터넷에 접속할 수 없습니다.\n\nWii 본체 설정에서 인터넷 설정을\n확인해 주십시오.\n\n에러 코드：{arg integer|0 5}",
+        string: "인터넷에 접속할 수 없습니다.\n\nWii 본체 설정에서 인터넷 설정을\n확인해 주십시오.\n\n에러 코드：{arg integer|0 5}",
     },
     "4617": {
-        "font": "regular",
-        "string": "인터넷에 접속할 수 없습니다.\n\nWii 본체 설정에서 인터넷 설정을\n확인해 주십시오.\n\n에러 코드：{arg integer|0 5}",
+        string: "인터넷에 접속할 수 없습니다.\n\nWii 본체 설정에서 인터넷 설정을\n확인해 주십시오.\n\n에러 코드：{arg integer|0 5}",
     },
     "4618": {
-        "font": "regular",
-        "string": "인터넷에 접속할 수 없습니다.\n\nWii 본체 설정에서 인터넷 설정을\n확인해 주십시오.\n\n에러 코드：{arg integer|0 5}",
+        string: "인터넷에 접속할 수 없습니다.\n\nWii 본체 설정에서 인터넷 설정을\n확인해 주십시오.\n\n에러 코드：{arg integer|0 5}",
     },
     "4619": {
-        "font": "regular",
-        "string": "인터넷에 접속할 수 없습니다.\n\nWii 본체 설정에서 인터넷 설정을\n확인해 주십시오.\n\n에러 코드：{arg integer|0 5}",
+        string: "인터넷에 접속할 수 없습니다.\n\nWii 본체 설정에서 인터넷 설정을\n확인해 주십시오.\n\n에러 코드：{arg integer|0 5}",
     },
     "4620": {
-        "font": "regular",
-        "string": "인터넷에 접속할 수 없습니다.\n\nWii 본체 설정에서 인터넷 설정을\n확인해 주십시오.\n\n에러 코드：{arg integer|0 5}",
+        string: "인터넷에 접속할 수 없습니다.\n\nWii 본체 설정에서 인터넷 설정을\n확인해 주십시오.\n\n에러 코드：{arg integer|0 5}",
     },
     "4621": {
-        "font": "regular",
-        "string": "인터넷에 접속할 수 없습니다.\n\nWii 본체 설정에서 인터넷 설정을\n확인해 주십시오.\n\n에러 코드：{arg integer|0 5}",
+        string: "인터넷에 접속할 수 없습니다.\n\nWii 본체 설정에서 인터넷 설정을\n확인해 주십시오.\n\n에러 코드：{arg integer|0 5}",
     },
     "4622": {
-        "font": "regular",
-        "string": "인터넷에 접속할 수 없습니다.\n\nWii 본체 설정에서 인터넷 설정을\n확인해 주십시오.\n\n에러 코드：{arg integer|0 5}",
+        string: "인터넷에 접속할 수 없습니다.\n\nWii 본체 설정에서 인터넷 설정을\n확인해 주십시오.\n\n에러 코드：{arg integer|0 5}",
     },
     "4623": {
-        "font": "regular",
-        "string": "인터넷에 접속할 수 없습니다.\n\nWii 본체 설정에서 인터넷 설정을\n확인해 주십시오.\n\n에러 코드：{arg integer|0 5}",
+        string: "인터넷에 접속할 수 없습니다.\n\nWii 본체 설정에서 인터넷 설정을\n확인해 주십시오.\n\n에러 코드：{arg integer|0 5}",
     },
     "4624": {
-        "font": "regular",
-        "string": "인터넷에 접속할 수 없습니다.\n\nWii 본체 설정에서 인터넷 설정을\n확인해 주십시오.\n\n에러 코드：{arg integer|0 5}",
+        string: "인터넷에 접속할 수 없습니다.\n\nWii 본체 설정에서 인터넷 설정을\n확인해 주십시오.\n\n에러 코드：{arg integer|0 5}",
     },
     "4625": {
-        "font": "regular",
-        "string": "인터넷에 접속할 수 없습니다.\n\nWii 본체 설정에서 인터넷 설정을\n확인해 주십시오.\n\n에러 코드：{arg integer|0 5}",
+        string: "인터넷에 접속할 수 없습니다.\n\nWii 본체 설정에서 인터넷 설정을\n확인해 주십시오.\n\n에러 코드：{arg integer|0 5}",
     },
     "4626": {
-        "font": "regular",
-        "string": "인터넷에 접속할 수 없습니다.\n\nWii 본체 설정에서 인터넷 설정을\n확인해 주십시오.\n\n에러 코드：{arg integer|0 5}",
+        string: "인터넷에 접속할 수 없습니다.\n\nWii 본체 설정에서 인터넷 설정을\n확인해 주십시오.\n\n에러 코드：{arg integer|0 5}",
     },
     "4627": {
-        "font": "regular",
-        "string": "인터넷에 접속할 수 없습니다.\n\nWii 본체 설정에서 인터넷 설정을\n확인해 주십시오.\n\n에러 코드：{arg integer|0 5}",
+        string: "인터넷에 접속할 수 없습니다.\n\nWii 본체 설정에서 인터넷 설정을\n확인해 주십시오.\n\n에러 코드：{arg integer|0 5}",
     },
     "4628": {
-        "font": "regular",
-        "string": "인터넷에 접속할 수 없습니다.\n\nWii 본체 설정에서 인터넷 설정을\n확인해 주십시오.\n\n에러 코드：{arg integer|0 5}",
+        string: "인터넷에 접속할 수 없습니다.\n\nWii 본체 설정에서 인터넷 설정을\n확인해 주십시오.\n\n에러 코드：{arg integer|0 5}",
     },
     "4629": {
-        "font": "regular",
-        "string": "통신 에러로 인해\n인터넷 접속이 종료되었습니다.\n\n에러 코드：{arg integer|0 5}",
+        string: "통신 에러로 인해\n인터넷 접속이 종료되었습니다.\n\n에러 코드：{arg integer|0 5}",
     },
     "4630": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "5000": {
-        "font": "regular",
-        "string": "마리오 카트 채널",
+        string: "마리오 카트 채널",
     },
     "5001": {
-        "font": "regular",
-        "string": "친구와 합류",
+        string: "친구와 합류",
     },
     "5002": {
-        "font": "regular",
-        "string": "랭킹",
+        string: "랭킹",
     },
     "5003": {
-        "font": "regular",
-        "string": "고스트 레이스",
+        string: "고스트 레이스",
     },
     "5004": {
-        "font": "regular",
-        "string": "대회",
+        string: "대회",
     },
     "5005": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "5006": {
-        "font": "regular",
-        "string": "친구 등록",
+        string: "친구 등록",
     },
     "5007": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "5008": {
-        "font": "regular",
-        "string": "Wii 메뉴",
+        string: "Wii 메뉴",
     },
     "5009": {
-        "font": "regular",
-        "string": "고스트 수신 목록",
+        string: "고스트 수신 목록",
     },
     "5010": {
-        "font": "regular",
-        "string": "대회",
+        string: "대회",
     },
     "5011": {
-        "font": "regular",
-        "string": "친구 목록",
+        string: "친구 목록",
     },
     "5012": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "5013": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "5014": {
-        "font": "regular",
-        "string": "레이스 시작",
+        string: "레이스 시작",
     },
     "5015": {
-        "font": "regular",
-        "string": "세계 각지의 고스트를\n차례차례 수신합니다!\n\n많은 고스트와 대전하여\n실력을 쌓아 보세요!",
+        string: "세계 각지의 고스트를\n차례차례 수신합니다!\n\n많은 고스트와 대전하여\n실력을 쌓아 보세요!",
     },
     "5016": {
-        "font": "regular",
-        "string": "마이 고스트",
+        string: "마이 고스트",
     },
     "5017": {
-        "font": "regular",
-        "string": "세계 각지의 고스트를\n차례차례 수신합니다!\n\n많은 고스트와 대전하여\n실력을 쌓아 보세요!\n\n{arg integer|0 0}{arg cond messages|0 5026 5027} {arg integer|1 0}{arg cond messages|1 5028 5029}",
+        string: "세계 각지의 고스트를\n차례차례 수신합니다!\n\n많은 고스트와 대전하여\n실력을 쌓아 보세요!\n\n{arg integer|0 0}{arg cond messages|0 5026 5027} {arg integer|1 0}{arg cond messages|1 5028 5029}",
     },
     "5018": {
-        "font": "regular",
-        "string": "세계 각지의 고스트를\n차례차례 수신합니다!\n\n많은 고스트와 대전하여\n실력을 쌓아 보세요!\n\n{arg integer|0 0}{arg cond messages|0 5026 5027} {arg integer|1 0}{arg cond messages|1 5028 5029}",
+        string: "세계 각지의 고스트를\n차례차례 수신합니다!\n\n많은 고스트와 대전하여\n실력을 쌓아 보세요!\n\n{arg integer|0 0}{arg cond messages|0 5026 5027} {arg integer|1 0}{arg cond messages|1 5028 5029}",
     },
     "5019": {
-        "font": "regular",
-        "string": "세계 각지의 고스트를\n차례차례 수신합니다!\n\n많은 고스트와 대전하여\n실력을 쌓아 보세요!\n\n{arg integer|0 0}{arg cond messages|0 5026 5027} {arg integer|1 0}{arg cond messages|1 5028 5029}",
+        string: "세계 각지의 고스트를\n차례차례 수신합니다!\n\n많은 고스트와 대전하여\n실력을 쌓아 보세요!\n\n{arg integer|0 0}{arg cond messages|0 5026 5027} {arg integer|1 0}{arg cond messages|1 5028 5029}",
     },
     "5020": {
-        "font": "regular",
-        "string": "세계 각지의 고스트를\n차례차례 수신합니다!\n\n많은 고스트와 대전하여\n실력을 쌓아 보세요!\n\n{arg integer|0 0}{arg cond messages|0 5026 5027} {arg integer|1 0}{arg cond messages|1 5028 5029}",
+        string: "세계 각지의 고스트를\n차례차례 수신합니다!\n\n많은 고스트와 대전하여\n실력을 쌓아 보세요!\n\n{arg integer|0 0}{arg cond messages|0 5026 5027} {arg integer|1 0}{arg cond messages|1 5028 5029}",
     },
     "5021": {
-        "font": "regular",
-        "string": "세계 각지의 고스트를\n차례차례 수신합니다!\n\n많은 고스트와 대전하여\n실력을 쌓아 보세요!\n\n{arg integer|0 0}{arg cond messages|0 5026 5027} {arg integer|1 0}{arg cond messages|1 5028 5029}",
+        string: "세계 각지의 고스트를\n차례차례 수신합니다!\n\n많은 고스트와 대전하여\n실력을 쌓아 보세요!\n\n{arg integer|0 0}{arg cond messages|0 5026 5027} {arg integer|1 0}{arg cond messages|1 5028 5029}",
     },
     "5022": {
-        "font": "regular",
-        "string": "세계 각지의 고스트를\n차례차례 수신합니다!\n\n많은 고스트와 대전하여\n실력을 쌓아 보세요!\n\n{arg integer|0 0}{arg cond messages|0 5026 5027} {arg integer|1 0}{arg cond messages|1 5028 5029}",
+        string: "세계 각지의 고스트를\n차례차례 수신합니다!\n\n많은 고스트와 대전하여\n실력을 쌓아 보세요!\n\n{arg integer|0 0}{arg cond messages|0 5026 5027} {arg integer|1 0}{arg cond messages|1 5028 5029}",
     },
     "5023": {
-        "font": "regular",
-        "string": "세계 각지의 고스트를\n차례차례 수신합니다!\n\n많은 고스트와 대전하여\n실력을 쌓아 보세요!\n\n{arg integer|0 0}{arg cond messages|0 5026 5027} {arg integer|1 0}{arg cond messages|1 5028 5029}",
+        string: "세계 각지의 고스트를\n차례차례 수신합니다!\n\n많은 고스트와 대전하여\n실력을 쌓아 보세요!\n\n{arg integer|0 0}{arg cond messages|0 5026 5027} {arg integer|1 0}{arg cond messages|1 5028 5029}",
     },
     "5024": {
-        "font": "regular",
-        "string": "세계 각지의 고스트를\n차례차례 수신합니다!\n\n많은 고스트와 대전하여\n실력을 쌓아 보세요!\n\n{arg integer|0 0}{arg cond messages|0 5026 5027} {arg integer|1 0}{arg cond messages|1 5028 5029}",
+        string: "세계 각지의 고스트를\n차례차례 수신합니다!\n\n많은 고스트와 대전하여\n실력을 쌓아 보세요!\n\n{arg integer|0 0}{arg cond messages|0 5026 5027} {arg integer|1 0}{arg cond messages|1 5028 5029}",
     },
     "5025": {
-        "font": "regular",
-        "string": "{arg integer|0 0}{arg cond messages|0 5026 5027}",
+        string: "{arg integer|0 0}{arg cond messages|0 5026 5027}",
     },
     "5026": {
-        "font": "regular",
-        "string": "승",
+        string: "승",
     },
     "5027": {
-        "font": "regular",
-        "string": "승",
+        string: "승",
     },
     "5028": {
-        "font": "regular",
-        "string": "패",
+        string: "패",
     },
     "5029": {
-        "font": "regular",
-        "string": "패",
+        string: "패",
     },
     "5030": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "5050": {
-        "font": "regular",
-        "string": "친구",
+        string: "친구",
     },
     "5051": {
-        "font": "regular",
-        "string": "고스트",
+        string: "고스트",
     },
     "5052": {
-        "font": "regular",
-        "string": "타임 어택 랭킹",
+        string: "타임 어택 랭킹",
     },
     "5053": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "5054": {
-        "font": "regular",
-        "string": "대회 랭킹",
+        string: "대회 랭킹",
     },
     "5055": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "5060": {
-        "font": "regular",
-        "string": "지금 플레이하는 친구를 확인합니다",
+        string: "지금 플레이하는 친구를 확인합니다",
     },
     "5061": {
-        "font": "regular",
-        "string": "친구나 세계 랭킹을 확인합니다",
+        string: "친구나 세계 랭킹을 확인합니다",
     },
     "5062": {
-        "font": "regular",
-        "string": "수신한 고스트를 확인/삭제합니다",
+        string: "수신한 고스트를 확인/삭제합니다",
     },
     "5063": {
-        "font": "regular",
-        "string": "마리오 카트 대회에 참가합니다",
+        string: "마리오 카트 대회에 참가합니다",
     },
     "5064": {
-        "font": "regular",
-        "string": "전 세계 고스트와 대전합니다",
+        string: "전 세계 고스트와 대전합니다",
     },
     "5065": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "5066": {
-        "font": "regular",
-        "string": "고스트를 받거나 보낼 수도 있습니다",
+        string: "고스트를 받거나 보낼 수도 있습니다",
     },
     "5067": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "5068": {
-        "font": "regular",
-        "string": "마리오 카트 대회의 랭킹입니다!",
+        string: "마리오 카트 대회의 랭킹입니다!",
     },
     "5069": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "5070": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "5071": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "5072": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "5073": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "5074": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "5075": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "5080": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "5081": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "5082": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "5083": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "5084": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "5085": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "5100": {
-        "font": "regular",
-        "string": "친구 코드를 등록해 주십시오",
+        string: "친구 코드를 등록해 주십시오",
     },
     "5101": {
-        "font": "regular",
-        "string": "이 친구 코드를 등록하겠습니까?\n\n{arg integer|0 4}-{arg integer|1 4}-{arg integer|2 4}",
+        string: "이 친구 코드를 등록하겠습니까?\n\n{arg integer|0 4}-{arg integer|1 4}-{arg integer|2 4}",
     },
     "5102": {
-        "font": "regular",
-        "string": "잘못된 친구 코드입니다.\n\n{arg integer|0 4}-{arg integer|1 4}-{arg integer|2 4}",
+        string: "잘못된 친구 코드입니다.\n\n{arg integer|0 4}-{arg integer|1 4}-{arg integer|2 4}",
     },
     "5103": {
-        "font": "regular",
-        "string": "친구 코드를 등록했습니다.\n\n{arg integer|0 4}-{arg integer|1 4}-{arg integer|2 4}",
+        string: "친구 코드를 등록했습니다.\n\n{arg integer|0 4}-{arg integer|1 4}-{arg integer|2 4}",
     },
     "5104": {
-        "font": "regular",
-        "string": "{current player|} 님의 친구 코드도\n전달해 주십시오.\n\n{arg integer|0 4}-{arg integer|1 4}-{arg integer|2 4}\n\n서로 「친구 등록」을 하면\n함께 플레이할 수 있습니다.",
+        string: "{current player|} 님의 친구 코드도\n전달해 주십시오.\n\n{arg integer|0 4}-{arg integer|1 4}-{arg integer|2 4}\n\n서로 「친구 등록」을 하면\n함께 플레이할 수 있습니다.",
     },
     "5105": {
-        "font": "regular",
-        "string": "{arg integer|0 1}",
+        string: "{arg integer|0 1}",
     },
     "5106": {
-        "font": "regular",
-        "string": "-",
+        string: "-",
     },
     "5107": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "5110": {
-        "font": "regular",
-        "string": "그 친구 코드는 이미\n등록되어 있습니다.",
+        string: "그 친구 코드는 이미\n등록되어 있습니다.",
     },
     "5111": {
-        "font": "regular",
-        "string": "친구는 30명까지이므로\n등록할 수 없습니다.",
+        string: "친구는 30명까지이므로\n등록할 수 없습니다.",
     },
     "5112": {
-        "font": "regular",
-        "string": "{current player|} 님의 친구 코드가 없습니다.",
+        string: "{current player|} 님의 친구 코드가 없습니다.",
     },
     "5113": {
-        "font": "regular",
-        "string": "{arg license player|0} 님의 친구 코드입니다.\n\n등록할 수 없습니다.",
+        string: "{arg license player|0} 님의 친구 코드입니다.\n\n등록할 수 없습니다.",
     },
     "5115": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "5150": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "5151": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "5152": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "5153": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "5154": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "5155": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "5156": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "5157": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "5200": {
-        "font": "regular",
-        "string": "삭제",
+        string: "삭제",
     },
     "5201": {
-        "font": "regular",
-        "string": "합류",
+        string: "합류",
     },
     "5202": {
-        "font": "regular",
-        "string": "합류할 수 없습니다",
+        string: "합류할 수 없습니다",
     },
     "5203": {
-        "font": "regular",
-        "string": "아직 친구가 되지 않았습니다",
+        string: "아직 친구가 되지 않았습니다",
     },
     "5204": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "5205": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "5206": {
-        "font": "regular",
-        "string": "win",
+        string: "win",
     },
     "5207": {
-        "font": "regular",
-        "string": "wins",
+        string: "wins",
     },
     "5208": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "5209": {
-        "font": "regular",
-        "string": "배틀",
+        string: "배틀",
     },
     "5210": {
-        "font": "regular",
-        "string": "친구를 삭제하겠습니까?",
+        string: "친구를 삭제하겠습니까?",
     },
     "5211": {
-        "font": "regular",
-        "string": "친구를 삭제했습니다",
+        string: "친구를 삭제했습니다",
     },
     "5212": {
-        "font": "regular",
-        "string": "친구를 삭제하고 있습니다",
+        string: "친구를 삭제하고 있습니다",
     },
     "5213": {
-        "font": "regular",
-        "string": "친구 삭제",
+        string: "친구 삭제",
     },
     "5214": {
-        "font": "regular",
-        "string": "삭제한다",
+        string: "삭제한다",
     },
     "5215": {
-        "font": "regular",
-        "string": "삭제하지 않는다",
+        string: "삭제하지 않는다",
     },
     "5216": {
-        "font": "regular",
-        "string": "{arg cond messages|0 5206 5207}",
+        string: "{arg cond messages|0 5206 5207}",
     },
     "5217": {
-        "font": "regular",
-        "string": "이 친구의 모든\n데이터를 삭제하겠습니까?",
+        string: "이 친구의 모든\n데이터를 삭제하겠습니까?",
     },
     "5218": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "5300": {
-        "font": "regular",
-        "string": "Wi-Fi에 접속 중입니다",
+        string: "Wi-Fi에 접속 중입니다",
     },
     "5301": {
-        "font": "regular",
-        "string": "Wi-Fi에 접속하지 않았습니다",
+        string: "Wi-Fi에 접속하지 않았습니다",
     },
     "5302": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "5303": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "5304": {
-        "font": "regular",
-        "string": "친구 룸을 열었습니다!",
+        string: "친구 룸을 열었습니다!",
     },
     "5305": {
-        "font": "regular",
-        "string": "친구와 플레이하고 있습니다",
+        string: "친구와 플레이하고 있습니다",
     },
     "5306": {
-        "font": "regular",
-        "string": "친구와 플레이하고 있습니다",
+        string: "친구와 플레이하고 있습니다",
     },
     "5307": {
-        "font": "regular",
-        "string": "세계 VS를 플레이하고 있습니다!",
+        string: "세계 VS를 플레이하고 있습니다!",
     },
     "5308": {
-        "font": "regular",
-        "string": "세계 배틀을 플레이하고 있습니다!",
+        string: "세계 배틀을 플레이하고 있습니다!",
     },
     "5309": {
-        "font": "regular",
-        "string": "국내 VS를 플레이하고 있습니다!",
+        string: "국내 VS를 플레이하고 있습니다!",
     },
     "5310": {
-        "font": "regular",
-        "string": "국내 배틀을 플레이하고 있습니다!",
+        string: "국내 배틀을 플레이하고 있습니다!",
     },
     "5311": {
-        "font": "regular",
-        "string": "레이스를 주최하고 있습니다(1경기)",
+        string: "레이스를 주최하고 있습니다(1경기)",
     },
     "5312": {
-        "font": "regular",
-        "string": "레이스를 주최하고 있습니다(2경기)",
+        string: "레이스를 주최하고 있습니다(2경기)",
     },
     "5313": {
-        "font": "regular",
-        "string": "레이스를 주최하고 있습니다(3경기)",
+        string: "레이스를 주최하고 있습니다(3경기)",
     },
     "5314": {
-        "font": "regular",
-        "string": "레이스를 주최하고 있습니다(4경기)",
+        string: "레이스를 주최하고 있습니다(4경기)",
     },
     "5315": {
-        "font": "regular",
-        "string": "배틀을 주최하고 있습니다(1경기)",
+        string: "배틀을 주최하고 있습니다(1경기)",
     },
     "5316": {
-        "font": "regular",
-        "string": "배틀을 주최하고 있습니다(2경기)",
+        string: "배틀을 주최하고 있습니다(2경기)",
     },
     "5317": {
-        "font": "regular",
-        "string": "배틀을 주최하고 있습니다(3경기)",
+        string: "배틀을 주최하고 있습니다(3경기)",
     },
     "5318": {
-        "font": "regular",
-        "string": "배틀을 주최하고 있습니다(연장전)",
+        string: "배틀을 주최하고 있습니다(연장전)",
     },
     "5319": {
-        "font": "regular",
-        "string": "친구와 플레이하고 있습니다(1경기)",
+        string: "친구와 플레이하고 있습니다(1경기)",
     },
     "5320": {
-        "font": "regular",
-        "string": "친구와 플레이하고 있습니다(2경기)",
+        string: "친구와 플레이하고 있습니다(2경기)",
     },
     "5321": {
-        "font": "regular",
-        "string": "친구와 플레이하고 있습니다(3경기)",
+        string: "친구와 플레이하고 있습니다(3경기)",
     },
     "5322": {
-        "font": "regular",
-        "string": "친구와 플레이하고 있습니다(4경기)",
+        string: "친구와 플레이하고 있습니다(4경기)",
     },
     "5323": {
-        "font": "regular",
-        "string": "친구와 플레이하고 있습니다(1경기)",
+        string: "친구와 플레이하고 있습니다(1경기)",
     },
     "5324": {
-        "font": "regular",
-        "string": "친구와 플레이하고 있습니다(2경기)",
+        string: "친구와 플레이하고 있습니다(2경기)",
     },
     "5325": {
-        "font": "regular",
-        "string": "친구와 플레이하고 있습니다(3경기)",
+        string: "친구와 플레이하고 있습니다(3경기)",
     },
     "5326": {
-        "font": "regular",
-        "string": "친구와 플레이하고 있습니다(연장전)",
+        string: "친구와 플레이하고 있습니다(연장전)",
     },
     "5327": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "5328": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "5350": {
-        "font": "regular",
-        "string": "친구와 합류합니다",
+        string: "친구와 합류합니다",
     },
     "5351": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "5400": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "5401": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "5402": {
-        "font": "regular",
-        "string": "고스트 도전장을 보내겠습니까?",
+        string: "고스트 도전장을 보내겠습니까?",
     },
     "5403": {
-        "font": "regular",
-        "string": "고스트 도전장을 보내고 있습니다",
+        string: "고스트 도전장을 보내고 있습니다",
     },
     "5404": {
-        "font": "regular",
-        "string": "{arg player|0} 님에게\n고스트 도전장을 보냈습니다!\n\n{arg integer|0 0}/5",
+        string: "{arg player|0} 님에게\n고스트 도전장을 보냈습니다!\n\n{arg integer|0 0}/5",
     },
     "5405": {
-        "font": "regular",
-        "string": "{arg player|0} 님에게\n고스트 도전장을 보냈습니다!\n\n5/5\n\n「마리오 카트 Wii」를\n다시 플레이할 때까지 고스트\n도전장은 보낼 수 없습니다.",
+        string: "{arg player|0} 님에게\n고스트 도전장을 보냈습니다!\n\n5/5\n\n「마리오 카트 Wii」를\n다시 플레이할 때까지 고스트\n도전장은 보낼 수 없습니다.",
     },
     "5406": {
-        "font": "regular",
-        "string": "고스트가 없어\n도전장을 보내지 못했습니다.",
+        string: "고스트가 없어\n도전장을 보내지 못했습니다.",
     },
     "5407": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "5500": {
-        "font": "regular",
-        "string": "고스트를 읽고 있습니다",
+        string: "고스트를 읽고 있습니다",
     },
     "5501": {
-        "font": "regular",
-        "string": "친구로부터 도전장이 도착했습니다!",
+        string: "친구로부터 도전장이 도착했습니다!",
     },
     "5502": {
-        "font": "regular",
-        "string": "「고스트 수신 목록」이 가득 차\n친구의 도전장을\n수신할 수 없습니다.\n\n고스트를 삭제해 주십시오.",
+        string: "「고스트 수신 목록」이 가득 차\n친구의 도전장을\n수신할 수 없습니다.\n\n고스트를 삭제해 주십시오.",
     },
     "5503": {
-        "font": "regular",
-        "string": "이 코스는 아직\n플레이할 수 없습니다.\n\n그랑프리 트로피를 모으면\n더 많은 코스를\n플레이할 수 있게 됩니다.",
+        string: "이 코스는 아직\n플레이할 수 없습니다.\n\n그랑프리 트로피를 모으면\n더 많은 코스를\n플레이할 수 있게 됩니다.",
     },
     "5504": {
-        "font": "regular",
-        "string": "고스트 도전장의 수신에\n실패했습니다.",
+        string: "고스트 도전장의 수신에\n실패했습니다.",
     },
     "5505": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "5600": {
-        "font": "regular",
-        "string": "",
+        string: "",
     },
     "5601": {
-        "font": "regular",
-        "string": "일본",
+        string: "일본",
     },
     "5608": {
-        "font": "regular",
-        "string": "앵귈라",
+        string: "앵귈라",
     },
     "5609": {
-        "font": "regular",
-        "string": "앤티가바부다",
+        string: "앤티가바부다",
     },
     "5610": {
-        "font": "regular",
-        "string": "아르헨티나",
+        string: "아르헨티나",
     },
     "5611": {
-        "font": "regular",
-        "string": "아루바",
+        string: "아루바",
     },
     "5612": {
-        "font": "regular",
-        "string": "바하마",
+        string: "바하마",
     },
     "5613": {
-        "font": "regular",
-        "string": "바베이도스",
+        string: "바베이도스",
     },
     "5614": {
-        "font": "regular",
-        "string": "벨리즈",
+        string: "벨리즈",
     },
     "5615": {
-        "font": "regular",
-        "string": "볼리비아",
+        string: "볼리비아",
     },
     "5616": {
-        "font": "regular",
-        "string": "브라질",
+        string: "브라질",
     },
     "5617": {
-        "font": "regular",
-        "string": "영국령 버진제도",
+        string: "영국령 버진제도",
     },
     "5618": {
-        "font": "regular",
-        "string": "캐나다",
+        string: "캐나다",
     },
     "5619": {
-        "font": "regular",
-        "string": "케이맨 제도",
+        string: "케이맨 제도",
     },
     "5620": {
-        "font": "regular",
-        "string": "칠레",
+        string: "칠레",
     },
     "5621": {
-        "font": "regular",
-        "string": "콜롬비아",
+        string: "콜롬비아",
     },
     "5622": {
-        "font": "regular",
-        "string": "코스타리카",
+        string: "코스타리카",
     },
     "5623": {
-        "font": "regular",
-        "string": "도미니카",
+        string: "도미니카",
     },
     "5624": {
-        "font": "regular",
-        "string": "도미니카 공화국",
+        string: "도미니카 공화국",
     },
     "5625": {
-        "font": "regular",
-        "string": "에콰도르",
+        string: "에콰도르",
     },
     "5626": {
-        "font": "regular",
-        "string": "엘살바도르",
+        string: "엘살바도르",
     },
     "5628": {
-        "font": "regular",
-        "string": "그레나다",
+        string: "그레나다",
     },
     "5630": {
-        "font": "regular",
-        "string": "과테말라",
+        string: "과테말라",
     },
     "5631": {
-        "font": "regular",
-        "string": "가이아나",
+        string: "가이아나",
     },
     "5632": {
-        "font": "regular",
-        "string": "아이티",
+        string: "아이티",
     },
     "5633": {
-        "font": "regular",
-        "string": "온두라스",
+        string: "온두라스",
     },
     "5634": {
-        "font": "regular",
-        "string": "자메이카",
+        string: "자메이카",
     },
     "5636": {
-        "font": "regular",
-        "string": "멕시코",
+        string: "멕시코",
     },
     "5637": {
-        "font": "regular",
-        "string": "몬세라트",
+        string: "몬세라트",
     },
     "5638": {
-        "font": "regular",
-        "string": "네덜란드령 앤틸리스제도",
+        string: "네덜란드령 앤틸리스제도",
     },
     "5639": {
-        "font": "regular",
-        "string": "니카라과",
+        string: "니카라과",
     },
     "5640": {
-        "font": "regular",
-        "string": "파나마",
+        string: "파나마",
     },
     "5641": {
-        "font": "regular",
-        "string": "파라과이",
+        string: "파라과이",
     },
     "5642": {
-        "font": "regular",
-        "string": "페루",
+        string: "페루",
     },
     "5643": {
-        "font": "regular",
-        "string": "세인트 키츠 네비스",
+        string: "세인트 키츠 네비스",
     },
     "5644": {
-        "font": "regular",
-        "string": "세인트루시아",
+        string: "세인트루시아",
     },
     "5645": {
-        "font": "regular",
-        "string": "세인트 빈센트 그레나딘",
+        string: "세인트 빈센트 그레나딘",
     },
     "5646": {
-        "font": "regular",
-        "string": "수리남",
+        string: "수리남",
     },
     "5647": {
-        "font": "regular",
-        "string": "트리니다드 토바코",
+        string: "트리니다드 토바코",
     },
     "5648": {
-        "font": "regular",
-        "string": "터크스케이커스제도",
+        string: "터크스케이커스제도",
     },
     "5649": {
-        "font": "regular",
-        "string": "미국",
+        string: "미국",
     },
     "5650": {
-        "font": "regular",
-        "string": "우루과이",
+        string: "우루과이",
     },
     "5651": {
-        "font": "regular",
-        "string": "미국령 버진제도",
+        string: "미국령 버진제도",
     },
     "5652": {
-        "font": "regular",
-        "string": "베네수엘라",
+        string: "베네수엘라",
     },
     "5665": {
-        "font": "regular",
-        "string": "오스트레일리아",
+        string: "오스트레일리아",
     },
     "5666": {
-        "font": "regular",
-        "string": "오스트리아",
+        string: "오스트리아",
     },
     "5667": {
-        "font": "regular",
-        "string": "벨기에",
+        string: "벨기에",
     },
     "5674": {
-        "font": "regular",
-        "string": "덴마크",
+        string: "덴마크",
     },
     "5676": {
-        "font": "regular",
-        "string": "핀란드",
+        string: "핀란드",
     },
     "5677": {
-        "font": "regular",
-        "string": "프랑스",
+        string: "프랑스",
     },
     "5678": {
-        "font": "regular",
-        "string": "독일",
+        string: "독일",
     },
     "5679": {
-        "font": "regular",
-        "string": "그리스",
+        string: "그리스",
     },
     "5682": {
-        "font": "regular",
-        "string": "아일랜드",
+        string: "아일랜드",
     },
     "5683": {
-        "font": "regular",
-        "string": "이탈리아",
+        string: "이탈리아",
     },
     "5688": {
-        "font": "regular",
-        "string": "룩셈부르크",
+        string: "룩셈부르크",
     },
     "5694": {
-        "font": "regular",
-        "string": "네덜란드",
+        string: "네덜란드",
     },
     "5695": {
-        "font": "regular",
-        "string": "뉴질랜드",
+        string: "뉴질랜드",
     },
     "5696": {
-        "font": "regular",
-        "string": "노르웨이",
+        string: "노르웨이",
     },
     "5698": {
-        "font": "regular",
-        "string": "포르투갈",
+        string: "포르투갈",
     },
     "5705": {
-        "font": "regular",
-        "string": "스페인",
+        string: "스페인",
     },
     "5707": {
-        "font": "regular",
-        "string": "스웨덴",
+        string: "스웨덴",
     },
     "5708": {
-        "font": "regular",
-        "string": "스위스",
+        string: "스위스",
     },
     "5710": {
-        "font": "regular",
-        "string": "영국",
+        string: "영국",
     },
     "5728": {
-        "font": "regular",
-        "string": "",
+        string: "",
     },
     "5736": {
-        "font": "regular",
-        "string": "대한민국",
+        string: "대한민국",
     },
     "5744": {
-        "font": "regular",
-        "string": "",
+        string: "",
     },
     "5745": {
-        "font": "regular",
-        "string": "",
+        string: "",
     },
     "5760": {
-        "font": "regular",
-        "string": "",
+        string: "",
     },
     "5855": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "6000": {
-        "font": "regular",
-        "string": "코스를 선택해 주십시오",
+        string: "코스를 선택해 주십시오",
     },
     "6001": {
-        "font": "regular",
-        "string": "친구 랭킹",
+        string: "친구 랭킹",
     },
     "6002": {
-        "font": "regular",
-        "string": "국내 랭킹",
+        string: "국내 랭킹",
     },
     "6003": {
-        "font": "regular",
-        "string": "세계 랭킹",
+        string: "세계 랭킹",
     },
     "6004": {
-        "font": "regular",
-        "string": "TOP",
+        string: "TOP",
     },
     "6005": {
-        "font": "regular",
-        "string": "{arg message|0} 친구 TOP10",
+        string: "{arg message|0} 친구 TOP10",
     },
     "6006": {
-        "font": "regular",
-        "string": "{arg message|0} 국내 TOP10",
+        string: "{arg message|0} 국내 TOP10",
     },
     "6007": {
-        "font": "regular",
-        "string": "{arg message|0} 세계 TOP10",
+        string: "{arg message|0} 세계 TOP10",
     },
     "6008": {
-        "font": "regular",
-        "string": "10",
+        string: "10",
     },
     "6009": {
-        "font": "regular",
-        "string": "TOP10",
+        string: "TOP10",
     },
     "6010": {
-        "font": "regular",
-        "string": "타임 어택을 플레이한다",
+        string: "타임 어택을 플레이한다",
     },
     "6011": {
-        "font": "regular",
-        "string": "레이스를 시작한다",
+        string: "레이스를 시작한다",
     },
     "6012": {
-        "font": "regular",
-        "string": "리플레이를 감상한다",
+        string: "리플레이를 감상한다",
     },
     "6013": {
-        "font": "regular",
-        "string": "고스트를 삭제한다",
+        string: "고스트를 삭제한다",
     },
     "6014": {
-        "font": "regular",
-        "string": "고스트 도전장을 보낸다",
+        string: "고스트 도전장을 보낸다",
     },
     "6015": {
-        "font": "regular",
-        "string": "고스트와 레이스",
+        string: "고스트와 레이스",
     },
     "6016": {
-        "font": "regular",
-        "string": "혼자서 타임 어택",
+        string: "혼자서 타임 어택",
     },
     "6017": {
-        "font": "regular",
-        "string": "NEW",
+        string: "NEW",
     },
     "6018": {
-        "font": "regular",
-        "string": "친구",
+        string: "친구",
     },
     "6019": {
-        "font": "regular",
-        "string": "TOP10",
+        string: "TOP10",
     },
     "6020": {
-        "font": "regular",
-        "string": "국내",
+        string: "국내",
     },
     "6021": {
-        "font": "regular",
-        "string": "TOP10",
+        string: "TOP10",
     },
     "6022": {
-        "font": "regular",
-        "string": "세계",
+        string: "세계",
     },
     "6023": {
-        "font": "regular",
-        "string": "TOP10",
+        string: "TOP10",
     },
     "6024": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "6050": {
-        "font": "regular",
-        "string": "TIME",
+        string: "TIME",
     },
     "6051": {
-        "font": "regular",
-        "string": "{arg integer|0 1}:{arg integer|1 2}",
+        string: "{arg integer|0 1}:{arg integer|1 2}",
     },
     "6052": {
-        "font": "regular",
-        "string": "{arg integer|0 2}:{arg integer|1 2}.{arg integer|2 3}",
+        string: "{arg integer|0 2}:{arg integer|1 2}.{arg integer|2 3}",
     },
     "6053": {
-        "font": "regular",
-        "string": "--:--.---",
+        string: "--:--.---",
     },
     "6054": {
-        "font": "regular",
-        "string": "국내 챔피언",
+        string: "국내 챔피언",
     },
     "6055": {
-        "font": "regular",
-        "string": "세계 챔피언",
+        string: "세계 챔피언",
     },
     "6056": {
-        "font": "regular",
-        "string": "라이벌 고스트",
+        string: "라이벌 고스트",
     },
     "6057": {
-        "font": "regular",
-        "string": "친구",
+        string: "친구",
     },
     "6058": {
-        "font": "regular",
-        "string": "국내",
+        string: "국내",
     },
     "6059": {
-        "font": "regular",
-        "string": "세계",
+        string: "세계",
     },
     "6060": {
-        "font": "regular",
-        "string": "{arg front button|0}",
+        string: "{arg front button|0}",
     },
     "6061": {
-        "font": "regular",
-        "string": "가족 고스트",
+        string: "가족 고스트",
     },
     "6062": {
-        "font": "regular",
-        "string": "친구 고스트",
+        string: "친구 고스트",
     },
     "6063": {
-        "font": "regular",
-        "string": "스페셜 고스트",
+        string: "스페셜 고스트",
     },
     "6064": {
-        "font": "regular",
-        "string": "개발자 고스트",
+        string: "개발자 고스트",
     },
     "6065": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "6100": {
-        "font": "regular",
-        "string": "{arg message|0}\n\n고스트가 없습니다.",
+        string: "{arg message|0}\n\n고스트가 없습니다.",
     },
     "6101": {
-        "font": "regular",
-        "string": "{arg license player|0}\n\n고스트가 없습니다.",
+        string: "{arg license player|0}\n\n고스트가 없습니다.",
     },
     "6102": {
-        "font": "regular",
-        "string": "수신한 고스트는\n없습니다.",
+        string: "수신한 고스트는\n없습니다.",
     },
     "6103": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "6110": {
-        "font": "regular",
-        "string": "고스트를 수신하고 있습니다",
+        string: "고스트를 수신하고 있습니다",
     },
     "6111": {
-        "font": "regular",
-        "string": "「고스트 수신 목록」이\n가득 차서\n더 이상 받을 수 없습니다.\n\n「고스트 수신 목록」에서\n고스트를 삭제해 주십시오.",
+        string: "「고스트 수신 목록」이\n가득 차서\n더 이상 받을 수 없습니다.\n\n「고스트 수신 목록」에서\n고스트를 삭제해 주십시오.",
     },
     "6112": {
-        "font": "regular",
-        "string": "고스트 수신에\n실패했습니다.\n\n에러 코드：{arg integer|0 5}",
+        string: "고스트 수신에\n실패했습니다.\n\n에러 코드：{arg integer|0 5}",
     },
     "6113": {
-        "font": "regular",
-        "string": "고스트를 수신했습니다.",
+        string: "고스트를 수신했습니다.",
     },
     "6114": {
-        "font": "regular",
-        "string": "TOP10을 수신하고 있습니다",
+        string: "TOP10을 수신하고 있습니다",
     },
     "6115": {
-        "font": "regular",
-        "string": "TOP10 수신에\n실패했습니다.\n\n에러 코드：{arg integer|0 5}",
+        string: "TOP10 수신에\n실패했습니다.\n\n에러 코드：{arg integer|0 5}",
     },
     "6116": {
-        "font": "regular",
-        "string": "TOP10이 없습니다.",
+        string: "TOP10이 없습니다.",
     },
     "6117": {
-        "font": "regular",
-        "string": "",
+        string: "",
     },
     "6120": {
-        "font": "regular",
-        "string": "Wi-Fi 커넥션에\n접속하겠습니까?",
+        string: "Wi-Fi 커넥션에\n접속하겠습니까?",
     },
     "6121": {
-        "font": "regular",
-        "string": "OK",
+        string: "OK",
     },
     "6122": {
-        "font": "regular",
-        "string": "Wi-Fi 커넥션에\n접속하겠습니까?",
+        string: "Wi-Fi 커넥션에\n접속하겠습니까?",
     },
     "6123": {
-        "font": "regular",
-        "string": "새로운 고스트와\n바꾸겠습니까?",
+        string: "새로운 고스트와\n바꾸겠습니까?",
     },
     "6124": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "6150": {
-        "font": "regular",
-        "string": "고스트와 대전합니다",
+        string: "고스트와 대전합니다",
     },
     "6151": {
-        "font": "regular",
-        "string": "고스트의 리플레이를 감상합니다",
+        string: "고스트의 리플레이를 감상합니다",
     },
     "6152": {
-        "font": "regular",
-        "string": "정말로 삭제하겠습니까?",
+        string: "정말로 삭제하겠습니까?",
     },
     "6153": {
-        "font": "regular",
-        "string": "예",
+        string: "예",
     },
     "6154": {
-        "font": "regular",
-        "string": "아니요",
+        string: "아니요",
     },
     "6155": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "6201": {
-        "font": "regular",
-        "string": "1st",
+        string: "1st",
     },
     "6202": {
-        "font": "regular",
-        "string": "2nd",
+        string: "2nd",
     },
     "6203": {
-        "font": "regular",
-        "string": "3rd",
+        string: "3rd",
     },
     "6204": {
-        "font": "regular",
-        "string": "4th",
+        string: "4th",
     },
     "6205": {
-        "font": "regular",
-        "string": "5th",
+        string: "5th",
     },
     "6206": {
-        "font": "regular",
-        "string": "6th",
+        string: "6th",
     },
     "6207": {
-        "font": "regular",
-        "string": "7th",
+        string: "7th",
     },
     "6208": {
-        "font": "regular",
-        "string": "8th",
+        string: "8th",
     },
     "6209": {
-        "font": "regular",
-        "string": "9th",
+        string: "9th",
     },
     "6210": {
-        "font": "regular",
-        "string": "10th",
+        string: "10th",
     },
     "6211": {
-        "font": "regular",
-        "string": "11th",
+        string: "11th",
     },
     "6212": {
-        "font": "regular",
-        "string": "12th",
+        string: "12th",
     },
     "6213": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "6250": {
-        "font": "regular",
-        "string": "타임 어택을 시작합니다",
+        string: "타임 어택을 시작합니다",
     },
     "6251": {
-        "font": "regular",
-        "string": "{arg player|0} 님과 대전할 수 있습니다",
+        string: "{arg player|0} 님과 대전할 수 있습니다",
     },
     "6252": {
-        "font": "regular",
-        "string": "국내 챔피언과 대전할 수 있습니다",
+        string: "국내 챔피언과 대전할 수 있습니다",
     },
     "6253": {
-        "font": "regular",
-        "string": "세계 챔피언과 대전할 수 있습니다",
+        string: "세계 챔피언과 대전할 수 있습니다",
     },
     "6254": {
-        "font": "regular",
-        "string": "약간 빠른 고스트와 대전할 수 있습니다",
+        string: "약간 빠른 고스트와 대전할 수 있습니다",
     },
     "6255": {
-        "font": "regular",
-        "string": "친구 TOP10을 확인합니다",
+        string: "친구 TOP10을 확인합니다",
     },
     "6256": {
-        "font": "regular",
-        "string": "국내 TOP10을 확인합니다",
+        string: "국내 TOP10을 확인합니다",
     },
     "6257": {
-        "font": "regular",
-        "string": "세계 TOP10을 확인합니다",
+        string: "세계 TOP10을 확인합니다",
     },
     "6258": {
-        "font": "regular",
-        "string": "개발자 고스트와 대전할 수 있습니다",
+        string: "개발자 고스트와 대전할 수 있습니다",
     },
     "6259": {
-        "font": "regular",
-        "string": "{arg player|0} 님의 기록입니다",
+        string: "{arg player|0} 님의 기록입니다",
     },
     "6260": {
-        "font": "regular",
-        "string": "국내 챔피언의 기록입니다",
+        string: "국내 챔피언의 기록입니다",
     },
     "6261": {
-        "font": "regular",
-        "string": "세계 챔피언의 기록입니다",
+        string: "세계 챔피언의 기록입니다",
     },
     "6262": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "6300": {
-        "font": "regular",
-        "string": "고스트 도전장 보내기",
+        string: "고스트 도전장 보내기",
     },
     "6301": {
-        "font": "regular",
-        "string": "{arg message|0}\n\n{arg player|0} 님의 기록은 없습니다.",
+        string: "{arg message|0}\n\n{arg player|0} 님의 기록은 없습니다.",
     },
     "6302": {
-        "font": "regular",
-        "string": "{arg message|0}\n\n{arg player|0} 님  {arg integer|0 2}:{arg integer|1 2}.{arg integer|2 3}",
+        string: "{arg message|0}\n\n{arg player|0} 님  {arg integer|0 2}:{arg integer|1 2}.{arg integer|2 3}",
     },
     "6303": {
-        "font": "regular",
-        "string": "{arg message|0}\n\n{arg player|0} 님의 기록은 없습니다.",
+        string: "{arg message|0}\n\n{arg player|0} 님의 기록은 없습니다.",
     },
     "6304": {
-        "font": "regular",
-        "string": "{arg message|0}\n\n{arg player|0} 님  {arg integer|0 2}:{arg integer|1 2}.{arg integer|2 3}",
+        string: "{arg message|0}\n\n{arg player|0} 님  {arg integer|0 2}:{arg integer|1 2}.{arg integer|2 3}",
     },
     "6305": {
-        "font": "regular",
-        "string": "고스트 도전장을 보내고 있습니다",
+        string: "고스트 도전장을 보내고 있습니다",
     },
     "6306": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "6310": {
-        "font": "regular",
-        "string": "WiiConnect24 서비스를\n일시적으로 이용할 수 없습니다.\n잠시 후\n다시 시도해 주십시오.\n\n에러 코드：{arg integer|0 6}",
+        string: "WiiConnect24 서비스를\n일시적으로 이용할 수 없습니다.\n잠시 후\n다시 시도해 주십시오.\n\n에러 코드：{arg integer|0 6}",
     },
     "6311": {
-        "font": "regular",
-        "string": "인터넷에 접속할 수 없어\nWiiConnect24를 사용할 수 없습니다.\n인터넷 설정에서 접속 경로를\n확인해 주십시오. 자세한 내용은\n본체 사용설명서를 읽어 주십시오.\n\n에러 코드：{arg integer|0 6}",
+        string: "인터넷에 접속할 수 없어\nWiiConnect24를 사용할 수 없습니다.\n인터넷 설정에서 접속 경로를\n확인해 주십시오. 자세한 내용은\n본체 사용설명서를 읽어 주십시오.\n\n에러 코드：{arg integer|0 6}",
     },
     "6312": {
-        "font": "regular",
-        "string": "Wii 본체 저장 메모리에 문제가\n발생하여 WiiConnect24를\n사용할 수 없습니다.\n\n에러 코드：{arg integer|0 6}",
+        string: "Wii 본체 저장 메모리에 문제가\n발생하여 WiiConnect24를\n사용할 수 없습니다.\n\n에러 코드：{arg integer|0 6}",
     },
     "6313": {
-        "font": "regular",
-        "string": "WiiConnect24 기능을\n사용하려면 Wii 본체를\n업데이트해야 합니다.\n\n자세한 내용은 Wii 본체\n사용설명서를 읽어 주십시오.\n\n에러 코드：{arg integer|0 6}",
+        string: "WiiConnect24 기능을\n사용하려면 Wii 본체를\n업데이트해야 합니다.\n\n자세한 내용은 Wii 본체\n사용설명서를 읽어 주십시오.\n\n에러 코드：{arg integer|0 6}",
     },
     "6314": {
-        "font": "regular",
-        "string": "에러가 발생하여 WiiConnect24\n기능을 사용할 수 없습니다.\n리셋 버튼을 누른 후\n다시 시도해 주십시오.\n\n에러 코드：{arg integer|0 6}",
+        string: "에러가 발생하여 WiiConnect24\n기능을 사용할 수 없습니다.\n리셋 버튼을 누른 후\n다시 시도해 주십시오.\n\n에러 코드：{arg integer|0 6}",
     },
     "6315": {
-        "font": "regular",
-        "string": "WiiConnect24 설정이\nON으로 되어 있지 않습니다.\n\nWii 옵션에서 설정을 확인해\n주십시오. 자세한 내용은 Wii\n본체 사용설명서를 읽어 주십시오.\n\n에러 코드：{arg integer|0 6}",
+        string: "WiiConnect24 설정이\nON으로 되어 있지 않습니다.\n\nWii 옵션에서 설정을 확인해\n주십시오. 자세한 내용은 Wii\n본체 사용설명서를 읽어 주십시오.\n\n에러 코드：{arg integer|0 6}",
     },
     "6316": {
-        "font": "regular",
-        "string": "Wii 본체 저장 메모리에\n문제가 발생하여\nWiiConnect24를\n사용할 수 없습니다.\n\n에러 코드：{arg integer|0 6}",
+        string: "Wii 본체 저장 메모리에\n문제가 발생하여\nWiiConnect24를\n사용할 수 없습니다.\n\n에러 코드：{arg integer|0 6}",
     },
     "6317": {
-        "font": "regular",
-        "string": "네트워크 기능의 이용이\n제한되어 있습니다.\n\nWii 옵션의\n청소년 보호 기능 설정을\n확인해 주십시오.",
+        string: "네트워크 기능의 이용이\n제한되어 있습니다.\n\nWii 옵션의\n청소년 보호 기능 설정을\n확인해 주십시오.",
     },
     "6318": {
-        "font": "regular",
-        "string": "인터넷이 설정되지\n않았습니다.\n\nWii 옵션에서\n인터넷 접속 경로를\n설정해 주십시오.\n\n에러 코드：50200",
+        string: "인터넷이 설정되지\n않았습니다.\n\nWii 옵션에서\n인터넷 접속 경로를\n설정해 주십시오.\n\n에러 코드：50200",
     },
     "6319": {
-        "font": "regular",
-        "string": "「마리오 카트 채널」은\nWiiconnect24를 이용해서\n\n・친구가 보내는 「도전장」\n・전 세계 사람들의 「랭킹」\n・비슷한 실력을 가진 「고스트」\n・기간 한정 「대회」\n등의 데이터를 수신할 수 있습니다.",
+        string: "「마리오 카트 채널」은\nWiiconnect24를 이용해서\n\n・친구가 보내는 「도전장」\n・전 세계 사람들의 「랭킹」\n・비슷한 실력을 가진 「고스트」\n・기간 한정 「대회」\n등의 데이터를 수신할 수 있습니다.",
     },
     "6320": {
-        "font": "regular",
-        "string": "Wiiconnect24 설정은\nWii 본체에서 이루어집니다.\n\n자세한 내용은 Wii 본체\n사용설명서를 읽어 주십시오.",
+        string: "Wiiconnect24 설정은\nWii 본체에서 이루어집니다.\n\n자세한 내용은 Wii 본체\n사용설명서를 읽어 주십시오.",
     },
     "6321": {
-        "font": "regular",
-        "string": "에러가 발생하여 WiiConnect24\n기능을 사용할 수 없습니다.\n리셋 버튼을 누른 후\n다시 시도해 주십시오.\n\n에러 코드：{arg integer|0 6}",
+        string: "에러가 발생하여 WiiConnect24\n기능을 사용할 수 없습니다.\n리셋 버튼을 누른 후\n다시 시도해 주십시오.\n\n에러 코드：{arg integer|0 6}",
     },
     "6322": {
-        "font": "regular",
-        "string": "",
+        string: "",
     },
     "6390": {
-        "font": "regular",
-        "string": "GO!",
+        string: "GO!",
     },
     "6391": {
-        "font": "regular",
-        "string": "",
+        string: "",
     },
     "6400": {
-        "font": "regular",
-        "string": "친구로부터 도전장이 도착했습니다",
+        string: "친구로부터 도전장이 도착했습니다",
     },
     "6401": {
-        "font": "regular",
-        "string": "스페셜 고스트를 받을 수 있습니다",
+        string: "스페셜 고스트를 받을 수 있습니다",
     },
     "6402": {
-        "font": "regular",
-        "string": "대회를 개최 중입니다",
+        string: "대회를 개최 중입니다",
     },
     "6403": {
-        "font": "regular",
-        "string": "최신 랭킹이 발표되었습니다",
+        string: "최신 랭킹이 발표되었습니다",
     },
     "6404": {
-        "font": "regular",
-        "string": "지금 고스트 배틀을 할 수 있습니다",
+        string: "지금 고스트 배틀을 할 수 있습니다",
     },
     "6405": {
-        "font": "regular",
-        "string": "친구가 새 기록을 올렸습니다",
+        string: "친구가 새 기록을 올렸습니다",
     },
     "6406": {
-        "font": "regular",
-        "string": "마리오 카트 채널을 저장할 수 있습니다",
+        string: "마리오 카트 채널을 저장할 수 있습니다",
     },
     "6407": {
-        "font": "regular",
-        "string": "마리오 카트 정보를 받을 수 있습니다",
+        string: "마리오 카트 정보를 받을 수 있습니다",
     },
     "6408": {
-        "font": "regular",
-        "string": "살고 있는 지역을 설정할 수 있습니다",
+        string: "살고 있는 지역을 설정할 수 있습니다",
     },
     "6409": {
-        "font": "regular",
-        "string": "Wii 알림판에서 친구를 초대할 수 있습니다",
+        string: "Wii 알림판에서 친구를 초대할 수 있습니다",
     },
     "6410": {
-        "font": "regular",
-        "string": "최신 데이터를 수신할 수 있습니다",
+        string: "최신 데이터를 수신할 수 있습니다",
     },
     "6411": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "6412": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "6500": {
-        "font": "regular",
-        "string": "「고스트 수신 목록」으로 이동합니다",
+        string: "「고스트 수신 목록」으로 이동합니다",
     },
     "6501": {
-        "font": "regular",
-        "string": "「타임 어택 랭킹」으로 이동합니다",
+        string: "「타임 어택 랭킹」으로 이동합니다",
     },
     "6502": {
-        "font": "regular",
-        "string": "「대회」로 이동합니다",
+        string: "「대회」로 이동합니다",
     },
     "6503": {
-        "font": "regular",
-        "string": "「타임 어택 랭킹」으로 이동합니다",
+        string: "「타임 어택 랭킹」으로 이동합니다",
     },
     "6504": {
-        "font": "regular",
-        "string": "「고스트 배틀」로 이동합니다",
+        string: "「고스트 배틀」로 이동합니다",
     },
     "6505": {
-        "font": "regular",
-        "string": "「타임 어택 랭킹」으로 이동합니다",
+        string: "「타임 어택 랭킹」으로 이동합니다",
     },
     "6506": {
-        "font": "regular",
-        "string": "「공통 설정」으로 이동합니다",
+        string: "「공통 설정」으로 이동합니다",
     },
     "6507": {
-        "font": "regular",
-        "string": "「공통 설정」으로 이동합니다",
+        string: "「공통 설정」으로 이동합니다",
     },
     "6508": {
-        "font": "regular",
-        "string": "「공통 설정」으로 이동합니다",
+        string: "「공통 설정」으로 이동합니다",
     },
     "6509": {
-        "font": "regular",
-        "string": "친구 등록 초대 편지를 보낼 수 있습니다",
+        string: "친구 등록 초대 편지를 보낼 수 있습니다",
     },
     "6510": {
-        "font": "regular",
-        "string": "랭킹이나 대회 데이터를 업데이트합니다",
+        string: "랭킹이나 대회 데이터를 업데이트합니다",
     },
     "6511": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "6512": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "6550": {
-        "font": "regular",
-        "string": "현재 대회 랭킹을\n열람할 수 없습니다.",
+        string: "현재 대회 랭킹을\n열람할 수 없습니다.",
     },
     "6551": {
-        "font": "regular",
-        "string": "대회 랭킹을 수신하고 있습니다.",
+        string: "대회 랭킹을 수신하고 있습니다.",
     },
     "6552": {
-        "font": "regular",
-        "string": "대회 랭킹 수신에\n실패했습니다.\n\n에러 코드：{arg integer|0 5}",
+        string: "대회 랭킹 수신에\n실패했습니다.\n\n에러 코드：{arg integer|0 5}",
     },
     "6553": {
-        "font": "regular",
-        "string": "대회 랭킹은 개최 다음날부터\n열람할 수 있습니다.\n\n잠시 기다려 주십시오.",
+        string: "대회 랭킹은 개최 다음날부터\n열람할 수 있습니다.\n\n잠시 기다려 주십시오.",
     },
     "6554": {
-        "font": "regular",
-        "string": "1차",
+        string: "1차",
     },
     "6555": {
-        "font": "regular",
-        "string": "2차",
+        string: "2차",
     },
     "6556": {
-        "font": "regular",
-        "string": "이번 대회의 랭킹은\n아직 열람할 수 없습니다.\n\n내일 이후\n다시 시도해 주십시오.",
+        string: "이번 대회의 랭킹은\n아직 열람할 수 없습니다.\n\n내일 이후\n다시 시도해 주십시오.",
     },
     "6600": {
-        "font": "regular",
-        "string": "마리오 카트 대회가\n전 세계 동시에 개최됩니다.\n\nWii를 인터넷에 연결하여\nWiiConnect24 설정을\nON으로 하고 대회 정보를\n기다려 주십시오.",
+        string: "마리오 카트 대회가\n전 세계 동시에 개최됩니다.\n\nWii를 인터넷에 연결하여\nWiiConnect24 설정을\nON으로 하고 대회 정보를\n기다려 주십시오.",
     },
     "6601": {
-        "font": "regular",
-        "string": "지난번 대회가 끝났습니다.\n\n「대회 랭킹」이\n\n발표되었습니다!",
+        string: "지난번 대회가 끝났습니다.\n\n「대회 랭킹」이\n\n발표되었습니다!",
     },
     "6602": {
-        "font": "regular",
-        "string": "{arg string|0}",
+        string: "{arg string|0}",
     },
     "6603": {
-        "font": "regular",
-        "string": "{arg string|0}",
+        string: "{arg string|0}",
     },
     "6604": {
-        "font": "regular",
-        "string": "시작",
+        string: "시작",
     },
     "6605": {
-        "font": "regular",
-        "string": "대회 기록을 보내기",
+        string: "대회 기록을 보내기",
     },
     "6606": {
-        "font": "regular",
-        "string": "대회 기록을 보내고 있습니다.",
+        string: "대회 기록을 보내고 있습니다.",
     },
     "6607": {
-        "font": "regular",
-        "string": "{arg string|0}\n{arg integer|0 2}:{arg integer|1 2}.{arg integer|2 3}",
+        string: "{arg string|0}\n{arg integer|0 2}:{arg integer|1 2}.{arg integer|2 3}",
     },
     "6608": {
-        "font": "regular",
-        "string": "대회 기록을 보냈습니다.",
+        string: "대회 기록을 보냈습니다.",
     },
     "6609": {
-        "font": "regular",
-        "string": "대회 기록을\n보내지 못했습니다.\n\n에러 코드：{arg integer|0 5}",
+        string: "대회 기록을\n보내지 못했습니다.\n\n에러 코드：{arg integer|0 5}",
     },
     "6610": {
-        "font": "regular",
-        "string": "{arg integer|0 0}년 {arg integer|1 0}월 {arg integer|2 0}일까지\n열립니다.",
+        string: "{arg integer|0 0}년 {arg integer|1 0}월 {arg integer|2 0}일까지\n열립니다.",
     },
     "6611": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "6700": {
-        "font": "regular",
-        "string": "Wii 알림판에 초대 편지",
+        string: "Wii 알림판에 초대 편지",
     },
     "6701": {
-        "font": "regular",
-        "string": "친구의 Wii 알림판에\n「마리오 카트 Wii」의 초대 편지를\n보낼 수 있습니다.\n\n{current player|} 님의 친구 코드를\n편지에 적어 놓기 때문에\n바로 「친구 등록」될지도 모릅니다.",
+        string: "친구의 Wii 알림판에\n「마리오 카트 Wii」의 초대 편지를\n보낼 수 있습니다.\n\n{current player|} 님의 친구 코드를\n편지에 적어 놓기 때문에\n바로 「친구 등록」될지도 모릅니다.",
     },
     "6702": {
-        "font": "regular",
-        "string": "받는 사람을 선택해 주십시오",
+        string: "받는 사람을 선택해 주십시오",
     },
     "6703": {
-        "font": "regular",
-        "string": "{arg string|0} 님의 Wii 알림판에\n초대 편지를 보내겠습니까?",
+        string: "{arg string|0} 님의 Wii 알림판에\n초대 편지를 보내겠습니까?",
     },
     "6704": {
-        "font": "regular",
-        "string": "초대 편지를 보내고 있습니다",
+        string: "초대 편지를 보내고 있습니다",
     },
     "6705": {
-        "font": "regular",
-        "string": "{arg string|0} 님의 Wii 알림판에\n초대 편지를 보냈습니다!\n\n{arg string|0} 님에게서\n답장이 오면\n바로 친구가 될 수 있습니다.",
+        string: "{arg string|0} 님의 Wii 알림판에\n초대 편지를 보냈습니다!\n\n{arg string|0} 님에게서\n답장이 오면\n바로 친구가 될 수 있습니다.",
     },
     "6706": {
-        "font": "regular",
-        "string": "초대 편지 송신에\n실패했습니다.\n\n에러 코드：{arg integer|0 6}",
+        string: "초대 편지 송신에\n실패했습니다.\n\n에러 코드：{arg integer|0 6}",
     },
     "6707": {
-        "font": "regular",
-        "string": "{arg string|0}",
+        string: "{arg string|0}",
     },
     "6708": {
-        "font": "regular",
-        "string": "대회 기록을 보냈습니다.\n\n대회 랭킹으로 이동하겠습니다.",
+        string: "대회 기록을 보냈습니다.\n\n대회 랭킹으로 이동하겠습니다.",
     },
     "6709": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "6710": {
-        "font": "regular",
-        "string": "친구 등록",
+        string: "친구 등록",
     },
     "6711": {
-        "font": "regular",
-        "string": "{arg string|0} 님에게서\n초대 편지가 도착했습니다.\n\n바로 친구 등록할 수 있습니다.",
+        string: "{arg string|0} 님에게서\n초대 편지가 도착했습니다.\n\n바로 친구 등록할 수 있습니다.",
     },
     "6712": {
-        "font": "regular",
-        "string": "{arg string|0} 님을\n친구로 등록하겠습니까?",
+        string: "{arg string|0} 님을\n친구로 등록하겠습니까?",
     },
     "6713": {
-        "font": "regular",
-        "string": "친구로 등록하고 있습니다",
+        string: "친구로 등록하고 있습니다",
     },
     "6714": {
-        "font": "regular",
-        "string": "{arg string|0} 님을\n친구로 등록했습니다.",
+        string: "{arg string|0} 님을\n친구로 등록했습니다.",
     },
     "6715": {
-        "font": "regular",
-        "string": "친구 등록에\n실패했습니다.\n\n에러 코드：{arg integer|0 6}",
+        string: "친구 등록에\n실패했습니다.\n\n에러 코드：{arg integer|0 6}",
     },
     "6716": {
-        "font": "regular",
-        "string": "{current player|} 님은\n친구 코드를 갖고 있지 않습니다.\n\n친구 코드란\nWi-Fi에 연결했을 때 받는\n12자리의 번호입니다.\n\n자세한 내용은 마리오 카트 Wii의\n사용설명서를 읽어 주십시오.",
+        string: "{current player|} 님은\n친구 코드를 갖고 있지 않습니다.\n\n친구 코드란\nWi-Fi에 연결했을 때 받는\n12자리의 번호입니다.\n\n자세한 내용은 마리오 카트 Wii의\n사용설명서를 읽어 주십시오.",
     },
     "6717": {
-        "font": "regular",
-        "string": "친구 등록\n초대 편지를 받았지만\n\n{current player|} 님은\n이미 30명의 친구를\n등록한 상태입니다.\n\n더 이상 등록할 수 없습니다.",
+        string: "친구 등록\n초대 편지를 받았지만\n\n{current player|} 님은\n이미 30명의 친구를\n등록한 상태입니다.\n\n더 이상 등록할 수 없습니다.",
     },
     "6718": {
-        "font": "regular",
-        "string": "친구 등록\n초대 편지를 받았지만\n\n그 분은 Wii 알림판의 주소록에서\n삭제되어 있습니다.\n\n다시 기동한 후에\n친구 코드를 등록해 주십시오.",
+        string: "친구 등록\n초대 편지를 받았지만\n\n그 분은 Wii 알림판의 주소록에서\n삭제되어 있습니다.\n\n다시 기동한 후에\n친구 코드를 등록해 주십시오.",
     },
     "6719": {
-        "font": "regular",
-        "string": "친구 등록\n초대 편지를 받았지만\n\n그 분의 친구 코드는\n이미 등록되어 있습니다.",
+        string: "친구 등록\n초대 편지를 받았지만\n\n그 분의 친구 코드는\n이미 등록되어 있습니다.",
     },
     "6720": {
-        "font": "regular",
-        "string": "",
+        string: "",
     },
     "6800": {
-        "font": "regular",
-        "string": "대회 랭킹 수신",
+        string: "대회 랭킹 수신",
     },
     "6801": {
-        "font": "regular",
-        "string": "대회 랭킹을 수신하고 있습니다.",
+        string: "대회 랭킹을 수신하고 있습니다.",
     },
     "6802": {
-        "font": "regular",
-        "string": "대회 랭킹을 수신했습니다.",
+        string: "대회 랭킹을 수신했습니다.",
     },
     "6803": {
-        "font": "regular",
-        "string": "대회 랭킹 수신에\n실패했습니다.\n\n에러 코드：{arg integer|0 5}",
+        string: "대회 랭킹 수신에\n실패했습니다.\n\n에러 코드：{arg integer|0 5}",
     },
     "6804": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "6811": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "6812": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "6813": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "6900": {
-        "font": "regular",
-        "string": "최신 데이터 수신",
+        string: "최신 데이터 수신",
     },
     "6901": {
-        "font": "regular",
-        "string": "마리오 카트 채널의\n최신 데이터를 수신합니다.",
+        string: "마리오 카트 채널의\n최신 데이터를 수신합니다.",
     },
     "6902": {
-        "font": "regular",
-        "string": "최신 데이터를 수신하고 있습니다.",
+        string: "최신 데이터를 수신하고 있습니다.",
     },
     "6903": {
-        "font": "regular",
-        "string": "마리오 카트 채널의\n최신 데이터를 수신했습니다.",
+        string: "마리오 카트 채널의\n최신 데이터를 수신했습니다.",
     },
     "6904": {
-        "font": "regular",
-        "string": "최신 데이터 수신에\n실패했습니다.\n\n에러 코드：{arg integer|0 6}",
+        string: "최신 데이터 수신에\n실패했습니다.\n\n에러 코드：{arg integer|0 6}",
     },
     "6905": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "7000": {
-        "font": "regular",
-        "string": "공통 설정",
+        string: "공통 설정",
     },
     "7001": {
-        "font": "regular",
-        "string": "네트워크 옵션",
+        string: "네트워크 옵션",
     },
     "7002": {
-        "font": "regular",
-        "string": "공통 설정",
+        string: "공통 설정",
     },
     "7003": {
-        "font": "regular",
-        "string": "다음",
+        string: "다음",
     },
     "7004": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "7100": {
-        "font": "regular",
-        "string": "게임큐브 컨트롤러 진동",
+        string: "게임큐브 컨트롤러 진동",
     },
     "7101": {
-        "font": "regular",
-        "string": "게임큐브 컨트롤러의\n진동 기능을 사용하겠습니까?",
+        string: "게임큐브 컨트롤러의\n진동 기능을 사용하겠습니까?",
     },
     "7102": {
-        "font": "regular",
-        "string": "사용한다",
+        string: "사용한다",
     },
     "7103": {
-        "font": "regular",
-        "string": "사용하지 않는다",
+        string: "사용하지 않는다",
     },
     "7104": {
-        "font": "regular",
-        "string": "게임큐브 컨트롤러의\n진동 기능을\n\n［ 사용한다 ］\n\n 로 설정했습니다.",
+        string: "게임큐브 컨트롤러의\n진동 기능을\n\n［ 사용한다 ］\n\n 로 설정했습니다.",
     },
     "7105": {
-        "font": "regular",
-        "string": "게임큐브 컨트롤러의\n진동 기능을\n\n［ 사용하지 않는다 ］\n\n 로 설정했습니다.",
+        string: "게임큐브 컨트롤러의\n진동 기능을\n\n［ 사용하지 않는다 ］\n\n 로 설정했습니다.",
     },
     "7106": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "7200": {
-        "font": "regular",
-        "string": "살고 있는 지역",
+        string: "살고 있는 지역",
     },
     "7201": {
-        "font": "regular",
-        "string": "살고 있는 지역을 설정하기 위해\nWii 메뉴로 이동하겠습니까?",
+        string: "살고 있는 지역을 설정하기 위해\nWii 메뉴로 이동하겠습니까?",
     },
     "7202": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "7203": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "7204": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "7250": {
-        "font": "regular",
-        "string": "국기와 지역 이용",
+        string: "국기와 지역 이용",
     },
     "7251": {
-        "font": "regular",
-        "string": "「마리오 카트 Wii」에서는\n국기와 지역을\n다음 데이터에 이용할 수 있습니다.\n・Wi-Fi 대전 시의 지구본\n・타임 어택의 고스트\n\n이들 데이터는\nWi-Fi 대전 상대에게도 전달됩니다.",
+        string: "「마리오 카트 Wii」에서는\n국기와 지역을\n다음 데이터에 이용할 수 있습니다.\n・Wi-Fi 대전 시의 지구본\n・타임 어택의 고스트\n\n이들 데이터는\nWi-Fi 대전 상대에게도 전달됩니다.",
     },
     "7252": {
-        "font": "regular",
-        "string": "「마리오 카트 Wii」에서\n국기와 지역을\n이용하겠습니까?",
+        string: "「마리오 카트 Wii」에서\n국기와 지역을\n이용하겠습니까?",
     },
     "7253": {
-        "font": "regular",
-        "string": "이용한다",
+        string: "이용한다",
     },
     "7254": {
-        "font": "regular",
-        "string": "이용하지 않는다",
+        string: "이용하지 않는다",
     },
     "7255": {
-        "font": "regular",
-        "string": "「마리오 카트 Wii」에서\n국기와 지역을\n\n［ 이용한다 ］\n\n 로 설정했습니다.",
+        string: "「마리오 카트 Wii」에서\n국기와 지역을\n\n［ 이용한다 ］\n\n 로 설정했습니다.",
     },
     "7256": {
-        "font": "regular",
-        "string": "「마리오 카트 Wii」에서\n국기와 지역을\n\n［ 이용하지 않는다 ］\n\n 로 설정했습니다.",
+        string: "「마리오 카트 Wii」에서\n국기와 지역을\n\n［ 이용하지 않는다 ］\n\n 로 설정했습니다.",
     },
     "7257": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "7300": {
-        "font": "regular",
-        "string": "정보 수신",
+        string: "정보 수신",
     },
     "7301": {
-        "font": "regular",
-        "string": "정보를 받고자 하는 분에게\n「마리오 카트 채널」의 정보를\nWiiConnect24를 통해\nWii 알림판에 보내겠습니다.\n\n내용은 다음과 같습니다.\n・마리오 카트 대회의 개최\n・스페셜 고스트 전송",
+        string: "정보를 받고자 하는 분에게\n「마리오 카트 채널」의 정보를\nWiiConnect24를 통해\nWii 알림판에 보내겠습니다.\n\n내용은 다음과 같습니다.\n・마리오 카트 대회의 개최\n・스페셜 고스트 전송",
     },
     "7302": {
-        "font": "regular",
-        "string": "「마리오 카트 채널」의\n정보를 받겠습니까?",
+        string: "「마리오 카트 채널」의\n정보를 받겠습니까?",
     },
     "7303": {
-        "font": "regular",
-        "string": "전송받는다",
+        string: "전송받는다",
     },
     "7304": {
-        "font": "regular",
-        "string": "전송받지 않는다",
+        string: "전송받지 않는다",
     },
     "7305": {
-        "font": "regular",
-        "string": "「마리오 카트 채널」의 정보를\n\n［ 전송받는다 ］\n\n 로 설정했습니다.",
+        string: "「마리오 카트 채널」의 정보를\n\n［ 전송받는다 ］\n\n 로 설정했습니다.",
     },
     "7306": {
-        "font": "regular",
-        "string": "「마리오 카트 채널」의\n정보를 받지 못해도\n괜찮겠습니까?",
+        string: "「마리오 카트 채널」의\n정보를 받지 못해도\n괜찮겠습니까?",
     },
     "7307": {
-        "font": "regular",
-        "string": "",
+        string: "",
     },
     "7350": {
-        "font": "regular",
-        "string": "현재 Wii 알림판에\n「마리오 카트 채널」의 정보를\n받도록 설정되어 있습니다.",
+        string: "현재 Wii 알림판에\n「마리오 카트 채널」의 정보를\n받도록 설정되어 있습니다.",
     },
     "7351": {
-        "font": "regular",
-        "string": "정보 수신을 거부하겠습니까?",
+        string: "정보 수신을 거부하겠습니까?",
     },
     "7352": {
-        "font": "regular",
-        "string": "수신을 거부한다",
+        string: "수신을 거부한다",
     },
     "7353": {
-        "font": "regular",
-        "string": "모든 채널의 정보 수신을 거부한다",
+        string: "모든 채널의 정보 수신을 거부한다",
     },
     "7354": {
-        "font": "regular",
-        "string": "수신을 거부하지 않는다",
+        string: "수신을 거부하지 않는다",
     },
     "7355": {
-        "font": "regular",
-        "string": "「마리오 카트 채널」의\n정보 수신을 거부하겠습니까?",
+        string: "「마리오 카트 채널」의\n정보 수신을 거부하겠습니까?",
     },
     "7356": {
-        "font": "regular",
-        "string": "모든 채널의\n정보 수신을 거부하겠습니까?",
+        string: "모든 채널의\n정보 수신을 거부하겠습니까?",
     },
     "7357": {
-        "font": "regular",
-        "string": "「마리오 카트 채널」의\n정보를 계속 수신합니다.",
+        string: "「마리오 카트 채널」의\n정보를 계속 수신합니다.",
     },
     "7358": {
-        "font": "regular",
-        "string": "「마리오 카트 채널」의 정보를\n\n［ 전송받지 않는다 ］\n\n 로 설정했습니다.",
+        string: "「마리오 카트 채널」의 정보를\n\n［ 전송받지 않는다 ］\n\n 로 설정했습니다.",
     },
     "7359": {
-        "font": "regular",
-        "string": "「마리오 카트 채널」의\n정보 수신을 거부했습니다.",
+        string: "「마리오 카트 채널」의\n정보 수신을 거부했습니다.",
     },
     "7360": {
-        "font": "regular",
-        "string": "모든 채널의\n정보 수신을 거부했습니다.",
+        string: "모든 채널의\n정보 수신을 거부했습니다.",
     },
     "7361": {
-        "font": "regular",
-        "string": "",
+        string: "",
     },
     "7400": {
-        "font": "regular",
-        "string": "닌텐도에 정보 송신",
+        string: "닌텐도에 정보 송신",
     },
     "7401": {
-        "font": "regular",
-        "string": "「마리오 카트 Wii」에서는\nWi-Fi 커넥션을 이용할 때\n・Mii와 닉네임\n・기록과 고스트\n를 닌텐도에 자동으로 보내도록\n하였습니다.\n이러한 정보는\n「마리오 카트 Wii」를 즐기는\n다른 유저가 볼 수도 있습니다.",
+        string: "「마리오 카트 Wii」에서는\nWi-Fi 커넥션을 이용할 때\n・Mii와 닉네임\n・기록과 고스트\n를 닌텐도에 자동으로 보내도록\n하였습니다.\n이러한 정보는\n「마리오 카트 Wii」를 즐기는\n다른 유저가 볼 수도 있습니다.",
     },
     "7402": {
-        "font": "regular",
-        "string": "닌텐도에 정보를 송신하도록\n허락하겠습니까?",
+        string: "닌텐도에 정보를 송신하도록\n허락하겠습니까?",
     },
     "7403": {
-        "font": "regular",
-        "string": "허락한다",
+        string: "허락한다",
     },
     "7404": {
-        "font": "regular",
-        "string": "허락하지 않는다",
+        string: "허락하지 않는다",
     },
     "7405": {
-        "font": "regular",
-        "string": "「마리오 카트 Wii」에서\n닌텐도에 정보 송신을\n\n［ 허락한다 ］\n\n 로 설정했습니다.",
+        string: "「마리오 카트 Wii」에서\n닌텐도에 정보 송신을\n\n［ 허락한다 ］\n\n 로 설정했습니다.",
     },
     "7406": {
-        "font": "regular",
-        "string": "「마리오 카트 Wii」에서\nWi-Fi 커넥션을 이용할 수\n없게 돼도 괜찮겠습니까?",
+        string: "「마리오 카트 Wii」에서\nWi-Fi 커넥션을 이용할 수\n없게 돼도 괜찮겠습니까?",
     },
     "7407": {
-        "font": "regular",
-        "string": "「마리오 카트 Wii」에서\n닌텐도에 정보 송신을\n\n［ 허락하지 않는다 ］\n\n 로 설정했습니다.",
+        string: "「마리오 카트 Wii」에서\n닌텐도에 정보 송신을\n\n［ 허락하지 않는다 ］\n\n 로 설정했습니다.",
     },
     "7408": {
-        "font": "regular",
-        "string": "Mii 닉네임에 본명이나\n개인 정보를 사용하고 있다면\n사생활을 지키기 위해\n다음과 같은 방법으로\nMii의 정보를 변경해 주십시오.\n・「Mii 채널」에서 닉네임 변경\n・「라이센스 설정」에서 게스트\n  Mii로 변경",
+        string: "Mii 닉네임에 본명이나\n개인 정보를 사용하고 있다면\n사생활을 지키기 위해\n다음과 같은 방법으로\nMii의 정보를 변경해 주십시오.\n・「Mii 채널」에서 닉네임 변경\n・「라이센스 설정」에서 게스트\n  Mii로 변경",
     },
     "7409": {
-        "font": "regular",
-        "string": "",
+        string: "",
     },
     "7500": {
-        "font": "regular",
-        "string": "다른 사람의 Mii",
+        string: "다른 사람의 Mii",
     },
     "7501": {
-        "font": "regular",
-        "string": "「마리오 카트 Wii」에서는\n다른 사람의 Mii가\nWi-Fi 대전 중이나 랭킹 등에\n나타나기도 합니다.\n\n다른 사람의 Mii를\n그대로 등장시킬지 여부를\n설정할 수 있습니다.",
+        string: "「마리오 카트 Wii」에서는\n다른 사람의 Mii가\nWi-Fi 대전 중이나 랭킹 등에\n나타나기도 합니다.\n\n다른 사람의 Mii를\n그대로 등장시킬지 여부를\n설정할 수 있습니다.",
     },
     "7502": {
-        "font": "regular",
-        "string": "「마리오 카트 Wii」에서\n다른 사람의 Mii를\n그대로 등장시키겠습니까?",
+        string: "「마리오 카트 Wii」에서\n다른 사람의 Mii를\n그대로 등장시키겠습니까?",
     },
     "7503": {
-        "font": "regular",
-        "string": "그대로 등장",
+        string: "그대로 등장",
     },
     "7504": {
-        "font": "regular",
-        "string": "바꿔서 등장",
+        string: "바꿔서 등장",
     },
     "7505": {
-        "font": "regular",
-        "string": "「마리오 카트 Wii」에서\n다른 사람의 Mii를\n\n［ 그대로 등장 ］\n\n 으로 설정했습니다.",
+        string: "「마리오 카트 Wii」에서\n다른 사람의 Mii를\n\n［ 그대로 등장 ］\n\n 으로 설정했습니다.",
     },
     "7506": {
-        "font": "regular",
-        "string": "「마리오 카트 Wii」에서\n다른 사람의 Mii를\n\n［ 바꿔서 등장 ］\n\n 으로 설정했습니다.",
+        string: "「마리오 카트 Wii」에서\n다른 사람의 Mii를\n\n［ 바꿔서 등장 ］\n\n 으로 설정했습니다.",
     },
     "7507": {
-        "font": "regular",
-        "string": "다른 사람의 Mii를\n닌텐도가 만든 Mii로\n바꾸겠습니까?",
+        string: "다른 사람의 Mii를\n닌텐도가 만든 Mii로\n바꾸겠습니까?",
     },
     "7508": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "7600": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "7601": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "7602": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "7603": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "7604": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "7605": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "7700": {
-        "font": "regular",
-        "string": "Mario Kart Wii can be displayed in\n60Hz (480i) Mode. Your current setting is\n50Hz (576i) Mode. If your TV - like most TV\nmodels - supports 60Hz Mode, please select\nthis TV Type in the Wii System Settings for\na better display quality.\n\nTo change your TV Type setting to 60Hz Mode, \nplease press the HOME Button and go to\nthe Wii Menu.",
+        string: "Mario Kart Wii can be displayed in\n60Hz (480i) Mode. Your current setting is\n50Hz (576i) Mode. If your TV - like most TV\nmodels - supports 60Hz Mode, please select\nthis TV Type in the Wii System Settings for\na better display quality.\n\nTo change your TV Type setting to 60Hz Mode, \nplease press the HOME Button and go to\nthe Wii Menu.",
     },
     "7701": {
-        "font": "regular",
-        "string": "{2 chars|< <}",
+        string: "{2 chars|< <}",
     },
     "7702": {
-        "font": "regular",
-        "string": "CONGRATULATIONS!",
+        string: "CONGRATULATIONS!",
     },
     "7703": {
-        "font": "regular",
-        "string": "이번 기념 사진을\nWii 알림판에 보내겠습니까?",
+        string: "이번 기념 사진을\nWii 알림판에 보내겠습니까?",
     },
     "7704": {
-        "font": "regular",
-        "string": "Wii 알림판에 보내고 있습니다.",
+        string: "Wii 알림판에 보내고 있습니다.",
     },
     "7705": {
-        "font": "regular",
-        "string": "기념 사진을\nWii 알림판에 보냈습니다!",
+        string: "기념 사진을\nWii 알림판에 보냈습니다!",
     },
     "7706": {
-        "font": "regular",
-        "string": "기념 사진을 너무 많이 보내면\nWii 알림판의 데이터가\n가득 차 버립니다.\n주의해 주십시오.\n\nWii 알림판이 가득 차면\n오래된 메시지부터 삭제됩니다.",
+        string: "기념 사진을 너무 많이 보내면\nWii 알림판의 데이터가\n가득 차 버립니다.\n주의해 주십시오.\n\nWii 알림판이 가득 차면\n오래된 메시지부터 삭제됩니다.",
     },
     "7707": {
-        "font": "regular",
-        "string": "앞으로도 변함없이\n\n「마리오 카트 Wii」를\n\n즐겨 주세요!",
+        string: "앞으로도 변함없이\n\n「마리오 카트 Wii」를\n\n즐겨 주세요!",
     },
     "8000": {
-        "font": "regular",
-        "string": "축하합니다!\n다음의 컵이 열렸습니다!\n「{arg message|0} {arg message|1}」",
+        string: "축하합니다!\n다음의 컵이 열렸습니다!\n「{arg message|0} {arg message|1}」",
     },
     "8001": {
-        "font": "regular",
-        "string": "축하합니다!\n다음의 모드가 열렸습니다!\n「미러 모드」",
+        string: "축하합니다!\n다음의 모드가 열렸습니다!\n「미러 모드」",
     },
     "8002": {
-        "font": "regular",
-        "string": "축하합니다!\n다음의 캐릭터가 등장했습니다!\n{arg message|0}",
+        string: "축하합니다!\n다음의 캐릭터가 등장했습니다!\n{arg message|0}",
     },
     "8003": {
-        "font": "regular",
-        "string": "축하합니다!\n다음의 레이싱복이 등장했습니다!\n{arg message|0}",
+        string: "축하합니다!\n다음의 레이싱복이 등장했습니다!\n{arg message|0}",
     },
     "8004": {
-        "font": "regular",
-        "string": "축하합니다!\n다음의 카트가 등장했습니다!\n{arg message|0}(소형 카트)",
+        string: "축하합니다!\n다음의 카트가 등장했습니다!\n{arg message|0}(소형 카트)",
     },
     "8005": {
-        "font": "regular",
-        "string": "축하합니다!\n다음의 카트가 등장했습니다!\n{arg message|0}(중형 카트)",
+        string: "축하합니다!\n다음의 카트가 등장했습니다!\n{arg message|0}(중형 카트)",
     },
     "8006": {
-        "font": "regular",
-        "string": "축하합니다!\n다음의 카트가 등장했습니다!\n{arg message|0}(대형 카트)",
+        string: "축하합니다!\n다음의 카트가 등장했습니다!\n{arg message|0}(대형 카트)",
     },
     "8007": {
-        "font": "regular",
-        "string": "축하합니다!\n다음의 바이크가 등장했습니다!\n{arg message|0}(소형 바이크)",
+        string: "축하합니다!\n다음의 바이크가 등장했습니다!\n{arg message|0}(소형 바이크)",
     },
     "8008": {
-        "font": "regular",
-        "string": "축하합니다!\n다음의 바이크가 등장했습니다!\n{arg message|0}(중형 바이크)",
+        string: "축하합니다!\n다음의 바이크가 등장했습니다!\n{arg message|0}(중형 바이크)",
     },
     "8009": {
-        "font": "regular",
-        "string": "축하합니다!\n다음의 바이크가 등장했습니다!\n{arg message|0}(대형 바이크)",
+        string: "축하합니다!\n다음의 바이크가 등장했습니다!\n{arg message|0}(대형 바이크)",
     },
     "8010": {
-        "font": "regular",
-        "string": "축하합니다!\n다음의 모드가 열렸습니다!\n50cc 그랑프리(카트＆바이크)",
+        string: "축하합니다!\n다음의 모드가 열렸습니다!\n50cc 그랑프리(카트＆바이크)",
     },
     "8011": {
-        "font": "regular",
-        "string": "축하합니다!\n다음의 모드가 열렸습니다!\n100cc 그랑프리(카트＆바이크)",
+        string: "축하합니다!\n다음의 모드가 열렸습니다!\n100cc 그랑프리(카트＆바이크)",
     },
     "8012": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "8100": {
-        "font": "regular",
-        "string": "{arg message|0} 버섯 컵＆플라워 컵에서 트로피 획득!",
+        string: "{arg message|0} 버섯 컵＆플라워 컵에서 트로피 획득!",
     },
     "8101": {
-        "font": "regular",
-        "string": "{arg message|0} 스타 컵에서 트로피 획득!",
+        string: "{arg message|0} 스타 컵에서 트로피 획득!",
     },
     "8102": {
-        "font": "regular",
-        "string": "{arg message|0} 등껍질 컵＆바나나 컵에서 트로피 획득!",
+        string: "{arg message|0} 등껍질 컵＆바나나 컵에서 트로피 획득!",
     },
     "8103": {
-        "font": "regular",
-        "string": "{arg message|0} 리프 컵에서 트로피 획득!",
+        string: "{arg message|0} 리프 컵에서 트로피 획득!",
     },
     "8104": {
-        "font": "regular",
-        "string": "150cc 모든 컵 제패!",
+        string: "150cc 모든 컵 제패!",
     },
     "8105": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "8110": {
-        "font": "regular",
-        "string": "100cc 리프 컵 우승!",
+        string: "100cc 리프 컵 우승!",
     },
     "8111": {
-        "font": "regular",
-        "string": "모든 코스에서 타임 어택 플레이!",
+        string: "모든 코스에서 타임 어택 플레이!",
     },
     "8112": {
-        "font": "regular",
-        "string": "Wi-Fi 대전 1000승 돌파!",
+        string: "Wi-Fi 대전 1000승 돌파!",
     },
     "8113": {
-        "font": "regular",
-        "string": "50cc Wii 그랑프리 모든 컵에서 랭크{1 char|} 획득!",
+        string: "50cc Wii 그랑프리 모든 컵에서 랭크{1 char|} 획득!",
     },
     "8114": {
-        "font": "regular",
-        "string": "개발자의 빠른 고스트 8개 등장!",
+        string: "개발자의 빠른 고스트 8개 등장!",
     },
     "8115": {
-        "font": "regular",
-        "string": "50cc 번개 컵 우승!",
+        string: "50cc 번개 컵 우승!",
     },
     "8116": {
-        "font": "regular",
-        "string": "100cc 레트로 그랑프리 모든 컵에서 랭크{1 char|} 획득!",
+        string: "100cc 레트로 그랑프리 모든 컵에서 랭크{1 char|} 획득!",
     },
     "8117": {
-        "font": "regular",
-        "string": "150cc 스페셜 컵 우승!",
+        string: "150cc 스페셜 컵 우승!",
     },
     "8118": {
-        "font": "regular",
-        "string": "16코스에서 타임 어택 플레이!",
+        string: "16코스에서 타임 어택 플레이!",
     },
     "8119": {
-        "font": "regular",
-        "string": "미러 모든 컵에서 랭크{1 char|} 획득!",
+        string: "미러 모든 컵에서 랭크{1 char|} 획득!",
     },
     "8120": {
-        "font": "regular",
-        "string": "「슈퍼 마리오 Wii」가 보낸 선물!",
+        string: "「슈퍼 마리오 Wii」가 보낸 선물!",
     },
     "8121": {
-        "font": "regular",
-        "string": "150cc Wii 그랑프리 모든 컵에서 랭크{1 char|} 획득!",
+        string: "150cc Wii 그랑프리 모든 컵에서 랭크{1 char|} 획득!",
     },
     "8122": {
-        "font": "regular",
-        "string": "개발자의 빠른 고스트 4개 등장!",
+        string: "개발자의 빠른 고스트 4개 등장!",
     },
     "8123": {
-        "font": "regular",
-        "string": "고스트 배틀 25승 돌파!",
+        string: "고스트 배틀 25승 돌파!",
     },
     "8124": {
-        "font": "regular",
-        "string": "50cc 스타 컵 우승!",
+        string: "50cc 스타 컵 우승!",
     },
     "8125": {
-        "font": "regular",
-        "string": "100cc 스페셜 컵 우승!",
+        string: "100cc 스페셜 컵 우승!",
     },
     "8126": {
-        "font": "regular",
-        "string": "개발자의 빠른 고스트 32개 등장!",
+        string: "개발자의 빠른 고스트 32개 등장!",
     },
     "8127": {
-        "font": "regular",
-        "string": "Wi-Fi 대전 5000승 돌파!",
+        string: "Wi-Fi 대전 5000승 돌파!",
     },
     "8128": {
-        "font": "regular",
-        "string": "고스트 배틀 100승 돌파!",
+        string: "고스트 배틀 100승 돌파!",
     },
     "8129": {
-        "font": "regular",
-        "string": "Wi-Fi 대전 250승 돌파!",
+        string: "Wi-Fi 대전 250승 돌파!",
     },
     "8130": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "8140": {
-        "font": "regular",
-        "string": "50cc 레트로 그랑프리 모든 컵에서 랭크{1 char|} 획득!",
+        string: "50cc 레트로 그랑프리 모든 컵에서 랭크{1 char|} 획득!",
     },
     "8141": {
-        "font": "regular",
-        "string": "개발자의 빠른 고스트 1개 등장!",
+        string: "개발자의 빠른 고스트 1개 등장!",
     },
     "8142": {
-        "font": "regular",
-        "string": "Wi-Fi 대전 50승 돌파!",
+        string: "Wi-Fi 대전 50승 돌파!",
     },
     "8143": {
-        "font": "regular",
-        "string": "미러 번개 컵 우승!",
+        string: "미러 번개 컵 우승!",
     },
     "8144": {
-        "font": "regular",
-        "string": "50cc 리프 컵 우승!",
+        string: "50cc 리프 컵 우승!",
     },
     "8145": {
-        "font": "regular",
-        "string": "150cc 리프 컵 우승!",
+        string: "150cc 리프 컵 우승!",
     },
     "8146": {
-        "font": "regular",
-        "string": "개발자의 빠른 고스트 24개 등장!",
+        string: "개발자의 빠른 고스트 24개 등장!",
     },
     "8147": {
-        "font": "regular",
-        "string": "50cc 스페셜 컵 우승!",
+        string: "50cc 스페셜 컵 우승!",
     },
     "8148": {
-        "font": "regular",
-        "string": "150cc 레트로 그랑프리 모든 컵에서 랭크{1 char|} 획득!",
+        string: "150cc 레트로 그랑프리 모든 컵에서 랭크{1 char|} 획득!",
     },
     "8149": {
-        "font": "regular",
-        "string": "150cc 번개 컵 우승!",
+        string: "150cc 번개 컵 우승!",
     },
     "8150": {
-        "font": "regular",
-        "string": "150cc 스타 컵 우승!",
+        string: "150cc 스타 컵 우승!",
     },
     "8151": {
-        "font": "regular",
-        "string": "8코스에서 타임 어택 플레이!",
+        string: "8코스에서 타임 어택 플레이!",
     },
     "8152": {
-        "font": "regular",
-        "string": "고스트 배틀 5승 돌파!",
+        string: "고스트 배틀 5승 돌파!",
     },
     "8153": {
-        "font": "regular",
-        "string": "미러 리프 컵 우승!",
+        string: "미러 리프 컵 우승!",
     },
     "8154": {
-        "font": "regular",
-        "string": "100cc 번개 컵 우승!",
+        string: "100cc 번개 컵 우승!",
     },
     "8155": {
-        "font": "regular",
-        "string": "100cc Wii 그랑프리 모든 컵에서 랭크{1 char|} 획득!",
+        string: "100cc Wii 그랑프리 모든 컵에서 랭크{1 char|} 획득!",
     },
     "8156": {
-        "font": "regular",
-        "string": "미러 스타 컵 우승!",
+        string: "미러 스타 컵 우승!",
     },
     "8157": {
-        "font": "regular",
-        "string": "100cc 스타 컵 우승!",
+        string: "100cc 스타 컵 우승!",
     },
     "8158": {
-        "font": "regular",
-        "string": "개발자의 빠른 고스트 12개 등장!",
+        string: "개발자의 빠른 고스트 12개 등장!",
     },
     "8159": {
-        "font": "regular",
-        "string": "고스트 배틀 200승 돌파!",
+        string: "고스트 배틀 200승 돌파!",
     },
     "8160": {
-        "font": "regular",
-        "string": "미러 스페셜 컵 우승!",
+        string: "미러 스페셜 컵 우승!",
     },
     "8161": {
-        "font": "regular",
-        "string": "50cc 모든 컵에서 트로피 획득!",
+        string: "50cc 모든 컵에서 트로피 획득!",
     },
     "8162": {
-        "font": "regular",
-        "string": "100cc 모든 컵에서 트로피 획득!",
+        string: "100cc 모든 컵에서 트로피 획득!",
     },
     "8163": {
-        "font": "regular",
-        "string": "Wi-Fi 대전 3000승 돌파!",
+        string: "Wi-Fi 대전 3000승 돌파!",
     },
     "8164": {
-        "font": "regular",
-        "string": "플레이 횟수 {arg integer|0 0}번 돌파!",
+        string: "플레이 횟수 {arg integer|0 0}번 돌파!",
     },
     "8165": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "8200": {
-        "font": "regular",
-        "string": "전체 기록",
+        string: "전체 기록",
     },
     "8201": {
-        "font": "regular",
-        "string": "즐겨 찾는 기록",
+        string: "즐겨 찾는 기록",
     },
     "8202": {
-        "font": "regular",
-        "string": "친구와의 기록",
+        string: "친구와의 기록",
     },
     "8203": {
-        "font": "regular",
-        "string": "Wi-Fi 기록",
+        string: "Wi-Fi 기록",
     },
     "8204": {
-        "font": "regular",
-        "string": "그 밖의 기록",
+        string: "그 밖의 기록",
     },
     "8210": {
-        "font": "regular",
-        "string": "종합 랭크",
+        string: "종합 랭크",
     },
     "8211": {
-        "font": "regular",
-        "string": "주행 거리",
+        string: "주행 거리",
     },
     "8212": {
-        "font": "regular",
-        "string": "총 레이스 횟수",
+        string: "총 레이스 횟수",
     },
     "8213": {
-        "font": "regular",
-        "string": "총 배틀 횟수",
+        string: "총 배틀 횟수",
     },
     "8214": {
-        "font": "regular",
-        "string": "Wii 핸들 사용률",
+        string: "Wii 핸들 사용률",
     },
     "8215": {
-        "font": "regular",
-        "string": "점프 액션 횟수",
+        string: "점프 액션 횟수",
     },
     "8216": {
-        "font": "regular",
-        "string": "즐겨 사용하는 캐릭터",
+        string: "즐겨 사용하는 캐릭터",
     },
     "8217": {
-        "font": "regular",
-        "string": "즐겨 사용하는 머신",
+        string: "즐겨 사용하는 머신",
     },
     "8218": {
-        "font": "regular",
-        "string": "즐겨 달리는 코스",
+        string: "즐겨 달리는 코스",
     },
     "8219": {
-        "font": "regular",
-        "string": "즐겨 달리는 스테이지",
+        string: "즐겨 달리는 스테이지",
     },
     "8220": {
-        "font": "regular",
-        "string": "Wi-Fi 친구와의 전적",
+        string: "Wi-Fi 친구와의 전적",
     },
     "8221": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "8222": {
-        "font": "regular",
-        "string": "고스트 도전장을 보낸 횟수",
+        string: "고스트 도전장을 보낸 횟수",
     },
     "8223": {
-        "font": "regular",
-        "string": "고스트 도전장을 받은 횟수",
+        string: "고스트 도전장을 받은 횟수",
     },
     "8224": {
-        "font": "regular",
-        "string": "VS 레이팅(VR)",
+        string: "VS 레이팅(VR)",
     },
     "8225": {
-        "font": "regular",
-        "string": "Wi-Fi VS 전적",
+        string: "Wi-Fi VS 전적",
     },
     "8226": {
-        "font": "regular",
-        "string": "배틀 레이팅(BR)",
+        string: "배틀 레이팅(BR)",
     },
     "8227": {
-        "font": "regular",
-        "string": "Wi-Fi 배틀 전적",
+        string: "Wi-Fi 배틀 전적",
     },
     "8228": {
-        "font": "regular",
-        "string": "1위를 기록한 횟수",
+        string: "1위를 기록한 횟수",
     },
     "8229": {
-        "font": "regular",
-        "string": "1위로 달린 비율",
+        string: "1위로 달린 비율",
     },
     "8230": {
-        "font": "regular",
-        "string": "아이템을 맞힌 횟수",
+        string: "아이템을 맞힌 횟수",
     },
     "8231": {
-        "font": "regular",
-        "string": "아이템에 맞은 횟수",
+        string: "아이템에 맞은 횟수",
     },
     "8232": {
-        "font": "regular",
-        "string": "고스트 배틀 전적",
+        string: "고스트 배틀 전적",
     },
     "8233": {
-        "font": "regular",
-        "string": "대회에 참가한 횟수",
+        string: "대회에 참가한 횟수",
     },
     "8234": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "8235": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "8236": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "8237": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "8238": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "8260": {
-        "font": "regular",
-        "string": "{arg message|0}",
+        string: "{arg message|0}",
     },
     "8261": {
-        "font": "regular",
-        "string": "{arg integer|0 0}",
+        string: "{arg integer|0 0}",
     },
     "8262": {
-        "font": "regular",
-        "string": "{arg integer|0 0}번",
+        string: "{arg integer|0 0}번",
     },
     "8263": {
-        "font": "regular",
-        "string": "{arg integer|0 0}번",
+        string: "{arg integer|0 0}번",
     },
     "8264": {
-        "font": "regular",
-        "string": "{arg integer|0 0}%",
+        string: "{arg integer|0 0}%",
     },
     "8265": {
-        "font": "regular",
-        "string": "{arg integer|0 0}번",
+        string: "{arg integer|0 0}번",
     },
     "8266": {
-        "font": "regular",
-        "string": "{arg message|0}",
+        string: "{arg message|0}",
     },
     "8267": {
-        "font": "regular",
-        "string": "{arg message|0}",
+        string: "{arg message|0}",
     },
     "8268": {
-        "font": "regular",
-        "string": "{arg message|0}",
+        string: "{arg message|0}",
     },
     "8269": {
-        "font": "regular",
-        "string": "{arg message|0}",
+        string: "{arg message|0}",
     },
     "8270": {
-        "font": "regular",
-        "string": "{arg integer|0 0}승 {arg integer|1 0}패",
+        string: "{arg integer|0 0}승 {arg integer|1 0}패",
     },
     "8271": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "8272": {
-        "font": "regular",
-        "string": "{arg integer|0 0}번",
+        string: "{arg integer|0 0}번",
     },
     "8273": {
-        "font": "regular",
-        "string": "{arg integer|0 0}번",
+        string: "{arg integer|0 0}번",
     },
     "8274": {
-        "font": "regular",
-        "string": "{arg integer|0 0}VR",
+        string: "{arg integer|0 0}VR",
     },
     "8275": {
-        "font": "regular",
-        "string": "{arg integer|0 0}승 {arg integer|1 0}패",
+        string: "{arg integer|0 0}승 {arg integer|1 0}패",
     },
     "8276": {
-        "font": "regular",
-        "string": "{arg integer|0 0}BR",
+        string: "{arg integer|0 0}BR",
     },
     "8277": {
-        "font": "regular",
-        "string": "{arg integer|0 0}승 {arg integer|1 0}패",
+        string: "{arg integer|0 0}승 {arg integer|1 0}패",
     },
     "8278": {
-        "font": "regular",
-        "string": "{arg integer|0 0}번",
+        string: "{arg integer|0 0}번",
     },
     "8279": {
-        "font": "regular",
-        "string": "{arg integer|0 0}%",
+        string: "{arg integer|0 0}%",
     },
     "8280": {
-        "font": "regular",
-        "string": "{arg integer|0 0}번",
+        string: "{arg integer|0 0}번",
     },
     "8281": {
-        "font": "regular",
-        "string": "{arg integer|0 0}번",
+        string: "{arg integer|0 0}번",
     },
     "8282": {
-        "font": "regular",
-        "string": "{arg integer|0 0}승 {arg integer|1 0}패",
+        string: "{arg integer|0 0}승 {arg integer|1 0}패",
     },
     "8283": {
-        "font": "regular",
-        "string": "{arg integer|0 0}번",
+        string: "{arg integer|0 0}번",
     },
     "8284": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "8400": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "8401": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "8402": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "8403": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "8404": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "8405": {
-        "font": "regular",
-        "string": "%ls 님\n\n축하합니다!\n모든 컵의 트로피를\n보기 좋게 제패했습니다!\n\n당신을 축하하는 의미에서\n기념 사진을 보내드립니다.\n\n앞으로도 변함없이\n『마리오 카트 Wii』를 즐겨 주세요!",
+        string: "%ls 님\n\n축하합니다!\n모든 컵의 트로피를\n보기 좋게 제패했습니다!\n\n당신을 축하하는 의미에서\n기념 사진을 보내드립니다.\n\n앞으로도 변함없이\n『마리오 카트 Wii』를 즐겨 주세요!",
     },
     "8406": {
-        "font": "regular",
-        "string": "%ls 님\n\n축하합니다!\n모든 클래스의 그랑프리를\n보기 좋게 제패했습니다!\n\n축하하는 의미에서\n기념 사진을 보내드립니다.\n\n앞으로도 변함없이\n『마리오 카트 Wii』를 즐겨 주세요!",
+        string: "%ls 님\n\n축하합니다!\n모든 클래스의 그랑프리를\n보기 좋게 제패했습니다!\n\n축하하는 의미에서\n기념 사진을 보내드립니다.\n\n앞으로도 변함없이\n『마리오 카트 Wii』를 즐겨 주세요!",
     },
     "8407": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "8408": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "8409": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "8410": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "8411": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "8412": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "8413": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "8414": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "8415": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "8416": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "8417": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "8418": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "8419": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "8420": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "8421": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "8422": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "8423": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "8424": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "8425": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "8426": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "8427": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "8428": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "8429": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "8430": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "8440": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "8441": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "8442": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "8443": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "8444": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "8445": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "8446": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "8447": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "8448": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "8449": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "8450": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "8451": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "8452": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "8453": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "8454": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "8455": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "8456": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "8457": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "8458": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "8459": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "8460": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "8461": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "8462": {
-        "font": "regular",
-        "string": "「100cc 그랑프리」(카트＆바이크)가\n열렸습니다!\n\n%ls 님이\n「100cc 모든 컵」에서\n트로피를 획득한 결과입니다!\n\n축하합니다!",
+        string: "「100cc 그랑프리」(카트＆바이크)가\n열렸습니다!\n\n%ls 님이\n「100cc 모든 컵」에서\n트로피를 획득한 결과입니다!\n\n축하합니다!",
     },
     "8463": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "8464": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "8470": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "8471": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "8472": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "8473": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "8474": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "8475": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "8476": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "8477": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "8478": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "8479": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "8480": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "8481": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "8482": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "8483": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "8484": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "8485": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "8486": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "8490": {
-        "font": "regular",
-        "string": "『마리오 카트 채널』에서\n알려드립니다.\n\n{arg string|0}\n\n\n\n【수신을 거부하려면】\n\n이 정보는 『마리오 카트 채널』이\n보내드리고 있습니다. \n이후, 정보를 받지 않으려면\n화면 오른쪽 위에 있는 수신 거부\n버튼을 포인트하고 A를 눌러\n이 채널에서 보내는 정보 수신을\n거부할지, 모든 정보 수신을\n거부할지를 선택해 주십시오.",
+        string: "『마리오 카트 채널』에서\n알려드립니다.\n\n{arg string|0}\n\n\n\n【수신을 거부하려면】\n\n이 정보는 『마리오 카트 채널』이\n보내드리고 있습니다. \n이후, 정보를 받지 않으려면\n화면 오른쪽 위에 있는 수신 거부\n버튼을 포인트하고 A를 눌러\n이 채널에서 보내는 정보 수신을\n거부할지, 모든 정보 수신을\n거부할지를 선택해 주십시오.",
     },
     "8491": {
-        "font": "regular",
-        "string": "『마리오 카트 채널』에서\n알려드립니다.\n\n{arg string|0}\n\n\n\n【수신을 거부하려면】\n\n이 정보는 『마리오 카트 채널』이\n보내드리고 있습니다.\n이후, 정보를 받지 않으려면\n화면 오른쪽 위에 있는 수신 거부\n버튼을 포인트하고 A를 눌러\n이 채널에서 보내는 정보 수신을\n거부할지 모든 정보 수신을\n거부할지를 선택해 주십시오.",
+        string: "『마리오 카트 채널』에서\n알려드립니다.\n\n{arg string|0}\n\n\n\n【수신을 거부하려면】\n\n이 정보는 『마리오 카트 채널』이\n보내드리고 있습니다.\n이후, 정보를 받지 않으려면\n화면 오른쪽 위에 있는 수신 거부\n버튼을 포인트하고 A를 눌러\n이 채널에서 보내는 정보 수신을\n거부할지 모든 정보 수신을\n거부할지를 선택해 주십시오.",
     },
     "8492": {
-        "font": "regular",
-        "string": "%ls 님으로부터\n「친구 등록」 초대\n편지가 도착했습니다!\n\n『마리오 카트 Wii』\n친구 코드：%04d-%04d-%04d\n\n친구 코드를 서로 등록하면\n멀리 떨어져 있어도\n함께 『마리오 카트 Wii』를\n즐길 수 있게 됩니다.\n\n새로운 세계로 어서 오세요!",
+        string: "%ls 님으로부터\n「친구 등록」 초대\n편지가 도착했습니다!\n\n『마리오 카트 Wii』\n친구 코드：%04d-%04d-%04d\n\n친구 코드를 서로 등록하면\n멀리 떨어져 있어도\n함께 『마리오 카트 Wii』를\n즐길 수 있게 됩니다.\n\n새로운 세계로 어서 오세요!",
     },
     "8493": {
-        "font": "regular",
-        "string": "%ls 님에게서\n「친구 등록」에 대한\n답변이 도착했습니다!\n\n『마리오 카트 Wii』\n친구 코드：%04d-%04d-%04d\n\n＊친구 목록에 빈 공간이 있으면\n　자동으로 등록됩니다.\n\n친구 코드를 서로 등록하면\n멀리 떨어져 있어도\n함께 『마리오 카트 Wii』를\n즐길 수 있게 됩니다.\n\n새로운 세계로 어서 오세요!",
+        string: "%ls 님에게서\n「친구 등록」에 대한\n답변이 도착했습니다!\n\n『마리오 카트 Wii』\n친구 코드：%04d-%04d-%04d\n\n＊친구 목록에 빈 공간이 있으면\n　자동으로 등록됩니다.\n\n친구 코드를 서로 등록하면\n멀리 떨어져 있어도\n함께 『마리오 카트 Wii』를\n즐길 수 있게 됩니다.\n\n새로운 세계로 어서 오세요!",
     },
     "8494": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "8495": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "8496": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "8497": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "8498": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "8499": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "8500": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "8504": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "8505": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "8510": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "8511": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "8512": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "8513": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "8514": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "8515": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "8516": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "8517": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "8518": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "8519": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "8520": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "8521": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "8522": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "8523": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "8524": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "8525": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "8526": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "8527": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "8528": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "8529": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "8530": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "8540": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "8541": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "8542": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "8543": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "8544": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "8545": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "8546": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "8547": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "8548": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "8549": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "8550": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "8551": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "8552": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "8553": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "8554": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "8555": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "8556": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "8557": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "8558": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "8559": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "8560": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "8561": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "8562": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "8563": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "8564": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "8565": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "8566": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "8567": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "8800": {
-        "font": "regular",
-        "string": "",
+        string: "",
     },
     "8801": {
-        "font": "regular",
-        "string": "",
+        string: "",
     },
     "8802": {
-        "font": "regular",
-        "string": "",
+        string: "",
     },
     "8803": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "8820": {
-        "font": "regular",
-        "string": "",
+        string: "",
     },
     "8821": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "8830": {
-        "font": "regular",
-        "string": "",
+        string: "",
     },
     "8831": {
-        "font": "regular",
-        "string": "",
+        string: "",
     },
     "8832": {
-        "font": "regular",
-        "string": "",
+        string: "",
     },
     "8833": {
-        "font": "regular",
-        "string": "",
+        string: "",
     },
     "8834": {
-        "font": "regular",
-        "string": "",
+        string: "",
     },
     "8835": {
-        "font": "regular",
-        "string": "",
+        string: "",
     },
     "8836": {
-        "font": "regular",
-        "string": "",
+        string: "",
     },
     "8837": {
-        "font": "regular",
-        "string": "",
+        string: "",
     },
     "8838": {
-        "font": "regular",
-        "string": "",
+        string: "",
     },
     "8839": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "8850": {
-        "font": "regular",
-        "string": "",
+        string: "",
     },
     "8851": {
-        "font": "regular",
-        "string": "",
+        string: "",
     },
     "8852": {
-        "font": "regular",
-        "string": "",
+        string: "",
     },
     "8853": {
-        "font": "regular",
-        "string": "",
+        string: "",
     },
     "8854": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "8860": {
-        "font": "regular",
-        "string": "",
+        string: "",
     },
     "8861": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "99991": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "99992": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "99993": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "99994": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "99995": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "99996": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "99997": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "99998": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
 }

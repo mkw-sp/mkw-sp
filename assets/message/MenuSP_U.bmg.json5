@@ -1,1650 +1,1235 @@
 {
     "2033": {
-        "font": "regular",
-        "string": "MKW-SP Online",
+        string: "MKW-SP Online",
     },
     "2034": {
-        "font": "regular",
-        "string": "MKW-SP Online (2P)",
+        string: "MKW-SP Online (2P)",
     },
     "3400": {
-        "font": "regular",
-        "string": "Settings",
+        string: "Settings",
     },
     "3475": {
-        "font": "regular",
-        "string": "Change settings for this licence.",
+        string: "Change settings for this licence.",
     },
     "3700": {
-        "font": "regular",
-        "string": "Select Level",
+        string: "Select Level",
     },
     "3701": {
-        "font": "regular",
-        "string": "Select Stage",
+        string: "Select Stage",
     },
     "4000": {
-        "font": "regular",
-        "string": "Nintendo Worldwides",
+        string: "Nintendo Worldwides",
     },
     "4001": {
-        "font": "regular",
-        "string": "Track Packs",
+        string: "Track Packs",
     },
     "4003": {
-        "font": "regular",
-        "string": "Direct Connection",
+        string: "Direct Connection",
     },
     "4310": {
-        "font": "regular",
-        "string": "Find a room on official Nintendo courses.",
+        string: "Find a room on official Nintendo courses.",
     },
     "4311": {
-        "font": "regular",
-        "string": "Select a Track Pack to play online.",
+        string: "Select a Track Pack to play online.",
     },
     "4313": {
-        "font": "regular",
-        "string": "Connect directly to a hosted Gameserver.",
+        string: "Connect directly to a hosted Gameserver.",
     },
     "10004": {
-        "font": "regular",
-        "string": "HUD Labels",
+        string: "HUD Labels",
     },
     "10005": {
-        "font": "regular",
-        "string": "Hide",
+        string: "Hide",
     },
     "10006": {
-        "font": "regular",
-        "string": "Show",
+        string: "Show",
     },
     "10007": {
-        "font": "regular",
-        "string": "Hide HUD control labels.",
+        string: "Hide HUD control labels.",
     },
     "10008": {
-        "font": "regular",
-        "string": "Show HUD control labels.",
+        string: "Show HUD control labels.",
     },
     "10009": {
-        "font": "regular",
-        "string": "16:9 FOV",
+        string: "16:9 FOV",
     },
     "10010": {
-        "font": "regular",
-        "string": "Default",
+        string: "Default",
     },
     "10011": {
-        "font": "regular",
-        "string": "Wider",
+        string: "Wider",
     },
     "10012": {
-        "font": "regular",
-        "string": "Use the default field of view in 16:9 mode.",
+        string: "Use the default field of view in 16:9 mode.",
     },
     "10013": {
-        "font": "regular",
-        "string": "Use the wider 4:3 field of view in 16:9 mode.",
+        string: "Use the wider 4:3 field of view in 16:9 mode.",
     },
     "10014": {
-        "font": "regular",
-        "string": "Map Icons",
+        string: "Map Icons",
     },
     "10015": {
-        "font": "regular",
-        "string": "Characters",
+        string: "Characters",
     },
     "10016": {
-        "font": "regular",
-        "string": "Miis",
+        string: "Miis",
     },
     "10017": {
-        "font": "regular",
-        "string": "Use characters as minimap icons.",
+        string: "Use characters as minimap icons.",
     },
     "10018": {
-        "font": "regular",
-        "string": "Use Miis as minimap icons.",
+        string: "Use Miis as minimap icons.",
     },
     "10019": {
-        "font": "regular",
-        "string": "Ghost Sorting",
+        string: "Ghost Sorting",
     },
     "10028": {
-        "font": "regular",
-        "string": "Tag Visibility",
+        string: "Tag Visibility",
     },
     "10029": {
-        "font": "regular",
-        "string": "None",
+        string: "None",
     },
     "10030": {
-        "font": "regular",
-        "string": "Watched",
+        string: "Watched",
     },
     "10031": {
-        "font": "regular",
-        "string": "All",
+        string: "All",
     },
     "10032": {
-        "font": "regular",
-        "string": "Do not display any ghost tag.",
+        string: "Do not display any ghost tag.",
     },
     "10033": {
-        "font": "regular",
-        "string": "Only display the tag of the watched ghost.",
+        string: "Only display the tag of the watched ghost.",
     },
     "10034": {
-        "font": "regular",
-        "string": "Display tags for all ghosts.",
+        string: "Display tags for all ghosts.",
     },
     "10035": {
-        "font": "regular",
-        "string": "Tag Content",
+        string: "Tag Content",
     },
     "10036": {
-        "font": "regular",
-        "string": "Name",
+        string: "Name",
     },
     "10037": {
-        "font": "regular",
-        "string": "Time",
+        string: "Time",
     },
     "10038": {
-        "font": "regular",
-        "string": "Date",
+        string: "Date",
     },
     "10039": {
-        "font": "regular",
-        "string": "Use the ghost name as the tag.",
+        string: "Use the ghost name as the tag.",
     },
     "10040": {
-        "font": "regular",
-        "string": "Use the ghost finish time as the tag.",
+        string: "Use the ghost finish time as the tag.",
     },
     "10041": {
-        "font": "regular",
-        "string": "Use the ghost creation date as the tag.",
+        string: "Use the ghost creation date as the tag.",
     },
     "10042": {
-        "font": "regular",
-        "string": "Solid Ghosts",
+        string: "Solid Ghosts",
     },
     "10043": {
-        "font": "regular",
-        "string": "Do not make any ghost solid.",
+        string: "Do not make any ghost solid.",
     },
     "10044": {
-        "font": "regular",
-        "string": "Make the watched ghost solid.",
+        string: "Make the watched ghost solid.",
     },
     "10045": {
-        "font": "regular",
-        "string": "Make all ghosts solid.",
+        string: "Make all ghosts solid.",
     },
     "10046": {
-        "font": "regular",
-        "string": "Play Time Trials with these rules.",
+        string: "Play Time Trials with these rules.",
     },
     "10053": {
-        "font": "regular",
-        "string": "Shortened Time",
+        string: "Shortened Time",
     },
     "10054": {
-        "font": "regular",
-        "string": "Time option without leading zeroes.",
+        string: "Time option without leading zeroes.",
     },
     "10055": {
-        "font": "regular",
-        "string": "Gecko codes are UNSUPPORTED\nand will crash your game.\nPress A if you know what you are doing\nand do NOT report bugs.",
+        string: "Gecko codes are UNSUPPORTED\nand will crash your game.\nPress A if you know what you are doing\nand do NOT report bugs.",
     },
     "10056": {
-        "font": "regular",
-        "string": "Menu Transitions",
+        string: "Menu Transitions",
     },
     "10057": {
-        "font": "regular",
-        "string": "Disable",
+        string: "Disable",
     },
     "10058": {
-        "font": "regular",
-        "string": "Enable",
+        string: "Enable",
     },
     "10059": {
-        "font": "regular",
-        "string": "Make the menu transitions instant.",
+        string: "Make the menu transitions instant.",
     },
     "10060": {
-        "font": "regular",
-        "string": "Keep the default pace of the menu transitions.",
+        string: "Keep the default pace of the menu transitions.",
     },
     "10061": {
-        "font": "regular",
-        "string": "Input Display",
+        string: "Input Display",
     },
     "10062": {
-        "font": "regular",
-        "string": "Disable",
+        string: "Disable",
     },
     "10063": {
-        "font": "regular",
-        "string": "Enable",
+        string: "Enable",
     },
     "10064": {
-        "font": "regular",
-        "string": "Don't display inputs during a race.",
+        string: "Don't display inputs during a race.",
     },
     "10065": {
-        "font": "regular",
-        "string": "Display controller inputs during a race.",
+        string: "Display controller inputs during a race.",
     },
     "10066": {
-        "font": "regular",
-        "string": "Ghost Sound",
+        string: "Ghost Sound",
     },
     "10067": {
-        "font": "regular",
-        "string": "Do not enable sound for any ghost.",
+        string: "Do not enable sound for any ghost.",
     },
     "10068": {
-        "font": "regular",
-        "string": "Only enable sound for the watched ghost.",
+        string: "Only enable sound for the watched ghost.",
     },
     "10069": {
-        "font": "regular",
-        "string": "Enable sound for all ghosts.",
+        string: "Enable sound for all ghosts.",
     },
     "10073": {
-        "font": "regular",
-        "string": "Play Time Trials and other modes alone.",
+        string: "Play Time Trials and other modes alone.",
     },
     "10074": {
-        "font": "regular",
-        "string": "Edit settings or change your Mii!",
+        string: "Edit settings or change your Mii!",
     },
     "10075": {
-        "font": "regular",
-        "string": "Something went wrong when reading from\nor writing to the save.",
+        string: "Something went wrong when reading from\nor writing to the save.",
     },
     "10077": {
-        "font": "regular",
-        "string": "Change settings for this license.",
+        string: "Change settings for this license.",
     },
     "10078": {
-        "font": "regular",
-        "string": "0.9x speed factor.",
+        string: "0.9x speed factor.",
     },
     "10079": {
-        "font": "regular",
-        "string": "1.0x speed factor.",
+        string: "1.0x speed factor.",
     },
     "10080": {
-        "font": "regular",
-        "string": "1.0x speed factor with mirrored courses.",
+        string: "1.0x speed factor with mirrored courses.",
     },
     "10081": {
-        "font": "regular",
-        "string": "1.5x speed factor with brake drifting and fast falling.",
+        string: "1.5x speed factor with brake drifting and fast falling.",
     },
     "10082": {
-        "font": "regular",
-        "string": "MKW-SP Options",
+        string: "MKW-SP Options",
     },
     "10083": {
-        "font": "regular",
-        "string": "Service Pack",
+        string: "Service Pack",
     },
     "10084": {
-        "font": "regular",
-        "string": "Global Settings",
+        string: "Global Settings",
     },
     "10085": {
-        "font": "regular",
-        "string": "Tracks",
+        string: "Tracks",
     },
     "10086": {
-        "font": "regular",
-        "string": "Ghosts",
+        string: "Ghosts",
     },
     "10087": {
-        "font": "regular",
-        "string": "Update",
+        string: "Update",
     },
     "10088": {
-        "font": "regular",
-        "string": "Channel",
+        string: "Channel",
     },
     "10089": {
-        "font": "regular",
-        "string": "About",
+        string: "About",
     },
     "10090": {
-        "font": "regular",
-        "string": "Installing the MKW-SP channel allows you\nto launch MKW-SP from the Wii Menu\nrather than from the Homebrew Channel\nor an exploit.\nUpdates will be kept in sync between the two.",
+        string: "Installing the MKW-SP channel allows you\nto launch MKW-SP from the Wii Menu\nrather than from the Homebrew Channel\nor an exploit.\nUpdates will be kept in sync between the two.",
     },
     "10091": {
-        "font": "regular",
-        "string": "Would you like to install\nthe MKW-SP channel?",
+        string: "Would you like to install\nthe MKW-SP channel?",
     },
     "10092": {
-        "font": "regular",
-        "string": "An update to the MKW-SP channel\nis available. Would you like\nto install it?",
+        string: "An update to the MKW-SP channel\nis available. Would you like\nto install it?",
     },
     "10093": {
-        "font": "regular",
-        "string": "The MKW-SP channel is already installed.",
+        string: "The MKW-SP channel is already installed.",
     },
     "10094": {
-        "font": "regular",
-        "string": "A newer version of the MKW-SP channel\nis already installed!",
+        string: "A newer version of the MKW-SP channel\nis already installed!",
     },
     "10095": {
-        "font": "regular",
-        "string": "Installing the MKW-SP channel...",
+        string: "Installing the MKW-SP channel...",
     },
     "10096": {
-        "font": "regular",
-        "string": "Updating the MKW-SP channel...",
+        string: "Updating the MKW-SP channel...",
     },
     "10097": {
-        "font": "regular",
-        "string": "The MKW-SP channel was successfully\ninstalled!",
+        string: "The MKW-SP channel was successfully\ninstalled!",
     },
     "10098": {
-        "font": "regular",
-        "string": "The MKW-SP channel installation\nfailed!",
+        string: "The MKW-SP channel installation\nfailed!",
     },
     "10099": {
-        "font": "regular",
-        "string": "The MKW-SP channel was successfully\nupdated!",
+        string: "The MKW-SP channel was successfully\nupdated!",
     },
     "10100": {
-        "font": "regular",
-        "string": "The MKW-SP channel update failed!",
+        string: "The MKW-SP channel update failed!",
     },
     "10101": {
-        "font": "regular",
-        "string": "The MKW-SP channel can only be\ninstalled from release builds!",
+        string: "The MKW-SP channel can only be\ninstalled from release builds!",
     },
     "10102": {
-        "font": "regular",
-        "string": "Checking for updates...\n{arg message|0}",
+        string: "Checking for updates...\n{arg message|0}",
     },
     "10103": {
-        "font": "regular",
-        "string": "A new version of MKW-SP is available!\n{arg string|0} → {arg string|1}",
+        string: "A new version of MKW-SP is available!\n{arg string|0} → {arg string|1}",
     },
     "10104": {
-        "font": "regular",
-        "string": "The latest version of MKW-SP ({arg string|0})\nis already installed.",
+        string: "The latest version of MKW-SP ({arg string|0})\nis already installed.",
     },
     "10105": {
-        "font": "regular",
-        "string": "The MKW-SP update check failed!",
+        string: "The MKW-SP update check failed!",
     },
     "10106": {
-        "font": "regular",
-        "string": "Would you like to update MKW-SP to {arg string|0}?\nYou will need {arg string|1} MiB ({arg integer|0 0} blocks)\nof free space on the Wii System Memory.",
+        string: "Would you like to update MKW-SP to {arg string|0}?\nYou will need {arg string|1} MiB ({arg integer|0 0} blocks)\nof free space on the Wii System Memory.",
     },
     "10107": {
-        "font": "regular",
-        "string": "Updating MKW-SP...\n{arg message|0}",
+        string: "Updating MKW-SP...\n{arg message|0}",
     },
     "10108": {
-        "font": "regular",
-        "string": "MKW-SP was successfully updated\nfrom {arg string|0} to {arg string|1}.\nA restart is necessary for the update\nto be applied.",
+        string: "MKW-SP was successfully updated\nfrom {arg string|0} to {arg string|1}.\nA restart is necessary for the update\nto be applied.",
     },
     "10109": {
-        "font": "regular",
-        "string": "The MKW-SP update failed!",
+        string: "The MKW-SP update failed!",
     },
     "10110": {
-        "font": "regular",
-        "string": "Would you like to restart MKW-SP now?",
+        string: "Would you like to restart MKW-SP now?",
     },
     "10111": {
-        "font": "regular",
-        "string": "MKW-SP can only be updated\nfrom release builds!",
+        string: "MKW-SP can only be updated\nfrom release builds!",
     },
     "10112": {
-        "font": "regular",
-        "string": "Connecting to the server...",
+        string: "Connecting to the server...",
     },
     "10113": {
-        "font": "regular",
-        "string": "Sending version information...",
+        string: "Sending version information...",
     },
     "10114": {
-        "font": "regular",
-        "string": "Receiving version information...",
+        string: "Receiving version information...",
     },
     "10115": {
-        "font": "regular",
-        "string": "Downloading contents...\n{arg string|0} MiB of {arg string|1} MiB - {arg string|2} MiB/s",
+        string: "Downloading contents...\n{arg string|0} MiB of {arg string|1} MiB - {arg string|2} MiB/s",
     },
     "10116": {
-        "font": "regular",
-        "string": "Moving contents...",
+        string: "Moving contents...",
     },
     "10117": {
-        "font": "regular",
-        "string": "",
+        string: "",
     },
     "10118": {
-        "font": "regular",
-        "string": "Race",
+        string: "Race",
     },
     "10119": {
-        "font": "regular",
-        "string": "Time Trials",
+        string: "Time Trials",
     },
     "10120": {
-        "font": "regular",
-        "string": "License",
+        string: "License",
     },
     "10121": {
-        "font": "regular",
-        "string": "Position Tracker",
+        string: "Position Tracker",
     },
     "10122": {
-        "font": "regular",
-        "string": "GP and VS",
+        string: "GP and VS",
     },
     "10123": {
-        "font": "regular",
-        "string": "Always",
+        string: "Always",
     },
     "10124": {
-        "font": "regular",
-        "string": "Only show the position tracker in GP and VS.",
+        string: "Only show the position tracker in GP and VS.",
     },
     "10125": {
-        "font": "regular",
-        "string": "Always show the position tracker.",
+        string: "Always show the position tracker.",
     },
     "10126": {
-        "font": "regular",
-        "string": "Sound",
+        string: "Sound",
     },
     "10127": {
-        "font": "regular",
-        "string": "Item Music",
+        string: "Item Music",
     },
     "10128": {
-        "font": "regular",
-        "string": "None",
+        string: "None",
     },
     "10129": {
-        "font": "regular",
-        "string": "Shocked/Squashed Only",
+        string: "Shocked/Squashed Only",
     },
     "10130": {
-        "font": "regular",
-        "string": "All",
+        string: "All",
     },
     "10131": {
-        "font": "regular",
-        "string": "Do not let items affect the music.",
+        string: "Do not let items affect the music.",
     },
     "10132": {
-        "font": "regular",
-        "string": "Only apply the shocked/squashed music effect.",
+        string: "Only apply the shocked/squashed music effect.",
     },
     "10133": {
-        "font": "regular",
-        "string": "Let Stars, Mega Mushrooms and\nLightnings affect the music.",
+        string: "Let Stars, Mega Mushrooms and\nLightnings affect the music.",
     },
     "10134": {
-        "font": "regular",
-        "string": "Final Lap Jingle",
+        string: "Final Lap Jingle",
     },
     "10135": {
-        "font": "regular",
-        "string": "Gameplay Only",
+        string: "Gameplay Only",
     },
     "10136": {
-        "font": "regular",
-        "string": "Always",
+        string: "Always",
     },
     "10137": {
-        "font": "regular",
-        "string": "Use the final lap jingle for gameplay only.",
+        string: "Use the final lap jingle for gameplay only.",
     },
     "10138": {
-        "font": "regular",
-        "string": "Use the final lap jingle for gameplay and replays.",
+        string: "Use the final lap jingle for gameplay and replays.",
     },
     "10139": {
-        "font": "regular",
-        "string": "Final Lap Speedup",
+        string: "Final Lap Speedup",
     },
     "10140": {
-        "font": "regular",
-        "string": "None",
+        string: "None",
     },
     "10141": {
-        "font": "regular",
-        "string": "Static",
+        string: "Static",
     },
     "10142": {
-        "font": "regular",
-        "string": "Dynamic",
+        string: "Dynamic",
     },
     "10143": {
-        "font": "regular",
-        "string": "Use the \"_N\" BRSTM on the final lap.",
+        string: "Use the \"_N\" BRSTM on the final lap.",
     },
     "10144": {
-        "font": "regular",
-        "string": "Use the \"_F\" BRSTM on the final lap.",
+        string: "Use the \"_F\" BRSTM on the final lap.",
     },
     "10145": {
-        "font": "regular",
-        "string": "Generate final lap music from the \"_N\" BRSTM.",
+        string: "Generate final lap music from the \"_N\" BRSTM.",
     },
     "10146": {
-        "font": "regular",
-        "string": "Storage Benchmark",
+        string: "Storage Benchmark",
     },
     "10147": {
-        "font": "regular",
-        "string": "What device do you want to benchmark?",
+        string: "What device do you want to benchmark?",
     },
     "10148": {
-        "font": "regular",
-        "string": "Benchmarking the {arg message|0} storage...\n{arg message|1}",
+        string: "Benchmarking the {arg message|0} storage...\n{arg message|1}",
     },
     "10149": {
-        "font": "regular",
-        "string": "The {arg message|0} storage benchmark succeeded.\n{arg integer|0 0} KiB: R {arg string|0} MiB/s - W {arg string|1} MiB/s\n{arg integer|1 0} KiB: R {arg string|2} MiB/s - W {arg string|3} MiB/s\n{arg integer|2 0} KiB: R {arg string|4} MiB/s - W {arg string|5} MiB/s\n{arg integer|3 0} KiB: R {arg string|6} MiB/s - W {arg string|7} MiB/s",
+        string: "The {arg message|0} storage benchmark succeeded.\n{arg integer|0 0} KiB: R {arg string|0} MiB/s - W {arg string|1} MiB/s\n{arg integer|1 0} KiB: R {arg string|2} MiB/s - W {arg string|3} MiB/s\n{arg integer|2 0} KiB: R {arg string|4} MiB/s - W {arg string|5} MiB/s\n{arg integer|3 0} KiB: R {arg string|6} MiB/s - W {arg string|7} MiB/s",
     },
     "10150": {
-        "font": "regular",
-        "string": "The {arg message|0} storage benchmark failed!",
+        string: "The {arg message|0} storage benchmark failed!",
     },
     "10151": {
-        "font": "regular",
-        "string": "Initializing...",
+        string: "Initializing...",
     },
     "10152": {
-        "font": "regular",
-        "string": "Reading {arg integer|0 0} KiB chunks...",
+        string: "Reading {arg integer|0 0} KiB chunks...",
     },
     "10153": {
-        "font": "regular",
-        "string": "Writing {arg integer|0 0} KiB chunks...",
+        string: "Writing {arg integer|0 0} KiB chunks...",
     },
     "10154": {
-        "font": "regular",
-        "string": "SD card",
+        string: "SD card",
     },
     "10155": {
-        "font": "regular",
-        "string": "SD card",
+        string: "SD card",
     },
     "10156": {
-        "font": "regular",
-        "string": "USB",
+        string: "USB",
     },
     "10157": {
-        "font": "regular",
-        "string": "USB",
+        string: "USB",
     },
     "10158": {
-        "font": "regular",
-        "string": "Network",
+        string: "Network",
     },
     "10159": {
-        "font": "regular",
-        "string": "network",
+        string: "network",
     },
     "10160": {
-        "font": "regular",
-        "string": "Missions",
+        string: "Missions",
     },
     "10161": {
-        "font": "regular",
-        "string": "Play missions with various objectives.",
+        string: "Play missions with various objectives.",
     },
     "10162": {
-        "font": "regular",
-        "string": "Race {arg integer|0 0} {arg cond messages|0 10164 10165}",
+        string: "Race {arg integer|0 0} {arg cond messages|0 10164 10165}",
     },
     "10163": {
-        "font": "regular",
-        "string": "Watch {arg integer|0 0} {arg cond messages|0 10164 10165}",
+        string: "Watch {arg integer|0 0} {arg cond messages|0 10164 10165}",
     },
     "10164": {
-        "font": "regular",
-        "string": "Ghost",
+        string: "Ghost",
     },
     "10165": {
-        "font": "regular",
-        "string": "Ghosts",
+        string: "Ghosts",
     },
     "10166": {
-        "font": "regular",
-        "string": "Vanilla Mode",
+        string: "Vanilla Mode",
     },
     "10167": {
-        "font": "regular",
-        "string": "Disable",
+        string: "Disable",
     },
     "10168": {
-        "font": "regular",
-        "string": "Enable",
+        string: "Enable",
     },
     "10169": {
-        "font": "regular",
-        "string": "Allow all MKW-SP changes.",
+        string: "Allow all MKW-SP changes.",
     },
     "10170": {
-        "font": "regular",
-        "string": "Disallow most MKW-SP changes.",
+        string: "Disallow most MKW-SP changes.",
     },
     "10171": {
-        "font": "regular",
-        "string": "Time",
+        string: "Time",
     },
     "10172": {
-        "font": "regular",
-        "string": "Date",
+        string: "Date",
     },
     "10173": {
-        "font": "regular",
-        "string": "Final Lap",
+        string: "Final Lap",
     },
     "10174": {
-        "font": "regular",
-        "string": "Lap 2 Pace",
+        string: "Lap 2 Pace",
     },
     "10175": {
-        "font": "regular",
-        "string": "Lap 3 Pace",
+        string: "Lap 3 Pace",
     },
     "10176": {
-        "font": "regular",
-        "string": "Sort ghosts by their finish time.",
+        string: "Sort ghosts by their finish time.",
     },
     "10177": {
-        "font": "regular",
-        "string": "Sort ghosts by their creation date.",
+        string: "Sort ghosts by their creation date.",
     },
     "10178": {
-        "font": "regular",
-        "string": "Sort ghosts by their fastest lap.",
+        string: "Sort ghosts by their fastest lap.",
     },
     "10179": {
-        "font": "regular",
-        "string": "Sort ghosts by their pace into lap 2.",
+        string: "Sort ghosts by their pace into lap 2.",
     },
     "10180": {
-        "font": "regular",
-        "string": "Sort ghosts by their pace into lap 3.",
+        string: "Sort ghosts by their pace into lap 3.",
     },
     "10181": {
-        "font": "regular",
-        "string": "The {arg message|0} storage benchmark succeeded.\nRank: {arg message|1}\n{arg integer|0 0} KiB: R {arg string|0} MiB/s - W {arg string|1} MiB/s\n{arg integer|1 0} KiB: R {arg string|2} MiB/s - W {arg string|3} MiB/s\n{arg integer|2 0} KiB: R {arg string|4} MiB/s - W {arg string|5} MiB/s\n{arg integer|3 0} KiB: R {arg string|6} MiB/s - W {arg string|7} MiB/s",
+        string: "The {arg message|0} storage benchmark succeeded.\nRank: {arg message|1}\n{arg integer|0 0} KiB: R {arg string|0} MiB/s - W {arg string|1} MiB/s\n{arg integer|1 0} KiB: R {arg string|2} MiB/s - W {arg string|3} MiB/s\n{arg integer|2 0} KiB: R {arg string|4} MiB/s - W {arg string|5} MiB/s\n{arg integer|3 0} KiB: R {arg string|6} MiB/s - W {arg string|7} MiB/s",
     },
     "10182": {
-        "font": "regular",
-        "string": "{arg message|0} ({arg integer|0 0}/{arg integer|1 0})",
+        string: "{arg message|0} ({arg integer|0 0}/{arg integer|1 0})",
     },
     "10183": {
-        "font": "regular",
-        "string": "Player Tags",
+        string: "Player Tags",
     },
     "10184": {
-        "font": "regular",
-        "string": "{arg integer|0 0}",
+        string: "{arg integer|0 0}",
     },
     "10185": {
-        "font": "regular",
-        "string": "Display at most {arg integer|0 0} {arg cond messages|0 10186 10187} at once.",
+        string: "Display at most {arg integer|0 0} {arg cond messages|0 10186 10187} at once.",
     },
     "10186": {
-        "font": "regular",
-        "string": "tag",
+        string: "tag",
     },
     "10187": {
-        "font": "regular",
-        "string": "tags",
+        string: "tags",
     },
     "10188": {
-        "font": "regular",
-        "string": "Performance Overlay",
+        string: "Performance Overlay",
     },
     "10189": {
-        "font": "regular",
-        "string": "Do not display CPU, GPU and memory bars.",
+        string: "Do not display CPU, GPU and memory bars.",
     },
     "10190": {
-        "font": "regular",
-        "string": "Display CPU, GPU and memory bars.",
+        string: "Display CPU, GPU and memory bars.",
     },
     "10191": {
-        "font": "regular",
-        "string": "GCN Rumble",
+        string: "GCN Rumble",
     },
     "10192": {
-        "font": "regular",
-        "string": "Disable the rumble feature of the GCN controller.",
+        string: "Disable the rumble feature of the GCN controller.",
     },
     "10193": {
-        "font": "regular",
-        "string": "Enable the rumble feature of the GCN controller.",
+        string: "Enable the rumble feature of the GCN controller.",
     },
     "10194": {
-        "font": "regular",
-        "string": "Region Line Color",
+        string: "Region Line Color",
     },
     "10195": {
-        "font": "regular",
-        "string": "Red",
+        string: "Red",
     },
     "10196": {
-        "font": "regular",
-        "string": "Blue",
+        string: "Blue",
     },
     "10197": {
-        "font": "regular",
-        "string": "Green",
+        string: "Green",
     },
     "10198": {
-        "font": "regular",
-        "string": "Yellow",
+        string: "Yellow",
     },
     "10199": {
-        "font": "regular",
-        "string": "White",
+        string: "White",
     },
     "10200": {
-        "font": "regular",
-        "string": "Pink",
+        string: "Pink",
     },
     "10201": {
-        "font": "regular",
-        "string": "The color of the line under your name will be {color|player 3}red{color|unspecified}.",
+        string: "The color of the line under your name will be {color|player 3}red{color|unspecified}.",
     },
     "10202": {
-        "font": "regular",
-        "string": "The color of the line under your name will be {color|sp blue}blue{color|unspecified}.",
+        string: "The color of the line under your name will be {color|sp blue}blue{color|unspecified}.",
     },
     "10203": {
-        "font": "regular",
-        "string": "The color of the line under your name will be {color|sp green}green{color|unspecified}.",
+        string: "The color of the line under your name will be {color|sp green}green{color|unspecified}.",
     },
     "10204": {
-        "font": "regular",
-        "string": "The color of the line under your name will be {color|player 1}yellow{color|unspecified}.",
+        string: "The color of the line under your name will be {color|player 1}yellow{color|unspecified}.",
     },
     "10205": {
-        "font": "regular",
-        "string": "The color of the line under your name will be white.",
+        string: "The color of the line under your name will be white.",
     },
     "10206": {
-        "font": "regular",
-        "string": "The color of the line under your name will be {color|sp pink}pink{color|unspecified}.",
+        string: "The color of the line under your name will be {color|sp pink}pink{color|unspecified}.",
     },
     "10207": {
-        "font": "regular",
-        "string": "Team Size",
+        string: "Team Size",
     },
     "10208": {
-        "font": "regular",
-        "string": "FFA",
+        string: "FFA",
     },
     "10209": {
-        "font": "regular",
-        "string": "2",
+        string: "2",
     },
     "10210": {
-        "font": "regular",
-        "string": "3",
+        string: "3",
     },
     "10211": {
-        "font": "regular",
-        "string": "4",
+        string: "4",
     },
     "10212": {
-        "font": "regular",
-        "string": "6",
+        string: "6",
     },
     "10213": {
-        "font": "regular",
-        "string": "Do not play in teams.",
+        string: "Do not play in teams.",
     },
     "10214": {
-        "font": "regular",
-        "string": "Limit the team size to 2 players.",
+        string: "Limit the team size to 2 players.",
     },
     "10215": {
-        "font": "regular",
-        "string": "Limit the team size to 3 players.",
+        string: "Limit the team size to 3 players.",
     },
     "10216": {
-        "font": "regular",
-        "string": "Limit the team size to 4 players.",
+        string: "Limit the team size to 4 players.",
     },
     "10217": {
-        "font": "regular",
-        "string": "Limit the team size to 6 players.",
+        string: "Limit the team size to 6 players.",
     },
     "10218": {
-        "font": "regular",
-        "string": "Random",
+        string: "Random",
     },
     "10219": {
-        "font": "regular",
-        "string": "Host",
+        string: "Host",
     },
     "10220": {
-        "font": "regular",
-        "string": "Players",
+        string: "Players",
     },
     "10221": {
-        "font": "regular",
-        "string": "Teams are formed at random.",
+        string: "Teams are formed at random.",
     },
     "10222": {
-        "font": "regular",
-        "string": "Teams are formed by the host.",
+        string: "Teams are formed by the host.",
     },
     "10223": {
-        "font": "regular",
-        "string": "Teams are chosen by each player.",
+        string: "Teams are chosen by each player.",
     },
     "10224": {
-        "font": "regular",
-        "string": "Race Count",
+        string: "Race Count",
     },
     "10225": {
-        "font": "regular",
-        "string": "{arg integer|0 0}",
+        string: "{arg integer|0 0}",
     },
     "10226": {
-        "font": "regular",
-        "string": "Play {arg integer|0 0} {arg cond messages|0 10282 10283}.",
+        string: "Play {arg integer|0 0} {arg cond messages|0 10282 10283}.",
     },
     "10227": {
-        "font": "regular",
-        "string": "Course Selection",
+        string: "Course Selection",
     },
     "10228": {
-        "font": "regular",
-        "string": "Random",
+        string: "Random",
     },
     "10229": {
-        "font": "regular",
-        "string": "Host",
+        string: "Host",
     },
     "10230": {
-        "font": "regular",
-        "string": "Vote",
+        string: "Vote",
     },
     "10231": {
-        "font": "regular",
-        "string": "Courses are picked at random.",
+        string: "Courses are picked at random.",
     },
     "10232": {
-        "font": "regular",
-        "string": "Courses are picked by the host.",
+        string: "Courses are picked by the host.",
     },
     "10233": {
-        "font": "regular",
-        "string": "Courses are voted for by the players.",
+        string: "Courses are voted for by the players.",
     },
     "10234": {
-        "font": "regular",
-        "string": "Class",
+        string: "Class",
     },
     "10235": {
-        "font": "regular",
-        "string": "Mixed",
+        string: "Mixed",
     },
     "10236": {
-        "font": "regular",
-        "string": "150cc",
+        string: "150cc",
     },
     "10237": {
-        "font": "regular",
-        "string": "Mirror",
+        string: "Mirror",
     },
     "10238": {
-        "font": "regular",
-        "string": "200cc",
+        string: "200cc",
     },
     "10239": {
-        "font": "regular",
-        "string": "Races are 85% 150cc, 15% mirror.",
+        string: "Races are 85% 150cc, 15% mirror.",
     },
     "10240": {
-        "font": "regular",
-        "string": "Races are always 150cc.",
+        string: "Races are always 150cc.",
     },
     "10241": {
-        "font": "regular",
-        "string": "Races are always mirror.",
+        string: "Races are always mirror.",
     },
     "10242": {
-        "font": "regular",
-        "string": "Races are always 200cc.",
+        string: "Races are always 200cc.",
     },
     "10243": {
-        "font": "regular",
-        "string": "Vehicles",
+        string: "Vehicles",
     },
     "10244": {
-        "font": "regular",
-        "string": "All",
+        string: "All",
     },
     "10245": {
-        "font": "regular",
-        "string": "Karts",
+        string: "Karts",
     },
     "10246": {
-        "font": "regular",
-        "string": "Bikes",
+        string: "Bikes",
     },
     "10247": {
-        "font": "regular",
-        "string": "Inside Drift",
+        string: "Inside Drift",
     },
     "10248": {
-        "font": "regular",
-        "string": "Outside Drift",
+        string: "Outside Drift",
     },
     "10249": {
-        "font": "regular",
-        "string": "Optimal",
+        string: "Optimal",
     },
     "10250": {
-        "font": "regular",
-        "string": "Random",
+        string: "Random",
     },
     "10251": {
-        "font": "regular",
-        "string": "Allow all vehicles.",
+        string: "Allow all vehicles.",
     },
     "10252": {
-        "font": "regular",
-        "string": "Only allow karts.",
+        string: "Only allow karts.",
     },
     "10253": {
-        "font": "regular",
-        "string": "Only allow bikes.",
+        string: "Only allow bikes.",
     },
     "10254": {
-        "font": "regular",
-        "string": "Only allow inside-drifting vehicles.",
+        string: "Only allow inside-drifting vehicles.",
     },
     "10255": {
-        "font": "regular",
-        "string": "Only allow outside-drifting vehicles.",
+        string: "Only allow outside-drifting vehicles.",
     },
     "10256": {
-        "font": "regular",
-        "string": "Only allow the optimal vehicle for each character.",
+        string: "Only allow the optimal vehicle for each character.",
     },
     "10257": {
-        "font": "regular",
-        "string": "Randomly choose a combination common to all players.",
+        string: "Randomly choose a combination common to all players.",
     },
     "10258": {
-        "font": "regular",
-        "string": "Room",
+        string: "Room",
     },
     "10259": {
-        "font": "regular",
-        "string": "Team Selection",
+        string: "Team Selection",
     },
     "10260": {
-        "font": "regular",
-        "string": "Courses are chosen individually.",
+        string: "Courses are chosen individually.",
     },
     "10261": {
-        "font": "regular",
-        "string": "Courses are played in order.",
+        string: "Courses are played in order.",
     },
     "10262": {
-        "font": "regular",
-        "string": "Offline VS",
+        string: "Offline VS",
     },
     "10263": {
-        "font": "regular",
-        "string": "Color Palette",
+        string: "Color Palette",
     },
     "10264": {
-        "font": "regular",
-        "string": "Vivid",
+        string: "Vivid",
     },
     "10265": {
-        "font": "regular",
-        "string": "Colorblind",
+        string: "Colorblind",
     },
     "10266": {
-        "font": "regular",
-        "string": "Use the vivid palette for team colors.",
+        string: "Use the vivid palette for team colors.",
     },
     "10267": {
-        "font": "regular",
-        "string": "Use the colorblind palette for team colors.",
+        string: "Use the colorblind palette for team colors.",
     },
     "10268": {
-        "font": "regular",
-        "string": "{color|sp blue}Blue Team",
+        string: "{color|sp blue}Blue Team",
     },
     "10269": {
-        "font": "regular",
-        "string": "{color|player 3}Red Team",
+        string: "{color|player 3}Red Team",
     },
     "10270": {
-        "font": "regular",
-        "string": "{color|player 1}Yellow Team",
+        string: "{color|player 1}Yellow Team",
     },
     "10271": {
-        "font": "regular",
-        "string": "{color|sp green}Green Team",
+        string: "{color|sp green}Green Team",
     },
     "10272": {
-        "font": "regular",
-        "string": "{color|sp pink}Pink Team",
+        string: "{color|sp pink}Pink Team",
     },
     "10273": {
-        "font": "regular",
-        "string": "White Team",
+        string: "White Team",
     },
     "10274": {
-        "font": "regular",
-        "string": "Teams are uneven.\n\nPlease choose again.",
+        string: "Teams are uneven.\n\nPlease choose again.",
     },
     "10282": {
-        "font": "regular",
-        "string": "race",
+        string: "race",
     },
     "10283": {
-        "font": "regular",
-        "string": "races",
+        string: "races",
     },
     "10296": {
-        "font": "regular",
-        "string": "HUD Team Colors",
+        string: "HUD Team Colors",
     },
     "10297": {
-        "font": "regular",
-        "string": "Disable",
+        string: "Disable",
     },
     "10298": {
-        "font": "regular",
-        "string": "Enable",
+        string: "Enable",
     },
     "10299": {
-        "font": "regular",
-        "string": "Always use local player colors for HUD controls.",
+        string: "Always use local player colors for HUD controls.",
     },
     "10300": {
-        "font": "regular",
-        "string": "Use team colors for HUD controls.",
+        string: "Use team colors for HUD controls.",
     },
     "10301": {
-        "font": "regular",
-        "string": "Simplified Controls",
+        string: "Simplified Controls",
     },
     "10302": {
-        "font": "regular",
-        "string": "Off",
+        string: "Off",
     },
     "10303": {
-        "font": "regular",
-        "string": "Non-Exclusive",
+        string: "Non-Exclusive",
     },
     "10304": {
-        "font": "regular",
-        "string": "Exclusive",
+        string: "Exclusive",
     },
     "10305": {
-        "font": "regular",
-        "string": "Use the default controls only to trick or wheelie.",
+        string: "Use the default controls only to trick or wheelie.",
     },
     "10306": {
-        "font": "regular",
-        "string": "Use Y (GCN) or ZL (CC/CCP) to trick or wheelie.",
+        string: "Use Y (GCN) or ZL (CC/CCP) to trick or wheelie.",
     },
     "10307": {
-        "font": "regular",
-        "string": "Use Y (GCN) or ZL (CC/CCP) only to trick or wheelie.",
+        string: "Use Y (GCN) or ZL (CC/CCP) only to trick or wheelie.",
     },
     "10308": {
-        "font": "regular",
-        "string": "Far Player Tags",
+        string: "Far Player Tags",
     },
     "10309": {
-        "font": "regular",
-        "string": "Disable",
+        string: "Disable",
     },
     "10310": {
-        "font": "regular",
-        "string": "Enable",
+        string: "Enable",
     },
     "10311": {
-        "font": "regular",
-        "string": "Use the default render distance of player tags.",
+        string: "Use the default render distance of player tags.",
     },
     "10312": {
-        "font": "regular",
-        "string": "Increase the render distance of player tags.",
+        string: "Increase the render distance of player tags.",
     },
     "10313": {
-        "font": "regular",
-        "string": "Thumbnails",
+        string: "Thumbnails",
     },
     "10314": {
-        "font": "regular",
-        "string": "No track was found in the\n/mkw-sp/thumbnails folder.",
+        string: "No track was found in the\n/mkw-sp/thumbnails folder.",
     },
     "10315": {
-        "font": "regular",
-        "string": "Debug Overlay",
+        string: "Debug Overlay",
     },
     "10316": {
-        "font": "regular",
-        "string": "Checkpoints",
+        string: "Checkpoints",
     },
     "10317": {
-        "font": "regular",
-        "string": "Disable",
+        string: "Disable",
     },
     "10318": {
-        "font": "regular",
-        "string": "Enable",
+        string: "Enable",
     },
     "10319": {
-        "font": "regular",
-        "string": "Don't display checkpoints.",
+        string: "Don't display checkpoints.",
     },
     "10320": {
-        "font": "regular",
-        "string": "Standard checkpoint overlay.",
+        string: "Standard checkpoint overlay.",
     },
     "10321": {
-        "font": "regular",
-        "string": "Speedometer",
+        string: "Speedometer",
     },
     "10322": {
-        "font": "regular",
-        "string": "Internal + Moving Road",
+        string: "Internal + Moving Road",
     },
     "10323": {
-        "font": "regular",
-        "string": "Internal",
+        string: "Internal",
     },
     "10324": {
-        "font": "regular",
-        "string": "XYZ",
+        string: "XYZ",
     },
     "10325": {
-        "font": "regular",
-        "string": "XZ",
+        string: "XZ",
     },
     "10326": {
-        "font": "regular",
-        "string": "Y",
+        string: "Y",
     },
     "10327": {
-        "font": "regular",
-        "string": "Speedometer displays the internal speed\nof the vehicle plus moving road.",
+        string: "Speedometer displays the internal speed\nof the vehicle plus moving road.",
     },
     "10328": {
-        "font": "regular",
-        "string": "Speedometer displays the internal speed of the vehicle.",
+        string: "Speedometer displays the internal speed of the vehicle.",
     },
     "10329": {
-        "font": "regular",
-        "string": "Speedometer displays the speed the vehicle moves.",
+        string: "Speedometer displays the speed the vehicle moves.",
     },
     "10330": {
-        "font": "regular",
-        "string": "Speedometer displays the speed\nthe vehicle moves horizontally.",
+        string: "Speedometer displays the speed\nthe vehicle moves horizontally.",
     },
     "10331": {
-        "font": "regular",
-        "string": "Speedometer displays the speed\nthe vehicle moves vertically.",
+        string: "Speedometer displays the speed\nthe vehicle moves vertically.",
     },
     "10332": {
-        "font": "regular",
-        "string": "Default",
+        string: "Default",
     },
     "10333": {
-        "font": "regular",
-        "string": "The color of the line under your name will be\ndetermined by the game.",
+        string: "The color of the line under your name will be\ndetermined by the game.",
     },
     "10334": {
-        "font": "regular",
-        "string": "Region and Country Flag",
+        string: "Region and Country Flag",
     },
     "10335": {
-        "font": "regular",
-        "string": "Do not display your flag and region information in-game.",
+        string: "Do not display your flag and region information in-game.",
     },
     "10336": {
-        "font": "regular",
-        "string": "Display your flag and region information in-game.",
+        string: "Display your flag and region information in-game.",
     },
-    //Taken from Menu_U id 7253/7254, but had to duplicate because PAL changed the messages.
-    //Region flag options
     "10337": {
-        "font": "regular",
-        "string": "Don't Display",
+        string: "Don't Display",
     },
     "10338": {
-        "font": "regular",
-        "string": "Display",
+        string: "Display",
     },
-    //Performance Overlay Options
     "10339": {
-        "font": "regular",
-        "string": "Don't Display",
+        string: "Don't Display",
     },
     "10340": {
-        "font": "regular",
-        "string": "Display",
+        string: "Display",
     },
     "10341": {
-        "font": "regular",
-        "string": "Panel",
+        string: "Panel",
     },
     "10342": {
-        "font": "regular",
-        "string": "Disable",
+        string: "Disable",
     },
     "10343": {
-        "font": "regular",
-        "string": "Player",
+        string: "Player",
     },
     "10344": {
-        "font": "regular",
-        "string": "Online",
+        string: "Online",
     },
     "10345": {
-        "font": "regular",
-        "string": "Do not show the debug panel.",
+        string: "Do not show the debug panel.",
     },
     "10346": {
-        "font": "regular",
-        "string": "Show player information on the debug panel.",
+        string: "Show player information on the debug panel.",
     },
     "10347": {
-        "font": "regular",
-        "string": "Show online information on the debug panel.",
+        string: "Show online information on the debug panel.",
     },
     "10348": {
-        "font": "regular",
-        "string": "Visual course.kcl",
+        string: "Visual course.kcl",
     },
     "10349": {
-        "font": "regular",
-        "string": "Off",
+        string: "Off",
     },
     "10350": {
-        "font": "regular",
-        "string": "Default",
+        string: "Default",
     },
     "10351": {
-        "font": "regular",
-        "string": "Overlay",
+        string: "Overlay",
     },
     "10352": {
-        "font": "regular",
-        "string": "Show on top of course_model.brres",
+        string: "Show on top of course_model.brres",
     },
     "10353": {
-        "font": "regular",
-        "string": "Replace Course Model",
+        string: "Replace Course Model",
     },
     "10354": {
-        "font": "regular",
-        "string": "Hide course_model.brres",
+        string: "Hide course_model.brres",
     },
     "10355": {
-        "font": "regular",
-        "string": "Mirror TTs",
+        string: "Mirror TTs",
     },
     "10356": {
-        "font": "regular",
-        "string": "Disable",
+        string: "Disable",
     },
     "10357": {
-        "font": "regular",
-        "string": "Enable",
+        string: "Enable",
     },
     "10358": {
-        "font": "regular",
-        "string": "Disables Mirror in TTs",
+        string: "Disables Mirror in TTs",
     },
     "10359": {
-        "font": "regular",
-        "string": "Enables Mirror in TTs",
+        string: "Enables Mirror in TTs",
     },
     "10360": {
-        "font": "regular",
-        "string": "Battle",
+        string: "Battle",
     },
     "10361": {
-        "font": "regular",
-        "string": "Races are always 50cc.",
+        string: "Races are always 50cc.",
     },
     "10362": {
-        "font": "regular",
-        "string": "Races are always 100cc.",
+        string: "Races are always 100cc.",
     },
     "10363": {
-        "font": "regular",
-        "string": "Battles are always 50cc.",
+        string: "Battles are always 50cc.",
     },
     "10364": {
-        "font": "regular",
-        "string": "Battles are always 100cc.",
+        string: "Battles are always 100cc.",
     },
     "10365": {
-        "font": "regular",
-        "string": "50cc"
+        string: "50cc",
     },
     "10366": {
-        "font": "regular",
-        "string": "100cc"
+        string: "100cc",
     },
     "10367": {
-        "font": "regular",
-        "string": "Minimap",
+        string: "Minimap",
     },
     "10368": {
-        "font": "regular",
-        "string": "Enable",
+        string: "Enable",
     },
     "10369": {
-        "font": "regular",
-        "string": "Disable",
+        string: "Disable",
     },
     "10370": {
-        "font": "regular",
-        "string": "The Minimap will be enabled",
+        string: "The Minimap will be enabled",
     },
     "10371": {
-        "font": "regular",
-        "string": "The Minimap will be disabled",
+        string: "The Minimap will be disabled",
     },
     "10372": {
-        "font": "regular",
-        "string": "Volume",
+        string: "Volume",
     },
     "10373": {
-        "font": "regular",
-        "string": "{arg integer|0 0} / 10",
+        string: "{arg integer|0 0} / 10",
     },
     "10374": {
-        "font": "regular",
-        "string": "Set the volume to {arg integer|0 0} / 10.",
+        string: "Set the volume to {arg integer|0 0} / 10.",
     },
     "10375": {
-        "font": "regular",
-        "string": "Music Volume",
+        string: "Music Volume",
     },
     "10376": {
-        "font": "regular",
-        "string": "{arg integer|0 0} / 10",
+        string: "{arg integer|0 0} / 10",
     },
     "10377": {
-        "font": "regular",
-        "string": "Set the music volume to {arg integer|0 0} / 10.",
+        string: "Set the music volume to {arg integer|0 0} / 10.",
     },
     "10378": {
-        "font": "regular",
-        "string": "My Stuff",
+        string: "My Stuff",
     },
     "10379": {
-        "font": "regular",
-        "string": "File Replacement",
+        string: "File Replacement",
     },
     "10380": {
-        "font": "regular",
-        "string": "Off",
+        string: "Off",
     },
     "10381": {
-        "font": "regular",
-        "string": "BRSTMs Only",
+        string: "BRSTMs Only",
     },
     "10382": {
-        "font": "regular",
-        "string": "All",
+        string: "All",
     },
     "10383": {
-        "font": "regular",
-        "string": "Do not allow any files to be replaced.",
+        string: "Do not allow any files to be replaced.",
     },
     "10384": {
-        "font": "regular",
-        "string": "Allow '.brstm' files to be replaced.",
+        string: "Allow '.brstm' files to be replaced.",
     },
     "10385": {
-        "font": "regular",
-        "string": "Allow all files to be replaced.",
+        string: "Allow all files to be replaced.",
     },
     "10386": {
-        "font": "regular",
-        "string": "FPS Mode",
+        string: "FPS Mode",
     },
     "10387": {
-        "font": "regular",
-        "string": "Vanilla",
+        string: "Vanilla",
     },
     "10388": {
-        "font": "regular",
-        "string": "Force 60 FPS",
+        string: "Force 60 FPS",
     },
     "10389": {
-        "font": "regular",
-        "string": "Force 30 FPS",
+        string: "Force 30 FPS",
     },
     "10390": {
-        "font": "regular",
-        "string": "Uses 60fps, except in intensive scenes.",
+        string: "Uses 60fps, except in intensive scenes.",
     },
     "10391": {
-        "font": "regular",
-        "string": "Forces 60fps, even in intensive scenes.",
+        string: "Forces 60fps, even in intensive scenes.",
     },
     "10392": {
-        "font": "regular",
-        "string": "Forces 30fps, can help with Dolphin performance.",
+        string: "Forces 30fps, can help with Dolphin performance.",
     },
     "20000": {
-        "font": "regular",
-        "string": "Online",
+        string: "Online",
     },
     "20001": {
-        "font": "regular",
-        "string": "Play online.",
+        string: "Play online.",
     },
     "20002": {
-        "font": "regular",
-        "string": "Play online with a friend.",
+        string: "Play online with a friend.",
     },
     "20003": {
-        "font": "regular",
-        "string": "Online (1P)",
+        string: "Online (1P)",
     },
     "20004": {
-        "font": "regular",
-        "string": "Online (2P)",
+        string: "Online (2P)",
     },
     "20005": {
-        "font": "regular",
-        "string": "Direct Connection",
+        string: "Direct Connection",
     },
     "20006": {
-        "font": "regular",
-        "string": "Tools",
+        string: "Tools",
     },
     "20007": {
-        "font": "regular",
-        "string": "Server Mode",
+        string: "Server Mode",
     },
     "20008": {
-        "font": "regular",
-        "string": "Connecting...",
+        string: "Connecting...",
     },
     "20009": {
-        "font": "regular",
-        "string": "Setting up...",
+        string: "Setting up...",
     },
     "20010": {
-        "font": "regular",
-        "string": "Server Mode has been removed and rewritten.\nSee tools/gameserver.",
+        string: "Server Mode has been removed and rewritten.\nSee tools/gameserver.",
     },
     "20011": {
-        "font": "regular",
-        "string": "Room (1P)",
+        string: "Room (1P)",
     },
     "20012": {
-        "font": "regular",
-        "string": "Room (2P)",
+        string: "Room (2P)",
     },
     "20015": {
-        "font": "regular",
-        "string": "The connection to the server failed!",
+        string: "The connection to the server failed!",
     },
     "20016": {
-        "font": "regular",
-        "string": "The connection with the server was interrupted!",
+        string: "The connection with the server was interrupted!",
     },
     "20017": {
-        "font": "regular",
-        "string": "Do you want to cancel the server startup?",
+        string: "Do you want to cancel the server startup?",
     },
     "20018": {
-        "font": "regular",
-        "string": "Do you want to cancel the connection attempt?",
+        string: "Do you want to cancel the connection attempt?",
     },
     "20019": {
-        "font": "regular",
-        "string": "Do you want to stop the server?",
+        string: "Do you want to stop the server?",
     },
     "20020": {
-        "font": "regular",
-        "string": "Do you want to leave the room?",
+        string: "Do you want to leave the room?",
     },
     "20021": {
-        "font": "regular",
-        "string": "Rules",
+        string: "Rules",
     },
     "20022": {
-        "font": "regular",
-        "string": "Change your personal settings.\nYou are the host, thus your room settings will be applied.",
+        string: "Change your personal settings.\nYou are the host, thus your room settings will be applied.",
     },
     "20023": {
-        "font": "regular",
-        "string": "Change your personal settings.\nYou are not the host, thus your room settings will be ignored.",
+        string: "Change your personal settings.\nYou are not the host, thus your room settings will be ignored.",
     },
     "20024": {
-        "font": "regular",
-        "string": "View the rules for this room.",
+        string: "View the rules for this room.",
     },
     "20025": {
-        "font": "regular",
-        "string": "I updated the rules!",
+        string: "I updated the rules!",
     },
     "20026": {
-        "font": "regular",
-        "string": "{color|sp blue}{arg string|0}",
+        string: "{color|sp blue}{arg string|0}",
     },
     "20027": {
-        "font": "regular",
-        "string": "{color|player 3}{arg string|0}",
+        string: "{color|player 3}{arg string|0}",
     },
     "20028": {
-        "font": "regular",
-        "string": "{color|player 1}{arg string|0}",
+        string: "{color|player 1}{arg string|0}",
     },
     "20029": {
-        "font": "regular",
-        "string": "{color|sp green}{arg string|0}",
+        string: "{color|sp green}{arg string|0}",
     },
     "20030": {
-        "font": "regular",
-        "string": "{color|sp pink}{arg string|0}",
+        string: "{color|sp pink}{arg string|0}",
     },
     "20031": {
-        "font": "regular",
-        "string": "{arg string|0}",
+        string: "{arg string|0}",
     },
     "20032": {
-        "font": "regular",
-        "string": "Connection error!",
+        string: "Connection error!",
     },
     "20033": {
-        "font": "regular",
-        "string": "A direct connection couldn't be established.\nPlease ensure your connection code is correct.",
+        string: "A direct connection couldn't be established.\nPlease ensure your connection code is correct.",
     },
     "20034": {
-        "font": "regular",
-        "string": "×",
+        string: "×",
     },
     "20035": {
-        "font": "regular",
-        "string": "Mega Cloud",
+        string: "Mega Cloud",
     },
     "20036": {
-        "font": "regular",
-        "string": "Players will shrink on thunder cloud activation.",
+        string: "Players will shrink on thunder cloud activation.",
     },
     "20037": {
-        "font": "regular",
-        "string": "Players will grow on thunder cloud activation.",
+        string: "Players will grow on thunder cloud activation.",
     },
     "20038": {
-        "font": "regular",
-        "string": "Disable",
+        string: "Disable",
     },
     "20039": {
-        "font": "regular",
-        "string": "Enable",
+        string: "Enable",
     },
     "20040": {
-        "font": "regular",
-        "string": "Voted!",
+        string: "Voted!",
     },
     "20041": {
-        "font": "regular",
-        "string": "This is for connecting to a self-hosted gameserver.\nOnly use this if you know what you're doing.",
+        string: "This is for connecting to a self-hosted gameserver.\nOnly use this if you know what you're doing.",
     },
     "20042": {
-        "font": "regular",
-        "string": "I know what I'm doing.",
+        string: "I know what I'm doing.",
     },
     "20043": {
-        "font": "regular",
-        "string": "Take me back to safety!",
+        string: "Take me back to safety!",
     },
-    // Message IDs after 30000 are reserved for Online error codes.
     "30000": {
-        "font": "regular",
-        "string": "Your connection to the central server has been lost.",
+        string: "Your connection to the central server has been lost.",
     },
     "30001": {
-        "font": "regular",
-        "string": "Your connection to the game server has been lost.",
+        string: "Your connection to the game server has been lost.",
     },
     "30002": {
-        "font": "regular",
-        "string": "Your connection to the central server has failed.\n\nReason: AsyncSocket write buffer full",
+        string: "Your connection to the central server has failed.\n\nReason: AsyncSocket write buffer full",
     },
     "30003": {
-        "font": "regular",
-        "string": "Your connection to the game server has failed.\n\nReason: AsyncSocket write buffer full",
+        string: "Your connection to the game server has failed.\n\nReason: AsyncSocket write buffer full",
     },
     "30004": {
-        "font": "regular",
-        "string": "Your connection to the game server has failed.\n\nReason: Missing RoomClient?",
+        string: "Your connection to the game server has failed.\n\nReason: Missing RoomClient?",
     },
 }

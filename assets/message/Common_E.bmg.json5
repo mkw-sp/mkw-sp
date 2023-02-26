@@ -1,990 +1,743 @@
 {
     "9000": {
-        "font": "regular",
-        "string": "Mario",
+        string: "Mario",
     },
     "9001": {
-        "font": "regular",
-        "string": "Baby Peach",
+        string: "Baby Peach",
     },
     "9002": {
-        "font": "regular",
-        "string": "Waluigi",
+        string: "Waluigi",
     },
     "9003": {
-        "font": "regular",
-        "string": "Bowser",
+        string: "Bowser",
     },
     "9004": {
-        "font": "regular",
-        "string": "Baby Daisy",
+        string: "Baby Daisy",
     },
     "9005": {
-        "font": "regular",
-        "string": "Dry Bones",
+        string: "Dry Bones",
     },
     "9006": {
-        "font": "regular",
-        "string": "Baby Mario",
+        string: "Baby Mario",
     },
     "9007": {
-        "font": "regular",
-        "string": "Luigi",
+        string: "Luigi",
     },
     "9008": {
-        "font": "regular",
-        "string": "Toad",
+        string: "Toad",
     },
     "9009": {
-        "font": "regular",
-        "string": "Donkey Kong",
+        string: "Donkey Kong",
     },
     "9010": {
-        "font": "regular",
-        "string": "Yoshi",
+        string: "Yoshi",
     },
     "9011": {
-        "font": "regular",
-        "string": "Wario",
+        string: "Wario",
     },
     "9012": {
-        "font": "regular",
-        "string": "Baby Luigi",
+        string: "Baby Luigi",
     },
     "9013": {
-        "font": "regular",
-        "string": "Toadette",
+        string: "Toadette",
     },
     "9014": {
-        "font": "regular",
-        "string": "Koopa Troopa",
+        string: "Koopa Troopa",
     },
     "9015": {
-        "font": "regular",
-        "string": "Daisy",
+        string: "Daisy",
     },
     "9016": {
-        "font": "regular",
-        "string": "Peach",
+        string: "Peach",
     },
     "9017": {
-        "font": "regular",
-        "string": "Birdo",
+        string: "Birdo",
     },
     "9018": {
-        "font": "regular",
-        "string": "Diddy Kong",
+        string: "Diddy Kong",
     },
     "9019": {
-        "font": "regular",
-        "string": "King Boo",
+        string: "King Boo",
     },
     "9020": {
-        "font": "regular",
-        "string": "Bowser Jr.",
+        string: "Bowser Jr.",
     },
     "9021": {
-        "font": "regular",
-        "string": "Dry Bowser",
+        string: "Dry Bowser",
     },
     "9022": {
-        "font": "regular",
-        "string": "Funky Kong",
+        string: "Funky Kong",
     },
     "9023": {
-        "font": "regular",
-        "string": "Rosalina",
+        string: "Rosalina",
     },
     "9024": {
-        "font": "regular",
-        "string": "Mii",
+        string: "Mii",
     },
     "9050": {
-        "font": "regular",
-        "string": "{arg player|0}",
+        string: "{arg player|0}",
     },
     "9051": {
-        "font": "regular",
-        "string": "{arg player|0}",
+        string: "{arg player|0}",
     },
     "9052": {
-        "font": "regular",
-        "string": "Mii (Outfit A)",
+        string: "Mii (Outfit A)",
     },
     "9053": {
-        "font": "regular",
-        "string": "Mii (Outfit B)",
+        string: "Mii (Outfit B)",
     },
     "9054": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "9100": {
-        "font": "regular",
-        "string": "Standard Kart S",
+        string: "Standard Kart S",
     },
     "9101": {
-        "font": "regular",
-        "string": "Standard Kart M",
+        string: "Standard Kart M",
     },
     "9102": {
-        "font": "regular",
-        "string": "Standard Kart L",
+        string: "Standard Kart L",
     },
     "9103": {
-        "font": "regular",
-        "string": "Baby Booster",
+        string: "Baby Booster",
     },
     "9104": {
-        "font": "regular",
-        "string": "Nostalgia 1",
+        string: "Nostalgia 1",
     },
     "9105": {
-        "font": "regular",
-        "string": "Offroader",
+        string: "Offroader",
     },
     "9106": {
-        "font": "regular",
-        "string": "Concerto",
+        string: "Concerto",
     },
     "9107": {
-        "font": "regular",
-        "string": "Wild Wing",
+        string: "Wild Wing",
     },
     "9108": {
-        "font": "regular",
-        "string": "Flame Flyer",
+        string: "Flame Flyer",
     },
     "9109": {
-        "font": "regular",
-        "string": "Cheep Charger",
+        string: "Cheep Charger",
     },
     "9110": {
-        "font": "regular",
-        "string": "Turbo Blooper",
+        string: "Turbo Blooper",
     },
     "9111": {
-        "font": "regular",
-        "string": "Piranha Prowler",
+        string: "Piranha Prowler",
     },
     "9112": {
-        "font": "regular",
-        "string": "Rally Romper",
+        string: "Rally Romper",
     },
     "9113": {
-        "font": "regular",
-        "string": "Royal Racer",
+        string: "Royal Racer",
     },
     "9114": {
-        "font": "regular",
-        "string": "Aero Glider",
+        string: "Aero Glider",
     },
     "9115": {
-        "font": "regular",
-        "string": "Blue Falcon",
+        string: "Blue Falcon",
     },
     "9116": {
-        "font": "regular",
-        "string": "B Dasher Mk 2",
+        string: "B Dasher Mk 2",
     },
     "9117": {
-        "font": "regular",
-        "string": "Dragonetti",
+        string: "Dragonetti",
     },
     "9118": {
-        "font": "regular",
-        "string": "Standard Kart S",
+        string: "Standard Kart S",
     },
     "9119": {
-        "font": "regular",
-        "string": "Standard Kart M",
+        string: "Standard Kart M",
     },
     "9120": {
-        "font": "regular",
-        "string": "Standard Kart L",
+        string: "Standard Kart L",
     },
     "9121": {
-        "font": "regular",
-        "string": "Standard Kart S",
+        string: "Standard Kart S",
     },
     "9122": {
-        "font": "regular",
-        "string": "Standard Kart M",
+        string: "Standard Kart M",
     },
     "9123": {
-        "font": "regular",
-        "string": "Standard Kart L",
+        string: "Standard Kart L",
     },
     "9124": {
-        "font": "regular",
-        "string": "",
+        string: "",
     },
     "9150": {
-        "font": "regular",
-        "string": "Standard Bike S",
+        string: "Standard Bike S",
     },
     "9151": {
-        "font": "regular",
-        "string": "Standard Bike M",
+        string: "Standard Bike M",
     },
     "9152": {
-        "font": "regular",
-        "string": "Standard Bike L",
+        string: "Standard Bike L",
     },
     "9153": {
-        "font": "regular",
-        "string": "Bullet Bike",
+        string: "Bullet Bike",
     },
     "9154": {
-        "font": "regular",
-        "string": "Mach Bike",
+        string: "Mach Bike",
     },
     "9155": {
-        "font": "regular",
-        "string": "Bowser Bike",
+        string: "Bowser Bike",
     },
     "9156": {
-        "font": "regular",
-        "string": "Nanobike",
+        string: "Nanobike",
     },
     "9157": {
-        "font": "regular",
-        "string": "Bon Bon",
+        string: "Bon Bon",
     },
     "9158": {
-        "font": "regular",
-        "string": "Wario Bike",
+        string: "Wario Bike",
     },
     "9159": {
-        "font": "regular",
-        "string": "Quacker",
+        string: "Quacker",
     },
     "9160": {
-        "font": "regular",
-        "string": "Rapide",
+        string: "Rapide",
     },
     "9161": {
-        "font": "regular",
-        "string": "Twinkle Star",
+        string: "Twinkle Star",
     },
     "9162": {
-        "font": "regular",
-        "string": "Magikruiser",
+        string: "Magikruiser",
     },
     "9163": {
-        "font": "regular",
-        "string": "Nitrocycle",
+        string: "Nitrocycle",
     },
     "9164": {
-        "font": "regular",
-        "string": "Torpedo",
+        string: "Torpedo",
     },
     "9165": {
-        "font": "regular",
-        "string": "Bubble Bike",
+        string: "Bubble Bike",
     },
     "9166": {
-        "font": "regular",
-        "string": "Dolphin Dasher",
+        string: "Dolphin Dasher",
     },
     "9167": {
-        "font": "regular",
-        "string": "Phantom",
+        string: "Phantom",
     },
     "9168": {
-        "font": "regular",
-        "string": "Standard Bike S",
+        string: "Standard Bike S",
     },
     "9169": {
-        "font": "regular",
-        "string": "Standard Bike M",
+        string: "Standard Bike M",
     },
     "9170": {
-        "font": "regular",
-        "string": "Standard Bike L",
+        string: "Standard Bike L",
     },
     "9171": {
-        "font": "regular",
-        "string": "Standard Bike S",
+        string: "Standard Bike S",
     },
     "9172": {
-        "font": "regular",
-        "string": "Standard Bike M",
+        string: "Standard Bike M",
     },
     "9173": {
-        "font": "regular",
-        "string": "Standard Bike L",
+        string: "Standard Bike L",
     },
     "9174": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "9200": {
-        "font": "regular",
-        "string": "Mushroom Cup",
+        string: "Mushroom Cup",
     },
     "9201": {
-        "font": "regular",
-        "string": "Flower Cup",
+        string: "Flower Cup",
     },
     "9202": {
-        "font": "regular",
-        "string": "Star Cup",
+        string: "Star Cup",
     },
     "9203": {
-        "font": "regular",
-        "string": "Special Cup",
+        string: "Special Cup",
     },
     "9204": {
-        "font": "regular",
-        "string": "Shell Cup",
+        string: "Shell Cup",
     },
     "9205": {
-        "font": "regular",
-        "string": "Banana Cup",
+        string: "Banana Cup",
     },
     "9206": {
-        "font": "regular",
-        "string": "Leaf Cup",
+        string: "Leaf Cup",
     },
     "9207": {
-        "font": "regular",
-        "string": "Lightning Cup",
+        string: "Lightning Cup",
     },
     "9208": {
-        "font": "regular",
-        "string": "Galaxy Arena",
+        string: "Galaxy Arena",
     },
     "9300": {
-        "font": "regular",
-        "string": "Mario Circuit",
+        string: "Mario Circuit",
     },
     "9301": {
-        "font": "regular",
-        "string": "Moo Moo Meadows",
+        string: "Moo Moo Meadows",
     },
     "9302": {
-        "font": "regular",
-        "string": "Mushroom Gorge",
+        string: "Mushroom Gorge",
     },
     "9303": {
-        "font": "regular",
-        "string": "Grumble Volcano",
+        string: "Grumble Volcano",
     },
     "9304": {
-        "font": "regular",
-        "string": "Toad's Factory",
+        string: "Toad's Factory",
     },
     "9305": {
-        "font": "regular",
-        "string": "Coconut Mall",
+        string: "Coconut Mall",
     },
     "9306": {
-        "font": "regular",
-        "string": "DK's Snowboard Cross",
+        string: "DK's Snowboard Cross",
     },
     "9307": {
-        "font": "regular",
-        "string": "Wario's Gold Mine",
+        string: "Wario's Gold Mine",
     },
     "9308": {
-        "font": "regular",
-        "string": "Luigi Circuit",
+        string: "Luigi Circuit",
     },
     "9309": {
-        "font": "regular",
-        "string": "Daisy Circuit",
+        string: "Daisy Circuit",
     },
     "9310": {
-        "font": "regular",
-        "string": "Moonview Highway",
+        string: "Moonview Highway",
     },
     "9311": {
-        "font": "regular",
-        "string": "Maple Treeway",
+        string: "Maple Treeway",
     },
     "9312": {
-        "font": "regular",
-        "string": "Bowser's Castle",
+        string: "Bowser's Castle",
     },
     "9313": {
-        "font": "regular",
-        "string": "Rainbow Road",
+        string: "Rainbow Road",
     },
     "9314": {
-        "font": "regular",
-        "string": "Dry Dry Ruins",
+        string: "Dry Dry Ruins",
     },
     "9315": {
-        "font": "regular",
-        "string": "Koopa Cape",
+        string: "Koopa Cape",
     },
     "9316": {
-        "font": "regular",
-        "string": "GCN Peach Beach",
+        string: "GCN Peach Beach",
     },
     "9317": {
-        "font": "regular",
-        "string": "GCN Mario Circuit",
+        string: "GCN Mario Circuit",
     },
     "9318": {
-        "font": "regular",
-        "string": "GCN Waluigi Stadium",
+        string: "GCN Waluigi Stadium",
     },
     "9319": {
-        "font": "regular",
-        "string": "GCN DK Mountain",
+        string: "GCN DK Mountain",
     },
     "9320": {
-        "font": "regular",
-        "string": "DS Yoshi Falls",
+        string: "DS Yoshi Falls",
     },
     "9321": {
-        "font": "regular",
-        "string": "DS Desert Hills",
+        string: "DS Desert Hills",
     },
     "9322": {
-        "font": "regular",
-        "string": "DS Peach Gardens",
+        string: "DS Peach Gardens",
     },
     "9323": {
-        "font": "regular",
-        "string": "DS Delfino Square",
+        string: "DS Delfino Square",
     },
     "9324": {
-        "font": "regular",
-        "string": "SNES Mario Circuit 3",
+        string: "SNES Mario Circuit 3",
     },
     "9325": {
-        "font": "regular",
-        "string": "SNES Ghost Valley 2",
+        string: "SNES Ghost Valley 2",
     },
     "9326": {
-        "font": "regular",
-        "string": "N64 Mario Raceway",
+        string: "N64 Mario Raceway",
     },
     "9327": {
-        "font": "regular",
-        "string": "N64 Sherbet Land",
+        string: "N64 Sherbet Land",
     },
     "9328": {
-        "font": "regular",
-        "string": "N64 Bowser's Castle",
+        string: "N64 Bowser's Castle",
     },
     "9329": {
-        "font": "regular",
-        "string": "N64 DK's Jungle Parkway",
+        string: "N64 DK's Jungle Parkway",
     },
     "9330": {
-        "font": "regular",
-        "string": "GBA Bowser Castle 3",
+        string: "GBA Bowser Castle 3",
     },
     "9331": {
-        "font": "regular",
-        "string": "GBA Shy Guy Beach",
+        string: "GBA Shy Guy Beach",
     },
     "9350": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "9351": {
-        "font": "regular",
-        "string": "Balloon Battle",
+        string: "Balloon Battle",
     },
     "9352": {
-        "font": "regular",
-        "string": "Coin Runners",
+        string: "Coin Runners",
     },
     "9353": {
-        "font": "regular",
-        "string": "Wii Stages",
+        string: "Wii Stages",
     },
     "9354": {
-        "font": "regular",
-        "string": "Retro Stages",
+        string: "Retro Stages",
     },
     "9355": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "9360": {
-        "font": "regular",
-        "string": "Mario Circuit",
+        string: "Mario Circuit",
     },
     "9361": {
-        "font": "regular",
-        "string": "Moo Moo Meadows",
+        string: "Moo Moo Meadows",
     },
     "9362": {
-        "font": "regular",
-        "string": "Mushroom Gorge",
+        string: "Mushroom Gorge",
     },
     "9363": {
-        "font": "regular",
-        "string": "Grumble Volcano",
+        string: "Grumble Volcano",
     },
     "9364": {
-        "font": "regular",
-        "string": "Toad's Factory",
+        string: "Toad's Factory",
     },
     "9365": {
-        "font": "regular",
-        "string": "Coconut Mall",
+        string: "Coconut Mall",
     },
     "9366": {
-        "font": "regular",
-        "string": "DK's Snowboard Cross",
+        string: "DK's Snowboard Cross",
     },
     "9367": {
-        "font": "regular",
-        "string": "Wario's Gold Mine",
+        string: "Wario's Gold Mine",
     },
     "9368": {
-        "font": "regular",
-        "string": "Luigi Circuit",
+        string: "Luigi Circuit",
     },
     "9369": {
-        "font": "regular",
-        "string": "Daisy Circuit",
+        string: "Daisy Circuit",
     },
     "9370": {
-        "font": "regular",
-        "string": "Moonview Highway",
+        string: "Moonview Highway",
     },
     "9371": {
-        "font": "regular",
-        "string": "Maple Treeway",
+        string: "Maple Treeway",
     },
     "9372": {
-        "font": "regular",
-        "string": "Bowser's Castle",
+        string: "Bowser's Castle",
     },
     "9373": {
-        "font": "regular",
-        "string": "Rainbow Road",
+        string: "Rainbow Road",
     },
     "9374": {
-        "font": "regular",
-        "string": "Dry Dry Ruins",
+        string: "Dry Dry Ruins",
     },
     "9375": {
-        "font": "regular",
-        "string": "Koopa Cape",
+        string: "Koopa Cape",
     },
     "9376": {
-        "font": "regular",
-        "string": "GCN Peach Beach",
+        string: "GCN Peach Beach",
     },
     "9377": {
-        "font": "regular",
-        "string": "GCN Mario Circuit",
+        string: "GCN Mario Circuit",
     },
     "9378": {
-        "font": "regular",
-        "string": "GCN Waluigi Stadium",
+        string: "GCN Waluigi Stadium",
     },
     "9379": {
-        "font": "regular",
-        "string": "GCN DK Mountain",
+        string: "GCN DK Mountain",
     },
     "9380": {
-        "font": "regular",
-        "string": "DS Yoshi Falls",
+        string: "DS Yoshi Falls",
     },
     "9381": {
-        "font": "regular",
-        "string": "DS Desert Hills",
+        string: "DS Desert Hills",
     },
     "9382": {
-        "font": "regular",
-        "string": "DS Peach Gardens",
+        string: "DS Peach Gardens",
     },
     "9383": {
-        "font": "regular",
-        "string": "DS Delfino Square",
+        string: "DS Delfino Square",
     },
     "9384": {
-        "font": "regular",
-        "string": "SNES Mario Circuit 3",
+        string: "SNES Mario Circuit 3",
     },
     "9385": {
-        "font": "regular",
-        "string": "SNES Ghost Valley 2",
+        string: "SNES Ghost Valley 2",
     },
     "9386": {
-        "font": "regular",
-        "string": "N64 Mario Raceway",
+        string: "N64 Mario Raceway",
     },
     "9387": {
-        "font": "regular",
-        "string": "N64 Sherbet Land",
+        string: "N64 Sherbet Land",
     },
     "9388": {
-        "font": "regular",
-        "string": "N64 Bowser's Castle",
+        string: "N64 Bowser's Castle",
     },
     "9389": {
-        "font": "regular",
-        "string": "N64 DK's Jungle Parkway",
+        string: "N64 DK's Jungle Parkway",
     },
     "9390": {
-        "font": "regular",
-        "string": "GBA Bowser Castle 3",
+        string: "GBA Bowser Castle 3",
     },
     "9391": {
-        "font": "regular",
-        "string": "GBA Shy Guy Beach",
+        string: "GBA Shy Guy Beach",
     },
     "9392": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "9400": {
-        "font": "regular",
-        "string": "Delfino Pier",
+        string: "Delfino Pier",
     },
     "9401": {
-        "font": "regular",
-        "string": "Block Plaza",
+        string: "Block Plaza",
     },
     "9402": {
-        "font": "regular",
-        "string": "Chain Chomp Roulette",
+        string: "Chain Chomp Roulette",
     },
     "9403": {
-        "font": "regular",
-        "string": "Funky Stadium",
+        string: "Funky Stadium",
     },
     "9404": {
-        "font": "regular",
-        "string": "Thwomp Desert",
+        string: "Thwomp Desert",
     },
     "9405": {
-        "font": "regular",
-        "string": "GCN Cookie Land",
+        string: "GCN Cookie Land",
     },
     "9406": {
-        "font": "regular",
-        "string": "DS Twilight House",
+        string: "DS Twilight House",
     },
     "9407": {
-        "font": "regular",
-        "string": "SNES Battle Course 4",
+        string: "SNES Battle Course 4",
     },
     "9408": {
-        "font": "regular",
-        "string": "GBA Battle Course 3",
+        string: "GBA Battle Course 3",
     },
     "9409": {
-        "font": "regular",
-        "string": "N64 Skyscraper",
+        string: "N64 Skyscraper",
     },
     "9410": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "9420": {
-        "font": "regular",
-        "string": "Delfino Pier",
+        string: "Delfino Pier",
     },
     "9421": {
-        "font": "regular",
-        "string": "Block Plaza",
+        string: "Block Plaza",
     },
     "9422": {
-        "font": "regular",
-        "string": "Chain Chomp Roulette",
+        string: "Chain Chomp Roulette",
     },
     "9423": {
-        "font": "regular",
-        "string": "Funky Stadium",
+        string: "Funky Stadium",
     },
     "9424": {
-        "font": "regular",
-        "string": "Thwomp Desert",
+        string: "Thwomp Desert",
     },
     "9425": {
-        "font": "regular",
-        "string": "GCN Cookie Land",
+        string: "GCN Cookie Land",
     },
     "9426": {
-        "font": "regular",
-        "string": "DS Twilight House",
+        string: "DS Twilight House",
     },
     "9427": {
-        "font": "regular",
-        "string": "SNES Battle Course 4",
+        string: "SNES Battle Course 4",
     },
     "9428": {
-        "font": "regular",
-        "string": "GBA Battle Course 3",
+        string: "GBA Battle Course 3",
     },
     "9429": {
-        "font": "regular",
-        "string": "N64 Skyscraper",
+        string: "N64 Skyscraper",
     },
     "9430": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "9450": {
-        "font": "regular",
-        "string": "GCN Cookie Land",
+        string: "GCN Cookie Land",
     },
     "9451": {
-        "font": "regular",
-        "string": "DS Twilight House",
+        string: "DS Twilight House",
     },
     "9452": {
-        "font": "regular",
-        "string": "SNES Battle Course 4",
+        string: "SNES Battle Course 4",
     },
     "9453": {
-        "font": "regular",
-        "string": "GBA Battle Course 3",
+        string: "GBA Battle Course 3",
     },
     "9454": {
-        "font": "regular",
-        "string": "N64 Skyscraper",
+        string: "N64 Skyscraper",
     },
     "9455": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "9500": {
-        "font": "regular",
-        "string": "Player {arg player|0}",
+        string: "Player {arg player|0}",
     },
     "9501": {
-        "font": "regular",
-        "string": "{arg player|0}",
+        string: "{arg player|0}",
     },
     "9502": {
-        "font": "regular",
-        "string": "{arg border|0}",
+        string: "{arg border|0}",
     },
     "9503": {
-        "font": "regular",
-        "string": "{arg question mark|0}",
+        string: "{arg question mark|0}",
     },
     "9504": {
-        "font": "regular",
-        "string": "{arg front button|0}",
+        string: "{arg front button|0}",
     },
     "9505": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "9550": {
-        "font": "regular",
-        "string": "P1",
+        string: "P1",
     },
     "9551": {
-        "font": "regular",
-        "string": "P2",
+        string: "P2",
     },
     "9552": {
-        "font": "regular",
-        "string": "P3",
+        string: "P3",
     },
     "9553": {
-        "font": "regular",
-        "string": "P4",
+        string: "P4",
     },
     "9554": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "9600": {
-        "font": "regular",
-        "string": "{1 char|①}",
+        string: "{1 char|①}",
     },
     "9601": {
-        "font": "regular",
-        "string": "{1 char|②}",
+        string: "{1 char|②}",
     },
     "9602": {
-        "font": "regular",
-        "string": "{1 char|③}",
+        string: "{1 char|③}",
     },
     "9603": {
-        "font": "regular",
-        "string": "{1 char|④}",
+        string: "{1 char|④}",
     },
     "9604": {
-        "font": "regular",
-        "string": "{1 char|⑤}",
+        string: "{1 char|⑤}",
     },
     "9605": {
-        "font": "regular",
-        "string": "{1 char|⑥}",
+        string: "{1 char|⑥}",
     },
     "9606": {
-        "font": "regular",
-        "string": "{1 char|⑦}",
+        string: "{1 char|⑦}",
     },
     "9607": {
-        "font": "regular",
-        "string": "{1 char|⑧}",
+        string: "{1 char|⑧}",
     },
     "9608": {
-        "font": "regular",
-        "string": "{1 char|⑨}",
+        string: "{1 char|⑨}",
     },
     "9609": {
-        "font": "regular",
-        "string": "{1 char|⑩}",
+        string: "{1 char|⑩}",
     },
     "9610": {
-        "font": "regular",
-        "string": "{1 char|⑪}",
+        string: "{1 char|⑪}",
     },
     "9611": {
-        "font": "regular",
-        "string": "{1 char|⑫}",
+        string: "{1 char|⑫}",
     },
     "9612": {
-        "font": "regular",
-        "string": "/{1 char|⑬}",
+        string: "/{1 char|⑬}",
     },
     "9613": {
-        "font": "regular",
-        "string": "-{1 char|⑭}",
+        string: "-{1 char|⑭}",
     },
     "9614": {
-        "font": "regular",
-        "string": "+{1 char|⑮}",
+        string: "+{1 char|⑮}",
     },
     "9615": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "9650": {
-        "font": "regular",
-        "string": "{arg message|0}{arg message|1}{arg message|2}{arg message|3}{arg message|4}{arg message|5}{arg message|6}{arg message|7}{arg message|8}",
+        string: "{arg message|0}{arg message|1}{arg message|2}{arg message|3}{arg message|4}{arg message|5}{arg message|6}{arg message|7}{arg message|8}",
     },
     "9651": {
-        "font": "regular",
-        "string": "{1 char|⑭}{arg message|0}{arg message|1}{arg message|2}{arg message|3}{arg message|4}{arg message|5}{arg message|6}{arg message|7}{arg message|8}",
+        string: "{1 char|⑭}{arg message|0}{arg message|1}{arg message|2}{arg message|3}{arg message|4}{arg message|5}{arg message|6}{arg message|7}{arg message|8}",
     },
     "9652": {
-        "font": "regular",
-        "string": "{1 char|⑮}{arg message|0}{arg message|1}{arg message|2}{arg message|3}{arg message|4}{arg message|5}{arg message|6}{arg message|7}{arg message|8}",
+        string: "{1 char|⑮}{arg message|0}{arg message|1}{arg message|2}{arg message|3}{arg message|4}{arg message|5}{arg message|6}{arg message|7}{arg message|8}",
     },
     "9653": {
-        "font": "regular",
-        "string": "{arg message|0}{font scale|70}/{arg message|1}",
+        string: "{arg message|0}{font scale|70}/{arg message|1}",
     },
     "9654": {
-        "font": "regular",
-        "string": "{arg message|0}{arg message|1}{font scale|70}/{arg message|2}{arg message|3}",
+        string: "{arg message|0}{arg message|1}{font scale|70}/{arg message|2}{arg message|3}",
     },
     "9655": {
-        "font": "regular",
-        "string": "{arg message|0}{arg message|1}{arg message|2}{font scale|70}/{arg message|3}{arg message|4}{arg message|5}",
+        string: "{arg message|0}{arg message|1}{arg message|2}{font scale|70}/{arg message|3}{arg message|4}{arg message|5}",
     },
     "9656": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "9700": {
-        "font": "regular",
-        "string": "Race Rating",
+        string: "Race Rating",
     },
     "9701": {
-        "font": "regular",
-        "string": "Battle Rating",
+        string: "Battle Rating",
     },
     "9702": {
-        "font": "regular",
-        "string": "RANK",
+        string: "RANK",
     },
     "9703": {
-        "font": "regular",
-        "string": "Guest",
+        string: "Guest",
     },
     "9704": {
-        "font": "regular",
-        "string": "----",
+        string: "----",
     },
     "9705": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "9710": {
-        "font": "regular",
-        "string": "{1 char|}",
+        string: "{1 char|}",
     },
     "9711": {
-        "font": "regular",
-        "string": "{1 char|}",
+        string: "{1 char|}",
     },
     "9712": {
-        "font": "regular",
-        "string": "{1 char|}",
+        string: "{1 char|}",
     },
     "9713": {
-        "font": "regular",
-        "string": "{1 char|}",
+        string: "{1 char|}",
     },
     "9714": {
-        "font": "regular",
-        "string": "{1 char|}",
+        string: "{1 char|}",
     },
     "9715": {
-        "font": "regular",
-        "string": "{1 char|}",
+        string: "{1 char|}",
     },
     "9716": {
-        "font": "regular",
-        "string": "{1 char|}",
+        string: "{1 char|}",
     },
     "9717": {
-        "font": "regular",
-        "string": "{1 char|}",
+        string: "{1 char|}",
     },
     "9718": {
-        "font": "regular",
-        "string": "{1 char|}",
+        string: "{1 char|}",
     },
     "9719": {
-        "font": "regular",
-        "string": "{1 char|}",
+        string: "{1 char|}",
     },
     "9720": {
-        "font": "regular",
-        "string": "{1 char|}",
+        string: "{1 char|}",
     },
     "9721": {
-        "font": "regular",
-        "string": "{1 char|}",
+        string: "{1 char|}",
     },
     "9722": {
-        "font": "regular",
-        "string": null,
+        string: null,
     },
     "9900": {
-        "font": "regular",
-        "string": "Communications with the\ncontroller have been interrupted. \nPlease press the A Button.",
+        string: "Communications with the\ncontroller have been interrupted. \nPlease press the A Button.",
     },
     "9901": {
-        "font": "regular",
-        "string": "The controller has been changed.\nPlease press the A Button.",
+        string: "The controller has been changed.\nPlease press the A Button.",
     },
     "9902": {
-        "font": "regular",
-        "string": "Controllers cannot be changed\nduring a match. Please restore\nthe original controller.",
+        string: "Controllers cannot be changed\nduring a match. Please restore\nthe original controller.",
     },
     "9903": {
-        "font": "regular",
-        "string": "Controllers cannot be changed during\na Nintendo WFC match. Please restore\nthe original controller.",
+        string: "Controllers cannot be changed during\na Nintendo WFC match. Please restore\nthe original controller.",
     },
     "9904": {
-        "font": "regular",
-        "string": "This competition is for Wii Wheels only.\nPlease insert the Wii Remote into\nthe Wii Wheel and press the A Button.",
+        string: "This competition is for Wii Wheels only.\nPlease insert the Wii Remote into\nthe Wii Wheel and press the A Button.",
     },
     "9999": {
-        "font": "regular",
-        "string": "?",
+        string: "?",
     },
 }
