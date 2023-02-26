@@ -17,12 +17,16 @@ SaveStateManager::SaveStateManager() {
     m_kartSaveState = new Kart::KartSaveState;
 }
 
+SaveStateManager::~SaveStateManager() {
+    delete m_kartSaveState;
+}
+
 void SaveStateManager::CreateInstance() {
     if (s_instance) {
         return;
     }
 
-    s_instance = new SaveStateManager();
+    s_instance = new SaveStateManager;
 }
 
 void SaveStateManager::DestroyInstance() {

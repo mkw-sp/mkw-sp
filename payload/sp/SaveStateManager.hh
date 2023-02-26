@@ -7,6 +7,7 @@ namespace SP {
 class SaveStateManager {
 public:
     SaveStateManager();
+    ~SaveStateManager();
 
     void save();
     void reload();
