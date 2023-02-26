@@ -6,9 +6,6 @@ namespace SP {
 
 class SaveStateManager {
 public:
-    SaveStateManager();
-    ~SaveStateManager();
-
     void save();
     void reload();
     void processInput(bool isPressed);
@@ -19,10 +16,10 @@ public:
 private:
     static auto GetKartState();
 
-    u8 m_framesHeld;
-    bool m_hasSaved;
+    u8 m_framesHeld = 0;
+    bool m_hasSaved = false;
 
-    Kart::KartSaveState *m_kartSaveState;
+    Kart::KartSaveState m_kartSaveState;
     static SaveStateManager* s_instance;
 };
 

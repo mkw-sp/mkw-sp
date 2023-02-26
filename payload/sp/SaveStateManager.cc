@@ -11,16 +11,6 @@ namespace SP {
 
 SaveStateManager *SaveStateManager::s_instance = nullptr;
 
-SaveStateManager::SaveStateManager() {
-    m_framesHeld = 0;
-    m_hasSaved = false;
-    m_kartSaveState = new Kart::KartSaveState;
-}
-
-SaveStateManager::~SaveStateManager() {
-    delete m_kartSaveState;
-}
-
 void SaveStateManager::CreateInstance() {
     if (s_instance) {
         return;
@@ -49,7 +39,7 @@ auto SaveStateManager::GetKartState() {
 
 void SaveStateManager::save() {
     auto [accessor, physics] = GetKartState();
-    m_kartSaveState->save(accessor, physics);
+    m_kartSaveState.save(accessor, physics);
     m_hasSaved = true;
 }
 
@@ -60,7 +50,7 @@ void SaveStateManager::reload() {
     }
 
     auto [accessor, physics] = GetKartState();
-    m_kartSaveState->reload(accessor, physics);
+    m_kartSaveState.reload(accessor, physics);
 }
 
 void SaveStateManager::processInput(bool isPressed) {
