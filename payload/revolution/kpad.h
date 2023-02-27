@@ -1,6 +1,15 @@
 #pragma once
 
+#include <Common.h>
+
 #include "revolution/wpad.h"
+
+enum {
+    KPAD_BUTTON_LEFT = WPAD_BUTTON_LEFT,
+    KPAD_BUTTON_RIGHT = WPAD_BUTTON_RIGHT,
+    KPAD_BUTTON_DOWN = WPAD_BUTTON_DOWN,
+    KPAD_BUTTON_UP = WPAD_BUTTON_UP,
+};
 
 enum {
     KPAD_CL_BUTTON_UP = WPAD_CL_BUTTON_UP,
@@ -20,3 +29,11 @@ enum {
     KPAD_CL_BUTTON_DOWN = WPAD_CL_BUTTON_DOWN,
     KPAD_CL_BUTTON_RIGHT = WPAD_CL_BUTTON_RIGHT,
 };
+
+typedef struct KPADStatus {
+    u32 dpad;
+    u8 _04[0x84 - 0x04];
+} KPADStatus;
+static_assert(sizeof(KPADStatus) == 0x84);
+
+s32 KPADRead(s32, KPADStatus *status, u32);

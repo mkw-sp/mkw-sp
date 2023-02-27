@@ -1,6 +1,13 @@
 #pragma once
 
 enum {
+    WPAD_BUTTON_LEFT = 0x1,
+    WPAD_BUTTON_RIGHT = 0x2,
+    WPAD_BUTTON_DOWN = 0x4,
+    WPAD_BUTTON_UP = 0x8,
+};
+
+enum {
     WPAD_CL_BUTTON_UP = 0x0001,
     WPAD_CL_BUTTON_LEFT = 0x0002,
     WPAD_CL_TRIGGER_ZR = 0x0004,
