@@ -18,6 +18,8 @@ private:
     KartSub *m_sub;
     KartSettings *m_settings;
     u8 _0x18[0x1c - 0x18];
+
+public:
     KartAccessor m_accessor;
 };
 static_assert(sizeof(KartObject) == 0x80);

@@ -2,6 +2,7 @@
 
 #include "game/system/RaceConfig.hh"
 #include "game/system/SaveManager.hh"
+
 #include "game/ui/SectionManager.hh"
 #include "game/ui/ctrl/CtrlRaceBattleAddPoint.hh"
 #include "game/ui/ctrl/CtrlRaceBattlePoint.hh"

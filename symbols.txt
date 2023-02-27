@@ -610,6 +610,8 @@
 0x8054aa08 _ZNK6System11SaveManager12getLongitudeEPt
 0x8054aa64 SceneCreatorDynamic_create
 0x80553c50 RaceScene_vf_38
+0x80554208 _ZN5Scene9RaceScene16createSubsystemsEv
+0x805549b0 _ZN5Scene9RaceScene17destroySubsystemsEv
 0x80554e6c _ZN5Scene9RaceScene14calcSubsystemsEv
 0x80555040 MenuScene_vf_38
 0x805553B0 _unresolved
@@ -618,6 +620,7 @@
 0x8055D6BC _ZN6Render7DrawMdl18ApplyMirrorPatchesERN4nw4r3g3d6ResMdlE
 0x8055f34c SetModelVisible
 0x8056a300 _ZN4Kart9KartBlink4calcEb
+0x8056c0cc _ZN4Kart8KartPartD2Ev
 0x8056ce98 KartBody_calcTransforms
 0x8056da88 BikeBody_calcTransforms
 0x8057257c KartCollide_checkItem
@@ -661,6 +664,7 @@
 0x80590cf8 KartObjectProxy_getInternalSpeed
 0x80590cf8 _ZNK4Kart15KartObjectProxy16getInternalSpeedEv
 0x80591fa4 KartParam_compute
+0x80592848 _ZN4Kart8KartPartC2Ev
 0x80594bd4 KartState_calcCollisions
 0x80595d48 _ZN4Kart7KartSub16createComponentsEPNS_12KartSettingsE
 0x80596480 KartSub_calcPass0
@@ -1453,6 +1457,7 @@
 0x80857cc0 _ZN2UI8RacePage12initControlsEj
 0x80858864 _ZN2UI14BalloonManager2dtEi
 0x808588cc CtrlRaceNameBalloon_ct
+0x80858a24 _ZN2UI8RacePage8onDeinitEv
 0x80858a50 RacePage_calcItemBalloons
 0x80858ae4 RacePage_calcNameBalloons
 0x80858c10 _ZN2UI8RacePage11GetTypeInfoEv
