@@ -1223,6 +1223,9 @@
     "20045": {
         string: "Speedometer does not display.",
     },
+    "20046": {
+        string: "This feature is currently under development.\nCheck back in a future update!",
+    },
     "30000": {
         string: "Your connection to the central server has been lost.",
     },

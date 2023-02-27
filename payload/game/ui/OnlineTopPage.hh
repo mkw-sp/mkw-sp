@@ -18,6 +18,8 @@ public:
     void onInit() override;
     void onActivate() override;
 private:
+    void showUnimplemented();
+
     void onBack(u32 localPlayerId);
     void onButtonSelect(PushButton *button, u32 localPlayerId);
     void onWorldwideButtonFront(PushButton *button, u32 localPlayerId);

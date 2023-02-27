@@ -2,7 +2,9 @@
 
 #include "game/ui/SectionManager.hh"
 #include "game/ui/SettingsPage.hh"
+#include "game/ui/MessagePage.hh"
 #include "game/ui/YesNoPage.hh"
+
 
 namespace UI {
 
@@ -97,12 +99,22 @@ void OnlineTopPage::onWorldwideButtonFront(PushButton* button, [[maybe_unused]] 
     startReplace(Anim::Next, button->getDelay());
 }
 
+void OnlineTopPage::showUnimplemented() {
+    auto section = SectionManager::Instance()->currentSection();
+    auto messagePopup = section->page<PageId::MessagePopup>();
+
+    messagePopup->reset();
+    messagePopup->setWindowMessage(20046);
+
+    push(PageId::MessagePopup, Anim::None);
+}
+
 void OnlineTopPage::onTrackpackButtonFront(PushButton* button, [[maybe_unused]] u32 localPlayerId) {
-    SP_LOG("OnlineTopPage::onTrackpackButtonFront");
+    showUnimplemented();
 }
 
 void OnlineTopPage::onFriendButtonFront(PushButton* button, [[maybe_unused]] u32 localPlayerId) {
-    SP_LOG("OnlineTopPage::onFriendButtonFront");
+    showUnimplemented();
 }
 
 void OnlineTopPage::onDirectButtonFront(PushButton* button, [[maybe_unused]] u32 localPlayerId) {
