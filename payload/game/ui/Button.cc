@@ -2,6 +2,8 @@
 
 namespace UI {
 
+PushButton::PushButton() = default;
+
 PushButton::~PushButton() = default;
 
 void PushButton::setPointerOnly(bool pointerOnly) {

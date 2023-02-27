@@ -149,7 +149,7 @@ void ScrollBar::reconfigure(u32 count, u32 chosen, u32 playerFlags) {
     setPlayerFlags(playerFlags);
 }
 
-void ScrollBar::onSelect([[maybe_unused]] u32 localPlayerId) {
+void ScrollBar::onSelect([[maybe_unused]] u32 localPlayerId, [[maybe_unused]] u32 r5) {
     auto *group = m_animator.getGroup(GroupId::Select);
     if (group->getAnimation() == AnimId::Select::Free) {
         group->setAnimation(AnimId::Select::FreeToSelect, 0.0f);
@@ -168,7 +168,7 @@ void ScrollBar::onSelect([[maybe_unused]] u32 localPlayerId) {
     playSound(Sound::SoundId::SE_UI_UD_IN, localPlayerId);
 }
 
-void ScrollBar::onDeselect([[maybe_unused]] u32 localPlayerId) {
+void ScrollBar::onDeselect([[maybe_unused]] u32 localPlayerId, [[maybe_unused]] u32 r5) {
     auto *group = m_animator.getGroup(GroupId::Select);
     if (group->getAnimation() == AnimId::Select::Select) {
         group->setAnimation(AnimId::Select::SelectToFree, 0.0f);
@@ -181,7 +181,7 @@ void ScrollBar::onDeselect([[maybe_unused]] u32 localPlayerId) {
     m_sequence.reset();
 }
 
-void ScrollBar::onFront([[maybe_unused]] u32 localPlayerId) {
+void ScrollBar::onFront([[maybe_unused]] u32 localPlayerId, [[maybe_unused]] u32 r5) {
     auto *parentInputManager = getPage()->inputManager()->downcast<MultiControlInputManager>();
     assert(parentInputManager);
     if (!parentInputManager->isPointer(localPlayerId)) {
@@ -211,8 +211,8 @@ void ScrollBar::onFront([[maybe_unused]] u32 localPlayerId) {
     playSound(Sound::SoundId::SE_UI_CTRL_ON, localPlayerId);
 }
 
-void ScrollBar::onRight([[maybe_unused]] u32 localPlayerId) {}
+void ScrollBar::onRight([[maybe_unused]] u32 localPlayerId, [[maybe_unused]] u32 r5) {}
 
-void ScrollBar::onLeft([[maybe_unused]] u32 localPlayerId) {}
+void ScrollBar::onLeft([[maybe_unused]] u32 localPlayerId, [[maybe_unused]] u32 r5) {}
 
 } // namespace UI

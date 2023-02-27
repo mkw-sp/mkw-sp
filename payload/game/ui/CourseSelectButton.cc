@@ -2,6 +2,8 @@
 
 #include "game/ui/SectionManager.hh"
 
+#include <cstdio>
+
 namespace UI {
 
 CourseSelectButton::CourseSelectButton() = default;

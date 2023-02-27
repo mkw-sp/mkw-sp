@@ -2,6 +2,8 @@
 
 #include "game/ui/SectionManager.hh"
 
+#include <cwchar>
+
 namespace UI {
 
 ServicePackTopPage::ServicePackTopPage() = default;

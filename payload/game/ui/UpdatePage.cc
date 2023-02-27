@@ -6,6 +6,8 @@
 
 #include <sp/Update.hh>
 
+#include <cwchar>
+
 namespace UI {
 
 UpdatePage::UpdatePage() = default;

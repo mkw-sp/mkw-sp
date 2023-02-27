@@ -2,6 +2,8 @@
 
 #include "game/ui/UIControl.hh"
 
+#include <memory>
+
 namespace UI {
 
 class CtrlRaceNameBalloon : public LayoutUIControl {

@@ -2,7 +2,15 @@
 
 namespace UI {
 
+UpDownAnimator::UpDownAnimator() = default;
+
+UpDownAnimator::~UpDownAnimator() = default;
+
+UpDownControl::UpDownButton::UpDownButton() = default;
+
 UpDownControl::UpDownButton::~UpDownButton() = default;
+
+UpDownControl::UpDownControl() = default;
 
 UpDownControl::~UpDownControl() = default;
 
@@ -10,7 +18,11 @@ u32 UpDownControl::chosen() const {
     return m_chosen;
 }
 
+TextUpDownValueControl::TextControl::TextControl() = default;
+
 TextUpDownValueControl::TextControl::~TextControl() = default;
+
+TextUpDownValueControl::TextUpDownValueControl() = default;
 
 TextUpDownValueControl::~TextUpDownValueControl() = default;
 

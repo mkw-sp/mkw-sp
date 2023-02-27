@@ -115,24 +115,24 @@ public:
         virtual void dummy_04() {}
 
     public:
-        virtual void handle(u32 localPlayerId) = 0;
+        virtual void handle(u32 localPlayerId, u32 r5) = 0;
     };
 
     template <typename T>
     class Handler : public IHandler {
     public:
-        Handler(T *object, void (T::*function)(u32)) {
+        Handler(T *object, void (T::*function)(u32, u32)) {
             m_object = object;
             m_function = function;
         }
 
-        void handle(u32 localPlayerId) override {
-            (m_object->*m_function)(localPlayerId);
+        void handle(u32 localPlayerId, u32 r5) override {
+            (m_object->*m_function)(localPlayerId, r5);
         }
 
     private:
         T *m_object;
-        void (T::*m_function)(u32);
+        void (T::*m_function)(u32, u32);
     };
 
     ControlInputManager();

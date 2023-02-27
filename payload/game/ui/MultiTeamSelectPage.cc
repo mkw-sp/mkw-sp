@@ -10,6 +10,8 @@ extern "C" {
 #include <vendor/libhydrogen/hydrogen.h>
 }
 
+#include <cstdio>
+
 namespace UI {
 
 MultiTeamSelectPage::MultiTeamSelectPage() = default;

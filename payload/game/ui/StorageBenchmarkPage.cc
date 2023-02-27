@@ -5,6 +5,8 @@
 #include "game/ui/Option.hh"
 #include "game/ui/SectionManager.hh"
 
+#include <cwchar>
+
 namespace UI {
 
 StorageBenchmarkPage::StorageBenchmarkPage() = default;

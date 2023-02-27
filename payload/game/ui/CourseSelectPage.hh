@@ -11,6 +11,8 @@
 #include <sp/storage/Storage.hh>
 #include <vendor/tjpgd/tjpgd.h>
 
+#include <memory>
+
 namespace UI {
 
 class CourseSelectPage : public Page {

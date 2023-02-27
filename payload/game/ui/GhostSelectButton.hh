@@ -15,8 +15,8 @@ public:
     bool isChosen() const { return m_chosen; }
 
 private:
-    void onSelect(u32 localPlayerId);
-    void onFront(u32 localPlayerId);
+    void onSelect(u32 localPlayerId, u32 r5);
+    void onFront(u32 localPlayerId, u32 r5);
 
     class TimeAttackGhostListPage *getGhostListPage();
 

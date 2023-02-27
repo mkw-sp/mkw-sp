@@ -57,17 +57,32 @@ public:
     bool isSelected() const;
     void setFrontSoundId(Sound::SoundId soundId);
 
-    void onFront(u32 r4, u32 r5);
+    void onSelect(u32 localPlayerId, u32 r5);
+    void onDeselect(u32 localPlayerId, u32 r5);
+    void onFront(u32 localPlayerId, u32 r5);
 
 private:
+    template <typename T>
+    using H = typename T::Handler<PushButton>;
+
     ControlInputManager m_inputManager;
-    u8 _1f8[0x240 - 0x1f8];
+    H<ControlInputManager> m_onSelect{ this, &PushButton::onSelect };
+    u8 _204[0x208 - 0x204];
+    H<ControlInputManager> m_onDeselect{ this, &PushButton::onDeselect };
+    u8 _218[0x21c - 0x218];
+    H<ControlInputManager> m_onFront{ this, &PushButton::onFront };
+    u8 _230[0x234 - 0x230];
+    IHandler *m_frontHandler = nullptr;
+    IHandler *m_selectHandler = nullptr;
+    IHandler *m_deselectHandler = nullptr;
 
 public:
-    s32 m_index;
+    s32 m_index = 0;
 
 private:
-    u8 _244[0x254 - 0x244];
+    u32 m_playerFlags = 0x1;
+    u8 _244[0x250 - 0x248];
+    u32 _250 = 8;
 };
 static_assert(sizeof(PushButton) == 0x254);
 

@@ -7,6 +7,8 @@ extern "C" {
 #include "game/system/RaceManager.hh"
 #include "game/system/SaveManager.hh"
 
+#include <cstdio>
+
 namespace UI {
 
 CtrlRaceInputDisplay::CtrlRaceInputDisplay() = default;

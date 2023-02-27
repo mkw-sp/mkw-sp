@@ -5,6 +5,7 @@
 #include "game/system/RaceManager.hh"
 
 #include <algorithm>
+#include <cstdio>
 #include <numeric>
 
 namespace UI {

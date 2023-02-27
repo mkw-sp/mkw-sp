@@ -4,6 +4,8 @@
 
 namespace UI {
 
-ControlGroup::~ControlGroup() = default;
+ControlGroup::~ControlGroup() {
+    dt(-1);
+}
 
 } // namespace UI

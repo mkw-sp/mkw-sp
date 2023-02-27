@@ -6,8 +6,32 @@
 namespace UI {
 
 class UpDownAnimator {
+public:
+    UpDownAnimator();
+    virtual ~UpDownAnimator();
+    virtual void vf_08();
+    virtual void vf_0c();
+    virtual void vf_10();
+    virtual void vf_14();
+    virtual void vf_18();
+    virtual void vf_1c();
+    virtual void vf_20();
+    virtual void vf_24();
+    virtual void vf_28();
+    virtual void vf_2c();
+    virtual void vf_30();
+    virtual void vf_34();
+    virtual void vf_38();
+    virtual void vf_3c();
+    virtual void vf_40();
+    virtual void vf_44();
+    virtual void vf_48();
+    virtual void vf_4c();
+    virtual void vf_50();
+    virtual void vf_54();
+
 private:
-    u8 _0[0x8 - 0x0];
+    void *_4 = nullptr;
 };
 static_assert(sizeof(UpDownAnimator) == 0x8);
 
@@ -103,25 +127,55 @@ public:
     void setPlayerFlags(u32 playerFlags);
 
 private:
-    u8 _174[0x204 - 0x174];
-    u32 m_chosen;
-    u8 _208[0x20c - 0x208];
+    void onSelect(u32 localPlayerId, u32 r5);
+    void onDeselect(u32 localPlayerId, u32 r5);
+    void onButtonSelect(u32 localPlayerId, u32 r5);
+    void onButtonDeselect(u32 localPlayerId, u32 r5);
+    void onFront(u32 localPlayerId, u32 r5);
+    void onRight(u32 localPlayerId, u32 r5);
+    void onLeft(u32 localPlayerId, u32 r5);
+
+    template <typename T>
+    using H = typename T::Handler<UpDownControl>;
+
+    H<ControlInputManager> m_onSelect{ this, &UpDownControl::onSelect };
+    u8 _184[0x188 - 0x184];
+    H<ControlInputManager> m_onDeselect{ this, &UpDownControl::onDeselect };
+    u8 _198[0x19c - 0x198];
+    H<ControlInputManager> m_onButtonSelect{ this, &UpDownControl::onButtonSelect };
+    u8 _1ac[0x1b0 - 0x1ac];
+    H<ControlInputManager> m_onButtonDeselect{ this, &UpDownControl::onButtonDeselect };
+    u8 _1c0[0x1c4 - 0x1c0];
+    H<ControlInputManager> m_onFront{ this, &UpDownControl::onFront };
+    u8 _1d4[0x1d8 - 0x1d4];
+    H<ControlInputManager> m_onRight{ this, &UpDownControl::onRight };
+    u8 _1e8[0x1ec - 0x1e8];
+    H<ControlInputManager> m_onLeft{ this, &UpDownControl::onLeft };
+    u8 _1fc[0x200 - 0x1fc];
+    u32 m_playerFlags;
+    s32 m_chosen = -1;
+    u32 m_count = 0;
 
 public:
-    u32 m_id;
+    u32 m_id = 0;
 
 private:
     u8 _210[0x211 - 0x210];
 
 public:
-    bool m_enabled;
+    bool m_enabled = true;
 
 private:
-    u8 _212[0x218 - 0x212];
+    u8 _212[0x214 - 0x212];
+    UpDownAnimator *m_animator = nullptr;
     ControlInputManager m_inputManager;
-    u8 _29c[0x2b4 - 0x29c];
+    IChangeHandler *m_changeHandler = nullptr;
+    IHandler *m_frontHandler = nullptr;
+    IHandler *m_selectHandler = nullptr;
+    IHandler *m_deselectHandler = nullptr;
+    u8 _2ac[0x2b4 - 0x2ac];
     UpDownButton m_buttons[2];
-    u8 _5c4[0x5c8 - 0x5c4];
+    u32 _5c4 = 19;
 };
 static_assert(sizeof(UpDownControl) == 0x5c8);
 

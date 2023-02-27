@@ -48,11 +48,11 @@ private:
         u32 frames;
     };
 
-    void onSelect(u32 localPlayerId);
-    void onDeselect(u32 localPlayerId);
-    void onFront(u32 localPlayerId);
-    void onRight(u32 localPlayerId);
-    void onLeft(u32 localPlayerId);
+    void onSelect(u32 localPlayerId, u32 r5);
+    void onDeselect(u32 localPlayerId, u32 r5);
+    void onFront(u32 localPlayerId, u32 r5);
+    void onRight(u32 localPlayerId, u32 r5);
+    void onLeft(u32 localPlayerId, u32 r5);
 
     template <typename T>
     using H = typename T::Handler<ScrollBar>;

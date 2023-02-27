@@ -3,6 +3,8 @@
 #include "game/ui/MenuInputManager.hh"
 #include "game/ui/UIControl.hh"
 
+#include <memory>
+
 namespace UI {
 
 class RadioButtonControl : public LayoutUIControl {
