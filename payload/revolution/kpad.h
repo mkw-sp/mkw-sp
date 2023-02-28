@@ -31,7 +31,7 @@ enum {
 };
 
 typedef struct KPADStatus {
-    u32 dpad;
+    u32 buttons;
     u8 _04[0x84 - 0x04];
 } KPADStatus;
 static_assert(sizeof(KPADStatus) == 0x84);

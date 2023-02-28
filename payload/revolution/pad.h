@@ -1,5 +1,7 @@
 #pragma once
 
+#include <Common.h>
+
 enum {
     PAD_BUTTON_LEFT = 0x0001,
     PAD_BUTTON_RIGHT = 0x0002,
@@ -14,3 +16,14 @@ enum {
     PAD_BUTTON_Y = 0x0800,
     PAD_BUTTON_START = 0x1000,
 };
+
+typedef struct PADStatus {
+    u16 buttons;
+    s8 stickX;
+    s8 stickY;
+    u8 _04[0xc - 0x4];
+} PADStatus;
+static_assert(sizeof(PADStatus) == 0xc);
+
+void PADRead(PADStatus *);
+void PADClampCircle(PADStatus *);

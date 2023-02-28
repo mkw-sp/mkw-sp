@@ -331,6 +331,8 @@
 0x801AB170 OSCalendarTimeToTicks
 0x801ada00 __OSLaunchTitle
 0x801ae4a0 OSIsTitleInstalled
+0x801ae6f4 PADClampCircle
+0x801af44c PADRead
 0x801b1d0c SCGetLanguage
 0x801b1e90 SCGetCounterBias
 0x801b254c SIBusy

@@ -7,10 +7,15 @@
 extern "C" {
 #include <revolution/kpad.h>
 #include <revolution/os.h>
+#include <revolution/pad.h>
 #include <revolution/vi.h>
 }
 
 namespace EGG {
+
+static constexpr bool CheckGCStickThreshold(s8 stick) {
+    return (stick >= 27 || stick <= -26);
+}
 
 bool ExceptionCallBack_(nw4r::db::ConsoleHandle console) {
     OSReport("CALLBACK...\n");
@@ -36,10 +41,25 @@ bool ExceptionCallBack_(nw4r::db::ConsoleHandle console) {
     console->m_currentTopLine = lineCount;
     nw4r::db::Console_DrawDirect(console);
 
-    KPADStatus status;
+    KPADStatus wStatus;
+    PADStatus gcStatus[4];
+    u32 input;
 
     while (true) {
-        KPADRead(0, &status, 1);
+        KPADRead(0, &wStatus, 1);
+        PADRead(gcStatus);
+        PADClampCircle(gcStatus);
+
+        input = wStatus.buttons & 15;
+        input |= gcStatus[0].buttons & 15;
+
+        if (CheckGCStickThreshold(gcStatus[0].stickX)) {
+            input |= (1 << !(gcStatus[0].stickX & 0x80));
+        }
+
+        if (CheckGCStickThreshold(gcStatus[0].stickY)) {
+            input |= (1 << (!(gcStatus[0].stickY & 0x80) + 2));
+        }
 
         u32 tick0 = OSGetTick();
         u32 tick1;
@@ -53,15 +73,15 @@ bool ExceptionCallBack_(nw4r::db::ConsoleHandle console) {
         s32 prevXPos = xPos;
         s32 prevTopLine = currentTopLine;
 
-        if (status.dpad & KPAD_BUTTON_RIGHT) {
+        if (input & KPAD_BUTTON_RIGHT) {
             xPos = std::max(xPos - 5, -150);
-        } else if (status.dpad & KPAD_BUTTON_LEFT) {
+        } else if (input & KPAD_BUTTON_LEFT) {
             xPos = std::min(xPos + 5, 10);
         }
 
-        if (status.dpad & KPAD_BUTTON_DOWN) {
+        if (input & KPAD_BUTTON_DOWN) {
             currentTopLine = std::min(currentTopLine + 1, totalLines);
-        } else if (status.dpad & KPAD_BUTTON_UP) {
+        } else if (input & KPAD_BUTTON_UP) {
             currentTopLine = std::max(currentTopLine - 1, lineCount);
         }
 
