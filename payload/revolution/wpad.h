@@ -25,3 +25,14 @@ enum {
     WPAD_CL_BUTTON_DOWN = 0x4000,
     WPAD_CL_BUTTON_RIGHT = 0x8000,
 };
+
+typedef struct WPADCLStatus {
+    u8 _00[0x2a - 0x00];
+    u16 buttons;
+    s16 lStickX;
+    s16 lStickY;
+    u8 _30[0x38 - 0x30];
+} WPADCLStatus;
+static_assert(sizeof(WPADCLStatus) == 0x38);
+
+s32 WPADProbe(s32, u32*);

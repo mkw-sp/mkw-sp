@@ -37,3 +37,5 @@ typedef struct KPADStatus {
 static_assert(sizeof(KPADStatus) == 0x84);
 
 s32 KPADRead(s32, KPADStatus *status, u32);
+// TODO: proper union
+void KPADGetUnifiedWpadStatus(s32, WPADCLStatus *, u32);
