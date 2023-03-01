@@ -2,7 +2,6 @@
 
 #include "game/system/RaceConfig.hh"
 #include "game/system/SaveManager.hh"
-
 #include "game/ui/SectionManager.hh"
 #include "game/ui/ctrl/CtrlRaceBattleAddPoint.hh"
 #include "game/ui/ctrl/CtrlRaceBattlePoint.hh"
@@ -45,6 +44,18 @@ u32 RacePage::lastWatchedPlayerId() const {
 
 RacePage *RacePage::Instance() {
     return s_instance;
+}
+
+PageId RacePage::getReplacement() {
+    switch (id()) {
+    case PageId::Bt1pHud:
+    case PageId::Bt2pHud:
+    case PageId::Bt3pHud:
+    case PageId::Bt4pHud:
+        return PageId::ResultRaceUpdate;
+    default:
+        return m_replacement;
+    }
 }
 
 void RacePage::onInit() {

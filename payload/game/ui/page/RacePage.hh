@@ -9,6 +9,7 @@ namespace UI {
 class RacePage : public Page {
 public:
     ~RacePage() override;
+    REPLACE PageId getReplacement() override;
     void REPLACED(onInit)();
     REPLACE void onInit() override;
     void REPLACED(afterCalc)();
@@ -36,7 +37,8 @@ private:
     void REPLACED(initControls)(u32 controls);
     REPLACE void initControls(u32 controls);
 
-    u8 _044[0x064 - 0x044];
+    PageId m_replacement;
+    u8 _048[0x064 - 0x048];
     u32 m_watchedPlayerId;
     u8 _068[0x069 - 0x068];
     u8 m_lastWatchedPlayerId; // Added (was padding)

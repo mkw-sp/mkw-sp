@@ -97,6 +97,15 @@ bool Section::HasRaceClient(SectionId sectionId) {
 
 void Section::addPage(PageId pageId) {
     std::pair<SectionId, PageId> deletions[] = {
+        { SectionId::Battle1P, PageId::ResultBattleUpdate },
+        { SectionId::Battle1P, PageId::ResultBattleTotal },
+        { SectionId::Battle2P, PageId::ResultBattleUpdate },
+        { SectionId::Battle2P, PageId::ResultBattleTotal },
+        { SectionId::Battle3P, PageId::ResultBattleUpdate },
+        { SectionId::Battle3P, PageId::ResultBattleTotal },
+        { SectionId::Battle4P, PageId::ResultBattleUpdate },
+        { SectionId::Battle4P, PageId::ResultBattleTotal },
+
         // The game has 5 pages for the records, we only need 1 for the settings. Remove the 4
         // others.
         { SectionId::LicenseSettings, PageId::SettingsPopup },
@@ -235,6 +244,19 @@ void Section::addPages(SectionId id) {
         { SectionId::VS3P, PageId::ResultTeamVSTotal },
         { SectionId::VS4P, PageId::ResultTeamVSTotal },
 
+        { SectionId::Battle1P, PageId::ResultRaceUpdate },
+        { SectionId::Battle1P, PageId::ResultRaceTotal },
+        { SectionId::Battle1P, PageId::ResultTeamVSTotal },
+        { SectionId::Battle2P, PageId::ResultRaceUpdate },
+        { SectionId::Battle2P, PageId::ResultRaceTotal },
+        { SectionId::Battle2P, PageId::ResultTeamVSTotal },
+        { SectionId::Battle3P, PageId::ResultRaceUpdate },
+        { SectionId::Battle3P, PageId::ResultRaceTotal },
+        { SectionId::Battle3P, PageId::ResultTeamVSTotal },
+        { SectionId::Battle4P, PageId::ResultRaceUpdate },
+        { SectionId::Battle4P, PageId::ResultRaceTotal },
+        { SectionId::Battle4P, PageId::ResultTeamVSTotal },
+
         // Support changing settings in-race
         { SectionId::GP, PageId::MenuSettings },
         { SectionId::TA, PageId::MenuSettings },
@@ -362,7 +384,6 @@ void Section::addActivePages(SectionId id) {
 Page *Section::CreatePage(PageId pageId) {
     switch (pageId) {
     case PageId::ResultTeamVSTotal:
-    case PageId::ResultBattleUpdate:
         return new ResultTeamTotalPage;
     case PageId::AwardInterface:
         return new AwardPage;

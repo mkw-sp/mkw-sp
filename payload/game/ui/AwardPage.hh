@@ -38,7 +38,8 @@ private:
     u8 _0314[0x0488 - 0x0314]; // Unused
     AwardDemoCongratulations m_congratulations;
     AwardDemoResultItem m_items[12];
-    u8 _176c[0x176e - 0x176c];
+    u8 _176c[0x176d - 0x176c];
+    u8 m_bestRank;
     u8 m_localPlayerCount;
     u8 m_playerCount;
     LayoutUIControl m_teams[6]; // Added

@@ -1,6 +1,7 @@
 #include "AwardPage.hh"
 
 #include "game/system/RaceConfig.hh"
+#include "game/ui/SectionManager.hh"
 
 #include <algorithm>
 #include <array>
@@ -60,7 +61,16 @@ void AwardPage::initCongratulations() {
     const auto &awardsScenario = System::RaceConfig::Instance()->awardsScenario();
     u32 maxTeamSize = awardsScenario.spMaxTeamSize;
     if (maxTeamSize == 1) {
-        REPLACED(initCongratulations)();
+        auto sectionId = SectionManager::Instance()->currentSection()->id();
+        if (sectionId == SectionId::AwardsBT) {
+            if (m_bestRank < 4) {
+                m_congratulations.setMessageAll(1218 + m_bestRank);
+            } else {
+                m_congratulations.setMessageAll(1222);
+            }
+        } else {
+            REPLACED(initCongratulations)();
+        }
         return;
     }
 

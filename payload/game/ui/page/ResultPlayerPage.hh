@@ -24,4 +24,15 @@ public:
     TypeInfo *getTypeInfo() const override;
 };
 
+class ResultRaceTotalPage : public ResultPlayerPage {
+public:
+    ResultRaceTotalPage();
+    ~ResultRaceTotalPage() override;
+    void onInit() override;
+    PageId REPLACED(getReplacement)();
+    REPLACE PageId getReplacement() override;
+    void vf_68() override;
+    TypeInfo *getTypeInfo() const override;
+};
+
 } // namespace UI
