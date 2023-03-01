@@ -2,10 +2,6 @@
 
 #include "nw4r/snd/FileStream.hh"
 
-extern "C" {
-#include <vendor/libhydrogen/hydrogen.h>
-}
-
 #include <cstring>
 #include <iterator>
 
@@ -49,67 +45,12 @@ ut::FileStream *DVDSoundArchive::openStream(void *buffer, s32 size, u32 start, u
 }
 
 ut::FileStream *DVDSoundArchive::openExtStream(void *buffer, s32 size, const char *extFilePath,
-        u32 start, u32 UNUSED(length)) {
+        u32 UNUSED(start), u32 UNUSED(length)) {
     if (size < static_cast<s32>(sizeof(FileStream))) {
         return nullptr;
     }
 
-    const char *suffix = strrchr(extFilePath, '.');
-    if (suffix && !strcmp(suffix, ".brstm")) {
-        suffix = strrchr(extFilePath, '_');
-        if (suffix && (!strcmp(suffix, "_f.brstm") || !strcmp(suffix, "_F.brstm"))) {
-            if (m_fId) {
-                if (auto file = SP::Storage::FastOpen(*m_fId)) {
-                    return new (buffer) FileStream(std::move(*file), start, UINT32_MAX);
-                }
-            }
-        }
-        m_fId.reset();
-
-        if (auto dir = SP::Storage::OpenRODir(extFilePath)) {
-            SP::Storage::NodeInfo files[8];
-            u32 count = 0;
-            while (auto info = dir->read()) {
-                if (info->type == SP::Storage::NodeType::File) {
-                    files[count++] = *info;
-                    if (count == std::size(files)) {
-                        break;
-                    }
-                }
-            }
-            if (count > 0) {
-                u32 index = hydro_random_uniform(count);
-                if (auto file = SP::Storage::FastOpen(files[index].id)) {
-                    suffix = strrchr(extFilePath, '_');
-                    if (suffix && (!strcmp(suffix, "_n.brstm") || !strcmp(suffix, "_N.brstm"))) {
-                        char fDirPath[128];
-                        snprintf(fDirPath, sizeof(fDirPath), "%s", extFilePath);
-                        fDirPath[strlen(fDirPath) - strlen("n.brstm")] -= 'n' - 'f';
-                        if (auto fDir = SP::Storage::OpenRODir(fDirPath)) {
-                            while (auto fInfo = fDir->read()) {
-                                if (fInfo->type != SP::Storage::NodeType::File) {
-                                    continue;
-                                }
-                                if (!wcscmp(fInfo->name, files[index].name)) {
-                                    m_fId = fInfo->id;
-                                    break;
-                                }
-                            }
-                        }
-                    }
-
-                    return new (buffer) FileStream(std::move(*file), start, UINT32_MAX);
-                }
-            }
-        }
-    }
-
-    auto file = SP::Storage::OpenRO(extFilePath);
-    if (!file) {
-        return nullptr;
-    }
-
-    return new (buffer) FileStream(std::move(*file), start, UINT32_MAX);
+    return new (buffer) FileStream(extFilePath);
 }
 
 bool DVDSoundArchive::open(const char *filePath) {

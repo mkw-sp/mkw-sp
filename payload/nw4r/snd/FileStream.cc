@@ -2,9 +2,21 @@
 
 #include <sp/ScopeLock.hh>
 
+extern "C" {
+#include <vendor/libhydrogen/hydrogen.h>
+}
+
+#include <cstring>
 #include <iterator>
 
 namespace nw4r::snd {
+
+FileStream::FileStream(const char *path) {
+    m_path.emplace();
+    if (snprintf(m_path->data(), m_path->size(), "%s", path) >= static_cast<s32>(m_path->size())) {
+        m_path.reset();
+    }
+}
 
 FileStream::FileStream(SP::Storage::FileHandle file, u32 start, u32 size)
     : m_file(std::move(file)), m_start(start), m_size(size) {}
@@ -12,15 +24,12 @@ FileStream::FileStream(SP::Storage::FileHandle file, u32 start, u32 size)
 FileStream::~FileStream() = default;
 
 void FileStream::close() {
+    m_path.reset();
     m_file.reset();
     m_cancelled = false;
 }
 
 s32 FileStream::read(void *dst, u32 size) {
-    if (!m_file) {
-        return -1;
-    }
-
     {
         SP::ScopeLock<SP::NoInterrupts> lock;
         while (!OSTryLockMutex(&s_mutex)) {
@@ -29,6 +38,10 @@ s32 FileStream::read(void *dst, u32 size) {
                 return -1;
             }
         }
+    }
+
+    if (!open()) {
+        return -1;
     }
 
     bool result = m_file->read(dst, size, m_start + m_offset);
@@ -72,7 +85,7 @@ u32 FileStream::getBufferAlign() {
 }
 
 u32 FileStream::getSize() {
-    if (!m_file) {
+    if (!open()) {
         return 0;
     }
 
@@ -113,14 +126,81 @@ u32 FileStream::tell() {
 }
 
 std::optional<SP::Storage::FileHandle> FileStream::cloneFile() {
-    if (!m_file) {
+    if (!open()) {
         return {};
     }
 
     return m_file->clone();
 }
 
+bool FileStream::open() {
+    if (m_file) {
+        return true;
+    }
+
+    if (!m_path) {
+        return false;
+    }
+
+    auto path = *m_path;
+    m_path.reset();
+
+    const char *suffix = strrchr(path.data(), '.');
+    if (suffix && !strcmp(suffix, ".brstm")) {
+        suffix = strrchr(path.data(), '_');
+        if (suffix && (!strcmp(suffix, "_f.brstm") || !strcmp(suffix, "_F.brstm"))) {
+            if (s_fId) {
+                if (m_file = SP::Storage::FastOpen(*s_fId)) {
+                    return true;
+                }
+            }
+        }
+        s_fId.reset();
+
+        if (auto dir = SP::Storage::OpenRODir(path.data())) {
+            SP::Storage::NodeInfo files[8];
+            u32 count = 0;
+            while (auto info = dir->read()) {
+                if (info->type == SP::Storage::NodeType::File) {
+                    files[count++] = *info;
+                    if (count == std::size(files)) {
+                        break;
+                    }
+                }
+            }
+            if (count > 0) {
+                u32 index = hydro_random_uniform(count);
+                if (m_file = SP::Storage::FastOpen(files[index].id)) {
+                    suffix = strrchr(path.data(), '_');
+                    if (suffix && (!strcmp(suffix, "_n.brstm") || !strcmp(suffix, "_N.brstm"))) {
+                        char fDirPath[128];
+                        snprintf(fDirPath, sizeof(fDirPath), "%s", path.data());
+                        fDirPath[strlen(fDirPath) - strlen("n.brstm")] -= 'n' - 'f';
+                        if (auto fDir = SP::Storage::OpenRODir(fDirPath)) {
+                            while (auto fInfo = fDir->read()) {
+                                if (fInfo->type != SP::Storage::NodeType::File) {
+                                    continue;
+                                }
+                                if (!wcscmp(fInfo->name, files[index].name)) {
+                                    s_fId = fInfo->id;
+                                    break;
+                                }
+                            }
+                        }
+                    }
+
+                    return true;
+                }
+            }
+        }
+    }
+
+    m_file = SP::Storage::OpenRO(path.data());
+    return m_file.has_value();
+}
+
 OSMutex FileStream::s_mutex{};
 OSThreadQueue FileStream::s_queue{};
+std::optional<SP::Storage::NodeId> FileStream::s_fId{};
 
 } // namespace nw4r::snd

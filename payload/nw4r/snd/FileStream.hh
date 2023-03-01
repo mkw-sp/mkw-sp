@@ -11,6 +11,7 @@ namespace nw4r::snd {
 
 class FileStream : public ut::FileStream {
 public:
+    FileStream(const char *path);
     FileStream(SP::Storage::FileHandle file, u32 start, u32 size);
     ~FileStream() override;
     void close() override;
@@ -31,7 +32,10 @@ public:
     std::optional<SP::Storage::FileHandle> cloneFile();
 
 private:
-    std::optional<SP::Storage::FileHandle> m_file;
+    bool open();
+
+    std::optional<std::array<char, 128>> m_path{};
+    std::optional<SP::Storage::FileHandle> m_file{};
     u32 m_start;
     u32 m_size;
     u32 m_offset = 0;
@@ -39,6 +43,7 @@ private:
 
     static OSMutex s_mutex;
     static OSThreadQueue s_queue;
+    static std::optional<SP::Storage::NodeId> s_fId;
 };
 static_assert(sizeof(FileStream) <= 0x100);
 

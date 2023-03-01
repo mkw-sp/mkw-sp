@@ -26,7 +26,6 @@ public:
 private:
     SoundArchiveFileReader m_fileReader;
     std::optional<SP::Storage::FileHandle> m_file{}; // Modified
-    std::optional<SP::Storage::NodeId> m_fId{}; // Modified
 };
 static_assert(sizeof(DVDSoundArchive) <= 0x18c);
 
