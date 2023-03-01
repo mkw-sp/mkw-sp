@@ -182,6 +182,7 @@ PATCH_B(VsPauseMenuPage_getFile, my_VsPauseMenuPage_getFile);
 static const u32 battlePauseButtons[] = {
     kPausePageButtonID_Continue1,
     kPausePageButtonID_Restart1,
+    kPausePageButtonID_EXTLicenseSettings,
     kPausePageButtonID_Quit1,
 };
 
