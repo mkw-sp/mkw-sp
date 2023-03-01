@@ -11,9 +11,7 @@ namespace UI {
 
 SingleTopPage::SingleTopPage() = default;
 
-SingleTopPage::~SingleTopPage() {
-    SP_LOG("dt");
-}
+SingleTopPage::~SingleTopPage() = default;
 
 PageId SingleTopPage::getReplacement() {
     return m_replacement;
