@@ -2,6 +2,8 @@
 
 #include "game/kart/KartSaveState.hh"
 
+#include <optional>
+
 namespace SP {
 
 class SaveStateManager {
@@ -17,9 +19,8 @@ private:
     static auto GetKartState();
 
     u8 m_framesHeld = 0;
-    bool m_hasSaved = false;
+    std::optional<Kart::KartSaveState> m_kartSaveState = std::nullopt;
 
-    Kart::KartSaveState m_kartSaveState;
     static SaveStateManager* s_instance;
 };
 
