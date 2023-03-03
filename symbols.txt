@@ -1284,6 +1284,7 @@
 0x8078c9e8 DriverManager_createInstance
 0x8078ca5c DriverManager_ct
 0x8078cfa4 DriverManager_8078cfa4
+0x8078d4cc _ZN4Race13DriverManager20GetTeamPlayerOutcomeEj
 0x8078d824 _ZN4Race13DriverManager4calcEv
 0x8078ddb4 unk_8078ddb4
 0x8079864c KartItem_activateMushroom
@@ -1510,6 +1511,7 @@
 0x8085c974 _ZN2UI20ResultRaceUpdatePage14getReplacementEv
 0x8085cc40 _ZN2UI19ResultRaceTotalPage14getReplacementEv
 0x8085e3b4 RaceRankingPage_getReplacement
+0x8085e85c _ZN2UI14ResultTeamPage12GetScoreDiffEv
 0x80860a8c _ZN8Registry16UseBattleRendersEv
 0x80860acc getCharacterPane
 0x80860acc _ZN8Registry16GetCharacterPaneEj

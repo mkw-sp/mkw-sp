@@ -11,6 +11,15 @@ public:
     static DriverManager *Instance();
 
 private:
+    enum class Outcome {
+        Best,
+        Good,
+        Bad,
+        Draw,
+    };
+
+    REPLACE static Outcome GetTeamPlayerOutcome(u32 playerId);
+
     u8 _000[0x1f0 - 0x000];
 
     static DriverManager *s_instance;
