@@ -105,5 +105,6 @@ const char* OSGetAppGamename(void);
 #include "revolution/os/OSThread.h"
 #include "revolution/os/OSTitle.h"
 
-extern u32 OSDisableInterrupts(void);
-extern void OSRestoreInterrupts(u32);
+BOOL OSDisableInterrupts(void);
+BOOL OSEnableInterrupts();
+BOOL OSRestoreInterrupts(BOOL);

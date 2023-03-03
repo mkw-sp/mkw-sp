@@ -1351,7 +1351,7 @@ code_in_files = {
         os.path.join('payload', 'egg', 'core', 'eggThread.cc'),
         os.path.join('payload', 'egg', 'core', 'eggXfb.cc'),
         os.path.join('payload', 'egg', 'core', 'eggXfbManager.cc'),
-        os.path.join('payload', 'egg', 'util', 'eggException.S'),
+        os.path.join('payload', 'egg', 'util', 'eggException.cc'),
         os.path.join('payload', 'game', 'battle', 'CoinManager.cc'),
         os.path.join('payload', 'game', 'effect', 'Effect.S'),
         os.path.join('payload', 'game', 'effect', 'EffectManager.cc'),

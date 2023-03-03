@@ -39,11 +39,14 @@
 0x80017a14 wcscmp
 0x80021254 strlen
 
+0x800230e0 _ZN4nw4r2db21Console_GetTotalLinesEPNS0_6detail11ConsoleHeadE
 0x80023150 nw4r_db_Exception_Init
 0x800235A0 Exception_Printf_
 0x80023680 Exception_PrintCtx
 0x80023BC0 nw4r_db_ShowGPRMap_
 0x80025DC0 nw4r_db_ShowStack_
+
+0x80022AB0 _ZN4nw4r2db18Console_DrawDirectEPNS0_6detail11ConsoleHeadE
 
 0x8004C350 _ZNK4nw4r3g3d7ResFile9GetResMdlEj
 0x8004C3F0 _ZNK4nw4r3g3d7ResFile19GetResMdlNumEntriesEv
@@ -230,6 +233,8 @@
 0x80194158 IOS_IoctlAsync
 0x80194290 IOS_Ioctl
 0x801945E0 IOS_Ioctlv
+0x80197380 KPADRead
+0x8019812c KPADGetUnifiedWpadStatus
 0x80198658 MEMFindContainHeap
 0x80198D58 MEMDestroyExpHeap
 0x80198D88 MEMAllocFromExpHeapEx
@@ -327,6 +332,8 @@
 0x801AB170 OSCalendarTimeToTicks
 0x801ada00 __OSLaunchTitle
 0x801ae4a0 OSIsTitleInstalled
+0x801ae6f4 PADClampCircle
+0x801af44c PADRead
 0x801b1d0c SCGetLanguage
 0x801b1e90 SCGetCounterBias
 0x801b254c SIBusy
@@ -360,6 +367,7 @@
 0x801b99ec VIWaitForRetrace
 0x801ba9a4 VIFlush
 0x801BAB2C VISetBlack
+0x801c0990 WPADProbe
 0x801D17F8 NETMemCpy
 0x801D1BA0 NETMemSet
 0x801d1ca0 NETCalcCRC32
@@ -427,7 +435,7 @@
 0x802224e8 EGG_DvdFile_openPath
 0x802226d8 _ZN3EGG9DVDRipper13LoadToMainRAMEPKcPhPNS_4HeapENS0_14AllocDirectionEjPjS7_
 0x802245AC EffectCreator_createEffect
-0x80226464 EGG_ExceptionCallBack_
+0x80226464 _ZN3EGG18ExceptionCallBack_EPN4nw4r2db6detail11ConsoleHeadE
 0x80226a1c EGG_ExpHeap_create2
 0x80226aC8 EGG_ExpHeap_create
 0x80226b94 EGG_ExpHeap_destroy
@@ -459,6 +467,7 @@
 0x80242504 EGG_ConfigurationData_initMemory
 0x80242c18 EGG_TaskThread_request
 0x80242c18 _ZN3EGG10TaskThread7requestEPFvPvES1_S1_
+0x8024353C _ZN3EGG6Thread24kandoTestCancelAllThreadEv
 0x802435DC _ZN3EGG6Thread20switchThreadCallbackEP8OSThreadS2_
 0x80243d6c EGG_Video_configure
 0x802441ec _ZN3EGG3Xfb11CalcXfbSizeEtt
