@@ -39,18 +39,16 @@ auto SaveStateManager::GetKartState() {
 
 void SaveStateManager::save() {
     auto [accessor, physics] = GetKartState();
-    m_kartSaveState.save(accessor, physics);
-    m_hasSaved = true;
+    m_kartSaveState.emplace(accessor, physics);
 }
 
 void SaveStateManager::reload() {
-    if (!m_hasSaved) {
+    if (m_kartSaveState.has_value()) {
+        auto [accessor, physics] = GetKartState();
+        (*m_kartSaveState).reload(accessor, physics);
+    } else {
         SP_LOG("SaveStateManager: Reload requested without save!");
-        return;
     }
-
-    auto [accessor, physics] = GetKartState();
-    m_kartSaveState.reload(accessor, physics);
 }
 
 void SaveStateManager::processInput(bool isPressed) {

@@ -32,7 +32,7 @@ struct KartTireFlat {
 
 class KartSaveState {
 public:
-    KartSaveState() = default;
+    KartSaveState(KartAccessor accessor, VehiclePhysics* physics);
 
     void save(KartAccessor accessor, VehiclePhysics* physics);
     void reload(KartAccessor accessor, VehiclePhysics* physics);
