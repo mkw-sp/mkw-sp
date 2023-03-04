@@ -6,6 +6,7 @@
 #include "game/ui/SectionManager.hh"
 #include "game/ui/SettingsPage.hh"
 
+#include <sp/SaveStateManager.hh>
 #include <sp/settings/ClientSettings.hh>
 
 extern "C" {
@@ -41,6 +42,16 @@ void RaceMenuPage::onButtonFront([[maybe_unused]] PushButton *button,
         break;
     case ButtonId::ChangeGhostData:
         onChangeGhostDataButtonFront(button, localPlayerId);
+        break;
+    case ButtonId::SaveState:
+        if (auto *saveStateManager = SP::SaveStateManager::Instance()) {
+            saveStateManager->save();
+        }
+        break;
+    case ButtonId::LoadState:
+        if (auto *saveStateManager = SP::SaveStateManager::Instance()) {
+            saveStateManager->reload();
+        }
         break;
     default:
         REPLACED(onButtonFront)(button, localPlayerId);

@@ -47,6 +47,8 @@ typedef enum {
     // Reserved: Edit license settings in-game
     kPausePageButtonID_EXTLicenseSettings = 0x25,
     kPausePageButtonID_EXTChangeGhostData = 0x26,
+    kPausePageButtonID_EXTSaveState = 0x27,
+    kPausePageButtonID_EXTLoadState = 0x28,
 } PausePageButtonID;
 
 // Referenced by RaceMenuPage.S
@@ -89,8 +91,10 @@ const char *sButtonStrings[] = {
     "ButtonYes",                // kPausePageButtonID_Yes2
     "ButtonNo",                 // kPausePageButtonID_No2
 
-    "ButtonSettings",  // kPausePageButtonID_EXTLicenseSettings
-    "ButtonChangeGhostData", // kPausePageButtonID_EXTChangeGhostData
+    "ButtonSettings",           // kPausePageButtonID_EXTLicenseSettings
+    "ButtonChangeGhostData",    // kPausePageButtonID_EXTChangeGhostData
+    "ButtonSaveState",          // kPausePageButtonID_EXTSaveState
+    "ButtonLoadState",          // kPausePageButtonID_EXTLoadState
 };
 
 static const u32 ghostWatchPauseButtons[] = {
@@ -210,6 +214,8 @@ PATCH_B(BattlePauseMenuPage_getFile, my_BattlePauseMenuPage_getFile);
 static const u32 timeAttackPauseButtons[] = {
     kPausePageButtonID_Continue1,
     kPausePageButtonID_Restart1,
+    kPausePageButtonID_EXTSaveState,
+    kPausePageButtonID_EXTLoadState,
     kPausePageButtonID_EXTChangeGhostData,
     kPausePageButtonID_ChangeCourse,
     kPausePageButtonID_ChangeCharacter,

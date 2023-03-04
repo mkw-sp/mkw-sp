@@ -165,4 +165,10 @@
         string: "{color|player 4}{arg signed integer|0 0}",
         font: "red",
     },
+    "10418": {
+        string: "Save State",
+    },
+    "10419": {
+        string: "Load State",
+    },
 }

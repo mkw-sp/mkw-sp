@@ -59,6 +59,8 @@ private:
         No2 = 0x24,
         Settings = 0x25, // Added
         ChangeGhostData = 0x26, // Added
+        SaveState = 0x27, // Added
+        LoadState = 0x28, // Added
     };
 
     void REPLACED(onButtonFront)(PushButton *button, u32 localPlayerId);
