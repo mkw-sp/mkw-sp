@@ -4,6 +4,6 @@
 
 namespace EGG {
 
-REPLACE bool ExceptionCallBack_(nw4r::db::ConsoleHandle console);
+REPLACE bool ExceptionCallBack_(nw4r::db::ConsoleHandle console, void *arg);
 
 } // namespace EGG

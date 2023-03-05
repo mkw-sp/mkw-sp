@@ -24,7 +24,7 @@ static constexpr bool CheckCLStickThreshold(s16 stick) {
     return (stick >= 161 || stick <= -160);
 }
 
-bool ExceptionCallBack_(nw4r::db::ConsoleHandle console) {
+bool ExceptionCallBack_(nw4r::db::ConsoleHandle console, void *UNUSED(arg)) {
     OSReport("CALLBACK...\n");
     if (!console) {
         OSReport("No Console\n");
