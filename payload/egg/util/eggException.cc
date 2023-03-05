@@ -3,11 +3,13 @@
 #include "egg/core/eggThread.hh"
 
 #include <common/Clock.hh>
+#include <game/host_system/SystemManager.hh>
 extern "C" {
 #include <revolution/kpad.h>
 #include <revolution/os.h>
 #include <revolution/pad.h>
 #include <revolution/vi.h>
+#include <sp/Host.h>
 }
 
 #include <cstring>
@@ -60,6 +62,13 @@ bool ExceptionCallBack_(nw4r::db::ConsoleHandle console) {
         PADClampCircle(gcStatus);
         if (classic) {
             KPADGetUnifiedWpadStatus(0, &clStatus, 1);
+        }
+
+        if (HostPlatform_IsConsole(Host_GetPlatform())) {
+            if (wStatus.buttons & KPAD_BUTTON_HOME || gcStatus[0].buttons & PAD_BUTTON_START ||
+                    (classic && clStatus.buttons & WPAD_CL_BUTTON_HOME)) {
+                System::SystemManager::ReturnToMenu();
+            }
         }
 
         bool left = (wStatus.buttons & KPAD_BUTTON_LEFT || gcStatus[0].buttons & PAD_BUTTON_LEFT);
