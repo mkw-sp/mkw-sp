@@ -5,6 +5,7 @@ enum {
     WPAD_BUTTON_RIGHT = 0x2,
     WPAD_BUTTON_DOWN = 0x4,
     WPAD_BUTTON_UP = 0x8,
+    WPAD_BUTTON_HOME = 0x8000,
 };
 
 enum {
