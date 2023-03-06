@@ -329,8 +329,8 @@ const Entry entries[] = {
         .defaultValue = static_cast<u32>(TeamSize::FFA),
         .valueCount = magic_enum::enum_count<TeamSize>(),
         .valueNames = magic_enum::enum_names<TeamSize>().data(),
-        .valueMessageIds = (u32[]) { 10208, 10209, 10210, 10211, 10212 },
-        .valueExplanationMessageIds = (u32[]) { 10213, 10214, 10215, 10216, 10217 },
+        .valueMessageIds = (u32[]) { 10208, 10209, 10210, 10211, 10212, 10281 },
+        .valueExplanationMessageIds = (u32[]) { 10213, 10214, 10215, 10216, 10217, 10393 },
     },
     [static_cast<u32>(Setting::VSRaceCount)] = {
         .category = Category::VS,
@@ -390,8 +390,8 @@ const Entry entries[] = {
         .defaultValue = static_cast<u32>(TeamSize::Six),
         .valueCount = magic_enum::enum_count<TeamSize>(),
         .valueNames = magic_enum::enum_names<TeamSize>().data(),
-        .valueMessageIds = (u32[]) { 10208, 10209, 10210, 10211, 10212 },
-        .valueExplanationMessageIds = (u32[]) { 10213, 10214, 10215, 10216, 10217 },
+        .valueMessageIds = (u32[]) { 10208, 10209, 10210, 10211, 10212, 10218 },
+        .valueExplanationMessageIds = (u32[]) { 10213, 10214, 10215, 10216, 10217, 10393 },
     },
     [static_cast<u32>(Setting::BTRaceCount)] = {
         .category = Category::BT,
@@ -431,8 +431,8 @@ const Entry entries[] = {
         .defaultValue = static_cast<u32>(TeamSize::FFA),
         .valueCount = magic_enum::enum_count<TeamSize>(),
         .valueNames = magic_enum::enum_names<TeamSize>().data(),
-        .valueMessageIds = (u32[]) { 10208, 10209, 10210, 10211, 10212 },
-        .valueExplanationMessageIds = (u32[]) { 10213, 10214, 10215, 10216, 10217 },
+        .valueMessageIds = (u32[]) { 10208, 10209, 10210, 10211, 10212, 10218 },
+        .valueExplanationMessageIds = (u32[]) { 10213, 10214, 10215, 10216, 10217, 10393 },
     },
     [static_cast<u32>(Setting::RoomTeamSelection)] = {
         .category = Category::Room,
