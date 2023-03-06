@@ -591,7 +591,7 @@ asset_in_files = {
         os.path.join('button', 'ctrl', 'CourseSelectScrollBar.brctr.json5'),
         # Flags
         os.path.join('control', 'blyt', 'chara_flag_machine_picture_common.brlyt.json5'),
-        *glob.glob("control/timg/*.tpl", root_dir="assets", recursive=True),
+        *glob.glob("control/timg/[0-9][0-9][0-9].tpl", root_dir="assets", recursive=True),
     ],
     os.path.join('Scene', 'UI', 'RaceSP.arc.lzma'): [
         # Menu
