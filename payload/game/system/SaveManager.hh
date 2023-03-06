@@ -110,9 +110,6 @@ public:
     REPLACE void saveGhostAsync(s32 licenseId, u32 category, u32 index, GhostFile *file,
             bool saveLicense);
 
-    bool computeCourseSHA1Async(u32 courseId);
-    const u8 *courseSHA1(u32 courseId) const;
-
     void getLocation(u32 *location) const;
     void getLatitude(u16 *latitude) const;
     void getLongitude(u16 *longitude) const;
@@ -138,8 +135,6 @@ private:
     bool loadGhost(u32 i);
     void saveGhost(GhostFile *file);
 
-    void computeCourseSHA1(u32 courseId);
-
     static void InitTask(void *arg);
     static void *InitGhostsTask(void *arg);
 
@@ -150,7 +145,6 @@ private:
     static void SaveGhostTask(void *arg);
 
     static void GetCourseName(const u8 *courseSHA1, char (&courseName)[0x14 * 2 + 1]);
-    static void ComputeCourseSHA1Task(void *arg);
 
     u8 _00000[0x00014 - 0x00000];
     RawSave *m_rawSave;
@@ -177,8 +171,6 @@ private:
     std::optional<u8> m_spCurrentLicense;         // Added
     u8 m_ghostInitStack[0x8000 /* 32 KiB */];     // Added
     OSThread m_ghostInitThread;                   // Added
-    bool m_courseSHA1IsValid[32];                 // Added
-    u8 m_courseSHA1s[32][0x14];                   // Added
 
     static SaveManager *s_instance;
     static const u8 s_courseSHA1s[32][0x14];

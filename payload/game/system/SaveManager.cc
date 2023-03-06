@@ -39,9 +39,6 @@ SaveManager *SaveManager::CreateInstance() {
     s_instance->m_rawGhostHeaders = new (heap, 0x4) RawGhostHeader[MAX_GHOST_COUNT];
     s_instance->m_ghostFooters = new (heap, 0x4) GhostFooter[MAX_GHOST_COUNT];
     s_instance->m_ghostIds = new (heap, 0x4) SP::Storage::NodeId[MAX_GHOST_COUNT];
-    for (u32 i = 0; i < std::size(s_instance->m_courseSHA1IsValid); i++) {
-        s_instance->m_courseSHA1IsValid[i] = false;
-    }
 
     s_instance->m_spCanSave = true;
     s_instance->m_spLicenseCount = 0;
@@ -469,6 +466,10 @@ void SaveManager::saveGhost(GhostFile *file) {
 
     m_saveGhostResult = false;
 
+    u8 courseSHA1[0x14];
+    ResourceManager::ComputeCourseSHA1(courseSHA1);
+    SPFooter::OnRaceEnd(courseSHA1);
+
     Time raceTime = file->raceTime();
     if (raceTime.minutes > 99) {
         return;
@@ -483,7 +484,7 @@ void SaveManager::saveGhost(GhostFile *file) {
     u32 offset = swprintf(path, 255 + 1, L"/mkw-sp/ghosts/");
 
     char courseName[0x14 * 2 + 1];
-    GetCourseName(m_courseSHA1s[file->courseId()], courseName);
+    GetCourseName(courseSHA1, courseName);
     offset += swprintf(path + offset, 255 + 1 - offset, L"%s", courseName);
 
     if (!SP::Storage::CreateDir(path, true)) {
@@ -533,33 +534,6 @@ void SaveManager::GetCourseName(const u8 *courseSHA1, char (&courseName)[0x14 * 
     for (u32 i = 0, offset = 0; i < 0x14; i++) {
         offset += snprintf(courseName, std::size(courseName) - offset, "%02x", courseSHA1[i]);
     }
-}
-
-bool SaveManager::computeCourseSHA1Async(u32 courseId) {
-    if (m_courseSHA1IsValid[courseId]) {
-        return true;
-    }
-
-    m_isBusy = true;
-    m_taskThread->request(ComputeCourseSHA1Task, reinterpret_cast<void *>(courseId), nullptr);
-    return false;
-}
-
-void SaveManager::ComputeCourseSHA1Task(void *arg) {
-    assert(s_instance);
-    auto courseId = reinterpret_cast<u32>(arg);
-    s_instance->computeCourseSHA1(courseId);
-}
-
-void SaveManager::computeCourseSHA1(u32 courseId) {
-    ResourceManager::ComputeCourseSHA1(courseId, m_courseSHA1s[courseId]);
-    m_courseSHA1IsValid[courseId] = true;
-
-    m_isBusy = false;
-}
-
-const u8 *SaveManager::courseSHA1(u32 courseId) const {
-    return m_courseSHA1s[courseId];
 }
 
 SaveManager *SaveManager::Instance() {
@@ -797,10 +771,6 @@ void SaveManager_SetMiiId(const MiiId *miiId) {
 MiiId SaveManager_GetSPLicenseMiiId(u32 licenseId) {
     auto *saveManager = System::SaveManager::Instance();
     return std::bit_cast<MiiId>(saveManager->getMiiId(licenseId));
-}
-
-const u8 *SaveManager_CourseSHA1(u32 courseId) {
-    return System::SaveManager::Instance()->courseSHA1(courseId);
 }
 
 bool vsSpeedModIsEnabled;

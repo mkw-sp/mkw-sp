@@ -58,11 +58,9 @@ bool SPFooter::checkSize(u32 size) const {
     }
 }
 
-void SPFooter::OnRaceStart(const u8 *courseSHA1, bool speedModIsEnabled, bool isVanilla,
-        bool setInMirror) {
+void SPFooter::OnRaceStart(bool speedModIsEnabled, bool isVanilla, bool setInMirror) {
     s_instance = {};
     s_instance.version = VERSION;
-    memcpy(s_instance.courseSHA1, courseSHA1, std::size(s_instance.courseSHA1));
     s_instance.hasSpeedMod = speedModIsEnabled;
     s_instance.isVanilla = isVanilla;
     s_instance.hasSimplifiedControls = false;
@@ -100,6 +98,10 @@ void SPFooter::OnShroom(u32 lap) {
     }
 
     s_instance.shroomStrategy |= lap << (15 - 5 * ++s_usedShrooms);
+}
+
+void SPFooter::OnRaceEnd(const u8 *courseSHA1) {
+    memcpy(s_instance.courseSHA1, courseSHA1, std::size(s_instance.courseSHA1));
 }
 
 SPFooter SPFooter::s_instance{};
@@ -467,9 +469,8 @@ std::optional<u32> GhostFile::write(u8 *raw) {
 } // namespace System
 
 extern "C" {
-void SPFooter_OnRaceStart(const u8 *courseSHA1, bool speedModIsEnabled, bool isVanilla,
-        bool setInMirror) {
-    System::SPFooter::OnRaceStart(courseSHA1, speedModIsEnabled, isVanilla, setInMirror);
+void SPFooter_OnRaceStart(bool speedModIsEnabled, bool isVanilla, bool setInMirror) {
+    System::SPFooter::OnRaceStart(speedModIsEnabled, isVanilla, setInMirror);
 }
 
 void SPFooter_OnLapEnd(u32 lap, f32 timeDiff) {
