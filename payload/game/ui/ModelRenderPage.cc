@@ -32,7 +32,7 @@ void ModelRenderPage::onInit() {
     auto *gameScene = System::GameScene::Instance();
     gameScene->volatileHeapCollection.setGroupIdAll(3);
 
-    System::ResourceManager::Instance()->createMenuHeaps(m_modelCount, 0);
+    System::ResourceManager::Instance()->createMenuHeaps(m_modelCount, 1);
     MenuModelManager::Instance()->init(m_modelCount, &onDriverModelLoaded);
 
     gameScene->volatileHeapCollection.setGroupIdAll(6);
