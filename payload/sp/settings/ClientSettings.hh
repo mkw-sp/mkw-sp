@@ -125,6 +125,7 @@ enum class TeamSize {
     Three,
     Four,
     Six,
+    Random,
 };
 
 enum class DriftMode {
