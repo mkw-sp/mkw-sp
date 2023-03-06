@@ -14,16 +14,12 @@ void GhostManagerPage::List::populate(u32 /* courseId */) {}
 void GhostManagerPage::SPList::populate() {
     auto *saveManager = System::SaveManager::Instance();
     u32 courseId = System::RaceConfig::Instance()->menuScenario().courseId;
-    const u8 *courseSHA1 = saveManager->courseSHA1(courseId);
     auto cc = saveManager->getSetting<SP::ClientSettings::Setting::TAClass>();
     bool speedModIsEnabled = cc == SP::ClientSettings::TAClass::CC200;
     m_count = 0;
     for (u32 i = 0; i < saveManager->ghostCount(); i++) {
         auto *header = saveManager->rawGhostHeader(i);
         auto *footer = saveManager->ghostFooter(i);
-        if (footer->courseSHA1() && memcmp(*(footer->courseSHA1()), courseSHA1, 0x14)) {
-            continue;
-        }
         if (footer->hasSpeedMod() && *(footer->hasSpeedMod()) != speedModIsEnabled) {
             continue;
         }
@@ -79,7 +75,7 @@ void GhostManagerPage::process() {
     REPLACED(process)();
 
     if (nextRequestIsPopulate) {
-        dispatchPopulate();
+        processPopulate();
     }
 }
 
@@ -95,16 +91,6 @@ void GhostManagerPage::processPopulate() {
     m_list.populate();
 
     m_currentRequest = Request::None;
-}
-
-void GhostManagerPage::dispatchPopulate() {
-    u32 courseId = System::RaceConfig::Instance()->menuScenario().courseId;
-    if (System::SaveManager::Instance()->computeCourseSHA1Async(courseId)) {
-        processPopulate();
-        return;
-    }
-
-    m_currentRequest = Request::Populate;
 }
 
 void GhostManagerPage::repopulate() {

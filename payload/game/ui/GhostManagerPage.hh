@@ -46,7 +46,6 @@ private:
     };
 
     void processPopulate();
-    void dispatchPopulate();
     REPLACE void setupGhostReplay(bool isStaffGhost);
     REPLACE void setupGhostRace(bool isStaffGhost, bool isNewRecord, bool fromReplay);
 

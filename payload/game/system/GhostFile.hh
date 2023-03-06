@@ -78,8 +78,7 @@ static_assert(sizeof(CTGPFooter) == 0xd0);
 struct SPFooter {
     bool checkSize(u32 size) const;
 
-    static void OnRaceStart(const u8 *courseSHA1, bool speedModIsEnabled, bool isVanilla,
-            bool setInMirror);
+    static void OnRaceStart(bool speedModIsEnabled, bool isVanilla, bool setInMirror);
     static void OnVanilla(bool isVanilla);
     static void OnSimplifiedControls();
     static void OnLapEnd(u32 lap, f32 timeDiff);
@@ -87,6 +86,7 @@ struct SPFooter {
     static void OnHWG();
     static void OnWallride();
     static void OnShroom(u32 lap);
+    static void OnRaceEnd(const u8 *courseSHA1);
 
     u32 version;
     u8 courseSHA1[0x14];

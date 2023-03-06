@@ -79,10 +79,7 @@ MultiDvdArchive *ResourceManager::loadMission(u32 courseId, u32 missionId, EGG::
     return archive;
 }
 
-void ResourceManager::ComputeCourseSHA1(u32 courseId, u8 *courseSHA1) {
-    s_instance->preloadCourseAsync(courseId);
-    s_instance->process();
-
+void ResourceManager::ComputeCourseSHA1(u8 *courseSHA1) {
     NETSHA1Context cx;
     NETSHA1Init(&cx);
     const DvdArchive &archive = s_instance->m_courseCache.m_archive->archive(0);
