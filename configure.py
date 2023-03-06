@@ -5,6 +5,7 @@ import glob
 import io
 import os
 import sys
+import platform
 from argparse import ArgumentParser
 
 from vendor.ninja_syntax import Writer
@@ -14,6 +15,12 @@ try:
     del json5
 except ModuleNotFoundError:
     raise SystemExit("Error: pyjson5 not found. Please install it with `python -m pip install json5`")
+
+if sys.version_info < (3, 10):
+    raise SystemExit("Error: Python 3.10 or newer is required")
+
+if platform.python_implementation() == "PyPy":
+    print("Warning: PyPy may be slower, due to spawning many python processes.")
 
 parser = ArgumentParser()
 parser.add_argument('--gdb_compatible', action='store_true')
