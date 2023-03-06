@@ -4,8 +4,6 @@ namespace System {
 
 class RootScene : public Scene {
 public:
-    void allocate();
-
     static RootScene *Instance() {
         return s_instance;
     }

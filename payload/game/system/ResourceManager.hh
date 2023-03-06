@@ -20,11 +20,8 @@ public:
             Loaded = 2,
         };
 
-        void init();
-        void deinit();
-
+        REPLACE void init();
         REPLACE void load(u32 courseId);
-        void load(u32 courseId, bool splitScreen);
 
     private:
         u8 _00[0x10 - 0x00];
