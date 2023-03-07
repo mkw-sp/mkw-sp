@@ -10,6 +10,7 @@
 extern "C" {
 
 #include <vendor/libhydrogen/hydrogen.h>
+#include <sp/settings/ClientSettings.hh>
 
 }
 
@@ -113,21 +114,8 @@ void MultiTopPage::onVSButtonFront([[maybe_unused]] PushButton *button,
         [[maybe_unused]] u32 localPlayerId) {
     auto *saveManager = System::SaveManager::Instance();
     auto teamsizeSetting = saveManager->getSetting<SP::ClientSettings::Setting::VSTeamSize>();
-    u32 maxTeamSize;
-
-    if (teamsizeSetting == SP::ClientSettings::TeamSize::Random) {        
-        u32 rand_number = hydro_random_u32();
-        rand_number = rand_number % 5;        
-        if (rand_number == 4) {        
-            maxTeamSize = 6;        
-        } else {            
-            maxTeamSize = rand_number + 1; 
-        }    
-    } else if (teamsizeSetting == SP::ClientSettings::TeamSize::Six) {    
-        maxTeamSize = 6;    
-    } else {    
-        maxTeamSize = static_cast<u32>(teamsizeSetting) + 1;    
-    }
+    
+    u32 maxTeamSize = getmaxTeamSize(teamsizeSetting);
 
     auto *context = SectionManager::Instance()->globalContext();
     u32 localPlayerCount = context->m_localPlayerCount;
@@ -172,21 +160,8 @@ void MultiTopPage::onBTButtonFront([[maybe_unused]] PushButton *button,
 
     u32 localPlayerCount = context->m_localPlayerCount;
     auto teamsizeSetting = saveManager->getSetting<SP::ClientSettings::Setting::BTTeamSize>();
-    u32 maxTeamSize;
-
-    if (teamsizeSetting == SP::ClientSettings::TeamSize::Random) {
-        u32 rand_number = hydro_random_u32();
-        rand_number = rand_number % 5;
-        if (rand_number == 4) {
-            maxTeamSize = 6;
-        } else {
-            maxTeamSize = rand_number + 1; 
-        }
-    } else if (teamsizeSetting == SP::ClientSettings::TeamSize::Six) {
-        maxTeamSize = 6;
-    } else {
-        maxTeamSize = static_cast<u32>(teamsizeSetting) + 1;
-    }
+    
+    u32 maxTeamSize = getmaxTeamSize(teamsizeSetting);
 
     auto &menuScenario = System::RaceConfig::Instance()->menuScenario();
     menuScenario.engineClass = System::RaceConfig::EngineClass::CC50;
