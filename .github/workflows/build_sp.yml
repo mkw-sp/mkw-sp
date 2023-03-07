@@ -58,3 +58,15 @@ jobs:
         with: 
           name: mkw-sp
           path: out
+
+  format:
+    name: Format
+    runs-on: ubuntu-20.04
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Format MKW-SP
+        uses: jidicula/clang-format-action@v4.10.1
+        with:
+          clang-format-version: '15'
+          exclude-regex: '(vendor|proto)'
