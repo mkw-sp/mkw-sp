@@ -18,14 +18,6 @@ OnlineConnectionManagerPage::OnlineConnectionManagerPage() : m_socket{0x7F000001
     m_state = State::Initial;
 };
 
-void OnlineConnectionManagerPage::dt(s32 type) {
-    if (type > 0) {
-        delete this;
-    } else {
-        this->~OnlineConnectionManagerPage();
-    }
-}
-
 void OnlineConnectionManagerPage::onInit() {
     m_inputManager.init(0, false);
     setInputManager(&m_inputManager);
