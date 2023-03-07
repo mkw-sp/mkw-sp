@@ -10,6 +10,7 @@
 extern "C" {
 
 #include <vendor/libhydrogen/hydrogen.h>
+#include <sp/settings/ClientSettings.hh>
 
 }
 
@@ -162,20 +163,8 @@ void SingleTopPage::onVSButtonFront([[maybe_unused]] PushButton *button,
     context->m_matchCount = saveManager->getSetting<SP::ClientSettings::Setting::VSRaceCount>();
 
     auto maxTeamSizeSetting = saveManager->getSetting<SP::ClientSettings::Setting::VSTeamSize>();
-    u32 maxTeamSize;
-    if (maxTeamSizeSetting == SP::ClientSettings::TeamSize::Random) {
-        u32 rand_number = hydro_random_u32();
-        rand_number = rand_number % 5;        
-        if (rand_number == 4) {       
-            maxTeamSize = 6;        
-        } else {            
-            maxTeamSize = rand_number + 1; 
-        }    
-    } else if (maxTeamSizeSetting == SP::ClientSettings::TeamSize::Six) {    
-        maxTeamSize = 6 ;    
-    } else {    
-        maxTeamSize = static_cast<u32>(maxTeamSizeSetting) + 1;    
-    }
+    
+    u32 maxTeamSize = getmaxTeamSize(maxTeamSizeSetting);
 
     auto &menuScenario = System::RaceConfig::Instance()->menuScenario();
     menuScenario.gameMode = System::RaceConfig::GameMode::OfflineVS;
@@ -215,21 +204,7 @@ void SingleTopPage::onBTButtonFront([[maybe_unused]] PushButton *button,
 
     auto maxTeamSizeSetting = saveManager->getSetting<SP::ClientSettings::Setting::BTTeamSize>();
     
-    u32 maxTeamSize;
-
-    if (maxTeamSizeSetting == SP::ClientSettings::TeamSize::Random) {
-        u32 rand_number = hydro_random_u32();
-        rand_number = rand_number % 5;
-        if (rand_number == 4) {
-            maxTeamSize = 6;
-        } else {
-            maxTeamSize = rand_number + 1;
-        }
-    } else if (maxTeamSizeSetting == SP::ClientSettings::TeamSize::Six) {
-        maxTeamSize = 6 ;
-    } else {
-        maxTeamSize = static_cast<u32>(maxTeamSizeSetting) + 1;
-    }
+    u32 maxTeamSize = getmaxTeamSize(maxTeamSizeSetting);
 
     auto &menuScenario = System::RaceConfig::Instance()->menuScenario();
     menuScenario.gameMode = System::RaceConfig::GameMode::OfflineBT;
