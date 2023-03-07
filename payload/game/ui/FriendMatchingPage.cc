@@ -125,7 +125,7 @@ void FriendMatchingPage::prepareStartClient() {
     m_roomStarted = true;
 }
 
-void FriendMatchingPage::onBack([[maybe_unused]] u32 localPlayerId) {
+void FriendMatchingPage::onBack(u32 /* localPlayerId */) {
     auto *roomManager = SP::RoomManager::Instance();
     if (roomManager) {
         roomManager->destroyInstance();
@@ -180,7 +180,7 @@ void FriendMatchingPage::Handler::onSelect() {
 }
 
 void FriendMatchingPage::Handler::onPlayerJoin(const System::RawMii *mii, u32 location,
-        u16 latitude, u16 longitude, u32 UNUSED(regionLineColor)) {
+        u16 latitude, u16 longitude, u32 /* regionLineColor */) {
     Section *section = SectionManager::Instance()->currentSection();
     auto *friendRoomBackPage = section->page<PageId::FriendRoomBack>();
     friendRoomBackPage->onPlayerJoin(*mii, location, latitude, longitude);

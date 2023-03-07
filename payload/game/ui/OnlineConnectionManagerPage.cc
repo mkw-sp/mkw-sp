@@ -119,7 +119,7 @@ void OnlineConnectionManagerPage::startLogin() {
     write(response);
 }
 
-void OnlineConnectionManagerPage::respondToChallenge(const STCMessage &event) {
+void OnlineConnectionManagerPage::respondToChallenge(const STCMessage &/* event */) {
     CTSMessage response;
     u16 longitude;
     u16 latitude;

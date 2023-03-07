@@ -139,7 +139,7 @@ void MultiTeamSelectPage::onRefocus() {
     }
 }
 
-void MultiTeamSelectPage::onBack([[maybe_unused]] u32 localPlayerId) {
+void MultiTeamSelectPage::onBack(u32 localPlayerId) {
     if (!m_teamControls[localPlayerId].m_enabled) {
         m_teamControls[localPlayerId].m_enabled = true;
 
@@ -165,8 +165,8 @@ void MultiTeamSelectPage::onBack([[maybe_unused]] u32 localPlayerId) {
     startReplace(Anim::Prev, 0.0f);
 }
 
-void MultiTeamSelectPage::onTeamControlFront([[maybe_unused]] UpDownControl *control,
-        [[maybe_unused]] u32 localPlayerId) {
+void MultiTeamSelectPage::onTeamControlFront(UpDownControl *control,
+        u32 localPlayerId) {
     auto *driverModelManager = MenuModelManager::Instance()->driverModelManager();
     if (control->m_enabled) {
         control->m_enabled = false;
@@ -221,15 +221,15 @@ void MultiTeamSelectPage::onTeamControlFront([[maybe_unused]] UpDownControl *con
 }
 
 void MultiTeamSelectPage::onTeamValueChange(
-        [[maybe_unused]] TextUpDownValueControl::TextControl *text, [[maybe_unused]] u32 index) {
+        TextUpDownValueControl::TextControl *text, u32 index) {
     text->setMessageAll(10268 + index);
     char flagPane[0x20];
     snprintf(flagPane, std::size(flagPane), "flag_%u", index);
     text->setPicture("flag_set_p", flagPane);
 }
 
-void MultiTeamSelectPage::onBackButtonFront([[maybe_unused]] PushButton *button,
-        [[maybe_unused]] u32 localPlayerId) {
+void MultiTeamSelectPage::onBackButtonFront(PushButton *button,
+        u32 /* localPlayerId */) {
     auto *context = SectionManager::Instance()->globalContext();
     u32 localPlayerCount = context->m_localPlayerCount;
     auto *driverModelManager = MenuModelManager::Instance()->driverModelManager();

@@ -18,8 +18,8 @@ public:
     void rip(const char *path, EGG::Heap *fileHeap, s8 align);
 
     REPLACE void load(const char *path, EGG::Heap *archiveHeap, bool isCompressed, s8 align,
-            EGG::Heap *fileHeap, u32 UNUSED(unused));
-    REPLACE void loadOther(DvdArchive *other, EGG::Heap *UNUSED(unused));
+            EGG::Heap *fileHeap, u32);
+    REPLACE void loadOther(DvdArchive *other, EGG::Heap *);
 
     void *REPLACED(getFile)(const char *path, size_t *size);
     REPLACE void *getFile(const char *path, size_t *size);

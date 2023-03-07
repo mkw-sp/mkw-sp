@@ -106,7 +106,7 @@ static void setupCamera(lyt_DrawInfo *drawInfo, lyt_Layout *lyt) {
     drawInfo->viewRect = frame;
 }
 
-static void FatalScene_calc(EGGScene *UNUSED(scene)) {}
+static void FatalScene_calc(EGGScene */* scene */) {}
 static void FatalScene_draw(EGGScene *scene) {
     FatalScene *this = (FatalScene *)scene;
 
@@ -176,10 +176,10 @@ void FatalScene_SetBody(FatalScene *this, const wchar_t *body) {
     }
 }
 
-static void FatalScene_exit(EGGScene *UNUSED(scene)) {}
-static void FatalScene_reinit(EGGScene *UNUSED(scene)) {}
-static void FatalScene_incoming_childDestroy(EGGScene *UNUSED(scene)) {}
-static void FatalScene_outgoing_childCreate(EGGScene *UNUSED(scene)) {}
+static void FatalScene_exit(EGGScene */* scene */) {}
+static void FatalScene_reinit(EGGScene */* scene */) {}
+static void FatalScene_incoming_childDestroy(EGGScene */* scene */) {}
+static void FatalScene_outgoing_childCreate(EGGScene */* scene */) {}
 
 static void FatalScene_DTAdapater(EGGScene *scene, int type) {
     FatalScene_DT((FatalScene *)scene, type);
@@ -198,7 +198,7 @@ static EGGScene_Vtable sFatalScene_Vtable = (EGGScene_Vtable){
 
 static void PurgeHeap(MEMHeapHandle heap);
 
-static void free_all_visitor(void *block, MEMHeapHandle heap, u32 UNUSED(userParam)) {
+static void free_all_visitor(void *block, MEMHeapHandle heap, u32 /* userParam */) {
     for (MEMHeapHandle child = NULL; (child = MEMGetNextListObject(&heap->childList, child));) {
         PurgeHeap(child);
     }

@@ -63,7 +63,7 @@ std::optional<FileHandle> NetStorage::open(const wchar_t *path, const char *mode
     return readOpen(file);
 }
 
-bool NetStorage::createDir(const wchar_t *UNUSED(path), bool UNUSED(allowNop)) {
+bool NetStorage::createDir(const wchar_t */* path */, bool /* allowNop */) {
     return false;
 }
 
@@ -119,11 +119,11 @@ std::optional<NodeInfo> NetStorage::stat(const wchar_t *path) {
     return readNodeInfo();
 }
 
-bool NetStorage::rename(const wchar_t *UNUSED(srcPath), const wchar_t *UNUSED(dstPath)) {
+bool NetStorage::rename(const wchar_t */* srcPath */, const wchar_t */* dstPath */) {
     return false;
 }
 
-bool NetStorage::remove(const wchar_t *UNUSED(path), bool UNUSED(allowNop)) {
+bool NetStorage::remove(const wchar_t */* path */, bool /* allowNop */) {
     return false;
 }
 

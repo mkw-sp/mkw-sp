@@ -8,7 +8,7 @@ static_assert(sizeof(LicenseControl) == 0x174);
 void refreshLicenseControl(void *r3, LicenseControl *control, u32 licenseId, MiiGroup *miiGroup,
         u32 index);
 
-void my_refreshLicenseControl(void *UNUSED(r3), LicenseControl *control, u32 UNUSED(licenseId),
+void my_refreshLicenseControl(void */* r3 */, LicenseControl *control, u32 /* licenseId */,
         MiiGroup *miiGroup, u32 index) {
     LayoutUIControl_setPaneVisible(control, "new", false);
     LayoutUIControl_setPaneVisible(control, "mii", true);

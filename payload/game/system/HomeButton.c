@@ -7,7 +7,7 @@
 void *HomeButton_getFile(void *r3, const char *path, EGG_Heap *heap, bool isCompressed,
         u32 *fileSize);
 
-static void *my_HomeButton_getFile(void *UNUSED(r3), const char *path, EGG_Heap *heap,
+static void *my_HomeButton_getFile(void */* r3 */, const char *path, EGG_Heap *heap,
         bool isCompressed, u32 *fileSize) {
     if (isCompressed) {
         u8 *file;

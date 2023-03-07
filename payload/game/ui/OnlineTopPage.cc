@@ -81,16 +81,16 @@ void OnlineTopPage::onActivate() {
     }
 }
 
-void OnlineTopPage::onBack(u32 localPlayerId) {
+void OnlineTopPage::onBack(u32 /* localPlayerId */) {
     m_replacement = PageId::None;
     push(PageId::WifiDisconnect, Anim::None);
 }
 
-void OnlineTopPage::onButtonSelect(PushButton* button, [[maybe_unused]] u32 localPlayerId) {
+void OnlineTopPage::onButtonSelect(PushButton* button, u32 /* localPlayerId */) {
     m_instructionText.setMessage(4310 + button->m_index);
 }
 
-void OnlineTopPage::onWorldwideButtonFront(PushButton* button, [[maybe_unused]] u32 localPlayerId) {
+void OnlineTopPage::onWorldwideButtonFront(PushButton* button, u32 /* localPlayerId */) {
     auto section = SectionManager::Instance()->currentSection();
     auto connectionManager = section->page<PageId::OnlineConnectionManager>();
     connectionManager->setTrackpack(0);
@@ -109,15 +109,15 @@ void OnlineTopPage::showUnimplemented() {
     push(PageId::MessagePopup, Anim::None);
 }
 
-void OnlineTopPage::onTrackpackButtonFront(PushButton* button, [[maybe_unused]] u32 localPlayerId) {
+void OnlineTopPage::onTrackpackButtonFront(PushButton* /* button */, u32 /* localPlayerId */) {
     showUnimplemented();
 }
 
-void OnlineTopPage::onFriendButtonFront(PushButton* button, [[maybe_unused]] u32 localPlayerId) {
+void OnlineTopPage::onFriendButtonFront(PushButton* /* button */, u32 /* localPlayerId */) {
     showUnimplemented();
 }
 
-void OnlineTopPage::onDirectButtonFront(PushButton* button, [[maybe_unused]] u32 localPlayerId) {
+void OnlineTopPage::onDirectButtonFront(PushButton* /* button */, u32 /* localPlayerId */) {
     auto section = SectionManager::Instance()->currentSection();
     auto confirmPopup = section->page<PageId::YesNoPopup>();
 
@@ -129,7 +129,7 @@ void OnlineTopPage::onDirectButtonFront(PushButton* button, [[maybe_unused]] u32
     push(PageId::YesNoPopup, Anim::Next);
 }
 
-void OnlineTopPage::onBackButtonFront([[maybe_unused]] PushButton* button, u32 localPlayerId) {
+void OnlineTopPage::onBackButtonFront(PushButton* /* button */, u32 localPlayerId) {
     onBack(localPlayerId);
 }
 

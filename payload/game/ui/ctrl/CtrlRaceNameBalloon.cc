@@ -186,7 +186,7 @@ void BalloonManager::init(u8 localPlayerId) {
     }
 }
 
-void BalloonManager::addNameControl(CtrlRaceNameBalloon *UNUSED(nameControl)) {
+void BalloonManager::addNameControl(CtrlRaceNameBalloon */* nameControl */) {
     m_nameCount++;
 }
 

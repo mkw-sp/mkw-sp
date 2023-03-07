@@ -15,7 +15,7 @@ extern int Map2DRenderer_init__createTexBuffer;
 
 extern void* EGG_CpuTexture_Construct(void* self, short width, short height, GXTexFmt format);
 
-static GXTexFmt GetMinimapTextureFormat(GXTexFmt UNUSED(oldFormat)) {
+static GXTexFmt GetMinimapTextureFormat(GXTexFmt /* oldFormat */) {
     return (GXTexFmt)kMinimapFormats_Override;
 }
 

@@ -4,8 +4,8 @@
 
 namespace UI {
 
-void MultiDriftSelectPage::onButtonFront([[maybe_unused]] PushButton *button,
-        [[maybe_unused]] u32 localPlayerId) {
+void MultiDriftSelectPage::onButtonFront(PushButton *button,
+        u32 localPlayerId) {
     // Back button processing
     s32 buttonIdx = button->m_index;
     if (buttonIdx == -100 && localPlayerId == 0) {

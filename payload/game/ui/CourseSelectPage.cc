@@ -164,12 +164,12 @@ u32 CourseSelectPage::lastSelected() const {
     return m_lastSelected;
 }
 
-void CourseSelectPage::onBack([[maybe_unused]] u32 localPlayerId) {
+void CourseSelectPage::onBack(u32 /* localPlayerId */) {
     onBackCommon(0.0f);
 }
 
-void CourseSelectPage::onButtonFront([[maybe_unused]] PushButton *button,
-        [[maybe_unused]] u32 localPlayerId) {
+void CourseSelectPage::onButtonFront(PushButton * button,
+        u32 /* localPlayerId */) {
     u32 courseIndex = m_sheetIndex * m_buttons.size() + button->m_index;
     auto &entry = SP::CourseDatabase::Instance().entry(m_filter, courseIndex);
 
@@ -196,13 +196,13 @@ void CourseSelectPage::onButtonFront([[maybe_unused]] PushButton *button,
     }
 }
 
-void CourseSelectPage::onButtonSelect([[maybe_unused]] PushButton *button,
-        [[maybe_unused]] u32 localPlayerId) {
+void CourseSelectPage::onButtonSelect(PushButton * button,
+        u32 /* localPlayerId */) {
     m_lastSelected = button->m_index;
 }
 
-void CourseSelectPage::onSheetSelectRight([[maybe_unused]] SheetSelectControl *control,
-        [[maybe_unused]] u32 localPlayerId) {
+void CourseSelectPage::onSheetSelectRight(SheetSelectControl */* control */,
+        u32 /* localPlayerId */) {
     if (m_sheetIndex == m_sheetCount - 1) {
         m_sheetIndex = 0;
     } else {
@@ -220,8 +220,8 @@ void CourseSelectPage::onSheetSelectRight([[maybe_unused]] SheetSelectControl *c
     m_scrollBar.m_chosen = m_sheetIndex;
 }
 
-void CourseSelectPage::onSheetSelectLeft([[maybe_unused]] SheetSelectControl *control,
-        [[maybe_unused]] u32 localPlayerId) {
+void CourseSelectPage::onSheetSelectLeft(SheetSelectControl */* control */,
+        u32 /* localPlayerId */) {
     if (m_sheetIndex == 0) {
         m_sheetIndex = m_sheetCount - 1;
     } else {
@@ -239,21 +239,21 @@ void CourseSelectPage::onSheetSelectLeft([[maybe_unused]] SheetSelectControl *co
     m_scrollBar.m_chosen = m_sheetIndex;
 }
 
-void CourseSelectPage::onScrollBarChange([[maybe_unused]] ScrollBar *scrollBar,
-        [[maybe_unused]] u32 localPlayerId, [[maybe_unused]] u32 chosen) {
+void CourseSelectPage::onScrollBarChange(ScrollBar */* scrollBar */,
+        u32 /* localPlayerId */, u32 chosen) {
     m_sheetIndex = chosen;
 
     refresh();
 }
 
-void CourseSelectPage::onBackButtonFront([[maybe_unused]] PushButton *button,
-        [[maybe_unused]] u32 localPlayerId) {
+void CourseSelectPage::onBackButtonFront(PushButton *button,
+        u32 /* localPlayerId */) {
     f32 delay = button->getDelay();
     onBackCommon(delay);
 }
 
-void CourseSelectPage::onBackConfirm([[maybe_unused]] s32 choice,
-        [[maybe_unused]] PushButton *button) {
+void CourseSelectPage::onBackConfirm(s32 /* choice */,
+        PushButton * /* button */) {
     m_backConfirmed = true;
 }
 

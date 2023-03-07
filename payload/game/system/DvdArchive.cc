@@ -16,7 +16,7 @@ extern "C" {
 namespace System {
 
 void DvdArchive::load(const char *path, EGG::Heap *archiveHeap, bool isCompressed, s8 align,
-        EGG::Heap *fileHeap, u32 UNUSED(unused)) {
+        EGG::Heap *fileHeap, u32) {
     if (m_state != State::Cleared) {
         return;
     }
@@ -34,7 +34,7 @@ void DvdArchive::load(const char *path, EGG::Heap *archiveHeap, bool isCompresse
     }
 }
 
-void DvdArchive::loadOther(DvdArchive *other, EGG::Heap *UNUSED(unused)) {
+void DvdArchive::loadOther(DvdArchive *other, EGG::Heap *) {
     if (m_state != State::Cleared || other->m_state != State::Mounted) {
         return;
     }

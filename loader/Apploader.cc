@@ -73,7 +73,7 @@ static std::optional<Partition> FindGamePartition(IOS::DI &di) {
     return {};
 }
 
-static void report(const char *UNUSED(format), ...) {}
+static void report(const char */* format */, ...) {}
 
 std::optional<GameEntryFunc> LoadAndRun(IOS::DI &di) {
     if (!di.readDiskID()) {

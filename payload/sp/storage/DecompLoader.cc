@@ -78,7 +78,7 @@ static void Read(StartInfo info) {
     updateExchange.right(0);
 }
 
-static void *Handle(void *UNUSED(arg)) {
+static void *Handle(void */* arg */) {
     while (true) {
         auto info = startExchange.right({});
         Read(info);

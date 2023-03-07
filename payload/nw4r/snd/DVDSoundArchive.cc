@@ -15,11 +15,11 @@ void DVDSoundArchive::dt(s32 type) {
     SoundArchive::dt(type);
 }
 
-const void *DVDSoundArchive::getFileAddress(u32 UNUSED(fileId)) {
+const void *DVDSoundArchive::getFileAddress(u32 /* fileId */) {
     return nullptr;
 }
 
-const void *DVDSoundArchive::getWaveDataFileAddress(u32 UNUSED(fileId)) {
+const void *DVDSoundArchive::getWaveDataFileAddress(u32 /* fileId */) {
     return nullptr;
 }
 
@@ -45,7 +45,7 @@ ut::FileStream *DVDSoundArchive::openStream(void *buffer, s32 size, u32 start, u
 }
 
 ut::FileStream *DVDSoundArchive::openExtStream(void *buffer, s32 size, const char *extFilePath,
-        u32 UNUSED(start), u32 UNUSED(length)) {
+        u32 /* start */, u32 /* length */) {
     if (size < static_cast<s32>(sizeof(FileStream))) {
         return nullptr;
     }

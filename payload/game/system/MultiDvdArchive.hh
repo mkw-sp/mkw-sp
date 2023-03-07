@@ -22,7 +22,7 @@ public:
     virtual ~MultiDvdArchive();
 
     void clear();
-    void load(const char *path, EGG::Heap *archiveHeap, EGG::Heap *fileHeap, u32 UNUSED(unused));
+    void load(const char *path, EGG::Heap *archiveHeap, EGG::Heap *fileHeap, u32);
     void loadOther(MultiDvdArchive *other, EGG::Heap *heap);
 
     void setMission(u32 missionId);

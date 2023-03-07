@@ -59,7 +59,7 @@ void SaveManager::initAsync() {
     m_taskThread->request(InitTask, nullptr, nullptr);
 }
 
-void SaveManager::InitTask(void *UNUSED(arg)) {
+void SaveManager::InitTask(void */* arg */) {
     assert(s_instance);
     s_instance->init();
 }
@@ -100,7 +100,7 @@ void SaveManager::initGhostsAsync() {
     OSResumeThread(&m_ghostInitThread);
 }
 
-void *SaveManager::InitGhostsTask(void *UNUSED(arg)) {
+void *SaveManager::InitGhostsTask(void */* arg */) {
     assert(s_instance);
     s_instance->initGhosts();
     return nullptr;
@@ -206,7 +206,7 @@ void SaveManager::saveLicensesAsync() {
     m_taskThread->request(SaveSPSaveTask, nullptr, nullptr);
 }
 
-void SaveManager::SaveSPSaveTask(void *UNUSED(arg)) {
+void SaveManager::SaveSPSaveTask(void */* arg */) {
     assert(s_instance);
     s_instance->saveSPSave();
 }
@@ -368,12 +368,12 @@ GhostFooter *SaveManager::ghostFooter(u32 i) {
     return &m_ghostFooters[i];
 }
 
-void SaveManager::loadGhostHeadersAsync(s32 UNUSED(licenseId), GhostGroup *UNUSED(group)) {
+void SaveManager::loadGhostHeadersAsync(s32 /* licenseId */, GhostGroup */* group */) {
     m_isBusy = true;
     m_taskThread->request(LoadGhostHeadersTask, nullptr, nullptr);
 }
 
-void SaveManager::LoadGhostHeadersTask(void *UNUSED(arg)) {
+void SaveManager::LoadGhostHeadersTask(void */* arg */) {
     assert(s_instance);
     s_instance->loadGhostHeaders();
 }
@@ -387,13 +387,13 @@ void SaveManager::loadGhostHeaders() {
     m_result = NandResult::Ok;
 }
 
-void SaveManager::loadGhostAsync(s32 UNUSED(licenseId), u32 UNUSED(category), u32 UNUSED(index),
-        u32 UNUSED(courseId)) {
+void SaveManager::loadGhostAsync(s32 /* licenseId */, u32 /* category */, u32 /* index */,
+        u32 /* courseId */) {
     m_isBusy = true;
     m_taskThread->request(LoadGhostsTask, nullptr, nullptr);
 }
 
-void SaveManager::LoadGhostsTask(void *UNUSED(arg)) {
+void SaveManager::LoadGhostsTask(void */* arg */) {
     assert(s_instance);
     s_instance->loadGhosts();
 }
@@ -449,8 +449,8 @@ bool SaveManager::loadGhost(u32 i) {
     return RawGhostFile::IsValid((*menuScenario.ghostBuffer)[i], 0x2800);
 }
 
-void SaveManager::saveGhostAsync(s32 UNUSED(licenseId), u32 UNUSED(category), u32 UNUSED(index),
-        GhostFile *file, bool UNUSED(saveLicense)) {
+void SaveManager::saveGhostAsync(s32 /* licenseId */, u32 /* category */, u32 /* index */,
+        GhostFile *file, bool /* saveLicense */) {
     m_isBusy = true;
     m_taskThread->request(SaveGhostTask, file, nullptr);
 }

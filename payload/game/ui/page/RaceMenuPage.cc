@@ -15,8 +15,8 @@ extern "C" {
 
 namespace UI {
 
-void RaceMenuPage::onButtonFront([[maybe_unused]] PushButton *button,
-        [[maybe_unused]] u32 localPlayerId) {
+void RaceMenuPage::onButtonFront(PushButton *button,
+        u32 localPlayerId) {
     auto &raceScenario = System::RaceConfig::Instance()->raceScenario();
     auto &menuScenario = System::RaceConfig::Instance()->menuScenario();
 
@@ -59,8 +59,8 @@ void RaceMenuPage::onButtonFront([[maybe_unused]] PushButton *button,
     }
 }
 
-void RaceMenuPage::onNextButtonFront([[maybe_unused]] PushButton *button,
-        [[maybe_unused]] u32 localPlayerId) {
+void RaceMenuPage::onNextButtonFront(PushButton *button,
+        u32 /* localPlayerId */) {
     System::RaceConfig::Instance()->endRace();
 
     playSound(Sound::SoundId::SE_RC_PAUSE_EXIT_GAME, -1);
@@ -107,8 +107,8 @@ void RaceMenuPage::onNextButtonFront([[maybe_unused]] PushButton *button,
     Sound::BackgroundMusicManager::Instance()->prepare(Section::GetSoundId(sectionId), true);
 }
 
-void RaceMenuPage::onSettingsButtonFront([[maybe_unused]] PushButton *button,
-        [[maybe_unused]] u32 localPlayerId) {
+void RaceMenuPage::onSettingsButtonFront(PushButton *button,
+        u32 /* localPlayerId */) {
     auto *section = SectionManager::Instance()->currentSection();
     auto *menuSettingsPage = section->page<PageId::MenuSettings>();
     menuSettingsPage->configure(nullptr, id());
@@ -117,8 +117,8 @@ void RaceMenuPage::onSettingsButtonFront([[maybe_unused]] PushButton *button,
     startReplace(Anim::Next, delay);
 }
 
-void RaceMenuPage::onChangeGhostDataButtonFront([[maybe_unused]] PushButton *button,
-        [[maybe_unused]] u32 localPlayerId) {
+void RaceMenuPage::onChangeGhostDataButtonFront(PushButton *button,
+        u32 /* localPlayerId */) {
     playSound(Sound::SoundId::SE_RC_PAUSE_EXIT_GAME, -1);
 
     auto &menuScenario = System::RaceConfig::Instance()->menuScenario();

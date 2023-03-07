@@ -100,17 +100,17 @@ void OnlineTeamSelectPage::onReceiveTeamSelect(u32 playerId, u32 teamId) {
     }
 }
 
-void OnlineTeamSelectPage::onBack([[maybe_unused]] u32 localPlayerId) {}
+void OnlineTeamSelectPage::onBack(u32 /* localPlayerId */) {}
 
-void OnlineTeamSelectPage::onButtonFront([[maybe_unused]] PushButton *button,
-        [[maybe_unused]] u32 localPlayerId) {
+void OnlineTeamSelectPage::onButtonFront(PushButton *button,
+        u32 /* localPlayerId */) {
     u32 playerId = button->m_index;
     auto *roomClient = SP::RoomClient::Instance();
     roomClient->sendTeamSelect(playerId);
     m_buttons[playerId].refresh(roomClient->player(playerId).m_teamId);
 }
 
-void OnlineTeamSelectPage::onBackButtonFront([[maybe_unused]] PushButton *button,
-        [[maybe_unused]] u32 localPlayerId) {}
+void OnlineTeamSelectPage::onBackButtonFront(PushButton * /* button */,
+        u32 /* localPlayerId */) {}
 
 } // namespace UI

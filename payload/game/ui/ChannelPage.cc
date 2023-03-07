@@ -274,7 +274,7 @@ void ChannelPage::transition(State state) {
     m_state = state;
 }
 
-void *ChannelPage::Install(void *UNUSED(arg)) {
+void *ChannelPage::Install(void */* arg */) {
     SP::Channel::Install();
     return nullptr;
 }

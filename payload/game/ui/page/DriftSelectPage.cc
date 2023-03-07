@@ -13,8 +13,8 @@ void DriftSelectPage::onActivate() {
     selectDefault(m_buttons[sectionManager->globalContext()->m_driftModes[0] != 1]);
 }
 
-void DriftSelectPage::onButtonFront([[maybe_unused]] PushButton *button,
-        [[maybe_unused]] u32 localPlayerId) {
+void DriftSelectPage::onButtonFront(PushButton *button,
+        u32 /* localPlayerId */) {
     auto *sectionManager = SectionManager::Instance();
     auto *section = sectionManager->currentSection();
     auto sectionId = section->id();

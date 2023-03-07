@@ -15,7 +15,7 @@ extern "C" {
 
 namespace SP {
 
-bool RoomClient::isPlayerLocal([[maybe_unused]] u32 playerId) const {
+bool RoomClient::isPlayerLocal(u32 playerId) const {
     for (size_t i = 0; i < m_localPlayerCount; i++) {
         if (m_localPlayerIds[i] == playerId) {
             return true;
@@ -25,16 +25,15 @@ bool RoomClient::isPlayerLocal([[maybe_unused]] u32 playerId) const {
     return false;
 }
 
-bool RoomClient::isPlayerRemote([[maybe_unused]] u32 playerId) const {
+bool RoomClient::isPlayerRemote(u32 playerId) const {
     return playerId < m_playerCount && !isPlayerLocal(playerId);
 }
 
-bool RoomClient::canSelectTeam([[maybe_unused]] u32 playerId) const {
+bool RoomClient::canSelectTeam(u32 playerId) const {
     return isPlayerLocal(playerId);
 }
 
-bool RoomClient::canSelectTeam([[maybe_unused]] u32 localPlayerId,
-        [[maybe_unused]] u32 playerId) const {
+bool RoomClient::canSelectTeam(u32 localPlayerId, u32 playerId) const {
     assert(localPlayerId < m_localPlayerCount);
     return m_localPlayerIds[localPlayerId] == playerId;
 }
@@ -484,7 +483,7 @@ bool RoomClient::onReceiveComment(Handler &handler, u32 playerId, u32 messageId)
     return true;
 }
 
-bool RoomClient::onRoomStart(Handler &handler, u32 gamemode) {
+bool RoomClient::onRoomStart(Handler &/* handler */, u32 gamemode) {
     if (gamemode >= 3) {
         return false;
     }

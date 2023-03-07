@@ -277,7 +277,7 @@ static bool UsbStorage_onDeviceAdd(const UsbDeviceInfo *info) {
     return true;
 }
 
-__attribute__((noreturn)) static void UsbStorage_onDeviceRemove(u32 UNUSED(id)) {
+__attribute__((noreturn)) static void UsbStorage_onDeviceRemove(u32 /* id */) {
     panic("Device was removed!");
 }
 
@@ -330,7 +330,7 @@ static bool UsbStorage_write(u32 firstSector, u32 sectorCount, const void *buffe
     return false;
 }
 
-static bool UsbStorage_erase(u32 UNUSED(firstSector), u32 UNUSED(sectorCount)) {
+static bool UsbStorage_erase(u32 /* firstSector */, u32 /* sectorCount */) {
     // This is not supported under Bulk Only Transport
     return true;
 }

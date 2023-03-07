@@ -49,20 +49,20 @@ void ServicePackToolsPage::onActivate() {
     m_replacement = PageId::None;
 }
 
-void ServicePackToolsPage::onBack([[maybe_unused]] u32 localPlayerId) {
+void ServicePackToolsPage::onBack(u32 /* localPlayerId */) {
     m_replacement = PageId::ServicePackTop;
     startReplace(Anim::Prev, 0.0f);
 }
 
-void ServicePackToolsPage::onStorageBenchmarkButtonFront([[maybe_unused]] PushButton *button,
-        [[maybe_unused]] u32 localPlayerId) {
+void ServicePackToolsPage::onStorageBenchmarkButtonFront(PushButton * button,
+        u32 /* localPlayerId */) {
     m_replacement = PageId::StorageBenchmark;
     f32 delay = button->getDelay();
     startReplace(Anim::Next, delay);
 }
 
-void ServicePackToolsPage::onThumbnailsButtonFront([[maybe_unused]] PushButton *button,
-        [[maybe_unused]] u32 localPlayerId) {
+void ServicePackToolsPage::onThumbnailsButtonFront(PushButton *button,
+        u32 /* localPlayerId */) {
     if (SP::ThumbnailManager::Start()) {
         auto &menuScenario = System::RaceConfig::Instance()->menuScenario();
         menuScenario.players[0].vehicleId = 1;
@@ -95,8 +95,8 @@ void ServicePackToolsPage::onThumbnailsButtonFront([[maybe_unused]] PushButton *
     }
 }
 
-void ServicePackToolsPage::onServerModeButtonFront([[maybe_unused]] PushButton *button,
-        [[maybe_unused]] u32 localPlayerId) {
+void ServicePackToolsPage::onServerModeButtonFront(PushButton *button,
+        u32 /* localPlayerId */) {
     Section *section = SectionManager::Instance()->currentSection();
     auto *messagePage = section->page<PageId::MenuMessage>();
     messagePage->reset();
@@ -109,14 +109,14 @@ void ServicePackToolsPage::onServerModeButtonFront([[maybe_unused]] PushButton *
     startReplace(Anim::None, delay);
 }
 
-void ServicePackToolsPage::onBackButtonFront([[maybe_unused]] PushButton *button,
-        [[maybe_unused]] u32 localPlayerId) {
+void ServicePackToolsPage::onBackButtonFront(PushButton *button,
+        u32 /* localPlayerId */) {
     m_replacement = PageId::ServicePackTop;
     f32 delay = button->getDelay();
     startReplace(Anim::Prev, delay);
 }
 
-void ServicePackToolsPage::onThumbnailsNoCoursePop([[maybe_unused]] MessagePage *messagePage) {
+void ServicePackToolsPage::onThumbnailsNoCoursePop(MessagePage *messagePage) {
     reinterpret_cast<MenuMessagePage *>(messagePage)->m_replacement = PageId::ServicePackTools;
 }
 

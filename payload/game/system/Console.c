@@ -99,7 +99,7 @@ typedef struct {
     ScreenDrawData mScreen;
     void *mLastTexObj;
 } TextWriter;
-static void TextWriter_configure(TextWriter *self, Rect box, void *UNUSED(res)) {
+static void TextWriter_configure(TextWriter *self, Rect box, void */* res */) {
     self->mBox = WriterTextBox_create(box);
     self->mLastTexObj = NULL;
     ScreenDrawData_create(&self->mScreen);
@@ -123,7 +123,7 @@ static void TextWriter_beginDraw(TextWriter *self) {
     GXSetCullMode(GX_CULL_FRONT);
     GXSetAlphaCompare(GX_GREATER, 0, GX_AOP_AND, GX_ALWAYS, 0);
 }
-static void TextWriter_endDraw(TextWriter *UNUSED(writer)) {}
+static void TextWriter_endDraw(TextWriter */* writer */) {}
 enum {
     VERT_LEFT_X,
     VERT_RIGHT_X,
@@ -385,7 +385,7 @@ void Console_calc(void) {
     }
     Console_stateDefault(sFramesSinceLastOpen++);
 }
-void Console_addLine(const char *s, size_t UNUSED(len)) {
+void Console_addLine(const char *s, size_t /* len */) {
     // To support being called by an interrupt handler, we can't use a mutex. If a call
     // was interrupted, the global state could be accesesd in an invalid state.
     SP_SCOPED_NO_INTERRUPTS();
