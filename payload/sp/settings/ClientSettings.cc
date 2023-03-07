@@ -28,6 +28,7 @@ const char name[] = "MKW-SP Settings";
 
 const u32 categoryMessageIds[] = { 10118, 10126, 10119, 10262, 10360, 10258, 10120, 10315 };
 
+// clang-format off
 const Entry entries[] = {
     [static_cast<u32>(Setting::Character)] = {
         .category = Category::Race,
@@ -636,5 +637,6 @@ const Entry entries[] = {
         .valueExplanationMessageIds = (u32[]) { 10350, 10352, 10354 },
     },
 };
+// clang-format on
 
 } // namespace SP::ClientSettings
