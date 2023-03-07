@@ -1,6 +1,7 @@
 #pragma once
 
 #include <game/util/Registry.hh>
+#include <vendor/libhydrogen/hydrogen.h>
 
 #include "sp/settings/Settings.hh"
 
@@ -637,4 +638,24 @@ struct Helper<ClientSettings::Setting, ClientSettings::Setting::DebugPanel> {
     using type = SP::ClientSettings::DebugPanel;
 };
 
+}
+
+u32 getmaxTeamSize(auto teamsizesetting) {
+u32 maxTeamSize;
+
+    if (teamsizesetting == SP::ClientSettings::TeamSize::Random) {        
+        u32 rand_number = hydro_random_u32();
+        rand_number = rand_number % 5;        
+        if (rand_number == 4) {        
+            maxTeamSize = 6;        
+        } else {            
+            maxTeamSize = rand_number + 1; 
+        }    
+    } else if (teamsizesetting == SP::ClientSettings::TeamSize::Six) {    
+        maxTeamSize = 6;    
+    } else {    
+        maxTeamSize = static_cast<u32>(teamsizesetting) + 1;    
+    }
+    
+    return maxTeamSize;
 }
