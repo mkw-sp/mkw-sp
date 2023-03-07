@@ -25,7 +25,7 @@ void *Alloc(s32 size) {
     return nullptr;
 }
 
-static void *Alloc(u32 UNUSED(id), s32 size) {
+static void *Alloc(u32 /* id */, s32 size) {
     return Alloc(size);
 }
 
@@ -40,11 +40,11 @@ void Free(void *ptr, s32 size) {
     assert(!"Bad alloc");
 }
 
-static void Free(u32 UNUSED(id), void *ptr, s32 size) {
+static void Free(u32 /* id */, void *ptr, s32 size) {
     return Free(ptr, size);
 }
 
-static void *Handle(void *UNUSED(arg)) {
+static void *Handle(void */* arg */) {
     res = SOStartup();
     while (true) {
         if (res != 0) {

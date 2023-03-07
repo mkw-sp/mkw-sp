@@ -123,7 +123,7 @@ void FriendRoomPage::pop(Anim anim) {
     m_popRequested = true;
 }
 
-void FriendRoomPage::onBack([[maybe_unused]] u32 localPlayerId) {
+void FriendRoomPage::onBack(u32 /* localPlayerId */) {
     auto *section = SectionManager::Instance()->currentSection();
     auto *yesNoPage = section->page<PageId::YesNoPopup>();
 
@@ -134,8 +134,8 @@ void FriendRoomPage::onBack([[maybe_unused]] u32 localPlayerId) {
     push(PageId::YesNoPopup, Anim::Next);
 }
 
-void FriendRoomPage::onSettingsButtonFront([[maybe_unused]] PushButton *button,
-        [[maybe_unused]] u32 localPlayerId) {
+void FriendRoomPage::onSettingsButtonFront(PushButton * /* button */,
+        u32 /* localPlayerId */) {
     m_instructionText.setMessage(0);
 
     auto *section = SectionManager::Instance()->currentSection();
@@ -144,8 +144,8 @@ void FriendRoomPage::onSettingsButtonFront([[maybe_unused]] PushButton *button,
     push(PageId::SettingsPopup, Anim::Next);
 }
 
-void FriendRoomPage::onCommentButtonFront([[maybe_unused]] PushButton *button,
-        [[maybe_unused]] u32 localPlayerId) {
+void FriendRoomPage::onCommentButtonFront(PushButton * /* button */,
+        u32 /* localPlayerId */) {
     auto *section = SectionManager::Instance()->currentSection();
     auto *messageSelectPage = section->page<PageId::FriendRoomMessageSelect>();
     messageSelectPage->setMenuType(FriendRoomMessageSelectPage::MenuType::Comment);
@@ -154,13 +154,13 @@ void FriendRoomPage::onCommentButtonFront([[maybe_unused]] PushButton *button,
     m_instructionText.setMessage(4371, 0);
 }
 
-void FriendRoomPage::onRulesButtonFront([[maybe_unused]] PushButton *button,
-        [[maybe_unused]] u32 localPlayerId) {
+void FriendRoomPage::onRulesButtonFront(PushButton * /* button */,
+        u32 /* localPlayerId */) {
     push(PageId::FriendRoomRules, Anim::Next);
 }
 
-void FriendRoomPage::onStartButtonFront([[maybe_unused]] PushButton *button,
-        [[maybe_unused]] u32 localPlayerId) {
+void FriendRoomPage::onStartButtonFront(PushButton * /* button */,
+        u32 /* localPlayerId */) {
     auto *section = SectionManager::Instance()->currentSection();
     auto *messageSelectPage = section->page<PageId::FriendRoomMessageSelect>();
     messageSelectPage->setMenuType(FriendRoomMessageSelectPage::MenuType::Start);
@@ -169,11 +169,11 @@ void FriendRoomPage::onStartButtonFront([[maybe_unused]] PushButton *button,
     m_instructionText.setMessage(4373, 0);
 }
 
-void FriendRoomPage::onRegisterButtonFront([[maybe_unused]] PushButton *button,
-        [[maybe_unused]] u32 localPlayerId) {}
+void FriendRoomPage::onRegisterButtonFront(PushButton * /* button */,
+        u32 /* localPlayerId */) {}
 
-void FriendRoomPage::onBackButtonFront([[maybe_unused]] PushButton *button,
-        [[maybe_unused]] u32 localPlayerId) {
+void FriendRoomPage::onBackButtonFront(PushButton * /* button */,
+        u32 /* localPlayerId */) {
     auto *section = SectionManager::Instance()->currentSection();
     auto *yesNoPage = section->page<PageId::YesNoPopup>();
 
@@ -184,20 +184,20 @@ void FriendRoomPage::onBackButtonFront([[maybe_unused]] PushButton *button,
     push(PageId::YesNoPopup, Anim::Next);
 }
 
-void FriendRoomPage::onButtonSelect(PushButton *button, [[maybe_unused]] u32 localPlayerId) {
+void FriendRoomPage::onButtonSelect(PushButton *button, u32 /* localPlayerId */) {
     m_instructionText.setMessage(button->m_index, nullptr);
 }
 
-void FriendRoomPage::onBackConfirm([[maybe_unused]] s32 choice,
-        [[maybe_unused]] PushButton *button) {
+void FriendRoomPage::onBackConfirm(s32 /* choice */,
+        PushButton * /* button */) {
     SP::RoomManager::Instance()->destroyInstance();
     auto *section = SectionManager::Instance()->currentSection();
     auto *friendMatchingPage = section->page<PageId::FriendMatching>();
     friendMatchingPage->collapse(Anim::Prev);
 }
 
-void FriendRoomPage::onSettingsBack([[maybe_unused]] SettingsPage *settingsPage,
-        [[maybe_unused]] PushButton *button) {
+void FriendRoomPage::onSettingsBack(SettingsPage */* settingsPage */,
+        PushButton * /* button */) {
     m_instructionText.setMessage(20022);
 
     if (auto *client = SP::RoomClient::Instance()) {

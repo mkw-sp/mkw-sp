@@ -110,7 +110,7 @@ void DirectConnectionPage::onActivate() {
     m_replacement = PageId::None;
 }
 
-void DirectConnectionPage::onBack([[maybe_unused]] u32 localPlayerId) {
+void DirectConnectionPage::onBack(u32 /* localPlayerId */) {
     if (!m_editBox.isEmpty()) {
         m_editBox.remove();
         m_okButton.setPlayerFlags(0);
@@ -124,8 +124,8 @@ void DirectConnectionPage::onBack([[maybe_unused]] u32 localPlayerId) {
     startReplace(Anim::Prev, 0.0f);
 }
 
-void DirectConnectionPage::onDigitButtonFront([[maybe_unused]] PushButton *button,
-        [[maybe_unused]] u32 localPlayerId) {
+void DirectConnectionPage::onDigitButtonFront(PushButton *button,
+        u32 /* localPlayerId */) {
     m_editBox.insert(button->m_index);
     if (m_editBox.isFull()) {
         m_okButton.setPlayerFlags(1);
@@ -133,19 +133,19 @@ void DirectConnectionPage::onDigitButtonFront([[maybe_unused]] PushButton *butto
     }
 }
 
-void DirectConnectionPage::onBackspaceButtonFront([[maybe_unused]] PushButton *button,
-        [[maybe_unused]] u32 localPlayerId) {
+void DirectConnectionPage::onBackspaceButtonFront(PushButton * /* button */,
+        u32 /* localPlayerId */) {
     m_editBox.remove();
     m_okButton.setPlayerFlags(0);
 }
 
-void DirectConnectionPage::onResetButtonFront([[maybe_unused]] PushButton *button,
-        [[maybe_unused]] u32 localPlayerId) {
+void DirectConnectionPage::onResetButtonFront(PushButton * /* button */,
+        u32 /* localPlayerId */) {
     m_editBox.reset();
     m_okButton.setPlayerFlags(0);
 }
 
-void DirectConnectionPage::onOkButtonFront(PushButton *button, [[maybe_unused]] u32 localPlayerId) {
+void DirectConnectionPage::onOkButtonFront(PushButton *button, u32 /* localPlayerId */) {
     u64 directCode = m_editBox.getNumber();
     if (directCode == 0) {
         m_replacement = PageId::RandomMatching;
@@ -178,13 +178,13 @@ void DirectConnectionPage::onOkButtonFront(PushButton *button, [[maybe_unused]] 
 }
 
 void DirectConnectionPage::onBackButtonFront(PushButton *button,
-        [[maybe_unused]] u32 localPlayerId) {
+        u32 /* localPlayerId */) {
     m_replacement = PageId::OnlineTop;
     f32 delay = button->getDelay();
     startReplace(Anim::Prev, delay);
 }
 
-void DirectConnectionPage::onBadConnectCode([[maybe_unused]] MessagePage *messagePage) {
+void DirectConnectionPage::onBadConnectCode(MessagePage *messagePage) {
     reinterpret_cast<MenuMessagePage *>(messagePage)->m_replacement = PageId::OnlineTop;
 }
 

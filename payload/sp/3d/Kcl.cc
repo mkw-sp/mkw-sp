@@ -296,7 +296,7 @@ void KclVis::prepare() {
         TPLGetGXTexObjFromPalette(TRUSS_TPL, &TRUSS_OBJ, 0);
     }
 }
-void KclVis::render(const float mtx[3][4], [[maybe_unused]] bool overlay) {
+void KclVis::render(const float mtx[3][4], bool /* overlay */) {
     GXLoadPosMtxImm(mtx, 0);
     float ident[4][4];
     PSMTXIdentity(ident);

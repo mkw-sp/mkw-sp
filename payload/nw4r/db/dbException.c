@@ -4,7 +4,7 @@
 extern void Exception_Printf_(const char *, ...);
 extern void Exception_PrintCtx();
 
-static void line1(const char *UNUSED(str), u32 frame) {
+static void line1(const char */* str */, u32 frame) {
     Host_PrintMkwSpInfo(Exception_Printf_);
     Exception_Printf_("******** EXCEPTION OCCURRED! ********\nFrameMemory:%XH\n", frame);
 }

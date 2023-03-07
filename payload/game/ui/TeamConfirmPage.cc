@@ -93,7 +93,7 @@ TeamConfirmPage *TeamConfirmPage::Get(PageId id) {
     return section->page<PageId::TeamConfirm>();
 }
 
-void TeamConfirmPage::onBack([[maybe_unused]] u32 localPlayerId) {
+void TeamConfirmPage::onBack(u32 /* localPlayerId */) {
     auto sectionId = SectionManager::Instance()->currentSection()->id();
     if (sectionId == SectionId::Multi) {
         m_replacement = PageId::MultiTeamSelect;
@@ -103,8 +103,8 @@ void TeamConfirmPage::onBack([[maybe_unused]] u32 localPlayerId) {
     startReplace(Anim::Prev, 0.0f);
 }
 
-void TeamConfirmPage::onSettingsButtonFront([[maybe_unused]] PushButton *button,
-        [[maybe_unused]] u32 localPlayerId) {
+void TeamConfirmPage::onSettingsButtonFront(PushButton * button,
+        u32 /* localPlayerId */) {
     auto *section = SectionManager::Instance()->currentSection();
     auto *menuSettingsPage = section->page<PageId::MenuSettings>();
     menuSettingsPage->configure(nullptr, PageId::TeamConfirm);
@@ -113,8 +113,8 @@ void TeamConfirmPage::onSettingsButtonFront([[maybe_unused]] PushButton *button,
     startReplace(Anim::Next, delay);
 }
 
-void TeamConfirmPage::onOkButtonFront([[maybe_unused]] PushButton *button,
-        [[maybe_unused]] u32 localPlayerId) {
+void TeamConfirmPage::onOkButtonFront(PushButton * button,
+        u32 /* localPlayerId */) {
     auto &menuScenario = System::RaceConfig::Instance()->menuScenario();
     if (menuScenario.gameMode == System::RaceConfig::GameMode::OfflineVS) {
         System::RaceConfig::Instance()->applyEngineClass();
@@ -131,8 +131,8 @@ void TeamConfirmPage::onOkButtonFront([[maybe_unused]] PushButton *button,
     startReplace(Anim::Next, delay);
 }
 
-void TeamConfirmPage::onBackButtonFront([[maybe_unused]] PushButton *button,
-        [[maybe_unused]] u32 localPlayerId) {
+void TeamConfirmPage::onBackButtonFront(PushButton * button,
+        u32 /* localPlayerId */) {
     auto sectionId = SectionManager::Instance()->currentSection()->id();
     if (sectionId == SectionId::Multi) {
         m_replacement = PageId::MultiTeamSelect;

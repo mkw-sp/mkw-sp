@@ -86,7 +86,7 @@ void FriendRoomRulesPage::refresh(const std::array<u32, SP::RoomSettings::count>
     }
 }
 
-void FriendRoomRulesPage::onFront([[maybe_unused]] u32 localPlayerId) {
+void FriendRoomRulesPage::onFront(u32 /* localPlayerId */) {
     startReplace(Anim::None, 0.0f);
 }
 

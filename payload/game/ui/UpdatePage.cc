@@ -304,11 +304,11 @@ void UpdatePage::transition(State state) {
     m_state = state;
 }
 
-void *UpdatePage::Check(void *UNUSED(arg)) {
+void *UpdatePage::Check(void */* arg */) {
     return reinterpret_cast<void *>(SP::Update::Check());
 }
 
-void *UpdatePage::Update(void *UNUSED(arg)) {
+void *UpdatePage::Update(void */* arg */) {
     return reinterpret_cast<void *>(SP::Update::Update());
 }
 

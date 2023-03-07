@@ -253,7 +253,7 @@ static void Usb_updateDevices(void) {
     }
 }
 
-static void *Usb_discoverDevices(void *UNUSED(arg)) {
+static void *Usb_discoverDevices(void */* arg */) {
     while (true) {
         s32 result = IOS_Ioctl(fd, IOCTL_GET_DEVICE_CHANGE, NULL, 0, deviceEntries,
                 MAX_DEVICE_COUNT * sizeof(DeviceEntry));

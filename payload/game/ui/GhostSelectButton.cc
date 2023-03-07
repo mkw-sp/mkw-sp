@@ -54,14 +54,14 @@ TimeAttackGhostListPage *GhostSelectButton::getGhostListPage() {
     return reinterpret_cast<TimeAttackGhostListPage *>(UIControl::getPage());
 }
 
-void GhostSelectButton::onSelect([[maybe_unused]] u32 localPlayerId, [[maybe_unused]] u32 r5) {
+void GhostSelectButton::onSelect(u32 localPlayerId, u32 /* r5 */) {
     OptionButton::onSelect(localPlayerId);
 
     TimeAttackGhostListPage *page = getGhostListPage();
     page->m_lastSelected = m_index;
 }
 
-void GhostSelectButton::onFront([[maybe_unused]] u32 localPlayerId, [[maybe_unused]] u32 r5) {
+void GhostSelectButton::onFront(u32 /* localPlayerId */, u32 /* r5 */) {
     m_animator.setAnimation(GROUP_ID_SELECT_IN, ANIM_ID_SELECT_IN, 0.0f);
     m_animator.setAnimation(GROUP_ID_OK, ANIM_ID_OK, 0.0f);
 

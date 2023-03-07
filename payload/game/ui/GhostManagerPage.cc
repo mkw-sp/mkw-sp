@@ -9,7 +9,7 @@
 
 namespace UI {
 
-void GhostManagerPage::List::populate(u32 UNUSED(courseId)) {}
+void GhostManagerPage::List::populate(u32 /* courseId */) {}
 
 void GhostManagerPage::SPList::populate() {
     auto *saveManager = System::SaveManager::Instance();
@@ -115,11 +115,11 @@ const GhostManagerPage::SPList *GhostManagerPage::list() const {
     return &m_list;
 }
 
-void GhostManagerPage::setupGhostReplay(bool UNUSED(isStaffGhost)) {
+void GhostManagerPage::setupGhostReplay(bool /* isStaffGhost */) {
     setupTimeAttack(false, false);
 }
 
-void GhostManagerPage::setupGhostRace(bool UNUSED(isStaffGhost), bool UNUSED(isNewRecord),
+void GhostManagerPage::setupGhostRace(bool /* isStaffGhost */, bool /* isNewRecord */,
         bool fromReplay) {
     setupTimeAttack(true, fromReplay);
 }

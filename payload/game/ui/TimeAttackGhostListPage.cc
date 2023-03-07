@@ -191,15 +191,15 @@ void TimeAttackGhostListPage::chooseGhost(u32 buttonIndex) {
     refreshLaunchButtons();
 }
 
-void TimeAttackGhostListPage::onBack([[maybe_unused]] u32 localPlayerId) {
+void TimeAttackGhostListPage::onBack(u32 /* localPlayerId */) {
     m_cc.reset();
 
     m_replacement = PageId::CourseSelect;
     startReplace(Anim::Prev, 0.0f);
 }
 
-void TimeAttackGhostListPage::onSettingsButtonFront([[maybe_unused]] PushButton *button,
-        [[maybe_unused]] u32 localPlayerId) {
+void TimeAttackGhostListPage::onSettingsButtonFront(PushButton *button,
+        u32 /* localPlayerId */) {
     auto *section = SectionManager::Instance()->currentSection();
     auto *menuSettingsPage = section->page<PageId::MenuSettings>();
     menuSettingsPage->configure(nullptr, PageId::TimeAttackGhostList);
@@ -208,22 +208,22 @@ void TimeAttackGhostListPage::onSettingsButtonFront([[maybe_unused]] PushButton 
     startReplace(Anim::Next, delay);
 }
 
-void TimeAttackGhostListPage::onSettingsButtonSelect([[maybe_unused]] PushButton *button,
-        [[maybe_unused]] u32 localPlayerId) {
+void TimeAttackGhostListPage::onSettingsButtonSelect(PushButton * /* button */,
+        u32 /* localPlayerId */) {
     m_sheetSelect.setPointerOnly(true);
     m_watchButton.setPointerOnly(true);
 
     m_lastSelected = -1;
 }
 
-void TimeAttackGhostListPage::onSettingsButtonDeselect([[maybe_unused]] PushButton *button,
-        [[maybe_unused]] u32 localPlayerId) {
+void TimeAttackGhostListPage::onSettingsButtonDeselect(PushButton * /* button */,
+        u32 /* localPlayerId */) {
     m_sheetSelect.setPointerOnly(false);
     m_watchButton.setPointerOnly(false);
 }
 
-void TimeAttackGhostListPage::onSheetSelectRight([[maybe_unused]] SheetSelectControl *control,
-        [[maybe_unused]] u32 localPlayerId) {
+void TimeAttackGhostListPage::onSheetSelectRight(SheetSelectControl */* control */,
+        u32 /* localPlayerId */) {
     if (!canSwapGhostSelects()) {
         return;
     }
@@ -241,8 +241,8 @@ void TimeAttackGhostListPage::onSheetSelectRight([[maybe_unused]] SheetSelectCon
     swapGhostSelects();
 }
 
-void TimeAttackGhostListPage::onSheetSelectLeft([[maybe_unused]] SheetSelectControl *control,
-        [[maybe_unused]] u32 localPlayerId) {
+void TimeAttackGhostListPage::onSheetSelectLeft(SheetSelectControl */* control */,
+        u32 /* localPlayerId */) {
     if (!canSwapGhostSelects()) {
         return;
     }
@@ -260,51 +260,51 @@ void TimeAttackGhostListPage::onSheetSelectLeft([[maybe_unused]] SheetSelectCont
     swapGhostSelects();
 }
 
-void TimeAttackGhostListPage::onAloneButtonFront([[maybe_unused]] PushButton *button,
-        [[maybe_unused]] u32 localPlayerId) {
+void TimeAttackGhostListPage::onAloneButtonFront(PushButton * /* button */,
+        u32 /* localPlayerId */) {
     m_isReplay = false;
 
     push(PageId::RaceConfirm, Anim::Next);
 }
 
-void TimeAttackGhostListPage::onAloneButtonSelect([[maybe_unused]] PushButton *button,
-        [[maybe_unused]] u32 localPlayerId) {
+void TimeAttackGhostListPage::onAloneButtonSelect(PushButton * /* button */,
+        u32 /* localPlayerId */) {
     m_lastSelected = -1;
 }
 
-void TimeAttackGhostListPage::onRaceButtonFront([[maybe_unused]] PushButton *button,
-        [[maybe_unused]] u32 localPlayerId) {
+void TimeAttackGhostListPage::onRaceButtonFront(PushButton * /* button */,
+        u32 /* localPlayerId */) {
     m_isReplay = false;
 
     push(PageId::RaceConfirm, Anim::Next);
 }
 
-void TimeAttackGhostListPage::onRaceButtonSelect([[maybe_unused]] PushButton *button,
-        [[maybe_unused]] u32 localPlayerId) {
+void TimeAttackGhostListPage::onRaceButtonSelect(PushButton * /* button */,
+        u32 /* localPlayerId */) {
     m_lastSelected = -1;
 }
 
-void TimeAttackGhostListPage::onWatchButtonFront([[maybe_unused]] PushButton *button,
-        [[maybe_unused]] u32 localPlayerId) {
+void TimeAttackGhostListPage::onWatchButtonFront(PushButton * /* button */,
+        u32 /* localPlayerId */) {
     m_isReplay = true;
 
     push(PageId::RaceConfirm, Anim::Next);
 }
 
-void TimeAttackGhostListPage::onWatchButtonSelect([[maybe_unused]] PushButton *button,
-        [[maybe_unused]] u32 localPlayerId) {
+void TimeAttackGhostListPage::onWatchButtonSelect(PushButton * /* button */,
+        u32 /* localPlayerId */) {
     m_settingsButton.setPointerOnly(true);
 
     m_lastSelected = -1;
 }
 
-void TimeAttackGhostListPage::onWatchButtonDeselect([[maybe_unused]] PushButton *button,
-        [[maybe_unused]] u32 localPlayerId) {
+void TimeAttackGhostListPage::onWatchButtonDeselect(PushButton * /* button */,
+        u32 /* localPlayerId */) {
     m_settingsButton.setPointerOnly(false);
 }
 
-void TimeAttackGhostListPage::onBackButtonFront([[maybe_unused]] PushButton *button,
-        [[maybe_unused]] u32 localPlayerId) {
+void TimeAttackGhostListPage::onBackButtonFront(PushButton *button,
+        u32 /* localPlayerId */) {
     m_cc.reset();
 
     m_replacement = PageId::CourseSelect;

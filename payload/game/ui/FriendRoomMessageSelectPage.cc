@@ -152,15 +152,15 @@ void FriendRoomMessageSelectPage::refresh() {
     }
 }
 
-void FriendRoomMessageSelectPage::onBackButtonFront([[maybe_unused]] PushButton *button, [[maybe_unused]] u32 localPlayerId) {
+void FriendRoomMessageSelectPage::onBackButtonFront(PushButton * /* button */, u32 /* localPlayerId */) {
     startReplace(Anim::Prev, 0.0f);
 }
 
-void FriendRoomMessageSelectPage::onBack([[maybe_unused]] u32 localPlayerId) {
+void FriendRoomMessageSelectPage::onBack(u32 /* localPlayerId */) {
     startReplace(Anim::Prev, 0.0f);
 }
 
-void FriendRoomMessageSelectPage::onCommentButtonFront(PushButton *button, [[maybe_unused]] u32 localPlayerId) {
+void FriendRoomMessageSelectPage::onCommentButtonFront(PushButton *button, u32 /* localPlayerId */) {
     m_cachedSheetIdx = m_currentSheetIdx;
     m_cachedButton = button->m_index;
 
@@ -169,12 +169,12 @@ void FriendRoomMessageSelectPage::onCommentButtonFront(PushButton *button, [[may
     startReplace(Anim::Next, button->getDelay());
 }
 
-void FriendRoomMessageSelectPage::onStartButtonFront(PushButton *button, [[maybe_unused]] u32 localPlayerId) {
+void FriendRoomMessageSelectPage::onStartButtonFront(PushButton *button, u32 /* localPlayerId */) {
     SP::RoomClient::Instance()->startRoom(button->m_index);
     startReplace(Anim::Next, button->getDelay());
 }
 
-void FriendRoomMessageSelectPage::onRight([[maybe_unused]] SheetSelectControl *control, [[maybe_unused]] u32 localPlayerId) {
+void FriendRoomMessageSelectPage::onRight(SheetSelectControl */* control */, u32 /* localPlayerId */) {
     if (!m_visibleMessageSelect->isShown() || !m_hiddenMessageSelect->isHidden()) { return; }
 
     m_visibleMessageSelect->slideOut(true);
@@ -187,7 +187,7 @@ void FriendRoomMessageSelectPage::onRight([[maybe_unused]] SheetSelectControl *c
     m_visibleMessageSelect->slideIn(true);
 }
 
-void FriendRoomMessageSelectPage::onLeft([[maybe_unused]] SheetSelectControl *control, [[maybe_unused]] u32 localPlayerId) {
+void FriendRoomMessageSelectPage::onLeft(SheetSelectControl */* control */, u32 /* localPlayerId */) {
     if (!m_visibleMessageSelect->isShown() || !m_hiddenMessageSelect->isHidden()) { return; }
 
     m_visibleMessageSelect->slideOut(false);

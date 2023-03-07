@@ -106,12 +106,12 @@ void SingleTopPage::onActivate() {
     }
 }
 
-void SingleTopPage::onBack([[maybe_unused]] u32 localPlayerId) {
+void SingleTopPage::onBack(u32 /* localPlayerId */) {
     changeSection(SectionId::TitleFromMenu, Anim::Prev, 0.0f);
 }
 
-void SingleTopPage::onSettingsButtonFront([[maybe_unused]] PushButton *button,
-        [[maybe_unused]] u32 localPlayerId) {
+void SingleTopPage::onSettingsButtonFront(PushButton *button,
+        u32 /* localPlayerId */) {
     auto *section = SectionManager::Instance()->currentSection();
     auto *settingsPage = section->page<PageId::MenuSettings>();
     settingsPage->configure(nullptr, PageId::SingleTop);
@@ -120,13 +120,13 @@ void SingleTopPage::onSettingsButtonFront([[maybe_unused]] PushButton *button,
     startReplace(Anim::Next, delay);
 }
 
-void SingleTopPage::onSettingsButtonSelect([[maybe_unused]] PushButton *button,
-        [[maybe_unused]] u32 localPlayerId) {
+void SingleTopPage::onSettingsButtonSelect(PushButton * /* button */,
+        u32 /* localPlayerId */) {
     m_instructionText.setMessage(10077);
 }
 
-void SingleTopPage::onTAButtonFront([[maybe_unused]] PushButton *button,
-        [[maybe_unused]] u32 localPlayerId) {
+void SingleTopPage::onTAButtonFront(PushButton *button,
+        u32 /* localPlayerId */) {
     auto &menuScenario = System::RaceConfig::Instance()->menuScenario();
     menuScenario.engineClass = System::RaceConfig::EngineClass::CC150;
     menuScenario.gameMode = System::RaceConfig::GameMode::TimeAttack;
@@ -146,8 +146,8 @@ void SingleTopPage::onTAButtonFront([[maybe_unused]] PushButton *button,
     startReplace(Anim::Next, delay);
 }
 
-void SingleTopPage::onTAButtonSelect([[maybe_unused]] PushButton *button,
-        [[maybe_unused]] u32 localPlayerId) {
+void SingleTopPage::onTAButtonSelect(PushButton *button,
+        u32 /* localPlayerId */) {
     m_instructionText.setMessage(3051);
 
     Section *section = SectionManager::Instance()->currentSection();
@@ -155,8 +155,8 @@ void SingleTopPage::onTAButtonSelect([[maybe_unused]] PushButton *button,
     modelPage->modelControl().setModel(0);
 }
 
-void SingleTopPage::onVSButtonFront([[maybe_unused]] PushButton *button,
-        [[maybe_unused]] u32 localPlayerId) {
+void SingleTopPage::onVSButtonFront(PushButton *button,
+        u32 /* localPlayerId */) {
     auto *saveManager = System::SaveManager::Instance();
     auto *context = SectionManager::Instance()->globalContext();
     context->m_matchCount = saveManager->getSetting<SP::ClientSettings::Setting::VSRaceCount>();
@@ -186,8 +186,8 @@ void SingleTopPage::onVSButtonFront([[maybe_unused]] PushButton *button,
     startReplace(Anim::Next, delay);
 }
 
-void SingleTopPage::onVSButtonSelect([[maybe_unused]] PushButton *button,
-        [[maybe_unused]] u32 localPlayerId) {
+void SingleTopPage::onVSButtonSelect(PushButton * /* button */,
+        u32 /* localPlayerId */) {
     m_instructionText.setMessage(3052);
 
     Section *section = SectionManager::Instance()->currentSection();
@@ -195,8 +195,8 @@ void SingleTopPage::onVSButtonSelect([[maybe_unused]] PushButton *button,
     modelPage->modelControl().setModel(2);
 }
 
-void SingleTopPage::onBTButtonFront([[maybe_unused]] PushButton *button,
-        [[maybe_unused]] u32 localPlayerId) {
+void SingleTopPage::onBTButtonFront(PushButton *button,
+        u32 /* localPlayerId */) {
     auto *saveManager = System::SaveManager::Instance();
     auto *context = SectionManager::Instance()->globalContext();
     context->m_matchCount = saveManager->getSetting<SP::ClientSettings::Setting::BTRaceCount>();
@@ -225,8 +225,8 @@ void SingleTopPage::onBTButtonFront([[maybe_unused]] PushButton *button,
     startReplace(Anim::Next, delay);
 }
 
-void SingleTopPage::onBTButtonSelect([[maybe_unused]] PushButton *button,
-        [[maybe_unused]] u32 localPlayerId) {
+void SingleTopPage::onBTButtonSelect(PushButton * /* button */,
+        u32 /* localPlayerId */) {
     m_instructionText.setMessage(3054);
 
     Section *section = SectionManager::Instance()->currentSection();
@@ -235,8 +235,8 @@ void SingleTopPage::onBTButtonSelect([[maybe_unused]] PushButton *button,
 }
 
 #if ENABLE_MR
-void SingleTopPage::onMRButtonFront([[maybe_unused]] PushButton *button,
-        [[maybe_unused]] u32 localPlayerId) {
+void SingleTopPage::onMRButtonFront(PushButton *button,
+        u32 /* localPlayerId */) {
     auto &menuScenario = System::RaceConfig::Instance()->menuScenario();
     menuScenario.gameMode = System::RaceConfig::GameMode::Mission;
     menuScenario.cameraMode = 0;
@@ -255,8 +255,8 @@ void SingleTopPage::onMRButtonFront([[maybe_unused]] PushButton *button,
     startReplace(Anim::Next, delay);
 }
 
-void SingleTopPage::onMRButtonSelect([[maybe_unused]] PushButton *button,
-        [[maybe_unused]] u32 localPlayerId) {
+void SingleTopPage::onMRButtonSelect(PushButton * /* button */,
+        u32 /* localPlayerId */) {
     m_instructionText.setMessage(10161);
 
     Section *section = SectionManager::Instance()->currentSection();
@@ -265,14 +265,14 @@ void SingleTopPage::onMRButtonSelect([[maybe_unused]] PushButton *button,
 }
 #endif
 
-void SingleTopPage::onBackButtonFront([[maybe_unused]] PushButton *button,
-        [[maybe_unused]] u32 localPlayerId) {
+void SingleTopPage::onBackButtonFront(PushButton *button,
+        u32 /* localPlayerId */) {
     f32 delay = button->getDelay();
     changeSection(SectionId::TitleFromMenu, Anim::Prev, delay);
 }
 
-void SingleTopPage::onBackButtonSelect([[maybe_unused]] PushButton *button,
-        [[maybe_unused]] u32 localPlayerId) {
+void SingleTopPage::onBackButtonSelect(PushButton *button,
+        u32 /* localPlayerId */) {
     m_instructionText.setMessage(0);
 }
 

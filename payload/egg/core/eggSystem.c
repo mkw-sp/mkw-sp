@@ -186,7 +186,7 @@ static void my_lineCallback(const char *buf, size_t len) {
 // IOS KBD module is not supported on this platform
 static bool sConsoleInputUnavailable = false;
 
-void my_onBeginFrame(void *UNUSED(system)) {
+void my_onBeginFrame(void */* system */) {
     if (sItemSticky) {
         const s32 myPlayerId = GetMyPlayerID();
         if (myPlayerId >= 0) {
