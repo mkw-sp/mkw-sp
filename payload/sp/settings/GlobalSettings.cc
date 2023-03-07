@@ -10,6 +10,7 @@ const char name[] = "Global Settings";
 
 const u32 categoryMessageIds[] = { 10378 };
 
+// clang-format off
 const Entry entries[] = {
     [static_cast<u32>(Setting::FileReplacement)] = {
         .category = Category::MyStuff,
@@ -42,6 +43,7 @@ const Entry entries[] = {
         .valueExplanationMessageIds = nullptr,
     },
 };
+// clang-format on
 
 static Settings instance{};
 
