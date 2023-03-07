@@ -32,6 +32,7 @@ bool ExceptionCallBack_(nw4r::db::ConsoleHandle console, void *UNUSED(arg)) {
 
     VISetBlack(0);
     VIFlush();
+    AXSetMasterVolume(0);
     OSReport("cancel all thread...\n");
     Thread::kandoTestCancelAllThread();
     OSReport("done\n");
