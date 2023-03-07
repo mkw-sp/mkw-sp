@@ -38,7 +38,7 @@ If you are working on something please comment on the relevant issue (or open a 
 
 The codebase uses both C and asm, C should be preferred for full function replacements and for any kind of complex logic. No assumption about the use of registers by C code should be made other than the ABI. If necessary asm wrappers can be employed to restore and backup volatile registers.
 
-There is no automatic formatting yet but the codestyle is pretty consistent so sticking to it shouldn't be too hard.
+The codebase is automatically formatted using `clang-format` (15), this will be checked by CI and must be run before merge.
 
 ## Resources
 
