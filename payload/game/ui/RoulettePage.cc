@@ -9,6 +9,7 @@
 
 namespace UI {
 
+// clang-format off
 static const char *animInfo[] = {
         "Loop", "Loop", nullptr,                                 // group 0
         "Fade", "Hide", "Fadein", "Show", "Fadeout", nullptr,    // group 1
@@ -17,6 +18,7 @@ static const char *animInfo[] = {
         "Roulette", "Unselected", "Selected", "Decide", nullptr, // group 4
         nullptr                                                  // end
 };
+// clang-format on
 
 RoulettePage::RoulettePage() = default;
 

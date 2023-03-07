@@ -18,12 +18,12 @@ CtrlRaceResultTeamPoint::CtrlRaceResultTeamPoint() = default;
 CtrlRaceResultTeamPoint::~CtrlRaceResultTeamPoint() = default;
 
 void CtrlRaceResultTeamPoint::load() {
+    // clang-format off
     const char *groups[] = {
-        "Position",
-        "Position",
-        nullptr,
+        "Position", "Position", nullptr,
         nullptr,
     };
+    // clang-format on
     LayoutUIControl::load("result", "ResultTeamPoint", "ResultTeamPoint", groups);
 }
 

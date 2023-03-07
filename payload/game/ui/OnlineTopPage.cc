@@ -20,11 +20,13 @@ PageId OnlineTopPage::getReplacement() {
     return m_replacement;
 }
 
+// clang-format off
 static const char *animInfo[] = {
     "State", "Offline", "RandomMatching", "FriendParent", nullptr,
     "State2", "Offline2", "RandomMatching2", "FriendParent2", nullptr,
     nullptr
 };
+// clang-format on
 
 void OnlineTopPage::onInit() {
     m_inputManager.init(1, false);

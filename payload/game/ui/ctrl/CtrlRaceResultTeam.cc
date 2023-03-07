@@ -22,23 +22,16 @@ CtrlRaceResultTeam::CtrlRaceResultTeam() = default;
 CtrlRaceResultTeam::~CtrlRaceResultTeam() = default;
 
 void CtrlRaceResultTeam::load() {
+    // clang-format off
     const char *groups[] = {
-        "Loop",
-        "Loop",
-        nullptr,
-        "Select",
-        "SelectOn",
-        "SelectOff",
-        nullptr,
-        "Select2",
-        "Select2On",
-        "Select2Off",
-        nullptr,
-        "Position",
-        "Position",
-        nullptr,
+        "Loop", "Loop", nullptr,
+        "Select", "SelectOn", "SelectOff", nullptr,
+        "Select2", "Select2On", "Select2Off", nullptr,
+        "Position", "Position", nullptr,
         nullptr,
     };
+    // clang-format on
+
     LayoutUIControl::load("result", "ResultTeam", "ResultTeam", groups);
 
     setSoundIds(Sound::SoundId::SE_RSLT_IN_TEAM, Sound::SoundId::SE_RSLT_OUT);

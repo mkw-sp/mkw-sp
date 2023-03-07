@@ -22,23 +22,15 @@ TeamConfirmControl::TeamConfirmControl() = default;
 TeamConfirmControl::~TeamConfirmControl() = default;
 
 void TeamConfirmControl::load() {
+    // clang-format off
     const char *groups[] = {
-        "Loop",
-        "Loop",
-        nullptr,
-        "Select",
-        "SelectOn",
-        "SelectOff",
-        nullptr,
-        "Select2",
-        "Select2On",
-        "Select2Off",
-        nullptr,
-        "Position",
-        "Position",
-        nullptr,
+        "Loop", "Loop", nullptr,
+        "Select", "SelectOn", "SelectOff", nullptr,
+        "Select2", "Select2On", "Select2Off", nullptr,
+        "Position", "Position", nullptr,
         nullptr,
     };
+    // clang-format on
     LayoutUIControl::load("control", "TeamConfirm", "TeamConfirm", groups);
 }
 

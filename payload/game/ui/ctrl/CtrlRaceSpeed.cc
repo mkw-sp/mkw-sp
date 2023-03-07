@@ -146,29 +146,22 @@ void CtrlRaceSpeed::calcSelf() {
 }
 
 void CtrlRaceSpeed::load(u32 localPlayerCount, u32 localPlayerId) {
+    // clang-format off
+    const char *groups[] = {
+        "eAFInt0", "texture_pattern_0_9_0", nullptr,
+        "eAFInt1", "texture_pattern_0_9_1", nullptr,
+        "eAFInt2", "texture_pattern_0_9_2", nullptr,
+        "eAFFract0", "texture_pattern_0_9_3", nullptr,
+        "eAFFract1", "texture_pattern_0_9_4", nullptr,
+        nullptr,
+    };
+    // clang-format on
+
     m_localPlayerId = localPlayerId;
 
     char variant[0x20];
     u32 variantId = localPlayerCount == 3 ? 4 : localPlayerCount;
     snprintf(variant, std::size(variant), "CtrlRaceSpeed_%u_%u", variantId, localPlayerId);
-    const char *groups[] = {
-        "eAFInt0",
-        "texture_pattern_0_9_0",
-        nullptr,
-        "eAFInt1",
-        "texture_pattern_0_9_1",
-        nullptr,
-        "eAFInt2",
-        "texture_pattern_0_9_2",
-        nullptr,
-        "eAFFract0",
-        "texture_pattern_0_9_3",
-        nullptr,
-        "eAFFract1",
-        "texture_pattern_0_9_4",
-        nullptr,
-        nullptr,
-    };
     LayoutUIControl::load("game_image", "speed_number", variant, groups);
     for (u32 i = 0; i < 5; i++) {
         m_animator.setAnimationInactive(i, 0, 0.0f);

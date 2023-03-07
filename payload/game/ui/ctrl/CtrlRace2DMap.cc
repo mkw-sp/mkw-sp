@@ -19,18 +19,16 @@ void CtrlRace2DMap::calcSelf() {
 }
 
 void CtrlRace2DMapCharacter::load(u32 playerId) {
+    // clang-format off
+    const char *groups[] = {
+        "rotate", "default", "rotate", nullptr,
+        "shadow", "dummy", nullptr,
+        nullptr,
+    };
+    // clang-format on
+
     m_playerId = playerId;
     m_object = Kart::KartObjectManager::Instance()->object(playerId);
-    const char *groups[] = {
-            "rotate",
-            "default",
-            "rotate",
-            nullptr,
-            "shadow",
-            "dummy",
-            nullptr,
-            nullptr,
-    };
     LayoutUIControl::load("game_image", "map_chara", "map_chara", groups);
 }
 

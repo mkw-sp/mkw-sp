@@ -95,11 +95,14 @@ void ScrollBar::calcSelf() {
 
 void ScrollBar::load(u32 count, u32 chosen, const char *dir, const char *file, const char *variant,
         u32 playerFlags, bool isMultiPlayer, bool pointerOnly) {
+    // clang-format off
     const char *groups[] = {
         "Loop", "Loop", nullptr,
         "Select", "Free", "FreeToSelect", "Select", "SelectToFree", nullptr,
         nullptr,
     };
+    // clang-format on
+
     LayoutUIControl::load(dir, file, variant, groups);
 
     m_inputManager.m_pane.pane = m_mainLayout.findPaneByName("touch");

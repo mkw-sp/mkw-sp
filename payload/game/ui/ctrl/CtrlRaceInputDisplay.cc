@@ -191,10 +191,7 @@ void CtrlRaceInputDisplay::load(u32 localPlayerCount, u32 localPlayerId) {
     u32 variantId = localPlayerCount == 3 ? 4 : localPlayerCount;
     snprintf(variant, sizeof(variant), "InputDisplay_%u_%u", variantId, localPlayerId);
 
-    const char *groups[] = {
-        nullptr,
-        nullptr,
-    };
+    const char *groups[] = {nullptr, nullptr};
     LayoutUIControl::load("game_image", "InputDisplay", variant, groups);
 }
 
