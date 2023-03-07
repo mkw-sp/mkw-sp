@@ -56,19 +56,8 @@ void WStringWriter::writePlayer(u32 playerId) {
 
 void WStringWriter::writeOnline(u32 playerId) {
     u32 time = System::RaceManager::Instance()->time();
-    /*if (auto *raceClient = SP::RaceClient::Instance()) {
-        s32 drift = raceClient->drift();
-        u32 serverFrameCount = raceClient->frameCount();
-        auto frame = raceClient->frame();
-        if (frame) {
-            write(L"T/D/ST/CT/SFC %u %d %u %u %u\n", time, drift, frame->time, frame->clientTime,
-                    serverFrameCount);
-        } else {
-            write(L"T/D/SFC %u %d %u\n", time, drift, serverFrameCount);
-        }
-    } else */{
-        write(L"T %u\n", time);
-    }
+    write(L"T %u\n", time);
+
     auto *object = Kart::KartObjectManager::Instance()->object(playerId);
     if (auto *rollback = object->getKartRollback()) {
         write("P/RP", *object->getPos(), rollback->posDelta());
