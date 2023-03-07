@@ -1,6 +1,7 @@
 #pragma once
 
 #include "KartObjectProxy.hh"
+#include "KartPart.hh"
 
 namespace Kart {
 
