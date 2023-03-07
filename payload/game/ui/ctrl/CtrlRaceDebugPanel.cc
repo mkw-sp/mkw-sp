@@ -153,10 +153,7 @@ void CtrlRaceDebugPanel::calcSelf() {
 void CtrlRaceDebugPanel::load() {
     m_localPlayerId = 0;
 
-    const char *groups[] = {
-        nullptr,
-        nullptr,
-    };
+    const char *groups[] = {nullptr, nullptr};
     LayoutUIControl::load("game_image", "DebugPanel", "DebugPanel", groups);
 }
 

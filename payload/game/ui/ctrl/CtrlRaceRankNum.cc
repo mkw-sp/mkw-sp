@@ -40,38 +40,24 @@ void CtrlRaceRankNum::load(const char *variant, u32 localPlayerId) {
     u32 playerId = getPlayerId();
     m_rank = System::RaceManager::Instance()->player(playerId)->rank();
     auto &raceScenario = System::RaceConfig::Instance()->raceScenario();
+    // clang-format off
     if (raceScenario.localPlayerCount < 2 && raceScenario.spMaxTeamSize < 2) {
         const char *groups[] = {
-            "eRank",
-            "texure_patten_rank",
-            nullptr,
-            "eRankTransition",
-            "eClose",
-            "eOpen",
-            "eWait",
-            nullptr,
-            "eColor",
-            "default",
-            "blue",
-            "red",
-            nullptr,
+            "eRank", "texure_patten_rank", nullptr,
+            "eRankTransition", "eClose", "eOpen", "eWait", nullptr,
+            "eColor", "default", "blue", "red", nullptr,
             nullptr,
         };
         LayoutUIControl::load("game_image", "position", variant, groups);
     } else {
         const char *groups[] = {
-            "eRank",
-            "texure_patten_rank",
-            nullptr,
-            "eRankTransition",
-            "eClose",
-            "eOpen",
-            "eWait",
-            nullptr,
+            "eRank", "texure_patten_rank", nullptr,
+            "eRankTransition", "eClose", "eOpen", "eWait", nullptr,
             nullptr,
         };
         LayoutUIControl::load("game_image", "position_multi", variant, groups);
     }
+    // clang-format on
 }
 
 bool CtrlRaceRankNum::isDisabled() const {

@@ -102,47 +102,27 @@ void CtrlRaceBattleTotalPoint::calcSelf() {
 }
 
 void CtrlRaceBattleTotalPoint::load() {
+    char variant[0x20];
+    // clang-format off
+    const char *groups[] = {
+        "null_0", "off", "on", "stop", nullptr,
+        "null_1", "off", "on", "stop", nullptr,
+        "null_2", "off", "on", "stop", nullptr,
+        "null_3", "off", "on", "stop", nullptr,
+        "null_4", "off", "on", "stop", nullptr,
+        "null_5", "off", "on", "stop", nullptr,
+        nullptr,
+    };
+    // clang-format on
+
     auto &raceScenario = System::RaceConfig::Instance()->raceScenario();
 
     u32 maxTeamSize = raceScenario.spMaxTeamSize;
     m_teamCount = (raceScenario.playerCount + maxTeamSize - 1) / maxTeamSize;
 
     u32 screenCount = raceScenario.screenCount == 3 ? 4 : raceScenario.screenCount;
-    char variant[0x20];
     snprintf(variant, std::size(variant), "total_point_%u_%u", screenCount, m_teamCount);
-    const char *groups[] = {
-        "null_0",
-        "off",
-        "on",
-        "stop",
-        nullptr,
-        "null_1",
-        "off",
-        "on",
-        "stop",
-        nullptr,
-        "null_2",
-        "off",
-        "on",
-        "stop",
-        nullptr,
-        "null_3",
-        "off",
-        "on",
-        "stop",
-        nullptr,
-        "null_4",
-        "off",
-        "on",
-        "stop",
-        nullptr,
-        "null_5",
-        "off",
-        "on",
-        "stop",
-        nullptr,
-        nullptr,
-    };
+
     LayoutUIControl::load("game_image", "battle_total_point", variant, groups);
 }
 
