@@ -143,7 +143,7 @@ void SingleTopPage::onTAButtonFront(PushButton *button, u32 /* localPlayerId */)
     startReplace(Anim::Next, delay);
 }
 
-void SingleTopPage::onTAButtonSelect(PushButton *button, u32 /* localPlayerId */) {
+void SingleTopPage::onTAButtonSelect(PushButton * /* button */, u32 /* localPlayerId */) {
     m_instructionText.setMessage(3051);
 
     Section *section = SectionManager::Instance()->currentSection();
@@ -260,7 +260,7 @@ void SingleTopPage::onBackButtonFront(PushButton *button, u32 /* localPlayerId *
     changeSection(SectionId::TitleFromMenu, Anim::Prev, delay);
 }
 
-void SingleTopPage::onBackButtonSelect(PushButton *button, u32 /* localPlayerId */) {
+void SingleTopPage::onBackButtonSelect(PushButton * /* button */, u32 /* localPlayerId */) {
     m_instructionText.setMessage(0);
 }
 

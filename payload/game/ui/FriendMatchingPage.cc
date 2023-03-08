@@ -104,7 +104,6 @@ void FriendMatchingPage::onRefocus() {
 void FriendMatchingPage::collapse(Anim anim) {
     setAnim(anim);
     auto *section = SectionManager::Instance()->currentSection();
-    auto sectionId = section->id();
     if (section->isPageFocused(this)) {
         auto *globePage = section->page<PageId::Globe>();
         globePage->requestSpinFar();

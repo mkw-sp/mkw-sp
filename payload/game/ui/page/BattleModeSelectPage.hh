@@ -10,7 +10,7 @@ private:
     ~BattleModeSelectPage() override;
 
     void REPLACED(onInit)();
-    REPLACE void onInit();
+    REPLACE void onInit() override;
     REPLACE void onButtonFront(const PushButton *button);
     u8 _0[0x6c4 - 0x430];
 };

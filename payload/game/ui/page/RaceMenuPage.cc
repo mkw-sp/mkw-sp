@@ -130,7 +130,7 @@ bool RaceMenuPage::IsLastMatch() {
 
     if (raceScenario.isBattle()) {
         auto *saveManager = System::SaveManager::Instance();
-        auto maxRaceCount = saveManager->getSetting<SP::ClientSettings::Setting::BTRaceCount>();
+        s32 maxRaceCount = saveManager->getSetting<SP::ClientSettings::Setting::BTRaceCount>();
 
         return maxRaceCount <= (raceScenario.raceNumber + 1);
     }

@@ -307,7 +307,7 @@ static bool Sdi_write(u32 firstSector, u32 sectorCount, const void *buffer) {
     return Sdi_transfer(true, firstSector, sectorCount, (void *)buffer);
 }
 
-static bool Sdi_erase(u32 firstSector, u32 sectorCount) {
+static bool Sdi_erase(u32 /* firstSector */, u32 /* sectorCount */) {
     // TODO implement?
     return true;
 }

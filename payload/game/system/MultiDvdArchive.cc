@@ -27,9 +27,7 @@ static const char *getLanguageCode() {
     case SC_LANG_JAPANESE:
         return "J";
     case SC_LANG_ENGLISH:
-        if (REGION == REGION_E) {
-            return "U";
-        }
+        return REGION == REGION_E ? "U" : "E";
     case SC_LANG_SIMP_CHINESE:
     case SC_LANG_TRAD_CHINESE:
         return "E";
