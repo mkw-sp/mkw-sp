@@ -3,7 +3,7 @@
 #include "Page.h"
 
 typedef struct {
-    Page;
+    Page inherit;
     u8 _044[0x350 - 0x044];
 } TitlePage;
 static_assert(sizeof(TitlePage) == 0x350);

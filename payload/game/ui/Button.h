@@ -23,7 +23,7 @@ typedef struct {
 static_assert(sizeof(PushButton_vt) == 0x4c);
 
 typedef struct PushButton {
-    LayoutUIControl;
+    LayoutUIControl inherit;
     u8 _174[0x240 - 0x174];
     s32 index;
     u8 _244[0x254 - 0x244];

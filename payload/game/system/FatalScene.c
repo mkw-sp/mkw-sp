@@ -54,7 +54,7 @@ FatalScene *FatalScene_CT(FatalScene *scene) {
 
     memset(scene, 0, sizeof(*scene));
     EGG_Scene_CT((EGGScene *)scene);
-    scene->vt = &sFatalScene_Vtable;
+    scene->inherit.vt = &sFatalScene_Vtable;
 
     lyt_DrawInfo_CT(&scene->drawInfo);
     lyt_MultiArcResourceAccessor_CT(&scene->resAccessor);
@@ -72,7 +72,7 @@ void FatalScene_DT(FatalScene *scene, int type) {
     // lyt_ArcResourceLink_DT(&scene->arcLink, -1);
     lyt_Layout_DT(&scene->layout, -1);
 
-    EGG_Scene_DT(scene, type);
+    EGG_Scene_DT(&scene->inherit, type);
 }
 
 static void setupGpu() {
@@ -141,12 +141,12 @@ static void FatalScene_draw(EGGScene *scene) {
 static void FatalScene_enter(EGGScene *scene) {
     FatalScene *this = (FatalScene *)scene;
 
-    this->heapMem2->_1c = 0;
-    EGG_ExpHeap_InitAlloc((EGG_ExpHeap *)this->heapMem2, &this->allocator, 32);
+    this->inherit.heapMem2->_1c = 0;
+    EGG_ExpHeap_InitAlloc((EGG_ExpHeap *)this->inherit.heapMem2, &this->allocator, 32);
     lyt_spAlloc = &this->allocator;
 
-    this->heapMem2->_1c = 0;
-    void *archive = RipFromDiscAlloc("Scene/UI/CrashSP.szs", this->heapMem2);
+    this->inherit.heapMem2->_1c = 0;
+    void *archive = RipFromDiscAlloc("Scene/UI/CrashSP.szs", this->inherit.heapMem2);
     OSFATAL_CPU_ASSERT(archive);
 
     lyt_ArcResourceLink_Set(&this->arcLink, archive, ".");
@@ -162,9 +162,9 @@ static void FatalScene_enter(EGGScene *scene) {
     this->bodyPane = findPane(&this->layout, "Body");
     OSFATAL_CPU_ASSERT(this->bodyPane && "Can't find `Body` pane in brlyt");
 
-    OSFATAL_CPU_ASSERT(this->sceneMgr);
-    OSFATAL_CPU_ASSERT(this->sceneMgr->fader);
-    EGG_ColorFader_fadeIn(this->sceneMgr->fader);
+    OSFATAL_CPU_ASSERT(this->inherit.sceneMgr);
+    OSFATAL_CPU_ASSERT(this->inherit.sceneMgr->fader);
+    EGG_ColorFader_fadeIn(this->inherit.sceneMgr->fader);
 }
 
 void FatalScene_SetBody(FatalScene *this, const wchar_t *body) {
@@ -219,12 +219,12 @@ void FatalScene_LeechCurrentScene(FatalScene *this) {
     // Reclaim MEM2
     EGGScene *curScene = sRKSystem.scnMgr->curScene;
     PurgeHeap(curScene->heapMem2->heapHandle);
-    this->heapMem2 = curScene->heapMem2;
+    this->inherit.heapMem2 = curScene->heapMem2;
     // Unlock it
-    this->heapMem2->_1c = 0;
+    this->inherit.heapMem2->_1c = 0;
 
-    this->sceneMgr = sRKSystem.scnMgr;
-    this->parentScene = curScene;
+    this->inherit.sceneMgr = sRKSystem.scnMgr;
+    this->inherit.parentScene = curScene;
 }
 
 void FatalScene_MainLoop(FatalScene *this) {
@@ -234,8 +234,8 @@ void FatalScene_MainLoop(FatalScene *this) {
         display->vt->beginFrame(display);
         display->vt->beginRender(display);
 
-        this->vt->calc(this);
-        this->vt->draw(this);
+        this->inherit.vt->calc(&this->inherit);
+        this->inherit.vt->draw(&this->inherit);
 
         display->vt->endRender(display);
         display->vt->endFrame(display);
