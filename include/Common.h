@@ -66,9 +66,6 @@ typedef double f64;
         _a > _b ? _a : _b;      \
     })
 
-// Only for use in vendor code, we use `/* ... */` comments
-#define UNUSED(x) UNUSED_##x __attribute__((__unused__))
-
 #define CONTAINER_OF(ptr, type, member) \
     ((type *)((char *)(1 ? (ptr) : &((type *)0)->member) - offsetof(type, member)))
 
