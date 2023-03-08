@@ -24,6 +24,7 @@ if platform.python_implementation() == "PyPy":
 
 parser = ArgumentParser()
 parser.add_argument('--gdb_compatible', action='store_true')
+parser.add_argument("--ci", action="store_true")
 args = parser.parse_args()
 
 out_buf = io.StringIO()
@@ -904,9 +905,6 @@ common_cflags = [
     '-isystem', 'build',
     '-msdata=none',
     '-Wall',
-    '-Werror=implicit-function-declaration',
-    '-Werror=incompatible-pointer-types',
-    '-Werror=vla',
     '-Wextra',
     '-Wno-packed-bitfield-compat',
 ]
@@ -924,7 +922,6 @@ common_ccflags = [
     '-msdata=none',
     '-std=c++23',
     '-Wall',
-    '-Werror=vla',
     '-Wextra',
     '-Wno-delete-non-virtual-dtor',
     '-Wno-packed-bitfield-compat',
@@ -933,6 +930,17 @@ common_ccflags = [
 if args.gdb_compatible:
     common_cflags += ['-DGDB_COMPATIBLE=1']
     common_ccflags += ['-DGDB_COMPATIBLE=1']
+
+if args.ci:
+    common_ccflags.append("-Werror")
+    common_cflags.append("-Werror")
+else:
+    common_ccflags.append("-Werror=vla")
+    common_cflags.extend((
+        '-Werror=implicit-function-declaration',
+        '-Werror=incompatible-pointer-types',
+        '-Werror=vla',
+    ))
 
 target_cflags = {
     'stub': [
