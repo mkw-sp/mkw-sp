@@ -104,11 +104,11 @@ VotingBackPage::Handler::Handler(VotingBackPage &page) : m_page(page) {}
 
 VotingBackPage::Handler::~Handler() = default;
 
-void VotingBackPage::Handler::onReceivePulse(u32 playerId) {
+void VotingBackPage::Handler::onReceivePulse(s8 playerId) {
     m_page.m_selected[playerId] = true;
 }
 
-void VotingBackPage::Handler::onReceiveInfo(u32 playerId, s32 course, u32 selectedPlayer,
+void VotingBackPage::Handler::onReceiveInfo(s8 playerId, s32 course, u32 selectedPlayer,
         u32 character, u32 vehicle) {
     SP::RoomManager *roomManager = SP::RoomManager::Instance();
     System::RaceConfig *raceConfig = System::RaceConfig::Instance();

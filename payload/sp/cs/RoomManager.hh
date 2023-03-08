@@ -28,8 +28,8 @@ public:
         virtual void onSettingsChange(const std::array<u32, RoomSettings::count> & /* settings */) {
         }
         virtual void onReceiveTeamSelect(u32 /* playerId */, u32 /* teamId */) {}
-        virtual void onReceivePulse(u32 /* playerId */) {}
-        virtual void onReceiveInfo(u32 /* playerId */, s32 /* course */, u32 /* selectedPlayer */,
+        virtual void onReceivePulse(s8 /* playerId */) {}
+        virtual void onReceiveInfo(s8 /* playerId */, s32 /* course */, u32 /* selectedPlayer */,
                 u32 /* character */, u32 /* vehicle */) {}
         virtual void onError(u32 errorCode);
     };

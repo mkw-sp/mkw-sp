@@ -73,12 +73,12 @@ void OnlineModeSelectPage::onActivate() {
     }
 }
 
-void OnlineModeSelectPage::onBack(u32 localPlayerId) {
+void OnlineModeSelectPage::onBack(u32 /* localPlayerId */) {
     m_replacement = PageId::OnlineTop;
     startReplace(Anim::Prev, 0);
 }
 
-void OnlineModeSelectPage::onButtonFront(PushButton *button, u32 localPlayerId) {
+void OnlineModeSelectPage::onButtonFront(PushButton *button, u32 /* localPlayerId */) {
     auto section = SectionManager::Instance()->currentSection();
     auto connectionManager = section->page<PageId::OnlineConnectionManager>();
 
@@ -88,11 +88,11 @@ void OnlineModeSelectPage::onButtonFront(PushButton *button, u32 localPlayerId) 
     startReplace(Anim::Next, button->getDelay());
 }
 
-void OnlineModeSelectPage::onButtonSelect(PushButton *button, u32 localPlayerId) {
+void OnlineModeSelectPage::onButtonSelect(PushButton *button, u32 /* localPlayerId */) {
     m_instructionText.setMessage(4314 + button->m_index, nullptr);
 }
 
-void OnlineModeSelectPage::onBackButtonFront(PushButton *button, u32 localPlayerId) {
+void OnlineModeSelectPage::onBackButtonFront(PushButton * /* button */, u32 localPlayerId) {
     onBack(localPlayerId);
 }
 

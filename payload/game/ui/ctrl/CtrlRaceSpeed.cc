@@ -96,6 +96,8 @@ void CtrlRaceSpeed::calcSelf() {
         speed = Vec3::Norm(vel);
         break;
     }
+    case SP::ClientSettings::Speedometer::Off:
+        panic("calcSelf called when speedometer is off");
     }
 
     s32 integral = speed;
