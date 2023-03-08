@@ -50,7 +50,7 @@ jobs:
       - name: Install protobuf
         run: pip install protobuf
       - name: Configure ninja
-        run: ./configure.py
+        run: ./configure.py --ci
       - name: Compile
         run: ninja
       - name: Upload result
