@@ -1,10 +1,11 @@
 #include "RandomMatchingPage.hh"
 
-#include "payload/game/system/RaceConfig.hh"
-#include "payload/game/ui/SectionManager.hh"
-#include "payload/game/ui/FriendRoomBackPage.hh"
+#include "game/system/RaceConfig.hh"
+#include "game/ui/SectionManager.hh"
+#include "game/ui/FriendRoomBackPage.hh"
+#include "game/ui/OnlineConnectionManagerPage.hh"
 
-#include <payload/sp/cs/RoomClient.hh>
+#include <sp/cs/RoomClient.hh>
 
 namespace UI {
 

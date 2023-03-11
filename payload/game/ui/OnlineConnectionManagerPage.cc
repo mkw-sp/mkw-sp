@@ -2,8 +2,9 @@
 
 #include "game/system/SaveManager.hh"
 #include "game/system/RaceConfig.hh"
-#include "game/ui/SectionManager.hh"
 #include "game/ui/GlobalContext.hh"
+#include "game/ui/OnlineModeSelectPage.hh"
+#include "game/ui/SectionManager.hh"
 
 #include <protobuf/Matchmaking.pb.h>
 #include <sp/cs/RoomClient.hh>

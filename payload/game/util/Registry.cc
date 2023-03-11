@@ -4,8 +4,8 @@ extern "C" {
 #include "Registry.h"
 }
 
-#include <payload/game/system/SaveManager.hh>
-#include <payload/sp/cs/RoomClient.hh>
+#include <game/system/SaveManager.hh>
+#include <sp/cs/RoomClient.hh>
 
 namespace Registry {
 
