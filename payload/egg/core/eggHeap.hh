@@ -1,9 +1,7 @@
 #pragma once
 
 #include <Common.hh>
-extern "C" {
-#include <nw4r/ut/ut_list.h>
-}
+#include <nw4r/ut/ut_list.hh>
 
 namespace EGG {
 
@@ -26,15 +24,15 @@ public:
     static Heap *findContainHeap(const void *block);
 
     void appendDisposer(Disposer *disposer) {
-        ut_List_Append(&m_disposers, disposer);
+        m_disposers.append(disposer);
     }
     void removeDisposer(Disposer *disposer) {
-        ut_List_Remove(&m_disposers, disposer);
+        m_disposers.remove(disposer);
     }
 
 private:
     u8 _04[0x28 - 0x04];
-    ut_List m_disposers;
+    nw4r::ut::List m_disposers;
     u8 _34[0x38 - 0x34];
 };
 static_assert(sizeof(Heap) == 0x38);

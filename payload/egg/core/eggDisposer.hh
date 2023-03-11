@@ -4,9 +4,7 @@
  */
 #pragma once
 
-extern "C" {
-#include <nw4r/ut/ut_list.h>
-}
+#include <nw4r/ut/ut_list.hh>
 
 namespace EGG {
 
@@ -67,7 +65,7 @@ private:
     Heap *m_containHeap;
     // Otherwise, each Disposer object exists in a linked list owned by
     // mContainHeap.
-    ut_Node m_link;
+    nw4r::ut::Node m_link;
 };
 
 } // namespace EGG
