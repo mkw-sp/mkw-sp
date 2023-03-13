@@ -115,7 +115,7 @@ void MultiTopPage::onVSButtonFront([[maybe_unused]] PushButton *button,
     auto *saveManager = System::SaveManager::Instance();
     u32 teamsizeSetting = static_cast<u32>(saveManager->getSetting<SP::ClientSettings::Setting::VSTeamSize>());
     
-    u32 maxTeamSize = getmaxTeamSize(teamsizeSetting);
+    u32 maxTeamSize = SP::ClientSettings::getmaxTeamSize(teamsizeSetting);
 
     auto *context = SectionManager::Instance()->globalContext();
     u32 localPlayerCount = context->m_localPlayerCount;
@@ -161,7 +161,7 @@ void MultiTopPage::onBTButtonFront([[maybe_unused]] PushButton *button,
     u32 localPlayerCount = context->m_localPlayerCount;
     u32 teamsizeSetting = static_cast<u32>(saveManager->getSetting<SP::ClientSettings::Setting::BTTeamSize>());
     
-    u32 maxTeamSize = getmaxTeamSize(teamsizeSetting);
+    u32 maxTeamSize = SP::ClientSettings::getmaxTeamSize(teamsizeSetting);
 
     auto &menuScenario = System::RaceConfig::Instance()->menuScenario();
     menuScenario.engineClass = System::RaceConfig::EngineClass::CC50;
