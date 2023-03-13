@@ -113,7 +113,7 @@ void MultiTopPage::onSettingsButtonSelect([[maybe_unused]] PushButton *button,
 void MultiTopPage::onVSButtonFront([[maybe_unused]] PushButton *button,
         [[maybe_unused]] u32 localPlayerId) {
     auto *saveManager = System::SaveManager::Instance();
-    auto teamsizeSetting = saveManager->getSetting<SP::ClientSettings::Setting::VSTeamSize>();
+    u32 teamsizeSetting = static_cast<u32>(saveManager->getSetting<SP::ClientSettings::Setting::VSTeamSize>());
     
     u32 maxTeamSize = getmaxTeamSize(teamsizeSetting);
 
@@ -159,7 +159,7 @@ void MultiTopPage::onBTButtonFront([[maybe_unused]] PushButton *button,
     context->m_matchCount = saveManager->getSetting<SP::ClientSettings::Setting::BTRaceCount>();
 
     u32 localPlayerCount = context->m_localPlayerCount;
-    auto teamsizeSetting = saveManager->getSetting<SP::ClientSettings::Setting::BTTeamSize>();
+    u32 teamsizeSetting = static_cast<u32>(saveManager->getSetting<SP::ClientSettings::Setting::BTTeamSize>());
     
     u32 maxTeamSize = getmaxTeamSize(teamsizeSetting);
 
