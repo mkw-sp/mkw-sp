@@ -204,7 +204,7 @@ void SingleTopPage::onBTButtonFront([[maybe_unused]] PushButton *button,
 
     u32 maxTeamSizeSetting = static_cast<u32>(saveManager->getSetting<SP::ClientSettings::Setting::BTTeamSize>());
     
-    u32 maxTeamSize = getmaxTeamSize(maxTeamSizeSetting);
+    u32 maxTeamSize = SP::ClientSettings::getmaxTeamSize(maxTeamSizeSetting);
 
     auto &menuScenario = System::RaceConfig::Instance()->menuScenario();
     menuScenario.gameMode = System::RaceConfig::GameMode::OfflineBT;
