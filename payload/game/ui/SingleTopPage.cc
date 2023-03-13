@@ -162,9 +162,9 @@ void SingleTopPage::onVSButtonFront([[maybe_unused]] PushButton *button,
     auto *context = SectionManager::Instance()->globalContext();
     context->m_matchCount = saveManager->getSetting<SP::ClientSettings::Setting::VSRaceCount>();
 
-    auto maxTeamSizeSetting = static_cast<u32>(saveManager->getSetting<SP::ClientSettings::Setting::VSTeamSize>());
+    u32 maxTeamSizeSetting = static_cast<u32>(saveManager->getSetting<SP::ClientSettings::Setting::VSTeamSize>());
     
-    u32 maxTeamSize = getmaxTeamSize(maxTeamSizeSetting);
+    u32 maxTeamSize = SP::ClientSettings::getmaxTeamSize(maxTeamSizeSetting);
 
     auto &menuScenario = System::RaceConfig::Instance()->menuScenario();
     menuScenario.gameMode = System::RaceConfig::GameMode::OfflineVS;
