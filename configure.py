@@ -5,6 +5,7 @@ import glob
 import io
 import os
 import sys
+import platform
 from argparse import ArgumentParser
 
 from vendor.ninja_syntax import Writer
@@ -14,6 +15,12 @@ try:
     del json5
 except ModuleNotFoundError:
     raise SystemExit("Error: pyjson5 not found. Please install it with `python -m pip install json5`")
+
+if sys.version_info < (3, 10):
+    raise SystemExit("Error: Python 3.10 or newer is required")
+
+if platform.python_implementation() == "PyPy":
+    print("Warning: PyPy may be slower, due to spawning many Python processes")
 
 parser = ArgumentParser()
 parser.add_argument('--gdb_compatible', action='store_true')
@@ -61,50 +68,7 @@ n.rule(
 )
 n.newline()
 
-thumbnail_in_files = [
-    os.path.join('thumbnails', '3409.jpg'),
-    os.path.join('thumbnails', '3410.jpg'),
-    os.path.join('thumbnails', '3412.jpg'),
-    os.path.join('thumbnails', '3413.jpg'),
-    os.path.join('thumbnails', '3415.jpg'),
-    os.path.join('thumbnails', '3416.jpg'),
-    os.path.join('thumbnails', '3417.jpg'),
-    os.path.join('thumbnails', '3418.jpg'),
-    os.path.join('thumbnails', '3419.jpg'),
-    os.path.join('thumbnails', '3420.jpg'),
-    os.path.join('thumbnails', '3422.jpg'),
-    os.path.join('thumbnails', '3424.jpg'),
-    os.path.join('thumbnails', '3426.jpg'),
-    os.path.join('thumbnails', '3427.jpg'),
-    os.path.join('thumbnails', '3428.jpg'),
-    os.path.join('thumbnails', '3429.jpg'),
-    os.path.join('thumbnails', '3430.jpg'),
-    os.path.join('thumbnails', '3431.jpg'),
-    os.path.join('thumbnails', '3433.jpg'),
-    os.path.join('thumbnails', '3435.jpg'),
-    os.path.join('thumbnails', '3436.jpg'),
-    os.path.join('thumbnails', '3437.jpg'),
-    os.path.join('thumbnails', '3438.jpg'),
-    os.path.join('thumbnails', '3439.jpg'),
-    os.path.join('thumbnails', '3440.jpg'),
-    os.path.join('thumbnails', '3441.jpg'),
-    os.path.join('thumbnails', '3443.jpg'),
-    os.path.join('thumbnails', '3445.jpg'),
-    os.path.join('thumbnails', '3447.jpg'),
-    os.path.join('thumbnails', '3448.jpg'),
-    os.path.join('thumbnails', '3450.jpg'),
-    os.path.join('thumbnails', '3452.jpg'),
-    os.path.join('thumbnails', '3454.jpg'),
-    os.path.join('thumbnails', '3456.jpg'),
-    os.path.join('thumbnails', '3457.jpg'),
-    os.path.join('thumbnails', '3458.jpg'),
-    os.path.join('thumbnails', '3459.jpg'),
-    os.path.join('thumbnails', '3460.jpg'),
-    os.path.join('thumbnails', '3462.jpg'),
-    os.path.join('thumbnails', '3463.jpg'),
-    os.path.join('thumbnails', '3464.jpg'),
-    os.path.join('thumbnails', '3466.jpg'),
-]
+thumbnail_in_files = glob.glob("thumbnails/*.jpg")
 for in_file in thumbnail_in_files:
     out_file = os.path.join('$builddir', 'contents.arc.d', in_file)
     n.build(
@@ -591,7 +555,7 @@ asset_in_files = {
         os.path.join('button', 'ctrl', 'CourseSelectScrollBar.brctr.json5'),
         # Flags
         os.path.join('control', 'blyt', 'chara_flag_machine_picture_common.brlyt.json5'),
-        *glob.glob("control/timg/*.tpl", root_dir="assets", recursive=True),
+        *glob.glob("control/timg/[0-9][0-9][0-9].tpl", root_dir="assets", recursive=True),
     ],
     os.path.join('Scene', 'UI', 'RaceSP.arc.lzma'): [
         # Menu

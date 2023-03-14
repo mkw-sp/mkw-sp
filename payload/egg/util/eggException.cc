@@ -9,7 +9,6 @@ extern "C" {
 #include <revolution/os.h>
 #include <revolution/pad.h>
 #include <revolution/vi.h>
-#include <sp/Host.h>
 }
 
 #include <cstring>
@@ -33,6 +32,7 @@ bool ExceptionCallBack_(nw4r::db::ConsoleHandle console, void *UNUSED(arg)) {
 
     VISetBlack(0);
     VIFlush();
+    AXSetMasterVolume(0);
     OSReport("cancel all thread...\n");
     Thread::kandoTestCancelAllThread();
     OSReport("done\n");
@@ -64,7 +64,7 @@ bool ExceptionCallBack_(nw4r::db::ConsoleHandle console, void *UNUSED(arg)) {
             KPADGetUnifiedWpadStatus(0, &clStatus, 1);
         }
 
-        if (HostPlatform_IsConsole(Host_GetPlatform())) {
+        if (OSGetCurrentThread()) {
             if (wStatus.buttons & KPAD_BUTTON_HOME || gcStatus[0].buttons & PAD_BUTTON_START ||
                     (classic && clStatus.buttons & WPAD_CL_BUTTON_HOME)) {
                 System::SystemManager::ReturnToMenu();
