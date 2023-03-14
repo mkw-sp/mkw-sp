@@ -1,9 +1,11 @@
 #pragma once
 
-#include <game/util/Registry.hh>
-#include <vendor/libhydrogen/hydrogen.h>
-
 #include "sp/settings/Settings.hh"
+
+#include <game/util/Registry.hh>
+extern "C" {
+#include <vendor/libhydrogen/hydrogen.h>
+}
 
 namespace SP::ClientSettings {
 
