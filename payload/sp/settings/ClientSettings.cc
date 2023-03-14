@@ -5,7 +5,7 @@
 namespace SP::ClientSettings {
     
 u32 getmaxTeamSize(u32 teamsizesetting) {
-u32 maxTeamSize;
+    u32 maxTeamSize;
 
     if (teamsizesetting == 5) {        
         u32 rand_number = hydro_random_u32();
