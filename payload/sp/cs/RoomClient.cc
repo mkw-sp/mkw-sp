@@ -3,9 +3,7 @@
 #include "sp/settings/RegionLineColor.hh"
 
 #include <egg/core/eggHeap.hh>
-extern "C" {
-#include <game/system/RootScene.h>
-}
+#include <game/system/RootScene.hh>
 #include <game/system/SaveManager.hh>
 #include <game/ui/GlobalContext.hh>
 #include <game/ui/SectionId.hh>

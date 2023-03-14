@@ -1,12 +1,11 @@
 #include "ResourceManager.hh"
 
+#include "game/system/RootScene.hh"
+
 #include <sp/storage/DecompLoader.hh>
 #include <sp/storage/Storage.hh>
 
 extern "C" {
-#include "game/system/RootScene.h"
-
-#include <egg/core/eggHeap.h>
 #include <revolution.h>
 }
 
@@ -16,17 +15,17 @@ namespace System {
 
 void ResourceManager::initGlobeHeap() {
     if (!m_globeHeap) {
-        auto *heap = reinterpret_cast<EGG::Heap *>(s_rootScene->heapCollection.heaps[HEAP_ID_MEM2]);
+        auto *heap = RootScene::Instance()->m_heapCollection.mem2;
         size_t size = OSRoundUp32B(0x107d080 + 0x20400);
         void *buffer = new (heap, -0x20) u8[size];
-        m_globeHeap = reinterpret_cast<EGG::Heap *>(&EGG_ExpHeap_create2(buffer, size, 1)->base);
+        m_globeHeap = EGG::ExpHeap::Create(buffer, size, 1);
     }
 }
 
 void ResourceManager::deinitGlobeHeap() {
     if (m_globeHeap) {
         m_globe = nullptr;
-        EGG_ExpHeap_destroy(reinterpret_cast<EGG_ExpHeap *>(m_globeHeap));
+        m_globeHeap->destroy();
         m_globeHeap = nullptr;
         m_globeLoadingIsBusy = false;
     }
@@ -165,9 +164,9 @@ void ResourceManager::LoadGlobeTask(void *arg) {
 void ResourceManager::CourseCache::init() {
     if (!m_heap) {
         assert(!m_buffer);
-        auto *heap = reinterpret_cast<EGG::Heap *>(s_rootScene->heapCollection.heaps[HEAP_ID_MEM2]);
+        auto *heap = RootScene::Instance()->m_heapCollection.mem2;
         m_buffer = new (heap, -0x20) u8[0xb00000];
-        m_heap = reinterpret_cast<EGG::Heap *>(&EGG_ExpHeap_create2(m_buffer, 0xb00000, 1)->base);
+        m_heap = EGG::ExpHeap::Create(m_buffer, 0xb00000, 1);
         m_state = State::Cleared;
     }
 }
@@ -179,7 +178,7 @@ void ResourceManager::CourseCache::deinit() {
         }
         assert(m_buffer);
         m_state = State::Cleared;
-        EGG_ExpHeap_destroy(reinterpret_cast<EGG_ExpHeap *>(m_heap));
+        m_heap->destroy();
         m_heap = nullptr;
         m_buffer = nullptr;
     }
