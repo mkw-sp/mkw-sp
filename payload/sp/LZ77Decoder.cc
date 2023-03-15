@@ -88,8 +88,9 @@ bool LZ77Decoder::decode(const u8 *src, size_t srcSize) {
             return false;
         }
 
-        if (srcOffset == srcSize && ((m_state != State::GroupHeader || m_groupHeaderIndex == 7) &&
-                m_state != State::RefCopy)) {
+        if (srcOffset == srcSize &&
+                ((m_state != State::GroupHeader || m_groupHeaderIndex == 7) &&
+                        m_state != State::RefCopy)) {
             return true;
         }
     } while (process(src, srcOffset));

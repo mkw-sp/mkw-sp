@@ -150,5 +150,4 @@ bool RaceConfig_IsSameTeam(u32 p0, u32 p1) {
 
     return raceScenario.players[p0].spTeam == raceScenario.players[p1].spTeam;
 }
-
 }

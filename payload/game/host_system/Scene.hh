@@ -9,9 +9,9 @@ class HeapCollection {
 public:
     void setGroupIdAll(u32 groupId);
 
-    EGG::Heap* mem1;
-    EGG::Heap* mem2;
-    EGG::Heap* debug;
+    EGG::Heap *mem1;
+    EGG::Heap *mem2;
+    EGG::Heap *debug;
     u8 _00c[0xc0c - 0x00c];
 };
 
@@ -32,18 +32,17 @@ static_assert(sizeof(Scene) == 0xc70);
 
 enum class RKSceneID {
     // --- <SceneCreatorREL>
-    Title = 0,  //!< Called when REL first loaded
-    Menu = 1,   //!< "メニューシーン" -> "Menu Scene"
-    Race = 2,   //!< "レースシーン" -> "Race Scene"
-    Globe = 4,  //!< "地球儀シーン" -> "Globe Scene"
+    Title = 0, //!< Called when REL first loaded
+    Menu = 1,  //!< "メニューシーン" -> "Menu Scene"
+    Race = 2,  //!< "レースシーン" -> "Race Scene"
+    Globe = 4, //!< "地球儀シーン" -> "Globe Scene"
 
     // --- <SceneCreatorStatic>
-    Strap = 5,  //!< Root scene loaded immediately after initializing the system.
+    Strap = 5, //!< Root scene loaded immediately after initializing the system.
     // --- </SceneCreatorStatic>
 
-    FlagOpen = 12,  //!< "フラグオープンシーン" -> "Flag Open Scene"
+    FlagOpen = 12, //!< "フラグオープンシーン" -> "Flag Open Scene"
     // --- </SceneCreatorREL>
 };
-
 
 } // namespace System

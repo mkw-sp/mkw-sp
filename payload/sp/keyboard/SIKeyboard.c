@@ -26,8 +26,7 @@ typedef struct {
 static bool KeyCodeTriplet_IsEmpty(const KeyCodeTriplet *trip) {
     return trip->keys[0] == 0 && trip->keys[1] == 0 && trip->keys[2] == 0;
 }
-static bool KeyCodeTriplet_Equals(
-        const KeyCodeTriplet *self, const KeyCodeTriplet *other) {
+static bool KeyCodeTriplet_Equals(const KeyCodeTriplet *self, const KeyCodeTriplet *other) {
     return !memcmp(self, other, sizeof(KeyCodeTriplet));
 }
 
@@ -78,14 +77,14 @@ static PollResult SIKeyboard_PollInternal(KeyCodeTriplet *pKeys) {
     // Validate checksum
     {
         const u8 checksum_data[7] = {
-            (response[0] >> 24) & 0xff,
-            (response[0] >> 16) & 0xff,
-            (response[0] >> 8) & 0xff,
-            (response[0] >> 0) & 0xff,
+                (response[0] >> 24) & 0xff,
+                (response[0] >> 16) & 0xff,
+                (response[0] >> 8) & 0xff,
+                (response[0] >> 0) & 0xff,
 
-            (response[1] >> 24) & 0xff,
-            (response[1] >> 16) & 0xff,
-            (response[1] >> 8) & 0xff,
+                (response[1] >> 24) & 0xff,
+                (response[1] >> 16) & 0xff,
+                (response[1] >> 8) & 0xff,
         };
 
         u32 checksum = 0;
@@ -116,174 +115,174 @@ static bool sIsInit = false;
 #define SIKeyboard_VerboseLog(...)
 
 static const char sKeys[] = {
-    [6] = '\0',    // HOME
-    [7] = '\0',    // END
-    [8] = '\0',    // PGUP
-    [9] = '\0',    // PGDN
-    [0xA] = '\0',  // SCROLLLOCK
+        [6] = '\0',   // HOME
+        [7] = '\0',   // END
+        [8] = '\0',   // PGUP
+        [9] = '\0',   // PGDN
+        [0xA] = '\0', // SCROLLLOCK
 
-    [0x10] = 'a',
-    'b',
-    'c',
-    'd',
-    'e',
-    'f',
-    'g',
-    'h',
-    'i',
-    'j',
-    'k',
-    'l',
-    'm',
-    'n',
-    'o',
-    'p',
-    'q',
-    'r',
-    's',
-    't',
-    'u',
-    'v',
-    'w',
-    'x',
-    'y',
-    'z',
-    // 0x29
-    '1',
-    '2',
-    '3',
-    '4',
-    '5',
-    '6',
-    '7',
-    '8',
-    '9',
-    '0',
-    // 0x34
-    '-',
-    '`',
-    '\0',  // PRNTSCR
-    '\'',
-    '[',
-    '=',
-    '\'',
-    ']',  // HASH
-    ',',
-    '.',
-    '/',
-    '\\',           // INTERNATIONAL1
-    [0x40] = '\0',  // F1
-    [0x4B] = '\0',  // F12
-    '\0',           // ESC
-    '\0',           // INSERT
-    '\0',           // DELETE
-    ';',
-    '\0',  // BACKSPACE
-    '\0',  // TAB
-    '\0',  // 0x52: UNK
-    '\0',  // CAPSLOCK
-    '\0',  // LSHIFT
-    '\0',  // RSHIFT
-    '\0',  // LCTRL
-    '\0',  // RALT
-    '\0',  // LWIN
-    ' ',
-    '\0',  // RWIN
-    '\0',  // MENU
+        [0x10] = 'a',
+        'b',
+        'c',
+        'd',
+        'e',
+        'f',
+        'g',
+        'h',
+        'i',
+        'j',
+        'k',
+        'l',
+        'm',
+        'n',
+        'o',
+        'p',
+        'q',
+        'r',
+        's',
+        't',
+        'u',
+        'v',
+        'w',
+        'x',
+        'y',
+        'z',
+        // 0x29
+        '1',
+        '2',
+        '3',
+        '4',
+        '5',
+        '6',
+        '7',
+        '8',
+        '9',
+        '0',
+        // 0x34
+        '-',
+        '`',
+        '\0', // PRNTSCR
+        '\'',
+        '[',
+        '=',
+        '\'',
+        ']', // HASH
+        ',',
+        '.',
+        '/',
+        '\\',          // INTERNATIONAL1
+        [0x40] = '\0', // F1
+        [0x4B] = '\0', // F12
+        '\0',          // ESC
+        '\0',          // INSERT
+        '\0',          // DELETE
+        ';',
+        '\0', // BACKSPACE
+        '\0', // TAB
+        '\0', // 0x52: UNK
+        '\0', // CAPSLOCK
+        '\0', // LSHIFT
+        '\0', // RSHIFT
+        '\0', // LCTRL
+        '\0', // RALT
+        '\0', // LWIN
+        ' ',
+        '\0', // RWIN
+        '\0', // MENU
 
-    '\0',  // LEFT
-    '\0',  // DOWN
-    '\0',  // UP
-    'R',   // RIGHT
+        '\0', // LEFT
+        '\0', // DOWN
+        '\0', // UP
+        'R',  // RIGHT
 
-    '\0',  // 0x60 UNK
+        '\0', // 0x60 UNK
 
-    '\0',  // ENTER
+        '\0', // ENTER
 };
 static const char sKeysShifted[] = {
-    [6] = '\0',    // HOME
-    [7] = '\0',    // END
-    [8] = '\0',    // PGUP
-    [9] = '\0',    // PGDN
-    [0xA] = '\0',  // SCROLLLOCK
+        [6] = '\0',   // HOME
+        [7] = '\0',   // END
+        [8] = '\0',   // PGUP
+        [9] = '\0',   // PGDN
+        [0xA] = '\0', // SCROLLLOCK
 
-    [0x10] = 'A',
-    'B',
-    'C',
-    'D',
-    'E',
-    'F',
-    'G',
-    'H',
-    'I',
-    'J',
-    'K',
-    'L',
-    'M',
-    'N',
-    'O',
-    'P',
-    'Q',
-    'R',
-    'S',
-    'T',
-    'U',
-    'V',
-    'W',
-    'X',
-    'Y',
-    'Z',
-    // 0x29
-    '!',
-    '@',
-    '#',
-    '$',
-    '%',
-    '^',
-    '&',
-    '*',
-    '(',
-    ')',
-    // 0x34
-    '_',
-    '~',
-    '\0',  // PRNTSCR
-    '\"',
-    '{',
-    '+',
-    '"',
-    '}',  // HASH
-    '<',
-    '>',
-    '?',
-    '|',            // INTERNATIONAL1
-    [0x40] = '\0',  // F1
-    [0x4B] = '\0',  // F12
-    '\0',           // ESC
-    '\0',           // INSERT
-    '\0',           // DELETE
-    ':',
-    '\0',  // BACKSPACE
-    '\0',  // TAB
-    '\0',  // 0x52: UNK
-    '\0',  // CAPSLOCK
-    '\0',  // LSHIFT
-    '\0',  // RSHIFT
-    '\0',  // LCTRL
-    '\0',  // RALT
-    '\0',  // LWIN
-    ' ',
-    '\0',  // RWIN
-    '\0',  // MENU
+        [0x10] = 'A',
+        'B',
+        'C',
+        'D',
+        'E',
+        'F',
+        'G',
+        'H',
+        'I',
+        'J',
+        'K',
+        'L',
+        'M',
+        'N',
+        'O',
+        'P',
+        'Q',
+        'R',
+        'S',
+        'T',
+        'U',
+        'V',
+        'W',
+        'X',
+        'Y',
+        'Z',
+        // 0x29
+        '!',
+        '@',
+        '#',
+        '$',
+        '%',
+        '^',
+        '&',
+        '*',
+        '(',
+        ')',
+        // 0x34
+        '_',
+        '~',
+        '\0', // PRNTSCR
+        '\"',
+        '{',
+        '+',
+        '"',
+        '}', // HASH
+        '<',
+        '>',
+        '?',
+        '|',           // INTERNATIONAL1
+        [0x40] = '\0', // F1
+        [0x4B] = '\0', // F12
+        '\0',          // ESC
+        '\0',          // INSERT
+        '\0',          // DELETE
+        ':',
+        '\0', // BACKSPACE
+        '\0', // TAB
+        '\0', // 0x52: UNK
+        '\0', // CAPSLOCK
+        '\0', // LSHIFT
+        '\0', // RSHIFT
+        '\0', // LCTRL
+        '\0', // RALT
+        '\0', // LWIN
+        ' ',
+        '\0', // RWIN
+        '\0', // MENU
 
-    '\0',  // LEFT
-    '\0',  // DOWN
-    '\0',  // UP
-    'R',   // RIGHT
+        '\0', // LEFT
+        '\0', // DOWN
+        '\0', // UP
+        'R',  // RIGHT
 
-    '\0',  // 0x60 UNK
+        '\0', // 0x60 UNK
 
-    '\0',  // ENTER
+        '\0', // ENTER
 };
 
 bool SIKeyboard_KeycodeIsCharacter(char key) {
@@ -329,7 +328,7 @@ static bool SIKeyboard_IsAlreadyHeld(char c) {
 size_t SIKeyboard_Poll(char *pKeys, size_t max_keys) {
     SP_SCOPED_NO_INTERRUPTS();
 
-    KeyCodeTriplet keys = (KeyCodeTriplet){ .keys = { 0, 0, 0 } };
+    KeyCodeTriplet keys = (KeyCodeTriplet){.keys = {0, 0, 0}};
     PollResult pollResult = SIKeyboard_PollInternal(&keys);
 
     switch (pollResult) {
@@ -420,8 +419,8 @@ void SIKeyboard_PollingHandler(void) {
         return;
     }
 
-    SIKeyboard_VerboseLog("APPEND %c%c%c (new character size=%u, current buf size=%u)",
-            keybuf[0], keybuf[1], keybuf[2], (u32)num_keys, (u32)sTypingBuffer.len);
+    SIKeyboard_VerboseLog("APPEND %c%c%c (new character size=%u, current buf size=%u)", keybuf[0],
+            keybuf[1], keybuf[2], (u32)num_keys, (u32)sTypingBuffer.len);
 
     for (size_t i = 0; i < num_keys; ++i) {
         TypingBuffer_Append(&sTypingBuffer, keybuf[i]);

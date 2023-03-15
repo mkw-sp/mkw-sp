@@ -84,11 +84,11 @@ void PerfOverlay::measureBeginFrame(OSTime frameDuration) {
 
         for (size_t i = 0; i < std::size(m_threads); i++) {
             if (m_threads[i] == m_mainThread) {
-                m_threadColors[i] = { 255, 80, 80, 255 };
+                m_threadColors[i] = {255, 80, 80, 255};
             } else if (m_threads[i]) {
-                m_threadColors[i] = { 255, 255, 255, 255 };
+                m_threadColors[i] = {255, 255, 255, 255};
             } else {
-                m_threadColors[i] = { 0, 0, 0, 0 };
+                m_threadColors[i] = {0, 0, 0, 0};
             }
         }
         m_lastThread = OSGetCurrentThread();
@@ -122,13 +122,13 @@ void PerfOverlay::measureBeginFrame(OSTime frameDuration) {
                     colorId ^= 1;
                 }
                 if (colorId == 0) {
-                    m_memColors[i][j] = { 80, 255, 255, 255 };
+                    m_memColors[i][j] = {80, 255, 255, 255};
                 } else {
-                    m_memColors[i][j] = { 255, 255, 80, 255 };
+                    m_memColors[i][j] = {255, 255, 80, 255};
                 }
                 lastHandle = handle;
             } else {
-                m_memColors[i][j] = { 0, 0, 0, 0 };
+                m_memColors[i][j] = {0, 0, 0, 0};
             }
         }
     }
@@ -171,15 +171,15 @@ void PerfOverlay::draw() {
     GXClearVtxDesc();
     GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_POS, GX_POS_XY, GX_S16, 0);
 
-    DrawRectangle(4, 432, 600, 6, { 0, 0, 0, 102 });
-    DrawRectangle(m_cpuDrawX, 433, m_cpuDrawWidth, 2, { 80, 255, 80, 255 });
-    DrawRectangle(m_cpuCalcX, 433, m_cpuCalcWidth, 2, { 255, 80, 255, 255 });
+    DrawRectangle(4, 432, 600, 6, {0, 0, 0, 102});
+    DrawRectangle(m_cpuDrawX, 433, m_cpuDrawWidth, 2, {80, 255, 80, 255});
+    DrawRectangle(m_cpuCalcX, 433, m_cpuCalcWidth, 2, {255, 80, 255, 255});
     DrawRectangles(435, m_threadColors);
 
-    DrawRectangle(4, 440, 600, 4, { 0, 0, 0, 102 });
-    DrawRectangle(m_gpuX, 441, m_gpuWidth, 2, { 80, 80, 255, 255 });
+    DrawRectangle(4, 440, 600, 4, {0, 0, 0, 102});
+    DrawRectangle(m_gpuX, 441, m_gpuWidth, 2, {80, 80, 255, 255});
 
-    DrawRectangle(4, 446, 600, 6, { 0, 0, 0, 102 });
+    DrawRectangle(4, 446, 600, 6, {0, 0, 0, 102});
     for (size_t i = 0; i < std::size(m_memColors); i++) {
         DrawRectangles(447 + i * 2, m_memColors[i]);
     }

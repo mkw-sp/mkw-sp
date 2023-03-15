@@ -1,8 +1,8 @@
 #pragma once
 
-#include <array>
 #include "game/ui/GhostSelectButton.hh"
 #include "game/ui/UIControl.hh"
+#include <array>
 
 namespace UI {
 
@@ -38,4 +38,4 @@ private:
     void onShow();
 };
 
-}  // namespace UI
+} // namespace UI

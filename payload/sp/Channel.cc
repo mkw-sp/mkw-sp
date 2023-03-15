@@ -22,7 +22,7 @@ struct ContentFile {
 
 #define TMP_CONTENT_PATH "/tmp/content"
 
-static const std::array<const char *, 2> contentPaths{ "opening.bnr.lzma", "boot.dol.lzma" };
+static const std::array<const char *, 2> contentPaths{"opening.bnr.lzma", "boot.dol.lzma"};
 static std::array<ContentFile, 2> contentFiles;
 static Status status = Status::None;
 static bool isLoaded = false;
@@ -171,7 +171,7 @@ static void InstallInternal() {
     tmd.titleID = CHANNEL_TITLE_ID;
     tmd.titleType = 0;
     tmd.groupID = 0x3031;
-    tmd.region = 3; // Region free
+    tmd.region = 3;  // Region free
     tmd._1ae[4] = 1; // Skip drive reset
     tmd.titleVersion = CHANNEL_TITLE_VERSION;
     tmd.numContents = contentFiles.size() + 1;

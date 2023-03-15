@@ -33,7 +33,7 @@ AsyncSocket::AsyncSocket(u32 ip, u16 port, const char context[hydro_secretbox_CO
         return;
     }
 
-    m_connectTask = { address };
+    m_connectTask = {address};
 
     m_initTask.emplace();
     m_initTask->isServer = false;
@@ -51,7 +51,8 @@ AsyncSocket::AsyncSocket(u32 ip, u16 port, const char context[hydro_secretbox_CO
 
 // XX variant, server-side
 AsyncSocket::AsyncSocket(s32 handle, const hydro_kx_keypair &serverKeypair,
-        const char context[hydro_secretbox_CONTEXTBYTES]) : m_handle(handle) {
+        const char context[hydro_secretbox_CONTEXTBYTES])
+    : m_handle(handle) {
     if (!makeNonBlocking()) {
         SOClose(m_handle);
         m_handle = -1;
@@ -116,15 +117,15 @@ bool AsyncSocket::poll() {
 
             if (m_initTask->xx1Offset == hydro_kx_XX_PACKET1BYTES) {
                 if (hydro_kx_xx_2(&m_initTask->state, m_initTask->xx2, m_initTask->xx1, nullptr,
-                        &m_initTask->keypair) != 0) {
+                            &m_initTask->keypair) != 0) {
                     SP_LOG("Failed to run key exchange step XX2");
                     return false;
                 }
             }
         }
 
-        if (m_initTask->xx1Offset == hydro_kx_XX_PACKET1BYTES && m_initTask->xx2Offset <
-                hydro_kx_XX_PACKET2BYTES) {
+        if (m_initTask->xx1Offset == hydro_kx_XX_PACKET1BYTES &&
+                m_initTask->xx2Offset < hydro_kx_XX_PACKET2BYTES) {
             if (!send(m_initTask->xx2, hydro_kx_XX_PACKET2BYTES, m_initTask->xx2Offset)) {
                 return false;
             }
@@ -155,15 +156,15 @@ bool AsyncSocket::poll() {
             }
         }
 
-        if (m_initTask->xx1Offset == hydro_kx_XX_PACKET1BYTES && m_initTask->xx2Offset <
-                hydro_kx_XX_PACKET2BYTES) {
+        if (m_initTask->xx1Offset == hydro_kx_XX_PACKET1BYTES &&
+                m_initTask->xx2Offset < hydro_kx_XX_PACKET2BYTES) {
             if (!recv(m_initTask->xx2, hydro_kx_XX_PACKET2BYTES, m_initTask->xx2Offset)) {
                 return false;
             }
 
             if (m_initTask->xx2Offset == hydro_kx_XX_PACKET2BYTES) {
                 if (hydro_kx_xx_3(&m_initTask->state, &m_keypair, m_initTask->xx3, m_peerPK,
-                        m_initTask->xx2, nullptr, &m_initTask->keypair) != 0) {
+                            m_initTask->xx2, nullptr, &m_initTask->keypair) != 0) {
                     SP_LOG("Failed to run key exchange step XX3");
                     return false;
                 }
@@ -213,8 +214,8 @@ bool AsyncSocket::poll() {
                 readTask->size = Bytes::Read<u16>(readTask->buffer, 0);
                 if (readTask->size > sizeof(readTask->buffer) - sizeof(u16)) {
                     SP_LOG("Message %llu is larger than the allotted buffer size (0x%04X > 0x%04X)",
-                            m_readMessageID + 1, readTask->size, sizeof(readTask->buffer) -
-                            sizeof(u16));
+                            m_readMessageID + 1, readTask->size,
+                            sizeof(readTask->buffer) - sizeof(u16));
                     return false;
                 }
             }
@@ -247,7 +248,7 @@ std::optional<u16> AsyncSocket::read(u8 *message, u16 maxSize) {
         return {};
     }
     if (hydro_secretbox_decrypt(message, readTask->buffer + sizeof(u16), readTask->size,
-            m_readMessageID++, m_context, m_keypair.rx) != 0) {
+                m_readMessageID++, m_context, m_keypair.rx) != 0) {
         SP_LOG("Failed to decrypt message");
         return {};
     }
@@ -267,7 +268,7 @@ bool AsyncSocket::write(const u8 *message, u16 size) {
     assert(writeTask.size - sizeof(u16) <= UINT16_MAX);
     Bytes::Write<u16>(writeTask.buffer, 0, writeTask.size - sizeof(u16));
     if (hydro_secretbox_encrypt(writeTask.buffer + sizeof(u16), message, size, m_writeMessageID++,
-            m_context, m_keypair.tx) != 0) {
+                m_context, m_keypair.tx) != 0) {
         SP_LOG("Failed to encrypt message");
         return false;
     }

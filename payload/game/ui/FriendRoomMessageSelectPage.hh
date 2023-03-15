@@ -25,7 +25,9 @@ public:
     void onDeactivate() override;
     void beforeCalc() override;
 
-    void setMenuType(MenuType menuType) { m_menuType = menuType; }
+    void setMenuType(MenuType menuType) {
+        m_menuType = menuType;
+    }
     void pop(Anim anim);
 
 private:
@@ -81,12 +83,12 @@ private:
     s32 m_cachedSheetIdx;
     s32 m_cachedButton;
 
-    H<MultiControlInputManager> m_onBack{ this, &FriendRoomMessageSelectPage::onBack };
-    H<PushButton> m_onBackButtonFront{ this, &FriendRoomMessageSelectPage::onBackButtonFront };
-    H<PushButton> m_onCommentButtonFront{ this, &FriendRoomMessageSelectPage::onCommentButtonFront };
-    H<SheetSelectControl> m_onRight{this, &FriendRoomMessageSelectPage::onRight };
-    H<SheetSelectControl> m_onLeft{this, &FriendRoomMessageSelectPage::onLeft };
-    H<PushButton> m_onStartButtonFront{ this, &FriendRoomMessageSelectPage::onStartButtonFront };
+    H<MultiControlInputManager> m_onBack{this, &FriendRoomMessageSelectPage::onBack};
+    H<PushButton> m_onBackButtonFront{this, &FriendRoomMessageSelectPage::onBackButtonFront};
+    H<PushButton> m_onCommentButtonFront{this, &FriendRoomMessageSelectPage::onCommentButtonFront};
+    H<SheetSelectControl> m_onRight{this, &FriendRoomMessageSelectPage::onRight};
+    H<SheetSelectControl> m_onLeft{this, &FriendRoomMessageSelectPage::onLeft};
+    H<PushButton> m_onStartButtonFront{this, &FriendRoomMessageSelectPage::onStartButtonFront};
 };
 
 } // namespace UI

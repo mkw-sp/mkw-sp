@@ -24,17 +24,30 @@ public:
     void onInit() override;
     void afterCalc() override;
 
-    void setTrackpack(u32 trackpack) { m_trackpack = trackpack; }
-    void startSearch() { m_searchStarted = true; }
+    void setTrackpack(u32 trackpack) {
+        m_trackpack = trackpack;
+    }
+    void startSearch() {
+        m_searchStarted = true;
+    }
 
-    std::optional<u16> getVsRating() const { return m_vs_rating; }
-    std::optional<u16> getBtRating() const { return m_bt_rating; }
-    bool isCustomTrackpack() const { return m_trackpack != 0; }
-    State getState() const { return m_state; }
+    std::optional<u16> getVsRating() const {
+        return m_vs_rating;
+    }
+    std::optional<u16> getBtRating() const {
+        return m_bt_rating;
+    }
+    bool isCustomTrackpack() const {
+        return m_trackpack != 0;
+    }
+    State getState() const {
+        return m_state;
+    }
 
     std::optional<STCMessage_FoundMatch> takeMatchResponse();
 
     u32 m_gamemode;
+
 private:
     bool read(std::optional<STCMessage> &event);
     void write(CTSMessage message);

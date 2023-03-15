@@ -3,11 +3,11 @@
 extern "C" {
 #include <revolution/ios.h>
 }
+#include "FixedString.hh"
 #include <Common.h>
 #include <array>
 #include <expected>
 #include <string_view>
-#include "FixedString.hh"
 
 namespace SP::IOSDolphin {
 
@@ -73,4 +73,4 @@ IPCResult DiscordReset();
 // Result: Unix timestamp (milliseconds)
 Result<u64> GetSystemTime();
 
-}  // namespace SP::IOSDolphin
+} // namespace SP::IOSDolphin

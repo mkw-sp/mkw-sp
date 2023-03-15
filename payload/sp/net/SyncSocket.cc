@@ -82,8 +82,8 @@ SyncSocket::SyncSocket(const char *hostname, u16 port, const u8 serverPK[hydro_k
     memcpy(m_context, context, sizeof(m_context));
 }
 
-SyncSocket::SyncSocket(SyncSocket &&that) : m_handle(that.m_handle), m_keypair(that.m_keypair),
-        m_messageID(that.m_messageID) {
+SyncSocket::SyncSocket(SyncSocket &&that)
+    : m_handle(that.m_handle), m_keypair(that.m_keypair), m_messageID(that.m_messageID) {
     memcpy(m_context, that.m_context, sizeof(m_context));
     hydro_memzero(&that.m_keypair, sizeof(that.m_keypair));
     that.m_handle = -1;
@@ -133,7 +133,7 @@ std::optional<u16> SyncSocket::read(u8 *message, u16 maxSize) {
 
     const u8 *key = m_keypair.rx;
     if (hydro_secretbox_decrypt(message, tmp.get() + sizeof(u16), size, m_messageID++, m_context,
-            key) != 0) {
+                key) != 0) {
         SP_LOG("Failed to decrypt message");
         return {};
     }
@@ -146,7 +146,7 @@ bool SyncSocket::write(const u8 *message, u16 size) {
     assert(GetSize(tmp) - 2 <= UINT16_MAX);
     Bytes::Write<u16>(tmp.get(), 0, GetSize(tmp) - 2);
     if (hydro_secretbox_encrypt(tmp.get() + sizeof(u16), message, size, m_messageID++, m_context,
-            key) != 0) {
+                key) != 0) {
         SP_LOG("Failed to encrypt message");
         return false;
     }

@@ -7,8 +7,8 @@ namespace Kart {
 void KartSub::createComponents(KartSettings *settings) {
     REPLACED(createComponents)(settings);
 
-    if (auto *roomManager = SP::RoomManager::Instance(); roomManager &&
-            roomManager->isPlayerRemote(settings->playerId)) {
+    if (auto *roomManager = SP::RoomManager::Instance();
+            roomManager && roomManager->isPlayerRemote(settings->playerId)) {
         m_state->m_isCpu = false;
     }
 }

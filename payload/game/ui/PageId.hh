@@ -144,16 +144,16 @@ enum class PageId {
     DirectConnection = 0x84, // Replaces WifiConnect (or something)
     WifiFirstPlay = 0x85,
     WifiDataConsent = 0x86,
-    WifiDisconnect = 0x87, // "Disconnects you"
+    WifiDisconnect = 0x87,          // "Disconnects you"
     OnlineConnectionManager = 0x88, // Replaces unknown page
     WifiConnectionFailed = 0x89,
     WifiMultiConfirm = 0x8A,
-    OnlineTop = 0x8B, // Replaces WifiTop
+    OnlineTop = 0x8B,        // Replaces WifiTop
     OnlineModeSelect = 0x8C, // Replaces OnlineModeSelect
     WifiFriendMenu = 0x8D,
     OnlineTeamSelect = 0x8E, // Replaces MkChannelFriendMenu
-    RandomMatching = 0x8F, // Replaces Global Search Manager
-    VotingBack = 0x90, // Replaces CountDownTimer
+    RandomMatching = 0x8F,   // Replaces Global Search Manager
+    VotingBack = 0x90,       // Replaces CountDownTimer
     WifiPlayerList = 0x91,
     Roulette = 0x92,
     Unknown93 = 0x93, // "Present in live view?"
@@ -164,15 +164,15 @@ enum class PageId {
     WifiFriendRemoveConfirm = 0x98,
     WifiFriendRemoving = 0x99,
     FriendRoomRules = 0x9A, // Replaces FriendJoin
-    FriendMatching = 0x9B, // Replaces "waiting" text
-    FriendRoomBack = 0x9C, // Replaces Friend Room Manager
+    FriendMatching = 0x9B,  // Replaces "waiting" text
+    FriendRoomBack = 0x9C,  // Replaces Friend Room Manager
     FriendRoom = 0x9D,
     FriendRoomMessageSelect = 0x9E,
 
-    ServicePackTop = 0xA2, // Replaces ChannelTop
+    ServicePackTop = 0xA2,   // Replaces ChannelTop
     StorageBenchmark = 0xA3, // Replaces ChannelRanking
     ServicePackTools = 0xA4, // Replaces ChannelGhost
-    UnknownA5 = 0xA5, // "Dummy? Seems to redirect to 0xA6"
+    UnknownA5 = 0xA5,        // "Dummy? Seems to redirect to 0xA6"
     EnterFriendCode = 0xA6,
     GhostManager = 0xA7,
     ChannelGhostHistogram = 0xA8,
@@ -197,10 +197,10 @@ enum class PageId {
     OptionMessage = 0xC8,
     OptionConfirm = 0xC9,
     Channel = 0xCA, // Replaces ChannelExplanation
-    Update = 0xCB, // Replaces ChannelConfirm
+    Update = 0xCB,  // Replaces ChannelConfirm
     OptionsBackground = 0xCC,
 
-    MenuSettings = 0xCE, // Replaces LicenseRecordsOverall
+    MenuSettings = 0xCE,  // Replaces LicenseRecordsOverall
     SettingsPopup = 0xCF, // Replaces LicenseRecordsFavorites
     // Disabled {
     LicenseRecordsFriends = 0xD0,

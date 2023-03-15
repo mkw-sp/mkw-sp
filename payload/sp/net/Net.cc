@@ -44,7 +44,7 @@ static void Free(u32 /* id */, void *ptr, s32 size) {
     return Free(ptr, size);
 }
 
-static void *Handle(void */* arg */) {
+static void *Handle(void * /* arg */) {
     res = SOStartup();
     while (true) {
         if (res != 0) {

@@ -8,7 +8,7 @@ namespace SP {
 
 LZMADecoder::LZMAAllocator::LZMAAllocator(EGG::Heap *heap) : m_heap(heap) {
     ISzAlloc::Alloc = Alloc;
-    ISzAlloc::Free = Free;    
+    ISzAlloc::Free = Free;
 }
 
 LZMADecoder::LZMAAllocator::~LZMAAllocator() {}
@@ -23,8 +23,8 @@ void LZMADecoder::LZMAAllocator::Free(const ISzAlloc *base, void *address) {
     allocator->m_heap->free(address);
 }
 
-LZMADecoder::LZMADecoder(const u8 *src, size_t srcSize, EGG::Heap *heap) : m_heap(heap),
-        m_allocator(heap) {
+LZMADecoder::LZMADecoder(const u8 *src, size_t srcSize, EGG::Heap *heap)
+    : m_heap(heap), m_allocator(heap) {
     LzmaDec_Construct(&m_dec);
     if (srcSize < HEADER_SIZE) {
         return;

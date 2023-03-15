@@ -16,7 +16,7 @@ typedef struct lyt_Pane_Base {
     float width;
     float height;
     u8 _54[0xbb - 0x54];
-    u8 mFlag;  // lyt_PaneFlags
+    u8 mFlag; // lyt_PaneFlags
     u8 _bc[0xd8 - 0xbc];
 } lyt_Pane_Base;
 
@@ -45,7 +45,7 @@ static inline void lyt_setPaneVisible(lyt_Pane *pane, bool visible) {
 #endif
 
 typedef struct lyt_TextBox {
-    struct lyt_TextBox_Vtable* vtable;
+    struct lyt_TextBox_Vtable *vtable;
     BASE(lyt_Pane_Base);
     wchar_t *buffer;
     // ...
@@ -55,7 +55,7 @@ typedef struct lyt_TextBox_Vtable {
     BASE(lyt_Pane_Vtable);
     void *_74;
     void *FreeStringBuffer;
-    void (*SetString)(lyt_TextBox* self, const wchar_t* str, u16 outPosition);
+    void (*SetString)(lyt_TextBox *self, const wchar_t *str, u16 outPosition);
     void *SetString2;
 } lyt_TextBox_Vtable;
 static_assert(sizeof(lyt_TextBox_Vtable) == 0x84);

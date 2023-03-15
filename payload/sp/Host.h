@@ -78,7 +78,7 @@ void Host_Init(void);
 // Cached
 const char *Host_GetDolphinTag(void);
 HostPlatform Host_GetPlatform(void);
-const char* Host_GetPlatformString(void);
+const char *Host_GetPlatformString(void);
 
 // Not cached
 bool Host_IsGeckoEnabled(void);

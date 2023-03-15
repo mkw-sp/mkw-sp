@@ -64,9 +64,8 @@ private:
 
     template <typename N>
     static N *FindNode(N (&nodes)[32]) {
-        return std::find_if(std::begin(nodes), std::end(nodes), [] (const auto &node) {
-            return !node.m_isOpen;
-        });
+        return std::find_if(std::begin(nodes), std::end(nodes),
+                [](const auto &node) { return !node.m_isOpen; });
     }
 
     Mutex m_mutex{};

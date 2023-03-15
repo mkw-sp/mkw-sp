@@ -43,10 +43,10 @@ private:
     UpDownControl m_teamControls[4];
     TextUpDownValueControl m_teamValues[4];
     CtrlMenuBackButton m_backButton;
-    H<MultiControlInputManager> m_onBack{ this, &MultiTeamSelectPage::onBack };
-    H<UpDownControl> m_onTeamControlFront{ this, &MultiTeamSelectPage::onTeamControlFront };
-    C<TextUpDownValueControl> m_onTeamValueChange{ this, &MultiTeamSelectPage::onTeamValueChange };
-    H<PushButton> m_onBackButtonFront{ this, &MultiTeamSelectPage::onBackButtonFront };
+    H<MultiControlInputManager> m_onBack{this, &MultiTeamSelectPage::onBack};
+    H<UpDownControl> m_onTeamControlFront{this, &MultiTeamSelectPage::onTeamControlFront};
+    C<TextUpDownValueControl> m_onTeamValueChange{this, &MultiTeamSelectPage::onTeamValueChange};
+    H<PushButton> m_onBackButtonFront{this, &MultiTeamSelectPage::onBackButtonFront};
     PageId m_replacement;
     std::optional<u8> m_teamCount;
 };

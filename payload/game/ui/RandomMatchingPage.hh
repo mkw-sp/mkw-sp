@@ -25,6 +25,7 @@ private:
         ~Handler();
 
         void onSelect() override;
+
     private:
         RandomMatchingPage &m_page;
     };
@@ -34,4 +35,4 @@ private:
     Handler m_handler;
 };
 
-}
+} // namespace UI

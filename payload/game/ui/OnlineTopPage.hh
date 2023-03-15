@@ -1,11 +1,11 @@
 #pragma once
 
+#include "game/ui/FriendButton.hh"
 #include "game/ui/Page.hh"
 #include "game/ui/YesNoPage.hh"
-#include "game/ui/FriendButton.hh"
 #include "game/ui/ctrl/CtrlMenuBackButton.hh"
-#include "game/ui/ctrl/CtrlMenuPageTitleText.hh"
 #include "game/ui/ctrl/CtrlMenuInstructionText.hh"
+#include "game/ui/ctrl/CtrlMenuPageTitleText.hh"
 
 namespace UI {
 
@@ -17,6 +17,7 @@ public:
     PageId getReplacement() override;
     void onInit() override;
     void onActivate() override;
+
 private:
     void showUnimplemented();
 
@@ -42,15 +43,15 @@ private:
     CtrlMenuBackButton m_backButton;
     CtrlMenuInstructionText m_instructionText;
 
-    H<MultiControlInputManager> m_onBack{ this, &OnlineTopPage::onBack };
-    H<PushButton> m_onButtonSelect{ this, &OnlineTopPage::onButtonSelect };
-    H<PushButton> m_onWorldWideButtonFront{ this, &OnlineTopPage::onWorldwideButtonFront };
-    H<PushButton> m_onTrackpackButtonFront{ this, &OnlineTopPage::onTrackpackButtonFront };
-    H<PushButton> m_onFriendButtonFront{ this, &OnlineTopPage::onFriendButtonFront };
-    H<PushButton> m_onDirectButtonFront{ this, &OnlineTopPage::onDirectButtonFront };
-    H<PushButton> m_onBackButtonFront{ this, &OnlineTopPage::onBackButtonFront };
+    H<MultiControlInputManager> m_onBack{this, &OnlineTopPage::onBack};
+    H<PushButton> m_onButtonSelect{this, &OnlineTopPage::onButtonSelect};
+    H<PushButton> m_onWorldWideButtonFront{this, &OnlineTopPage::onWorldwideButtonFront};
+    H<PushButton> m_onTrackpackButtonFront{this, &OnlineTopPage::onTrackpackButtonFront};
+    H<PushButton> m_onFriendButtonFront{this, &OnlineTopPage::onFriendButtonFront};
+    H<PushButton> m_onDirectButtonFront{this, &OnlineTopPage::onDirectButtonFront};
+    H<PushButton> m_onBackButtonFront{this, &OnlineTopPage::onBackButtonFront};
 
-    H<YesNoPage> m_onDirectConfirm{ this, &OnlineTopPage::onDirectConfirm };
+    H<YesNoPage> m_onDirectConfirm{this, &OnlineTopPage::onDirectConfirm};
 
     PageId m_replacement;
 };

@@ -122,7 +122,7 @@ void StorageBenchmarkPage::transition(State state) {
     auto *optionMessagePage = section->page<PageId::OptionMessage>();
     MessageInfo info{};
     wchar_t throughputs[8][0x10];
-    auto printMebibytes = [](u32 val, wchar_t (&mebibytes)[0x10]) {
+    auto printMebibytes = [](u32 val, wchar_t(&mebibytes)[0x10]) {
         swprintf(mebibytes, std::size(mebibytes), L"%.2f", (f32)val / (1024 * 1024));
     };
     switch (state) {

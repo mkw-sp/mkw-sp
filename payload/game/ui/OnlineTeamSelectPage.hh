@@ -36,9 +36,9 @@ private:
     OnlineTeamSelectButton m_buttons[12];
     CtrlMenuBackButton m_backButton;
     CtrlMenuInstructionText m_instructionText;
-    H<MultiControlInputManager> m_onBack{ this, &OnlineTeamSelectPage::onBack };
-    H<PushButton> m_onButtonFront{ this, &OnlineTeamSelectPage::onButtonFront };
-    H<PushButton> m_onBackButtonFront{ this, &OnlineTeamSelectPage::onBackButtonFront };
+    H<MultiControlInputManager> m_onBack{this, &OnlineTeamSelectPage::onBack};
+    H<PushButton> m_onButtonFront{this, &OnlineTeamSelectPage::onButtonFront};
+    H<PushButton> m_onBackButtonFront{this, &OnlineTeamSelectPage::onBackButtonFront};
     PageId m_replacement;
     MiiGroup m_miiGroup;
     u32 m_localPlayerCount;

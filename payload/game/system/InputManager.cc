@@ -87,7 +87,7 @@ void GhostPad::process(RaceInputState &raceInputState, UIInputState &uiInputStat
     // Flips the inputs of ghosts whenever the mode is mirror
     if (rc->raceScenario().mirror) {
         raceInputState.stick.x *= -1;
-        raceInputState.SetTrick(raceInputState, raceInputState.trick); 
+        raceInputState.SetTrick(raceInputState, raceInputState.trick);
     }
 }
 

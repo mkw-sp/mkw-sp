@@ -51,7 +51,9 @@ public:
         return reinterpret_cast<PageIdHelper<P>::type *>(m_pages[static_cast<size_t>(P)]);
     }
 
-    SectionId id() const { return m_id; }
+    SectionId id() const {
+        return m_id;
+    }
     bool isPageFocused(const Page *page) const;
     bool isPageActive(PageId pageId) const;
     Vec2<f32> locationAdjustScale() const;
@@ -173,7 +175,7 @@ struct Section::PageIdHelper<PageId::Globe> {
     using type = GlobePage;
 };
 
-template<>
+template <>
 struct Section::PageIdHelper<PageId::OnlineConnectionManager> {
     using type = OnlineConnectionManagerPage;
 };

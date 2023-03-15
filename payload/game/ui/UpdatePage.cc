@@ -72,7 +72,7 @@ void UpdatePage::afterCalc() {
     wchar_t downloadedSize[0x10];
     wchar_t size[0x10];
     wchar_t throughput[0x10];
-    auto printMebibytes = [](u32 val, wchar_t (&mebibytes)[0x10]) {
+    auto printMebibytes = [](u32 val, wchar_t(&mebibytes)[0x10]) {
         swprintf(mebibytes, std::size(mebibytes), L"%.2f", (f32)val / (1024 * 1024));
     };
     switch (m_state) {
@@ -198,13 +198,13 @@ void UpdatePage::transition(State state) {
     wchar_t oldVersion[0x10];
     wchar_t newVersion[0x10];
     wchar_t size[0x10];
-    auto printVersion = [](const VersionInfo &info, wchar_t (&version)[0x10]) {
+    auto printVersion = [](const VersionInfo &info, wchar_t(&version)[0x10]) {
         u16 major = info.major;
         u16 minor = info.minor;
         u16 patch = info.patch;
         swprintf(version, std::size(version), L"v%u.%u.%u", major, minor, patch);
     };
-    auto printMebibytes = [](u32 val, wchar_t (&mebibytes)[0x10]) {
+    auto printMebibytes = [](u32 val, wchar_t(&mebibytes)[0x10]) {
         swprintf(mebibytes, std::size(mebibytes), L"%.2f", (f32)val / (1024 * 1024));
     };
     switch (state) {
@@ -304,11 +304,11 @@ void UpdatePage::transition(State state) {
     m_state = state;
 }
 
-void *UpdatePage::Check(void */* arg */) {
+void *UpdatePage::Check(void * /* arg */) {
     return reinterpret_cast<void *>(SP::Update::Check());
 }
 
-void *UpdatePage::Update(void */* arg */) {
+void *UpdatePage::Update(void * /* arg */) {
     return reinterpret_cast<void *>(SP::Update::Update());
 }
 

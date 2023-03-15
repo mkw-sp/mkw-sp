@@ -34,13 +34,13 @@ private:
     PushButton m_thumbnailsButton;
     PushButton m_serverModeButton;
     CtrlMenuBackButton m_backButton;
-    H<MultiControlInputManager> m_onBack{ this, &ServicePackToolsPage::onBack };
-    H<PushButton> m_onStorageBenchmarkButtonFront{ this,
-            &ServicePackToolsPage::onStorageBenchmarkButtonFront };
-    H<PushButton> m_onServerModeButtonFront{ this, &ServicePackToolsPage::onServerModeButtonFront };
-    H<PushButton> m_onThumbnailsButtonFront{ this, &ServicePackToolsPage::onThumbnailsButtonFront };
-    H<PushButton> m_onBackButtonFront{ this, &ServicePackToolsPage::onBackButtonFront };
-    H<MessagePage> m_onThumbnailsNoCoursePop{ this, &ServicePackToolsPage::onThumbnailsNoCoursePop };
+    H<MultiControlInputManager> m_onBack{this, &ServicePackToolsPage::onBack};
+    H<PushButton> m_onStorageBenchmarkButtonFront{this,
+            &ServicePackToolsPage::onStorageBenchmarkButtonFront};
+    H<PushButton> m_onServerModeButtonFront{this, &ServicePackToolsPage::onServerModeButtonFront};
+    H<PushButton> m_onThumbnailsButtonFront{this, &ServicePackToolsPage::onThumbnailsButtonFront};
+    H<PushButton> m_onBackButtonFront{this, &ServicePackToolsPage::onBackButtonFront};
+    H<MessagePage> m_onThumbnailsNoCoursePop{this, &ServicePackToolsPage::onThumbnailsNoCoursePop};
     PageId m_replacement;
 };
 

@@ -60,10 +60,11 @@ std::optional<IniReader::Property> IniReader::next() {
                 ++m_pos;
             StateWantValue:
                 m_state = State::PostWantValue;
-                return Property {
-                    m_section,
-                    key,
-                    std::string_view(token, m_state == State::WantValue ? token : lastNonSpace + 1),
+                return Property{
+                        m_section,
+                        key,
+                        std::string_view(token,
+                                m_state == State::WantValue ? token : lastNonSpace + 1),
                 };
             }
             switch (m_state) {

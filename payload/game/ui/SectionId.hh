@@ -111,7 +111,7 @@ enum class SectionId {
     WifiSingleBtVoting = 0x59,
 
     OnlineMultiConfigure = 0x5A, // Replaces WifiMultiMiiConfigure
-    OnlineMulti = 0x5B, // Replaces WifiMulti
+    OnlineMulti = 0x5B,          // Replaces WifiMulti
     WifiMultiDisconnected = 0x5C,
     WifiMultiFriendList = 0x5D,
     WifiMultiVsVoting = 0x5E,
@@ -150,7 +150,7 @@ enum class SectionId {
     OnlineDisconnectedGeneric = 0x79,
 
     ServicePack = 0x7A, // Replaces Channel
-    // ^^ All channel sections vv 
+    // ^^ All channel sections vv
     // 0x84 replaces OnlineServer, free to use!
 
     CompetitionChannel = 0x85,

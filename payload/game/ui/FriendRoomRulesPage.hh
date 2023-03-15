@@ -35,7 +35,7 @@ private:
     MessageWindowControlScaleFade m_messageWindow;
     LayoutUIControlScaleFade m_okKey;
     BlackBackControl m_blackBack;
-    H<PageInputManager> m_onFront{ this, &FriendRoomRulesPage::onFront };
+    H<PageInputManager> m_onFront{this, &FriendRoomRulesPage::onFront};
     bool m_popRequested;
 };
 

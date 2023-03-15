@@ -18,7 +18,9 @@ template <typename TFunctor>
 struct Defer {
     TFunctor mF;
     Defer(TFunctor &&F) : mF(std::move(F)) {}
-    ~Defer() { mF(); }
+    ~Defer() {
+        mF();
+    }
 };
 
 template <typename TFunctor>
@@ -102,8 +104,7 @@ static void NetStorageClient_Test() {
     Yaz_decode(encoded.data(), decoded.data(), encodedSize, decodedSize);
 
     // Expected: U¬8-
-    SP_LOG("BUF: %c%c%c%c", (char)decoded[0], (char)decoded[1], (char)decoded[2],
-            (char)decoded[3]);
+    SP_LOG("BUF: %c%c%c%c", (char)decoded[0], (char)decoded[1], (char)decoded[2], (char)decoded[3]);
 
     {
         SP_LOG("Compressing...");
@@ -112,22 +113,20 @@ static void NetStorageClient_Test() {
         {
             const auto begin = std::chrono::steady_clock::now();
 
-            u32 dstSize = Yaz_encode(
-                    decoded.data(), compressed.data(), decoded.size(), compressed.size());
+            u32 dstSize = Yaz_encode(decoded.data(), compressed.data(), decoded.size(),
+                    compressed.size());
             SP_LOG("Compressed to %u bytes", dstSize);
 
             const auto end = std::chrono::steady_clock::now();
 
             unsigned ms =
-                    std::chrono::duration_cast<std::chrono::milliseconds>(end - begin)
-                            .count();
+                    std::chrono::duration_cast<std::chrono::milliseconds>(end - begin).count();
             SP_LOG("(Took %u ms)", ms);
         }
 
         SP_LOG("Decompressing...");
         std::vector<u8> decompressed(Yaz_getSize(compressed.data()));
-        Yaz_decode(compressed.data(), decompressed.data(), compressed.size(),
-                decompressed.size());
+        Yaz_decode(compressed.data(), decompressed.data(), compressed.size(), decompressed.size());
 
         SP_LOG("Checking...");
         const bool isValid = decompressed == decoded;
@@ -154,9 +153,8 @@ static void IniTest() {
         const char *key = sv_as_cstr(prop.key, 64);
         const char *value = sv_as_cstr(prop.value, 64);
 
-        SP_LOG("[<%i:%i> %s] <%i:%i> %s==%s", prop.sectionLineNum,
-                prop.sectionLineCharacter, section, prop.keyvalLineNum,
-                prop.keyvalLineCharacter, key, value);
+        SP_LOG("[<%i:%i> %s] <%i:%i> %s==%s", prop.sectionLineNum, prop.sectionLineCharacter,
+                section, prop.keyvalLineNum, prop.keyvalLineCharacter, key, value);
     }
     /*
     [tests.cpp:165] [<2:3> Race] <3:2> DriftMode==Manual

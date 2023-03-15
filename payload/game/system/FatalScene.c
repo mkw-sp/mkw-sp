@@ -3,8 +3,8 @@
 #include <egg/core/eggSystem.h>
 #include <nw4r/lyt/lyt_pane.h>
 #include <revolution.h>
-#include <sp/storage/DecompLoader.h>
 #include <sp/FlameGraph.h>
+#include <sp/storage/DecompLoader.h>
 
 #include <stdarg.h>
 #include <stdio.h>
@@ -37,10 +37,9 @@ static void **GetSpAllocAddr() {
 
 #define lyt_spAlloc (*GetSpAllocAddr())
 
-
 static lyt_Pane *findPane(lyt_Layout *lyt, const char *name) {
-    lyt_Pane *result = lyt->rootPane->vtable->FindPaneByName(
-            lyt->rootPane, name, /* recursive */ true);
+    lyt_Pane *result =
+            lyt->rootPane->vtable->FindPaneByName(lyt->rootPane, name, /* recursive */ true);
     if (!result) {
         OSReport("[FatalScene] Failed to find pane %s\n", name);
     }
@@ -95,8 +94,7 @@ static void setupCamera(lyt_DrawInfo *drawInfo, lyt_Layout *lyt) {
 
     // OSReport("[FatalScene] Ortho Mtx: top=%f,bottom=%f,left=%f,right=%f\n", frame.top,
     //         frame.bottom, frame.left, frame.right);
-    C_MTXOrtho(projMtx, frame.top, frame.bottom, frame.left, frame.right, znear,
-            zfar);
+    C_MTXOrtho(projMtx, frame.top, frame.bottom, frame.left, frame.right, znear, zfar);
     GXSetProjection(projMtx, GX_ORTHOGRAPHIC);
 
     float viewMtx[3][4];
@@ -106,7 +104,7 @@ static void setupCamera(lyt_DrawInfo *drawInfo, lyt_Layout *lyt) {
     drawInfo->viewRect = frame;
 }
 
-static void FatalScene_calc(EGGScene */* scene */) {}
+static void FatalScene_calc(EGGScene * /* scene */) {}
 static void FatalScene_draw(EGGScene *scene) {
     FatalScene *this = (FatalScene *)scene;
 
@@ -153,8 +151,8 @@ static void FatalScene_enter(EGGScene *scene) {
     MultiArcResourceAccessor_Attach(&this->resAccessor, &this->arcLink);
 
     {
-        void *lytRes = MultiArcResourceAccessor_GetResource(
-                &this->resAccessor, 0, "Fatal.brlyt", NULL);
+        void *lytRes =
+                MultiArcResourceAccessor_GetResource(&this->resAccessor, 0, "Fatal.brlyt", NULL);
         OSFATAL_CPU_ASSERT(lytRes && "Can't find `Fatal.brlyt`");
         Layout_build(&this->layout, lytRes, &this->resAccessor);
     }
@@ -176,24 +174,24 @@ void FatalScene_SetBody(FatalScene *this, const wchar_t *body) {
     }
 }
 
-static void FatalScene_exit(EGGScene */* scene */) {}
-static void FatalScene_reinit(EGGScene */* scene */) {}
-static void FatalScene_incoming_childDestroy(EGGScene */* scene */) {}
-static void FatalScene_outgoing_childCreate(EGGScene */* scene */) {}
+static void FatalScene_exit(EGGScene * /* scene */) {}
+static void FatalScene_reinit(EGGScene * /* scene */) {}
+static void FatalScene_incoming_childDestroy(EGGScene * /* scene */) {}
+static void FatalScene_outgoing_childCreate(EGGScene * /* scene */) {}
 
 static void FatalScene_DTAdapater(EGGScene *scene, int type) {
     FatalScene_DT((FatalScene *)scene, type);
 }
 
 static EGGScene_Vtable sFatalScene_Vtable = (EGGScene_Vtable){
-    .dt = FatalScene_DTAdapater,
-    .calc = FatalScene_calc,
-    .draw = FatalScene_draw,
-    .enter = FatalScene_enter,
-    .exit = FatalScene_exit,
-    .reinit = FatalScene_reinit,
-    .incoming_childDestroy = FatalScene_incoming_childDestroy,
-    .outgoing_childCreate = FatalScene_outgoing_childCreate,
+        .dt = FatalScene_DTAdapater,
+        .calc = FatalScene_calc,
+        .draw = FatalScene_draw,
+        .enter = FatalScene_enter,
+        .exit = FatalScene_exit,
+        .reinit = FatalScene_reinit,
+        .incoming_childDestroy = FatalScene_incoming_childDestroy,
+        .outgoing_childCreate = FatalScene_outgoing_childCreate,
 };
 
 static void PurgeHeap(MEMHeapHandle heap);

@@ -96,7 +96,7 @@ std::optional<FileHandle> NANDArchiveStorage::open(const wchar_t *path, const ch
     return file;
 }
 
-bool NANDArchiveStorage::createDir(const wchar_t */* path */, bool /* allowNop */) {
+bool NANDArchiveStorage::createDir(const wchar_t * /* path */, bool /* allowNop */) {
     return false;
 }
 
@@ -173,11 +173,11 @@ std::optional<NodeInfo> NANDArchiveStorage::stat(const wchar_t *path) {
     return {};
 }
 
-bool NANDArchiveStorage::rename(const wchar_t */* srcPath */, const wchar_t */* dstPath */) {
+bool NANDArchiveStorage::rename(const wchar_t * /* srcPath */, const wchar_t * /* dstPath */) {
     return false;
 }
 
-bool NANDArchiveStorage::remove(const wchar_t */* path */, bool /* allowNop */) {
+bool NANDArchiveStorage::remove(const wchar_t * /* path */, bool /* allowNop */) {
     return false;
 }
 
@@ -250,7 +250,7 @@ bool NANDArchiveStorage::File::read(void *dst, u32 size, u32 offset) {
     return true;
 }
 
-bool NANDArchiveStorage::File::write(const void */* src */, u32 /* size */, u32 /* offset */) {
+bool NANDArchiveStorage::File::write(const void * /* src */, u32 /* size */, u32 /* offset */) {
     return false;
 }
 

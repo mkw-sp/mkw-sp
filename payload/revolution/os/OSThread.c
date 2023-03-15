@@ -28,5 +28,6 @@ REPLACE BOOL OSCreateThread(OSThread *thread, void *(*func)(void *), void *param
         // clang-format on
     }
 
-    return REPLACED(OSCreateThread)(thread, func, param, newStackBase, newStackSize, priority, attr);
+    return REPLACED(
+            OSCreateThread)(thread, func, param, newStackBase, newStackSize, priority, attr);
 }

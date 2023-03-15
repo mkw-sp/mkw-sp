@@ -29,7 +29,7 @@ void CourseSelectButton::load(u32 i) {
     PushButton::load("button", "CourseSelectButton", variant, 0x1, false, false);
     m_index = i;
 
-    const char *paneNames[4] = { "text_shadow", "text", "text_light_01", "text_light_02" };
+    const char *paneNames[4] = {"text_shadow", "text", "text_light_01", "text_light_02"};
     assert(std::size(paneNames) == std::size(m_panes));
     assert(std::size(paneNames) == std::size(m_sizes));
     for (size_t i = 0; i < std::size(paneNames); i++) {

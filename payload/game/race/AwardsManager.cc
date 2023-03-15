@@ -29,7 +29,7 @@ void AwardsManager::init() {
 
         if (awardsScenario.players[playerId].vehicleId >= 0x12) {
             switch (characterIds[playerId]) {
-            case 0xf: // Daisy
+            case 0xf:  // Daisy
             case 0x10: // Peach
             case 0x17: // Rosalina
                 m_isBikerModel[characterIds[playerId]] = true;

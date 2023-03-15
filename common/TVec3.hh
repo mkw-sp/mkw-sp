@@ -11,7 +11,7 @@ struct TVec3Base {
     T z{};
 };
 
-template<typename T>
+template <typename T>
 struct TVec3 : TVec3Base<T> {};
 
 struct Vec3 : TVec3Base<f32> {

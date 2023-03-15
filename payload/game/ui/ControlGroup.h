@@ -4,10 +4,10 @@
 
 typedef struct {
     u8 _00[0x08 - 0x00];
-    void* parent;
+    void *parent;
     struct Page *page;
     s32 capacity;
 } ControlGroup;
 static_assert(sizeof(ControlGroup) == 0x14);
 
-void ControlGroup_calc(ControlGroup* group);
+void ControlGroup_calc(ControlGroup *group);

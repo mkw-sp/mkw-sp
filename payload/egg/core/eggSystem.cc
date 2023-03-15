@@ -3,11 +3,11 @@
 extern "C" {
 #include <revolution.h>
 }
+#include <game/kart/KartObjectManager.hh>
+#include <game/ui/SectionManager.hh>
 #include <sp/Commands.h>
 #include <sp/IOSDolphin.hh>
 #include <sp/SaveStateManager.hh>
-#include <game/ui/SectionManager.hh>
-#include <game/kart/KartObjectManager.hh>
 
 #include <cstring>
 
@@ -23,8 +23,9 @@ void emuspeed(u32 *out) {
     OSReport("emuspeed: percent=%u,hasValue=%s\n", emuspeed ? *emuspeed : 0,
             fmtBool(emuspeed.has_value()));
 
-    if (out != NULL && emuspeed.has_value())
+    if (out != NULL && emuspeed.has_value()) {
         *out = *emuspeed;
+    }
 }
 void set_emuspeed(u32 speed) {
     const bool res = SP::IOSDolphin::SetSpeedLimit(speed) == IPC_OK;
@@ -82,7 +83,8 @@ sp_define_command("/dolphin_test", "Test /dev/dolphin driver", const char *tmp) 
 }
 } // namespace
 
-sp_define_command("/ui_info", "Dump information about the UI state to the console", const char *tmp) {
+sp_define_command("/ui_info", "Dump information about the UI state to the console",
+        const char *tmp) {
     (void)tmp;
 
     auto sectionManager = UI::SectionManager::Instance();

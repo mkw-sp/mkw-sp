@@ -1,7 +1,7 @@
 #pragma once
 
-#include "game/ui/Page.hh"
 #include "game/system/GhostFile.hh"
+#include "game/ui/Page.hh"
 
 namespace UI {
 

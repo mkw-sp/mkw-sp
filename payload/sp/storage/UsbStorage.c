@@ -126,15 +126,15 @@ static bool UsbStorage_scsiTransfer(bool isWrite, u32 size, void *data, u8 lun, 
 }
 
 static bool UsbStorage_testUnitReady(u8 lun) {
-    u8 cmd[6] = { 0 };
+    u8 cmd[6] = {0};
     write_u8(cmd, 0x0, SCSI_TEST_UNIT_READY);
 
     return UsbStorage_scsiTransfer(false, 0, NULL, lun, sizeof(cmd), cmd);
 }
 
 static bool UsbStorage_inquiry(u8 lun, u8 *type) {
-    u8 response[36] = { 0 };
-    u8 cmd[6] = { 0 };
+    u8 response[36] = {0};
+    u8 cmd[6] = {0};
     write_u8(cmd, 0x0, SCSI_INQUIRY);
     write_u8(cmd, 0x1, lun << 5);
     write_u8(cmd, 0x4, sizeof(response));
@@ -160,8 +160,8 @@ static bool UsbStorage_initLun(u8 lun) {
 }
 
 static bool UsbStorage_requestSense(u8 lun) {
-    u8 response[18] = { 0 };
-    u8 cmd[6] = { 0 };
+    u8 response[18] = {0};
+    u8 cmd[6] = {0};
     write_u8(cmd, 0x0, SCSI_REQUEST_SENSE);
     write_u8(cmd, 0x4, sizeof(response));
 
@@ -191,8 +191,8 @@ static bool UsbStorage_findLun(u8 lunCount, u8 *lun) {
 }
 
 static bool UsbStorage_readCapacity(u8 lun, u32 *blockSize) {
-    u8 response[8] = { 0 };
-    u8 cmd[10] = { 0 };
+    u8 response[8] = {0};
+    u8 cmd[10] = {0};
     write_u8(cmd, 0x0, SCSI_READ_CAPACITY_10);
 
     if (!UsbStorage_scsiTransfer(false, sizeof(response), response, lun, sizeof(cmd), cmd)) {
@@ -237,7 +237,7 @@ static bool UsbStorage_onDeviceAdd(const UsbDeviceInfo *info) {
         }
 
         u8 direction = endpointDescriptor->endpointAddress >> USB_ENDPOINT_DIRECTION_SHIFT &
-            USB_ENDPOINT_DIRECTION_MASK;
+                USB_ENDPOINT_DIRECTION_MASK;
         if (!outFound && direction == USB_ENDPOINT_DIRECTION_HOST_TO_DEVICE) {
             outEndpoint = endpointDescriptor->endpointAddress;
             outFound = true;
@@ -286,8 +286,8 @@ __attribute__((noreturn)) static void UsbStorage_onDeviceRemove(u32 /* id */) {
 }
 
 static UsbHandler handler = {
-    .onDeviceAdd = UsbStorage_onDeviceAdd,
-    .onDeviceRemove = UsbStorage_onDeviceRemove,
+        .onDeviceAdd = UsbStorage_onDeviceAdd,
+        .onDeviceRemove = UsbStorage_onDeviceRemove,
 };
 
 static u32 UsbStorage_sectorSize(void) {
@@ -298,7 +298,7 @@ static bool UsbStorage_read(u32 firstSector, u32 sectorCount, void *buffer) {
     assert(sectorCount <= UINT16_MAX);
 
     for (u32 try = 0; try < 5; try++) {
-        u8 cmd[10] = { 0 };
+        u8 cmd[10] = {0};
         write_u8(cmd, 0x0, SCSI_READ_10);
         write_u32(cmd, 0x2, firstSector);
         write_u16(cmd, 0x7, sectorCount);
@@ -318,7 +318,7 @@ static bool UsbStorage_write(u32 firstSector, u32 sectorCount, const void *buffe
     assert(sectorCount <= UINT16_MAX);
 
     for (u32 try = 0; try < 5; try++) {
-        u8 cmd[10] = { 0 };
+        u8 cmd[10] = {0};
         write_u8(cmd, 0x0, SCSI_WRITE_10);
         write_u32(cmd, 0x2, firstSector);
         write_u16(cmd, 0x7, sectorCount);
@@ -340,7 +340,7 @@ static bool UsbStorage_erase(u32 /* firstSector */, u32 /* sectorCount */) {
 }
 
 static bool UsbStorage_sync(void) {
-    u8 cmd[10] = { 0 };
+    u8 cmd[10] = {0};
     write_u8(cmd, 0x0, SCSI_SYNCHRONIZE_CACHE_10);
 
     return UsbStorage_scsiTransfer(false, 0, NULL, lun, sizeof(cmd), cmd);
@@ -351,12 +351,12 @@ static u32 UsbStorage_getMessageId(void) {
 }
 
 static const FATStorage usbStorage = {
-    UsbStorage_sectorSize,
-    UsbStorage_read,
-    UsbStorage_write,
-    UsbStorage_erase,
-    UsbStorage_sync,
-    UsbStorage_getMessageId,
+        UsbStorage_sectorSize,
+        UsbStorage_read,
+        UsbStorage_write,
+        UsbStorage_erase,
+        UsbStorage_sync,
+        UsbStorage_getMessageId,
 };
 
 bool UsbStorage_init(const FATStorage **fatStorage) {

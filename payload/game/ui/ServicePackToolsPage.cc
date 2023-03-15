@@ -1,7 +1,7 @@
 #include "ServicePackToolsPage.hh"
 
-#include "game/ui/SectionManager.hh"
 #include "game/system/RaceConfig.hh"
+#include "game/ui/SectionManager.hh"
 
 #include <sp/ThumbnailManager.hh>
 
@@ -54,15 +54,14 @@ void ServicePackToolsPage::onBack(u32 /* localPlayerId */) {
     startReplace(Anim::Prev, 0.0f);
 }
 
-void ServicePackToolsPage::onStorageBenchmarkButtonFront(PushButton * button,
+void ServicePackToolsPage::onStorageBenchmarkButtonFront(PushButton *button,
         u32 /* localPlayerId */) {
     m_replacement = PageId::StorageBenchmark;
     f32 delay = button->getDelay();
     startReplace(Anim::Next, delay);
 }
 
-void ServicePackToolsPage::onThumbnailsButtonFront(PushButton *button,
-        u32 /* localPlayerId */) {
+void ServicePackToolsPage::onThumbnailsButtonFront(PushButton *button, u32 /* localPlayerId */) {
     if (SP::ThumbnailManager::Start()) {
         auto &menuScenario = System::RaceConfig::Instance()->menuScenario();
         menuScenario.players[0].vehicleId = 1;
@@ -95,8 +94,7 @@ void ServicePackToolsPage::onThumbnailsButtonFront(PushButton *button,
     }
 }
 
-void ServicePackToolsPage::onServerModeButtonFront(PushButton *button,
-        u32 /* localPlayerId */) {
+void ServicePackToolsPage::onServerModeButtonFront(PushButton *button, u32 /* localPlayerId */) {
     Section *section = SectionManager::Instance()->currentSection();
     auto *messagePage = section->page<PageId::MenuMessage>();
     messagePage->reset();
@@ -109,8 +107,7 @@ void ServicePackToolsPage::onServerModeButtonFront(PushButton *button,
     startReplace(Anim::None, delay);
 }
 
-void ServicePackToolsPage::onBackButtonFront(PushButton *button,
-        u32 /* localPlayerId */) {
+void ServicePackToolsPage::onBackButtonFront(PushButton *button, u32 /* localPlayerId */) {
     m_replacement = PageId::ServicePackTop;
     f32 delay = button->getDelay();
     startReplace(Anim::Prev, delay);

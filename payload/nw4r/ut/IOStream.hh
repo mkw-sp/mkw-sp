@@ -19,7 +19,7 @@ public:
     virtual bool canRead() = 0;
     virtual bool canWrite() = 0;
     virtual u32 getOffsetAlign() = 0; // Same
-    virtual u32 getSizeAlign() = 0; // Same
+    virtual u32 getSizeAlign() = 0;   // Same
     virtual u32 getBufferAlign() = 0; // Same
 
 protected:

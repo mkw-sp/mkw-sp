@@ -155,8 +155,10 @@ RaceClient *RaceClient::Instance() {
     return s_instance;
 }
 
-RaceClient::RaceClient(RoomClient &roomClient) : m_roomClient(roomClient), m_socket("race    ", {}),
-        m_connection{roomClient.ip(), roomClient.port(), roomClient.keypair()} {}
+RaceClient::RaceClient(RoomClient &roomClient)
+    : m_roomClient(roomClient),
+      m_socket("race    ", {}), m_connection{roomClient.ip(), roomClient.port(),
+                                        roomClient.keypair()} {}
 
 RaceClient::~RaceClient() {
     hydro_memzero(&m_connection, sizeof(m_connection));
@@ -274,7 +276,6 @@ Net::UnreliableSocket::Connection &RaceClient::ConnectionGroup::operator[](u32 i
     assert(index == 0);
     return m_client.m_connection;
 }
-
 
 RaceClient *RaceClient::s_instance = nullptr;
 

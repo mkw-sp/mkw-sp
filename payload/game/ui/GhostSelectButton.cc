@@ -160,4 +160,4 @@ void GhostSelectButton::refresh(u32 listIndex) {
     setChosen(m_chosen);
 }
 
-}  // namespace UI
+} // namespace UI

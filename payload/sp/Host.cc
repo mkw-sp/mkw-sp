@@ -18,8 +18,8 @@ static HostPlatform sPlatform = HOST_UNKNOWN;
 static char sDolphinTag[HOST_PLATFORM_BUFFER_SIZE] = "Not dolphin";
 #undef PLATFORM_EMULATOR
 #ifndef PLATFORM_EMULATOR
-const RawCPU_ID sCpuId_PrehistoricDolphin = { 0, 0, 0, 0 };
-const RawCPU_ID sCpuId_Dolphin = { 0xd96e200, 0x1840c00d, 0x82bb08e8, 0 };
+const RawCPU_ID sCpuId_PrehistoricDolphin = {0, 0, 0, 0};
+const RawCPU_ID sCpuId_Dolphin = {0xd96e200, 0x1840c00d, 0x82bb08e8, 0};
 
 RawCPU_ID Host_GetCPUID(void) {
     u32 _39c = 0, _39d = 0, _39e = 0, _39f = 0;
@@ -28,10 +28,10 @@ RawCPU_ID Host_GetCPUID(void) {
     __asm__ volatile("mfspr %0, 0x39e" : "=r"(_39e));
     __asm__ volatile("mfspr %0, 0x39f" : "=r"(_39f));
     return (RawCPU_ID){
-        ._924 = _39c,
-        .ECID_H = _39d,
-        .ECID_M = _39e,
-        .ECID_L = _39f,
+            ._924 = _39c,
+            .ECID_H = _39d,
+            .ECID_M = _39e,
+            .ECID_L = _39f,
     };
 }
 void Host_SetCPUID(RawCPU_ID id) {
@@ -70,8 +70,7 @@ static void DetectPlatform(void) {
     }
 
     {
-        s32 macaddr =
-                IOS_Open("/title/00000001/00000002/data/macaddr.bin", IPC_OPEN_READ);
+        s32 macaddr = IOS_Open("/title/00000001/00000002/data/macaddr.bin", IPC_OPEN_READ);
         if (macaddr >= 0) {
             IOS_Close(macaddr);
             sPlatform = HOST_WII_MINI;
@@ -90,8 +89,9 @@ static void DetectPlatform(void) {
 #endif
 
 void Host_Init(void) {
-    if (sHostIsInit)
+    if (sHostIsInit) {
         return;
+    }
     sHostIsInit = true;
 
 #if defined(_WIN32)
@@ -115,32 +115,30 @@ HostPlatform Host_GetPlatform(void) {
     return sPlatform;
 }
 
-const char* Host_GetPlatformString(void)
-{
-    switch (Host_GetPlatform())
-    {
-        case HOST_REVOLUTION:
-            return "Wii";
-        case HOST_WII_MINI:
-            return "Wii Mini";
-        case HOST_CAFE:
-            return "Wii U";
-        case HOST_DOLPHIN_PREHISTORIC:
-            return "Ancient Dolphin (Unsupported)";
-        case HOST_DOLPHIN_UNKNOWN:
-            return "Dolphin (Unsupported)";
-        case HOST_DOLPHIN:
-            return Host_GetDolphinTag();
-        case HOST_WINDOWS:
-            return "Windows";
-        case HOST_APPLE:
-            return "Apple";
-        case HOST_LINUX:
-            return "Linux";
-        case HOST_UNKNOWN:
-            return "Unknown host";
-        default:
-            return "Invalid host";
+const char *Host_GetPlatformString(void) {
+    switch (Host_GetPlatform()) {
+    case HOST_REVOLUTION:
+        return "Wii";
+    case HOST_WII_MINI:
+        return "Wii Mini";
+    case HOST_CAFE:
+        return "Wii U";
+    case HOST_DOLPHIN_PREHISTORIC:
+        return "Ancient Dolphin (Unsupported)";
+    case HOST_DOLPHIN_UNKNOWN:
+        return "Dolphin (Unsupported)";
+    case HOST_DOLPHIN:
+        return Host_GetDolphinTag();
+    case HOST_WINDOWS:
+        return "Windows";
+    case HOST_APPLE:
+        return "Apple";
+    case HOST_LINUX:
+        return "Linux";
+    case HOST_UNKNOWN:
+        return "Unknown host";
+    default:
+        return "Invalid host";
     }
 }
 

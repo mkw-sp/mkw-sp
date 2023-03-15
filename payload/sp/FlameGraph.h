@@ -8,11 +8,11 @@
 #include <revolution.h>
 
 // Branchless OSGetTick()
-#define PERF_MFTB()                            \
-    ({                                         \
-        volatile u32 _rval;                    \
+#define PERF_MFTB() \
+    ({ \
+        volatile u32 _rval; \
         asm volatile("mftb %0" : "=r"(_rval)); \
-        _rval;                                 \
+        _rval; \
     })
 
 // OSGetTick()
@@ -60,12 +60,11 @@ inline void SimplePerf_CT(SimplePerf *perf, const char *funcName) {
 inline void SimplePerf_DT(SimplePerf *perf) {
     TimedContext_stop(&perf->ctx);
     // There is some penalty for printing, but it doesn't factor into the start/stop time.
-    Perf_writeJsonEntry(
-            perf->ctx.startTick, perf->ctx.stopTick, perf->funcName, getThreadId());
+    Perf_writeJsonEntry(perf->ctx.startTick, perf->ctx.stopTick, perf->funcName, getThreadId());
 }
 
 // C RAII via cleanup attribute
-#define SIMPLE_PERF_NAMED(name)                              \
+#define SIMPLE_PERF_NAMED(name) \
     SimplePerf perf __attribute__((cleanup(SimplePerf_DT))); \
     SimplePerf_CT(&perf, name)
 

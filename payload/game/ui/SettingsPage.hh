@@ -83,14 +83,14 @@ private:
     UpDownControl m_settingControls[6];
     TextUpDownValueControl m_settingValues[6];
     CtrlMenuBackButton m_backButton;
-    H<MultiControlInputManager> m_onBack{ this, &SettingsPage::onBack };
-    H<UpDownControl> m_onCategoryControlFront{ this, &SettingsPage::onCategoryControlFront };
-    H<UpDownControl> m_onCategoryControlSelect{ this, &SettingsPage::onCategoryControlSelect };
-    C<TextUpDownValueControl> m_onCategoryValueChange{ this, &SettingsPage::onCategoryValueChange };
-    C<UpDownControl> m_onSettingControlChange { this, &SettingsPage::onSettingControlChange };
-    H<UpDownControl> m_onSettingControlFront { this, &SettingsPage::onSettingControlFront };
-    H<UpDownControl> m_onSettingControlSelect { this, &SettingsPage::onSettingControlSelect };
-    H<PushButton> m_onBackButtonFront{ this, &SettingsPage::onBackButtonFront };
+    H<MultiControlInputManager> m_onBack{this, &SettingsPage::onBack};
+    H<UpDownControl> m_onCategoryControlFront{this, &SettingsPage::onCategoryControlFront};
+    H<UpDownControl> m_onCategoryControlSelect{this, &SettingsPage::onCategoryControlSelect};
+    C<TextUpDownValueControl> m_onCategoryValueChange{this, &SettingsPage::onCategoryValueChange};
+    C<UpDownControl> m_onSettingControlChange{this, &SettingsPage::onSettingControlChange};
+    H<UpDownControl> m_onSettingControlFront{this, &SettingsPage::onSettingControlFront};
+    H<UpDownControl> m_onSettingControlSelect{this, &SettingsPage::onSettingControlSelect};
+    H<PushButton> m_onBackButtonFront{this, &SettingsPage::onBackButtonFront};
 
 protected:
     IHandler *m_handler = nullptr;

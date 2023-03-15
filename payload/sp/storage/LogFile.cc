@@ -27,7 +27,7 @@ static u16 offset = 0;
 static u8 stack[8192];
 static OSThread thread;
 
-static void *Run(void */* arg */) {
+static void *Run(void * /* arg */) {
     Storage::CreateDir(LOG_FILE_DIRECTORY, true);
 
     OSCalendarTime time;

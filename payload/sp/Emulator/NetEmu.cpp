@@ -8,8 +8,8 @@ extern "C" {
 #include <sp/Tcp.h>
 }
 
-#include <stdio.h>
 #include <cstring>
+#include <stdio.h>
 #include <string>
 
 #ifdef _WIN32
@@ -37,8 +37,7 @@ void TcpSocket_init(TcpSocket *sock) {}
 bool TcpSocket_isConnected(const TcpSocket *sock) {
     return sock->isConnected;
 }
-bool TcpSocket_tryConnectIpv4(
-        TcpSocket *sock, u8 ip_a, u8 ip_b, u8 ip_c, u8 ip_d, u32 port) {
+bool TcpSocket_tryConnectIpv4(TcpSocket *sock, u8 ip_a, u8 ip_b, u8 ip_c, u8 ip_d, u32 port) {
     addrinfo hints;
     memset(&hints, 0, sizeof(hints));
     hints.ai_family = AF_INET;
@@ -46,7 +45,7 @@ bool TcpSocket_tryConnectIpv4(
     hints.ai_protocol = IPPROTO_TCP;
 
     std::string ip = std::to_string(ip_a) + "." + std::to_string(ip_b) + "." +
-                     std::to_string(ip_c) + "." + std::to_string(ip_d);
+            std::to_string(ip_c) + "." + std::to_string(ip_d);
     std::string sport = std::to_string(port);
 
     struct addrinfo *result = NULL;

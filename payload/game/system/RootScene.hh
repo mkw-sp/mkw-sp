@@ -2,11 +2,13 @@
 
 namespace System {
 
-class RootScene: public Scene {
+class RootScene : public Scene {
 public:
     void allocate();
 
-    static RootScene *Instance() { return s_instance; }
+    static RootScene *Instance() {
+        return s_instance;
+    }
 
 private:
     u8 _c70[0xcb8 - 0xc70];

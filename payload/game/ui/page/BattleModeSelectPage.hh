@@ -4,7 +4,7 @@
 
 namespace UI {
 
-class BattleModeSelectPage: public MenuPage {
+class BattleModeSelectPage : public MenuPage {
 private:
     BattleModeSelectPage();
     ~BattleModeSelectPage() override;

@@ -156,10 +156,10 @@ private:
     RawSave *m_rawSave;
     u8 *m_rawGhostFile;
     EGG::TaskThread *m_taskThread;
-    u32 m_ghostCount; // Modified
+    u32 m_ghostCount;                  // Modified
     RawGhostHeader *m_rawGhostHeaders; // Modified
     GhostGroup *m_ghostGroup;
-    GhostFooter *m_ghostFooters; // Modified
+    GhostFooter *m_ghostFooters;     // Modified
     SP::Storage::NodeId *m_ghostIds; // Modified
     u8 _00034[0x00035 - 0x00034];
     bool m_saveGhostResult;
@@ -172,13 +172,13 @@ private:
     bool m_canSave;
     bool m_spCanSave; // Added (was padding)
     NandResult m_result;
-    u32 m_spLicenseCount; // Added
+    u32 m_spLicenseCount;                         // Added
     SP::ClientSettings::Settings m_spLicenses[6]; // Added
-    std::optional<u8> m_spCurrentLicense; // Added
-    u8 m_ghostInitStack[0x8000 /* 32 KiB */]; // Added
-    OSThread m_ghostInitThread; // Added
-    bool m_courseSHA1IsValid[32]; // Added
-    u8 m_courseSHA1s[32][0x14]; // Added
+    std::optional<u8> m_spCurrentLicense;         // Added
+    u8 m_ghostInitStack[0x8000 /* 32 KiB */];     // Added
+    OSThread m_ghostInitThread;                   // Added
+    bool m_courseSHA1IsValid[32];                 // Added
+    u8 m_courseSHA1s[32][0x14];                   // Added
 
     static SaveManager *s_instance;
     static const u8 s_courseSHA1s[32][0x14];

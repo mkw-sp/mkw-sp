@@ -1,8 +1,8 @@
 #include "LicenseSelectPage.hh"
 
 #include "game/system/SaveManager.hh"
-#include "game/ui/SectionManager.hh"
 #include "game/ui/Page.hh"
+#include "game/ui/SectionManager.hh"
 
 #include <cstdio>
 #include <new>
@@ -85,16 +85,14 @@ void LicenseSelectPage::onBack(u32 /* localPlayerId */) {
     startReplace(Anim::Prev, 0.0f);
 }
 
-void LicenseSelectPage::onServicePackButtonFront(PushButton *button,
-        u32 /* localPlayerId */) {
+void LicenseSelectPage::onServicePackButtonFront(PushButton *button, u32 /* localPlayerId */) {
     System::SaveManager::Instance()->unselectSPLicense();
 
     f32 delay = button->getDelay();
     changeSection(SectionId::ServicePack, Anim::Next, delay);
 }
 
-void LicenseSelectPage::onLicenseButtonFront(PushButton *button,
-        u32 /* localPlayerId */) {
+void LicenseSelectPage::onLicenseButtonFront(PushButton *button, u32 /* localPlayerId */) {
     System::SaveManager *saveManager = System::SaveManager::Instance();
     SectionManager *sectionManager = SectionManager::Instance();
     GlobalContext *globalContext = sectionManager->globalContext();
@@ -137,8 +135,7 @@ void LicenseSelectPage::onLicenseButtonFront(PushButton *button,
     }
 }
 
-void LicenseSelectPage::onBackButtonFront(PushButton *button,
-        u32 /* localPlayerId */) {
+void LicenseSelectPage::onBackButtonFront(PushButton *button, u32 /* localPlayerId */) {
     System::SaveManager::Instance()->unselectSPLicense();
 
     m_replacement = PageId::Title;
@@ -146,22 +143,19 @@ void LicenseSelectPage::onBackButtonFront(PushButton *button,
     startReplace(Anim::Prev, delay);
 }
 
-void LicenseSelectPage::onCreateConfirm(ConfirmPage */* confirmPage */,
-        f32 delay) {
+void LicenseSelectPage::onCreateConfirm(ConfirmPage * /* confirmPage */, f32 delay) {
     SectionManager *sectionManager = SectionManager::Instance();
     sectionManager->setNextSection(SectionId::MiiSelectCreate, Anim::Next);
     sectionManager->startChangeSection(delay, 0x000000ff);
 }
 
-void LicenseSelectPage::onChangeConfirm(ConfirmPage */* confirmPage */,
-        f32 delay) {
+void LicenseSelectPage::onChangeConfirm(ConfirmPage * /* confirmPage */, f32 delay) {
     SectionManager *sectionManager = SectionManager::Instance();
     sectionManager->setNextSection(SectionId::MiiSelectChange, Anim::Next);
     sectionManager->startChangeSection(delay, 0x000000ff);
 }
 
-void LicenseSelectPage::onCancel(ConfirmPage *confirmPage,
-        f32 /* delay */) {
+void LicenseSelectPage::onCancel(ConfirmPage *confirmPage, f32 /* delay */) {
     confirmPage->m_replacement = PageId::LicenseSelect;
 }
 

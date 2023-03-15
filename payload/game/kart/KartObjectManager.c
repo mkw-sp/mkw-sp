@@ -47,9 +47,10 @@ static void my_KartObjectManager_createInstance(void) {
         isVanilla = false;
     }
 
-    SPFooter_OnRaceStart(courseSha1, speedModIsEnabled, isVanilla, s_raceConfig->raceScenario.modeFlags);
+    SPFooter_OnRaceStart(courseSha1, speedModIsEnabled, isVanilla,
+            s_raceConfig->raceScenario.modeFlags);
 
-    s_kartObjectManager = new(sizeof(KartObjectManager));
+    s_kartObjectManager = new (sizeof(KartObjectManager));
     KartObjectManager_ct(s_kartObjectManager);
 }
 PATCH_B(KartObjectManager_createInstance, my_KartObjectManager_createInstance);

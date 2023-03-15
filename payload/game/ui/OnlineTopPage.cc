@@ -1,11 +1,10 @@
 #include "OnlineTopPage.hh"
 
+#include "game/ui/MessagePage.hh"
 #include "game/ui/OnlineConnectionManagerPage.hh"
 #include "game/ui/SectionManager.hh"
 #include "game/ui/SettingsPage.hh"
-#include "game/ui/MessagePage.hh"
 #include "game/ui/YesNoPage.hh"
-
 
 namespace UI {
 
@@ -89,11 +88,11 @@ void OnlineTopPage::onBack(u32 /* localPlayerId */) {
     push(PageId::WifiDisconnect, Anim::None);
 }
 
-void OnlineTopPage::onButtonSelect(PushButton* button, u32 /* localPlayerId */) {
+void OnlineTopPage::onButtonSelect(PushButton *button, u32 /* localPlayerId */) {
     m_instructionText.setMessage(4310 + button->m_index);
 }
 
-void OnlineTopPage::onWorldwideButtonFront(PushButton* button, u32 /* localPlayerId */) {
+void OnlineTopPage::onWorldwideButtonFront(PushButton *button, u32 /* localPlayerId */) {
     auto section = SectionManager::Instance()->currentSection();
     auto connectionManager = section->page<PageId::OnlineConnectionManager>();
     connectionManager->setTrackpack(0);
@@ -112,15 +111,15 @@ void OnlineTopPage::showUnimplemented() {
     push(PageId::MessagePopup, Anim::None);
 }
 
-void OnlineTopPage::onTrackpackButtonFront(PushButton* /* button */, u32 /* localPlayerId */) {
+void OnlineTopPage::onTrackpackButtonFront(PushButton * /* button */, u32 /* localPlayerId */) {
     showUnimplemented();
 }
 
-void OnlineTopPage::onFriendButtonFront(PushButton* /* button */, u32 /* localPlayerId */) {
+void OnlineTopPage::onFriendButtonFront(PushButton * /* button */, u32 /* localPlayerId */) {
     showUnimplemented();
 }
 
-void OnlineTopPage::onDirectButtonFront(PushButton* /* button */, u32 /* localPlayerId */) {
+void OnlineTopPage::onDirectButtonFront(PushButton * /* button */, u32 /* localPlayerId */) {
     auto section = SectionManager::Instance()->currentSection();
     auto confirmPopup = section->page<PageId::YesNoPopup>();
 
@@ -132,10 +131,9 @@ void OnlineTopPage::onDirectButtonFront(PushButton* /* button */, u32 /* localPl
     push(PageId::YesNoPopup, Anim::Next);
 }
 
-void OnlineTopPage::onBackButtonFront(PushButton* /* button */, u32 localPlayerId) {
+void OnlineTopPage::onBackButtonFront(PushButton * /* button */, u32 localPlayerId) {
     onBack(localPlayerId);
 }
-
 
 void OnlineTopPage::onDirectConfirm(s32 choice, PushButton *button) {
     if (choice == 0) {

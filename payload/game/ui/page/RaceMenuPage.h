@@ -4,7 +4,7 @@
 
 typedef struct {
     Page_vt;
-    void (* nextPage)(void* this, u32 pageId);
+    void (*nextPage)(void *this, u32 pageId);
     // ...
 } PausePageVT;
 

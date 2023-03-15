@@ -1,7 +1,7 @@
 #pragma once
 
-#include "game/ui/Page.hh"
 #include "game/ui/MenuInputManager.hh"
+#include "game/ui/Page.hh"
 #include "game/ui/SettingsPage.hh"
 #include "game/ui/YesNoPage.hh"
 #include "game/ui/ctrl/CtrlMenuBackButton.hh"
@@ -57,16 +57,16 @@ private:
     bool m_popRequested;
     RoomRole m_roomRole;
 
-    H<MultiControlInputManager> m_onBack{ this, &FriendRoomPage::onBack };
-    H<PushButton> m_onSettingsButtonFront{ this, &FriendRoomPage::onSettingsButtonFront };
-    H<PushButton> m_onCommentButtonFront{ this, &FriendRoomPage::onCommentButtonFront };
-    H<PushButton> m_onRulesButtonFront{ this, &FriendRoomPage::onRulesButtonFront };
-    H<PushButton> m_onStartButtonFront{ this, &FriendRoomPage::onStartButtonFront };
-    H<PushButton> m_onRegisterButtonFront{ this, &FriendRoomPage::onRegisterButtonFront };
-    H<PushButton> m_onBackButtonFront{ this, &FriendRoomPage::onBackButtonFront };
-    H<PushButton> m_onButtonSelect{ this, &FriendRoomPage::onButtonSelect };
-    H<YesNoPage> m_onBackConfirm{ this, &FriendRoomPage::onBackConfirm };
-    H<SettingsPage> m_onSettingsBack{ this, &FriendRoomPage::onSettingsBack };
+    H<MultiControlInputManager> m_onBack{this, &FriendRoomPage::onBack};
+    H<PushButton> m_onSettingsButtonFront{this, &FriendRoomPage::onSettingsButtonFront};
+    H<PushButton> m_onCommentButtonFront{this, &FriendRoomPage::onCommentButtonFront};
+    H<PushButton> m_onRulesButtonFront{this, &FriendRoomPage::onRulesButtonFront};
+    H<PushButton> m_onStartButtonFront{this, &FriendRoomPage::onStartButtonFront};
+    H<PushButton> m_onRegisterButtonFront{this, &FriendRoomPage::onRegisterButtonFront};
+    H<PushButton> m_onBackButtonFront{this, &FriendRoomPage::onBackButtonFront};
+    H<PushButton> m_onButtonSelect{this, &FriendRoomPage::onButtonSelect};
+    H<YesNoPage> m_onBackConfirm{this, &FriendRoomPage::onBackConfirm};
+    H<SettingsPage> m_onSettingsBack{this, &FriendRoomPage::onSettingsBack};
 };
 
 } // namespace UI

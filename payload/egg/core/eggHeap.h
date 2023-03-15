@@ -4,7 +4,7 @@
 
 typedef struct {
     u8 _00[0x10 - 0x00];
-    void* heapHandle;
+    void *heapHandle;
     u8 _14[0x1c - 0x14];
     u16 _1c;
     u8 _1e[0x38 - 0x1e];

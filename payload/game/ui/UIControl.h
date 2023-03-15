@@ -1,10 +1,10 @@
 #pragma once
 
-#include <game/ui/Layout.h>
 #include "ControlGroup.h"
 #include "Font.h"
 #include "MiiGroup.h"
 #include "UIAnimator.h"
+#include <game/ui/Layout.h>
 
 #define LOG_CONTROL_LOAD false
 

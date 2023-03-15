@@ -20,7 +20,7 @@ class NoInterrupts final {};
 template <typename T>
 class ScopeLock;
 
-template<>
+template <>
 class ScopeLock<Mutex> {
 public:
     ScopeLock(Mutex &mutex);
@@ -30,7 +30,7 @@ private:
     Mutex &m_mutex;
 };
 
-template<>
+template <>
 class ScopeLock<NoInterrupts> {
 public:
     ScopeLock();

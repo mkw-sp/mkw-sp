@@ -24,10 +24,10 @@ void lyt_Layout_DT(lyt_Layout *layout, int type);
 
 static inline Rect getLayoutRect(const lyt_Layout *layout) {
     return (Rect){
-        .left = -layout->width / 2,
-        .top = layout->height / 2,
-        .right = layout->width / 2,
-        .bottom = -layout->height / 2,
+            .left = -layout->width / 2,
+            .top = layout->height / 2,
+            .right = layout->width / 2,
+            .bottom = -layout->height / 2,
     };
 }
 
@@ -57,15 +57,13 @@ typedef struct {
 } lyt_MultiArcResourceAccessor;
 static_assert(sizeof(lyt_MultiArcResourceAccessor) == 0x1c);
 
-lyt_MultiArcResourceAccessor *lyt_MultiArcResourceAccessor_CT(
-        lyt_MultiArcResourceAccessor *ac);
+lyt_MultiArcResourceAccessor *lyt_MultiArcResourceAccessor_CT(lyt_MultiArcResourceAccessor *ac);
 void lyt_MultiArcResourceAccessor_DT(lyt_MultiArcResourceAccessor *ac, int type);
 
-void MultiArcResourceAccessor_Attach(
-        lyt_MultiArcResourceAccessor *ac, lyt_ArcResourceLink *link);
+void MultiArcResourceAccessor_Attach(lyt_MultiArcResourceAccessor *ac, lyt_ArcResourceLink *link);
 
-void *MultiArcResourceAccessor_GetResource(
-        const lyt_MultiArcResourceAccessor *ac, u32 type, const char *path, u32 *len);
+void *MultiArcResourceAccessor_GetResource(const lyt_MultiArcResourceAccessor *ac, u32 type,
+        const char *path, u32 *len);
 
 typedef struct {
     u32 _[4];

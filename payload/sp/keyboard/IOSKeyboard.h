@@ -20,7 +20,7 @@ typedef struct {
 } IOSKeyboard_Modifiers;
 
 typedef enum {
-    IOS_KEY_A = 4,  // in order
+    IOS_KEY_A = 4, // in order
     IOS_KEY_Z = IOS_KEY_A + 25,
     IOS_KEY_ENTER = 40,
     IOS_KEY_ESCAPE = 41,
@@ -33,11 +33,11 @@ bool IOSKeyboard_KeycodeIsCharacter(IOSKeyboard_KeyCode key);
 char IOSKeyboard_KeycodeToCharacter(IOSKeyboard_KeyCode key, bool shift);
 
 typedef struct {
-    IOSKeyboard_Message message;  // 4byte
-    u32 unknown;                  // perhaps keyboard id?
+    IOSKeyboard_Message message; // 4byte
+    u32 unknown;                 // perhaps keyboard id?
     IOSKeyboard_Modifiers modifiers;
     u8 _09;
-    u8 pressed[6];  // Value of IOSKeyboard_KeyCode
+    u8 pressed[6]; // Value of IOSKeyboard_KeyCode
 } IOSKeyboard_Event;
 
 void IOSKeyboard_DumpEvent(const IOSKeyboard_Event *ev);
@@ -66,5 +66,4 @@ static inline bool IOSKeyboard_NextEvent(IOSKeyboard keyboard, IOSKeyboard_Event
 // result in hundreds.
 //
 // Return the number of events actually available.
-size_t IOSKeyboard_PollBuffered(
-        IOSKeyboard keyboard, IOSKeyboard_Event *events, size_t numEvents);
+size_t IOSKeyboard_PollBuffered(IOSKeyboard keyboard, IOSKeyboard_Event *events, size_t numEvents);

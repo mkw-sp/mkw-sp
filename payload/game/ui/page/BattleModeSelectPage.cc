@@ -1,8 +1,8 @@
 #include "BattleModeSelectPage.hh"
 
+#include "game/system/RaceConfig.hh"
 #include "game/ui/SectionManager.hh"
 #include "game/ui/SettingsPage.hh"
-#include "game/system/RaceConfig.hh"
 
 namespace UI {
 
@@ -40,4 +40,4 @@ void BattleModeSelectPage::onButtonFront(const PushButton *button) {
     startReplace(PageId::CharacterSelect, button);
 }
 
-}
+} // namespace UI

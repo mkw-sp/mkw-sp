@@ -12,5 +12,4 @@ s8 CtrlRaceTime::getPlayerId() {
     return CtrlRaceBase::getPlayerId();
 }
 
-
 } // namespace UI

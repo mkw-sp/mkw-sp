@@ -32,7 +32,7 @@ constexpr auto categoryNames = magic_enum::enum_names<Category>();
 extern const u32 categoryMessageIds[];
 constexpr u32 entryCount = magic_enum::enum_count<Setting>();
 extern const Entry entries[];
-constexpr Group group{ name, categoryNames.data(), categoryMessageIds, entryCount, entries };
+constexpr Group group{name, categoryNames.data(), categoryMessageIds, entryCount, entries};
 
 typedef Settings::Settings<Category, GlobalSettings::group> Settings;
 

@@ -62,7 +62,7 @@ static bool Sync(bool update) {
         pb_ostream_t stream = pb_ostream_from_buffer(buffer, sizeof(buffer));
 
         UpdateRequest request;
-        request.wantsUpdate  = update;
+        request.wantsUpdate = update;
         request.versionMajor = versionInfo.major;
         request.versionMinor = versionInfo.minor;
         request.versionPatch = versionInfo.patch;
@@ -72,7 +72,7 @@ static bool Sync(bool update) {
         assert(pb_encode(&stream, UpdateRequest_fields, &request));
 
         if (!socket.write(buffer, stream.bytes_written)) {
-             return false;
+            return false;
         }
     }
 
@@ -95,7 +95,7 @@ static bool Sync(bool update) {
         newInfo.version.major = response.versionMajor;
         newInfo.version.minor = response.versionMinor;
         newInfo.version.patch = response.versionPatch;
-        newInfo.size          = response.size;
+        newInfo.size = response.size;
         if (response.signature.size != sizeof(newInfo.signature)) {
             return false;
         }

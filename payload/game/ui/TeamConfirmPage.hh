@@ -37,10 +37,10 @@ private:
     TeamConfirmControl m_controls[12];
     PushButton m_okButton;
     CtrlMenuBackButton m_backButton;
-    H<MultiControlInputManager> m_onBack{ this, &TeamConfirmPage::onBack };
-    H<PushButton> m_onSettingsButtonFront{ this, &TeamConfirmPage::onSettingsButtonFront };
-    H<PushButton> m_onOkButtonFront{ this, &TeamConfirmPage::onOkButtonFront };
-    H<PushButton> m_onBackButtonFront{ this, &TeamConfirmPage::onBackButtonFront };
+    H<MultiControlInputManager> m_onBack{this, &TeamConfirmPage::onBack};
+    H<PushButton> m_onSettingsButtonFront{this, &TeamConfirmPage::onSettingsButtonFront};
+    H<PushButton> m_onOkButtonFront{this, &TeamConfirmPage::onOkButtonFront};
+    H<PushButton> m_onBackButtonFront{this, &TeamConfirmPage::onBackButtonFront};
     PageId m_replacement;
 };
 

@@ -30,8 +30,8 @@ s32 my_IOS_OpenAsync(const char *path, u32 flags, void *cb, void *userdata) {
 
     const s32 result = real_IOS_OpenAsync(path, flags, cb, userdata);
     if ((SP_DEBUG_LEVEL & SP_DEBUG_IOS_OPENS) == SP_DEBUG_IOS_OPENS) {
-        SP_LOG("IOS_OpenAsync: %s (%x) cb=%p, user=%p -> result 0x%x", path, flags, cb,
-                userdata, result);
+        SP_LOG("IOS_OpenAsync: %s (%x) cb=%p, user=%p -> result 0x%x", path, flags, cb, userdata,
+                result);
     }
     return result;
 }

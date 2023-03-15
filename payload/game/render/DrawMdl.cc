@@ -18,8 +18,9 @@ void DrawMdl::dt(s32 type) {
 void DrawMdl::revertMirrorPatches() {
     const u32 mask = 0xffff'ff00; // Account for two MIRR definitions adjacent (string
                                   // merging disabled for some reason)
-    if ((m_resMdl.ref().ofsUserData & mask) != (reinterpret_cast<u32>(sTag_MIRR) & mask))
+    if ((m_resMdl.ref().ofsUserData & mask) != (reinterpret_cast<u32>(sTag_MIRR) & mask)) {
         return;
+    }
 
     for (u32 i = 0; i < m_resMdl.GetResMatNumEntries(); ++i) {
         nw4r::g3d::ResGenMode gen = m_resMdl.GetResMat(i).GetResGenMode();

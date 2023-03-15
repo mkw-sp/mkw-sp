@@ -88,7 +88,9 @@ public:
     MenuInputManager *inputManager();
     REPLACE void calc();
 
-    s32 frame() const { return m_frame; }
+    s32 frame() const {
+        return m_frame;
+    }
 
 protected:
     void initChildren(u32 count);

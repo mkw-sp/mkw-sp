@@ -29,7 +29,7 @@ AsyncListener::AsyncListener(u16 port) {
         return;
     }
 
-    m_bindTask = { port, 0, 0 };
+    m_bindTask = {port, 0, 0};
 }
 
 AsyncListener::~AsyncListener() {

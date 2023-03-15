@@ -36,4 +36,4 @@ typedef struct WPADCLStatus {
 } WPADCLStatus;
 static_assert(sizeof(WPADCLStatus) == 0x38);
 
-s32 WPADProbe(s32, u32*);
+s32 WPADProbe(s32, u32 *);

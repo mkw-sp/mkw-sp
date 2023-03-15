@@ -130,7 +130,7 @@ void GhostManagerPage::setupTimeAttack(bool isRace, bool fromReplay) {
     if (!isRace) {
         context->m_playerMiis.copy(&context->m_localPlayerMiis, 0, context->m_timeAttackGhostCount);
     }
-    for (u32 i = context->m_timeAttackGhostCount; i --> 0;) {
+    for (u32 i = context->m_timeAttackGhostCount; i-- > 0;) {
         menuScenario.players[i + !!isRace].type = System::RaceConfig::Player::Type::Ghost;
         if (fromReplay) {
             context->m_playerMiis.swap(i, i + 1);

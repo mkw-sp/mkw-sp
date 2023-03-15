@@ -1,7 +1,7 @@
 #pragma once
 
-#include <revolution.h>
 #include "../system/Mii.h"
+#include <revolution.h>
 
 #include <nw4r/lyt/lyt_pane.h>
 #include <nw4r/ut/ut_resFont.h>
@@ -41,7 +41,7 @@ static inline s16 encodeSFixed6(float floating) {
 typedef struct {
     ut_ResFont base;
     GXTexObj *sheetTexObjs;
-    u32 colorMode;  // IA4, RGB5A3, I4
+    u32 colorMode; // IA4, RGB5A3, I4
 } Font;
 static_assert(sizeof(Font) == 0x24);
 

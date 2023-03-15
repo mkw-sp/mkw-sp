@@ -10,7 +10,8 @@ extern "C" {
 
 namespace SP {
 
-struct Empty {} final;
+struct Empty {
+} final;
 
 template <typename T, typename U>
 class Exchange {

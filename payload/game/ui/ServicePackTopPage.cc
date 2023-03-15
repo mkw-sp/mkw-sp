@@ -54,29 +54,25 @@ void ServicePackTopPage::onBack(u32 /* localPlayerId */) {
     changeSection(SectionId::TitleFromOptions, Anim::Prev, 0.0f);
 }
 
-void ServicePackTopPage::onToolsButtonFront(PushButton *button,
-        u32 /* localPlayerId */) {
+void ServicePackTopPage::onToolsButtonFront(PushButton *button, u32 /* localPlayerId */) {
     m_replacement = PageId::ServicePackTools;
     f32 delay = button->getDelay();
     startReplace(Anim::Next, delay);
 }
 
-void ServicePackTopPage::onUpdateButtonFront(PushButton *button,
-        u32 /* localPlayerId */) {
+void ServicePackTopPage::onUpdateButtonFront(PushButton *button, u32 /* localPlayerId */) {
     m_replacement = PageId::Update;
     f32 delay = button->getDelay();
     startReplace(Anim::Next, delay);
 }
 
-void ServicePackTopPage::onChannelButtonFront(PushButton *button,
-        u32 /* localPlayerId */) {
+void ServicePackTopPage::onChannelButtonFront(PushButton *button, u32 /* localPlayerId */) {
     m_replacement = PageId::Channel;
     f32 delay = button->getDelay();
     startReplace(Anim::Next, delay);
 }
 
-void ServicePackTopPage::onAboutButtonFront(PushButton *button,
-        u32 /* localPlayerId */) {
+void ServicePackTopPage::onAboutButtonFront(PushButton *button, u32 /* localPlayerId */) {
     Section *section = SectionManager::Instance()->currentSection();
     auto *confirmPage = section->page<PageId::Confirm>();
     confirmPage->reset();
@@ -93,14 +89,12 @@ void ServicePackTopPage::onAboutButtonFront(PushButton *button,
     startReplace(Anim::Next, delay);
 }
 
-void ServicePackTopPage::onBackButtonFront(PushButton *button,
-        u32 /* localPlayerId */) {
+void ServicePackTopPage::onBackButtonFront(PushButton *button, u32 /* localPlayerId */) {
     f32 delay = button->getDelay();
     changeSection(SectionId::TitleFromOptions, Anim::Prev, delay);
 }
 
-void ServicePackTopPage::onAboutPop(ConfirmPage *confirmPage,
-        f32 /* delay */) {
+void ServicePackTopPage::onAboutPop(ConfirmPage *confirmPage, f32 /* delay */) {
     confirmPage->m_replacement = PageId::ServicePackTop;
 }
 

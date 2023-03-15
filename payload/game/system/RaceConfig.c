@@ -9,7 +9,7 @@ void RaceConfigScenario_resetGhostPlayerTypes(RaceConfigScenario *this) {
 }
 
 static RaceConfig *my_RaceConfig_createInstance(void) {
-    s_raceConfig = new(sizeof(RaceConfig));
+    s_raceConfig = new (sizeof(RaceConfig));
     RaceConfig_ct(s_raceConfig);
 
     s_raceConfig->raceScenario.ghostBuffer = s_raceConfig->ghostBuffers + 0;

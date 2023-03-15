@@ -94,8 +94,7 @@ void MultiTopPage::onBack(u32 /* localPlayerId */) {
     startReplace(Anim::Next, 0.0f);
 }
 
-void MultiTopPage::onSettingsButtonFront(PushButton *button,
-        u32 /* localPlayerId */) {
+void MultiTopPage::onSettingsButtonFront(PushButton *button, u32 /* localPlayerId */) {
     auto *section = SectionManager::Instance()->currentSection();
     auto *menuSettingsPage = section->page<PageId::MenuSettings>();
     menuSettingsPage->configure(nullptr, PageId::MultiTop);
@@ -104,16 +103,14 @@ void MultiTopPage::onSettingsButtonFront(PushButton *button,
     startReplace(Anim::Next, delay);
 }
 
-void MultiTopPage::onSettingsButtonSelect(PushButton * /* button */,
-        u32 /* localPlayerId */) {
+void MultiTopPage::onSettingsButtonSelect(PushButton * /* button */, u32 /* localPlayerId */) {
     m_instructionText.setMessage(10077);
 }
 
-void MultiTopPage::onVSButtonFront(PushButton *button,
-        u32 /* localPlayerId */) {
+void MultiTopPage::onVSButtonFront(PushButton *button, u32 /* localPlayerId */) {
     auto *saveManager = System::SaveManager::Instance();
     auto teamsizeSetting = saveManager->getSetting<SP::ClientSettings::Setting::VSTeamSize>();
-    
+
     u32 maxTeamSize = SP::ClientSettings::GenerateMaxTeamSize(teamsizeSetting);
 
     auto *context = SectionManager::Instance()->globalContext();
@@ -142,8 +139,7 @@ void MultiTopPage::onVSButtonFront(PushButton *button,
     startReplace(Anim::Next, delay);
 }
 
-void MultiTopPage::onVSButtonSelect(PushButton * /* button */,
-        u32 /* localPlayerId */) {
+void MultiTopPage::onVSButtonSelect(PushButton * /* button */, u32 /* localPlayerId */) {
     m_instructionText.setMessage(3052);
 
     Section *section = SectionManager::Instance()->currentSection();
@@ -151,15 +147,14 @@ void MultiTopPage::onVSButtonSelect(PushButton * /* button */,
     modelPage->modelControl().setModel(2);
 }
 
-void MultiTopPage::onBTButtonFront(PushButton *button,
-        u32 /* localPlayerId */) {
+void MultiTopPage::onBTButtonFront(PushButton *button, u32 /* localPlayerId */) {
     auto *saveManager = System::SaveManager::Instance();
     auto *context = SectionManager::Instance()->globalContext();
     context->m_matchCount = saveManager->getSetting<SP::ClientSettings::Setting::BTRaceCount>();
 
     u32 localPlayerCount = context->m_localPlayerCount;
     auto teamsizeSetting = saveManager->getSetting<SP::ClientSettings::Setting::BTTeamSize>();
-    
+
     u32 maxTeamSize = SP::ClientSettings::GenerateMaxTeamSize(teamsizeSetting);
 
     auto &menuScenario = System::RaceConfig::Instance()->menuScenario();
@@ -184,8 +179,7 @@ void MultiTopPage::onBTButtonFront(PushButton *button,
     startReplace(Anim::Next, delay);
 }
 
-void MultiTopPage::onBTButtonSelect(PushButton * /* button */,
-        u32 /* localPlayerId */) {
+void MultiTopPage::onBTButtonSelect(PushButton * /* button */, u32 /* localPlayerId */) {
     m_instructionText.setMessage(3054);
 
     Section *section = SectionManager::Instance()->currentSection();
@@ -193,8 +187,7 @@ void MultiTopPage::onBTButtonSelect(PushButton * /* button */,
     modelPage->modelControl().setModel(3);
 }
 
-void MultiTopPage::onBackButtonFront(PushButton *button,
-        u32 /* localPlayerId */) {
+void MultiTopPage::onBackButtonFront(PushButton *button, u32 /* localPlayerId */) {
     m_reset = true;
 
     m_replacement = PageId::ControllerBoxes;
@@ -202,8 +195,7 @@ void MultiTopPage::onBackButtonFront(PushButton *button,
     startReplace(Anim::Prev, delay);
 }
 
-void MultiTopPage::onBackButtonSelect(PushButton * /* button */,
-        u32 /* localPlayerId */) {
+void MultiTopPage::onBackButtonSelect(PushButton * /* button */, u32 /* localPlayerId */) {
     m_instructionText.setMessage(0);
 }
 

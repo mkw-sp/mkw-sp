@@ -138,19 +138,19 @@ private:
     template <typename T>
     using H = typename T::Handler<UpDownControl>;
 
-    H<ControlInputManager> m_onSelect{ this, &UpDownControl::onSelect };
+    H<ControlInputManager> m_onSelect{this, &UpDownControl::onSelect};
     u8 _184[0x188 - 0x184];
-    H<ControlInputManager> m_onDeselect{ this, &UpDownControl::onDeselect };
+    H<ControlInputManager> m_onDeselect{this, &UpDownControl::onDeselect};
     u8 _198[0x19c - 0x198];
-    H<ControlInputManager> m_onButtonSelect{ this, &UpDownControl::onButtonSelect };
+    H<ControlInputManager> m_onButtonSelect{this, &UpDownControl::onButtonSelect};
     u8 _1ac[0x1b0 - 0x1ac];
-    H<ControlInputManager> m_onButtonDeselect{ this, &UpDownControl::onButtonDeselect };
+    H<ControlInputManager> m_onButtonDeselect{this, &UpDownControl::onButtonDeselect};
     u8 _1c0[0x1c4 - 0x1c0];
-    H<ControlInputManager> m_onFront{ this, &UpDownControl::onFront };
+    H<ControlInputManager> m_onFront{this, &UpDownControl::onFront};
     u8 _1d4[0x1d8 - 0x1d4];
-    H<ControlInputManager> m_onRight{ this, &UpDownControl::onRight };
+    H<ControlInputManager> m_onRight{this, &UpDownControl::onRight};
     u8 _1e8[0x1ec - 0x1e8];
-    H<ControlInputManager> m_onLeft{ this, &UpDownControl::onLeft };
+    H<ControlInputManager> m_onLeft{this, &UpDownControl::onLeft};
     u8 _1fc[0x200 - 0x1fc];
     u32 m_playerFlags;
     s32 m_chosen = -1;

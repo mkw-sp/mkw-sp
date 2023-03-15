@@ -63,7 +63,7 @@ std::optional<FileHandle> NetStorage::open(const wchar_t *path, const char *mode
     return readOpen(file);
 }
 
-bool NetStorage::createDir(const wchar_t */* path */, bool /* allowNop */) {
+bool NetStorage::createDir(const wchar_t * /* path */, bool /* allowNop */) {
     return false;
 }
 
@@ -119,11 +119,11 @@ std::optional<NodeInfo> NetStorage::stat(const wchar_t *path) {
     return readNodeInfo();
 }
 
-bool NetStorage::rename(const wchar_t */* srcPath */, const wchar_t */* dstPath */) {
+bool NetStorage::rename(const wchar_t * /* srcPath */, const wchar_t * /* dstPath */) {
     return false;
 }
 
-bool NetStorage::remove(const wchar_t */* path */, bool /* allowNop */) {
+bool NetStorage::remove(const wchar_t * /* path */, bool /* allowNop */) {
     return false;
 }
 
@@ -505,9 +505,7 @@ void *NetStorage::Connect(void *arg) {
 }
 
 #ifdef NET_STORAGE_PK
-const u8 NetStorage::serverPK[hydro_kx_PUBLICKEYBYTES] = {
-    NET_STORAGE_PK
-};
+const u8 NetStorage::serverPK[hydro_kx_PUBLICKEYBYTES] = {NET_STORAGE_PK};
 #endif
 
 } // namespace SP::Storage

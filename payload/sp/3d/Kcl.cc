@@ -6,11 +6,11 @@ extern "C" {
 #include <revolution/tpl.h>
 }
 
+#include "sp/YAZDecoder.hh"
 #include <algorithm>
 #include <cstring>
 #include <egg/core/eggHeap.hh>
 #include <egg/math/eggMath.hh>
-#include "sp/YAZDecoder.hh"
 
 namespace SP {
 
@@ -65,16 +65,18 @@ static SectionSizes GetSectionSizes(const KCollisionV1Header &header, u32 file_s
 
 template <typename T, typename byte_view_t>
 static inline T *reinterpret_buffer(byte_view_t data, unsigned offset = 0) {
-    if (offset + sizeof(T) > data.size_bytes())
+    if (offset + sizeof(T) > data.size_bytes()) {
         return nullptr;
+    }
 
     return reinterpret_cast<T *>(data.data() + offset);
 }
 
 template <typename T, typename byte_view_t>
 static inline std::span<T> span_cast(byte_view_t data, unsigned offset = 0) {
-    if (offset + sizeof(T) > data.size_bytes())
+    if (offset + sizeof(T) > data.size_bytes()) {
         return {};
+    }
 
     const size_t buffer_len = ROUND_DOWN(data.size_bytes(), sizeof(T));
     return {reinterpret_cast<T *>(data.data() + offset),

@@ -51,21 +51,21 @@ private:
 #endif
     CtrlMenuInstructionText m_instructionText;
     CtrlMenuBackButton m_backButton;
-    H<MultiControlInputManager> m_onBack{ this, &SingleTopPage::onBack };
-    H<PushButton> m_onSettingsButtonFront{ this, &SingleTopPage::onSettingsButtonFront };
-    H<PushButton> m_onSettingsButtonSelect{ this, &SingleTopPage::onSettingsButtonSelect };
-    H<PushButton> m_onTAButtonFront{ this, &SingleTopPage::onTAButtonFront };
-    H<PushButton> m_onTAButtonSelect{ this, &SingleTopPage::onTAButtonSelect };
-    H<PushButton> m_onVSButtonFront{ this, &SingleTopPage::onVSButtonFront };
-    H<PushButton> m_onVSButtonSelect{ this, &SingleTopPage::onVSButtonSelect };
-    H<PushButton> m_onBTButtonFront{ this, &SingleTopPage::onBTButtonFront };
-    H<PushButton> m_onBTButtonSelect{ this, &SingleTopPage::onBTButtonSelect };
+    H<MultiControlInputManager> m_onBack{this, &SingleTopPage::onBack};
+    H<PushButton> m_onSettingsButtonFront{this, &SingleTopPage::onSettingsButtonFront};
+    H<PushButton> m_onSettingsButtonSelect{this, &SingleTopPage::onSettingsButtonSelect};
+    H<PushButton> m_onTAButtonFront{this, &SingleTopPage::onTAButtonFront};
+    H<PushButton> m_onTAButtonSelect{this, &SingleTopPage::onTAButtonSelect};
+    H<PushButton> m_onVSButtonFront{this, &SingleTopPage::onVSButtonFront};
+    H<PushButton> m_onVSButtonSelect{this, &SingleTopPage::onVSButtonSelect};
+    H<PushButton> m_onBTButtonFront{this, &SingleTopPage::onBTButtonFront};
+    H<PushButton> m_onBTButtonSelect{this, &SingleTopPage::onBTButtonSelect};
 #if ENABLE_MR
-    H<PushButton> m_onMRButtonFront{ this, &SingleTopPage::onMRButtonFront };
-    H<PushButton> m_onMRButtonSelect{ this, &SingleTopPage::onMRButtonSelect };
+    H<PushButton> m_onMRButtonFront{this, &SingleTopPage::onMRButtonFront};
+    H<PushButton> m_onMRButtonSelect{this, &SingleTopPage::onMRButtonSelect};
 #endif
-    H<PushButton> m_onBackButtonFront{ this, &SingleTopPage::onBackButtonFront };
-    H<PushButton> m_onBackButtonSelect{ this, &SingleTopPage::onBackButtonSelect };
+    H<PushButton> m_onBackButtonFront{this, &SingleTopPage::onBackButtonFront};
+    H<PushButton> m_onBackButtonSelect{this, &SingleTopPage::onBackButtonSelect};
     PageId m_replacement;
 };
 

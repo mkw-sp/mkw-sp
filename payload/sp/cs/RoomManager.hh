@@ -21,20 +21,16 @@ public:
         virtual void onTeamSelect() {}
         virtual void onSelect() {}
 
-        virtual void onPlayerJoin(const System::RawMii */* mii */,
-                u32 /* location */, u16 /* latitude */,
-                u16 /* longitude */, u32 /* regionLineColor */) {}
+        virtual void onPlayerJoin(const System::RawMii * /* mii */, u32 /* location */,
+                u16 /* latitude */, u16 /* longitude */, u32 /* regionLineColor */) {}
         virtual void onPlayerLeave(u32 /* playerId */) {}
-        virtual void onReceiveComment(u32 /* playerId */,
-                u32 /* commentId */) {}
-        virtual void onSettingsChange(
-                const std::array<u32, RoomSettings::count> &/* settings */) {}
-        virtual void onReceiveTeamSelect(u32 /* playerId */,
-                u32 /* teamId */) {}
+        virtual void onReceiveComment(u32 /* playerId */, u32 /* commentId */) {}
+        virtual void onSettingsChange(const std::array<u32, RoomSettings::count> & /* settings */) {
+        }
+        virtual void onReceiveTeamSelect(u32 /* playerId */, u32 /* teamId */) {}
         virtual void onReceivePulse(u32 /* playerId */) {}
-        virtual void onReceiveInfo(u32 /* playerId */, s32 /* course */,
-                u32 /* selectedPlayer */, u32 /* character */,
-                u32 /* vehicle */) {}
+        virtual void onReceiveInfo(u32 /* playerId */, s32 /* course */, u32 /* selectedPlayer */,
+                u32 /* character */, u32 /* vehicle */) {}
         virtual void onError(u32 errorCode);
     };
 

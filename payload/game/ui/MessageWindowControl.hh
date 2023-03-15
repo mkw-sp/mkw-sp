@@ -20,4 +20,4 @@ public:
 };
 static_assert(sizeof(MessageWindowControlScaleFade) == 0x174);
 
-}  // namespace UI
+} // namespace UI

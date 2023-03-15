@@ -168,8 +168,7 @@ void CourseSelectPage::onBack(u32 /* localPlayerId */) {
     onBackCommon(0.0f);
 }
 
-void CourseSelectPage::onButtonFront(PushButton * button,
-        u32 /* localPlayerId */) {
+void CourseSelectPage::onButtonFront(PushButton *button, u32 /* localPlayerId */) {
     u32 courseIndex = m_sheetIndex * m_buttons.size() + button->m_index;
     auto &entry = SP::CourseDatabase::Instance().entry(m_filter, courseIndex);
 
@@ -196,12 +195,11 @@ void CourseSelectPage::onButtonFront(PushButton * button,
     }
 }
 
-void CourseSelectPage::onButtonSelect(PushButton * button,
-        u32 /* localPlayerId */) {
+void CourseSelectPage::onButtonSelect(PushButton *button, u32 /* localPlayerId */) {
     m_lastSelected = button->m_index;
 }
 
-void CourseSelectPage::onSheetSelectRight(SheetSelectControl */* control */,
+void CourseSelectPage::onSheetSelectRight(SheetSelectControl * /* control */,
         u32 /* localPlayerId */) {
     if (m_sheetIndex == m_sheetCount - 1) {
         m_sheetIndex = 0;
@@ -220,7 +218,7 @@ void CourseSelectPage::onSheetSelectRight(SheetSelectControl */* control */,
     m_scrollBar.m_chosen = m_sheetIndex;
 }
 
-void CourseSelectPage::onSheetSelectLeft(SheetSelectControl */* control */,
+void CourseSelectPage::onSheetSelectLeft(SheetSelectControl * /* control */,
         u32 /* localPlayerId */) {
     if (m_sheetIndex == 0) {
         m_sheetIndex = m_sheetCount - 1;
@@ -239,21 +237,19 @@ void CourseSelectPage::onSheetSelectLeft(SheetSelectControl */* control */,
     m_scrollBar.m_chosen = m_sheetIndex;
 }
 
-void CourseSelectPage::onScrollBarChange(ScrollBar */* scrollBar */,
-        u32 /* localPlayerId */, u32 chosen) {
+void CourseSelectPage::onScrollBarChange(ScrollBar * /* scrollBar */, u32 /* localPlayerId */,
+        u32 chosen) {
     m_sheetIndex = chosen;
 
     refresh();
 }
 
-void CourseSelectPage::onBackButtonFront(PushButton *button,
-        u32 /* localPlayerId */) {
+void CourseSelectPage::onBackButtonFront(PushButton *button, u32 /* localPlayerId */) {
     f32 delay = button->getDelay();
     onBackCommon(delay);
 }
 
-void CourseSelectPage::onBackConfirm(s32 /* choice */,
-        PushButton * /* button */) {
+void CourseSelectPage::onBackConfirm(s32 /* choice */, PushButton * /* button */) {
     m_backConfirmed = true;
 }
 

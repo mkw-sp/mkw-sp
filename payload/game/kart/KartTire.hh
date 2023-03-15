@@ -2,12 +2,12 @@
 
 namespace Kart {
 
-class WheelPhysics: public KartObjectProxy {
+class WheelPhysics : public KartObjectProxy {
 private:
     u8 _0c[0x84 - 0x0c];
 };
 
-class KartTire: public KartPart {
+class KartTire : public KartPart {
     friend class KartSaveState;
 
 private:
@@ -20,4 +20,3 @@ static_assert(sizeof(WheelPhysics) == 0x84);
 static_assert(sizeof(KartTire) == 0xd0);
 
 } // namespace Kart
-

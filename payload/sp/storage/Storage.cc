@@ -288,7 +288,7 @@ static std::optional<Throughputs> Benchmark(FileHandle file, void *buffer) {
     }
 
     Throughputs throughputs;
-    u32 sizes[] = { 1024 * 1024, 128 * 1024, 16 * 1024, 2 * 1024 };
+    u32 sizes[] = {1024 * 1024, 128 * 1024, 16 * 1024, 2 * 1024};
     for (u32 i = 0; i < std::size(sizes); i++) {
         throughputs.sizes[i] = sizes[i];
         u32 count = 8 * BENCHMARK_BUFFER_SIZE / sizes[i];
@@ -296,7 +296,7 @@ static std::optional<Throughputs> Benchmark(FileHandle file, void *buffer) {
         {
             {
                 ScopeLock<NoInterrupts> lock;
-                benchmarkStatus = { sizes[i], BenchmarkStatus::Mode::Read };
+                benchmarkStatus = {sizes[i], BenchmarkStatus::Mode::Read};
             }
             OSTime startTime = OSGetTime();
             for (u32 j = 0; j < count; j++) {
@@ -321,7 +321,7 @@ static std::optional<Throughputs> Benchmark(FileHandle file, void *buffer) {
         {
             {
                 ScopeLock<NoInterrupts> lock;
-                benchmarkStatus = { sizes[i], BenchmarkStatus::Mode::Write };
+                benchmarkStatus = {sizes[i], BenchmarkStatus::Mode::Write};
             }
             OSTime startTime = OSGetTime();
             for (u32 j = 0; j < count; j++) {

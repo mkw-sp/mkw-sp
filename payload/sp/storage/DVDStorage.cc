@@ -54,7 +54,7 @@ std::optional<FileHandle> DVDStorage::open(const wchar_t *path, const char *mode
     return file;
 }
 
-bool DVDStorage::createDir(const wchar_t */* path */, bool /* allowNop */) {
+bool DVDStorage::createDir(const wchar_t * /* path */, bool /* allowNop */) {
     return false;
 }
 
@@ -116,7 +116,8 @@ std::optional<NodeInfo> DVDStorage::stat(const wchar_t *path) {
     DVDFileInfo file;
     if (DVDFastOpen(entrynum, &file)) {
         info.type = NodeType::File;
-        info.size = AlignUp(file.length, 32);;
+        info.size = AlignUp(file.length, 32);
+        ;
         DVDClose(&file);
         return info;
     }
@@ -131,11 +132,11 @@ std::optional<NodeInfo> DVDStorage::stat(const wchar_t *path) {
     return {};
 }
 
-bool DVDStorage::rename(const wchar_t */* srcPath */, const wchar_t */* dstPath */) {
+bool DVDStorage::rename(const wchar_t * /* srcPath */, const wchar_t * /* dstPath */) {
     return false;
 }
 
-bool DVDStorage::remove(const wchar_t */* path */, bool /* allowNop */) {
+bool DVDStorage::remove(const wchar_t * /* path */, bool /* allowNop */) {
     return false;
 }
 
@@ -179,7 +180,7 @@ bool DVDStorage::File::read(void *dst, u32 size, u32 offset) {
     return DVDRead(this, dst, size, offset);
 }
 
-bool DVDStorage::File::write(const void */* src */, u32 /* size */, u32 /* offset */) {
+bool DVDStorage::File::write(const void * /* src */, u32 /* size */, u32 /* offset */) {
     return false;
 }
 

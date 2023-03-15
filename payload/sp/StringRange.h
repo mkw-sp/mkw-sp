@@ -10,13 +10,14 @@ typedef struct {
 
 static inline StringRange StringRange_create(const char *s, size_t len) {
     return (StringRange){
-        .mView = (StringView){ .s = s, .len = len },
-        .mPos = 0,
+            .mView = (StringView){.s = s, .len = len},
+            .mPos = 0,
     };
 }
 static inline char StringRange_next(StringRange *self) {
-    if (self->mPos >= self->mView.len)
+    if (self->mPos >= self->mView.len) {
         return '\0';
+    }
 
     return self->mView.s[self->mPos++];
 }
@@ -37,6 +38,6 @@ static inline bool StringRange_nextLine(StringRange *self, StringView *result) {
     }
 
     self->mPos = found - self->mView.s + 1;
-    *result = (StringView){ .s = line.s, .len = (size_t)(found - line.s) };
+    *result = (StringView){.s = line.s, .len = (size_t)(found - line.s)};
     return true;
 }

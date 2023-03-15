@@ -169,7 +169,8 @@ std::optional<Apploader::GameEntryFunc> Run() {
                     Console::Print(
                             "\nInsert the Mario Kart Wii disc\nby right-clicking the game in "
                             "the game list \nand select \"Change Disc\".\n\n"
-                            "To avoid this in the future, select \n\"Set as Default ISO\" as well.\n");
+                            "To avoid this in the future, select \n\"Set as Default ISO\" as "
+                            "well.\n");
                 } else {
                     Console::Print("Please insert a Mario Kart Wii disc.\n");
                 }

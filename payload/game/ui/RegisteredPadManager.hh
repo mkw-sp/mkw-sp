@@ -14,4 +14,4 @@ private:
 };
 static_assert(sizeof(RegisteredPadManager) == 0x5c);
 
-} // namespace UI 
+} // namespace UI
