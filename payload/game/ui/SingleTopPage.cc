@@ -162,9 +162,9 @@ void SingleTopPage::onVSButtonFront([[maybe_unused]] PushButton *button,
     auto *context = SectionManager::Instance()->globalContext();
     context->m_matchCount = saveManager->getSetting<SP::ClientSettings::Setting::VSRaceCount>();
 
-    u32 maxTeamSizeSetting = static_cast<u32>(saveManager->getSetting<SP::ClientSettings::Setting::VSTeamSize>());
+    auto maxTeamSizeSetting = saveManager->getSetting<SP::ClientSettings::Setting::VSTeamSize>();
     
-    u32 maxTeamSize = SP::ClientSettings::getmaxTeamSize(maxTeamSizeSetting);
+    u32 maxTeamSize = SP::ClientSettings::GenerateMaxTeamSize(maxTeamSizeSetting);
 
     auto &menuScenario = System::RaceConfig::Instance()->menuScenario();
     menuScenario.gameMode = System::RaceConfig::GameMode::OfflineVS;
@@ -202,9 +202,9 @@ void SingleTopPage::onBTButtonFront([[maybe_unused]] PushButton *button,
     auto *context = SectionManager::Instance()->globalContext();
     context->m_matchCount = saveManager->getSetting<SP::ClientSettings::Setting::BTRaceCount>();
 
-    u32 maxTeamSizeSetting = static_cast<u32>(saveManager->getSetting<SP::ClientSettings::Setting::BTTeamSize>());
+    auto maxTeamSizeSetting = saveManager->getSetting<SP::ClientSettings::Setting::BTTeamSize>();
     
-    u32 maxTeamSize = SP::ClientSettings::getmaxTeamSize(maxTeamSizeSetting);
+    u32 maxTeamSize = SP::ClientSettings::GenerateMaxTeamSize(maxTeamSizeSetting);
 
     auto &menuScenario = System::RaceConfig::Instance()->menuScenario();
     menuScenario.gameMode = System::RaceConfig::GameMode::OfflineBT;
