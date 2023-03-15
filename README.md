@@ -40,6 +40,10 @@ The codebase uses both C and asm, C should be preferred for full function replac
 
 The codebase is automatically formatted using `clang-format` (15), this will be checked by CI and must be run before merge.
 
+If you need a unoptimised build with debugging information, use `ninja debug` to build once, or use
+`configure.py --default-targets` and then a comma seperated list of `test`, `debug`, or `release` to
+automatically build the requested binaries with every `ninja` invoke.
+
 ## Resources
 
 - [Ghidra project](https://drive.google.com/drive/folders/1I1VRfeut3NtPeddePutfAaZhduVdKhhc?usp=sharing) (by far the most complete resource)
