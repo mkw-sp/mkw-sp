@@ -9,7 +9,7 @@ enum {
 };
 
 typedef struct {
-    EGGScene;
+    EGGScene inherit;
 
     MEMAllocator allocator;
     lyt_DrawInfo drawInfo;

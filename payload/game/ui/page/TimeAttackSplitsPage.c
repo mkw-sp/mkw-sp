@@ -14,7 +14,7 @@ PATCH_B(TimeAttackSplitsPage_getReplacement, my_TimeAttackSplitsPage_getReplacem
 void TimeAttackSplitsPage_afterCalc(TimeAttackSplitsPage *this);
 
 static void my_TimeAttackSplitsPage_afterCalc(TimeAttackSplitsPage *this) {
-    if (this->state != 4) {
+    if (this->inherit.state != 4) {
         return;
     }
 
@@ -42,6 +42,6 @@ static void my_TimeAttackSplitsPage_onFront(TimeAttackSplitsPage *this) {
         return;
     }
 
-    Page_startReplace(this, -1, 0.0f);
+    Page_startReplace(&this->inherit, -1, 0.0f);
 }
 PATCH_B(TimeAttackSplitsPage_onFront, my_TimeAttackSplitsPage_onFront);

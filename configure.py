@@ -896,7 +896,6 @@ common_cflags = [
     '-DREVOLUTION',
     '-fms-extensions',
     '-fno-asynchronous-unwind-tables',
-    '-fplan9-extensions',
     '-fshort-wchar',
     '-isystem', '.',
     '-isystem', 'include',

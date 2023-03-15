@@ -86,7 +86,7 @@ void SpBugCheck(const char *file, const char *description) {
     // We can't safely unload the current scene, so just use its memory.
     FatalScene_LeechCurrentScene(&fScene);
 
-    fScene.vt->enter(&fScene);
+    fScene.inherit.vt->enter(&fScene.inherit);
 
     FatalScene_SetBody(&fScene, sFormattedBugCheck);
 

@@ -5,7 +5,7 @@
 #include "../ctrl/CtrlMenuInstructionText.h"
 
 typedef struct {
-    Page;
+    Page inherit;
     MiiGroup *miiGroup;
     u8 _048[0x2bc - 0x048];
     CtrlMenuInstructionText *instructionText;
