@@ -4,10 +4,10 @@
 
 namespace SP::ClientSettings {
     
-u32 getmaxTeamSize(u32 teamsizesetting) {
+u32 GenerateMaxTeamSize(SP::ClientSettings::TeamSize teamsizesetting) {
     u32 maxTeamSize;
 
-    if (teamsizesetting == 5) {        
+    if (teamsizesetting == SP::ClientSettings::TeamSize::Random) {        
         u32 rand_number = hydro_random_u32();
         rand_number = rand_number % 5;        
         if (rand_number == 4) {        
@@ -15,10 +15,10 @@ u32 getmaxTeamSize(u32 teamsizesetting) {
         } else {            
             maxTeamSize = rand_number + 1; 
         }    
-    } else if (teamsizesetting == 4) {    
+    } else if (teamsizesetting == SP::ClientSettings::TeamSize::Six) {    
         maxTeamSize = 6;    
     } else {    
-        maxTeamSize = teamsizesetting + 1;    
+        maxTeamSize = static_cast<u32>(teamsizesetting) + 1;    
     }
     
     return maxTeamSize;
