@@ -1,8 +1,11 @@
 #pragma once
 
-#include <game/util/Registry.hh>
-
 #include "sp/settings/Settings.hh"
+
+#include <game/util/Registry.hh>
+extern "C" {
+#include <vendor/libhydrogen/hydrogen.h>
+}
 
 namespace SP::ClientSettings {
 
@@ -125,6 +128,7 @@ enum class TeamSize {
     Three,
     Four,
     Six,
+    Random,
 };
 
 enum class DriftMode {
@@ -341,6 +345,8 @@ extern const Entry entries[];
 constexpr Group group{ name, categoryNames.data(), categoryMessageIds, entryCount, entries };
 
 typedef Settings::Settings<Category, ClientSettings::group> Settings;
+
+u32 GenerateMaxTeamSize(SP::ClientSettings::TeamSize teamsizesetting);
 
 } // namespace SP::ClientSettings
 

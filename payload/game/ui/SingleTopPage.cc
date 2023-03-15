@@ -7,6 +7,11 @@
 #include "game/ui/SettingsPage.hh"
 #include "game/ui/page/MenuPage.hh"
 
+#include <sp/settings/ClientSettings.hh>
+extern "C" {
+#include <vendor/libhydrogen/hydrogen.h>
+}
+
 namespace UI {
 
 SingleTopPage::SingleTopPage() = default;
@@ -156,8 +161,8 @@ void SingleTopPage::onVSButtonFront([[maybe_unused]] PushButton *button,
     context->m_matchCount = saveManager->getSetting<SP::ClientSettings::Setting::VSRaceCount>();
 
     auto maxTeamSizeSetting = saveManager->getSetting<SP::ClientSettings::Setting::VSTeamSize>();
-    u32 maxTeamSize = maxTeamSizeSetting == SP::ClientSettings::TeamSize::Six ? 6 :
-            static_cast<u32>(maxTeamSizeSetting) + 1;
+    
+    u32 maxTeamSize = SP::ClientSettings::GenerateMaxTeamSize(maxTeamSizeSetting);
 
     auto &menuScenario = System::RaceConfig::Instance()->menuScenario();
     menuScenario.gameMode = System::RaceConfig::GameMode::OfflineVS;
@@ -196,8 +201,8 @@ void SingleTopPage::onBTButtonFront([[maybe_unused]] PushButton *button,
     context->m_matchCount = saveManager->getSetting<SP::ClientSettings::Setting::BTRaceCount>();
 
     auto maxTeamSizeSetting = saveManager->getSetting<SP::ClientSettings::Setting::BTTeamSize>();
-    u32 maxTeamSize = maxTeamSizeSetting == SP::ClientSettings::TeamSize::Six ? 6 :
-            static_cast<u32>(maxTeamSizeSetting) + 1;
+    
+    u32 maxTeamSize = SP::ClientSettings::GenerateMaxTeamSize(maxTeamSizeSetting);
 
     auto &menuScenario = System::RaceConfig::Instance()->menuScenario();
     menuScenario.gameMode = System::RaceConfig::GameMode::OfflineBT;

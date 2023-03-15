@@ -3,6 +3,26 @@
 #include <iterator>
 
 namespace SP::ClientSettings {
+    
+u32 GenerateMaxTeamSize(SP::ClientSettings::TeamSize teamsizesetting) {
+    u32 maxTeamSize;
+
+    if (teamsizesetting == SP::ClientSettings::TeamSize::Random) {        
+        u32 rand_number = hydro_random_u32();
+        rand_number = rand_number % 5;        
+        if (rand_number == 4) {        
+            maxTeamSize = 6;        
+        } else {            
+            maxTeamSize = rand_number + 1; 
+        }    
+    } else if (teamsizesetting == SP::ClientSettings::TeamSize::Six) {    
+        maxTeamSize = 6;    
+    } else {    
+        maxTeamSize = static_cast<u32>(teamsizesetting) + 1;    
+    }
+    
+    return maxTeamSize;
+}
 
 const char name[] = "MKW-SP Settings";
 
@@ -329,8 +349,8 @@ const Entry entries[] = {
         .defaultValue = static_cast<u32>(TeamSize::FFA),
         .valueCount = magic_enum::enum_count<TeamSize>(),
         .valueNames = magic_enum::enum_names<TeamSize>().data(),
-        .valueMessageIds = (u32[]) { 10208, 10209, 10210, 10211, 10212 },
-        .valueExplanationMessageIds = (u32[]) { 10213, 10214, 10215, 10216, 10217 },
+        .valueMessageIds = (u32[]) { 10208, 10209, 10210, 10211, 10212, 10218 },
+        .valueExplanationMessageIds = (u32[]) { 10213, 10214, 10215, 10216, 10217, 10393 },
     },
     [static_cast<u32>(Setting::VSRaceCount)] = {
         .category = Category::VS,
@@ -390,8 +410,8 @@ const Entry entries[] = {
         .defaultValue = static_cast<u32>(TeamSize::Six),
         .valueCount = magic_enum::enum_count<TeamSize>(),
         .valueNames = magic_enum::enum_names<TeamSize>().data(),
-        .valueMessageIds = (u32[]) { 10208, 10209, 10210, 10211, 10212 },
-        .valueExplanationMessageIds = (u32[]) { 10213, 10214, 10215, 10216, 10217 },
+        .valueMessageIds = (u32[]) { 10208, 10209, 10210, 10211, 10212, 10218 },
+        .valueExplanationMessageIds = (u32[]) { 10213, 10214, 10215, 10216, 10217, 10393 },
     },
     [static_cast<u32>(Setting::BTRaceCount)] = {
         .category = Category::BT,
@@ -431,8 +451,8 @@ const Entry entries[] = {
         .defaultValue = static_cast<u32>(TeamSize::FFA),
         .valueCount = magic_enum::enum_count<TeamSize>(),
         .valueNames = magic_enum::enum_names<TeamSize>().data(),
-        .valueMessageIds = (u32[]) { 10208, 10209, 10210, 10211, 10212 },
-        .valueExplanationMessageIds = (u32[]) { 10213, 10214, 10215, 10216, 10217 },
+        .valueMessageIds = (u32[]) { 10208, 10209, 10210, 10211, 10212, 10218 },
+        .valueExplanationMessageIds = (u32[]) { 10213, 10214, 10215, 10216, 10217, 10393 },
     },
     [static_cast<u32>(Setting::RoomTeamSelection)] = {
         .category = Category::Room,

@@ -6,6 +6,11 @@
 #include "game/ui/SectionManager.hh"
 #include "game/ui/SettingsPage.hh"
 #include "game/ui/page/MenuPage.hh"
+#include <sp/settings/ClientSettings.hh>
+
+extern "C" {
+#include <vendor/libhydrogen/hydrogen.h>
+}
 
 namespace UI {
 
@@ -107,8 +112,8 @@ void MultiTopPage::onVSButtonFront([[maybe_unused]] PushButton *button,
         [[maybe_unused]] u32 localPlayerId) {
     auto *saveManager = System::SaveManager::Instance();
     auto teamsizeSetting = saveManager->getSetting<SP::ClientSettings::Setting::VSTeamSize>();
-    u32 maxTeamSize = teamsizeSetting == SP::ClientSettings::TeamSize::Six ? 6 :
-            static_cast<u32>(teamsizeSetting) + 1;
+    
+    u32 maxTeamSize = SP::ClientSettings::GenerateMaxTeamSize(teamsizeSetting);
 
     auto *context = SectionManager::Instance()->globalContext();
     u32 localPlayerCount = context->m_localPlayerCount;
@@ -153,8 +158,8 @@ void MultiTopPage::onBTButtonFront([[maybe_unused]] PushButton *button,
 
     u32 localPlayerCount = context->m_localPlayerCount;
     auto teamsizeSetting = saveManager->getSetting<SP::ClientSettings::Setting::BTTeamSize>();
-    u32 maxTeamSize = teamsizeSetting == SP::ClientSettings::TeamSize::Six ? 6 :
-            static_cast<u32>(teamsizeSetting) + 1;
+    
+    u32 maxTeamSize = SP::ClientSettings::GenerateMaxTeamSize(teamsizeSetting);
 
     auto &menuScenario = System::RaceConfig::Instance()->menuScenario();
     menuScenario.engineClass = System::RaceConfig::EngineClass::CC50;
