@@ -1,8 +1,12 @@
+// clang-format off
+//
 // Resources:
 // - https://wiibrew.org/wiki//dev/sdio
 // - https://github.com/dolphin-emu/dolphin/blob/master/Source/Core/Core/IOS/SDIO/SDIOSlot0.cpp
 // - https://www.sdcard.org/cms/wp-content/themes/sdcard-org/dl.php?f=Part1_Physical_Layer_Simplified_Specification_Ver8.00.pdf
 // - https://github.com/devkitPro/libogc/blob/master/libogc/wiisd.c
+//
+// clang-format on
 
 #include "Sdi.h"
 
