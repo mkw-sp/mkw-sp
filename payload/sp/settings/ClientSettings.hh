@@ -9,8 +9,6 @@ extern "C" {
 
 namespace SP::ClientSettings {
 
-u32 getmaxTeamSize(u32 teamsizesetting);
-
 enum class Setting {
     // Race
     Character,
@@ -347,6 +345,8 @@ extern const Entry entries[];
 constexpr Group group{ name, categoryNames.data(), categoryMessageIds, entryCount, entries };
 
 typedef Settings::Settings<Category, ClientSettings::group> Settings;
+
+u32 GenerateMaxTeamSize(SP::ClientSettings::TeamSize teamsizesetting);
 
 } // namespace SP::ClientSettings
 
