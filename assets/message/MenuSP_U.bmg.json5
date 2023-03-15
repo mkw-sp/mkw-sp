@@ -1091,9 +1091,6 @@
     "10392": {
         string: "Forces 30fps, can help with Dolphin performance.",
     },
-    "10393": {
-        string: "Choose the Team Size randomly",
-    },
     "20000": {
         string: "Online",
     },
