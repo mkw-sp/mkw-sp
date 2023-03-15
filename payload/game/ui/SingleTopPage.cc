@@ -7,11 +7,9 @@
 #include "game/ui/SettingsPage.hh"
 #include "game/ui/page/MenuPage.hh"
 
-extern "C" {
-
-#include <vendor/libhydrogen/hydrogen.h>
 #include <sp/settings/ClientSettings.hh>
-
+extern "C" {
+#include <vendor/libhydrogen/hydrogen.h>
 }
 
 namespace UI {
