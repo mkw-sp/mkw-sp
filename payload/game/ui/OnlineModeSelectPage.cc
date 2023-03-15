@@ -1,6 +1,7 @@
 #include "OnlineModeSelectPage.hh"
 
 #include "game/ui/SectionManager.hh"
+#include "game/ui/OnlineConnectionManagerPage.hh"
 
 namespace UI {
 

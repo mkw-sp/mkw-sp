@@ -14,6 +14,8 @@
 #include "game/ui/ModelRenderPage.hh"
 #include "game/ui/MultiTeamSelectPage.hh"
 #include "game/ui/MultiTopPage.hh"
+#include "game/ui/OnlineConnectionManagerPage.hh"
+#include "game/ui/OnlineModeSelectPage.hh"
 #include "game/ui/OnlineTeamSelectPage.hh"
 #include "game/ui/OnlineTopPage.hh"
 #include "game/ui/RandomMatchingPage.hh"

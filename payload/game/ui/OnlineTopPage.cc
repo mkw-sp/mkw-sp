@@ -1,5 +1,6 @@
 #include "OnlineTopPage.hh"
 
+#include "game/ui/OnlineConnectionManagerPage.hh"
 #include "game/ui/SectionManager.hh"
 #include "game/ui/SettingsPage.hh"
 #include "game/ui/MessagePage.hh"

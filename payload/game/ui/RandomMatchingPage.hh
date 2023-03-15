@@ -1,9 +1,9 @@
 #pragma once
 
-#include "payload/game/ui/Page.hh"
-#include "payload/game/ui/ctrl/CtrlMenuPageTitleText.hh"
+#include "game/ui/Page.hh"
+#include "game/ui/ctrl/CtrlMenuPageTitleText.hh"
 
-#include <payload/sp/cs/RoomManager.hh>
+#include <sp/cs/RoomManager.hh>
 
 namespace UI {
 

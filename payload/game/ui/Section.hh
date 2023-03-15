@@ -2,14 +2,12 @@
 
 #include "game/ui/Page.hh"
 #include "game/ui/SectionId.hh"
-#include "game/ui/page/BattleModeSelectPage.hh"
-#include "game/ui/OnlineConnectionManagerPage.hh"
-#include "game/ui/OnlineModeSelectPage.hh"
 
 #include <nw4r/lyt/lyt_drawInfo.hh>
 
 namespace UI {
 
+class BattleModeSelectPage;
 class ConfirmPage;
 class CourseSelectPage;
 class DriftSelectPage;
@@ -27,6 +25,8 @@ class MessagePagePopup;
 class MissionInstructionPage;
 class ModelPage;
 class ModelRenderPage;
+class OnlineConnectionManagerPage;
+class OnlineModeSelectPage;
 class OnlineTeamSelectPage;
 class OptionExplanationPage;
 class OptionSelectPage;
