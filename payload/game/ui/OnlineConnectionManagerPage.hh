@@ -20,9 +20,7 @@ public:
     };
 
     OnlineConnectionManagerPage();
-    ~OnlineConnectionManagerPage() override = default;
 
-    void dt(s32 type) override;
     void onInit() override;
     void afterCalc() override;
 
