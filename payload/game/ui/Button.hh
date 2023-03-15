@@ -66,11 +66,11 @@ private:
     using H = typename T::Handler<PushButton>;
 
     ControlInputManager m_inputManager;
-    H<ControlInputManager> m_onSelect{ this, &PushButton::onSelect };
+    H<ControlInputManager> m_onSelect{this, &PushButton::onSelect};
     u8 _204[0x208 - 0x204];
-    H<ControlInputManager> m_onDeselect{ this, &PushButton::onDeselect };
+    H<ControlInputManager> m_onDeselect{this, &PushButton::onDeselect};
     u8 _218[0x21c - 0x218];
-    H<ControlInputManager> m_onFront{ this, &PushButton::onFront };
+    H<ControlInputManager> m_onFront{this, &PushButton::onFront};
     u8 _230[0x234 - 0x230];
     IHandler *m_frontHandler = nullptr;
     IHandler *m_selectHandler = nullptr;

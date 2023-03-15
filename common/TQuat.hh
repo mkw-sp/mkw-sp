@@ -14,7 +14,7 @@ struct TQuatBase {
     T w;
 };
 
-template<typename T>
+template <typename T>
 struct TQuat : TQuatBase<T> {};
 
 struct Quat : TQuatBase<f32> {

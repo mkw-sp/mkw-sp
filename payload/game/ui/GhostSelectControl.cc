@@ -77,15 +77,15 @@ void GhostSelectControl::calcSelf() {
 
 void GhostSelectControl::load() {
     const char *groups[] = {
-        "Slide",
-        "Hide",
-        "SlideInFromLeft",
-        "SlideInFromRight",
-        "Show",
-        "SlideOutToLeft",
-        "SlideOutToRight",
-        nullptr,
-        nullptr,
+            "Slide",
+            "Hide",
+            "SlideInFromLeft",
+            "SlideInFromRight",
+            "Show",
+            "SlideOutToLeft",
+            "SlideOutToRight",
+            nullptr,
+            nullptr,
     };
     LayoutUIControl::load("control", "GhostSelectBase", "Base", groups);
     m_animator.setAnimation(GROUP_ID_SLIDE, ANIM_ID_HIDE, 0.0f);
@@ -158,4 +158,4 @@ void GhostSelectControl::slideOutToRight() {
     onHide();
 }
 
-}  // namespace UI
+} // namespace UI

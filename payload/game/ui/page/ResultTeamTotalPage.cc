@@ -76,9 +76,8 @@ void ResultTeamTotalPage::onActivate() {
     // https://gcc.gnu.org/bugzilla/show_bug.cgi?id=104165
     PRAGMA("GCC diagnostic push")
     PRAGMA("GCC diagnostic ignored \"-Warray-bounds\"")
-    std::sort(teamIds.begin(), teamIds.begin() + teamCount, [&](auto i0, auto i1) {
-        return teamScores[i0] > teamScores[i1];
-    });
+    std::sort(teamIds.begin(), teamIds.begin() + teamCount,
+            [&](auto i0, auto i1) { return teamScores[i0] > teamScores[i1]; });
     PRAGMA("GCC diagnostic pop")
     std::array<u32, 6> teamIndices{};
     for (u32 i = 0; i < teamCount; i++) {

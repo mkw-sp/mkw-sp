@@ -2,10 +2,10 @@
 
 #include <revolution.h>
 
-Font* sDebugFont;
+Font *sDebugFont;
 
 static void FontManager_initFont(FontManager *this, u32 index, const char *file) {
-    this->fonts[index] = new(sizeof(Font));
+    this->fonts[index] = new (sizeof(Font));
     Font_ct(this->fonts[index]);
     Font_load(this->fonts[index], file);
 }
@@ -35,7 +35,7 @@ static void my_FontManager_init(FontManager *this) {
         FontManager_initFont(this, 1, "kart_kanji_font.brfnt");
         break;
     }
-    
+
     sDebugFont = this->fonts[1];
     FontManager_initFont(this, 2, "tt_kart_extension_font.brfnt");
     FontManager_initFont(this, 3, "indicator_font.brfnt");

@@ -1,15 +1,15 @@
 #include "RandomMatchingPage.hh"
 
 #include "game/system/RaceConfig.hh"
-#include "game/ui/SectionManager.hh"
 #include "game/ui/FriendRoomBackPage.hh"
 #include "game/ui/OnlineConnectionManagerPage.hh"
+#include "game/ui/SectionManager.hh"
 
 #include <sp/cs/RoomClient.hh>
 
 namespace UI {
 
-RandomMatchingPage::RandomMatchingPage(): m_handler(*this) {}
+RandomMatchingPage::RandomMatchingPage() : m_handler(*this) {}
 RandomMatchingPage::~RandomMatchingPage() = default;
 
 PageId RandomMatchingPage::getReplacement() {
@@ -68,7 +68,8 @@ void RandomMatchingPage::afterCalc() {
         auto foundMatch = *foundMatchOpt;
 
         auto &menuScenario = System::RaceConfig::Instance()->menuScenario();
-        menuScenario.gameMode = static_cast<System::RaceConfig::GameMode>(onlineManager->m_gamemode);
+        menuScenario.gameMode =
+                static_cast<System::RaceConfig::GameMode>(onlineManager->m_gamemode);
 
         auto port = 21330;
         auto ip = foundMatch.room_ip;
@@ -78,12 +79,11 @@ void RandomMatchingPage::afterCalc() {
     }
 }
 
-RandomMatchingPage::Handler::Handler(RandomMatchingPage &page): m_page(page) {}
+RandomMatchingPage::Handler::Handler(RandomMatchingPage &page) : m_page(page) {}
 RandomMatchingPage::Handler::~Handler() = default;
 
 void RandomMatchingPage::Handler::onSelect() {
     m_page.changeSection(SectionId::Voting1PVS, Anim::Next, 0);
 }
 
-
-}
+} // namespace UI

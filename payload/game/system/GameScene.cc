@@ -23,4 +23,4 @@ void GameScene::setFramerate(bool is_30) {
     }
 }
 
-}
+} // namespace System

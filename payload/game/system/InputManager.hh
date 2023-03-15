@@ -124,8 +124,8 @@ public:
     ~WiiPad() override;
 
 protected:
-    void REPLACED(processClassic)(void *r4, RaceInputState &raceInputState,
-            UIInputState &uiInputState);
+    void REPLACED(
+            processClassic)(void *r4, RaceInputState &raceInputState, UIInputState &uiInputState);
     REPLACE void processClassic(void *r4, RaceInputState &raceInputState,
             UIInputState &uiInputState);
 
@@ -283,9 +283,9 @@ private:
     bool m_isPaused;
     bool m_isMirror;
     u8 _4156[0x415c - 0x4156];
-    GhostPad *m_extraGhostPads; // Added
+    GhostPad *m_extraGhostPads;         // Added
     GhostPadProxy *m_extraGhostProxies; // Added
-    PadRollback *m_rollbacks; // Added
+    PadRollback *m_rollbacks;           // Added
 
     static InputManager *s_instance;
 };

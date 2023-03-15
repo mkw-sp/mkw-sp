@@ -2,7 +2,7 @@
 
 namespace Sound {
 
-enum class SoundId {    
+enum class SoundId {
     SE_DUMMY = 0,
     SEQ_O_EARTH = 1,
     SEQ_O_SELECT_CH = 2,

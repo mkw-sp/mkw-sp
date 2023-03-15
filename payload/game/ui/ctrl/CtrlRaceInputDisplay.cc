@@ -31,7 +31,7 @@ void CtrlRaceInputDisplay::initSelf() {
     // Note: enum_name returns a string_view over a null-terminated string, thus the conversion in
     // the other direction is safe.
 
-    magic_enum::enum_for_each<DpadState>([&] (auto s) {
+    magic_enum::enum_for_each<DpadState>([&](auto s) {
         DpadState state = s;
         auto stateName = magic_enum::enum_name(state);
         char name[0x20];
@@ -42,7 +42,7 @@ void CtrlRaceInputDisplay::initSelf() {
         m_dpadPanes[static_cast<u32>(state)] = pane;
     });
 
-    magic_enum::enum_for_each<AccelState>([&] (auto s) {
+    magic_enum::enum_for_each<AccelState>([&](auto s) {
         AccelState state = s;
         auto stateName = magic_enum::enum_name(state);
         char name[0x20];
@@ -57,10 +57,10 @@ void CtrlRaceInputDisplay::initSelf() {
         m_accelPanes[static_cast<u32>(state)] = pane;
     });
 
-    magic_enum::enum_for_each<Trigger>([&] (auto t) {
+    magic_enum::enum_for_each<Trigger>([&](auto t) {
         Trigger trigger = t;
         auto triggerName = magic_enum::enum_name(trigger);
-        magic_enum::enum_for_each<TriggerState>([&] (auto s) {
+        magic_enum::enum_for_each<TriggerState>([&](auto s) {
             TriggerState state = s;
             auto stateName = magic_enum::enum_name(state);
             char name[0x20];
@@ -176,10 +176,10 @@ void CtrlRaceInputDisplay::setStick(Vec2<f32> state) {
     }
 
     // Map range [-1, 1] -> [-width/2, width/2]
-    m_stickPane->m_trans.x = m_stickOrigin.x + 0.5f * state.x * m_stickPane->m_scale.x *
-            m_stickPane->m_width;
-    m_stickPane->m_trans.y = m_stickOrigin.y + 0.5f * state.y * m_stickPane->m_scale.y *
-            m_stickPane->m_height;
+    m_stickPane->m_trans.x =
+            m_stickOrigin.x + 0.5f * state.x * m_stickPane->m_scale.x * m_stickPane->m_width;
+    m_stickPane->m_trans.y =
+            m_stickOrigin.y + 0.5f * state.y * m_stickPane->m_scale.y * m_stickPane->m_height;
 
     m_stickState = state;
 }

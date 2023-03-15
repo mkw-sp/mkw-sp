@@ -35,4 +35,4 @@ private:
     static std::optional<ThumbnailManager> s_instance;
 };
 
-} // namespace SP::ThumbnailManager
+} // namespace SP

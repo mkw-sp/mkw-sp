@@ -103,8 +103,7 @@ void TeamConfirmPage::onBack(u32 /* localPlayerId */) {
     startReplace(Anim::Prev, 0.0f);
 }
 
-void TeamConfirmPage::onSettingsButtonFront(PushButton * button,
-        u32 /* localPlayerId */) {
+void TeamConfirmPage::onSettingsButtonFront(PushButton *button, u32 /* localPlayerId */) {
     auto *section = SectionManager::Instance()->currentSection();
     auto *menuSettingsPage = section->page<PageId::MenuSettings>();
     menuSettingsPage->configure(nullptr, PageId::TeamConfirm);
@@ -113,8 +112,7 @@ void TeamConfirmPage::onSettingsButtonFront(PushButton * button,
     startReplace(Anim::Next, delay);
 }
 
-void TeamConfirmPage::onOkButtonFront(PushButton * button,
-        u32 /* localPlayerId */) {
+void TeamConfirmPage::onOkButtonFront(PushButton *button, u32 /* localPlayerId */) {
     auto &menuScenario = System::RaceConfig::Instance()->menuScenario();
     if (menuScenario.gameMode == System::RaceConfig::GameMode::OfflineVS) {
         System::RaceConfig::Instance()->applyEngineClass();
@@ -122,8 +120,8 @@ void TeamConfirmPage::onOkButtonFront(PushButton * button,
 
     auto *section = SectionManager::Instance()->currentSection();
     auto sectionId = section->id();
-    auto pageId = sectionId == SectionId::Multi ? PageId::MultiVehicleSelect :
-            PageId::VehicleSelect;
+    auto pageId =
+            sectionId == SectionId::Multi ? PageId::MultiVehicleSelect : PageId::VehicleSelect;
     auto *characterSelectPage = section->page(pageId)->downcast<MenuPage>();
     characterSelectPage->m_prevId = PageId::TeamConfirm;
     m_replacement = pageId;
@@ -131,8 +129,7 @@ void TeamConfirmPage::onOkButtonFront(PushButton * button,
     startReplace(Anim::Next, delay);
 }
 
-void TeamConfirmPage::onBackButtonFront(PushButton * button,
-        u32 /* localPlayerId */) {
+void TeamConfirmPage::onBackButtonFront(PushButton *button, u32 /* localPlayerId */) {
     auto sectionId = SectionManager::Instance()->currentSection()->id();
     if (sectionId == SectionId::Multi) {
         m_replacement = PageId::MultiTeamSelect;

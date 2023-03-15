@@ -92,7 +92,7 @@ u8 RacePage::getControlCount(u32 controls) const {
     }
 
     if (setting == SP::ClientSettings::VanillaMode::Disable) {
-        count += localPlayerCount; // CtrlRaceInputDisplay
+        count += localPlayerCount;     // CtrlRaceInputDisplay
         count += localPlayerCount < 2; // CtrlRaceDebugPanel
     }
 

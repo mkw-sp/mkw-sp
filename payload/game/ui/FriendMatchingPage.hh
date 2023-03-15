@@ -44,6 +44,7 @@ private:
         void onSettingsChange(const std::array<u32, SP::RoomSettings::count> &settings) override;
         void onReceiveTeamSelect(u32 playerId, u32 teamId) override;
         void onError(u32 errorCode) override;
+
     private:
         FriendMatchingPage &m_page;
     };
@@ -57,7 +58,7 @@ private:
     PageInputManager m_inputManager;
     MatchingMessageWindow m_messageWindow;
     CtrlMenuDummyBack m_dummyBack;
-    H<PageInputManager> m_onBack{ this, &FriendMatchingPage::onBack };
+    H<PageInputManager> m_onBack{this, &FriendMatchingPage::onBack};
     PageId m_replacement;
     Handler m_handler;
     s32 m_gamemode = -1;

@@ -14,8 +14,8 @@
 #include "game/system/RaceManager.hh"
 #include "game/ui/SectionManager.hh"
 
-#include <sp/cs/RaceClient.hh>
 #include <sp/SaveStateManager.hh>
+#include <sp/cs/RaceClient.hh>
 
 namespace Scene {
 
@@ -42,8 +42,8 @@ void RaceScene::calcSubsystems() {
         calcSubsystems(0);
     }*/
 
-    if (auto *cameraManager = Graphics::CameraManager::Instance(); cameraManager &&
-            cameraManager->isReady()) {
+    if (auto *cameraManager = Graphics::CameraManager::Instance();
+            cameraManager && cameraManager->isReady()) {
         if (auto *raceClient = SP::RaceClient::Instance()) {
             raceClient->calcWrite();
         }

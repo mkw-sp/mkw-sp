@@ -5,7 +5,7 @@
 static inline u32 swap32(u32 v);
 static inline u16 swap16(u16 v);
 
-#define _BSWAP_32(v)                                                                \
+#define _BSWAP_32(v) \
     (((v & 0xff000000) >> 24) | ((v & 0x00ff0000) >> 8) | ((v & 0x0000ff00) << 8) | \
             ((v & 0x000000ff) << 24))
 #define _BSWAP_16(v) (((v & 0xff00) >> 8) | ((v & 0x00ff) << 8))
@@ -38,25 +38,25 @@ static inline u16 swap16(u16 v) {
 #include <string.h>
 
 // Respects strong aliasing, will never double evaluate
-#define sp_htonl(x)                              \
-    ({                                           \
-        __typeof__(x) _x = x;                    \
-        u32 _u;                                  \
+#define sp_htonl(x) \
+    ({ \
+        __typeof__(x) _x = x; \
+        u32 _u; \
         static_assert(sizeof(_x) == sizeof(_u)); \
-        memcpy(&_u, &_x, sizeof(_x));            \
-        _u = swap32(_u);                         \
-        memcpy(&_x, &_u, sizeof(_x));            \
-        _x;                                      \
+        memcpy(&_u, &_x, sizeof(_x)); \
+        _u = swap32(_u); \
+        memcpy(&_x, &_u, sizeof(_x)); \
+        _x; \
     })
-#define sp_htons(x)                              \
-    ({                                           \
-        __typeof__(x) _x = x;                    \
-        u16 _u;                                  \
+#define sp_htons(x) \
+    ({ \
+        __typeof__(x) _x = x; \
+        u16 _u; \
         static_assert(sizeof(_x) == sizeof(_u)); \
-        memcpy(&_u, &_x, sizeof(_x));            \
-        _u = swap16(_u);                         \
-        memcpy(&_x, &_u, sizeof(_x));            \
-        _x;                                      \
+        memcpy(&_u, &_x, sizeof(_x)); \
+        _u = swap16(_u); \
+        memcpy(&_x, &_u, sizeof(_x)); \
+        _x; \
     })
 #else
 #define sp_htonl(x) (x)

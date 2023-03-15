@@ -33,16 +33,18 @@ static void SimpleEvents_ReadIOS(IOSKeyboard keyboard, SimpleEvents *simpleEvent
     for (size_t i = 0; i < num_events; ++i) {
         IOSKeyboard_Event *ev = &events[i];
 
-        if (ev->message != kKeyboardMessage_Press)
+        if (ev->message != kKeyboardMessage_Press) {
             continue;
+        }
 
         const bool shift_pressed = ev->modifiers.left_shift | ev->modifiers.right_shift;
 
         for (int j = 0; j < 6; ++j) {
             const IOSKeyboard_KeyCode pressed = (IOSKeyboard_KeyCode)ev->pressed[j];
 
-            if (pressed == 0)
+            if (pressed == 0) {
                 continue;
+            }
 
             u16 *result = &simpleEvents->events[num_simple_events++];
 
@@ -146,7 +148,7 @@ typedef struct ConsoleInput {
 
 static bool ConsoleInput_Open(ConsoleInput *input) {
     input->mInputDevice = kInputDeviceNone;
-    input->mKeyboard = -1;  // 0 is a valid handle
+    input->mKeyboard = -1; // 0 is a valid handle
 
     TypingBuffer_Init(&input->mTypingBuffer);
     input->mCallback = NULL;
@@ -179,7 +181,7 @@ static void ConsoleInput_EndInteraction(ConsoleInput *input) {
 }
 static void ConsoleInput_Process(ConsoleInput *input) {
     SimpleEvents events = (SimpleEvents){
-        .num_events = 0,
+            .num_events = 0,
     };
 
     switch (input->mInputDevice) {
@@ -223,9 +225,9 @@ static void ConsoleInput_Process(ConsoleInput *input) {
             TypingBuffer_Backspace(&input->mTypingBuffer);
             break;
         case kSimpleEvent_Escape:
-        case kSimpleEvent_Tab:  // Escape triggers Dolphin's "Exit Emulation" prompt,
-                                // so we also accept TAB. Ideally TAB would be for
-                                // auto-completion, though.
+        case kSimpleEvent_Tab: // Escape triggers Dolphin's "Exit Emulation" prompt,
+                               // so we also accept TAB. Ideally TAB would be for
+                               // auto-completion, though.
             ConsoleInput_EndInteraction(input);
             break;
         default:
@@ -276,8 +278,8 @@ void SP_SetKeypressCallback(SP_KeypressCallback callback, void *userdata) {
 SP_Line SP_GetCurrentLine(void) {
     assert(sConsoleInput_Ready);
 
-    const SP_Line line = { .buf = sConsoleInput.mTypingBuffer.buf,
-        .len = sConsoleInput.mTypingBuffer.len };
+    const SP_Line line = {.buf = sConsoleInput.mTypingBuffer.buf,
+            .len = sConsoleInput.mTypingBuffer.len};
 
     return line;
 }

@@ -78,7 +78,7 @@ static void Read(StartInfo info) {
     updateExchange.right(0);
 }
 
-static void *Handle(void */* arg */) {
+static void *Handle(void * /* arg */) {
     while (true) {
         auto info = startExchange.right({});
         Read(info);
@@ -92,7 +92,7 @@ void Init() {
 
 bool Load(const char *path, size_t srcMaxSize, u64 srcOffset, u8 **dst, size_t *dstSize,
         EGG::Heap *heap) {
-    startExchange.left({ path, srcMaxSize, srcOffset });
+    startExchange.left({path, srcMaxSize, srcOffset});
 
     u32 i = 0;
     const u8 *src = srcs[i];

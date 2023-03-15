@@ -17,22 +17,22 @@ typedef struct {
 } ScreenDrawData;
 
 static void ScreenDrawData_create(ScreenDrawData *out) {
-    C_MTXOrtho(out->proj_mtx, 0.0, 456.0f,  // Top/Bottom
-            0.0, 608.0f,                           // Left/Right
-            0.0f, -1.0f                            // Clip plane
+    C_MTXOrtho(out->proj_mtx, 0.0, 456.0f, // Top/Bottom
+            0.0, 608.0f,                   // Left/Right
+            0.0f, -1.0f                    // Clip plane
     );
     out->width = 608;
     out->height = 456;
-    GXSetViewport(0.0, 0.0,           // left/top
-            out->width, out->height,  // width/height
-            0.0, 1.0                  // clip plane
+    GXSetViewport(0.0, 0.0,          // left/top
+            out->width, out->height, // width/height
+            0.0, 1.0                 // clip plane
     );
 
     PSMTXIdentity(out->pos_mtx);
 }
 static void ScreenDrawData_apply(ScreenDrawData *self, u32 matrix_slot) {
-    GXSetScissor(0, 0,                           // Left/Top
-            (u16)self->width, (u16)self->height  // width/height
+    GXSetScissor(0, 0,                          // Left/Top
+            (u16)self->width, (u16)self->height // width/height
     );
     GXSetProjection(self->proj_mtx, GX_ORTHOGRAPHIC);
     GXLoadPosMtxImm(self->pos_mtx, matrix_slot);
@@ -42,7 +42,7 @@ static void ScreenDrawData_apply(ScreenDrawData *self, u32 matrix_slot) {
 typedef struct {
     float cursor_x;
     float cursor_y;
-    float max_height;  // For the current line
+    float max_height; // For the current line
     Rect base_region;
 } WriterTextBox;
 
@@ -63,8 +63,8 @@ static void WriterTextBox_newLine(WriterTextBox *self) {
     self->max_height = 0.0f;
 }
 
-static Rect WriterTextBox_advanceCursor(
-        WriterTextBox *self, float width, float height, bool isSpace) {
+static Rect WriterTextBox_advanceCursor(WriterTextBox *self, float width, float height,
+        bool isSpace) {
     // Calc line wrap
     float indentThreshhold = width;
 
@@ -80,16 +80,17 @@ static Rect WriterTextBox_advanceCursor(
     }
 
     Rect result = (Rect){
-        .top = self->cursor_y,
-        .bottom = self->cursor_y + height,
-        .left = self->cursor_x,
-        .right = self->cursor_x + width,
+            .top = self->cursor_y,
+            .bottom = self->cursor_y + height,
+            .left = self->cursor_x,
+            .right = self->cursor_x + width,
     };
 
     self->cursor_x += width;
 
-    if (height > self->max_height)
+    if (height > self->max_height) {
         self->max_height = height;
+    }
 
     return result;
 }
@@ -99,7 +100,7 @@ typedef struct {
     ScreenDrawData mScreen;
     void *mLastTexObj;
 } TextWriter;
-static void TextWriter_configure(TextWriter *self, Rect box, void */* res */) {
+static void TextWriter_configure(TextWriter *self, Rect box, void * /* res */) {
     self->mBox = WriterTextBox_create(box);
     self->mLastTexObj = NULL;
     ScreenDrawData_create(&self->mScreen);
@@ -123,15 +124,14 @@ static void TextWriter_beginDraw(TextWriter *self) {
     GXSetCullMode(GX_CULL_FRONT);
     GXSetAlphaCompare(GX_GREATER, 0, GX_AOP_AND, GX_ALWAYS, 0);
 }
-static void TextWriter_endDraw(TextWriter */* writer */) {}
+static void TextWriter_endDraw(TextWriter * /* writer */) {}
 enum {
     VERT_LEFT_X,
     VERT_RIGHT_X,
     VERT_TOP_Y,
     VERT_BOTTOM_Y,
 };
-static void DrawColoredQuad(
-        GXColor fg_color, GXColor bg_color, const s16 *pos, const u16 *uv) {
+static void DrawColoredQuad(GXColor fg_color, GXColor bg_color, const s16 *pos, const u16 *uv) {
     GXSetTevColor(GX_TEVREG0, fg_color);
     GXSetTevColor(GX_TEVREG1, bg_color);
 
@@ -152,8 +152,8 @@ static void DrawColoredQuad(
     GXEnd();
 }
 
-static void TextWriter_drawQuad(TextWriter *self, GXColor fg_color, GXColor bg_color,
-        GXTexObj *obj, RectU16 uv_encoded, Rect position) {
+static void TextWriter_drawQuad(TextWriter *self, GXColor fg_color, GXColor bg_color, GXTexObj *obj,
+        RectU16 uv_encoded, Rect position) {
     assert(obj);
     if (self->mLastTexObj != obj) {
         GXLoadTexObj(obj, GX_TEXMAP0);
@@ -162,27 +162,27 @@ static void TextWriter_drawQuad(TextWriter *self, GXColor fg_color, GXColor bg_c
 
     {
         const s16 pos[4] = {
-            [VERT_LEFT_X] = encodeSFixed6(position.left),
-            [VERT_RIGHT_X] = encodeSFixed6(position.right),
-            [VERT_TOP_Y] = encodeSFixed6(position.top),
-            [VERT_BOTTOM_Y] = encodeSFixed6(position.bottom),
+                [VERT_LEFT_X] = encodeSFixed6(position.left),
+                [VERT_RIGHT_X] = encodeSFixed6(position.right),
+                [VERT_TOP_Y] = encodeSFixed6(position.top),
+                [VERT_BOTTOM_Y] = encodeSFixed6(position.bottom),
         };
         const u16 uv[4] = {
-            [VERT_LEFT_X] = uv_encoded.left,
-            [VERT_RIGHT_X] = uv_encoded.right,
-            [VERT_TOP_Y] = uv_encoded.top,
-            [VERT_BOTTOM_Y] = uv_encoded.bottom,
+                [VERT_LEFT_X] = uv_encoded.left,
+                [VERT_RIGHT_X] = uv_encoded.right,
+                [VERT_TOP_Y] = uv_encoded.top,
+                [VERT_BOTTOM_Y] = uv_encoded.bottom,
         };
         DrawColoredQuad(bg_color, fg_color, pos, uv);
     }
 }
 
-static void TextWriter_drawCharByColors(
-        TextWriter *self, char c, GXColor fg_color, GXColor bg_color, float size) {
+static void TextWriter_drawCharByColors(TextWriter *self, char c, GXColor fg_color,
+        GXColor bg_color, float size) {
     assert(sDebugFont != NULL);
     const FontInformation *info = sDebugFont->base.fontInformation;
     assert(info != NULL);
-    const float fontSize[2] = { (float)info->mWidth, (float)info->mHeight };
+    const float fontSize[2] = {(float)info->mWidth, (float)info->mHeight};
 
     RKFontGlyphQuad glyph;
     Font_calcQuad(sDebugFont, &glyph, c);
@@ -195,28 +195,27 @@ static void TextWriter_drawCharByColors(
         width *= 0.75f;
     }
 
-    const Rect screen_pos =
-            WriterTextBox_advanceCursor(&self->mBox, width, height, c == '-');
+    const Rect screen_pos = WriterTextBox_advanceCursor(&self->mBox, width, height, c == '-');
 
-    TextWriter_drawQuad(self,    //
-            fg_color, bg_color,  // Color
-            glyph.tex_obj,       // Texture
-            glyph.uv,            // UV
-            screen_pos           // Position
+    TextWriter_drawQuad(self,   //
+            fg_color, bg_color, // Color
+            glyph.tex_obj,      // Texture
+            glyph.uv,           // UV
+            screen_pos          // Position
     );
 }
 
 static GXColor HexColorToGXColor(u32 hexColor) {
     return (GXColor){
-        .r = hexColor >> 24,
-        .g = hexColor >> 16,
-        .b = hexColor >> 8,
-        .a = hexColor >> 0,
+            .r = hexColor >> 24,
+            .g = hexColor >> 16,
+            .b = hexColor >> 8,
+            .a = hexColor >> 0,
     };
 }
 
-static void TextWriter_drawCharByFormatCode(
-        TextWriter *self, char c, Formatting format, float size, u8 alpha_override) {
+static void TextWriter_drawCharByFormatCode(TextWriter *self, char c, Formatting format, float size,
+        u8 alpha_override) {
     GXColor fg_color = HexColorToGXColor(hex_color_fg(Formatting_getColorCode(format)));
     GXColor bg_color = HexColorToGXColor(hex_color_bg(Formatting_getColorCode(format)));
 
@@ -241,13 +240,13 @@ static void TextWriter_drawCharByFormatCode(
 
 static void TextWriter_newLine(TextWriter *self, float size) {
     // Invisible char to compute line height
-    GXColor transparent = { 0, 0, 0, 0 };
+    GXColor transparent = {0, 0, 0, 0};
     TextWriter_drawCharByColors(self, 'F', transparent, transparent, size);
     WriterTextBox_newLine(&self->mBox);
 }
 // alpha_override = 0 -> no override
-static void TextWriter_draw(
-        TextWriter *self, const char *str, u32 len, float size, u8 alpha_override) {
+static void TextWriter_draw(TextWriter *self, const char *str, u32 len, float size,
+        u8 alpha_override) {
     TextRange range = TextRange_create(str, len);
 
     while (true) {
@@ -261,12 +260,11 @@ static void TextWriter_draw(
             break;
         case ' ':;
             // Invisible char
-            GXColor transparent = { 0, 0, 0, 0 };
+            GXColor transparent = {0, 0, 0, 0};
             TextWriter_drawCharByColors(self, '-', transparent, transparent, size);
             break;
         default:
-            TextWriter_drawCharByFormatCode(
-                    self, fc.character, fc.code, size, alpha_override);
+            TextWriter_drawCharByFormatCode(self, fc.character, fc.code, size, alpha_override);
             break;
         }
     }
@@ -297,10 +295,10 @@ static void AppendToHistory(const char *s) {
 
 static void Console_create() {
     Rect box = {
-        .top = 270.0f,
-        .bottom = 800.0f,
-        .left = 10.0f,
-        .right = 600.0f,
+            .top = 270.0f,
+            .bottom = 800.0f,
+            .left = 10.0f,
+            .right = 600.0f,
     };
     TextWriter_configure(&sConsole, box, NULL);
 }
@@ -350,8 +348,7 @@ static void Console_drawImpl() {
     }
     if (sLineVisible) {
         const u32 alpha_quantized = (u8)(sLineAlpha * 255.0f);
-        TextWriter_draw(
-                &sConsole, sLastLine, strlen(sLastLine), font_size, alpha_quantized);
+        TextWriter_draw(&sConsole, sLastLine, strlen(sLastLine), font_size, alpha_quantized);
     }
     TextWriter_endDraw(&sConsole);
 }

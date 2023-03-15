@@ -8,7 +8,8 @@
 namespace SP::Net {
 
 UnreliableSocket::UnreliableSocket(const char context[hydro_secretbox_CONTEXTBYTES],
-        std::optional<u16> port) : m_port(port) {
+        std::optional<u16> port)
+    : m_port(port) {
     m_handle = SOSocket(SO_PF_INET, SO_SOCK_DGRAM, 0);
     if (m_handle < 0) {
         SP_LOG("Failed to create socket, returned %d", m_handle);

@@ -26,8 +26,9 @@ char *strrchr(const char *src, int c) {
     const char ch = c;
     char *last_occurrence = NULL;
     for (; *src; ++src) {
-        if (*src == ch)
+        if (*src == ch) {
             last_occurrence = (char *)(src);
+        }
     }
     return last_occurrence;
 }
@@ -36,10 +37,12 @@ char *strrchr(const char *src, int c) {
 static char *llvm_strstr(const char *haystack, const char *needle) {
     for (size_t i = 0; haystack[i]; ++i) {
         size_t j;
-        for (j = 0; haystack[i + j] && haystack[i + j] == needle[j]; ++j)
+        for (j = 0; haystack[i + j] && haystack[i + j] == needle[j]; ++j) {
             ;
-        if (!needle[j])
+        }
+        if (!needle[j]) {
             return (char *)(haystack + i);
+        }
     }
     return NULL;
 }

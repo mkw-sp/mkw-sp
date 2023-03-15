@@ -1,7 +1,7 @@
 #include "OnlineConnectionManagerPage.hh"
 
-#include "game/system/SaveManager.hh"
 #include "game/system/RaceConfig.hh"
+#include "game/system/SaveManager.hh"
 #include "game/ui/GlobalContext.hh"
 #include "game/ui/OnlineModeSelectPage.hh"
 #include "game/ui/SectionManager.hh"
@@ -15,7 +15,8 @@ namespace UI {
 
 constexpr u32 DOLPHIN_DEFAULT_DEVICE_ID = 0x0403AC68;
 
-OnlineConnectionManagerPage::OnlineConnectionManagerPage() : m_socket{0x7F000001, 21331, "match   "} {
+OnlineConnectionManagerPage::OnlineConnectionManagerPage()
+    : m_socket{0x7F000001, 21331, "match   "} {
     m_state = State::Initial;
 };
 
@@ -112,7 +113,7 @@ void OnlineConnectionManagerPage::startLogin() {
     write(response);
 }
 
-void OnlineConnectionManagerPage::respondToChallenge(const STCMessage &/* event */) {
+void OnlineConnectionManagerPage::respondToChallenge(const STCMessage & /* event */) {
     CTSMessage response;
     u16 longitude;
     u16 latitude;

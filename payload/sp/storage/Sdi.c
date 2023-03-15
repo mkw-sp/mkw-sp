@@ -123,12 +123,12 @@ static bool Sdi_getStatus(u32 *status) {
 
 static bool Sdi_readHcr(u8 reg, u8 size, u32 *val) {
     alignas(0x20) RegOp regOp = {
-        .reg = reg,
-        ._04 = 0,
-        ._08 = 0,
-        .size = size,
-        .val = 0,
-        ._14 = 0,
+            .reg = reg,
+            ._04 = 0,
+            ._08 = 0,
+            .size = size,
+            .val = 0,
+            ._14 = 0,
     };
     alignas(0x20) u32 out;
 
@@ -143,12 +143,12 @@ static bool Sdi_readHcr(u8 reg, u8 size, u32 *val) {
 
 static bool Sdi_writeHcr(u8 reg, u8 size, u32 val) {
     alignas(0x20) RegOp regOp = {
-        .reg = reg,
-        ._04 = 0,
-        ._08 = 0,
-        .size = size,
-        .val = val,
-        ._14 = 0,
+            .reg = reg,
+            ._04 = 0,
+            ._08 = 0,
+            .size = size,
+            .val = val,
+            ._14 = 0,
     };
 
     if (IOS_Ioctl(fd, IOCTL_WRITE_HCR, &regOp, sizeof(regOp), NULL, 0) < 0) {
@@ -173,32 +173,32 @@ static bool Sdi_setClock(u32 clock) {
 static bool Sdi_sendCommand(u32 command, u32 commandType, u32 responseType, u32 arg, u32 blockCount,
         u32 blockSize, void *buffer, u32 *response) {
     alignas(0x20) Request request = {
-        .command = command,
-        .commandType = commandType,
-        .responseType = responseType,
-        .arg = arg,
-        .blockCount = blockCount,
-        .blockSize = blockSize,
-        .buffer = buffer,
-        .isDma = !!buffer,
-        ._20 = 0,
+            .command = command,
+            .commandType = commandType,
+            .responseType = responseType,
+            .arg = arg,
+            .blockCount = blockCount,
+            .blockSize = blockSize,
+            .buffer = buffer,
+            .isDma = !!buffer,
+            ._20 = 0,
     };
     alignas(0x20) u32 out[4];
 
     if (buffer || isSdhc) {
         alignas(0x20) IOVector vec[] = {
-            {
-                .data = &request,
-                .size = sizeof(request),
-            },
-            {
-                .data = buffer,
-                .size = blockCount * blockSize,
-            },
-            {
-                .data = out,
-                .size = sizeof(out),
-            },
+                {
+                        .data = &request,
+                        .size = sizeof(request),
+                },
+                {
+                        .data = buffer,
+                        .size = blockCount * blockSize,
+                },
+                {
+                        .data = out,
+                        .size = sizeof(out),
+                },
         };
         if (IOS_Ioctlv(fd, IOCTLV_SEND_COMMAND, 2, 1, vec) < 0) {
             if (command != CMD_SELECT) {
@@ -322,12 +322,12 @@ static u32 Sdi_getMessageId(void) {
 }
 
 static const FATStorage sdiStorage = {
-    Sdi_sectorSize,
-    Sdi_read,
-    Sdi_write,
-    Sdi_erase,
-    Sdi_sync,
-    Sdi_getMessageId,
+        Sdi_sectorSize,
+        Sdi_read,
+        Sdi_write,
+        Sdi_erase,
+        Sdi_sync,
+        Sdi_getMessageId,
 };
 
 bool SdiStorage_init(const FATStorage **fatStorage) {

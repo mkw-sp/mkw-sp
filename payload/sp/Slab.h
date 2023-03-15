@@ -17,8 +17,7 @@
 #define NET_SLABS_LIST(func) func(32, 32) func(64, 32) func(1024, 16) func(2048, 8) func(5120, 4)
 
 typedef struct {
-#define __NetSlabMember(granularity, count) \
-    u8 slab_##granularity[SLAB_SIZE(granularity, count)];
+#define __NetSlabMember(granularity, count) u8 slab_##granularity[SLAB_SIZE(granularity, count)];
 
     NET_SLABS_LIST(__NetSlabMember)
 } NetSlabs;

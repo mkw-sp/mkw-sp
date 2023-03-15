@@ -28,7 +28,8 @@ public:
     virtual void vf_58();
     virtual void vf_5c();
 
-    static GameScene* Instance();
+    static GameScene *Instance();
+
 private:
     void REPLACED(setFramerate)(bool is_30);
     REPLACE void setFramerate(bool is_30);

@@ -32,13 +32,13 @@ void CtrlRaceSpeed::initSelf() {
     CtrlRaceBase::initSelf();
 
     const char *panes[] = {
-        "speed_00",
-        "speed_01",
-        "speed_02",
-        "speed_03",
-        "speed_04",
-        "coron",
-        "speed_text",
+            "speed_00",
+            "speed_01",
+            "speed_02",
+            "speed_03",
+            "speed_04",
+            "coron",
+            "speed_text",
     };
     for (u32 i = 0; i < std::size(panes); i++) {
         setPaneColor(panes[i], true);

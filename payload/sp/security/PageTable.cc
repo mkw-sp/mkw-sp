@@ -112,10 +112,12 @@ static bool AddEntryToPageTable(const void *physicalAddress, const void *effecti
     u32 hash;
     PageTableEntry *pte = nullptr;
     for (size_t hashIndex = 0; hashIndex < hashArray.size(); hashIndex++) {
-        u32 offset = ((hashArray[hashIndex] & (HTABMASK << 10)) | (hashArray[hashIndex] & 0x3FF)) << 6;
+        u32 offset = ((hashArray[hashIndex] & (HTABMASK << 10)) | (hashArray[hashIndex] & 0x3FF))
+                << 6;
         PageTableEntry *pteg = (PageTableEntry *)(pageTable + offset);
 
-        PageTableEntry *it = std::find_if(pteg, pteg + 8, [](PageTableEntry &pte) { return !pte.V; });
+        PageTableEntry *it =
+                std::find_if(pteg, pteg + 8, [](PageTableEntry &pte) { return !pte.V; });
         if (it != pteg + 8) {
             hash = hashIndex;
             pte = it;

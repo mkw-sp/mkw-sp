@@ -19,5 +19,4 @@ private:
 };
 static_assert(sizeof(GlobePage) == 0x4c8);
 
-
 } // namespace UI

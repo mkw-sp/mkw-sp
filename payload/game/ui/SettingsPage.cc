@@ -90,18 +90,15 @@ void SettingsPage::onBack(u32 /* localPlayerId */) {
     startReplace(Anim::Prev, 0.0f);
 }
 
-void SettingsPage::onCategoryControlFront(UpDownControl */* control */,
-        u32 localPlayerId) {
+void SettingsPage::onCategoryControlFront(UpDownControl * /* control */, u32 localPlayerId) {
     m_settingControls[0].select(localPlayerId);
 }
 
-void SettingsPage::onCategoryControlSelect(UpDownControl */* control */,
-        u32 /* localPlayerId */) {
+void SettingsPage::onCategoryControlSelect(UpDownControl * /* control */, u32 /* localPlayerId */) {
     instructionText()->setMessageAll(0);
 }
 
-void SettingsPage::onCategoryValueChange(TextUpDownValueControl::TextControl *text,
-        u32 index) {
+void SettingsPage::onCategoryValueChange(TextUpDownValueControl::TextControl *text, u32 index) {
     auto categoryInfo = getCategoryInfo(index);
 
     if (categoryInfo.categorySheetCount >= 2) {
@@ -116,8 +113,8 @@ void SettingsPage::onCategoryValueChange(TextUpDownValueControl::TextControl *te
 
     auto category = static_cast<SP::ClientSettings::Category>(categoryInfo.categoryIndex);
     u32 i = 0;
-    for (u32 j = categoryInfo.settingIndex; j < SP::ClientSettings::entryCount &&
-            i < std::size(m_settingControls); j++) {
+    for (u32 j = categoryInfo.settingIndex;
+            j < SP::ClientSettings::entryCount && i < std::size(m_settingControls); j++) {
         if (SP::ClientSettings::entries[j].category != category) {
             continue;
         }
@@ -155,8 +152,8 @@ void SettingsPage::onCategoryValueChange(TextUpDownValueControl::TextControl *te
     }
 }
 
-void SettingsPage::onSettingControlChange(UpDownControl *control,
-        u32 /* localPlayerId */, u32 index) {
+void SettingsPage::onSettingControlChange(UpDownControl *control, u32 /* localPlayerId */,
+        u32 index) {
     auto *text = m_settingValues[control->m_id & 0xffff].shownText();
     const SP::ClientSettings::Entry &entry = SP::ClientSettings::entries[control->m_id >> 16];
     if (entry.valueNames) {
@@ -175,8 +172,7 @@ void SettingsPage::onSettingControlChange(UpDownControl *control,
     }
 }
 
-void SettingsPage::onSettingControlFront(UpDownControl *control,
-        u32 localPlayerId) {
+void SettingsPage::onSettingControlFront(UpDownControl *control, u32 localPlayerId) {
     u32 index = control->m_id & 0xffff;
     if (index + 1 == std::size(m_settingControls) || !m_settingControls[index + 1].getVisible()) {
         m_categoryControl.select(localPlayerId);
@@ -185,8 +181,7 @@ void SettingsPage::onSettingControlFront(UpDownControl *control,
     }
 }
 
-void SettingsPage::onSettingControlSelect(UpDownControl *control,
-        u32 /* localPlayerId */) {
+void SettingsPage::onSettingControlSelect(UpDownControl *control, u32 /* localPlayerId */) {
     u32 chosen = control->chosen();
     const SP::ClientSettings::Entry &entry = SP::ClientSettings::entries[control->m_id >> 16];
     if (entry.valueNames) {
@@ -199,8 +194,7 @@ void SettingsPage::onSettingControlSelect(UpDownControl *control,
     }
 }
 
-void SettingsPage::onBackButtonFront(PushButton *button,
-        u32 /* localPlayerId */) {
+void SettingsPage::onBackButtonFront(PushButton *button, u32 /* localPlayerId */) {
     if (m_handler) {
         m_handler->handle(this, button);
     }

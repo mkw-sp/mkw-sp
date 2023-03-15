@@ -1,7 +1,7 @@
 #pragma once
 
-#include "game/ui/Page.hh"
 #include "game/ui/Button.hh"
+#include "game/ui/Page.hh"
 #include "game/ui/ctrl/CtrlMenuBackButton.hh"
 #include "game/ui/ctrl/CtrlMenuInstructionText.hh"
 #include "game/ui/ctrl/CtrlMenuPageTitleText.hh"
@@ -14,6 +14,7 @@ public:
     ~OnlineModeSelectPage() override = default;
 
     void setRatings(u16 vsRating, u16 battleRating);
+
 private:
     void onInit() override;
     void onActivate() override;
@@ -26,10 +27,10 @@ private:
     template <typename T>
     using H = typename T::Handler<OnlineModeSelectPage>;
 
-    H<MultiControlInputManager> m_onBack{ this, &OnlineModeSelectPage::onBack };
-    H<PushButton> m_onButtonFront{ this, &OnlineModeSelectPage::onButtonFront };
-    H<PushButton> m_onButtonSelect{ this, &OnlineModeSelectPage::onButtonSelect };
-    H<PushButton> m_onBackFront{ this, &OnlineModeSelectPage::onBackButtonFront };
+    H<MultiControlInputManager> m_onBack{this, &OnlineModeSelectPage::onBack};
+    H<PushButton> m_onButtonFront{this, &OnlineModeSelectPage::onButtonFront};
+    H<PushButton> m_onButtonSelect{this, &OnlineModeSelectPage::onButtonSelect};
+    H<PushButton> m_onBackFront{this, &OnlineModeSelectPage::onBackButtonFront};
 
     CtrlMenuPageTitleText m_titleText;
     PushButton m_raceButton;
@@ -41,4 +42,4 @@ private:
     PageId m_replacement;
 };
 
-}
+} // namespace UI

@@ -8,7 +8,7 @@ struct KartSusPhysics {
     u8 _48[0x48 - 0x00];
 };
 
-class KartSus: public KartPart {
+class KartSus : public KartPart {
     friend class KartSaveState;
 
 private:

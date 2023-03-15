@@ -7,15 +7,15 @@
 #pragma once
 
 #include "Kart5c.hh"
-#include "KartSus.hh"
-#include "KartSub.hh"
-#include "KartBody.hh"
-#include "KartMove.hh"
-#include "KartTire.hh"
-#include "KartState.hh"
 #include "KartAction.hh"
+#include "KartBody.hh"
 #include "KartCollide.hh"
+#include "KartMove.hh"
 #include "KartSettings.hh"
+#include "KartState.hh"
+#include "KartSub.hh"
+#include "KartSus.hh"
+#include "KartTire.hh"
 #include "VehiclePhysics.hh"
 
 namespace Kart {
@@ -32,10 +32,11 @@ struct KartTireFlat {
 
 class KartSaveState {
 public:
-    KartSaveState(KartAccessor accessor, VehiclePhysics* physics);
+    KartSaveState(KartAccessor accessor, VehiclePhysics *physics);
 
-    void save(KartAccessor accessor, VehiclePhysics* physics);
-    void reload(KartAccessor accessor, VehiclePhysics* physics);
+    void save(KartAccessor accessor, VehiclePhysics *physics);
+    void reload(KartAccessor accessor, VehiclePhysics *physics);
+
 private:
     Kart5c m_5c;
     KartSub m_sub;

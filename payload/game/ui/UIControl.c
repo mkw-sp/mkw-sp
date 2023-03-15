@@ -1,8 +1,8 @@
 #include "UIControl.h"
 
+#include "ControlLoader.h"
 #include <revolution.h>
 #include <stdio.h>
-#include "ControlLoader.h"
 
 void LayoutUIControl_load(LayoutUIControl *this, const char *dir, const char *file,
         const char *variant, const char *const *groups) {

@@ -26,8 +26,8 @@ static int Commands_compareFn(const void *lhs, const void *rhs) {
 }
 
 void Commands_init(void) {
-    qsort(&__start_commands, &__stop_commands - &__start_commands,
-            sizeof(__start_commands), Commands_compareFn);
+    qsort(&__start_commands, &__stop_commands - &__start_commands, sizeof(__start_commands),
+            Commands_compareFn);
 }
 
 const Command *Commands_match(const char *tmp) {
@@ -52,8 +52,8 @@ static void Commands_printHelp(size_t page) {
     OSReport(" &e---- &6Help &e-- &6Page &c%u&6/&c%u &e----\n", (unsigned)page + 1,
             (unsigned)numPages);
 
-    for (size_t i = page * commandsPerPage;
-            i < MIN((page + 1) * commandsPerPage, numCommands); ++i) {
+    for (size_t i = page * commandsPerPage; i < MIN((page + 1) * commandsPerPage, numCommands);
+            ++i) {
         const Command *command = &__start_commands + i;
         OSReport("&6%s&f: %s\n", command->match, command->desc);
     }

@@ -36,7 +36,6 @@ auto SaveStateManager::GetKartState() {
     return std::make_tuple(kartObject->m_accessor, physics);
 }
 
-
 void SaveStateManager::save() {
     auto [accessor, physics] = GetKartState();
     m_kartSaveState.emplace(accessor, physics);
@@ -71,4 +70,4 @@ void SaveStateManager::processInput(bool isPressed) {
     }
 }
 
-} // namespace System
+} // namespace SP

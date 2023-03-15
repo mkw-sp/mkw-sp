@@ -83,7 +83,7 @@ static_assert(sizeof(DeviceEntry) == 0xc);
 static OSMutex mutex;
 static OSMessage message;
 static OSMessageQueue queue;
-static u8 stack[0x2000] = { 0 }; // 8 KiB
+static u8 stack[0x2000] = {0}; // 8 KiB
 static OSThread thread;
 static bool isInit;
 static s32 fd = -1;
@@ -117,7 +117,7 @@ static void Usb_unlockDevice(DeviceGuard *guard) {
 }
 
 #define LOCK_DEVICE(device, id) \
-    DeviceGuard _guard __attribute__((cleanup(Usb_unlockDevice))) = { &device, id }; \
+    DeviceGuard _guard __attribute__((cleanup(Usb_unlockDevice))) = {&device, id}; \
     Usb_lockDevice(&_guard)
 
 static void Usb_printDeviceEntry(u32 i) {
@@ -253,7 +253,7 @@ static void Usb_updateDevices(void) {
     }
 }
 
-static void *Usb_discoverDevices(void */* arg */) {
+static void *Usb_discoverDevices(void * /* arg */) {
     while (true) {
         s32 result = IOS_Ioctl(fd, IOCTL_GET_DEVICE_CHANGE, NULL, 0, deviceEntries,
                 MAX_DEVICE_COUNT * sizeof(DeviceEntry));

@@ -13,24 +13,24 @@ typedef struct {
 
 typedef struct {
     char UNK_0x0;
-    s8 mLineFeed;  // at 0x1
+    s8 mLineFeed; // at 0x1
 
     u16 mAlternateChar;
 
-    CharWidths mDefaultCharWidths;  // at 0x4
-    u8 mEncoding;                   // at 0x7
+    CharWidths mDefaultCharWidths; // at 0x4
+    u8 mEncoding;                  // at 0x7
     void *mTextureGlyph;
     void *mWidthList;
     void *mCodeMapList;
-    u8 mHeight;  // at 0x14
-    u8 mWidth;   // at 0x15
+    u8 mHeight; // at 0x14
+    u8 mWidth;  // at 0x15
 
-    u8 mAscent;  // at 0x16
+    u8 mAscent; // at 0x16
 } FontInformation;
 
 typedef struct {
     void *vt;
-    u32 readerFunc[3];  // ptmf
+    u32 readerFunc[3]; // ptmf
     void *buffer;
     FontInformation *fontInformation;
     u16 lastCharCode;

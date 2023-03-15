@@ -50,7 +50,7 @@ static std::optional<u32> ReadRTC() {
 
 void Init() {
     u32 bias = SCGetCounterBias();
-    std::optional<u32> rtcs[2] = { ReadRTC(), ReadRTC() };
+    std::optional<u32> rtcs[2] = {ReadRTC(), ReadRTC()};
     while (rtcs[0] != rtcs[1] || !rtcs[0]) {
         rtcs[0] = rtcs[1];
         rtcs[1] = ReadRTC();

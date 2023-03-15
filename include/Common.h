@@ -51,19 +51,19 @@ typedef double f64;
 
 // Note: only for directly passing literals to functions
 // Source: https://stackoverflow.com/questions/34796571
-#define ALIGNED_STRING(s)  (struct { alignas(0x20) char t[sizeof(s)]; }){ s }.t
+#define ALIGNED_STRING(s) (struct { alignas(0x20) char t[sizeof(s)]; }){s}.t
 
-#define MIN(a, b)               \
-    ({                          \
+#define MIN(a, b) \
+    ({ \
         __typeof__(a) _a = (a); \
         __typeof__(b) _b = (b); \
-        _a < _b ? _a : _b;      \
+        _a < _b ? _a : _b; \
     })
-#define MAX(a, b)               \
-    ({                          \
+#define MAX(a, b) \
+    ({ \
         __typeof__(a) _a = (a); \
         __typeof__(b) _b = (b); \
-        _a > _b ? _a : _b;      \
+        _a > _b ? _a : _b; \
     })
 
 #define CONTAINER_OF(ptr, type, member) \
@@ -116,8 +116,7 @@ typedef struct VersionInfo {
 extern VersionInfo versionInfo;
 
 #ifndef RVL_OS_NEEDS_IMPORT
-#define RVL_OS_NEEDS_IMPORT \
-    static_assert(false, "Please include revolution.h to use SP_LOG")
+#define RVL_OS_NEEDS_IMPORT static_assert(false, "Please include revolution.h to use SP_LOG")
 #endif
 
 // clang: Merged May 16 2019, Clang 9
@@ -126,21 +125,21 @@ extern VersionInfo versionInfo;
 #define __FILE_NAME__ __FILE__
 #endif
 
-#define SP_LOG(m, ...)                                                     \
-    do {                                                                   \
-        RVL_OS_NEEDS_IMPORT;                                               \
-        OSReport("[" __FILE_NAME__ ":" SP_TOSTRING2(__LINE__) "] " m "\n", \
-                ##__VA_ARGS__);                                            \
+#define SP_LOG(m, ...) \
+    do { \
+        RVL_OS_NEEDS_IMPORT; \
+        OSReport("[" __FILE_NAME__ ":" SP_TOSTRING2(__LINE__) "] " m "\n", ##__VA_ARGS__); \
     } while (0)
 
 static size_t sp_wcslen(const wchar_t *w) {
     size_t result = 0;
-    while (*w++)
+    while (*w++) {
         ++result;
+    }
     return result;
 }
 
-#define VIRTUAL_TO_PHYSICAL(ptr) ((uintptr_t)(ptr) & 0x7fffffff)
+#define VIRTUAL_TO_PHYSICAL(ptr) ((uintptr_t)(ptr)&0x7fffffff)
 #define PHYSICAL_TO_VIRTUAL(addr) ((void *)((addr) | 0x80000000))
 
 #define ROUND_UP(n, a) (((uintptr_t)(n) + (a)-1) & ~((a)-1))
@@ -155,11 +154,10 @@ enum {
 
 #define REGION (*(u16 *)0x8000620a)
 
-#if !defined(NO_NEW_DELETE) && \
-        !defined(__cplusplus)  // new/delete are reserved identifiers in C++
-void *new (size_t size);
+#if !defined(NO_NEW_DELETE) && !defined(__cplusplus) // new/delete are reserved identifiers in C++
+void *new(size_t size);
 
-void delete (void *memBlock);
+void delete(void *memBlock);
 #endif
 
 // payload/nw4r/lyt/lyt_pane.h:24:5: error: declaration does not declare anything [-fpermissive]
@@ -196,49 +194,46 @@ typedef struct {
 } Patch;
 
 #define PATCH_S16(function, offset, value) \
-    __attribute__((section("patches"))) \
-    extern const Patch patch_ ## function ## offset = { \
-        .type = PATCH_TYPE_WRITE, \
-        .write = { \
-            (&function + offset), \
-            &(s16) { (value) }, \
-            sizeof(s16), \
-        }, \
+    __attribute__((section("patches"))) extern const Patch patch_##function##offset = { \
+            .type = PATCH_TYPE_WRITE, \
+            .write = \
+                    { \
+                            (&function + offset), \
+                            &(s16){(value)}, \
+                            sizeof(s16), \
+                    }, \
     }
 
 #define PATCH_U32(function, offset, value) \
-    __attribute__((section("patches"))) \
-    extern const Patch patch_ ## function ## offset = { \
-        .type = PATCH_TYPE_WRITE, \
-        .write = { \
-            (&function + offset), \
-            &(u32) { (value) }, \
-            sizeof(u32), \
-        }, \
+    __attribute__((section("patches"))) extern const Patch patch_##function##offset = { \
+            .type = PATCH_TYPE_WRITE, \
+            .write = \
+                    { \
+                            (&function + offset), \
+                            &(u32){(value)}, \
+                            sizeof(u32), \
+                    }, \
     }
 
 #define PATCH_NOP(function, offset) PATCH_U32(function, offset, 0x60000000)
 
 #define PATCH_BRANCH(from, to, link, thunk) \
-    __attribute__((section("patches"))) \
-    extern const Patch patch_ ## to = { \
-        .type = PATCH_TYPE_BRANCH, \
-        .branch = { \
-            &from, \
-            &to, \
-            link, \
-            thunk, \
-        }, \
+    __attribute__((section("patches"))) extern const Patch patch_##to = { \
+            .type = PATCH_TYPE_BRANCH, \
+            .branch = \
+                    { \
+                            &from, \
+                            &to, \
+                            link, \
+                            thunk, \
+                    }, \
     }
 
-#define PATCH_B(from, to) \
-    PATCH_BRANCH(from, to, false, NULL)
+#define PATCH_B(from, to) PATCH_BRANCH(from, to, false, NULL)
 
-#define PATCH_B_THUNK(from, to, thunk) \
-    PATCH_BRANCH(from, to, false, thunk)
+#define PATCH_B_THUNK(from, to, thunk) PATCH_BRANCH(from, to, false, thunk)
 
-#define PATCH_BL(from, to) \
-    PATCH_BRANCH(from, to, true, NULL)
+#define PATCH_BL(from, to) PATCH_BRANCH(from, to, true, NULL)
 
 #define REPLACE __attribute__((section("replacements")))
-#define REPLACED(function) thunk_replaced_ ## function
+#define REPLACED(function) thunk_replaced_##function

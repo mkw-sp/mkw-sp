@@ -18,7 +18,6 @@ enum {
 
 } // namespace GroupId
 
-
 AwardDemoResultItem::AwardDemoResultItem() = default;
 
 AwardDemoResultItem::~AwardDemoResultItem() = default;
@@ -42,8 +41,8 @@ void AwardDemoResultItem::refresh(u32 playerId, bool isMultiPlayer, u32 soloRank
     auto *material = pane->getMaterial();
     assert(material);
     auto color = TeamColors::Get(awardsScenario.players[playerId].spTeam);
-    material->tevColors[0] = { color.r, color.g, color.b, color.a };
-    material->tevColors[1] = { color.r, color.g, color.b, color.a };
+    material->tevColors[0] = {color.r, color.g, color.b, color.a};
+    material->tevColors[1] = {color.r, color.g, color.b, color.a};
 }
 
 } // namespace UI

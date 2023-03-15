@@ -36,13 +36,13 @@ private:
     PushButton m_channelButton;
     PushButton m_aboutButton;
     CtrlMenuBackButton m_backButton;
-    H<MultiControlInputManager> m_onBack{ this, &ServicePackTopPage::onBack };
-    H<PushButton> m_onToolsButtonFront{ this, &ServicePackTopPage::onToolsButtonFront };
-    H<PushButton> m_onUpdateButtonFront{ this, &ServicePackTopPage::onUpdateButtonFront };
-    H<PushButton> m_onChannelButtonFront{ this, &ServicePackTopPage::onChannelButtonFront };
-    H<PushButton> m_onAboutButtonFront{ this, &ServicePackTopPage::onAboutButtonFront };
-    H<PushButton> m_onBackButtonFront{ this, &ServicePackTopPage::onBackButtonFront };
-    H<ConfirmPage> m_onAboutPop{ this, &ServicePackTopPage::onAboutPop };
+    H<MultiControlInputManager> m_onBack{this, &ServicePackTopPage::onBack};
+    H<PushButton> m_onToolsButtonFront{this, &ServicePackTopPage::onToolsButtonFront};
+    H<PushButton> m_onUpdateButtonFront{this, &ServicePackTopPage::onUpdateButtonFront};
+    H<PushButton> m_onChannelButtonFront{this, &ServicePackTopPage::onChannelButtonFront};
+    H<PushButton> m_onAboutButtonFront{this, &ServicePackTopPage::onAboutButtonFront};
+    H<PushButton> m_onBackButtonFront{this, &ServicePackTopPage::onBackButtonFront};
+    H<ConfirmPage> m_onAboutPop{this, &ServicePackTopPage::onAboutPop};
     PageId m_replacement;
 };
 

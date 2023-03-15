@@ -25,9 +25,11 @@ void FriendRoomMessageSelectPage::onInit() {
     m_commentSelectBG.load("control", "CommentSelectBG", "CommentSelectBG", nullptr);
     m_messageSelects[0].load();
     m_messageSelects[1].load();
-    m_sheetSelect.load("button", "CommentSelectArrowRight", "ButtonArrowRight", "CommentSelectArrowLeft", "ButtonArrowLeft", 1, false, false);
+    m_sheetSelect.load("button", "CommentSelectArrowRight", "ButtonArrowRight",
+            "CommentSelectArrowLeft", "ButtonArrowLeft", 1, false, false);
     m_messageSelectPageNum.load("control", "MessageSelectPageNum", "MessageSelectPageNum", nullptr);
-    m_friendRoomMessageSelectObiBottom.load("bg", "FriendRoomMessageSelectObiBottom", "MenuObyBottom", nullptr);
+    m_friendRoomMessageSelectObiBottom.load("bg", "FriendRoomMessageSelectObiBottom",
+            "MenuObyBottom", nullptr);
     m_backButton.load("button", "FriendRoomMessageSelectBack", "ButtonBack", 1, false, true);
 
     m_sheetSelect.setRightHandler(&m_onRight);
@@ -92,7 +94,9 @@ void FriendRoomMessageSelectPage::onActivate() {
     m_visibleMessageSelect->show();
     m_hiddenMessageSelect->hide();
 
-    if (m_messageCount < 0) { return; }
+    if (m_messageCount < 0) {
+        return;
+    }
     if (m_menuType == MenuType::Comment) {
         m_visibleMessageSelect->m_buttons[m_cachedButton].selectDefault(0);
     } else {
@@ -152,7 +156,8 @@ void FriendRoomMessageSelectPage::refresh() {
     }
 }
 
-void FriendRoomMessageSelectPage::onBackButtonFront(PushButton * /* button */, u32 /* localPlayerId */) {
+void FriendRoomMessageSelectPage::onBackButtonFront(PushButton * /* button */,
+        u32 /* localPlayerId */) {
     startReplace(Anim::Prev, 0.0f);
 }
 
@@ -160,7 +165,8 @@ void FriendRoomMessageSelectPage::onBack(u32 /* localPlayerId */) {
     startReplace(Anim::Prev, 0.0f);
 }
 
-void FriendRoomMessageSelectPage::onCommentButtonFront(PushButton *button, u32 /* localPlayerId */) {
+void FriendRoomMessageSelectPage::onCommentButtonFront(PushButton *button,
+        u32 /* localPlayerId */) {
     m_cachedSheetIdx = m_currentSheetIdx;
     m_cachedButton = button->m_index;
 
@@ -174,12 +180,17 @@ void FriendRoomMessageSelectPage::onStartButtonFront(PushButton *button, u32 /* 
     startReplace(Anim::Next, button->getDelay());
 }
 
-void FriendRoomMessageSelectPage::onRight(SheetSelectControl */* control */, u32 /* localPlayerId */) {
-    if (!m_visibleMessageSelect->isShown() || !m_hiddenMessageSelect->isHidden()) { return; }
+void FriendRoomMessageSelectPage::onRight(SheetSelectControl * /* control */,
+        u32 /* localPlayerId */) {
+    if (!m_visibleMessageSelect->isShown() || !m_hiddenMessageSelect->isHidden()) {
+        return;
+    }
 
     m_visibleMessageSelect->slideOut(true);
     m_currentSheetIdx++;
-    if (m_currentSheetIdx >= m_sheetCount) { m_currentSheetIdx = 0; }
+    if (m_currentSheetIdx >= m_sheetCount) {
+        m_currentSheetIdx = 0;
+    }
 
     std::swap(m_visibleMessageSelect, m_hiddenMessageSelect);
 
@@ -187,12 +198,17 @@ void FriendRoomMessageSelectPage::onRight(SheetSelectControl */* control */, u32
     m_visibleMessageSelect->slideIn(true);
 }
 
-void FriendRoomMessageSelectPage::onLeft(SheetSelectControl */* control */, u32 /* localPlayerId */) {
-    if (!m_visibleMessageSelect->isShown() || !m_hiddenMessageSelect->isHidden()) { return; }
+void FriendRoomMessageSelectPage::onLeft(SheetSelectControl * /* control */,
+        u32 /* localPlayerId */) {
+    if (!m_visibleMessageSelect->isShown() || !m_hiddenMessageSelect->isHidden()) {
+        return;
+    }
 
     m_visibleMessageSelect->slideOut(false);
     m_currentSheetIdx--;
-    if (m_currentSheetIdx < 0) { m_currentSheetIdx = m_sheetCount - 1; }
+    if (m_currentSheetIdx < 0) {
+        m_currentSheetIdx = m_sheetCount - 1;
+    }
 
     std::swap(m_visibleMessageSelect, m_hiddenMessageSelect);
 

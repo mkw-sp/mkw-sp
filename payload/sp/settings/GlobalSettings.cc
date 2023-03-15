@@ -8,7 +8,7 @@ namespace SP::GlobalSettings {
 
 const char name[] = "Global Settings";
 
-const u32 categoryMessageIds[] = { 10378 };
+const u32 categoryMessageIds[] = {10378};
 
 // clang-format off
 const Entry entries[] = {

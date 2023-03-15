@@ -51,7 +51,8 @@ typedef struct {
 } RawGhostHeader;
 static_assert(sizeof(RawGhostHeader) == 0x88);
 
-void SPFooter_OnRaceStart(const u8 *courseSHA1, bool speedModIsEnabled, bool isVanilla, bool setInMirror);
+void SPFooter_OnRaceStart(const u8 *courseSHA1, bool speedModIsEnabled, bool isVanilla,
+        bool setInMirror);
 
 void SPFooter_OnLapEnd(u32 lap, f32 timeDiff);
 

@@ -10,10 +10,10 @@
 #include <sp/StringView.h>
 #include <sp/keyboard/Keyboard.h>
 #include <stdio.h>
-#include <stdlib.h>  // qsort
-#include <string.h>  // memcpy
+#include <stdlib.h> // qsort
+#include <string.h> // memcpy
 
-static const char *sOnOff[2] = { "OFF", "ON" };
+static const char *sOnOff[2] = {"OFF", "ON"};
 static const char *fmtBool(bool b) {
     return sOnOff[!!b];
 }
@@ -97,10 +97,10 @@ sp_define_command("/example_command", "Example command", const char *tmp) {
     }
 
     static const char *tagContent[4] = {
-        "SP_TA_RULE_GHOST_TAG_CONTENT_NAME",
-        "SP_TA_RULE_GHOST_TAG_CONTENT_TIME",
-        "SP_TA_RULE_GHOST_TAG_CONTENT_TIME_NOLEADING",
-        "SP_TA_RULE_GHOST_TAG_CONTENT_DATE",
+            "SP_TA_RULE_GHOST_TAG_CONTENT_NAME",
+            "SP_TA_RULE_GHOST_TAG_CONTENT_TIME",
+            "SP_TA_RULE_GHOST_TAG_CONTENT_TIME_NOLEADING",
+            "SP_TA_RULE_GHOST_TAG_CONTENT_DATE",
     };
     const u32 rule = SaveManager_GetTAGhostTagContent();
     OSReport("example_command: taRuleGhostTagContent == %s\n", tagContent[rule & 3]);
@@ -164,9 +164,8 @@ sp_define_command("/section", "Transition to a certain game section", const char
     SectionManager_startChangeSection(s_sectionManager, 5, 0xff);
 }
 
-
 static void my_lineCallback(const char *buf, size_t len) {
-    StringView view = (StringView){ .s = buf, .len = len };
+    StringView view = (StringView){.s = buf, .len = len};
     const char *tmp = sv_as_cstr(view, 64);
 
     OSReport("[SP] Line submitted: %s\n", tmp);
@@ -186,15 +185,16 @@ static void my_lineCallback(const char *buf, size_t len) {
 // IOS KBD module is not supported on this platform
 static bool sConsoleInputUnavailable = false;
 
-void my_onBeginFrame(void */* system */) {
+void my_onBeginFrame(void * /* system */) {
     if (sItemSticky) {
         const s32 myPlayerId = GetMyPlayerID();
         if (myPlayerId >= 0) {
             TrySetItem(myPlayerId, sStickyItem, sStickyQty);
         }
     }
-    if (sConsoleInputUnavailable)
+    if (sConsoleInputUnavailable) {
         return;
+    }
 
     if (!SP_IsConsoleInputInit()) {
         if (SP_InitConsoleInput()) {

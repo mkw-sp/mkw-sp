@@ -5,7 +5,7 @@
 DriverManager *DriverManager_ct(DriverManager *this);
 
 static DriverManager *my_DriverManager_createInstance(void) {
-    s_driverManager = new(sizeof(DriverManager));
+    s_driverManager = new (sizeof(DriverManager));
     DriverManager_ct(s_driverManager);
 
     if (s_raceConfig->raceScenario.players[0].type == PLAYER_TYPE_GHOST) {

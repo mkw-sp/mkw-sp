@@ -4,10 +4,11 @@
 
 namespace Kart {
 
-class KartPart: public KartObjectProxy {
+class KartPart : public KartObjectProxy {
 public:
     KartPart();
     virtual ~KartPart();
+
 private:
     u8 _10[0x90 - 0x10];
 };

@@ -6,7 +6,6 @@
 #include <sp/cs/RoomClient.hh>
 #include <sp/net/AsyncSocket.hh>
 
-
 extern "C" {
 #include <sp/keyboard/Keyboard.h>
 }
@@ -124,8 +123,7 @@ void DirectConnectionPage::onBack(u32 /* localPlayerId */) {
     startReplace(Anim::Prev, 0.0f);
 }
 
-void DirectConnectionPage::onDigitButtonFront(PushButton *button,
-        u32 /* localPlayerId */) {
+void DirectConnectionPage::onDigitButtonFront(PushButton *button, u32 /* localPlayerId */) {
     m_editBox.insert(button->m_index);
     if (m_editBox.isFull()) {
         m_okButton.setPlayerFlags(1);
@@ -139,8 +137,7 @@ void DirectConnectionPage::onBackspaceButtonFront(PushButton * /* button */,
     m_okButton.setPlayerFlags(0);
 }
 
-void DirectConnectionPage::onResetButtonFront(PushButton * /* button */,
-        u32 /* localPlayerId */) {
+void DirectConnectionPage::onResetButtonFront(PushButton * /* button */, u32 /* localPlayerId */) {
     m_editBox.reset();
     m_okButton.setPlayerFlags(0);
 }
@@ -170,15 +167,15 @@ void DirectConnectionPage::onOkButtonFront(PushButton *button, u32 /* localPlaye
     u16 passcode = directCode >> 48 & 0x7FF;
 
     auto sectionId = SectionManager::Instance()->currentSection()->id();
-    SP::RoomClient::CreateInstance(sectionId == SectionId::OnlineSingle ? 1 : 2, ip, port, passcode);
+    SP::RoomClient::CreateInstance(sectionId == SectionId::OnlineSingle ? 1 : 2, ip, port,
+            passcode);
 
     m_replacement = PageId::FriendMatching;
     f32 delay = button->getDelay();
     startReplace(Anim::Next, delay);
 }
 
-void DirectConnectionPage::onBackButtonFront(PushButton *button,
-        u32 /* localPlayerId */) {
+void DirectConnectionPage::onBackButtonFront(PushButton *button, u32 /* localPlayerId */) {
     m_replacement = PageId::OnlineTop;
     f32 delay = button->getDelay();
     startReplace(Anim::Prev, delay);

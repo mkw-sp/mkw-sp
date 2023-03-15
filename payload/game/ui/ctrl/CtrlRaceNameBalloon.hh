@@ -40,7 +40,7 @@ private:
     u32 m_nameCount = 0;
     u8 _08[0x14 - 0x08];
     s32 m_playerIds[12];
-    bool m_nameIsEnabled[12]; // Moved
+    bool m_nameIsEnabled[12];                // Moved
     std::unique_ptr<Vec3[]> m_namePositions; // Modified
     u8 _54[0xc4 - 0x54];
 };

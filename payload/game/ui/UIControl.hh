@@ -76,11 +76,11 @@ public:
     bool hasPictureSourcePane(const char *pane);
     void setMiiPicture(const char *pane, MiiGroup *miiGroup, size_t index, u32 preset);
     void setPaneVisible(const char *pane, bool visible);
-    void load(const char *dir, const char *file,
-        const char *variant, const char *const *groups);
+    void load(const char *dir, const char *file, const char *variant, const char *const *groups);
     void setParentPane(const char *pane);
 
     UIAnimator m_animator;
+
 protected:
     MainLayout m_mainLayout;
 

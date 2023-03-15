@@ -165,8 +165,7 @@ void MultiTeamSelectPage::onBack(u32 localPlayerId) {
     startReplace(Anim::Prev, 0.0f);
 }
 
-void MultiTeamSelectPage::onTeamControlFront(UpDownControl *control,
-        u32 localPlayerId) {
+void MultiTeamSelectPage::onTeamControlFront(UpDownControl *control, u32 localPlayerId) {
     auto *driverModelManager = MenuModelManager::Instance()->driverModelManager();
     if (control->m_enabled) {
         control->m_enabled = false;
@@ -220,16 +219,14 @@ void MultiTeamSelectPage::onTeamControlFront(UpDownControl *control,
     startReplace(Anim::Next, delay);
 }
 
-void MultiTeamSelectPage::onTeamValueChange(
-        TextUpDownValueControl::TextControl *text, u32 index) {
+void MultiTeamSelectPage::onTeamValueChange(TextUpDownValueControl::TextControl *text, u32 index) {
     text->setMessageAll(10268 + index);
     char flagPane[0x20];
     snprintf(flagPane, std::size(flagPane), "flag_%u", index);
     text->setPicture("flag_set_p", flagPane);
 }
 
-void MultiTeamSelectPage::onBackButtonFront(PushButton *button,
-        u32 /* localPlayerId */) {
+void MultiTeamSelectPage::onBackButtonFront(PushButton *button, u32 /* localPlayerId */) {
     auto *context = SectionManager::Instance()->globalContext();
     u32 localPlayerCount = context->m_localPlayerCount;
     auto *driverModelManager = MenuModelManager::Instance()->driverModelManager();

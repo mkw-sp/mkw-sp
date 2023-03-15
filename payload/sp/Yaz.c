@@ -67,10 +67,9 @@ u32 Yaz_encode(const u8 *restrict src, u8 *restrict dst, u32 srcSize, u32 dstSiz
                         break;
                     }
                 }
-            }
-            else {
+            } else {
                 break;
-            } 
+            }
         }
         if (bestRefSize < 0x3) {
             dst[groupHeaderOffset] |= 1 << (7 - i);

@@ -11,21 +11,20 @@ typedef struct Command {
     void (*onBegin)(const char *tmp);
 } Command;
 
-#define SP_COMMAND(Match, Desc, Exec)        \
-    PRAGMA_SECTION("commands")               \
+#define SP_COMMAND(Match, Desc, Exec) \
+    PRAGMA_SECTION("commands") \
     Command MACRO_CONCAT(command_, Exec) = { \
-        .match = Match,                      \
-        .desc = Desc,                        \
-        .onBegin = Exec,                     \
+            .match = Match, \
+            .desc = Desc, \
+            .onBegin = Exec, \
     }
 
 #define sp_define_command_internal(Counter, Match, Desc, Args) \
-    void MACRO_CONCAT(cmd, Counter)(Args);                     \
-    SP_COMMAND(Match, Desc, MACRO_CONCAT(cmd, Counter));       \
+    void MACRO_CONCAT(cmd, Counter)(Args); \
+    SP_COMMAND(Match, Desc, MACRO_CONCAT(cmd, Counter)); \
     void MACRO_CONCAT(cmd, Counter)(Args)
 
-#define sp_define_command(Match, Desc, Args) \
-    sp_define_command_internal(__LINE__, Match, Desc, Args)
+#define sp_define_command(Match, Desc, Args) sp_define_command_internal(__LINE__, Match, Desc, Args)
 
 void Commands_init(void);
 const Command *Commands_match(const char *tmp);

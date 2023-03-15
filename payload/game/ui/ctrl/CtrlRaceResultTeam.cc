@@ -55,15 +55,15 @@ void CtrlRaceResultTeam::refresh(u32 playerId, u32 characterId, u32 teamId, u32 
     m_animator.setAnimation(GroupId::Select, playerId >= localPlayerCount, 0.0f);
     m_animator.setAnimation(GroupId::Select2, playerId >= localPlayerCount, 0.0f);
     m_animator.setAnimationInactive(GroupId::Position, 0, positionId);
-    const char *paneNames[2] = { "black_parts_c_r", "black_parts_c_l" };
+    const char *paneNames[2] = {"black_parts_c_r", "black_parts_c_l"};
     for (size_t i = 0; i < std::size(paneNames); i++) {
         auto *pane = m_mainLayout.findPaneByName(paneNames[i]);
         assert(pane);
         auto *material = pane->getMaterial();
         assert(material);
         auto color = TeamColors::Get(teamId);
-        material->tevColors[0] = { color.r, color.g, color.b, color.a };
-        material->tevColors[1] = { color.r, color.g, color.b, color.a };
+        material->tevColors[0] = {color.r, color.g, color.b, color.a};
+        material->tevColors[1] = {color.r, color.g, color.b, color.a};
     }
 }
 

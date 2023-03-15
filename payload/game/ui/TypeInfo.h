@@ -8,8 +8,9 @@ typedef struct TypeInfo {
 
 inline bool TypeInfo_isDerived(TypeInfo *base, TypeInfo *derived) {
     while (derived != NULL) {
-        if (derived == base)
+        if (derived == base) {
             return true;
+        }
 
         derived = derived->base;
     }

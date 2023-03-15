@@ -94,7 +94,9 @@ void FriendRoomBackPage::afterCalc() {
 
     auto *section = SectionManager::Instance()->currentSection();
     auto *friendMatchingPage = section->page<PageId::FriendMatching>();
-    if (m_roomStarted) { return friendMatchingPage->prepareStartClient(); }
+    if (m_roomStarted) {
+        return friendMatchingPage->prepareStartClient();
+    }
 
     auto *entry = m_queue.front();
     if (!entry) {
@@ -116,7 +118,7 @@ void FriendRoomBackPage::afterCalc() {
         m_latitudes[m_indices[m_playerCount]] = latitude;
         u16 longitude = join->longitude;
         m_longitudes[m_indices[m_playerCount]] = longitude;
-        auto &callback = m_players[m_indices[m_playerCount]].callback(); 
+        auto &callback = m_players[m_indices[m_playerCount]].callback();
         globePage->requestComment(mii, latitude, longitude, location, 4499, 0, nullptr, callback);
         m_globePlayerId = m_playerCount;
         m_playerCount++;
@@ -142,7 +144,7 @@ void FriendRoomBackPage::afterCalc() {
         }
         m_players[m_indices[m_playerCount]].hide();
     } else if (const auto *comment = std::get_if<Comment>(entry)) {
-        auto *mii = m_miiGroup.get(m_indices[comment->playerId]); 
+        auto *mii = m_miiGroup.get(m_indices[comment->playerId]);
         u32 location = m_locations[m_indices[comment->playerId]];
         u16 latitude = m_latitudes[m_indices[comment->playerId]];
         u16 longitude = m_longitudes[m_indices[comment->playerId]];
@@ -160,12 +162,12 @@ void FriendRoomBackPage::afterCalc() {
         u32 location = m_locations[m_indices[0]];
         u16 latitude = m_latitudes[m_indices[0]];
         u16 longitude = m_longitudes[m_indices[0]];
-        auto &callback = m_players[m_indices[0]].callback(); 
+        auto &callback = m_players[m_indices[0]].callback();
         globePage->requestComment(mii, latitude, longitude, location, 20025, 2, nullptr, callback);
         m_globePlayerId = 0;
         m_timer = 90;
     } else if (const auto *start = std::get_if<Start>(entry)) {
-        auto *mii = m_miiGroup.get(m_indices[0]); 
+        auto *mii = m_miiGroup.get(m_indices[0]);
         u32 location = m_locations[m_indices[0]];
         u16 latitude = m_latitudes[m_indices[0]];
         u16 longitude = m_longitudes[m_indices[0]];
@@ -203,13 +205,13 @@ void FriendRoomBackPage::pop(Anim anim) {
 void FriendRoomBackPage::onPlayerJoin(System::RawMii mii, u32 location, u16 latitude,
         u16 longitude) {
     assert(!m_queue.full());
-    m_queue.push_back(Join { mii, location, latitude, longitude });
+    m_queue.push_back(Join{mii, location, latitude, longitude});
 }
 
 void FriendRoomBackPage::onPlayerLeave(u32 playerId) {
     assert(!m_queue.full());
     u32 joinPlayerId = playerId;
-    for (size_t i = m_queue.count(); i --> 0;) {
+    for (size_t i = m_queue.count(); i-- > 0;) {
         if (const auto *leave = std::get_if<Leave>(m_queue[i])) {
             if (leave->playerId <= joinPlayerId) {
                 joinPlayerId++;
@@ -231,7 +233,7 @@ void FriendRoomBackPage::onPlayerLeave(u32 playerId) {
     if (index != m_queue.count()) {
         m_queue.remove(index);
     } else {
-        m_queue.push_back(Leave { playerId });
+        m_queue.push_back(Leave{playerId});
     }
 }
 
@@ -244,7 +246,7 @@ void FriendRoomBackPage::onReceiveComment(u32 playerId, u32 messageId) {
         }
     }
     if (commentCount < 18) {
-        m_queue.push_back(Comment { playerId, messageId });
+        m_queue.push_back(Comment{playerId, messageId});
     }
 }
 
@@ -257,12 +259,12 @@ void FriendRoomBackPage::onSettingsChange(
             break;
         }
     }
-    m_queue.push_back(Settings { settings });
+    m_queue.push_back(Settings{settings});
 }
 
 void FriendRoomBackPage::onRoomStart(u32 messageId) {
     m_queue.reset();
-    m_queue.push_back(Start { messageId });
+    m_queue.push_back(Start{messageId});
 }
 
 } // namespace UI

@@ -10,7 +10,7 @@ public:
     CtrlRace2DMap();
     ~CtrlRace2DMap() override;
 
-    void REPLACED (calcSelf)();
+    void REPLACED(calcSelf)();
     REPLACE void calcSelf() override;
 
 private:

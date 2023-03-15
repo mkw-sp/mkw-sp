@@ -14,9 +14,10 @@ class List {
 public:
     void append(void *elem);
     void remove(void *elem);
+
 private:
-    Node* m_head;
-    Node* m_tail;
+    Node *m_head;
+    Node *m_tail;
     u16 m_count;
     u16 m_offset;
 };

@@ -43,7 +43,7 @@ public:
     void dt(s32 type);
 
     const Group *getGroup(u32 groupId) const;
-    Group *getGroup(u32 groupId);    
+    Group *getGroup(u32 groupId);
     bool getActive(u32 groupId) const;
     void setActive(u32 groupId, bool active);
     u32 getAnimation(u32 groupId) const;

@@ -51,7 +51,7 @@ private:
     using H = typename T::Handler<UpdatePage>;
 
     MenuInputManager m_inputManager;
-    H<MessagePage> m_onCheckOkFront{ this, &UpdatePage::onCheckOkFront };
+    H<MessagePage> m_onCheckOkFront{this, &UpdatePage::onCheckOkFront};
     PageId m_replacement;
     State m_state;
     u8 m_stack[0x4000 /* 16 KiB */];

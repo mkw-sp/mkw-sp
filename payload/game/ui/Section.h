@@ -48,7 +48,7 @@ enum {
     // +QuitConfirm
     // +License
     SECTION_ID_TT_REPLAY = 0x2f,
-    
+
     // +License
     SECTION_ID_GHOST_TA = 0x30,
     // +License
@@ -60,7 +60,6 @@ enum {
     SECTION_ID_GHOST_REPLAY_DL = 0x33,
     // +License
     SECTION_ID_GHOST_REPLAY = 0x34,
-
 
     SECTION_ID_MII_SELECT_CREATE = 0x45,
     SECTION_ID_MII_SELECT_CHANGE = 0x46,

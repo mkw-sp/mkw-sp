@@ -180,7 +180,7 @@ static std::optional<LoaderEntryFunc> Run() {
             tmd.iosID = UINT64_C(0x000000010000003a);
             tmd.titleID = CHANNEL_TITLE_ID;
             tmd.groupID = 0x3031;
-            tmd.region = 3; // Region free
+            tmd.region = 3;  // Region free
             tmd._1ae[4] = 1; // Skip drive reset
             tmd.titleVersion = CHANNEL_TITLE_VERSION;
             tmd.numContents = CHANNEL_CONTENT_COUNT;

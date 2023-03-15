@@ -48,7 +48,8 @@ public:
     DvdArchive *getMenuArchive(size_t idx);
     REPLACE u16 getMenuArchiveCount() const;
     REPLACE MultiDvdArchive *loadCourse(u32 courseId, EGG::Heap *heap, bool splitScreen);
-    REPLACE MultiDvdArchive *loadMission(u32 courseId, u32 missionId, EGG::Heap *heap, bool splitScreen);
+    REPLACE MultiDvdArchive *loadMission(u32 courseId, u32 missionId, EGG::Heap *heap,
+            bool splitScreen);
 
     static void ComputeCourseSHA1(u32 courseId, u8 *courseSHA1);
     static void OnCreateScene(RKSceneID sceneId);

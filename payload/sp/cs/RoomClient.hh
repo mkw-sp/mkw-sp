@@ -42,6 +42,7 @@ public:
     static RoomClient *CreateInstance(u32 localPlayerCount, u32 ip, u16 port, LoginInfo loginInfo);
     static void DestroyInstance();
     static RoomClient *Instance();
+
 private:
     // These functions are handled in CreateInstance and DestroyInstance
     RoomClient(u32 localPlayerCount, u32 ip, u16 port, u16 passcode);

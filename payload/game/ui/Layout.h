@@ -9,7 +9,7 @@ typedef struct {
 
 typedef struct {
     BASE(Layout);
-    char _0c[0x9c-0x0c];
+    char _0c[0x9c - 0x0c];
 } MainLayout;
 
 lyt_Pane *Layout_findPaneByName(Layout *layout, const char *name);

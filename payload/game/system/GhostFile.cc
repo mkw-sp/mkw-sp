@@ -40,9 +40,7 @@ u32 RawTime::toMilliseconds() const {
 
 const RawTime *RawGhostHeader::flap() const {
     return std::min_element(std::begin(lapTimes), std::begin(lapTimes) + lapCount,
-            [](auto &l0, auto &l1) {
-                return l0.toMilliseconds() < l1.toMilliseconds();
-            });
+            [](auto &l0, auto &l1) { return l0.toMilliseconds() < l1.toMilliseconds(); });
 }
 
 bool SPFooter::checkSize(u32 size) const {
@@ -60,7 +58,8 @@ bool SPFooter::checkSize(u32 size) const {
     }
 }
 
-void SPFooter::OnRaceStart(const u8 *courseSHA1, bool speedModIsEnabled, bool isVanilla, bool setInMirror) {
+void SPFooter::OnRaceStart(const u8 *courseSHA1, bool speedModIsEnabled, bool isVanilla,
+        bool setInMirror) {
     s_instance = {};
     s_instance.version = VERSION;
     memcpy(s_instance.courseSHA1, courseSHA1, std::size(s_instance.courseSHA1));
@@ -455,7 +454,7 @@ std::optional<u32> GhostFile::write(u8 *raw) {
     Bytes::Write<u32>(raw, mainSize - sizeof(u32), crc32);
 
     *reinterpret_cast<SPFooter *>(raw + mainSize) = SPFooter::s_instance;
-    FooterFooter footerFooter = { .size = sizeof(SPFooter), .magic = SPFooter::MAGIC };
+    FooterFooter footerFooter = {.size = sizeof(SPFooter), .magic = SPFooter::MAGIC};
     *(FooterFooter *)(raw + mainSize + sizeof(SPFooter)) = footerFooter;
 
     u32 size = mainSize + sizeof(SPFooter) + sizeof(FooterFooter) + sizeof(u32);
@@ -468,7 +467,8 @@ std::optional<u32> GhostFile::write(u8 *raw) {
 } // namespace System
 
 extern "C" {
-void SPFooter_OnRaceStart(const u8 *courseSHA1, bool speedModIsEnabled, bool isVanilla, bool setInMirror) {
+void SPFooter_OnRaceStart(const u8 *courseSHA1, bool speedModIsEnabled, bool isVanilla,
+        bool setInMirror) {
     System::SPFooter::OnRaceStart(courseSHA1, speedModIsEnabled, isVanilla, setInMirror);
 }
 

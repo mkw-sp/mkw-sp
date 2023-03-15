@@ -110,8 +110,7 @@ void SingleTopPage::onBack(u32 /* localPlayerId */) {
     changeSection(SectionId::TitleFromMenu, Anim::Prev, 0.0f);
 }
 
-void SingleTopPage::onSettingsButtonFront(PushButton *button,
-        u32 /* localPlayerId */) {
+void SingleTopPage::onSettingsButtonFront(PushButton *button, u32 /* localPlayerId */) {
     auto *section = SectionManager::Instance()->currentSection();
     auto *settingsPage = section->page<PageId::MenuSettings>();
     settingsPage->configure(nullptr, PageId::SingleTop);
@@ -120,13 +119,11 @@ void SingleTopPage::onSettingsButtonFront(PushButton *button,
     startReplace(Anim::Next, delay);
 }
 
-void SingleTopPage::onSettingsButtonSelect(PushButton * /* button */,
-        u32 /* localPlayerId */) {
+void SingleTopPage::onSettingsButtonSelect(PushButton * /* button */, u32 /* localPlayerId */) {
     m_instructionText.setMessage(10077);
 }
 
-void SingleTopPage::onTAButtonFront(PushButton *button,
-        u32 /* localPlayerId */) {
+void SingleTopPage::onTAButtonFront(PushButton *button, u32 /* localPlayerId */) {
     auto &menuScenario = System::RaceConfig::Instance()->menuScenario();
     menuScenario.engineClass = System::RaceConfig::EngineClass::CC150;
     menuScenario.gameMode = System::RaceConfig::GameMode::TimeAttack;
@@ -146,8 +143,7 @@ void SingleTopPage::onTAButtonFront(PushButton *button,
     startReplace(Anim::Next, delay);
 }
 
-void SingleTopPage::onTAButtonSelect(PushButton *button,
-        u32 /* localPlayerId */) {
+void SingleTopPage::onTAButtonSelect(PushButton *button, u32 /* localPlayerId */) {
     m_instructionText.setMessage(3051);
 
     Section *section = SectionManager::Instance()->currentSection();
@@ -155,14 +151,13 @@ void SingleTopPage::onTAButtonSelect(PushButton *button,
     modelPage->modelControl().setModel(0);
 }
 
-void SingleTopPage::onVSButtonFront(PushButton *button,
-        u32 /* localPlayerId */) {
+void SingleTopPage::onVSButtonFront(PushButton *button, u32 /* localPlayerId */) {
     auto *saveManager = System::SaveManager::Instance();
     auto *context = SectionManager::Instance()->globalContext();
     context->m_matchCount = saveManager->getSetting<SP::ClientSettings::Setting::VSRaceCount>();
 
     auto maxTeamSizeSetting = saveManager->getSetting<SP::ClientSettings::Setting::VSTeamSize>();
-    
+
     u32 maxTeamSize = SP::ClientSettings::GenerateMaxTeamSize(maxTeamSizeSetting);
 
     auto &menuScenario = System::RaceConfig::Instance()->menuScenario();
@@ -186,8 +181,7 @@ void SingleTopPage::onVSButtonFront(PushButton *button,
     startReplace(Anim::Next, delay);
 }
 
-void SingleTopPage::onVSButtonSelect(PushButton * /* button */,
-        u32 /* localPlayerId */) {
+void SingleTopPage::onVSButtonSelect(PushButton * /* button */, u32 /* localPlayerId */) {
     m_instructionText.setMessage(3052);
 
     Section *section = SectionManager::Instance()->currentSection();
@@ -195,14 +189,13 @@ void SingleTopPage::onVSButtonSelect(PushButton * /* button */,
     modelPage->modelControl().setModel(2);
 }
 
-void SingleTopPage::onBTButtonFront(PushButton *button,
-        u32 /* localPlayerId */) {
+void SingleTopPage::onBTButtonFront(PushButton *button, u32 /* localPlayerId */) {
     auto *saveManager = System::SaveManager::Instance();
     auto *context = SectionManager::Instance()->globalContext();
     context->m_matchCount = saveManager->getSetting<SP::ClientSettings::Setting::BTRaceCount>();
 
     auto maxTeamSizeSetting = saveManager->getSetting<SP::ClientSettings::Setting::BTTeamSize>();
-    
+
     u32 maxTeamSize = SP::ClientSettings::GenerateMaxTeamSize(maxTeamSizeSetting);
 
     auto &menuScenario = System::RaceConfig::Instance()->menuScenario();
@@ -225,8 +218,7 @@ void SingleTopPage::onBTButtonFront(PushButton *button,
     startReplace(Anim::Next, delay);
 }
 
-void SingleTopPage::onBTButtonSelect(PushButton * /* button */,
-        u32 /* localPlayerId */) {
+void SingleTopPage::onBTButtonSelect(PushButton * /* button */, u32 /* localPlayerId */) {
     m_instructionText.setMessage(3054);
 
     Section *section = SectionManager::Instance()->currentSection();
@@ -235,8 +227,7 @@ void SingleTopPage::onBTButtonSelect(PushButton * /* button */,
 }
 
 #if ENABLE_MR
-void SingleTopPage::onMRButtonFront(PushButton *button,
-        u32 /* localPlayerId */) {
+void SingleTopPage::onMRButtonFront(PushButton *button, u32 /* localPlayerId */) {
     auto &menuScenario = System::RaceConfig::Instance()->menuScenario();
     menuScenario.gameMode = System::RaceConfig::GameMode::Mission;
     menuScenario.cameraMode = 0;
@@ -255,8 +246,7 @@ void SingleTopPage::onMRButtonFront(PushButton *button,
     startReplace(Anim::Next, delay);
 }
 
-void SingleTopPage::onMRButtonSelect(PushButton * /* button */,
-        u32 /* localPlayerId */) {
+void SingleTopPage::onMRButtonSelect(PushButton * /* button */, u32 /* localPlayerId */) {
     m_instructionText.setMessage(10161);
 
     Section *section = SectionManager::Instance()->currentSection();
@@ -265,14 +255,12 @@ void SingleTopPage::onMRButtonSelect(PushButton * /* button */,
 }
 #endif
 
-void SingleTopPage::onBackButtonFront(PushButton *button,
-        u32 /* localPlayerId */) {
+void SingleTopPage::onBackButtonFront(PushButton *button, u32 /* localPlayerId */) {
     f32 delay = button->getDelay();
     changeSection(SectionId::TitleFromMenu, Anim::Prev, delay);
 }
 
-void SingleTopPage::onBackButtonSelect(PushButton *button,
-        u32 /* localPlayerId */) {
+void SingleTopPage::onBackButtonSelect(PushButton *button, u32 /* localPlayerId */) {
     m_instructionText.setMessage(0);
 }
 

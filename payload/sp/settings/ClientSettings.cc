@@ -3,30 +3,30 @@
 #include <iterator>
 
 namespace SP::ClientSettings {
-    
+
 u32 GenerateMaxTeamSize(SP::ClientSettings::TeamSize teamsizesetting) {
     u32 maxTeamSize;
 
-    if (teamsizesetting == SP::ClientSettings::TeamSize::Random) {        
+    if (teamsizesetting == SP::ClientSettings::TeamSize::Random) {
         u32 rand_number = hydro_random_u32();
-        rand_number = rand_number % 5;        
-        if (rand_number == 4) {        
-            maxTeamSize = 6;        
-        } else {            
-            maxTeamSize = rand_number + 1; 
-        }    
-    } else if (teamsizesetting == SP::ClientSettings::TeamSize::Six) {    
-        maxTeamSize = 6;    
-    } else {    
-        maxTeamSize = static_cast<u32>(teamsizesetting) + 1;    
+        rand_number = rand_number % 5;
+        if (rand_number == 4) {
+            maxTeamSize = 6;
+        } else {
+            maxTeamSize = rand_number + 1;
+        }
+    } else if (teamsizesetting == SP::ClientSettings::TeamSize::Six) {
+        maxTeamSize = 6;
+    } else {
+        maxTeamSize = static_cast<u32>(teamsizesetting) + 1;
     }
-    
+
     return maxTeamSize;
 }
 
 const char name[] = "MKW-SP Settings";
 
-const u32 categoryMessageIds[] = { 10118, 10126, 10119, 10262, 10360, 10258, 10120, 10315 };
+const u32 categoryMessageIds[] = {10118, 10126, 10119, 10262, 10360, 10258, 10120, 10315};
 
 // clang-format off
 const Entry entries[] = {

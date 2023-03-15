@@ -5,8 +5,8 @@
 namespace Enemy {
 
 bool KartEnemy::isCpu() {
-    if (auto *roomManager = SP::RoomManager::Instance(); roomManager &&
-            roomManager->isPlayerRemote(getPlayerId())) {
+    if (auto *roomManager = SP::RoomManager::Instance();
+            roomManager && roomManager->isPlayerRemote(getPlayerId())) {
         return false;
     }
 

@@ -5,7 +5,7 @@
 
 namespace Kart {
 
-class KartBody: public KartPart {
+class KartBody : public KartPart {
     u8 _90[0x234 - 0x90];
 };
 

@@ -28,7 +28,7 @@ namespace AnimId::Select {
 enum {
     Free = 0,
     FreeToSelect = 1,
-    Select = 2 ,
+    Select = 2,
     SelectToFree = 3,
 };
 
@@ -88,8 +88,8 @@ void ScrollBar::calcSelf() {
         m_sequence->flags = flags;
     }
 
-    m_thumbFuchiPane->m_trans.x = static_cast<s32>((m_colorBasePane->m_width - 4.0f) * 
-            ((m_chosen + 0.5f) / m_count - 0.5f));
+    m_thumbFuchiPane->m_trans.x = static_cast<s32>(
+            (m_colorBasePane->m_width - 4.0f) * ((m_chosen + 0.5f) / m_count - 0.5f));
     m_thumbPane->m_trans.x = m_thumbFuchiPane->m_trans.x;
 }
 

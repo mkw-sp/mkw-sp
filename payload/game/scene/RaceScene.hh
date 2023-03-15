@@ -31,4 +31,4 @@ private:
 };
 static_assert(sizeof(RaceScene) == 0x256c);
 
-} // Scene
+} // namespace Scene

@@ -35,7 +35,7 @@ enum BPAddressSpace {
 
 /* Determine whether or not indirect matrix patching is necessary. */
 static bool isIndPatchNecessary(
-    uint8_t* pData /* Valid pointer to the indirect settings display list (64 bytes) */) {
+        uint8_t *pData /* Valid pointer to the indirect settings display list (64 bytes) */) {
     /* Rationale for removal:
      * All materials should be standard layout. Additionally, if the user is
      * confident the material does not flicker, a material flag can be specified.
@@ -51,8 +51,7 @@ static bool isIndPatchNecessary(
 #endif
 
     /* If the indirect matrix is omitted, in whole or in part, correct it. */
-    return (pData[10] == CMD_TAG_NOOP) | (pData[15] == CMD_TAG_NOOP) |
-           (pData[20] == CMD_TAG_NOOP);
+    return (pData[10] == CMD_TAG_NOOP) | (pData[15] == CMD_TAG_NOOP) | (pData[20] == CMD_TAG_NOOP);
 }
 
 /* Default indirect matrix (skew). An identity matrix is almost always too
@@ -64,17 +63,18 @@ static bool isIndPatchNecessary(
  *
  */
 static const uint8_t DefaultIndirectMatrix[CMD_SIZE_BP * 3] = {
-    /* A = 0x333, B=0x000, S0=0x002 */
-    CMD_TAG_BP, BPMEM_IND_MTX + 0, 0x80, 0x03, 0x33,
-    /* C = 0x000, D=0x333, S1=0x003 */
-    CMD_TAG_BP, BPMEM_IND_MTX + 1, 0xD9, 0x98, 0x00,
-    /* E = 0x000, F=0x000, S2=0x000 */
-    CMD_TAG_BP, BPMEM_IND_MTX + 2, 0x00, 0x00, 0x00
-    /**/
+        /* A = 0x333, B=0x000, S0=0x002 */
+        CMD_TAG_BP, BPMEM_IND_MTX + 0, 0x80, 0x03, 0x33,
+        /* C = 0x000, D=0x333, S1=0x003 */
+        CMD_TAG_BP, BPMEM_IND_MTX + 1, 0xD9, 0x98, 0x00,
+        /* E = 0x000, F=0x000, S2=0x000 */
+        CMD_TAG_BP, BPMEM_IND_MTX + 2, 0x00, 0x00, 0x00
+        /**/
 };
 
 /* Copies the valid indirect matrix */
-static uint8_t* applyIndPatch(uint8_t* pData/* Valid pointer to the indirect settings display list (64 bytes) */) {
+static uint8_t *applyIndPatch(
+        uint8_t *pData /* Valid pointer to the indirect settings display list (64 bytes) */) {
     memcpy(&pData[10], (void *)&DefaultIndirectMatrix, sizeof(DefaultIndirectMatrix));
 
     return pData;
@@ -109,9 +109,8 @@ static bool isShaderIndirect(uint8_t *pTev) {
             it++;
             break;
         default:
-            MSA_DEBUG_LOG(
-                    "Failed to parse TEV configuration at %p: illegal operation: 0x%x",
-                    pTev, (uint32_t)*it);
+            MSA_DEBUG_LOG("Failed to parse TEV configuration at %p: illegal operation: 0x%x", pTev,
+                    (uint32_t)*it);
             /* If something unexpected shows up, let's just quit gracefully. */
             return false;
         }
@@ -162,8 +161,9 @@ void sanitizeMaterial(uint8_t *pMat) {
         return;
     }
 
-    if (!isShaderIndirect(getShaderFromMaterial(pMat)))
+    if (!isShaderIndirect(getShaderFromMaterial(pMat))) {
         return;
+    }
 
     if (getMaterialIndirectCount(pMat) == 0) {
         MSA_DEBUG_LOG("Correcting GEN_INFO for %s.", getMaterialName(pMat));

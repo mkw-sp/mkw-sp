@@ -7,8 +7,8 @@ extern "C" {
 #include <revolution.h>
 }
 
-#include <stdarg.h>
 #include <mutex>
+#include <stdarg.h>
 #include <unordered_map>
 
 std::unordered_map<OSMutex *, std::mutex> gMutexMap;

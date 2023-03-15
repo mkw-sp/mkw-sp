@@ -12,7 +12,7 @@ u32 RoomManager::playerCount() const {
     return m_playerCount;
 }
 
-const RoomManager::Player& RoomManager::player(u32 playerId) const {
+const RoomManager::Player &RoomManager::player(u32 playerId) const {
     return m_players[playerId];
 }
 

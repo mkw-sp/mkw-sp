@@ -14,8 +14,8 @@
 // Referenced by SceneCreatorDyanmic.S
 bool sBugCheckSet = false;
 
-static char sContextFile[64];   // beginner_course.szs
-static char sBugCheckFile[64];  // course_model.brres
+static char sContextFile[64];  // beginner_course.szs
+static char sBugCheckFile[64]; // course_model.brres
 static char sBugCheckDescription[256];
 
 static wchar_t sFormattedBugCheck[512];
@@ -58,8 +58,9 @@ void SpBugCheckAsync(const char *file, const char *description) {
     OSReport("------------------------------\n");
 
     // Only accept the first bugcheck
-    if (sBugCheckSet)
+    if (sBugCheckSet) {
         return;
+    }
 
     SpSaveBugCheck(file, description);
     SpFormatBugCheck();
@@ -76,8 +77,9 @@ void SpBugCheck(const char *file, const char *description) {
     WriteStackTraceShort(trace, sizeof(trace), OSGetStackPointer());
     OSReport("TRACE: %s\n", trace);
 
-    if (!sBugCheckSet)
+    if (!sBugCheckSet) {
         SpSaveBugCheck(file, description);
+    }
     SpFormatBugCheck();
 
     static FatalScene fScene;
@@ -130,14 +132,15 @@ void MissingBreffFail(const char *breff_name) {
 }
 
 // XREF: g3dResFile.S
-void InvalidRevisionFail(
-        int bad_version, unsigned int res_type, int index, const char *brres_name) {
+void InvalidRevisionFail(int bad_version, unsigned int res_type, int index,
+        const char *brres_name) {
     char file[64];
 
-    if (brres_name && *brres_name)
+    if (brres_name && *brres_name) {
         snprintf(file, sizeof(file), "%s.brres", brres_name);
-    else
+    } else {
         snprintf(file, sizeof(file), "BRRES");
+    }
 
     char desc[512];
     switch (res_type) {
@@ -154,8 +157,7 @@ void InvalidRevisionFail(
                 " - res_type=0x%x\n"
                 " - index=%i\n"
                 " - brres_name=%s\n",
-                bad_version, res_type, index,
-                brres_name && *brres_name ? brres_name : "?");
+                bad_version, res_type, index, brres_name && *brres_name ? brres_name : "?");
         break;
     }
 
@@ -167,8 +169,9 @@ static char loadedEffects[256];
 // XREF: ObjEffect.S
 void LogLoadedEffect(int index, const char *path) {
     const char *trailing = strrchr(path, '/');
-    if (trailing != NULL)
+    if (trailing != NULL) {
         path = trailing + 1;
+    }
 
     if (loadedEffects[0] == '\0') {
         snprintf(loadedEffects, sizeof(loadedEffects), "%i: %s", index, path);
@@ -194,8 +197,8 @@ void ResetLoadedEffects(void) {
 void TooManyEffectsFail(int current_count, int capacity, const char *path) {
     char desc[512];
     snprintf(desc, sizeof(desc),
-            "Too many BREFF (particle effect) files. Maximum is %i.\n\nEffects (%i): %s.",
-            capacity, current_count, loadedEffects[0] != '\0' ? loadedEffects : "?");
+            "Too many BREFF (particle effect) files. Maximum is %i.\n\nEffects (%i): %s.", capacity,
+            current_count, loadedEffects[0] != '\0' ? loadedEffects : "?");
 
     SpBugCheck(path, desc);
 }

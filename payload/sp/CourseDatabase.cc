@@ -32,7 +32,7 @@ void CourseDatabase::refresh(Filter filter) {
     m_count = 0;
     for (u32 internalIndex = 0; internalIndex < std::size(m_entries); internalIndex++) {
         if (!((m_filter.race && m_entries[internalIndex].race) ||
-                (m_filter.battle && m_entries[internalIndex].battle))) {
+                    (m_filter.battle && m_entries[internalIndex].battle))) {
             continue;
         }
 

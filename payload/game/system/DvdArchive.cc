@@ -92,7 +92,8 @@ DvdArchive::State DvdArchive::state() const {
 bool DvdArchive::decompress(const char *path, EGG::Heap *archiveHeap) {
     u8 *archiveBuffer;
     size_t archiveSize;
-    bool success = SP::Storage::DecompLoader::LoadRO(path, &archiveBuffer, &archiveSize, archiveHeap);
+    bool success =
+            SP::Storage::DecompLoader::LoadRO(path, &archiveBuffer, &archiveSize, archiveHeap);
     if (success) {
         m_archiveBuffer = archiveBuffer;
         m_archiveSize = archiveSize;

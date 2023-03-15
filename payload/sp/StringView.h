@@ -8,21 +8,19 @@ typedef struct {
     size_t len;
 } StringView;
 
-#define sv_for_each(sv, itName)                                                  \
-    for (const char *itName = sv.s, *const svEnd = sv.s + sv.len;                \
-            itName < svEnd &&                                                    \
-            (assert(*itName != '\0' && "Null terminator in string view"), true); \
+#define sv_for_each(sv, itName) \
+    for (const char *itName = sv.s, *const svEnd = sv.s + sv.len; \
+            itName < svEnd && (assert(*itName != '\0' && "Null terminator in string view"), true); \
             ++itName)
-#define sv_for_each_reversed(sv, itName)                                         \
-    for (const char *itName = sv.s + sv.len - 1, *const svStart = sv.s;          \
-            itName >= svStart &&                                                 \
+#define sv_for_each_reversed(sv, itName) \
+    for (const char *itName = sv.s + sv.len - 1, *const svStart = sv.s; itName >= svStart && \
             (assert(*itName != '\0' && "Null terminator in string view"), true); \
             --itName)
 
 static inline StringView StringView_create(const char *s) {
     return (StringView){
-        .s = s,
-        .len = strlen(s),
+            .s = s,
+            .len = strlen(s),
     };
 }
 static inline bool StringView_equalsCStr(StringView v, const char *s) {
@@ -46,8 +44,7 @@ static inline bool ContainsChar(StringView view, char c) {
     }
     return false;
 }
-static inline StringView SplitLeft(
-        StringView view, StringView delim, StringView *remaining) {
+static inline StringView SplitLeft(StringView view, StringView delim, StringView *remaining) {
     size_t splitOffset = view.len;
     sv_for_each(view, it) {
         if (ContainsChar(delim, *it)) {
@@ -58,15 +55,15 @@ static inline StringView SplitLeft(
 
     if (remaining != NULL) {
         *remaining = (StringView){
-            .s = view.s + splitOffset,
-            .len = view.len - splitOffset,
+                .s = view.s + splitOffset,
+                .len = view.len - splitOffset,
         };
         *remaining = SubString(*remaining, 1);
     }
 
     return (StringView){
-        .s = view.s,
-        .len = splitOffset,
+            .s = view.s,
+            .len = splitOffset,
     };
 }
 static StringView SkipLeading(StringView view, char c) {
@@ -94,11 +91,11 @@ static StringView SkipTrailing(StringView view, char c) {
 }
 
 // Get a stack-allocated CString of a string view
-#define sv_as_cstr(sv, svLen)                             \
-    ({                                                    \
+#define sv_as_cstr(sv, svLen) \
+    ({ \
         char *cstr = (char *)__builtin_alloca(svLen + 1); \
-        const size_t lenWritten = MIN(svLen, sv.len);     \
-        memcpy(cstr, sv.s, lenWritten);                   \
-        cstr[lenWritten] = '\0';                          \
-        cstr;                                             \
+        const size_t lenWritten = MIN(svLen, sv.len); \
+        memcpy(cstr, sv.s, lenWritten); \
+        cstr[lenWritten] = '\0'; \
+        cstr; \
     })

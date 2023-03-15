@@ -198,8 +198,7 @@ void TimeAttackGhostListPage::onBack(u32 /* localPlayerId */) {
     startReplace(Anim::Prev, 0.0f);
 }
 
-void TimeAttackGhostListPage::onSettingsButtonFront(PushButton *button,
-        u32 /* localPlayerId */) {
+void TimeAttackGhostListPage::onSettingsButtonFront(PushButton *button, u32 /* localPlayerId */) {
     auto *section = SectionManager::Instance()->currentSection();
     auto *menuSettingsPage = section->page<PageId::MenuSettings>();
     menuSettingsPage->configure(nullptr, PageId::TimeAttackGhostList);
@@ -222,7 +221,7 @@ void TimeAttackGhostListPage::onSettingsButtonDeselect(PushButton * /* button */
     m_watchButton.setPointerOnly(false);
 }
 
-void TimeAttackGhostListPage::onSheetSelectRight(SheetSelectControl */* control */,
+void TimeAttackGhostListPage::onSheetSelectRight(SheetSelectControl * /* control */,
         u32 /* localPlayerId */) {
     if (!canSwapGhostSelects()) {
         return;
@@ -241,7 +240,7 @@ void TimeAttackGhostListPage::onSheetSelectRight(SheetSelectControl */* control 
     swapGhostSelects();
 }
 
-void TimeAttackGhostListPage::onSheetSelectLeft(SheetSelectControl */* control */,
+void TimeAttackGhostListPage::onSheetSelectLeft(SheetSelectControl * /* control */,
         u32 /* localPlayerId */) {
     if (!canSwapGhostSelects()) {
         return;
@@ -303,8 +302,7 @@ void TimeAttackGhostListPage::onWatchButtonDeselect(PushButton * /* button */,
     m_settingsButton.setPointerOnly(false);
 }
 
-void TimeAttackGhostListPage::onBackButtonFront(PushButton *button,
-        u32 /* localPlayerId */) {
+void TimeAttackGhostListPage::onBackButtonFront(PushButton *button, u32 /* localPlayerId */) {
     m_cc.reset();
 
     m_replacement = PageId::CourseSelect;

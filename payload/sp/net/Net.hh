@@ -28,17 +28,17 @@ private:
     u32 m_count;
 };
 
-template<typename T>
+template <typename T>
 std::unique_ptr<T[], Deleter<T>> Alloc(u32 count) {
     return std::unique_ptr<T[], Deleter<T>>(reinterpret_cast<T *>(Alloc(count * sizeof(T))), count);
 }
 
-template<typename T>
+template <typename T>
 u32 GetCount(const std::unique_ptr<T[], Deleter<T>> &array) {
     return array.get_deleter().getCount();
 }
 
-template<typename T>
+template <typename T>
 u32 GetSize(const std::unique_ptr<T[], Deleter<T>> &array) {
     return array.get_deleter().getCount() * sizeof(T);
 }

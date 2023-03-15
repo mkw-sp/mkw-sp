@@ -104,16 +104,18 @@ public:
 
             // Skip non-key checkpoints
             if (ckpt->lapCheck == 0xFF && ckpt->nextPt != 0 &&
-                    !(ckpt->nextPt == 0xFF && ckph->next[0] == 0))
+                    !(ckpt->nextPt == 0xFF && ckph->next[0] == 0)) {
                 continue;
+            }
 
             u8 next_id = ckpt->nextPt;
 
             // Sequence edge
             if (next_id == 0xFF) {
-                if (ckph->next[1] != 0xFF)
+                if (ckph->next[1] != 0xFF) {
                     SP_LOG("!!!\n!!! Odd edge case where a key checkpoint is a "
                            "checkpath edge\n!!!\n");
+                }
                 // FIXME
                 // Are there multiple quads in this case?
                 // Right now we just take the first
@@ -132,8 +134,9 @@ public:
 
                 // TODO: Maybe make color match depth
                 u32 clr = 0xAAAAAA33;
-                if (ckpt->lapCheck != 0xFF)
+                if (ckpt->lapCheck != 0xFF) {
                     clr = calcColor(j, System::CourseMap::Instance()->mpCheckPoint->m_numEntries);
+                }
                 drawCheckPoint(ckpt, next, clr);
             }
         }
@@ -175,32 +178,30 @@ public:
 
         constexpr int NUM_QUADS = 4;
 
-        Vertex faces[NUM_QUADS][4] = {
-                // Front face
-                {{{ckpt->left.x, top, ckpt->left.y}, 0},
-                {{ckpt->left.x, bottom, ckpt->left.y}, 0},
-                {{ckpt->right.x, bottom, ckpt->right.y}, 0},
-                {{ckpt->right.x, top, ckpt->right.y}, 0}},
+        Vertex faces[NUM_QUADS][4] = {// Front face
+                {{{ckpt->left.x, top, ckpt->left.y}, 0}, {{ckpt->left.x, bottom, ckpt->left.y}, 0},
+                        {{ckpt->right.x, bottom, ckpt->right.y}, 0},
+                        {{ckpt->right.x, top, ckpt->right.y}, 0}},
                 // Left face
-                {{{ckpt->left.x, top, ckpt->left.y}, 0},
-                {{ckpt->left.x, bottom, ckpt->left.y}, 0},
-                {{next->left.x, next_bottom, next->left.y}, VTX_TRANS},
-                {{next->left.x, next_top, next->left.y}, VTX_TRANS}},
+                {{{ckpt->left.x, top, ckpt->left.y}, 0}, {{ckpt->left.x, bottom, ckpt->left.y}, 0},
+                        {{next->left.x, next_bottom, next->left.y}, VTX_TRANS},
+                        {{next->left.x, next_top, next->left.y}, VTX_TRANS}},
                 // Right face
                 {{{ckpt->right.x, top, ckpt->right.y}, 0},
-                {{ckpt->right.x, bottom, ckpt->right.y}, 0},
-                {{next->right.x, next_bottom, next->right.y}, VTX_TRANS},
-                {{next->right.x, next_top, next->right.y}, VTX_TRANS}},
+                        {{ckpt->right.x, bottom, ckpt->right.y}, 0},
+                        {{next->right.x, next_bottom, next->right.y}, VTX_TRANS},
+                        {{next->right.x, next_top, next->right.y}, VTX_TRANS}},
                 // Back face
                 {{{next->left.x, next_top, next->left.y}, VTX_TRANS},
-                {{next->left.x, next_bottom, next->left.y}, VTX_TRANS},
-                {{next->right.x, next_bottom, next->right.y}, VTX_TRANS},
-                {{next->right.x, next_top, next->right.y}, VTX_TRANS}}};
+                        {{next->left.x, next_bottom, next->left.y}, VTX_TRANS},
+                        {{next->right.x, next_bottom, next->right.y}, VTX_TRANS},
+                        {{next->right.x, next_top, next->right.y}, VTX_TRANS}}};
 
         int to_draw_quads = NUM_QUADS;
 
-        if (ckpt->lapCheck == 0xFF)
+        if (ckpt->lapCheck == 0xFF) {
             to_draw_quads = 3;
+        }
 
         GXBegin(GX_QUADS, GX_VTXFMT0, to_draw_quads * 4);
 

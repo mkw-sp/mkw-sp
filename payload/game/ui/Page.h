@@ -5,18 +5,11 @@
 #include "TypeInfo.h"
 #include "UIControl.h"
 
-enum {
-    PAGE_STATE_0,
-    PAGE_STATE_1,
-    PAGE_STATE_2,
-    PAGE_STATE_3,
-    PAGE_STATE_4,
-    PAGE_STATE_5
-};
+enum { PAGE_STATE_0, PAGE_STATE_1, PAGE_STATE_2, PAGE_STATE_3, PAGE_STATE_4, PAGE_STATE_5 };
 
 typedef enum {
     PAGE_ID_NONE = -0x1,
-    
+
     PAGE_ID_GP_PAUSE_MENU = 0x17,
     PAGE_ID_VS_PAUSE_MENU = 0x18,
     PAGE_ID_TA_PAUSE_MENU = 0x19,
@@ -61,7 +54,7 @@ typedef enum {
     PAGE_ID_COURSE_SELECT = 0x6f,
     PAGE_ID_SELECT_GHOST = 0x70,
     PAGE_ID_GHOST_MANAGER = 0xa7,
-    
+
     PAGE_ID_LICENSE_RECORDS = 0xce,
     // Disabled {
     PAGE_ID_LICENSE_RECORDS_FAVORITES = 0xcf,

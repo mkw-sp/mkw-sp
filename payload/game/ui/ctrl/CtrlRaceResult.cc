@@ -27,8 +27,8 @@ void CtrlRaceResult::refreshRankIconsColor(u32 rank, u32 playerId) {
     auto *material = pane->getMaterial();
     assert(material);
     auto color = TeamColors::Get(raceScenario.players[playerId].spTeam);
-    material->tevColors[0] = { color.r, color.g, color.b, color.a };
-    material->tevColors[1] = { color.r, color.g, color.b, color.a };
+    material->tevColors[0] = {color.r, color.g, color.b, color.a};
+    material->tevColors[1] = {color.r, color.g, color.b, color.a};
 }
 
 } // namespace UI

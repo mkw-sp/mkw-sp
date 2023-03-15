@@ -73,7 +73,7 @@ BOOL DVDReadDir(DVDDir *dir, DVDDirEntry *dirent) {
     return true;
 }
 
-BOOL DVDCloseDir(DVDDir */* dir */) {
+BOOL DVDCloseDir(DVDDir * /* dir */) {
     return true;
 }
 

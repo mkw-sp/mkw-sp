@@ -73,7 +73,7 @@ void FriendRoomPage::onActivate() {
         m_startButton.setVisible(true);
         break;
     case RoomRole::Player:
-    // case RoomRole::Spectator:
+        // case RoomRole::Spectator:
         m_startButton.setPlayerFlags(0);
         m_startButton.setVisible(false);
         break;
@@ -134,8 +134,7 @@ void FriendRoomPage::onBack(u32 /* localPlayerId */) {
     push(PageId::YesNoPopup, Anim::Next);
 }
 
-void FriendRoomPage::onSettingsButtonFront(PushButton * /* button */,
-        u32 /* localPlayerId */) {
+void FriendRoomPage::onSettingsButtonFront(PushButton * /* button */, u32 /* localPlayerId */) {
     m_instructionText.setMessage(0);
 
     auto *section = SectionManager::Instance()->currentSection();
@@ -144,8 +143,7 @@ void FriendRoomPage::onSettingsButtonFront(PushButton * /* button */,
     push(PageId::SettingsPopup, Anim::Next);
 }
 
-void FriendRoomPage::onCommentButtonFront(PushButton * /* button */,
-        u32 /* localPlayerId */) {
+void FriendRoomPage::onCommentButtonFront(PushButton * /* button */, u32 /* localPlayerId */) {
     auto *section = SectionManager::Instance()->currentSection();
     auto *messageSelectPage = section->page<PageId::FriendRoomMessageSelect>();
     messageSelectPage->setMenuType(FriendRoomMessageSelectPage::MenuType::Comment);
@@ -154,13 +152,11 @@ void FriendRoomPage::onCommentButtonFront(PushButton * /* button */,
     m_instructionText.setMessage(4371, 0);
 }
 
-void FriendRoomPage::onRulesButtonFront(PushButton * /* button */,
-        u32 /* localPlayerId */) {
+void FriendRoomPage::onRulesButtonFront(PushButton * /* button */, u32 /* localPlayerId */) {
     push(PageId::FriendRoomRules, Anim::Next);
 }
 
-void FriendRoomPage::onStartButtonFront(PushButton * /* button */,
-        u32 /* localPlayerId */) {
+void FriendRoomPage::onStartButtonFront(PushButton * /* button */, u32 /* localPlayerId */) {
     auto *section = SectionManager::Instance()->currentSection();
     auto *messageSelectPage = section->page<PageId::FriendRoomMessageSelect>();
     messageSelectPage->setMenuType(FriendRoomMessageSelectPage::MenuType::Start);
@@ -169,11 +165,9 @@ void FriendRoomPage::onStartButtonFront(PushButton * /* button */,
     m_instructionText.setMessage(4373, 0);
 }
 
-void FriendRoomPage::onRegisterButtonFront(PushButton * /* button */,
-        u32 /* localPlayerId */) {}
+void FriendRoomPage::onRegisterButtonFront(PushButton * /* button */, u32 /* localPlayerId */) {}
 
-void FriendRoomPage::onBackButtonFront(PushButton * /* button */,
-        u32 /* localPlayerId */) {
+void FriendRoomPage::onBackButtonFront(PushButton * /* button */, u32 /* localPlayerId */) {
     auto *section = SectionManager::Instance()->currentSection();
     auto *yesNoPage = section->page<PageId::YesNoPopup>();
 
@@ -188,16 +182,14 @@ void FriendRoomPage::onButtonSelect(PushButton *button, u32 /* localPlayerId */)
     m_instructionText.setMessage(button->m_index, nullptr);
 }
 
-void FriendRoomPage::onBackConfirm(s32 /* choice */,
-        PushButton * /* button */) {
+void FriendRoomPage::onBackConfirm(s32 /* choice */, PushButton * /* button */) {
     SP::RoomManager::Instance()->destroyInstance();
     auto *section = SectionManager::Instance()->currentSection();
     auto *friendMatchingPage = section->page<PageId::FriendMatching>();
     friendMatchingPage->collapse(Anim::Prev);
 }
 
-void FriendRoomPage::onSettingsBack(SettingsPage */* settingsPage */,
-        PushButton * /* button */) {
+void FriendRoomPage::onSettingsBack(SettingsPage * /* settingsPage */, PushButton * /* button */) {
     m_instructionText.setMessage(20022);
 
     if (auto *client = SP::RoomClient::Instance()) {

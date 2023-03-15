@@ -16,6 +16,7 @@ class TimeAttackGhostListPage : public Page {
     friend class GhostSelectControl;
     friend class GhostSelectButton;
     friend class TimeAttackModeSelectPage;
+
 public:
     TimeAttackGhostListPage();
     TimeAttackGhostListPage(const TimeAttackGhostListPage &) = delete;
@@ -66,20 +67,21 @@ private:
     CtrlMenuBackButton m_backButton;
 
     // Input handlers
-    H<MultiControlInputManager> m_onBack{ this, &TimeAttackGhostListPage::onBack };
-    H<PushButton> m_onSettingsButtonSelect{ this, &TimeAttackGhostListPage::onSettingsButtonSelect };
-    H<PushButton> m_onSettingsButtonDeselect{ this, &TimeAttackGhostListPage::onSettingsButtonDeselect };
-    H<PushButton> m_onSettingsButtonFront{ this, &TimeAttackGhostListPage::onSettingsButtonFront };
-    H<SheetSelectControl> m_onSheetSelectRight{ this, &TimeAttackGhostListPage::onSheetSelectRight };
-    H<SheetSelectControl> m_onSheetSelectLeft{ this, &TimeAttackGhostListPage::onSheetSelectLeft };
-    H<PushButton> m_onAloneButtonFront{ this, &TimeAttackGhostListPage::onAloneButtonFront };
-    H<PushButton> m_onAloneButtonSelect{ this, &TimeAttackGhostListPage::onAloneButtonSelect };
-    H<PushButton> m_onRaceButtonFront{ this, &TimeAttackGhostListPage::onRaceButtonFront };
-    H<PushButton> m_onRaceButtonSelect{ this, &TimeAttackGhostListPage::onRaceButtonSelect };
-    H<PushButton> m_onWatchButtonFront{ this, &TimeAttackGhostListPage::onWatchButtonFront };
-    H<PushButton> m_onWatchButtonSelect{ this, &TimeAttackGhostListPage::onWatchButtonSelect };
-    H<PushButton> m_onWatchButtonDeselect{ this, &TimeAttackGhostListPage::onWatchButtonDeselect };
-    H<PushButton> m_onBackButtonFront{ this, &TimeAttackGhostListPage::onBackButtonFront };
+    H<MultiControlInputManager> m_onBack{this, &TimeAttackGhostListPage::onBack};
+    H<PushButton> m_onSettingsButtonSelect{this, &TimeAttackGhostListPage::onSettingsButtonSelect};
+    H<PushButton> m_onSettingsButtonDeselect{this,
+            &TimeAttackGhostListPage::onSettingsButtonDeselect};
+    H<PushButton> m_onSettingsButtonFront{this, &TimeAttackGhostListPage::onSettingsButtonFront};
+    H<SheetSelectControl> m_onSheetSelectRight{this, &TimeAttackGhostListPage::onSheetSelectRight};
+    H<SheetSelectControl> m_onSheetSelectLeft{this, &TimeAttackGhostListPage::onSheetSelectLeft};
+    H<PushButton> m_onAloneButtonFront{this, &TimeAttackGhostListPage::onAloneButtonFront};
+    H<PushButton> m_onAloneButtonSelect{this, &TimeAttackGhostListPage::onAloneButtonSelect};
+    H<PushButton> m_onRaceButtonFront{this, &TimeAttackGhostListPage::onRaceButtonFront};
+    H<PushButton> m_onRaceButtonSelect{this, &TimeAttackGhostListPage::onRaceButtonSelect};
+    H<PushButton> m_onWatchButtonFront{this, &TimeAttackGhostListPage::onWatchButtonFront};
+    H<PushButton> m_onWatchButtonSelect{this, &TimeAttackGhostListPage::onWatchButtonSelect};
+    H<PushButton> m_onWatchButtonDeselect{this, &TimeAttackGhostListPage::onWatchButtonDeselect};
+    H<PushButton> m_onBackButtonFront{this, &TimeAttackGhostListPage::onBackButtonFront};
 
     GhostSelectControl *m_shownGhostSelect;
     GhostSelectControl *m_hiddenGhostSelect;

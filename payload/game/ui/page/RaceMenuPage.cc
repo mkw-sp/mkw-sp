@@ -1,8 +1,8 @@
 #include "RaceMenuPage.hh"
 
 #include "game/sound/util/BackgroundMusicManager.hh"
-#include "game/system/SaveManager.hh"
 #include "game/system/RaceConfig.hh"
+#include "game/system/SaveManager.hh"
 #include "game/ui/SectionManager.hh"
 #include "game/ui/SettingsPage.hh"
 
@@ -15,8 +15,7 @@ extern "C" {
 
 namespace UI {
 
-void RaceMenuPage::onButtonFront(PushButton *button,
-        u32 localPlayerId) {
+void RaceMenuPage::onButtonFront(PushButton *button, u32 localPlayerId) {
     auto &raceScenario = System::RaceConfig::Instance()->raceScenario();
     auto &menuScenario = System::RaceConfig::Instance()->menuScenario();
 
@@ -27,10 +26,8 @@ void RaceMenuPage::onButtonFront(PushButton *button,
             menuScenario.mirror = hydro_random_uniform(20) >= 17;
         }
 
-        if (
-            raceScenario.gameMode == System::RaceConfig::GameMode::OfflineVS ||
-            raceScenario.gameMode == System::RaceConfig::GameMode::OfflineBT
-        ) {
+        if (raceScenario.gameMode == System::RaceConfig::GameMode::OfflineVS ||
+                raceScenario.gameMode == System::RaceConfig::GameMode::OfflineBT) {
             onNextButtonFront(button, localPlayerId);
             break;
         } else {
@@ -59,8 +56,7 @@ void RaceMenuPage::onButtonFront(PushButton *button,
     }
 }
 
-void RaceMenuPage::onNextButtonFront(PushButton *button,
-        u32 /* localPlayerId */) {
+void RaceMenuPage::onNextButtonFront(PushButton *button, u32 /* localPlayerId */) {
     System::RaceConfig::Instance()->endRace();
 
     playSound(Sound::SoundId::SE_RC_PAUSE_EXIT_GAME, -1);
@@ -107,8 +103,7 @@ void RaceMenuPage::onNextButtonFront(PushButton *button,
     Sound::BackgroundMusicManager::Instance()->prepare(Section::GetSoundId(sectionId), true);
 }
 
-void RaceMenuPage::onSettingsButtonFront(PushButton *button,
-        u32 /* localPlayerId */) {
+void RaceMenuPage::onSettingsButtonFront(PushButton *button, u32 /* localPlayerId */) {
     auto *section = SectionManager::Instance()->currentSection();
     auto *menuSettingsPage = section->page<PageId::MenuSettings>();
     menuSettingsPage->configure(nullptr, id());
@@ -117,8 +112,7 @@ void RaceMenuPage::onSettingsButtonFront(PushButton *button,
     startReplace(Anim::Next, delay);
 }
 
-void RaceMenuPage::onChangeGhostDataButtonFront(PushButton *button,
-        u32 /* localPlayerId */) {
+void RaceMenuPage::onChangeGhostDataButtonFront(PushButton *button, u32 /* localPlayerId */) {
     playSound(Sound::SoundId::SE_RC_PAUSE_EXIT_GAME, -1);
 
     auto &menuScenario = System::RaceConfig::Instance()->menuScenario();
@@ -126,7 +120,6 @@ void RaceMenuPage::onChangeGhostDataButtonFront(PushButton *button,
     for (u32 i = 1; i < 12; i++) {
         menuScenario.players[i].type = System::RaceConfig::Player::Type::None;
     }
-
 
     f32 delay = button->getDelay();
     changeSection(SectionId::SingleChangeGhostData, Anim::Next, delay);
