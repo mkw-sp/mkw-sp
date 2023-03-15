@@ -1,8 +1,12 @@
+// clang-format off
+//
 // Resources:
 // - https://www.usb.org/sites/default/files/usbmassbulk_10.pdf
 // - https://www.seagate.com/files/staticfiles/support/docs/manual/Interface%20manuals/100293068j.pdf
 // - https://www.downtowndougbrown.com/2018/12/usb-mass-storage-with-embedded-devices-tips-and-quirks/
 // - https://github.com/devkitPro/libogc/blob/master/libogc/usbstorage.c
+//
+// clang-format on
 
 #include "UsbStorage.h"
 
