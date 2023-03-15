@@ -1,9 +1,7 @@
 #include "RoomManager.hh"
 
 #include <egg/core/eggHeap.hh>
-extern "C" {
-#include <game/system/RootScene.h>
-}
+#include <game/system/RootScene.hh>
 #include <game/ui/SectionManager.hh>
 
 #include "sp/cs/RoomClient.hh"
@@ -41,7 +39,7 @@ void RoomManager::OnCreateScene() {
     }
 
     assert(!s_block);
-    auto *heap = reinterpret_cast<EGG::Heap *>(s_rootScene->heapCollection.heaps[HEAP_ID_MEM2]);
+    auto *heap = System::RootScene::Instance()->m_heapCollection.mem2;
     s_block = heap->alloc(size, 0x4);
 }
 
@@ -64,7 +62,7 @@ void RoomManager::OnDestroyScene() {
     }
 
     assert(s_block);
-    auto *heap = reinterpret_cast<EGG::Heap *>(s_rootScene->heapCollection.heaps[HEAP_ID_MEM2]);
+    auto *heap = System::RootScene::Instance()->m_heapCollection.mem2;
     heap->free(s_block);
     s_block = nullptr;
 }

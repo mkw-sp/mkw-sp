@@ -2,8 +2,8 @@
 
 #include "game/system/RaceConfig.hh"
 #include "game/system/ResourceManager.hh"
+#include "game/system/RootScene.hh"
 extern "C" {
-#include "game/system/RootScene.h"
 #include "game/system/SaveManager.h"
 }
 #include "game/ui/SectionManager.hh"
@@ -30,7 +30,7 @@ void SaveManager::RawLicense::reset() {
 }
 
 SaveManager *SaveManager::CreateInstance() {
-    auto *heap = reinterpret_cast<EGG::Heap *>(s_rootScene->heapCollection.heaps[HEAP_ID_MEM1]);
+    auto *heap = RootScene::Instance()->m_heapCollection.mem1;
 
     s_instance = new (heap, 0x4) SaveManager;
     assert(s_instance);

@@ -1,8 +1,6 @@
 #include "RaceManager.hh"
 
-extern "C" {
-#include <game/system/RootScene.h>
-}
+#include <game/system/RootScene.hh>
 #include <game/ui/SectionManager.hh>
 
 #include "sp/cs/RaceClient.hh"
@@ -28,7 +26,7 @@ void RaceManager::OnCreateScene() {
     }
 
     assert(!s_block);
-    auto *heap = reinterpret_cast<EGG::Heap *>(s_rootScene->heapCollection.heaps[HEAP_ID_MEM2]);
+    auto *heap = System::RootScene::Instance()->m_heapCollection.mem2;
     s_block = heap->alloc(sizeof(RaceClient), 0x4);
     RaceClient::CreateInstance();
 }
@@ -52,7 +50,7 @@ void RaceManager::OnDestroyScene() {
     }
 
     assert(s_block);
-    auto *heap = reinterpret_cast<EGG::Heap *>(s_rootScene->heapCollection.heaps[HEAP_ID_MEM2]);
+    auto *heap = System::RootScene::Instance()->m_heapCollection.mem2;
     heap->free(s_block);
     s_block = nullptr;
 }

@@ -3,7 +3,7 @@
 #include "game/host_system/Scene.hh"
 #include "game/system/MultiDvdArchive.hh"
 
-#include <egg/core/eggHeap.hh>
+#include <egg/core/eggExpHeap.hh>
 
 namespace System {
 
@@ -29,7 +29,7 @@ public:
     private:
         u8 _00[0x10 - 0x00];
         void *m_buffer;
-        EGG::Heap *m_heap;
+        EGG::ExpHeap *m_heap;
         u32 m_course;
         State m_state;
         MultiDvdArchive *m_archive;

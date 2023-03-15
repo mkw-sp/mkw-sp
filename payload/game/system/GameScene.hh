@@ -28,10 +28,18 @@ public:
     virtual void vf_58();
     virtual void vf_5c();
 
+    static GameScene* Instance();
 private:
     void REPLACED(setFramerate)(bool is_30);
     REPLACE void setFramerate(bool is_30);
-    u8 _0c70[0x2534 - 0x0c70];
+
+    u8 _0c70[0x0c94 - 0x0c70];
+
+public:
+    HeapCollection volatileHeapCollection;
+
+private:
+    u8 _18a0[0x2534 - 0x18a0];
 
 protected:
     u32 m_time;

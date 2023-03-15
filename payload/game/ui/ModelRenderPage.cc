@@ -1,8 +1,6 @@
 #include "ModelRenderPage.hh"
 
-extern "C" {
-#include "game/system/GameScene.h"
-}
+#include "game/system/GameScene.hh"
 #include "game/system/ResourceManager.hh"
 #include "game/ui/SectionManager.hh"
 #include "game/ui/model/MenuModelManager.hh"
@@ -30,11 +28,14 @@ void ModelRenderPage::onInit() {
 
     auto sectionId = SectionManager::Instance()->currentSection()->id();
     m_modelCount = determineModelCount(sectionId);
-    auto *gameScene = GameScene_get();
-    HeapCollection_setGroupIdAll(&gameScene->volatileHeapCollection, 3);
+
+    auto *gameScene = System::GameScene::Instance();
+    gameScene->volatileHeapCollection.setGroupIdAll(3);
+
     System::ResourceManager::Instance()->createMenuHeaps(m_modelCount, 0);
     MenuModelManager::Instance()->init(m_modelCount, &onDriverModelLoaded);
-    HeapCollection_setGroupIdAll(&gameScene->volatileHeapCollection, 6);
+
+    gameScene->volatileHeapCollection.setGroupIdAll(6);
 
     m_inputManager.init(0, false);
     setInputManager(&m_inputManager);

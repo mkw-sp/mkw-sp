@@ -1,8 +1,6 @@
 #include "ChannelPage.hh"
 
-extern "C" {
-#include "game/system/GameScene.h"
-}
+#include "game/system/GameScene.hh"
 #include "game/ui/AwaitPage.hh"
 #include "game/ui/ConfirmPage.hh"
 #include "game/ui/MessagePage.hh"
@@ -32,8 +30,8 @@ void ChannelPage::onInit() {
     setAnimSfxIds(0, 0);
 
     if (versionInfo.type == BUILD_TYPE_RELEASE) {
-        EGG_Heap *heap = GameScene_get()->volatileHeapCollection.heaps[HEAP_ID_MEM2];
-        SP::Channel::Load(reinterpret_cast<EGG::Heap *>(heap));
+        auto *heap = System::GameScene::Instance()->volatileHeapCollection.mem2;
+        SP::Channel::Load(heap);
     }
 }
 
