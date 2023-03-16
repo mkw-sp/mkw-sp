@@ -1,7 +1,7 @@
 #include "AwardPage.hh"
 
-#include "game/ui/SectionManager.hh"
 #include "game/system/RaceConfig.hh"
+#include "game/ui/SectionManager.hh"
 extern "C" {
 #include "game/kart/KartObjectManager.h" // speedModIsEnabled
 }
@@ -65,7 +65,7 @@ void AwardPage::initType() {
     auto currentSectionId = SectionManager::Instance()->currentSection()->id();
 
     u32 messageId;
-    const char * srcPane;
+    const char *srcPane;
     MessageInfo cupInfo = {};
 
     if (currentSectionId == SectionId::AwardsGP || currentSectionId == SectionId::AwardsVS) {
@@ -104,7 +104,8 @@ void AwardPage::initType() {
             srcPane = "icon_10_coin";
         }
     } else {
-        panic("Unknown section 0x%X, please report to MKW-SP devs!", static_cast<s32>(currentSectionId));
+        panic("Unknown section 0x%X, please report to MKW-SP devs!",
+                static_cast<s32>(currentSectionId));
     }
 
     m_cupDisplay.setPicture("cup_icon", srcPane);

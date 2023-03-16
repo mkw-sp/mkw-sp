@@ -1,11 +1,11 @@
 #pragma once
 
-#include "game/ui/Page.hh"
 #include "game/ui/GlobalContext.hh"
+#include "game/ui/Page.hh"
 
 namespace UI {
 
-class DemoPage: public Page {
+class DemoPage : public Page {
 private:
     REPLACE void onInit() override;
 
@@ -16,4 +16,4 @@ private:
 
 static_assert(sizeof(DemoPage) == 0x33c);
 
-}
+} // namespace UI

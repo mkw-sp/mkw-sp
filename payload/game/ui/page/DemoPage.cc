@@ -1,8 +1,8 @@
 #include "DemoPage.hh"
 
+#include "game/system/RaceConfig.hh"
 #include "game/ui/ControlLoader.hh"
 #include "game/ui/SectionManager.hh"
-#include "game/system/RaceConfig.hh"
 extern "C" {
 #include "game/kart/KartObjectManager.h"
 }
@@ -17,8 +17,8 @@ void DemoPage::onInit() {
     auto globalContext = sectionManager->globalContext();
     auto raceConfig = System::RaceConfig::Instance();
 
-    auto& menuScenario = raceConfig->menuScenario();
-    auto& raceScenario = raceConfig->raceScenario();
+    auto &menuScenario = raceConfig->menuScenario();
+    auto &raceScenario = raceConfig->raceScenario();
     auto currentSectionId = sectionManager->currentSection()->id();
 
     auto childCount = 2;
@@ -86,4 +86,4 @@ void DemoPage::onInit() {
     m_cupDisplay.setMessageAll(cupMsgId, &cupInfo);
 }
 
-}
+} // namespace UI

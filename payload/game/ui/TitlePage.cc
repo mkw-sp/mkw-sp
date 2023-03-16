@@ -37,4 +37,4 @@ void TitlePage::onActivate() {
     push(PageId::MessagePopup, Anim::None);
 }
 
-}
+} // namespace UI

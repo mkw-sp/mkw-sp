@@ -4,7 +4,7 @@
 
 namespace UI {
 
-class TitlePage: public Page {
+class TitlePage : public Page {
 private:
     void REPLACED(onInit)();
     void REPLACED(onActivate)();
@@ -21,4 +21,4 @@ private:
 
 static_assert(sizeof(TitlePage) == 0x350);
 
-}
+} // namespace UI
