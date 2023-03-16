@@ -1,6 +1,6 @@
 #include <Common.S>
 
-.section first
+.section first,"ax",@progbits
 .global start
 start:
     // Initialize the stack pointer
