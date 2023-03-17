@@ -5,12 +5,13 @@
 namespace UI {
 
 class TitlePage : public Page {
-private:
+public:
     void REPLACED(onInit)();
     void REPLACED(onActivate)();
     REPLACE void onInit() override;
     REPLACE void onActivate() override;
 
+private:
     u8 _44[0x53 - 0x44];
     bool m_geckoWarningShown; // Was padding
     u8 _54[0x348 - 0x54];

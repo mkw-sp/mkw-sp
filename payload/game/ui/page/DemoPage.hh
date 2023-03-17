@@ -6,9 +6,10 @@
 namespace UI {
 
 class DemoPage : public Page {
-private:
+public:
     REPLACE void onInit() override;
 
+private:
     LayoutUIControl m_courseDisplay;
     LayoutUIControl m_cupDisplay;
     MenuInputManager m_inputManager;
