@@ -64,9 +64,9 @@ void AwardPage::initType() {
     auto awardsScenario = System::RaceConfig::Instance()->awardsScenario();
     auto currentSectionId = SectionManager::Instance()->currentSection()->id();
 
-    u32 messageId;
-    const char *srcPane;
+    u32 messageId = 9999;
     MessageInfo cupInfo = {};
+    const char *srcPane = nullptr;
 
     if (currentSectionId == SectionId::AwardsGP || currentSectionId == SectionId::AwardsVS) {
         switch (awardsScenario.engineClass) {
