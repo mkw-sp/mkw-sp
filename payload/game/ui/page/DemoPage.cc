@@ -1,7 +1,6 @@
 #include "DemoPage.hh"
 
 #include "game/system/RaceConfig.hh"
-#include "game/ui/ControlLoader.hh"
 #include "game/ui/SectionManager.hh"
 extern "C" {
 #include "game/kart/KartObjectManager.h"
@@ -30,11 +29,8 @@ void DemoPage::onInit() {
     insertChild(0, &m_courseDisplay, 0);
     insertChild(1, &m_cupDisplay, 0);
 
-    ControlLoader courseDisplayLoader(&m_courseDisplay);
-    ControlLoader cupDisplayLoader(&m_cupDisplay);
-
     m_courseDisplay.load("demo", "course_name", "course_name", 0);
-    cupDisplayLoader.load("demo", "cup_name", "cup_name", 0);
+    m_cupDisplay.load("demo", "cup_name", "cup_name", 0);
 
     auto courseId = menuScenario.courseId;
     auto cupId = Registry::GetCourseCupId(courseId);
