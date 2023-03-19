@@ -1,5 +1,6 @@
 #include "Section.hh"
 
+#include "game/ui/AwaitPage.hh"
 #include "game/ui/AwardPage.hh"
 #include "game/ui/ChannelPage.hh"
 #include "game/ui/CourseSelectPage.hh"
@@ -31,6 +32,8 @@
 #include "game/ui/VotingBackPage.hh"
 #include "game/ui/page/BattleModeSelectPage.hh"
 #include "game/ui/page/DriftSelectPage.hh"
+#include "game/ui/page/OnlineFriendListPage.hh"
+#include "game/ui/page/OnlineFriendMenuPage.hh"
 #include "game/ui/page/ResultTeamTotalPage.hh"
 
 namespace UI {
@@ -145,32 +148,6 @@ void Section::addPage(PageId pageId) {
             {SectionId::Multi, PageId::BattleCupSelect},
             {SectionId::Multi, PageId::BattleCourseSelect},
 
-            {SectionId::OnlineSingle, PageId::WifiFriendMenu},
-
-            {SectionId::OnlineMulti, PageId::ConfirmWifiQuit},
-            {SectionId::OnlineMulti, PageId::ReadingGhostData},
-            {SectionId::OnlineMulti, PageId::ConnectingNintendoWfc},
-            {SectionId::OnlineMulti, PageId::Confirm},
-            {SectionId::OnlineMulti, PageId::CharacterSelect},
-            {SectionId::OnlineMulti, PageId::BattleVehicleSelect},
-            {SectionId::OnlineMulti, PageId::ModelRender},
-            {SectionId::OnlineMulti, PageId::MultiVehicleSelect},
-            {SectionId::OnlineMulti, PageId::MultiDriftSelect},
-            {SectionId::OnlineMulti, PageId::WifiFirstPlay},
-            {SectionId::OnlineMulti, PageId::WifiDataConsent},
-            {SectionId::OnlineMulti, PageId::WifiDisconnect},
-            {SectionId::OnlineMulti, PageId::WifiConnectionFailed},
-            {SectionId::OnlineMulti, PageId::OnlineModeSelect},
-            {SectionId::OnlineMulti, PageId::WifiFriendMenu},
-            {SectionId::OnlineMulti, PageId::WifiFriendRoster},
-            {SectionId::OnlineMulti, PageId::WifiNoFriendsPopup},
-            {SectionId::OnlineMulti, PageId::WifiFriendRemoveConfirm},
-            {SectionId::OnlineMulti, PageId::WifiFriendRemoving},
-            {SectionId::OnlineMulti, PageId::UnknownA5},
-            {SectionId::OnlineMulti, PageId::EnterFriendCode},
-            {SectionId::OnlineMulti, PageId::GhostManager},
-
-            {SectionId::Voting1PVS, PageId::ConnectingNintendoWfc},
             {SectionId::Voting1PVS, PageId::MenuMessage},
             {SectionId::Voting1PVS, PageId::RaceCourseSelect},
             {SectionId::Voting1PVS, PageId::OnlineConnectionManager},
@@ -315,7 +292,7 @@ void Section::addPages(SectionId id) {
             {SectionId::SingleSelectBTCourse, PageId::GhostManager},
 
             // Change Ghost Data
-            {SectionId::SingleChangeGhostData, PageId::ReadingGhostData},
+            {SectionId::SingleChangeGhostData, PageId::MenuAwait},
             {SectionId::SingleChangeGhostData, PageId::MenuMessage},
             {SectionId::SingleChangeGhostData, PageId::MessageBoardPopup},
             {SectionId::SingleChangeGhostData, PageId::SingleTop},
@@ -412,6 +389,10 @@ Page *Section::CreatePage(PageId pageId) {
         return new OnlineTopPage;
     case PageId::OnlineModeSelect:
         return new OnlineModeSelectPage;
+    case PageId::OnlineFriendMenu:
+        return new OnlineFriendMenuPage;
+    case PageId::OnlineFriendList:
+        return new OnlineFriendListPage;
     case PageId::RandomMatching:
         return new RandomMatchingPage;
     case PageId::VotingBack:
@@ -434,6 +415,8 @@ Page *Section::CreatePage(PageId pageId) {
         return new StorageBenchmarkPage;
     case PageId::ServicePackTools:
         return new ServicePackToolsPage;
+    case PageId::SPMenuAwait:
+        return new SPAwaitPage;
     case PageId::GhostManager:
         return new GhostManagerPage;
     case PageId::Channel:

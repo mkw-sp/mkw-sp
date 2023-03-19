@@ -1,6 +1,7 @@
 #include "Page.hh"
 
 #include "game/system/SaveManager.hh"
+#include "game/ui/page/OnlineFriendRegisterPage.hh"
 
 namespace UI {
 
@@ -11,6 +12,18 @@ void Page::dt(s32 type) {
         delete this;
     } else {
         this->~Page();
+    }
+}
+
+// HACK(GnomedDev): This is absolutely horrid, but avoids
+// having to either patch the vtable in a worse way or
+// entirely reimplementing the page.
+PageId Page::getReplacement() {
+    if (m_id == PageId::EnterFriendCode) {
+        auto *page = reinterpret_cast<OnlineFriendRegisterPage *>(this);
+        return page->replacedGetReplacement();
+    } else {
+        return REPLACED(getReplacement)();
     }
 }
 

@@ -1,95 +1,6 @@
 {
   "db": "PostgreSQL",
-  "3be1a86be8d3af3f574fdcfa4e5a18e13b5e7e970478c5b8035fcfef98fe6d4b": {
-    "describe": {
-      "columns": [
-        {
-          "name": "device_id",
-          "ordinal": 0,
-          "type_info": "Int4"
-        },
-        {
-          "name": "licence_id",
-          "ordinal": 1,
-          "type_info": "Int2"
-        },
-        {
-          "name": "friend_suffix",
-          "ordinal": 2,
-          "type_info": "Int2"
-        },
-        {
-          "name": "mii",
-          "ordinal": 3,
-          "type_info": "Bytea"
-        },
-        {
-          "name": "location",
-          "ordinal": 4,
-          "type_info": "Int4"
-        },
-        {
-          "name": "latitude",
-          "ordinal": 5,
-          "type_info": "Int4"
-        },
-        {
-          "name": "longitude",
-          "ordinal": 6,
-          "type_info": "Int4"
-        }
-      ],
-      "nullable": [
-        false,
-        false,
-        false,
-        false,
-        false,
-        false,
-        false
-      ],
-      "parameters": {
-        "Left": [
-          "Int4",
-          "Int2"
-        ]
-      }
-    },
-    "query": "SELECT device_id, licence_id, friend_suffix, mii, location, latitude, longitude FROM users WHERE device_id = $1 AND licence_id = $2"
-  },
-  "c7620dcde5b119a7661c30a85cf2ae05d148fbe28d51e18c7ab15681a07f9a57": {
-    "describe": {
-      "columns": [
-        {
-          "name": "vs_rating",
-          "ordinal": 0,
-          "type_info": "Int4"
-        },
-        {
-          "name": "bt_rating",
-          "ordinal": 1,
-          "type_info": "Int4"
-        }
-      ],
-      "nullable": [
-        false,
-        false
-      ],
-      "parameters": {
-        "Left": [
-          "Int4",
-          "Int2",
-          "Bytea",
-          "Int2",
-          "Int4",
-          "Int4",
-          "Int4"
-        ]
-      }
-    },
-    "query": "\n            INSERT INTO\n                users(device_id, licence_id, mii, friend_suffix, location, latitude, longitude)\n            VALUES\n                ($1, $2, $3, $4, $5, $6, $7)\n            ON CONFLICT (device_id, licence_id) DO UPDATE SET\n                mii = $3,\n                location = $5,\n                latitude = $6,\n                longitude = $7\n            RETURNING vs_rating, bt_rating\n        "
-  },
-  "f1d76a01b8be0ce140b873ec8ce84ff9eadf1a908febe05c7ba6efa3db517e3f": {
+  "06c7a3a452867fdfd04857d6951839543411a424fb8cf7f3661ca3e6e63b5aef": {
     "describe": {
       "columns": [
         {
@@ -114,6 +25,162 @@
         ]
       }
     },
-    "query": "SELECT friendee_device_id, friendee_licence_id FROM friendships\n        WHERE friender_device_id = $1 AND friender_licence_id = $2"
+    "query": "SELECT friendee_device_id, friendee_licence_id FROM friendships\n            WHERE friender_device_id = $1 AND friender_licence_id = $2"
+  },
+  "2576d5d91c4d07ca7470693db4f53998858fc5640496286d83f366f7ecec110f": {
+    "describe": {
+      "columns": [],
+      "nullable": [],
+      "parameters": {
+        "Left": [
+          "Int4",
+          "Int2",
+          "Int4",
+          "Int2"
+        ]
+      }
+    },
+    "query": "\n                                INSERT INTO friendships (\n                                    friender_device_id, friender_licence_id,\n                                    friendee_device_id, friendee_licence_id\n                                ) VALUES ($1, $2, $3, $4)\n                            "
+  },
+  "2c20127a37b1228fee57abf480e881fe14b91fa98bb1e6424533ce85fb04cf07": {
+    "describe": {
+      "columns": [
+        {
+          "name": "vs_rating",
+          "ordinal": 0,
+          "type_info": "Int4"
+        },
+        {
+          "name": "bt_rating",
+          "ordinal": 1,
+          "type_info": "Int4"
+        }
+      ],
+      "nullable": [
+        false,
+        false
+      ],
+      "parameters": {
+        "Left": [
+          "Int4",
+          "Int2",
+          "Bytea",
+          "Int4",
+          "Int4",
+          "Int4"
+        ]
+      }
+    },
+    "query": "\n            INSERT INTO\n                users(device_id, licence_id, mii, location, latitude, longitude)\n            VALUES\n                ($1, $2, $3, $4, $5, $6)\n            ON CONFLICT (device_id, licence_id) DO UPDATE SET\n                mii = $3,\n                location = $4,\n                latitude = $5,\n                longitude = $6\n            RETURNING vs_rating, bt_rating\n        "
+  },
+  "7d01edbd7971ac821e3a586b5d88ff95dde3968ae164cac5b091ab4dc8243745": {
+    "describe": {
+      "columns": [
+        {
+          "name": "accepts_friends",
+          "ordinal": 0,
+          "type_info": "Bool"
+        }
+      ],
+      "nullable": [
+        false
+      ],
+      "parameters": {
+        "Left": [
+          "Int4",
+          "Int2"
+        ]
+      }
+    },
+    "query": "SELECT accepts_friends FROM users WHERE device_id = $1 AND licence_id = $2"
+  },
+  "c6af55744b2d380db985469c623c8a7a5852f4caf5e267c97d475e1a9cf8b951": {
+    "describe": {
+      "columns": [],
+      "nullable": [],
+      "parameters": {
+        "Left": [
+          "Int4",
+          "Int2",
+          "Int4",
+          "Int2"
+        ]
+      }
+    },
+    "query": "DELETE FROM friendships WHERE\n                            friender_device_id = $1 AND friender_licence_id = $2 AND\n                            friendee_device_id = $3 AND friendee_licence_id = $4"
+  },
+  "d6fed6fa44a7dbc681a7f1343972042afe1d45c5044d0fe03c6ee8f7623d3d51": {
+    "describe": {
+      "columns": [
+        {
+          "name": "device_id",
+          "ordinal": 0,
+          "type_info": "Int4"
+        },
+        {
+          "name": "licence_id",
+          "ordinal": 1,
+          "type_info": "Int2"
+        },
+        {
+          "name": "mii",
+          "ordinal": 2,
+          "type_info": "Bytea"
+        },
+        {
+          "name": "location",
+          "ordinal": 3,
+          "type_info": "Int4"
+        },
+        {
+          "name": "latitude",
+          "ordinal": 4,
+          "type_info": "Int4"
+        },
+        {
+          "name": "longitude",
+          "ordinal": 5,
+          "type_info": "Int4"
+        }
+      ],
+      "nullable": [
+        false,
+        false,
+        false,
+        false,
+        false,
+        false
+      ],
+      "parameters": {
+        "Left": [
+          "Int4",
+          "Int2"
+        ]
+      }
+    },
+    "query": "SELECT device_id, licence_id, mii, location, latitude, longitude FROM users WHERE device_id = $1 AND licence_id = $2"
+  },
+  "df53d6ec01b060639b075aa064195d6c1655ed169d9e9b6afa84bae9a231d9f0": {
+    "describe": {
+      "columns": [
+        {
+          "name": "exists",
+          "ordinal": 0,
+          "type_info": "Bool"
+        }
+      ],
+      "nullable": [
+        null
+      ],
+      "parameters": {
+        "Left": [
+          "Int4",
+          "Int2",
+          "Int4",
+          "Int2"
+        ]
+      }
+    },
+    "query": "SELECT exists(\n                    SELECT 1 FROM friendships WHERE\n                    friender_device_id = $1 AND friender_licence_id = $2 AND\n                    friendee_device_id = $3 AND friendee_licence_id = $4\n                ) as exists"
   }
 }

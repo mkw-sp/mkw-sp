@@ -84,8 +84,8 @@ enum class PageId {
     SpinnerMessagePopup = 0x4C,
     MessagePopup = 0x4D,
     YesNoPopup = 0x4E,
-    ReadingGhostData = 0x4F,
-    ConnectingNintendoWfc = 0x50,
+    MenuAwait = 0x4F,
+    SPMenuAwait = 0x50, // Replaces ConnectingToWfc
     MenuMessage = 0x51,
     Confirm = 0x52,
     MessageBoardPopup = 0x53,
@@ -150,7 +150,7 @@ enum class PageId {
     WifiMultiConfirm = 0x8A,
     OnlineTop = 0x8B,        // Replaces WifiTop
     OnlineModeSelect = 0x8C, // Replaces OnlineModeSelect
-    WifiFriendMenu = 0x8D,
+    OnlineFriendMenu = 0x8D,
     OnlineTeamSelect = 0x8E, // Replaces MkChannelFriendMenu
     RandomMatching = 0x8F,   // Replaces Global Search Manager
     VotingBack = 0x90,       // Replaces CountDownTimer
@@ -159,13 +159,13 @@ enum class PageId {
     Unknown93 = 0x93, // "Present in live view?"
     Unknown94 = 0x94, // "Present in online race?"
     Globe = 0x95,
-    WifiFriendRoster = 0x96,
-    WifiNoFriendsPopup = 0x97,
+    OnlineFriendList = 0x96,
+    WifiFriendFocused = 0x97,
     WifiFriendRemoveConfirm = 0x98,
-    WifiFriendRemoving = 0x99,
-    FriendRoomRules = 0x9A, // Replaces FriendJoin
-    FriendMatching = 0x9B,  // Replaces "waiting" text
-    FriendRoomBack = 0x9C,  // Replaces Friend Room Manager
+    WifiFriendRemoving = 0x99, // Unused
+    FriendRoomRules = 0x9A,    // Replaces FriendJoin
+    FriendMatching = 0x9B,     // Replaces "waiting" text
+    FriendRoomBack = 0x9C,     // Replaces Friend Room Manager
     FriendRoom = 0x9D,
     FriendRoomMessageSelect = 0x9E,
 

@@ -35,6 +35,14 @@
     "4313": {
         string: "Connect directly to a hosted Gameserver.",
     },
+    // 5301 - 5350 are used for WFC friend roster
+    "5301": {
+        string: "I'm not on MKW-SP Online...",
+    },
+    "5302": {
+        string: "I'm on MKW-SP Online now!",
+    },
+    // End of WFC Friend roster
     "10004": {
         string: "HUD Labels",
     },
@@ -1229,6 +1237,9 @@
     "20046": {
         string: "This feature is currently under development.\nCheck back in a future update!",
     },
+    "20047": {
+        string: "Waiting for friend request response...",
+    },
     "30000": {
         string: "Your connection to the central server has been lost.",
     },
@@ -1244,4 +1255,13 @@
     "30004": {
         string: "Your connection to the game server has failed.\n\nReason: Missing RoomClient?",
     },
+    "30005": {
+        string: "Successfully added friend!"
+    },
+    "30006": {
+        string: "Invalid friend code!\n\nThis is either a typo,\n or this user does not exist.",
+    },
+    "30007": {
+        string: "Invalid friend code!\n\nThis is either a typo,\n or this user is not accepting friends.",
+    }
 }

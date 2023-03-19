@@ -119,7 +119,7 @@ void FriendRoomBackPage::afterCalc() {
         u16 longitude = join->longitude;
         m_longitudes[m_indices[m_playerCount]] = longitude;
         auto &callback = m_players[m_indices[m_playerCount]].callback();
-        globePage->requestComment(mii, latitude, longitude, location, 4499, 0, nullptr, callback);
+        globePage->requestComment(mii, latitude, longitude, location, 4499, 0, nullptr, &callback);
         m_globePlayerId = m_playerCount;
         m_playerCount++;
         m_timer = 90;
@@ -151,7 +151,7 @@ void FriendRoomBackPage::afterCalc() {
         u32 messageId = comment->messageId + 4500;
         auto &callback = m_players[m_indices[comment->playerId]].callback();
         globePage->requestComment(mii, latitude, longitude, location, messageId, 0, nullptr,
-                callback);
+                &callback);
         m_globePlayerId = comment->playerId;
         m_timer = 90;
     } else if (const auto *settings = std::get_if<Settings>(entry)) {
@@ -163,7 +163,7 @@ void FriendRoomBackPage::afterCalc() {
         u16 latitude = m_latitudes[m_indices[0]];
         u16 longitude = m_longitudes[m_indices[0]];
         auto &callback = m_players[m_indices[0]].callback();
-        globePage->requestComment(mii, latitude, longitude, location, 20025, 2, nullptr, callback);
+        globePage->requestComment(mii, latitude, longitude, location, 20025, 2, nullptr, &callback);
         m_globePlayerId = 0;
         m_timer = 90;
     } else if (const auto *start = std::get_if<Start>(entry)) {
@@ -174,7 +174,7 @@ void FriendRoomBackPage::afterCalc() {
         u32 messageId = start->messageId + 4110;
         auto &callback = m_players[m_indices[0]].callback();
         globePage->requestComment(mii, latitude, longitude, location, messageId, 2, nullptr,
-                callback);
+                &callback);
         m_globePlayerId = 0;
         m_timer = 90;
         m_roomStarted = true;

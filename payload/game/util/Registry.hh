@@ -114,4 +114,7 @@ REPLACE const char *GetItemPane(u32 itemId, u32 count);
 int REPLACED(WifiErrorExplain)(u32 error_code);
 REPLACE u32 WifiErrorExplain(u32 error_code);
 
+u64 REPLACED(GetFriendCode)();
+REPLACE u64 GetFriendCode();
+
 } // namespace Registry

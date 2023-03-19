@@ -41,7 +41,11 @@ public:
 
 private:
     u8 _044[0x270 - 0x044];
+
+public:
     u32 m_choice;
+
+private:
     u8 _274[0x27c - 0x274];
     u32 m_defaultChoice;
     u8 _280[0x8b4 - 0x280];

@@ -115,8 +115,9 @@ void OnlineTopPage::onTrackpackButtonFront(PushButton * /* button */, u32 /* loc
     showUnimplemented();
 }
 
-void OnlineTopPage::onFriendButtonFront(PushButton * /* button */, u32 /* localPlayerId */) {
-    showUnimplemented();
+void OnlineTopPage::onFriendButtonFront(PushButton *button, [[maybe_unused]] u32 localPlayerId) {
+    m_replacement = PageId::OnlineFriendMenu;
+    startReplace(Anim::Next, button->getDelay());
 }
 
 void OnlineTopPage::onDirectButtonFront(PushButton * /* button */, u32 /* localPlayerId */) {

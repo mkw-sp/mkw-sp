@@ -32,7 +32,8 @@ public:
     virtual ~Page();
     virtual void dt(s32 type);
     virtual void vf_0c();
-    virtual PageId getReplacement();
+    PageId REPLACED(getReplacement)();
+    REPLACE virtual PageId getReplacement();
     virtual void vf_14();
     virtual void vf_18();
     virtual void changeSection(SectionId id, Anim anim, f32 delay);

@@ -50,9 +50,10 @@ public:
     f32 m_height;
     Mtx34 m_localMtx;
     Mtx34 m_globalMtx;
+    u8 flags;
 
 private:
-    u8 _b4[0xb8 - 0xb4];
+    u8 _b5[0xb8 - 0xb5];
 
 public:
     u8 m_alpha;

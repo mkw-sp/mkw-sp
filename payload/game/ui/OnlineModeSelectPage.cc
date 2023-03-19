@@ -54,8 +54,6 @@ void OnlineModeSelectPage::onInit() {
 
 // Replacement needed to hook to up OnlineConnectionManager
 void OnlineModeSelectPage::onActivate() {
-    SP_LOG("OnlineModeSelectPage::onActivate");
-
     auto section = SectionManager::Instance()->currentSection();
     auto connectionManager = section->page<PageId::OnlineConnectionManager>();
 

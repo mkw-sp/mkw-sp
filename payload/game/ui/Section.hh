@@ -26,6 +26,7 @@ class MissionInstructionPage;
 class ModelPage;
 class ModelRenderPage;
 class OnlineConnectionManagerPage;
+class OnlineFriendListPage;
 class OnlineModeSelectPage;
 class OnlineTeamSelectPage;
 class OptionExplanationPage;
@@ -33,6 +34,7 @@ class OptionSelectPage;
 class RaceConfirmPage;
 class RoulettePage;
 class SettingsPagePopup;
+class SPAwaitPage;
 class TeamConfirmPage;
 class TimeAttackGhostListPage;
 class VotingBackPage;
@@ -91,7 +93,8 @@ private:
     u32 m_activePageCount;
     u8 _380[0x390 - 0x380];
     nw4r::lyt::DrawInfo m_drawInfo;
-    u8 _3e4[0x408 - 0x3e4];
+    u8 _3e4[0x404 - 0x3e4];
+    u32 _404; // Unused and free to overwrite, was FriendListManager.
 };
 static_assert(sizeof(Section) == 0x408);
 
@@ -258,6 +261,16 @@ struct Section::PageIdHelper<PageId::BattleModeSelect> {
 template <>
 struct Section::PageIdHelper<PageId::OnlineModeSelect> {
     using type = OnlineModeSelectPage;
+};
+
+template <>
+struct Section::PageIdHelper<PageId::OnlineFriendList> {
+    using type = OnlineFriendListPage;
+};
+
+template <>
+struct Section::PageIdHelper<PageId::SPMenuAwait> {
+    using type = SPAwaitPage;
 };
 
 } // namespace UI

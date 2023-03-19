@@ -2,9 +2,12 @@
 
 #include "game/system/RaceConfig.hh"
 #include "game/system/SaveManager.hh"
+#include "game/ui/AwaitPage.hh"
 #include "game/ui/GlobalContext.hh"
+#include "game/ui/MessagePage.hh"
 #include "game/ui/OnlineModeSelectPage.hh"
 #include "game/ui/SectionManager.hh"
+#include "game/ui/page/OnlineFriendListPage.hh"
 
 #include <protobuf/Matchmaking.pb.h>
 #include <sp/cs/RoomClient.hh>
@@ -49,28 +52,34 @@ void OnlineConnectionManagerPage::afterCalc() {
             return;
         }
 
-        SP_LOG("OnlineConnectionManagerPage: Got login challenge");
+        SP_LOG("Got login challenge");
         return respondToChallenge(*event);
     case State::WaitForLoginResponse:
         if (!read(event) || !event) {
             return;
         }
 
-        return setupRatings(*event);
-    case State::WaitForSearchStart:
-        if (!m_searchStarted) {
-            return;
+        return handleLoginResponse(*event);
+    case State::Idle:
+        if (m_searchStarted) {
+            SP_LOG("Sending search message");
+            sendSearchMessage();
         }
 
-        SP_LOG("OnlineConnectionManagerPage: Sending search message");
-        return sendSearchMessage();
-    case State::WaitForSearchResponse:
         if (!read(event) || !event) {
             return;
         }
 
-        SP_LOG("OnlineConnectionManagerPage: Got search response");
-        return setupMatch(*event);
+        if (event->which_message == STCMessage_friends_list_tag) {
+            SP_LOG("Got friends list");
+            return handleFriendsList(event->message.friends_list);
+        } else if (event->which_message == STCMessage_found_match_tag) {
+            SP_LOG("Got search response");
+            return setupMatch(*event);
+        } else if (event->which_message == STCMessage_friend_result_tag) {
+            SP_LOG("Got friend request response");
+            return handleFriendRequestResponse(*event);
+        }
     case State::FoundMatch:
         return;
     }
@@ -79,7 +88,7 @@ void OnlineConnectionManagerPage::afterCalc() {
 std::optional<STCMessage_FoundMatch> OnlineConnectionManagerPage::takeMatchResponse() {
     auto response = m_matchResponse;
     if (response.has_value()) {
-        m_state = State::WaitForSearchStart;
+        m_state = State::Idle;
         m_searchStarted = false;
     }
 
@@ -88,14 +97,9 @@ std::optional<STCMessage_FoundMatch> OnlineConnectionManagerPage::takeMatchRespo
 }
 
 void OnlineConnectionManagerPage::startLogin() {
+    auto deviceId = GetDeviceId();
+
     CTSMessage response;
-
-    u32 deviceId;
-    s32 deviceIdRes = ESP_GetDeviceId(&deviceId);
-    if (deviceIdRes != 0) {
-        panic("Failed to get device id: %d", deviceIdRes);
-    }
-
     response.which_message = CTSMessage_login_tag;
     if (deviceId == DOLPHIN_DEFAULT_DEVICE_ID) {
         response.message.login.has_client_id = false;
@@ -142,8 +146,8 @@ void OnlineConnectionManagerPage::respondToChallenge(const STCMessage & /* event
     write(response);
 }
 
-void OnlineConnectionManagerPage::setupRatings(const STCMessage &event) {
-    SP_LOG("OnlineConnectionManagerPage: Got login response");
+void OnlineConnectionManagerPage::handleLoginResponse(const STCMessage &event) {
+    SP_LOG("Got login response");
 
     if (event.which_message == STCMessage_response_tag) {
         auto section = SectionManager::Instance()->currentSection();
@@ -154,7 +158,28 @@ void OnlineConnectionManagerPage::setupRatings(const STCMessage &event) {
         modeSelectPage->setRatings(*m_vs_rating, *m_bt_rating);
     }
 
-    m_state = State::WaitForSearchStart;
+    m_state = State::Idle;
+}
+
+void OnlineConnectionManagerPage::handleFriendsList(const STCMessage_UpdateFriendsList &event) {
+    auto section = SectionManager::Instance()->currentSection();
+    auto friendListPage = section->page<PageId::OnlineFriendList>();
+
+    m_friends.reset();
+    for (u8 i = 0; i < event.friends_count; i += 1) {
+        auto &friendInfo = event.friends[i];
+        m_friends.push_back(std::move(friendInfo));
+    }
+
+    friendListPage->refresh();
+}
+
+void OnlineConnectionManagerPage::handleFriendRequestResponse(const STCMessage &event) {
+    auto section = SectionManager::Instance()->currentSection();
+    auto spinnerPage = section->page<PageId::SPMenuAwait>();
+
+    spinnerPage->setReplacement(PageId::OnlineFriendList);
+    spinnerPage->pop();
 }
 
 void OnlineConnectionManagerPage::sendSearchMessage() {
@@ -165,14 +190,9 @@ void OnlineConnectionManagerPage::sendSearchMessage() {
 
     write(response);
     m_searchStarted = false;
-    m_state = State::WaitForSearchResponse;
 }
 
 void OnlineConnectionManagerPage::setupMatch(const STCMessage &event) {
-    if (event.which_message != STCMessage_found_match_tag) {
-        panic("unexpected event");
-    }
-
     m_matchResponse = event.message.found_match;
     m_state = State::FoundMatch;
 }
@@ -212,6 +232,33 @@ void OnlineConnectionManagerPage::write(CTSMessage message) {
 
         changeSection(SectionId::OnlineDisconnected, Anim::None, 0);
     }
+}
+
+u64 OnlineConnectionManagerPage::getFriendCode(u32 deviceId, u8 licenceId) {
+    u64 friendCode = 0;
+    friendCode |= (u64)deviceId << 0;
+    friendCode |= (u64)licenceId << 32;
+    return friendCode;
+}
+
+u32 OnlineConnectionManagerPage::GetDeviceId() {
+    u32 deviceId;
+    s32 deviceIdRes = ESP_GetDeviceId(&deviceId);
+    if (deviceIdRes != 0) {
+        panic("Failed to get device id: %d", deviceIdRes);
+    };
+
+    return deviceId;
+}
+
+void OnlineConnectionManagerPage::requestRegisterFriend(u32 deviceId, u8 licenceId, bool isDelete) {
+    CTSMessage message;
+    message.which_message = CTSMessage_friend_request_tag;
+    message.message.friend_request.is_delete = isDelete;
+    message.message.friend_request.licenceId = licenceId;
+    message.message.friend_request.deviceId = deviceId;
+
+    write(message);
 }
 
 } // namespace UI

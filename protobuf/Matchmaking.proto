@@ -66,6 +66,12 @@ message CTSMessage {
         required uint32 gamemode  = 2;
     }
 
+    message FriendRequest {
+        required uint32 deviceId  = 1;
+        required uint32 licenceId = 2;
+        required bool   is_delete = 3;
+    }
+
     message CancelMatchmaking {}
 
     oneof message {
@@ -74,6 +80,7 @@ message CTSMessage {
 
         StartMatchmaking     start_matchmaking      = 3;
         CancelMatchmaking    cancel_matchmaking     = 4;
+        FriendRequest        friend_request         = 5;
     }
 }
 
@@ -85,18 +92,33 @@ message STCMessage {
     }
 
     message LoginResponse {
-        message Friend {
-            required LoggedInId client_id     = 1;
-            required int32      friend_suffix = 2;
-            required int32      location      = 3;
-            required int32      latitude      = 4;
-            required int32      longitude     = 5;
-            required bytes      mii           = 6;
-        }
-
         required int32  vs_rating = 1;
         required int32  bt_rating = 2;
-        repeated Friend friends   = 3;
+    }
+
+    message UpdateFriendsList {
+        message Friend {
+            required LoggedInId client_id   = 1;
+            required int32      location    = 2;
+            required int32      latitude    = 3;
+            required int32      longitude   = 4;
+            required bytes      mii         = 5;
+            required bool       full_friend = 6;
+        }
+
+        repeated Friend friends = 1;
+    }
+
+    message FriendResult {
+        message Success {}
+        message NonExistant {}
+        message NotAcceptingFriends {}
+
+        oneof result {
+            Success             success = 1;
+            NonExistant         non_existant = 2;
+            NotAcceptingFriends not_accepting_friends = 3;
+        }
     }
 
     message FoundMatch {
@@ -105,10 +127,12 @@ message STCMessage {
     }
 
     oneof message {
-        LoginChallenge  challenge      = 1;
-        LoginResponse   response       = 2;
-        LoginGuest      guest_response = 3;
+        LoginChallenge  challenge       = 1;
+        LoginResponse   response        = 2;
+        LoginGuest      guest_response  = 3;
 
-        FoundMatch      found_match = 4;
+        FriendResult      friend_result = 4;
+        FoundMatch        found_match   = 5;
+        UpdateFriendsList friends_list  = 6;
     }
 }

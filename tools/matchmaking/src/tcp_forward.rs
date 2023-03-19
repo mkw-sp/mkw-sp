@@ -5,7 +5,7 @@ use dashmap::DashSet;
 use libhydrogen::{kx, secretbox};
 use netprotocol::{
     async_stream::AsyncStream,
-    matchmaking::{self, CTSMessage, CTSMessageOpt},
+    matchmaking::{CTSMessage, CTSMessageOpt},
 };
 use tokio::net::ToSocketAddrs;
 
@@ -131,20 +131,19 @@ impl ClientForwarder {
         let rr_record = sqlx::query!(
             "
             INSERT INTO
-                users(device_id, licence_id, mii, friend_suffix, location, latitude, longitude)
+                users(device_id, licence_id, mii, location, latitude, longitude)
             VALUES
-                ($1, $2, $3, $4, $5, $6, $7)
+                ($1, $2, $3, $4, $5, $6)
             ON CONFLICT (device_id, licence_id) DO UPDATE SET
                 mii = $3,
-                location = $5,
-                latitude = $6,
-                longitude = $7
+                location = $4,
+                latitude = $5,
+                longitude = $6
             RETURNING vs_rating, bt_rating
         ",
             device_id,
             licence_id,
             mii,
-            rand::random::<i8>() as i16,
             location,
             latitude,
             longitude
@@ -152,16 +151,15 @@ impl ClientForwarder {
         .fetch_one(&mut db_connection)
         .await?;
 
-        let friends = fetch_friend_data(&mut db_connection, device_id, licence_id).await?;
         let message = STCMessageOpt {
             message: Some(STCMessage::Response(stc_message::LoginResponse {
                 vs_rating: rr_record.vs_rating,
                 bt_rating: rr_record.bt_rating,
-                friends,
             })),
         };
 
         stream.write(&message).await?;
+
         Ok(ClientId::new(Some((device_id as u32, licence_id as u16))))
     }
 }
@@ -169,41 +167,4 @@ impl ClientForwarder {
 fn verify_challenge_response(original: &[u8], signed: &[u8]) -> bool {
     tracing::warn!("Ignoring challenge response verification!");
     true
-}
-
-async fn fetch_friend_data(
-    db_connection: &mut sqlx::PgConnection,
-    device_id: i32,
-    licence_id: i16,
-) -> Result<Vec<stc_message::login_response::Friend>> {
-    let fid_records = sqlx::query!(
-        "SELECT friendee_device_id, friendee_licence_id FROM friendships
-        WHERE friender_device_id = $1 AND friender_licence_id = $2",
-        device_id,
-        licence_id
-    )
-    .fetch_all(&mut *db_connection)
-    .await?;
-
-    let mut friends = Vec::new();
-    for fid_record in fid_records {
-        let friend = sqlx::query!(
-            "SELECT device_id, licence_id, friend_suffix, mii, location, latitude, longitude FROM users WHERE device_id = $1 AND licence_id = $2",
-            fid_record.friendee_device_id, fid_record.friendee_licence_id as i32
-        ).fetch_one(&mut *db_connection).await?;
-
-        friends.push(stc_message::login_response::Friend {
-            client_id: matchmaking::LoggedInId {
-                device: friend.device_id as u32,
-                licence: friend.licence_id as u32,
-            },
-            friend_suffix: friend.friend_suffix as i32,
-            mii: friend.mii,
-            location: friend.location,
-            latitude: friend.latitude,
-            longitude: friend.longitude,
-        });
-    }
-
-    Ok(friends)
 }

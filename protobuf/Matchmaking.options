@@ -1,2 +1,5 @@
 CTSMessage.LoginChallengeAnswer.challenge_signed max_size:512
 CTSMessage.LoginChallengeAnswer.mii              max_size:76
+
+STCMessage.UpdateFriendsList.friends             max_count:30
+STCMessage.UpdateFriendsList.Friend.mii          max_size:76

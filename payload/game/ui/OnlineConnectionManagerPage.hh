@@ -2,6 +2,7 @@
 
 #include "game/ui/Page.hh"
 
+#include <sp/CircularBuffer.hh>
 #include <sp/net/AsyncSocket.hh>
 
 #include <protobuf/Matchmaking.pb.h>
@@ -14,8 +15,7 @@ public:
         Initial,
         WaitForLoginChallenge,
         WaitForLoginResponse,
-        WaitForSearchStart,
-        WaitForSearchResponse,
+        Idle,
         FoundMatch,
     };
 
@@ -24,6 +24,7 @@ public:
     void onInit() override;
     void afterCalc() override;
 
+    void requestRegisterFriend(u32 deviceId, u8 licenceId, bool isDelete);
     void setTrackpack(u32 trackpack) {
         m_trackpack = trackpack;
     }
@@ -40,6 +41,16 @@ public:
     bool isCustomTrackpack() const {
         return m_trackpack != 0;
     }
+
+    static u32 GetDeviceId();
+    u64 getFriendCode(u32 deviceId, u8 licenceId);
+    size_t getFriendCount() const {
+        return m_friends.count();
+    }
+    const STCMessage_UpdateFriendsList_Friend *getFriend(size_t idx) const {
+        return m_friends[idx];
+    }
+
     State getState() const {
         return m_state;
     }
@@ -55,11 +66,14 @@ private:
     void startLogin();
     void sendSearchMessage();
     void respondToChallenge(const STCMessage &event);
-    void setupRatings(const STCMessage &event);
+    void handleLoginResponse(const STCMessage &event);
+    void handleFriendsList(const STCMessage_UpdateFriendsList &event);
+    void handleFriendRequestResponse(const STCMessage &event);
     void setupMatch(const STCMessage &event);
 
     bool m_searchStarted = false;
 
+    SP::CircularBuffer<STCMessage_UpdateFriendsList_Friend, 30> m_friends;
     std::optional<u16> m_vs_rating = std::nullopt;
     std::optional<u16> m_bt_rating = std::nullopt;
     u32 m_trackpack;

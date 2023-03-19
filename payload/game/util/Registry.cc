@@ -5,6 +5,8 @@ extern "C" {
 }
 
 #include <game/system/SaveManager.hh>
+#include <game/ui/OnlineConnectionManagerPage.hh>
+#include <game/ui/SectionManager.hh>
 #include <sp/cs/RoomClient.hh>
 
 namespace Registry {
@@ -73,6 +75,17 @@ u32 WifiErrorExplain(u32 error) {
     }
 
     return REPLACED(WifiErrorExplain)(error);
+}
+
+u64 GetFriendCode() {
+    auto saveManager = System::SaveManager::Instance();
+    auto section = UI::SectionManager::Instance()->currentSection();
+    auto onlinePage = section->page<UI::PageId::OnlineConnectionManager>();
+
+    auto licenceId = *saveManager->spCurrentLicense();
+    auto deviceId = UI::OnlineConnectionManagerPage::GetDeviceId();
+
+    return onlinePage->getFriendCode(deviceId, licenceId);
 }
 
 } // namespace Registry

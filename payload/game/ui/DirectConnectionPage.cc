@@ -186,6 +186,11 @@ void DirectConnectionPage::onBadConnectCode(MessagePage *messagePage) {
 }
 
 bool DirectConnectionPage::onKeyCode(char key, u8 mods) {
+    auto section = SectionManager::Instance()->currentSection();
+    if (!section->isPageActive(this->id())) {
+        return false;
+    }
+
     if (key == kSimpleEvent_Backspace) {
         if (m_okButton.isSelected()) {
             m_digitButtons[1].select(0);
