@@ -1,7 +1,7 @@
 #pragma once
 
-#include "game/ui/Button.hh"
 #include "game/ui/Page.hh"
+#include "game/ui/ctrl/Button.hh"
 
 namespace UI {
 

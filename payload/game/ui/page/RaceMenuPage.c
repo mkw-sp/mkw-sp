@@ -1,7 +1,8 @@
 #include "RaceMenuPage.h"
+
 #include "game/system/RaceConfig.h"
-#include "game/ui/Button.h"
 #include "game/ui/SectionManager.h"
+#include "game/ui/ctrl/Button.h"
 
 // Note: Could do these as an X-Macro
 

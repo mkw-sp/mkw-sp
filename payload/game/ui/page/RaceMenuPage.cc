@@ -4,7 +4,7 @@
 #include "game/system/RaceConfig.hh"
 #include "game/system/SaveManager.hh"
 #include "game/ui/SectionManager.hh"
-#include "game/ui/SettingsPage.hh"
+#include "game/ui/page/SettingsPage.hh"
 
 #include <sp/SaveStateManager.hh>
 #include <sp/settings/ClientSettings.hh>

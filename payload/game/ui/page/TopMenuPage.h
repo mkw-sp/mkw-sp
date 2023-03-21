@@ -1,6 +1,6 @@
 #include "MenuPage.h"
 
-#include "../Button.h"
+#include "game/ui/ctrl/Button.h"
 
 typedef struct {
     MenuPage inherit;

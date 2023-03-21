@@ -2,7 +2,7 @@
 
 #include "game/system/RaceConfig.hh"
 #include "game/ui/SectionManager.hh"
-#include "game/ui/SettingsPage.hh"
+#include "game/ui/page/SettingsPage.hh"
 
 namespace UI {
 
