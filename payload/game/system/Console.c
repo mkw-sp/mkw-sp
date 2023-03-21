@@ -295,10 +295,10 @@ static void AppendToHistory(const char *s) {
 
 static void Console_create() {
     Rect box = {
-            .top = 270.0f,
+            .top = 10.0f,
             .bottom = 800.0f,
             .left = 10.0f,
-            .right = 600.0f,
+            .right = 1200.0f,
     };
     TextWriter_configure(&sConsole, box, NULL);
 }
@@ -325,13 +325,13 @@ static void Console_stateTyping() {
 }
 
 static void Console_drawImpl() {
-    const SP_Line line = SP_GetCurrentLine();
+    /*const SP_Line line = SP_GetCurrentLine();
     if (line.len != 0) {
         memcpy(sLastLine, line.buf, MIN(line.len, sizeof(sLastLine) - 1));
         sLastLine[MIN(line.len, sizeof(sLastLine) - 1)] = '\0';
-    }
+    }*/
 
-    const float font_size = 7.0f;
+    const float font_size = 14.0f;
 
     if (sConsoleAlpha == 0.0f && !sLineVisible) {
         return;
@@ -364,23 +364,23 @@ void Console_init(void) {
     sInit = true;
 }
 void Console_draw(void) {
-    if (!sInit || !SP_IsConsoleInputInit()) {
+    if (!sInit/* || !SP_IsConsoleInputInit()*/) {
         return;
     }
     SP_SCOPED_MUTEX_LOCK(sConsoleMutex);
     Console_drawImpl();
 }
 void Console_calc(void) {
-    if (!sInit || !SP_IsConsoleInputInit()) {
+    if (!sInit/* || !SP_IsConsoleInputInit()*/) {
         return;
     }
     SP_SCOPED_MUTEX_LOCK(sConsoleMutex);
-    if (SP_IsTyping()) {
+    /*if (SP_IsTyping()) {*/
         sFramesSinceLastOpen = 0;
         Console_stateTyping();
         return;
-    }
-    Console_stateDefault(sFramesSinceLastOpen++);
+    /*}
+    Console_stateDefault(sFramesSinceLastOpen++);*/
 }
 void Console_addLine(const char *s, size_t /* len */) {
     // To support being called by an interrupt handler, we can't use a mutex. If a call

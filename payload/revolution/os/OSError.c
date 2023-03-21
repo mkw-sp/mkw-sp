@@ -68,6 +68,14 @@ void my_OSReport(const char *msg, ...) {
     LogFile_VPrintf(msg, args);
     va_end(args);
 
+    switch (ClassifyCaller(OSGetStackPointer())) {
+    case BINARY_DOL:
+    case BINARY_REL:
+        return;
+    default:
+        break;
+    }
+
     const char *prefix = GetPrefix(ClassifyCaller(OSGetStackPointer()));
     va_start(args, msg);
     Console_vprintf(prefix, msg, args);

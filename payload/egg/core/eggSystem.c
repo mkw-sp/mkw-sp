@@ -192,7 +192,7 @@ void my_onBeginFrame(void * /* system */) {
             TrySetItem(myPlayerId, sStickyItem, sStickyQty);
         }
     }
-    if (sConsoleInputUnavailable) {
+    /*if (sConsoleInputUnavailable) {
         return;
     }
 
@@ -205,9 +205,9 @@ void my_onBeginFrame(void * /* system */) {
             sConsoleInputUnavailable = true;
             return;
         }
-    }
+    }*/
 
-    SP_ProcessConsoleInput();
+    //SP_ProcessConsoleInput();
     Console_calc();
 }
 

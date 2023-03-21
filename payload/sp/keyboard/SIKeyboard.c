@@ -460,7 +460,7 @@ s32 SIKeyboard_Scan(void) {
     for (size_t chan = 0; chan < 4; ++chan) {
         u32 type = SIGetType(chan);
 
-        SP_LOG("[%u] SI Type: %x", (u32)chan, type);
+        //SP_LOG("[%u] SI Type: %x", (u32)chan, type);
         if ((type & 0x08300000) == 0x08300000) {
             SP_LOG("Unsupported SIKeyboard variant");
             return -1;
@@ -477,7 +477,7 @@ void SIKeyboard_InitSimple(void) {
     const s32 kbd = SIKeyboard_Scan();
 
     if (kbd < 0) {
-        SP_LOG("SIKeyboard: Not connected");
+        //SP_LOG("SIKeyboard: Not connected");
         return;
     }
 

@@ -133,7 +133,9 @@ std::optional<FileHandle> FATStorage::open(const wchar_t *path, const char *mode
     if (!nodePath) {
         return {};
     }
-    if (f_open(file, nodePath->path, fMode) != FR_OK) {
+    FRESULT fResult = f_open(file, nodePath->path, fMode);
+    if (fResult != FR_OK) {
+        SP_LOG("f_open(file, %ls, %u) returned %u", path, fMode, fResult);
         return {};
     }
 
@@ -147,6 +149,9 @@ bool FATStorage::createDir(const wchar_t *path, bool allowNop) {
     auto nodePath = convertPath(path);
     assert(nodePath);
     FRESULT fResult = f_mkdir(nodePath->path);
+    if (fResult != FR_OK) {
+        SP_LOG("f_mkdir(%ls) returned %u", nodePath->path, fResult);
+    }
     return fResult == FR_OK || (allowNop && fResult == FR_EXIST);
 }
 
@@ -221,6 +226,9 @@ bool FATStorage::rename(const wchar_t *srcPath, const wchar_t *dstPath) {
     assert(srcNodePath);
     assert(dstNodePath);
     FRESULT fResult = f_rename(srcNodePath->path, dstNodePath->path);
+    if (fResult != FR_OK) {
+        SP_LOG("f_rename(%ls, %ls) returned %u", srcNodePath->path, dstNodePath->path, fResult);
+    }
     return fResult == FR_OK;
 }
 
@@ -230,6 +238,9 @@ bool FATStorage::remove(const wchar_t *path, bool allowNop) {
     auto nodePath = convertPath(path);
     assert(nodePath);
     FRESULT fResult = f_unlink(nodePath->path);
+    if (fResult != FR_OK) {
+        SP_LOG("f_unlink(%ls) returned %u", nodePath->path, fResult);
+    }
     return fResult == FR_OK || (allowNop && fResult == FR_NO_FILE);
 }
 
@@ -286,12 +297,16 @@ bool FATStorage::File::close() {
 bool FATStorage::File::read(void *dst, u32 size, u32 offset) {
     ScopeLock<Mutex> lock(m_storage->m_mutex);
 
-    if (f_lseek(this, offset) != FR_OK) {
+    FRESULT fResult = f_lseek(this, offset);
+    if (fResult != FR_OK) {
+        SP_LOG("f_lseek(this, %u) returned %u", offset, fResult);
         return false;
     }
 
     UINT readSize;
-    if (f_read(this, dst, size, &readSize) != FR_OK) {
+    fResult = f_read(this, dst, size, &readSize);
+    if (fResult != FR_OK) {
+        SP_LOG("f_read(this, %p, %u, %p) returned %u", dst, size, &readSize, fResult);
         return false;
     }
 
@@ -301,12 +316,16 @@ bool FATStorage::File::read(void *dst, u32 size, u32 offset) {
 bool FATStorage::File::write(const void *src, u32 size, u32 offset) {
     ScopeLock<Mutex> lock(m_storage->m_mutex);
 
-    if (f_lseek(this, offset) != FR_OK) {
+    FRESULT fResult = f_lseek(this, offset);
+    if (fResult != FR_OK) {
+        SP_LOG("f_lseek(this, %u) returned %u", offset, fResult);
         return false;
     }
 
     UINT writtenSize;
-    if (f_write(this, src, size, &writtenSize) != FR_OK) {
+    fResult = f_write(this, src, size, &writtenSize);
+    if (fResult != FR_OK) {
+        SP_LOG("f_write(this, %p, %u, %p) returned %u", src, size, &writtenSize, fResult);
         return false;
     }
 

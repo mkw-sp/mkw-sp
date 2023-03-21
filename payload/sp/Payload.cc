@@ -145,7 +145,7 @@ static void Init() {
     //     Region: PAL, System: Dolphin 5.0-15993
     //     Built Mar  2 2022 at 23:22:40, GCC 10.2.0
     //     --------------------------------
-    Host_PrintMkwSpInfo(OSReport);
+    //Host_PrintMkwSpInfo(OSReport);
 
     Console::Print("Initializing concurrent decompressor...");
     Storage::DecompLoader::Init();

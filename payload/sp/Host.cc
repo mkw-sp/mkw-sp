@@ -43,7 +43,7 @@ void Host_SetCPUID(RawCPU_ID id) {
 }
 
 static void DetectPlatform(void) {
-    {
+    /*{
         if (SP::IOSDolphin::Open()) {
             sPlatform = HOST_DOLPHIN;
             auto q = SP::IOSDolphin::GetVersion();
@@ -67,7 +67,7 @@ static void DetectPlatform(void) {
             sPlatform = HOST_DOLPHIN_PREHISTORIC;
             return;
         }
-    }
+    }*/
 
     {
         s32 macaddr = IOS_Open("/title/00000001/00000002/data/macaddr.bin", IPC_OPEN_READ);

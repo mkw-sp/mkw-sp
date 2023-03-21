@@ -84,6 +84,7 @@ static bool UsbStorage_scsiTransfer(bool isWrite, u32 size, void *data, u8 lun, 
     memcpy(buffer + 0xf, cb, cbSize);
 
     if (!Usb_bulkTransfer(id, outEndpoint, CSW_SIZE, buffer)) {
+        SP_LOG("Usb_bulkTransfer(%u, %u, %u, %p) failed", id, outEndpoint, CSW_SIZE, buffer);
         return false;
     }
 
@@ -94,6 +95,7 @@ static bool UsbStorage_scsiTransfer(bool isWrite, u32 size, void *data, u8 lun, 
             memcpy(buffer, data, chunkSize);
         }
         if (!Usb_bulkTransfer(id, isWrite ? outEndpoint : inEndpoint, chunkSize, buffer)) {
+            SP_LOG("Usb_bulkTransfer(%u, %u, %u, %p) failed", id, isWrite ? outEndpoint : inEndpoint, CSW_SIZE, buffer);
             return false;
         }
         if (!isWrite) {
@@ -106,19 +108,24 @@ static bool UsbStorage_scsiTransfer(bool isWrite, u32 size, void *data, u8 lun, 
     memset(buffer, 0, CBW_SIZE);
 
     if (!Usb_bulkTransfer(id, inEndpoint, CBW_SIZE, buffer)) {
+        SP_LOG("Usb_bulkTransfer(%u, %u, %u, %p) failed", id, inEndpoint, CSW_SIZE, buffer);
         return false;
     }
 
     if (read_u32_le(buffer, 0x0) != 0x53425355) {
+        SP_LOG("invalid CBW 0x0 %u", read_u32_le(buffer, 0x0));
         return false;
     }
     if (read_u32_le(buffer, 0x4) != tag) {
+        SP_LOG("invalid CBW 0x4 %u", read_u32_le(buffer, 0x4));
         return false;
     }
     if (read_u32_le(buffer, 0x8) != 0) {
+        SP_LOG("invalid CBW 0x8 %u", read_u32_le(buffer, 0x8));
         return false;
     }
     if (read_u8(buffer, 0xc) != 0) {
+        //SP_LOG("invalid CBW 0xc %u %u %u %p %u", read_u8(buffer, 0xc), isWrite, size, data, lun);
         return false;
     }
 
@@ -307,6 +314,9 @@ static bool UsbStorage_read(u32 firstSector, u32 sectorCount, void *buffer) {
         if (UsbStorage_scsiTransfer(false, size, buffer, lun, sizeof(cmd), cmd)) {
             return true;
         }
+        if (try == 0) {
+            SP_LOG("read failed %u %u %p", firstSector, sectorCount, buffer);
+        }
 
         OSSleepMilliseconds(try * 10);
     }
@@ -327,6 +337,9 @@ static bool UsbStorage_write(u32 firstSector, u32 sectorCount, const void *buffe
         if (UsbStorage_scsiTransfer(true, size, (void *)buffer, lun, sizeof(cmd), cmd)) {
             return true;
         }
+        if (try == 0) {
+            SP_LOG("write failed %u %u %p", firstSector, sectorCount, buffer);
+        }
 
         OSSleepMilliseconds(try * 10);
     }
@@ -343,7 +356,11 @@ static bool UsbStorage_sync(void) {
     u8 cmd[10] = {0};
     write_u8(cmd, 0x0, SCSI_SYNCHRONIZE_CACHE_10);
 
-    return UsbStorage_scsiTransfer(false, 0, NULL, lun, sizeof(cmd), cmd);
+    bool result = UsbStorage_scsiTransfer(false, 0, NULL, lun, sizeof(cmd), cmd);
+    if (!result) {
+        SP_LOG("sync failed");
+    }
+    return result;
 }
 
 static u32 UsbStorage_getMessageId(void) {

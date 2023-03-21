@@ -165,8 +165,8 @@ private:
                         entry.name.data());
                 return;
             }
-            SP_LOG("Setting %.*s::%.*s to %08x (%i)", categoryName.length(), categoryName.data(),
-                    entry.name.length(), entry.name.data(), v, v);
+            /*SP_LOG("Setting %.*s::%.*s to %08x (%i)", categoryName.length(), categoryName.data(),
+                    entry.name.length(), entry.name.data(), v, v);*/
             m_values[*setting] = v;
             return;
         }
@@ -185,8 +185,8 @@ private:
                         entry.name.data());
                 return;
             }
-            SP_LOG("Setting %.*s::%.*s to %u (%i)", categoryName.length(), categoryName.data(),
-                    entry.name.length(), entry.name.data(), v, v);
+            /*SP_LOG("Setting %.*s::%.*s to %u (%i)", categoryName.length(), categoryName.data(),
+                    entry.name.length(), entry.name.data(), v, v);*/
             m_values[*setting] = v;
             return;
         }
@@ -210,8 +210,8 @@ private:
             return;
         }
         auto valueName = entry.valueNames[*v];
-        SP_LOG("Setting %.*s::%.*s to %.*s (%i)", categoryName.length(), categoryName.data(),
-                entry.name.length(), entry.name.data(), valueName.length(), valueName.data(), *v);
+        /*SP_LOG("Setting %.*s::%.*s to %.*s (%i)", categoryName.length(), categoryName.data(),
+                entry.name.length(), entry.name.data(), valueName.length(), valueName.data(), *v);*/
         m_values[*setting] = *v;
     }
 

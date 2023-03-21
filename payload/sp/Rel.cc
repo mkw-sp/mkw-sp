@@ -93,7 +93,7 @@ void Run() {
     Memory_ProtectRange(OS_PROTECT_CHANNEL_3, Payload_getTextSectionStart(),
             Payload_getRodataSectionEnd(), OS_PROTECT_PERMISSION_READ);
 
-    if (HostPlatform_IsDolphin(Host_GetPlatform())) {
+    /*if (HostPlatform_IsDolphin(Host_GetPlatform()))*/ {
         Console_init();
     }
     entry();

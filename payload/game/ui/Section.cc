@@ -191,7 +191,7 @@ void Section::addPage(PageId pageId) {
         }
     }
 
-    SP_LOG("addPage %u", pageId);
+    //SP_LOG("addPage %u", pageId);
 
     REPLACED(addPage)(pageId);
 }
@@ -222,13 +222,13 @@ void Section::addActivePage(PageId pageId) {
         }
     }
 
-    SP_LOG("addActivePage %u", pageId);
+    //SP_LOG("addActivePage %u", pageId);
 
     REPLACED(addActivePage)(pageId);
 }
 
 void Section::addPages(SectionId id) {
-    SP_LOG("&7DEBUG: Constructing section %u (0x%x)", id, id);
+    //SP_LOG("&7DEBUG: Constructing section %u (0x%x)", id, id);
 
     REPLACED(addPages)(id);
 

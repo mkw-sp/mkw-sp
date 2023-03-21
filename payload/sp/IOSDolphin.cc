@@ -10,7 +10,7 @@ extern "C" {
 namespace SP::IOSDolphin {
 
 // Debug logging
-#define IOSDOLPHIN_LOG SP_LOG
+#define IOSDOLPHIN_LOG (void)
 
 enum class Ioctlv {
     // Merged in df32e3f Nov 10, 2019
