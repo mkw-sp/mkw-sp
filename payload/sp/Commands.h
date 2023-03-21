@@ -2,6 +2,12 @@
 
 #include <Common.h>
 
+#ifdef _MSC_VER
+#define PRAGMA_SECTION(s)
+#else
+#define PRAGMA_SECTION(s) __attribute__((section(s)))
+#endif
+
 // Matches "/command", "/command arg", but not "/command2"
 bool StringStartsWithCommand(const char *line, const char *cmd);
 

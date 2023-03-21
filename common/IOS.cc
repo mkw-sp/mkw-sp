@@ -15,6 +15,16 @@ extern "C" volatile u32 armmsg;
 
 extern "C" volatile u32 irqmask;
 
+template <typename T>
+uintptr_t VirtualToPhysical(T *ptr) {
+    return reinterpret_cast<uintptr_t>(ptr) & 0x7fffffff;
+}
+
+template <typename T>
+T *PhysicalToVirtual(uintptr_t addr) {
+    return reinterpret_cast<T *>(addr | 0x80000000);
+}
+
 enum {
     X1 = 1 << 0,
     Y2 = 1 << 1,
