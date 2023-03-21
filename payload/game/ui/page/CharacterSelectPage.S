@@ -17,11 +17,11 @@ PATCH_BL_END(CharacterSelectPage_onInit, 0x90)
 // Exclude Change Ghost Data (repurposed MK Channel challenge ghost) from sections that load the MK Channel instead of SingleTop
 
 PATCH_REPLACE_START(CharacterSelectPage_onActivate, 0x180)
-    cmpwi r0, SingleLeaderboardGhost
+    cmpwi r0, SingleChannelLeaderboardChallenge
 PATCH_REPLACE_END(CharacterSelectPage_onActivate, 0x180)
 
 PATCH_REPLACE_START(CharacterSelectPage_8083e928, 0x27C)
-    cmpwi r0, SingleLeaderboardGhost
+    cmpwi r0, SingleChannelLeaderboardChallenge
 PATCH_REPLACE_END(CharacterSelectPage_8083e928, 0x27C)
 
 

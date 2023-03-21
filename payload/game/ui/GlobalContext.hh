@@ -29,7 +29,8 @@ public:
         u32 m_errorCode;
     };
 
-    u8 _000[0x064 - 0x000];
+    u8 _000[0x060 - 0x000];
+    u32 m_match;
     u32 m_matchCount;
     u8 _068[0x074 - 0x068];
     u32 _74;
@@ -52,7 +53,9 @@ public:
     u32 m_timeAttackGhostType;
     s32 m_timeAttackCourseId;
     s32 m_timeAttackLicenseId;
-    u8 _3d0[0x500 - 0x3d0];
+    u8 _3d0[0x4c8 - 0x3d0];
+    u32 m_lastTitleBackground;
+    u8 _4cc[0x500 - 0x4cc];
     OnlineDisconnectInfo m_onlineDisconnectInfo;
     u8 _508[0x510 - 0x508];
     u32 m_timeAttackGhostCount;       // Added

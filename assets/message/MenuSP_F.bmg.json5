@@ -1,4 +1,7 @@
 {
+    "2053": {
+        string: "Une erreur est survenue lors de la lecture\nou l'écriture de la sauvegarde.",
+    },
     "10000": {
         string: "Affronter 1 fantôme",
     },
@@ -172,9 +175,6 @@
     },
     "10074": {
         string: "Modifiez les réglages ou changez de Mii!",
-    },
-    "10075": {
-        string: "Une erreur est survenue lors de la lecture\nou l'écriture de la sauvegarde.",
     },
     "10077": {
         string: "Changez les réglages pour ce permis.",

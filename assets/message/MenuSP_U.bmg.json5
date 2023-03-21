@@ -5,6 +5,9 @@
     "2034": {
         string: "MKW-SP Online (2P)",
     },
+    "2053": {
+        string: "Something went wrong when reading from\nor writing to the save.",
+    },
     "3400": {
         string: "Settings",
     },
@@ -196,9 +199,6 @@
     },
     "10074": {
         string: "Edit settings or change your Mii!",
-    },
-    "10075": {
-        string: "Something went wrong when reading from\nor writing to the save.",
     },
     "10077": {
         string: "Change settings for this license.",
