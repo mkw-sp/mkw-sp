@@ -5,6 +5,10 @@
 // Keep this value in sync with the value in the file 'mkw-sp/protobuf/UpdateRequestMessage.options'
 #define HOST_PLATFORM_BUFFER_SIZE (31 + 1)
 
+#if defined(_WIN32) || defined(__APPLE__) || defined(__linux__)
+#define PLATFORM_EMULATOR
+#endif
+
 // clang-format off
 typedef enum {
     //! This is either a bug in the platform detection code,
