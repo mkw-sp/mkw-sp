@@ -88,6 +88,10 @@ void SingleTopPage::onInit() {
     Section *section = SectionManager::Instance()->currentSection();
     auto *modelPage = section->page<PageId::Model>();
     modelPage->modelControl().setModel(0);
+
+    auto *raceConfig = System::RaceConfig::Instance();
+    raceConfig->m_trackPackManager = new SP::TrackPackManager();
+    raceConfig->m_selectedTrackPack = {0};
 }
 
 void SingleTopPage::onActivate() {

@@ -16,7 +16,7 @@ ResultTeamTotalPage::ResultTeamTotalPage() = default;
 ResultTeamTotalPage::~ResultTeamTotalPage() = default;
 
 PageId ResultTeamTotalPage::getReplacement() {
-    auto raceScenario = System::RaceConfig::Instance()->raceScenario();
+    auto &raceScenario = System::RaceConfig::Instance()->raceScenario();
     if (raceScenario.isBattle()) {
         if (RaceMenuPage::IsLastMatch()) {
             return PageId::AfterBtFinal;

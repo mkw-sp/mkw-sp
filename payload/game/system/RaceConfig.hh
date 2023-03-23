@@ -1,6 +1,9 @@
 #pragma once
 
 #include <Common.hh>
+#include <sp/TrackPackManager.hh>
+
+#include <optional>
 
 namespace System {
 
@@ -117,10 +120,14 @@ public:
 
     static RaceConfig *Instance();
 
+    // 0x00 to 0x20 are marked "free space" on ghidra
+    std::optional<u32> m_selectedTrackPack;
+    SP::TrackPackManager *m_trackPackManager;
+
 private:
     REPLACE static void ConfigurePlayers(Scenario &scenario, u32 screenCount);
 
-    u8 _0000[0x0020 - 0x0000];
+    u8 _000c[0x0020 - 0x000c];
     Scenario m_raceScenario;
     Scenario m_menuScenario;
     Scenario m_awardsScenario;

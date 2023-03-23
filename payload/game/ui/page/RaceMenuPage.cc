@@ -126,7 +126,7 @@ void RaceMenuPage::onChangeGhostDataButtonFront(PushButton *button, u32 /* local
 }
 
 bool RaceMenuPage::IsLastMatch() {
-    auto raceScenario = System::RaceConfig::Instance()->raceScenario();
+    auto &raceScenario = System::RaceConfig::Instance()->raceScenario();
 
     if (raceScenario.isBattle()) {
         auto *saveManager = System::SaveManager::Instance();

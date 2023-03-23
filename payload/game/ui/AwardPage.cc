@@ -61,7 +61,7 @@ void AwardPage::onInit() {
 }
 
 void AwardPage::initType() {
-    auto awardsScenario = System::RaceConfig::Instance()->awardsScenario();
+    auto &awardsScenario = System::RaceConfig::Instance()->awardsScenario();
     auto currentSectionId = SectionManager::Instance()->currentSection()->id();
 
     u32 messageId = 9999;

@@ -8,6 +8,8 @@ extern "C" {
 #include "sp/storage/UsbStorage.h"
 }
 
+#include <game/system/RaceConfig.hh>
+
 #include <array>
 #include <cstring>
 
@@ -376,6 +378,7 @@ std::optional<NodeInfo> FATStorage::Dir::read() {
 
 std::optional<FATStorage::Path> FATStorage::convertPath(const wchar_t *path) {
     Path nodePath;
+    FILINFO fInfo;
 
     if (!wcsncmp(path, L"/mkw-sp/", wcslen(L"/mkw-sp/"))) {
         swprintf(nodePath.path, std::size(nodePath.path), L"%ls", path + wcslen(L"/mkw-sp/"));
@@ -385,6 +388,15 @@ std::optional<FATStorage::Path> FATStorage::convertPath(const wchar_t *path) {
     if (wcsncmp(path, L"ro:/", wcslen(L"ro:/"))) {
         swprintf(nodePath.path, std::size(nodePath.path), L"%ls", path);
         return nodePath;
+    }
+
+    if (!wcsncmp(path, L"ro:/Race/Course/", wcslen(L"ro:/Race/Course/"))) {
+        auto raceConfig = System::RaceConfig::Instance();
+        auto selectedTrackPack = raceConfig->m_selectedTrackPack;
+        auto path = raceConfig->m_trackPackManager.getTrack(selectedTrackPack);
+        if (path.has_value()) {
+            return path;
+        }
     }
 
     if (!wcscmp(path, L"ro:/rel/StaticR.rel")) {
@@ -408,7 +420,6 @@ std::optional<FATStorage::Path> FATStorage::convertPath(const wchar_t *path) {
     }
 
     for (u32 i = m_prefixCount; i-- > 0;) {
-        FILINFO fInfo;
         swprintf(nodePath.path, std::size(nodePath.path), L"%ls/%ls", m_prefixes[i],
                 path + wcslen(L"ro:/"));
         if (f_stat(nodePath.path, &fInfo) == FR_OK) {
