@@ -3,12 +3,14 @@
 #include <Common.hh>
 
 #include "sp/CircularBuffer.hh"
+#include "sp/storage/Storage.hh"
 
-#include <vector>
+#include <string>
 
 namespace SP {
 
 enum class SupportedGameModes {
+    None = 0,
     Race = 1 << 0,
     BalloonBattle = 1 << 1,
     CoinRunners = 1 << 2,
@@ -16,25 +18,31 @@ enum class SupportedGameModes {
 
 class TrackPack {
 public:
-    TrackPack(wchar_t *folderName);
+    TrackPack(Storage::NodeId manifestNodeId);
 
 private:
-    wchar_t *m_folderName;
-
-    char *m_prettyName;
-    char *m_description;
-    char *m_authorNames;
-    SupportedGameModes *m_supportedModes;
+    std::string m_prettyName;
+    std::string m_description;
+    std::string m_authorNames;
+    SupportedGameModes m_supportedModes = SupportedGameModes::None;
 };
 
 class TrackPackManager {
 public:
     TrackPackManager();
 
-    bool getTrackPath(wchar_t *out, u32 outSize, const wchar_t *trackName);
+    void getTrackPath(char *out, u32 outSize, u32 courseId, bool splitScreen);
+
+    static TrackPackManager *Instance();
+    static void CreateInstance();
+
 private:
     // TODO: Not this!
-    CircularBuffer<TrackPack, 0x20> m_packs;
+    CircularBuffer<TrackPack, 0x5> m_packs;
+    u32 m_selectedTrackPack;
+    bool m_hasSelected;
+
+    static std::optional<TrackPackManager> s_instance;
 };
 
 } // namespace SP

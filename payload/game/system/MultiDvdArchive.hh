@@ -33,6 +33,9 @@ public:
     DvdArchive &archive(u16 i);
     u16 count() const;
 
+    bool isLoaded();
+    bool exists(const char *path);
+
     static REPLACE MultiDvdArchive *Create(Type type);
 
 protected:

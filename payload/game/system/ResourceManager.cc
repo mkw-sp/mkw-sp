@@ -2,14 +2,16 @@
 
 #include "game/system/RootScene.hh"
 
+#include <game/util/Registry.hh>
+#include <sp/TrackPackManager.hh>
 #include <sp/storage/DecompLoader.hh>
-#include <sp/storage/Storage.hh>
 
 extern "C" {
 #include <revolution.h>
 }
 
 #include <cstdio>
+#include <cstring>
 
 namespace System {
 
@@ -133,6 +135,46 @@ void ResourceManager::loadGlobe(u8 **dst) {
 void ResourceManager::LoadGlobeTask(void *arg) {
     assert(s_instance);
     s_instance->loadGlobe(reinterpret_cast<u8 **>(arg));
+}
+
+MultiDvdArchive *ResourceManager::loadCourse(u32 courseId, EGG::Heap *heap, bool splitScreen) {
+    SP_LOG("Loading course %d", courseId);
+
+    MultiDvdArchive *archive = m_archives[1];
+    if (archive->isLoaded()) {
+        return archive;
+    };
+
+    archive->init();
+
+    char filePath[64];
+    auto trackPackManager = SP::TrackPackManager::Instance();
+
+    if (splitScreen) {
+        trackPackManager->getTrackPath(filePath, sizeof(filePath), courseId, true);
+        if (!archive->exists(filePath)) {
+            splitScreen = false;
+        }
+    }
+
+    if (!splitScreen) {
+        trackPackManager->getTrackPath(filePath, sizeof(filePath), courseId, false);
+    }
+
+    JobContext *jobContext = &m_jobContexts[2];
+    jobContext->multiArchive = archive;
+    jobContext->archiveHeap = heap;
+    strncpy(jobContext->filename, filePath, sizeof(jobContext->filename));
+
+    m_taskThread->request(&ResourceManager_doLoadTask, 2, 0);
+    process();
+
+    if (!archive->isLoaded()) {
+        OSSleepMilliseconds(10000);
+    }
+
+    assert(archive->isLoaded());
+    return archive;
 }
 
 void ResourceManager::CourseCache::init() {}

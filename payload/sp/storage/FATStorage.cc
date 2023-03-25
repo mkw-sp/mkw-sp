@@ -1,14 +1,12 @@
 #include "FATStorage.hh"
 
+#include "sp/TrackPackManager.hh"
 #include "sp/settings/FileReplacement.hh"
 #include "sp/settings/GlobalSettings.hh"
-
 extern "C" {
 #include "sp/storage/Sdi.h"
 #include "sp/storage/UsbStorage.h"
 }
-
-#include <game/system/RaceConfig.hh>
 
 #include <array>
 #include <cstring>
@@ -380,6 +378,11 @@ std::optional<FATStorage::Path> FATStorage::convertPath(const wchar_t *path) {
     Path nodePath;
     FILINFO fInfo;
 
+    if (!wcsncmp(path, L"ro:/mkw-sp/", wcslen(L"ro:/mkw-sp/"))) {
+        swprintf(nodePath.path, std::size(nodePath.path), L"%ls", path + wcslen(L"ro:/mkw-sp/"));
+        return nodePath;
+    }
+
     if (!wcsncmp(path, L"/mkw-sp/", wcslen(L"/mkw-sp/"))) {
         swprintf(nodePath.path, std::size(nodePath.path), L"%ls", path + wcslen(L"/mkw-sp/"));
         return nodePath;
@@ -388,15 +391,6 @@ std::optional<FATStorage::Path> FATStorage::convertPath(const wchar_t *path) {
     if (wcsncmp(path, L"ro:/", wcslen(L"ro:/"))) {
         swprintf(nodePath.path, std::size(nodePath.path), L"%ls", path);
         return nodePath;
-    }
-
-    if (!wcsncmp(path, L"ro:/Race/Course/", wcslen(L"ro:/Race/Course/"))) {
-        auto raceConfig = System::RaceConfig::Instance();
-        auto selectedTrackPack = raceConfig->m_selectedTrackPack;
-        auto path = raceConfig->m_trackPackManager.getTrack(selectedTrackPack);
-        if (path.has_value()) {
-            return path;
-        }
     }
 
     if (!wcscmp(path, L"ro:/rel/StaticR.rel")) {

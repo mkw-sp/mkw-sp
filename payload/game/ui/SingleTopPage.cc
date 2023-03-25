@@ -8,6 +8,7 @@
 #include "game/ui/page/BattleModeSelectPage.hh"
 #include "game/ui/page/MenuPage.hh"
 
+#include <sp/TrackPackManager.hh>
 #include <sp/settings/ClientSettings.hh>
 extern "C" {
 #include <vendor/libhydrogen/hydrogen.h>
@@ -89,9 +90,7 @@ void SingleTopPage::onInit() {
     auto *modelPage = section->page<PageId::Model>();
     modelPage->modelControl().setModel(0);
 
-    auto *raceConfig = System::RaceConfig::Instance();
-    raceConfig->m_trackPackManager = new SP::TrackPackManager();
-    raceConfig->m_selectedTrackPack = {0};
+    SP::TrackPackManager::CreateInstance();
 }
 
 void SingleTopPage::onActivate() {
