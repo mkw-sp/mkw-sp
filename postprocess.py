@@ -15,6 +15,7 @@ parser.add_argument('out_symbols_path')
 parser.add_argument('out_replacements_path')
 args = parser.parse_args()
 
+regular_symbols = []
 replacement_symbols = []
 thunk_symbols = {}
 with open(args.in_elf_path, 'rb') as elf_file:
@@ -26,6 +27,16 @@ with open(args.in_elf_path, 'rb') as elf_file:
             replacements_section_index = index
 
     symtab = elf.get_section_by_name('.symtab')
+
+    for symbol in symtab.iter_symbols():
+        if symbol['st_shndx'] == replacements_section_index:
+            continue
+
+        if symbol['st_info']['type'] != 'STT_FUNC' and symbol['st_info']['type'] != 'STT_OBJECT':
+            continue
+
+        regular_symbols += [symbol.name]
+
     for symbol in symtab.iter_symbols():
         if symbol['st_shndx'] != replacements_section_index:
             continue
@@ -58,7 +69,7 @@ with open(args.in_elf_path, 'rb') as elf_file:
                 replacement_name = other_name
                 break
         if replacement_name is None:
-            sys.exit(f'REPLACED was used without REPLACE for symbol {symbol.name}')
+            sys.exit(f'REPLACED was used without REPLACE for symbol {symbol.name}!')
         thunk_symbols[replacement_name] = symbol.name
 
 backup = copy.deepcopy(replacement_symbols)
@@ -71,6 +82,10 @@ with open(args.in_symbols_path, 'r') as in_symbols_file:
 
         address, name = symbol.split()
         address = int(address, 16)
+
+        if name in regular_symbols:
+            sys.exit(f'Multiple definitions for symbol {name}!')
+
         if name in replacement_symbols:
             replacement_symbols.remove(name)
             name = 'replaced_' + name
