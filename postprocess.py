@@ -15,9 +15,9 @@ parser.add_argument('out_symbols_path')
 parser.add_argument('out_replacements_path')
 args = parser.parse_args()
 
-regular_symbols = []
+replaced_symbols = []
 replacement_symbols = []
-thunk_symbols = {}
+regular_symbols = []
 with open(args.in_elf_path, 'rb') as elf_file:
     elf = ELFFile(elf_file)
 
@@ -29,48 +29,40 @@ with open(args.in_elf_path, 'rb') as elf_file:
     symtab = elf.get_section_by_name('.symtab')
 
     for symbol in symtab.iter_symbols():
-        if symbol['st_shndx'] == replacements_section_index:
-            continue
-
-        if symbol['st_info']['type'] != 'STT_FUNC' and symbol['st_info']['type'] != 'STT_OBJECT':
-            continue
-
-        regular_symbols += [symbol.name]
-
-    for symbol in symtab.iter_symbols():
-        if symbol['st_shndx'] != replacements_section_index:
-            continue
-
-        if symbol['st_info']['type'] != 'STT_FUNC':
-            continue
-
-        replacement_symbols += [symbol.name]
-
-    for symbol in symtab.iter_symbols():
-        if symbol['st_shndx'] != 'SHN_UNDEF':
-            continue
-
-        demangled = itanium_demangler.parse(symbol.name)
-        if demangled is not None:
-            demangled = str(demangled)
-        else:
-            demangled = symbol.name
-        if 'thunk_replaced_' not in demangled:
-            continue
-        demangled = demangled.replace('thunk_replaced_', '', 1)
-        replacement_name = None
-        for other_name in replacement_symbols:
-            other_demangled = itanium_demangler.parse(other_name)
-            if other_demangled is not None:
-                other_demangled = str(other_demangled)
+        symbol_type = symbol['st_info']['type']
+        if symbol['st_shndx'] == 'SHN_UNDEF':
+            demangled = itanium_demangler.parse(symbol.name)
+            if demangled is not None:
+                demangled = str(demangled)
             else:
-                other_demangled = other_name
-            if other_demangled == demangled:
-                replacement_name = other_name
-                break
-        if replacement_name is None:
-            sys.exit(f'REPLACED was used without REPLACE for symbol {symbol.name}!')
-        thunk_symbols[replacement_name] = symbol.name
+                demangled = symbol.name
+            if 'thunk_replaced_' not in demangled:
+                continue
+            demangled = demangled.replace('thunk_replaced_', '', 1)
+            replaced_symbols += [(symbol.name, demangled)]
+        elif symbol['st_shndx'] == replacements_section_index:
+            if symbol_type != 'STT_FUNC':
+                continue
+
+            replacement_symbols += [symbol.name]
+        elif symbol_type == 'STT_FUNC' or symbol_type == 'STT_OBJECT':
+            regular_symbols += [symbol.name]
+
+thunk_symbols = {}
+for symbol_name, demangled in replaced_symbols:
+    replacement_name = None
+    for other_name in replacement_symbols:
+        other_demangled = itanium_demangler.parse(other_name)
+        if other_demangled is not None:
+            other_demangled = str(other_demangled)
+        else:
+            other_demangled = other_name
+        if other_demangled == demangled:
+            replacement_name = other_name
+            break
+    if replacement_name is None:
+        sys.exit(f'REPLACED was used without REPLACE for symbol {symbol.name}!')
+    thunk_symbols[replacement_name] = symbol_name
 
 backup = copy.deepcopy(replacement_symbols)
 out_symbols = ''
