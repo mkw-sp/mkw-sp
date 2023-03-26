@@ -6,6 +6,7 @@
 #include "game/ui/VotingBackPage.hh"
 
 #include <sp/ScopeLock.hh>
+#include <sp/TrackPackManager.hh>
 
 #include <limits>
 
@@ -15,15 +16,18 @@ CourseSelectPage::CourseSelectPage() = default;
 
 CourseSelectPage::~CourseSelectPage() = default;
 
+u16 getTrackCount() {
+    return SP::TrackPackManager::Instance()->getSelectedTrackPack()->getTrackCount();
+}
+
 PageId CourseSelectPage::getReplacement() {
     return m_replacement;
 }
 
 void CourseSelectPage::onInit() {
-    m_filter = {false, false};
-    m_sheetCount = (SP::CourseDatabase::Instance().count(m_filter) + 9 - 1) / 9;
     m_sheetIndex = 0;
     m_lastSelected = 0;
+    m_sheetCount = (getTrackCount() + 9 - 1) / 9;
 
     m_inputManager.init(0x1, false);
     setInputManager(&m_inputManager);
@@ -89,31 +93,17 @@ void CourseSelectPage::onDeinit() {
 void CourseSelectPage::onActivate() {
     m_replacement = PageId::None;
 
-    SP::CourseDatabase::Filter filter{false, false};
-    auto &menuScenario = System::RaceConfig::Instance()->menuScenario();
-    if (menuScenario.isVs()) {
-        filter.race = true;
-    }
+    m_sheetIndex = 0;
+    m_lastSelected = 0;
+    m_sheetCount = (getTrackCount() + 9 - 1) / 9;
+    m_scrollBar.reconfigure(m_sheetCount, m_sheetIndex, m_sheetCount >= 4 ? 0x1 : 0x0);
 
-    if (menuScenario.isBattle()) {
-        filter.battle = true;
-    }
+    m_sheetSelect.setVisible(m_sheetCount > 1);
+    m_sheetSelect.setPlayerFlags(m_sheetCount <= 1 ? 0x0 : 0x1);
 
-    if (filter.race != m_filter.race || filter.battle != m_filter.battle) {
-        m_filter = filter;
+    refresh();
 
-        m_sheetCount = (SP::CourseDatabase::Instance().count(m_filter) + 9 - 1) / 9;
-        m_sheetIndex = 0;
-        m_lastSelected = 0;
-        m_scrollBar.reconfigure(m_sheetCount, m_sheetIndex, m_sheetCount >= 4 ? 0x1 : 0x0);
-
-        m_sheetSelect.setVisible(m_sheetCount > 1);
-        m_sheetSelect.setPlayerFlags(m_sheetCount <= 1 ? 0x0 : 0x1);
-
-        refresh();
-
-        m_buttons[0].selectDefault(0);
-    }
+    m_buttons[0].selectDefault(0);
 }
 
 void CourseSelectPage::afterCalc() {
@@ -169,23 +159,25 @@ void CourseSelectPage::onBack(u32 /* localPlayerId */) {
 }
 
 void CourseSelectPage::onButtonFront(PushButton *button, u32 /* localPlayerId */) {
-    u32 courseIndex = m_sheetIndex * m_buttons.size() + button->m_index;
-    auto &entry = SP::CourseDatabase::Instance().entry(m_filter, courseIndex);
+    auto *trackPackManager = SP::TrackPackManager::Instance();
+    auto *trackPack = trackPackManager->getSelectedTrackPack();
+
+    auto courseIndex = m_sheetIndex * m_buttons.size() + button->m_index;
+    auto courseId = trackPack->getNthTrack(courseIndex);
+    trackPackManager->m_selectedTrack = courseId;
 
     auto *sectionManager = SectionManager::Instance();
     auto *section = sectionManager->currentSection();
     auto sectionId = section->id();
 
-    sectionManager->globalContext()->m_raceCourseId = entry.courseId;
-
     if (Section::HasRoomClient(sectionId)) {
         auto *votingBackPage = section->page<PageId::VotingBack>();
-        votingBackPage->setLocalVote(entry.courseId);
+        votingBackPage->setLocalVote(courseId);
         votingBackPage->setSubmitted(true);
         startReplace(Anim::Next, button->getDelay());
     } else {
         auto &menuScenario = System::RaceConfig::Instance()->menuScenario();
-        menuScenario.courseId = 3445;
+        menuScenario.courseId = courseId;
 
         if (menuScenario.gameMode == System::RaceConfig::GameMode::TimeAttack) {
             m_replacement = PageId::TimeAttackTop;
@@ -285,35 +277,33 @@ void CourseSelectPage::onBackCommon(f32 delay) {
 }
 
 void CourseSelectPage::refresh() {
+    auto *trackPackManager = SP::TrackPackManager::Instance();
+    auto *trackPack = trackPackManager->getSelectedTrackPack();
+    auto trackCount = trackPack->getTrackCount();
+
     {
         SP::ScopeLock<SP::NoInterrupts> lock;
         for (size_t i = 0; i < m_buttons.size(); i++) {
             u32 courseIndex = m_sheetIndex * m_buttons.size() + i;
-            if (courseIndex < SP::CourseDatabase::Instance().count(m_filter)) {
+            if (courseIndex < trackCount) {
                 m_buttons[i].setPaneVisible("picture_base", false);
                 m_buttons[i].setVisible(true);
                 m_buttons[i].setPlayerFlags(1 << 0);
-                auto &entry = SP::CourseDatabase::Instance().entry(m_filter, courseIndex);
-                m_databaseIds[i] = entry.databaseId;
             } else {
                 m_buttons[i].setVisible(false);
                 m_buttons[i].setPlayerFlags(0);
-                m_databaseIds[i] = std::numeric_limits<u32>::max();
             }
         }
+
         m_request = Request::Change;
         OSWakeupThread(&m_queue);
     }
 
-    auto &menuScenario = System::RaceConfig::Instance()->menuScenario();
-    u32 messageOffset = menuScenario.isVs() ? 9360 : menuScenario.isBattle() ? 9400 : 0;
-
     for (size_t i = 0; i < m_buttons.size(); i++) {
-        u32 courseIndex = m_sheetIndex * m_buttons.size() + i;
-        if (courseIndex < SP::CourseDatabase::Instance().count(m_filter)) {
-            auto &entry = SP::CourseDatabase::Instance().entry(m_filter, courseIndex);
-            u32 courseId = menuScenario.isBattle() ? entry.courseId - 32 : entry.courseId;
-            m_buttons[i].refresh(messageOffset + courseId);
+        if (m_buttons[i].getVisible()) {
+            u32 courseIndex = m_sheetIndex * m_buttons.size() + i;
+            u32 courseId = trackPack->getNthTrack(courseIndex);
+            m_buttons[i].refresh(courseId);
         }
     }
 
@@ -325,8 +315,10 @@ void CourseSelectPage::refresh() {
 }
 
 void CourseSelectPage::loadThumbnails() {
+    auto *trackPackManager = SP::TrackPackManager::Instance();
+    auto *trackPack = trackPackManager->getSelectedTrackPack();
+
     while (true) {
-        std::array<u32, 9> databaseIds{};
         {
             SP::ScopeLock<SP::NoInterrupts> lock;
             switch (m_request) {
@@ -338,24 +330,24 @@ void CourseSelectPage::loadThumbnails() {
             default:
                 break;
             }
-            databaseIds = m_databaseIds;
+
             m_request = Request::None;
         }
 
-        for (u32 i = 0; i < m_databaseIds.size(); i++) {
-            u32 databaseId;
-            {
-                SP::ScopeLock<SP::NoInterrupts> lock;
-                databaseId = m_databaseIds[i];
-                if (databaseId == std::numeric_limits<u32>::max()) {
-                    continue;
-                }
+        SP::ScopeLock<SP::NoInterrupts> lock;
+        for (u32 i = 0; i < m_buttons.size(); i++) {
+            u32 buttonIdx = m_sheetIndex * m_buttons.size() + i;
+            u32 databaseId = trackPack->getNthTrack(buttonIdx);
+
+            if (!m_buttons[i].getVisible()) {
+                continue;
             }
+
             JRESULT result = loadThumbnail(i, databaseId);
-            SP::ScopeLock<SP::NoInterrupts> lock;
             if (m_request != Request::None) {
                 break;
             }
+
             if (result == JDR_OK) {
                 m_thumbnailChanged[i] = true;
             } else {

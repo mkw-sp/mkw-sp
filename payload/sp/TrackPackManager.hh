@@ -25,6 +25,8 @@ class TrackPack {
 public:
     TrackPack(std::string_view manifest);
 
+    u16 getTrackCount() const;
+    u32 getNthTrack(u32 n) const;
     u32 getSlotId(u32 wmmId) const;
 
 private:

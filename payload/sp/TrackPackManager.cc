@@ -2,13 +2,14 @@
 
 #include "sp/settings/IniReader.hh"
 #include "sp/storage/Storage.hh"
+#include "sp/vanillaTracks/vs.hh"
 
 #include <game/util/Registry.hh>
 
+#include <algorithm>
 #include <charconv>
 #include <cstring>
 
-#include "VanillaTracks.ini"
 #define TRACK_PACK_DIRECTORY L"Track Packs"
 
 namespace SP {
@@ -70,6 +71,9 @@ TrackPack::TrackPack(std::string_view manifestView) {
     if (!prettyNameFound || !descriptionFound || !authorNamesFound) {
         panic("Missing required key in track pack manifest");
     }
+
+    // TODO(GnomedDev): Sort tracks once CircularBuffer has iteration methods.
+    // std::sort(m_slotMap.begin(), m_slotMap.end(), [](auto &a, auto &b) { return a[0] < b[0]; });
 }
 
 u32 TrackPack::getSlotId(u32 wmmId) const {
@@ -83,11 +87,19 @@ u32 TrackPack::getSlotId(u32 wmmId) const {
     panic("Failed to find slotId for wmmId: %d", wmmId);
 }
 
+u32 TrackPack::getNthTrack(u32 n) const {
+    return (*m_slotMap[n])[0];
+}
+
+u16 TrackPack::getTrackCount() const {
+    return m_slotMap.count();
+}
+
 TrackPackManager::TrackPackManager() {
     char manifestBuf[2048];
 
     m_packs.reset();
-    m_selectedTrackPack = 0;
+    m_selectedTrackPack = 1;
 
     auto dir = Storage::OpenDir(TRACK_PACK_DIRECTORY);
     if (!dir) {

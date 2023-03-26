@@ -40,14 +40,15 @@ void CourseSelectButton::load(u32 i) {
     }
 }
 
-void CourseSelectButton::refresh(u32 messageId) {
+void CourseSelectButton::refresh(u32 /* courseId */) {
     auto *section = SectionManager::Instance()->currentSection();
     for (size_t i = 0; i < std::size(m_panes); i++) {
         m_panes[i]->m_width = m_sizes[i].x / section->locationAdjustScale().x;
         m_panes[i]->m_height = m_sizes[i].y / section->locationAdjustScale().y;
     }
 
-    setMessageAll(messageId);
+    // TODO(GnomedDev): Handle showing track names via wiimm's DB.
+    setMessageAll(10394);
 }
 
 void CourseSelectButton::refresh(u8 c, const GXTexObj &texObj) {

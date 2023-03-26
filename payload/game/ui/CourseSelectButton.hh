@@ -11,7 +11,7 @@ public:
     void calcSelf() override;
 
     void load(u32 i);
-    void refresh(u32 messageId);
+    void refresh(u32 courseId);
     void refresh(u8 c, const GXTexObj &texObj);
 
 private:

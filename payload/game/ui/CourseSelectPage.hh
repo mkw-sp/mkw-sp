@@ -7,7 +7,6 @@
 #include "game/ui/ctrl/CtrlMenuBackButton.hh"
 #include "game/ui/ctrl/CtrlMenuPageTitleText.hh"
 
-#include <sp/CourseDatabase.hh>
 #include <sp/storage/Storage.hh>
 #include <vendor/tjpgd/tjpgd.h>
 
@@ -89,13 +88,11 @@ private:
     H<YesNoPage> m_onBackConfirm{this, &CourseSelectPage::onBackConfirm};
     bool m_backConfirmed;
     PageId m_replacement;
-    SP::CourseDatabase::Filter m_filter;
     u32 m_sheetCount;
     u32 m_sheetIndex;
     u32 m_lastSelected;
     Request m_request;
     std::array<bool, 9> m_thumbnailChanged;
-    std::array<u32, 9> m_databaseIds;
     std::array<std::array<std::unique_ptr<u8[]>, 3>, 9> m_buffers;
     OSThreadQueue m_queue;
     u8 m_stack[0x5000 /* 20 KiB */];

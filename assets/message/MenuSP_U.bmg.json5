@@ -1092,7 +1092,10 @@
         string: "Forces 30fps, can help with Dolphin performance.",
     },
     "10393": {
-        string: "Choose the Team Size randomly"
+        string: "Choose the Team Size randomly",
+    },
+    "10394": {
+        string: "No track name found!",
     },
     "20000": {
         string: "Online",
