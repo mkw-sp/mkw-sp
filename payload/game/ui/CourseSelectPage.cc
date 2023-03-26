@@ -388,7 +388,7 @@ JRESULT CourseSelectPage::loadThumbnail(u32 i, u32 databaseId) {
         GXTexObj texObj;
         GXInitTexObj(&texObj, m_buffers[i][c].get(), jdec.width, jdec.height, GX_TF_I8, GX_CLAMP,
                 GX_CLAMP, GX_FALSE);
-        m_buttons[i].refresh(c, texObj);
+        m_buttons[i].setTex(c, texObj);
     }
 
     return JDR_OK;

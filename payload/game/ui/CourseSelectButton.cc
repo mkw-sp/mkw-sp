@@ -2,6 +2,8 @@
 
 #include "game/ui/SectionManager.hh"
 
+#include <sp/TrackPackManager.hh>
+
 #include <cstdio>
 
 namespace UI {
@@ -40,7 +42,7 @@ void CourseSelectButton::load(u32 i) {
     }
 }
 
-void CourseSelectButton::refresh(u32 /* courseId */) {
+void CourseSelectButton::refresh(u32 courseId) {
     auto *section = SectionManager::Instance()->currentSection();
     for (size_t i = 0; i < std::size(m_panes); i++) {
         m_panes[i]->m_width = m_sizes[i].x / section->locationAdjustScale().x;
@@ -48,10 +50,17 @@ void CourseSelectButton::refresh(u32 /* courseId */) {
     }
 
     // TODO(GnomedDev): Handle showing track names via wiimm's DB.
-    setMessageAll(10394);
+    auto *trackPackManager = SP::TrackPackManager::Instance();
+    if (trackPackManager->isVanilla()) {
+        auto vanillaPack = trackPackManager->getSelectedTrackPack();
+        auto slotId = vanillaPack->getSlotId(courseId);
+        setMessageAll(9360 + slotId);
+    } else {
+        setMessageAll(10394);
+    }
 }
 
-void CourseSelectButton::refresh(u8 c, const GXTexObj &texObj) {
+void CourseSelectButton::setTex(u8 c, const GXTexObj &texObj) {
     auto *pane = m_mainLayout.findPaneByName("picture_base");
     assert(pane);
     auto *material = pane->getMaterial();

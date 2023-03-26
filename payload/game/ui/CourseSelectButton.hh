@@ -12,7 +12,7 @@ public:
 
     void load(u32 i);
     void refresh(u32 courseId);
-    void refresh(u8 c, const GXTexObj &texObj);
+    void setTex(u8 c, const GXTexObj &texObj);
 
 private:
     nw4r::lyt::Pane *m_panes[4];
