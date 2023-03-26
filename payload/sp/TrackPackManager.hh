@@ -7,6 +7,7 @@
 
 #include <array>
 #include <string>
+#include <string_view>
 
 namespace SP {
 
@@ -22,7 +23,7 @@ enum class SupportedGameModes {
 
 class TrackPack {
 public:
-    TrackPack(Storage::NodeId manifestNodeId);
+    TrackPack(std::string_view manifest);
 
     u32 getSlotId(u32 wmmId) const;
 
@@ -39,6 +40,7 @@ class TrackPackManager {
 public:
     TrackPackManager();
 
+    bool isVanilla();
     const TrackPack *getSelectedTrackPack();
     void getTrackPath(char *out, u32 outSize, u32 wmmId, bool splitScreen);
 
@@ -53,7 +55,6 @@ private:
     // TODO: Not this!
     CircularBuffer<TrackPack, MAX_TRACKPACK_COUNT> m_packs;
     u32 m_selectedTrackPack;
-    bool m_hasSelected;
 
     static std::optional<TrackPackManager> s_instance;
 };

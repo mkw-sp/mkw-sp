@@ -185,7 +185,7 @@ void CourseSelectPage::onButtonFront(PushButton *button, u32 /* localPlayerId */
         startReplace(Anim::Next, button->getDelay());
     } else {
         auto &menuScenario = System::RaceConfig::Instance()->menuScenario();
-        menuScenario.courseId = 6156;
+        menuScenario.courseId = 3445;
 
         if (menuScenario.gameMode == System::RaceConfig::GameMode::TimeAttack) {
             m_replacement = PageId::TimeAttackTop;

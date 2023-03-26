@@ -7,8 +7,8 @@
 
 #include <charconv>
 #include <cstring>
-#include <string_view>
 
+#include "VanillaTracks.ini"
 #define TRACK_PACK_DIRECTORY L"Track Packs"
 
 namespace SP {
@@ -27,16 +27,8 @@ u32 u32FromSv(std::string_view sv) {
     }
 }
 
-TrackPack::TrackPack(Storage::NodeId manifestNodeId) {
-    char fileBuf[2048];
-
-    auto len = Storage::FastReadFile(manifestNodeId, &fileBuf, sizeof(fileBuf));
-    if (!len.has_value() || *len == 0) {
-        panic("Failed to read track pack manifest");
-    }
-
-    std::string_view view(fileBuf, *len);
-    IniReader iniReader(view);
+TrackPack::TrackPack(std::string_view manifestView) {
+    IniReader iniReader(manifestView);
 
     char errBuf[256];
     bool prettyNameFound = false;
@@ -54,7 +46,7 @@ TrackPack::TrackPack(Storage::NodeId manifestNodeId) {
                 m_authorNames = property->value;
                 authorNamesFound = true;
             } else {
-                u32 maxChars = MAX(property->key.size(), sizeof(errBuf) - 1);
+                u32 maxChars = MIN(property->key.size(), sizeof(errBuf) - 1);
                 strncpy(errBuf, property->key.data(), maxChars);
                 errBuf[maxChars] = '\0';
 
@@ -67,7 +59,7 @@ TrackPack::TrackPack(Storage::NodeId manifestNodeId) {
 
             m_slotMap.push_back({wiimmId, slotId});
         } else {
-            u32 maxChars = MAX(property->section.size(), sizeof(errBuf) - 1);
+            u32 maxChars = MIN(property->section.size(), sizeof(errBuf) - 1);
             strncpy(errBuf, property->section.data(), maxChars);
             errBuf[maxChars] = '\0';
 
@@ -92,8 +84,9 @@ u32 TrackPack::getSlotId(u32 wmmId) const {
 }
 
 TrackPackManager::TrackPackManager() {
+    char manifestBuf[2048];
+
     m_packs.reset();
-    m_hasSelected = true;
     m_selectedTrackPack = 0;
 
     auto dir = Storage::OpenDir(TRACK_PACK_DIRECTORY);
@@ -104,17 +97,29 @@ TrackPackManager::TrackPackManager() {
     }
 
     SP_LOG("Reading track packs");
+    m_packs.push_back(std::move(TrackPack(vanillaManifest)));
     while (auto nodeInfo = dir->read()) {
         if (nodeInfo->type != Storage::NodeType::File) {
             continue;
         }
 
         SP_LOG("Found track pack '%ls'", nodeInfo->name);
-        if (!m_packs.push_back(std::move(TrackPack(nodeInfo->id)))) {
+
+        auto len = Storage::FastReadFile(nodeInfo->id, manifestBuf, sizeof(manifestBuf));
+        if (!len.has_value() || *len == 0) {
+            panic("Failed to read track pack manifest");
+        }
+
+        std::string_view manifestView(manifestBuf, *len);
+        if (!m_packs.push_back(std::move(TrackPack(manifestView)))) {
             SP_LOG("Reached max track packs!");
             break;
         }
     }
+}
+
+bool TrackPackManager::isVanilla() {
+    return m_selectedTrackPack == 0;
 }
 
 const TrackPack *TrackPackManager::getSelectedTrackPack() {
@@ -124,8 +129,10 @@ const TrackPack *TrackPackManager::getSelectedTrackPack() {
 void TrackPackManager::getTrackPath(char *out, u32 outSize, u32 courseId, bool splitScreen) {
     SP_LOG("Getting track path for 0x%02x", courseId);
 
-    if (!m_hasSelected) {
-        auto courseFileName = Registry::courseFilenames[courseId];
+    if (isVanilla()) {
+        auto slotId = getSelectedTrackPack()->getSlotId(courseId);
+        auto courseFileName = Registry::courseFilenames[slotId];
+
         if (splitScreen) {
             snprintf(out, outSize, "Race/Course/%s_d", courseFileName);
         } else {
