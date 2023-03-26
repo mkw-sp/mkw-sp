@@ -1,5 +1,6 @@
 #include "ResourceManager.hh"
 
+#include "game/system/RaceConfig.hh"
 #include "game/system/RootScene.hh"
 
 #include <game/util/Registry.hh>
@@ -160,6 +161,10 @@ MultiDvdArchive *ResourceManager::loadCourse(u32 courseId, EGG::Heap *heap, bool
     if (!splitScreen) {
         trackPackManager->getTrackPath(filePath, sizeof(filePath), courseId, false);
     }
+
+    // Setup stock game slots
+    auto slotId = trackPackManager->getSelectedTrackPack()->getSlotId(courseId);
+    RaceConfig::Instance()->raceScenario().courseId = slotId;
 
     JobContext *jobContext = &m_jobContexts[2];
     jobContext->multiArchive = archive;

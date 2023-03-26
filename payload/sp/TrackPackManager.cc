@@ -1,19 +1,94 @@
 #include "TrackPackManager.hh"
 
+#include "sp/settings/IniReader.hh"
 #include "sp/storage/Storage.hh"
 
 #include <game/util/Registry.hh>
 
-#include <cstdio>
+#include <charconv>
 #include <cstring>
-#include <cwchar>
+#include <string_view>
 
 #define TRACK_PACK_DIRECTORY L"Track Packs"
 
 namespace SP {
 
+u32 u32FromSv(std::string_view sv) {
+    u32 out = 0;
+
+    auto first = sv.data();
+    auto last = sv.data() + sv.size();
+    auto [ptr, err] = std::from_chars(first, last, out);
+
+    if (ptr == last) {
+        return out;
+    } else {
+        panic("Failed to parse slotId to wmmId!");
+    }
+}
+
 TrackPack::TrackPack(Storage::NodeId manifestNodeId) {
-    // TODO: Parse manifest
+    char fileBuf[2048];
+
+    auto len = Storage::FastReadFile(manifestNodeId, &fileBuf, sizeof(fileBuf));
+    if (!len.has_value() || *len == 0) {
+        panic("Failed to read track pack manifest");
+    }
+
+    std::string_view view(fileBuf, *len);
+    IniReader iniReader(view);
+
+    char errBuf[256];
+    bool prettyNameFound = false;
+    bool descriptionFound = false;
+    bool authorNamesFound = false;
+    while (auto property = iniReader.next()) {
+        if (property->section == "Pack Info") {
+            if (property->key == "name") {
+                m_prettyName = property->value;
+                prettyNameFound = true;
+            } else if (property->key == "description") {
+                m_description = property->value;
+                descriptionFound = true;
+            } else if (property->key == "author") {
+                m_authorNames = property->value;
+                authorNamesFound = true;
+            } else {
+                u32 maxChars = MAX(property->key.size(), sizeof(errBuf) - 1);
+                strncpy(errBuf, property->key.data(), maxChars);
+                errBuf[maxChars] = '\0';
+
+                panic("Unknown key name: %s", errBuf);
+            }
+        } else if (property->section == "Slot Map") {
+            auto wiimmId = u32FromSv(property->key);
+            auto slotId = u32FromSv(property->value);
+            SP_LOG("Slot map: %d -> %d", wiimmId, slotId);
+
+            m_slotMap.push_back({wiimmId, slotId});
+        } else {
+            u32 maxChars = MAX(property->section.size(), sizeof(errBuf) - 1);
+            strncpy(errBuf, property->section.data(), maxChars);
+            errBuf[maxChars] = '\0';
+
+            panic("Unknown section name: %s", errBuf);
+        }
+    }
+
+    if (!prettyNameFound || !descriptionFound || !authorNamesFound) {
+        panic("Missing required key in track pack manifest");
+    }
+}
+
+u32 TrackPack::getSlotId(u32 wmmId) const {
+    for (u16 i = 0; i < m_slotMap.count(); i++) {
+        auto [cWmmId, cSlotId] = *m_slotMap[i];
+        if (cWmmId == wmmId) {
+            return cSlotId;
+        }
+    }
+
+    panic("Failed to find slotId for wmmId: %d", wmmId);
 }
 
 TrackPackManager::TrackPackManager() {
@@ -30,22 +105,26 @@ TrackPackManager::TrackPackManager() {
 
     SP_LOG("Reading track packs");
     while (auto nodeInfo = dir->read()) {
-        if (nodeInfo->type == Storage::NodeType::Dir) {
-            SP_LOG("Found track pack '%ls'", nodeInfo->name);
-            if (!m_packs.push_back(std::move(TrackPack(nodeInfo->id)))) {
-                SP_LOG("Reached max track packs!");
-                break;
-            }
+        if (nodeInfo->type != Storage::NodeType::File) {
+            continue;
+        }
+
+        SP_LOG("Found track pack '%ls'", nodeInfo->name);
+        if (!m_packs.push_back(std::move(TrackPack(nodeInfo->id)))) {
+            SP_LOG("Reached max track packs!");
+            break;
         }
     }
+}
+
+const TrackPack *TrackPackManager::getSelectedTrackPack() {
+    return m_packs[m_selectedTrackPack];
 }
 
 void TrackPackManager::getTrackPath(char *out, u32 outSize, u32 courseId, bool splitScreen) {
     SP_LOG("Getting track path for 0x%02x", courseId);
 
     if (!m_hasSelected) {
-        SP_LOG("No track pack selected");
-
         auto courseFileName = Registry::courseFilenames[courseId];
         if (splitScreen) {
             snprintf(out, outSize, "Race/Course/%s_d", courseFileName);
@@ -54,11 +133,7 @@ void TrackPackManager::getTrackPath(char *out, u32 outSize, u32 courseId, bool s
         }
 
         SP_LOG("Vanilla Track path: %s", out);
-        return;
     } else {
-        // Do we want courseId to be vanilla course IDs,
-        // then map from vanilla to custom course IDs in manifest,
-        // or do we want to use custom course IDs and break everything?
         snprintf(out, outSize, "/mkw-sp/Tracks/%d", courseId);
         SP_LOG("Track path: %s", out);
     }
