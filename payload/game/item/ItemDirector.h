@@ -4,20 +4,22 @@
 
 // Tentative name
 typedef struct {
-    char _[0x54 - 0x00];
-    char _54[0x88 - 0x54];
-    int _88;
-    int mCurrentItemKind;
-    int mCurrentItemQty;
-    // ...
+    u8 _00[0x88 - 0x00];
+    s32 _88;
+    s32 mCurrentItemKind;
+    s32 mCurrentItemQty;
+    u8 _94[0x248 - 0x94];
 } KartItem;
 
 // Tentative name
 typedef struct {
-    char _[0x14 - 0x00];
-    KartItem *mKartItems;
-    // ....
+    u8 _00[0x14 - 0x00];
+    KartItem *m_kartItems;
+    u8 _48[0x430 - 0x18];
 } ItemDirector;
+
+static_assert(sizeof(KartItem) == 0x248);
+static_assert(sizeof(ItemDirector) == 0x430);
 // extern ItemDirector *s_itemDirector;
 
 // Tentative name

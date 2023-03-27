@@ -5,7 +5,6 @@
 // most likely be added to SP::SaveStateManager.
 
 #pragma once
-
 #include "Kart5c.hh"
 #include "KartAction.hh"
 #include "KartBody.hh"
@@ -17,6 +16,10 @@
 #include "KartSus.hh"
 #include "KartTire.hh"
 #include "VehiclePhysics.hh"
+
+extern "C" {
+#include "game/item/ItemDirector.h"
+}
 
 namespace Kart {
 
@@ -32,10 +35,10 @@ struct KartTireFlat {
 
 class KartSaveState {
 public:
-    KartSaveState(KartAccessor accessor, VehiclePhysics *physics);
+    KartSaveState(KartAccessor accessor, VehiclePhysics *physics, KartItem *item);
 
-    void save(KartAccessor accessor, VehiclePhysics *physics);
-    void reload(KartAccessor accessor, VehiclePhysics *physics);
+    void save(KartAccessor accessor, VehiclePhysics *physics, KartItem *item);
+    void reload(KartAccessor accessor, VehiclePhysics *physics, KartItem *item);
 
 private:
     Kart5c m_5c;
@@ -48,6 +51,7 @@ private:
     KartTireFlat m_tire[4];
     KartCollide m_collide;
     VehiclePhysics m_physics;
+    KartItem m_item;
 };
 
 } // namespace Kart

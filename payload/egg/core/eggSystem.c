@@ -37,15 +37,15 @@ int sStickyItem = 0;
 int sStickyQty = 1;
 static void ClearItem(s32 myPlayerId) {
     if (s_itemDirector != NULL) {
-        s_itemDirector->mKartItems[myPlayerId].mCurrentItemKind = 20;
-        s_itemDirector->mKartItems[myPlayerId].mCurrentItemQty = 0;
+        s_itemDirector->m_kartItems[myPlayerId].mCurrentItemKind = 20;
+        s_itemDirector->m_kartItems[myPlayerId].mCurrentItemQty = 0;
     }
     sItemSticky = false;
 }
 static void TrySetItem(s32 myPlayerId, s32 item, s32 qty) {
     if (s_itemDirector != NULL) {
-        s_itemDirector->mKartItems[myPlayerId].mCurrentItemKind = item;
-        s_itemDirector->mKartItems[myPlayerId].mCurrentItemQty = qty;
+        s_itemDirector->m_kartItems[myPlayerId].mCurrentItemKind = item;
+        s_itemDirector->m_kartItems[myPlayerId].mCurrentItemQty = qty;
     }
 }
 
