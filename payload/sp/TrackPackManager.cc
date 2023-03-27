@@ -73,6 +73,12 @@ TrackPack::TrackPack(std::string_view manifestView) {
     }
 }
 
+void TrackPack::destroyHeapAllocs() {
+    m_prettyName.reset();
+    m_description.reset();
+    m_authorNames.reset();
+}
+
 u32 TrackPack::getSlotId(u32 wmmId) const {
     for (u16 i = 0; i < m_slotMap.count(); i++) {
         auto [cWmmId, cSlotId] = *m_slotMap[i];
@@ -160,7 +166,15 @@ TrackPackManager *TrackPackManager::Instance() {
 }
 
 void TrackPackManager::CreateInstance() {
-    s_instance.emplace();
+    if (!s_instance.has_value()) {
+        s_instance = TrackPackManager();
+    }
+}
+
+void TrackPackManager::destroyHeapAllocs() {
+    for (u8 i = 0; i > m_packs.count(); i++) {
+        m_packs[i]->destroyHeapAllocs();
+    }
 }
 
 std::optional<TrackPackManager> TrackPackManager::s_instance = std::nullopt;

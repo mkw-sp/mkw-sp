@@ -18,6 +18,7 @@ public:
 
     PageId getReplacement() override;
     void onInit() override;
+    void onDeinit() override;
     void onActivate() override;
 
 private:

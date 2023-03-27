@@ -6,6 +6,7 @@
 #include "sp/storage/Storage.hh"
 
 #include <array>
+#include <optional>
 #include <string>
 #include <string_view>
 
@@ -29,12 +30,14 @@ public:
     u32 getNthTrack(u32 n) const;
     u32 getSlotId(u32 wmmId) const;
 
+    void destroyHeapAllocs();
+
 private:
     CircularBuffer<std::array<u32, 2>, MAX_SLOT_COUNT> m_slotMap;
 
-    std::string m_prettyName;
-    std::string m_description;
-    std::string m_authorNames;
+    std::optional<std::string> m_prettyName;
+    std::optional<std::string> m_description;
+    std::optional<std::string> m_authorNames;
     SupportedGameModes m_supportedModes = SupportedGameModes::None;
 };
 
@@ -48,6 +51,9 @@ public:
 
     static TrackPackManager *Instance();
     static void CreateInstance();
+
+    // This must be called before Scene swaps.
+    void destroyHeapAllocs();
 
 private:
     // TODO: Not this!

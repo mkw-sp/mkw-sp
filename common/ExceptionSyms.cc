@@ -7,6 +7,10 @@ extern "C" {
 
 namespace std {
 
+__attribute__((__noreturn__)) void __throw_logic_error(const char *) {
+    panic("std::__throw_logic_error");
+};
+
 __attribute__((noreturn)) void __throw_bad_alloc(const char *) {
     panic("std::__throw_bad_alloc");
 };

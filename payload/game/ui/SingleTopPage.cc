@@ -93,6 +93,10 @@ void SingleTopPage::onInit() {
     SP::TrackPackManager::CreateInstance();
 }
 
+void SingleTopPage::onDeinit() {
+    SP::TrackPackManager::Instance()->destroyHeapAllocs();
+}
+
 void SingleTopPage::onActivate() {
     m_replacement = PageId::None;
 
