@@ -71,9 +71,6 @@ TrackPack::TrackPack(std::string_view manifestView) {
     if (!prettyNameFound || !descriptionFound || !authorNamesFound) {
         panic("Missing required key in track pack manifest");
     }
-
-    // TODO(GnomedDev): Sort tracks once CircularBuffer has iteration methods.
-    // std::sort(m_slotMap.begin(), m_slotMap.end(), [](auto &a, auto &b) { return a[0] < b[0]; });
 }
 
 u32 TrackPack::getSlotId(u32 wmmId) const {
