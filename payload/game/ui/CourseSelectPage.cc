@@ -164,7 +164,6 @@ void CourseSelectPage::onButtonFront(PushButton *button, u32 /* localPlayerId */
 
     auto courseIndex = m_sheetIndex * m_buttons.size() + button->m_index;
     auto courseId = trackPack->getNthTrack(courseIndex);
-    trackPackManager->m_selectedTrack = courseId;
 
     auto *sectionManager = SectionManager::Instance();
     auto *section = sectionManager->currentSection();

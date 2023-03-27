@@ -49,10 +49,6 @@ public:
     static TrackPackManager *Instance();
     static void CreateInstance();
 
-    // Currently an ID from the wiimm DB, uses the Pack
-    // to get the slotID to use for the Scenario courseId
-    u32 m_selectedTrack;
-
 private:
     // TODO: Not this!
     CircularBuffer<TrackPack, MAX_TRACKPACK_COUNT> m_packs;
