@@ -49,14 +49,16 @@ void CourseSelectButton::refresh(u32 courseId) {
         m_panes[i]->m_height = m_sizes[i].y / section->locationAdjustScale().y;
     }
 
-    // TODO(GnomedDev): Handle showing track names via wiimm's DB.
     auto *trackPackManager = SP::TrackPackManager::Instance();
     if (trackPackManager->isVanilla()) {
         auto vanillaPack = trackPackManager->getSelectedTrackPack();
         auto slotId = vanillaPack->getSlotId(courseId);
         setMessageAll(9360 + slotId);
     } else {
-        setMessageAll(10394);
+        MessageInfo info;
+        info.strings[0] = trackPackManager->getTrackName(courseId);
+
+        setMessageAll(20031, &info);
     }
 }
 

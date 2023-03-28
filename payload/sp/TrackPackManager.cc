@@ -8,9 +8,12 @@
 
 #include <algorithm>
 #include <charconv>
+#include <codecvt>
 #include <cstring>
+#include <locale>
 
 #define TRACK_PACK_DIRECTORY L"Track Packs"
+#define TRACK_DB L"WiimmDB.ini"
 
 namespace SP {
 
@@ -56,7 +59,6 @@ TrackPack::TrackPack(std::string_view manifestView) {
         } else if (property->section == "Slot Map") {
             auto wiimmId = u32FromSv(property->key);
             auto slotId = u32FromSv(property->value);
-            SP_LOG("Slot map: %d -> %d", wiimmId, slotId);
 
             m_slotMap.push_back({wiimmId, slotId});
         } else {
@@ -102,6 +104,7 @@ TrackPackManager::TrackPackManager() {
     char manifestBuf[2048];
 
     m_packs.reset();
+    m_trackDb.emplace();
     m_selectedTrackPack = 1;
 
     auto dir = Storage::OpenDir(TRACK_PACK_DIRECTORY);
@@ -131,6 +134,44 @@ TrackPackManager::TrackPackManager() {
             break;
         }
     }
+
+    // Load up the wiimm db, which is pretty large, so we cannot
+    // just put it on the stack, so we get the size from stat and
+    // allocate a buffer that fits this exact size.
+    auto nodeInfo = Storage::Stat(TRACK_DB);
+    if (!nodeInfo.has_value()) {
+        return;
+    }
+
+    std::string trackDbBuf("");
+    trackDbBuf.resize(nodeInfo->size);
+
+    auto len = Storage::FastReadFile(nodeInfo->id, trackDbBuf.data(), nodeInfo->size);
+    if (!len.has_value() || *len == 0) {
+        panic("Failed to read track DB!");
+    }
+
+    trackDbBuf.resize(*len);
+
+    IniReader trackDbIni(trackDbBuf);
+    while (auto property = trackDbIni.next()) {
+        SP_LOG("Found a property");
+        if (property->key == "name") {
+            u32 wiimmId = u32FromSv(property->section);
+            auto nullTermName = std::string(property->value).c_str();
+
+            SP_LOG("Found track: %d", wiimmId);
+
+            std::wstring name;
+
+            name.resize(property->value.size() + 1);
+            auto written = swprintf(name.data(), name.size(), L"%s", nullTermName);
+            name.resize(written);
+
+            auto kv = std::make_tuple<u32, std::wstring>(std::move(wiimmId), std::move(name));
+            m_trackDb->push_back(kv);
+        }
+    }
 }
 
 bool TrackPackManager::isVanilla() {
@@ -139,6 +180,17 @@ bool TrackPackManager::isVanilla() {
 
 const TrackPack *TrackPackManager::getSelectedTrackPack() {
     return m_packs[m_selectedTrackPack];
+}
+
+const wchar_t *TrackPackManager::getTrackName(u32 courseId) {
+    for (auto &[wiimmId, name] : *m_trackDb) {
+        if (wiimmId == courseId) {
+            return name.c_str();
+        }
+    }
+
+    SP_LOG("Failed to find track name for courseId: %d", courseId);
+    return L"Unknown Track";
 }
 
 void TrackPackManager::getTrackPath(char *out, u32 outSize, u32 courseId, bool splitScreen) {
@@ -172,6 +224,7 @@ void TrackPackManager::CreateInstance() {
 }
 
 void TrackPackManager::destroyHeapAllocs() {
+    m_trackDb.reset();
     for (u8 i = 0; i > m_packs.count(); i++) {
         m_packs[i]->destroyHeapAllocs();
     }

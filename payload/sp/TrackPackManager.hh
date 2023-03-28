@@ -9,6 +9,8 @@
 #include <optional>
 #include <string>
 #include <string_view>
+#include <tuple>
+#include <vector>
 
 namespace SP {
 
@@ -47,6 +49,7 @@ public:
 
     bool isVanilla();
     const TrackPack *getSelectedTrackPack();
+    const wchar_t *getTrackName(u32 courseId);
     void getTrackPath(char *out, u32 outSize, u32 wmmId, bool splitScreen);
 
     static TrackPackManager *Instance();
@@ -56,7 +59,7 @@ public:
     void destroyHeapAllocs();
 
 private:
-    // TODO: Not this!
+    std::optional<std::vector<std::tuple<u32, std::wstring>>> m_trackDb;
     CircularBuffer<TrackPack, MAX_TRACKPACK_COUNT> m_packs;
     u32 m_selectedTrackPack;
 

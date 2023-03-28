@@ -1095,6 +1095,7 @@ code_in_files = {
         os.path.join('common', 'TVec3.S'),
         os.path.join('common', 'TVec3.cc'),
         os.path.join('common', 'VI.cc'),
+        os.path.join('common', 'wmemset.c'),
         os.path.join('vendor', 'arith64.c'),
         os.path.join('vendor', 'ff', 'diskio.c'),
         os.path.join('vendor', 'ff', 'ff.c'),
