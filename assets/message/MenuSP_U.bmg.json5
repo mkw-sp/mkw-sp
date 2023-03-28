@@ -1094,6 +1094,9 @@
     "10393": {
         string: "Choose the Team Size randomly"
     },
+    "10420": {
+        string: "Packs",
+    },
     "20000": {
         string: "Online",
     },

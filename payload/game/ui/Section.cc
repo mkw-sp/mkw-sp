@@ -17,6 +17,7 @@
 #include "game/ui/OnlineModeSelectPage.hh"
 #include "game/ui/OnlineTeamSelectPage.hh"
 #include "game/ui/OnlineTopPage.hh"
+#include "game/ui/PackSelectPage.hh"
 #include "game/ui/RandomMatchingPage.hh"
 #include "game/ui/RoulettePage.hh"
 #include "game/ui/SectionManager.hh"
@@ -198,6 +199,8 @@ void Section::addPage(PageId pageId) {
 
 void Section::addActivePage(PageId pageId) {
     std::pair<SectionId, PageId> deletions[] = {
+            {SectionId::Single, PageId::SingleTop},
+
             {SectionId::SingleChangeGhostData, PageId::CharacterSelect},
 
             {SectionId::SingleSelectBTCourse, PageId::BattleCupSelect},
@@ -319,7 +322,7 @@ void Section::addPages(SectionId id) {
             {SectionId::SingleChangeGhostData, PageId::MenuMessage},
             {SectionId::SingleChangeGhostData, PageId::MessageBoardPopup},
             {SectionId::SingleChangeGhostData, PageId::SingleTop},
-            {SectionId::SingleChangeGhostData, PageId::GpClassSelect},
+            {SectionId::SingleChangeGhostData, PageId::PackSelect},
             {SectionId::SingleChangeGhostData, PageId::CourseSelect},
             {SectionId::SingleChangeGhostData, PageId::TimeAttackTop},
             {SectionId::SingleChangeGhostData, PageId::TimeAttackGhostList},
@@ -361,6 +364,8 @@ void Section::addActivePages(SectionId id) {
     REPLACED(addActivePages)(id);
 
     std::pair<SectionId, PageId> additions[] = {
+            {SectionId::Single, PageId::PackSelect},
+
             // Change Ghost Data
             {SectionId::SingleChangeGhostData, PageId::TimeAttackTop},
             {SectionId::SingleSelectBTCourse, PageId::CourseSelect},
@@ -392,6 +397,8 @@ Page *Section::CreatePage(PageId pageId) {
         return new LicenseSelectPage;
     case PageId::SingleTop:
         return new SingleTopPage;
+    case PageId::PackSelect:
+        return new PackSelectPage;
     case PageId::CourseSelect:
         return new CourseSelectPage;
     case PageId::TimeAttackGhostList:
