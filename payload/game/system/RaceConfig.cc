@@ -2,16 +2,15 @@
 
 #include "game/system/InputManager.hh"
 #include "game/system/SaveManager.hh"
-
 extern "C" {
 #include "game/system/SaveManager.h"
 }
 
+#include <sp/TrackPackManager.hh>
+#include <sp/settings/ClientSettings.hh>
 extern "C" {
 #include <vendor/libhydrogen/hydrogen.h>
 }
-
-#include <sp/settings/ClientSettings.hh>
 
 namespace System {
 
@@ -126,6 +125,7 @@ void RaceConfig::ConfigurePlayers(Scenario &scenario, u32 screenCount) {
 
 void RaceConfig::initRace() {
     REPLACED(initRace)();
+
     auto *saveManager = System::SaveManager::Instance();
     auto setting = saveManager->getSetting<SP::ClientSettings::Setting::TAMirror>();
     // Switch the race to mirror if the mirror TT setting is enabled.
@@ -136,6 +136,12 @@ void RaceConfig::initRace() {
             setting == SP::ClientSettings::TAMirror::Disable) {
         m_raceScenario.mirror = false;
     }
+
+    // Setup stock game slots
+    auto trackPackManager = SP::TrackPackManager::Instance();
+
+    auto slotId = trackPackManager->getSelectedTrackPack()->getSlotId(m_raceScenario.courseId);
+    RaceConfig::Instance()->raceScenario().courseId = slotId;
 }
 
 } // namespace System
