@@ -360,6 +360,9 @@ asset_in_files = {
         os.path.join('button', 'ctrl', 'CourseSelectButton.brctr.json5'),
         os.path.join('button', 'ctrl', 'CourseSelectScrollBar.brctr.json5'),
         os.path.join('control', 'ctrl', 'TimeAttackGhostListPageNum.brctr.json5'),
+        # Pack Select
+        os.path.join('button', 'blyt', 'pack_select_button.brlyt.json5'),
+        os.path.join('button', 'ctrl', 'PackSelectButton.brctr.json5'),
     ],
     os.path.join('Scene', 'UI', 'MenuOtherSP.arc.lzma'): [
         # Explanation text with 2 lines
@@ -555,6 +558,9 @@ asset_in_files = {
         os.path.join('button', 'ctrl', 'CourseSelectArrowRight.brctr.json5'),
         os.path.join('button', 'ctrl', 'CourseSelectButton.brctr.json5'),
         os.path.join('button', 'ctrl', 'CourseSelectScrollBar.brctr.json5'),
+        # Pack Select
+        os.path.join('button', 'blyt', 'pack_select_button.brlyt.json5'),
+        os.path.join('button', 'ctrl', 'PackSelectButton.brctr.json5'),
         # Flags
         os.path.join('control', 'blyt', 'chara_flag_machine_picture_common.brlyt.json5'),
         *glob.glob("control/timg/[0-9][0-9][0-9].tpl", root_dir="assets", recursive=True),

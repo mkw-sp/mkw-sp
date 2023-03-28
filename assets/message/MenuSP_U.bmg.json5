@@ -1097,6 +1097,9 @@
     "10394": {
         string: "No track name found!",
     },
+    "10420": {
+        string: "Packs",
+    },
     "20000": {
         string: "Online",
     },
