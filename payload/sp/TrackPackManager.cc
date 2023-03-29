@@ -136,6 +136,8 @@ void TrackPackManager::loadTrackPacks() {
 }
 
 void TrackPackManager::loadTrackDb() {
+    SP_LOG("Loading track DB");
+
     m_trackDb.emplace();
 
     // Load up the wiimm db, which is pretty large, so we cannot
@@ -143,6 +145,7 @@ void TrackPackManager::loadTrackDb() {
     // allocate a buffer that fits this exact size.
     auto nodeInfo = Storage::Stat(TRACK_DB);
     if (!nodeInfo.has_value()) {
+        SP_LOG("No track DB found!");
         return;
     }
 
@@ -158,16 +161,14 @@ void TrackPackManager::loadTrackDb() {
 
     IniReader trackDbIni(trackDbBuf);
     while (auto property = trackDbIni.next()) {
-        if (property->key == "name") {
+        if (property->key == "trackname") {
             u32 wiimmId = u32FromSv(property->section);
-            auto nullTermName = std::string(property->value).c_str();
-
-            SP_LOG("Found track: %d", wiimmId);
+            auto valueOwned = std::string(property->value);
 
             std::wstring name;
 
             name.resize(property->value.size() + 1);
-            auto written = swprintf(name.data(), name.size(), L"%s", nullTermName);
+            auto written = swprintf(name.data(), name.size(), L"%s", valueOwned.c_str());
             name.resize(written);
 
             auto kv = std::make_tuple<u32, std::wstring>(std::move(wiimmId), std::move(name));

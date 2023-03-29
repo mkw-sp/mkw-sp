@@ -350,7 +350,7 @@ void CourseSelectPage::loadThumbnails() {
             if (result == JDR_OK) {
                 m_thumbnailChanged[i] = true;
             } else {
-                SP_LOG("Failed to read thumbnail with error %u", result);
+                SP_LOG("Failed to read thumbnail %d with error %u", databaseId, result);
             }
         }
     }
@@ -358,7 +358,13 @@ void CourseSelectPage::loadThumbnails() {
 
 JRESULT CourseSelectPage::loadThumbnail(u32 i, u32 databaseId) {
     char path[32];
-    snprintf(path, std::size(path), "/thumbnails/%u.jpg", databaseId);
+
+    auto trackPackManager = SP::TrackPackManager::Instance();
+    if (trackPackManager->isVanilla()) {
+        snprintf(path, std::size(path), "/thumbnails/%u.jpg", databaseId);
+    } else {
+        snprintf(path, std::size(path), "/mkw-sp/thumbnails/%05u.jpg", databaseId);
+    }
 
     auto file = SP::Storage::OpenRO(path);
     if (!file) {
