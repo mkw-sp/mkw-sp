@@ -20,12 +20,7 @@ void DemoPage::onInit() {
     auto &raceScenario = raceConfig->raceScenario();
     auto currentSectionId = sectionManager->currentSection()->id();
 
-    auto childCount = 2;
-    if (currentSectionId == SectionId::BTDemo) {
-        childCount += globalContext->m_matchCount * 2;
-    }
-
-    initChildren(childCount);
+    initChildren(2);
     insertChild(0, &m_courseDisplay, 0);
     insertChild(1, &m_cupDisplay, 0);
 
