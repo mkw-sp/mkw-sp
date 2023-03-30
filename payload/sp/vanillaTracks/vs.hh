@@ -1,7 +1,7 @@
 const std::string_view vanillaManifest = R"(
 [Pack Info]
 author = Nintendo
-name = Vanilla Tracks
+name = Nintendo Race Tracks
 description = The original 32 tracks from Mario Kart Wii. 
 
 [Slot Map]

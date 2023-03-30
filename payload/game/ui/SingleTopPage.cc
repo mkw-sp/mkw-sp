@@ -114,7 +114,8 @@ void SingleTopPage::onActivate() {
 }
 
 void SingleTopPage::onBack(u32 /* localPlayerId */) {
-    changeSection(SectionId::TitleFromMenu, Anim::Prev, 0.0f);
+    m_replacement = PageId::PackSelect;
+    startReplace(Anim::Prev, 0.0f);
 }
 
 void SingleTopPage::onSettingsButtonFront(PushButton *button, u32 /* localPlayerId */) {

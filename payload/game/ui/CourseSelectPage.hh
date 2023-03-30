@@ -23,8 +23,8 @@ public:
 
     PageId getReplacement() override;
     void onInit() override;
-    void onDeinit() override;
     void onActivate() override;
+    void onDeactivate() override;
     void afterCalc() override;
     void onRefocus() override;
 

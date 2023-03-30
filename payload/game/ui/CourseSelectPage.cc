@@ -76,21 +76,15 @@ void CourseSelectPage::onInit() {
             m_buffers[i][c].reset(new (0x20) u8[MaxThumbnailHeight * MaxThumbnailWidth]);
         }
     }
+}
+
+void CourseSelectPage::onActivate() {
     m_request = Request::None;
     OSInitThreadQueue(&m_queue);
     u8 *stackTop = m_stack + sizeof(m_stack);
     OSCreateThread(&m_thread, LoadThumbnails, this, stackTop, sizeof(m_stack), 24, 0);
     OSResumeThread(&m_thread);
-}
 
-void CourseSelectPage::onDeinit() {
-    m_request = Request::Stop;
-    OSWakeupThread(&m_queue);
-    OSJoinThread(&m_thread, nullptr);
-    OSDetachThread(&m_thread);
-}
-
-void CourseSelectPage::onActivate() {
     m_replacement = PageId::None;
 
     m_sheetIndex = 0;
@@ -104,6 +98,13 @@ void CourseSelectPage::onActivate() {
     refresh();
 
     m_buttons[0].selectDefault(0);
+}
+
+void CourseSelectPage::onDeactivate() {
+    m_request = Request::Stop;
+    OSWakeupThread(&m_queue);
+    OSJoinThread(&m_thread, nullptr);
+    OSDetachThread(&m_thread);
 }
 
 void CourseSelectPage::afterCalc() {

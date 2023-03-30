@@ -1,10 +1,10 @@
 #include "PackSelectPage.hh"
 
+#include <sp/TrackPackManager.hh>
+
 #include <cstdio>
 
 namespace UI {
-
-#define PACK_COUNT 13
 
 PackSelectPage::PackSelectPage() = default;
 
@@ -15,7 +15,10 @@ PageId PackSelectPage::getReplacement() {
 }
 
 void PackSelectPage::onInit() {
-    m_sheetCount = (PACK_COUNT + std::size(m_buttons) - 1) / std::size(m_buttons);
+    auto *trackPackManager = SP::TrackPackManager::Instance();
+    auto packCount = trackPackManager->getPackCount();
+
+    m_sheetCount = (packCount + std::size(m_buttons) - 1) / std::size(m_buttons);
     m_sheetIndex = 0;
     m_lastSelected = 0;
 
@@ -75,8 +78,12 @@ void PackSelectPage::onBack(u32 /* localPlayerId */) {
     changeSection(SectionId::TitleFromMenu, Anim::Prev, 0.0f);
 }
 
-void PackSelectPage::onButtonFront(PushButton * /* button */, u32 /* localPlayerId */) {
-    // TODO
+void PackSelectPage::onButtonFront(PushButton *button, u32 /* localPlayerId */) {
+    auto trackPackManager = SP::TrackPackManager::Instance();
+    trackPackManager->m_selectedTrackPack = m_sheetIndex * m_buttons.size() + button->m_index;
+
+    m_replacement = PageId::SingleTop;
+    startReplace(Anim::Next, button->getDelay());
 }
 
 void PackSelectPage::onButtonSelect(PushButton *button, u32 /* localPlayerId */) {
@@ -132,13 +139,19 @@ void PackSelectPage::onBackButtonFront(PushButton *button, u32 /* localPlayerId 
 }
 
 void PackSelectPage::refresh() {
+    auto *trackPackManager = SP::TrackPackManager::Instance();
+    auto packCount = trackPackManager->getPackCount();
+
     for (size_t i = 0; i < m_buttons.size(); i++) {
         u32 packIndex = m_sheetIndex * m_buttons.size() + i;
-        if (packIndex < PACK_COUNT) {
+        if (packIndex < packCount) {
+            auto pack = trackPackManager->getNthPack(packIndex);
+
             m_buttons[i].setVisible(true);
             m_buttons[i].setPlayerFlags(1 << 0);
+
             MessageInfo info{};
-            info.strings[0] = L"NAME";
+            info.strings[0] = pack->getPrettyName();
             m_buttons[i].setMessageAll(6602, &info);
         } else {
             m_buttons[i].setVisible(false);

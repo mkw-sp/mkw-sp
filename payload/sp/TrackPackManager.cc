@@ -14,9 +14,9 @@
 
 namespace SP {
 
-u32 courseToSlot(u32 courseId) {
+u32 slotToCourse(u32 slotId) {
     // clang-format off
-    switch (courseId) {
+    switch (slotId) {
     case 11: return 0x8;
     case 12: return 0x1;
     case 13: return 0x2;
@@ -49,7 +49,7 @@ u32 courseToSlot(u32 courseId) {
     case 82: return 0x16;
     case 83: return 0x13;
     case 84: return 0x17;
-    default: panic("Unknown course id: %d", courseId);
+    default: panic("Unknown slot id: %d", slotId);
     }
     // clang-format on
 }
@@ -78,7 +78,7 @@ TrackPack::TrackPack(std::string_view manifestView) {
     while (auto property = iniReader.next()) {
         if (property->section == "Pack Info") {
             if (property->key == "name") {
-                m_prettyName = property->value;
+                m_prettyName = {property->value};
                 prettyNameFound = true;
             } else if (property->key == "description") {
                 m_description = property->value;
@@ -97,7 +97,7 @@ TrackPack::TrackPack(std::string_view manifestView) {
             auto wiimmId = u32FromSv(property->key);
             auto slotId = u32FromSv(property->value);
 
-            auto courseId = courseToSlot(slotId);
+            auto courseId = slotToCourse(slotId);
             m_courseMap.push_back({wiimmId, courseId});
         } else {
             u32 maxChars = MIN(property->section.size(), sizeof(errBuf) - 1);
@@ -132,8 +132,12 @@ u16 TrackPack::getTrackCount() const {
     return m_courseMap.count();
 }
 
+const wchar_t *TrackPack::getPrettyName() const {
+    return m_prettyName.c_str();
+}
+
 TrackPackManager::TrackPackManager() {
-    m_selectedTrackPack = 1;
+    m_selectedTrackPack = 0;
 
     loadTrackPacks();
     loadTrackDb();
@@ -187,7 +191,7 @@ void TrackPackManager::loadTrackDb() {
         return;
     }
 
-    std::string trackDbBuf("");
+    std::string trackDbBuf;
     trackDbBuf.resize(nodeInfo->size);
 
     auto len = Storage::FastReadFile(nodeInfo->id, trackDbBuf.data(), nodeInfo->size);
@@ -201,15 +205,9 @@ void TrackPackManager::loadTrackDb() {
     while (auto property = trackDbIni.next()) {
         if (property->key == "trackname") {
             u32 wiimmId = u32FromSv(property->section);
-            auto valueOwned = std::string(property->value);
+            auto kv = std::make_tuple<u32, WFixedString<64>>(std::move(wiimmId),
+                    std::move(WFixedString<64>(property->value)));
 
-            std::wstring name;
-
-            name.resize(property->value.size() + 1);
-            auto written = swprintf(name.data(), name.size(), L"%s", valueOwned.c_str());
-            name.resize(written);
-
-            auto kv = std::make_tuple<u32, std::wstring>(std::move(wiimmId), std::move(name));
             m_trackDb->push_back(kv);
         }
     }
@@ -217,6 +215,10 @@ void TrackPackManager::loadTrackDb() {
 
 bool TrackPackManager::isVanilla() {
     return m_selectedTrackPack == 0;
+}
+
+size_t TrackPackManager::getPackCount() {
+    return m_packs.count();
 }
 
 const TrackPack *TrackPackManager::getSelectedTrackPack() {
@@ -232,6 +234,10 @@ const wchar_t *TrackPackManager::getTrackName(u32 courseId) {
 
     SP_LOG("Failed to find track name for wiimmId: %d", courseId);
     return L"Unknown Track";
+}
+
+const TrackPack *TrackPackManager::getNthPack(u32 n) {
+    return m_packs[n];
 }
 
 void TrackPackManager::getTrackPath(char *out, u32 outSize, u32 wiimmId, bool splitScreen) {

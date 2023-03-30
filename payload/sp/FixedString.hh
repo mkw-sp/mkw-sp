@@ -3,6 +3,7 @@
 #include <Common.h>
 #include <algorithm>
 #include <array>
+#include <string>
 #include <string_view>
 
 namespace SP {
@@ -31,7 +32,7 @@ struct FixedString {
     constexpr bool operator==(const FixedString &) const = default;
     constexpr bool operator!=(const FixedString &) const = default;
 
-    const char *c_str() {
+    const char *c_str() const {
         // Always null terminated
         return m_buf.data();
     }
@@ -39,6 +40,31 @@ struct FixedString {
     size_t m_len = 0;
     // Null terminated, just in case
     std::array<char, N> m_buf = {};
+};
+
+template <size_t N>
+struct WFixedString {
+    constexpr WFixedString() = default;
+    constexpr WFixedString(const WFixedString &) = default;
+    constexpr ~WFixedString() = default;
+    constexpr WFixedString(std::string_view &view) {
+        if (view.size() >= m_buf.size()) {
+            view = view.substr(0, N - 1);
+        }
+
+        auto viewOwned = std::string(view);
+
+        auto written = swprintf(m_buf.data(), m_buf.size(), L"%s", viewOwned.c_str());
+        m_buf[written] = L'\0';
+    }
+
+    const wchar_t *c_str() const {
+        // Always null terminated
+        return m_buf.data();
+    }
+
+    size_t m_len = 0;
+    std::array<wchar_t, N> m_buf = {};
 };
 
 } // namespace SP
