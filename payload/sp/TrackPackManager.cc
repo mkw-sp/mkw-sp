@@ -6,11 +6,8 @@
 
 #include <game/util/Registry.hh>
 
-#include <algorithm>
 #include <charconv>
-#include <codecvt>
 #include <cstring>
-#include <locale>
 
 #define TRACK_PACK_DIRECTORY L"Track Packs"
 #define TRACK_DB L"WiimmDB.ini"
@@ -18,6 +15,7 @@
 namespace SP {
 
 u32 courseToSlot(u32 courseId) {
+    // clang-format off
     switch (courseId) {
     case 11: return 0x8;
     case 12: return 0x1;
@@ -53,6 +51,7 @@ u32 courseToSlot(u32 courseId) {
     case 84: return 0x17;
     default: panic("Unknown course id: %d", courseId);
     }
+    // clang-format on
 }
 
 u32 u32FromSv(std::string_view sv) {
