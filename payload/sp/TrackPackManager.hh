@@ -31,10 +31,10 @@ public:
 
     u16 getTrackCount() const;
     u32 getNthTrack(u32 n) const;
-    u32 getSlotId(u32 wmmId) const;
+    u32 getCourseId(u32 wmmId) const;
 
 private:
-    CircularBuffer<std::array<u32, 2>, MAX_SLOT_COUNT> m_slotMap;
+    CircularBuffer<std::array<u32, 2>, MAX_SLOT_COUNT> m_courseMap;
 
     FixedString<32> m_prettyName;
     FixedString<128> m_description;

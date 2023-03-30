@@ -140,8 +140,8 @@ void RaceConfig::initRace() {
     // Setup stock game slots
     auto trackPackManager = SP::TrackPackManager::Instance();
 
-    auto slotId = trackPackManager->getSelectedTrackPack()->getSlotId(m_raceScenario.courseId);
-    RaceConfig::Instance()->raceScenario().courseId = slotId;
+    auto courseId = trackPackManager->getSelectedTrackPack()->getCourseId(m_menuScenario.courseId);
+    RaceConfig::Instance()->raceScenario().courseId = courseId;
 }
 
 } // namespace System

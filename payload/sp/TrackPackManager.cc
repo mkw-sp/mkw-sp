@@ -17,6 +17,44 @@
 
 namespace SP {
 
+u32 courseToSlot(u32 courseId) {
+    switch (courseId) {
+    case 11: return 0x8;
+    case 12: return 0x1;
+    case 13: return 0x2;
+    case 14: return 0x3;
+    case 21: return 0x0;
+    case 22: return 0x5;
+    case 23: return 0x6;
+    case 24: return 0x7;
+    case 31: return 0x9;
+    case 32: return 0xF;
+    case 33: return 0xB;
+    case 34: return 0x3;
+    case 41: return 0xE;
+    case 42: return 0xA;
+    case 43: return 0xC;
+    case 44: return 0xD;
+    case 51: return 0x10;
+    case 52: return 0x14;
+    case 53: return 0x19;
+    case 54: return 0x1A;
+    case 61: return 0x1B;
+    case 62: return 0x1F;
+    case 63: return 0x17;
+    case 64: return 0x12;
+    case 71: return 0x15;
+    case 72: return 0x1E;
+    case 73: return 0x1D;
+    case 74: return 0x11;
+    case 81: return 0x18;
+    case 82: return 0x16;
+    case 83: return 0x13;
+    case 84: return 0x17;
+    default: panic("Unknown course id: %d", courseId);
+    }
+}
+
 u32 u32FromSv(std::string_view sv) {
     u32 out = 0;
 
@@ -27,7 +65,7 @@ u32 u32FromSv(std::string_view sv) {
     if (ptr == last) {
         return out;
     } else {
-        panic("Failed to parse slotId to wmmId!");
+        panic("Failed to parse slotId as integer!");
     }
 }
 
@@ -60,7 +98,8 @@ TrackPack::TrackPack(std::string_view manifestView) {
             auto wiimmId = u32FromSv(property->key);
             auto slotId = u32FromSv(property->value);
 
-            m_slotMap.push_back({wiimmId, slotId});
+            auto courseId = courseToSlot(slotId);
+            m_courseMap.push_back({wiimmId, courseId});
         } else {
             u32 maxChars = MIN(property->section.size(), sizeof(errBuf) - 1);
             strncpy(errBuf, property->section.data(), maxChars);
@@ -75,23 +114,23 @@ TrackPack::TrackPack(std::string_view manifestView) {
     }
 }
 
-u32 TrackPack::getSlotId(u32 wmmId) const {
-    for (u16 i = 0; i < m_slotMap.count(); i++) {
-        auto [cWmmId, cSlotId] = *m_slotMap[i];
+u32 TrackPack::getCourseId(u32 wmmId) const {
+    for (u16 i = 0; i < m_courseMap.count(); i++) {
+        auto [cWmmId, cCourseId] = *m_courseMap[i];
         if (cWmmId == wmmId) {
-            return cSlotId;
+            return cCourseId;
         }
     }
 
-    panic("Failed to find slotId for wmmId: %d", wmmId);
+    panic("Failed to find courseId for wmmId: %d", wmmId);
 }
 
 u32 TrackPack::getNthTrack(u32 n) const {
-    return (*m_slotMap[n])[0];
+    return (*m_courseMap[n])[0];
 }
 
 u16 TrackPack::getTrackCount() const {
-    return m_slotMap.count();
+    return m_courseMap.count();
 }
 
 TrackPackManager::TrackPackManager() {
@@ -192,16 +231,16 @@ const wchar_t *TrackPackManager::getTrackName(u32 courseId) {
         }
     }
 
-    SP_LOG("Failed to find track name for courseId: %d", courseId);
+    SP_LOG("Failed to find track name for wiimmId: %d", courseId);
     return L"Unknown Track";
 }
 
-void TrackPackManager::getTrackPath(char *out, u32 outSize, u32 courseId, bool splitScreen) {
-    SP_LOG("Getting track path for 0x%02x", courseId);
+void TrackPackManager::getTrackPath(char *out, u32 outSize, u32 wiimmId, bool splitScreen) {
+    SP_LOG("Getting track path for 0x%02x", wiimmId);
 
     if (isVanilla()) {
-        auto slotId = getSelectedTrackPack()->getSlotId(courseId);
-        auto courseFileName = Registry::courseFilenames[slotId];
+        auto courseId = getSelectedTrackPack()->getCourseId(wiimmId);
+        auto courseFileName = Registry::courseFilenames[courseId];
 
         if (splitScreen) {
             snprintf(out, outSize, "Race/Course/%s_d", courseFileName);
@@ -211,7 +250,7 @@ void TrackPackManager::getTrackPath(char *out, u32 outSize, u32 courseId, bool s
 
         SP_LOG("Vanilla Track path: %s", out);
     } else {
-        snprintf(out, outSize, "/mkw-sp/Tracks/%d", courseId);
+        snprintf(out, outSize, "/mkw-sp/Tracks/%d", wiimmId);
         SP_LOG("Track path: %s", out);
     }
 }

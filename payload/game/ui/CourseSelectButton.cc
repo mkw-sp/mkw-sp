@@ -42,7 +42,7 @@ void CourseSelectButton::load(u32 i) {
     }
 }
 
-void CourseSelectButton::refresh(u32 courseId) {
+void CourseSelectButton::refresh(u32 wiimmId) {
     auto *section = SectionManager::Instance()->currentSection();
     for (size_t i = 0; i < std::size(m_panes); i++) {
         m_panes[i]->m_width = m_sizes[i].x / section->locationAdjustScale().x;
@@ -52,11 +52,11 @@ void CourseSelectButton::refresh(u32 courseId) {
     auto *trackPackManager = SP::TrackPackManager::Instance();
     if (trackPackManager->isVanilla()) {
         auto vanillaPack = trackPackManager->getSelectedTrackPack();
-        auto slotId = vanillaPack->getSlotId(courseId);
-        setMessageAll(9360 + slotId);
+        auto courseId = vanillaPack->getCourseId(wiimmId);
+        setMessageAll(9360 + courseId);
     } else {
         MessageInfo info;
-        info.strings[0] = trackPackManager->getTrackName(courseId);
+        info.strings[0] = trackPackManager->getTrackName(wiimmId);
 
         setMessageAll(20031, &info);
     }
