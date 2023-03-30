@@ -75,12 +75,6 @@ TrackPack::TrackPack(std::string_view manifestView) {
     }
 }
 
-void TrackPack::destroyHeapAllocs() {
-    m_prettyName.reset();
-    m_description.reset();
-    m_authorNames.reset();
-}
-
 u32 TrackPack::getSlotId(u32 wmmId) const {
     for (u16 i = 0; i < m_slotMap.count(); i++) {
         auto [cWmmId, cSlotId] = *m_slotMap[i];
@@ -101,11 +95,17 @@ u16 TrackPack::getTrackCount() const {
 }
 
 TrackPackManager::TrackPackManager() {
-    char manifestBuf[2048];
+    m_selectedTrackPack = 1;
+
+    loadTrackPacks();
+    loadTrackDb();
+}
+
+void TrackPackManager::loadTrackPacks() {
+    SP_LOG("Loading track packs");
 
     m_packs.reset();
-    m_trackDb.emplace();
-    m_selectedTrackPack = 1;
+    m_packs.push_back(std::move(TrackPack(vanillaManifest)));
 
     auto dir = Storage::OpenDir(TRACK_PACK_DIRECTORY);
     if (!dir) {
@@ -114,8 +114,7 @@ TrackPackManager::TrackPackManager() {
         return;
     }
 
-    SP_LOG("Reading track packs");
-    m_packs.push_back(std::move(TrackPack(vanillaManifest)));
+    char manifestBuf[2048];
     while (auto nodeInfo = dir->read()) {
         if (nodeInfo->type != Storage::NodeType::File) {
             continue;
@@ -134,6 +133,10 @@ TrackPackManager::TrackPackManager() {
             break;
         }
     }
+}
+
+void TrackPackManager::loadTrackDb() {
+    m_trackDb.emplace();
 
     // Load up the wiimm db, which is pretty large, so we cannot
     // just put it on the stack, so we get the size from stat and
@@ -155,7 +158,6 @@ TrackPackManager::TrackPackManager() {
 
     IniReader trackDbIni(trackDbBuf);
     while (auto property = trackDbIni.next()) {
-        SP_LOG("Found a property");
         if (property->key == "name") {
             u32 wiimmId = u32FromSv(property->section);
             auto nullTermName = std::string(property->value).c_str();
@@ -220,14 +222,16 @@ TrackPackManager *TrackPackManager::Instance() {
 void TrackPackManager::CreateInstance() {
     if (!s_instance.has_value()) {
         s_instance = TrackPackManager();
+    } else if (!s_instance->m_trackDb.has_value()) {
+        // Reload the track packs and track db
+        // if a scene change has occurred.
+        s_instance->loadTrackPacks();
+        s_instance->loadTrackDb();
     }
 }
 
-void TrackPackManager::destroyHeapAllocs() {
+void TrackPackManager::unloadTrackDb() {
     m_trackDb.reset();
-    for (u8 i = 0; i > m_packs.count(); i++) {
-        m_packs[i]->destroyHeapAllocs();
-    }
 }
 
 std::optional<TrackPackManager> TrackPackManager::s_instance = std::nullopt;

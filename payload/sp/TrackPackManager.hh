@@ -3,6 +3,7 @@
 #include <Common.hh>
 
 #include "sp/CircularBuffer.hh"
+#include "sp/FixedString.hh"
 #include "sp/storage/Storage.hh"
 
 #include <array>
@@ -32,20 +33,21 @@ public:
     u32 getNthTrack(u32 n) const;
     u32 getSlotId(u32 wmmId) const;
 
-    void destroyHeapAllocs();
-
 private:
     CircularBuffer<std::array<u32, 2>, MAX_SLOT_COUNT> m_slotMap;
 
-    std::optional<std::string> m_prettyName;
-    std::optional<std::string> m_description;
-    std::optional<std::string> m_authorNames;
+    FixedString<32> m_prettyName;
+    FixedString<128> m_description;
+    FixedString<64> m_authorNames;
     SupportedGameModes m_supportedModes = SupportedGameModes::None;
 };
 
 class TrackPackManager {
 public:
     TrackPackManager();
+
+    void loadTrackPacks();
+    void loadTrackDb();
 
     bool isVanilla();
     const TrackPack *getSelectedTrackPack();
@@ -56,7 +58,7 @@ public:
     static void CreateInstance();
 
     // This must be called before Scene swaps.
-    void destroyHeapAllocs();
+    void unloadTrackDb();
 
 private:
     std::optional<std::vector<std::tuple<u32, std::wstring>>> m_trackDb;

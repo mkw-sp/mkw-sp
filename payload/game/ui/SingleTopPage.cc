@@ -94,7 +94,7 @@ void SingleTopPage::onInit() {
 }
 
 void SingleTopPage::onDeinit() {
-    SP::TrackPackManager::Instance()->destroyHeapAllocs();
+    SP::TrackPackManager::Instance()->unloadTrackDb();
 }
 
 void SingleTopPage::onActivate() {
