@@ -20,7 +20,7 @@ u32 slotToCourse(u32 slotId) {
     case 11: return 0x8;
     case 12: return 0x1;
     case 13: return 0x2;
-    case 14: return 0x3;
+    case 14: return 0x4;
     case 21: return 0x0;
     case 22: return 0x5;
     case 23: return 0x6;
@@ -48,7 +48,7 @@ u32 slotToCourse(u32 slotId) {
     case 81: return 0x18;
     case 82: return 0x16;
     case 83: return 0x13;
-    case 84: return 0x17;
+    case 84: return 0x1C;
     default: panic("Unknown slot id: %d", slotId);
     }
     // clang-format on
