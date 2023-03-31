@@ -1,6 +1,11 @@
 #pragma once
 
+extern "C" {
+#include "sp/WideUtil.h"
+
 #include <Common.h>
+}
+
 #include <algorithm>
 #include <array>
 #include <string>
@@ -47,14 +52,12 @@ struct WFixedString {
     constexpr WFixedString() = default;
     constexpr WFixedString(const WFixedString &) = default;
     constexpr ~WFixedString() = default;
-    constexpr WFixedString(std::string_view &view) {
+    constexpr WFixedString(std::string_view view) {
         if (view.size() >= m_buf.size()) {
             view = view.substr(0, N - 1);
         }
 
-        auto viewOwned = std::string(view);
-
-        auto written = swprintf(m_buf.data(), m_buf.size(), L"%s", viewOwned.c_str());
+        auto written = Util_toUtf16(m_buf.data(), m_buf.size(), view.data(), view.size());
         m_buf[written] = L'\0';
     }
 
