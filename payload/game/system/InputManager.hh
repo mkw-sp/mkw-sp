@@ -268,6 +268,12 @@ public:
     REPLACE void endGhostProxies();
     void calcRollbacks();
 
+    void setYPressed(bool y);
+    bool getYPressed();
+
+    void setYLock(bool l);
+    bool getYLock();
+
     static REPLACE InputManager *CreateInstance();
     static InputManager *Instance();
 
@@ -286,9 +292,11 @@ private:
     GhostPad *m_extraGhostPads;         // Added
     GhostPadProxy *m_extraGhostProxies; // Added
     PadRollback *m_rollbacks;           // Added
+    bool yPressed;
+    bool yLock;
 
     static InputManager *s_instance;
 };
-static_assert(sizeof(InputManager) == 0x415c + sizeof(void *) * 3);
+static_assert(sizeof(InputManager) == 0x415c + 4 + sizeof(void *) * 3);
 
 } // namespace System

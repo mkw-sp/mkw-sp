@@ -1094,6 +1094,21 @@
     "10393": {
         string: "Choose the Team Size randomly"
     },
+    "10394": {
+        string: "Item Wheel"
+    },
+    "10395": {
+        string: "Disable"
+    },
+    "10396": {
+        string: "Enable"
+    },
+    "10397": {
+        string: "Item Wheel is turned off"
+    },
+    "10398": {
+        string: "Item Wheel is on. Press Y to cycle through items"
+    },
     "20000": {
         string: "Online",
     },
