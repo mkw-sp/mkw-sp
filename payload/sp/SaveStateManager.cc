@@ -40,7 +40,12 @@ auto SaveStateManager::GetKartState() {
 
 void SaveStateManager::save() {
     auto [accessor, physics, item] = GetKartState();
-    m_kartSaveState.emplace(accessor, physics, item);
+
+    if (m_kartSaveState.has_value()) {
+        m_kartSaveState->save(accessor, physics, item);
+    } else {
+        m_kartSaveState.emplace(accessor, physics, item);
+    }
 }
 
 void SaveStateManager::reload() {
