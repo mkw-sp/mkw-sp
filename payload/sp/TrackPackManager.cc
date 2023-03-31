@@ -99,7 +99,9 @@ TrackPack::TrackPack(std::string_view manifestView) {
             auto slotId = u32FromSv(property->value);
 
             auto courseId = slotToCourse(slotId);
-            m_courseMap.push_back({wiimmId, courseId});
+            if (!m_courseMap.push_back({wiimmId, courseId})) {
+                panic("Too many courses in track pack!");
+            };
         } else {
             u32 maxChars = MIN(property->section.size(), sizeof(errBuf) - 1);
             strncpy(errBuf, property->section.data(), maxChars);
