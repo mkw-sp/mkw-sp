@@ -17,7 +17,8 @@ CourseSelectPage::CourseSelectPage() = default;
 CourseSelectPage::~CourseSelectPage() = default;
 
 u16 getTrackCount() {
-    return SP::TrackPackManager::Instance()->getSelectedTrackPack()->getTrackCount();
+    auto &packManager = SP::TrackPackManager::Instance();
+    return packManager.getSelectedTrackPack().getTrackCount();
 }
 
 PageId CourseSelectPage::getReplacement() {
@@ -160,11 +161,11 @@ void CourseSelectPage::onBack(u32 /* localPlayerId */) {
 }
 
 void CourseSelectPage::onButtonFront(PushButton *button, u32 /* localPlayerId */) {
-    auto *trackPackManager = SP::TrackPackManager::Instance();
-    auto *trackPack = trackPackManager->getSelectedTrackPack();
+    auto &trackPackManager = SP::TrackPackManager::Instance();
+    auto &trackPack = trackPackManager.getSelectedTrackPack();
 
     auto courseIndex = m_sheetIndex * m_buttons.size() + button->m_index;
-    auto courseId = trackPack->getNthTrack(courseIndex);
+    auto wiimmId = trackPack.getNthTrack(courseIndex);
 
     auto *sectionManager = SectionManager::Instance();
     auto *section = sectionManager->currentSection();
@@ -172,14 +173,14 @@ void CourseSelectPage::onButtonFront(PushButton *button, u32 /* localPlayerId */
 
     if (Section::HasRoomClient(sectionId)) {
         auto *votingBackPage = section->page<PageId::VotingBack>();
-        votingBackPage->setLocalVote(courseId);
+        votingBackPage->setLocalVote(wiimmId);
         votingBackPage->setSubmitted(true);
         startReplace(Anim::Next, button->getDelay());
     } else {
-        auto &menuScenario = System::RaceConfig::Instance()->menuScenario();
-        menuScenario.courseId = courseId;
+        auto raceConfig = System::RaceConfig::Instance();
+        raceConfig->m_packInfo.selectCourse(wiimmId);
 
-        if (menuScenario.gameMode == System::RaceConfig::GameMode::TimeAttack) {
+        if (raceConfig->menuScenario().gameMode == System::RaceConfig::GameMode::TimeAttack) {
             m_replacement = PageId::TimeAttackTop;
             startReplace(Anim::Next, button->getDelay());
         } else {
@@ -277,9 +278,9 @@ void CourseSelectPage::onBackCommon(f32 delay) {
 }
 
 void CourseSelectPage::refresh() {
-    auto *trackPackManager = SP::TrackPackManager::Instance();
-    auto *trackPack = trackPackManager->getSelectedTrackPack();
-    auto trackCount = trackPack->getTrackCount();
+    auto &trackPackManager = SP::TrackPackManager::Instance();
+    auto &trackPack = trackPackManager.getSelectedTrackPack();
+    auto trackCount = trackPack.getTrackCount();
 
     {
         SP::ScopeLock<SP::NoInterrupts> lock;
@@ -302,7 +303,7 @@ void CourseSelectPage::refresh() {
     for (size_t i = 0; i < m_buttons.size(); i++) {
         if (m_buttons[i].getVisible()) {
             u32 courseIndex = m_sheetIndex * m_buttons.size() + i;
-            u32 courseId = trackPack->getNthTrack(courseIndex);
+            u32 courseId = trackPack.getNthTrack(courseIndex);
             m_buttons[i].refresh(courseId);
         }
     }
@@ -315,8 +316,8 @@ void CourseSelectPage::refresh() {
 }
 
 void CourseSelectPage::loadThumbnails() {
-    auto *trackPackManager = SP::TrackPackManager::Instance();
-    auto *trackPack = trackPackManager->getSelectedTrackPack();
+    auto &trackPackManager = SP::TrackPackManager::Instance();
+    auto &trackPack = trackPackManager.getSelectedTrackPack();
 
     while (true) {
         {
@@ -337,7 +338,7 @@ void CourseSelectPage::loadThumbnails() {
         SP::ScopeLock<SP::NoInterrupts> lock;
         for (u32 i = 0; i < m_buttons.size(); i++) {
             u32 buttonIdx = m_sheetIndex * m_buttons.size() + i;
-            u32 databaseId = trackPack->getNthTrack(buttonIdx);
+            u32 databaseId = trackPack.getNthTrack(buttonIdx);
 
             if (!m_buttons[i].getVisible()) {
                 continue;
@@ -360,8 +361,8 @@ void CourseSelectPage::loadThumbnails() {
 JRESULT CourseSelectPage::loadThumbnail(u32 i, u32 databaseId) {
     char path[32];
 
-    auto trackPackManager = SP::TrackPackManager::Instance();
-    if (trackPackManager->isVanilla()) {
+    auto &trackPackInfo = System::RaceConfig::Instance()->m_packInfo;
+    if (trackPackInfo.isVanilla()) {
         snprintf(path, std::size(path), "/thumbnails/%u.jpg", databaseId);
     } else {
         snprintf(path, std::size(path), "/mkw-sp/thumbnails/%05u.jpg", databaseId);

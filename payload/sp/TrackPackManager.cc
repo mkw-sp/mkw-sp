@@ -4,6 +4,7 @@
 #include "sp/storage/Storage.hh"
 #include "sp/vanillaTracks/vs.hh"
 
+#include <game/system/RaceConfig.hh>
 #include <game/util/Registry.hh>
 
 #include <charconv>
@@ -137,8 +138,6 @@ const wchar_t *TrackPack::getPrettyName() const {
 }
 
 TrackPackManager::TrackPackManager() {
-    m_selectedTrackPack = 0;
-
     loadTrackPacks();
     loadTrackDb();
 }
@@ -146,7 +145,6 @@ TrackPackManager::TrackPackManager() {
 void TrackPackManager::loadTrackPacks() {
     SP_LOG("Loading track packs");
 
-    m_packs.reset();
     m_packs.push_back(std::move(TrackPack(vanillaManifest)));
 
     auto dir = Storage::OpenDir(TRACK_PACK_DIRECTORY);
@@ -170,17 +168,12 @@ void TrackPackManager::loadTrackPacks() {
         }
 
         std::string_view manifestView(manifestBuf, *len);
-        if (!m_packs.push_back(std::move(TrackPack(manifestView)))) {
-            SP_LOG("Reached max track packs!");
-            break;
-        }
+        m_packs.push_back(std::move(TrackPack(manifestView)));
     }
 }
 
 void TrackPackManager::loadTrackDb() {
     SP_LOG("Loading track DB");
-
-    m_trackDb.emplace();
 
     // Load up the wiimm db, which is pretty large, so we cannot
     // just put it on the stack, so we get the size from stat and
@@ -208,25 +201,22 @@ void TrackPackManager::loadTrackDb() {
             auto kv = std::make_tuple<u32, WFixedString<64>>(std::move(wiimmId),
                     std::move(WFixedString<64>(property->value)));
 
-            m_trackDb->push_back(kv);
+            m_trackDb.push_back(kv);
         }
     }
 }
 
-bool TrackPackManager::isVanilla() {
-    return m_selectedTrackPack == 0;
+size_t TrackPackManager::getPackCount() const {
+    return m_packs.size();
 }
 
-size_t TrackPackManager::getPackCount() {
-    return m_packs.count();
+const TrackPack &TrackPackManager::getSelectedTrackPack() const {
+    auto &trackPackInfo = System::RaceConfig::Instance()->m_packInfo;
+    return m_packs[trackPackInfo.m_selectedTrackPack];
 }
 
-const TrackPack *TrackPackManager::getSelectedTrackPack() {
-    return m_packs[m_selectedTrackPack];
-}
-
-const wchar_t *TrackPackManager::getTrackName(u32 courseId) {
-    for (auto &[wiimmId, name] : *m_trackDb) {
+const wchar_t *TrackPackManager::getTrackName(u32 courseId) const {
+    for (auto &[wiimmId, name] : m_trackDb) {
         if (wiimmId == courseId) {
             return name.c_str();
         }
@@ -236,16 +226,33 @@ const wchar_t *TrackPackManager::getTrackName(u32 courseId) {
     return L"Unknown Track";
 }
 
-const TrackPack *TrackPackManager::getNthPack(u32 n) {
+const TrackPack &TrackPackManager::getNthPack(u32 n) const {
     return m_packs[n];
 }
 
-void TrackPackManager::getTrackPath(char *out, u32 outSize, u32 wiimmId, bool splitScreen) {
-    SP_LOG("Getting track path for 0x%02x", wiimmId);
+TrackPackManager &TrackPackManager::Instance() {
+    if (s_instance == nullptr) {
+        panic("TrackPackManager not initialized");
+    }
+
+    return *s_instance;
+}
+
+void TrackPackManager::CreateInstance() {
+    if (s_instance == nullptr) {
+        s_instance = new TrackPackManager;
+    }
+}
+
+void TrackPackManager::DestroyInstance() {
+    delete s_instance;
+}
+
+void TrackPackInfo::getTrackPath(char *out, u32 outSize, bool splitScreen) const {
+    SP_LOG("Getting track path for 0x%02x", m_selectedWiimmId);
 
     if (isVanilla()) {
-        auto courseId = getSelectedTrackPack()->getCourseId(wiimmId);
-        auto courseFileName = Registry::courseFilenames[courseId];
+        auto courseFileName = Registry::courseFilenames[m_selectedCourseId];
 
         if (splitScreen) {
             snprintf(out, outSize, "Race/Course/%s_d", courseFileName);
@@ -255,30 +262,26 @@ void TrackPackManager::getTrackPath(char *out, u32 outSize, u32 wiimmId, bool sp
 
         SP_LOG("Vanilla Track path: %s", out);
     } else {
-        snprintf(out, outSize, "/mkw-sp/Tracks/%d", wiimmId);
+        snprintf(out, outSize, "/mkw-sp/Tracks/%d", m_selectedWiimmId);
         SP_LOG("Track path: %s", out);
     }
 }
 
-TrackPackManager *TrackPackManager::Instance() {
-    return s_instance.operator->();
+bool TrackPackInfo::isVanilla() const {
+    return m_selectedTrackPack == 0;
 }
 
-void TrackPackManager::CreateInstance() {
-    if (!s_instance.has_value()) {
-        s_instance = TrackPackManager();
-    } else if (!s_instance->m_trackDb.has_value()) {
-        // Reload the track packs and track db
-        // if a scene change has occurred.
-        s_instance->loadTrackPacks();
-        s_instance->loadTrackDb();
-    }
+u32 TrackPackInfo::getSelectedCourse() const {
+    return m_selectedCourseId;
 }
 
-void TrackPackManager::unloadTrackDb() {
-    m_trackDb.reset();
+void TrackPackInfo::selectCourse(u32 wiimmId) {
+    auto &trackPackManager = TrackPackManager::Instance();
+
+    m_selectedWiimmId = wiimmId;
+    m_selectedCourseId = trackPackManager.getSelectedTrackPack().getCourseId(wiimmId);
 }
 
-std::optional<TrackPackManager> TrackPackManager::s_instance = std::nullopt;
+TrackPackManager *TrackPackManager::s_instance = nullptr;
 
 } // namespace SP

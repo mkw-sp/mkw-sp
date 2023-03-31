@@ -140,12 +140,6 @@ void ResourceManager::LoadGlobeTask(void *arg) {
 
 MultiDvdArchive *ResourceManager::loadCourse(u32 /* courseId */, EGG::Heap *heap,
         bool splitScreen) {
-    // We need the MenuScenario courseId (which is the wiimm ID)
-    // not the RaceScenario, which is the slot ID
-
-    auto courseId = RaceConfig::Instance()->menuScenario().courseId;
-    SP_LOG("Loading course %d", courseId);
-
     MultiDvdArchive *archive = m_archives[1];
     if (archive->isLoaded()) {
         return archive;
@@ -154,17 +148,17 @@ MultiDvdArchive *ResourceManager::loadCourse(u32 /* courseId */, EGG::Heap *heap
     archive->init();
 
     char filePath[64];
-    auto trackPackManager = SP::TrackPackManager::Instance();
+    auto &packInfo = RaceConfig::Instance()->m_packInfo;
 
     if (splitScreen) {
-        trackPackManager->getTrackPath(filePath, sizeof(filePath), courseId, true);
+        packInfo.getTrackPath(filePath, sizeof(filePath), true);
         if (!archive->exists(filePath)) {
             splitScreen = false;
         }
     }
 
     if (!splitScreen) {
-        trackPackManager->getTrackPath(filePath, sizeof(filePath), courseId, false);
+        packInfo.getTrackPath(filePath, sizeof(filePath), false);
     }
 
     JobContext *jobContext = &m_jobContexts[2];

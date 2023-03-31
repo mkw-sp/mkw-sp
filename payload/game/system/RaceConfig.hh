@@ -2,6 +2,8 @@
 
 #include <Common.hh>
 
+#include <sp/TrackPackManager.hh>
+
 #include <optional>
 
 namespace System {
@@ -119,10 +121,11 @@ public:
 
     static RaceConfig *Instance();
 
+    SP::TrackPackInfo m_packInfo;
 private:
     REPLACE static void ConfigurePlayers(Scenario &scenario, u32 screenCount);
 
-    u8 _0000[0x0020 - 0x0000];
+    u8 _0000[0x0020 - sizeof(SP::TrackPackInfo)];
     Scenario m_raceScenario;
     Scenario m_menuScenario;
     Scenario m_awardsScenario;

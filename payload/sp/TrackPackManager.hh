@@ -14,7 +14,6 @@
 namespace SP {
 
 #define MAX_SLOT_COUNT 256
-#define MAX_TRACKPACK_COUNT 0x5
 
 enum class SupportedGameModes {
     None = 0,
@@ -49,27 +48,35 @@ public:
     void loadTrackPacks();
     void loadTrackDb();
 
-    bool isVanilla();
-    size_t getPackCount();
-    void getTrackPath(char *out, u32 outSize, u32 wmmId, bool splitScreen);
+    size_t getPackCount() const;
+    const TrackPack &getNthPack(u32 n) const;
+    const TrackPack &getSelectedTrackPack() const;
+    const wchar_t *getTrackName(u32 courseId) const;
 
-    const TrackPack *getSelectedTrackPack();
-    const wchar_t *getTrackName(u32 courseId);
-    const TrackPack *getNthPack(u32 n);
-
-    static TrackPackManager *Instance();
+    static TrackPackManager &Instance();
     static void CreateInstance();
-
-    // This must be called before Scene swaps.
-    void unloadTrackDb();
-
-    u32 m_selectedTrackPack;
+    static void DestroyInstance();
 
 private:
-    std::optional<std::vector<std::tuple<u32, WFixedString<64>>>> m_trackDb;
-    CircularBuffer<TrackPack, MAX_TRACKPACK_COUNT> m_packs;
+    std::vector<std::tuple<u32, WFixedString<64>>> m_trackDb;
+    std::vector<TrackPack> m_packs;
 
-    static std::optional<TrackPackManager> s_instance;
+    static TrackPackManager *s_instance;
+};
+
+class TrackPackInfo {
+public:
+    bool isVanilla() const;
+    void getTrackPath(char *out, u32 outSize, bool splitScreen) const;
+
+    u32 getSelectedCourse() const;
+    void selectCourse(u32 wiimmId);
+
+    u32 m_selectedTrackPack = 0;
+private:
+    // Private as need to be kept in sync
+    u32 m_selectedCourseId = 0;
+    u32 m_selectedWiimmId = 0;
 };
 
 } // namespace SP

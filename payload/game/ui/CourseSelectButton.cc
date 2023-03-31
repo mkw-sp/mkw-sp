@@ -2,7 +2,7 @@
 
 #include "game/ui/SectionManager.hh"
 
-#include <sp/TrackPackManager.hh>
+#include <game/system/RaceConfig.hh>
 
 #include <cstdio>
 
@@ -49,14 +49,16 @@ void CourseSelectButton::refresh(u32 wiimmId) {
         m_panes[i]->m_height = m_sizes[i].y / section->locationAdjustScale().y;
     }
 
-    auto *trackPackManager = SP::TrackPackManager::Instance();
-    if (trackPackManager->isVanilla()) {
-        auto vanillaPack = trackPackManager->getSelectedTrackPack();
-        auto courseId = vanillaPack->getCourseId(wiimmId);
+    auto *raceConfig = System::RaceConfig::Instance();
+    auto &trackPackManager = SP::TrackPackManager::Instance();
+
+    if (raceConfig->m_packInfo.isVanilla()) {
+        auto &vanillaPack = trackPackManager.getSelectedTrackPack();
+        auto courseId = vanillaPack.getCourseId(wiimmId);
         setMessageAll(9360 + courseId);
     } else {
         MessageInfo info;
-        info.strings[0] = trackPackManager->getTrackName(wiimmId);
+        info.strings[0] = trackPackManager.getTrackName(wiimmId);
 
         setMessageAll(20031, &info);
     }
