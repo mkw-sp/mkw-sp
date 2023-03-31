@@ -91,7 +91,7 @@ void MultiTopPage::onBack(u32 /* localPlayerId */) {
     m_reset = true;
 
     m_replacement = PageId::ControllerBoxes;
-    startReplace(Anim::Next, 0.0f);
+    startReplace(Anim::Prev, 0.0f);
 }
 
 void MultiTopPage::onSettingsButtonFront(PushButton *button, u32 /* localPlayerId */) {
