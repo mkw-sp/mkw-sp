@@ -122,6 +122,7 @@ public:
     static RaceConfig *Instance();
 
     SP::TrackPackInfo m_packInfo;
+
 private:
     REPLACE static void ConfigurePlayers(Scenario &scenario, u32 screenCount);
 

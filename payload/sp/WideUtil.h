@@ -2,8 +2,8 @@
 
 #include <Common.h>
 
-#include <wchar.h>
 #include <string.h>
+#include <wchar.h>
 
 static inline u32 Util_toUtf16(wchar_t *dst, u32 dst_max, const char *src, u32 src_max) {
     const u32 min_bound = MIN(dst_max, src_max);

@@ -73,6 +73,7 @@ public:
     void selectCourse(u32 wiimmId);
 
     u32 m_selectedTrackPack = 0;
+
 private:
     // Private as need to be kept in sync
     u32 m_selectedCourseId = 0;
