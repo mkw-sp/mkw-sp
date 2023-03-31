@@ -248,6 +248,7 @@ void TrackPackManager::CreateInstance() {
 
 void TrackPackManager::DestroyInstance() {
     delete s_instance;
+    s_instance = nullptr;
 }
 
 void TrackPackInfo::getTrackPath(char *out, u32 outSize, bool splitScreen) const {
