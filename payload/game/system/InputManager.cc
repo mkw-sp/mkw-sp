@@ -12,6 +12,8 @@ extern "C" {
 
 #include <cmath>
 
+static u32 numFrames = 0;
+
 namespace System {
 
 RaceInputState::RaceInputState() {
@@ -85,6 +87,28 @@ void WiiPad::processClassic(void *r4, RaceInputState &raceInputState, UIInputSta
 
 void GCPad::process(RaceInputState &raceInputState, UIInputState &uiInputState) {
     REPLACED(process)(raceInputState, uiInputState);
+
+    auto *saveManager = System::SaveManager::Instance();
+    auto setting = saveManager->getSetting<SP::ClientSettings::Setting::ItemWheel>();
+    if (setting == SP::ClientSettings::ItemWheel::Enable) {
+        // This function gets called four times a frame. Only the first call has non-zero button values.
+        // I used a static counter to keep track of which call is meaningful.
+        u32 maxFrames = 3;
+        if (numFrames == 0) {
+            auto inputManager = InputManager::Instance();
+            bool oldY = inputManager->getYPressed();
+            inputManager->setYPressed((raceInputState.rawButtons & PAD_BUTTON_Y) == PAD_BUTTON_Y); 
+            bool newY = inputManager->getYPressed();
+        
+            inputManager->setYLock(oldY && newY);
+        }
+        if (numFrames < maxFrames) {
+        numFrames++;
+        }
+        else {
+            numFrames = 0;
+        }
+    }
 
     processSimplified(raceInputState, raceInputState.rawButtons & PAD_BUTTON_Y);
 
@@ -285,6 +309,22 @@ void InputManager::calcRollbacks() {
     for (u32 i = 0; i < 12; i++) {
         m_rollbacks->calc(i);
     }
+}
+
+void InputManager::setYPressed(bool y) {
+    yPressed = y;
+} 
+
+bool InputManager::getYPressed() {
+    return yPressed;
+}
+
+void InputManager::setYLock(bool l) {
+    yLock = l;
+} 
+
+bool InputManager::getYLock() {
+    return yLock;
 }
 
 InputManager *InputManager::CreateInstance() {
