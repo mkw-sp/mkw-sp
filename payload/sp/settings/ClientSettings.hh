@@ -90,11 +90,7 @@ enum class Setting {
     DebugCheckpoints,
     DebugPanel,
     DebugKCL,
-<<<<<<< HEAD
-    YButton,
-=======
     ItemWheel,
->>>>>>> 4e5be175 (Initial Item Wheel Setting)
 };
 
 enum class Category {
@@ -354,15 +350,9 @@ enum class DebugPanel {
     Online,
 };
 
-<<<<<<< HEAD
-enum class YButton {
-    Disabled,
-    Screenshot,
-=======
 enum class ItemWheel {
     Disable,
     Enable,
->>>>>>> 4e5be175 (Initial Item Wheel Setting)
 };
 
 typedef Settings::Group<Category> Group;
