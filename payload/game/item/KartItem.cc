@@ -1,15 +1,16 @@
 #include "KartItem.hh"
 
-#include <game/system/InputManager.hh>
 #include "game/system/SaveManager.hh"
+#include <game/system/InputManager.hh>
 #include <game/system/RaceManager.hh>
+
 
 #include <game/util/Registry.hh>
 
 #include <sp/cs/RoomClient.hh>
 
 extern "C" {
-    #include <revolution/kpad.h>
+#include <revolution/kpad.h>
 }
 
 static bool pressedLastFrame;
@@ -34,10 +35,11 @@ void KartItem::update() {
         auto *playerPadProxy = System::RaceManager::Instance()->player(0)->padProxy();
         auto buttons = playerPadProxy->currentRaceInputState().rawButtons;
         s32 controller = playerPadProxy->pad()->getControllerId();
-        SP_LOG("buttons: %d    controller: %d", buttons, controller);
+        // SP_LOG("buttons: %d    controller: %d", buttons, controller);
         bool updateItem = false;
         switch (controller) {
-            // Wanted to use Registry::Controller but getControllerId() returns s32 which i currently don't want to deal with
+            // Wanted to use Registry::Controller but getControllerId() returns s32 which i
+            // currently don't want to deal with
         case (0): // Wii Wheel
             updateItem = (buttons & PAD_BUTTON_START) == PAD_BUTTON_START;
             break;
@@ -56,27 +58,29 @@ void KartItem::update() {
         }
 
         if (updateItem && !pressedLastFrame) {
-            inventory.currentItemCount = 10; //TODO: Find a better way to keep item after using if at all.
-            switch (inventory.currentItemID) {
+            // TODO: Find a better way to keep item after using if at all.
+            m_inventory.currentItemCount =
+                    10; 
+            switch (m_inventory.currentItemID) {
             case (Item::TripShrooms):
-                inventory.currentItemID = Item::Star;
+                m_inventory.currentItemID = Item::Star;
                 break;
             case (Item::Star):
-                inventory.currentItemID = Item::Golden;
+                m_inventory.currentItemID = Item::Golden;
                 break;
             case (Item::Golden):
-                inventory.currentItemID = Item::Mega;
+                m_inventory.currentItemID = Item::Mega;
                 break;
             case (Item::Mega):
-                inventory.currentItemID = Item::Bill;
+                m_inventory.currentItemID = Item::Bill;
                 break;
             case (Item::Bill):
-                inventory.currentItemID = Item::TripShrooms;
-                inventory.currentItemCount = 3;
+                m_inventory.currentItemID = Item::TripShrooms;
+                m_inventory.currentItemCount = 3;
                 break;
             case (Item::NoItem):
-                inventory.currentItemID = Item::TripShrooms;
-                inventory.currentItemCount = 3;
+                m_inventory.currentItemID = Item::TripShrooms;
+                m_inventory.currentItemCount = 3;
                 break;
             }
             pressedLastFrame = true;
