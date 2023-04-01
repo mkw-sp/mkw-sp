@@ -39,7 +39,7 @@ void KartItem::update() {
         switch (controller) {
             // Wanted to use Registry::Controller but getControllerId() returns s32 which i currently don't want to deal with
         case (0): // Wii Wheel
-            updateItem = (buttons & PAD_BUTTON_A) == PAD_BUTTON_A;
+            updateItem = (buttons & PAD_BUTTON_START) == PAD_BUTTON_START;
             break;
         case (1): // Wii Chuck
             updateItem = (buttons & WPAD_BUTTON_DOWN) == WPAD_BUTTON_DOWN;
@@ -56,7 +56,7 @@ void KartItem::update() {
         }
 
         if (updateItem && !pressedLastFrame) {
-            inventory.currentItemCount = 7; //TODO: Find a better way to keep item after using.
+            inventory.currentItemCount = 10; //TODO: Find a better way to keep item after using if at all.
             switch (inventory.currentItemID) {
             case (Item::TripShrooms):
                 inventory.currentItemID = Item::Star;
