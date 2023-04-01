@@ -2,10 +2,11 @@
 
 #include "sp/settings/IniReader.hh"
 #include "sp/storage/Storage.hh"
-#include "sp/vanillaTracks/vs.hh"
+#include "sp/vanillaTracks.hh"
 
 #include <game/system/RaceConfig.hh>
 #include <game/util/Registry.hh>
+#include <vendor/magic_enum/magic_enum.hpp>
 
 #include <charconv>
 #include <cstring>
@@ -13,10 +14,12 @@
 #define TRACK_PACK_DIRECTORY L"Track Packs"
 #define TRACK_DB L"WiimmDB.ini"
 
+using namespace magic_enum::bitwise_operators;
+
 namespace SP {
 
-u32 slotToCourse(u32 slotId) {
-    // clang-format off
+// clang-format off
+u32 raceSlotToCourse(u32 slotId) {
     switch (slotId) {
     case 11: return 0x8;
     case 12: return 0x1;
@@ -50,9 +53,35 @@ u32 slotToCourse(u32 slotId) {
     case 82: return 0x16;
     case 83: return 0x13;
     case 84: return 0x1C;
-    default: panic("Unknown slot id: %d", slotId);
+    default: panic("Unknown race slot ID: %d", slotId);
     }
-    // clang-format on
+}
+
+u32 battleSlotToCourse(u32 slotId) {
+    switch (slotId) {
+    case 11: return 0x21;
+    case 12: return 0x20;
+    case 13: return 0x23;
+    case 14: return 0x22;
+    case 15: return 0x24;
+    case 21: return 0x27;
+    case 22: return 0x28;
+    case 23: return 0x29;
+    case 24: return 0x25;
+    case 25: return 0x26;
+    default: panic("Unknown battle slot ID: %d", slotId);
+    }
+}
+// clang-format on
+
+u32 handleUnknown(const char *unknownType, std::string_view unknownValue) {
+    char errBuf[256];
+
+    u32 maxChars = MIN(unknownValue.size(), sizeof(errBuf) - 1);
+    strncpy(errBuf, unknownValue.data(), maxChars);
+    errBuf[maxChars] = '\0';
+
+    panic("Unknown %s name: %s", unknownType, errBuf);
 }
 
 u32 u32FromSv(std::string_view sv) {
@@ -65,14 +94,39 @@ u32 u32FromSv(std::string_view sv) {
     if (ptr == last) {
         return out;
     } else {
-        panic("Failed to parse slotId as integer!");
+        panic("Failed to parse integer!");
     }
+}
+
+std::vector<u32> parseTracks(std::string_view tracks) {
+    std::vector<u32> parsedTrackIds;
+    size_t position = 0;
+    char buf[10]; // Max u32 is 10 chars long
+
+    for (char c : tracks) {
+        if (c == ',' || position == 10) {
+            buf[position] = '\0';
+
+            std::string_view sv(buf, position - 1);
+            parsedTrackIds.push_back(u32FromSv(buf));
+            position = 0;
+        } else if (c != ' ') {
+            buf[position] = c;
+            position++;
+        }
+    }
+
+    if (position != 0) {
+        std::string_view sv(buf, position);
+        parsedTrackIds.push_back(u32FromSv(buf));
+    }
+
+    return parsedTrackIds;
 }
 
 TrackPack::TrackPack(std::string_view manifestView) {
     IniReader iniReader(manifestView);
 
-    char errBuf[256];
     bool prettyNameFound = false;
     bool descriptionFound = false;
     bool authorNamesFound = false;
@@ -87,52 +141,45 @@ TrackPack::TrackPack(std::string_view manifestView) {
             } else if (property->key == "author") {
                 m_authorNames = property->value;
                 authorNamesFound = true;
+            } else if (property->key == "race") {
+                m_raceTracks = parseTracks(property->value);
+            } else if (property->key == "balloon") {
+                m_balloonTracks = parseTracks(property->value);
+            } else if (property->key == "coin") {
+                m_coinTracks = parseTracks(property->value);
             } else {
-                u32 maxChars = MIN(property->key.size(), sizeof(errBuf) - 1);
-                strncpy(errBuf, property->key.data(), maxChars);
-                errBuf[maxChars] = '\0';
-
-                panic("Unknown key name: %s", errBuf);
+                handleUnknown("Pack Info key", property->key);
             }
-        } else if (property->section == "Slot Map") {
-            auto wiimmId = u32FromSv(property->key);
-            auto slotId = u32FromSv(property->value);
-
-            auto courseId = slotToCourse(slotId);
-            if (!m_courseMap.push_back({wiimmId, courseId})) {
-                panic("Too many courses in track pack!");
-            };
         } else {
-            u32 maxChars = MIN(property->section.size(), sizeof(errBuf) - 1);
-            strncpy(errBuf, property->section.data(), maxChars);
-            errBuf[maxChars] = '\0';
-
-            panic("Unknown section name: %s", errBuf);
+            handleUnknown("section", property->section);
         }
     }
 
     if (!prettyNameFound || !descriptionFound || !authorNamesFound) {
         panic("Missing required key in track pack manifest");
+    } else if (m_raceTracks.empty() && m_balloonTracks.empty() && m_coinTracks.empty()) {
+        panic("No tracks found in track pack manifest");
     }
 }
 
-u32 TrackPack::getCourseId(u32 wmmId) const {
-    for (u16 i = 0; i < m_courseMap.count(); i++) {
-        auto [cWmmId, cCourseId] = *m_courseMap[i];
-        if (cWmmId == wmmId) {
-            return cCourseId;
-        }
+const std::vector<u32> &TrackPack::getTrackList(TrackGameMode mode) const {
+    if (mode == TrackGameMode::Race) {
+        return m_raceTracks;
+    } else if (mode == TrackGameMode::Balloon) {
+        return m_balloonTracks;
+    } else if (mode == TrackGameMode::Coin) {
+        return m_coinTracks;
+    } else {
+        panic("Unknown track game mode: %d", static_cast<u32>(mode));
     }
-
-    panic("Failed to find courseId for wmmId: %d", wmmId);
 }
 
-u32 TrackPack::getNthTrack(u32 n) const {
-    return (*m_courseMap[n])[0];
+u32 TrackPack::getNthTrack(u32 n, TrackGameMode mode) const {
+    return getTrackList(mode)[n];
 }
 
-u16 TrackPack::getTrackCount() const {
-    return m_courseMap.count();
+u16 TrackPack::getTrackCount(TrackGameMode mode) const {
+    return getTrackList(mode).size();
 }
 
 const wchar_t *TrackPack::getPrettyName() const {
@@ -156,20 +203,23 @@ void TrackPackManager::loadTrackPacks() {
         return;
     }
 
-    char manifestBuf[2048];
+    std::vector<char> manifestBuf;
     while (auto nodeInfo = dir->read()) {
         if (nodeInfo->type != Storage::NodeType::File) {
             continue;
         }
 
         SP_LOG("Found track pack '%ls'", nodeInfo->name);
+        manifestBuf.resize(nodeInfo->size);
 
-        auto len = Storage::FastReadFile(nodeInfo->id, manifestBuf, sizeof(manifestBuf));
+        auto len = Storage::FastReadFile(nodeInfo->id, manifestBuf.data(), nodeInfo->size);
         if (!len.has_value() || *len == 0) {
             panic("Failed to read track pack manifest");
         }
 
-        std::string_view manifestView(manifestBuf, *len);
+        manifestBuf.resize(*len);
+
+        std::string_view manifestView(manifestBuf);
         m_packs.push_back(std::move(TrackPack(manifestView)));
     }
 }
@@ -198,14 +248,24 @@ void TrackPackManager::loadTrackDb() {
 
     IniReader trackDbIni(trackDbBuf);
     while (auto property = trackDbIni.next()) {
-        if (property->key == "trackname") {
-            u32 wiimmId = u32FromSv(property->section);
-            auto kv = std::make_tuple<u32, WFixedString<64>>(std::move(wiimmId),
-                    std::move(WFixedString<64>(property->value)));
+        u32 wiimmId = u32FromSv(property->section);
 
-            m_trackDb.push_back(kv);
+        // This will be messed by duplicate entries but
+        // let's just hope that wiimm doesn't do that.
+        if (m_trackDb.size() == 0 || m_trackDb.back().wiimmId != wiimmId) {
+            m_trackDb.push_back({wiimmId, {}});
+        }
+
+        if (property->key == "trackname") {
+            m_trackDb.back().track.name = property->value;
+        } else if (property->key == "slot") {
+            m_trackDb.back().track.slotId = u32FromSv(property->value);
         }
     }
+}
+
+const TrackPack &TrackPackManager::getNthPack(u32 n) const {
+    return m_packs[n];
 }
 
 size_t TrackPackManager::getPackCount() const {
@@ -217,19 +277,29 @@ const TrackPack &TrackPackManager::getSelectedTrackPack() const {
     return m_packs[trackPackInfo.m_selectedTrackPack];
 }
 
-const wchar_t *TrackPackManager::getTrackName(u32 courseId) const {
-    for (auto &[wiimmId, name] : m_trackDb) {
-        if (wiimmId == courseId) {
-            return name.c_str();
+const wchar_t *TrackPackManager::getTrackName(u32 wiimmId) const {
+    for (auto &[cWiimmId, trackEntry] : m_trackDb) {
+        if (cWiimmId == wiimmId) {
+            return trackEntry.name.c_str();
         }
     }
 
-    SP_LOG("Failed to find track name for wiimmId: %d", courseId);
+    SP_LOG("Failed to find track name for wiimmId: %d", wiimmId);
     return L"Unknown Track";
 }
 
-const TrackPack &TrackPackManager::getNthPack(u32 n) const {
-    return m_packs[n];
+u32 TrackPackManager::getCourseId(u32 wiimmId, TrackGameMode mode) const {
+    for (auto &[cWiimmId, track] : m_trackDb) {
+        if (cWiimmId == wiimmId) {
+            if (mode == TrackGameMode::Balloon || mode == TrackGameMode::Coin) {
+                return battleSlotToCourse(track.slotId);
+            } else if (mode == TrackGameMode::Race) {
+                return raceSlotToCourse(track.slotId);
+            }
+        }
+    }
+
+    panic("Unknown wiimm id: %d", wiimmId);
 }
 
 TrackPackManager &TrackPackManager::Instance() {
@@ -278,11 +348,25 @@ u32 TrackPackInfo::getSelectedCourse() const {
     return m_selectedCourseId;
 }
 
-void TrackPackInfo::selectCourse(u32 wiimmId) {
+void TrackPackInfo::selectCourse(u32 wiimmId, TrackGameMode mode) {
     auto &trackPackManager = TrackPackManager::Instance();
 
     m_selectedWiimmId = wiimmId;
-    m_selectedCourseId = trackPackManager.getSelectedTrackPack().getCourseId(wiimmId);
+    m_selectedCourseId = trackPackManager.getCourseId(wiimmId, mode);
+}
+
+TrackGameMode getTrackGameMode(u32 gameMode, u32 battleType) {
+    if (gameMode == 1 || gameMode == 2) {
+        return TrackGameMode::Race;
+    } else if (gameMode == 3) {
+        if (battleType == 0) {
+            return TrackGameMode::Balloon;
+        } else {
+            return TrackGameMode::Coin;
+        }
+    } else {
+        panic("Unknown gamemode!");
+    }
 }
 
 TrackPackManager *TrackPackManager::s_instance = nullptr;

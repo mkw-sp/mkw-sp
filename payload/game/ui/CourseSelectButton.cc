@@ -43,6 +43,8 @@ void CourseSelectButton::load(u32 i) {
 }
 
 void CourseSelectButton::refresh(u32 wiimmId) {
+    m_wiimmId = wiimmId;
+
     auto *section = SectionManager::Instance()->currentSection();
     for (size_t i = 0; i < std::size(m_panes); i++) {
         m_panes[i]->m_width = m_sizes[i].x / section->locationAdjustScale().x;
@@ -53,9 +55,19 @@ void CourseSelectButton::refresh(u32 wiimmId) {
     auto &trackPackManager = SP::TrackPackManager::Instance();
 
     if (raceConfig->m_packInfo.isVanilla()) {
-        auto &vanillaPack = trackPackManager.getSelectedTrackPack();
-        auto courseId = vanillaPack.getCourseId(wiimmId);
-        setMessageAll(9360 + courseId);
+        auto &menuScenario = raceConfig->menuScenario();
+
+        auto gameMode = menuScenario.gameMode;
+        auto battleType = menuScenario.battleType;
+
+        auto mode = SP::getTrackGameMode(static_cast<u32>(gameMode), battleType);
+        auto courseId = trackPackManager.getCourseId(wiimmId, mode);
+
+        if (gameMode == System::RaceConfig::GameMode::OfflineBT) {
+            setMessageAll(9400 + courseId - 32);
+        } else {
+            setMessageAll(9360 + courseId);
+        }
     } else {
         MessageInfo info;
         info.strings[0] = trackPackManager.getTrackName(wiimmId);
@@ -73,6 +85,10 @@ void CourseSelectButton::setTex(u8 c, const GXTexObj &texObj) {
     auto *texMaps = material->getTexMapAry();
     assert(texMaps);
     texMaps[c] = nw4r::lyt::TexMap(texObj);
+}
+
+u32 CourseSelectButton::getWiimmId() const {
+    return m_wiimmId;
 }
 
 } // namespace UI

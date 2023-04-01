@@ -7,8 +7,11 @@
 
 #include <sp/ScopeLock.hh>
 #include <sp/TrackPackManager.hh>
+#include <vendor/magic_enum/magic_enum.hpp>
 
 #include <limits>
+
+using namespace magic_enum::bitwise_operators;
 
 namespace UI {
 
@@ -16,9 +19,14 @@ CourseSelectPage::CourseSelectPage() = default;
 
 CourseSelectPage::~CourseSelectPage() = default;
 
+SP::TrackGameMode getTrackGameMode() {
+    auto &menuScenario = System::RaceConfig::Instance()->menuScenario();
+    return SP::getTrackGameMode(static_cast<u32>(menuScenario.gameMode), menuScenario.battleType);
+}
+
 u16 getTrackCount() {
     auto &packManager = SP::TrackPackManager::Instance();
-    return packManager.getSelectedTrackPack().getTrackCount();
+    return packManager.getSelectedTrackPack().getTrackCount(getTrackGameMode());
 }
 
 PageId CourseSelectPage::getReplacement() {
@@ -27,8 +35,8 @@ PageId CourseSelectPage::getReplacement() {
 
 void CourseSelectPage::onInit() {
     m_sheetIndex = 0;
+    m_sheetCount = 1;
     m_lastSelected = 0;
-    m_sheetCount = (getTrackCount() + 9 - 1) / 9;
 
     m_inputManager.init(0x1, false);
     setInputManager(&m_inputManager);
@@ -66,10 +74,6 @@ void CourseSelectPage::onInit() {
     m_backButton.setFrontHandler(&m_onBackButtonFront, false);
 
     m_pageTitleText.setMessage(3405);
-
-    m_sheetSelect.setVisible(m_sheetCount > 1);
-    m_sheetSelect.setPlayerFlags(m_sheetCount <= 1 ? 0x0 : 0x1);
-
     m_backConfirmed = false;
 
     for (u32 i = 0; i < m_buffers.size(); i++) {
@@ -161,11 +165,7 @@ void CourseSelectPage::onBack(u32 /* localPlayerId */) {
 }
 
 void CourseSelectPage::onButtonFront(PushButton *button, u32 /* localPlayerId */) {
-    auto &trackPackManager = SP::TrackPackManager::Instance();
-    auto &trackPack = trackPackManager.getSelectedTrackPack();
-
-    auto courseIndex = m_sheetIndex * m_buttons.size() + button->m_index;
-    auto wiimmId = trackPack.getNthTrack(courseIndex);
+    auto courseButton = reinterpret_cast<CourseSelectButton *>(button);
 
     auto *sectionManager = SectionManager::Instance();
     auto *section = sectionManager->currentSection();
@@ -173,12 +173,12 @@ void CourseSelectPage::onButtonFront(PushButton *button, u32 /* localPlayerId */
 
     if (Section::HasRoomClient(sectionId)) {
         auto *votingBackPage = section->page<PageId::VotingBack>();
-        votingBackPage->setLocalVote(wiimmId);
+        votingBackPage->setLocalVote(courseButton->getWiimmId());
         votingBackPage->setSubmitted(true);
         startReplace(Anim::Next, button->getDelay());
     } else {
         auto raceConfig = System::RaceConfig::Instance();
-        raceConfig->m_packInfo.selectCourse(wiimmId);
+        raceConfig->m_packInfo.selectCourse(courseButton->getWiimmId(), getTrackGameMode());
 
         if (raceConfig->menuScenario().gameMode == System::RaceConfig::GameMode::TimeAttack) {
             m_replacement = PageId::TimeAttackTop;
@@ -278,9 +278,7 @@ void CourseSelectPage::onBackCommon(f32 delay) {
 }
 
 void CourseSelectPage::refresh() {
-    auto &trackPackManager = SP::TrackPackManager::Instance();
-    auto &trackPack = trackPackManager.getSelectedTrackPack();
-    auto trackCount = trackPack.getTrackCount();
+    auto trackCount = getTrackCount();
 
     {
         SP::ScopeLock<SP::NoInterrupts> lock;
@@ -300,11 +298,15 @@ void CourseSelectPage::refresh() {
         OSWakeupThread(&m_queue);
     }
 
+    auto &trackPackManager = SP::TrackPackManager::Instance();
+    auto &trackPack = trackPackManager.getSelectedTrackPack();
+    auto gameMode = getTrackGameMode();
+
     for (size_t i = 0; i < m_buttons.size(); i++) {
         if (m_buttons[i].getVisible()) {
-            u32 courseIndex = m_sheetIndex * m_buttons.size() + i;
-            u32 courseId = trackPack.getNthTrack(courseIndex);
-            m_buttons[i].refresh(courseId);
+            u32 buttonIndex = m_sheetIndex * m_buttons.size() + i;
+            u32 wiimmId = trackPack.getNthTrack(buttonIndex, gameMode);
+            m_buttons[i].refresh(wiimmId);
         }
     }
 
@@ -316,9 +318,6 @@ void CourseSelectPage::refresh() {
 }
 
 void CourseSelectPage::loadThumbnails() {
-    auto &trackPackManager = SP::TrackPackManager::Instance();
-    auto &trackPack = trackPackManager.getSelectedTrackPack();
-
     while (true) {
         {
             SP::ScopeLock<SP::NoInterrupts> lock;
@@ -337,13 +336,11 @@ void CourseSelectPage::loadThumbnails() {
 
         SP::ScopeLock<SP::NoInterrupts> lock;
         for (u32 i = 0; i < m_buttons.size(); i++) {
-            u32 buttonIdx = m_sheetIndex * m_buttons.size() + i;
-            u32 databaseId = trackPack.getNthTrack(buttonIdx);
-
             if (!m_buttons[i].getVisible()) {
                 continue;
             }
 
+            u32 databaseId = m_buttons[i].getWiimmId();
             JRESULT result = loadThumbnail(i, databaseId);
             if (m_request != Request::None) {
                 break;
