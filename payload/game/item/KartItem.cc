@@ -11,7 +11,7 @@ extern "C" {
 #include <sp/cs/RoomClient.hh>
 
 extern "C" {
-    #include <revolution/kpad.h>
+#include <revolution/kpad.h>
 }
 
 static bool pressedLastFrame;

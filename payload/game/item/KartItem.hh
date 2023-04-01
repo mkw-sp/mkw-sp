@@ -1,6 +1,5 @@
 #pragma once
 
-#include <Common.hh>
 #include "game/kart/KartObjectProxy.hh"
 #include <Common.hh>
 
