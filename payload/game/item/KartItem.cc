@@ -5,9 +5,6 @@
 #include "game/system/SaveManager.hh"
 #include "game/util/Registry.hh"
 
-extern "C" {
-#include <revolution/kpad.h>
-}
 #include <sp/cs/RoomClient.hh>
 
 extern "C" {
