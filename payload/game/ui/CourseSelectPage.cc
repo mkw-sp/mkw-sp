@@ -414,13 +414,13 @@ void CourseSelectPage::loadThumbnails() {
 }
 
 JRESULT CourseSelectPage::loadThumbnail(u32 i, u32 databaseId) {
-    char path[32];
+    char path[48];
 
     auto &trackPackInfo = System::RaceConfig::Instance()->m_packInfo;
     if (trackPackInfo.isVanilla()) {
         snprintf(path, std::size(path), "/thumbnails/%u.jpg", databaseId);
     } else {
-        snprintf(path, std::size(path), "/mkw-sp/thumbnails/%05u.jpg", databaseId);
+        snprintf(path, std::size(path), "/mkw-sp/Track Thumbnails/%05u.jpg", databaseId);
     }
 
     auto file = SP::Storage::OpenRO(path);
