@@ -66,6 +66,9 @@ public:
     u32 getSetting(u32 setting) const;
     void setSetting(u32 setting, u32 value);
 
+    void setItemWheelFlag(bool flag);
+    bool getItemWheelFlag();
+
     template <SP::ClientSettings::Setting S>
     SP::ClientSettings::Helper<S>::type getSetting() const {
         if (!m_spCurrentLicense) {
@@ -175,6 +178,7 @@ private:
     u8 m_ghostInitStack[0x8000 /* 32 KiB */];           // Added
     OSThread m_ghostInitThread;                         // Added
     std::array<std::array<u8, 0x14>, 32> m_courseSHA1s; // Added
+    bool m_usedItemWheel;                         // Added
 
     static SaveManager *s_instance;
     static const std::array<std::array<u8, 0x14>, 32> s_courseSHA1s;

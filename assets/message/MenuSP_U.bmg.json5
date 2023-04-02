@@ -1128,7 +1128,7 @@
         string: "Item Wheel is turned off"
     },
     "10398": {
-        string: "Item Wheel is on. Press Y to cycle through items"
+        string: "Press A (Wheel), DPAD (Chuck), ZL (CC), or Y (GCN) to cycle through items"
     },
     "20000": {
         string: "Online",
