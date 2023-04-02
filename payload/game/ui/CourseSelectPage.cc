@@ -9,6 +9,7 @@
 #include <sp/TrackPackManager.hh>
 #include <vendor/magic_enum/magic_enum.hpp>
 
+#include <algorithm>
 #include <limits>
 
 using namespace magic_enum::bitwise_operators;
@@ -117,6 +118,9 @@ void CourseSelectPage::afterCalc() {
     bool changed = false;
     for (size_t i = 0; i < m_buttons.size(); i++) {
         if (m_thumbnailChanged[i]) {
+            for (u8 c = 0; c < m_texObjs[i].size(); c++) {
+                m_buttons[i].setTex(c, m_texObjs[i][c]);
+            }
             m_thumbnailChanged[i] = false;
             m_buttons[i].setPaneVisible("picture_base", true);
             changed = true;
@@ -165,20 +169,19 @@ void CourseSelectPage::onBack(u32 /* localPlayerId */) {
 }
 
 void CourseSelectPage::onButtonFront(PushButton *button, u32 /* localPlayerId */) {
-    auto courseButton = reinterpret_cast<CourseSelectButton *>(button);
-
     auto *sectionManager = SectionManager::Instance();
     auto *section = sectionManager->currentSection();
     auto sectionId = section->id();
 
+    auto databaseId = m_databaseIds[button->m_index];
     if (Section::HasRoomClient(sectionId)) {
         auto *votingBackPage = section->page<PageId::VotingBack>();
-        votingBackPage->setLocalVote(courseButton->getWiimmId());
+        votingBackPage->setLocalVote(databaseId);
         votingBackPage->setSubmitted(true);
         startReplace(Anim::Next, button->getDelay());
     } else {
         auto raceConfig = System::RaceConfig::Instance();
-        raceConfig->m_packInfo.selectCourse(courseButton->getWiimmId(), getTrackGameMode());
+        raceConfig->m_packInfo.selectCourse(databaseId, getTrackGameMode());
 
         if (raceConfig->menuScenario().gameMode == System::RaceConfig::GameMode::TimeAttack) {
             m_replacement = PageId::TimeAttackTop;
@@ -278,16 +281,53 @@ void CourseSelectPage::onBackCommon(f32 delay) {
 }
 
 void CourseSelectPage::refresh() {
+    auto &trackPackManager = SP::TrackPackManager::Instance();
+    auto &trackPack = trackPackManager.getSelectedTrackPack();
+    auto gameMode = getTrackGameMode();
     auto trackCount = getTrackCount();
 
     {
         SP::ScopeLock<SP::NoInterrupts> lock;
+
+        s32 start = (-1 + m_sheetIndex) * m_buttons.size();
+        s32 end = start + 3 * m_buttons.size();
+        size_t start_offset = 0;
+        s32 end_offset = 0;
+
+        if (start < 0 && end < trackCount) {
+            start = trackCount + start;
+            start_offset = std::max(end - start, 0);
+        } else if (start >= 0 && end > trackCount) {
+            end = end - trackCount;
+            end_offset = std::min(start - end, 0);
+        } else if (start < 0 && end >= trackCount) {
+            start_offset = -start;
+            end_offset = trackCount - end;
+            start = 0;
+            end = trackCount;
+        }
+
+        for (size_t i = 0; i < 3 * m_buttons.size(); i++) {
+            size_t j = i;
+            if (j < m_buttons.size()) {
+                j += m_buttons.size();
+            } else if (j < 2 * m_buttons.size()) {
+                j -= m_buttons.size();
+            }
+            if (i >= start_offset && i < 3 * m_buttons.size() + end_offset) {
+                auto trackIndex = (start + i - start_offset) % trackCount;
+                m_databaseIds[j] = trackPack.getNthTrack(trackIndex, gameMode);
+            } else {
+                m_databaseIds[j] = std::numeric_limits<u32>::max();
+            }
+        }
+
         for (size_t i = 0; i < m_buttons.size(); i++) {
-            u32 courseIndex = m_sheetIndex * m_buttons.size() + i;
-            if (courseIndex < trackCount) {
-                m_buttons[i].setPaneVisible("picture_base", false);
+            auto courseIndex = m_sheetIndex * m_buttons.size() + i;
+            if (m_databaseIds[i] != std::numeric_limits<u32>::max() && courseIndex < trackCount) {
                 m_buttons[i].setVisible(true);
                 m_buttons[i].setPlayerFlags(1 << 0);
+                m_buttons[i].refresh(m_databaseIds[i]);
             } else {
                 m_buttons[i].setVisible(false);
                 m_buttons[i].setPlayerFlags(0);
@@ -298,18 +338,6 @@ void CourseSelectPage::refresh() {
         OSWakeupThread(&m_queue);
     }
 
-    auto &trackPackManager = SP::TrackPackManager::Instance();
-    auto &trackPack = trackPackManager.getSelectedTrackPack();
-    auto gameMode = getTrackGameMode();
-
-    for (size_t i = 0; i < m_buttons.size(); i++) {
-        if (m_buttons[i].getVisible()) {
-            u32 buttonIndex = m_sheetIndex * m_buttons.size() + i;
-            u32 wiimmId = trackPack.getNthTrack(buttonIndex, gameMode);
-            m_buttons[i].refresh(wiimmId);
-        }
-    }
-
     m_sheetLabel.setVisible(m_sheetCount != 0);
     MessageInfo info{};
     info.intVals[0] = m_sheetIndex + 1;
@@ -318,7 +346,11 @@ void CourseSelectPage::refresh() {
 }
 
 void CourseSelectPage::loadThumbnails() {
+    std::array<u32, 27> databaseIds;
+    std::fill(databaseIds.begin(), databaseIds.end(), std::numeric_limits<u32>::max());
+
     while (true) {
+        std::array<u32, 27> requestedDatabaseIds{};
         {
             SP::ScopeLock<SP::NoInterrupts> lock;
             switch (m_request) {
@@ -330,18 +362,44 @@ void CourseSelectPage::loadThumbnails() {
             default:
                 break;
             }
-
+            requestedDatabaseIds = m_databaseIds;
             m_request = Request::None;
         }
 
-        SP::ScopeLock<SP::NoInterrupts> lock;
-        for (u32 i = 0; i < m_buttons.size(); i++) {
-            if (!m_buttons[i].getVisible()) {
+        // Handle thumbnails that are already loaded
+        for (u32 i = 0; i < requestedDatabaseIds.size(); i++) {
+            SP::ScopeLock<SP::NoInterrupts> lock;
+            auto it = std::find(databaseIds.begin(), databaseIds.end(), requestedDatabaseIds[i]);
+            if (it == databaseIds.end()) {
+                if (i < m_buttons.size()) {
+                    m_buttons[i].setPaneVisible("picture_base", false);
+                }
                 continue;
             }
 
-            u32 databaseId = m_buttons[i].getWiimmId();
+            auto j = std::distance(databaseIds.begin(), it);
+            requestedDatabaseIds[i] = std::numeric_limits<u32>::max();
+            std::swap(databaseIds[i], databaseIds[j]);
+            std::swap(m_buffers[i], m_buffers[j]);
+            std::swap(m_texObjs[i], m_texObjs[j]);
+            m_thumbnailChanged[i] = true;
+        }
+
+        // Load new thumbnails
+        for (u32 i = 0; i < requestedDatabaseIds.size(); i++) {
+            auto databaseId = requestedDatabaseIds[i];
+            if (databaseId == std::numeric_limits<u32>::max()) {
+                continue;
+            }
+
             JRESULT result = loadThumbnail(i, databaseId);
+            if (result == JDR_OK) {
+                databaseIds[i] = databaseId;
+            } else {
+                databaseIds[i] = std::numeric_limits<u32>::max();
+            }
+
+            SP::ScopeLock<SP::NoInterrupts> lock;
             if (m_request != Request::None) {
                 break;
             }
@@ -389,10 +447,8 @@ JRESULT CourseSelectPage::loadThumbnail(u32 i, u32 databaseId) {
 
     for (u8 c = 0; c < m_buffers[i].size(); c++) {
         DCFlushRange(m_buffers[i][c].get(), MaxThumbnailHeight * MaxThumbnailWidth);
-        GXTexObj texObj;
-        GXInitTexObj(&texObj, m_buffers[i][c].get(), jdec.width, jdec.height, GX_TF_I8, GX_CLAMP,
-                GX_CLAMP, GX_FALSE);
-        m_buttons[i].setTex(c, texObj);
+        GXInitTexObj(&m_texObjs[i][c], m_buffers[i][c].get(), jdec.width, jdec.height, GX_TF_I8,
+                GX_CLAMP, GX_CLAMP, GX_FALSE);
     }
 
     return JDR_OK;

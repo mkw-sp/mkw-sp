@@ -43,8 +43,6 @@ void CourseSelectButton::load(u32 i) {
 }
 
 void CourseSelectButton::refresh(u32 wiimmId) {
-    m_wiimmId = wiimmId;
-
     auto *section = SectionManager::Instance()->currentSection();
     for (size_t i = 0; i < std::size(m_panes); i++) {
         m_panes[i]->m_width = m_sizes[i].x / section->locationAdjustScale().x;
@@ -85,10 +83,6 @@ void CourseSelectButton::setTex(u8 c, const GXTexObj &texObj) {
     auto *texMaps = material->getTexMapAry();
     assert(texMaps);
     texMaps[c] = nw4r::lyt::TexMap(texObj);
-}
-
-u32 CourseSelectButton::getWiimmId() const {
-    return m_wiimmId;
 }
 
 } // namespace UI
