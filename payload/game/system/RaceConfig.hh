@@ -2,6 +2,8 @@
 
 #include <Common.hh>
 
+#include <game/util/Registry.hh>
+
 namespace System {
 
 class RaceConfig {
@@ -25,7 +27,7 @@ public:
         Type type;
         u8 _14[0xcc - 0x14];
         u32 team;
-        s32 controllerId;
+        Registry::Controller controllerId;
         u8 _d4[0xd8 - 0xd4];
         u16 prevScore;
         u16 score;

@@ -33,24 +33,26 @@ void KartItem::update() {
     if (setting == SP::ClientSettings::ItemWheel::Enable) {
         auto *playerPadProxy = System::RaceManager::Instance()->player(0)->padProxy();
         auto buttons = playerPadProxy->currentRaceInputState().rawButtons;
-        s32 controller = playerPadProxy->pad()->getControllerId();
+        auto controller = playerPadProxy->pad()->getControllerId();
         // SP_LOG("buttons: %d    controller: %d", buttons, controller);
         bool updateItem = false;
         switch (controller) {
             // Wanted to use Registry::Controller but getControllerId() returns s32 which i
             // currently don't want to deal with
-        case (0): // Wii Wheel
+        case (Registry::Controller::WiiWheel): // Wii Wheel
             updateItem = (buttons & PAD_BUTTON_START) == PAD_BUTTON_START;
             break;
-        case (1): // Wii Chuck
+        case (Registry::Controller::WiiRemoteAndNunchuck): // Wii Chuck
             updateItem = (buttons & WPAD_BUTTON_DOWN) == WPAD_BUTTON_DOWN;
             break;
-        case (2): // Classic
+        case (Registry::Controller::Classic): // Classic
             updateItem = (buttons & KPAD_CL_TRIGGER_ZL) == KPAD_CL_TRIGGER_ZL;
             break;
-        case (3): // GCN
+        case (Registry::Controller::GameCube): // GCN
             updateItem = (buttons & PAD_BUTTON_Y) == PAD_BUTTON_Y;
             break;
+        case (Registry::Controller::None):
+            return;
         }
         if (!updateItem) {
             pressedLastFrame = false;
