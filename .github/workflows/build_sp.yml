@@ -61,12 +61,13 @@ jobs:
 
   format:
     name: Format
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-22.04
     steps:
       - name: Checkout
         uses: actions/checkout@v3
+      - name: Install clang-format
+        run: sudo apt install clang-format-15
       - name: Format MKW-SP
-        uses: jidicula/clang-format-action@v4.10.1
-        with:
-          clang-format-version: '15'
-          exclude-regex: '(vendor|proto)'
+        run: |
+          dirs="common include loader payload protobuf stub"
+          find $dirs -regex '.*\.\(c\|h\|cc\|hh|proto\)' | xargs clang-format-15 --dry-run -Werror
