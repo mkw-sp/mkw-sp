@@ -60,6 +60,7 @@ private:
 class TrackPackManager {
 public:
     TrackPackManager();
+    TrackPackManager(const TrackPackManager &) = delete;
 
     void loadTrackPacks();
     void loadTrackDb();
