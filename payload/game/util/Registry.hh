@@ -92,6 +92,7 @@ enum class Vehicle {
 };
 
 enum class Controller {
+    None = -0x1,
     WiiWheel = 0x0,
     WiiRemoteAndNunchuck = 0x1,
     Classic = 0x2,
