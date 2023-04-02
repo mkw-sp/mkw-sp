@@ -340,6 +340,12 @@ void SaveManager::setSetting(u32 setting, u32 value) {
         return;
     }
 
+    if (static_cast<SP::ClientSettings::Setting>(setting) ==
+                    SP::ClientSettings::Setting::ItemWheel &&
+            static_cast<SP::ClientSettings::ItemWheel>(value) ==
+                    SP::ClientSettings::ItemWheel::Enable) {
+        m_usedItemWheel = true;
+    }
     m_spLicenses[*m_spCurrentLicense].set(setting, value);
 
     refreshGCPadRumble();
@@ -486,6 +492,10 @@ void SaveManager::saveGhost(GhostFile *file) {
         OSDetachThread(&m_ghostInitThread);
     }
 
+    if (m_usedItemWheel == true) {
+        return;
+    }
+
     m_saveGhostResult = false;
 
     Sha1 courseSha1;
@@ -568,6 +578,14 @@ Sha1 SaveManager::courseSHA1(Registry::Course courseId) const {
 
 bool SaveManager::isCourseReplaced(Registry::Course courseId) const {
     return m_courseSHA1s[static_cast<u32>(courseId)] != s_courseSHA1s[static_cast<u32>(courseId)];
+}
+
+void SaveManager::setItemWheelFlag(bool itemWheel) {
+    m_usedItemWheel = itemWheel;
+}
+
+bool SaveManager::getItemWheelFlag() {
+    return m_usedItemWheel;
 }
 
 SaveManager *SaveManager::Instance() {
@@ -692,4 +710,60 @@ u32 SaveManager_GetTAGhostTagVisibility(void) {
     auto value = saveManager->getSetting<SP::ClientSettings::Setting::TAGhostTagVisibility>();
     return static_cast<u32>(value);
 }
+
+u32 SaveManager_GetTAGhostTagContent(void) {
+    auto *saveManager = System::SaveManager::Instance();
+    auto value = saveManager->getSetting<SP::ClientSettings::Setting::TAGhostTagContent>();
+    return static_cast<u32>(value);
+}
+
+u32 SaveManager_GetTASolidGhosts(void) {
+    auto *saveManager = System::SaveManager::Instance();
+    auto value = saveManager->getSetting<SP::ClientSettings::Setting::TASolidGhosts>();
+    return static_cast<u32>(value);
+}
+
+u32 SaveManager_GetTAGhostSound(void) {
+    auto *saveManager = System::SaveManager::Instance();
+    auto value = saveManager->getSetting<SP::ClientSettings::Setting::TAGhostSound>();
+    return static_cast<u32>(value);
+}
+
+u32 SaveManager_GetHUDLabels(void) {
+    auto *saveManager = System::SaveManager::Instance();
+    auto value = saveManager->getSetting<SP::ClientSettings::Setting::HUDLabels>();
+    return static_cast<u32>(value);
+}
+
+u32 SaveManager_GetPageTransitions(void) {
+    auto *saveManager = System::SaveManager::Instance();
+    auto value = saveManager->getSetting<SP::ClientSettings::Setting::PageTransitions>();
+    return static_cast<u32>(value);
+}
+
+void SaveManager_SetPageTransitions(u32 value) {
+    auto *saveManager = System::SaveManager::Instance();
+    auto v = static_cast<SP::ClientSettings::PageTransitions>(value);
+    saveManager->setSetting<SP::ClientSettings::Setting::PageTransitions>(v);
+}
+
+void SaveManager_SetMiiId(const MiiId *miiId) {
+    auto *saveManager = System::SaveManager::Instance();
+    saveManager->setMiiId(*std::bit_cast<System::MiiId *>(miiId));
+}
+
+MiiId SaveManager_GetSPLicenseMiiId(u32 licenseId) {
+    auto *saveManager = System::SaveManager::Instance();
+    return std::bit_cast<MiiId>(saveManager->getMiiId(licenseId));
+}
+
+const u8 *SaveManager_CourseSHA1(u32 courseId) {
+    return System::SaveManager::Instance()->courseSHA1(courseId);
+}
+
+bool SaveManager_getItemWheel() {
+    return System::SaveManager::Instance()->getItemWheelFlag();
+}
+
+bool vsSpeedModIsEnabled;
 }

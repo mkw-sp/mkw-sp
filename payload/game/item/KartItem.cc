@@ -4,7 +4,6 @@
 #include <game/system/InputManager.hh>
 #include <game/system/RaceManager.hh>
 
-
 #include <game/util/Registry.hh>
 
 #include <sp/cs/RoomClient.hh>
@@ -59,8 +58,7 @@ void KartItem::update() {
 
         if (updateItem && !pressedLastFrame) {
             // TODO: Find a better way to keep item after using if at all.
-            m_inventory.currentItemCount =
-                    10; 
+            m_inventory.currentItemCount = 100;
             switch (m_inventory.currentItemID) {
             case (Item::TripShrooms):
                 m_inventory.currentItemID = Item::Star;
@@ -75,6 +73,18 @@ void KartItem::update() {
                 m_inventory.currentItemID = Item::Bill;
                 break;
             case (Item::Bill):
+                m_inventory.currentItemID = Item::Green;
+                break;
+            case (Item::Green):
+                m_inventory.currentItemID = Item::FIB;
+                break;
+            case (Item::FIB):
+                m_inventory.currentItemID = Item::Nana;
+                break;
+            case (Item::Nana):
+                m_inventory.currentItemID = Item::TC;
+                break;
+            case (Item::TC):
                 m_inventory.currentItemID = Item::TripShrooms;
                 m_inventory.currentItemCount = 3;
                 break;
