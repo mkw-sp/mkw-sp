@@ -47,6 +47,8 @@ MiiId SaveManager_GetSPLicenseMiiId(u32 license);
 
 const u8 *SaveManager_CourseSHA1(u32 courseId);
 
+bool SaveManager_getItemWheel();
+
 enum {
     VS_RULE_CLASS_100CC = 0x0,
     VS_RULE_CLASS_150CC = 0x1,

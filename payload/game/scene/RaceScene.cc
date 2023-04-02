@@ -12,6 +12,7 @@
 #include "game/race/JugemManager.hh"
 #include "game/system/HBMManager.hh"
 #include "game/system/RaceManager.hh"
+#include "game/system/SaveManager.hh"
 #include "game/ui/SectionManager.hh"
 
 #include <sp/SaveStateManager.hh>
@@ -119,6 +120,9 @@ void RaceScene::destroySubsystems() {
 void RaceScene::createSubsystems() {
     REPLACED(createSubsystems)();
     SP::SaveStateManager::CreateInstance();
+    auto saveManager = System::SaveManager::Instance();
+    auto setting = saveManager->getSetting<SP::ClientSettings::Setting::ItemWheel>();
+    saveManager->setItemWheelFlag(setting == SP::ClientSettings::ItemWheel::Enable);
 }
 
 } // namespace Scene

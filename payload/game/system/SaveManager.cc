@@ -321,6 +321,12 @@ void SaveManager::setSetting(u32 setting, u32 value) {
         return;
     }
 
+    if (static_cast<SP::ClientSettings::Setting>(setting) ==
+                    SP::ClientSettings::Setting::ItemWheel &&
+            static_cast<SP::ClientSettings::ItemWheel>(value) ==
+                    SP::ClientSettings::ItemWheel::Enable) {
+        m_usedItemWheel = true;
+    }
     m_spLicenses[*m_spCurrentLicense].set(setting, value);
 
     refreshGCPadRumble();
@@ -467,6 +473,10 @@ void SaveManager::saveGhost(GhostFile *file) {
         OSDetachThread(&m_ghostInitThread);
     }
 
+    if (m_usedItemWheel == true) {
+        return;
+    }
+
     m_saveGhostResult = false;
 
     Time raceTime = file->raceTime();
@@ -560,6 +570,14 @@ void SaveManager::computeCourseSHA1(u32 courseId) {
 
 const u8 *SaveManager::courseSHA1(u32 courseId) const {
     return m_courseSHA1s[courseId];
+}
+
+void SaveManager::setItemWheelFlag(bool itemWheel) {
+    m_usedItemWheel = itemWheel;
+}
+
+bool SaveManager::getItemWheelFlag() {
+    return m_usedItemWheel;
 }
 
 SaveManager *SaveManager::Instance() {
@@ -801,6 +819,10 @@ MiiId SaveManager_GetSPLicenseMiiId(u32 licenseId) {
 
 const u8 *SaveManager_CourseSHA1(u32 courseId) {
     return System::SaveManager::Instance()->courseSHA1(courseId);
+}
+
+bool SaveManager_getItemWheel() {
+    return System::SaveManager::Instance()->getItemWheelFlag();
 }
 
 bool vsSpeedModIsEnabled;

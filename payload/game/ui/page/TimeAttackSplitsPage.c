@@ -29,8 +29,13 @@ static void my_TimeAttackSplitsPage_afterCalc(TimeAttackSplitsPage *this) {
     if (SaveManager_SaveGhostResult()) {
         LayoutUIControl_setMessageAll(&this->ghostMessage, 1115, NULL);
     } else {
-        LayoutUIControl_setMessageAll(&this->ghostMessage, 1116, NULL);
+        if (SaveManager_getItemWheel()) {
+            LayoutUIControl_setMessageAll(&this->ghostMessage, 1506, NULL);
+        } else {
+            LayoutUIControl_setMessageAll(&this->ghostMessage, 1116, NULL);
+        }
     }
+
     this->isReady = true;
 }
 PATCH_B(TimeAttackSplitsPage_afterCalc, my_TimeAttackSplitsPage_afterCalc);

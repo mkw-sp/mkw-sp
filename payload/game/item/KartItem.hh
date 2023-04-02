@@ -50,7 +50,6 @@ private:
     u8 _019[0x088 - 0x019];
     PlayerInventory m_inventory;
     u8 _0b4[0x248 - 0x0b4];
-    // u8 _019[0x248 - 0x019];
 };
 static_assert(sizeof(KartItem) == 0x248);
 
