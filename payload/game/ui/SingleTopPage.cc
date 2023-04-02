@@ -14,6 +14,8 @@ extern "C" {
 #include <vendor/libhydrogen/hydrogen.h>
 }
 
+using namespace magic_enum::bitwise_operators;
+
 namespace UI {
 
 SingleTopPage::SingleTopPage() = default;
@@ -113,6 +115,27 @@ void SingleTopPage::onActivate() {
     menuScenario.spMaxTeamSize = 1;
     for (u32 i = 0; i < 12; i++) {
         menuScenario.players[i].team = 2;
+    }
+
+    auto &trackPack = SP::TrackPackManager::Instance().getSelectedTrackPack();
+    auto supportedModes = trackPack.getSupportedModes();
+
+    auto raceEnabled = (supportedModes & SP::TrackGameMode::Race) != SP::TrackGameMode::None;
+    auto coinEnabled = (supportedModes & SP::TrackGameMode::Coin) != SP::TrackGameMode::None;
+    auto balloonEnabled = (supportedModes & SP::TrackGameMode::Balloon) != SP::TrackGameMode::None;
+
+    m_taButton.setVisible(raceEnabled);
+    m_vsButton.setVisible(raceEnabled);
+    m_btButton.setVisible(coinEnabled || balloonEnabled);
+
+    m_taButton.setPlayerFlags(raceEnabled);
+    m_vsButton.setPlayerFlags(raceEnabled);
+    m_btButton.setPlayerFlags(coinEnabled || balloonEnabled);
+
+    if (raceEnabled) {
+        m_taButton.selectDefault(0);
+    } else if (coinEnabled || balloonEnabled) {
+        m_btButton.selectDefault(0);
     }
 }
 

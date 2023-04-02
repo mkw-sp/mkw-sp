@@ -174,6 +174,23 @@ const std::vector<u32> &TrackPack::getTrackList(TrackGameMode mode) const {
     }
 }
 
+TrackGameMode TrackPack::getSupportedModes() const {
+    TrackGameMode modes[] = {
+            TrackGameMode::Race,
+            TrackGameMode::Coin,
+            TrackGameMode::Balloon,
+    };
+
+    auto supportedModes = TrackGameMode::None;
+    for (auto mode : modes) {
+        if (!getTrackList(mode).empty()) {
+            supportedModes |= mode;
+        }
+    }
+
+    return supportedModes;
+}
+
 u32 TrackPack::getNthTrack(u32 n, TrackGameMode mode) const {
     return getTrackList(mode)[n];
 }

@@ -13,9 +13,11 @@
 namespace SP {
 
 enum class TrackGameMode {
-    Race = 1,
-    Balloon = 2,
-    Coin = 3,
+    None = 0,
+
+    Race = 1 << 0,
+    Balloon = 1 << 1,
+    Coin = 1 << 2,
 };
 
 class Track {
@@ -37,6 +39,7 @@ class TrackPack {
 public:
     TrackPack(std::string_view manifest);
 
+    TrackGameMode getSupportedModes() const;
     u16 getTrackCount(TrackGameMode mode) const;
     u32 getNthTrack(u32 n, TrackGameMode mode) const;
 
