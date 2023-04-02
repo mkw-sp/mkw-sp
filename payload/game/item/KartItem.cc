@@ -67,6 +67,7 @@ void KartItem::update() {
                 break;
             case (Item::Star):
                 m_inventory.currentItemID = Item::Golden;
+                m_inventory.currentItemCount = 1;
                 break;
             case (Item::Golden):
                 m_inventory.currentItemID = Item::Mega;
