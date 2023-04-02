@@ -588,6 +588,14 @@ bool SaveManager::getItemWheelFlag() {
     return m_usedItemWheel;
 }
 
+void SaveManager::setItemWheelFlag(bool itemWheel) {
+    m_usedItemWheel = itemWheel;
+}
+
+bool SaveManager::getItemWheelFlag() {
+    return m_usedItemWheel;
+}
+
 SaveManager *SaveManager::Instance() {
     return s_instance;
 }
@@ -745,6 +753,10 @@ void SaveManager_SetPageTransitions(u32 value) {
     auto *saveManager = System::SaveManager::Instance();
     auto v = static_cast<SP::ClientSettings::PageTransitions>(value);
     saveManager->setSetting<SP::ClientSettings::Setting::PageTransitions>(v);
+}
+
+bool SaveManager_getItemWheel() {
+    return System::SaveManager::Instance()->getItemWheelFlag();
 }
 
 bool SaveManager_getItemWheel() {
