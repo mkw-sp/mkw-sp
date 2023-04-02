@@ -8,6 +8,8 @@
 
 #include <Common.hh>
 
+#include <game/util/Registry.hh>
+
 namespace System {
 
 /// Configuration for the current race.
