@@ -13,6 +13,12 @@ on:
 jobs:
   build:
     name: Build
+    strategy:
+      fail-fast: false
+      matrix:
+        profile:
+          - debug
+          - test
     runs-on: ubuntu-20.04
     env:
       DEVKITPPC: opt/devkitpro/devkitPPC
@@ -51,14 +57,14 @@ jobs:
       - name: Install protobuf
         run: pip install protobuf
       - name: Configure ninja
-        run: ./configure.py --ci --default-targets test,debug
+        run: ./configure.py --ci --default-targets ${{ matrix.profile }}
       - name: Compile
         run: ninja
       - name: Upload result
         uses: actions/upload-artifact@v3
         with: 
-          name: mkw-sp
-          path: out
+          name: mkw-sp-${{ matrix.profile }}
+          path: out/${{ matrix.profile }}
 
   format:
     name: Format
