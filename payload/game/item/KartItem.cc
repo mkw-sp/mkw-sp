@@ -1,8 +1,7 @@
 #include "KartItem.hh"
 
 #include "game/system/SaveManager.hh"
-#include <game/system/InputManager.hh>
-#include <game/system/RaceManager.hh>
+#include "game/system/RaceManager.hh"
 
 #include <game/util/Registry.hh>
 
@@ -34,21 +33,18 @@ void KartItem::update() {
         auto *playerPadProxy = System::RaceManager::Instance()->player(0)->padProxy();
         auto buttons = playerPadProxy->currentRaceInputState().rawButtons;
         auto controller = playerPadProxy->pad()->getControllerId();
-        // SP_LOG("buttons: %d    controller: %d", buttons, controller);
         bool updateItem = false;
         switch (controller) {
-            // Wanted to use Registry::Controller but getControllerId() returns s32 which i
-            // currently don't want to deal with
-        case (Registry::Controller::WiiWheel): // Wii Wheel
+        case (Registry::Controller::WiiWheel):
             updateItem = (buttons & PAD_BUTTON_START) == PAD_BUTTON_START;
             break;
-        case (Registry::Controller::WiiRemoteAndNunchuck): // Wii Chuck
+        case (Registry::Controller::WiiRemoteAndNunchuck):
             updateItem = (buttons & WPAD_BUTTON_DOWN) == WPAD_BUTTON_DOWN;
             break;
-        case (Registry::Controller::Classic): // Classic
+        case (Registry::Controller::Classic):
             updateItem = (buttons & KPAD_CL_TRIGGER_ZL) == KPAD_CL_TRIGGER_ZL;
             break;
-        case (Registry::Controller::GameCube): // GCN
+        case (Registry::Controller::GameCube):
             updateItem = (buttons & PAD_BUTTON_Y) == PAD_BUTTON_Y;
             break;
         case (Registry::Controller::None):
@@ -59,7 +55,6 @@ void KartItem::update() {
         }
 
         if (updateItem && !pressedLastFrame) {
-            // TODO: Find a better way to keep item after using if at all.
             m_inventory.currentItemCount = 100;
             switch (m_inventory.currentItemID) {
             case (Item::TripShrooms):
