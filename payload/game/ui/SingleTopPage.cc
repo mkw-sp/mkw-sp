@@ -2,6 +2,7 @@
 
 #include "game/system/RaceConfig.hh"
 #include "game/system/SaveManager.hh"
+#include "game/ui/CourseSelectPage.hh"
 #include "game/ui/ModelPage.hh"
 #include "game/ui/SectionManager.hh"
 #include "game/ui/SettingsPage.hh"
@@ -134,9 +135,12 @@ void SingleTopPage::onTAButtonFront(PushButton *button, u32 /* localPlayerId */)
     }
 
     Section *section = SectionManager::Instance()->currentSection();
-    auto *page = section->page(PageId::CharacterSelect)->downcast<MenuPage>();
-    assert(page);
-    page->m_prevId = PageId::SingleTop;
+    auto *courseSelectPage = section->page<PageId::CourseSelect>();
+    courseSelectPage->filter();
+
+    auto *characterSelectPage = section->page(PageId::CharacterSelect)->downcast<MenuPage>();
+    assert(characterSelectPage);
+    characterSelectPage->m_prevId = PageId::SingleTop;
 
     m_replacement = PageId::CharacterSelect;
     f32 delay = button->getDelay();
@@ -172,9 +176,12 @@ void SingleTopPage::onVSButtonFront(PushButton *button, u32 /* localPlayerId */)
     }
 
     Section *section = SectionManager::Instance()->currentSection();
-    auto *page = section->page(PageId::CharacterSelect)->downcast<MenuPage>();
-    assert(page);
-    page->m_prevId = PageId::SingleTop;
+    auto *courseSelectPage = section->page<PageId::CourseSelect>();
+    courseSelectPage->filter();
+
+    auto *characterSelectPage = section->page(PageId::CharacterSelect)->downcast<MenuPage>();
+    assert(characterSelectPage);
+    characterSelectPage->m_prevId = PageId::SingleTop;
 
     m_replacement = PageId::CharacterSelect;
     f32 delay = button->getDelay();
@@ -209,11 +216,14 @@ void SingleTopPage::onBTButtonFront(PushButton *button, u32 /* localPlayerId */)
     }
 
     Section *section = SectionManager::Instance()->currentSection();
-    auto *page = section->page<PageId::BattleModeSelect>();
+    auto *courseSelectPage = section->page<PageId::CourseSelect>();
+    courseSelectPage->filter();
 
-    page->m_prevId = PageId::SingleTop;
+    auto *battleModeSelectPage = section->page<PageId::BattleModeSelect>();
+    assert(battleModeSelectPage);
+    battleModeSelectPage->m_prevId = PageId::SingleTop;
+
     m_replacement = PageId::BattleModeSelect;
-
     f32 delay = button->getDelay();
     startReplace(Anim::Next, delay);
 }
@@ -237,9 +247,12 @@ void SingleTopPage::onMRButtonFront(PushButton *button, u32 /* localPlayerId */)
     }
 
     Section *section = SectionManager::Instance()->currentSection();
-    auto *page = section->page(PageId::MissionLevelSelect)->downcast<MenuPage>();
-    assert(page);
-    page->m_prevId = PageId::SingleTop;
+    auto *courseSelectPage = section->page<PageId::CourseSelect>();
+    courseSelectPage->filter();
+
+    auto *missionLevelSelectPage = section->page(PageId::MissionLevelSelect)->downcast<MenuPage>();
+    assert(missionLevelSelectPage);
+    missionLevelSelect->m_prevId = PageId::SingleTop;
 
     m_replacement = PageId::MissionLevelSelect;
     f32 delay = button->getDelay();

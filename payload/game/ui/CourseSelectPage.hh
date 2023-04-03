@@ -33,6 +33,8 @@ public:
     u32 sheetIndex() const;
     u32 lastSelected() const;
 
+    void filter();
+
 private:
     enum class Request {
         None,

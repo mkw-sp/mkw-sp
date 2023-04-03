@@ -26,27 +26,6 @@ void CourseSelectPage::onInit() {
     m_sheetIndex = 0;
     m_lastSelected = 0;
 
-    auto sectionId = SectionManager::Instance()->currentSection()->id();
-    auto &menuScenario = System::RaceConfig::Instance()->menuScenario();
-    auto &courseDatabase = SP::CourseDatabase::Instance();
-    switch (sectionId) {
-    case SectionId::SingleChangeDriver:
-    case SectionId::SingleChangeCourse:
-    case SectionId::SingleSelectVSCourse:
-    case SectionId::SingleSelectBTCourse:
-    case SectionId::SingleChangeGhostData:
-        m_filter.race = menuScenario.isVs();
-        m_filter.battle = menuScenario.isBattle();
-        m_sheetCount =
-                (courseDatabase.count(m_filter) + std::size(m_buttons) - 1) / std::size(m_buttons);
-        if (auto selection = courseDatabase.loadSelection()) {
-            m_sheetIndex = *selection / std::size(m_buttons);
-            m_lastSelected = *selection % std::size(m_buttons);
-        }
-    default:
-        break;
-    }
-
     m_inputManager.init(0x1, false);
     setInputManager(&m_inputManager);
     m_inputManager.setWrappingMode(MultiControlInputManager::WrappingMode::Neither);
@@ -100,10 +79,16 @@ void CourseSelectPage::onInit() {
     OSCreateThread(&m_thread, LoadThumbnails, this, stackTop, sizeof(m_stack), 24, 0);
     OSResumeThread(&m_thread);
 
-    if (m_filter.race || m_filter.battle) {
-        refresh();
-
-        m_buttons[m_lastSelected].selectDefault(0);
+    auto sectionId = SectionManager::Instance()->currentSection()->id();
+    switch (sectionId) {
+    case SectionId::SingleChangeDriver:
+    case SectionId::SingleChangeCourse:
+    case SectionId::SingleSelectVSCourse:
+    case SectionId::SingleSelectBTCourse:
+    case SectionId::SingleChangeGhostData:
+        filter();
+    default:
+        break;
     }
 }
 
@@ -116,38 +101,6 @@ void CourseSelectPage::onDeinit() {
 
 void CourseSelectPage::onActivate() {
     m_replacement = PageId::None;
-
-    SP::CourseDatabase::Filter filter{false, false};
-    auto &menuScenario = System::RaceConfig::Instance()->menuScenario();
-    if (menuScenario.isVs()) {
-        filter.race = true;
-    }
-
-    if (menuScenario.isBattle()) {
-        filter.battle = true;
-    }
-
-    if (filter.race != m_filter.race || filter.battle != m_filter.battle) {
-        m_filter = filter;
-
-        auto &courseDatabase = SP::CourseDatabase::Instance();
-        m_sheetCount =
-                (courseDatabase.count(m_filter) + std::size(m_buttons) - 1) / std::size(m_buttons);
-        m_sheetIndex = 0;
-        m_lastSelected = 0;
-        if (auto selection = courseDatabase.loadSelection()) {
-            m_sheetIndex = *selection / std::size(m_buttons);
-            m_lastSelected = *selection % std::size(m_buttons);
-        }
-        m_scrollBar.reconfigure(m_sheetCount, m_sheetIndex, m_sheetCount >= 4 ? 0x1 : 0x0);
-
-        m_sheetSelect.setVisible(m_sheetCount > 1);
-        m_sheetSelect.setPlayerFlags(m_sheetCount <= 1 ? 0x0 : 0x1);
-
-        refresh();
-
-        m_buttons[m_lastSelected].selectDefault(0);
-    }
 }
 
 void CourseSelectPage::afterCalc() {
@@ -199,6 +152,35 @@ u32 CourseSelectPage::sheetIndex() const {
 
 u32 CourseSelectPage::lastSelected() const {
     return m_lastSelected;
+}
+
+void CourseSelectPage::filter() {
+    auto &menuScenario = System::RaceConfig::Instance()->menuScenario();
+    SP::CourseDatabase::Filter filter{menuScenario.isVs(), menuScenario.isBattle()};
+
+    if (filter.race == m_filter.race && filter.battle == m_filter.battle) {
+        return;
+    }
+
+    m_filter = filter;
+
+    auto &courseDatabase = SP::CourseDatabase::Instance();
+    m_sheetCount = (courseDatabase.count(m_filter) + m_buttons.size() - 1) / m_buttons.size();
+    if (auto selection = courseDatabase.loadSelection()) {
+        m_sheetIndex = *selection / m_buttons.size();
+        m_lastSelected = *selection % m_buttons.size();
+    } else {
+        m_sheetIndex = 0;
+        m_lastSelected = 0;
+    }
+    m_scrollBar.reconfigure(m_sheetCount, m_sheetIndex, m_sheetCount >= 4 ? 0x1 : 0x0);
+
+    m_sheetSelect.setVisible(m_sheetCount > 1);
+    m_sheetSelect.setPlayerFlags(m_sheetCount <= 1 ? 0x0 : 0x1);
+
+    refresh();
+
+    m_buttons[m_lastSelected].selectDefault(0);
 }
 
 void CourseSelectPage::onBack(u32 /* localPlayerId */) {
