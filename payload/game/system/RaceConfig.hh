@@ -6,7 +6,7 @@
 #include <sp/FixedString.hh>
 #include <sp/ShaUtil.hh>
 
-#include <game/util/Registry.hh>
+#include <Common.hh>
 
 namespace System {
 
