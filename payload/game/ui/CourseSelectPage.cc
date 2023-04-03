@@ -12,8 +12,6 @@
 #include <algorithm>
 #include <limits>
 
-using namespace magic_enum::bitwise_operators;
-
 namespace UI {
 
 CourseSelectPage::CourseSelectPage() = default;
@@ -35,11 +33,6 @@ SP::TrackGameMode getTrackGameMode() {
     } else {
         panic("Unknown gamemode!");
     }
-}
-
-u16 getTrackCount() {
-    auto &packManager = SP::TrackPackManager::Instance();
-    return packManager.getSelectedTrackPack().getTrackCount(getTrackGameMode());
 }
 
 PageId CourseSelectPage::getReplacement() {
@@ -105,9 +98,12 @@ void CourseSelectPage::onActivate() {
 
     m_replacement = PageId::None;
 
+    auto &packManager = SP::TrackPackManager::Instance();
+    auto &pack = packManager.getSelectedTrackPack();
+
     m_sheetIndex = 0;
     m_lastSelected = 0;
-    m_sheetCount = (getTrackCount() + 9 - 1) / 9;
+    m_sheetCount = (pack.getTrackCount(getTrackGameMode()) + 9 - 1) / 9;
     m_scrollBar.reconfigure(m_sheetCount, m_sheetIndex, m_sheetCount >= 4 ? 0x1 : 0x0);
 
     m_sheetSelect.setVisible(m_sheetCount > 1);
@@ -293,10 +289,11 @@ void CourseSelectPage::onBackCommon(f32 delay) {
 }
 
 void CourseSelectPage::refresh() {
+    auto gameMode = getTrackGameMode();
+
     auto &trackPackManager = SP::TrackPackManager::Instance();
     auto &trackPack = trackPackManager.getSelectedTrackPack();
-    auto gameMode = getTrackGameMode();
-    auto trackCount = getTrackCount();
+    auto trackCount = trackPack.getTrackCount(gameMode);
 
     {
         SP::ScopeLock<SP::NoInterrupts> lock;
