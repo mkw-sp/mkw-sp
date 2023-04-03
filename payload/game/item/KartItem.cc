@@ -101,6 +101,14 @@ void KartItem::update() {
             m_inventory.pressedLastFrame = true;
         }
     }
+
+}
+
+void KartItem::useGolden() {
+    REPLACED(useGolden)();
+    if (m_inventory.framesLeft == 0x1c2) {
+        m_inventory.framesLeft--;
+    }
 }
 
 void KartItem::useGolden() {
