@@ -16,6 +16,15 @@ extern "C" {
 
 namespace UI {
 
+void setupPlayers(System::RaceConfig::Player::Type otherType) {
+    auto &menuScenario = System::RaceConfig::Instance()->menuScenario();
+
+    menuScenario.players[0].type = System::RaceConfig::Player::Type::Local;
+    for (u32 i = 1; i < 12; i++) {
+        menuScenario.players[i].type = otherType;
+    }
+}
+
 SingleTopPage::SingleTopPage() = default;
 
 SingleTopPage::~SingleTopPage() = default;
@@ -86,9 +95,7 @@ void SingleTopPage::onInit() {
     m_taButton.selectDefault(0);
     m_instructionText.setMessage(3051);
 
-    Section *section = SectionManager::Instance()->currentSection();
-    auto *modelPage = section->page<PageId::Model>();
-    modelPage->modelControl().setModel(0);
+    ModelPage::SetModel(0);
 }
 
 void SingleTopPage::onActivate() {
@@ -112,9 +119,9 @@ void SingleTopPage::onSettingsButtonFront(PushButton *button, u32 /* localPlayer
     auto *section = SectionManager::Instance()->currentSection();
     auto *settingsPage = section->page<PageId::MenuSettings>();
     settingsPage->configure(nullptr, PageId::SingleTop);
+
     m_replacement = PageId::MenuSettings;
-    f32 delay = button->getDelay();
-    startReplace(Anim::Next, delay);
+    startReplace(Anim::Next, button->getDelay());
 }
 
 void SingleTopPage::onSettingsButtonSelect(PushButton * /* button */, u32 /* localPlayerId */) {
@@ -129,10 +136,7 @@ void SingleTopPage::onTAButtonFront(PushButton *button, u32 /* localPlayerId */)
     menuScenario.cameraMode = 0;
 
     raceConfig->applyEngineClass();
-    menuScenario.players[0].type = System::RaceConfig::Player::Type::Local;
-    for (u32 i = 1; i < 12; i++) {
-        menuScenario.players[i].type = System::RaceConfig::Player::Type::None;
-    }
+    setupPlayers(System::RaceConfig::Player::Type::None);
 
     Section *section = SectionManager::Instance()->currentSection();
     auto *courseSelectPage = section->page<PageId::CourseSelect>();
@@ -143,16 +147,12 @@ void SingleTopPage::onTAButtonFront(PushButton *button, u32 /* localPlayerId */)
     characterSelectPage->m_prevId = PageId::SingleTop;
 
     m_replacement = PageId::CharacterSelect;
-    f32 delay = button->getDelay();
-    startReplace(Anim::Next, delay);
+    startReplace(Anim::Next, button->getDelay());
 }
 
 void SingleTopPage::onTAButtonSelect(PushButton * /* button */, u32 /* localPlayerId */) {
     m_instructionText.setMessage(3051);
-
-    Section *section = SectionManager::Instance()->currentSection();
-    auto *modelPage = section->page<PageId::Model>();
-    modelPage->modelControl().setModel(0);
+    ModelPage::SetModel(0);
 }
 
 void SingleTopPage::onVSButtonFront(PushButton *button, u32 /* localPlayerId */) {
@@ -170,10 +170,7 @@ void SingleTopPage::onVSButtonFront(PushButton *button, u32 /* localPlayerId */)
     menuScenario.spMaxTeamSize = maxTeamSize;
     menuScenario.cameraMode = 5;
 
-    menuScenario.players[0].type = System::RaceConfig::Player::Type::Local;
-    for (u32 i = 1; i < 12; i++) {
-        menuScenario.players[i].type = System::RaceConfig::Player::Type::CPU;
-    }
+    setupPlayers(System::RaceConfig::Player::Type::CPU);
 
     context->applyVehicleRestriction(false);
     raceConfig->applyCPUMode();
@@ -189,16 +186,12 @@ void SingleTopPage::onVSButtonFront(PushButton *button, u32 /* localPlayerId */)
     characterSelectPage->m_prevId = PageId::SingleTop;
 
     m_replacement = PageId::CharacterSelect;
-    f32 delay = button->getDelay();
-    startReplace(Anim::Next, delay);
+    startReplace(Anim::Next, button->getDelay());
 }
 
 void SingleTopPage::onVSButtonSelect(PushButton * /* button */, u32 /* localPlayerId */) {
     m_instructionText.setMessage(3052);
-
-    Section *section = SectionManager::Instance()->currentSection();
-    auto *modelPage = section->page<PageId::Model>();
-    modelPage->modelControl().setModel(2);
+    ModelPage::SetModel(2);
 }
 
 void SingleTopPage::onBTButtonFront(PushButton *button, u32 /* localPlayerId */) {
@@ -215,11 +208,7 @@ void SingleTopPage::onBTButtonFront(PushButton *button, u32 /* localPlayerId */)
     menuScenario.gameMode = System::RaceConfig::GameMode::OfflineBT;
     menuScenario.spMaxTeamSize = maxTeamSize;
     menuScenario.cameraMode = 5;
-
-    menuScenario.players[0].type = System::RaceConfig::Player::Type::Local;
-    for (u32 i = 1; i < 12; i++) {
-        menuScenario.players[i].type = System::RaceConfig::Player::Type::CPU;
-    }
+    setupPlayers(System::RaceConfig::Player::Type::CPU);
 
     context->applyVehicleRestriction(true);
     raceConfig->applyCPUMode();
@@ -235,16 +224,12 @@ void SingleTopPage::onBTButtonFront(PushButton *button, u32 /* localPlayerId */)
     battleModeSelectPage->m_prevId = PageId::SingleTop;
 
     m_replacement = PageId::BattleModeSelect;
-    f32 delay = button->getDelay();
-    startReplace(Anim::Next, delay);
+    startReplace(Anim::Next, button->getDelay());
 }
 
 void SingleTopPage::onBTButtonSelect(PushButton * /* button */, u32 /* localPlayerId */) {
     m_instructionText.setMessage(3054);
-
-    Section *section = SectionManager::Instance()->currentSection();
-    auto *modelPage = section->page<PageId::Model>();
-    modelPage->modelControl().setModel(3);
+    ModelPage::SetModel(3);
 }
 
 #if ENABLE_MISSION_MODE
@@ -252,10 +237,7 @@ void SingleTopPage::onMRButtonFront(PushButton *button, u32 /* localPlayerId */)
     auto &menuScenario = System::RaceConfig::Instance()->menuScenario();
     menuScenario.gameMode = System::RaceConfig::GameMode::Mission;
     menuScenario.cameraMode = 0;
-    menuScenario.players[0].type = System::RaceConfig::Player::Type::Local;
-    for (u32 i = 1; i < 12; i++) {
-        menuScenario.players[i].type = System::RaceConfig::Player::Type::None;
-    }
+    setupPlayers(System::RaceConfig::Player::Type::None);
 
     Section *section = SectionManager::Instance()->currentSection();
     auto *courseSelectPage = section->page<PageId::CourseSelect>();
@@ -266,22 +248,17 @@ void SingleTopPage::onMRButtonFront(PushButton *button, u32 /* localPlayerId */)
     missionLevelSelectPage->m_prevId = PageId::SingleTop;
 
     m_replacement = PageId::MissionLevelSelect;
-    f32 delay = button->getDelay();
-    startReplace(Anim::Next, delay);
+    startReplace(Anim::Next, button->getDelay());
 }
 
 void SingleTopPage::onMRButtonSelect(PushButton * /* button */, u32 /* localPlayerId */) {
     m_instructionText.setMessage(10161);
-
-    Section *section = SectionManager::Instance()->currentSection();
-    auto *modelPage = section->page<PageId::Model>();
-    modelPage->modelControl().setModel(2 /* for now */);
+    ModelPage::SetModel(2 /* for now */);
 }
 #endif
 
 void SingleTopPage::onBackButtonFront(PushButton *button, u32 /* localPlayerId */) {
-    f32 delay = button->getDelay();
-    changeSection(SectionId::TitleFromMenu, Anim::Prev, delay);
+    changeSection(SectionId::TitleFromMenu, Anim::Prev, button->getDelay());
 }
 
 void SingleTopPage::onBackButtonSelect(PushButton * /* button */, u32 /* localPlayerId */) {

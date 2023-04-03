@@ -67,10 +67,7 @@ void MultiTopPage::onActivate() {
         m_vsButton.selectDefault(0);
         m_instructionText.setMessage(3052);
 
-        Section *section = SectionManager::Instance()->currentSection();
-        auto *modelPage = section->page<PageId::Model>();
-        modelPage->modelControl().setModel(2);
-
+        ModelPage::SetModel(2);
         m_reset = false;
     }
 
@@ -96,9 +93,9 @@ void MultiTopPage::onSettingsButtonFront(PushButton *button, u32 /* localPlayerI
     auto *section = SectionManager::Instance()->currentSection();
     auto *menuSettingsPage = section->page<PageId::MenuSettings>();
     menuSettingsPage->configure(nullptr, PageId::MultiTop);
+
     m_replacement = PageId::MenuSettings;
-    f32 delay = button->getDelay();
-    startReplace(Anim::Next, delay);
+    startReplace(Anim::Next, button->getDelay());
 }
 
 void MultiTopPage::onSettingsButtonSelect(PushButton * /* button */, u32 /* localPlayerId */) {
@@ -142,16 +139,12 @@ void MultiTopPage::onVSButtonFront(PushButton *button, u32 /* localPlayerId */) 
     characterSelectPage->m_prevId = PageId::MultiTop;
 
     m_replacement = PageId::CharacterSelect;
-    f32 delay = button->getDelay();
-    startReplace(Anim::Next, delay);
+    startReplace(Anim::Next, button->getDelay());
 }
 
 void MultiTopPage::onVSButtonSelect(PushButton * /* button */, u32 /* localPlayerId */) {
     m_instructionText.setMessage(3052);
-
-    Section *section = SectionManager::Instance()->currentSection();
-    auto *modelPage = section->page<PageId::Model>();
-    modelPage->modelControl().setModel(2);
+    ModelPage::SetModel(2);
 }
 
 void MultiTopPage::onBTButtonFront(PushButton *button, u32 /* localPlayerId */) {
@@ -191,24 +184,19 @@ void MultiTopPage::onBTButtonFront(PushButton *button, u32 /* localPlayerId */) 
     battleModeSelectPage->m_prevId = PageId::MultiTop;
 
     m_replacement = PageId::BattleModeSelect;
-    f32 delay = button->getDelay();
-    startReplace(Anim::Next, delay);
+    startReplace(Anim::Next, button->getDelay());
 }
 
 void MultiTopPage::onBTButtonSelect(PushButton * /* button */, u32 /* localPlayerId */) {
     m_instructionText.setMessage(3054);
-
-    Section *section = SectionManager::Instance()->currentSection();
-    auto *modelPage = section->page<PageId::Model>();
-    modelPage->modelControl().setModel(3);
+    ModelPage::SetModel(3);
 }
 
 void MultiTopPage::onBackButtonFront(PushButton *button, u32 /* localPlayerId */) {
     m_reset = true;
 
     m_replacement = PageId::ControllerBoxes;
-    f32 delay = button->getDelay();
-    startReplace(Anim::Prev, delay);
+    startReplace(Anim::Prev, button->getDelay());
 }
 
 void MultiTopPage::onBackButtonSelect(PushButton * /* button */, u32 /* localPlayerId */) {
