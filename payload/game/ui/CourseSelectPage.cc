@@ -22,9 +22,30 @@ PageId CourseSelectPage::getReplacement() {
 
 void CourseSelectPage::onInit() {
     m_filter = {false, false};
-    m_sheetCount = (SP::CourseDatabase::Instance().count(m_filter) + 9 - 1) / 9;
+    m_sheetCount = 1;
     m_sheetIndex = 0;
     m_lastSelected = 0;
+
+    auto sectionId = SectionManager::Instance()->currentSection()->id();
+    auto &menuScenario = System::RaceConfig::Instance()->menuScenario();
+    auto &courseDatabase = SP::CourseDatabase::Instance();
+    switch (sectionId) {
+    case SectionId::SingleChangeDriver:
+    case SectionId::SingleChangeCourse:
+    case SectionId::SingleSelectVSCourse:
+    case SectionId::SingleSelectBTCourse:
+    case SectionId::SingleChangeGhostData:
+        m_filter.race = menuScenario.isVs();
+        m_filter.battle = menuScenario.isBattle();
+        m_sheetCount =
+                (courseDatabase.count(m_filter) + std::size(m_buttons) - 1) / std::size(m_buttons);
+        if (auto selection = courseDatabase.loadSelection()) {
+            m_sheetIndex = *selection / std::size(m_buttons);
+            m_lastSelected = *selection % std::size(m_buttons);
+        }
+    default:
+        break;
+    }
 
     m_inputManager.init(0x1, false);
     setInputManager(&m_inputManager);
@@ -78,6 +99,12 @@ void CourseSelectPage::onInit() {
     u8 *stackTop = m_stack + sizeof(m_stack);
     OSCreateThread(&m_thread, LoadThumbnails, this, stackTop, sizeof(m_stack), 24, 0);
     OSResumeThread(&m_thread);
+
+    if (m_filter.race || m_filter.battle) {
+        refresh();
+
+        m_buttons[m_lastSelected].selectDefault(0);
+    }
 }
 
 void CourseSelectPage::onDeinit() {
@@ -103,9 +130,15 @@ void CourseSelectPage::onActivate() {
     if (filter.race != m_filter.race || filter.battle != m_filter.battle) {
         m_filter = filter;
 
-        m_sheetCount = (SP::CourseDatabase::Instance().count(m_filter) + 9 - 1) / 9;
+        auto &courseDatabase = SP::CourseDatabase::Instance();
+        m_sheetCount =
+                (courseDatabase.count(m_filter) + std::size(m_buttons) - 1) / std::size(m_buttons);
         m_sheetIndex = 0;
         m_lastSelected = 0;
+        if (auto selection = courseDatabase.loadSelection()) {
+            m_sheetIndex = *selection / std::size(m_buttons);
+            m_lastSelected = *selection % std::size(m_buttons);
+        }
         m_scrollBar.reconfigure(m_sheetCount, m_sheetIndex, m_sheetCount >= 4 ? 0x1 : 0x0);
 
         m_sheetSelect.setVisible(m_sheetCount > 1);
@@ -113,7 +146,7 @@ void CourseSelectPage::onActivate() {
 
         refresh();
 
-        m_buttons[0].selectDefault(0);
+        m_buttons[m_lastSelected].selectDefault(0);
     }
 }
 
@@ -174,13 +207,13 @@ void CourseSelectPage::onBack(u32 /* localPlayerId */) {
 
 void CourseSelectPage::onButtonFront(PushButton *button, u32 /* localPlayerId */) {
     u32 courseIndex = m_sheetIndex * m_buttons.size() + button->m_index;
-    auto &entry = SP::CourseDatabase::Instance().entry(m_filter, courseIndex);
+    auto &courseDatabase = SP::CourseDatabase::Instance();
+    auto &entry = courseDatabase.entry(m_filter, courseIndex);
+    courseDatabase.saveSelection(courseIndex);
 
     auto *sectionManager = SectionManager::Instance();
     auto *section = sectionManager->currentSection();
     auto sectionId = section->id();
-
-    sectionManager->globalContext()->m_raceCourseId = entry.courseId;
 
     if (Section::HasRoomClient(sectionId)) {
         auto *votingBackPage = section->page<PageId::VotingBack>();

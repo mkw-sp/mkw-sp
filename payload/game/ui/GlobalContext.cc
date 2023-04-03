@@ -2,6 +2,8 @@
 
 #include "game/system/SaveManager.hh"
 
+#include <sp/CourseDatabase.hh>
+
 namespace UI {
 
 void GlobalContext::onChangeLicense() {
@@ -22,6 +24,8 @@ void GlobalContext::onChangeLicense() {
         auto setting = saveManager->getSetting<SP::ClientSettings::Setting::DriftMode>();
         m_driftModes[i] = static_cast<u32>(setting) + 1;
     }
+
+    SP::CourseDatabase::Instance().resetSelection();
 }
 
 } // namespace UI

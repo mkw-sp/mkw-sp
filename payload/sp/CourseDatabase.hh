@@ -1,5 +1,7 @@
 #pragma once
 
+#include <optional>
+
 #include <Common.hh>
 
 namespace SP {
@@ -21,6 +23,9 @@ public:
 
     u32 count(Filter filter);
     const Entry &entry(Filter filter, u32 index);
+    void resetSelection();
+    std::optional<u32> loadSelection();
+    void saveSelection(u32 index);
 
     static CourseDatabase &Instance();
 
@@ -76,6 +81,7 @@ private:
     Filter m_filter{false, false};
     u32 m_count = 0;
     std::array<u32, 42> m_internalIndices;
+    std::optional<u32> m_selection{};
 };
 
 } // namespace SP
