@@ -87,9 +87,8 @@ void GCPad::process(RaceInputState &raceInputState, UIInputState &uiInputState) 
     REPLACED(process)(raceInputState, uiInputState);
 
     processSimplified(raceInputState, raceInputState.rawButtons & PAD_BUTTON_Y);
-
-    if (InputManager::Instance()->isMirror()) {
-        uiInputState.stick.x *= -1.0f;
+    if (auto saveStateManager = SP::SaveStateManager::Instance()) {
+        saveStateManager->processInput(raceInputState.rawButtons & PAD_TRIGGER_Z);
     }
 }
 

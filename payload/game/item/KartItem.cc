@@ -27,6 +27,14 @@ void KartItem::setItem(u32 r4, u32 r5, u32 r6) {
 void KartItem::update() {
     REPLACED(update)();
 
+    if (m_inventory.currentItemID == Item::Golden && m_inventory.framesLeft != 0x1c2) {
+        if (m_inventory.framesLeft == 0) {
+            m_inventory.currentItemID = Item::NoItem;
+        }
+        else {
+            m_inventory.framesLeft--;
+        }
+    }
     auto *saveManager = System::SaveManager::Instance();
     auto setting = saveManager->getSetting<SP::ClientSettings::Setting::ItemWheel>();
     if (setting == SP::ClientSettings::ItemWheel::Enable) {
@@ -63,6 +71,7 @@ void KartItem::update() {
             case (Item::Star):
                 m_inventory.currentItemID = Item::Golden;
                 m_inventory.currentItemCount = 1;
+                m_inventory.framesLeft = 0x1c2;
                 break;
             case (Item::Golden):
                 m_inventory.currentItemID = Item::Mega;
@@ -71,6 +80,9 @@ void KartItem::update() {
                 m_inventory.currentItemID = Item::Bill;
                 break;
             case (Item::Bill):
+                m_inventory.currentItemID = Item::Shroom;
+                break;
+            case (Item::Shroom):
                 m_inventory.currentItemID = Item::TripShrooms;
                 m_inventory.currentItemCount = 3;
                 break;
@@ -81,6 +93,14 @@ void KartItem::update() {
             }
             pressedLastFrame = true;
         }
+    }
+
+}
+
+void KartItem::useGolden() {
+    REPLACED(useGolden)();
+    if (m_inventory.framesLeft == 0x1c2) {
+        m_inventory.framesLeft--;
     }
 }
 
