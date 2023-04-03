@@ -123,6 +123,11 @@ void RaceConfig::ConfigurePlayers(Scenario &scenario, u32 screenCount) {
     }
 }
 
+void RaceConfig::init() {
+    REPLACED(init)();
+    m_packInfo = {};
+}
+
 void RaceConfig::initRace() {
     REPLACED(initRace)();
 

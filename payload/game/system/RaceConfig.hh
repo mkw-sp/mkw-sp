@@ -116,6 +116,9 @@ public:
     void applyEngineClass();
     void endRace();
 
+    void REPLACED(init)();
+    REPLACE void init();
+
     void REPLACED(initRace)();
     REPLACE void initRace();
 

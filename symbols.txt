@@ -571,7 +571,7 @@
 0x8052b84c NandHelper_getType
 0x8052bdf4 NandManager_createInstance
 0x8052bff8 NandManager_init
-0x8052e950 FUN_8052e950
+0x8052dd40 _ZN6System10RaceConfig4initEv
 0x8052f4e8 _ZN6System10RaceConfig16ConfigurePlayersERNS0_8ScenarioEj
 0x8052fe58 RaceConfig_createInstance
 0x8053015c RaceConfig_ct

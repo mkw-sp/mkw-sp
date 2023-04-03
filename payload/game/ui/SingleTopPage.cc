@@ -93,9 +93,6 @@ void SingleTopPage::onInit() {
     modelPage->modelControl().setModel(0);
 
     SP::TrackPackManager::CreateInstance();
-
-    auto *raceConfig = System::RaceConfig::Instance();
-    raceConfig->m_packInfo = {};
 }
 
 void SingleTopPage::onDeinit() {
