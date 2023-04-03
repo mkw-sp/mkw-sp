@@ -157,7 +157,7 @@ MultiDvdArchive *ResourceManager::loadCourse(u32 /* courseId */, EGG::Heap *heap
     jobContext->archiveHeap = heap;
     strncpy(jobContext->filename, filePath, sizeof(jobContext->filename));
 
-    m_taskThread->request(&ResourceManager_doLoadTask, 2, 0);
+    m_taskThread->request(&ResourceManager_doLoadTask, (void *)2, 0);
     process();
 
     u8 tries = 10;

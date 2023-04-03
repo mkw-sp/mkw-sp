@@ -149,7 +149,7 @@ private:
     u8 _00000[0x00014 - 0x00000];
     RawSave *m_rawSave;
     u8 *m_rawGhostFile;
-    EGG::TaskThread<void *> *m_taskThread;
+    EGG::TaskThread *m_taskThread;
     u32 m_ghostCount;                  // Modified
     RawGhostHeader *m_rawGhostHeaders; // Modified
     GhostGroup *m_ghostGroup;
