@@ -5,4 +5,7 @@
     "10076": {
         string: "Settings",
     },
+    "20031": {
+        string: "{arg string|0}",
+    },
 }

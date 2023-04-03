@@ -30,7 +30,7 @@ void DemoPage::onInit() {
     auto courseId = menuScenario.courseId;
     auto cupId = Registry::GetCourseCupId(courseId);
 
-    m_courseDisplay.setMessageAll(Registry::GetCourseName(courseId), nullptr);
+    raceConfig->m_packInfo.setTrackMessage(&m_courseDisplay);
 
     u32 cupMsgId = 9999;
     MessageInfo cupInfo = {};

@@ -51,21 +51,9 @@ void CourseSelectButton::refresh(u32 wiimmId) {
 
     auto *raceConfig = System::RaceConfig::Instance();
     auto &trackPackManager = SP::TrackPackManager::Instance();
+    auto &track = trackPackManager.getTrack(wiimmId);
 
-    if (raceConfig->m_packInfo.isVanilla()) {
-        auto courseId = trackPackManager.getTrack(wiimmId).getCourseId();
-
-        if (raceConfig->menuScenario().gameMode == System::RaceConfig::GameMode::OfflineBT) {
-            setMessageAll(9400 + courseId - 32);
-        } else {
-            setMessageAll(9360 + courseId);
-        }
-    } else {
-        MessageInfo info;
-        info.strings[0] = trackPackManager.getTrackName(wiimmId);
-
-        setMessageAll(20031, &info);
-    }
+    raceConfig->m_packInfo.setTrackMessage(this, track.name.c_str(), track.getCourseId());
 }
 
 void CourseSelectButton::setTex(u8 c, const GXTexObj &texObj) {

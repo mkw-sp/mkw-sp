@@ -1184,9 +1184,6 @@
     "20030": {
         string: "{color|sp pink}{arg string|0}",
     },
-    "20031": {
-        string: "{arg string|0}",
-    },
     "20032": {
         string: "Connection error!",
     },

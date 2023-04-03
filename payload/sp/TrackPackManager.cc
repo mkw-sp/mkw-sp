@@ -5,6 +5,7 @@
 #include "sp/vanillaTracks.hh"
 
 #include <game/system/RaceConfig.hh>
+#include <game/ui/UIControl.hh>
 #include <game/util/Registry.hh>
 #include <vendor/magic_enum/magic_enum.hpp>
 
@@ -384,6 +385,29 @@ const wchar_t *TrackPackManager::getTrackName(u32 wiimmId) const {
     return L"Unknown Track";
 }
 
+void TrackPackInfo::setTrackMessage(UI::LayoutUIControl *control) const {
+    return setTrackMessage(control, s_name.c_str(), m_selectedCourseId);
+}
+
+void TrackPackInfo::setTrackMessage(UI::LayoutUIControl *control, const wchar_t *name,
+        u32 courseId) const {
+    auto raceConfig = System::RaceConfig::Instance();
+
+    if (isVanilla()) {
+        if (raceConfig->menuScenario().gameMode == System::RaceConfig::GameMode::OfflineBT) {
+            control->setMessageAll(9400 + courseId - 32);
+        } else {
+            control->setMessageAll(9360 + courseId);
+        }
+
+        return;
+    }
+
+    UI::MessageInfo info;
+    info.strings[0] = name;
+    control->setMessageAll(20031, &info);
+}
+
 const Track &TrackPackManager::getTrack(u32 wiimmId) const {
     for (auto &[cWiimmId, track] : m_trackDb) {
         if (cWiimmId == wiimmId) {
@@ -459,10 +483,12 @@ std::span<const u8, 0x14> TrackPackInfo::getSelectedSha1() const {
 }
 
 void TrackPackInfo::selectCourse(u32 wiimmId) {
+    m_selectedWiimmId = wiimmId;
+
     auto &trackPackManager = TrackPackManager::Instance();
     auto &track = trackPackManager.getTrack(wiimmId);
 
-    m_selectedWiimmId = wiimmId;
+    s_name = track.name;
     m_selectedSha1 = track.sha1;
     m_selectedCourseId = track.getCourseId();
 
@@ -470,6 +496,7 @@ void TrackPackInfo::selectCourse(u32 wiimmId) {
     menuScenario.courseId = m_selectedCourseId;
 }
 
+WFixedString<64> TrackPackInfo::s_name = {};
 TrackPackManager *TrackPackManager::s_instance = nullptr;
 
 } // namespace SP

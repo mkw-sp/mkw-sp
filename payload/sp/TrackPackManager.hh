@@ -11,6 +11,10 @@
 #include <string_view>
 #include <vector>
 
+namespace UI {
+class LayoutUIControl;
+}
+
 namespace SP {
 
 enum class TrackGameMode {
@@ -79,13 +83,14 @@ public:
 
     const TrackPack &getNthPack(u32 n) const;
     const TrackPack &getSelectedTrackPack() const;
-    const wchar_t *getTrackName(u32 wiimmId) const;
 
     static TrackPackManager &Instance();
     static void CreateInstance();
     static void DestroyInstance();
 
 private:
+    const wchar_t *getTrackName(u32 wiimmId) const;
+
     std::vector<DBEntry> m_trackDb;
     std::vector<TrackPack> m_packs;
 
@@ -100,7 +105,10 @@ public:
     u32 getSelectedCourse() const;
     u32 getSelectedWiimmId() const;
     std::span<const u8, 0x14> getSelectedSha1() const;
+
     void selectCourse(u32 wiimmId);
+    void setTrackMessage(UI::LayoutUIControl *control) const;
+    void setTrackMessage(UI::LayoutUIControl *control, const wchar_t *name, u32 courseId) const;
 
     u32 m_selectedTrackPack = 0;
 
@@ -109,6 +117,9 @@ private:
     std::array<u8, 0x14> m_selectedSha1 = {};
     u32 m_selectedCourseId = 0;
     u32 m_selectedWiimmId = 0;
+
+    // We don't have enough space to store this otherwise.
+    static WFixedString<64> s_name;
 };
 
 } // namespace SP
