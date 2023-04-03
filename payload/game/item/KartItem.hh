@@ -37,7 +37,6 @@ struct PlayerInventory {
     u32 framesLeft;
     u32 somethingFrames;
     u8 _28[0x2c - 0x28];
-
 };
 static_assert(sizeof(PlayerInventory) == 0x2c);
 
