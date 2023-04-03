@@ -1,14 +1,8 @@
 #pragma once
 
-#include "game/sound/SoundId.hh"
 #include "game/util/Registry.hh"
 
-#include <sp/FixedString.hh>
-#include <sp/ShaUtil.hh>
-
 #include <Common.hh>
-
-#include <game/util/Registry.hh>
 
 namespace System {
 
