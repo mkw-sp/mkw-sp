@@ -53,15 +53,12 @@ void CourseSelectButton::refresh(u32 wiimmId) {
     auto &trackPackManager = SP::TrackPackManager::Instance();
 
     if (raceConfig->m_packInfo.isVanilla()) {
-        auto &menuScenario = raceConfig->menuScenario();
+        auto courseId = trackPackManager.getTrack(wiimmId).getCourseId();
 
-        auto gameMode = menuScenario.gameMode;
-        auto &track = trackPackManager.getTrack(wiimmId);
-
-        if (gameMode == System::RaceConfig::GameMode::OfflineBT) {
-            setMessageAll(9400 + track.getBattleCourseId() - 32);
+        if (raceConfig->menuScenario().gameMode == System::RaceConfig::GameMode::OfflineBT) {
+            setMessageAll(9400 + courseId - 32);
         } else {
-            setMessageAll(9360 + track.getRaceCourseId());
+            setMessageAll(9360 + courseId);
         }
     } else {
         MessageInfo info;

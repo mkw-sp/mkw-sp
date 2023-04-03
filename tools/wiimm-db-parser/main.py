@@ -14,6 +14,7 @@ class Track:
     cannonical_name: str
     authors: str
     prefix: str
+    ctype: str
     slot: str
     sha1: str
     clan: int
@@ -24,13 +25,14 @@ class Track:
     @staticmethod
     def from_csv(line: list[str]) -> "Track":
         self = Track()
-        sha1, id, _, clan, _, slot, _, _, _, prefix, name, _, _, authors, _, _ = line
+        sha1, id, _, clan, ctype, slot, _, _, _, prefix, name, _, _, authors, _, _ = line
 
         self.cannonical_name = name
         self.translations = []
         self.authors = authors
         self.clan = int(clan)
         self.prefix = prefix
+        self.ctype = ctype
         self.sha1 = sha1
         self.slot = slot
         self.id = id
@@ -46,6 +48,7 @@ class Track:
         config.add_section(self.id)
         config.set(self.id, "trackname", trackname)
         config.set(self.id, "author", self.authors)
+        config.set(self.id, "type", self.ctype)
         config.set(self.id, "sha1", self.sha1)
         config.set(self.id, "slot", self.slot)
 
@@ -73,9 +76,10 @@ with open(language_csv) as language_csv:
 
 
 parser = configparser.ConfigParser(interpolation=None)
-for wiimmId, (slotId, sha1) in STOCK_TRACKS.items():
+for wiimmId, (slotId, sha1, ctype) in STOCK_TRACKS.items():
     parser.add_section(wiimmId)
     parser.set(wiimmId, "sha1", sha1)
+    parser.set(wiimmId, "type", ctype)
     parser.set(wiimmId, "slot", slotId)
 
 for track in tracks:

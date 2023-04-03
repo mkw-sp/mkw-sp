@@ -21,8 +21,20 @@ CourseSelectPage::CourseSelectPage() = default;
 CourseSelectPage::~CourseSelectPage() = default;
 
 SP::TrackGameMode getTrackGameMode() {
+    using enum System::RaceConfig::GameMode;
+
     auto &menuScenario = System::RaceConfig::Instance()->menuScenario();
-    return SP::getTrackGameMode(static_cast<u32>(menuScenario.gameMode), menuScenario.battleType);
+    if (menuScenario.gameMode == OfflineVS || menuScenario.gameMode == TimeAttack) {
+        return SP::TrackGameMode::Race;
+    } else if (menuScenario.gameMode == OfflineBT) {
+        if (menuScenario.battleType == 0) {
+            return SP::TrackGameMode::Balloon;
+        } else {
+            return SP::TrackGameMode::Coin;
+        }
+    } else {
+        panic("Unknown gamemode!");
+    }
 }
 
 u16 getTrackCount() {
@@ -181,7 +193,7 @@ void CourseSelectPage::onButtonFront(PushButton *button, u32 /* localPlayerId */
         startReplace(Anim::Next, button->getDelay());
     } else {
         auto raceConfig = System::RaceConfig::Instance();
-        raceConfig->m_packInfo.selectCourse(databaseId, getTrackGameMode());
+        raceConfig->m_packInfo.selectCourse(databaseId);
 
         if (raceConfig->menuScenario().gameMode == System::RaceConfig::GameMode::TimeAttack) {
             m_replacement = PageId::TimeAttackTop;

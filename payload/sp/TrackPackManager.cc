@@ -74,6 +74,14 @@ u32 Track::getBattleCourseId() const {
 }
 // clang-format on
 
+u32 Track::getCourseId() const {
+    if (isArena) {
+        return getBattleCourseId();
+    } else {
+        return getRaceCourseId();
+    }
+}
+
 u32 handleUnknown(const char *unknownType, std::string_view unknownValue) {
     char errBuf[256];
 
@@ -278,6 +286,14 @@ void TrackPackManager::loadTrackDb() {
             track.name = property->value;
         } else if (property->key == "slot") {
             track.slotId = u32FromSv(property->value);
+        } else if (property->key == "type") {
+            if (property->value == "1") {
+                track.isArena = false;
+            } else if (property->value == "2") {
+                track.isArena = true;
+            } else {
+                SP_LOG("Unknown track ctype for ID %d", wiimmId);
+            }
         } else if (property->key == "sha1") {
             if (property->value.size() != (0x14 * 2)) {
                 panic("Invalid sha1 length: %d", property->value.size());
@@ -395,35 +411,16 @@ std::span<const u8, 0x14> TrackPackInfo::getSelectedSha1() const {
     return m_selectedSha1;
 }
 
-void TrackPackInfo::selectCourse(u32 wiimmId, TrackGameMode mode) {
+void TrackPackInfo::selectCourse(u32 wiimmId) {
     auto &trackPackManager = TrackPackManager::Instance();
     auto &track = trackPackManager.getTrack(wiimmId);
 
     m_selectedWiimmId = wiimmId;
     m_selectedSha1 = track.sha1;
-
-    if (mode == TrackGameMode::Balloon || mode == TrackGameMode::Coin) {
-        m_selectedCourseId = track.getBattleCourseId();
-    } else if (mode == TrackGameMode::Race) {
-        m_selectedCourseId = track.getRaceCourseId();
-    }
+    m_selectedCourseId = track.getCourseId();
 
     auto &menuScenario = System::RaceConfig::Instance()->menuScenario();
     menuScenario.courseId = m_selectedCourseId;
-}
-
-TrackGameMode getTrackGameMode(u32 gameMode, u32 battleType) {
-    if (gameMode == 1 || gameMode == 2) {
-        return TrackGameMode::Race;
-    } else if (gameMode == 3) {
-        if (battleType == 0) {
-            return TrackGameMode::Balloon;
-        } else {
-            return TrackGameMode::Coin;
-        }
-    } else {
-        panic("Unknown gamemode!");
-    }
 }
 
 TrackPackManager *TrackPackManager::s_instance = nullptr;

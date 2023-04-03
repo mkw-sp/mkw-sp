@@ -23,12 +23,16 @@ enum class TrackGameMode {
 
 class Track {
 public:
-    u32 getRaceCourseId() const;
-    u32 getBattleCourseId() const;
+    u32 getCourseId() const;
 
     std::array<u8, 0x14> sha1 = {};
     WFixedString<64> name = {};
+    bool isArena = false;
     u32 slotId = 0;
+
+private:
+    u32 getRaceCourseId() const;
+    u32 getBattleCourseId() const;
 };
 
 struct DBEntry {
@@ -93,7 +97,7 @@ public:
     u32 getSelectedCourse() const;
     u32 getSelectedWiimmId() const;
     std::span<const u8, 0x14> getSelectedSha1() const;
-    void selectCourse(u32 wiimmId, TrackGameMode mode);
+    void selectCourse(u32 wiimmId);
 
     u32 m_selectedTrackPack = 0;
 
@@ -103,7 +107,5 @@ private:
     u32 m_selectedCourseId = 0;
     u32 m_selectedWiimmId = 0;
 };
-
-TrackGameMode getTrackGameMode(u32 gameMode, u32 battleType);
 
 } // namespace SP
