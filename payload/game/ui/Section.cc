@@ -48,8 +48,8 @@ bool Section::isPageActive(PageId pageId) const {
     return false;
 }
 
-Vec2<f32> Section::locationAdjustScale() const {
-    return m_drawInfo.locationAdjust ? m_drawInfo.locationAdjustScale : Vec2{1.0f, 1.0f};
+Vec2<f32> Section::scaleFor() const {
+    return m_scaleFor;
 }
 
 u32 Section::GetSceneId(SectionId id) {
