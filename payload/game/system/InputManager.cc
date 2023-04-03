@@ -79,6 +79,9 @@ void GCPad::process(RaceInputState &raceInputState, UIInputState &uiInputState) 
     REPLACED(process)(raceInputState, uiInputState);
 
     processSimplified(raceInputState, raceInputState.rawButtons & PAD_BUTTON_Y);
+    if (auto saveStateManager = SP::SaveStateManager::Instance()) {
+        saveStateManager->processInput(raceInputState.rawButtons & PAD_TRIGGER_Z);
+    }
 }
 
 void GhostPad::process(RaceInputState &raceInputState, UIInputState &uiInputState) {
