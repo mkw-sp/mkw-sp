@@ -88,10 +88,6 @@ void SingleTopPage::onInit() {
     m_taButton.selectDefault(0);
     m_instructionText.setMessage(3051);
 
-    Section *section = SectionManager::Instance()->currentSection();
-    auto *modelPage = section->page<PageId::Model>();
-    modelPage->modelControl().setModel(0);
-
     SP::TrackPackManager::CreateInstance();
 }
 
@@ -131,12 +127,18 @@ void SingleTopPage::onActivate() {
 
     if (raceEnabled) {
         m_taButton.selectDefault(0);
+        onTAButtonSelect(&m_taButton, 0);
     } else if (coinEnabled || balloonEnabled) {
         m_btButton.selectDefault(0);
+        onBTButtonSelect(&m_btButton, 0);
     }
 }
 
 void SingleTopPage::onBack(u32 /* localPlayerId */) {
+    auto *section = SectionManager::Instance()->currentSection();
+    auto *modelPage = section->page<PageId::Model>();
+    modelPage->modelControl().setModel(-1);
+
     m_replacement = PageId::PackSelect;
     startReplace(Anim::Prev, 0.0f);
 }
@@ -286,9 +288,8 @@ void SingleTopPage::onMRButtonSelect(PushButton * /* button */, u32 /* localPlay
 }
 #endif
 
-void SingleTopPage::onBackButtonFront(PushButton *button, u32 /* localPlayerId */) {
-    f32 delay = button->getDelay();
-    changeSection(SectionId::TitleFromMenu, Anim::Prev, delay);
+void SingleTopPage::onBackButtonFront(PushButton * /* button */, u32 localPlayerId) {
+    onBack(localPlayerId);
 }
 
 void SingleTopPage::onBackButtonSelect(PushButton * /* button */, u32 /* localPlayerId */) {

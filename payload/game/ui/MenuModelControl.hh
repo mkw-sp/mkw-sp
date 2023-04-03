@@ -8,7 +8,7 @@ enum class PageId;
 
 class BackGroundModelControl : public LayoutUIControl {
 public:
-    void setModel(u32 model);
+    void setModel(s32 model);
 
 private:
     u8 _174[0x180 - 0x174];
