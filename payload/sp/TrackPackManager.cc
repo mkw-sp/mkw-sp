@@ -10,6 +10,7 @@
 
 #include <charconv>
 #include <cstring>
+#include <expected>
 
 #define TRACK_PACK_DIRECTORY L"Track Packs"
 #define TRACK_DB L"WiimmDB.ini"
@@ -82,17 +83,7 @@ u32 Track::getCourseId() const {
     }
 }
 
-u32 handleUnknown(const char *unknownType, std::string_view unknownValue) {
-    char errBuf[256];
-
-    u32 maxChars = MIN(unknownValue.size(), sizeof(errBuf) - 1);
-    strncpy(errBuf, unknownValue.data(), maxChars);
-    errBuf[maxChars] = '\0';
-
-    panic("Unknown %s name: %s", unknownType, errBuf);
-}
-
-u32 u32FromSv(std::string_view sv) {
+std::expected<u32, const char *> u32FromSv(std::string_view sv) {
     u32 out = 0;
 
     auto first = sv.data();
@@ -102,11 +93,11 @@ u32 u32FromSv(std::string_view sv) {
     if (ptr == last) {
         return out;
     } else {
-        panic("Failed to parse integer!");
+        return std::unexpected("Failed to parse integer!");
     }
 }
 
-std::vector<u32> parseTracks(std::string_view tracks) {
+std::expected<std::vector<u32>, const char *> parseTracks(std::string_view tracks) {
     std::vector<u32> parsedTrackIds;
     size_t position = 0;
     char buf[10]; // Max u32 is 10 chars long
@@ -116,7 +107,12 @@ std::vector<u32> parseTracks(std::string_view tracks) {
             buf[position] = '\0';
 
             std::string_view sv(buf, position - 1);
-            parsedTrackIds.push_back(u32FromSv(buf));
+            auto trackId = u32FromSv(buf);
+            if (!trackId) {
+                return std::unexpected(trackId.error());
+            }
+
+            parsedTrackIds.push_back(*trackId);
             position = 0;
         } else if (c != ' ') {
             buf[position] = c;
@@ -126,7 +122,12 @@ std::vector<u32> parseTracks(std::string_view tracks) {
 
     if (position != 0) {
         std::string_view sv(buf, position);
-        parsedTrackIds.push_back(u32FromSv(buf));
+        auto trackId = u32FromSv(buf);
+        if (!trackId) {
+            return std::unexpected(trackId.error());
+        }
+
+        parsedTrackIds.push_back(*trackId);
     }
 
     return parsedTrackIds;
@@ -135,6 +136,7 @@ std::vector<u32> parseTracks(std::string_view tracks) {
 TrackPack::TrackPack(std::string_view manifestView) {
     IniReader iniReader(manifestView);
 
+    m_parseError = nullptr;
     bool prettyNameFound = false;
     bool descriptionFound = false;
     bool authorNamesFound = false;
@@ -150,23 +152,41 @@ TrackPack::TrackPack(std::string_view manifestView) {
                 m_authorNames = property->value;
                 authorNamesFound = true;
             } else if (property->key == "race") {
-                m_raceTracks = parseTracks(property->value);
+                auto res = parseTracks(property->value);
+                if (!res) {
+                    m_parseError = res.error();
+                    return;
+                }
+
+                m_raceTracks = *res;
             } else if (property->key == "balloon") {
-                m_balloonTracks = parseTracks(property->value);
+                auto res = parseTracks(property->value);
+                if (!res) {
+                    m_parseError = res.error();
+                    return;
+                }
+
+                m_balloonTracks = *res;
             } else if (property->key == "coin") {
-                m_coinTracks = parseTracks(property->value);
+                auto res = parseTracks(property->value);
+                if (!res) {
+                    m_parseError = res.error();
+                    return;
+                }
+
+                m_coinTracks = *res;
             } else {
-                handleUnknown("Pack Info key", property->key);
+                m_parseError = "Unknown key in track pack manifest";
             }
         } else {
-            handleUnknown("section", property->section);
+            m_parseError = "Unknown section in track pack manifest";
         }
     }
 
     if (!prettyNameFound || !descriptionFound || !authorNamesFound) {
-        panic("Missing required key in track pack manifest");
+        m_parseError = "Missing required key in track pack manifest";
     } else if (m_raceTracks.empty() && m_balloonTracks.empty() && m_coinTracks.empty()) {
-        panic("No tracks found in track pack manifest");
+        m_parseError = "No tracks found in track pack manifest";
     }
 }
 
@@ -183,6 +203,7 @@ const std::vector<u32> &TrackPack::getTrackList(TrackGameMode mode) const {
 }
 
 TrackGameMode TrackPack::getSupportedModes() const {
+    assert(m_parseError == nullptr);
     TrackGameMode modes[] = {
             TrackGameMode::Race,
             TrackGameMode::Coin,
@@ -199,15 +220,22 @@ TrackGameMode TrackPack::getSupportedModes() const {
     return supportedModes;
 }
 
-u32 TrackPack::getNthTrack(u32 n, TrackGameMode mode) const {
-    return getTrackList(mode)[n];
-}
-
 u16 TrackPack::getTrackCount(TrackGameMode mode) const {
+    assert(m_parseError == nullptr);
     return getTrackList(mode).size();
 }
 
+u32 TrackPack::getNthTrack(u32 n, TrackGameMode mode) const {
+    assert(m_parseError == nullptr);
+    return getTrackList(mode)[n];
+}
+
+const char *TrackPack::getParseError() const {
+    return m_parseError;
+}
+
 const wchar_t *TrackPack::getPrettyName() const {
+    assert(m_parseError == nullptr);
     return m_prettyName.c_str();
 }
 
@@ -239,13 +267,21 @@ void TrackPackManager::loadTrackPacks() {
 
         auto len = Storage::FastReadFile(nodeInfo->id, manifestBuf.data(), nodeInfo->size);
         if (!len.has_value() || *len == 0) {
-            panic("Failed to read track pack manifest");
+            SP_LOG("Failed to read track pack manifest!");
+            continue;
         }
 
         manifestBuf.resize(*len);
 
-        std::string_view manifestView(manifestBuf);
-        m_packs.push_back(std::move(TrackPack(manifestView)));
+        auto pack = TrackPack(manifestBuf);
+        auto parseError = pack.getParseError();
+
+        if (parseError != nullptr) {
+            SP_LOG("Failed to read track pack manifest: %s", parseError);
+            continue;
+        }
+
+        m_packs.push_back(std::move(pack));
     }
 }
 
@@ -273,30 +309,41 @@ void TrackPackManager::loadTrackDb() {
 
     IniReader trackDbIni(trackDbBuf);
     while (auto property = trackDbIni.next()) {
-        u32 wiimmId = u32FromSv(property->section);
+        auto wiimmId = u32FromSv(property->section);
+        if (!wiimmId) {
+            SP_LOG("Could not parse wiimmID!");
+            continue;
+        }
 
         // This will be messed by duplicate entries but
         // let's just hope that wiimm doesn't do that.
-        if (m_trackDb.size() == 0 || m_trackDb.back().wiimmId != wiimmId) {
-            m_trackDb.push_back({wiimmId, {}});
+        if (m_trackDb.size() == 0 || m_trackDb.back().wiimmId != *wiimmId) {
+            m_trackDb.push_back({*wiimmId, {}});
         }
 
         auto &track = m_trackDb.back().track;
         if (property->key == "trackname") {
             track.name = property->value;
         } else if (property->key == "slot") {
-            track.slotId = u32FromSv(property->value);
+            auto res = u32FromSv(property->value);
+            if (!res) {
+                SP_LOG("Could not parse slot ID for ID %d", *wiimmId);
+                continue;
+            }
+
+            track.slotId = *res;
         } else if (property->key == "type") {
             if (property->value == "1") {
                 track.isArena = false;
             } else if (property->value == "2") {
                 track.isArena = true;
             } else {
-                SP_LOG("Unknown track ctype for ID %d", wiimmId);
+                SP_LOG("Unknown track ctype for ID %d", *wiimmId);
             }
         } else if (property->key == "sha1") {
             if (property->value.size() != (0x14 * 2)) {
-                panic("Invalid sha1 length: %d", property->value.size());
+                SP_LOG("Invalid sha1 length: %d", property->value.size());
+                continue;
             }
 
             char tByte[3];

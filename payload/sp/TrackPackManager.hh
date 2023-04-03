@@ -48,10 +48,13 @@ public:
     u16 getTrackCount(TrackGameMode mode) const;
     u32 getNthTrack(u32 n, TrackGameMode mode) const;
 
+    const char *getParseError() const;
     const wchar_t *getPrettyName() const;
 
 private:
     const std::vector<u32> &getTrackList(TrackGameMode mode) const;
+
+    const char *m_parseError;
 
     std::vector<u32> m_raceTracks;
     std::vector<u32> m_coinTracks;
