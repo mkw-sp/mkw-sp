@@ -143,7 +143,9 @@ void RaceConfig::initRace() {
     }
 
     // Setup stock game slots
-    Instance()->raceScenario().courseId = m_packInfo.getSelectedCourse();
+    if (m_menuScenario.gameMode != GameMode::Awards) {
+        m_raceScenario.courseId = m_packInfo.getSelectedCourse();
+    }
 }
 
 } // namespace System

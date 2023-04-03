@@ -129,8 +129,11 @@ void ResourceManager::LoadGlobeTask(void *arg) {
     s_instance->loadGlobe(reinterpret_cast<u8 **>(arg));
 }
 
-MultiDvdArchive *ResourceManager::loadCourse(u32 /* courseId */, EGG::Heap *heap,
-        bool splitScreen) {
+MultiDvdArchive *ResourceManager::loadCourse(u32 courseId, EGG::Heap *heap, bool splitScreen) {
+    if (courseId >= 0x36 && courseId <= 0x3A) {
+        return REPLACED(loadCourse)(courseId, heap, splitScreen);
+    }
+
     MultiDvdArchive *archive = m_archives[1];
     if (archive->isLoaded()) {
         return archive;
