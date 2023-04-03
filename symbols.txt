@@ -676,6 +676,7 @@
 0x8059077c KartObjectProxy_getKartMove
 0x8059077c _ZN4Kart15KartObjectProxy11getKartMoveEv
 0x8059084c _ZN4Kart15KartObjectProxy14getKartCollideEv
+0x80590a40 _ZN4Kart11PlayerModel8getModelEPNS_15KartObjectProxyE
 0x80590a5c _ZNK4Kart15KartObjectProxy11getPlayerIdEv
 0x80590cf8 KartObjectProxy_getInternalSpeed
 0x80590cf8 _ZNK4Kart15KartObjectProxy16getInternalSpeedEv
@@ -687,6 +688,7 @@
 0x80596480 _ZN4Kart7KartSub9calcEarlyEv
 0x80596cfc KartSub_calcPass1
 0x8059783c KartSub_calcTransforms
+0x8059c118 _ZN4Kart15KartObjectProxy10cancelBillEv
 0x8059BC44 KartKiller_calcTracking
 0x8059e250 _ZN2UI16MenuModelManager4initEjPFvaE
 0x805a1d10 Camera_805a1d10
@@ -1214,7 +1216,9 @@
 0x8079864c KartItem_activateMushroom
 0x80798848 _ZN4Item8KartItem17respawnRemoveItemEv
 0x80798c38 _ZN4Item8KartItem7setItemEjjj
+0x807995b0 _ZN4Item7ItemObj2dtEj
 0x80799850 _ZN4Item11ItemManager4calcEv
+0x807a9f64 _ZN4Item8KartItem9useGoldenEv
 0x807aa688 ItemObjKouraAka_vf_20
 0x807aae78 ItemObjKouraAka_807aae78
 0x807ac49c ItemObjKouraAo_807ac49c
@@ -1224,6 +1228,7 @@
 0x807aec64 ItemObjKouraMidori_807aec64
 0x807b54f4 Item_807b54f4
 0x807bc940 _ZN4Item8KartItem23PlayerInventory_setItemEjh
+0x807bc9c0 _ZN4Item8KartItem5resetEv
 0x807C2884 _ZN2SP14KCLManager_dsiEPv
 0x807C28D8 _ZN2SP19KCLManager_fromFileEPvS0_
 0x807cb198 Driver_807cb198
