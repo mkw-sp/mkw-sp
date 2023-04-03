@@ -3,6 +3,7 @@
 #include "game/system/Mii.hh"
 
 #include <optional>
+#include <span>
 
 namespace System {
 
@@ -86,10 +87,10 @@ struct SPFooter {
     static void OnHWG();
     static void OnWallride();
     static void OnShroom(u32 lap);
-    static void OnRaceEnd(const u8 *courseSHA1);
+    static void OnRaceEnd(std::span<const u8, 0x14> courseSHA1);
 
     u32 version;
-    u8 courseSHA1[0x14];
+    std::array<u8, 0x14> courseSHA1;
     f32 lapTimeDiffs[11];
     bool hasSpeedMod : 1;
     bool hasUltraShortcut : 1;
@@ -112,7 +113,7 @@ public:
     GhostFooter();
     GhostFooter(const u8 *raw, u32 size);
     ~GhostFooter();
-    std::optional<const u8 *> courseSHA1() const;
+    std::optional<std::span<const u8, 0x14>> courseSHA1() const;
     std::optional<bool> hasSpeedMod() const;
 
 private:

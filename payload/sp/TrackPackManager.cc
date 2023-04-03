@@ -19,7 +19,7 @@ using namespace magic_enum::bitwise_operators;
 namespace SP {
 
 // clang-format off
-u32 raceSlotToCourse(u32 slotId) {
+u32 Track::getRaceCourseId() const {
     switch (slotId) {
     case 11: return 0x8;
     case 12: return 0x1;
@@ -57,7 +57,7 @@ u32 raceSlotToCourse(u32 slotId) {
     }
 }
 
-u32 battleSlotToCourse(u32 slotId) {
+u32 Track::getBattleCourseId() const {
     switch (slotId) {
     case 11: return 0x21;
     case 12: return 0x20;
@@ -273,12 +273,28 @@ void TrackPackManager::loadTrackDb() {
             m_trackDb.push_back({wiimmId, {}});
         }
 
+        auto &track = m_trackDb.back().track;
         if (property->key == "trackname") {
-            m_trackDb.back().track.name = property->value;
+            track.name = property->value;
         } else if (property->key == "slot") {
-            m_trackDb.back().track.slotId = u32FromSv(property->value);
+            track.slotId = u32FromSv(property->value);
+        } else if (property->key == "sha1") {
+            if (property->value.size() != (0x14 * 2)) {
+                panic("Invalid sha1 length: %d", property->value.size());
+            }
+
+            char tByte[3];
+            for (u8 i = 0; i < property->value.size(); i += 2) {
+                tByte[0] = property->value[i];
+                tByte[1] = property->value[i + 1];
+                tByte[2] = '\0';
+
+                track.sha1[i / 2] = strtol(tByte, nullptr, 16);
+            }
         }
     }
+
+    SP_LOG("Finished loading track DB");
 }
 
 const TrackPack &TrackPackManager::getNthPack(u32 n) const {
@@ -305,18 +321,24 @@ const wchar_t *TrackPackManager::getTrackName(u32 wiimmId) const {
     return L"Unknown Track";
 }
 
-u32 TrackPackManager::getCourseId(u32 wiimmId, TrackGameMode mode) const {
+const Track &TrackPackManager::getTrack(u32 wiimmId) const {
     for (auto &[cWiimmId, track] : m_trackDb) {
         if (cWiimmId == wiimmId) {
-            if (mode == TrackGameMode::Balloon || mode == TrackGameMode::Coin) {
-                return battleSlotToCourse(track.slotId);
-            } else if (mode == TrackGameMode::Race) {
-                return raceSlotToCourse(track.slotId);
-            }
+            return track;
         }
     }
 
     panic("Unknown wiimm id: %d", wiimmId);
+}
+
+std::optional<u32> TrackPackManager::wiimmIdFromSha1(std::span<const u8, 0x14> sha1) const {
+    for (auto &[wiimmId, track] : m_trackDb) {
+        if (memcmp(track.sha1.data(), sha1.data(), 0x14) == 0) {
+            return wiimmId;
+        }
+    }
+
+    return {};
 }
 
 TrackPackManager &TrackPackManager::Instance() {
@@ -365,11 +387,29 @@ u32 TrackPackInfo::getSelectedCourse() const {
     return m_selectedCourseId;
 }
 
+u32 TrackPackInfo::getSelectedWiimmId() const {
+    return m_selectedWiimmId;
+}
+
+std::span<const u8, 0x14> TrackPackInfo::getSelectedSha1() const {
+    return m_selectedSha1;
+}
+
 void TrackPackInfo::selectCourse(u32 wiimmId, TrackGameMode mode) {
     auto &trackPackManager = TrackPackManager::Instance();
+    auto &track = trackPackManager.getTrack(wiimmId);
 
     m_selectedWiimmId = wiimmId;
-    m_selectedCourseId = trackPackManager.getCourseId(wiimmId, mode);
+    m_selectedSha1 = track.sha1;
+
+    if (mode == TrackGameMode::Balloon || mode == TrackGameMode::Coin) {
+        m_selectedCourseId = track.getBattleCourseId();
+    } else if (mode == TrackGameMode::Race) {
+        m_selectedCourseId = track.getRaceCourseId();
+    }
+
+    auto &menuScenario = System::RaceConfig::Instance()->menuScenario();
+    menuScenario.courseId = m_selectedCourseId;
 }
 
 TrackGameMode getTrackGameMode(u32 gameMode, u32 battleType) {

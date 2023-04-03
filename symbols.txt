@@ -32,6 +32,7 @@
 0x800133f8 strchr
 0x800135f0 strstr
 0x800152a8 strtoul
+0x80015350 strtol
 0x80015650 wmemcpy
 0x80017814 swprintf
 0x8001790c vswprintf

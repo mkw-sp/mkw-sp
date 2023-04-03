@@ -7,6 +7,7 @@
 #include "sp/storage/Storage.hh"
 
 #include <optional>
+#include <span>
 #include <string_view>
 #include <vector>
 
@@ -22,10 +23,10 @@ enum class TrackGameMode {
 
 class Track {
 public:
-    bool isValid() {
-        return name.m_len != 0 && slotId != 0;
-    }
+    u32 getRaceCourseId() const;
+    u32 getBattleCourseId() const;
 
+    std::array<u8, 0x14> sha1 = {};
     WFixedString<64> name = {};
     u32 slotId = 0;
 };
@@ -66,7 +67,8 @@ public:
     void loadTrackDb();
 
     size_t getPackCount() const;
-    u32 getCourseId(u32 wmmId, TrackGameMode mode) const;
+    const Track &getTrack(u32 wmmId) const;
+    std::optional<u32> wiimmIdFromSha1(std::span<const u8, 0x14> sha1) const;
 
     const TrackPack &getNthPack(u32 n) const;
     const TrackPack &getSelectedTrackPack() const;
@@ -89,12 +91,15 @@ public:
     void getTrackPath(char *out, u32 outSize, bool splitScreen) const;
 
     u32 getSelectedCourse() const;
+    u32 getSelectedWiimmId() const;
+    std::span<const u8, 0x14> getSelectedSha1() const;
     void selectCourse(u32 wiimmId, TrackGameMode mode);
 
     u32 m_selectedTrackPack = 0;
 
 private:
     // Private as need to be kept in sync
+    std::array<u8, 0x14> m_selectedSha1 = {};
     u32 m_selectedCourseId = 0;
     u32 m_selectedWiimmId = 0;
 };

@@ -16,6 +16,11 @@ void GhostManagerPage::SPList::populate() {
     u32 courseId = System::RaceConfig::Instance()->menuScenario().courseId;
     auto cc = saveManager->getSetting<SP::ClientSettings::Setting::TAClass>();
     bool speedModIsEnabled = cc == SP::ClientSettings::TAClass::CC200;
+
+    auto &packInfo = System::RaceConfig::Instance()->m_packInfo;
+    auto &trackPackManager = SP::TrackPackManager::Instance();
+    auto wiimmId = packInfo.getSelectedWiimmId();
+
     m_count = 0;
     for (u32 i = 0; i < saveManager->ghostCount(); i++) {
         auto *header = saveManager->rawGhostHeader(i);
@@ -23,11 +28,24 @@ void GhostManagerPage::SPList::populate() {
         if (footer->hasSpeedMod() && *(footer->hasSpeedMod()) != speedModIsEnabled) {
             continue;
         }
+
         if (header->courseId != courseId) {
             continue;
+        };
+
+        auto sha1 = footer->courseSHA1();
+        if (!sha1.has_value()) {
+            continue;
+        };
+
+        auto ghostWiimmId = trackPackManager.wiimmIdFromSha1(*sha1);
+        if (wiimmId != ghostWiimmId) {
+            continue;
         }
+
         m_indices[m_count++] = i;
     }
+
     std::sort(std::begin(m_indices), std::begin(m_indices) + m_count, [&](auto i0, auto i1) {
         auto *h0 = saveManager->rawGhostHeader(i0);
         auto *h1 = saveManager->rawGhostHeader(i1);

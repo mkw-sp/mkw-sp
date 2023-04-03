@@ -73,8 +73,9 @@ with open(language_csv) as language_csv:
 
 
 parser = configparser.ConfigParser(interpolation=None)
-for wiimmId, slotId in STOCK_TRACKS.items():
+for wiimmId, (slotId, sha1) in STOCK_TRACKS.items():
     parser.add_section(wiimmId)
+    parser.set(wiimmId, "sha1", sha1)
     parser.set(wiimmId, "slot", slotId)
 
 for track in tracks:
