@@ -60,7 +60,7 @@ void PackSelectPage::onInit() {
     m_scrollBar.setChangeHandler(&m_onScrollBarChange);
     m_backButton.setFrontHandler(&m_onBackButtonFront, false);
 
-    m_pageTitleText.setMessage(10420);
+    m_pageTitleText.setMessage(10394);
 
     m_sheetSelect.setVisible(m_sheetCount > 1);
     m_sheetSelect.setPlayerFlags(m_sheetCount <= 1 ? 0x0 : 0x1);
