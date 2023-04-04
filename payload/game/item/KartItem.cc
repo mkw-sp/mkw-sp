@@ -1,5 +1,6 @@
 #include "KartItem.hh"
 
+#include "game/system/RaceConfig.hh"
 #include "game/system/RaceManager.hh"
 #include "game/system/SaveManager.hh"
 #include "game/util/Registry.hh"
@@ -23,16 +24,22 @@ void KartItem::setItem(u32 r4, u32 r5, u32 r6) {
 void KartItem::update() {
     REPLACED(update)();
 
-    if (m_inventory.currentItemID == Item::Golden && m_inventory.framesLeft != 0x1c2) {
+    auto *raceConfig = System::RaceConfig::Instance();
+    auto gameMode = raceConfig->raceScenario().gameMode;
+    auto *saveManager = System::SaveManager::Instance();
+    auto setting = saveManager->getSetting<SP::ClientSettings::Setting::ItemWheel>();
+
+    if (gameMode == System::RaceConfig::GameMode::TimeAttack &&
+            m_inventory.currentItemID == Item::Golden && m_inventory.framesLeft != 0x1c2) {
         if (m_inventory.framesLeft == 0) {
             m_inventory.currentItemID = Item::NoItem;
         } else {
             m_inventory.framesLeft--;
         }
     }
-    auto *saveManager = System::SaveManager::Instance();
-    auto setting = saveManager->getSetting<SP::ClientSettings::Setting::ItemWheel>();
-    if (setting == SP::ClientSettings::ItemWheel::Enable) {
+
+    if (gameMode == System::RaceConfig::GameMode::TimeAttack &&
+            setting == SP::ClientSettings::ItemWheel::Enable) {
         auto *playerPadProxy = System::RaceManager::Instance()->player(0)->padProxy();
         auto buttons = playerPadProxy->currentRaceInputState().rawButtons;
         auto controller = playerPadProxy->pad()->getControllerId();
@@ -95,7 +102,9 @@ void KartItem::update() {
 
 void KartItem::useGolden() {
     REPLACED(useGolden)();
-    if (m_inventory.framesLeft == 0x1c2) {
+    auto *raceConfig = System::RaceConfig::Instance();
+    auto gameMode = raceConfig->raceScenario().gameMode;
+    if (gameMode == System::RaceConfig::GameMode::TimeAttack && m_inventory.framesLeft == 0x1c2) {
         m_inventory.framesLeft--;
     }
 }
