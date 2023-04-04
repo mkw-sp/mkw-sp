@@ -639,12 +639,12 @@ const Entry entries[] = {
     [static_cast<u32>(Setting::ItemWheel)] = {
         .category = Category::DebugOverlay,
         .name = magic_enum::enum_name(Setting::ItemWheel),
-        .messageId = 10394,
+        .messageId = 10420,
         .defaultValue = static_cast<u32>(ItemWheel::Disable),
         .valueCount = magic_enum::enum_count<ItemWheel>(),
         .valueNames = magic_enum::enum_names<ItemWheel>().data(),
-        .valueMessageIds = (u32[]) { 10395, 10396 },
-        .valueExplanationMessageIds = (u32[]) { 10397, 10398 },
+        .valueMessageIds = (u32[]) { 10421, 10422 },
+        .valueExplanationMessageIds = (u32[]) { 10423, 10424 },
     },
 };
 // clang-format on

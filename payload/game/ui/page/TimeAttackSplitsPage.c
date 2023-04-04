@@ -30,7 +30,7 @@ static void my_TimeAttackSplitsPage_afterCalc(TimeAttackSplitsPage *this) {
         LayoutUIControl_setMessageAll(&this->ghostMessage, 1115, NULL);
     } else {
         if (SaveManager_getItemWheel()) {
-            LayoutUIControl_setMessageAll(&this->ghostMessage, 1506, NULL);
+            LayoutUIControl_setMessageAll(&this->ghostMessage, 10425, NULL);
         } else {
             LayoutUIControl_setMessageAll(&this->ghostMessage, 1116, NULL);
         }
