@@ -1125,7 +1125,7 @@ code_in_files = {
         os.path.join('common', 'Strlcpy.c'),
         os.path.join('common', 'Strlen.c'),
         os.path.join('common', 'VI.cc'),
-        os.path.join('vendor', 'clibs', 'sha1', 'sha1.c'),
+        os.path.join('vendor', 'sha1', 'sha1.c'),
         *glob.glob("loader/**/*.cc", recursive=True),
         *glob.glob("loader/**/*.c", recursive=True),
         *glob.glob("loader/**/*.S", recursive=True),

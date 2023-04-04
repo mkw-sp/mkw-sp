@@ -1,5 +1,7 @@
 #include "Apploader.hh"
 
+#include "loader/Dol.hh"
+
 #include <common/Clock.hh>
 #include <common/Console.hh>
 #include <common/DCache.hh>
@@ -8,10 +10,6 @@
 #include <common/ICache.hh>
 #include <common/Paths.hh>
 #include <common/VI.hh>
-
-extern "C" {
-#include <vendor/clibs/sha1/sha1.h>
-}
 
 #include <cstring>
 #include <iterator>
@@ -32,82 +30,9 @@ namespace Loader {
 
 typedef void (*PayloadEntryFunc)(void);
 
-struct DolModuleInfo {
-    u8 hash[20];
-    u32 size;
-};
-
 #define TMP_CONTENTS_PATH "/tmp/contents.arc"
 
 static void *contents = reinterpret_cast<void *>(0x80100000);
-
-static const std::array<DolModuleInfo, 4> dolModuleInfoArray = {
-        // clang-format off
-        // RMCE
-        DolModuleInfo
-        {
-            {
-                0xDD, 0x17, 0x5D, 0x68, 0x28, 0x98, 0x85, 0xEF, 0x88, 0x98,
-                0x4B, 0xEE, 0x82, 0x7D, 0x92, 0x5A, 0x04, 0xBA, 0x48, 0xE4,
-            },
-            0x00380DC0,
-        },
-        // RMCP
-        DolModuleInfo
-        {
-            {
-                0xB5, 0x95, 0x3F, 0x16, 0x46, 0x93, 0x95, 0x58, 0xAF, 0x04,
-                0xDA, 0x3C, 0x65, 0x91, 0xC6, 0x6E, 0x26, 0x2A, 0x86, 0x6C,
-            },
-            0x00385140,
-        },
-        // RMCJ
-        DolModuleInfo
-        {
-            {
-                0xE2, 0x2C, 0x47, 0x32, 0x4B, 0x8B, 0x8E, 0xB2, 0x8F, 0x00,
-                0xBC, 0x88, 0x5F, 0x0C, 0xA4, 0xA6, 0x2A, 0x86, 0xDC, 0x79,
-            },
-            0x00384AC0,
-        },
-        // RMCK
-        DolModuleInfo
-        {
-            {
-                0xD4, 0x35, 0x08, 0x31, 0x73, 0x49, 0x6B, 0xB2, 0x2E, 0x6C,
-                0xFF, 0x93, 0xB6, 0x54, 0x3C, 0x42, 0xF0, 0x36, 0xCC, 0xD5,
-            },
-            0x00373160,
-        },
-        // clang-format on
-};
-
-static bool IsDolClean() {
-    const void *dolStartAddress = reinterpret_cast<const void *>(0x80004000);
-
-    u32 regionIndex;
-    switch (REGION) {
-    case REGION_E:
-        regionIndex = 0;
-        break;
-    case REGION_P:
-        regionIndex = 1;
-        break;
-    case REGION_J:
-        regionIndex = 2;
-        break;
-    case REGION_K:
-        regionIndex = 3;
-        break;
-    default:
-        return false;
-    }
-
-    char dolHash[20];
-    SHA1(dolHash, (char *)dolStartAddress, dolModuleInfoArray[regionIndex].size);
-
-    return memcmp(dolModuleInfoArray[regionIndex].hash, dolHash, 20) == 0;
-}
 
 static bool ReloadIOS(u64 titleID) {
     IOS::ES es;
@@ -265,7 +190,12 @@ std::optional<Apploader::GameEntryFunc> Run() {
         }
     }
 
-    if (!IsDolClean()) {
+    std::optional<bool> isDolClean = Dol::IsClean();
+    if (!isDolClean.has_value()) {
+        Console::Print("Unsupported game region detected!");
+        return {};
+    }
+    if (!*isDolClean) {
         Console::Print(
                 "Please ensure that the file 'main.dol' is not modified\n"
                 "in any capacity!");
