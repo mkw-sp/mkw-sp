@@ -2,14 +2,12 @@
 
 #include "game/system/RaceManager.hh"
 #include "game/system/SaveManager.hh"
-
-#include <game/util/Registry.hh>
-
-#include <sp/cs/RoomClient.hh>
+#include "game/util/Registry.hh"
 
 extern "C" {
 #include <revolution/kpad.h>
 }
+#include <sp/cs/RoomClient.hh>
 
 static bool pressedLastFrame;
 

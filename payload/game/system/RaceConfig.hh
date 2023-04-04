@@ -1,8 +1,8 @@
 #pragma once
 
-#include <Common.hh>
+#include "game/util/Registry.hh"
 
-#include <game/util/Registry.hh>
+#include <Common.hh>
 
 namespace System {
 
