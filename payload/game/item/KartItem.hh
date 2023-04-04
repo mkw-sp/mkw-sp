@@ -37,7 +37,9 @@ struct PlayerInventory {
     u8 _0c[0x20 - 0x0c];
     u32 framesLeft;
     u32 somethingFrames;
-    u8 _28[0x2c - 0x28];
+    u8 _29[0x2a - 0x29];
+    bool pressedLastFrame;
+    u8 _2b[0x2c - 0x2b];
 };
 static_assert(sizeof(PlayerInventory) == 0x2c);
 
