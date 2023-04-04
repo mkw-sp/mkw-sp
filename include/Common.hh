@@ -7,6 +7,8 @@ extern "C" {
 }
 
 #include <array>
+#include <type_traits>
+#include <utility>
 
 template <typename T>
 T AlignDown(T val, size_t alignment) {
@@ -54,17 +56,21 @@ inline const Mtx34 &Decay(const std::array<float, 12> &arr) {
 //    }
 // ```
 //
-// This unfortunately may eagerly copy when a move is preferable
+// https://godbolt.org/z/nT4jrjoE8
+//
+// Trick to avoid copies taken from SerenityOS https://github.com/SerenityOS/serenity/blob/master/AK/Try.h
+// (Thanks to @InusualZ for pointing this out)
 //
 #if defined(__clang__) || defined(__GNUC__) || defined(__APPLE__)
 #define HAS_RUST_TRY
 #define TRY(...)                                                               \
   ({                                                                           \
-    auto y = (__VA_ARGS__);                                                    \
-    if (!y) {                                                                  \
+    auto&& y = (__VA_ARGS__);                                                  \
+    static_assert(!std::is_lvalue_reference_v<decltype(std::move(*y))>);       \
+    if (!y) [[unlikely]] {                                                     \
       return std::unexpected(y.error());                                       \
     }                                                                          \
-    *y;                                                                        \
+    std::move(*y);                                                             \
   })
 #else
 #define TRY(...) static_assert(false, "Compiler does not support TRY macro")
