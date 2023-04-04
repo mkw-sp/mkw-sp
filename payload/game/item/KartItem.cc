@@ -10,8 +10,6 @@ extern "C" {
 }
 #include <sp/cs/RoomClient.hh>
 
-static bool pressedLastFrame;
-
 namespace Item {
 
 void KartItem::setItem(u32 r4, u32 r5, u32 r6) {
