@@ -9,8 +9,6 @@ extern "C" {
 }
 #include <sp/cs/RoomClient.hh>
 
-static bool pressedLastFrame;
-
 namespace Item {
 
 void KartItem::setItem(u32 r4, u32 r5, u32 r6) {
@@ -56,10 +54,10 @@ void KartItem::update() {
             return;
         }
         if (!updateItem) {
-            pressedLastFrame = false;
+            m_inventory.pressedLastFrame = false;
         }
 
-        if (updateItem && !pressedLastFrame) {
+        if (updateItem && !m_inventory.pressedLastFrame) {
             m_inventory.currentItemCount = 100;
             switch (m_inventory.currentItemID) {
             case (Item::TripShrooms):
@@ -90,7 +88,7 @@ void KartItem::update() {
             case (Item::None):
                 return;
             }
-            pressedLastFrame = true;
+            m_inventory.pressedLastFrame = true;
         }
     }
 }
