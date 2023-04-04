@@ -65,11 +65,19 @@ UserPad::UserPad() = default;
 
 UserPad::~UserPad() = default;
 
-void WiiPad::process(RaceInputState &raceInputState, UIInputState &uiInputState) {
-    REPLACED(process)(raceInputState, uiInputState);
+void WiiPad::processChuck(void *r4, RaceInputState &raceInputState, UIInputState &uiInputState) {
+    REPLACED(processChuck)(r4, raceInputState, uiInputState);
 
-    if (InputManager::Instance()->isMirror()) {
-        uiInputState.stick.x *= -1.0f;
+    if (auto saveStateManager = SP::SaveStateManager::Instance()) {
+        saveStateManager->processInput(raceInputState.rawButtons & KPAD_CL_BUTTON_DOWN);
+    }
+}
+
+void WiiPad::processWiimote(void *r4, RaceInputState &raceInputState, UIInputState &uiInputState) {
+    REPLACED(processWiimote)(r4, raceInputState, uiInputState);
+
+    if (auto saveStateManager = SP::SaveStateManager::Instance()) {
+        saveStateManager->processInput(raceInputState.rawButtons & WPAD_CL_BUTTON_HOME);
     }
 }
 
