@@ -143,34 +143,36 @@ TrackPack::TrackPack(std::string_view manifestView) {
     bool descriptionFound = false;
     bool authorNamesFound = false;
     while (auto property = iniReader.next()) {
-        if (property->section == "Pack Info") {
-            if (property->key == "name") {
-                m_prettyName = {property->value};
+        auto [section, key, value] = *property;
+
+        if (section == "Pack Info") {
+            if (key == "name") {
+                m_prettyName = {value};
                 prettyNameFound = true;
-            } else if (property->key == "description") {
-                m_description = property->value;
+            } else if (key == "description") {
+                m_description = value;
                 descriptionFound = true;
-            } else if (property->key == "author") {
-                m_authorNames = property->value;
+            } else if (key == "author") {
+                m_authorNames = value;
                 authorNamesFound = true;
-            } else if (property->key == "race") {
-                auto res = parseTracks(property->value);
+            } else if (key == "race") {
+                auto res = parseTracks(value);
                 if (!res) {
                     m_parseError = res.error();
                     return;
                 }
 
                 m_raceTracks = *res;
-            } else if (property->key == "balloon") {
-                auto res = parseTracks(property->value);
+            } else if (key == "balloon") {
+                auto res = parseTracks(value);
                 if (!res) {
                     m_parseError = res.error();
                     return;
                 }
 
                 m_balloonTracks = *res;
-            } else if (property->key == "coin") {
-                auto res = parseTracks(property->value);
+            } else if (key == "coin") {
+                auto res = parseTracks(value);
                 if (!res) {
                     m_parseError = res.error();
                     return;
@@ -317,7 +319,9 @@ void TrackPackManager::loadTrackDb() {
 
     IniReader trackDbIni(trackDbBuf);
     while (auto property = trackDbIni.next()) {
-        auto wiimmId = u32FromSv(property->section);
+        auto [section, key, value] = *property;
+
+        auto wiimmId = u32FromSv(section);
         if (!wiimmId) {
             SP_LOG("Could not parse wiimmID!");
             continue;
@@ -330,34 +334,34 @@ void TrackPackManager::loadTrackDb() {
         }
 
         auto &track = m_trackDb.back().track;
-        if (property->key == "trackname") {
-            track.name = property->value;
-        } else if (property->key == "slot") {
-            auto res = u32FromSv(property->value);
+        if (key == "trackname") {
+            track.name = value;
+        } else if (key == "slot") {
+            auto res = u32FromSv(value);
             if (!res) {
                 SP_LOG("Could not parse slot ID for ID %d", *wiimmId);
                 continue;
             }
 
             track.slotId = *res;
-        } else if (property->key == "type") {
-            if (property->value == "1") {
+        } else if (key == "type") {
+            if (value == "1") {
                 track.isArena = false;
-            } else if (property->value == "2") {
+            } else if (value == "2") {
                 track.isArena = true;
             } else {
                 SP_LOG("Unknown track ctype for ID %d", *wiimmId);
             }
-        } else if (property->key == "sha1") {
-            if (property->value.size() != (0x14 * 2)) {
-                SP_LOG("Invalid sha1 length: %d", property->value.size());
+        } else if (key == "sha1") {
+            if (value.size() != (0x14 * 2)) {
+                SP_LOG("Invalid sha1 length: %d", value.size());
                 continue;
             }
 
             char tByte[3];
-            for (u8 i = 0; i < property->value.size(); i += 2) {
-                tByte[0] = property->value[i];
-                tByte[1] = property->value[i + 1];
+            for (u8 i = 0; i < value.size(); i += 2) {
+                tByte[0] = value[i];
+                tByte[1] = value[i + 1];
                 tByte[2] = '\0';
 
                 track.sha1[i / 2] = strtol(tByte, nullptr, 16);
