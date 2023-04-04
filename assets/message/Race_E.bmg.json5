@@ -550,7 +550,4 @@
     "1505": {
         string: "",
     },
-    "1506": {
-        string: "Ghost data could not be saved. Disable item wheel to save ghosts!",
-    },
 }

@@ -147,7 +147,7 @@ void RaceConfig::ConfigurePlayers(Scenario &scenario, u32 screenCount) {
                 inputManager->setGhostPad(i, rawGhostFile + 0x88, false);
                 scenario.players[i].characterId = 0; // Mario
                 scenario.players[i].vehicleId = 1;   // Standard Kart M
-                scenario.players[i].controllerId = Registry::Controller::WiiWheel; // Wii Wheel
+                scenario.players[i].controllerId = Registry::Controller::WiiWheel;
             }
         } else {
             scenario.players[i].controllerId = Registry::Controller::None;

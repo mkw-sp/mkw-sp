@@ -48,7 +48,7 @@ void KartItem::update() {
         case (Registry::Controller::WiiRemoteAndNunchuck):
             updateItem = (buttons & WPAD_BUTTON_DOWN) == WPAD_BUTTON_DOWN;
             break;
-        case (Registry::Controller::Classfic):
+        case (Registry::Controller::Classic):
             updateItem = (buttons & KPAD_CL_TRIGGER_ZL) == KPAD_CL_TRIGGER_ZL;
             break;
         case (Registry::Controller::GameCube):
@@ -89,6 +89,8 @@ void KartItem::update() {
                 m_inventory.currentItemID = Item::TripShrooms;
                 m_inventory.currentItemCount = 3;
                 break;
+            case (Item::None):
+                return;
             }
             pressedLastFrame = true;
         }

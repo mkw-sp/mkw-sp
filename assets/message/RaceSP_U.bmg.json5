@@ -171,4 +171,7 @@
     "10419": {
         string: "Load State",
     },
+    "10425": {
+        string: "Ghost data could not be saved. Disable item wheel to save ghosts!",
+    },
 }

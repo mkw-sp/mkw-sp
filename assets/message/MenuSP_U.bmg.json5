@@ -1115,19 +1115,19 @@
     "10427": {
         string: "Arenas are played in order.",
     },
-    "10394": {
+    "10420": {
         string: "Item Wheel"
     },
-    "10395": {
+    "10421": {
         string: "Disable"
     },
-    "10396": {
+    "10422": {
         string: "Enable"
     },
-    "10397": {
+    "10423": {
         string: "Item Wheel is turned off"
     },
-    "10398": {
+    "10424": {
         string: "Press A (Wheel), DPAD (Chuck), ZL (CC), or Y (GCN) to cycle through items"
     },
     "20000": {
