@@ -763,6 +763,7 @@ const u8 *SaveManager_CourseSHA1(u32 courseId) {
 
 bool SaveManager_getItemWheel() {
     return System::SaveManager::Instance()->getItemWheelFlag();
+    // return System::SaveManager::Instance()->m_usedItemWheel;
 }
 
 bool vsSpeedModIsEnabled;

@@ -716,7 +716,6 @@
 0x80596480 _ZN4Kart7KartSub9calcEarlyEv
 0x80596cfc KartSub_calcPass1
 0x8059783c KartSub_calcTransforms
-0x8059c118 _ZN4Kart15KartObjectProxy10cancelBillEv
 0x8059BC44 KartKiller_calcTracking
 0x8059b7b8 _ZN4Kart10KartBullet14activateBulletEj
 0x8059c118 _ZN4Kart10KartBullet12cancelBulletEv

@@ -27,6 +27,7 @@ enum Items {
     TripNanas,
     Unused,
     NoItem,
+    None = 0xFF,
 };
 
 struct PlayerInventory {
