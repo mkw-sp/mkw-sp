@@ -1,14 +1,8 @@
 import csv
-import sys
 import configparser
-
-from stock import STOCK_TRACKS
+import contextlib
 
 language_lookup = ["nl", "fr_ntsc", "fr_pal", "de", "it", "jp", "kr", "pt_ntsc", "pt_pal", "ru", "es_ntsc", "es_pal", "gr", "pl", "fi", "sw", "cz", "dk"]
-
-db_csv = sys.argv[1]
-language_csv = sys.argv[2]
-
 
 class Track:
     cannonical_name: str
@@ -56,34 +50,52 @@ class Track:
             config.set(self.id, language_lookup[i], trans)
 
 
-tracks: list[Track] = []
-with open(db_csv) as db_csv:
-    db_csv.readline()
+def read_wiimm_csv(path: str) -> list[Track]:
+    tracks: list[Track] = []
+    with open(path) as db_csv:
+        db_csv.readline()
 
-    reader = csv.reader(db_csv, delimiter="|")
-    tracks.extend(Track.from_csv(line) for line in reader)
+        reader = csv.reader(db_csv, delimiter="|")
+        tracks.extend(Track.from_csv(line) for line in reader)
 
-with open(language_csv) as language_csv:
-    reader = csv.reader(language_csv, delimiter="|")
-    for line in reader:
-        if line == [] or line[0] == "":
-            continue
+    return tracks
 
-        clan_id = int(line[0])
-        for track in tracks:
-            if track.clan == clan_id:
-                track.translations = line[2:]
+def read_languages_csv(tracks: list[Track]) -> list[Track]:
+    with open("language.csv") as language_csv:
+        reader = csv.reader(language_csv, delimiter="|")
+        for line in reader:
+            if line == [] or line[0] == "":
+                continue
+
+            clan_id = int(line[0])
+            for track in tracks:
+                if track.clan == clan_id:
+                    track.translations = line[2:]
+
+    return tracks
 
 
-parser = configparser.ConfigParser(interpolation=None)
-for wiimmId, (slotId, sha1, ctype) in STOCK_TRACKS.items():
-    parser.add_section(wiimmId)
-    parser.set(wiimmId, "sha1", sha1)
-    parser.set(wiimmId, "type", ctype)
-    parser.set(wiimmId, "slot", slotId)
+def main():
+    tracks = read_wiimm_csv("extended-tracks.csv")
 
-for track in tracks:
-    track.to_ini(parser)
+    try:
+        tracks.extend(read_wiimm_csv("public-ref.list"))
+    except FileNotFoundError:
+        print("Warning: Could not find public-ref.list, output will only include vanilla and out-of-db tracks!")
+        print("Warning: You can download it from http://archive.tock.eu/wbz/public-ref.list\n")
 
-with open("tracks.ini", "w") as tracks_ini:
-    parser.write(tracks_ini)
+    # Ignore missing languages.csv
+    with contextlib.suppress(FileNotFoundError):
+        tracks = read_languages_csv(tracks)
+
+
+    parser = configparser.ConfigParser(interpolation=None)
+    for track in tracks:
+        track.to_ini(parser)
+
+    with open("tracks.ini", "w") as tracks_ini:
+        print(f"Finished writing {len(tracks)} tracks to tracks.ini!")
+        parser.write(tracks_ini)
+
+if __name__ == "__main__":
+    main()
