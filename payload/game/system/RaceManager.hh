@@ -56,6 +56,7 @@ public:
     REPLACE void endPlayerRace(u32 playerId);
 
     static REPLACE RaceManager *CreateInstance();
+    static REPLACE void DestroyInstance();
     static RaceManager *Instance();
     static u8 GetLapCount();
 

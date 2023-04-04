@@ -325,7 +325,7 @@ void CourseSelectPage::refresh() {
             }
             if (i >= start_offset && i < 3 * m_buttons.size() + end_offset) {
                 auto trackIndex = (start + i - start_offset) % trackCount;
-                m_databaseIds[j] = trackPack.getNthTrack(trackIndex, gameMode);
+                m_databaseIds[j] = *trackPack.getNthTrack(trackIndex, gameMode);
             } else {
                 m_databaseIds[j] = std::numeric_limits<u32>::max();
             }

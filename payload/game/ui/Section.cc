@@ -352,6 +352,7 @@ void Section::addPages(SectionId id) {
             {SectionId::ServicePack, PageId::OptionConfirm},
             {SectionId::ServicePack, PageId::Update},
             {SectionId::ServicePack, PageId::Channel},
+            {SectionId::ServicePack, PageId::PackSelect},
     };
     for (const auto &addition : additions) {
         if (addition.first == id) {

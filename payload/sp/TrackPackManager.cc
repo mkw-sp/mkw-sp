@@ -1,5 +1,6 @@
 #include "TrackPackManager.hh"
 
+#include "sp/ThumbnailManager.hh"
 #include "sp/settings/IniReader.hh"
 #include "sp/storage/Storage.hh"
 #include "sp/vanillaTracks.hh"
@@ -226,9 +227,15 @@ u16 TrackPack::getTrackCount(TrackGameMode mode) const {
     return getTrackList(mode).size();
 }
 
-u32 TrackPack::getNthTrack(u32 n, TrackGameMode mode) const {
+std::optional<u32> TrackPack::getNthTrack(u32 n, TrackGameMode mode) const {
     assert(m_parseError == nullptr);
-    return getTrackList(mode)[n];
+
+    auto &trackList = getTrackList(mode);
+    if (trackList.size() <= n) {
+        return std::nullopt;
+    } else {
+        return trackList[n];
+    }
 }
 
 const char *TrackPack::getParseError() const {

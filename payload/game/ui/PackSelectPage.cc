@@ -2,6 +2,8 @@
 
 #include <game/system/RaceConfig.hh>
 
+#include <sp/ThumbnailManager.hh>
+
 #include <cstdio>
 
 namespace UI {
@@ -82,8 +84,13 @@ void PackSelectPage::onButtonFront(PushButton *button, u32 /* localPlayerId */) 
     auto *raceConfig = System::RaceConfig::Instance();
     raceConfig->m_packInfo.m_selectedTrackPack = m_sheetIndex * m_buttons.size() + button->m_index;
 
-    m_replacement = PageId::SingleTop;
-    startReplace(Anim::Next, button->getDelay());
+    if (SP::ThumbnailManager::IsActive()) {
+        assert(SP::ThumbnailManager::Next()); // Setup for first thumbnail
+        changeSection(SectionId::Thumbnails, Anim::Next, button->getDelay());
+    } else {
+        m_replacement = PageId::SingleTop;
+        startReplace(Anim::Next, button->getDelay());
+    }
 }
 
 void PackSelectPage::onButtonSelect(PushButton *button, u32 /* localPlayerId */) {

@@ -50,7 +50,7 @@ public:
 
     TrackGameMode getSupportedModes() const;
     u16 getTrackCount(TrackGameMode mode) const;
-    u32 getNthTrack(u32 n, TrackGameMode mode) const;
+    std::optional<u32> getNthTrack(u32 n, TrackGameMode mode) const;
 
     const char *getParseError() const;
     const wchar_t *getPrettyName() const;

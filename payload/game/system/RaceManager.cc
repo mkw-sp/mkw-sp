@@ -90,8 +90,6 @@ void RaceManager::calc() {
         if (m_time == 25) {
             UI::SectionId sectionId;
             if (SP::ThumbnailManager::Continue()) {
-                auto &menuScenario = System::RaceConfig::Instance()->menuScenario();
-                menuScenario.courseId = SP::ThumbnailManager::CourseId();
                 sectionId = UI::SectionId::Thumbnails;
             } else {
                 sectionId = UI::SectionId::ServicePack;
@@ -127,7 +125,20 @@ RaceManager *RaceManager::CreateInstance() {
         s_instance->m_canStartCountdown = false;
     }
 
+    if (SP::ThumbnailManager::IsActive()) {
+        SP::TrackPackManager::CreateInstance();
+    }
+
     return s_instance;
+}
+
+void RaceManager::DestroyInstance() {
+    delete s_instance;
+    s_instance = nullptr;
+
+    if (SP::ThumbnailManager::IsActive()) {
+        SP::TrackPackManager::DestroyInstance();
+    }
 }
 
 RaceManager *RaceManager::Instance() {

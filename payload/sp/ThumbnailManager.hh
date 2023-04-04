@@ -8,30 +8,22 @@ namespace SP {
 
 class ThumbnailManager {
 public:
-    ThumbnailManager();
-    ~ThumbnailManager();
+    ThumbnailManager() = default;
+    ~ThumbnailManager() = default;
 
-    static bool Start();
+    static void Start();
     static bool Continue();
     static bool IsActive();
-    static u32 CourseId();
-    static std::array<wchar_t, 256> Path();
+    static bool Next();
 
 private:
     ThumbnailManager(const ThumbnailManager &) = delete;
     ThumbnailManager(ThumbnailManager &&) = delete;
 
-    void nextDir();
-    void nextName();
+    bool next();
     void capture();
-    std::array<wchar_t, 256> path();
 
-    static bool Next();
-
-    u32 m_courseId = 0;
-    std::optional<Storage::DirHandle> m_dir{};
-    std::optional<std::array<char, 128>> m_name{};
-
+    u32 m_trackIndex = 0;
     static std::optional<ThumbnailManager> s_instance;
 };
 
