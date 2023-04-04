@@ -30,7 +30,7 @@ void KartItem::update() {
     auto setting = saveManager->getSetting<SP::ClientSettings::Setting::ItemWheel>();
 
     if (gameMode == System::RaceConfig::GameMode::TimeAttack &&
-            m_inventory.currentItemID == Item::Golden && m_inventory.framesLeft != 0x1c2) {
+            m_inventory.currentItemID == Item::Golden && m_inventory.framesLeft != 450) {
         if (m_inventory.framesLeft == 0) {
             m_inventory.currentItemID = Item::NoItem;
         } else {
@@ -104,7 +104,7 @@ void KartItem::useGolden() {
     REPLACED(useGolden)();
     auto *raceConfig = System::RaceConfig::Instance();
     auto gameMode = raceConfig->raceScenario().gameMode;
-    if (gameMode == System::RaceConfig::GameMode::TimeAttack && m_inventory.framesLeft == 0x1c2) {
+    if (gameMode == System::RaceConfig::GameMode::TimeAttack && m_inventory.framesLeft == 450) {
         m_inventory.framesLeft--;
     }
 }
