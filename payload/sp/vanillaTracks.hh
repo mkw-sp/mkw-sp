@@ -1,4 +1,4 @@
-const std::string_view vanillaManifest = R"(
+constexpr std::string_view vanillaManifest = R"(
 [Pack Info]
 author = Nintendo
 name = Nintendo Race Tracks
