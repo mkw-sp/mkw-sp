@@ -44,3 +44,29 @@ inline Mtx34 &Decay(std::array<float, 12> &arr) {
 inline const Mtx34 &Decay(const std::array<float, 12> &arr) {
     return reinterpret_cast<const Mtx34 &>(*arr.data());
 }
+
+// clang-format off
+//
+// ```cpp
+//    std::expected<int, Err> GetInt();
+//    std::expected<int, Err> Foo() {
+//       return TRY(GetInt()) + 5;
+//    }
+// ```
+//
+// This unfortunately may eagerly copy when a move is preferable
+//
+#if defined(__clang__) || defined(__GNUC__) || defined(__APPLE__)
+#define HAS_RUST_TRY
+#define TRY(...)                                                               \
+  ({                                                                           \
+    auto y = (__VA_ARGS__);                                                    \
+    if (!y) {                                                                  \
+      return std::unexpected(y.error());                                       \
+    }                                                                          \
+    *y;                                                                        \
+  })
+#else
+#define TRY(...) static_assert(false, "Compiler does not support TRY macro")
+#endif
+// clang-format on
