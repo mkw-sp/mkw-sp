@@ -57,8 +57,8 @@ struct WFixedString {
             view = view.substr(0, N - 1);
         }
 
-        auto written = Util_toUtf16(m_buf.data(), m_buf.size(), view.data(), view.size());
-        m_buf[written] = L'\0';
+        m_len = Util_toUtf16(m_buf.data(), m_buf.size(), view.data(), view.size());
+        m_buf[m_len] = L'\0';
     }
 
     const wchar_t *c_str() const {
