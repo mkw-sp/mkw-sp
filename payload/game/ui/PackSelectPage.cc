@@ -77,7 +77,12 @@ void PackSelectPage::onActivate() {
 }
 
 void PackSelectPage::onBack(u32 /* localPlayerId */) {
-    changeSection(SectionId::TitleFromMenu, Anim::Prev, 0.0f);
+    if (SP::ThumbnailManager::IsActive()) {
+        m_replacement = PageId::ServicePackTools;
+        startReplace(Anim::Prev, 0.0f);
+    } else {
+        changeSection(SectionId::TitleFromMenu, Anim::Prev, 0.0f);
+    }
 }
 
 void PackSelectPage::onButtonFront(PushButton *button, u32 /* localPlayerId */) {
@@ -140,9 +145,8 @@ void PackSelectPage::onScrollBarChange(ScrollBar * /* scrollBar */, u32 /* local
     refresh();
 }
 
-void PackSelectPage::onBackButtonFront(PushButton *button, u32 /* localPlayerId */) {
-    f32 delay = button->getDelay();
-    changeSection(SectionId::TitleFromMenu, Anim::Prev, delay);
+void PackSelectPage::onBackButtonFront(PushButton * /* button */, u32 localPlayerId) {
+    onBack(localPlayerId);
 }
 
 void PackSelectPage::refresh() {
