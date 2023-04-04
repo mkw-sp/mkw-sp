@@ -102,7 +102,9 @@ void KartItem::update() {
 
 void KartItem::useGolden() {
     REPLACED(useGolden)();
-    if (m_inventory.framesLeft == 0x1c2) {
+    auto *raceConfig = System::RaceConfig::Instance();
+    auto gameMode = raceConfig->raceScenario().gameMode;
+    if (gameMode == System::RaceConfig::GameMode::TimeAttack && m_inventory.framesLeft == 0x1c2) {
         m_inventory.framesLeft--;
     }
 }
