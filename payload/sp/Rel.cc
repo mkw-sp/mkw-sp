@@ -20,17 +20,17 @@ namespace SP::Rel {
 
 typedef void (*EntryFunction)(void);
 
-struct RelModuleInfo {
+struct ModuleInfo {
     u8 hash[NET_SHA1_DIGEST_SIZE];
     u32 size;
 };
 
 static EntryFunction entry = nullptr;
 
-static const std::array<RelModuleInfo, 4> relModuleInfoArray = {
-    // clang-format off
+static const std::array<ModuleInfo, 4> moduleInfoArray = {
+        // clang-format off
     // RMCE
-    RelModuleInfo
+    ModuleInfo
     {
         {
             0x07, 0x2B, 0xA4, 0x43, 0x82, 0xFD, 0xCA, 0x9B, 0xF5, 0xC0,
@@ -39,7 +39,7 @@ static const std::array<RelModuleInfo, 4> relModuleInfoArray = {
         0x004ACF94,
     },
     // RMCP
-    RelModuleInfo
+    ModuleInfo
     {
         {
             0x88, 0x7B, 0xCC, 0x07, 0x67, 0x81, 0xF5, 0xB0, 0x05, 0xCC,
@@ -48,7 +48,7 @@ static const std::array<RelModuleInfo, 4> relModuleInfoArray = {
         0x004AD3C4,
     },
     // RMCJ
-    RelModuleInfo
+    ModuleInfo
     {
         {
             0x20, 0xB4, 0x16, 0x1D, 0x41, 0x5E, 0x40, 0x92, 0xA6, 0x29,
@@ -57,7 +57,7 @@ static const std::array<RelModuleInfo, 4> relModuleInfoArray = {
         0x004ACABC,
     },
     // RMCK
-    RelModuleInfo
+    ModuleInfo
     {
         {
             0xE0, 0x00, 0x62, 0x50, 0xB1, 0xE5, 0xC1, 0xBD, 0xEE, 0x8B,
@@ -65,7 +65,7 @@ static const std::array<RelModuleInfo, 4> relModuleInfoArray = {
         },
         0x004AD9FC,
     },
-    // clang-format on
+        // clang-format on
 };
 
 static bool IsClean(const void *rel, u32 roundedRelSize) {
@@ -87,18 +87,18 @@ static bool IsClean(const void *rel, u32 roundedRelSize) {
         panic("Invalid game region!");
     }
 
-    u32 relSize = relModuleInfoArray[regionIndex].size;
+    u32 relSize = moduleInfoArray[regionIndex].size;
     if (roundedRelSize < relSize) {
         return false;
     }
 
-    u8 relHash[NET_SHA1_DIGEST_SIZE];
+    u8 hash[NET_SHA1_DIGEST_SIZE];
     NETSHA1Context context;
     NETSHA1Init(&context);
     NETSHA1Update(&context, rel, relSize);
-    NETSHA1GetDigest(&context, relHash);
+    NETSHA1GetDigest(&context, hash);
 
-    return memcmp(relModuleInfoArray[regionIndex].hash, relHash, NET_SHA1_DIGEST_SIZE) == 0;
+    return memcmp(moduleInfoArray[regionIndex].hash, hash, NET_SHA1_DIGEST_SIZE) == 0;
 }
 
 bool Load() {
