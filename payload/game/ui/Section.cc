@@ -192,7 +192,7 @@ void Section::addPage(PageId pageId) {
         }
     }
 
-    SP_LOG("addPage 0x%x", pageId);
+    SP_LOG("addPage %u (0x%x)", pageId, pageId);
 
     REPLACED(addPage)(pageId);
 }
@@ -225,7 +225,7 @@ void Section::addActivePage(PageId pageId) {
         }
     }
 
-    SP_LOG("addActivePage 0x%x", pageId);
+    SP_LOG("addActivePage %u (0x%x)", pageId, pageId);
 
     REPLACED(addActivePage)(pageId);
 }
