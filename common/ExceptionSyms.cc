@@ -33,3 +33,9 @@ __throw_out_of_range_fmt(const char *, ...) {
 }
 
 } // namespace std
+
+extern "C" {
+__attribute__((__noreturn__)) void abort() {
+    panic("abort");
+}
+}

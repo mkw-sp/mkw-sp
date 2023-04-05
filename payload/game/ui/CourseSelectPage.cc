@@ -10,7 +10,6 @@
 #include <vendor/magic_enum/magic_enum.hpp>
 
 #include <algorithm>
-#include <limits>
 
 namespace UI {
 
@@ -181,11 +180,12 @@ void CourseSelectPage::onButtonFront(PushButton *button, u32 /* localPlayerId */
     auto *section = sectionManager->currentSection();
     auto sectionId = section->id();
 
-    auto databaseId = m_databaseIds[button->m_index];
+    auto databaseId = *m_databaseIds[button->m_index];
     if (Section::HasRoomClient(sectionId)) {
-        auto *votingBackPage = section->page<PageId::VotingBack>();
-        votingBackPage->setLocalVote(databaseId);
-        votingBackPage->setSubmitted(true);
+        // TODO(GnomedDev): Fix online voting.
+        // auto *votingBackPage = section->page<PageId::VotingBack>();
+        // votingBackPage->setLocalVote(databaseId);
+        // votingBackPage->setSubmitted(true);
         startReplace(Anim::Next, button->getDelay());
     } else {
         auto raceConfig = System::RaceConfig::Instance();
@@ -325,18 +325,18 @@ void CourseSelectPage::refresh() {
             }
             if (i >= start_offset && i < 3 * m_buttons.size() + end_offset) {
                 auto trackIndex = (start + i - start_offset) % trackCount;
-                m_databaseIds[j] = *trackPack.getNthTrack(trackIndex, gameMode);
+                m_databaseIds[j] = trackPack.getNthTrack(trackIndex, gameMode).value();
             } else {
-                m_databaseIds[j] = std::numeric_limits<u32>::max();
+                m_databaseIds[j] = std::nullopt;
             }
         }
 
         for (size_t i = 0; i < m_buttons.size(); i++) {
             auto courseIndex = m_sheetIndex * m_buttons.size() + i;
-            if (m_databaseIds[i] != std::numeric_limits<u32>::max() && courseIndex < trackCount) {
+            if (m_databaseIds[i].has_value() && courseIndex < trackCount) {
                 m_buttons[i].setVisible(true);
                 m_buttons[i].setPlayerFlags(1 << 0);
-                m_buttons[i].refresh(m_databaseIds[i]);
+                m_buttons[i].refresh(*m_databaseIds[i]);
             } else {
                 m_buttons[i].setVisible(false);
                 m_buttons[i].setPlayerFlags(0);
@@ -355,11 +355,10 @@ void CourseSelectPage::refresh() {
 }
 
 void CourseSelectPage::loadThumbnails() {
-    std::array<u32, 27> databaseIds;
-    std::fill(databaseIds.begin(), databaseIds.end(), std::numeric_limits<u32>::max());
+    std::array<std::optional<Sha1>, 27> databaseIds;
 
     while (true) {
-        std::array<u32, 27> requestedDatabaseIds{};
+        std::array<std::optional<Sha1>, 27> requestedDatabaseIds{};
         {
             SP::ScopeLock<SP::NoInterrupts> lock;
             switch (m_request) {
@@ -387,7 +386,7 @@ void CourseSelectPage::loadThumbnails() {
             }
 
             auto j = std::distance(databaseIds.begin(), it);
-            requestedDatabaseIds[i] = std::numeric_limits<u32>::max();
+            requestedDatabaseIds[i] = std::nullopt;
             std::swap(databaseIds[i], databaseIds[j]);
             std::swap(m_buffers[i], m_buffers[j]);
             std::swap(m_texObjs[i], m_texObjs[j]);
@@ -397,15 +396,15 @@ void CourseSelectPage::loadThumbnails() {
         // Load new thumbnails
         for (u32 i = 0; i < requestedDatabaseIds.size(); i++) {
             auto databaseId = requestedDatabaseIds[i];
-            if (databaseId == std::numeric_limits<u32>::max()) {
+            if (!databaseId.has_value()) {
                 continue;
             }
 
-            JRESULT result = loadThumbnail(i, databaseId);
+            JRESULT result = loadThumbnail(i, *databaseId);
             if (result == JDR_OK) {
-                databaseIds[i] = databaseId;
+                databaseIds[i] = *databaseId;
             } else {
-                databaseIds[i] = std::numeric_limits<u32>::max();
+                databaseIds[i] = std::nullopt;
             }
 
             SP::ScopeLock<SP::NoInterrupts> lock;
@@ -416,20 +415,22 @@ void CourseSelectPage::loadThumbnails() {
             if (result == JDR_OK) {
                 m_thumbnailChanged[i] = true;
             } else {
-                SP_LOG("Failed to read thumbnail %d with error %u", databaseId, result);
+                auto hex = sha1ToHex(*databaseId);
+                SP_LOG("Failed to read thumbnail %s with error %u", hex, result);
             }
         }
     }
 }
 
-JRESULT CourseSelectPage::loadThumbnail(u32 i, u32 databaseId) {
-    char path[48];
+JRESULT CourseSelectPage::loadThumbnail(u32 i, Sha1 databaseId) {
+    char path[128];
 
     auto &trackPackInfo = System::RaceConfig::Instance()->m_packInfo;
+    auto hex = sha1ToHex(databaseId);
     if (trackPackInfo.isVanilla()) {
-        snprintf(path, std::size(path), "/thumbnails/%u.jpg", databaseId);
+        snprintf(path, std::size(path), "/thumbnails/%s.jpg", hex.data());
     } else {
-        snprintf(path, std::size(path), "/mkw-sp/Track Thumbnails/%05u.jpg", databaseId);
+        snprintf(path, std::size(path), "/mkw-sp/Track Thumbnails/%s.jpg", hex.data());
     }
 
     auto file = SP::Storage::OpenRO(path);

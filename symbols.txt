@@ -24,6 +24,7 @@
 0x800117b0 vprintf
 0x8001182C vsnprintf
 0x80011938 snprintf
+0x80011a2c sprintf
 0x80011b00 qsort
 0x80013040 sscanf
 0x800131e0 strncpy

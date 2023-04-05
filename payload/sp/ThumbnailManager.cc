@@ -31,11 +31,11 @@ bool ThumbnailManager::IsActive() {
 bool ThumbnailManager::next() {
     auto &trackPackManager = TrackPackManager::Instance();
     auto &trackPack = trackPackManager.getSelectedTrackPack();
-    auto wiimmId = trackPack.getNthTrack(m_trackIndex++, TrackGameMode::Race);
+    auto trackId = trackPack.getNthTrack(m_trackIndex++, TrackGameMode::Race);
 
-    if (wiimmId.has_value()) {
+    if (trackId.has_value()) {
         auto *raceConfig = System::RaceConfig::Instance();
-        raceConfig->m_packInfo.selectCourse(*wiimmId);
+        raceConfig->m_packInfo.selectCourse(*trackId);
         return true;
     } else {
         return false;
@@ -50,8 +50,10 @@ void ThumbnailManager::capture() {
         return;
     }
 
-    auto wiimmId = System::RaceConfig::Instance()->m_packInfo.getSelectedWiimmId();
-    swprintf(path.data(), path.size(), L"/mkw-sp/Generated Thumbnails/%u.xfb", wiimmId);
+    auto sha1 = System::RaceConfig::Instance()->m_packInfo.getSelectedSha1();
+    auto hex = sha1ToHex(sha1);
+
+    swprintf(path.data(), path.size(), L"/mkw-sp/Generated Thumbnails/%s.xfb", hex.data());
 
     auto *xfb = EGG::TSystem::Instance()->xfbManager()->headXfb();
     u32 size = EGG::Xfb::CalcXfbSize(xfb->width(), xfb->height());

@@ -15,7 +15,7 @@
 #include <expected>
 
 #define TRACK_PACK_DIRECTORY L"Track Packs"
-#define TRACK_DB L"WiimmDB.ini"
+#define TRACK_DB L"TrackDB.ini"
 
 using namespace magic_enum::bitwise_operators;
 
@@ -77,14 +77,6 @@ u32 Track::getBattleCourseId() const {
 }
 // clang-format on
 
-u32 Track::getCourseId() const {
-    if (isArena) {
-        return getBattleCourseId();
-    } else {
-        return getRaceCourseId();
-    }
-}
-
 std::expected<u32, const char *> u32FromSv(std::string_view sv) {
     u32 out = 0;
 
@@ -99,17 +91,63 @@ std::expected<u32, const char *> u32FromSv(std::string_view sv) {
     }
 }
 
-std::expected<std::vector<u32>, const char *> parseTracks(std::string_view tracks) {
-    std::vector<u32> parsedTrackIds;
+std::expected<Sha1, const char *> sha1FromSv(std::string_view sv) {
+    if (sv.size() != (0x14 * 2)) {
+        return std::unexpected("Invalid SHA1 length!");
+    }
+
+    Sha1 sha;
+    char tByte[3];
+
+    for (u8 i = 0; i < sv.size(); i += 2) {
+        tByte[0] = sv[i];
+        tByte[1] = sv[i + 1];
+        tByte[2] = '\0';
+
+        sha[i / 2] = strtol(tByte, nullptr, 16);
+    }
+
+    return sha;
+}
+
+u32 Track::getCourseId() const {
+    if (isArena) {
+        return getBattleCourseId();
+    } else {
+        return getRaceCourseId();
+    }
+}
+
+void Track::parse(std::string_view key, std::string_view value) {
+    if (key == "trackname") {
+        name = value;
+    } else if (key == "slot") {
+        auto res = u32FromSv(value);
+        if (!res) {
+            return;
+        }
+
+        slotId = *res;
+    } else if (key == "type") {
+        if (value == "1") {
+            isArena = false;
+        } else if (value == "2") {
+            isArena = true;
+        }
+    }
+}
+
+std::expected<std::vector<Sha1>, const char *> parseTracks(std::string_view tracks) {
+    std::vector<Sha1> parsedTrackIds;
+    char buf[(sizeof(Sha1) * 2) + 1];
     size_t position = 0;
-    char buf[10]; // Max u32 is 10 chars long
 
     for (char c : tracks) {
-        if (c == ',' || position == 10) {
+        if (c == ',' || position == sizeof(buf)) {
             buf[position] = '\0';
 
-            std::string_view sv(buf, position - 1);
-            auto trackId = u32FromSv(buf);
+            std::string_view sv(buf, position);
+            auto trackId = sha1FromSv(sv);
             if (!trackId) {
                 return std::unexpected(trackId.error());
             }
@@ -124,7 +162,7 @@ std::expected<std::vector<u32>, const char *> parseTracks(std::string_view track
 
     if (position != 0) {
         std::string_view sv(buf, position);
-        auto trackId = u32FromSv(buf);
+        auto trackId = sha1FromSv(buf);
         if (!trackId) {
             return std::unexpected(trackId.error());
         }
@@ -183,7 +221,18 @@ TrackPack::TrackPack(std::string_view manifestView) {
                 m_parseError = "Unknown key in track pack manifest";
             }
         } else {
-            m_parseError = "Unknown section in track pack manifest";
+            auto sha = sha1FromSv(section);
+            if (!sha) {
+                m_parseError = sha.error();
+                return;
+            }
+
+            if (m_unreleasedTracks.size() == 0 || m_unreleasedTracks.back().sha1 != *sha) {
+                m_unreleasedTracks.emplace_back(*sha);
+            }
+
+            auto &track = m_unreleasedTracks.back();
+            track.parse(key, value);
         }
     }
 
@@ -194,7 +243,17 @@ TrackPack::TrackPack(std::string_view manifestView) {
     }
 }
 
-const std::vector<u32> &TrackPack::getTrackList(TrackGameMode mode) const {
+const Track *TrackPack::getUnreleasedTrack(Sha1 sha1) const {
+    for (const auto &track : m_unreleasedTracks) {
+        if (track.sha1 == sha1) {
+            return &track;
+        }
+    }
+
+    return nullptr;
+}
+
+const std::vector<Sha1> &TrackPack::getTrackList(TrackGameMode mode) const {
     if (mode == TrackGameMode::Race) {
         return m_raceTracks;
     } else if (mode == TrackGameMode::Balloon) {
@@ -229,7 +288,7 @@ u16 TrackPack::getTrackCount(TrackGameMode mode) const {
     return getTrackList(mode).size();
 }
 
-std::optional<u32> TrackPack::getNthTrack(u32 n, TrackGameMode mode) const {
+std::optional<Sha1> TrackPack::getNthTrack(u32 n, TrackGameMode mode) const {
     assert(m_parseError == nullptr);
 
     auto &trackList = getTrackList(mode);
@@ -257,8 +316,7 @@ TrackPackManager::TrackPackManager() {
 void TrackPackManager::loadTrackPacks() {
     SP_LOG("Loading track packs");
 
-    m_packs.push_back(std::move(TrackPack(vanillaManifest)));
-
+    m_packs.emplace_back(vanillaManifest);
     auto dir = Storage::OpenDir(TRACK_PACK_DIRECTORY);
     if (!dir) {
         SP_LOG("Creating track pack directory");
@@ -321,52 +379,18 @@ void TrackPackManager::loadTrackDb() {
     while (auto property = trackDbIni.next()) {
         auto [section, key, value] = *property;
 
-        auto wiimmId = u32FromSv(section);
-        if (!wiimmId) {
-            SP_LOG("Could not parse wiimmID!");
+        auto sha1 = sha1FromSv(section);
+        if (!sha1) {
+            SP_LOG("Could not parse sha1!");
             continue;
         }
 
-        // This will be messed by duplicate entries but
-        // let's just hope that wiimm doesn't do that.
-        if (m_trackDb.size() == 0 || m_trackDb.back().wiimmId != *wiimmId) {
-            m_trackDb.push_back({*wiimmId, {}});
+        if (m_trackDb.size() == 0 || m_trackDb.back().sha1 != *sha1) {
+            m_trackDb.emplace_back(*sha1);
         }
 
-        auto &track = m_trackDb.back().track;
-        if (key == "trackname") {
-            track.name = value;
-        } else if (key == "slot") {
-            auto res = u32FromSv(value);
-            if (!res) {
-                SP_LOG("Could not parse slot ID for ID %d", *wiimmId);
-                continue;
-            }
-
-            track.slotId = *res;
-        } else if (key == "type") {
-            if (value == "1") {
-                track.isArena = false;
-            } else if (value == "2") {
-                track.isArena = true;
-            } else {
-                SP_LOG("Unknown track ctype for ID %d", *wiimmId);
-            }
-        } else if (key == "sha1") {
-            if (value.size() != (0x14 * 2)) {
-                SP_LOG("Invalid sha1 length: %d", value.size());
-                continue;
-            }
-
-            char tByte[3];
-            for (u8 i = 0; i < value.size(); i += 2) {
-                tByte[0] = value[i];
-                tByte[1] = value[i + 1];
-                tByte[2] = '\0';
-
-                track.sha1[i / 2] = strtol(tByte, nullptr, 16);
-            }
-        }
+        auto &track = m_trackDb.back();
+        track.parse(key, value);
     }
 
     SP_LOG("Finished loading track DB");
@@ -383,17 +407,6 @@ size_t TrackPackManager::getPackCount() const {
 const TrackPack &TrackPackManager::getSelectedTrackPack() const {
     auto &trackPackInfo = System::RaceConfig::Instance()->m_packInfo;
     return m_packs[trackPackInfo.m_selectedTrackPack];
-}
-
-const wchar_t *TrackPackManager::getTrackName(u32 wiimmId) const {
-    for (auto &[cWiimmId, trackEntry] : m_trackDb) {
-        if (cWiimmId == wiimmId) {
-            return trackEntry.name.c_str();
-        }
-    }
-
-    SP_LOG("Failed to find track name for wiimmId: %d", wiimmId);
-    return L"Unknown Track";
 }
 
 void TrackPackInfo::setTrackMessage(UI::LayoutUIControl *control) const {
@@ -419,24 +432,20 @@ void TrackPackInfo::setTrackMessage(UI::LayoutUIControl *control, const wchar_t 
     control->setMessageAll(20031, &info);
 }
 
-const Track &TrackPackManager::getTrack(u32 wiimmId) const {
-    for (auto &[cWiimmId, track] : m_trackDb) {
-        if (cWiimmId == wiimmId) {
+const Track &TrackPackManager::getTrack(Sha1 sha1) const {
+    for (auto &track : m_trackDb) {
+        if (track.sha1 == sha1) {
             return track;
         }
     }
 
-    panic("Unknown wiimm id: %d", wiimmId);
-}
-
-std::optional<u32> TrackPackManager::wiimmIdFromSha1(std::span<const u8, 0x14> sha1) const {
-    for (auto &[wiimmId, track] : m_trackDb) {
-        if (memcmp(track.sha1.data(), sha1.data(), 0x14) == 0) {
-            return wiimmId;
-        }
+    auto *track = getSelectedTrackPack().getUnreleasedTrack(sha1);
+    if (track != nullptr) {
+        return *track;
     }
 
-    return {};
+    auto hex = sha1ToHex(sha1);
+    panic("Unknown sha1 id: %s", hex.data());
 }
 
 TrackPackManager &TrackPackManager::Instance() {
@@ -459,7 +468,8 @@ void TrackPackManager::DestroyInstance() {
 }
 
 void TrackPackInfo::getTrackPath(char *out, u32 outSize, bool splitScreen) const {
-    SP_LOG("Getting track path for 0x%02x", m_selectedWiimmId);
+    auto hex = sha1ToHex(m_selectedSha1);
+    SP_LOG("Getting track path for %s", hex);
 
     if (isVanilla()) {
         auto courseFileName = Registry::courseFilenames[m_selectedCourseId];
@@ -472,7 +482,7 @@ void TrackPackInfo::getTrackPath(char *out, u32 outSize, bool splitScreen) const
 
         SP_LOG("Vanilla Track path: %s", out);
     } else {
-        snprintf(out, outSize, "/mkw-sp/Tracks/%d", m_selectedWiimmId);
+        snprintf(out, outSize, "/mkw-sp/Tracks/%s", hex.data());
         SP_LOG("Track path: %s", out);
     }
 }
@@ -485,19 +495,13 @@ u32 TrackPackInfo::getSelectedCourse() const {
     return m_selectedCourseId;
 }
 
-u32 TrackPackInfo::getSelectedWiimmId() const {
-    return m_selectedWiimmId;
-}
-
-std::span<const u8, 0x14> TrackPackInfo::getSelectedSha1() const {
+Sha1 TrackPackInfo::getSelectedSha1() const {
     return m_selectedSha1;
 }
 
-void TrackPackInfo::selectCourse(u32 wiimmId) {
-    m_selectedWiimmId = wiimmId;
-
+void TrackPackInfo::selectCourse(Sha1 sha) {
     auto &trackPackManager = TrackPackManager::Instance();
-    auto &track = trackPackManager.getTrack(wiimmId);
+    auto &track = trackPackManager.getTrack(sha);
 
     s_name = track.name;
     m_selectedSha1 = track.sha1;

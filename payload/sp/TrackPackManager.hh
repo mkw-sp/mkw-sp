@@ -4,6 +4,7 @@
 
 #include "sp/CircularBuffer.hh"
 #include "sp/FixedString.hh"
+#include "sp/ShaUtil.hh"
 #include "sp/storage/Storage.hh"
 
 #include <optional>
@@ -27,21 +28,19 @@ enum class TrackGameMode {
 
 class Track {
 public:
+    Track(Sha1 sha1) : sha1(sha1){};
+
+    void parse(std::string_view key, std::string_view value);
     u32 getCourseId() const;
 
-    std::array<u8, 0x14> sha1 = {};
     WFixedString<64> name = {};
     bool isArena = false;
     u32 slotId = 0;
+    Sha1 sha1;
 
 private:
     u32 getRaceCourseId() const;
     u32 getBattleCourseId() const;
-};
-
-struct DBEntry {
-    u32 wiimmId;
-    Track track;
 };
 
 class TrackPack {
@@ -50,19 +49,21 @@ public:
 
     TrackGameMode getSupportedModes() const;
     u16 getTrackCount(TrackGameMode mode) const;
-    std::optional<u32> getNthTrack(u32 n, TrackGameMode mode) const;
+    std::optional<Sha1> getNthTrack(u32 n, TrackGameMode mode) const;
 
     const char *getParseError() const;
     const wchar_t *getPrettyName() const;
+    const Track *getUnreleasedTrack(Sha1 id) const;
 
 private:
-    const std::vector<u32> &getTrackList(TrackGameMode mode) const;
+    const std::vector<Sha1> &getTrackList(TrackGameMode mode) const;
 
     const char *m_parseError;
 
-    std::vector<u32> m_raceTracks;
-    std::vector<u32> m_coinTracks;
-    std::vector<u32> m_balloonTracks;
+    std::vector<Sha1> m_raceTracks;
+    std::vector<Sha1> m_coinTracks;
+    std::vector<Sha1> m_balloonTracks;
+    std::vector<Track> m_unreleasedTracks;
 
     FixedString<64> m_authorNames;
     FixedString<128> m_description;
@@ -78,8 +79,7 @@ public:
     void loadTrackDb();
 
     size_t getPackCount() const;
-    const Track &getTrack(u32 wmmId) const;
-    std::optional<u32> wiimmIdFromSha1(std::span<const u8, 0x14> sha1) const;
+    const Track &getTrack(Sha1 id) const;
 
     const TrackPack &getNthPack(u32 n) const;
     const TrackPack &getSelectedTrackPack() const;
@@ -89,9 +89,7 @@ public:
     static void DestroyInstance();
 
 private:
-    const wchar_t *getTrackName(u32 wiimmId) const;
-
-    std::vector<DBEntry> m_trackDb;
+    std::vector<Track> m_trackDb;
     std::vector<TrackPack> m_packs;
 
     static TrackPackManager *s_instance;
@@ -102,11 +100,10 @@ public:
     bool isVanilla() const;
     void getTrackPath(char *out, u32 outSize, bool splitScreen) const;
 
+    Sha1 getSelectedSha1() const;
     u32 getSelectedCourse() const;
-    u32 getSelectedWiimmId() const;
-    std::span<const u8, 0x14> getSelectedSha1() const;
 
-    void selectCourse(u32 wiimmId);
+    void selectCourse(Sha1 id);
     void setTrackMessage(UI::LayoutUIControl *control) const;
     void setTrackMessage(UI::LayoutUIControl *control, const wchar_t *name, u32 courseId) const;
 
@@ -114,9 +111,8 @@ public:
 
 private:
     // Private as need to be kept in sync
-    std::array<u8, 0x14> m_selectedSha1 = {};
     u32 m_selectedCourseId = 0;
-    u32 m_selectedWiimmId = 0;
+    Sha1 m_selectedSha1 = {};
 
     // We don't have enough space to store this otherwise.
     static WFixedString<64> s_name;

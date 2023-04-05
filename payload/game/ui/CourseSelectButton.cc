@@ -42,7 +42,7 @@ void CourseSelectButton::load(u32 i) {
     }
 }
 
-void CourseSelectButton::refresh(u32 wiimmId) {
+void CourseSelectButton::refresh(Sha1 dbId) {
     auto *section = SectionManager::Instance()->currentSection();
     for (size_t i = 0; i < std::size(m_panes); i++) {
         m_panes[i]->m_width = m_sizes[i].x / section->locationAdjustScale().x;
@@ -51,7 +51,7 @@ void CourseSelectButton::refresh(u32 wiimmId) {
 
     auto *raceConfig = System::RaceConfig::Instance();
     auto &trackPackManager = SP::TrackPackManager::Instance();
-    auto &track = trackPackManager.getTrack(wiimmId);
+    auto &track = trackPackManager.getTrack(dbId);
 
     raceConfig->m_packInfo.setTrackMessage(this, track.name.c_str(), track.getCourseId());
 }

@@ -58,7 +58,7 @@ private:
     void onBackCommon(f32 delay);
     void refresh();
     void loadThumbnails();
-    JRESULT loadThumbnail(u32 i, u32 courseId);
+    JRESULT loadThumbnail(u32 i, Sha1 databaseId);
 
     static void *LoadThumbnails(void *arg);
     static size_t ReadCompressedThumbnail(JDEC *jdec, uint8_t *buffer, size_t size);
@@ -94,7 +94,7 @@ private:
     u32 m_lastSelected;
     Request m_request;
     std::array<std::atomic<bool>, 27> m_thumbnailChanged;
-    std::array<u32, 27> m_databaseIds;
+    std::array<std::optional<Sha1>, 27> m_databaseIds;
     std::array<std::array<std::unique_ptr<u8[]>, 3>, 27> m_buffers;
     std::array<std::array<GXTexObj, 3>, 27> m_texObjs;
     OSThreadQueue m_queue;

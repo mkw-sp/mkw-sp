@@ -39,15 +39,14 @@ class Track:
         else:
             trackname = self.cannonical_name
 
-        config.add_section(self.id)
-        config.set(self.id, "trackname", trackname)
-        config.set(self.id, "author", self.authors)
-        config.set(self.id, "type", self.ctype)
-        config.set(self.id, "sha1", self.sha1)
-        config.set(self.id, "slot", self.slot)
+        config.add_section(self.sha1)
+        config.set(self.sha1, "trackname", trackname)
+        config.set(self.sha1, "author", self.authors)
+        config.set(self.sha1, "type", self.ctype)
+        config.set(self.sha1, "slot", self.slot)
 
         for i, trans in enumerate(self.translations):
-            config.set(self.id, language_lookup[i], trans)
+            config.set(self.sha1, language_lookup[i], trans)
 
 
 def read_wiimm_csv(path: str) -> list[Track]:

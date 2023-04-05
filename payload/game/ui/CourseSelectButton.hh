@@ -2,6 +2,8 @@
 
 #include "Button.hh"
 
+#include <sp/TrackPackManager.hh>
+
 namespace UI {
 
 class CourseSelectButton : public PushButton {
@@ -11,7 +13,7 @@ public:
     void calcSelf() override;
 
     void load(u32 i);
-    void refresh(u32 courseId);
+    void refresh(Sha1 dbId);
     void setTex(u8 c, const GXTexObj &texObj);
 
 private:

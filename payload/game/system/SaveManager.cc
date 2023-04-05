@@ -465,8 +465,8 @@ void SaveManager::saveGhost(GhostFile *file) {
     }
 
     auto &packInfo = RaceConfig::Instance()->m_packInfo;
-    auto wiimmId = packInfo.getSelectedWiimmId();
     auto sha1 = packInfo.getSelectedSha1();
+    auto sha1Hex = sha1ToHex(sha1);
 
     m_saveGhostResult = false;
     SPFooter::OnRaceEnd(sha1);
@@ -484,7 +484,7 @@ void SaveManager::saveGhost(GhostFile *file) {
     wchar_t path[255 + 1];
     u32 offset = swprintf(path, 255 + 1, L"/mkw-sp/ghosts/");
 
-    offset += swprintf(path + offset, 255 + 1 - offset, L"%d", wiimmId);
+    offset += swprintf(path + offset, 255 + 1 - offset, L"%s", sha1Hex);
 
     if (!SP::Storage::CreateDir(path, true)) {
         return;

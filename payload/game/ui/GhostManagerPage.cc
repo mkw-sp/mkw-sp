@@ -18,8 +18,7 @@ void GhostManagerPage::SPList::populate() {
     bool speedModIsEnabled = cc == SP::ClientSettings::TAClass::CC200;
 
     auto &packInfo = System::RaceConfig::Instance()->m_packInfo;
-    auto &trackPackManager = SP::TrackPackManager::Instance();
-    auto wiimmId = packInfo.getSelectedWiimmId();
+    auto selectedSha1 = packInfo.getSelectedSha1();
 
     m_count = 0;
     for (u32 i = 0; i < saveManager->ghostCount(); i++) {
@@ -38,8 +37,7 @@ void GhostManagerPage::SPList::populate() {
             continue;
         };
 
-        auto ghostWiimmId = trackPackManager.wiimmIdFromSha1(*sha1);
-        if (wiimmId != ghostWiimmId) {
+        if (selectedSha1 != *sha1) {
             continue;
         }
 
