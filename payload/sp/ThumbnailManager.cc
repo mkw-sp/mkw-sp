@@ -43,7 +43,7 @@ bool ThumbnailManager::next() {
 }
 
 void ThumbnailManager::capture() {
-    std::array<wchar_t, 64> path{};
+    std::array<wchar_t, 256> path{};
 
     swprintf(path.data(), path.size(), L"/mkw-sp/Generated Thumbnails");
     if (!Storage::CreateDir(path.data(), true)) {
