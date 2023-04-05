@@ -98,16 +98,11 @@ u32 Track::getCourseId() const {
     }
 }
 
-void Track::parse(std::string_view key, std::string_view value) {
+std::expected<void, const char *> Track::parse(std::string_view key, std::string_view value) {
     if (key == "trackname") {
         name = value;
     } else if (key == "slot") {
-        auto res = u32FromSv(value);
-        if (!res) {
-            return;
-        }
-
-        slotId = *res;
+        slotId = TRY(u32FromSv(value));
     } else if (key == "type") {
         if (value == "1") {
             isArena = false;
@@ -115,6 +110,8 @@ void Track::parse(std::string_view key, std::string_view value) {
             isArena = true;
         }
     }
+
+    return {};
 }
 
 std::expected<std::vector<Sha1>, const char *> parseTracks(std::string_view tracks) {
@@ -125,14 +122,9 @@ std::expected<std::vector<Sha1>, const char *> parseTracks(std::string_view trac
     for (char c : tracks) {
         if (c == ',' || position == sizeof(buf)) {
             buf[position] = '\0';
-
             std::string_view sv(buf, position);
-            auto trackId = sha1FromSv(sv);
-            if (!trackId) {
-                return std::unexpected(trackId.error());
-            }
 
-            parsedTrackIds.push_back(*trackId);
+            parsedTrackIds.push_back(TRY(sha1FromSv(sv)));
             position = 0;
         } else if (c != ' ') {
             buf[position] = c;
@@ -142,21 +134,21 @@ std::expected<std::vector<Sha1>, const char *> parseTracks(std::string_view trac
 
     if (position != 0) {
         std::string_view sv(buf, position);
-        auto trackId = sha1FromSv(buf);
-        if (!trackId) {
-            return std::unexpected(trackId.error());
-        }
-
-        parsedTrackIds.push_back(*trackId);
+        parsedTrackIds.push_back(TRY(sha1FromSv(buf)));
     }
 
     return parsedTrackIds;
 }
 
-TrackPack::TrackPack(std::string_view manifestView) {
+std::expected<TrackPack, const char *> TrackPack::New(std::string_view manifestView) {
+    TrackPack self;
+    self.parseNew(manifestView);
+    return self;
+}
+
+std::expected<void, const char *> TrackPack::parseNew(std::string_view manifestView) {
     IniReader iniReader(manifestView);
 
-    m_parseError = nullptr;
     bool prettyNameFound = false;
     bool descriptionFound = false;
     bool authorNamesFound = false;
@@ -174,41 +166,18 @@ TrackPack::TrackPack(std::string_view manifestView) {
                 m_authorNames = value;
                 authorNamesFound = true;
             } else if (key == "race") {
-                auto res = parseTracks(value);
-                if (!res) {
-                    m_parseError = res.error();
-                    return;
-                }
-
-                m_raceTracks = *res;
+                m_raceTracks = TRY(parseTracks(value));
             } else if (key == "balloon") {
-                auto res = parseTracks(value);
-                if (!res) {
-                    m_parseError = res.error();
-                    return;
-                }
-
-                m_balloonTracks = *res;
+                m_balloonTracks = TRY(parseTracks(value));
             } else if (key == "coin") {
-                auto res = parseTracks(value);
-                if (!res) {
-                    m_parseError = res.error();
-                    return;
-                }
-
-                m_coinTracks = *res;
+                m_coinTracks = TRY(parseTracks(value));
             } else {
-                m_parseError = "Unknown key in track pack manifest";
+                return std::unexpected("Unknown key in track pack manifest");
             }
         } else {
-            auto sha = sha1FromSv(section);
-            if (!sha) {
-                m_parseError = sha.error();
-                return;
-            }
-
-            if (m_unreleasedTracks.size() == 0 || m_unreleasedTracks.back().sha1 != *sha) {
-                m_unreleasedTracks.emplace_back(*sha);
+            auto sha1 = TRY(sha1FromSv(section));
+            if (m_unreleasedTracks.size() == 0 || m_unreleasedTracks.back().sha1 != sha1) {
+                m_unreleasedTracks.emplace_back(sha1);
             }
 
             auto &track = m_unreleasedTracks.back();
@@ -217,10 +186,12 @@ TrackPack::TrackPack(std::string_view manifestView) {
     }
 
     if (!prettyNameFound || !descriptionFound || !authorNamesFound) {
-        m_parseError = "Missing required key in track pack manifest";
+        return std::unexpected("Missing required key in track pack manifest");
     } else if (m_raceTracks.empty() && m_balloonTracks.empty() && m_coinTracks.empty()) {
-        m_parseError = "No tracks found in track pack manifest";
+        return std::unexpected("No tracks found in track pack manifest");
     }
+
+    return {};
 }
 
 const Track *TrackPack::getUnreleasedTrack(Sha1 sha1) const {
@@ -246,7 +217,6 @@ const std::vector<Sha1> &TrackPack::getTrackList(TrackGameMode mode) const {
 }
 
 TrackGameMode TrackPack::getSupportedModes() const {
-    assert(m_parseError == nullptr);
     TrackGameMode modes[] = {
             TrackGameMode::Race,
             TrackGameMode::Coin,
@@ -264,13 +234,10 @@ TrackGameMode TrackPack::getSupportedModes() const {
 }
 
 u16 TrackPack::getTrackCount(TrackGameMode mode) const {
-    assert(m_parseError == nullptr);
     return getTrackList(mode).size();
 }
 
 std::optional<Sha1> TrackPack::getNthTrack(u32 n, TrackGameMode mode) const {
-    assert(m_parseError == nullptr);
-
     auto &trackList = getTrackList(mode);
     if (trackList.size() <= n) {
         return std::nullopt;
@@ -279,29 +246,28 @@ std::optional<Sha1> TrackPack::getNthTrack(u32 n, TrackGameMode mode) const {
     }
 }
 
-const char *TrackPack::getParseError() const {
-    return m_parseError;
-}
-
 const wchar_t *TrackPack::getPrettyName() const {
-    assert(m_parseError == nullptr);
     return m_prettyName.c_str();
 }
 
 TrackPackManager::TrackPackManager() {
-    loadTrackPacks();
+    auto res = loadTrackPacks();
+    if (!res) {
+        panic("Fatal error parsing track packs: %s", res.error());
+    }
+
     loadTrackDb();
 }
 
-void TrackPackManager::loadTrackPacks() {
+std::expected<void, const char *> TrackPackManager::loadTrackPacks() {
     SP_LOG("Loading track packs");
 
-    m_packs.emplace_back(vanillaManifest);
+    m_packs.push_back(std::move(TRY(TrackPack::New(vanillaManifest))));
     auto dir = Storage::OpenDir(TRACK_PACK_DIRECTORY);
     if (!dir) {
         SP_LOG("Creating track pack directory");
         Storage::CreateDir(TRACK_PACK_DIRECTORY, true);
-        return;
+        return {};
     }
 
     std::vector<char> manifestBuf;
@@ -321,16 +287,16 @@ void TrackPackManager::loadTrackPacks() {
 
         manifestBuf.resize(*len);
 
-        auto pack = TrackPack(manifestBuf);
-        auto parseError = pack.getParseError();
-
-        if (parseError != nullptr) {
-            SP_LOG("Failed to read track pack manifest: %s", parseError);
+        auto res = TrackPack::New(manifestBuf);
+        if (!res.has_value()) {
+            SP_LOG("Failed to read track pack manifest: %s", res.error());
             continue;
         }
 
-        m_packs.push_back(std::move(pack));
+        m_packs.push_back(std::move(*res));
     }
+
+    return {};
 }
 
 void TrackPackManager::loadTrackDb() {

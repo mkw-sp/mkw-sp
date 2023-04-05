@@ -29,7 +29,7 @@ class Track {
 public:
     Track(Sha1 sha1) : sha1(sha1){};
 
-    void parse(std::string_view key, std::string_view value);
+    std::expected<void, const char *> parse(std::string_view key, std::string_view value);
     u32 getCourseId() const;
 
     WFixedString<64> name = {};
@@ -44,20 +44,20 @@ private:
 
 class TrackPack {
 public:
-    TrackPack(std::string_view manifest);
+    static std::expected<TrackPack, const char *> New(std::string_view manifest);
 
     TrackGameMode getSupportedModes() const;
     u16 getTrackCount(TrackGameMode mode) const;
     std::optional<Sha1> getNthTrack(u32 n, TrackGameMode mode) const;
 
-    const char *getParseError() const;
     const wchar_t *getPrettyName() const;
     const Track *getUnreleasedTrack(Sha1 id) const;
 
 private:
-    const std::vector<Sha1> &getTrackList(TrackGameMode mode) const;
+    TrackPack() = default;
+    std::expected<void, const char *> parseNew(std::string_view manifest);
 
-    const char *m_parseError;
+    const std::vector<Sha1> &getTrackList(TrackGameMode mode) const;
 
     std::vector<Sha1> m_raceTracks;
     std::vector<Sha1> m_coinTracks;
@@ -74,9 +74,6 @@ public:
     TrackPackManager();
     TrackPackManager(const TrackPackManager &) = delete;
 
-    void loadTrackPacks();
-    void loadTrackDb();
-
     size_t getPackCount() const;
     const Track &getTrack(Sha1 id) const;
 
@@ -88,6 +85,9 @@ public:
     static void DestroyInstance();
 
 private:
+    std::expected<void, const char *> loadTrackPacks();
+    void loadTrackDb();
+
     std::vector<Track> m_trackDb;
     std::vector<TrackPack> m_packs;
 
