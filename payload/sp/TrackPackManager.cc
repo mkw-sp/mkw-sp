@@ -103,6 +103,8 @@ std::expected<void, const char *> Track::parse(std::string_view key, std::string
         name = value;
     } else if (key == "slot") {
         slotId = TRY(u32FromSv(value));
+    } else if (key == "mslot") {
+        musicId = TRY(u32FromSv(value));
     } else if (key == "type") {
         if (value == "1") {
             isArena = false;
@@ -441,6 +443,10 @@ u32 TrackPackInfo::getSelectedCourse() const {
     return m_selectedCourseId;
 }
 
+u32 TrackPackInfo::getSelectedMusic() const {
+    return m_selectedMusicId;
+}
+
 Sha1 TrackPackInfo::getSelectedSha1() const {
     return m_selectedSha1;
 }
@@ -451,6 +457,7 @@ void TrackPackInfo::selectCourse(Sha1 sha) {
 
     s_name = track.name;
     m_selectedSha1 = track.sha1;
+    m_selectedMusicId = track.musicId;
     m_selectedCourseId = track.getCourseId();
 
     auto &menuScenario = System::RaceConfig::Instance()->menuScenario();

@@ -6,6 +6,7 @@ language_lookup = ["nl", "fr_ntsc", "fr_pal", "de", "it", "jp", "kr", "pt_ntsc",
 
 class Track:
     cannonical_name: str
+    music_slot: str
     authors: str
     prefix: str
     ctype: str
@@ -19,8 +20,9 @@ class Track:
     @staticmethod
     def from_csv(line: list[str]) -> "Track":
         self = Track()
-        sha1, id, _, clan, ctype, slot, _, _, _, prefix, name, _, _, authors, _, _ = line
+        sha1, id, _, clan, ctype, slot, music_slot, _, _, prefix, name, _, _, authors, _, _ = line
 
+        self.music_slot = music_slot
         self.cannonical_name = name
         self.translations = []
         self.authors = authors
@@ -40,6 +42,7 @@ class Track:
             trackname = self.cannonical_name
 
         config.add_section(self.sha1)
+        config.set(self.sha1, "mslot", self.music_slot)
         config.set(self.sha1, "trackname", trackname)
         config.set(self.sha1, "author", self.authors)
         config.set(self.sha1, "type", self.ctype)

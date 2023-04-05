@@ -9,6 +9,8 @@ public:
     u32 state() const;
     void transition(u32 state);
 
+    REPLACE u32 getBGMSoundId();
+
     static RaceSoundManager *Instance();
 
 private:
