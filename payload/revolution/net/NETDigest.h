@@ -2,6 +2,8 @@
 
 #include <Common.h>
 
+#define NET_SHA1_DIGEST_SIZE 0x14
+
 u32 NETCalcCRC32(const void *datap, u32 size);
 
 typedef struct {

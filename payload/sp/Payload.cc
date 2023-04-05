@@ -119,13 +119,14 @@ static void Init() {
         Console::Print(" failed!\n");
         Console::Print("Please make sure that an SD or USB device is inserted.\n");
         Console::Print("Trying again in a loop...");
+        System::SystemManager::ResetDolphinSpeedLimit();
         u32 i;
         for (i = 0; i < 60 && !Storage::Init(); i++) {
             OSSleepMilliseconds(500);
         }
         if (i == 60) {
             Console::Print(" failed!\n");
-            Console::Print("Returning to loader...");
+            Console::Print("Returning to the loader...");
             ReturnToLoader();
         }
     }
@@ -161,7 +162,16 @@ static void Init() {
 
     Console::Print("Loading StaticR.rel...");
     bool relWasLoaded = Rel::Load();
-    assert(relWasLoaded);
+    if (!relWasLoaded) {
+        Console::Print(" failed!\n");
+        Console::Print(
+                "Please ensure that the file 'StaticR.rel' exists on the\n"
+                "game disk and that it is not modified in any capacity!\n");
+        Console::Print("Returning to the loader...");
+        System::SystemManager::ResetDolphinSpeedLimit();
+        OSSleepMilliseconds(10000);
+        ReturnToLoader();
+    }
     Console::Print(" done.\n");
 
     VIInit();
