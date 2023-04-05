@@ -12,7 +12,6 @@
 
 #include <charconv>
 #include <cstring>
-#include <expected>
 
 #define TRACK_PACK_DIRECTORY L"Track Packs"
 #define TRACK_DB L"TrackDB.ini"
@@ -89,25 +88,6 @@ std::expected<u32, const char *> u32FromSv(std::string_view sv) {
     } else {
         return std::unexpected("Failed to parse integer!");
     }
-}
-
-std::expected<Sha1, const char *> sha1FromSv(std::string_view sv) {
-    if (sv.size() != (0x14 * 2)) {
-        return std::unexpected("Invalid SHA1 length!");
-    }
-
-    Sha1 sha;
-    char tByte[3];
-
-    for (u8 i = 0; i < sv.size(); i += 2) {
-        tByte[0] = sv[i];
-        tByte[1] = sv[i + 1];
-        tByte[2] = '\0';
-
-        sha[i / 2] = strtol(tByte, nullptr, 16);
-    }
-
-    return sha;
 }
 
 u32 Track::getCourseId() const {
