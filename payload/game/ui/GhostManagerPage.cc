@@ -30,12 +30,12 @@ void GhostManagerPage::SPList::populate() {
 
         if (header->courseId != courseId) {
             continue;
-        };
+        }
 
         auto sha1 = footer->courseSHA1();
         if (!sha1.has_value()) {
             continue;
-        };
+        }
 
         if (selectedSha1 != *sha1) {
             continue;
