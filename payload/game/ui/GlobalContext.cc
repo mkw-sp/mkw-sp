@@ -1,5 +1,7 @@
 #include "GlobalContext.hh"
 
+#include "CourseSelectPage.hh"
+
 #include "game/system/SaveManager.hh"
 
 namespace UI {
@@ -22,6 +24,8 @@ void GlobalContext::onChangeLicense() {
         auto setting = saveManager->getSetting<SP::ClientSettings::Setting::DriftMode>();
         m_driftModes[i] = static_cast<u32>(setting) + 1;
     }
+
+    CourseSelectPage::s_lastSelected = 0;
 }
 
 } // namespace UI

@@ -1,7 +1,8 @@
 #include "PackSelectPage.hh"
 
-#include <game/system/RaceConfig.hh>
+#include "CourseSelectPage.hh"
 
+#include <game/system/RaceConfig.hh>
 #include <sp/ThumbnailManager.hh>
 
 #include <cstdio>
@@ -93,6 +94,11 @@ void PackSelectPage::onButtonFront(PushButton *button, u32 /* localPlayerId */) 
         assert(SP::ThumbnailManager::Next()); // Setup for first thumbnail
         changeSection(SectionId::Thumbnails, Anim::Next, button->getDelay());
     } else {
+        auto buttonIndex = m_sheetIndex * m_buttons.size() + button->m_index;
+        if (!s_lastPackFront.has_value() || *s_lastPackFront != buttonIndex) {
+            CourseSelectPage::s_lastSelected = 0;
+        }
+
         m_replacement = PageId::SingleTop;
         startReplace(Anim::Next, button->getDelay());
     }
@@ -176,5 +182,7 @@ void PackSelectPage::refresh() {
     info.intVals[1] = m_sheetCount;
     m_sheetLabel.setMessageAll(2009, &info);
 }
+
+std::optional<u32> PackSelectPage::s_lastPackFront = std::nullopt;
 
 } // namespace UI

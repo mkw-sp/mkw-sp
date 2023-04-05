@@ -97,20 +97,7 @@ void CourseSelectPage::onActivate() {
 
     m_replacement = PageId::None;
 
-    auto &packManager = SP::TrackPackManager::Instance();
-    auto &pack = packManager.getSelectedTrackPack();
-
-    m_sheetIndex = 0;
-    m_lastSelected = 0;
-    m_sheetCount = (pack.getTrackCount(getTrackGameMode()) + 9 - 1) / 9;
-    m_scrollBar.reconfigure(m_sheetCount, m_sheetIndex, m_sheetCount >= 4 ? 0x1 : 0x0);
-
-    m_sheetSelect.setVisible(m_sheetCount > 1);
-    m_sheetSelect.setPlayerFlags(m_sheetCount <= 1 ? 0x0 : 0x1);
-
-    refresh();
-
-    m_buttons[0].selectDefault(0);
+    filter();
 }
 
 void CourseSelectPage::onDeactivate() {
@@ -171,6 +158,28 @@ u32 CourseSelectPage::lastSelected() const {
     return m_lastSelected;
 }
 
+void CourseSelectPage::filter() {
+    auto &packManager = SP::TrackPackManager::Instance();
+    auto &pack = packManager.getSelectedTrackPack();
+
+    m_sheetCount = (pack.getTrackCount(getTrackGameMode()) + 9 - 1) / 9;
+    if (s_lastSelected != 0) {
+        m_sheetIndex = s_lastSelected / m_buttons.size();
+        m_lastSelected = s_lastSelected % m_buttons.size();
+    } else {
+        m_sheetIndex = 0;
+        m_lastSelected = 0;
+    }
+    m_scrollBar.reconfigure(m_sheetCount, m_sheetIndex, m_sheetCount >= 4 ? 0x1 : 0x0);
+
+    m_sheetSelect.setVisible(m_sheetCount > 1);
+    m_sheetSelect.setPlayerFlags(m_sheetCount <= 1 ? 0x0 : 0x1);
+
+    refresh();
+
+    m_buttons[m_lastSelected].selectDefault(0);
+}
+
 void CourseSelectPage::onBack(u32 /* localPlayerId */) {
     onBackCommon(0.0f);
 }
@@ -181,6 +190,10 @@ void CourseSelectPage::onButtonFront(PushButton *button, u32 /* localPlayerId */
     auto sectionId = section->id();
 
     auto databaseId = *m_databaseIds[button->m_index];
+    auto buttonIndex = m_sheetIndex * m_buttons.size() + button->m_index;
+
+    s_lastSelected = buttonIndex;
+
     if (Section::HasRoomClient(sectionId)) {
         // TODO(GnomedDev): Fix online voting.
         // auto *votingBackPage = section->page<PageId::VotingBack>();
@@ -506,5 +519,7 @@ int CourseSelectPage::WriteUncompressedThumbnail(JDEC *jdec, void *bitmap, JRECT
 
     return context->page->m_request == Request::None;
 }
+
+u32 CourseSelectPage::s_lastSelected = 0;
 
 } // namespace UI

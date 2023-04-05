@@ -1,10 +1,12 @@
 on: 
   push:
     paths:
+      - 'protobuf/**'
       - 'tools/**'
       - '.github/workflows/build_tools.yml'
   pull_request:
     paths:
+      - 'protobuf/**'
       - 'tools/**'
       - '.github/workflows/build_tools.yml'
 

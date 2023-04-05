@@ -34,7 +34,7 @@ static inline u16 swap16(u16 v) {
 }
 #endif
 
-#ifdef PLATFORM_LE
+#ifdef PLATFORM_EMULATOR
 #include <string.h>
 
 // Respects strong aliasing, will never double evaluate

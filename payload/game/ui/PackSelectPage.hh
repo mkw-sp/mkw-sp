@@ -21,6 +21,8 @@ public:
     void onInit() override;
     void onActivate() override;
 
+    static std::optional<u32> s_lastPackFront;
+
 private:
     void onBack(u32 localPlayerId);
     void onButtonFront(PushButton *button, u32 localPlayerId);

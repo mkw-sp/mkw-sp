@@ -2,6 +2,7 @@
 
 #include "game/system/RaceConfig.hh"
 #include "game/system/SaveManager.hh"
+#include "game/ui/CourseSelectPage.hh"
 #include "game/ui/ModelPage.hh"
 #include "game/ui/SectionManager.hh"
 #include "game/ui/SettingsPage.hh"
@@ -130,9 +131,12 @@ void MultiTopPage::onVSButtonFront(PushButton *button, u32 /* localPlayerId */) 
     }
 
     Section *section = SectionManager::Instance()->currentSection();
-    auto *page = section->page(PageId::CharacterSelect)->downcast<MenuPage>();
-    assert(page);
-    page->m_prevId = PageId::MultiTop;
+    auto *courseSelectPage = section->page<PageId::CourseSelect>();
+    courseSelectPage->filter();
+
+    auto *characterSelectPage = section->page(PageId::CharacterSelect)->downcast<MenuPage>();
+    assert(characterSelectPage);
+    characterSelectPage->m_prevId = PageId::MultiTop;
 
     m_replacement = PageId::CharacterSelect;
     f32 delay = button->getDelay();
@@ -170,11 +174,14 @@ void MultiTopPage::onBTButtonFront(PushButton *button, u32 /* localPlayerId */) 
     }
 
     Section *section = SectionManager::Instance()->currentSection();
-    auto *page = section->page<PageId::BattleModeSelect>();
+    auto *courseSelectPage = section->page<PageId::CourseSelect>();
+    courseSelectPage->filter();
 
-    page->m_prevId = PageId::MultiTop;
+    auto *battleModeSelectPage = section->page<PageId::BattleModeSelect>();
+    assert(battleModeSelectPage);
+    battleModeSelectPage->m_prevId = PageId::MultiTop;
+
     m_replacement = PageId::BattleModeSelect;
-
     f32 delay = button->getDelay();
     startReplace(Anim::Next, delay);
 }

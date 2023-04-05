@@ -27,8 +27,7 @@ template <typename TFunctor>
 static auto MakeDefer(TFunctor &&F) {
     return Defer<TFunctor>(std::move(F));
 }
-#define CONCAT_IMPL(x, y) x##y
-#define MACRO_CONCAT(x, y) CONCAT_IMPL(x, y)
+
 #define SP_DEFER(f) const auto MACRO_CONCAT(__tmp, __COUNTER__) = MakeDefer([&]() { f; })
 
 static void NetStorageClient_Test() {
@@ -103,7 +102,7 @@ static void NetStorageClient_Test() {
     std::vector<u8> decoded(decodedSize);
     Yaz_decode(encoded.data(), decoded.data(), encodedSize, decodedSize);
 
-    // Expected: U¬8-
+    // Expected: Uï¿½8-
     SP_LOG("BUF: %c%c%c%c", (char)decoded[0], (char)decoded[1], (char)decoded[2], (char)decoded[3]);
 
     {

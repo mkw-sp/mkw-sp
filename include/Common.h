@@ -7,10 +7,6 @@
 #include <stddef.h>
 #include <stdint.h>
 
-#if defined(_WIN32) || defined(__APPLE__) || defined(__linux__)
-#define PLATFORM_EMULATOR
-#endif
-
 #define SP_DEBUG_STACK_RANDOMIZE (1 << 0)
 #define SP_DEBUG_IOS_OPENS (1 << 1)
 #define SP_DEBUG_LEVEL 0
@@ -23,12 +19,6 @@ enum {
 };
 
 #define static_assert_32bit(s) static_assert(kPlatformCurrent != kPlatform32 || (s))
-
-#ifdef PLATFORM_EMULATOR
-#define PLATFORM_LE
-#else
-#define PLATFORM_BE
-#endif
 
 #ifdef __cplusplus
 #define restrict __restrict
@@ -66,9 +56,6 @@ typedef double f64;
         _a > _b ? _a : _b; \
     })
 
-#define CONTAINER_OF(ptr, type, member) \
-    ((type *)((char *)(1 ? (ptr) : &((type *)0)->member) - offsetof(type, member)))
-
 //
 // WARNING: BUILD_BUG_ON_ZERO / MUST_BE_ARRAY returns 4 on Windows.
 //
@@ -84,12 +71,6 @@ typedef double f64;
 
 #define CONCAT_IMPL(x, y) x##y
 #define MACRO_CONCAT(x, y) CONCAT_IMPL(x, y)
-
-#ifdef _MSC_VER
-#define PRAGMA_SECTION(s)
-#else
-#define PRAGMA_SECTION(s) __attribute__((section(s)))
-#endif
 
 #define PRAGMA(s) _Pragma(s)
 
@@ -130,17 +111,6 @@ extern VersionInfo versionInfo;
         RVL_OS_NEEDS_IMPORT; \
         OSReport("[" __FILE_NAME__ ":" SP_TOSTRING2(__LINE__) "] " m "\n", ##__VA_ARGS__); \
     } while (0)
-
-static size_t sp_wcslen(const wchar_t *w) {
-    size_t result = 0;
-    while (*w++) {
-        ++result;
-    }
-    return result;
-}
-
-#define VIRTUAL_TO_PHYSICAL(ptr) ((uintptr_t)(ptr)&0x7fffffff)
-#define PHYSICAL_TO_VIRTUAL(addr) ((void *)((addr) | 0x80000000))
 
 #define ROUND_UP(n, a) (((uintptr_t)(n) + (a)-1) & ~((a)-1))
 #define ROUND_DOWN(n, a) ((uintptr_t)(n) & ~(a - 1))

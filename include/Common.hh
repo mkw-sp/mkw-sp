@@ -7,6 +7,8 @@ extern "C" {
 }
 
 #include <array>
+#include <type_traits>
+#include <utility>
 
 template <typename T>
 T AlignDown(T val, size_t alignment) {
@@ -16,16 +18,6 @@ T AlignDown(T val, size_t alignment) {
 template <typename T>
 T AlignUp(T val, size_t alignment) {
     return AlignDown<T>(val + alignment - 1, alignment);
-}
-
-template <typename T>
-uintptr_t VirtualToPhysical(T *ptr) {
-    return reinterpret_cast<uintptr_t>(ptr) & 0x7fffffff;
-}
-
-template <typename T>
-T *PhysicalToVirtual(uintptr_t addr) {
-    return reinterpret_cast<T *>(addr | 0x80000000);
 }
 
 static inline std::strong_ordering operator<=>(const VersionInfo &lhs, const VersionInfo &rhs) {
@@ -54,3 +46,33 @@ inline Mtx34 &Decay(std::array<float, 12> &arr) {
 inline const Mtx34 &Decay(const std::array<float, 12> &arr) {
     return reinterpret_cast<const Mtx34 &>(*arr.data());
 }
+
+// clang-format off
+//
+// ```cpp
+//    std::expected<int, Err> GetInt();
+//    std::expected<int, Err> Foo() {
+//       return TRY(GetInt()) + 5;
+//    }
+// ```
+//
+// https://godbolt.org/z/nT4jrjoE8
+//
+// Trick to avoid copies taken from SerenityOS https://github.com/SerenityOS/serenity/blob/master/AK/Try.h
+// (Thanks to @InusualZ for pointing this out)
+//
+#if defined(__clang__) || defined(__GNUC__) || defined(__APPLE__)
+#define HAS_RUST_TRY
+#define TRY(...)                                                               \
+  ({                                                                           \
+    auto&& y = (__VA_ARGS__);                                                  \
+    static_assert(!std::is_lvalue_reference_v<decltype(std::move(*y))>);       \
+    if (!y) [[unlikely]] {                                                     \
+      return std::unexpected(y.error());                                       \
+    }                                                                          \
+    std::move(*y);                                                             \
+  })
+#else
+#define TRY(...) static_assert(false, "Compiler does not support TRY macro")
+#endif
+// clang-format on

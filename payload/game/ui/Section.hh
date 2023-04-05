@@ -56,7 +56,8 @@ public:
     }
     bool isPageFocused(const Page *page) const;
     bool isPageActive(PageId pageId) const;
-    Vec2<f32> locationAdjustScale() const;
+    Vec2<f32> scaleFor() const;
+    f32 locationAdjustScaleDivider() const;
     void loadTHP();
 
     void logDebuggingInfo(bool verbose);
@@ -91,7 +92,9 @@ private:
     u32 m_activePageCount;
     u8 _380[0x390 - 0x380];
     nw4r::lyt::DrawInfo m_drawInfo;
-    u8 _3e4[0x408 - 0x3e4];
+    u8 _3e4[0x3f8 - 0x3e4];
+    Vec2<f32> m_scaleFor;
+    u8 _400[0x408 - 0x400];
 };
 static_assert(sizeof(Section) == 0x408);
 

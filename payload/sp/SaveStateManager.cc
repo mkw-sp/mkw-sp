@@ -33,18 +33,20 @@ auto SaveStateManager::GetKartState() {
     auto kartObject = kartObjectManager->object(0);
     auto physics = kartObject->getVehiclePhysics();
 
-    return std::make_tuple(kartObject->m_accessor, physics);
+    auto item = s_itemDirector->m_kartItems;
+
+    return std::make_tuple(kartObject->m_accessor, physics, item);
 }
 
 void SaveStateManager::save() {
-    auto [accessor, physics] = GetKartState();
-    m_kartSaveState.emplace(accessor, physics);
+    auto [accessor, physics, item] = GetKartState();
+    m_kartSaveState.emplace(accessor, physics, item);
 }
 
 void SaveStateManager::reload() {
     if (m_kartSaveState.has_value()) {
-        auto [accessor, physics] = GetKartState();
-        (*m_kartSaveState).reload(accessor, physics);
+        auto [accessor, physics, item] = GetKartState();
+        (*m_kartSaveState).reload(accessor, physics, item);
     } else {
         SP_LOG("SaveStateManager: Reload requested without save!");
     }

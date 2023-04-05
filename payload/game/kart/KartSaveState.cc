@@ -2,11 +2,12 @@
 
 namespace Kart {
 
-KartSaveState::KartSaveState(KartAccessor accessor, VehiclePhysics *physics) {
-    save(accessor, physics);
+KartSaveState::KartSaveState(KartAccessor accessor, VehiclePhysics *physics, KartItem *item) {
+    save(accessor, physics, item);
 }
 
-void KartSaveState::save(KartAccessor accessor, VehiclePhysics *physics) {
+void KartSaveState::save(KartAccessor accessor, VehiclePhysics *physics, KartItem *item) {
+    m_item = *item;
     m_physics = *physics;
     m_5c = *accessor.unk5c;
     m_sub = *accessor.sub;
@@ -27,7 +28,8 @@ void KartSaveState::save(KartAccessor accessor, VehiclePhysics *physics) {
     }
 }
 
-void KartSaveState::reload(KartAccessor accessor, VehiclePhysics *physics) {
+void KartSaveState::reload(KartAccessor accessor, VehiclePhysics *physics, KartItem *item) {
+    *item = m_item;
     *physics = m_physics;
     *accessor.sub = m_sub;
     *accessor.unk5c = m_5c;
