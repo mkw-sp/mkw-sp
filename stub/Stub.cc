@@ -96,7 +96,7 @@ static std::optional<LoaderEntryFunc> Run() {
 
     Archive *archive;
     Console::Print("Escalating privileges...");
-    if (!IOS::EscalatePrivileges()) {
+    if (!IOS::EscalatePrivileges(false)) {
         Console::Print(" failed!\n");
         return {};
     }

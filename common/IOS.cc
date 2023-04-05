@@ -201,7 +201,7 @@ static void WriteMessage(u32 index, u32 message) {
 // return.
 // A much more stable approach taken here: Overwrite the PC of the idle thread, which should always
 // have its context start at 0xFFFE0000 in memory (across IOS versions).
-bool EscalatePrivileges() {
+bool EscalatePrivileges(bool again) {
     // Dolphin defaults to UID 0 for standalone binaries
     if (IsDolphin()) {
         return true;
@@ -216,14 +216,18 @@ bool EscalatePrivileges() {
     }
 
     u32 *mem1 = reinterpret_cast<u32 *>(0x80000000);
-    mem1[0] = 0x4903468D; // ldr r1, =0x10100000; mov sp, r1;
-    mem1[1] = 0x49034788; // ldr r1, =entrypoint; blx r1;
+    if (again) {
+        // Enter Thumb state
+        *mem1++ = 0xFAFFFFFF; // blx 0x4
+    }
+    *mem1++ = 0x4903468D; // ldr r1, =0x10100000; mov sp, r1;
+    *mem1++ = 0x49034788; // ldr r1, =entrypoint; blx r1;
     // Overwrite reserved handler to loop infinitely
-    mem1[2] = 0x49036209; // ldr r1, =0xFFFF0014; str r1, [r1, #0x20];
-    mem1[3] = 0x47080000; // bx r1
-    mem1[4] = 0x10100000; // temporary stack
-    mem1[5] = VirtualToPhysical(armCode);
-    mem1[6] = 0xFFFF0014; // reserved handler
+    *mem1++ = 0x49036209; // ldr r1, =0xFFFF0014; str r1, [r1, #0x20];
+    *mem1++ = 0x47080000; // bx r1
+    *mem1++ = 0x10100000; // temporary stack
+    *mem1++ = VirtualToPhysical(armCode);
+    *mem1++ = 0xFFFF0014; // reserved handler
 
     alignas(0x20) Resource::IoctlvPair pairs[4];
     pairs[0].data = nullptr;
@@ -232,7 +236,7 @@ bool EscalatePrivileges() {
     pairs[1].size = 0;
     // Unused vector utilized for cache safety
     pairs[2].data = reinterpret_cast<void *>(0x80000000);
-    pairs[2].size = 0x20;
+    pairs[2].size = 0x40;
 
     // IOS_Ioctlv should never return an error if the exploit succeeded
     if (sha.ioctlv(0, 1, 2, pairs) < 0) {

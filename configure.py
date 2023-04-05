@@ -1113,7 +1113,6 @@ code_in_files = {
         os.path.join('common', 'Clock.cc'),
         os.path.join('common', 'Console.cc'),
         os.path.join('common', 'DCache.cc'),
-        os.path.join('common', 'ES.cc'),
         os.path.join('common', 'Font.c'),
         os.path.join('common', 'Font.cc'),
         os.path.join('common', 'FS.cc'),
