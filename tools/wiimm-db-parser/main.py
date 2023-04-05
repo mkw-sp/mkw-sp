@@ -44,6 +44,7 @@ class Track:
         config.set(self.sha1, "author", self.authors)
         config.set(self.sha1, "type", self.ctype)
         config.set(self.sha1, "slot", self.slot)
+        config.set(self.sha1, "id", self.id)
 
         for i, trans in enumerate(self.translations):
             config.set(self.sha1, language_lookup[i], trans)
