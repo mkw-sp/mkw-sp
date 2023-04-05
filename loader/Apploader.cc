@@ -1,8 +1,12 @@
 #include "Apploader.hh"
 
+#include "loader/Dol.hh"
+
 #include <common/Clock.hh>
 #include <common/Console.hh>
 #include <common/ICache.hh>
+
+#include <cstring>
 
 namespace Apploader {
 
@@ -133,6 +137,11 @@ std::optional<GameEntryFunc> LoadAndRun(IOS::DI &di) {
     header.entry(&init, &main, &close);
 
     init(report);
+
+    std::optional<u32> dolSize = Dol::GetSize();
+    if (dolSize.has_value()) {
+        memset(const_cast<void *>(Dol::GetStartAddress()), 0, *dolSize);
+    }
 
     void *dst;
     u32 size;

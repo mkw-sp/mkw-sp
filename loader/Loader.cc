@@ -1,5 +1,7 @@
 #include "Apploader.hh"
 
+#include "loader/Dol.hh"
+
 #include <common/Clock.hh>
 #include <common/Console.hh>
 #include <common/DCache.hh>
@@ -186,6 +188,18 @@ std::optional<Apploader::GameEntryFunc> Run() {
             di.reset();
             Console::Print(" done.\n");
         }
+    }
+
+    std::optional<bool> isDolClean = Dol::IsClean();
+    if (!isDolClean.has_value()) {
+        Console::Print("Unsupported game region detected!");
+        return {};
+    }
+    if (!*isDolClean) {
+        Console::Print(
+                "Please ensure that the file 'main.dol' is not modified\n"
+                "in any capacity!");
+        return {};
     }
 
     void *payloadDst;
