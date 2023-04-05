@@ -8,6 +8,8 @@ extern "C" {
 #include "sp/storage/UsbStorage.h"
 }
 
+#include <common/Console.hh>
+
 #include <array>
 #include <cstring>
 
@@ -45,24 +47,31 @@ FATStorage::FATStorage() {
             continue;
         }
 
-        if (f_mount(&m_fs, L"", 1) != FR_OK) {
+        FRESULT result = f_mount(&m_fs, L"", 1);
+        if (result != FR_OK) {
+            Console::Print("Failed to mount the filesystem");
+            Console::Print(result);
+            Console::Print("\n");
             SP_LOG("Failed to mount the filesystem");
             continue;
         }
 
-        FRESULT result = f_mkdir(L"/mkw-sp");
+        result = f_mkdir(L"/mkw-sp");
         if (result != FR_OK && result != FR_EXIST) {
+            Console::Print("Failed to create or open the /mkw-sp directory\n");
             SP_LOG("Failed to create or open the /mkw-sp directory");
             continue;
         }
 
         if (f_chdir(L"/mkw-sp") != FR_OK) {
+            Console::Print("Failed to change the current directory to /mkw-sp\n");
             SP_LOG("Failed to change the current directory to /mkw-sp");
             continue;
         }
 
         auto dir = openDir(L"/mkw-sp");
         if (!dir) {
+            Console::Print("Failed to open the /mkw-sp directory\n");
             SP_LOG("Failed to open the /mkw-sp directory");
             continue;
         }
@@ -88,6 +97,7 @@ FATStorage::FATStorage() {
         return;
     }
 
+    Console::Print("Failed to find a suitable device\n");
     SP_LOG("Failed to find a suitable device");
 }
 

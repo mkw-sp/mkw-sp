@@ -84,3 +84,7 @@ void Print(u32 val) {
 }
 
 } // namespace Console
+
+extern "C" void Console_Print(const char *s) {
+    Console::Print(s);
+}

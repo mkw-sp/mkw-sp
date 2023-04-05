@@ -10,6 +10,7 @@
 
 #include "Sdi.h"
 
+#include <common/Console.h>
 #include <revolution.h>
 #include <revolution/ios.h>
 
@@ -336,26 +337,31 @@ bool SdiStorage_init(const FATStorage **fatStorage) {
     }
     if (fd < 0) {
         SP_LOG("Failed to open /dev/sdio/slot0: Returned error %i", fd);
+        Console_Print("Failed to open /dev/sdio/slot0\n");
         return false;
     } else {
         SP_LOG("Successfully opened interface: ID: %i", fd);
     }
 
     if (!Sdi_resetCard()) {
+        Console_Print("Failed to reset card\n");
         return false;
     }
 
     u32 status;
     if (!Sdi_getStatus(&status)) {
+        Console_Print("Failed to get card status\n");
         return false;
     }
 
     if (!(status & STATUS_CARD_INSERTED)) {
+        Console_Print("No card inserted\n");
         SP_LOG("No card inserted");
         return false;
     }
 
     if (!(status & STATUS_TYPE_MEMORY)) {
+        Console_Print("Not a memory card\n");
         SP_LOG("Not a memory card");
         return false;
     }
@@ -363,24 +369,29 @@ bool SdiStorage_init(const FATStorage **fatStorage) {
     isSdhc = !!(status & STATUS_TYPE_SDHC);
 
     if (!Sdi_enable4BitBus()) {
+        Console_Print("Failed to enable 4-bit bus\n");
         SP_LOG("Failed to enable 4-bit bus");
         return false;
     }
 
     if (!Sdi_setClock(1)) {
+        Console_Print("Failed to set clock\n");
         return false;
     }
 
     if (!Sdi_select()) {
+        Console_Print("Failed to select\n");
         return false;
     }
 
     if (!Sdi_setCardBlockLength(SECTOR_SIZE)) {
+        Console_Print("Failed to set card block length\n");
         Sdi_deselect();
         return false;
     }
 
     if (!Sdi_enableCard4BitBus()) {
+        Console_Print("Failed to enable card 4-bit bus\n");
         Sdi_deselect();
         return false;
     }
@@ -389,6 +400,7 @@ bool SdiStorage_init(const FATStorage **fatStorage) {
 
     *fatStorage = &sdiStorage;
 
+    Console_Print("Successfully completed SD initialization\n");
     SP_LOG("Successfully completed initialization");
     return true;
 }
