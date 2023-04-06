@@ -123,10 +123,9 @@ std::expected<std::vector<Sha1>, const char *> parseTracks(std::string_view trac
 
     for (char c : tracks) {
         if (c == ',' || position == sizeof(buf)) {
-            buf[position] = '\0';
             std::string_view sv(buf, position);
-
             parsedTrackIds.push_back(TRY(sha1FromSv(sv)));
+
             position = 0;
         } else if (c != ' ') {
             buf[position] = c;
@@ -178,7 +177,7 @@ std::expected<void, const char *> TrackPack::parseNew(std::string_view manifestV
             }
         } else {
             auto sha1 = TRY(sha1FromSv(section));
-            if (m_unreleasedTracks.size() == 0 || m_unreleasedTracks.back().sha1 != sha1) {
+            if (m_unreleasedTracks.empty() || m_unreleasedTracks.back().sha1 != sha1) {
                 m_unreleasedTracks.emplace_back(sha1);
             }
 
@@ -333,7 +332,7 @@ void TrackPackManager::loadTrackDb() {
             continue;
         }
 
-        if (m_trackDb.size() == 0 || m_trackDb.back().sha1 != *sha1) {
+        if (m_trackDb.empty() || m_trackDb.back().sha1 != *sha1) {
             m_trackDb.emplace_back(*sha1);
         }
 
@@ -363,7 +362,7 @@ void TrackPackInfo::setTrackMessage(UI::LayoutUIControl *control) const {
 
 void TrackPackInfo::setTrackMessage(UI::LayoutUIControl *control, const wchar_t *name,
         u32 courseId) const {
-    auto raceConfig = System::RaceConfig::Instance();
+    auto *raceConfig = System::RaceConfig::Instance();
 
     if (isVanilla()) {
         if (raceConfig->menuScenario().gameMode == System::RaceConfig::GameMode::OfflineBT) {
