@@ -118,24 +118,24 @@ std::expected<void, const char *> Track::parse(std::string_view key, std::string
 
 std::expected<std::vector<Sha1>, const char *> parseTracks(std::string_view tracks) {
     std::vector<Sha1> parsedTrackIds;
-    char buf[(sizeof(Sha1) * 2) + 1];
-    size_t position = 0;
+    size_t startPos = 0;
+    size_t startOffset = 0;
 
     for (char c : tracks) {
-        if (c == ',' || position == sizeof(buf)) {
-            std::string_view sv(buf, position);
-            parsedTrackIds.push_back(TRY(sha1FromSv(sv)));
+        if (c == ',' || (startPos + startOffset) == tracks.size()) {
+            auto track = tracks.substr(startPos, startOffset);
+            startPos = startPos + startOffset + 1;
+            startOffset = 0;
 
-            position = 0;
+            parsedTrackIds.push_back(TRY(sha1FromSv(track)));
         } else if (c != ' ') {
-            buf[position] = c;
-            position++;
+            startOffset++;
         }
     }
 
-    if (position != 0) {
-        std::string_view sv(buf, position);
-        parsedTrackIds.push_back(TRY(sha1FromSv(buf)));
+    if (startOffset != 0) {
+        auto track = tracks.substr(startPos, startOffset);
+        parsedTrackIds.push_back(TRY(sha1FromSv(track)));
     }
 
     return parsedTrackIds;
