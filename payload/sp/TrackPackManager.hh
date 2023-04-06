@@ -34,7 +34,7 @@ public:
 
     WFixedString<64> name = {};
     bool isArena = false;
-    u32 musicId = 0;
+    std::optional<u32> musicId = std::nullopt;
     u32 slotId = 0;
     Sha1 sha1;
 
@@ -101,8 +101,8 @@ public:
     void getTrackPath(char *out, u32 outSize, bool splitScreen) const;
 
     Sha1 getSelectedSha1() const;
-    u32 getSelectedMusic() const;
     u32 getSelectedCourse() const;
+    std::optional<u32> getSelectedMusic() const;
 
     void selectCourse(Sha1 id);
     void setTrackMessage(UI::LayoutUIControl *control) const;
@@ -113,7 +113,7 @@ public:
 private:
     // Private as need to be kept in sync
     u32 m_selectedCourseId = 0;
-    u32 m_selectedMusicId = 0;
+    u32 m_selectedMusicId;
     Sha1 m_selectedSha1 = {};
 
     // We don't have enough space to store this otherwise.

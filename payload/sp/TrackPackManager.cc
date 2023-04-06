@@ -443,12 +443,16 @@ u32 TrackPackInfo::getSelectedCourse() const {
     return m_selectedCourseId;
 }
 
-u32 TrackPackInfo::getSelectedMusic() const {
-    return m_selectedMusicId;
-}
-
 Sha1 TrackPackInfo::getSelectedSha1() const {
     return m_selectedSha1;
+}
+
+std::optional<u32> TrackPackInfo::getSelectedMusic() const {
+    if (m_selectedMusicId == std::numeric_limits<u32>::max()) {
+        return std::nullopt;
+    } else {
+        return m_selectedMusicId;
+    }
 }
 
 void TrackPackInfo::selectCourse(Sha1 sha) {
@@ -457,8 +461,8 @@ void TrackPackInfo::selectCourse(Sha1 sha) {
 
     s_name = track.name;
     m_selectedSha1 = track.sha1;
-    m_selectedMusicId = track.musicId;
     m_selectedCourseId = track.getCourseId();
+    m_selectedMusicId = track.musicId.value_or(std::numeric_limits<u32>::max());
 
     auto &menuScenario = System::RaceConfig::Instance()->menuScenario();
     menuScenario.courseId = m_selectedCourseId;
