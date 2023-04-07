@@ -1,6 +1,7 @@
 #include "PackSelectPage.hh"
 
 #include "CourseSelectPage.hh"
+#include "SectionManager.hh"
 
 #include <game/system/RaceConfig.hh>
 #include <sp/ThumbnailManager.hh>
@@ -18,8 +19,11 @@ PageId PackSelectPage::getReplacement() {
 }
 
 void PackSelectPage::onInit() {
+    auto *section = SectionManager::Instance()->currentSection();
+    bool isOnline = section->isPageActive(PageId::OnlineConnectionManager);
+
     auto &trackPackManager = SP::TrackPackManager::Instance();
-    auto packCount = trackPackManager.getPackCount();
+    auto packCount = trackPackManager.getPackCount() - isOnline;
 
     m_sheetCount = (packCount + std::size(m_buttons) - 1) / std::size(m_buttons);
     m_sheetIndex = 0;
@@ -78,21 +82,30 @@ void PackSelectPage::onActivate() {
 }
 
 void PackSelectPage::onBack(u32 /* localPlayerId */) {
+    auto *section = SectionManager::Instance()->currentSection();
     if (SP::ThumbnailManager::IsActive()) {
         m_replacement = PageId::ServicePackTools;
-        startReplace(Anim::Prev, 0.0f);
+    } else if (section->isPageActive(PageId::OnlineConnectionManager)) {
+        m_replacement = PageId::OnlineTop;
     } else {
         changeSection(SectionId::TitleFromMenu, Anim::Prev, 0.0f);
+        return;
     }
+
+    startReplace(Anim::Prev, 0.0f);
 }
 
 void PackSelectPage::onButtonFront(PushButton *button, u32 /* localPlayerId */) {
     auto *raceConfig = System::RaceConfig::Instance();
     raceConfig->m_packInfo.m_selectedTrackPack = m_sheetIndex * m_buttons.size() + button->m_index;
 
+    auto *section = SectionManager::Instance()->currentSection();
     if (SP::ThumbnailManager::IsActive()) {
         assert(SP::ThumbnailManager::Next()); // Setup for first thumbnail
         changeSection(SectionId::Thumbnails, Anim::Next, button->getDelay());
+        return;
+    } else if (section->isPageActive(PageId::OnlineConnectionManager)) {
+        m_replacement = PageId::OnlineModeSelect;
     } else {
         auto buttonIndex = m_sheetIndex * m_buttons.size() + button->m_index;
         if (!s_lastPackFront.has_value() || *s_lastPackFront != buttonIndex) {
@@ -100,8 +113,9 @@ void PackSelectPage::onButtonFront(PushButton *button, u32 /* localPlayerId */) 
         }
 
         m_replacement = PageId::SingleTop;
-        startReplace(Anim::Next, button->getDelay());
     }
+
+    startReplace(Anim::Next, button->getDelay());
 }
 
 void PackSelectPage::onButtonSelect(PushButton *button, u32 /* localPlayerId */) {
@@ -157,9 +171,11 @@ void PackSelectPage::onBackButtonFront(PushButton * /* button */, u32 localPlaye
 
 void PackSelectPage::refresh() {
     auto &trackPackManager = SP::TrackPackManager::Instance();
-    auto packCount = trackPackManager.getPackCount();
+    auto *section = SectionManager::Instance()->currentSection();
+    bool isOnline = section->isPageActive(PageId::OnlineConnectionManager);
 
-    for (size_t i = 0; i < m_buttons.size(); i++) {
+    auto packCount = trackPackManager.getPackCount() - isOnline;
+    for (size_t i = isOnline; i < m_buttons.size(); i++) {
         u32 packIndex = m_sheetIndex * m_buttons.size() + i;
         if (packIndex < packCount) {
             auto &pack = trackPackManager.getNthPack(packIndex);

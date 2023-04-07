@@ -3,6 +3,8 @@
 #include "game/ui/OnlineConnectionManagerPage.hh"
 #include "game/ui/SectionManager.hh"
 
+#include <game/system/RaceConfig.hh>
+
 namespace UI {
 
 void OnlineModeSelectPage::setRatings(u16 vsRating, u16 btRating) {
@@ -54,17 +56,15 @@ void OnlineModeSelectPage::onInit() {
 
 // Replacement needed to hook to up OnlineConnectionManager
 void OnlineModeSelectPage::onActivate() {
-    SP_LOG("OnlineModeSelectPage::onActivate");
+    auto &trackPack = SP::TrackPackManager::Instance().getSelectedTrackPack();
+
+    MessageInfo info;
+    info.strings[0] = trackPack.getPrettyName();
+
+    m_titleText.setMessage(20031, &info);
 
     auto section = SectionManager::Instance()->currentSection();
     auto connectionManager = section->page<PageId::OnlineConnectionManager>();
-
-    if (connectionManager->isCustomTrackpack()) {
-        // TODO: Show the name of the pack selected?
-        m_titleText.setMessage(4001);
-    } else {
-        m_titleText.setMessage(4000);
-    }
 
     auto vsRating = connectionManager->getVsRating();
     auto btRating = connectionManager->getBtRating();
@@ -79,10 +79,12 @@ void OnlineModeSelectPage::onBack(u32 /* localPlayerId */) {
 }
 
 void OnlineModeSelectPage::onButtonFront(PushButton *button, u32 /* localPlayerId */) {
-    auto section = SectionManager::Instance()->currentSection();
-    auto connectionManager = section->page<PageId::OnlineConnectionManager>();
-
-    connectionManager->m_gamemode = button->m_index;
+    auto &menuScenario = System::RaceConfig::Instance()->menuScenario();
+    if (button->m_index == 0) {
+        menuScenario.gameMode = System::RaceConfig::GameMode::OfflineVS;
+    } else {
+        menuScenario.gameMode = System::RaceConfig::GameMode::OfflineBT;
+    }
 
     m_replacement = PageId::RandomMatching;
     startReplace(Anim::Next, button->getDelay());

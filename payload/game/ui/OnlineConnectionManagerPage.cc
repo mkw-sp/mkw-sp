@@ -158,10 +158,13 @@ void OnlineConnectionManagerPage::setupRatings(const STCMessage &event) {
 }
 
 void OnlineConnectionManagerPage::sendSearchMessage() {
+    auto *raceConfig = System::RaceConfig::Instance();
+    auto &menuScenario = raceConfig->menuScenario();
+
     CTSMessage response;
     response.which_message = CTSMessage_start_matchmaking_tag;
-    response.message.start_matchmaking.gamemode = m_gamemode;
-    response.message.start_matchmaking.trackpack = m_trackpack;
+    response.message.start_matchmaking.gamemode = static_cast<u32>(menuScenario.gameMode);
+    response.message.start_matchmaking.trackpack = raceConfig->m_packInfo.m_selectedTrackPack;
 
     write(response);
     m_searchStarted = false;

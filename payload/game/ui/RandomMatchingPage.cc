@@ -36,14 +36,12 @@ void RandomMatchingPage::onActivate() {
 }
 
 void RandomMatchingPage::onRefocus() {
-    auto section = SectionManager::Instance()->currentSection();
-    auto onlineManager = section->page<PageId::OnlineConnectionManager>();
+    auto &trackPack = SP::TrackPackManager::Instance().getSelectedTrackPack();
 
-    if (onlineManager->isCustomTrackpack()) {
-        m_title.setMessage(4001);
-    } else {
-        m_title.setMessage(4000);
-    }
+    MessageInfo info;
+    info.strings[0] = trackPack.getPrettyName();
+
+    m_title.setMessage(20031, &info);
 }
 
 void RandomMatchingPage::afterCalc() {
@@ -66,10 +64,6 @@ void RandomMatchingPage::afterCalc() {
     if (foundMatchOpt.has_value()) {
         SP_LOG("RandomMatchingPage: Found match!");
         auto foundMatch = *foundMatchOpt;
-
-        auto &menuScenario = System::RaceConfig::Instance()->menuScenario();
-        menuScenario.gameMode =
-                static_cast<System::RaceConfig::GameMode>(onlineManager->m_gamemode);
 
         auto port = 21330;
         auto ip = foundMatch.room_ip;

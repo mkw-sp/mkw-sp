@@ -62,6 +62,12 @@ void RoulettePage::onInit() {
     } else {
         m_pageTitleText.setMessage(4354, nullptr);
     }
+
+    SP::TrackPackManager::CreateInstance();
+}
+
+void RoulettePage::onDeinit() {
+    SP::TrackPackManager::DestroyInstance();
 }
 
 void RoulettePage::onActivate() {
@@ -158,7 +164,8 @@ void RoulettePage::beforeCalc() {
 }
 
 void RoulettePage::initSelectingStage(u32 selectedPlayer) {
-    auto *votingBackPage = SectionManager::Instance()->currentSection()->page<PageId::VotingBack>();
+    auto *section = SectionManager::Instance()->currentSection();
+    auto *votingBackPage = section->page<PageId::VotingBack>();
     for (u8 i = 0; i < votingBackPage->getPlayerCount(); i++) {
         m_voteControl[i].setMessageAll(votingBackPage->getCourseVote(i) + 9300, nullptr);
     }
@@ -167,10 +174,12 @@ void RoulettePage::initSelectingStage(u32 selectedPlayer) {
     m_timeTotal = 0.0;
     m_hoverPlayerIdx = 0;
     m_selectedPlayer = selectedPlayer;
-    System::RaceConfig::Instance()->menuScenario().courseId =
-            votingBackPage->getCourseVote(selectedPlayer);
-    System::ResourceManager::Instance()->preloadCourseAsync(
-            votingBackPage->getCourseVote(selectedPlayer));
+
+    auto courseIndex = votingBackPage->getCourseVote(selectedPlayer);
+    auto &trackPack = SP::TrackPackManager::Instance().getSelectedTrackPack();
+
+    auto courseId = trackPack.getNthTrack(courseIndex, SP::TrackGameMode::Race);
+    System::RaceConfig::Instance()->m_packInfo.selectCourse(courseId.value());
 }
 
 bool RoulettePage::calcPlayer(u8 playerIdx) {

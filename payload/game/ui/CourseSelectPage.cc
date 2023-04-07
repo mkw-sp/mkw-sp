@@ -195,10 +195,9 @@ void CourseSelectPage::onButtonFront(PushButton *button, u32 /* localPlayerId */
     s_lastSelected = buttonIndex;
 
     if (Section::HasRoomClient(sectionId)) {
-        // TODO(GnomedDev): Fix online voting.
-        // auto *votingBackPage = section->page<PageId::VotingBack>();
-        // votingBackPage->setLocalVote(databaseId);
-        // votingBackPage->setSubmitted(true);
+        auto *votingBackPage = section->page<PageId::VotingBack>();
+        votingBackPage->setLocalVote(buttonIndex);
+        votingBackPage->setSubmitted(true);
         startReplace(Anim::Next, button->getDelay());
     } else {
         auto raceConfig = System::RaceConfig::Instance();

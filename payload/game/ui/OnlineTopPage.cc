@@ -6,6 +6,8 @@
 #include "game/ui/SettingsPage.hh"
 #include "game/ui/YesNoPage.hh"
 
+#include <game/system/RaceConfig.hh>
+
 namespace UI {
 
 enum ButtonId {
@@ -69,6 +71,12 @@ void OnlineTopPage::onInit() {
 
     m_pageTitleText.load(false);
     m_instructionText.load();
+
+    SP::TrackPackManager::CreateInstance();
+}
+
+void OnlineTopPage::onDeinit() {
+    SP::TrackPackManager::DestroyInstance();
 }
 
 void OnlineTopPage::onActivate() {
@@ -93,11 +101,15 @@ void OnlineTopPage::onButtonSelect(PushButton *button, u32 /* localPlayerId */) 
 }
 
 void OnlineTopPage::onWorldwideButtonFront(PushButton *button, u32 /* localPlayerId */) {
-    auto section = SectionManager::Instance()->currentSection();
-    auto connectionManager = section->page<PageId::OnlineConnectionManager>();
-    connectionManager->setTrackpack(0);
+    auto &packInfo = System::RaceConfig::Instance()->m_packInfo;
+    packInfo.m_selectedTrackPack = 0;
 
     m_replacement = PageId::OnlineModeSelect;
+    startReplace(Anim::Next, button->getDelay());
+}
+
+void OnlineTopPage::onTrackpackButtonFront(PushButton *button, u32 /* localPlayerId */) {
+    m_replacement = PageId::PackSelect;
     startReplace(Anim::Next, button->getDelay());
 }
 
@@ -109,10 +121,6 @@ void OnlineTopPage::showUnimplemented() {
     messagePopup->setWindowMessage(20046);
 
     push(PageId::MessagePopup, Anim::None);
-}
-
-void OnlineTopPage::onTrackpackButtonFront(PushButton * /* button */, u32 /* localPlayerId */) {
-    showUnimplemented();
 }
 
 void OnlineTopPage::onFriendButtonFront(PushButton * /* button */, u32 /* localPlayerId */) {

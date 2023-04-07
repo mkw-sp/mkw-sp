@@ -339,6 +339,8 @@ void Section::addPages(SectionId id) {
             {SectionId::OnlineSingle, PageId::FriendRoomRules},
             {SectionId::OnlineSingle, PageId::MenuSettings},
             {SectionId::OnlineSingle, PageId::SettingsPopup},
+            {SectionId::OnlineSingle, PageId::PackSelect},
+
             {SectionId::OnlineMulti, PageId::FriendRoomRules},
             {SectionId::OnlineMulti, PageId::MenuSettings},
             {SectionId::OnlineMulti, PageId::SettingsPopup},

@@ -38,7 +38,6 @@ public:
     ResourceManager();
 
     void createMenuHeaps(u32 count, s32 heapIdx);
-    void preloadCourseAsync(u32 courseId);
     void process();
 
     void initGlobeHeap();
