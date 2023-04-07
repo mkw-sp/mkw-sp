@@ -54,14 +54,13 @@ class Track:
 
 
 def read_wiimm_csv(path: str) -> list[Track]:
-    tracks: list[Track] = []
     with open(path) as db_csv:
         db_csv.readline()
 
         reader = csv.reader(db_csv, delimiter="|")
-        tracks.extend(Track.from_csv(line) for line in reader)
+        tracks = [Track.from_csv(line) for line in reader]
 
-    return tracks
+    return [track for track in tracks if track.slot != "0"]
 
 def read_languages_csv(tracks: list[Track]) -> list[Track]:
     with open("language.csv") as language_csv:
