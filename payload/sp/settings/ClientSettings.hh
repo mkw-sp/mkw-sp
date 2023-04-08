@@ -50,6 +50,7 @@ enum class Setting {
     VSRaceCount,
     VSCourseSelection,
     VSClass,
+    VSCPUMode,
     VSVehicles,
     VSMegaClouds,
 
@@ -57,6 +58,7 @@ enum class Setting {
     BTTeamSize,
     BTRaceCount,
     BTCourseSelection,
+    BTCPUMode,
     BTVehicles,
 
     // Room
@@ -104,6 +106,12 @@ enum class EngineClass {
     Mirror,
     CC50,
     CC100,
+};
+
+enum class CPUMode : u32 {
+    Easy = 0,
+    Normal = 1,
+    Hard = 2,
 };
 
 enum class CourseSelection {
@@ -518,6 +526,11 @@ struct Helper<ClientSettings::Setting, ClientSettings::Setting::VSClass> {
 };
 
 template <>
+struct Helper<ClientSettings::Setting, ClientSettings::Setting::VSCPUMode> {
+    using type = SP::ClientSettings::CPUMode;
+};
+
+template <>
 struct Helper<ClientSettings::Setting, ClientSettings::Setting::VSVehicles> {
     using type = SP::ClientSettings::Vehicles;
 };
@@ -535,6 +548,11 @@ struct Helper<ClientSettings::Setting, ClientSettings::Setting::BTRaceCount> {
 template <>
 struct Helper<ClientSettings::Setting, ClientSettings::Setting::BTCourseSelection> {
     using type = SP::ClientSettings::CourseSelection;
+};
+
+template <>
+struct Helper<ClientSettings::Setting, ClientSettings::Setting::BTCPUMode> {
+    using type = SP::ClientSettings::CPUMode;
 };
 
 template <>
