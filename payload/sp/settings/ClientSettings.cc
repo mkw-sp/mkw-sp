@@ -384,6 +384,16 @@ const Entry entries[] = {
         .valueMessageIds = (u32[]) { 10235, 10236, 10238, 10237, 10365, 10366 },
         .valueExplanationMessageIds = (u32[]) { 10239, 10240, 10242, 10241, 10361, 10362 },
     },
+    [static_cast<u32>(Setting::VSCPUMode)] = {
+        .category = Category::VS,
+        .name = magic_enum::enum_name(Setting::VSCPUMode),
+        .messageId = 3420,
+        .defaultValue = static_cast<u32>(CPUMode::Normal),
+        .valueCount = magic_enum::enum_count<CPUMode>(),
+        .valueNames = magic_enum::enum_names<CPUMode>().data(),
+        .valueMessageIds = (u32[]) { 3421, 3422, 3423 },
+        .valueExplanationMessageIds = (u32[]) { 3425, 3426, 3427 },
+    },
     [static_cast<u32>(Setting::VSVehicles)] = {
         .category = Category::VS,
         .name = magic_enum::enum_name(Setting::VSVehicles),
@@ -434,6 +444,16 @@ const Entry entries[] = {
         .valueNames = magic_enum::enum_names<CourseSelection>().data(),
         .valueMessageIds = (u32[]) { 3441, 10228, 3443 },
         .valueExplanationMessageIds = (u32[]) { 10425, 10426, 10427 },
+    },
+    [static_cast<u32>(Setting::BTCPUMode)] = {
+        .category = Category::BT,
+        .name = magic_enum::enum_name(Setting::BTCPUMode),
+        .messageId = 3420,
+        .defaultValue = static_cast<u32>(CPUMode::Normal),
+        .valueCount = magic_enum::enum_count<CPUMode>(),
+        .valueNames = magic_enum::enum_names<CPUMode>().data(),
+        .valueMessageIds = (u32[]) { 3421, 3422, 3423 },
+        .valueExplanationMessageIds = (u32[]) { 3425, 3426, 3427 },
     },
     [static_cast<u32>(Setting::BTVehicles)] = {
         .category = Category::BT,

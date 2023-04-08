@@ -33,6 +33,8 @@ void RaceConfig::applyEngineClass() {
 
     if (m_menuScenario.gameMode == GameMode::OfflineVS) {
         setting = saveManager->getSetting<SP::ClientSettings::Setting::VSClass>();
+    } else if (m_menuScenario.gameMode == GameMode::OfflineBT) {
+        setting = SP::ClientSettings::EngineClass::CC50;
     } else if (m_menuScenario.gameMode == GameMode::TimeAttack) {
         auto taSetting = saveManager->getSetting<SP::ClientSettings::Setting::TAClass>();
         if (taSetting == SP::ClientSettings::TAClass::CC150) {
@@ -66,6 +68,21 @@ void RaceConfig::applyEngineClass() {
     case SP::ClientSettings::EngineClass::Mirror:
         m_menuScenario.mirror = true;
     }
+}
+
+void RaceConfig::applyCPUMode() {
+    SP::ClientSettings::CPUMode setting;
+
+    auto *saveManager = SaveManager::Instance();
+    if (m_menuScenario.gameMode == GameMode::OfflineVS) {
+        setting = saveManager->getSetting<SP::ClientSettings::Setting::VSCPUMode>();
+    } else if (m_menuScenario.gameMode == GameMode::OfflineBT) {
+        setting = saveManager->getSetting<SP::ClientSettings::Setting::BTCPUMode>();
+    } else {
+        panic("applyCPUMode called with invalid GameMode");
+    }
+
+    m_menuScenario.cpuMode = static_cast<u32>(setting);
 }
 
 RaceConfig *RaceConfig::Instance() {

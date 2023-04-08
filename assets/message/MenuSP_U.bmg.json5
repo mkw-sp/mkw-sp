@@ -11,6 +11,9 @@
     "3400": {
         string: "Settings",
     },
+    "3420": {
+        string: "CPU Difficulty"
+    },
     "3475": {
         string: "Change settings for this licence.",
     },
