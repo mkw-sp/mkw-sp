@@ -983,7 +983,7 @@ target_cflags = {
 }
 profile_cflags = {
     'DEBUG': [
-        '-O0',
+        '-O1',
         '-g',
         '-DSP_DEBUG'
     ],
