@@ -41,7 +41,7 @@ void CourseSelectButton::refresh(Sha1 dbId) {
     auto &trackPackManager = SP::TrackPackManager::Instance();
     auto &track = trackPackManager.getTrack(dbId);
 
-    raceConfig->m_packInfo.setTrackMessage(this, track.name.c_str(), track.getCourseId());
+    raceConfig->m_packInfo.setTrackMessage(this, track.m_name.c_str(), track.getCourseId());
 }
 
 void CourseSelectButton::setTex(u8 c, const GXTexObj &texObj) {

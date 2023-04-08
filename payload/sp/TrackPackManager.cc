@@ -22,7 +22,7 @@ namespace SP {
 
 // clang-format off
 u32 Track::getRaceCourseId() const {
-    switch (slotId) {
+    switch (m_slotId) {
     case 11: return 0x8;
     case 12: return 0x1;
     case 13: return 0x2;
@@ -55,12 +55,12 @@ u32 Track::getRaceCourseId() const {
     case 82: return 0x16;
     case 83: return 0x13;
     case 84: return 0x1C;
-    default: panic("Unknown race slot ID: %d", slotId);
+    default: panic("Unknown race slot ID: %d", m_slotId);
     }
 }
 
 u32 Track::getBattleCourseId() const {
-    switch (slotId) {
+    switch (m_slotId) {
     case 11: return 0x21;
     case 12: return 0x20;
     case 13: return 0x23;
@@ -71,7 +71,7 @@ u32 Track::getBattleCourseId() const {
     case 23: return 0x29;
     case 24: return 0x25;
     case 25: return 0x26;
-    default: panic("Unknown battle slot ID: %d", slotId);
+    default: panic("Unknown battle slot ID: %d", m_slotId);
     }
 }
 // clang-format on
@@ -91,7 +91,7 @@ std::expected<u32, const char *> u32FromSv(std::string_view sv) {
 }
 
 u32 Track::getCourseId() const {
-    if (isArena) {
+    if (m_isArena) {
         return getBattleCourseId();
     } else {
         return getRaceCourseId();
@@ -100,16 +100,16 @@ u32 Track::getCourseId() const {
 
 std::expected<void, const char *> Track::parse(std::string_view key, std::string_view value) {
     if (key == "trackname") {
-        name = value;
+        m_name = value;
     } else if (key == "slot") {
-        slotId = TRY(u32FromSv(value));
+        m_slotId = TRY(u32FromSv(value));
     } else if (key == "mslot") {
-        musicId = TRY(u32FromSv(value));
+        m_musicId = TRY(u32FromSv(value));
     } else if (key == "type") {
         if (value == "1") {
-            isArena = false;
+            m_isArena = false;
         } else if (value == "2") {
-            isArena = true;
+            m_isArena = true;
         }
     }
 
@@ -177,7 +177,7 @@ std::expected<void, const char *> TrackPack::parseNew(std::string_view manifestV
             }
         } else {
             auto sha1 = TRY(sha1FromSv(section));
-            if (m_unreleasedTracks.empty() || m_unreleasedTracks.back().sha1 != sha1) {
+            if (m_unreleasedTracks.empty() || m_unreleasedTracks.back().m_sha1 != sha1) {
                 m_unreleasedTracks.emplace_back(sha1);
             }
 
@@ -197,7 +197,7 @@ std::expected<void, const char *> TrackPack::parseNew(std::string_view manifestV
 
 const Track *TrackPack::getUnreleasedTrack(Sha1 sha1) const {
     for (const auto &track : m_unreleasedTracks) {
-        if (track.sha1 == sha1) {
+        if (track.m_sha1 == sha1) {
             return &track;
         }
     }
@@ -332,7 +332,7 @@ void TrackPackManager::loadTrackDb() {
             continue;
         }
 
-        if (m_trackDb.empty() || m_trackDb.back().sha1 != *sha1) {
+        if (m_trackDb.empty() || m_trackDb.back().m_sha1 != *sha1) {
             m_trackDb.emplace_back(*sha1);
         }
 
@@ -381,7 +381,7 @@ void TrackPackInfo::setTrackMessage(UI::LayoutUIControl *control, const wchar_t 
 
 const Track &TrackPackManager::getTrack(Sha1 sha1) const {
     for (auto &track : m_trackDb) {
-        if (track.sha1 == sha1) {
+        if (track.m_sha1 == sha1) {
             return track;
         }
     }
@@ -458,10 +458,10 @@ void TrackPackInfo::selectCourse(Sha1 sha) {
     auto &trackPackManager = TrackPackManager::Instance();
     auto &track = trackPackManager.getTrack(sha);
 
-    m_name = track.name;
-    m_selectedSha1 = track.sha1;
+    m_name = track.m_name;
+    m_selectedSha1 = track.m_sha1;
     m_selectedCourseId = track.getCourseId();
-    m_selectedMusicId = track.musicId.value_or(std::numeric_limits<u32>::max());
+    m_selectedMusicId = track.m_musicId.value_or(std::numeric_limits<u32>::max());
 
     auto &menuScenario = System::RaceConfig::Instance()->menuScenario();
     menuScenario.courseId = m_selectedCourseId;

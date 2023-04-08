@@ -27,16 +27,16 @@ enum class TrackGameMode {
 
 class Track {
 public:
-    Track(Sha1 sha1) : sha1(sha1){};
+    Track(Sha1 sha1) : m_sha1(sha1){};
 
     std::expected<void, const char *> parse(std::string_view key, std::string_view value);
     u32 getCourseId() const;
 
-    WFixedString<64> name = {};
-    bool isArena = false;
-    std::optional<u32> musicId = std::nullopt;
-    u32 slotId = 0;
-    Sha1 sha1;
+    std::optional<u32> m_musicId = std::nullopt;
+    bool m_isArena = false;
+    u32 m_slotId = 0;
+    Sha1 m_sha1;
+    WFixedString<64> m_name = {};
 
 private:
     u32 getRaceCourseId() const;
