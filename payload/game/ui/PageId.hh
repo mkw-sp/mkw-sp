@@ -121,7 +121,7 @@ enum class PageId {
     // }
     TimeAttackTop = 0x70,
     TimeAttackGhostList = 0x71,
-    VSSelect = 0x72,
+    VSSelect = 0x72, // Unused
     VSSetting = 0x73,
     TeamConfirm = 0x74,
     BattleModeSelect = 0x75,
