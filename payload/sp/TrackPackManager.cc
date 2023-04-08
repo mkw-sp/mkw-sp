@@ -357,7 +357,7 @@ const TrackPack &TrackPackManager::getSelectedTrackPack() const {
 }
 
 void TrackPackInfo::setTrackMessage(UI::LayoutUIControl *control) const {
-    return setTrackMessage(control, s_name.c_str(), m_selectedCourseId);
+    return setTrackMessage(control, m_name.c_str(), m_selectedCourseId);
 }
 
 void TrackPackInfo::setTrackMessage(UI::LayoutUIControl *control, const wchar_t *name,
@@ -458,7 +458,7 @@ void TrackPackInfo::selectCourse(Sha1 sha) {
     auto &trackPackManager = TrackPackManager::Instance();
     auto &track = trackPackManager.getTrack(sha);
 
-    s_name = track.name;
+    m_name = track.name;
     m_selectedSha1 = track.sha1;
     m_selectedCourseId = track.getCourseId();
     m_selectedMusicId = track.musicId.value_or(std::numeric_limits<u32>::max());
@@ -467,7 +467,6 @@ void TrackPackInfo::selectCourse(Sha1 sha) {
     menuScenario.courseId = m_selectedCourseId;
 }
 
-WFixedString<64> TrackPackInfo::s_name = {};
 TrackPackManager *TrackPackManager::s_instance = nullptr;
 
 } // namespace SP

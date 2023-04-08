@@ -115,9 +115,7 @@ private:
     u32 m_selectedCourseId = 0;
     u32 m_selectedMusicId;
     Sha1 m_selectedSha1 = {};
-
-    // We don't have enough space to store this otherwise.
-    static WFixedString<64> s_name;
+    WFixedString<64> m_name;
 };
 
 } // namespace SP

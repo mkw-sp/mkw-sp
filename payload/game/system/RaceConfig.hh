@@ -124,18 +124,21 @@ public:
 
     static RaceConfig *Instance();
 
-    SP::TrackPackInfo m_packInfo;
-
 private:
     REPLACE static void ConfigurePlayers(Scenario &scenario, u32 screenCount);
 
-    u8 _0000[0x0020 - sizeof(SP::TrackPackInfo)];
+    u8 _0000[0x0020 - 0x000];
     Scenario m_raceScenario;
     Scenario m_menuScenario;
     Scenario m_awardsScenario;
     u8 m_ghostBuffers[2][11][0x2800]; // Modified
+public:
+    SP::TrackPackInfo m_packInfo;
 
     static RaceConfig *s_instance;
 };
+
+// If you are changing this, make sure you update in RaceConfig.h
+static_assert(sizeof(SP::TrackPackInfo) == 0xa4);
 
 } // namespace System
