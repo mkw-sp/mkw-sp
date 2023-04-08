@@ -404,6 +404,16 @@ const Entry entries[] = {
         .valueMessageIds = (u32[]) { 10244, 10245, 10246, 10247, 10248, 10249, 10250 },
         .valueExplanationMessageIds = (u32[]) { 10251, 10252, 10253, 10254, 10255, 10256, 10257 },
     },
+    [static_cast<u32>(Setting::VSItemFrequency)] = {
+        .category = Category::VS,
+        .name = magic_enum::enum_name(Setting::VSItemFrequency),
+        .messageId = 3480,
+        .defaultValue = static_cast<u32>(ItemFrequency::Balanced),
+        .valueCount = magic_enum::enum_count<ItemFrequency>(),
+        .valueNames = magic_enum::enum_names<ItemFrequency>().data(),
+        .valueMessageIds = (u32[]) { 3481, 3482, 3483 },
+        .valueExplanationMessageIds = (u32[]) { 3485, 3486, 3487 },
+    },
     [static_cast<u32>(Setting::VSMegaClouds)] = {
         .category = Category::VS,
         .name = magic_enum::enum_name(Setting::VSMegaClouds),
@@ -464,6 +474,16 @@ const Entry entries[] = {
         .valueNames = magic_enum::enum_names<Vehicles>().data(),
         .valueMessageIds = (u32[]) { 10244, 10245, 10246, 10247, 10248, 10249, 10250 },
         .valueExplanationMessageIds = (u32[]) { 10251, 10252, 10253, 10254, 10255, 10256, 10257 },
+    },
+    [static_cast<u32>(Setting::BTItemFrequency)] = {
+        .category = Category::BT,
+        .name = magic_enum::enum_name(Setting::BTItemFrequency),
+        .messageId = 3480,
+        .defaultValue = static_cast<u32>(ItemFrequency::Balanced),
+        .valueCount = magic_enum::enum_count<ItemFrequency>(),
+        .valueNames = magic_enum::enum_names<ItemFrequency>().data(),
+        .valueMessageIds = (u32[]) { 3481, 3482, 3483 },
+        .valueExplanationMessageIds = (u32[]) { 3485, 3486, 3487 },
     },
     [static_cast<u32>(Setting::RoomTeamSize)] = {
         .category = Category::Room,

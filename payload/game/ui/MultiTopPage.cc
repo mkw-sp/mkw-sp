@@ -124,6 +124,7 @@ void MultiTopPage::onVSButtonFront(PushButton *button, u32 /* localPlayerId */) 
     menuScenario.cameraMode = 5;
 
     raceConfig->applyCPUMode();
+    raceConfig->applyItemFreq();
     raceConfig->applyEngineClass();
     for (u32 i = 0; i < localPlayerCount; i++) {
         menuScenario.players[i].type = System::RaceConfig::Player::Type::Local;
@@ -171,6 +172,7 @@ void MultiTopPage::onBTButtonFront(PushButton *button, u32 /* localPlayerId */) 
 
     raceConfig->applyEngineClass();
     raceConfig->applyCPUMode();
+    raceConfig->applyItemFreq();
     for (u32 i = 0; i < localPlayerCount; i++) {
         menuScenario.players[i].type = System::RaceConfig::Player::Type::Local;
     }

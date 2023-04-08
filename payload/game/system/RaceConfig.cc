@@ -70,6 +70,21 @@ void RaceConfig::applyEngineClass() {
     }
 }
 
+void RaceConfig::applyItemFreq() {
+    SP::ClientSettings::ItemFrequency setting;
+
+    auto *saveManager = SaveManager::Instance();
+    if (m_menuScenario.gameMode == GameMode::OfflineVS) {
+        setting = saveManager->getSetting<SP::ClientSettings::Setting::VSItemFrequency>();
+    } else if (m_menuScenario.gameMode == GameMode::OfflineBT) {
+        setting = saveManager->getSetting<SP::ClientSettings::Setting::BTItemFrequency>();
+    } else {
+        panic("applyCPUMode called with invalid GameMode");
+    }
+
+    m_menuScenario.itemMode = static_cast<u32>(setting);
+}
+
 void RaceConfig::applyCPUMode() {
     SP::ClientSettings::CPUMode setting;
 
