@@ -334,6 +334,7 @@ void TrackPackManager::loadTrackDb() {
 
         if (m_trackDb.empty() || m_trackDb.back().m_sha1 != *sha1) {
             m_trackDb.emplace_back(*sha1);
+            // SP_LOG("Parsed %d track packs", m_trackDb.size());
         }
 
         auto &track = m_trackDb.back();
@@ -460,8 +461,8 @@ void TrackPackInfo::selectCourse(Sha1 sha) {
 
     m_name = track.m_name;
     m_selectedSha1 = track.m_sha1;
+    m_selectedMusicId = track.m_musicId;
     m_selectedCourseId = track.getCourseId();
-    m_selectedMusicId = track.m_musicId.value_or(std::numeric_limits<u32>::max());
 
     auto &menuScenario = System::RaceConfig::Instance()->menuScenario();
     menuScenario.courseId = m_selectedCourseId;

@@ -139,6 +139,6 @@ public:
 };
 
 // If you are changing this, make sure you update in RaceConfig.h
-static_assert(sizeof(SP::TrackPackInfo) == 0xa4);
+static_assert(sizeof(SP::TrackPackInfo) == 0x84);
 
 } // namespace System
