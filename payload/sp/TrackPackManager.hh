@@ -50,6 +50,7 @@ class TrackPack {
 public:
     static std::expected<TrackPack, const char *> New(std::string_view manifest);
 
+    bool contains(Sha1 id) const;
     TrackGameMode getSupportedModes() const;
     u16 getTrackCount(TrackGameMode mode) const;
     std::optional<Sha1> getNthTrack(u32 n, TrackGameMode mode) const;
@@ -91,6 +92,7 @@ public:
 private:
     std::expected<void, const char *> loadTrackPacks();
     void loadTrackDb();
+    bool anyPackContains(Sha1 sha1);
 
     std::vector<Track> m_trackDb;
     std::vector<TrackPack> m_packs;

@@ -217,13 +217,13 @@ const std::vector<Sha1> &TrackPack::getTrackList(TrackGameMode mode) const {
     }
 }
 
-TrackGameMode TrackPack::getSupportedModes() const {
-    TrackGameMode modes[] = {
-            TrackGameMode::Race,
-            TrackGameMode::Coin,
-            TrackGameMode::Balloon,
-    };
+constexpr TrackGameMode modes[] = {
+        TrackGameMode::Race,
+        TrackGameMode::Coin,
+        TrackGameMode::Balloon,
+};
 
+TrackGameMode TrackPack::getSupportedModes() const {
     auto supportedModes = TrackGameMode::None;
     for (auto mode : modes) {
         if (!getTrackList(mode).empty()) {
@@ -232,6 +232,18 @@ TrackGameMode TrackPack::getSupportedModes() const {
     }
 
     return supportedModes;
+}
+
+bool TrackPack::contains(Sha1 sha1) const {
+    for (auto mode : modes) {
+        for (auto track : getTrackList(mode)) {
+            if (track == sha1) {
+                return true;
+            }
+        }
+    }
+
+    return false;
 }
 
 u16 TrackPack::getTrackCount(TrackGameMode mode) const {
@@ -322,6 +334,8 @@ void TrackPackManager::loadTrackDb() {
 
     trackDbBuf.resize(*len);
 
+    Sha1 currentlyParsing;
+    bool isSkipping = false;
     IniReader trackDbIni(trackDbBuf);
     while (auto property = trackDbIni.next()) {
         auto [section, key, value] = *property;
@@ -332,9 +346,17 @@ void TrackPackManager::loadTrackDb() {
             continue;
         }
 
-        if (m_trackDb.empty() || m_trackDb.back().m_sha1 != *sha1) {
-            m_trackDb.emplace_back(*sha1);
-            // SP_LOG("Parsed %d track packs", m_trackDb.size());
+        if (m_trackDb.empty() || currentlyParsing != *sha1) {
+            currentlyParsing = *sha1;
+            isSkipping = !anyPackContains(*sha1);
+            if (!isSkipping) {
+                m_trackDb.emplace_back(*sha1);
+                // SP_LOG("Parsed %d tracks", m_trackDb.size());
+            }
+        }
+
+        if (isSkipping) {
+            continue;
         }
 
         auto &track = m_trackDb.back();
@@ -342,6 +364,16 @@ void TrackPackManager::loadTrackDb() {
     }
 
     SP_LOG("Finished loading track DB");
+}
+
+bool TrackPackManager::anyPackContains(Sha1 sha1) {
+    for (const auto &pack : m_packs) {
+        if (pack.contains(sha1)) {
+            return true;
+        }
+    }
+
+    return false;
 }
 
 const TrackPack &TrackPackManager::getNthPack(u32 n) const {
