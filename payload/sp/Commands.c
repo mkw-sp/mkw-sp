@@ -97,15 +97,3 @@ sp_define_command("/help", "Views a list of all available commands.", const char
 sp_define_command("/example_command", "Example command", const char *tmp) {
     (void)tmp;
 }
-
-sp_define_command("/instant_menu", "Toggle instant menu transitions", const char *tmp) {
-    (void)tmp;
-
-    if (!SaveManager_IsAvailable()) {
-        OSReport("instant_menu: Failed to load Save Manager\n");
-        return;
-    }
-    const bool menuTrans = !SaveManager_GetPageTransitions();
-    SaveManager_SetPageTransitions(menuTrans);
-    OSReport("instant_menu: Menu transition animations toggled %s\n", fmtBool(menuTrans));
-}

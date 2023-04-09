@@ -91,3 +91,25 @@ sp_define_command("/set", "Sets a .ini setting key-value", const char *tmp) {
 
     saveManager->setSetting(setting, value);
 }
+
+sp_define_command("/instant_menu", "Toggle instant menu transitions", const char *tmp) {
+    (void)tmp;
+
+    auto *saveManager = System::SaveManager::Instance();
+    if (saveManager == nullptr) {
+        OSReport("instant_menu: Failed to load Save Manager\n");
+        return;
+    }
+
+    auto oldValue = saveManager->getSetting<SP::ClientSettings::Setting::PageTransitions>();
+    auto newValue = oldValue == SP::ClientSettings::PageTransitions::Enable ?
+            SP::ClientSettings::PageTransitions::Disable :
+            SP::ClientSettings::PageTransitions::Enable;
+
+    saveManager->setSetting<SP::ClientSettings::Setting::PageTransitions>(newValue);
+    if (newValue == SP::ClientSettings::PageTransitions::Enable) {
+        OSReport("instant_menu: Menu transition animations: Enabled\n");
+    } else {
+        OSReport("instant_menu: Menu transition animations: Disabled\n");
+    }
+}
