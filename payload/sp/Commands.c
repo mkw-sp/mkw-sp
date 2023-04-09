@@ -93,7 +93,3 @@ sp_define_command("/help", "Views a list of all available commands.", const char
     sscanf(tmp, "/help %i", &page);
     Commands_printHelp(MAX(page - 1, 0));
 }
-
-sp_define_command("/example_command", "Example command", const char *tmp) {
-    (void)tmp;
-}

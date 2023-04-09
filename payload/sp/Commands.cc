@@ -8,6 +8,10 @@ extern "C" {
 
 #include <cstring>
 
+sp_define_command("/example_command", "Example command", const char *tmp) {
+    (void)tmp;
+}
+
 sp_define_command("/ui_info", "Dump information about the UI state to the console",
         const char *tmp) {
     (void)tmp;
