@@ -16,5 +16,3 @@ enum {
     VS_RULE_CLASS_MIRROR = 0x2,
     VS_RULE_CLASS_200CC = 0x3,
 };
-
-extern bool vsSpeedModIsEnabled;

@@ -718,5 +718,4 @@ void SaveManager_SetMiiId(const MiiId *miiId) {
     saveManager->setMiiId(*std::bit_cast<System::MiiId *>(miiId));
 }
 
-bool vsSpeedModIsEnabled;
 }

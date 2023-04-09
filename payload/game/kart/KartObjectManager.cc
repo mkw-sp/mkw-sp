@@ -105,10 +105,11 @@ void KartObjectManager::CreateInstance() {
     auto *saveManager = System::SaveManager::Instance();
 
     auto taClass = saveManager->getSetting<SP::ClientSettings::Setting::TAClass>();
+    auto vsClass = saveManager->getSetting<SP::ClientSettings::Setting::VSClass>();
+
     switch (raceScenario.gameMode) {
     case System::RaceConfig::GameMode::OfflineVS:
-    case System::RaceConfig::GameMode::OfflineBT:
-        speedModIsEnabled = vsSpeedModIsEnabled;
+        speedModIsEnabled = vsClass == SP::ClientSettings::EngineClass::CC200;
         break;
     case System::RaceConfig::GameMode::TimeAttack:
         speedModIsEnabled = taClass == SP::ClientSettings::TAClass::CC200;

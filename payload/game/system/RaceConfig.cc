@@ -42,7 +42,6 @@ void RaceConfig::applyEngineClass() {
     m_menuScenario.engineClass = EngineClass::CC150;
     m_menuScenario.mirrorRng = false;
     m_menuScenario.mirror = false;
-    vsSpeedModIsEnabled = false;
 
     switch (setting) {
     case SP::ClientSettings::EngineClass::Mixed:
@@ -55,10 +54,8 @@ void RaceConfig::applyEngineClass() {
     case SP::ClientSettings::EngineClass::CC100:
         m_menuScenario.engineClass = EngineClass::CC100;
         break;
-    case SP::ClientSettings::EngineClass::CC150:
-        break;
-    case SP::ClientSettings::EngineClass::CC200:
-        vsSpeedModIsEnabled = true;
+    case SP::ClientSettings::EngineClass::CC150: // Set above
+    case SP::ClientSettings::EngineClass::CC200: // handled in KartObjectManager
         break;
     case SP::ClientSettings::EngineClass::Mirror:
         m_menuScenario.mirror = true;
