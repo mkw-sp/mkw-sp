@@ -69,3 +69,25 @@ sp_define_command("/section", "Transition to a certain game section", const char
     sectionManager->setNextSection(sectionId, anim);
     sectionManager->startChangeSection(5, 0xff);
 }
+
+sp_define_command("/set", "Sets a .ini setting key-value", const char *tmp) {
+    auto *saveManager = System::SaveManager::Instance();
+    if (saveManager == nullptr) {
+        OSReport("set: Failed to load Save Manager\n");
+        return;
+    }
+
+    char setting[64];
+    char value[64];
+    if (2 != sscanf(tmp, "/set %63s %63s", setting, value)) {
+        OSReport("&a/set: Invalid arguments\n");
+        return;
+    }
+
+    if (!saveManager->spCurrentLicense().has_value()) {
+        OSReport("&a/set: No license active\n");
+        return;
+    }
+
+    saveManager->setSetting(setting, value);
+}

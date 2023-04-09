@@ -109,21 +109,3 @@ sp_define_command("/instant_menu", "Toggle instant menu transitions", const char
     SaveManager_SetPageTransitions(menuTrans);
     OSReport("instant_menu: Menu transition animations toggled %s\n", fmtBool(menuTrans));
 }
-
-sp_define_command("/set", "Sets a .ini setting key-value", const char *tmp) {
-    if (!SaveManager_IsAvailable()) {
-        OSReport("set: Failed to load Save Manager\n");
-        return;
-    }
-    char setting[64];
-    char value[64];
-    if (2 != sscanf(tmp, "/set %63s %63s", setting, value)) {
-        OSReport("&a/set: Invalid arguments\n");
-        return;
-    }
-    if (SaveManager_SPCurrentLicense()) {
-        OSReport("&a/set: No license active\n");
-        return;
-    }
-    SaveManager_SetSetting(setting, value);
-}
