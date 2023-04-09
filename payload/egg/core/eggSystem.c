@@ -49,6 +49,10 @@ static void TrySetItem(s32 myPlayerId, s32 item, s32 qty) {
     }
 }
 
+sp_define_command("/example_command", "Example command", const char *tmp) {
+    (void)tmp;
+}
+
 sp_define_command("/i", "Spawn an item.", const char *tmp) {
     const s32 myPlayerId = GetMyPlayerID();
     if (myPlayerId < 0) {
@@ -86,24 +90,6 @@ sp_define_command("/i", "Spawn an item.", const char *tmp) {
     }
 
     OSReport("&4Invalid command: \"%s\"", tmp);
-}
-
-sp_define_command("/example_command", "Example command", const char *tmp) {
-    (void)tmp;
-
-    if (!SaveManager_IsAvailable()) {
-        OSReport("example_command: Failed to load Save Manager\n");
-        return;
-    }
-
-    static const char *tagContent[4] = {
-            "SP_TA_RULE_GHOST_TAG_CONTENT_NAME",
-            "SP_TA_RULE_GHOST_TAG_CONTENT_TIME",
-            "SP_TA_RULE_GHOST_TAG_CONTENT_TIME_NOLEADING",
-            "SP_TA_RULE_GHOST_TAG_CONTENT_DATE",
-    };
-    const u32 rule = SaveManager_GetTAGhostTagContent();
-    OSReport("example_command: taRuleGhostTagContent == %s\n", tagContent[rule & 3]);
 }
 
 sp_define_command("/instant_menu", "Toggle instant menu transitions", const char *tmp) {
