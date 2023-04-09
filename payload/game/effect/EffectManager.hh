@@ -10,6 +10,8 @@ public:
     REPLACE void createKarts();
     void calc();
 
+    KartEffect *getKartEffect(u32 i) const;
+
     static EffectManager *Instance();
 
 private:

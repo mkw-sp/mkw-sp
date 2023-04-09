@@ -10,14 +10,6 @@ u32 SaveManager_GetFOV169(void);
 
 u32 SaveManager_GetMapIcons(void);
 
-u32 SaveManager_GetTAClass(void);
-
-u32 SaveManager_GetTAGhostTagVisibility(void);
-
-u32 SaveManager_GetTASolidGhosts(void);
-
-u32 SaveManager_GetTAGhostSound(void);
-
 enum {
     VS_RULE_CLASS_100CC = 0x0,
     VS_RULE_CLASS_150CC = 0x1,

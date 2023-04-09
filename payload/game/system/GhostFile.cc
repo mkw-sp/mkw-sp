@@ -469,9 +469,6 @@ std::optional<u32> GhostFile::write(u8 *raw) {
 } // namespace System
 
 extern "C" {
-void SPFooter_OnRaceStart(bool speedModIsEnabled, bool isVanilla, bool setInMirror) {
-    System::SPFooter::OnRaceStart(speedModIsEnabled, isVanilla, setInMirror);
-}
 
 void SPFooter_OnLapEnd(u32 lap, f32 timeDiff) {
     System::SPFooter::OnLapEnd(lap, timeDiff);

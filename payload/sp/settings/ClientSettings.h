@@ -56,6 +56,7 @@ enum {
 };
 
 enum {
+<<<<<<< HEAD
     kTaRuleSolidGhosts_None,
     kTaRuleSolidGhosts_Watched,
     kTaRuleSolidGhosts_All,
@@ -71,4 +72,29 @@ enum {
 
     kTaRuleGhostSound_MAX,
     kTaRuleGhostSound_Default = kTaRuleGhostSound_Watched,
+=======
+    kTaRuleGhostTagContent_Name,
+    kTaRuleGhostTagContent_Time,
+    kTaRuleGhostTagContent_TimeNoLeading,
+    kTaRuleGhostTagContent_Date,
+
+    kTaRuleGhostTagContent_MAX,
+    kTaRuleGhostTagContent_Default = kTaRuleGhostTagContent_Name,
+};
+
+enum {
+    kPageTransitions_Disable,
+    kPageTransitions_Enable,
+
+    kPageTransitions_MAX,
+    kPageTransitions_Default = kPageTransitions_Enable,
+};
+
+enum {
+    kRaceInputDisplay_Disable,
+    kRaceInputDisplay_Simple,
+
+    kRaceInputDisplay_MAX,
+    kRaceInputDisplay_Default = kRaceInputDisplay_Simple,
+>>>>>>> 72d122d6 (Rewrite KartObjectManager to C++)
 };

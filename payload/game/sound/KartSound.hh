@@ -14,8 +14,12 @@ private:
     bool m_hasFinished;
     u8 m_maxLap;
     Kart::KartObjectProxy *m_proxy;
+
+public:
     bool m_isLocal;
     bool m_isGhost;
+
+private:
     u8 _de[0xfc - 0xe2];
 };
 static_assert(sizeof(KartSound) == 0xfc);

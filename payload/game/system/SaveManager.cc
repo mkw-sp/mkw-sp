@@ -707,27 +707,9 @@ u32 SaveManager_GetMapIcons(void) {
     return static_cast<u32>(value);
 }
 
-u32 SaveManager_GetTAClass(void) {
-    auto *saveManager = System::SaveManager::Instance();
-    auto value = saveManager->getSetting<SP::ClientSettings::Setting::TAClass>();
-    return static_cast<u32>(value);
-}
-
 u32 SaveManager_GetTAGhostTagVisibility(void) {
     auto *saveManager = System::SaveManager::Instance();
     auto value = saveManager->getSetting<SP::ClientSettings::Setting::TAGhostTagVisibility>();
-    return static_cast<u32>(value);
-}
-
-u32 SaveManager_GetTASolidGhosts(void) {
-    auto *saveManager = System::SaveManager::Instance();
-    auto value = saveManager->getSetting<SP::ClientSettings::Setting::TASolidGhosts>();
-    return static_cast<u32>(value);
-}
-
-u32 SaveManager_GetTAGhostSound(void) {
-    auto *saveManager = System::SaveManager::Instance();
-    auto value = saveManager->getSetting<SP::ClientSettings::Setting::TAGhostSound>();
     return static_cast<u32>(value);
 }
 

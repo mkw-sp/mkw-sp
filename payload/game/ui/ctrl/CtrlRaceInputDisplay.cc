@@ -1,8 +1,6 @@
 #include "CtrlRaceInputDisplay.hh"
 
-extern "C" {
-#include "game/kart/KartObjectManager.h" // speedModIsEnabled
-}
+#include "game/kart/KartObjectManager.hh" // speedModIsEnabled
 #include "game/system/RaceConfig.hh"
 #include "game/system/RaceManager.hh"
 #include "game/system/SaveManager.hh"
