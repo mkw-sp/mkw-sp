@@ -13,11 +13,6 @@
 extern Command __start_commands;
 extern Command __stop_commands;
 
-const char *sOnOff[2] = {"OFF", "ON"};
-const char *fmtBool(bool b) {
-    return sOnOff[!!b];
-}
-
 // Matches "/command", "/command arg", but not "/command2"
 bool StringStartsWithCommand(const char *line, const char *cmd) {
     const size_t cmdLen = strlen(cmd);
