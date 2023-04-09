@@ -1,8 +1,10 @@
+#include "sp/SaveStateManager.hh"
+
+#include <game/system/SaveManager.hh>
 #include <game/ui/SectionManager.hh>
 extern "C" {
 #include <sp/Commands.h>
 }
-#include <sp/SaveStateManager.hh>
 
 #include <cstring>
 
@@ -33,4 +35,37 @@ sp_define_command("/reload", "", const char *tmp) {
     } else {
         OSReport("SaveStateManager not initialized\n");
     }
+}
+
+sp_define_command("/section", "Transition to a certain game section", const char *tmp) {
+    auto *sectionManager = UI::SectionManager::Instance();
+    if (sectionManager == nullptr) {
+        OSReport("&aError: Section manager unavailable\n");
+        return;
+    }
+
+    int nextSectionId = 0;
+    if (!sscanf(tmp, "/section %i", &nextSectionId)) {
+        OSReport("&aUsage /section <id>\n");
+        return;
+    }
+
+    OSReport("&aSwitching to section %d\n", nextSectionId);
+
+    auto *saveManager = System::SaveManager::Instance();
+    if (saveManager == nullptr) {
+        OSReport("&aError: Save manager unavailable\n");
+        return;
+    }
+
+    // Default to license 0
+    saveManager->selectSPLicense(0);
+    // TODO create base license
+    saveManager->selectLicense(0);
+
+    auto sectionId = static_cast<UI::SectionId>(nextSectionId);
+    auto anim = nextSectionId < 0 ? UI::Page::Anim::Prev : UI::Page::Anim::Next;
+
+    sectionManager->setNextSection(sectionId, anim);
+    sectionManager->startChangeSection(5, 0xff);
 }

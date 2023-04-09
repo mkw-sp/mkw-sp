@@ -127,31 +127,3 @@ sp_define_command("/set", "Sets a .ini setting key-value", const char *tmp) {
     }
     SaveManager_SetSetting(setting, value);
 }
-
-sp_define_command("/section", "Transition to a certain game section", const char *tmp) {
-    if (s_sectionManager == NULL) {
-        OSReport("&aError: Section manager unavailable\n");
-        return;
-    }
-    int nextSectionId = 0;
-    if (!sscanf(tmp, "/section %i", &nextSectionId)) {
-        OSReport("&aUsage /section <id>\n");
-        return;
-    }
-
-    OSReport("&aSwitching to section %d\n", nextSectionId);
-
-    if (!SaveManager_IsAvailable()) {
-        OSReport("&aError: Save manager unavailable\n");
-        return;
-    }
-
-    // Default to license 0
-    SaveManager_SelectSPLicense(0);
-    // TODO create base license
-    SaveManager_SelectLicense(0);
-
-    SectionManager_setNextSection(s_sectionManager, __builtin_abs(nextSectionId),
-            nextSectionId < 0 ? PAGE_ANIMATION_PREV : PAGE_ANIMATION_NEXT);
-    SectionManager_startChangeSection(s_sectionManager, 5, 0xff);
-}
