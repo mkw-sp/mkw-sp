@@ -8,6 +8,10 @@
 namespace System {
 
 class RaceManager {
+private:
+    RaceManager();
+    virtual ~RaceManager();
+
 public:
     class Player {
     public:
@@ -61,9 +65,6 @@ public:
     static u8 GetLapCount();
 
 private:
-    RaceManager();
-
-    u8 _00[0x04 - 0x00];
     Util::Random *m_dynamicRandom;
     Util::Random *m_staticRandom;
     Player **m_players;
