@@ -8,7 +8,6 @@ extern "C" {
 
 #include <algorithm>
 #include <array>
-#include <string>
 #include <string_view>
 
 namespace SP {
