@@ -1,3 +1,5 @@
+#pragma once
+
 constexpr std::string_view vanillaManifest = R"(
 [Pack Info]
 author = Nintendo

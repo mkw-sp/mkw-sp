@@ -1,3 +1,5 @@
+#pragma once
+
 #include "MenuPage.h"
 
 #include "../Button.h"
