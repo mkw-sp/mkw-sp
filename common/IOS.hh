@@ -5,7 +5,7 @@
 namespace IOS {
 
 void Init();
-bool EscalatePrivileges();
+bool EscalatePrivileges(bool again);
 void DeescalatePrivileges();
 bool ImportNewCommonKey();
 bool IsDolphin();

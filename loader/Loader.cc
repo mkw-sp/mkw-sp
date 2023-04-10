@@ -1,9 +1,10 @@
 #include "Apploader.hh"
 
+#include "loader/Dol.hh"
+
 #include <common/Clock.hh>
 #include <common/Console.hh>
 #include <common/DCache.hh>
-#include <common/ES.hh>
 #include <common/FS.hh>
 #include <common/ICache.hh>
 #include <common/Paths.hh>
@@ -27,41 +28,6 @@ extern "C" const u32 payloadKSize;
 namespace Loader {
 
 typedef void (*PayloadEntryFunc)(void);
-
-#define TMP_CONTENTS_PATH "/tmp/contents.arc"
-
-static void *contents = reinterpret_cast<void *>(0x80100000);
-
-static bool ReloadIOS(u64 titleID) {
-    IOS::ES es;
-    if (!es.ok()) {
-        return false;
-    }
-
-    auto count = es.getTicketViewCount(titleID);
-    if (!count) {
-        return false;
-    }
-
-    alignas(0x20) IOS::ES::TicketView views[8];
-    if (!es.getTicketViews(titleID, *count, views)) {
-        return false;
-    }
-
-    *(volatile u32 *)0xc0003140 = 0;
-
-    if (!es.launchTitle(titleID, &views[0])) {
-        return false;
-    }
-
-    while (*(volatile u32 *)0xc0003140 == 0) {
-        Clock::WaitMilliseconds(1);
-    }
-
-    IOS::Init();
-
-    return true;
-}
 
 static bool CopyNANDLoader(IOS::FS &fs) {
     alignas(0x20) const char *pathP2 = "/title/00010008/48414c50/content/0000000b.app";
@@ -90,45 +56,8 @@ std::optional<Apploader::GameEntryFunc> Run() {
     Console::Print("\n");
     Console::Print("\n");
 
-    std::optional<u32> contentsSize{};
-    if (versionInfo.type != BUILD_TYPE_RELEASE) {
-        Console::Print("Saving contents.arc...");
-        IOS::FS fs;
-        if (!fs.ok()) {
-            Console::Print(" failed!\n");
-            return {};
-        }
-        contentsSize = fs.readFile(ALIGNED_STRING(TMP_CONTENTS_PATH), contents, 0x900000);
-        if (!contentsSize) {
-            Console::Print(" failed!\n");
-            return {};
-        }
-        Console::Print(" done.\n");
-    }
-
-    Console::Print("Reloading IOS...");
-    if (!ReloadIOS(UINT64_C(0x000000010000003a))) {
-        Console::Print(" failed!\n");
-        return {};
-    }
-    Console::Print(" done.\n");
-
-    if (versionInfo.type != BUILD_TYPE_RELEASE) {
-        Console::Print("Restoring contents.arc...");
-        IOS::FS fs;
-        if (!fs.ok()) {
-            Console::Print(" failed!\n");
-            return {};
-        }
-        if (!fs.writeFile(ALIGNED_STRING(TMP_CONTENTS_PATH), contents, *contentsSize)) {
-            Console::Print(" failed!\n");
-            return {};
-        }
-        Console::Print(" done.\n");
-    }
-
     Console::Print("Escalating privileges...");
-    if (!IOS::EscalatePrivileges()) {
+    if (!IOS::EscalatePrivileges(true)) {
         Console::Print(" failed!\n");
         return {};
     }
@@ -186,6 +115,18 @@ std::optional<Apploader::GameEntryFunc> Run() {
             di.reset();
             Console::Print(" done.\n");
         }
+    }
+
+    std::optional<bool> isDolClean = Dol::IsClean();
+    if (!isDolClean.has_value()) {
+        Console::Print("Unsupported game region detected!");
+        return {};
+    }
+    if (!*isDolClean) {
+        Console::Print(
+                "Please ensure that the file 'main.dol' is not modified\n"
+                "in any capacity!");
+        return {};
     }
 
     void *payloadDst;
