@@ -127,7 +127,7 @@ public:
 private:
     REPLACE static void ConfigurePlayers(Scenario &scenario, u32 screenCount);
 
-    u8 _0000[0x0020 - 0x000];
+    u8 _0000[0x0020 - 0x0000];
     Scenario m_raceScenario;
     Scenario m_menuScenario;
     Scenario m_awardsScenario;
