@@ -252,7 +252,7 @@ void SingleTopPage::onMRButtonFront(PushButton *button, u32 /* localPlayerId */)
 
     auto *missionLevelSelectPage = section->page(PageId::MissionLevelSelect)->downcast<MenuPage>();
     assert(missionLevelSelectPage);
-    missionLevelSelect->m_prevId = PageId::SingleTop;
+    missionLevelSelectPage->m_prevId = PageId::SingleTop;
 
     m_replacement = PageId::MissionLevelSelect;
     f32 delay = button->getDelay();

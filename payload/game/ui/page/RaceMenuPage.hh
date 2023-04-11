@@ -7,18 +7,6 @@ namespace UI {
 
 class RaceMenuPage : public Page {
 public:
-    virtual void setReplacement(PageId id);
-    virtual void vf_68();
-    virtual void vf_6c();
-    virtual void vf_70();
-    virtual void vf_74();
-    virtual void vf_78();
-
-    static bool REPLACED(IsLastMatch)();
-    REPLACE static bool IsLastMatch();
-    static TypeInfo *GetTypeInfo();
-
-private:
     enum class ButtonId {
         Continue1 = 0x0,
         Quit1 = 0x1,
@@ -63,6 +51,18 @@ private:
         LoadState = 0x28,       // Added
     };
 
+    virtual void setReplacement(PageId id);
+    virtual s32 getWindowMessage();
+    virtual s32 getButtonCount();
+    virtual const ButtonId *getButtons();
+    virtual bool getOptionClosable();
+    virtual const char *getResFileName();
+
+    static bool REPLACED(IsLastMatch)();
+    REPLACE static bool IsLastMatch();
+    static TypeInfo *GetTypeInfo();
+
+private:
     void REPLACED(onButtonFront)(PushButton *button, u32 localPlayerId);
     REPLACE void onButtonFront(PushButton *button, u32 localPlayerId);
     void onNextButtonFront(PushButton *button, u32 localPlayerId);
