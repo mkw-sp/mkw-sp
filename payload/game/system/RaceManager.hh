@@ -11,6 +11,7 @@ class RaceManager {
 private:
     RaceManager();
     virtual ~RaceManager();
+    virtual void dt(s32 type);
 
 public:
     class Player {

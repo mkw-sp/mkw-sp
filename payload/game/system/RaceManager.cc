@@ -133,7 +133,7 @@ RaceManager *RaceManager::CreateInstance() {
 }
 
 void RaceManager::DestroyInstance() {
-    delete s_instance;
+    s_instance->dt(1);
     s_instance = nullptr;
 
     if (SP::ThumbnailManager::IsActive()) {
