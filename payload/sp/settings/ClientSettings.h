@@ -14,14 +14,6 @@ enum {
 };
 
 enum {
-    kHudLabels_Hide,
-    kHudLabels_Show,
-    kHudLabels_MAX,
-
-    kHudLabels_Default = kHudLabels_Show,
-};
-
-enum {
     kFOV_169,
     kFOV_43,
     kFOV_MAX,
@@ -64,37 +56,12 @@ enum {
 };
 
 enum {
-    kTaRuleGhostTagContent_Name,
-    kTaRuleGhostTagContent_Time,
-    kTaRuleGhostTagContent_TimeNoLeading,
-    kTaRuleGhostTagContent_Date,
-
-    kTaRuleGhostTagContent_MAX,
-    kTaRuleGhostTagContent_Default = kTaRuleGhostTagContent_Name,
-};
-
-enum {
     kTaRuleSolidGhosts_None,
     kTaRuleSolidGhosts_Watched,
     kTaRuleSolidGhosts_All,
 
     kTaRuleSolidGhosts_MAX,
     kTaRuleSolidGhosts_Default = kTaRuleSolidGhosts_None,
-};
-enum {
-    kPageTransitions_Disable,
-    kPageTransitions_Enable,
-
-    kPageTransitions_MAX,
-    kPageTransitions_Default = kPageTransitions_Enable,
-};
-
-enum {
-    kRaceInputDisplay_Disable,
-    kRaceInputDisplay_Simple,
-
-    kRaceInputDisplay_MAX,
-    kRaceInputDisplay_Default = kRaceInputDisplay_Simple,
 };
 
 enum {
