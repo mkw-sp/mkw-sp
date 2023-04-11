@@ -7,6 +7,8 @@ public:
     void REPLACED(markLicensesDirty)();
     REPLACE void markLicensesDirty();
 
+    bool hasPendingRequests() const;
+
 private:
     u8 _000[0x016 - 0x000];
     bool m_licensesDirty;
