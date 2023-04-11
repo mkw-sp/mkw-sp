@@ -4,7 +4,6 @@
 
 bool SaveManager_SaveGhostResult(void);
 
-u32 SaveManager_SPLicenseCount(void);
 s32 SaveManager_SPCurrentLicense(void);
 
 u32 SaveManager_GetVanillaMode(void);
@@ -20,8 +19,6 @@ u32 SaveManager_GetTAGhostTagVisibility(void);
 u32 SaveManager_GetTASolidGhosts(void);
 
 u32 SaveManager_GetTAGhostSound(void);
-
-MiiId SaveManager_GetSPLicenseMiiId(u32 license);
 
 enum {
     VS_RULE_CLASS_100CC = 0x0,
