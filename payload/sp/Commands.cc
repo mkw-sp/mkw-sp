@@ -67,7 +67,7 @@ sp_define_command("/section", "Transition to a certain game section", const char
     // TODO create base license
     saveManager->selectLicense(0);
 
-    auto sectionId = static_cast<UI::SectionId>(nextSectionId);
+    auto sectionId = static_cast<UI::SectionId>(abs(nextSectionId));
     auto anim = nextSectionId < 0 ? UI::Page::Anim::Prev : UI::Page::Anim::Next;
 
     sectionManager->setNextSection(sectionId, anim);
