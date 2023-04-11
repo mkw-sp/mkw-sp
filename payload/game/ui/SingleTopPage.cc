@@ -112,11 +112,11 @@ void SingleTopPage::onActivate() {
     }
 
     auto &trackPack = SP::TrackPackManager::Instance().getSelectedTrackPack();
-    auto supportedModes = trackPack.getSupportedModes();
+    auto packModes = trackPack.getSupportedModes();
 
-    auto raceEnabled = (supportedModes & SP::TrackGameMode::Race) != SP::TrackGameMode::None;
-    auto coinEnabled = (supportedModes & SP::TrackGameMode::Coin) != SP::TrackGameMode::None;
-    auto balloonEnabled = (supportedModes & SP::TrackGameMode::Balloon) != SP::TrackGameMode::None;
+    auto raceEnabled = (packModes & SP::TrackGameMode::Race) == SP::TrackGameMode::Race;
+    auto coinEnabled = (packModes & SP::TrackGameMode::Coin) == SP::TrackGameMode::Coin;
+    auto balloonEnabled = (packModes & SP::TrackGameMode::Balloon) == SP::TrackGameMode::Balloon;
 
     m_taButton.setVisible(raceEnabled);
     m_vsButton.setVisible(raceEnabled);

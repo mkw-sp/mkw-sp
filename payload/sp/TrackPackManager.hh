@@ -19,8 +19,6 @@ class LayoutUIControl;
 namespace SP {
 
 enum class TrackGameMode {
-    None = 0,
-
     Race = 1 << 0,
     Balloon = 1 << 1,
     Coin = 1 << 2,

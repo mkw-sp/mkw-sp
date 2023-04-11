@@ -224,7 +224,7 @@ constexpr TrackGameMode modes[] = {
 };
 
 TrackGameMode TrackPack::getSupportedModes() const {
-    auto supportedModes = TrackGameMode::None;
+    auto supportedModes = static_cast<TrackGameMode>(0);
     for (auto mode : modes) {
         if (!getTrackList(mode).empty()) {
             supportedModes |= mode;
