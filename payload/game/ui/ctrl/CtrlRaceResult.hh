@@ -11,7 +11,7 @@ public:
     // ...
     virtual void vf_3c();
     virtual void vf_40();
-    virtual void vf_44();
+    REPLACE virtual const char *getFileName();
 
     void REPLACED(refreshRankIconsColor)(u32 rank, u32 playerId);
     REPLACE void refreshRankIconsColor(u32 rank, u32 playerId);
