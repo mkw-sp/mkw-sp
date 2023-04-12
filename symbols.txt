@@ -17,7 +17,7 @@
 0x8000b154 _ZN6System13SystemManager14shutdownSystemEv
 0x8000b188 _ZN6System13SystemManager12returnToMenuEv
 0x8000b1bc _ZN6System13SystemManager7restartEv
-0x8000b5c8 SystemManager_ripFromDisc
+0x8000b5c8 _ZN6System13SystemManager11RipFromDiscEPKcPN3EGG4HeapEbPj
 
 0x8000f1f0 memmove
 0x8000f314 memcmp
@@ -479,6 +479,7 @@
 0x80384190 s_dvdList
 0x80385908 es_fd
 0x80386000 s_systemManager
+0x80386000 _ZN6System13SystemManager10s_instanceE
 0x80386638 MaxEntryNum
 0x8038663c FstStringStart
 0x80386640 FstStart
@@ -502,7 +503,7 @@
 0x8051c7f4 _ZN6System9GhostFile11writeHeaderEPNS_14RawGhostHeaderE
 0x8051ce7c _ZNK6System3Pad15getControllerIdEv
 0x8051ce94 GhostGroup_ct
-0x8051d5e8 HomeButton_getFile
+0x8051d5e8 _ZN6System10HBMManager7getFileEPKcPN3EGG4HeapEbPj
 0x8051d6a0 HomeButton_ct
 0x8051e85c _ZN6System14RaceInputState5ResetERS0_
 0x8051e960 _ZN6System14RaceInputState9SetStickXERS0_h

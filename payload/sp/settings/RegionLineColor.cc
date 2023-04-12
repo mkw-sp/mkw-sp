@@ -1,14 +1,12 @@
 #include "RegionLineColor.hh"
 
-extern "C" {
-#include <game/host_system/SystemManager.h>
-}
+#include "game/host_system/SystemManager.hh"
 
 namespace SP::RegionLineColor {
 
 u32 Get(SP::ClientSettings::RegionLineColor regionLineColorSetting) {
     if (regionLineColorSetting == SP::ClientSettings::RegionLineColor::Default) {
-        return s_systemManager->matchingArea;
+        return System::SystemManager::Instance()->matchingArea();
     } else {
         return static_cast<u32>(regionLineColorSetting);
     }
