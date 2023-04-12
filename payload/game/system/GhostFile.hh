@@ -174,4 +174,4 @@ class GhostGroup {
 };
 static_assert(sizeof(GhostGroup) == 0x14);
 
-} // namespace System
+}
