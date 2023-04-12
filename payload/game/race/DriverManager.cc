@@ -8,6 +8,17 @@
 
 namespace Race {
 
+DriverManager *DriverManager::CreateInstance() {
+    s_instance = new DriverManager;
+
+    auto &raceScenario = System::RaceConfig::Instance()->raceScenario();
+    if (raceScenario.players[0].type == System::RaceConfig::Player::Type::Ghost) {
+        s_instance->m_liveViewWatchedPlayerId = 0;
+    }
+
+    return s_instance;
+}
+
 DriverManager *DriverManager::Instance() {
     return s_instance;
 }
