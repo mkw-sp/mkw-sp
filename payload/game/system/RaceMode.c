@@ -1,6 +1,7 @@
-#include "RaceManager.h"
+#include "RaceMode.h"
 
 #include "RaceConfig.h"
+#include "RaceManager.h"
 
 static bool my_TimeAttackGameMode_canEndRace(TimeAttackGameMode * /* this */) {
     const RaceConfigScenario *raceScenario = &s_raceConfig->raceScenario;
