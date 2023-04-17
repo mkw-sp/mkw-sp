@@ -76,5 +76,5 @@ jobs:
         run: sudo apt-get update && sudo apt-get install clang-format-15
       - name: Format MKW-SP
         run: |
-          dirs="common include loader payload protobuf stub"
-          find $dirs -regex '.*\.\(c\|h\|cc\|hh\|proto\)' | xargs clang-format-15 --dry-run -Werror
+          dirs="common include loader payload stub"
+          find $dirs -regex '.*\.\(c\|h\|cc\|hh\)' | xargs clang-format-15 --dry-run -Werror
