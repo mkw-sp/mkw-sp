@@ -77,4 +77,4 @@ jobs:
       - name: Format MKW-SP
         run: |
           dirs="common include loader payload protobuf stub"
-          find $dirs -regex '.*\.\(c\|h\|cc\|hh|proto\)' | xargs clang-format-15 --dry-run -Werror
+          find $dirs -regex '.*\.\(c\|h\|cc\|hh\|proto\)' | xargs clang-format-15 --dry-run -Werror
