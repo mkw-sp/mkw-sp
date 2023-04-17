@@ -1,9 +1,24 @@
 #include "CtrlRaceResult.hh"
 
 #include "game/system/RaceConfig.hh"
+#include "game/ui/SectionManager.hh"
 #include "game/ui/TeamColors.hh"
 
 namespace UI {
+
+const char *CtrlRaceResult::getFileName() {
+    auto sectionId = SectionManager::Instance()->currentSection()->id();
+    if (sectionId == SectionId::GP || sectionId == SectionId::OnlineFriend1PVS ||
+            sectionId == SectionId::OnlineFriend1PTeamVS) {
+        return "ResultGP";
+    }
+    if (sectionId == SectionId::TA || sectionId == SectionId::GhostTA ||
+            sectionId == SectionId::GhostTAOnline || sectionId == SectionId::MR ||
+            sectionId == SectionId::TournamentReplay) {
+        return "ResultTA";
+    }
+    return "ResultVS";
+}
 
 void CtrlRaceResult::refreshRankIconsColor(u32 rank, u32 playerId) {
     REPLACED(refreshRankIconsColor)(rank, playerId);
