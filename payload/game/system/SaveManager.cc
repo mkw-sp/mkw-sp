@@ -645,20 +645,12 @@ const char *SaveManager::s_courseAbbreviations[0x20] = {
 } // namespace System
 
 extern "C" {
-bool SaveManager_IsAvailable(void) {
-    return System::SaveManager::Instance();
-}
-
 bool SaveManager_SaveGhostResult(void) {
     return System::SaveManager::Instance()->saveGhostResult();
 }
 
 void SaveManager_EraseLicense(u32 licenseId) {
     return System::SaveManager::Instance()->eraseLicense(licenseId);
-}
-
-void SaveManager_SelectLicense(u32 licenseId) {
-    System::SaveManager::Instance()->selectLicense(licenseId);
 }
 
 u32 SaveManager_SPLicenseCount(void) {
@@ -676,19 +668,6 @@ void SaveManager_CreateSPLicense(const MiiId *miiId) {
 
 s32 SaveManager_SPCurrentLicense(void) {
     return System::SaveManager::Instance()->spCurrentLicense().value_or(-1);
-}
-
-void SaveManager_SelectSPLicense(u32 licenseId) {
-    System::SaveManager::Instance()->selectSPLicense(licenseId);
-}
-
-void SaveManager_UnselectSPLicense(void) {
-    System::SaveManager::Instance()->unselectSPLicense();
-}
-
-void SaveManager_SetSetting(const char *key, const char *value) {
-    auto *saveManager = System::SaveManager::Instance();
-    saveManager->setSetting(key, value);
 }
 
 u32 SaveManager_GetVanillaMode(void) {
@@ -709,12 +688,6 @@ u32 SaveManager_GetMapIcons(void) {
     return static_cast<u32>(value);
 }
 
-u32 SaveManager_GetInputDisplay(void) {
-    auto *saveManager = System::SaveManager::Instance();
-    auto value = saveManager->getSetting<SP::ClientSettings::Setting::InputDisplay>();
-    return static_cast<u32>(value);
-}
-
 u32 SaveManager_GetTAClass(void) {
     auto *saveManager = System::SaveManager::Instance();
     auto value = saveManager->getSetting<SP::ClientSettings::Setting::TAClass>();
@@ -724,12 +697,6 @@ u32 SaveManager_GetTAClass(void) {
 u32 SaveManager_GetTAGhostTagVisibility(void) {
     auto *saveManager = System::SaveManager::Instance();
     auto value = saveManager->getSetting<SP::ClientSettings::Setting::TAGhostTagVisibility>();
-    return static_cast<u32>(value);
-}
-
-u32 SaveManager_GetTAGhostTagContent(void) {
-    auto *saveManager = System::SaveManager::Instance();
-    auto value = saveManager->getSetting<SP::ClientSettings::Setting::TAGhostTagContent>();
     return static_cast<u32>(value);
 }
 
@@ -743,24 +710,6 @@ u32 SaveManager_GetTAGhostSound(void) {
     auto *saveManager = System::SaveManager::Instance();
     auto value = saveManager->getSetting<SP::ClientSettings::Setting::TAGhostSound>();
     return static_cast<u32>(value);
-}
-
-u32 SaveManager_GetHUDLabels(void) {
-    auto *saveManager = System::SaveManager::Instance();
-    auto value = saveManager->getSetting<SP::ClientSettings::Setting::HUDLabels>();
-    return static_cast<u32>(value);
-}
-
-u32 SaveManager_GetPageTransitions(void) {
-    auto *saveManager = System::SaveManager::Instance();
-    auto value = saveManager->getSetting<SP::ClientSettings::Setting::PageTransitions>();
-    return static_cast<u32>(value);
-}
-
-void SaveManager_SetPageTransitions(u32 value) {
-    auto *saveManager = System::SaveManager::Instance();
-    auto v = static_cast<SP::ClientSettings::PageTransitions>(value);
-    saveManager->setSetting<SP::ClientSettings::Setting::PageTransitions>(v);
 }
 
 void SaveManager_SetMiiId(const MiiId *miiId) {
