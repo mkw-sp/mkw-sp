@@ -1,6 +1,6 @@
 #include "RaceMode.hh"
 
-#include "RaceConfig.hh"
+#include "game/system/RaceConfig.hh"
 
 namespace System {
 
