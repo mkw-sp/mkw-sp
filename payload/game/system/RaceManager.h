@@ -3,17 +3,6 @@
 #include <Common.h>
 
 typedef struct {
-    u8 _0[0x8 - 0x0];
-} TimeAttackGameMode;
-static_assert(sizeof(TimeAttackGameMode) == 0x8);
-
-bool TimeAttackGameMode_canEndRace(TimeAttackGameMode *this);
-
-enum {
-    RACE_MANAGER_PLAYER_FLAG_HAS_FINISHED = 1 << 1,
-};
-
-typedef struct {
     u8 _00[0x08 - 0x00];
     u8 id;
     u8 _09[0x38 - 0x09];
