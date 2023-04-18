@@ -1,4 +1,4 @@
-#include "MenuPage.hh"
+#include "game/ui/page/MenuPage.hh"
 
 namespace UI {
 
