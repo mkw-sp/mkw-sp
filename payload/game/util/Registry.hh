@@ -2,8 +2,6 @@
 
 #include <Common.hh>
 
-#define ENABLE_MR false
-
 namespace Registry {
 
 enum class Character {

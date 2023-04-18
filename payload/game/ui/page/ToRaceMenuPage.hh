@@ -1,8 +1,5 @@
 #pragma once
 
-#include "game/util/Registry.hh"
-#if ENABLE_MR
-
 #include "game/ui/page/RaceMenuPage.hh"
 
 namespace UI {
@@ -20,5 +17,3 @@ public:
 static_assert(sizeof(ToRaceMenuPage) == sizeof(RaceMenuPage));
 
 } // namespace UI
-
-#endif

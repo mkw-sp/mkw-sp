@@ -1,5 +1,4 @@
 #include "ToRaceMenuPage.hh"
-#if ENABLE_MR
 
 #include "game/ui/SectionManager.hh"
 #include "game/ui/page/RaceMenuPage.hh"
@@ -39,5 +38,3 @@ const char *ToRaceMenuPage::getResFileName() {
 }
 
 } // namespace UI
-
-#endif
