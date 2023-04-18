@@ -1,6 +1,6 @@
 #pragma once
 
-#include "UIControl.hh"
+#include "game/ui/UIControl.hh"
 
 namespace UI {
 
