@@ -1,6 +1,6 @@
 #include "SystemManager.hh"
-#include "Scene.hh"
 
+#include "game/host_system/Scene.hh"
 #include "game/system/RaceManager.hh"
 #include "game/ui/Section.hh"
 
