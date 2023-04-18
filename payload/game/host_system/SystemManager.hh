@@ -1,12 +1,8 @@
 #pragma once
 
-extern "C" {
-#include "SystemManager.h"
-}
-#include "Scene.hh"
+#include "game/ui/SectionId.hh"
 
-#include "game/ui/SectionManager.hh"
-
+#include <egg/core/eggHeap.hh>
 #include <sp/IOSDolphin.hh>
 
 namespace System {
@@ -18,18 +14,29 @@ public:
     REPLACE void shutdownSystem();
     REPLACE void returnToMenu();
     REPLACE void restart();
+    u32 matchingArea() const;
 
     static void ShutdownSystem();
     static void ReturnToMenu();
     static void Restart();
     static void ResetDolphinSpeedLimit();
     static void LaunchTitle(u64 titleID);
+    static u8 *RipFromDisc(const char *path, EGG::Heap *heap, bool allocTop, u32 *size);
+
+    static SystemManager *Instance() {
+        return s_instance;
+    }
 
 private:
     u8 _0000[0x0070 - 0x0000];
     u32 m_launchType;
-    u8 _0074[0x1100 - 0x0074];
+    u8 _0074[0x0084 - 0x0074];
+    u32 m_matchingArea;
+    u8 _0088[0x1100 - 0x0088];
+
+    static SystemManager *s_instance;
 };
+
 static_assert(sizeof(SystemManager) == 0x1100);
 
 class RichPresenceManager {

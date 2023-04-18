@@ -1,6 +1,8 @@
 #include "SystemManager.hh"
 
+#include "game/host_system/Scene.hh"
 #include "game/system/RaceManager.hh"
+#include "game/ui/Section.hh"
 
 extern "C" {
 #include <revolution.h>
@@ -73,6 +75,10 @@ void SystemManager::LaunchTitle(u64 titleID) {
         return;
     }
     __OSLaunchTitle(titleID);
+}
+
+u32 SystemManager::matchingArea() const {
+    return m_matchingArea;
 }
 
 RichPresenceManager &RichPresenceManager::Instance() {
