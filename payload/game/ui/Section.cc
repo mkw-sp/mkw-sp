@@ -138,6 +138,7 @@ void Section::addPage(PageId pageId) {
             {SectionId::SingleChangeMission, PageId::VSSelect},
             {SectionId::SingleChangeMission, PageId::VSSetting},
             {SectionId::SingleChangeMission, PageId::BattleSetting},
+            {SectionId::SingleChangeMission, PageId::RaceCourseSelect},
             {SectionId::Multi, PageId::RaceCourseSelect},
             {SectionId::Multi, PageId::VSSelect},
             {SectionId::Multi, PageId::VSSetting},
