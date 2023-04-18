@@ -3,7 +3,7 @@
 #include "game/util/Registry.hh"
 #if ENABLE_MR
 
-#include "RaceMenuPage.hh"
+#include "game/ui/page/RaceMenuPage.hh"
 
 namespace UI {
 

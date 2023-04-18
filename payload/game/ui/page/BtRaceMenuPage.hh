@@ -1,6 +1,6 @@
 #pragma once
 
-#include "RaceMenuPage.hh"
+#include "game/ui/page/RaceMenuPage.hh"
 
 namespace UI {
 
