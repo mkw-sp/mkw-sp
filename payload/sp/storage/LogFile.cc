@@ -1,3 +1,4 @@
+#include "LogFile.hh"
 extern "C" {
 #include "LogFile.h"
 }
@@ -127,7 +128,7 @@ static void RemoveOldLogFiles() {
     }
 }
 
-static void Init() {
+void Init() {
     startTime = OSGetTime();
 
     RemoveOldLogFiles();
@@ -166,12 +167,6 @@ static void VPrintf(const char *format, va_list args) {
 
 } // namespace SP::LogFile
 
-extern "C" {
-void LogFile_Init(void) {
-    SP::LogFile::Init();
-}
-
-void LogFile_VPrintf(const char *format, va_list args) {
+extern "C" void LogFile_VPrintf(const char *format, va_list args) {
     SP::LogFile::VPrintf(format, args);
-}
 }
