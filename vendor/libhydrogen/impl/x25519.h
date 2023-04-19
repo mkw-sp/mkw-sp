@@ -215,9 +215,8 @@ hydro_x25519_canon(hydro_x25519_fe x)
     return ((hydro_x25519_dlimb_t) res - 1) >> hydro_x25519_WBITS;
 }
 
-// https://github.com/jedisct1/libhydrogen/issues/123
 static void
-hydro_x25519_ladder_part1(hydro_x25519_fe *xs)
+hydro_x25519_ladder_part1(hydro_x25519_fe xs[5])
 {
     hydro_x25519_limb_t *x2 = xs[0], *z2 = xs[1], *x3 = xs[2], *z3 = xs[3], *t1 = xs[4];
 
@@ -250,9 +249,8 @@ hydro_x25519_ladder_part2(hydro_x25519_fe xs[5], const hydro_x25519_fe x1)
     hydro_x25519_mul1(x2, t1);    // x2 = AA*BB
 }
 
-// https://github.com/jedisct1/libhydrogen/issues/123
 static void
-hydro_x25519_core(hydro_x25519_fe *xs, const uint8_t scalar[hydro_x25519_BYTES],
+hydro_x25519_core(hydro_x25519_fe xs[5], const uint8_t scalar[hydro_x25519_BYTES],
                   const uint8_t *x1, bool clamp)
 {
     hydro_x25519_limb_t  swap;
