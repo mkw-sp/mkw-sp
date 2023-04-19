@@ -717,5 +717,4 @@ void SaveManager_SetMiiId(const MiiId *miiId) {
     auto *saveManager = System::SaveManager::Instance();
     saveManager->setMiiId(*std::bit_cast<System::MiiId *>(miiId));
 }
-
 }

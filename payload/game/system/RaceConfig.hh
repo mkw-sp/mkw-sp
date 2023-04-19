@@ -6,6 +6,9 @@ namespace System {
 
 class RaceConfig {
 public:
+    RaceConfig();
+    virtual ~RaceConfig();
+
     struct Player {
         enum class Type {
             Local = 0,
@@ -105,6 +108,7 @@ public:
     };
     static_assert(sizeof(Scenario) == 0xbf0);
 
+    bool is200cc();
     Scenario &raceScenario();
     Scenario &menuScenario();
     Scenario &awardsScenario();
@@ -120,7 +124,8 @@ public:
 private:
     REPLACE static void ConfigurePlayers(Scenario &scenario, u32 screenCount);
 
-    u8 _0000[0x0020 - 0x0000];
+    bool m_is200cc;
+    u8 _0007[0x0020 - 0x0007];
     Scenario m_raceScenario;
     Scenario m_menuScenario;
     Scenario m_awardsScenario;

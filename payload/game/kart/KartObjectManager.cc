@@ -101,23 +101,11 @@ void KartObjectManager::beforeCalc() {
 }
 
 void KartObjectManager::CreateInstance() {
-    auto &raceScenario = System::RaceConfig::Instance()->raceScenario();
+    auto *raceConfig = System::RaceConfig::Instance();
     auto *saveManager = System::SaveManager::Instance();
+    auto &raceScenario = raceConfig->raceScenario();
 
-    auto taClass = saveManager->getSetting<SP::ClientSettings::Setting::TAClass>();
-    auto vsClass = saveManager->getSetting<SP::ClientSettings::Setting::VSClass>();
-
-    switch (raceScenario.gameMode) {
-    case System::RaceConfig::GameMode::OfflineVS:
-        speedModIsEnabled = vsClass == SP::ClientSettings::EngineClass::CC200;
-        break;
-    case System::RaceConfig::GameMode::TimeAttack:
-        speedModIsEnabled = taClass == SP::ClientSettings::TAClass::CC200;
-        break;
-    default:
-        speedModIsEnabled = false;
-    }
-
+    speedModIsEnabled = raceConfig->is200cc();
     speedModFactor = speedModIsEnabled ? 1.5f : 1.0f;
     speedModReverseFactor = 1.0f / speedModFactor;
 
