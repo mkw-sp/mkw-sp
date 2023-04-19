@@ -1,9 +1,5 @@
 #pragma once
 
-extern "C" {
-#include "SaveManager.h"
-}
-
 #include "game/system/GhostFile.hh"
 #include "game/system/Mii.hh"
 #include "game/system/NandHelper.hh"

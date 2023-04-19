@@ -4,10 +4,6 @@
 #include "game/system/SaveManager.hh"
 
 extern "C" {
-#include "game/system/SaveManager.h"
-}
-
-extern "C" {
 #include <vendor/libhydrogen/hydrogen.h>
 }
 

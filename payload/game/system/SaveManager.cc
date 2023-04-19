@@ -2,9 +2,6 @@
 
 #include "game/system/RaceConfig.hh"
 #include "game/system/RootScene.hh"
-extern "C" {
-#include "game/system/SaveManager.h"
-}
 #include "game/ui/SectionManager.hh"
 
 #include <common/Bytes.hh>
@@ -680,9 +677,8 @@ void SaveManager_EraseSPLicense(void) {
     System::SaveManager::Instance()->eraseSPLicense();
 }
 
-void SaveManager_CreateSPLicense(const MiiId *miiId) {
-    System::SaveManager::Instance()->createSPLicense(
-            reinterpret_cast<const System::MiiId *>(miiId));
+void SaveManager_CreateSPLicense(const System::MiiId *miiId) {
+    System::SaveManager::Instance()->createSPLicense(miiId);
 }
 
 s32 SaveManager_SPCurrentLicense(void) {
@@ -713,8 +709,8 @@ u32 SaveManager_GetTAGhostTagVisibility(void) {
     return static_cast<u32>(value);
 }
 
-void SaveManager_SetMiiId(const MiiId *miiId) {
+void SaveManager_SetMiiId(const System::MiiId *miiId) {
     auto *saveManager = System::SaveManager::Instance();
-    saveManager->setMiiId(*std::bit_cast<System::MiiId *>(miiId));
+    saveManager->setMiiId(*miiId);
 }
 }
