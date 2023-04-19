@@ -61,6 +61,8 @@ public:
     u32 m_timeAttackGhostCount;       // Added
     u32 m_timeAttackGhostIndices[11]; // Added
 };
+
+// Keep in sync with SectionManager.c
 static_assert(sizeof(GlobalContext) == 0x510 + sizeof(u32) * (1 + 11));
 
 } // namespace UI

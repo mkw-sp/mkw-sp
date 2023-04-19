@@ -2,13 +2,9 @@
 
 #include "sp/StringView.h"
 
-#include <game/system/SaveManager.h>
-#include <game/ui/SectionManager.h>
 #include <revolution.h>
 
-#include <stdio.h>
 #include <stdlib.h>
-#include <string.h>
 
 extern Command __start_commands;
 extern Command __stop_commands;
