@@ -65,7 +65,7 @@
 
 /* Version of the nanopb library. Just in case you want to check it in
  * your own program. */
-#define NANOPB_VERSION "nanopb-0.4.7-dev"
+#define NANOPB_VERSION "nanopb-0.4.7"
 
 /* Include all the system headers needed by nanopb. You will need the
  * definitions of the following:
@@ -902,10 +902,13 @@ struct pb_extension_s {
 #define PB_INLINE_CONSTEXPR PB_CONSTEXPR
 #endif  // __cplusplus >= 201703L
 
+extern "C++"
+{
 namespace nanopb {
 // Each type will be partially specialized by the generator.
 template <typename GenMessageT> struct MessageDescriptor;
 }  // namespace nanopb
+}
 #endif  /* __cplusplus */
 
 #endif
