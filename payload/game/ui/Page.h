@@ -107,8 +107,6 @@ void Page_initChildren(Page *this, u32 count);
 
 void Page_insertChild(Page *this, u32 index, UIControl *child, u32 drawPass);
 
-void Page_startReplace(Page *this, u32 animation, f32 delay);
-
 // TODO r5
 void Page_playSfx(Page *this, u32 sfxId, s32 r5);
 

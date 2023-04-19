@@ -2,8 +2,6 @@
 
 #include "game/system/Mii.h"
 
-bool SaveManager_SaveGhostResult(void);
-
 s32 SaveManager_SPCurrentLicense(void);
 
 u32 SaveManager_GetVanillaMode(void);

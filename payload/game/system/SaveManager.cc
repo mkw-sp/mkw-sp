@@ -645,9 +645,6 @@ const char *SaveManager::s_courseAbbreviations[0x20] = {
 } // namespace System
 
 extern "C" {
-bool SaveManager_SaveGhostResult(void) {
-    return System::SaveManager::Instance()->saveGhostResult();
-}
 
 void SaveManager_EraseLicense(u32 licenseId) {
     return System::SaveManager::Instance()->eraseLicense(licenseId);
