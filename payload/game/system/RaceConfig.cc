@@ -62,13 +62,13 @@ void RaceConfig::applyEngineClass() {
     case SP::ClientSettings::EngineClass::CC100:
         m_menuScenario.engineClass = EngineClass::CC100;
         break;
+    case SP::ClientSettings::EngineClass::CC150: // Set above
+        break;
     case SP::ClientSettings::EngineClass::CC200: // handled in KartObjectManager
         m_is200cc = true;
         break;
     case SP::ClientSettings::EngineClass::Mirror:
         m_menuScenario.mirror = true;
-    case SP::ClientSettings::EngineClass::CC150: // Set above
-        break;
     }
 }
 
