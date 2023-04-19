@@ -243,7 +243,7 @@ int MY_FAST_CALL LZMA_DECODE_REAL(CLzmaDec *p, SizeT limit, const Byte *bufLimit
   Byte *dic = p->dic;
   SizeT dicBufSize = p->dicBufSize;
   SizeT dicPos = p->dicPos;
-  
+
   UInt32 processedPos = p->processedPos;
   UInt32 checkDicSize = p->checkDicSize;
   unsigned len = 0;
@@ -319,7 +319,7 @@ int MY_FAST_CALL LZMA_DECODE_REAL(CLzmaDec *p, SizeT limit, const Byte *bufLimit
       dic[dicPos++] = (Byte)symbol;
       continue;
     }
-    
+
     {
       UPDATE_1(prob);
       prob = probs + IsRep + state;
