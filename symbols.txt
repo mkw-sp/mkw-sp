@@ -821,7 +821,6 @@
 0x805e5de0 _ZN2UI9GlobePage16requestSpinCloseEv
 0x805e5ee4 _ZN2UI9GlobePage15requestSpinMidEv
 0x805e5fe8 _ZN2UI9GlobePage14requestSpinFarEv
-0x805e8368 Layout_findPaneByName
 0x805e8368 _ZN2UI6Layout14findPaneByNameEPKc
 0x805e85a8 _ZN2UI6LayoutC2Ev
 0x805e8630 _ZN2UI10MainLayout2dtEi
