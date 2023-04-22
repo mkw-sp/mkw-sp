@@ -1,8 +1,10 @@
 #include "Commands.h"
+
+#include "sp/StringView.h"
+
 #include <revolution.h>
-#include <stdio.h>
+
 #include <stdlib.h>
-#include <string.h>
 
 extern Command __start_commands;
 extern Command __stop_commands;
@@ -42,6 +44,24 @@ const Command *Commands_match(const char *tmp) {
     }
 
     return NULL;
+}
+
+void Commands_lineCallback(const char *buf, size_t len) {
+    StringView view = (StringView){.s = buf, .len = len};
+    const char *tmp = sv_as_cstr(view, 64);
+
+    OSReport("[SP] Line submitted: %s\n", tmp);
+
+    const Command *it = Commands_match(tmp);
+    if (it == NULL) {
+        OSReport("&aUnknown command \"%s\"\n", tmp);
+        return;
+    }
+    if (it->onBegin == NULL) {
+        OSReport("&aCommand not implemented \"%s\"\n", tmp);
+        return;
+    }
+    it->onBegin(tmp);
 }
 
 static void Commands_printHelp(size_t page) {

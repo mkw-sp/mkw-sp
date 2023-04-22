@@ -31,9 +31,6 @@ typedef struct {
 static inline float decodeFixed15(u16 fixed) {
     return (float)(fixed) / (float)(1 << 15);
 }
-static inline u16 encodeFixed15(float floating) {
-    return (u16)(floating * (float)(1 << 15));
-}
 static inline s16 encodeSFixed6(float floating) {
     return (s16)(floating * (float)(1 << 5));
 }
@@ -46,18 +43,6 @@ typedef struct {
 static_assert(sizeof(Font) == 0x24);
 
 Font *Font_ct(Font *self);
-void Font_dt(Font *self);
 
 void Font_load(Font *self, const char *file);
-void Font_buildTexObjs(Font *self);
 void Font_calcQuad(const Font *self, RKFontGlyphQuad *result, u16 character);
-
-typedef struct {
-    s32 intVals[9];
-    u32 messageIds[9];
-    const Mii *miis[9];
-    u8 _6c[0x9c - 0x6c];
-    const wchar_t *strings[9];
-    u8 _c0[0xc4 - 0xc0];
-} MessageInfo;
-static_assert(sizeof(MessageInfo) == 0xc4);

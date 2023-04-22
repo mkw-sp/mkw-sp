@@ -2,6 +2,9 @@
 
 #include <Common.h>
 
+#include <stdio.h>
+#include <string.h>
+
 #ifdef _MSC_VER
 #define PRAGMA_SECTION(s)
 #else
@@ -34,3 +37,4 @@ typedef struct Command {
 
 void Commands_init(void);
 const Command *Commands_match(const char *tmp);
+void Commands_lineCallback(const char *buf, size_t len);

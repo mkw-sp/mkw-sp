@@ -139,3 +139,51 @@ bool RaceMenuPage::IsLastMatch() {
 }
 
 } // namespace UI
+
+extern "C" {
+// Referenced by RaceMenuPage.S
+const char *sButtonStrings[] = {
+        "ButtonContinue",          // ButtonId::Continue1
+        "ButtonQuit",              // ButtonId::Quit1
+        "ButtonRestart",           // ButtonId::Restart1
+        "ButtonRestart",           // ButtonId::Restart2
+        "ButtonReplay",            // ButtonId::Replay
+        "ButtonChangeCourse",      // ButtonId::ChangeCourse
+        "ButtonChangeCharacter",   // ButtonId::ChangeCharacter
+        "ButtonNext",              // ButtonId::Next
+        "ButtonRanking",           // ButtonId::Ranking
+        "ButtonContinueReplay",    // ButtonId::ContinueReplay
+        "ButtonRestartReplay",     // ButtonId::RestartReplay
+        "ButtonQuitReplay",        // ButtonId::QuitReplay
+        "ButtonContinue",          // ButtonId::Continue2
+        "ButtonQuit",              // ButtonId::Quit2
+        "ButtonBattleGhost",       // ButtonId::BattleGhost
+        "ButtonRestart",           // ButtonId::Restart3
+        "ButtonContinue",          // ButtonId::Continue3
+        "ButtonQuit",              // ButtonId::Quit3
+        "ButtonChangeMission",     // ButtonId::ChangeMission
+        "ButtonSend",              // ButtonId::Send1
+        "ButtonNoSend",            // ButtonId::NoSend1
+        "ButtonGoRanking",         // ButtonId::GoRanking
+        "ButtonNotGoRanking",      // ButtonId::NotGoRanking
+        "ButtonConfirmContinue",   // ButtonId::ConfirmContinue
+        "ButtonConfirmQuit",       // ButtonId::ConfirmQuit
+        "ButtonSendRecord",        // ButtonId::SendRecord
+        "ButtonSend",              // ButtonId::Send2
+        "ButtonNoSend",            // ButtonId::NoSend2
+        "ButtonFriendGhostBattle", // ButtonId::stBattle
+        "ButtonGoFriendRoom",      // ButtonId::GoFriendRoom
+        "ButtonNotGoFriendRoom",   // ButtonId::NotGoFriendRoom
+        "ButtonNextGhost",         // ButtonId::NextGhost
+        "ButtonYes",               // ButtonId::Yes1
+        "ButtonNo",                // ButtonId::No1
+        "ButtonQuit",              // ButtonId::Quit4
+        "ButtonYes",               // ButtonId::Yes2
+        "ButtonNo",                // ButtonId::No2
+
+        "ButtonSettings",        // ButtonId::LicenseSettings
+        "ButtonChangeGhostData", // ButtonId::ChangeGhostData
+        "ButtonSaveState",       // ButtonId::SaveState
+        "ButtonLoadState",       // ButtonId::LoadState
+};
+}

@@ -1,12 +1,13 @@
 #pragma once
 
-#include <Common.hh>
+#include <egg/core/eggHeap.hh>
 
 namespace System {
 
 class HBMManager {
 public:
     bool isActive() const;
+    REPLACE u8 *getFile(const char *path, EGG::Heap *heap, bool isCompressed, u32 *fileSize);
 
     static HBMManager *Instance();
 
