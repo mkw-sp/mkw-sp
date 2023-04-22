@@ -2,7 +2,6 @@
 
 extern "C" {
 #include <revolution.h>
-#include <revolution/gx.h>
 #include <revolution/tpl.h>
 }
 

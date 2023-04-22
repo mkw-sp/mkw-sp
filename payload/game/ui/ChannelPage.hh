@@ -2,10 +2,6 @@
 
 #include "game/ui/Page.hh"
 
-extern "C" {
-#include <revolution.h>
-}
-
 namespace UI {
 
 class ChannelPage : public Page {

@@ -8,10 +8,6 @@
 
 #include <numeric>
 
-extern "C" {
-#include <revolution.h>
-}
-
 namespace UI {
 
 FriendRoomBackPage::FriendRoomBackPage() = default;

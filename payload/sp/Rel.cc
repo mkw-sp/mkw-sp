@@ -11,7 +11,6 @@ extern "C" {
 
 extern "C" {
 #include <game/system/Console.h>
-#include <revolution.h>
 }
 
 #include <cstring>

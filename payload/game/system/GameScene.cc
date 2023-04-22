@@ -4,10 +4,6 @@
 
 #include <sp/settings/ClientSettings.hh>
 
-extern "C" {
-#include <revolution.h>
-}
-
 namespace System {
 
 void GameScene::setFramerate(bool is_30) {

@@ -1,9 +1,5 @@
 #include "eggSceneManager.hh"
 
-extern "C" {
-#include <revolution.h>
-}
-#include <game/host_system/SystemManager.hh>
 #include <game/system/RaceConfig.hh>
 #include <game/system/ResourceManager.hh>
 #include <game/system/SaveManager.hh>

@@ -1,7 +1,6 @@
 #include "AwardsManager.hh"
 
 #include <algorithm>
-#include <array>
 #include <numeric>
 
 namespace Race {

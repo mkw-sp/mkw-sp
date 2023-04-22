@@ -1,7 +1,5 @@
 #include "FontManager.h"
 
-#include <revolution.h>
-
 Font *sDebugFont;
 
 static void FontManager_initFont(FontManager *this, u32 index, const char *file) {

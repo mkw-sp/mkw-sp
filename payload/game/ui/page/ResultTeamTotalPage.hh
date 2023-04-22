@@ -4,8 +4,6 @@
 #include "game/ui/ctrl/CtrlRaceResultTeamPoint.hh"
 #include "game/ui/page/ResultPage.hh"
 
-#include <array>
-
 namespace UI {
 
 class ResultTeamTotalPage : public ResultPage {

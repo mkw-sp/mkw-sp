@@ -1,8 +1,5 @@
 #pragma once
 
-#include "../system/Mii.h"
-#include <revolution.h>
-
 #include <nw4r/lyt/lyt_pane.h>
 #include <nw4r/ut/ut_resFont.h>
 

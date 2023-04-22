@@ -1,8 +1,6 @@
 extern "C" {
 #include "Host.h"
 
-#include <Common.h>
-
 #include <revolution/ios.h>
 #include <revolution/nwc24/NWC24Utils.h>
 #include <revolution/os.h>

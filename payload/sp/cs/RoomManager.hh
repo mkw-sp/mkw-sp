@@ -4,8 +4,6 @@
 
 #include <game/system/Mii.hh>
 
-#include <array>
-
 namespace SP {
 
 // RoomManager is inherited by RoomClient and RoomServer

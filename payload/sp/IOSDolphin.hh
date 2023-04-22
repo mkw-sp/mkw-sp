@@ -4,8 +4,6 @@ extern "C" {
 #include <revolution/ios.h>
 }
 #include "FixedString.hh"
-#include <Common.h>
-#include <array>
 #include <expected>
 #include <string_view>
 

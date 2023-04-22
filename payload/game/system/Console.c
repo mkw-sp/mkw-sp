@@ -2,7 +2,6 @@
 #include <game/ui/Font.h>
 #include <game/ui/FontManager.h>
 #include <nw4r/lyt/lyt_layout.h>
-#include <revolution.h>
 #include <sp/FormattingCodes.h>
 #include <sp/ScopeLock.h>
 #include <sp/keyboard/Keyboard.h>

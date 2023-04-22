@@ -2,7 +2,6 @@
 
 #include "game/ui/GhostSelectButton.hh"
 #include "game/ui/UIControl.hh"
-#include <array>
 
 namespace UI {
 

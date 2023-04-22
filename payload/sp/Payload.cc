@@ -39,7 +39,6 @@ extern "C" {
 #include <game/host_system/SystemManager.hh>
 extern "C" {
 #include <libhydrogen/hydrogen.h>
-#include <revolution.h>
 }
 
 #include <cstring>

@@ -1,7 +1,9 @@
 #pragma once
 
 #include <Common.hh>
+extern "C" {
 #include <revolution/gx.h>
+}
 
 /*
 Helpful asserts:

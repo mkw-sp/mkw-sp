@@ -2,7 +2,6 @@
 #include <egg/core/eggColorFader.h>
 #include <egg/core/eggSystem.h>
 #include <nw4r/lyt/lyt_pane.h>
-#include <revolution.h>
 #include <sp/storage/DecompLoader.h>
 
 #include <stdarg.h>

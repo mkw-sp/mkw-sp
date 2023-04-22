@@ -1,9 +1,5 @@
 #include "DvdArchive.hh"
 
-extern "C" {
-#include <revolution.h>
-}
-
 #include <sp/ThumbnailManager.hh>
 #include <sp/cs/RoomManager.hh>
 #include <sp/settings/ClientSettings.hh>

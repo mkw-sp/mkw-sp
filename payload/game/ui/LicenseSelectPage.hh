@@ -4,8 +4,6 @@
 #include "game/ui/ctrl/CtrlMenuBackButton.hh"
 #include "game/ui/ctrl/CtrlMenuPageTitleText.hh"
 
-#include <array>
-
 namespace UI {
 
 class LicenseSelectPage : public Page {

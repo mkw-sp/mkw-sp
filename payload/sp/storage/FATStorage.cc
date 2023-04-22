@@ -8,7 +8,6 @@ extern "C" {
 #include "sp/storage/UsbStorage.h"
 }
 
-#include <array>
 #include <cstring>
 
 namespace SP::Storage {

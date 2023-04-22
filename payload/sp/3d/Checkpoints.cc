@@ -1,10 +1,8 @@
 #include "Checkpoints.hh"
-#include <Common.hh>
 
 #include <game/system/CourseMap.hh>
 extern "C" {
 #include <revolution.h>
-#include <revolution/gx.h>
 }
 
 #include <egg/math/eggMath.hh>

@@ -8,7 +8,6 @@ extern "C" {
 #include <revolution.h>
 }
 
-#include <array>
 #include <cstdio>
 #include <cstring>
 #include <optional>

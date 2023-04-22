@@ -4,9 +4,6 @@
 
 #include <egg/core/eggSystem.hh>
 #include <game/system/SaveManager.hh>
-extern "C" {
-#include <revolution.h>
-}
 
 #include <algorithm>
 #include <cstring>

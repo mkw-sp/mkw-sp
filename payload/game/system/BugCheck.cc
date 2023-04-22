@@ -1,7 +1,6 @@
 extern "C" {
 #include "game/system/FatalScene.h"
 
-#include <revolution.h>
 #include <sp/StackTrace.h>
 #include <sp/WideUtil.h>
 }

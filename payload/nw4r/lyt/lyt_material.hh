@@ -2,10 +2,6 @@
 
 #include "nw4r/lyt/lyt_texMap.hh"
 
-extern "C" {
-#include <revolution.h>
-}
-
 #include <Common.hh>
 
 namespace nw4r::lyt {

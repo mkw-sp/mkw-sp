@@ -4,8 +4,6 @@
 
 #include <nw4r/snd/SoundHandle.hh>
 
-#include <Common.hh>
-
 namespace Sound {
 
 class SceneSoundManager {

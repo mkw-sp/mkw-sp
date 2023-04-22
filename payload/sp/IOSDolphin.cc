@@ -4,7 +4,6 @@
 
 extern "C" {
 #include <revolution.h>
-#include <stdalign.h>
 }
 
 namespace SP::IOSDolphin {

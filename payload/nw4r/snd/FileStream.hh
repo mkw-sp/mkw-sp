@@ -2,9 +2,6 @@
 
 #include "nw4r/ut/FileStream.hh"
 
-extern "C" {
-#include <revolution.h>
-}
 #include <sp/storage/Storage.hh>
 
 namespace nw4r::snd {

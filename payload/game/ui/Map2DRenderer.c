@@ -1,6 +1,3 @@
-#include <Common.h>
-#include <revolution/gx/GXEnum.h>
-
 #include <revolution.h>
 
 enum MinimapFormats {

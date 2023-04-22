@@ -1,9 +1,6 @@
-#include <Common.h>
 #include <revolution.h>
 
-#include <stdbool.h> /* bool */
-#include <stdint.h>  /* uint8_t */
-#include <string.h>  /* memcpy */
+#include <string.h> /* memcpy */
 
 #ifdef MDLSAN_DEBUG
 #define MSA_DEBUG_LOG SP_LOG
@@ -152,7 +149,7 @@ static const char *getMaterialName(uint8_t *pMat) {
  * - Indirect matrices (control skew) are omitted, leaving
  *   them undefined.
  */
-void sanitizeMaterial(uint8_t *pMat) {
+void sanitizeMaterial(u8 *pMat) {
     MSA_VERBOSE_LOG("Sanitizing material %p", pMat);
 
     /* If the user is confident the material does not flicker, respect that. */

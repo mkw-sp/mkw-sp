@@ -1,6 +1,5 @@
 #pragma once
 
-#include <Common.hh>
 #include <nw4r/ut/ut_list.hh>
 
 namespace EGG {

@@ -1,7 +1,6 @@
 #pragma once
 
 #include <stdarg.h>
-#include <stddef.h>
 
 void Console_init(void);
 void Console_draw(void);

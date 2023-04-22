@@ -6,10 +6,6 @@
 #include "game/kart/VehiclePhysics.hh"
 #include "game/system/SaveManager.hh"
 
-extern "C" {
-#include <revolution.h>
-}
-
 namespace UI {
 
 namespace GroupId {

@@ -6,8 +6,6 @@
 #include <game/system/Mii.hh>
 #include <protobuf/Room.pb.h>
 
-#include <array>
-
 namespace SP {
 
 // RoomClient is responsible for writing requests and reading events

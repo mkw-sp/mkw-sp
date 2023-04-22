@@ -1,5 +1,5 @@
 #pragma once
 
-#include <stdint.h> // uint8_t
+#include <Common.h>
 
-void sanitizeMaterial(uint8_t *pMat);
+void sanitizeMaterial(u8 *pMat);

@@ -5,7 +5,6 @@
 #include "game/ui/SectionManager.hh"
 
 #include <algorithm>
-#include <array>
 #include <cstdio>
 #include <numeric>
 

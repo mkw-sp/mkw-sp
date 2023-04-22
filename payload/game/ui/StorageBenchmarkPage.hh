@@ -4,10 +4,6 @@
 
 #include <sp/storage/Storage.hh>
 
-extern "C" {
-#include <revolution.h>
-}
-
 namespace UI {
 
 class StorageBenchmarkPage : public Page {

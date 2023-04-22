@@ -1,5 +1,4 @@
 #include "FatalScene.h"
-#include <Common.h>
 #include <revolution.h>
 
 EGGScene *SceneCreatorDynamic_createOther(void * /* this */, u32 sceneId) {

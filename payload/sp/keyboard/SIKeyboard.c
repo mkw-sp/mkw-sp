@@ -13,9 +13,7 @@
 
 #include "SIKeyboard.h"
 
-#include <revolution.h>
 #include <revolution/si.h>
-#include <sp/ScopeLock.h>
 #include <sp/TypingBuffer.h>
 
 // Behaves like std::array<char, 3>

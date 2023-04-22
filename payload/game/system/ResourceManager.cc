@@ -5,10 +5,6 @@
 #include <sp/storage/DecompLoader.hh>
 #include <sp/storage/Storage.hh>
 
-extern "C" {
-#include <revolution.h>
-}
-
 #include <cstdio>
 
 namespace System {

@@ -6,7 +6,6 @@
 
 #include <sp/cs/RoomManager.hh>
 
-#include <array>
 #include <bitset>
 
 namespace UI {

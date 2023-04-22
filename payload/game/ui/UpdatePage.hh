@@ -2,10 +2,6 @@
 
 #include "game/ui/MessagePage.hh"
 
-extern "C" {
-#include <revolution.h>
-}
-
 namespace UI {
 
 class UpdatePage : public Page {

@@ -1,14 +1,11 @@
 #pragma once
 
-#include <compare>
-
 extern "C" {
 #include "Common.h"
 }
 
 #include <array>
-#include <type_traits>
-#include <utility>
+#include <compare>
 
 template <typename T>
 T AlignDown(T val, size_t alignment) {

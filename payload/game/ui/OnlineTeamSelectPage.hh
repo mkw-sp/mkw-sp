@@ -6,8 +6,6 @@
 #include "game/ui/ctrl/CtrlMenuInstructionText.hh"
 #include "game/ui/ctrl/CtrlMenuPageTitleText.hh"
 
-#include <array>
-
 namespace UI {
 
 class OnlineTeamSelectPage : public Page {

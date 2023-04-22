@@ -1,7 +1,5 @@
 #include "Yaz.h"
 
-#include <stdint.h>
-
 enum {
     YAZ0_MAGIC = 0x59617a30,
     YAZ1_MAGIC = 0x59617a31,

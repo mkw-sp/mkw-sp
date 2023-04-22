@@ -3,10 +3,10 @@
 #define _HAS_CXX20
 
 #include "Common.hh"
-#include <array>
 #include <common/TVec3.hh>
-#include <memory>
 #include <sp/FixedString.hh>
+
+#include <memory>
 #include <span>
 #include <variant>
 

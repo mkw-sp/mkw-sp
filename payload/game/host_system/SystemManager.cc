@@ -4,10 +4,6 @@
 #include "game/system/RaceManager.hh"
 #include "game/ui/Section.hh"
 
-extern "C" {
-#include <revolution.h>
-}
-
 namespace System {
 
 void SystemManager::init() {
