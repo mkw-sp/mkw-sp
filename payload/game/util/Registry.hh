@@ -98,8 +98,6 @@ enum class Controller {
     GameCube = 0x3,
 };
 
-extern const char *courseFilenames[0x28];
-
 bool IsCombinationValid(Character character, Vehicle vehicle);
 
 u32 GetCharacterMessageId(u32 characterId, bool resolveMiiNames);

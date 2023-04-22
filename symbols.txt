@@ -1448,8 +1448,7 @@
 
 0x808ad3c4 RaceCupSelectPage_zero
 
-0x808b3984 _ZN6System15courseFilenamesE
-0x808b3984 _ZN8Registry15courseFilenamesE
+0x808b3984 _ZN2SP15courseFilenamesE
 0x808b5b1c minDriftSpeedFactor
 0x808b5c78 boostAccelerations
 0x808cb550 ai_808cb550

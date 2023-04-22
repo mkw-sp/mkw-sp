@@ -452,7 +452,8 @@ void TrackPackInfo::getTrackPath(char *out, u32 outSize, bool splitScreen) const
     SP_LOG("Getting track path for %s", hex);
 
     if (isVanilla()) {
-        auto courseFileName = Registry::courseFilenames[m_selectedCourseId];
+        extern const char *courseFilenames[0x28];
+        auto courseFileName = courseFilenames[m_selectedCourseId];
 
         if (splitScreen) {
             snprintf(out, outSize, "Race/Course/%s_d", courseFileName);
