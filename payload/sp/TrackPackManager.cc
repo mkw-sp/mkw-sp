@@ -300,7 +300,7 @@ std::expected<void, const char *> TrackPackManager::loadTrackPacks() {
 
         manifestBuf.resize(*len);
 
-        auto res = TrackPack::New(manifestBuf);
+        auto res = TrackPack::New(std::string_view(manifestBuf.data(), manifestBuf.size()));
         if (!res.has_value()) {
             SP_LOG("Failed to read track pack manifest: %s", res.error());
             continue;
