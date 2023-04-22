@@ -2,9 +2,7 @@
 
 #include "sp/settings/IniReader.hh"
 
-extern "C" {
-#include <revolution.h>
-}
+#include <revolution.hh>
 #include <vendor/magic_enum/magic_enum.hpp>
 
 #include <cstdarg>

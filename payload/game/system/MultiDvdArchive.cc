@@ -1,9 +1,7 @@
 #include "MultiDvdArchive.hh"
 
-extern "C" {
-#include <revolution.h>
+#include <revolution.hh>
 #include <stdio.h>
-}
 
 namespace System {
 

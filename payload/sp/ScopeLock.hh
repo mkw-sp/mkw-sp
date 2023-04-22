@@ -1,8 +1,6 @@
 #pragma once
 
-extern "C" {
-#include <revolution.h>
-}
+#include <revolution.hh>
 
 namespace SP {
 

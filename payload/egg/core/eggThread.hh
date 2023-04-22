@@ -1,8 +1,6 @@
 #pragma once
 
-extern "C" {
-#include <revolution/os/OSThread.h>
-}
+#include <revolution.hh>
 
 namespace EGG {
 

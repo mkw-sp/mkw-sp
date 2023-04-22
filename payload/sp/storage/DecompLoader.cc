@@ -158,12 +158,6 @@ bool LoadRO(const char *path, u8 **dst, size_t *dstSize, EGG::Heap *heap,
 
 } // namespace SP::Storage::DecompLoader
 
-extern "C" bool DecompLoader_Load(const char *path, u8 **dst, size_t *dstSize, EGG_Heap *heap) {
-    auto *eggHeap = reinterpret_cast<EGG::Heap *>(heap);
-    return SP::Storage::DecompLoader::Load(path, dst, dstSize, eggHeap);
-}
-
-extern "C" bool DecompLoader_LoadRO(const char *path, u8 **dst, size_t *dstSize, EGG_Heap *heap) {
-    auto *eggHeap = reinterpret_cast<EGG::Heap *>(heap);
-    return SP::Storage::DecompLoader::LoadRO(path, dst, dstSize, eggHeap);
+extern "C" bool DecompLoader_LoadRO(const char *path, u8 **dst, size_t *dstSize, EGG::Heap *heap) {
+    return SP::Storage::DecompLoader::LoadRO(path, dst, dstSize, heap);
 }

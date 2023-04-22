@@ -6,9 +6,7 @@ extern "C" {
 #include "sp/net/Net.hh"
 
 #include <common/Bytes.hh>
-extern "C" {
-#include <revolution.h>
-}
+#include <revolution.hh>
 
 #include <cstring>
 

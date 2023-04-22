@@ -1,6 +1,9 @@
 #include "ClientSettings.hh"
 
 #include <features/online/Online.hh>
+extern "C" {
+#include <vendor/libhydrogen/hydrogen.h>
+}
 
 #include <iterator>
 

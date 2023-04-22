@@ -4,9 +4,7 @@
 
 #include <Common.hh>
 
-extern "C" {
-#include <revolution.h>
-}
+#include <revolution.hh>
 
 namespace SP::Storage {
 

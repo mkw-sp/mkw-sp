@@ -3,9 +3,7 @@
 #include "game/system/InputManager.hh"
 #include "game/system/RaceConfig.hh"
 
-extern "C" {
-#include <revolution.h>
-}
+#include <revolution.hh>
 
 namespace System {
 

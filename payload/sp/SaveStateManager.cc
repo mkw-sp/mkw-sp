@@ -2,9 +2,7 @@
 
 #include "game/kart/KartObjectManager.hh"
 
-extern "C" {
-#include "revolution.h"
-}
+#include <revolution.hh>
 #include <tuple>
 
 namespace SP {

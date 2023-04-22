@@ -1,10 +1,8 @@
 #include "GhostSelectButton.hh"
 
-#include "game/ui/TimeAttackGhostListPage.hh"
-extern "C" {
-#include "game/util/Registry.h"
-}
 #include "game/system/SaveManager.hh"
+#include "game/ui/TimeAttackGhostListPage.hh"
+#include "game/util/Registry.hh"
 
 #include <stdio.h>
 
@@ -130,7 +128,7 @@ void GhostSelectButton::refresh(u32 listIndex) {
         setPicture("flag_light_02", countryPane);
     }
 
-    const char *characterPane = getCharacterPane(header->characterId);
+    const char *characterPane = Registry::GetCharacterPane(header->characterId);
     setPicture("chara_shadow", characterPane);
     setPicture("chara", characterPane);
     setPicture("active_chara", characterPane);

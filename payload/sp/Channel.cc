@@ -4,9 +4,7 @@
 
 #include <common/ES.hh>
 #include <common/Paths.hh>
-extern "C" {
-#include <revolution.h>
-}
+#include <revolution.hh>
 
 #include <cstdio>
 #include <cstring>

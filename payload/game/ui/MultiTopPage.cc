@@ -7,8 +7,6 @@
 #include "game/ui/SectionManager.hh"
 #include "game/ui/SettingsPage.hh"
 #include "game/ui/page/BattleModeSelectPage.hh"
-#include "game/ui/page/MenuPage.hh"
-#include <sp/settings/ClientSettings.hh>
 
 extern "C" {
 #include <vendor/libhydrogen/hydrogen.h>

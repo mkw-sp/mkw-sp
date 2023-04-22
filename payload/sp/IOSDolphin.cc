@@ -2,9 +2,7 @@
 #include <span>
 #include <vendor/magic_enum/magic_enum.hpp>
 
-extern "C" {
-#include <revolution.h>
-}
+#include <revolution.hh>
 
 namespace SP::IOSDolphin {
 

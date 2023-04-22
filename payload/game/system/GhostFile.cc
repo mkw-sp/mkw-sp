@@ -5,8 +5,8 @@ extern "C" {
 }
 
 #include <common/Bytes.hh>
+#include <revolution.hh>
 extern "C" {
-#include <revolution.h>
 #include <rfl.h>
 #include <sp/Yaz.h>
 }

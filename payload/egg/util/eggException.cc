@@ -5,11 +5,8 @@
 #include <common/Clock.hh>
 #include <game/host_system/SystemManager.hh>
 extern "C" {
-#include <revolution/ax.h>
 #include <revolution/kpad.h>
-#include <revolution/os.h>
-#include <revolution/pad.h>
-#include <revolution/vi.h>
+#include <revolution/wpad.h>
 }
 
 #include <cstring>

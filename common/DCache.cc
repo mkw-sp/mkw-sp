@@ -1,9 +1,7 @@
 #include "DCache.hh"
 
 #ifdef SP_PAYLOAD
-extern "C" {
-#include <revolution.h>
-}
+#include <revolution.hh>
 #endif
 
 namespace DCache {

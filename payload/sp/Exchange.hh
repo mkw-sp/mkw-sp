@@ -2,9 +2,7 @@
 
 #include "sp/ScopeLock.hh"
 
-extern "C" {
-#include <revolution.h>
-}
+#include <revolution.hh>
 
 #include <optional>
 
