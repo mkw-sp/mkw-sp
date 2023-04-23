@@ -57,15 +57,6 @@ u16 ResourceManager::getMenuArchiveCount() const {
     return loadedCount;
 }
 
-void ResourceManager::ComputeCourseSHA1(u8 *courseSHA1) {
-    NETSHA1Context cx;
-    NETSHA1Init(&cx);
-    DvdArchive &archive =
-            s_instance->m_archives[static_cast<size_t>(MultiDvdArchive::Type::Course)]->archive(0);
-    NETSHA1Update(&cx, archive.buffer(), static_cast<u32>(archive.size()));
-    NETSHA1GetDigest(&cx, courseSHA1);
-}
-
 void ResourceManager::OnCreateScene(RKSceneID sceneId) {
     switch (sceneId) {
     case RKSceneID::Menu:

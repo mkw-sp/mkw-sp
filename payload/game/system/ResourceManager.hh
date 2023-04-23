@@ -7,8 +7,6 @@
 
 namespace System {
 
-extern const char *courseFilenames[0x28];
-
 class ResourceManager {
 public:
     class CourseCache {
@@ -48,7 +46,6 @@ public:
     REPLACE MultiDvdArchive *loadMission(u32 courseId, u32 missionId, EGG::Heap *heap,
             bool splitScreen);
 
-    static void ComputeCourseSHA1(u8 *courseSHA1);
     static void OnCreateScene(RKSceneID sceneId);
     static REPLACE ResourceManager *CreateInstance();
     static ResourceManager *Instance();

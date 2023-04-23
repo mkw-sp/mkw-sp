@@ -1,7 +1,6 @@
 #include "SaveManager.hh"
 
 #include "game/system/RaceConfig.hh"
-#include "game/system/ResourceManager.hh"
 #include "game/system/RootScene.hh"
 extern "C" {
 #include "game/system/SaveManager.h"
@@ -9,6 +8,7 @@ extern "C" {
 #include "game/ui/SectionManager.hh"
 
 #include <common/Bytes.hh>
+#include <sp/storage/DecompLoader.hh>
 
 #include <bit>
 #include <cstring>
@@ -68,6 +68,7 @@ void SaveManager::init() {
     m_otherRawSave = m_rawSave;
 
     initSPSave();
+    initCourseSHA1s();
     initGhostsAsync();
 
     m_isBusy = false;
@@ -87,6 +88,29 @@ void SaveManager::initSPSave() {
         }
 
         m_spLicenses[m_spLicenseCount++].readIni(iniBuffer, *size);
+    }
+}
+
+void SaveManager::initCourseSHA1s() {
+    for (u32 courseId = 0; courseId < 32; courseId++) {
+        m_courseSHA1s[courseId] = s_courseSHA1s[courseId];
+
+        char path[128];
+        snprintf(path, sizeof(path), "Race/Course/%s.szs", Registry::courseFilenames[courseId]);
+        u8 *buffer;
+        size_t size;
+        auto *heap = RootScene::Instance()->m_heapCollection.mem2;
+        if (!SP::Storage::DecompLoader::LoadRO(path, &buffer, &size, heap,
+                    SP::Storage::StorageType::FAT)) {
+            continue;
+        }
+
+        SP_LOG("Hashing course %s", path);
+        NETSHA1Context context;
+        NETSHA1Init(&context);
+        NETSHA1Update(&context, buffer, size);
+        NETSHA1GetDigest(&context, m_courseSHA1s[courseId].data());
+        delete[] buffer;
     }
 }
 
@@ -466,8 +490,7 @@ void SaveManager::saveGhost(GhostFile *file) {
 
     m_saveGhostResult = false;
 
-    std::array<u8, 0x14> courseSHA1;
-    ResourceManager::ComputeCourseSHA1(courseSHA1.data());
+    auto &courseSHA1 = m_courseSHA1s[file->courseId()];
     SPFooter::OnRaceEnd(courseSHA1.data());
 
     Time raceTime = file->raceTime();
@@ -645,7 +668,6 @@ const char *SaveManager::s_courseAbbreviations[0x20] = {
 } // namespace System
 
 extern "C" {
-
 void SaveManager_EraseLicense(u32 licenseId) {
     return System::SaveManager::Instance()->eraseLicense(licenseId);
 }
