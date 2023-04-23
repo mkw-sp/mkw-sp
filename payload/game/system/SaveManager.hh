@@ -144,7 +144,7 @@ private:
     static void LoadGhostsTask(void *arg);
     static void SaveGhostTask(void *arg);
 
-    static void GetCourseName(const u8 *courseSHA1, char (&courseName)[0x14 * 2 + 1]);
+    static void GetCourseName(std::array<u8, 0x14> courseSHA1, char (&courseName)[0x14 * 2 + 1]);
 
     u8 _00000[0x00014 - 0x00000];
     RawSave *m_rawSave;
@@ -173,7 +173,7 @@ private:
     OSThread m_ghostInitThread;                   // Added
 
     static SaveManager *s_instance;
-    static const u8 s_courseSHA1s[32][0x14];
+    static const std::array<std::array<u8, 0x14>, 32> s_courseSHA1s;
     static const char *s_courseAbbreviations[32];
 };
 
