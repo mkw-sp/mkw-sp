@@ -112,7 +112,7 @@ public:
     GhostFooter();
     GhostFooter(const u8 *raw, u32 size);
     ~GhostFooter();
-    std::optional<const u8 *> courseSHA1() const;
+    std::optional<std::array<u8, 0x14>> courseSHA1() const;
     std::optional<bool> hasSpeedMod() const;
 
 private:

@@ -142,12 +142,12 @@ GhostFooter::GhostFooter(const u8 *raw, u32 size) {
 
 GhostFooter::~GhostFooter() = default;
 
-std::optional<const u8 *> GhostFooter::courseSHA1() const {
+std::optional<std::array<u8, 0x14>> GhostFooter::courseSHA1() const {
     switch (m_magic) {
     case CTGPFooter::MAGIC:
-        return m_ctgp.courseSHA1;
+        return std::to_array(m_ctgp.courseSHA1);
     case SPFooter::MAGIC:
-        return m_sp.courseSHA1;
+        return std::to_array(m_sp.courseSHA1);
     default:
         return {};
     }
