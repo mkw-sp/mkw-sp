@@ -5,7 +5,6 @@
 #include "sp/LZMADecoder.hh"
 #include "sp/ThumbnailManager.hh"
 #include "sp/YAZDecoder.hh"
-#include "sp/storage/Storage.hh"
 
 #include <game/util/Registry.hh>
 
@@ -20,6 +19,7 @@ struct StartInfo {
     const char *path;
     size_t maxSize;
     u64 offset;
+    std::optional<StorageType> storageType;
 };
 
 static Exchange<StartInfo, Empty> startExchange;
@@ -28,7 +28,7 @@ static u8 stack[0x2000 /* 8 KiB */];
 static OSThread thread;
 alignas(0x20) static u8 srcs[2][0x20000 /* 128 KiB */];
 
-static std::optional<FileHandle> Open(const char *path) {
+static std::optional<FileHandle> Open(const char *path, std::optional<StorageType> storageType) {
     if (ThumbnailManager::IsActive()) {
         char coursePath[128];
         snprintf(coursePath, std::size(coursePath), "ro:/Race/Course/%s.szs",
@@ -44,7 +44,8 @@ static std::optional<FileHandle> Open(const char *path) {
             !strcmp(path + length - strlen(".szs"), ".szs")) {
         wchar_t lzmaPath[128];
         swprintf(lzmaPath, std::size(lzmaPath), L"%.*s.arc.lzma", length - strlen(".szs"), path);
-        auto file = Storage::Open(lzmaPath, "r");
+        auto file = storageType ? Storage::GetStorage(*storageType)->open(lzmaPath, "r") :
+                                  Storage::Open(lzmaPath, "r");
         if (file) {
             return file;
         }
@@ -52,11 +53,12 @@ static std::optional<FileHandle> Open(const char *path) {
 
     wchar_t szsPath[128];
     swprintf(szsPath, std::size(szsPath), L"%s", path);
-    return Storage::Open(szsPath, "r");
+    return storageType ? Storage::GetStorage(*storageType)->open(szsPath, "r") :
+                         Storage::Open(szsPath, "r");
 }
 
 static void Read(StartInfo info) {
-    auto file = Open(info.path);
+    auto file = Open(info.path, info.storageType);
     if (!file || info.offset > file->size()) {
         updateExchange.right(-1);
         return;
@@ -91,8 +93,8 @@ void Init() {
 }
 
 bool Load(const char *path, size_t srcMaxSize, u64 srcOffset, u8 **dst, size_t *dstSize,
-        EGG::Heap *heap) {
-    startExchange.left({path, srcMaxSize, srcOffset});
+        EGG::Heap *heap, std::optional<StorageType> storageType) {
+    startExchange.left({path, srcMaxSize, srcOffset, storageType});
 
     u32 i = 0;
     const u8 *src = srcs[i];
@@ -134,22 +136,24 @@ bool Load(const char *path, size_t srcMaxSize, u64 srcOffset, u8 **dst, size_t *
 }
 
 bool LoadRO(const char *path, size_t srcMaxSize, u64 srcOffset, u8 **dst, size_t *dstSize,
-        EGG::Heap *heap) {
+        EGG::Heap *heap, std::optional<StorageType> storageType) {
     char roPath[128];
     if (path[0] == '/') {
         snprintf(roPath, sizeof(roPath), "ro:%s", path);
     } else {
         snprintf(roPath, sizeof(roPath), "ro:/%s", path);
     }
-    return Load(roPath, srcMaxSize, srcOffset, dst, dstSize, heap);
+    return Load(roPath, srcMaxSize, srcOffset, dst, dstSize, heap, storageType);
 }
 
-bool Load(const char *path, u8 **dst, size_t *dstSize, EGG::Heap *heap) {
-    return Load(path, SIZE_MAX, 0, dst, dstSize, heap);
+bool Load(const char *path, u8 **dst, size_t *dstSize, EGG::Heap *heap,
+        std::optional<StorageType> storageType) {
+    return Load(path, SIZE_MAX, 0, dst, dstSize, heap, storageType);
 }
 
-bool LoadRO(const char *path, u8 **dst, size_t *dstSize, EGG::Heap *heap) {
-    return LoadRO(path, SIZE_MAX, 0, dst, dstSize, heap);
+bool LoadRO(const char *path, u8 **dst, size_t *dstSize, EGG::Heap *heap,
+        std::optional<StorageType> storageType) {
+    return LoadRO(path, SIZE_MAX, 0, dst, dstSize, heap, storageType);
 }
 
 } // namespace SP::Storage::DecompLoader
