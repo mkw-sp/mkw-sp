@@ -559,6 +559,10 @@ void SaveManager::GetCourseName(std::array<u8, 0x14> courseSHA1, char (&courseNa
     }
 }
 
+std::array<u8, 0x14> SaveManager::courseSHA1(u32 courseId) const {
+    return m_courseSHA1s[courseId];
+}
+
 SaveManager *SaveManager::Instance() {
     return s_instance;
 }
