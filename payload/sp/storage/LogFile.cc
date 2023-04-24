@@ -1,7 +1,4 @@
 #include "LogFile.hh"
-extern "C" {
-#include "LogFile.h"
-}
 
 #include "sp/ScopeLock.hh"
 #include "sp/settings/GlobalSettings.hh"
@@ -139,7 +136,7 @@ void Init() {
     isInit = true;
 }
 
-static void VPrintf(const char *format, va_list args) {
+void VPrintf(const char *format, va_list args) {
     if (!isInit) {
         return;
     }
@@ -166,7 +163,3 @@ static void VPrintf(const char *format, va_list args) {
 }
 
 } // namespace SP::LogFile
-
-extern "C" void LogFile_VPrintf(const char *format, va_list args) {
-    SP::LogFile::VPrintf(format, args);
-}
