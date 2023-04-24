@@ -77,5 +77,4 @@ REPLACE void OSReport(const char *msg, ...) {
     Console_vprintf(prefix, msg, args);
     va_end(args);
 }
-
 }
