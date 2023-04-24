@@ -1,12 +1,14 @@
+extern "C" {
 #include "revolution/nwc24/NWC24Utils.h"
 #include "revolution/os.h"
 
 #include <game/system/Console.h>
 #include <sp/StackTrace.h>
-#include <sp/storage/LogFile.h>
+}
+#include <sp/storage/LogFile.hh>
 
-#include <stdio.h>
-#include <string.h>
+#include <cstdio>
+#include <cstring>
 
 static const char *GetPrefix(BinaryType bin) {
     switch (bin) {
@@ -41,6 +43,7 @@ static inline BinaryType ClassifyCaller(void *sp) {
     return ClassifyPointer(addr);
 }
 
+extern "C" {
 __attribute__((noreturn)) REPLACE void OSPanic(const char * /* filename */, int /* lineNumber */,
         const char *message, ...) {
     char messageFormat[256];
@@ -58,14 +61,14 @@ __attribute__((noreturn)) REPLACE void OSPanic(const char * /* filename */, int 
     panic(panicMessage);
 }
 
-void my_OSReport(const char *msg, ...) {
+void OSReport(const char *msg, ...) {
     va_list args;
     va_start(args, msg);
     vprintf(msg, args);
     va_end(args);
 
     va_start(args, msg);
-    LogFile_VPrintf(msg, args);
+    SP::LogFile::VPrintf(msg, args);
     va_end(args);
 
     const char *prefix = GetPrefix(ClassifyCaller(OSGetStackPointer()));
@@ -73,4 +76,4 @@ void my_OSReport(const char *msg, ...) {
     Console_vprintf(prefix, msg, args);
     va_end(args);
 }
-PATCH_B(OSReport, my_OSReport);
+}
