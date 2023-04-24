@@ -7,8 +7,8 @@ extern "C" {
 }
 #include <sp/storage/LogFile.hh>
 
-#include <stdio.h>
-#include <string.h>
+#include <cstdio>
+#include <cstring>
 
 static const char *GetPrefix(BinaryType bin) {
     switch (bin) {
@@ -44,7 +44,6 @@ static inline BinaryType ClassifyCaller(void *sp) {
 }
 
 extern "C" {
-
 __attribute__((noreturn)) REPLACE void OSPanic(const char * /* filename */, int /* lineNumber */,
         const char *message, ...) {
     char messageFormat[256];
@@ -62,7 +61,7 @@ __attribute__((noreturn)) REPLACE void OSPanic(const char * /* filename */, int 
     panic(panicMessage);
 }
 
-REPLACE void OSReport(const char *msg, ...) {
+void OSReport(const char *msg, ...) {
     va_list args;
     va_start(args, msg);
     vprintf(msg, args);
