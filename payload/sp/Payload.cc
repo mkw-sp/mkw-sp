@@ -21,8 +21,9 @@ extern "C" {
 #include "sp/security/Heap.h"
 #include "sp/security/Memory.h"
 #include "sp/security/PageTable.h"
-#include "sp/security/Stack.h"
+#include "sp/security/StackCanary.h"
 }
+#include "sp/security/StackCanary.hh"
 #include "sp/settings/GlobalSettings.hh"
 #include "sp/storage/DecompLoader.hh"
 #include "sp/storage/LogFile.hh"
@@ -190,9 +191,9 @@ static void Run() {
     for (void (**ctor)(void) = &payload_ctors_start; ctor < &payload_ctors_end; ctor++) {
         (*ctor)();
     }
-    Stack_InitCanary();
+    StackCanary_Init();
 #ifndef GDB_COMPATIBLE
-    Stack_DoLinkRegisterPatches(reinterpret_cast<u32 *>(Dol_getTextSectionStart()),
+    StackCanary::AddLinkRegisterPatches(reinterpret_cast<u32 *>(Dol_getTextSectionStart()),
             reinterpret_cast<u32 *>(Dol_getTextSectionEnd()));
 #endif
     Patcher_patch(PATCHER_BINARY_DOL);
