@@ -5,8 +5,8 @@ extern "C" {
 #include "sp/Patcher.h"
 #include "sp/Payload.h"
 #include "sp/security/Memory.h"
-#include "sp/security/Stack.h"
 }
+#include "sp/security/StackCanary.hh"
 #include "sp/storage/Storage.hh"
 
 extern "C" {
@@ -169,7 +169,7 @@ bool Load() {
 void Run() {
     assert(entry);
 #ifndef GDB_COMPATIBLE
-    Stack_DoLinkRegisterPatches(reinterpret_cast<u32 *>(Rel_getTextSectionStart()),
+    StackCanary::AddLinkRegisterPatches(reinterpret_cast<u32 *>(Rel_getTextSectionStart()),
             reinterpret_cast<u32 *>(Rel_getTextSectionEnd()));
 #endif
     Patcher_patch(PATCHER_BINARY_REL);

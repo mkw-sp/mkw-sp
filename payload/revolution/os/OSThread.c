@@ -1,5 +1,4 @@
 #include <revolution/os.h>
-#include <sp/security/Stack.h>
 
 #define THREAD_STACK_SIZE_RIGHT_SHIFT_AMOUNT 3
 
@@ -11,9 +10,12 @@ REPLACE BOOL OSCreateThread(OSThread *thread, void *(*func)(void *), void *param
     u32 oldStackSize = stackSize;
 
     assert(oldStackSize >> THREAD_STACK_SIZE_RIGHT_SHIFT_AMOUNT != 0);
+    u32 bitsEntropy = __builtin_ctz(oldStackSize >> THREAD_STACK_SIZE_RIGHT_SHIFT_AMOUNT);
 
-    void *newStackBase = Stack_RandomizeStackPointer((u32 *)oldStackBase,
-            __builtin_ctz(oldStackSize >> THREAD_STACK_SIZE_RIGHT_SHIFT_AMOUNT));
+    // clang-format off
+    void *newStackBase =
+            (void *)((((u32)oldStackBase - (__builtin_ppc_mftb() & ((1 << bitsEntropy) - 1))) + 0x7) & ~0x7);
+    // clang-format on
     u32 newStackSize = oldStackSize - ((char *)oldStackBase - (char *)newStackBase);
 
     if ((SP_DEBUG_LEVEL & SP_DEBUG_STACK_RANDOMIZE) == SP_DEBUG_STACK_RANDOMIZE) {

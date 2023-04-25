@@ -3,7 +3,7 @@
 #include "sp/Dol.h"
 #include "sp/Payload.h"
 #include "sp/Rel.h"
-#include "sp/security/Stack.h"
+#include "sp/security/StackCanary.h"
 
 #include <revolution.h>
 #include <stdio.h>
@@ -39,7 +39,9 @@ bool StackTraceIterator_read(StackTraceIterator *it, void **addr) {
 
     if (addr != NULL) {
         void *lr = it->cur->LR;
-        *addr = Stack_IsLinkRegisterEncrypted((u32 *)lr) ? Stack_XORLinkRegister((u32 *)lr) : lr;
+        *addr = StackCanary_IsLinkRegisterEncrypted((u32 *)lr) ?
+                StackCanary_XORLinkRegister((u32 *)lr) :
+                lr;
     }
 
     ++it->depth;
