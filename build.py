@@ -1513,10 +1513,6 @@ if args.dry:
 
     raise SystemExit
 
-if os.path.exists("build.ninja"):
-    os.rename("build.ninja", "build.ninja.old")
-
-
 with tempfile.NamedTemporaryFile("w+") as out_file:
     out_file.write(out_buf.getvalue())
     n.close()
