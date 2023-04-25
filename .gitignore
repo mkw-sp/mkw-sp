@@ -1,5 +1,6 @@
 build
 build.ninja
+build.ninja.old
 __pycache__
 out
 .vs
