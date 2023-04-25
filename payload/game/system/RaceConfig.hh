@@ -6,6 +6,10 @@ namespace System {
 
 class RaceConfig {
 public:
+    RaceConfig();
+    virtual ~RaceConfig();
+    virtual void dt(s32 type);
+
     struct Player {
         enum class Type {
             Local = 0,
@@ -97,7 +101,9 @@ public:
         u8 spMaxTeamSize : 3;
         bool mirrorRng : 1;
         u32 draw : 3;
-        u32 _ : 23;
+        u32 _ : 21;
+        bool is200cc : 1;
+        bool competition : 1;
         bool teams : 1;
         bool mirror : 1;
         u8 _b74[0xbec - 0xb74];
@@ -120,7 +126,7 @@ public:
 private:
     REPLACE static void ConfigurePlayers(Scenario &scenario, u32 screenCount);
 
-    u8 _0000[0x0020 - 0x0000];
+    u8 _0004[0x0020 - 0x0004];
     Scenario m_raceScenario;
     Scenario m_menuScenario;
     Scenario m_awardsScenario;

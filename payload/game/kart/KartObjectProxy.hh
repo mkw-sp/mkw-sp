@@ -3,6 +3,10 @@
 #include <common/TQuat.hh>
 #include <common/TVec3.hh>
 
+namespace Sound {
+class KartSound;
+}
+
 namespace Kart {
 
 class Kart5c;
@@ -27,7 +31,8 @@ struct KartAccessor {
     KartTire **tire;
     PlayerModel *playerModel;
     KartSub *sub;
-    u8 _1c[0x28 - 0x1c];
+    Sound::KartSound *sound;
+    u8 _1c[0x28 - 0x20];
     KartMove *move;
     KartAction *action;
     KartCollide *collide;
@@ -48,6 +53,8 @@ public:
     const Vec3 *getLastPos() const;
     const Quat *getMainRot() const;
     KartState *getKartState();
+    PlayerModel *getPlayerModel();
+    Sound::KartSound *getKartSound();
     const VehiclePhysics *getVehiclePhysics() const;
     VehiclePhysics *getVehiclePhysics();
     bool isCPU() const;

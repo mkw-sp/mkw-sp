@@ -125,10 +125,13 @@ void SingleTopPage::onSettingsButtonSelect(PushButton * /* button */, u32 /* loc
 }
 
 void SingleTopPage::onTAButtonFront(PushButton *button, u32 /* localPlayerId */) {
-    auto &menuScenario = System::RaceConfig::Instance()->menuScenario();
-    menuScenario.engineClass = System::RaceConfig::EngineClass::CC150;
+    auto *raceConfig = System::RaceConfig::Instance();
+    auto &menuScenario = raceConfig->menuScenario();
+
     menuScenario.gameMode = System::RaceConfig::GameMode::TimeAttack;
     menuScenario.cameraMode = 0;
+
+    raceConfig->applyEngineClass();
     menuScenario.players[0].type = System::RaceConfig::Player::Type::Local;
     for (u32 i = 1; i < 12; i++) {
         menuScenario.players[i].type = System::RaceConfig::Player::Type::None;
@@ -156,6 +159,7 @@ void SingleTopPage::onTAButtonSelect(PushButton * /* button */, u32 /* localPlay
 }
 
 void SingleTopPage::onVSButtonFront(PushButton *button, u32 /* localPlayerId */) {
+    auto *raceConfig = System::RaceConfig::Instance();
     auto *saveManager = System::SaveManager::Instance();
     auto *context = SectionManager::Instance()->globalContext();
     context->m_matchCount = saveManager->getSetting<SP::ClientSettings::Setting::VSRaceCount>();
@@ -164,12 +168,12 @@ void SingleTopPage::onVSButtonFront(PushButton *button, u32 /* localPlayerId */)
 
     u32 maxTeamSize = SP::ClientSettings::GenerateMaxTeamSize(maxTeamSizeSetting);
 
-    auto &menuScenario = System::RaceConfig::Instance()->menuScenario();
+    auto &menuScenario = raceConfig->menuScenario();
     menuScenario.gameMode = System::RaceConfig::GameMode::OfflineVS;
     menuScenario.spMaxTeamSize = maxTeamSize;
     menuScenario.cameraMode = 5;
 
-    System::RaceConfig::Instance()->applyEngineClass();
+    raceConfig->applyEngineClass();
     menuScenario.players[0].type = System::RaceConfig::Player::Type::Local;
     for (u32 i = 1; i < 12; i++) {
         menuScenario.players[i].type = System::RaceConfig::Player::Type::CPU;

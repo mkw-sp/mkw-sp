@@ -19,6 +19,10 @@ void EffectManager::createKarts() {
     }
 }
 
+KartEffect *EffectManager::getKartEffect(u32 i) const {
+    return m_karts[i];
+}
+
 EffectManager *EffectManager::Instance() {
     return s_instance;
 }

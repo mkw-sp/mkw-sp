@@ -4,10 +4,6 @@
 #include "game/system/SaveManager.hh"
 
 extern "C" {
-#include "game/system/SaveManager.h"
-}
-
-extern "C" {
 #include <vendor/libhydrogen/hydrogen.h>
 }
 
@@ -32,17 +28,24 @@ u8 (&RaceConfig::ghostBuffers())[2][11][0x2800] {
 }
 
 void RaceConfig::applyEngineClass() {
-    if (m_menuScenario.gameMode != RaceConfig::GameMode::OfflineVS) {
-        SP_LOG("applyEngineClass called with invalid GameMode");
-        assert(false);
-    }
+    auto *saveManager = SaveManager::Instance();
+    auto setting = SP::ClientSettings::EngineClass::CC150;
 
-    auto setting = SaveManager::Instance()->getSetting<SP::ClientSettings::Setting::VSClass>();
+    if (m_menuScenario.gameMode == GameMode::OfflineVS) {
+        setting = saveManager->getSetting<SP::ClientSettings::Setting::VSClass>();
+    } else if (m_menuScenario.gameMode == GameMode::TimeAttack) {
+        auto taSetting = saveManager->getSetting<SP::ClientSettings::Setting::TAClass>();
+        if (taSetting == SP::ClientSettings::TAClass::CC150) {
+            setting = SP::ClientSettings::EngineClass::CC150;
+        } else {
+            setting = SP::ClientSettings::EngineClass::CC200;
+        }
+    }
 
     m_menuScenario.engineClass = EngineClass::CC150;
     m_menuScenario.mirrorRng = false;
+    m_menuScenario.is200cc = false;
     m_menuScenario.mirror = false;
-    vsSpeedModIsEnabled = false;
 
     switch (setting) {
     case SP::ClientSettings::EngineClass::Mixed:
@@ -55,10 +58,10 @@ void RaceConfig::applyEngineClass() {
     case SP::ClientSettings::EngineClass::CC100:
         m_menuScenario.engineClass = EngineClass::CC100;
         break;
-    case SP::ClientSettings::EngineClass::CC150:
+    case SP::ClientSettings::EngineClass::CC150: // Set above
         break;
-    case SP::ClientSettings::EngineClass::CC200:
-        vsSpeedModIsEnabled = true;
+    case SP::ClientSettings::EngineClass::CC200: // handled in KartObjectManager
+        m_menuScenario.is200cc = true;
         break;
     case SP::ClientSettings::EngineClass::Mirror:
         m_menuScenario.mirror = true;
