@@ -114,6 +114,7 @@ enum class CPUMode : u32 {
     Easy = 0,
     Normal = 1,
     Hard = 2,
+    None = 3,
 };
 
 enum class CourseSelection {

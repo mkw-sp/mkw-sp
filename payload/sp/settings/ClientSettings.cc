@@ -391,8 +391,8 @@ const Entry entries[] = {
         .defaultValue = static_cast<u32>(CPUMode::Normal),
         .valueCount = magic_enum::enum_count<CPUMode>(),
         .valueNames = magic_enum::enum_names<CPUMode>().data(),
-        .valueMessageIds = (u32[]) { 3421, 3422, 3423 },
-        .valueExplanationMessageIds = (u32[]) { 3425, 3426, 3427 },
+        .valueMessageIds = (u32[]) { 3421, 3422, 3423, 3424 },
+        .valueExplanationMessageIds = (u32[]) { 3425, 3426, 3427, 3428 },
     },
     [static_cast<u32>(Setting::VSVehicles)] = {
         .category = Category::VS,
@@ -462,8 +462,8 @@ const Entry entries[] = {
         .defaultValue = static_cast<u32>(CPUMode::Normal),
         .valueCount = magic_enum::enum_count<CPUMode>(),
         .valueNames = magic_enum::enum_names<CPUMode>().data(),
-        .valueMessageIds = (u32[]) { 3421, 3422, 3423 },
-        .valueExplanationMessageIds = (u32[]) { 3425, 3426, 3427 },
+        .valueMessageIds = (u32[]) { 3421, 3422, 3423, 3424 },
+        .valueExplanationMessageIds = (u32[]) { 3425, 3426, 3427, 3428 },
     },
     [static_cast<u32>(Setting::BTVehicles)] = {
         .category = Category::BT,

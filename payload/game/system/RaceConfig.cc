@@ -97,7 +97,16 @@ void RaceConfig::applyCPUMode() {
         panic("applyCPUMode called with invalid GameMode");
     }
 
-    m_menuScenario.cpuMode = static_cast<u32>(setting);
+    if (setting != SP::ClientSettings::CPUMode::None) {
+        m_menuScenario.cpuMode = static_cast<u32>(setting);
+        return;
+    }
+
+    for (u32 i = 1; i < 12; i++) {
+        if (m_menuScenario.players[i].type == Player::Type::CPU) {
+            m_menuScenario.players[i].type = Player::Type::None;
+        }
+    }
 }
 
 RaceConfig *RaceConfig::Instance() {
