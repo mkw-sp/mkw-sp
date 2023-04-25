@@ -1509,10 +1509,11 @@ if args.dry:
 
     raise SystemExit
 
-with tempfile.NamedTemporaryFile("w+") as out_file:
-    out_file.write(out_buf.getvalue())
-    n.close()
+out_file = tempfile.NamedTemporaryFile("w+", delete=False)
+out_file.write(out_buf.getvalue())
+out_file.close()
+n.close()
 
-    proc = subprocess.run(("ninja", "-f", out_file.name, *ninja_argv))
-
+proc = subprocess.run(("ninja", "-f", out_file.name, *ninja_argv))
+os.remove(out_file.name)
 sys.exit(proc.returncode)
