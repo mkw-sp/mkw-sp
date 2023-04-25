@@ -173,13 +173,14 @@ void SingleTopPage::onVSButtonFront(PushButton *button, u32 /* localPlayerId */)
     menuScenario.spMaxTeamSize = maxTeamSize;
     menuScenario.cameraMode = 5;
 
-    raceConfig->applyCPUMode();
-    raceConfig->applyItemFreq();
-    raceConfig->applyEngineClass();
     menuScenario.players[0].type = System::RaceConfig::Player::Type::Local;
     for (u32 i = 1; i < 12; i++) {
         menuScenario.players[i].type = System::RaceConfig::Player::Type::CPU;
     }
+
+    raceConfig->applyCPUMode();
+    raceConfig->applyItemFreq();
+    raceConfig->applyEngineClass();
 
     Section *section = SectionManager::Instance()->currentSection();
     auto *courseSelectPage = section->page<PageId::CourseSelect>();
@@ -217,12 +218,13 @@ void SingleTopPage::onBTButtonFront(PushButton *button, u32 /* localPlayerId */)
     menuScenario.spMaxTeamSize = maxTeamSize;
     menuScenario.cameraMode = 5;
 
-    raceConfig->applyCPUMode();
-    raceConfig->applyItemFreq();
     menuScenario.players[0].type = System::RaceConfig::Player::Type::Local;
     for (u32 i = 1; i < 12; i++) {
         menuScenario.players[i].type = System::RaceConfig::Player::Type::CPU;
     }
+
+    raceConfig->applyCPUMode();
+    raceConfig->applyItemFreq();
 
     Section *section = SectionManager::Instance()->currentSection();
     auto *courseSelectPage = section->page<PageId::CourseSelect>();
