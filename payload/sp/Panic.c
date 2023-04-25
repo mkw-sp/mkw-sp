@@ -31,26 +31,21 @@ void panic(const char *format, ...) {
 
     GXColor background;
     switch (REGION) {
-    case REGION_J: {
+    case REGION_J:
         background = GXCOLOR_RED;
         break;
-    }
-    case REGION_E: {
+    case REGION_E:
         background = GXCOLOR_BLUE;
         break;
-    }
-    case REGION_P: {
+    case REGION_P:
         background = GXCOLOR_GREEN;
         break;
-    }
-    case REGION_K: {
+    case REGION_K:
         background = GXCOLOR_PINK;
         break;
-    }
-    default: {
+    default:
         background = GXCOLOR_BLACK;
         break;
-    }
     }
 
     // Impromptu luminosity calculation

@@ -74,8 +74,6 @@ void *PortPointer(void *p) {
             return (void *)(portedPointer + 0x8050FD34);
         case REGION_K:
             return (void *)(portedPointer + 0x804FE3D4);
-        default:
-            return p;
         }
     }
 
