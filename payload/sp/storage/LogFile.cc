@@ -1,6 +1,4 @@
-extern "C" {
-#include "LogFile.h"
-}
+#include "LogFile.hh"
 
 #include "sp/ScopeLock.hh"
 #include "sp/settings/GlobalSettings.hh"
@@ -127,7 +125,7 @@ static void RemoveOldLogFiles() {
     }
 }
 
-static void Init() {
+void Init() {
     startTime = OSGetTime();
 
     RemoveOldLogFiles();
@@ -138,7 +136,7 @@ static void Init() {
     isInit = true;
 }
 
-static void VPrintf(const char *format, va_list args) {
+void VPrintf(const char *format, va_list args) {
     if (!isInit) {
         return;
     }
@@ -165,13 +163,3 @@ static void VPrintf(const char *format, va_list args) {
 }
 
 } // namespace SP::LogFile
-
-extern "C" {
-void LogFile_Init(void) {
-    SP::LogFile::Init();
-}
-
-void LogFile_VPrintf(const char *format, va_list args) {
-    SP::LogFile::VPrintf(format, args);
-}
-}

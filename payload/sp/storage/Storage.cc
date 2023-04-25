@@ -101,6 +101,21 @@ bool Init() {
     return true;
 }
 
+IStorage *GetStorage(StorageType type) {
+    switch (type) {
+    case StorageType::Net:
+        return &*netStorage;
+    case StorageType::FAT:
+        return &*fatStorage;
+    case StorageType::NANDArchive:
+        return &*nandArchiveStorage;
+    case StorageType::DVD:
+        return &dvdStorage;
+    default:
+        return nullptr;
+    }
+}
+
 template <typename R, typename... Args>
 R Dispatch(R (IStorage::*function)(Args... args), Args... args) {
     {
@@ -350,21 +365,8 @@ static std::optional<Throughputs> Benchmark(FileHandle file, void *buffer) {
 }
 
 std::optional<Throughputs> Benchmark(StorageType type, void *buffer) {
-    IStorage *storage;
-    switch (type) {
-    case StorageType::Net:
-        storage = &*netStorage;
-        break;
-    case StorageType::FAT:
-        storage = &*fatStorage;
-        break;
-    case StorageType::NANDArchive:
-        storage = &*nandArchiveStorage;
-        break;
-    case StorageType::DVD:
-        storage = &dvdStorage;
-        break;
-    default:
+    auto *storage = GetStorage(type);
+    if (!storage) {
         return {};
     }
     auto file = storage->startBenchmark();
@@ -384,18 +386,8 @@ std::optional<BenchmarkStatus> GetBenchmarkStatus() {
 }
 
 u32 GetMessageId(StorageType type) {
-    switch (type) {
-    case StorageType::Net:
-        return netStorage->getMessageId();
-    case StorageType::FAT:
-        return fatStorage->getMessageId();
-    case StorageType::NANDArchive:
-        return nandArchiveStorage->getMessageId();
-    case StorageType::DVD:
-        return dvdStorage.getMessageId();
-    default:
-        return 0;
-    }
+    auto *storage = GetStorage(type);
+    return storage ? storage->getMessageId() : 0;
 }
 
 } // namespace SP::Storage

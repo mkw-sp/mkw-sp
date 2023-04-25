@@ -14,7 +14,7 @@ static u8 row;
 
 void Init() {
     cols = VI::GetXFBWidth() / Font::GetGlyphWidth() - 1;
-    rows = VI::GetXFBHeight() / Font::GetGlyphHeight() - 1;
+    rows = VI::GetXFBHeight() / Font::GetGlyphHeight() / (!VI::IsProgressive() + 1) - 1;
     col = 0;
     row = 0;
 }

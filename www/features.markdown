@@ -49,7 +49,7 @@ The speed of the player is shown in the HUD, including [moving road](/assets/som
 _License setting._ The controller inputs can be shown in the HUD. Split-screen and 200cc are supported.
 
 **Hidden HUD Labels** [stebler]<br />
-The TIME, LAP and SPEED HUB labels can be hidden.
+The TIME, LAP and SPEED HUD labels can be hidden.
 
 **Mii Heads On Minimap** [stebler]<br />
 For local players and ghosts, Miis can replace characters as map icons.

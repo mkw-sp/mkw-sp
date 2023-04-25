@@ -48,6 +48,22 @@ struct ApploaderHeader {
 };
 static_assert(sizeof(ApploaderHeader) == 0x20);
 
+static bool IsDiskIDValid(u32 diskID) {
+    if ((diskID >> 8) != (('R' << 16) | ('M' << 8) | 'C')) {
+        return false;
+    }
+
+    switch (diskID & 0xFF) {
+    case 'E':
+    case 'P':
+    case 'J':
+    case 'K':
+        return true;
+    default:
+        return false;
+    }
+}
+
 static std::optional<Partition> FindGamePartition(IOS::DI &di) {
     alignas(0x20) PartitionGroup groups[4];
     if (!di.readUnencrypted(groups, sizeof(groups), 0x40000)) {
@@ -90,7 +106,7 @@ std::optional<GameEntryFunc> LoadAndRun(IOS::DI &di) {
         diskIDString[i] = diskID[0] >> (24 - i * 8) & 0xff;
     }
 
-    if ((diskID[0] >> 8) != (('R' << 16) | ('M' << 8) | 'C')) {
+    if (!IsDiskIDValid(diskID[0])) {
         Console::Print("This is not Mario Kart Wii (disc id ");
         Console::Print(diskIDString);
         Console::Print(").\n");

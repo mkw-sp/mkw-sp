@@ -1,7 +1,6 @@
 #include "SaveManager.hh"
 
 #include "game/system/RaceConfig.hh"
-#include "game/system/ResourceManager.hh"
 #include "game/system/RootScene.hh"
 extern "C" {
 #include "game/system/SaveManager.h"
@@ -9,6 +8,7 @@ extern "C" {
 #include "game/ui/SectionManager.hh"
 
 #include <common/Bytes.hh>
+#include <sp/storage/DecompLoader.hh>
 
 #include <bit>
 #include <cstring>
@@ -529,7 +529,6 @@ SaveManager *SaveManager::Instance() {
 } // namespace System
 
 extern "C" {
-
 void SaveManager_EraseLicense(u32 licenseId) {
     return System::SaveManager::Instance()->eraseLicense(licenseId);
 }

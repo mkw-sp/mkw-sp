@@ -127,6 +127,8 @@ struct BenchmarkStatus {
 
 bool Init();
 
+IStorage *GetStorage(StorageType type);
+
 std::optional<FileHandle> FastOpen(NodeId id);
 std::optional<FileHandle> Open(const wchar_t *path, const char *mode);
 std::optional<FileHandle> OpenRO(const char *path);

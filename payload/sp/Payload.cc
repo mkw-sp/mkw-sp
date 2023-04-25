@@ -24,10 +24,8 @@ extern "C" {
 #include "sp/security/Stack.h"
 }
 #include "sp/settings/GlobalSettings.hh"
-extern "C" {
-#include "sp/storage/LogFile.h"
-}
 #include "sp/storage/DecompLoader.hh"
+#include "sp/storage/LogFile.hh"
 #include "sp/storage/Storage.hh"
 extern "C" {
 #include "sp/storage/Usb.h"
@@ -137,7 +135,7 @@ static void Init() {
     Console::Print(" done.\n");
 
     Console::Print("Initializing log file...");
-    LogFile_Init();
+    SP::LogFile::Init();
     Console::Print(" done.\n");
 
     // Example output:
