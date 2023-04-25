@@ -28,7 +28,6 @@ our_argv = []
 ninja_argv = []
 found_seperator = False
 for arg in sys.argv[1:]:
-    print(arg)
     if found_seperator or arg == "--":
         ninja_argv.append(arg)
         found_seperator = True
