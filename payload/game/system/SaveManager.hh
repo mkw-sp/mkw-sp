@@ -169,11 +169,11 @@ private:
     bool m_canSave;
     bool m_spCanSave; // Added (was padding)
     NandResult m_result;
-    u32 m_spLicenseCount;                               // Added
-    SP::ClientSettings::Settings m_spLicenses[6];       // Added
-    std::optional<u8> m_spCurrentLicense;               // Added
-    u8 m_ghostInitStack[0x8000 /* 32 KiB */];           // Added
-    OSThread m_ghostInitThread;                         // Added
+    u32 m_spLicenseCount;                         // Added
+    SP::ClientSettings::Settings m_spLicenses[6]; // Added
+    std::optional<u8> m_spCurrentLicense;         // Added
+    u8 m_ghostInitStack[0x8000 /* 32 KiB */];     // Added
+    OSThread m_ghostInitThread;                   // Added
 
     static SaveManager *s_instance;
     static const char *s_courseAbbreviations[32];
