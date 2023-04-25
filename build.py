@@ -37,7 +37,6 @@ for arg in sys.argv[1:]:
 
 parser = ArgumentParser()
 parser.add_argument('--gdb_compatible', action='store_true')
-parser.add_argument('--default-targets', default='test')
 parser.add_argument("--dry", action="store_true")
 parser.add_argument("--ci", action="store_true")
 args = parser.parse_args(our_argv)
@@ -1502,9 +1501,6 @@ n.build(
         'release',
     ],
 )
-n.newline()
-
-n.default(args.default_targets.split(','))
 n.newline()
 
 if args.dry:
