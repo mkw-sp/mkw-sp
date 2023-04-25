@@ -15,16 +15,9 @@ You need:
 - itanium\_demangler
 - protobuf (the Python package)
 
-Generate the ninja file:
-
+Compile the project by running `build.py`:
 ```bash
-./configure.py
-```
-
-Execute it:
-
-```bash
-ninja
+./build.py
 ```
 
 The `out` directory will contain the generated binaries and assets.
