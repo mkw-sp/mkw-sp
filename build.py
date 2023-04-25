@@ -4,8 +4,10 @@
 import glob
 import io
 import os
-import sys
 import platform
+import subprocess
+import sys
+import tempfile
 from argparse import ArgumentParser
 
 from vendor.ninja_syntax import Writer
@@ -22,11 +24,22 @@ if sys.version_info < (3, 10):
 if platform.python_implementation() == "PyPy":
     print("Warning: PyPy may be slower, due to spawning many Python processes")
 
+our_argv = []
+ninja_argv = []
+found_seperator = False
+for arg in sys.argv[1:]:
+    if found_seperator:
+        ninja_argv.append(arg)
+    elif arg == "--":
+        found_seperator = True
+    else:
+        our_argv.append(arg)
+
 parser = ArgumentParser()
 parser.add_argument('--gdb_compatible', action='store_true')
-parser.add_argument('--default-targets', default='test')
+parser.add_argument("--dry", action="store_true")
 parser.add_argument("--ci", action="store_true")
-args = parser.parse_args()
+args = parser.parse_args(our_argv)
 
 out_buf = io.StringIO()
 n = Writer(out_buf)
@@ -1490,26 +1503,16 @@ n.build(
 )
 n.newline()
 
-n.default(args.default_targets.split(','))
-n.newline()
+if args.dry:
+    with open('build.ninja', 'w') as out_file:
+        out_file.write(out_buf.getvalue())
 
-n.variable('configure', 'configure.py')
-n.newline()
+    raise SystemExit
 
-n.rule(
-    'configure',
-    command = f'{sys.executable} $configure' + (' --gdb_compatible' if args.gdb_compatible else ''),
-    generator = True,
-)
-n.build(
-    'build.ninja',
-    'configure',
-    implicit = [
-        '$configure',
-        os.path.join('vendor', 'ninja_syntax.py'),
-    ],
-)
-
-with open('build.ninja', 'w') as out_file:
+with tempfile.NamedTemporaryFile("w+") as out_file:
     out_file.write(out_buf.getvalue())
-n.close()
+    n.close()
+
+    proc = subprocess.run(("ninja", "-f", out_file.name, *ninja_argv))
+
+sys.exit(proc.returncode)

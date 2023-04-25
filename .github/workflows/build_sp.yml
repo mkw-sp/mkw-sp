@@ -56,10 +56,8 @@ jobs:
         run: pip install itanium_demangler
       - name: Install protobuf
         run: pip install protobuf
-      - name: Configure ninja
-        run: ./configure.py --ci --default-targets ${{ matrix.profile }}
       - name: Compile
-        run: ninja
+        run: ./build.py --ci -- ${{ matrix.profile }}
       - name: Upload result
         uses: actions/upload-artifact@v3
         with: 

@@ -15,22 +15,12 @@ You need:
 - itanium\_demangler
 - protobuf (the Python package)
 
-Generate the ninja file:
-
+Compile the project by running `build.py`:
 ```bash
-./configure.py
-```
-
-Execute it:
-
-```bash
-ninja
+./build.py
 ```
 
 The `out` directory will contain the generated binaries and assets.
-
-The `configure.py` command only needs to be run when a file has been added or removed
-to the project, and can be skipped if only recompiling with changed files.
 
 ## Contributing
 
@@ -40,9 +30,7 @@ The codebase uses both C and asm, C should be preferred for full function replac
 
 The codebase is automatically formatted using `clang-format` (15), this will be checked by CI and must be run before merge.
 
-If you need a unoptimised build with debugging information, use `ninja debug` to build once, or use
-`configure.py --default-targets` and then a comma seperated list of `test`, `debug`, or `release` to
-automatically build the requested binaries with every `ninja` invoke.
+If you need a unoptimised build with debugging information, use `python3 build.py -- debug`.
 
 ## Resources
 
