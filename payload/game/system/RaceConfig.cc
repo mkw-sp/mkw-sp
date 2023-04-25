@@ -11,10 +11,6 @@ extern "C" {
 
 namespace System {
 
-bool RaceConfig::is200cc() {
-    return m_is200cc;
-}
-
 RaceConfig::Scenario &RaceConfig::raceScenario() {
     return m_raceScenario;
 }
@@ -48,8 +44,8 @@ void RaceConfig::applyEngineClass() {
 
     m_menuScenario.engineClass = EngineClass::CC150;
     m_menuScenario.mirrorRng = false;
+    m_menuScenario.is200cc = false;
     m_menuScenario.mirror = false;
-    m_is200cc = false;
 
     switch (setting) {
     case SP::ClientSettings::EngineClass::Mixed:
@@ -65,7 +61,7 @@ void RaceConfig::applyEngineClass() {
     case SP::ClientSettings::EngineClass::CC150: // Set above
         break;
     case SP::ClientSettings::EngineClass::CC200: // handled in KartObjectManager
-        m_is200cc = true;
+        m_menuScenario.is200cc = true;
         break;
     case SP::ClientSettings::EngineClass::Mirror:
         m_menuScenario.mirror = true;

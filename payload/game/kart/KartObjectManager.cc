@@ -101,12 +101,10 @@ void KartObjectManager::beforeCalc() {
 }
 
 void KartObjectManager::CreateInstance() {
-    auto *raceConfig = System::RaceConfig::Instance();
     auto *saveManager = System::SaveManager::Instance();
-    auto &raceScenario = raceConfig->raceScenario();
+    auto &raceScenario = System::RaceConfig::Instance()->raceScenario();
 
-    speedModIsEnabled = raceConfig->is200cc();
-    speedModFactor = speedModIsEnabled ? 1.5f : 1.0f;
+    speedModFactor = raceScenario.is200cc ? 1.5f : 1.0f;
     speedModReverseFactor = 1.0f / speedModFactor;
 
     minDriftSpeedFactor = 0.55f / speedModFactor;
@@ -119,7 +117,7 @@ void KartObjectManager::CreateInstance() {
         isVanilla = false;
     }
 
-    System::SPFooter::OnRaceStart(speedModIsEnabled, isVanilla, raceScenario.mirror);
+    System::SPFooter::OnRaceStart(raceScenario.is200cc, isVanilla, raceScenario.mirror);
 
     s_instance = new KartObjectManager;
 }
