@@ -39,6 +39,11 @@ static inline void *OSAllocFromMEM2ArenaLo(u32 size, u32 align) {
     return (void *)result;
 }
 
+#define OS_CONSOLE_MASK 0xF0000000
+#define OS_CONSOLE_MASK_RETAIL 0x00000000
+
+u32 OSGetConsoleType(void);
+
 u32 OSGetPhysicalMem1Size(void);
 u32 OSGetPhysicalMem2Size(void);
 
