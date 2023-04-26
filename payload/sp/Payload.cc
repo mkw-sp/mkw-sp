@@ -20,7 +20,9 @@ extern "C" {
 #include "sp/security/Function.h"
 #include "sp/security/Heap.h"
 #include "sp/security/Memory.h"
-#include "sp/security/PageTable.h"
+}
+#include "sp/security/PageTable.hh"
+extern "C" {
 #include "sp/security/StackCanary.h"
 }
 #include "sp/security/StackCanary.hh"
@@ -74,7 +76,7 @@ static void Init() {
 
     Console::Print("Applying security patches...");
 #ifndef GDB_COMPATIBLE
-    PageTable_Init();
+    PageTable::Init();
     Memory_InvalidateAllIBATs();
 #endif
 

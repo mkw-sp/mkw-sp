@@ -1,6 +1,4 @@
-extern "C" {
-#include "PageTable.h"
-}
+#include "PageTable.hh"
 
 extern "C" {
 #include "sp/Dol.h"
@@ -57,18 +55,18 @@ struct PageTableEntryInfo {
 union PageTableEntry {
     struct {
         // clang-format off
-        u32 V    :  1;
-        u32 VSID : 24;
-        u32 H    :  1;
-        u32 API  :  6;
+        bool V    :  1;
+        u32  VSID : 24;
+        u32  H    :  1;
+        u32  API  :  6;
 
-        u32 RPN  : 20;
-        u32      :  3;
-        u32 R    :  1;
-        u32 C    :  1;
-        u32 WIMG :  4;
-        u32      :  1;
-        u32 PP   :  2;
+        u32  RPN  : 20;
+        u32       :  3;
+        bool R    :  1;
+        bool C    :  1;
+        u32  WIMG :  4;
+        u32       :  1;
+        u32  PP   :  2;
         // clang-format on
     };
 
@@ -131,14 +129,14 @@ static bool AddEntryToPageTable(const void *physicalAddress, const void *effecti
     }
 
     const PageTableEntry entry = {
-            .V = 1,
+            .V = true,
             .VSID = VSID,
             .H = hash,
             .API = (u32)effectiveAddress >> 22,
 
             .RPN = (u32)physicalAddress >> 12,
-            .R = 0,
-            .C = 0,
+            .R = false,
+            .C = false,
             .WIMG = wimg,
             .PP = pp,
     };
@@ -178,7 +176,7 @@ static const std::array<PageTableEntryInfo, 3> pteInfoArray = {
         },
 };
 
-static void Init() {
+void Init() {
     InitSRs();
     InitPageTable();
 
@@ -202,7 +200,3 @@ static void Init() {
 }
 
 } // namespace SP::PageTable
-
-extern "C" void PageTable_Init() {
-    SP::PageTable::Init();
-}
