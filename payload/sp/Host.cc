@@ -3,10 +3,11 @@ extern "C" {
 
 #include <Common.h>
 
-#include <revolution.h>
 #include <revolution/ios.h>
 #include <revolution/nwc24/NWC24Utils.h>
+#include <revolution/os.h>
 #include <sp/Version.h>
+
 #include <stdio.h>
 #include <string.h>
 }
@@ -34,6 +35,7 @@ RawCPU_ID Host_GetCPUID(void) {
             .ECID_L = _39f,
     };
 }
+
 void Host_SetCPUID(RawCPU_ID id) {
     u32 _39c = id._924, _39d = id.ECID_H, _39e = id.ECID_M, _39f = id.ECID_L;
     __asm__ volatile("mtspr 0x39c, %0" : "=r"(_39c));
@@ -88,6 +90,14 @@ static void DetectPlatform(void) {
 }
 #endif
 
+static const char *GetWiiTag(void) {
+    if ((OSGetConsoleType() & OS_CONSOLE_MASK) == OS_CONSOLE_MASK_RETAIL) {
+        return "Wii (Retail)";
+    } else {
+        return "Wii (Development)";
+    }
+}
+
 void Host_Init(void) {
     if (sHostIsInit) {
         return;
@@ -118,7 +128,7 @@ HostPlatform Host_GetPlatform(void) {
 const char *Host_GetPlatformString(void) {
     switch (Host_GetPlatform()) {
     case HOST_REVOLUTION:
-        return "Wii";
+        return GetWiiTag();
     case HOST_WII_MINI:
         return "Wii Mini";
     case HOST_CAFE:
