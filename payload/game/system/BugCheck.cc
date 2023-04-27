@@ -1,21 +1,21 @@
-#include "BugCheck.h"
-#include "FatalScene.h"
+extern "C" {
+#include "game/system/FatalScene.h"
 
 #include <revolution.h>
-#include <stdarg.h>
-#include <stdio.h>
-#include <string.h>
-
-#include <egg/core/eggSystem.h>
-#include <sp/WideUtil.h>
-
 #include <sp/StackTrace.h>
+#include <sp/WideUtil.h>
+}
+#include <egg/core/eggSystem.hh>
+
+#include <cstdarg>
+#include <cstdio>
+#include <cstring>
+#include <span>
 
 // Referenced by SceneCreatorDyanmic.S
 bool sBugCheckSet = false;
 
-static void SpFormatBugCheck(wchar_t *out, size_t outSize, const char *file,
-        const char *description) {
+static void SpFormatBugCheck(std::span<wchar_t> out, const char *file, const char *description) {
     char tmp[512];
     memset(tmp, 0, sizeof(tmp));
 
@@ -24,8 +24,8 @@ static void SpFormatBugCheck(wchar_t *out, size_t outSize, const char *file,
             "Error: %s\n",
             file[0] != '\0' ? file : "?", description[0] != '\0' ? description : "?");
 
-    Util_toUtf16(out, outSize, tmp, sizeof(tmp));
-    out[outSize - 1] = L'\0';
+    Util_toUtf16(out.data(), out.size(), tmp, sizeof(tmp));
+    out[out.size() - 1] = L'\0';
 }
 
 void SpBugCheck(const char *file, const char *description) {
@@ -45,8 +45,8 @@ void SpBugCheck(const char *file, const char *description) {
         sBugCheckSet = true;
     }
 
-    wchar_t formattedBugCheck[512];
-    SpFormatBugCheck(formattedBugCheck, ARRAY_SIZE(formattedBugCheck), file, description);
+    std::array<wchar_t, 512> formattedBugCheck;
+    SpFormatBugCheck(formattedBugCheck, file, description);
 
     static FatalScene fScene;
     FatalScene_CT(&fScene);
@@ -56,7 +56,7 @@ void SpBugCheck(const char *file, const char *description) {
 
     fScene.inherit.vt->enter(&fScene.inherit);
 
-    FatalScene_SetBody(&fScene, formattedBugCheck);
+    FatalScene_SetBody(&fScene, formattedBugCheck.data());
 
     FatalScene_MainLoop(&fScene);
 
@@ -66,6 +66,8 @@ void SpBugCheck(const char *file, const char *description) {
 //
 // Individual crashes
 //
+
+extern "C" {
 
 // XREF: eggG3dUtil.S
 void InvalidTexRefFail(const char *mdl0_name) {
@@ -158,4 +160,5 @@ void TooManyEffectsFail(int current_count, int capacity, const char *path) {
             current_count, loadedEffects[0] != '\0' ? loadedEffects : "?");
 
     SpBugCheck(path, desc);
+}
 }
