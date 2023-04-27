@@ -656,13 +656,20 @@ if args.region not in validRegionList:
     sys.exit(f'The specified region \'{args.region}\' is invalid! Valid regions include: {", ".join(validRegionList)}!')
 
 with open(args.out_path, 'w') as out_file:
+    out_file.write('PHDRS {\n')
+    out_file.write('    text PT_LOAD;\n')
+    out_file.write('    rodata PT_LOAD;\n')
+    out_file.write('    data PT_LOAD;\n')
+    out_file.write('}\n')
+    out_file.write('\n')
+
     out_file.write('SECTIONS {\n')
-    out_file.write('    .text base : { *(first) *(.text*) *(thunks*) }\n')
-    out_file.write('    .ctors : { *(.ctors*) }\n')
-    out_file.write('    patches : { *(patches*) }\n')
-    out_file.write('    commands : { *(commands*) }\n')
-    out_file.write('    .rodata : { *(.rodata*) }\n')
-    out_file.write('    .data : { *(.data*) *(.bss*) *(.sbss*) }\n')
+    out_file.write('    .text base : { *(first) *(.text*) *(thunks*) } :text\n')
+    out_file.write('    .ctors : { *(.ctors*) } :rodata\n')
+    out_file.write('    patches : { *(patches*) } :rodata\n')
+    out_file.write('    commands : { *(commands*) } :rodata\n')
+    out_file.write('    .rodata : { *(.rodata*) } :rodata\n')
+    out_file.write('    .data : { *(.data*) *(.bss*) *(.sbss*) } :data\n')
     out_file.write('\n')
 
     # Write the start and end address for each section in the payload
