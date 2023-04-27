@@ -20,15 +20,16 @@ public:
 
     MultiDvdArchive(u16 archiveCount);
     virtual ~MultiDvdArchive();
+    virtual void dt(s32 type);
+
+    REPLACE virtual void init();
+    void REPLACED(init)();
 
     void clear();
     void load(const char *path, EGG::Heap *archiveHeap, EGG::Heap *fileHeap, u32);
     void loadOther(MultiDvdArchive *other, EGG::Heap *heap);
 
     void setMission(u32 missionId);
-
-    REPLACE virtual void init();
-    void REPLACED(init)();
 
     DvdArchive &archive(u16 i);
     u16 count() const;
