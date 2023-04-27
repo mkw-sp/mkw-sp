@@ -991,6 +991,8 @@ common_ldflags = [
     '-nostdlib',
     '-Wl,-n',
 ]
+if args.ci:
+    common_ldflags.append('-Wl,--fatal-warnings')
 
 n.rule(
     'S',
