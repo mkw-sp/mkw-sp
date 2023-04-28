@@ -54,7 +54,7 @@ typedef union {
     u16 _u16;
     s32 _s32;
     u32 _u32;
-    int i;
+    s32 i;
     void *p;
     float f;
 } WGPIPE_type;

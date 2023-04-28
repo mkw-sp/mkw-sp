@@ -10,7 +10,7 @@ void SOiFree(u32 id, void *buf, s32 size);
 int SOiPrepare(u32 r3, s32 *fd);
 int SOiConclude(u32 r3, s32 result);
 
-int SOListen(int s, int backlog) {
+int SOListen(s32 s, s32 backlog) {
     s32 fd;
     s32 result = SOiPrepare(0, &fd);
     if (result != 0) {
@@ -28,7 +28,7 @@ int SOListen(int s, int backlog) {
     return SOiConclude(0, result);
 }
 
-int SOAccept(int s, void *sockAddr) {
+int SOAccept(s32 s, void *sockAddr) {
     s32 fd;
     s32 result = SOiPrepare(0, &fd);
     if (result != 0) {

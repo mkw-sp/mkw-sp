@@ -82,7 +82,7 @@ void *PortPointer(void *p) {
     return p;
 }
 
-size_t WriteStackTraceShort(char *buf, int capacity, void *sp) {
+size_t WriteStackTraceShort(char *buf, s32 capacity, void *sp) {
     StackTraceIterator it;
     StackTraceIterator_create(&it, sp);
 

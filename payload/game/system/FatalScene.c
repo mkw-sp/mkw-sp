@@ -63,7 +63,7 @@ FatalScene *FatalScene_CT(FatalScene *scene) {
 
     return scene;
 }
-void FatalScene_DT(FatalScene *scene, int type) {
+void FatalScene_DT(FatalScene *scene, s32 type) {
     // OSReport("Destroying FatalScene\n");
 
     lyt_DrawInfo_DT(&scene->drawInfo, -1);
@@ -179,7 +179,7 @@ static void FatalScene_reinit(EGGScene * /* scene */) {}
 static void FatalScene_incoming_childDestroy(EGGScene * /* scene */) {}
 static void FatalScene_outgoing_childCreate(EGGScene * /* scene */) {}
 
-static void FatalScene_DTAdapater(EGGScene *scene, int type) {
+static void FatalScene_DTAdapater(EGGScene *scene, s32 type) {
     FatalScene_DT((FatalScene *)scene, type);
 }
 

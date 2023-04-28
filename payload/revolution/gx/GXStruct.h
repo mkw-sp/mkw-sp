@@ -32,7 +32,7 @@ typedef struct {
 static_assert(sizeof(GXColorS10) == 0x8);
 
 typedef struct GXRenderModeObj {
-    int tv_mode;
+    s32 tv_mode;
     u16 fb_width;
     u16 efb_height;
     u16 xfb_height;
@@ -40,7 +40,7 @@ typedef struct GXRenderModeObj {
     u16 vi_y;
     u16 vi_width;
     u16 vi_height;
-    int vi_xfb;
+    s32 vi_xfb;
     u8 field;
     u8 aa;
     u8 sample[12][2];

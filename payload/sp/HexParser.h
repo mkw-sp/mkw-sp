@@ -21,8 +21,8 @@ static inline bool in_range_inclusive(u32 val, u32 low, u32 high) {
 static inline u32 parse_hex32(const char *begin, const char *end) {
     u32 hex = 0;
     for (const char *i = begin; i < end && i < begin + 8; ++i) {
-        int c = *i;
-        int current = 0;
+        s32 c = *i;
+        s32 current = 0;
 
         const bool is_upper = in_range_inclusive(c, 'A', 'F');
         current |= value_or_null(c - 'A' + 0xA, is_upper);

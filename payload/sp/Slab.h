@@ -24,5 +24,5 @@ typedef struct {
 
 extern NetSlabs *sSlabs;
 
-void *TryAllocFromSlabs(int size);
-bool TryFreeFromSlabs(void *ptr, int size);
+void *TryAllocFromSlabs(s32 size);
+bool TryFreeFromSlabs(void *ptr, s32 size);

@@ -40,8 +40,8 @@ struct KCollisionPrismData {
 
 struct WiimmKclVersion {
     // 2.26
-    int major_version = 2;
-    int minor_version = 26;
+    s32 major_version = 2;
+    s32 minor_version = 26;
 };
 struct UnknownKclVersion {};
 struct InvalidKclVersion {};

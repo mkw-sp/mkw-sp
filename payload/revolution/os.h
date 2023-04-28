@@ -78,17 +78,17 @@ OSTime OSGetTime(void);
 void OSSetTime(OSTime time);
 
 typedef struct {
-    int sec;
-    int min;
-    int hour;
-    int mday;
-    int mon;
-    int year;
-    int wday;
-    int yday;
+    s32 sec;
+    s32 min;
+    s32 hour;
+    s32 mday;
+    s32 mon;
+    s32 year;
+    s32 wday;
+    s32 yday;
 
-    int msec;
-    int usec;
+    s32 msec;
+    s32 usec;
 } OSCalendarTime;
 
 OSTime OSCalendarTimeToTicks(OSCalendarTime *time);

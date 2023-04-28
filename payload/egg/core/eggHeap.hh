@@ -39,7 +39,7 @@ static_assert(sizeof(Heap) == 0x38);
 
 } // namespace EGG
 
-void *operator new(size_t size, EGG::Heap *heap, int align);
+void *operator new(size_t size, EGG::Heap *heap, s32 align);
 
-void *operator new[](size_t size, int align);
-void *operator new[](size_t size, EGG::Heap *heap, int align);
+void *operator new[](size_t size, s32 align);
+void *operator new[](size_t size, EGG::Heap *heap, s32 align);

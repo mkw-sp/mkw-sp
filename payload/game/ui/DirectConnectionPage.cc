@@ -216,7 +216,7 @@ bool DirectConnectionPage::onKeyCode(char key, u8 mods) {
     }
 
     if (key <= '9' && key >= '0') {
-        const int digit = key - '0';
+        const s32 digit = key - '0';
         assert(digit >= 0 && digit <= std::ssize(m_digitButtons));
         m_digitButtons[digit].select(0);
         m_digitButtons[digit].onFront(0 /* ? */, 0 /* ? */);

@@ -1,7 +1,7 @@
 #include "expHeap.h"
 
-void *REPLACED(MEMAllocFromExpHeapEx)(MEMHeapHandle heap, u32 size, int align);
-REPLACE void *MEMAllocFromExpHeapEx(MEMHeapHandle heap, u32 size, int align) {
+void *REPLACED(MEMAllocFromExpHeapEx)(MEMHeapHandle heap, u32 size, s32 align);
+REPLACE void *MEMAllocFromExpHeapEx(MEMHeapHandle heap, u32 size, s32 align) {
     void *memBlock = REPLACED(MEMAllocFromExpHeapEx)(heap, size, align);
     if (!memBlock) {
         panic("Out of memory!");

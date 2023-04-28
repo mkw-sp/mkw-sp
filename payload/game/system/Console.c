@@ -303,7 +303,7 @@ static void Console_create() {
     TextWriter_configure(&sConsole, box, NULL);
 }
 
-static void Console_stateDefault(int frames_since_last_console_message) {
+static void Console_stateDefault(s32 frames_since_last_console_message) {
     if (frames_since_last_console_message < 120) {
         sConsoleAlpha = 1.0f;
     } else if (frames_since_last_console_message < 240) {
@@ -393,7 +393,7 @@ void Console_addLine(const char *s, size_t /* len */) {
         if (thread == NULL) {
             va_list l;
             vprintf("Called with NULL current thread (hack to prevent optimization to "
-                    "puts, which dolphin doesn't detect: garbage int %i)\n",
+                    "puts, which dolphin doesn't detect: garbage s32 %i)\n",
                     l);
         }
     }

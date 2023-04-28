@@ -11,7 +11,7 @@ static Mutex mutex;
 static OSThreadQueue queue;
 static u8 stack[0x1000 /* 4 KiB */];
 static OSThread thread;
-static int res = INT_MIN;
+static s32 res = INT_MIN;
 
 void *Alloc(s32 size) {
     ScopeLock<Mutex> lock(mutex);
@@ -64,7 +64,7 @@ void Init() {
     SOLibraryConfig cfg;
     cfg.alloc = Alloc;
     cfg.free = Free;
-    int res = SOInit(&cfg);
+    s32 res = SOInit(&cfg);
     SP_LOG("SOInit returned %i", res);
     assert(res == 0 && "SOInit failed");
 

@@ -26,7 +26,7 @@ typedef void (*MEMHeapVisitor)(void *memBlock, MEMHeapHandle heap, u32 userParam
 
 void *MEMDestroyExpHeap(MEMHeapHandle heap);
 
-void *MEMAllocFromExpHeapEx(MEMHeapHandle heap, u32 size, int align);
+void *MEMAllocFromExpHeapEx(MEMHeapHandle heap, u32 size, s32 align);
 
 void MEMFreeToExpHeap(MEMHeapHandle heap, void *memBlock);
 

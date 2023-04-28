@@ -27,4 +27,4 @@ typedef struct {
     // ...
 } EGG_ExpHeap;
 
-void EGG_ExpHeap_InitAlloc(EGG_ExpHeap *heap, void *alloc, int align);
+void EGG_ExpHeap_InitAlloc(EGG_ExpHeap *heap, void *alloc, s32 align);

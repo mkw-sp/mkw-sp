@@ -48,7 +48,7 @@ sp_define_command("/section", "Transition to a certain game section", const char
         return;
     }
 
-    int nextSectionId = 0;
+    s32 nextSectionId = 0;
     if (!sscanf(tmp, "/section %i", &nextSectionId)) {
         OSReport("&aUsage /section <id>\n");
         return;

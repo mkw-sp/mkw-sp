@@ -17,7 +17,7 @@ void panic(const char *format, ...) {
     char message[512];
     memset(message, 0, sizeof(message));
 
-    int size = -1;
+    s32 size = -1;
     {
         va_list args;
         va_start(args, format);

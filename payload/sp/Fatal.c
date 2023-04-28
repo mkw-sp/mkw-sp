@@ -5,7 +5,7 @@
 #include <stdio.h>  // snprintf
 #include <string.h> // strrchr
 
-__attribute__((noreturn)) void __assert_func(const char *filename, int line, const char *assertFunc,
+__attribute__((noreturn)) void __assert_func(const char *filename, s32 line, const char *assertFunc,
         const char *expr) {
     {
         const char *search = strrchr(filename, '\\');

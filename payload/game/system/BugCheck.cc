@@ -91,8 +91,7 @@ void MissingBreffFail(const char *breff_name) {
 }
 
 // XREF: g3dResFile.S
-void InvalidRevisionFail(int bad_version, unsigned int res_type, int index,
-        const char *brres_name) {
+void InvalidRevisionFail(s32 bad_version, u32 res_type, s32 index, const char *brres_name) {
     char file[64];
 
     if (brres_name && *brres_name) {
@@ -126,7 +125,7 @@ void InvalidRevisionFail(int bad_version, unsigned int res_type, int index,
 static char loadedEffects[256];
 
 // XREF: ObjEffect.S
-void LogLoadedEffect(int index, const char *path) {
+void LogLoadedEffect(s32 index, const char *path) {
     const char *trailing = strrchr(path, '/');
     if (trailing != NULL) {
         path = trailing + 1;
@@ -138,7 +137,7 @@ void LogLoadedEffect(int index, const char *path) {
     }
 
     char loaded_effects_tmp[sizeof(loadedEffects)];
-    int res = snprintf(loaded_effects_tmp, sizeof(loaded_effects_tmp), "%s, %i: %s", loadedEffects,
+    s32 res = snprintf(loaded_effects_tmp, sizeof(loaded_effects_tmp), "%s, %i: %s", loadedEffects,
             index, path);
     if (res <= 0) {
         return;
@@ -153,7 +152,7 @@ void ResetLoadedEffects(void) {
 }
 
 // XREF: ObjEffect.S
-void TooManyEffectsFail(int current_count, int capacity, const char *path) {
+void TooManyEffectsFail(s32 current_count, s32 capacity, const char *path) {
     char desc[512];
     snprintf(desc, sizeof(desc),
             "Too many BREFF (particle effect) files. Maximum is %i.\n\nEffects (%i): %s.", capacity,

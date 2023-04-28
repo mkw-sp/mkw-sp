@@ -88,7 +88,7 @@ public:
         TranslucentVertexColors mMaterial;
         mMaterial.use();
 
-        for (int i = 0; i < CheckPaths()->m_numEntries; ++i) {
+        for (s32 i = 0; i < CheckPaths()->m_numEntries; ++i) {
             auto *ckph = CheckPaths()->cdata(i);
 
             drawCheckPath(ckph);
@@ -96,10 +96,10 @@ public:
         mMaterial.unuse();
     }
     static void drawCheckPath(const System::MapdataCheckPath::SData *ckph) {
-        int range_start = ckph->start;
-        int range_end = ckph->start + ckph->size;
+        s32 range_start = ckph->start;
+        s32 range_end = ckph->start + ckph->size;
 
-        for (int j = range_start; j < range_end; ++j) {
+        for (s32 j = range_start; j < range_end; ++j) {
             auto *ckpt = CheckPoints()->cdata(j);
 
             // Skip non-key checkpoints
@@ -176,7 +176,7 @@ public:
 
         u32 color_trans = (color & 0xFFFFFF00) | 0x60;
 
-        constexpr int NUM_QUADS = 4;
+        constexpr s32 NUM_QUADS = 4;
 
         Vertex faces[NUM_QUADS][4] = {// Front face
                 {{{ckpt->left.x, top, ckpt->left.y}, 0}, {{ckpt->left.x, bottom, ckpt->left.y}, 0},
@@ -197,7 +197,7 @@ public:
                         {{next->right.x, next_bottom, next->right.y}, VTX_TRANS},
                         {{next->right.x, next_top, next->right.y}, VTX_TRANS}}};
 
-        int to_draw_quads = NUM_QUADS;
+        s32 to_draw_quads = NUM_QUADS;
 
         if (ckpt->lapCheck == 0xFF) {
             to_draw_quads = 3;
@@ -205,8 +205,8 @@ public:
 
         GXBegin(GX_QUADS, GX_VTXFMT0, to_draw_quads * 4);
 
-        for (int quad = 0; quad < to_draw_quads; ++quad) {
-            for (int vert = 0; vert < 4; ++vert) {
+        for (s32 quad = 0; quad < to_draw_quads; ++quad) {
+            for (s32 vert = 0; vert < 4; ++vert) {
                 const Vertex &v = faces[quad][vert];
 
                 u32 _c = v.flags & VTX_TRANS ? color_trans : color;
@@ -216,9 +216,9 @@ public:
         }
         GXEnd();
 
-        for (int quad = 0; quad < NUM_QUADS; ++quad) {
+        for (s32 quad = 0; quad < NUM_QUADS; ++quad) {
             GXBegin(GX_LINESTRIP, GX_VTXFMT0, 5);
-            for (int vert = 0; vert < 4 + 1; ++vert) {
+            for (s32 vert = 0; vert < 4 + 1; ++vert) {
                 const Vertex &v = faces[quad][vert % 4];
 
                 u32 _c = color | 0xFF;

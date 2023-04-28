@@ -44,7 +44,7 @@ static inline BinaryType ClassifyCaller(void *sp) {
 }
 
 extern "C" {
-__attribute__((noreturn)) REPLACE void OSPanic(const char * /* filename */, int /* lineNumber */,
+__attribute__((noreturn)) REPLACE void OSPanic(const char * /* filename */, s32 /* lineNumber */,
         const char *message, ...) {
     char messageFormat[256];
     NWC24iStrLCpy(messageFormat, message, sizeof(messageFormat));

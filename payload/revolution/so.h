@@ -15,9 +15,9 @@ int SOStartup(void);
 int SOCleanup(void);
 
 int SOInit(const SOLibraryConfig *cfg);
-int SOSend(int s, const void *buf, int len, int flags);
-int SOSendTo(int s, const void *buf, int len, int flags, const void *sockFrom);
-int SOWrite(int s, const void *buf, int len);
+int SOSend(s32 s, const void *buf, s32 len, s32 flags);
+int SOSendTo(s32 s, const void *buf, s32 len, s32 flags, const void *sockFrom);
+int SOWrite(s32 s, const void *buf, s32 len);
 
 #define SO_PF_INET 2
 #define SO_SOCK_STREAM 1
@@ -49,10 +49,10 @@ typedef struct SOSockAddrIn {
 } SOSockAddrIn;
 
 typedef struct SOAddrInfo {
-    int flags;
-    int family;
-    int sockType;
-    int protocol;
+    s32 flags;
+    s32 family;
+    s32 sockType;
+    s32 protocol;
     unsigned addrLen;
     char *canonName;
     void *addr;
@@ -60,22 +60,22 @@ typedef struct SOAddrInfo {
 } SOAddrInfo;
 
 int SOSocket(int, int, int);
-int SOClose(int s);
+int SOClose(s32 s);
 
-int SOListen(int s, int backlog);
-int SOAccept(int s, void *sockAddr);
-int SOBind(int s, const void *sockAddr);
-int SOConnect(int s, const void *sockAddr);
-int SOGetSockName(int s, void *sockAddr);
-int SOGetPeerName(int s, void *sockAddr);
-int SORecvFrom(int s, void *buf, int len, int flags, void *sockFrom);
-int SORecv(int s, void *buf, int len, int flags);
-int SORead(int s, void *buf, int len);
+int SOListen(s32 s, s32 backlog);
+int SOAccept(s32 s, void *sockAddr);
+int SOBind(s32 s, const void *sockAddr);
+int SOConnect(s32 s, const void *sockAddr);
+int SOGetSockName(s32 s, void *sockAddr);
+int SOGetPeerName(s32 s, void *sockAddr);
+int SORecvFrom(s32 s, void *buf, s32 len, s32 flags, void *sockFrom);
+int SORecv(s32 s, void *buf, s32 len, s32 flags);
+int SORead(s32 s, void *buf, s32 len);
 
-int SOSetSockOpt(int s, int level, int optname, const void *optval, int optlen);
-int SOFcntl(int s, int cmd, ...);
+int SOSetSockOpt(s32 s, s32 level, s32 optname, const void *optval, s32 optlen);
+int SOFcntl(s32 s, s32 cmd, ...);
 
-int SOShutdown(int s, int how);
+int SOShutdown(s32 s, s32 how);
 
 void SOFreeAddrInfo(SOAddrInfo *ai);
 int SOGetAddrInfo(const char *nodeName, const char *servName, const SOAddrInfo *hints,

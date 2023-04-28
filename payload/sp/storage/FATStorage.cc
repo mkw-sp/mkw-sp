@@ -290,7 +290,7 @@ bool FATStorage::File::read(void *dst, u32 size, u32 offset) {
         return false;
     }
 
-    UINT readSize;
+    u32 readSize;
     if (f_read(this, dst, size, &readSize) != FR_OK) {
         return false;
     }
@@ -305,7 +305,7 @@ bool FATStorage::File::write(const void *src, u32 size, u32 offset) {
         return false;
     }
 
-    UINT writtenSize;
+    u32 writtenSize;
     if (f_write(this, src, size, &writtenSize) != FR_OK) {
         return false;
     }

@@ -52,7 +52,7 @@ struct DolphinDiscordPresence {
     // Missing fields from DiscordRichPresence in discord_rpc.h:
     //
     //    const char* partyId;        /* max 128 bytes */
-    //    int partyPrivacy;
+    //    s32 partyPrivacy;
     //    const char* matchSecret;    /* max 128 bytes */
     //    const char* joinSecret;     /* max 128 bytes */
     //    const char* spectateSecret; /* max 128 bytes */

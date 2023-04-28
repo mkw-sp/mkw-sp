@@ -11,8 +11,8 @@ struct StackTraceEntry {
 
 typedef struct {
     StackTraceEntry *cur;
-    int depth;
-    int maxDepth;
+    s32 depth;
+    s32 maxDepth;
 } StackTraceIterator;
 
 void StackTraceIterator_create(StackTraceIterator *it, void *begin);
@@ -33,4 +33,4 @@ void *PortPointer(void *p);
 
 //! For OSFatal asserts, which has a small text buffer, and we have the source line number
 //! already.
-size_t WriteStackTraceShort(char *buf, int capacity, void *sp);
+size_t WriteStackTraceShort(char *buf, s32 capacity, void *sp);

@@ -18,12 +18,12 @@ bool StringStartsWithCommand(const char *line, const char *cmd) {
     return line[cmdLen] == '\0' || line[cmdLen] == ' ';
 }
 
-static int Commands_compare(const Command *lhs, const Command *rhs) {
+static s32 Commands_compare(const Command *lhs, const Command *rhs) {
     assert(lhs->match);
     assert(rhs->match);
     return strcmp(lhs->match, rhs->match);
 }
-static int Commands_compareFn(const void *lhs, const void *rhs) {
+static s32 Commands_compareFn(const void *lhs, const void *rhs) {
     return Commands_compare((const Command *)lhs, (const Command *)rhs);
 }
 
@@ -80,7 +80,7 @@ static void Commands_printHelp(size_t page) {
 }
 
 sp_define_command("/help", "Views a list of all available commands.", const char *tmp) {
-    int page = 1;
+    s32 page = 1;
     sscanf(tmp, "/help %i", &page);
     Commands_printHelp(MAX(page - 1, 0));
 }

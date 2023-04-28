@@ -20,7 +20,7 @@ typedef struct {
 static_assert(sizeof(lyt_Layout) == 0x20);
 
 lyt_Layout *lyt_Layout_CT(lyt_Layout *layout);
-void lyt_Layout_DT(lyt_Layout *layout, int type);
+void lyt_Layout_DT(lyt_Layout *layout, s32 type);
 
 static inline Rect getLayoutRect(const lyt_Layout *layout) {
     return (Rect){
@@ -42,7 +42,7 @@ typedef struct {
 static_assert(sizeof(lyt_DrawInfo) == 0x54);
 
 lyt_DrawInfo *lyt_DrawInfo_CT(lyt_DrawInfo *drawInfo);
-void lyt_DrawInfo_DT(lyt_DrawInfo *drawInfo, int type);
+void lyt_DrawInfo_DT(lyt_DrawInfo *drawInfo, s32 type);
 
 typedef struct {
     u8 _[0xa4 - 0x00];
@@ -58,7 +58,7 @@ typedef struct {
 static_assert(sizeof(lyt_MultiArcResourceAccessor) == 0x1c);
 
 lyt_MultiArcResourceAccessor *lyt_MultiArcResourceAccessor_CT(lyt_MultiArcResourceAccessor *ac);
-void lyt_MultiArcResourceAccessor_DT(lyt_MultiArcResourceAccessor *ac, int type);
+void lyt_MultiArcResourceAccessor_DT(lyt_MultiArcResourceAccessor *ac, s32 type);
 
 void MultiArcResourceAccessor_Attach(lyt_MultiArcResourceAccessor *ac, lyt_ArcResourceLink *link);
 

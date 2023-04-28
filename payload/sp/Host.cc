@@ -191,7 +191,7 @@ void Host_PrintMkwSpInfo(PrintfFunction *func) {
     NWC24iStrLCpy(system, Host_GetPlatformString(), sizeof(system));
 
     if (Host_IsGeckoEnabled()) {
-        const int len = strnlen(system, sizeof(system));
+        const s32 len = strnlen(system, sizeof(system));
         snprintf(system + len, sizeof(system) - len, "*");
     }
 

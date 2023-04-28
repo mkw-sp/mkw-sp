@@ -2,4 +2,4 @@
 
 #include "heapCommon.h"
 
-void *MEMAllocFromFrmHeapEx(MEMHeapHandle heap, u32 size, int align);
+void *MEMAllocFromFrmHeapEx(MEMHeapHandle heap, u32 size, s32 align);

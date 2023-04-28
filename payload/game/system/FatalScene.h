@@ -23,7 +23,7 @@ typedef struct {
 } FatalScene;
 
 FatalScene *FatalScene_CT(FatalScene *scene);
-void FatalScene_DT(FatalScene *scene, int type);
+void FatalScene_DT(FatalScene *scene, s32 type);
 
 // Set the main text
 void FatalScene_SetBody(FatalScene *scene, const wchar_t *body);

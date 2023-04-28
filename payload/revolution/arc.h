@@ -4,8 +4,8 @@
 
 typedef struct {
     u8 _00[0x08 - 0x00];
-    int fstSize;
-    int fileStart;
+    s32 fstSize;
+    s32 fileStart;
     u8 _10[0x20 - 0x10];
 } ARCHeader;
 static_assert(sizeof(ARCHeader) == 0x20);

@@ -65,7 +65,7 @@ private:
 
     static void *LoadThumbnails(void *arg);
     static size_t ReadCompressedThumbnail(JDEC *jdec, uint8_t *buffer, size_t size);
-    static int WriteUncompressedThumbnail(JDEC *jdec, void *bitmap, JRECT *rect);
+    static s32 WriteUncompressedThumbnail(JDEC *jdec, void *bitmap, JRECT *rect);
 
     template <typename T>
     using H = typename T::Handler<CourseSelectPage>;

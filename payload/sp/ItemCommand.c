@@ -64,8 +64,8 @@ sp_define_command("/i", "Spawn an item.", const char *tmp) {
     }
     // Args
     if (!strncmp(tmp, "/i ", strlen("/i "))) {
-        int item = 0;
-        int qty = 1;
+        s32 item = 0;
+        s32 qty = 1;
         if (!sscanf(tmp, "/i %d %d", &item, &qty)) {
             OSReport("&aUnknown arguments \"%s\". Usage: /i [item] [qty|0=STICKY]\n",
                     tmp + strlen("/i "));

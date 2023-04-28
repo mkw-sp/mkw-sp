@@ -83,7 +83,7 @@ void IOSKeyboard_DumpEvent(const IOSKeyboard_Event *ev) {
     }
     OSReport("_09: %u\n", (unsigned)ev->_09);
     OSReport("Pressed:\n");
-    for (int i = 0; i < 6; ++i) {
+    for (s32 i = 0; i < 6; ++i) {
         OSReport("[%u] = %u\n", (unsigned)i, ev->pressed[i]);
     }
 }

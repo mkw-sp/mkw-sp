@@ -23,7 +23,7 @@ typedef struct EGGScene {
 
 typedef struct EGGScene_Vtable {
     u32 _00[2];
-    void (*dt)(EGGScene *scene, int type);
+    void (*dt)(EGGScene *scene, s32 type);
     void (*calc)(EGGScene *scene);
     void (*draw)(EGGScene *scene);
     void (*enter)(EGGScene *scene);
@@ -34,4 +34,4 @@ typedef struct EGGScene_Vtable {
 } EGGScene_Vtable;
 
 EGGScene *EGG_Scene_CT(EGGScene *scene);
-void EGG_Scene_DT(EGGScene *scene, int param);
+void EGG_Scene_DT(EGGScene *scene, s32 param);

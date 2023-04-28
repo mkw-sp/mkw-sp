@@ -28,7 +28,7 @@ static void SimpleEvents_ReadIOS(IOSKeyboard keyboard, SimpleEvents *simpleEvent
     IOSKeyboard_Event events[MAX_BUFFERED_EVENTS];
     size_t num_events = IOSKeyboard_PollBuffered(keyboard, events, MAX_BUFFERED_EVENTS);
 
-    int num_simple_events = 0;
+    s32 num_simple_events = 0;
 
     for (size_t i = 0; i < num_events; ++i) {
         IOSKeyboard_Event *ev = &events[i];
@@ -39,7 +39,7 @@ static void SimpleEvents_ReadIOS(IOSKeyboard keyboard, SimpleEvents *simpleEvent
 
         const bool shift_pressed = ev->modifiers.left_shift | ev->modifiers.right_shift;
 
-        for (int j = 0; j < 6; ++j) {
+        for (s32 j = 0; j < 6; ++j) {
             const IOSKeyboard_KeyCode pressed = (IOSKeyboard_KeyCode)ev->pressed[j];
 
             if (pressed == 0) {

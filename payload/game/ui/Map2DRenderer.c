@@ -12,7 +12,7 @@ enum MinimapFormats {
     kMinimapFormats_Override = GX_TF_RGBA8,
 };
 
-extern int Map2DRenderer_init__createTexBuffer;
+extern s32 Map2DRenderer_init__createTexBuffer;
 
 extern void *EGG_CpuTexture_Construct(void *self, short width, short height, GXTexFmt format);
 

@@ -60,7 +60,11 @@ typedef double f64;
 // WARNING: BUILD_BUG_ON_ZERO / MUST_BE_ARRAY returns 4 on Windows.
 //
 
-#define BUILD_BUG_ON_ZERO(e) ((int)(sizeof(struct { int : (-!!(e)); })))
+#define BUILD_BUG_ON_ZERO(e) \
+    ((int)(sizeof(struct { \
+        s32: \
+            (-!!(e)); \
+    })))
 #define SAME_TYPE(a, b) __builtin_types_compatible_p(typeof(a), typeof(b))
 #define MUST_BE_ARRAY(a) BUILD_BUG_ON_ZERO(SAME_TYPE((a), &(a)[0]))
 

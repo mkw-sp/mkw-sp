@@ -144,8 +144,8 @@ KclVersion InspectKclFile(std::span<const u8> kcl_file) {
 
     SP_LOG("VER %f\n", wiimm_metadata->version);
 
-    const int major_version = static_cast<int>(wiimm_metadata->version);
-    const int minor_version = static_cast<int>(wiimm_metadata->version * 100.0f) % 100;
+    const s32 major_version = static_cast<int>(wiimm_metadata->version);
+    const s32 minor_version = static_cast<int>(wiimm_metadata->version * 100.0f) % 100;
 
     return WiimmKclVersion{.major_version = major_version, .minor_version = minor_version};
 }
@@ -326,7 +326,7 @@ void KclVis::render(const float mtx[3][4], bool /* overlay */) {
     // Vec light_view_pos;
     // MTXMultVec(view_mtx._mtx, &light_world_pos, &light_view_pos);
 
-    for (int i = 0; i < 2; ++i) {
+    for (s32 i = 0; i < 2; ++i) {
         Light &light = lights[i];
 
         GXLightObj light_obj;
