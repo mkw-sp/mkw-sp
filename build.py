@@ -83,7 +83,7 @@ n.rule(
 )
 n.newline()
 
-thumbnail_in_files = glob.glob("thumbnails/*.jpg")
+thumbnail_in_files = sorted(glob.glob("thumbnails/*.jpg"))
 for in_file in thumbnail_in_files:
     out_file = os.path.join('$builddir', 'contents.arc.d', in_file)
     n.build(
@@ -138,8 +138,8 @@ pack_select_assets = [
 ]
 
 asset_in_files = {
-    os.path.join('Scene', 'UI', 'AwardSP.arc.lzma'): glob.glob("award/**/*.json5", root_dir="assets"),
-    os.path.join('Scene', 'UI', 'CrashSP.arc.lzma'): glob.glob("fatal/**/*.*", root_dir="assets", recursive=True),
+    os.path.join('Scene', 'UI', 'AwardSP.arc.lzma'): sorted(glob.glob("award/**/*.json5", root_dir="assets")),
+    os.path.join('Scene', 'UI', 'CrashSP.arc.lzma'): sorted(glob.glob("fatal/**/*.*", root_dir="assets", recursive=True)),
     os.path.join('Race', 'CommonSP.arc.lzma'): [
         # Thumbnails
         os.path.join('kartCameraParamThumbnails.bin'),
@@ -596,7 +596,7 @@ asset_in_files = {
         os.path.join('button', 'ctrl', 'PackSelectButton.brctr.json5'),
         # Flags
         os.path.join('control', 'blyt', 'chara_flag_machine_picture_common.brlyt.json5'),
-        *[os.path.normpath(i) for i in glob.glob("control/timg/[0-9][0-9][0-9].tpl", root_dir="assets", recursive=True)],
+        *[os.path.normpath(i) for i in sorted(glob.glob("control/timg/[0-9][0-9][0-9].tpl", root_dir="assets", recursive=True))],
     ],
     os.path.join('Scene', 'UI', 'RaceSP.arc.lzma'): [
         # Menu
@@ -1017,6 +1017,8 @@ common_ldflags = [
     '-nostdlib',
     '-Wl,-n',
 ]
+if args.ci:
+    common_ldflags.append('-Wl,--fatal-warnings')
 
 n.rule(
     'S',
@@ -1145,9 +1147,9 @@ code_in_files = {
         os.path.join('vendor', 'nanopb', 'pb_decode.c'),
         os.path.join('vendor', 'nanopb', 'pb_encode.c'),
         os.path.join('vendor', 'tjpgd', 'tjpgd.c'),
-        *glob.glob("payload/**/*.cc", recursive=True),
-        *glob.glob("payload/**/*.c", recursive=True),
-        *glob.glob("payload/**/*.S", recursive=True),
+        *sorted(glob.glob("payload/**/*.cc", recursive=True)),
+        *sorted(glob.glob("payload/**/*.c", recursive=True)),
+        *sorted(glob.glob("payload/**/*.S", recursive=True)),
     ],
     'loader': [
         os.path.join('common', 'Clock.cc'),
@@ -1165,9 +1167,9 @@ code_in_files = {
         os.path.join('common', 'Strlen.c'),
         os.path.join('common', 'VI.cc'),
         os.path.join('vendor', 'sha1', 'sha1.c'),
-        *glob.glob("loader/**/*.cc", recursive=True),
-        *glob.glob("loader/**/*.c", recursive=True),
-        *glob.glob("loader/**/*.S", recursive=True),
+        *sorted(glob.glob("loader/**/*.cc", recursive=True)),
+        *sorted(glob.glob("loader/**/*.c", recursive=True)),
+        *sorted(glob.glob("loader/**/*.S", recursive=True)),
     ],
     'stub': [
         os.path.join('common', 'Clock.cc'),
@@ -1184,9 +1186,9 @@ code_in_files = {
         os.path.join('common', 'Strlen.c'),
         os.path.join('common', 'VI.cc'),
         os.path.join('vendor', 'lzma', 'LzmaDec.c'),
-        *glob.glob("stub/**/*.cc", recursive=True),
-        *glob.glob("stub/**/*.c", recursive=True),
-        *glob.glob("stub/**/*.S", recursive=True),
+        *sorted(glob.glob("stub/**/*.cc", recursive=True)),
+        *sorted(glob.glob("stub/**/*.c", recursive=True)),
+        *sorted(glob.glob("stub/**/*.S", recursive=True)),
     ],
 }
 code_out_files = {}
@@ -1536,10 +1538,11 @@ if args.dry:
 
     raise SystemExit
 
-with tempfile.NamedTemporaryFile("w+") as out_file:
-    out_file.write(out_buf.getvalue())
-    n.close()
+out_file = tempfile.NamedTemporaryFile("w+", delete=False)
+out_file.write(out_buf.getvalue())
+out_file.close()
+n.close()
 
-    proc = subprocess.run(("ninja", "-f", out_file.name, *ninja_argv))
-
+proc = subprocess.run(("ninja", "-f", out_file.name, *ninja_argv))
+os.remove(out_file.name)
 sys.exit(proc.returncode)

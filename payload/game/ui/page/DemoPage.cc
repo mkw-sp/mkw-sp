@@ -1,10 +1,8 @@
 #include "DemoPage.hh"
 
+#include "game/kart/KartObjectManager.hh"
 #include "game/system/RaceConfig.hh"
 #include "game/ui/SectionManager.hh"
-extern "C" {
-#include "game/kart/KartObjectManager.h"
-}
 
 namespace UI {
 

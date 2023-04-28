@@ -100,7 +100,7 @@ u32 Track::getCourseId() const {
 
 std::expected<void, const char *> Track::parse(std::string_view key, std::string_view value) {
     if (key == "trackname") {
-        m_name = value;
+        m_name.setUTF8(value);
     } else if (key == "slot") {
         m_slotId = TRY(u32FromSv(value));
     } else if (key == "mslot") {
@@ -158,7 +158,7 @@ std::expected<void, const char *> TrackPack::parseNew(std::string_view manifestV
 
         if (section == "Pack Info") {
             if (key == "name") {
-                m_prettyName = {value};
+                m_prettyName.setUTF8(value);
                 prettyNameFound = true;
             } else if (key == "description") {
                 m_description = value;

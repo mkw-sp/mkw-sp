@@ -23,6 +23,8 @@ A million repetitions of "a"
 /* for uint32_t */
 #include <stdint.h>
 
+#include <machine/endian.h>
+
 #include "sha1.h"
 
 

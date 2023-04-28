@@ -1,9 +1,14 @@
-#include "Stack.h"
+#include "StackCanary.hh"
 
+extern "C" {
 #include <revolution/os/OSCache.h>
+}
+
+#include <algorithm>
+#include <array>
 
 typedef bool (*Find)(u32 *startAddress);
-typedef void (*LinkRegisterFunction)(void);
+typedef void (*LinkRegisterFunction)();
 
 typedef struct LinkRegisterPatch {
     Find findPrologue;
@@ -18,24 +23,16 @@ typedef struct LinkRegisterPatch {
     LinkRegisterFunction newLRRestoreFunc;
 } LinkRegisterPatch;
 
-void Stack_XORAlignedLinkRegisterSave(void);
-void Stack_XORAlignedLinkRegisterRestore(void);
-void Stack_XORLinkRegisterSave(void);
-void Stack_XORLinkRegisterRestore(void);
+extern "C" void StackCanary_SaveAlignedLinkRegister();
+extern "C" void StackCanary_RestoreAlignedLinkRegister();
+extern "C" void StackCanary_SaveLinkRegister();
+extern "C" void StackCanary_RestoreLinkRegister();
+
+namespace SP::StackCanary {
 
 static const u32 blr = 0x4E800020;
 static const u32 mflr = 0x7C0802A6;
 static const u32 mtlr = 0x7C0803A6;
-
-u32 __stack_chk_guard;
-
-void Stack_InitCanary(void) {
-    __stack_chk_guard = (__builtin_ppc_mftb() & 0x00FFFFFF) | (0x80 << 24);
-}
-
-__attribute__((noreturn)) void __stack_chk_fail(void) {
-    panic("Stack smashing detected!");
-}
 
 static bool IsAlignedPrologue(u32 *startAddress) {
     const u32 stwux = 0x7C21596E;
@@ -85,34 +82,34 @@ static bool IsEpilogue(u32 *startAddress) {
     return startAddress[0] == mtlr && (startAddress[1] >> 16) == addi && startAddress[2] == blr;
 }
 
-// clang-format off
-static const LinkRegisterPatch lrPatches[2] = {
+static const std::array<LinkRegisterPatch, 2> lrPatches = {{
+        // clang-format off
         {
-                .findPrologue = IsPrologue,
-                .findLRSave = IsLinkRegisterSave,
-                .findLRRestore = IsLinkRegisterRestore,
-                .findEpilogue = IsEpilogue,
+            .findPrologue = IsPrologue,
+            .findLRSave = IsLinkRegisterSave,
+            .findLRRestore = IsLinkRegisterRestore,
+            .findEpilogue = IsEpilogue,
 
-                .prologueInstCount = 2,
-                .epilogueInstCount = 3,
+            .prologueInstCount = 2,
+            .epilogueInstCount = 3,
 
-                .newLRSaveFunc = Stack_XORLinkRegisterSave,
-                .newLRRestoreFunc = Stack_XORLinkRegisterRestore,
+            .newLRSaveFunc = StackCanary_SaveLinkRegister,
+            .newLRRestoreFunc = StackCanary_RestoreLinkRegister,
         },
         {
-                .findPrologue = IsAlignedPrologue,
-                .findLRSave = IsAlignedLinkRegisterSave,
-                .findLRRestore = IsAlignedLinkRegisterRestore,
-                .findEpilogue = IsAlignedEpilogue,
+            .findPrologue = IsAlignedPrologue,
+            .findLRSave = IsAlignedLinkRegisterSave,
+            .findLRRestore = IsAlignedLinkRegisterRestore,
+            .findEpilogue = IsAlignedEpilogue,
 
-                .prologueInstCount = 2,
-                .epilogueInstCount = 3,
+            .prologueInstCount = 2,
+            .epilogueInstCount = 3,
 
-                .newLRSaveFunc = Stack_XORAlignedLinkRegisterSave,
-                .newLRRestoreFunc = Stack_XORAlignedLinkRegisterRestore
+            .newLRSaveFunc = StackCanary_SaveAlignedLinkRegister,
+            .newLRRestoreFunc = StackCanary_RestoreAlignedLinkRegister,
         },
-};
-// clang-format on
+        // clang-format on
+}};
 
 static u32 *FindFirst(u32 *startAddress, u32 *endAddress, Find find, u32 instCount) {
     while (startAddress + instCount <= endAddress) {
@@ -140,57 +137,59 @@ static u32 CreateBranchLinkInstruction(u32 *sourceAddress, u32 *destinationAddre
     return (18 << 26) | (((u32)destinationAddress - (u32)sourceAddress) & 0x3FFFFFC) | (1 << 0);
 }
 
-void Stack_DoLinkRegisterPatches(u32 *start, u32 *end) {
+void AddLinkRegisterPatches(u32 *start, u32 *end) {
     assert(((u32)start & 3) == 0);
     assert(((u32)end & 3) == 0);
 
-    for (size_t n = 0; n < ARRAY_SIZE(lrPatches); n++) {
-        const LinkRegisterPatch *lrPatch = &lrPatches[n];
+    for (const LinkRegisterPatch &lrPatch : lrPatches) {
         u32 *startAddress = start;
         u32 *endAddress = end;
 
         while (startAddress < endAddress) {
-            u32 *prologue = FindFirst(startAddress, endAddress, lrPatch->findPrologue,
-                    lrPatch->prologueInstCount);
+            u32 *prologue = FindFirst(startAddress, endAddress, lrPatch.findPrologue,
+                    lrPatch.prologueInstCount);
             if (!prologue) {
                 break;
             }
 
-            u32 *epilogue = FindFirst(prologue + lrPatch->prologueInstCount, endAddress,
-                    lrPatch->findEpilogue, lrPatch->epilogueInstCount);
+            u32 *epilogue = FindFirst(prologue + lrPatch.prologueInstCount, endAddress,
+                    lrPatch.findEpilogue, lrPatch.epilogueInstCount);
             if (!epilogue) {
                 break;
             }
 
-            u32 *lrSave = FindFirst(prologue + lrPatch->prologueInstCount, epilogue,
-                    lrPatch->findLRSave, 1);
+            u32 *lrSave = FindFirst(prologue + lrPatch.prologueInstCount, epilogue,
+                    lrPatch.findLRSave, 1);
             if (!lrSave) {
-                goto LcheckNextFunction;
+                startAddress = epilogue + lrPatch.epilogueInstCount;
+                continue;
             }
 
-            u32 *lrRestore = FindLast(lrSave + 1, epilogue, lrPatch->findLRRestore, 1);
+            u32 *lrRestore = FindLast(lrSave + 1, epilogue, lrPatch.findLRRestore, 1);
             if (!lrRestore) {
-                goto LcheckNextFunction;
+                startAddress = epilogue + lrPatch.epilogueInstCount;
+                continue;
             }
 
             // Skip over functions that do not return
-            u32 *nextPrologue = FindFirst(prologue + lrPatch->prologueInstCount, endAddress,
-                    lrPatch->findPrologue, lrPatch->prologueInstCount);
+            u32 *nextPrologue = FindFirst(prologue + lrPatch.prologueInstCount, endAddress,
+                    lrPatch.findPrologue, lrPatch.prologueInstCount);
             if (nextPrologue && nextPrologue < epilogue) {
                 startAddress = nextPrologue;
                 continue;
             }
 
-            *lrSave = CreateBranchLinkInstruction(lrSave, (u32 *)lrPatch->newLRSaveFunc);
-            *lrRestore = CreateBranchLinkInstruction(lrRestore, (u32 *)lrPatch->newLRRestoreFunc);
+            *lrSave = CreateBranchLinkInstruction(lrSave, (u32 *)lrPatch.newLRSaveFunc);
+            *lrRestore = CreateBranchLinkInstruction(lrRestore, (u32 *)lrPatch.newLRRestoreFunc);
 
             DCFlushRange(lrSave, sizeof(*lrSave));
             DCFlushRange(lrRestore, sizeof(*lrRestore));
             ICInvalidateRange(lrSave, sizeof(*lrSave));
             ICInvalidateRange(lrRestore, sizeof(*lrRestore));
 
-        LcheckNextFunction:
-            startAddress = epilogue + lrPatch->epilogueInstCount;
+            startAddress = epilogue + lrPatch.epilogueInstCount;
         }
     }
 }
+
+} // namespace SP::StackCanary

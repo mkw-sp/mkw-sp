@@ -105,6 +105,7 @@
 #define DBAT7L 575
 
 #define HID0 1008
+#define IABR 1010
 #define HID4 1011
 
 #define MSR_DR (1 << 4)

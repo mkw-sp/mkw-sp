@@ -16,11 +16,13 @@ static inline u32 Util_toUtf16(wchar_t *dst, u32 dst_max, const char *src, u32 s
     return len;
 }
 
-static inline void Util_toUtf8(char *dst, u32 dst_max, const wchar_t *src, u32 src_max) {
+static inline u32 Util_toUtf8(char *dst, u32 dst_max, const wchar_t *src, u32 src_max) {
     const u32 min_bound = MIN(dst_max, src_max);
     const u32 len = wcslen(src /*, min_bound*/);
 
     for (u32 i = 0; i < MIN(min_bound, len); ++i) {
         dst[i] = (char)src[i];
     }
+
+    return len;
 }

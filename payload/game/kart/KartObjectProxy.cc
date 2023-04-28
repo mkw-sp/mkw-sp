@@ -3,6 +3,7 @@
 #include "game/kart/KartCollide.hh"
 #include "game/kart/KartMove.hh"
 #include "game/kart/VehiclePhysics.hh"
+#include "game/sound/KartSound.hh"
 
 namespace Kart {
 
@@ -12,6 +13,14 @@ const Quat *KartObjectProxy::getMainRot() const {
 
 KartState *KartObjectProxy::getKartState() {
     return m_accessor->state;
+}
+
+PlayerModel *KartObjectProxy::getPlayerModel() {
+    return m_accessor->playerModel;
+}
+
+Sound::KartSound *KartObjectProxy::getKartSound() {
+    return m_accessor->sound;
 }
 
 const KartRollback *KartObjectProxy::getKartRollback() const {

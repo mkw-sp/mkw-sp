@@ -1,8 +1,14 @@
+PHDRS {
+    text PT_LOAD;
+    rodata PT_LOAD;
+    data PT_LOAD;
+}
+
 SECTIONS {
-    .text base : { *(first) *(.text*) }
-    .ctors : { *(.ctors*) }
-    .rodata : { *(.rodata*) }
-    .data : { *(.data*) *(.bss*) *(.sbss*) }
+    .text base : { *(first) *(.text*) } :text
+    .ctors : { *(.ctors*) } :rodata
+    .rodata : { *(.rodata*) } :rodata
+    .data : { *(.data*) *(.bss*) *(.sbss*) } :data
 
     stackTop = base - 0x8;
 

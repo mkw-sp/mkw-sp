@@ -1097,6 +1097,30 @@
     "10394": {
         string: "Packs",
     },
+    "10420": {
+        string: "Battle Count"
+    },
+    "10421": {
+        string: "Play {arg integer|0 0} {arg cond messages|0 10422 10423}.",
+    },
+    "10422": {
+        string: "battle",
+    },
+    "10423": {
+        string: "battles",
+    },
+    "10424": {
+        string: "Arena Selection"
+    },
+    "10425": {
+        string: "Arenas are chosen individually.",
+    },
+    "10426": {
+        string: "Arenas are picked at random.",
+    },
+    "10427": {
+        string: "Arenas are played in order.",
+    },
     "20000": {
         string: "Online",
     },
