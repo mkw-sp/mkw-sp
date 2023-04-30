@@ -316,9 +316,7 @@ void ItemMusicManager::resolve() {
 
 We first call the original function, the check the value of the setting and do appropriate changes to the state.
 
-Since we have added new files to the project, we need to now run `configure.py` again, to make sure the new files are picked up by ninja.
-
-Then build MKW-SP again using `ninja`. It will complain about a missing address for `_ZN5Sound16ItemMusicManager7resolveEv` (mangled version of the function we are replacing), which we need to provide (for the PAL version only) in `symbols.txt`:
+Then build MKW-SP again using `build.py`. It will complain about a missing address for `_ZN5Sound16ItemMusicManager7resolveEv` (mangled version of the function we are replacing), which we need to provide (for the PAL version only) in `symbols.txt`:
 
 ```diff
 @@ -851,6 +851,7 @@
