@@ -1,6 +1,5 @@
 #pragma once
 
-#include <Common.h>
 #include <sp/ScopeLock.h>
 
 typedef void (*SICallback)(s32, u32, void *);

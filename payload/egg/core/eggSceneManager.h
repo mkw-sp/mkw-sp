@@ -1,6 +1,5 @@
 #pragma once
 
-#include <Common.h>
 #include <egg/core/eggColorFader.h>
 
 typedef struct EGG_SceneManager {

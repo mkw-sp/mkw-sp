@@ -2,6 +2,8 @@
 
 #include "sp/storage/Storage.hh"
 
+#include <array>
+
 namespace SP {
 
 class ThumbnailManager {

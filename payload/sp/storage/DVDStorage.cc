@@ -1,5 +1,7 @@
 #include "DVDStorage.hh"
 
+#include <Common.hh>
+
 #include <cstring>
 
 namespace SP::Storage {

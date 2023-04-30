@@ -1,6 +1,5 @@
 #pragma once
 
-#include <Common.h>
 #include <sp/StringRange.h>
 
 typedef enum {

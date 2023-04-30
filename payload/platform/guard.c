@@ -1,6 +1,5 @@
 // Reference: https://itanium-cxx-abi.github.io/cxx-abi/abi.html#once-ctor
 
-#include <Common.h>
 #include <revolution.h>
 
 typedef struct {

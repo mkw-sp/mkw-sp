@@ -1,7 +1,5 @@
 #include "exi.h"
 
-#include <Common.h>
-
 typedef struct {
     u8 _00[0x20 - 0x00];
     u32 _20;

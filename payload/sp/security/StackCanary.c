@@ -1,7 +1,5 @@
 #include "StackCanary.h"
 
-#include <Common.h>
-
 u32 __stack_chk_guard;
 
 static void SetIABRRegister(u32 value) {

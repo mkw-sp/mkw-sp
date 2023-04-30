@@ -1,8 +1,6 @@
 #include "g3d_resmat.h"
 #include "MSan.h"
 
-#include <Common.h>
-
 uint8_t *HookMatInit(uint8_t **pMat) {
     sanitizeMaterial(*pMat);
 

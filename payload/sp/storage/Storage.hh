@@ -1,10 +1,8 @@
 #pragma once
 
-#include <optional>
-
-#include <Common.hh>
-
 #include <revolution.hh>
+
+#include <optional>
 
 namespace SP::Storage {
 

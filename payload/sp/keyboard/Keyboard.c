@@ -1,5 +1,3 @@
-#include <Common.h>
-
 #include <sp/TypingBuffer.h>
 
 #include "IOSKeyboard.h"

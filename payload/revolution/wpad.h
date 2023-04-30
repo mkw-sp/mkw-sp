@@ -1,5 +1,7 @@
 #pragma once
 
+#include <Common.h>
+
 enum {
     WPAD_BUTTON_LEFT = 0x1,
     WPAD_BUTTON_RIGHT = 0x2,
