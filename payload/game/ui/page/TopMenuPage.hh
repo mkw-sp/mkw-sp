@@ -1,3 +1,5 @@
+#pragma once
+
 #include "game/ui/page/MenuPage.hh"
 
 namespace UI {

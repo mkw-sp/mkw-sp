@@ -1,3 +1,5 @@
+#pragma once
+
 #include "KartObjectManager.hh"
 
 namespace Kart {

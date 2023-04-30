@@ -1,3 +1,5 @@
+#pragma once
+
 #include "game/host_system/Scene.hh"
 
 namespace System {

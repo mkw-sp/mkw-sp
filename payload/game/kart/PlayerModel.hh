@@ -1,3 +1,5 @@
+#pragma once
+
 #include "KartObjectProxy.hh"
 
 extern "C" {

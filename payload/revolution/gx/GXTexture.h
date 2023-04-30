@@ -1,3 +1,5 @@
+#pragma once
+
 #include "revolution/gx/GXEnum.h"
 #include "revolution/gx/GXStruct.h"
 
