@@ -5,9 +5,8 @@ StackTrace_TryDecryptLinkRegister:
     cmpwi     r6, 0
     blt-      .LdecryptedLinkRegister
 
-    lis       r7, __stack_chk_guard@ha
-    lwz       r7, __stack_chk_guard@l(r7)
-    xor       r6, r6, r7
+    mfspr     r7, IABR
+    xor       r6, r7, r6
 
 .LdecryptedLinkRegister:
     crclr     4*cr1+eq # Original instruction

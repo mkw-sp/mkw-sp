@@ -2,8 +2,6 @@
 
 #include <Common.h>
 
-extern u32 __stack_chk_guard;
-
 void StackCanary_Init(void);
 
 static inline bool StackCanary_IsLinkRegisterEncrypted(u32 *lr) {
@@ -11,5 +9,8 @@ static inline bool StackCanary_IsLinkRegisterEncrypted(u32 *lr) {
 }
 
 static inline u32 *StackCanary_XORLinkRegister(u32 *lr) {
-    return (u32 *)((u32)lr ^ __stack_chk_guard);
+    u32 iabr;
+    asm("mfspr %0, 1010" : "=r"(iabr));
+
+    return (u32 *)((u32)lr ^ iabr);
 }
