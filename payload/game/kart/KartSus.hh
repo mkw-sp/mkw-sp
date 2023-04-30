@@ -1,3 +1,5 @@
+#pragma once
+
 #include "KartPart.hh"
 
 namespace Kart {
