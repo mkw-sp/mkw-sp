@@ -128,7 +128,7 @@ std::expected<std::vector<Sha1>, const char *> parseTracks(std::string_view trac
             startPos = startPos + startOffset + 1;
             startOffset = 0;
 
-            parsedTrackIds.push_back(TRY(sha1FromSv(track)));
+            parsedTrackIds.push_back(TRY(sha1FromHex(track)));
         } else if (c != ' ') {
             startOffset++;
         }
@@ -136,7 +136,7 @@ std::expected<std::vector<Sha1>, const char *> parseTracks(std::string_view trac
 
     if (startOffset != 0) {
         auto track = tracks.substr(startPos, startOffset);
-        parsedTrackIds.push_back(TRY(sha1FromSv(track)));
+        parsedTrackIds.push_back(TRY(sha1FromHex(track)));
     }
 
     return parsedTrackIds;
@@ -177,7 +177,7 @@ std::expected<void, const char *> TrackPack::parseNew(std::string_view manifestV
                 return std::unexpected("Unknown key in track pack manifest");
             }
         } else {
-            auto sha1 = TRY(sha1FromSv(section));
+            auto sha1 = TRY(sha1FromHex(section));
             if (m_unreleasedTracks.empty() || m_unreleasedTracks.back().m_sha1 != sha1) {
                 m_unreleasedTracks.emplace_back(sha1);
             }
@@ -341,7 +341,7 @@ void TrackPackManager::loadTrackDb() {
     while (auto property = trackDbIni.next()) {
         auto [section, key, value] = *property;
 
-        auto sha1 = sha1FromSv(section);
+        auto sha1 = sha1FromHex(section);
         if (!sha1) {
             SP_LOG("Could not parse sha1!");
             continue;
