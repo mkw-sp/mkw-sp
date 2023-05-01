@@ -1,15 +1,9 @@
 #include "ThumbnailManager.hh"
 
-extern "C" {
-#include "sp/WideUtil.h"
-}
 #include "sp/TrackPackManager.hh"
 
 #include <egg/core/eggSystem.hh>
 #include <game/system/RaceConfig.hh>
-
-#include <cwchar>
-#include <iterator>
 
 namespace SP {
 

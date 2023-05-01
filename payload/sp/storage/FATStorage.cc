@@ -1,6 +1,5 @@
 #include "FATStorage.hh"
 
-#include "sp/TrackPackManager.hh"
 #include "sp/settings/FileReplacement.hh"
 #include "sp/settings/GlobalSettings.hh"
 extern "C" {

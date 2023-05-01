@@ -5,7 +5,6 @@
 #include <sp/ShaUtil.hh>
 
 #include <optional>
-#include <span>
 
 namespace System {
 

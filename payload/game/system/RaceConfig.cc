@@ -3,8 +3,6 @@
 #include "game/system/InputManager.hh"
 #include "game/system/SaveManager.hh"
 
-#include <sp/TrackPackManager.hh>
-#include <sp/settings/ClientSettings.hh>
 extern "C" {
 #include <vendor/libhydrogen/hydrogen.h>
 }

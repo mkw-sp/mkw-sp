@@ -1,11 +1,6 @@
 #pragma once
 
-extern "C" {
-#include "sp/WideUtil.h"
-
 #include <Common.h>
-}
-
 #include <algorithm>
 #include <array>
 #include <string_view>

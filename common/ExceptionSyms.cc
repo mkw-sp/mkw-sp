@@ -1,4 +1,3 @@
-
 extern "C" {
 #include <sp/Panic.h>
 }

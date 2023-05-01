@@ -6,8 +6,6 @@
 #include "game/ui/VotingBackPage.hh"
 
 #include <sp/ScopeLock.hh>
-#include <sp/TrackPackManager.hh>
-#include <vendor/magic_enum/magic_enum.hpp>
 
 #include <algorithm>
 

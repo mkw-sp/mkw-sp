@@ -3,16 +3,8 @@
 #include "game/system/RaceConfig.hh"
 #include "game/system/RootScene.hh"
 
-#include <game/util/Registry.hh>
 #include <sp/TrackPackManager.hh>
 #include <sp/storage/DecompLoader.hh>
-
-extern "C" {
-#include <revolution.h>
-}
-
-#include <cstdio>
-#include <cstring>
 
 namespace System {
 
