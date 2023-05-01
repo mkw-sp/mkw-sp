@@ -6,9 +6,9 @@
 #include "sp/vanillaTracks.hh"
 
 #include <game/system/RaceConfig.hh>
+#include <game/system/SaveManager.hh>
 #include <game/ui/UIControl.hh>
 #include <game/util/Registry.hh>
-#include <game/system/SaveManager.hh>
 #include <vendor/magic_enum/magic_enum.hpp>
 
 #include <charconv>
