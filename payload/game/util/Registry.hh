@@ -98,6 +98,10 @@ enum class Controller {
     GameCube = 0x3,
 };
 
+// Only for vanilla tracks! Use TrackPackManager for
+// getting the course name/path of a custom track!
+extern const char *courseFilenames[0x28];
+
 bool IsCombinationValid(Character character, Vehicle vehicle);
 
 u32 GetCharacterMessageId(u32 characterId, bool resolveMiiNames);

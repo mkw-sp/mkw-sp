@@ -8,6 +8,7 @@
 #include <game/system/RaceConfig.hh>
 #include <game/ui/UIControl.hh>
 #include <game/util/Registry.hh>
+#include <game/system/SaveManager.hh>
 #include <vendor/magic_enum/magic_enum.hpp>
 
 #include <charconv>
@@ -452,8 +453,7 @@ void TrackPackInfo::getTrackPath(char *out, u32 outSize, bool splitScreen) const
     SP_LOG("Getting track path for %s", hex);
 
     if (isVanilla()) {
-        extern const char *courseFilenames[0x28];
-        auto courseFileName = courseFilenames[m_selectedCourseId];
+        auto courseFileName = Registry::courseFilenames[m_selectedCourseId];
 
         if (splitScreen) {
             snprintf(out, outSize, "Race/Course/%s_d", courseFileName);
@@ -476,7 +476,15 @@ u32 TrackPackInfo::getSelectedCourse() const {
     return m_selectedCourseId;
 }
 
-Sha1 TrackPackInfo::getSelectedSha1() const {
+Sha1 TrackPackInfo::getCourseSha1() const {
+    if (isVanilla()) {
+        auto *saveManager = System::SaveManager::Instance();
+        auto myStuffSha1 = saveManager->courseSHA1(m_selectedCourseId);
+        if (myStuffSha1.has_value()) {
+            return *myStuffSha1;
+        }
+    }
+
     return m_selectedSha1;
 }
 

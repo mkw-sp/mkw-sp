@@ -103,7 +103,10 @@ public:
     bool isVanilla() const;
     void getTrackPath(char *out, u32 outSize, bool splitScreen) const;
 
-    Sha1 getSelectedSha1() const;
+    // May be different to the sha1 passed to selectCourse, due to
+    // My Stuff replacements requiring matching Ghost hashes.
+    Sha1 getCourseSha1() const;
+
     u32 getSelectedCourse() const;
     std::optional<u32> getSelectedMusic() const;
 

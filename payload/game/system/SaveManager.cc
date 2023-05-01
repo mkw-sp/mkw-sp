@@ -65,6 +65,7 @@ void SaveManager::init() {
     m_otherRawSave = m_rawSave;
 
     initSPSave();
+    initCourseSHA1s();
     initGhostsAsync();
 
     m_isBusy = false;
@@ -84,6 +85,30 @@ void SaveManager::initSPSave() {
         }
 
         m_spLicenses[m_spLicenseCount++].readIni(iniBuffer, *size);
+    }
+}
+
+void SaveManager::initCourseSHA1s() {
+    for (u32 courseId = 0; courseId < 32; courseId++) {
+        m_courseSHA1s[courseId] = std::nullopt;
+
+        char path[128];
+        snprintf(path, sizeof(path), "Race/Course/%s.szs", Registry::courseFilenames[courseId]);
+        u8 *buffer;
+        size_t size;
+        auto *heap = RootScene::Instance()->m_heapCollection.mem2;
+        if (!SP::Storage::DecompLoader::LoadRO(path, &buffer, &size, heap,
+                    SP::Storage::StorageType::FAT)) {
+            continue;
+        }
+
+        SP_LOG("Hashing course %s", path);
+        NETSHA1Context context;
+        NETSHA1Init(&context);
+        NETSHA1Update(&context, buffer, size);
+        NETSHA1GetDigest(&context, m_courseSHA1s[courseId].emplace().data());
+
+        delete[] buffer;
     }
 }
 
@@ -462,7 +487,7 @@ void SaveManager::saveGhost(GhostFile *file) {
     }
 
     auto &packInfo = RaceConfig::Instance()->m_packInfo;
-    auto sha1 = packInfo.getSelectedSha1();
+    auto sha1 = packInfo.getCourseSha1();
     auto sha1Hex = sha1ToHex(sha1);
 
     m_saveGhostResult = false;
@@ -517,6 +542,10 @@ void SaveManager::saveGhost(GhostFile *file) {
     if (info && info->type == SP::Storage::NodeType::File) {
         initGhost(info->id);
     }
+}
+
+std::optional<Sha1> SaveManager::courseSHA1(u32 courseId) const {
+    return m_courseSHA1s[courseId];
 }
 
 SaveManager *SaveManager::Instance() {

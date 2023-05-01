@@ -50,7 +50,7 @@ void ThumbnailManager::capture() {
         return;
     }
 
-    auto sha1 = System::RaceConfig::Instance()->m_packInfo.getSelectedSha1();
+    auto sha1 = System::RaceConfig::Instance()->m_packInfo.getCourseSha1();
     auto hex = sha1ToHex(sha1);
 
     swprintf(path.data(), path.size(), L"/mkw-sp/Generated Thumbnails/%s.xfb", hex.data());

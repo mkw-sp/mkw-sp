@@ -18,7 +18,7 @@ void GhostManagerPage::SPList::populate() {
     bool speedModIsEnabled = cc == SP::ClientSettings::TAClass::CC200;
 
     auto &packInfo = System::RaceConfig::Instance()->m_packInfo;
-    auto selectedSha1 = packInfo.getSelectedSha1();
+    auto selectedSha1 = packInfo.getCourseSha1();
 
     m_count = 0;
     for (u32 i = 0; i < saveManager->ghostCount(); i++) {
