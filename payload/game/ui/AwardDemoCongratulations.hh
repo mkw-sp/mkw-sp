@@ -12,7 +12,7 @@ public:
     void vf_28() override;
     void vf_2c() override;
 
-    void load(bool isWin, bool isDraw);
+    void load(bool isWin, bool isDraw, bool isTeams);
 };
 
 } // namespace UI

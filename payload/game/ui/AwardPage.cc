@@ -36,7 +36,7 @@ void AwardPage::onInit() {
     }
 
     m_cupDisplay.load("award", isWin ? "AwardTypeWin" : "AwardTypeLose", "Type", nullptr);
-    m_congratulations.load(isWin, awardsScenario.spMaxTeamSize >= 2 && awardsScenario.draw);
+    m_congratulations.load(isWin, maxTeamSize >= 2 && awardsScenario.draw, maxTeamSize >= 2);
     for (size_t i = 0; i < m_playerCount; i++) {
         u32 positionId = (maxTeamSize == 6 ? 0 : 5 - maxTeamSize) * 12 + i;
         m_items[i].load(positionId, isWin, false);
