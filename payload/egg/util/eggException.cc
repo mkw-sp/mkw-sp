@@ -26,6 +26,9 @@ static constexpr bool CheckCLStickThreshold(s16 stick) {
 
 bool ExceptionCallBack_(nw4r::db::ConsoleHandle console, void * /* arg */) {
     OSReport("CALLBACK...\n");
+
+    AXSetMasterVolume(0);
+
     if (!console) {
         OSReport("No Console\n");
         return false;
@@ -33,7 +36,6 @@ bool ExceptionCallBack_(nw4r::db::ConsoleHandle console, void * /* arg */) {
 
     VISetBlack(0);
     VIFlush();
-    AXSetMasterVolume(0);
     OSReport("cancel all thread...\n");
     Thread::kandoTestCancelAllThread();
     OSReport("done\n");
