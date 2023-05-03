@@ -99,9 +99,9 @@ void PerfOverlay::measureBeginFrame(OSTime frameDuration) {
     m_gpuWidth = 600 * m_gpuDuration / m_frameDuration;
 
     for (size_t i = 0; i < std::size(m_memColors); i++) {
-        auto *system = EGG::TSystem::Instance();
-        u32 lo = reinterpret_cast<u32>(i == 0 ? system->mem1ArenaLo() : system->mem2ArenaLo());
-        u32 hi = reinterpret_cast<u32>(i == 0 ? system->mem1ArenaHi() : system->mem2ArenaHi());
+        auto &system = EGG::TSystem::Instance();
+        u32 lo = reinterpret_cast<u32>(i == 0 ? system.mem1ArenaLo() : system.mem2ArenaLo());
+        u32 hi = reinterpret_cast<u32>(i == 0 ? system.mem1ArenaHi() : system.mem2ArenaHi());
         u32 size = hi - lo;
 
         MEMHeapHandle lastHandle = nullptr;

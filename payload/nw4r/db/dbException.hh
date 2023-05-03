@@ -1,0 +1,24 @@
+#pragma once
+
+#include "dbConsole.hh"
+
+namespace nw4r::db {
+
+enum {
+    EXCEPTION_INFO_FLAG_NONE = (0 << 0),
+    EXCEPTION_INFO_FLAG_MAIN = (1 << 0),
+    EXCEPTION_INFO_FLAG_GPR = (1 << 1),
+    EXCEPTION_INFO_FLAG_GPR_MAP = (1 << 2),
+    EXCEPTION_INFO_FLAG_SRR0_MAP = (1 << 3),
+    EXCEPTION_INFO_FLAG_FPR = (1 << 4),
+    EXCEPTION_INFO_FLAG_TRACE = (1 << 5),
+
+    EXCPETION_INFO_FLAG_DEFAULT = EXCEPTION_INFO_FLAG_MAIN | EXCEPTION_INFO_FLAG_TRACE,
+    EXCEPTION_INFO_FLAG_ALL = EXCEPTION_INFO_FLAG_MAIN | EXCEPTION_INFO_FLAG_GPR |
+            EXCEPTION_INFO_FLAG_GPR_MAP | EXCEPTION_INFO_FLAG_SRR0_MAP | EXCEPTION_INFO_FLAG_FPR |
+            EXCEPTION_INFO_FLAG_TRACE
+};
+
+typedef bool (*ExceptionUserCallback)(ConsoleHandle consoleHandle, void *arg);
+
+} // namespace nw4r::db

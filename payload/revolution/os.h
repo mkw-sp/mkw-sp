@@ -44,6 +44,8 @@ static inline void *OSAllocFromMEM2ArenaLo(u32 size, u32 align) {
 
 u32 OSGetConsoleType(void);
 
+#define OS_CACHED_MEMORY_BASE 0x80000000
+
 u32 OSGetPhysicalMem1Size(void);
 u32 OSGetPhysicalMem2Size(void);
 
@@ -100,6 +102,8 @@ __attribute__((noreturn)) void OSFatal(GXColor fg, GXColor bg, const char *msg);
 const char *OSGetAppGamename(void);
 
 #include "revolution/os/OSCache.h"
+#include "revolution/os/OSContext.h"
+#include "revolution/os/OSError.h"
 #include "revolution/os/OSMemory.h"
 #include "revolution/os/OSMessage.h"
 #include "revolution/os/OSModule.h"

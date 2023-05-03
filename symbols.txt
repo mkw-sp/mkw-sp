@@ -9,9 +9,11 @@
 0x80007f2c BootStrapScene_exit
 0x80008ef0 RkSystem_main
 0x80009194 RkSystem_initialize
+0x80009194 _ZN6System8RkSystem10initializeEv
 0x8000951c RkSystem_run
 0x80009820 EGG_ConfigurationData_onBeginFrame
 0x80009844 SceneManager_changeSiblingScene
+0x800099BC _ZN3EGG7TSystem10xfbManagerEv
 0x80009bc0 _ZN6System14HeapCollection13setGroupIdAllEj
 0x8000ac50 _ZN6System13SystemManager4initEv
 0x8000b154 _ZN6System13SystemManager14shutdownSystemEv
@@ -20,6 +22,7 @@
 0x8000b5c8 _ZN6System13SystemManager11RipFromDiscEPKcPN3EGG4HeapEbPj
 
 0x8000f1f0 memmove
+0x8000F2BC memchr
 0x8000f314 memcmp
 0x800117b0 vprintf
 0x8001182C vsnprintf
@@ -39,14 +42,14 @@
 0x80017a14 wcscmp
 0x80021254 strlen
 
-0x800230e0 _ZN4nw4r2db21Console_GetTotalLinesEPNS0_6detail11ConsoleHeadE
-0x80023150 nw4r_db_Exception_Init
-0x800235A0 Exception_Printf_
-0x80023680 Exception_PrintCtx
-0x80023BC0 nw4r_db_ShowGPRMap_
-0x80025DC0 nw4r_db_ShowStack_
-
 0x80022AB0 _ZN4nw4r2db18Console_DrawDirectEPNS0_6detail11ConsoleHeadE
+0x800230E0 _ZN4nw4r2db21Console_GetTotalLinesEPNS0_6detail11ConsoleHeadE
+0x80023150 nw4r_db_Exception_Init
+0x800235A0 _ZN4nw4r2db17Exception_Printf_EPKcz
+0x80023680 _ZN4nw4r2db13PrintContext_EtPK9OSContextjj
+0x80023980 _ZN4nw4r2db13ShowMainInfo_EtPK9OSContextjj
+0x80023C70 _ZN4nw4r2db10ShowFloat_EPK9OSContext
+0x80025DC0 nw4r_db_ShowStack_
 
 0x8004C350 _ZNK4nw4r3g3d7ResFile9GetResMdlEj
 0x8004C3F0 _ZNK4nw4r3g3d7ResFile19GetResMdlNumEntriesEv
@@ -474,6 +477,7 @@
 
 0x802A4080 sRKSystem
 0x802A4080 _ZN3EGG7TSystem10s_instanceE
+0x802A70B8 _ZN4nw4r2db14sExceptionInfoE
 
 0x80343680 Ecb
 0x803505C0 RDSTHandler

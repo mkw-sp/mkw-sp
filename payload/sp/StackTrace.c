@@ -39,8 +39,8 @@ bool StackTraceIterator_read(StackTraceIterator *it, void **addr) {
 
     if (addr != NULL) {
         void *lr = it->cur->LR;
-        *addr = StackCanary_IsLinkRegisterEncrypted((u32 *)lr) ?
-                StackCanary_XORLinkRegister((u32 *)lr) :
+        *addr = StackCanary_IsLinkRegisterEncrypted((u32)lr) ?
+                (void *)StackCanary_XORLinkRegister((u32)lr) :
                 lr;
     }
 
