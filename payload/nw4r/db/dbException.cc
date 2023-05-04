@@ -147,28 +147,28 @@ REPLACE void PrintContext_(OSError osError, const OSContext *osContext, u32 dsis
     Exception_Printf_("Framebuffer: %08XH\n", sExceptionInfo.framebuffer);
     Exception_Printf_("--------------------------------\n");
 
-    if (sExceptionInfo.displayInfo & EXCEPTION_INFO_FLAG_MAIN) {
-        Exception_Printf_("---MainInfo---\n");
+    if (sExceptionInfo.displayInfo & EXCEPTION_INFO_MAIN) {
+        Exception_Printf_("---EXCEPTION_INFO_MAIN---\n");
         ShowMainInfo_(osError, osContext, dsisr, dar);
     }
-    if (sExceptionInfo.displayInfo & EXCEPTION_INFO_FLAG_GPR) {
+    if (sExceptionInfo.displayInfo & EXCEPTION_INFO_GPR) {
         Exception_Printf_("---EXCEPTION_INFO_GPR---\n");
         ShowGPR_(osContext);
     }
-    if (sExceptionInfo.displayInfo & EXCEPTION_INFO_FLAG_SRR0_MAP) {
+    if (sExceptionInfo.displayInfo & EXCEPTION_INFO_SRR0MAP) {
         Exception_Printf_("---EXCEPTION_INFO_SRR0MAP---\n");
         ShowSRR0Map_(osContext);
     }
-    if (sExceptionInfo.displayInfo & EXCEPTION_INFO_FLAG_GPR_MAP) {
+    if (sExceptionInfo.displayInfo & EXCEPTION_INFO_GPRMAP) {
         Exception_Printf_("---EXCEPTION_INFO_GPRMAP---\n");
         ShowGPRMap_(osContext);
     }
-    if (sExceptionInfo.displayInfo & EXCEPTION_INFO_FLAG_FPR) {
+    if (sExceptionInfo.displayInfo & EXCEPTION_INFO_FPR) {
         Exception_Printf_("---EXCEPTION_INFO_FPR---\n");
         ShowFloat_(osContext);
         Exception_Printf_("MSR:%08XH  FPSCR:%08XH\n", sExceptionInfo.msr, sExceptionInfo.fpscr);
     }
-    if (sExceptionInfo.displayInfo & EXCEPTION_INFO_FLAG_TRACE) {
+    if (sExceptionInfo.displayInfo & EXCEPTION_INFO_TRACE) {
         Exception_Printf_("---EXCEPTION_INFO_TRACE---\n");
         ShowStackTrace_(sExceptionInfo.sp);
     }
