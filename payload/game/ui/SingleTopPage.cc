@@ -225,6 +225,7 @@ void SingleTopPage::onBTButtonFront(PushButton *button, u32 /* localPlayerId */)
 
     raceConfig->applyCPUMode();
     raceConfig->applyItemFreq();
+    raceConfig->applyEngineClass();
 
     Section *section = SectionManager::Instance()->currentSection();
     auto *courseSelectPage = section->page<PageId::CourseSelect>();
