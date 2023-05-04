@@ -196,6 +196,6 @@ void Host_PrintMkwSpInfo(PrintfFunction *func) {
     }
 
     (*func)("Region: %s, System: %s\n", region, system);
-    (*func)("Built " __DATE__ " at " __TIME__ ", " CC_STR "\n");
+    (*func)("Built with " CC_STR "\n");
     (*func)("--------------------------------\n");
 }
