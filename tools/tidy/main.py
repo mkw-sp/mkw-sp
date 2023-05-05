@@ -19,7 +19,7 @@ def main() -> Literal[-1] | Literal[0]:
 
         files = []
         for folder, ext in itertools.product(code_folders, extensions):
-            globbed = glob.iglob(f"../../{folder}/**/*.{ext}", recursive=True)
+            globbed = glob.iglob(f"{folder}/**/*.{ext}", recursive=True)
             files.extend(Path(file) for file in globbed)
     else:
         changed_raw = subprocess.check_output(["git", "diff-tree", "--no-commit-id", "--name-only", "HEAD~", "-r"]).decode()
