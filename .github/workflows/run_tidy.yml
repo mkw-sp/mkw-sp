@@ -18,4 +18,4 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
       - name: Run Tidy
-        run: python3 main.py
+        run: python3 tools/tidy/main.py
