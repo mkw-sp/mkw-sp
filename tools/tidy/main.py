@@ -1,6 +1,5 @@
 import glob
 import itertools
-import subprocess
 import sys
 from pathlib import Path
 from typing import Literal
@@ -10,11 +9,10 @@ from checks import checks
 
 def main() -> Literal[-1] | Literal[0]:
     extensions = ("py", "h", "c", "hh", "cc")
-    check_all = sys.argv[1] == "check_all" if len(sys.argv) > 1 else False
 
     print("Gathering files...")
     files: list[Path]
-    if check_all:
+    if len(sys.argv) == 1:
         code_folders = ["payload", "loader", "common", "include", "fuzz", "tools"]
 
         files = []
@@ -22,8 +20,7 @@ def main() -> Literal[-1] | Literal[0]:
             globbed = glob.iglob(f"{folder}/**/*.{ext}", recursive=True)
             files.extend(Path(file) for file in globbed)
     else:
-        changed_raw = subprocess.check_output(["git", "diff-tree", "--no-commit-id", "--name-only", "HEAD~", "-r"]).decode()
-        files = [Path(f"../../{file}") for file in changed_raw.splitlines() if file.endswith(extensions)]
+        files = list(map(Path, sys.argv[1:]))
 
     failed = False
     for i, check in enumerate(checks):
