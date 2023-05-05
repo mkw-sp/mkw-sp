@@ -25,7 +25,9 @@ if sys.version_info < (3, 10):
 if platform.python_implementation() == "PyPy":
     print("Warning: PyPy may be slower, due to spawning many Python processes")
 
-features = []
+features = [
+    'mission-mode',
+]
 
 our_argv = []
 ninja_argv = []

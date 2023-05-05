@@ -29,7 +29,7 @@ void SingleTopPage::onInit() {
     setInputManager(&m_inputManager);
     m_inputManager.setWrappingMode(MultiControlInputManager::WrappingMode::Neither);
 
-#if ENABLE_MR
+#if ENABLE_MISSION_MODE
     initChildren(8);
     insertChild(0, &m_pageTitleText, 0);
     insertChild(1, &m_settingsButton, 0);
@@ -52,7 +52,7 @@ void SingleTopPage::onInit() {
 
     m_pageTitleText.load(false);
     m_settingsButton.load("button", "SettingsButton", "Option", 0x1, false, false);
-#if ENABLE_MR
+#if ENABLE_MISSION_MODE
     m_taButton.load("button", "SingleTop", "ButtonTA", 0x1, false, false);
     m_vsButton.load("button", "SingleTop", "ButtonVS", 0x1, false, false);
     m_btButton.load("button", "SingleTop", "ButtonBT", 0x1, false, false);
@@ -74,7 +74,7 @@ void SingleTopPage::onInit() {
     m_vsButton.setSelectHandler(&m_onVSButtonSelect, false);
     m_btButton.setFrontHandler(&m_onBTButtonFront, false);
     m_btButton.setSelectHandler(&m_onBTButtonSelect, false);
-#if ENABLE_MR
+#if ENABLE_MISSION_MODE
     m_mrButton.setFrontHandler(&m_onMRButtonFront, false);
     m_mrButton.setSelectHandler(&m_onMRButtonSelect, false);
 #endif
@@ -248,7 +248,7 @@ void SingleTopPage::onBTButtonSelect(PushButton * /* button */, u32 /* localPlay
     modelPage->modelControl().setModel(3);
 }
 
-#if ENABLE_MR
+#if ENABLE_MISSION_MODE
 void SingleTopPage::onMRButtonFront(PushButton *button, u32 /* localPlayerId */) {
     auto &menuScenario = System::RaceConfig::Instance()->menuScenario();
     menuScenario.gameMode = System::RaceConfig::GameMode::Mission;
