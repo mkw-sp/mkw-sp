@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 
 
+import argparse
 import glob
 import io
 import os
@@ -8,9 +9,9 @@ import platform
 import subprocess
 import sys
 import tempfile
-from argparse import ArgumentParser
 
 from vendor.ninja_syntax import Writer
+
 
 try:
     import json5
@@ -24,6 +25,8 @@ if sys.version_info < (3, 10):
 if platform.python_implementation() == "PyPy":
     print("Warning: PyPy may be slower, due to spawning many Python processes")
 
+features = []
+
 our_argv = []
 ninja_argv = []
 found_seperator = False
@@ -35,10 +38,12 @@ for arg in sys.argv[1:]:
     else:
         our_argv.append(arg)
 
-parser = ArgumentParser()
+parser = argparse.ArgumentParser()
 parser.add_argument('--gdb_compatible', action='store_true')
 parser.add_argument("--dry", action="store_true")
 parser.add_argument("--ci", action="store_true")
+for feature in features:
+    parser.add_argument(f'--{feature}', default=True, action=argparse.BooleanOptionalAction)
 args = parser.parse_args(our_argv)
 
 out_buf = io.StringIO()
@@ -872,6 +877,7 @@ devkitppc = os.environ.get("DEVKITPPC")
 if not devkitppc:
     raise SystemExit("DEVKITPPC environment variable not set")
 
+n.variable('write', os.path.join('tools', 'write.py'))
 n.variable('nanopb', os.path.join('vendor', 'nanopb', 'generator', 'nanopb_generator.py'))
 n.variable('compiler', os.path.join(devkitppc, 'bin', 'powerpc-eabi-gcc'))
 n.variable('postprocess', 'postprocess.py')
@@ -880,6 +886,12 @@ n.variable('lzmac', 'lzmac.py')
 n.variable('version', 'version.py')
 n.variable('elf2dol', 'elf2dol.py')
 n.newline()
+
+n.rule(
+    'write',
+    command = f'{sys.executable} $write "$content" $out',
+    description = 'WRITE $out',
+)
 
 n.rule(
     'nanopb',
@@ -1070,6 +1082,30 @@ n.rule(
 )
 n.newline()
 
+feature_dirs = []
+feature_hh_files = []
+for feature in features:
+    content = '#pragma once\n'
+    content += '\n'
+    content += '#define ENABLE_'
+    content += feature.upper().replace('-', '_')
+    content += ' '
+    content += str(vars(args)[feature.replace('-', '_')]).lower()
+    content += '\n'
+    feature_dir = os.path.join('$builddir', 'features', feature.replace('-', '_'))
+    feature_dirs += [feature_dir]
+    feature_hh_file = os.path.join(feature_dir, feature.title().replace('-', '') + '.hh')
+    feature_hh_files += [feature_hh_file]
+    n.build(
+        feature_hh_file,
+        'write',
+        variables = {
+            'content': repr(content)[1:-1],
+        },
+        implicit = '$write',
+    )
+n.newline()
+
 protobuf_proto_files = [
     os.path.join('protobuf', 'Login.proto'),
     os.path.join('protobuf', 'Matchmaking.proto'),
@@ -1198,9 +1234,13 @@ for target in code_in_files:
                         *common_ccflags,
                         *target_cflags[target],
                         *profile_cflags[profile],
+                        *['-isystem ' + feature_dir for feature_dir in feature_dirs],
                     ]),
                 },
-                order_only = [*protobuf_h_files] if target == 'payload' else [],
+                order_only = [
+                    *(feature_hh_files if target == 'payload' and ext[1:] == 'cc' else []),
+                    *(protobuf_h_files if target == 'payload' else []),
+                ],
             )
         n.newline()
 
