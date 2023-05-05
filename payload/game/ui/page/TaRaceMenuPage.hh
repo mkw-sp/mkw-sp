@@ -12,6 +12,7 @@ public:
 
     REPLACE s32 getButtonCount() override;
     REPLACE const ButtonId *getButtons() override;
+    REPLACE const char *getResFileName() override;
 };
 
 static_assert(sizeof(TaRaceMenuPage) == sizeof(RaceMenuPage));

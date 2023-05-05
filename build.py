@@ -27,6 +27,7 @@ if platform.python_implementation() == "PyPy":
 
 features = [
     'mission-mode',
+    'save-states',
 ]
 
 our_argv = []
@@ -591,6 +592,7 @@ asset_in_files = {
         os.path.join('button', 'ctrl', 'PauseMenuGhostWatch.brctr.json5'),
         os.path.join('button', 'ctrl', 'PauseMenuReplayTA.brctr.json5'),
         os.path.join('button', 'ctrl', 'PauseMenuTimeAttack.brctr.json5'),
+        os.path.join('button', 'ctrl', 'PauseMenuTimeAttackNoSS.brctr.json5'),
         os.path.join('button', 'ctrl', 'PauseMenuVS.brctr.json5'),
         # Settings
         os.path.join('bg', 'blyt', 'race_obi_bottom_message.brlyt.json5'),
