@@ -1,5 +1,7 @@
 #include "ClientSettings.hh"
 
+#include <features/online/Online.hh>
+
 #include <iterator>
 
 namespace SP::ClientSettings {
@@ -494,6 +496,7 @@ const Entry entries[] = {
         .valueNames = magic_enum::enum_names<TeamSize>().data(),
         .valueMessageIds = (u32[]) { 10208, 10209, 10210, 10211, 10212, 10218 },
         .valueExplanationMessageIds = (u32[]) { 10213, 10214, 10215, 10216, 10217, 10393 },
+        .hidden = !ENABLE_ONLINE,
     },
     [static_cast<u32>(Setting::RoomTeamSelection)] = {
         .category = Category::Room,
@@ -504,6 +507,7 @@ const Entry entries[] = {
         .valueNames = magic_enum::enum_names<RoomTeamSelection>().data(),
         .valueMessageIds = (u32[]) { 10218, 10219, 10220 },
         .valueExplanationMessageIds = (u32[]) { 10221, 10222, 10223 },
+        .hidden = !ENABLE_ONLINE,
     },
     [static_cast<u32>(Setting::RoomRaceCount)] = {
         .category = Category::Room,
@@ -515,6 +519,7 @@ const Entry entries[] = {
         .valueNames = nullptr,
         .valueMessageIds = (u32[]) { 10225 },
         .valueExplanationMessageIds = (u32[]) { 10226 },
+        .hidden = !ENABLE_ONLINE,
     },
     [static_cast<u32>(Setting::RoomCourseSelection)] = {
         .category = Category::Room,
@@ -525,6 +530,7 @@ const Entry entries[] = {
         .valueNames = magic_enum::enum_names<RoomCourseSelection>().data(),
         .valueMessageIds = (u32[]) { 10228, 3443, 10229, 10230 },
         .valueExplanationMessageIds = (u32[]) { 10231, 10261, 10232, 10233 },
+        .hidden = !ENABLE_ONLINE,
     },
     [static_cast<u32>(Setting::RoomClass)] = {
         .category = Category::Room,
@@ -535,6 +541,7 @@ const Entry entries[] = {
         .valueNames = magic_enum::enum_names<EngineClass>().data(),
         .valueMessageIds = (u32[]) { 10235, 10236, 10238, 10237, 10365, 10366 },
         .valueExplanationMessageIds = (u32[]) { 10239, 10240, 10242, 10241, 10361, 10362 },
+        .hidden = !ENABLE_ONLINE,
     },
     [static_cast<u32>(Setting::RoomVehicles)] = {
         .category = Category::Room,
@@ -545,6 +552,7 @@ const Entry entries[] = {
         .valueNames = magic_enum::enum_names<Vehicles>().data(),
         .valueMessageIds = (u32[]) { 10244, 10245, 10246, 10247, 10248, 10249, 10250 },
         .valueExplanationMessageIds = (u32[]) { 10251, 10252, 10253, 10254, 10255, 10256, 10257 },
+        .hidden = !ENABLE_ONLINE,
     },
     [static_cast<u32>(Setting::RoomCodeHigh)] = {
         .category = Category::Room,
@@ -555,6 +563,7 @@ const Entry entries[] = {
         .valueNames = nullptr,
         .valueMessageIds = nullptr,
         .valueExplanationMessageIds = nullptr,
+        .hidden = !ENABLE_ONLINE,
     },
     [static_cast<u32>(Setting::RoomCodeLow)] = {
         .category = Category::Room,
@@ -565,6 +574,7 @@ const Entry entries[] = {
         .valueNames = nullptr,
         .valueMessageIds = nullptr,
         .valueExplanationMessageIds = nullptr,
+        .hidden = !ENABLE_ONLINE,
     },
     [static_cast<u32>(Setting::MiiAvatar)] = {
         .category = Category::License,

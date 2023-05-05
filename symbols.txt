@@ -986,7 +986,6 @@
 0x80622e6c _ZNK2UI7Section13isPageFocusedEPKNS_4PageE
 0x80623390 _ZN2UI7Section10CreatePageENS_6PageIdE
 0x80625198 _ZN2UI10ResultPageD2Ev
-0x80625da0 TopMenuPage_ct
 0x80627bd8 CourseSelectPage_ct
 0x8062c0f4 LicenseRecordsPage_ct
 0x8062c3a4 _ZN2UI7Section8addPagesENS_9SectionIdE
@@ -1396,6 +1395,7 @@
 0x8084fc9c _ZN2UI15TeamConfirmPage3GetENS_6PageIdE
 0x8084ffc8 _ZN2UI15TeamConfirmPage20prepareOfflineSingleEv
 0x808503dc TopMenuPage_onInit
+0x808503dc _ZN2UI11TopMenuPage6onInitEv
 0x80850db0 TopMenuPage_onActivate
 0x8085151c _ZN2UI11TopMenuPage14onButtonSelectEPNS_10PushButtonE
 0x80852450 VsMenuPage_onActivate
@@ -1456,6 +1456,7 @@
 0x808b5c78 boostAccelerations
 0x808cb550 ai_808cb550
 0x808D3E14 playerTagRenderDistance
+0x808da070 _ZN2UI11TopMenuPage13s_buttonNamesE
 0x808da318 vsRuleDescIds
 
 0x809BD6E8 _ZN6System9CourseMap10s_instanceE

@@ -27,6 +27,7 @@ if platform.python_implementation() == "PyPy":
 
 features = [
     'mission-mode',
+    'online',
     'save-states',
 ]
 
@@ -733,6 +734,9 @@ asset_in_files = {
         os.path.join('button', 'blyt', 'common_w076_license_icon_center.brlyt.json5'),
         os.path.join('button', 'ctrl', 'LicenseSelect.brctr.json5'),
         os.path.join('button', 'timg', 'tt_license_icon_004.tpl'),
+        # Title page without online
+        os.path.join('button', 'ctrl', 'TopMenuMultiWakuNoOnline.brctr.json5'),
+        os.path.join('button', 'ctrl', 'TopMenuSingleWakuNoOnline.brctr.json5'),
         # Online renaming
         os.path.join('button', 'ctrl', 'TopMenuWifiWaku.brctr.json5'),
     ],
