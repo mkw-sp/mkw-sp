@@ -10,6 +10,11 @@ extern "C" {
 #include <type_traits>
 #include <utility>
 
+template<typename T>
+T& unmove(T&& t) {
+    return t;
+}
+
 template <typename T>
 T AlignDown(T val, size_t alignment) {
     return val / alignment * alignment;

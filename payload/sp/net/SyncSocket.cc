@@ -90,7 +90,7 @@ SyncSocket::SyncSocket(SyncSocket &&that)
 }
 
 SyncSocket &SyncSocket::operator=(SyncSocket &&that) {
-    return that;
+    return unmove(that);
 }
 
 SyncSocket::~SyncSocket() {
