@@ -15,7 +15,7 @@
         string: "CPU Difficulty"
     },
     "3475": {
-        string: "Change settings for this licence.",
+        string: "Change settings for this license.",
     },
     "3700": {
         string: "Select Level",
@@ -966,19 +966,19 @@
         string: "Off",
     },
     "10350": {
-        string: "Default",
+        string: "Only show course_model.brres.",
     },
     "10351": {
         string: "Overlay",
     },
     "10352": {
-        string: "Show on top of course_model.brres",
+        string: "Show on top of course_model.brres.",
     },
     "10353": {
         string: "Replace Course Model",
     },
     "10354": {
-        string: "Hide course_model.brres",
+        string: "Hide course_model.brres.",
     },
     "10355": {
         string: "Mirror TTs",
@@ -990,25 +990,19 @@
         string: "Enable",
     },
     "10358": {
-        string: "Disables Mirror in TTs",
+        string: "Play 150cc Time Trials.",
     },
     "10359": {
-        string: "Enables Mirror in TTs",
+        string: "Play mirror Time Trials.",
     },
     "10360": {
-        string: "Battle",
+        string: "Offline Battle",
     },
     "10361": {
         string: "Races are always 50cc.",
     },
     "10362": {
         string: "Races are always 100cc.",
-    },
-    "10363": {
-        string: "Battles are always 50cc.",
-    },
-    "10364": {
-        string: "Battles are always 100cc.",
     },
     "10365": {
         string: "50cc",
@@ -1026,10 +1020,10 @@
         string: "Disable",
     },
     "10370": {
-        string: "The Minimap will be enabled",
+        string: "Show the minimap on the HUD.",
     },
     "10371": {
-        string: "The Minimap will be disabled",
+        string: "Do not show the minimap on the HUD.",
     },
     "10372": {
         string: "Volume",
@@ -1095,7 +1089,7 @@
         string: "Forces 30fps, can help with Dolphin performance.",
     },
     "10393": {
-        string: "Choose the Team Size randomly"
+        string: "Choose the team size randomly."
     },
     "10420": {
         string: "Battle Count"
