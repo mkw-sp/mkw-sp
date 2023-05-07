@@ -890,6 +890,7 @@ n.variable('nanopb', os.path.join('vendor', 'nanopb', 'generator', 'nanopb_gener
 n.variable('compiler', os.path.join(devkitppc, 'bin', 'powerpc-eabi-gcc'))
 n.variable('postprocess', 'postprocess.py')
 n.variable('port', 'port.py')
+n.variable('generate_symbol_map', 'generate_symbol_map.py')
 n.variable('lzmac', 'lzmac.py')
 n.variable('version', 'version.py')
 n.variable('elf2dol', 'elf2dol.py')
@@ -1066,6 +1067,13 @@ n.rule(
     'ld',
     command = '$compiler $ldflags $in -o $out',
     description = 'LD $out',
+)
+n.newline()
+
+n.rule(
+    'generate_symbol_map',
+    command = f'{sys.executable} $generate_symbol_map $in $out',
+    description = 'SMAP $out',
 )
 n.newline()
 
@@ -1378,6 +1386,18 @@ for fmt in ['binary', 'elf32-powerpc']:
                 ]),
             },
             implicit = os.path.join('common', 'RMC.ld'),
+        )
+        n.newline()
+
+for region in ['P', 'E', 'J', 'K']:
+    for profile in ['DEBUG', 'RELEASE']:
+        suffix = 'D' if profile == 'DEBUG' else ''
+        in_file = os.path.join('$builddir', 'bin', f'payload{region}{suffix}.elf')
+        out_file = os.path.join('$outdir', profile.lower(), f'{profile.lower()}_{region}.SMAP')
+        n.build(
+            out_file,
+            'generate_symbol_map',
+            in_file,
         )
         n.newline()
 
