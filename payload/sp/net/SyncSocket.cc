@@ -90,7 +90,13 @@ SyncSocket::SyncSocket(SyncSocket &&that)
 }
 
 SyncSocket &SyncSocket::operator=(SyncSocket &&that) {
-    return unmove(that);
+    m_handle = that.m_handle;
+    m_keypair = that.m_keypair;
+    m_messageID = that.m_messageID;
+    memcpy(m_context, that.m_context, sizeof(m_context));
+    hydro_memzero(&that.m_keypair, sizeof(that.m_keypair));
+    that.m_handle = -1;
+    return *this;
 }
 
 SyncSocket::~SyncSocket() {
