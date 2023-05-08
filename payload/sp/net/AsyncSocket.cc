@@ -33,7 +33,7 @@ AsyncSocket::AsyncSocket(u32 ip, u16 port, const char context[hydro_secretbox_CO
         return;
     }
 
-    m_connectTask = {address};
+    m_connectTask = ConnectTask{address};
 
     m_initTask.emplace();
     m_initTask->isServer = false;

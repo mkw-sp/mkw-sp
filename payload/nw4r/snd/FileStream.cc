@@ -150,7 +150,7 @@ bool FileStream::open() {
         suffix = strrchr(path.data(), '_');
         if (suffix && (!strcmp(suffix, "_f.brstm") || !strcmp(suffix, "_F.brstm"))) {
             if (s_fId) {
-                if (m_file = SP::Storage::FastOpen(*s_fId)) {
+                if ((m_file = SP::Storage::FastOpen(*s_fId))) {
                     return true;
                 }
             }
@@ -170,7 +170,7 @@ bool FileStream::open() {
             }
             if (count > 0) {
                 u32 index = hydro_random_uniform(count);
-                if (m_file = SP::Storage::FastOpen(files[index].id)) {
+                if ((m_file = SP::Storage::FastOpen(files[index].id))) {
                     suffix = strrchr(path.data(), '_');
                     if (suffix && (!strcmp(suffix, "_n.brstm") || !strcmp(suffix, "_N.brstm"))) {
                         char fDirPath[128];
