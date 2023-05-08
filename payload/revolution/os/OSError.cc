@@ -45,17 +45,17 @@ static inline BinaryType ClassifyCaller(void *sp) {
 
 extern "C" {
 __attribute__((noreturn)) REPLACE void OSPanic(const char * /* filename */, int /* lineNumber */,
-        const char *message, ...) {
-    char messageFormat[256];
-    NWC24iStrLCpy(messageFormat, message, sizeof(messageFormat));
-    if (messageFormat[strlen(messageFormat) - 1] == '\n') {
-        messageFormat[strlen(messageFormat) - 1] = '\0';
+        const char *format, ...) {
+    char formatCopy[256];
+    NWC24iStrLCpy(formatCopy, format, sizeof(formatCopy));
+    if (formatCopy[strlen(formatCopy) - 1] == '\n') {
+        formatCopy[strlen(formatCopy) - 1] = '\0';
     }
 
     char panicMessage[256];
     va_list args;
-    va_start(args, message);
-    vsnprintf(panicMessage, sizeof(panicMessage), messageFormat, args);
+    va_start(args, format);
+    vsnprintf(panicMessage, sizeof(panicMessage), formatCopy, args);
     va_end(args);
 
     panic(panicMessage);
