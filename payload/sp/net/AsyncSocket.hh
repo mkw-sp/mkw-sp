@@ -2,9 +2,9 @@
 
 #include "sp/CircularBuffer.hh"
 
+#include <revolution.hh>
 extern "C" {
 #include <libhydrogen/hydrogen.h>
-#include <revolution.h>
 }
 
 namespace SP::Net {

@@ -1,7 +1,7 @@
 #include "Kcl.hh"
 
+#include <revolution.hh>
 extern "C" {
-#include <revolution.h>
 #include <revolution/tpl.h>
 }
 

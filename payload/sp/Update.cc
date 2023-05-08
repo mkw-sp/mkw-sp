@@ -10,8 +10,8 @@ extern "C" {
 #include <common/Paths.hh>
 
 #include <protobuf/Update.pb.h>
+#include <revolution.hh>
 extern "C" {
-#include <revolution.h>
 #include <revolution/nwc24/NWC24Utils.h>
 }
 #include <vendor/nanopb/pb_decode.h>
