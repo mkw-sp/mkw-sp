@@ -629,7 +629,7 @@
 0x805549b0 _ZN5Scene9RaceScene17destroySubsystemsEv
 0x80554e6c _ZN5Scene9RaceScene14calcSubsystemsEv
 0x80555040 MenuScene_vf_38
-0x805553B0 _unresolved
+0x805553B0 _Z11_unresolvedv
 0x80555578 _ZN4Util6Random7nextU32Ev
 0x8055B5BC _ZN6Render7DrawMdl2dtEi
 0x8055D6BC _ZN6Render7DrawMdl18ApplyMirrorPatchesERN4nw4r3g3d6ResMdlE
