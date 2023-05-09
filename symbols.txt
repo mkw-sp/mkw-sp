@@ -292,7 +292,10 @@
 0x801a162c DCFlushRange
 0x801a165c DCStoreRange
 0x801a1710 ICInvalidateRange
+0x801A1E70 OSSetCurrentContext
+0x801A1ECC OSGetCurrentContext
 0x801a2030 OSGetStackPointer
+0x801A2098 OSClearContext
 0x801A2178 OSDumpContext
 0x801a25d0 OSReport
 0x801A2660 OSPanic
