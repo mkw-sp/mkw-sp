@@ -15,7 +15,7 @@ PATCH_REPLACE_END(RkSystem_initialize, 0x18C)
 
 // Increase the number of lines that the exception console can hold
 PATCH_REPLACE_START(RkSystem_initialize, 0x190)
-    li r4, 97
+    li r4, 97 + 1
 PATCH_REPLACE_END(RkSystem_initialize, 0x190)
 
 PATCH_REPLACE_START(RkSystem_initialize, 0x194)
