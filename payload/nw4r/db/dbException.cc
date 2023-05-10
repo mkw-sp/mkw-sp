@@ -40,20 +40,20 @@ static bool IsAddressInCachedMEM1(u32 address) {
             address < OS_CACHED_MEMORY_BASE + OSGetPhysicalMem1Size();
 }
 
-static bool IsAddressInMEM1(u32 address) {
+static bool IsStackFrameInMEM1(u32 address) {
     if (!OSIsMEM1Region(address)) {
         return false;
     }
 
-    return (address & MEMORY_OFFSET_MASK) < OSGetPhysicalMem1Size();
+    return (address & MEMORY_OFFSET_MASK) <= OSGetPhysicalMem1Size() - (sizeof(u32) * 2);
 }
 
-static bool IsAddressInMEM2(u32 address) {
+static bool IsStackFrameInMEM2(u32 address) {
     if (!OSIsMEM2Region(address)) {
         return false;
     }
 
-    return (address & MEMORY_OFFSET_MASK) < OSGetPhysicalMem2Size();
+    return (address & MEMORY_OFFSET_MASK) <= OSGetPhysicalMem2Size() - (sizeof(u32) * 2);
 }
 
 static bool IsValidStackAddr_(u32 address) {
@@ -61,11 +61,11 @@ static bool IsValidStackAddr_(u32 address) {
         return false;
     }
 
-    return IsAddressInMEM1(address) || IsAddressInMEM2(address);
+    return IsStackFrameInMEM1(address) || IsStackFrameInMEM2(address);
 }
 
 static bool ShowMapInfoSubroutine_(u32 address) {
-    if (!IsAddressInMEM1(address)) {
+    if (!IsStackFrameInMEM1(address)) {
         return false;
     }
 
