@@ -6,8 +6,6 @@
 #include "game/ui/ctrl/CtrlMenuBackButton.hh"
 #include "game/ui/ctrl/CtrlMenuPageTitleText.hh"
 
-#define ENABLE_MR false
-
 namespace UI {
 
 class PackSelectPage : public Page {
