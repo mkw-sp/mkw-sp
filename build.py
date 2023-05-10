@@ -1584,6 +1584,12 @@ out_file.write(out_buf.getvalue())
 out_file.close()
 n.close()
 
-proc = subprocess.run(("ninja", "-f", out_file.name, *ninja_argv))
+try:
+    proc = subprocess.run(("ninja", "-f", out_file.name, *ninja_argv))
+except KeyboardInterrupt:
+    returncode = 130 # 128 + SIGINT
+else:
+    returncode = proc.returncode
+
 os.remove(out_file.name)
-sys.exit(proc.returncode)
+sys.exit(returncode)
