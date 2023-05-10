@@ -5,7 +5,7 @@
 #include "game/ui/ctrl/CtrlMenuInstructionText.hh"
 #include "game/ui/ctrl/CtrlMenuPageTitleText.hh"
 
-#define ENABLE_MR false
+#include <features/mission_mode/MissionMode.hh>
 
 namespace UI {
 
@@ -31,7 +31,7 @@ private:
     void onVSButtonSelect(PushButton *button, u32 localPlayerId);
     void onBTButtonFront(PushButton *button, u32 localPlayerId);
     void onBTButtonSelect(PushButton *button, u32 localPlayerId);
-#if ENABLE_MR
+#if ENABLE_MISSION_MODE
     void onMRButtonFront(PushButton *button, u32 localPlayerId);
     void onMRButtonSelect(PushButton *button, u32 localPlayerId);
 #endif
@@ -47,7 +47,7 @@ private:
     PushButton m_taButton;
     PushButton m_vsButton;
     PushButton m_btButton;
-#if ENABLE_MR
+#if ENABLE_MISSION_MODE
     PushButton m_mrButton;
 #endif
     CtrlMenuInstructionText m_instructionText;
@@ -61,7 +61,7 @@ private:
     H<PushButton> m_onVSButtonSelect{this, &SingleTopPage::onVSButtonSelect};
     H<PushButton> m_onBTButtonFront{this, &SingleTopPage::onBTButtonFront};
     H<PushButton> m_onBTButtonSelect{this, &SingleTopPage::onBTButtonSelect};
-#if ENABLE_MR
+#if ENABLE_MISSION_MODE
     H<PushButton> m_onMRButtonFront{this, &SingleTopPage::onMRButtonFront};
     H<PushButton> m_onMRButtonSelect{this, &SingleTopPage::onMRButtonSelect};
 #endif

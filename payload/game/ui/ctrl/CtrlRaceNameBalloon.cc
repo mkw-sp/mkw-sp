@@ -74,7 +74,7 @@ void CtrlRaceNameBalloon::refresh(u32 playerId) {
     if (raceScenario.spMaxTeamSize < 2) {
         if (isOnline) {
             u32 regionLineColor = roomManager->getPlayer(playerId)->m_regionLineColor;
-            color = TeamColors::Get(regionLineColor ^ 1);
+            color = TeamColors::Get(regionLineColor < 4 ? regionLineColor : regionLineColor ^ 1);
         } else if (playerType == System::RaceConfig::Player::Type::Local) {
             GXColor colors[4] = {
                     {232, 212, 0, 255},

@@ -2,6 +2,8 @@
 
 #include "game/system/SaveManager.hh"
 
+#include <features/online/Online.hh>
+
 #define MAX_SP_LICENSE_COUNT 6
 
 namespace UI {
@@ -17,6 +19,20 @@ void TopMenuPage_refreshFileAdminButton(TopMenuPage *self) {
 }
 
 } // extern "C"
+
+void TopMenuPage::onInit() {
+#if ENABLE_ONLINE
+    s_buttonNames[0] = "TopMenuSingleWaku";
+    s_buttonNames[1] = "TopMenuMultiWaku";
+    m_buttonCount = 3;
+#else
+    s_buttonNames[0] = "TopMenuSingleWakuNoOnline";
+    s_buttonNames[1] = "TopMenuMultiWakuNoOnline";
+    m_buttonCount = 2;
+#endif
+
+    REPLACED(onInit)();
+}
 
 void TopMenuPage::initMiiGroup() {
     m_miiGroup = new MiiGroup;

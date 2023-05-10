@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 
 
+import argparse
 import glob
 import io
 import os
@@ -8,9 +9,9 @@ import platform
 import subprocess
 import sys
 import tempfile
-from argparse import ArgumentParser
 
 from vendor.ninja_syntax import Writer
+
 
 try:
     import json5
@@ -24,6 +25,12 @@ if sys.version_info < (3, 10):
 if platform.python_implementation() == "PyPy":
     print("Warning: PyPy may be slower, due to spawning many Python processes")
 
+features = [
+    'mission-mode',
+    'online',
+    'save-states',
+]
+
 our_argv = []
 ninja_argv = []
 found_seperator = False
@@ -35,10 +42,12 @@ for arg in sys.argv[1:]:
     else:
         our_argv.append(arg)
 
-parser = ArgumentParser()
+parser = argparse.ArgumentParser()
 parser.add_argument('--gdb_compatible', action='store_true')
 parser.add_argument("--dry", action="store_true")
 parser.add_argument("--ci", action="store_true")
+for feature in features:
+    parser.add_argument(f'--{feature}', default=True, action=argparse.BooleanOptionalAction)
 args = parser.parse_args(our_argv)
 
 out_buf = io.StringIO()
@@ -610,6 +619,7 @@ asset_in_files = {
         os.path.join('button', 'ctrl', 'PauseMenuGhostWatch.brctr.json5'),
         os.path.join('button', 'ctrl', 'PauseMenuReplayTA.brctr.json5'),
         os.path.join('button', 'ctrl', 'PauseMenuTimeAttack.brctr.json5'),
+        os.path.join('button', 'ctrl', 'PauseMenuTimeAttackNoSS.brctr.json5'),
         os.path.join('button', 'ctrl', 'PauseMenuVS.brctr.json5'),
         # Settings
         os.path.join('bg', 'blyt', 'race_obi_bottom_message.brlyt.json5'),
@@ -750,6 +760,9 @@ asset_in_files = {
         os.path.join('button', 'blyt', 'common_w076_license_icon_center.brlyt.json5'),
         os.path.join('button', 'ctrl', 'LicenseSelect.brctr.json5'),
         os.path.join('button', 'timg', 'tt_license_icon_004.tpl'),
+        # Title page without online
+        os.path.join('button', 'ctrl', 'TopMenuMultiWakuNoOnline.brctr.json5'),
+        os.path.join('button', 'ctrl', 'TopMenuSingleWakuNoOnline.brctr.json5'),
         # Online renaming
         os.path.join('button', 'ctrl', 'TopMenuWifiWaku.brctr.json5'),
     ],
@@ -898,14 +911,22 @@ devkitppc = os.environ.get("DEVKITPPC")
 if not devkitppc:
     raise SystemExit("DEVKITPPC environment variable not set")
 
+n.variable('write', os.path.join('tools', 'write.py'))
 n.variable('nanopb', os.path.join('vendor', 'nanopb', 'generator', 'nanopb_generator.py'))
 n.variable('compiler', os.path.join(devkitppc, 'bin', 'powerpc-eabi-gcc'))
 n.variable('postprocess', 'postprocess.py')
 n.variable('port', 'port.py')
+n.variable('generate_symbol_map', 'generate_symbol_map.py')
 n.variable('lzmac', 'lzmac.py')
 n.variable('version', 'version.py')
 n.variable('elf2dol', 'elf2dol.py')
 n.newline()
+
+n.rule(
+    'write',
+    command = f'{sys.executable} $write "$content" $out',
+    description = 'WRITE $out',
+)
 
 n.rule(
     'nanopb',
@@ -1076,6 +1097,13 @@ n.rule(
 n.newline()
 
 n.rule(
+    'generate_symbol_map',
+    command = f'{sys.executable} $generate_symbol_map $in $out',
+    description = 'SMAP $out',
+)
+n.newline()
+
+n.rule(
     'lzmac',
     command = f'{sys.executable} $lzmac $in $out',
     description = 'LZMA $out',
@@ -1094,6 +1122,30 @@ n.rule(
     command = f'{sys.executable} $elf2dol $in $out',
     description = 'DOL $out',
 )
+n.newline()
+
+feature_dirs = []
+feature_hh_files = []
+for feature in features:
+    content = '#pragma once\n'
+    content += '\n'
+    content += '#define ENABLE_'
+    content += feature.upper().replace('-', '_')
+    content += ' '
+    content += str(vars(args)[feature.replace('-', '_')]).lower()
+    content += '\n'
+    feature_dir = os.path.join('$builddir', 'features', feature.replace('-', '_'))
+    feature_dirs += [feature_dir]
+    feature_hh_file = os.path.join(feature_dir, feature.title().replace('-', '') + '.hh')
+    feature_hh_files += [feature_hh_file]
+    n.build(
+        feature_hh_file,
+        'write',
+        variables = {
+            'content': repr(content)[1:-1],
+        },
+        implicit = '$write',
+    )
 n.newline()
 
 protobuf_proto_files = [
@@ -1225,9 +1277,13 @@ for target in code_in_files:
                         *common_ccflags,
                         *target_cflags[target],
                         *profile_cflags[profile],
+                        *['-isystem ' + feature_dir for feature_dir in feature_dirs],
                     ]),
                 },
-                order_only = [*protobuf_h_files] if target == 'payload' else [],
+                order_only = [
+                    *(feature_hh_files if target == 'payload' and ext[1:] == 'cc' else []),
+                    *(protobuf_h_files if target == 'payload' else []),
+                ],
             )
         n.newline()
 
@@ -1357,6 +1413,18 @@ for fmt in ['binary', 'elf32-powerpc']:
                 ]),
             },
             implicit = os.path.join('common', 'RMC.ld'),
+        )
+        n.newline()
+
+for region in ['P', 'E', 'J', 'K']:
+    for profile in ['DEBUG', 'RELEASE']:
+        suffix = 'D' if profile == 'DEBUG' else ''
+        in_file = os.path.join('$builddir', 'bin', f'payload{region}{suffix}.elf')
+        out_file = os.path.join('$outdir', profile.lower(), f'{profile.lower()}_{region}.SMAP')
+        n.build(
+            out_file,
+            'generate_symbol_map',
+            in_file,
         )
         n.newline()
 

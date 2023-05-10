@@ -111,6 +111,8 @@ def decode(in_path, out_path, retained, renamed):
 def encode_u8_node(in_path, retained, renamed):
     is_dir = os.path.isdir(in_path)
     if is_dir:
+        if retained is not None and not any(r.startswith(in_path) for r in retained):
+            return None
         out_path = in_path
         children = []
         for child_path in sorted(os.listdir(in_path)):

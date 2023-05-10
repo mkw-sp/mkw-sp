@@ -32,7 +32,7 @@ void SingleTopPage::onInit() {
     setInputManager(&m_inputManager);
     m_inputManager.setWrappingMode(MultiControlInputManager::WrappingMode::Neither);
 
-#if ENABLE_MR
+#if ENABLE_MISSION_MODE
     initChildren(8);
     insertChild(0, &m_pageTitleText, 0);
     insertChild(1, &m_settingsButton, 0);
@@ -55,7 +55,7 @@ void SingleTopPage::onInit() {
 
     m_pageTitleText.load(false);
     m_settingsButton.load("button", "SettingsButton", "Option", 0x1, false, false);
-#if ENABLE_MR
+#if ENABLE_MISSION_MODE
     m_taButton.load("button", "SingleTop", "ButtonTA", 0x1, false, false);
     m_vsButton.load("button", "SingleTop", "ButtonVS", 0x1, false, false);
     m_btButton.load("button", "SingleTop", "ButtonBT", 0x1, false, false);
@@ -77,7 +77,7 @@ void SingleTopPage::onInit() {
     m_vsButton.setSelectHandler(&m_onVSButtonSelect, false);
     m_btButton.setFrontHandler(&m_onBTButtonFront, false);
     m_btButton.setSelectHandler(&m_onBTButtonSelect, false);
-#if ENABLE_MR
+#if ENABLE_MISSION_MODE
     m_mrButton.setFrontHandler(&m_onMRButtonFront, false);
     m_mrButton.setSelectHandler(&m_onMRButtonSelect, false);
 #endif
@@ -206,11 +206,14 @@ void SingleTopPage::onVSButtonFront(PushButton *button, u32 /* localPlayerId */)
     menuScenario.spMaxTeamSize = maxTeamSize;
     menuScenario.cameraMode = 5;
 
-    raceConfig->applyEngineClass();
     menuScenario.players[0].type = System::RaceConfig::Player::Type::Local;
     for (u32 i = 1; i < 12; i++) {
         menuScenario.players[i].type = System::RaceConfig::Player::Type::CPU;
     }
+
+    raceConfig->applyCPUMode();
+    raceConfig->applyItemFreq();
+    raceConfig->applyEngineClass();
 
     Section *section = SectionManager::Instance()->currentSection();
     auto *courseSelectPage = section->page<PageId::CourseSelect>();
@@ -242,7 +245,8 @@ void SingleTopPage::onBTButtonFront(PushButton *button, u32 /* localPlayerId */)
 
     u32 maxTeamSize = SP::ClientSettings::GenerateMaxTeamSize(maxTeamSizeSetting);
 
-    auto &menuScenario = System::RaceConfig::Instance()->menuScenario();
+    auto *raceConfig = System::RaceConfig::Instance();
+    auto &menuScenario = raceConfig->menuScenario();
     menuScenario.gameMode = System::RaceConfig::GameMode::OfflineBT;
     menuScenario.spMaxTeamSize = maxTeamSize;
     menuScenario.cameraMode = 5;
@@ -251,6 +255,10 @@ void SingleTopPage::onBTButtonFront(PushButton *button, u32 /* localPlayerId */)
     for (u32 i = 1; i < 12; i++) {
         menuScenario.players[i].type = System::RaceConfig::Player::Type::CPU;
     }
+
+    raceConfig->applyCPUMode();
+    raceConfig->applyItemFreq();
+    raceConfig->applyEngineClass();
 
     Section *section = SectionManager::Instance()->currentSection();
     auto *courseSelectPage = section->page<PageId::CourseSelect>();
@@ -273,7 +281,7 @@ void SingleTopPage::onBTButtonSelect(PushButton * /* button */, u32 /* localPlay
     modelPage->modelControl().setModel(3);
 }
 
-#if ENABLE_MR
+#if ENABLE_MISSION_MODE
 void SingleTopPage::onMRButtonFront(PushButton *button, u32 /* localPlayerId */) {
     auto &menuScenario = System::RaceConfig::Instance()->menuScenario();
     menuScenario.gameMode = System::RaceConfig::GameMode::Mission;

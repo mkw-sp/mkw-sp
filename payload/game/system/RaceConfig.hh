@@ -116,6 +116,8 @@ public:
     Scenario &awardsScenario();
     u8 (&ghostBuffers())[2][11][0x2800];
     void applyEngineClass();
+    void applyItemFreq();
+    void applyCPUMode();
     void endRace();
 
     void REPLACED(init)();

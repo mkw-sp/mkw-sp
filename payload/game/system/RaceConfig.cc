@@ -31,6 +31,8 @@ void RaceConfig::applyEngineClass() {
 
     if (m_menuScenario.gameMode == GameMode::OfflineVS) {
         setting = saveManager->getSetting<SP::ClientSettings::Setting::VSClass>();
+    } else if (m_menuScenario.gameMode == GameMode::OfflineBT) {
+        setting = SP::ClientSettings::EngineClass::CC50;
     } else if (m_menuScenario.gameMode == GameMode::TimeAttack) {
         auto taSetting = saveManager->getSetting<SP::ClientSettings::Setting::TAClass>();
         if (taSetting == SP::ClientSettings::TAClass::CC150) {
@@ -63,6 +65,45 @@ void RaceConfig::applyEngineClass() {
         break;
     case SP::ClientSettings::EngineClass::Mirror:
         m_menuScenario.mirror = true;
+    }
+}
+
+void RaceConfig::applyItemFreq() {
+    SP::ClientSettings::ItemFrequency setting;
+
+    auto *saveManager = SaveManager::Instance();
+    if (m_menuScenario.gameMode == GameMode::OfflineVS) {
+        setting = saveManager->getSetting<SP::ClientSettings::Setting::VSItemFrequency>();
+    } else if (m_menuScenario.gameMode == GameMode::OfflineBT) {
+        setting = saveManager->getSetting<SP::ClientSettings::Setting::BTItemFrequency>();
+    } else {
+        panic("applyCPUMode called with invalid GameMode");
+    }
+
+    m_menuScenario.itemMode = static_cast<u32>(setting);
+}
+
+void RaceConfig::applyCPUMode() {
+    SP::ClientSettings::CPUMode setting;
+
+    auto *saveManager = SaveManager::Instance();
+    if (m_menuScenario.gameMode == GameMode::OfflineVS) {
+        setting = saveManager->getSetting<SP::ClientSettings::Setting::VSCPUMode>();
+    } else if (m_menuScenario.gameMode == GameMode::OfflineBT) {
+        setting = saveManager->getSetting<SP::ClientSettings::Setting::BTCPUMode>();
+    } else {
+        panic("applyCPUMode called with invalid GameMode");
+    }
+
+    if (setting != SP::ClientSettings::CPUMode::None) {
+        m_menuScenario.cpuMode = static_cast<u32>(setting);
+        return;
+    }
+
+    for (u32 i = 1; i < 12; i++) {
+        if (m_menuScenario.players[i].type == Player::Type::CPU) {
+            m_menuScenario.players[i].type = Player::Type::None;
+        }
     }
 }
 

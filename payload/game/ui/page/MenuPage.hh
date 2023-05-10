@@ -42,7 +42,13 @@ protected:
     CtrlMenuPageTitleText *m_instructionText;
 
 private:
-    u8 _2c0[0x3e8 - 0x2c0];
+    u8 _2c0[0x3d8 - 0x2c0];
+
+protected:
+    u32 m_buttonCount;
+
+private:
+    u8 _3dc[0x3e8 - 0x3dc];
 
 protected:
     PageId m_replacement;

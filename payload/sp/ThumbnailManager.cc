@@ -49,7 +49,7 @@ void ThumbnailManager::capture() {
 
     swprintf(path.data(), path.size(), L"/mkw-sp/Generated Thumbnails/%s.xfb", hex.data());
 
-    auto *xfb = EGG::TSystem::Instance()->xfbManager()->headXfb();
+    auto *xfb = EGG::TSystem::Instance().xfbManager()->headXfb();
     u32 size = EGG::Xfb::CalcXfbSize(xfb->width(), xfb->height());
     Storage::WriteFile(path.data(), xfb->buffer(), size, true);
 }

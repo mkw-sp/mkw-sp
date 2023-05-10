@@ -1,42 +1,31 @@
-#include "BugCheck.h"
-#include "FatalScene.h"
+extern "C" {
+#include "game/system/FatalScene.h"
 
 #include <revolution.h>
-#include <stdarg.h>
-#include <stdio.h>
-#include <string.h>
-
-#include <egg/core/eggSystem.h>
-#include <sp/WideUtil.h>
-
 #include <sp/StackTrace.h>
+#include <sp/WideUtil.h>
+}
+#include <egg/core/eggSystem.hh>
+
+#include <cstdarg>
+#include <cstdio>
+#include <cstring>
+#include <span>
 
 // Referenced by SceneCreatorDyanmic.S
 bool sBugCheckSet = false;
 
-static char sBugCheckFile[64]; // course_model.brres
-static char sBugCheckDescription[256];
-
-static wchar_t sFormattedBugCheck[512];
-
-static void SpFormatBugCheck() {
+static void SpFormatBugCheck(std::span<wchar_t> out, const char *file, const char *description) {
     char tmp[512];
     memset(tmp, 0, sizeof(tmp));
 
     snprintf(tmp, sizeof(tmp),
             "Subfile: %s\n"
             "Error: %s\n",
-            sBugCheckFile[0] != '\0' ? sBugCheckFile : "?",
-            sBugCheckDescription[0] != '\0' ? sBugCheckDescription : "?");
+            file[0] != '\0' ? file : "?", description[0] != '\0' ? description : "?");
 
-    Util_toUtf16(sFormattedBugCheck, ARRAY_SIZE(sFormattedBugCheck), tmp, sizeof(tmp));
-    sFormattedBugCheck[ARRAY_SIZE(sFormattedBugCheck) - 1] = (wchar_t)'\0';
-}
-
-static void SpSaveBugCheck(const char *file, const char *description) {
-    strncpy(sBugCheckFile, file, sizeof(sBugCheckFile) - 1);
-    strncpy(sBugCheckDescription, description, sizeof(sBugCheckDescription) - 1);
-    sBugCheckSet = true;
+    Util_toUtf16(out.data(), out.size(), tmp, sizeof(tmp));
+    out[out.size() - 1] = L'\0';
 }
 
 void SpBugCheck(const char *file, const char *description) {
@@ -50,10 +39,14 @@ void SpBugCheck(const char *file, const char *description) {
     WriteStackTraceShort(trace, sizeof(trace), OSGetStackPointer());
     OSReport("TRACE: %s\n", trace);
 
-    if (!sBugCheckSet) {
-        SpSaveBugCheck(file, description);
+    if (sBugCheckSet) {
+        return;
+    } else {
+        sBugCheckSet = true;
     }
-    SpFormatBugCheck();
+
+    std::array<wchar_t, 512> formattedBugCheck;
+    SpFormatBugCheck(formattedBugCheck, file, description);
 
     static FatalScene fScene;
     FatalScene_CT(&fScene);
@@ -63,7 +56,7 @@ void SpBugCheck(const char *file, const char *description) {
 
     fScene.inherit.vt->enter(&fScene.inherit);
 
-    FatalScene_SetBody(&fScene, sFormattedBugCheck);
+    FatalScene_SetBody(&fScene, formattedBugCheck.data());
 
     FatalScene_MainLoop(&fScene);
 
@@ -73,6 +66,8 @@ void SpBugCheck(const char *file, const char *description) {
 //
 // Individual crashes
 //
+
+extern "C" {
 
 // XREF: eggG3dUtil.S
 void InvalidTexRefFail(const char *mdl0_name) {
@@ -165,4 +160,5 @@ void TooManyEffectsFail(int current_count, int capacity, const char *path) {
             current_count, loadedEffects[0] != '\0' ? loadedEffects : "?");
 
     SpBugCheck(path, desc);
+}
 }

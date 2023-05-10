@@ -18,12 +18,24 @@ void *TSystem::mem2ArenaHi() const {
     return m_mem2ArenaHi;
 }
 
-XfbManager *TSystem::xfbManager() {
-    return m_xfbManager;
+Heap *TSystem::eggRootMEM1() const {
+    return m_eggRootMEM1;
 }
 
-TSystem *TSystem::Instance() {
-    return &s_instance;
+Heap *TSystem::eggRootMEM2() const {
+    return m_eggRootMEM2;
+}
+
+Heap *TSystem::eggRootDebug() const {
+    return m_eggRootDebug;
+}
+
+Heap *TSystem::eggRootSystem() const {
+    return m_eggRootSystem;
+}
+
+TSystem &TSystem::Instance() {
+    return s_instance;
 }
 
 } // namespace EGG

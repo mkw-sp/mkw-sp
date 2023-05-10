@@ -127,40 +127,31 @@ We start by adding strings for the new setting. As a reminder, [here](/assets/t2
 
 ```diff
 @@ -463,4 +463,36 @@
-         "font": "regular",
-         "string": "Always show the position tracker.",
+        string: "Always show the position tracker.",
      },
 +    "10126": {
-+        "font": "regular",
-+        "string": "Sound",
++        string: "Sound",
 +    },
 +    "10127": {
-+        "font": "regular",
-+        "string": "Item Music",
++        string: "Item Music",
 +    },
 +    "10128": {
-+        "font": "regular",
-+        "string": "None",
++        string: "None",
 +    },
 +    "10129": {
-+        "font": "regular",
-+        "string": "Shocked/Squashed Only",
++        string: "Shocked/Squashed Only",
 +    },
 +    "10130": {
-+        "font": "regular",
-+        "string": "All",
++        string: "All",
 +    },
 +    "10131": {
-+        "font": "regular",
-+        "string": "Do not let items affect the music.",
++        string: "Do not let items affect the music.",
 +    },
 +    "10132": {
-+        "font": "regular",
-+        "string": "Only apply the shocked/squashed music effect.",
++        string: "Only apply the shocked/squashed music effect.",
 +    },
 +    "10133": {
-+        "font": "regular",
-+        "string": "Let stars, mega mushrooms and lightnings affect the music.",
++        string: "Let stars, mega mushrooms and lightnings affect the music.",
 +    },
  }
 ```
@@ -173,7 +164,7 @@ We then add the new category, setting and options to `payload/sp/settings/Client
 @@ -13,6 +13,9 @@ enum class Setting {
      InputDisplay,
      RankControl,
- 
+
 +    // Sound
 +    ItemMusic,
 +
@@ -181,7 +172,7 @@ We then add the new category, setting and options to `payload/sp/settings/Client
      TAClass,
      TAGhostSorting,
 @@ -30,6 +33,7 @@ enum class Setting {
- 
+
  enum class Category {
      Race,
 +    Sound,
@@ -191,7 +182,7 @@ We then add the new category, setting and options to `payload/sp/settings/Client
 @@ -64,6 +68,12 @@ enum class RankControl {
      Always,
  };
- 
+
 +enum class ItemMusic {
 +    None,
 +    DamageOnly,
@@ -204,7 +195,7 @@ We then add the new category, setting and options to `payload/sp/settings/Client
 @@ -154,6 +164,11 @@ struct Helper<ClientSettings::Setting, ClientSettings::Setting::RankControl> {
      using type = SP::ClientSettings::RankControl;
  };
- 
+
 +template <>
 +struct Helper<ClientSettings::Setting, ClientSettings::Setting::ItemMusic> {
 +    using type = SP::ClientSettings::ItemMusic;
@@ -221,12 +212,12 @@ We then configure the new category and setting in `payload/sp/settings/ClientSet
 
 ```diff
 @@ -6,7 +6,7 @@ namespace SP::ClientSettings {
- 
+
  const char name[] = "MKW-SP Settings";
- 
+
 -const u32 categoryMessageIds[] = { 10118, 10119, 10120 };
 +const u32 categoryMessageIds[] = { 10118, 10126, 10119, 10120 };
- 
+
  const Entry entries[] = {
      [static_cast<u32>(Setting::DriftMode)] = {
 @@ -69,6 +69,16 @@ const Entry entries[] = {
@@ -325,20 +316,7 @@ void ItemMusicManager::resolve() {
 
 We first call the original function, the check the value of the setting and do appropriate changes to the state.
 
-We can now add the file to the build system via `configure.py`:
-
-```diff
-@@ -783,6 +783,7 @@ code_in_files = {
-         os.path.join('payload', 'game', 'rel', 'Rel.S'),
-         os.path.join('payload', 'game', 'scene', 'globe', 'GlobeManager.S'),
-         os.path.join('payload', 'game', 'snd', 'DriverSound.S'),
-+        os.path.join('payload', 'game', 'snd', 'ItemMusicManager.cc'),
-         os.path.join('payload', 'game', 'snd', 'KartSound.S'),
-         os.path.join('payload', 'game', 'snd', 'Snd.S'),
-         os.path.join('payload', 'game', 'system', 'BugCheck.c'),
-```
-
-Then build MKW-SP again using `ninja`. It will complain about a missing address for `_ZN5Sound16ItemMusicManager7resolveEv` (mangled version of the function we are replacing), which we need to provide (for the PAL version only) in `symbols.txt`:
+Then build MKW-SP again using `build.py`. It will complain about a missing address for `_ZN5Sound16ItemMusicManager7resolveEv` (mangled version of the function we are replacing), which we need to provide (for the PAL version only) in `symbols.txt`:
 
 ```diff
 @@ -851,6 +851,7 @@

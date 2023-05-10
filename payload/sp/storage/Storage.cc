@@ -22,7 +22,9 @@ FileHandle::FileHandle(FileHandle &&that) : m_file(that.m_file) {
 }
 
 FileHandle &FileHandle::operator=(FileHandle &&that) {
-    return that;
+    m_file = that.m_file;
+    that.m_file = nullptr;
+    return *this;
 }
 
 FileHandle::~FileHandle() {
@@ -62,7 +64,9 @@ DirHandle::DirHandle(DirHandle &&that) : m_dir(that.m_dir) {
 }
 
 DirHandle &DirHandle::operator=(DirHandle &&that) {
-    return that;
+    m_dir = that.m_dir;
+    that.m_dir = nullptr;
+    return *this;
 }
 
 DirHandle::~DirHandle() {

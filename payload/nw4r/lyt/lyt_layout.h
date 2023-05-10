@@ -24,10 +24,10 @@ void lyt_Layout_DT(lyt_Layout *layout, int type);
 
 static inline Rect getLayoutRect(const lyt_Layout *layout) {
     return (Rect){
-            .left = -layout->width / 2,
             .top = layout->height / 2,
-            .right = layout->width / 2,
             .bottom = -layout->height / 2,
+            .left = -layout->width / 2,
+            .right = layout->width / 2,
     };
 }
 

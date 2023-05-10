@@ -50,14 +50,18 @@ enum class Setting {
     VSRaceCount,
     VSCourseSelection,
     VSClass,
+    VSCPUMode,
     VSVehicles,
+    VSItemFrequency,
     VSMegaClouds,
 
     // Battle
     BTTeamSize,
     BTRaceCount,
     BTCourseSelection,
+    BTCPUMode,
     BTVehicles,
+    BTItemFrequency,
 
     // Room
     RoomTeamSize,
@@ -106,6 +110,13 @@ enum class EngineClass {
     CC100,
 };
 
+enum class CPUMode : u32 {
+    Easy = 0,
+    Normal = 1,
+    Hard = 2,
+    None = 3,
+};
+
 enum class CourseSelection {
     Choose,
     Random,
@@ -120,6 +131,13 @@ enum class Vehicles {
     OutsideDrift,
     Optimal,
     Random,
+};
+
+enum class ItemFrequency {
+    Balanced,
+    Aggressive,
+    Strategic,
+    None,
 };
 
 enum class TeamSize {
@@ -518,8 +536,18 @@ struct Helper<ClientSettings::Setting, ClientSettings::Setting::VSClass> {
 };
 
 template <>
+struct Helper<ClientSettings::Setting, ClientSettings::Setting::VSCPUMode> {
+    using type = SP::ClientSettings::CPUMode;
+};
+
+template <>
 struct Helper<ClientSettings::Setting, ClientSettings::Setting::VSVehicles> {
     using type = SP::ClientSettings::Vehicles;
+};
+
+template <>
+struct Helper<ClientSettings::Setting, ClientSettings::Setting::VSItemFrequency> {
+    using type = SP::ClientSettings::ItemFrequency;
 };
 
 template <>
@@ -538,8 +566,18 @@ struct Helper<ClientSettings::Setting, ClientSettings::Setting::BTCourseSelectio
 };
 
 template <>
+struct Helper<ClientSettings::Setting, ClientSettings::Setting::BTCPUMode> {
+    using type = SP::ClientSettings::CPUMode;
+};
+
+template <>
 struct Helper<ClientSettings::Setting, ClientSettings::Setting::BTVehicles> {
     using type = SP::ClientSettings::Vehicles;
+};
+
+template <>
+struct Helper<ClientSettings::Setting, ClientSettings::Setting::BTItemFrequency> {
+    using type = SP::ClientSettings::ItemFrequency;
 };
 
 template <>

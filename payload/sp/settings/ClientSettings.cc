@@ -1,5 +1,7 @@
 #include "ClientSettings.hh"
 
+#include <features/online/Online.hh>
+
 #include <iterator>
 
 namespace SP::ClientSettings {
@@ -384,6 +386,16 @@ const Entry entries[] = {
         .valueMessageIds = (u32[]) { 10235, 10236, 10238, 10237, 10365, 10366 },
         .valueExplanationMessageIds = (u32[]) { 10239, 10240, 10242, 10241, 10361, 10362 },
     },
+    [static_cast<u32>(Setting::VSCPUMode)] = {
+        .category = Category::VS,
+        .name = magic_enum::enum_name(Setting::VSCPUMode),
+        .messageId = 3420,
+        .defaultValue = static_cast<u32>(CPUMode::Normal),
+        .valueCount = magic_enum::enum_count<CPUMode>(),
+        .valueNames = magic_enum::enum_names<CPUMode>().data(),
+        .valueMessageIds = (u32[]) { 3421, 3422, 3423, 3424 },
+        .valueExplanationMessageIds = (u32[]) { 3425, 3426, 3427, 3428 },
+    },
     [static_cast<u32>(Setting::VSVehicles)] = {
         .category = Category::VS,
         .name = magic_enum::enum_name(Setting::VSVehicles),
@@ -393,6 +405,16 @@ const Entry entries[] = {
         .valueNames = magic_enum::enum_names<Vehicles>().data(),
         .valueMessageIds = (u32[]) { 10244, 10245, 10246, 10247, 10248, 10249, 10250 },
         .valueExplanationMessageIds = (u32[]) { 10251, 10252, 10253, 10254, 10255, 10256, 10257 },
+    },
+    [static_cast<u32>(Setting::VSItemFrequency)] = {
+        .category = Category::VS,
+        .name = magic_enum::enum_name(Setting::VSItemFrequency),
+        .messageId = 3480,
+        .defaultValue = static_cast<u32>(ItemFrequency::Balanced),
+        .valueCount = magic_enum::enum_count<ItemFrequency>(),
+        .valueNames = magic_enum::enum_names<ItemFrequency>().data(),
+        .valueMessageIds = (u32[]) { 3481, 3482, 3483 },
+        .valueExplanationMessageIds = (u32[]) { 3485, 3486, 3487 },
     },
     [static_cast<u32>(Setting::VSMegaClouds)] = {
         .category = Category::VS,
@@ -435,6 +457,16 @@ const Entry entries[] = {
         .valueMessageIds = (u32[]) { 3441, 10228, 3443 },
         .valueExplanationMessageIds = (u32[]) { 10425, 10426, 10427 },
     },
+    [static_cast<u32>(Setting::BTCPUMode)] = {
+        .category = Category::BT,
+        .name = magic_enum::enum_name(Setting::BTCPUMode),
+        .messageId = 3420,
+        .defaultValue = static_cast<u32>(CPUMode::Normal),
+        .valueCount = magic_enum::enum_count<CPUMode>(),
+        .valueNames = magic_enum::enum_names<CPUMode>().data(),
+        .valueMessageIds = (u32[]) { 3421, 3422, 3423, 3424 },
+        .valueExplanationMessageIds = (u32[]) { 3425, 3426, 3427, 3428 },
+    },
     [static_cast<u32>(Setting::BTVehicles)] = {
         .category = Category::BT,
         .name = magic_enum::enum_name(Setting::BTVehicles),
@@ -445,6 +477,16 @@ const Entry entries[] = {
         .valueMessageIds = (u32[]) { 10244, 10245, 10246, 10247, 10248, 10249, 10250 },
         .valueExplanationMessageIds = (u32[]) { 10251, 10252, 10253, 10254, 10255, 10256, 10257 },
     },
+    [static_cast<u32>(Setting::BTItemFrequency)] = {
+        .category = Category::BT,
+        .name = magic_enum::enum_name(Setting::BTItemFrequency),
+        .messageId = 3480,
+        .defaultValue = static_cast<u32>(ItemFrequency::Balanced),
+        .valueCount = magic_enum::enum_count<ItemFrequency>(),
+        .valueNames = magic_enum::enum_names<ItemFrequency>().data(),
+        .valueMessageIds = (u32[]) { 3481, 3482, 3483 },
+        .valueExplanationMessageIds = (u32[]) { 3485, 3486, 3487 },
+    },
     [static_cast<u32>(Setting::RoomTeamSize)] = {
         .category = Category::Room,
         .name = magic_enum::enum_name(Setting::RoomTeamSize),
@@ -454,6 +496,7 @@ const Entry entries[] = {
         .valueNames = magic_enum::enum_names<TeamSize>().data(),
         .valueMessageIds = (u32[]) { 10208, 10209, 10210, 10211, 10212, 10218 },
         .valueExplanationMessageIds = (u32[]) { 10213, 10214, 10215, 10216, 10217, 10393 },
+        .hidden = !ENABLE_ONLINE,
     },
     [static_cast<u32>(Setting::RoomTeamSelection)] = {
         .category = Category::Room,
@@ -464,6 +507,7 @@ const Entry entries[] = {
         .valueNames = magic_enum::enum_names<RoomTeamSelection>().data(),
         .valueMessageIds = (u32[]) { 10218, 10219, 10220 },
         .valueExplanationMessageIds = (u32[]) { 10221, 10222, 10223 },
+        .hidden = !ENABLE_ONLINE,
     },
     [static_cast<u32>(Setting::RoomRaceCount)] = {
         .category = Category::Room,
@@ -475,6 +519,7 @@ const Entry entries[] = {
         .valueNames = nullptr,
         .valueMessageIds = (u32[]) { 10225 },
         .valueExplanationMessageIds = (u32[]) { 10226 },
+        .hidden = !ENABLE_ONLINE,
     },
     [static_cast<u32>(Setting::RoomCourseSelection)] = {
         .category = Category::Room,
@@ -485,6 +530,7 @@ const Entry entries[] = {
         .valueNames = magic_enum::enum_names<RoomCourseSelection>().data(),
         .valueMessageIds = (u32[]) { 10228, 3443, 10229, 10230 },
         .valueExplanationMessageIds = (u32[]) { 10231, 10261, 10232, 10233 },
+        .hidden = !ENABLE_ONLINE,
     },
     [static_cast<u32>(Setting::RoomClass)] = {
         .category = Category::Room,
@@ -495,6 +541,7 @@ const Entry entries[] = {
         .valueNames = magic_enum::enum_names<EngineClass>().data(),
         .valueMessageIds = (u32[]) { 10235, 10236, 10238, 10237, 10365, 10366 },
         .valueExplanationMessageIds = (u32[]) { 10239, 10240, 10242, 10241, 10361, 10362 },
+        .hidden = !ENABLE_ONLINE,
     },
     [static_cast<u32>(Setting::RoomVehicles)] = {
         .category = Category::Room,
@@ -505,6 +552,7 @@ const Entry entries[] = {
         .valueNames = magic_enum::enum_names<Vehicles>().data(),
         .valueMessageIds = (u32[]) { 10244, 10245, 10246, 10247, 10248, 10249, 10250 },
         .valueExplanationMessageIds = (u32[]) { 10251, 10252, 10253, 10254, 10255, 10256, 10257 },
+        .hidden = !ENABLE_ONLINE,
     },
     [static_cast<u32>(Setting::RoomCodeHigh)] = {
         .category = Category::Room,
@@ -515,6 +563,7 @@ const Entry entries[] = {
         .valueNames = nullptr,
         .valueMessageIds = nullptr,
         .valueExplanationMessageIds = nullptr,
+        .hidden = !ENABLE_ONLINE,
     },
     [static_cast<u32>(Setting::RoomCodeLow)] = {
         .category = Category::Room,
@@ -525,6 +574,7 @@ const Entry entries[] = {
         .valueNames = nullptr,
         .valueMessageIds = nullptr,
         .valueExplanationMessageIds = nullptr,
+        .hidden = !ENABLE_ONLINE,
     },
     [static_cast<u32>(Setting::MiiAvatar)] = {
         .category = Category::License,
@@ -603,7 +653,7 @@ const Entry entries[] = {
         .defaultValue = static_cast<u32>(RegionFlagDisplay::Enable),
         .valueCount = magic_enum::enum_count<RegionFlagDisplay>(),
         .valueNames = magic_enum::enum_names<RegionFlagDisplay>().data(),
-        .valueMessageIds = (u32[]) { 10337, 10338 },
+        .valueMessageIds = (u32[]) { 10339, 10340 },
         .valueExplanationMessageIds = (u32[]) { 10335, 10336 },
     },
     [static_cast<u32>(Setting::DebugCheckpoints)] = {
