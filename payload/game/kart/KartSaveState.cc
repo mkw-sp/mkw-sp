@@ -7,46 +7,38 @@ KartSaveState::KartSaveState(KartAccessor accessor, VehiclePhysics *physics, Kar
 }
 
 void KartSaveState::save(KartAccessor accessor, VehiclePhysics *physics, KartItem *item) {
-    m_item = *item;
-    m_physics = *physics;
-    m_5c = *accessor.unk5c;
-    m_sub = *accessor.sub;
-    m_body = *accessor.body;
-    m_move = *accessor.move;
-    m_state = *accessor.state;
-    m_action = *accessor.action;
-    m_collide = *accessor.collide;
+    m_externalVel = physics->m_externalVel;
+    m_internalVel = physics->m_internalVel;
+    m_mainRot = physics->m_mainRot;
+    m_pos = physics->m_pos;
 
-    for (u8 i = 0; i < accessor.settings->susCount; i++) {
-        m_sus[i].base = *accessor.sus[i];
-        m_sus[i].physics = *accessor.sus[i]->m_physics;
-    }
+    m_internalSpeed = accessor.move->m_internalSpeed;
+    m_boostState = accessor.move->m_boost;
+
+    m_item = *item;
 
     for (u8 i = 0; i < accessor.settings->tireCount; i++) {
-        m_tire[i].tire = *accessor.tire[i];
-        m_tire[i].physics = *accessor.tire[i]->m_wheelPhysics;
+        m_wheelPhysics[i].m_realPos = accessor.tire[i]->m_wheelPhysics->m_realPos;
+        m_wheelPhysics[i].m_lastPos = accessor.tire[i]->m_wheelPhysics->m_lastPos;
+        m_wheelPhysics[i].m_lastPosDiff = accessor.tire[i]->m_wheelPhysics->m_lastPosDiff;
     }
 }
 
 void KartSaveState::reload(KartAccessor accessor, VehiclePhysics *physics, KartItem *item) {
-    *item = m_item;
-    *physics = m_physics;
-    *accessor.sub = m_sub;
-    *accessor.unk5c = m_5c;
-    *accessor.body = m_body;
-    *accessor.move = m_move;
-    *accessor.state = m_state;
-    *accessor.action = m_action;
-    *accessor.collide = m_collide;
+    physics->m_externalVel = m_externalVel;
+    physics->m_internalVel = m_internalVel;
+    physics->m_mainRot = m_mainRot;
+    physics->m_pos = m_pos;
 
-    for (u8 i = 0; i < accessor.settings->susCount; i++) {
-        *accessor.sus[i] = m_sus[i].base;
-        *accessor.sus[i]->m_physics = m_sus[i].physics;
-    }
+    accessor.move->m_internalSpeed = m_internalSpeed;
+    accessor.move->m_boost = m_boostState;
+
+    *item = m_item;
 
     for (u8 i = 0; i < accessor.settings->tireCount; i++) {
-        *accessor.tire[i] = m_tire[i].tire;
-        *accessor.tire[i]->m_wheelPhysics = m_tire[i].physics;
+        accessor.tire[i]->m_wheelPhysics->m_realPos = m_wheelPhysics[i].m_realPos;
+        accessor.tire[i]->m_wheelPhysics->m_lastPos = m_wheelPhysics[i].m_lastPos;
+        accessor.tire[i]->m_wheelPhysics->m_lastPosDiff = m_wheelPhysics[i].m_lastPosDiff;
     }
 }
 

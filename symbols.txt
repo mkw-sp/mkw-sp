@@ -651,6 +651,8 @@
 0x80581824 _ZN4Kart8KartMove9calcBlinkEv
 0x80584d58 KartMove_calcCannon
 0x805858ac KartMove_startKiller
+0x80588d28 _ZN4Kart9KartBoostC1Ev
+0x8057811c _ZN4Kart9KartBoostD1Ev
 0x8058e22c _ZN4Kart10KartObject4initEv
 0x8058eeb4 _ZN4Kart10KartObject9calcEarlyEv
 0x8058eebc KartObject_calcPass1

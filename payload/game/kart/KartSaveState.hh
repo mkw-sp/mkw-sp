@@ -1,19 +1,14 @@
-// Handles storing and restoring as much state about the kart as possible
+// Handles storing and restoring as much state about the kart as needed
 // to allow for faster dolphin-like save states on console for practicing.
 //
 // This class is only for low level management, further functionality should
 // most likely be added to SP::SaveStateManager.
 
 #pragma once
-#include "Kart5c.hh"
-#include "KartAction.hh"
-#include "KartBody.hh"
-#include "KartCollide.hh"
+
+#include "KartBoost.hh"
 #include "KartMove.hh"
-#include "KartSettings.hh"
-#include "KartState.hh"
-#include "KartSub.hh"
-#include "KartSus.hh"
+#include "KartObjectManager.hh"
 #include "KartTire.hh"
 #include "VehiclePhysics.hh"
 
@@ -23,14 +18,10 @@ extern "C" {
 
 namespace Kart {
 
-struct KartSusFlat {
-    KartSus base;
-    KartSusPhysics physics;
-};
-
-struct KartTireFlat {
-    KartTire tire;
-    WheelPhysics physics;
+struct MinifiedWheelPhysics {
+    Vec3 m_realPos;
+    Vec3 m_lastPos;
+    Vec3 m_lastPosDiff;
 };
 
 class KartSaveState {
@@ -41,16 +32,18 @@ public:
     void reload(KartAccessor accessor, VehiclePhysics *physics, KartItem *item);
 
 private:
-    Kart5c m_5c;
-    KartSub m_sub;
-    KartBody m_body;
-    KartMove m_move;
-    KartState m_state;
-    KartAction m_action;
-    KartSusFlat m_sus[4];
-    KartTireFlat m_tire[4];
-    KartCollide m_collide;
-    VehiclePhysics m_physics;
+    // VehiclePhysics
+    Vec3 m_externalVel;
+    Vec3 m_internalVel;
+    Quat m_mainRot;
+    Vec3 m_pos;
+
+    // KartMove
+    f32 m_internalSpeed;
+    KartBoost m_boostState;
+
+    MinifiedWheelPhysics m_wheelPhysics[4];
+
     KartItem m_item;
 };
 
