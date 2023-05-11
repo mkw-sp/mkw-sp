@@ -1,12 +1,30 @@
 #pragma once
 
 #include "KartObjectManager.hh"
+#include "KartPart.hh"
 
 namespace Kart {
 
 class WheelPhysics : public KartObjectProxy {
+    friend class KartSaveState;
+
 private:
-    u8 _0c[0x84 - 0x0c];
+    WheelPhysics();
+    virtual ~WheelPhysics();
+    virtual void dt(s32 type);
+
+    u32 m_wheelIdx;
+    u32 m_bspWheelIdx;
+    void *m_bspWheel;
+    void *m_colisionGroup;
+    Vec3 m_realPos;
+    Vec3 m_lastPos;
+    Vec3 m_lastPosDiff;
+    f32 m_yDown;
+    Vec3 _48;
+    Vec3 m_speed;
+
+    u8 _10[0x84 - 0x60];
 };
 
 class KartTire : public KartPart {

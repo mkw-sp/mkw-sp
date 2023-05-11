@@ -8,6 +8,7 @@ namespace Kart {
 class KartMove : public KartObjectProxy {
     friend class KartObjectProxy;
     friend class KartRollback;
+    friend class KartSaveState;
 
 public:
     f32 hardSpeedLimit() const;

@@ -8,6 +8,7 @@ namespace Kart {
 class VehiclePhysics {
     friend class KartObjectProxy;
     friend class KartRollback;
+    friend class KartSaveState;
 
 public:
     const Vec3 *externalVel() const;
