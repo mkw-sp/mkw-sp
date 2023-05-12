@@ -5,8 +5,8 @@
 #include "game/ui/SectionManager.hh"
 #include "game/ui/page/MissionInstructionPage.hh"
 
-#include <sp/settings/ClientSettings.hh>
 #include <sp/CourseDatabase.hh>
+#include <sp/settings/ClientSettings.hh>
 
 namespace UI {
 
