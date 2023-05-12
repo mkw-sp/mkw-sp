@@ -29,11 +29,7 @@ public:
         u32 m_errorCode;
     };
 
-    enum class VehicleRestriction: u32 {
-        KartsOnly = 0,
-        BikesOnly = 1,
-        All = 2
-    };
+    enum class VehicleRestriction : u32 { KartsOnly = 0, BikesOnly = 1, All = 2 };
 
     u8 _000[0x060 - 0x000];
     u32 m_match;
