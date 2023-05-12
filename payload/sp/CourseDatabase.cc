@@ -4,6 +4,10 @@
 
 namespace SP {
 
+u32 CourseDatabase::totalCount() {
+    return m_internalIndices.size();
+}
+
 u32 CourseDatabase::count(Filter filter) {
     refresh(filter);
 

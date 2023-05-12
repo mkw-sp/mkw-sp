@@ -6,6 +6,7 @@
 #include "game/ui/SectionManager.hh"
 #include "game/ui/SettingsPage.hh"
 
+#include <sp/CourseDatabase.hh>
 #include <sp/SaveStateManager.hh>
 #include <sp/settings/ClientSettings.hh>
 
@@ -89,12 +90,56 @@ void RaceMenuPage::onNextButtonFront(PushButton *button, u32 /* localPlayerId */
         menuScenario.courseId = isWin ? 0x37 : 0x38;
         menuScenario.gameMode = System::RaceConfig::GameMode::Awards;
     } else {
+        auto *saveManager = System::SaveManager::Instance();
+        auto &courseDatabase = SP::CourseDatabase::Instance();
+
         menuScenario.cameraMode = 5;
+
+        SP::ClientSettings::CourseSelection setting;
+        SectionId nextSelectSection;
         if (menuScenario.isBattle()) {
-            sectionId = SectionId::SingleSelectBTCourse;
+            setting = saveManager->getSetting<SP::ClientSettings::Setting::BTCourseSelection>();
+            nextSelectSection = SectionId::SingleSelectBTCourse;
+            sectionId = SectionId::BTDemo;
         } else {
-            sectionId = SectionId::SingleSelectVSCourse;
+            setting = saveManager->getSetting<SP::ClientSettings::Setting::VSCourseSelection>();
+            nextSelectSection = SectionId::SingleSelectVSCourse;
+            sectionId = SectionId::VSDemo;
         };
+
+        SP::CourseDatabase::Filter filter;
+        filter.battle = menuScenario.isBattle();
+        filter.race = !filter.battle;
+
+        if (setting == SP::ClientSettings::CourseSelection::InOrder) {
+            SP::CourseDatabase::Filter fullFilter;
+            fullFilter.battle = true;
+            fullFilter.race = true;
+
+            u8 nextCourse = 0xFF;
+            bool foundCurrentCourse = false;
+            for (u8 i = 0; i < courseDatabase.totalCount(); i += 1) {
+                auto entry = courseDatabase.entry(fullFilter, i);
+                if (entry.courseId == menuScenario.courseId) {
+                    foundCurrentCourse = true;
+                } else if (foundCurrentCourse && entry.battle == menuScenario.isBattle()) {
+                    nextCourse = entry.courseId;
+                    break;
+                }
+            }
+
+            if (nextCourse == 0xFF) {
+                menuScenario.courseId = courseDatabase.entry(filter, 0).courseId;
+            } else {
+                menuScenario.courseId = nextCourse;
+            }
+        } else if (setting == SP::ClientSettings::CourseSelection::Random) {
+            auto courseCount = courseDatabase.count(filter);
+            auto courseIdx = hydro_random_uniform(courseCount) - 1;
+            menuScenario.courseId = courseDatabase.entry(filter, courseIdx).courseId;
+        } else {
+            sectionId = nextSelectSection;
+        }
     }
 
     f32 delay = button->getDelay();
