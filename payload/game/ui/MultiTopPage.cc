@@ -64,7 +64,7 @@ void MultiTopPage::onActivate() {
     m_replacement = PageId::None;
 
     auto *context = SectionManager::Instance()->globalContext();
-    context->_74 = 2;
+    context->m_vehicleRestriction = GlobalContext::VehicleRestriction::All;
 
     if (m_reset) {
         m_vsButton.selectDefault(0);

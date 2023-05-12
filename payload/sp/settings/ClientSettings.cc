@@ -403,8 +403,8 @@ const Entry entries[] = {
         .defaultValue = static_cast<u32>(Vehicles::All),
         .valueCount = magic_enum::enum_count<Vehicles>(),
         .valueNames = magic_enum::enum_names<Vehicles>().data(),
-        .valueMessageIds = (u32[]) { 10244, 10245, 10246, 10247, 10248, 10249, 10250 },
-        .valueExplanationMessageIds = (u32[]) { 10251, 10252, 10253, 10254, 10255, 10256, 10257 },
+        .valueMessageIds = (u32[]) { 10244, 10245, 10246, /* 10247, 10248, 10249, 10250 */ },
+        .valueExplanationMessageIds = (u32[]) { 10251, 10252, 10253, /* 10254, 10255, 10256, 10257 */ },
     },
     [static_cast<u32>(Setting::VSItemFrequency)] = {
         .category = Category::VS,
@@ -474,8 +474,8 @@ const Entry entries[] = {
         .defaultValue = static_cast<u32>(Vehicles::All),
         .valueCount = magic_enum::enum_count<Vehicles>(),
         .valueNames = magic_enum::enum_names<Vehicles>().data(),
-        .valueMessageIds = (u32[]) { 10244, 10245, 10246, 10247, 10248, 10249, 10250 },
-        .valueExplanationMessageIds = (u32[]) { 10251, 10252, 10253, 10254, 10255, 10256, 10257 },
+        .valueMessageIds = (u32[]) { 10244, 10245, 10246, /* 10247, 10248, 10249, 10250 */ },
+        .valueExplanationMessageIds = (u32[]) { 10251, 10252, 10253, /* 10254, 10255, 10256, 10257 */ },
     },
     [static_cast<u32>(Setting::BTItemFrequency)] = {
         .category = Category::BT,
@@ -550,8 +550,8 @@ const Entry entries[] = {
         .defaultValue = static_cast<u32>(Vehicles::All),
         .valueCount = magic_enum::enum_count<Vehicles>(),
         .valueNames = magic_enum::enum_names<Vehicles>().data(),
-        .valueMessageIds = (u32[]) { 10244, 10245, 10246, 10247, 10248, 10249, 10250 },
-        .valueExplanationMessageIds = (u32[]) { 10251, 10252, 10253, 10254, 10255, 10256, 10257 },
+        .valueMessageIds = (u32[]) { 10244, 10245, 10246, /* 10247, 10248, 10249, 10250 */ },
+        .valueExplanationMessageIds = (u32[]) { 10251, 10252, 10253, /* 10254, 10255, 10256, 10257 */ },
         .hidden = !ENABLE_ONLINE,
     },
     [static_cast<u32>(Setting::RoomCodeHigh)] = {

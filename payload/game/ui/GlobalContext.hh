@@ -29,11 +29,17 @@ public:
         u32 m_errorCode;
     };
 
+    enum class VehicleRestriction: u32 {
+        KartsOnly = 0,
+        BikesOnly = 1,
+        All = 2
+    };
+
     u8 _000[0x060 - 0x000];
     u32 m_match;
     u32 m_matchCount;
     u8 _068[0x074 - 0x068];
-    u32 _74;
+    VehicleRestriction m_vehicleRestriction;
     u8 _078[0x124 - 0x078];
     u32 m_localPlayerCount;
     u8 _128[0x12c - 0x128];
