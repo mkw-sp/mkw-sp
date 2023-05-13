@@ -1,5 +1,7 @@
 #include "KartSaveState.hh"
 
+#include <cstring>
+
 namespace Kart {
 
 KartSaveState::KartSaveState(KartAccessor accessor, VehiclePhysics *physics, KartItem *item) {
@@ -13,7 +15,11 @@ void KartSaveState::save(KartAccessor accessor, VehiclePhysics *physics, KartIte
     m_pos = physics->m_pos;
 
     m_internalSpeed = accessor.move->m_internalSpeed;
-    m_boostState = accessor.move->m_boost;
+    m_boostState.m_types = accessor.move->m_boost.m_types;
+    m_boostState.m_boostMultipler = accessor.move->m_boost.m_boostMultipler;
+    m_boostState.m_boostAcceleration = accessor.move->m_boost.m_boostAcceleration;
+    m_boostState.m_1c = accessor.move->m_boost.m_1c;
+    m_boostState.m_boostSpeedLimit = accessor.move->m_boost.m_boostSpeedLimit;
 
     m_item = *item;
 
@@ -31,7 +37,11 @@ void KartSaveState::reload(KartAccessor accessor, VehiclePhysics *physics, KartI
     physics->m_pos = m_pos;
 
     accessor.move->m_internalSpeed = m_internalSpeed;
-    accessor.move->m_boost = m_boostState;
+    accessor.move->m_boost.m_types = m_boostState.m_types;
+    accessor.move->m_boost.m_boostMultipler = m_boostState.m_boostMultipler;
+    accessor.move->m_boost.m_boostAcceleration = m_boostState.m_boostAcceleration;
+    accessor.move->m_boost.m_1c = m_boostState.m_1c;
+    accessor.move->m_boost.m_boostSpeedLimit = m_boostState.m_boostSpeedLimit;
 
     *item = m_item;
 

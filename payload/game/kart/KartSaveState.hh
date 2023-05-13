@@ -18,6 +18,18 @@ extern "C" {
 
 namespace Kart {
 
+// KartBoost's constructor cannot be patched to replace
+// the vtable, and therefore define a GCC destructor
+// as it is inlined in KartMove.
+struct PODKartBoost {
+    s16 m_timesBeforeEnd[6];
+    u16 m_types;
+    f32 m_boostMultipler;
+    f32 m_boostAcceleration;
+    f32 m_1c;
+    f32 m_boostSpeedLimit;
+};
+
 struct MinifiedWheelPhysics {
     Vec3 m_realPos;
     Vec3 m_lastPos;
@@ -40,7 +52,7 @@ private:
 
     // KartMove
     f32 m_internalSpeed;
-    KartBoost m_boostState;
+    PODKartBoost m_boostState;
 
     MinifiedWheelPhysics m_wheelPhysics[4];
 
