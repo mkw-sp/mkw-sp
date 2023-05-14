@@ -1,14 +1,5 @@
 #include <Common.S>
 
-PATCH_B_START(KartMove_init, 0x88)
-    // Scale the initial hard speed limit
-    lis r9, g_speedModFactor@ha
-    lfs f2, g_speedModFactor@l (r9)
-    fmuls f0, f0, f2
-    stfs f0, 0x2c (r30) // Original instruction
-    b KartMove_init + 0x8c
-PATCH_B_END(KartMove_init, 0x88)
-
 PATCH_B_START(KartMove_calcAcceleration, 0x284)
     // Check that 200cc is enabled
     lis r3, g_speedModIsEnabled@ha
@@ -42,22 +33,6 @@ PATCH_B_START(KartMove_calcAcceleration, 0x284)
     b KartMove_calcAcceleration + 0x288
 PATCH_B_END(KartMove_calcAcceleration, 0x284)
 
-PATCH_B_START(KartMove_setKillerStartHardSpeedLimit, 0x8)
-    lis r4, g_speedModFactor@ha
-    lfs f1, g_speedModFactor@l (r4)
-    fmuls f0, f0, f1
-    stfs f0, 0x2c (r3) // Original instruction
-    blr
-PATCH_B_END(KartMove_setKillerStartHardSpeedLimit, 0x8)
-
-PATCH_B_START(KartMove_setKillerEndHardSpeedLimit, 0x8)
-    lis r4, g_speedModFactor@ha
-    lfs f1, g_speedModFactor@l (r4)
-    fmuls f0, f0, f1
-    stfs f0, 0x2c (r3) // Original instruction
-    blr
-PATCH_B_END(KartMove_setKillerEndHardSpeedLimit, 0x8)
-
 PATCH_B_START(KartMove_calcSpeed, 0x210)
     lis r3, g_speedModFactor@ha
     lfs f4, g_speedModFactor@l (r3)
@@ -89,16 +64,6 @@ PATCH_B_START(KartMove_calcCannon, 0x370)
     stfs f0, 0x20 (r30)
     b KartMove_calcCannon + 0x374
 PATCH_B_END(KartMove_calcCannon, 0x370)
-
-PATCH_B_START(KartMove_startKiller, 0x24)
-    lis r6, g_speedModFactor@ha
-    lfs f1, g_speedModFactor@l (r6)
-    fmuls f0, f0, f1
-    stfs f0, 0x2c (r3) // Original instruction
-    b KartMove_startKiller + 0x28
-PATCH_B_END(KartMove_startKiller, 0x24)
-
-
 
 PATCH_BL_START(KartMove_calcSpeed, 0x65c)
     lwz r0, 0x4 (r3) // Original instruction
