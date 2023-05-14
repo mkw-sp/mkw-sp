@@ -127,6 +127,10 @@ enum class Vehicles {
     All,
     Karts,
     Bikes,
+    // InsideDrift,
+    // OutsideDrift,
+    // Optimal,
+    // Random,
 };
 
 enum class ItemFrequency {
