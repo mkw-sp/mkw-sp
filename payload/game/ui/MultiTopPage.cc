@@ -63,9 +63,6 @@ void MultiTopPage::onInit() {
 void MultiTopPage::onActivate() {
     m_replacement = PageId::None;
 
-    auto *context = SectionManager::Instance()->globalContext();
-    context->m_vehicleRestriction = GlobalContext::VehicleRestriction::All;
-
     if (m_reset) {
         m_vsButton.selectDefault(0);
         m_instructionText.setMessage(3052);
@@ -130,6 +127,7 @@ void MultiTopPage::onVSButtonFront(PushButton *button, u32 /* localPlayerId */) 
         menuScenario.players[i].type = System::RaceConfig::Player::Type::CPU;
     }
 
+    context->applyVehicleRestriction(false);
     raceConfig->applyCPUMode();
     raceConfig->applyItemFreq();
     raceConfig->applyEngineClass();
@@ -178,6 +176,7 @@ void MultiTopPage::onBTButtonFront(PushButton *button, u32 /* localPlayerId */) 
         menuScenario.players[i].type = System::RaceConfig::Player::Type::CPU;
     }
 
+    context->applyVehicleRestriction(true);
     raceConfig->applyEngineClass();
     raceConfig->applyCPUMode();
     raceConfig->applyItemFreq();

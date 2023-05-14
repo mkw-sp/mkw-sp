@@ -18,6 +18,8 @@ public:
     void REPLACED(onChangeLicense)();
     REPLACE void onChangeLicense();
 
+    void applyVehicleRestriction(bool isBattle);
+
     struct SelectPlayer {
         u32 m_characterId;
         u32 m_vehicleId;

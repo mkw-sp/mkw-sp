@@ -16,30 +16,6 @@ extern "C" {
 
 namespace UI {
 
-static void applyVehicleRestriction(bool isBattle) {
-    auto *saveManager = System::SaveManager::Instance();
-
-    SP::ClientSettings::Vehicles setting;
-    if (isBattle) {
-        setting = saveManager->getSetting<SP::ClientSettings::Setting::BTVehicles>();
-    } else {
-        setting = saveManager->getSetting<SP::ClientSettings::Setting::VSVehicles>();
-    }
-
-    auto *globalContext = SectionManager::Instance()->globalContext();
-    switch (setting) {
-    case SP::ClientSettings::Vehicles::All:
-        globalContext->m_vehicleRestriction = GlobalContext::VehicleRestriction::All;
-        break;
-    case SP::ClientSettings::Vehicles::Karts:
-        globalContext->m_vehicleRestriction = GlobalContext::VehicleRestriction::KartsOnly;
-        break;
-    case SP::ClientSettings::Vehicles::Bikes:
-        globalContext->m_vehicleRestriction = GlobalContext::VehicleRestriction::BikesOnly;
-        break;
-    }
-}
-
 SingleTopPage::SingleTopPage() = default;
 
 SingleTopPage::~SingleTopPage() = default;
@@ -199,7 +175,7 @@ void SingleTopPage::onVSButtonFront(PushButton *button, u32 /* localPlayerId */)
         menuScenario.players[i].type = System::RaceConfig::Player::Type::CPU;
     }
 
-    applyVehicleRestriction(false);
+    context->applyVehicleRestriction(false);
     raceConfig->applyCPUMode();
     raceConfig->applyItemFreq();
     raceConfig->applyEngineClass();
@@ -245,7 +221,7 @@ void SingleTopPage::onBTButtonFront(PushButton *button, u32 /* localPlayerId */)
         menuScenario.players[i].type = System::RaceConfig::Player::Type::CPU;
     }
 
-    applyVehicleRestriction(true);
+    context->applyVehicleRestriction(true);
     raceConfig->applyCPUMode();
     raceConfig->applyItemFreq();
     raceConfig->applyEngineClass();

@@ -28,4 +28,27 @@ void GlobalContext::onChangeLicense() {
     SP::CourseDatabase::Instance().resetSelection();
 }
 
+void GlobalContext::applyVehicleRestriction(bool isBattle) {
+    auto *saveManager = System::SaveManager::Instance();
+
+    SP::ClientSettings::Vehicles setting;
+    if (isBattle) {
+        setting = saveManager->getSetting<SP::ClientSettings::Setting::BTVehicles>();
+    } else {
+        setting = saveManager->getSetting<SP::ClientSettings::Setting::VSVehicles>();
+    }
+
+    switch (setting) {
+    case SP::ClientSettings::Vehicles::All:
+        m_vehicleRestriction = VehicleRestriction::All;
+        break;
+    case SP::ClientSettings::Vehicles::Karts:
+        m_vehicleRestriction = VehicleRestriction::KartsOnly;
+        break;
+    case SP::ClientSettings::Vehicles::Bikes:
+        m_vehicleRestriction = VehicleRestriction::BikesOnly;
+        break;
+    }
+}
+
 } // namespace UI
