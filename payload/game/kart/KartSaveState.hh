@@ -47,6 +47,7 @@ private:
     // VehiclePhysics
     Vec3 m_externalVel;
     Vec3 m_internalVel;
+    bool m_inBullet;
     Quat m_mainRot;
     Vec3 m_pos;
 
