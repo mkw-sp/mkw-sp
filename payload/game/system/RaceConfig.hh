@@ -118,6 +118,7 @@ public:
     void applyEngineClass();
     void applyItemFreq();
     void applyCPUMode();
+    bool selectRandomCourse();
     void endRace();
 
     void REPLACED(initRace)();

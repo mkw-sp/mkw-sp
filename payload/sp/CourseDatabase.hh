@@ -21,6 +21,7 @@ public:
         u32 timestamp;
     };
 
+    u32 totalCount();
     u32 count(Filter filter);
     const Entry &entry(Filter filter, u32 index);
     void resetSelection();
