@@ -1,12 +1,8 @@
 #include "DriftSelectPage.hh"
 
 #include "game/system/RaceConfig.hh"
-#include "game/system/SaveManager.hh"
 #include "game/ui/SectionManager.hh"
 #include "game/ui/page/MissionInstructionPage.hh"
-
-#include <sp/CourseDatabase.hh>
-#include <sp/settings/ClientSettings.hh>
 
 namespace UI {
 
