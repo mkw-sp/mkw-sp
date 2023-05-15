@@ -1,5 +1,6 @@
 #include "MultiDriftSelectPage.hh"
 
+#include "game/system/RaceConfig.hh"
 #include "game/ui/SectionManager.hh"
 
 namespace UI {
@@ -36,7 +37,7 @@ void MultiDriftSelectPage::onButtonFront(PushButton *button, u32 localPlayerId) 
     }
 
     auto sectionId = sectionManager->currentSection()->id();
-
+    auto *raceConfig = System::RaceConfig::Instance();
     if (Section::GetSceneId(sectionId) == 4 /* Globe */) {
         if (m_replacementSection == SectionId::None) {
             m_replacement = PageId::None;
@@ -44,6 +45,12 @@ void MultiDriftSelectPage::onButtonFront(PushButton *button, u32 localPlayerId) 
             Page::startReplace(Anim::Next, delay);
         } else {
             requestChangeSection(m_replacementSection, button);
+        }
+    } else if (raceConfig->selectRandomCourse()) {
+        if (raceConfig->menuScenario().gameMode == System::RaceConfig::GameMode::OfflineBT) {
+            changeSection(SectionId::BTDemo, Anim::Next, 0.0f);
+        } else {
+            changeSection(SectionId::VSDemo, Anim::Next, 0.0f);
         }
     } else {
         startReplace(PageId::CourseSelect, button);
