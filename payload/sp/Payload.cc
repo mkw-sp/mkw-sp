@@ -18,7 +18,9 @@ extern "C" {
 #include "sp/net/Net.hh"
 extern "C" {
 #include "sp/security/Function.h"
-#include "sp/security/Heap.h"
+}
+#include "sp/security/Heap.hh"
+extern "C" {
 #include "sp/security/Memory.h"
 }
 #include "sp/security/PageTable.hh"
@@ -82,8 +84,8 @@ static void Init() {
 
     OSSetMEM1ArenaLo(Payload_getEnd());
 
-    Heap_RandomizeMEM1Heaps();
-    Heap_RandomizeMEM2Heaps();
+    Heap::RandomizeMEM1Heaps();
+    Heap::RandomizeMEM2Heaps();
 
     Function_KillBlacklistedFunction(reinterpret_cast<u32 *>(BATConfig),
             reinterpret_cast<u32 *>(__OSInitMemoryProtection));
