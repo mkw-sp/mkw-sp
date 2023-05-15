@@ -94,9 +94,6 @@ void SingleTopPage::onInit() {
 void SingleTopPage::onActivate() {
     m_replacement = PageId::None;
 
-    auto *context = SectionManager::Instance()->globalContext();
-    context->_74 = 2;
-
     auto &menuScenario = System::RaceConfig::Instance()->menuScenario();
     menuScenario.itemMode = 0;
     menuScenario.teams = false;
@@ -178,6 +175,7 @@ void SingleTopPage::onVSButtonFront(PushButton *button, u32 /* localPlayerId */)
         menuScenario.players[i].type = System::RaceConfig::Player::Type::CPU;
     }
 
+    context->applyVehicleRestriction(false);
     raceConfig->applyCPUMode();
     raceConfig->applyItemFreq();
     raceConfig->applyEngineClass();
@@ -223,6 +221,7 @@ void SingleTopPage::onBTButtonFront(PushButton *button, u32 /* localPlayerId */)
         menuScenario.players[i].type = System::RaceConfig::Player::Type::CPU;
     }
 
+    context->applyVehicleRestriction(true);
     raceConfig->applyCPUMode();
     raceConfig->applyItemFreq();
     raceConfig->applyEngineClass();
