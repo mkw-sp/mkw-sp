@@ -96,6 +96,8 @@ typedef struct VersionInfo {
 
 extern VersionInfo versionInfo;
 
+__attribute__((format(printf, 1, 2))) static inline void CheckFormat(const char * /* msg */, ...) {}
+
 #ifndef RVL_OS_NEEDS_IMPORT
 #define RVL_OS_NEEDS_IMPORT static_assert(false, "Please include revolution.h to use SP_LOG")
 #endif
@@ -109,6 +111,7 @@ extern VersionInfo versionInfo;
 #define SP_LOG(m, ...) \
     do { \
         RVL_OS_NEEDS_IMPORT; \
+        CheckFormat(m, ##__VA_ARGS__); \
         OSReport("[" __FILE_NAME__ ":" SP_TOSTRING2(__LINE__) "] " m "\n", ##__VA_ARGS__); \
     } while (0)
 
