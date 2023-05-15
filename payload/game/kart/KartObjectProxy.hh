@@ -13,7 +13,6 @@ class KartSound;
 
 namespace Kart {
 
-class Kart5c;
 class KartAction;
 class KartBody;
 class KartCollide;
@@ -41,9 +40,7 @@ struct KartAccessor {
     KartCollide *collide;
     u8 _34[0x3c - 0x34];
     KartRollback *rollback; // Replaced
-    u8 _40[0x5c - 0x40];
-    Kart5c *unk5c;
-    u8 _44[0x64 - 0x60];
+    u8 _40[0x64 - 0x40];
 };
 
 static_assert(sizeof(KartAccessor) == 0x64);
