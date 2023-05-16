@@ -1152,6 +1152,7 @@ n.newline()
 code_in_files = {
     'payload': [
         *protobuf_c_files,
+        os.path.join('common', 'Clock.cc'),
         os.path.join('common', 'Console.cc'),
         os.path.join('common', 'DCache.cc'),
         os.path.join('common', 'Font.c'),

@@ -180,6 +180,7 @@ static void Init() {
         // and neither PAL60 nor progressive mode is enabled, NTSC discs will run at 50 Hz. We work
         // around this by poking the DCR.
         VI::Disable();
+        VI::WaitForRetrace();
     }
 
     VIInit();
