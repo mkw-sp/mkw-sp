@@ -64,7 +64,9 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: mkw-sp-${{ matrix.profile }}
-          path: out/${{ matrix.profile }}
+          path: |
+            build/bin/${{ matrix.profile }}[PEJK].SMAP
+            out/${{ matrix.profile }}
 
   format:
     name: Format

@@ -22,9 +22,9 @@ namespace SP::MapFile {
 #define SYMBOL_ADDRESS_LENGTH 10
 
 #if defined(SP_DEBUG)
-#define MAP_FILE_PATH_FORMAT "/sp/debug_%c.SMAP"
+#define MAP_FILE_PATH_FORMAT "/sp/debug%c.SMAP"
 #elif defined(SP_RELEASE)
-#define MAP_FILE_PATH_FORMAT "/sp/release_%c.SMAP"
+#define MAP_FILE_PATH_FORMAT "/sp/release%c.SMAP"
 #else
 #error The build type is not defined!
 #endif

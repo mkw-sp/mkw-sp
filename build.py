@@ -1390,14 +1390,12 @@ for fmt in ['binary', 'elf32-powerpc']:
         n.newline()
 
 for region in ['P', 'E', 'J', 'K']:
-    for profile in ['DEBUG', 'RELEASE']:
+    for profile in ['DEBUG', 'TEST', 'RELEASE']:
         suffix = 'D' if profile == 'DEBUG' else ''
-        in_file = os.path.join('$builddir', 'bin', f'payload{region}{suffix}.elf')
-        out_file = os.path.join('$outdir', profile.lower(), f'{profile.lower()}_{region}.SMAP')
         n.build(
-            out_file,
+            os.path.join('$builddir', 'bin', f'{profile.lower()}{region}.SMAP'),
             'generate_symbol_map',
-            in_file,
+            os.path.join('$builddir', 'bin', f'payload{region}{suffix}.elf'),
         )
         n.newline()
 
@@ -1555,6 +1553,10 @@ for profile in ['DEBUG', 'TEST', 'RELEASE']:
             os.path.join('$builddir', 'bin', f'payloadE{in_suffix}.elf'),
             os.path.join('$builddir', 'bin', f'payloadJ{in_suffix}.elf'),
             os.path.join('$builddir', 'bin', f'payloadK{in_suffix}.elf'),
+            os.path.join('$builddir', 'bin', f'{profile.lower()}P.SMAP'),
+            os.path.join('$builddir', 'bin', f'{profile.lower()}E.SMAP'),
+            os.path.join('$builddir', 'bin', f'{profile.lower()}J.SMAP'),
+            os.path.join('$builddir', 'bin', f'{profile.lower()}K.SMAP'),
             os.path.join('$builddir', 'bin', f'loader{in_suffix}.elf'),
             os.path.join('$outdir', profile.lower(), 'boot.dol'),
             os.path.join('$outdir', profile.lower(), 'meta.xml'),
