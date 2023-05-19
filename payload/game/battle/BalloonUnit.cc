@@ -11,9 +11,11 @@ void BalloonUnit::vf_1c() {
 
     const auto &raceScenario = System::RaceConfig::Instance()->raceScenario();
     if (m_playerId < raceScenario.playerCount) {
-        GXColor color{255, 255, 255, 255};
+        GXColor color;
         if (raceScenario.spMaxTeamSize >= 2) {
             color = UI::TeamColors::Get(raceScenario.players[m_playerId].spTeam);
+        } else {
+            color = UI::FFAColors::Get(m_playerId);
         }
         (*m_effect)->setColor(color.r, color.g, color.b, color.a);
     }
