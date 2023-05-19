@@ -68,12 +68,15 @@ void KartItem::update() {
             m_inventory.currentItemCount = 100;
             switch (m_inventory.currentItemID) {
             case (Item::TripShrooms):
+                m_inventory.currentItemID = Item::Shroom;
+                break;
+            case (Item::Shroom):
                 m_inventory.currentItemID = Item::Star;
                 break;
             case (Item::Star):
                 m_inventory.currentItemID = Item::Golden;
                 m_inventory.currentItemCount = 1;
-                m_inventory.framesLeft = 0x1c2;
+                m_inventory.framesLeft = 450;
                 break;
             case (Item::Golden):
                 m_inventory.currentItemID = Item::Mega;
@@ -82,9 +85,22 @@ void KartItem::update() {
                 m_inventory.currentItemID = Item::Bill;
                 break;
             case (Item::Bill):
-                m_inventory.currentItemID = Item::Shroom;
+                m_inventory.currentItemID = Item::Bomb;
+                m_inventory.currentItemCount = 1;
                 break;
-            case (Item::Shroom):
+            case (Item::Bomb):
+                m_inventory.currentItemID = Item::FIB;
+                m_inventory.currentItemCount = 1;
+                break;
+            case (Item::FIB):
+                m_inventory.currentItemID = Item::Nana;
+                m_inventory.currentItemCount = 1;
+                break;
+            case (Item::Nana):
+                m_inventory.currentItemID = Item::Green;
+                m_inventory.currentItemCount = 1;
+                break;
+            case (Item::Green):
                 m_inventory.currentItemID = Item::TripShrooms;
                 m_inventory.currentItemCount = 3;
                 break;
