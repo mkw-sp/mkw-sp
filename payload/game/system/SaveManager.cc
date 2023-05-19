@@ -763,10 +763,5 @@ bool SaveManager_getItemWheel() {
     return System::SaveManager::Instance()->getItemWheelFlag();
 }
 
-bool SaveManager_getItemWheel() {
-    return System::SaveManager::Instance()->getItemWheelFlag();
-    // return System::SaveManager::Instance()->m_usedItemWheel;
-}
-
 bool vsSpeedModIsEnabled;
 }
