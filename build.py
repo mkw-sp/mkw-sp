@@ -138,6 +138,8 @@ asset_in_files = {
         os.path.join('MegaTC.brres'),
         # Battle mode
         os.path.join('balloon.brres'),
+        os.path.join('RKRace_SP.breff'),
+        os.path.join('RKRace_SP.breft'),
         # Online mode
         os.path.join('ItemSlotOnline.bin'),
     ],
@@ -804,6 +806,8 @@ for target in asset_in_files:
         base, ext = os.path.splitext(in_file)
         outext = {
             '.bin': '.bin',
+            '.breff': '.breff',
+            '.breft': '.breft',
             '.brfna': '.brfna',
             '.brfnt': '.brfnt',
             '.brlyt': '.brlyt',
@@ -833,6 +837,8 @@ for target in asset_in_files:
         if out_file not in out_files:
             rule = {
                 '.bin': 'cp',
+                '.breff': 'cp',
+                '.breft': 'cp',
                 '.brfna': 'cp',
                 '.brfnt': 'cp',
                 '.brlyt': 'cp',

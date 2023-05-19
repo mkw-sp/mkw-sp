@@ -5,6 +5,19 @@
 
 namespace Battle {
 
+void BalloonUnit::vf_1c() {
+    REPLACED(vf_1c)();
+
+    const auto &raceScenario = System::RaceConfig::Instance()->raceScenario();
+    if (m_playerId < raceScenario.playerCount) {
+        GXColor color{255, 255, 255, 255};
+        if (raceScenario.spMaxTeamSize >= 2) {
+            color = UI::TeamColors::Get(raceScenario.players[m_playerId].spTeam);
+        }
+        (*m_effect)->setColor(color.r, color.g, color.b, color.a);
+    }
+}
+
 const char *BalloonUnit::vf_38() {
     m_drawMdl->m_hasColorAnim = true;
 
@@ -38,6 +51,11 @@ void BalloonUnit::onAdd(u32 r4, u8 playerId, u8 r6, u8 r7) {
         m_resMatTevColors[i]->GXSetTevColor(GX_TEVREG0, color0);
         m_resMatTevColors[i]->GXSetTevColor(GX_TEVREG1, color1);
     }
+    m_playerId = playerId;
+}
+
+void BalloonUnit::vf_58() {
+    m_playerId = UINT8_MAX;
 }
 
 } // namespace Battle
