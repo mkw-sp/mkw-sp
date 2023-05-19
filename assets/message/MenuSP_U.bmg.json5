@@ -1130,6 +1130,21 @@
     "10424": {
         string: "Press A (Wheel), DPAD (Chuck), ZL (CC), or Y (GCN) to cycle through items"
     },
+    "10420": {
+        string: "Item Wheel"
+    },
+    "10421": {
+        string: "Disable"
+    },
+    "10422": {
+        string: "Enable"
+    },
+    "10423": {
+        string: "Item Wheel is turned off"
+    },
+    "10424": {
+        string: "Press A (Wheel), DPAD (Chuck), ZL (CC), or Y (GCN) to cycle through items"
+    },
     "20000": {
         string: "Online",
     },
