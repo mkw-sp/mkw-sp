@@ -1,6 +1,7 @@
 #include "BalloonUnit.hh"
 
 #include "game/system/RaceConfig.hh"
+#include "game/ui/FFAColors.hh"
 #include "game/ui/TeamColors.hh"
 
 namespace Battle {
@@ -38,10 +39,12 @@ void BalloonUnit::vf_48() {
 void BalloonUnit::onAdd(u32 r4, u8 playerId, u8 r6, u8 r7) {
     REPLACED(onAdd)(r4, playerId, r6, r7);
 
-    GXColor color0{255, 255, 255, 255};
+    GXColor color0;
     const auto &raceScenario = System::RaceConfig::Instance()->raceScenario();
     if (raceScenario.spMaxTeamSize >= 2) {
         color0 = UI::TeamColors::Get(raceScenario.players[playerId].spTeam);
+    } else {
+        color0 = UI::FFAColors::Get(playerId);
     }
     GXColor color1 = color0;
     color1.r /= 2;
