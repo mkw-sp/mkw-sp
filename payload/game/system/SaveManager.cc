@@ -747,23 +747,8 @@ void SaveManager_SetPageTransitions(u32 value) {
     saveManager->setSetting<SP::ClientSettings::Setting::PageTransitions>(v);
 }
 
-void SaveManager_SetMiiId(const MiiId *miiId) {
-    auto *saveManager = System::SaveManager::Instance();
-    saveManager->setMiiId(*std::bit_cast<System::MiiId *>(miiId));
-}
-
-MiiId SaveManager_GetSPLicenseMiiId(u32 licenseId) {
-    auto *saveManager = System::SaveManager::Instance();
-    return std::bit_cast<MiiId>(saveManager->getMiiId(licenseId));
-}
-
-const u8 *SaveManager_CourseSHA1(u32 courseId) {
-    return System::SaveManager::Instance()->courseSHA1(courseId);
-}
-
 bool SaveManager_getItemWheel() {
     return System::SaveManager::Instance()->getItemWheelFlag();
-    // return System::SaveManager::Instance()->m_usedItemWheel;
 }
 
 bool vsSpeedModIsEnabled;
