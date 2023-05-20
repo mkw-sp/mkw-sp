@@ -1406,10 +1406,27 @@ for region in ['P', 'E', 'J', 'K']:
     for profile in ['DEBUG', 'RELEASE']:
         suffix = 'D' if profile == 'DEBUG' else ''
         in_file = os.path.join('$builddir', 'bin', f'payload{region}{suffix}.elf')
-        out_file = os.path.join('$outdir', profile.lower(), f'{profile.lower()}_{region}.SMAP')
+        out_file = os.path.join('$builddir', 'bin', f'payload{region}{suffix}.SMAP')
         n.build(
             out_file,
             'generate_symbol_map',
+            in_file,
+        )
+        n.newline()
+
+for region in ['P', 'E', 'J', 'K']:
+    for profile in ['DEBUG', 'RELEASE']:
+        suffix = 'D' if profile == 'DEBUG' else ''
+        in_file = os.path.join('$builddir', 'bin', f'payload{region}{suffix}.SMAP')
+        out_file = os.path.join(
+            '$builddir',
+            'contents.arc.d',
+            'bin',
+            f'payload{region}{suffix}.SMAP.lzma'
+        )
+        n.build(
+            out_file,
+            'lzmac',
             in_file,
         )
         n.newline()
@@ -1482,10 +1499,21 @@ for profile in ['DEBUG', 'TEST', 'RELEASE']:
     in_paths = [
         *[os.path.join('$builddir', 'contents.arc.d', target) for target in thumbnail_in_files],
         *[os.path.join('$builddir', 'contents.arc.d', target) for target in asset_out_files],
+        os.path.join('$builddir', 'contents.arc.d', 'bin', f'payloadP{in_suffix}.SMAP.lzma'),
+        os.path.join('$builddir', 'contents.arc.d', 'bin', f'payloadE{in_suffix}.SMAP.lzma'),
+        os.path.join('$builddir', 'contents.arc.d', 'bin', f'payloadJ{in_suffix}.SMAP.lzma'),
+        os.path.join('$builddir', 'contents.arc.d', 'bin', f'payloadK{in_suffix}.SMAP.lzma'),
         os.path.join('$builddir', 'contents.arc.d', 'bin', f'loader{in_suffix}.bin.lzma'),
         os.path.join('$builddir', 'contents.arc.d', 'bin', f'version{out_suffix}.bin'),
         os.path.join('$builddir', 'contents.arc.d', 'banner.bin'),
     ]
+    for region in ['P', 'E', 'J', 'K']:
+        in_paths += [os.path.join(
+            '$builddir',
+            'contents.arc.d',
+            'bin',
+            f'payload{region}{in_suffix}.SMAP.lzma',
+        )]
     if profile == 'RELEASE':
         in_paths += [
             os.path.join('$builddir', 'contents.arc.d', 'channel', 'opening.bnr.lzma'),
@@ -1498,6 +1526,10 @@ for profile in ['DEBUG', 'TEST', 'RELEASE']:
         variables = {
             'arcin': os.path.join('$builddir', 'contents.arc.d'),
             'args': ' '.join([
+                '--renamed payloadPD.SMAP.lzma payloadP.SMAP.lzma',
+                '--renamed payloadED.SMAP.lzma payloadE.SMAP.lzma',
+                '--renamed payloadJD.SMAP.lzma payloadJ.SMAP.lzma',
+                '--renamed payloadKD.SMAP.lzma payloadK.SMAP.lzma',
                 '--renamed loaderD.bin.lzma loader.bin.lzma',
                 '--renamed versionD.bin version.bin',
                 '--renamed versionT.bin version.bin',

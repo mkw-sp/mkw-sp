@@ -1,11 +1,10 @@
 #include "MapFile.hh"
 
-#include <egg/core/eggDVDRipper.hh>
 #include <egg/core/eggSystem.hh>
 extern "C" {
 #include <revolution/os.h>
 }
-#include <sp/storage/Storage.hh>
+#include <sp/storage/DecompLoader.hh>
 extern "C" {
 #include <vendor/ff/ffconf.h>
 }
@@ -20,14 +19,6 @@ extern "C" {
 namespace SP::MapFile {
 
 #define SYMBOL_ADDRESS_LENGTH 10
-
-#if defined(SP_DEBUG)
-#define MAP_FILE_PATH_FORMAT "/sp/debug_%c.SMAP"
-#elif defined(SP_RELEASE)
-#define MAP_FILE_PATH_FORMAT "/sp/release_%c.SMAP"
-#else
-#error The build type is not defined!
-#endif
 
 struct Symbol {
     u32 address;
@@ -46,21 +37,12 @@ void Load() {
     }
 
     char mapFilePath[FF_MAX_LFN + 1];
-    snprintf(mapFilePath, sizeof(mapFilePath), MAP_FILE_PATH_FORMAT, OSGetAppGamename()[3]);
+    snprintf(mapFilePath, sizeof(mapFilePath), "/bin/payload%c.SMAP.lzma", OSGetAppGamename()[3]);
 
-    std::optional<SP::Storage::FileHandle> mapFileHandle = SP::Storage::OpenRO(mapFilePath);
-    if (!mapFileHandle.has_value()) {
-        SP_LOG("Failed to open the map file '%s'!", mapFilePath);
-        return;
-    }
-    u32 mapFileSize = mapFileHandle->size();
-    void *mapFile = EGG::TSystem::Instance().eggRootMEM2()->alloc(mapFileSize, 32);
-    if (!mapFile) {
-        SP_LOG("Failed to allocate 0x%08X bytes of data for the map file '%s'!", mapFileSize,
-                mapFilePath);
-        return;
-    }
-    if (!mapFileHandle->read(mapFile, mapFileSize, 0)) {
+    u8 *mapFile;
+    size_t mapFileSize;
+    auto *heap = EGG::TSystem::Instance().eggRootMEM2();
+    if (!Storage::DecompLoader::LoadRO(mapFilePath, &mapFile, &mapFileSize, heap)) {
         SP_LOG("Failed to read the map file '%s'!", mapFilePath);
         return;
     }
