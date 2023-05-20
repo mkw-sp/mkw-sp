@@ -138,6 +138,8 @@ asset_in_files = {
         os.path.join('MegaTC.brres'),
         # Battle mode
         os.path.join('balloon.brres'),
+        os.path.join('bikePartsDispParam.bin'),
+        os.path.join('kartPartsDispParam.bin'),
         os.path.join('RKRace_SP.breff'),
         os.path.join('RKRace_SP.breft'),
         # Online mode
