@@ -1,0 +1,83 @@
+---
+layout: post
+title:  "MKW-SP 0.1.10 Released"
+date:   2023-05-21 23:30:00 +0200
+author: stebler
+---
+
+Version 0.1.10 of Mario Kart Wii - Service Pack has been released. It's a minor release containing various bugfixes and improvements listed below. It can be installed from the in-game updater or downloaded from [here](https://github.com/stblr/mkw-sp/releases/download/v0.1.10/mkw-sp-v0.1.10.zip).
+
+
+## Tools
+
+- The collision model (KCL) can now be displayed as an overlay or in place of the regular course model. [riidefi]
+- Checkpoints can now be displayed as an overlay. [riidefi]
+- A thumbnail generator has been implemented. [stebler]
+
+## Team mode and battle improvements
+
+- VS races and battles can now be played with up to 6 teams. [stebler, Gnome!, Palapeli]
+- The team size can also be randomized. [Unnamed]
+- Friendly fire has been added. [stebler]
+- FFA is now available in battle. [stebler]
+- A vivid and a colorblind palette can be chosen from for team colors. [stebler]
+- In battle mode, the scores are now displayed on the minimap. [stebler]
+- In single player, the HUD timer can now be configured to use the team color. [stebler]
+
+## Time trials
+
+- Mirror mode is now available in time trials. [Henry]
+- The time diff feature uses the right ghost again. [stebler]
+
+## UI
+
+- The course/stage selection UI has been redesigned. Inspiration was taken from [this concept](https://twitter.com/dora97_/status/1548681610454650882) by dora. This change was made with course extension in mind. [stebler, vabold]
+- In split-screen, multiple players can now select the same character. [Palapeli]
+- Support for [Extended Regions](https://wiki.tockdom.com/wiki/Extended\_Regions) has been added. [Zach]
+- Support for various speedometer metrics has been added. [Gaberboo, Gnome!, stebler]
+- The setting to disable the minimap has been added. [Henry]
+- The number of tags now defaults to 3. [MikeIsAStar]
+- A setting for the tag render distance ("battle glitch") has been added. [MikeIsAStar]
+- Explanation texts can now have a second line. [Wingcapman]
+- D-pad input is no longer flipped in mirror mode. [Gnome!]
+- The color of the OK text when selecting characters in multiplayer has been fixed. [stebler]
+- A missing button in the battle pause menu has been added. [stebler]
+
+## Sound
+
+- The master volume and music volume can now be configured. [stebler]
+- A lag spike issue when loading a BRSTM has been fixed. [stebler]
+- An issue where the final lap jingle would not play if the speedup was disabled has been fixed. [stebler]
+
+## Video
+
+- Options to force 60 or 30 fps have been added. [Gnome!]
+- An issue where the game would run at 50 fps rather than 60 has been fixed. [stebler]
+- The console is now displayed correctly in interlaced modes. [MikeIsAStar]
+
+## License system
+
+- Character, vehicle and course selections are now saved. [MikeIsAStar, stebler]
+- The license unlocker no longer breaks if the Mii of a license has been deleted. [stebler, vabold]
+
+## Security
+
+- Memory protection has been improved. [MikeIsAStar, Gaberboo]
+- Memory allocation failure is now a fatal error. [MikeIsAStar]
+- The performance of some mitigations has been improved. [MikeIsAStar]
+- The vulnerability used by the BlueBomb exploit has been patched. [MikeIsAStar]
+- A stack overflow check has been implemented. [MikeIsAStar]
+- Additional file format checks have been added. [MikeIsAStar]
+- Certain functions are now erased. [MikeIsAStar]
+
+## Misc
+
+- A setting to use ZL (CC/CCP) or Y (GCN) to trick and wheelie, dubbed "simplified controls", has been added. [stebler]
+- Several base game settings have been restored. [Zach, Gnome!, stebler]
+- Discord Rich Presence statuses are now more precise. [vabold, Gaberboo]
+- Explanations about disc changes on Dolphin have been added. [Lami, thepikachugamer]
+- Mega thunderclouds are now available as an option. [Hibyehello, Zach]
+- Multiple log files can now be kept in the `logs` folder. By default, they are deleted after one week, but this can be configured. [MikeIsAStar]
+- Crash handlers have been improved again. [MikeIsAStar, vabold, riidefi]
+- Certain standard library functions now use a more optimized version. [MikeIsAStar]
+- The author list in the HBC XML has been changed to a generic "The MKW-SP Developers". This requires a manual update. [The MKW-SP Developers]
