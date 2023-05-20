@@ -28,6 +28,14 @@ void SystemManager::restart() {
     Restart();
 }
 
+u32 SystemManager::aspectRatio() const {
+    return m_aspectRatio;
+}
+
+u32 SystemManager::matchingArea() const {
+    return m_matchingArea;
+}
+
 void SystemManager::ShutdownSystem() {
     ResetDolphinSpeedLimit();
     VISetBlack(true);
@@ -75,10 +83,6 @@ void SystemManager::LaunchTitle(u64 titleID) {
         return;
     }
     __OSLaunchTitle(titleID);
-}
-
-u32 SystemManager::matchingArea() const {
-    return m_matchingArea;
 }
 
 RichPresenceManager &RichPresenceManager::Instance() {

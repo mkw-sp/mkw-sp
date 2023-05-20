@@ -1,0 +1,115 @@
+{
+    "version": 10,
+    "sections": [
+        {
+            "magic": "pat1",
+            "id": 6,
+            "groups": [],
+            "name": "position",
+            "start frame": 0,
+            "end frame": 14,
+            "descending bind": true,
+        },
+        {
+            "magic": "pai1",
+            "frame count": 14,
+            "loop": false,
+            "tpls": [],
+            "contents": [
+                {
+                    "name": "position",
+                    "kind": "pane",
+                    "animations": [
+                        {
+                            "magic": "RLPA",
+                            "targets": [
+                                {
+                                    "id": 0,
+                                    "kind": "translate y",
+                                    "curve type": "hermite",
+                                    "keys": [
+                                        {
+                                            "frame": 0,
+                                            "value": -76.667,
+                                            "slope": 0,
+                                        },
+                                        {
+                                            "frame": 1,
+                                            "value": -43.75,
+                                            "slope": 0,
+                                        },
+                                        {
+                                            "frame": 2,
+                                            "value": -56.667,
+                                            "slope": 0,
+                                        },
+                                        {
+                                            "frame": 3,
+                                            "value": -55.714,
+                                            "slope": 0,
+                                        },
+                                        {
+                                            "frame": 4,
+                                            "value": 63.333,
+                                            "slope": 0,
+                                        },
+                                        {
+                                            "frame": 5,
+                                            "value": 47.143,
+                                            "slope": 0,
+                                        },
+                                        {
+                                            "frame": 6,
+                                            "value": 54.0,
+                                            "slope": 0,
+                                        },
+                                        {
+                                            "frame": 7,
+                                            "value": 56.667,
+                                            "slope": 0,
+                                        },
+                                        {
+                                            "frame": 8,
+                                            "value": 54.0,
+                                            "slope": 0,
+                                        },
+                                        {
+                                            "frame": 9,
+                                            "value": 56.667,
+                                            "slope": 0,
+                                        },
+                                        {
+                                            "frame": 10,
+                                            "value": 58.0,
+                                            "slope": 0,
+                                        },
+                                        {
+                                            "frame": 11,
+                                            "value": 56.667,
+                                            "slope": 0,
+                                        },
+                                        {
+                                            "frame": 12,
+                                            "value": 58.0,
+                                            "slope": 0,
+                                        },
+                                        {
+                                            "frame": 13,
+                                            "value": 56.667,
+                                            "slope": 0,
+                                        },
+                                        {
+                                            "frame": 14,
+                                            "value": 0.0,
+                                            "slope": 0,
+                                        },
+                                    ],
+                                },
+                            ],
+                        },
+                    ],
+                },
+            ],
+        },
+    ],
+}
