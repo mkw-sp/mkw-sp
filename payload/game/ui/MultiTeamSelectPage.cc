@@ -2,6 +2,7 @@
 
 #include "game/sound/DriverSoundManager.hh"
 #include "game/system/RaceConfig.hh"
+#include "game/system/SaveManager.hh"
 #include "game/ui/MessagePage.hh"
 #include "game/ui/SectionManager.hh"
 #include "game/ui/model/MenuModelManager.hh"
@@ -221,8 +222,11 @@ void MultiTeamSelectPage::onTeamControlFront(UpDownControl *control, u32 localPl
 
 void MultiTeamSelectPage::onTeamValueChange(TextUpDownValueControl::TextControl *text, u32 index) {
     text->setMessageAll(10268 + index);
+    auto *saveManager = System::SaveManager::Instance();
+    auto setting = saveManager->getSetting<SP::ClientSettings::Setting::ColorPalette>();
+    bool colorblind = setting == SP::ClientSettings::ColorPalette::Colorblind;
     char flagPane[0x20];
-    snprintf(flagPane, std::size(flagPane), "flag_%u", index);
+    snprintf(flagPane, std::size(flagPane), "flag_%u", colorblind * 6 + index);
     text->setPicture("flag_set_p", flagPane);
 }
 
