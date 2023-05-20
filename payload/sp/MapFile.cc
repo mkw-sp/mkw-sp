@@ -20,11 +20,6 @@ namespace SP::MapFile {
 
 #define SYMBOL_ADDRESS_LENGTH 10
 
-struct Symbol {
-    u32 address;
-    std::string_view name;
-};
-
 static std::optional<std::string_view> s_mapFile = {};
 
 bool IsLoaded() {
@@ -112,16 +107,16 @@ static std::optional<Symbol> GetNextSymbol(u32 &mapFilePos) {
     return Symbol{*symbolAddress, line};
 }
 
-bool FindSymbol(u32 address, char *symbolNameBuffer, size_t symbolNameBufferSize) {
+std::optional<Symbol> SymbolLowerBound(u32 address) {
     if (!IsLoaded()) {
-        return false;
+        return std::nullopt;
     }
 
     u32 mapFilePos = 0;
 
     std::optional<Symbol> prevSymbol = GetNextSymbol(mapFilePos);
     if (!prevSymbol.has_value()) {
-        return false;
+        return std::nullopt;
     }
 
     while (true) {
@@ -136,9 +131,34 @@ bool FindSymbol(u32 address, char *symbolNameBuffer, size_t symbolNameBufferSize
         prevSymbol = nextSymbol;
     }
 
-    snprintf(symbolNameBuffer, symbolNameBufferSize, "%.*s [%c0x%08X]", prevSymbol->name.size(),
-            prevSymbol->name.data(), address < prevSymbol->address ? '-' : '+',
-            std::abs(static_cast<int>(address - prevSymbol->address)));
+    return prevSymbol;
+}
+
+bool FindSymbol(u32 address, char *symbolNameBuffer, size_t symbolNameBufferSize) {
+    auto it = SymbolLowerBound(address);
+    if (!it) {
+        return false;
+    }
+    snprintf(symbolNameBuffer, symbolNameBufferSize, "%.*s [%c0x%08X]", it->name.size(),
+            it->name.data(), address < it->address ? '-' : '+',
+            std::abs(static_cast<int>(address - it->address)));
+    return true;
+}
+
+bool ScoreMatch(u32 symbol, u32 lr) {
+    if (lr < symbol) {
+        return false;
+    }
+    // Largest function in game
+    if (std::abs(static_cast<s64>(lr) - static_cast<s64>(symbol)) > 0x4D14) {
+        return false;
+    }
+    for (u32 it = symbol; it < lr; ++it) {
+        u32 ins = *reinterpret_cast<volatile u32 *>(it);
+        if (ins == 0x4E800020) { // blr
+            return false;
+        }
+    }
     return true;
 }
 
