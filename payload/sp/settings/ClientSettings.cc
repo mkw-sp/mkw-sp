@@ -413,8 +413,8 @@ const Entry entries[] = {
         .defaultValue = static_cast<u32>(ItemFrequency::Balanced),
         .valueCount = magic_enum::enum_count<ItemFrequency>(),
         .valueNames = magic_enum::enum_names<ItemFrequency>().data(),
-        .valueMessageIds = (u32[]) { 3481, 3482, 3483 },
-        .valueExplanationMessageIds = (u32[]) { 3485, 3486, 3487 },
+        .valueMessageIds = (u32[]) { 3481, 3482, 3483, 3484 },
+        .valueExplanationMessageIds = (u32[]) { 3485, 3486, 3487, 3488 },
     },
     [static_cast<u32>(Setting::VSMegaClouds)] = {
         .category = Category::VS,
@@ -484,8 +484,8 @@ const Entry entries[] = {
         .defaultValue = static_cast<u32>(ItemFrequency::Balanced),
         .valueCount = magic_enum::enum_count<ItemFrequency>(),
         .valueNames = magic_enum::enum_names<ItemFrequency>().data(),
-        .valueMessageIds = (u32[]) { 3481, 3482, 3483 },
-        .valueExplanationMessageIds = (u32[]) { 3485, 3486, 3487 },
+        .valueMessageIds = (u32[]) { 3481, 3482, 3483, 3484 },
+        .valueExplanationMessageIds = (u32[]) { 3485, 3486, 3487, 3488 },
     },
     [static_cast<u32>(Setting::RoomTeamSize)] = {
         .category = Category::Room,
