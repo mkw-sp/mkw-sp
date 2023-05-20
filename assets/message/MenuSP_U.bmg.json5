@@ -1104,16 +1104,16 @@
         string: "battles",
     },
     "10424": {
-        string: "Arena Selection"
+        string: "Stage Selection"
     },
     "10425": {
-        string: "Arenas are chosen individually.",
+        string: "Stages are chosen individually.",
     },
     "10426": {
-        string: "Arenas are picked at random.",
+        string: "Stages are picked at random.",
     },
     "10427": {
-        string: "Arenas are played in order.",
+        string: "Stages are played in order.",
     },
     "20000": {
         string: "Online",
