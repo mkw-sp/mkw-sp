@@ -107,7 +107,7 @@ enum class PageId {
     ControllerRegisterInstructions = 0x63,
     ControllerRegisterComplete = 0x64,
     LicenseSelect = 0x65,
-    LicenceMiiChanged = 0x66,
+    LicenceDisplay = 0x66,
     LicenseSettingsTop = 0x67,
     LicenceEraseConfirm = 0x68,
     SingleTop = 0x69,

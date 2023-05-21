@@ -1,12 +1,14 @@
 name: Build MKW-SP
 
-on: 
+on:
   push:
     paths-ignore:
+      - 'www/**'
       - 'tools/**'
       - '.github/workflows/build_tools.yml'
   pull_request:
     paths-ignore:
+      - 'www/**'
       - 'tools/**'
       - '.github/workflows/build_tools.yml'
 
@@ -34,7 +36,7 @@ jobs:
           key: ${{ runner.os }}-cache-dkp-r42.2-1
       - name: Download devkitPPC
         if: steps.cache-1.outputs.cache-hit != 'true'
-        run: | 
+        run: |
           mkdir cache && cd cache
           wget "https://wii.leseratte10.de/devkitPro/devkitPPC/r42%20%282023-04-19%29/devkitPPC-r42.2-1-linux_x86_64.pkg.tar.zst"
           cd ..
@@ -60,7 +62,7 @@ jobs:
         run: ./build.py --ci -- ${{ matrix.profile }}
       - name: Upload result
         uses: actions/upload-artifact@v3
-        with: 
+        with:
           name: mkw-sp-${{ matrix.profile }}
           path: out/${{ matrix.profile }}
 

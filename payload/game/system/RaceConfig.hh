@@ -1,5 +1,7 @@
 #pragma once
 
+#include "game/system/SaveManager.hh"
+
 #include <sp/TrackPackManager.hh>
 
 namespace System {
@@ -111,6 +113,14 @@ public:
     };
     static_assert(sizeof(Scenario) == 0xbf0);
 
+    bool outOfTracks() const;
+    bool isVanillaTracks() const;
+    SP::TrackPackInfo& getPackInfo();
+    SP::TrackPackInfo& emplacePackInfo();
+
+    bool generateRandomCourses();
+    bool generateOrderedCourses(u16 currentIdx);
+
     Scenario &raceScenario();
     Scenario &menuScenario();
     Scenario &awardsScenario();
@@ -118,31 +128,39 @@ public:
     void applyEngineClass();
     void applyItemFreq();
     void applyCPUMode();
-    void endRace();
+
+    void REPLACED(endRace)();
+    REPLACE void endRace();
 
     void REPLACED(init)();
     REPLACE void init();
+
+    void REPLACED(clear)();
+    REPLACE void clear();
 
     void REPLACED(initRace)();
     REPLACE void initRace();
 
     static RaceConfig *Instance();
 
+    u32 m_selectedTrackPack;
 private:
     REPLACE static void ConfigurePlayers(Scenario &scenario, u32 screenCount);
 
-    u8 _0004[0x0020 - 0x0004];
+    std::tuple<SP::TrackGameMode, SP::ClientSettings::CourseSelection> getCourseSettings();
+
+    u32 m_currentCourse;
+    u8 _000c[0x0020 - 0x000c];
     Scenario m_raceScenario;
     Scenario m_menuScenario;
     Scenario m_awardsScenario;
     u8 m_ghostBuffers[2][11][0x2800]; // Modified
-public:
-    SP::TrackPackInfo m_packInfo;
+    SP::CircularBuffer<SP::TrackPackInfo, 32> m_courseOrder;
 
     static RaceConfig *s_instance;
 };
 
 // If you are changing this, make sure you update in RaceConfig.h
-static_assert(sizeof(SP::TrackPackInfo) == 0x84);
+static_assert(sizeof(SP::CircularBuffer<SP::TrackPackInfo, 32>) == 0x1008);
 
 } // namespace System

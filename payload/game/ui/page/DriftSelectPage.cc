@@ -32,7 +32,8 @@ void DriftSelectPage::onButtonFront(PushButton *button, u32 /* localPlayerId */)
                 requestChangeSection(m_replacementSection, button);
             }
         } else {
-            auto &menuScenario = System::RaceConfig::Instance()->menuScenario();
+            auto *raceConfig = System::RaceConfig::Instance();
+            auto &menuScenario = raceConfig->menuScenario();
             if (menuScenario.gameMode == System::RaceConfig::GameMode::Mission) {
                 auto *missionInstructionPage = section->page<PageId::MissionInstruction>();
                 if (missionInstructionPage->levelId() == 7 /* Boss */) {
@@ -40,6 +41,12 @@ void DriftSelectPage::onButtonFront(PushButton *button, u32 /* localPlayerId */)
                     requestChangeSection(SectionId::MRBossDemo, button);
                 } else {
                     requestChangeSection(SectionId::MR, button);
+                }
+            } else if (raceConfig->generateRandomCourses()) {
+                if (menuScenario.gameMode == System::RaceConfig::GameMode::OfflineBT) {
+                    changeSection(SectionId::BTDemo, Anim::Next, 0.0f);
+                } else {
+                    changeSection(SectionId::VSDemo, Anim::Next, 0.0f);
                 }
             } else {
                 startReplace(PageId::CourseSelect, button);

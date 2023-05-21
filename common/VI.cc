@@ -46,6 +46,10 @@ void Init() {
     bfbl = 1 << 28 | reinterpret_cast<u32>(xfb) >> 5;
 }
 
+void Disable() {
+    dcr = dcr & ~1;
+}
+
 bool IsProgressive() {
     return visel & 1 || dcr & 4;
 }

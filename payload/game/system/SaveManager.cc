@@ -486,7 +486,7 @@ void SaveManager::saveGhost(GhostFile *file) {
         OSDetachThread(&m_ghostInitThread);
     }
 
-    auto &packInfo = RaceConfig::Instance()->m_packInfo;
+    auto &packInfo = RaceConfig::Instance()->getPackInfo();
     auto sha1 = packInfo.getCourseSha1();
     auto sha1Hex = sha1ToHex(sha1);
 
@@ -563,10 +563,6 @@ void SaveManager_EraseSPLicense(void) {
     System::SaveManager::Instance()->eraseSPLicense();
 }
 
-void SaveManager_CreateSPLicense(const System::MiiId *miiId) {
-    System::SaveManager::Instance()->createSPLicense(miiId);
-}
-
 s32 SaveManager_SPCurrentLicense(void) {
     return System::SaveManager::Instance()->spCurrentLicense().value_or(-1);
 }
@@ -593,10 +589,5 @@ u32 SaveManager_GetTAGhostTagVisibility(void) {
     auto *saveManager = System::SaveManager::Instance();
     auto value = saveManager->getSetting<SP::ClientSettings::Setting::TAGhostTagVisibility>();
     return static_cast<u32>(value);
-}
-
-void SaveManager_SetMiiId(const System::MiiId *miiId) {
-    auto *saveManager = System::SaveManager::Instance();
-    saveManager->setMiiId(*miiId);
 }
 }

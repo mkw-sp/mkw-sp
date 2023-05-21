@@ -84,6 +84,12 @@ void CourseSelectPage::onInit() {
             m_buffers[i][c].reset(new (0x20) u8[MaxThumbnailHeight * MaxThumbnailWidth]);
         }
     }
+
+    SP::TrackPackManager::CreateInstance();
+}
+
+void CourseSelectPage::onDeinit() {
+    SP::TrackPackManager::DestroyInstance();
 }
 
 void CourseSelectPage::onActivate() {
@@ -183,6 +189,8 @@ void CourseSelectPage::onBack(u32 /* localPlayerId */) {
 }
 
 void CourseSelectPage::onButtonFront(PushButton *button, u32 /* localPlayerId */) {
+    SP_LOG("onButtonFront");
+
     auto *sectionManager = SectionManager::Instance();
     auto *section = sectionManager->currentSection();
     auto sectionId = section->id();
@@ -198,8 +206,13 @@ void CourseSelectPage::onButtonFront(PushButton *button, u32 /* localPlayerId */
         votingBackPage->setSubmitted(true);
         startReplace(Anim::Next, button->getDelay());
     } else {
-        auto raceConfig = System::RaceConfig::Instance();
-        raceConfig->m_packInfo.selectCourse(databaseId);
+        auto *raceConfig = System::RaceConfig::Instance();
+        if (!raceConfig->generateOrderedCourses(buttonIndex)) {
+            raceConfig->emplacePackInfo().selectCourse(databaseId);
+        };
+
+        auto &menuScenario = raceConfig->menuScenario();
+        menuScenario.courseId = raceConfig->getPackInfo().getSelectedCourse();
 
         if (raceConfig->menuScenario().gameMode == System::RaceConfig::GameMode::TimeAttack) {
             m_replacement = PageId::TimeAttackTop;
@@ -426,7 +439,7 @@ void CourseSelectPage::loadThumbnails() {
                 m_thumbnailChanged[i] = true;
             } else {
                 auto hex = sha1ToHex(*databaseId);
-                SP_LOG("Failed to read thumbnail %s with error %u", hex, result);
+                SP_LOG("Failed to read thumbnail %s with error %u", hex.data(), result);
             }
         }
     }
@@ -435,9 +448,8 @@ void CourseSelectPage::loadThumbnails() {
 JRESULT CourseSelectPage::loadThumbnail(u32 i, Sha1 databaseId) {
     char path[128];
 
-    auto &trackPackInfo = System::RaceConfig::Instance()->m_packInfo;
     auto hex = sha1ToHex(databaseId);
-    if (trackPackInfo.isVanilla()) {
+    if (System::RaceConfig::Instance()->isVanillaTracks()) {
         snprintf(path, std::size(path), "/thumbnails/%s.jpg", hex.data());
     } else {
         snprintf(path, std::size(path), "/mkw-sp/Track Thumbnails/%s.jpg", hex.data());

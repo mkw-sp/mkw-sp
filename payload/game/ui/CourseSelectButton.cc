@@ -41,7 +41,18 @@ void CourseSelectButton::refresh(Sha1 dbId) {
     auto &trackPackManager = SP::TrackPackManager::Instance();
     auto &track = trackPackManager.getTrack(dbId);
 
-    raceConfig->m_packInfo.setTrackMessage(this, track.m_name.c_str(), track.getCourseId());
+    if (raceConfig->isVanillaTracks()) {
+        if (raceConfig->menuScenario().gameMode == System::RaceConfig::GameMode::OfflineBT) {
+            setMessageAll(9400 + track.getCourseId() - 32);
+        } else {
+            setMessageAll(9360 + track.getCourseId());
+        }
+    } else {
+        UI::MessageInfo info;
+        info.strings[0] = track.m_name.c_str();
+        setMessageAll(20031, &info);
+    }
+
 }
 
 void CourseSelectButton::setTex(u8 c, const GXTexObj &texObj) {

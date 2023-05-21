@@ -12,7 +12,7 @@ public:
     virtual ~MiiGroup();
     virtual void dt(s32 type);
     void init(size_t count, u32 presetFlags, EGG::Heap *heap);
-    void insertFromId(size_t index, System::MiiId *id);
+    void insertFromId(size_t index, const System::MiiId *id);
     void insertFromRaw(u32 index, const System::RawMii *raw);
     System::Mii *get(size_t index);
     void copy(const MiiGroup *srcGroup, size_t srcIndex, size_t index);

@@ -16,7 +16,6 @@ public:
     RoulettePage();
     ~RoulettePage() override;
     void onInit() override;
-    void onDeinit() override;
     void onActivate() override;
     void beforeInAnim() override;
     void beforeCalc() override;

@@ -163,8 +163,8 @@ void OnlineConnectionManagerPage::sendSearchMessage() {
 
     CTSMessage response;
     response.which_message = CTSMessage_start_matchmaking_tag;
+    response.message.start_matchmaking.trackpack = raceConfig->m_selectedTrackPack;
     response.message.start_matchmaking.gamemode = static_cast<u32>(menuScenario.gameMode);
-    response.message.start_matchmaking.trackpack = raceConfig->m_packInfo.m_selectedTrackPack;
 
     write(response);
     m_searchStarted = false;

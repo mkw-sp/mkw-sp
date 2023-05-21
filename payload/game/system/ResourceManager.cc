@@ -2,6 +2,7 @@
 
 #include "game/system/RaceConfig.hh"
 #include "game/system/RootScene.hh"
+#include "game/ui/SectionManager.hh"
 
 #include <sp/TrackPackManager.hh>
 #include <sp/storage/DecompLoader.hh>
@@ -133,9 +134,9 @@ MultiDvdArchive *ResourceManager::loadCourse(u32 courseId, EGG::Heap *heap, bool
 
     archive->init();
 
-    char filePath[64];
-    auto &packInfo = RaceConfig::Instance()->m_packInfo;
+    auto &packInfo = RaceConfig::Instance()->getPackInfo();
 
+    char filePath[64];
     if (splitScreen) {
         packInfo.getTrackPath(filePath, sizeof(filePath), true);
         if (!archive->exists(filePath)) {

@@ -100,7 +100,6 @@ private:
 
 class TrackPackInfo {
 public:
-    bool isVanilla() const;
     void getTrackPath(char *out, u32 outSize, bool splitScreen) const;
 
     // May be different to the sha1 passed to selectCourse, due to
@@ -108,13 +107,10 @@ public:
     Sha1 getCourseSha1() const;
 
     u32 getSelectedCourse() const;
+    const wchar_t* getCourseName() const;
     std::optional<u32> getSelectedMusic() const;
 
     void selectCourse(Sha1 id);
-    void setTrackMessage(UI::LayoutUIControl *control) const;
-    void setTrackMessage(UI::LayoutUIControl *control, const wchar_t *name, u32 courseId) const;
-
-    u32 m_selectedTrackPack = 0;
 
 private:
     // Private as need to be kept in sync

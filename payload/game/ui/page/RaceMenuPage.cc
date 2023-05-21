@@ -57,12 +57,13 @@ void RaceMenuPage::onButtonFront(PushButton *button, u32 localPlayerId) {
 }
 
 void RaceMenuPage::onNextButtonFront(PushButton *button, u32 /* localPlayerId */) {
-    System::RaceConfig::Instance()->endRace();
+    auto *raceConfig = System::RaceConfig::Instance();
+    raceConfig->endRace();
 
     playSound(Sound::SoundId::SE_RC_PAUSE_EXIT_GAME, -1);
 
     SectionId sectionId;
-    auto &menuScenario = System::RaceConfig::Instance()->menuScenario();
+    auto &menuScenario = raceConfig->menuScenario();
     if (IsLastMatch()) {
         bool isWin = false;
         for (u32 playerId = 0; playerId < menuScenario.localPlayerCount; playerId++) {
@@ -90,11 +91,19 @@ void RaceMenuPage::onNextButtonFront(PushButton *button, u32 /* localPlayerId */
         menuScenario.gameMode = System::RaceConfig::GameMode::Awards;
     } else {
         menuScenario.cameraMode = 5;
-        if (menuScenario.isBattle()) {
-            sectionId = SectionId::SingleSelectBTCourse;
+        if (raceConfig->outOfTracks()) {
+            if (menuScenario.isBattle()) {
+                sectionId = SectionId::SingleSelectBTCourse;
+            } else {
+                sectionId = SectionId::SingleSelectVSCourse;
+            }
         } else {
-            sectionId = SectionId::SingleSelectVSCourse;
-        };
+            if (menuScenario.isBattle()) {
+                sectionId = SectionId::BTDemo;
+            } else {
+                sectionId = SectionId::VSDemo;
+            }
+        }
     }
 
     f32 delay = button->getDelay();

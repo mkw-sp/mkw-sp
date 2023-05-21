@@ -9,7 +9,7 @@ u32 RaceSoundManager::state() const {
 }
 
 u32 RaceSoundManager::getBGMSoundId() {
-    auto &packInfo = System::RaceConfig::Instance()->m_packInfo;
+    auto &packInfo = System::RaceConfig::Instance()->getPackInfo();
     auto trackMusic = packInfo.getSelectedMusic();
 
     if (trackMusic.has_value()) {

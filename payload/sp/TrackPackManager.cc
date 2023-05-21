@@ -386,31 +386,8 @@ size_t TrackPackManager::getPackCount() const {
 }
 
 const TrackPack &TrackPackManager::getSelectedTrackPack() const {
-    auto &trackPackInfo = System::RaceConfig::Instance()->m_packInfo;
-    return m_packs[trackPackInfo.m_selectedTrackPack];
-}
-
-void TrackPackInfo::setTrackMessage(UI::LayoutUIControl *control) const {
-    return setTrackMessage(control, m_name.c_str(), m_selectedCourseId);
-}
-
-void TrackPackInfo::setTrackMessage(UI::LayoutUIControl *control, const wchar_t *name,
-        u32 courseId) const {
     auto *raceConfig = System::RaceConfig::Instance();
-
-    if (isVanilla()) {
-        if (raceConfig->menuScenario().gameMode == System::RaceConfig::GameMode::OfflineBT) {
-            control->setMessageAll(9400 + courseId - 32);
-        } else {
-            control->setMessageAll(9360 + courseId);
-        }
-
-        return;
-    }
-
-    UI::MessageInfo info;
-    info.strings[0] = name;
-    control->setMessageAll(20031, &info);
+    return m_packs[raceConfig->m_selectedTrackPack];
 }
 
 const Track &TrackPackManager::getTrack(Sha1 sha1) const {
@@ -450,9 +427,9 @@ void TrackPackManager::DestroyInstance() {
 
 void TrackPackInfo::getTrackPath(char *out, u32 outSize, bool splitScreen) const {
     auto hex = sha1ToHex(m_selectedSha1);
-    SP_LOG("Getting track path for %s", hex);
+    SP_LOG("Getting track path for %s", hex.data());
 
-    if (isVanilla()) {
+    if (System::RaceConfig::Instance()->isVanillaTracks()) {
         auto courseFileName = Registry::courseFilenames[m_selectedCourseId];
 
         if (splitScreen) {
@@ -468,16 +445,16 @@ void TrackPackInfo::getTrackPath(char *out, u32 outSize, bool splitScreen) const
     }
 }
 
-bool TrackPackInfo::isVanilla() const {
-    return m_selectedTrackPack == 0;
-}
-
 u32 TrackPackInfo::getSelectedCourse() const {
     return m_selectedCourseId;
 }
 
+const wchar_t *TrackPackInfo::getCourseName() const {
+    return m_name.c_str();
+}
+
 Sha1 TrackPackInfo::getCourseSha1() const {
-    if (isVanilla()) {
+    if (System::RaceConfig::Instance()->isVanillaTracks()) {
         auto *saveManager = System::SaveManager::Instance();
         auto myStuffSha1 = saveManager->courseSHA1(m_selectedCourseId);
         if (myStuffSha1.has_value()) {
@@ -497,16 +474,12 @@ std::optional<u32> TrackPackInfo::getSelectedMusic() const {
 }
 
 void TrackPackInfo::selectCourse(Sha1 sha) {
-    auto &trackPackManager = TrackPackManager::Instance();
-    auto &track = trackPackManager.getTrack(sha);
+    auto &track = TrackPackManager::Instance().getTrack(sha);
 
     m_name = track.m_name;
     m_selectedSha1 = track.m_sha1;
     m_selectedMusicId = track.m_musicId;
     m_selectedCourseId = track.getCourseId();
-
-    auto &menuScenario = System::RaceConfig::Instance()->menuScenario();
-    menuScenario.courseId = m_selectedCourseId;
 }
 
 TrackPackManager *TrackPackManager::s_instance = nullptr;

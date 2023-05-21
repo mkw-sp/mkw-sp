@@ -22,6 +22,7 @@ void PackSelectPage::onInit() {
     auto *section = SectionManager::Instance()->currentSection();
     bool isOnline = section->isPageActive(PageId::OnlineConnectionManager);
 
+    SP::TrackPackManager::CreateInstance();
     auto &trackPackManager = SP::TrackPackManager::Instance();
     auto packCount = trackPackManager.getPackCount() - isOnline;
 
@@ -97,7 +98,7 @@ void PackSelectPage::onBack(u32 /* localPlayerId */) {
 
 void PackSelectPage::onButtonFront(PushButton *button, u32 /* localPlayerId */) {
     auto *raceConfig = System::RaceConfig::Instance();
-    raceConfig->m_packInfo.m_selectedTrackPack = m_sheetIndex * m_buttons.size() + button->m_index;
+    raceConfig->m_selectedTrackPack = m_sheetIndex * m_buttons.size() + button->m_index;
 
     auto *section = SectionManager::Instance()->currentSection();
     if (SP::ThumbnailManager::IsActive()) {

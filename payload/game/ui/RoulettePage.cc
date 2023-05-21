@@ -62,12 +62,6 @@ void RoulettePage::onInit() {
     } else {
         m_pageTitleText.setMessage(4354, nullptr);
     }
-
-    SP::TrackPackManager::CreateInstance();
-}
-
-void RoulettePage::onDeinit() {
-    SP::TrackPackManager::DestroyInstance();
 }
 
 void RoulettePage::onActivate() {
@@ -178,8 +172,14 @@ void RoulettePage::initSelectingStage(u32 selectedPlayer) {
     auto courseIndex = votingBackPage->getCourseVote(selectedPlayer);
     auto &trackPack = SP::TrackPackManager::Instance().getSelectedTrackPack();
 
+    auto *raceConfig = System::RaceConfig::Instance();
+    auto &packInfo = raceConfig->getPackInfo();
+
     auto courseId = trackPack.getNthTrack(courseIndex, SP::TrackGameMode::Race);
-    System::RaceConfig::Instance()->m_packInfo.selectCourse(courseId.value());
+    packInfo.selectCourse(courseId.value());
+
+    auto &menuScenario = System::RaceConfig::Instance()->menuScenario();
+    menuScenario.courseId = packInfo.getSelectedCourse();
 }
 
 bool RoulettePage::calcPlayer(u8 playerIdx) {

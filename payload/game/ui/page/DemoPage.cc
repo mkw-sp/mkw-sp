@@ -28,7 +28,17 @@ void DemoPage::onInit() {
     auto courseId = menuScenario.courseId;
     auto cupId = Registry::GetCourseCupId(courseId);
 
-    raceConfig->m_packInfo.setTrackMessage(&m_courseDisplay);
+    if (raceConfig->isVanillaTracks()) {
+        if (menuScenario.gameMode == System::RaceConfig::GameMode::OfflineBT) {
+            m_courseDisplay.setMessageAll(9400 + courseId - 32);
+        } else {
+            m_courseDisplay.setMessageAll(9360 + courseId);
+        }
+    } else {
+        UI::MessageInfo info;
+        info.strings[0] = raceConfig->getPackInfo().getCourseName();
+        m_courseDisplay.setMessageAll(20031, &info);
+    }
 
     u32 cupMsgId = 9999;
     MessageInfo cupInfo = {};

@@ -101,8 +101,7 @@ void OnlineTopPage::onButtonSelect(PushButton *button, u32 /* localPlayerId */) 
 }
 
 void OnlineTopPage::onWorldwideButtonFront(PushButton *button, u32 /* localPlayerId */) {
-    auto &packInfo = System::RaceConfig::Instance()->m_packInfo;
-    packInfo.m_selectedTrackPack = 0;
+    System::RaceConfig::Instance()->m_selectedTrackPack = 0;
 
     m_replacement = PageId::OnlineModeSelect;
     startReplace(Anim::Next, button->getDelay());

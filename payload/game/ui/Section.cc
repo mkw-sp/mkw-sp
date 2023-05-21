@@ -193,7 +193,7 @@ void Section::addPage(PageId pageId) {
         }
     }
 
-    SP_LOG("addPage %u (0x%x)", pageId, pageId);
+    SP_LOG("addPage %u (0x%x)", static_cast<u32>(pageId), static_cast<u32>(pageId));
 
     REPLACED(addPage)(pageId);
 }
@@ -226,13 +226,13 @@ void Section::addActivePage(PageId pageId) {
         }
     }
 
-    SP_LOG("addActivePage %u (0x%x)", pageId, pageId);
+    SP_LOG("addActivePage %u (0x%x)", static_cast<u32>(pageId), static_cast<u32>(pageId));
 
     REPLACED(addActivePage)(pageId);
 }
 
 void Section::addPages(SectionId id) {
-    SP_LOG("&7DEBUG: Constructing section %u (0x%x)", id, id);
+    SP_LOG("&7DEBUG: Constructing section %u (0x%x)", static_cast<u32>(id), static_cast<u32>(id));
 
     REPLACED(addPages)(id);
 

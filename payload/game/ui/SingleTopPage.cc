@@ -88,19 +88,10 @@ void SingleTopPage::onInit() {
 
     m_taButton.selectDefault(0);
     m_instructionText.setMessage(3051);
-
-    SP::TrackPackManager::CreateInstance();
-}
-
-void SingleTopPage::onDeinit() {
-    SP::TrackPackManager::DestroyInstance();
 }
 
 void SingleTopPage::onActivate() {
     m_replacement = PageId::None;
-
-    auto *context = SectionManager::Instance()->globalContext();
-    context->_74 = 2;
 
     auto &menuScenario = System::RaceConfig::Instance()->menuScenario();
     menuScenario.itemMode = 0;
@@ -211,6 +202,7 @@ void SingleTopPage::onVSButtonFront(PushButton *button, u32 /* localPlayerId */)
         menuScenario.players[i].type = System::RaceConfig::Player::Type::CPU;
     }
 
+    context->applyVehicleRestriction(false);
     raceConfig->applyCPUMode();
     raceConfig->applyItemFreq();
     raceConfig->applyEngineClass();
@@ -256,6 +248,7 @@ void SingleTopPage::onBTButtonFront(PushButton *button, u32 /* localPlayerId */)
         menuScenario.players[i].type = System::RaceConfig::Player::Type::CPU;
     }
 
+    context->applyVehicleRestriction(true);
     raceConfig->applyCPUMode();
     raceConfig->applyItemFreq();
     raceConfig->applyEngineClass();

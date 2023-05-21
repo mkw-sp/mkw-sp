@@ -29,7 +29,7 @@ bool ThumbnailManager::next() {
 
     if (trackId.has_value()) {
         auto *raceConfig = System::RaceConfig::Instance();
-        raceConfig->m_packInfo.selectCourse(*trackId);
+        raceConfig->getPackInfo().selectCourse(*trackId);
         return true;
     } else {
         return false;
@@ -44,7 +44,7 @@ void ThumbnailManager::capture() {
         return;
     }
 
-    auto sha1 = System::RaceConfig::Instance()->m_packInfo.getCourseSha1();
+    auto sha1 = System::RaceConfig::Instance()->getPackInfo().getCourseSha1();
     auto hex = sha1ToHex(sha1);
 
     swprintf(path.data(), path.size(), L"/mkw-sp/Generated Thumbnails/%s.xfb", hex.data());

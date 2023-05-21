@@ -17,7 +17,7 @@ void GhostManagerPage::SPList::populate() {
     auto cc = saveManager->getSetting<SP::ClientSettings::Setting::TAClass>();
     bool speedModIsEnabled = cc == SP::ClientSettings::TAClass::CC200;
 
-    auto &packInfo = System::RaceConfig::Instance()->m_packInfo;
+    auto &packInfo = System::RaceConfig::Instance()->getPackInfo();
     auto selectedSha1 = packInfo.getCourseSha1();
 
     m_count = 0;

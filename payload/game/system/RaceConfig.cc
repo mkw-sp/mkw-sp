@@ -2,12 +2,35 @@
 
 #include "game/system/InputManager.hh"
 #include "game/system/SaveManager.hh"
+#include "game/ui/SectionManager.hh"
 
+#include <tuple>
 extern "C" {
 #include <vendor/libhydrogen/hydrogen.h>
 }
 
 namespace System {
+
+bool RaceConfig::outOfTracks() const {
+    return m_currentCourse >= m_courseOrder.count();
+}
+
+bool RaceConfig::isVanillaTracks() const {
+    return m_selectedTrackPack == 0;
+}
+
+SP::TrackPackInfo& RaceConfig::getPackInfo() {
+    assert(!outOfTracks());
+    return *m_courseOrder[m_currentCourse];
+}
+
+SP::TrackPackInfo& RaceConfig::emplacePackInfo() {
+    assert(m_courseOrder.count() == m_currentCourse);
+
+    SP::TrackPackInfo packInfo = {};
+    m_courseOrder.push_back(std::move(packInfo));
+    return *m_courseOrder[m_currentCourse];
+}
 
 RaceConfig::Scenario &RaceConfig::raceScenario() {
     return m_raceScenario;
@@ -166,15 +189,29 @@ void RaceConfig::ConfigurePlayers(Scenario &scenario, u32 screenCount) {
     }
 }
 
+void RaceConfig::endRace() {
+    REPLACED(endRace)();
+    m_currentCourse += 1;
+}
+
 void RaceConfig::init() {
     REPLACED(init)();
-    m_packInfo = {};
+    m_courseOrder = {};
+    m_currentCourse = 0;
+    m_selectedTrackPack = 0;
+}
+
+void RaceConfig::clear() {
+    REPLACED(clear)();
+    m_courseOrder.reset();
+    m_currentCourse = 0;
+    m_selectedTrackPack = 0;
 }
 
 void RaceConfig::initRace() {
     REPLACED(initRace)();
 
-    auto *saveManager = System::SaveManager::Instance();
+    auto *saveManager = SaveManager::Instance();
     auto setting = saveManager->getSetting<SP::ClientSettings::Setting::TAMirror>();
     // Switch the race to mirror if the mirror TT setting is enabled.
     if (m_raceScenario.gameMode == GameMode::TimeAttack &&
@@ -187,8 +224,79 @@ void RaceConfig::initRace() {
 
     // Setup stock game slots
     if (m_menuScenario.gameMode != GameMode::Awards) {
-        m_raceScenario.courseId = m_packInfo.getSelectedCourse();
+        m_raceScenario.courseId = getPackInfo().getSelectedCourse();
     }
+}
+
+std::tuple<SP::TrackGameMode, SP::ClientSettings::CourseSelection> RaceConfig::getCourseSettings() {
+    auto *saveManager = SaveManager::Instance();
+    if (m_menuScenario.gameMode == GameMode::TimeAttack) {
+        return std::make_tuple(SP::TrackGameMode::Race, SP::ClientSettings::CourseSelection::Choose);
+    } else if (m_menuScenario.gameMode == GameMode::OfflineVS) {
+        auto setting = saveManager->getSetting<SP::ClientSettings::Setting::VSCourseSelection>();
+        return std::make_tuple(SP::TrackGameMode::Race, setting);
+    } else if (m_menuScenario.gameMode == GameMode::OfflineBT) {
+        auto setting = saveManager->getSetting<SP::ClientSettings::Setting::BTCourseSelection>();
+
+        if (m_menuScenario.battleType == 0) {
+            return std::make_tuple(SP::TrackGameMode::Balloon, setting);
+        } else {
+            return std::make_tuple(SP::TrackGameMode::Coin, setting);
+        }
+    } else {
+        panic("Unknown gamemode %d", static_cast<u32>(m_menuScenario.gameMode));
+    }
+}
+
+bool RaceConfig::generateRandomCourses() {
+    auto [mode, courseSelection] = getCourseSettings();
+    if (courseSelection != SP::ClientSettings::CourseSelection::Random) {
+        return false;
+    }
+
+    auto &trackPackManager = SP::TrackPackManager::Instance();
+    auto &trackPack = trackPackManager.getSelectedTrackPack();
+    auto raceCount = UI::SectionManager::Instance()->globalContext()->m_matchCount;
+
+    for (u8 i = 0; i < raceCount; i += 1) {
+        auto courseCount = trackPack.getTrackCount(mode);
+        auto courseIdx = hydro_random_uniform(courseCount) - 1;
+        auto randCourse = trackPack.getNthTrack(courseIdx, mode);
+
+        SP::TrackPackInfo packInfo = {};
+        packInfo.selectCourse(randCourse.value());
+        m_courseOrder.push_back(std::move(packInfo));
+    }
+
+    return true;
+}
+
+bool RaceConfig::generateOrderedCourses(u16 currentIdx) {
+    auto [mode, courseSelection] = getCourseSettings();
+    if (courseSelection != SP::ClientSettings::CourseSelection::InOrder) {
+        return false;
+    }
+
+    auto &trackPackManager = SP::TrackPackManager::Instance();
+    auto &trackPack = trackPackManager.getSelectedTrackPack();
+    auto raceCount = UI::SectionManager::Instance()->globalContext()->m_matchCount;
+
+    for (u8 i = 0; i < raceCount; i += 1) {
+        auto track = trackPack.getNthTrack(currentIdx, mode);
+        if (track.has_value()) {
+            currentIdx += 1;
+        } else {
+            track = trackPack.getNthTrack(0, mode);
+            currentIdx = 1;
+        }
+
+        SP_LOG("existing %d i %d currentIdx %d", m_courseOrder.count(), i, currentIdx);
+        SP::TrackPackInfo packInfo = {};
+        packInfo.selectCourse(*track);
+        m_courseOrder.push_back(std::move(packInfo));
+    }
+
+    return true;
 }
 
 } // namespace System
