@@ -1,10 +1,29 @@
 #include "EffectManager.hh"
 
 #include "game/system/RaceConfig.hh"
+#include "game/system/ResourceManager.hh"
 
 #include <sp/cs/RoomManager.hh>
 
 namespace Effect {
+
+EGG::EffectResource *EffectManager::s_raceSPResource{};
+
+void EffectManager::deinit() {
+    delete s_raceSPResource;
+    s_raceSPResource = nullptr;
+
+    REPLACED(deinit)();
+}
+
+void EffectManager::initRace() {
+    REPLACED(initRace)();
+
+    auto *resourceManager = System::ResourceManager::Instance();
+    auto *breff = resourceManager->getFile(0, "RKRace_SP.breff", nullptr);
+    auto *breft = resourceManager->getFile(0, "RKRace_SP.breft", nullptr);
+    s_raceSPResource = new EGG::EffectResource(breff, breft);
+}
 
 void EffectManager::createKarts() {
     REPLACED(createKarts)();

@@ -14,6 +14,7 @@ public:
     REPLACE void shutdownSystem();
     REPLACE void returnToMenu();
     REPLACE void restart();
+    u32 aspectRatio() const;
     u32 matchingArea() const;
 
     static void ShutdownSystem();
@@ -28,7 +29,9 @@ public:
     }
 
 private:
-    u8 _0000[0x0070 - 0x0000];
+    u8 _0000[0x0058 - 0x0000];
+    u32 m_aspectRatio;
+    u8 _005c[0x0070 - 0x005c];
     u32 m_launchType;
     u8 _0074[0x0084 - 0x0074];
     u32 m_matchingArea;

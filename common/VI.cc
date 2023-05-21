@@ -1,6 +1,7 @@
 #include "VI.hh"
 
-#include <common/DCache.hh>
+#include "common/Clock.hh"
+#include "common/DCache.hh"
 
 namespace VI {
 
@@ -10,6 +11,8 @@ extern "C" volatile u32 vto;
 extern "C" volatile u32 vte;
 extern "C" volatile u32 tfbl;
 extern "C" volatile u32 bfbl;
+extern "C" volatile u32 di0;
+extern "C" volatile u32 di1;
 extern "C" volatile u16 hsw;
 extern "C" volatile u16 hsr;
 extern "C" volatile u16 visel;
@@ -48,6 +51,29 @@ void Init() {
 
 void Disable() {
     dcr = dcr & ~1;
+}
+
+void WaitForRetrace() {
+    di0 = di0 | 1 << 28;
+    di0 = di0 | 1 << 31;
+    di1 = di1 | 1 << 28;
+    di1 = di1 | 1 << 31;
+    while (!(di0 & 1 << 31)) {
+        Clock::WaitMilliseconds(1);
+    }
+    di0 = di0 & ~(1 << 31);
+    while (!(di1 & 1 << 31)) {
+        Clock::WaitMilliseconds(1);
+    }
+    di1 = di1 & ~(1 << 31);
+    while (!(di0 & 1 << 31)) {
+        Clock::WaitMilliseconds(1);
+    }
+    di0 = di0 & ~(1 << 31);
+    while (!(di1 & 1 << 31)) {
+        Clock::WaitMilliseconds(1);
+    }
+    di1 = di1 & ~(1 << 31);
 }
 
 bool IsProgressive() {

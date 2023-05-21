@@ -1,12 +1,19 @@
+extern "C" {
 #include "StackTrace.h"
 
 #include "sp/Dol.h"
 #include "sp/Payload.h"
 #include "sp/Rel.h"
 #include "sp/security/StackCanary.h"
+}
+#include "MapFile.hh"
 
+extern "C" {
 #include <revolution.h>
+}
+
 #include <stdio.h>
+#include <stdlib.h>
 
 static bool CheckPointer(u32 addr) {
     const u32 OFFSET_MASK = 0x0FFFFFFF;
@@ -112,7 +119,19 @@ size_t WriteStackTraceShort(char *buf, int capacity, void *sp) {
             break;
         }
 
-        l += snprintf(buf + l, capacity - l, "@ %p%s %s\n", ported, pointerFlag, funcName);
+        auto sym = SP::MapFile::SymbolLowerBound(reinterpret_cast<uintptr_t>(lr));
+        if (sym && !SP::MapFile::ScoreMatch(sym->address, reinterpret_cast<uintptr_t>(lr))) {
+            sym = std::nullopt;
+        }
+        char fmtSym[64] = "<- ";
+        if (sym) {
+            intptr_t delta = reinterpret_cast<intptr_t>(lr) - static_cast<intptr_t>(sym->address);
+            auto name = sym->name;
+            snprintf(fmtSym, sizeof(fmtSym), "%.*s [%c0x%X]\n", name.size(), name.data(),
+                    "+-"[delta < 0], std::abs(delta));
+        }
+
+        l += snprintf(buf + l, capacity - l, "@ %p%s %s %s", ported, pointerFlag, funcName, fmtSym);
     }
 
     return l;

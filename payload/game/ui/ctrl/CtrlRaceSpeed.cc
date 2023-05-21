@@ -57,9 +57,9 @@ void CtrlRaceSpeed::calcSelf() {
 
     auto *saveManager = System::SaveManager::Instance();
     auto setting = saveManager->getSetting<SP::ClientSettings::Setting::Speedometer>();
+    setVisible(setting != SP::ClientSettings::Speedometer::Off);
 
     auto *object = Kart::KartObjectManager::Instance()->object(playerId);
-
     if (object->getKartState()->inCannon()) {
         setting = SP::ClientSettings::Speedometer::XYZ;
     }
@@ -97,7 +97,7 @@ void CtrlRaceSpeed::calcSelf() {
         break;
     }
     case SP::ClientSettings::Speedometer::Off:
-        panic("calcSelf called when speedometer is off");
+        break;
     }
 
     s32 integral = speed;
@@ -148,6 +148,10 @@ void CtrlRaceSpeed::calcSelf() {
 }
 
 void CtrlRaceSpeed::load(u32 localPlayerCount, u32 localPlayerId) {
+    m_localPlayerId = localPlayerId;
+    u32 screenCount = localPlayerCount == 3 ? 4 : localPlayerCount;
+    char variant[0x20];
+    snprintf(variant, std::size(variant), "CtrlRaceSpeed_%u_%u", screenCount, localPlayerId);
     // clang-format off
     const char *groups[] = {
         "eAFInt0", "texture_pattern_0_9_0", nullptr,
@@ -158,12 +162,6 @@ void CtrlRaceSpeed::load(u32 localPlayerCount, u32 localPlayerId) {
         nullptr,
     };
     // clang-format on
-
-    m_localPlayerId = localPlayerId;
-
-    char variant[0x20];
-    u32 variantId = localPlayerCount == 3 ? 4 : localPlayerCount;
-    snprintf(variant, std::size(variant), "CtrlRaceSpeed_%u_%u", variantId, localPlayerId);
     LayoutUIControl::load("game_image", "speed_number", variant, groups);
     for (u32 i = 0; i < 5; i++) {
         m_animator.setAnimationInactive(i, 0, 0.0f);
