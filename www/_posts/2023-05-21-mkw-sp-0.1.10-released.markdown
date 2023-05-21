@@ -33,7 +33,7 @@ Version 0.1.10 of Mario Kart Wii - Service Pack has been released. It's a minor 
 
 - The course/stage selection UI has been redesigned. Inspiration was taken from [this concept](https://twitter.com/dora97_/status/1548681610454650882) by dora. This change was made with course extension in mind. [stebler, vabold]
 - In split-screen, multiple players can now select the same character. [Palapeli]
-- Support for [Extended Regions](https://wiki.tockdom.com/wiki/Extended\_Regions) has been added. [Zach]
+- Support for [Extended Regions](https://wiki.tockdom.com/wiki/Extended_Regions) has been added. [Zach]
 - Support for various speedometer metrics has been added. [Gaberboo, Gnome!, stebler]
 - The setting to disable the minimap has been added. [Henry]
 - The number of tags now defaults to 3. [MikeIsAStar]
