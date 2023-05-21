@@ -143,7 +143,7 @@ void RaceMenuPage::onNextButtonFront(PushButton *button, u32 /* localPlayerId */
             }
         } else if (setting == SP::ClientSettings::CourseSelection::Random) {
             auto courseCount = courseDatabase.count(filter);
-            auto courseIdx = hydro_random_uniform(courseCount) - 1;
+            auto courseIdx = hydro_random_uniform(courseCount);
             menuScenario.courseId = courseDatabase.entry(filter, courseIdx).courseId;
         } else {
             sectionId = nextSelectSection;

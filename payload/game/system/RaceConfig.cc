@@ -192,7 +192,7 @@ bool RaceConfig::selectRandomCourse() {
 
     auto &courseDatabase = SP::CourseDatabase::Instance();
     auto courseCount = courseDatabase.count(filter);
-    auto courseIdx = hydro_random_uniform(courseCount) - 1;
+    auto courseIdx = hydro_random_uniform(courseCount);
 
     m_menuScenario.courseId = courseDatabase.entry(filter, courseIdx).courseId;
     return true;
