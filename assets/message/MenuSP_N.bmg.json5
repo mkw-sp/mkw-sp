@@ -2,6 +2,21 @@
     "2053": {
         string: "Er is iets fout gegaan bij het lezen of schrijven van de spelgegevens.",
     },
+    "3400": {
+        string: "Instellingen",
+    },
+    "3420": {
+        string: "CPU-moeilijkheid",
+    },
+    "3475": {
+        string: "Verander instellingen voor dit rijbewijs.",
+    },
+    "3700": {
+        string: "Selecteer Level",
+    },
+    "3701": {
+        string: "Selecteer Missie",
+    },
     "10000": {
         string: "Race tegen 1 geest",
     },
@@ -175,9 +190,6 @@
     },
     "10074": {
         string: "Verander instellingen of jouw Mii!",
-    },
-    "10077": {
-        string: "Verander instellingen voor dit rijbewijs.",
     },
     "10078": {
         string: "0,9x snelheidsfactor.",
@@ -363,13 +375,13 @@
         string: "Dynamisch",
     },
     "10143": {
-        string: "Gebruik de \"_N\" BRSTM tijdens de laatste ronde.",
+        string: "Gebruik de \"_N\"-BRSTM tijdens de laatste ronde.",
     },
     "10144": {
-        string: "Gebruik de \"_F\" BRSTM tijdens de laatste ronde.",
+        string: "Gebruik de \"_F\"-BRSTM tijdens de laatste ronde.",
     },
     "10145": {
-        string: "Genereer de laatste ronde-muziek van de \"_N\" BRSTM.",
+        string: "Genereer de laatste ronde-muziek van de \"_N\"-BRSTM.",
     },
     "10146": {
         string: "Opslag-benchmark",
@@ -508,5 +520,497 @@
     },
     "10193": {
         string: "Schakel de trilfunctie van GCN-controllers in.",
+    },
+    "10194": {
+        string: "Regiolijnkleur",
+    },
+    "10195": {
+        string: "Rood",
+    },
+    "10196": {
+        string: "Blauw",
+    },
+    "10197": {
+        string: "Groen",
+    },
+    "10198": {
+        string: "Geel",
+    },
+    "10199": {
+        string: "Wit",
+    },
+    "10200": {
+        string: "Roze",
+    },
+    "10201": {
+        string: "De kleur van de lijn onder jouw naam zal {color|player 3}rood{color|unspecified} zijn.",
+    },
+    "10202": {
+        string: "De kleur van de lijn onder jouw naam zal {color|sp blue}blauw{color|unspecified} zijn.",
+    },
+    "10203": {
+        string: "De kleur van de lijn onder jouw naam zal {color|sp green}groen{color|unspecified} zijn.",
+    },
+    "10204": {
+        string: "De kleur van de lijn onder jouw naam zal {color|player 1}geel{color|unspecified} zijn.",
+    },
+    "10205": {
+        string: "De kleur van de lijn onder jouw naam zal wit zijn.",
+    },
+    "10206": {
+        string: "De kleur van de lijn onder jouw naam zal {color|sp pink}roze{color|unspecified} zijn.",
+    },
+    "10207": {
+        string: "Teamgrootte",
+    },
+    "10208": {
+        string: "FFA",
+    },
+    "10213": {
+        string: "Speel niet in teams.",
+    },
+    "10214": {
+        string: "Beperk de teamgrootte tot 2 spelers.",
+    },
+    "10215": {
+        string: "Beperk de teamgrootte tot 3 spelers.",
+    },
+    "10216": {
+        string: "Beperk de teamgrootte tot 4 spelers.",
+    },
+    "10217": {
+        string: "Beperk de teamgrootte tot 6 spelers.",
+    },
+    "10218": {
+        string: "Willekeurig",
+    },
+    "10224": {
+        string: "Race-aantal",
+    },
+    "10226": {
+        string: "Speel {arg integer|0 0} {arg cond messages|0 10282 10283}.",
+    },
+    "10227": {
+        string: "Circuitselectie",
+    },
+    "10228": {
+        string: "Willekeurig",
+    },
+    "10231": {
+        string: "Circuits worden willekeurig gekozen.",
+    },
+    "10234": {
+        string: "Klasse",
+    },
+    "10235": {
+        string: "Gemengd",
+    },
+    "10236": {
+        string: "150 cc",
+    },
+    "10237": {
+        string: "Spiegel",
+    },
+    "10238": {
+        string: "200 cc",
+    },
+    "10239": {
+        string: "Races zijn 85% 150 cc, 15% gespiegeld.",
+    },
+    "10240": {
+        string: "Races zijn altijd 150 cc.",
+    },
+    "10241": {
+        string: "Races zijn altijd gespiegeld.",
+    },
+    "10242": {
+        string: "Races zijn altijd 200 cc.",
+    },
+    "10243": {
+        string: "Voertuigen",
+    },
+    "10244": {
+        string: "Alle",
+    },
+    "10245": {
+        string: "Karts",
+    },
+    "10246": {
+        string: "Motors",
+    },
+    "10247": {
+        string: "In-drift",
+    },
+    "10248": {
+        string: "Uit-drift",
+    },
+    "10249": {
+        string: "Optimaal",
+    },
+    "10250": {
+        string: "Willekeurig",
+    },
+    "10251": {
+        string: "Sta alle voertuigen toe.",
+    },
+    "10252": {
+        string: "Sta alleen karts toe.",
+    },
+    "10253": {
+        string: "Sta alleen motors toe.",
+    },
+    "10254": {
+        string: "Sta alleen voertuigen met in-drift toe.",
+    },
+    "10255": {
+        string: "Sta alleen voertuigen met uit-drift toe.",
+    },
+    "10256": {
+        string: "Sta alleen het beste voertuig voor elke coureur toe.",
+    },
+    "10257": {
+        string: "Kiest willekeurig een enkele combinatie voor alle spelers.",
+    },
+    "10260": {
+        string: "Circuits worden individueel gekozen.",
+    },
+    "10261": {
+        string: "Circuits worden op volgorde gespeeld.",
+    },
+    "10262": {
+        string: "Offline VS",
+    },
+    "10263": {
+        string: "Kleurenpalet",
+    },
+    "10264": {
+        string: "Helder",
+    },
+    "10265": {
+        string: "Kleurenblind",
+    },
+    "10266": {
+        string: "Gebruik het heldere kleurenpalet voor teamkleuren.",
+    },
+    "10267": {
+        string: "Gebruik het kleurenblinde kleurenpalet voor teamkleuren.",
+    },
+    "10268": {
+        string: "{color|player 3}Team Rood",
+    },
+    "10269": {
+        string: "{color|sp blue}Team Blauw",
+    },
+    "10270": {
+        string: "{color|sp green}Team Groen",
+    },
+    "10271": {
+        string: "{color|player 1}Team Geel",
+    },
+    "10272": {
+        string: "{color|sp pink}Team Roze",
+    },
+    "10273": {
+        string: "Team Wit",
+    },
+    "10274": {
+        string: "De teams zijn oneven.\n\nKies opnieuw.",
+    },
+    "10282": {
+        string: "race",
+    },
+    "10283": {
+        string: "races",
+    },
+    "10296": {
+        string: "HUD-Teamkleuren",
+    },
+    "10297": {
+        string: "Uitschakelen",
+    },
+    "10298": {
+        string: "Inschakelen",
+    },
+    "10299": {
+        string: "Gebruik de standaardkleur voor HUD-tekst.",
+    },
+    "10300": {
+        string: "Gebruik teamkleuren voor HUD-tekst.",
+    },
+    "10301": {
+        string: "Vereenvoudigde Controls",
+    },
+    "10302": {
+        string: "Uit",
+    },
+    "10303": {
+        string: "Niet exclusief",
+    },
+    "10304": {
+        string: "Exclusief",
+    },
+    "10305": {
+        string: "Gebruik de normale controls om alleen sprintboosts en wheelies te doen.",
+    },
+    "10306": {
+        string: "Gebruik Y (GCN) of ZL (CC/CCP) om sprintboosts en wheelies te doen.",
+    },
+    "10307": {
+        string: "Gebruik Y (GCN) of ZL (CC/CCP) om alleen sprintboosts en wheelies te doen.",
+    },
+    "10308": {
+        string: "Verre Spelertags",
+    },
+    "10309": {
+        string: "Uitschakelen",
+    },
+    "10310": {
+        string: "Inschakelen",
+    },
+    "10311": {
+        string: "Gebruik de normale afstand om spelertags te tonen.",
+    },
+    "10312": {
+        string: "Gebruik een grotere afstand om spelertags te tonen.",
+    },
+    "10313": {
+        string: "Miniaturen",
+    },
+    "10314": {
+        string: "Er is geen circuit in de /mkw-sp/thumbnails map gevonden.",
+    },
+    "10315": {
+        string: "Debugscherm",
+    },
+    "10316": {
+        string: "Checkpoints",
+    },
+    "10317": {
+        string: "Uitschakelen",
+    },
+    "10318": {
+        string: "Inschakelen",
+    },
+    "10319": {
+        string: "Geef checkpoints niet weer.",
+    },
+    "10320": {
+        string: "Geef checkpoints weer.",
+    },
+    "10321": {
+        string: "Snelheidsmeter",
+    },
+    "10322": {
+        string: "Intern + Bewegende Weg",
+    },
+    "10323": {
+        string: "Intern",
+    },
+    "10324": {
+        string: "XYZ",
+    },
+    "10325": {
+        string: "XZ",
+    },
+    "10326": {
+        string: "Y",
+    },
+    "10327": {
+        string: "De snelheidsmeter geeft de snelheid van\nhet voertuig en bewegende wegen daarbij weer.",
+    },
+    "10328": {
+        string: "De snelheidsmeter geeft de snelheid\nvan het voertuig weer.",
+    },
+    "10329": {
+        string: "De snelheidsmeter geeft de bewegingssnelheid\nvan het voertuig weer.",
+    },
+    "10330": {
+        string: "De snelheidsmeter geeft de horizontale\nsnelheid van het voertuig weer.",
+    },
+    "10331": {
+        string: "De snelheidsmeter geeft de verticale\nsnelheid van het voertuig weer.",
+    },
+    "10332": {
+        string: "Standaard",
+    },
+    "10333": {
+        string: "De kleur van de lijn onder jouw naam\nwordt bepaald door het spel.",
+    },
+    "10334": {
+        string: "Regio en Vlag",
+    },
+    "10335": {
+        string: "Geef geen informatie over jouw vlag en regio weer.",
+    },
+    "10336": {
+        string: "Geef informatie over jouw vlag en regio weer.",
+    },
+    "10337": {
+        string: "Toon niet",
+    },
+    "10338": {
+        string: "Toon",
+    },
+    "10339": {
+        string: "Toon niet",
+    },
+    "10340": {
+        string: "Toon",
+    },
+    "10341": {
+        string: "Paneel",
+    },
+    "10342": {
+        string: "Uitschakelen",
+    },
+    "10343": {
+        string: "Speler",
+    },
+    "10344": {
+        string: "Online",
+    },
+    "10345": {
+        string: "Laat het debugpaneel niet zien.",
+    },
+    "10346": {
+        string: "Laat spelerinformatie op het debugpaneel zien.",
+    },
+    "10347": {
+        string: "Laat online-informatie op het debugpaneel zien.",
+    },
+    "10348": {
+        string: "Visueel course.kcl",
+    },
+    "10349": {
+        string: "Uitschakelen",
+    },
+    "10350": {
+        string: "Laat alleen course_model.brres zien.",
+    },
+    "10351": {
+        string: "Overlap",
+    },
+    "10352": {
+        string: "Laat het bovenop course_model.brres zien.",
+    },
+    "10353": {
+        string: "Vervang Circuitmodel",
+    },
+    "10354": {
+        string: "Laat course_model.brres niet zien.",
+    },
+    "10360": {
+        string: "Offline Gevechten",
+    },
+    "10361": {
+        string: "Races zijn altijd 50 cc.",
+    },
+    "10362": {
+        string: "Races zijn altijd 100 cc.",
+    },
+    "10365": {
+        string: "50 cc",
+    },
+    "10366": {
+        string: "100 cc",
+    },
+    "10367": {
+        string: "Mini-map",
+    },
+    "10368": {
+        string: "Uitschakelen",
+    },
+    "10369": {
+        string: "Inschakelen",
+    },
+    "10370": {
+        string: "Laat de mini-map op de HUD zien.",
+    },
+    "10371": {
+        string: "Laat de mini-map niet op de HUD zien.",
+    },
+    "10372": {
+        string: "Volume",
+    },
+    "10374": {
+        string: "Stel het volume in op {arg integer|0 0} / 10.",
+    },
+    "10375": {
+        string: "Muziekvolume",
+    },
+    "10377": {
+        string: "Stel het muziekvolume in op {arg integer|0 0} / 10.",
+    },
+    "10378": {
+        string: "My Stuff",
+    },
+    "10379": {
+        string: "Bestandsvervanging",
+    },
+    "10380": {
+        string: "Uitschakelen",
+    },
+    "10381": {
+        string: "Alleen BRSTMs",
+    },
+    "10382": {
+        string: "Alles",
+    },
+    "10383": {
+        string: "Vervang geen enkel bestand.",
+    },
+    "10384": {
+        string: "Vervang alleen \".brstm\"-bestanden.",
+    },
+    "10385": {
+        string: "Vervang alle bestanden.",
+    },
+    "10386": {
+        string: "FPS-Modus",
+    },
+    "10387": {
+        string: "Normaal",
+    },
+    "10388": {
+        string: "Forceer 60 FPS",
+    },
+    "10389": {
+        string: "Forceer 30 FPS",
+    },
+    "10390": {
+        string: "Gebruik 60 FPS, behalve tijdens intensieve scenario's.",
+    },
+    "10391": {
+        string: "Gebruik 60 FPS, zelfs tijdens intensieve scenario's.",
+    },
+    "10392": {
+        string: "Gebruik 30 FPS, kan helpen bij Dolphin-prestaties.",
+    },
+    "10393": {
+        string: "Kies de teamgrootte willekeurig.",
+    },
+    "10420": {
+        string: "Aantal Gevechten",
+    },
+    "10421": {
+        string: "Speel {arg integer|0 0} {arg cond messages|0 10282 10283}.",
+    },
+    "10422": {
+        string: "gevecht",
+    },
+    "10423": {
+        string: "gevechten",
+    },
+    "10424": {
+        string: "Gevechtsarenaselectie",
+    },
+    "10425": {
+        string: "Gevechtsarena's worden individueel gekozen.",
+    },
+    "10426": {
+        string: "Gevechtsarena's worden willekeurig gekozen.",
+    },
+    "10427": {
+        string: "Gevechtsarena's worden in volgorde gespeeld.",
     },
 }
