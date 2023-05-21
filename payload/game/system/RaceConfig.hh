@@ -113,7 +113,9 @@ public:
     };
     static_assert(sizeof(Scenario) == 0xbf0);
 
+    void nextCourseIndex();
     bool outOfTracks() const;
+    u32 getCourseIndex() const;
     bool isVanillaTracks() const;
     SP::TrackPackInfo &getPackInfo();
     SP::TrackPackInfo &emplacePackInfo();
@@ -129,8 +131,7 @@ public:
     void applyItemFreq();
     void applyCPUMode();
 
-    void REPLACED(endRace)();
-    REPLACE void endRace();
+    void endRace();
 
     void REPLACED(init)();
     REPLACE void init();

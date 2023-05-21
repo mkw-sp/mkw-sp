@@ -23,13 +23,19 @@ bool ThumbnailManager::IsActive() {
 }
 
 bool ThumbnailManager::next() {
+    auto *raceConfig = System::RaceConfig::Instance();
+    if (m_hasStarted) {
+        raceConfig->nextCourseIndex();
+    } else {
+        m_hasStarted = true;
+    }
+
     auto &trackPackManager = TrackPackManager::Instance();
     auto &trackPack = trackPackManager.getSelectedTrackPack();
-    auto trackId = trackPack.getNthTrack(m_trackIndex++, TrackGameMode::Race);
+    auto trackId = trackPack.getNthTrack(raceConfig->getCourseIndex(), TrackGameMode::Race);
 
     if (trackId.has_value()) {
-        auto *raceConfig = System::RaceConfig::Instance();
-        raceConfig->getPackInfo().selectCourse(*trackId);
+        raceConfig->emplacePackInfo().selectCourse(*trackId);
         return true;
     } else {
         return false;

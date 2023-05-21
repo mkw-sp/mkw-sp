@@ -11,8 +11,16 @@ extern "C" {
 
 namespace System {
 
+void RaceConfig::nextCourseIndex() {
+    m_currentCourse += 1;
+}
+
 bool RaceConfig::outOfTracks() const {
     return m_currentCourse >= m_courseOrder.count();
+}
+
+u32 RaceConfig::getCourseIndex() const {
+    return m_currentCourse;
 }
 
 bool RaceConfig::isVanillaTracks() const {
@@ -187,11 +195,6 @@ void RaceConfig::ConfigurePlayers(Scenario &scenario, u32 screenCount) {
 
         screenId++;
     }
-}
-
-void RaceConfig::endRace() {
-    REPLACED(endRace)();
-    m_currentCourse += 1;
 }
 
 void RaceConfig::init() {

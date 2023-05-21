@@ -59,6 +59,7 @@ void RaceMenuPage::onButtonFront(PushButton *button, u32 localPlayerId) {
 void RaceMenuPage::onNextButtonFront(PushButton *button, u32 /* localPlayerId */) {
     auto *raceConfig = System::RaceConfig::Instance();
     raceConfig->endRace();
+    raceConfig->nextCourseIndex();
 
     playSound(Sound::SoundId::SE_RC_PAUSE_EXIT_GAME, -1);
 

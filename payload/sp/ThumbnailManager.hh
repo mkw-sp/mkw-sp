@@ -23,7 +23,8 @@ private:
     bool next();
     void capture();
 
-    u32 m_trackIndex = 0;
+    bool m_hasStarted;
+
     static std::optional<ThumbnailManager> s_instance;
 };
 
