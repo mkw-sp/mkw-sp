@@ -173,11 +173,12 @@ void CtrlRaceInputDisplay::setStick(Vec2<f32> state) {
         return;
     }
 
-    // Map range [-1, 1] -> [-width/2, width/2]
+    // Map range [-1, 1] -> [-width * 5 / 19, width * 5 / 19]
+    f32 scale = 5.0f / 19.0f;
     m_stickPane->m_trans.x =
-            m_stickOrigin.x + 0.5f * state.x * m_stickPane->m_scale.x * m_stickPane->m_width;
+            m_stickOrigin.x + scale * state.x * m_stickPane->m_scale.x * m_stickPane->m_width;
     m_stickPane->m_trans.y =
-            m_stickOrigin.y + 0.5f * state.y * m_stickPane->m_scale.y * m_stickPane->m_height;
+            m_stickOrigin.y + scale * state.y * m_stickPane->m_scale.y * m_stickPane->m_height;
 
     m_stickState = state;
 }
