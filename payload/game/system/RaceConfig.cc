@@ -38,10 +38,10 @@ void RaceConfig::applyEngineClass() {
         setting = SP::ClientSettings::EngineClass::CC50;
     } else if (m_menuScenario.gameMode == GameMode::TimeAttack) {
         auto taSetting = saveManager->getSetting<SP::ClientSettings::Setting::TAClass>();
-        if (taSetting == SP::ClientSettings::TAClass::CC150) {
-            setting = SP::ClientSettings::EngineClass::CC150;
-        } else {
+        if (taSetting == SP::ClientSettings::TAClass::CC200) {
             setting = SP::ClientSettings::EngineClass::CC200;
+        } else if (taSetting == SP::ClientSettings::TAClass::Mirror) {
+            setting = SP::ClientSettings::EngineClass::Mirror;
         }
     }
 
@@ -166,20 +166,6 @@ void RaceConfig::ConfigurePlayers(Scenario &scenario, u32 screenCount) {
         scenario.screenPlayerIds[screenId] = i;
 
         screenId++;
-    }
-}
-
-void RaceConfig::initRace() {
-    REPLACED(initRace)();
-    auto *saveManager = System::SaveManager::Instance();
-    auto setting = saveManager->getSetting<SP::ClientSettings::Setting::TAMirror>();
-    // Switch the race to mirror if the mirror TT setting is enabled.
-    if (m_raceScenario.gameMode == GameMode::TimeAttack &&
-            setting == SP::ClientSettings::TAMirror::Enable) {
-        m_raceScenario.mirror = true;
-    } else if (m_raceScenario.gameMode == GameMode::TimeAttack &&
-            setting == SP::ClientSettings::TAMirror::Disable) {
-        m_raceScenario.mirror = false;
     }
 }
 

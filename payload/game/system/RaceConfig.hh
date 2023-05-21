@@ -121,9 +121,6 @@ public:
     bool selectRandomCourse();
     void endRace();
 
-    void REPLACED(initRace)();
-    REPLACE void initRace();
-
     static RaceConfig *Instance();
 
 private:

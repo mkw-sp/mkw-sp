@@ -38,7 +38,6 @@ enum class Setting {
 
     // TA
     TAClass,
-    TAMirror,
     TAGhostSorting,
     TAGhostTagVisibility,
     TAGhostTagContent,
@@ -250,11 +249,7 @@ enum class LastLapSpeedup {
 enum class TAClass {
     CC150,
     CC200,
-};
-
-enum class TAMirror {
-    Disable,
-    Enable,
+    Mirror,
 };
 
 enum class TAGhostSorting {
@@ -483,11 +478,6 @@ struct Helper<ClientSettings::Setting, ClientSettings::Setting::LastLapSpeedup> 
 template <>
 struct Helper<ClientSettings::Setting, ClientSettings::Setting::TAClass> {
     using type = SP::ClientSettings::TAClass;
-};
-
-template <>
-struct Helper<ClientSettings::Setting, ClientSettings::Setting::TAMirror> {
-    using type = SP::ClientSettings::TAMirror;
 };
 
 template <>

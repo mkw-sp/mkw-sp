@@ -980,21 +980,6 @@
     "10354": {
         string: "Hide course_model.brres.",
     },
-    "10355": {
-        string: "Mirror TTs",
-    },
-    "10356": {
-        string: "Disable",
-    },
-    "10357": {
-        string: "Enable",
-    },
-    "10358": {
-        string: "Play 150cc Time Trials.",
-    },
-    "10359": {
-        string: "Play mirror Time Trials.",
-    },
     "10360": {
         string: "Offline Battle",
     },
