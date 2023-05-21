@@ -115,8 +115,8 @@ public:
 
     bool outOfTracks() const;
     bool isVanillaTracks() const;
-    SP::TrackPackInfo& getPackInfo();
-    SP::TrackPackInfo& emplacePackInfo();
+    SP::TrackPackInfo &getPackInfo();
+    SP::TrackPackInfo &emplacePackInfo();
 
     bool generateRandomCourses();
     bool generateOrderedCourses(u16 currentIdx);
@@ -144,6 +144,7 @@ public:
     static RaceConfig *Instance();
 
     u32 m_selectedTrackPack;
+
 private:
     REPLACE static void ConfigurePlayers(Scenario &scenario, u32 screenCount);
 

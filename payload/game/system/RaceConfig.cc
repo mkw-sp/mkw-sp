@@ -19,12 +19,12 @@ bool RaceConfig::isVanillaTracks() const {
     return m_selectedTrackPack == 0;
 }
 
-SP::TrackPackInfo& RaceConfig::getPackInfo() {
+SP::TrackPackInfo &RaceConfig::getPackInfo() {
     assert(!outOfTracks());
     return *m_courseOrder[m_currentCourse];
 }
 
-SP::TrackPackInfo& RaceConfig::emplacePackInfo() {
+SP::TrackPackInfo &RaceConfig::emplacePackInfo() {
     assert(m_courseOrder.count() == m_currentCourse);
 
     SP::TrackPackInfo packInfo = {};
@@ -231,7 +231,8 @@ void RaceConfig::initRace() {
 std::tuple<SP::TrackGameMode, SP::ClientSettings::CourseSelection> RaceConfig::getCourseSettings() {
     auto *saveManager = SaveManager::Instance();
     if (m_menuScenario.gameMode == GameMode::TimeAttack) {
-        return std::make_tuple(SP::TrackGameMode::Race, SP::ClientSettings::CourseSelection::Choose);
+        return std::make_tuple(SP::TrackGameMode::Race,
+                SP::ClientSettings::CourseSelection::Choose);
     } else if (m_menuScenario.gameMode == GameMode::OfflineVS) {
         auto setting = saveManager->getSetting<SP::ClientSettings::Setting::VSCourseSelection>();
         return std::make_tuple(SP::TrackGameMode::Race, setting);

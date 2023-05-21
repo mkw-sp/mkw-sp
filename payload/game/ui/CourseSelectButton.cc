@@ -52,7 +52,6 @@ void CourseSelectButton::refresh(Sha1 dbId) {
         info.strings[0] = track.m_name.c_str();
         setMessageAll(20031, &info);
     }
-
 }
 
 void CourseSelectButton::setTex(u8 c, const GXTexObj &texObj) {

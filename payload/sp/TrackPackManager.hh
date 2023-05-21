@@ -107,7 +107,7 @@ public:
     Sha1 getCourseSha1() const;
 
     u32 getSelectedCourse() const;
-    const wchar_t* getCourseName() const;
+    const wchar_t *getCourseName() const;
     std::optional<u32> getSelectedMusic() const;
 
     void selectCourse(Sha1 id);
