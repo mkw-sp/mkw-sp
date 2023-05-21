@@ -83,10 +83,10 @@ void SceneManager::reinitCurrentScene() {
 
     auto *rc = System::RaceConfig::Instance();
     auto *saveManager = System::SaveManager::Instance();
-    auto setting = saveManager->getSetting<SP::ClientSettings::Setting::TAMirror>();
+    auto setting = saveManager->getSetting<SP::ClientSettings::Setting::TAClass>();
     // This is a hack to get mirror TTs working. Restarting a race from mirror to non mirror causes
     // graphical bugs. Opted to reload the entire track as a simple fix.
-    if (rc->raceScenario().mirror && (setting == SP::ClientSettings::TAMirror::Disable)) {
+    if (rc->raceScenario().mirror && (setting != SP::ClientSettings::TAClass::Mirror)) {
         Scene *parent = m_currScene->getParent();
         u32 sceneID = m_currScene->getSceneID();
         destroyScene(m_currScene);

@@ -1,6 +1,9 @@
 {
     "2053": {
-        string: "Irgendetwas ist fehlgeschlagen beim lesen oder schreiben zur Save.",
+        string: "Irgendetwas ist beim Lesen bzw. Schreiben der Speicherdaten schiefgegangen.",
+    },
+    "3475": {
+        string: "Einstellungen für dieses Profil ändern",
     },
     "10000": {
         string: "Gegen 1 Geist fahren",
@@ -15,7 +18,7 @@
         string: "{arg integer|0 0} Geister zuschauen",
     },
     "10004": {
-        string: "HUD Zeichen",
+        string: "HUD-Zeichen",
     },
     "10005": {
         string: "Verstecken",
@@ -24,13 +27,13 @@
         string: "Zeigen",
     },
     "10007": {
-        string: "HUD Steuerelemente verstecken",
+        string: "HUD-Steuerelemente verstecken",
     },
     "10008": {
-        string: "HUD Steuerelemente zeigen",
+        string: "HUD-Steuerelemente zeigen",
     },
     "10009": {
-        string: "16:9 Sichtfeld",
+        string: "16:9-Sichtfeld",
     },
     "10010": {
         string: "Standard",
@@ -45,7 +48,7 @@
         string: "Breiteres 4:3 Sichtfeld im 16:9 Modus benutzen.",
     },
     "10014": {
-        string: "Karten Symbole",
+        string: "Kartensymbole",
     },
     "10015": {
         string: "Charaktere",
@@ -54,16 +57,16 @@
         string: "Miis",
     },
     "10017": {
-        string: "Charakter als Karten Symbole benutzen.",
+        string: "Charakter als Kartensymbole benutzen.",
     },
     "10018": {
-        string: "Miis als Karten Symbole benutzen.",
+        string: "Miis als Kartensymbole benutzen.",
     },
     "10019": {
         string: "Geistersortierung",
     },
     "10028": {
-        string: "Zeichen Sichtbarkeit",
+        string: "Kennzeichen-Sichtbarkeit",
     },
     "10029": {
         string: "Kein",
@@ -75,16 +78,16 @@
         string: "Alle",
     },
     "10032": {
-        string: "Keine Geist Zeichen anzeigen.",
+        string: "Keine Geisterkennzeichen anzeigen.",
     },
     "10033": {
-        string: "Nur die Zeichen von dem geschauten Geist anzeigen.",
+        string: "Nur das Kennzeichen des zugeschautem Geist anzeigen.",
     },
     "10034": {
-        string: "Zeichen für alle Geister anzeigen",
+        string: "Kennzeichen für alle Geister anzeigen.",
     },
     "10035": {
-        string: "Zeichen Inhalt",
+        string: "Inhalt des Kennzeichens",
     },
     "10036": {
         string: "Name",
@@ -96,13 +99,13 @@
         string: "Datum",
     },
     "10039": {
-        string: "Geister Name als Tag benutzen.",
+        string: "Geister-Name als Kennzeichen benutzen.",
     },
     "10040": {
-        string: "Geister Endzeit als Tag benutzen.",
+        string: "Geister-Endzeit als Kennzeichen benutzen.",
     },
     "10041": {
-        string: "Geist Erstell Datum als Tag benutzen.",
+        string: "Geister-Erstelldatum als Kennzeichen benutzen.",
     },
     "10042": {
         string: "Solide Geister",
@@ -123,13 +126,13 @@
         string: "Gekürzte Zeit",
     },
     "10054": {
-        string: "Zeit Option ohne führende Nullen.",
+        string: "Zeit-Option ohne führende Nullstellen.",
     },
     "10055": {
-        string: "Gecko-Codes werden NICHT UNTERSTÜTZT\nund wird dein Spiel zum Absturz bringen.\nDrücke A, wenn du weißt, was du tust und KEINE Fehler melden.",
+        string: "Gecko-Codes werden NICHT UNTERSTÜTZT\nund wird dein Spiel zum Absturz bringen.\nDrücke A, wenn du weißt, was du tust und melde dadurch KEINE Fehler.",
     },
     "10056": {
-        string: "Menü Übergänge",
+        string: "Menü-Übergänge",
     },
     "10057": {
         string: "Deaktiviert",
@@ -138,10 +141,10 @@
         string: "Aktiviert",
     },
     "10059": {
-        string: "Mache die Menü Übergänge sofort.",
+        string: "Menü-Übergänge deaktivieren.",
     },
     "10060": {
-        string: "Behalte das normale Tempo der Menü Übergänge.",
+        string: "Das normale Tempo der Menü-Übergänge beibehalten.",
     },
     "10061": {
         string: "Eingabeanzeige",
@@ -168,7 +171,7 @@
         string: "Sound für den Geist der geschaut wird, aktivieren.",
     },
     "10069": {
-        string: "Sound für alle Geister aktivieren.",
+        string: "Ton für alle Geister aktivieren.",
     },
     "10073": {
         string: "Zeitfahren und andere Modi alleine spielen.",
@@ -176,29 +179,26 @@
     "10074": {
         string: "Einstellungen ändern oder den Mii ändern!",
     },
-    "10077": {
-        string: "Für diese Lizenz Einstellungen ändern",
-    },
     "10078": {
-        string: "0.9x Geschwindigkeitsfaktor.",
+        string: "0.9x-Geschwindigkeitsfaktor.",
     },
     "10079": {
-        string: "1.0x Geschwindigkeitsfaktor.",
+        string: "1.0x-Geschwindigkeitsfaktor.",
     },
     "10080": {
-        string: "1.0x Geschwindigkeitsfaktor mit gespiegelten Strecken.",
+        string: "1.0x-Geschwindigkeitsfaktor mit gespiegelten Strecken.",
     },
     "10081": {
-        string: "1.5x Geschwindigkeitsfaktor mit Brake Drifting und Fast Falling.",
+        string: "1.5x-Geschwindigkeitsfaktor mit Brake Drifting und Fast Falling.",
     },
     "10082": {
-        string: "MKW-SP Optionen",
+        string: "MKW-SP-Optionen",
     },
     "10083": {
         string: "Service Pack",
     },
     "10087": {
-        string: "Aktualisieren",
+        string: "Aktualisierung",
     },
     "10088": {
         string: "Kanal",
@@ -210,40 +210,40 @@
         string: "Durch die Installation des MKW-SP-Kanals kann man\nMKW-SP über das Wii-Menü starten\nund nicht über den Homebrew-Kanal\noder einem Exploit.\nDie Updates werden zwischen den beiden Kanälen synchronisiert.",
     },
     "10091": {
-        string: "Möchtest du den MKW-SP Kanal Installieren?",
+        string: "Möchtest du den MKW-SP-Kanal Installieren?",
     },
     "10092": {
-        string: "Ein Update für den MKW-SP Kanal ist verfügbar. Möchtest du es installieren?",
+        string: "Ein Update für den MKW-SP-Kanal ist verfügbar. Möchtest du es installieren?",
     },
     "10093": {
-        string: "Der MKW-SP Kanal ist bereits installiert.",
+        string: "Der MKW-SP-Kanal ist bereits installiert.",
     },
     "10094": {
-        string: "Eine neuere Version des MKW-SP Kanals ist bereits installiert!",
+        string: "Eine neuere Version des MKW-SP-Kanals ist bereits installiert!",
     },
     "10095": {
-        string: "Der MKW-SP Kanal wird installiert...",
+        string: "Der MKW-SP-Kanal wird installiert...",
     },
     "10096": {
-        string: "Der MKW-SP Kanal wird aktualisiert..",
+        string: "Der MKW-SP-Kanal wird aktualisiert...",
     },
     "10097": {
-        string: "Der MKW-SP Kanal wurde erfolgreich installiert!",
+        string: "Der MKW-SP-Kanal wurde erfolgreich installiert!",
     },
     "10098": {
-        string: "Die Installation des MKW-SP Kanals ist fehlgeschlagen",
+        string: "Die Installation des MKW-SP-Kanals ist fehlgeschlagen!",
     },
     "10099": {
-        string: "Der MKW-SP Kanal wurde erfolgreich aktualisiert!",
+        string: "Der MKW-SP-Kanal wurde erfolgreich aktualisiert!",
     },
     "10100": {
-        string: "Die Aktualisierung des MKW-SP Kanals ist fehlgeschlagen",
+        string: "Die Aktualisierung des MKW-SP-Kanals ist fehlgeschlagen",
     },
     "10101": {
-        string: "Der MKW-SP Kanal kann nur von offizielen Builds installiert werden!",
+        string: "Der MKW-SP-Kanal kann nur von offizielen Builds installiert werden!",
     },
     "10102": {
-        string: "Auf Updates prüfen...\n{arg message|0}",
+        string: "Auf Updates wird geprüft...\n{arg message|0}",
     },
     "10103": {
         string: "Eine neue Version von MKW-SP ist verfügbar!\n{arg string|0} → {arg string|1}",
@@ -252,40 +252,40 @@
         string: "Die neuste Version von MKW-SP ({arg string|0})\nist bereits installiert.",
     },
     "10105": {
-        string: "Der MKW-SP Update Check ist fehlgeschlagen!",
+        string: "Der MKW-SP-Update-Check ist fehlgeschlagen!",
     },
     "10106": {
         string: "Möchten Sie MKW-SP auf {arg string|0} aktualisieren?\nDu benötigst {arg string|1} MiB ({arg integer|0 0} Blöcke)\nan freiem Speicherplatz im Wii-Systemspeicher.",
     },
     "10107": {
-        string: "MKW-SP Aktualisieren...\n{arg message|0}",
+        string: "MKW-SP wird aktualisiert...\n{arg message|0}",
     },
     "10108": {
         string: "MKW-SP wurde erfolgreich\nvon {arg string|0} auf {arg string|1} aktualisiert.\nEin Neustart ist notwendig, damit die Aktualisierung\nangewendet werden kann.",
     },
     "10109": {
-        string: "Das MKW-SP Update ist fehlgeschlagen",
+        string: "Das MKW-SP-Update ist fehlgeschlagen",
     },
     "10110": {
         string: "Möchtest du MKW-SP nun neustarten?",
     },
     "10111": {
-        string: "MKW-SP kann nur von Release Builds aktualisiert werden!",
+        string: "MKW-SP kann nur von offiziellen Builds aktualisiert werden!",
     },
     "10112": {
-        string: "Zum Server verbinden...",
+        string: "Verbinde mit dem Server...",
     },
     "10113": {
-        string: "Version Informationen senden...",
+        string: "Versions-Informationen wird gesendet...",
     },
     "10114": {
-        string: "Version Informationen empfangen...",
+        string: "Versions-Informationen wird empfangen...",
     },
     "10115": {
-        string: "Inhalte herunterladen...\n{arg string|0} MiB von {arg string|1} MiB - {arg string|2} MiB/s",
+        string: "Inhalte werden heruntergeladen...\n{arg string|0} MiB von {arg string|1} MiB - {arg string|2} MiB/s",
     },
     "10116": {
-        string: "Inhalte verschieben...",
+        string: "Inhalte werden verschoben...",
     },
     "10118": {
         string: "Rennen",
@@ -312,46 +312,46 @@
         string: "Immer den Positionstracker zeigen.",
     },
     "10126": {
-        string: "Sound",
+        string: "Ton",
     },
     "10127": {
-        string: "Item Musik",
+        string: "Item-Musik",
     },
     "10128": {
         string: "Keine",
     },
     "10129": {
-        string: "Nur Geschockt/Gequetscht",
+        string: "Nur wenn geschrumpft/zerquetscht",
     },
     "10130": {
         string: "Alle",
     },
     "10131": {
-        string: "Lass die Items nicht die Musik ändern.",
+        string: "Items können nicht die Musik ändern.",
     },
     "10132": {
-        string: "Wende den Musikeffekt nur geschockt/zerquetscht an.",
+        string: "Wende den Musikeffekt nur an, wenn geschrumpft/zerquetscht.",
     },
     "10133": {
-        string: "Lassen Sterne, Mega-Pilze und Blitze die Musik beeinflussen.",
+        string: "Lasse Sterne, Mega-Pilze und Blitze die Musik beeinflussen.",
     },
     "10134": {
-        string: "Letze Runde Musik",
+        string: "Letze Runden-Musik",
     },
     "10135": {
-        string: "Nur Spiel",
+        string: "Nur Gameplay",
     },
     "10136": {
         string: "Immer",
     },
     "10137": {
-        string: "Benutze die Letze Runde Musik nur für das Gameplay",
+        string: "Benutze die Letze Runden-Musik nur für das Gameplay.",
     },
     "10138": {
-        string: "Benutze die Letze Runde Musik nur für das Gameplay und Wiederholungen",
+        string: "Benutze die Letze Runden-Musik für das Gameplay und Wiederholungen.",
     },
     "10139": {
-        string: "Letzte Runde Schnelligkeit",
+        string: "Letzte Runden-Schnelligkeit",
     },
     "10140": {
         string: "Keine",
@@ -369,25 +369,25 @@
         string: "Verwende die \"_F\" BRSTM in der letzten Runde.",
     },
     "10145": {
-        string: "Generiere die Letze Runden Musik von der \"_N\" BRSTM.",
+        string: "Generiere die Letzte Runden-Musik von der \"_N\" BRSTM.",
     },
     "10146": {
-        string: "Speicher-Benchmark",
+        string: "Speicher-Test",
     },
     "10147": {
-        string: "Welches Gerät wollen Sie benchmarken?",
+        string: "Welches Gerät wollen Sie testen?",
     },
     "10148": {
-        string: "Benchmarking des {arg message|0} Speichers...\n{arg message|1}",
+        string: "Der Speicher {arg message|0} wird getestet...\n{arg message|1}",
     },
     "10149": {
-        string: "Der {arg message|0} Speicher-Benchmark war erfolgreich.\n{arg integer|0 0} KiB: R {arg string|0} MiB/s - W {arg string|1} MiB/s\n{arg integer|1 0} KiB: R {arg string|2} MiB/s - W {arg string|3} MiB/s\n{arg integer|2 0} KiB: R {arg string|4} MiB/s - W {arg string|5} MiB/s\n{arg integer|3 0} KiB: R {arg string|6} MiB/s - W {arg string|7} MiB/s",
+        string: "Der Speichertest für {arg message|0} war erfolgreich.\n{arg integer|0 0} KiB: R {arg string|0} MiB/s - W {arg string|1} MiB/s\n{arg integer|1 0} KiB: R {arg string|2} MiB/s - W {arg string|3} MiB/s\n{arg integer|2 0} KiB: R {arg string|4} MiB/s - W {arg string|5} MiB/s\n{arg integer|3 0} KiB: R {arg string|6} MiB/s - W {arg string|7} MiB/s",
     },
     "10150": {
-        string: "Der {arg message|0} Speicher-Benchmark ist fehlgeschlagen!",
+        string: "Der Speicher-Test für {arg message|0} ist fehlgeschlagen!",
     },
     "10151": {
-        string: "Initialisierung...",
+        string: "Wird vorbereitet...",
     },
     "10152": {
         string: "Lese {arg integer|0 0} KiB Chunks...",
@@ -396,16 +396,16 @@
         string: "Schreibe {arg integer|0 0} KiB Chunks...",
     },
     "10154": {
-        string: "SD Karte",
+        string: "SD-Karte",
     },
     "10155": {
-        string: "SD Karte",
+        string: "SD-Karte",
     },
     "10156": {
-        string: "USB",
+        string: "USB-Medium",
     },
     "10157": {
-        string: "USB",
+        string: "USB-Medium",
     },
     "10158": {
         string: "Netzwerk",
@@ -417,7 +417,7 @@
         string: "Missionen",
     },
     "10161": {
-        string: "Spiele Missionen mit verschieden objekten.",
+        string: "Spiele Missionen mit verschieden Anforderungen.",
     },
     "10162": {
         string: "Fahre {arg integer|0 0} {arg cond messages|0 10164 10165}",
@@ -432,7 +432,7 @@
         string: "Geister",
     },
     "10166": {
-        string: "Vanilla Modus",
+        string: "Vanilla-Modus",
     },
     "10167": {
         string: "Deaktivieren",
@@ -441,10 +441,10 @@
         string: "Aktivieren",
     },
     "10169": {
-        string: "Alle MKW-SP Änderungen zulassen.",
+        string: "Alle MKW-SP-Änderungen zulassen.",
     },
     "10170": {
-        string: "Meiste MKW-SP Änderungen nicht zulassen.",
+        string: "Die meisten MKW-SP-Änderungen nicht zulassen.",
     },
     "10171": {
         string: "Zeit",
@@ -456,10 +456,10 @@
         string: "Schnellste Runde",
     },
     "10174": {
-        string: "Runde 2 Tempo",
+        string: "Runde 2-Tempo",
     },
     "10175": {
-        string: "Runde 3 Tempo",
+        string: "Runde 3-Tempo",
     },
     "10176": {
         string: "Sortiere die Geister nach ihrer Endzeit.",
@@ -477,36 +477,36 @@
         string: "Sortiere Geister nach ihrer Geschwindigkeit in Runde 3.",
     },
     "10181": {
-        string: "Der Speicherbenchmark {arg message|0} war erfolgreich.\nRang: {arg message|1}\n{arg integer|0 0} KiB: R {arg string|0} MiB/s - W {arg string|1} MiB/s\n{arg integer|1 0} KiB: R {arg string|2} MiB/s - W {arg string|3} MiB/s\n{arg integer|2 0} KiB: R {arg string|4} MiB/s - W {arg string|5} MiB/s\n{arg integer|3 0} KiB: R {arg string|6} MiB/s - W {arg string|7} MiB/s",
+        string: "Der Speichertest für {arg message|0} war erfolgreich.\nRang: {arg message|1}\n{arg integer|0 0} KiB: R {arg string|0} MiB/s - W {arg string|1} MiB/s\n{arg integer|1 0} KiB: R {arg string|2} MiB/s - W {arg string|3} MiB/s\n{arg integer|2 0} KiB: R {arg string|4} MiB/s - W {arg string|5} MiB/s\n{arg integer|3 0} KiB: R {arg string|6} MiB/s - W {arg string|7} MiB/s",
     },
     "10183": {
-        string: "Spieler Tags",
+        string: "Spielerkennzeichen",
     },
     "10185": {
         string: "Zeige maximal {arg integer|0 0} {arg cond messages|0 10186 10187} gleichzeitig.",
     },
     "10186": {
-        string: "tag",
+        string: "Kennzeichen",
     },
     "10187": {
-        string: "tags",
+        string: "Kennzeichen",
     },
     "10188": {
-        string: "Leistungs Overlay",
+        string: "Leistungs-Overlay",
     },
     "10189": {
-        string: "Zeige kein CPU, GPU und Memory Leisten.",
+        string: "Zeige keine CPU-, GPU- und Speicher-Leisten.",
     },
     "10190": {
-        string: "Zeige CPU, GPU und Memory Leisten.",
+        string: "Zeige CPU-, GPU- und Speicher-Leisten.",
     },
     "10191": {
-        string: "GCN Vibration",
+        string: "GCN-Rumble",
     },
     "10192": {
-        string: "Deaktiviere die GCN Controller Vibration Funktion.",
+        string: "Deaktiviere die Vibrationen von GCN Controllern.",
     },
     "10193": {
-        string: "Aktiviere die GCN Controller Vibration Funktion.",
+        string: "Aktiviere die Vibration von GCN Controllern.",
     },
 }

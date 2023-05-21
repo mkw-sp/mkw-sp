@@ -10,8 +10,8 @@ PATCH_BL_START(KartSub_calcPass0, 0x310)
     stfs f0, 0x148 (r4) // Original instruction
 
     // Check that 200cc is enabled
-    lis r5, speedModIsEnabled@ha
-    lbz r5, speedModIsEnabled@l (r5)
+    lis r5, g_speedModIsEnabled@ha
+    lbz r5, g_speedModIsEnabled@l (r5)
     cmpwi r5, 0x0
     beqlr
 
@@ -61,8 +61,8 @@ PATCH_BL_START(KartSub_calcPass1, 0x694)
     mr r3, r28 // Original instruction
 
     // Check that 200cc is enabled
-    lis r4, speedModIsEnabled@ha
-    lbz r4, speedModIsEnabled@l (r4)
+    lis r4, g_speedModIsEnabled@ha
+    lbz r4, g_speedModIsEnabled@l (r4)
     cmpwi r4, 0x0
     beqlr
 

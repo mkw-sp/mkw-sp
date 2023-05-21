@@ -66,10 +66,10 @@ void RaceConfig::applyEngineClass() {
         setting = SP::ClientSettings::EngineClass::CC50;
     } else if (m_menuScenario.gameMode == GameMode::TimeAttack) {
         auto taSetting = saveManager->getSetting<SP::ClientSettings::Setting::TAClass>();
-        if (taSetting == SP::ClientSettings::TAClass::CC150) {
-            setting = SP::ClientSettings::EngineClass::CC150;
-        } else {
+        if (taSetting == SP::ClientSettings::TAClass::CC200) {
             setting = SP::ClientSettings::EngineClass::CC200;
+        } else if (taSetting == SP::ClientSettings::TAClass::Mirror) {
+            setting = SP::ClientSettings::EngineClass::Mirror;
         }
     }
 
@@ -214,17 +214,6 @@ void RaceConfig::clear() {
 void RaceConfig::initRace() {
     REPLACED(initRace)();
 
-    auto *saveManager = SaveManager::Instance();
-    auto setting = saveManager->getSetting<SP::ClientSettings::Setting::TAMirror>();
-    // Switch the race to mirror if the mirror TT setting is enabled.
-    if (m_raceScenario.gameMode == GameMode::TimeAttack &&
-            setting == SP::ClientSettings::TAMirror::Enable) {
-        m_raceScenario.mirror = true;
-    } else if (m_raceScenario.gameMode == GameMode::TimeAttack &&
-            setting == SP::ClientSettings::TAMirror::Disable) {
-        m_raceScenario.mirror = false;
-    }
-
     // Setup stock game slots
     if (m_menuScenario.gameMode != GameMode::Awards) {
         m_raceScenario.courseId = getPackInfo().getSelectedCourse();
@@ -264,7 +253,7 @@ bool RaceConfig::generateRandomCourses() {
 
     for (u8 i = 0; i < raceCount; i += 1) {
         auto courseCount = trackPack.getTrackCount(mode);
-        auto courseIdx = hydro_random_uniform(courseCount) - 1;
+        auto courseIdx = hydro_random_uniform(courseCount);
         auto randCourse = trackPack.getNthTrack(courseIdx, mode);
 
         SP::TrackPackInfo packInfo = {};
@@ -294,7 +283,6 @@ bool RaceConfig::generateOrderedCourses(u16 currentIdx) {
             currentIdx = 1;
         }
 
-        SP_LOG("existing %d i %d currentIdx %d", m_courseOrder.count(), i, currentIdx);
         SP::TrackPackInfo packInfo = {};
         packInfo.selectCourse(*track);
         m_courseOrder.push_back(std::move(packInfo));

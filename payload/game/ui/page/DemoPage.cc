@@ -1,6 +1,5 @@
 #include "DemoPage.hh"
 
-#include "game/kart/KartObjectManager.hh"
 #include "game/system/RaceConfig.hh"
 #include "game/ui/SectionManager.hh"
 
@@ -47,7 +46,7 @@ void DemoPage::onInit() {
     if (currentSectionId == SectionId::GPDemo || currentSectionId == SectionId::VSDemo) {
         if (raceScenario.mirror) {
             cupInfo.messageIds[0] = 1420;
-        } else if (speedModIsEnabled) {
+        } else if (raceScenario.is200cc) {
             cupInfo.messageIds[0] = 10072;
         } else {
             cupInfo.messageIds[0] = 1417 + static_cast<u32>(raceScenario.engineClass);

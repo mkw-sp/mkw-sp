@@ -12,7 +12,7 @@
         string: "Settings",
     },
     "3420": {
-        string: "CPU Difficulty"
+        string: "CPU Difficulty",
     },
     "3475": {
         string: "Change settings for this license.",
@@ -980,21 +980,6 @@
     "10354": {
         string: "Hide course_model.brres.",
     },
-    "10355": {
-        string: "Mirror TTs",
-    },
-    "10356": {
-        string: "Disable",
-    },
-    "10357": {
-        string: "Enable",
-    },
-    "10358": {
-        string: "Play 150cc Time Trials.",
-    },
-    "10359": {
-        string: "Play mirror Time Trials.",
-    },
     "10360": {
         string: "Offline Battle",
     },
@@ -1089,13 +1074,13 @@
         string: "Forces 30fps, can help with Dolphin performance.",
     },
     "10393": {
-        string: "Choose the team size randomly."
+        string: "Choose the team size randomly.",
     },
     "10394": {
         string: "Packs",
     },
     "10420": {
-        string: "Battle Count"
+        string: "Battle Count",
     },
     "10421": {
         string: "Play {arg integer|0 0} {arg cond messages|0 10422 10423}.",
@@ -1107,7 +1092,7 @@
         string: "battles",
     },
     "10424": {
-        string: "Stage Selection"
+        string: "Stage Selection",
     },
     "10425": {
         string: "Stages are chosen individually.",

@@ -2,6 +2,21 @@
     "2053": {
         string: "Ha ocurrido un error al leer o guardar los datos de guardado.",
     },
+    "3400": {
+        string: "Configuración",
+    },
+    "3420": {
+        string: "Dificultad de CPU",
+    },
+    "3475": {
+        string: "Cambia los ajustes para esta licencia.",
+    },
+    "3700": {
+        string: "Seleccionar misión",
+    },
+    "3701": {
+        string: "Seleccionar nivel",
+    },
     "10000": {
         string: "Correr contra 1 fantasma",
     },
@@ -175,9 +190,6 @@
     },
     "10074": {
         string: "¡Modifica ajustes o cambia tu Mii!",
-    },
-    "10077": {
-        string: "Cambia los ajustes para esta licencia.",
     },
     "10078": {
         string: "Factor de velocidad 0,9.",
@@ -508,5 +520,497 @@
     },
     "10193": {
         string: "Activar la función de vibración del mando GCN.",
+    },
+    "10194": {
+        string: "Color de la línea de región",
+    },
+    "10195": {
+        string: "Rojo",
+    },
+    "10196": {
+        string: "Azul",
+    },
+    "10197": {
+        string: "Verde",
+    },
+    "10198": {
+        string: "Amarillo",
+    },
+    "10199": {
+        string: "Blanco",
+    },
+    "10200": {
+        string: "Magenta",
+    },
+    "10201": {
+        string: "El color de la línea que se mostrará debajo de tu nombre será {color|player 3}rojo{color|unspecified}.",
+    },
+    "10202": {
+        string: "El color de la línea que se mostrará debajo de tu nombre será {color|sp blue}azul{color|unspecified}.",
+    },
+    "10203": {
+        string: "El color de la línea que se mostrará debajo de tu nombre será {color|sp green}verde{color|unspecified}.",
+    },
+    "10204": {
+        string: "El color de la línea que se mostrará debajo de tu nombre será {color|player 1}amarillo{color|unspecified}.",
+    },
+    "10205": {
+        string: "El color de la línea que se mostrará debajo de tu nombre será blanco.",
+    },
+    "10206": {
+        string: "El color de la línea que se mostrará debajo de tu nombre será {color|sp pink}magenta{color|unspecified}.",
+    },
+    "10207": {
+        string: "Tamaño del equipo",
+    },
+    "10208": {
+        string: "Sin equipos",
+    },
+    "10213": {
+        string: "Jugar sin equipos.",
+    },
+    "10214": {
+        string: "Limitar el tamaño del equipo a 2 jugadores.",
+    },
+    "10215": {
+        string: "Limitar el tamaño del equipo a 3 jugadores.",
+    },
+    "10216": {
+        string: "Limitar el tamaño del equipo a 4 jugadores.",
+    },
+    "10217": {
+        string: "Limitar el tamaño del equipo a 6 jugadores.",
+    },
+    "10218": {
+        string: "Aleatorio",
+    },
+    "10224": {
+        string: "Número de carreras",
+    },
+    "10226": {
+        string: "Disputa {arg integer|0 0} {arg cond messages|0 10282 10283}.",
+    },
+    "10227": {
+        string: "Selección de pistas",
+    },
+    "10228": {
+        string: "Aleatorio",
+    },
+    "10231": {
+        string: "Las pistas son elegidas aleatoriamente.",
+    },
+    "10234": {
+        string: "Categoría",
+    },
+    "10235": {
+        string: "Mixta",
+    },
+    "10236": {
+        string: "150cc",
+    },
+    "10237": {
+        string: "Espejo",
+    },
+    "10238": {
+        string: "200cc",
+    },
+    "10239": {
+        string: "Las carreras serán en 150cc un 85% de las veces, y en Espejo un 15%.",
+    },
+    "10240": {
+        string: "Las carreras serán siempre en 150cc.",
+    },
+    "10241": {
+        string: "Las carreras serán siempre en Espejo.",
+    },
+    "10242": {
+        string: "Las carreras serán siempre en 200cc.",
+    },
+    "10243": {
+        string: "Vehículos",
+    },
+    "10244": {
+        string: "Todos",
+    },
+    "10245": {
+        string: "Karts",
+    },
+    "10246": {
+        string: "Motos",
+    },
+    "10247": {
+        string: "Derrape interior",
+    },
+    "10248": {
+        string: "Derrape exterior",
+    },
+    "10249": {
+        string: "Óptimo",
+    },
+    "10250": {
+        string: "Aleatorio",
+    },
+    "10251": {
+        string: "Permitir todos los vehículos.",
+    },
+    "10252": {
+        string: "Solo permitir karts.",
+    },
+    "10253": {
+        string: "Solo permitir motos.",
+    },
+    "10254": {
+        string: "Solo permitir vehículos de derrape interior.",
+    },
+    "10255": {
+        string: "Solo permitir vehículos de derrape exterior.",
+    },
+    "10256": {
+        string: "Solo permitir el vehículo más óptimo para cada personaje.",
+    },
+    "10257": {
+        string: "Elegir aleatoriamente una combinación común para todos los jugadores.",
+    },
+    "10260": {
+        string: "Las pistas son elegidas individualmente.",
+    },
+    "10261": {
+        string: "Las pistas son elegidas en orden.",
+    },
+    "10262": {
+        string: "VS. Offline",
+    },
+    "10263": {
+        string: "Paleta de colores",
+    },
+    "10264": {
+        string: "Colores vivos",
+    },
+    "10265": {
+        string: "Daltonismo",
+    },
+    "10266": {
+        string: "Usar la paleta de colores vivos para los colores de equipo.",
+    },
+    "10267": {
+        string: "Usar la paleta de daltonismo para los colores de equipo.",
+    },
+    "10268": {
+        string: "{color|player 3}Equipo rojo",
+    },
+    "10269": {
+        string: "{color|sp blue}Equipo azul",
+    },
+    "10270": {
+        string: "{color|sp green}Equipo verde",
+    },
+    "10271": {
+        string: "{color|player 1}Equipo amarillo",
+    },
+    "10272": {
+        string: "{color|sp pink}Equipo magenta",
+    },
+    "10273": {
+        string: "Equipo blanco",
+    },
+    "10274": {
+        string: "Los equipos están impares.\n\nElige de nuevo.",
+    },
+    "10282": {
+        string: "carrera",
+    },
+    "10283": {
+        string: "carreras",
+    },
+    "10296": {
+        string: "Colores de equipo en el HUD",
+    },
+    "10297": {
+        string: "Desactivar",
+    },
+    "10298": {
+        string: "Activar",
+    },
+    "10299": {
+        string: "Siempre usar los colores de los jugadores locales para los controles HUD.",
+    },
+    "10300": {
+        string: "Usar los colores de equipo para los controles HUD.",
+    },
+    "10301": {
+        string: "Control simplificado",
+    },
+    "10302": {
+        string: "Desactivado",
+    },
+    "10303": {
+        string: "No exclusivo",
+    },
+    "10304": {
+        string: "Exclusivo",
+    },
+    "10305": {
+        string: "Usar los controles por defecto únicamente para hacer piruetas o caballitos.",
+    },
+    "10306": {
+        string: "Usa el botón Y (GCN) o ZL (CC/CCP) para hacer piruetas o caballitos.",
+    },
+    "10307": {
+        string: "Usa el botón Y (GCN) o ZL (CC/CCP) únicamente para hacer piruetas o caballitos.",
+    },
+    "10308": {
+        string: "Etiquetas de jugadores lejanos",
+    },
+    "10309": {
+        string: "Desactivar",
+    },
+    "10310": {
+        string: "Activar",
+    },
+    "10311": {
+        string: "Usa la distancia por defecto para mostrar las etiquetas de los jugadores.",
+    },
+    "10312": {
+        string: "Aumentar la distancia para mostrar las etiquetas de los jugadores.",
+    },
+    "10313": {
+        string: "Miniaturas",
+    },
+    "10314": {
+        string: "No se ha encontrado ninguna pista en la carpeta /mkw-sp/thumbnails.",
+    },
+    "10315": {
+        string: "Interfaz de depuración",
+    },
+    "10316": {
+        string: "Checkpoints",
+    },
+    "10317": {
+        string: "Desactivar",
+    },
+    "10318": {
+        string: "Activar",
+    },
+    "10319": {
+        string: "No mostrar los checkpoints.",
+    },
+    "10320": {
+        string: "Interfaz estándar de checkpoints.",
+    },
+    "10321": {
+        string: "Velocímetro",
+    },
+    "10322": {
+        string: "Vel. interna + carretera movediza",
+    },
+    "10323": {
+        string: "Velocidad interna",
+    },
+    "10324": {
+        string: "XYZ",
+    },
+    "10325": {
+        string: "XZ",
+    },
+    "10326": {
+        string: "Y",
+    },
+    "10327": {
+        string: "El velocímetro muestra la velocidad interna del vehículo más la velocidad de las carreteras que se mueven.",
+    },
+    "10328": {
+        string: "El velocímetro muestra la velocidad interna del vehículo.",
+    },
+    "10329": {
+        string: "El velocímetro muestra la velocidad con la que el vehículo se mueve en todas las direcciones.",
+    },
+    "10330": {
+        string: "El velocímetro muestra la velocidad con la que el vehículo se mueve horizontalmente.",
+    },
+    "10331": {
+        string: "El velocímetro muestra la velocidad con la que el vehículo se mueve verticalmente.",
+    },
+    "10332": {
+        string: "Por defecto",
+    },
+    "10333": {
+        string: "El color de la línea que se mostrará debajo de tu nombre será determinado por el propio juego.",
+    },
+    "10334": {
+        string: "Región y bandera de país",
+    },
+    "10335": {
+        string: "No mostrar tu bandera ni información de región en el juego.",
+    },
+    "10336": {
+        string: "Mostrar tu bandera e información de región en el juego.",
+    },
+    "10337": {
+        string: "No mostrar",
+    },
+    "10338": {
+        string: "Mostrar",
+    },
+    "10339": {
+        string: "No mostrar",
+    },
+    "10340": {
+        string: "Mostrar",
+    },
+    "10341": {
+        string: "Panel",
+    },
+    "10342": {
+        string: "Desactivar",
+    },
+    "10343": {
+        string: "Jugador",
+    },
+    "10344": {
+        string: "Online",
+    },
+    "10345": {
+        string: "No mostrar el panel de depuración.",
+    },
+    "10346": {
+        string: "Mostrar la información de jugador en el panel de depuración.",
+    },
+    "10347": {
+        string: "Mostrar la información online en el panel de depuración.",
+    },
+    "10348": {
+        string: "Visualización de course.kcl",
+    },
+    "10349": {
+        string: "Desactivada",
+    },
+    "10350": {
+        string: "Solo mostrar course_model.brres.",
+    },
+    "10351": {
+        string: "Superpuesta",
+    },
+    "10352": {
+        string: "Mostrar por encima de course_model.brres.",
+    },
+    "10353": {
+        string: "Reemplazar modelo de pista",
+    },
+    "10354": {
+        string: "Ocultar course_model.brres.",
+    },
+    "10360": {
+        string: "Batallas offline",
+    },
+    "10361": {
+        string: "Las carreras serán siempre en 50cc.",
+    },
+    "10362": {
+        string: "Las carreras serán siempre en 100cc.",
+    },
+    "10365": {
+        string: "50cc",
+    },
+    "10366": {
+        string: "100cc",
+    },
+    "10367": {
+        string: "Minimapa",
+    },
+    "10368": {
+        string: "Activar",
+    },
+    "10369": {
+        string: "Desactivar",
+    },
+    "10370": {
+        string: "Mostrar el minimapa en el HUD.",
+    },
+    "10371": {
+        string: "No mostrar el minimapa en el HUD.",
+    },
+    "10372": {
+        string: "Volumen",
+    },
+    "10374": {
+        string: "Establecer el volumen a {arg integer|0 0}/10.",
+    },
+    "10375": {
+        string: "Volumen de la música",
+    },
+    "10377": {
+        string: "Establecer el volumen de la música a {arg integer|0 0}/10.",
+    },
+    "10378": {
+        string: "Carpeta My Stuff",
+    },
+    "10379": {
+        string: "Reemplazo de archivos",
+    },
+    "10380": {
+        string: "Desactivado",
+    },
+    "10381": {
+        string: "Solo BRSTMs",
+    },
+    "10382": {
+        string: "Todo",
+    },
+    "10383": {
+        string: "No permitir que ningún archivo sea reemplazado.",
+    },
+    "10384": {
+        string: "Permitir reemplazar archivos '.brstm'.",
+    },
+    "10385": {
+        string: "Permitir reemplazar todos los archivos.",
+    },
+    "10386": {
+        string: "Modo de FPS",
+    },
+    "10387": {
+        string: "Original",
+    },
+    "10388": {
+        string: "Forzar 60 FPS",
+    },
+    "10389": {
+        string: "Forzar 30 FPS",
+    },
+    "10390": {
+        string: "Usar 60 FPS, excepto en escenarios intensos.",
+    },
+    "10391": {
+        string: "Usar siempre 60 FPS, incluso en escenarios intensos.",
+    },
+    "10392": {
+        string: "Usar siempre 30 FPS, ayudando al rendimiento en Dolphin.",
+    },
+    "10393": {
+        string: "Elegir aleatoriamente el tamaño del equipo.",
+    },
+    "10420": {
+        string: "Número de batallas",
+    },
+    "10421": {
+        string: "Disputa {arg integer|0 0} {arg cond messages|0 10422 10423}.",
+    },
+    "10422": {
+        string: "batalla",
+    },
+    "10423": {
+        string: "batallas",
+    },
+    "10424": {
+        string: "Selección de escenarios",
+    },
+    "10425": {
+        string: "Los escenarios son elegidos individualmente.",
+    },
+    "10426": {
+        string: "Los escenarios son elegidos aleatoriamente.",
+    },
+    "10427": {
+        string: "Los escenarios son elegidos en orden.",
     },
 }

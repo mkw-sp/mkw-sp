@@ -533,6 +533,7 @@
 0x8051f37c _ZN6System3Pad5vf_38Ev
 0x8051f410 WiiPad_processClassic
 0x8051f410 _ZN6System6WiiPad14processClassicEPvRNS_14RaceInputStateERNS_12UIInputStateE
+0x8051fc84 _ZN6System6WiiPad7processERNS_14RaceInputStateERNS_12UIInputStateE
 0x805201b0 GcPad_process
 0x805201b0 _ZN6System5GCPad7processERNS_14RaceInputStateERNS_12UIInputStateE
 0x80520730 _ZN6System8GhostPadC1Ev
@@ -1476,8 +1477,8 @@
 0x808ad3c4 RaceCupSelectPage_zero
 
 0x808b3984 _ZN8Registry15courseFilenamesE
-0x808b5b1c minDriftSpeedFactor
-0x808b5c78 boostAccelerations
+0x808b5b1c s_minDriftSpeedFactor
+0x808b5c78 s_boostAccelerations
 0x808cb550 ai_808cb550
 0x808D3E14 playerTagRenderDistance
 0x808da070 _ZN2UI11TopMenuPage13s_buttonNamesE

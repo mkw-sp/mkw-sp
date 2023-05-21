@@ -56,7 +56,9 @@ struct RaceInputState {
 static_assert(sizeof(RaceInputState) == 0x18);
 
 struct UIInputState {
-    u8 _00[0x34 - 0x00];
+    u8 _00[0x08 - 0x00];
+    Vec2<f32> stick;
+    u8 _10[0x34 - 0x10];
 };
 static_assert(sizeof(UIInputState) == 0x34);
 
@@ -122,6 +124,9 @@ class WiiPad : public Pad {
 public:
     WiiPad();
     ~WiiPad() override;
+
+    void REPLACED(process)(RaceInputState &raceInputState, UIInputState &uiInputState);
+    REPLACE void process(RaceInputState &raceInputState, UIInputState &uiInputState) override;
 
 protected:
     void REPLACED(

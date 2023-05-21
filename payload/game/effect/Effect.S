@@ -4,8 +4,8 @@ PATCH_B_START(Effect_80698028, 0xf24)
     bl Effect_806979f0 // Original instruction
 
     // Check that 200cc is enabled
-    lis r3, speedModIsEnabled@ha
-    lbz r3, speedModIsEnabled@l (r3)
+    lis r3, g_speedModIsEnabled@ha
+    lbz r3, g_speedModIsEnabled@l (r3)
     cmpwi r3, 0x0
     beq .LendKart
 
@@ -80,8 +80,8 @@ PATCH_B_END(Effect_80698028, 0xf24)
 
 PATCH_B_START(Effect_80698f70, 0xd28)
     // Check that 200cc is enabled
-    lis r3, speedModIsEnabled@ha
-    lbz r3, speedModIsEnabled@l (r3)
+    lis r3, g_speedModIsEnabled@ha
+    lbz r3, g_speedModIsEnabled@l (r3)
     cmpwi r3, 0x0
     beq .LendBike
 
