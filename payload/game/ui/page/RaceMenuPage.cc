@@ -22,6 +22,14 @@ void RaceMenuPage::onButtonFront(PushButton *button, u32 localPlayerId) {
 
     auto buttonId = static_cast<ButtonId>(button->m_index);
     switch (buttonId) {
+    case ButtonId::Restart1:
+    case ButtonId::Restart3:
+    case ButtonId::BattleGhost:
+        if (raceScenario.gameMode == System::RaceConfig::GameMode::TimeAttack) {
+            System::RaceConfig::Instance()->applyEngineClass();
+        }
+        REPLACED(onButtonFront)(button, localPlayerId);
+        return;
     case ButtonId::Next:
         if (menuScenario.mirrorRng) {
             menuScenario.mirror = hydro_random_uniform(20) >= 17;
