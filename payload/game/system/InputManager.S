@@ -4,8 +4,8 @@ PATCH_BL_START(WiiPad_processClassic, 0x1e8)
     ori r6, r6, 0x1 // Original instruction
 
     // Check that 200cc is enabled
-    lis r8, speedModIsEnabled@ha
-    lbz r8, speedModIsEnabled@l (r8)
+    lis r8, g_speedModIsEnabled@ha
+    lbz r8, g_speedModIsEnabled@l (r8)
     cmpwi r8, 0x0
     beqlr
 
@@ -23,8 +23,8 @@ PATCH_BL_START(GcPad_process, 0xec)
     ori r8, r8, 0x1 // Original instruction
 
     // Check that 200cc is enabled
-    lis r4, speedModIsEnabled@ha
-    lbz r4, speedModIsEnabled@l (r4)
+    lis r4, g_speedModIsEnabled@ha
+    lbz r4, g_speedModIsEnabled@l (r4)
     cmpwi r4, 0x0
     beqlr
 

@@ -1,6 +1,5 @@
 #include "CtrlRaceInputDisplay.hh"
 
-#include "game/kart/KartObjectManager.hh" // speedModIsEnabled
 #include "game/system/RaceConfig.hh"
 #include "game/system/RaceManager.hh"
 #include "game/system/SaveManager.hh"
@@ -28,7 +27,7 @@ void CtrlRaceInputDisplay::initSelf() {
 
     // Note: enum_name returns a string_view over a null-terminated string, thus the conversion in
     // the other direction is safe.
-
+    auto &raceScenario = System::RaceConfig::Instance()->raceScenario();
     magic_enum::enum_for_each<DpadState>([&](auto s) {
         DpadState state = s;
         auto stateName = magic_enum::enum_name(state);
@@ -48,7 +47,7 @@ void CtrlRaceInputDisplay::initSelf() {
         auto *pane = m_mainLayout.findPaneByName(name);
         assert(pane);
         pane->m_visible = state == AccelState::Off;
-        if (speedModIsEnabled) {
+        if (raceScenario.is200cc) {
             pane->m_trans.x += pane->m_scale.x * 15.0f;
             pane->m_trans.y += pane->m_scale.y * 15.0f;
         }
@@ -67,7 +66,7 @@ void CtrlRaceInputDisplay::initSelf() {
             auto *pane = m_mainLayout.findPaneByName(name);
             assert(pane);
             pane->m_visible = state == TriggerState::Off;
-            if (!speedModIsEnabled && trigger == Trigger::BD) {
+            if (!raceScenario.is200cc && trigger == Trigger::BD) {
                 pane->m_visible = false;
             }
             m_triggerPanes[static_cast<u32>(trigger)][static_cast<u32>(state)] = pane;
@@ -91,6 +90,7 @@ void CtrlRaceInputDisplay::calcSelf() {
     }
 
     System::RaceInputState input{};
+    auto &raceScenario = System::RaceConfig::Instance()->raceScenario();
     if (playerId < System::RaceConfig::Instance()->raceScenario().playerCount) {
         auto *player = System::RaceManager::Instance()->player(playerId);
         input = player->padProxy()->currentRaceInputState();
@@ -106,7 +106,7 @@ void CtrlRaceInputDisplay::calcSelf() {
     auto dpad = static_cast<DpadState>(input.trick);
 
     // Mirror mode inverts stick and dpad inputs
-    if (System::RaceConfig::Instance()->raceScenario().mirror) {
+    if (raceScenario.mirror) {
         if (dpad == DpadState::Left) {
             dpad = DpadState::Right;
         } else if (dpad == DpadState::Right) {
@@ -125,7 +125,7 @@ void CtrlRaceInputDisplay::calcSelf() {
     setTrigger(Trigger::R, r ? TriggerState::Pressed : TriggerState::Off);
     setStick(input.stick);
 
-    if (speedModIsEnabled) {
+    if (raceScenario.is200cc) {
         bool brakeDrift = input.brakeDrift;
         setTrigger(Trigger::BD, brakeDrift ? TriggerState::Pressed : TriggerState::Off);
     }

@@ -2,10 +2,6 @@
 
 #include "game/kart/KartObject.hh"
 
-extern bool speedModIsEnabled;
-extern f32 speedModFactor;
-extern f32 speedModReverseFactor;
-
 namespace Kart {
 
 class KartObjectManager {

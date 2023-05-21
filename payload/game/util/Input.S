@@ -4,8 +4,8 @@ PATCH_BL_START(Input_80745be4, 0xd0)
     ori r31, r31, 0x1 // Original instruction
 
     // Check that 200cc is enabled
-    lis r6, speedModIsEnabled@ha
-    lbz r6, speedModIsEnabled@l (r6)
+    lis r6, g_speedModIsEnabled@ha
+    lbz r6, g_speedModIsEnabled@l (r6)
     cmpwi r6, 0x0
     beqlr
 
@@ -23,8 +23,8 @@ PATCH_BL_START(Input_80745de4, 0x18c)
     ori r0, r0, 0x1 // Original instruction
 
     // Check that 200cc is enabled
-    lis r3, speedModIsEnabled@ha
-    lbz r3, speedModIsEnabled@l (r3)
+    lis r3, g_speedModIsEnabled@ha
+    lbz r3, g_speedModIsEnabled@l (r3)
     cmpwi r3, 0x0
     beqlr
 

@@ -1,6 +1,5 @@
 #include "AwardPage.hh"
 
-#include "game/kart/KartObjectManager.hh" // speedModIsEnabled
 #include "game/system/RaceConfig.hh"
 #include "game/ui/SectionManager.hh"
 
@@ -77,7 +76,7 @@ void AwardPage::initType() {
         case System::RaceConfig::EngineClass::CC150:
             if (awardsScenario.mirror) {
                 cupInfo.messageIds[0] = 1420;
-            } else if (speedModIsEnabled) {
+            } else if (awardsScenario.is200cc) {
                 cupInfo.messageIds[0] = 10072;
             } else {
                 cupInfo.messageIds[0] = 1419;

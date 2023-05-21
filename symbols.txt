@@ -1472,8 +1472,8 @@
 0x808ad3c4 RaceCupSelectPage_zero
 
 0x808b3984 _ZN8Registry15courseFilenamesE
-0x808b5b1c minDriftSpeedFactor
-0x808b5c78 boostAccelerations
+0x808b5b1c s_minDriftSpeedFactor
+0x808b5c78 s_boostAccelerations
 0x808cb550 ai_808cb550
 0x808D3E14 playerTagRenderDistance
 0x808da070 _ZN2UI11TopMenuPage13s_buttonNamesE
