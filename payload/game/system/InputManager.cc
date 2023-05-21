@@ -65,6 +65,14 @@ UserPad::UserPad() = default;
 
 UserPad::~UserPad() = default;
 
+void WiiPad::process(RaceInputState &raceInputState, UIInputState &uiInputState) {
+    REPLACED(process)(raceInputState, uiInputState);
+
+    if (InputManager::Instance()->isMirror()) {
+        uiInputState.stick.x *= -1.0f;
+    }
+}
+
 void WiiPad::processClassic(void *r4, RaceInputState &raceInputState, UIInputState &uiInputState) {
     REPLACED(processClassic)(r4, raceInputState, uiInputState);
 
@@ -79,6 +87,10 @@ void GCPad::process(RaceInputState &raceInputState, UIInputState &uiInputState) 
     REPLACED(process)(raceInputState, uiInputState);
 
     processSimplified(raceInputState, raceInputState.rawButtons & PAD_BUTTON_Y);
+
+    if (InputManager::Instance()->isMirror()) {
+        uiInputState.stick.x *= -1.0f;
+    }
 }
 
 void GhostPad::process(RaceInputState &raceInputState, UIInputState &uiInputState) {
