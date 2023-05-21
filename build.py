@@ -1392,7 +1392,7 @@ for fmt in ['binary', 'elf32-powerpc']:
             variables = {
                 'ldflags' : ' '.join([
                     *common_ldflags,
-                    '-Wl,--defsym,base=0x80c00000',
+                    '-Wl,--defsym,base=0x80b00000',
                     '-Wl,--entry=start',
                     f'-Wl,--oformat,{fmt}',
                     '-Wl,-T,' + os.path.join('common', 'RMC.ld'),
