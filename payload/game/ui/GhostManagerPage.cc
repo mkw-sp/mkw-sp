@@ -21,7 +21,7 @@ void GhostManagerPage::SPList::populate() {
     for (u32 i = 0; i < saveManager->ghostCount(); i++) {
         auto *header = saveManager->rawGhostHeader(i);
         auto *footer = saveManager->ghostFooter(i);
-        if (footer->courseSHA1() != courseSHA1) {
+        if (footer->courseSHA1() && footer->courseSHA1() != courseSHA1) {
             continue;
         }
         if (footer->hasSpeedMod() && *(footer->hasSpeedMod()) != speedModIsEnabled) {
