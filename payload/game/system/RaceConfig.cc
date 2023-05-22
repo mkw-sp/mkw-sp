@@ -28,6 +28,14 @@ u8 (&RaceConfig::ghostBuffers())[2][11][0x2800] {
     return m_ghostBuffers;
 }
 
+bool RaceConfig::isSameTeam(u32 p0, u32 p1) const {
+    if (m_raceScenario.spMaxTeamSize < 2) {
+        return p0 == p1;
+    }
+
+    return m_raceScenario.players[p0].spTeam == m_raceScenario.players[p1].spTeam;
+}
+
 void RaceConfig::applyEngineClass() {
     auto *saveManager = SaveManager::Instance();
     auto setting = SP::ClientSettings::EngineClass::CC150;
@@ -199,15 +207,3 @@ bool RaceConfig::selectRandomCourse() {
 }
 
 } // namespace System
-
-extern "C" {
-
-bool RaceConfig_IsSameTeam(u32 p0, u32 p1) {
-    auto &raceScenario = System::RaceConfig::Instance()->raceScenario();
-    if (raceScenario.spMaxTeamSize < 2) {
-        return p0 == p1;
-    }
-
-    return raceScenario.players[p0].spTeam == raceScenario.players[p1].spTeam;
-}
-}

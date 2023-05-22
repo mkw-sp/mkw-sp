@@ -26,4 +26,38 @@ bool TimeAttackRaceMode::canEndRace() {
     return true;
 }
 
+void BalloonBattleRaceMode::onRemoveHit(u32 sender, u32 receiver) {
+    if (System::RaceConfig::Instance()->isSameTeam(sender, receiver)) {
+        onRemoveHit(receiver);
+        return;
+    }
+
+    REPLACED(onRemoveHit)(sender, receiver);
+}
+
+void BalloonBattleRaceMode::onMoveHit(u32 sender, u32 receiver) {
+    if (System::RaceConfig::Instance()->isSameTeam(sender, receiver)) {
+        return;
+    }
+
+    REPLACED(onMoveHit)(sender, receiver);
+}
+
+void CoinBattleRaceMode::onRemoveHit(u32 sender, u32 receiver) {
+    if (System::RaceConfig::Instance()->isSameTeam(sender, receiver)) {
+        onRemoveHit(receiver);
+        return;
+    }
+
+    REPLACED(onRemoveHit)(sender, receiver);
+}
+
+void CoinBattleRaceMode::onMoveHit(u32 sender, u32 receiver) {
+    if (System::RaceConfig::Instance()->isSameTeam(sender, receiver)) {
+        return;
+    }
+
+    REPLACED(onMoveHit)(sender, receiver);
+}
+
 } // namespace System

@@ -1,7 +1,7 @@
 #include "KartObjectManager.hh"
 
 #include "game/effect/EffectManager.hh"
-#include "game/kart/PlayerModel.hh"
+#include "game/race/Driver.hh"
 #include "game/sound/KartSound.hh"
 #include "game/system/GhostFile.hh"
 #include "game/system/RaceConfig.hh"
@@ -80,13 +80,13 @@ void KartObjectManager::beforeCalc() {
 
         auto soundSetting = getGhostSoundSetting(i);
         auto *kartSound = m_objects[i]->getKartSound();
-        auto *kartModel = m_objects[i]->getPlayerModel();
+        auto *driver = m_objects[i]->getDriver();
         bool hasFinished = raceManager->player(i)->hasFinished();
 
         kartSound->m_isLocal = soundSetting == SoundSetting::Full;
         kartSound->m_isGhost = soundSetting == SoundSetting::None;
-        kartModel->sound->isLocal = soundSetting == SoundSetting::Full && !hasFinished;
-        kartModel->sound->isGhost = soundSetting == SoundSetting::None || hasFinished;
+        driver->sound->isLocal = soundSetting == SoundSetting::Full && !hasFinished;
+        driver->sound->isGhost = soundSetting == SoundSetting::None || hasFinished;
     }
 
     auto *racePage = UI::RacePage::Instance();

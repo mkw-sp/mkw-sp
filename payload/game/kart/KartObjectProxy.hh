@@ -3,6 +3,10 @@
 #include <common/TQuat.hh>
 #include <common/TVec3.hh>
 
+namespace Race {
+class Driver;
+}
+
 namespace Sound {
 class KartSound;
 }
@@ -20,7 +24,6 @@ class KartState;
 class KartSub;
 class KartSus;
 class KartTire;
-class PlayerModel;
 class VehiclePhysics;
 
 struct KartAccessor {
@@ -29,7 +32,7 @@ struct KartAccessor {
     KartBody *body;
     KartSus **sus;
     KartTire **tire;
-    PlayerModel *playerModel;
+    Race::Driver *playerModel;
     KartSub *sub;
     Sound::KartSound *sound;
     u8 _1c[0x28 - 0x20];
@@ -53,7 +56,7 @@ public:
     const Vec3 *getLastPos() const;
     const Quat *getMainRot() const;
     KartState *getKartState();
-    PlayerModel *getPlayerModel();
+    Race::Driver *getDriver();
     Sound::KartSound *getKartSound();
     const VehiclePhysics *getVehiclePhysics() const;
     VehiclePhysics *getVehiclePhysics();
