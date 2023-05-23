@@ -1,5 +1,9 @@
 #include "MapFile.hh"
 
+extern "C" {
+#include "StackTrace.h"
+}
+
 #include <egg/core/eggSystem.hh>
 extern "C" {
 #include <revolution/os.h>
@@ -149,8 +153,12 @@ bool ScoreMatch(u32 symbol, u32 lr) {
     if (lr < symbol) {
         return false;
     }
+    // Assume SP symbols are contiguous
+    if (ClassifyPointer((void *)lr) == BINARY_SP) {
+        return true;
+    }
     // Largest function in game
-    if (std::abs(static_cast<s64>(lr) - static_cast<s64>(symbol)) > 0x4D14) {
+    if (lr - symbol > 0x4D14) {
         return false;
     }
     for (u32 it = symbol; it < lr; ++it) {
