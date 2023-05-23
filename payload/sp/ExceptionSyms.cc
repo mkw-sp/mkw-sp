@@ -9,4 +9,9 @@ __throw_out_of_range_fmt(const char *, ...) {
     panic("std::__throw_out_of_range_fmt");
 }
 
+// Clang-only
+void __cxa_pure_virtual() {
+    panic("__cxa_pure_virtual");
+}
+
 } // namespace std
