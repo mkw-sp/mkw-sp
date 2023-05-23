@@ -25,7 +25,7 @@ private:
     void onThumbnailsNoCoursePop(MessagePage *messagePage);
 
     template <typename T>
-    using H = typename T::Handler<ServicePackToolsPage>;
+    using H = typename T::template Handler<ServicePackToolsPage>;
 
     MultiControlInputManager m_inputManager;
     CtrlMenuPageTitleText m_pageTitleText;

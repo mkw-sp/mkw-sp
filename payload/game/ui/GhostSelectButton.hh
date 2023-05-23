@@ -23,7 +23,7 @@ private:
     class TimeAttackGhostListPage *getGhostListPage();
 
     template <typename T>
-    using H = typename T::Handler<GhostSelectButton>;
+    using H = typename T::template Handler<GhostSelectButton>;
 
     MiiGroup m_miiGroup;
     H<ControlInputManager> m_onSelect{this, &GhostSelectButton::onSelect};

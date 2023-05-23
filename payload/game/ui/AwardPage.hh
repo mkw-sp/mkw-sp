@@ -29,7 +29,7 @@ private:
     REPLACE void initCup();
 
     template <typename T>
-    using H = typename T::Handler<AwardPage>;
+    using H = typename T::template Handler<AwardPage>;
 
     PageInputManager m_inputManager;
     H<PageInputManager> m_onFront{this, &AwardPage::onFront};

@@ -51,7 +51,7 @@ private:
     void refreshLaunchButtons();
 
     template <typename T>
-    using H = typename T::Handler<TimeAttackGhostListPage>;
+    using H = typename T::template Handler<TimeAttackGhostListPage>;
 
     // UI elements
     MultiControlInputManager m_input;

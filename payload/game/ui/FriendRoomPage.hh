@@ -44,7 +44,7 @@ private:
     void onSettingsBack(SettingsPage *settingsPage, PushButton *button);
 
     template <typename T>
-    using H = typename T::Handler<FriendRoomPage>;
+    using H = typename T::template Handler<FriendRoomPage>;
 
     MultiControlInputManager m_inputManager;
     PushButton m_settingsButton;

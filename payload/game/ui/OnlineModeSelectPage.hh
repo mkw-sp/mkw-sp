@@ -25,7 +25,7 @@ private:
     PageId getReplacement() override;
 
     template <typename T>
-    using H = typename T::Handler<OnlineModeSelectPage>;
+    using H = typename T::template Handler<OnlineModeSelectPage>;
 
     H<MultiControlInputManager> m_onBack{this, &OnlineModeSelectPage::onBack};
     H<PushButton> m_onButtonFront{this, &OnlineModeSelectPage::onButtonFront};

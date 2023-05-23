@@ -28,7 +28,7 @@ private:
     void onFront(u32 localPlayerId);
 
     template <typename T>
-    using H = typename T::Handler<FriendRoomRulesPage>;
+    using H = typename T::template Handler<FriendRoomRulesPage>;
 
     PageInputManager m_inputManager;
     LayoutUIControlScaleFade m_rules;

@@ -68,7 +68,7 @@ private:
     static int WriteUncompressedThumbnail(JDEC *jdec, void *bitmap, JRECT *rect);
 
     template <typename T>
-    using H = typename T::Handler<CourseSelectPage>;
+    using H = typename T::template Handler<CourseSelectPage>;
 
     static constexpr u32 MaxThumbnailWidth = 256;
     static constexpr u32 MaxThumbnailHeight = 144;
