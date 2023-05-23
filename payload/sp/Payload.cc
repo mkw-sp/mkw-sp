@@ -162,9 +162,11 @@ static void Init() {
     Console::Print(" done.\n");
 
     Console::Print("Loading StaticR.rel...");
-    bool relWasLoaded = Rel::Load();
-    if (!relWasLoaded) {
-        Console::Print(" failed!\n");
+    auto rel_ok = Rel::Load();
+    if (!rel_ok) {
+        Console::Print(" failed with reason \"");
+        Console::Print(rel_ok.error());
+        Console::Print("\"!\n");
         Console::Print(
                 "Please ensure that the file 'StaticR.rel' exists on the\n"
                 "game disk and that it is not modified in any capacity!\n");
