@@ -39,12 +39,6 @@ typedef uint64_t u64;
 typedef float f32;
 typedef double f64;
 
-#ifndef __cplusplus
-// Note: only for directly passing literals to functions
-// Source: https://stackoverflow.com/questions/34796571
-#define ALIGNED_STRING(s) (struct { alignas(0x20) char t[sizeof(s)]; }){s}.t
-#endif
-
 #define MIN(a, b) \
     ({ \
         __typeof__(a) _a = (a); \
