@@ -89,8 +89,8 @@ replacement_symbols = backup
 out_replacements = '#include <Common.h>\n'
 out_replacements += '\n'
 for name in replacement_symbols:
-    out_replacements += f'extern void replaced_{name};\n'
-    out_replacements += f'extern void {name};\n'
+    out_replacements += f'extern int replaced_{name};\n'
+    out_replacements += f'extern int {name};\n'
     if name not in thunk_symbols:
         out_replacements += f'PATCH_B(replaced_{name}, {name});\n'
     else:
