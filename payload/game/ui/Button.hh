@@ -63,7 +63,7 @@ public:
 
 private:
     template <typename T>
-    using H = typename T::Handler<PushButton>;
+    using H = typename T::template Handler<PushButton>;
 
     ControlInputManager m_inputManager;
     H<ControlInputManager> m_onSelect{this, &PushButton::onSelect};

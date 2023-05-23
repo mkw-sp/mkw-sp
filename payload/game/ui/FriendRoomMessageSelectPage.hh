@@ -64,7 +64,7 @@ private:
     void onBack(u32 localPlayerId);
 
     template <typename T>
-    using H = typename T::Handler<FriendRoomMessageSelectPage>;
+    using H = typename T::template Handler<FriendRoomMessageSelectPage>;
 
     MultiControlInputManager m_inputManager;
     LayoutUIControlScaleFade m_commentSelectBG;

@@ -136,7 +136,7 @@ private:
     void onLeft(u32 localPlayerId, u32 r5);
 
     template <typename T>
-    using H = typename T::Handler<UpDownControl>;
+    using H = typename T::template Handler<UpDownControl>;
 
     H<ControlInputManager> m_onSelect{this, &UpDownControl::onSelect};
     u8 _184[0x188 - 0x184];

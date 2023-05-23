@@ -29,7 +29,7 @@ private:
     void onBackButtonFront(PushButton *button, u32 localPlayerId);
 
     template <typename T>
-    using H = typename T::Handler<TeamConfirmPage>;
+    using H = typename T::template Handler<TeamConfirmPage>;
 
     MultiControlInputManager m_inputManager;
     CtrlMenuPageTitleText m_pageTitleText;

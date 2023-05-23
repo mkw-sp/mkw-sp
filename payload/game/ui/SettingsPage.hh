@@ -71,10 +71,10 @@ private:
     CategoryInfo getCategoryInfo(u32 sheetIndex) const;
 
     template <typename T>
-    using H = typename T::Handler<SettingsPage>;
+    using H = typename T::template Handler<SettingsPage>;
 
     template <typename T>
-    using C = typename T::ChangeHandler<SettingsPage>;
+    using C = typename T::template ChangeHandler<SettingsPage>;
 
     MultiControlInputManager m_inputManager;
     CtrlMenuPageTitleText m_pageTitleText;

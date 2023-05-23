@@ -48,7 +48,7 @@ private:
     static void *Update(void *arg);
 
     template <typename T>
-    using H = typename T::Handler<UpdatePage>;
+    using H = typename T::template Handler<UpdatePage>;
 
     MenuInputManager m_inputManager;
     H<MessagePage> m_onCheckOkFront{this, &UpdatePage::onCheckOkFront};

@@ -32,7 +32,7 @@ private:
     void onDirectConfirm(s32 choice, PushButton *button);
 
     template <typename T>
-    using H = typename T::Handler<OnlineTopPage>;
+    using H = typename T::template Handler<OnlineTopPage>;
 
     MultiControlInputManager m_inputManager;
     CtrlMenuPageTitleText m_pageTitleText;
