@@ -167,7 +167,7 @@ typedef struct {
 } Patch;
 
 #define PATCH_S16(function, offset, value) \
-    __attribute__((section("patches"))) extern const Patch patch_##function##offset = { \
+    __attribute__((section("patches"))) const Patch patch_##function##offset = { \
             .type = PATCH_TYPE_WRITE, \
             .write = \
                     { \
@@ -178,7 +178,7 @@ typedef struct {
     }
 
 #define PATCH_U32(function, offset, value) \
-    __attribute__((section("patches"))) extern const Patch patch_##function##offset = { \
+    __attribute__((section("patches"))) const Patch patch_##function##offset = { \
             .type = PATCH_TYPE_WRITE, \
             .write = \
                     { \
@@ -191,7 +191,7 @@ typedef struct {
 #define PATCH_NOP(function, offset) PATCH_U32(function, offset, 0x60000000)
 
 #define PATCH_BRANCH(from, to, link, thunk) \
-    __attribute__((section("patches"))) extern const Patch patch_##to = { \
+    __attribute__((section("patches"))) const Patch patch_##to = { \
             .type = PATCH_TYPE_BRANCH, \
             .branch = \
                     { \

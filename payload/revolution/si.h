@@ -8,6 +8,7 @@ typedef void (*SITypeAndStatusCallback)(s32, u32);
 
 bool SIBusy(void);
 bool SIIsChanBusy(s32);
+bool SIEnablePollingInterrupt(bool);
 bool SIUnregisterPollingHandler(void *);
 u32 SIGetStatus(s32);
 void SISetCommand(s32, u32);
