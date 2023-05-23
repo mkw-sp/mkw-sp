@@ -169,8 +169,6 @@ void RoulettePage::initSelectingStage(u32 selectedPlayer) {
     m_selectedPlayer = selectedPlayer;
     System::RaceConfig::Instance()->menuScenario().courseId =
             votingBackPage->getCourseVote(selectedPlayer);
-    System::ResourceManager::Instance()->preloadCourseAsync(
-            votingBackPage->getCourseVote(selectedPlayer));
 }
 
 bool RoulettePage::calcPlayer(u8 playerIdx) {

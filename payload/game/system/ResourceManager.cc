@@ -1,15 +1,12 @@
 #include "ResourceManager.hh"
 
 #include "game/system/RootScene.hh"
+#include "game/util/Registry.hh"
 
 #include <sp/storage/DecompLoader.hh>
-#include <sp/storage/Storage.hh>
-
-extern "C" {
-#include <revolution.h>
-}
 
 #include <cstdio>
+#include <cstring>
 
 namespace System {
 
@@ -124,6 +121,47 @@ void ResourceManager::loadGlobe(u8 **dst) {
 void ResourceManager::LoadGlobeTask(void *arg) {
     assert(s_instance);
     s_instance->loadGlobe(reinterpret_cast<u8 **>(arg));
+}
+
+MultiDvdArchive *ResourceManager::loadCourse(u32 courseId, EGG::Heap *heap, bool splitScreen) {
+    MultiDvdArchive *archive = m_archives[1];
+    if (archive->isLoaded()) {
+        return archive;
+    };
+
+    archive->init();
+
+    JobContext *jobContext = &m_jobContexts[2];
+    jobContext->multiArchive = archive;
+    jobContext->archiveHeap = heap;
+
+    auto filePath = jobContext->filename;
+    auto filePathSize = sizeof(jobContext->filename);
+    auto courseFilename = Registry::courseFilenames[courseId];
+
+    if (splitScreen) {
+        snprintf(filePath, filePathSize, "Race/Course/%s_d", courseFilename);
+        if (!archive->exists(filePath)) {
+            splitScreen = false;
+        }
+    }
+
+    if (!splitScreen) {
+        snprintf(filePath, filePathSize, "Race/Course/%s", courseFilename);
+    }
+
+    m_taskThread->request(&ResourceManager_doLoadTask, (void *)2, 0);
+    process();
+
+    u8 tries = 10;
+    while (!archive->isLoaded() && tries != 0) {
+        SP_LOG("Waiting for course archive to load... (%d tries left)", tries);
+        OSSleepMilliseconds(1000);
+        tries -= 1;
+    }
+
+    assert(archive->isLoaded());
+    return archive;
 }
 
 void ResourceManager::CourseCache::init() {}

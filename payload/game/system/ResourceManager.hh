@@ -4,8 +4,12 @@
 #include "game/system/MultiDvdArchive.hh"
 
 #include <egg/core/eggExpHeap.hh>
+#include <egg/core/eggTaskThread.hh>
 
 namespace System {
+
+// Loads the archive setup in ResourceManager->m_jobContexts
+extern void ResourceManager_doLoadTask(void *contextIdx);
 
 class ResourceManager {
 public:
@@ -34,7 +38,6 @@ public:
     ResourceManager();
 
     void createMenuHeaps(u32 count, s32 heapIdx);
-    void preloadCourseAsync(u32 courseId);
     void process();
 
     void initGlobeHeap();
@@ -53,13 +56,26 @@ public:
     static ResourceManager *Instance();
 
 private:
+    struct JobContext {
+        MultiDvdArchive *multiArchive;
+        DvdArchive *archive;
+
+        u8 _08[0xc - 0x8];
+        char filename[64];
+
+        EGG::Heap *archiveHeap;
+        EGG::Heap *fileHeap;
+    };
+
     void loadGlobe(u8 **dst);
 
     REPLACE static void LoadGlobeTask(void *arg);
 
     u8 _000[0x004 - 0x000];
     MultiDvdArchive **m_archives;
-    u8 _008[0x588 - 0x008];
+    u8 _008[0x338 - 0x008];
+    JobContext m_jobContexts[7];
+    EGG::TaskThread *m_taskThread;
     CourseCache m_courseCache;
     u8 _5ac[0x60c - 0x5ac];
     bool m_globeLoadingIsBusy;
@@ -70,6 +86,7 @@ private:
 
     static ResourceManager *s_instance;
 };
-static_assert(sizeof(ResourceManager) > 0x61c);
+
+static_assert(sizeof(ResourceManager) == 0x61c + sizeof(u8 *));
 
 } // namespace System
