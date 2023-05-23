@@ -1,7 +1,9 @@
+extern "C" {
 #include "Panic.h"
 #include "StackTrace.h"
 
 #include <revolution/os.h>
+}
 
 #include <stdarg.h>
 #include <stdio.h>
@@ -14,8 +16,7 @@ void panic(const char *format, ...) {
             "%s\n\n",
             versionInfo.name, format);
 
-    char message[512];
-    memset(message, 0, sizeof(message));
+    char message[512] = "???";
 
     int size = -1;
     {
