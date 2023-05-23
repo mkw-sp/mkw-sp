@@ -36,7 +36,19 @@ constexpr Group group{name, categoryNames.data(), categoryMessageIds, entryCount
 
 typedef Settings::Settings<Category, GlobalSettings::group> Settings;
 
-Settings &Instance();
+//
+// Workaround for [this](https://bugs.llvm.org/show_bug.cgi?id=36284) Clang bug.
+// Although initially reported for <= version 8, it still appears to exist on the latest version
+// (Clang 16.0.0)
+//
+// https://godbolt.org/z/KohzEafxM
+//
+// Since Settings is initialized by `Init`, this is not too difficult to workaround...
+//
+extern char wtf[];
+inline Settings &Instance() {
+    return reinterpret_cast<Settings &>(wtf);
+}
 void Init();
 
 template <Setting S>

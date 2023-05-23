@@ -206,3 +206,12 @@ typedef struct {
 
 #define REPLACE __attribute__((section("replacements")))
 #define REPLACED(function) thunk_replaced_##function
+
+#ifdef __clang__
+#define __builtin_ppc_mftb() \
+    ({ \
+        u32 _rval; \
+        asm volatile("mftb %0" : "=r"(_rval)); \
+        _rval; \
+    })
+#endif

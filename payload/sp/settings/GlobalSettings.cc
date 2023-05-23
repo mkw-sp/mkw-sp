@@ -45,13 +45,10 @@ const Entry entries[] = {
 };
 // clang-format on
 
-static Settings instance{};
-
-Settings &Instance() {
-    return instance;
-}
+char wtf[sizeof(Settings)];
 
 void Init() {
+    Settings &instance = Instance();
     instance.reset();
 
     const wchar_t *path = L"/mkw-sp/settings.ini";
