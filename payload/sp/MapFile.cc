@@ -124,7 +124,7 @@ std::optional<Symbol> SymbolLowerBound(u32 address) {
         if (!nextSymbol.has_value()) {
             break;
         }
-        if (nextSymbol->address > address) {
+        if (nextSymbol->address >= address) {
             break;
         }
 
