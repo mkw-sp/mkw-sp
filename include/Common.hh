@@ -10,6 +10,13 @@ extern "C" {
 #include <type_traits>
 #include <utility>
 
+// This works on Clang, too. Not limited to function arguments.
+#define ALIGNED_STRING(s) \
+    []() { \
+        alignas(32) static const char t[] = s; \
+        return t; \
+    }()
+
 template <typename T>
 T AlignDown(T val, size_t alignment) {
     return val / alignment * alignment;
