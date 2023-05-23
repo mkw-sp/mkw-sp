@@ -124,7 +124,7 @@ void ResourceManager::LoadGlobeTask(void *arg) {
 }
 
 MultiDvdArchive *ResourceManager::loadCourse(u32 courseId, EGG::Heap *heap, bool splitScreen) {
-    MultiDvdArchive *archive = m_archives[1];
+    MultiDvdArchive *archive = m_archives[static_cast<size_t>(MultiDvdArchive::Type::Course)];
     if (archive->isLoaded()) {
         return archive;
     };
