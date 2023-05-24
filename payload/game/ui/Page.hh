@@ -92,6 +92,8 @@ public:
         return m_frame;
     }
 
+    void logControlsDebug();
+
 protected:
     void initChildren(u32 count);
     void insertChild(u32 index, UIControl *child, u32 drawPass);
