@@ -38,7 +38,7 @@ private:
         void calcSelf() override;
         void vf_20() override;
         void vf_28() override;
-        void vf_2c() override;
+        const char *getTypeName() override;
 
         void load();
         // Set animations

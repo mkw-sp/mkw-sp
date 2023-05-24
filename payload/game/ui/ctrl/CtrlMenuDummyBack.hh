@@ -12,7 +12,7 @@ public:
 protected:
     void calcSelf() override;
     void vf_28() override;
-    void vf_2c() override;
+    const char *getTypeName() override;
 
 public:
     void load(const char *dir, const char *file, const char *variant, u32 playerFlags);

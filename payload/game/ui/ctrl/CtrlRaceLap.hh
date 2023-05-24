@@ -12,7 +12,7 @@ public:
     void REPLACED(calcSelf)();
     REPLACE void calcSelf() override;
     void vf_28() override;
-    void vf_2c() override;
+    const char *getTypeName() override;
 
     void load(u32 localPlayerCount, u32 localPlayerId);
 

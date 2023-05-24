@@ -23,7 +23,7 @@ public:
     void calcSelf() override;
     void vf_20() override;
     void vf_28() override;
-    void vf_2c() override;
+    const char *getTypeName() override;
 
     void load(const char *file, u32 localPlayerId);
     void onPageChange(PageId pageId);
