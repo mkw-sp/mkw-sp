@@ -10,7 +10,7 @@ public:
     ~CtrlRaceBase() override;
     void initSelf() override;
     void vf_28() override;
-    void vf_2c() override;
+    const char *getTypeName() override;
 
 protected:
     virtual void process();

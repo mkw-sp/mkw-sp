@@ -11,7 +11,7 @@ public:
     void initSelf() override;
     void calcSelf() override;
     void vf_28() override;
-    void vf_2c() override;
+    const char *getTypeName() override;
 
     void load(const char *variant);
     void show(u32 messageId, MessageInfo *info = nullptr);

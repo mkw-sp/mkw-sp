@@ -16,7 +16,7 @@ public:
         void init() override;
         void calc() override;
         void vf_28() override;
-        void vf_2c() override;
+        const char *getTypeName() override;
 
     private:
         u8 _174[0x17c - 0x174];
@@ -28,7 +28,7 @@ public:
     void init() override;
     void calc() override;
     void vf_28() override;
-    void vf_2c() override;
+    const char *getTypeName() override;
     virtual void vf_3c();
     virtual void vf_40();
 

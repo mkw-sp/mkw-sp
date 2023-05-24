@@ -16,7 +16,7 @@ public:
     void initSelf() override;
     void calcSelf() override;
     void vf_28() override;
-    void vf_2c() override;
+    const char *getTypeName() override;
 
     void load(MiiGroup *miiGroup, u8 i, u8 j);
     void show(u32 pos, u32 count);

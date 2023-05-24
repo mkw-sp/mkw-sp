@@ -12,7 +12,7 @@ public:
 protected:
     void vf_20() override;
     void vf_28() override;
-    void vf_2c() override;
+    const char *getTypeName() override;
 
 public:
     void load(bool isOptions);
