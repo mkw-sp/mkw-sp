@@ -71,7 +71,7 @@ static bool ShowMapInfoSubroutine_(u32 address) {
 
     const u32 symbolNameBufferSize = 512;
     char symbolNameBuffer[symbolNameBufferSize];
-    if (!SP::MapFile::FindSymbol(address, symbolNameBuffer, symbolNameBufferSize)) {
+    if (!SP::MapFile::PrintAddressSymbolInfo(address, symbolNameBuffer, symbolNameBufferSize)) {
         return false;
     }
 
