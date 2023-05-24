@@ -16,9 +16,7 @@ extern "C" {
 #include "sp/keyboard/SIKeyboard.h"
 }
 #include "sp/net/Net.hh"
-extern "C" {
-#include "sp/security/Function.h"
-}
+#include "sp/security/Function.hh"
 #include "sp/security/Heap.hh"
 extern "C" {
 #include "sp/security/Memory.h"
@@ -87,7 +85,7 @@ static void Init() {
     Heap::RandomizeMEM1Heaps();
     Heap::RandomizeMEM2Heaps();
 
-    Function_KillBlacklistedFunction(reinterpret_cast<u32 *>(BATConfig),
+    Function::KillBlacklistedFunction(reinterpret_cast<u32 *>(BATConfig),
             reinterpret_cast<u32 *>(__OSInitMemoryProtection));
 
     Memory_ProtectRange(OS_PROTECT_CHANNEL_0, Dol_getInitSectionStart(), Dol_getRodataSectionEnd(),
