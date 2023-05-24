@@ -47,9 +47,10 @@ public:
 private:
     u8 _04[0x64 - 0x04];
     ControlGroup *m_controlGroup;
-    ControlGroup m_children;
 
 public:
+    ControlGroup m_children;
+
     f32 m_zIndex;
 
 private:

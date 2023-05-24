@@ -60,4 +60,8 @@ void Page::calc() {
     }
 }
 
+void Page::logControlsDebug() {
+    m_controlGroup.logDebug(1);
+}
+
 } // namespace UI

@@ -480,6 +480,9 @@ void Section::logDebuggingInfo(bool verbose) {
         if (!logPageInfo(page)) {
             break;
         }
+        if (!verbose) {
+            page->logControlsDebug();
+        }
     }
 
     if (!verbose) {
@@ -489,6 +492,9 @@ void Section::logDebuggingInfo(bool verbose) {
     OSReport("Loaded Pages:\n");
     for (u16 i = 0; i < static_cast<u16>(PageId::Max); i += 1) {
         logPageInfo(m_pages[i]);
+        if (m_pages[i]) {
+            m_pages[i]->logControlsDebug();
+        }
     }
 }
 
