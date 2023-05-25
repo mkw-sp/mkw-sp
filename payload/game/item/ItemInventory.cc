@@ -34,7 +34,7 @@ void ItemInventory::resetHeldItem() {
 }
 
 Items ItemInventory::getItem() {
-    return currentItemID;
+    return m_currentItemID;
 }
 
 void ItemInventory::setPressed(bool pressed) {
