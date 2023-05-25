@@ -8,9 +8,6 @@
 
 namespace System {
 
-// Loads the archive setup in ResourceManager->m_jobContexts
-extern void ResourceManager_doLoadTask(void *contextIdx);
-
 class ResourceManager {
 public:
     class CourseCache {
@@ -70,6 +67,9 @@ private:
     void loadGlobe(u8 **dst);
 
     REPLACE static void LoadGlobeTask(void *arg);
+
+    // Loads the archive setup in ResourceManager->m_jobContexts
+    static void DoLoadTask(void *contextIdx);
 
     u8 _000[0x004 - 0x000];
     MultiDvdArchive **m_archives;

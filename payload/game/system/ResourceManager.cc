@@ -150,7 +150,7 @@ MultiDvdArchive *ResourceManager::loadCourse(u32 courseId, EGG::Heap *heap, bool
         snprintf(filePath, filePathSize, "Race/Course/%s", courseFilename);
     }
 
-    m_taskThread->request(&ResourceManager_doLoadTask, (void *)2, 0);
+    m_taskThread->request(DoLoadTask, (void *)2, 0);
     process();
 
     assert(archive->isLoaded());
