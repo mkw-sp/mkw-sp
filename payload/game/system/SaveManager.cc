@@ -719,42 +719,6 @@ u32 SaveManager_GetTAGhostTagVisibility(void) {
     return static_cast<u32>(value);
 }
 
-u32 SaveManager_GetTAGhostTagContent(void) {
-    auto *saveManager = System::SaveManager::Instance();
-    auto value = saveManager->getSetting<SP::ClientSettings::Setting::TAGhostTagContent>();
-    return static_cast<u32>(value);
-}
-
-u32 SaveManager_GetTASolidGhosts(void) {
-    auto *saveManager = System::SaveManager::Instance();
-    auto value = saveManager->getSetting<SP::ClientSettings::Setting::TASolidGhosts>();
-    return static_cast<u32>(value);
-}
-
-u32 SaveManager_GetTAGhostSound(void) {
-    auto *saveManager = System::SaveManager::Instance();
-    auto value = saveManager->getSetting<SP::ClientSettings::Setting::TAGhostSound>();
-    return static_cast<u32>(value);
-}
-
-u32 SaveManager_GetHUDLabels(void) {
-    auto *saveManager = System::SaveManager::Instance();
-    auto value = saveManager->getSetting<SP::ClientSettings::Setting::HUDLabels>();
-    return static_cast<u32>(value);
-}
-
-u32 SaveManager_GetPageTransitions(void) {
-    auto *saveManager = System::SaveManager::Instance();
-    auto value = saveManager->getSetting<SP::ClientSettings::Setting::PageTransitions>();
-    return static_cast<u32>(value);
-}
-
-void SaveManager_SetPageTransitions(u32 value) {
-    auto *saveManager = System::SaveManager::Instance();
-    auto v = static_cast<SP::ClientSettings::PageTransitions>(value);
-    saveManager->setSetting<SP::ClientSettings::Setting::PageTransitions>(v);
-}
-
 bool SaveManager_getItemWheel() {
     return System::SaveManager::Instance()->getItemWheelFlag();
 }
