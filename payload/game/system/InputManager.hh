@@ -1,8 +1,8 @@
 #pragma once
 
-#include <sp/CircularBuffer.hh>
+#include "game/util/Registry.hh"
 
-#include <game/util/Registry.hh>
+#include <sp/CircularBuffer.hh>
 
 namespace System {
 
