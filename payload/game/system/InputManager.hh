@@ -4,9 +4,9 @@ extern "C" {
 #include <revolution/pad.h>
 }
 
-#include <sp/CircularBuffer.hh>
+#include "game/util/Registry.hh"
 
-#include <game/util/Registry.hh>
+#include <sp/CircularBuffer.hh>
 
 namespace System {
 

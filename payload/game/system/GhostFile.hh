@@ -1,7 +1,6 @@
 #pragma once
 
 #include "game/system/Mii.hh"
-
 #include "game/util/Registry.hh"
 
 #include <sp/ShaUtil.hh>

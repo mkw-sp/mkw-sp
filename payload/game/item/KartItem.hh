@@ -1,6 +1,6 @@
 #pragma once
 
-#include "ItemInventory.hh"
+#include "game/item/ItemInventory.hh"
 #include "game/kart/KartObjectProxy.hh"
 
 #include <Common.hh>
