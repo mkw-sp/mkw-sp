@@ -153,13 +153,6 @@ MultiDvdArchive *ResourceManager::loadCourse(u32 courseId, EGG::Heap *heap, bool
     m_taskThread->request(&ResourceManager_doLoadTask, (void *)2, 0);
     process();
 
-    u8 tries = 10;
-    while (!archive->isLoaded() && tries != 0) {
-        SP_LOG("Waiting for course archive to load... (%d tries left)", tries);
-        OSSleepMilliseconds(1000);
-        tries -= 1;
-    }
-
     assert(archive->isLoaded());
     return archive;
 }
