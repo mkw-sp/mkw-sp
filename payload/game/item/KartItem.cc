@@ -12,15 +12,6 @@ extern "C" {
 
 namespace Item {
 
-void KartItem::setItem(u32 r4, u32 r5, u32 r6) {
-    if (auto *roomClient = SP::RoomClient::Instance();
-            roomClient && roomClient->isPlayerRemote(m_playerId)) {
-        return;
-    }
-
-    REPLACED(setItem)(r4, r5, r6);
-}
-
 void KartItem::update() {
     REPLACED(update)();
 
@@ -28,15 +19,6 @@ void KartItem::update() {
     auto gameMode = raceConfig->raceScenario().gameMode;
     auto *saveManager = System::SaveManager::Instance();
     auto setting = saveManager->getSetting<SP::ClientSettings::Setting::ItemWheel>();
-
-    if (gameMode == System::RaceConfig::GameMode::TimeAttack &&
-            m_inventory.currentItemID == Item::Golden && m_inventory.framesLeft != 450) {
-        if (m_inventory.framesLeft == 0) {
-            m_inventory.currentItemID = Item::NoItem;
-        } else {
-            m_inventory.framesLeft--;
-        }
-    }
 
     if (gameMode == System::RaceConfig::GameMode::TimeAttack &&
             setting == SP::ClientSettings::ItemWheel::Enable) {
@@ -61,76 +43,57 @@ void KartItem::update() {
             return;
         }
         if (!updateItem) {
-            m_inventory.pressedLastFrame = false;
+            m_inventory.setPressed(false);
         }
 
-        if (updateItem && !m_inventory.pressedLastFrame) {
-            m_inventory.currentItemCount = 100;
-            switch (m_inventory.currentItemID) {
+        if (updateItem && !m_inventory.getPressed()) {
+            Item::Items nextItem = Item::NoItem;
+            switch (m_inventory.getItem()) {
             case (Item::TripShrooms):
-                m_inventory.currentItemID = Item::Shroom;
+                nextItem = Item::Shroom;
                 break;
             case (Item::Shroom):
-                m_inventory.currentItemID = Item::Star;
+                nextItem = Item::Star;
                 break;
             case (Item::Star):
-                m_inventory.currentItemID = Item::Golden;
-                m_inventory.currentItemCount = 1;
-                m_inventory.framesLeft = 450;
+                nextItem = Item::Golden;
                 break;
             case (Item::Golden):
-                m_inventory.currentItemID = Item::Mega;
+                nextItem = Item::Mega;
                 break;
             case (Item::Mega):
-                m_inventory.currentItemID = Item::Bill;
+                nextItem = Item::Bill;
                 break;
             case (Item::Bill):
-                m_inventory.currentItemID = Item::Bomb;
-                m_inventory.currentItemCount = 1;
+                nextItem = Item::TC;
+                break;
+            case (Item::TC):
+                nextItem = Item::Bomb;
                 break;
             case (Item::Bomb):
-                m_inventory.currentItemID = Item::FIB;
-                m_inventory.currentItemCount = 1;
+                nextItem = Item::FIB;
                 break;
             case (Item::FIB):
-                m_inventory.currentItemID = Item::Nana;
-                m_inventory.currentItemCount = 1;
+                nextItem = Item::Nana;
                 break;
             case (Item::Nana):
-                m_inventory.currentItemID = Item::Green;
-                m_inventory.currentItemCount = 1;
+                nextItem = Item::Green;
                 break;
             case (Item::Green):
-                m_inventory.currentItemID = Item::TripShrooms;
-                m_inventory.currentItemCount = 3;
+                nextItem = Item::Shroom;
                 break;
             case (Item::NoItem):
-                m_inventory.currentItemID = Item::TripShrooms;
-                m_inventory.currentItemCount = 3;
+                nextItem = Item::Shroom;
+                break;
+            default:
+                nextItem = Item::Shroom;
                 break;
             case (Item::None):
                 return;
             }
-            m_inventory.pressedLastFrame = true;
+            m_inventory.setItem(nextItem);
+            m_inventory.setPressed(true);
         }
-    }
-}
-
-void KartItem::useGolden() {
-    REPLACED(useGolden)();
-    auto *raceConfig = System::RaceConfig::Instance();
-    auto gameMode = raceConfig->raceScenario().gameMode;
-    if (gameMode == System::RaceConfig::GameMode::TimeAttack && m_inventory.framesLeft == 450) {
-        m_inventory.framesLeft--;
-    }
-}
-
-void KartItem::useGolden() {
-    REPLACED(useGolden)();
-    auto *raceConfig = System::RaceConfig::Instance();
-    auto gameMode = raceConfig->raceScenario().gameMode;
-    if (gameMode == System::RaceConfig::GameMode::TimeAttack && m_inventory.framesLeft == 450) {
-        m_inventory.framesLeft--;
     }
 }
 
