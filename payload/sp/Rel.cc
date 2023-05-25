@@ -101,20 +101,20 @@ static bool IsClean(const void *rel, u32 roundedRelSize) {
     return memcmp(moduleInfoArray[regionIndex].hash, hash, NET_SHA1_DIGEST_SIZE) == 0;
 }
 
-bool Load() {
+std::expected<void, const char *> Load() {
     auto file = Storage::OpenRO("/rel/StaticR.rel");
     if (!file) {
-        return false;
+        return std::unexpected("Failed to find StaticR.rel");
     }
 
 #ifndef GDB_COMPATIBLE
     void *src = OSGetMEM1ArenaLo();
 
     if (!file->read(src, file->size(), 0)) {
-        return false;
+        return std::unexpected("Failed to read StaticR.rel from disc.");
     }
     if (!IsClean(src, file->size())) {
-        return false;
+        return std::unexpected("StaticR.rel has been modified.");
     }
 
     void *dst = Rel_getStart();
@@ -148,13 +148,13 @@ bool Load() {
 
     OSSectionInfo *prologSectionInfo = dstSectionInfo + dstHeader->prologSection;
     entry = reinterpret_cast<EntryFunction>(prologSectionInfo->offset + dstHeader->prolog);
-    return true;
+    return {};
 #else
     if (!file->read(Rel_getStart(), file->size(), 0)) {
-        return false;
+        return std::unexpected("Failed to read StaticR.rel from disc.");
     }
     if (!IsClean(Rel_getStart(), file->size())) {
-        return false;
+        return std::unexpected("StaticR.rel has been modified.");
     }
 
     auto *dst = reinterpret_cast<OSModuleHeader *>(Rel_getStart());
@@ -162,7 +162,7 @@ bool Load() {
 
     OSLink(dst, bss);
     entry = reinterpret_cast<EntryFunction>(dst->prolog);
-    return true;
+    return {};
 #endif
 }
 

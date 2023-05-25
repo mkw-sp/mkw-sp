@@ -31,7 +31,7 @@ private:
     bool onKeyCode(char key, u8 mods);
 
     template <typename T>
-    using H = typename T::Handler<DirectConnectionPage>;
+    using H = typename T::template Handler<DirectConnectionPage>;
 
     MultiControlInputManager m_inputManager;
     CtrlMenuPageTitleText m_pageTitleText;

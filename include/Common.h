@@ -39,10 +39,6 @@ typedef uint64_t u64;
 typedef float f32;
 typedef double f64;
 
-// Note: only for directly passing literals to functions
-// Source: https://stackoverflow.com/questions/34796571
-#define ALIGNED_STRING(s) (struct { alignas(0x20) char t[sizeof(s)]; }){s}.t
-
 #define MIN(a, b) \
     ({ \
         __typeof__(a) _a = (a); \
@@ -167,7 +163,7 @@ typedef struct {
 } Patch;
 
 #define PATCH_S16(function, offset, value) \
-    __attribute__((section("patches"))) extern const Patch patch_##function##offset = { \
+    __attribute__((section("patches"))) const Patch patch_##function##offset = { \
             .type = PATCH_TYPE_WRITE, \
             .write = \
                     { \
@@ -178,7 +174,7 @@ typedef struct {
     }
 
 #define PATCH_U32(function, offset, value) \
-    __attribute__((section("patches"))) extern const Patch patch_##function##offset = { \
+    __attribute__((section("patches"))) const Patch patch_##function##offset = { \
             .type = PATCH_TYPE_WRITE, \
             .write = \
                     { \
@@ -191,7 +187,7 @@ typedef struct {
 #define PATCH_NOP(function, offset) PATCH_U32(function, offset, 0x60000000)
 
 #define PATCH_BRANCH(from, to, link, thunk) \
-    __attribute__((section("patches"))) extern const Patch patch_##to = { \
+    __attribute__((section("patches"))) const Patch patch_##to = { \
             .type = PATCH_TYPE_BRANCH, \
             .branch = \
                     { \

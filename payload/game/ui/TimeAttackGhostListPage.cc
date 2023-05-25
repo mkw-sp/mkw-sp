@@ -140,6 +140,7 @@ void TimeAttackGhostListPage::onRefocus() {
         return;
     }
 
+    System::RaceConfig::Instance()->applyEngineClass();
     auto &menuScenario = System::RaceConfig::Instance()->menuScenario();
     u32 playerCount = m_chosenCount;
     if (playerCount == 0 || !m_isReplay) {

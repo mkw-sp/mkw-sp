@@ -31,10 +31,10 @@ private:
     void onBackButtonFront(PushButton *button, u32 localPlayerId);
 
     template <typename T>
-    using H = typename T::Handler<MultiTeamSelectPage>;
+    using H = typename T::template Handler<MultiTeamSelectPage>;
 
     template <typename T>
-    using C = typename T::ChangeHandler<MultiTeamSelectPage>;
+    using C = typename T::template ChangeHandler<MultiTeamSelectPage>;
 
     MultiControlInputManager m_inputManager;
     CtrlMenuPageTitleText m_pageTitleText;

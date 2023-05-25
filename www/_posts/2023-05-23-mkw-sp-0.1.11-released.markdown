@@ -1,0 +1,12 @@
+---
+layout: post
+title:  "MKW-SP 0.1.11 Released"
+date:   2023-05-23 00:25:00 +0200
+author: stebler
+---
+
+Version 0.1.11 of Mario Kart Wii - Service Pack has been released. It's a minor release containing 1 important bugfix described below. It can be installed from the in-game updater or downloaded from [here](https://github.com/stblr/mkw-sp/releases/download/v0.1.11/mkw-sp-v0.1.11.zip).
+
+## Bugfix
+
+- The game no longer crashes if the system language is set to Dutch. [stebler]

@@ -1,8 +1,8 @@
 #include <Common.S>
 
 PATCH_B_START(KartParam_compute, 0x1f0)
-    lis r5, speedModFactor@ha
-    lfs f2, speedModFactor@l (r5)
+    lis r5, g_speedModFactor@ha
+    lfs f2, g_speedModFactor@l (r5)
 
     lfs f3, 0xc (r3)
     fmuls f3, f3, f2

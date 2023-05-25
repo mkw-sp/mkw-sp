@@ -15,7 +15,7 @@ KartState *KartObjectProxy::getKartState() {
     return m_accessor->state;
 }
 
-PlayerModel *KartObjectProxy::getPlayerModel() {
+Race::Driver *KartObjectProxy::getDriver() {
     return m_accessor->playerModel;
 }
 

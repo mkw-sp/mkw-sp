@@ -29,7 +29,7 @@ static_assert(sizeof(ExceptionInfo) == 0x360);
 
 extern ExceptionInfo sExceptionInfo;
 
-void Exception_Printf_(const char *format, ...);
+__attribute__((format(printf, 1, 2))) void Exception_Printf_(const char *format, ...);
 void ShowMainInfo_(OSError osError, const OSContext *osContext, u32 dsisr, u32 dar);
 void ShowFloat_(const OSContext *osContext);
 
@@ -40,20 +40,20 @@ static bool IsAddressInCachedMEM1(u32 address) {
             address < OS_CACHED_MEMORY_BASE + OSGetPhysicalMem1Size();
 }
 
-static bool IsAddressInMEM1(u32 address) {
+static bool IsStackFrameInMEM1(u32 address) {
     if (!OSIsMEM1Region(address)) {
         return false;
     }
 
-    return (address & MEMORY_OFFSET_MASK) < OSGetPhysicalMem1Size();
+    return (address & MEMORY_OFFSET_MASK) <= OSGetPhysicalMem1Size() - (sizeof(u32) * 2);
 }
 
-static bool IsAddressInMEM2(u32 address) {
+static bool IsStackFrameInMEM2(u32 address) {
     if (!OSIsMEM2Region(address)) {
         return false;
     }
 
-    return (address & MEMORY_OFFSET_MASK) < OSGetPhysicalMem2Size();
+    return (address & MEMORY_OFFSET_MASK) <= OSGetPhysicalMem2Size() - (sizeof(u32) * 2);
 }
 
 static bool IsValidStackAddr_(u32 address) {
@@ -61,17 +61,17 @@ static bool IsValidStackAddr_(u32 address) {
         return false;
     }
 
-    return IsAddressInMEM1(address) || IsAddressInMEM2(address);
+    return IsStackFrameInMEM1(address) || IsStackFrameInMEM2(address);
 }
 
 static bool ShowMapInfoSubroutine_(u32 address) {
-    if (!IsAddressInMEM1(address)) {
+    if (!IsStackFrameInMEM1(address)) {
         return false;
     }
 
     const u32 symbolNameBufferSize = 512;
     char symbolNameBuffer[symbolNameBufferSize];
-    if (!SP::MapFile::FindSymbol(address, symbolNameBuffer, symbolNameBufferSize)) {
+    if (!SP::MapFile::PrintAddressSymbolInfo(address, symbolNameBuffer, symbolNameBufferSize)) {
         return false;
     }
 
@@ -117,12 +117,12 @@ static void ShowSRR0Map_(const OSContext *osContext) {
 
 static void ShowStackTrace_(u32 sp) {
     Exception_Printf_("-------------------------------- TRACE\n");
-    Exception_Printf_("Address:   Back chain   LR save\n");
+    Exception_Printf_("Address:   Back Chain   LR Save\n");
 
     u32 *frame = reinterpret_cast<u32 *>(sp);
 
     for (int i = 0; i < 16; i++) {
-        if (!IsValidStackAddr_((u32)frame)) {
+        if (!IsValidStackAddr_(reinterpret_cast<u32>(frame))) {
             break;
         }
 
@@ -131,7 +131,7 @@ static void ShowStackTrace_(u32 sp) {
             lr = StackCanary_XORLinkRegister(lr);
         }
 
-        Exception_Printf_("%08X:  %08X     %08X ", frame, frame[0], lr);
+        Exception_Printf_("%08X:  %08X     %08X ", reinterpret_cast<u32>(frame), frame[0], lr);
         if (!ShowMapInfoSubroutine_(lr)) {
             Exception_Printf_("\n");
         }
@@ -144,11 +144,12 @@ REPLACE void PrintContext_(OSError osError, const OSContext *osContext, u32 dsis
     Exception_Printf_("******** %s ********\n",
             osError < OS_ERROR_MAX ? "EXCEPTION OCCURRED" : "USER HALT");
     Host_PrintMkwSpInfo(Exception_Printf_);
-    Exception_Printf_("Framebuffer: %08XH\n", sExceptionInfo.framebuffer);
+    Exception_Printf_("Framebuffer: %08XH\n", reinterpret_cast<u32>(sExceptionInfo.framebuffer));
     Exception_Printf_("--------------------------------\n");
 
     if (sExceptionInfo.displayInfo & EXCEPTION_INFO_MAIN) {
         Exception_Printf_("---EXCEPTION_INFO_MAIN---\n");
+        Exception_Printf_("-------------------------------- MAIN\n");
         ShowMainInfo_(osError, osContext, dsisr, dar);
     }
     if (sExceptionInfo.displayInfo & EXCEPTION_INFO_GPR) {

@@ -13,7 +13,7 @@ REPLACE void Panic(const char * /* filename */, int /* lineNumber */, const char
     vsnprintf(panicMessage, sizeof(panicMessage), format, args);
     va_end(args);
 
-    panic(panicMessage);
+    panic("%s", panicMessage);
 }
 
 } // namespace nw4r::db

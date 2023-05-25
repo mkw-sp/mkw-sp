@@ -1,7 +1,5 @@
 #include "SaveStateManager.hh"
 
-#include "game/kart/KartObjectManager.hh"
-
 extern "C" {
 #include "revolution.h"
 }

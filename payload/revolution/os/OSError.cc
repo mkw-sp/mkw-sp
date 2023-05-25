@@ -58,7 +58,7 @@ __attribute__((noreturn)) REPLACE void OSPanic(const char * /* filename */, int 
     vsnprintf(panicMessage, sizeof(panicMessage), formatCopy, args);
     va_end(args);
 
-    panic(panicMessage);
+    panic("%s", panicMessage);
 }
 
 void OSReport(const char *msg, ...) {

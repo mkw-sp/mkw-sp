@@ -136,6 +136,12 @@ asset_in_files = {
         os.path.join('kartCameraParamThumbnails.bin'),
         # Mega TC
         os.path.join('MegaTC.brres'),
+        # Battle mode
+        os.path.join('balloon.brres'),
+        os.path.join('bikePartsDispParam.bin'),
+        os.path.join('kartPartsDispParam.bin'),
+        os.path.join('RKRace_SP.breff'),
+        os.path.join('RKRace_SP.breft'),
         # Online mode
         os.path.join('ItemSlotOnline.bin'),
     ],
@@ -673,12 +679,14 @@ asset_in_files = {
         os.path.join('game_image', 'anim', 'battle_total_point_stop.brlan.json5'),
         os.path.join('game_image', 'anim', 'chara_name_text_color_dummy.brlan.json5'),
         os.path.join('game_image', 'anim', 'common_w039_map_chara_icon_dummy.brlan.json5'),
+        os.path.join('game_image', 'anim', 'game_image_lap_position.brlan.json5'),
         os.path.join('game_image', 'anim', 'game_image_speed_texture_pattern_0_9.brlan.json5'),
         os.path.join('game_image', 'blyt', 'battle_point_set_position.brlyt.json5'),
         os.path.join('game_image', 'blyt', 'battle_total_point.brlyt.json5'),
         os.path.join('game_image', 'blyt', 'coin.brlyt.json5'),
         os.path.join('game_image', 'blyt', 'common_w039_map_chara_icon.brlyt.json5'),
         os.path.join('game_image', 'blyt', 'debug_panel.brlyt.json5'),
+        os.path.join('game_image', 'blyt', 'game_image_lap.brlyt.json5'),
         os.path.join('game_image', 'blyt', 'game_image_speed.brlyt.json5'),
         os.path.join('game_image', 'blyt', 'InputDisplay.brlyt.json5'),
         os.path.join('game_image', 'blyt', 'race_message_half.brlyt.json5'),
@@ -688,7 +696,7 @@ asset_in_files = {
         os.path.join('game_image', 'ctrl', 'DebugPanel.brctr.json5'),
         os.path.join('game_image', 'ctrl', 'InputDisplay.brctr.json5'),
         os.path.join('game_image', 'ctrl', 'item_window_new.brctr.json5'),
-        os.path.join('game_image', 'ctrl', 'lap_number_sp.brctr.json5'),
+        os.path.join('game_image', 'ctrl', 'lap_number.brctr.json5'),
         os.path.join('game_image', 'ctrl', 'map_chara.brctr.json5'),
         os.path.join('game_image', 'ctrl', 'point.brctr.json5'),
         os.path.join('game_image', 'ctrl', 'position_multi.brctr.json5'),
@@ -802,6 +810,8 @@ for target in asset_in_files:
         base, ext = os.path.splitext(in_file)
         outext = {
             '.bin': '.bin',
+            '.breff': '.breff',
+            '.breft': '.breft',
             '.brfna': '.brfna',
             '.brfnt': '.brfnt',
             '.brlyt': '.brlyt',
@@ -831,6 +841,8 @@ for target in asset_in_files:
         if out_file not in out_files:
             rule = {
                 '.bin': 'cp',
+                '.breff': 'cp',
+                '.breft': 'cp',
                 '.brfna': 'cp',
                 '.brfnt': 'cp',
                 '.brlyt': 'cp',
@@ -1380,7 +1392,7 @@ for fmt in ['binary', 'elf32-powerpc']:
             variables = {
                 'ldflags' : ' '.join([
                     *common_ldflags,
-                    '-Wl,--defsym,base=0x80c00000',
+                    '-Wl,--defsym,base=0x80b00000',
                     '-Wl,--entry=start',
                     f'-Wl,--oformat,{fmt}',
                     '-Wl,-T,' + os.path.join('common', 'RMC.ld'),
@@ -1394,10 +1406,27 @@ for region in ['P', 'E', 'J', 'K']:
     for profile in ['DEBUG', 'RELEASE']:
         suffix = 'D' if profile == 'DEBUG' else ''
         in_file = os.path.join('$builddir', 'bin', f'payload{region}{suffix}.elf')
-        out_file = os.path.join('$outdir', profile.lower(), f'{profile.lower()}_{region}.SMAP')
+        out_file = os.path.join('$builddir', 'bin', f'payload{region}{suffix}.SMAP')
         n.build(
             out_file,
             'generate_symbol_map',
+            in_file,
+        )
+        n.newline()
+
+for region in ['P', 'E', 'J', 'K']:
+    for profile in ['DEBUG', 'RELEASE']:
+        suffix = 'D' if profile == 'DEBUG' else ''
+        in_file = os.path.join('$builddir', 'bin', f'payload{region}{suffix}.SMAP')
+        out_file = os.path.join(
+            '$builddir',
+            'contents.arc.d',
+            'bin',
+            f'payload{region}{suffix}.SMAP.lzma'
+        )
+        n.build(
+            out_file,
+            'lzmac',
             in_file,
         )
         n.newline()
@@ -1470,10 +1499,21 @@ for profile in ['DEBUG', 'TEST', 'RELEASE']:
     in_paths = [
         *[os.path.join('$builddir', 'contents.arc.d', target) for target in thumbnail_in_files],
         *[os.path.join('$builddir', 'contents.arc.d', target) for target in asset_out_files],
+        os.path.join('$builddir', 'contents.arc.d', 'bin', f'payloadP{in_suffix}.SMAP.lzma'),
+        os.path.join('$builddir', 'contents.arc.d', 'bin', f'payloadE{in_suffix}.SMAP.lzma'),
+        os.path.join('$builddir', 'contents.arc.d', 'bin', f'payloadJ{in_suffix}.SMAP.lzma'),
+        os.path.join('$builddir', 'contents.arc.d', 'bin', f'payloadK{in_suffix}.SMAP.lzma'),
         os.path.join('$builddir', 'contents.arc.d', 'bin', f'loader{in_suffix}.bin.lzma'),
         os.path.join('$builddir', 'contents.arc.d', 'bin', f'version{out_suffix}.bin'),
         os.path.join('$builddir', 'contents.arc.d', 'banner.bin'),
     ]
+    for region in ['P', 'E', 'J', 'K']:
+        in_paths += [os.path.join(
+            '$builddir',
+            'contents.arc.d',
+            'bin',
+            f'payload{region}{in_suffix}.SMAP.lzma',
+        )]
     if profile == 'RELEASE':
         in_paths += [
             os.path.join('$builddir', 'contents.arc.d', 'channel', 'opening.bnr.lzma'),
@@ -1486,6 +1526,10 @@ for profile in ['DEBUG', 'TEST', 'RELEASE']:
         variables = {
             'arcin': os.path.join('$builddir', 'contents.arc.d'),
             'args': ' '.join([
+                '--renamed payloadPD.SMAP.lzma payloadP.SMAP.lzma',
+                '--renamed payloadED.SMAP.lzma payloadE.SMAP.lzma',
+                '--renamed payloadJD.SMAP.lzma payloadJ.SMAP.lzma',
+                '--renamed payloadKD.SMAP.lzma payloadK.SMAP.lzma',
                 '--renamed loaderD.bin.lzma loader.bin.lzma',
                 '--renamed versionD.bin version.bin',
                 '--renamed versionT.bin version.bin',

@@ -2,6 +2,9 @@
     "2053": {
         string: "Something went wrong when reading from\nor writing to the save.",
     },
+    "3475": {
+        string: "Change settings for this licence.",
+    },
     "10000": {
         string: "Race Against 1 Ghost",
     },
@@ -133,9 +136,6 @@
     },
     "10074": {
         string: "Edit settings or change your Mii!",
-    },
-    "10077": {
-        string: "Change settings for this licence.",
     },
     "10078": {
         string: "0.9x speed factor.",
@@ -291,7 +291,7 @@
         string: "Only apply the shocked/squashed music effect.",
     },
     "10133": {
-        string: "Let Stars, Mega Mushrooms and\nLightnings affect the music.",
+        string: "Let Stars, Mega Mushrooms and Lightnings affect the music.",
     },
     "10134": {
         string: "Final Lap Jingle",
@@ -466,5 +466,497 @@
     },
     "10193": {
         string: "Enable the rumble feature of the GCN controller.",
+    },
+    "10194": {
+        string: "Region Line Color",
+    },
+    "10195": {
+        string: "Red",
+    },
+    "10196": {
+        string: "Blue",
+    },
+    "10197": {
+        string: "Green",
+    },
+    "10198": {
+        string: "Yellow",
+    },
+    "10199": {
+        string: "White",
+    },
+    "10200": {
+        string: "Pink",
+    },
+    "10201": {
+        string: "The color of the line under your name will be {color|player 3}red{color|unspecified}.",
+    },
+    "10202": {
+        string: "The color of the line under your name will be {color|sp blue}blue{color|unspecified}.",
+    },
+    "10203": {
+        string: "The color of the line under your name will be {color|sp green}green{color|unspecified}.",
+    },
+    "10204": {
+        string: "The color of the line under your name will be {color|player 1}yellow{color|unspecified}.",
+    },
+    "10205": {
+        string: "The color of the line under your name will be white.",
+    },
+    "10206": {
+        string: "The color of the line under your name will be {color|sp pink}pink{color|unspecified}.",
+    },
+    "10207": {
+        string: "Team Size",
+    },
+    "10208": {
+        string: "FFA",
+    },
+    "10213": {
+        string: "Do not play in teams.",
+    },
+    "10214": {
+        string: "Limit the team size to 2 players.",
+    },
+    "10215": {
+        string: "Limit the team size to 3 players.",
+    },
+    "10216": {
+        string: "Limit the team size to 4 players.",
+    },
+    "10217": {
+        string: "Limit the team size to 6 players.",
+    },
+    "10218": {
+        string: "Random",
+    },
+    "10224": {
+        string: "Race Count",
+    },
+    "10226": {
+        string: "Play {arg integer|0 0} {arg cond messages|0 10282 10283}.",
+    },
+    "10227": {
+        string: "Course Selection",
+    },
+    "10228": {
+        string: "Random",
+    },
+    "10231": {
+        string: "Courses are picked at random.",
+    },
+    "10234": {
+        string: "Class",
+    },
+    "10235": {
+        string: "Mixed",
+    },
+    "10236": {
+        string: "150cc",
+    },
+    "10237": {
+        string: "Mirror",
+    },
+    "10238": {
+        string: "200cc",
+    },
+    "10239": {
+        string: "Races are 85% 150cc, 15% mirror.",
+    },
+    "10240": {
+        string: "Races are always 150cc.",
+    },
+    "10241": {
+        string: "Races are always mirror.",
+    },
+    "10242": {
+        string: "Races are always 200cc.",
+    },
+    "10243": {
+        string: "Vehicles",
+    },
+    "10244": {
+        string: "All",
+    },
+    "10245": {
+        string: "Karts",
+    },
+    "10246": {
+        string: "Bikes",
+    },
+    "10247": {
+        string: "Inside Drift",
+    },
+    "10248": {
+        string: "Outside Drift",
+    },
+    "10249": {
+        string: "Optimal",
+    },
+    "10250": {
+        string: "Random",
+    },
+    "10251": {
+        string: "Allow all vehicles.",
+    },
+    "10252": {
+        string: "Only allow karts.",
+    },
+    "10253": {
+        string: "Only allow bikes.",
+    },
+    "10254": {
+        string: "Only allow inside-drifting vehicles.",
+    },
+    "10255": {
+        string: "Only allow outside-drifting vehicles.",
+    },
+    "10256": {
+        string: "Only allow the optimal vehicle for each character.",
+    },
+    "10257": {
+        string: "Randomly choose a combination common to all players.",
+    },
+    "10260": {
+        string: "Courses are chosen individually.",
+    },
+    "10261": {
+        string: "Courses are played in order.",
+    },
+    "10262": {
+        string: "Offline VS",
+    },
+    "10263": {
+        string: "Color Palette",
+    },
+    "10264": {
+        string: "Vivid",
+    },
+    "10265": {
+        string: "Colorblind",
+    },
+    "10266": {
+        string: "Use the vivid palette for team colors.",
+    },
+    "10267": {
+        string: "Use the colorblind palette for team colors.",
+    },
+    "10268": {
+        string: "{color|player 3}Red Team",
+    },
+    "10269": {
+        string: "{color|sp blue}Blue Team",
+    },
+    "10270": {
+        string: "{color|sp green}Green Team",
+    },
+    "10271": {
+        string: "{color|player 1}Yellow Team",
+    },
+    "10272": {
+        string: "{color|sp pink}Pink Team",
+    },
+    "10273": {
+        string: "White Team",
+    },
+    "10274": {
+        string: "Teams are uneven.\n\nPlease choose again.",
+    },
+    "10282": {
+        string: "race",
+    },
+    "10283": {
+        string: "races",
+    },
+    "10296": {
+        string: "HUD Team Colors",
+    },
+    "10297": {
+        string: "Disable",
+    },
+    "10298": {
+        string: "Enable",
+    },
+    "10299": {
+        string: "Always use local player colors for HUD controls.",
+    },
+    "10300": {
+        string: "Use team colors for HUD controls.",
+    },
+    "10301": {
+        string: "Simplified Controls",
+    },
+    "10302": {
+        string: "Off",
+    },
+    "10303": {
+        string: "Non-Exclusive",
+    },
+    "10304": {
+        string: "Exclusive",
+    },
+    "10305": {
+        string: "Use the default controls only to trick or wheelie.",
+    },
+    "10306": {
+        string: "Use Y (GCN) or ZL (CC/CCP) to trick or wheelie.",
+    },
+    "10307": {
+        string: "Use Y (GCN) or ZL (CC/CCP) only to trick or wheelie.",
+    },
+    "10308": {
+        string: "Far Player Tags",
+    },
+    "10309": {
+        string: "Disable",
+    },
+    "10310": {
+        string: "Enable",
+    },
+    "10311": {
+        string: "Use the default render distance of player tags.",
+    },
+    "10312": {
+        string: "Increase the render distance of player tags.",
+    },
+    "10313": {
+        string: "Thumbnails",
+    },
+    "10314": {
+        string: "No track was found in the\n/mkw-sp/thumbnails folder.",
+    },
+    "10315": {
+        string: "Debug Overlay",
+    },
+    "10316": {
+        string: "Checkpoints",
+    },
+    "10317": {
+        string: "Disable",
+    },
+    "10318": {
+        string: "Enable",
+    },
+    "10319": {
+        string: "Don't display checkpoints.",
+    },
+    "10320": {
+        string: "Standard checkpoint overlay.",
+    },
+    "10321": {
+        string: "Speedometer",
+    },
+    "10322": {
+        string: "Internal + Moving Road",
+    },
+    "10323": {
+        string: "Internal",
+    },
+    "10324": {
+        string: "XYZ",
+    },
+    "10325": {
+        string: "XZ",
+    },
+    "10326": {
+        string: "Y",
+    },
+    "10327": {
+        string: "Speedometer displays the internal speed\nof the vehicle plus moving road.",
+    },
+    "10328": {
+        string: "Speedometer displays the internal speed of the vehicle.",
+    },
+    "10329": {
+        string: "Speedometer displays the speed the vehicle moves.",
+    },
+    "10330": {
+        string: "Speedometer displays the speed\nthe vehicle moves horizontally.",
+    },
+    "10331": {
+        string: "Speedometer displays the speed\nthe vehicle moves vertically.",
+    },
+    "10332": {
+        string: "Default",
+    },
+    "10333": {
+        string: "The color of the line under your name will be\ndetermined by the game.",
+    },
+    "10334": {
+        string: "Region and Country Flag",
+    },
+    "10335": {
+        string: "Do not display your flag and region information in-game.",
+    },
+    "10336": {
+        string: "Display your flag and region information in-game.",
+    },
+    "10337": {
+        string: "Don't Display",
+    },
+    "10338": {
+        string: "Display",
+    },
+    "10339": {
+        string: "Don't Display",
+    },
+    "10340": {
+        string: "Display",
+    },
+    "10341": {
+        string: "Panel",
+    },
+    "10342": {
+        string: "Disable",
+    },
+    "10343": {
+        string: "Player",
+    },
+    "10344": {
+        string: "Online",
+    },
+    "10345": {
+        string: "Do not show the debug panel.",
+    },
+    "10346": {
+        string: "Show player information on the debug panel.",
+    },
+    "10347": {
+        string: "Show online information on the debug panel.",
+    },
+    "10348": {
+        string: "Visual course.kcl",
+    },
+    "10349": {
+        string: "Off",
+    },
+    "10350": {
+        string: "Only show course_model.brres.",
+    },
+    "10351": {
+        string: "Overlay",
+    },
+    "10352": {
+        string: "Show on top of course_model.brres.",
+    },
+    "10353": {
+        string: "Replace Course Model",
+    },
+    "10354": {
+        string: "Hide course_model.brres.",
+    },
+    "10360": {
+        string: "Offline Battle",
+    },
+    "10361": {
+        string: "Races are always 50cc.",
+    },
+    "10362": {
+        string: "Races are always 100cc.",
+    },
+    "10365": {
+        string: "50cc",
+    },
+    "10366": {
+        string: "100cc",
+    },
+    "10367": {
+        string: "Minimap",
+    },
+    "10368": {
+        string: "Enable",
+    },
+    "10369": {
+        string: "Disable",
+    },
+    "10370": {
+        string: "Show the minimap on the HUD.",
+    },
+    "10371": {
+        string: "Do not show the minimap on the HUD.",
+    },
+    "10372": {
+        string: "Volume",
+    },
+    "10374": {
+        string: "Set the volume to {arg integer|0 0} / 10.",
+    },
+    "10375": {
+        string: "Music Volume",
+    },
+    "10377": {
+        string: "Set the music volume to {arg integer|0 0} / 10.",
+    },
+    "10378": {
+        string: "My Stuff",
+    },
+    "10379": {
+        string: "File Replacement",
+    },
+    "10380": {
+        string: "Off",
+    },
+    "10381": {
+        string: "BRSTMs Only",
+    },
+    "10382": {
+        string: "All",
+    },
+    "10383": {
+        string: "Do not allow any files to be replaced.",
+    },
+    "10384": {
+        string: "Allow '.brstm' files to be replaced.",
+    },
+    "10385": {
+        string: "Allow all files to be replaced.",
+    },
+    "10386": {
+        string: "FPS Mode",
+    },
+    "10387": {
+        string: "Vanilla",
+    },
+    "10388": {
+        string: "Force 60 FPS",
+    },
+    "10389": {
+        string: "Force 30 FPS",
+    },
+    "10390": {
+        string: "Uses 60fps, except in intensive scenes.",
+    },
+    "10391": {
+        string: "Forces 60fps, even in intensive scenes.",
+    },
+    "10392": {
+        string: "Forces 30fps, can help with Dolphin performance.",
+    },
+    "10393": {
+        string: "Choose the team size randomly.",
+    },
+    "10420": {
+        string: "Battle Count",
+    },
+    "10421": {
+        string: "Play {arg integer|0 0} {arg cond messages|0 10422 10423}.",
+    },
+    "10422": {
+        string: "battle",
+    },
+    "10423": {
+        string: "battles",
+    },
+    "10424": {
+        string: "Stage Selection",
+    },
+    "10425": {
+        string: "Stages are chosen individually.",
+    },
+    "10426": {
+        string: "Stages are picked at random.",
+    },
+    "10427": {
+        string: "Stages are played in order.",
     },
 }

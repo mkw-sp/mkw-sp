@@ -22,6 +22,14 @@ void RaceMenuPage::onButtonFront(PushButton *button, u32 localPlayerId) {
 
     auto buttonId = static_cast<ButtonId>(button->m_index);
     switch (buttonId) {
+    case ButtonId::Restart1:
+    case ButtonId::Restart3:
+    case ButtonId::BattleGhost:
+        if (raceScenario.gameMode == System::RaceConfig::GameMode::TimeAttack) {
+            System::RaceConfig::Instance()->applyEngineClass();
+        }
+        REPLACED(onButtonFront)(button, localPlayerId);
+        return;
     case ButtonId::Next:
         if (menuScenario.mirrorRng) {
             menuScenario.mirror = hydro_random_uniform(20) >= 17;
@@ -135,7 +143,7 @@ void RaceMenuPage::onNextButtonFront(PushButton *button, u32 /* localPlayerId */
             }
         } else if (setting == SP::ClientSettings::CourseSelection::Random) {
             auto courseCount = courseDatabase.count(filter);
-            auto courseIdx = hydro_random_uniform(courseCount) - 1;
+            auto courseIdx = hydro_random_uniform(courseCount);
             menuScenario.courseId = courseDatabase.entry(filter, courseIdx).courseId;
         } else {
             sectionId = nextSelectSection;

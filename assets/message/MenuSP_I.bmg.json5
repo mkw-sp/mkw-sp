@@ -2,6 +2,9 @@
     "2053": {
         string: "Qualcosa è andato storto durante la lettura o la scrittura al salvataggio.",
     },
+    "3475": {
+        string: "Cambia le impostazioni per questa patente.",
+    },
     "10000": {
         string: "Gareggia contro 1 fantasma",
     },
@@ -175,9 +178,6 @@
     },
     "10074": {
         string: "Cambia le impostazioni o modifica il tuo Mii!",
-    },
-    "10077": {
-        string: "Cambia le impostazioni per questa patente.",
     },
     "10078": {
         string: "Moltiplicatore della velocità a 0.9x",

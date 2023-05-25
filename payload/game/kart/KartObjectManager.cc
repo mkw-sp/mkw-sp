@@ -1,7 +1,7 @@
 #include "KartObjectManager.hh"
 
 #include "game/effect/EffectManager.hh"
-#include "game/kart/PlayerModel.hh"
+#include "game/race/Driver.hh"
 #include "game/sound/KartSound.hh"
 #include "game/system/GhostFile.hh"
 #include "game/system/RaceConfig.hh"
@@ -11,13 +11,13 @@
 
 #include <sp/settings/ClientSettings.hh>
 
-bool speedModIsEnabled;
-f32 speedModFactor;
-f32 speedModReverseFactor;
+bool g_speedModIsEnabled;
+f32 g_speedModFactor;
+f32 g_speedModReverseFactor;
 u8 s_playerDrawPriorities[12];
 
-extern f32 minDriftSpeedFactor;
-extern f32 boostAccelerations[6];
+extern f32 s_minDriftSpeedFactor;
+extern f32 s_boostAccelerations[6];
 extern f32 ai_808cb550;
 
 namespace Kart {
@@ -80,13 +80,13 @@ void KartObjectManager::beforeCalc() {
 
         auto soundSetting = getGhostSoundSetting(i);
         auto *kartSound = m_objects[i]->getKartSound();
-        auto *kartModel = m_objects[i]->getPlayerModel();
+        auto *driver = m_objects[i]->getDriver();
         bool hasFinished = raceManager->player(i)->hasFinished();
 
         kartSound->m_isLocal = soundSetting == SoundSetting::Full;
         kartSound->m_isGhost = soundSetting == SoundSetting::None;
-        kartModel->sound->isLocal = soundSetting == SoundSetting::Full && !hasFinished;
-        kartModel->sound->isGhost = soundSetting == SoundSetting::None || hasFinished;
+        driver->sound->isLocal = soundSetting == SoundSetting::Full && !hasFinished;
+        driver->sound->isGhost = soundSetting == SoundSetting::None || hasFinished;
     }
 
     auto *racePage = UI::RacePage::Instance();
@@ -104,12 +104,13 @@ void KartObjectManager::CreateInstance() {
     auto *saveManager = System::SaveManager::Instance();
     auto &raceScenario = System::RaceConfig::Instance()->raceScenario();
 
-    speedModFactor = raceScenario.is200cc ? 1.5f : 1.0f;
-    speedModReverseFactor = 1.0f / speedModFactor;
+    g_speedModIsEnabled = raceScenario.is200cc;
+    g_speedModFactor = raceScenario.is200cc ? 1.5f : 1.0f;
+    g_speedModReverseFactor = 1.0f / g_speedModFactor;
 
-    minDriftSpeedFactor = 0.55f / speedModFactor;
-    boostAccelerations[0] = 3.0f * speedModFactor;
-    ai_808cb550 = 70.0f * speedModFactor;
+    s_minDriftSpeedFactor = 0.55f / g_speedModFactor;
+    s_boostAccelerations[0] = 3.0f * g_speedModFactor;
+    ai_808cb550 = 70.0f * g_speedModFactor;
 
     auto value = saveManager->getSetting<SP::ClientSettings::Setting::VanillaMode>();
     bool isVanilla = value == SP::ClientSettings::VanillaMode::Enable;

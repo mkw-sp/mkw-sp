@@ -47,9 +47,20 @@ struct ResMdlData {
     // ...
 };
 
+struct ResTevColorDL {
+    u8 _00[0x80 - 0x00];
+};
+
+struct ResMatDLData {
+    u8 _00[0x20 - 0x00];
+    ResTevColorDL color;
+};
+
 struct ResMatData {
-    char _00[0x14 - 0x00];
+    u8 _00[0x14 - 0x00];
     char _14;
+    u8 _15[0x3c - 0x15];
+    u32 dlOffset;
     // ...
 };
 
@@ -63,10 +74,22 @@ public:
     }
 };
 
+class ResMatTevColor : public ResCommon<ResTevColorDL> {
+public:
+    using ResCommon::ResCommon;
+
+    void GXSetTevColor(GXTevRegID id, GXColor color);
+};
+
 class ResMat : public ResCommon<ResMatData> {
 public:
     ResGenMode GetResGenMode() {
         return ResGenMode(&ref()._14);
+    }
+
+    ResMatTevColor GetResMatTevColor() {
+        auto *dl = reinterpret_cast<u8 *>(&ref()) + ref().dlOffset;
+        return ResMatTevColor(&reinterpret_cast<ResMatDLData *>(dl)->color);
     }
 };
 static_assert_32bit(sizeof(ResMat) == 4);

@@ -3,13 +3,16 @@
 #include <common/TQuat.hh>
 #include <common/TVec3.hh>
 
+namespace Race {
+class Driver;
+}
+
 namespace Sound {
 class KartSound;
 }
 
 namespace Kart {
 
-class Kart5c;
 class KartAction;
 class KartBody;
 class KartCollide;
@@ -20,7 +23,6 @@ class KartState;
 class KartSub;
 class KartSus;
 class KartTire;
-class PlayerModel;
 class VehiclePhysics;
 
 struct KartAccessor {
@@ -29,7 +31,7 @@ struct KartAccessor {
     KartBody *body;
     KartSus **sus;
     KartTire **tire;
-    PlayerModel *playerModel;
+    Race::Driver *playerModel;
     KartSub *sub;
     Sound::KartSound *sound;
     u8 _1c[0x28 - 0x20];
@@ -38,9 +40,7 @@ struct KartAccessor {
     KartCollide *collide;
     u8 _34[0x3c - 0x34];
     KartRollback *rollback; // Replaced
-    u8 _40[0x5c - 0x40];
-    Kart5c *unk5c;
-    u8 _44[0x64 - 0x60];
+    u8 _40[0x64 - 0x40];
 };
 
 static_assert(sizeof(KartAccessor) == 0x64);
@@ -53,7 +53,7 @@ public:
     const Vec3 *getLastPos() const;
     const Quat *getMainRot() const;
     KartState *getKartState();
-    PlayerModel *getPlayerModel();
+    Race::Driver *getDriver();
     Sound::KartSound *getKartSound();
     const VehiclePhysics *getVehiclePhysics() const;
     VehiclePhysics *getVehiclePhysics();

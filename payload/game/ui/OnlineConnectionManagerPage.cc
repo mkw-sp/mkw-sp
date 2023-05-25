@@ -103,8 +103,8 @@ void OnlineConnectionManagerPage::startLogin() {
     } else {
         response.message.login.has_client_id = true;
         response.message.login.client_id = LoggedInId{
-            device : deviceId,
-            licence : *System::SaveManager::Instance()->spCurrentLicense(),
+                .device = deviceId,
+                .licence = *System::SaveManager::Instance()->spCurrentLicense(),
         };
 
         m_state = State::WaitForLoginChallenge;
@@ -132,7 +132,7 @@ void OnlineConnectionManagerPage::respondToChallenge(const STCMessage & /* event
     response.message.login_challenge_answer.latitude = latitude;
     response.message.login_challenge_answer.longitude = longitude;
     response.message.login_challenge_answer.challenge_signed =
-    CTSMessage_LoginChallengeAnswer_challenge_signed_t{size : 0, bytes : {}};
+            CTSMessage_LoginChallengeAnswer_challenge_signed_t{.size = 0, .bytes = {}};
 
     auto rawMii = globalContext->m_localPlayerMiis.get(0)->id()->getRaw();
     response.message.login_challenge_answer.mii.size = sizeof(System::RawMii);

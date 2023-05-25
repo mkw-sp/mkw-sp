@@ -8,4 +8,22 @@
     "10071": {
         string: "{arg integer|0 0}:{arg integer|1 0}.{arg integer|2 3}",
     },
+    "10284": {
+        string: "{color|player 3}The red team wins!",
+    },
+    "10285": {
+        string: "{color|sp blue}The blue team wins!",
+    },
+    "10286": {
+        string: "{color|sp green}The green team wins!",
+    },
+    "10287": {
+        string: "{color|player 1}The yellow team wins!",
+    },
+    "10288": {
+        string: "{color|sp pink}The pink team wins!",
+    },
+    "10289": {
+        string: "The white team wins!",
+    },
 }

@@ -28,6 +28,14 @@ u8 (&RaceConfig::ghostBuffers())[2][11][0x2800] {
     return m_ghostBuffers;
 }
 
+bool RaceConfig::isSameTeam(u32 p0, u32 p1) const {
+    if (m_raceScenario.spMaxTeamSize < 2) {
+        return p0 == p1;
+    }
+
+    return m_raceScenario.players[p0].spTeam == m_raceScenario.players[p1].spTeam;
+}
+
 void RaceConfig::applyEngineClass() {
     auto *saveManager = SaveManager::Instance();
     auto setting = SP::ClientSettings::EngineClass::CC150;
@@ -38,10 +46,10 @@ void RaceConfig::applyEngineClass() {
         setting = SP::ClientSettings::EngineClass::CC50;
     } else if (m_menuScenario.gameMode == GameMode::TimeAttack) {
         auto taSetting = saveManager->getSetting<SP::ClientSettings::Setting::TAClass>();
-        if (taSetting == SP::ClientSettings::TAClass::CC150) {
-            setting = SP::ClientSettings::EngineClass::CC150;
-        } else {
+        if (taSetting == SP::ClientSettings::TAClass::CC200) {
             setting = SP::ClientSettings::EngineClass::CC200;
+        } else if (taSetting == SP::ClientSettings::TAClass::Mirror) {
+            setting = SP::ClientSettings::EngineClass::Mirror;
         }
     }
 
@@ -170,20 +178,6 @@ void RaceConfig::ConfigurePlayers(Scenario &scenario, u32 screenCount) {
     }
 }
 
-void RaceConfig::initRace() {
-    REPLACED(initRace)();
-    auto *saveManager = System::SaveManager::Instance();
-    auto setting = saveManager->getSetting<SP::ClientSettings::Setting::TAMirror>();
-    // Switch the race to mirror if the mirror TT setting is enabled.
-    if (m_raceScenario.gameMode == GameMode::TimeAttack &&
-            setting == SP::ClientSettings::TAMirror::Enable) {
-        m_raceScenario.mirror = true;
-    } else if (m_raceScenario.gameMode == GameMode::TimeAttack &&
-            setting == SP::ClientSettings::TAMirror::Disable) {
-        m_raceScenario.mirror = false;
-    }
-}
-
 bool RaceConfig::selectRandomCourse() {
     auto *saveManager = System::SaveManager::Instance();
 
@@ -207,22 +201,10 @@ bool RaceConfig::selectRandomCourse() {
 
     auto &courseDatabase = SP::CourseDatabase::Instance();
     auto courseCount = courseDatabase.count(filter);
-    auto courseIdx = hydro_random_uniform(courseCount) - 1;
+    auto courseIdx = hydro_random_uniform(courseCount);
 
     m_menuScenario.courseId = courseDatabase.entry(filter, courseIdx).courseId;
     return true;
 }
 
 } // namespace System
-
-extern "C" {
-
-bool RaceConfig_IsSameTeam(u32 p0, u32 p1) {
-    auto &raceScenario = System::RaceConfig::Instance()->raceScenario();
-    if (raceScenario.spMaxTeamSize < 2) {
-        return p0 == p1;
-    }
-
-    return raceScenario.players[p0].spTeam == raceScenario.players[p1].spTeam;
-}
-}

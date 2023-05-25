@@ -4,8 +4,8 @@ PATCH_BL_START(Snd_806fafb4, 0x44)
     extrwi r27, r0, 1, 29 // Original instruction
 
     // Check that 200cc is enabled
-    lis r5, speedModIsEnabled@ha
-    lbz r5, speedModIsEnabled@l (r5)
+    lis r5, g_speedModIsEnabled@ha
+    lbz r5, g_speedModIsEnabled@l (r5)
     cmpwi r5, 0x0
     beqlr
 

@@ -20,4 +20,7 @@
     "10063": {
         string: "ON",
     },
+    "10083": {
+        string: "Service Pack",
+    },
 }

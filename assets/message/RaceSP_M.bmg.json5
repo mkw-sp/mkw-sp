@@ -8,4 +8,22 @@
     "10071": {
         string: "{arg integer|0 0}:{arg integer|1 0}.{arg integer|2 3}",
     },
+    "10284": {
+        string: "{color|player 3}¡Victoria roja!",
+    },
+    "10285": {
+        string: "{color|sp blue}¡Victoria azul!",
+    },
+    "10286": {
+        string: "{color|sp green}¡Victoria verde!",
+    },
+    "10287": {
+        string: "{color|player 1}¡Victoria amarilla!",
+    },
+    "10288": {
+        string: "{color|sp pink}¡Victoria magenta!",
+    },
+    "10289": {
+        string: "¡Victoria blanca!",
+    },
 }
