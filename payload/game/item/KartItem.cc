@@ -7,6 +7,10 @@
 
 #include <sp/cs/RoomClient.hh>
 
+extern "C" {
+#include <revolution/kpad.h>
+}
+
 namespace Item {
 
 void KartItem::setItem(u32 r4, u32 r5, u32 r6) {
