@@ -38,11 +38,11 @@ Items ItemInventory::getItem() {
 }
 
 void ItemInventory::setPressed(bool pressed) {
-    pressedLastFrame = pressed;
+    m_pressedLastFrame = pressed;
 }
 
 bool ItemInventory::getPressed() {
-    return pressedLastFrame;
+    return m_pressedLastFrame;
 }
 
 } // namespace Item

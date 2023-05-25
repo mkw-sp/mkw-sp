@@ -50,7 +50,7 @@ private:
     Items m_currentItemID;
     u32 m_currentItemCount;
     u8 _0c[0x28 - 0x0c];
-    bool pressedLastFrame; // Added since field is unused
+    bool m_pressedLastFrame; // Added since field is unused
     u8 _2b[0x2c - 0x2b];
 };
 static_assert(sizeof(ItemInventory) == 0x2c);
