@@ -102,6 +102,7 @@ enum class Controller {
 extern const char *courseFilenames[0x28];
 
 bool IsCombinationValid(Character character, Vehicle vehicle);
+bool isControllerValid(Controller controller);
 
 u32 GetCharacterMessageId(u32 characterId, bool resolveMiiNames);
 REPLACE bool UseBattleRenders();

@@ -3,6 +3,7 @@
 #include "game/system/RaceConfig.hh"
 #include "game/system/RaceManager.hh"
 #include "game/system/SaveManager.hh"
+
 #include "game/util/Registry.hh"
 
 #include <sp/cs/RoomClient.hh>
@@ -37,19 +38,19 @@ void KartItem::update() {
         auto controller = playerPadProxy->pad()->getControllerId();
         bool updateItem = false;
         switch (controller) {
-        case (Registry::Controller::WiiWheel):
+        case Registry::Controller::WiiWheel:
             updateItem = (buttons & PAD_BUTTON_START) == PAD_BUTTON_START;
             break;
-        case (Registry::Controller::WiiRemoteAndNunchuck):
+        case Registry::Controller::WiiRemoteAndNunchuck:
             updateItem = (buttons & WPAD_BUTTON_DOWN) == WPAD_BUTTON_DOWN;
             break;
-        case (Registry::Controller::Classic):
+        case Registry::Controller::Classic:
             updateItem = (buttons & KPAD_CL_TRIGGER_ZL) == KPAD_CL_TRIGGER_ZL;
             break;
-        case (Registry::Controller::GameCube):
+        case Registry::Controller::GameCube:
             updateItem = (buttons & PAD_BUTTON_Y) == PAD_BUTTON_Y;
             break;
-        case (Registry::Controller::None):
+        case Registry::Controller::None:
             return;
         }
         if (!updateItem) {
@@ -57,49 +58,49 @@ void KartItem::update() {
         }
 
         if (updateItem && !m_inventory.getPressed()) {
-            Item::Items nextItem = Item::NoItem;
+            Item::Items nextItem = Items::NoItem;
             switch (m_inventory.getItem()) {
-            case (Item::TripShrooms):
-                nextItem = Item::Shroom;
+            case Items::TripShrooms:
+                nextItem = Items::Shroom;
                 break;
-            case (Item::Shroom):
-                nextItem = Item::Star;
+            case Items::Shroom:
+                nextItem = Items::Star;
                 break;
-            case (Item::Star):
-                nextItem = Item::Golden;
+            case Items::Star:
+                nextItem = Items::Golden;
                 break;
-            case (Item::Golden):
-                nextItem = Item::Mega;
+            case Items::Golden:
+                nextItem = Items::Mega;
                 break;
-            case (Item::Mega):
-                nextItem = Item::Bill;
+            case Items::Mega:
+                nextItem = Items::Bill;
                 break;
-            case (Item::Bill):
-                nextItem = Item::TC;
+            case Items::Bill:
+                nextItem = Items::TC;
                 break;
-            case (Item::TC):
-                nextItem = Item::Bomb;
+            case Items::TC:
+                nextItem = Items::Bomb;
                 break;
-            case (Item::Bomb):
-                nextItem = Item::FIB;
+            case Items::Bomb:
+                nextItem = Items::FIB;
                 break;
-            case (Item::FIB):
-                nextItem = Item::Nana;
+            case Items::FIB:
+                nextItem = Items::Nana;
                 break;
-            case (Item::Nana):
-                nextItem = Item::Green;
+            case Items::Nana:
+                nextItem = Items::Green;
                 break;
-            case (Item::Green):
-                nextItem = Item::Shroom;
+            case Items::Green:
+                nextItem = Items::Shroom;
                 break;
-            case (Item::NoItem):
-                nextItem = Item::Shroom;
+            case Items::NoItem:
+                nextItem = Items::Shroom;
                 break;
-            default:
-                nextItem = Item::Shroom;
-                break;
-            case (Item::None):
+            case Items::None:
                 return;
+            default:
+                nextItem = Items::Shroom;
+                break;
             }
             m_inventory.setItem(nextItem);
             m_inventory.setPressed(true);

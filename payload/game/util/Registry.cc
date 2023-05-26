@@ -42,6 +42,15 @@ bool IsCombinationValid(Character character, Vehicle vehicle) {
             getVehicleWeightClass(static_cast<u32>(vehicle));
 }
 
+bool isControllerValid(Controller controller) {
+    switch (controller) {
+    case Controller::WiiWheel... Controller::GameCube:
+        return true;
+    default:
+        return false;
+    }
+}
+
 // This disables trying to load red/blue thumbnails and models
 // for all the vehicles in the vehicle select screen
 bool UseBattleRenders() {
