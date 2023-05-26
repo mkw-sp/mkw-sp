@@ -39,6 +39,8 @@ static const char *getLanguageCode() {
         return REGION == REGION_E ? "M" : "S";
     case SC_LANG_ITALIAN:
         return "I";
+    case SC_LANG_DUTCH:
+        return "N";
     case SC_LANG_KOREAN:
         return "K";
     default:

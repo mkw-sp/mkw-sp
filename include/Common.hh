@@ -10,6 +10,13 @@ extern "C" {
 #include <type_traits>
 #include <utility>
 
+// This works on Clang, too. Not limited to function arguments.
+#define ALIGNED_STRING(s) \
+    []() { \
+        alignas(32) static const char t[] = s; \
+        return t; \
+    }()
+
 template <typename T>
 T AlignDown(T val, size_t alignment) {
     return val / alignment * alignment;
@@ -56,21 +63,33 @@ inline const Mtx34 &Decay(const std::array<float, 12> &arr) {
 //    }
 // ```
 //
-// https://godbolt.org/z/nT4jrjoE8
+// https://godbolt.org/z/vhxdsbdqG
 //
-// Trick to avoid copies taken from SerenityOS https://github.com/SerenityOS/serenity/blob/master/AK/Try.h
+// In particular:
+// - Move-only types work
+// - Copy-only types work
+// - Result<void> types work
+//
+// Trick to avoid copies via an rvalue-valued rvalue-member function inspired from from SerenityOS https://github.com/SerenityOS/serenity/blob/master/AK/Try.h
 // (Thanks to @InusualZ for pointing this out)
 //
-#if defined(__clang__) || defined(__GNUC__) || defined(__APPLE__)
+// (The `MyMove` function is some glue I came up with for the `void` case; perhaps there is a more elegant way?)
+//
+#if (defined(__clang__) || defined(__GNUC__) || defined(__APPLE__)) && defined(__cpp_lib_remove_cvref) && __cpp_lib_remove_cvref >= 201711L
 #define HAS_RUST_TRY
+template <typename T> auto MyMove(T&& t) {
+  if constexpr (!std::is_void_v<typename std::remove_cvref_t<T>::value_type>) {
+    return std::move(*t);
+  }
+}
 #define TRY(...)                                                               \
   ({                                                                           \
     auto&& y = (__VA_ARGS__);                                                  \
-    static_assert(!std::is_lvalue_reference_v<decltype(std::move(*y))>);       \
+    static_assert(!std::is_lvalue_reference_v<decltype(MyMove(y))>);           \
     if (!y) [[unlikely]] {                                                     \
       return std::unexpected(y.error());                                       \
     }                                                                          \
-    std::move(*y);                                                             \
+    MyMove(y);                                                                 \
   })
 #else
 #define TRY(...) static_assert(false, "Compiler does not support TRY macro")

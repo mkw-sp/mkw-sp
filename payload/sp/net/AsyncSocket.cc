@@ -35,7 +35,7 @@ AsyncSocket::AsyncSocket(u32 ip, u16 port, const char context[hydro_secretbox_CO
 
     m_connectTask = ConnectTask{address};
 
-    m_initTask.emplace();
+    m_initTask = InitTask{};
     m_initTask->isServer = false;
     hydro_kx_keygen(&m_initTask->keypair);
     if (hydro_kx_xx_1(&m_initTask->state, m_initTask->xx1, nullptr) != 0) {
@@ -59,7 +59,7 @@ AsyncSocket::AsyncSocket(s32 handle, const hydro_kx_keypair &serverKeypair,
         return;
     }
 
-    m_initTask.emplace();
+    m_initTask = InitTask{};
     m_initTask->isServer = true;
     memcpy(&m_initTask->keypair, &serverKeypair, sizeof(m_initTask->keypair));
 

@@ -29,7 +29,7 @@ private:
     void onCancel(ConfirmPage *page, f32 delay);
 
     template <typename T>
-    using H = typename T::Handler<LicenseSelectPage>;
+    using H = typename T::template Handler<LicenseSelectPage>;
 
     MultiControlInputManager m_inputManager;
     CtrlMenuPageTitleText m_pageTitleText;

@@ -10,7 +10,7 @@ public:
     ~CtrlRaceWaitSymbol() override;
     void calcSelf() override;
     void vf_28() override;
-    void vf_2c() override;
+    const char *getTypeName() override;
     void vf_40() override;
     void vf_44() override;
     bool vf_48() override;

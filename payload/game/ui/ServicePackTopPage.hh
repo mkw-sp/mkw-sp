@@ -27,7 +27,7 @@ private:
     void onAboutPop(ConfirmPage *page, f32 delay);
 
     template <typename T>
-    using H = typename T::Handler<ServicePackTopPage>;
+    using H = typename T::template Handler<ServicePackTopPage>;
 
     MultiControlInputManager m_inputManager;
     CtrlMenuPageTitleText m_pageTitleText;

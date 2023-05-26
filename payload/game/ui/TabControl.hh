@@ -14,7 +14,7 @@ public:
         void init() override;
         void calc() override;
         void vf_28() override;
-        void vf_2c() override;
+        const char *getTypeName() override;
 
         void load(u32 i, const char *dir, const char *file, const char *variant, bool r8,
                 bool pointerOnly);

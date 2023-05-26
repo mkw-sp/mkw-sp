@@ -77,7 +77,7 @@ public:
     SheetSelectControlScaleFade();
     ~SheetSelectControlScaleFade() override;
     void vf_28() override;
-    void vf_2c() override;
+    const char *getTypeName() override;
     void vf_44() override;
 };
 

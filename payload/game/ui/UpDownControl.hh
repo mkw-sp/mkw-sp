@@ -44,7 +44,7 @@ public:
         void init() override;
         void calc() override;
         void vf_28() override;
-        void vf_2c() override;
+        const char *getTypeName() override;
 
     private:
         u8 _174[0x188 - 0x174];
@@ -108,7 +108,7 @@ public:
     void init() override;
     void calc() override;
     void vf_28() override;
-    void vf_2c() override;
+    const char *getTypeName() override;
     virtual void vf_3c();
     virtual void vf_40();
 
@@ -136,7 +136,7 @@ private:
     void onLeft(u32 localPlayerId, u32 r5);
 
     template <typename T>
-    using H = typename T::Handler<UpDownControl>;
+    using H = typename T::template Handler<UpDownControl>;
 
     H<ControlInputManager> m_onSelect{this, &UpDownControl::onSelect};
     u8 _184[0x188 - 0x184];
@@ -187,7 +187,7 @@ public:
         ~TextControl() override;
         void calcSelf() override;
         void vf_28() override;
-        void vf_2c() override;
+        const char *getTypeName() override;
     };
     static_assert(sizeof(TextControl) == 0x174);
 
@@ -222,7 +222,7 @@ public:
     void init() override;
     void calc() override;
     void vf_28() override;
-    void vf_2c() override;
+    const char *getTypeName() override;
 
     UpDownAnimator *animator();
     TextControl *shownText();

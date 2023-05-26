@@ -10,7 +10,7 @@ public:
     ~CtrlMenuInstructionText() override;
     void vf_20() override;
     void vf_28() override;
-    void vf_2c() override;
+    const char *getTypeName() override;
 
     REPLACE void load();
     void setMessage(s32 messageId, MessageInfo *info = nullptr);

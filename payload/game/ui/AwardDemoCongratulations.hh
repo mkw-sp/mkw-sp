@@ -10,7 +10,7 @@ public:
     virtual ~AwardDemoCongratulations();
     void initSelf() override;
     void vf_28() override;
-    void vf_2c() override;
+    const char *getTypeName() override;
 
     void load(bool isWin, bool isDraw, bool isTeams);
 };

@@ -16,9 +16,9 @@ extern "C" {
 #include "sp/keyboard/SIKeyboard.h"
 }
 #include "sp/net/Net.hh"
+#include "sp/security/Function.hh"
+#include "sp/security/Heap.hh"
 extern "C" {
-#include "sp/security/Function.h"
-#include "sp/security/Heap.h"
 #include "sp/security/Memory.h"
 }
 #include "sp/security/PageTable.hh"
@@ -82,10 +82,10 @@ static void Init() {
 
     OSSetMEM1ArenaLo(Payload_getEnd());
 
-    Heap_RandomizeMEM1Heaps();
-    Heap_RandomizeMEM2Heaps();
+    Heap::RandomizeMEM1Heaps();
+    Heap::RandomizeMEM2Heaps();
 
-    Function_KillBlacklistedFunction(reinterpret_cast<u32 *>(BATConfig),
+    Function::KillBlacklistedFunction(reinterpret_cast<u32 *>(BATConfig),
             reinterpret_cast<u32 *>(__OSInitMemoryProtection));
 
     Memory_ProtectRange(OS_PROTECT_CHANNEL_0, Dol_getInitSectionStart(), Dol_getRodataSectionEnd(),
@@ -162,9 +162,11 @@ static void Init() {
     Console::Print(" done.\n");
 
     Console::Print("Loading StaticR.rel...");
-    bool relWasLoaded = Rel::Load();
-    if (!relWasLoaded) {
-        Console::Print(" failed!\n");
+    auto rel_ok = Rel::Load();
+    if (!rel_ok) {
+        Console::Print(" failed with reason \"");
+        Console::Print(rel_ok.error());
+        Console::Print("\"!\n");
         Console::Print(
                 "Please ensure that the file 'StaticR.rel' exists on the\n"
                 "game disk and that it is not modified in any capacity!\n");

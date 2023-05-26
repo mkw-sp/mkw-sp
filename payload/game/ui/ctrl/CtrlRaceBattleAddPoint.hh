@@ -12,7 +12,7 @@ public:
     void initSelf() override;
     REPLACE void calcSelf() override;
     void vf_28() override;
-    void vf_2c() override;
+    const char *getTypeName() override;
 
     void load(const char *variant, u32 screenId);
 

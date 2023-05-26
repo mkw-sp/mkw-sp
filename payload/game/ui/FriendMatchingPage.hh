@@ -53,7 +53,7 @@ private:
     void startClient();
 
     template <typename T>
-    using H = typename T::Handler<FriendMatchingPage>;
+    using H = typename T::template Handler<FriendMatchingPage>;
 
     PageInputManager m_inputManager;
     MatchingMessageWindow m_messageWindow;

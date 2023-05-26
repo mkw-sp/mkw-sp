@@ -37,4 +37,9 @@ extern "C" {
 __attribute__((__noreturn__)) void abort() {
     panic("abort");
 }
+
+// Clang-only
+void __cxa_pure_virtual() {
+    panic("__cxa_pure_virtual");
+}
 }

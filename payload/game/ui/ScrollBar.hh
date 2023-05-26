@@ -55,7 +55,7 @@ private:
     void onLeft(u32 localPlayerId, u32 r5);
 
     template <typename T>
-    using H = typename T::Handler<ScrollBar>;
+    using H = typename T::template Handler<ScrollBar>;
 
     ControlInputManager m_inputManager;
     H<ControlInputManager> m_onSelect{this, &ScrollBar::onSelect};

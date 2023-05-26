@@ -30,7 +30,11 @@ protected:
     virtual void vf_20();
     virtual void vf_24();
     virtual void vf_28();
-    virtual void vf_2c();
+
+public:
+    virtual const char *getTypeName();
+
+private:
     virtual void vf_30();
     virtual void vf_34();
 
@@ -43,9 +47,10 @@ public:
 private:
     u8 _04[0x64 - 0x04];
     ControlGroup *m_controlGroup;
-    ControlGroup m_children;
 
 public:
+    ControlGroup m_children;
+
     f32 m_zIndex;
 
 private:
@@ -64,7 +69,7 @@ public:
 
 protected:
     void vf_28() override;
-    void vf_2c() override;
+    const char *getTypeName() override;
     void vf_30() override;
     virtual void vf_38();
 
@@ -98,7 +103,7 @@ public:
     ~LayoutUIControlScaleFade() override;
     void vf_20() override;
     void vf_28() override;
-    void vf_2c() override;
+    const char *getTypeName() override;
 };
 static_assert(sizeof(LayoutUIControlScaleFade) == 0x174);
 

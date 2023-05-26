@@ -14,7 +14,7 @@ protected:
     void calcSelf() override;
     void vf_20() override;
     void vf_28() override;
-    void vf_2c() override;
+    const char *getTypeName() override;
 
 private:
     enum class FadeoutState {

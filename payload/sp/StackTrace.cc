@@ -123,15 +123,18 @@ size_t WriteStackTraceShort(char *buf, int capacity, void *sp) {
         if (sym && !SP::MapFile::ScoreMatch(sym->address, reinterpret_cast<uintptr_t>(lr))) {
             sym = std::nullopt;
         }
-        char fmtSym[64] = "<- ";
+        char fmtSym[256] = "<- ";
         if (sym) {
             intptr_t delta = reinterpret_cast<intptr_t>(lr) - static_cast<intptr_t>(sym->address);
             auto name = sym->name;
             snprintf(fmtSym, sizeof(fmtSym), "%.*s [%c0x%X]\n", name.size(), name.data(),
                     "+-"[delta < 0], std::abs(delta));
+            if (fmtSym[sizeof(fmtSym) - 2] != '\0') {
+                fmtSym[sizeof(fmtSym) - 2] = '\n';
+            }
         }
 
-        l += snprintf(buf + l, capacity - l, "@ %p%s %s %s", ported, pointerFlag, funcName, fmtSym);
+        l += snprintf(buf + l, capacity - l, "%p%s %s %s", ported, pointerFlag, funcName, fmtSym);
     }
 
     return l;

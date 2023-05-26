@@ -30,7 +30,7 @@ private:
     void onBackButtonSelect(PushButton *button, u32 localPlayerId);
 
     template <typename T>
-    using H = typename T::Handler<MultiTopPage>;
+    using H = typename T::template Handler<MultiTopPage>;
 
     MultiControlInputManager m_inputManager;
     CtrlMenuPageTitleText m_pageTitleText;

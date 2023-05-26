@@ -38,7 +38,7 @@ private:
         void calcSelf() override;
         void vf_20() override;
         void vf_28() override;
-        void vf_2c() override;
+        const char *getTypeName() override;
 
         void load();
         // Set animations
@@ -64,7 +64,7 @@ private:
     void onBack(u32 localPlayerId);
 
     template <typename T>
-    using H = typename T::Handler<FriendRoomMessageSelectPage>;
+    using H = typename T::template Handler<FriendRoomMessageSelectPage>;
 
     MultiControlInputManager m_inputManager;
     LayoutUIControlScaleFade m_commentSelectBG;

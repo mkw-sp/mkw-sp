@@ -1,5 +1,9 @@
 #include "MapFile.hh"
 
+extern "C" {
+#include "StackTrace.h"
+}
+
 #include <egg/core/eggSystem.hh>
 extern "C" {
 #include <revolution/os.h>
@@ -8,6 +12,8 @@ extern "C" {
 extern "C" {
 #include <vendor/ff/ffconf.h>
 }
+
+#include <vendor/magic_enum/magic_enum.hpp>
 
 #include <charconv>
 #include <cmath>
@@ -124,7 +130,7 @@ std::optional<Symbol> SymbolLowerBound(u32 address) {
         if (!nextSymbol.has_value()) {
             break;
         }
-        if (nextSymbol->address > address) {
+        if (nextSymbol->address >= address) {
             break;
         }
 
@@ -134,23 +140,38 @@ std::optional<Symbol> SymbolLowerBound(u32 address) {
     return prevSymbol;
 }
 
-bool FindSymbol(u32 address, char *symbolNameBuffer, size_t symbolNameBufferSize) {
+bool PrintAddressSymbolInfo(u32 address, char *symBuf, size_t symBufSize) {
     auto it = SymbolLowerBound(address);
-    if (!it) {
-        return false;
+    if (it && ScoreMatch(it->address, address)) {
+        assert(address >= it->address);
+        return 0 < snprintf(symBuf, symBufSize, "%.*s [+0x%08X]", it->name.size(), it->name.data(),
+                           address - it->address);
     }
-    snprintf(symbolNameBuffer, symbolNameBufferSize, "%.*s [%c0x%08X]", it->name.size(),
-            it->name.data(), address < it->address ? '-' : '+',
-            std::abs(static_cast<int>(address - it->address)));
-    return true;
+    auto bin = magic_enum::enum_name(ClassifyPointer((void *)address));
+    void *ported = PortPointer((void *)address);
+    if (ported == (void *)address) {
+        return 0 < snprintf(symBuf, symBufSize, "<Symbol not found: %.*s>", bin.size(), bin.data());
+    }
+    return 0 < snprintf(symBuf, symBufSize, "<Symbol not found: %.*s (%p vanilla PAL)>", bin.size(),
+                       bin.data(), ported);
 }
 
 bool ScoreMatch(u32 symbol, u32 lr) {
     if (lr < symbol) {
         return false;
     }
+    switch (ClassifyPointer((void *)lr)) {
+    case BINARY_SP:
+        // Assume SP symbols are contiguous
+        return true;
+    case BINARY_DOL:
+    case BINARY_REL:
+        break;
+    case BINARY_ILLEGAL:
+        return false;
+    }
     // Largest function in game
-    if (std::abs(static_cast<s64>(lr) - static_cast<s64>(symbol)) > 0x4D14) {
+    if (lr - symbol > 0x4D14) {
         return false;
     }
     for (u32 it = symbol; it < lr; ++it) {

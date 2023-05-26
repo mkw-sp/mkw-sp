@@ -38,7 +38,7 @@ public:
     void init() override;
     void calc() override;
     void vf_28() override;
-    void vf_2c() override;
+    const char *getTypeName() override;
     virtual void vf_3c();
     virtual void vf_40();
     virtual void vf_44();
@@ -63,7 +63,7 @@ public:
 
 private:
     template <typename T>
-    using H = typename T::Handler<PushButton>;
+    using H = typename T::template Handler<PushButton>;
 
     ControlInputManager m_inputManager;
     H<ControlInputManager> m_onSelect{this, &PushButton::onSelect};
