@@ -1,4 +1,3 @@
-#include <Common.hh>
 #include <egg/core/eggHeap.hh>
 
 namespace System {
