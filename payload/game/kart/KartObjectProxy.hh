@@ -15,6 +15,7 @@ namespace Kart {
 
 class KartAction;
 class KartBody;
+class KartBullet;
 class KartCollide;
 class KartMove;
 class KartRollback;
@@ -40,7 +41,8 @@ struct KartAccessor {
     KartCollide *collide;
     u8 _34[0x3c - 0x34];
     KartRollback *rollback; // Replaced
-    u8 _40[0x64 - 0x40];
+    u8 _40[0x60 - 0x40];
+    KartBullet *bullet;
 };
 
 static_assert(sizeof(KartAccessor) == 0x64);

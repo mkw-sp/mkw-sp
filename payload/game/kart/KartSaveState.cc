@@ -1,5 +1,7 @@
 #include "KartSaveState.hh"
 
+#include "game/kart/KartBullet.hh"
+
 #include <cstring>
 
 namespace Kart {
@@ -11,6 +13,7 @@ KartSaveState::KartSaveState(KartAccessor accessor, VehiclePhysics *physics, Kar
 void KartSaveState::save(KartAccessor accessor, VehiclePhysics *physics, KartItem *item) {
     m_externalVel = physics->m_externalVel;
     m_internalVel = physics->m_internalVel;
+    m_inBullet = physics->m_inBullet;
     m_mainRot = physics->m_mainRot;
     m_pos = physics->m_pos;
 
@@ -49,6 +52,12 @@ void KartSaveState::reload(KartAccessor accessor, VehiclePhysics *physics, KartI
         accessor.tire[i]->m_wheelPhysics->m_realPos = m_wheelPhysics[i].m_realPos;
         accessor.tire[i]->m_wheelPhysics->m_lastPos = m_wheelPhysics[i].m_lastPos;
         accessor.tire[i]->m_wheelPhysics->m_lastPosDiff = m_wheelPhysics[i].m_lastPosDiff;
+    }
+
+    if (physics->m_inBullet && !m_inBullet) {
+        accessor.bullet->cancelBullet();
+    } else if (!physics->m_inBullet && m_inBullet) {
+        accessor.bullet->activateBullet(0xFF);
     }
 }
 
