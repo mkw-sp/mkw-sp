@@ -15,23 +15,6 @@ CourseSelectPage::CourseSelectPage() = default;
 
 CourseSelectPage::~CourseSelectPage() = default;
 
-SP::TrackGameMode getTrackGameMode() {
-    using enum System::RaceConfig::GameMode;
-
-    auto &menuScenario = System::RaceConfig::Instance()->menuScenario();
-    if (menuScenario.gameMode == OfflineVS || menuScenario.gameMode == TimeAttack) {
-        return SP::TrackGameMode::Race;
-    } else if (menuScenario.gameMode == OfflineBT) {
-        if (menuScenario.battleType == 0) {
-            return SP::TrackGameMode::Balloon;
-        } else {
-            return SP::TrackGameMode::Coin;
-        }
-    } else {
-        panic("Unknown gamemode!");
-    }
-}
-
 PageId CourseSelectPage::getReplacement() {
     return m_replacement;
 }
@@ -166,7 +149,8 @@ void CourseSelectPage::filter() {
     auto &packManager = SP::TrackPackManager::Instance();
     auto &pack = packManager.getSelectedTrackPack();
 
-    m_sheetCount = (pack.getTrackCount(getTrackGameMode()) + 9 - 1) / 9;
+    auto trackGameMode = System::RaceConfig::Instance()->getTrackGameMode();
+    m_sheetCount = (pack.getTrackCount(trackGameMode) + 9 - 1) / 9;
     if (s_lastSelected != 0) {
         m_sheetIndex = s_lastSelected / m_buttons.size();
         m_lastSelected = s_lastSelected % m_buttons.size();
@@ -312,7 +296,7 @@ void CourseSelectPage::onBackCommon(f32 delay) {
 }
 
 void CourseSelectPage::refresh() {
-    auto gameMode = getTrackGameMode();
+    auto gameMode = System::RaceConfig::Instance()->getTrackGameMode();
 
     auto &trackPackManager = SP::TrackPackManager::Instance();
     auto &trackPack = trackPackManager.getSelectedTrackPack();

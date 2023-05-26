@@ -119,6 +119,7 @@ public:
     bool isVanillaTracks() const;
     SP::TrackPackInfo &getPackInfo();
     SP::TrackPackInfo &emplacePackInfo();
+    SP::TrackGameMode getTrackGameMode() const;
 
     bool generateRandomCourses();
     bool generateOrderedCourses(u16 currentIdx);
@@ -150,7 +151,7 @@ public:
 private:
     REPLACE static void ConfigurePlayers(Scenario &scenario, u32 screenCount);
 
-    std::tuple<SP::TrackGameMode, SP::ClientSettings::CourseSelection> getCourseSettings();
+    SP::ClientSettings::CourseSelection getCourseSelection();
 
     u32 m_currentCourse;
     u8 _000c[0x0020 - 0x000c];

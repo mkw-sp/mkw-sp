@@ -40,6 +40,20 @@ SP::TrackPackInfo &RaceConfig::emplacePackInfo() {
     return *m_courseOrder[m_currentCourse];
 }
 
+SP::TrackGameMode RaceConfig::getTrackGameMode() const {
+    if (m_menuScenario.gameMode == GameMode::OfflineVS || m_menuScenario.gameMode == GameMode::TimeAttack) {
+        return SP::TrackGameMode::Race;
+    } else if (m_menuScenario.gameMode == GameMode::OfflineBT) {
+        if (m_menuScenario.battleType == 0) {
+            return SP::TrackGameMode::Balloon;
+        } else {
+            return SP::TrackGameMode::Coin;
+        }
+    } else {
+        panic("Unknown gamemode!");
+    }
+}
+
 RaceConfig::Scenario &RaceConfig::raceScenario() {
     return m_raceScenario;
 }
@@ -228,33 +242,25 @@ void RaceConfig::initRace() {
     }
 }
 
-std::tuple<SP::TrackGameMode, SP::ClientSettings::CourseSelection> RaceConfig::getCourseSettings() {
+SP::ClientSettings::CourseSelection RaceConfig::getCourseSelection() {
     auto *saveManager = SaveManager::Instance();
     if (m_menuScenario.gameMode == GameMode::TimeAttack) {
-        return std::make_tuple(SP::TrackGameMode::Race,
-                SP::ClientSettings::CourseSelection::Choose);
+        return SP::ClientSettings::CourseSelection::Choose;
     } else if (m_menuScenario.gameMode == GameMode::OfflineVS) {
-        auto setting = saveManager->getSetting<SP::ClientSettings::Setting::VSCourseSelection>();
-        return std::make_tuple(SP::TrackGameMode::Race, setting);
+        return saveManager->getSetting<SP::ClientSettings::Setting::VSCourseSelection>();
     } else if (m_menuScenario.gameMode == GameMode::OfflineBT) {
-        auto setting = saveManager->getSetting<SP::ClientSettings::Setting::BTCourseSelection>();
-
-        if (m_menuScenario.battleType == 0) {
-            return std::make_tuple(SP::TrackGameMode::Balloon, setting);
-        } else {
-            return std::make_tuple(SP::TrackGameMode::Coin, setting);
-        }
+        return saveManager->getSetting<SP::ClientSettings::Setting::BTCourseSelection>();
     } else {
         panic("Unknown gamemode %d", static_cast<u32>(m_menuScenario.gameMode));
     }
 }
 
 bool RaceConfig::generateRandomCourses() {
-    auto [mode, courseSelection] = getCourseSettings();
-    if (courseSelection != SP::ClientSettings::CourseSelection::Random) {
+    if (getCourseSelection() != SP::ClientSettings::CourseSelection::Random) {
         return false;
     }
 
+    auto mode = getTrackGameMode();
     auto &trackPackManager = SP::TrackPackManager::Instance();
     auto &trackPack = trackPackManager.getSelectedTrackPack();
     auto raceCount = UI::SectionManager::Instance()->globalContext()->m_matchCount;
@@ -273,11 +279,11 @@ bool RaceConfig::generateRandomCourses() {
 }
 
 bool RaceConfig::generateOrderedCourses(u16 currentIdx) {
-    auto [mode, courseSelection] = getCourseSettings();
-    if (courseSelection != SP::ClientSettings::CourseSelection::InOrder) {
+    if (getCourseSelection() != SP::ClientSettings::CourseSelection::InOrder) {
         return false;
     }
 
+    auto mode = getTrackGameMode();
     auto &trackPackManager = SP::TrackPackManager::Instance();
     auto &trackPack = trackPackManager.getSelectedTrackPack();
     auto raceCount = UI::SectionManager::Instance()->globalContext()->m_matchCount;
