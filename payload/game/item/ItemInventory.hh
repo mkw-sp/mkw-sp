@@ -4,7 +4,7 @@
 
 namespace Item {
 
-enum Items {
+enum class Items {
     Green,
     Red,
     Nana,
@@ -31,7 +31,7 @@ enum Items {
 
 class ItemInventory {
 public:
-    REPLACE void setItem(u32 itemID);
+    REPLACE void setItem(Items itemID);
 
     void REPLACED(resetItem)();
     REPLACE void resetItem();

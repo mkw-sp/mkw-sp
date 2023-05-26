@@ -492,7 +492,7 @@ void SaveManager::saveGhost(GhostFile *file) {
         OSDetachThread(&m_ghostInitThread);
     }
 
-    if (m_usedItemWheel == true) {
+    if (m_usedItemWheel) {
         return;
     }
 

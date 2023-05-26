@@ -275,7 +275,7 @@ bool IsValid(const u8 *raw, u32 size) {
         return false;
     }
 
-    if (static_cast<u32>(header->controllerId) >= 0x4) {
+    if (!isControllerValid(header->controllerId)) {
         return false;
     }
 
