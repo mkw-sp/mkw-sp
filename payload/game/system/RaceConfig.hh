@@ -127,7 +127,9 @@ public:
 private:
     REPLACE static void ConfigurePlayers(Scenario &scenario, u32 screenCount);
 
+    // Was used for ParameterFile, but now unused and free for replacement.
     u8 _0004[0x0020 - 0x0004];
+
     Scenario m_raceScenario;
     Scenario m_menuScenario;
     Scenario m_awardsScenario;
