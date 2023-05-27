@@ -11,8 +11,8 @@ RealModeTrampoline:
     mtspr      SRR0, r9
     rfi
 
-.globl SetSDR1
-SetSDR1:
+.globl Memory_SetSDR1
+Memory_SetSDR1:
     mflr       r8
     bl         RealModeTrampoline
 
@@ -22,8 +22,8 @@ SetSDR1:
     mtsdr1     r3
     rfi
 
-.globl InitSRs
-InitSRs:
+.globl Memory_InitSRs
+Memory_InitSRs:
     li         r0, 0
     lis        r3, 0x8000
 
@@ -46,8 +46,8 @@ InitSRs:
     isync
     blr
 
-.globl InvalidateAllIBATs
-InvalidateAllIBATs:
+.globl Memory_InvalidateAllIBATs
+Memory_InvalidateAllIBATs:
     li        r0, 0
 
     mtspr     IBAT0U, r0

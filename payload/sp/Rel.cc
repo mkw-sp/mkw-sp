@@ -4,8 +4,8 @@ extern "C" {
 #include "sp/Host.h"
 #include "sp/Patcher.h"
 #include "sp/Payload.h"
-#include "sp/security/Memory.h"
 }
+#include "sp/security/Memory.hh"
 #include "sp/security/StackCanary.hh"
 #include "sp/storage/Storage.hh"
 
@@ -173,9 +173,9 @@ void Run() {
             reinterpret_cast<u32 *>(Rel_getTextSectionEnd()));
 #endif
     Patcher_patch(PATCHER_BINARY_REL);
-    Memory_ProtectRange(OS_PROTECT_CHANNEL_2, Rel_getTextSectionStart(), Rel_getRodataSectionEnd(),
+    Memory::ProtectRange(OS_PROTECT_CHANNEL_2, Rel_getTextSectionStart(), Rel_getRodataSectionEnd(),
             OS_PROTECT_PERMISSION_READ);
-    Memory_ProtectRange(OS_PROTECT_CHANNEL_3, Payload_getTextSectionStart(),
+    Memory::ProtectRange(OS_PROTECT_CHANNEL_3, Payload_getTextSectionStart(),
             Payload_getRodataSectionEnd(), OS_PROTECT_PERMISSION_READ);
 
     if (HostPlatform_IsDolphin(Host_GetPlatform())) {
