@@ -570,14 +570,6 @@ std::array<u8, 0x14> SaveManager::courseSHA1(u32 courseId) const {
     return m_courseSHA1s[courseId];
 }
 
-void SaveManager::setItemWheelFlag(bool itemWheel) {
-    m_usedItemWheel = itemWheel;
-}
-
-bool SaveManager::getItemWheelFlag() {
-    return m_usedItemWheel;
-}
-
 SaveManager *SaveManager::Instance() {
     return s_instance;
 }
@@ -721,10 +713,6 @@ u32 SaveManager_GetTAGhostTagVisibility(void) {
     auto *saveManager = System::SaveManager::Instance();
     auto value = saveManager->getSetting<SP::ClientSettings::Setting::TAGhostTagVisibility>();
     return static_cast<u32>(value);
-}
-
-bool SaveManager_getItemWheel() {
-    return System::SaveManager::Instance()->getItemWheelFlag();
 }
 
 bool vsSpeedModIsEnabled;
