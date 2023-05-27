@@ -18,9 +18,7 @@ extern "C" {
 #include "sp/net/Net.hh"
 #include "sp/security/Function.hh"
 #include "sp/security/Heap.hh"
-extern "C" {
-#include "sp/security/Memory.h"
-}
+#include "sp/security/Memory.hh"
 #include "sp/security/PageTable.hh"
 extern "C" {
 #include "sp/security/StackCanary.h"
@@ -77,7 +75,7 @@ static void Init() {
     Console::Print("Applying security patches...");
 #ifndef GDB_COMPATIBLE
     PageTable::Init();
-    Memory_InvalidateAllIBATs();
+    Memory::InvalidateAllIBATs();
 #endif
 
     OSSetMEM1ArenaLo(Payload_getEnd());
@@ -88,10 +86,10 @@ static void Init() {
     Function::KillBlacklistedFunction(reinterpret_cast<u32 *>(BATConfig),
             reinterpret_cast<u32 *>(__OSInitMemoryProtection));
 
-    Memory_ProtectRange(OS_PROTECT_CHANNEL_0, Dol_getInitSectionStart(), Dol_getRodataSectionEnd(),
+    Memory::ProtectRange(OS_PROTECT_CHANNEL_0, Dol_getInitSectionStart(), Dol_getRodataSectionEnd(),
             OS_PROTECT_PERMISSION_READ);
-    Memory_ProtectRange(OS_PROTECT_CHANNEL_1, Dol_getSdata2SectionStart(), Dol_getSbss2SectionEnd(),
-            OS_PROTECT_PERMISSION_READ);
+    Memory::ProtectRange(OS_PROTECT_CHANNEL_1, Dol_getSdata2SectionStart(),
+            Dol_getSbss2SectionEnd(), OS_PROTECT_PERMISSION_READ);
     Console::Print(" done.\n");
 
     Console::Print("Initializing RTC...");
