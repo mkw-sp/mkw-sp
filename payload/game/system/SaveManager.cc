@@ -551,9 +551,7 @@ void SaveManager::GetCourseName(std::array<u8, 0x14> courseSHA1, char (&courseNa
         }
     }
 
-    for (u32 i = 0, offset = 0; i < 0x14; i++) {
-        offset += snprintf(courseName, std::size(courseName) - offset, "%02x", courseSHA1[i]);
-    }
+    hydro_bin2hex(courseName, std::size(courseName), courseSHA1.data(), courseSHA1.size());
 }
 
 std::array<u8, 0x14> SaveManager::courseSHA1(u32 courseId) const {
