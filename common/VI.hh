@@ -6,8 +6,6 @@ namespace VI {
 
 void Init();
 
-void Disable();
-
 bool IsProgressive();
 
 u16 GetXFBWidth();
