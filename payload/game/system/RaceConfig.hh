@@ -113,6 +113,7 @@ public:
     };
     static_assert(sizeof(Scenario) == 0xbf0);
 
+    void clearCourses();
     void nextCourseIndex();
     bool outOfTracks() const;
     u32 getCourseIndex() const;

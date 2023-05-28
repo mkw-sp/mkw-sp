@@ -88,6 +88,8 @@ void SingleTopPage::onInit() {
 
     m_taButton.selectDefault(0);
     m_instructionText.setMessage(3051);
+
+    System::RaceConfig::Instance()->clearCourses();
 }
 
 void SingleTopPage::onActivate() {

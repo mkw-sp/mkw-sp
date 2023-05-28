@@ -11,6 +11,11 @@ extern "C" {
 
 namespace System {
 
+void RaceConfig::clearCourses() {
+    m_courseOrder = {};
+    m_currentCourse = 0;
+}
+
 void RaceConfig::nextCourseIndex() {
     m_currentCourse += 1;
 }
@@ -222,15 +227,11 @@ void RaceConfig::ConfigurePlayers(Scenario &scenario, u32 screenCount) {
 
 void RaceConfig::init() {
     REPLACED(init)();
-    m_courseOrder = {};
-    m_currentCourse = 0;
     m_selectedTrackPack = 0;
 }
 
 void RaceConfig::clear() {
     REPLACED(clear)();
-    m_courseOrder.reset();
-    m_currentCourse = 0;
     m_selectedTrackPack = 0;
 }
 
