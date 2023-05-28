@@ -41,7 +41,8 @@ SP::TrackPackInfo &RaceConfig::emplacePackInfo() {
 }
 
 SP::TrackGameMode RaceConfig::getTrackGameMode() const {
-    if (m_menuScenario.gameMode == GameMode::OfflineVS || m_menuScenario.gameMode == GameMode::TimeAttack) {
+    if (m_menuScenario.gameMode == GameMode::OfflineVS ||
+            m_menuScenario.gameMode == GameMode::TimeAttack) {
         return SP::TrackGameMode::Race;
     } else if (m_menuScenario.gameMode == GameMode::OfflineBT) {
         if (m_menuScenario.battleType == 0) {
