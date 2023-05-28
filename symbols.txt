@@ -485,7 +485,7 @@
 0x802435DC _ZN3EGG6Thread20switchThreadCallbackEP8OSThreadS2_
 0x802436E0 _ZN3EGG6Thread18setCommonMesgQueueEiPNS_4HeapE
 0x8024373C _ZN3EGG6Thread5startEPv
-0x80243d6c EGG_Video_configure
+0x80243f34 _ZN3EGG5Video24getStandardRenderModeObjEPKPK15GXRenderModeObj
 0x802441ec _ZN3EGG3Xfb11CalcXfbSizeEtt
 
 0x802A4080 sRKSystem
