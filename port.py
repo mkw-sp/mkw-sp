@@ -765,8 +765,6 @@ with open(args.out_path, 'w') as out_file:
     write_symbol(out_file, 'vte', 0xcc002010);
     write_symbol(out_file, 'tfbl', 0xcc00201c);
     write_symbol(out_file, 'bfbl', 0xcc002024);
-    write_symbol(out_file, 'di0', 0xcc002030);
-    write_symbol(out_file, 'di1', 0xcc002034);
     write_symbol(out_file, 'hsw', 0xcc002048);
     write_symbol(out_file, 'hsr', 0xcc00204a);
     write_symbol(out_file, 'visel', 0xcc00206e);
