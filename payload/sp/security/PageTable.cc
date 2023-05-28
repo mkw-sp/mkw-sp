@@ -10,11 +10,12 @@ extern "C" {
 
 #include <Common.hh>
 
-extern "C" void InitSRs();
-extern "C" void SetSDR1(u32 sdr1);
+extern "C" void Memory_InitSRs();
+extern "C" void Memory_SetSDR1(u32 sdr1);
 
 namespace SP::PageTable {
-#define VIRTUAL_TO_PHYSICAL(ptr) ((uintptr_t)(ptr)&0x7fffffff)
+
+#define VIRTUAL_TO_PHYSICAL(ptr) (reinterpret_cast<uintptr_t>(ptr) & 0x7FFFFFFF)
 
 #define PAGE_TABLE_MEMORY_POWER_OF_2 16 // 64 Kibibytes
 static_assert(PAGE_TABLE_MEMORY_POWER_OF_2 > 15 && PAGE_TABLE_MEMORY_POWER_OF_2 < 26);
@@ -90,16 +91,16 @@ static void InvalidateAllTLBEntries() {
 }
 
 static void InitPageTable() {
-    u32 HTABORG = (u32)pageTable & HTABORG_MASK;
+    u32 HTABORG = reinterpret_cast<u32>(pageTable) & HTABORG_MASK;
 
     InvalidateAllTLBEntries();
-    SetSDR1(VIRTUAL_TO_PHYSICAL(HTABORG) | HTABMASK);
+    Memory_SetSDR1(VIRTUAL_TO_PHYSICAL(HTABORG) | HTABMASK);
 }
 
 static bool AddEntryToPageTable(const void *physicalAddress, const void *effectiveAddress,
         WIMG wimg, PP pp, u32 sr) {
     u32 VSID = sr & 0x7FFFF;
-    u32 pageIndex = ((u32)effectiveAddress >> 12) & 0xFFFF;
+    u32 pageIndex = (reinterpret_cast<u32>(effectiveAddress) >> 12) & 0xFFFF;
 
     u32 primaryHash = VSID ^ pageIndex;
     u32 secondaryHash = ~primaryHash;
@@ -113,7 +114,7 @@ static bool AddEntryToPageTable(const void *physicalAddress, const void *effecti
     for (size_t hashIndex = 0; hashIndex < hashArray.size(); hashIndex++) {
         u32 offset = ((hashArray[hashIndex] & (HTABMASK << 10)) | (hashArray[hashIndex] & 0x3FF))
                 << 6;
-        PageTableEntry *pteg = (PageTableEntry *)(pageTable + offset);
+        PageTableEntry *pteg = reinterpret_cast<PageTableEntry *>(pageTable + offset);
 
         PageTableEntry *it =
                 std::find_if(pteg, pteg + 8, [](PageTableEntry &pte) { return !pte.V; });
@@ -132,9 +133,9 @@ static bool AddEntryToPageTable(const void *physicalAddress, const void *effecti
             .V = true,
             .VSID = VSID,
             .H = hash,
-            .API = (u32)effectiveAddress >> 22,
+            .API = reinterpret_cast<u32>(effectiveAddress) >> 22,
 
-            .RPN = (u32)physicalAddress >> 12,
+            .RPN = reinterpret_cast<u32>(physicalAddress) >> 12,
             .R = false,
             .C = false,
             .WIMG = wimg,
@@ -142,24 +143,25 @@ static bool AddEntryToPageTable(const void *physicalAddress, const void *effecti
     };
 
     pte->hilo[1] = entry.hilo[1];
-    asm volatile("eieio");
+    asm("eieio");
     pte->hilo[0] = entry.hilo[0];
-    asm volatile("sync");
+    asm("sync");
 
     return true;
 }
 
 static const std::array<PageTableEntryInfo, 3> pteInfoArray = {
         PageTableEntryInfo{
-                (const void *)VIRTUAL_TO_PHYSICAL(Dol_getInitSectionStart()),
+                reinterpret_cast<const void *>(VIRTUAL_TO_PHYSICAL(Dol_getInitSectionStart())),
                 Dol_getInitSectionStart(),
-                (u32)Dol_getTextSectionEnd() - (u32)Dol_getInitSectionStart(),
+                reinterpret_cast<u32>(Dol_getTextSectionEnd()) -
+                        reinterpret_cast<u32>(Dol_getInitSectionStart()),
                 WIMG_NONE,
                 PP_FULL_READ_ONLY,
                 GetSR<8>(),
         },
         PageTableEntryInfo{
-                (const void *)VIRTUAL_TO_PHYSICAL(Rel_getTextSectionStart()),
+                reinterpret_cast<const void *>(VIRTUAL_TO_PHYSICAL(Rel_getTextSectionStart())),
                 Rel_getTextSectionStart(),
                 Rel_getTextSectionSize(),
                 WIMG_NONE,
@@ -167,9 +169,10 @@ static const std::array<PageTableEntryInfo, 3> pteInfoArray = {
                 GetSR<8>(),
         },
         PageTableEntryInfo{
-                (const void *)VIRTUAL_TO_PHYSICAL(Payload_getTextSectionStart()),
+                reinterpret_cast<const void *>(VIRTUAL_TO_PHYSICAL(Payload_getTextSectionStart())),
                 Payload_getTextSectionStart(),
-                (u32)Payload_getReplacementsSectionEnd() - (u32)Payload_getTextSectionStart(),
+                reinterpret_cast<u32>(Payload_getReplacementsSectionEnd()) -
+                        reinterpret_cast<u32>(Payload_getTextSectionStart()),
                 WIMG_NONE,
                 PP_FULL_READ_ONLY,
                 GetSR<8>(),
@@ -177,17 +180,19 @@ static const std::array<PageTableEntryInfo, 3> pteInfoArray = {
 };
 
 void Init() {
-    InitSRs();
+    Memory_InitSRs();
     InitPageTable();
 
     for (const PageTableEntryInfo &pteInfo : pteInfoArray) {
-        char *physicalStartAddress = (char *)ROUND_DOWN(pteInfo.physicalAddress, PAGE_SIZE);
-        char *effectiveStartAddress = (char *)ROUND_DOWN(pteInfo.effectiveAddress, PAGE_SIZE);
-        char *effectiveEndAddress =
-                (char *)ROUND_UP((char *)pteInfo.effectiveAddress + pteInfo.size, PAGE_SIZE);
+        const char *physicalStartAddress =
+                reinterpret_cast<const char *>(ROUND_DOWN(pteInfo.physicalAddress, PAGE_SIZE));
+        const char *effectiveStartAddress =
+                reinterpret_cast<const char *>(ROUND_DOWN(pteInfo.effectiveAddress, PAGE_SIZE));
+        const char *effectiveEndAddress = reinterpret_cast<const char *>(
+                ROUND_UP(reinterpret_cast<const char *>(pteInfo.effectiveAddress) + pteInfo.size,
+                        PAGE_SIZE));
         u32 size = effectiveEndAddress - effectiveStartAddress;
-
-        assert(!(size % PAGE_SIZE));
+        assert((size % PAGE_SIZE) == 0);
 
         for (u32 offset = 0; offset != size; offset += PAGE_SIZE) {
             const void *physicalAddress = physicalStartAddress + offset;
