@@ -2,9 +2,7 @@
 
 #include "game/system/RaceConfig.hh"
 #include "game/system/RootScene.hh"
-#include "game/ui/SectionManager.hh"
 
-#include <sp/TrackPackManager.hh>
 #include <sp/storage/DecompLoader.hh>
 
 namespace System {
@@ -127,41 +125,34 @@ MultiDvdArchive *ResourceManager::loadCourse(u32 courseId, EGG::Heap *heap, bool
         return REPLACED(loadCourse)(courseId, heap, splitScreen);
     }
 
-    MultiDvdArchive *archive = m_archives[1];
+    MultiDvdArchive *archive = m_archives[static_cast<size_t>(MultiDvdArchive::Type::Course)];
     if (archive->isLoaded()) {
         return archive;
     };
 
     archive->init();
 
+    JobContext *jobContext = &m_jobContexts[2];
+    jobContext->multiArchive = archive;
+    jobContext->archiveHeap = heap;
+
+    auto filePath = jobContext->filename;
+    auto filePathSize = sizeof(jobContext->filename);
     auto &packInfo = RaceConfig::Instance()->getPackInfo();
 
-    char filePath[64];
     if (splitScreen) {
-        packInfo.getTrackPath(filePath, sizeof(filePath), true);
+        packInfo.getTrackPath(filePath, filePathSize, true);
         if (!archive->exists(filePath)) {
             splitScreen = false;
         }
     }
 
     if (!splitScreen) {
-        packInfo.getTrackPath(filePath, sizeof(filePath), false);
+        packInfo.getTrackPath(filePath, filePathSize, false);
     }
 
-    JobContext *jobContext = &m_jobContexts[2];
-    jobContext->multiArchive = archive;
-    jobContext->archiveHeap = heap;
-    strncpy(jobContext->filename, filePath, sizeof(jobContext->filename));
-
-    m_taskThread->request(&ResourceManager_doLoadTask, (void *)2, 0);
+    m_taskThread->request(DoLoadTask, (void *)2, 0);
     process();
-
-    u8 tries = 10;
-    while (!archive->isLoaded() && tries != 0) {
-        SP_LOG("Waiting for course archive to load... (%d tries left)", tries);
-        OSSleepMilliseconds(1000);
-        tries -= 1;
-    }
 
     assert(archive->isLoaded());
     return archive;

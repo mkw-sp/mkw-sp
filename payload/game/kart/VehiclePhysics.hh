@@ -28,7 +28,9 @@ private:
     Quat m_mainRot;
     u8 _100[0x14c - 0x100];
     Vec3 m_internalVel;
-    u8 _158[0x1b4 - 0x158];
+    u8 _158[0x174 - 0x158];
+    bool m_inBullet;
+    u8 _175[0x1b4 - 0x175];
 };
 static_assert(sizeof(VehiclePhysics) == 0x1b4);
 

@@ -1,5 +1,6 @@
 #pragma once
 
+#include "game/system/CourseMap.hh"
 #include "game/system/InputManager.hh"
 #include "game/util/Random.hh"
 
@@ -53,7 +54,8 @@ public:
     Player *player(u32 playerId);
     u32 time() const;
     bool hasReachedStage(Stage stage) const;
-    void REPLACED(getStartTransform)(Vec3 *pos, Vec3 *rot, u32 playerId);
+    MapdataKartPoint *REPLACED(getKartPoint)(u32 playerId);
+    REPLACE MapdataKartPoint *getKartPoint(u32 playerId);
     REPLACE void getStartTransform(Vec3 *pos, Vec3 *rot, u32 playerId);
     void REPLACED(calc)();
     REPLACE void calc();

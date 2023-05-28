@@ -1,7 +1,6 @@
 #include "RaceManager.hh"
 
 #include "game/gfx/CameraManager.hh"
-#include "game/system/CourseMap.hh"
 #include "game/system/RaceConfig.hh"
 #include "game/ui/SectionManager.hh"
 
@@ -46,11 +45,10 @@ u32 RaceManager::time() const {
     return m_time;
 }
 
-void RaceManager::getStartTransform(Vec3 *pos, Vec3 *rot, u32 playerId) {
+MapdataKartPoint *RaceManager::getKartPoint(u32 playerId) {
     const auto &raceScenario = RaceConfig::Instance()->raceScenario();
     if (raceScenario.gameMode != RaceConfig::GameMode::OfflineBT) {
-        REPLACED(getStartTransform)(pos, rot, playerId);
-        return;
+        return REPLACED(getKartPoint)(playerId);
     }
 
     s16 id = playerId;
@@ -74,11 +72,18 @@ void RaceManager::getStartTransform(Vec3 *pos, Vec3 *rot, u32 playerId) {
     }
 
     if (index == courseMap->kartPoint()->m_numEntries) {
+        return nullptr;
+    } else {
+        return courseMap->kartPoint()->m_entryAccessors[index];
+    }
+}
+
+void RaceManager::getStartTransform(Vec3 *pos, Vec3 *rot, u32 playerId) {
+    if (auto *kartPoint = getKartPoint(playerId)) {
+        kartPoint->getTransform(pos, rot, 1, 1);
+    } else {
         *pos = {0.0f, 0.0f, 0.0f};
         *rot = {1.0f, 0.0f, 0.0f}; // Sneaky 1 for some reason
-    } else {
-        auto *kartPoint = courseMap->kartPoint()->m_entryAccessors[index];
-        kartPoint->getTransform(pos, rot, 1, 1);
     }
 }
 
