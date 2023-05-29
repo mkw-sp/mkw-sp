@@ -175,14 +175,6 @@ static void Init() {
     }
     Console::Print(" done.\n");
 
-    if (HostPlatform_IsDolphin(Host_GetPlatform()) && REGION != REGION_P) {
-        // Dolphin uses the "fallback region" for ELF executables. If that fallback region is PAL
-        // and neither PAL60 nor progressive mode is enabled, NTSC discs will run at 50 Hz. We work
-        // around this by poking the DCR.
-        VI::Disable();
-        VI::WaitForRetrace();
-    }
-
     VIInit();
     VISetBlack(true);
     VIFlush();

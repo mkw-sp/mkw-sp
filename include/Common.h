@@ -191,8 +191,8 @@ typedef struct {
             .type = PATCH_TYPE_BRANCH, \
             .branch = \
                     { \
-                            &from, \
-                            &to, \
+                            (char *)(void *)(&from), \
+                            (char *)(void *)(&to), \
                             link, \
                             thunk, \
                     }, \

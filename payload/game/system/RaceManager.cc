@@ -79,6 +79,12 @@ MapdataKartPoint *RaceManager::getKartPoint(u32 playerId) {
 }
 
 void RaceManager::getStartTransform(Vec3 *pos, Vec3 *rot, u32 playerId) {
+    const auto &raceScenario = RaceConfig::Instance()->raceScenario();
+    if (raceScenario.gameMode != RaceConfig::GameMode::OfflineBT) {
+        REPLACED(getStartTransform)(pos, rot, playerId);
+        return;
+    }
+
     if (auto *kartPoint = getKartPoint(playerId)) {
         kartPoint->getTransform(pos, rot, 1, 1);
     } else {

@@ -25,8 +25,6 @@ SECTIONS {
     vte = 0xcc002010;
     tfbl = 0xcc00201c;
     bfbl = 0xcc002024;
-    di0 = 0xcc002030;
-    di1 = 0xcc002034;
     hsw = 0xcc002048;
     hsr = 0xcc00204a;
     visel = 0xcc00206e;
