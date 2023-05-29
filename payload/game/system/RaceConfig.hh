@@ -9,8 +9,6 @@ namespace System {
 class RaceConfig {
 public:
     RaceConfig();
-    virtual ~RaceConfig();
-    virtual void dt(s32 type);
 
     struct Player {
         enum class Type {
@@ -147,21 +145,24 @@ public:
 
     static RaceConfig *Instance();
 
-    u32 m_selectedTrackPack;
-
 private:
     REPLACE static void ConfigurePlayers(Scenario &scenario, u32 screenCount);
 
     SP::ClientSettings::CourseSelection getCourseSelection();
 
-    u32 m_currentCourse;
-    u8 _000c[0x0020 - 0x000c];
+    u8 _0000[0x0020 - 0x0000];
     Scenario m_raceScenario;
     Scenario m_menuScenario;
     Scenario m_awardsScenario;
     u8 m_ghostBuffers[2][11][0x2800]; // Modified
-    SP::CircularBuffer<SP::TrackPackInfo, 32> m_courseOrder;
 
+    SP::CircularBuffer<SP::TrackPackInfo, 32> m_courseOrder;
+    u32 m_currentCourse;
+
+public:
+    u32 m_selectedTrackPack;
+
+private:
     static RaceConfig *s_instance;
 };
 

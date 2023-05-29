@@ -12,7 +12,7 @@ extern "C" {
 namespace System {
 
 void RaceConfig::clearCourses() {
-    m_courseOrder = {};
+    m_courseOrder.reset();
     m_currentCourse = 0;
 }
 

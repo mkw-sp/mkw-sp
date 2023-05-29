@@ -193,10 +193,7 @@ void TimeAttackGhostListPage::chooseGhost(u32 buttonIndex) {
 }
 
 void TimeAttackGhostListPage::onBack(u32 /* localPlayerId */) {
-    m_cc.reset();
-
-    m_replacement = PageId::CourseSelect;
-    startReplace(Anim::Prev, 0.0f);
+    onBackButtonFront(nullptr, 0);
 }
 
 void TimeAttackGhostListPage::onSettingsButtonFront(PushButton *button, u32 /* localPlayerId */) {
@@ -305,9 +302,10 @@ void TimeAttackGhostListPage::onWatchButtonDeselect(PushButton * /* button */,
 
 void TimeAttackGhostListPage::onBackButtonFront(PushButton *button, u32 /* localPlayerId */) {
     m_cc.reset();
-
     m_replacement = PageId::CourseSelect;
-    f32 delay = button->getDelay();
+    System::RaceConfig::Instance()->clearCourses();
+
+    f32 delay = button ? button->getDelay() : 0;
     startReplace(Anim::Prev, delay);
 }
 

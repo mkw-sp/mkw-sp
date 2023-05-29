@@ -125,15 +125,16 @@ void CourseSelectPage::onRefocus() {
         return;
     }
 
+    auto *raceConfig = System::RaceConfig::Instance();
     auto *raceConfirmPage = section->page<PageId::RaceConfirm>();
     if (raceConfirmPage->hasConfirmed()) {
-        auto &menuScenario = System::RaceConfig::Instance()->menuScenario();
-
-        if (menuScenario.gameMode == System::RaceConfig::GameMode::OfflineBT) {
+        if (raceConfig->menuScenario().gameMode == System::RaceConfig::GameMode::OfflineBT) {
             changeSection(SectionId::BTDemo, Anim::Next, 0.0f);
         } else {
             changeSection(SectionId::VSDemo, Anim::Next, 0.0f);
         }
+    } else {
+        raceConfig->clearCourses();
     }
 }
 
@@ -173,8 +174,6 @@ void CourseSelectPage::onBack(u32 /* localPlayerId */) {
 }
 
 void CourseSelectPage::onButtonFront(PushButton *button, u32 /* localPlayerId */) {
-    SP_LOG("onButtonFront");
-
     auto *sectionManager = SectionManager::Instance();
     auto *section = sectionManager->currentSection();
     auto sectionId = section->id();

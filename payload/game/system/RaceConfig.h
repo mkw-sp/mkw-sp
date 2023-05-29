@@ -70,7 +70,9 @@ typedef struct {
     RaceConfigScenario menuScenario;
     RaceConfigScenario awardsScenario;
     u8 ghostBuffers[2][11][0x2800]; // Modified
-    u8 trackPackInfo[0x1008];
+    u8 courseOrder[0x1008];
+    u32 selectedTrackPack;
+    u32 currentCourse;
 } RaceConfig;
 static_assert(offsetof(RaceConfig, ghostBuffers[0][2]) == 0x73f0);
 
