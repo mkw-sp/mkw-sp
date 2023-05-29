@@ -14,7 +14,6 @@ Version 0.1.12 of Mario Kart Wii - Service Pack has been released. It's a minor 
 
 ## Misc
 
-- The `/ui_info` command has been added. [riidefi]
 - Several minor crash screen improvements have been implemented. [riidefi, Star]
 - When saving a ghost for a My Stuff track, the folder name is no longer truncated. [stebler]
 - The game (hopefully) no longer randomly gets stuck on NTSC regions on Dolphin. [stebler, Gaberboo]
