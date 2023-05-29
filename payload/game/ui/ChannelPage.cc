@@ -27,7 +27,7 @@ void ChannelPage::onInit() {
 
     initChildren(0);
 
-    setAnimSfxIds(0, 0);
+    setAnimSfxIds(Sound::SoundId::SE_DUMMY, Sound::SoundId::SE_DUMMY);
 
     if (versionInfo.type == BUILD_TYPE_RELEASE) {
         auto *heap = System::GameScene::Instance()->volatileHeapCollection.mem2;

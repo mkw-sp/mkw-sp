@@ -24,7 +24,7 @@ void OnlineConnectionManagerPage::onInit() {
     m_inputManager.init(0, false);
     setInputManager(&m_inputManager);
     initChildren(0);
-    setAnimSfxIds(0, 0);
+    setAnimSfxIds(Sound::SoundId::SE_DUMMY, Sound::SoundId::SE_DUMMY);
 }
 
 void OnlineConnectionManagerPage::afterCalc() {

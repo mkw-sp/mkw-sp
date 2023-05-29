@@ -100,7 +100,7 @@ protected:
     void startReplace(Anim anim, f32 delay);
     void calcAnim();
     void playSound(Sound::SoundId soundId, s32 r5);
-    void setAnimSfxIds(u32 nextId, u32 prevId);
+    void setAnimSfxIds(Sound::SoundId nextId, Sound::SoundId prevId);
 
 private:
     PageId m_id;

@@ -23,7 +23,7 @@ void StorageBenchmarkPage::onInit() {
 
     initChildren(0);
 
-    setAnimSfxIds(0, 0);
+    setAnimSfxIds(Sound::SoundId::SE_DUMMY, Sound::SoundId::SE_DUMMY);
 }
 
 void StorageBenchmarkPage::onActivate() {
