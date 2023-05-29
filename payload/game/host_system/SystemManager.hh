@@ -16,6 +16,7 @@ public:
     REPLACE void restart();
     u32 aspectRatio() const;
     u32 matchingArea() const;
+    u32 launchType() const;
 
     static void ShutdownSystem();
     static void ReturnToMenu();

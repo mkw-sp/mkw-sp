@@ -519,12 +519,51 @@ void Section::logDebuggingInfo(bool verbose) {
     }
 
     OSReport("Loaded Pages:\n");
-    for (u16 i = 0; i < static_cast<u16>(PageId::Max); i += 1) {
-        logPageInfo(m_pages[i]);
-        if (m_pages[i]) {
-            m_pages[i]->logControlsDebug();
+    for (auto *page : m_pages) {
+        if (page == nullptr) {
+            continue;
         }
+        logPageInfo(page);
+        page->logControlsDebug();
     }
+    for (auto *page : m_pagesEXT) {
+        if (page == nullptr) {
+            continue;
+        }
+        logPageInfo(page);
+        page->logControlsDebug();
+    }
+}
+
+void Section::init(SectionId id) {
+    m_pagesEXT = {};
+    REPLACED(init)(id);
+}
+
+void Section::deinit() {
+    // Since we zero out the arrays, we can trust REPLACED(deinit) does not double-free.
+    popActivePages(0);
+    for (auto *&page : m_pages) {
+        if (page == nullptr) {
+            continue;
+        }
+        page->onDeinit();
+        // `delete page` would call the *GCC* dtor--which is almost always null!
+        page->dt(1);
+        page = nullptr;
+    }
+    for (auto *&page : m_pagesEXT) {
+        if (page == nullptr) {
+            continue;
+        }
+        page->onDeinit();
+        // `delete page` would call the *GCC* dtor--which is almost always null!
+        page->dt(1);
+        page = nullptr;
+    }
+    // We assume it is safe to call SectionInputThing_deinitMaybe even after pages have been
+    // deinialized, although usually it is called first.
+    REPLACED(deinit)();
 }
 
 } // namespace UI
