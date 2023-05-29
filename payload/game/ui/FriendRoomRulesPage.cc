@@ -40,7 +40,7 @@ void FriendRoomRulesPage::onInit() {
         }
     }
 
-    setAnimSfxIds(5, 0);
+    setAnimSfxIds(Sound::SoundId::SE_UI_PAGE_NEXT, Sound::SoundId::SE_DUMMY);
 
     m_popRequested = false;
 }

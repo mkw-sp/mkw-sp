@@ -24,7 +24,7 @@ void UpdatePage::onInit() {
 
     initChildren(0);
 
-    setAnimSfxIds(0, 0);
+    setAnimSfxIds(Sound::SoundId::SE_DUMMY, Sound::SoundId::SE_DUMMY);
 
     u8 *stackTop = m_stack + sizeof(m_stack);
     OSCreateThread(&m_thread, Check, nullptr, stackTop, sizeof(m_stack), 24, 0);
