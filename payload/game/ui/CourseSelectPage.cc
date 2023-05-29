@@ -352,7 +352,7 @@ void CourseSelectPage::refresh() {
     }
 
     auto &menuScenario = System::RaceConfig::Instance()->menuScenario();
-    u32 messageOffset = menuScenario.isVs() ? 9360 : menuScenario.isBattle() ? 9400 : 0;
+    u32 messageOffset = menuScenario.isVs() ? 9300 : menuScenario.isBattle() ? 9400 : 0;
 
     for (size_t i = 0; i < m_buttons.size(); i++) {
         u32 courseIndex = m_sheetIndex * m_buttons.size() + i;
