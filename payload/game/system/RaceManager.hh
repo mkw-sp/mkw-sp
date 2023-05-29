@@ -51,6 +51,7 @@ public:
     bool hasReachedStage(Stage stage) const;
     MapdataKartPoint *REPLACED(getKartPoint)(u32 playerId);
     REPLACE MapdataKartPoint *getKartPoint(u32 playerId);
+    void REPLACED(getStartTransform)(Vec3 *pos, Vec3 *rot, u32 playerId);
     REPLACE void getStartTransform(Vec3 *pos, Vec3 *rot, u32 playerId);
     void REPLACED(calc)();
     REPLACE void calc();
