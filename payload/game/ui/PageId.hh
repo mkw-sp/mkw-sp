@@ -211,6 +211,25 @@ enum class PageId {
     // }
 
     Max = 0xd3,
+
+    Ext_MinExclusive__ = 0xff,
+
+    // Extensions go here {
+    // }
+
+    Ext_MaxExclusive__,
 };
+
+static_assert(static_cast<size_t>(PageId::Ext_MaxExclusive__) >
+        static_cast<size_t>(PageId::Ext_MinExclusive__));
+
+constexpr size_t StandardPageCount() {
+    return static_cast<size_t>(PageId::Max);
+}
+
+constexpr size_t ExtendedPageCount() {
+    return static_cast<size_t>(PageId::Ext_MaxExclusive__) -
+            static_cast<size_t>(PageId::Ext_MinExclusive__) - 1;
+}
 
 } // namespace UI

@@ -45,6 +45,8 @@ private:
     struct PageIdHelper;
 
 public:
+    Section();
+
     Page *page(PageId pageId);
 
     template <PageId P>
@@ -87,18 +89,36 @@ private:
 
     static bool logPageInfo(Page *page);
 
+public:
+    REPLACE void init(SectionId id);
+    REPLACE void deinit();
+
+private:
+    void REPLACED(init)(SectionId id);
+    void REPLACED(deinit)();
+
+    void popActivePages(s32);
+
     SectionId m_id;
     u8 _004[0x008 - 0x004];
-    Page *m_pages[static_cast<size_t>(PageId::Max)];
+    std::array<Page *, StandardPageCount()> m_pages;
     Page *m_activePages[10];
     u32 m_activePageCount;
-    u8 _380[0x390 - 0x380];
+    std::array<Page *, 2> m_systemPages;
+    u8 _388[0x390 - 0x388];
     nw4r::lyt::DrawInfo m_drawInfo;
     u8 _3e4[0x3f8 - 0x3e4];
     Vec2<f32> m_scaleFor;
     u8 _400[0x408 - 0x400];
+
+public: // for static assert
+    std::array<Page *, ExtendedPageCount()> m_pagesEXT{};
 };
-static_assert(sizeof(Section) == 0x408);
+// sizeof(Section) == 0x408 + sizeof(Section::m_pagesEXT) breaks when ExtensionPageCount() is 0
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Winvalid-offsetof"
+static_assert(offsetof(Section, m_pagesEXT) == 0x408);
+#pragma GCC diagnostic pop
 
 template <>
 struct Section::PageIdHelper<PageId::RaceConfirm> {

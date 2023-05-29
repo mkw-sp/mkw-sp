@@ -1,5 +1,6 @@
 #include "SectionManager.hh"
 
+#include "game/host_system/Scene.hh"
 #include "game/host_system/SystemManager.hh"
 #include "game/system/SaveManager.hh"
 
@@ -30,8 +31,20 @@ GlobalContext *SectionManager::globalContext() {
 }
 
 void SectionManager::createSection() {
-    REPLACED(createSection)();
-
+    if (m_firstLoad && System::SystemManager::Instance()->launchType() == 1) {
+        m_registeredPadManager._8061B5A4();
+    }
+    auto nextId = m_nextSectionId;
+    m_currentAnimDir = m_nextAnimDir;
+    m_nextSectionId = UI::SectionId::None;
+    m_changeTimer = 0;
+    m_nextAnimDir = 0;
+    m_transitionFrame = -1;
+    m_state = 0;
+    bool race = Section::GetSceneId(nextId) == static_cast<u32>(System::RKSceneID::Race);
+    m_registeredPadManager.onCreateSection(!race);
+    m_currentSection = new Section;
+    m_currentSection->init(nextId);
     System::RichPresenceManager::Instance().onSectionChange(m_currentSection->id());
 }
 

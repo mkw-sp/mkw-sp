@@ -36,6 +36,10 @@ u32 SystemManager::matchingArea() const {
     return m_matchingArea;
 }
 
+u32 SystemManager::launchType() const {
+    return m_launchType;
+}
+
 void SystemManager::ShutdownSystem() {
     ResetDolphinSpeedLimit();
     VISetBlack(true);
