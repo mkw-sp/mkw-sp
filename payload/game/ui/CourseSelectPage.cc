@@ -2,6 +2,7 @@
 
 #include "game/system/RaceConfig.hh"
 #include "game/ui/RaceConfirmPage.hh"
+#include "game/ui/RankingPage.hh"
 #include "game/ui/SectionManager.hh"
 #include "game/ui/VotingBackPage.hh"
 
@@ -21,6 +22,8 @@ PageId CourseSelectPage::getReplacement() {
 }
 
 void CourseSelectPage::onInit() {
+    bool isRanking = SectionManager::Instance()->currentSection()->id() == SectionId::Rankings;
+
     m_filter = {false, false};
     m_sheetCount = 1;
     m_sheetIndex = 0;
@@ -30,7 +33,7 @@ void CourseSelectPage::onInit() {
     setInputManager(&m_inputManager);
     m_inputManager.setWrappingMode(MultiControlInputManager::WrappingMode::Neither);
 
-    initChildren(5 + m_buttons.size());
+    initChildren(5 + m_buttons.size() + isRanking);
     insertChild(0, &m_pageTitleText, 0);
     insertChild(1, &m_sheetSelect, 0);
     insertChild(2, &m_sheetLabel, 0);
@@ -39,16 +42,39 @@ void CourseSelectPage::onInit() {
     for (size_t i = 0; i < m_buttons.size(); i++) {
         insertChild(5 + i, &m_buttons[i], 0);
     }
+    if (isRanking) {
+        m_blackBackControl = std::make_unique<BlackBackControl>();
+        insertChild(5 + m_buttons.size(), m_blackBackControl.get(), 0);
+        m_blackBackControl->load("control", "RankingBlackBack", "RankingBlackBack");
+        m_blackBackControl->m_zIndex = -1.0f;
+    }
 
     m_pageTitleText.load(false);
     for (size_t i = 0; i < m_buttons.size(); i++) {
         m_buttons[i].load(i);
     }
-    m_sheetSelect.load("button", "CourseSelectArrowRight", "ButtonArrowRight",
-            "CourseSelectArrowLeft", "ButtonArrowLeft", 0x1, false, false);
-    m_sheetLabel.load("control", "TimeAttackGhostListPageNum", "TimeAttackGhostListPageNum", NULL);
+
+    const char *buttonArrowRightVariant;
+    const char *buttonArrowLeftVariant;
+    const char *courseSelectPageNumVariant;
+    const char *courseSelectScrollBarVariant;
+    if (isRanking) {
+        buttonArrowRightVariant = "RankingButtonArrowRight";
+        buttonArrowLeftVariant = "RankingButtonArrowLeft";
+        courseSelectPageNumVariant = "RankingCourseSelectPageNum";
+        courseSelectScrollBarVariant = "RankingCourseSelectScrollBar";
+    } else {
+        buttonArrowRightVariant = "ButtonArrowRight";
+        buttonArrowLeftVariant = "ButtonArrowLeft";
+        courseSelectPageNumVariant = "CourseSelectPageNum";
+        courseSelectScrollBarVariant = "CourseSelectScrollBar";
+    }
+
+    m_sheetSelect.load("button", "CourseSelectArrowRight", buttonArrowRightVariant,
+            "CourseSelectArrowLeft", buttonArrowLeftVariant, 0x1, false, false);
+    m_sheetLabel.load("control", "CourseSelectPageNum", courseSelectPageNumVariant, NULL);
     m_scrollBar.load(m_sheetCount, m_sheetIndex, "button", "CourseSelectScrollBar",
-            "CourseSelectScrollBar", 0x1, false, false);
+            courseSelectScrollBarVariant, 0x1, false, false);
     m_backButton.load("button", "Back", "ButtonBack", 0x1, false, true);
 
     m_inputManager.setHandler(MenuInputManager::InputId::Back, &m_onBack, false, false);
@@ -86,9 +112,14 @@ void CourseSelectPage::onInit() {
     case SectionId::SingleSelectVSCourse:
     case SectionId::SingleSelectBTCourse:
     case SectionId::SingleChangeGhostData:
+    case SectionId::Rankings:
         filter();
-    default:
         break;
+    default: {
+        std::string_view sectionName = magic_enum::enum_name(sectionId);
+        SP_LOG("Not refreshing on section '%.*s' (0x%X)", sectionName.size(), sectionName.data(),
+                static_cast<u32>(sectionId));
+    }
     }
 }
 
@@ -154,9 +185,11 @@ u32 CourseSelectPage::lastSelected() const {
     return m_lastSelected;
 }
 
+// This function must be called before the 'calc' function is called
 void CourseSelectPage::filter() {
     auto &menuScenario = System::RaceConfig::Instance()->menuScenario();
-    SP::CourseDatabase::Filter filter{menuScenario.isVs(), menuScenario.isBattle()};
+    bool isRanking = SectionManager::Instance()->currentSection()->id() == SectionId::Rankings;
+    SP::CourseDatabase::Filter filter{menuScenario.isVs() || isRanking, menuScenario.isBattle()};
 
     if (filter.race == m_filter.race && filter.battle == m_filter.battle) {
         return;
@@ -177,6 +210,20 @@ void CourseSelectPage::filter() {
 
     m_sheetSelect.setVisible(m_sheetCount > 1);
     m_sheetSelect.setPlayerFlags(m_sheetCount <= 1 ? 0x0 : 0x1);
+
+    refresh();
+
+    m_buttons[m_lastSelected].selectDefault(0);
+}
+
+void CourseSelectPage::refreshSelection(u32 selection) {
+    auto &courseDatabase = SP::CourseDatabase::Instance();
+    courseDatabase.saveSelection(selection);
+
+    m_sheetIndex = selection / m_buttons.size();
+    m_lastSelected = selection % m_buttons.size();
+
+    m_scrollBar.reconfigure(m_sheetCount, m_sheetIndex, m_sheetCount >= 4 ? 0x1 : 0x0);
 
     refresh();
 
@@ -205,7 +252,14 @@ void CourseSelectPage::onButtonFront(PushButton *button, u32 /* localPlayerId */
     } else {
         auto &menuScenario = System::RaceConfig::Instance()->menuScenario();
         menuScenario.courseId = entry.courseId;
-        if (menuScenario.gameMode == System::RaceConfig::GameMode::TimeAttack) {
+        if (sectionId == SectionId::Rankings) {
+            auto *rankingPage = section->page<PageId::Ranking>();
+            s32 courseButtonIndex =
+                    GetButtonIndexFromCourse(static_cast<Registry::Course>(entry.courseId));
+            rankingPage->courseControl().choose(courseButtonIndex);
+            m_replacement = PageId::None;
+            startReplace(Anim::Prev, button->getDelay());
+        } else if (menuScenario.gameMode == System::RaceConfig::GameMode::TimeAttack) {
             m_replacement = PageId::TimeAttackTop;
             startReplace(Anim::Next, button->getDelay());
         } else {
@@ -284,7 +338,9 @@ void CourseSelectPage::onBackCommon(f32 delay) {
     } else if (sectionId == SectionId::SingleSelectBTCourse) {
         backMessageId = 3471;
     } else {
-        if (sectionId == SectionId::Multi) {
+        if (sectionId == SectionId::Rankings) {
+            m_replacement = PageId::None;
+        } else if (sectionId == SectionId::Multi) {
             m_replacement = PageId::MultiDriftSelect;
         } else {
             m_replacement = PageId::DriftSelect;
@@ -351,15 +407,12 @@ void CourseSelectPage::refresh() {
         OSWakeupThread(&m_queue);
     }
 
-    auto &menuScenario = System::RaceConfig::Instance()->menuScenario();
-    u32 messageOffset = menuScenario.isVs() ? 9300 : menuScenario.isBattle() ? 9400 : 0;
-
     for (size_t i = 0; i < m_buttons.size(); i++) {
         u32 courseIndex = m_sheetIndex * m_buttons.size() + i;
         if (courseIndex < SP::CourseDatabase::Instance().count(m_filter)) {
             auto &entry = SP::CourseDatabase::Instance().entry(m_filter, courseIndex);
-            u32 courseId = menuScenario.isBattle() ? entry.courseId - 32 : entry.courseId;
-            m_buttons[i].refresh(messageOffset + courseId);
+            m_buttons[i].refresh(
+                    entry.courseId < 32 ? 9300 + entry.courseId : 9400 - 32 + entry.courseId);
         }
     }
 

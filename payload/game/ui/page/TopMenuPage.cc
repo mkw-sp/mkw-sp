@@ -1,6 +1,7 @@
 #include "TopMenuPage.hh"
 
 #include "game/system/SaveManager.hh"
+#include "game/ui/SectionManager.hh"
 
 #include <features/online/Online.hh>
 
@@ -21,17 +22,24 @@ void TopMenuPage_refreshFileAdminButton(TopMenuPage *self) {
 } // extern "C"
 
 void TopMenuPage::onInit() {
-#if ENABLE_ONLINE
-    s_buttonNames[0] = "TopMenuSingleWaku";
-    s_buttonNames[1] = "TopMenuMultiWaku";
+#if !ENABLE_ONLINE
+    s_buttonNames[3] = "TopMenuChannelWakuNoOnline";
     m_buttonCount = 3;
 #else
-    s_buttonNames[0] = "TopMenuSingleWakuNoOnline";
-    s_buttonNames[1] = "TopMenuMultiWakuNoOnline";
-    m_buttonCount = 2;
+    m_buttonCount = 4;
 #endif
 
     REPLACED(onInit)();
+}
+
+void TopMenuPage::vf_88(int buttonIndex) {
+#if !ENABLE_ONLINE
+    if (buttonIndex == 2) {
+        buttonIndex = 3;
+    }
+#endif
+
+    REPLACED(vf_88)(buttonIndex);
 }
 
 void TopMenuPage::initMiiGroup() {
@@ -69,6 +77,17 @@ void TopMenuPage::onButtonSelect(PushButton *button) {
 
         m_instructionText->setMessage(messageIds[button->m_index], nullptr);
     }
+}
+
+void TopMenuPage::onButtonFront(PushButton *button) {
+    if (button->m_index == 6) {
+        if (!SectionManager::Instance()->saveManagerProxy()->savingDisabled()) {
+            initRaceConfig(1);
+            requestChangeSection(SectionId::ServicePackChannel, button);
+        }
+    }
+
+    REPLACED(onButtonFront)(button);
 }
 
 } // namespace UI

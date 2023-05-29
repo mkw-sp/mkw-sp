@@ -31,6 +31,7 @@ class OnlineTeamSelectPage;
 class OptionExplanationPage;
 class OptionSelectPage;
 class RaceConfirmPage;
+class RankingPage;
 class RoulettePage;
 class SettingsPagePopup;
 class TeamConfirmPage;
@@ -59,6 +60,7 @@ public:
     Vec2<f32> scaleFor() const;
     f32 locationAdjustScaleDivider() const;
     void loadTHP();
+    void loadFriendListManager();
 
     void logDebuggingInfo(bool verbose);
 
@@ -261,6 +263,11 @@ struct Section::PageIdHelper<PageId::BattleModeSelect> {
 template <>
 struct Section::PageIdHelper<PageId::OnlineModeSelect> {
     using type = OnlineModeSelectPage;
+};
+
+template <>
+struct Section::PageIdHelper<PageId::Ranking> {
+    using type = RankingPage;
 };
 
 } // namespace UI

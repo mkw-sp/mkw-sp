@@ -48,6 +48,9 @@ void DriftSelectPage::onButtonFront(PushButton *button, u32 /* localPlayerId */)
                 } else {
                     changeSection(SectionId::VSDemo, Anim::Next, 0.0f);
                 }
+            } else if (sectionId == SectionId::SingleChannelLeaderboardChallenge ||
+                    sectionId == SectionId::SingleGhostListChallenge) {
+                requestChangeSection(SectionId::TA, button);
             } else {
                 startReplace(PageId::CourseSelect, button);
             }

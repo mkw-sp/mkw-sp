@@ -124,6 +124,7 @@ public:
     void selectDefault(u32 localPlayerId);
     void select(u32 localPlayerId);
     void reconfigure(u32 count, u32 chosen);
+    void choose(s32 choice);
     void setPlayerFlags(u32 playerFlags);
 
 private:

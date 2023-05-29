@@ -175,10 +175,12 @@ enum class PageId {
     UnknownA5 = 0xA5,        // "Dummy? Seems to redirect to 0xA6"
     EnterFriendCode = 0xA6,
     GhostManager = 0xA7,
-    ChannelGhostHistogram = 0xA8,
+    Ranking = 0xA8,
+    RankingBack = 0xAA,
 
     ChannelGhostBackground = 0xAC,
     ChannelGhostSelected = 0xAD,
+    RankingTopTenDownload = 0xAE,
 
     UnknownB3 = 0xB3, // "Resides behind 0x4F, loads 0xB4"
     ChannelGhostList = 0xB4,
@@ -203,7 +205,7 @@ enum class PageId {
     MenuSettings = 0xCE,  // Replaces LicenseRecordsOverall
     SettingsPopup = 0xCF, // Replaces LicenseRecordsFavorites
     // Disabled {
-    LicenseRecordsFriends = 0xD0,
+    ServicePackChannel = 0xD0, // Replaces LicenseRecordsFriends
     LicenseRecordsWFC = 0xD1,
     LicenseRecordsOther = 0xD2,
     // }

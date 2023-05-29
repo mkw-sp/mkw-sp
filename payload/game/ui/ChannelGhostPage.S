@@ -1,0 +1,15 @@
+#include <Common.S>
+
+#define FEATURE_UNDER_DEVELOPMENT_MESSAGE_ID 10430
+
+PATCH_REPLACE_START(ChannelGhostPage_handleGhost, 0x7A0)
+    li  r4, FEATURE_UNDER_DEVELOPMENT_MESSAGE_ID
+PATCH_REPLACE_END(ChannelGhostPage_handleGhost, 0x7A0)
+
+PATCH_REPLACE_START(ChannelGhostPage_handleGhost, 0xF18)
+    li  r4, FEATURE_UNDER_DEVELOPMENT_MESSAGE_ID
+PATCH_REPLACE_END(ChannelGhostPage_handleGhost, 0xF18)
+
+PATCH_REPLACE_START(ChannelGhostPage_handleGhost, 0x132C)
+    li  r4, FEATURE_UNDER_DEVELOPMENT_MESSAGE_ID
+PATCH_REPLACE_END(ChannelGhostPage_handleGhost, 0x132C)

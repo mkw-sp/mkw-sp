@@ -17,7 +17,7 @@ public:
     virtual void vf_7c();
     virtual void vf_80();
     virtual void vf_84();
-    virtual void vf_88();
+    virtual void vf_88(int buttonIndex);
     virtual void vf_8c();
     virtual void vf_90();
     virtual void vf_94();

@@ -7,6 +7,8 @@ extern "C" {
 #include <game/system/SaveManager.hh>
 #include <sp/cs/RoomClient.hh>
 
+#include <algorithm>
+
 namespace Registry {
 
 static bool IsCharacterValid(Character character) {
@@ -46,6 +48,12 @@ bool IsCombinationValid(Character character, Vehicle vehicle) {
 // for all the vehicles in the vehicle select screen
 bool UseBattleRenders() {
     return false;
+}
+
+s32 GetButtonIndexFromCourse(Course course) {
+    auto it = std::find(std::begin(OrderedCourses), std::end(OrderedCourses), course);
+    assert(it != std::end(OrderedCourses));
+    return static_cast<s32>(it - OrderedCourses);
 }
 
 const char *GetItemPane(u32 itemId, u32 count) {

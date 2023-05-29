@@ -153,9 +153,25 @@ asset_in_files = {
         os.path.join('bg', 'timg', 'tt_obi_bottom_right_000.tpl'),
         #
         os.path.join('bg', 'ctrl', 'MenuObiTitleTextOption.brctr.json5'),
+        # Channel
+        os.path.join('button', 'ctrl', 'ServicePackChannelButton.brctr.json5'),
+        # Tools
         os.path.join('button', 'ctrl', 'ServicePackToolsButton.brctr.json5'),
         os.path.join('button', 'ctrl', 'ServicePackTopButton.brctr.json5'),
         os.path.join('button', 'ctrl', 'ToolsButton.brctr.json5'),
+        # Course Select
+        os.path.join('button', 'anim', 'course_select_button_free.brlan.json5'),
+        os.path.join('button', 'anim', 'course_select_button_free_to_select.brlan.json5'),
+        os.path.join('button', 'anim', 'course_select_button_select.brlan.json5'),
+        os.path.join('button', 'anim', 'course_select_button_select_to_free.brlan.json5'),
+        os.path.join('button', 'blyt', 'course_select_button.brlyt.json5'),
+        os.path.join('button', 'blyt', 'course_select_scroll_bar.brlyt.json5'),
+        os.path.join('button', 'ctrl', 'CourseSelectArrowLeft.brctr.json5'),
+        os.path.join('button', 'ctrl', 'CourseSelectArrowRight.brctr.json5'),
+        os.path.join('button', 'ctrl', 'CourseSelectButton.brctr.json5'),
+        os.path.join('button', 'ctrl', 'CourseSelectScrollBar.brctr.json5'),
+        os.path.join('control', 'ctrl', 'CourseSelectPageNum.brctr.json5'),
+        os.path.join('control', 'ctrl', 'TimeAttackGhostListPageNum.brctr.json5'),
     ],
     os.path.join('Scene', 'UI', 'FontSP_K.arc.lzma'): [
         os.path.join('kart_font_korea.brfnt'),
@@ -387,6 +403,7 @@ asset_in_files = {
         os.path.join('button', 'ctrl', 'CourseSelectArrowRight.brctr.json5'),
         os.path.join('button', 'ctrl', 'CourseSelectButton.brctr.json5'),
         os.path.join('button', 'ctrl', 'CourseSelectScrollBar.brctr.json5'),
+        os.path.join('control', 'ctrl', 'CourseSelectPageNum.brctr.json5'),
         os.path.join('control', 'ctrl', 'TimeAttackGhostListPageNum.brctr.json5'),
     ],
     os.path.join('Scene', 'UI', 'MenuOtherSP.arc.lzma'): [
@@ -583,6 +600,7 @@ asset_in_files = {
         os.path.join('button', 'ctrl', 'CourseSelectArrowRight.brctr.json5'),
         os.path.join('button', 'ctrl', 'CourseSelectButton.brctr.json5'),
         os.path.join('button', 'ctrl', 'CourseSelectScrollBar.brctr.json5'),
+        os.path.join('control', 'ctrl', 'CourseSelectPageNum.brctr.json5'),
         # Flags
         os.path.join('control', 'blyt', 'chara_flag_machine_picture_common.brlyt.json5'),
         *[os.path.normpath(i) for i in sorted(glob.glob("control/timg/[0-9][0-9][0-9].tpl", root_dir="assets", recursive=True))],
@@ -743,8 +761,7 @@ asset_in_files = {
         os.path.join('button', 'ctrl', 'LicenseSelect.brctr.json5'),
         os.path.join('button', 'timg', 'tt_license_icon_004.tpl'),
         # Title page without online
-        os.path.join('button', 'ctrl', 'TopMenuMultiWakuNoOnline.brctr.json5'),
-        os.path.join('button', 'ctrl', 'TopMenuSingleWakuNoOnline.brctr.json5'),
+        os.path.join('button', 'ctrl', 'TopMenuChannelWakuNoOnline.brctr.json5'),
         # Online renaming
         os.path.join('button', 'ctrl', 'TopMenuWifiWaku.brctr.json5'),
     ],

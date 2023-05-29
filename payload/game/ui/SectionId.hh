@@ -149,7 +149,9 @@ enum class SectionId {
     OnlineDisconnected = 0x78,
     OnlineDisconnectedGeneric = 0x79,
 
-    ServicePack = 0x7A, // Replaces Channel
+    ServicePack = 0x7A,        // Replaces Channel
+    ServicePackChannel = 0x7B, // Replaces Channel from Time Trials
+    Rankings = 0x7D,
     // ^^ All channel sections vv
     // 0x84 replaces OnlineServer, free to use!
 

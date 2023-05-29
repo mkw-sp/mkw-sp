@@ -15,6 +15,7 @@ public:
     RegisteredPadManager &registeredPadManager();
     SaveManagerProxy *saveManagerProxy();
     GlobalContext *globalContext();
+
     void setNextSection(SectionId sectionId, Page::Anim anim);
     void REPLACED(createSection)();
     REPLACE void createSection();

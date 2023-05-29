@@ -11,10 +11,15 @@ public:
 
     void REPLACED(onInit)();
     REPLACE void onInit() override;
+    void REPLACED(vf_88)(int buttonIndex);
+    REPLACE void vf_88(int buttonIndex) override;
 
     REPLACE void onButtonSelect(PushButton *button);
+    void REPLACED(onButtonFront)(PushButton *button);
+    REPLACE void onButtonFront(PushButton *button);
 
     void initMiiGroup();
+    void initRaceConfig(s32);
     void refreshFileAdminButton();
 
 private:

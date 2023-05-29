@@ -98,6 +98,57 @@ enum class Controller {
     GameCube = 0x3,
 };
 
+enum class Course {
+    MarioCircuit = 0x0,
+    MooMooMeadows = 0x1,
+    MushroomGorge = 0x2,
+    GrumbleVolcano = 0x3,
+    ToadsFactory = 0x4,
+    CoconutMall = 0x5,
+    DKSummit = 0x6,
+    WarioGoldMine = 0x7,
+    LuigiCircuit = 0x8,
+    DaisyCircuit = 0x9,
+    MoonviewHighway = 0xA,
+    MapleTreeway = 0xB,
+    BowsersCastle = 0xC,
+    RainbowRoad = 0xD,
+    DryDryRuins = 0xE,
+    KoopaCape = 0xF,
+    GCNPeachBeach = 0x10,
+    GCNMarioCircuit = 0x11,
+    GCNWaluigiStadium = 0x12,
+    GCNDKMountain = 0x13,
+    DSYoshiFalls = 0x14,
+    DSDesertHills = 0x15,
+    DSPeachGardens = 0x16,
+    DSDelfinoSquare = 0x17,
+    SNESMarioCircuit3 = 0x18,
+    SNESGhostValley2 = 0x19,
+    N64MarioRaceway = 0x1A,
+    N64SherbetLand = 0x1B,
+    N64BowsersCastle = 0x1C,
+    N64DKsJungleParkway = 0x1D,
+    GBABowserCastle3 = 0x1E,
+    GBAShyGuyBeach = 0x1F,
+    DelfinoPier = 0x20,
+    BlockPlaza = 0x21,
+    ChainChompRoulette = 0x22,
+    FunkyStadium = 0x23,
+    ThwompDesert = 0x24,
+    GCNCookieLand = 0x25,
+    DSTwilightHouse = 0x26,
+    SNESBattleCourse4 = 0x27,
+    GBABattleCourse3 = 0x28,
+    N64Skyscraper = 0x29,
+    GalaxyColosseum = 0x36,
+    WinDemo = 0x37,
+    LoseDemo = 0x38,
+    DrawDemo = 0x39,
+    EndingDemo = 0x3A,
+};
+
+extern const Course OrderedCourses[0x20];
 extern const char *courseFilenames[0x28];
 
 bool IsCombinationValid(Character character, Vehicle vehicle);
@@ -105,6 +156,7 @@ bool IsCombinationValid(Character character, Vehicle vehicle);
 u32 GetCharacterMessageId(u32 characterId, bool resolveMiiNames);
 REPLACE bool UseBattleRenders();
 
+s32 GetButtonIndexFromCourse(Course course);
 const char *GetCharacterPane(u32 characterId);
 const char *GetCupIconName(u32 cupId);
 u32 GetCupMessageId(u32 cupId);

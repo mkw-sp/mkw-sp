@@ -1,5 +1,6 @@
 #pragma once
 
+#include "game/ui/BlackBackControl.hh"
 #include "game/ui/CourseSelectButton.hh"
 #include "game/ui/ScrollBar.hh"
 #include "game/ui/SheetSelectControl.hh"
@@ -34,6 +35,7 @@ public:
     u32 lastSelected() const;
 
     void filter();
+    void refreshSelection(u32 selection);
 
 private:
     enum class Request {
@@ -81,6 +83,7 @@ private:
     SheetSelectControl m_sheetSelect;
     LayoutUIControl m_sheetLabel;
     ScrollBar m_scrollBar;
+    std::unique_ptr<BlackBackControl> m_blackBackControl;
     CtrlMenuBackButton m_backButton;
     H<MultiControlInputManager> m_onBack{this, &CourseSelectPage::onBack};
     H<PushButton> m_onButtonFront{this, &CourseSelectPage::onButtonFront};

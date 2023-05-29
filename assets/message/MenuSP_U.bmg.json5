@@ -1100,6 +1100,15 @@
     "10427": {
         string: "Stages are played in order.",
     },
+    "10428": {
+        string: "MKW-SP Channel",
+    },
+    "10429": {
+        string: "Rankings",
+    },
+    "10430": {
+        string: "This feature is currently under development.",
+    },
     "20000": {
         string: "Online",
     },
