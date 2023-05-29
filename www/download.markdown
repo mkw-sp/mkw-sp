@@ -6,7 +6,7 @@ permalink: /download/
 
 # Download
 
-Latest version: [v0.1.11](https://github.com/stblr/mkw-sp/releases/download/v0.1.11/mkw-sp-v0.1.11.zip)
+Latest version: [v0.1.12](https://github.com/stblr/mkw-sp/releases/download/v0.1.12/mkw-sp-v0.1.12.zip)
 
 Previous versions can be found [here](https://github.com/stblr/mkw-sp/releases).
 
