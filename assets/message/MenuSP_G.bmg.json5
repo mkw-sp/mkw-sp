@@ -2,8 +2,20 @@
     "2053": {
         string: "Irgendetwas ist beim Lesen bzw. Schreiben der Speicherdaten schiefgegangen.",
     },
+    "3400": {
+        string: "Einstellungen",
+    },
+    "3420": {
+        string: "CPU Schwierigkeitsgrad",
+    },
     "3475": {
         string: "Einstellungen für dieses Profil ändern",
+    },
+    "3700": {
+        string: "Wähle ein Level aus",
+    },
+    "3701": {
+        string: "Wähle eine Strecke aus",
     },
     "10000": {
         string: "Gegen 1 Geist fahren",
@@ -508,5 +520,497 @@
     },
     "10193": {
         string: "Aktiviere die Vibration von GCN Controllern.",
+    },
+    "10194": {
+        string: "Regions Linien Farbe",
+    },
+    "10195": {
+        string: "Rot",
+    },
+    "10196": {
+        string: "Blau",
+    },
+    "10197": {
+        string: "Grün",
+    },
+    "10198": {
+        string: "Gelb",
+    },
+    "10199": {
+        string: "Weiß",
+    },
+    "10200": {
+        string: "Rosa",
+    },
+    "10201": {
+        string: "Die Linie unter deinem Namen wird\n{color|player 3}red{color|unspecified}\nsein.",
+    },
+    "10202": {
+        string: "Die Linie unter deinem Namen wird\n{color|sp blue}blue{color|unspecified}\nsein.",
+    },
+    "10203": {
+        string: "Die Linie unter deinem Namen wird\n{color|sp green}green{color|unspecified}\nsein.",
+    },
+    "10204": {
+        string: "Die Linie unter deinem Namen wird\n{color|player 1}yellow{color|unspecified}.",
+    },
+    "10205": {
+        string: "Die Linie unter deinem Namen wird\nWeiß sein.",
+    },
+    "10206": {
+        string: "Die Linie unter deinem Namen wird\n{color|sp pink}pink{color|unspecified}\nsein.",
+    },
+    "10207": {
+        string: "Größe des Teams",
+    },
+    "10208": {
+        string: "Solo",
+    },
+    "10213": {
+        string: "Spiele nicht in Teams",
+    },
+    "10214": {
+        string: "Team Größe zu 2 Spielern limitieren.",
+    },
+    "10215": {
+        string: "Team Größe zu 3 Spielern limitieren.",
+    },
+    "10216": {
+        string: "Team Größe zu 4 Spielern limitieren.",
+    },
+    "10217": {
+        string: "Team Größe zu 6 Spielern limitieren.",
+    },
+    "10218": {
+        string: "Zufall",
+    },
+    "10224": {
+        string: "Anzahl der Rennen",
+    },
+    "10226": {
+        string: "Spiele {arg integer|0 0} {arg cond messages|0 10282 10283}.",
+    },
+    "10227": {
+        string: "Streckenauswahl",
+    },
+    "10228": {
+        string: "Zufall",
+    },
+    "10231": {
+        string: "Strecken werden Zufällig gewählt.",
+    },
+    "10234": {
+        string: "Klasse",
+    },
+    "10235": {
+        string: "Gemischt",
+    },
+    "10236": {
+        string: "150ccm",
+    },
+    "10237": {
+        string: "Spiegel",
+    },
+    "10238": {
+        string: "200ccm",
+    },
+    "10239": {
+        string: "Rennen sind 85% 150ccm,\n15% Spiegel.",
+    },
+    "10240": {
+        string: "Rennen sind immer 150ccm.",
+    },
+    "10241": {
+        string: "Rennen sind immer Spiegelverkehrt.",
+    },
+    "10242": {
+        string: "Rennen sind immer 200ccm.",
+    },
+    "10243": {
+        string: "Fahrzeuge",
+    },
+    "10244": {
+        string: "Alle",
+    },
+    "10245": {
+        string: "Karts",
+    },
+    "10246": {
+        string: "Bikes",
+    },
+    "10247": {
+        string: "Innen Drift",
+    },
+    "10248": {
+        string: "Aussen Drift",
+    },
+    "10249": {
+        string: "Optimal",
+    },
+    "10250": {
+        string: "Zufall",
+    },
+    "10251": {
+        string: "Erlaube alle Fahrzeuge.",
+    },
+    "10252": {
+        string: "Erlaube nur Karts.",
+    },
+    "10253": {
+        string: "Erlaube nur Bikes.",
+    },
+    "10254": {
+        string: "Erlaube nur Innen Driftende Fahrzeuge.",
+    },
+    "10255": {
+        string: "Erlaube nur Aussen Driftende Fahrzeuge.",
+    },
+    "10256": {
+        string: "Erlaube nur das optimale Fahrzeug\nfür jeden Charakter.",
+    },
+    "10257": {
+        string: "Suche zufällig eine Kombination aus\ndie zu allen Spielern passt.",
+    },
+    "10260": {
+        string: "Strecken werden individuell gewählt.",
+    },
+    "10261": {
+        string: "Strecken werden in\nder Reihenfolge gespielt.",
+    },
+    "10262": {
+        string: "Offline VS",
+    },
+    "10263": {
+        string: "Farb Pallette",
+    },
+    "10264": {
+        string: "Lebhaft",
+    },
+    "10265": {
+        string: "Farbenblind",
+    },
+    "10266": {
+        string: "Benutze die Lebhafte Pallette\nfür Team Farben.",
+    },
+    "10267": {
+        string: "Benutze die Farbenblind Pallette\nfür Team Farben.",
+    },
+    "10268": {
+        string: "{color|player 3}Rotes Team",
+    },
+    "10269": {
+        string: "{color|sp blue}Blaues Team",
+    },
+    "10270": {
+        string: "{color|sp green}Grünes Team",
+    },
+    "10271": {
+        string: "{color|player 1}Gelbes Team",
+    },
+    "10272": {
+        string: "{color|sp pink}Rosanes Team",
+    },
+    "10273": {
+        string: "Weißes Team",
+    },
+    "10274": {
+        string: "Teams sind nicht gerecht aufgeteilt.\n\nWähle bitte erneut.",
+    },
+    "10282": {
+        string: "Rennen",
+    },
+    "10283": {
+        string: "Rennen",
+    },
+    "10296": {
+        string: "HUD Team Farben",
+    },
+    "10297": {
+        string: "Deaktivieren",
+    },
+    "10298": {
+        string: "Aktivieren",
+    },
+    "10299": {
+        string: "Benutze immer lokale Spielerfarben\nfür die HUD Steuerung.",
+    },
+    "10300": {
+        string: "Benutze Team Farben für\ndie HUD Steuerung.",
+    },
+    "10301": {
+        string: "Vereinfachte Steuerung",
+    },
+    "10302": {
+        string: "Aus",
+    },
+    "10303": {
+        string: "nicht Exklusiv",
+    },
+    "10304": {
+        string: "Exklusiv",
+    },
+    "10305": {
+        string: "Benutze die Standard Steuerung nur\nfür Tricks oder Wheelies.",
+    },
+    "10306": {
+        string: "Benutze Y (GCN) oder ZL (CC/CCP)\num Tricks oder Wheelies auszuführen.",
+    },
+    "10307": {
+        string: "Benutze nur Y (GCN) oder ZL (CC/CCP) um\nTricks oder Wheelies auszuführen.",
+    },
+    "10308": {
+        string: "Tags von weit entfernten Spielern",
+    },
+    "10309": {
+        string: "Deaktivieren",
+    },
+    "10310": {
+        string: "Aktivieren",
+    },
+    "10311": {
+        string: "Nutze die Standard Render Distanz von\nSpieler Tags.",
+    },
+    "10312": {
+        string: "Erhöhe die Render Distanz von\nSpieler Tags.",
+    },
+    "10313": {
+        string: "Vorschau",
+    },
+    "10314": {
+        string: "Es wurden keine Strecken im\n/mkw-sp/thumbnails Ordner gefunden.",
+    },
+    "10315": {
+        string: "Debug-Overlay",
+    },
+    "10316": {
+        string: "Checkpoints",
+    },
+    "10317": {
+        string: "Deaktivieren",
+    },
+    "10318": {
+        string: "Aktivieren",
+    },
+    "10319": {
+        string: "Checkpoints nicht anzeigen.",
+    },
+    "10320": {
+        string: "Standard Checkpoint-Overlay",
+    },
+    "10321": {
+        string: "Tachometer",
+    },
+    "10322": {
+        string: "Interne + Bewegende Straße",
+    },
+    "10323": {
+        string: "Interne",
+    },
+    "10324": {
+        string: "XYZ",
+    },
+    "10325": {
+        string: "XZ",
+    },
+    "10326": {
+        string: "Y",
+    },
+    "10327": {
+        string: "Der Tachometer zeigt die\ninterne Geschwindigkeit des Fahrzeuges\nsowohl der Bewegenden Straße an.",
+    },
+    "10328": {
+        string: "Der Tachometer zeigt die\ninterne Geschwindigkeit des Fahrzeuges an",
+    },
+    "10329": {
+        string: "Der Tachometer zeigt die Geschwindigkeit\nin der das Fahrzeug sich bewegt.",
+    },
+    "10330": {
+        string: "Der Tachom. zeigt die Geschwindigkeit in\nder sich das Fahrzeug horizontal bewegt an",
+    },
+    "10331": {
+        string: "Der Tachometer zeigt die Geschwindigkeit\nin der sich das Fahrzeug vertical bewegt an.",
+    },
+    "10332": {
+        string: "Standard",
+    },
+    "10333": {
+        string: "Die Linie unter deinem Namen wird\nvom Spiel entschieden.",
+    },
+    "10334": {
+        string: "Region und Landesflagge",
+    },
+    "10335": {
+        string: "Zeige deine Flaggen und Regions\nInformationen nicht im Spiel an.",
+    },
+    "10336": {
+        string: "Zeige deine Flaggen und Regions\nInformationen im Spiel an.",
+    },
+    "10337": {
+        string: "nicht Anzeigen",
+    },
+    "10338": {
+        string: "Anzeigen",
+    },
+    "10339": {
+        string: "nicht Anzeigen",
+    },
+    "10340": {
+        string: "Anzeigen",
+    },
+    "10341": {
+        string: "Panel",
+    },
+    "10342": {
+        string: "Deaktivieren",
+    },
+    "10343": {
+        string: "Spieler",
+    },
+    "10344": {
+        string: "Online",
+    },
+    "10345": {
+        string: "Debug-Panel nicht anzeigen.",
+    },
+    "10346": {
+        string: "Zeige Spielerinformationen\nim Debug-Pane an.",
+    },
+    "10347": {
+        string: "Zeige Onlineinformationen\nim Debug-Panel an.",
+    },
+    "10348": {
+        string: "Visual course.kcl",
+    },
+    "10349": {
+        string: "Aus",
+    },
+    "10350": {
+        string: "Zeige nur course_model.brres an.",
+    },
+    "10351": {
+        string: "Overlay",
+    },
+    "10352": {
+        string: "Zeige über course_model.brres an.",
+    },
+    "10353": {
+        string: "Strecken-Model ersetzen",
+    },
+    "10354": {
+        string: "Verstecke course_model.brres.",
+    },
+    "10360": {
+        string: "Offline Schlacht",
+    },
+    "10361": {
+        string: "Rennen sind immer 50ccm.",
+    },
+    "10362": {
+        string: "Rennen sind immer 100ccm.",
+    },
+    "10365": {
+        string: "50ccm",
+    },
+    "10366": {
+        string: "100ccm",
+    },
+    "10367": {
+        string: "Karte",
+    },
+    "10368": {
+        string: "Aktivieren",
+    },
+    "10369": {
+        string: "Deaktivieren",
+    },
+    "10370": {
+        string: "Zeige die Karte auf dem HUD an.",
+    },
+    "10371": {
+        string: "Zeige die Karte auf dem HUD nicht an.",
+    },
+    "10372": {
+        string: "Lautstärke",
+    },
+    "10374": {
+        string: "Stelle die Lautstärke auf\n{arg integer|0 0} / 10 ein.",
+    },
+    "10375": {
+        string: "Musik Lautstärke",
+    },
+    "10377": {
+        string: "Stelle die Musik Lautstärke auf\n{arg integer|0 0} / 10 ein.",
+    },
+    "10378": {
+        string: "Mein Zeug",
+    },
+    "10379": {
+        string: "Datei Ersetzung",
+    },
+    "10380": {
+        string: "Aus",
+    },
+    "10381": {
+        string: "Nur BRSTMs",
+    },
+    "10382": {
+        string: "Alle",
+    },
+    "10383": {
+        string: "Verbiete das Dateien\nersetzt werden können.",
+    },
+    "10384": {
+        string: "Erlaube das ´.brstm` Dateien\nersetzt werden können.",
+    },
+    "10385": {
+        string: "Erlaube das alle Dateien ersetzt\nwerden können.",
+    },
+    "10386": {
+        string: "FPS Modus",
+    },
+    "10387": {
+        string: "Standard",
+    },
+    "10388": {
+        string: "Erzwinge 60 FPS",
+    },
+    "10389": {
+        string: "Erzwinge 30 FPS",
+    },
+    "10390": {
+        string: "Benutzt 60 FPS, ausser in\nintensiven Szenen.",
+    },
+    "10391": {
+        string: "Erzwinge 60FPS, auch in\nintensiven Szenen.",
+    },
+    "10392": {
+        string: "Erzwingt 30 FPS, kann bei\nDolphin-Geschwindigkeit helfen.",
+    },
+    "10393": {
+        string: "Suche die Team Größe zufällig aus.",
+    },
+    "10420": {
+        string: "Schlacht Anzahl",
+    },
+    "10421": {
+        string: "Spiele {arg integer|0 0} {arg cond messages|0 10422 10423}.",
+    },
+    "10422": {
+        string: "schlacht",
+    },
+    "10423": {
+        string: "schlachten",
+    },
+    "10424": {
+        string: "Arenen-Auswahl",
+    },
+    "10425": {
+        string: "Arenen werden individuell ausgewählt.",
+    },
+    "10426": {
+        string: "Arenen werden zufällig ausgewählt.",
+    },
+    "10427": {
+        string: "Arenen werde in\nder Reihenfolge gespielt.",
     },
 }
