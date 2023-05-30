@@ -110,15 +110,10 @@ private:
     u8 _3e4[0x3f8 - 0x3e4];
     Vec2<f32> m_scaleFor;
     u8 _400[0x408 - 0x400];
-
-public: // for static assert
     std::array<Page *, ExtendedPageCount()> m_pagesEXT{};
 };
-// sizeof(Section) == 0x408 + sizeof(Section::m_pagesEXT) breaks when ExtensionPageCount() is 0
-#pragma GCC diagnostic push
-#pragma GCC diagnostic ignored "-Winvalid-offsetof"
-static_assert(offsetof(Section, m_pagesEXT) == 0x408);
-#pragma GCC diagnostic pop
+static_assert(sizeof(Section) ==
+        ROUND_UP(0x408 + std::max(1uz, sizeof(Page *) * ExtendedPageCount()), alignof(Section)));
 
 template <>
 struct Section::PageIdHelper<PageId::RaceConfirm> {
