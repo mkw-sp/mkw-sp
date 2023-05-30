@@ -23,8 +23,54 @@ void KartItem::setItem(u32 r4, u32 r5, u32 r6) {
     REPLACED(setItem)(r4, r5, r6);
 }
 
-void KartItem::update() {
-    REPLACED(update)();
+ItemId KartItem::nextItem() {
+    switch (m_inventory.getCurrentItem()) {
+    case ItemId::TripShrooms:
+        return ItemId::Shroom;
+        break;
+    case ItemId::Shroom:
+        return ItemId::Star;
+        break;
+    case ItemId::Star:
+        return ItemId::Golden;
+        break;
+    case ItemId::Golden:
+        return ItemId::Mega;
+        break;
+    case ItemId::Mega:
+        return ItemId::Bill;
+        break;
+    case ItemId::Bill:
+        return ItemId::TC;
+        break;
+    case ItemId::TC:
+        return ItemId::Bomb;
+        break;
+    case ItemId::Bomb:
+        return ItemId::FIB;
+        break;
+    case ItemId::FIB:
+        return ItemId::Nana;
+        break;
+    case ItemId::Nana:
+        return ItemId::Green;
+        break;
+    case ItemId::Green:
+        return ItemId::Shroom;
+        break;
+    case ItemId::NoItem:
+        return ItemId::Shroom;
+        break;
+    case ItemId::None:
+        return ItemId::Shroom;
+    default:
+        return ItemId::Shroom;
+        break;
+    }
+}
+
+void KartItem::calc() {
+    REPLACED(calc)();
 
     auto *raceConfig = System::RaceConfig::Instance();
     auto gameMode = raceConfig->raceScenario().gameMode;
@@ -55,54 +101,8 @@ void KartItem::update() {
         }
         if (!updateItem) {
             m_inventory.setPressed(false);
-        }
-
-        if (updateItem && !m_inventory.getPressed()) {
-            Item::Items nextItem = Items::NoItem;
-            switch (m_inventory.getItem()) {
-            case Items::TripShrooms:
-                nextItem = Items::Shroom;
-                break;
-            case Items::Shroom:
-                nextItem = Items::Star;
-                break;
-            case Items::Star:
-                nextItem = Items::Golden;
-                break;
-            case Items::Golden:
-                nextItem = Items::Mega;
-                break;
-            case Items::Mega:
-                nextItem = Items::Bill;
-                break;
-            case Items::Bill:
-                nextItem = Items::TC;
-                break;
-            case Items::TC:
-                nextItem = Items::Bomb;
-                break;
-            case Items::Bomb:
-                nextItem = Items::FIB;
-                break;
-            case Items::FIB:
-                nextItem = Items::Nana;
-                break;
-            case Items::Nana:
-                nextItem = Items::Green;
-                break;
-            case Items::Green:
-                nextItem = Items::Shroom;
-                break;
-            case Items::NoItem:
-                nextItem = Items::Shroom;
-                break;
-            case Items::None:
-                return;
-            default:
-                nextItem = Items::Shroom;
-                break;
-            }
-            m_inventory.setItem(nextItem);
+        } else if (!m_inventory.getPressed()) {
+            m_inventory.setItem(nextItem());
             m_inventory.setPressed(true);
         }
     }

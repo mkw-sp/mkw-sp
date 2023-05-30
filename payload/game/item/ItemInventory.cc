@@ -33,7 +33,7 @@ void ItemInventory::resetHeldItem() {
     REPLACED(resetHeldItem)();
 }
 
-Items ItemInventory::getItem() {
+ItemId ItemInventory::getCurrentItem() const {
     return m_currentItemID;
 }
 
@@ -41,7 +41,7 @@ void ItemInventory::setPressed(bool pressed) {
     m_pressedLastFrame = pressed;
 }
 
-bool ItemInventory::getPressed() {
+bool ItemInventory::getPressed() const {
     return m_pressedLastFrame;
 }
 

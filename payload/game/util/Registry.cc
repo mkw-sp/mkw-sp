@@ -42,7 +42,7 @@ bool IsCombinationValid(Character character, Vehicle vehicle) {
             getVehicleWeightClass(static_cast<u32>(vehicle));
 }
 
-bool isControllerValid(Controller controller) {
+bool IsControllerValid(Controller controller) {
     switch (controller) {
     case Controller::WiiWheel... Controller::GameCube:
         return true;
