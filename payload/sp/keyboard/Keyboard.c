@@ -80,7 +80,7 @@ static void SimpleEvents_ReadSI(SimpleEvents *events) {
 
     char raw_events[ARRAY_SIZE(events->events)];
     memset(raw_events, 0, sizeof(raw_events));
-    events->num_events = SIKeyboard_ConsumeBuffer(raw_events, sizeof(events->events));
+    events->num_events = SIKeyboard_ConsumeBuffer(raw_events, ARRAY_SIZE(events->events));
 
     // Convert in-place
     bool shiftState = false;
