@@ -1,6 +1,7 @@
 #include "Apploader.hh"
 
 #include "loader/Dol.hh"
+#include "loader/OS.hh"
 
 #include <common/Clock.hh>
 #include <common/Console.hh>
@@ -97,6 +98,11 @@ static void report(const char * /* format */, ...) {}
 
 std::optional<GameEntryFunc> LoadAndRun(IOS::DI &di) {
     if (!di.readDiskID()) {
+        Console::Print("Failed to read the disc id.\n");
+        if (!IOS::IsDolphin() && OS::IsDevelopmentConsole()) {
+            Console::Print("If the console being used is a RVT-H Reader,\nplease select a bank.\n");
+            Clock::WaitMilliseconds(10000);
+        }
         return {};
     }
 
