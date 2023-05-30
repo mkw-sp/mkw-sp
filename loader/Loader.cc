@@ -81,11 +81,15 @@ std::optional<Apploader::GameEntryFunc> Run() {
     }
 
     Console::Print("Importing new common key...");
-    IOS::ImportNewCommonKey();
-    Console::Print(" done.\n");
+    auto newKey = IOS::ImportNewCommonKey();
+    if (newKey) {
+        Console::Print(" done.\n");
+    } else {
+        Console::Print(" failed!\n");
+    }
 
     Console::Print("Deescalating privileges...");
-    IOS::DeescalatePrivileges();
+    IOS::DeescalatePrivileges(newKey.value_or(std::nullopt));
     Console::Print(" done.\n");
 
     std::optional<Apploader::GameEntryFunc> gameEntry;
