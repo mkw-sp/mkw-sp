@@ -13,8 +13,10 @@ public:
     void REPLACED(setItem)(u32 r4, u32 r5, u32 r6);
     REPLACE void setItem(u32 r4, u32 r5, u32 r6);
 
-    void REPLACED(update)();
-    REPLACE void update();
+    ItemId nextItem();
+
+    void REPLACED(calc)();
+    REPLACE void calc();
 
 private:
     u8 _000[0x018 - 0x00c];

@@ -125,7 +125,7 @@ void RaceScene::createSubsystems() {
 #if ENABLE_SAVE_STATES
     SP::SaveStateManager::CreateInstance();
 #endif
-    auto saveManager = System::SaveManager::Instance();
+    auto *saveManager = System::SaveManager::Instance();
     auto setting = saveManager->getSetting<SP::ClientSettings::Setting::ItemWheel>();
     saveManager->m_usedItemWheel = setting == SP::ClientSettings::ItemWheel::Enable;
 }

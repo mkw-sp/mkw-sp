@@ -152,7 +152,7 @@ enum class Course {
 extern const Course OrderedCourses[0x20];
 
 bool IsCombinationValid(Character character, Vehicle vehicle);
-bool isControllerValid(Controller controller);
+bool IsControllerValid(Controller controller);
 
 u32 GetCharacterMessageId(u32 characterId, bool resolveMiiNames);
 REPLACE bool UseBattleRenders();
