@@ -82,7 +82,7 @@ def read_languages_csv(tracks: list[Track]) -> list[Track]:
 
 def read_aliases_csv(tracks: list[Track]) -> dict[str, str]:
     aliases = {}
-    tracks_sha1 = {t.id: t.sha1 for t in tracks}
+    tracks_sha1 = {t.id: (t.sha1, t.slot) for t in tracks}
 
     with open("sha1-reference.txt") as alias_csv:
         for _ in range(9):
@@ -94,8 +94,8 @@ def read_aliases_csv(tracks: list[Track]) -> dict[str, str]:
                 continue
 
             alias_sha1, wiimmId, _, _, cflags, _ = line
-            if all(map(lambda f: f not in cflags, "ZPd")):
-                aliases[alias_sha1] = tracks_sha1[wiimmId]
+            if all(map(lambda f: f not in cflags, "ZPd")) and tracks_sha1[wiimmId][0] != alias_sha1 and tracks_sha1[wiimmId][1] != "0":
+                aliases[alias_sha1] = tracks_sha1[wiimmId][0]
 
     return aliases
 
@@ -115,10 +115,8 @@ def main():
     aliases = read_aliases_csv(tracks)
 
     parser = configparser.ConfigParser(interpolation=None)
-    for i, track in enumerate(tracks):
-        if track.slot == "0":
-            del tracks[i]
-        else:
+    for track in tracks:
+        if track.slot != "0":
             track.to_ini(parser)
 
     parser.add_section("aliases")

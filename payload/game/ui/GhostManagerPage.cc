@@ -18,6 +18,8 @@ void GhostManagerPage::SPList::populate() {
     bool speedModIsEnabled = cc == SP::ClientSettings::TAClass::CC200;
 
     auto &packInfo = System::RaceConfig::Instance()->getPackInfo();
+    auto &trackPackManager = SP::TrackPackManager::Instance();
+
     auto selectedSha1 = packInfo.getCourseSha1();
 
     m_count = 0;
@@ -33,12 +35,13 @@ void GhostManagerPage::SPList::populate() {
         }
 
         auto sha1 = footer->courseSHA1();
-        if (!sha1.has_value()) {
-            continue;
-        }
-
-        if (selectedSha1 != *sha1) {
-            continue;
+        if (sha1.has_value() && selectedSha1 != *sha1) {
+            auto normalisedSha1 = trackPackManager.getNormalisedSha1(*sha1);
+            if (!normalisedSha1.has_value() || *normalisedSha1 != sha1) {
+                continue;
+            } else {
+                SP_LOG("Found ghost with aliased sha1");
+            }
         }
 
         m_indices[m_count++] = i;

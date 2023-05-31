@@ -197,13 +197,9 @@ std::expected<void, const char *> TrackPack::parseNew(std::string_view manifestV
 }
 
 const Track *TrackPack::getUnreleasedTrack(Sha1 sha1) const {
-    for (const auto &track : m_unreleasedTracks) {
-        if (track.m_sha1 == sha1) {
-            return &track;
-        }
-    }
-
-    return nullptr;
+    auto predicate = [&](Track t) { return t.m_sha1 == sha1; };
+    auto track = std::find_if(m_unreleasedTracks.begin(), m_unreleasedTracks.end(), predicate);
+    return track == m_unreleasedTracks.end() ? nullptr : &*track;
 }
 
 const std::vector<Sha1> &TrackPack::getTrackList(TrackGameMode mode) const {
@@ -235,12 +231,11 @@ TrackGameMode TrackPack::getSupportedModes() const {
     return supportedModes;
 }
 
-bool TrackPack::contains(Sha1 sha1) const {
+bool TrackPack::contains(const Sha1 &sha1) const {
     for (auto mode : modes) {
-        for (auto track : getTrackList(mode)) {
-            if (track == sha1) {
-                return true;
-            }
+        auto &trackList = getTrackList(mode);
+        if (std::find(trackList.begin(), trackList.end(), sha1) != trackList.end()) {
+            return true;
         }
     }
 
@@ -341,6 +336,19 @@ void TrackPackManager::loadTrackDb() {
     while (auto property = trackDbIni.next()) {
         auto [section, key, value] = *property;
 
+        if (section == "aliases") {
+            auto aliasedSha1 = sha1FromHex(key);
+            auto sha1 = sha1FromHex(value);
+
+            if (aliasedSha1.has_value() && sha1.has_value()) {
+                parseAlias(*aliasedSha1, *sha1);
+            } else {
+                SP_LOG("Could not parse alias!");
+            }
+
+            continue;
+        }
+
         auto sha1 = sha1FromHex(section);
         if (!sha1) {
             SP_LOG("Could not parse sha1!");
@@ -352,7 +360,6 @@ void TrackPackManager::loadTrackDb() {
             isSkipping = !anyPackContains(*sha1);
             if (!isSkipping) {
                 m_trackDb.emplace_back(*sha1);
-                // SP_LOG("Parsed %d tracks", m_trackDb.size());
             }
         }
 
@@ -364,17 +371,34 @@ void TrackPackManager::loadTrackDb() {
         track.parse(key, value);
     }
 
-    SP_LOG("Finished loading track DB");
+    SP_LOG("Finished loading track DB with %d tracks and %d aliases", m_trackDb.size(),
+            m_aliases.size());
 }
 
-bool TrackPackManager::anyPackContains(Sha1 sha1) {
-    for (const auto &pack : m_packs) {
-        if (pack.contains(sha1)) {
-            return true;
+void TrackPackManager::parseAlias(Sha1 aliasedSha1, Sha1 sha1) {
+    bool foundTrack = false;
+    for (auto &track : m_trackDb) {
+        if (track.m_sha1 == sha1) {
+            foundTrack = true;
+            break;
         }
     }
 
-    return false;
+    if (!foundTrack) {
+        for (auto &pack : m_packs) {
+            if (pack.getUnreleasedTrack(sha1) != nullptr) {
+                foundTrack = true;
+                return;
+            }
+        }
+    }
+
+    m_aliases.emplace_back(aliasedSha1, sha1);
+}
+
+bool TrackPackManager::anyPackContains(const Sha1 &sha1) {
+    auto predicate = [&](TrackPack &pack) { return pack.contains(sha1); };
+    return std::find_if(m_packs.begin(), m_packs.end(), predicate) != m_packs.end();
 }
 
 const TrackPack &TrackPackManager::getNthPack(u32 n) const {
@@ -404,6 +428,17 @@ const Track &TrackPackManager::getTrack(Sha1 sha1) const {
 
     auto hex = sha1ToHex(sha1);
     panic("Unknown sha1 id: %s", hex.data());
+}
+
+std::optional<Sha1> TrackPackManager::getNormalisedSha1(Sha1 aliasedSha1) const {
+    auto predicate = [&](std::pair<Sha1, Sha1> pair) { return pair.first == aliasedSha1; };
+    auto aliasIt = std::find_if(m_aliases.begin(), m_aliases.end(), predicate);
+
+    if (aliasIt == m_aliases.end()) {
+        return std::nullopt;
+    } else {
+        return aliasIt->second;
+    }
 }
 
 TrackPackManager &TrackPackManager::Instance() {
