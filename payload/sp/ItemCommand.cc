@@ -77,31 +77,30 @@ void ItemCommand::Invoke(const char *args) {
     }
 
     // Args
-    if (!strncmp(args, "/i ", strlen("/i "))) {
-        u32 item = 0;
-        u32 qty = 1;
-        if (!sscanf(args, "/i %d %d", &item, &qty)) {
-            OSReport("&aUnknown arguments \"%s\". Usage: /i [item] [qty|0=STICKY]\n",
-                    args + strlen("/i "));
-            return;
-        }
-        if (qty <= 0) {
-            auto &stickyState = s_sticky.emplace();
-
-            qty = MAX(-qty, 1);
-            stickyState.item = item;
-            stickyState.quantity = qty;
-            OSReport("&aSpawning item %d (&2STICKY %dx&a)\n", item, qty);
-        } else {
-            ClearItem(myPlayerId);
-            OSReport("&aSpawning item %d (&2%dx&a)\n", item, qty);
-        }
-
-        TrySet(myPlayerId, item, qty);
+    if (strncmp(args, "/i ", strlen("/i "))) {
+        OSReport("&4Invalid command: \"%s\"", args);
         return;
     }
 
-    OSReport("&4Invalid command: \"%s\"", args);
+    u8 item = 0;
+    u8 quantity = 1;
+    if (!sscanf(args, "/i %hhu %hhu", &item, &quantity)) {
+        OSReport("&aUnknown arguments \"%s\". Usage: /i [item] [qty|0=STICKY]\n",
+                args + strlen("/i "));
+        return;
+    }
+
+    if (quantity <= 0) {
+        quantity = std::max(-quantity, 1);
+
+        s_sticky.emplace() = {.item = item, .quantity = quantity};
+        OSReport("&aSpawning item %d (&2STICKY %dx&a)\n", item, quantity);
+    } else {
+        ClearItem(myPlayerId);
+        OSReport("&aSpawning item %d (&2%dx&a)\n", item, quantity);
+    }
+
+    TrySet(myPlayerId, item, quantity);
 }
 
 std::optional<ItemCommand::StickyState> ItemCommand::s_sticky = std::nullopt;
