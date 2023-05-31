@@ -8,6 +8,8 @@
 
 #include <sp/cs/RoomClient.hh>
 
+#include <algorithm>
+
 extern "C" {
 #include <revolution/kpad.h>
 }
@@ -24,49 +26,15 @@ void KartItem::setItem(u32 r4, u32 r5, u32 r6) {
 }
 
 ItemId KartItem::nextItem() {
-    switch (m_inventory.getCurrentItem()) {
-    case ItemId::TripShrooms:
-        return ItemId::Shroom;
-        break;
-    case ItemId::Shroom:
-        return ItemId::Star;
-        break;
-    case ItemId::Star:
-        return ItemId::Golden;
-        break;
-    case ItemId::Golden:
-        return ItemId::Mega;
-        break;
-    case ItemId::Mega:
-        return ItemId::Bill;
-        break;
-    case ItemId::Bill:
-        return ItemId::TC;
-        break;
-    case ItemId::TC:
-        return ItemId::Bomb;
-        break;
-    case ItemId::Bomb:
-        return ItemId::FIB;
-        break;
-    case ItemId::FIB:
-        return ItemId::Nana;
-        break;
-    case ItemId::Nana:
-        return ItemId::Green;
-        break;
-    case ItemId::Green:
-        return ItemId::Shroom;
-        break;
-    case ItemId::NoItem:
-        return ItemId::Shroom;
-        break;
-    case ItemId::None:
-        return ItemId::Shroom;
-    default:
-        return ItemId::Shroom;
-        break;
+    const std::array<ItemId, 10> itemCycle{ItemId::Shroom, ItemId::Golden, ItemId::Star,
+            ItemId::Mega, ItemId::Bill, ItemId::Nana, ItemId::FIB, ItemId::Green, ItemId::Bomb,
+            ItemId::TC};
+
+    auto it = std::find(std::begin(itemCycle), std::end(itemCycle), m_inventory.getCurrentItem());
+    if (it != itemCycle.end() && *it != itemCycle.back()) {
+        return *(it + 1);
     }
+    return itemCycle.front();
 }
 
 void KartItem::calc() {

@@ -714,6 +714,4 @@ u32 SaveManager_GetTAGhostTagVisibility(void) {
     auto value = saveManager->getSetting<SP::ClientSettings::Setting::TAGhostTagVisibility>();
     return static_cast<u32>(value);
 }
-
-bool vsSpeedModIsEnabled;
 }
