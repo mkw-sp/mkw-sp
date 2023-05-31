@@ -136,7 +136,7 @@ size_t IOSKeyboard_PollBuffered(IOSKeyboard keyboard, IOSKeyboard_Event *events,
 
     while (IOSKeyboard_NextEvent(keyboard, &events[i])) {
         // OSReport("Event %i\n", i);
-        if (i >= numEvents) {
+        if (i + 1 >= numEvents) {
             // - Discard the previous two events
             // - Discard all future events clearing the stack
             LOG("Detected background input:\n");
