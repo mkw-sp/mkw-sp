@@ -174,7 +174,7 @@ static u32 Usb_findSlot(void) {
         }
     }
 
-    assert(!"No slot found");
+    panic("No slot found");
 }
 
 static void Usb_handleAddition(u32 i) {

@@ -55,7 +55,7 @@ bool TryFreeFromSlabs(void *ptr, int size) {
     }
     NET_SLABS_LIST(__NetSlabFree);
 
-    assert(!"Invalid allocation");
+    panic("Invalid allocation");
 #else
     (void)size;
     ((u8 *)ptr)[-32] = 0;

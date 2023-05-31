@@ -62,7 +62,7 @@ void FriendRoomBackPage::onActivate() {
             auto *friendRoomRulesPage = section->page<PageId::FriendRoomRules>();
             friendRoomRulesPage->refresh(settings->settings);
         } else {
-            assert(!"Unexpected variant!");
+            panic("Unexpected variant!");
         }
         m_queue.pop_front();
     }

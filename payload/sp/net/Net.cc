@@ -21,7 +21,7 @@ void *Alloc(s32 size) {
         return slab_res;
     }
 
-    assert(!"Bad alloc");
+    panic("Bad alloc");
     return nullptr;
 }
 
@@ -37,7 +37,7 @@ void Free(void *ptr, s32 size) {
         return;
     }
 
-    assert(!"Bad alloc");
+    panic("Bad alloc");
 }
 
 static void Free(u32 /* id */, void *ptr, s32 size) {
