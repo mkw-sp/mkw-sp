@@ -127,7 +127,7 @@ std::optional<FileHandle> FATStorage::open(const wchar_t *path, const char *mode
     } else if (!strcmp(mode, "wx")) {
         fMode = FA_CREATE_NEW | FA_WRITE;
     } else {
-        assert(!"Unknown opening mode");
+        panic("Unknown opening mode");
     }
     auto nodePath = convertPath(path);
     if (!nodePath) {
