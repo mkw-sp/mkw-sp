@@ -49,7 +49,7 @@ private:
     u8 _00[0x04 - 0x00];
     ItemId m_currentItemID;
     s32 m_currentItemCount;
-    u8 _0c[0x28 - 0x0c];
+    u8 _0c[0x29 - 0x0c];
     bool m_pressedLastFrame; // Added since field is unused
     u8 _2b[0x2c - 0x2b];
 };
