@@ -29,8 +29,8 @@ public:
         }
         virtual void onReceiveTeamSelect(u32 /* playerId */, u32 /* teamId */) {}
         virtual void onReceivePulse(s8 /* playerId */) {}
-        virtual void onReceiveInfo(s8 /* playerId */, s32 /* course */, u32 /* selectedPlayer */,
-                u32 /* character */, u32 /* vehicle */) {}
+        virtual void onReceiveInfo(s8 /* playerId */, Registry::Course /* course */,
+                u32 /* selectedPlayer */, u32 /* character */, u32 /* vehicle */) {}
         virtual void onError(u32 errorCode);
     };
 

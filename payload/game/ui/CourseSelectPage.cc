@@ -411,8 +411,9 @@ void CourseSelectPage::refresh() {
         u32 courseIndex = m_sheetIndex * m_buttons.size() + i;
         if (courseIndex < SP::CourseDatabase::Instance().count(m_filter)) {
             auto &entry = SP::CourseDatabase::Instance().entry(m_filter, courseIndex);
-            m_buttons[i].refresh(
-                    entry.courseId < 32 ? 9300 + entry.courseId : 9400 - 32 + entry.courseId);
+            auto courseId = static_cast<u32>(entry.courseId);
+
+            m_buttons[i].refresh(courseId < 32 ? 9300 + courseId : 9400 - 32 + courseId);
         }
     }
 

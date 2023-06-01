@@ -13,7 +13,7 @@ void GhostManagerPage::List::populate(u32 /* courseId */) {}
 
 void GhostManagerPage::SPList::populate() {
     auto *saveManager = System::SaveManager::Instance();
-    u32 courseId = System::RaceConfig::Instance()->menuScenario().courseId;
+    auto courseId = System::RaceConfig::Instance()->menuScenario().courseId;
     auto courseSHA1 = saveManager->courseSHA1(courseId);
     auto cc = saveManager->getSetting<SP::ClientSettings::Setting::TAClass>();
     bool speedModIsEnabled = cc == SP::ClientSettings::TAClass::CC200;

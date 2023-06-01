@@ -95,7 +95,7 @@ void RaceMenuPage::onNextButtonFront(PushButton *button, u32 /* localPlayerId */
             sectionId = SectionId::AwardsVS;
         }
         menuScenario.cameraMode = isWin ? 8 : 12;
-        menuScenario.courseId = isWin ? 0x37 : 0x38;
+        menuScenario.courseId = isWin ? Registry::Course::WinDemo : Registry::Course::LoseDemo;
         menuScenario.gameMode = System::RaceConfig::GameMode::Awards;
     } else {
         auto *saveManager = System::SaveManager::Instance();
@@ -124,7 +124,7 @@ void RaceMenuPage::onNextButtonFront(PushButton *button, u32 /* localPlayerId */
             fullFilter.battle = true;
             fullFilter.race = true;
 
-            u8 nextCourse = 0xFF;
+            std::optional<Registry::Course> nextCourse = std::nullopt;
             bool foundCurrentCourse = false;
             for (u8 i = 0; i < courseDatabase.totalCount(); i += 1) {
                 auto entry = courseDatabase.entry(fullFilter, i);
@@ -136,10 +136,10 @@ void RaceMenuPage::onNextButtonFront(PushButton *button, u32 /* localPlayerId */
                 }
             }
 
-            if (nextCourse == 0xFF) {
+            if (!nextCourse) {
                 menuScenario.courseId = courseDatabase.entry(filter, 0).courseId;
             } else {
-                menuScenario.courseId = nextCourse;
+                menuScenario.courseId = *nextCourse;
             }
         } else if (setting == SP::ClientSettings::CourseSelection::Random) {
             auto courseCount = courseDatabase.count(filter);

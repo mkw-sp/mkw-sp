@@ -160,8 +160,8 @@ s32 GetButtonIndexFromCourse(Course course);
 const char *GetCharacterPane(u32 characterId);
 const char *GetCupIconName(u32 cupId);
 u32 GetCupMessageId(u32 cupId);
-u32 GetCourseCupId(u32 courseId);
-u32 GetCourseName(u32 courseId);
+u32 GetCourseCupId(Course courseId);
+u32 GetCourseName(Course courseId);
 
 const char *REPLACED(GetItemPane)(u32 itemId, u32 count);
 REPLACE const char *GetItemPane(u32 itemId, u32 count);

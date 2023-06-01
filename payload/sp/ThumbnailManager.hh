@@ -2,6 +2,8 @@
 
 #include "sp/storage/Storage.hh"
 
+#include <game/util/Registry.hh>
+
 #include <array>
 
 namespace SP {
@@ -14,7 +16,7 @@ public:
     static bool Start();
     static bool Continue();
     static bool IsActive();
-    static u32 CourseId();
+    static Registry::Course CourseId();
     static std::array<wchar_t, 256> Path();
 
 private:

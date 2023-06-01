@@ -31,8 +31,8 @@ alignas(0x20) static u8 srcs[2][0x20000 /* 128 KiB */];
 static std::optional<FileHandle> Open(const char *path, std::optional<StorageType> storageType) {
     if (ThumbnailManager::IsActive()) {
         char coursePath[128];
-        snprintf(coursePath, std::size(coursePath), "ro:/Race/Course/%s.szs",
-                Registry::courseFilenames[ThumbnailManager::CourseId()]);
+        auto fileName = Registry::courseFilenames[static_cast<u32>(ThumbnailManager::CourseId())];
+        snprintf(coursePath, std::size(coursePath), "ro:/Race/Course/%s.szs", fileName);
         if (!strcmp(path, coursePath)) {
             auto thumbnailPath = ThumbnailManager::Path();
             return Storage::Open(thumbnailPath.data(), "r");

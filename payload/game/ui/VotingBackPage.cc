@@ -65,7 +65,7 @@ s8 VotingBackPage::_80650b40_stub() {
     return 0;
 }
 
-void VotingBackPage::setLocalVote(s32 course) {
+void VotingBackPage::setLocalVote(Registry::Course course) {
     m_localVote = course;
 }
 
@@ -108,8 +108,8 @@ void VotingBackPage::Handler::onReceivePulse(s8 playerId) {
     m_page.m_selected[playerId] = true;
 }
 
-void VotingBackPage::Handler::onReceiveInfo(s8 playerId, s32 course, u32 selectedPlayer,
-        u32 character, u32 vehicle) {
+void VotingBackPage::Handler::onReceiveInfo(s8 playerId, Registry::Course course,
+        u32 selectedPlayer, u32 character, u32 vehicle) {
     SP::RoomManager *roomManager = SP::RoomManager::Instance();
     System::RaceConfig *raceConfig = System::RaceConfig::Instance();
     raceConfig->menuScenario().players[playerId].characterId = character;

@@ -25,9 +25,9 @@ bool ThumbnailManager::IsActive() {
     return s_instance.has_value();
 }
 
-u32 ThumbnailManager::CourseId() {
+Registry::Course ThumbnailManager::CourseId() {
     assert(s_instance);
-    return s_instance->m_courseId - 1;
+    return static_cast<Registry::Course>(s_instance->m_courseId - 1);
 }
 
 std::array<wchar_t, 256> ThumbnailManager::Path() {

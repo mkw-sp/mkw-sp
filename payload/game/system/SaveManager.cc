@@ -554,8 +554,8 @@ void SaveManager::GetCourseName(std::array<u8, 0x14> courseSHA1, char (&courseNa
     hydro_bin2hex(courseName, std::size(courseName), courseSHA1.data(), courseSHA1.size());
 }
 
-std::array<u8, 0x14> SaveManager::courseSHA1(u32 courseId) const {
-    return m_courseSHA1s[courseId];
+std::array<u8, 0x14> SaveManager::courseSHA1(Registry::Course courseId) const {
+    return m_courseSHA1s[static_cast<u32>(courseId)];
 }
 
 SaveManager *SaveManager::Instance() {
