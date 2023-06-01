@@ -3,13 +3,11 @@
 
 #include <sp/TypingBuffer.h>
 
-#include "IOSKeyboard.h"
 #include "Keyboard.h"
 #include "SIKeyboard.h"
 
 typedef enum {
     kInputDeviceNone,
-    kInputDeviceIOS,
     kInputDeviceSI,
 } InputDevice;
 
@@ -23,56 +21,6 @@ typedef struct SimpleEvents {
     u16 events[MAX_BUFFERED_EVENTS * 6];
     size_t num_events;
 } SimpleEvents;
-
-static void SimpleEvents_ReadIOS(IOSKeyboard keyboard, SimpleEvents *simpleEvents) {
-    IOSKeyboard_Event events[MAX_BUFFERED_EVENTS];
-    size_t num_events = IOSKeyboard_PollBuffered(keyboard, events, MAX_BUFFERED_EVENTS);
-
-    int num_simple_events = 0;
-
-    for (size_t i = 0; i < num_events; ++i) {
-        IOSKeyboard_Event *ev = &events[i];
-
-        if (ev->message != kKeyboardMessage_Press) {
-            continue;
-        }
-
-        const bool shift_pressed = ev->modifiers.left_shift | ev->modifiers.right_shift;
-
-        for (int j = 0; j < 6; ++j) {
-            const IOSKeyboard_KeyCode pressed = (IOSKeyboard_KeyCode)ev->pressed[j];
-
-            if (pressed == 0) {
-                continue;
-            }
-
-            u16 *result = &simpleEvents->events[num_simple_events++];
-
-            switch (pressed) {
-            case IOS_KEY_ENTER:
-                *result = kSimpleEvent_Enter;
-                break;
-            case IOS_KEY_BACKSPACE:
-                *result = kSimpleEvent_Backspace;
-                break;
-            case IOS_KEY_ESCAPE:
-                *result = kSimpleEvent_Escape;
-                break;
-            case IOS_KEY_TAB:
-                *result = kSimpleEvent_Tab;
-                break;
-            default:
-                if (IOSKeyboard_KeycodeIsCharacter(pressed)) {
-                    *result = IOSKeyboard_KeycodeToCharacter(pressed, shift_pressed);
-                }
-                // Ignore non-printable characters
-                break;
-            }
-        }
-    }
-
-    simpleEvents->num_events = num_simple_events;
-}
 
 // SIKeyboard is polled via background handler on PPC
 static void SimpleEvents_ReadSI(SimpleEvents *events) {
@@ -138,7 +86,6 @@ static void SimpleEvents_ReadSI(SimpleEvents *events) {
 
 typedef struct ConsoleInput {
     TypingBuffer mTypingBuffer;
-    IOSKeyboard mKeyboard;
     SP_LineCallback mCallback;
     SP_KeypressCallback mUnhandledKeypressCallback;
     void *mUnhandledKeypressUser;
@@ -148,18 +95,10 @@ typedef struct ConsoleInput {
 
 static bool ConsoleInput_Open(ConsoleInput *input) {
     input->mInputDevice = kInputDeviceNone;
-    input->mKeyboard = -1; // 0 is a valid handle
 
     TypingBuffer_Init(&input->mTypingBuffer);
     input->mCallback = NULL;
     input->mIsConsoleOpen = false;
-
-    const IOSKeyboard ios_keyboard = IOSKeyboard_Open();
-    if (ios_keyboard >= 0) {
-        input->mInputDevice = kInputDeviceIOS;
-        input->mKeyboard = ios_keyboard;
-        return true;
-    }
 
     const s32 si_keyboard = SIKeyboard_GetCurrentConnection();
     if (si_keyboard >= 0) {
@@ -169,10 +108,7 @@ static bool ConsoleInput_Open(ConsoleInput *input) {
 
     return false;
 }
-static void ConsoleInput_Close(ConsoleInput *input) {
-    IOSKeyboard_Close(input->mKeyboard);
-    input->mKeyboard = -1;
-}
+static void ConsoleInput_Close(ConsoleInput * /* input */) {}
 
 // The user closed the console window
 static void ConsoleInput_EndInteraction(ConsoleInput *input) {
@@ -187,9 +123,6 @@ static void ConsoleInput_Process(ConsoleInput *input) {
     switch (input->mInputDevice) {
     case kInputDeviceNone:
         return;
-    case kInputDeviceIOS:
-        SimpleEvents_ReadIOS(input->mKeyboard, &events);
-        break;
     case kInputDeviceSI:
         SimpleEvents_ReadSI(&events);
         break;
