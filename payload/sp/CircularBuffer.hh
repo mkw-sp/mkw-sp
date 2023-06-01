@@ -67,6 +67,16 @@ public:
         return std::launder(reinterpret_cast<T *>(&m_vals[(m_front + index) % N]));
     }
 
+    bool contains(const T &needle) {
+        for (u32 i = 0; i < m_count; i += 1) {
+            if (*(*this)[i] == needle) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
     void remove(size_t index) {
         std::destroy_at(std::launder(reinterpret_cast<T *>(&m_vals[(m_front + index) % N])));
         for (; index < m_count - 1; index++) {

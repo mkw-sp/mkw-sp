@@ -132,6 +132,12 @@ void CourseSelectPage::onDeinit() {
 
 void CourseSelectPage::onActivate() {
     m_replacement = PageId::None;
+
+    auto *sectionManager = SectionManager::Instance();
+    auto section = sectionManager->currentSection()->id();
+    if (section != SectionId::SingleSelectVSCourse && section != SectionId::SingleSelectBTCourse) {
+        sectionManager->globalContext()->clearCourses();
+    }
 }
 
 void CourseSelectPage::afterCalc() {
@@ -153,10 +159,9 @@ void CourseSelectPage::afterCalc() {
 }
 
 void CourseSelectPage::onRefocus() {
-    auto *section = SectionManager::Instance()->currentSection();
-    auto sectionId = section->id();
-
-    if (Section::HasRoomClient(sectionId)) {
+    auto *sectionManager = SectionManager::Instance();
+    auto *section = sectionManager->currentSection();
+    if (Section::HasRoomClient(section->id())) {
         return;
     }
 
@@ -165,15 +170,16 @@ void CourseSelectPage::onRefocus() {
         return;
     }
 
+    auto *raceConfig = System::RaceConfig::Instance();
     auto *raceConfirmPage = section->page<PageId::RaceConfirm>();
     if (raceConfirmPage->hasConfirmed()) {
-        auto menuScenario = System::RaceConfig::Instance()->menuScenario();
-
-        if (menuScenario.gameMode == System::RaceConfig::GameMode::OfflineBT) {
+        if (raceConfig->menuScenario().gameMode == System::RaceConfig::GameMode::OfflineBT) {
             changeSection(SectionId::BTDemo, Anim::Next, 0.0f);
         } else {
             changeSection(SectionId::VSDemo, Anim::Next, 0.0f);
         }
+    } else {
+        sectionManager->globalContext()->clearCourses();
     }
 }
 
@@ -251,17 +257,24 @@ void CourseSelectPage::onButtonFront(PushButton *button, u32 /* localPlayerId */
         votingBackPage->setLocalVote(entry.courseId);
         votingBackPage->setSubmitted(true);
         startReplace(Anim::Next, button->getDelay());
+    } else if (sectionId == SectionId::Rankings) {
+        s32 courseButtonIndex = GetButtonIndexFromCourse(entry.courseId);
+
+        auto *rankingPage = section->page<PageId::Ranking>();
+        rankingPage->courseControl().choose(courseButtonIndex);
+
+        m_replacement = PageId::None;
+        startReplace(Anim::Prev, button->getDelay());
     } else {
+        auto *globalContext = sectionManager->globalContext();
         auto &menuScenario = System::RaceConfig::Instance()->menuScenario();
-        menuScenario.courseId = entry.courseId;
-        if (sectionId == SectionId::Rankings) {
-            auto *rankingPage = section->page<PageId::Ranking>();
-            s32 courseButtonIndex =
-                    GetButtonIndexFromCourse(static_cast<Registry::Course>(entry.courseId));
-            rankingPage->courseControl().choose(courseButtonIndex);
-            m_replacement = PageId::None;
-            startReplace(Anim::Prev, button->getDelay());
-        } else if (menuScenario.gameMode == System::RaceConfig::GameMode::TimeAttack) {
+
+        if (!sectionManager->globalContext()->generateOrderedCourses(courseIndex)) {
+            globalContext->setCurrentCourse(entry.courseId);
+            menuScenario.courseId = globalContext->getCourse(0).value();
+        }
+
+        if (menuScenario.gameMode == System::RaceConfig::GameMode::TimeAttack) {
             m_replacement = PageId::TimeAttackTop;
             startReplace(Anim::Next, button->getDelay());
         } else {

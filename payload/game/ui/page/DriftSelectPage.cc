@@ -15,6 +15,8 @@ void DriftSelectPage::onActivate() {
 
 void DriftSelectPage::onButtonFront(PushButton *button, u32 /* localPlayerId */) {
     auto *sectionManager = SectionManager::Instance();
+    auto *globalContext = sectionManager->globalContext();
+
     auto *section = sectionManager->currentSection();
     auto sectionId = section->id();
 
@@ -22,7 +24,7 @@ void DriftSelectPage::onButtonFront(PushButton *button, u32 /* localPlayerId */)
     case 0:
     case 1:
         sectionManager->registeredPadManager().setDriftIsAuto(0, button->m_index);
-        sectionManager->globalContext()->m_driftModes[0] = button->m_index + 1;
+        globalContext->m_driftModes[0] = button->m_index + 1;
         if (Section::GetSceneId(sectionId) == System::SceneId::Globe) {
             if (m_replacementSection == SectionId::None) {
                 m_replacement = PageId::None;
@@ -32,8 +34,7 @@ void DriftSelectPage::onButtonFront(PushButton *button, u32 /* localPlayerId */)
                 requestChangeSection(m_replacementSection, button);
             }
         } else {
-            auto *raceConfig = System::RaceConfig::Instance();
-            auto &menuScenario = raceConfig->menuScenario();
+            auto &menuScenario = System::RaceConfig::Instance()->menuScenario();
             if (menuScenario.gameMode == System::RaceConfig::GameMode::Mission) {
                 auto *missionInstructionPage = section->page<PageId::MissionInstruction>();
                 if (missionInstructionPage->levelId() == 7 /* Boss */) {
@@ -42,7 +43,7 @@ void DriftSelectPage::onButtonFront(PushButton *button, u32 /* localPlayerId */)
                 } else {
                     requestChangeSection(SectionId::MR, button);
                 }
-            } else if (raceConfig->selectRandomCourse()) {
+            } else if (globalContext->generateRandomCourses()) {
                 if (menuScenario.gameMode == System::RaceConfig::GameMode::OfflineBT) {
                     changeSection(SectionId::BTDemo, Anim::Next, 0.0f);
                 } else {
