@@ -30,10 +30,6 @@ Heap *TSystem::eggRootDebug() const {
     return m_eggRootDebug;
 }
 
-Heap *TSystem::eggRootSystem() const {
-    return m_eggRootSystem;
-}
-
 TSystem &TSystem::Instance() {
     return s_instance;
 }
