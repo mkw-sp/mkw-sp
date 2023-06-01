@@ -108,12 +108,13 @@ void MultiTopPage::onSettingsButtonSelect(PushButton * /* button */, u32 /* loca
 void MultiTopPage::onVSButtonFront(PushButton *button, u32 /* localPlayerId */) {
     auto *raceConfig = System::RaceConfig::Instance();
     auto *saveManager = System::SaveManager::Instance();
+    auto *context = SectionManager::Instance()->globalContext();
+    context->m_matchCount = saveManager->getSetting<SP::ClientSettings::Setting::VSRaceCount>();
+
+    u32 localPlayerCount = context->m_localPlayerCount;
     auto teamsizeSetting = saveManager->getSetting<SP::ClientSettings::Setting::VSTeamSize>();
 
     u32 maxTeamSize = SP::ClientSettings::GenerateMaxTeamSize(teamsizeSetting);
-
-    auto *context = SectionManager::Instance()->globalContext();
-    u32 localPlayerCount = context->m_localPlayerCount;
 
     auto &menuScenario = raceConfig->menuScenario();
     menuScenario.gameMode = System::RaceConfig::GameMode::OfflineVS;
