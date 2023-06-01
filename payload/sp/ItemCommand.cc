@@ -9,10 +9,6 @@ extern "C" {
 #include <game/system/RaceConfig.hh>
 #include <game/ui/SectionManager.hh>
 
-extern "C" {
-#include <revolution.h>
-}
-
 namespace SP {
 
 static s8 GetMyPlayerID() {
