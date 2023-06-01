@@ -7,6 +7,7 @@ extern "C" {
 #include <game/item/ItemDirector.h>
 }
 #include <game/system/RaceConfig.hh>
+#include <game/ui/SectionManager.hh>
 
 extern "C" {
 #include <revolution.h>
@@ -15,6 +16,12 @@ extern "C" {
 namespace SP {
 
 static s8 GetMyPlayerID() {
+    auto sectionId = UI::SectionManager::Instance()->currentSection()->id();
+    if (UI::Section::GetSceneId(sectionId) != 2 /* Race */) {
+        OSReport("&cNot in a race.\n");
+        return -1;
+    }
+
     auto &raceScenario = System::RaceConfig::Instance()->raceScenario();
     s8 playerId = raceScenario.screenPlayerIds[0];
 
