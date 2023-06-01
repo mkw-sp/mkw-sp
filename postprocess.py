@@ -61,7 +61,7 @@ for symbol_name, demangled in replaced_symbols:
             replacement_name = other_name
             break
     if replacement_name is None:
-        sys.exit(f'REPLACED was used without REPLACE for symbol {symbol.name}!')
+        sys.exit(f'REPLACED was used without REPLACE for symbol {symbol_name}!')
     thunk_symbols[replacement_name] = symbol_name
 
 backup = copy.deepcopy(replacement_symbols)
