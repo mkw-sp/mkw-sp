@@ -14,18 +14,15 @@ extern "C" {
 
 namespace SP {
 
-s8 GetMyPlayerID(void) {
-    auto *raceConfig = System::RaceConfig::Instance();
-    if (raceConfig == nullptr) {
-        OSReport("&cNot in a race.\n");
-        return -1;
-    }
-
-    auto &raceScenario = raceConfig->raceScenario();
+static s8 GetMyPlayerID() {
+    auto &raceScenario = System::RaceConfig::Instance()->raceScenario();
     s8 playerId = raceScenario.screenPlayerIds[0];
+
     if (playerId < 0 || playerId > 11) {
-        OSReport("&cCurrent player id is &4%i&c. Expected in range &4[0, 11]&c.", playerId);
-        OSReport("Are you a spectator?\n");
+        OSReport("&cCurrent player id is &4%i&c. Expected in range &4[0, 11]&c.\n", playerId);
+        return -1;
+    } else if (raceScenario.players[playerId].type != System::RaceConfig::Player::Type::Local) {
+        OSReport("&cCurrent player id is &4%i&c, but is not a local player.\n", playerId);
         return -1;
     }
 
