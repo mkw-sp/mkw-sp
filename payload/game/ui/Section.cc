@@ -17,6 +17,7 @@
 #include "game/ui/OnlineModeSelectPage.hh"
 #include "game/ui/OnlineTeamSelectPage.hh"
 #include "game/ui/OnlineTopPage.hh"
+#include "game/ui/PackSelectPage.hh"
 #include "game/ui/RandomMatchingPage.hh"
 #include "game/ui/RankingPage.hh"
 #include "game/ui/RankingTopTenDownloadPage.hh"
@@ -214,6 +215,8 @@ void Section::addPage(PageId pageId) {
 
 void Section::addActivePage(PageId pageId) {
     std::pair<SectionId, PageId> deletions[] = {
+            {SectionId::Single, PageId::SingleTop},
+
             {SectionId::SingleChangeGhostData, PageId::CharacterSelect},
 
             {SectionId::SingleSelectBTCourse, PageId::BattleCupSelect},
@@ -339,7 +342,7 @@ void Section::addPages(SectionId id) {
             {SectionId::SingleChangeGhostData, PageId::MenuMessage},
             {SectionId::SingleChangeGhostData, PageId::MessageBoardPopup},
             {SectionId::SingleChangeGhostData, PageId::SingleTop},
-            {SectionId::SingleChangeGhostData, PageId::GpClassSelect},
+            {SectionId::SingleChangeGhostData, PageId::PackSelect},
             {SectionId::SingleChangeGhostData, PageId::CourseSelect},
             {SectionId::SingleChangeGhostData, PageId::TimeAttackTop},
             {SectionId::SingleChangeGhostData, PageId::TimeAttackGhostList},
@@ -353,9 +356,11 @@ void Section::addPages(SectionId id) {
             {SectionId::SingleChangeGhostData, PageId::MenuSettings},
             {SectionId::Multi, PageId::MenuSettings},
 
+            {SectionId::OnlineSingle, PageId::PackSelect},
             {SectionId::OnlineSingle, PageId::FriendRoomRules},
             {SectionId::OnlineSingle, PageId::MenuSettings},
             {SectionId::OnlineSingle, PageId::SettingsPopup},
+            {SectionId::OnlineMulti, PageId::PackSelect},
             {SectionId::OnlineMulti, PageId::FriendRoomRules},
             {SectionId::OnlineMulti, PageId::MenuSettings},
             {SectionId::OnlineMulti, PageId::SettingsPopup},
@@ -389,6 +394,9 @@ void Section::addActivePages(SectionId id) {
 
             // Mission Mode
             {SectionId::SingleChangeMission, PageId::MissionLevelSelect},
+
+            // Pack Select
+            {SectionId::Single, PageId::PackSelect},
 
             {SectionId::OnlineSingle, PageId::OnlineTop},
 
@@ -452,6 +460,8 @@ Page *Section::CreatePage(PageId pageId) {
         return new FriendRoomPage;
     case PageId::FriendRoomMessageSelect:
         return new FriendRoomMessageSelectPage;
+    case PageId::PackSelect:
+        return new PackSelectPage;
     case PageId::ServicePackTop:
         return new ServicePackTopPage;
     case PageId::StorageBenchmark:

@@ -359,6 +359,7 @@
     "10391": "Forces 60fps, even in intensive scenes.",
     "10392": "Forces 30fps, can help with Dolphin performance.",
     "10393": "Choose the team size randomly.",
+    "10394": "Pack Select",
     "10420": "Battle Count",
     "10421": "Play {arg integer|0 0} {arg cond messages|0 10422 10423}.",
     "10422": "battle",

@@ -111,7 +111,7 @@ enum class PageId {
     LicenseSettingsTop = 0x67,
     LicenceEraseConfirm = 0x68,
     SingleTop = 0x69,
-    GpClassSelect = 0x6A,
+    PackSelect = 0x6A,
     CharacterSelect = 0x6B,
     VehicleSelect = 0x6C,
     DriftSelect = 0x6D,
