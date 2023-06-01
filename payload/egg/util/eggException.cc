@@ -70,7 +70,7 @@ bool ExceptionCallBack_(nw4r::db::ConsoleHandle console, void * /* arg */) {
         if (OSGetCurrentThread()) {
             if (wStatus.buttons & KPAD_BUTTON_HOME || gcStatus[0].buttons & PAD_BUTTON_START ||
                     (classic && clStatus.buttons & WPAD_CL_BUTTON_HOME)) {
-                System::SystemManager::ReturnToMenu();
+                System::SystemManager::Restart();
             }
         }
 
