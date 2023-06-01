@@ -31,7 +31,7 @@ ItemId KartItem::nextItem() {
             ItemId::TC};
 
     auto it = std::find(std::begin(itemCycle), std::end(itemCycle), m_inventory.getCurrentItem());
-    if (it != itemCycle.end() && *it != itemCycle.back()) {
+    if (it != itemCycle.end() && it != itemCycle.begin() + (itemCycle.size() - 1)) {
         return *(it + 1);
     }
     return itemCycle.front();
@@ -68,10 +68,10 @@ void KartItem::calc() {
             return;
         }
         if (!updateItem) {
-            m_inventory.setPressed(false);
-        } else if (!m_inventory.getPressed()) {
+            m_inventory.setItemWheelPressed(false);
+        } else if (!m_inventory.getItemWheelPressed()) {
             m_inventory.setItem(nextItem());
-            m_inventory.setPressed(true);
+            m_inventory.setItemWheelPressed(true);
         }
     }
 }

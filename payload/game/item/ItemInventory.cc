@@ -37,12 +37,12 @@ ItemId ItemInventory::getCurrentItem() const {
     return m_currentItemID;
 }
 
-void ItemInventory::setPressed(bool pressed) {
-    m_pressedLastFrame = pressed;
+void ItemInventory::setItemWheelPressed(bool pressed) {
+    m_itemWheelPressed = pressed;
 }
 
-bool ItemInventory::getPressed() const {
-    return m_pressedLastFrame;
+bool ItemInventory::getItemWheelPressed() const {
+    return m_itemWheelPressed;
 }
 
 } // namespace Item

@@ -41,16 +41,16 @@ public:
 
     ItemId getCurrentItem() const;
 
-    void setPressed(bool pressed);
+    void setItemWheelPressed(bool pressed);
 
-    bool getPressed() const;
+    bool getItemWheelPressed() const;
 
 private:
     u8 _00[0x04 - 0x00];
     ItemId m_currentItemID;
     s32 m_currentItemCount;
     u8 _0c[0x29 - 0x0c];
-    bool m_pressedLastFrame; // Added since field is unused
+    bool m_itemWheelPressed; // Added for item wheel. Field is unused
     u8 _2b[0x2c - 0x2b];
 };
 static_assert(sizeof(ItemInventory) == 0x2c);
