@@ -55,6 +55,10 @@ public:
         Awards = 11,
     };
 
+    struct SPScenario {
+        // ...
+    };
+
     struct Scenario {
         bool isOnline() const {
             return gameMode >= GameMode::OnlinePrivateVS && gameMode <= GameMode::OnlinePrivateBT;
@@ -123,6 +127,16 @@ public:
     bool selectRandomCourse();
     void endRace();
 
+    REPLACE void initRace();
+    REPLACE void initAwards();
+    REPLACE void initCredits();
+
+private:
+    void REPLACED(initRace)();
+    void REPLACED(initAwards)();
+    void REPLACED(initCredits)();
+
+public:
     REPLACE static RaceConfig *CreateInstance();
     static RaceConfig *Instance();
 
@@ -130,9 +144,17 @@ private:
     REPLACE static void ConfigurePlayers(Scenario &scenario, u32 screenCount);
 
     u8 _0004[0x0020 - 0x0004];
+
+public:
     Scenario m_raceScenario;
     Scenario m_menuScenario;
     Scenario m_awardsScenario;
+
+    SPScenario m_spRace;
+    SPScenario m_spMenu;
+    SPScenario m_spAwards;
+
+private:
     u8 m_ghostBuffers[2][11][0x2800]; // Modified
 
     static RaceConfig *s_instance;
