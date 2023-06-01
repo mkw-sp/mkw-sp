@@ -7,9 +7,6 @@ extern "C" {
 #include <vendor/libhydrogen/hydrogen.h>
 }
 
-#include <sp/CourseDatabase.hh>
-#include <sp/settings/ClientSettings.hh>
-
 #include <cstring>
 
 namespace System {
@@ -212,35 +209,6 @@ void RaceConfig::ConfigurePlayers(Scenario &scenario, u32 screenCount) {
 
         screenId++;
     }
-}
-
-bool RaceConfig::selectRandomCourse() {
-    auto *saveManager = System::SaveManager::Instance();
-
-    SP::CourseDatabase::Filter filter;
-    SP::ClientSettings::CourseSelection setting;
-    if (m_menuScenario.gameMode == System::RaceConfig::GameMode::OfflineVS) {
-        setting = saveManager->getSetting<SP::ClientSettings::Setting::VSCourseSelection>();
-        filter.battle = false;
-        filter.race = true;
-    } else if (m_menuScenario.gameMode == System::RaceConfig::GameMode::OfflineBT) {
-        setting = saveManager->getSetting<SP::ClientSettings::Setting::BTCourseSelection>();
-        filter.battle = true;
-        filter.race = false;
-    } else {
-        return false;
-    }
-
-    if (setting != SP::ClientSettings::CourseSelection::Random) {
-        return false;
-    }
-
-    auto &courseDatabase = SP::CourseDatabase::Instance();
-    auto courseCount = courseDatabase.count(filter);
-    auto courseIdx = hydro_random_uniform(courseCount);
-
-    m_menuScenario.courseId = courseDatabase.entry(filter, courseIdx).courseId;
-    return true;
 }
 
 extern "C" void RaceConfigScenario_resetGhostPlayerTypes(RaceConfig::Scenario *self) {

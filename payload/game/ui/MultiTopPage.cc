@@ -58,6 +58,8 @@ void MultiTopPage::onInit() {
     m_pageTitleText.setMessage(2028 + context->m_localPlayerCount);
 
     m_reset = true;
+
+    SectionManager::Instance()->globalContext()->clearCourses();
 }
 
 void MultiTopPage::onActivate() {

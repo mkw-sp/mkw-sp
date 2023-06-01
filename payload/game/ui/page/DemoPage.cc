@@ -11,10 +11,8 @@ void DemoPage::onInit() {
 
     auto sectionManager = SectionManager::Instance();
     auto globalContext = sectionManager->globalContext();
-    auto raceConfig = System::RaceConfig::Instance();
 
-    auto &menuScenario = raceConfig->menuScenario();
-    auto &raceScenario = raceConfig->raceScenario();
+    auto &raceScenario = System::RaceConfig::Instance()->raceScenario();
     auto currentSectionId = sectionManager->currentSection()->id();
 
     initChildren(2);
@@ -24,7 +22,7 @@ void DemoPage::onInit() {
     m_courseDisplay.load("demo", "course_name", "course_name", 0);
     m_cupDisplay.load("demo", "cup_name", "cup_name", 0);
 
-    auto courseId = menuScenario.courseId;
+    auto courseId = raceScenario.courseId;
     auto cupId = Registry::GetCourseCupId(courseId);
 
     m_courseDisplay.setMessageAll(Registry::GetCourseName(courseId), nullptr);

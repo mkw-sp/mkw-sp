@@ -17,12 +17,14 @@ void MultiDriftSelectPage::onButtonFront(PushButton *button, u32 localPlayerId) 
         return;
     }
 
-    assert(localPlayerId == static_cast<u32>(buttonIdx / 2));
     auto *sectionManager = SectionManager::Instance();
+    auto *globalContext = sectionManager->globalContext();
+
+    assert(localPlayerId == static_cast<u32>(buttonIdx / 2));
     u8 selection = buttonIdx % 2 == 0 ? 1 : 0;
 
     sectionManager->registeredPadManager().setDriftIsAuto(localPlayerId, selection);
-    sectionManager->globalContext()->m_driftModes[localPlayerId] = selection + 1;
+    globalContext->m_driftModes[localPlayerId] = selection + 1;
 
     // Hide non-selected button
     s8 inverse = selection == 0 ? -1 : 1;
@@ -37,7 +39,7 @@ void MultiDriftSelectPage::onButtonFront(PushButton *button, u32 localPlayerId) 
     }
 
     auto sectionId = sectionManager->currentSection()->id();
-    auto *raceConfig = System::RaceConfig::Instance();
+    auto &menuScenario = System::RaceConfig::Instance()->menuScenario();
     if (Section::GetSceneId(sectionId) == System::SceneId::Globe) {
         if (m_replacementSection == SectionId::None) {
             m_replacement = PageId::None;
@@ -46,8 +48,8 @@ void MultiDriftSelectPage::onButtonFront(PushButton *button, u32 localPlayerId) 
         } else {
             requestChangeSection(m_replacementSection, button);
         }
-    } else if (raceConfig->selectRandomCourse()) {
-        if (raceConfig->menuScenario().gameMode == System::RaceConfig::GameMode::OfflineBT) {
+    } else if (globalContext->generateRandomCourses()) {
+        if (menuScenario.gameMode == System::RaceConfig::GameMode::OfflineBT) {
             changeSection(SectionId::BTDemo, Anim::Next, 0.0f);
         } else {
             changeSection(SectionId::VSDemo, Anim::Next, 0.0f);
