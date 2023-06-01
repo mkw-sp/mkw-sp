@@ -1,6 +1,6 @@
 #pragma once
 
-#include <Common.hh>
+#include "game/util/Registry.hh"
 
 namespace System {
 
@@ -85,7 +85,7 @@ public:
         u8 localPlayerCount;
         u8 _007[0x008 - 0x007];
         Player players[12];
-        u32 courseId;
+        Registry::Course courseId;
         EngineClass engineClass;
         GameMode gameMode;
         u32 cameraMode;

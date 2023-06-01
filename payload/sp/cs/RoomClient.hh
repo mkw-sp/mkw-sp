@@ -4,6 +4,7 @@
 #include "sp/net/AsyncSocket.hh"
 
 #include <game/system/Mii.hh>
+#include <game/util/Registry.hh>
 #include <protobuf/Room.pb.h>
 
 #include <array>
@@ -35,7 +36,7 @@ public:
     void startRoom(u32 gamemode);
     void changeLocalSettings();
     void sendTeamSelect(u32 playerId);
-    void sendVote(u32 course, std::optional<Player::Properties> properties);
+    void sendVote(Registry::Course course, std::optional<Player::Properties> properties);
     void handleError(u32 error_code);
 
     static RoomClient *CreateInstance(u32 localPlayerCount, u32 ip, u16 port, u16 passcode);

@@ -110,7 +110,7 @@ public:
     REPLACE void saveGhostAsync(s32 licenseId, u32 category, u32 index, GhostFile *file,
             bool saveLicense);
 
-    std::array<u8, 0x14> courseSHA1(u32 courseId) const;
+    std::array<u8, 0x14> courseSHA1(Registry::Course courseId) const;
 
     void getLocation(u32 *location) const;
     void getLatitude(u16 *latitude) const;

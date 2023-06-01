@@ -8,6 +8,7 @@
 #include <game/ui/GlobalContext.hh>
 #include <game/ui/SectionId.hh>
 #include <game/ui/SectionManager.hh>
+
 #include <vendor/nanopb/pb_decode.h>
 #include <vendor/nanopb/pb_encode.h>
 
@@ -105,8 +106,8 @@ void RoomClient::sendTeamSelect(u32 playerId) {
     return writeTeamSelect(playerId, m_players[playerId].m_teamId);
 }
 
-void RoomClient::sendVote(u32 course, std::optional<Player::Properties> properties) {
-    return writeVote(course, properties);
+void RoomClient::sendVote(Registry::Course course, std::optional<Player::Properties> properties) {
+    return writeVote(static_cast<u32>(course), properties);
 }
 
 void RoomClient::handleError(u32 errorCode) {
@@ -520,8 +521,8 @@ bool RoomClient::onReceiveInfo(Handler &handler, RoomEvent event) {
         m_players[i].m_course = properties.course;
         m_players[i].m_properties = {properties.character, properties.vehicle,
                 properties.driftType};
-        handler.onReceiveInfo(i, properties.course, event.event.selectInfo.selectedPlayer,
-                properties.character, properties.vehicle);
+        handler.onReceiveInfo(i, static_cast<Registry::Course>(properties.course),
+                event.event.selectInfo.selectedPlayer, properties.character, properties.vehicle);
     }
     return true;
 }

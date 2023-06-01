@@ -29,11 +29,11 @@ public:
         return m_playerCount;
     }
 
-    s32 getLocalVote() {
+    Registry::Course getLocalVote() {
         return m_localVote;
     }
 
-    s32 getCourseVote(u8 playerIdx) {
+    Registry::Course getCourseVote(u8 playerIdx) {
         return m_courseVotes[playerIdx];
     }
 
@@ -47,7 +47,7 @@ public:
         m_isBattle = isBattle;
     }
 
-    void setLocalVote(s32 course);
+    void setLocalVote(Registry::Course course);
     void setPlayerTypes();
     void setSubmitted(bool submitted);
 
@@ -60,7 +60,7 @@ private:
         ~Handler();
 
         void onReceivePulse(s8 playerId) override;
-        void onReceiveInfo(s8 playerId, s32 course, u32 selectedPlayer, u32 character,
+        void onReceiveInfo(s8 playerId, Registry::Course course, u32 selectedPlayer, u32 character,
                 u32 vehicle) override;
 
     private:
@@ -71,9 +71,9 @@ private:
     Handler m_handler;
     MiiGroup m_miiGroup;
 
-    s32 m_localVote;
+    Registry::Course m_localVote;
     std::bitset<12> m_selected;
-    s32 m_courseVotes[12];
+    Registry::Course m_courseVotes[12];
     u8 m_playerCount;
     bool m_isBattle;
     bool m_submitted = false;

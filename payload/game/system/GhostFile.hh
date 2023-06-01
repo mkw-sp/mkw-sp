@@ -2,6 +2,8 @@
 
 #include "game/system/Mii.hh"
 
+#include "game/util/Registry.hh"
+
 #include <optional>
 
 namespace System {
@@ -24,7 +26,7 @@ struct RawGhostHeader {
     u32 magic;
 
     RawTime raceTime;
-    u32 courseId : 6;
+    Registry::Course courseId : 6;
     u8 _pad0 : 2;
 
     u32 vehicleId : 6;

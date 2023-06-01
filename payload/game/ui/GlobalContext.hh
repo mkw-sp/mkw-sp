@@ -55,7 +55,7 @@ public:
     u32 _3bc;
     u8 _3c0[0x3c4 - 0x3c0];
     u32 m_timeAttackGhostType;
-    s32 m_timeAttackCourseId;
+    Registry::Course m_timeAttackCourseId;
     s32 m_timeAttackLicenseId;
     u8 _3d0[0x4c8 - 0x3d0];
     u32 m_lastTitleBackground;

@@ -133,8 +133,8 @@ void RoulettePage::beforeCalc() {
             return;
         }
 
-        m_voteControl[m_hoverPlayerIdx].select(
-                votingBackPage->getCourseVote(m_selectedPlayer) + 9300);
+        auto courseId = static_cast<u32>(votingBackPage->getCourseVote(m_selectedPlayer));
+        m_voteControl[m_hoverPlayerIdx].select(courseId + 9300);
 
         m_delay = 180;
         m_stage = Stage::Selected;
@@ -160,7 +160,8 @@ void RoulettePage::beforeCalc() {
 void RoulettePage::initSelectingStage(u32 selectedPlayer) {
     auto *votingBackPage = SectionManager::Instance()->currentSection()->page<PageId::VotingBack>();
     for (u8 i = 0; i < votingBackPage->getPlayerCount(); i++) {
-        m_voteControl[i].setMessageAll(votingBackPage->getCourseVote(i) + 9300, nullptr);
+        auto courseId = static_cast<u32>(votingBackPage->getCourseVote(i));
+        m_voteControl[i].setMessageAll(courseId + 9300, nullptr);
     }
 
     m_timeDelta = 0.3;

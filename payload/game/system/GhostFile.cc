@@ -259,7 +259,7 @@ bool IsValid(const u8 *raw, u32 size) {
         return false;
     }
 
-    if (header->courseId >= 0x20) {
+    if (static_cast<u32>(header->courseId) >= 0x20) {
         return false;
     }
 
