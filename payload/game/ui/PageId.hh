@@ -4,7 +4,7 @@ namespace UI {
 
 enum class PageId {
     None = -0x1,
-
+    Empty = 0x0,
     EsrbNotice = 0x1,
     FpsNotice = 0x2,
     CorruptSave = 0x3,

@@ -3,7 +3,9 @@
 #include "game/ui/Page.hh"
 #include "game/ui/SectionId.hh"
 
+#include "game/host_system/ContextId.hh"
 #include "game/host_system/Scene.hh"
+#include "game/sound/GroupId.hh"
 
 #include <nw4r/lyt/lyt_drawInfo.hh>
 
@@ -65,14 +67,31 @@ public:
     f32 locationAdjustScaleDivider() const;
     void loadTHP();
     void loadFriendListManager();
+    void pullPage();
 
     void logDebuggingInfo(bool verbose);
 
     static System::SceneId REPLACED(GetSceneId)(SectionId id);
     static REPLACE System::SceneId GetSceneId(SectionId id);
+    static System::SceneId HandleSceneIdPatches(SectionId id);
     static const char *REPLACED(GetResourceName)(SectionId id);
     static REPLACE const char *GetResourceName(SectionId id);
-    static Sound::SoundId GetSoundId(SectionId id);
+    static const char *HandleResourceNamePatches(SectionId id);
+    static bool REPLACED(HasBackModel)(SectionId id);
+    static REPLACE bool HasBackModel(SectionId id);
+    static System::ContextId REPLACED(GetContextId)(const SectionId id);
+    static REPLACE System::ContextId GetContextId(const SectionId id);
+
+    static Sound::SoundId REPLACED(GetSoundId)(const SectionId id);
+    static REPLACE Sound::SoundId GetSoundId(const SectionId id);
+    static Sound::GroupId REPLACED(GetGroupId)(const SectionId id);
+    static REPLACE Sound::GroupId GetGroupId(const SectionId id);
+
+    static s32 REPLACED(GetPriority)(const SectionId id);
+    static REPLACE s32 GetPriority(const SectionId id);
+    static s32 REPLACED(GetSoundTrigger)(const PageId id);
+    static REPLACE s32 GetSoundTrigger(const PageId id);
+
     static bool HasRoomClient(SectionId sectionId);
     static bool HasRaceClient(SectionId sectionId);
     static bool HasOnlineManager(SectionId sectionId);
