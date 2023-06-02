@@ -13,7 +13,6 @@ class TSystem {
 public:
     TSystem();
     virtual ~TSystem();
-    virtual void dt(s32 type);
     virtual void *getVideo();
     virtual Heap *getSysHeap();
     virtual Display *getDisplay();
