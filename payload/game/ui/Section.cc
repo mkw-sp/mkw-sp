@@ -66,10 +66,56 @@ u32 Section::GetSceneId(SectionId id) {
 
 const char *Section::GetResourceName(SectionId id) {
     switch (id) {
+    case SectionId::PowerOffWii... SectionId::MissionMenu:
+        return HandleResourceNamePatches(id);
+    default:
+        panic("Unhandled extended section ID! 0x%x", static_cast<s32>(id));
+    }
+}
+
+// NOTE: This is a temporary measure until all replaced sections are migrated to new IDs
+// Do not add more patches here unless absolutely necessary!
+const char *Section::HandleResourceNamePatches(const SectionId id) {
+    switch (id) {
     case SectionId::Thumbnails:
         return "/Scene/UI/Race";
     default:
         return REPLACED(GetResourceName)(id);
+    }
+}
+
+System::ContextId Section::GetContextId(const SectionId id) {
+    // On initial implementation, a case for all extended sections should be added
+    // This case will return ContextId::SP
+    switch (id) {
+    case SectionId::PowerOffWii... SectionId::TrialMax:
+        return REPLACED(GetContextId)(id);
+    default:
+        return System::ContextId::None;
+    }
+}
+
+Sound::SoundId Section::GetSoundId(const SectionId id) {
+    switch (id) {
+    default:
+        return REPLACED(GetSoundId)(id);
+    }
+}
+
+Sound::GroupId Section::GetGroupId(const SectionId id) {
+    switch (id) {
+    default:
+        return REPLACED(GetGroupId)(id);
+    }
+}
+
+s32 Section::GetPriority(const SectionId id) {
+    // Extended sections must define a priority > -1 to prevent loading section ID -1
+    switch (id) {
+    case SectionId::PowerOffWii... SectionId::MissionMenu:
+        return REPLACED(GetPriority)(id);
+    default:
+        panic("Unhandled extended section ID! 0x%x", static_cast<s32>(id));
     }
 }
 
@@ -253,6 +299,7 @@ void Section::addPages(SectionId id) {
     REPLACED(addPages)(id);
 
     std::pair<SectionId, PageId> additions[] = {
+            // clang-format off
             // Always show the quit confirmation page
             {SectionId::TA, PageId::ConfirmQuit},
             {SectionId::VS1P, PageId::ConfirmQuit},
@@ -371,6 +418,9 @@ void Section::addPages(SectionId id) {
             {SectionId::ServicePack, PageId::Channel},
 
             {SectionId::ServicePackChannel, PageId::ServicePackChannel},
+
+            // Extended sections add their used pages here!
+            // clang-format on
     };
     for (const auto &addition : additions) {
         if (addition.first == id) {
@@ -398,6 +448,8 @@ void Section::addActivePages(SectionId id) {
             {SectionId::Voting1PVS, PageId::OnlineConnectionManager},
 
             {SectionId::ServicePackChannel, PageId::ServicePackChannel},
+
+            // Extended sections define their active pages here!
     };
     for (const auto &addition : additions) {
         if (addition.first == id) {
