@@ -1633,6 +1633,7 @@ n.build(
     ],
 )
 n.newline()
+n.default(["test"])
 
 if args.dry:
     with open('build.ninja', 'w') as out_file:
