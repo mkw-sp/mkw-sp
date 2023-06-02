@@ -1623,8 +1623,6 @@ for profile in ['DEBUG', 'TEST', 'RELEASE']:
     )
 n.newline()
 
-n.default(["test"])
-
 n.build(
     'all',
     'phony',
@@ -1635,6 +1633,7 @@ n.build(
     ],
 )
 n.newline()
+n.default(["test"])
 
 if args.dry:
     with open('build.ninja', 'w') as out_file:
