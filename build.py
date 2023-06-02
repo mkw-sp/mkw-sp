@@ -1623,6 +1623,8 @@ for profile in ['DEBUG', 'TEST', 'RELEASE']:
     )
 n.newline()
 
+n.default(["test"])
+
 n.build(
     'all',
     'phony',
