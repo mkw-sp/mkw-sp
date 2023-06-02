@@ -10,7 +10,7 @@ class CtrlRaceInputDisplay : public CtrlRaceBase {
 public:
     CtrlRaceInputDisplay();
     ~CtrlRaceInputDisplay() override;
-    void draw() override;
+    void draw(int pass) override;
     void initSelf() override;
     void calcSelf() override;
 

@@ -17,7 +17,7 @@ public:
     virtual void dt(s32 type);
     virtual void init();
     virtual void calc();
-    virtual void draw();
+    virtual void draw(int pass);
 
     void initChildren(u32 count);
     void insertChild(u32 index, UIControl *child);
@@ -65,7 +65,7 @@ public:
     ~LayoutUIControl() override;
     void init() override;
     void calc() override;
-    void draw() override;
+    void draw(int pass) override;
 
 protected:
     void vf_28() override;
