@@ -12,14 +12,14 @@ CtrlRaceInputDisplay::CtrlRaceInputDisplay() = default;
 
 CtrlRaceInputDisplay::~CtrlRaceInputDisplay() = default;
 
-void CtrlRaceInputDisplay::draw() {
+void CtrlRaceInputDisplay::draw(int pass) {
     auto *saveManager = System::SaveManager::Instance();
     auto setting = saveManager->getSetting<SP::ClientSettings::Setting::InputDisplay>();
     if (setting != SP::ClientSettings::InputDisplay::Simple) {
         return;
     }
 
-    LayoutUIControl::draw();
+    LayoutUIControl::draw(pass);
 }
 
 void CtrlRaceInputDisplay::initSelf() {
