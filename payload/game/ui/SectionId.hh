@@ -175,6 +175,13 @@ enum class SectionId {
     MissionMenu = 0x94,
 
     Max = 0x95,
+    TrialMax = 0xB2,
+    // Sections 0x95 - 0xB2 are reserved and cannot be used here
+
+    // Extensions go here {
+    // Do not explicitly assign values to prevent merge conflicts
+
+    // }
 };
 
 } // namespace UI
