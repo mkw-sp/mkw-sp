@@ -1,6 +1,7 @@
 #include "ThumbnailManager.hh"
 
 #include <egg/core/eggSystem.hh>
+#include <egg/core/eggXfbManager.hh>
 
 #include <cwchar>
 #include <iterator>
@@ -85,7 +86,7 @@ void ThumbnailManager::capture() {
 
     swprintf(path.data(), path.size(), L"/mkw-sp/thumbnails/outputs/%u/%s.xfb", m_courseId - 1,
             m_name->data());
-    auto *xfb = EGG::TSystem::Instance().xfbManager()->headXfb();
+    auto *xfb = EGG::TSystem::Instance().getXfbManager()->headXfb();
     u32 size = EGG::Xfb::CalcXfbSize(xfb->width(), xfb->height());
     Storage::WriteFile(path.data(), xfb->buffer(), size, true);
 }

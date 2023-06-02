@@ -1,12 +1,32 @@
 #pragma once
 
-#include "egg/core/eggHeap.hh"
-#include "egg/core/eggXfbManager.hh"
+#include <Common.hh>
 
 namespace EGG {
 
+class Display;
+class Heap;
+class XfbManager;
+class SceneManager;
+
 class TSystem {
 public:
+    TSystem();
+    virtual ~TSystem();
+    virtual void *getVideo();
+    virtual Heap *getSysHeap();
+    virtual Display *getDisplay();
+    virtual XfbManager *getXfbManager();
+    virtual void *getPerformanceView();
+    virtual SceneManager *getSceneManager();
+    virtual void *getAudioManager();
+    virtual void onBeginFrame();
+    virtual void onEndFrame();
+    virtual void initRenderMode();
+    virtual void initMemory();
+    virtual void run();
+    virtual void initialize();
+
     void *mem1ArenaLo() const;
     void *mem1ArenaHi() const;
     void *mem2ArenaLo() const;
@@ -14,13 +34,10 @@ public:
     Heap *eggRootMEM1() const;
     Heap *eggRootMEM2() const;
     Heap *eggRootDebug() const;
-    Heap *eggRootSystem() const;
-    XfbManager *xfbManager();
 
     static TSystem &Instance();
 
 private:
-    u8 _00[0x04 - 0x00];
     void *m_mem1ArenaLo;
     void *m_mem1ArenaHi;
     void *m_mem2ArenaLo;
@@ -30,11 +47,11 @@ private:
     Heap *m_eggRootMEM2;
     Heap *m_eggRootDebug;
     Heap *m_eggRootSystem;
-    u8 _28[0x48 - 0x28];
-    XfbManager *m_xfbManager;
-    // ...
+    u8 _28[0x74 - 0x28];
 
     static TSystem s_instance;
 };
+
+static_assert(sizeof(TSystem) == 0x74);
 
 } // namespace EGG

@@ -5,8 +5,12 @@
 namespace System {
 
 class RkSystem : public EGG::TSystem {
+public:
+    RkSystem();
+    virtual ~RkSystem();
+
 private:
-    REPLACE void initialize();
+    REPLACE void initialize() override;
     void REPLACED(initialize)();
 };
 
