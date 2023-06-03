@@ -4,8 +4,17 @@
 
 namespace Geo {
 
+enum class PixelMode {
+    //! Opaque ("OPA") draw pass
+    OPA = 1,
+
+    //! Translucent ("XLU") draw pass
+    XLU = 12,
+};
+
 class Obj {
 public:
+    Obj() = delete; // Incomplete vtable
     virtual ~Obj();
     virtual void dt(s32 type);
     virtual void vf_0c();
@@ -15,6 +24,8 @@ public:
     virtual void vf_1c();
     virtual void init() = 0;
     // ...
+
+    PixelMode pixelMode() const; // b0
 
 private:
     u8 _04[0x08 - 0x04];
