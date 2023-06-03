@@ -1398,6 +1398,7 @@
 0x8082b3a0 ObjManager_groupInsert
 0x8082b3b8 ObjManager_groupGetCount
 0x8082cad8 ObjPylon01_ct
+0x8082cc64 _ZN3Geo10ObjPylon015vf_b0Ev
 0x8082cc64 ObjPylon01_vf_b0
 0x8082dbec ObjPylon01_vf_c0
 0x8082fb78 _ZN2UI11DriverModel7setAnimEjj
