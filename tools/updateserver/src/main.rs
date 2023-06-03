@@ -5,20 +5,19 @@ use std::io::{self, ErrorKind, Read, Write};
 use std::net::SocketAddr;
 use std::time::{Duration, Instant};
 
+use anyhow::{Context, Result};
 use argon2::{Argon2, Params};
 use chrono::Utc;
-use libhydrogen::{kx, random, secretbox, sign};
-use prost::Message;
+use libhydrogen::{kx, random, sign};
+use netprotocol::update_server::*;
 use tokio::fs::OpenOptions;
-use tokio::io::{AsyncReadExt, AsyncWriteExt};
+use tokio::io::AsyncWriteExt;
 use tokio::net::{TcpListener, TcpStream};
 use tokio::runtime::Runtime;
 use tokio::sync::mpsc::{self, Sender};
 use zeroize::Zeroizing;
 
-include!(concat!(env!("OUT_DIR"), "/_.rs"));
-
-fn main() -> Result<(), Box<dyn std::error::Error>> {
+fn main() -> Result<()> {
     eprint!("Password: ");
     io::stderr().flush()?;
     let password = Zeroizing::new(passterm::read_password()?);
@@ -103,129 +102,56 @@ async fn handle(
     address: SocketAddr,
     server_keypair: kx::KeyPair,
     tx: Sender<(SocketAddr, UpdateRequest)>,
-) -> Result<(), Box<dyn std::error::Error>> {
-    let stream = Stream::new(stream, address, server_keypair, tx).await?;
-    stream.handle().await
-}
+) -> Result<()> {
+    type UpdateStream = netprotocol::async_stream::AsyncStream<
+        UpdateRequest,
+        UpdateResponse,
+        netprotocol::NNegotiator,
+    >;
 
-struct Stream {
-    stream: TcpStream,
-    address: SocketAddr,
-    message_id: u64,
-    context: secretbox::Context,
-    tx_key: secretbox::Key,
-    rx_key: secretbox::Key,
-    tx: Sender<(SocketAddr, UpdateRequest)>,
-}
+    let context = (*b"update  ").into();
+    let mut stream = UpdateStream::new(stream, server_keypair, context).await?;
 
-impl Stream {
-    async fn new(
-        mut stream: TcpStream,
-        address: SocketAddr,
-        server_keypair: kx::KeyPair,
-        tx: Sender<(SocketAddr, UpdateRequest)>,
-    ) -> Result<Stream, Box<dyn std::error::Error>> {
-        stream.set_nodelay(true)?;
+    let request = stream.read().await?.context("Disconnected before first message")?;
 
-        let mut tmp = Zeroizing::new([0u8; 48]);
-        stream.read_exact(&mut *tmp).await?;
-        let keypair = libhydrogen::kx::n_2(&(*tmp).into(), None, &server_keypair)?;
-        drop(tmp);
-        let rx_key: Zeroizing<[u8; 32]> = Zeroizing::new(keypair.rx.clone().into());
-        let rx_key = (*rx_key).into();
-        let tx_key: Zeroizing<[u8; 32]> = Zeroizing::new(keypair.tx.clone().into());
-        let tx_key = (*tx_key).into();
+    let wants_update = request.wants_update;
+    let source = Version::parse(&request)?;
+    let target = source.find_target();
+    if !wants_update && target.is_some() {
+        tx.send((address, request)).await?;
+    }
+    let mut target = target.unwrap_or(source);
+    let contents = format!("updates/{}/contents.arc", target);
+    let signature = contents.clone() + ".sig";
+    let contents = fs::read(contents).ok();
+    let mut size = contents.as_ref().and_then(|contents| contents.len().try_into().ok());
+    let signature = fs::read(signature).ok();
+    let mut signature = signature.filter(|signature| signature.len() == sign::BYTES);
 
-        Ok(Stream {
-            stream,
-            address,
-            message_id: 0,
-            context: (*b"update  ").into(),
-            rx_key,
-            tx_key,
-            tx,
-        })
+    if size.is_none() || signature.is_none() {
+        target = source;
+        size = None;
+        signature = None;
+    }
+    let response = UpdateResponse {
+        version_major: target.major as u32,
+        version_minor: target.minor as u32,
+        version_patch: target.patch as u32,
+        size: size.unwrap_or(0),
+        signature: signature.unwrap_or(vec![]),
+    };
+    stream.write(&response).await?;
+
+    let contents = match contents {
+        Some(contents) if wants_update && target != source => contents,
+        _ => return Ok(()),
+    };
+
+    for chunk in contents.chunks(0x1000) {
+        stream.write_raw(chunk).await?;
     }
 
-    async fn handle(mut self) -> Result<(), Box<dyn std::error::Error>> {
-        let request: UpdateRequest = self.read_message().await?;
-        let wants_update = request.wants_update;
-        let source = Version::parse(&request)?;
-        let target = source.find_target();
-        if !wants_update && target.is_some() {
-            self.tx.send((self.address, request)).await?;
-        }
-        let mut target = target.unwrap_or(source);
-        let contents = format!("updates/{}/contents.arc", target);
-        let signature = contents.clone() + ".sig";
-        let contents = fs::read(contents).ok();
-        let mut size = contents.as_ref().and_then(|contents| contents.len().try_into().ok());
-        let signature = fs::read(signature).ok();
-        let mut signature = signature.filter(|signature| signature.len() == sign::BYTES);
-
-        if size.is_none() || signature.is_none() {
-            target = source;
-            size = None;
-            signature = None;
-        }
-        let response = UpdateResponse {
-            version_major: target.major as u32,
-            version_minor: target.minor as u32,
-            version_patch: target.patch as u32,
-            size: size.unwrap_or(0),
-            signature: signature.unwrap_or(vec![]),
-        };
-        self.write_message(response).await?;
-
-        let contents = match contents {
-            Some(contents) if wants_update && target != source => contents,
-            _ => return Ok(()),
-        };
-        for chunk in contents.chunks(0x1000) {
-            self.write(chunk).await?;
-        }
-
-        Ok(())
-    }
-
-    async fn read(&mut self) -> Result<Vec<u8>, Box<dyn std::error::Error>> {
-        let mut size = [0u8; 2];
-        self.stream.read_exact(&mut size).await?;
-        let size = u16::from_be_bytes(size);
-        let mut tmp = vec![0; size as usize];
-        self.stream.read_exact(&mut tmp).await?;
-        let tmp = secretbox::decrypt(&tmp, self.message_id, &self.context, &self.rx_key)?;
-        self.message_id += 1;
-        Ok(tmp)
-    }
-
-    async fn read_message<M>(&mut self) -> Result<M, Box<dyn std::error::Error>>
-    where
-        M: Message + Default,
-    {
-        self.read().await.and_then(|tmp| Ok(M::decode(&*tmp)?))
-    }
-
-    async fn write(&mut self, tmp: &[u8]) -> Result<(), Box<dyn std::error::Error>> {
-        let tmp = secretbox::encrypt(&tmp, self.message_id, &self.context, &self.tx_key);
-        self.message_id += 1;
-        let size = tmp.len();
-        assert!(size <= u16::MAX as usize);
-        let size = (size as u16).to_be_bytes();
-        self.stream.write_all(&size).await?;
-        self.stream.write_all(&tmp).await?;
-        Ok(())
-    }
-
-    async fn write_message<M: Message>(
-        &mut self,
-        message: M,
-    ) -> Result<(), Box<dyn std::error::Error>>
-    where
-        M: Message,
-    {
-        self.write(&message.encode_to_vec()).await
-    }
+    Ok(())
 }
 
 #[derive(Clone, Copy, Debug, PartialEq)]
@@ -236,7 +162,7 @@ struct Version {
 }
 
 impl Version {
-    fn parse(request: &UpdateRequest) -> Result<Version, Box<dyn std::error::Error>> {
+    fn parse(request: &UpdateRequest) -> Result<Version> {
         Ok(Version {
             major: request.version_major.try_into()?,
             minor: request.version_minor.try_into()?,
@@ -244,20 +170,14 @@ impl Version {
         })
     }
 
-    fn find_target(&self) -> Option<Version> {
+    fn find_target(self) -> Option<Version> {
         let map = fs::read_to_string("map.txt").ok()?;
         for line in map.lines() {
             let (source, target) = line.split_once(' ')?;
-            let source: Vec<_> = source
-                .splitn(3, '.')
-                .map(|part| u16::from_str_radix(part, 10))
-                .collect::<Result<_, _>>()
-                .ok()?;
-            let target: Vec<_> = target
-                .splitn(3, '.')
-                .map(|part| u16::from_str_radix(part, 10))
-                .collect::<Result<_, _>>()
-                .ok()?;
+            let source: Vec<_> =
+                source.splitn(3, '.').map(str::parse).collect::<Result<_, _>>().ok()?;
+            let target: Vec<_> =
+                target.splitn(3, '.').map(str::parse).collect::<Result<_, _>>().ok()?;
             let source = Version {
                 major: source[0],
                 minor: source[1],
@@ -268,7 +188,8 @@ impl Version {
                 minor: target[1],
                 patch: target[2],
             };
-            if source == *self {
+
+            if source == self {
                 return Some(target);
             }
         }

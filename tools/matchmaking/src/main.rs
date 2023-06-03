@@ -131,7 +131,7 @@ impl Server {
 
     pub async fn client_listener(
         &self,
-        mut tcp: AsyncStream<CTSMessageOpt, STCMessageOpt>,
+        mut tcp: AsyncStream<CTSMessageOpt, STCMessageOpt, netprotocol::XXNegotiator>,
         client_id: ClientId,
     ) -> Fallible {
         while let Some(msg) = tcp.read().await? {

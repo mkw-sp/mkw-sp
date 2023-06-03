@@ -24,7 +24,7 @@ use netprotocol::{
     room_protocol::{room_request, RoomEventOpt, RoomRequest, RoomRequestOpt},
 };
 
-type RoomAsyncStream = AsyncStream<RoomRequestOpt, RoomEventOpt>;
+type RoomAsyncStream = AsyncStream<RoomRequestOpt, RoomEventOpt, netprotocol::XXNegotiator>;
 
 #[derive(Clone, Debug)]
 pub enum ServerConnection {
@@ -240,10 +240,9 @@ async fn handle_client(
     server_conn: ServerConnection,
 ) -> Result<()> {
     let context = secretbox::Context::from(*b"room    ");
-    let mut stream = AsyncStream::new(stream, server_keypair, context).await?;
+    let mut stream = RoomAsyncStream::new(stream, server_keypair, context).await?;
 
-    let request: RoomRequestOpt =
-        stream.read().await?.context("Connection closed unexpectedly!")?;
+    let request = stream.read().await?.context("Connection closed unexpectedly!")?;
     let join = match request.request {
         Some(RoomRequest::Join(join)) => join,
         _ => anyhow::bail!("Unexpected request type!"),

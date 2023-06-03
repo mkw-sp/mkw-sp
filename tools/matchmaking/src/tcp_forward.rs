@@ -62,7 +62,7 @@ impl ClientForwarder {
     }
 
     async fn handle_connection(
-        mut stream: AsyncStream<CTSMessageOpt, STCMessageOpt>,
+        mut stream: AsyncStream<CTSMessageOpt, STCMessageOpt, netprotocol::XXNegotiator>,
         logged_in_clients: Arc<DashSet<ClientId>>,
         db_pool: sqlx::PgPool,
         server: Server,
@@ -79,7 +79,7 @@ impl ClientForwarder {
 
     /// Returns Ok(true) if the login was successful, Ok(false) if logging in as guest, Err if login failed
     async fn handle_login_flow(
-        stream: &mut AsyncStream<CTSMessageOpt, STCMessageOpt>,
+        stream: &mut AsyncStream<CTSMessageOpt, STCMessageOpt, netprotocol::XXNegotiator>,
         db_pool: &sqlx::PgPool,
     ) -> Result<ClientId> {
         let Some(initial_message) = stream.read().await? else {bail!("No initial message")};

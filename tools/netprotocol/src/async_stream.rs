@@ -1,6 +1,7 @@
 use std::marker::PhantomData;
 use std::slice::SliceIndex;
 
+use crate::negotiation::*;
 use anyhow::Result;
 use libhydrogen::{kx, secretbox};
 use prost::Message;
@@ -10,9 +11,8 @@ use tokio::net::TcpStream;
 const MAX_MESSAGE_SIZE: usize = 1024;
 
 #[derive(Debug)]
-pub struct AsyncStream<R: Message + Default, W: Message> {
+pub struct AsyncStream<R: Message + Default, W: Message, N: KeyNegotiator> {
     stream: TcpStream,
-    public_key: kx::PublicKey,
     context: secretbox::Context,
     read_key: secretbox::Key,
     read_message_id: u64,
@@ -20,31 +20,17 @@ pub struct AsyncStream<R: Message + Default, W: Message> {
     read_offset: usize,
     write_key: secretbox::Key,
     write_message_id: u64,
-    _marker: PhantomData<(R, W)>,
+    _marker: PhantomData<(R, W, N)>,
 }
 
-impl<R: Message + Default, W: Message> AsyncStream<R, W> {
+impl<R: Message + Default, W: Message, N: KeyNegotiator> AsyncStream<R, W, N> {
     pub async fn new(
         mut stream: TcpStream,
         server_keypair: kx::KeyPair,
         context: secretbox::Context,
     ) -> Result<Self> {
-        let mut state = kx::State::new();
+        let keypair = N::negotiate(&mut stream, server_keypair).await?;
 
-        let mut xx1 = [0u8; kx::XX_PACKET1BYTES];
-        stream.read_exact(&mut xx1).await?;
-        let xx1 = kx::XXPacket1::from(xx1);
-
-        let mut xx2 = kx::XXPacket2::new();
-        kx::xx_2(&mut state, &mut xx2, &xx1, None, &server_keypair)?;
-        stream.write_all(xx2.as_ref()).await?;
-
-        let mut xx3 = [0u8; kx::XX_PACKET3BYTES];
-        stream.read_exact(&mut xx3).await?;
-        let xx3 = kx::XXPacket3::from(xx3);
-
-        let mut public_key = kx::PublicKey::from([0u8; kx::PUBLICKEYBYTES]);
-        let keypair = kx::xx_4(&mut state, Some(&mut public_key), &xx3, None)?;
         let read_key: [u8; 32] = keypair.rx.into();
         let read_key = secretbox::Key::from(read_key);
         let write_key: [u8; 32] = keypair.tx.into();
@@ -52,7 +38,6 @@ impl<R: Message + Default, W: Message> AsyncStream<R, W> {
 
         Ok(AsyncStream {
             stream,
-            public_key,
             context,
             read_key,
             read_message_id: 0,
@@ -62,10 +47,6 @@ impl<R: Message + Default, W: Message> AsyncStream<R, W> {
             write_message_id: 0,
             _marker: PhantomData,
         })
-    }
-
-    pub fn public_key(&self) -> &kx::PublicKey {
-        &self.public_key
     }
 
     pub fn read_key(&self) -> &secretbox::Key {
@@ -117,10 +98,9 @@ impl<R: Message + Default, W: Message> AsyncStream<R, W> {
         Ok(Some(message))
     }
 
-    pub async fn write(&mut self, message: &W) -> Result<()> {
-        let message = message.encode_to_vec();
+    pub async fn write_raw(&mut self, data: &[u8]) -> Result<()> {
         let message =
-            secretbox::encrypt(&message, self.write_message_id, &self.context, &self.write_key);
+            secretbox::encrypt(data, self.write_message_id, &self.context, &self.write_key);
         self.write_message_id += 1;
         let size = message.len();
         assert!(size <= u16::MAX as usize);
@@ -128,5 +108,9 @@ impl<R: Message + Default, W: Message> AsyncStream<R, W> {
         self.stream.write_all(&size).await?;
         self.stream.write_all(&message).await?;
         Ok(())
+    }
+
+    pub async fn write(&mut self, message: &W) -> Result<()> {
+        self.write_raw(&message.encode_to_vec()).await
     }
 }
