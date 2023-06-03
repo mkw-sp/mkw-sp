@@ -1,12 +1,13 @@
 #pragma once
 
-#include <optional>
-
 #include <Common.hh>
 
 extern "C" {
 #include <revolution.h>
 }
+
+#include <cwchar>
+#include <optional>
 
 namespace SP::Storage {
 
@@ -15,6 +16,8 @@ class IStorage;
 struct NodeId {
     IStorage *storage;
     u64 id;
+
+    bool operator==(const NodeId &) const = default;
 };
 
 enum class NodeType {
@@ -28,6 +31,11 @@ struct NodeInfo {
     u64 size;
     OSTime tick = 0;
     wchar_t name[255 + 1];
+
+    bool operator==(const NodeInfo &rhs) const {
+        return id == rhs.id && type == rhs.type && size == rhs.size && tick == rhs.tick &&
+                !wcsncmp(name, rhs.name, sizeof(name));
+    }
 };
 
 class FileHandle;
@@ -59,6 +67,8 @@ public:
     FileHandle &operator=(FileHandle &&);
     ~FileHandle();
 
+    bool operator==(const FileHandle &) const = default;
+
     std::optional<FileHandle> clone();
     bool read(void *dst, u32 size, u32 offset);
     bool write(const void *src, u32 size, u32 offset);
@@ -77,6 +87,8 @@ public:
     DirHandle(DirHandle &&);
     DirHandle &operator=(DirHandle &&);
     ~DirHandle();
+
+    bool operator==(const DirHandle &) const = default;
 
     std::optional<NodeInfo> read();
 
