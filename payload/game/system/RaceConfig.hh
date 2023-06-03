@@ -122,6 +122,7 @@ public:
     bool selectRandomCourse();
     void endRace();
 
+    REPLACE static RaceConfig *CreateInstance();
     static RaceConfig *Instance();
 
 private:
@@ -135,5 +136,7 @@ private:
 
     static RaceConfig *s_instance;
 };
+
+extern "C" void RaceConfigScenario_resetGhostPlayerTypes(RaceConfig::Scenario *self);
 
 } // namespace System
