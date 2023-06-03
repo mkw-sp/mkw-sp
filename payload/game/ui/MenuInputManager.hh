@@ -12,6 +12,8 @@ public:
         Front = 0,
         Back = 1,
         Option = 2,
+        Up = 3,
+        Down = 4,
         Left = 5,
         Right = 6,
     };
