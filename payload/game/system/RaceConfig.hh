@@ -7,6 +7,9 @@ namespace System {
 class RaceConfig {
 public:
     RaceConfig();
+    // Raw pointers to elements of parent class, copying leaves dangling!
+    RaceConfig(const RaceConfig &) = delete;
+    RaceConfig(RaceConfig &&) = delete;
     virtual ~RaceConfig();
     virtual void dt(s32 type);
 
@@ -78,6 +81,7 @@ public:
                 return false;
             }
         }
+        void resetGhostPlayerTypes();
 
         u8 _000[0x004 - 0x000];
         u8 playerCount;
@@ -122,9 +126,12 @@ public:
     bool selectRandomCourse();
     void endRace();
 
+    REPLACE static RaceConfig *CreateInstance();
     static RaceConfig *Instance();
 
 private:
+    RaceConfig *REPLACED(ct)();
+    REPLACE RaceConfig *ct();
     REPLACE static void ConfigurePlayers(Scenario &scenario, u32 screenCount);
 
     u8 _0004[0x0020 - 0x0004];

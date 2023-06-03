@@ -58,7 +58,7 @@ PATCH_REPLACE_END(RaceMenuPage_onButtonFront, 0x224)
 PATCH_B_START(RaceMenuPage_onButtonFront, 0x2e8)
     lwz r3, s_raceConfig@l (r31)
     addi r3, r3, 0x20 + 0xbf0
-    bl RaceConfigScenario_resetGhostPlayerTypes
+    bl _ZN6System10RaceConfig8Scenario21resetGhostPlayerTypesEv
 
     lwz r4, s_raceConfig@l (r31) // Original instruction
     b RaceMenuPage_onButtonFront + 0x2ec
@@ -68,7 +68,7 @@ PATCH_B_START(RaceMenuPage_onButtonFront, 0x4b8)
     lis r3, s_raceConfig@ha
     lwz r3, s_raceConfig@l (r3)
     addi r3, r3, 0x20 + 0xbf0
-    bl RaceConfigScenario_resetGhostPlayerTypes
+    bl _ZN6System10RaceConfig8Scenario21resetGhostPlayerTypesEv
 
     lis r3, s_raceConfig@ha // Original instruction
     b RaceMenuPage_onButtonFront + 0x4bc
@@ -78,7 +78,7 @@ PATCH_B_START(RaceMenuPage_onButtonFront, 0x4f8)
     lis r3, s_raceConfig@ha
     lwz r3, s_raceConfig@l (r3)
     addi r3, r3, 0x20 + 0xbf0
-    bl RaceConfigScenario_resetGhostPlayerTypes
+    bl _ZN6System10RaceConfig8Scenario21resetGhostPlayerTypesEv
 
     lis r3, s_raceConfig@ha // Original instruction
     b RaceMenuPage_onButtonFront + 0x4fc
@@ -88,7 +88,7 @@ PATCH_B_START(RaceMenuPage_onButtonFront, 0x594)
     lis r3, s_raceConfig@ha
     lwz r3, s_raceConfig@l (r3)
     addi r3, r3, 0x20 + 0xbf0
-    bl RaceConfigScenario_resetGhostPlayerTypes
+    bl _ZN6System10RaceConfig8Scenario21resetGhostPlayerTypesEv
 
     lis r3, s_raceConfig@ha // Original instruction
     b RaceMenuPage_onButtonFront + 0x598

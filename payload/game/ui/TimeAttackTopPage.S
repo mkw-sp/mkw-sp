@@ -19,7 +19,7 @@ PATCH_B_START(TimeAttackTopPage_onRefocus, 0xb4)
     lis r3, s_raceConfig@ha
     lwz r3, s_raceConfig@l (r3)
     addi r3, r3, 0x20 + 0xbf0
-    bl RaceConfigScenario_resetGhostPlayerTypes
+    bl _ZN6System10RaceConfig8Scenario21resetGhostPlayerTypesEv
 
     lis r11, s_sectionManager@ha // Original instruction
     b TimeAttackTopPage_onRefocus + 0xb8
