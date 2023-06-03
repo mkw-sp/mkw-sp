@@ -10,6 +10,8 @@ extern "C" {
 #include <sp/CourseDatabase.hh>
 #include <sp/settings/ClientSettings.hh>
 
+#include <cstring>
+
 namespace System {
 
 RaceConfig::Scenario &RaceConfig::raceScenario() {
@@ -118,6 +120,17 @@ void RaceConfig::applyCPUMode() {
     }
 }
 
+RaceConfig *RaceConfig::CreateInstance() {
+    assert(!s_instance);
+    s_instance = new RaceConfig;
+
+    s_instance->m_raceScenario.ghostBuffer = &s_instance->m_ghostBuffers[0];
+    s_instance->m_menuScenario.ghostBuffer = &s_instance->m_ghostBuffers[1];
+
+    memset(s_instance->m_ghostBuffers, 0, sizeof(s_instance->m_ghostBuffers));
+    return s_instance;
+}
+
 RaceConfig *RaceConfig::Instance() {
     return s_instance;
 }
@@ -204,6 +217,12 @@ bool RaceConfig::selectRandomCourse() {
 
     m_menuScenario.courseId = courseDatabase.entry(filter, courseIdx).courseId;
     return true;
+}
+
+extern "C" void RaceConfigScenario_resetGhostPlayerTypes(RaceConfig::Scenario *self) {
+    for (u32 i = 1; i < 12; i++) {
+        self->players[i].type = RaceConfig::Player::Type::None;
+    }
 }
 
 } // namespace System

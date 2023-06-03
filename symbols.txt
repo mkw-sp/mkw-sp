@@ -594,8 +594,8 @@
 0x8052bff8 NandManager_init
 0x8052e950 FUN_8052e950
 0x8052f4e8 _ZN6System10RaceConfig16ConfigurePlayersERNS0_8ScenarioEj
-0x8052fe58 RaceConfig_createInstance
-0x8053015c RaceConfig_ct
+0x8052fe58 _ZN6System10RaceConfig14CreateInstanceEv
+0x8053015c _ZN6System10RaceConfigC1Ev
 0x805302c4 _ZN6System10RaceConfig8initRaceEv
 0x80531ce4 _ZN6System10RaceConfig7endRaceEv
 0x80532084 _ZN6System11RaceManager14CreateInstanceEv
@@ -1399,7 +1399,6 @@
 0x8082b3b8 ObjManager_groupGetCount
 0x8082cad8 ObjPylon01_ct
 0x8082cc64 _ZN3Geo10ObjPylon015vf_b0Ev
-0x8082cc64 ObjPylon01_vf_b0
 0x8082dbec ObjPylon01_vf_c0
 0x8082fb78 _ZN2UI11DriverModel7setAnimEjj
 0x80830180 CharacterModelManager_ct
