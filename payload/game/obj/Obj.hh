@@ -16,6 +16,11 @@ public:
     virtual void init() = 0;
     // ...
 
+    enum class PixelMode {
+        Transparent = 1,
+        Opaque = 12,
+    };
+
 private:
     u8 _04[0x08 - 0x04];
 
