@@ -35,6 +35,7 @@ public:
     u32 lastSelected() const;
 
     void filter();
+    void filter(const SP::CourseDatabase::Filter &filter);
     void refreshSelection(u32 selection);
 
 private:

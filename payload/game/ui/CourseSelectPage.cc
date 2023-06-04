@@ -188,13 +188,15 @@ u32 CourseSelectPage::lastSelected() const {
 // This function must be called before the 'calc' function is called
 void CourseSelectPage::filter() {
     auto &menuScenario = System::RaceConfig::Instance()->menuScenario();
-    bool isRanking = SectionManager::Instance()->currentSection()->id() == SectionId::Rankings;
-    SP::CourseDatabase::Filter filter{menuScenario.isVs() || isRanking, menuScenario.isBattle()};
+    SP::CourseDatabase::Filter defaultFilter = {menuScenario.isVs(), menuScenario.isBattle()};
+    filter(defaultFilter);
+}
 
+// This function must be called before the 'calc' function is called
+void CourseSelectPage::filter(const SP::CourseDatabase::Filter &filter) {
     if (filter.race == m_filter.race && filter.battle == m_filter.battle) {
         return;
     }
-
     m_filter = filter;
 
     auto &courseDatabase = SP::CourseDatabase::Instance();
