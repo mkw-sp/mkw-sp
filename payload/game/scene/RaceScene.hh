@@ -13,7 +13,7 @@ public:
     REPLACE void calcSubsystems() override;
     void REPLACED(destroySubsystems)();
     REPLACE void destroySubsystems() override;
-    void vf_38() override;
+    void loadArchives() override;
     void vf_3c() override;
     void vf_40() override;
     void REPLACED(createSubsystems)();
