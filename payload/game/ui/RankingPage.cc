@@ -10,7 +10,11 @@ RankingPage::RankingPage() {
 }
 
 void RankingPage::onInit() {
-    SectionManager::Instance()->currentSection()->loadFriendListManager();
+    Section *section = SectionManager::Instance()->currentSection();
+    section->loadFriendListManager();
+
+    auto *courseSelectPage = section->page<PageId::CourseSelect>();
+    courseSelectPage->filter({true, false});
 
     REPLACED(onInit)();
 }
