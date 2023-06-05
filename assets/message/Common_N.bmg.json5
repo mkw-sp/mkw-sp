@@ -90,13 +90,13 @@
         string: null,
     },
     "9100": {
-        string: "Standaardkart S",
+        string: "Standaardkart K",
     },
     "9101": {
         string: "Standaardkart M",
     },
     "9102": {
-        string: "Standaardkart L",
+        string: "Standaardkart G",
     },
     "9103": {
         string: "Baby Booster",
@@ -105,7 +105,7 @@
         string: "Nostalgia 1",
     },
     "9105": {
-        string: "Tereinwagen",
+        string: "Terreinwagen",
     },
     "9106": {
         string: "Minibeest",
@@ -123,7 +123,7 @@
         string: "Turbo-Blooper",
     },
     "9111": {
-        string: "Piranha-wurger",
+        string: "Piranha-Wurger",
     },
     "9112": {
         string: "Kleine Reus",
@@ -144,34 +144,34 @@
         string: "Dragonetti",
     },
     "9118": {
-        string: "Standaardkart S",
+        string: "Standaardkart K",
     },
     "9119": {
         string: "Standaardkart M",
     },
     "9120": {
-        string: "Standaardkart L",
+        string: "Standaardkart G",
     },
     "9121": {
-        string: "Standaardkart S",
+        string: "Standaardkart K",
     },
     "9122": {
         string: "Standaardkart M",
     },
     "9123": {
-        string: "Standaardkart L",
+        string: "Standaardkart G",
     },
     "9124": {
         string: "",
     },
     "9150": {
-        string: "Standaardmotor S",
+        string: "Standaardmotor K",
     },
     "9151": {
         string: "Standaardmotor M",
     },
     "9152": {
-        string: "Standaardmotor L",
+        string: "Standaardmotor G",
     },
     "9153": {
         string: "Bullet-motor",
@@ -219,22 +219,22 @@
         string: "Spookrijder",
     },
     "9168": {
-        string: "Standaardmotor S",
+        string: "Standaardmotor K",
     },
     "9169": {
         string: "Standaardmotor M",
     },
     "9170": {
-        string: "Standaardmotor L",
+        string: "Standaardmotor G",
     },
     "9171": {
-        string: "Standaardmotor S",
+        string: "Standaardmotor K",
     },
     "9172": {
         string: "Standaardmotor M",
     },
     "9173": {
-        string: "Standaardmotor L",
+        string: "Standaardmotor G",
     },
     "9174": {
         string: null,
@@ -333,7 +333,7 @@
         string: "DS Woestijnheuvels",
     },
     "9322": {
-        string: "DS Peach' Tuin",
+        string: "DS Peach' Paleistuin",
     },
     "9323": {
         string: "DS Delfino-Plaza",
@@ -399,7 +399,7 @@
         string: "Kokosnootplaza",
     },
     "9366": {
-        string: "DK's Skipiste",
+        string: "DK's Skipark",
     },
     "9367": {
         string: "Wario's Goudmijn",
