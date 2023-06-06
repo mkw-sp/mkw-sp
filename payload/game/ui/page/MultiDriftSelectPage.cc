@@ -38,7 +38,7 @@ void MultiDriftSelectPage::onButtonFront(PushButton *button, u32 localPlayerId) 
 
     auto sectionId = sectionManager->currentSection()->id();
     auto *raceConfig = System::RaceConfig::Instance();
-    if (Section::GetSceneId(sectionId) == 4 /* Globe */) {
+    if (Section::GetSceneId(sectionId) == System::SceneId::Globe) {
         if (m_replacementSection == SectionId::None) {
             m_replacement = PageId::None;
             f32 delay = button->getDelay();

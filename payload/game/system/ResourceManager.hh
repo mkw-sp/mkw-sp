@@ -48,7 +48,7 @@ public:
 
     void *getFile(u32 i, const char *name, u32 *size);
 
-    static void OnCreateScene(RKSceneID sceneId);
+    static void OnCreateScene(SceneId sceneId);
     static REPLACE ResourceManager *CreateInstance();
     static ResourceManager *Instance();
 

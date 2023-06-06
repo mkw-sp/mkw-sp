@@ -2,6 +2,7 @@
 
 #include "game/system/SaveManager.hh"
 #include "game/ui/SectionManager.hh"
+#include "game/host_system/Scene.hh"
 #include "game/ui/page/RaceMenuPage.hh"
 
 namespace UI {
@@ -46,7 +47,7 @@ void SettingsPage::onInit() {
         instructionText()->load("bg", "ObiInstructionTextPopup", "ObiInstructionTextPopup",
                 nullptr);
         m_backButton.load("button", "Back", "ButtonBackPopup", 0x1, false, true);
-    } else if (Section::GetSceneId(sectionId) == 2 /* Race */) {
+    } else if (Section::GetSceneId(sectionId) == System::SceneId::Race) {
         m_backButton.load("message_window", "Back", "ButtonBack", 0x1, false, true);
         instructionText()->load("bg", "RaceObiInstructionText", "RaceObiInstructionText", nullptr);
     } else {

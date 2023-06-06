@@ -3,6 +3,7 @@
 #include "game/ui/Page.hh"
 #include "game/ui/SectionId.hh"
 
+#include <game/host_system/Scene.hh>
 #include <nw4r/lyt/lyt_drawInfo.hh>
 
 namespace UI {
@@ -66,8 +67,8 @@ public:
 
     void logDebuggingInfo(bool verbose);
 
-    static u32 REPLACED(GetSceneId)(SectionId id);
-    static REPLACE u32 GetSceneId(SectionId id);
+    static System::SceneId REPLACED(GetSceneId)(SectionId id);
+    static REPLACE System::SceneId GetSceneId(SectionId id);
     static const char *REPLACED(GetResourceName)(SectionId id);
     static REPLACE const char *GetResourceName(SectionId id);
     static Sound::SoundId GetSoundId(SectionId id);

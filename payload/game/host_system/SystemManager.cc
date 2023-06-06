@@ -138,7 +138,7 @@ void RichPresenceManager::onSectionChange(UI::SectionId sectionId) {
     std::string_view state;
     std::string_view details = "MKW-SP";
     s64 startTimestamp = 0;
-    RKSceneID sceneId = static_cast<RKSceneID>(UI::Section::GetSceneId(sectionId));
+    auto sceneId = UI::Section::GetSceneId(sectionId);
 
     switch (sectionId) {
     case UI::SectionId::Thumbnails:
@@ -314,11 +314,11 @@ void RichPresenceManager::onSectionChange(UI::SectionId sectionId) {
         break;
     default:
         switch (sceneId) {
-        case RKSceneID::Race:
+        case SceneId::Race:
             state = "In an unknown race!";
             break;
-        case RKSceneID::Menu:
-        case RKSceneID::Globe:
+        case SceneId::Menu:
+        case SceneId::Globe:
             state = "In an unknown menu!";
             break;
         default:
@@ -327,7 +327,7 @@ void RichPresenceManager::onSectionChange(UI::SectionId sectionId) {
         break;
     }
 
-    if (SP::IOSDolphin::Open() && (sceneId == RKSceneID::Race)) {
+    if (SP::IOSDolphin::Open() && (sceneId == SceneId::Race)) {
         auto timestamp = SP::IOSDolphin::GetSystemTime();
         startTimestamp = timestamp ? *timestamp / 1000 : 0;
     }

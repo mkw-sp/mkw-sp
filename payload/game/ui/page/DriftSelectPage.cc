@@ -23,7 +23,7 @@ void DriftSelectPage::onButtonFront(PushButton *button, u32 /* localPlayerId */)
     case 1:
         sectionManager->registeredPadManager().setDriftIsAuto(0, button->m_index);
         sectionManager->globalContext()->m_driftModes[0] = button->m_index + 1;
-        if (Section::GetSceneId(sectionId) == 4 /* Globe */) {
+        if (Section::GetSceneId(sectionId) == System::SceneId::Globe) {
             if (m_replacementSection == SectionId::None) {
                 m_replacement = PageId::None;
                 f32 delay = button->getDelay();

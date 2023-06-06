@@ -54,13 +54,13 @@ u16 ResourceManager::getMenuArchiveCount() const {
     return loadedCount;
 }
 
-void ResourceManager::OnCreateScene(RKSceneID sceneId) {
+void ResourceManager::OnCreateScene(SceneId sceneId) {
     switch (sceneId) {
-    case RKSceneID::Menu:
-    case RKSceneID::Race:
+    case SceneId::Menu:
+    case SceneId::Race:
         s_instance->deinitGlobeHeap();
         break;
-    case RKSceneID::Globe:
+    case SceneId::Globe:
         s_instance->initGlobeHeap();
         break;
     default:
