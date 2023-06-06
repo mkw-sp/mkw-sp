@@ -27,7 +27,8 @@ public:
 private:
     void calcSubsystems(s32 drift);
 
-    u8 _254c[0x256c - 0x254c];
+    u8 _254c[0x2568 - 0x254c];
+    EGG::ExpHeap *m_playerHeap;
 };
 static_assert(sizeof(RaceScene) == 0x256c);
 

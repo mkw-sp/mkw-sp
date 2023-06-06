@@ -4,6 +4,17 @@
 
 namespace System {
 
+enum class ArcType {
+    Race = 0,
+    Course = 1,
+    Menu = 2,
+    Font = 3,
+
+    Demo = 7,
+
+    Player = 10,
+};
+
 class MultiDvdArchive {
 public:
     enum class Format {
@@ -11,12 +22,7 @@ public:
         Single = 1,
     };
 
-    enum class Type {
-        Race = 0,
-        Course = 1,
-        Menu = 2,
-        Font = 3,
-    };
+    using Type = ArcType;
 
     MultiDvdArchive(u16 archiveCount);
     virtual ~MultiDvdArchive();

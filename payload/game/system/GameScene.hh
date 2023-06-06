@@ -51,7 +51,11 @@ public:
 
 private:
     u8 _18A0[0x18d4 - 0x18a0];
+
+public:
     HeapCollection m_rootHeapCollection;
+
+private:
     u8 _24e0[0x2514 - 0x24e0];
     u32 m_dummyAlloc0Size;
     u32 m_dummyAlloc1Size;
