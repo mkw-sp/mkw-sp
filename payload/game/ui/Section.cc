@@ -34,6 +34,7 @@
 #include "game/ui/UpdatePage.hh"
 #include "game/ui/VotingBackPage.hh"
 #include "game/ui/page/BattleModeSelectPage.hh"
+#include "game/ui/page/CourseDebugPage.hh"
 #include "game/ui/page/DriftSelectPage.hh"
 #include "game/ui/page/ResultTeamTotalPage.hh"
 
@@ -330,21 +331,25 @@ void Section::addPages(SectionId id) {
             {SectionId::Single, PageId::MissionInstruction},
             {SectionId::Single, PageId::MissionDrift},
             {SectionId::Single, PageId::MissionTutorial},
+            {SectionId::Single, PageId::CourseDebug},
             {SectionId::SingleChangeDriver, PageId::MissionLevelSelect},
             {SectionId::SingleChangeDriver, PageId::MissionStageSelect},
             {SectionId::SingleChangeDriver, PageId::MissionInstruction},
             {SectionId::SingleChangeDriver, PageId::MissionDrift},
             {SectionId::SingleChangeDriver, PageId::MissionTutorial},
+            {SectionId::SingleChangeDriver, PageId::CourseDebug},
             {SectionId::SingleChangeCourse, PageId::MissionLevelSelect},
             {SectionId::SingleChangeCourse, PageId::MissionStageSelect},
             {SectionId::SingleChangeCourse, PageId::MissionInstruction},
             {SectionId::SingleChangeCourse, PageId::MissionDrift},
             {SectionId::SingleChangeCourse, PageId::MissionTutorial},
+            {SectionId::SingleChangeCourse, PageId::CourseDebug},
             {SectionId::SingleChangeGhostData, PageId::MissionLevelSelect},
             {SectionId::SingleChangeGhostData, PageId::MissionStageSelect},
             {SectionId::SingleChangeGhostData, PageId::MissionInstruction},
             {SectionId::SingleChangeGhostData, PageId::MissionDrift},
             {SectionId::SingleChangeGhostData, PageId::MissionTutorial},
+            {SectionId::SingleChangeGhostData, PageId::CourseDebug},
 
             {SectionId::SingleSelectBTCourse, PageId::CourseSelect},
             {SectionId::SingleSelectBTCourse, PageId::GhostManager},
@@ -354,6 +359,7 @@ void Section::addPages(SectionId id) {
             {SectionId::SingleChangeGhostData, PageId::MenuMessage},
             {SectionId::SingleChangeGhostData, PageId::MessageBoardPopup},
             {SectionId::SingleChangeGhostData, PageId::SingleTop},
+            {SectionId::SingleChangeGhostData, PageId::GpClassSelect},
             {SectionId::SingleChangeGhostData, PageId::CourseSelect},
             {SectionId::SingleChangeGhostData, PageId::TimeAttackTop},
             {SectionId::SingleChangeGhostData, PageId::TimeAttackGhostList},
@@ -500,6 +506,8 @@ Page *Section::CreatePage(PageId pageId) {
         return new ServicePackChannelPage;
     case PageId::PackSelect:
         return new PackSelectPage;
+    case PageId::CourseDebug:
+        return new CourseDebugPage;
     default:
         return REPLACED(CreatePage)(pageId);
     }
