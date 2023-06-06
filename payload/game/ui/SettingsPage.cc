@@ -1,8 +1,8 @@
 #include "SettingsPage.hh"
 
+#include "game/host_system/Scene.hh"
 #include "game/system/SaveManager.hh"
 #include "game/ui/SectionManager.hh"
-#include "game/host_system/Scene.hh"
 #include "game/ui/page/RaceMenuPage.hh"
 
 namespace UI {
