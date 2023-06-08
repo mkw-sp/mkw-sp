@@ -5,6 +5,7 @@ extern "C" {
 #include "sp/Patcher.h"
 #include "sp/Payload.h"
 }
+#include "sp/security/FunctionPointer.hh"
 #include "sp/security/Memory.hh"
 #include "sp/security/StackCanary.hh"
 #include "sp/storage/Storage.hh"
@@ -173,6 +174,8 @@ void Run() {
             reinterpret_cast<u32 *>(Rel_getTextSectionEnd()));
 #endif
     Patcher_patch(PATCHER_BINARY_REL);
+    SP::FunctionPointer::DoCountRegisterPatches(reinterpret_cast<u32 *>(Rel_getTextSectionStart()),
+            reinterpret_cast<u32 *>(Rel_getTextSectionEnd()));
     Memory::ProtectRange(OS_PROTECT_CHANNEL_2, Rel_getTextSectionStart(), Rel_getRodataSectionEnd(),
             OS_PROTECT_PERMISSION_READ);
     Memory::ProtectRange(OS_PROTECT_CHANNEL_3, Payload_getTextSectionStart(),
