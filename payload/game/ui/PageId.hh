@@ -111,7 +111,7 @@ enum class PageId {
     LicenseSettingsTop = 0x67,
     LicenceEraseConfirm = 0x68,
     SingleTop = 0x69,
-    PackSelect = 0x6A,
+    GpClassSelect = 0x6A,
     CharacterSelect = 0x6B,
     VehicleSelect = 0x6C,
     DriftSelect = 0x6D,
@@ -215,6 +215,7 @@ enum class PageId {
     Ext_MinExclusive__ = 0xff,
 
     // Extensions go here {
+    PackSelect = 0x100,
     // }
 
     Ext_MaxExclusive__,

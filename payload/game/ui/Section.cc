@@ -363,10 +363,15 @@ void Section::addPages(SectionId id) {
             {SectionId::SingleChangeGhostData, PageId::BattleVehicleSelect},
 
             {SectionId::Single, PageId::MenuSettings},
+            {SectionId::Single, PageId::PackSelect},
             {SectionId::SingleChangeDriver, PageId::MenuSettings},
+            {SectionId::SingleChangeDriver, PageId::PackSelect},
             {SectionId::SingleChangeCourse, PageId::MenuSettings},
+            {SectionId::SingleChangeCourse, PageId::PackSelect},
             {SectionId::SingleChangeGhostData, PageId::MenuSettings},
+            {SectionId::SingleChangeGhostData, PageId::PackSelect},
             {SectionId::Multi, PageId::MenuSettings},
+            {SectionId::Multi, PageId::PackSelect},
 
             {SectionId::OnlineSingle, PageId::PackSelect},
             {SectionId::OnlineSingle, PageId::FriendRoomRules},
