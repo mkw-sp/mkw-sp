@@ -3,7 +3,8 @@
 #include "game/ui/Page.hh"
 #include "game/ui/SectionId.hh"
 
-#include <game/host_system/Scene.hh>
+#include "game/host_system/Scene.hh"
+
 #include <nw4r/lyt/lyt_drawInfo.hh>
 
 namespace UI {
