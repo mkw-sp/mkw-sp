@@ -5,7 +5,7 @@
 #include "game/ui/OnlineConnectionManagerPage.hh"
 #include "game/ui/SectionManager.hh"
 
-#include <game/system/RaceConfig.hh>
+#include "game/system/RaceConfig.hh"
 #include <sp/CourseDatabase.hh>
 
 #include <cstdio>
@@ -26,7 +26,7 @@ void PackSelectPage::onInit() {
 
     auto packCount = 1 - isOnline;
 
-    m_sheetCount = (packCount + std::size(m_buttons) - 1) / std::size(m_buttons);
+    m_sheetCount = (packCount + m_buttons.size() - 1) / m_buttons.size();
     m_sheetIndex = 0;
     m_lastSelected = 0;
 
@@ -34,18 +34,18 @@ void PackSelectPage::onInit() {
     setInputManager(&m_inputManager);
     m_inputManager.setWrappingMode(MultiControlInputManager::WrappingMode::Neither);
 
-    initChildren(5 + std::size(m_buttons));
+    initChildren(5 + m_buttons.size());
     insertChild(0, &m_pageTitleText, 0);
     insertChild(1, &m_sheetSelect, 0);
     insertChild(2, &m_sheetLabel, 0);
     insertChild(3, &m_scrollBar, 0);
     insertChild(4, &m_backButton, 0);
-    for (u32 i = 0; i < std::size(m_buttons); i++) {
+    for (size_t i = 0; i < m_buttons.size(); i++) {
         insertChild(5 + i, &m_buttons[i], 0);
     }
 
     m_pageTitleText.load(false);
-    for (size_t i = 0; i < std::size(m_buttons); i++) {
+    for (size_t i = 0; i < m_buttons.size(); i++) {
         char variant[0x20];
         snprintf(variant, std::size(variant), "Button%zu", i);
         m_buttons[i].load("button", "PackSelectButton", variant, 0x1, false, false);
