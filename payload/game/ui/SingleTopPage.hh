@@ -36,6 +36,7 @@ private:
 #endif
     void onBackButtonFront(PushButton *button, u32 localPlayerId);
     void onBackButtonSelect(PushButton *button, u32 localPlayerId);
+    void onBackCommon(f32 delay);
 
     template <typename T>
     using H = typename T::template Handler<SingleTopPage>;

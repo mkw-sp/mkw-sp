@@ -103,8 +103,8 @@ void SingleTopPage::onActivate() {
     }
 }
 
-void SingleTopPage::onBack(u32 localPlayerId) {
-    onBackButtonFront(nullptr, localPlayerId);
+void SingleTopPage::onBack(u32 /* localPlayerId */) {
+    onBackCommon(0);
 }
 
 void SingleTopPage::onSettingsButtonFront(PushButton *button, u32 /* localPlayerId */) {
@@ -252,9 +252,11 @@ void SingleTopPage::onMRButtonSelect(PushButton * /* button */, u32 /* localPlay
 #endif
 
 void SingleTopPage::onBackButtonFront(PushButton *button, u32 /* localPlayerId */) {
-    m_replacement = PageId::PackSelect;
+    onBackCommon(button->getDelay());
+}
 
-    f32 delay = button ? button->getDelay() : 0.0f;
+void SingleTopPage::onBackCommon(f32 delay) {
+    m_replacement = PageId::PackSelect;
     startReplace(Anim::Prev, delay);
 }
 
