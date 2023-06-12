@@ -100,6 +100,18 @@ bool Section::HasRaceClient(SectionId sectionId) {
     }
 }
 
+bool Section::HasOnlineManager(SectionId sectionId) {
+    switch (sectionId) {
+    case SectionId::OnlineSingle:
+    case SectionId::WifiSingleFriendList:
+    case SectionId::OnlineMulti:
+    case SectionId::WifiMultiFriendList:
+        return true;
+    default:
+        return false;
+    }
+}
+
 void Section::addPage(PageId pageId) {
     std::pair<SectionId, PageId> deletions[] = {
             {SectionId::Battle1P, PageId::ResultBattleUpdate},

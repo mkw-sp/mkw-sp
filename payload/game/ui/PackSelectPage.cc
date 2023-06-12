@@ -21,10 +21,8 @@ PageId PackSelectPage::getReplacement() {
 }
 
 void PackSelectPage::onInit() {
-    auto *section = SectionManager::Instance()->currentSection();
-    bool isOnline = section->isPageActive(PageId::OnlineConnectionManager);
-
-    auto packCount = 1 - isOnline;
+    auto sectionId = SectionManager::Instance()->currentSection()->id();
+    auto packCount = 1 - Section::HasOnlineManager(sectionId);
 
     m_sheetCount = (packCount + m_buttons.size() - 1) / m_buttons.size();
     m_sheetIndex = 0;
@@ -87,8 +85,8 @@ void PackSelectPage::onActivate() {
 }
 
 void PackSelectPage::onBack(u32 /* localPlayerId */) {
-    auto *section = SectionManager::Instance()->currentSection();
-    if (section->isPageActive(PageId::OnlineConnectionManager)) {
+    auto sectionId = SectionManager::Instance()->currentSection()->id();
+    if (Section::HasOnlineManager(sectionId)) {
         m_replacement = PageId::OnlineTop;
         startReplace(Anim::Prev, 0.0f);
     } else {
@@ -167,8 +165,8 @@ void PackSelectPage::onBackButtonFront(PushButton * /* button */, u32 localPlaye
 }
 
 void PackSelectPage::refresh() {
-    auto *section = SectionManager::Instance()->currentSection();
-    bool isOnline = section->isPageActive(PageId::OnlineConnectionManager);
+    auto sectionId = SectionManager::Instance()->currentSection()->id();
+    bool isOnline = Section::HasOnlineManager(sectionId);
 
     u32 packCount = 1 - isOnline;
     for (size_t i = isOnline; i < m_buttons.size(); i++) {
