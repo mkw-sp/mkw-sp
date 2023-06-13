@@ -110,7 +110,7 @@ public:
     REPLACE void saveGhostAsync(s32 licenseId, u32 category, u32 index, GhostFile *file,
             bool saveLicense);
 
-    std::array<u8, 0x14> courseSHA1(Registry::Course courseId) const;
+    Sha1 courseSHA1(Registry::Course courseId) const;
     bool isCourseReplaced(Registry::Course courseId) const;
 
     void getLocation(u32 *location) const;
@@ -148,7 +148,7 @@ private:
     static void LoadGhostsTask(void *arg);
     static void SaveGhostTask(void *arg);
 
-    static void GetCourseName(std::array<u8, 0x14> courseSHA1, char (&courseName)[0x14 * 2 + 1]);
+    static void GetCourseName(Sha1 courseSHA1, char (&courseName)[0x14 * 2 + 1]);
 
     u8 _00000[0x00014 - 0x00000];
     RawSave *m_rawSave;
@@ -170,15 +170,15 @@ private:
     bool m_canSave;
     bool m_spCanSave; // Added (was padding)
     NandResult m_result;
-    u32 m_spLicenseCount;                               // Added
-    SP::ClientSettings::Settings m_spLicenses[6];       // Added
-    std::optional<u8> m_spCurrentLicense;               // Added
-    u8 m_ghostInitStack[0x8000 /* 32 KiB */];           // Added
-    OSThread m_ghostInitThread;                         // Added
-    std::array<std::array<u8, 0x14>, 32> m_courseSHA1s; // Added
+    u32 m_spLicenseCount;                         // Added
+    SP::ClientSettings::Settings m_spLicenses[6]; // Added
+    std::optional<u8> m_spCurrentLicense;         // Added
+    u8 m_ghostInitStack[0x8000 /* 32 KiB */];     // Added
+    OSThread m_ghostInitThread;                   // Added
+    std::array<Sha1, 32> m_courseSHA1s;           // Added
 
     static SaveManager *s_instance;
-    static const std::array<std::array<u8, 0x14>, 32> s_courseSHA1s;
+    static const std::array<Sha1, 32> s_courseSHA1s;
     static const char *s_courseAbbreviations[32];
 };
 

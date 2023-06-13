@@ -100,8 +100,8 @@ void SPFooter::OnShroom(u32 lap) {
     s_instance.shroomStrategy |= lap << (15 - 5 * ++s_usedShrooms);
 }
 
-void SPFooter::OnRaceEnd(const u8 *courseSHA1) {
-    memcpy(s_instance.courseSHA1, courseSHA1, std::size(s_instance.courseSHA1));
+void SPFooter::OnRaceEnd(Sha1 courseSHA1) {
+    s_instance.courseSHA1 = courseSHA1;
 }
 
 SPFooter SPFooter::s_instance{};
@@ -142,12 +142,12 @@ GhostFooter::GhostFooter(const u8 *raw, u32 size) {
 
 GhostFooter::~GhostFooter() = default;
 
-std::optional<std::array<u8, 0x14>> GhostFooter::courseSHA1() const {
+std::optional<Sha1> GhostFooter::courseSHA1() const {
     switch (m_magic) {
     case CTGPFooter::MAGIC:
-        return std::to_array(m_ctgp.courseSHA1);
+        return m_ctgp.courseSHA1;
     case SPFooter::MAGIC:
-        return std::to_array(m_sp.courseSHA1);
+        return m_sp.courseSHA1;
     default:
         return {};
     }
