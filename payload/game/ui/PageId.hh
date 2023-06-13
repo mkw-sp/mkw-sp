@@ -215,7 +215,8 @@ enum class PageId {
     Ext_MinExclusive__ = 0xff,
 
     // Extensions go here {
-    PackSelect = 0x100,
+    // Do not explicitly assign values to prevent merge conflicts
+    PackSelect,
     // }
 
     Ext_MaxExclusive__,
