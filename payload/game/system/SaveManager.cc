@@ -490,7 +490,7 @@ void SaveManager::saveGhost(GhostFile *file) {
     m_saveGhostResult = false;
 
     auto &courseSHA1 = m_courseSHA1s[file->courseId()];
-    SPFooter::OnRaceEnd(courseSHA1.data());
+    SPFooter::OnRaceEnd(courseSHA1);
 
     Time raceTime = file->raceTime();
     if (raceTime.minutes > 99) {
@@ -545,7 +545,7 @@ void SaveManager::saveGhost(GhostFile *file) {
     }
 }
 
-void SaveManager::GetCourseName(std::array<u8, 0x14> courseSHA1, char (&courseName)[0x14 * 2 + 1]) {
+void SaveManager::GetCourseName(Sha1 courseSHA1, char (&courseName)[0x14 * 2 + 1]) {
     for (u32 i = 0; i < 0x20; i++) {
         if (courseSHA1 == s_courseSHA1s[i]) {
             snprintf(courseName, std::size(courseName), "%s", s_courseAbbreviations[i]);
@@ -556,7 +556,7 @@ void SaveManager::GetCourseName(std::array<u8, 0x14> courseSHA1, char (&courseNa
     hydro_bin2hex(courseName, std::size(courseName), courseSHA1.data(), courseSHA1.size());
 }
 
-std::array<u8, 0x14> SaveManager::courseSHA1(Registry::Course courseId) const {
+Sha1 SaveManager::courseSHA1(Registry::Course courseId) const {
     return m_courseSHA1s[static_cast<u32>(courseId)];
 }
 
@@ -568,7 +568,7 @@ SaveManager *SaveManager::Instance() {
     return s_instance;
 }
 
-const std::array<std::array<u8, 0x14>, 32> SaveManager::s_courseSHA1s = {{
+const std::array<Sha1, 32> SaveManager::s_courseSHA1s = {{
         {0x77, 0x52, 0xbb, 0x51, 0xed, 0xbc, 0x4a, 0x95, 0x37, 0x7c, 0x0a, 0x05, 0xb0, 0xe0, 0xda,
                 0x15, 0x03, 0x78, 0x66, 0x25},
         {0x90, 0x72, 0x0a, 0x7d, 0x57, 0xa7, 0xc7, 0x6e, 0x23, 0x47, 0x78, 0x2f, 0x6b, 0xde, 0x5d,
