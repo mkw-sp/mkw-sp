@@ -96,10 +96,14 @@ void PackSelectPage::onBack(u32 /* localPlayerId */) {
     auto sectionId = SectionManager::Instance()->currentSection()->id();
     if (Section::HasOnlineManager(sectionId)) {
         m_replacement = PageId::OnlineTop;
-        startReplace(Anim::Prev, 0.0f);
+    } else if (sectionId == SectionId::Multi) {
+        m_replacement = PageId::ControllerBoxes;
     } else {
         changeSection(SectionId::TitleFromMenu, Anim::Prev, 0.0f);
+        return;
     }
+
+    startReplace(Anim::Prev, 0.0f);
 }
 
 void PackSelectPage::onButtonFront(PushButton *button, u32 /* localPlayerId */) {
@@ -115,7 +119,11 @@ void PackSelectPage::onButtonFront(PushButton *button, u32 /* localPlayerId */) 
             SP::CourseDatabase::Instance().resetSelection();
         }
 
-        m_replacement = PageId::SingleTop;
+        if (section->id() == SectionId::Multi) {
+            m_replacement = PageId::MultiTop;
+        } else {
+            m_replacement = PageId::SingleTop;
+        }
     }
 
     startReplace(Anim::Next, button->getDelay());

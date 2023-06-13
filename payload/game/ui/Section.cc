@@ -354,7 +354,6 @@ void Section::addPages(SectionId id) {
             {SectionId::SingleChangeGhostData, PageId::MenuMessage},
             {SectionId::SingleChangeGhostData, PageId::MessageBoardPopup},
             {SectionId::SingleChangeGhostData, PageId::SingleTop},
-            {SectionId::SingleChangeGhostData, PageId::PackSelect},
             {SectionId::SingleChangeGhostData, PageId::CourseSelect},
             {SectionId::SingleChangeGhostData, PageId::TimeAttackTop},
             {SectionId::SingleChangeGhostData, PageId::TimeAttackGhostList},

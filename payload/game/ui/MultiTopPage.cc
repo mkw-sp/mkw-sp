@@ -83,10 +83,7 @@ void MultiTopPage::onActivate() {
 }
 
 void MultiTopPage::onBack(u32 /* localPlayerId */) {
-    m_reset = true;
-
-    m_replacement = PageId::ControllerBoxes;
-    startReplace(Anim::Prev, 0.0f);
+    onBackCommon(0.0f);
 }
 
 void MultiTopPage::onSettingsButtonFront(PushButton *button, u32 /* localPlayerId */) {
@@ -193,10 +190,14 @@ void MultiTopPage::onBTButtonSelect(PushButton * /* button */, u32 /* localPlaye
 }
 
 void MultiTopPage::onBackButtonFront(PushButton *button, u32 /* localPlayerId */) {
+    onBackCommon(button->getDelay());
+}
+
+void MultiTopPage::onBackCommon(f32 delay) {
     m_reset = true;
 
-    m_replacement = PageId::ControllerBoxes;
-    startReplace(Anim::Prev, button->getDelay());
+    m_replacement = PageId::PackSelect;
+    startReplace(Anim::Prev, delay);
 }
 
 void MultiTopPage::onBackButtonSelect(PushButton * /* button */, u32 /* localPlayerId */) {
