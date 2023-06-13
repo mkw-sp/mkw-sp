@@ -1,3 +1,10 @@
+/// In progress page for the upcoming "Track Packs" support.
+///
+/// Notes:
+/// - The first pack displayed is the "Nintendo Tracks" pack, which contains vanilla courses.
+/// This is hidden when online, due to the OnlineTopPage already allowing the user to pick
+/// "Nintendo Tracks" vs "Track Packs".
+
 #include "PackSelectPage.hh"
 
 #include "game/ui/CourseSelectPage.hh"
