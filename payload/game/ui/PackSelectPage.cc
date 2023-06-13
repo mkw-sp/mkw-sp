@@ -85,6 +85,7 @@ void PackSelectPage::onInit() {
 
 void PackSelectPage::onActivate() {
     m_replacement = PageId::None;
+    m_scrollBar.reconfigure(m_sheetCount, m_sheetIndex, m_sheetCount >= 2 ? 0x1 : 0x0);
 
     Section *section = SectionManager::Instance()->currentSection();
     auto *modelPage = section->page<PageId::Model>();
