@@ -41,7 +41,7 @@ void SectionManager::createSection() {
     m_nextAnimDir = 0;
     m_transitionFrame = -1;
     m_state = 0;
-    bool race = Section::GetSceneId(nextId) == static_cast<u32>(System::RKSceneID::Race);
+    bool race = Section::GetSceneId(nextId) == System::SceneId::Race;
     m_registeredPadManager.onCreateSection(!race);
     m_currentSection = new Section;
     m_currentSection->init(nextId);

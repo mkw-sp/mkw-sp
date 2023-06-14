@@ -104,7 +104,7 @@ void SceneManager::createScene(s32 sceneId, Scene *parent) {
     if (InitDolphinSpeed()) {
         PushDolphinSpeed(800);
     }
-    System::ResourceManager::OnCreateScene(static_cast<System::RKSceneID>(sceneId));
+    System::ResourceManager::OnCreateScene(static_cast<System::SceneId>(sceneId));
     SP::RoomManager::OnCreateScene();
     SP::RaceManager::OnCreateScene();
     REPLACED(createScene)(sceneId, parent);

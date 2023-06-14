@@ -13,7 +13,7 @@ namespace SP {
 
 static s8 GetMyPlayerID() {
     auto sectionId = UI::SectionManager::Instance()->currentSection()->id();
-    if (UI::Section::GetSceneId(sectionId) != 2 /* Race */) {
+    if (UI::Section::GetSceneId(sectionId) != System::SceneId::Race) {
         OSReport("&cNot in a race.\n");
         return -1;
     }

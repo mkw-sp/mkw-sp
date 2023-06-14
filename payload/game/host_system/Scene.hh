@@ -30,7 +30,7 @@ private:
 
 static_assert(sizeof(Scene) == 0xc70);
 
-enum class RKSceneID {
+enum class SceneId {
     // --- <SceneCreatorREL>
     Title = 0, //!< Called when REL first loaded
     Menu = 1,  //!< "メニューシーン" -> "Menu Scene"

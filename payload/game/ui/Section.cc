@@ -55,10 +55,10 @@ Vec2<f32> Section::scaleFor() const {
     return m_scaleFor;
 }
 
-u32 Section::GetSceneId(SectionId id) {
+System::SceneId Section::GetSceneId(SectionId id) {
     switch (id) {
     case SectionId::Thumbnails:
-        return 2; // Race
+        return System::SceneId::Race;
     default:
         return REPLACED(GetSceneId)(id);
     }

@@ -19,7 +19,7 @@ void CtrlMenuInstructionText::load() {
                 nullptr);
         break;
     default:
-        if (Section::GetSceneId(sectionId) == 2 /* Race */) {
+        if (Section::GetSceneId(sectionId) == System::SceneId::Race) {
             LayoutUIControl::load("bg", "RaceObiInstructionText", "RaceObiInstructionText",
                     nullptr);
         } else {
