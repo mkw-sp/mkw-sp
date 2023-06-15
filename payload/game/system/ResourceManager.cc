@@ -28,7 +28,7 @@ void ResourceManager::deinitGlobeHeap() {
 }
 
 DvdArchive *ResourceManager::getMenuArchive(size_t idx) {
-    MultiDvdArchive *archive = m_archives[static_cast<size_t>(MultiDvdArchive::Type::Menu)];
+    MultiDvdArchive *archive = m_archives[static_cast<size_t>(ResChannelId::Menu)];
     u16 loadedCount = 0;
     for (u16 i = 0; i < archive->count(); i++) {
         DvdArchive &candidate = archive->archive(i);
@@ -43,7 +43,7 @@ DvdArchive *ResourceManager::getMenuArchive(size_t idx) {
 }
 
 u16 ResourceManager::getMenuArchiveCount() const {
-    MultiDvdArchive *archive = m_archives[static_cast<size_t>(MultiDvdArchive::Type::Menu)];
+    MultiDvdArchive *archive = m_archives[static_cast<size_t>(ResChannelId::Menu)];
     u16 loadedCount = 0;
     for (u16 i = 0; i < archive->count(); i++) {
         if (archive->archive(i).state() == DvdArchive::State::Mounted) {
@@ -131,7 +131,7 @@ void ResourceManager::LoadGlobeTask(void *arg) {
 
 MultiDvdArchive *ResourceManager::loadCourse(Registry::Course courseId, EGG::Heap *heap,
         bool splitScreen) {
-    MultiDvdArchive *archive = m_archives[static_cast<size_t>(MultiDvdArchive::Type::Course)];
+    MultiDvdArchive *archive = m_archives[static_cast<size_t>(ResChannelId::Course)];
     if (archive->isLoaded()) {
         return archive;
     }

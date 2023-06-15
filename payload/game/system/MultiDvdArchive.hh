@@ -4,18 +4,18 @@
 
 namespace System {
 
+enum class ResChannelId {
+    Race = 0,
+    Course = 1,
+    Menu = 2,
+    Font = 3,
+};
+
 class MultiDvdArchive {
 public:
     enum class Format {
         Double = 0,
         Single = 1,
-    };
-
-    enum class Type {
-        Race = 0,
-        Course = 1,
-        Menu = 2,
-        Font = 3,
     };
 
     MultiDvdArchive(u16 archiveCount);
@@ -37,7 +37,7 @@ public:
     bool isLoaded();
     bool exists(const char *path);
 
-    static REPLACE MultiDvdArchive *Create(Type type);
+    static REPLACE MultiDvdArchive *Create(ResChannelId type);
 
 protected:
     DvdArchive *m_archives;

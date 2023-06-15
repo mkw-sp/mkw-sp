@@ -48,7 +48,7 @@ public:
     REPLACE MultiDvdArchive *loadMission(Registry::Course courseId, u32 missionId, EGG::Heap *heap,
             bool splitScreen);
 
-    void *getFile(u32 i, const char *name, u32 *size);
+    void *getFile(ResChannelId i, const char *name, size_t *size);
 
     static void OnCreateScene(SceneId sceneId);
     static REPLACE ResourceManager *CreateInstance();

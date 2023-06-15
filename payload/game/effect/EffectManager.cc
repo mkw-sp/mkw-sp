@@ -20,8 +20,8 @@ void EffectManager::initRace() {
     REPLACED(initRace)();
 
     auto *resourceManager = System::ResourceManager::Instance();
-    auto *breff = resourceManager->getFile(0, "RKRace_SP.breff", nullptr);
-    auto *breft = resourceManager->getFile(0, "RKRace_SP.breft", nullptr);
+    auto *breff = resourceManager->getFile(System::ResChannelId::Race, "RKRace_SP.breff", nullptr);
+    auto *breft = resourceManager->getFile(System::ResChannelId::Race, "RKRace_SP.breft", nullptr);
     s_raceSPResource = new EGG::EffectResource(breff, breft);
 }
 

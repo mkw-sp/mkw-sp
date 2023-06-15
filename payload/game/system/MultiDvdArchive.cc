@@ -73,15 +73,15 @@ u16 MultiDvdArchive::count() const {
     return m_archiveCount;
 }
 
-MultiDvdArchive *MultiDvdArchive::Create(MultiDvdArchive::Type type) {
+MultiDvdArchive *MultiDvdArchive::Create(ResChannelId type) {
     switch (type) {
-    case Type::Race:
+    case ResChannelId::Race:
         return new RaceMultiDvdArchive;
-    case Type::Course:
+    case ResChannelId::Course:
         return new CourseMultiDvdArchive;
-    case Type::Menu:
+    case ResChannelId::Menu:
         return new MenuMultiDvdArchive;
-    case Type::Font:
+    case ResChannelId::Font:
         return new FontMultiDvdArchive;
     default:
         MultiDvdArchive *archive = new MultiDvdArchive(2);
