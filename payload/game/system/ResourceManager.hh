@@ -9,6 +9,8 @@
 
 namespace System {
 
+using ResChannelId = MultiDvdArchive::Type;
+
 class ResourceManager {
 public:
     class CourseCache {
