@@ -94,7 +94,7 @@ void RaceConfig::applyItemFreq() {
     m_menuScenario.itemMode = static_cast<u32>(setting);
 }
 
-void RaceConfig::applyCPUMode() {
+bool RaceConfig::applyCPUMode() {
     SP::ClientSettings::CPUMode setting;
 
     auto *saveManager = SaveManager::Instance();
@@ -108,7 +108,7 @@ void RaceConfig::applyCPUMode() {
 
     if (setting != SP::ClientSettings::CPUMode::None) {
         m_menuScenario.cpuMode = static_cast<u32>(setting);
-        return;
+        return true;
     }
 
     for (u32 i = 1; i < 12; i++) {
@@ -116,6 +116,8 @@ void RaceConfig::applyCPUMode() {
             m_menuScenario.players[i].type = Player::Type::None;
         }
     }
+
+    return false;
 }
 
 RaceConfig *RaceConfig::Instance() {

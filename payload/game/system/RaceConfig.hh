@@ -118,7 +118,8 @@ public:
     bool isSameTeam(u32 p0, u32 p1) const;
     void applyEngineClass();
     void applyItemFreq();
-    void applyCPUMode();
+    // Returns if CPUs were added
+    bool applyCPUMode();
     bool selectRandomCourse();
     void endRace();
 

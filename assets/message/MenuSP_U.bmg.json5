@@ -1109,6 +1109,9 @@
     "10430": {
         string: "This feature is currently under development.",
     },
+    "10431": {
+        string: "You cannot start a VS race with\nno one to race against!\n\nPlease set your VS CPU difficulty\n to anything but None."
+    },
     "20000": {
         string: "Online",
     },

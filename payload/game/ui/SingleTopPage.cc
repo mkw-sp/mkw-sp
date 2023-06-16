@@ -3,6 +3,7 @@
 #include "game/system/RaceConfig.hh"
 #include "game/system/SaveManager.hh"
 #include "game/ui/CourseSelectPage.hh"
+#include "game/ui/MessagePage.hh"
 #include "game/ui/ModelPage.hh"
 #include "game/ui/SectionManager.hh"
 #include "game/ui/SettingsPage.hh"
@@ -176,11 +177,19 @@ void SingleTopPage::onVSButtonFront(PushButton *button, u32 /* localPlayerId */)
     }
 
     context->applyVehicleRestriction(false);
-    raceConfig->applyCPUMode();
     raceConfig->applyItemFreq();
     raceConfig->applyEngineClass();
 
     Section *section = SectionManager::Instance()->currentSection();
+    if (!raceConfig->applyCPUMode()) {
+        auto *messagePopup = section->page<PageId::MessagePopup>();
+
+        messagePopup->reset();
+        messagePopup->setWindowMessage(10431);
+
+        return push(PageId::MessagePopup, Anim::None);
+    }
+
     auto *courseSelectPage = section->page<PageId::CourseSelect>();
     courseSelectPage->filter();
 
