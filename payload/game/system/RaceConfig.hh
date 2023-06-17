@@ -116,6 +116,7 @@ public:
     Scenario &awardsScenario();
     u8 (&ghostBuffers())[2][11][0x2800];
     bool isSameTeam(u32 p0, u32 p1) const;
+    void applyPlayers(Player::Type otherType);
     void applyEngineClass();
     void applyItemFreq();
     void applyCPUMode();

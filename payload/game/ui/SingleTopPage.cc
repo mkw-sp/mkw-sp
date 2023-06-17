@@ -16,15 +16,6 @@ extern "C" {
 
 namespace UI {
 
-void setupPlayers(System::RaceConfig::Player::Type otherType) {
-    auto &menuScenario = System::RaceConfig::Instance()->menuScenario();
-
-    menuScenario.players[0].type = System::RaceConfig::Player::Type::Local;
-    for (u32 i = 1; i < 12; i++) {
-        menuScenario.players[i].type = otherType;
-    }
-}
-
 SingleTopPage::SingleTopPage() = default;
 
 SingleTopPage::~SingleTopPage() = default;
@@ -136,7 +127,7 @@ void SingleTopPage::onTAButtonFront(PushButton *button, u32 /* localPlayerId */)
     menuScenario.cameraMode = 0;
 
     raceConfig->applyEngineClass();
-    setupPlayers(System::RaceConfig::Player::Type::None);
+    raceConfig->applyPlayers(System::RaceConfig::Player::Type::None);
 
     Section *section = SectionManager::Instance()->currentSection();
     auto *courseSelectPage = section->page<PageId::CourseSelect>();
@@ -170,9 +161,8 @@ void SingleTopPage::onVSButtonFront(PushButton *button, u32 /* localPlayerId */)
     menuScenario.spMaxTeamSize = maxTeamSize;
     menuScenario.cameraMode = 5;
 
-    setupPlayers(System::RaceConfig::Player::Type::CPU);
-
     context->applyVehicleRestriction(false);
+    raceConfig->applyPlayers(System::RaceConfig::Player::Type::CPU);
     raceConfig->applyCPUMode();
     raceConfig->applyItemFreq();
     raceConfig->applyEngineClass();
@@ -208,9 +198,9 @@ void SingleTopPage::onBTButtonFront(PushButton *button, u32 /* localPlayerId */)
     menuScenario.gameMode = System::RaceConfig::GameMode::OfflineBT;
     menuScenario.spMaxTeamSize = maxTeamSize;
     menuScenario.cameraMode = 5;
-    setupPlayers(System::RaceConfig::Player::Type::CPU);
 
     context->applyVehicleRestriction(true);
+    raceConfig->applyPlayers(System::RaceConfig::Player::Type::CPU);
     raceConfig->applyCPUMode();
     raceConfig->applyItemFreq();
     raceConfig->applyEngineClass();
@@ -234,10 +224,13 @@ void SingleTopPage::onBTButtonSelect(PushButton * /* button */, u32 /* localPlay
 
 #if ENABLE_MISSION_MODE
 void SingleTopPage::onMRButtonFront(PushButton *button, u32 /* localPlayerId */) {
-    auto &menuScenario = System::RaceConfig::Instance()->menuScenario();
+    auto *raceConfig = System::RaceConfig::Instance();
+    auto &menuScenario = raceConfig->menuScenario();
+
     menuScenario.gameMode = System::RaceConfig::GameMode::Mission;
     menuScenario.cameraMode = 0;
-    setupPlayers(System::RaceConfig::Player::Type::None);
+
+    raceConfig->applyPlayers(System::RaceConfig::Player::Type::None);
 
     Section *section = SectionManager::Instance()->currentSection();
     auto *courseSelectPage = section->page<PageId::CourseSelect>();
