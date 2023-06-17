@@ -5,7 +5,7 @@ date:   2022-07-08 00:25:00 +0200
 author: stebler
 ---
 
-Version 0.1.6 of Mario Kart Wii - Service Pack has been released. It's a minor release containing 2 important bugfixes described below. It can be installed from the in-game updater or downloaded from [here](https://github.com/stblr/mkw-sp/releases/download/v0.1.6/mkw-sp-v0.1.6.zip).
+Version 0.1.6 of Mario Kart Wii - Service Pack has been released. It's a minor release containing 2 important bugfixes described below. It can be installed from the in-game updater or downloaded from [here](https://github.com/mkw-sp/mkw-sp/releases/download/v0.1.6/mkw-sp-v0.1.6.zip).
 
 ## Bugfixes
 

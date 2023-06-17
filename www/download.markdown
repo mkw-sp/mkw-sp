@@ -6,9 +6,9 @@ permalink: /download/
 
 # Download
 
-Latest version: [v0.1.12](https://github.com/stblr/mkw-sp/releases/download/v0.1.12/mkw-sp-v0.1.12.zip)
+Latest version: [v0.1.12](https://github.com/mkw-sp/mkw-sp/releases/download/v0.1.12/mkw-sp-v0.1.12.zip)
 
-Previous versions can be found [here](https://github.com/stblr/mkw-sp/releases).
+Previous versions can be found [here](https://github.com/mkw-sp/mkw-sp/releases).
 
 ## Install
 
@@ -28,7 +28,7 @@ You need a recent version of Dolphin. Simply add the `mkw-sp` folder to one of y
 
 ## Software licenses
 
-MKW-SP: [Expat License](https://github.com/stblr/mkw-sp/blob/main/LICENSE)
+MKW-SP: [Expat License](https://github.com/mkw-sp/mkw-sp/blob/main/LICENSE)
 
 arith64: [The Unlicense](https://github.com/glitchub/arith64/blob/master/LICENSE)
 

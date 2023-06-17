@@ -116,10 +116,10 @@ On Dolphin 5.0-17155 and later, MKW-SP can now configure a custom Discord status
 
 ## Limitations and known bugs
 
-Ghost solidity is off by one frame when switching. See [issue 44](https://github.com/stblr/mkw-sp/issues/44).
+Ghost solidity is off by one frame when switching. See [issue 44](https://github.com/mkw-sp/mkw-sp/issues/44).
 
-VS and battle settings aren't saved. See [issue 50](https://github.com/stblr/mkw-sp/issues/50).
+VS and battle settings aren't saved. See [issue 50](https://github.com/mkw-sp/mkw-sp/issues/50).
 
-On courses with the `pylon01` object, time trials with more than 4 players will desync. See [issue 94](https://github.com/stblr/mkw-sp/issues/94).
+On courses with the `pylon01` object, time trials with more than 4 players will desync. See [issue 94](https://github.com/mkw-sp/mkw-sp/issues/94).
 
 Most gecko codes won't work because of the different memory map, and because of the memory protection. This won't be fixed.

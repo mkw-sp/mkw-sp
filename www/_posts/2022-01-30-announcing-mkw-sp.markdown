@@ -9,7 +9,7 @@ Today I'm happy to announce that Mario Kart Wii - Service Pack (MKW-SP), a new M
 
 ## Goals
 
-MKW-SP is **fully open-source** and the code (including the whole history) and the issue tracker are available [on Github](https://github.com/stblr/mkw-sp), and so is my [Ghidra repository](https://drive.google.com/drive/folders/1I1VRfeut3NtPeddePutfAaZhduVdKhhc?usp=sharing). That means that anyone is free (and welcome) to implement new features. Feedback is also very appreciated and will be listened to.
+MKW-SP is **fully open-source** and the code (including the whole history) and the issue tracker are available [on Github](https://github.com/mkw-sp/mkw-sp), and so is my [Ghidra repository](https://drive.google.com/drive/folders/1I1VRfeut3NtPeddePutfAaZhduVdKhhc?usp=sharing). That means that anyone is free (and welcome) to implement new features. Feedback is also very appreciated and will be listened to.
 
 MKW-SP is **cross-platform** and supports all variants of the Wii, the Wii U, and Dolphin, as well as all 4 versions of the game, without feature disparity. If a new platform emerges I'm also open to support it if the effort is reasonable.
 

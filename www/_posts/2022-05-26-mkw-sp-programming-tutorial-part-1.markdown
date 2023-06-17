@@ -61,7 +61,7 @@ The StaticR.rel (or simply "the rel") is a relocatable (can be put anywhere in m
 
 ### Sections
 
-Both the dol and the rel are made of several sections of different types: text sections contain the actual PowerPC instructions, rodata and data sections contain read-only and read-write data respectively, while bss sections are zero-initialized. Content from all types of data sections can be directly referenced by PowerPC load and store instructions. A map of the sections for all versions of both the dol and the rel is available [here](https://github.com/stblr/mkw-sp/blob/main/port.py).
+Both the dol and the rel are made of several sections of different types: text sections contain the actual PowerPC instructions, rodata and data sections contain read-only and read-write data respectively, while bss sections are zero-initialized. Content from all types of data sections can be directly referenced by PowerPC load and store instructions. A map of the sections for all versions of both the dol and the rel is available [here](https://github.com/mkw-sp/mkw-sp/blob/main/port.py).
 
 ### The C and C++ compilation model
 

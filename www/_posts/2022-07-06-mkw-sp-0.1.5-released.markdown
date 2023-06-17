@@ -5,7 +5,7 @@ date:   2022-07-06 18:45:00 +0200
 author: stebler
 ---
 
-Version 0.1.5 of Mario Kart Wii - Service Pack has been released. It's a minor release containing various new features, improvements and bugfixes. It can be downloaded [here](https://github.com/stblr/mkw-sp/releases/download/v0.1.5/mkw-sp-v0.1.5.zip).
+Version 0.1.5 of Mario Kart Wii - Service Pack has been released. It's a minor release containing various new features, improvements and bugfixes. It can be downloaded [here](https://github.com/mkw-sp/mkw-sp/releases/download/v0.1.5/mkw-sp-v0.1.5.zip).
 
 If upgrading from an older version, you can follow the standard [instructions](/download). The `mkw-sp/disc` folder and `mkw-sp/save.bin` file can be safely removed.
 
