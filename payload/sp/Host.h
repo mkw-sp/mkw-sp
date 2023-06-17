@@ -5,7 +5,7 @@
 // Keep this value in sync with the value in the file 'mkw-sp/protobuf/UpdateRequestMessage.options'
 #define HOST_PLATFORM_BUFFER_SIZE (31 + 1)
 
-#if defined(_WIN32) || defined(__APPLE__) || defined(__linux__)
+#if defined(_WIN32) || defined(__APPLE__) || (defined(__linux__) && !defined(REVOLUTION))
 #define PLATFORM_EMULATOR
 #endif
 

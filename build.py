@@ -44,6 +44,7 @@ for arg in sys.argv[1:]:
 
 parser = argparse.ArgumentParser()
 parser.add_argument('--gdb_compatible', action='store_true')
+parser.add_argument('--clang', action='store_true')
 parser.add_argument("--dry", action="store_true")
 parser.add_argument("--ci", action="store_true")
 for feature in features:
@@ -917,7 +918,10 @@ if not devkitppc:
 n.variable('write', os.path.join('tools', 'write.py'))
 n.variable('nanopb', os.path.join('vendor', 'nanopb', 'generator', 'nanopb_generator.py'))
 n.variable('gcc', os.path.join(devkitppc, 'bin', 'powerpc-eabi-gcc'))
-n.variable('compiler', os.path.join(devkitppc, 'bin', 'powerpc-eabi-gcc'))
+if args.clang:
+    n.variable('compiler', 'clang')
+else:
+    n.variable('compiler', os.path.join(devkitppc, 'bin', 'powerpc-eabi-gcc'))
 n.variable('postprocess', 'postprocess.py')
 n.variable('port', 'port.py')
 n.variable('generate_symbol_map', 'generate_symbol_map.py')
@@ -968,11 +972,27 @@ common_cflags = [
     '-isystem', 'payload',
     '-isystem', 'vendor',
     '-isystem', 'build',
-    '-msdata=none',
     '-Wall',
     '-Wextra',
-    '-Wno-packed-bitfield-compat',
 ]
+if args.clang:
+    common_cflags += [
+        # We use a bunch of GNU extensions
+        '-std=gnu2x',
+        # libhydro will not compile in unix mode, because it will look for poll.h
+        '--target=powerpc-unknown-eabi',
+        # THE ORDER OF THESE ARGUMENTS MATTERS
+        f"-I{devkitppc}/powerpc-eabi/include/c++/12.1.0",
+        f"-I{devkitppc}/powerpc-eabi/include/c++/12.1.0/powerpc-eabi",
+        f"-I{devkitppc}\\lib\\gcc\\powerpc-eabi\\12.1.0\\include",
+        f"-I{devkitppc}\\lib\\gcc\\powerpc-eabi\\12.1.0\\include-fixed",
+        f"-I{devkitppc}/powerpc-eabi/include",
+    ]
+else:
+    common_cflags += [
+        '-Wno-packed-bitfield-compat',
+        '-msdata=none',
+    ]
 common_ccflags = [
     '-DREVOLUTION',
     '-fno-asynchronous-unwind-tables',
@@ -984,14 +1004,34 @@ common_ccflags = [
     '-isystem', 'payload',
     '-isystem', 'vendor',
     '-isystem', 'build',
-    '-msdata=none',
     '-std=c++23',
     '-Wall',
     '-Wextra',
     '-Wno-delete-non-virtual-dtor',
-    '-Wno-packed-bitfield-compat',
     '-Wsuggest-override',
 ]
+if args.clang:
+    common_ccflags += [
+        # We use GNU extensions
+        '-std=gnu++2b',
+        # We must set it to linux to get size_t to match DKP GCC.
+        '--target=powerpc-linux',
+        '-Wno-unused-private-field',
+        '-fno-c++-static-destructors',
+        '-fno-PIC',
+        '-fno-use-init-array',
+        # THE ORDER OF THESE ARGUMENTS MATTERS
+        f"-I{devkitppc}/powerpc-eabi/include/c++/12.1.0",
+        f"-I{devkitppc}/powerpc-eabi/include/c++/12.1.0/powerpc-eabi",
+        f"-I{devkitppc}\\lib\\gcc\\powerpc-eabi\\12.1.0\\include",
+        f"-I{devkitppc}\\lib\\gcc\\powerpc-eabi\\12.1.0\\include-fixed",
+        f"-I{devkitppc}/powerpc-eabi/include",
+    ]
+elif "GCC":
+    common_ccflags += [
+        '-Wno-packed-bitfield-compat',
+        '-msdata=none',
+    ]
 if args.gdb_compatible:
     common_cflags += ['-DGDB_COMPATIBLE=1']
     common_ccflags += ['-DGDB_COMPATIBLE=1']
