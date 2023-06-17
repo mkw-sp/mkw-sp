@@ -916,6 +916,7 @@ if not devkitppc:
 
 n.variable('write', os.path.join('tools', 'write.py'))
 n.variable('nanopb', os.path.join('vendor', 'nanopb', 'generator', 'nanopb_generator.py'))
+n.variable('gcc', os.path.join(devkitppc, 'bin', 'powerpc-eabi-gcc'))
 n.variable('compiler', os.path.join(devkitppc, 'bin', 'powerpc-eabi-gcc'))
 n.variable('postprocess', 'postprocess.py')
 n.variable('port', 'port.py')
@@ -1046,7 +1047,7 @@ if args.ci:
 
 n.rule(
     'S',
-    command = '$compiler -MD -MT $out -MF $out.d $Sflags -c $in -o $out',
+    command = '$gcc -MD -MT $out -MF $out.d $Sflags -c $in -o $out',
     depfile = '$out.d',
     deps = 'gcc',
     description = 'S $out',
@@ -1055,7 +1056,7 @@ n.newline()
 
 n.rule(
     'incbin',
-    command = '$compiler -DNAME=$name -DPATH=$path -c Incbin.S -o $out',
+    command = '$gcc -DNAME=$name -DPATH=$path -c Incbin.S -o $out',
     description = 'INCBIN $out',
 )
 n.newline()
@@ -1094,7 +1095,7 @@ n.newline()
 
 n.rule(
     'ld',
-    command = '$compiler $ldflags $in -o $out',
+    command = '$gcc $ldflags $in -o $out',
     description = 'LD $out',
 )
 n.newline()
