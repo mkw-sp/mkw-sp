@@ -87,6 +87,7 @@ public:
     const MenuInputManager *inputManager() const;
     MenuInputManager *inputManager();
     REPLACE void calc();
+    void deactivate();
 
     s32 frame() const {
         return m_frame;

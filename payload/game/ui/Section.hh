@@ -66,14 +66,18 @@ public:
     f32 locationAdjustScaleDivider() const;
     void loadTHP();
     void loadFriendListManager();
+    void pullPage();
 
     void logDebuggingInfo(bool verbose);
 
     static u32 REPLACED(GetSceneId)(SectionId id);
     static REPLACE u32 GetSceneId(SectionId id);
+    static u32 HandleSceneIdPatches(SectionId id);
     static const char *REPLACED(GetResourceName)(SectionId id);
     static REPLACE const char *GetResourceName(SectionId id);
     static const char *HandleResourceNamePatches(SectionId id);
+    static bool REPLACED(HasBackModel)(SectionId id);
+    static REPLACE bool HasBackModel(SectionId id);
     static System::ContextId REPLACED(GetContextId)(const SectionId id);
     static REPLACE System::ContextId GetContextId(const SectionId id);
 
@@ -84,6 +88,8 @@ public:
 
     static s32 REPLACED(GetPriority)(const SectionId id);
     static REPLACE s32 GetPriority(const SectionId id);
+    static s32 REPLACED(GetSoundTrigger)(const PageId id);
+    static REPLACE s32 GetSoundTrigger(const PageId id);
 
     static bool HasRoomClient(SectionId sectionId);
     static bool HasRaceClient(SectionId sectionId);

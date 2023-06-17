@@ -13,6 +13,7 @@
 #include "game/ui/ModelRenderPage.hh"
 #include "game/ui/MultiTeamSelectPage.hh"
 #include "game/ui/MultiTopPage.hh"
+#include "game/ui/NoLongerAwesomePage.hh"
 #include "game/ui/OnlineConnectionManagerPage.hh"
 #include "game/ui/OnlineModeSelectPage.hh"
 #include "game/ui/OnlineTeamSelectPage.hh"
@@ -55,7 +56,24 @@ Vec2<f32> Section::scaleFor() const {
     return m_scaleFor;
 }
 
+// Leave it to Nintendo to fuck up the simplest helper function
+void Section::pullPage() {
+    m_activePages[--m_activePageCount]->deactivate();
+    m_activePages[m_activePageCount] = nullptr;
+}
+
 u32 Section::GetSceneId(SectionId id) {
+    switch(id) {
+    case SectionId::PowerOffWii... SectionId::MissionMenu:
+        return HandleSceneIdPatches(id);
+    case SectionId::ExtendedDebug:
+        return 4;
+    default:
+        panic("Unhandled extended section ID! 0x%x", static_cast<s32>(id));
+    }
+}
+
+u32 Section::HandleSceneIdPatches(SectionId id) {
     switch (id) {
     case SectionId::Thumbnails:
         return 2; // Race
@@ -68,6 +86,8 @@ const char *Section::GetResourceName(SectionId id) {
     switch (id) {
     case SectionId::PowerOffWii... SectionId::MissionMenu:
         return HandleResourceNamePatches(id);
+    case SectionId::ExtendedDebug:
+        return "/Scene/UI/Globe";
     default:
         panic("Unhandled extended section ID! 0x%x", static_cast<s32>(id));
     }
@@ -84,12 +104,23 @@ const char *Section::HandleResourceNamePatches(const SectionId id) {
     }
 }
 
+bool Section::HasBackModel(const SectionId id) {
+    switch (id) {
+    case SectionId::ExtendedDebug:
+        return false;
+    default:
+        return REPLACED(HasBackModel)(id);
+    }
+}
+
 System::ContextId Section::GetContextId(const SectionId id) {
     // On initial implementation, a case for all extended sections should be added
     // This case will return ContextId::SP
     switch (id) {
     case SectionId::PowerOffWii... SectionId::TrialMax:
         return REPLACED(GetContextId)(id);
+    case SectionId::ExtendedDebug:
+        return System::ContextId::SP;
     default:
         return System::ContextId::None;
     }
@@ -97,6 +128,8 @@ System::ContextId Section::GetContextId(const SectionId id) {
 
 Sound::SoundId Section::GetSoundId(const SectionId id) {
     switch (id) {
+    case SectionId::ExtendedDebug:
+        return Sound::SoundId::SEQ_O_EARTH;
     default:
         return REPLACED(GetSoundId)(id);
     }
@@ -104,6 +137,8 @@ Sound::SoundId Section::GetSoundId(const SectionId id) {
 
 Sound::GroupId Section::GetGroupId(const SectionId id) {
     switch (id) {
+    case SectionId::ExtendedDebug:
+        return Sound::GroupId::Online;
     default:
         return REPLACED(GetGroupId)(id);
     }
@@ -112,10 +147,28 @@ Sound::GroupId Section::GetGroupId(const SectionId id) {
 s32 Section::GetPriority(const SectionId id) {
     // Extended sections must define a priority > -1 to prevent loading section ID -1
     switch (id) {
-    case SectionId::PowerOffWii... SectionId::MissionMenu:
+    case SectionId::None... SectionId::MissionMenu:
         return REPLACED(GetPriority)(id);
+    case SectionId::ExtendedDebug:
+        return 0;
     default:
         panic("Unhandled extended section ID! 0x%x", static_cast<s32>(id));
+    }
+}
+
+s32 Section::GetSoundTrigger(const PageId id) {
+    SP_LOG("[GetSoundTrigger] Page ID: %x", static_cast<s32>(id));
+    switch (id) {
+    case PageId::Empty... PageId::Max:
+        return REPLACED(GetSoundTrigger)(id);
+    case PageId::NoLongerAwesomeSub1:
+        return 0;
+    case PageId::NoLongerAwesomeSub2:
+        return 1;
+    case PageId::NoLongerAwesomeSub3:
+        return 2;
+    default:
+        return 6;
     }
 }
 
@@ -420,6 +473,13 @@ void Section::addPages(SectionId id) {
             {SectionId::ServicePackChannel, PageId::ServicePackChannel},
 
             // Extended sections add their used pages here!
+            {SectionId::ExtendedDebug, PageId::Obi},
+            {SectionId::ExtendedDebug, PageId::Globe},
+            {SectionId::ExtendedDebug, PageId::ModelRender},
+            {SectionId::ExtendedDebug, PageId::NoLongerAwesome},
+            {SectionId::ExtendedDebug, PageId::NoLongerAwesomeSub1},
+            {SectionId::ExtendedDebug, PageId::NoLongerAwesomeSub2},
+            {SectionId::ExtendedDebug, PageId::NoLongerAwesomeSub3},
             // clang-format on
     };
     for (const auto &addition : additions) {
@@ -450,6 +510,10 @@ void Section::addActivePages(SectionId id) {
             {SectionId::ServicePackChannel, PageId::ServicePackChannel},
 
             // Extended sections define their active pages here!
+            {SectionId::ExtendedDebug, PageId::Obi},
+            {SectionId::ExtendedDebug, PageId::Globe},
+            {SectionId::ExtendedDebug, PageId::ModelRender},
+            {SectionId::ExtendedDebug, PageId::NoLongerAwesome},
     };
     for (const auto &addition : additions) {
         if (addition.first == id) {
@@ -526,6 +590,14 @@ Page *Section::CreatePage(PageId pageId) {
         return new SettingsPagePopup;
     case PageId::ServicePackChannel:
         return new ServicePackChannelPage;
+    case PageId::NoLongerAwesome:
+        return new NoLongerAwesomePage;
+    case PageId::NoLongerAwesomeSub1:
+        return new NoLongerAwesomeSubPage1;
+    case PageId::NoLongerAwesomeSub2:
+        return new NoLongerAwesomeSubPage2;
+    case PageId::NoLongerAwesomeSub3:
+        return new NoLongerAwesomeSubPage3;
     default:
         return REPLACED(CreatePage)(pageId);
     }

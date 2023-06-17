@@ -177,6 +177,7 @@ enum class SectionId {
     Max = 0x95,
     TrialMax = 0xB2,
     // Sections 0x95 - 0xB2 are reserved and cannot be used here
+    ExtendedDebug,
 };
 
 } // namespace UI

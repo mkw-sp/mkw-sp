@@ -287,6 +287,8 @@ asset_in_files = {
         os.path.join('button', 'ctrl', 'CharacterSelect4_2_Multi.brctr.json5'),
         os.path.join('button', 'ctrl', 'CharacterSelect4_3_Multi.brctr.json5'),
         os.path.join('button', 'blyt', 'common_w117_mii_suit.brlyt.json5'),
+        # This page cannot afford to be made any less awesome
+        os.path.join('button', 'ctrl', 'ServicePackTopButton.brctr.json5'),
     ],
     os.path.join('Scene', 'UI', 'MenuMultiSP.arc.lzma'): [
         os.path.join('button', 'anim', 'common_w083_earth_chat_message_fade_in.brlan.json5'),

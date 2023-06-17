@@ -83,7 +83,7 @@ void TopMenuPage::onButtonFront(PushButton *button) {
     if (button->m_index == 6) {
         if (!SectionManager::Instance()->saveManagerProxy()->savingDisabled()) {
             initRaceConfig(1);
-            requestChangeSection(SectionId::ServicePackChannel, button);
+            requestChangeSection(SectionId::ExtendedDebug, button);
         }
     }
 
