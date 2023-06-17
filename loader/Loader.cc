@@ -123,9 +123,7 @@ std::optional<Apploader::GameEntryFunc> Run() {
         return {};
     }
     if (!*isDolClean) {
-        Console::Print(
-                "Please ensure that the file 'main.dol' is not modified\n"
-                "in any capacity!");
+        Console::Print("Please ensure the game disk is not modified in any capacity!");
         return {};
     }
 
