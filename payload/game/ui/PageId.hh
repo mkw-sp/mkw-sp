@@ -115,7 +115,7 @@ enum class PageId {
     CharacterSelect = 0x6B,
     VehicleSelect = 0x6C,
     DriftSelect = 0x6D,
-    CourseSelect = 0x6E, // Replaces RaceCupSelect
+    RaceCupSelect = 0x6E,
     // Disabled {
     RaceCourseSelect = 0x6F,
     // }
@@ -141,19 +141,19 @@ enum class PageId {
     MultiVehicleSelect = 0x81,
     MultiDriftSelect = 0x82,
     MultiTeamSelect = 0x83,
-    DirectConnection = 0x84, // Replaces WifiConnect (or something)
+    WifiConnectOrSomething = 0x84,
     WifiFirstPlay = 0x85,
     WifiDataConsent = 0x86,
-    WifiDisconnect = 0x87,          // "Disconnects you"
-    OnlineConnectionManager = 0x88, // Replaces unknown page
+    WifiDisconnect = 0x87, // "Disconnects you"
+    UnkPage88 = 0x88,
     WifiConnectionFailed = 0x89,
     WifiMultiConfirm = 0x8A,
-    OnlineTop = 0x8B,        // Replaces WifiTop
-    OnlineModeSelect = 0x8C, // Replaces OnlineModeSelect
+    WifiTop = 0x8B,
+    OLD_OnlineModeSelect = 0x8C,
     WifiFriendMenu = 0x8D,
-    OnlineTeamSelect = 0x8E, // Replaces MkChannelFriendMenu
-    RandomMatching = 0x8F,   // Replaces Global Search Manager
-    VotingBack = 0x90,       // Replaces CountDownTimer
+    MkChannelFriendMenu = 0x8E,
+    GlobalSearchManager = 0x8F,
+    CountDownTimer = 0x90,
     WifiPlayerList = 0x91,
     Roulette = 0x92,
     Unknown93 = 0x93, // "Present in live view?"
@@ -163,16 +163,16 @@ enum class PageId {
     WifiNoFriendsPopup = 0x97,
     WifiFriendRemoveConfirm = 0x98,
     WifiFriendRemoving = 0x99,
-    FriendRoomRules = 0x9A, // Replaces FriendJoin
-    FriendMatching = 0x9B,  // Replaces "waiting" text
-    FriendRoomBack = 0x9C,  // Replaces Friend Room Manager
+    FriendJoin = 0x9A,
+    WaitingText = 0x9B,
+    FriendRoomManager = 0x9C,
     FriendRoom = 0x9D,
     FriendRoomMessageSelect = 0x9E,
 
-    ServicePackTop = 0xA2,   // Replaces ChannelTop
-    StorageBenchmark = 0xA3, // Replaces ChannelRanking
-    ServicePackTools = 0xA4, // Replaces ChannelGhost
-    UnknownA5 = 0xA5,        // "Dummy? Seems to redirect to 0xA6"
+    ChannelTop = 0xA2,
+    ChannelRanking = 0xA3,
+    ChannelGhost = 0xA4,
+    UnknownA5 = 0xA5, // "Dummy? Seems to redirect to 0xA6"
     EnterFriendCode = 0xA6,
     GhostManager = 0xA7,
     Ranking = 0xA8,
@@ -198,14 +198,14 @@ enum class PageId {
     OptionAwait = 0xC7,
     OptionMessage = 0xC8,
     OptionConfirm = 0xC9,
-    Channel = 0xCA, // Replaces ChannelExplanation
-    Update = 0xCB,  // Replaces ChannelConfirm
+    ChannelExplanation = 0xCA,
+    ChannelConfirm = 0xCB,
     OptionsBackground = 0xCC,
 
-    MenuSettings = 0xCE,  // Replaces LicenseRecordsOverall
-    SettingsPopup = 0xCF, // Replaces LicenseRecordsFavorites
+    LicenseRecordsOverall = 0xCE,
+    LicenseRecordsFavorites = 0xCF,
     // Disabled {
-    ServicePackChannel = 0xD0, // Replaces LicenseRecordsFriends
+    LicenseRecordsFriends = 0xD0,
     LicenseRecordsWFC = 0xD1,
     LicenseRecordsOther = 0xD2,
     // }
@@ -218,6 +218,27 @@ enum class PageId {
     // Do not explicitly assign values to prevent merge conflicts
     PackSelect,
     CourseDebug,
+
+    CourseSelect,            // Used to replace RaceCupSelect
+    DirectConnection,        // Used to replace WifiConnect (or something)
+    OnlineConnectionManager, // Used to replace unknown page
+    OnlineTop,               // Used to replace WifiTop
+    OnlineModeSelect,        // Used to replace OnlineModeSelect
+    OnlineTeamSelect,        // Used to replace MkChannelFriendMenu
+    RandomMatching,          // Used to replace Global Search Manager
+    VotingBack,              // Used to replace CountDownTimer
+    FriendRoomRules,         // Used to replace FriendJoin
+    FriendMatching,          // Used to replace "waiting" text
+    FriendRoomBack,          // Used to replace Friend Room Manager
+    ServicePackTop,          // Used to replace ChannelTop
+    StorageBenchmark,        // Used to replace ChannelRanking
+    ServicePackTools,        // Used to replace ChannelGhost
+    Channel,                 // Used to replace ChannelExplanation
+    Update,                  // Used to replace ChannelConfirm
+    MenuSettings,            // Used to replace LicenseRecordsOverall
+    SettingsPopup,           // Used to replace LicenseRecordsFavorites
+    ServicePackChannel,      // Used to replace LicenseRecordsFriends
+
     // }
 
     Ext_MaxExclusive__,
