@@ -173,7 +173,7 @@
     "10179": "Sort ghosts by their pace into lap 2.",
     "10180": "Sort ghosts by their pace into lap 3.",
     "10181": "The {arg message|0} storage benchmark succeeded.\nRank: {arg message|1}\n{arg integer|0 0} KiB: R {arg string|0} MiB/s - W {arg string|1} MiB/s\n{arg integer|1 0} KiB: R {arg string|2} MiB/s - W {arg string|3} MiB/s\n{arg integer|2 0} KiB: R {arg string|4} MiB/s - W {arg string|5} MiB/s\n{arg integer|3 0} KiB: R {arg string|6} MiB/s - W {arg string|7} MiB/s",
-    "10182": "{arg message|0} ({arg integer|0 0}/{arg integer|1 0})",
+    "10182": "{arg message|0} ({arg integer|0 0})",
     "10183": "Player Tags",
     "10184": "{arg integer|0 0}",
     "10185": "Display at most {arg integer|0 0} {arg cond messages|0 10186 10187} at once.",

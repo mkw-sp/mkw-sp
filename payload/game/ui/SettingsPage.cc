@@ -106,7 +106,6 @@ void SettingsPage::onCategoryValueChange(TextUpDownValueControl::TextControl *te
         MessageInfo info{};
         info.messageIds[0] = SP::ClientSettings::categoryMessageIds[categoryInfo.categoryIndex];
         info.intVals[0] = categoryInfo.categorySheetIndex + 1;
-        info.intVals[1] = categoryInfo.categorySheetCount;
         text->setMessageAll(10182, &info);
     } else {
         text->setMessageAll(SP::ClientSettings::categoryMessageIds[categoryInfo.categoryIndex]);
