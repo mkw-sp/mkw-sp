@@ -48,9 +48,4 @@ bool KartMove::activateTcLightning() {
     return REPLACED(activateTcLightning)();
 }
 
-void KartMove::activateBullet(u32 r4) {
-    REPLACED(activateBullet)(r4);
-    setBulletSpeedLimit();
-}
-
 } // namespace Kart

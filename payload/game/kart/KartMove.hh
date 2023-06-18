@@ -30,8 +30,6 @@ public:
     REPLACE void calcBlink();
     bool REPLACED(activateTcLightning)();
     REPLACE bool activateTcLightning();
-    void REPLACED(activateBullet)(u32 r4);
-    REPLACE void activateBullet(u32 r4);
 
 private:
     u8 _010[0x020 - 0x010];
