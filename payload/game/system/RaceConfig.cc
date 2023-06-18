@@ -38,6 +38,14 @@ bool RaceConfig::isSameTeam(u32 p0, u32 p1) const {
     return m_raceScenario.players[p0].spTeam == m_raceScenario.players[p1].spTeam;
 }
 
+void RaceConfig::applyPlayers(Player::Type otherType) {
+    m_menuScenario.players[0].type = Player::Type::Local;
+
+    for (u32 i = 1; i < 12; i++) {
+        m_menuScenario.players[i].type = otherType;
+    }
+}
+
 void RaceConfig::applyEngineClass() {
     auto *saveManager = SaveManager::Instance();
     auto setting = SP::ClientSettings::EngineClass::CC150;
