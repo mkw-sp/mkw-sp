@@ -1398,6 +1398,8 @@ for region in ['P', 'E', 'J', 'K']:
         code_out_files[profile]['loader'] += [out_file]
 n.newline()
 
+loader_base = 0x80e00000 if args.gdb_compatible else 0x80b00000
+
 for fmt in ['binary', 'elf32-powerpc']:
     for profile in ['DEBUG', 'RELEASE']:
         suffix = 'D' if profile == 'DEBUG' else ''
@@ -1409,7 +1411,7 @@ for fmt in ['binary', 'elf32-powerpc']:
             variables = {
                 'ldflags' : ' '.join([
                     *common_ldflags,
-                    '-Wl,--defsym,base=0x80b00000',
+                    f'-Wl,--defsym,base={loader_base}',
                     '-Wl,--entry=start',
                     f'-Wl,--oformat,{fmt}',
                     '-Wl,-T,' + os.path.join('common', 'RMC.ld'),
