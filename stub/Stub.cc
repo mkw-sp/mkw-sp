@@ -228,7 +228,13 @@ static std::optional<LoaderEntryFunc> Run() {
     }
     Console::Print(" done.\n");
     Console::Print("Decompressing the loader...");
+    // Because the stub is never updated, we can't actually change this in production unfortunately.
+    // We move it to prevent overlap as the payload gets arbitrarily large.
+#ifdef GDB_COMPATIBLE
+    u8 *loader = reinterpret_cast<u8 *>(0x80e00000);
+#else
     u8 *loader = reinterpret_cast<u8 *>(0x80b00000);
+#endif
     std::optional<size_t> loaderSize = LZMA::Decode(file->data, loader, file->size, 0xb00000);
     if (!loaderSize) {
         Console::Print(" failed!\n");
