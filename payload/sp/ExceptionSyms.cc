@@ -10,7 +10,7 @@ __throw_out_of_range_fmt(const char *, ...) {
 }
 
 // Clang-only
-void __cxa_pure_virtual() {
+extern "C" void __cxa_pure_virtual() {
     panic("__cxa_pure_virtual");
 }
 
