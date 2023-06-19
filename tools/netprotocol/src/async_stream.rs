@@ -15,12 +15,11 @@ pub struct AsyncStream<R: Message + Default, W: Message, N: KeyNegotiator> {
     stream: TcpStream,
     context: secretbox::Context,
     read_key: secretbox::Key,
-    read_message_id: u64,
     read_buffer: [u8; MAX_MESSAGE_SIZE],
     read_offset: usize,
     write_key: secretbox::Key,
-    write_message_id: u64,
-    _marker: PhantomData<(R, W, N)>,
+    negotiator: N,
+    _marker: PhantomData<(R, W)>,
 }
 
 impl<R: Message + Default, W: Message, N: KeyNegotiator> AsyncStream<R, W, N> {
@@ -29,7 +28,8 @@ impl<R: Message + Default, W: Message, N: KeyNegotiator> AsyncStream<R, W, N> {
         server_keypair: kx::KeyPair,
         context: secretbox::Context,
     ) -> Result<Self> {
-        let keypair = N::negotiate(&mut stream, server_keypair).await?;
+        let negotiator = N::default();
+        let keypair = negotiator.negotiate(&mut stream, server_keypair).await?;
 
         let read_key: [u8; 32] = keypair.rx.into();
         let read_key = secretbox::Key::from(read_key);
@@ -40,11 +40,10 @@ impl<R: Message + Default, W: Message, N: KeyNegotiator> AsyncStream<R, W, N> {
             stream,
             context,
             read_key,
-            read_message_id: 0,
             read_buffer: [0; MAX_MESSAGE_SIZE],
             read_offset: 0,
             write_key,
-            write_message_id: 0,
+            negotiator,
             _marker: PhantomData,
         })
     }
@@ -86,22 +85,29 @@ impl<R: Message + Default, W: Message, N: KeyNegotiator> AsyncStream<R, W, N> {
                 anyhow::ensure!(self.read_offset == 0, "Unexpected eof!");
             }
         }
+
+        let read_id = self.negotiator.read_message_id();
         let message = secretbox::decrypt(
             &self.read_buffer[2..size],
-            self.read_message_id,
+            *read_id,
             &self.context,
             &self.read_key,
         )?;
-        self.read_message_id += 1;
+        *read_id += 1;
         let message = R::decode(&*message)?;
         self.read_offset = 0;
         Ok(Some(message))
     }
 
     pub async fn write_raw(&mut self, data: &[u8]) -> Result<()> {
-        let message =
-            secretbox::encrypt(data, self.write_message_id, &self.context, &self.write_key);
-        self.write_message_id += 1;
+        let write_id = self.negotiator.write_message_id();
+        let message = secretbox::encrypt(
+            data,
+            *write_id,
+            &self.context,
+            &self.write_key,
+        );
+        *write_id += 1;
         let size = message.len();
         assert!(size <= u16::MAX as usize);
         let size = (size as u16).to_be_bytes();

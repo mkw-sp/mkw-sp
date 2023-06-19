@@ -6,21 +6,32 @@ use tokio::{
 };
 
 #[async_trait::async_trait]
-pub trait KeyNegotiator {
+pub trait KeyNegotiator: Default {
     // Performs initial negotiation with a client
     async fn negotiate(
+        &self,
         stream: &mut TcpStream,
         server_keypair: kx::KeyPair,
     ) -> Result<kx::SessionKeyPair>;
+
+    // Returns the message ID for read operations.
+    fn read_message_id(&mut self) -> &mut u64;
+
+    // Returns the message ID for write operations.
+    fn write_message_id(&mut self) -> &mut u64;
 }
 
 // Requires no previous knowledge, but therefore does not verify the server is trustworthy.
-#[derive(Debug, Clone, Copy)]
-pub struct XXNegotiator;
+#[derive(Clone, Copy, Debug, Default)]
+pub struct XXNegotiator {
+    read_message_id: u64,
+    write_message_id: u64,
+}
 
 #[async_trait::async_trait]
 impl KeyNegotiator for XXNegotiator {
     async fn negotiate(
+        &self,
         stream: &mut TcpStream,
         server_keypair: kx::KeyPair,
     ) -> Result<kx::SessionKeyPair> {
@@ -40,14 +51,25 @@ impl KeyNegotiator for XXNegotiator {
 
         Ok(kx::xx_4(&mut state, None, &xx3, None)?)
     }
+
+    fn read_message_id(&mut self) -> &mut u64 {
+        &mut self.read_message_id
+    }
+
+    fn write_message_id(&mut self) -> &mut u64 {
+        &mut self.write_message_id
+    }
 }
 
-#[derive(Debug, Clone, Copy)]
-pub struct NNegotiator;
+#[derive(Clone, Copy, Debug, Default)]
+pub struct NNegotiator {
+    message_id: u64,
+}
 
 #[async_trait::async_trait]
 impl KeyNegotiator for NNegotiator {
     async fn negotiate(
+        &self,
         stream: &mut TcpStream,
         server_keypair: kx::KeyPair,
     ) -> Result<kx::SessionKeyPair> {
@@ -56,5 +78,13 @@ impl KeyNegotiator for NNegotiator {
         let n1 = kx::NPacket1::from(n1);
 
         Ok(libhydrogen::kx::n_2(&n1, None, &server_keypair)?)
+    }
+
+    fn read_message_id(&mut self) -> &mut u64 {
+        &mut self.message_id
+    }
+
+    fn write_message_id(&mut self) -> &mut u64 {
+        &mut self.message_id
     }
 }
