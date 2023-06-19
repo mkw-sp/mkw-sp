@@ -149,7 +149,6 @@ enum class Course {
 };
 
 extern const Course OrderedCourses[0x20];
-extern const char *courseFilenames[0x28];
 
 bool IsCombinationValid(Character character, Vehicle vehicle);
 

@@ -4,6 +4,8 @@
 
 #include "revolution/wpad.h"
 
+#define KPAD_READ_ERROR_NONE 0
+
 enum {
     KPAD_BUTTON_LEFT = WPAD_BUTTON_LEFT,
     KPAD_BUTTON_RIGHT = WPAD_BUTTON_RIGHT,

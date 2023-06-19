@@ -5,6 +5,7 @@
 
 0x800074d8 BootStrapScene_enter
 0x800079d0 BootStrapScene_calc
+0x80007BC0 _ZNK3EGG10ColorFader9getStatusEv
 0x80007bc8 BootStrapScene_draw
 0x80007f2c BootStrapScene_exit
 0x80008ef0 RkSystem_main
@@ -436,8 +437,14 @@
 0x8020ff9c _ZN3EGG12AsyncDisplay9endRenderEv
 0x80210124 _ZN3EGG12AsyncDisplay15getTickPerFrameEv
 0x80215168 EGG_ColorFader_CT
+0x80215168 _ZN3EGG10ColorFaderC1EffffN4nw4r2ut5ColorENS_5Fader6StatusE
+0x80215248 _ZN3EGG10ColorFader9setStatusENS_5Fader6StatusE
 0x80215280 EGG_ColorFader_fadeIn
+0x80215280 _ZN3EGG10ColorFader6fadeInEv
 0x802152A8 EGG_ColorFader_fadeOut
+0x802152A8 _ZN3EGG10ColorFader7fadeOutEv
+0x802152D4 _ZN3EGG10ColorFader4calcEv
+0x802153B8 _ZN3EGG10ColorFader4drawEv
 0x80218098 EGG_CpuTexture_Construct
 0x80219fb0 _ZN3EGG7Display8endFrameEv
 0x80219fb4 EGG_Display_copyEFBToXFB
@@ -517,6 +524,8 @@
 0x805195a4 _ZN6System10DvdArchive4moveEv
 0x805195d8 _ZN6System10DvdArchive9loadOtherEPS0_PN3EGG4HeapE
 0x8051af84 _ZN6System9GameScene12setFramerateEb
+0x8051B3C8 _ZN6System9GameScene4calcEv
+0x8051BC78 _ZN6System9GameScene4drawEv
 0x8051bed0 _ZN6System9GameScene8InstanceEv
 0x8051c120 _ZN6System12RawGhostFile7IsValidEPKh
 0x8051c7f4 _ZN6System9GhostFile11writeHeaderEPNS_14RawGhostHeaderE
@@ -1508,7 +1517,7 @@
 
 0x808ad3c4 RaceCupSelectPage_zero
 
-0x808b3984 _ZN8Registry15courseFilenamesE
+0x808B3984 _ZN6System15ResourceManager15CourseFilenamesE
 0x808b5b1c s_minDriftSpeedFactor
 0x808b5c78 s_boostAccelerations
 0x808BB034 RankingPage_vtable

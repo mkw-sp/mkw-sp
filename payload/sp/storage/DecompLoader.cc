@@ -6,7 +6,7 @@
 #include "sp/ThumbnailManager.hh"
 #include "sp/YAZDecoder.hh"
 
-#include <game/util/Registry.hh>
+#include <game/system/ResourceManager.hh>
 
 #include <common/Bytes.hh>
 
@@ -31,8 +31,8 @@ alignas(0x20) static u8 srcs[2][0x20000 /* 128 KiB */];
 static std::optional<FileHandle> Open(const char *path, std::optional<StorageType> storageType) {
     if (ThumbnailManager::IsActive()) {
         char coursePath[128];
-        auto fileName = Registry::courseFilenames[static_cast<u32>(ThumbnailManager::CourseId())];
-        snprintf(coursePath, std::size(coursePath), "ro:/Race/Course/%s.szs", fileName);
+        snprintf(coursePath, std::size(coursePath), "ro:/Race/Course/%s.szs",
+                System::ResourceManager::GetCourseFilename(ThumbnailManager::CourseId()));
         if (!strcmp(path, coursePath)) {
             auto thumbnailPath = ThumbnailManager::Path();
             return Storage::Open(thumbnailPath.data(), "r");
