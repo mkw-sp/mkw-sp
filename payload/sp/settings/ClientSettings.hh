@@ -17,6 +17,9 @@ enum class Setting {
     VanillaMode,
     SimplifiedControls,
     FOV169,
+    FPSMode,
+
+    // HUD
     RegionLineColor,
     FarPlayerTags,
     PlayerTags,
@@ -27,7 +30,6 @@ enum class Setting {
     InputDisplay,
     Speedometer,
     RankControl,
-    FPSMode,
 
     // Sound
     Volume,
@@ -90,6 +92,7 @@ enum class Setting {
 
 enum class Category {
     Race,
+    HUD,
     Sound,
     TA,
     VS,
