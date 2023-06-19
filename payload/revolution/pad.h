@@ -2,6 +2,8 @@
 
 #include <Common.h>
 
+#define PAD_ERROR_NONE 0
+
 enum {
     PAD_BUTTON_LEFT = 0x0001,
     PAD_BUTTON_RIGHT = 0x0002,
@@ -21,7 +23,8 @@ typedef struct PADStatus {
     u16 buttons;
     s8 stickX;
     s8 stickY;
-    u8 _04[0xc - 0x4];
+    u8 _04[0xa - 0x4];
+    s8 error;
 } PADStatus;
 static_assert(sizeof(PADStatus) == 0xc);
 

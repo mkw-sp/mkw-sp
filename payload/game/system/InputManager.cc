@@ -211,6 +211,10 @@ UserPadProxy *InputManager::userProxy(u32 i) {
     return &m_userProxies[i];
 }
 
+const PADStatus &InputManager::padStatus(u32 i) const {
+    return m_padStatus[i];
+}
+
 GhostPadProxy *InputManager::extraGhostProxy(u32 i) {
     return &m_extraGhostProxies[i];
 }

@@ -8,8 +8,10 @@ class GameScene : public Scene {
 public:
     GameScene(const char *name);
     ~GameScene() override;
-    void calc() override;
-    void draw() override;
+    void REPLACED(calc)();
+    REPLACE void calc() override;
+    void REPLACED(draw)();
+    REPLACE void draw() override;
     void enter() override;
     void exit() override;
     void reinit() override;
@@ -31,8 +33,8 @@ public:
     static GameScene *Instance();
 
 private:
-    void REPLACED(setFramerate)(bool is_30);
-    REPLACE void setFramerate(bool is_30);
+    void REPLACED(setFramerate)(bool is30FPS);
+    REPLACE void setFramerate(bool is30FPS);
 
     u8 _0c70[0x0c94 - 0x0c70];
 

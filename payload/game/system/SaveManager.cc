@@ -1,6 +1,7 @@
 #include "SaveManager.hh"
 
 #include "game/system/RaceConfig.hh"
+#include "game/system/ResourceManager.hh"
 #include "game/system/RootScene.hh"
 #include "game/ui/SectionManager.hh"
 
@@ -93,7 +94,8 @@ void SaveManager::initCourseSHA1s() {
         m_courseSHA1s[courseId] = s_courseSHA1s[courseId];
 
         char path[128];
-        snprintf(path, sizeof(path), "Race/Course/%s.szs", Registry::courseFilenames[courseId]);
+        snprintf(path, sizeof(path), "Race/Course/%s.szs",
+                ResourceManager::CourseFilenames[courseId]);
         u8 *buffer;
         size_t size;
         auto *heap = RootScene::Instance()->m_heapCollection.mem2;

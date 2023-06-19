@@ -2,6 +2,7 @@
 
 #include "game/host_system/Scene.hh"
 #include "game/system/MultiDvdArchive.hh"
+#include "game/util/Registry.hh"
 
 #include <egg/core/eggExpHeap.hh>
 #include <egg/core/eggTaskThread.hh>
@@ -51,6 +52,9 @@ public:
     static void OnCreateScene(SceneId sceneId);
     static REPLACE ResourceManager *CreateInstance();
     static ResourceManager *Instance();
+
+    static const char *GetCourseFilename(Registry::Course course);
+    static const char *CourseFilenames[67];
 
 private:
     struct JobContext {

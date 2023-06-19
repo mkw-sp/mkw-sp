@@ -81,6 +81,13 @@ ResourceManager *ResourceManager::Instance() {
     return s_instance;
 }
 
+const char *ResourceManager::GetCourseFilename(Registry::Course course) {
+    u32 courseId = static_cast<u32>(course);
+
+    assert(courseId < std::size(CourseFilenames));
+    return CourseFilenames[courseId];
+}
+
 void ResourceManager::loadGlobe(u8 **dst) {
     if (m_globe) {
         *dst = m_globe;
@@ -135,9 +142,9 @@ MultiDvdArchive *ResourceManager::loadCourse(u32 courseId, EGG::Heap *heap, bool
     jobContext->multiArchive = archive;
     jobContext->archiveHeap = heap;
 
-    auto filePath = jobContext->filename;
+    auto *filePath = jobContext->filename;
     auto filePathSize = sizeof(jobContext->filename);
-    auto courseFilename = Registry::courseFilenames[courseId];
+    auto *courseFilename = CourseFilenames[courseId];
 
     if (splitScreen) {
         snprintf(filePath, filePathSize, "Race/Course/%s_d", courseFilename);
