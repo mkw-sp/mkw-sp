@@ -1,7 +1,6 @@
 #include "ResourceManager.hh"
 
 #include "game/system/RootScene.hh"
-#include "game/util/Registry.hh"
 
 #include <sp/storage/DecompLoader.hh>
 
@@ -123,11 +122,12 @@ void ResourceManager::LoadGlobeTask(void *arg) {
     s_instance->loadGlobe(reinterpret_cast<u8 **>(arg));
 }
 
-MultiDvdArchive *ResourceManager::loadCourse(u32 courseId, EGG::Heap *heap, bool splitScreen) {
+MultiDvdArchive *ResourceManager::loadCourse(Registry::Course courseId, EGG::Heap *heap,
+        bool splitScreen) {
     MultiDvdArchive *archive = m_archives[static_cast<size_t>(MultiDvdArchive::Type::Course)];
     if (archive->isLoaded()) {
         return archive;
-    };
+    }
 
     archive->init();
 
@@ -137,7 +137,8 @@ MultiDvdArchive *ResourceManager::loadCourse(u32 courseId, EGG::Heap *heap, bool
 
     auto filePath = jobContext->filename;
     auto filePathSize = sizeof(jobContext->filename);
-    auto courseFilename = Registry::courseFilenames[courseId];
+    assert(static_cast<u32>(courseId) < std::size(Registry::courseFilenames));
+    auto courseFilename = Registry::courseFilenames[static_cast<u32>(courseId)];
 
     if (splitScreen) {
         snprintf(filePath, filePathSize, "Race/Course/%s_d", courseFilename);
