@@ -43,8 +43,9 @@ public:
 
     DvdArchive *getMenuArchive(size_t idx);
     REPLACE u16 getMenuArchiveCount() const;
-    REPLACE MultiDvdArchive *loadCourse(u32 courseId, EGG::Heap *heap, bool splitScreen);
-    REPLACE MultiDvdArchive *loadMission(u32 courseId, u32 missionId, EGG::Heap *heap,
+    REPLACE MultiDvdArchive *loadCourse(Registry::Course courseId, EGG::Heap *heap,
+            bool splitScreen);
+    REPLACE MultiDvdArchive *loadMission(Registry::Course courseId, u32 missionId, EGG::Heap *heap,
             bool splitScreen);
 
     void *getFile(u32 i, const char *name, u32 *size);
