@@ -1,743 +1,249 @@
 {
-    "9000": {
-        string: "Mario",
-    },
-    "9001": {
-        string: "Baby Peach",
-    },
-    "9002": {
-        string: "Waluigi",
-    },
-    "9003": {
-        string: "Bowser",
-    },
-    "9004": {
-        string: "Baby Daisy",
-    },
-    "9005": {
-        string: "Dry Bones",
-    },
-    "9006": {
-        string: "Baby Mario",
-    },
-    "9007": {
-        string: "Luigi",
-    },
-    "9008": {
-        string: "Toad",
-    },
-    "9009": {
-        string: "Donkey Kong",
-    },
-    "9010": {
-        string: "Yoshi",
-    },
-    "9011": {
-        string: "Wario",
-    },
-    "9012": {
-        string: "Baby Luigi",
-    },
-    "9013": {
-        string: "Toadette",
-    },
-    "9014": {
-        string: "Koopa Troopa",
-    },
-    "9015": {
-        string: "Daisy",
-    },
-    "9016": {
-        string: "Peach",
-    },
-    "9017": {
-        string: "Birdo",
-    },
-    "9018": {
-        string: "Diddy Kong",
-    },
-    "9019": {
-        string: "King Boo",
-    },
-    "9020": {
-        string: "Bowser Jr.",
-    },
-    "9021": {
-        string: "Dry Bowser",
-    },
-    "9022": {
-        string: "Funky Kong",
-    },
-    "9023": {
-        string: "Rosalina",
-    },
-    "9024": {
-        string: "Mii",
-    },
-    "9050": {
-        string: "{arg player|0}",
-    },
-    "9051": {
-        string: "{arg player|0}",
-    },
-    "9052": {
-        string: "Mii (Outfit A)",
-    },
-    "9053": {
-        string: "Mii (Outfit B)",
-    },
-    "9054": {
-        string: null,
-    },
-    "9100": {
-        string: "Standard Kart S",
-    },
-    "9101": {
-        string: "Standard Kart M",
-    },
-    "9102": {
-        string: "Standard Kart L",
-    },
-    "9103": {
-        string: "Baby Booster",
-    },
-    "9104": {
-        string: "Nostalgia 1",
-    },
-    "9105": {
-        string: "Offroader",
-    },
-    "9106": {
-        string: "Concerto",
-    },
-    "9107": {
-        string: "Wild Wing",
-    },
-    "9108": {
-        string: "Flame Flyer",
-    },
-    "9109": {
-        string: "Cheep Charger",
-    },
-    "9110": {
-        string: "Turbo Blooper",
-    },
-    "9111": {
-        string: "Piranha Prowler",
-    },
-    "9112": {
-        string: "Rally Romper",
-    },
-    "9113": {
-        string: "Royal Racer",
-    },
-    "9114": {
-        string: "Aero Glider",
-    },
-    "9115": {
-        string: "Blue Falcon",
-    },
-    "9116": {
-        string: "B Dasher Mk 2",
-    },
-    "9117": {
-        string: "Dragonetti",
-    },
-    "9118": {
-        string: "Standard Kart S",
-    },
-    "9119": {
-        string: "Standard Kart M",
-    },
-    "9120": {
-        string: "Standard Kart L",
-    },
-    "9121": {
-        string: "Standard Kart S",
-    },
-    "9122": {
-        string: "Standard Kart M",
-    },
-    "9123": {
-        string: "Standard Kart L",
-    },
-    "9124": {
-        string: "",
-    },
-    "9150": {
-        string: "Standard Bike S",
-    },
-    "9151": {
-        string: "Standard Bike M",
-    },
-    "9152": {
-        string: "Standard Bike L",
-    },
-    "9153": {
-        string: "Bullet Bike",
-    },
-    "9154": {
-        string: "Mach Bike",
-    },
-    "9155": {
-        string: "Bowser Bike",
-    },
-    "9156": {
-        string: "Nanobike",
-    },
-    "9157": {
-        string: "Bon Bon",
-    },
-    "9158": {
-        string: "Wario Bike",
-    },
-    "9159": {
-        string: "Quacker",
-    },
-    "9160": {
-        string: "Rapide",
-    },
-    "9161": {
-        string: "Twinkle Star",
-    },
-    "9162": {
-        string: "Magikruiser",
-    },
-    "9163": {
-        string: "Nitrocycle",
-    },
-    "9164": {
-        string: "Torpedo",
-    },
-    "9165": {
-        string: "Bubble Bike",
-    },
-    "9166": {
-        string: "Dolphin Dasher",
-    },
-    "9167": {
-        string: "Phantom",
-    },
-    "9168": {
-        string: "Standard Bike S",
-    },
-    "9169": {
-        string: "Standard Bike M",
-    },
-    "9170": {
-        string: "Standard Bike L",
-    },
-    "9171": {
-        string: "Standard Bike S",
-    },
-    "9172": {
-        string: "Standard Bike M",
-    },
-    "9173": {
-        string: "Standard Bike L",
-    },
-    "9174": {
-        string: null,
-    },
-    "9200": {
-        string: "Mushroom Cup",
-    },
-    "9201": {
-        string: "Flower Cup",
-    },
-    "9202": {
-        string: "Star Cup",
-    },
-    "9203": {
-        string: "Special Cup",
-    },
-    "9204": {
-        string: "Shell Cup",
-    },
-    "9205": {
-        string: "Banana Cup",
-    },
-    "9206": {
-        string: "Leaf Cup",
-    },
-    "9207": {
-        string: "Lightning Cup",
-    },
-    "9208": {
-        string: "Galaxy Arena",
-    },
-    "9300": {
-        string: "Mario Circuit",
-    },
-    "9301": {
-        string: "Moo Moo Meadows",
-    },
-    "9302": {
-        string: "Mushroom Gorge",
-    },
-    "9303": {
-        string: "Grumble Volcano",
-    },
-    "9304": {
-        string: "Toad's Factory",
-    },
-    "9305": {
-        string: "Coconut Mall",
-    },
-    "9306": {
-        string: "DK's Snowboard Cross",
-    },
-    "9307": {
-        string: "Wario's Gold Mine",
-    },
-    "9308": {
-        string: "Luigi Circuit",
-    },
-    "9309": {
-        string: "Daisy Circuit",
-    },
-    "9310": {
-        string: "Moonview Highway",
-    },
-    "9311": {
-        string: "Maple Treeway",
-    },
-    "9312": {
-        string: "Bowser's Castle",
-    },
-    "9313": {
-        string: "Rainbow Road",
-    },
-    "9314": {
-        string: "Dry Dry Ruins",
-    },
-    "9315": {
-        string: "Koopa Cape",
-    },
-    "9316": {
-        string: "GCN Peach Beach",
-    },
-    "9317": {
-        string: "GCN Mario Circuit",
-    },
-    "9318": {
-        string: "GCN Waluigi Stadium",
-    },
-    "9319": {
-        string: "GCN DK Mountain",
-    },
-    "9320": {
-        string: "DS Yoshi Falls",
-    },
-    "9321": {
-        string: "DS Desert Hills",
-    },
-    "9322": {
-        string: "DS Peach Gardens",
-    },
-    "9323": {
-        string: "DS Delfino Square",
-    },
-    "9324": {
-        string: "SNES Mario Circuit 3",
-    },
-    "9325": {
-        string: "SNES Ghost Valley 2",
-    },
-    "9326": {
-        string: "N64 Mario Raceway",
-    },
-    "9327": {
-        string: "N64 Sherbet Land",
-    },
-    "9328": {
-        string: "N64 Bowser's Castle",
-    },
-    "9329": {
-        string: "N64 DK's Jungle Parkway",
-    },
-    "9330": {
-        string: "GBA Bowser Castle 3",
-    },
-    "9331": {
-        string: "GBA Shy Guy Beach",
-    },
-    "9350": {
-        string: null,
-    },
-    "9351": {
-        string: "Balloon Battle",
-    },
-    "9352": {
-        string: "Coin Runners",
-    },
-    "9353": {
-        string: "Wii Stages",
-    },
-    "9354": {
-        string: "Retro Stages",
-    },
-    "9355": {
-        string: null,
-    },
-    "9360": {
-        string: "Mario Circuit",
-    },
-    "9361": {
-        string: "Moo Moo Meadows",
-    },
-    "9362": {
-        string: "Mushroom Gorge",
-    },
-    "9363": {
-        string: "Grumble Volcano",
-    },
-    "9364": {
-        string: "Toad's Factory",
-    },
-    "9365": {
-        string: "Coconut Mall",
-    },
-    "9366": {
-        string: "DK's Snowboard Cross",
-    },
-    "9367": {
-        string: "Wario's Gold Mine",
-    },
-    "9368": {
-        string: "Luigi Circuit",
-    },
-    "9369": {
-        string: "Daisy Circuit",
-    },
-    "9370": {
-        string: "Moonview Highway",
-    },
-    "9371": {
-        string: "Maple Treeway",
-    },
-    "9372": {
-        string: "Bowser's Castle",
-    },
-    "9373": {
-        string: "Rainbow Road",
-    },
-    "9374": {
-        string: "Dry Dry Ruins",
-    },
-    "9375": {
-        string: "Koopa Cape",
-    },
-    "9376": {
-        string: "GCN Peach Beach",
-    },
-    "9377": {
-        string: "GCN Mario Circuit",
-    },
-    "9378": {
-        string: "GCN Waluigi Stadium",
-    },
-    "9379": {
-        string: "GCN DK Mountain",
-    },
-    "9380": {
-        string: "DS Yoshi Falls",
-    },
-    "9381": {
-        string: "DS Desert Hills",
-    },
-    "9382": {
-        string: "DS Peach Gardens",
-    },
-    "9383": {
-        string: "DS Delfino Square",
-    },
-    "9384": {
-        string: "SNES Mario Circuit 3",
-    },
-    "9385": {
-        string: "SNES Ghost Valley 2",
-    },
-    "9386": {
-        string: "N64 Mario Raceway",
-    },
-    "9387": {
-        string: "N64 Sherbet Land",
-    },
-    "9388": {
-        string: "N64 Bowser's Castle",
-    },
-    "9389": {
-        string: "N64 DK's Jungle Parkway",
-    },
-    "9390": {
-        string: "GBA Bowser Castle 3",
-    },
-    "9391": {
-        string: "GBA Shy Guy Beach",
-    },
-    "9392": {
-        string: null,
-    },
-    "9400": {
-        string: "Delfino Pier",
-    },
-    "9401": {
-        string: "Block Plaza",
-    },
-    "9402": {
-        string: "Chain Chomp Roulette",
-    },
-    "9403": {
-        string: "Funky Stadium",
-    },
-    "9404": {
-        string: "Thwomp Desert",
-    },
-    "9405": {
-        string: "GCN Cookie Land",
-    },
-    "9406": {
-        string: "DS Twilight House",
-    },
-    "9407": {
-        string: "SNES Battle Course 4",
-    },
-    "9408": {
-        string: "GBA Battle Course 3",
-    },
-    "9409": {
-        string: "N64 Skyscraper",
-    },
-    "9410": {
-        string: null,
-    },
-    "9420": {
-        string: "Delfino Pier",
-    },
-    "9421": {
-        string: "Block Plaza",
-    },
-    "9422": {
-        string: "Chain Chomp Roulette",
-    },
-    "9423": {
-        string: "Funky Stadium",
-    },
-    "9424": {
-        string: "Thwomp Desert",
-    },
-    "9425": {
-        string: "GCN Cookie Land",
-    },
-    "9426": {
-        string: "DS Twilight House",
-    },
-    "9427": {
-        string: "SNES Battle Course 4",
-    },
-    "9428": {
-        string: "GBA Battle Course 3",
-    },
-    "9429": {
-        string: "N64 Skyscraper",
-    },
-    "9430": {
-        string: null,
-    },
-    "9450": {
-        string: "GCN Cookie Land",
-    },
-    "9451": {
-        string: "DS Twilight House",
-    },
-    "9452": {
-        string: "SNES Battle Course 4",
-    },
-    "9453": {
-        string: "GBA Battle Course 3",
-    },
-    "9454": {
-        string: "N64 Skyscraper",
-    },
-    "9455": {
-        string: null,
-    },
-    "9500": {
-        string: "Player {arg player|0}",
-    },
-    "9501": {
-        string: "{arg player|0}",
-    },
-    "9502": {
-        string: "{arg border|0}",
-    },
-    "9503": {
-        string: "{arg question mark|0}",
-    },
-    "9504": {
-        string: "{arg front button|0}",
-    },
-    "9505": {
-        string: null,
-    },
-    "9550": {
-        string: "P1",
-    },
-    "9551": {
-        string: "P2",
-    },
-    "9552": {
-        string: "P3",
-    },
-    "9553": {
-        string: "P4",
-    },
-    "9554": {
-        string: null,
-    },
-    "9600": {
-        string: "{1 char|①}",
-    },
-    "9601": {
-        string: "{1 char|②}",
-    },
-    "9602": {
-        string: "{1 char|③}",
-    },
-    "9603": {
-        string: "{1 char|④}",
-    },
-    "9604": {
-        string: "{1 char|⑤}",
-    },
-    "9605": {
-        string: "{1 char|⑥}",
-    },
-    "9606": {
-        string: "{1 char|⑦}",
-    },
-    "9607": {
-        string: "{1 char|⑧}",
-    },
-    "9608": {
-        string: "{1 char|⑨}",
-    },
-    "9609": {
-        string: "{1 char|⑩}",
-    },
-    "9610": {
-        string: "{1 char|⑪}",
-    },
-    "9611": {
-        string: "{1 char|⑫}",
-    },
-    "9612": {
-        string: "/{1 char|⑬}",
-    },
-    "9613": {
-        string: "-{1 char|⑭}",
-    },
-    "9614": {
-        string: "+{1 char|⑮}",
-    },
-    "9615": {
-        string: null,
-    },
-    "9650": {
-        string: "{arg message|0}{arg message|1}{arg message|2}{arg message|3}{arg message|4}{arg message|5}{arg message|6}{arg message|7}{arg message|8}",
-    },
-    "9651": {
-        string: "{1 char|⑭}{arg message|0}{arg message|1}{arg message|2}{arg message|3}{arg message|4}{arg message|5}{arg message|6}{arg message|7}{arg message|8}",
-    },
-    "9652": {
-        string: "{1 char|⑮}{arg message|0}{arg message|1}{arg message|2}{arg message|3}{arg message|4}{arg message|5}{arg message|6}{arg message|7}{arg message|8}",
-    },
-    "9653": {
-        string: "{arg message|0}{font scale|70}/{arg message|1}",
-    },
-    "9654": {
-        string: "{arg message|0}{arg message|1}{font scale|70}/{arg message|2}{arg message|3}",
-    },
-    "9655": {
-        string: "{arg message|0}{arg message|1}{arg message|2}{font scale|70}/{arg message|3}{arg message|4}{arg message|5}",
-    },
-    "9656": {
-        string: null,
-    },
-    "9700": {
-        string: "Race Rating",
-    },
-    "9701": {
-        string: "Battle Rating",
-    },
-    "9702": {
-        string: "RANK",
-    },
-    "9703": {
-        string: "Guest",
-    },
-    "9704": {
-        string: "----",
-    },
-    "9705": {
-        string: null,
-    },
-    "9710": {
-        string: "{1 char|}",
-    },
-    "9711": {
-        string: "{1 char|}",
-    },
-    "9712": {
-        string: "{1 char|}",
-    },
-    "9713": {
-        string: "{1 char|}",
-    },
-    "9714": {
-        string: "{1 char|}",
-    },
-    "9715": {
-        string: "{1 char|}",
-    },
-    "9716": {
-        string: "{1 char|}",
-    },
-    "9717": {
-        string: "{1 char|}",
-    },
-    "9718": {
-        string: "{1 char|}",
-    },
-    "9719": {
-        string: "{1 char|}",
-    },
-    "9720": {
-        string: "{1 char|}",
-    },
-    "9721": {
-        string: "{1 char|}",
-    },
-    "9722": {
-        string: null,
-    },
-    "9900": {
-        string: "Communications with the\ncontroller have been interrupted. \nPlease press the A Button.",
-    },
-    "9901": {
-        string: "The controller has been changed.\nPlease press the A Button.",
-    },
-    "9902": {
-        string: "Controllers cannot be changed\nduring a match. Please restore\nthe original controller.",
-    },
-    "9903": {
-        string: "Controllers cannot be changed during\na Nintendo WFC match. Please restore\nthe original controller.",
-    },
-    "9904": {
-        string: "This competition is for Wii Wheels only.\nPlease insert the Wii Remote into\nthe Wii Wheel and press the A Button.",
-    },
-    "9999": {
-        string: "?",
-    },
+    "9000": "Mario",
+    "9001": "Baby Peach",
+    "9002": "Waluigi",
+    "9003": "Bowser",
+    "9004": "Baby Daisy",
+    "9005": "Dry Bones",
+    "9006": "Baby Mario",
+    "9007": "Luigi",
+    "9008": "Toad",
+    "9009": "Donkey Kong",
+    "9010": "Yoshi",
+    "9011": "Wario",
+    "9012": "Baby Luigi",
+    "9013": "Toadette",
+    "9014": "Koopa Troopa",
+    "9015": "Daisy",
+    "9016": "Peach",
+    "9017": "Birdo",
+    "9018": "Diddy Kong",
+    "9019": "King Boo",
+    "9020": "Bowser Jr.",
+    "9021": "Dry Bowser",
+    "9022": "Funky Kong",
+    "9023": "Rosalina",
+    "9024": "Mii",
+    "9050": "{arg player|0}",
+    "9051": "{arg player|0}",
+    "9052": "Mii (Outfit A)",
+    "9053": "Mii (Outfit B)",
+    "9054": null,
+    "9100": "Standard Kart S",
+    "9101": "Standard Kart M",
+    "9102": "Standard Kart L",
+    "9103": "Baby Booster",
+    "9104": "Nostalgia 1",
+    "9105": "Offroader",
+    "9106": "Concerto",
+    "9107": "Wild Wing",
+    "9108": "Flame Flyer",
+    "9109": "Cheep Charger",
+    "9110": "Turbo Blooper",
+    "9111": "Piranha Prowler",
+    "9112": "Rally Romper",
+    "9113": "Royal Racer",
+    "9114": "Aero Glider",
+    "9115": "Blue Falcon",
+    "9116": "B Dasher Mk 2",
+    "9117": "Dragonetti",
+    "9118": "Standard Kart S",
+    "9119": "Standard Kart M",
+    "9120": "Standard Kart L",
+    "9121": "Standard Kart S",
+    "9122": "Standard Kart M",
+    "9123": "Standard Kart L",
+    "9124": "",
+    "9150": "Standard Bike S",
+    "9151": "Standard Bike M",
+    "9152": "Standard Bike L",
+    "9153": "Bullet Bike",
+    "9154": "Mach Bike",
+    "9155": "Bowser Bike",
+    "9156": "Nanobike",
+    "9157": "Bon Bon",
+    "9158": "Wario Bike",
+    "9159": "Quacker",
+    "9160": "Rapide",
+    "9161": "Twinkle Star",
+    "9162": "Magikruiser",
+    "9163": "Nitrocycle",
+    "9164": "Torpedo",
+    "9165": "Bubble Bike",
+    "9166": "Dolphin Dasher",
+    "9167": "Phantom",
+    "9168": "Standard Bike S",
+    "9169": "Standard Bike M",
+    "9170": "Standard Bike L",
+    "9171": "Standard Bike S",
+    "9172": "Standard Bike M",
+    "9173": "Standard Bike L",
+    "9174": null,
+    "9200": "Mushroom Cup",
+    "9201": "Flower Cup",
+    "9202": "Star Cup",
+    "9203": "Special Cup",
+    "9204": "Shell Cup",
+    "9205": "Banana Cup",
+    "9206": "Leaf Cup",
+    "9207": "Lightning Cup",
+    "9208": "Galaxy Arena",
+    "9300": "Mario Circuit",
+    "9301": "Moo Moo Meadows",
+    "9302": "Mushroom Gorge",
+    "9303": "Grumble Volcano",
+    "9304": "Toad's Factory",
+    "9305": "Coconut Mall",
+    "9306": "DK's Snowboard Cross",
+    "9307": "Wario's Gold Mine",
+    "9308": "Luigi Circuit",
+    "9309": "Daisy Circuit",
+    "9310": "Moonview Highway",
+    "9311": "Maple Treeway",
+    "9312": "Bowser's Castle",
+    "9313": "Rainbow Road",
+    "9314": "Dry Dry Ruins",
+    "9315": "Koopa Cape",
+    "9316": "GCN Peach Beach",
+    "9317": "GCN Mario Circuit",
+    "9318": "GCN Waluigi Stadium",
+    "9319": "GCN DK Mountain",
+    "9320": "DS Yoshi Falls",
+    "9321": "DS Desert Hills",
+    "9322": "DS Peach Gardens",
+    "9323": "DS Delfino Square",
+    "9324": "SNES Mario Circuit 3",
+    "9325": "SNES Ghost Valley 2",
+    "9326": "N64 Mario Raceway",
+    "9327": "N64 Sherbet Land",
+    "9328": "N64 Bowser's Castle",
+    "9329": "N64 DK's Jungle Parkway",
+    "9330": "GBA Bowser Castle 3",
+    "9331": "GBA Shy Guy Beach",
+    "9350": null,
+    "9351": "Balloon Battle",
+    "9352": "Coin Runners",
+    "9353": "Wii Stages",
+    "9354": "Retro Stages",
+    "9355": null,
+    "9360": "Mario Circuit",
+    "9361": "Moo Moo Meadows",
+    "9362": "Mushroom Gorge",
+    "9363": "Grumble Volcano",
+    "9364": "Toad's Factory",
+    "9365": "Coconut Mall",
+    "9366": "DK's Snowboard Cross",
+    "9367": "Wario's Gold Mine",
+    "9368": "Luigi Circuit",
+    "9369": "Daisy Circuit",
+    "9370": "Moonview Highway",
+    "9371": "Maple Treeway",
+    "9372": "Bowser's Castle",
+    "9373": "Rainbow Road",
+    "9374": "Dry Dry Ruins",
+    "9375": "Koopa Cape",
+    "9376": "GCN Peach Beach",
+    "9377": "GCN Mario Circuit",
+    "9378": "GCN Waluigi Stadium",
+    "9379": "GCN DK Mountain",
+    "9380": "DS Yoshi Falls",
+    "9381": "DS Desert Hills",
+    "9382": "DS Peach Gardens",
+    "9383": "DS Delfino Square",
+    "9384": "SNES Mario Circuit 3",
+    "9385": "SNES Ghost Valley 2",
+    "9386": "N64 Mario Raceway",
+    "9387": "N64 Sherbet Land",
+    "9388": "N64 Bowser's Castle",
+    "9389": "N64 DK's Jungle Parkway",
+    "9390": "GBA Bowser Castle 3",
+    "9391": "GBA Shy Guy Beach",
+    "9392": null,
+    "9400": "Delfino Pier",
+    "9401": "Block Plaza",
+    "9402": "Chain Chomp Roulette",
+    "9403": "Funky Stadium",
+    "9404": "Thwomp Desert",
+    "9405": "GCN Cookie Land",
+    "9406": "DS Twilight House",
+    "9407": "SNES Battle Course 4",
+    "9408": "GBA Battle Course 3",
+    "9409": "N64 Skyscraper",
+    "9410": null,
+    "9420": "Delfino Pier",
+    "9421": "Block Plaza",
+    "9422": "Chain Chomp Roulette",
+    "9423": "Funky Stadium",
+    "9424": "Thwomp Desert",
+    "9425": "GCN Cookie Land",
+    "9426": "DS Twilight House",
+    "9427": "SNES Battle Course 4",
+    "9428": "GBA Battle Course 3",
+    "9429": "N64 Skyscraper",
+    "9430": null,
+    "9450": "GCN Cookie Land",
+    "9451": "DS Twilight House",
+    "9452": "SNES Battle Course 4",
+    "9453": "GBA Battle Course 3",
+    "9454": "N64 Skyscraper",
+    "9455": null,
+    "9500": "Player {arg player|0}",
+    "9501": "{arg player|0}",
+    "9502": "{arg border|0}",
+    "9503": "{arg question mark|0}",
+    "9504": "{arg front button|0}",
+    "9505": null,
+    "9550": "P1",
+    "9551": "P2",
+    "9552": "P3",
+    "9553": "P4",
+    "9554": null,
+    "9600": "{1 char|①}",
+    "9601": "{1 char|②}",
+    "9602": "{1 char|③}",
+    "9603": "{1 char|④}",
+    "9604": "{1 char|⑤}",
+    "9605": "{1 char|⑥}",
+    "9606": "{1 char|⑦}",
+    "9607": "{1 char|⑧}",
+    "9608": "{1 char|⑨}",
+    "9609": "{1 char|⑩}",
+    "9610": "{1 char|⑪}",
+    "9611": "{1 char|⑫}",
+    "9612": "/{1 char|⑬}",
+    "9613": "-{1 char|⑭}",
+    "9614": "+{1 char|⑮}",
+    "9615": null,
+    "9650": "{arg message|0}{arg message|1}{arg message|2}{arg message|3}{arg message|4}{arg message|5}{arg message|6}{arg message|7}{arg message|8}",
+    "9651": "{1 char|⑭}{arg message|0}{arg message|1}{arg message|2}{arg message|3}{arg message|4}{arg message|5}{arg message|6}{arg message|7}{arg message|8}",
+    "9652": "{1 char|⑮}{arg message|0}{arg message|1}{arg message|2}{arg message|3}{arg message|4}{arg message|5}{arg message|6}{arg message|7}{arg message|8}",
+    "9653": "{arg message|0}{font scale|70}/{arg message|1}",
+    "9654": "{arg message|0}{arg message|1}{font scale|70}/{arg message|2}{arg message|3}",
+    "9655": "{arg message|0}{arg message|1}{arg message|2}{font scale|70}/{arg message|3}{arg message|4}{arg message|5}",
+    "9656": null,
+    "9700": "Race Rating",
+    "9701": "Battle Rating",
+    "9702": "RANK",
+    "9703": "Guest",
+    "9704": "----",
+    "9705": null,
+    "9710": "{1 char|}",
+    "9711": "{1 char|}",
+    "9712": "{1 char|}",
+    "9713": "{1 char|}",
+    "9714": "{1 char|}",
+    "9715": "{1 char|}",
+    "9716": "{1 char|}",
+    "9717": "{1 char|}",
+    "9718": "{1 char|}",
+    "9719": "{1 char|}",
+    "9720": "{1 char|}",
+    "9721": "{1 char|}",
+    "9722": null,
+    "9900": "Communications with the\ncontroller have been interrupted. \nPlease press the A Button.",
+    "9901": "The controller has been changed.\nPlease press the A Button.",
+    "9902": "Controllers cannot be changed\nduring a match. Please restore\nthe original controller.",
+    "9903": "Controllers cannot be changed during\na Nintendo WFC match. Please restore\nthe original controller.",
+    "9904": "This competition is for Wii Wheels only.\nPlease insert the Wii Remote into\nthe Wii Wheel and press the A Button.",
+    "9999": "?",
 }

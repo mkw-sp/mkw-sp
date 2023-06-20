@@ -1,169 +1,59 @@
 {
-    "1000": {
-        string: "",
-    },
-    "1001": {
-        string: "Nein",
-    },
-    "1002": {
-        string: "Ja",
-    },
-    "1003": {
-        string: "Fortsetzen",
-    },
-    "1004": {
-        string: "Beenden",
-    },
-    "1005": {
-        string: "Kurs wechseln",
-    },
-    "1006": {
-        string: "Fahrer wechseln",
-    },
-    "1007": {
-        string: "Neustart",
-    },
-    "1008": {
-        string: "Mission auswählen",
-    },
-    "1009": {
-        string: "Nächstes Rennen",
-    },
-    "1010": {
-        string: "Weiter",
-    },
-    "1011": {
-        string: "Erneut versuchen",
-    },
-    "1012": {
-        string: "Wiederholung",
-    },
-    "1013": {
-        string: "Wiederholung fortsetzen",
-    },
-    "1014": {
-        string: "Wiederholung neu starten",
-    },
-    "1015": {
-        string: "Ranglisten ansehen",
-    },
-    "1016": {
-        string: "Geistdaten ansehen",
-    },
-    "1017": {
-        string: null,
-    },
-    "1018": {
-        string: "Nächstes Geistrennen",
-    },
-    "1019": {
-        string: null,
-    },
-    "1020": {
-        string: "Nintendo WFC",
-    },
-    "1021": {
-        string: "Wiederholung beenden",
-    },
-    "1022": {
-        string: "Rennen starten",
-    },
-    "1023": {
-        string: "Nächstes Rennen",
-    },
-    "1024": {
-        string: "Nächster Wettkampf",
-    },
-    "1025": {
-        string: "Einen Moment bitte...",
-    },
-    "1026": {
-        string: "Geistdaten tauschen",
-    },
-    "1027": {
-        string: "Geistrennen starten",
-    },
-    "1028": {
-        string: "Wiederholung fortsetzen",
-    },
-    "1029": {
-        string: "Wiederholung beenden",
-    },
-    "1030": {
-        string: "Wiederholung neu starten",
-    },
-    "1031": {
-        string: "Am nächsten Spiel nehmen\nvoraussichtlich {arg integer|0 0} Spieler teil.",
-    },
-    "1032": {
-        string: "Rekord senden",
-    },
-    "1033": {
-        string: "",
-    },
-    "1101": {
-        string: "Möchtest du das Spiel\njetzt wirklich beenden?",
-    },
-    "1102": {
-        string: "Zu den Ranglisten des\nMario Kart-Kanals?",
-    },
-    "1103": {
-        string: "O.K.",
-    },
-    "1104": {
-        string: null,
-    },
-    "1105": {
-        string: "Glückwunsch!\nDu schlägst den Rekord von {arg player|0}!\n\nMöchtest du {arg player|0}\ndeine Geistdaten senden?",
-    },
-    "1106": {
-        string: "Senden",
-    },
-    "1107": {
-        string: "Nicht senden",
-    },
-    "1108": {
-        string: "Ja",
-    },
-    "1109": {
-        string: "Nein",
-    },
-    "1110": {
-        string: "",
-    },
-    "1111": {
-        string: "Zur Freundesliste?",
-    },
-    "1112": {
-        string: "Diesen Rekord senden?\nDu kannst vor Wettbewerbs-\nende beliebig viele Rekorde\nsenden.",
-    },
-    "1113": {
-        string: "Möchtest du wirklich dieses\nRennen beenden und die nächsten\nGeistdaten herunterladen?",
-    },
-    "1114": {
-        string: "Möchtest du wirklich das\nRennen beenden und zum\nHauptmenü zurückkehren?",
-    },
-    "1115": {
-        string: "Deine Geistdaten werden gespeichert!",
-    },
-    "1116": {
-        string: "Geistdaten werden nicht gespeichert.",
-    },
-    "1117": {
-        string: "Senden der Geistdaten als\nHerausforderung fehlgeschlagen.",
-    },
-    "1118": {
-        string: "Zurück zur Kurs-Auswahl?",
-    },
-    "1119": {
-        string: "Geistdaten können nicht\ngespeichert werden.",
-    },
-    "1120": {
-        string: "",
-    },
-    "1121": {
-        string: "Spitzengeistdaten eines Entwicklers!",
-    },
+    "1000": "",
+    "1001": "Nein",
+    "1002": "Ja",
+    "1003": "Fortsetzen",
+    "1004": "Beenden",
+    "1005": "Kurs wechseln",
+    "1006": "Fahrer wechseln",
+    "1007": "Neustart",
+    "1008": "Mission auswählen",
+    "1009": "Nächstes Rennen",
+    "1010": "Weiter",
+    "1011": "Erneut versuchen",
+    "1012": "Wiederholung",
+    "1013": "Wiederholung fortsetzen",
+    "1014": "Wiederholung neu starten",
+    "1015": "Ranglisten ansehen",
+    "1016": "Geistdaten ansehen",
+    "1017": null,
+    "1018": "Nächstes Geistrennen",
+    "1019": null,
+    "1020": "Nintendo WFC",
+    "1021": "Wiederholung beenden",
+    "1022": "Rennen starten",
+    "1023": "Nächstes Rennen",
+    "1024": "Nächster Wettkampf",
+    "1025": "Einen Moment bitte...",
+    "1026": "Geistdaten tauschen",
+    "1027": "Geistrennen starten",
+    "1028": "Wiederholung fortsetzen",
+    "1029": "Wiederholung beenden",
+    "1030": "Wiederholung neu starten",
+    "1031": "Am nächsten Spiel nehmen\nvoraussichtlich {arg integer|0 0} Spieler teil.",
+    "1032": "Rekord senden",
+    "1033": "",
+    "1101": "Möchtest du das Spiel\njetzt wirklich beenden?",
+    "1102": "Zu den Ranglisten des\nMario Kart-Kanals?",
+    "1103": "O.K.",
+    "1104": null,
+    "1105": "Glückwunsch!\nDu schlägst den Rekord von {arg player|0}!\n\nMöchtest du {arg player|0}\ndeine Geistdaten senden?",
+    "1106": "Senden",
+    "1107": "Nicht senden",
+    "1108": "Ja",
+    "1109": "Nein",
+    "1110": "",
+    "1111": "Zur Freundesliste?",
+    "1112": "Diesen Rekord senden?\nDu kannst vor Wettbewerbs-\nende beliebig viele Rekorde\nsenden.",
+    "1113": "Möchtest du wirklich dieses\nRennen beenden und die nächsten\nGeistdaten herunterladen?",
+    "1114": "Möchtest du wirklich das\nRennen beenden und zum\nHauptmenü zurückkehren?",
+    "1115": "Deine Geistdaten werden gespeichert!",
+    "1116": "Geistdaten werden nicht gespeichert.",
+    "1117": "Senden der Geistdaten als\nHerausforderung fehlgeschlagen.",
+    "1118": "Zurück zur Kurs-Auswahl?",
+    "1119": "Geistdaten können nicht\ngespeichert werden.",
+    "1120": "",
+    "1121": "Spitzengeistdaten eines Entwicklers!",
     "1201": {
         string: "3",
         font: "caps",
@@ -192,362 +82,126 @@
         string: "VERLOREN",
         font: "caps",
     },
-    "1208": {
-        string: null,
-    },
-    "1209": {
-        string: null,
-    },
-    "1210": {
-        string: "Glückwunsch!",
-    },
+    "1208": null,
+    "1209": null,
+    "1210": "Glückwunsch!",
     "1211": {
         string: "NEUER REKORD!",
         font: "caps",
     },
-    "1212": {
-        string: "Rekord",
-    },
-    "1213": {
-        string: "Beste Runde",
-    },
-    "1214": {
-        string: "{color|team red}ROT GEWINNT!",
-    },
-    "1215": {
-        string: "{color|team blue}BLAU GEWINNT!",
-    },
-    "1216": {
-        string: "{color|team red}SIEG FÜR ROT!",
-    },
-    "1217": {
-        string: "{color|team blue}SIEG FÜR BLAU!",
-    },
-    "1218": {
-        string: "GLEICHSTAND",
-    },
-    "1219": {
-        string: "GLÜCKWUNSCH!",
-    },
-    "1220": {
-        string: "GLÜCKWUNSCH!",
-    },
-    "1221": {
-        string: "GLÜCKWUNSCH!",
-    },
-    "1222": {
-        string: "WIE SCHADE!",
-    },
-    "1223": {
-        string: "{color|team red}Rot verliert!",
-    },
-    "1224": {
-        string: "{color|team blue}Blau verliert!",
-    },
-    "1225": {
-        string: "{color|team red}Rot verliert!",
-    },
-    "1226": {
-        string: "{color|team blue}Blau verliert!",
-    },
-    "1227": {
-        string: "",
-    },
-    "1301": {
-        string: "1.",
-    },
-    "1302": {
-        string: "2.",
-    },
-    "1303": {
-        string: "3.",
-    },
-    "1304": {
-        string: "4.",
-    },
-    "1305": {
-        string: "5.",
-    },
-    "1306": {
-        string: "6.",
-    },
-    "1307": {
-        string: "7.",
-    },
-    "1308": {
-        string: "8.",
-    },
-    "1309": {
-        string: "9.",
-    },
-    "1310": {
-        string: "10.",
-    },
-    "1311": {
-        string: "11.",
-    },
-    "1312": {
-        string: "12.",
-    },
-    "1313": {
-        string: "{arg cond messages|0 1316 1317}",
-    },
-    "1314": {
-        string: "{arg integer|0 0}",
-    },
-    "1315": {
-        string: "{arg signed integer|0 0}",
-    },
-    "1316": {
-        string: " Pkt.",
-    },
-    "1317": {
-        string: " Pkte.",
-    },
-    "1318": {
-        string: "{arg cond messages|0 1319 1320}",
-    },
-    "1319": {
-        string: "{color|team red}Sieg",
-    },
-    "1320": {
-        string: "{color|team red}Siege",
-    },
-    "1321": {
-        string: "{arg cond messages|0 1322 1323}",
-    },
-    "1322": {
-        string: "{color|team blue}Sieg",
-    },
-    "1323": {
-        string: "{color|team blue}Siege",
-    },
-    "1324": {
-        string: "{arg cond messages|0 1325 1326}",
-    },
-    "1325": {
-        string: "{color|team red}Pkt.",
-    },
-    "1326": {
-        string: "{color|team red}Pkte.",
-    },
-    "1327": {
-        string: "{arg cond messages|0 1328 1329}",
-    },
-    "1328": {
-        string: "{color|team blue}Pkt.",
-    },
-    "1329": {
-        string: "{color|team blue}Pkte.",
-    },
-    "1330": {
-        string: "Siege: {arg integer|0 0} / Niederlagen: {arg integer|1 0}",
-    },
-    "1331": {
-        string: "Siege: {arg integer|0 0} / Niederlagen: {arg integer|1 0}",
-    },
-    "1332": {
-        string: "{color|team red}{arg message|0}",
-    },
-    "1333": {
-        string: "{color|team blue}{arg message|0}",
-    },
-    "1334": {
-        string: "ZEIT",
-    },
-    "1335": {
-        string: "RUNDE",
-    },
-    "1336": {
-        string: "PUNKTE",
-    },
-    "1337": {
-        string: "LIVE",
-    },
-    "1338": {
-        string: "Du kannst am nächsten Rennen teil-\nnehmen (voraussichtlich {arg integer|0 0} Spieler).\nEinen Moment bitte...",
-    },
-    "1339": {
-        string: "Du kannst am nächsten Wettkampf teil-\nnehmen (voraussichtlich {arg integer|0 0} Spieler).\nEinen Moment bitte...",
-    },
-    "1340": {
-        string: "\nDie Ergebnisse stehen fest.\nDas Rennen ist beendet.",
-    },
-    "1341": {
-        string: "\n5 Minuten sind vergangen.\nDas Rennen ist beendet.",
-    },
-    "1342": {
-        string: "Der Sieger ist vor 30 Sekunden\nüber die Ziellinie gefahren.\nDas Rennen ist beendet.",
-    },
-    "1343": {
-        string: "",
-    },
-    "1344": {
-        string: "",
-    },
-    "1345": {
-        string: "{1 char|}",
-    },
-    "1400": {
-        string: "{arg integer|0 2}:{arg integer|1 2}.{arg integer|2 3}",
-    },
-    "1401": {
-        string: "--:--.---",
-    },
-    "1402": {
-        string: ":",
-    },
-    "1403": {
-        string: ".",
-    },
-    "1404": {
-        string: "",
-    },
-    "1409": {
-        string: "{arg message|0} - Team-Versus-Rennen - {arg integer|0 0}/{arg integer|1 0}",
-    },
-    "1410": {
-        string: "{arg message|0} - {arg message|1} - 1. Rennen",
-    },
-    "1411": {
-        string: "{arg message|0} - {arg message|1} - 2. Rennen",
-    },
-    "1412": {
-        string: "{arg message|0} - {arg message|1} - 3. Rennen",
-    },
-    "1413": {
-        string: "{arg message|0} - {arg message|1} - Letztes Rennen",
-    },
-    "1414": {
-        string: "{arg message|0} - Versus-Rennen - {arg integer|0 0}/{arg integer|1 0}",
-    },
-    "1415": {
-        string: "Ballonbalgerei",
-    },
-    "1416": {
-        string: "Münzenjäger",
-    },
-    "1417": {
-        string: "50 ccm",
-    },
-    "1418": {
-        string: "100 ccm",
-    },
-    "1419": {
-        string: "150 ccm",
-    },
-    "1420": {
-        string: "Spiegel",
-    },
-    "1421": {
-        string: "{arg message|0} - {arg message|1}",
-    },
-    "1422": {
-        string: "{arg message|0} - Versus-Rennen",
-    },
-    "1423": {
-        string: "RANG ",
-    },
-    "1424": {
-        string: "{1 char|}",
-    },
-    "1425": {
-        string: "{1 char|}",
-    },
-    "1426": {
-        string: "{1 char|}",
-    },
-    "1427": {
-        string: "{1 char|}",
-    },
-    "1428": {
-        string: "{1 char|}",
-    },
-    "1429": {
-        string: "{1 char|}",
-    },
-    "1430": {
-        string: "{1 char|}",
-    },
-    "1431": {
-        string: "{1 char|}",
-    },
-    "1432": {
-        string: "F",
-    },
-    "1433": {
-        string: "{arg message|0} - Grand Prix",
-    },
-    "1434": {
-        string: "{arg message|0} - Team-Grand Prix",
-    },
-    "1435": {
-        string: "{arg message|0} - Team-Versus-Rennen",
-    },
-    "1436": {
-        string: null,
-    },
-    "1437": {
-        string: null,
-    },
-    "1438": {
-        string: null,
-    },
-    "1439": {
-        string: null,
-    },
-    "1440": {
-        string: "{arg message|0} - Versus-Rennen - {arg message|1}",
-    },
-    "1441": {
-        string: "{arg message|2}{arg message|0} - Grand Prix - 1. Rennen",
-    },
-    "1442": {
-        string: "{arg message|2}{arg message|0} - Grand Prix - 2. Rennen",
-    },
-    "1443": {
-        string: "{arg message|2}{arg message|0} - Grand Prix - 3. Rennen",
-    },
-    "1444": {
-        string: "{arg message|2}{arg message|0} - Grand Prix - Finale",
-    },
-    "1445": {
-        string: "{arg message|2}Ballonbalgerei",
-    },
-    "1446": {
-        string: "{arg message|2}Münzenjäger",
-    },
-    "1447": {
-        string: "({arg integer|0 0} Spieler)",
-    },
-    "1448": {
-        string: "",
-    },
-    "1449": {
-        string: "{color|team red}",
-    },
-    "1450": {
-        string: "{color|team blue}",
-    },
-    "1451": {
-        string: "",
-    },
-    "1500": {
-        string: "Item verwenden",
-    },
-    "1501": {
-        string: "Steuern",
-    },
-    "1502": {
-        string: "Beschleunigen",
-    },
-    "1503": {
-        string: "Bremsen/Driften",
-    },
-    "1504": {
-        string: "Bremsen",
-    },
-    "1505": {
-        string: "",
-    },
+    "1212": "Rekord",
+    "1213": "Beste Runde",
+    "1214": "{color|team red}ROT GEWINNT!",
+    "1215": "{color|team blue}BLAU GEWINNT!",
+    "1216": "{color|team red}SIEG FÜR ROT!",
+    "1217": "{color|team blue}SIEG FÜR BLAU!",
+    "1218": "GLEICHSTAND",
+    "1219": "GLÜCKWUNSCH!",
+    "1220": "GLÜCKWUNSCH!",
+    "1221": "GLÜCKWUNSCH!",
+    "1222": "WIE SCHADE!",
+    "1223": "{color|team red}Rot verliert!",
+    "1224": "{color|team blue}Blau verliert!",
+    "1225": "{color|team red}Rot verliert!",
+    "1226": "{color|team blue}Blau verliert!",
+    "1227": "",
+    "1301": "1.",
+    "1302": "2.",
+    "1303": "3.",
+    "1304": "4.",
+    "1305": "5.",
+    "1306": "6.",
+    "1307": "7.",
+    "1308": "8.",
+    "1309": "9.",
+    "1310": "10.",
+    "1311": "11.",
+    "1312": "12.",
+    "1313": "{arg cond messages|0 1316 1317}",
+    "1314": "{arg integer|0 0}",
+    "1315": "{arg signed integer|0 0}",
+    "1316": " Pkt.",
+    "1317": " Pkte.",
+    "1318": "{arg cond messages|0 1319 1320}",
+    "1319": "{color|team red}Sieg",
+    "1320": "{color|team red}Siege",
+    "1321": "{arg cond messages|0 1322 1323}",
+    "1322": "{color|team blue}Sieg",
+    "1323": "{color|team blue}Siege",
+    "1324": "{arg cond messages|0 1325 1326}",
+    "1325": "{color|team red}Pkt.",
+    "1326": "{color|team red}Pkte.",
+    "1327": "{arg cond messages|0 1328 1329}",
+    "1328": "{color|team blue}Pkt.",
+    "1329": "{color|team blue}Pkte.",
+    "1330": "Siege: {arg integer|0 0} / Niederlagen: {arg integer|1 0}",
+    "1331": "Siege: {arg integer|0 0} / Niederlagen: {arg integer|1 0}",
+    "1332": "{color|team red}{arg message|0}",
+    "1333": "{color|team blue}{arg message|0}",
+    "1334": "ZEIT",
+    "1335": "RUNDE",
+    "1336": "PUNKTE",
+    "1337": "LIVE",
+    "1338": "Du kannst am nächsten Rennen teil-\nnehmen (voraussichtlich {arg integer|0 0} Spieler).\nEinen Moment bitte...",
+    "1339": "Du kannst am nächsten Wettkampf teil-\nnehmen (voraussichtlich {arg integer|0 0} Spieler).\nEinen Moment bitte...",
+    "1340": "\nDie Ergebnisse stehen fest.\nDas Rennen ist beendet.",
+    "1341": "\n5 Minuten sind vergangen.\nDas Rennen ist beendet.",
+    "1342": "Der Sieger ist vor 30 Sekunden\nüber die Ziellinie gefahren.\nDas Rennen ist beendet.",
+    "1343": "",
+    "1344": "",
+    "1345": "{1 char|}",
+    "1400": "{arg integer|0 2}:{arg integer|1 2}.{arg integer|2 3}",
+    "1401": "--:--.---",
+    "1402": ":",
+    "1403": ".",
+    "1404": "",
+    "1409": "{arg message|0} - Team-Versus-Rennen - {arg integer|0 0}/{arg integer|1 0}",
+    "1410": "{arg message|0} - {arg message|1} - 1. Rennen",
+    "1411": "{arg message|0} - {arg message|1} - 2. Rennen",
+    "1412": "{arg message|0} - {arg message|1} - 3. Rennen",
+    "1413": "{arg message|0} - {arg message|1} - Letztes Rennen",
+    "1414": "{arg message|0} - Versus-Rennen - {arg integer|0 0}/{arg integer|1 0}",
+    "1415": "Ballonbalgerei",
+    "1416": "Münzenjäger",
+    "1417": "50 ccm",
+    "1418": "100 ccm",
+    "1419": "150 ccm",
+    "1420": "Spiegel",
+    "1421": "{arg message|0} - {arg message|1}",
+    "1422": "{arg message|0} - Versus-Rennen",
+    "1423": "RANG ",
+    "1424": "{1 char|}",
+    "1425": "{1 char|}",
+    "1426": "{1 char|}",
+    "1427": "{1 char|}",
+    "1428": "{1 char|}",
+    "1429": "{1 char|}",
+    "1430": "{1 char|}",
+    "1431": "{1 char|}",
+    "1432": "F",
+    "1433": "{arg message|0} - Grand Prix",
+    "1434": "{arg message|0} - Team-Grand Prix",
+    "1435": "{arg message|0} - Team-Versus-Rennen",
+    "1436": null,
+    "1437": null,
+    "1438": null,
+    "1439": null,
+    "1440": "{arg message|0} - Versus-Rennen - {arg message|1}",
+    "1441": "{arg message|2}{arg message|0} - Grand Prix - 1. Rennen",
+    "1442": "{arg message|2}{arg message|0} - Grand Prix - 2. Rennen",
+    "1443": "{arg message|2}{arg message|0} - Grand Prix - 3. Rennen",
+    "1444": "{arg message|2}{arg message|0} - Grand Prix - Finale",
+    "1445": "{arg message|2}Ballonbalgerei",
+    "1446": "{arg message|2}Münzenjäger",
+    "1447": "({arg integer|0 0} Spieler)",
+    "1448": "",
+    "1449": "{color|team red}",
+    "1450": "{color|team blue}",
+    "1451": "",
+    "1500": "Item verwenden",
+    "1501": "Steuern",
+    "1502": "Beschleunigen",
+    "1503": "Bremsen/Driften",
+    "1504": "Bremsen",
+    "1505": "",
 }

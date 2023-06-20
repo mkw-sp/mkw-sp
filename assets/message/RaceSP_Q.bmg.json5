@@ -1,29 +1,11 @@
 {
-    "10047": {
-        string: "Sauvegarde du fantôme...",
-    },
-    "10070": {
-        string: "Le fantôme va être tronqué.",
-    },
-    "10071": {
-        string: "{arg integer|0 0}:{arg integer|1 0}.{arg integer|2 3}",
-    },
-    "10284": {
-        string: "{color|player 3}Victoire des rouges!",
-    },
-    "10285": {
-        string: "{color|sp blue}Victoire des bleus!",
-    },
-    "10286": {
-        string: "{color|sp green}Victoire des verts!",
-    },
-    "10287": {
-        string: "{color|player 1}Victoire des jaunes!",
-    },
-    "10288": {
-        string: "{color|sp pink}Victoire des roses!",
-    },
-    "10289": {
-        string: "Victoire des blancs!",
-    },
+    "10047": "Sauvegarde du fantôme...",
+    "10070": "Le fantôme va être tronqué.",
+    "10071": "{arg integer|0 0}:{arg integer|1 0}.{arg integer|2 3}",
+    "10284": "{color|player 3}Victoire des rouges!",
+    "10285": "{color|sp blue}Victoire des bleus!",
+    "10286": "{color|sp green}Victoire des verts!",
+    "10287": "{color|player 1}Victoire des jaunes!",
+    "10288": "{color|sp pink}Victoire des roses!",
+    "10289": "Victoire des blancs!",
 }

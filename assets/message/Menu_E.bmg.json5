@@ -1,4103 +1,1369 @@
 {
-    "1": {
-        string: null,
-    },
-    "2000": {
-        string: "OK",
-    },
-    "2001": {
-        string: "←{arg back button|0}Back",
-    },
-    "2002": {
-        string: "Yes",
-    },
-    "2003": {
-        string: "No",
-    },
-    "2004": {
-        string: null,
-    },
-    "2005": {
-        string: "→",
-    },
-    "2006": {
-        string: null,
-    },
-    "2007": {
-        string: "←",
-    },
-    "2008": {
-        string: null,
-    },
-    "2009": {
-        string: "{arg integer|0 0}/{arg integer|1 0}",
-    },
-    "2010": {
-        string: "Mario Kart Wii",
-    },
-    "2011": {
-        string: "Single Player",
-    },
-    "2012": {
-        string: "Multiplayer",
-    },
-    "2013": {
-        string: "Nintendo WFC",
-    },
-    "2014": {
-        string: "Mario Kart Channel",
-    },
-    "2015": {
-        string: "Licence Settings",
-    },
-    "2016": {
-        string: "Records",
-    },
-    "2017": {
-        string: "Press the A Button",
-    },
-    "2018": {
-        string: "Main Menu",
-    },
-    "2019": {
-        string: null,
-    },
-    "2020": {
-        string: "Grand Prix and more for one player!",
-    },
-    "2021": {
-        string: "Race and battle with two players!",
-    },
-    "2022": {
-        string: "Race and battle with three players!",
-    },
-    "2023": {
-        string: "Race and battle with four players!",
-    },
-    "2024": {
-        string: "Play via Nintendo WFC!",
-    },
-    "2025": {
-        string: "Play with a friend via Nintendo WFC!",
-    },
-    "2026": {
-        string: "View rankings and competition data!",
-    },
-    "2027": {
-        string: "Check your records and change your Mii!",
-    },
-    "2028": {
-        string: null,
-    },
-    "2029": {
-        string: null,
-    },
-    "2030": {
-        string: "Multiplayer (2P)",
-    },
-    "2031": {
-        string: "Multiplayer (3P)",
-    },
-    "2032": {
-        string: "Multiplayer (4P)",
-    },
-    "2033": {
-        string: "Nintendo WFC (1P)",
-    },
-    "2034": {
-        string: "Nintendo WFC (2P)",
-    },
-    "2035": {
-        string: null,
-    },
-    "2050": {
-        string: "Please insert the Mario Kart Wii\nGame Disc into the Wii console\nand wait for the game to start up.",
-    },
-    "2051": {
-        string: "The Game Disc could not be read.\nPlease read the Wii Operations\nManual for more information.",
-    },
-    "2052": {
-        string: "An error has occurred.\n\nPress the EJECT Button, remove\nthe Game Disc, and turn the power\noff. Please read the Wii Operations\nManual for more information.",
-    },
-    "2053": {
-        string: "There is not enough available space in\nthe Wii System Memory. Create 23 blocks\nof free space by either moving data to\nan SD Card or deleting data in the\nData Management Screen.",
-    },
-    "2054": {
-        string: "The Wii System Memory has been\ncorrupted. Refer to the Wii\nOperations Manual for further\ninstructions.",
-    },
-    "2055": {
-        string: "This data is corrupted and\ncannot be used.\n\nDelete the corrupted file and\ncreate a new one?",
-    },
-    "2056": {
-        string: null,
-    },
-    "2057": {
-        string: "Could not write to/read from\nWii System Memory.\n\nFor details, please read the\nWii Operations Manual.",
-    },
-    "2058": {
-        string: "You will now return to the Wii Menu.",
-    },
-    "2059": {
-        string: "Continue without saving",
-    },
-    "2060": {
-        string: "Return to the Wii Menu",
-    },
-    "2061": {
-        string: "You cannot choose this menu\nbecause there is no save file.",
-    },
-    "2062": {
-        string: "No save file could be read.\nPlease insert a Mario Kart Wii\nGame Disc.",
-    },
-    "2063": {
-        string: "Start Game Disc",
-    },
-    "2064": {
-        string: "You will be returned\nto the Wii Menu.\nIs this OK?",
-    },
-    "2065": {
-        string: "Saving. Please do not touch\nthe POWER Button or RESET.",
-    },
-    "2066": {
-        string: "Unable to load Mii Channel data.\nPlease access the Mii Channel\nand check Mii Channel data.",
-    },
-    "2067": {
-        string: "If you erase this Mii from the\nMii Channel, it will also be\nerased in Mario Kart Wii, so\nplease be careful.",
-    },
-    "2068": {
-        string: "Your licence was created using a\nGuest Mii. You can create a new Mii\nof your own in the Mii Channel.",
-    },
-    "2069": {
-        string: "The ghost data challenge could not\nbe sent. Up to five challenges can\nbe sent each time you play.\n\nPlease wait until the next time\nyou start Mario Kart Wii to send\nanother challenge.",
-    },
-    "2070": {
-        string: "Unable to connect to Nintendo Wi-Fi\nConnection. There is no save data.\n\nYou can manage the Wii System Memory\non the Data Management Screen\nof the Wii Options.",
-    },
-    "2071": {
-        string: "There is not enough available space\nin the Wii System Memory. Either\nmove data to an SD Card or delete\ndata on the Data Management Screen.",
-    },
-    "2072": {
-        string: "You will now disconnect\nfrom Nintendo WFC and\nreturn to the main menu.",
-    },
-    "2073": {
-        string: "Your Country setting has been changed, so new\nsave data must be created. If you do not want to\nlose your existing save data, please return to the\nWii Menu and restore your original Country setting.",
-    },
-    "2074": {
-        string: "Create New Save Data",
-    },
-    "2075": {
-        string: null,
-    },
-    "2100": {
-        string: null,
-    },
-    "2101": {
-        string: "A new Mario Kart Wii\nlicence will be created.",
-    },
-    "2102": {
-        string: "New Licence",
-    },
-    "2103": {
-        string: "Erase Licence",
-    },
-    "2104": {
-        string: "Select Licence",
-    },
-    "2105": {
-        string: null,
-    },
-    "2106": {
-        string: null,
-    },
-    "2107": {
-        string: null,
-    },
-    "2108": {
-        string: null,
-    },
-    "2109": {
-        string: null,
-    },
-    "2110": {
-        string: "{arg integer|0 4}-{arg integer|1 4}-{arg integer|2 4}",
-    },
-    "2111": {
-        string: "A new licence will be\ncreated for {arg player|0}.\n\nIs this OK?",
-    },
-    "2112": {
-        string: "The Mii for this licence will\nbe changed to {arg player|0}.\nIs this OK?",
-    },
-    "2113": {
-        string: "{current player|} and {arg player|0}\nwill connect to Nintendo WFC\ntogether. Is this OK?",
-    },
-    "2114": {
-        string: null,
-    },
-    "2120": {
-        string: "Records",
-    },
-    "2121": {
-        string: "View {current player|}'s records.",
-    },
-    "2122": {
-        string: "Change the Mii on this licence.",
-    },
-    "2123": {
-        string: "Select Mii",
-    },
-    "2124": {
-        string: null,
-    },
-    "2125": {
-        string: null,
-    },
-    "2126": {
-        string: null,
-    },
-    "2127": {
-        string: null,
-    },
-    "2128": {
-        string: "Erase {current player|}'s licence.",
-    },
-    "2129": {
-        string: null,
-    },
-    "2130": {
-        string: null,
-    },
-    "2131": {
-        string: null,
-    },
-    "2132": {
-        string: null,
-    },
-    "2133": {
-        string: null,
-    },
-    "2134": {
-        string: null,
-    },
-    "2135": {
-        string: "Close",
-    },
-    "2136": {
-        string: null,
-    },
-    "2150": {
-        string: null,
-    },
-    "2151": {
-        string: "Your new licence has been created.",
-    },
-    "2152": {
-        string: "Are you sure you want to\nerase {current player|}'s licence?",
-    },
-    "2153": {
-        string: "{current player|}'s licence\nhas been erased.",
-    },
-    "2154": {
-        string: null,
-    },
-    "2155": {
-        string: "The Mii for this licence has been changed.",
-    },
-    "2156": {
-        string: null,
-    },
-    "2157": {
-        string: "Erasing licence...",
-    },
-    "2158": {
-        string: "The Friend Roster, ghost data records\nand other data for this licence will be\nerased. Are you sure this is OK?",
-    },
-    "2159": {
-        string: null,
-    },
-    "2200": {
-        string: "Change Mii",
-    },
-    "2201": {
-        string: "Select Mii",
-    },
-    "2202": {
-        string: "Wii Console",
-    },
-    "2203": {
-        string: "Guest",
-    },
-    "2204": {
-        string: null,
-    },
-    "2205": {
-        string: "The Mii for this licence has been deleted\nfrom the Mii Channel.\n\nPlease choose another Mii.",
-    },
-    "2206": {
-        string: null,
-    },
-    "2207": {
-        string: null,
-    },
-    "2208": {
-        string: null,
-    },
-    "2209": {
-        string: null,
-    },
-    "2210": {
-        string: null,
-    },
-    "2250": {
-        string: null,
-    },
-    "2251": {
-        string: null,
-    },
-    "2252": {
-        string: null,
-    },
-    "2253": {
-        string: null,
-    },
-    "2254": {
-        string: null,
-    },
-    "2255": {
-        string: null,
-    },
-    "2256": {
-        string: null,
-    },
-    "2257": {
-        string: null,
-    },
-    "2258": {
-        string: "The battery charge is\nrunning low.",
-    },
-    "2259": {
-        string: null,
-    },
-    "2260": {
-        string: null,
-    },
-    "2261": {
-        string: null,
-    },
-    "2262": {
-        string: null,
-    },
-    "2300": {
-        string: null,
-    },
-    "2301": {
-        string: "1\n{font scale|50}Player",
-    },
-    "2302": {
-        string: "2\n{font scale|50}Players",
-    },
-    "2303": {
-        string: "3\n{font scale|50}Players",
-    },
-    "2304": {
-        string: "4\n{font scale|50}Players",
-    },
-    "2305": {
-        string: "{2 chars| }",
-    },
-    "2306": {
-        string: "{2 chars| }",
-    },
-    "2307": {
-        string: null,
-    },
-    "2400": {
-        string: null,
-    },
-    "2401": {
-        string: "Register Controllers",
-    },
-    "2402": {
-        string: "Press the A Button on Player 2's Controller.",
-    },
-    "2403": {
-        string: "Press the A Button on Player 3's Controller.",
-    },
-    "2404": {
-        string: "Press the A Button on Player 4's Controller.",
-    },
-    "2405": {
-        string: null,
-    },
-    "2406": {
-        string: null,
-    },
-    "2407": {
-        string: null,
-    },
-    "2408": {
-        string: null,
-    },
-    "2409": {
-        string: null,
-    },
-    "2500": {
-        string: "Is this OK?",
-    },
-    "2501": {
-        string: "Change",
-    },
-    "2502": {
-        string: "Press the A Button on Player 1's controller.",
-    },
-    "2503": {
-        string: "Press the A Button on Player 2's controller.",
-    },
-    "2504": {
-        string: "Press the A Button on Player 3's controller.",
-    },
-    "2505": {
-        string: "Press the A Button on Player 4's controller.",
-    },
-    "2506": {
-        string: "Use these controllers.",
-    },
-    "2507": {
-        string: "Change the controllers.",
-    },
-    "2508": {
-        string: "{arg message|0}Add Wii Remote",
-    },
-    "2509": {
-        string: "Press {1 char|} and {1 char|} simultaneously.",
-    },
-    "2510": {
-        string: "{arg message|0}OK",
-    },
-    "2511": {
-        string: null,
-    },
-    "2512": {
-        string: null,
-    },
-    "2513": {
-        string: null,
-    },
-    "2514": {
-        string: null,
-    },
-    "2550": {
-        string: "{1 char|}",
-    },
-    "2551": {
-        string: "{1 char|}",
-    },
-    "2552": {
-        string: "{1 char|}",
-    },
-    "2553": {
-        string: "{1 char|}",
-    },
-    "2554": {
-        string: "{1 char|}",
-    },
-    "2555": {
-        string: "{color|player 1}OK",
-    },
-    "2556": {
-        string: "{color|player 2}OK",
-    },
-    "2557": {
-        string: "{color|player 3}OK",
-    },
-    "2558": {
-        string: "{color|player 4}OK",
-    },
-    "2559": {
-        string: null,
-    },
-    "2600": {
-        string: "Add the Mario Kart Channel to\nyour Wii Menu? This requires\n{arg integer|0 0} blocks of free space.",
-    },
-    "2601": {
-        string: "Add",
-    },
-    "2602": {
-        string: "Cancel",
-    },
-    "2603": {
-        string: null,
-    },
-    "2604": {
-        string: null,
-    },
-    "2605": {
-        string: null,
-    },
-    "2606": {
-        string: null,
-    },
-    "2607": {
-        string: "Add Mario Kart Channel",
-    },
-    "2608": {
-        string: "Add the Mario Kart Channel to\nyour Wii Menu and you will be\nable to access the Channel\nwithout having to insert the\nMario Kart Wii Game Disc!",
-    },
-    "2609": {
-        string: "The Mario Kart Channel has already\nbeen added to your Wii Menu.",
-    },
-    "2610": {
-        string: "There is not enough available space\nin the Wii System Memory.\nCreate {arg integer|0 0} blocks of free space\nby either moving data to an SD Card\nor deleting data on the\nData Management Screen.",
-    },
-    "2611": {
-        string: "There is not enough available space\nin the Wii System Memory. Either\nmove data to an SD Card or delete\ndata on the Data Management Screen.",
-    },
-    "2612": {
-        string: "There is not enough available space\non your Wii Menu. Either move Channels\nto an SD Card or delete Channels on\nthe Data Management Screen.",
-    },
-    "2613": {
-        string: "The Wii System Memory\nhas been corrupted. Refer\nto the Wii Operations Manual\nfor further instructions.",
-    },
-    "2614": {
-        string: null,
-    },
-    "3000": {
-        string: "Grand Prix",
-    },
-    "3001": {
-        string: "Time Trials",
-    },
-    "3002": {
-        string: "VS Race",
-    },
-    "3003": {
-        string: "Battle",
-    },
-    "3004": {
-        string: null,
-    },
-    "3005": {
-        string: null,
-    },
-    "3006": {
-        string: "50cc\n{font scale|50}Karts Only",
-    },
-    "3007": {
-        string: "100cc\n{font scale|50}Bikes Only",
-    },
-    "3008": {
-        string: "150cc\n{font scale|50}Karts and Bikes",
-    },
-    "3009": {
-        string: "Mirror\n{font scale|50}Karts and Bikes",
-    },
-    "3010": {
-        string: "50cc\n{font scale|50}Karts and Bikes",
-    },
-    "3011": {
-        string: "100cc\n{font scale|50}Karts and Bikes",
-    },
-    "3012": {
-        string: "{arg message|0}Switch",
-    },
-    "3013": {
-        string: null,
-    },
-    "3050": {
-        string: "A four-course race for first place!",
-    },
-    "3051": {
-        string: "A solo race for the fastest record!",
-    },
-    "3052": {
-        string: "Race with custom settings!",
-    },
-    "3053": {
-        string: "Race with custom settings!",
-    },
-    "3054": {
-        string: "Battle in teams!",
-    },
-    "3055": {
-        string: "Battle in teams!",
-    },
-    "3056": {
-        string: null,
-    },
-    "3057": {
-        string: null,
-    },
-    "3058": {
-        string: null,
-    },
-    "3059": {
-        string: null,
-    },
-    "3060": {
-        string: "A Grand Prix for beginners (karts only).",
-    },
-    "3061": {
-        string: "A standard Grand Prix (bikes only).",
-    },
-    "3062": {
-        string: "A Grand Prix for experts (karts and bikes).",
-    },
-    "3063": {
-        string: "A mirrored Grand Prix (karts and bikes).",
-    },
-    "3064": {
-        string: "A Grand Prix for beginners (karts and bikes).",
-    },
-    "3065": {
-        string: "A standard Grand Prix (karts and bikes).",
-    },
-    "3066": {
-        string: null,
-    },
-    "3100": {
-        string: "Time Trials",
-    },
-    "3101": {
-        string: "There is no ghost data for this course.",
-    },
-    "3102": {
-        string: null,
-    },
-    "3103": {
-        string: "Rankings",
-    },
-    "3104": {
-        string: null,
-    },
-    "3200": {
-        string: "Battle Type",
-    },
-    "3201": {
-        string: "Balloon Battle",
-    },
-    "3202": {
-        string: "Coin Runners",
-    },
-    "3203": {
-        string: null,
-    },
-    "3204": {
-        string: null,
-    },
-    "3250": {
-        string: "Pop the opposing team's balloons!",
-    },
-    "3251": {
-        string: "Battle for the most coins!",
-    },
-    "3252": {
-        string: null,
-    },
-    "3253": {
-        string: null,
-    },
-    "3305": {
-        string: "Drift Mode",
-    },
-    "3306": {
-        string: "Automatic",
-    },
-    "3307": {
-        string: "Manual",
-    },
-    "3308": {
-        string: "Help",
-    },
-    "3309": {
-        string: "■ Drift ■\nDrift lets you take corners without\nlosing speed. There are two drift modes.\n\n■ Automatic Drift ■\nYou will drift automatically when turning,\nbut you can't {arg back button|0}hop or use Mini-Turbos.\n\n■ Manual Drift ■\n{arg back button|0}Hop while turning to drift. Keep\ndrifting to get a Mini-Turbo, which\ngives you a burst of speed.",
-    },
-    "3310": {
-        string: "View an explanation of drift and drift modes.",
-    },
-    "3311": {
-        string: "Speed",
-    },
-    "3312": {
-        string: "Weight",
-    },
-    "3313": {
-        string: "Acceleration",
-    },
-    "3314": {
-        string: "Handling",
-    },
-    "3315": {
-        string: "Drift",
-    },
-    "3316": {
-        string: "Off-Road",
-    },
-    "3317": {
-        string: "Mini-Turbo",
-    },
-    "3318": {
-        string: null,
-    },
-    "3350": {
-        string: "Drift automatically (no Mini-Turbo).",
-    },
-    "3351": {
-        string: "Drift manually (with Mini-Turbo).",
-    },
-    "3352": {
-        string: null,
-    },
-    "3360": {
-        string: "{arg message|0}　Trophy: {arg message|1}　Rank:{arg message|2}",
-    },
-    "3361": {
-        string: "Time Trials",
-    },
-    "3362": {
-        string: "{arg message|0}",
-    },
-    "3363": {
-        string: "{arg message|0} VS Race",
-    },
-    "3364": {
-        string: "{1 char|} Balloon Battle",
-    },
-    "3365": {
-        string: "{1 char|} Coin Runners",
-    },
-    "3366": {
-        string: "{arg message|0} Team VS Race",
-    },
-    "3370": {
-        string: "{1 char|}",
-    },
-    "3371": {
-        string: "{1 char|}",
-    },
-    "3372": {
-        string: "{1 char|}",
-    },
-    "3373": {
-        string: "{1 char|}",
-    },
-    "3374": {
-        string: "{1 char|}",
-    },
-    "3375": {
-        string: "{1 char|}",
-    },
-    "3376": {
-        string: "{1 char|}",
-    },
-    "3377": {
-        string: "{1 char|}",
-    },
-    "3378": {
-        string: "{1 char|}",
-    },
-    "3379": {
-        string: "{1 char|}",
-    },
-    "3380": {
-        string: "{1 char|}",
-    },
-    "3381": {
-        string: "F",
-    },
-    "3382": {
-        string: " 　",
-    },
-    "3383": {
-        string: null,
-    },
-    "3384": {
-        string: null,
-    },
-    "3400": {
-        string: "Rules",
-    },
-    "3401": {
-        string: "Select Class",
-    },
-    "3402": {
-        string: "Select Character",
-    },
-    "3403": {
-        string: "Select Vehicle",
-    },
-    "3404": {
-        string: "Select Cup",
-    },
-    "3405": {
-        string: "Select Course",
-    },
-    "3406": {
-        string: "Select Stage",
-    },
-    "3407": {
-        string: "Choose Ghost Data",
-    },
-    "3408": {
-        string: "Battle",
-    },
-    "3409": {
-        string: "VS Race",
-    },
-    "3410": {
-        string: "Class",
-    },
-    "3411": {
-        string: "50cc",
-    },
-    "3412": {
-        string: "100cc",
-    },
-    "3413": {
-        string: "150cc",
-    },
-    "3414": {
-        string: "Mirror",
-    },
-    "3415": {
-        string: "50cc class for beginners.",
-    },
-    "3416": {
-        string: "100cc class for average racers.",
-    },
-    "3417": {
-        string: "150cc class for experts.",
-    },
-    "3418": {
-        string: "150cc class with mirrored courses.",
-    },
-    "3420": {
-        string: "CPU",
-    },
-    "3421": {
-        string: "Easy",
-    },
-    "3422": {
-        string: "Normal",
-    },
-    "3423": {
-        string: "Hard",
-    },
-    "3424": {
-        string: "Off",
-    },
-    "3425": {
-        string: "CPU players are less skilled.",
-    },
-    "3426": {
-        string: "CPU players are of average skill.",
-    },
-    "3427": {
-        string: "CPU players are more skilled.",
-    },
-    "3428": {
-        string: "Race without CPU players.",
-    },
-    "3430": {
-        string: "Vehicles",
-    },
-    "3431": {
-        string: "Karts",
-    },
-    "3432": {
-        string: "Bikes",
-    },
-    "3433": {
-        string: "All",
-    },
-    "3434": {
-        string: "CPU players use karts only.",
-    },
-    "3435": {
-        string: "CPU players use bikes only.",
-    },
-    "3436": {
-        string: "CPU players use karts and bikes.",
-    },
-    "3437": {
-        string: "CPU players use karts only.",
-    },
-    "3438": {
-        string: "CPU players use bikes only.",
-    },
-    "3439": {
-        string: "CPU players use karts and bikes.",
-    },
-    "3440": {
-        string: "Course",
-    },
-    "3441": {
-        string: "Choose",
-    },
-    "3442": {
-        string: "Random",
-    },
-    "3443": {
-        string: "In Order",
-    },
-    "3444": {
-        string: "Choose the course for each race.",
-    },
-    "3445": {
-        string: "Courses are chosen at random.",
-    },
-    "3446": {
-        string: "Race courses in Cup order.",
-    },
-    "3447": {
-        string: "Choose the stage for each battle.",
-    },
-    "3448": {
-        string: "Stages are chosen at random.",
-    },
-    "3449": {
-        string: "Play stages in order.",
-    },
-    "3450": {
-        string: "Races",
-    },
-    "3451": {
-        string: "{arg integer|0 1}",
-    },
-    "3452": {
-        string: "Wins",
-    },
-    "3460": {
-        string: "{arg integer|0 1}",
-    },
-    "3461": {
-        string: "Teams",
-    },
-    "3462": {
-        string: "Team Race",
-    },
-    "3463": {
-        string: "Solo Race",
-    },
-    "3464": {
-        string: null,
-    },
-    "3465": {
-        string: "Set the number of races.",
-    },
-    "3466": {
-        string: "Set the number of wins needed for overall victory.",
-    },
-    "3467": {
-        string: "Compete in teams for the most points!",
-    },
-    "3468": {
-        string: "Compete for the most points!",
-    },
-    "3469": {
-        string: "Stage",
-    },
-    "3470": {
-        string: "Are you sure you want\nto quit this VS Race?",
-    },
-    "3471": {
-        string: "Are you sure you want\nto quit this Battle?",
-    },
-    "3472": {
-        string: "Race with these rules.",
-    },
-    "3473": {
-        string: "Battle with these rules.",
-    },
-    "3474": {
-        string: "Set various race rules.",
-    },
-    "3475": {
-        string: "Set various battle rules.",
-    },
-    "3476": {
-        string: null,
-    },
-    "3480": {
-        string: "Items",
-    },
-    "3481": {
-        string: "Recommended",
-    },
-    "3482": {
-        string: "Frantic",
-    },
-    "3483": {
-        string: "Basic",
-    },
-    "3484": {
-        string: "None",
-    },
-    "3485": {
-        string: "All items appear with balanced frequency.",
-    },
-    "3486": {
-        string: "Powerful items appear with high frequency.",
-    },
-    "3487": {
-        string: "Powerful items are hard to find.",
-    },
-    "3488": {
-        string: "No items will appear.",
-    },
-    "3489": {
-        string: null,
-    },
-    "3500": {
-        string: "Team Settings",
-    },
-    "3501": {
-        string: "Blue\nTeam",
-    },
-    "3502": {
-        string: "Red\nTeam",
-    },
-    "3503": {
-        string: "Teams",
-    },
-    "3504": {
-        string: "Play with these teams.",
-    },
-    "3505": {
-        string: "Racers",
-    },
-    "3506": {
-        string: "{color|team blue}Blue\nTeam",
-    },
-    "3507": {
-        string: "{color|team red}Red\nTeam",
-    },
-    "3508": {
-        string: "Everyone is on the same team.\n\nPlease choose again.",
-    },
-    "3509": {
-        string: null,
-    },
-    "3550": {
-        string: "Start?",
-    },
-    "3551": {
-        string: "Start?",
-    },
-    "3552": {
-        string: "Start?",
-    },
-    "3553": {
-        string: null,
-    },
-    "4000": {
-        string: "Worldwide",
-    },
-    "4001": {
-        string: "Continental",
-    },
-    "4002": {
-        string: "Friends",
-    },
-    "4003": {
-        string: "Ghost Race",
-    },
-    "4004": {
-        string: "Nintendo Wi-Fi Connection",
-    },
-    "4005": {
-        string: null,
-    },
-    "4006": {
-        string: null,
-    },
-    "4007": {
-        string: null,
-    },
-    "4008": {
-        string: "There are no Friends registered\nin your Friend Roster.\n\nRegister Friends to play\ntogether on Nintendo WFC. ",
-    },
-    "4009": {
-        string: null,
-    },
-    "4010": {
-        string: "Connecting to Nintendo WFC...",
-    },
-    "4011": {
-        string: "Disconnect from Nintendo WFC?",
-    },
-    "4012": {
-        string: "Yes",
-    },
-    "4013": {
-        string: "No",
-    },
-    "4014": {
-        string: null,
-    },
-    "4015": {
-        string: null,
-    },
-    "4016": {
-        string: "You cannot access Nintendo\nWi-Fi Connection using this\nMii name. Please change your\nMii name and try again.",
-    },
-    "4017": {
-        string: null,
-    },
-    "4018": {
-        string: "You were disconnected\nfrom the other players.",
-    },
-    "4019": {
-        string: "Leave the room?",
-    },
-    "4020": {
-        string: "Close the room?",
-    },
-    "4021": {
-        string: "You were disconnected from the\nroom's creator. You will now be\nreturned to your Friend Roster.",
-    },
-    "4022": {
-        string: "You were unable to join this Friend.\n\nPlease wait and try again later.",
-    },
-    "4023": {
-        string: null,
-    },
-    "4024": {
-        string: "Teams",
-    },
-    "4025": {
-        string: null,
-    },
-    "4100": {
-        string: "Room",
-    },
-    "4101": {
-        string: "Create a Room",
-    },
-    "4102": {
-        string: "Joining Friend...",
-    },
-    "4103": {
-        string: null,
-    },
-    "4104": {
-        string: null,
-    },
-    "4105": {
-        string: null,
-    },
-    "4106": {
-        string: "Searching for players...",
-    },
-    "4107": {
-        string: "Players have been chosen!",
-    },
-    "4108": {
-        string: "Waiting for Friends...",
-    },
-    "4109": {
-        string: "Start Game",
-    },
-    "4110": {
-        string: "We're playing a Grand Prix!",
-    },
-    "4111": {
-        string: "We're playing a Team Grand Prix!",
-    },
-    "4112": {
-        string: "We're playing a Balloon Battle!",
-    },
-    "4113": {
-        string: "We're playing Coin Runners!",
-    },
-    "4114": {
-        string: null,
-    },
-    "4150": {
-        string: "Add Friends",
-    },
-    "4151": {
-        string: "I've added you, {arg player|0}!",
-    },
-    "4152": {
-        string: "There are no Friends to add.",
-    },
-    "4153": {
-        string: null,
-    },
-    "4154": {
-        string: "Now we're Friends, {arg player|0}!",
-    },
-    "4155": {
-        string: null,
-    },
-    "4200": {
-        string: "Message",
-    },
-    "4201": {
-        string: "{arg integer|0 2}/{arg integer|1 2}",
-    },
-    "4202": {
-        string: "{arg integer|0 0}\n{font scale|70}Race Rating",
-    },
-    "4203": {
-        string: "{arg integer|0 0}\n{font scale|70}Battle Rating",
-    },
-    "4204": {
-        string: "Please wait...",
-    },
-    "4205": {
-        string: "Worldwide VS Race",
-    },
-    "4206": {
-        string: "Worldwide Battle",
-    },
-    "4207": {
-        string: "Continental VS Race",
-    },
-    "4208": {
-        string: "Continental Battle",
-    },
-    "4300": {
-        string: "Choose a mode.",
-    },
-    "4301": {
-        string: "Please wait...",
-    },
-    "4302": {
-        string: "The mode has been decided.",
-    },
-    "4303": {
-        string: null,
-    },
-    "4304": {
-        string: null,
-    },
-    "4305": {
-        string: "VS Race",
-    },
-    "4306": {
-        string: "VS Race",
-    },
-    "4307": {
-        string: null,
-    },
-    "4308": {
-        string: "Battle",
-    },
-    "4309": {
-        string: "Battle",
-    },
-    "4310": {
-        string: "Challenge players around the world.",
-    },
-    "4311": {
-        string: "Challenge players on your continent.",
-    },
-    "4312": {
-        string: "Play with just your Friends.",
-    },
-    "4313": {
-        string: "Race against ghost data from players around the world.",
-    },
-    "4314": {
-        string: "Race with up to 11 other players!",
-    },
-    "4315": {
-        string: "Battle with up to 6 players on each team!",
-    },
-    "4316": {
-        string: "Create a room to play with Friends.",
-    },
-    "4317": {
-        string: "See what your Friends are doing right now.",
-    },
-    "4318": {
-        string: "Register a Friend Code in your Friend Roster.",
-    },
-    "4319": {
-        string: null,
-    },
-    "4320": {
-        string: "The next race is 100cc class!",
-    },
-    "4321": {
-        string: "The next race is 150cc class!",
-    },
-    "4322": {
-        string: "The next race is Mirror class!",
-    },
-    "4323": {
-        string: "{1 char|} Balloon Battle",
-    },
-    "4324": {
-        string: "{1 char|} Coin Runners",
-    },
-    "4325": {
-        string: "The next race is 100cc class!",
-    },
-    "4326": {
-        string: "The next race is 150cc class!",
-    },
-    "4327": {
-        string: "The next race is Mirror class!",
-    },
-    "4328": {
-        string: "The next race is 100cc class!",
-    },
-    "4329": {
-        string: "The next race is 150cc class!",
-    },
-    "4330": {
-        string: "The next race is Mirror class!",
-    },
-    "4331": {
-        string: null,
-    },
-    "4332": {
-        string: null,
-    },
-    "4333": {
-        string: null,
-    },
-    "4334": {
-        string: null,
-    },
-    "4350": {
-        string: "Vote for a course?",
-    },
-    "4351": {
-        string: "Vote",
-    },
-    "4352": {
-        string: "Random",
-    },
-    "4353": {
-        string: "???",
-    },
-    "4354": {
-        string: "Course Votes",
-    },
-    "4355": {
-        string: "Stage Votes",
-    },
-    "4356": {
-        string: "Vote for a stage?",
-    },
-    "4357": {
-        string: "Getting ready to race...",
-    },
-    "4358": {
-        string: "Getting ready to battle...",
-    },
-    "4359": {
-        string: null,
-    },
-    "4360": {
-        string: "Waiting for everyone to vote...",
-    },
-    "4361": {
-        string: "",
-    },
-    "4362": {
-        string: "The course has been decided!",
-    },
-    "4363": {
-        string: "The stage has been decided!",
-    },
-    "4364": {
-        string: null,
-    },
-    "4370": {
-        string: "Send a message to everyone in the room.",
-    },
-    "4371": {
-        string: "Choose a message to send.",
-    },
-    "4372": {
-        string: "Start a game with these players.",
-    },
-    "4373": {
-        string: "Choose what to play.",
-    },
-    "4374": {
-        string: "Invite others to become your Friends.",
-    },
-    "4375": {
-        string: "This message will only be sent to the player you are inviting.",
-    },
-    "4376": {
-        string: null,
-    },
-    "4390": {
-        string: "Enter a Friend Code.",
-    },
-    "4391": {
-        string: "Register this Friend Code.",
-    },
-    "4392": {
-        string: "Play with Friends.",
-    },
-    "4393": {
-        string: "This Friend Code will be removed.",
-    },
-    "4394": {
-        string: null,
-    },
-    "4395": {
-        string: null,
-    },
-    "4396": {
-        string: null,
-    },
-    "4397": {
-        string: null,
-    },
-    "4499": {
-        string: "Here I am!",
-    },
-    "4500": {
-        string: "Hello!",
-    },
-    "4501": {
-        string: "Good evening!",
-    },
-    "4502": {
-        string: "Long time no see!",
-    },
-    "4503": {
-        string: "Good luck!",
-    },
-    "4504": {
-        string: "Thanks for waiting!",
-    },
-    "4505": {
-        string: "Welcome!",
-    },
-    "4506": {
-        string: "Is everyone here?",
-    },
-    "4507": {
-        string: "Let's wait a bit longer!",
-    },
-    "4508": {
-        string: "Ready?",
-    },
-    "4509": {
-        string: "Starting soon?",
-    },
-    "4510": {
-        string: "Let's wait 3 more minutes...",
-    },
-    "4511": {
-        string: "I'm going to take a break...",
-    },
-    "4512": {
-        string: "OK!",
-    },
-    "4513": {
-        string: "Let's get started!",
-    },
-    "4514": {
-        string: "Go easy on me!",
-    },
-    "4515": {
-        string: "I'll try my best!",
-    },
-    "4516": {
-        string: "What shall we play?",
-    },
-    "4517": {
-        string: "Any preferences?",
-    },
-    "4518": {
-        string: "A Grand Prix or a Battle?",
-    },
-    "4519": {
-        string: "I mightn't do so well...",
-    },
-    "4520": {
-        string: "Let's have a Grand Prix!",
-    },
-    "4521": {
-        string: "Let's have a Team Grand Prix!",
-    },
-    "4522": {
-        string: "Let's have a Balloon Battle!",
-    },
-    "4523": {
-        string: "Let's play Coin Runners!",
-    },
-    "4524": {
-        string: "I'm going to use a small vehicle!",
-    },
-    "4525": {
-        string: "I'm going to use a medium vehicle!",
-    },
-    "4526": {
-        string: "I'm going to use a large vehicle!",
-    },
-    "4527": {
-        string: "I'm going to race as a Mii!",
-    },
-    "4528": {
-        string: "I'm going to use my Wii Wheel!",
-    },
-    "4529": {
-        string: "I'm going to use a kart!",
-    },
-    "4530": {
-        string: "I'm going to use a bike!",
-    },
-    "4531": {
-        string: "I can't decide...",
-    },
-    "4532": {
-        string: "Which course?",
-    },
-    "4533": {
-        string: "Hmm...",
-    },
-    "4534": {
-        string: "Let's choose Random!",
-    },
-    "4535": {
-        string: "Let's try a new course!",
-    },
-    "4536": {
-        string: "Luigi Circuit!",
-    },
-    "4537": {
-        string: "Moo Moo Meadows!",
-    },
-    "4538": {
-        string: "Mushroom Gorge!",
-    },
-    "4539": {
-        string: "Toad's Factory!",
-    },
-    "4540": {
-        string: "Mario Circuit!",
-    },
-    "4541": {
-        string: "Coconut Mall!",
-    },
-    "4542": {
-        string: "DK's Snowboard Cross!",
-    },
-    "4543": {
-        string: "Wario's Gold Mine!",
-    },
-    "4544": {
-        string: "Daisy Circuit!",
-    },
-    "4545": {
-        string: "Koopa Cape!",
-    },
-    "4546": {
-        string: "Maple Treeway!",
-    },
-    "4547": {
-        string: "Grumble Volcano!",
-    },
-    "4548": {
-        string: "Dry Dry Ruins!",
-    },
-    "4549": {
-        string: "Moonview Highway!",
-    },
-    "4550": {
-        string: "Bowser's Castle!",
-    },
-    "4551": {
-        string: "Rainbow Road!",
-    },
-    "4552": {
-        string: "GCN Peach Beach!",
-    },
-    "4553": {
-        string: "DS Yoshi Falls!",
-    },
-    "4554": {
-        string: "SNES Ghost Valley 2!",
-    },
-    "4555": {
-        string: "N64 Mario Raceway!",
-    },
-    "4556": {
-        string: "N64 Sherbet Land!",
-    },
-    "4557": {
-        string: "GBA Shy Guy Beach!",
-    },
-    "4558": {
-        string: "DS Delfino Square!",
-    },
-    "4559": {
-        string: "GCN Waluigi Stadium!",
-    },
-    "4560": {
-        string: "DS Desert Hills!",
-    },
-    "4561": {
-        string: "GBA Bowser Castle 3!",
-    },
-    "4562": {
-        string: "N64 DK's Jungle Parkway!",
-    },
-    "4563": {
-        string: "GCN Mario Circuit!",
-    },
-    "4564": {
-        string: "SNES Mario Circuit 3!",
-    },
-    "4565": {
-        string: "DS Peach Gardens!",
-    },
-    "4566": {
-        string: "GCN DK Mountain!",
-    },
-    "4567": {
-        string: "N64 Bowser's Castle!",
-    },
-    "4568": {
-        string: "Block Plaza!",
-    },
-    "4569": {
-        string: "Delfino Pier!",
-    },
-    "4570": {
-        string: "Funky Stadium!",
-    },
-    "4571": {
-        string: "Chain Chomp Roulette!",
-    },
-    "4572": {
-        string: "Thwomp Desert!",
-    },
-    "4573": {
-        string: "SNES Battle Course 4!",
-    },
-    "4574": {
-        string: "GBA Battle Course 3!",
-    },
-    "4575": {
-        string: "N64 Skyscraper!",
-    },
-    "4576": {
-        string: "GCN Cookie Land!",
-    },
-    "4577": {
-        string: "DS Twilight House!",
-    },
-    "4578": {
-        string: "The red team rules!",
-    },
-    "4579": {
-        string: "The blue team rules!",
-    },
-    "4580": {
-        string: "Yaaaay!",
-    },
-    "4581": {
-        string: "I'm the best!",
-    },
-    "4582": {
-        string: "You're all so fast!",
-    },
-    "4583": {
-        string: "Congratulations!",
-    },
-    "4584": {
-        string: "That was fun!",
-    },
-    "4585": {
-        string: "So exciting!",
-    },
-    "4586": {
-        string: "Grrr! No fair!",
-    },
-    "4587": {
-        string: "I won't lose next time!",
-    },
-    "4588": {
-        string: "Let's play again!",
-    },
-    "4589": {
-        string: "This isn't over yet!",
-    },
-    "4590": {
-        string: "The next game will be the last!",
-    },
-    "4591": {
-        string: "I'm ready to quit...",
-    },
-    "4592": {
-        string: "Thanks for a great time!",
-    },
-    "4593": {
-        string: "Thanks!",
-    },
-    "4594": {
-        string: "Goodnight!",
-    },
-    "4595": {
-        string: "See you later!",
-    },
-    "4596": {
-        string: null,
-    },
-    "4597": {
-        string: null,
-    },
-    "4598": {
-        string: null,
-    },
-    "4599": {
-        string: null,
-    },
-    "4600": {
-        string: "A communication error has\noccurred. You will now\nreturn to the main menu.\n\nError Code: {arg integer|0 5}",
-    },
-    "4601": {
-        string: "Unable to connect to the Internet.\nConfirm the Internet settings of\nthe Wii console.\n\nError Code: {arg integer|0 5}",
-    },
-    "4602": {
-        string: "Either Nintendo Wi-Fi Connection is\nexperiencing high traffic volumes or the\nservice is down. Please try again later.\nFor help, visit support.nintendo.com.\n\nError Code: {arg integer|0 5}",
-    },
-    "4603": {
-        string: "Unable to connect to Nintendo Wi-Fi\nConnection. For help, check the\nsoftware Instruction Booklet or\nvisit support.nintendo.com.\n\nError Code: {arg integer|0 5}",
-    },
-    "4604": {
-        string: "The Nintendo Wi-Fi Connection service for\nthis software has been discontinued. Visit\nsupport.nintendo.com for a list of current\nNintendo Wi-Fi Connection-compatible software.\n\nError Code: {arg integer|0 5}",
-    },
-    "4605": {
-        string: "Unable to connect to Nintendo Wi-Fi\nConnection. For help, check the\nsoftware Instruction Booklet or\nvisit support.nintendo.com.\n\nError Code: {arg integer|0 5}",
-    },
-    "4606": {
-        string: "Either Nintendo Wi-Fi Connection is\nexperiencing high traffic volumes, or\nthe service is down. Please try again later.\nFor help, visit support.nintendo.com.\n\nError Code: {arg integer|0 5}",
-    },
-    "4607": {
-        string: "There is not enough available space\nin the Wii System Memory.\n\nError Code: {arg integer|0 5}",
-    },
-    "4608": {
-        string: "The Wii System Memory has been damaged.\nRefer to the Wii Operations Manual\nfor further instructions.\n\n\nError Code: {arg integer|0 5}",
-    },
-    "4609": {
-        string: "Disconnected from network during\ndata transmission.\n\nError Code: {arg integer|0 5}",
-    },
-    "4610": {
-        string: "Download failed. Please try again.\nFor help, visit support.nintendo.com.\n\nError Code: {arg integer|0 5}",
-    },
-    "4611": {
-        string: "Disconnected from network during\ndata transmission.\n\nError Code: {arg integer|0 5}",
-    },
-    "4612": {
-        string: "Disconnected from network during\ndata transmission.\n\nError Code: {arg integer|0 5}",
-    },
-    "4613": {
-        string: "Disconnected from network during\ndata transmission.\n\nError Code: {arg integer|0 5}",
-    },
-    "4614": {
-        string: "Disconnected from network during\ndata transmission.\n\nError Code: {arg integer|0 5}",
-    },
-    "4615": {
-        string: "Disconnected from network during\ndata transmission.\n\nError Code: {arg integer|0 5}",
-    },
-    "4616": {
-        string: "Unable to connect to the Internet.\nConfirm the Internet settings of\nthe Wii console.\n\nError Code: {arg integer|0 5}",
-    },
-    "4617": {
-        string: "Unable to connect to the Internet.\nConfirm the Internet settings of\nthe Wii console.\n\nError Code: {arg integer|0 5}",
-    },
-    "4618": {
-        string: "Unable to connect to the Internet.\nConfirm the Internet settings of\nthe Wii console.\n\nError Code: {arg integer|0 5}",
-    },
-    "4619": {
-        string: "Unable to connect to the Internet.\nConfirm the Internet settings of\nthe Wii console.\n\nError Code: {arg integer|0 5}",
-    },
-    "4620": {
-        string: "Unable to connect to the Internet.\nConfirm the Internet settings of\nthe Wii console.\n\nError Code: {arg integer|0 5}",
-    },
-    "4621": {
-        string: "Unable to connect to the Internet.\nConfirm the Internet settings of\nthe Wii console.\n\nError Code: {arg integer|0 5}",
-    },
-    "4622": {
-        string: "Unable to connect to the Internet.\nConfirm the Internet settings of\nthe Wii console.\n\nError Code: {arg integer|0 5}",
-    },
-    "4623": {
-        string: "Unable to connect to the Internet.\nConfirm the Internet settings of\nthe Wii console.\n\nError Code: {arg integer|0 5}",
-    },
-    "4624": {
-        string: "Unable to connect to the Internet.\nConfirm the Internet settings of\nthe Wii console.\n\nError Code: {arg integer|0 5}",
-    },
-    "4625": {
-        string: "Unable to connect to the Internet.\nConfirm the Internet settings of\nthe Wii console.\n\nError Code: {arg integer|0 5}",
-    },
-    "4626": {
-        string: "Unable to connect to the Internet.\nConfirm the Internet settings of\nthe Wii console.\n\nError Code: {arg integer|0 5}",
-    },
-    "4627": {
-        string: "Unable to connect to the Internet.\nConfirm the Internet settings of\nthe Wii console.\n\nError Code: {arg integer|0 5}",
-    },
-    "4628": {
-        string: "Unable to connect to the Internet.\nConfirm the Internet settings of\nthe Wii console.\n\nError Code: {arg integer|0 5}",
-    },
-    "4629": {
-        string: "Disconnected from network during\ndata transmission.\n\nError Code: {arg integer|0 5}",
-    },
-    "4630": {
-        string: null,
-    },
-    "5000": {
-        string: "Mario Kart Channel",
-    },
-    "5001": {
-        string: "Friend Roster",
-    },
-    "5002": {
-        string: "Rankings",
-    },
-    "5003": {
-        string: "Ghost Race",
-    },
-    "5004": {
-        string: "Competitions",
-    },
-    "5005": {
-        string: null,
-    },
-    "5006": {
-        string: "Register Friend Code",
-    },
-    "5007": {
-        string: null,
-    },
-    "5008": {
-        string: "Wii Menu",
-    },
-    "5009": {
-        string: "Downloaded Ghost Data List",
-    },
-    "5010": {
-        string: "Competitions",
-    },
-    "5011": {
-        string: "Friend Roster",
-    },
-    "5012": {
-        string: null,
-    },
-    "5013": {
-        string: null,
-    },
-    "5014": {
-        string: "Start Race",
-    },
-    "5015": {
-        string: "Hone your Time Trial technique\nby challenging ghost data from\nplayers around the world in a\nseries of races via Nintendo WFC!",
-    },
-    "5016": {
-        string: "My Ghost Data",
-    },
-    "5017": {
-        string: "Hone your Time Trial technique\nby challenging ghost data from\nplayers around the world in a\nseries of races via Nintendo WFC!\n\nYour current record:\n{arg integer|0 0} {arg cond messages|0 5026 5027} - {arg integer|1 0} {arg cond messages|1 5028 5029}",
-    },
-    "5018": {
-        string: "Hone your Time Trial technique\nby challenging ghost data from\nplayers around the world in a\nseries of races via Nintendo WFC!\n\nYour current record:\n{arg integer|0 0} {arg cond messages|0 5026 5027} - {arg integer|1 0} {arg cond messages|1 5028 5029}",
-    },
-    "5019": {
-        string: "Hone your Time Trial technique\nby challenging ghost data from\nplayers around the world in a\nseries of races via Nintendo WFC!\n\nYour current record:\n{arg integer|0 0} {arg cond messages|0 5026 5027} - {arg integer|1 0} {arg cond messages|1 5028 5029}",
-    },
-    "5020": {
-        string: "Hone your Time Trial technique\nby challenging ghost data from\nplayers around the world in a\nseries of races via Nintendo WFC!\n\nYour current record:\n{arg integer|0 0} {arg cond messages|0 5026 5027} - {arg integer|1 0} {arg cond messages|1 5028 5029}",
-    },
-    "5021": {
-        string: "Hone your Time Trial technique\nby challenging ghost data from\nplayers around the world in a\nseries of races via Nintendo WFC!\n\nYour current record:\n{arg integer|0 0} {arg cond messages|0 5026 5027} - {arg integer|1 0} {arg cond messages|1 5028 5029}",
-    },
-    "5022": {
-        string: "Hone your Time Trial technique\nby challenging ghost data from\nplayers around the world in a\nseries of races via Nintendo WFC!\n\nYour current record:\n{arg integer|0 0} {arg cond messages|0 5026 5027} - {arg integer|1 0} {arg cond messages|1 5028 5029}",
-    },
-    "5023": {
-        string: "Hone your Time Trial technique\nby challenging ghost data from\nplayers around the world in a\nseries of races via Nintendo WFC!\n\nYour current record:\n{arg integer|0 0} {arg cond messages|0 5026 5027} - {arg integer|1 0} {arg cond messages|1 5028 5029}",
-    },
-    "5024": {
-        string: "Hone your Time Trial technique\nby challenging ghost data from\nplayers around the world in a\nseries of races via Nintendo WFC!\n\nYour current record:\n{arg integer|0 0} {arg cond messages|0 5026 5027} - {arg integer|1 0} {arg cond messages|1 5028 5029}",
-    },
-    "5025": {
-        string: "{arg integer|0 0} {arg cond messages|0 5026 5027}",
-    },
-    "5026": {
-        string: "win",
-    },
-    "5027": {
-        string: "wins",
-    },
-    "5028": {
-        string: "loss",
-    },
-    "5029": {
-        string: "losses",
-    },
-    "5030": {
-        string: null,
-    },
-    "5050": {
-        string: "Friends",
-    },
-    "5051": {
-        string: "Ghost Data",
-    },
-    "5052": {
-        string: "Time Trial Rankings",
-    },
-    "5053": {
-        string: null,
-    },
-    "5054": {
-        string: "Competition Rankings",
-    },
-    "5055": {
-        string: null,
-    },
-    "5060": {
-        string: "Check what your Friends are doing.",
-    },
-    "5061": {
-        string: "View rankings of Friends and other players.",
-    },
-    "5062": {
-        string: "Check and erase downloaded ghost data.",
-    },
-    "5063": {
-        string: "Participate in Mario Kart competitions.",
-    },
-    "5064": {
-        string: "Challenge ghost data from around the world.",
-    },
-    "5065": {
-        string: null,
-    },
-    "5066": {
-        string: "Send and receive ghost data.",
-    },
-    "5067": {
-        string: null,
-    },
-    "5068": {
-        string: "View Mario Kart competition rankings.",
-    },
-    "5069": {
-        string: null,
-    },
-    "5070": {
-        string: null,
-    },
-    "5071": {
-        string: null,
-    },
-    "5072": {
-        string: null,
-    },
-    "5073": {
-        string: null,
-    },
-    "5074": {
-        string: null,
-    },
-    "5075": {
-        string: null,
-    },
-    "5080": {
-        string: null,
-    },
-    "5081": {
-        string: null,
-    },
-    "5082": {
-        string: null,
-    },
-    "5083": {
-        string: null,
-    },
-    "5084": {
-        string: null,
-    },
-    "5085": {
-        string: null,
-    },
-    "5100": {
-        string: "Please enter a Friend Code.",
-    },
-    "5101": {
-        string: "Register this Friend Code?\n\n{arg integer|0 4}-{arg integer|1 4}-{arg integer|2 4}",
-    },
-    "5102": {
-        string: "This is not a valid Friend Code.\n\n{arg integer|0 4}-{arg integer|1 4}-{arg integer|2 4}",
-    },
-    "5103": {
-        string: "You have registered this Friend Code:\n\n{arg integer|0 4}-{arg integer|1 4}-{arg integer|2 4}",
-    },
-    "5104": {
-        string: "Before you can play against \nthis Friend, they must also\nregister your Friend Code.\n\nYour Friend Code is:\n\n{arg integer|0 4}-{arg integer|1 4}-{arg integer|2 4}",
-    },
-    "5105": {
-        string: "{arg integer|0 1}",
-    },
-    "5106": {
-        string: "-",
-    },
-    "5107": {
-        string: null,
-    },
-    "5110": {
-        string: "This Friend Code is already registered\nin your Friend Roster.",
-    },
-    "5111": {
-        string: "Your Friend Roster already contains\nthe maximum 30 Friends.",
-    },
-    "5112": {
-        string: "You don't have a Friend Code.",
-    },
-    "5113": {
-        string: "You can't register the Friend Codes\nof licences in the Mario Kart Wii\nsave data stored on this Wii console.",
-    },
-    "5115": {
-        string: null,
-    },
-    "5150": {
-        string: null,
-    },
-    "5151": {
-        string: null,
-    },
-    "5152": {
-        string: null,
-    },
-    "5153": {
-        string: null,
-    },
-    "5154": {
-        string: null,
-    },
-    "5155": {
-        string: null,
-    },
-    "5156": {
-        string: null,
-    },
-    "5157": {
-        string: null,
-    },
-    "5200": {
-        string: "Remove",
-    },
-    "5201": {
-        string: "Join Friend",
-    },
-    "5202": {
-        string: "Unable to join.",
-    },
-    "5203": {
-        string: "You are not Friends yet.",
-    },
-    "5204": {
-        string: null,
-    },
-    "5205": {
-        string: null,
-    },
-    "5206": {
-        string: "win",
-    },
-    "5207": {
-        string: "wins",
-    },
-    "5208": {
-        string: null,
-    },
-    "5209": {
-        string: "Battle",
-    },
-    "5210": {
-        string: "Remove this Friend Code?",
-    },
-    "5211": {
-        string: "The Friend Code has been removed.",
-    },
-    "5212": {
-        string: "Removing Friend Code...",
-    },
-    "5213": {
-        string: "Remove Friend Code",
-    },
-    "5214": {
-        string: "Remove Friend Code",
-    },
-    "5215": {
-        string: "Cancel",
-    },
-    "5216": {
-        string: "{arg cond messages|0 5206 5207}",
-    },
-    "5217": {
-        string: "All data associated with this\nFriend Code will be erased.\n\nAre you sure this is OK?",
-    },
-    "5218": {
-        string: null,
-    },
-    "5300": {
-        string: "I'm on Nintendo WFC!",
-    },
-    "5301": {
-        string: "I'm not on Nintendo WFC...",
-    },
-    "5302": {
-        string: null,
-    },
-    "5303": {
-        string: null,
-    },
-    "5304": {
-        string: "I have an open room!",
-    },
-    "5305": {
-        string: "I'm playing with Friends!",
-    },
-    "5306": {
-        string: "I'm playing with Friends!",
-    },
-    "5307": {
-        string: "I'm in a Worldwide VS Race!",
-    },
-    "5308": {
-        string: "I'm in a Worldwide Battle!",
-    },
-    "5309": {
-        string: "I'm in a Continental VS Race!",
-    },
-    "5310": {
-        string: "I'm in a Continental Battle!",
-    },
-    "5311": {
-        string: "I'm hosting a Grand Prix (1/4)!",
-    },
-    "5312": {
-        string: "I'm hosting a Grand Prix (2/4)!",
-    },
-    "5313": {
-        string: "I'm hosting a Grand Prix (3/4)!",
-    },
-    "5314": {
-        string: "I'm hosting a Grand Prix (4/4)!",
-    },
-    "5315": {
-        string: "I'm hosting a Battle (1st battle)!",
-    },
-    "5316": {
-        string: "I'm hosting a Battle (2nd battle)!",
-    },
-    "5317": {
-        string: "I'm hosting a Battle (3rd battle)!",
-    },
-    "5318": {
-        string: "I'm hosting a Battle (tie-break)!",
-    },
-    "5319": {
-        string: "I'm playing with Friends (1/4)!",
-    },
-    "5320": {
-        string: "I'm playing with Friends (2/4)!",
-    },
-    "5321": {
-        string: "I'm playing with Friends (3/4)!",
-    },
-    "5322": {
-        string: "I'm playing with Friends (4/4)!",
-    },
-    "5323": {
-        string: "I'm playing with Friends (1st battle)!",
-    },
-    "5324": {
-        string: "I'm playing with Friends (2nd battle)!",
-    },
-    "5325": {
-        string: "I'm playing with Friends (3rd battle)!",
-    },
-    "5326": {
-        string: "I'm playing with Friends (tie-break)!",
-    },
-    "5327": {
-        string: null,
-    },
-    "5328": {
-        string: null,
-    },
-    "5350": {
-        string: "Join a Friend.",
-    },
-    "5351": {
-        string: null,
-    },
-    "5400": {
-        string: null,
-    },
-    "5401": {
-        string: null,
-    },
-    "5402": {
-        string: "This ghost data will be sent.\nIs this OK?",
-    },
-    "5403": {
-        string: "Sending ghost data...",
-    },
-    "5404": {
-        string: "Your challenge has been\nsent to {arg player|0}!\n\n{arg integer|0 0}/5",
-    },
-    "5405": {
-        string: "Your challenge has been\nsent to {arg player|0}!\n\n5/5\n\nYou cannot send any more challenges until\nthe next time you play Mario Kart Wii.",
-    },
-    "5406": {
-        string: "No ghost data was found, so\nthe challenge could not be sent.",
-    },
-    "5407": {
-        string: null,
-    },
-    "5500": {
-        string: "Reading ghost data...",
-    },
-    "5501": {
-        string: "You received a challenge from a Friend!",
-    },
-    "5502": {
-        string: "Your Downloaded Ghost Data List is full.\nYou are currently unable to receive\nchallenges from your Friends.\n\nPlease erase a ghost data record.",
-    },
-    "5503": {
-        string: "This course is not available yet.\n\nIf you earn enough trophies in\nGrand Prix mode, you can unlock\nnew courses to race on.",
-    },
-    "5504": {
-        string: "An error occurred when downloading\nthe ghost data challenge.",
-    },
-    "5505": {
-        string: null,
-    },
-    "5600": {
-        string: "",
-    },
-    "5601": {
-        string: "Japan",
-    },
-    "5608": {
-        string: "Anguilla",
-    },
-    "5609": {
-        string: "Antigua and Barbuda",
-    },
-    "5610": {
-        string: "Argentina",
-    },
-    "5611": {
-        string: "Aruba",
-    },
-    "5612": {
-        string: "Bahamas",
-    },
-    "5613": {
-        string: "Barbados",
-    },
-    "5614": {
-        string: "Belize",
-    },
-    "5615": {
-        string: "Bolivia",
-    },
-    "5616": {
-        string: "Brazil",
-    },
-    "5617": {
-        string: "British Virgin Islands",
-    },
-    "5618": {
-        string: "Canada",
-    },
-    "5619": {
-        string: "Cayman Islands",
-    },
-    "5620": {
-        string: "Chile",
-    },
-    "5621": {
-        string: "Colombia",
-    },
-    "5622": {
-        string: "Costa Rica",
-    },
-    "5623": {
-        string: "Dominica",
-    },
-    "5624": {
-        string: "Dominican Republic",
-    },
-    "5625": {
-        string: "Ecuador",
-    },
-    "5626": {
-        string: "El Salvador",
-    },
-    "5628": {
-        string: "Grenada",
-    },
-    "5630": {
-        string: "Guatemala",
-    },
-    "5631": {
-        string: "Guyana",
-    },
-    "5632": {
-        string: "Haiti",
-    },
-    "5633": {
-        string: "Honduras",
-    },
-    "5634": {
-        string: "Jamaica",
-    },
-    "5636": {
-        string: "Mexico",
-    },
-    "5637": {
-        string: "Montserrat",
-    },
-    "5638": {
-        string: "Netherlands Antilles",
-    },
-    "5639": {
-        string: "Nicaragua",
-    },
-    "5640": {
-        string: "Panama",
-    },
-    "5641": {
-        string: "Paraguay",
-    },
-    "5642": {
-        string: "Peru",
-    },
-    "5643": {
-        string: "St Kitts and Nevis",
-    },
-    "5644": {
-        string: "St Lucia",
-    },
-    "5645": {
-        string: "St Vincent and the Grenadines",
-    },
-    "5646": {
-        string: "Suriname",
-    },
-    "5647": {
-        string: "Trinidad and Tobago",
-    },
-    "5648": {
-        string: "Turks and Caicos Islands",
-    },
-    "5649": {
-        string: "United States",
-    },
-    "5650": {
-        string: "Uruguay",
-    },
-    "5651": {
-        string: "US Virgin Islands",
-    },
-    "5652": {
-        string: "Venezuela",
-    },
-    "5665": {
-        string: "Australia",
-    },
-    "5666": {
-        string: "Austria ",
-    },
-    "5667": {
-        string: "Belgium",
-    },
-    "5674": {
-        string: "Denmark",
-    },
-    "5676": {
-        string: "Finland",
-    },
-    "5677": {
-        string: "France",
-    },
-    "5678": {
-        string: "Germany",
-    },
-    "5679": {
-        string: "Greece",
-    },
-    "5682": {
-        string: "Ireland",
-    },
-    "5683": {
-        string: "Italy",
-    },
-    "5688": {
-        string: "Luxembourg",
-    },
-    "5694": {
-        string: "Netherlands",
-    },
-    "5695": {
-        string: "New Zealand",
-    },
-    "5696": {
-        string: "Norway",
-    },
-    "5698": {
-        string: "Portugal",
-    },
-    "5705": {
-        string: "Spain",
-    },
-    "5707": {
-        string: "Sweden",
-    },
-    "5708": {
-        string: "Switzerland",
-    },
-    "5710": {
-        string: "United Kingdom",
-    },
-    "5728": {
-        string: "",
-    },
-    "5736": {
-        string: "South Korea",
-    },
-    "5744": {
-        string: "",
-    },
-    "5745": {
-        string: "",
-    },
-    "5760": {
-        string: "",
-    },
-    "5855": {
-        string: null,
-    },
-    "6000": {
-        string: "Choose a course.",
-    },
-    "6001": {
-        string: "Friend Ranking",
-    },
-    "6002": {
-        string: "Continental Ranking",
-    },
-    "6003": {
-        string: "Worldwide Ranking",
-    },
-    "6004": {
-        string: "Top 10",
-    },
-    "6005": {
-        string: "{arg message|0} Friend Top 10",
-    },
-    "6006": {
-        string: "{arg message|0} Continental Top 10",
-    },
-    "6007": {
-        string: "{arg message|0} Worldwide Top 10",
-    },
-    "6008": {
-        string: "10",
-    },
-    "6009": {
-        string: "Top 10",
-    },
-    "6010": {
-        string: "Start Time Trial",
-    },
-    "6011": {
-        string: "Challenge this Ghost Data",
-    },
-    "6012": {
-        string: "Watch Replay",
-    },
-    "6013": {
-        string: "Erase Ghost Data",
-    },
-    "6014": {
-        string: "Send Ghost Data",
-    },
-    "6015": {
-        string: "Challenge this Ghost Data",
-    },
-    "6016": {
-        string: "Solo Time Trial",
-    },
-    "6017": {
-        string: "NEW",
-    },
-    "6018": {
-        string: "Friend",
-    },
-    "6019": {
-        string: "Top 10",
-    },
-    "6020": {
-        string: "Continental",
-    },
-    "6021": {
-        string: "Top 10",
-    },
-    "6022": {
-        string: "Worldwide",
-    },
-    "6023": {
-        string: "Top 10",
-    },
-    "6024": {
-        string: null,
-    },
-    "6050": {
-        string: "TIME",
-    },
-    "6051": {
-        string: "{arg integer|0 1}:{arg integer|1 2}",
-    },
-    "6052": {
-        string: "{arg integer|0 2}:{arg integer|1 2}.{arg integer|2 3}",
-    },
-    "6053": {
-        string: "--:--.---",
-    },
-    "6054": {
-        string: "Continental Champion",
-    },
-    "6055": {
-        string: "World Champion",
-    },
-    "6056": {
-        string: "Rival Ghost Data",
-    },
-    "6057": {
-        string: "Friend",
-    },
-    "6058": {
-        string: "Continental",
-    },
-    "6059": {
-        string: "Worldwide",
-    },
-    "6060": {
-        string: "{arg front button|0}",
-    },
-    "6061": {
-        string: "Family Ghost Data",
-    },
-    "6062": {
-        string: "Friend Ghost Data",
-    },
-    "6063": {
-        string: "Special Ghost Data",
-    },
-    "6064": {
-        string: "Staff Ghost Data",
-    },
-    "6065": {
-        string: null,
-    },
-    "6100": {
-        string: "There is no ghost data for\n{arg message|0}.",
-    },
-    "6101": {
-        string: "There is no ghost data for\n{arg license player|0}.",
-    },
-    "6102": {
-        string: "There is no downloaded ghost data.",
-    },
-    "6103": {
-        string: null,
-    },
-    "6110": {
-        string: "Downloading ghost data...",
-    },
-    "6111": {
-        string: "Your Downloaded Ghost Data List\nis full. You are currently unable\nto download any more ghost data.\n\nPlease erase a ghost data record\nfrom your Downloaded Ghost Data List.",
-    },
-    "6112": {
-        string: "An error occurred when\ndownloading the ghost data.\n\nError Code: {arg integer|0 5}",
-    },
-    "6113": {
-        string: "The ghost data has been downloaded.",
-    },
-    "6114": {
-        string: "Downloading the Top 10...",
-    },
-    "6115": {
-        string: "An error occurred when\ndownloading the Top 10.\n\nError Code: {arg integer|0 5}",
-    },
-    "6116": {
-        string: "There is no Top 10.",
-    },
-    "6117": {
-        string: "",
-    },
-    "6120": {
-        string: "Connect to Nintendo WFC?",
-    },
-    "6121": {
-        string: "OK",
-    },
-    "6122": {
-        string: "Connect to Nintendo WFC?",
-    },
-    "6123": {
-        string: "The existing ghost data will be\nreplaced with the new ghost data.\n\nIs this OK?",
-    },
-    "6124": {
-        string: null,
-    },
-    "6150": {
-        string: "Race this ghost data.",
-    },
-    "6151": {
-        string: "Watch the ghost data replay.",
-    },
-    "6152": {
-        string: "Are you sure you want to erase the ghost data?",
-    },
-    "6153": {
-        string: "Erase",
-    },
-    "6154": {
-        string: "Cancel",
-    },
-    "6155": {
-        string: null,
-    },
-    "6201": {
-        string: "1st",
-    },
-    "6202": {
-        string: "2nd",
-    },
-    "6203": {
-        string: "3rd",
-    },
-    "6204": {
-        string: "4th",
-    },
-    "6205": {
-        string: "5th",
-    },
-    "6206": {
-        string: "6th",
-    },
-    "6207": {
-        string: "7th",
-    },
-    "6208": {
-        string: "8th",
-    },
-    "6209": {
-        string: "9th",
-    },
-    "6210": {
-        string: "10th",
-    },
-    "6211": {
-        string: "11th",
-    },
-    "6212": {
-        string: "12th",
-    },
-    "6213": {
-        string: null,
-    },
-    "6250": {
-        string: "Start a Time Trial on this course.",
-    },
-    "6251": {
-        string: "Check {arg player|0}'s record.",
-    },
-    "6252": {
-        string: "Race the Continental Champion.",
-    },
-    "6253": {
-        string: "Race the World Champion.",
-    },
-    "6254": {
-        string: "Race ghost data slightly faster than your record.",
-    },
-    "6255": {
-        string: "View your Friend Top 10.",
-    },
-    "6256": {
-        string: "View the Continental Top 10.",
-    },
-    "6257": {
-        string: "View the Worldwide Top 10.",
-    },
-    "6258": {
-        string: "Race against Mario Kart Wii staff ghost data.",
-    },
-    "6259": {
-        string: "{arg player|0}'s record.",
-    },
-    "6260": {
-        string: "The Continental Champion's record.",
-    },
-    "6261": {
-        string: "The Worldwide Champion's record.",
-    },
-    "6262": {
-        string: null,
-    },
-    "6300": {
-        string: "Send Ghost Data",
-    },
-    "6301": {
-        string: "{arg player|0} has not set a record\nfor {arg message|0}.",
-    },
-    "6302": {
-        string: "{arg player|0}'s current record for\n{arg message|0} is {arg integer|0 2}:{arg integer|1 2}.{arg integer|2 3}.",
-    },
-    "6303": {
-        string: "{arg player|0} has not set a record\nfor {arg message|0}.",
-    },
-    "6304": {
-        string: "{arg player|0}'s current record for\n{arg message|0} is {arg integer|0 2}:{arg integer|1 2}.{arg integer|2 3}.",
-    },
-    "6305": {
-        string: "Sending ghost data...",
-    },
-    "6306": {
-        string: null,
-    },
-    "6310": {
-        string: "The WiiConnect24 service is\ntemporarily unavailable. Please\ntry again later.\n\nError Code: {arg integer|0 6}",
-    },
-    "6311": {
-        string: "A connection to the Internet could not\nbe established. WiiConnect24 cannot be\nused. Please go to the Wii Settings and\ncheck your Connection Settings under\nInternet. For details, consult the\nWii Operations Manual.\n\nError Code: {arg integer|0 6}",
-    },
-    "6312": {
-        string: "There is a problem with the Wii System Memory.\nWiiConnect24 cannot be used. \n\nError Code: {arg integer|0 6}",
-    },
-    "6313": {
-        string: "In order to use the WiiConnect24\nfeature,  a system update is\nrequired. For details, consult\nthe Wii Operations Manual.\n\nError Code: {arg integer|0 6}",
-    },
-    "6314": {
-        string: "WiiConnect24 cannot be used\nbecause an error has occurred.\n\nReset and try again.\n\nError Code: {arg integer|0 6}",
-    },
-    "6315": {
-        string: "The WiiConnect24 setting has not been\nturned on. Please check the settings\nunder Wii Options. For details, consult\nthe Wii Operations Manual.\n\nError Code: {arg integer|0 6}",
-    },
-    "6316": {
-        string: "There is a problem with the Wii System Memory.\nWiiConnect24 cannot be used. \n\nError Code: {arg integer|0 6}",
-    },
-    "6317": {
-        string: "Use of network functions is restricted.\n\nPlease go to Wii Options and check\nyour Parental Control settings.",
-    },
-    "6318": {
-        string: "No Internet connections have\nbeen configured.\n\nPlease go to Wii Options and\nconfigure a connection on the\nInternet settings screen.\n\nError Code: 50200",
-    },
-    "6319": {
-        string: "The Mario Kart Channel uses WiiConnect24\nto receive information such as:\n\n・challenges from your Friends\n・rankings of players around the world\n・ghost data from players of a similar\nskill level to you\n・scheduled competitions",
-    },
-    "6320": {
-        string: "You can set your WiiConnect24\nsettings in the Wii Options.\n\nPlease check the Wii Operations\nManual for more information.",
-    },
-    "6321": {
-        string: "WiiConnect24 cannot be used because\nan error has occurred.\n\nReset and try again.\n\nError Code: {arg integer|0 6}",
-    },
-    "6322": {
-        string: "",
-    },
-    "6390": {
-        string: "GO!",
-    },
-    "6391": {
-        string: "",
-    },
-    "6400": {
-        string: "New Friend challenge!",
-    },
-    "6401": {
-        string: "Special ghost data now available!",
-    },
-    "6402": {
-        string: "A competition is in progress!",
-    },
-    "6403": {
-        string: "Latest rankings now available!",
-    },
-    "6404": {
-        string: "Start a Ghost Race!",
-    },
-    "6405": {
-        string: "New Friend Records available!",
-    },
-    "6406": {
-        string: "Add the Mario Kart Channel!",
-    },
-    "6407": {
-        string: "Join the message service!",
-    },
-    "6408": {
-        string: "Set your region!",
-    },
-    "6409": {
-        string: "Invite Friends via the Wii Message Board!",
-    },
-    "6410": {
-        string: "Download the latest data!",
-    },
-    "6411": {
-        string: null,
-    },
-    "6412": {
-        string: null,
-    },
-    "6500": {
-        string: "Go to your Downloaded Ghost Data List.",
-    },
-    "6501": {
-        string: "Go to Time Trial Rankings.",
-    },
-    "6502": {
-        string: "Go to Competitions.",
-    },
-    "6503": {
-        string: "Go to Time Trial Rankings.",
-    },
-    "6504": {
-        string: "Go to Ghost Race.",
-    },
-    "6505": {
-        string: "Go to Time Trial Rankings.",
-    },
-    "6506": {
-        string: "Go to Options.",
-    },
-    "6507": {
-        string: "Go to Options.",
-    },
-    "6508": {
-        string: "Go to Options.",
-    },
-    "6509": {
-        string: "Invite people to become Friends.",
-    },
-    "6510": {
-        string: "Update ranking and competition data!",
-    },
-    "6511": {
-        string: null,
-    },
-    "6512": {
-        string: null,
-    },
-    "6550": {
-        string: "Competition rankings are\ncurrently unavailable.",
-    },
-    "6551": {
-        string: "Downloading competition rankings...",
-    },
-    "6552": {
-        string: "An error occurred when downloading\nthe competition rankings.\n\nError Code: {arg integer|0 5}",
-    },
-    "6553": {
-        string: "You can view competition rankings\nstarting from the day after a\ncompetition starts.\n\nPlease wait a little longer.",
-    },
-    "6554": {
-        string: "First Half",
-    },
-    "6555": {
-        string: "Second Half",
-    },
-    "6556": {
-        string: "Rankings are not available\nyet for this competition.\n\nPlease check back again tomorrow.",
-    },
-    "6600": {
-        string: "You can participate in worldwide\nMario Kart Wii competitions.\n\nPlease connect your Wii to the Internet,\nmake sure WiiConnect24 is activated\nand wait for a competition to start!",
-    },
-    "6601": {
-        string: "The previous competition has finished\nand the results are now available!",
-    },
-    "6602": {
-        string: "{arg string|0}",
-    },
-    "6603": {
-        string: "{arg string|0}",
-    },
-    "6604": {
-        string: "Start",
-    },
-    "6605": {
-        string: "Post Competition Record",
-    },
-    "6606": {
-        string: "Posting competition record...",
-    },
-    "6607": {
-        string: "{arg string|0}\n{arg integer|0 2}:{arg integer|1 2}.{arg integer|2 3}",
-    },
-    "6608": {
-        string: "Your competition record was posted.",
-    },
-    "6609": {
-        string: "Failed to post the\ncompetition record.\n\nError Code: {arg integer|0 5}",
-    },
-    "6610": {
-        string: "The deadline is {arg integer|2 0}/{arg integer|1 0}/{arg integer|0 0}.",
-    },
-    "6611": {
-        string: null,
-    },
-    "6700": {
-        string: "Wii Message Board Invitation",
-    },
-    "6701": {
-        string: "You can send a Wii Message Board\nmessage containing your Friend Code\nto your Wii Friends.\n\nIt's a quick and easy way to\nbecome Friends in Mario Kart Wii!",
-    },
-    "6702": {
-        string: "Choose a Wii Friend to send an invitation to.",
-    },
-    "6703": {
-        string: "An invitation will be sent to\n{arg string|0}'s Wii Message Board.\n\nIs this OK?",
-    },
-    "6704": {
-        string: "Sending invitation...",
-    },
-    "6705": {
-        string: "The invitation has been sent to\n{arg string|0}'s Wii Message Board.\n\nYou will be notified via your\nWii Message Board if {arg string|0}\naccepts your invitation.",
-    },
-    "6706": {
-        string: "Failed to send the invitation.\n\nError Code: {arg integer|0 6}",
-    },
-    "6707": {
-        string: "{arg string|0}",
-    },
-    "6708": {
-        string: "The competition record was sent.\n\nYou will now go to the\nCompetition Rankings.",
-    },
-    "6709": {
-        string: null,
-    },
-    "6710": {
-        string: "Register Friend Code",
-    },
-    "6711": {
-        string: "You have received an invitation\nfrom {arg string|0}.\n\nIf you register this player's\nFriend Code in your Friend Roster, \nyour Friend Code will be sent\nto them automatically.",
-    },
-    "6712": {
-        string: "Register {arg string|0}'s Friend Code\nin your Friend Roster?",
-    },
-    "6713": {
-        string: "Registering...",
-    },
-    "6714": {
-        string: "Registered {arg string|0}'s Friend Code\nin your Friend Roster.",
-    },
-    "6715": {
-        string: "Failed to register Friend Code.\n\nError Code: {arg integer|0 6}",
-    },
-    "6716": {
-        string: "You do not have a Friend Code.\n\nA Friend Code is a 12-digit number that\nis automatically assigned to you the\nfirst time you connect to Nintendo WFC.\n\nFor more information, please refer to\nthe Mario Kart Wii Instruction Booklet.",
-    },
-    "6717": {
-        string: "You have received a Friend registration\ninvitation, but there are already 30\nFriend Codes in your Friend Roster.\n\nYou are unable to register any\nmore Friend Codes.",
-    },
-    "6718": {
-        string: "You have received a Friend registration\ninvitation, but the sender has been erased\nfrom your Wii Message Board Address Book.\n\nPlease start the Mario Kart Channel\nagain and register their Friend Code.",
-    },
-    "6719": {
-        string: "You have received a Friend\nregistration invitation, but the\nsender's Friend Code is already\nregistered in your Friend Roster.",
-    },
-    "6720": {
-        string: "",
-    },
-    "6800": {
-        string: "Download Competition Rankings",
-    },
-    "6801": {
-        string: "Downloading competition rankings...",
-    },
-    "6802": {
-        string: "Competition rankings downloaded.",
-    },
-    "6803": {
-        string: "Failed to download\ncompetition rankings.\n\nError Code: {arg integer|0 5}",
-    },
-    "6804": {
-        string: null,
-    },
-    "6811": {
-        string: null,
-    },
-    "6812": {
-        string: null,
-    },
-    "6813": {
-        string: null,
-    },
-    "6900": {
-        string: "Download Latest Data",
-    },
-    "6901": {
-        string: "The latest Mario Kart Channel\ndata will be downloaded.",
-    },
-    "6902": {
-        string: "Downloading the latest data...",
-    },
-    "6903": {
-        string: "The latest Mario Kart Channel\ndata has been downloaded.",
-    },
-    "6904": {
-        string: "An error occurred when\ndownloading the latest data.\n\nError Code: {arg integer|0 6}",
-    },
-    "6905": {
-        string: null,
-    },
-    "7000": {
-        string: "Options",
-    },
-    "7001": {
-        string: "Nintendo Wi-Fi Connection",
-    },
-    "7002": {
-        string: "Options",
-    },
-    "7003": {
-        string: "Next",
-    },
-    "7004": {
-        string: null,
-    },
-    "7100": {
-        string: "GCN Controller Rumble",
-    },
-    "7101": {
-        string: "Do you want to use the Rumble feature\nof the Nintendo GameCube Controller?",
-    },
-    "7102": {
-        string: "Yes",
-    },
-    "7103": {
-        string: "No",
-    },
-    "7104": {
-        string: "You have chosen to use the\nNintendo GameCube Controller\nRumble feature.",
-    },
-    "7105": {
-        string: "You have chosen not to use the\nNintendo GameCube Controller\nRumble feature.",
-    },
-    "7106": {
-        string: null,
-    },
-    "7200": {
-        string: "Region Setting",
-    },
-    "7201": {
-        string: "Return to the Wii Menu to\nchange your region setting?",
-    },
-    "7202": {
-        string: null,
-    },
-    "7203": {
-        string: null,
-    },
-    "7204": {
-        string: null,
-    },
-    "7250": {
-        string: "Flag and Region Display",
-    },
-    "7251": {
-        string: "Mario Kart Wii can show your country flag\nand region in the following places:\n\n・as a globe position in Nintendo WFC mode\n・in your ghost data\n\nIf you choose to make this information\navailable, it will be sent to other\nplayers when playing via Nintendo WFC.",
-    },
-    "7252": {
-        string: "Do you want to display your country\nflag and region on Nintendo WFC?\n",
-    },
-    "7253": {
-        string: "Yes",
-    },
-    "7254": {
-        string: "No",
-    },
-    "7255": {
-        string: "You have chosen to display your\ncountry flag and region on Nintendo WFC.",
-    },
-    "7256": {
-        string: "You have chosen not to display your\ncountry flag and region on Nintendo WFC.",
-    },
-    "7257": {
-        string: null,
-    },
-    "7300": {
-        string: "Message Service",
-    },
-    "7301": {
-        string: "Join the message service to have the latest\nupdates from the Mario Kart Channel posted\nto your Wii Message Board via WiiConnect24.\nYou can opt out at any time.\n\nMessages will include information about:\n\n・competitions\n・special ghost data downloads",
-    },
-    "7302": {
-        string: "Would you like to join\nthe Mario Kart Channel\nmessage service?",
-    },
-    "7303": {
-        string: "Join",
-    },
-    "7304": {
-        string: "Don't Join",
-    },
-    "7305": {
-        string: "You have joined the Mario Kart\nChannel message service.",
-    },
-    "7306": {
-        string: "You will not receive messages\nfrom the Mario Kart Channel\nmessage service. Is this OK?",
-    },
-    "7307": {
-        string: "",
-    },
-    "7350": {
-        string: "With the current settings, you will\nreceive messages from the Mario Kart\nChannel on your Wii Message Board.",
-    },
-    "7351": {
-        string: "Please select your desired\nmessage service setting.",
-    },
-    "7352": {
-        string: "Opt out of the Mario Kart Channel\nmessage service",
-    },
-    "7353": {
-        string: "Opt out of all Channel\nmessage services",
-    },
-    "7354": {
-        string: "Continue receiving Mario Kart Channel\nmessages",
-    },
-    "7355": {
-        string: "Opt out of receiving messages\nfrom the Mario Kart Channel?",
-    },
-    "7356": {
-        string: "Stop receiving messages\nfrom all Channels?",
-    },
-    "7357": {
-        string: "You will continue to\nreceive messages from\nthe Mario Kart Channel.",
-    },
-    "7358": {
-        string: "You have not joined the Mario Kart\nChannel message service.",
-    },
-    "7359": {
-        string: "You have opted out of\nthe Mario Kart Channel\nmessage service.",
-    },
-    "7360": {
-        string: "You have opted out of all\nChannel message services.",
-    },
-    "7361": {
-        string: "",
-    },
-    "7400": {
-        string: "Data Sharing",
-    },
-    "7401": {
-        string: "When you play Mario Kart Wii via\nNintendo WFC, the following data will\nautomatically be sent to Nintendo:\n\n・your Mii and nickname\n・your records and ghost data\n\nThis data may also be shared with\nother players on Nintendo WFC.",
-    },
-    "7402": {
-        string: "Will you allow game data\nto be sent to Nintendo?",
-    },
-    "7403": {
-        string: "Allow",
-    },
-    "7404": {
-        string: "Do Not Allow",
-    },
-    "7405": {
-        string: "You have chosen to allow\nsending of game data to Nintendo.",
-    },
-    "7406": {
-        string: "Are you sure this is OK? You will be\nunable to play Mario Kart Wii via\nNintendo WFC with this setting.",
-    },
-    "7407": {
-        string: "You have chosen not to allow\nsending of game data to Nintendo.",
-    },
-    "7408": {
-        string: "Please do not use your real name or any other\npersonal information as the nickname of your\nMii. If you have done so, please take one of\nthe following steps to change your Mii's\nnickname in order to protect your privacy.\n\n・Change your Mii's nickname in the Mii Channel\n・Switch to a Guest Mii in the Licence Settings",
-    },
-    "7409": {
-        string: "",
-    },
-    "7500": {
-        string: "Mii Display",
-    },
-    "7501": {
-        string: "Miis created by other players\nmay be displayed during races\nand battles, in ranking data\nand other places on Nintendo WFC.\n\nYou can choose to allow these Miis to\nbe displayed as they are, or to replace\nthem with Miis created by Nintendo.",
-    },
-    "7502": {
-        string: "Will you allow Miis created\nby other players to be\ndisplayed in Mario Kart Wii?",
-    },
-    "7503": {
-        string: "Allow",
-    },
-    "7504": {
-        string: "Do Not Allow",
-    },
-    "7505": {
-        string: "You have chosen to allow Miis\ncreated by other players to be\ndisplayed in Mario Kart Wii.",
-    },
-    "7506": {
-        string: "You have chosen not to allow Miis\ncreated by other players to be\ndisplayed in Mario Kart Wii.",
-    },
-    "7507": {
-        string: "Miis created by other players will be\nreplaced with Miis created by Nintendo.\n\nIs this OK?",
-    },
-    "7508": {
-        string: null,
-    },
-    "7600": {
-        string: null,
-    },
-    "7601": {
-        string: null,
-    },
-    "7602": {
-        string: null,
-    },
-    "7603": {
-        string: null,
-    },
-    "7604": {
-        string: null,
-    },
-    "7605": {
-        string: null,
-    },
-    "7700": {
-        string: "Mario Kart Wii can be displayed in\n60Hz (480i) Mode. Your current setting is\n50Hz (576i) Mode. If your TV - like most\nTV models - supports 60Hz Mode, please\nselect this TV Type in the Wii System\nSettings for a better display quality.\n\nTo change your TV Type setting to\n60Hz Mode, please press the HOME Button\nand go to the Wii Menu.",
-    },
-    "7701": {
-        string: "{2 chars|< <}",
-    },
-    "7702": {
-        string: "CONGRATULATIONS!",
-    },
-    "7703": {
-        string: "Post this photo to the\nWii Message Board?",
-    },
-    "7704": {
-        string: "Posting...",
-    },
-    "7705": {
-        string: "The photo was posted to\nthe Wii Message Board!",
-    },
-    "7706": {
-        string: "Please take care not to post too many\nphotos, as this can cause your Wii\nMessage Board to run out of space.\n\nWhen the Wii Message Board is full,\nspace for new messages will be\ncreated by deleting existing\nmessages, starting from the oldest.",
-    },
-    "7707": {
-        string: "Thanks for playing,\nand please continue to\nenjoy Mario Kart Wii!",
-    },
-    "8000": {
-        string: "Congratulations!\nYou have unlocked the\n{arg message|0} {arg message|1}!",
-    },
-    "8001": {
-        string: "Congratulations!\nYou have unlocked the\nMirror class!",
-    },
-    "8002": {
-        string: "Congratulations!\nYou can now play as\n{arg message|0}!",
-    },
-    "8003": {
-        string: "Congratulations!\nYou can now play as\n{arg message|0}!",
-    },
-    "8004": {
-        string: "Congratulations! You have\nunlocked a small kart,\nthe {arg message|0}!",
-    },
-    "8005": {
-        string: "Congratulations! You have\nunlocked a medium kart,\nthe {arg message|0}!",
-    },
-    "8006": {
-        string: "Congratulations! You have\nunlocked a large kart,\nthe {arg message|0}!",
-    },
-    "8007": {
-        string: "Congratulations! You have\nunlocked a small bike,\nthe {arg message|0}!",
-    },
-    "8008": {
-        string: "Congratulations! You have\nunlocked a medium bike,\nthe {arg message|0}!",
-    },
-    "8009": {
-        string: "Congratulations! You have\nunlocked a large bike,\nthe {arg message|0}!",
-    },
-    "8010": {
-        string: "Congratulations!\nYou have unlocked the 50cc\nGrand Prix (karts and bikes)!",
-    },
-    "8011": {
-        string: "Congratulations!\nYou have unlocked the 100cc\nGrand Prix (karts and bikes)!",
-    },
-    "8012": {
-        string: null,
-    },
-    "8100": {
-        string: "You've earned trophies in the {arg message|0} Mushroom and Flower Cups!",
-    },
-    "8101": {
-        string: "You've earned a trophy in the {arg message|0} Star Cup!",
-    },
-    "8102": {
-        string: "You've earned trophies in the {arg message|0} Shell and Banana Cups!",
-    },
-    "8103": {
-        string: "You've earned a trophy in the {arg message|0} Leaf Cup!",
-    },
-    "8104": {
-        string: "You've won all the 150cc Cups!",
-    },
-    "8105": {
-        string: null,
-    },
-    "8110": {
-        string: "You've won the 100cc Leaf Cup!",
-    },
-    "8111": {
-        string: "You've played Time Trials on all courses!",
-    },
-    "8112": {
-        string: "You've won 1000 times on Nintendo WFC!",
-    },
-    "8113": {
-        string: "You've earned Rank {1 char|} in all 50cc Wii Grand Prix Cups!",
-    },
-    "8114": {
-        string: "You've unlocked 8 Expert Staff Ghost Data records in Time Trials!",
-    },
-    "8115": {
-        string: "You've won the 50cc Lightning Cup!",
-    },
-    "8116": {
-        string: "You've earned Rank {1 char|} in all 100cc Retro Grand Prix Cups!",
-    },
-    "8117": {
-        string: "You've won the 150cc Special Cup!",
-    },
-    "8118": {
-        string: "You've played Time Trials on 16 different courses!",
-    },
-    "8119": {
-        string: "You've earned Rank {1 char|} on all Mirror Cups!",
-    },
-    "8120": {
-        string: "You got a present from Super Mario Galaxy!",
-    },
-    "8121": {
-        string: "You've earned Rank {1 char|} in all 150cc Wii Grand Prix Cups!",
-    },
-    "8122": {
-        string: "You've unlocked 4 Expert Staff Ghost Data records in Time Trials!",
-    },
-    "8123": {
-        string: "You've won 25 Ghost Races!",
-    },
-    "8124": {
-        string: "You've won the 50cc Star Cup!",
-    },
-    "8125": {
-        string: "You've won the 100cc Special Cup!",
-    },
-    "8126": {
-        string: "You've unlocked all 32 Expert Staff Ghost Data records in Time Trials!",
-    },
-    "8127": {
-        string: "You've won 5000 times on Nintendo WFC!",
-    },
-    "8128": {
-        string: "You've won 100 Ghost Races!",
-    },
-    "8129": {
-        string: "You've won 250 times on Nintendo WFC!",
-    },
-    "8130": {
-        string: null,
-    },
-    "8140": {
-        string: "You've earned Rank {1 char|} in all 50cc Retro Grand Prix Cups!",
-    },
-    "8141": {
-        string: "You've unlocked an Expert Staff Ghost Data record in Time Trials!",
-    },
-    "8142": {
-        string: "You've won 50 times on Nintendo WFC!",
-    },
-    "8143": {
-        string: "You've won the Mirror Lightning Cup!",
-    },
-    "8144": {
-        string: "You've won the 50cc Leaf Cup!",
-    },
-    "8145": {
-        string: "You've won the 150cc Leaf Cup!",
-    },
-    "8146": {
-        string: "You've unlocked 24 Expert Staff Ghost Data records in Time Trials!",
-    },
-    "8147": {
-        string: "You've won the 50cc Special Cup!",
-    },
-    "8148": {
-        string: "You've earned Rank {1 char|} in all 150cc Retro Grand Prix Cups!",
-    },
-    "8149": {
-        string: "You've won the 150cc Lightning Cup!",
-    },
-    "8150": {
-        string: "You've won the 150cc Star Cup!",
-    },
-    "8151": {
-        string: "You've played Time Trials on 8 different courses!",
-    },
-    "8152": {
-        string: "You've won 5 Ghost Races!",
-    },
-    "8153": {
-        string: "You've won the Mirror Leaf Cup!",
-    },
-    "8154": {
-        string: "You've won the 100cc Lightning Cup!",
-    },
-    "8155": {
-        string: "You've earned Rank {1 char|} in all 100cc Wii Grand Prix Cups!",
-    },
-    "8156": {
-        string: "You've won the Mirror Star Cup!",
-    },
-    "8157": {
-        string: "You've won the 100cc Star Cup!",
-    },
-    "8158": {
-        string: "You've unlocked 12 Expert Staff Ghost Data records in Time Trials!",
-    },
-    "8159": {
-        string: "You've won 200 Ghost Races!",
-    },
-    "8160": {
-        string: "You've won the Mirror Special Cup!",
-    },
-    "8161": {
-        string: "You've earned trophies in all 50cc Cups!",
-    },
-    "8162": {
-        string: "You've earned trophies in all 100cc Cups!",
-    },
-    "8163": {
-        string: "You've won 3000 times on Nintendo WFC!",
-    },
-    "8164": {
-        string: "You've played Mario Kart Wii {arg integer|0 0} times!",
-    },
-    "8165": {
-        string: null,
-    },
-    "8200": {
-        string: "Overall Records",
-    },
-    "8201": {
-        string: "Favourites",
-    },
-    "8202": {
-        string: "Friend Records",
-    },
-    "8203": {
-        string: "Nintendo WFC Records",
-    },
-    "8204": {
-        string: "Other Records",
-    },
-    "8210": {
-        string: "Overall Rank",
-    },
-    "8211": {
-        string: "Distance Travelled",
-    },
-    "8212": {
-        string: "Total Race Count",
-    },
-    "8213": {
-        string: "Total Battle Count",
-    },
-    "8214": {
-        string: "Wii Wheel Usage Rate",
-    },
-    "8215": {
-        string: "Tricks Performed",
-    },
-    "8216": {
-        string: "Favourite Character",
-    },
-    "8217": {
-        string: "Favourite Vehicle",
-    },
-    "8218": {
-        string: "Favourite Course",
-    },
-    "8219": {
-        string: "Favourite Stage",
-    },
-    "8220": {
-        string: "Nintendo WFC Friends Record",
-    },
-    "8221": {
-        string: null,
-    },
-    "8222": {
-        string: "Ghost Data Challenges Sent",
-    },
-    "8223": {
-        string: "Ghost Data Challenges Received",
-    },
-    "8224": {
-        string: "Race Rating",
-    },
-    "8225": {
-        string: "VS Race Record",
-    },
-    "8226": {
-        string: "Battle Rating",
-    },
-    "8227": {
-        string: "Battle Record",
-    },
-    "8228": {
-        string: "Times 1st Place Achieved",
-    },
-    "8229": {
-        string: "% Race Time in 1st Place",
-    },
-    "8230": {
-        string: "Item Hits Delivered",
-    },
-    "8231": {
-        string: "Item Hits Received",
-    },
-    "8232": {
-        string: "Ghost Race Record",
-    },
-    "8233": {
-        string: "Competitions Entered",
-    },
-    "8234": {
-        string: null,
-    },
-    "8235": {
-        string: null,
-    },
-    "8236": {
-        string: null,
-    },
-    "8237": {
-        string: null,
-    },
-    "8238": {
-        string: null,
-    },
-    "8260": {
-        string: "{arg message|0}",
-    },
-    "8261": {
-        string: "{arg integer|0 0}",
-    },
-    "8262": {
-        string: "{arg integer|0 0}",
-    },
-    "8263": {
-        string: "{arg integer|0 0}",
-    },
-    "8264": {
-        string: "{arg integer|0 0}%",
-    },
-    "8265": {
-        string: "{arg integer|0 0}",
-    },
-    "8266": {
-        string: "{arg message|0}",
-    },
-    "8267": {
-        string: "{arg message|0}",
-    },
-    "8268": {
-        string: "{arg message|0}",
-    },
-    "8269": {
-        string: "{arg message|0}",
-    },
-    "8270": {
-        string: "Wins: {arg integer|0 0}   Losses: {arg integer|1 0}",
-    },
-    "8271": {
-        string: null,
-    },
-    "8272": {
-        string: "{arg integer|0 0}",
-    },
-    "8273": {
-        string: "{arg integer|0 0}",
-    },
-    "8274": {
-        string: "{arg integer|0 0}",
-    },
-    "8275": {
-        string: "Wins: {arg integer|0 0}   Losses: {arg integer|1 0}",
-    },
-    "8276": {
-        string: "{arg integer|0 0}",
-    },
-    "8277": {
-        string: "Wins: {arg integer|0 0}   Losses: {arg integer|1 0}",
-    },
-    "8278": {
-        string: "{arg integer|0 0} times",
-    },
-    "8279": {
-        string: "{arg integer|0 0}%",
-    },
-    "8280": {
-        string: "{arg integer|0 0} times",
-    },
-    "8281": {
-        string: "{arg integer|0 0} times",
-    },
-    "8282": {
-        string: "Wins: {arg integer|0 0}   Losses: {arg integer|1 0}",
-    },
-    "8283": {
-        string: "{arg integer|0 0} times",
-    },
-    "8284": {
-        string: null,
-    },
-    "8400": {
-        string: null,
-    },
-    "8401": {
-        string: null,
-    },
-    "8402": {
-        string: null,
-    },
-    "8403": {
-        string: null,
-    },
-    "8404": {
-        string: null,
-    },
-    "8405": {
-        string: "Congratulations,\n%ls!\n\nYou've earned trophies in all Cups!\nTo commemorate your achievement,\nwe present you with this souvenir\nphoto. Thank you for playing,\nand please continue to enjoy\nMario Kart Wii!",
-    },
-    "8406": {
-        string: "Congratulations,\n%ls!\n\nYou've won all Mario Kart Wii\nCups! To commemorate your\nachievement, we present you with\nthis souvenir photo. Thank you for\nplaying, and please continue to\nenjoy Mario Kart Wii!",
-    },
-    "8407": {
-        string: null,
-    },
-    "8408": {
-        string: null,
-    },
-    "8409": {
-        string: null,
-    },
-    "8410": {
-        string: null,
-    },
-    "8411": {
-        string: null,
-    },
-    "8412": {
-        string: null,
-    },
-    "8413": {
-        string: null,
-    },
-    "8414": {
-        string: null,
-    },
-    "8415": {
-        string: null,
-    },
-    "8416": {
-        string: null,
-    },
-    "8417": {
-        string: null,
-    },
-    "8418": {
-        string: null,
-    },
-    "8419": {
-        string: null,
-    },
-    "8420": {
-        string: null,
-    },
-    "8421": {
-        string: null,
-    },
-    "8422": {
-        string: null,
-    },
-    "8423": {
-        string: null,
-    },
-    "8424": {
-        string: null,
-    },
-    "8425": {
-        string: null,
-    },
-    "8426": {
-        string: null,
-    },
-    "8427": {
-        string: null,
-    },
-    "8428": {
-        string: null,
-    },
-    "8429": {
-        string: null,
-    },
-    "8430": {
-        string: null,
-    },
-    "8440": {
-        string: null,
-    },
-    "8441": {
-        string: null,
-    },
-    "8442": {
-        string: null,
-    },
-    "8443": {
-        string: null,
-    },
-    "8444": {
-        string: null,
-    },
-    "8445": {
-        string: null,
-    },
-    "8446": {
-        string: null,
-    },
-    "8447": {
-        string: null,
-    },
-    "8448": {
-        string: null,
-    },
-    "8449": {
-        string: null,
-    },
-    "8450": {
-        string: null,
-    },
-    "8451": {
-        string: null,
-    },
-    "8452": {
-        string: null,
-    },
-    "8453": {
-        string: null,
-    },
-    "8454": {
-        string: null,
-    },
-    "8455": {
-        string: null,
-    },
-    "8456": {
-        string: null,
-    },
-    "8457": {
-        string: null,
-    },
-    "8458": {
-        string: null,
-    },
-    "8459": {
-        string: null,
-    },
-    "8460": {
-        string: null,
-    },
-    "8461": {
-        string: null,
-    },
-    "8462": {
-        string: "Congratulations, %ls!\n\nAs a reward for earning trophies in\nall 100cc Cups, a new Engine Class\nhas become available:\n\n100cc (Karts and Bikes)",
-    },
-    "8463": {
-        string: null,
-    },
-    "8464": {
-        string: null,
-    },
-    "8470": {
-        string: null,
-    },
-    "8471": {
-        string: null,
-    },
-    "8472": {
-        string: null,
-    },
-    "8473": {
-        string: null,
-    },
-    "8474": {
-        string: null,
-    },
-    "8475": {
-        string: null,
-    },
-    "8476": {
-        string: null,
-    },
-    "8477": {
-        string: null,
-    },
-    "8478": {
-        string: null,
-    },
-    "8479": {
-        string: null,
-    },
-    "8480": {
-        string: null,
-    },
-    "8481": {
-        string: null,
-    },
-    "8482": {
-        string: null,
-    },
-    "8483": {
-        string: null,
-    },
-    "8484": {
-        string: null,
-    },
-    "8485": {
-        string: null,
-    },
-    "8486": {
-        string: null,
-    },
-    "8490": {
-        string: "This is a message from the\nMario Kart Channel.\n\n{arg string|0}\n\n\n\nIf you do not wish to receive further\ncommercial messages from Nintendo,\nplease select the Opt Out button in\nthe upper-right corner of the screen.\n\nYou can opt out of either\n(1) messages for the Mario Kart\nChannel only, or\n(2) all messages for all Channels\nand games.",
-    },
-    "8491": {
-        string: "This is a message from the\nMario Kart Channel.\n\n{arg string|0}\n\n\n\nIf you do not wish to receive further\ncommercial messages from Nintendo,\nplease select the Opt Out button in\nthe upper-right corner of the screen.\n\nYou can opt out of either\n(1) messages for the Mario Kart\nChannel only, or\n(2) all messages for all Channels\nand games.",
-    },
-    "8492": {
-        string: "You have received a Friend\nregistration invitation from\n%ls!\n\nMario Kart Wii\nFriend Code: %04d-%04d-%04d\n\nBy registering each other's Friend\nCodes, you can play Mario Kart Wii\ntogether via Nintendo Wi-Fi\nConnection.\n\nIf you have Mario Kart Wii and have\nadded the Mario Kart Channel to\nyour Wii Menu, you can select\nthe START button on the right to\nconfirm.\n\nHave fun!",
-    },
-    "8493": {
-        string: "%ls has accepted\nyour Friend registration invitation!\n\nMario Kart Wii\nFriend Code: %04d-%04d-%04d\n\nNote: If there's room on your Friend\nRoster, this Friend Code will\nbe registered automatically.\n\nIf you have added the Mario Kart\nChannel to your Wii Menu, you can\nstart the Channel by selecting the\nSTART button on the right to\nconfirm that the Friend Code has\nbeen registered.\n\nHave fun!",
-    },
-    "8494": {
-        string: null,
-    },
-    "8495": {
-        string: null,
-    },
-    "8496": {
-        string: null,
-    },
-    "8497": {
-        string: null,
-    },
-    "8498": {
-        string: null,
-    },
-    "8499": {
-        string: null,
-    },
-    "8500": {
-        string: null,
-    },
-    "8504": {
-        string: null,
-    },
-    "8505": {
-        string: null,
-    },
-    "8510": {
-        string: null,
-    },
-    "8511": {
-        string: null,
-    },
-    "8512": {
-        string: null,
-    },
-    "8513": {
-        string: null,
-    },
-    "8514": {
-        string: null,
-    },
-    "8515": {
-        string: null,
-    },
-    "8516": {
-        string: null,
-    },
-    "8517": {
-        string: null,
-    },
-    "8518": {
-        string: null,
-    },
-    "8519": {
-        string: null,
-    },
-    "8520": {
-        string: null,
-    },
-    "8521": {
-        string: null,
-    },
-    "8522": {
-        string: null,
-    },
-    "8523": {
-        string: null,
-    },
-    "8524": {
-        string: null,
-    },
-    "8525": {
-        string: null,
-    },
-    "8526": {
-        string: null,
-    },
-    "8527": {
-        string: null,
-    },
-    "8528": {
-        string: null,
-    },
-    "8529": {
-        string: null,
-    },
-    "8530": {
-        string: null,
-    },
-    "8540": {
-        string: null,
-    },
-    "8541": {
-        string: null,
-    },
-    "8542": {
-        string: null,
-    },
-    "8543": {
-        string: null,
-    },
-    "8544": {
-        string: null,
-    },
-    "8545": {
-        string: null,
-    },
-    "8546": {
-        string: null,
-    },
-    "8547": {
-        string: null,
-    },
-    "8548": {
-        string: null,
-    },
-    "8549": {
-        string: null,
-    },
-    "8550": {
-        string: null,
-    },
-    "8551": {
-        string: null,
-    },
-    "8552": {
-        string: null,
-    },
-    "8553": {
-        string: null,
-    },
-    "8554": {
-        string: null,
-    },
-    "8555": {
-        string: null,
-    },
-    "8556": {
-        string: null,
-    },
-    "8557": {
-        string: null,
-    },
-    "8558": {
-        string: null,
-    },
-    "8559": {
-        string: null,
-    },
-    "8560": {
-        string: null,
-    },
-    "8561": {
-        string: null,
-    },
-    "8562": {
-        string: null,
-    },
-    "8563": {
-        string: null,
-    },
-    "8564": {
-        string: null,
-    },
-    "8565": {
-        string: null,
-    },
-    "8566": {
-        string: null,
-    },
-    "8567": {
-        string: null,
-    },
-    "99991": {
-        string: null,
-    },
-    "99992": {
-        string: null,
-    },
-    "99993": {
-        string: null,
-    },
-    "99994": {
-        string: null,
-    },
-    "99995": {
-        string: null,
-    },
-    "99996": {
-        string: null,
-    },
-    "99997": {
-        string: null,
-    },
-    "99998": {
-        string: null,
-    },
+    "1": null,
+    "2000": "OK",
+    "2001": "←{arg back button|0}Back",
+    "2002": "Yes",
+    "2003": "No",
+    "2004": null,
+    "2005": "→",
+    "2006": null,
+    "2007": "←",
+    "2008": null,
+    "2009": "{arg integer|0 0}/{arg integer|1 0}",
+    "2010": "Mario Kart Wii",
+    "2011": "Single Player",
+    "2012": "Multiplayer",
+    "2013": "Nintendo WFC",
+    "2014": "Mario Kart Channel",
+    "2015": "Licence Settings",
+    "2016": "Records",
+    "2017": "Press the A Button",
+    "2018": "Main Menu",
+    "2019": null,
+    "2020": "Grand Prix and more for one player!",
+    "2021": "Race and battle with two players!",
+    "2022": "Race and battle with three players!",
+    "2023": "Race and battle with four players!",
+    "2024": "Play via Nintendo WFC!",
+    "2025": "Play with a friend via Nintendo WFC!",
+    "2026": "View rankings and competition data!",
+    "2027": "Check your records and change your Mii!",
+    "2028": null,
+    "2029": null,
+    "2030": "Multiplayer (2P)",
+    "2031": "Multiplayer (3P)",
+    "2032": "Multiplayer (4P)",
+    "2033": "Nintendo WFC (1P)",
+    "2034": "Nintendo WFC (2P)",
+    "2035": null,
+    "2050": "Please insert the Mario Kart Wii\nGame Disc into the Wii console\nand wait for the game to start up.",
+    "2051": "The Game Disc could not be read.\nPlease read the Wii Operations\nManual for more information.",
+    "2052": "An error has occurred.\n\nPress the EJECT Button, remove\nthe Game Disc, and turn the power\noff. Please read the Wii Operations\nManual for more information.",
+    "2053": "There is not enough available space in\nthe Wii System Memory. Create 23 blocks\nof free space by either moving data to\nan SD Card or deleting data in the\nData Management Screen.",
+    "2054": "The Wii System Memory has been\ncorrupted. Refer to the Wii\nOperations Manual for further\ninstructions.",
+    "2055": "This data is corrupted and\ncannot be used.\n\nDelete the corrupted file and\ncreate a new one?",
+    "2056": null,
+    "2057": "Could not write to/read from\nWii System Memory.\n\nFor details, please read the\nWii Operations Manual.",
+    "2058": "You will now return to the Wii Menu.",
+    "2059": "Continue without saving",
+    "2060": "Return to the Wii Menu",
+    "2061": "You cannot choose this menu\nbecause there is no save file.",
+    "2062": "No save file could be read.\nPlease insert a Mario Kart Wii\nGame Disc.",
+    "2063": "Start Game Disc",
+    "2064": "You will be returned\nto the Wii Menu.\nIs this OK?",
+    "2065": "Saving. Please do not touch\nthe POWER Button or RESET.",
+    "2066": "Unable to load Mii Channel data.\nPlease access the Mii Channel\nand check Mii Channel data.",
+    "2067": "If you erase this Mii from the\nMii Channel, it will also be\nerased in Mario Kart Wii, so\nplease be careful.",
+    "2068": "Your licence was created using a\nGuest Mii. You can create a new Mii\nof your own in the Mii Channel.",
+    "2069": "The ghost data challenge could not\nbe sent. Up to five challenges can\nbe sent each time you play.\n\nPlease wait until the next time\nyou start Mario Kart Wii to send\nanother challenge.",
+    "2070": "Unable to connect to Nintendo Wi-Fi\nConnection. There is no save data.\n\nYou can manage the Wii System Memory\non the Data Management Screen\nof the Wii Options.",
+    "2071": "There is not enough available space\nin the Wii System Memory. Either\nmove data to an SD Card or delete\ndata on the Data Management Screen.",
+    "2072": "You will now disconnect\nfrom Nintendo WFC and\nreturn to the main menu.",
+    "2073": "Your Country setting has been changed, so new\nsave data must be created. If you do not want to\nlose your existing save data, please return to the\nWii Menu and restore your original Country setting.",
+    "2074": "Create New Save Data",
+    "2075": null,
+    "2100": null,
+    "2101": "A new Mario Kart Wii\nlicence will be created.",
+    "2102": "New Licence",
+    "2103": "Erase Licence",
+    "2104": "Select Licence",
+    "2105": null,
+    "2106": null,
+    "2107": null,
+    "2108": null,
+    "2109": null,
+    "2110": "{arg integer|0 4}-{arg integer|1 4}-{arg integer|2 4}",
+    "2111": "A new licence will be\ncreated for {arg player|0}.\n\nIs this OK?",
+    "2112": "The Mii for this licence will\nbe changed to {arg player|0}.\nIs this OK?",
+    "2113": "{current player|} and {arg player|0}\nwill connect to Nintendo WFC\ntogether. Is this OK?",
+    "2114": null,
+    "2120": "Records",
+    "2121": "View {current player|}'s records.",
+    "2122": "Change the Mii on this licence.",
+    "2123": "Select Mii",
+    "2124": null,
+    "2125": null,
+    "2126": null,
+    "2127": null,
+    "2128": "Erase {current player|}'s licence.",
+    "2129": null,
+    "2130": null,
+    "2131": null,
+    "2132": null,
+    "2133": null,
+    "2134": null,
+    "2135": "Close",
+    "2136": null,
+    "2150": null,
+    "2151": "Your new licence has been created.",
+    "2152": "Are you sure you want to\nerase {current player|}'s licence?",
+    "2153": "{current player|}'s licence\nhas been erased.",
+    "2154": null,
+    "2155": "The Mii for this licence has been changed.",
+    "2156": null,
+    "2157": "Erasing licence...",
+    "2158": "The Friend Roster, ghost data records\nand other data for this licence will be\nerased. Are you sure this is OK?",
+    "2159": null,
+    "2200": "Change Mii",
+    "2201": "Select Mii",
+    "2202": "Wii Console",
+    "2203": "Guest",
+    "2204": null,
+    "2205": "The Mii for this licence has been deleted\nfrom the Mii Channel.\n\nPlease choose another Mii.",
+    "2206": null,
+    "2207": null,
+    "2208": null,
+    "2209": null,
+    "2210": null,
+    "2250": null,
+    "2251": null,
+    "2252": null,
+    "2253": null,
+    "2254": null,
+    "2255": null,
+    "2256": null,
+    "2257": null,
+    "2258": "The battery charge is\nrunning low.",
+    "2259": null,
+    "2260": null,
+    "2261": null,
+    "2262": null,
+    "2300": null,
+    "2301": "1\n{font scale|50}Player",
+    "2302": "2\n{font scale|50}Players",
+    "2303": "3\n{font scale|50}Players",
+    "2304": "4\n{font scale|50}Players",
+    "2305": "{2 chars| }",
+    "2306": "{2 chars| }",
+    "2307": null,
+    "2400": null,
+    "2401": "Register Controllers",
+    "2402": "Press the A Button on Player 2's Controller.",
+    "2403": "Press the A Button on Player 3's Controller.",
+    "2404": "Press the A Button on Player 4's Controller.",
+    "2405": null,
+    "2406": null,
+    "2407": null,
+    "2408": null,
+    "2409": null,
+    "2500": "Is this OK?",
+    "2501": "Change",
+    "2502": "Press the A Button on Player 1's controller.",
+    "2503": "Press the A Button on Player 2's controller.",
+    "2504": "Press the A Button on Player 3's controller.",
+    "2505": "Press the A Button on Player 4's controller.",
+    "2506": "Use these controllers.",
+    "2507": "Change the controllers.",
+    "2508": "{arg message|0}Add Wii Remote",
+    "2509": "Press {1 char|} and {1 char|} simultaneously.",
+    "2510": "{arg message|0}OK",
+    "2511": null,
+    "2512": null,
+    "2513": null,
+    "2514": null,
+    "2550": "{1 char|}",
+    "2551": "{1 char|}",
+    "2552": "{1 char|}",
+    "2553": "{1 char|}",
+    "2554": "{1 char|}",
+    "2555": "{color|player 1}OK",
+    "2556": "{color|player 2}OK",
+    "2557": "{color|player 3}OK",
+    "2558": "{color|player 4}OK",
+    "2559": null,
+    "2600": "Add the Mario Kart Channel to\nyour Wii Menu? This requires\n{arg integer|0 0} blocks of free space.",
+    "2601": "Add",
+    "2602": "Cancel",
+    "2603": null,
+    "2604": null,
+    "2605": null,
+    "2606": null,
+    "2607": "Add Mario Kart Channel",
+    "2608": "Add the Mario Kart Channel to\nyour Wii Menu and you will be\nable to access the Channel\nwithout having to insert the\nMario Kart Wii Game Disc!",
+    "2609": "The Mario Kart Channel has already\nbeen added to your Wii Menu.",
+    "2610": "There is not enough available space\nin the Wii System Memory.\nCreate {arg integer|0 0} blocks of free space\nby either moving data to an SD Card\nor deleting data on the\nData Management Screen.",
+    "2611": "There is not enough available space\nin the Wii System Memory. Either\nmove data to an SD Card or delete\ndata on the Data Management Screen.",
+    "2612": "There is not enough available space\non your Wii Menu. Either move Channels\nto an SD Card or delete Channels on\nthe Data Management Screen.",
+    "2613": "The Wii System Memory\nhas been corrupted. Refer\nto the Wii Operations Manual\nfor further instructions.",
+    "2614": null,
+    "3000": "Grand Prix",
+    "3001": "Time Trials",
+    "3002": "VS Race",
+    "3003": "Battle",
+    "3004": null,
+    "3005": null,
+    "3006": "50cc\n{font scale|50}Karts Only",
+    "3007": "100cc\n{font scale|50}Bikes Only",
+    "3008": "150cc\n{font scale|50}Karts and Bikes",
+    "3009": "Mirror\n{font scale|50}Karts and Bikes",
+    "3010": "50cc\n{font scale|50}Karts and Bikes",
+    "3011": "100cc\n{font scale|50}Karts and Bikes",
+    "3012": "{arg message|0}Switch",
+    "3013": null,
+    "3050": "A four-course race for first place!",
+    "3051": "A solo race for the fastest record!",
+    "3052": "Race with custom settings!",
+    "3053": "Race with custom settings!",
+    "3054": "Battle in teams!",
+    "3055": "Battle in teams!",
+    "3056": null,
+    "3057": null,
+    "3058": null,
+    "3059": null,
+    "3060": "A Grand Prix for beginners (karts only).",
+    "3061": "A standard Grand Prix (bikes only).",
+    "3062": "A Grand Prix for experts (karts and bikes).",
+    "3063": "A mirrored Grand Prix (karts and bikes).",
+    "3064": "A Grand Prix for beginners (karts and bikes).",
+    "3065": "A standard Grand Prix (karts and bikes).",
+    "3066": null,
+    "3100": "Time Trials",
+    "3101": "There is no ghost data for this course.",
+    "3102": null,
+    "3103": "Rankings",
+    "3104": null,
+    "3200": "Battle Type",
+    "3201": "Balloon Battle",
+    "3202": "Coin Runners",
+    "3203": null,
+    "3204": null,
+    "3250": "Pop the opposing team's balloons!",
+    "3251": "Battle for the most coins!",
+    "3252": null,
+    "3253": null,
+    "3305": "Drift Mode",
+    "3306": "Automatic",
+    "3307": "Manual",
+    "3308": "Help",
+    "3309": "■ Drift ■\nDrift lets you take corners without\nlosing speed. There are two drift modes.\n\n■ Automatic Drift ■\nYou will drift automatically when turning,\nbut you can't {arg back button|0}hop or use Mini-Turbos.\n\n■ Manual Drift ■\n{arg back button|0}Hop while turning to drift. Keep\ndrifting to get a Mini-Turbo, which\ngives you a burst of speed.",
+    "3310": "View an explanation of drift and drift modes.",
+    "3311": "Speed",
+    "3312": "Weight",
+    "3313": "Acceleration",
+    "3314": "Handling",
+    "3315": "Drift",
+    "3316": "Off-Road",
+    "3317": "Mini-Turbo",
+    "3318": null,
+    "3350": "Drift automatically (no Mini-Turbo).",
+    "3351": "Drift manually (with Mini-Turbo).",
+    "3352": null,
+    "3360": "{arg message|0}　Trophy: {arg message|1}　Rank:{arg message|2}",
+    "3361": "Time Trials",
+    "3362": "{arg message|0}",
+    "3363": "{arg message|0} VS Race",
+    "3364": "{1 char|} Balloon Battle",
+    "3365": "{1 char|} Coin Runners",
+    "3366": "{arg message|0} Team VS Race",
+    "3370": "{1 char|}",
+    "3371": "{1 char|}",
+    "3372": "{1 char|}",
+    "3373": "{1 char|}",
+    "3374": "{1 char|}",
+    "3375": "{1 char|}",
+    "3376": "{1 char|}",
+    "3377": "{1 char|}",
+    "3378": "{1 char|}",
+    "3379": "{1 char|}",
+    "3380": "{1 char|}",
+    "3381": "F",
+    "3382": " 　",
+    "3383": null,
+    "3384": null,
+    "3400": "Rules",
+    "3401": "Select Class",
+    "3402": "Select Character",
+    "3403": "Select Vehicle",
+    "3404": "Select Cup",
+    "3405": "Select Course",
+    "3406": "Select Stage",
+    "3407": "Choose Ghost Data",
+    "3408": "Battle",
+    "3409": "VS Race",
+    "3410": "Class",
+    "3411": "50cc",
+    "3412": "100cc",
+    "3413": "150cc",
+    "3414": "Mirror",
+    "3415": "50cc class for beginners.",
+    "3416": "100cc class for average racers.",
+    "3417": "150cc class for experts.",
+    "3418": "150cc class with mirrored courses.",
+    "3420": "CPU",
+    "3421": "Easy",
+    "3422": "Normal",
+    "3423": "Hard",
+    "3424": "Off",
+    "3425": "CPU players are less skilled.",
+    "3426": "CPU players are of average skill.",
+    "3427": "CPU players are more skilled.",
+    "3428": "Race without CPU players.",
+    "3430": "Vehicles",
+    "3431": "Karts",
+    "3432": "Bikes",
+    "3433": "All",
+    "3434": "CPU players use karts only.",
+    "3435": "CPU players use bikes only.",
+    "3436": "CPU players use karts and bikes.",
+    "3437": "CPU players use karts only.",
+    "3438": "CPU players use bikes only.",
+    "3439": "CPU players use karts and bikes.",
+    "3440": "Course",
+    "3441": "Choose",
+    "3442": "Random",
+    "3443": "In Order",
+    "3444": "Choose the course for each race.",
+    "3445": "Courses are chosen at random.",
+    "3446": "Race courses in Cup order.",
+    "3447": "Choose the stage for each battle.",
+    "3448": "Stages are chosen at random.",
+    "3449": "Play stages in order.",
+    "3450": "Races",
+    "3451": "{arg integer|0 1}",
+    "3452": "Wins",
+    "3460": "{arg integer|0 1}",
+    "3461": "Teams",
+    "3462": "Team Race",
+    "3463": "Solo Race",
+    "3464": null,
+    "3465": "Set the number of races.",
+    "3466": "Set the number of wins needed for overall victory.",
+    "3467": "Compete in teams for the most points!",
+    "3468": "Compete for the most points!",
+    "3469": "Stage",
+    "3470": "Are you sure you want\nto quit this VS Race?",
+    "3471": "Are you sure you want\nto quit this Battle?",
+    "3472": "Race with these rules.",
+    "3473": "Battle with these rules.",
+    "3474": "Set various race rules.",
+    "3475": "Set various battle rules.",
+    "3476": null,
+    "3480": "Items",
+    "3481": "Recommended",
+    "3482": "Frantic",
+    "3483": "Basic",
+    "3484": "None",
+    "3485": "All items appear with balanced frequency.",
+    "3486": "Powerful items appear with high frequency.",
+    "3487": "Powerful items are hard to find.",
+    "3488": "No items will appear.",
+    "3489": null,
+    "3500": "Team Settings",
+    "3501": "Blue\nTeam",
+    "3502": "Red\nTeam",
+    "3503": "Teams",
+    "3504": "Play with these teams.",
+    "3505": "Racers",
+    "3506": "{color|team blue}Blue\nTeam",
+    "3507": "{color|team red}Red\nTeam",
+    "3508": "Everyone is on the same team.\n\nPlease choose again.",
+    "3509": null,
+    "3550": "Start?",
+    "3551": "Start?",
+    "3552": "Start?",
+    "3553": null,
+    "4000": "Worldwide",
+    "4001": "Continental",
+    "4002": "Friends",
+    "4003": "Ghost Race",
+    "4004": "Nintendo Wi-Fi Connection",
+    "4005": null,
+    "4006": null,
+    "4007": null,
+    "4008": "There are no Friends registered\nin your Friend Roster.\n\nRegister Friends to play\ntogether on Nintendo WFC. ",
+    "4009": null,
+    "4010": "Connecting to Nintendo WFC...",
+    "4011": "Disconnect from Nintendo WFC?",
+    "4012": "Yes",
+    "4013": "No",
+    "4014": null,
+    "4015": null,
+    "4016": "You cannot access Nintendo\nWi-Fi Connection using this\nMii name. Please change your\nMii name and try again.",
+    "4017": null,
+    "4018": "You were disconnected\nfrom the other players.",
+    "4019": "Leave the room?",
+    "4020": "Close the room?",
+    "4021": "You were disconnected from the\nroom's creator. You will now be\nreturned to your Friend Roster.",
+    "4022": "You were unable to join this Friend.\n\nPlease wait and try again later.",
+    "4023": null,
+    "4024": "Teams",
+    "4025": null,
+    "4100": "Room",
+    "4101": "Create a Room",
+    "4102": "Joining Friend...",
+    "4103": null,
+    "4104": null,
+    "4105": null,
+    "4106": "Searching for players...",
+    "4107": "Players have been chosen!",
+    "4108": "Waiting for Friends...",
+    "4109": "Start Game",
+    "4110": "We're playing a Grand Prix!",
+    "4111": "We're playing a Team Grand Prix!",
+    "4112": "We're playing a Balloon Battle!",
+    "4113": "We're playing Coin Runners!",
+    "4114": null,
+    "4150": "Add Friends",
+    "4151": "I've added you, {arg player|0}!",
+    "4152": "There are no Friends to add.",
+    "4153": null,
+    "4154": "Now we're Friends, {arg player|0}!",
+    "4155": null,
+    "4200": "Message",
+    "4201": "{arg integer|0 2}/{arg integer|1 2}",
+    "4202": "{arg integer|0 0}\n{font scale|70}Race Rating",
+    "4203": "{arg integer|0 0}\n{font scale|70}Battle Rating",
+    "4204": "Please wait...",
+    "4205": "Worldwide VS Race",
+    "4206": "Worldwide Battle",
+    "4207": "Continental VS Race",
+    "4208": "Continental Battle",
+    "4300": "Choose a mode.",
+    "4301": "Please wait...",
+    "4302": "The mode has been decided.",
+    "4303": null,
+    "4304": null,
+    "4305": "VS Race",
+    "4306": "VS Race",
+    "4307": null,
+    "4308": "Battle",
+    "4309": "Battle",
+    "4310": "Challenge players around the world.",
+    "4311": "Challenge players on your continent.",
+    "4312": "Play with just your Friends.",
+    "4313": "Race against ghost data from players around the world.",
+    "4314": "Race with up to 11 other players!",
+    "4315": "Battle with up to 6 players on each team!",
+    "4316": "Create a room to play with Friends.",
+    "4317": "See what your Friends are doing right now.",
+    "4318": "Register a Friend Code in your Friend Roster.",
+    "4319": null,
+    "4320": "The next race is 100cc class!",
+    "4321": "The next race is 150cc class!",
+    "4322": "The next race is Mirror class!",
+    "4323": "{1 char|} Balloon Battle",
+    "4324": "{1 char|} Coin Runners",
+    "4325": "The next race is 100cc class!",
+    "4326": "The next race is 150cc class!",
+    "4327": "The next race is Mirror class!",
+    "4328": "The next race is 100cc class!",
+    "4329": "The next race is 150cc class!",
+    "4330": "The next race is Mirror class!",
+    "4331": null,
+    "4332": null,
+    "4333": null,
+    "4334": null,
+    "4350": "Vote for a course?",
+    "4351": "Vote",
+    "4352": "Random",
+    "4353": "???",
+    "4354": "Course Votes",
+    "4355": "Stage Votes",
+    "4356": "Vote for a stage?",
+    "4357": "Getting ready to race...",
+    "4358": "Getting ready to battle...",
+    "4359": null,
+    "4360": "Waiting for everyone to vote...",
+    "4361": "",
+    "4362": "The course has been decided!",
+    "4363": "The stage has been decided!",
+    "4364": null,
+    "4370": "Send a message to everyone in the room.",
+    "4371": "Choose a message to send.",
+    "4372": "Start a game with these players.",
+    "4373": "Choose what to play.",
+    "4374": "Invite others to become your Friends.",
+    "4375": "This message will only be sent to the player you are inviting.",
+    "4376": null,
+    "4390": "Enter a Friend Code.",
+    "4391": "Register this Friend Code.",
+    "4392": "Play with Friends.",
+    "4393": "This Friend Code will be removed.",
+    "4394": null,
+    "4395": null,
+    "4396": null,
+    "4397": null,
+    "4499": "Here I am!",
+    "4500": "Hello!",
+    "4501": "Good evening!",
+    "4502": "Long time no see!",
+    "4503": "Good luck!",
+    "4504": "Thanks for waiting!",
+    "4505": "Welcome!",
+    "4506": "Is everyone here?",
+    "4507": "Let's wait a bit longer!",
+    "4508": "Ready?",
+    "4509": "Starting soon?",
+    "4510": "Let's wait 3 more minutes...",
+    "4511": "I'm going to take a break...",
+    "4512": "OK!",
+    "4513": "Let's get started!",
+    "4514": "Go easy on me!",
+    "4515": "I'll try my best!",
+    "4516": "What shall we play?",
+    "4517": "Any preferences?",
+    "4518": "A Grand Prix or a Battle?",
+    "4519": "I mightn't do so well...",
+    "4520": "Let's have a Grand Prix!",
+    "4521": "Let's have a Team Grand Prix!",
+    "4522": "Let's have a Balloon Battle!",
+    "4523": "Let's play Coin Runners!",
+    "4524": "I'm going to use a small vehicle!",
+    "4525": "I'm going to use a medium vehicle!",
+    "4526": "I'm going to use a large vehicle!",
+    "4527": "I'm going to race as a Mii!",
+    "4528": "I'm going to use my Wii Wheel!",
+    "4529": "I'm going to use a kart!",
+    "4530": "I'm going to use a bike!",
+    "4531": "I can't decide...",
+    "4532": "Which course?",
+    "4533": "Hmm...",
+    "4534": "Let's choose Random!",
+    "4535": "Let's try a new course!",
+    "4536": "Luigi Circuit!",
+    "4537": "Moo Moo Meadows!",
+    "4538": "Mushroom Gorge!",
+    "4539": "Toad's Factory!",
+    "4540": "Mario Circuit!",
+    "4541": "Coconut Mall!",
+    "4542": "DK's Snowboard Cross!",
+    "4543": "Wario's Gold Mine!",
+    "4544": "Daisy Circuit!",
+    "4545": "Koopa Cape!",
+    "4546": "Maple Treeway!",
+    "4547": "Grumble Volcano!",
+    "4548": "Dry Dry Ruins!",
+    "4549": "Moonview Highway!",
+    "4550": "Bowser's Castle!",
+    "4551": "Rainbow Road!",
+    "4552": "GCN Peach Beach!",
+    "4553": "DS Yoshi Falls!",
+    "4554": "SNES Ghost Valley 2!",
+    "4555": "N64 Mario Raceway!",
+    "4556": "N64 Sherbet Land!",
+    "4557": "GBA Shy Guy Beach!",
+    "4558": "DS Delfino Square!",
+    "4559": "GCN Waluigi Stadium!",
+    "4560": "DS Desert Hills!",
+    "4561": "GBA Bowser Castle 3!",
+    "4562": "N64 DK's Jungle Parkway!",
+    "4563": "GCN Mario Circuit!",
+    "4564": "SNES Mario Circuit 3!",
+    "4565": "DS Peach Gardens!",
+    "4566": "GCN DK Mountain!",
+    "4567": "N64 Bowser's Castle!",
+    "4568": "Block Plaza!",
+    "4569": "Delfino Pier!",
+    "4570": "Funky Stadium!",
+    "4571": "Chain Chomp Roulette!",
+    "4572": "Thwomp Desert!",
+    "4573": "SNES Battle Course 4!",
+    "4574": "GBA Battle Course 3!",
+    "4575": "N64 Skyscraper!",
+    "4576": "GCN Cookie Land!",
+    "4577": "DS Twilight House!",
+    "4578": "The red team rules!",
+    "4579": "The blue team rules!",
+    "4580": "Yaaaay!",
+    "4581": "I'm the best!",
+    "4582": "You're all so fast!",
+    "4583": "Congratulations!",
+    "4584": "That was fun!",
+    "4585": "So exciting!",
+    "4586": "Grrr! No fair!",
+    "4587": "I won't lose next time!",
+    "4588": "Let's play again!",
+    "4589": "This isn't over yet!",
+    "4590": "The next game will be the last!",
+    "4591": "I'm ready to quit...",
+    "4592": "Thanks for a great time!",
+    "4593": "Thanks!",
+    "4594": "Goodnight!",
+    "4595": "See you later!",
+    "4596": null,
+    "4597": null,
+    "4598": null,
+    "4599": null,
+    "4600": "A communication error has\noccurred. You will now\nreturn to the main menu.\n\nError Code: {arg integer|0 5}",
+    "4601": "Unable to connect to the Internet.\nConfirm the Internet settings of\nthe Wii console.\n\nError Code: {arg integer|0 5}",
+    "4602": "Either Nintendo Wi-Fi Connection is\nexperiencing high traffic volumes or the\nservice is down. Please try again later.\nFor help, visit support.nintendo.com.\n\nError Code: {arg integer|0 5}",
+    "4603": "Unable to connect to Nintendo Wi-Fi\nConnection. For help, check the\nsoftware Instruction Booklet or\nvisit support.nintendo.com.\n\nError Code: {arg integer|0 5}",
+    "4604": "The Nintendo Wi-Fi Connection service for\nthis software has been discontinued. Visit\nsupport.nintendo.com for a list of current\nNintendo Wi-Fi Connection-compatible software.\n\nError Code: {arg integer|0 5}",
+    "4605": "Unable to connect to Nintendo Wi-Fi\nConnection. For help, check the\nsoftware Instruction Booklet or\nvisit support.nintendo.com.\n\nError Code: {arg integer|0 5}",
+    "4606": "Either Nintendo Wi-Fi Connection is\nexperiencing high traffic volumes, or\nthe service is down. Please try again later.\nFor help, visit support.nintendo.com.\n\nError Code: {arg integer|0 5}",
+    "4607": "There is not enough available space\nin the Wii System Memory.\n\nError Code: {arg integer|0 5}",
+    "4608": "The Wii System Memory has been damaged.\nRefer to the Wii Operations Manual\nfor further instructions.\n\n\nError Code: {arg integer|0 5}",
+    "4609": "Disconnected from network during\ndata transmission.\n\nError Code: {arg integer|0 5}",
+    "4610": "Download failed. Please try again.\nFor help, visit support.nintendo.com.\n\nError Code: {arg integer|0 5}",
+    "4611": "Disconnected from network during\ndata transmission.\n\nError Code: {arg integer|0 5}",
+    "4612": "Disconnected from network during\ndata transmission.\n\nError Code: {arg integer|0 5}",
+    "4613": "Disconnected from network during\ndata transmission.\n\nError Code: {arg integer|0 5}",
+    "4614": "Disconnected from network during\ndata transmission.\n\nError Code: {arg integer|0 5}",
+    "4615": "Disconnected from network during\ndata transmission.\n\nError Code: {arg integer|0 5}",
+    "4616": "Unable to connect to the Internet.\nConfirm the Internet settings of\nthe Wii console.\n\nError Code: {arg integer|0 5}",
+    "4617": "Unable to connect to the Internet.\nConfirm the Internet settings of\nthe Wii console.\n\nError Code: {arg integer|0 5}",
+    "4618": "Unable to connect to the Internet.\nConfirm the Internet settings of\nthe Wii console.\n\nError Code: {arg integer|0 5}",
+    "4619": "Unable to connect to the Internet.\nConfirm the Internet settings of\nthe Wii console.\n\nError Code: {arg integer|0 5}",
+    "4620": "Unable to connect to the Internet.\nConfirm the Internet settings of\nthe Wii console.\n\nError Code: {arg integer|0 5}",
+    "4621": "Unable to connect to the Internet.\nConfirm the Internet settings of\nthe Wii console.\n\nError Code: {arg integer|0 5}",
+    "4622": "Unable to connect to the Internet.\nConfirm the Internet settings of\nthe Wii console.\n\nError Code: {arg integer|0 5}",
+    "4623": "Unable to connect to the Internet.\nConfirm the Internet settings of\nthe Wii console.\n\nError Code: {arg integer|0 5}",
+    "4624": "Unable to connect to the Internet.\nConfirm the Internet settings of\nthe Wii console.\n\nError Code: {arg integer|0 5}",
+    "4625": "Unable to connect to the Internet.\nConfirm the Internet settings of\nthe Wii console.\n\nError Code: {arg integer|0 5}",
+    "4626": "Unable to connect to the Internet.\nConfirm the Internet settings of\nthe Wii console.\n\nError Code: {arg integer|0 5}",
+    "4627": "Unable to connect to the Internet.\nConfirm the Internet settings of\nthe Wii console.\n\nError Code: {arg integer|0 5}",
+    "4628": "Unable to connect to the Internet.\nConfirm the Internet settings of\nthe Wii console.\n\nError Code: {arg integer|0 5}",
+    "4629": "Disconnected from network during\ndata transmission.\n\nError Code: {arg integer|0 5}",
+    "4630": null,
+    "5000": "Mario Kart Channel",
+    "5001": "Friend Roster",
+    "5002": "Rankings",
+    "5003": "Ghost Race",
+    "5004": "Competitions",
+    "5005": null,
+    "5006": "Register Friend Code",
+    "5007": null,
+    "5008": "Wii Menu",
+    "5009": "Downloaded Ghost Data List",
+    "5010": "Competitions",
+    "5011": "Friend Roster",
+    "5012": null,
+    "5013": null,
+    "5014": "Start Race",
+    "5015": "Hone your Time Trial technique\nby challenging ghost data from\nplayers around the world in a\nseries of races via Nintendo WFC!",
+    "5016": "My Ghost Data",
+    "5017": "Hone your Time Trial technique\nby challenging ghost data from\nplayers around the world in a\nseries of races via Nintendo WFC!\n\nYour current record:\n{arg integer|0 0} {arg cond messages|0 5026 5027} - {arg integer|1 0} {arg cond messages|1 5028 5029}",
+    "5018": "Hone your Time Trial technique\nby challenging ghost data from\nplayers around the world in a\nseries of races via Nintendo WFC!\n\nYour current record:\n{arg integer|0 0} {arg cond messages|0 5026 5027} - {arg integer|1 0} {arg cond messages|1 5028 5029}",
+    "5019": "Hone your Time Trial technique\nby challenging ghost data from\nplayers around the world in a\nseries of races via Nintendo WFC!\n\nYour current record:\n{arg integer|0 0} {arg cond messages|0 5026 5027} - {arg integer|1 0} {arg cond messages|1 5028 5029}",
+    "5020": "Hone your Time Trial technique\nby challenging ghost data from\nplayers around the world in a\nseries of races via Nintendo WFC!\n\nYour current record:\n{arg integer|0 0} {arg cond messages|0 5026 5027} - {arg integer|1 0} {arg cond messages|1 5028 5029}",
+    "5021": "Hone your Time Trial technique\nby challenging ghost data from\nplayers around the world in a\nseries of races via Nintendo WFC!\n\nYour current record:\n{arg integer|0 0} {arg cond messages|0 5026 5027} - {arg integer|1 0} {arg cond messages|1 5028 5029}",
+    "5022": "Hone your Time Trial technique\nby challenging ghost data from\nplayers around the world in a\nseries of races via Nintendo WFC!\n\nYour current record:\n{arg integer|0 0} {arg cond messages|0 5026 5027} - {arg integer|1 0} {arg cond messages|1 5028 5029}",
+    "5023": "Hone your Time Trial technique\nby challenging ghost data from\nplayers around the world in a\nseries of races via Nintendo WFC!\n\nYour current record:\n{arg integer|0 0} {arg cond messages|0 5026 5027} - {arg integer|1 0} {arg cond messages|1 5028 5029}",
+    "5024": "Hone your Time Trial technique\nby challenging ghost data from\nplayers around the world in a\nseries of races via Nintendo WFC!\n\nYour current record:\n{arg integer|0 0} {arg cond messages|0 5026 5027} - {arg integer|1 0} {arg cond messages|1 5028 5029}",
+    "5025": "{arg integer|0 0} {arg cond messages|0 5026 5027}",
+    "5026": "win",
+    "5027": "wins",
+    "5028": "loss",
+    "5029": "losses",
+    "5030": null,
+    "5050": "Friends",
+    "5051": "Ghost Data",
+    "5052": "Time Trial Rankings",
+    "5053": null,
+    "5054": "Competition Rankings",
+    "5055": null,
+    "5060": "Check what your Friends are doing.",
+    "5061": "View rankings of Friends and other players.",
+    "5062": "Check and erase downloaded ghost data.",
+    "5063": "Participate in Mario Kart competitions.",
+    "5064": "Challenge ghost data from around the world.",
+    "5065": null,
+    "5066": "Send and receive ghost data.",
+    "5067": null,
+    "5068": "View Mario Kart competition rankings.",
+    "5069": null,
+    "5070": null,
+    "5071": null,
+    "5072": null,
+    "5073": null,
+    "5074": null,
+    "5075": null,
+    "5080": null,
+    "5081": null,
+    "5082": null,
+    "5083": null,
+    "5084": null,
+    "5085": null,
+    "5100": "Please enter a Friend Code.",
+    "5101": "Register this Friend Code?\n\n{arg integer|0 4}-{arg integer|1 4}-{arg integer|2 4}",
+    "5102": "This is not a valid Friend Code.\n\n{arg integer|0 4}-{arg integer|1 4}-{arg integer|2 4}",
+    "5103": "You have registered this Friend Code:\n\n{arg integer|0 4}-{arg integer|1 4}-{arg integer|2 4}",
+    "5104": "Before you can play against \nthis Friend, they must also\nregister your Friend Code.\n\nYour Friend Code is:\n\n{arg integer|0 4}-{arg integer|1 4}-{arg integer|2 4}",
+    "5105": "{arg integer|0 1}",
+    "5106": "-",
+    "5107": null,
+    "5110": "This Friend Code is already registered\nin your Friend Roster.",
+    "5111": "Your Friend Roster already contains\nthe maximum 30 Friends.",
+    "5112": "You don't have a Friend Code.",
+    "5113": "You can't register the Friend Codes\nof licences in the Mario Kart Wii\nsave data stored on this Wii console.",
+    "5115": null,
+    "5150": null,
+    "5151": null,
+    "5152": null,
+    "5153": null,
+    "5154": null,
+    "5155": null,
+    "5156": null,
+    "5157": null,
+    "5200": "Remove",
+    "5201": "Join Friend",
+    "5202": "Unable to join.",
+    "5203": "You are not Friends yet.",
+    "5204": null,
+    "5205": null,
+    "5206": "win",
+    "5207": "wins",
+    "5208": null,
+    "5209": "Battle",
+    "5210": "Remove this Friend Code?",
+    "5211": "The Friend Code has been removed.",
+    "5212": "Removing Friend Code...",
+    "5213": "Remove Friend Code",
+    "5214": "Remove Friend Code",
+    "5215": "Cancel",
+    "5216": "{arg cond messages|0 5206 5207}",
+    "5217": "All data associated with this\nFriend Code will be erased.\n\nAre you sure this is OK?",
+    "5218": null,
+    "5300": "I'm on Nintendo WFC!",
+    "5301": "I'm not on Nintendo WFC...",
+    "5302": null,
+    "5303": null,
+    "5304": "I have an open room!",
+    "5305": "I'm playing with Friends!",
+    "5306": "I'm playing with Friends!",
+    "5307": "I'm in a Worldwide VS Race!",
+    "5308": "I'm in a Worldwide Battle!",
+    "5309": "I'm in a Continental VS Race!",
+    "5310": "I'm in a Continental Battle!",
+    "5311": "I'm hosting a Grand Prix (1/4)!",
+    "5312": "I'm hosting a Grand Prix (2/4)!",
+    "5313": "I'm hosting a Grand Prix (3/4)!",
+    "5314": "I'm hosting a Grand Prix (4/4)!",
+    "5315": "I'm hosting a Battle (1st battle)!",
+    "5316": "I'm hosting a Battle (2nd battle)!",
+    "5317": "I'm hosting a Battle (3rd battle)!",
+    "5318": "I'm hosting a Battle (tie-break)!",
+    "5319": "I'm playing with Friends (1/4)!",
+    "5320": "I'm playing with Friends (2/4)!",
+    "5321": "I'm playing with Friends (3/4)!",
+    "5322": "I'm playing with Friends (4/4)!",
+    "5323": "I'm playing with Friends (1st battle)!",
+    "5324": "I'm playing with Friends (2nd battle)!",
+    "5325": "I'm playing with Friends (3rd battle)!",
+    "5326": "I'm playing with Friends (tie-break)!",
+    "5327": null,
+    "5328": null,
+    "5350": "Join a Friend.",
+    "5351": null,
+    "5400": null,
+    "5401": null,
+    "5402": "This ghost data will be sent.\nIs this OK?",
+    "5403": "Sending ghost data...",
+    "5404": "Your challenge has been\nsent to {arg player|0}!\n\n{arg integer|0 0}/5",
+    "5405": "Your challenge has been\nsent to {arg player|0}!\n\n5/5\n\nYou cannot send any more challenges until\nthe next time you play Mario Kart Wii.",
+    "5406": "No ghost data was found, so\nthe challenge could not be sent.",
+    "5407": null,
+    "5500": "Reading ghost data...",
+    "5501": "You received a challenge from a Friend!",
+    "5502": "Your Downloaded Ghost Data List is full.\nYou are currently unable to receive\nchallenges from your Friends.\n\nPlease erase a ghost data record.",
+    "5503": "This course is not available yet.\n\nIf you earn enough trophies in\nGrand Prix mode, you can unlock\nnew courses to race on.",
+    "5504": "An error occurred when downloading\nthe ghost data challenge.",
+    "5505": null,
+    "5600": "",
+    "5601": "Japan",
+    "5608": "Anguilla",
+    "5609": "Antigua and Barbuda",
+    "5610": "Argentina",
+    "5611": "Aruba",
+    "5612": "Bahamas",
+    "5613": "Barbados",
+    "5614": "Belize",
+    "5615": "Bolivia",
+    "5616": "Brazil",
+    "5617": "British Virgin Islands",
+    "5618": "Canada",
+    "5619": "Cayman Islands",
+    "5620": "Chile",
+    "5621": "Colombia",
+    "5622": "Costa Rica",
+    "5623": "Dominica",
+    "5624": "Dominican Republic",
+    "5625": "Ecuador",
+    "5626": "El Salvador",
+    "5628": "Grenada",
+    "5630": "Guatemala",
+    "5631": "Guyana",
+    "5632": "Haiti",
+    "5633": "Honduras",
+    "5634": "Jamaica",
+    "5636": "Mexico",
+    "5637": "Montserrat",
+    "5638": "Netherlands Antilles",
+    "5639": "Nicaragua",
+    "5640": "Panama",
+    "5641": "Paraguay",
+    "5642": "Peru",
+    "5643": "St Kitts and Nevis",
+    "5644": "St Lucia",
+    "5645": "St Vincent and the Grenadines",
+    "5646": "Suriname",
+    "5647": "Trinidad and Tobago",
+    "5648": "Turks and Caicos Islands",
+    "5649": "United States",
+    "5650": "Uruguay",
+    "5651": "US Virgin Islands",
+    "5652": "Venezuela",
+    "5665": "Australia",
+    "5666": "Austria ",
+    "5667": "Belgium",
+    "5674": "Denmark",
+    "5676": "Finland",
+    "5677": "France",
+    "5678": "Germany",
+    "5679": "Greece",
+    "5682": "Ireland",
+    "5683": "Italy",
+    "5688": "Luxembourg",
+    "5694": "Netherlands",
+    "5695": "New Zealand",
+    "5696": "Norway",
+    "5698": "Portugal",
+    "5705": "Spain",
+    "5707": "Sweden",
+    "5708": "Switzerland",
+    "5710": "United Kingdom",
+    "5728": "",
+    "5736": "South Korea",
+    "5744": "",
+    "5745": "",
+    "5760": "",
+    "5855": null,
+    "6000": "Choose a course.",
+    "6001": "Friend Ranking",
+    "6002": "Continental Ranking",
+    "6003": "Worldwide Ranking",
+    "6004": "Top 10",
+    "6005": "{arg message|0} Friend Top 10",
+    "6006": "{arg message|0} Continental Top 10",
+    "6007": "{arg message|0} Worldwide Top 10",
+    "6008": "10",
+    "6009": "Top 10",
+    "6010": "Start Time Trial",
+    "6011": "Challenge this Ghost Data",
+    "6012": "Watch Replay",
+    "6013": "Erase Ghost Data",
+    "6014": "Send Ghost Data",
+    "6015": "Challenge this Ghost Data",
+    "6016": "Solo Time Trial",
+    "6017": "NEW",
+    "6018": "Friend",
+    "6019": "Top 10",
+    "6020": "Continental",
+    "6021": "Top 10",
+    "6022": "Worldwide",
+    "6023": "Top 10",
+    "6024": null,
+    "6050": "TIME",
+    "6051": "{arg integer|0 1}:{arg integer|1 2}",
+    "6052": "{arg integer|0 2}:{arg integer|1 2}.{arg integer|2 3}",
+    "6053": "--:--.---",
+    "6054": "Continental Champion",
+    "6055": "World Champion",
+    "6056": "Rival Ghost Data",
+    "6057": "Friend",
+    "6058": "Continental",
+    "6059": "Worldwide",
+    "6060": "{arg front button|0}",
+    "6061": "Family Ghost Data",
+    "6062": "Friend Ghost Data",
+    "6063": "Special Ghost Data",
+    "6064": "Staff Ghost Data",
+    "6065": null,
+    "6100": "There is no ghost data for\n{arg message|0}.",
+    "6101": "There is no ghost data for\n{arg license player|0}.",
+    "6102": "There is no downloaded ghost data.",
+    "6103": null,
+    "6110": "Downloading ghost data...",
+    "6111": "Your Downloaded Ghost Data List\nis full. You are currently unable\nto download any more ghost data.\n\nPlease erase a ghost data record\nfrom your Downloaded Ghost Data List.",
+    "6112": "An error occurred when\ndownloading the ghost data.\n\nError Code: {arg integer|0 5}",
+    "6113": "The ghost data has been downloaded.",
+    "6114": "Downloading the Top 10...",
+    "6115": "An error occurred when\ndownloading the Top 10.\n\nError Code: {arg integer|0 5}",
+    "6116": "There is no Top 10.",
+    "6117": "",
+    "6120": "Connect to Nintendo WFC?",
+    "6121": "OK",
+    "6122": "Connect to Nintendo WFC?",
+    "6123": "The existing ghost data will be\nreplaced with the new ghost data.\n\nIs this OK?",
+    "6124": null,
+    "6150": "Race this ghost data.",
+    "6151": "Watch the ghost data replay.",
+    "6152": "Are you sure you want to erase the ghost data?",
+    "6153": "Erase",
+    "6154": "Cancel",
+    "6155": null,
+    "6201": "1st",
+    "6202": "2nd",
+    "6203": "3rd",
+    "6204": "4th",
+    "6205": "5th",
+    "6206": "6th",
+    "6207": "7th",
+    "6208": "8th",
+    "6209": "9th",
+    "6210": "10th",
+    "6211": "11th",
+    "6212": "12th",
+    "6213": null,
+    "6250": "Start a Time Trial on this course.",
+    "6251": "Check {arg player|0}'s record.",
+    "6252": "Race the Continental Champion.",
+    "6253": "Race the World Champion.",
+    "6254": "Race ghost data slightly faster than your record.",
+    "6255": "View your Friend Top 10.",
+    "6256": "View the Continental Top 10.",
+    "6257": "View the Worldwide Top 10.",
+    "6258": "Race against Mario Kart Wii staff ghost data.",
+    "6259": "{arg player|0}'s record.",
+    "6260": "The Continental Champion's record.",
+    "6261": "The Worldwide Champion's record.",
+    "6262": null,
+    "6300": "Send Ghost Data",
+    "6301": "{arg player|0} has not set a record\nfor {arg message|0}.",
+    "6302": "{arg player|0}'s current record for\n{arg message|0} is {arg integer|0 2}:{arg integer|1 2}.{arg integer|2 3}.",
+    "6303": "{arg player|0} has not set a record\nfor {arg message|0}.",
+    "6304": "{arg player|0}'s current record for\n{arg message|0} is {arg integer|0 2}:{arg integer|1 2}.{arg integer|2 3}.",
+    "6305": "Sending ghost data...",
+    "6306": null,
+    "6310": "The WiiConnect24 service is\ntemporarily unavailable. Please\ntry again later.\n\nError Code: {arg integer|0 6}",
+    "6311": "A connection to the Internet could not\nbe established. WiiConnect24 cannot be\nused. Please go to the Wii Settings and\ncheck your Connection Settings under\nInternet. For details, consult the\nWii Operations Manual.\n\nError Code: {arg integer|0 6}",
+    "6312": "There is a problem with the Wii System Memory.\nWiiConnect24 cannot be used. \n\nError Code: {arg integer|0 6}",
+    "6313": "In order to use the WiiConnect24\nfeature,  a system update is\nrequired. For details, consult\nthe Wii Operations Manual.\n\nError Code: {arg integer|0 6}",
+    "6314": "WiiConnect24 cannot be used\nbecause an error has occurred.\n\nReset and try again.\n\nError Code: {arg integer|0 6}",
+    "6315": "The WiiConnect24 setting has not been\nturned on. Please check the settings\nunder Wii Options. For details, consult\nthe Wii Operations Manual.\n\nError Code: {arg integer|0 6}",
+    "6316": "There is a problem with the Wii System Memory.\nWiiConnect24 cannot be used. \n\nError Code: {arg integer|0 6}",
+    "6317": "Use of network functions is restricted.\n\nPlease go to Wii Options and check\nyour Parental Control settings.",
+    "6318": "No Internet connections have\nbeen configured.\n\nPlease go to Wii Options and\nconfigure a connection on the\nInternet settings screen.\n\nError Code: 50200",
+    "6319": "The Mario Kart Channel uses WiiConnect24\nto receive information such as:\n\n・challenges from your Friends\n・rankings of players around the world\n・ghost data from players of a similar\nskill level to you\n・scheduled competitions",
+    "6320": "You can set your WiiConnect24\nsettings in the Wii Options.\n\nPlease check the Wii Operations\nManual for more information.",
+    "6321": "WiiConnect24 cannot be used because\nan error has occurred.\n\nReset and try again.\n\nError Code: {arg integer|0 6}",
+    "6322": "",
+    "6390": "GO!",
+    "6391": "",
+    "6400": "New Friend challenge!",
+    "6401": "Special ghost data now available!",
+    "6402": "A competition is in progress!",
+    "6403": "Latest rankings now available!",
+    "6404": "Start a Ghost Race!",
+    "6405": "New Friend Records available!",
+    "6406": "Add the Mario Kart Channel!",
+    "6407": "Join the message service!",
+    "6408": "Set your region!",
+    "6409": "Invite Friends via the Wii Message Board!",
+    "6410": "Download the latest data!",
+    "6411": null,
+    "6412": null,
+    "6500": "Go to your Downloaded Ghost Data List.",
+    "6501": "Go to Time Trial Rankings.",
+    "6502": "Go to Competitions.",
+    "6503": "Go to Time Trial Rankings.",
+    "6504": "Go to Ghost Race.",
+    "6505": "Go to Time Trial Rankings.",
+    "6506": "Go to Options.",
+    "6507": "Go to Options.",
+    "6508": "Go to Options.",
+    "6509": "Invite people to become Friends.",
+    "6510": "Update ranking and competition data!",
+    "6511": null,
+    "6512": null,
+    "6550": "Competition rankings are\ncurrently unavailable.",
+    "6551": "Downloading competition rankings...",
+    "6552": "An error occurred when downloading\nthe competition rankings.\n\nError Code: {arg integer|0 5}",
+    "6553": "You can view competition rankings\nstarting from the day after a\ncompetition starts.\n\nPlease wait a little longer.",
+    "6554": "First Half",
+    "6555": "Second Half",
+    "6556": "Rankings are not available\nyet for this competition.\n\nPlease check back again tomorrow.",
+    "6600": "You can participate in worldwide\nMario Kart Wii competitions.\n\nPlease connect your Wii to the Internet,\nmake sure WiiConnect24 is activated\nand wait for a competition to start!",
+    "6601": "The previous competition has finished\nand the results are now available!",
+    "6602": "{arg string|0}",
+    "6603": "{arg string|0}",
+    "6604": "Start",
+    "6605": "Post Competition Record",
+    "6606": "Posting competition record...",
+    "6607": "{arg string|0}\n{arg integer|0 2}:{arg integer|1 2}.{arg integer|2 3}",
+    "6608": "Your competition record was posted.",
+    "6609": "Failed to post the\ncompetition record.\n\nError Code: {arg integer|0 5}",
+    "6610": "The deadline is {arg integer|2 0}/{arg integer|1 0}/{arg integer|0 0}.",
+    "6611": null,
+    "6700": "Wii Message Board Invitation",
+    "6701": "You can send a Wii Message Board\nmessage containing your Friend Code\nto your Wii Friends.\n\nIt's a quick and easy way to\nbecome Friends in Mario Kart Wii!",
+    "6702": "Choose a Wii Friend to send an invitation to.",
+    "6703": "An invitation will be sent to\n{arg string|0}'s Wii Message Board.\n\nIs this OK?",
+    "6704": "Sending invitation...",
+    "6705": "The invitation has been sent to\n{arg string|0}'s Wii Message Board.\n\nYou will be notified via your\nWii Message Board if {arg string|0}\naccepts your invitation.",
+    "6706": "Failed to send the invitation.\n\nError Code: {arg integer|0 6}",
+    "6707": "{arg string|0}",
+    "6708": "The competition record was sent.\n\nYou will now go to the\nCompetition Rankings.",
+    "6709": null,
+    "6710": "Register Friend Code",
+    "6711": "You have received an invitation\nfrom {arg string|0}.\n\nIf you register this player's\nFriend Code in your Friend Roster, \nyour Friend Code will be sent\nto them automatically.",
+    "6712": "Register {arg string|0}'s Friend Code\nin your Friend Roster?",
+    "6713": "Registering...",
+    "6714": "Registered {arg string|0}'s Friend Code\nin your Friend Roster.",
+    "6715": "Failed to register Friend Code.\n\nError Code: {arg integer|0 6}",
+    "6716": "You do not have a Friend Code.\n\nA Friend Code is a 12-digit number that\nis automatically assigned to you the\nfirst time you connect to Nintendo WFC.\n\nFor more information, please refer to\nthe Mario Kart Wii Instruction Booklet.",
+    "6717": "You have received a Friend registration\ninvitation, but there are already 30\nFriend Codes in your Friend Roster.\n\nYou are unable to register any\nmore Friend Codes.",
+    "6718": "You have received a Friend registration\ninvitation, but the sender has been erased\nfrom your Wii Message Board Address Book.\n\nPlease start the Mario Kart Channel\nagain and register their Friend Code.",
+    "6719": "You have received a Friend\nregistration invitation, but the\nsender's Friend Code is already\nregistered in your Friend Roster.",
+    "6720": "",
+    "6800": "Download Competition Rankings",
+    "6801": "Downloading competition rankings...",
+    "6802": "Competition rankings downloaded.",
+    "6803": "Failed to download\ncompetition rankings.\n\nError Code: {arg integer|0 5}",
+    "6804": null,
+    "6811": null,
+    "6812": null,
+    "6813": null,
+    "6900": "Download Latest Data",
+    "6901": "The latest Mario Kart Channel\ndata will be downloaded.",
+    "6902": "Downloading the latest data...",
+    "6903": "The latest Mario Kart Channel\ndata has been downloaded.",
+    "6904": "An error occurred when\ndownloading the latest data.\n\nError Code: {arg integer|0 6}",
+    "6905": null,
+    "7000": "Options",
+    "7001": "Nintendo Wi-Fi Connection",
+    "7002": "Options",
+    "7003": "Next",
+    "7004": null,
+    "7100": "GCN Controller Rumble",
+    "7101": "Do you want to use the Rumble feature\nof the Nintendo GameCube Controller?",
+    "7102": "Yes",
+    "7103": "No",
+    "7104": "You have chosen to use the\nNintendo GameCube Controller\nRumble feature.",
+    "7105": "You have chosen not to use the\nNintendo GameCube Controller\nRumble feature.",
+    "7106": null,
+    "7200": "Region Setting",
+    "7201": "Return to the Wii Menu to\nchange your region setting?",
+    "7202": null,
+    "7203": null,
+    "7204": null,
+    "7250": "Flag and Region Display",
+    "7251": "Mario Kart Wii can show your country flag\nand region in the following places:\n\n・as a globe position in Nintendo WFC mode\n・in your ghost data\n\nIf you choose to make this information\navailable, it will be sent to other\nplayers when playing via Nintendo WFC.",
+    "7252": "Do you want to display your country\nflag and region on Nintendo WFC?\n",
+    "7253": "Yes",
+    "7254": "No",
+    "7255": "You have chosen to display your\ncountry flag and region on Nintendo WFC.",
+    "7256": "You have chosen not to display your\ncountry flag and region on Nintendo WFC.",
+    "7257": null,
+    "7300": "Message Service",
+    "7301": "Join the message service to have the latest\nupdates from the Mario Kart Channel posted\nto your Wii Message Board via WiiConnect24.\nYou can opt out at any time.\n\nMessages will include information about:\n\n・competitions\n・special ghost data downloads",
+    "7302": "Would you like to join\nthe Mario Kart Channel\nmessage service?",
+    "7303": "Join",
+    "7304": "Don't Join",
+    "7305": "You have joined the Mario Kart\nChannel message service.",
+    "7306": "You will not receive messages\nfrom the Mario Kart Channel\nmessage service. Is this OK?",
+    "7307": "",
+    "7350": "With the current settings, you will\nreceive messages from the Mario Kart\nChannel on your Wii Message Board.",
+    "7351": "Please select your desired\nmessage service setting.",
+    "7352": "Opt out of the Mario Kart Channel\nmessage service",
+    "7353": "Opt out of all Channel\nmessage services",
+    "7354": "Continue receiving Mario Kart Channel\nmessages",
+    "7355": "Opt out of receiving messages\nfrom the Mario Kart Channel?",
+    "7356": "Stop receiving messages\nfrom all Channels?",
+    "7357": "You will continue to\nreceive messages from\nthe Mario Kart Channel.",
+    "7358": "You have not joined the Mario Kart\nChannel message service.",
+    "7359": "You have opted out of\nthe Mario Kart Channel\nmessage service.",
+    "7360": "You have opted out of all\nChannel message services.",
+    "7361": "",
+    "7400": "Data Sharing",
+    "7401": "When you play Mario Kart Wii via\nNintendo WFC, the following data will\nautomatically be sent to Nintendo:\n\n・your Mii and nickname\n・your records and ghost data\n\nThis data may also be shared with\nother players on Nintendo WFC.",
+    "7402": "Will you allow game data\nto be sent to Nintendo?",
+    "7403": "Allow",
+    "7404": "Do Not Allow",
+    "7405": "You have chosen to allow\nsending of game data to Nintendo.",
+    "7406": "Are you sure this is OK? You will be\nunable to play Mario Kart Wii via\nNintendo WFC with this setting.",
+    "7407": "You have chosen not to allow\nsending of game data to Nintendo.",
+    "7408": "Please do not use your real name or any other\npersonal information as the nickname of your\nMii. If you have done so, please take one of\nthe following steps to change your Mii's\nnickname in order to protect your privacy.\n\n・Change your Mii's nickname in the Mii Channel\n・Switch to a Guest Mii in the Licence Settings",
+    "7409": "",
+    "7500": "Mii Display",
+    "7501": "Miis created by other players\nmay be displayed during races\nand battles, in ranking data\nand other places on Nintendo WFC.\n\nYou can choose to allow these Miis to\nbe displayed as they are, or to replace\nthem with Miis created by Nintendo.",
+    "7502": "Will you allow Miis created\nby other players to be\ndisplayed in Mario Kart Wii?",
+    "7503": "Allow",
+    "7504": "Do Not Allow",
+    "7505": "You have chosen to allow Miis\ncreated by other players to be\ndisplayed in Mario Kart Wii.",
+    "7506": "You have chosen not to allow Miis\ncreated by other players to be\ndisplayed in Mario Kart Wii.",
+    "7507": "Miis created by other players will be\nreplaced with Miis created by Nintendo.\n\nIs this OK?",
+    "7508": null,
+    "7600": null,
+    "7601": null,
+    "7602": null,
+    "7603": null,
+    "7604": null,
+    "7605": null,
+    "7700": "Mario Kart Wii can be displayed in\n60Hz (480i) Mode. Your current setting is\n50Hz (576i) Mode. If your TV - like most\nTV models - supports 60Hz Mode, please\nselect this TV Type in the Wii System\nSettings for a better display quality.\n\nTo change your TV Type setting to\n60Hz Mode, please press the HOME Button\nand go to the Wii Menu.",
+    "7701": "{2 chars|< <}",
+    "7702": "CONGRATULATIONS!",
+    "7703": "Post this photo to the\nWii Message Board?",
+    "7704": "Posting...",
+    "7705": "The photo was posted to\nthe Wii Message Board!",
+    "7706": "Please take care not to post too many\nphotos, as this can cause your Wii\nMessage Board to run out of space.\n\nWhen the Wii Message Board is full,\nspace for new messages will be\ncreated by deleting existing\nmessages, starting from the oldest.",
+    "7707": "Thanks for playing,\nand please continue to\nenjoy Mario Kart Wii!",
+    "8000": "Congratulations!\nYou have unlocked the\n{arg message|0} {arg message|1}!",
+    "8001": "Congratulations!\nYou have unlocked the\nMirror class!",
+    "8002": "Congratulations!\nYou can now play as\n{arg message|0}!",
+    "8003": "Congratulations!\nYou can now play as\n{arg message|0}!",
+    "8004": "Congratulations! You have\nunlocked a small kart,\nthe {arg message|0}!",
+    "8005": "Congratulations! You have\nunlocked a medium kart,\nthe {arg message|0}!",
+    "8006": "Congratulations! You have\nunlocked a large kart,\nthe {arg message|0}!",
+    "8007": "Congratulations! You have\nunlocked a small bike,\nthe {arg message|0}!",
+    "8008": "Congratulations! You have\nunlocked a medium bike,\nthe {arg message|0}!",
+    "8009": "Congratulations! You have\nunlocked a large bike,\nthe {arg message|0}!",
+    "8010": "Congratulations!\nYou have unlocked the 50cc\nGrand Prix (karts and bikes)!",
+    "8011": "Congratulations!\nYou have unlocked the 100cc\nGrand Prix (karts and bikes)!",
+    "8012": null,
+    "8100": "You've earned trophies in the {arg message|0} Mushroom and Flower Cups!",
+    "8101": "You've earned a trophy in the {arg message|0} Star Cup!",
+    "8102": "You've earned trophies in the {arg message|0} Shell and Banana Cups!",
+    "8103": "You've earned a trophy in the {arg message|0} Leaf Cup!",
+    "8104": "You've won all the 150cc Cups!",
+    "8105": null,
+    "8110": "You've won the 100cc Leaf Cup!",
+    "8111": "You've played Time Trials on all courses!",
+    "8112": "You've won 1000 times on Nintendo WFC!",
+    "8113": "You've earned Rank {1 char|} in all 50cc Wii Grand Prix Cups!",
+    "8114": "You've unlocked 8 Expert Staff Ghost Data records in Time Trials!",
+    "8115": "You've won the 50cc Lightning Cup!",
+    "8116": "You've earned Rank {1 char|} in all 100cc Retro Grand Prix Cups!",
+    "8117": "You've won the 150cc Special Cup!",
+    "8118": "You've played Time Trials on 16 different courses!",
+    "8119": "You've earned Rank {1 char|} on all Mirror Cups!",
+    "8120": "You got a present from Super Mario Galaxy!",
+    "8121": "You've earned Rank {1 char|} in all 150cc Wii Grand Prix Cups!",
+    "8122": "You've unlocked 4 Expert Staff Ghost Data records in Time Trials!",
+    "8123": "You've won 25 Ghost Races!",
+    "8124": "You've won the 50cc Star Cup!",
+    "8125": "You've won the 100cc Special Cup!",
+    "8126": "You've unlocked all 32 Expert Staff Ghost Data records in Time Trials!",
+    "8127": "You've won 5000 times on Nintendo WFC!",
+    "8128": "You've won 100 Ghost Races!",
+    "8129": "You've won 250 times on Nintendo WFC!",
+    "8130": null,
+    "8140": "You've earned Rank {1 char|} in all 50cc Retro Grand Prix Cups!",
+    "8141": "You've unlocked an Expert Staff Ghost Data record in Time Trials!",
+    "8142": "You've won 50 times on Nintendo WFC!",
+    "8143": "You've won the Mirror Lightning Cup!",
+    "8144": "You've won the 50cc Leaf Cup!",
+    "8145": "You've won the 150cc Leaf Cup!",
+    "8146": "You've unlocked 24 Expert Staff Ghost Data records in Time Trials!",
+    "8147": "You've won the 50cc Special Cup!",
+    "8148": "You've earned Rank {1 char|} in all 150cc Retro Grand Prix Cups!",
+    "8149": "You've won the 150cc Lightning Cup!",
+    "8150": "You've won the 150cc Star Cup!",
+    "8151": "You've played Time Trials on 8 different courses!",
+    "8152": "You've won 5 Ghost Races!",
+    "8153": "You've won the Mirror Leaf Cup!",
+    "8154": "You've won the 100cc Lightning Cup!",
+    "8155": "You've earned Rank {1 char|} in all 100cc Wii Grand Prix Cups!",
+    "8156": "You've won the Mirror Star Cup!",
+    "8157": "You've won the 100cc Star Cup!",
+    "8158": "You've unlocked 12 Expert Staff Ghost Data records in Time Trials!",
+    "8159": "You've won 200 Ghost Races!",
+    "8160": "You've won the Mirror Special Cup!",
+    "8161": "You've earned trophies in all 50cc Cups!",
+    "8162": "You've earned trophies in all 100cc Cups!",
+    "8163": "You've won 3000 times on Nintendo WFC!",
+    "8164": "You've played Mario Kart Wii {arg integer|0 0} times!",
+    "8165": null,
+    "8200": "Overall Records",
+    "8201": "Favourites",
+    "8202": "Friend Records",
+    "8203": "Nintendo WFC Records",
+    "8204": "Other Records",
+    "8210": "Overall Rank",
+    "8211": "Distance Travelled",
+    "8212": "Total Race Count",
+    "8213": "Total Battle Count",
+    "8214": "Wii Wheel Usage Rate",
+    "8215": "Tricks Performed",
+    "8216": "Favourite Character",
+    "8217": "Favourite Vehicle",
+    "8218": "Favourite Course",
+    "8219": "Favourite Stage",
+    "8220": "Nintendo WFC Friends Record",
+    "8221": null,
+    "8222": "Ghost Data Challenges Sent",
+    "8223": "Ghost Data Challenges Received",
+    "8224": "Race Rating",
+    "8225": "VS Race Record",
+    "8226": "Battle Rating",
+    "8227": "Battle Record",
+    "8228": "Times 1st Place Achieved",
+    "8229": "% Race Time in 1st Place",
+    "8230": "Item Hits Delivered",
+    "8231": "Item Hits Received",
+    "8232": "Ghost Race Record",
+    "8233": "Competitions Entered",
+    "8234": null,
+    "8235": null,
+    "8236": null,
+    "8237": null,
+    "8238": null,
+    "8260": "{arg message|0}",
+    "8261": "{arg integer|0 0}",
+    "8262": "{arg integer|0 0}",
+    "8263": "{arg integer|0 0}",
+    "8264": "{arg integer|0 0}%",
+    "8265": "{arg integer|0 0}",
+    "8266": "{arg message|0}",
+    "8267": "{arg message|0}",
+    "8268": "{arg message|0}",
+    "8269": "{arg message|0}",
+    "8270": "Wins: {arg integer|0 0}   Losses: {arg integer|1 0}",
+    "8271": null,
+    "8272": "{arg integer|0 0}",
+    "8273": "{arg integer|0 0}",
+    "8274": "{arg integer|0 0}",
+    "8275": "Wins: {arg integer|0 0}   Losses: {arg integer|1 0}",
+    "8276": "{arg integer|0 0}",
+    "8277": "Wins: {arg integer|0 0}   Losses: {arg integer|1 0}",
+    "8278": "{arg integer|0 0} times",
+    "8279": "{arg integer|0 0}%",
+    "8280": "{arg integer|0 0} times",
+    "8281": "{arg integer|0 0} times",
+    "8282": "Wins: {arg integer|0 0}   Losses: {arg integer|1 0}",
+    "8283": "{arg integer|0 0} times",
+    "8284": null,
+    "8400": null,
+    "8401": null,
+    "8402": null,
+    "8403": null,
+    "8404": null,
+    "8405": "Congratulations,\n%ls!\n\nYou've earned trophies in all Cups!\nTo commemorate your achievement,\nwe present you with this souvenir\nphoto. Thank you for playing,\nand please continue to enjoy\nMario Kart Wii!",
+    "8406": "Congratulations,\n%ls!\n\nYou've won all Mario Kart Wii\nCups! To commemorate your\nachievement, we present you with\nthis souvenir photo. Thank you for\nplaying, and please continue to\nenjoy Mario Kart Wii!",
+    "8407": null,
+    "8408": null,
+    "8409": null,
+    "8410": null,
+    "8411": null,
+    "8412": null,
+    "8413": null,
+    "8414": null,
+    "8415": null,
+    "8416": null,
+    "8417": null,
+    "8418": null,
+    "8419": null,
+    "8420": null,
+    "8421": null,
+    "8422": null,
+    "8423": null,
+    "8424": null,
+    "8425": null,
+    "8426": null,
+    "8427": null,
+    "8428": null,
+    "8429": null,
+    "8430": null,
+    "8440": null,
+    "8441": null,
+    "8442": null,
+    "8443": null,
+    "8444": null,
+    "8445": null,
+    "8446": null,
+    "8447": null,
+    "8448": null,
+    "8449": null,
+    "8450": null,
+    "8451": null,
+    "8452": null,
+    "8453": null,
+    "8454": null,
+    "8455": null,
+    "8456": null,
+    "8457": null,
+    "8458": null,
+    "8459": null,
+    "8460": null,
+    "8461": null,
+    "8462": "Congratulations, %ls!\n\nAs a reward for earning trophies in\nall 100cc Cups, a new Engine Class\nhas become available:\n\n100cc (Karts and Bikes)",
+    "8463": null,
+    "8464": null,
+    "8470": null,
+    "8471": null,
+    "8472": null,
+    "8473": null,
+    "8474": null,
+    "8475": null,
+    "8476": null,
+    "8477": null,
+    "8478": null,
+    "8479": null,
+    "8480": null,
+    "8481": null,
+    "8482": null,
+    "8483": null,
+    "8484": null,
+    "8485": null,
+    "8486": null,
+    "8490": "This is a message from the\nMario Kart Channel.\n\n{arg string|0}\n\n\n\nIf you do not wish to receive further\ncommercial messages from Nintendo,\nplease select the Opt Out button in\nthe upper-right corner of the screen.\n\nYou can opt out of either\n(1) messages for the Mario Kart\nChannel only, or\n(2) all messages for all Channels\nand games.",
+    "8491": "This is a message from the\nMario Kart Channel.\n\n{arg string|0}\n\n\n\nIf you do not wish to receive further\ncommercial messages from Nintendo,\nplease select the Opt Out button in\nthe upper-right corner of the screen.\n\nYou can opt out of either\n(1) messages for the Mario Kart\nChannel only, or\n(2) all messages for all Channels\nand games.",
+    "8492": "You have received a Friend\nregistration invitation from\n%ls!\n\nMario Kart Wii\nFriend Code: %04d-%04d-%04d\n\nBy registering each other's Friend\nCodes, you can play Mario Kart Wii\ntogether via Nintendo Wi-Fi\nConnection.\n\nIf you have Mario Kart Wii and have\nadded the Mario Kart Channel to\nyour Wii Menu, you can select\nthe START button on the right to\nconfirm.\n\nHave fun!",
+    "8493": "%ls has accepted\nyour Friend registration invitation!\n\nMario Kart Wii\nFriend Code: %04d-%04d-%04d\n\nNote: If there's room on your Friend\nRoster, this Friend Code will\nbe registered automatically.\n\nIf you have added the Mario Kart\nChannel to your Wii Menu, you can\nstart the Channel by selecting the\nSTART button on the right to\nconfirm that the Friend Code has\nbeen registered.\n\nHave fun!",
+    "8494": null,
+    "8495": null,
+    "8496": null,
+    "8497": null,
+    "8498": null,
+    "8499": null,
+    "8500": null,
+    "8504": null,
+    "8505": null,
+    "8510": null,
+    "8511": null,
+    "8512": null,
+    "8513": null,
+    "8514": null,
+    "8515": null,
+    "8516": null,
+    "8517": null,
+    "8518": null,
+    "8519": null,
+    "8520": null,
+    "8521": null,
+    "8522": null,
+    "8523": null,
+    "8524": null,
+    "8525": null,
+    "8526": null,
+    "8527": null,
+    "8528": null,
+    "8529": null,
+    "8530": null,
+    "8540": null,
+    "8541": null,
+    "8542": null,
+    "8543": null,
+    "8544": null,
+    "8545": null,
+    "8546": null,
+    "8547": null,
+    "8548": null,
+    "8549": null,
+    "8550": null,
+    "8551": null,
+    "8552": null,
+    "8553": null,
+    "8554": null,
+    "8555": null,
+    "8556": null,
+    "8557": null,
+    "8558": null,
+    "8559": null,
+    "8560": null,
+    "8561": null,
+    "8562": null,
+    "8563": null,
+    "8564": null,
+    "8565": null,
+    "8566": null,
+    "8567": null,
+    "99991": null,
+    "99992": null,
+    "99993": null,
+    "99994": null,
+    "99995": null,
+    "99996": null,
+    "99997": null,
+    "99998": null,
 }

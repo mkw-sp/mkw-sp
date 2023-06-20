@@ -1,8 +1,4 @@
 {
-    "10076": {
-        string: "Instellingen",
-    },
-    "10072": {
-        string: "200 cc",
-    },
+    "10076": "Instellingen",
+    "10072": "200 cc",
 }
