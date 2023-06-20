@@ -9,7 +9,12 @@
 
 namespace System {
 
-using ResourceType = MultiDvdArchive::Type;
+enum class ResourceType {
+    Race = 0,
+    Course = 1,
+    Menu = 2,
+    Font = 3,
+};
 
 class ResourceManager {
 public:

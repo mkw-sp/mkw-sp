@@ -1,5 +1,7 @@
 #include "MultiDvdArchive.hh"
 
+#include "game/system/ResourceManager.hh"
+
 extern "C" {
 #include <revolution.h>
 #include <stdio.h>
@@ -73,15 +75,15 @@ u16 MultiDvdArchive::count() const {
     return m_archiveCount;
 }
 
-MultiDvdArchive *MultiDvdArchive::Create(Type type) {
+MultiDvdArchive *MultiDvdArchive::Create(ResourceType type) {
     switch (type) {
-    case Type::Race:
+    case ResourceType::Race:
         return new RaceMultiDvdArchive;
-    case Type::Course:
+    case ResourceType::Course:
         return new CourseMultiDvdArchive;
-    case Type::Menu:
+    case ResourceType::Menu:
         return new MenuMultiDvdArchive;
-    case Type::Font:
+    case ResourceType::Font:
         return new FontMultiDvdArchive;
     default:
         MultiDvdArchive *archive = new MultiDvdArchive(2);
