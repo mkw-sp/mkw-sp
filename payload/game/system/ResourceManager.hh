@@ -2,6 +2,7 @@
 
 #include "game/host_system/Scene.hh"
 #include "game/system/MultiDvdArchive.hh"
+#include "game/util/Registry.hh"
 
 #include <egg/core/eggExpHeap.hh>
 #include <egg/core/eggTaskThread.hh>
@@ -34,6 +35,9 @@ public:
 
     ResourceManager();
 
+    MultiDvdArchive *load(ArcType channelId, EGG::Heap *archiveHeap,
+            const char *pathOverride = nullptr);
+
     void createMenuHeaps(u32 count, s32 heapIdx);
     void process();
 
@@ -42,9 +46,17 @@ public:
 
     DvdArchive *getMenuArchive(size_t idx);
     REPLACE u16 getMenuArchiveCount() const;
-    REPLACE MultiDvdArchive *loadCourse(u32 courseId, EGG::Heap *heap, bool splitScreen);
-    REPLACE MultiDvdArchive *loadMission(u32 courseId, u32 missionId, EGG::Heap *heap,
+    REPLACE MultiDvdArchive *loadCourse(Registry::Course courseId, EGG::Heap *heap,
             bool splitScreen);
+    REPLACE MultiDvdArchive *loadMission(Registry::Course courseId, u32 missionId, EGG::Heap *heap,
+            bool splitScreen);
+    MultiDvdArchive *loadCompetition(Registry::Course courseId, void *fileStart, u32 fileSize,
+            EGG::Heap *heap, u8 unk6);
+
+    MultiDvdArchive *loadKartFromArchiveLOD(s32 archiveIdx, u32 vehicleId, u32 characterId,
+            u32 battleTeamId, u32 playMode, EGG::Heap *archiveHeap, EGG::Heap *fileHeap);
+    MultiDvdArchive *loadKartFromArchiveHD(s32 archiveIdx, u32 vehicleId, u32 characterId,
+            u32 battleTeamId, u32 playMode, EGG::Heap *archiveHeap, EGG::Heap *fileHeap);
 
     void *getFile(u32 i, const char *name, u32 *size);
 

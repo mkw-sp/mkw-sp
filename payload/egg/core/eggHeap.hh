@@ -18,8 +18,8 @@ public:
     virtual void free(void *block) = 0;
     virtual void destroy() = 0;
     virtual u32 resizeForMBlock(void *block, u32 size) = 0;
-    virtual void vf_24() = 0;
-    virtual void vf_28() = 0;
+    virtual u32 getAllocatableSize(s32 align) = 0;
+    virtual void adjust() = 0;
 
     static Heap *findContainHeap(const void *block);
 

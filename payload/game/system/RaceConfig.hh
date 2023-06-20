@@ -4,11 +4,41 @@
 
 namespace System {
 
+enum class EngineClass {
+    CC50 = 0,
+    CC100 = 1,
+    CC150 = 2,
+};
+
+enum class GameMode {
+    OfflineVS = 1,
+    TimeAttack = 2,
+    OfflineBT = 3,
+    Mission = 4,
+    OnlinePrivateVS = 7,
+    OnlinePublicBT = 9,
+    OnlinePrivateBT = 10,
+    Awards = 11,
+    Credits = 12,
+};
+
+constexpr bool IsOnline(GameMode mode) {
+    switch (mode) {
+    case GameMode::OnlinePrivateVS... GameMode::OnlinePrivateBT:
+        return true;
+    default:
+        return false;
+    }
+}
+
 class RaceConfig {
 public:
     RaceConfig();
     virtual ~RaceConfig();
     virtual void dt(s32 type);
+
+    using EngineClass = System::EngineClass;
+    using GameMode = System::GameMode;
 
     struct Player {
         enum class Type {
@@ -38,23 +68,6 @@ public:
         u8 _e1[0xf0 - 0xe1];
     };
     static_assert(sizeof(Player) == 0xf0);
-
-    enum class EngineClass {
-        CC50 = 0,
-        CC100 = 1,
-        CC150 = 2,
-    };
-
-    enum class GameMode {
-        OfflineVS = 1,
-        TimeAttack = 2,
-        OfflineBT = 3,
-        Mission = 4,
-        OnlinePrivateVS = 7,
-        OnlinePrivateBT = 10,
-        Awards = 11,
-    };
-
     struct Scenario {
         bool isOnline() const {
             return gameMode >= GameMode::OnlinePrivateVS && gameMode <= GameMode::OnlinePrivateBT;
@@ -83,7 +96,7 @@ public:
         u8 playerCount;
         u8 screenCount;
         u8 localPlayerCount;
-        u8 _007[0x008 - 0x007];
+        u8 viewportCount;
         Player players[12];
         Registry::Course courseId;
         EngineClass engineClass;
@@ -106,7 +119,10 @@ public:
         bool competition : 1;
         bool teams : 1;
         bool mirror : 1;
-        u8 _b74[0xbec - 0xb74];
+        u32 _2c;
+        u32 _30;
+        u16 mrfile;
+        u8 _b74[0xbec - 0xb7e];
         u8 (*ghostBuffer)[11][0x2800]; // Modified
     };
     static_assert(sizeof(Scenario) == 0xbf0);
@@ -122,6 +138,10 @@ public:
     void applyCPUMode();
     bool selectRandomCourse();
     void endRace();
+
+    void initRaceScenario();
+    void initRaceScenarioForAwards();
+    void initRaceScenarioForCredits();
 
     REPLACE static RaceConfig *CreateInstance();
     static RaceConfig *Instance();
