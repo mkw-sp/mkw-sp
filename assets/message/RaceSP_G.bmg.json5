@@ -1,29 +1,11 @@
 {
-    "10047": {
-        string: "Geist Daten werden gespeichert...",
-    },
-    "10070": {
-        string: "Geist Daten werden gekürzt.",
-    },
-    "10071": {
-        string: "{arg integer|0 0}:{arg integer|1 0}.{arg integer|2 3}",
-    },
-    "10284": {
-        string: "{color|player 3}Das rote Team gewinnt!",
-    },
-    "10285": {
-        string: "{color|sp blue}Das blaue Team gewinnt!",
-    },
-    "10286": {
-        string: "{color|sp green}Das grüne Team gewinnt!",
-    },
-    "10287": {
-        string: "{color|player 1}Das gelbe Team gewinnt!",
-    },
-    "10288": {
-        string: "{color|sp pink}Das rosane Team gewinnt!",
-    },
-    "10289": {
-        string: "Das weiße Team gewinnt!",
-    },
+    "10047": "Geist Daten werden gespeichert...",
+    "10070": "Geist Daten werden gekürzt.",
+    "10071": "{arg integer|0 0}:{arg integer|1 0}.{arg integer|2 3}",
+    "10284": "{color|player 3}Das rote Team gewinnt!",
+    "10285": "{color|sp blue}Das blaue Team gewinnt!",
+    "10286": "{color|sp green}Das grüne Team gewinnt!",
+    "10287": "{color|player 1}Das gelbe Team gewinnt!",
+    "10288": "{color|sp pink}Das rosane Team gewinnt!",
+    "10289": "Das weiße Team gewinnt!",
 }

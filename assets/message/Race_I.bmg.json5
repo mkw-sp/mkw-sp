@@ -1,169 +1,59 @@
 {
-    "1000": {
-        string: "",
-    },
-    "1001": {
-        string: "No",
-    },
-    "1002": {
-        string: "Sì",
-    },
-    "1003": {
-        string: "Continua",
-    },
-    "1004": {
-        string: "Abbandona",
-    },
-    "1005": {
-        string: "Cambia percorso",
-    },
-    "1006": {
-        string: "Cambia personaggio",
-    },
-    "1007": {
-        string: "Ricomincia",
-    },
-    "1008": {
-        string: "Scegli una missione",
-    },
-    "1009": {
-        string: "Continua",
-    },
-    "1010": {
-        string: "Prosegui",
-    },
-    "1011": {
-        string: "Riprova",
-    },
-    "1012": {
-        string: "Replay",
-    },
-    "1013": {
-        string: "Continua replay",
-    },
-    "1014": {
-        string: "Riavvia replay",
-    },
-    "1015": {
-        string: "Controlla classifica",
-    },
-    "1016": {
-        string: "Lista dati fantasma",
-    },
-    "1017": {
-        string: null,
-    },
-    "1018": {
-        string: "Prossimo fantasma",
-    },
-    "1019": {
-        string: null,
-    },
-    "1020": {
-        string: "Menu Nintendo WFC",
-    },
-    "1021": {
-        string: "Interrompi replay",
-    },
-    "1022": {
-        string: "Inizia corsa",
-    },
-    "1023": {
-        string: "Prossima corsa",
-    },
-    "1024": {
-        string: "Prossima battaglia",
-    },
-    "1025": {
-        string: "Aspetta un attimo...",
-    },
-    "1026": {
-        string: "Cambia fantasma",
-    },
-    "1027": {
-        string: "Sfida questo fantasma",
-    },
-    "1028": {
-        string: "Continua replay",
-    },
-    "1029": {
-        string: "Interrompi replay",
-    },
-    "1030": {
-        string: "Riavvia replay",
-    },
-    "1031": {
-        string: "Numero di giocatori previsto\nper la prossima partita: {arg integer|0 0}",
-    },
-    "1032": {
-        string: "Invia record",
-    },
-    "1033": {
-        string: "",
-    },
-    "1101": {
-        string: "Vuoi abbandonare?",
-    },
-    "1102": {
-        string: "Vuoi passare al Canale Mario\nKart per vedere le classifiche?",
-    },
-    "1103": {
-        string: "OK",
-    },
-    "1104": {
-        string: null,
-    },
-    "1105": {
-        string: "Congratulazioni!\nHai battuto il record di {arg player|0}!\n\nVuoi inviare i tuoi dati fantasma\na {arg player|0}?",
-    },
-    "1106": {
-        string: "Invia",
-    },
-    "1107": {
-        string: "Non inviare",
-    },
-    "1108": {
-        string: "Sì",
-    },
-    "1109": {
-        string: "No",
-    },
-    "1110": {
-        string: "",
-    },
-    "1111": {
-        string: "Accedere alla lista amici?",
-    },
-    "1112": {
-        string: "Puoi inviare tutti i record\nche desideri prima della data\nfinale dell'evento speciale.\nVuoi inviare questo record?",
-    },
-    "1113": {
-        string: "Vuoi interrompere questa\ncorsa e scaricare i\nprossimi dati fantasma?",
-    },
-    "1114": {
-        string: "Vuoi abbandonare la\ncorsa e tornare al\nmenu principale?",
-    },
-    "1115": {
-        string: "Salvati dati fantasma di {current player|}!",
-    },
-    "1116": {
-        string: "I dati fantasma non sono stati salvati.",
-    },
-    "1117": {
-        string: "Impossibile inviare i dati fantasma di sfida.",
-    },
-    "1118": {
-        string: "Vuoi tornare allo schermo\ndi selezione del percorso?",
-    },
-    "1119": {
-        string: "IMPOSSIBILE SALVARE DATI FANTASMA",
-    },
-    "1120": {
-        string: "",
-    },
-    "1121": {
-        string: "Hai sbloccato un super fantasma dello staff!",
-    },
+    "1000": "",
+    "1001": "No",
+    "1002": "Sì",
+    "1003": "Continua",
+    "1004": "Abbandona",
+    "1005": "Cambia percorso",
+    "1006": "Cambia personaggio",
+    "1007": "Ricomincia",
+    "1008": "Scegli una missione",
+    "1009": "Continua",
+    "1010": "Prosegui",
+    "1011": "Riprova",
+    "1012": "Replay",
+    "1013": "Continua replay",
+    "1014": "Riavvia replay",
+    "1015": "Controlla classifica",
+    "1016": "Lista dati fantasma",
+    "1017": null,
+    "1018": "Prossimo fantasma",
+    "1019": null,
+    "1020": "Menu Nintendo WFC",
+    "1021": "Interrompi replay",
+    "1022": "Inizia corsa",
+    "1023": "Prossima corsa",
+    "1024": "Prossima battaglia",
+    "1025": "Aspetta un attimo...",
+    "1026": "Cambia fantasma",
+    "1027": "Sfida questo fantasma",
+    "1028": "Continua replay",
+    "1029": "Interrompi replay",
+    "1030": "Riavvia replay",
+    "1031": "Numero di giocatori previsto\nper la prossima partita: {arg integer|0 0}",
+    "1032": "Invia record",
+    "1033": "",
+    "1101": "Vuoi abbandonare?",
+    "1102": "Vuoi passare al Canale Mario\nKart per vedere le classifiche?",
+    "1103": "OK",
+    "1104": null,
+    "1105": "Congratulazioni!\nHai battuto il record di {arg player|0}!\n\nVuoi inviare i tuoi dati fantasma\na {arg player|0}?",
+    "1106": "Invia",
+    "1107": "Non inviare",
+    "1108": "Sì",
+    "1109": "No",
+    "1110": "",
+    "1111": "Accedere alla lista amici?",
+    "1112": "Puoi inviare tutti i record\nche desideri prima della data\nfinale dell'evento speciale.\nVuoi inviare questo record?",
+    "1113": "Vuoi interrompere questa\ncorsa e scaricare i\nprossimi dati fantasma?",
+    "1114": "Vuoi abbandonare la\ncorsa e tornare al\nmenu principale?",
+    "1115": "Salvati dati fantasma di {current player|}!",
+    "1116": "I dati fantasma non sono stati salvati.",
+    "1117": "Impossibile inviare i dati fantasma di sfida.",
+    "1118": "Vuoi tornare allo schermo\ndi selezione del percorso?",
+    "1119": "IMPOSSIBILE SALVARE DATI FANTASMA",
+    "1120": "",
+    "1121": "Hai sbloccato un super fantasma dello staff!",
     "1201": {
         string: "3",
         font: "caps",
@@ -192,362 +82,126 @@
         string: "HAI PERSO!",
         font: "caps",
     },
-    "1208": {
-        string: null,
-    },
-    "1209": {
-        string: null,
-    },
-    "1210": {
-        string: "Congratulazioni!",
-    },
+    "1208": null,
+    "1209": null,
+    "1210": "Congratulazioni!",
     "1211": {
         string: "NUOVO RECORD!",
         font: "caps",
     },
-    "1212": {
-        string: "Record",
-    },
-    "1213": {
-        string: "Miglior giro",
-    },
-    "1214": {
-        string: "{color|team red}VINCE SQUADRA ROSSA!",
-    },
-    "1215": {
-        string: "{color|team blue}VINCE SQUADRA BLU!",
-    },
-    "1216": {
-        string: "{color|team red}VITTORIA PER LA SQUADRA ROSSA!",
-    },
-    "1217": {
-        string: "{color|team blue}VITTORIA PER LA SQUADRA BLU!",
-    },
-    "1218": {
-        string: "PAREGGIO!",
-    },
-    "1219": {
-        string: "CONGRATULAZIONI!",
-    },
-    "1220": {
-        string: "CONGRATULAZIONI!",
-    },
-    "1221": {
-        string: "CONGRATULAZIONI!",
-    },
-    "1222": {
-        string: "CHE PECCATO, RIPROVA!",
-    },
-    "1223": {
-        string: "{color|team red}PERDE SQUADRA ROSSA!",
-    },
-    "1224": {
-        string: "{color|team blue}PERDE SQUADRA BLU!",
-    },
-    "1225": {
-        string: "{color|team red}PERDE SQUADRA ROSSA!",
-    },
-    "1226": {
-        string: "{color|team blue}PERDE SQUADRA BLU!",
-    },
-    "1227": {
-        string: "",
-    },
-    "1301": {
-        string: "1°",
-    },
-    "1302": {
-        string: "2°",
-    },
-    "1303": {
-        string: "3°",
-    },
-    "1304": {
-        string: "4°",
-    },
-    "1305": {
-        string: "5°",
-    },
-    "1306": {
-        string: "6°",
-    },
-    "1307": {
-        string: "7°",
-    },
-    "1308": {
-        string: "8°",
-    },
-    "1309": {
-        string: "9°",
-    },
-    "1310": {
-        string: "10°",
-    },
-    "1311": {
-        string: "11°",
-    },
-    "1312": {
-        string: "12°",
-    },
-    "1313": {
-        string: "{arg cond messages|0 1316 1317}",
-    },
-    "1314": {
-        string: "{arg integer|0 0}",
-    },
-    "1315": {
-        string: "{arg signed integer|0 0}",
-    },
-    "1316": {
-        string: " p.",
-    },
-    "1317": {
-        string: " p.",
-    },
-    "1318": {
-        string: "{arg cond messages|0 1319 1320}",
-    },
-    "1319": {
-        string: "{color|team red}vittoria",
-    },
-    "1320": {
-        string: "{color|team red}vittorie",
-    },
-    "1321": {
-        string: "{arg cond messages|0 1322 1323}",
-    },
-    "1322": {
-        string: "{color|team blue}vittoria",
-    },
-    "1323": {
-        string: "{color|team blue}vittorie",
-    },
-    "1324": {
-        string: "{arg cond messages|0 1325 1326}",
-    },
-    "1325": {
-        string: "{color|team red}p.",
-    },
-    "1326": {
-        string: "{color|team red}p.",
-    },
-    "1327": {
-        string: "{arg cond messages|0 1328 1329}",
-    },
-    "1328": {
-        string: "{color|team blue}p.",
-    },
-    "1329": {
-        string: "{color|team blue}p.",
-    },
-    "1330": {
-        string: "Vittorie: {arg integer|0 0} - Sconfitte: {arg integer|1 0}",
-    },
-    "1331": {
-        string: "Vittorie: {arg integer|0 0} - Sconfitte: {arg integer|1 0}",
-    },
-    "1332": {
-        string: "{color|team red}{arg message|0}",
-    },
-    "1333": {
-        string: "{color|team blue}{arg message|0}",
-    },
-    "1334": {
-        string: "TEMPO",
-    },
-    "1335": {
-        string: "GIRO",
-    },
-    "1336": {
-        string: "PUNTI",
-    },
-    "1337": {
-        string: "IN DIRETTA",
-    },
-    "1338": {
-        string: "Puoi unirti alla prossima corsa.\nNumero di giocatori previsto: {arg integer|0 0}\nAttendi un attimo...",
-    },
-    "1339": {
-        string: "Puoi unirti alla prossima battaglia.\nNumero di giocatori previsto: {arg integer|0 0}\nAttendi un attimo...",
-    },
-    "1340": {
-        string: "\nL'esito della corsa è deciso.\nLa corsa è terminata.",
-    },
-    "1341": {
-        string: "\nSono trascorsi 5 minuti.\nLa corsa è terminata.",
-    },
-    "1342": {
-        string: "Il vincitore ha tagliato\nil traguardo da 30 secondi.\nLa corsa è terminata.",
-    },
-    "1343": {
-        string: "",
-    },
-    "1344": {
-        string: "",
-    },
-    "1345": {
-        string: "{1 char|}",
-    },
-    "1400": {
-        string: "{arg integer|0 2}:{arg integer|1 2}.{arg integer|2 3}",
-    },
-    "1401": {
-        string: "--:--.---",
-    },
-    "1402": {
-        string: ":",
-    },
-    "1403": {
-        string: ".",
-    },
-    "1404": {
-        string: "",
-    },
-    "1409": {
-        string: "Corsa sfida a squadre - {arg message|0} - {arg integer|0 0}/{arg integer|1 0}",
-    },
-    "1410": {
-        string: "{arg message|1} - {arg message|0} - 1ª corsa",
-    },
-    "1411": {
-        string: "{arg message|1} - {arg message|0} - 2ª corsa",
-    },
-    "1412": {
-        string: "{arg message|1} - {arg message|0} - 3ª corsa",
-    },
-    "1413": {
-        string: "{arg message|1} - {arg message|0} - 4ª corsa",
-    },
-    "1414": {
-        string: "Corsa sfida - {arg message|0} - {arg integer|0 0}/{arg integer|1 0}",
-    },
-    "1415": {
-        string: "Battaglia palloncini",
-    },
-    "1416": {
-        string: "Corsa per le monete",
-    },
-    "1417": {
-        string: "50cc",
-    },
-    "1418": {
-        string: "100cc",
-    },
-    "1419": {
-        string: "150cc",
-    },
-    "1420": {
-        string: "Speculare",
-    },
-    "1421": {
-        string: "{arg message|1} - {arg message|0}",
-    },
-    "1422": {
-        string: "Corsa sfida - {arg message|0}",
-    },
-    "1423": {
-        string: "Voto: ",
-    },
-    "1424": {
-        string: "{1 char|}",
-    },
-    "1425": {
-        string: "{1 char|}",
-    },
-    "1426": {
-        string: "{1 char|}",
-    },
-    "1427": {
-        string: "{1 char|}　",
-    },
-    "1428": {
-        string: "{1 char|}",
-    },
-    "1429": {
-        string: "{1 char|}",
-    },
-    "1430": {
-        string: "{1 char|}　",
-    },
-    "1431": {
-        string: "{1 char|}",
-    },
-    "1432": {
-        string: "F",
-    },
-    "1433": {
-        string: "Gran premio - {arg message|0}",
-    },
-    "1434": {
-        string: "Gran premio a squadre - {arg message|0}",
-    },
-    "1435": {
-        string: "Corsa sfida a squadre - {arg message|0}",
-    },
-    "1436": {
-        string: null,
-    },
-    "1437": {
-        string: null,
-    },
-    "1438": {
-        string: null,
-    },
-    "1439": {
-        string: null,
-    },
-    "1440": {
-        string: "Corsa sfida - {arg message|0} - {arg message|1}",
-    },
-    "1441": {
-        string: "{arg message|2}Gran premio - {arg message|0} - 1ª corsa",
-    },
-    "1442": {
-        string: "{arg message|2}Gran premio - {arg message|0} - 2ª corsa",
-    },
-    "1443": {
-        string: "{arg message|2}Gran premio - {arg message|0} - 3ª corsa",
-    },
-    "1444": {
-        string: "{arg message|2}Gran premio - {arg message|0} - 4ª corsa",
-    },
-    "1445": {
-        string: "{arg message|2}Battaglia palloncini",
-    },
-    "1446": {
-        string: "{arg message|2}Corsa per le monete",
-    },
-    "1447": {
-        string: "(giocatori: {arg integer|0 0})",
-    },
-    "1448": {
-        string: "",
-    },
-    "1449": {
-        string: "{color|team red}",
-    },
-    "1450": {
-        string: "{color|team blue}",
-    },
-    "1451": {
-        string: "",
-    },
-    "1500": {
-        string: "Oggetti",
-    },
-    "1501": {
-        string: "Sterza",
-    },
-    "1502": {
-        string: "Accelera",
-    },
-    "1503": {
-        string: "Frena/Derapa",
-    },
-    "1504": {
-        string: "Frena",
-    },
-    "1505": {
-        string: "",
-    },
+    "1212": "Record",
+    "1213": "Miglior giro",
+    "1214": "{color|team red}VINCE SQUADRA ROSSA!",
+    "1215": "{color|team blue}VINCE SQUADRA BLU!",
+    "1216": "{color|team red}VITTORIA PER LA SQUADRA ROSSA!",
+    "1217": "{color|team blue}VITTORIA PER LA SQUADRA BLU!",
+    "1218": "PAREGGIO!",
+    "1219": "CONGRATULAZIONI!",
+    "1220": "CONGRATULAZIONI!",
+    "1221": "CONGRATULAZIONI!",
+    "1222": "CHE PECCATO, RIPROVA!",
+    "1223": "{color|team red}PERDE SQUADRA ROSSA!",
+    "1224": "{color|team blue}PERDE SQUADRA BLU!",
+    "1225": "{color|team red}PERDE SQUADRA ROSSA!",
+    "1226": "{color|team blue}PERDE SQUADRA BLU!",
+    "1227": "",
+    "1301": "1°",
+    "1302": "2°",
+    "1303": "3°",
+    "1304": "4°",
+    "1305": "5°",
+    "1306": "6°",
+    "1307": "7°",
+    "1308": "8°",
+    "1309": "9°",
+    "1310": "10°",
+    "1311": "11°",
+    "1312": "12°",
+    "1313": "{arg cond messages|0 1316 1317}",
+    "1314": "{arg integer|0 0}",
+    "1315": "{arg signed integer|0 0}",
+    "1316": " p.",
+    "1317": " p.",
+    "1318": "{arg cond messages|0 1319 1320}",
+    "1319": "{color|team red}vittoria",
+    "1320": "{color|team red}vittorie",
+    "1321": "{arg cond messages|0 1322 1323}",
+    "1322": "{color|team blue}vittoria",
+    "1323": "{color|team blue}vittorie",
+    "1324": "{arg cond messages|0 1325 1326}",
+    "1325": "{color|team red}p.",
+    "1326": "{color|team red}p.",
+    "1327": "{arg cond messages|0 1328 1329}",
+    "1328": "{color|team blue}p.",
+    "1329": "{color|team blue}p.",
+    "1330": "Vittorie: {arg integer|0 0} - Sconfitte: {arg integer|1 0}",
+    "1331": "Vittorie: {arg integer|0 0} - Sconfitte: {arg integer|1 0}",
+    "1332": "{color|team red}{arg message|0}",
+    "1333": "{color|team blue}{arg message|0}",
+    "1334": "TEMPO",
+    "1335": "GIRO",
+    "1336": "PUNTI",
+    "1337": "IN DIRETTA",
+    "1338": "Puoi unirti alla prossima corsa.\nNumero di giocatori previsto: {arg integer|0 0}\nAttendi un attimo...",
+    "1339": "Puoi unirti alla prossima battaglia.\nNumero di giocatori previsto: {arg integer|0 0}\nAttendi un attimo...",
+    "1340": "\nL'esito della corsa è deciso.\nLa corsa è terminata.",
+    "1341": "\nSono trascorsi 5 minuti.\nLa corsa è terminata.",
+    "1342": "Il vincitore ha tagliato\nil traguardo da 30 secondi.\nLa corsa è terminata.",
+    "1343": "",
+    "1344": "",
+    "1345": "{1 char|}",
+    "1400": "{arg integer|0 2}:{arg integer|1 2}.{arg integer|2 3}",
+    "1401": "--:--.---",
+    "1402": ":",
+    "1403": ".",
+    "1404": "",
+    "1409": "Corsa sfida a squadre - {arg message|0} - {arg integer|0 0}/{arg integer|1 0}",
+    "1410": "{arg message|1} - {arg message|0} - 1ª corsa",
+    "1411": "{arg message|1} - {arg message|0} - 2ª corsa",
+    "1412": "{arg message|1} - {arg message|0} - 3ª corsa",
+    "1413": "{arg message|1} - {arg message|0} - 4ª corsa",
+    "1414": "Corsa sfida - {arg message|0} - {arg integer|0 0}/{arg integer|1 0}",
+    "1415": "Battaglia palloncini",
+    "1416": "Corsa per le monete",
+    "1417": "50cc",
+    "1418": "100cc",
+    "1419": "150cc",
+    "1420": "Speculare",
+    "1421": "{arg message|1} - {arg message|0}",
+    "1422": "Corsa sfida - {arg message|0}",
+    "1423": "Voto: ",
+    "1424": "{1 char|}",
+    "1425": "{1 char|}",
+    "1426": "{1 char|}",
+    "1427": "{1 char|}　",
+    "1428": "{1 char|}",
+    "1429": "{1 char|}",
+    "1430": "{1 char|}　",
+    "1431": "{1 char|}",
+    "1432": "F",
+    "1433": "Gran premio - {arg message|0}",
+    "1434": "Gran premio a squadre - {arg message|0}",
+    "1435": "Corsa sfida a squadre - {arg message|0}",
+    "1436": null,
+    "1437": null,
+    "1438": null,
+    "1439": null,
+    "1440": "Corsa sfida - {arg message|0} - {arg message|1}",
+    "1441": "{arg message|2}Gran premio - {arg message|0} - 1ª corsa",
+    "1442": "{arg message|2}Gran premio - {arg message|0} - 2ª corsa",
+    "1443": "{arg message|2}Gran premio - {arg message|0} - 3ª corsa",
+    "1444": "{arg message|2}Gran premio - {arg message|0} - 4ª corsa",
+    "1445": "{arg message|2}Battaglia palloncini",
+    "1446": "{arg message|2}Corsa per le monete",
+    "1447": "(giocatori: {arg integer|0 0})",
+    "1448": "",
+    "1449": "{color|team red}",
+    "1450": "{color|team blue}",
+    "1451": "",
+    "1500": "Oggetti",
+    "1501": "Sterza",
+    "1502": "Accelera",
+    "1503": "Frena/Derapa",
+    "1504": "Frena",
+    "1505": "",
 }

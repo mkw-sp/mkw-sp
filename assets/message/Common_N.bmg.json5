@@ -1,743 +1,249 @@
 {
-    "9000": {
-        string: "Mario",
-    },
-    "9001": {
-        string: "Baby Peach",
-    },
-    "9002": {
-        string: "Waluigi",
-    },
-    "9003": {
-        string: "Bowser",
-    },
-    "9004": {
-        string: "Baby Daisy",
-    },
-    "9005": {
-        string: "Dry Bones",
-    },
-    "9006": {
-        string: "Baby Mario",
-    },
-    "9007": {
-        string: "Luigi",
-    },
-    "9008": {
-        string: "Toad",
-    },
-    "9009": {
-        string: "Donkey Kong",
-    },
-    "9010": {
-        string: "Yoshi",
-    },
-    "9011": {
-        string: "Wario",
-    },
-    "9012": {
-        string: "Baby Luigi",
-    },
-    "9013": {
-        string: "Toadette",
-    },
-    "9014": {
-        string: "Koopa Troopa",
-    },
-    "9015": {
-        string: "Daisy",
-    },
-    "9016": {
-        string: "Peach",
-    },
-    "9017": {
-        string: "Birdo",
-    },
-    "9018": {
-        string: "Diddy Kong",
-    },
-    "9019": {
-        string: "King Boo",
-    },
-    "9020": {
-        string: "Bowser Jr.",
-    },
-    "9021": {
-        string: "Dry Bowser",
-    },
-    "9022": {
-        string: "Funky Kong",
-    },
-    "9023": {
-        string: "Rosalina",
-    },
-    "9024": {
-        string: "Mii",
-    },
-    "9050": {
-        string: "{arg player|0}",
-    },
-    "9051": {
-        string: "{arg player|0}",
-    },
-    "9052": {
-        string: "Mii (Outfit A)",
-    },
-    "9053": {
-        string: "Mii (Outfit B)",
-    },
-    "9054": {
-        string: null,
-    },
-    "9100": {
-        string: "Standaardkart K",
-    },
-    "9101": {
-        string: "Standaardkart M",
-    },
-    "9102": {
-        string: "Standaardkart G",
-    },
-    "9103": {
-        string: "Baby Booster",
-    },
-    "9104": {
-        string: "Nostalgia 1",
-    },
-    "9105": {
-        string: "Terreinwagen",
-    },
-    "9106": {
-        string: "Minibeest",
-    },
-    "9107": {
-        string: "Windvleugel",
-    },
-    "9108": {
-        string: "Vuurspuwer",
-    },
-    "9109": {
-        string: "Super-Cheep",
-    },
-    "9110": {
-        string: "Turbo-Blooper",
-    },
-    "9111": {
-        string: "Piranha-Wurger",
-    },
-    "9112": {
-        string: "Kleine Reus",
-    },
-    "9113": {
-        string: "Koninklijke Racer",
-    },
-    "9114": {
-        string: "Luchtglijder",
-    },
-    "9115": {
-        string: "Blue Falcon",
-    },
-    "9116": {
-        string: "B Dasher Mk 2",
-    },
-    "9117": {
-        string: "Dragonetti",
-    },
-    "9118": {
-        string: "Standaardkart K",
-    },
-    "9119": {
-        string: "Standaardkart M",
-    },
-    "9120": {
-        string: "Standaardkart G",
-    },
-    "9121": {
-        string: "Standaardkart K",
-    },
-    "9122": {
-        string: "Standaardkart M",
-    },
-    "9123": {
-        string: "Standaardkart G",
-    },
-    "9124": {
-        string: "",
-    },
-    "9150": {
-        string: "Standaardmotor K",
-    },
-    "9151": {
-        string: "Standaardmotor M",
-    },
-    "9152": {
-        string: "Standaardmotor G",
-    },
-    "9153": {
-        string: "Bullet-motor",
-    },
-    "9154": {
-        string: "Mach-motor",
-    },
-    "9155": {
-        string: "Bowser-motor",
-    },
-    "9156": {
-        string: "Nano-motor",
-    },
-    "9157": {
-        string: "Bonbon",
-    },
-    "9158": {
-        string: "Wario-motor",
-    },
-    "9159": {
-        string: "Kwaker",
-    },
-    "9160": {
-        string: "Zip-Zip",
-    },
-    "9161": {
-        string: "Vallende Ster",
-    },
-    "9162": {
-        string: "Kamekruiser",
-    },
-    "9163": {
-        string: "Nitrofiets",
-    },
-    "9164": {
-        string: "Torpedo",
-    },
-    "9165": {
-        string: "Bubbelmotor",
-    },
-    "9166": {
-        string: "Dolfijnsjezer",
-    },
-    "9167": {
-        string: "Spookrijder",
-    },
-    "9168": {
-        string: "Standaardmotor K",
-    },
-    "9169": {
-        string: "Standaardmotor M",
-    },
-    "9170": {
-        string: "Standaardmotor G",
-    },
-    "9171": {
-        string: "Standaardmotor K",
-    },
-    "9172": {
-        string: "Standaardmotor M",
-    },
-    "9173": {
-        string: "Standaardmotor G",
-    },
-    "9174": {
-        string: null,
-    },
-    "9200": {
-        string: "Paddenstoelbeker",
-    },
-    "9201": {
-        string: "Bloemenbeker",
-    },
-    "9202": {
-        string: "Sterrenbeker",
-    },
-    "9203": {
-        string: "Speciale beker",
-    },
-    "9204": {
-        string: "Schildbeker",
-    },
-    "9205": {
-        string: "Bananenbeker",
-    },
-    "9206": {
-        string: "Blaadjesbeker",
-    },
-    "9207": {
-        string: "Bliksembeker",
-    },
-    "9208": {
-        string: "Ruimtearena",
-    },
-    "9300": {
-        string: "Mario's Circuit",
-    },
-    "9301": {
-        string: "Boe-Boe-Boerenland",
-    },
-    "9302": {
-        string: "Paddenstoelengrot",
-    },
-    "9303": {
-        string: "Dondervulkaan",
-    },
-    "9304": {
-        string: "Toads Fabriek",
-    },
-    "9305": {
-        string: "Kokosnootplaza",
-    },
-    "9306": {
-        string: "DK's Skipiste",
-    },
-    "9307": {
-        string: "Wario's Goudmijn",
-    },
-    "9308": {
-        string: "Luigi's Circuit",
-    },
-    "9309": {
-        string: "Daisy's Circuit",
-    },
-    "9310": {
-        string: "Maanzichtsnelweg",
-    },
-    "9311": {
-        string: "Wigglers Woud",
-    },
-    "9312": {
-        string: "Bowsers Kasteel",
-    },
-    "9313": {
-        string: "Regenboogbaan",
-    },
-    "9314": {
-        string: "Kurkdroge Ruïnes",
-    },
-    "9315": {
-        string: "Kaap Koopa",
-    },
-    "9316": {
-        string: "GCN Peach' Strand",
-    },
-    "9317": {
-        string: "GCN Mario's Circuit",
-    },
-    "9318": {
-        string: "GCN Waluigi's Stadion",
-    },
-    "9319": {
-        string: "GCN DK's Berg",
-    },
-    "9320": {
-        string: "DS Yoshi's Watervallen",
-    },
-    "9321": {
-        string: "DS Woestijnheuvels",
-    },
-    "9322": {
-        string: "DS Peach' Paleistuin",
-    },
-    "9323": {
-        string: "DS Delfino-Plaza",
-    },
-    "9324": {
-        string: "SNES Mario's Circuit 3",
-    },
-    "9325": {
-        string: "SNES Geestenvallei 2",
-    },
-    "9326": {
-        string: "N64 Mario's Circuit",
-    },
-    "9327": {
-        string: "N64 IJzige IJsbaan",
-    },
-    "9328": {
-        string: "N64 Bowsers Kasteel",
-    },
-    "9329": {
-        string: "N64 DK's Jungleweg",
-    },
-    "9330": {
-        string: "GBA Bowsers Kasteel 3",
-    },
-    "9331": {
-        string: "GBA Shy Guys Strand",
-    },
-    "9350": {
-        string: null,
-    },
-    "9351": {
-        string: "Ballongevecht",
-    },
-    "9352": {
-        string: "Muntengevecht",
-    },
-    "9353": {
-        string: "Wii-arena's",
-    },
-    "9354": {
-        string: "Retro-arena's",
-    },
-    "9355": {
-        string: null,
-    },
-    "9360": {
-        string: "Mario's Circuit",
-    },
-    "9361": {
-        string: "Boe-Boe-Boerenland",
-    },
-    "9362": {
-        string: "Paddenstoelengrot",
-    },
-    "9363": {
-        string: "Dondervulkaan",
-    },
-    "9364": {
-        string: "Toads Fabriek",
-    },
-    "9365": {
-        string: "Kokosnootplaza",
-    },
-    "9366": {
-        string: "DK's Skipark",
-    },
-    "9367": {
-        string: "Wario's Goudmijn",
-    },
-    "9368": {
-        string: "Luigi's Circuit",
-    },
-    "9369": {
-        string: "Daisy's Circuit",
-    },
-    "9370": {
-        string: "Maanzichtsnelweg",
-    },
-    "9371": {
-        string: "Wigglers Woud",
-    },
-    "9372": {
-        string: "Bowsers Kasteel",
-    },
-    "9373": {
-        string: "Regenboogbaan",
-    },
-    "9374": {
-        string: "Kurkdroge Ruïnes",
-    },
-    "9375": {
-        string: "Kaap Koopa",
-    },
-    "9376": {
-        string: "GCN Peach' Strand",
-    },
-    "9377": {
-        string: "GCN Mario's Circuit",
-    },
-    "9378": {
-        string: "GCN Waluigi's Stadion",
-    },
-    "9379": {
-        string: "GCN DK's Berg",
-    },
-    "9380": {
-        string: "DS Yoshi's Watervallen",
-    },
-    "9381": {
-        string: "DS Woestijnheuvels",
-    },
-    "9382": {
-        string: "DS Peach' Tuin",
-    },
-    "9383": {
-        string: "DS Delfino-Plaza",
-    },
-    "9384": {
-        string: "SNES Mario's Circuit 3",
-    },
-    "9385": {
-        string: "SNES Geestenvallei 2",
-    },
-    "9386": {
-        string: "N64 Mario's Circuit",
-    },
-    "9387": {
-        string: "N64 IJzige IJsbaan",
-    },
-    "9388": {
-        string: "N64 Bowsers Kasteel",
-    },
-    "9389": {
-        string: "N64 DK's Jungleweg",
-    },
-    "9390": {
-        string: "GBA Bowsers Kasteel 3",
-    },
-    "9391": {
-        string: "GBA Shy Guys Strand",
-    },
-    "9392": {
-        string: null,
-    },
-    "9400": {
-        string: "Delfino-Pier",
-    },
-    "9401": {
-        string: "Blokkenplaza",
-    },
-    "9402": {
-        string: "Chain Chomp Roulette",
-    },
-    "9403": {
-        string: "Funky's Stadion",
-    },
-    "9404": {
-        string: "Steenwoestijn",
-    },
-    "9405": {
-        string: "GCN Koekjesland",
-    },
-    "9406": {
-        string: "DS Schemerhuis",
-    },
-    "9407": {
-        string: "SNES Gevechtsarena 4",
-    },
-    "9408": {
-        string: "GBA Gevechtsarena 3",
-    },
-    "9409": {
-        string: "N64 Wolkenkrabber",
-    },
-    "9410": {
-        string: null,
-    },
-    "9420": {
-        string: "Delfino-Pier",
-    },
-    "9421": {
-        string: "Blokkenplaza",
-    },
-    "9422": {
-        string: "Chain Chomp Roulette",
-    },
-    "9423": {
-        string: "Funky's Stadion",
-    },
-    "9424": {
-        string: "Steenwoestijn",
-    },
-    "9425": {
-        string: "GCN Koekjesland",
-    },
-    "9426": {
-        string: "DS Schemerhuis",
-    },
-    "9427": {
-        string: "SNES Gevechtsarena 4",
-    },
-    "9428": {
-        string: "GBA Gevechtsarena 3",
-    },
-    "9429": {
-        string: "N64 Wolkenkrabber",
-    },
-    "9430": {
-        string: null,
-    },
-    "9450": {
-        string: "GCN Koekjesland",
-    },
-    "9451": {
-        string: "DS Schemerhuis",
-    },
-    "9452": {
-        string: "SNES Gevechtsarena 4",
-    },
-    "9453": {
-        string: "GBA Gevechtsarena 3",
-    },
-    "9454": {
-        string: "N64 Wolkenkrabber",
-    },
-    "9455": {
-        string: null,
-    },
-    "9500": {
-        string: "Speler {arg player|0}",
-    },
-    "9501": {
-        string: "{arg player|0}",
-    },
-    "9502": {
-        string: "{arg border|0}",
-    },
-    "9503": {
-        string: "{arg question mark|0}",
-    },
-    "9504": {
-        string: "{arg front button|0}",
-    },
-    "9505": {
-        string: null,
-    },
-    "9550": {
-        string: "S1",
-    },
-    "9551": {
-        string: "S2",
-    },
-    "9552": {
-        string: "S3",
-    },
-    "9553": {
-        string: "S4",
-    },
-    "9554": {
-        string: null,
-    },
-    "9600": {
-        string: "{1 char|①}",
-    },
-    "9601": {
-        string: "{1 char|②}",
-    },
-    "9602": {
-        string: "{1 char|③}",
-    },
-    "9603": {
-        string: "{1 char|④}",
-    },
-    "9604": {
-        string: "{1 char|⑤}",
-    },
-    "9605": {
-        string: "{1 char|⑥}",
-    },
-    "9606": {
-        string: "{1 char|⑦}",
-    },
-    "9607": {
-        string: "{1 char|⑧}",
-    },
-    "9608": {
-        string: "{1 char|⑨}",
-    },
-    "9609": {
-        string: "{1 char|⑩}",
-    },
-    "9610": {
-        string: "{1 char|⑪}",
-    },
-    "9611": {
-        string: "{1 char|⑫}",
-    },
-    "9612": {
-        string: "/{1 char|⑬}",
-    },
-    "9613": {
-        string: "-{1 char|⑭}",
-    },
-    "9614": {
-        string: "+{1 char|⑮}",
-    },
-    "9615": {
-        string: null,
-    },
-    "9650": {
-        string: "{arg message|0}{arg message|1}{arg message|2}{arg message|3}{arg message|4}{arg message|5}{arg message|6}{arg message|7}{arg message|8}",
-    },
-    "9651": {
-        string: "{1 char|⑭}{arg message|0}{arg message|1}{arg message|2}{arg message|3}{arg message|4}{arg message|5}{arg message|6}{arg message|7}{arg message|8}",
-    },
-    "9652": {
-        string: "{1 char|⑮}{arg message|0}{arg message|1}{arg message|2}{arg message|3}{arg message|4}{arg message|5}{arg message|6}{arg message|7}{arg message|8}",
-    },
-    "9653": {
-        string: "{arg message|0}{font scale|70}/{arg message|1}",
-    },
-    "9654": {
-        string: "{arg message|0}{arg message|1}{font scale|70}/{arg message|2}{arg message|3}",
-    },
-    "9655": {
-        string: "{arg message|0}{arg message|1}{arg message|2}{font scale|70}/{arg message|3}{arg message|4}{arg message|5}",
-    },
-    "9656": {
-        string: null,
-    },
-    "9700": {
-        string: "Racepunten",
-    },
-    "9701": {
-        string: "Gevechtspunten",
-    },
-    "9702": {
-        string: "RANG",
-    },
-    "9703": {
-        string: "Gast",
-    },
-    "9704": {
-        string: "----",
-    },
-    "9705": {
-        string: null,
-    },
-    "9710": {
-        string: "{1 char|}",
-    },
-    "9711": {
-        string: "{1 char|}",
-    },
-    "9712": {
-        string: "{1 char|}",
-    },
-    "9713": {
-        string: "{1 char|}",
-    },
-    "9714": {
-        string: "{1 char|}",
-    },
-    "9715": {
-        string: "{1 char|}",
-    },
-    "9716": {
-        string: "{1 char|}",
-    },
-    "9717": {
-        string: "{1 char|}",
-    },
-    "9718": {
-        string: "{1 char|}",
-    },
-    "9719": {
-        string: "{1 char|}",
-    },
-    "9720": {
-        string: "{1 char|}",
-    },
-    "9721": {
-        string: "{1 char|}",
-    },
-    "9722": {
-        string: null,
-    },
-    "9900": {
-        string: "De verbinding met de\ncontroller is verbroken.\nDruk op de A-knop.",
-    },
-    "9901": {
-        string: "De controller is veranderd.\nDruk op de A-knop.",
-    },
-    "9902": {
-        string: "De controllers kunnen niet worden \nveranderd tijdens een race. Verbind de\norginele controller.",
-    },
-    "9903": {
-        string: "De controllers kunnen niet worden\nveranderd tijdens een Nintendo\nWFC-race. Verbind de orginele controller.",
-    },
-    "9904": {
-        string: "Deze competitie is enkel voor Wii-Wheels.\nDruk de Wii-afstandsbediening in\nhet stuur en druk op de A-knop.",
-    },
-    "9999": {
-        string: "?",
-    },
+    "9000": "Mario",
+    "9001": "Baby Peach",
+    "9002": "Waluigi",
+    "9003": "Bowser",
+    "9004": "Baby Daisy",
+    "9005": "Dry Bones",
+    "9006": "Baby Mario",
+    "9007": "Luigi",
+    "9008": "Toad",
+    "9009": "Donkey Kong",
+    "9010": "Yoshi",
+    "9011": "Wario",
+    "9012": "Baby Luigi",
+    "9013": "Toadette",
+    "9014": "Koopa Troopa",
+    "9015": "Daisy",
+    "9016": "Peach",
+    "9017": "Birdo",
+    "9018": "Diddy Kong",
+    "9019": "King Boo",
+    "9020": "Bowser Jr.",
+    "9021": "Dry Bowser",
+    "9022": "Funky Kong",
+    "9023": "Rosalina",
+    "9024": "Mii",
+    "9050": "{arg player|0}",
+    "9051": "{arg player|0}",
+    "9052": "Mii (Outfit A)",
+    "9053": "Mii (Outfit B)",
+    "9054": null,
+    "9100": "Standaardkart K",
+    "9101": "Standaardkart M",
+    "9102": "Standaardkart G",
+    "9103": "Baby Booster",
+    "9104": "Nostalgia 1",
+    "9105": "Terreinwagen",
+    "9106": "Minibeest",
+    "9107": "Windvleugel",
+    "9108": "Vuurspuwer",
+    "9109": "Super-Cheep",
+    "9110": "Turbo-Blooper",
+    "9111": "Piranha-Wurger",
+    "9112": "Kleine Reus",
+    "9113": "Koninklijke Racer",
+    "9114": "Luchtglijder",
+    "9115": "Blue Falcon",
+    "9116": "B Dasher Mk 2",
+    "9117": "Dragonetti",
+    "9118": "Standaardkart K",
+    "9119": "Standaardkart M",
+    "9120": "Standaardkart G",
+    "9121": "Standaardkart K",
+    "9122": "Standaardkart M",
+    "9123": "Standaardkart G",
+    "9124": "",
+    "9150": "Standaardmotor K",
+    "9151": "Standaardmotor M",
+    "9152": "Standaardmotor G",
+    "9153": "Bullet-motor",
+    "9154": "Mach-motor",
+    "9155": "Bowser-motor",
+    "9156": "Nano-motor",
+    "9157": "Bonbon",
+    "9158": "Wario-motor",
+    "9159": "Kwaker",
+    "9160": "Zip-Zip",
+    "9161": "Vallende Ster",
+    "9162": "Kamekruiser",
+    "9163": "Nitrofiets",
+    "9164": "Torpedo",
+    "9165": "Bubbelmotor",
+    "9166": "Dolfijnsjezer",
+    "9167": "Spookrijder",
+    "9168": "Standaardmotor K",
+    "9169": "Standaardmotor M",
+    "9170": "Standaardmotor G",
+    "9171": "Standaardmotor K",
+    "9172": "Standaardmotor M",
+    "9173": "Standaardmotor G",
+    "9174": null,
+    "9200": "Paddenstoelbeker",
+    "9201": "Bloemenbeker",
+    "9202": "Sterrenbeker",
+    "9203": "Speciale beker",
+    "9204": "Schildbeker",
+    "9205": "Bananenbeker",
+    "9206": "Blaadjesbeker",
+    "9207": "Bliksembeker",
+    "9208": "Ruimtearena",
+    "9300": "Mario's Circuit",
+    "9301": "Boe-Boe-Boerenland",
+    "9302": "Paddenstoelengrot",
+    "9303": "Dondervulkaan",
+    "9304": "Toads Fabriek",
+    "9305": "Kokosnootplaza",
+    "9306": "DK's Skipiste",
+    "9307": "Wario's Goudmijn",
+    "9308": "Luigi's Circuit",
+    "9309": "Daisy's Circuit",
+    "9310": "Maanzichtsnelweg",
+    "9311": "Wigglers Woud",
+    "9312": "Bowsers Kasteel",
+    "9313": "Regenboogbaan",
+    "9314": "Kurkdroge Ruïnes",
+    "9315": "Kaap Koopa",
+    "9316": "GCN Peach' Strand",
+    "9317": "GCN Mario's Circuit",
+    "9318": "GCN Waluigi's Stadion",
+    "9319": "GCN DK's Berg",
+    "9320": "DS Yoshi's Watervallen",
+    "9321": "DS Woestijnheuvels",
+    "9322": "DS Peach' Paleistuin",
+    "9323": "DS Delfino-Plaza",
+    "9324": "SNES Mario's Circuit 3",
+    "9325": "SNES Geestenvallei 2",
+    "9326": "N64 Mario's Circuit",
+    "9327": "N64 IJzige IJsbaan",
+    "9328": "N64 Bowsers Kasteel",
+    "9329": "N64 DK's Jungleweg",
+    "9330": "GBA Bowsers Kasteel 3",
+    "9331": "GBA Shy Guys Strand",
+    "9350": null,
+    "9351": "Ballongevecht",
+    "9352": "Muntengevecht",
+    "9353": "Wii-arena's",
+    "9354": "Retro-arena's",
+    "9355": null,
+    "9360": "Mario's Circuit",
+    "9361": "Boe-Boe-Boerenland",
+    "9362": "Paddenstoelengrot",
+    "9363": "Dondervulkaan",
+    "9364": "Toads Fabriek",
+    "9365": "Kokosnootplaza",
+    "9366": "DK's Skipark",
+    "9367": "Wario's Goudmijn",
+    "9368": "Luigi's Circuit",
+    "9369": "Daisy's Circuit",
+    "9370": "Maanzichtsnelweg",
+    "9371": "Wigglers Woud",
+    "9372": "Bowsers Kasteel",
+    "9373": "Regenboogbaan",
+    "9374": "Kurkdroge Ruïnes",
+    "9375": "Kaap Koopa",
+    "9376": "GCN Peach' Strand",
+    "9377": "GCN Mario's Circuit",
+    "9378": "GCN Waluigi's Stadion",
+    "9379": "GCN DK's Berg",
+    "9380": "DS Yoshi's Watervallen",
+    "9381": "DS Woestijnheuvels",
+    "9382": "DS Peach' Tuin",
+    "9383": "DS Delfino-Plaza",
+    "9384": "SNES Mario's Circuit 3",
+    "9385": "SNES Geestenvallei 2",
+    "9386": "N64 Mario's Circuit",
+    "9387": "N64 IJzige IJsbaan",
+    "9388": "N64 Bowsers Kasteel",
+    "9389": "N64 DK's Jungleweg",
+    "9390": "GBA Bowsers Kasteel 3",
+    "9391": "GBA Shy Guys Strand",
+    "9392": null,
+    "9400": "Delfino-Pier",
+    "9401": "Blokkenplaza",
+    "9402": "Chain Chomp Roulette",
+    "9403": "Funky's Stadion",
+    "9404": "Steenwoestijn",
+    "9405": "GCN Koekjesland",
+    "9406": "DS Schemerhuis",
+    "9407": "SNES Gevechtsarena 4",
+    "9408": "GBA Gevechtsarena 3",
+    "9409": "N64 Wolkenkrabber",
+    "9410": null,
+    "9420": "Delfino-Pier",
+    "9421": "Blokkenplaza",
+    "9422": "Chain Chomp Roulette",
+    "9423": "Funky's Stadion",
+    "9424": "Steenwoestijn",
+    "9425": "GCN Koekjesland",
+    "9426": "DS Schemerhuis",
+    "9427": "SNES Gevechtsarena 4",
+    "9428": "GBA Gevechtsarena 3",
+    "9429": "N64 Wolkenkrabber",
+    "9430": null,
+    "9450": "GCN Koekjesland",
+    "9451": "DS Schemerhuis",
+    "9452": "SNES Gevechtsarena 4",
+    "9453": "GBA Gevechtsarena 3",
+    "9454": "N64 Wolkenkrabber",
+    "9455": null,
+    "9500": "Speler {arg player|0}",
+    "9501": "{arg player|0}",
+    "9502": "{arg border|0}",
+    "9503": "{arg question mark|0}",
+    "9504": "{arg front button|0}",
+    "9505": null,
+    "9550": "S1",
+    "9551": "S2",
+    "9552": "S3",
+    "9553": "S4",
+    "9554": null,
+    "9600": "{1 char|①}",
+    "9601": "{1 char|②}",
+    "9602": "{1 char|③}",
+    "9603": "{1 char|④}",
+    "9604": "{1 char|⑤}",
+    "9605": "{1 char|⑥}",
+    "9606": "{1 char|⑦}",
+    "9607": "{1 char|⑧}",
+    "9608": "{1 char|⑨}",
+    "9609": "{1 char|⑩}",
+    "9610": "{1 char|⑪}",
+    "9611": "{1 char|⑫}",
+    "9612": "/{1 char|⑬}",
+    "9613": "-{1 char|⑭}",
+    "9614": "+{1 char|⑮}",
+    "9615": null,
+    "9650": "{arg message|0}{arg message|1}{arg message|2}{arg message|3}{arg message|4}{arg message|5}{arg message|6}{arg message|7}{arg message|8}",
+    "9651": "{1 char|⑭}{arg message|0}{arg message|1}{arg message|2}{arg message|3}{arg message|4}{arg message|5}{arg message|6}{arg message|7}{arg message|8}",
+    "9652": "{1 char|⑮}{arg message|0}{arg message|1}{arg message|2}{arg message|3}{arg message|4}{arg message|5}{arg message|6}{arg message|7}{arg message|8}",
+    "9653": "{arg message|0}{font scale|70}/{arg message|1}",
+    "9654": "{arg message|0}{arg message|1}{font scale|70}/{arg message|2}{arg message|3}",
+    "9655": "{arg message|0}{arg message|1}{arg message|2}{font scale|70}/{arg message|3}{arg message|4}{arg message|5}",
+    "9656": null,
+    "9700": "Racepunten",
+    "9701": "Gevechtspunten",
+    "9702": "RANG",
+    "9703": "Gast",
+    "9704": "----",
+    "9705": null,
+    "9710": "{1 char|}",
+    "9711": "{1 char|}",
+    "9712": "{1 char|}",
+    "9713": "{1 char|}",
+    "9714": "{1 char|}",
+    "9715": "{1 char|}",
+    "9716": "{1 char|}",
+    "9717": "{1 char|}",
+    "9718": "{1 char|}",
+    "9719": "{1 char|}",
+    "9720": "{1 char|}",
+    "9721": "{1 char|}",
+    "9722": null,
+    "9900": "De verbinding met de\ncontroller is verbroken.\nDruk op de A-knop.",
+    "9901": "De controller is veranderd.\nDruk op de A-knop.",
+    "9902": "De controllers kunnen niet worden \nveranderd tijdens een race. Verbind de\norginele controller.",
+    "9903": "De controllers kunnen niet worden\nveranderd tijdens een Nintendo\nWFC-race. Verbind de orginele controller.",
+    "9904": "Deze competitie is enkel voor Wii-Wheels.\nDruk de Wii-afstandsbediening in\nhet stuur en druk op de A-knop.",
+    "9999": "?",
 }

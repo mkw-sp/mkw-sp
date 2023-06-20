@@ -1,218 +1,74 @@
 {
-    "2053": {
-        string: "Er is iets fout gegaan bij het lezen of schrijven van de save",
-    },
-    "10000": {
-        string: "Race tegen 1 geest",
-    },
-    "10001": {
-        string: "Bekijk 1 geest",
-    },
-    "10002": {
-        string: "Race tegen {arg integer|0 0} geesten",
-    },
-    "10003": {
-        string: "Bekijk {arg integer|0 0} geesten",
-    },
-    "10004": {
-        string: "HUD Labels",
-    },
-    "10005": {
-        string: "Verberg",
-    },
-    "10006": {
-        string: "Toon",
-    },
-    "10007": {
-        string: "Verberg HUD controle labels.",
-    },
-    "10008": {
-        string: "Toon HUD controle labels.",
-    },
-    "10009": {
-        string: "16:9 Gezichtsveld",
-    },
-    "10010": {
-        string: "Standaard",
-    },
-    "10011": {
-        string: "Wijder",
-    },
-    "10012": {
-        string: "Gebruik het standaard gezichtsveld in 16:9 modus.",
-    },
-    "10013": {
-        string: "Gebruik het wijdere 4:3 gezichtsveld in 16:9 modus.",
-    },
-    "10014": {
-        string: "Mapiconen",
-    },
-    "10015": {
-        string: "Karakters",
-    },
-    "10016": {
-        string: "Mii's",
-    },
-    "10017": {
-        string: "Gebruik karakters als minimapiconen.",
-    },
-    "10018": {
-        string: "Gebruik Mii's als minimapiconen.",
-    },
-    "10019": {
-        string: "Geestsortering",
-    },
-    "10020": {
-        string: "Snelst",
-    },
-    "10021": {
-        string: "Langzaamst",
-    },
-    "10022": {
-        string: "Nieuwst",
-    },
-    "10023": {
-        string: "Oudst",
-    },
-    "10024": {
-        string: "Sorteer geesten van snel naar langzaam.",
-    },
-    "10025": {
-        string: "Sorteer geesten van langzaam naar snel.",
-    },
-    "10026": {
-        string: "Sorteer geesten van nieuw naar oud.",
-    },
-    "10027": {
-        string: "Sorteer geesten van oud naar nieuw.",
-    },
-    "10028": {
-        string: "Tag-Zichtbaarheid",
-    },
-    "10029": {
-        string: "Niets",
-    },
-    "10030": {
-        string: "Bekeken",
-    },
-    "10031": {
-        string: "Alles",
-    },
-    "10032": {
-        string: "Geef geen enkele tag van een geest weer.",
-    },
-    "10033": {
-        string: "Geef alleen de tag van de bekeken geest weer.",
-    },
-    "10034": {
-        string: "Geef alle tags van de geesten weer.",
-    },
-    "10035": {
-        string: "Tag-Inhoud",
-    },
-    "10036": {
-        string: "Naam",
-    },
-    "10037": {
-        string: "Tijd",
-    },
-    "10038": {
-        string: "Datum",
-    },
-    "10039": {
-        string: "Gebruik de naam van de geest als zijn tag.",
-    },
-    "10040": {
-        string: "Gebruik de tijd van de geest als zijn tag.",
-    },
-    "10041": {
-        string: "Gebruik de aanmaakdatum van de geest als zijn tag.",
-    },
-    "10042": {
-        string: "Solide Geesten",
-    },
-    "10043": {
-        string: "Maak geen enkele geest solide.",
-    },
-    "10044": {
-        string: "Maak de bekeken geest solide.",
-    },
-    "10045": {
-        string: "Maak alle geesten solide.",
-    },
-    "10046": {
-        string: "Speel Tijdraces met deze regels.",
-    },
-    "10053": {
-        string: "Verkorte Tijd",
-    },
-    "10054": {
-        string: "Tijdoptie zonder de eerste nullen.",
-    },
-    "10055": {
-        string: "Gecko-codes zijn niet ondersteund en laten de game crashen. Druk op de A-knop als je weet wat je doet en reporteer GEEN bugs.",
-    },
-    "10056": {
-        string: "Menutransities",
-    },
-    "10057": {
-        string: "Inschakelen",
-    },
-    "10058": {
-        string: "Uitschakelen",
-    },
-    "10059": {
-        string: "Maak de menutransities onmiddelijk.",
-    },
-    "10060": {
-        string: "Behoud de standaard snelheid van de menutransities.",
-    },
-    "10061": {
-        string: "Invoerdisplay",
-    },
-    "10062": {
-        string: "Inschakelen",
-    },
-    "10063": {
-        string: "Uitschakelen",
-    },
-    "10064": {
-        string: "Geef geen invoer weer tijdens een race.",
-    },
-    "10065": {
-        string: "Geef invoer weer tijdens een race.",
-    },
-    "10066": {
-        string: "Geestengeluid",
-    },
-    "10067": {
-        string: "Zet geen enkel geluid van geesten aan.",
-    },
-    "10068": {
-        string: "Zet alleen het geluid van de bekeken geest aan.",
-    },
-    "10069": {
-        string: "Zet het geluid van alle geesten aan.",
-    },
-    "10073": {
-        string: "Tijdraces en meer voor één speler!",
-    },
-    "10074": {
-        string: "Verander opties of jouw Mii!",
-    },
-    "10077": {
-        string: "Verander opties voor dit rijbewijs.",
-    },
-    "10078": {
-        string: "0,9x snelheidsfactor.",
-    },
-    "10079": {
-        string: "1,0x snelheidsfactor.",
-    },
-    "10080": {
-        string: "1,0x snelheidsfactor met gespiegelde circuits.",
-    },
-    "10081": {
-        string: "1,5x snelheidsfactor met rem-driften en snel-vallen.",
-    },
+    "2053": "Er is iets fout gegaan bij het lezen of schrijven van de save",
+    "10000": "Race tegen 1 geest",
+    "10001": "Bekijk 1 geest",
+    "10002": "Race tegen {arg integer|0 0} geesten",
+    "10003": "Bekijk {arg integer|0 0} geesten",
+    "10004": "HUD Labels",
+    "10005": "Verberg",
+    "10006": "Toon",
+    "10007": "Verberg HUD controle labels.",
+    "10008": "Toon HUD controle labels.",
+    "10009": "16:9 Gezichtsveld",
+    "10010": "Standaard",
+    "10011": "Wijder",
+    "10012": "Gebruik het standaard gezichtsveld in 16:9 modus.",
+    "10013": "Gebruik het wijdere 4:3 gezichtsveld in 16:9 modus.",
+    "10014": "Mapiconen",
+    "10015": "Karakters",
+    "10016": "Mii's",
+    "10017": "Gebruik karakters als minimapiconen.",
+    "10018": "Gebruik Mii's als minimapiconen.",
+    "10019": "Geestsortering",
+    "10020": "Snelst",
+    "10021": "Langzaamst",
+    "10022": "Nieuwst",
+    "10023": "Oudst",
+    "10024": "Sorteer geesten van snel naar langzaam.",
+    "10025": "Sorteer geesten van langzaam naar snel.",
+    "10026": "Sorteer geesten van nieuw naar oud.",
+    "10027": "Sorteer geesten van oud naar nieuw.",
+    "10028": "Tag-Zichtbaarheid",
+    "10029": "Niets",
+    "10030": "Bekeken",
+    "10031": "Alles",
+    "10032": "Geef geen enkele tag van een geest weer.",
+    "10033": "Geef alleen de tag van de bekeken geest weer.",
+    "10034": "Geef alle tags van de geesten weer.",
+    "10035": "Tag-Inhoud",
+    "10036": "Naam",
+    "10037": "Tijd",
+    "10038": "Datum",
+    "10039": "Gebruik de naam van de geest als zijn tag.",
+    "10040": "Gebruik de tijd van de geest als zijn tag.",
+    "10041": "Gebruik de aanmaakdatum van de geest als zijn tag.",
+    "10042": "Solide Geesten",
+    "10043": "Maak geen enkele geest solide.",
+    "10044": "Maak de bekeken geest solide.",
+    "10045": "Maak alle geesten solide.",
+    "10046": "Speel Tijdraces met deze regels.",
+    "10053": "Verkorte Tijd",
+    "10054": "Tijdoptie zonder de eerste nullen.",
+    "10055": "Gecko-codes zijn niet ondersteund en laten de game crashen. Druk op de A-knop als je weet wat je doet en reporteer GEEN bugs.",
+    "10056": "Menutransities",
+    "10057": "Inschakelen",
+    "10058": "Uitschakelen",
+    "10059": "Maak de menutransities onmiddelijk.",
+    "10060": "Behoud de standaard snelheid van de menutransities.",
+    "10061": "Invoerdisplay",
+    "10062": "Inschakelen",
+    "10063": "Uitschakelen",
+    "10064": "Geef geen invoer weer tijdens een race.",
+    "10065": "Geef invoer weer tijdens een race.",
+    "10066": "Geestengeluid",
+    "10067": "Zet geen enkel geluid van geesten aan.",
+    "10068": "Zet alleen het geluid van de bekeken geest aan.",
+    "10069": "Zet het geluid van alle geesten aan.",
+    "10073": "Tijdraces en meer voor één speler!",
+    "10074": "Verander opties of jouw Mii!",
+    "10077": "Verander opties voor dit rijbewijs.",
+    "10078": "0,9x snelheidsfactor.",
+    "10079": "1,0x snelheidsfactor.",
+    "10080": "1,0x snelheidsfactor met gespiegelde circuits.",
+    "10081": "1,5x snelheidsfactor met rem-driften en snel-vallen.",
 }

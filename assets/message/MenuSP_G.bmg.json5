@@ -1,1016 +1,340 @@
 {
-    "2053": {
-        string: "Irgendetwas ist beim Lesen bzw. Schreiben der Speicherdaten schiefgegangen.",
-    },
-    "3400": {
-        string: "Einstellungen",
-    },
-    "3420": {
-        string: "CPU Schwierigkeitsgrad",
-    },
-    "3475": {
-        string: "Einstellungen für dieses Profil ändern",
-    },
-    "3700": {
-        string: "Wähle ein Level aus",
-    },
-    "3701": {
-        string: "Wähle eine Strecke aus",
-    },
-    "10000": {
-        string: "Gegen 1 Geist fahren",
-    },
-    "10001": {
-        string: "1 Geist zuschauen",
-    },
-    "10002": {
-        string: "Gegen {arg integer|0 0} Geister fahren",
-    },
-    "10003": {
-        string: "{arg integer|0 0} Geister zuschauen",
-    },
-    "10004": {
-        string: "HUD-Zeichen",
-    },
-    "10005": {
-        string: "Verstecken",
-    },
-    "10006": {
-        string: "Zeigen",
-    },
-    "10007": {
-        string: "HUD-Steuerelemente verstecken",
-    },
-    "10008": {
-        string: "HUD-Steuerelemente zeigen",
-    },
-    "10009": {
-        string: "16:9-Sichtfeld",
-    },
-    "10010": {
-        string: "Standard",
-    },
-    "10011": {
-        string: "Breiter",
-    },
-    "10012": {
-        string: "Das standardmäßige Sichtfeld im 16:9-Modus verwenden.",
-    },
-    "10013": {
-        string: "Breiteres 4:3 Sichtfeld im 16:9 Modus benutzen.",
-    },
-    "10014": {
-        string: "Kartensymbole",
-    },
-    "10015": {
-        string: "Charaktere",
-    },
-    "10016": {
-        string: "Miis",
-    },
-    "10017": {
-        string: "Charakter als Kartensymbole benutzen.",
-    },
-    "10018": {
-        string: "Miis als Kartensymbole benutzen.",
-    },
-    "10019": {
-        string: "Geistersortierung",
-    },
-    "10028": {
-        string: "Kennzeichen-Sichtbarkeit",
-    },
-    "10029": {
-        string: "Kein",
-    },
-    "10030": {
-        string: "Geschaut",
-    },
-    "10031": {
-        string: "Alle",
-    },
-    "10032": {
-        string: "Keine Geisterkennzeichen anzeigen.",
-    },
-    "10033": {
-        string: "Nur das Kennzeichen des zugeschautem Geist anzeigen.",
-    },
-    "10034": {
-        string: "Kennzeichen für alle Geister anzeigen.",
-    },
-    "10035": {
-        string: "Inhalt des Kennzeichens",
-    },
-    "10036": {
-        string: "Name",
-    },
-    "10037": {
-        string: "Zeit",
-    },
-    "10038": {
-        string: "Datum",
-    },
-    "10039": {
-        string: "Geister-Name als Kennzeichen benutzen.",
-    },
-    "10040": {
-        string: "Geister-Endzeit als Kennzeichen benutzen.",
-    },
-    "10041": {
-        string: "Geister-Erstelldatum als Kennzeichen benutzen.",
-    },
-    "10042": {
-        string: "Solide Geister",
-    },
-    "10043": {
-        string: "Keine Geister solide machen.",
-    },
-    "10044": {
-        string: "Den geschauten Geist solide machen.",
-    },
-    "10045": {
-        string: "Alle Geister solide machen.",
-    },
-    "10046": {
-        string: "Zeitfahren mit diesen Regeln fahren.",
-    },
-    "10053": {
-        string: "Gekürzte Zeit",
-    },
-    "10054": {
-        string: "Zeit-Option ohne führende Nullstellen.",
-    },
-    "10055": {
-        string: "Gecko-Codes werden NICHT UNTERSTÜTZT\nund wird dein Spiel zum Absturz bringen.\nDrücke A, wenn du weißt, was du tust und melde dadurch KEINE Fehler.",
-    },
-    "10056": {
-        string: "Menü-Übergänge",
-    },
-    "10057": {
-        string: "Deaktiviert",
-    },
-    "10058": {
-        string: "Aktiviert",
-    },
-    "10059": {
-        string: "Menü-Übergänge deaktivieren.",
-    },
-    "10060": {
-        string: "Das normale Tempo der Menü-Übergänge beibehalten.",
-    },
-    "10061": {
-        string: "Eingabeanzeige",
-    },
-    "10062": {
-        string: "Deaktivieren",
-    },
-    "10063": {
-        string: "Aktivieren",
-    },
-    "10064": {
-        string: "Während eines Rennens keine Eingaben anzeigen.",
-    },
-    "10065": {
-        string: "Während eines Rennens Eingaben anzeigen.",
-    },
-    "10066": {
-        string: "Geister Sound",
-    },
-    "10067": {
-        string: "Sound für alle Geister deaktivieren.",
-    },
-    "10068": {
-        string: "Sound für den Geist der geschaut wird, aktivieren.",
-    },
-    "10069": {
-        string: "Ton für alle Geister aktivieren.",
-    },
-    "10073": {
-        string: "Zeitfahren und andere Modi alleine spielen.",
-    },
-    "10074": {
-        string: "Einstellungen ändern oder den Mii ändern!",
-    },
-    "10078": {
-        string: "0.9x-Geschwindigkeitsfaktor.",
-    },
-    "10079": {
-        string: "1.0x-Geschwindigkeitsfaktor.",
-    },
-    "10080": {
-        string: "1.0x-Geschwindigkeitsfaktor mit gespiegelten Strecken.",
-    },
-    "10081": {
-        string: "1.5x-Geschwindigkeitsfaktor mit Brake Drifting und Fast Falling.",
-    },
-    "10082": {
-        string: "MKW-SP-Optionen",
-    },
-    "10083": {
-        string: "Service Pack",
-    },
-    "10087": {
-        string: "Aktualisierung",
-    },
-    "10088": {
-        string: "Kanal",
-    },
-    "10089": {
-        string: "Über",
-    },
-    "10090": {
-        string: "Durch die Installation des MKW-SP-Kanals kann man\nMKW-SP über das Wii-Menü starten\nund nicht über den Homebrew-Kanal\noder einem Exploit.\nDie Updates werden zwischen den beiden Kanälen synchronisiert.",
-    },
-    "10091": {
-        string: "Möchtest du den MKW-SP-Kanal Installieren?",
-    },
-    "10092": {
-        string: "Ein Update für den MKW-SP-Kanal ist verfügbar. Möchtest du es installieren?",
-    },
-    "10093": {
-        string: "Der MKW-SP-Kanal ist bereits installiert.",
-    },
-    "10094": {
-        string: "Eine neuere Version des MKW-SP-Kanals ist bereits installiert!",
-    },
-    "10095": {
-        string: "Der MKW-SP-Kanal wird installiert...",
-    },
-    "10096": {
-        string: "Der MKW-SP-Kanal wird aktualisiert...",
-    },
-    "10097": {
-        string: "Der MKW-SP-Kanal wurde erfolgreich installiert!",
-    },
-    "10098": {
-        string: "Die Installation des MKW-SP-Kanals ist fehlgeschlagen!",
-    },
-    "10099": {
-        string: "Der MKW-SP-Kanal wurde erfolgreich aktualisiert!",
-    },
-    "10100": {
-        string: "Die Aktualisierung des MKW-SP-Kanals ist fehlgeschlagen",
-    },
-    "10101": {
-        string: "Der MKW-SP-Kanal kann nur von offizielen Builds installiert werden!",
-    },
-    "10102": {
-        string: "Auf Updates wird geprüft...\n{arg message|0}",
-    },
-    "10103": {
-        string: "Eine neue Version von MKW-SP ist verfügbar!\n{arg string|0} → {arg string|1}",
-    },
-    "10104": {
-        string: "Die neuste Version von MKW-SP ({arg string|0})\nist bereits installiert.",
-    },
-    "10105": {
-        string: "Der MKW-SP-Update-Check ist fehlgeschlagen!",
-    },
-    "10106": {
-        string: "Möchten Sie MKW-SP auf {arg string|0} aktualisieren?\nDu benötigst {arg string|1} MiB ({arg integer|0 0} Blöcke)\nan freiem Speicherplatz im Wii-Systemspeicher.",
-    },
-    "10107": {
-        string: "MKW-SP wird aktualisiert...\n{arg message|0}",
-    },
-    "10108": {
-        string: "MKW-SP wurde erfolgreich\nvon {arg string|0} auf {arg string|1} aktualisiert.\nEin Neustart ist notwendig, damit die Aktualisierung\nangewendet werden kann.",
-    },
-    "10109": {
-        string: "Das MKW-SP-Update ist fehlgeschlagen",
-    },
-    "10110": {
-        string: "Möchtest du MKW-SP nun neustarten?",
-    },
-    "10111": {
-        string: "MKW-SP kann nur von offiziellen Builds aktualisiert werden!",
-    },
-    "10112": {
-        string: "Verbinde mit dem Server...",
-    },
-    "10113": {
-        string: "Versions-Informationen wird gesendet...",
-    },
-    "10114": {
-        string: "Versions-Informationen wird empfangen...",
-    },
-    "10115": {
-        string: "Inhalte werden heruntergeladen...\n{arg string|0} MiB von {arg string|1} MiB - {arg string|2} MiB/s",
-    },
-    "10116": {
-        string: "Inhalte werden verschoben...",
-    },
-    "10118": {
-        string: "Rennen",
-    },
-    "10119": {
-        string: "Zeitfahren",
-    },
-    "10120": {
-        string: "Profil",
-    },
-    "10121": {
-        string: "Positionstracker",
-    },
-    "10122": {
-        string: "GP und VS",
-    },
-    "10123": {
-        string: "Immer",
-    },
-    "10124": {
-        string: "Nur den Positionstracker in GP und VS zeigen.",
-    },
-    "10125": {
-        string: "Immer den Positionstracker zeigen.",
-    },
-    "10126": {
-        string: "Ton",
-    },
-    "10127": {
-        string: "Item-Musik",
-    },
-    "10128": {
-        string: "Keine",
-    },
-    "10129": {
-        string: "Nur wenn geschrumpft/zerquetscht",
-    },
-    "10130": {
-        string: "Alle",
-    },
-    "10131": {
-        string: "Items können nicht die Musik ändern.",
-    },
-    "10132": {
-        string: "Wende den Musikeffekt nur an, wenn geschrumpft/zerquetscht.",
-    },
-    "10133": {
-        string: "Lasse Sterne, Mega-Pilze und Blitze die Musik beeinflussen.",
-    },
-    "10134": {
-        string: "Letze Runden-Musik",
-    },
-    "10135": {
-        string: "Nur Gameplay",
-    },
-    "10136": {
-        string: "Immer",
-    },
-    "10137": {
-        string: "Benutze die Letze Runden-Musik nur für das Gameplay.",
-    },
-    "10138": {
-        string: "Benutze die Letze Runden-Musik für das Gameplay und Wiederholungen.",
-    },
-    "10139": {
-        string: "Letzte Runden-Schnelligkeit",
-    },
-    "10140": {
-        string: "Keine",
-    },
-    "10141": {
-        string: "Statisch",
-    },
-    "10142": {
-        string: "Dynamisch",
-    },
-    "10143": {
-        string: "Verwende die \"_N\" BRSTM in der letzten Runde.",
-    },
-    "10144": {
-        string: "Verwende die \"_F\" BRSTM in der letzten Runde.",
-    },
-    "10145": {
-        string: "Generiere die Letzte Runden-Musik von der \"_N\" BRSTM.",
-    },
-    "10146": {
-        string: "Speicher-Test",
-    },
-    "10147": {
-        string: "Welches Gerät wollen Sie testen?",
-    },
-    "10148": {
-        string: "Der Speicher {arg message|0} wird getestet...\n{arg message|1}",
-    },
-    "10149": {
-        string: "Der Speichertest für {arg message|0} war erfolgreich.\n{arg integer|0 0} KiB: R {arg string|0} MiB/s - W {arg string|1} MiB/s\n{arg integer|1 0} KiB: R {arg string|2} MiB/s - W {arg string|3} MiB/s\n{arg integer|2 0} KiB: R {arg string|4} MiB/s - W {arg string|5} MiB/s\n{arg integer|3 0} KiB: R {arg string|6} MiB/s - W {arg string|7} MiB/s",
-    },
-    "10150": {
-        string: "Der Speicher-Test für {arg message|0} ist fehlgeschlagen!",
-    },
-    "10151": {
-        string: "Wird vorbereitet...",
-    },
-    "10152": {
-        string: "Lese {arg integer|0 0} KiB Chunks...",
-    },
-    "10153": {
-        string: "Schreibe {arg integer|0 0} KiB Chunks...",
-    },
-    "10154": {
-        string: "SD-Karte",
-    },
-    "10155": {
-        string: "SD-Karte",
-    },
-    "10156": {
-        string: "USB-Medium",
-    },
-    "10157": {
-        string: "USB-Medium",
-    },
-    "10158": {
-        string: "Netzwerk",
-    },
-    "10159": {
-        string: "Netzwerk",
-    },
-    "10160": {
-        string: "Missionen",
-    },
-    "10161": {
-        string: "Spiele Missionen mit verschieden Anforderungen.",
-    },
-    "10162": {
-        string: "Fahre {arg integer|0 0} {arg cond messages|0 10164 10165}",
-    },
-    "10163": {
-        string: "Schaue {arg integer|0 0} {arg cond messages|0 10164 10165}",
-    },
-    "10164": {
-        string: "Geist",
-    },
-    "10165": {
-        string: "Geister",
-    },
-    "10166": {
-        string: "Vanilla-Modus",
-    },
-    "10167": {
-        string: "Deaktivieren",
-    },
-    "10168": {
-        string: "Aktivieren",
-    },
-    "10169": {
-        string: "Alle MKW-SP-Änderungen zulassen.",
-    },
-    "10170": {
-        string: "Die meisten MKW-SP-Änderungen nicht zulassen.",
-    },
-    "10171": {
-        string: "Zeit",
-    },
-    "10172": {
-        string: "Datum",
-    },
-    "10173": {
-        string: "Schnellste Runde",
-    },
-    "10174": {
-        string: "Runde 2-Tempo",
-    },
-    "10175": {
-        string: "Runde 3-Tempo",
-    },
-    "10176": {
-        string: "Sortiere die Geister nach ihrer Endzeit.",
-    },
-    "10177": {
-        string: "Geister nach ihrem Erstellungsdatum sortieren.",
-    },
-    "10178": {
-        string: "Sortiere die Geister nach ihrer schnellsten Runde.",
-    },
-    "10179": {
-        string: "Sortiere Geister nach ihrer Geschwindigkeit in Runde 2.",
-    },
-    "10180": {
-        string: "Sortiere Geister nach ihrer Geschwindigkeit in Runde 3.",
-    },
-    "10181": {
-        string: "Der Speichertest für {arg message|0} war erfolgreich.\nRang: {arg message|1}\n{arg integer|0 0} KiB: R {arg string|0} MiB/s - W {arg string|1} MiB/s\n{arg integer|1 0} KiB: R {arg string|2} MiB/s - W {arg string|3} MiB/s\n{arg integer|2 0} KiB: R {arg string|4} MiB/s - W {arg string|5} MiB/s\n{arg integer|3 0} KiB: R {arg string|6} MiB/s - W {arg string|7} MiB/s",
-    },
-    "10183": {
-        string: "Spielerkennzeichen",
-    },
-    "10185": {
-        string: "Zeige maximal {arg integer|0 0} {arg cond messages|0 10186 10187} gleichzeitig.",
-    },
-    "10186": {
-        string: "Kennzeichen",
-    },
-    "10187": {
-        string: "Kennzeichen",
-    },
-    "10188": {
-        string: "Leistungs-Overlay",
-    },
-    "10189": {
-        string: "Zeige keine CPU-, GPU- und Speicher-Leisten.",
-    },
-    "10190": {
-        string: "Zeige CPU-, GPU- und Speicher-Leisten.",
-    },
-    "10191": {
-        string: "GCN-Rumble",
-    },
-    "10192": {
-        string: "Deaktiviere die Vibrationen von GCN Controllern.",
-    },
-    "10193": {
-        string: "Aktiviere die Vibration von GCN Controllern.",
-    },
-    "10194": {
-        string: "Regions Linien Farbe",
-    },
-    "10195": {
-        string: "Rot",
-    },
-    "10196": {
-        string: "Blau",
-    },
-    "10197": {
-        string: "Grün",
-    },
-    "10198": {
-        string: "Gelb",
-    },
-    "10199": {
-        string: "Weiß",
-    },
-    "10200": {
-        string: "Rosa",
-    },
-    "10201": {
-        string: "Die Linie unter deinem Namen wird\n{color|player 3}red{color|unspecified}\nsein.",
-    },
-    "10202": {
-        string: "Die Linie unter deinem Namen wird\n{color|sp blue}blue{color|unspecified}\nsein.",
-    },
-    "10203": {
-        string: "Die Linie unter deinem Namen wird\n{color|sp green}green{color|unspecified}\nsein.",
-    },
-    "10204": {
-        string: "Die Linie unter deinem Namen wird\n{color|player 1}yellow{color|unspecified}.",
-    },
-    "10205": {
-        string: "Die Linie unter deinem Namen wird\nWeiß sein.",
-    },
-    "10206": {
-        string: "Die Linie unter deinem Namen wird\n{color|sp pink}pink{color|unspecified}\nsein.",
-    },
-    "10207": {
-        string: "Größe des Teams",
-    },
-    "10208": {
-        string: "Solo",
-    },
-    "10213": {
-        string: "Spiele nicht in Teams",
-    },
-    "10214": {
-        string: "Team Größe zu 2 Spielern limitieren.",
-    },
-    "10215": {
-        string: "Team Größe zu 3 Spielern limitieren.",
-    },
-    "10216": {
-        string: "Team Größe zu 4 Spielern limitieren.",
-    },
-    "10217": {
-        string: "Team Größe zu 6 Spielern limitieren.",
-    },
-    "10218": {
-        string: "Zufall",
-    },
-    "10224": {
-        string: "Anzahl der Rennen",
-    },
-    "10226": {
-        string: "Spiele {arg integer|0 0} {arg cond messages|0 10282 10283}.",
-    },
-    "10227": {
-        string: "Streckenauswahl",
-    },
-    "10228": {
-        string: "Zufall",
-    },
-    "10231": {
-        string: "Strecken werden Zufällig gewählt.",
-    },
-    "10234": {
-        string: "Klasse",
-    },
-    "10235": {
-        string: "Gemischt",
-    },
-    "10236": {
-        string: "150ccm",
-    },
-    "10237": {
-        string: "Spiegel",
-    },
-    "10238": {
-        string: "200ccm",
-    },
-    "10239": {
-        string: "Rennen sind 85% 150ccm,\n15% Spiegel.",
-    },
-    "10240": {
-        string: "Rennen sind immer 150ccm.",
-    },
-    "10241": {
-        string: "Rennen sind immer Spiegelverkehrt.",
-    },
-    "10242": {
-        string: "Rennen sind immer 200ccm.",
-    },
-    "10243": {
-        string: "Fahrzeuge",
-    },
-    "10244": {
-        string: "Alle",
-    },
-    "10245": {
-        string: "Karts",
-    },
-    "10246": {
-        string: "Bikes",
-    },
-    "10247": {
-        string: "Innen Drift",
-    },
-    "10248": {
-        string: "Aussen Drift",
-    },
-    "10249": {
-        string: "Optimal",
-    },
-    "10250": {
-        string: "Zufall",
-    },
-    "10251": {
-        string: "Erlaube alle Fahrzeuge.",
-    },
-    "10252": {
-        string: "Erlaube nur Karts.",
-    },
-    "10253": {
-        string: "Erlaube nur Bikes.",
-    },
-    "10254": {
-        string: "Erlaube nur Innen Driftende Fahrzeuge.",
-    },
-    "10255": {
-        string: "Erlaube nur Aussen Driftende Fahrzeuge.",
-    },
-    "10256": {
-        string: "Erlaube nur das optimale Fahrzeug\nfür jeden Charakter.",
-    },
-    "10257": {
-        string: "Suche zufällig eine Kombination aus\ndie zu allen Spielern passt.",
-    },
-    "10260": {
-        string: "Strecken werden individuell gewählt.",
-    },
-    "10261": {
-        string: "Strecken werden in\nder Reihenfolge gespielt.",
-    },
-    "10262": {
-        string: "Offline VS",
-    },
-    "10263": {
-        string: "Farb Pallette",
-    },
-    "10264": {
-        string: "Lebhaft",
-    },
-    "10265": {
-        string: "Farbenblind",
-    },
-    "10266": {
-        string: "Benutze die Lebhafte Pallette\nfür Team Farben.",
-    },
-    "10267": {
-        string: "Benutze die Farbenblind Pallette\nfür Team Farben.",
-    },
-    "10268": {
-        string: "{color|player 3}Rotes Team",
-    },
-    "10269": {
-        string: "{color|sp blue}Blaues Team",
-    },
-    "10270": {
-        string: "{color|sp green}Grünes Team",
-    },
-    "10271": {
-        string: "{color|player 1}Gelbes Team",
-    },
-    "10272": {
-        string: "{color|sp pink}Rosanes Team",
-    },
-    "10273": {
-        string: "Weißes Team",
-    },
-    "10274": {
-        string: "Teams sind nicht gerecht aufgeteilt.\n\nWähle bitte erneut.",
-    },
-    "10282": {
-        string: "Rennen",
-    },
-    "10283": {
-        string: "Rennen",
-    },
-    "10296": {
-        string: "HUD Team Farben",
-    },
-    "10297": {
-        string: "Deaktivieren",
-    },
-    "10298": {
-        string: "Aktivieren",
-    },
-    "10299": {
-        string: "Benutze immer lokale Spielerfarben\nfür die HUD Steuerung.",
-    },
-    "10300": {
-        string: "Benutze Team Farben für\ndie HUD Steuerung.",
-    },
-    "10301": {
-        string: "Vereinfachte Steuerung",
-    },
-    "10302": {
-        string: "Aus",
-    },
-    "10303": {
-        string: "nicht Exklusiv",
-    },
-    "10304": {
-        string: "Exklusiv",
-    },
-    "10305": {
-        string: "Benutze die Standard Steuerung nur\nfür Tricks oder Wheelies.",
-    },
-    "10306": {
-        string: "Benutze Y (GCN) oder ZL (CC/CCP)\num Tricks oder Wheelies auszuführen.",
-    },
-    "10307": {
-        string: "Benutze nur Y (GCN) oder ZL (CC/CCP) um\nTricks oder Wheelies auszuführen.",
-    },
-    "10308": {
-        string: "Tags von weit entfernten Spielern",
-    },
-    "10309": {
-        string: "Deaktivieren",
-    },
-    "10310": {
-        string: "Aktivieren",
-    },
-    "10311": {
-        string: "Nutze die Standard Render Distanz von\nSpieler Tags.",
-    },
-    "10312": {
-        string: "Erhöhe die Render Distanz von\nSpieler Tags.",
-    },
-    "10313": {
-        string: "Vorschau",
-    },
-    "10314": {
-        string: "Es wurden keine Strecken im\n/mkw-sp/thumbnails Ordner gefunden.",
-    },
-    "10315": {
-        string: "Debug-Overlay",
-    },
-    "10316": {
-        string: "Checkpoints",
-    },
-    "10317": {
-        string: "Deaktivieren",
-    },
-    "10318": {
-        string: "Aktivieren",
-    },
-    "10319": {
-        string: "Checkpoints nicht anzeigen.",
-    },
-    "10320": {
-        string: "Standard Checkpoint-Overlay",
-    },
-    "10321": {
-        string: "Tachometer",
-    },
-    "10322": {
-        string: "Interne + Bewegende Straße",
-    },
-    "10323": {
-        string: "Interne",
-    },
-    "10324": {
-        string: "XYZ",
-    },
-    "10325": {
-        string: "XZ",
-    },
-    "10326": {
-        string: "Y",
-    },
-    "10327": {
-        string: "Der Tachometer zeigt die\ninterne Geschwindigkeit des Fahrzeuges\nsowohl der Bewegenden Straße an.",
-    },
-    "10328": {
-        string: "Der Tachometer zeigt die\ninterne Geschwindigkeit des Fahrzeuges an",
-    },
-    "10329": {
-        string: "Der Tachometer zeigt die Geschwindigkeit\nin der das Fahrzeug sich bewegt.",
-    },
-    "10330": {
-        string: "Der Tachom. zeigt die Geschwindigkeit in\nder sich das Fahrzeug horizontal bewegt an",
-    },
-    "10331": {
-        string: "Der Tachometer zeigt die Geschwindigkeit\nin der sich das Fahrzeug vertical bewegt an.",
-    },
-    "10332": {
-        string: "Standard",
-    },
-    "10333": {
-        string: "Die Linie unter deinem Namen wird\nvom Spiel entschieden.",
-    },
-    "10334": {
-        string: "Region und Landesflagge",
-    },
-    "10335": {
-        string: "Zeige deine Flaggen und Regions\nInformationen nicht im Spiel an.",
-    },
-    "10336": {
-        string: "Zeige deine Flaggen und Regions\nInformationen im Spiel an.",
-    },
-    "10337": {
-        string: "nicht Anzeigen",
-    },
-    "10338": {
-        string: "Anzeigen",
-    },
-    "10339": {
-        string: "nicht Anzeigen",
-    },
-    "10340": {
-        string: "Anzeigen",
-    },
-    "10341": {
-        string: "Panel",
-    },
-    "10342": {
-        string: "Deaktivieren",
-    },
-    "10343": {
-        string: "Spieler",
-    },
-    "10344": {
-        string: "Online",
-    },
-    "10345": {
-        string: "Debug-Panel nicht anzeigen.",
-    },
-    "10346": {
-        string: "Zeige Spielerinformationen\nim Debug-Pane an.",
-    },
-    "10347": {
-        string: "Zeige Onlineinformationen\nim Debug-Panel an.",
-    },
-    "10348": {
-        string: "Visual course.kcl",
-    },
-    "10349": {
-        string: "Aus",
-    },
-    "10350": {
-        string: "Zeige nur course_model.brres an.",
-    },
-    "10351": {
-        string: "Overlay",
-    },
-    "10352": {
-        string: "Zeige über course_model.brres an.",
-    },
-    "10353": {
-        string: "Strecken-Model ersetzen",
-    },
-    "10354": {
-        string: "Verstecke course_model.brres.",
-    },
-    "10360": {
-        string: "Offline Schlacht",
-    },
-    "10361": {
-        string: "Rennen sind immer 50ccm.",
-    },
-    "10362": {
-        string: "Rennen sind immer 100ccm.",
-    },
-    "10365": {
-        string: "50ccm",
-    },
-    "10366": {
-        string: "100ccm",
-    },
-    "10367": {
-        string: "Karte",
-    },
-    "10368": {
-        string: "Aktivieren",
-    },
-    "10369": {
-        string: "Deaktivieren",
-    },
-    "10370": {
-        string: "Zeige die Karte auf dem HUD an.",
-    },
-    "10371": {
-        string: "Zeige die Karte auf dem HUD nicht an.",
-    },
-    "10372": {
-        string: "Lautstärke",
-    },
-    "10374": {
-        string: "Stelle die Lautstärke auf\n{arg integer|0 0} / 10 ein.",
-    },
-    "10375": {
-        string: "Musik Lautstärke",
-    },
-    "10377": {
-        string: "Stelle die Musik Lautstärke auf\n{arg integer|0 0} / 10 ein.",
-    },
-    "10378": {
-        string: "Mein Zeug",
-    },
-    "10379": {
-        string: "Datei Ersetzung",
-    },
-    "10380": {
-        string: "Aus",
-    },
-    "10381": {
-        string: "Nur BRSTMs",
-    },
-    "10382": {
-        string: "Alle",
-    },
-    "10383": {
-        string: "Verbiete das Dateien\nersetzt werden können.",
-    },
-    "10384": {
-        string: "Erlaube das ´.brstm` Dateien\nersetzt werden können.",
-    },
-    "10385": {
-        string: "Erlaube das alle Dateien ersetzt\nwerden können.",
-    },
-    "10386": {
-        string: "FPS Modus",
-    },
-    "10387": {
-        string: "Standard",
-    },
-    "10388": {
-        string: "Erzwinge 60 FPS",
-    },
-    "10389": {
-        string: "Erzwinge 30 FPS",
-    },
-    "10390": {
-        string: "Benutzt 60 FPS, ausser in\nintensiven Szenen.",
-    },
-    "10391": {
-        string: "Erzwinge 60FPS, auch in\nintensiven Szenen.",
-    },
-    "10392": {
-        string: "Erzwingt 30 FPS, kann bei\nDolphin-Geschwindigkeit helfen.",
-    },
-    "10393": {
-        string: "Suche die Team Größe zufällig aus.",
-    },
-    "10420": {
-        string: "Schlacht Anzahl",
-    },
-    "10421": {
-        string: "Spiele {arg integer|0 0} {arg cond messages|0 10422 10423}.",
-    },
-    "10422": {
-        string: "schlacht",
-    },
-    "10423": {
-        string: "schlachten",
-    },
-    "10424": {
-        string: "Arenen-Auswahl",
-    },
-    "10425": {
-        string: "Arenen werden individuell ausgewählt.",
-    },
-    "10426": {
-        string: "Arenen werden zufällig ausgewählt.",
-    },
-    "10427": {
-        string: "Arenen werde in\nder Reihenfolge gespielt.",
-    },
+    "2053": "Irgendetwas ist beim Lesen bzw. Schreiben der Speicherdaten schiefgegangen.",
+    "3400": "Einstellungen",
+    "3420": "CPU Schwierigkeitsgrad",
+    "3475": "Einstellungen für dieses Profil ändern",
+    "3700": "Wähle ein Level aus",
+    "3701": "Wähle eine Strecke aus",
+    "10000": "Gegen 1 Geist fahren",
+    "10001": "1 Geist zuschauen",
+    "10002": "Gegen {arg integer|0 0} Geister fahren",
+    "10003": "{arg integer|0 0} Geister zuschauen",
+    "10004": "HUD-Zeichen",
+    "10005": "Verstecken",
+    "10006": "Zeigen",
+    "10007": "HUD-Steuerelemente verstecken",
+    "10008": "HUD-Steuerelemente zeigen",
+    "10009": "16:9-Sichtfeld",
+    "10010": "Standard",
+    "10011": "Breiter",
+    "10012": "Das standardmäßige Sichtfeld im 16:9-Modus verwenden.",
+    "10013": "Breiteres 4:3 Sichtfeld im 16:9 Modus benutzen.",
+    "10014": "Kartensymbole",
+    "10015": "Charaktere",
+    "10016": "Miis",
+    "10017": "Charakter als Kartensymbole benutzen.",
+    "10018": "Miis als Kartensymbole benutzen.",
+    "10019": "Geistersortierung",
+    "10028": "Kennzeichen-Sichtbarkeit",
+    "10029": "Kein",
+    "10030": "Geschaut",
+    "10031": "Alle",
+    "10032": "Keine Geisterkennzeichen anzeigen.",
+    "10033": "Nur das Kennzeichen des zugeschautem Geist anzeigen.",
+    "10034": "Kennzeichen für alle Geister anzeigen.",
+    "10035": "Inhalt des Kennzeichens",
+    "10036": "Name",
+    "10037": "Zeit",
+    "10038": "Datum",
+    "10039": "Geister-Name als Kennzeichen benutzen.",
+    "10040": "Geister-Endzeit als Kennzeichen benutzen.",
+    "10041": "Geister-Erstelldatum als Kennzeichen benutzen.",
+    "10042": "Solide Geister",
+    "10043": "Keine Geister solide machen.",
+    "10044": "Den geschauten Geist solide machen.",
+    "10045": "Alle Geister solide machen.",
+    "10046": "Zeitfahren mit diesen Regeln fahren.",
+    "10053": "Gekürzte Zeit",
+    "10054": "Zeit-Option ohne führende Nullstellen.",
+    "10055": "Gecko-Codes werden NICHT UNTERSTÜTZT\nund wird dein Spiel zum Absturz bringen.\nDrücke A, wenn du weißt, was du tust und melde dadurch KEINE Fehler.",
+    "10056": "Menü-Übergänge",
+    "10057": "Deaktiviert",
+    "10058": "Aktiviert",
+    "10059": "Menü-Übergänge deaktivieren.",
+    "10060": "Das normale Tempo der Menü-Übergänge beibehalten.",
+    "10061": "Eingabeanzeige",
+    "10062": "Deaktivieren",
+    "10063": "Aktivieren",
+    "10064": "Während eines Rennens keine Eingaben anzeigen.",
+    "10065": "Während eines Rennens Eingaben anzeigen.",
+    "10066": "Geister Sound",
+    "10067": "Sound für alle Geister deaktivieren.",
+    "10068": "Sound für den Geist der geschaut wird, aktivieren.",
+    "10069": "Ton für alle Geister aktivieren.",
+    "10073": "Zeitfahren und andere Modi alleine spielen.",
+    "10074": "Einstellungen ändern oder den Mii ändern!",
+    "10078": "0.9x-Geschwindigkeitsfaktor.",
+    "10079": "1.0x-Geschwindigkeitsfaktor.",
+    "10080": "1.0x-Geschwindigkeitsfaktor mit gespiegelten Strecken.",
+    "10081": "1.5x-Geschwindigkeitsfaktor mit Brake Drifting und Fast Falling.",
+    "10082": "MKW-SP-Optionen",
+    "10083": "Service Pack",
+    "10087": "Aktualisierung",
+    "10088": "Kanal",
+    "10089": "Über",
+    "10090": "Durch die Installation des MKW-SP-Kanals kann man\nMKW-SP über das Wii-Menü starten\nund nicht über den Homebrew-Kanal\noder einem Exploit.\nDie Updates werden zwischen den beiden Kanälen synchronisiert.",
+    "10091": "Möchtest du den MKW-SP-Kanal Installieren?",
+    "10092": "Ein Update für den MKW-SP-Kanal ist verfügbar. Möchtest du es installieren?",
+    "10093": "Der MKW-SP-Kanal ist bereits installiert.",
+    "10094": "Eine neuere Version des MKW-SP-Kanals ist bereits installiert!",
+    "10095": "Der MKW-SP-Kanal wird installiert...",
+    "10096": "Der MKW-SP-Kanal wird aktualisiert...",
+    "10097": "Der MKW-SP-Kanal wurde erfolgreich installiert!",
+    "10098": "Die Installation des MKW-SP-Kanals ist fehlgeschlagen!",
+    "10099": "Der MKW-SP-Kanal wurde erfolgreich aktualisiert!",
+    "10100": "Die Aktualisierung des MKW-SP-Kanals ist fehlgeschlagen",
+    "10101": "Der MKW-SP-Kanal kann nur von offizielen Builds installiert werden!",
+    "10102": "Auf Updates wird geprüft...\n{arg message|0}",
+    "10103": "Eine neue Version von MKW-SP ist verfügbar!\n{arg string|0} → {arg string|1}",
+    "10104": "Die neuste Version von MKW-SP ({arg string|0})\nist bereits installiert.",
+    "10105": "Der MKW-SP-Update-Check ist fehlgeschlagen!",
+    "10106": "Möchten Sie MKW-SP auf {arg string|0} aktualisieren?\nDu benötigst {arg string|1} MiB ({arg integer|0 0} Blöcke)\nan freiem Speicherplatz im Wii-Systemspeicher.",
+    "10107": "MKW-SP wird aktualisiert...\n{arg message|0}",
+    "10108": "MKW-SP wurde erfolgreich\nvon {arg string|0} auf {arg string|1} aktualisiert.\nEin Neustart ist notwendig, damit die Aktualisierung\nangewendet werden kann.",
+    "10109": "Das MKW-SP-Update ist fehlgeschlagen",
+    "10110": "Möchtest du MKW-SP nun neustarten?",
+    "10111": "MKW-SP kann nur von offiziellen Builds aktualisiert werden!",
+    "10112": "Verbinde mit dem Server...",
+    "10113": "Versions-Informationen wird gesendet...",
+    "10114": "Versions-Informationen wird empfangen...",
+    "10115": "Inhalte werden heruntergeladen...\n{arg string|0} MiB von {arg string|1} MiB - {arg string|2} MiB/s",
+    "10116": "Inhalte werden verschoben...",
+    "10118": "Rennen",
+    "10119": "Zeitfahren",
+    "10120": "Profil",
+    "10121": "Positionstracker",
+    "10122": "GP und VS",
+    "10123": "Immer",
+    "10124": "Nur den Positionstracker in GP und VS zeigen.",
+    "10125": "Immer den Positionstracker zeigen.",
+    "10126": "Ton",
+    "10127": "Item-Musik",
+    "10128": "Keine",
+    "10129": "Nur wenn geschrumpft/zerquetscht",
+    "10130": "Alle",
+    "10131": "Items können nicht die Musik ändern.",
+    "10132": "Wende den Musikeffekt nur an, wenn geschrumpft/zerquetscht.",
+    "10133": "Lasse Sterne, Mega-Pilze und Blitze die Musik beeinflussen.",
+    "10134": "Letze Runden-Musik",
+    "10135": "Nur Gameplay",
+    "10136": "Immer",
+    "10137": "Benutze die Letze Runden-Musik nur für das Gameplay.",
+    "10138": "Benutze die Letze Runden-Musik für das Gameplay und Wiederholungen.",
+    "10139": "Letzte Runden-Schnelligkeit",
+    "10140": "Keine",
+    "10141": "Statisch",
+    "10142": "Dynamisch",
+    "10143": "Verwende die \"_N\" BRSTM in der letzten Runde.",
+    "10144": "Verwende die \"_F\" BRSTM in der letzten Runde.",
+    "10145": "Generiere die Letzte Runden-Musik von der \"_N\" BRSTM.",
+    "10146": "Speicher-Test",
+    "10147": "Welches Gerät wollen Sie testen?",
+    "10148": "Der Speicher {arg message|0} wird getestet...\n{arg message|1}",
+    "10149": "Der Speichertest für {arg message|0} war erfolgreich.\n{arg integer|0 0} KiB: R {arg string|0} MiB/s - W {arg string|1} MiB/s\n{arg integer|1 0} KiB: R {arg string|2} MiB/s - W {arg string|3} MiB/s\n{arg integer|2 0} KiB: R {arg string|4} MiB/s - W {arg string|5} MiB/s\n{arg integer|3 0} KiB: R {arg string|6} MiB/s - W {arg string|7} MiB/s",
+    "10150": "Der Speicher-Test für {arg message|0} ist fehlgeschlagen!",
+    "10151": "Wird vorbereitet...",
+    "10152": "Lese {arg integer|0 0} KiB Chunks...",
+    "10153": "Schreibe {arg integer|0 0} KiB Chunks...",
+    "10154": "SD-Karte",
+    "10155": "SD-Karte",
+    "10156": "USB-Medium",
+    "10157": "USB-Medium",
+    "10158": "Netzwerk",
+    "10159": "Netzwerk",
+    "10160": "Missionen",
+    "10161": "Spiele Missionen mit verschieden Anforderungen.",
+    "10162": "Fahre {arg integer|0 0} {arg cond messages|0 10164 10165}",
+    "10163": "Schaue {arg integer|0 0} {arg cond messages|0 10164 10165}",
+    "10164": "Geist",
+    "10165": "Geister",
+    "10166": "Vanilla-Modus",
+    "10167": "Deaktivieren",
+    "10168": "Aktivieren",
+    "10169": "Alle MKW-SP-Änderungen zulassen.",
+    "10170": "Die meisten MKW-SP-Änderungen nicht zulassen.",
+    "10171": "Zeit",
+    "10172": "Datum",
+    "10173": "Schnellste Runde",
+    "10174": "Runde 2-Tempo",
+    "10175": "Runde 3-Tempo",
+    "10176": "Sortiere die Geister nach ihrer Endzeit.",
+    "10177": "Geister nach ihrem Erstellungsdatum sortieren.",
+    "10178": "Sortiere die Geister nach ihrer schnellsten Runde.",
+    "10179": "Sortiere Geister nach ihrer Geschwindigkeit in Runde 2.",
+    "10180": "Sortiere Geister nach ihrer Geschwindigkeit in Runde 3.",
+    "10181": "Der Speichertest für {arg message|0} war erfolgreich.\nRang: {arg message|1}\n{arg integer|0 0} KiB: R {arg string|0} MiB/s - W {arg string|1} MiB/s\n{arg integer|1 0} KiB: R {arg string|2} MiB/s - W {arg string|3} MiB/s\n{arg integer|2 0} KiB: R {arg string|4} MiB/s - W {arg string|5} MiB/s\n{arg integer|3 0} KiB: R {arg string|6} MiB/s - W {arg string|7} MiB/s",
+    "10183": "Spielerkennzeichen",
+    "10185": "Zeige maximal {arg integer|0 0} {arg cond messages|0 10186 10187} gleichzeitig.",
+    "10186": "Kennzeichen",
+    "10187": "Kennzeichen",
+    "10188": "Leistungs-Overlay",
+    "10189": "Zeige keine CPU-, GPU- und Speicher-Leisten.",
+    "10190": "Zeige CPU-, GPU- und Speicher-Leisten.",
+    "10191": "GCN-Rumble",
+    "10192": "Deaktiviere die Vibrationen von GCN Controllern.",
+    "10193": "Aktiviere die Vibration von GCN Controllern.",
+    "10194": "Regions Linien Farbe",
+    "10195": "Rot",
+    "10196": "Blau",
+    "10197": "Grün",
+    "10198": "Gelb",
+    "10199": "Weiß",
+    "10200": "Rosa",
+    "10201": "Die Linie unter deinem Namen wird\n{color|player 3}red{color|unspecified}\nsein.",
+    "10202": "Die Linie unter deinem Namen wird\n{color|sp blue}blue{color|unspecified}\nsein.",
+    "10203": "Die Linie unter deinem Namen wird\n{color|sp green}green{color|unspecified}\nsein.",
+    "10204": "Die Linie unter deinem Namen wird\n{color|player 1}yellow{color|unspecified}.",
+    "10205": "Die Linie unter deinem Namen wird\nWeiß sein.",
+    "10206": "Die Linie unter deinem Namen wird\n{color|sp pink}pink{color|unspecified}\nsein.",
+    "10207": "Größe des Teams",
+    "10208": "Solo",
+    "10213": "Spiele nicht in Teams",
+    "10214": "Team Größe zu 2 Spielern limitieren.",
+    "10215": "Team Größe zu 3 Spielern limitieren.",
+    "10216": "Team Größe zu 4 Spielern limitieren.",
+    "10217": "Team Größe zu 6 Spielern limitieren.",
+    "10218": "Zufall",
+    "10224": "Anzahl der Rennen",
+    "10226": "Spiele {arg integer|0 0} {arg cond messages|0 10282 10283}.",
+    "10227": "Streckenauswahl",
+    "10228": "Zufall",
+    "10231": "Strecken werden Zufällig gewählt.",
+    "10234": "Klasse",
+    "10235": "Gemischt",
+    "10236": "150ccm",
+    "10237": "Spiegel",
+    "10238": "200ccm",
+    "10239": "Rennen sind 85% 150ccm,\n15% Spiegel.",
+    "10240": "Rennen sind immer 150ccm.",
+    "10241": "Rennen sind immer Spiegelverkehrt.",
+    "10242": "Rennen sind immer 200ccm.",
+    "10243": "Fahrzeuge",
+    "10244": "Alle",
+    "10245": "Karts",
+    "10246": "Bikes",
+    "10247": "Innen Drift",
+    "10248": "Aussen Drift",
+    "10249": "Optimal",
+    "10250": "Zufall",
+    "10251": "Erlaube alle Fahrzeuge.",
+    "10252": "Erlaube nur Karts.",
+    "10253": "Erlaube nur Bikes.",
+    "10254": "Erlaube nur Innen Driftende Fahrzeuge.",
+    "10255": "Erlaube nur Aussen Driftende Fahrzeuge.",
+    "10256": "Erlaube nur das optimale Fahrzeug\nfür jeden Charakter.",
+    "10257": "Suche zufällig eine Kombination aus\ndie zu allen Spielern passt.",
+    "10260": "Strecken werden individuell gewählt.",
+    "10261": "Strecken werden in\nder Reihenfolge gespielt.",
+    "10262": "Offline VS",
+    "10263": "Farb Pallette",
+    "10264": "Lebhaft",
+    "10265": "Farbenblind",
+    "10266": "Benutze die Lebhafte Pallette\nfür Team Farben.",
+    "10267": "Benutze die Farbenblind Pallette\nfür Team Farben.",
+    "10268": "{color|player 3}Rotes Team",
+    "10269": "{color|sp blue}Blaues Team",
+    "10270": "{color|sp green}Grünes Team",
+    "10271": "{color|player 1}Gelbes Team",
+    "10272": "{color|sp pink}Rosanes Team",
+    "10273": "Weißes Team",
+    "10274": "Teams sind nicht gerecht aufgeteilt.\n\nWähle bitte erneut.",
+    "10282": "Rennen",
+    "10283": "Rennen",
+    "10296": "HUD Team Farben",
+    "10297": "Deaktivieren",
+    "10298": "Aktivieren",
+    "10299": "Benutze immer lokale Spielerfarben\nfür die HUD Steuerung.",
+    "10300": "Benutze Team Farben für\ndie HUD Steuerung.",
+    "10301": "Vereinfachte Steuerung",
+    "10302": "Aus",
+    "10303": "nicht Exklusiv",
+    "10304": "Exklusiv",
+    "10305": "Benutze die Standard Steuerung nur\nfür Tricks oder Wheelies.",
+    "10306": "Benutze Y (GCN) oder ZL (CC/CCP)\num Tricks oder Wheelies auszuführen.",
+    "10307": "Benutze nur Y (GCN) oder ZL (CC/CCP) um\nTricks oder Wheelies auszuführen.",
+    "10308": "Tags von weit entfernten Spielern",
+    "10309": "Deaktivieren",
+    "10310": "Aktivieren",
+    "10311": "Nutze die Standard Render Distanz von\nSpieler Tags.",
+    "10312": "Erhöhe die Render Distanz von\nSpieler Tags.",
+    "10313": "Vorschau",
+    "10314": "Es wurden keine Strecken im\n/mkw-sp/thumbnails Ordner gefunden.",
+    "10315": "Debug-Overlay",
+    "10316": "Checkpoints",
+    "10317": "Deaktivieren",
+    "10318": "Aktivieren",
+    "10319": "Checkpoints nicht anzeigen.",
+    "10320": "Standard Checkpoint-Overlay",
+    "10321": "Tachometer",
+    "10322": "Interne + Bewegende Straße",
+    "10323": "Interne",
+    "10324": "XYZ",
+    "10325": "XZ",
+    "10326": "Y",
+    "10327": "Der Tachometer zeigt die\ninterne Geschwindigkeit des Fahrzeuges\nsowohl der Bewegenden Straße an.",
+    "10328": "Der Tachometer zeigt die\ninterne Geschwindigkeit des Fahrzeuges an",
+    "10329": "Der Tachometer zeigt die Geschwindigkeit\nin der das Fahrzeug sich bewegt.",
+    "10330": "Der Tachom. zeigt die Geschwindigkeit in\nder sich das Fahrzeug horizontal bewegt an",
+    "10331": "Der Tachometer zeigt die Geschwindigkeit\nin der sich das Fahrzeug vertical bewegt an.",
+    "10332": "Standard",
+    "10333": "Die Linie unter deinem Namen wird\nvom Spiel entschieden.",
+    "10334": "Region und Landesflagge",
+    "10335": "Zeige deine Flaggen und Regions\nInformationen nicht im Spiel an.",
+    "10336": "Zeige deine Flaggen und Regions\nInformationen im Spiel an.",
+    "10337": "nicht Anzeigen",
+    "10338": "Anzeigen",
+    "10339": "nicht Anzeigen",
+    "10340": "Anzeigen",
+    "10341": "Panel",
+    "10342": "Deaktivieren",
+    "10343": "Spieler",
+    "10344": "Online",
+    "10345": "Debug-Panel nicht anzeigen.",
+    "10346": "Zeige Spielerinformationen\nim Debug-Pane an.",
+    "10347": "Zeige Onlineinformationen\nim Debug-Panel an.",
+    "10348": "Visual course.kcl",
+    "10349": "Aus",
+    "10350": "Zeige nur course_model.brres an.",
+    "10351": "Overlay",
+    "10352": "Zeige über course_model.brres an.",
+    "10353": "Strecken-Model ersetzen",
+    "10354": "Verstecke course_model.brres.",
+    "10360": "Offline Schlacht",
+    "10361": "Rennen sind immer 50ccm.",
+    "10362": "Rennen sind immer 100ccm.",
+    "10365": "50ccm",
+    "10366": "100ccm",
+    "10367": "Karte",
+    "10368": "Aktivieren",
+    "10369": "Deaktivieren",
+    "10370": "Zeige die Karte auf dem HUD an.",
+    "10371": "Zeige die Karte auf dem HUD nicht an.",
+    "10372": "Lautstärke",
+    "10374": "Stelle die Lautstärke auf\n{arg integer|0 0} / 10 ein.",
+    "10375": "Musik Lautstärke",
+    "10377": "Stelle die Musik Lautstärke auf\n{arg integer|0 0} / 10 ein.",
+    "10378": "Mein Zeug",
+    "10379": "Datei Ersetzung",
+    "10380": "Aus",
+    "10381": "Nur BRSTMs",
+    "10382": "Alle",
+    "10383": "Verbiete das Dateien\nersetzt werden können.",
+    "10384": "Erlaube das ´.brstm` Dateien\nersetzt werden können.",
+    "10385": "Erlaube das alle Dateien ersetzt\nwerden können.",
+    "10386": "FPS Modus",
+    "10387": "Standard",
+    "10388": "Erzwinge 60 FPS",
+    "10389": "Erzwinge 30 FPS",
+    "10390": "Benutzt 60 FPS, ausser in\nintensiven Szenen.",
+    "10391": "Erzwinge 60FPS, auch in\nintensiven Szenen.",
+    "10392": "Erzwingt 30 FPS, kann bei\nDolphin-Geschwindigkeit helfen.",
+    "10393": "Suche die Team Größe zufällig aus.",
+    "10420": "Schlacht Anzahl",
+    "10421": "Spiele {arg integer|0 0} {arg cond messages|0 10422 10423}.",
+    "10422": "schlacht",
+    "10423": "schlachten",
+    "10424": "Arenen-Auswahl",
+    "10425": "Arenen werden individuell ausgewählt.",
+    "10426": "Arenen werden zufällig ausgewählt.",
+    "10427": "Arenen werde in\nder Reihenfolge gespielt.",
 }

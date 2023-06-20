@@ -1,482 +1,162 @@
 {
-    "2053": {
-        string: "Qualcosa è andato storto durante la lettura o la scrittura al salvataggio.",
-    },
-    "3475": {
-        string: "Cambia le impostazioni per questa patente.",
-    },
-    "10000": {
-        string: "Gareggia contro 1 fantasma",
-    },
-    "10001": {
-        string: "Guarda 1 fantasma",
-    },
-    "10002": {
-        string: "Gareggia contro {arg integer|0 0} fantasmi",
-    },
-    "10003": {
-        string: "Guarda {arg integer|0 0} fantasmi",
-    },
-    "10004": {
-        string: "Etichette HUD",
-    },
-    "10005": {
-        string: "Mostra",
-    },
-    "10006": {
-        string: "Nascondi",
-    },
-    "10007": {
-        string: "Nascondi le etichette HUD di controllo.",
-    },
-    "10008": {
-        string: "Mostra le etichette HUD di controllo.",
-    },
-    "10009": {
-        string: "Campo visivo 16:9",
-    },
-    "10010": {
-        string: "Predefinito",
-    },
-    "10011": {
-        string: "Più largo",
-    },
-    "10012": {
-        string: "Usa il campo visivo predefinito nella modalità 16:9.",
-    },
-    "10013": {
-        string: "Usa il campo visivo più largo (4:3) in modalità 16:9.",
-    },
-    "10014": {
-        string: "Icone della Minimappa",
-    },
-    "10015": {
-        string: "Personaggi",
-    },
-    "10016": {
-        string: "Mii",
-    },
-    "10017": {
-        string: "Usa i personaggi come icone della Minimappa.",
-    },
-    "10018": {
-        string: "Usa i Mii come icone della Minimappa.",
-    },
-    "10019": {
-        string: "Ordina dei fantasmi",
-    },
-    "10028": {
-        string: "Visibilità dell'Etichetta",
-    },
-    "10029": {
-        string: "Nessuno",
-    },
-    "10030": {
-        string: "Guardato",
-    },
-    "10031": {
-        string: "Tutti",
-    },
-    "10032": {
-        string: "Non mostrare alcuna etichetta dei fantasmi.",
-    },
-    "10033": {
-        string: "Mostra solo l'etichetta del fantasma guardato.",
-    },
-    "10034": {
-        string: "Mostra l'etichetta di tutti i fantasmi.",
-    },
-    "10035": {
-        string: "Contenùto delle Etichette",
-    },
-    "10036": {
-        string: "Nome",
-    },
-    "10037": {
-        string: "Tempo",
-    },
-    "10038": {
-        string: "Data",
-    },
-    "10039": {
-        string: "Usa il nome del fantasma come etichetta.",
-    },
-    "10040": {
-        string: "Usa il tempo del fantasma come etichetta.",
-    },
-    "10041": {
-        string: "Usa la data di creazione del fantasma come etichetta.",
-    },
-    "10042": {
-        string: "Fantasmi Solidi",
-    },
-    "10043": {
-        string: "Non rendere alcun fantasma solido.",
-    },
-    "10044": {
-        string: "Rendi il fantasma guardato solido.",
-    },
-    "10045": {
-        string: "Rendi tutti i fantasmi solidi.",
-    },
-    "10046": {
-        string: "Gioca le Prove a Tempo con queste regole.",
-    },
-    "10053": {
-        string: "Tempo Abbreviato",
-    },
-    "10054": {
-        string: "Opzione del tempo senza zeri iniziali.",
-    },
-    "10055": {
-        string: "I Codici Gecko non sono supportati e\nfaranno crashare il gioco. Premi A se sai\ncosa stai facendo e NON SEGNALARE\ni bug.",
-    },
-    "10056": {
-        string: "Transizione dei Menù",
-    },
-    "10057": {
-        string: "Disattiva",
-    },
-    "10058": {
-        string: "Attiva",
-    },
-    "10059": {
-        string: "Rendi le transizioni dei menù istantanei.",
-    },
-    "10060": {
-        string: "Lascia la velocità predefinità delle transizioni dei menù.",
-    },
-    "10061": {
-        string: "Visualizzatore di Comandi",
-    },
-    "10062": {
-        string: "Disattiva",
-    },
-    "10063": {
-        string: "Attiva",
-    },
-    "10064": {
-        string: "Non mostrare i comandi durante una gara.",
-    },
-    "10065": {
-        string: "Mostra i comandi durante una gara..",
-    },
-    "10066": {
-        string: "Suoni dei fantasmi",
-    },
-    "10067": {
-        string: "Non attivare alcun suono per i fantasmi.",
-    },
-    "10068": {
-        string: "Attiva i suoni solo per il fantasma che stai guardando.",
-    },
-    "10069": {
-        string: "Attiva i suoni per tutti i fantasmi.",
-    },
-    "10073": {
-        string: "Gioca le Prove a Tempo ed altre modalità in solitario.",
-    },
-    "10074": {
-        string: "Cambia le impostazioni o modifica il tuo Mii!",
-    },
-    "10078": {
-        string: "Moltiplicatore della velocità a 0.9x",
-    },
-    "10079": {
-        string: "Moltiplicatore della velocità a 1.0x",
-    },
-    "10080": {
-        string: "Moltiplicatore della velocità a 1.0x con corse specchiate.",
-    },
-    "10081": {
-        string: "Moltiplicatore della velocità a 1.5x con cadute veloci e freno in drift.",
-    },
-    "10082": {
-        string: "Opzioni di MKW-SP",
-    },
-    "10083": {
-        string: "Service Pack",
-    },
-    "10087": {
-        string: "Aggiornamento",
-    },
-    "10088": {
-        string: "Canale",
-    },
-    "10089": {
-        string: "Su MKW-SP",
-    },
-    "10090": {
-        string: "Installare il canale MKW-SP ti permette di avviare MKW-SP dal Menù Wii invece di avviarlo dal Canale Homebrew o da un exploit. Gli aggiornamenti rimarrano sincronizzati tra i due.",
-    },
-    "10091": {
-        string: "Ti piacerebbe installare il canale MKW-SP?",
-    },
-    "10092": {
-        string: "Un aggiornamento al canale MKW-SP è disponibile. Ti piacerebbe installarlo?",
-    },
-    "10093": {
-        string: "Il canale MKW-SP è già installato.",
-    },
-    "10094": {
-        string: "Una nuova versione del canale MKW-SP è già installata!",
-    },
-    "10095": {
-        string: "Installando il canale MKW-SP...",
-    },
-    "10096": {
-        string: "Aggiornando il canale MKW-SP...",
-    },
-    "10097": {
-        string: "Il canale MKW-SP è stato installato con successo!",
-    },
-    "10098": {
-        string: "L'installazione del canale MKW-SP ha fallito!",
-    },
-    "10099": {
-        string: "Il canale MKW-SP è stato aggiornato con successo!",
-    },
-    "10100": {
-        string: "L'aggiornamento del canale MKW-SP ha fallito!",
-    },
-    "10101": {
-        string: "Il canale MKW-SP si può installare solamente\nda una versione rilasciata ufficialmente!",
-    },
-    "10102": {
-        string: "Cercando degli aggiornamenti...\n{arg message|0}",
-    },
-    "10103": {
-        string: "Una nuova versione di MKW-SP è disponibile!\n{arg string|0} → {arg string|1}",
-    },
-    "10104": {
-        string: "La versione più recente di MKW-SP ({arg string|0})\nè gia installata.",
-    },
-    "10105": {
-        string: "La ricerca per un nuovo aggiornamentè ha fallito",
-    },
-    "10106": {
-        string: "Ti piacerebbe aggiornare MKW-SP alla versione {arg string|0}?\nTi serviranno {arg string|1} MiB ({arg integer|0 0} blocchi)\ndi spazio libero nella Memoria della console Wii.",
-    },
-    "10107": {
-        string: "Aggiornando MKW-SP...\n{arg message|0}",
-    },
-    "10108": {
-        string: "MKW-SP è stato aggiornato correttamente\nda {arg string|0} a {arg string|1}.\nÈ necessario un riavvio affinché\nl'aggiornamento venga applicato.",
-    },
-    "10109": {
-        string: "L'aggiornamento di MKW-SP è fallito!",
-    },
-    "10110": {
-        string: "Vuoi riavviare MKW-SP ora?",
-    },
-    "10111": {
-        string: "MKW-SP può solamente essere aggiornato da\nuna versione rilasciata ufficialmente!",
-    },
-    "10112": {
-        string: "Connessione al server in corso...",
-    },
-    "10113": {
-        string: "Inviando informazioni sulla versione...",
-    },
-    "10114": {
-        string: "Ricevendo informazioni sulla versione...",
-    },
-    "10115": {
-        string: "Scaricando contenuti...\n{arg string|0} di {arg string|1} MiB - {arg string|2} MiB/s",
-    },
-    "10116": {
-        string: "Muovendo contenuti...",
-    },
-    "10118": {
-        string: "Gara",
-    },
-    "10119": {
-        string: "Prove a tempo",
-    },
-    "10120": {
-        string: "Patente",
-    },
-    "10121": {
-        string: "Posizione",
-    },
-    "10122": {
-        string: "Grand Prix e VS",
-    },
-    "10123": {
-        string: "Sempre",
-    },
-    "10124": {
-        string: "Mostra la posizione solamente in Grand Prix e VS.",
-    },
-    "10125": {
-        string: "Mostra sempre la posizione.",
-    },
-    "10126": {
-        string: "Suono",
-    },
-    "10127": {
-        string: "Musica degli Oggetti",
-    },
-    "10128": {
-        string: "Nessuno",
-    },
-    "10129": {
-        string: "Solo Piccolo/Schiacciato",
-    },
-    "10130": {
-        string: "Tutti",
-    },
-    "10131": {
-        string: "Non permettere agli Oggetti di modificare la musica.",
-    },
-    "10132": {
-        string: "Applica solamente l'effetto di quando sei piccolo/schiacciato.",
-    },
-    "10133": {
-        string: "Permetti a Stelle, Mega funghi e Fulmini di modificare la musica.",
-    },
-    "10134": {
-        string: "Suono dell'ultimo giro",
-    },
-    "10135": {
-        string: "Solo Gameplay",
-    },
-    "10136": {
-        string: "Sempre",
-    },
-    "10137": {
-        string: "Usa il suono dell'ultimo giro solamente per il gameplay.",
-    },
-    "10138": {
-        string: "Usa il suono dell'ultimo giro per il gameplay e per i replay.",
-    },
-    "10139": {
-        string: "Accelerazione dell'ultimo giro",
-    },
-    "10140": {
-        string: "Nessuna",
-    },
-    "10141": {
-        string: "Statica",
-    },
-    "10142": {
-        string: "Dinamica",
-    },
-    "10143": {
-        string: "Usa il BRSTM \"_N\" nell'ultimo giro.",
-    },
-    "10144": {
-        string: "Usa il BRSTM \"_F\" nell'ultimo giro.",
-    },
-    "10145": {
-        string: "Genera la musica dell'ultimo giro dal BRSTM \"_N\".",
-    },
-    "10146": {
-        string: "Prova di Archiviazione",
-    },
-    "10147": {
-        string: "Che dispositivo vuoi provare?",
-    },
-    "10148": {
-        string: "Provando l'archiviazione {arg message|0}...\n{arg message|1}",
-    },
-    "10149": {
-        string: "La prova di archiviazione {arg message|0}\nè stata completata con successo.\n(L = Lettura, S = Scrittura)\n{arg integer|0 0} KiB: L {arg string|0} MiB/s - S {arg string|1} MiB/s\n{arg integer|1 0} KiB: L {arg string|2} MiB/s - S {arg string|3} MiB/s\n{arg integer|2 0} KiB: L {arg string|4} MiB/s - S {arg string|5} MiB/s\n{arg integer|3 0} KiB: L {arg string|6} MiB/s - S {arg string|7} MiB/s",
-    },
-    "10150": {
-        string: "La prova di archiviazione {arg message|0} è fallita!",
-    },
-    "10151": {
-        string: "Inizializzando...",
-    },
-    "10152": {
-        string: "Leggendo blocchi di {arg integer|0 0} KiB...",
-    },
-    "10153": {
-        string: "Scrivendo blocchi di {arg integer|0 0} KiB...",
-    },
-    "10154": {
-        string: "Scheda SD",
-    },
-    "10155": {
-        string: "scheda SD",
-    },
-    "10156": {
-        string: "Memoria USB",
-    },
-    "10157": {
-        string: "memoria USB",
-    },
-    "10158": {
-        string: "Network",
-    },
-    "10159": {
-        string: "network",
-    },
-    "10160": {
-        string: "Missioni",
-    },
-    "10161": {
-        string: "Gioca missioni con vari obiettivi.",
-    },
-    "10162": {
-        string: "Gareggia {arg integer|0 0} {arg cond messages|0 10164 10165}",
-    },
-    "10163": {
-        string: "Vedi {arg integer|0 0} {arg cond messages|0 10164 10165}",
-    },
-    "10164": {
-        string: "fantasma",
-    },
-    "10165": {
-        string: "fantasmi",
-    },
-    "10166": {
-        string: "Modalità Originale",
-    },
-    "10167": {
-        string: "Disattiva",
-    },
-    "10168": {
-        string: "Attiva",
-    },
-    "10169": {
-        string: "Permetti tutti i cambiamenti di MKW-SP.",
-    },
-    "10170": {
-        string: "Non premettere la maggior parte dei cambiamenti di MKW-SP.",
-    },
-    "10171": {
-        string: "Tempo",
-    },
-    "10172": {
-        string: "Data",
-    },
-    "10173": {
-        string: "Giro migliore",
-    },
-    "10174": {
-        string: "Andatura Giro 2",
-    },
-    "10175": {
-        string: "Andatura Giro 3",
-    },
-    "10176": {
-        string: "Ordina i fantasmi rispetto al loro tempo di fine.",
-    },
-    "10177": {
-        string: "Ordina i fantasmi rispetto alla loro data di creazione.",
-    },
-    "10178": {
-        string: "Ordina i fantasmi rispetto al loro giro migliore.",
-    },
-    "10179": {
-        string: "Ordina i fantasmi rispetto alla loro andatura entrando nel giro 2.",
-    },
-    "10180": {
-        string: "Ordina i fantasmi rispetto alla loro andatura entrando nel giro 3.",
-    },
-    "10181": {
-        string: "La prova di archiviazione {arg message|0}\nè stata completata con successo.\nClasse: {arg message|1}\n(L = Lettura, S = Scrittura)\n{arg integer|0 0} KiB: L {arg string|0} MiB/s - S {arg string|1} MiB/s\n{arg integer|1 0} KiB: L {arg string|2} MiB/s - S {arg string|3} MiB/s\n{arg integer|2 0} KiB: L {arg string|4} MiB/s - S {arg string|5} MiB/s\n{arg integer|3 0} KiB: L {arg string|6} MiB/s - S {arg string|7} MiB/s",
-    },
+    "2053": "Qualcosa è andato storto durante la lettura o la scrittura al salvataggio.",
+    "3475": "Cambia le impostazioni per questa patente.",
+    "10000": "Gareggia contro 1 fantasma",
+    "10001": "Guarda 1 fantasma",
+    "10002": "Gareggia contro {arg integer|0 0} fantasmi",
+    "10003": "Guarda {arg integer|0 0} fantasmi",
+    "10004": "Etichette HUD",
+    "10005": "Mostra",
+    "10006": "Nascondi",
+    "10007": "Nascondi le etichette HUD di controllo.",
+    "10008": "Mostra le etichette HUD di controllo.",
+    "10009": "Campo visivo 16:9",
+    "10010": "Predefinito",
+    "10011": "Più largo",
+    "10012": "Usa il campo visivo predefinito nella modalità 16:9.",
+    "10013": "Usa il campo visivo più largo (4:3) in modalità 16:9.",
+    "10014": "Icone della Minimappa",
+    "10015": "Personaggi",
+    "10016": "Mii",
+    "10017": "Usa i personaggi come icone della Minimappa.",
+    "10018": "Usa i Mii come icone della Minimappa.",
+    "10019": "Ordina dei fantasmi",
+    "10028": "Visibilità dell'Etichetta",
+    "10029": "Nessuno",
+    "10030": "Guardato",
+    "10031": "Tutti",
+    "10032": "Non mostrare alcuna etichetta dei fantasmi.",
+    "10033": "Mostra solo l'etichetta del fantasma guardato.",
+    "10034": "Mostra l'etichetta di tutti i fantasmi.",
+    "10035": "Contenùto delle Etichette",
+    "10036": "Nome",
+    "10037": "Tempo",
+    "10038": "Data",
+    "10039": "Usa il nome del fantasma come etichetta.",
+    "10040": "Usa il tempo del fantasma come etichetta.",
+    "10041": "Usa la data di creazione del fantasma come etichetta.",
+    "10042": "Fantasmi Solidi",
+    "10043": "Non rendere alcun fantasma solido.",
+    "10044": "Rendi il fantasma guardato solido.",
+    "10045": "Rendi tutti i fantasmi solidi.",
+    "10046": "Gioca le Prove a Tempo con queste regole.",
+    "10053": "Tempo Abbreviato",
+    "10054": "Opzione del tempo senza zeri iniziali.",
+    "10055": "I Codici Gecko non sono supportati e\nfaranno crashare il gioco. Premi A se sai\ncosa stai facendo e NON SEGNALARE\ni bug.",
+    "10056": "Transizione dei Menù",
+    "10057": "Disattiva",
+    "10058": "Attiva",
+    "10059": "Rendi le transizioni dei menù istantanei.",
+    "10060": "Lascia la velocità predefinità delle transizioni dei menù.",
+    "10061": "Visualizzatore di Comandi",
+    "10062": "Disattiva",
+    "10063": "Attiva",
+    "10064": "Non mostrare i comandi durante una gara.",
+    "10065": "Mostra i comandi durante una gara..",
+    "10066": "Suoni dei fantasmi",
+    "10067": "Non attivare alcun suono per i fantasmi.",
+    "10068": "Attiva i suoni solo per il fantasma che stai guardando.",
+    "10069": "Attiva i suoni per tutti i fantasmi.",
+    "10073": "Gioca le Prove a Tempo ed altre modalità in solitario.",
+    "10074": "Cambia le impostazioni o modifica il tuo Mii!",
+    "10078": "Moltiplicatore della velocità a 0.9x",
+    "10079": "Moltiplicatore della velocità a 1.0x",
+    "10080": "Moltiplicatore della velocità a 1.0x con corse specchiate.",
+    "10081": "Moltiplicatore della velocità a 1.5x con cadute veloci e freno in drift.",
+    "10082": "Opzioni di MKW-SP",
+    "10083": "Service Pack",
+    "10087": "Aggiornamento",
+    "10088": "Canale",
+    "10089": "Su MKW-SP",
+    "10090": "Installare il canale MKW-SP ti permette di avviare MKW-SP dal Menù Wii invece di avviarlo dal Canale Homebrew o da un exploit. Gli aggiornamenti rimarrano sincronizzati tra i due.",
+    "10091": "Ti piacerebbe installare il canale MKW-SP?",
+    "10092": "Un aggiornamento al canale MKW-SP è disponibile. Ti piacerebbe installarlo?",
+    "10093": "Il canale MKW-SP è già installato.",
+    "10094": "Una nuova versione del canale MKW-SP è già installata!",
+    "10095": "Installando il canale MKW-SP...",
+    "10096": "Aggiornando il canale MKW-SP...",
+    "10097": "Il canale MKW-SP è stato installato con successo!",
+    "10098": "L'installazione del canale MKW-SP ha fallito!",
+    "10099": "Il canale MKW-SP è stato aggiornato con successo!",
+    "10100": "L'aggiornamento del canale MKW-SP ha fallito!",
+    "10101": "Il canale MKW-SP si può installare solamente\nda una versione rilasciata ufficialmente!",
+    "10102": "Cercando degli aggiornamenti...\n{arg message|0}",
+    "10103": "Una nuova versione di MKW-SP è disponibile!\n{arg string|0} → {arg string|1}",
+    "10104": "La versione più recente di MKW-SP ({arg string|0})\nè gia installata.",
+    "10105": "La ricerca per un nuovo aggiornamentè ha fallito",
+    "10106": "Ti piacerebbe aggiornare MKW-SP alla versione {arg string|0}?\nTi serviranno {arg string|1} MiB ({arg integer|0 0} blocchi)\ndi spazio libero nella Memoria della console Wii.",
+    "10107": "Aggiornando MKW-SP...\n{arg message|0}",
+    "10108": "MKW-SP è stato aggiornato correttamente\nda {arg string|0} a {arg string|1}.\nÈ necessario un riavvio affinché\nl'aggiornamento venga applicato.",
+    "10109": "L'aggiornamento di MKW-SP è fallito!",
+    "10110": "Vuoi riavviare MKW-SP ora?",
+    "10111": "MKW-SP può solamente essere aggiornato da\nuna versione rilasciata ufficialmente!",
+    "10112": "Connessione al server in corso...",
+    "10113": "Inviando informazioni sulla versione...",
+    "10114": "Ricevendo informazioni sulla versione...",
+    "10115": "Scaricando contenuti...\n{arg string|0} di {arg string|1} MiB - {arg string|2} MiB/s",
+    "10116": "Muovendo contenuti...",
+    "10118": "Gara",
+    "10119": "Prove a tempo",
+    "10120": "Patente",
+    "10121": "Posizione",
+    "10122": "Grand Prix e VS",
+    "10123": "Sempre",
+    "10124": "Mostra la posizione solamente in Grand Prix e VS.",
+    "10125": "Mostra sempre la posizione.",
+    "10126": "Suono",
+    "10127": "Musica degli Oggetti",
+    "10128": "Nessuno",
+    "10129": "Solo Piccolo/Schiacciato",
+    "10130": "Tutti",
+    "10131": "Non permettere agli Oggetti di modificare la musica.",
+    "10132": "Applica solamente l'effetto di quando sei piccolo/schiacciato.",
+    "10133": "Permetti a Stelle, Mega funghi e Fulmini di modificare la musica.",
+    "10134": "Suono dell'ultimo giro",
+    "10135": "Solo Gameplay",
+    "10136": "Sempre",
+    "10137": "Usa il suono dell'ultimo giro solamente per il gameplay.",
+    "10138": "Usa il suono dell'ultimo giro per il gameplay e per i replay.",
+    "10139": "Accelerazione dell'ultimo giro",
+    "10140": "Nessuna",
+    "10141": "Statica",
+    "10142": "Dinamica",
+    "10143": "Usa il BRSTM \"_N\" nell'ultimo giro.",
+    "10144": "Usa il BRSTM \"_F\" nell'ultimo giro.",
+    "10145": "Genera la musica dell'ultimo giro dal BRSTM \"_N\".",
+    "10146": "Prova di Archiviazione",
+    "10147": "Che dispositivo vuoi provare?",
+    "10148": "Provando l'archiviazione {arg message|0}...\n{arg message|1}",
+    "10149": "La prova di archiviazione {arg message|0}\nè stata completata con successo.\n(L = Lettura, S = Scrittura)\n{arg integer|0 0} KiB: L {arg string|0} MiB/s - S {arg string|1} MiB/s\n{arg integer|1 0} KiB: L {arg string|2} MiB/s - S {arg string|3} MiB/s\n{arg integer|2 0} KiB: L {arg string|4} MiB/s - S {arg string|5} MiB/s\n{arg integer|3 0} KiB: L {arg string|6} MiB/s - S {arg string|7} MiB/s",
+    "10150": "La prova di archiviazione {arg message|0} è fallita!",
+    "10151": "Inizializzando...",
+    "10152": "Leggendo blocchi di {arg integer|0 0} KiB...",
+    "10153": "Scrivendo blocchi di {arg integer|0 0} KiB...",
+    "10154": "Scheda SD",
+    "10155": "scheda SD",
+    "10156": "Memoria USB",
+    "10157": "memoria USB",
+    "10158": "Network",
+    "10159": "network",
+    "10160": "Missioni",
+    "10161": "Gioca missioni con vari obiettivi.",
+    "10162": "Gareggia {arg integer|0 0} {arg cond messages|0 10164 10165}",
+    "10163": "Vedi {arg integer|0 0} {arg cond messages|0 10164 10165}",
+    "10164": "fantasma",
+    "10165": "fantasmi",
+    "10166": "Modalità Originale",
+    "10167": "Disattiva",
+    "10168": "Attiva",
+    "10169": "Permetti tutti i cambiamenti di MKW-SP.",
+    "10170": "Non premettere la maggior parte dei cambiamenti di MKW-SP.",
+    "10171": "Tempo",
+    "10172": "Data",
+    "10173": "Giro migliore",
+    "10174": "Andatura Giro 2",
+    "10175": "Andatura Giro 3",
+    "10176": "Ordina i fantasmi rispetto al loro tempo di fine.",
+    "10177": "Ordina i fantasmi rispetto alla loro data di creazione.",
+    "10178": "Ordina i fantasmi rispetto al loro giro migliore.",
+    "10179": "Ordina i fantasmi rispetto alla loro andatura entrando nel giro 2.",
+    "10180": "Ordina i fantasmi rispetto alla loro andatura entrando nel giro 3.",
+    "10181": "La prova di archiviazione {arg message|0}\nè stata completata con successo.\nClasse: {arg message|1}\n(L = Lettura, S = Scrittura)\n{arg integer|0 0} KiB: L {arg string|0} MiB/s - S {arg string|1} MiB/s\n{arg integer|1 0} KiB: L {arg string|2} MiB/s - S {arg string|3} MiB/s\n{arg integer|2 0} KiB: L {arg string|4} MiB/s - S {arg string|5} MiB/s\n{arg integer|3 0} KiB: L {arg string|6} MiB/s - S {arg string|7} MiB/s",
 }

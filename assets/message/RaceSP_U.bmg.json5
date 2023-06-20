@@ -1,16 +1,8 @@
 {
-    "10047": {
-        string: "Saving ghost data...",
-    },
-    "10048": {
-        string: "{arg integer|0 4}-{arg integer|1 2}-{arg integer|2 2}",
-    },
-    "10070": {
-        string: "Ghost data will be truncated.",
-    },
-    "10071": {
-        string: "{arg integer|0 0}:{arg integer|1 0}.{arg integer|2 3}",
-    },
+    "10047": "Saving ghost data...",
+    "10048": "{arg integer|0 4}-{arg integer|1 2}-{arg integer|2 2}",
+    "10070": "Ghost data will be truncated.",
+    "10071": "{arg integer|0 0}:{arg integer|1 0}.{arg integer|2 3}",
     "10275": {
         string: "{color|player 3}{arg integer|0 0}",
         font: "red",
@@ -39,60 +31,24 @@
         string: "{arg integer|0 0}",
         font: "blue",
     },
-    "10284": {
-        string: "{color|player 3}The red team wins!",
-    },
-    "10285": {
-        string: "{color|sp blue}The blue team wins!",
-    },
-    "10286": {
-        string: "{color|sp green}The green team wins!",
-    },
-    "10287": {
-        string: "{color|player 1}The yellow team wins!",
-    },
-    "10288": {
-        string: "{color|sp pink}The pink team wins!",
-    },
-    "10289": {
-        string: "The white team wins!",
-    },
-    "10290": {
-        string: "{color|player 3}{arg message|0} - {arg integer|0 0}{arg cond messages|0 1316 1317}",
-    },
-    "10291": {
-        string: "{color|sp blue}{arg message|0} - {arg integer|0 0}{arg cond messages|0 1316 1317}",
-    },
-    "10292": {
-        string: "{color|sp green}{arg message|0} - {arg integer|0 0}{arg cond messages|0 1316 1317}",
-    },
-    "10293": {
-        string: "{color|player 1}{arg message|0} - {arg integer|0 0}{arg cond messages|0 1316 1317}",
-    },
-    "10294": {
-        string: "{color|sp pink}{arg message|0} - {arg integer|0 0}{arg cond messages|0 1316 1317}",
-    },
-    "10295": {
-        string: "{arg message|0} - {arg integer|0 0}{arg cond messages|0 1316 1317}",
-    },
-    "10393": {
-        string: "{color|player 3}{arg integer|0 0}",
-    },
-    "10394": {
-        string: "{color|sp blue}{arg integer|0 0}",
-    },
-    "10395": {
-        string: "{color|sp green}{arg integer|0 0}",
-    },
-    "10396": {
-        string: "{color|player 1}{arg integer|0 0}",
-    },
-    "10397": {
-        string: "{color|sp pink}{arg integer|0 0}",
-    },
-    "10398": {
-        string: "{arg integer|0 0}",
-    },
+    "10284": "{color|player 3}The red team wins!",
+    "10285": "{color|sp blue}The blue team wins!",
+    "10286": "{color|sp green}The green team wins!",
+    "10287": "{color|player 1}The yellow team wins!",
+    "10288": "{color|sp pink}The pink team wins!",
+    "10289": "The white team wins!",
+    "10290": "{color|player 3}{arg message|0} - {arg integer|0 0}{arg cond messages|0 1316 1317}",
+    "10291": "{color|sp blue}{arg message|0} - {arg integer|0 0}{arg cond messages|0 1316 1317}",
+    "10292": "{color|sp green}{arg message|0} - {arg integer|0 0}{arg cond messages|0 1316 1317}",
+    "10293": "{color|player 1}{arg message|0} - {arg integer|0 0}{arg cond messages|0 1316 1317}",
+    "10294": "{color|sp pink}{arg message|0} - {arg integer|0 0}{arg cond messages|0 1316 1317}",
+    "10295": "{arg message|0} - {arg integer|0 0}{arg cond messages|0 1316 1317}",
+    "10393": "{color|player 3}{arg integer|0 0}",
+    "10394": "{color|sp blue}{arg integer|0 0}",
+    "10395": "{color|sp green}{arg integer|0 0}",
+    "10396": "{color|player 1}{arg integer|0 0}",
+    "10397": "{color|sp pink}{arg integer|0 0}",
+    "10398": "{arg integer|0 0}",
     "10399": {
         string: "{color|player 3}{arg signed integer|0 0}",
         font: "red",
@@ -121,18 +77,10 @@
         string: "{arg signed integer|0 0}",
         font: "blue",
     },
-    "10406": {
-        string: "{color|player 1}{arg integer|0 0}",
-    },
-    "10407": {
-        string: "{color|player 2}{arg integer|0 0}",
-    },
-    "10408": {
-        string: "{color|player 3}{arg integer|0 0}",
-    },
-    "10409": {
-        string: "{color|player 4}{arg integer|0 0}",
-    },
+    "10406": "{color|player 1}{arg integer|0 0}",
+    "10407": "{color|player 2}{arg integer|0 0}",
+    "10408": "{color|player 3}{arg integer|0 0}",
+    "10409": "{color|player 4}{arg integer|0 0}",
     "10410": {
         string: "{color|player 1}{arg integer|0 0}",
         font: "red",
@@ -165,10 +113,6 @@
         string: "{color|player 4}{arg signed integer|0 0}",
         font: "red",
     },
-    "10418": {
-        string: "Save State",
-    },
-    "10419": {
-        string: "Load State",
-    },
+    "10418": "Save State",
+    "10419": "Load State",
 }

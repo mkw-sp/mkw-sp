@@ -1,4103 +1,1369 @@
 {
-    "1": {
-        string: null,
-    },
-    "2000": {
-        string: "Oké",
-    },
-    "2001": {
-        string: "←{arg back button|0}Terug",
-    },
-    "2002": {
-        string: "Ja",
-    },
-    "2003": {
-        string: "Nee",
-    },
-    "2004": {
-        string: null,
-    },
-    "2005": {
-        string: "→",
-    },
-    "2006": {
-        string: null,
-    },
-    "2007": {
-        string: "←",
-    },
-    "2008": {
-        string: null,
-    },
-    "2009": {
-        string: "{arg integer|0 0}/{arg integer|1 0}",
-    },
-    "2010": {
-        string: "Mario Kart Wii",
-    },
-    "2011": {
-        string: "Één speler",
-    },
-    "2012": {
-        string: "Meerdere spelers",
-    },
-    "2013": {
-        string: "Nintendo WFC",
-    },
-    "2014": {
-        string: "Mario Kart-kanaal",
-    },
-    "2015": {
-        string: "Rijbewijsinstellingen",
-    },
-    "2016": {
-        string: "Records",
-    },
-    "2017": {
-        string: "Druk op de A-knop",
-    },
-    "2018": {
-        string: "Hoofdmenu",
-    },
-    "2019": {
-        string: null,
-    },
-    "2020": {
-        string: "Grand Prix en meer voor één speler!",
-    },
-    "2021": {
-        string: "Race en vecht met twee spelers!",
-    },
-    "2022": {
-        string: "Race en vecht met drie spelers!",
-    },
-    "2023": {
-        string: "Race en vecht met vier spelers!",
-    },
-    "2024": {
-        string: "Speel via Nintendo WFC!",
-    },
-    "2025": {
-        string: "Speel met een vriend via Nintendo WFC",
-    },
-    "2026": {
-        string: "Bekijk de ranglijsten en competitiegegevens!",
-    },
-    "2027": {
-        string: "Bekijk je records en verander jouw Mii!",
-    },
-    "2028": {
-        string: null,
-    },
-    "2029": {
-        string: null,
-    },
-    "2030": {
-        string: "Meerdere spelers (2S)",
-    },
-    "2031": {
-        string: "Meerdere spelers (3S)",
-    },
-    "2032": {
-        string: "Meerdere spelers (4S)",
-    },
-    "2033": {
-        string: "Nintendo WFC (1S)",
-    },
-    "2034": {
-        string: "Nintendo WFC (2S)",
-    },
-    "2035": {
-        string: null,
-    },
-    "2050": {
-        string: "Steek de Mario Kart Wii-schijf\nin het Wii-systeem en\nwacht tot het spel geladen is.",
-    },
-    "2051": {
-        string: "De schijf kon niet gelezen worden.\nLees de Wii-handleiding voor\nmeer informatie.",
-    },
-    "2052": {
-        string: "Er is een fout opgetreden.\n\nDruk op de EJECT-knop, verwijder\nde schijf, en zet het Wii-systeem\nuit. Lees de Wii-handleiding voor\nmeer informatie.",
-    },
-    "2053": {
-        string: "Er is niet genoeg vrije ruimte beschikbaar\nin het Wii-geheugen. Zorg voor\n23 vrije blokken door gegevens\nte kopiëren naar een SD-kaart of\ndoor blokken te verwijderen.",
-    },
-    "2054": {
-        string: "Het Wii-geheugen is beschadigd.\nLees de Wii-handleiding\nvoor meer informatie.",
-    },
-    "2055": {
-        string: "Deze gegevens zijn beschadigd en\nkunnen niet worden gebruikt.\n\nWil je de beschadigde gegevens\nverwijderen en een nieuw bestand maken?",
-    },
-    "2056": {
-        string: null,
-    },
-    "2057": {
-        string: "Er kan niet van/naar het Wii-geheugen\ngelezen/geschreven worden.\n\nLees de Wii-handleiding voor meer informatie.",
-    },
-    "2058": {
-        string: "Je zal nu terugkeren naar het Wii-menu.",
-    },
-    "2059": {
-        string: "Verdergaan zonder opslaan",
-    },
-    "2060": {
-        string: "Terug naar het Wii-menu",
-    },
-    "2061": {
-        string: "Je kan dit menu niet kiezen omdat\ner geen opgeslagen gegevens zijn.",
-    },
-    "2062": {
-        string: "Er kan niet vanaf het geheugen\nworden gelezen. Steek de Mario Kart\nWii-schijf in de Wii.",
-    },
-    "2063": {
-        string: "Start schijf",
-    },
-    "2064": {
-        string: "Je zal nu terugkeren\nnaar het Wii-menu.\nIs dit oké?",
-    },
-    "2065": {
-        string: "Bezig met opslaan. Druk niet\nop de POWER- of RESET-knop.",
-    },
-    "2066": {
-        string: "Kan de Mii-kanaalgegevens niet laden.\nOpen het Mii-kanaal en\ncontroleer de gegevens.",
-    },
-    "2067": {
-        string: "Als je deze Mii uit het\nMii-kanaal verwijdert, zal het ook\nin Mario Kart Wii worden verwijderd, dus\nwees voorzichtig.",
-    },
-    "2068": {
-        string: "Je rijbewijs werd gemaakt met een\ngast-Mii. Je kan een nieuwe Mii\nmaken in het Mii-kanaal.",
-    },
-    "2069": {
-        string: "De geestgegevens kunnen niet\nworden verzonden. Je kunt tot vijf\nuitdagingen verzenden per keer dat je speelt.\n\nWacht a.u.b. tot de volgende keer\ndat je Mario Kart Wii opstart om\nnog een uitdaging te verzenden.",
-    },
-    "2070": {
-        string: "Er kan geen verbinding worden gemaakt\nmet de Nintendo Wi-Fi Connectie. Er zijn\ngeen opgeslagen gegevens.\n\nJe kan het Wii-geheugen beheren\nop het opgeslagen gegevens-scherm van\nde Wii-instellingen.",
-    },
-    "2071": {
-        string: "Er is niet genoeg ruimte beschikbaar\nin het Wii-geheugen. Verplaats gegevens\nnaar een SD-kaart of verwijder gegevens\nop het Opgeslagen gegevens-scherm.",
-    },
-    "2072": {
-        string: "De verbinding met Nintendo\nWFC zal nu worden verbroken en je\nzal terugkeren naar het hoofdmenu.",
-    },
-    "2073": {
-        string: "De landinstelling is veranderd, dus moeten\ner nieuwe gegevens worden gemaakt. Als\nje jouw gegevens niet wilt verliezen, keer\ndan terug naar het Wii-menu en verander\nde instelling terug.",
-    },
-    "2074": {
-        string: "Maak nieuwe gegevens aan",
-    },
-    "2075": {
-        string: null,
-    },
-    "2100": {
-        string: null,
-    },
-    "2101": {
-        string: "Een nieuw Mario Kart Wii-\nrijbewijs wordt gemaakt.",
-    },
-    "2102": {
-        string: "Nieuw rijbewijs",
-    },
-    "2103": {
-        string: "Verwijder rijbewijs",
-    },
-    "2104": {
-        string: "Selecteer rijbewijs",
-    },
-    "2105": {
-        string: null,
-    },
-    "2106": {
-        string: null,
-    },
-    "2107": {
-        string: null,
-    },
-    "2108": {
-        string: null,
-    },
-    "2109": {
-        string: null,
-    },
-    "2110": {
-        string: "{arg integer|0 4}-{arg integer|1 4}-{arg integer|2 4}",
-    },
-    "2111": {
-        string: "Een nieuw rijbewijs zal worden\ngecreëerd voor {arg player|0}.\n\nIs dit oké?",
-    },
-    "2112": {
-        string: "De Mii van dit rijbewijs zal worden\nveranderd naar {arg player|0}.\n\nIs dit oké?",
-    },
-    "2113": {
-        string: "{current player|} en {arg player|0}\nzullen samen verbinden met\nNintendo WFC. Is dit oké?",
-    },
-    "2114": {
-        string: null,
-    },
-    "2120": {
-        string: "Records",
-    },
-    "2121": {
-        string: "Bekijk de records van {current player|}.",
-    },
-    "2122": {
-        string: "Verander de Mii van dit rijbewijs.",
-    },
-    "2123": {
-        string: "Kies een Mii",
-    },
-    "2124": {
-        string: null,
-    },
-    "2125": {
-        string: null,
-    },
-    "2126": {
-        string: null,
-    },
-    "2127": {
-        string: null,
-    },
-    "2128": {
-        string: "Verwijder het rijbewijs van {current player|}.",
-    },
-    "2129": {
-        string: null,
-    },
-    "2130": {
-        string: null,
-    },
-    "2131": {
-        string: null,
-    },
-    "2132": {
-        string: null,
-    },
-    "2133": {
-        string: null,
-    },
-    "2134": {
-        string: null,
-    },
-    "2135": {
-        string: "Sluit",
-    },
-    "2136": {
-        string: null,
-    },
-    "2150": {
-        string: null,
-    },
-    "2151": {
-        string: "Jouw nieuwe rijbewijs is gemaakt.",
-    },
-    "2152": {
-        string: "Weet je zeker dat je het rijbewijs\nvan {current player|} wilt verwijderen?",
-    },
-    "2153": {
-        string: "Het rijbewijs van {current player|}\nis verwijderd.",
-    },
-    "2154": {
-        string: null,
-    },
-    "2155": {
-        string: "De Mii voor dit rijbewijs is veranderd.",
-    },
-    "2156": {
-        string: null,
-    },
-    "2157": {
-        string: "Rijbewijs aan het verwijderen...",
-    },
-    "2158": {
-        string: "De vriendenlijst, geesten en\nandere gegevens zullen worden\nverwijderd. Weet je zeker dat je door wilt gaan?",
-    },
-    "2159": {
-        string: null,
-    },
-    "2200": {
-        string: "Verander Mii",
-    },
-    "2201": {
-        string: "Kies een Mii",
-    },
-    "2202": {
-        string: "Wii-console",
-    },
-    "2203": {
-        string: "Gast",
-    },
-    "2204": {
-        string: null,
-    },
-    "2205": {
-        string: "De Mii van dit rijbewijs is verwijderd\nvan het Mii-kanaal.\n\nKies een nieuwe Mii.",
-    },
-    "2206": {
-        string: null,
-    },
-    "2207": {
-        string: null,
-    },
-    "2208": {
-        string: null,
-    },
-    "2209": {
-        string: null,
-    },
-    "2210": {
-        string: null,
-    },
-    "2250": {
-        string: null,
-    },
-    "2251": {
-        string: null,
-    },
-    "2252": {
-        string: null,
-    },
-    "2253": {
-        string: null,
-    },
-    "2254": {
-        string: null,
-    },
-    "2255": {
-        string: null,
-    },
-    "2256": {
-        string: null,
-    },
-    "2257": {
-        string: null,
-    },
-    "2258": {
-        string: "De batterij is\nbijna leeg.",
-    },
-    "2259": {
-        string: null,
-    },
-    "2260": {
-        string: null,
-    },
-    "2261": {
-        string: null,
-    },
-    "2262": {
-        string: null,
-    },
-    "2300": {
-        string: null,
-    },
-    "2301": {
-        string: "1\nspeler",
-    },
-    "2302": {
-        string: "2\nspelers",
-    },
-    "2303": {
-        string: "3\nspelers",
-    },
-    "2304": {
-        string: "4\nspelers",
-    },
-    "2305": {
-        string: "{2 chars| }",
-    },
-    "2306": {
-        string: "{2 chars| }",
-    },
-    "2307": {
-        string: null,
-    },
-    "2400": {
-        string: null,
-    },
-    "2401": {
-        string: "Voeg controllers toe",
-    },
-    "2402": {
-        string: "Druk op A-knop op de controller van\nspeler 2.",
-    },
-    "2403": {
-        string: "Druk op A-knop op de controller van\nspeler 3.",
-    },
-    "2404": {
-        string: "Druk op A-knop op de controller van\nspeler 4.",
-    },
-    "2405": {
-        string: null,
-    },
-    "2406": {
-        string: null,
-    },
-    "2407": {
-        string: null,
-    },
-    "2408": {
-        string: null,
-    },
-    "2409": {
-        string: null,
-    },
-    "2500": {
-        string: "Is dit oké?",
-    },
-    "2501": {
-        string: "Verander",
-    },
-    "2502": {
-        string: "Druk op A-knop op de controller van\nspeler 1.",
-    },
-    "2503": {
-        string: "Druk op A-knop op de controller van\nspeler 2.",
-    },
-    "2504": {
-        string: "Druk op A-knop op de controller van\nspeler 3.",
-    },
-    "2505": {
-        string: "Druk op A-knop op de controller van\nspeler 4.",
-    },
-    "2506": {
-        string: "Gebruik deze controllers.",
-    },
-    "2507": {
-        string: "Verander de controllers.",
-    },
-    "2508": {
-        string: "{arg message|0}Voeg Wii-afstandsbediening toe",
-    },
-    "2509": {
-        string: "Druk tegelijkertijd op {1 char|} en {1 char|}.",
-    },
-    "2510": {
-        string: "{arg message|0}Oké",
-    },
-    "2511": {
-        string: null,
-    },
-    "2512": {
-        string: null,
-    },
-    "2513": {
-        string: null,
-    },
-    "2514": {
-        string: null,
-    },
-    "2550": {
-        string: "{1 char|}",
-    },
-    "2551": {
-        string: "{1 char|}",
-    },
-    "2552": {
-        string: "{1 char|}",
-    },
-    "2553": {
-        string: "{1 char|}",
-    },
-    "2554": {
-        string: "{1 char|}",
-    },
-    "2555": {
-        string: "{color|player 1}Oké",
-    },
-    "2556": {
-        string: "{color|player 2}Oké",
-    },
-    "2557": {
-        string: "{color|player 3}Oké",
-    },
-    "2558": {
-        string: "{color|player 4}Oké",
-    },
-    "2559": {
-        string: null,
-    },
-    "2600": {
-        string: "Wil je het Mario Kart-kanaal\ninstalleren? Hiervoor zijn\n{arg integer|0 0} blokken in\nhet geheugen nodig.",
-    },
-    "2601": {
-        string: "Ja",
-    },
-    "2602": {
-        string: "Nee",
-    },
-    "2603": {
-        string: null,
-    },
-    "2604": {
-        string: null,
-    },
-    "2605": {
-        string: null,
-    },
-    "2606": {
-        string: null,
-    },
-    "2607": {
-        string: "Voeg het Mario Kart-kanaal toe",
-    },
-    "2608": {
-        string: "Voeg het Mario Kart-kanaal aan\nhet Wii-menu toe, zodat je het kanaal\nkan openen zonder de\nMario Kart Wii-schijf!",
-    },
-    "2609": {
-        string: "Het Mario Kart-kanaal is al\ntoegevoegd aan het Wii-menu.",
-    },
-    "2610": {
-        string: "Er is niet genoeg ruimte in\nhet Wii-geheugen.\nMaak {arg integer|0 0} blokken vrij\ndoor gegevens naar een SD-kaart\nte verplaatsen of gegevens te verwijderen.",
-    },
-    "2611": {
-        string: "Er is niet genoeg ruimte beschikbaar\nin het Wii-geheugen. Verplaats gegevens\nnaar een SD-kaart of verwijder gegevens\nop in het gegevensbeheer.",
-    },
-    "2612": {
-        string: "Er is niet genoeg ruimte in\nhet Wii-geheugen. Kopieer kanalen\nnaar een SD-kaart of verwijder kanalen\nin het gegevensbeheer.",
-    },
-    "2613": {
-        string: "De Wii-gegevens zijn\nbeschadigd. Lees de\nWii-handleiding voor verdere instructies.",
-    },
-    "2614": {
-        string: null,
-    },
-    "3000": {
-        string: "Grand Prix",
-    },
-    "3001": {
-        string: "Tijdrace",
-    },
-    "3002": {
-        string: "Versusrace",
-    },
-    "3003": {
-        string: "Gevecht",
-    },
-    "3004": {
-        string: null,
-    },
-    "3005": {
-        string: null,
-    },
-    "3006": {
-        string: "50 cc\n{font scale|50}Alleen karts",
-    },
-    "3007": {
-        string: "100 cc\n{font scale|50}Alleen motors",
-    },
-    "3008": {
-        string: "150 cc\n{font scale|50}Karts en motors",
-    },
-    "3009": {
-        string: "Spiegel\n{font scale|50}Karts en motors",
-    },
-    "3010": {
-        string: "50 cc\n{font scale|50}Karts en motors",
-    },
-    "3011": {
-        string: "100 cc\n{font scale|50}Karts en motors",
-    },
-    "3012": {
-        string: "{arg message|0}Wissel",
-    },
-    "3013": {
-        string: null,
-    },
-    "3050": {
-        string: "Race in vier spannende races voor 1e plaats!",
-    },
-    "3051": {
-        string: "Race alleen voor het snelste record!",
-    },
-    "3052": {
-        string: "Race met eigen instellingen!",
-    },
-    "3053": {
-        string: "Race met eigen instellingen!",
-    },
-    "3054": {
-        string: "Vecht in teams!",
-    },
-    "3055": {
-        string: "Vecht in teams!",
-    },
-    "3056": {
-        string: null,
-    },
-    "3057": {
-        string: null,
-    },
-    "3058": {
-        string: null,
-    },
-    "3059": {
-        string: null,
-    },
-    "3060": {
-        string: "Een Grand Prix voor beginners\n(alleen karts).",
-    },
-    "3061": {
-        string: "Een standaard Grand Prix\n(alleen motors).",
-    },
-    "3062": {
-        string: "Een Grand Prix voor experts\n(karts en motors).",
-    },
-    "3063": {
-        string: "Een gespiegelde Grand Prix\n(karts en motors).",
-    },
-    "3064": {
-        string: "Een Grand Prix voor beginners\n(karts en motors).",
-    },
-    "3065": {
-        string: "Een standaard Grand Prix\n(karts en motors).",
-    },
-    "3066": {
-        string: null,
-    },
-    "3100": {
-        string: "Tijdrace",
-    },
-    "3101": {
-        string: "Er is geen geest voor dit circuit.",
-    },
-    "3102": {
-        string: null,
-    },
-    "3103": {
-        string: "Ranglijsten",
-    },
-    "3104": {
-        string: null,
-    },
-    "3200": {
-        string: "Gevechtstype",
-    },
-    "3201": {
-        string: "Ballongevecht",
-    },
-    "3202": {
-        string: "Muntengevecht",
-    },
-    "3203": {
-        string: null,
-    },
-    "3204": {
-        string: null,
-    },
-    "3250": {
-        string: "Maak de ballonnen van je tegenstanders stuk!",
-    },
-    "3251": {
-        string: "Verzamel zo veel munten als je maar kunt!",
-    },
-    "3252": {
-        string: null,
-    },
-    "3253": {
-        string: null,
-    },
-    "3305": {
-        string: "Drift-modus",
-    },
-    "3306": {
-        string: "Automatisch",
-    },
-    "3307": {
-        string: "Handmatig",
-    },
-    "3308": {
-        string: "Help",
-    },
-    "3309": {
-        string: "■ Drift ■\nDrift laat je bochten nemen zonder\nsnelheid te verliezen. Er zijn twee drift-modi.\n\n■ Automatisch ■\nJe drift automatisch als je stuurt,\nmaar je kan geen {arg back button|0}sprong maken of een mini-turbo krijgen.\n\n■ Handmatig ■\nMaak een {arg back button|0}sprong in een bocht om te driften.\nBlijf driften om een mini-turbo te krijgen,\nwaardoor je extra snel vooruit gaat.",
-    },
-    "3310": {
-        string: "Bekijk een uitleg over drift-modi.",
-    },
-    "3311": {
-        string: "Snelheid",
-    },
-    "3312": {
-        string: "Gewicht",
-    },
-    "3313": {
-        string: "Acceleratie",
-    },
-    "3314": {
-        string: "Wegligging",
-    },
-    "3315": {
-        string: "Drift",
-    },
-    "3316": {
-        string: "Offroad",
-    },
-    "3317": {
-        string: "Mini-turbo",
-    },
-    "3318": {
-        string: null,
-    },
-    "3350": {
-        string: "Drift automatisch (geen mini-turbo).",
-    },
-    "3351": {
-        string: "Drift handmatig (met mini-turbo).",
-    },
-    "3352": {
-        string: null,
-    },
-    "3360": {
-        string: "{arg message|0} Trofee: {arg message|1} Rang: {arg message|2}",
-    },
-    "3361": {
-        string: "Tijdrace",
-    },
-    "3362": {
-        string: "{arg message|0}",
-    },
-    "3363": {
-        string: "{arg message|0} Versusrace",
-    },
-    "3364": {
-        string: "{1 char|} Ballongevecht",
-    },
-    "3365": {
-        string: "{1 char|} Muntengevecht",
-    },
-    "3366": {
-        string: "{arg message|0} Team versusrace",
-    },
-    "3370": {
-        string: "{1 char|}",
-    },
-    "3371": {
-        string: "{1 char|}",
-    },
-    "3372": {
-        string: "{1 char|}",
-    },
-    "3373": {
-        string: "{1 char|}",
-    },
-    "3374": {
-        string: "{1 char|}",
-    },
-    "3375": {
-        string: "{1 char|}",
-    },
-    "3376": {
-        string: "{1 char|}",
-    },
-    "3377": {
-        string: "{1 char|}",
-    },
-    "3378": {
-        string: "{1 char|}",
-    },
-    "3379": {
-        string: "{1 char|}",
-    },
-    "3380": {
-        string: "{1 char|}",
-    },
-    "3381": {
-        string: "F",
-    },
-    "3382": {
-        string: " 　",
-    },
-    "3383": {
-        string: null,
-    },
-    "3384": {
-        string: null,
-    },
-    "3400": {
-        string: "Regels",
-    },
-    "3401": {
-        string: "Motorklasse kiezen",
-    },
-    "3402": {
-        string: "Coureur kiezen",
-    },
-    "3403": {
-        string: "Voertuig kiezen",
-    },
-    "3404": {
-        string: "Beker kiezen",
-    },
-    "3405": {
-        string: "Circuit kiezen",
-    },
-    "3406": {
-        string: "Arena kiezen",
-    },
-    "3407": {
-        string: "Geest kiezen",
-    },
-    "3408": {
-        string: "Gevecht",
-    },
-    "3409": {
-        string: "Versusrace",
-    },
-    "3410": {
-        string: "Motorklasse",
-    },
-    "3411": {
-        string: "50 cc",
-    },
-    "3412": {
-        string: "100 cc",
-    },
-    "3413": {
-        string: "150 cc",
-    },
-    "3414": {
-        string: "Spiegel",
-    },
-    "3415": {
-        string: "50 cc motorklasse voor beginners.",
-    },
-    "3416": {
-        string: "100 cc motorklasse voor gevorderden.",
-    },
-    "3417": {
-        string: "150 cc motorklasse voor experts.",
-    },
-    "3418": {
-        string: "150 cc motorklasse met gespiegelde circuits.",
-    },
-    "3420": {
-        string: "CPU",
-    },
-    "3421": {
-        string: "Makkelijk",
-    },
-    "3422": {
-        string: "Normaal",
-    },
-    "3423": {
-        string: "Moeilijk",
-    },
-    "3424": {
-        string: "Uit",
-    },
-    "3425": {
-        string: "CPU spelers zijn minder ervaren.",
-    },
-    "3426": {
-        string: "CPU spelers zijn meer ervaren.",
-    },
-    "3427": {
-        string: "CPU spelers zijn zeer ervaren.",
-    },
-    "3428": {
-        string: "Zonder computers spelen.",
-    },
-    "3430": {
-        string: "Voertuigen",
-    },
-    "3431": {
-        string: "Karts",
-    },
-    "3432": {
-        string: "Motors",
-    },
-    "3433": {
-        string: "Beide",
-    },
-    "3434": {
-        string: "Computers spelen met karts.",
-    },
-    "3435": {
-        string: "Computers spelen met motors.",
-    },
-    "3436": {
-        string: "Computers spelen met karts en motors.",
-    },
-    "3437": {
-        string: "Computers spelen met karts.",
-    },
-    "3438": {
-        string: "Computers spelen met motors.",
-    },
-    "3439": {
-        string: "Computers spelen met karts en motors.",
-    },
-    "3440": {
-        string: "Circuit",
-    },
-    "3441": {
-        string: "Kiezen",
-    },
-    "3442": {
-        string: "Willekeurig",
-    },
-    "3443": {
-        string: "Op volgorde",
-    },
-    "3444": {
-        string: "Kies het circuit voor elke race.",
-    },
-    "3445": {
-        string: "Circuits worden willekeurig gekozen.",
-    },
-    "3446": {
-        string: "Race circuits volgens bekervolgorde.",
-    },
-    "3447": {
-        string: "Kies de arena voor elk gevecht.",
-    },
-    "3448": {
-        string: "Arena's worden willekeurig gekozen.",
-    },
-    "3449": {
-        string: "Speel arena's op volgorde.",
-    },
-    "3450": {
-        string: "Races",
-    },
-    "3451": {
-        string: "{arg integer|0 1}",
-    },
-    "3452": {
-        string: "Overwinningen",
-    },
-    "3460": {
-        string: "{arg integer|0 1}",
-    },
-    "3461": {
-        string: "Teams",
-    },
-    "3462": {
-        string: "Teamrace",
-    },
-    "3463": {
-        string: "Solorace",
-    },
-    "3464": {
-        string: null,
-    },
-    "3465": {
-        string: "Kies het aantal races.",
-    },
-    "3466": {
-        string: "Kies het aantal overwinningen dat\nmoet worden gehaald.",
-    },
-    "3467": {
-        string: "Strijd in teams voor de meeste punten!",
-    },
-    "3468": {
-        string: "Strijd voor de meeste punten!",
-    },
-    "3469": {
-        string: "Arena",
-    },
-    "3470": {
-        string: "Weet je zeker dat je\ndeze versusrace wilt verlaten?",
-    },
-    "3471": {
-        string: "Weet je zeker dat je\ndit gevecht wilt verlaten?",
-    },
-    "3472": {
-        string: "Race met deze regels.",
-    },
-    "3473": {
-        string: "Vecht met deze regels.",
-    },
-    "3474": {
-        string: "Stel verschillende raceregels in.",
-    },
-    "3475": {
-        string: "Stel verschillende gevechtsregels in.",
-    },
-    "3476": {
-        string: null,
-    },
-    "3480": {
-        string: "Voorwerpen",
-    },
-    "3481": {
-        string: "Aanbevolen",
-    },
-    "3482": {
-        string: "Hectisch",
-    },
-    "3483": {
-        string: "Basis",
-    },
-    "3484": {
-        string: "Geen",
-    },
-    "3485": {
-        string: "Alle voorwerpen verschijnen in balans.",
-    },
-    "3486": {
-        string: "Krachtige voorwerpen verschijnen vaker.",
-    },
-    "3487": {
-        string: "Krachtige voorwerpen verschijnen minder vaak.",
-    },
-    "3488": {
-        string: "Er verschijnen geen voorwerpen.",
-    },
-    "3489": {
-        string: null,
-    },
-    "3500": {
-        string: "Teaminstellingen",
-    },
-    "3501": {
-        string: "Team\nBlauw",
-    },
-    "3502": {
-        string: "Team\nRood",
-    },
-    "3503": {
-        string: "Teams",
-    },
-    "3504": {
-        string: "Speel met deze teams.",
-    },
-    "3505": {
-        string: "Racers",
-    },
-    "3506": {
-        string: "{color|team blue}Team\nBlauw",
-    },
-    "3507": {
-        string: "{color|team red}Team\nRood",
-    },
-    "3508": {
-        string: "Iedereen zit in hetzelfde team.\n\nKies opnieuw.",
-    },
-    "3509": {
-        string: null,
-    },
-    "3550": {
-        string: "Beginnen?",
-    },
-    "3551": {
-        string: "Beginnen?",
-    },
-    "3552": {
-        string: "Beginnen?",
-    },
-    "3553": {
-        string: null,
-    },
-    "4000": {
-        string: "Wereldwijd",
-    },
-    "4001": {
-        string: "Continentaal",
-    },
-    "4002": {
-        string: "Vrienden",
-    },
-    "4003": {
-        string: "Geestrace",
-    },
-    "4004": {
-        string: "Nintendo Wi-Fi Connectie",
-    },
-    "4005": {
-        string: null,
-    },
-    "4006": {
-        string: null,
-    },
-    "4007": {
-        string: null,
-    },
-    "4008": {
-        string: "Er zijn geen vrienden geregistreerd\nin je vriendenlijst.\n\nRegistreer vrienden om\nsamen te spelen op Nintendo WFC.",
-    },
-    "4009": {
-        string: null,
-    },
-    "4010": {
-        string: "Verbinden met Nintendo WFC...",
-    },
-    "4011": {
-        string: "Wil je de verbinding met\nNintendo WFC verbreken?",
-    },
-    "4012": {
-        string: "Ja",
-    },
-    "4013": {
-        string: "Nee",
-    },
-    "4014": {
-        string: null,
-    },
-    "4015": {
-        string: null,
-    },
-    "4016": {
-        string: "Je kan niet verbinden met de Nintendo\nWi-Fi Connectie met deze Mii-naam.\nVerander je Mii-naam en probeer opnieuw.",
-    },
-    "4017": {
-        string: null,
-    },
-    "4018": {
-        string: "De verbinding met de\nandere spelers is verbroken.",
-    },
-    "4019": {
-        string: "Kamer verlaten?",
-    },
-    "4020": {
-        string: "Kamer sluiten?",
-    },
-    "4021": {
-        string: "De verbinding met de maker van\nde kamer is verbroken. Je keert nu terug\nnaar jouw vriendenlijst.",
-    },
-    "4022": {
-        string: "Je kan je nu niet bij deze vriend aansluiten.\n\nWacht en probeer later nog eens.",
-    },
-    "4023": {
-        string: null,
-    },
-    "4024": {
-        string: "Teams",
-    },
-    "4025": {
-        string: null,
-    },
-    "4100": {
-        string: "Kamer",
-    },
-    "4101": {
-        string: "Maak een kamer",
-    },
-    "4102": {
-        string: "Verbinden met vriend...",
-    },
-    "4103": {
-        string: null,
-    },
-    "4104": {
-        string: null,
-    },
-    "4105": {
-        string: null,
-    },
-    "4106": {
-        string: "Zoeken naar spelers...",
-    },
-    "4107": {
-        string: "Spelers zijn gekozen!",
-    },
-    "4108": {
-        string: "Wachten voor vrienden...",
-    },
-    "4109": {
-        string: "Start het spel",
-    },
-    "4110": {
-        string: "We spelen een Grand Prix!",
-    },
-    "4111": {
-        string: "We spelen een team Grand Prix!",
-    },
-    "4112": {
-        string: "We spelen een ballongevecht!",
-    },
-    "4113": {
-        string: "We spelen een muntengevecht!",
-    },
-    "4114": {
-        string: null,
-    },
-    "4150": {
-        string: "Voeg vrienden toe",
-    },
-    "4151": {
-        string: "Ik heb je toegevoegd, {arg player|0}!",
-    },
-    "4152": {
-        string: "Er zijn geen vrienden om toe te voegen.",
-    },
-    "4153": {
-        string: null,
-    },
-    "4154": {
-        string: "Nu zijn we vrienden, {arg player|0}!",
-    },
-    "4155": {
-        string: null,
-    },
-    "4200": {
-        string: "Bericht",
-    },
-    "4201": {
-        string: "{arg integer|0 2}/{arg integer|1 2}",
-    },
-    "4202": {
-        string: "{arg integer|0 0}\n{font scale|70}Racepunten",
-    },
-    "4203": {
-        string: "{arg integer|0 0}\n{font scale|70}Gevechtspunten",
-    },
-    "4204": {
-        string: "Een moment geduld...",
-    },
-    "4205": {
-        string: "Wereldwijde versusrace",
-    },
-    "4206": {
-        string: "Wereldwijd gevecht",
-    },
-    "4207": {
-        string: "Continentale versusrace",
-    },
-    "4208": {
-        string: "Continentaal gevecht",
-    },
-    "4300": {
-        string: "Kies een modus.",
-    },
-    "4301": {
-        string: "Een moment geduld...",
-    },
-    "4302": {
-        string: "De modus is gekozen.",
-    },
-    "4303": {
-        string: null,
-    },
-    "4304": {
-        string: null,
-    },
-    "4305": {
-        string: "Versusrace",
-    },
-    "4306": {
-        string: "Versusrace",
-    },
-    "4307": {
-        string: null,
-    },
-    "4308": {
-        string: "Gevecht",
-    },
-    "4309": {
-        string: "Gevecht",
-    },
-    "4310": {
-        string: "Daag spelers rond de wereld uit.",
-    },
-    "4311": {
-        string: "Daag spelers uit in jouw continent.",
-    },
-    "4312": {
-        string: "Speel met jouw vrienden.",
-    },
-    "4313": {
-        string: "Race tegen geesten van spelers rond de wereld.",
-    },
-    "4314": {
-        string: "Race tegen max. 11 andere spelers!",
-    },
-    "4315": {
-        string: "Strijd met max. 6 spelers in ieder team!",
-    },
-    "4316": {
-        string: "Maak een kamer om met vrienden te spelen.",
-    },
-    "4317": {
-        string: "Bekijk wat je vrienden op dit moment doen.",
-    },
-    "4318": {
-        string: "Registreer een vriendcode voor je vriendenlijst.",
-    },
-    "4319": {
-        string: null,
-    },
-    "4320": {
-        string: "De volgende race is 100 cc!",
-    },
-    "4321": {
-        string: "De volgende race is 150 cc!",
-    },
-    "4322": {
-        string: "De volgende race is gespiegeld!",
-    },
-    "4323": {
-        string: "{1 char|} Ballongevecht",
-    },
-    "4324": {
-        string: "{1 char|} Muntengevecht",
-    },
-    "4325": {
-        string: "De volgende race is 100 cc!",
-    },
-    "4326": {
-        string: "De volgende race is 150 cc!",
-    },
-    "4327": {
-        string: "De volgende race is gespiegeld!",
-    },
-    "4328": {
-        string: "De volgende race is 100 cc!",
-    },
-    "4329": {
-        string: "De volgende race is 150 cc!",
-    },
-    "4330": {
-        string: "De volgende race is gespiegeld!",
-    },
-    "4331": {
-        string: null,
-    },
-    "4332": {
-        string: null,
-    },
-    "4333": {
-        string: null,
-    },
-    "4334": {
-        string: null,
-    },
-    "4350": {
-        string: "Voor een circuit stemmen?",
-    },
-    "4351": {
-        string: "Stem",
-    },
-    "4352": {
-        string: "Willekeurig",
-    },
-    "4353": {
-        string: "???",
-    },
-    "4354": {
-        string: "Stemmen",
-    },
-    "4355": {
-        string: "Stemmen",
-    },
-    "4356": {
-        string: "Voor een arena stemmen?",
-    },
-    "4357": {
-        string: "Klaarmaken om te racen...",
-    },
-    "4358": {
-        string: "Klaarmaken om te vechten...",
-    },
-    "4359": {
-        string: null,
-    },
-    "4360": {
-        string: "Wachten op de anderen om te stemmen...",
-    },
-    "4361": {
-        string: "NOTREPLACED",
-    },
-    "4362": {
-        string: "Het circuit is gekozen!",
-    },
-    "4363": {
-        string: "De arena is gekozen!",
-    },
-    "4364": {
-        string: null,
-    },
-    "4370": {
-        string: "Stuur een bericht naar iedereen in de kamer.",
-    },
-    "4371": {
-        string: "Kies een bericht om te verzenden.",
-    },
-    "4372": {
-        string: "Start een spel met deze spelers.",
-    },
-    "4373": {
-        string: "Kies wat te spelen.",
-    },
-    "4374": {
-        string: "Nodig anderen uit om jouw vrienden te worden.",
-    },
-    "4375": {
-        string: "Dit bericht wordt alleen verstuurd naar de speler die je wilt toevoegen.",
-    },
-    "4376": {
-        string: null,
-    },
-    "4390": {
-        string: "Vul een vriendcode in.",
-    },
-    "4391": {
-        string: "Registreer deze vriendcode.",
-    },
-    "4392": {
-        string: "Speel met vrienden.",
-    },
-    "4393": {
-        string: "Deze vriendcode wordt verwijderd.",
-    },
-    "4394": {
-        string: null,
-    },
-    "4395": {
-        string: null,
-    },
-    "4396": {
-        string: null,
-    },
-    "4397": {
-        string: null,
-    },
-    "4499": {
-        string: "Hier ben ik!",
-    },
-    "4500": {
-        string: "Hallo!",
-    },
-    "4501": {
-        string: "Goedenavond!",
-    },
-    "4502": {
-        string: "Lang niet gezien!",
-    },
-    "4503": {
-        string: "Veel succes!",
-    },
-    "4504": {
-        string: "Bedankt voor het wachten!",
-    },
-    "4505": {
-        string: "Welkom!",
-    },
-    "4506": {
-        string: "Is iedereen er?",
-    },
-    "4507": {
-        string: "Laten we nog even wachten!",
-    },
-    "4508": {
-        string: "Klaar?",
-    },
-    "4509": {
-        string: "Starten we zo?",
-    },
-    "4510": {
-        string: "Laten we nog 3 minuten wachten...",
-    },
-    "4511": {
-        string: "Ik neem even een pauze...",
-    },
-    "4512": {
-        string: "Oké!",
-    },
-    "4513": {
-        string: "Laten we beginnen!",
-    },
-    "4514": {
-        string: "Doe het rustig aan!",
-    },
-    "4515": {
-        string: "Ik doe m'n best!",
-    },
-    "4516": {
-        string: "Wat zullen we spelen?",
-    },
-    "4517": {
-        string: "Enige voorkeuren?",
-    },
-    "4518": {
-        string: "Een Grand Prix of een gevecht?",
-    },
-    "4519": {
-        string: "Ik doe het misschien niet zo goed...",
-    },
-    "4520": {
-        string: "Laten we een Grand Prix spelen!",
-    },
-    "4521": {
-        string: "Laten we een team Grand Prix spelen!",
-    },
-    "4522": {
-        string: "Laten we een ballongevecht spelen!",
-    },
-    "4523": {
-        string: "Laten we een muntengevecht spelen!",
-    },
-    "4524": {
-        string: "Ik ga een kleine coureur gebruiken!",
-    },
-    "4525": {
-        string: "Ik ga een medium coureur gebruiken!",
-    },
-    "4526": {
-        string: "Ik ga een grote coureur gebruiken!",
-    },
-    "4527": {
-        string: "Ik ga mijn Mii gebruiken!",
-    },
-    "4528": {
-        string: "Ik ga mijn Wii-Wheel gebruiken!",
-    },
-    "4529": {
-        string: "Ik ga een kart gebruiken!",
-    },
-    "4530": {
-        string: "Ik ga een motor gebruiken!",
-    },
-    "4531": {
-        string: "Ik kan niet kiezen...",
-    },
-    "4532": {
-        string: "Welk circuit?",
-    },
-    "4533": {
-        string: "Hmm...",
-    },
-    "4534": {
-        string: "Laten we willekeurig kiezen!",
-    },
-    "4535": {
-        string: "Laten we een nieuw circuit proberen!",
-    },
-    "4536": {
-        string: "Luigi's Circuit!",
-    },
-    "4537": {
-        string: "Boe-Boe-Boerenland!",
-    },
-    "4538": {
-        string: "Paddenstoelengrot!",
-    },
-    "4539": {
-        string: "Toads Fabriek!",
-    },
-    "4540": {
-        string: "Mario's Circuit!",
-    },
-    "4541": {
-        string: "Kokosnootplaza!",
-    },
-    "4542": {
-        string: "DK's Skipark!",
-    },
-    "4543": {
-        string: "Wario's Goudmijn!",
-    },
-    "4544": {
-        string: "Daisy's Circuit!",
-    },
-    "4545": {
-        string: "Kaap Koopa!",
-    },
-    "4546": {
-        string: "Wigglers Woud!",
-    },
-    "4547": {
-        string: "Dondervulkaan!",
-    },
-    "4548": {
-        string: "Kurkdroge Ruïnes!",
-    },
-    "4549": {
-        string: "Maanzichtsnelweg!",
-    },
-    "4550": {
-        string: "Bowsers Kasteel!",
-    },
-    "4551": {
-        string: "Regenboogbaan!",
-    },
-    "4552": {
-        string: "GCN Peach' Strand!",
-    },
-    "4553": {
-        string: "DS Yoshi's Watervallen!",
-    },
-    "4554": {
-        string: "SNES Geestenvallei 2!",
-    },
-    "4555": {
-        string: "N64 Mario's Circuit!",
-    },
-    "4556": {
-        string: "N64 IJzige IJsbaan!",
-    },
-    "4557": {
-        string: "GBA Shy Guys Strand!",
-    },
-    "4558": {
-        string: "DS Delfino-Plaza!",
-    },
-    "4559": {
-        string: "GCN Waluigi's Stadion!",
-    },
-    "4560": {
-        string: "DS Woestijnheuvels!",
-    },
-    "4561": {
-        string: "GBA Bowsers Kasteel 3!",
-    },
-    "4562": {
-        string: "N64 DK's Jungleweg!",
-    },
-    "4563": {
-        string: "GCN Mario's Circuit!",
-    },
-    "4564": {
-        string: "SNES Mario's Circuit 3!",
-    },
-    "4565": {
-        string: "DS Peach' Paleistuin!",
-    },
-    "4566": {
-        string: "GCN DK's Berg!",
-    },
-    "4567": {
-        string: "N64 Bowsers Kasteel!",
-    },
-    "4568": {
-        string: "Blokkenplaza!",
-    },
-    "4569": {
-        string: "Delfino-Pier!",
-    },
-    "4570": {
-        string: "Funky's Stadion!",
-    },
-    "4571": {
-        string: "Chain Chomp Roulette!",
-    },
-    "4572": {
-        string: "Steenwoestijn!",
-    },
-    "4573": {
-        string: "SNES Gevechtsarena 4!",
-    },
-    "4574": {
-        string: "GBA Gevechtsarena 3!",
-    },
-    "4575": {
-        string: "N64 Wolkenkrabber!",
-    },
-    "4576": {
-        string: "GCN Koekjesland!",
-    },
-    "4577": {
-        string: "DS Schemerhuis!",
-    },
-    "4578": {
-        string: "Het rode team is het beste!",
-    },
-    "4579": {
-        string: "Het blauwe team is het beste!",
-    },
-    "4580": {
-        string: "Yaaaay!",
-    },
-    "4581": {
-        string: "Ik ben de beste!",
-    },
-    "4582": {
-        string: "Julie zijn zo snel!",
-    },
-    "4583": {
-        string: "Gefeliciteerd!",
-    },
-    "4584": {
-        string: "Dat was leuk!",
-    },
-    "4585": {
-        string: "Zo spannend!",
-    },
-    "4586": {
-        string: "Grrr! Niet eerlijk!",
-    },
-    "4587": {
-        string: "De volgende keer verlies ik niet!",
-    },
-    "4588": {
-        string: "Laten we nog een keer spelen!",
-    },
-    "4589": {
-        string: "Het is nog niet voorbij!",
-    },
-    "4590": {
-        string: "De volgende ronde wordt de laatste!",
-    },
-    "4591": {
-        string: "Ik ben klaar!",
-    },
-    "4592": {
-        string: "Bedankt voor de leuke tijd!",
-    },
-    "4593": {
-        string: "Bedankt!",
-    },
-    "4594": {
-        string: "Welterusten!",
-    },
-    "4595": {
-        string: "Tot later!",
-    },
-    "4596": {
-        string: null,
-    },
-    "4597": {
-        string: null,
-    },
-    "4598": {
-        string: null,
-    },
-    "4599": {
-        string: null,
-    },
-    "4600": {
-        string: "Er vondt een communicatiefout\nplaats. Je zal nu terugkeren\nnaar het hoofdmenu.\n\nErrorcode: {arg integer|0 5}",
-    },
-    "4601": {
-        string: "De verbinding is mislukt.\nBevestig de internetinstellingen\nvan de Wii-console.\n\nErrorcode: {arg integer|0 5}",
-    },
-    "4602": {
-        string: "De Nintendo Wi-Fi Connectie ondervindt\nte veel verkeer, of de service\nis uit de lucht. Probeer het\nlater opnieuw. Bezoek\nsupport.nintendo.com voor hulp.\n\nErrorcode: {arg integer|0 5}",
-    },
-    "4603": {
-        string: "Verbinding met de Nintendo Wi-Fi\nConnectie is mislukt. Bekijk voor\nhulp de software-instructiehandeiding\nof bezoek\nsupport.nintendo.com.\n\nErrorcode: {arg integer|0 5}",
-    },
-    "4604": {
-        string: "De Nintendo Wi-Fi Connectie-service voor\ndeze software is beëindigd. Bezoek\nsupport.nintendo.com voor een lijst\nmet compatibele Nintendo Wi-Fi\nConnectie-software.\n\nErrorcode: {arg integer|0 5}",
-    },
-    "4605": {
-        string: "Verbinding met de Nintendo Wi-Fi\nConnectie is mislukt. Bekijk voor\nhulp de software-instructiehandeiding\nof bezoek\nsupport.nintendo.com.\n\nErrorcode: {arg integer|0 5}",
-    },
-    "4606": {
-        string: "De Nintendo Wi-Fi Connectie ondervindt\nte veel verkeer, of de service is uit de\nlucht. Probeer het later opnieuw.\nBezoek support.nintendo.com voor hulp.\n\nErrorcode: {arg integer|0 5}",
-    },
-    "4607": {
-        string: "Er is niet genoeg vrije ruimte\nin het Wii-systeemgeheugen.\n\nErrorcode: {arg integer|0 5}",
-    },
-    "4608": {
-        string: "Het Wii-systeemgeheugen is beschadigd.\nBekijk de Wii-handleiding voor\nverdere instructies.\n\nErrorcode: {arg integer|0 5}",
-    },
-    "4609": {
-        string: "Verbinding verbroken tijdens het\nversturen van data.\n\nErrorcode: {arg integer|0 5}",
-    },
-    "4610": {
-        string: "Download mislukt. Probeer het opnieuw.\nBezoek support.nintendo.com voor hulp.\n\nErrorcode: {arg integer|0 5}",
-    },
-    "4611": {
-        string: "Verbinding verbroken tijdens het\nversturen van data.\n\nErrorcode: {arg integer|0 5}",
-    },
-    "4612": {
-        string: "Verbinding verbroken tijdens het\nversturen van data.\n\nErrorcode: {arg integer|0 5}",
-    },
-    "4613": {
-        string: "Verbinding verbroken tijdens het\nversturen van data.\n\nErrorcode: {arg integer|0 5}",
-    },
-    "4614": {
-        string: "Verbinding verbroken tijdens het\nversturen van data.\n\nErrorcode: {arg integer|0 5}",
-    },
-    "4615": {
-        string: "Verbinding verbroken tijdens het\nversturen van data.\n\nErrorcode: {arg integer|0 5}",
-    },
-    "4616": {
-        string: "De verbinding is mislukt.\nBevestig de internetinstellingen\nvan de Wii-console.\n\nErrorcode: {arg integer|0 5}",
-    },
-    "4617": {
-        string: "De verbinding is mislukt.\nBevestig de internetinstellingen\nvan de Wii-console.\n\nErrorcode: {arg integer|0 5}",
-    },
-    "4618": {
-        string: "De verbinding is mislukt.\nBevestig de internetinstellingen\nvan de Wii-console.\n\nErrorcode: {arg integer|0 5}",
-    },
-    "4619": {
-        string: "De verbinding is mislukt.\nBevestig de internetinstellingen\nvan de Wii-console.\n\nErrorcode: {arg integer|0 5}",
-    },
-    "4620": {
-        string: "De verbinding is mislukt.\nBevestig de internetinstellingen\nvan de Wii-console.\n\nErrorcode: {arg integer|0 5}",
-    },
-    "4621": {
-        string: "De verbinding is mislukt.\nBevestig de internetinstellingen\nvan de Wii-console.\n\nErrorcode: {arg integer|0 5}",
-    },
-    "4622": {
-        string: "De verbinding is mislukt.\nBevestig de internetinstellingen\nvan de Wii-console.\n\nErrorcode: {arg integer|0 5}",
-    },
-    "4623": {
-        string: "De verbinding is mislukt.\nBevestig de internetinstellingen\nvan de Wii-console.\n\nErrorcode: {arg integer|0 5}",
-    },
-    "4624": {
-        string: "De verbinding is mislukt.\nBevestig de internetinstellingen\nvan de Wii-console.\n\nErrorcode: {arg integer|0 5}",
-    },
-    "4625": {
-        string: "De verbinding is mislukt.\nBevestig de internetinstellingen\nvan de Wii-console.\n\nErrorcode: {arg integer|0 5}",
-    },
-    "4626": {
-        string: "De verbinding is mislukt.\nBevestig de internetinstellingen\nvan de Wii-console.\n\nErrorcode: {arg integer|0 5}",
-    },
-    "4627": {
-        string: "De verbinding is mislukt.\nBevestig de internetinstellingen\nvan de Wii-console.\n\nErrorcode: {arg integer|0 5}",
-    },
-    "4628": {
-        string: "De verbinding is mislukt.\nBevestig de internetinstellingen\nvan de Wii-console.\n\nErrorcode: {arg integer|0 5}",
-    },
-    "4629": {
-        string: "Verbinding verbroken tijdens het\nversturen van data.\n\nErrorcode: {arg integer|0 5}",
-    },
-    "4630": {
-        string: null,
-    },
-    "5000": {
-        string: "Mario Kart-kanaal",
-    },
-    "5001": {
-        string: "Vriendenlijst",
-    },
-    "5002": {
-        string: "Ranglijsten",
-    },
-    "5003": {
-        string: "Geestrace",
-    },
-    "5004": {
-        string: "Competities",
-    },
-    "5005": {
-        string: null,
-    },
-    "5006": {
-        string: "Registreer vriendcode",
-    },
-    "5007": {
-        string: null,
-    },
-    "5008": {
-        string: "Wii-menu",
-    },
-    "5009": {
-        string: "Lijst van gedownloade geesten",
-    },
-    "5010": {
-        string: "Competities",
-    },
-    "5011": {
-        string: "Vriendenlijst",
-    },
-    "5012": {
-        string: null,
-    },
-    "5013": {
-        string: null,
-    },
-    "5014": {
-        string: "Start race",
-    },
-    "5015": {
-        string: "Verbeter je tijdrace-techniek\ndoor geesten van\nspelers rond de wereld uit\nte dagen in Nintendo WFC-races!",
-    },
-    "5016": {
-        string: "Mijn geesten",
-    },
-    "5017": {
-        string: "Verbeter jouw tijdrace-techniek\ndoor de geestgegevens van\nspelers rond de wereld uit\nte dagen in Nintendo WFC-races!\n\nJe huidige record:\n{arg integer|0 0} {arg cond messages|0 5026 5027} - {arg integer|1 0} {arg cond messages|1 5028 5029}",
-    },
-    "5018": {
-        string: "Verbeter jouw tijdrace-techniek\ndoor de geestgegevens van\nspelers rond de wereld uit\nte dagen in Nintendo WFC-races!\n\nJe huidige record:\n{arg integer|0 0} {arg cond messages|0 5026 5027} - {arg integer|1 0} {arg cond messages|1 5028 5029}",
-    },
-    "5019": {
-        string: "Verbeter jouw tijdrace-techniek\ndoor de geestgegevens van\nspelers rond de wereld uit\nte dagen in Nintendo WFC-races!\n\nJe huidige record:\n{arg integer|0 0} {arg cond messages|0 5026 5027} - {arg integer|1 0} {arg cond messages|1 5028 5029}",
-    },
-    "5020": {
-        string: "Verbeter jouw tijdrace-techniek\ndoor de geestgegevens van\nspelers rond de wereld uit\nte dagen in Nintendo WFC-races!\n\nJe huidige record:\n{arg integer|0 0} {arg cond messages|0 5026 5027} - {arg integer|1 0} {arg cond messages|1 5028 5029}",
-    },
-    "5021": {
-        string: "Verbeter jouw tijdrace-techniek\ndoor de geestgegevens van\nspelers rond de wereld uit\nte dagen in Nintendo WFC-races!\n\nJe huidige record:\n{arg integer|0 0} {arg cond messages|0 5026 5027} - {arg integer|1 0} {arg cond messages|1 5028 5029}",
-    },
-    "5022": {
-        string: "Verbeter jouw tijdrace-techniek\ndoor de geestgegevens van\nspelers rond de wereld uit\nte dagen in Nintendo WFC-races!\n\nJe huidige record:\n{arg integer|0 0} {arg cond messages|0 5026 5027} - {arg integer|1 0} {arg cond messages|1 5028 5029}",
-    },
-    "5023": {
-        string: "Verbeter jouw tijdrace-techniek\ndoor de geestgegevens van\nspelers rond de wereld uit\nte dagen in Nintendo WFC-races!\n\nJe huidige record:\n{arg integer|0 0} {arg cond messages|0 5026 5027} - {arg integer|1 0} {arg cond messages|1 5028 5029}",
-    },
-    "5024": {
-        string: "Verbeter jouw tijdrace-techniek\ndoor de geestgegevens van\nspelers rond de wereld uit\nte dagen in Nintendo WFC-races!\n\nJe huidige record:\n{arg integer|0 0} {arg cond messages|0 5026 5027} - {arg integer|1 0} {arg cond messages|1 5028 5029}",
-    },
-    "5025": {
-        string: "{arg integer|0 0} {arg cond messages|0 5026 5027}",
-    },
-    "5026": {
-        string: "gewonnen",
-    },
-    "5027": {
-        string: "winsten",
-    },
-    "5028": {
-        string: "verloren",
-    },
-    "5029": {
-        string: "verloren",
-    },
-    "5030": {
-        string: null,
-    },
-    "5050": {
-        string: "Vrienden",
-    },
-    "5051": {
-        string: "Geesten",
-    },
-    "5052": {
-        string: "Tijdracescores",
-    },
-    "5053": {
-        string: null,
-    },
-    "5054": {
-        string: "Competitiescores",
-    },
-    "5055": {
-        string: null,
-    },
-    "5060": {
-        string: "Bekijk wat je vrienden aan het doen zijn.",
-    },
-    "5061": {
-        string: "Bekijk de scores van vrienden en andere spelers.",
-    },
-    "5062": {
-        string: "Bekijk en verwijder gedownloade geesten.\t",
-    },
-    "5063": {
-        string: "Neem deel in Mario Kart-competities.",
-    },
-    "5064": {
-        string: "Daag geesten rond heel de wereld uit.",
-    },
-    "5065": {
-        string: null,
-    },
-    "5066": {
-        string: "Verstuur en ontvang geesten.",
-    },
-    "5067": {
-        string: null,
-    },
-    "5068": {
-        string: "Bekijk Mario Kart-competitiescores.",
-    },
-    "5069": {
-        string: null,
-    },
-    "5070": {
-        string: null,
-    },
-    "5071": {
-        string: null,
-    },
-    "5072": {
-        string: null,
-    },
-    "5073": {
-        string: null,
-    },
-    "5074": {
-        string: null,
-    },
-    "5075": {
-        string: null,
-    },
-    "5080": {
-        string: null,
-    },
-    "5081": {
-        string: null,
-    },
-    "5082": {
-        string: null,
-    },
-    "5083": {
-        string: null,
-    },
-    "5084": {
-        string: null,
-    },
-    "5085": {
-        string: null,
-    },
-    "5100": {
-        string: "Voer een vriendcode in.",
-    },
-    "5101": {
-        string: "Registreer deze vriendcode?\n\n{arg integer|0 4}-{arg integer|1 4}-{arg integer|2 4}",
-    },
-    "5102": {
-        string: "Dit is geen geldige vriendcode.\n\n{arg integer|0 4}-{arg integer|1 4}-{arg integer|2 4}",
-    },
-    "5103": {
-        string: "Je hebt deze vriendcode geregistreerd:\n\n{arg integer|0 4}-{arg integer|1 4}-{arg integer|2 4}",
-    },
-    "5104": {
-        string: "Voor je tegen deze vriend\nkan spelen, moet hij/zij ook jouw\nvriendcode geregistreerd hebben.\n\nJouw vriendcode is:\n\n{arg integer|0 4}-{arg integer|1 4}-{arg integer|2 4}",
-    },
-    "5105": {
-        string: "{arg integer|0 1}",
-    },
-    "5106": {
-        string: "-",
-    },
-    "5107": {
-        string: null,
-    },
-    "5110": {
-        string: "Deze vriendcode is al in jouw vriendenlijst\ngeregistreerd.",
-    },
-    "5111": {
-        string: "Je vriendenrooster heeft al de maximale\n30 vrienden.",
-    },
-    "5112": {
-        string: "Je hebt geen vriendcode.",
-    },
-    "5113": {
-        string: "Je kan de vriendcodes van de\nrijbewijzen in de Mario Kart Wii-gegevens\nvan dit systeem niet registreren.",
-    },
-    "5115": {
-        string: null,
-    },
-    "5150": {
-        string: null,
-    },
-    "5151": {
-        string: null,
-    },
-    "5152": {
-        string: null,
-    },
-    "5153": {
-        string: null,
-    },
-    "5154": {
-        string: null,
-    },
-    "5155": {
-        string: null,
-    },
-    "5156": {
-        string: null,
-    },
-    "5157": {
-        string: null,
-    },
-    "5200": {
-        string: "Verwijder",
-    },
-    "5201": {
-        string: "Verbinden met vriend",
-    },
-    "5202": {
-        string: "Verbinden mislukt.",
-    },
-    "5203": {
-        string: "Jullie zijn nog geen vrienden.",
-    },
-    "5204": {
-        string: null,
-    },
-    "5205": {
-        string: null,
-    },
-    "5206": {
-        string: "gewonnen",
-    },
-    "5207": {
-        string: "winsten",
-    },
-    "5208": {
-        string: null,
-    },
-    "5209": {
-        string: "Gevecht",
-    },
-    "5210": {
-        string: "Verwijder deze vriendcode?",
-    },
-    "5211": {
-        string: "De vriendcode is verwijderd.",
-    },
-    "5212": {
-        string: "Vriendcode aan het verwijderen...",
-    },
-    "5213": {
-        string: "Verwijder vriendcode",
-    },
-    "5214": {
-        string: "Verwijder vriendcode",
-    },
-    "5215": {
-        string: "Annuleren",
-    },
-    "5216": {
-        string: "{arg cond messages|0 5206 5207}",
-    },
-    "5217": {
-        string: "Alle data geässocieerd met deze\nvriendcode zal worden verwijderd.\n\nWeet je zeker dat dit oké is?",
-    },
-    "5218": {
-        string: null,
-    },
-    "5300": {
-        string: "Ik ben op Nintendo WFC!",
-    },
-    "5301": {
-        string: "Ik ben niet op Nintendo WFC...",
-    },
-    "5302": {
-        string: null,
-    },
-    "5303": {
-        string: null,
-    },
-    "5304": {
-        string: "Ik heb een open kamer!",
-    },
-    "5305": {
-        string: "Ik speel met vrienden!",
-    },
-    "5306": {
-        string: "Ik speel met vrienden!",
-    },
-    "5307": {
-        string: "Ik speel een wereldwijde versusrace!",
-    },
-    "5308": {
-        string: "Ik speel een wereldwijd gevecht!",
-    },
-    "5309": {
-        string: "Ik speel in een continentale versusrace!",
-    },
-    "5310": {
-        string: "Ik speel een gontinentaal gevecht!",
-    },
-    "5311": {
-        string: "Ik organiseer een Grand Prix (1/4)!",
-    },
-    "5312": {
-        string: "Ik organiseer een Grand Prix (2/4)!",
-    },
-    "5313": {
-        string: "Ik organiseer een Grand Prix (3/4)!",
-    },
-    "5314": {
-        string: "Ik organiseer een Grand Prix (4/4)!",
-    },
-    "5315": {
-        string: "Ik organiseer een gevecht (1e)!",
-    },
-    "5316": {
-        string: "Ik organiseer een gevecht (2e)!",
-    },
-    "5317": {
-        string: "Ik organiseer een gevecht (3e)!",
-    },
-    "5318": {
-        string: "Ik organiseer een gevecht (tiebreak)!",
-    },
-    "5319": {
-        string: "Ik speel met vrienden (1/4)!",
-    },
-    "5320": {
-        string: "Ik speel met vrienden (2/4)!",
-    },
-    "5321": {
-        string: "Ik speel met vrienden (3/4)!",
-    },
-    "5322": {
-        string: "Ik speel met vrienden (4/4)!",
-    },
-    "5323": {
-        string: "Ik speel met vrienden (1e gevecht)!",
-    },
-    "5324": {
-        string: "Ik speel met vrienden (2e gevecht)!",
-    },
-    "5325": {
-        string: "Ik speel met vrienden (3e gevecht)!",
-    },
-    "5326": {
-        string: "Ik speel met vrienden (tiebreak)!",
-    },
-    "5327": {
-        string: null,
-    },
-    "5328": {
-        string: null,
-    },
-    "5350": {
-        string: "Sluit aan bij een vriend.",
-    },
-    "5351": {
-        string: null,
-    },
-    "5400": {
-        string: null,
-    },
-    "5401": {
-        string: null,
-    },
-    "5402": {
-        string: "Deze geest zal verzonden worden.\nIs dit oké?",
-    },
-    "5403": {
-        string: "Geest verzenden...",
-    },
-    "5404": {
-        string: "Je uitdaging is naar\n{arg player|0} verzonden!\n\n{arg integer|0 0}/5",
-    },
-    "5405": {
-        string: "Je uitdaging is naar\n{arg player|0} verzonden!\n\n5/5\n\nJe kan geen uitdagingen meer verzenden\ntot de volgende keer dat je Mario Kart Wii speelt.",
-    },
-    "5406": {
-        string: "Jouw geest was niet gevonden, dus\nde uitdaging is niet verzonden.",
-    },
-    "5407": {
-        string: null,
-    },
-    "5500": {
-        string: "Geesten lezen...",
-    },
-    "5501": {
-        string: "Je hebt een uitdaging van een vriend ontvangen!",
-    },
-    "5502": {
-        string: "Je gedownloade lijst met geesten is vol.\nJe kan nu geen uitdagingen\nvan je vrienden ontvangen.\n\nVerwijder een van jouw geesten.",
-    },
-    "5503": {
-        string: "Dit circuit is nog niet beschikbaar.\n\nAls je genoeg bekers wint\nin de Grand Prix-modus, zal je nieuwe\ncircuits vrijspelen.",
-    },
-    "5504": {
-        string: "Een fout trad op tijdens het\ndownloaden van geesten.",
-    },
-    "5505": {
-        string: null,
-    },
-    "5600": {
-        string: "",
-    },
-    "5601": {
-        string: "Japan",
-    },
-    "5608": {
-        string: "Anguilla",
-    },
-    "5609": {
-        string: "Antigua en Barbuda",
-    },
-    "5610": {
-        string: "Argentinië",
-    },
-    "5611": {
-        string: "Aruba",
-    },
-    "5612": {
-        string: "Bahama's",
-    },
-    "5613": {
-        string: "Barbados",
-    },
-    "5614": {
-        string: "Belize",
-    },
-    "5615": {
-        string: "Bolivia",
-    },
-    "5616": {
-        string: "Brazilië",
-    },
-    "5617": {
-        string: "Britse Maagdeneilanden",
-    },
-    "5618": {
-        string: "Canada",
-    },
-    "5619": {
-        string: "Kaaimaneilanden",
-    },
-    "5620": {
-        string: "Chili",
-    },
-    "5621": {
-        string: "Colombia",
-    },
-    "5622": {
-        string: "Costa Rica",
-    },
-    "5623": {
-        string: "Dominica",
-    },
-    "5624": {
-        string: "Dominicaanse Republiek",
-    },
-    "5625": {
-        string: "Ecuador",
-    },
-    "5626": {
-        string: "El Salvador",
-    },
-    "5628": {
-        string: "Grenada",
-    },
-    "5630": {
-        string: "Guatemala",
-    },
-    "5631": {
-        string: "Guyana",
-    },
-    "5632": {
-        string: "Haïti",
-    },
-    "5633": {
-        string: "Honduras",
-    },
-    "5634": {
-        string: "Jamaica",
-    },
-    "5636": {
-        string: "Mexico",
-    },
-    "5637": {
-        string: "Montserrat",
-    },
-    "5638": {
-        string: "Nederlandse Antillen",
-    },
-    "5639": {
-        string: "Nicaragua",
-    },
-    "5640": {
-        string: "Panama",
-    },
-    "5641": {
-        string: "Paraguay",
-    },
-    "5642": {
-        string: "Peru",
-    },
-    "5643": {
-        string: "Saint Kitts en Nevis",
-    },
-    "5644": {
-        string: "Saint Lucia",
-    },
-    "5645": {
-        string: "Saint Vincent en de Grenadines",
-    },
-    "5646": {
-        string: "Suriname",
-    },
-    "5647": {
-        string: "Trinidad en Tobago",
-    },
-    "5648": {
-        string: "Turks- en Caicoseilanden",
-    },
-    "5649": {
-        string: "Verenigde Staten",
-    },
-    "5650": {
-        string: "Uruguay",
-    },
-    "5651": {
-        string: "Amerikaanse Maagdeneilanden",
-    },
-    "5652": {
-        string: "Venezuela",
-    },
-    "5665": {
-        string: "Australië",
-    },
-    "5666": {
-        string: "Oostenrijk",
-    },
-    "5667": {
-        string: "België",
-    },
-    "5674": {
-        string: "Denemarken",
-    },
-    "5676": {
-        string: "Finland",
-    },
-    "5677": {
-        string: "Frankrijk",
-    },
-    "5678": {
-        string: "Duitsland",
-    },
-    "5679": {
-        string: "Griekenland",
-    },
-    "5682": {
-        string: "Ierland",
-    },
-    "5683": {
-        string: "Italië",
-    },
-    "5688": {
-        string: "Luxemburg",
-    },
-    "5694": {
-        string: "Nederland",
-    },
-    "5695": {
-        string: "Nieuw-Zeeland",
-    },
-    "5696": {
-        string: "Noorwegen",
-    },
-    "5698": {
-        string: "Portugal",
-    },
-    "5705": {
-        string: "Spanje",
-    },
-    "5707": {
-        string: "Zweden",
-    },
-    "5708": {
-        string: "Zwitserland",
-    },
-    "5710": {
-        string: "Verenigd Koninkrijk",
-    },
-    "5728": {
-        string: "",
-    },
-    "5736": {
-        string: "Zuid-Korea",
-    },
-    "5744": {
-        string: "",
-    },
-    "5745": {
-        string: "",
-    },
-    "5760": {
-        string: "",
-    },
-    "5855": {
-        string: null,
-    },
-    "6000": {
-        string: "Kies een circuit.",
-    },
-    "6001": {
-        string: "Vriendrangen",
-    },
-    "6002": {
-        string: "Continentale rangen",
-    },
-    "6003": {
-        string: "Wereldwijde rangen",
-    },
-    "6004": {
-        string: "Top 10",
-    },
-    "6005": {
-        string: "{arg message|0} Vrienden-Top 10",
-    },
-    "6006": {
-        string: "{arg message|0} Continentale Top 10",
-    },
-    "6007": {
-        string: "{arg message|0} Wereldwijde Top 10",
-    },
-    "6008": {
-        string: "10",
-    },
-    "6009": {
-        string: "Top 10",
-    },
-    "6010": {
-        string: "Start tijdrace",
-    },
-    "6011": {
-        string: "Daag deze geest uit",
-    },
-    "6012": {
-        string: "Bekijk de herhaling",
-    },
-    "6013": {
-        string: "Verwijder geest",
-    },
-    "6014": {
-        string: "Verstuur geest",
-    },
-    "6015": {
-        string: "Daag deze geest uit",
-    },
-    "6016": {
-        string: "Solo-tijdrace",
-    },
-    "6017": {
-        string: "NIEUW",
-    },
-    "6018": {
-        string: "Vriend",
-    },
-    "6019": {
-        string: "Top 10",
-    },
-    "6020": {
-        string: "Continentaal",
-    },
-    "6021": {
-        string: "Top 10",
-    },
-    "6022": {
-        string: "Wereldwijd",
-    },
-    "6023": {
-        string: "Top 10",
-    },
-    "6024": {
-        string: null,
-    },
-    "6050": {
-        string: "TIJD",
-    },
-    "6051": {
-        string: "{arg integer|0 1}:{arg integer|1 2}",
-    },
-    "6052": {
-        string: "{arg integer|0 2}:{arg integer|1 2}.{arg integer|2 3}",
-    },
-    "6053": {
-        string: "--:--.---",
-    },
-    "6054": {
-        string: "Continentale kampioen",
-    },
-    "6055": {
-        string: "Wereldkampioen",
-    },
-    "6056": {
-        string: "Rivalerende geest",
-    },
-    "6057": {
-        string: "Vriend",
-    },
-    "6058": {
-        string: "Continentaal",
-    },
-    "6059": {
-        string: "Wereldwijd",
-    },
-    "6060": {
-        string: "{arg front button|0}",
-    },
-    "6061": {
-        string: "Familiegeesten",
-    },
-    "6062": {
-        string: "Vriendgeesten",
-    },
-    "6063": {
-        string: "Speciale geesten",
-    },
-    "6064": {
-        string: "Personeelsgeesten",
-    },
-    "6065": {
-        string: null,
-    },
-    "6100": {
-        string: "Er is geen geest voor\n{arg message|0}.",
-    },
-    "6101": {
-        string: "Er is geen geest voor\n{arg license player|0}.",
-    },
-    "6102": {
-        string: "Er zijn geen gedownloade geesten.",
-    },
-    "6103": {
-        string: null,
-    },
-    "6110": {
-        string: "Geest downloaden...",
-    },
-    "6111": {
-        string: "Je gedownloade geestenlijst\nis vol. Je kunt geen geesten\nmeer downloaden.\n\nVerwijder een geest\nuit je gedownloade geestenlijst.",
-    },
-    "6112": {
-        string: "Een fout trad op bij\nhet downloaden van de geest.\n\nErrorcode: {arg integer|0 5}",
-    },
-    "6113": {
-        string: "De geest is gedownload.",
-    },
-    "6114": {
-        string: "De Top 10 aan het downloaden...",
-    },
-    "6115": {
-        string: "Een fout trad op bij\nhet downloaden van de Top 10.\n\nErrorcode: {arg integer|0 5}",
-    },
-    "6116": {
-        string: "Er is geen Top 10.",
-    },
-    "6117": {
-        string: "",
-    },
-    "6120": {
-        string: "Verbinding maken met Nintendo WFC?",
-    },
-    "6121": {
-        string: "Oké",
-    },
-    "6122": {
-        string: "Verbinding maken met Nintendo WFC?",
-    },
-    "6123": {
-        string: "De huidige geest zal vervangen\nworden met de nieuwe geest.\n\nIs dit oké?",
-    },
-    "6124": {
-        string: null,
-    },
-    "6150": {
-        string: "Race tegen deze geest.",
-    },
-    "6151": {
-        string: "Bekijk de herhaling van de geest.",
-    },
-    "6152": {
-        string: "Weet je zeker dat je de geest wilt verwijderen?",
-    },
-    "6153": {
-        string: "Verwijderen",
-    },
-    "6154": {
-        string: "Annuleren",
-    },
-    "6155": {
-        string: null,
-    },
-    "6201": {
-        string: "1e",
-    },
-    "6202": {
-        string: "2e",
-    },
-    "6203": {
-        string: "3e",
-    },
-    "6204": {
-        string: "4e",
-    },
-    "6205": {
-        string: "5e",
-    },
-    "6206": {
-        string: "6e",
-    },
-    "6207": {
-        string: "7e",
-    },
-    "6208": {
-        string: "8e",
-    },
-    "6209": {
-        string: "9e",
-    },
-    "6210": {
-        string: "10e",
-    },
-    "6211": {
-        string: "11e",
-    },
-    "6212": {
-        string: "12e",
-    },
-    "6213": {
-        string: null,
-    },
-    "6250": {
-        string: "Begin een tijdrace op dit circuit.",
-    },
-    "6251": {
-        string: "Bekijk het record van {arg player|0}.",
-    },
-    "6252": {
-        string: "Race tegen de continentale kampioen.",
-    },
-    "6253": {
-        string: "Race tegen de wereldkampioen.",
-    },
-    "6254": {
-        string: "Race tegen een geest die net iets sneller dan jouw record is.",
-    },
-    "6255": {
-        string: "Bekijk jouw vrienden-Top 10.",
-    },
-    "6256": {
-        string: "Bekijk de continentale Top 10.",
-    },
-    "6257": {
-        string: "Bekijk de wereldwijde Top 10.",
-    },
-    "6258": {
-        string: "Race tegen een Mario Kart Wii-personeelsgeest.",
-    },
-    "6259": {
-        string: "Het record van {arg player|0}.",
-    },
-    "6260": {
-        string: "Het record van de continentale kampioen.",
-    },
-    "6261": {
-        string: "Het record van de wereldwijde kampioen.",
-    },
-    "6262": {
-        string: null,
-    },
-    "6300": {
-        string: "Verstuur geest",
-    },
-    "6301": {
-        string: "{arg player|0} heeft geen record voor\n{arg message|0} gezet.",
-    },
-    "6302": {
-        string: "Het huidige record van {arg player|0} voor\n{arg message|0} is {arg integer|0 2}:{arg integer|1 2}.{arg integer|2 3}.",
-    },
-    "6303": {
-        string: "{arg player|0} heeft geen record voor\n{arg message|0} gezet.",
-    },
-    "6304": {
-        string: "Het huidige record van {arg player|0} voor\n{arg message|0} is {arg integer|0 2}:{arg integer|1 2}.{arg integer|2 3}.",
-    },
-    "6305": {
-        string: "Geest verzenden...",
-    },
-    "6306": {
-        string: null,
-    },
-    "6310": {
-        string: "De WiiConnect24-service is\ntijdelijk niet beschikbaar.\nProbeer het later nog eens.\n\nErrorcode: {arg integer|0 6}",
-    },
-    "6311": {
-        string: "Er kon geen verbinding worden gemaakt\nmet het internet. WiiConnect24 kan niet\nworden gebruikt. Ga naar je Wii-instellingen\nen bekijk de verbindingsinstellingen\nonder internet. Bekijk de\nde Wii-handleiding voor details.\n\nErrorcode: {arg integer|0 6}",
-    },
-    "6312": {
-        string: "Er is een probleem met het Wii-systeemgeheugen.\nWiiConnect24 kan niet gebruikt worden.\n\nErrorcode: {arg integer|0 6}",
-    },
-    "6313": {
-        string: "Om WiiConnect24 te kunnen gebruiken,\nheb je een systeemupdate nodig.\nBekijk de Wii-handleiding\nvoor details.\n\nErrorcode: {arg integer|0 6}",
-    },
-    "6314": {
-        string: "WiiConnect24 kan niet gebruikt\nworden omdat er een fout is opgetreden.\n\nReset en probeer opnieuw.\n\nErrorcode: {arg integer|0 6}",
-    },
-    "6315": {
-        string: "De WiiConnect24-optie staat uit.\nBekijk de instellingen onder\nde Wii-opties. Bekijk de Wii-handleiding\nvoor details.\n\nErrorcode: {arg integer|0 6}",
-    },
-    "6316": {
-        string: "Er is een probleem met het Wii-systeemgeheugen.\nWiiConnect24 kan niet gebruikt worden.\n\nErrorcode: {arg integer|0 6}",
-    },
-    "6317": {
-        string: "Het gebruik van het internet is verboden.\n\nGa naar de Wii-opties\nen bekijk het Ouderlijk Toezicht.",
-    },
-    "6318": {
-        string: "Er is geen verbinding\nvastgesteld.\n\nGa naar de Wii-opties en\nmaak verbinding op het\ninternetopties-scherm.\n\nErrorcode: 50200",
-    },
-    "6319": {
-        string: "Het Mario Kart-kanaal gebruikt WiiConnect24\nom de volgende informatie te ontvangen:\n\n・Uitdagingen van vrienden\n・Records van spelers rond de wereld\n・Geesten van spelers die even\ngoed zijn als jij\n・Geplande competities",
-    },
-    "6320": {
-        string: "Je kan de WiiConnect24-opties\nbij de Wii-opties wijzigen.\n\nBekijk de Wii-handleiding\nvoor meer informatie.",
-    },
-    "6321": {
-        string: "WiiConnect24 kan niet gebruikt worden\nomdat er een fout is opgetreden.\n\nReset en probeer opnieuw.\n\nErrorcode: {arg integer|0 6}",
-    },
-    "6322": {
-        string: "",
-    },
-    "6390": {
-        string: "GA!",
-    },
-    "6391": {
-        string: "",
-    },
-    "6400": {
-        string: "Nieuwe vriendenuitdaging!",
-    },
-    "6401": {
-        string: "Speciale geesten zijn nu beschikbaar!",
-    },
-    "6402": {
-        string: "Er is een competitie aan de gang!",
-    },
-    "6403": {
-        string: "Nieuwste ranglijst nu beschikbaar!",
-    },
-    "6404": {
-        string: "Start een geestrace!",
-    },
-    "6405": {
-        string: "Nieuwe vriendenrecords beschikbaar!",
-    },
-    "6406": {
-        string: "Voeg het Mario Kart-kanaal toe!",
-    },
-    "6407": {
-        string: "Doe mee aan de berichtenservice!",
-    },
-    "6408": {
-        string: "Selecteer je regio!",
-    },
-    "6409": {
-        string: "Nodig vrienden uit via het Wii-berichtenbord!",
-    },
-    "6410": {
-        string: "Download de meest recente gegevens!",
-    },
-    "6411": {
-        string: null,
-    },
-    "6412": {
-        string: null,
-    },
-    "6500": {
-        string: "Ga naar je gedownloade geestenlijst.",
-    },
-    "6501": {
-        string: "Ga naar de tijdrace-ranglijsten.",
-    },
-    "6502": {
-        string: "Ga naar de competities.",
-    },
-    "6503": {
-        string: "Ga naar de tijdrace-ranglijsten.",
-    },
-    "6504": {
-        string: "Ga naar de geestrace.",
-    },
-    "6505": {
-        string: "Ga naar de tijdrace-ranglijsten.",
-    },
-    "6506": {
-        string: "Ga naar de instellingen.",
-    },
-    "6507": {
-        string: "Ga naar de instellingen.",
-    },
-    "6508": {
-        string: "Ga naar de instellingen.",
-    },
-    "6509": {
-        string: "Nodig mensen uit om vrienden te worden.",
-    },
-    "6510": {
-        string: "Werk de ranglijsten en competitiegegevens bij!",
-    },
-    "6511": {
-        string: null,
-    },
-    "6512": {
-        string: null,
-    },
-    "6550": {
-        string: "Competitieranglijsten zijn\nmomenteel niet beschikbaar.",
-    },
-    "6551": {
-        string: "Competitieranglijsten downloaden...",
-    },
-    "6552": {
-        string: "Er is een fout opgetreden bij het\ndownloaden van de competitieranglijsten.\n\nErrorcode: {arg integer|0 5}",
-    },
-    "6553": {
-        string: "Je kan competitieranglijsten een dag nadat\nde competitie is gestart bekijken.\n\nNog even geduld.",
-    },
-    "6554": {
-        string: "Eerste helft",
-    },
-    "6555": {
-        string: "Tweede helft",
-    },
-    "6556": {
-        string: "Ranglijsten zijn nog niet beschikbaar\nvoor deze competitie.\n\nProbeer het morgen opnieuw.",
-    },
-    "6600": {
-        string: "Je kunt deelnemen in wereldwijde\nMario Kart Wii-competities.\n\nVerbind jouw Wii met het internet,\nzorg ervoor dat WiiConnect24 aanstaat\nen wacht tot er een competitie start!",
-    },
-    "6601": {
-        string: "De vorige competitie is beëindigd\nen de resultaten zijn nu beschikbaar!",
-    },
-    "6602": {
-        string: "{arg string|0}",
-    },
-    "6603": {
-        string: "{arg string|0}",
-    },
-    "6604": {
-        string: "Start",
-    },
-    "6605": {
-        string: "Verstuur competitierecord",
-    },
-    "6606": {
-        string: "Competitierecord versturen...",
-    },
-    "6607": {
-        string: "{arg string|0}\n{arg integer|0 2}:{arg integer|1 2}.{arg integer|2 3}",
-    },
-    "6608": {
-        string: "Jouw competitierecord is verstuurd.",
-    },
-    "6609": {
-        string: "Het versturen van het\ncompetitierecord is mislukt.\n\nErrorcode: {arg integer|0 5}",
-    },
-    "6610": {
-        string: "De deadline is {arg integer|2 0}/{arg integer|1 0}/{arg integer|0 0}.",
-    },
-    "6611": {
-        string: null,
-    },
-    "6700": {
-        string: "Wii-berichtenbord uitnodiging",
-    },
-    "6701": {
-        string: "Je kan een Wii-berichtenbord bericht\nversturen naar jouw vrienden\nmet jouw vriendcode.\n\nHet is een snelle en makkelijke manier\nom vrienden te worden in Mario Kart Wii!",
-    },
-    "6702": {
-        string: "Kies een Wii-vriend om een uitnodiging naar te versturen.",
-    },
-    "6703": {
-        string: "Een uitnodiging zal naar het Wii-berichtenbord\nvan {arg string|0} worden verzonden.\n\nIs dit oké?",
-    },
-    "6704": {
-        string: "Uitnodiging versturen...",
-    },
-    "6705": {
-        string: "De uitnodiging is verstuurd naar\nhet Wii-berichtenbord van {arg string|0}.\n\nJe zal een notificatie krijgen\nals {arg string|0} je uitnodiging\nheeft geaccepteerd.",
-    },
-    "6706": {
-        string: "Het versturen van de uitnodiging is mislukt.\n\nErrorcode: {arg integer|0 6}",
-    },
-    "6707": {
-        string: "{arg string|0}",
-    },
-    "6708": {
-        string: "Het competitierecord is verzonden.\n\nJe zal nu naar de\ncompetitieranglijsten gaan.",
-    },
-    "6709": {
-        string: null,
-    },
-    "6710": {
-        string: "Registreer vriendcode",
-    },
-    "6711": {
-        string: "Je hebt een uitnodiging gekregen\nvan {arg string|0}.\n\nAls je de vriendcode van deze\nspeler registreert in jouw vriendenlijst,\nzal je vriendcode automatisch\nteruggestuurd worden.",
-    },
-    "6712": {
-        string: "Wil je de vriendcode van {arg string|0}\nregistreren in jouw vriendenlijst?",
-    },
-    "6713": {
-        string: "Registreren...",
-    },
-    "6714": {
-        string: "De vriendcode van {arg string|0} is\ngeregistreerd in jouw vriendenlijst.",
-    },
-    "6715": {
-        string: "Het registreren van de vriendcode is mislukt.\n\nErrorcode: {arg integer|0 6}",
-    },
-    "6716": {
-        string: "Je hebt geen vriendcode.\n\nEen vriendcode is een 12-cijferige\ncode die automatisch wordt gegeven\nwanneer je voor de eerste keer verbinding maakt\nmet Nintendo WFC.\n\nLees de Mario Kart Wii-instructies voor meer\ninformatie.",
-    },
-    "6717": {
-        string: "Je hebt een uitnodiging ontvangen, maar\ner zijn al 30 vriendcodes geregistreerd\nin jouw vriendenlijst.\n\nJe kan geen vriendcodes\nmeer registeren.",
-    },
-    "6718": {
-        string: "Je hebt een uitnodiging gekregen, maar\nde verstuurder is van\njouw Wii-berichtenbord verwijderd.\n\nStart het Mario Kart-kanaal opnieuw\nen registreer de vriendcode.",
-    },
-    "6719": {
-        string: "Je hebt een uitnodiging\nontvangen, maar de\nverstuurder is al geregistreerd\nin jouw vriendenlijst.",
-    },
-    "6720": {
-        string: "",
-    },
-    "6800": {
-        string: "Download de competitieranglijsten",
-    },
-    "6801": {
-        string: "Competitieranglijsten downloaden...",
-    },
-    "6802": {
-        string: "Competitieranglijsten gedownload.",
-    },
-    "6803": {
-        string: "Het downloaden van de\ncompetitieranglijsten is mislukt.\n\nErrorcode: {arg integer|0 5}",
-    },
-    "6804": {
-        string: null,
-    },
-    "6811": {
-        string: null,
-    },
-    "6812": {
-        string: null,
-    },
-    "6813": {
-        string: null,
-    },
-    "6900": {
-        string: "Download de laatste gegevens",
-    },
-    "6901": {
-        string: "De laatste Mario Kart-kanaalgegevens\nworden gedownload.",
-    },
-    "6902": {
-        string: "Laatste gegevens downloaden...",
-    },
-    "6903": {
-        string: "De laatste Mario Kart-kanaalgegevens\nzijn gedownload.",
-    },
-    "6904": {
-        string: "Er is een fout opgetreden bij het\ndownloaden van de laatste gegevens.\n\nErrorcode: {arg integer|0 6}",
-    },
-    "6905": {
-        string: null,
-    },
-    "7000": {
-        string: "Opties",
-    },
-    "7001": {
-        string: "Nintendo Wi-Fi Connectie",
-    },
-    "7002": {
-        string: "Opties",
-    },
-    "7003": {
-        string: "Volgende",
-    },
-    "7004": {
-        string: null,
-    },
-    "7100": {
-        string: "GCN-controllertrillingen",
-    },
-    "7101": {
-        string: "Wil je de trilfunctie van de Nintendo\nGameCube-controller gebruiken?",
-    },
-    "7102": {
-        string: "Ja",
-    },
-    "7103": {
-        string: "Nee",
-    },
-    "7104": {
-        string: "Je hebt ervoor gekozen om de trilfunctie\nvan de Nintendo GameCube-controller\nte gebruiken.",
-    },
-    "7105": {
-        string: "Je hebt ervoor gekozen om de trilfunctie\nvan de Nintendo GameCube-controller\nniet te gebruiken.",
-    },
-    "7106": {
-        string: null,
-    },
-    "7200": {
-        string: "Regio-instelling",
-    },
-    "7201": {
-        string: "Terug naar het Wii-menu om\njouw regio-instelling te veranderen?",
-    },
-    "7202": {
-        string: null,
-    },
-    "7203": {
-        string: null,
-    },
-    "7204": {
-        string: null,
-    },
-    "7250": {
-        string: "Vlag- en regio-informatie",
-    },
-    "7251": {
-        string: "Mario Kart Wii kan je nationale vlag en\nregio laten zien op de volgende plekken:\n\n・als een locatie op de wereldbol\n・in je geestgegevens\n\nAls je ervoor kiest om deze informatie\nbeschikbaar te stellen, wordt het\nverzonden naar andere spelers tijdens\nhet spelen op Nintendo WFC.",
-    },
-    "7252": {
-        string: "Wil je je nationale vlag en regio\nbeschikbaar stellen op Nintendo WFC?\n",
-    },
-    "7253": {
-        string: "Ja",
-    },
-    "7254": {
-        string: "Nee",
-    },
-    "7255": {
-        string: "Je hebt ervoor gekozen om je nationale\nvlag en regio op Nintendo WFC\nweer te geven.",
-    },
-    "7256": {
-        string: "Je hebt ervoor gekozen om je nationale\nvlag en regio op Nintendo WFC\nniet weer te geven.",
-    },
-    "7257": {
-        string: null,
-    },
-    "7300": {
-        string: "Berichtenservice",
-    },
-    "7301": {
-        string: "Krijg de nieuwste updates van het\nMario Kart-kanaal op je Wii-berichtenbord\nvia WiiConnect24 door je aan te melden\nvoor de berichtenservice.\nJe kunt je op ieder moment afmelden.\n\nBerichten zullen informatie bevatten over:\n\n・competities\n・speciale geestendownloads",
-    },
-    "7302": {
-        string: "Aanmelden voor de\nMario Kart-kanaal-\nberichtenservice?",
-    },
-    "7303": {
-        string: "Aanmelden",
-    },
-    "7304": {
-        string: "Niet aanmelden",
-    },
-    "7305": {
-        string: "Je hebt je aangemeld voor\nde Mario Kart-kanaalberichtenservice.",
-    },
-    "7306": {
-        string: "Je zult geen berichten ontvangen\nde Mario Kart-kanaal-\nberichtenservice. Is dit oké?",
-    },
-    "7307": {
-        string: "",
-    },
-    "7350": {
-        string: "Met deze instellingen zul je\nberichten van de Mario Kart-kanaal-\nberichtenservice ontvangen op jouw Wii-berichtenbord.",
-    },
-    "7351": {
-        string: "Selecteer de gewenste\ninstellingen voor de berichtenservice.",
-    },
-    "7352": {
-        string: "Afmelden voor de Mario Kart-kanaal-\nberichtenservice",
-    },
-    "7353": {
-        string: "Afmelden voor alle kanaal-\nberichtenservices",
-    },
-    "7354": {
-        string: "Blijf Mario Kart-kanaalberichten\nontvangen",
-    },
-    "7355": {
-        string: "Afmelden voor het ontvangen van berichten\nvan het Mario Kart-kanaal?",
-    },
-    "7356": {
-        string: "Afmelden voor het ontvangen van berichten\nvan elk kanaal?",
-    },
-    "7357": {
-        string: "Je zult berichten van\nhet Mario Kart-kanaal\nblijven ontvangen.",
-    },
-    "7358": {
-        string: "Je hebt je niet aangemeld voor\nde Mario Kart-kanaalberichtenservice.",
-    },
-    "7359": {
-        string: "Je hebt je afgemeld voor\nde Mario Kart-kanaal-\nberichtenservice.",
-    },
-    "7360": {
-        string: "Je hebt je voor elke\nberichtenservice afgemeld.",
-    },
-    "7361": {
-        string: "",
-    },
-    "7400": {
-        string: "Data delen",
-    },
-    "7401": {
-        string: "Wanneer je Mario Kart Wii via\nNintendo WFC speelt, zullen de volgende\ngegevens naar Nintendo gestuurd worden:\n\n・Je Mii en gebruikersnaam\n・je records en geesten\n\nDeze gegevens worden ook gedeeld\nmet andere spelers op Nintendo WFC.",
-    },
-    "7402": {
-        string: "Sta je het toe om gegevens\nnaar Nintendo te verzenden?",
-    },
-    "7403": {
-        string: "Toestaan",
-    },
-    "7404": {
-        string: "Niet toestaan",
-    },
-    "7405": {
-        string: "Je hebt het toegestaan om gegevens\nnaar Nintendo te verzenden.",
-    },
-    "7406": {
-        string: "Weet je zeker dat dit oké is?\nJe zult geen Mario Kart Wii via\nNintendo WFC kunnen spelen met deze optie.",
-    },
-    "7407": {
-        string: "Je hebt het niet toegestaan om gegevens\nnaar Nintendo te verzenden.",
-    },
-    "7408": {
-        string: "Gebruik nooit je eigen naam of\nandere gegevens als de bijnaam van je\nMii. Als je dit toch hebt gedaan,\nvoer een van de volgende maatregelen\nuit om je privacy te beschermen:\n\n・Verander je Mii's bijnaam in het Mii-Kanaal\n・Kies een gast-Mii in de rijbewijsinstellingen.",
-    },
-    "7409": {
-        string: "",
-    },
-    "7500": {
-        string: "Mii-display",
-    },
-    "7501": {
-        string: "Mii's van andere spelers zullen\nworden weergegeven tijdens\nraces en gevechten, in de rangen\nen op andere plaatsen op Nintendo WFC.\n\nJe kunt ervoor kiezen om deze Mii's\nte laten zien zoals ze zijn, of ze\nte vervangen door Mii's van Nintendo.",
-    },
-    "7502": {
-        string: "Sta je het toe om Mii's\nvan andere spelers weer\nte geven in Mario Kart Wii?",
-    },
-    "7503": {
-        string: "Toestaan",
-    },
-    "7504": {
-        string: "Niet toestaan",
-    },
-    "7505": {
-        string: "Je hebt het toegestaan om Mii's\nvan andere spelers weer\nte geven in Mario Kart Wii.",
-    },
-    "7506": {
-        string: "Je hebt het niet toegestaan om Mii's\nvan andere spelers weer\nte geven in Mario Kart Wii.",
-    },
-    "7507": {
-        string: "Mii's van andere spelers zullen\nworden vervangen door Mii's gemaakt door\nNintendo.\n\nIs dit oké?",
-    },
-    "7508": {
-        string: null,
-    },
-    "7600": {
-        string: null,
-    },
-    "7601": {
-        string: null,
-    },
-    "7602": {
-        string: null,
-    },
-    "7603": {
-        string: null,
-    },
-    "7604": {
-        string: null,
-    },
-    "7605": {
-        string: null,
-    },
-    "7700": {
-        string: "Mario Kart Wii kan worden weergeven\nmet 60Hz (480i). De huidige mode is\n50Hz (576i). Als de TV - zoals de meeste -\n60Hz ondersteunt, verander dan deze\ninstelling bij de Wii-instellingen voor een\nbetere kwaliteit.\n\nGa naar het HOME-menu en vervolgens\nnaar het Wii-menu om de instelling te\nveranderen naar 60Hz.",
-    },
-    "7701": {
-        string: "{2 chars|< <}",
-    },
-    "7702": {
-        string: "GEFELICITEERD!",
-    },
-    "7703": {
-        string: "Wil je deze foto posten op het Wii-berichtenbord?",
-    },
-    "7704": {
-        string: "Plaatsen...",
-    },
-    "7705": {
-        string: "De foto is geplaatst op\nhet Wii-berichtenbord!",
-    },
-    "7706": {
-        string: "Onthoud dat je niet te veel foto's moet plaatsen,\nomdat dit het Wii-berichtenbord vol\nkan laten raken.\n\nAls het Wii-berichtenbord vol is, wordt ruimte\nvoor nieuwe berichten gemaakt door\noudere berichten te verwijderen,\nbeginnend met de oudste.",
-    },
-    "7707": {
-        string: "Bedankt voor het spelen,\nen geniet van Mario Kart Wii!",
-    },
-    "8000": {
-        string: "Gefeliciteerd!\nJe hebt de \n{arg message|0} {arg message|1} vrijgespeeld!",
-    },
-    "8001": {
-        string: "Gefeliciteerd!\nJe hebt de gespiegelde modus vrijgespeeld!",
-    },
-    "8002": {
-        string: "Gefeliciteerd! Je kan nu spelen als\n{arg message|0}!",
-    },
-    "8003": {
-        string: "Gefeliciteerd! Je kan nu spelen als\n{arg message|0}!",
-    },
-    "8004": {
-        string: "Gefeliciteerd! Je hebt een\nkleine kart vrijgespeeld,\nde {arg message|0}!",
-    },
-    "8005": {
-        string: "Gefeliciteerd! Je hebt een\nmedium kart vrijgespeeld,\nde {arg message|0}!",
-    },
-    "8006": {
-        string: "Gefeliciteerd! Je hebt een\ngrote kart vrijgespeeld,\nde {arg message|0}!",
-    },
-    "8007": {
-        string: "Gefeliciteerd! Je hebt een\nkleine motor vrijgespeeld,\nde {arg message|0}!",
-    },
-    "8008": {
-        string: "Gefeliciteerd! Je hebt een\nmedium motor vrijgespeeld,\nde {arg message|0}!",
-    },
-    "8009": {
-        string: "Gefeliciteerd! Je hebt een\ngrote motor vrijgespeeld,\nde {arg message|0}!",
-    },
-    "8010": {
-        string: "Gefeliciteerd!\nJe hebt de 50 cc\nGrand Prix vrijgespeeld (karts en motors)!",
-    },
-    "8011": {
-        string: "Gefeliciteerd!\nJe hebt de 100 cc\nGrand Prix vrijgespeeld (karts en motors)!",
-    },
-    "8012": {
-        string: null,
-    },
-    "8100": {
-        string: "Je hebt trofeeën verdiend in de {arg message|0} Paddenstoel- en Bloemenbeker!",
-    },
-    "8101": {
-        string: "Je hebt een trofee verdiend in de {arg message|0} Sterrenbeker!",
-    },
-    "8102": {
-        string: "Je hebt trofeeën verdiend in de {arg message|0} Schild- en Bananenbeker!",
-    },
-    "8103": {
-        string: "Je hebt een trofee verdiend in de {arg message|0} Blaadjesbeker!",
-    },
-    "8104": {
-        string: "Je hebt alle 150 cc bekers gewonnen!",
-    },
-    "8105": {
-        string: null,
-    },
-    "8110": {
-        string: "Je hebt de 100 cc Blaadjesbeker gewonnen!",
-    },
-    "8111": {
-        string: "Je hebt tijdraces gespeeld op alle circuits!",
-    },
-    "8112": {
-        string: "Je hebt 1.000 keer gewonnen op Nintendo WFC!",
-    },
-    "8113": {
-        string: "Je hebt rang {1 char|} verdiend in alle 50 cc Wii Grand Prix bekers!",
-    },
-    "8114": {
-        string: "Je hebt 8 expertgeesten vrijgespeeld in Tijdraces!",
-    },
-    "8115": {
-        string: "Je hebt de 50 cc Bliksembeker gewonnen!",
-    },
-    "8116": {
-        string: "Je hebt rang {1 char|} verdiend in alle 100 cc Retro Grand Prix bekers!",
-    },
-    "8117": {
-        string: "Je hebt de 150 cc Speciale Beker gewonnen",
-    },
-    "8118": {
-        string: "Je hebt tijdraces op 16 verschillende circuits gespeeld!",
-    },
-    "8119": {
-        string: "Je hebt rang {1 char|} verdiend in alle spiegelbekers!",
-    },
-    "8120": {
-        string: "Je hebt een cadeau van Super Mario Galaxy!",
-    },
-    "8121": {
-        string: "Je hebt rang {1 char|} verdiend in alle 150 cc Wii Grand Prix bekers!",
-    },
-    "8122": {
-        string: "Je hebt 4 expertgeesten vrijgespeeld in tijdraces!",
-    },
-    "8123": {
-        string: "Je hebt 25 geestraces gewonnen!",
-    },
-    "8124": {
-        string: "Je hebt de 50 cc Sterrenbeker gewonnen!",
-    },
-    "8125": {
-        string: "Je hebt de 100 cc Speciale beker gewonnen!",
-    },
-    "8126": {
-        string: "Je hebt alle 32 expertgeesten vrijgespeeld in tijdraces!",
-    },
-    "8127": {
-        string: "Je hebt 5.000 keer gewonnen op Nintendo WFC!",
-    },
-    "8128": {
-        string: "Je hebt 100 geestraces gewonnen!",
-    },
-    "8129": {
-        string: "Je hebt 250 keer gewonnen op Nintendo WFC!",
-    },
-    "8130": {
-        string: null,
-    },
-    "8140": {
-        string: "Je hebt rang {1 char|} verdiend in alle 50 cc Retro Grand Prix bekers!",
-    },
-    "8141": {
-        string: "Je hebt een expertgeest vrijgespeeld in tijdraces!",
-    },
-    "8142": {
-        string: "Je hebt 50 keer gewonnen op Nintendo WFC!",
-    },
-    "8143": {
-        string: "Je hebt de gespiegelde Bliksembeker gewonnen!",
-    },
-    "8144": {
-        string: "Je hebt de 50 cc Blaadjesbeker gewonnen!",
-    },
-    "8145": {
-        string: "Je hebt de 150 cc Blaadjesbeker gewonnen!",
-    },
-    "8146": {
-        string: "Je hebt 24 expertgeesten vrijgespeeld in tijdraces!",
-    },
-    "8147": {
-        string: "Je hebt de 50 cc Speciale beker gewonnen!",
-    },
-    "8148": {
-        string: "Je hebt rang {1 char|} verdiend in alle 150 cc Retro Grand Prix bekers!",
-    },
-    "8149": {
-        string: "Je hebt de 150 cc Bliksembeker gewonnen!",
-    },
-    "8150": {
-        string: "Je hebt de 150 cc Sterrenbeker gewonnen!",
-    },
-    "8151": {
-        string: "Je hebt tijdraces gespeeld op 8 verschillende circuits!",
-    },
-    "8152": {
-        string: "Je hebt 5 geestraces gewonnen!",
-    },
-    "8153": {
-        string: "Je hebt de gespiegelde Blaadjesbeker gewonnen!",
-    },
-    "8154": {
-        string: "Je hebt de 100 cc Bliksembeker gewonnen!",
-    },
-    "8155": {
-        string: "Je hebt rang {1 char|} verdiend in alle 100 cc Wii Grand Prix bekers!",
-    },
-    "8156": {
-        string: "Je hebt de gespiegelde Sterrenbeker gewonnen!",
-    },
-    "8157": {
-        string: "Je hebt de 100 cc Sterrenbeker gewonnen!",
-    },
-    "8158": {
-        string: "Je hebt 12 expertgeesten vrijgespeeld in tijdraces!",
-    },
-    "8159": {
-        string: "Je hebt 200 geestraces gewonnen!",
-    },
-    "8160": {
-        string: "Je hebt de gespiegelde Speciale beker gewonnen!",
-    },
-    "8161": {
-        string: "Je hebt trofeeën gewonnen in alle 50 cc bekers!",
-    },
-    "8162": {
-        string: "Je hebt trofeeën gewonnen in alle 100 cc bekers!",
-    },
-    "8163": {
-        string: "Je hebt 3.000 keer gewonnen op Nintendo WFC!",
-    },
-    "8164": {
-        string: "Je hebt Mario Kart Wii {arg integer|0 0} keer gespeeld!",
-    },
-    "8165": {
-        string: null,
-    },
-    "8200": {
-        string: "Alle records",
-    },
-    "8201": {
-        string: "Favorieten",
-    },
-    "8202": {
-        string: "Records van vrienden",
-    },
-    "8203": {
-        string: "Nintendo WFC-records",
-    },
-    "8204": {
-        string: "Andere records",
-    },
-    "8210": {
-        string: "Totale rang",
-    },
-    "8211": {
-        string: "Afgelegde afstand",
-    },
-    "8212": {
-        string: "Totaal aantal races",
-    },
-    "8213": {
-        string: "Totaal aantal gevechten",
-    },
-    "8214": {
-        string: "Wii-Wheel gebruik",
-    },
-    "8215": {
-        string: "Springboosts gedaan",
-    },
-    "8216": {
-        string: "Favoriete coureur",
-    },
-    "8217": {
-        string: "Favoriete voertuig",
-    },
-    "8218": {
-        string: "Favoriete circuit",
-    },
-    "8219": {
-        string: "Favoriete arena",
-    },
-    "8220": {
-        string: "Nintendo WFC-records van vrienden",
-    },
-    "8221": {
-        string: null,
-    },
-    "8222": {
-        string: "Geestuitdagingen verzonden",
-    },
-    "8223": {
-        string: "Geestuitdagingen ontvangen",
-    },
-    "8224": {
-        string: "Racepunten",
-    },
-    "8225": {
-        string: "Versusrace-record",
-    },
-    "8226": {
-        string: "Gevechtspunten",
-    },
-    "8227": {
-        string: "Gevechtsecord",
-    },
-    "8228": {
-        string: "Aantal keren 1e plaats",
-    },
-    "8229": {
-        string: "%-Racetijd in 1e plaats",
-    },
-    "8230": {
-        string: "Voorwerpklappen uitgedeeld",
-    },
-    "8231": {
-        string: "Voorwerpklappen ontvangen",
-    },
-    "8232": {
-        string: "Geestrace-record",
-    },
-    "8233": {
-        string: "Competities gedaan",
-    },
-    "8234": {
-        string: null,
-    },
-    "8235": {
-        string: null,
-    },
-    "8236": {
-        string: null,
-    },
-    "8237": {
-        string: null,
-    },
-    "8238": {
-        string: null,
-    },
-    "8260": {
-        string: "{arg message|0}",
-    },
-    "8261": {
-        string: "{arg integer|0 0}",
-    },
-    "8262": {
-        string: "{arg integer|0 0}",
-    },
-    "8263": {
-        string: "{arg integer|0 0}",
-    },
-    "8264": {
-        string: "{arg integer|0 0}%",
-    },
-    "8265": {
-        string: "{arg integer|0 0}",
-    },
-    "8266": {
-        string: "{arg message|0}",
-    },
-    "8267": {
-        string: "{arg message|0}",
-    },
-    "8268": {
-        string: "{arg message|0}",
-    },
-    "8269": {
-        string: "{arg message|0}",
-    },
-    "8270": {
-        string: "Winst: {arg integer|0 0} Verlies: {arg integer|1 0}",
-    },
-    "8271": {
-        string: null,
-    },
-    "8272": {
-        string: "{arg integer|0 0}",
-    },
-    "8273": {
-        string: "{arg integer|0 0}",
-    },
-    "8274": {
-        string: "{arg integer|0 0}",
-    },
-    "8275": {
-        string: "Winst: {arg integer|0 0} Verlies: {arg integer|1 0}",
-    },
-    "8276": {
-        string: "{arg integer|0 0}",
-    },
-    "8277": {
-        string: "Winst: {arg integer|0 0} Verlies: {arg integer|1 0}",
-    },
-    "8278": {
-        string: "{arg integer|0 0} keer",
-    },
-    "8279": {
-        string: "{arg integer|0 0}%",
-    },
-    "8280": {
-        string: "{arg integer|0 0} keer",
-    },
-    "8281": {
-        string: "{arg integer|0 0} keer",
-    },
-    "8282": {
-        string: "Winst: {arg integer|0 0} Verlies: {arg integer|1 0}",
-    },
-    "8283": {
-        string: "{arg integer|0 0} keer",
-    },
-    "8284": {
-        string: null,
-    },
-    "8400": {
-        string: null,
-    },
-    "8401": {
-        string: null,
-    },
-    "8402": {
-        string: null,
-    },
-    "8403": {
-        string: null,
-    },
-    "8404": {
-        string: null,
-    },
-    "8405": {
-        string: "Gefeliciteerd,\n%ls!\n\nJe hebt trofeeën in alle bekers verdiend!\nOm het te vieren, hebben we\nje deze souvenirfoto toegestuurd.\nBedankt voor het spelen,\nen geniet van Mario Kart Wii!",
-    },
-    "8406": {
-        string: "Gefeliciteerd,\n%ls!\n\nJe hebt alle Mario Kart Wii\nbekers gewonnen! Om dit te vieren\nhebben we je deze souvenir\nfoto toegestuurd. Bedankt voor\nhet spelen, en we hopen dat je nog veel\nplezier beleeft aan Mario Kart Wii!",
-    },
-    "8407": {
-        string: null,
-    },
-    "8408": {
-        string: null,
-    },
-    "8409": {
-        string: null,
-    },
-    "8410": {
-        string: null,
-    },
-    "8411": {
-        string: null,
-    },
-    "8412": {
-        string: null,
-    },
-    "8413": {
-        string: null,
-    },
-    "8414": {
-        string: null,
-    },
-    "8415": {
-        string: null,
-    },
-    "8416": {
-        string: null,
-    },
-    "8417": {
-        string: null,
-    },
-    "8418": {
-        string: null,
-    },
-    "8419": {
-        string: null,
-    },
-    "8420": {
-        string: null,
-    },
-    "8421": {
-        string: null,
-    },
-    "8422": {
-        string: null,
-    },
-    "8423": {
-        string: null,
-    },
-    "8424": {
-        string: null,
-    },
-    "8425": {
-        string: null,
-    },
-    "8426": {
-        string: null,
-    },
-    "8427": {
-        string: null,
-    },
-    "8428": {
-        string: null,
-    },
-    "8429": {
-        string: null,
-    },
-    "8430": {
-        string: null,
-    },
-    "8440": {
-        string: null,
-    },
-    "8441": {
-        string: null,
-    },
-    "8442": {
-        string: null,
-    },
-    "8443": {
-        string: null,
-    },
-    "8444": {
-        string: null,
-    },
-    "8445": {
-        string: null,
-    },
-    "8446": {
-        string: null,
-    },
-    "8447": {
-        string: null,
-    },
-    "8448": {
-        string: null,
-    },
-    "8449": {
-        string: null,
-    },
-    "8450": {
-        string: null,
-    },
-    "8451": {
-        string: null,
-    },
-    "8452": {
-        string: null,
-    },
-    "8453": {
-        string: null,
-    },
-    "8454": {
-        string: null,
-    },
-    "8455": {
-        string: null,
-    },
-    "8456": {
-        string: null,
-    },
-    "8457": {
-        string: null,
-    },
-    "8458": {
-        string: null,
-    },
-    "8459": {
-        string: null,
-    },
-    "8460": {
-        string: null,
-    },
-    "8461": {
-        string: null,
-    },
-    "8462": {
-        string: "Gefeliciteerd, %ls!\n\nAls prijs voor het verdienen van alle\ntrofeeën in alle 100 cc bekers,\nkrijg je een nieuwe motorklasse:\n\n100 cc (karts en motors)",
-    },
-    "8463": {
-        string: null,
-    },
-    "8464": {
-        string: null,
-    },
-    "8470": {
-        string: null,
-    },
-    "8471": {
-        string: null,
-    },
-    "8472": {
-        string: null,
-    },
-    "8473": {
-        string: null,
-    },
-    "8474": {
-        string: null,
-    },
-    "8475": {
-        string: null,
-    },
-    "8476": {
-        string: null,
-    },
-    "8477": {
-        string: null,
-    },
-    "8478": {
-        string: null,
-    },
-    "8479": {
-        string: null,
-    },
-    "8480": {
-        string: null,
-    },
-    "8481": {
-        string: null,
-    },
-    "8482": {
-        string: null,
-    },
-    "8483": {
-        string: null,
-    },
-    "8484": {
-        string: null,
-    },
-    "8485": {
-        string: null,
-    },
-    "8486": {
-        string: null,
-    },
-    "8490": {
-        string: "Dit is een bericht van het\nMario Kart-kanaal.\n\n{arg string|0}\n\n\n\nAls je geen verdere commerciële\nberichten van Nintendo meer wilt\nontvangen, selecteer dan de afmeldingsknop\nrechtsboven op het scherm.\n\nJe kunt je afmelden voor:\n(1) berichten van het Mario\nKart-kanaal, of\n(2) berichten van alle kanalen\nen spellen.",
-    },
-    "8491": {
-        string: "Dit is een bericht van het\nMario Kart-kanaal.\n\n{arg string|0}\n\n\n\nAls je geen verdere commerciële\nberichten van Nintendo meer wilt\nontvangen, selecteer dan de afmeldingsknop\nrechtsboven op het scherm.\n\nJe kunt je afmelden voor:\n(1) berichten van het Mario\nKart-kanaal, of\n(2) berichten van alle kanalen\nen spellen.",
-    },
-    "8492": {
-        string: "Je hebt een vriendenuitnodiging\nontvangen van\n%ls!\n\nMario Kart Wii\nVriendencode: %04d-%04d-%04d\n\nDoor elkaars vriendencode te\nregistreren, kunnen jullie Mario Kart\nWii samen spelen via de Nintendo Wi-Fi\nConnectie.\n\nAls je Mario Kart Wii én\nhet Mario Kart-kanaal in je Wii-menu\nhebt, kun je de START-knop\naan de rechterkant selecteren\nom te bevestigen.\n\nVeel plezier!",
-    },
-    "8493": {
-        string: "%ls heeft je\nvriendenuitnodiging geaccepteerd!\n\nMario Kart Wii\nVriendcode: %04d-%04d-%04d\n\nOpmerking: Als er ruimte is\njouw vriendenlijst, zal deze\nautomatisch geregistreerd worden.\n\nAls je het Mario Kart-kanaal op je Wii Menu\nhebt, kun je de START-knop aan\nde rechterkant indrukken om de\nvriendcode te bevestigen.\n\nVeel plezier!",
-    },
-    "8494": {
-        string: null,
-    },
-    "8495": {
-        string: null,
-    },
-    "8496": {
-        string: null,
-    },
-    "8497": {
-        string: null,
-    },
-    "8498": {
-        string: null,
-    },
-    "8499": {
-        string: null,
-    },
-    "8500": {
-        string: null,
-    },
-    "8504": {
-        string: null,
-    },
-    "8505": {
-        string: null,
-    },
-    "8510": {
-        string: null,
-    },
-    "8511": {
-        string: null,
-    },
-    "8512": {
-        string: null,
-    },
-    "8513": {
-        string: null,
-    },
-    "8514": {
-        string: null,
-    },
-    "8515": {
-        string: null,
-    },
-    "8516": {
-        string: null,
-    },
-    "8517": {
-        string: null,
-    },
-    "8518": {
-        string: null,
-    },
-    "8519": {
-        string: null,
-    },
-    "8520": {
-        string: null,
-    },
-    "8521": {
-        string: null,
-    },
-    "8522": {
-        string: null,
-    },
-    "8523": {
-        string: null,
-    },
-    "8524": {
-        string: null,
-    },
-    "8525": {
-        string: null,
-    },
-    "8526": {
-        string: null,
-    },
-    "8527": {
-        string: null,
-    },
-    "8528": {
-        string: null,
-    },
-    "8529": {
-        string: null,
-    },
-    "8530": {
-        string: null,
-    },
-    "8540": {
-        string: null,
-    },
-    "8541": {
-        string: null,
-    },
-    "8542": {
-        string: null,
-    },
-    "8543": {
-        string: null,
-    },
-    "8544": {
-        string: null,
-    },
-    "8545": {
-        string: null,
-    },
-    "8546": {
-        string: null,
-    },
-    "8547": {
-        string: null,
-    },
-    "8548": {
-        string: null,
-    },
-    "8549": {
-        string: null,
-    },
-    "8550": {
-        string: null,
-    },
-    "8551": {
-        string: null,
-    },
-    "8552": {
-        string: null,
-    },
-    "8553": {
-        string: null,
-    },
-    "8554": {
-        string: null,
-    },
-    "8555": {
-        string: null,
-    },
-    "8556": {
-        string: null,
-    },
-    "8557": {
-        string: null,
-    },
-    "8558": {
-        string: null,
-    },
-    "8559": {
-        string: null,
-    },
-    "8560": {
-        string: null,
-    },
-    "8561": {
-        string: null,
-    },
-    "8562": {
-        string: null,
-    },
-    "8563": {
-        string: null,
-    },
-    "8564": {
-        string: null,
-    },
-    "8565": {
-        string: null,
-    },
-    "8566": {
-        string: null,
-    },
-    "8567": {
-        string: null,
-    },
-    "99991": {
-        string: null,
-    },
-    "99992": {
-        string: null,
-    },
-    "99993": {
-        string: null,
-    },
-    "99994": {
-        string: null,
-    },
-    "99995": {
-        string: null,
-    },
-    "99996": {
-        string: null,
-    },
-    "99997": {
-        string: null,
-    },
-    "99998": {
-        string: null,
-    },
+    "1": null,
+    "2000": "Oké",
+    "2001": "←{arg back button|0}Terug",
+    "2002": "Ja",
+    "2003": "Nee",
+    "2004": null,
+    "2005": "→",
+    "2006": null,
+    "2007": "←",
+    "2008": null,
+    "2009": "{arg integer|0 0}/{arg integer|1 0}",
+    "2010": "Mario Kart Wii",
+    "2011": "Één speler",
+    "2012": "Meerdere spelers",
+    "2013": "Nintendo WFC",
+    "2014": "Mario Kart-kanaal",
+    "2015": "Rijbewijsinstellingen",
+    "2016": "Records",
+    "2017": "Druk op de A-knop",
+    "2018": "Hoofdmenu",
+    "2019": null,
+    "2020": "Grand Prix en meer voor één speler!",
+    "2021": "Race en vecht met twee spelers!",
+    "2022": "Race en vecht met drie spelers!",
+    "2023": "Race en vecht met vier spelers!",
+    "2024": "Speel via Nintendo WFC!",
+    "2025": "Speel met een vriend via Nintendo WFC",
+    "2026": "Bekijk de ranglijsten en competitiegegevens!",
+    "2027": "Bekijk je records en verander jouw Mii!",
+    "2028": null,
+    "2029": null,
+    "2030": "Meerdere spelers (2S)",
+    "2031": "Meerdere spelers (3S)",
+    "2032": "Meerdere spelers (4S)",
+    "2033": "Nintendo WFC (1S)",
+    "2034": "Nintendo WFC (2S)",
+    "2035": null,
+    "2050": "Steek de Mario Kart Wii-schijf\nin het Wii-systeem en\nwacht tot het spel geladen is.",
+    "2051": "De schijf kon niet gelezen worden.\nLees de Wii-handleiding voor\nmeer informatie.",
+    "2052": "Er is een fout opgetreden.\n\nDruk op de EJECT-knop, verwijder\nde schijf, en zet het Wii-systeem\nuit. Lees de Wii-handleiding voor\nmeer informatie.",
+    "2053": "Er is niet genoeg vrije ruimte beschikbaar\nin het Wii-geheugen. Zorg voor\n23 vrije blokken door gegevens\nte kopiëren naar een SD-kaart of\ndoor blokken te verwijderen.",
+    "2054": "Het Wii-geheugen is beschadigd.\nLees de Wii-handleiding\nvoor meer informatie.",
+    "2055": "Deze gegevens zijn beschadigd en\nkunnen niet worden gebruikt.\n\nWil je de beschadigde gegevens\nverwijderen en een nieuw bestand maken?",
+    "2056": null,
+    "2057": "Er kan niet van/naar het Wii-geheugen\ngelezen/geschreven worden.\n\nLees de Wii-handleiding voor meer informatie.",
+    "2058": "Je zal nu terugkeren naar het Wii-menu.",
+    "2059": "Verdergaan zonder opslaan",
+    "2060": "Terug naar het Wii-menu",
+    "2061": "Je kan dit menu niet kiezen omdat\ner geen opgeslagen gegevens zijn.",
+    "2062": "Er kan niet vanaf het geheugen\nworden gelezen. Steek de Mario Kart\nWii-schijf in de Wii.",
+    "2063": "Start schijf",
+    "2064": "Je zal nu terugkeren\nnaar het Wii-menu.\nIs dit oké?",
+    "2065": "Bezig met opslaan. Druk niet\nop de POWER- of RESET-knop.",
+    "2066": "Kan de Mii-kanaalgegevens niet laden.\nOpen het Mii-kanaal en\ncontroleer de gegevens.",
+    "2067": "Als je deze Mii uit het\nMii-kanaal verwijdert, zal het ook\nin Mario Kart Wii worden verwijderd, dus\nwees voorzichtig.",
+    "2068": "Je rijbewijs werd gemaakt met een\ngast-Mii. Je kan een nieuwe Mii\nmaken in het Mii-kanaal.",
+    "2069": "De geestgegevens kunnen niet\nworden verzonden. Je kunt tot vijf\nuitdagingen verzenden per keer dat je speelt.\n\nWacht a.u.b. tot de volgende keer\ndat je Mario Kart Wii opstart om\nnog een uitdaging te verzenden.",
+    "2070": "Er kan geen verbinding worden gemaakt\nmet de Nintendo Wi-Fi Connectie. Er zijn\ngeen opgeslagen gegevens.\n\nJe kan het Wii-geheugen beheren\nop het opgeslagen gegevens-scherm van\nde Wii-instellingen.",
+    "2071": "Er is niet genoeg ruimte beschikbaar\nin het Wii-geheugen. Verplaats gegevens\nnaar een SD-kaart of verwijder gegevens\nop het Opgeslagen gegevens-scherm.",
+    "2072": "De verbinding met Nintendo\nWFC zal nu worden verbroken en je\nzal terugkeren naar het hoofdmenu.",
+    "2073": "De landinstelling is veranderd, dus moeten\ner nieuwe gegevens worden gemaakt. Als\nje jouw gegevens niet wilt verliezen, keer\ndan terug naar het Wii-menu en verander\nde instelling terug.",
+    "2074": "Maak nieuwe gegevens aan",
+    "2075": null,
+    "2100": null,
+    "2101": "Een nieuw Mario Kart Wii-\nrijbewijs wordt gemaakt.",
+    "2102": "Nieuw rijbewijs",
+    "2103": "Verwijder rijbewijs",
+    "2104": "Selecteer rijbewijs",
+    "2105": null,
+    "2106": null,
+    "2107": null,
+    "2108": null,
+    "2109": null,
+    "2110": "{arg integer|0 4}-{arg integer|1 4}-{arg integer|2 4}",
+    "2111": "Een nieuw rijbewijs zal worden\ngecreëerd voor {arg player|0}.\n\nIs dit oké?",
+    "2112": "De Mii van dit rijbewijs zal worden\nveranderd naar {arg player|0}.\n\nIs dit oké?",
+    "2113": "{current player|} en {arg player|0}\nzullen samen verbinden met\nNintendo WFC. Is dit oké?",
+    "2114": null,
+    "2120": "Records",
+    "2121": "Bekijk de records van {current player|}.",
+    "2122": "Verander de Mii van dit rijbewijs.",
+    "2123": "Kies een Mii",
+    "2124": null,
+    "2125": null,
+    "2126": null,
+    "2127": null,
+    "2128": "Verwijder het rijbewijs van {current player|}.",
+    "2129": null,
+    "2130": null,
+    "2131": null,
+    "2132": null,
+    "2133": null,
+    "2134": null,
+    "2135": "Sluit",
+    "2136": null,
+    "2150": null,
+    "2151": "Jouw nieuwe rijbewijs is gemaakt.",
+    "2152": "Weet je zeker dat je het rijbewijs\nvan {current player|} wilt verwijderen?",
+    "2153": "Het rijbewijs van {current player|}\nis verwijderd.",
+    "2154": null,
+    "2155": "De Mii voor dit rijbewijs is veranderd.",
+    "2156": null,
+    "2157": "Rijbewijs aan het verwijderen...",
+    "2158": "De vriendenlijst, geesten en\nandere gegevens zullen worden\nverwijderd. Weet je zeker dat je door wilt gaan?",
+    "2159": null,
+    "2200": "Verander Mii",
+    "2201": "Kies een Mii",
+    "2202": "Wii-console",
+    "2203": "Gast",
+    "2204": null,
+    "2205": "De Mii van dit rijbewijs is verwijderd\nvan het Mii-kanaal.\n\nKies een nieuwe Mii.",
+    "2206": null,
+    "2207": null,
+    "2208": null,
+    "2209": null,
+    "2210": null,
+    "2250": null,
+    "2251": null,
+    "2252": null,
+    "2253": null,
+    "2254": null,
+    "2255": null,
+    "2256": null,
+    "2257": null,
+    "2258": "De batterij is\nbijna leeg.",
+    "2259": null,
+    "2260": null,
+    "2261": null,
+    "2262": null,
+    "2300": null,
+    "2301": "1\nspeler",
+    "2302": "2\nspelers",
+    "2303": "3\nspelers",
+    "2304": "4\nspelers",
+    "2305": "{2 chars| }",
+    "2306": "{2 chars| }",
+    "2307": null,
+    "2400": null,
+    "2401": "Voeg controllers toe",
+    "2402": "Druk op A-knop op de controller van\nspeler 2.",
+    "2403": "Druk op A-knop op de controller van\nspeler 3.",
+    "2404": "Druk op A-knop op de controller van\nspeler 4.",
+    "2405": null,
+    "2406": null,
+    "2407": null,
+    "2408": null,
+    "2409": null,
+    "2500": "Is dit oké?",
+    "2501": "Verander",
+    "2502": "Druk op A-knop op de controller van\nspeler 1.",
+    "2503": "Druk op A-knop op de controller van\nspeler 2.",
+    "2504": "Druk op A-knop op de controller van\nspeler 3.",
+    "2505": "Druk op A-knop op de controller van\nspeler 4.",
+    "2506": "Gebruik deze controllers.",
+    "2507": "Verander de controllers.",
+    "2508": "{arg message|0}Voeg Wii-afstandsbediening toe",
+    "2509": "Druk tegelijkertijd op {1 char|} en {1 char|}.",
+    "2510": "{arg message|0}Oké",
+    "2511": null,
+    "2512": null,
+    "2513": null,
+    "2514": null,
+    "2550": "{1 char|}",
+    "2551": "{1 char|}",
+    "2552": "{1 char|}",
+    "2553": "{1 char|}",
+    "2554": "{1 char|}",
+    "2555": "{color|player 1}Oké",
+    "2556": "{color|player 2}Oké",
+    "2557": "{color|player 3}Oké",
+    "2558": "{color|player 4}Oké",
+    "2559": null,
+    "2600": "Wil je het Mario Kart-kanaal\ninstalleren? Hiervoor zijn\n{arg integer|0 0} blokken in\nhet geheugen nodig.",
+    "2601": "Ja",
+    "2602": "Nee",
+    "2603": null,
+    "2604": null,
+    "2605": null,
+    "2606": null,
+    "2607": "Voeg het Mario Kart-kanaal toe",
+    "2608": "Voeg het Mario Kart-kanaal aan\nhet Wii-menu toe, zodat je het kanaal\nkan openen zonder de\nMario Kart Wii-schijf!",
+    "2609": "Het Mario Kart-kanaal is al\ntoegevoegd aan het Wii-menu.",
+    "2610": "Er is niet genoeg ruimte in\nhet Wii-geheugen.\nMaak {arg integer|0 0} blokken vrij\ndoor gegevens naar een SD-kaart\nte verplaatsen of gegevens te verwijderen.",
+    "2611": "Er is niet genoeg ruimte beschikbaar\nin het Wii-geheugen. Verplaats gegevens\nnaar een SD-kaart of verwijder gegevens\nop in het gegevensbeheer.",
+    "2612": "Er is niet genoeg ruimte in\nhet Wii-geheugen. Kopieer kanalen\nnaar een SD-kaart of verwijder kanalen\nin het gegevensbeheer.",
+    "2613": "De Wii-gegevens zijn\nbeschadigd. Lees de\nWii-handleiding voor verdere instructies.",
+    "2614": null,
+    "3000": "Grand Prix",
+    "3001": "Tijdrace",
+    "3002": "Versusrace",
+    "3003": "Gevecht",
+    "3004": null,
+    "3005": null,
+    "3006": "50 cc\n{font scale|50}Alleen karts",
+    "3007": "100 cc\n{font scale|50}Alleen motors",
+    "3008": "150 cc\n{font scale|50}Karts en motors",
+    "3009": "Spiegel\n{font scale|50}Karts en motors",
+    "3010": "50 cc\n{font scale|50}Karts en motors",
+    "3011": "100 cc\n{font scale|50}Karts en motors",
+    "3012": "{arg message|0}Wissel",
+    "3013": null,
+    "3050": "Race in vier spannende races voor 1e plaats!",
+    "3051": "Race alleen voor het snelste record!",
+    "3052": "Race met eigen instellingen!",
+    "3053": "Race met eigen instellingen!",
+    "3054": "Vecht in teams!",
+    "3055": "Vecht in teams!",
+    "3056": null,
+    "3057": null,
+    "3058": null,
+    "3059": null,
+    "3060": "Een Grand Prix voor beginners\n(alleen karts).",
+    "3061": "Een standaard Grand Prix\n(alleen motors).",
+    "3062": "Een Grand Prix voor experts\n(karts en motors).",
+    "3063": "Een gespiegelde Grand Prix\n(karts en motors).",
+    "3064": "Een Grand Prix voor beginners\n(karts en motors).",
+    "3065": "Een standaard Grand Prix\n(karts en motors).",
+    "3066": null,
+    "3100": "Tijdrace",
+    "3101": "Er is geen geest voor dit circuit.",
+    "3102": null,
+    "3103": "Ranglijsten",
+    "3104": null,
+    "3200": "Gevechtstype",
+    "3201": "Ballongevecht",
+    "3202": "Muntengevecht",
+    "3203": null,
+    "3204": null,
+    "3250": "Maak de ballonnen van je tegenstanders stuk!",
+    "3251": "Verzamel zo veel munten als je maar kunt!",
+    "3252": null,
+    "3253": null,
+    "3305": "Drift-modus",
+    "3306": "Automatisch",
+    "3307": "Handmatig",
+    "3308": "Help",
+    "3309": "■ Drift ■\nDrift laat je bochten nemen zonder\nsnelheid te verliezen. Er zijn twee drift-modi.\n\n■ Automatisch ■\nJe drift automatisch als je stuurt,\nmaar je kan geen {arg back button|0}sprong maken of een mini-turbo krijgen.\n\n■ Handmatig ■\nMaak een {arg back button|0}sprong in een bocht om te driften.\nBlijf driften om een mini-turbo te krijgen,\nwaardoor je extra snel vooruit gaat.",
+    "3310": "Bekijk een uitleg over drift-modi.",
+    "3311": "Snelheid",
+    "3312": "Gewicht",
+    "3313": "Acceleratie",
+    "3314": "Wegligging",
+    "3315": "Drift",
+    "3316": "Offroad",
+    "3317": "Mini-turbo",
+    "3318": null,
+    "3350": "Drift automatisch (geen mini-turbo).",
+    "3351": "Drift handmatig (met mini-turbo).",
+    "3352": null,
+    "3360": "{arg message|0} Trofee: {arg message|1} Rang: {arg message|2}",
+    "3361": "Tijdrace",
+    "3362": "{arg message|0}",
+    "3363": "{arg message|0} Versusrace",
+    "3364": "{1 char|} Ballongevecht",
+    "3365": "{1 char|} Muntengevecht",
+    "3366": "{arg message|0} Team versusrace",
+    "3370": "{1 char|}",
+    "3371": "{1 char|}",
+    "3372": "{1 char|}",
+    "3373": "{1 char|}",
+    "3374": "{1 char|}",
+    "3375": "{1 char|}",
+    "3376": "{1 char|}",
+    "3377": "{1 char|}",
+    "3378": "{1 char|}",
+    "3379": "{1 char|}",
+    "3380": "{1 char|}",
+    "3381": "F",
+    "3382": " 　",
+    "3383": null,
+    "3384": null,
+    "3400": "Regels",
+    "3401": "Motorklasse kiezen",
+    "3402": "Coureur kiezen",
+    "3403": "Voertuig kiezen",
+    "3404": "Beker kiezen",
+    "3405": "Circuit kiezen",
+    "3406": "Arena kiezen",
+    "3407": "Geest kiezen",
+    "3408": "Gevecht",
+    "3409": "Versusrace",
+    "3410": "Motorklasse",
+    "3411": "50 cc",
+    "3412": "100 cc",
+    "3413": "150 cc",
+    "3414": "Spiegel",
+    "3415": "50 cc motorklasse voor beginners.",
+    "3416": "100 cc motorklasse voor gevorderden.",
+    "3417": "150 cc motorklasse voor experts.",
+    "3418": "150 cc motorklasse met gespiegelde circuits.",
+    "3420": "CPU",
+    "3421": "Makkelijk",
+    "3422": "Normaal",
+    "3423": "Moeilijk",
+    "3424": "Uit",
+    "3425": "CPU spelers zijn minder ervaren.",
+    "3426": "CPU spelers zijn meer ervaren.",
+    "3427": "CPU spelers zijn zeer ervaren.",
+    "3428": "Zonder computers spelen.",
+    "3430": "Voertuigen",
+    "3431": "Karts",
+    "3432": "Motors",
+    "3433": "Beide",
+    "3434": "Computers spelen met karts.",
+    "3435": "Computers spelen met motors.",
+    "3436": "Computers spelen met karts en motors.",
+    "3437": "Computers spelen met karts.",
+    "3438": "Computers spelen met motors.",
+    "3439": "Computers spelen met karts en motors.",
+    "3440": "Circuit",
+    "3441": "Kiezen",
+    "3442": "Willekeurig",
+    "3443": "Op volgorde",
+    "3444": "Kies het circuit voor elke race.",
+    "3445": "Circuits worden willekeurig gekozen.",
+    "3446": "Race circuits volgens bekervolgorde.",
+    "3447": "Kies de arena voor elk gevecht.",
+    "3448": "Arena's worden willekeurig gekozen.",
+    "3449": "Speel arena's op volgorde.",
+    "3450": "Races",
+    "3451": "{arg integer|0 1}",
+    "3452": "Overwinningen",
+    "3460": "{arg integer|0 1}",
+    "3461": "Teams",
+    "3462": "Teamrace",
+    "3463": "Solorace",
+    "3464": null,
+    "3465": "Kies het aantal races.",
+    "3466": "Kies het aantal overwinningen dat\nmoet worden gehaald.",
+    "3467": "Strijd in teams voor de meeste punten!",
+    "3468": "Strijd voor de meeste punten!",
+    "3469": "Arena",
+    "3470": "Weet je zeker dat je\ndeze versusrace wilt verlaten?",
+    "3471": "Weet je zeker dat je\ndit gevecht wilt verlaten?",
+    "3472": "Race met deze regels.",
+    "3473": "Vecht met deze regels.",
+    "3474": "Stel verschillende raceregels in.",
+    "3475": "Stel verschillende gevechtsregels in.",
+    "3476": null,
+    "3480": "Voorwerpen",
+    "3481": "Aanbevolen",
+    "3482": "Hectisch",
+    "3483": "Basis",
+    "3484": "Geen",
+    "3485": "Alle voorwerpen verschijnen in balans.",
+    "3486": "Krachtige voorwerpen verschijnen vaker.",
+    "3487": "Krachtige voorwerpen verschijnen minder vaak.",
+    "3488": "Er verschijnen geen voorwerpen.",
+    "3489": null,
+    "3500": "Teaminstellingen",
+    "3501": "Team\nBlauw",
+    "3502": "Team\nRood",
+    "3503": "Teams",
+    "3504": "Speel met deze teams.",
+    "3505": "Racers",
+    "3506": "{color|team blue}Team\nBlauw",
+    "3507": "{color|team red}Team\nRood",
+    "3508": "Iedereen zit in hetzelfde team.\n\nKies opnieuw.",
+    "3509": null,
+    "3550": "Beginnen?",
+    "3551": "Beginnen?",
+    "3552": "Beginnen?",
+    "3553": null,
+    "4000": "Wereldwijd",
+    "4001": "Continentaal",
+    "4002": "Vrienden",
+    "4003": "Geestrace",
+    "4004": "Nintendo Wi-Fi Connectie",
+    "4005": null,
+    "4006": null,
+    "4007": null,
+    "4008": "Er zijn geen vrienden geregistreerd\nin je vriendenlijst.\n\nRegistreer vrienden om\nsamen te spelen op Nintendo WFC.",
+    "4009": null,
+    "4010": "Verbinden met Nintendo WFC...",
+    "4011": "Wil je de verbinding met\nNintendo WFC verbreken?",
+    "4012": "Ja",
+    "4013": "Nee",
+    "4014": null,
+    "4015": null,
+    "4016": "Je kan niet verbinden met de Nintendo\nWi-Fi Connectie met deze Mii-naam.\nVerander je Mii-naam en probeer opnieuw.",
+    "4017": null,
+    "4018": "De verbinding met de\nandere spelers is verbroken.",
+    "4019": "Kamer verlaten?",
+    "4020": "Kamer sluiten?",
+    "4021": "De verbinding met de maker van\nde kamer is verbroken. Je keert nu terug\nnaar jouw vriendenlijst.",
+    "4022": "Je kan je nu niet bij deze vriend aansluiten.\n\nWacht en probeer later nog eens.",
+    "4023": null,
+    "4024": "Teams",
+    "4025": null,
+    "4100": "Kamer",
+    "4101": "Maak een kamer",
+    "4102": "Verbinden met vriend...",
+    "4103": null,
+    "4104": null,
+    "4105": null,
+    "4106": "Zoeken naar spelers...",
+    "4107": "Spelers zijn gekozen!",
+    "4108": "Wachten voor vrienden...",
+    "4109": "Start het spel",
+    "4110": "We spelen een Grand Prix!",
+    "4111": "We spelen een team Grand Prix!",
+    "4112": "We spelen een ballongevecht!",
+    "4113": "We spelen een muntengevecht!",
+    "4114": null,
+    "4150": "Voeg vrienden toe",
+    "4151": "Ik heb je toegevoegd, {arg player|0}!",
+    "4152": "Er zijn geen vrienden om toe te voegen.",
+    "4153": null,
+    "4154": "Nu zijn we vrienden, {arg player|0}!",
+    "4155": null,
+    "4200": "Bericht",
+    "4201": "{arg integer|0 2}/{arg integer|1 2}",
+    "4202": "{arg integer|0 0}\n{font scale|70}Racepunten",
+    "4203": "{arg integer|0 0}\n{font scale|70}Gevechtspunten",
+    "4204": "Een moment geduld...",
+    "4205": "Wereldwijde versusrace",
+    "4206": "Wereldwijd gevecht",
+    "4207": "Continentale versusrace",
+    "4208": "Continentaal gevecht",
+    "4300": "Kies een modus.",
+    "4301": "Een moment geduld...",
+    "4302": "De modus is gekozen.",
+    "4303": null,
+    "4304": null,
+    "4305": "Versusrace",
+    "4306": "Versusrace",
+    "4307": null,
+    "4308": "Gevecht",
+    "4309": "Gevecht",
+    "4310": "Daag spelers rond de wereld uit.",
+    "4311": "Daag spelers uit in jouw continent.",
+    "4312": "Speel met jouw vrienden.",
+    "4313": "Race tegen geesten van spelers rond de wereld.",
+    "4314": "Race tegen max. 11 andere spelers!",
+    "4315": "Strijd met max. 6 spelers in ieder team!",
+    "4316": "Maak een kamer om met vrienden te spelen.",
+    "4317": "Bekijk wat je vrienden op dit moment doen.",
+    "4318": "Registreer een vriendcode voor je vriendenlijst.",
+    "4319": null,
+    "4320": "De volgende race is 100 cc!",
+    "4321": "De volgende race is 150 cc!",
+    "4322": "De volgende race is gespiegeld!",
+    "4323": "{1 char|} Ballongevecht",
+    "4324": "{1 char|} Muntengevecht",
+    "4325": "De volgende race is 100 cc!",
+    "4326": "De volgende race is 150 cc!",
+    "4327": "De volgende race is gespiegeld!",
+    "4328": "De volgende race is 100 cc!",
+    "4329": "De volgende race is 150 cc!",
+    "4330": "De volgende race is gespiegeld!",
+    "4331": null,
+    "4332": null,
+    "4333": null,
+    "4334": null,
+    "4350": "Voor een circuit stemmen?",
+    "4351": "Stem",
+    "4352": "Willekeurig",
+    "4353": "???",
+    "4354": "Stemmen",
+    "4355": "Stemmen",
+    "4356": "Voor een arena stemmen?",
+    "4357": "Klaarmaken om te racen...",
+    "4358": "Klaarmaken om te vechten...",
+    "4359": null,
+    "4360": "Wachten op de anderen om te stemmen...",
+    "4361": "NOTREPLACED",
+    "4362": "Het circuit is gekozen!",
+    "4363": "De arena is gekozen!",
+    "4364": null,
+    "4370": "Stuur een bericht naar iedereen in de kamer.",
+    "4371": "Kies een bericht om te verzenden.",
+    "4372": "Start een spel met deze spelers.",
+    "4373": "Kies wat te spelen.",
+    "4374": "Nodig anderen uit om jouw vrienden te worden.",
+    "4375": "Dit bericht wordt alleen verstuurd naar de speler die je wilt toevoegen.",
+    "4376": null,
+    "4390": "Vul een vriendcode in.",
+    "4391": "Registreer deze vriendcode.",
+    "4392": "Speel met vrienden.",
+    "4393": "Deze vriendcode wordt verwijderd.",
+    "4394": null,
+    "4395": null,
+    "4396": null,
+    "4397": null,
+    "4499": "Hier ben ik!",
+    "4500": "Hallo!",
+    "4501": "Goedenavond!",
+    "4502": "Lang niet gezien!",
+    "4503": "Veel succes!",
+    "4504": "Bedankt voor het wachten!",
+    "4505": "Welkom!",
+    "4506": "Is iedereen er?",
+    "4507": "Laten we nog even wachten!",
+    "4508": "Klaar?",
+    "4509": "Starten we zo?",
+    "4510": "Laten we nog 3 minuten wachten...",
+    "4511": "Ik neem even een pauze...",
+    "4512": "Oké!",
+    "4513": "Laten we beginnen!",
+    "4514": "Doe het rustig aan!",
+    "4515": "Ik doe m'n best!",
+    "4516": "Wat zullen we spelen?",
+    "4517": "Enige voorkeuren?",
+    "4518": "Een Grand Prix of een gevecht?",
+    "4519": "Ik doe het misschien niet zo goed...",
+    "4520": "Laten we een Grand Prix spelen!",
+    "4521": "Laten we een team Grand Prix spelen!",
+    "4522": "Laten we een ballongevecht spelen!",
+    "4523": "Laten we een muntengevecht spelen!",
+    "4524": "Ik ga een kleine coureur gebruiken!",
+    "4525": "Ik ga een medium coureur gebruiken!",
+    "4526": "Ik ga een grote coureur gebruiken!",
+    "4527": "Ik ga mijn Mii gebruiken!",
+    "4528": "Ik ga mijn Wii-Wheel gebruiken!",
+    "4529": "Ik ga een kart gebruiken!",
+    "4530": "Ik ga een motor gebruiken!",
+    "4531": "Ik kan niet kiezen...",
+    "4532": "Welk circuit?",
+    "4533": "Hmm...",
+    "4534": "Laten we willekeurig kiezen!",
+    "4535": "Laten we een nieuw circuit proberen!",
+    "4536": "Luigi's Circuit!",
+    "4537": "Boe-Boe-Boerenland!",
+    "4538": "Paddenstoelengrot!",
+    "4539": "Toads Fabriek!",
+    "4540": "Mario's Circuit!",
+    "4541": "Kokosnootplaza!",
+    "4542": "DK's Skipark!",
+    "4543": "Wario's Goudmijn!",
+    "4544": "Daisy's Circuit!",
+    "4545": "Kaap Koopa!",
+    "4546": "Wigglers Woud!",
+    "4547": "Dondervulkaan!",
+    "4548": "Kurkdroge Ruïnes!",
+    "4549": "Maanzichtsnelweg!",
+    "4550": "Bowsers Kasteel!",
+    "4551": "Regenboogbaan!",
+    "4552": "GCN Peach' Strand!",
+    "4553": "DS Yoshi's Watervallen!",
+    "4554": "SNES Geestenvallei 2!",
+    "4555": "N64 Mario's Circuit!",
+    "4556": "N64 IJzige IJsbaan!",
+    "4557": "GBA Shy Guys Strand!",
+    "4558": "DS Delfino-Plaza!",
+    "4559": "GCN Waluigi's Stadion!",
+    "4560": "DS Woestijnheuvels!",
+    "4561": "GBA Bowsers Kasteel 3!",
+    "4562": "N64 DK's Jungleweg!",
+    "4563": "GCN Mario's Circuit!",
+    "4564": "SNES Mario's Circuit 3!",
+    "4565": "DS Peach' Paleistuin!",
+    "4566": "GCN DK's Berg!",
+    "4567": "N64 Bowsers Kasteel!",
+    "4568": "Blokkenplaza!",
+    "4569": "Delfino-Pier!",
+    "4570": "Funky's Stadion!",
+    "4571": "Chain Chomp Roulette!",
+    "4572": "Steenwoestijn!",
+    "4573": "SNES Gevechtsarena 4!",
+    "4574": "GBA Gevechtsarena 3!",
+    "4575": "N64 Wolkenkrabber!",
+    "4576": "GCN Koekjesland!",
+    "4577": "DS Schemerhuis!",
+    "4578": "Het rode team is het beste!",
+    "4579": "Het blauwe team is het beste!",
+    "4580": "Yaaaay!",
+    "4581": "Ik ben de beste!",
+    "4582": "Julie zijn zo snel!",
+    "4583": "Gefeliciteerd!",
+    "4584": "Dat was leuk!",
+    "4585": "Zo spannend!",
+    "4586": "Grrr! Niet eerlijk!",
+    "4587": "De volgende keer verlies ik niet!",
+    "4588": "Laten we nog een keer spelen!",
+    "4589": "Het is nog niet voorbij!",
+    "4590": "De volgende ronde wordt de laatste!",
+    "4591": "Ik ben klaar!",
+    "4592": "Bedankt voor de leuke tijd!",
+    "4593": "Bedankt!",
+    "4594": "Welterusten!",
+    "4595": "Tot later!",
+    "4596": null,
+    "4597": null,
+    "4598": null,
+    "4599": null,
+    "4600": "Er vondt een communicatiefout\nplaats. Je zal nu terugkeren\nnaar het hoofdmenu.\n\nErrorcode: {arg integer|0 5}",
+    "4601": "De verbinding is mislukt.\nBevestig de internetinstellingen\nvan de Wii-console.\n\nErrorcode: {arg integer|0 5}",
+    "4602": "De Nintendo Wi-Fi Connectie ondervindt\nte veel verkeer, of de service\nis uit de lucht. Probeer het\nlater opnieuw. Bezoek\nsupport.nintendo.com voor hulp.\n\nErrorcode: {arg integer|0 5}",
+    "4603": "Verbinding met de Nintendo Wi-Fi\nConnectie is mislukt. Bekijk voor\nhulp de software-instructiehandeiding\nof bezoek\nsupport.nintendo.com.\n\nErrorcode: {arg integer|0 5}",
+    "4604": "De Nintendo Wi-Fi Connectie-service voor\ndeze software is beëindigd. Bezoek\nsupport.nintendo.com voor een lijst\nmet compatibele Nintendo Wi-Fi\nConnectie-software.\n\nErrorcode: {arg integer|0 5}",
+    "4605": "Verbinding met de Nintendo Wi-Fi\nConnectie is mislukt. Bekijk voor\nhulp de software-instructiehandeiding\nof bezoek\nsupport.nintendo.com.\n\nErrorcode: {arg integer|0 5}",
+    "4606": "De Nintendo Wi-Fi Connectie ondervindt\nte veel verkeer, of de service is uit de\nlucht. Probeer het later opnieuw.\nBezoek support.nintendo.com voor hulp.\n\nErrorcode: {arg integer|0 5}",
+    "4607": "Er is niet genoeg vrije ruimte\nin het Wii-systeemgeheugen.\n\nErrorcode: {arg integer|0 5}",
+    "4608": "Het Wii-systeemgeheugen is beschadigd.\nBekijk de Wii-handleiding voor\nverdere instructies.\n\nErrorcode: {arg integer|0 5}",
+    "4609": "Verbinding verbroken tijdens het\nversturen van data.\n\nErrorcode: {arg integer|0 5}",
+    "4610": "Download mislukt. Probeer het opnieuw.\nBezoek support.nintendo.com voor hulp.\n\nErrorcode: {arg integer|0 5}",
+    "4611": "Verbinding verbroken tijdens het\nversturen van data.\n\nErrorcode: {arg integer|0 5}",
+    "4612": "Verbinding verbroken tijdens het\nversturen van data.\n\nErrorcode: {arg integer|0 5}",
+    "4613": "Verbinding verbroken tijdens het\nversturen van data.\n\nErrorcode: {arg integer|0 5}",
+    "4614": "Verbinding verbroken tijdens het\nversturen van data.\n\nErrorcode: {arg integer|0 5}",
+    "4615": "Verbinding verbroken tijdens het\nversturen van data.\n\nErrorcode: {arg integer|0 5}",
+    "4616": "De verbinding is mislukt.\nBevestig de internetinstellingen\nvan de Wii-console.\n\nErrorcode: {arg integer|0 5}",
+    "4617": "De verbinding is mislukt.\nBevestig de internetinstellingen\nvan de Wii-console.\n\nErrorcode: {arg integer|0 5}",
+    "4618": "De verbinding is mislukt.\nBevestig de internetinstellingen\nvan de Wii-console.\n\nErrorcode: {arg integer|0 5}",
+    "4619": "De verbinding is mislukt.\nBevestig de internetinstellingen\nvan de Wii-console.\n\nErrorcode: {arg integer|0 5}",
+    "4620": "De verbinding is mislukt.\nBevestig de internetinstellingen\nvan de Wii-console.\n\nErrorcode: {arg integer|0 5}",
+    "4621": "De verbinding is mislukt.\nBevestig de internetinstellingen\nvan de Wii-console.\n\nErrorcode: {arg integer|0 5}",
+    "4622": "De verbinding is mislukt.\nBevestig de internetinstellingen\nvan de Wii-console.\n\nErrorcode: {arg integer|0 5}",
+    "4623": "De verbinding is mislukt.\nBevestig de internetinstellingen\nvan de Wii-console.\n\nErrorcode: {arg integer|0 5}",
+    "4624": "De verbinding is mislukt.\nBevestig de internetinstellingen\nvan de Wii-console.\n\nErrorcode: {arg integer|0 5}",
+    "4625": "De verbinding is mislukt.\nBevestig de internetinstellingen\nvan de Wii-console.\n\nErrorcode: {arg integer|0 5}",
+    "4626": "De verbinding is mislukt.\nBevestig de internetinstellingen\nvan de Wii-console.\n\nErrorcode: {arg integer|0 5}",
+    "4627": "De verbinding is mislukt.\nBevestig de internetinstellingen\nvan de Wii-console.\n\nErrorcode: {arg integer|0 5}",
+    "4628": "De verbinding is mislukt.\nBevestig de internetinstellingen\nvan de Wii-console.\n\nErrorcode: {arg integer|0 5}",
+    "4629": "Verbinding verbroken tijdens het\nversturen van data.\n\nErrorcode: {arg integer|0 5}",
+    "4630": null,
+    "5000": "Mario Kart-kanaal",
+    "5001": "Vriendenlijst",
+    "5002": "Ranglijsten",
+    "5003": "Geestrace",
+    "5004": "Competities",
+    "5005": null,
+    "5006": "Registreer vriendcode",
+    "5007": null,
+    "5008": "Wii-menu",
+    "5009": "Lijst van gedownloade geesten",
+    "5010": "Competities",
+    "5011": "Vriendenlijst",
+    "5012": null,
+    "5013": null,
+    "5014": "Start race",
+    "5015": "Verbeter je tijdrace-techniek\ndoor geesten van\nspelers rond de wereld uit\nte dagen in Nintendo WFC-races!",
+    "5016": "Mijn geesten",
+    "5017": "Verbeter jouw tijdrace-techniek\ndoor de geestgegevens van\nspelers rond de wereld uit\nte dagen in Nintendo WFC-races!\n\nJe huidige record:\n{arg integer|0 0} {arg cond messages|0 5026 5027} - {arg integer|1 0} {arg cond messages|1 5028 5029}",
+    "5018": "Verbeter jouw tijdrace-techniek\ndoor de geestgegevens van\nspelers rond de wereld uit\nte dagen in Nintendo WFC-races!\n\nJe huidige record:\n{arg integer|0 0} {arg cond messages|0 5026 5027} - {arg integer|1 0} {arg cond messages|1 5028 5029}",
+    "5019": "Verbeter jouw tijdrace-techniek\ndoor de geestgegevens van\nspelers rond de wereld uit\nte dagen in Nintendo WFC-races!\n\nJe huidige record:\n{arg integer|0 0} {arg cond messages|0 5026 5027} - {arg integer|1 0} {arg cond messages|1 5028 5029}",
+    "5020": "Verbeter jouw tijdrace-techniek\ndoor de geestgegevens van\nspelers rond de wereld uit\nte dagen in Nintendo WFC-races!\n\nJe huidige record:\n{arg integer|0 0} {arg cond messages|0 5026 5027} - {arg integer|1 0} {arg cond messages|1 5028 5029}",
+    "5021": "Verbeter jouw tijdrace-techniek\ndoor de geestgegevens van\nspelers rond de wereld uit\nte dagen in Nintendo WFC-races!\n\nJe huidige record:\n{arg integer|0 0} {arg cond messages|0 5026 5027} - {arg integer|1 0} {arg cond messages|1 5028 5029}",
+    "5022": "Verbeter jouw tijdrace-techniek\ndoor de geestgegevens van\nspelers rond de wereld uit\nte dagen in Nintendo WFC-races!\n\nJe huidige record:\n{arg integer|0 0} {arg cond messages|0 5026 5027} - {arg integer|1 0} {arg cond messages|1 5028 5029}",
+    "5023": "Verbeter jouw tijdrace-techniek\ndoor de geestgegevens van\nspelers rond de wereld uit\nte dagen in Nintendo WFC-races!\n\nJe huidige record:\n{arg integer|0 0} {arg cond messages|0 5026 5027} - {arg integer|1 0} {arg cond messages|1 5028 5029}",
+    "5024": "Verbeter jouw tijdrace-techniek\ndoor de geestgegevens van\nspelers rond de wereld uit\nte dagen in Nintendo WFC-races!\n\nJe huidige record:\n{arg integer|0 0} {arg cond messages|0 5026 5027} - {arg integer|1 0} {arg cond messages|1 5028 5029}",
+    "5025": "{arg integer|0 0} {arg cond messages|0 5026 5027}",
+    "5026": "gewonnen",
+    "5027": "winsten",
+    "5028": "verloren",
+    "5029": "verloren",
+    "5030": null,
+    "5050": "Vrienden",
+    "5051": "Geesten",
+    "5052": "Tijdracescores",
+    "5053": null,
+    "5054": "Competitiescores",
+    "5055": null,
+    "5060": "Bekijk wat je vrienden aan het doen zijn.",
+    "5061": "Bekijk de scores van vrienden en andere spelers.",
+    "5062": "Bekijk en verwijder gedownloade geesten.\t",
+    "5063": "Neem deel in Mario Kart-competities.",
+    "5064": "Daag geesten rond heel de wereld uit.",
+    "5065": null,
+    "5066": "Verstuur en ontvang geesten.",
+    "5067": null,
+    "5068": "Bekijk Mario Kart-competitiescores.",
+    "5069": null,
+    "5070": null,
+    "5071": null,
+    "5072": null,
+    "5073": null,
+    "5074": null,
+    "5075": null,
+    "5080": null,
+    "5081": null,
+    "5082": null,
+    "5083": null,
+    "5084": null,
+    "5085": null,
+    "5100": "Voer een vriendcode in.",
+    "5101": "Registreer deze vriendcode?\n\n{arg integer|0 4}-{arg integer|1 4}-{arg integer|2 4}",
+    "5102": "Dit is geen geldige vriendcode.\n\n{arg integer|0 4}-{arg integer|1 4}-{arg integer|2 4}",
+    "5103": "Je hebt deze vriendcode geregistreerd:\n\n{arg integer|0 4}-{arg integer|1 4}-{arg integer|2 4}",
+    "5104": "Voor je tegen deze vriend\nkan spelen, moet hij/zij ook jouw\nvriendcode geregistreerd hebben.\n\nJouw vriendcode is:\n\n{arg integer|0 4}-{arg integer|1 4}-{arg integer|2 4}",
+    "5105": "{arg integer|0 1}",
+    "5106": "-",
+    "5107": null,
+    "5110": "Deze vriendcode is al in jouw vriendenlijst\ngeregistreerd.",
+    "5111": "Je vriendenrooster heeft al de maximale\n30 vrienden.",
+    "5112": "Je hebt geen vriendcode.",
+    "5113": "Je kan de vriendcodes van de\nrijbewijzen in de Mario Kart Wii-gegevens\nvan dit systeem niet registreren.",
+    "5115": null,
+    "5150": null,
+    "5151": null,
+    "5152": null,
+    "5153": null,
+    "5154": null,
+    "5155": null,
+    "5156": null,
+    "5157": null,
+    "5200": "Verwijder",
+    "5201": "Verbinden met vriend",
+    "5202": "Verbinden mislukt.",
+    "5203": "Jullie zijn nog geen vrienden.",
+    "5204": null,
+    "5205": null,
+    "5206": "gewonnen",
+    "5207": "winsten",
+    "5208": null,
+    "5209": "Gevecht",
+    "5210": "Verwijder deze vriendcode?",
+    "5211": "De vriendcode is verwijderd.",
+    "5212": "Vriendcode aan het verwijderen...",
+    "5213": "Verwijder vriendcode",
+    "5214": "Verwijder vriendcode",
+    "5215": "Annuleren",
+    "5216": "{arg cond messages|0 5206 5207}",
+    "5217": "Alle data geässocieerd met deze\nvriendcode zal worden verwijderd.\n\nWeet je zeker dat dit oké is?",
+    "5218": null,
+    "5300": "Ik ben op Nintendo WFC!",
+    "5301": "Ik ben niet op Nintendo WFC...",
+    "5302": null,
+    "5303": null,
+    "5304": "Ik heb een open kamer!",
+    "5305": "Ik speel met vrienden!",
+    "5306": "Ik speel met vrienden!",
+    "5307": "Ik speel een wereldwijde versusrace!",
+    "5308": "Ik speel een wereldwijd gevecht!",
+    "5309": "Ik speel in een continentale versusrace!",
+    "5310": "Ik speel een gontinentaal gevecht!",
+    "5311": "Ik organiseer een Grand Prix (1/4)!",
+    "5312": "Ik organiseer een Grand Prix (2/4)!",
+    "5313": "Ik organiseer een Grand Prix (3/4)!",
+    "5314": "Ik organiseer een Grand Prix (4/4)!",
+    "5315": "Ik organiseer een gevecht (1e)!",
+    "5316": "Ik organiseer een gevecht (2e)!",
+    "5317": "Ik organiseer een gevecht (3e)!",
+    "5318": "Ik organiseer een gevecht (tiebreak)!",
+    "5319": "Ik speel met vrienden (1/4)!",
+    "5320": "Ik speel met vrienden (2/4)!",
+    "5321": "Ik speel met vrienden (3/4)!",
+    "5322": "Ik speel met vrienden (4/4)!",
+    "5323": "Ik speel met vrienden (1e gevecht)!",
+    "5324": "Ik speel met vrienden (2e gevecht)!",
+    "5325": "Ik speel met vrienden (3e gevecht)!",
+    "5326": "Ik speel met vrienden (tiebreak)!",
+    "5327": null,
+    "5328": null,
+    "5350": "Sluit aan bij een vriend.",
+    "5351": null,
+    "5400": null,
+    "5401": null,
+    "5402": "Deze geest zal verzonden worden.\nIs dit oké?",
+    "5403": "Geest verzenden...",
+    "5404": "Je uitdaging is naar\n{arg player|0} verzonden!\n\n{arg integer|0 0}/5",
+    "5405": "Je uitdaging is naar\n{arg player|0} verzonden!\n\n5/5\n\nJe kan geen uitdagingen meer verzenden\ntot de volgende keer dat je Mario Kart Wii speelt.",
+    "5406": "Jouw geest was niet gevonden, dus\nde uitdaging is niet verzonden.",
+    "5407": null,
+    "5500": "Geesten lezen...",
+    "5501": "Je hebt een uitdaging van een vriend ontvangen!",
+    "5502": "Je gedownloade lijst met geesten is vol.\nJe kan nu geen uitdagingen\nvan je vrienden ontvangen.\n\nVerwijder een van jouw geesten.",
+    "5503": "Dit circuit is nog niet beschikbaar.\n\nAls je genoeg bekers wint\nin de Grand Prix-modus, zal je nieuwe\ncircuits vrijspelen.",
+    "5504": "Een fout trad op tijdens het\ndownloaden van geesten.",
+    "5505": null,
+    "5600": "",
+    "5601": "Japan",
+    "5608": "Anguilla",
+    "5609": "Antigua en Barbuda",
+    "5610": "Argentinië",
+    "5611": "Aruba",
+    "5612": "Bahama's",
+    "5613": "Barbados",
+    "5614": "Belize",
+    "5615": "Bolivia",
+    "5616": "Brazilië",
+    "5617": "Britse Maagdeneilanden",
+    "5618": "Canada",
+    "5619": "Kaaimaneilanden",
+    "5620": "Chili",
+    "5621": "Colombia",
+    "5622": "Costa Rica",
+    "5623": "Dominica",
+    "5624": "Dominicaanse Republiek",
+    "5625": "Ecuador",
+    "5626": "El Salvador",
+    "5628": "Grenada",
+    "5630": "Guatemala",
+    "5631": "Guyana",
+    "5632": "Haïti",
+    "5633": "Honduras",
+    "5634": "Jamaica",
+    "5636": "Mexico",
+    "5637": "Montserrat",
+    "5638": "Nederlandse Antillen",
+    "5639": "Nicaragua",
+    "5640": "Panama",
+    "5641": "Paraguay",
+    "5642": "Peru",
+    "5643": "Saint Kitts en Nevis",
+    "5644": "Saint Lucia",
+    "5645": "Saint Vincent en de Grenadines",
+    "5646": "Suriname",
+    "5647": "Trinidad en Tobago",
+    "5648": "Turks- en Caicoseilanden",
+    "5649": "Verenigde Staten",
+    "5650": "Uruguay",
+    "5651": "Amerikaanse Maagdeneilanden",
+    "5652": "Venezuela",
+    "5665": "Australië",
+    "5666": "Oostenrijk",
+    "5667": "België",
+    "5674": "Denemarken",
+    "5676": "Finland",
+    "5677": "Frankrijk",
+    "5678": "Duitsland",
+    "5679": "Griekenland",
+    "5682": "Ierland",
+    "5683": "Italië",
+    "5688": "Luxemburg",
+    "5694": "Nederland",
+    "5695": "Nieuw-Zeeland",
+    "5696": "Noorwegen",
+    "5698": "Portugal",
+    "5705": "Spanje",
+    "5707": "Zweden",
+    "5708": "Zwitserland",
+    "5710": "Verenigd Koninkrijk",
+    "5728": "",
+    "5736": "Zuid-Korea",
+    "5744": "",
+    "5745": "",
+    "5760": "",
+    "5855": null,
+    "6000": "Kies een circuit.",
+    "6001": "Vriendrangen",
+    "6002": "Continentale rangen",
+    "6003": "Wereldwijde rangen",
+    "6004": "Top 10",
+    "6005": "{arg message|0} Vrienden-Top 10",
+    "6006": "{arg message|0} Continentale Top 10",
+    "6007": "{arg message|0} Wereldwijde Top 10",
+    "6008": "10",
+    "6009": "Top 10",
+    "6010": "Start tijdrace",
+    "6011": "Daag deze geest uit",
+    "6012": "Bekijk de herhaling",
+    "6013": "Verwijder geest",
+    "6014": "Verstuur geest",
+    "6015": "Daag deze geest uit",
+    "6016": "Solo-tijdrace",
+    "6017": "NIEUW",
+    "6018": "Vriend",
+    "6019": "Top 10",
+    "6020": "Continentaal",
+    "6021": "Top 10",
+    "6022": "Wereldwijd",
+    "6023": "Top 10",
+    "6024": null,
+    "6050": "TIJD",
+    "6051": "{arg integer|0 1}:{arg integer|1 2}",
+    "6052": "{arg integer|0 2}:{arg integer|1 2}.{arg integer|2 3}",
+    "6053": "--:--.---",
+    "6054": "Continentale kampioen",
+    "6055": "Wereldkampioen",
+    "6056": "Rivalerende geest",
+    "6057": "Vriend",
+    "6058": "Continentaal",
+    "6059": "Wereldwijd",
+    "6060": "{arg front button|0}",
+    "6061": "Familiegeesten",
+    "6062": "Vriendgeesten",
+    "6063": "Speciale geesten",
+    "6064": "Personeelsgeesten",
+    "6065": null,
+    "6100": "Er is geen geest voor\n{arg message|0}.",
+    "6101": "Er is geen geest voor\n{arg license player|0}.",
+    "6102": "Er zijn geen gedownloade geesten.",
+    "6103": null,
+    "6110": "Geest downloaden...",
+    "6111": "Je gedownloade geestenlijst\nis vol. Je kunt geen geesten\nmeer downloaden.\n\nVerwijder een geest\nuit je gedownloade geestenlijst.",
+    "6112": "Een fout trad op bij\nhet downloaden van de geest.\n\nErrorcode: {arg integer|0 5}",
+    "6113": "De geest is gedownload.",
+    "6114": "De Top 10 aan het downloaden...",
+    "6115": "Een fout trad op bij\nhet downloaden van de Top 10.\n\nErrorcode: {arg integer|0 5}",
+    "6116": "Er is geen Top 10.",
+    "6117": "",
+    "6120": "Verbinding maken met Nintendo WFC?",
+    "6121": "Oké",
+    "6122": "Verbinding maken met Nintendo WFC?",
+    "6123": "De huidige geest zal vervangen\nworden met de nieuwe geest.\n\nIs dit oké?",
+    "6124": null,
+    "6150": "Race tegen deze geest.",
+    "6151": "Bekijk de herhaling van de geest.",
+    "6152": "Weet je zeker dat je de geest wilt verwijderen?",
+    "6153": "Verwijderen",
+    "6154": "Annuleren",
+    "6155": null,
+    "6201": "1e",
+    "6202": "2e",
+    "6203": "3e",
+    "6204": "4e",
+    "6205": "5e",
+    "6206": "6e",
+    "6207": "7e",
+    "6208": "8e",
+    "6209": "9e",
+    "6210": "10e",
+    "6211": "11e",
+    "6212": "12e",
+    "6213": null,
+    "6250": "Begin een tijdrace op dit circuit.",
+    "6251": "Bekijk het record van {arg player|0}.",
+    "6252": "Race tegen de continentale kampioen.",
+    "6253": "Race tegen de wereldkampioen.",
+    "6254": "Race tegen een geest die net iets sneller dan jouw record is.",
+    "6255": "Bekijk jouw vrienden-Top 10.",
+    "6256": "Bekijk de continentale Top 10.",
+    "6257": "Bekijk de wereldwijde Top 10.",
+    "6258": "Race tegen een Mario Kart Wii-personeelsgeest.",
+    "6259": "Het record van {arg player|0}.",
+    "6260": "Het record van de continentale kampioen.",
+    "6261": "Het record van de wereldwijde kampioen.",
+    "6262": null,
+    "6300": "Verstuur geest",
+    "6301": "{arg player|0} heeft geen record voor\n{arg message|0} gezet.",
+    "6302": "Het huidige record van {arg player|0} voor\n{arg message|0} is {arg integer|0 2}:{arg integer|1 2}.{arg integer|2 3}.",
+    "6303": "{arg player|0} heeft geen record voor\n{arg message|0} gezet.",
+    "6304": "Het huidige record van {arg player|0} voor\n{arg message|0} is {arg integer|0 2}:{arg integer|1 2}.{arg integer|2 3}.",
+    "6305": "Geest verzenden...",
+    "6306": null,
+    "6310": "De WiiConnect24-service is\ntijdelijk niet beschikbaar.\nProbeer het later nog eens.\n\nErrorcode: {arg integer|0 6}",
+    "6311": "Er kon geen verbinding worden gemaakt\nmet het internet. WiiConnect24 kan niet\nworden gebruikt. Ga naar je Wii-instellingen\nen bekijk de verbindingsinstellingen\nonder internet. Bekijk de\nde Wii-handleiding voor details.\n\nErrorcode: {arg integer|0 6}",
+    "6312": "Er is een probleem met het Wii-systeemgeheugen.\nWiiConnect24 kan niet gebruikt worden.\n\nErrorcode: {arg integer|0 6}",
+    "6313": "Om WiiConnect24 te kunnen gebruiken,\nheb je een systeemupdate nodig.\nBekijk de Wii-handleiding\nvoor details.\n\nErrorcode: {arg integer|0 6}",
+    "6314": "WiiConnect24 kan niet gebruikt\nworden omdat er een fout is opgetreden.\n\nReset en probeer opnieuw.\n\nErrorcode: {arg integer|0 6}",
+    "6315": "De WiiConnect24-optie staat uit.\nBekijk de instellingen onder\nde Wii-opties. Bekijk de Wii-handleiding\nvoor details.\n\nErrorcode: {arg integer|0 6}",
+    "6316": "Er is een probleem met het Wii-systeemgeheugen.\nWiiConnect24 kan niet gebruikt worden.\n\nErrorcode: {arg integer|0 6}",
+    "6317": "Het gebruik van het internet is verboden.\n\nGa naar de Wii-opties\nen bekijk het Ouderlijk Toezicht.",
+    "6318": "Er is geen verbinding\nvastgesteld.\n\nGa naar de Wii-opties en\nmaak verbinding op het\ninternetopties-scherm.\n\nErrorcode: 50200",
+    "6319": "Het Mario Kart-kanaal gebruikt WiiConnect24\nom de volgende informatie te ontvangen:\n\n・Uitdagingen van vrienden\n・Records van spelers rond de wereld\n・Geesten van spelers die even\ngoed zijn als jij\n・Geplande competities",
+    "6320": "Je kan de WiiConnect24-opties\nbij de Wii-opties wijzigen.\n\nBekijk de Wii-handleiding\nvoor meer informatie.",
+    "6321": "WiiConnect24 kan niet gebruikt worden\nomdat er een fout is opgetreden.\n\nReset en probeer opnieuw.\n\nErrorcode: {arg integer|0 6}",
+    "6322": "",
+    "6390": "GA!",
+    "6391": "",
+    "6400": "Nieuwe vriendenuitdaging!",
+    "6401": "Speciale geesten zijn nu beschikbaar!",
+    "6402": "Er is een competitie aan de gang!",
+    "6403": "Nieuwste ranglijst nu beschikbaar!",
+    "6404": "Start een geestrace!",
+    "6405": "Nieuwe vriendenrecords beschikbaar!",
+    "6406": "Voeg het Mario Kart-kanaal toe!",
+    "6407": "Doe mee aan de berichtenservice!",
+    "6408": "Selecteer je regio!",
+    "6409": "Nodig vrienden uit via het Wii-berichtenbord!",
+    "6410": "Download de meest recente gegevens!",
+    "6411": null,
+    "6412": null,
+    "6500": "Ga naar je gedownloade geestenlijst.",
+    "6501": "Ga naar de tijdrace-ranglijsten.",
+    "6502": "Ga naar de competities.",
+    "6503": "Ga naar de tijdrace-ranglijsten.",
+    "6504": "Ga naar de geestrace.",
+    "6505": "Ga naar de tijdrace-ranglijsten.",
+    "6506": "Ga naar de instellingen.",
+    "6507": "Ga naar de instellingen.",
+    "6508": "Ga naar de instellingen.",
+    "6509": "Nodig mensen uit om vrienden te worden.",
+    "6510": "Werk de ranglijsten en competitiegegevens bij!",
+    "6511": null,
+    "6512": null,
+    "6550": "Competitieranglijsten zijn\nmomenteel niet beschikbaar.",
+    "6551": "Competitieranglijsten downloaden...",
+    "6552": "Er is een fout opgetreden bij het\ndownloaden van de competitieranglijsten.\n\nErrorcode: {arg integer|0 5}",
+    "6553": "Je kan competitieranglijsten een dag nadat\nde competitie is gestart bekijken.\n\nNog even geduld.",
+    "6554": "Eerste helft",
+    "6555": "Tweede helft",
+    "6556": "Ranglijsten zijn nog niet beschikbaar\nvoor deze competitie.\n\nProbeer het morgen opnieuw.",
+    "6600": "Je kunt deelnemen in wereldwijde\nMario Kart Wii-competities.\n\nVerbind jouw Wii met het internet,\nzorg ervoor dat WiiConnect24 aanstaat\nen wacht tot er een competitie start!",
+    "6601": "De vorige competitie is beëindigd\nen de resultaten zijn nu beschikbaar!",
+    "6602": "{arg string|0}",
+    "6603": "{arg string|0}",
+    "6604": "Start",
+    "6605": "Verstuur competitierecord",
+    "6606": "Competitierecord versturen...",
+    "6607": "{arg string|0}\n{arg integer|0 2}:{arg integer|1 2}.{arg integer|2 3}",
+    "6608": "Jouw competitierecord is verstuurd.",
+    "6609": "Het versturen van het\ncompetitierecord is mislukt.\n\nErrorcode: {arg integer|0 5}",
+    "6610": "De deadline is {arg integer|2 0}/{arg integer|1 0}/{arg integer|0 0}.",
+    "6611": null,
+    "6700": "Wii-berichtenbord uitnodiging",
+    "6701": "Je kan een Wii-berichtenbord bericht\nversturen naar jouw vrienden\nmet jouw vriendcode.\n\nHet is een snelle en makkelijke manier\nom vrienden te worden in Mario Kart Wii!",
+    "6702": "Kies een Wii-vriend om een uitnodiging naar te versturen.",
+    "6703": "Een uitnodiging zal naar het Wii-berichtenbord\nvan {arg string|0} worden verzonden.\n\nIs dit oké?",
+    "6704": "Uitnodiging versturen...",
+    "6705": "De uitnodiging is verstuurd naar\nhet Wii-berichtenbord van {arg string|0}.\n\nJe zal een notificatie krijgen\nals {arg string|0} je uitnodiging\nheeft geaccepteerd.",
+    "6706": "Het versturen van de uitnodiging is mislukt.\n\nErrorcode: {arg integer|0 6}",
+    "6707": "{arg string|0}",
+    "6708": "Het competitierecord is verzonden.\n\nJe zal nu naar de\ncompetitieranglijsten gaan.",
+    "6709": null,
+    "6710": "Registreer vriendcode",
+    "6711": "Je hebt een uitnodiging gekregen\nvan {arg string|0}.\n\nAls je de vriendcode van deze\nspeler registreert in jouw vriendenlijst,\nzal je vriendcode automatisch\nteruggestuurd worden.",
+    "6712": "Wil je de vriendcode van {arg string|0}\nregistreren in jouw vriendenlijst?",
+    "6713": "Registreren...",
+    "6714": "De vriendcode van {arg string|0} is\ngeregistreerd in jouw vriendenlijst.",
+    "6715": "Het registreren van de vriendcode is mislukt.\n\nErrorcode: {arg integer|0 6}",
+    "6716": "Je hebt geen vriendcode.\n\nEen vriendcode is een 12-cijferige\ncode die automatisch wordt gegeven\nwanneer je voor de eerste keer verbinding maakt\nmet Nintendo WFC.\n\nLees de Mario Kart Wii-instructies voor meer\ninformatie.",
+    "6717": "Je hebt een uitnodiging ontvangen, maar\ner zijn al 30 vriendcodes geregistreerd\nin jouw vriendenlijst.\n\nJe kan geen vriendcodes\nmeer registeren.",
+    "6718": "Je hebt een uitnodiging gekregen, maar\nde verstuurder is van\njouw Wii-berichtenbord verwijderd.\n\nStart het Mario Kart-kanaal opnieuw\nen registreer de vriendcode.",
+    "6719": "Je hebt een uitnodiging\nontvangen, maar de\nverstuurder is al geregistreerd\nin jouw vriendenlijst.",
+    "6720": "",
+    "6800": "Download de competitieranglijsten",
+    "6801": "Competitieranglijsten downloaden...",
+    "6802": "Competitieranglijsten gedownload.",
+    "6803": "Het downloaden van de\ncompetitieranglijsten is mislukt.\n\nErrorcode: {arg integer|0 5}",
+    "6804": null,
+    "6811": null,
+    "6812": null,
+    "6813": null,
+    "6900": "Download de laatste gegevens",
+    "6901": "De laatste Mario Kart-kanaalgegevens\nworden gedownload.",
+    "6902": "Laatste gegevens downloaden...",
+    "6903": "De laatste Mario Kart-kanaalgegevens\nzijn gedownload.",
+    "6904": "Er is een fout opgetreden bij het\ndownloaden van de laatste gegevens.\n\nErrorcode: {arg integer|0 6}",
+    "6905": null,
+    "7000": "Opties",
+    "7001": "Nintendo Wi-Fi Connectie",
+    "7002": "Opties",
+    "7003": "Volgende",
+    "7004": null,
+    "7100": "GCN-controllertrillingen",
+    "7101": "Wil je de trilfunctie van de Nintendo\nGameCube-controller gebruiken?",
+    "7102": "Ja",
+    "7103": "Nee",
+    "7104": "Je hebt ervoor gekozen om de trilfunctie\nvan de Nintendo GameCube-controller\nte gebruiken.",
+    "7105": "Je hebt ervoor gekozen om de trilfunctie\nvan de Nintendo GameCube-controller\nniet te gebruiken.",
+    "7106": null,
+    "7200": "Regio-instelling",
+    "7201": "Terug naar het Wii-menu om\njouw regio-instelling te veranderen?",
+    "7202": null,
+    "7203": null,
+    "7204": null,
+    "7250": "Vlag- en regio-informatie",
+    "7251": "Mario Kart Wii kan je nationale vlag en\nregio laten zien op de volgende plekken:\n\n・als een locatie op de wereldbol\n・in je geestgegevens\n\nAls je ervoor kiest om deze informatie\nbeschikbaar te stellen, wordt het\nverzonden naar andere spelers tijdens\nhet spelen op Nintendo WFC.",
+    "7252": "Wil je je nationale vlag en regio\nbeschikbaar stellen op Nintendo WFC?\n",
+    "7253": "Ja",
+    "7254": "Nee",
+    "7255": "Je hebt ervoor gekozen om je nationale\nvlag en regio op Nintendo WFC\nweer te geven.",
+    "7256": "Je hebt ervoor gekozen om je nationale\nvlag en regio op Nintendo WFC\nniet weer te geven.",
+    "7257": null,
+    "7300": "Berichtenservice",
+    "7301": "Krijg de nieuwste updates van het\nMario Kart-kanaal op je Wii-berichtenbord\nvia WiiConnect24 door je aan te melden\nvoor de berichtenservice.\nJe kunt je op ieder moment afmelden.\n\nBerichten zullen informatie bevatten over:\n\n・competities\n・speciale geestendownloads",
+    "7302": "Aanmelden voor de\nMario Kart-kanaal-\nberichtenservice?",
+    "7303": "Aanmelden",
+    "7304": "Niet aanmelden",
+    "7305": "Je hebt je aangemeld voor\nde Mario Kart-kanaalberichtenservice.",
+    "7306": "Je zult geen berichten ontvangen\nde Mario Kart-kanaal-\nberichtenservice. Is dit oké?",
+    "7307": "",
+    "7350": "Met deze instellingen zul je\nberichten van de Mario Kart-kanaal-\nberichtenservice ontvangen op jouw Wii-berichtenbord.",
+    "7351": "Selecteer de gewenste\ninstellingen voor de berichtenservice.",
+    "7352": "Afmelden voor de Mario Kart-kanaal-\nberichtenservice",
+    "7353": "Afmelden voor alle kanaal-\nberichtenservices",
+    "7354": "Blijf Mario Kart-kanaalberichten\nontvangen",
+    "7355": "Afmelden voor het ontvangen van berichten\nvan het Mario Kart-kanaal?",
+    "7356": "Afmelden voor het ontvangen van berichten\nvan elk kanaal?",
+    "7357": "Je zult berichten van\nhet Mario Kart-kanaal\nblijven ontvangen.",
+    "7358": "Je hebt je niet aangemeld voor\nde Mario Kart-kanaalberichtenservice.",
+    "7359": "Je hebt je afgemeld voor\nde Mario Kart-kanaal-\nberichtenservice.",
+    "7360": "Je hebt je voor elke\nberichtenservice afgemeld.",
+    "7361": "",
+    "7400": "Data delen",
+    "7401": "Wanneer je Mario Kart Wii via\nNintendo WFC speelt, zullen de volgende\ngegevens naar Nintendo gestuurd worden:\n\n・Je Mii en gebruikersnaam\n・je records en geesten\n\nDeze gegevens worden ook gedeeld\nmet andere spelers op Nintendo WFC.",
+    "7402": "Sta je het toe om gegevens\nnaar Nintendo te verzenden?",
+    "7403": "Toestaan",
+    "7404": "Niet toestaan",
+    "7405": "Je hebt het toegestaan om gegevens\nnaar Nintendo te verzenden.",
+    "7406": "Weet je zeker dat dit oké is?\nJe zult geen Mario Kart Wii via\nNintendo WFC kunnen spelen met deze optie.",
+    "7407": "Je hebt het niet toegestaan om gegevens\nnaar Nintendo te verzenden.",
+    "7408": "Gebruik nooit je eigen naam of\nandere gegevens als de bijnaam van je\nMii. Als je dit toch hebt gedaan,\nvoer een van de volgende maatregelen\nuit om je privacy te beschermen:\n\n・Verander je Mii's bijnaam in het Mii-Kanaal\n・Kies een gast-Mii in de rijbewijsinstellingen.",
+    "7409": "",
+    "7500": "Mii-display",
+    "7501": "Mii's van andere spelers zullen\nworden weergegeven tijdens\nraces en gevechten, in de rangen\nen op andere plaatsen op Nintendo WFC.\n\nJe kunt ervoor kiezen om deze Mii's\nte laten zien zoals ze zijn, of ze\nte vervangen door Mii's van Nintendo.",
+    "7502": "Sta je het toe om Mii's\nvan andere spelers weer\nte geven in Mario Kart Wii?",
+    "7503": "Toestaan",
+    "7504": "Niet toestaan",
+    "7505": "Je hebt het toegestaan om Mii's\nvan andere spelers weer\nte geven in Mario Kart Wii.",
+    "7506": "Je hebt het niet toegestaan om Mii's\nvan andere spelers weer\nte geven in Mario Kart Wii.",
+    "7507": "Mii's van andere spelers zullen\nworden vervangen door Mii's gemaakt door\nNintendo.\n\nIs dit oké?",
+    "7508": null,
+    "7600": null,
+    "7601": null,
+    "7602": null,
+    "7603": null,
+    "7604": null,
+    "7605": null,
+    "7700": "Mario Kart Wii kan worden weergeven\nmet 60Hz (480i). De huidige mode is\n50Hz (576i). Als de TV - zoals de meeste -\n60Hz ondersteunt, verander dan deze\ninstelling bij de Wii-instellingen voor een\nbetere kwaliteit.\n\nGa naar het HOME-menu en vervolgens\nnaar het Wii-menu om de instelling te\nveranderen naar 60Hz.",
+    "7701": "{2 chars|< <}",
+    "7702": "GEFELICITEERD!",
+    "7703": "Wil je deze foto posten op het Wii-berichtenbord?",
+    "7704": "Plaatsen...",
+    "7705": "De foto is geplaatst op\nhet Wii-berichtenbord!",
+    "7706": "Onthoud dat je niet te veel foto's moet plaatsen,\nomdat dit het Wii-berichtenbord vol\nkan laten raken.\n\nAls het Wii-berichtenbord vol is, wordt ruimte\nvoor nieuwe berichten gemaakt door\noudere berichten te verwijderen,\nbeginnend met de oudste.",
+    "7707": "Bedankt voor het spelen,\nen geniet van Mario Kart Wii!",
+    "8000": "Gefeliciteerd!\nJe hebt de \n{arg message|0} {arg message|1} vrijgespeeld!",
+    "8001": "Gefeliciteerd!\nJe hebt de gespiegelde modus vrijgespeeld!",
+    "8002": "Gefeliciteerd! Je kan nu spelen als\n{arg message|0}!",
+    "8003": "Gefeliciteerd! Je kan nu spelen als\n{arg message|0}!",
+    "8004": "Gefeliciteerd! Je hebt een\nkleine kart vrijgespeeld,\nde {arg message|0}!",
+    "8005": "Gefeliciteerd! Je hebt een\nmedium kart vrijgespeeld,\nde {arg message|0}!",
+    "8006": "Gefeliciteerd! Je hebt een\ngrote kart vrijgespeeld,\nde {arg message|0}!",
+    "8007": "Gefeliciteerd! Je hebt een\nkleine motor vrijgespeeld,\nde {arg message|0}!",
+    "8008": "Gefeliciteerd! Je hebt een\nmedium motor vrijgespeeld,\nde {arg message|0}!",
+    "8009": "Gefeliciteerd! Je hebt een\ngrote motor vrijgespeeld,\nde {arg message|0}!",
+    "8010": "Gefeliciteerd!\nJe hebt de 50 cc\nGrand Prix vrijgespeeld (karts en motors)!",
+    "8011": "Gefeliciteerd!\nJe hebt de 100 cc\nGrand Prix vrijgespeeld (karts en motors)!",
+    "8012": null,
+    "8100": "Je hebt trofeeën verdiend in de {arg message|0} Paddenstoel- en Bloemenbeker!",
+    "8101": "Je hebt een trofee verdiend in de {arg message|0} Sterrenbeker!",
+    "8102": "Je hebt trofeeën verdiend in de {arg message|0} Schild- en Bananenbeker!",
+    "8103": "Je hebt een trofee verdiend in de {arg message|0} Blaadjesbeker!",
+    "8104": "Je hebt alle 150 cc bekers gewonnen!",
+    "8105": null,
+    "8110": "Je hebt de 100 cc Blaadjesbeker gewonnen!",
+    "8111": "Je hebt tijdraces gespeeld op alle circuits!",
+    "8112": "Je hebt 1.000 keer gewonnen op Nintendo WFC!",
+    "8113": "Je hebt rang {1 char|} verdiend in alle 50 cc Wii Grand Prix bekers!",
+    "8114": "Je hebt 8 expertgeesten vrijgespeeld in Tijdraces!",
+    "8115": "Je hebt de 50 cc Bliksembeker gewonnen!",
+    "8116": "Je hebt rang {1 char|} verdiend in alle 100 cc Retro Grand Prix bekers!",
+    "8117": "Je hebt de 150 cc Speciale Beker gewonnen",
+    "8118": "Je hebt tijdraces op 16 verschillende circuits gespeeld!",
+    "8119": "Je hebt rang {1 char|} verdiend in alle spiegelbekers!",
+    "8120": "Je hebt een cadeau van Super Mario Galaxy!",
+    "8121": "Je hebt rang {1 char|} verdiend in alle 150 cc Wii Grand Prix bekers!",
+    "8122": "Je hebt 4 expertgeesten vrijgespeeld in tijdraces!",
+    "8123": "Je hebt 25 geestraces gewonnen!",
+    "8124": "Je hebt de 50 cc Sterrenbeker gewonnen!",
+    "8125": "Je hebt de 100 cc Speciale beker gewonnen!",
+    "8126": "Je hebt alle 32 expertgeesten vrijgespeeld in tijdraces!",
+    "8127": "Je hebt 5.000 keer gewonnen op Nintendo WFC!",
+    "8128": "Je hebt 100 geestraces gewonnen!",
+    "8129": "Je hebt 250 keer gewonnen op Nintendo WFC!",
+    "8130": null,
+    "8140": "Je hebt rang {1 char|} verdiend in alle 50 cc Retro Grand Prix bekers!",
+    "8141": "Je hebt een expertgeest vrijgespeeld in tijdraces!",
+    "8142": "Je hebt 50 keer gewonnen op Nintendo WFC!",
+    "8143": "Je hebt de gespiegelde Bliksembeker gewonnen!",
+    "8144": "Je hebt de 50 cc Blaadjesbeker gewonnen!",
+    "8145": "Je hebt de 150 cc Blaadjesbeker gewonnen!",
+    "8146": "Je hebt 24 expertgeesten vrijgespeeld in tijdraces!",
+    "8147": "Je hebt de 50 cc Speciale beker gewonnen!",
+    "8148": "Je hebt rang {1 char|} verdiend in alle 150 cc Retro Grand Prix bekers!",
+    "8149": "Je hebt de 150 cc Bliksembeker gewonnen!",
+    "8150": "Je hebt de 150 cc Sterrenbeker gewonnen!",
+    "8151": "Je hebt tijdraces gespeeld op 8 verschillende circuits!",
+    "8152": "Je hebt 5 geestraces gewonnen!",
+    "8153": "Je hebt de gespiegelde Blaadjesbeker gewonnen!",
+    "8154": "Je hebt de 100 cc Bliksembeker gewonnen!",
+    "8155": "Je hebt rang {1 char|} verdiend in alle 100 cc Wii Grand Prix bekers!",
+    "8156": "Je hebt de gespiegelde Sterrenbeker gewonnen!",
+    "8157": "Je hebt de 100 cc Sterrenbeker gewonnen!",
+    "8158": "Je hebt 12 expertgeesten vrijgespeeld in tijdraces!",
+    "8159": "Je hebt 200 geestraces gewonnen!",
+    "8160": "Je hebt de gespiegelde Speciale beker gewonnen!",
+    "8161": "Je hebt trofeeën gewonnen in alle 50 cc bekers!",
+    "8162": "Je hebt trofeeën gewonnen in alle 100 cc bekers!",
+    "8163": "Je hebt 3.000 keer gewonnen op Nintendo WFC!",
+    "8164": "Je hebt Mario Kart Wii {arg integer|0 0} keer gespeeld!",
+    "8165": null,
+    "8200": "Alle records",
+    "8201": "Favorieten",
+    "8202": "Records van vrienden",
+    "8203": "Nintendo WFC-records",
+    "8204": "Andere records",
+    "8210": "Totale rang",
+    "8211": "Afgelegde afstand",
+    "8212": "Totaal aantal races",
+    "8213": "Totaal aantal gevechten",
+    "8214": "Wii-Wheel gebruik",
+    "8215": "Springboosts gedaan",
+    "8216": "Favoriete coureur",
+    "8217": "Favoriete voertuig",
+    "8218": "Favoriete circuit",
+    "8219": "Favoriete arena",
+    "8220": "Nintendo WFC-records van vrienden",
+    "8221": null,
+    "8222": "Geestuitdagingen verzonden",
+    "8223": "Geestuitdagingen ontvangen",
+    "8224": "Racepunten",
+    "8225": "Versusrace-record",
+    "8226": "Gevechtspunten",
+    "8227": "Gevechtsecord",
+    "8228": "Aantal keren 1e plaats",
+    "8229": "%-Racetijd in 1e plaats",
+    "8230": "Voorwerpklappen uitgedeeld",
+    "8231": "Voorwerpklappen ontvangen",
+    "8232": "Geestrace-record",
+    "8233": "Competities gedaan",
+    "8234": null,
+    "8235": null,
+    "8236": null,
+    "8237": null,
+    "8238": null,
+    "8260": "{arg message|0}",
+    "8261": "{arg integer|0 0}",
+    "8262": "{arg integer|0 0}",
+    "8263": "{arg integer|0 0}",
+    "8264": "{arg integer|0 0}%",
+    "8265": "{arg integer|0 0}",
+    "8266": "{arg message|0}",
+    "8267": "{arg message|0}",
+    "8268": "{arg message|0}",
+    "8269": "{arg message|0}",
+    "8270": "Winst: {arg integer|0 0} Verlies: {arg integer|1 0}",
+    "8271": null,
+    "8272": "{arg integer|0 0}",
+    "8273": "{arg integer|0 0}",
+    "8274": "{arg integer|0 0}",
+    "8275": "Winst: {arg integer|0 0} Verlies: {arg integer|1 0}",
+    "8276": "{arg integer|0 0}",
+    "8277": "Winst: {arg integer|0 0} Verlies: {arg integer|1 0}",
+    "8278": "{arg integer|0 0} keer",
+    "8279": "{arg integer|0 0}%",
+    "8280": "{arg integer|0 0} keer",
+    "8281": "{arg integer|0 0} keer",
+    "8282": "Winst: {arg integer|0 0} Verlies: {arg integer|1 0}",
+    "8283": "{arg integer|0 0} keer",
+    "8284": null,
+    "8400": null,
+    "8401": null,
+    "8402": null,
+    "8403": null,
+    "8404": null,
+    "8405": "Gefeliciteerd,\n%ls!\n\nJe hebt trofeeën in alle bekers verdiend!\nOm het te vieren, hebben we\nje deze souvenirfoto toegestuurd.\nBedankt voor het spelen,\nen geniet van Mario Kart Wii!",
+    "8406": "Gefeliciteerd,\n%ls!\n\nJe hebt alle Mario Kart Wii\nbekers gewonnen! Om dit te vieren\nhebben we je deze souvenir\nfoto toegestuurd. Bedankt voor\nhet spelen, en we hopen dat je nog veel\nplezier beleeft aan Mario Kart Wii!",
+    "8407": null,
+    "8408": null,
+    "8409": null,
+    "8410": null,
+    "8411": null,
+    "8412": null,
+    "8413": null,
+    "8414": null,
+    "8415": null,
+    "8416": null,
+    "8417": null,
+    "8418": null,
+    "8419": null,
+    "8420": null,
+    "8421": null,
+    "8422": null,
+    "8423": null,
+    "8424": null,
+    "8425": null,
+    "8426": null,
+    "8427": null,
+    "8428": null,
+    "8429": null,
+    "8430": null,
+    "8440": null,
+    "8441": null,
+    "8442": null,
+    "8443": null,
+    "8444": null,
+    "8445": null,
+    "8446": null,
+    "8447": null,
+    "8448": null,
+    "8449": null,
+    "8450": null,
+    "8451": null,
+    "8452": null,
+    "8453": null,
+    "8454": null,
+    "8455": null,
+    "8456": null,
+    "8457": null,
+    "8458": null,
+    "8459": null,
+    "8460": null,
+    "8461": null,
+    "8462": "Gefeliciteerd, %ls!\n\nAls prijs voor het verdienen van alle\ntrofeeën in alle 100 cc bekers,\nkrijg je een nieuwe motorklasse:\n\n100 cc (karts en motors)",
+    "8463": null,
+    "8464": null,
+    "8470": null,
+    "8471": null,
+    "8472": null,
+    "8473": null,
+    "8474": null,
+    "8475": null,
+    "8476": null,
+    "8477": null,
+    "8478": null,
+    "8479": null,
+    "8480": null,
+    "8481": null,
+    "8482": null,
+    "8483": null,
+    "8484": null,
+    "8485": null,
+    "8486": null,
+    "8490": "Dit is een bericht van het\nMario Kart-kanaal.\n\n{arg string|0}\n\n\n\nAls je geen verdere commerciële\nberichten van Nintendo meer wilt\nontvangen, selecteer dan de afmeldingsknop\nrechtsboven op het scherm.\n\nJe kunt je afmelden voor:\n(1) berichten van het Mario\nKart-kanaal, of\n(2) berichten van alle kanalen\nen spellen.",
+    "8491": "Dit is een bericht van het\nMario Kart-kanaal.\n\n{arg string|0}\n\n\n\nAls je geen verdere commerciële\nberichten van Nintendo meer wilt\nontvangen, selecteer dan de afmeldingsknop\nrechtsboven op het scherm.\n\nJe kunt je afmelden voor:\n(1) berichten van het Mario\nKart-kanaal, of\n(2) berichten van alle kanalen\nen spellen.",
+    "8492": "Je hebt een vriendenuitnodiging\nontvangen van\n%ls!\n\nMario Kart Wii\nVriendencode: %04d-%04d-%04d\n\nDoor elkaars vriendencode te\nregistreren, kunnen jullie Mario Kart\nWii samen spelen via de Nintendo Wi-Fi\nConnectie.\n\nAls je Mario Kart Wii én\nhet Mario Kart-kanaal in je Wii-menu\nhebt, kun je de START-knop\naan de rechterkant selecteren\nom te bevestigen.\n\nVeel plezier!",
+    "8493": "%ls heeft je\nvriendenuitnodiging geaccepteerd!\n\nMario Kart Wii\nVriendcode: %04d-%04d-%04d\n\nOpmerking: Als er ruimte is\njouw vriendenlijst, zal deze\nautomatisch geregistreerd worden.\n\nAls je het Mario Kart-kanaal op je Wii Menu\nhebt, kun je de START-knop aan\nde rechterkant indrukken om de\nvriendcode te bevestigen.\n\nVeel plezier!",
+    "8494": null,
+    "8495": null,
+    "8496": null,
+    "8497": null,
+    "8498": null,
+    "8499": null,
+    "8500": null,
+    "8504": null,
+    "8505": null,
+    "8510": null,
+    "8511": null,
+    "8512": null,
+    "8513": null,
+    "8514": null,
+    "8515": null,
+    "8516": null,
+    "8517": null,
+    "8518": null,
+    "8519": null,
+    "8520": null,
+    "8521": null,
+    "8522": null,
+    "8523": null,
+    "8524": null,
+    "8525": null,
+    "8526": null,
+    "8527": null,
+    "8528": null,
+    "8529": null,
+    "8530": null,
+    "8540": null,
+    "8541": null,
+    "8542": null,
+    "8543": null,
+    "8544": null,
+    "8545": null,
+    "8546": null,
+    "8547": null,
+    "8548": null,
+    "8549": null,
+    "8550": null,
+    "8551": null,
+    "8552": null,
+    "8553": null,
+    "8554": null,
+    "8555": null,
+    "8556": null,
+    "8557": null,
+    "8558": null,
+    "8559": null,
+    "8560": null,
+    "8561": null,
+    "8562": null,
+    "8563": null,
+    "8564": null,
+    "8565": null,
+    "8566": null,
+    "8567": null,
+    "99991": null,
+    "99992": null,
+    "99993": null,
+    "99994": null,
+    "99995": null,
+    "99996": null,
+    "99997": null,
+    "99998": null,
 }
