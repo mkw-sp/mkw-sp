@@ -102,7 +102,7 @@ enum class PageId {
     Obi = 0x5E,
     PressA = 0x5F,
     SelectMii = 0x60,
-    ControllerBoxes = 0x61, // Activates ControllerRegister when activated
+    PlayerPad = 0x61, // Activates ControllerRegister when activated
     ControllerRegister = 0x62,
     ControllerRegisterInstructions = 0x63,
     ControllerRegisterComplete = 0x64,
