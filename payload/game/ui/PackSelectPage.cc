@@ -119,6 +119,7 @@ void PackSelectPage::onButtonFront(PushButton *button, u32 /* localPlayerId */) 
             SP::CourseDatabase::Instance().resetSelection();
         }
 
+        s_lastPackFront = buttonIndex;
         if (section->id() == SectionId::Multi) {
             m_replacement = PageId::MultiTop;
         } else {
