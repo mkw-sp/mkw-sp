@@ -1,0 +1,28 @@
+name: Clean BMG
+
+on:
+  push:
+    paths-ignore:
+      - '.github/workflows/run_tidy.yml'
+      - '.github/workflows/build_sp.yml'
+      - '.github/workflows/build_tools.yml'
+  pull_request:
+    paths-ignore:
+      - '.github/workflows/run_tidy.yml'
+      - '.github/workflows/build_sp.yml'
+      - '.github/workflows/build_tools.yml'
+
+jobs:
+  clean_bmg:
+    name: Check BMG files are clean
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Install deps
+        run: python3 -m pip install json5
+      - name: Run BMG cleaner
+        working-directory: tools/bmg-cleaner
+        run: python3 bmg-cleaner.py
+      - name: Check if BMG cleaner made a difference
+        run: git diff --exit-code
