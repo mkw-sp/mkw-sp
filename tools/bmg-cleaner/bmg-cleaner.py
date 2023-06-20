@@ -10,16 +10,22 @@ def cleanup_bmg(path: pathlib.Path):
 
     new_bmg = {}
     bmg = json5.loads(path.read_text())
-    assert isinstance(bmg, dict)    
+    assert isinstance(bmg, dict)
 
     for message_id, message in bmg.items():
-        font = message.get("font")
+        # Handle already cleaned `message_id: message`
+        if isinstance(message, str) or message is None:
+            new_bmg[message_id] = message
+            continue
 
-        new_bmg[message_id] = {"string": message["string"]}
-        if font is not None and font != "regular": 
-            new_bmg[message_id]["font"] = font
+        # Check for `font` key that is not "regular"
+        if message.get("font", "regular") == "regular":
+            # If font: regular or no font specified, store message inline.
+            new_bmg[message_id] = message["string"]
+        else:
+            new_bmg[message_id] = message
 
-    path.write_text(json5.dumps(new_bmg, indent=4, ensure_ascii=False))
+    path.write_text(json5.dumps(new_bmg, indent=4, ensure_ascii=False).replace("\n", "\r\n"))
 
 with multiprocessing.Pool() as pool:
     pool.map(cleanup_bmg, bmg_paths)
