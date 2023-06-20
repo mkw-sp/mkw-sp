@@ -35,11 +35,25 @@ bool RaceConfig::isSameTeam(u32 p0, u32 p1) const {
     return m_raceScenario.players[p0].spTeam == m_raceScenario.players[p1].spTeam;
 }
 
-void RaceConfig::applyPlayers(Player::Type otherType) {
-    m_menuScenario.players[0].type = Player::Type::Local;
+void RaceConfig::applyPlayers() {
+    auto *saveManager = System::SaveManager::Instance();
 
-    for (u32 i = 1; i < 12; i++) {
-        m_menuScenario.players[i].type = otherType;
+    u8 minPlayerCount = 1;
+    if (m_menuScenario.gameMode == GameMode::OfflineVS) {
+        minPlayerCount = saveManager->getSetting<SP::ClientSettings::Setting::VSPlayerCount>();
+    } else if (m_menuScenario.gameMode == GameMode::OfflineBT) {
+        minPlayerCount = saveManager->getSetting<SP::ClientSettings::Setting::BTPlayerCount>();
+    }
+
+    u8 i = 0;
+    for (; i < m_menuScenario.localPlayerCount; i++) {
+        m_menuScenario.players[i].type = Player::Type::Local;
+    }
+    for (; i < minPlayerCount; i++) {
+        m_menuScenario.players[i].type = Player::Type::CPU;
+    }
+    for (; i < 12; i++) {
+        m_menuScenario.players[i].type = Player::Type::None;
     }
 }
 
@@ -113,16 +127,7 @@ void RaceConfig::applyCPUMode() {
         panic("applyCPUMode called with invalid GameMode");
     }
 
-    if (setting != SP::ClientSettings::CPUMode::None) {
-        m_menuScenario.cpuMode = static_cast<u32>(setting);
-        return;
-    }
-
-    for (u32 i = 1; i < 12; i++) {
-        if (m_menuScenario.players[i].type == Player::Type::CPU) {
-            m_menuScenario.players[i].type = Player::Type::None;
-        }
-    }
+    m_menuScenario.cpuMode = static_cast<u32>(setting);
 }
 
 void RaceConfig::initRace() {
