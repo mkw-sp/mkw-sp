@@ -476,8 +476,6 @@ Page *Section::CreatePage(PageId pageId) {
         return new FriendRoomPage;
     case PageId::FriendRoomMessageSelect:
         return new FriendRoomMessageSelectPage;
-    case PageId::PackSelect:
-        return new PackSelectPage;
     case PageId::ServicePackTop:
         return new ServicePackTopPage;
     case PageId::StorageBenchmark:
@@ -500,6 +498,8 @@ Page *Section::CreatePage(PageId pageId) {
         return new SettingsPagePopup;
     case PageId::ServicePackChannel:
         return new ServicePackChannelPage;
+    case PageId::PackSelect:
+        return new PackSelectPage;
     default:
         return REPLACED(CreatePage)(pageId);
     }
