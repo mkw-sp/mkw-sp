@@ -107,9 +107,7 @@ void MultiTopPage::onVSButtonFront(PushButton *button, u32 /* localPlayerId */) 
     auto *context = SectionManager::Instance()->globalContext();
     context->m_matchCount = saveManager->getSetting<SP::ClientSettings::Setting::VSRaceCount>();
 
-    u32 localPlayerCount = context->m_localPlayerCount;
     auto teamsizeSetting = saveManager->getSetting<SP::ClientSettings::Setting::VSTeamSize>();
-
     u32 maxTeamSize = SP::ClientSettings::GenerateMaxTeamSize(teamsizeSetting);
 
     auto &menuScenario = raceConfig->menuScenario();
@@ -117,14 +115,8 @@ void MultiTopPage::onVSButtonFront(PushButton *button, u32 /* localPlayerId */) 
     menuScenario.spMaxTeamSize = maxTeamSize;
     menuScenario.cameraMode = 5;
 
-    for (u32 i = 0; i < localPlayerCount; i++) {
-        menuScenario.players[i].type = System::RaceConfig::Player::Type::Local;
-    }
-    for (u32 i = localPlayerCount; i < 12; i++) {
-        menuScenario.players[i].type = System::RaceConfig::Player::Type::CPU;
-    }
-
     context->applyVehicleRestriction(false);
+    raceConfig->applyPlayers();
     raceConfig->applyCPUMode();
     raceConfig->applyItemFreq();
     raceConfig->applyEngineClass();
@@ -152,9 +144,7 @@ void MultiTopPage::onBTButtonFront(PushButton *button, u32 /* localPlayerId */) 
     auto *context = SectionManager::Instance()->globalContext();
     context->m_matchCount = saveManager->getSetting<SP::ClientSettings::Setting::BTRaceCount>();
 
-    u32 localPlayerCount = context->m_localPlayerCount;
     auto teamsizeSetting = saveManager->getSetting<SP::ClientSettings::Setting::BTTeamSize>();
-
     u32 maxTeamSize = SP::ClientSettings::GenerateMaxTeamSize(teamsizeSetting);
 
     auto &menuScenario = raceConfig->menuScenario();
@@ -162,17 +152,11 @@ void MultiTopPage::onBTButtonFront(PushButton *button, u32 /* localPlayerId */) 
     menuScenario.spMaxTeamSize = maxTeamSize;
     menuScenario.cameraMode = 5;
 
-    for (u32 i = 0; i < localPlayerCount; i++) {
-        menuScenario.players[i].type = System::RaceConfig::Player::Type::Local;
-    }
-    for (u32 i = localPlayerCount; i < 12; i++) {
-        menuScenario.players[i].type = System::RaceConfig::Player::Type::CPU;
-    }
-
     context->applyVehicleRestriction(true);
-    raceConfig->applyEngineClass();
+    raceConfig->applyPlayers();
     raceConfig->applyCPUMode();
     raceConfig->applyItemFreq();
+    raceConfig->applyEngineClass();
 
     Section *section = SectionManager::Instance()->currentSection();
     auto *courseSelectPage = section->page<PageId::CourseSelect>();
