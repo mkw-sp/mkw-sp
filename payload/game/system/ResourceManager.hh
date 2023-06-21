@@ -9,6 +9,13 @@
 
 namespace System {
 
+enum class ResourceType {
+    Race = 0,
+    Course = 1,
+    Menu = 2,
+    Font = 3,
+};
+
 class ResourceManager {
 public:
     class CourseCache {
@@ -48,7 +55,7 @@ public:
     REPLACE MultiDvdArchive *loadMission(Registry::Course courseId, u32 missionId, EGG::Heap *heap,
             bool splitScreen);
 
-    void *getFile(u32 i, const char *name, u32 *size);
+    void *getFile(ResourceType i, const char *name, size_t *size);
 
     static void OnCreateScene(SceneId sceneId);
     static REPLACE ResourceManager *CreateInstance();
