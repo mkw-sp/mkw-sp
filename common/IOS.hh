@@ -5,6 +5,7 @@
 namespace IOS {
 
 void Init();
+u16 GetNumber();
 bool EscalatePrivileges(bool again);
 void DeescalatePrivileges();
 bool ImportNewCommonKey();

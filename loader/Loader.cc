@@ -56,6 +56,13 @@ std::optional<Apploader::GameEntryFunc> Run() {
     Console::Print("\n");
     Console::Print("\n");
 
+    u16 iosNumber = IOS::GetNumber();
+    if (iosNumber != 58 && iosNumber != 59) {
+        Console::Print("In order for MKW-SP to work properly, IOS58 or IOS59 must be used.\n");
+        Console::Print("Before launching MKW-SP, ensure that IOS58 or IOS59 is loaded!");
+        return {};
+    }
+
     Console::Print("Escalating privileges...");
     if (!IOS::EscalatePrivileges(true)) {
         Console::Print(" failed!\n");

@@ -45,6 +45,10 @@ void Init() {
 #endif
 }
 
+u16 GetNumber() {
+    return *reinterpret_cast<volatile u16 *>(0x80003140);
+}
+
 enum class SC {
     IOS_SetUid = 0x2B,
     IOS_InvalidateDCache = 0x3F,
