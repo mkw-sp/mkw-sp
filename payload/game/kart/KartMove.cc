@@ -20,11 +20,11 @@ void KartMove::init(u32 r4, u32 r5) {
     m_hardSpeedLimit = m_hardSpeedLimit * g_speedModFactor;
 }
 
-void KartMove::setBulletSpeedLimit() {
+void KartMove::applyBulletSpeedLimit() {
     m_hardSpeedLimit = 145.0f * g_speedModFactor;
 }
 
-void KartMove::restoreBulletSpeedLimit() {
+void KartMove::revertBulletSpeedLimit() {
     m_hardSpeedLimit = 120.0f * g_speedModFactor;
 }
 

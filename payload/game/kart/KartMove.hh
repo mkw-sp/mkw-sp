@@ -22,8 +22,8 @@ public:
     void REPLACED(init)(u32 r4, u32 r5);
     REPLACE virtual void init(u32 r4, u32 r5);
 
-    REPLACE void setBulletSpeedLimit();
-    REPLACE void restoreBulletSpeedLimit();
+    REPLACE void applyBulletSpeedLimit();
+    REPLACE void revertBulletSpeedLimit();
     void activateBoost(u8 type, s16 duration);
     void activateMega();
     void REPLACED(calcBlink)();
