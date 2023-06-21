@@ -13,6 +13,17 @@ class KartMove : public KartObjectProxy {
 public:
     f32 hardSpeedLimit() const;
     const Vec3 *internalVelDir() const;
+
+    KartMove();
+    virtual ~KartMove();
+    virtual void dt(s32 type);
+    virtual void *createComponents();
+    virtual void *setTurnParams();
+    void REPLACED(init)(u32 r4, u32 r5);
+    REPLACE virtual void init(u32 r4, u32 r5);
+
+    REPLACE void applyBulletSpeedLimit();
+    REPLACE void revertBulletSpeedLimit();
     void activateBoost(u8 type, s16 duration);
     void activateMega();
     void REPLACED(calcBlink)();
@@ -21,7 +32,7 @@ public:
     REPLACE bool activateTcLightning();
 
 private:
-    u8 _00c[0x020 - 0x00c];
+    u8 _010[0x020 - 0x010];
     f32 m_internalSpeed;
     u8 _024[0x02c - 0x024];
     f32 m_hardSpeedLimit;
