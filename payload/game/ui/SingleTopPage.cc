@@ -90,8 +90,12 @@ void SingleTopPage::onInit() {
 void SingleTopPage::onActivate() {
     m_replacement = PageId::None;
 
-    m_taButton.selectDefault(0);
-    onTAButtonSelect(&m_taButton, 0);
+    // Reset button to TT when going from PackSelect, to fix possible
+    // mismatches between the ModelPage and/or future concerns.
+    if (anim() == Anim::Next) {
+        m_taButton.selectDefault(0);
+        onTAButtonSelect(&m_taButton, 0);
+    }
 
     auto &menuScenario = System::RaceConfig::Instance()->menuScenario();
     menuScenario.itemMode = 0;
