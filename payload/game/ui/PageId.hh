@@ -102,7 +102,7 @@ enum class PageId {
     Obi = 0x5E,
     PressA = 0x5F,
     SelectMii = 0x60,
-    ControllerBoxes = 0x61, // Activates ControllerRegister when activated
+    PlayerPad = 0x61, // Activates ControllerRegister when activated
     ControllerRegister = 0x62,
     ControllerRegisterInstructions = 0x63,
     ControllerRegisterComplete = 0x64,
@@ -215,6 +215,8 @@ enum class PageId {
     Ext_MinExclusive__ = 0xff,
 
     // Extensions go here {
+    // Do not explicitly assign values to prevent merge conflicts
+    PackSelect,
     // }
 
     Ext_MaxExclusive__,

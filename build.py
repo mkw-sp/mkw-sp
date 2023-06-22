@@ -128,6 +128,25 @@ HUD_LANGUAGES = {
     'N': 'N',
 }
 
+pack_select_assets = [
+    os.path.join('bg', 'blyt', 'obi_bottom.brlyt.json5'),
+    os.path.join('bg', 'blyt', 'obi_bottom_message.brlyt.json5'),
+    os.path.join('button', 'anim', 'course_select_button_free.brlan.json5'),
+    os.path.join('button', 'anim', 'course_select_button_free_to_select.brlan.json5'),
+    os.path.join('button', 'anim', 'course_select_button_select.brlan.json5'),
+    os.path.join('button', 'anim', 'course_select_button_select_to_free.brlan.json5'),
+    os.path.join('button', 'blyt', 'course_select_button.brlyt.json5'),
+    os.path.join('button', 'blyt', 'course_select_scroll_bar.brlyt.json5'),
+    os.path.join('button', 'ctrl', 'CourseSelectArrowLeft.brctr.json5'),
+    os.path.join('button', 'ctrl', 'CourseSelectArrowRight.brctr.json5'),
+    os.path.join('button', 'ctrl', 'CourseSelectButton.brctr.json5'),
+    os.path.join('button', 'ctrl', 'CourseSelectScrollBar.brctr.json5'),
+    os.path.join('button', 'blyt', 'pack_select_button.brlyt.json5'),
+    os.path.join('button', 'ctrl', 'PackSelectButton.brctr.json5'),
+    os.path.join('control', 'ctrl', 'CourseSelectPageNum.brctr.json5'),
+    os.path.join('control', 'ctrl', 'TimeAttackGhostListPageNum.brctr.json5'),
+]
+
 asset_in_files = {
     os.path.join('Scene', 'UI', 'AwardSP.arc.lzma'): sorted(glob.glob("award/**/*.json5", root_dir="assets")),
     os.path.join('Scene', 'UI', 'CrashSP.arc.lzma'): sorted(glob.glob("fatal/**/*.*", root_dir="assets", recursive=True)),
@@ -159,19 +178,8 @@ asset_in_files = {
         os.path.join('button', 'ctrl', 'ServicePackToolsButton.brctr.json5'),
         os.path.join('button', 'ctrl', 'ServicePackTopButton.brctr.json5'),
         os.path.join('button', 'ctrl', 'ToolsButton.brctr.json5'),
-        # Course Select
-        os.path.join('button', 'anim', 'course_select_button_free.brlan.json5'),
-        os.path.join('button', 'anim', 'course_select_button_free_to_select.brlan.json5'),
-        os.path.join('button', 'anim', 'course_select_button_select.brlan.json5'),
-        os.path.join('button', 'anim', 'course_select_button_select_to_free.brlan.json5'),
-        os.path.join('button', 'blyt', 'course_select_button.brlyt.json5'),
-        os.path.join('button', 'blyt', 'course_select_scroll_bar.brlyt.json5'),
-        os.path.join('button', 'ctrl', 'CourseSelectArrowLeft.brctr.json5'),
-        os.path.join('button', 'ctrl', 'CourseSelectArrowRight.brctr.json5'),
-        os.path.join('button', 'ctrl', 'CourseSelectButton.brctr.json5'),
-        os.path.join('button', 'ctrl', 'CourseSelectScrollBar.brctr.json5'),
-        os.path.join('control', 'ctrl', 'CourseSelectPageNum.brctr.json5'),
-        os.path.join('control', 'ctrl', 'TimeAttackGhostListPageNum.brctr.json5'),
+        # Course/Pack Select
+        *pack_select_assets,
     ],
     os.path.join('Scene', 'UI', 'FontSP_K.arc.lzma'): [
         os.path.join('kart_font_korea.brfnt'),
@@ -287,6 +295,7 @@ asset_in_files = {
         os.path.join('button', 'ctrl', 'CharacterSelect4_2_Multi.brctr.json5'),
         os.path.join('button', 'ctrl', 'CharacterSelect4_3_Multi.brctr.json5'),
         os.path.join('button', 'blyt', 'common_w117_mii_suit.brlyt.json5'),
+        *pack_select_assets,
     ],
     os.path.join('Scene', 'UI', 'MenuMultiSP.arc.lzma'): [
         os.path.join('button', 'anim', 'common_w083_earth_chat_message_fade_in.brlan.json5'),
@@ -392,19 +401,7 @@ asset_in_files = {
         os.path.join('button', 'ctrl', 'CharacterSelect4_2_Multi.brctr.json5'),
         os.path.join('button', 'ctrl', 'CharacterSelect4_3_Multi.brctr.json5'),
         os.path.join('button', 'blyt', 'common_w117_mii_suit.brlyt.json5'),
-        # Course Select
-        os.path.join('button', 'anim', 'course_select_button_free.brlan.json5'),
-        os.path.join('button', 'anim', 'course_select_button_free_to_select.brlan.json5'),
-        os.path.join('button', 'anim', 'course_select_button_select.brlan.json5'),
-        os.path.join('button', 'anim', 'course_select_button_select_to_free.brlan.json5'),
-        os.path.join('button', 'blyt', 'course_select_button.brlyt.json5'),
-        os.path.join('button', 'blyt', 'course_select_scroll_bar.brlyt.json5'),
-        os.path.join('button', 'ctrl', 'CourseSelectArrowLeft.brctr.json5'),
-        os.path.join('button', 'ctrl', 'CourseSelectArrowRight.brctr.json5'),
-        os.path.join('button', 'ctrl', 'CourseSelectButton.brctr.json5'),
-        os.path.join('button', 'ctrl', 'CourseSelectScrollBar.brctr.json5'),
-        os.path.join('control', 'ctrl', 'CourseSelectPageNum.brctr.json5'),
-        os.path.join('control', 'ctrl', 'TimeAttackGhostListPageNum.brctr.json5'),
+        *pack_select_assets,
     ],
     os.path.join('Scene', 'UI', 'MenuOtherSP.arc.lzma'): [
         # Explanation text with 2 lines
@@ -589,18 +586,7 @@ asset_in_files = {
         os.path.join('button', 'ctrl', 'CharacterSelect4_2_Multi.brctr.json5'),
         os.path.join('button', 'ctrl', 'CharacterSelect4_3_Multi.brctr.json5'),
         os.path.join('button', 'blyt', 'common_w117_mii_suit.brlyt.json5'),
-        # Course Select
-        os.path.join('button', 'anim', 'course_select_button_free.brlan.json5'),
-        os.path.join('button', 'anim', 'course_select_button_free_to_select.brlan.json5'),
-        os.path.join('button', 'anim', 'course_select_button_select.brlan.json5'),
-        os.path.join('button', 'anim', 'course_select_button_select_to_free.brlan.json5'),
-        os.path.join('button', 'blyt', 'course_select_button.brlyt.json5'),
-        os.path.join('button', 'blyt', 'course_select_scroll_bar.brlyt.json5'),
-        os.path.join('button', 'ctrl', 'CourseSelectArrowLeft.brctr.json5'),
-        os.path.join('button', 'ctrl', 'CourseSelectArrowRight.brctr.json5'),
-        os.path.join('button', 'ctrl', 'CourseSelectButton.brctr.json5'),
-        os.path.join('button', 'ctrl', 'CourseSelectScrollBar.brctr.json5'),
-        os.path.join('control', 'ctrl', 'CourseSelectPageNum.brctr.json5'),
+        *pack_select_assets,
         # Flags
         os.path.join('control', 'blyt', 'chara_flag_machine_picture_common.brlyt.json5'),
         *[os.path.normpath(i) for i in sorted(glob.glob("control/timg/[0-9][0-9][0-9].tpl", root_dir="assets", recursive=True))],

@@ -101,6 +101,11 @@ void OnlineTopPage::onWorldwideButtonFront(PushButton *button, u32 /* localPlaye
     startReplace(Anim::Next, button->getDelay());
 }
 
+void OnlineTopPage::onTrackpackButtonFront(PushButton *button, u32 /* localPlayerId */) {
+    m_replacement = PageId::PackSelect;
+    startReplace(Anim::Next, button->getDelay());
+}
+
 void OnlineTopPage::showUnimplemented() {
     auto section = SectionManager::Instance()->currentSection();
     auto messagePopup = section->page<PageId::MessagePopup>();
@@ -109,10 +114,6 @@ void OnlineTopPage::showUnimplemented() {
     messagePopup->setWindowMessage(20046);
 
     push(PageId::MessagePopup, Anim::None);
-}
-
-void OnlineTopPage::onTrackpackButtonFront(PushButton * /* button */, u32 /* localPlayerId */) {
-    showUnimplemented();
 }
 
 void OnlineTopPage::onFriendButtonFront(PushButton * /* button */, u32 /* localPlayerId */) {

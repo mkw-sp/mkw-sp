@@ -17,6 +17,7 @@
 #include "game/ui/OnlineModeSelectPage.hh"
 #include "game/ui/OnlineTeamSelectPage.hh"
 #include "game/ui/OnlineTopPage.hh"
+#include "game/ui/PackSelectPage.hh"
 #include "game/ui/RandomMatchingPage.hh"
 #include "game/ui/RankingPage.hh"
 #include "game/ui/RankingTopTenDownloadPage.hh"
@@ -93,6 +94,18 @@ bool Section::HasRoomClient(SectionId sectionId) {
 bool Section::HasRaceClient(SectionId sectionId) {
     switch (sectionId) {
     case SectionId::OnlineFriend1PVS:
+        return true;
+    default:
+        return false;
+    }
+}
+
+bool Section::HasOnlineManager(SectionId sectionId) {
+    switch (sectionId) {
+    case SectionId::OnlineSingle:
+    case SectionId::WifiSingleFriendList:
+    case SectionId::OnlineMulti:
+    case SectionId::WifiMultiFriendList:
         return true;
     default:
         return false;
@@ -214,6 +227,8 @@ void Section::addPage(PageId pageId) {
 
 void Section::addActivePage(PageId pageId) {
     std::pair<SectionId, PageId> deletions[] = {
+            {SectionId::Single, PageId::SingleTop},
+
             {SectionId::SingleChangeGhostData, PageId::CharacterSelect},
 
             {SectionId::SingleSelectBTCourse, PageId::BattleCupSelect},
@@ -339,7 +354,6 @@ void Section::addPages(SectionId id) {
             {SectionId::SingleChangeGhostData, PageId::MenuMessage},
             {SectionId::SingleChangeGhostData, PageId::MessageBoardPopup},
             {SectionId::SingleChangeGhostData, PageId::SingleTop},
-            {SectionId::SingleChangeGhostData, PageId::GpClassSelect},
             {SectionId::SingleChangeGhostData, PageId::CourseSelect},
             {SectionId::SingleChangeGhostData, PageId::TimeAttackTop},
             {SectionId::SingleChangeGhostData, PageId::TimeAttackGhostList},
@@ -348,14 +362,21 @@ void Section::addPages(SectionId id) {
             {SectionId::SingleChangeGhostData, PageId::BattleVehicleSelect},
 
             {SectionId::Single, PageId::MenuSettings},
+            {SectionId::Single, PageId::PackSelect},
             {SectionId::SingleChangeDriver, PageId::MenuSettings},
+            {SectionId::SingleChangeDriver, PageId::PackSelect},
             {SectionId::SingleChangeCourse, PageId::MenuSettings},
+            {SectionId::SingleChangeCourse, PageId::PackSelect},
             {SectionId::SingleChangeGhostData, PageId::MenuSettings},
+            {SectionId::SingleChangeGhostData, PageId::PackSelect},
             {SectionId::Multi, PageId::MenuSettings},
+            {SectionId::Multi, PageId::PackSelect},
 
+            {SectionId::OnlineSingle, PageId::PackSelect},
             {SectionId::OnlineSingle, PageId::FriendRoomRules},
             {SectionId::OnlineSingle, PageId::MenuSettings},
             {SectionId::OnlineSingle, PageId::SettingsPopup},
+            {SectionId::OnlineMulti, PageId::PackSelect},
             {SectionId::OnlineMulti, PageId::FriendRoomRules},
             {SectionId::OnlineMulti, PageId::MenuSettings},
             {SectionId::OnlineMulti, PageId::SettingsPopup},
@@ -389,6 +410,9 @@ void Section::addActivePages(SectionId id) {
 
             // Mission Mode
             {SectionId::SingleChangeMission, PageId::MissionLevelSelect},
+
+            // Pack Select
+            {SectionId::Single, PageId::PackSelect},
 
             {SectionId::OnlineSingle, PageId::OnlineTop},
 
@@ -474,6 +498,8 @@ Page *Section::CreatePage(PageId pageId) {
         return new SettingsPagePopup;
     case PageId::ServicePackChannel:
         return new ServicePackChannelPage;
+    case PageId::PackSelect:
+        return new PackSelectPage;
     default:
         return REPLACED(CreatePage)(pageId);
     }

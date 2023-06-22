@@ -75,6 +75,7 @@ public:
     static Sound::SoundId GetSoundId(SectionId id);
     static bool HasRoomClient(SectionId sectionId);
     static bool HasRaceClient(SectionId sectionId);
+    static bool HasOnlineManager(SectionId sectionId);
 
 private:
     void REPLACED(addPage)(PageId pageId);
