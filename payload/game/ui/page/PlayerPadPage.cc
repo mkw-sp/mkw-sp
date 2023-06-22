@@ -5,6 +5,10 @@
 namespace UI {
 
 PageId PlayerPadPage::getReplacement() {
+    if (anim() == Anim::Prev) {
+        return PageId::None;
+    }
+
     auto sectionId = SectionManager::Instance()->currentSection()->id();
     if (sectionId == SectionId::OnlineMultiConfigure) {
         return PageId::MultiTop;
