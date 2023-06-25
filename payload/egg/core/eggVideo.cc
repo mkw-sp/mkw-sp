@@ -6,6 +6,10 @@ extern "C" {
 
 namespace EGG {
 
+const GXRenderModeObj *Video::renderMode() const {
+    return m_renderMode;
+}
+
 const GXRenderModeObj *Video::getStandardRenderModeObj(const GXRenderModeObj *const *renderModes) {
     auto *renderMode = REPLACED(getStandardRenderModeObj)(renderModes);
     if (!HostPlatform_IsDolphin(Host_GetPlatform()) || REGION == REGION_P) {

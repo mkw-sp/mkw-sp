@@ -78,6 +78,7 @@ enum class Setting {
     MiiAvatar,
     MiiClient,
     ColorPalette,
+    VerticalFilter,
     LoadingScreenColor,
     GCPadRumble,
     PageTransitions,
@@ -309,6 +310,11 @@ enum class VSMegaClouds {
 enum class ColorPalette {
     Vivid,
     Colorblind,
+};
+
+enum class VerticalFilter {
+    InterlacedOnly,
+    Always,
 };
 
 enum class GCPadRumble {
@@ -631,6 +637,11 @@ struct Helper<ClientSettings::Setting, ClientSettings::Setting::MiiClient> {
 template <>
 struct Helper<ClientSettings::Setting, ClientSettings::Setting::ColorPalette> {
     using type = SP::ClientSettings::ColorPalette;
+};
+
+template <>
+struct Helper<ClientSettings::Setting, ClientSettings::Setting::VerticalFilter> {
+    using type = SP::ClientSettings::VerticalFilter;
 };
 
 template <>

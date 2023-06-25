@@ -4,8 +4,9 @@
 
 namespace EGG {
 
-class Display;
+class Video;
 class Heap;
+class AsyncDisplay;
 class XfbManager;
 class SceneManager;
 
@@ -13,9 +14,9 @@ class TSystem {
 public:
     TSystem();
     virtual ~TSystem();
-    virtual void *getVideo();
+    virtual Video *getVideo();
     virtual Heap *getSysHeap();
-    virtual Display *getDisplay();
+    virtual AsyncDisplay *getDisplay();
     virtual XfbManager *getXfbManager();
     virtual void *getPerformanceView();
     virtual SceneManager *getSceneManager();
