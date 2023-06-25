@@ -58,8 +58,10 @@ std::optional<Apploader::GameEntryFunc> Run() {
 
     u16 iosNumber = IOS::GetNumber();
     if (iosNumber != 58 && iosNumber != 59) {
-        Console::Print("In order for MKW-SP to work properly, IOS58 or IOS59 must be used.\n");
-        Console::Print("Before launching MKW-SP, ensure that IOS58 or IOS59 is loaded!");
+        Console::Print(
+                "In order for MKW-SP to work, IOS58 (or IOS59) must be installed.\n"
+                "Please perform a Wii System Update or use the IOS58 Installer\n"
+                "to install IOS58.");
         return {};
     }
 
