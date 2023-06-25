@@ -2,15 +2,11 @@ name: Clean BMG
 
 on:
   push:
-    paths-ignore:
-      - '.github/workflows/run_tidy.yml'
-      - '.github/workflows/build_sp.yml'
-      - '.github/workflows/build_tools.yml'
+    paths:
+      - 'assets/**.bmg.json5'
   pull_request:
-    paths-ignore:
-      - '.github/workflows/run_tidy.yml'
-      - '.github/workflows/build_sp.yml'
-      - '.github/workflows/build_tools.yml'
+    paths:
+      - 'assets/**.bmg.json5'
 
 jobs:
   clean_bmg:
