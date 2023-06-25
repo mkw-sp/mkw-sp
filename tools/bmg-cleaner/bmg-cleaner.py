@@ -25,7 +25,7 @@ def cleanup_bmg(path: pathlib.Path):
         else:
             new_bmg[message_id] = message
 
-    path.write_text(json5.dumps(new_bmg, indent=4, ensure_ascii=False).replace("\n", "\r\n"))
+    path.write_text(json5.dumps(new_bmg, indent=4, ensure_ascii=False))
 
 with multiprocessing.Pool() as pool:
     pool.map(cleanup_bmg, bmg_paths)
