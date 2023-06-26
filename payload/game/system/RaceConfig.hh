@@ -2,6 +2,8 @@
 
 #include "game/util/Registry.hh"
 
+#include <sp/FixedString.hh>
+
 namespace System {
 
 class RaceConfig {
@@ -56,7 +58,9 @@ public:
     };
 
     struct SPScenario {
-        // ...
+        // The course path to load instead of the vanilla course.
+        // If this is empty, the vanilla course will be loaded.
+        SP::FixedString<64> pathReplacement;
     };
 
     struct Scenario {

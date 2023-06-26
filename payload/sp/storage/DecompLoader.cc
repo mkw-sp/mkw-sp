@@ -6,6 +6,7 @@
 #include "sp/ThumbnailManager.hh"
 #include "sp/YAZDecoder.hh"
 
+#include <game/system/RaceConfig.hh>
 #include <game/system/ResourceManager.hh>
 
 #include <common/Bytes.hh>
@@ -29,13 +30,22 @@ static OSThread thread;
 alignas(0x20) static u8 srcs[2][0x20000 /* 128 KiB */];
 
 static std::optional<FileHandle> Open(const char *path, std::optional<StorageType> storageType) {
-    if (ThumbnailManager::IsActive()) {
+    auto *raceConfig = System::RaceConfig::Instance();
+
+    // This is called before the game is loaded, so the nullptr check is actually needed.
+    if (raceConfig != nullptr && raceConfig->m_spRace.pathReplacement.m_len != 0) {
+        auto courseId = raceConfig->raceScenario().courseId;
+        auto courseFilename = System::ResourceManager::GetCourseFilename(courseId);
+
         char coursePath[128];
-        snprintf(coursePath, std::size(coursePath), "ro:/Race/Course/%s.szs",
-                System::ResourceManager::GetCourseFilename(ThumbnailManager::CourseId()));
+        snprintf(coursePath, std::size(coursePath), "ro:/Race/Course/%s.szs", courseFilename);
         if (!strcmp(path, coursePath)) {
-            auto thumbnailPath = ThumbnailManager::Path();
-            return Storage::Open(thumbnailPath.data(), "r");
+            // We remove the pathReplacement to prevent further unnecessary checks.
+            FixedString<64> pathReplacement = raceConfig->m_spRace.pathReplacement;
+            raceConfig->m_spRace.pathReplacement = "";
+
+            // Recursive call to allow for .szs or .arc.lzma to be added on.
+            return Open(pathReplacement.c_str(), storageType);
         }
     }
 

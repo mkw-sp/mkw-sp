@@ -101,8 +101,9 @@ void RaceManager::calc() {
         if (m_time == 25) {
             UI::SectionId sectionId;
             if (SP::ThumbnailManager::Continue()) {
-                auto &menuScenario = System::RaceConfig::Instance()->menuScenario();
-                menuScenario.courseId = SP::ThumbnailManager::CourseId();
+                auto *raceConfig = System::RaceConfig::Instance();
+                raceConfig->m_menuScenario.courseId = SP::ThumbnailManager::CourseId();
+                raceConfig->m_spMenu.pathReplacement = SP::ThumbnailManager::Path();
                 sectionId = UI::SectionId::Thumbnails;
             } else {
                 sectionId = UI::SectionId::ServicePack;
