@@ -1,6 +1,7 @@
 build
 build.ninja
 __pycache__
+in
 out
 .vs
 CMakeFiles

@@ -1,0 +1,7 @@
+ProtoTrack.name max_size:48
+
+ProtoSha1.data max_size:20;
+
+Pack.name max_size:64
+Pack.authorNames max_size:64
+Pack.description max_size:128
