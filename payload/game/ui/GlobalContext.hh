@@ -4,6 +4,7 @@
 #include "game/util/Registry.hh"
 
 #include <sp/CircularBuffer.hh>
+#include <sp/trackPacks/Track.hh>
 
 namespace UI {
 
@@ -23,13 +24,17 @@ public:
     REPLACE void onChangeLicense();
 
     void clearCourses();
-    void setCurrentCourse(Registry::Course course);
-    std::optional<Registry::Course> getCourse(u32 courseIdx) const;
+    bool isVanillaTracks() const;
+    void setCurrentTrack(SP::Track track);
+    const SP::Track *getTrack(u32 courseIdx) const;
 
     bool generateRandomCourses();
     bool generateOrderedCourses(u16 startingIndex);
 
     void applyVehicleRestriction(bool isBattle);
+
+private:
+    bool inCourseQueue(Sha1 trackSha) const;
 
 public:
     struct SelectPlayer {
@@ -82,9 +87,10 @@ public:
     u8 _4cc[0x500 - 0x4cc];
     OnlineDisconnectInfo m_onlineDisconnectInfo;
     u8 _508[0x510 - 0x508];
-    u32 m_timeAttackGhostCount;                             // Added
-    u32 m_timeAttackGhostIndices[11];                       // Added
-    SP::CircularBuffer<Registry::Course, 32> m_courseOrder; // Added
+    u32 m_timeAttackGhostCount;                      // Added
+    u32 m_timeAttackGhostIndices[11];                // Added
+    SP::CircularBuffer<SP::Track, 32> m_courseOrder; // Added
+    u32 m_currentPack;                               // Added
 };
 // static_assert(offsetof(GlobalContext::m_timeAttackGhostCount) == 0x510);
 

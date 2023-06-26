@@ -3,8 +3,7 @@
 #include "game/sound/SoundId.hh"
 #include "game/util/Registry.hh"
 
-#include <sp/FixedString.hh>
-#include <sp/ShaUtil.hh>
+#include <sp/trackPacks/Track.hh>
 
 namespace System {
 
@@ -76,6 +75,8 @@ public:
     };
 
     struct Scenario {
+        SP::Track::Mode getTrackMode() const;
+
         bool isOnline() const {
             return gameMode >= GameMode::OnlinePrivateVS && gameMode <= GameMode::OnlinePrivateBT;
         }

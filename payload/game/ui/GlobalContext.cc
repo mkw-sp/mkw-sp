@@ -2,9 +2,10 @@
 
 #include "game/system/RaceConfig.hh"
 #include "game/system/SaveManager.hh"
+#include "game/ui/CourseSelectPage.hh"
 #include "game/ui/SectionManager.hh"
 
-#include <sp/CourseDatabase.hh>
+#include <sp/trackPacks/TrackPackManager.hh>
 
 // Imported by SectionManager.S
 extern "C" const s16 GlobalContext_SizeInBytes;
@@ -52,23 +53,27 @@ void GlobalContext::onChangeLicense() {
         m_driftModes[i] = static_cast<u32>(setting) + 1;
     }
 
-    SP::CourseDatabase::Instance().resetSelection();
+    UI::CourseSelectPage::s_lastSelected.reset();
 }
 
 void GlobalContext::clearCourses() {
     m_courseOrder.reset();
 }
 
-void GlobalContext::setCurrentCourse(Registry::Course course) {
-    assert(m_courseOrder.count() == m_match);
-    m_courseOrder.push_back(std::move(course));
+bool GlobalContext::isVanillaTracks() const {
+    return m_currentPack == 0;
 }
 
-std::optional<Registry::Course> GlobalContext::getCourse(u32 courseIdx) const {
+void GlobalContext::setCurrentTrack(SP::Track track) {
+    assert(m_courseOrder.count() == m_match);
+    m_courseOrder.push_back(std::move(track));
+}
+
+const SP::Track *GlobalContext::getTrack(u32 courseIdx) const {
     if (courseIdx >= m_courseOrder.count()) {
-        return std::nullopt;
+        return nullptr;
     } else {
-        return *m_courseOrder[courseIdx];
+        return m_courseOrder[courseIdx];
     }
 }
 
@@ -77,27 +82,26 @@ bool GlobalContext::generateRandomCourses() {
         return false;
     }
 
-    auto &menuScenario = System::RaceConfig::Instance()->menuScenario();
-    SP::CourseDatabase::Filter filter = {
-            .race = menuScenario.isVs(),
-            .battle = menuScenario.isBattle(),
-    };
+    auto *raceConfig = System::RaceConfig::Instance();
+    auto &trackPackManager = SP::TrackPackManager::Instance();
+    auto &pack = trackPackManager.getSelectedPack();
 
-    auto &courseDatabase = SP::CourseDatabase::Instance();
-    auto courseCount = courseDatabase.count(filter);
+    SP::Track::Mode filter = raceConfig->menuScenario().getTrackMode();
+    auto trackCount = pack.getTrackCount(filter);
 
     for (u8 i = 0; i < m_matchCount; i += 1) {
-        Registry::Course randCourse;
+        Sha1 randCourseId;
 
         do {
-            auto courseIdx = hydro_random_uniform(courseCount);
-            randCourse = courseDatabase.entry(filter, courseIdx).courseId;
-        } while (m_matchCount <= courseCount && m_courseOrder.contains(randCourse));
+            auto courseIdx = hydro_random_uniform(trackCount);
+            randCourseId = *pack.getNthTrack(courseIdx, filter);
+        } while (m_matchCount <= trackCount && inCourseQueue(randCourseId));
 
+        auto randCourse = trackPackManager.getTrack(randCourseId);
         m_courseOrder.push_back(std::move(randCourse));
     }
 
-    menuScenario.courseId = getCourse(0).value();
+    getTrack(0)->applyToConfig(raceConfig, false);
     return true;
 }
 
@@ -106,23 +110,22 @@ bool GlobalContext::generateOrderedCourses(u16 startingIndex) {
         return false;
     }
 
-    auto &menuScenario = System::RaceConfig::Instance()->menuScenario();
-    SP::CourseDatabase::Filter filter = {
-            .race = menuScenario.isVs(),
-            .battle = menuScenario.isBattle(),
-    };
+    auto *raceConfig = System::RaceConfig::Instance();
+    auto &trackPackManager = SP::TrackPackManager::Instance();
+    auto &pack = trackPackManager.getSelectedPack();
 
-    auto &courseDatabase = SP::CourseDatabase::Instance();
-    auto courseCount = courseDatabase.count(filter);
+    SP::Track::Mode filter = raceConfig->menuScenario().getTrackMode();
+    auto trackCount = pack.getTrackCount(filter);
 
     for (u8 i = 0; i < m_matchCount; i += 1) {
-        auto courseIndex = (startingIndex + i) % courseCount;
-        auto entry = courseDatabase.entry(filter, courseIndex);
+        auto courseIndex = (startingIndex + i) % trackCount;
+        auto courseId = pack.getNthTrack(courseIndex, filter);
+        auto &course = trackPackManager.getTrack(*courseId);
 
-        m_courseOrder.push_back(std::move(entry.courseId));
+        m_courseOrder.push_back(std::move(course));
     }
 
-    menuScenario.courseId = getCourse(0).value();
+    getTrack(0)->applyToConfig(raceConfig, false);
     return true;
 }
 
@@ -147,6 +150,16 @@ void GlobalContext::applyVehicleRestriction(bool isBattle) {
         m_vehicleRestriction = VehicleRestriction::BikesOnly;
         break;
     }
+}
+
+bool GlobalContext::inCourseQueue(Sha1 trackSha) const {
+    for (u32 i = 0; i < m_courseOrder.count(); i += 1) {
+        if (m_courseOrder[i]->m_sha1 == trackSha) {
+            return true;
+        }
+    }
+
+    return false;
 }
 
 } // namespace UI

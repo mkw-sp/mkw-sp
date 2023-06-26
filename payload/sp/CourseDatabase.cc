@@ -20,18 +20,6 @@ const CourseDatabase::Entry &CourseDatabase::entry(Filter filter, u32 index) {
     return m_entries[m_internalIndices[index]];
 }
 
-void CourseDatabase::resetSelection() {
-    m_selection.reset();
-}
-
-std::optional<u32> CourseDatabase::loadSelection() {
-    return m_selection;
-}
-
-void CourseDatabase::saveSelection(u32 index) {
-    m_selection = index;
-}
-
 CourseDatabase &CourseDatabase::Instance() {
     static CourseDatabase courseDatabase;
     return courseDatabase;
@@ -57,8 +45,6 @@ void CourseDatabase::refresh(Filter filter) {
 
     std::sort(m_internalIndices.begin(), m_internalIndices.begin() + m_count,
             [&](auto i0, auto i1) { return m_entries[i0].timestamp < m_entries[i1].timestamp; });
-
-    m_selection.reset();
 }
 
 } // namespace SP

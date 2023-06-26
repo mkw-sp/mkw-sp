@@ -109,6 +109,9 @@ private:
     OSThreadQueue m_queue;
     u8 m_stack[0x5000 /* 20 KiB */];
     OSThread m_thread;
+
+public:
+    static std::optional<u32> s_lastSelected;
 };
 
 } // namespace UI

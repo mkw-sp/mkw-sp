@@ -27,6 +27,20 @@ u8 (&RaceConfig::ghostBuffers())[2][11][0x2800] {
     return m_ghostBuffers;
 }
 
+SP::Track::Mode RaceConfig::Scenario::getTrackMode() const {
+    if (gameMode == GameMode::OfflineVS || gameMode == GameMode::TimeAttack) {
+        return SP::Track::Mode::Race;
+    } else if (gameMode == GameMode::OfflineBT) {
+        if (battleType == 0) {
+            return SP::Track::Mode::Balloon;
+        } else {
+            return SP::Track::Mode::Coin;
+        }
+    } else {
+        panic("Unknown gamemode!");
+    }
+}
+
 bool RaceConfig::isSameTeam(u32 p0, u32 p1) const {
     if (m_raceScenario.spMaxTeamSize < 2) {
         return p0 == p1;

@@ -103,10 +103,10 @@ void RaceMenuPage::onNextButtonFront(PushButton *button, u32 /* localPlayerId */
         menuScenario.cameraMode = 5;
 
         auto *globalContext = UI::SectionManager::Instance()->globalContext();
-        auto nextCourse = globalContext->getCourse(globalContext->m_match);
+        auto nextTrack = globalContext->getTrack(globalContext->m_match);
 
-        if (nextCourse.has_value()) {
-            menuScenario.courseId = *nextCourse;
+        if (nextTrack != nullptr) {
+            nextTrack->applyToConfig(raceConfig, true);
             if (menuScenario.isBattle()) {
                 sectionId = SectionId::BTDemo;
             } else {

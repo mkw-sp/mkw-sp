@@ -10,6 +10,7 @@
 #include "game/ui/model/MenuModelManager.hh"
 
 #include <sp/ScopeLock.hh>
+#include <sp/trackPacks/TrackPackManager.hh>
 
 #include <algorithm>
 #include <limits>
@@ -233,7 +234,7 @@ void CourseSelectPage::filter(const SP::CourseDatabase::Filter &filter) {
 
     auto &courseDatabase = SP::CourseDatabase::Instance();
     m_sheetCount = (courseDatabase.count(m_filter) + m_buttons.size() - 1) / m_buttons.size();
-    if (auto selection = courseDatabase.loadSelection()) {
+    if (auto selection = s_lastSelected) {
         m_sheetIndex = *selection / m_buttons.size();
         m_lastSelected = *selection % m_buttons.size();
     } else {
@@ -251,9 +252,7 @@ void CourseSelectPage::filter(const SP::CourseDatabase::Filter &filter) {
 }
 
 void CourseSelectPage::refreshSelection(u32 selection) {
-    auto &courseDatabase = SP::CourseDatabase::Instance();
-    courseDatabase.saveSelection(selection);
-
+    s_lastSelected = selection;
     m_sheetIndex = selection / m_buttons.size();
     m_lastSelected = selection % m_buttons.size();
 
@@ -272,7 +271,7 @@ void CourseSelectPage::onButtonFront(PushButton *button, u32 /* localPlayerId */
     u32 courseIndex = m_sheetIndex * m_buttons.size() + button->m_index;
     auto &courseDatabase = SP::CourseDatabase::Instance();
     auto &entry = courseDatabase.entry(m_filter, courseIndex);
-    courseDatabase.saveSelection(courseIndex);
+    s_lastSelected = courseIndex;
 
     auto *sectionManager = SectionManager::Instance();
     auto *section = sectionManager->currentSection();
@@ -293,19 +292,18 @@ void CourseSelectPage::onButtonFront(PushButton *button, u32 /* localPlayerId */
         startReplace(Anim::Prev, button->getDelay());
     } else {
         auto *globalContext = sectionManager->globalContext();
-        auto &menuScenario = System::RaceConfig::Instance()->menuScenario();
-        auto &spMenu = System::RaceConfig::Instance()->m_spMenu;
+        auto *raceConfig = System::RaceConfig::Instance();
 
         if (!sectionManager->globalContext()->generateOrderedCourses(courseIndex)) {
-            globalContext->setCurrentCourse(entry.courseId);
-            menuScenario.courseId = globalContext->getCourse(0).value();
-            spMenu.pathReplacement.m_len = 0;
-            spMenu.musicReplacement = std::nullopt;
-            spMenu.courseSha = std::nullopt;
-            spMenu.nameReplacement.m_len = 0;
+            auto &trackPackManager = SP::TrackPackManager::Instance();
+            auto &trackPack = trackPackManager.getSelectedPack();
+            auto trackSha = trackPack.getNthTrack(0, SP::Track::Mode::Race).value();
+
+            globalContext->setCurrentTrack(trackPackManager.getTrack(trackSha));
+            globalContext->getTrack(globalContext->m_match)->applyToConfig(raceConfig, false);
         }
 
-        if (menuScenario.gameMode == System::RaceConfig::GameMode::TimeAttack) {
+        if (raceConfig->menuScenario().gameMode == System::RaceConfig::GameMode::TimeAttack) {
             m_replacement = PageId::TimeAttackTop;
             startReplace(Anim::Next, button->getDelay());
         } else {
@@ -621,5 +619,7 @@ int CourseSelectPage::WriteUncompressedThumbnail(JDEC *jdec, void *bitmap, JRECT
 
     return context->page->m_request == Request::None;
 }
+
+std::optional<u32> CourseSelectPage::s_lastSelected = std::nullopt;
 
 } // namespace UI

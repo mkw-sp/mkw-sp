@@ -121,7 +121,7 @@ void PackSelectPage::onButtonFront(PushButton *button, u32 /* localPlayerId */) 
         m_replacement = PageId::OnlineModeSelect;
     } else {
         if (!s_lastPackFront.has_value() || *s_lastPackFront != buttonIndex) {
-            SP::CourseDatabase::Instance().resetSelection();
+            UI::CourseSelectPage::s_lastSelected.reset();
         }
 
         s_lastPackFront = buttonIndex;
