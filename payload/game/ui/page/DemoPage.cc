@@ -27,7 +27,13 @@ void DemoPage::onInit() {
     auto courseId = menuScenario.courseId;
     auto cupId = Registry::GetCourseCupId(courseId);
 
-    m_courseDisplay.setMessageAll(Registry::GetCourseName(courseId), nullptr);
+    if (raceConfig->m_spRace.nameReplacement.m_len == 0) {
+        m_courseDisplay.setMessageAll(Registry::GetCourseName(courseId), nullptr);
+    } else {
+        MessageInfo info;
+        info.strings[0] = raceConfig->m_spRace.nameReplacement.c_str();
+        m_courseDisplay.setMessageAll(10420, &info);
+    }
 
     u32 cupMsgId = 9999;
     MessageInfo cupInfo = {};
