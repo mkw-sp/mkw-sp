@@ -111,6 +111,7 @@ public:
             bool saveLicense);
 
     std::array<u8, 0x14> courseSHA1(Registry::Course courseId) const;
+    bool isCourseReplaced(Registry::Course courseId) const;
 
     void getLocation(u32 *location) const;
     void getLatitude(u16 *latitude) const;

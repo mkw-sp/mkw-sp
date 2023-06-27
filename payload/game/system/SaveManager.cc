@@ -560,6 +560,10 @@ std::array<u8, 0x14> SaveManager::courseSHA1(Registry::Course courseId) const {
     return m_courseSHA1s[static_cast<u32>(courseId)];
 }
 
+bool SaveManager::isCourseReplaced(Registry::Course courseId) const {
+    return m_courseSHA1s[static_cast<u32>(courseId)] != s_courseSHA1s[static_cast<u32>(courseId)];
+}
+
 SaveManager *SaveManager::Instance() {
     return s_instance;
 }
