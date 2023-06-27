@@ -4,6 +4,9 @@
 #include "game/util/Registry.hh"
 
 #include <sp/FixedString.hh>
+#include <sp/ShaUtil.hh>
+
+#include <optional>
 
 namespace System {
 
@@ -64,6 +67,8 @@ public:
         SP::FixedString<64> pathReplacement;
         // The background music to load instead of the course ID's music.
         std::optional<Sound::SoundId> musicReplacement;
+        // The course hash to use for ghost lookup instead of the slot's hash.
+        std::optional<Sha1> courseSha;
     };
 
     struct Scenario {
