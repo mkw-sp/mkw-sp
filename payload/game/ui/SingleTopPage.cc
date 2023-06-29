@@ -10,9 +10,12 @@
 #include "game/ui/page/MenuPage.hh"
 
 #include <sp/settings/ClientSettings.hh>
+#include <sp/trackPacks/TrackPackManager.hh>
 extern "C" {
 #include <vendor/libhydrogen/hydrogen.h>
 }
+
+using namespace magic_enum::bitwise_operators;
 
 namespace UI {
 
@@ -106,6 +109,38 @@ void SingleTopPage::onActivate() {
     menuScenario.spMaxTeamSize = 1;
     for (u32 i = 0; i < 12; i++) {
         menuScenario.players[i].team = 2;
+    }
+
+    auto &trackPack = SP::TrackPackManager::Instance().getSelectedPack();
+    auto packModes = trackPack.getSupportedModes();
+
+    auto raceEnabled = (packModes & SP::Track::Mode::Race) == SP::Track::Mode::Race;
+    auto coinEnabled = (packModes & SP::Track::Mode::Coin) == SP::Track::Mode::Coin;
+    auto balloonEnabled = (packModes & SP::Track::Mode::Balloon) == SP::Track::Mode::Balloon;
+
+    m_taButton.setVisible(raceEnabled);
+    m_taButton.setPlayerFlags(raceEnabled);
+
+    m_vsButton.setVisible(raceEnabled);
+    m_vsButton.setPlayerFlags(raceEnabled);
+
+    m_btButton.setVisible(coinEnabled || balloonEnabled);
+    m_btButton.setPlayerFlags(coinEnabled || balloonEnabled);
+
+#if ENABLE_MISSION_MODE
+    auto isVanilla = SectionManager::Instance()->globalContext()->isVanillaTracks();
+
+    // Hide the mission mode button for Track Packs.
+    m_mrButton.setVisible(isVanilla);
+    m_mrButton.setPlayerFlags(isVanilla);
+#endif
+
+    if (raceEnabled) {
+        m_taButton.selectDefault(0);
+        onTAButtonSelect(&m_taButton, 0);
+    } else if (coinEnabled || balloonEnabled) {
+        m_btButton.selectDefault(0);
+        onBTButtonSelect(&m_btButton, 0);
     }
 }
 
