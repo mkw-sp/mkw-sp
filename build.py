@@ -764,6 +764,24 @@ asset_in_files = {
         os.path.join('button', 'ctrl', 'TopMenuChannelWakuNoOnline.brctr.json5'),
         # Online renaming
         os.path.join('button', 'ctrl', 'TopMenuWifiWaku.brctr.json5'),
+        # New title screen images
+        os.path.join('title', 'timg', 'tt_title_screen_koopa.tpl'),
+        os.path.join('title', 'timg', 'tt_title_screen_koopa_bokeboke.tpl'),
+        os.path.join('title', 'timg', 'tt_title_screen_luigi.tpl'),
+        os.path.join('title', 'timg', 'tt_title_screen_luigi_bokeboke.tpl'),
+        os.path.join('title', 'timg', 'tt_title_screen_mario.tpl'),
+        os.path.join('title', 'timg', 'tt_title_screen_mario_bokeboke.tpl'),
+        os.path.join('title', 'timg', 'tt_title_screen_mario0.tpl'),
+        os.path.join('title', 'timg', 'tt_title_screen_mario0_bokeboke.tpl'),
+        os.path.join('title', 'timg', 'tt_title_screen_mario2.tpl'),
+        os.path.join('title', 'timg', 'tt_title_screen_mario2_bokeboke.tpl'),
+        os.path.join('title', 'timg', 'tt_title_screen_peachi.tpl'),
+        os.path.join('title', 'timg', 'tt_title_screen_peachi_bokeboke.tpl'),
+        os.path.join('title', 'timg', 'tt_title_screen_title_rogo_r_only.tpl'),
+        os.path.join('title', 'timg', 'tt_title_screen_title_rogo_bokeboke.tpl'),
+        os.path.join('title', 'blyt', 'title.brlyt.json5'), #Need these for consistency across all regions
+        os.path.join('title', 'blyt', 'title_boke.brlyt.json5'),
+        os.path.join('title', 'blyt', 'title_image_common.brlyt.json5'),
     ],
 }
 for language in LANGUAGES:
