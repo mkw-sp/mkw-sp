@@ -6,7 +6,6 @@
 #include "game/ui/SectionManager.hh"
 #include "game/ui/SettingsPage.hh"
 
-#include <sp/CourseDatabase.hh>
 #include <sp/SaveStateManager.hh>
 #include <sp/settings/ClientSettings.hh>
 

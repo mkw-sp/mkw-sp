@@ -14,7 +14,7 @@ void RankingPage::onInit() {
     section->loadFriendListManager();
 
     auto *courseSelectPage = section->page<PageId::CourseSelect>();
-    courseSelectPage->filter({true, false});
+    courseSelectPage->filter(SP::Track::Mode::Race);
 
     REPLACED(onInit)();
 }

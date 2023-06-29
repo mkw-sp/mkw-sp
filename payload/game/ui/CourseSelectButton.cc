@@ -38,10 +38,6 @@ void CourseSelectButton::load(u32 i) {
     texSRTs[0].scale.y = section->scaleFor().x;
 }
 
-void CourseSelectButton::refresh(u32 messageId) {
-    setMessageAll(messageId);
-}
-
 void CourseSelectButton::refresh(u8 c, const GXTexObj &texObj) {
     auto *pane = m_mainLayout.findPaneByName("picture_base");
     assert(pane);

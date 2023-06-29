@@ -8,9 +8,9 @@
 #include "game/ui/ctrl/CtrlMenuBackButton.hh"
 #include "game/ui/ctrl/CtrlMenuPageTitleText.hh"
 
-#include <sp/CourseDatabase.hh>
 #include <sp/ShaUtil.hh>
 #include <sp/storage/Storage.hh>
+#include <sp/trackPacks/Track.hh>
 #include <vendor/tjpgd/tjpgd.h>
 
 #include <atomic>
@@ -36,7 +36,7 @@ public:
     u32 lastSelected() const;
 
     void filter();
-    void filter(const SP::CourseDatabase::Filter &filter);
+    void filter(SP::Track::Mode filter);
     void refreshSelection(u32 selection);
 
 private:
@@ -97,13 +97,13 @@ private:
     H<YesNoPage> m_onBackConfirm{this, &CourseSelectPage::onBackConfirm};
     bool m_backConfirmed;
     PageId m_replacement;
-    SP::CourseDatabase::Filter m_filter;
+    SP::Track::Mode m_filter;
     u32 m_sheetCount;
     u32 m_sheetIndex;
     u32 m_lastSelected;
     Request m_request;
     std::array<std::atomic<bool>, 27> m_thumbnailChanged;
-    std::array<u32, 27> m_databaseIds;
+    std::array<std::optional<Sha1>, 27> m_databaseIds;
     std::array<std::array<std::unique_ptr<u8[]>, 3>, 27> m_buffers;
     std::array<std::array<GXTexObj, 3>, 27> m_texObjs;
     OSThreadQueue m_queue;

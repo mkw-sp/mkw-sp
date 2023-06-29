@@ -10,7 +10,6 @@ public:
     ~CourseSelectButton();
 
     void load(u32 i);
-    void refresh(u32 messageId);
     void refresh(u8 c, const GXTexObj &texObj);
 };
 

@@ -28,7 +28,7 @@ PageId CourseSelectPage::getReplacement() {
 void CourseSelectPage::onInit() {
     bool isRanking = SectionManager::Instance()->currentSection()->id() == SectionId::Rankings;
 
-    m_filter = {false, false};
+    m_filter = SP::Track::Mode::Race;
     m_sheetCount = 1;
     m_sheetIndex = 0;
     m_lastSelected = 0;
@@ -119,6 +119,7 @@ void CourseSelectPage::onInit() {
     case SectionId::Voting1PVS:
     case SectionId::Voting2PVS:
     case SectionId::Rankings:
+        SP::TrackPackManager::CreateInstance();
         filter();
         break;
     default: {
@@ -134,6 +135,8 @@ void CourseSelectPage::onDeinit() {
     OSWakeupThread(&m_queue);
     OSJoinThread(&m_thread, nullptr);
     OSDetachThread(&m_thread);
+
+    SP::TrackPackManager::DestroyInstance();
 }
 
 void CourseSelectPage::onActivate() {
@@ -221,19 +224,17 @@ u32 CourseSelectPage::lastSelected() const {
 // This function must be called before the 'calc' function is called
 void CourseSelectPage::filter() {
     auto &menuScenario = System::RaceConfig::Instance()->menuScenario();
-    SP::CourseDatabase::Filter defaultFilter = {menuScenario.isVs(), menuScenario.isBattle()};
-    filter(defaultFilter);
+    filter(menuScenario.getTrackMode());
 }
 
 // This function must be called before the 'calc' function is called
-void CourseSelectPage::filter(const SP::CourseDatabase::Filter &filter) {
-    if (filter.race == m_filter.race && filter.battle == m_filter.battle) {
-        return;
-    }
+void CourseSelectPage::filter(SP::Track::Mode filter) {
     m_filter = filter;
 
-    auto &courseDatabase = SP::CourseDatabase::Instance();
-    m_sheetCount = (courseDatabase.count(m_filter) + m_buttons.size() - 1) / m_buttons.size();
+    auto &trackPackManager = SP::TrackPackManager::Instance();
+    auto &trackPack = trackPackManager.getSelectedPack();
+
+    m_sheetCount = (trackPack.getTrackCount(filter) + m_buttons.size() - 1) / m_buttons.size();
     if (auto selection = s_lastSelected) {
         m_sheetIndex = *selection / m_buttons.size();
         m_lastSelected = *selection % m_buttons.size();
@@ -269,21 +270,26 @@ void CourseSelectPage::onBack(u32 /* localPlayerId */) {
 
 void CourseSelectPage::onButtonFront(PushButton *button, u32 /* localPlayerId */) {
     u32 courseIndex = m_sheetIndex * m_buttons.size() + button->m_index;
-    auto &courseDatabase = SP::CourseDatabase::Instance();
-    auto &entry = courseDatabase.entry(m_filter, courseIndex);
     s_lastSelected = courseIndex;
 
+    auto &trackPackManager = SP::TrackPackManager::Instance();
     auto *sectionManager = SectionManager::Instance();
     auto *section = sectionManager->currentSection();
     auto sectionId = section->id();
 
+    auto courseSha = trackPackManager.getSelectedPack().getNthTrack(courseIndex, m_filter);
+    auto &track = trackPackManager.getTrack(courseSha.value());
+
+    auto *globalContext = sectionManager->globalContext();
     if (Section::HasRoomClient(sectionId)) {
+        // TODO(GnomedDev): Online
         auto *votingBackPage = section->page<PageId::VotingBack>();
-        votingBackPage->setLocalVote(entry.courseId);
+        // votingBackPage->setLocalVote(entry.courseId);
         votingBackPage->setSubmitted(true);
         startReplace(Anim::Next, button->getDelay());
     } else if (sectionId == SectionId::Rankings) {
-        s32 courseButtonIndex = GetButtonIndexFromCourse(entry.courseId);
+        assert(globalContext->isVanillaTracks());
+        s32 courseButtonIndex = GetButtonIndexFromCourse(track.m_courseId);
 
         auto *rankingPage = section->page<PageId::Ranking>();
         rankingPage->courseControl().choose(courseButtonIndex);
@@ -291,15 +297,9 @@ void CourseSelectPage::onButtonFront(PushButton *button, u32 /* localPlayerId */
         m_replacement = PageId::None;
         startReplace(Anim::Prev, button->getDelay());
     } else {
-        auto *globalContext = sectionManager->globalContext();
         auto *raceConfig = System::RaceConfig::Instance();
-
         if (!sectionManager->globalContext()->generateOrderedCourses(courseIndex)) {
-            auto &trackPackManager = SP::TrackPackManager::Instance();
-            auto &trackPack = trackPackManager.getSelectedPack();
-            auto trackSha = trackPack.getNthTrack(0, SP::Track::Mode::Race).value();
-
-            globalContext->setCurrentTrack(trackPackManager.getTrack(trackSha));
+            globalContext->setCurrentTrack(track);
             globalContext->getTrack(globalContext->m_match)->applyToConfig(raceConfig, false);
         }
 
@@ -403,9 +403,12 @@ void CourseSelectPage::onBackCommon(f32 delay) {
 }
 
 void CourseSelectPage::refresh() {
+    auto &trackPackManager = SP::TrackPackManager::Instance();
+    auto &trackPack = trackPackManager.getSelectedPack();
+
     {
         SP::ScopeLock<SP::NoInterrupts> lock;
-        s32 count = SP::CourseDatabase::Instance().count(m_filter);
+        s32 count = trackPack.getTrackCount(m_filter);
         s32 start = (-1 + m_sheetIndex) * m_buttons.size();
         s32 end = start + 3 * m_buttons.size();
         s32 start_offset = 0;
@@ -430,15 +433,14 @@ void CourseSelectPage::refresh() {
                 j -= m_buttons.size();
             }
             if (i >= start_offset && i < 3 * static_cast<s32>(m_buttons.size()) + end_offset) {
-                auto &entry = SP::CourseDatabase::Instance().entry(m_filter,
-                        (start + i - start_offset) % count);
-                m_databaseIds[j] = entry.databaseId;
+                auto courseIndex = (start + i - start_offset) % count;
+                m_databaseIds[j] = trackPack.getNthTrack(courseIndex, m_filter);
             } else {
-                m_databaseIds[j] = std::numeric_limits<u32>::max();
+                m_databaseIds[j] = std::nullopt;
             }
         }
         for (size_t i = 0; i < m_buttons.size(); i++) {
-            if (m_databaseIds[i] != std::numeric_limits<u32>::max() &&
+            if (m_databaseIds[i].has_value() &&
                     m_sheetIndex * m_buttons.size() + i < static_cast<size_t>(count)) {
                 m_buttons[i].setVisible(true);
                 m_buttons[i].setPlayerFlags(1 << 0);
@@ -451,13 +453,21 @@ void CourseSelectPage::refresh() {
         OSWakeupThread(&m_queue);
     }
 
+    auto *globalContext = SectionManager::Instance()->globalContext();
     for (size_t i = 0; i < m_buttons.size(); i++) {
         u32 courseIndex = m_sheetIndex * m_buttons.size() + i;
-        if (courseIndex < SP::CourseDatabase::Instance().count(m_filter)) {
-            auto &entry = SP::CourseDatabase::Instance().entry(m_filter, courseIndex);
-            auto courseId = static_cast<u32>(entry.courseId);
+        if (courseIndex < trackPack.getTrackCount(m_filter)) {
+            auto courseSha = trackPack.getNthTrack(courseIndex, m_filter);
+            auto &course = trackPackManager.getTrack(courseSha.value());
 
-            m_buttons[i].refresh(courseId < 32 ? 9300 + courseId : 9400 - 32 + courseId);
+            if (globalContext->isVanillaTracks()) {
+                auto courseId = static_cast<u32>(course.m_courseId);
+                m_buttons[i].setMessageAll(courseId < 32 ? 9300 + courseId : 9400 - 32 + courseId);
+            } else {
+                MessageInfo info;
+                info.strings[0] = course.m_name.c_str();
+                m_buttons[i].setMessageAll(10448, &info);
+            }
         }
     }
 
@@ -469,11 +479,11 @@ void CourseSelectPage::refresh() {
 }
 
 void CourseSelectPage::loadThumbnails() {
-    std::array<u32, 27> databaseIds;
-    std::fill(databaseIds.begin(), databaseIds.end(), std::numeric_limits<u32>::max());
+    std::array<std::optional<Sha1>, 27> databaseIds;
+    std::fill(databaseIds.begin(), databaseIds.end(), std::nullopt);
 
     while (true) {
-        std::array<u32, 27> requestedDatabaseIds{};
+        std::array<std::optional<Sha1>, 27> requestedDatabaseIds{};
         {
             SP::ScopeLock<SP::NoInterrupts> lock;
             switch (m_request) {
@@ -499,7 +509,7 @@ void CourseSelectPage::loadThumbnails() {
                 continue;
             }
             auto j = std::distance(databaseIds.begin(), it);
-            requestedDatabaseIds[i] = std::numeric_limits<u32>::max();
+            requestedDatabaseIds[i] = std::nullopt;
             std::swap(databaseIds[i], databaseIds[j]);
             std::swap(m_buffers[i], m_buffers[j]);
             std::swap(m_texObjs[i], m_texObjs[j]);
@@ -507,25 +517,15 @@ void CourseSelectPage::loadThumbnails() {
         }
 
         for (u32 i = 0; i < requestedDatabaseIds.size(); i++) {
-            if (requestedDatabaseIds[i] == std::numeric_limits<u32>::max()) {
+            if (!requestedDatabaseIds[i].has_value()) {
                 continue;
             }
 
-            auto &courseDatabase = SP::CourseDatabase::Instance();
-
-            std::optional<Sha1> courseSha1 = std::nullopt;
-            for (u32 courseIdx = 0; courseIdx < courseDatabase.count(m_filter); courseIdx += 1) {
-                auto entry = courseDatabase.entry(m_filter, courseIdx);
-                if (entry.databaseId == requestedDatabaseIds[i]) {
-                    courseSha1 = System::SaveManager::Instance()->courseSHA1(entry.courseId);
-                }
-            }
-
-            JRESULT result = loadThumbnail(i, courseSha1.value());
+            JRESULT result = loadThumbnail(i, *requestedDatabaseIds[i]);
             if (result == JDR_OK) {
                 databaseIds[i] = requestedDatabaseIds[i];
             } else {
-                databaseIds[i] = std::numeric_limits<u32>::max();
+                databaseIds[i] = std::nullopt;
             }
             SP::ScopeLock<SP::NoInterrupts> lock;
             if (m_request != Request::None) {
@@ -541,12 +541,19 @@ void CourseSelectPage::loadThumbnails() {
 }
 
 JRESULT CourseSelectPage::loadThumbnail(u32 i, Sha1 courseSha1) {
-    char path[64];
-
     auto hex = sha1ToHex(courseSha1);
-    snprintf(path, std::size(path), "/thumbnails/%s.jpg", hex.data());
 
-    auto file = SP::Storage::OpenRO(path);
+    std::optional<SP::Storage::FileHandle> file = std::nullopt;
+    if (SectionManager::Instance()->globalContext()->isVanillaTracks()) {
+        char path[64];
+        snprintf(path, std::size(path), "/thumbnails/%s.jpg", hex.data());
+        file = SP::Storage::OpenRO(path);
+    } else {
+        wchar_t path[80];
+        swprintf(path, std::size(path), L"Track Thumbnails/%s.jpg", hex.data());
+        file = SP::Storage::Open(path, "r");
+    }
+
     if (!file) {
         return JDR_INP;
     }
