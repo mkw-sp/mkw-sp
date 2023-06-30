@@ -102,6 +102,17 @@ void OnlineTopPage::onWorldwideButtonFront(PushButton *button, u32 /* localPlaye
 }
 
 void OnlineTopPage::onTrackpackButtonFront(PushButton *button, u32 /* localPlayerId */) {
+    // TODO(GnomedDev): Track Pack support
+    auto packCount = 1;
+    if (packCount == 1) {
+        auto *section = SectionManager::Instance()->currentSection();
+        auto messagePage = section->page<PageId::MessagePopup>();
+
+        messagePage->reset();
+        messagePage->setWindowMessage(20047);
+        return push(PageId::MessagePopup, Anim::None);
+    }
+
     m_replacement = PageId::PackSelect;
     startReplace(Anim::Next, button->getDelay());
 }

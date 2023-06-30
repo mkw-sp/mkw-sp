@@ -8,6 +8,7 @@
 #include "PackSelectPage.hh"
 
 #include "game/ui/CourseSelectPage.hh"
+#include "game/ui/MessagePage.hh"
 #include "game/ui/ModelPage.hh"
 #include "game/ui/OnlineConnectionManagerPage.hh"
 #include "game/ui/SectionManager.hh"
@@ -87,9 +88,12 @@ void PackSelectPage::onActivate() {
     m_replacement = PageId::None;
     m_scrollBar.reconfigure(m_sheetCount, m_sheetIndex, m_sheetCount >= 2 ? 0x1 : 0x0);
 
-    Section *section = SectionManager::Instance()->currentSection();
-    auto *modelPage = section->page<PageId::Model>();
-    modelPage->modelControl().setModel(-1);
+    auto *section = SectionManager::Instance()->currentSection();
+    auto *connManager = section->page<PageId::OnlineConnectionManager>();
+    if (connManager == nullptr) {
+        auto *modelPage = section->page<PageId::Model>();
+        modelPage->modelControl().setModel(-1);
+    }
 }
 
 void PackSelectPage::onBack(u32 /* localPlayerId */) {
@@ -110,11 +114,12 @@ void PackSelectPage::onButtonFront(PushButton *button, u32 /* localPlayerId */) 
     auto *section = SectionManager::Instance()->currentSection();
     auto *connManager = section->page<PageId::OnlineConnectionManager>();
 
+    auto buttonIndex = m_sheetIndex * m_buttons.size() + button->m_index;
     if (connManager != nullptr) {
-        connManager->setTrackpack(button->m_index * m_sheetIndex);
+        // TODO(GnomedDev): Track Pack support, needs consistent IDs
+        connManager->setTrackpack(buttonIndex + 1);
         m_replacement = PageId::OnlineModeSelect;
     } else {
-        auto buttonIndex = m_sheetIndex * m_buttons.size() + button->m_index;
         if (!s_lastPackFront.has_value() || *s_lastPackFront != buttonIndex) {
             SP::CourseDatabase::Instance().resetSelection();
         }
@@ -185,9 +190,9 @@ void PackSelectPage::refresh() {
     auto sectionId = SectionManager::Instance()->currentSection()->id();
     bool isOnline = Section::HasOnlineManager(sectionId);
 
-    u32 packCount = 1 - isOnline;
-    for (size_t i = isOnline; i < m_buttons.size(); i++) {
-        u32 packIndex = m_sheetIndex * m_buttons.size() + i;
+    u32 packCount = 1;
+    for (size_t i = 0; i < m_buttons.size(); i++) {
+        u32 packIndex = m_sheetIndex * m_buttons.size() + i + isOnline;
         if (packIndex < packCount) {
             m_buttons[i].setVisible(true);
             m_buttons[i].setPlayerFlags(1 << 0);
