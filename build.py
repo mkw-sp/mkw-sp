@@ -295,6 +295,12 @@ asset_in_files = {
         os.path.join('button', 'ctrl', 'CharacterSelect4_2_Multi.brctr.json5'),
         os.path.join('button', 'ctrl', 'CharacterSelect4_3_Multi.brctr.json5'),
         os.path.join('button', 'blyt', 'common_w117_mii_suit.brlyt.json5'),
+        # Pack select assets
+        os.path.join('button', 'anim', 'common_w010_cup_fuchi_check_loop.brlan.json5'),
+        os.path.join('button', 'anim', 'common_w010_cup_text_light_01_ok.brlan.json5'),
+        os.path.join('button', 'anim', 'common_w010_cup_text_light_01_stop.brlan.json5'),
+        os.path.join('button', 'anim', 'common_w010_cup_text_light_02_select.brlan.json5'),
+        os.path.join('button', 'anim', 'common_w010_cup_text_light_02_stop.brlan.json5'),
         *pack_select_assets,
     ],
     os.path.join('Scene', 'UI', 'MenuMultiSP.arc.lzma'): [
