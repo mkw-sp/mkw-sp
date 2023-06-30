@@ -297,6 +297,9 @@ asset_in_files = {
         os.path.join('button', 'ctrl', 'CharacterSelect4_2_Multi.brctr.json5'),
         os.path.join('button', 'ctrl', 'CharacterSelect4_3_Multi.brctr.json5'),
         os.path.join('button', 'blyt', 'common_w117_mii_suit.brlyt.json5'),
+        # Vanilla track manifests
+        os.path.join('vanillaTracks.pb.bin'),
+        *[os.path.normpath(i) for i in sorted(glob.glob("vanillaTracks/*.pb.bin", root_dir="assets", recursive=True))],
         # Pack select assets
         os.path.join('button', 'anim', 'common_w010_cup_fuchi_check_loop.brlan.json5'),
         os.path.join('button', 'anim', 'common_w010_cup_text_light_01_ok.brlan.json5'),

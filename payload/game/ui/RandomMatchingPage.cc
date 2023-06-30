@@ -6,6 +6,7 @@
 #include "game/ui/SectionManager.hh"
 
 #include <sp/cs/RoomClient.hh>
+#include <sp/trackPacks/TrackPackManager.hh>
 
 namespace UI {
 
@@ -36,13 +37,13 @@ void RandomMatchingPage::onActivate() {
 }
 
 void RandomMatchingPage::onRefocus() {
-    auto section = SectionManager::Instance()->currentSection();
-    auto onlineManager = section->page<PageId::OnlineConnectionManager>();
-
-    if (onlineManager->isCustomTrackpack()) {
-        m_title.setMessage(4001);
-    } else {
+    auto sectionManager = SectionManager::Instance();
+    if (sectionManager->globalContext()->isVanillaTracks()) {
         m_title.setMessage(4000);
+    } else {
+        MessageInfo info;
+        info.strings[0] = SP::TrackPackManager::Instance().getSelectedPack().getPrettyName();
+        m_title.setMessage(20048, &info);
     }
 }
 

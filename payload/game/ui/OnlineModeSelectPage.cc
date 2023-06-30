@@ -3,6 +3,8 @@
 #include "game/ui/OnlineConnectionManagerPage.hh"
 #include "game/ui/SectionManager.hh"
 
+#include <sp/trackPacks/TrackPackManager.hh>
+
 namespace UI {
 
 void OnlineModeSelectPage::setRatings(u16 vsRating, u16 btRating) {
@@ -54,16 +56,16 @@ void OnlineModeSelectPage::onInit() {
 
 // Replacement needed to hook to up OnlineConnectionManager
 void OnlineModeSelectPage::onActivate() {
-    SP_LOG("OnlineModeSelectPage::onActivate");
-
-    auto section = SectionManager::Instance()->currentSection();
+    auto sectionManager = SectionManager::Instance();
+    auto section = sectionManager->currentSection();
     auto connectionManager = section->page<PageId::OnlineConnectionManager>();
 
-    if (connectionManager->isCustomTrackpack()) {
-        // TODO: Show the name of the pack selected?
-        m_titleText.setMessage(4001);
-    } else {
+    if (sectionManager->globalContext()->isVanillaTracks()) {
         m_titleText.setMessage(4000);
+    } else {
+        MessageInfo info;
+        info.strings[0] = SP::TrackPackManager::Instance().getSelectedPack().getPrettyName();
+        m_titleText.setMessage(20048, &info);
     }
 
     auto vsRating = connectionManager->getVsRating();

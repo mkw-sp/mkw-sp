@@ -84,6 +84,10 @@ void PackSelectPage::onInit() {
     refresh();
 }
 
+void PackSelectPage::onDeinit() {
+    SP::TrackPackManager::DestroyInstance();
+}
+
 void PackSelectPage::onActivate() {
     m_replacement = PageId::None;
     m_scrollBar.reconfigure(m_sheetCount, m_sheetIndex, m_sheetCount >= 2 ? 0x1 : 0x0);
@@ -112,15 +116,15 @@ void PackSelectPage::onBack(u32 /* localPlayerId */) {
 
 void PackSelectPage::onButtonFront(PushButton *button, u32 /* localPlayerId */) {
     auto *sectionManager = SectionManager::Instance();
-    auto *section = sectionManager->currentSection();
-
     auto *globalContext = sectionManager->globalContext();
-    auto *connManager = section->page<PageId::OnlineConnectionManager>();
+    auto sectionId = sectionManager->currentSection()->id();
 
-    auto buttonIndex = m_sheetIndex * m_buttons.size() + button->m_index;
-    if (connManager != nullptr) {
-        // TODO(GnomedDev): Track Pack support, needs consistent IDs
-        connManager->setTrackpack(buttonIndex + 1);
+    bool isOnline = Section::HasOnlineManager(sectionId);
+
+    auto buttonIndex = m_sheetIndex * m_buttons.size() + button->m_index + isOnline;
+    globalContext->m_currentPack = buttonIndex;
+
+    if (isOnline) {
         m_replacement = PageId::OnlineModeSelect;
     } else {
         if (!s_lastPackFront.has_value() || *s_lastPackFront != buttonIndex) {
@@ -128,8 +132,7 @@ void PackSelectPage::onButtonFront(PushButton *button, u32 /* localPlayerId */) 
         }
 
         s_lastPackFront = buttonIndex;
-        globalContext->m_currentPack = buttonIndex;
-        if (section->id() == SectionId::Multi) {
+        if (sectionId == SectionId::Multi) {
             m_replacement = PageId::MultiTop;
         } else {
             m_replacement = PageId::SingleTop;

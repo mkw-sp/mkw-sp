@@ -6,6 +6,8 @@
 #include "game/ui/SettingsPage.hh"
 #include "game/ui/YesNoPage.hh"
 
+#include <sp/trackPacks/TrackPackManager.hh>
+
 namespace UI {
 
 enum ButtonId {
@@ -93,18 +95,15 @@ void OnlineTopPage::onButtonSelect(PushButton *button, u32 /* localPlayerId */) 
 }
 
 void OnlineTopPage::onWorldwideButtonFront(PushButton *button, u32 /* localPlayerId */) {
-    auto section = SectionManager::Instance()->currentSection();
-    auto connectionManager = section->page<PageId::OnlineConnectionManager>();
-    connectionManager->setTrackpack(0);
+    auto globalContext = SectionManager::Instance()->globalContext();
+    globalContext->m_currentPack = 0;
 
     m_replacement = PageId::OnlineModeSelect;
     startReplace(Anim::Next, button->getDelay());
 }
 
 void OnlineTopPage::onTrackpackButtonFront(PushButton *button, u32 /* localPlayerId */) {
-    // TODO(GnomedDev): Track Pack support
-    auto packCount = 1;
-    if (packCount == 1) {
+    if (SP::TrackPackManager::Instance().getPackCount() == 1) {
         auto *section = SectionManager::Instance()->currentSection();
         auto messagePage = section->page<PageId::MessagePopup>();
 

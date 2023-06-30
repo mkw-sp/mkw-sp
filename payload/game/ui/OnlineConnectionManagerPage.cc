@@ -158,10 +158,12 @@ void OnlineConnectionManagerPage::setupRatings(const STCMessage &event) {
 }
 
 void OnlineConnectionManagerPage::sendSearchMessage() {
+    auto *globalContext = SectionManager::Instance()->globalContext();
+
     CTSMessage response;
     response.which_message = CTSMessage_start_matchmaking_tag;
     response.message.start_matchmaking.gamemode = m_gamemode;
-    response.message.start_matchmaking.trackpack = m_trackpack;
+    response.message.start_matchmaking.trackpack = globalContext->m_currentPack;
 
     write(response);
     m_searchStarted = false;

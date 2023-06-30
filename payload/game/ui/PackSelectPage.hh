@@ -17,6 +17,7 @@ public:
 
     PageId getReplacement() override;
     void onInit() override;
+    void onDeinit() override;
     void onActivate() override;
 
     static std::optional<u32> s_lastPackFront;

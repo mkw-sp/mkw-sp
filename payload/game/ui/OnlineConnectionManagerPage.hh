@@ -26,9 +26,6 @@ public:
     void onInit() override;
     void afterCalc() override;
 
-    void setTrackpack(u32 trackpack) {
-        m_trackpack = trackpack;
-    }
     void startSearch() {
         m_searchStarted = true;
     }
@@ -38,9 +35,6 @@ public:
     }
     std::optional<u16> getBtRating() const {
         return m_bt_rating;
-    }
-    bool isCustomTrackpack() const {
-        return m_trackpack != 0;
     }
     State getState() const {
         return m_state;
@@ -64,7 +58,6 @@ private:
 
     std::optional<u16> m_vs_rating = std::nullopt;
     std::optional<u16> m_bt_rating = std::nullopt;
-    u32 m_trackpack;
 
     std::optional<STCMessage> m_loginResponse;
     std::optional<STCMessage_FoundMatch> m_matchResponse;
