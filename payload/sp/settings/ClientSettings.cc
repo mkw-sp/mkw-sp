@@ -596,6 +596,16 @@ const Entry entries[] = {
         .valueMessageIds = (u32[]) { 10264, 10265 },
         .valueExplanationMessageIds = (u32[]) { 10266, 10267 },
     },
+    [static_cast<u32>(Setting::VerticalFilter)] = {
+        .category = Category::License,
+        .name = magic_enum::enum_name(Setting::VerticalFilter),
+        .messageId = 10432,
+        .defaultValue = static_cast<u32>(VerticalFilter::InterlacedOnly),
+        .valueCount = magic_enum::enum_count<VerticalFilter>(),
+        .valueNames = magic_enum::enum_names<VerticalFilter>().data(),
+        .valueMessageIds = (u32[]) { 10433, 10434 },
+        .valueExplanationMessageIds = (u32[]) { 10435, 10436 },
+    },
     [static_cast<u32>(Setting::LoadingScreenColor)] = {
         .category = Category::License,
         .name = magic_enum::enum_name(Setting::LoadingScreenColor),

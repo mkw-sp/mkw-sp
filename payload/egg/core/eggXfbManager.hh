@@ -7,6 +7,7 @@ namespace EGG {
 class XfbManager {
 public:
     Xfb *headXfb();
+    void copyEFB(bool clear);
 
 private:
     Xfb *m_headXfb;

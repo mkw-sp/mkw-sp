@@ -3,6 +3,7 @@
 #include "revolution/gx/GXBump.h"
 #include "revolution/gx/GXEnum.h"
 #include "revolution/gx/GXFifo.h"
+#include "revolution/gx/GXFrameBuffer.h"
 #include "revolution/gx/GXGeometry.h"
 #include "revolution/gx/GXLighting.h"
 #include "revolution/gx/GXManage.h"

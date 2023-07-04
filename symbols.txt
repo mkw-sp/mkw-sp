@@ -194,6 +194,8 @@
 0x8016ec88 GXSetDrawSyncCallback
 0x8016F0F0 GXBegin
 0x8016F3B8 GXSetCullMode
+0x8016f9c8 GXSetCopyClear
+0x8016fa40 GXSetCopyFilter
 0x80170320 GXLoadLightObjImm
 0x8017039C GXSetChanAmbColor
 0x80170474 GXSetChanMatColor
@@ -447,7 +449,7 @@
 0x802153B8 _ZN3EGG10ColorFader4drawEv
 0x80218098 EGG_CpuTexture_Construct
 0x80219fb0 _ZN3EGG7Display8endFrameEv
-0x80219fb4 EGG_Display_copyEFBToXFB
+0x80219fb4 _ZN3EGG7Display12copyEFBtoXFBEv
 0x80222470 EGG_DvdFile_openEntrynum
 0x802224e8 EGG_DvdFile_openPath
 0x802226d8 _ZN3EGG9DVDRipper13LoadToMainRAMEPKcPhPNS_4HeapENS0_14AllocDirectionEjPjS7_
@@ -493,6 +495,7 @@
 0x8024373C _ZN3EGG6Thread5startEPv
 0x80243f34 _ZN3EGG5Video24getStandardRenderModeObjEPKPK15GXRenderModeObj
 0x802441ec _ZN3EGG3Xfb11CalcXfbSizeEtt
+0x80244268 _ZN3EGG10XfbManager7copyEFBEb
 
 0x802A4080 sRKSystem
 0x802A4080 _ZN3EGG7TSystem10s_instanceE
