@@ -128,6 +128,22 @@ void RaceConfig::applyCPUMode() {
     }
 }
 
+void RaceConfig::initRace() {
+    REPLACED(initRace)();
+    m_spRace = m_spMenu;
+}
+
+void RaceConfig::initAwards() {
+    REPLACED(initAwards)();
+    m_spRace = m_spMenu;
+    m_spAwards = m_spRace;
+}
+
+void RaceConfig::initCredits() {
+    REPLACED(initCredits)();
+    m_spMenu = m_spAwards;
+    m_spRace = m_spMenu;
+}
 RaceConfig *RaceConfig::CreateInstance() {
     assert(!s_instance);
     s_instance = new RaceConfig;
