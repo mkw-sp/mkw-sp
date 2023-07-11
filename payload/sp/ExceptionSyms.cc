@@ -40,4 +40,8 @@ void __cxa_pure_virtual() {
 void abort() {
     panic("abort");
 }
+
+void bz_internal_error(int errCode) {
+    panic("BZip2 internal error: %d", errCode);
+}
 }
