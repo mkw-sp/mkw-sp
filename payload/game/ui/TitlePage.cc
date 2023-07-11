@@ -6,6 +6,8 @@
 extern "C" {
 #include <sp/Host.h>
 }
+#include <sp/WU8Library.hh>
+
 #include <vendor/libhydrogen/hydrogen.h>
 
 namespace UI {
@@ -13,6 +15,7 @@ namespace UI {
 void TitlePage::onInit() {
     REPLACED(onInit)();
 
+    SP::ExtractWU8Library();
     auto globalContext = SectionManager::Instance()->globalContext();
 
     m_useAlternativeBackgrounds = true;
