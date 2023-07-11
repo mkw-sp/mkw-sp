@@ -4,6 +4,7 @@
 #include "sp/LZ77Decoder.hh"
 #include "sp/LZMADecoder.hh"
 #include "sp/ThumbnailManager.hh"
+#include "sp/WBZDecoder.hh"
 #include "sp/YAZDecoder.hh"
 
 #include <game/system/RaceConfig.hh>
@@ -121,6 +122,8 @@ bool Load(const char *path, size_t srcMaxSize, u64 srcOffset, u8 **dst, size_t *
         decoder.reset(new (heap, 0x4) YAZDecoder(src, srcSize, heap));
     } else if (LZ77Decoder::CheckMagic(Bytes::Read<u32, std::endian::little>(src, 0x0))) {
         decoder.reset(new (heap, 0x4) LZ77Decoder(src, srcSize, heap));
+    } else if (WBZDecoder::CheckMagic(Bytes::Read<u64, std::endian::big>(src, 0x0))) {
+        decoder.reset(new (heap, 0x4) WBZDecoder(src, srcSize, heap));
     } else {
         decoder.reset(new (heap, 0x4) LZMADecoder(src, srcSize, heap));
     }

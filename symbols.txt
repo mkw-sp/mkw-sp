@@ -39,6 +39,7 @@
 0x80017814 swprintf
 0x8001790c vswprintf
 0x80017998 wcslen
+0x800179b4 wcscpy
 0x80017a14 wcscmp
 0x80021254 strlen
 
