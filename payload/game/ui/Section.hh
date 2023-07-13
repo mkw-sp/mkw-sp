@@ -134,6 +134,11 @@ struct Section::PageIdHelper<PageId::YesNoPopup> {
 };
 
 template <>
+struct Section::PageIdHelper<PageId::SpinnerAwaitPage> {
+    using type = MenuAwaitPage;
+};
+
+template <>
 struct Section::PageIdHelper<PageId::MenuMessage> {
     using type = MenuMessagePage;
 };

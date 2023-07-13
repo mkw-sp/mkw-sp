@@ -152,6 +152,7 @@ enum class SectionId {
     ServicePack = 0x7A,        // Replaces Channel
     ServicePackChannel = 0x7B, // Replaces Channel from Time Trials
     Rankings = 0x7D,
+    WU8Library = 0x7F,
     // ^^ All channel sections vv
     // 0x84 replaces OnlineServer, free to use!
 

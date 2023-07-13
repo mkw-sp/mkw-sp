@@ -37,6 +37,7 @@
 #include "game/ui/page/CourseDebugPage.hh"
 #include "game/ui/page/DriftSelectPage.hh"
 #include "game/ui/page/ResultTeamTotalPage.hh"
+#include "game/ui/page/WU8LibraryPage.hh"
 
 namespace UI {
 
@@ -61,6 +62,8 @@ System::SceneId Section::GetSceneId(SectionId id) {
     switch (id) {
     case SectionId::Thumbnails:
         return System::SceneId::Race;
+    case SectionId::WU8Library:
+        return System::SceneId::Menu;
     default:
         return REPLACED(GetSceneId)(id);
     }
@@ -70,6 +73,8 @@ const char *Section::GetResourceName(SectionId id) {
     switch (id) {
     case SectionId::Thumbnails:
         return "/Scene/UI/Race";
+    case SectionId::WU8Library:
+        return "/Scene/UI/Channel";
     default:
         return REPLACED(GetResourceName)(id);
     }
@@ -166,7 +171,7 @@ void Section::addPage(PageId pageId) {
             {SectionId::OnlineSingle, PageId::WifiFriendMenu},
 
             {SectionId::OnlineMulti, PageId::ConfirmWifiQuit},
-            {SectionId::OnlineMulti, PageId::ReadingGhostData},
+            {SectionId::OnlineMulti, PageId::SpinnerAwaitPage},
             {SectionId::OnlineMulti, PageId::ConnectingNintendoWfc},
             {SectionId::OnlineMulti, PageId::Confirm},
             {SectionId::OnlineMulti, PageId::CharacterSelect},
@@ -210,6 +215,19 @@ void Section::addPage(PageId pageId) {
             {SectionId::ServicePackChannel, PageId::StorageBenchmark},
             {SectionId::ServicePackChannel, PageId::ServicePackTools},
 
+            {SectionId::WU8Library, PageId::RaceConfirm},
+            {SectionId::WU8Library, PageId::MessagePopup},
+            {SectionId::WU8Library, PageId::MenuMessage},
+            {SectionId::WU8Library, PageId::CharacterSelect},
+            {SectionId::WU8Library, PageId::VehicleSelect},
+            {SectionId::WU8Library, PageId::DriftSelect},
+            {SectionId::WU8Library, PageId::CourseSelect},
+            {SectionId::WU8Library, PageId::ModelRender},
+            {SectionId::WU8Library, PageId::Obi},
+            {SectionId::WU8Library, (PageId)0x9f},
+            {SectionId::WU8Library, (PageId)0xa0},
+            {SectionId::WU8Library, (PageId)0xa1},
+
             {SectionId::Rankings, PageId::RaceCourseSelect},
             {SectionId::Rankings, PageId::DirectConnection},
             {SectionId::Rankings, PageId::OnlineConnectionManager},
@@ -249,6 +267,10 @@ void Section::addActivePage(PageId pageId) {
             {SectionId::OnlineFriend1PVS, PageId::OnlineTeamSelect},
 
             {SectionId::ServicePackChannel, PageId::StorageBenchmark},
+
+            {SectionId::WU8Library, PageId::Obi},
+            {SectionId::WU8Library, (PageId)0x9f},
+            {SectionId::WU8Library, PageId::ModelRender},
 
             {SectionId::Rankings, PageId::OnlineConnectionManager},
     };
@@ -355,7 +377,7 @@ void Section::addPages(SectionId id) {
             {SectionId::SingleSelectBTCourse, PageId::GhostManager},
 
             // Change Ghost Data
-            {SectionId::SingleChangeGhostData, PageId::ReadingGhostData},
+            {SectionId::SingleChangeGhostData, PageId::SpinnerAwaitPage},
             {SectionId::SingleChangeGhostData, PageId::MenuMessage},
             {SectionId::SingleChangeGhostData, PageId::MessageBoardPopup},
             {SectionId::SingleChangeGhostData, PageId::SingleTop},
@@ -397,6 +419,10 @@ void Section::addPages(SectionId id) {
             {SectionId::ServicePack, PageId::Update},
             {SectionId::ServicePack, PageId::Channel},
 
+            {SectionId::WU8Library, PageId::SpinnerAwaitPage},
+            {SectionId::WU8Library, PageId::LineBackgroundWhite},
+            {SectionId::WU8Library, PageId::WU8Library},
+
             {SectionId::ServicePackChannel, PageId::ServicePackChannel},
     };
     for (const auto &addition : additions) {
@@ -426,6 +452,9 @@ void Section::addActivePages(SectionId id) {
 
             {SectionId::Voting1PVS, PageId::CourseSelect},
             {SectionId::Voting1PVS, PageId::OnlineConnectionManager},
+
+            {SectionId::WU8Library, PageId::LineBackgroundWhite},
+            {SectionId::WU8Library, PageId::WU8Library},
 
             {SectionId::ServicePackChannel, PageId::ServicePackChannel},
     };
@@ -508,6 +537,8 @@ Page *Section::CreatePage(PageId pageId) {
         return new PackSelectPage;
     case PageId::CourseDebug:
         return new CourseDebugPage;
+    case PageId::WU8Library:
+        return new WU8LibraryPage;
     default:
         return REPLACED(CreatePage)(pageId);
     }
