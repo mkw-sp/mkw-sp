@@ -9,6 +9,7 @@
 #include <game/system/InputManager.hh>
 #include <game/system/RaceConfig.hh>
 #include <game/system/ResourceManager.hh>
+#include <game/system/SaveManager.hh>
 #include <game/ui/SectionManager.hh>
 
 #include <cstring>
@@ -29,7 +30,10 @@ ScreenshotManager::ScreenshotManager(u32 framebufferSize) {
 }
 
 void ScreenshotManager::calc() {
-    if (!m_saving && m_colorFader.getStatus() == EGG::ColorFader::Status::Hidden) {
+    auto *saveManager = System::SaveManager::Instance();
+    bool inputBoundToY = saveManager->getSetting<SP::ClientSettings::Setting::YButton>() ==
+            SP::ClientSettings::YButton::Screenshot;
+    if (inputBoundToY && !m_saving && m_colorFader.getStatus() == EGG::ColorFader::Status::Hidden) {
         auto *inputManager = System::InputManager::Instance();
         for (int i = 0; i < 4; i++) {
             PADStatus padStatus = inputManager->padStatus(i);

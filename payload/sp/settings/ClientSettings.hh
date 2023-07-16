@@ -88,6 +88,7 @@ enum class Setting {
     DebugCheckpoints,
     DebugPanel,
     DebugKCL,
+    YButton,
 };
 
 enum class Category {
@@ -346,6 +347,11 @@ enum class DebugPanel {
     Disable,
     Player,
     Online,
+};
+
+enum class YButton {
+    Disabled,
+    Screenshot,
 };
 
 typedef Settings::Group<Category> Group;
@@ -671,6 +677,11 @@ struct Helper<ClientSettings::Setting, ClientSettings::Setting::DebugKCL> {
 template <>
 struct Helper<ClientSettings::Setting, ClientSettings::Setting::DebugPanel> {
     using type = SP::ClientSettings::DebugPanel;
+};
+
+template <>
+struct Helper<ClientSettings::Setting, ClientSettings::Setting::YButton> {
+    using type = SP::ClientSettings::YButton;
 };
 
 } // namespace SP::Settings
