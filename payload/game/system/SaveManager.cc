@@ -489,8 +489,15 @@ void SaveManager::saveGhost(GhostFile *file) {
 
     m_saveGhostResult = false;
 
-    auto &courseSHA1 = m_courseSHA1s[file->courseId()];
-    SPFooter::OnRaceEnd(courseSHA1);
+    Sha1 courseSha1;
+    auto &raceScenario = System::RaceConfig::Instance()->m_spRace;
+    if (raceScenario.courseSha.has_value()) {
+        courseSha1 = *raceScenario.courseSha;
+    } else {
+        courseSha1 = m_courseSHA1s[file->courseId()];
+    }
+
+    SPFooter::OnRaceEnd(courseSha1);
 
     Time raceTime = file->raceTime();
     if (raceTime.minutes > 99) {
@@ -506,7 +513,7 @@ void SaveManager::saveGhost(GhostFile *file) {
     u32 offset = swprintf(path, 255 + 1, L"/mkw-sp/ghosts/");
 
     char courseName[0x14 * 2 + 1];
-    GetCourseName(courseSHA1, courseName);
+    GetCourseName(courseSha1, courseName);
     offset += swprintf(path + offset, 255 + 1 - offset, L"%s", courseName);
 
     if (!SP::Storage::CreateDir(path, true)) {

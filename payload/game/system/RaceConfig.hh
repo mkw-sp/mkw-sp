@@ -1,6 +1,12 @@
 #pragma once
 
+#include "game/sound/SoundId.hh"
 #include "game/util/Registry.hh"
+
+#include <sp/FixedString.hh>
+#include <sp/ShaUtil.hh>
+
+#include <optional>
 
 namespace System {
 
@@ -59,7 +65,16 @@ public:
     };
 
     struct SPScenario {
-        // ...
+        // The course path to load instead of the vanilla course.
+        // If this is empty, the vanilla course will be loaded.
+        SP::FixedString<64> pathReplacement;
+        // The background music to load instead of the course ID's music.
+        std::optional<Sound::SoundId> musicReplacement;
+        // The course hash to use for ghost lookup instead of the slot's hash.
+        std::optional<Sha1> courseSha;
+        // The course name to use instead of the slot's name.
+        // If this is empty, the slot's name will be used.
+        SP::WFixedString<48> nameReplacement;
     };
 
     struct Scenario {
