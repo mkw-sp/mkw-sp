@@ -34,7 +34,12 @@ namespace UI {
 ///
 class DirEntryRange {
 private:
-    class sentinel {};
+    class iterator;
+
+    class sentinel {
+    public:
+        bool operator==(const iterator&) const;
+    };
 
     class iterator {
     public:
