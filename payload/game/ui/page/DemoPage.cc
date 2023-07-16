@@ -13,7 +13,6 @@ void DemoPage::onInit() {
     auto globalContext = sectionManager->globalContext();
 
     auto *raceConfig = System::RaceConfig::Instance();
-    assert(raceConfig != nullptr);
     auto &raceScenario = raceConfig->raceScenario();
     auto currentSectionId = sectionManager->currentSection()->id();
 
