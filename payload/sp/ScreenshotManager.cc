@@ -5,6 +5,7 @@
 
 #include <egg/core/eggSystem.hh>
 #include <egg/core/eggXfbManager.hh>
+#include <game/sound/SceneSoundManager.hh>
 #include <game/system/InputManager.hh>
 #include <game/system/RaceConfig.hh>
 #include <game/system/ResourceManager.hh>
@@ -106,18 +107,27 @@ void ScreenshotManager::capture(EGG::Xfb *xfb) {
             time.year, time.mon + 1, time.mday, time.hour, time.min, time.sec);
 
     auto *sectionManager = UI::SectionManager::Instance();
-    System::SceneId sceneId = UI::Section::GetSceneId(sectionManager->currentSection()->id());
-    if (sceneId == System::SceneId::Race) {
-        auto courseId = System::RaceConfig::Instance()->raceScenario().courseId;
-        const char *courseFilename = System::ResourceManager::GetCourseFilename(courseId);
-        swprintf(m_screenshotFilepath.data() + charactersWritten - SCREENSHOT_FILE_EXTENSION_LENGTH,
-                m_screenshotFilepath.size() - charactersWritten + SCREENSHOT_FILE_EXTENSION_LENGTH,
-                L"-%s" SCREENSHOT_FILE_EXTENSION, courseFilename);
+    if (sectionManager) {
+        System::SceneId sceneId = UI::Section::GetSceneId(sectionManager->currentSection()->id());
+        if (sceneId == System::SceneId::Race) {
+            auto courseId = System::RaceConfig::Instance()->raceScenario().courseId;
+            const char *courseFilename = System::ResourceManager::GetCourseFilename(courseId);
+            swprintf(m_screenshotFilepath.data() + charactersWritten -
+                            SCREENSHOT_FILE_EXTENSION_LENGTH,
+                    m_screenshotFilepath.size() - charactersWritten +
+                            SCREENSHOT_FILE_EXTENSION_LENGTH,
+                    L"-%s" SCREENSHOT_FILE_EXTENSION, courseFilename);
+        }
     }
 
     m_saving = OSCreateThread(&m_thread, SaveTask, this, m_stack.data() + m_stack.size(),
             m_stack.size(), 31, 0);
     if (m_saving) {
+        auto *sceneSoundManager = Sound::SceneSoundManager::Instance();
+        if (sceneSoundManager) {
+            sceneSoundManager->play(Sound::SoundId::SE_UI_BTN_OK, -1);
+        }
+
         m_colorFader.setStatus(EGG::ColorFader::Status::Opaque);
         m_colorFader.fadeIn();
 
