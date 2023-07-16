@@ -1,6 +1,7 @@
 #include "CourseSelectPage.hh"
 
 #include "game/system/RaceConfig.hh"
+#include "game/system/SaveManager.hh"
 #include "game/ui/RaceConfirmPage.hh"
 #include "game/ui/RankingPage.hh"
 #include "game/ui/SectionManager.hh"
@@ -486,7 +487,18 @@ void CourseSelectPage::loadThumbnails() {
             if (requestedDatabaseIds[i] == std::numeric_limits<u32>::max()) {
                 continue;
             }
-            JRESULT result = loadThumbnail(i, requestedDatabaseIds[i]);
+
+            auto &courseDatabase = SP::CourseDatabase::Instance();
+
+            std::optional<Sha1> courseSha1 = std::nullopt;
+            for (u32 courseIdx = 0; courseIdx < courseDatabase.count(m_filter); courseIdx += 1) {
+                auto entry = courseDatabase.entry(m_filter, courseIdx);
+                if (entry.databaseId == requestedDatabaseIds[i]) {
+                    courseSha1 = System::SaveManager::Instance()->courseSHA1(entry.courseId);
+                }
+            }
+
+            JRESULT result = loadThumbnail(i, courseSha1.value());
             if (result == JDR_OK) {
                 databaseIds[i] = requestedDatabaseIds[i];
             } else {
@@ -505,9 +517,11 @@ void CourseSelectPage::loadThumbnails() {
     }
 }
 
-JRESULT CourseSelectPage::loadThumbnail(u32 i, u32 databaseId) {
-    char path[32];
-    snprintf(path, std::size(path), "/thumbnails/%u.jpg", databaseId);
+JRESULT CourseSelectPage::loadThumbnail(u32 i, Sha1 courseSha1) {
+    char path[64];
+
+    auto hex = sha1ToHex(courseSha1);
+    snprintf(path, std::size(path), "/thumbnails/%s.jpg", hex.data());
 
     auto file = SP::Storage::OpenRO(path);
     if (!file) {

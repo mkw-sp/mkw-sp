@@ -9,6 +9,7 @@
 #include "game/ui/ctrl/CtrlMenuPageTitleText.hh"
 
 #include <sp/CourseDatabase.hh>
+#include <sp/ShaUtil.hh>
 #include <sp/storage/Storage.hh>
 #include <vendor/tjpgd/tjpgd.h>
 
@@ -64,7 +65,7 @@ private:
     void onBackCommon(f32 delay);
     void refresh();
     void loadThumbnails();
-    JRESULT loadThumbnail(u32 i, u32 courseId);
+    JRESULT loadThumbnail(u32 i, Sha1 courseSha1);
 
     static void *LoadThumbnails(void *arg);
     static size_t ReadCompressedThumbnail(JDEC *jdec, uint8_t *buffer, size_t size);
