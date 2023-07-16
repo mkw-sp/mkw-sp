@@ -1,5 +1,6 @@
 #include "TopMenuPage.hh"
 
+#include "game/system/RaceConfig.hh"
 #include "game/system/SaveManager.hh"
 #include "game/ui/SectionManager.hh"
 
@@ -81,8 +82,14 @@ void TopMenuPage::onButtonSelect(PushButton *button) {
 
 void TopMenuPage::onButtonFront(PushButton *button) {
     if (button->m_index == 6) {
-        if (!SectionManager::Instance()->saveManagerProxy()->savingDisabled()) {
+        auto *sectionManager = SectionManager::Instance();
+        if (!sectionManager->saveManagerProxy()->savingDisabled()) {
             initRaceConfig(1);
+
+            auto &menuScenario = System::RaceConfig::Instance()->menuScenario();
+            menuScenario.gameMode = System::RaceConfig::GameMode::TimeAttack;
+            sectionManager->globalContext()->m_currentPack = 0;
+
             requestChangeSection(SectionId::ServicePackChannel, button);
         }
     }
