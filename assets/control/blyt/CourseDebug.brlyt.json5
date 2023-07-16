@@ -405,7 +405,7 @@
                 {
                     "magic": "pic1",
                     "flags": {
-                        "visible": true,
+                        "visible": false,
                         "influenced alpha": false,
                         "location adjust": false,
                     },
