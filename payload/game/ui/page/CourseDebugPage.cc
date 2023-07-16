@@ -38,7 +38,7 @@ private:
 
     class sentinel {
     public:
-        bool operator==(const iterator&) const;
+        bool operator==(const iterator &) const;
     };
 
     class iterator {
