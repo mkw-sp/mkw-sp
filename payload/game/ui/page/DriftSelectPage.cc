@@ -4,7 +4,13 @@
 #include "game/ui/SectionManager.hh"
 #include "game/ui/page/MissionInstructionPage.hh"
 
+extern "C" {
+#include <sp/Commands.h>
+}
+
 namespace UI {
+
+static bool s_trackMenu = false;
 
 void DriftSelectPage::onActivate() {
     REPLACED(onActivate)();
@@ -53,7 +59,7 @@ void DriftSelectPage::onButtonFront(PushButton *button, u32 /* localPlayerId */)
                     sectionId == SectionId::SingleGhostListChallenge) {
                 requestChangeSection(SectionId::TA, button);
             } else {
-                startReplace(PageId::CourseSelect, button);
+                startReplace(s_trackMenu ? PageId::CourseDebug : PageId::CourseSelect, button);
             }
         }
         break;
@@ -70,3 +76,7 @@ void DriftSelectPage::onButtonFront(PushButton *button, u32 /* localPlayerId */)
 }
 
 } // namespace UI
+
+sp_define_command("/trackmenu", "Course debug list", const char *) {
+    UI::s_trackMenu ^= 1;
+}

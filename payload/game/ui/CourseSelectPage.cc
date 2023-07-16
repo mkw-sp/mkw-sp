@@ -268,10 +268,15 @@ void CourseSelectPage::onButtonFront(PushButton *button, u32 /* localPlayerId */
     } else {
         auto *globalContext = sectionManager->globalContext();
         auto &menuScenario = System::RaceConfig::Instance()->menuScenario();
+        auto &spMenu = System::RaceConfig::Instance()->m_spMenu;
 
         if (!sectionManager->globalContext()->generateOrderedCourses(courseIndex)) {
             globalContext->setCurrentCourse(entry.courseId);
             menuScenario.courseId = globalContext->getCourse(0).value();
+            spMenu.pathReplacement.m_len = 0;
+            spMenu.musicReplacement = std::nullopt;
+            spMenu.courseSha = std::nullopt;
+            spMenu.nameReplacement.m_len = 0;
         }
 
         if (menuScenario.gameMode == System::RaceConfig::GameMode::TimeAttack) {
