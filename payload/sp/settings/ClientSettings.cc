@@ -676,6 +676,16 @@ const Entry entries[] = {
         .valueMessageIds = (u32[]) { 10349, 10351, 10353 },
         .valueExplanationMessageIds = (u32[]) { 10350, 10352, 10354 },
     },
+    [static_cast<u32>(Setting::YButton)] = {
+        .category = Category::DebugOverlay,
+        .name = magic_enum::enum_name(Setting::YButton),
+        .messageId = 10432,
+        .defaultValue = static_cast<u32>(YButton::Screenshot),
+        .valueCount = magic_enum::enum_count<YButton>(),
+        .valueNames = magic_enum::enum_names<YButton>().data(),
+        .valueMessageIds = (u32[]) { 10433, 10435 },
+        .valueExplanationMessageIds = (u32[]) { 10434, 10436 },
+    },
 };
 // clang-format on
 
