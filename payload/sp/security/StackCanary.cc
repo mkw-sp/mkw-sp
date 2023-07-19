@@ -82,8 +82,9 @@ static bool IsEpilogue(u32 *startAddress) {
     return startAddress[0] == mtlr && (startAddress[1] >> 16) == addi && startAddress[2] == blr;
 }
 
-static const std::array<LinkRegisterPatch, 2> lrPatches = {{
+static const std::array<LinkRegisterPatch, 2> lrPatches = {
         // clang-format off
+        LinkRegisterPatch
         {
             .findPrologue = IsPrologue,
             .findLRSave = IsLinkRegisterSave,
@@ -96,6 +97,7 @@ static const std::array<LinkRegisterPatch, 2> lrPatches = {{
             .newLRSaveFunc = StackCanary_SaveLinkRegister,
             .newLRRestoreFunc = StackCanary_RestoreLinkRegister,
         },
+        LinkRegisterPatch
         {
             .findPrologue = IsAlignedPrologue,
             .findLRSave = IsAlignedLinkRegisterSave,
@@ -109,7 +111,7 @@ static const std::array<LinkRegisterPatch, 2> lrPatches = {{
             .newLRRestoreFunc = StackCanary_RestoreAlignedLinkRegister,
         },
         // clang-format on
-}};
+};
 
 static u32 *FindFirst(u32 *startAddress, u32 *endAddress, Find find, u32 instCount) {
     while (startAddress + instCount <= endAddress) {
@@ -133,13 +135,16 @@ static u32 *FindLast(u32 *startAddress, u32 *endAddress, Find find, u32 instCoun
     return NULL;
 }
 
-static u32 CreateBranchLinkInstruction(u32 *sourceAddress, u32 *destinationAddress) {
-    return (18 << 26) | (((u32)destinationAddress - (u32)sourceAddress) & 0x3FFFFFC) | (1 << 0);
+static u32 CreateBranchLinkInstruction(u32 *source, u32 *destination) {
+    char *sourceAddress = reinterpret_cast<char *>(source);
+    char *destinationAddress = reinterpret_cast<char *>(destination);
+
+    return (18 << 26) | ((destinationAddress - sourceAddress) & 0x3FFFFFC) | (1 << 0);
 }
 
 void AddLinkRegisterPatches(u32 *start, u32 *end) {
-    assert(((u32)start & 3) == 0);
-    assert(((u32)end & 3) == 0);
+    assert((reinterpret_cast<u32>(start) & 3) == 0);
+    assert((reinterpret_cast<u32>(end) & 3) == 0);
 
     for (const LinkRegisterPatch &lrPatch : lrPatches) {
         u32 *startAddress = start;
@@ -179,8 +184,10 @@ void AddLinkRegisterPatches(u32 *start, u32 *end) {
                 continue;
             }
 
-            *lrSave = CreateBranchLinkInstruction(lrSave, (u32 *)lrPatch.newLRSaveFunc);
-            *lrRestore = CreateBranchLinkInstruction(lrRestore, (u32 *)lrPatch.newLRRestoreFunc);
+            *lrSave = CreateBranchLinkInstruction(lrSave,
+                    reinterpret_cast<u32 *>(lrPatch.newLRSaveFunc));
+            *lrRestore = CreateBranchLinkInstruction(lrRestore,
+                    reinterpret_cast<u32 *>(lrPatch.newLRRestoreFunc));
 
             DCFlushRange(lrSave, sizeof(*lrSave));
             DCFlushRange(lrRestore, sizeof(*lrRestore));
