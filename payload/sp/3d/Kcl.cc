@@ -294,8 +294,8 @@ void KclVis::prepare() {
     if (!trussBound) {
         trussBound = true;
         YAZDecoder::Decode(TRUSS_SZS, sizeof(TRUSS_SZS), TRUSS_TPL, sizeof(TRUSS_TPL));
-        TPLBind(TRUSS_TPL);
-        TPLGetGXTexObjFromPalette(TRUSS_TPL, &TRUSS_OBJ, 0);
+        TPLBind(reinterpret_cast<TPLPalette *>(TRUSS_TPL));
+        TPLGetGXTexObjFromPalette(reinterpret_cast<TPLPalette *>(TRUSS_TPL), &TRUSS_OBJ, 0);
     }
 }
 void KclVis::render(const float mtx[3][4], bool /* overlay */) {
