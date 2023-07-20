@@ -2,8 +2,6 @@
 
 #include <Common.hh>
 
-#include <optional>
-
 namespace Dol {
 
 const void *GetStartAddress();

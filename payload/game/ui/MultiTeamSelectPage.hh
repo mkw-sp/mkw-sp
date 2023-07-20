@@ -6,8 +6,6 @@
 #include "game/ui/ctrl/CtrlMenuBackButton.hh"
 #include "game/ui/ctrl/CtrlMenuPageTitleText.hh"
 
-#include <optional>
-
 namespace UI {
 
 class MultiTeamSelectPage : public Page {

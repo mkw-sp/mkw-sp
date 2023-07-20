@@ -2,8 +2,6 @@
 
 #include <game/util/Registry.hh>
 
-#include <optional>
-
 namespace SP {
 
 class CourseDatabase {

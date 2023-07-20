@@ -2,7 +2,6 @@
 
 #include <Common.hh>
 
-#include <optional>
 #include <string_view>
 
 namespace SP::MapFile {

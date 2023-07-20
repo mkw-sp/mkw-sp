@@ -1,7 +1,6 @@
 #pragma once
 
 #include <Common.hh>
-#include <optional>
 
 namespace SP {
 

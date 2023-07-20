@@ -11,7 +11,6 @@ extern "C" {
 #include <array>
 #include <cstdio>
 #include <cstring>
-#include <optional>
 
 namespace SP::Channel {
 

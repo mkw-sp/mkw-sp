@@ -2,8 +2,6 @@
 
 #include "IOS.hh"
 
-#include <optional>
-
 namespace IOS {
 
 class ES final : private Resource {

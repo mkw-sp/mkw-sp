@@ -6,8 +6,6 @@
 
 #include <sp/ShaUtil.hh>
 
-#include <optional>
-
 namespace System {
 
 static const u32 MAX_GHOST_COUNT = 4096;

@@ -7,6 +7,7 @@ extern "C" {
 }
 
 #include <array>
+#include <optional>
 #include <type_traits>
 #include <utility>
 
@@ -94,4 +95,16 @@ template <typename T> auto MyMove(T&& t) {
 #else
 #define TRY(...) static_assert(false, "Compiler does not support TRY macro")
 #endif
+
+template <typename T>
+void RequireOpt(std::optional<T>) {}
+
+#define TRY_OPT(opt) ({ \
+    auto y = (opt); \
+    RequireOpt(y); \
+    if (!y.has_value()) [[unlikely]] { \
+        return std::nullopt; \
+    } \
+    *y; \
+})
 // clang-format on

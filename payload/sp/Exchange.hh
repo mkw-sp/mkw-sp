@@ -6,8 +6,6 @@ extern "C" {
 #include <revolution.h>
 }
 
-#include <optional>
-
 namespace SP {
 
 struct Empty {
