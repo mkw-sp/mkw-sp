@@ -8,7 +8,13 @@ MiiGroup::~MiiGroup() {
     dt(-1);
 }
 
+void MiiGroup::insertFromId(size_t index, const System::MiiId *id) {
+    assert(index < m_miiCount);
+    REPLACED(insertFromId)(index, id);
+}
+
 void MiiGroup::swap(u32 i0, u32 i1) {
+    assert(i0 < m_miiCount && i1 < m_miiCount);
     System::Mii *tmp = m_miis[i0];
     m_miis[i0] = m_miis[i1];
     m_miis[i1] = tmp;
