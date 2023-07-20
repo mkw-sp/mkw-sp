@@ -6,6 +6,10 @@
 
 #include <sp/CourseDatabase.hh>
 
+// Imported by SectionManager.S
+extern "C" const s16 GlobalContext_SizeInBytes;
+const s16 GlobalContext_SizeInBytes = sizeof(UI::GlobalContext);
+
 namespace UI {
 
 SP::ClientSettings::CourseSelection getCourseSelection() {

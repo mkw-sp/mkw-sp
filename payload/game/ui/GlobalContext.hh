@@ -86,9 +86,6 @@ public:
     u32 m_timeAttackGhostIndices[11];                       // Added
     SP::CircularBuffer<Registry::Course, 32> m_courseOrder; // Added
 };
-
-// Keep in sync with SectionManager.c
-static_assert(sizeof(SP::CircularBuffer<Registry::Course, 32>) == 0x88);
-static_assert(sizeof(GlobalContext) == 0x510 + sizeof(u32) * (1 + 11) + 0x88);
+// static_assert(offsetof(GlobalContext::m_timeAttackGhostCount) == 0x510);
 
 } // namespace UI
