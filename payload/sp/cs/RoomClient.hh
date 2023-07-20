@@ -2,6 +2,7 @@
 
 #include "sp/cs/RoomManager.hh"
 #include "sp/net/AsyncSocket.hh"
+#include "sp/net/ProtoSocket.hh"
 
 #include <game/system/Mii.hh>
 #include <game/util/Registry.hh>
@@ -83,14 +84,12 @@ private:
     std::expected<void, const wchar_t *> writeVote(u32 course,
             std::optional<Player::Properties> properties);
 
-    [[nodiscard]] std::expected<std::optional<RoomEvent>, const wchar_t *> read();
-    [[nodiscard]] std::expected<void, const wchar_t *> write(RoomRequest request);
-
     u32 m_localPlayerCount;
     u32 m_localPlayerIds[2];
     bool m_localSettingsChanged = false;
     State m_state;
-    Net::AsyncSocket m_socket;
+    Net::AsyncSocket m_innerSocket;
+    Net::ProtoSocket<RoomEvent, RoomRequest, Net::AsyncSocket> m_socket;
     u32 m_ip;
     u16 m_port;
     std::optional<LoginInfo> m_loginInfo;

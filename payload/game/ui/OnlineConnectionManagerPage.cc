@@ -1,22 +1,18 @@
 #include "OnlineConnectionManagerPage.hh"
 
-#include "game/system/RaceConfig.hh"
 #include "game/system/SaveManager.hh"
-#include "game/ui/GlobalContext.hh"
 #include "game/ui/OnlineModeSelectPage.hh"
 #include "game/ui/SectionManager.hh"
 
 #include <protobuf/Matchmaking.pb.h>
-#include <sp/cs/RoomClient.hh>
-#include <vendor/nanopb/pb_decode.h>
-#include <vendor/nanopb/pb_encode.h>
 
 namespace UI {
 
 constexpr u32 DOLPHIN_DEFAULT_DEVICE_ID = 0x0403AC68;
 
 OnlineConnectionManagerPage::OnlineConnectionManagerPage()
-    : m_socket{0x7F000001, 21331, "match   "} {
+    : m_innerSocket{0x7F000001, 21331, "match   "}, m_socket{&m_innerSocket, STCMessage_fields,
+                                                            CTSMessage_fields} {
     m_state = State::Initial;
 };
 
@@ -29,11 +25,11 @@ void OnlineConnectionManagerPage::onInit() {
 
 void OnlineConnectionManagerPage::afterCalc() {
     auto *sectionManager = SectionManager::Instance();
-    if (!m_socket.poll()) {
+    if (!m_socket.inner().poll()) {
         sectionManager->transitionToError(30000);
     }
 
-    if (!m_socket.ready()) {
+    if (!m_socket.inner().ready()) {
         return;
     }
 
@@ -52,14 +48,14 @@ std::expected<void, const wchar_t *> OnlineConnectionManagerPage::transition() {
     case State::Initial:
         return startLogin();
     case State::WaitForLoginChallenge:;
-        if ((event = TRY(read()))) {
+        if ((event = TRY(m_socket.readProto()))) {
             SP_LOG("Got login challenge");
             return respondToChallenge(**event);
         } else {
             return {};
         }
     case State::WaitForLoginResponse:
-        if ((event = TRY(read()))) {
+        if ((event = TRY(m_socket.readProto()))) {
             SP_LOG("Got login response");
             setupRatings(**event);
         }
@@ -73,7 +69,7 @@ std::expected<void, const wchar_t *> OnlineConnectionManagerPage::transition() {
             return {};
         }
     case State::WaitForSearchResponse:
-        if ((event = TRY(read()))) {
+        if ((event = TRY(m_socket.readProto()))) {
             SP_LOG("Got search response");
             setupMatch(**event);
         }
@@ -120,7 +116,7 @@ std::expected<void, const wchar_t *> OnlineConnectionManagerPage::startLogin() {
         m_state = State::WaitForLoginChallenge;
     }
 
-    return write(response);
+    return m_socket.writeProto(response);
 }
 
 std::expected<void, const wchar_t *> OnlineConnectionManagerPage::respondToChallenge(
@@ -150,7 +146,7 @@ std::expected<void, const wchar_t *> OnlineConnectionManagerPage::respondToChall
     memcpy(response.message.login_challenge_answer.mii.bytes, &rawMii, sizeof(System::RawMii));
 
     m_state = State::WaitForLoginResponse;
-    return write(response);
+    return m_socket.writeProto(response);
 }
 
 void OnlineConnectionManagerPage::setupRatings(const STCMessage &event) {
@@ -174,7 +170,7 @@ std::expected<void, const wchar_t *> OnlineConnectionManagerPage::sendSearchMess
 
     m_searchStarted = false;
     m_state = State::WaitForSearchResponse;
-    return write(response);
+    return m_socket.writeProto(response);
 }
 
 void OnlineConnectionManagerPage::setupMatch(const STCMessage &event) {
@@ -184,28 +180,6 @@ void OnlineConnectionManagerPage::setupMatch(const STCMessage &event) {
 
     m_matchResponse = event.message.found_match;
     m_state = State::FoundMatch;
-}
-
-std::expected<std::optional<STCMessage>, const wchar_t *> OnlineConnectionManagerPage::read() {
-    u8 buffer[1024];
-    STCMessage tmp;
-
-    auto size = TRY_OPT(TRY(m_socket.read(buffer, sizeof(buffer))));
-    pb_istream_t stream = pb_istream_from_buffer(buffer, size);
-    if (!pb_decode(&stream, STCMessage_fields, &tmp)) {
-        return std::unexpected(L"Failed to decode proto message");
-    }
-
-    return tmp;
-}
-
-std::expected<void, const wchar_t *> OnlineConnectionManagerPage::write(CTSMessage message) {
-    u8 buffer[1024];
-
-    pb_ostream_t stream = pb_ostream_from_buffer(buffer, sizeof(buffer));
-    assert(pb_encode(&stream, CTSMessage_fields, &message));
-
-    return m_socket.write(buffer, stream.bytes_written);
 }
 
 } // namespace UI

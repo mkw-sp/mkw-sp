@@ -4,7 +4,6 @@
 #include "game/ui/SectionManager.hh"
 
 #include <sp/cs/RoomClient.hh>
-#include <sp/net/AsyncSocket.hh>
 
 extern "C" {
 #include <sp/keyboard/Keyboard.h>

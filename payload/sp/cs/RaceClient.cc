@@ -6,8 +6,6 @@
 #include <game/system/RaceConfig.hh>
 #include <game/system/RaceManager.hh>
 #include <game/ui/SectionManager.hh>
-#include <vendor/nanopb/pb_decode.h>
-#include <vendor/nanopb/pb_encode.h>
 
 #include <cmath>
 
@@ -163,8 +161,9 @@ RaceClient *RaceClient::Instance() {
 }
 
 RaceClient::RaceClient(RoomClient &roomClient)
-    : m_roomClient(roomClient), m_socket("race    ", {}),
-      m_connection{roomClient.ip(), roomClient.port(), roomClient.keypair()} {}
+    : m_roomClient(roomClient),
+      m_socket("race    ", {}), m_connection{roomClient.ip(), roomClient.port(),
+                                        roomClient.keypair()} {}
 
 RaceClient::~RaceClient() {
     hydro_memzero(&m_connection, sizeof(m_connection));

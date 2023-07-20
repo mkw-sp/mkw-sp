@@ -1,6 +1,7 @@
 #pragma once
 
 #include "sp/ScopeLock.hh"
+#include "sp/net/ProtoSocket.hh"
 #include "sp/net/SyncSocket.hh"
 #include "sp/storage/Storage.hh"
 
@@ -74,13 +75,11 @@ private:
     bool writeReadDir(u32 handle);
     bool writeStat(const wchar_t *path);
     bool writeStartBenchmark();
-    bool write(NetStorageRequest request);
 
     std::optional<FileHandle> readOpen(File *file);
     std::optional<DirHandle> readOpenDir(Dir *dir);
     std::optional<NodeInfo> readNodeInfo();
     bool readOk();
-    std::expected<std::optional<NetStorageResponse>, const wchar_t *> read();
 
     void connect();
 
@@ -95,7 +94,9 @@ private:
     Mutex m_mutex{};
     u8 m_stack[4096];
     OSThread m_thread;
-    std::optional<Net::SyncSocket> m_socket;
+    std::optional<Net::SyncSocket> m_socketRaw;
+    std::optional<Net::ProtoSocket<NetStorageResponse, NetStorageRequest, Net::SyncSocket>>
+            m_socket;
     File m_files[32];
     Dir m_dirs[32];
 

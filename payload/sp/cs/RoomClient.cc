@@ -2,15 +2,9 @@
 
 #include "sp/settings/RegionLineColor.hh"
 
-#include <egg/core/eggHeap.hh>
-#include <game/system/RootScene.hh>
 #include <game/system/SaveManager.hh>
 #include <game/ui/GlobalContext.hh>
-#include <game/ui/SectionId.hh>
 #include <game/ui/SectionManager.hh>
-
-#include <vendor/nanopb/pb_decode.h>
-#include <vendor/nanopb/pb_encode.h>
 
 namespace SP {
 
@@ -57,9 +51,8 @@ bool RoomClient::calc(Handler &handler) {
         return false;
     }
 
-    if (!m_socket.poll()) {
+    if (!m_socket.inner().poll()) {
         handler.onError(nullptr);
-        return false;
     }
 
     if (auto state = resolve(handler)) {
@@ -80,11 +73,11 @@ u16 RoomClient::port() const {
 }
 
 hydro_kx_session_keypair RoomClient::keypair() const {
-    return m_socket.keypair();
+    return m_socket.inner().keypair();
 }
 
 Net::AsyncSocket &RoomClient::socket() {
-    return m_socket;
+    return m_socket.inner();
 }
 
 void RoomClient::sendComment(u32 commentId) {
@@ -149,14 +142,16 @@ RoomClient *RoomClient::Instance() {
 }
 
 RoomClient::RoomClient(u32 localPlayerCount, u32 ip, u16 port, u16 passcode)
-    : m_localPlayerCount(localPlayerCount), m_state(State::Connect), m_socket(ip, port, "room    "),
-      m_ip(ip), m_port(port) {
+    : m_localPlayerCount(localPlayerCount), m_state(State::Connect),
+      m_innerSocket(ip, port, "room    "),
+      m_socket(&m_innerSocket, RoomEvent_fields, RoomRequest_fields), m_ip(ip), m_port(port) {
     m_passcode = passcode;
 }
 
 RoomClient::RoomClient(u32 localPlayerCount, u32 ip, u16 port, LoginInfo loginInfo)
-    : m_localPlayerCount(localPlayerCount), m_state(State::Connect), m_socket(ip, port, "room    "),
-      m_ip(ip), m_port(port) {
+    : m_localPlayerCount(localPlayerCount), m_state(State::Connect),
+      m_innerSocket(ip, port, "room    "),
+      m_socket(&m_innerSocket, RoomEvent_fields, RoomRequest_fields), m_ip(ip), m_port(port) {
     m_loginInfo = loginInfo;
 }
 
@@ -225,7 +220,7 @@ void RoomClient::transition(Handler &handler, State state) {
 }
 
 std::expected<RoomClient::State, const wchar_t *> RoomClient::calcConnect() {
-    if (!m_socket.ready()) {
+    if (!m_socket.inner().ready()) {
         return State::Connect;
     }
 
@@ -233,7 +228,7 @@ std::expected<RoomClient::State, const wchar_t *> RoomClient::calcConnect() {
 }
 
 std::expected<RoomClient::State, const wchar_t *> RoomClient::calcSetup(Handler &handler) {
-    std::optional<RoomEvent> event = TRY(read());
+    std::optional<RoomEvent> event = TRY(m_socket.readProto());
     if (!event) {
         return State::Setup;
     }
@@ -281,7 +276,7 @@ std::expected<RoomClient::State, const wchar_t *> RoomClient::calcMain(Handler &
         m_localSettingsChanged = false;
     }
 
-    std::optional<RoomEvent> event = TRY(read());
+    std::optional<RoomEvent> event = TRY(m_socket.readProto());
     if (!event) {
         return State::Main;
     }
@@ -338,7 +333,7 @@ std::expected<RoomClient::State, const wchar_t *> RoomClient::calcMain(Handler &
 }
 
 std::expected<RoomClient::State, const wchar_t *> RoomClient::calcTeamSelect(Handler &handler) {
-    std::optional<RoomEvent> event = TRY(read());
+    std::optional<RoomEvent> event = TRY(m_socket.readProto());
     if (!event) {
         return State::TeamSelect;
     }
@@ -354,7 +349,7 @@ std::expected<RoomClient::State, const wchar_t *> RoomClient::calcTeamSelect(Han
 }
 
 std::expected<RoomClient::State, const wchar_t *> RoomClient::calcSelect(Handler &handler) {
-    std::optional<RoomEvent> event = TRY(read());
+    std::optional<RoomEvent> event = TRY(m_socket.readProto());
     if (!event) {
         return State::Select;
     }
@@ -509,21 +504,21 @@ std::expected<void, const wchar_t *> RoomClient::writeJoin() {
         request.request.join.settings[i] = saveManager->getSetting(RoomSettings::offset + i);
     }
     m_localSettingsChanged = false;
-    return write(request);
+    return m_socket.writeProto(request);
 }
 
 std::expected<void, const wchar_t *> RoomClient::writeComment(u32 messageId) {
     RoomRequest request;
     request.which_request = RoomRequest_comment_tag;
     request.request.comment.messageId = messageId;
-    return write(request);
+    return m_socket.writeProto(request);
 }
 
 std::expected<void, const wchar_t *> RoomClient::writeStart(u32 gamemode) {
     RoomRequest request;
     request.which_request = RoomRequest_start_tag;
     request.request.start.gamemode = gamemode;
-    return write(request);
+    return m_socket.writeProto(request);
 }
 
 std::expected<void, const wchar_t *> RoomClient::writeSettings() {
@@ -534,7 +529,7 @@ std::expected<void, const wchar_t *> RoomClient::writeSettings() {
     for (size_t i = 0; i < RoomSettings::count; i++) {
         request.request.settings.settings[i] = saveManager->getSetting(RoomSettings::offset + i);
     }
-    return write(request);
+    return m_socket.writeProto(request);
 }
 
 std::expected<void, const wchar_t *> RoomClient::writeTeamSelect(u32 playerId, u32 teamId) {
@@ -542,7 +537,7 @@ std::expected<void, const wchar_t *> RoomClient::writeTeamSelect(u32 playerId, u
     request.which_request = RoomRequest_teamSelect_tag;
     request.request.teamSelect.playerId = playerId;
     request.request.teamSelect.teamId = teamId;
-    return write(request);
+    return m_socket.writeProto(request);
 }
 
 std::expected<void, const wchar_t *> RoomClient::writeVote(u32 course,
@@ -554,28 +549,7 @@ std::expected<void, const wchar_t *> RoomClient::writeVote(u32 course,
         request.request.vote.properties = {(*properties).m_character, (*properties).m_vehicle,
                 (*properties).m_driftIsAuto};
     }
-    return write(request);
-}
-
-std::expected<std::optional<RoomEvent>, const wchar_t *> RoomClient::read() {
-    u8 buffer[1024];
-    RoomEvent tmp;
-
-    auto size = TRY_OPT(TRY(m_socket.read(buffer, sizeof(buffer))));
-    pb_istream_t stream = pb_istream_from_buffer(buffer, size);
-    if (!pb_decode(&stream, RoomEvent_fields, &tmp)) {
-        return std::unexpected(L"Failed to decode proto message");
-    }
-
-    return tmp;
-}
-
-std::expected<void, const wchar_t *> RoomClient::write(RoomRequest request) {
-    u8 buffer[RoomRequest_size];
-    pb_ostream_t stream = pb_ostream_from_buffer(buffer, sizeof(buffer));
-
-    assert(pb_encode(&stream, RoomRequest_fields, &request));
-    return m_socket.write(buffer, stream.bytes_written);
+    return m_socket.writeProto(request);
 }
 
 RoomClient *RoomClient::s_instance = nullptr;

@@ -4,6 +4,7 @@ extern "C" {
 #include "sp/Host.h"
 }
 #include "sp/net/Net.hh"
+#include "sp/net/ProtoSocket.hh"
 #include "sp/net/SyncSocket.hh"
 
 #include <common/Bytes.hh>
@@ -14,8 +15,6 @@ extern "C" {
 #include <revolution.h>
 #include <revolution/nwc24/NWC24Utils.h>
 }
-#include <vendor/nanopb/pb_decode.h>
-#include <vendor/nanopb/pb_encode.h>
 
 #include <algorithm>
 #include <cstring>
@@ -49,16 +48,15 @@ static std::expected<void, const wchar_t *> Sync(bool update) {
     assert(versionInfo.type == BUILD_TYPE_RELEASE);
 
     status = Status::Connect;
-    SP::Net::SyncSocket socket("update.mkw-sp.com", 21328, serverPK, "update  ");
-    if (!socket.ok()) {
+    SP::Net::SyncSocket rawSocket("update.mkw-sp.com", 21328, serverPK, "update  ");
+    SP::Net::ProtoSocket<UpdateResponse, UpdateRequest, SP::Net::SyncSocket> socket(&rawSocket,
+            UpdateResponse_fields, UpdateRequest_fields);
+    if (!rawSocket.ok()) {
         return std::unexpected(L"Unable to connect to update.mkw-sp.com!");
     }
 
     status = Status::SendInfo;
     {
-        u8 buffer[UpdateRequest_size];
-        pb_ostream_t stream = pb_ostream_from_buffer(buffer, sizeof(buffer));
-
         UpdateRequest request;
         request.wantsUpdate = update;
         request.versionMajor = versionInfo.major;
@@ -67,32 +65,23 @@ static std::expected<void, const wchar_t *> Sync(bool update) {
         NWC24iStrLCpy(request.gameName, OSGetAppGamename(), sizeof(request.gameName));
         NWC24iStrLCpy(request.hostPlatform, Host_GetPlatformString(), sizeof(request.hostPlatform));
 
-        assert(pb_encode(&stream, UpdateRequest_fields, &request));
-        TRY(socket.write(buffer, stream.bytes_written));
+        TRY(socket.writeProto(request));
     }
 
     status = Status::ReceiveInfo;
     {
-        u8 buffer[UpdateResponse_size];
-        std::optional<u16> size = TRY(socket.read(buffer, sizeof(buffer)));
-        if (!size) {
+        auto response = TRY(socket.readProto());
+        if (!response) {
             return std::unexpected(L"Unable to recieve update information");
         }
 
-        pb_istream_t stream = pb_istream_from_buffer(buffer, *size);
-
-        UpdateResponse response;
-        if (!pb_decode(&stream, UpdateResponse_fields, &response)) {
-            return std::unexpected(L"Unable to decode update information");
-        }
-
         Info newInfo{};
-        newInfo.version.major = response.versionMajor;
-        newInfo.version.minor = response.versionMinor;
-        newInfo.version.patch = response.versionPatch;
-        newInfo.size = response.size;
-        assert(response.signature.size == sizeof(newInfo.signature));
-        memcpy(newInfo.signature, response.signature.bytes, sizeof(newInfo.signature));
+        newInfo.version.major = response->versionMajor;
+        newInfo.version.minor = response->versionMinor;
+        newInfo.version.patch = response->versionPatch;
+        newInfo.size = response->size;
+        assert(response->signature.size == sizeof(newInfo.signature));
+        memcpy(newInfo.signature, response->signature.bytes, sizeof(newInfo.signature));
         if (!update) {
             if (newInfo.version > versionInfo) {
                 info.emplace(newInfo);
@@ -124,7 +113,7 @@ static std::expected<void, const wchar_t *> Sync(bool update) {
         for (info->downloadedSize = 0; info->downloadedSize < info->size;) {
             alignas(0x20) u8 message[0x1000] = {};
             u16 chunkSize = std::min(info->size - info->downloadedSize, static_cast<u32>(0x1000));
-            auto res = socket.read(message, chunkSize);
+            auto res = rawSocket.read(message, chunkSize);
             if (!res) {
                 NANDClose(&fileInfo);
                 return std::unexpected(res.error());
