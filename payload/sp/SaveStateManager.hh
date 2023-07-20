@@ -2,8 +2,6 @@
 
 #include "game/kart/KartSaveState.hh"
 
-#include <optional>
-
 namespace SP {
 
 class SaveStateManager {

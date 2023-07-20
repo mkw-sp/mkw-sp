@@ -4,8 +4,6 @@ extern "C" {
 #include <libhydrogen/hydrogen.h>
 }
 
-#include <optional>
-
 #include <Common.hh>
 
 namespace SP::Net {

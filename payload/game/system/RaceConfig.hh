@@ -6,8 +6,6 @@
 #include <sp/FixedString.hh>
 #include <sp/ShaUtil.hh>
 
-#include <optional>
-
 namespace System {
 
 /// Configuration for the current race.

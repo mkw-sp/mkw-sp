@@ -3,8 +3,6 @@
 #include "game/ui/MenuInputManager.hh"
 #include "game/ui/UIControl.hh"
 
-#include <optional>
-
 namespace UI {
 
 class ScrollBar : public LayoutUIControl {

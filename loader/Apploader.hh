@@ -2,8 +2,6 @@
 
 #include "DI.hh"
 
-#include <optional>
-
 namespace Apploader {
 
 typedef void (*GameEntryFunc)(void);
