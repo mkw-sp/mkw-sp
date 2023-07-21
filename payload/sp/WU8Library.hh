@@ -15,6 +15,7 @@ enum class ExtractionStage {
     Processing,
     Writing,
     Finished,
+    ReplacedCourse,
 };
 
 struct ExtractionState {

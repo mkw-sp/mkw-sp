@@ -566,8 +566,12 @@ Sha1 SaveManager::courseSHA1(Registry::Course courseId) const {
     return m_courseSHA1s[static_cast<u32>(courseId)];
 }
 
+Sha1 SaveManager::vanillaSHA1(Registry::Course courseId) const {
+    return s_courseSHA1s[static_cast<u32>(courseId)];
+}
+
 bool SaveManager::isCourseReplaced(Registry::Course courseId) const {
-    return m_courseSHA1s[static_cast<u32>(courseId)] != s_courseSHA1s[static_cast<u32>(courseId)];
+    return courseSHA1(courseId) != vanillaSHA1(courseId);
 }
 
 SaveManager *SaveManager::Instance() {
