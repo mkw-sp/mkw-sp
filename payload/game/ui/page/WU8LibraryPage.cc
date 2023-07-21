@@ -61,6 +61,11 @@ void WU8LibraryPage::afterCalc() {
         sectionManager->setNextSection(SectionId::TitleFromBoot, Anim::Next);
         sectionManager->startChangeSection(0, 0);
         return;
+    case ReplacedCourse:
+        SP::IOSDolphin::SetSpeedLimit(100);
+        awaitPage->setSpinnerVisible(false);
+        awaitPage->setWindowMessage(10447, &info);
+        return;
     }
 
     awaitPage->setWindowMessage(10442, &info);
