@@ -112,6 +112,7 @@ public:
 
     Sha1 courseSHA1(Registry::Course courseId) const;
     bool isCourseReplaced(Registry::Course courseId) const;
+    bool isCourseReplaced(Registry::Course courseId, Sha1 courseHash) const;
 
     void getLocation(u32 *location) const;
     void getLatitude(u16 *latitude) const;

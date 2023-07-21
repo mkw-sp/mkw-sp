@@ -387,6 +387,7 @@
     "10444": "Decompressing track archive file",
     "10445": "Processing each track file",
     "10446": "Writing file to the SD",
+    "10447": "Not all track files are vanilla!\n\nPlease make sure you are using a clean disk/dump.\n\nThis is required for initial setup.",
     "20000": "Online",
     "20001": "Play online.",
     "20002": "Play online with a friend.",

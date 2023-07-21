@@ -58,6 +58,10 @@ void WU8LibraryPage::afterCalc() {
         sectionManager->setNextSection(SectionId::TitleFromBoot, Anim::Next);
         sectionManager->startChangeSection(0, 0);
         return;
+    case ReplacedCourse:
+        awaitPage->setSpinnerVisible(false);
+        awaitPage->setWindowMessage(10447);
+        return;
     }
 
     awaitPage->setWindowMessage(10442, &info);

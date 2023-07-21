@@ -15,6 +15,7 @@ enum class ExtractionState {
     Processing,
     Writing,
     Finished,
+    ReplacedCourse,
 };
 
 void StartExtraction(EGG::Heap *mem2);

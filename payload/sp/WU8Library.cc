@@ -5,6 +5,7 @@
 #include "sp/storage/Storage.hh"
 
 #include <egg/core/eggExpHeap.hh>
+#include <game/system/SaveManager.hh>
 
 #include <algorithm>
 #include <cstring>
@@ -230,29 +231,47 @@ const char *s_ring_mission_files[] = {"RM_ring1.brres", "RM_ring1.kcl", "RM_ring
         "RM_ring3c.kcl", "begoman_spike.brres", "effect/begoman_spike/rk_begoman_spike.breff",
         "effect/begoman_spike/rk_begoman_spike.breft", "ring_mission_b.kcl"};
 
-std::pair<const char *, std::span<const char *>> s_autoaddLibrary[] = {
-        {"beginner_course", s_beginner_course_files}, {"farm_course", s_farm_course_files},
-        {"kinoko_course", s_kinoko_course_files}, {"factory_course", s_factory_course_files},
-        {"castle_course", s_castle_course_files}, {"shopping_course", s_shopping_course_files},
-        {"boardcross_course", s_boardcross_course_files}, {"truck_course", s_truck_course_files},
-        {"senior_course", s_senior_course_files}, {"water_course", s_water_course_files},
-        {"treehouse_course", s_treehouse_course_files}, {"volcano_course", s_volcano_course_files},
-        {"desert_course", s_desert_course_files},
-        {"ridgehighway_course", s_ridgehighway_course_files},
-        {"koopa_course", s_koopa_course_files}, {"rainbow_course", s_rainbow_course_files},
-        {"old_peach_gc", s_old_peach_gc_files}, {"old_falls_ds", s_old_falls_ds_files},
-        {"old_obake_sfc", s_old_obake_sfc_files}, {"old_mario_64", s_old_mario_64_files},
-        {"old_sherbet_64", s_old_sherbet_64_files}, {"old_heyho_gba", s_old_heyho_gba_files},
-        {"old_town_ds", s_old_town_ds_files}, {"old_waluigi_gc", s_old_waluigi_gc_files},
-        {"old_desert_ds", s_old_desert_ds_files}, {"old_koopa_gba", s_old_koopa_gba_files},
-        {"old_donkey_64", s_old_donkey_64_files}, {"old_mario_gc", s_old_mario_gc_files},
-        {"old_mario_sfc", s_old_mario_sfc_files}, {"old_garden_ds", s_old_garden_ds_files},
-        {"old_donkey_gc", s_old_donkey_gc_files}, {"old_koopa_64", s_old_koopa_64_files},
-        {"block_battle", s_block_battle_files}, {"venice_battle", s_venice_battle_files},
-        {"skate_battle", s_skate_battle_files}, {"casino_battle", s_casino_battle_files},
-        {"sand_battle", s_sand_battle_files}, {"old_matenro_64", s_old_matenro_64_files},
-        {"winningrun_demo", s_winningrun_demo_files}, {"loser_demo", s_loser_demo_files},
-        {"ring_mission", s_ring_mission_files}};
+std::pair<std::pair<const char *, u8>, std::span<const char *>> s_autoaddLibrary[] = {
+        {{"beginner_course", 0x08}, s_beginner_course_files},
+        {{"farm_course", 0x01}, s_farm_course_files},
+        {{"kinoko_course", 0x02}, s_kinoko_course_files},
+        {{"factory_course", 0x04}, s_factory_course_files},
+        {{"castle_course", 0x00}, s_castle_course_files},
+        {{"shopping_course", 0x05}, s_shopping_course_files},
+        {{"boardcross_course", 0x06}, s_boardcross_course_files},
+        {{"truck_course", 0x07}, s_truck_course_files},
+        {{"senior_course", 0x09}, s_senior_course_files},
+        {{"water_course", 0x0F}, s_water_course_files},
+        {{"treehouse_course", 0x0B}, s_treehouse_course_files},
+        {{"volcano_course", 0x03}, s_volcano_course_files},
+        {{"desert_course", 0x0E}, s_desert_course_files},
+        {{"ridgehighway_course", 0x0A}, s_ridgehighway_course_files},
+        {{"koopa_course", 0x0C}, s_koopa_course_files},
+        {{"rainbow_course", 0x0D}, s_rainbow_course_files},
+        {{"old_peach_gc", 0x10}, s_old_peach_gc_files},
+        {{"old_falls_ds", 0x14}, s_old_falls_ds_files},
+        {{"old_obake_sfc", 0x19}, s_old_obake_sfc_files},
+        {{"old_mario_64", 0x1A}, s_old_mario_64_files},
+        {{"old_sherbet_64", 0x1B}, s_old_sherbet_64_files},
+        {{"old_heyho_gba", 0x1F}, s_old_heyho_gba_files},
+        {{"old_town_ds", 0x17}, s_old_town_ds_files},
+        {{"old_waluigi_gc", 0x12}, s_old_waluigi_gc_files},
+        {{"old_desert_ds", 0x15}, s_old_desert_ds_files},
+        {{"old_koopa_gba", 0x1E}, s_old_koopa_gba_files},
+        {{"old_donkey_64", 0x1D}, s_old_donkey_64_files},
+        {{"old_mario_gc", 0x11}, s_old_mario_gc_files},
+        {{"old_mario_sfc", 0x18}, s_old_mario_sfc_files},
+        {{"old_garden_ds", 0x16}, s_old_garden_ds_files},
+        {{"old_donkey_gc", 0x13}, s_old_donkey_gc_files},
+        {{"old_koopa_64", 0x1C}, s_old_koopa_64_files},
+        {{"block_battle", 0x21}, s_block_battle_files},
+        {{"venice_battle", 0x20}, s_venice_battle_files},
+        {{"skate_battle", 0x23}, s_skate_battle_files},
+        {{"casino_battle", 0x22}, s_casino_battle_files},
+        {{"sand_battle", 0x24}, s_sand_battle_files},
+        {{"old_matenro_64", 0x29}, s_old_matenro_64_files},
+        {{"winningrun_demo", 0x37}, s_winningrun_demo_files},
+        {{"loser_demo", 0x38}, s_loser_demo_files}, {{"ring_mission", 0x36}, s_ring_mission_files}};
 
 // WU8a
 constexpr u32 WU8_MAGIC = 1465202785;
@@ -324,8 +343,10 @@ void *ExtractThread(void *param) {
     u32 u8MagicInt = 0;
     memcpy(&u8MagicInt, U8_MAGIC, 4);
 
+    auto *saveManager = System::SaveManager::Instance();
     for (auto pair : s_autoaddLibrary) {
-        auto archive = pair.first;
+        auto archive = pair.first.first;
+        auto courseId = static_cast<Registry::Course>(pair.first.second);
         auto files = pair.second;
 
         char sourcePath[64];
@@ -341,10 +362,22 @@ void *ExtractThread(void *param) {
 
         SetExtractionState(ExtractionState::Decompressing, archive);
         auto decompressedSize = YAZDecoder::Decode(compressedBuf.data(), fileHandle->size(),
-                decompressedBuf.data(), decompressedBuf.size());
+                decompressedBuf.data(), decompressedBuf.size())
+                                        .value();
+
+        Sha1 courseSha;
+        NETSHA1Context shaContext;
+        NETSHA1Init(&shaContext);
+        NETSHA1Update(&shaContext, decompressedBuf.data(), decompressedSize);
+        NETSHA1GetDigest(&shaContext, &courseSha);
+
+        if (saveManager->isCourseReplaced(courseId, courseSha)) {
+            SetExtractionState(ExtractionState::ReplacedCourse, archive);
+            break;
+        }
 
         SetExtractionState(ExtractionState::Processing, archive);
-        U8Cursor cursor{{decompressedBuf.data(), decompressedSize.value()}};
+        U8Cursor cursor{{decompressedBuf.data(), decompressedSize}};
         auto header = cursor.readU8Header().value();
         assert(header.magic == u8MagicInt);
 
@@ -402,12 +435,14 @@ void *ExtractThread(void *param) {
         }
     }
 
-    Storage::Open(L"autoadd/.finished", "w").value();
+    if (std::get<0>(GetExtractionState()) != ExtractionState::ReplacedCourse) {
+        Storage::Open(L"autoadd/.finished", "w").value();
+        SetExtractionState(ExtractionState::Finished, nullptr);
+    }
+
     extractionHeap->free(decompressedBlock);
     extractionHeap->free(compressedBlock);
     extractionHeap->destroy();
-
-    SetExtractionState(ExtractionState::Finished, nullptr);
     return nullptr;
 }
 
