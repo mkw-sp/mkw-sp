@@ -175,10 +175,10 @@ private:
     std::optional<u8> m_spCurrentLicense;         // Added
     u8 m_ghostInitStack[0x8000 /* 32 KiB */];     // Added
     OSThread m_ghostInitThread;                   // Added
-    std::array<Sha1, 32> m_courseSHA1s;           // Added
+    std::array<Sha1, 42> m_courseSHA1s;           // Added
 
     static SaveManager *s_instance;
-    static const std::array<Sha1, 32> s_courseSHA1s;
+    static const std::array<Sha1, 42> s_courseSHA1s;
     static const char *s_courseAbbreviations[32];
 };
 
