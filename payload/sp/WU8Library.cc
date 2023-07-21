@@ -1,10 +1,11 @@
 #include "sp/WU8Library.hh"
 
+#include "sp/ScopeLock.hh"
 #include "sp/U8Iterator.hh"
 #include "sp/YAZDecoder.hh"
 #include "sp/storage/Storage.hh"
 
-#include <game/system/GameScene.hh>
+#include <egg/core/eggExpHeap.hh>
 
 #include <algorithm>
 #include <cstring>
@@ -257,16 +258,65 @@ std::pair<const char *, std::span<const char *>> s_autoaddLibrary[] = {
 // WU8a
 constexpr u32 WU8_MAGIC = 1465202785;
 
-void ExtractWU8Library() {
-    if (Storage::OpenDir(L"autoadd/").has_value()) {
-        return;
+namespace WU8Library {
+
+// Minimum required sizes for vanilla tracks to be ripped and extracted.
+// This avoids using up too much memory by having to reallocate and copy
+// if using a std::vector<u8>, and this lack of reallocation means it can
+// run while heaps are locked (eg: while WU8LibraryPage is shown).
+constexpr size_t CompressedMaxSize = 3000000;
+constexpr size_t DecompressedMaxSize = 6000000;
+constexpr size_t ExtractionHeapSize = CompressedMaxSize + DecompressedMaxSize + 1024;
+
+ExtractionStage s_extractionStage = ExtractionStage::Started;
+std::array<char, 64> s_currentlyExtracting;
+Mutex s_extractionStateLock;
+
+u8 s_extractionStack[1024 * 10];
+OSThread s_extractionThread;
+
+void *ExtractThread(void *param);
+
+ExtractionState GetExtractionState() {
+    ScopeLock<Mutex> g(s_extractionStateLock);
+
+    return ExtractionState{
+            .stage = s_extractionStage,
+            .archive = s_currentlyExtracting,
+    };
+}
+
+void SetExtractionState(ExtractionStage stage, const char *currentFile) {
+    ScopeLock<Mutex> g(s_extractionStateLock);
+
+    s_extractionStage = stage;
+    if (currentFile == nullptr) {
+        s_currentlyExtracting[0] = '\0';
+    } else {
+        snprintf(s_currentlyExtracting.data(), s_currentlyExtracting.size(), "%s", currentFile);
     }
+}
 
-    assert(Storage::CreateDir(L"autoadd/", false));
+void StartExtraction(EGG::Heap *mem2) {
+    void *buffer = new (mem2, -0x20) u8[ExtractionHeapSize];
+    auto *extractionHeap = EGG::ExpHeap::Create(buffer, ExtractionHeapSize, 1);
 
-    auto *heap = System::GameScene::Instance()->volatileHeapCollection.mem2;
-    std::vector<u8, HeapAllocator<u8>> compressedBuf{HeapAllocator<u8>{heap}};
-    std::vector<u8, HeapAllocator<u8>> decompressedBuf{HeapAllocator<u8>{heap}};
+    size_t stackSize = sizeof(s_extractionStack);
+    u8 *stackTop = s_extractionStack + stackSize;
+
+    OSCreateThread(&s_extractionThread, ExtractThread, extractionHeap, stackTop, stackSize, 25, 0);
+    OSResumeThread(&s_extractionThread);
+    OSDetachThread(&s_extractionThread);
+}
+
+void *ExtractThread(void *param) {
+    auto *extractionHeap = reinterpret_cast<EGG::ExpHeap *>(param);
+    assert(Storage::CreateDir(L"autoadd/", true));
+
+    void *compressedBlock = extractionHeap->alloc(CompressedMaxSize, -0x20);
+    void *decompressedBlock = extractionHeap->alloc(DecompressedMaxSize, -0x20);
+    std::span<u8> compressedBuf(reinterpret_cast<u8 *>(compressedBlock), CompressedMaxSize);
+    std::span<u8> decompressedBuf(reinterpret_cast<u8 *>(decompressedBlock), DecompressedMaxSize);
 
     u32 u8MagicInt = 0;
     memcpy(&u8MagicInt, U8_MAGIC, 4);
@@ -283,16 +333,15 @@ void ExtractWU8Library() {
             panic("Unable to load original game file!");
         }
 
-        compressedBuf.resize(fileHandle->size());
-        assert(fileHandle->read(compressedBuf.data(), compressedBuf.size(), 0));
+        SetExtractionState(ExtractionStage::Ripping, archive);
+        assert(fileHandle->read(compressedBuf.data(), fileHandle->size(), 0));
 
-        auto decodedSize = YAZDecoder::GetDecodedSize(compressedBuf.data(), compressedBuf.size());
-        decompressedBuf.resize(decodedSize.value());
+        SetExtractionState(ExtractionStage::Decompressing, archive);
+        auto decompressedSize = YAZDecoder::Decode(compressedBuf.data(), fileHandle->size(),
+                decompressedBuf.data(), decompressedBuf.size());
 
-        assert(YAZDecoder::Decode(compressedBuf.data(), compressedBuf.size(),
-                decompressedBuf.data(), decompressedBuf.size()));
-
-        U8Cursor cursor{decompressedBuf};
+        SetExtractionState(ExtractionStage::Processing, archive);
+        U8Cursor cursor{{decompressedBuf.data(), decompressedSize.value()}};
         auto header = cursor.readU8Header().value();
         assert(header.magic == u8MagicInt);
 
@@ -306,8 +355,9 @@ void ExtractWU8Library() {
         U8Iterator iterator{cursor, nullptr, rootNode.size, stringTableStart};
         std::optional<U8IterItem> item;
 
-        // We must set skipReadingFile to true as we aren't passing an out buffer.
+        u8 filesToExtract = files.size();
         CircularBuffer<const char *, 3> dirStack;
+        // We must set skipReadingFile to true as we aren't passing an out buffer.
         while ((item = iterator.next(/* skipReadingFile */ true))) {
             if (item->isDir) {
                 auto dirPath = iterator.getPath(nullptr);
@@ -315,8 +365,6 @@ void ExtractWU8Library() {
                 continue;
             } else if (item->isErr || !item->file) {
                 panic("Error while iterating");
-            } else if (item->file->hasData) {
-                continue;
             }
 
             char path[64];
@@ -325,19 +373,42 @@ void ExtractWU8Library() {
                 panic("Overflowed path");
             }
 
-            auto strcmpPred = [&](const char *file) { return !strcmp(file, path); };
+            const char *pathClean = path + strlen("autoadd/");
+            auto strcmpPred = [&](const char *file) { return !strcmp(file, pathClean); };
             if (std::find_if(files.begin(), files.end(), strcmpPred) == files.end()) {
                 // File is not needed for the auto-add library.
                 continue;
             };
 
-            auto file = Storage::Open(pathWide.data(), "w").value();
+            filesToExtract -= 1;
+            if (item->file->hasData) {
+                continue;
+            }
 
+            SetExtractionState(ExtractionStage::Writing, pathClean);
+            auto file = Storage::Open(pathWide.data(), "w").value();
             auto filePtr = &decompressedBuf[item->file->node.dataOffset];
+
             assert(file.write(filePtr, item->file->node.size, 0));
+            SetExtractionState(ExtractionStage::Processing, archive);
+        }
+
+        // panic is skipped when the file has already been found.
+        if (filesToExtract != 0) {
+            panic("Unable to find all required files!\n%hhd files left", filesToExtract);
         }
     }
+
+    Storage::Open(L"autoadd/.finished", "w").value();
+    extractionHeap->free(decompressedBlock);
+    extractionHeap->free(compressedBlock);
+    extractionHeap->destroy();
+
+    SetExtractionState(ExtractionStage::Finished, nullptr);
+    return nullptr;
 }
+
+} // namespace WU8Library
 
 u8 DeriveStartingKey(u32 size) {
     u8 *p = reinterpret_cast<u8 *>(&size);

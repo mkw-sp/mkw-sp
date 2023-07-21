@@ -30,6 +30,14 @@ GlobalContext *SectionManager::globalContext() {
     return m_globalContext;
 }
 
+void SectionManager::init() {
+    REPLACED(init)();
+
+    if (!SP::Storage::Open(L"autoadd/.finished", "r")) {
+        m_nextSectionId = SectionId::WU8Library;
+    }
+}
+
 void SectionManager::createSection() {
     if (m_firstLoad && System::SystemManager::Instance()->launchType() == 1) {
         m_registeredPadManager._8061B5A4();

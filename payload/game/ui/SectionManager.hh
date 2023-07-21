@@ -16,6 +16,8 @@ public:
     SaveManagerProxy *saveManagerProxy();
     GlobalContext *globalContext();
 
+    void REPLACED(init)();
+    REPLACE void init();
     void setNextSection(SectionId sectionId, Page::Anim anim);
     void REPLACED(createSection)();
     REPLACE void createSection();

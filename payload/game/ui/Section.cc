@@ -37,6 +37,7 @@
 #include "game/ui/page/CourseDebugPage.hh"
 #include "game/ui/page/DriftSelectPage.hh"
 #include "game/ui/page/ResultTeamTotalPage.hh"
+#include "game/ui/page/WU8LibraryPage.hh"
 
 namespace UI {
 
@@ -61,6 +62,8 @@ System::SceneId Section::GetSceneId(SectionId id) {
     switch (id) {
     case SectionId::None... SectionId::Max:
         return HandleSceneIdPatches(id);
+    case SectionId::WU8Library:
+        return System::SceneId::Menu;
     default:
         panic("Unhandled extended section ID! 0x%x", static_cast<s32>(id));
     }
@@ -79,6 +82,8 @@ const char *Section::GetResourceName(SectionId id) {
     switch (id) {
     case SectionId::None... SectionId::Max:
         return HandleResourceNamePatches(id);
+    case SectionId::WU8Library:
+        return "/Scene/UI/Channel";
     default:
         panic("Unhandled extended section ID! 0x%x", static_cast<s32>(id));
     }
@@ -99,6 +104,8 @@ bool Section::HasBackModel(const SectionId id) {
     switch (id) {
     case SectionId::None... SectionId::Max:
         return REPLACED(HasBackModel)(id);
+    case SectionId::WU8Library:
+        return false;
     default:
         panic("Unhandled extended section ID! 0x%x", static_cast<s32>(id));
     }
@@ -110,6 +117,8 @@ System::ContextId Section::GetContextId(const SectionId id) {
     switch (id) {
     case SectionId::None... SectionId::Max:
         return REPLACED(GetContextId)(id);
+    case SectionId::WU8Library:
+        return System::ContextId::SP;
     default:
         return System::ContextId::None;
     }
@@ -119,6 +128,8 @@ Sound::SoundId Section::GetSoundId(const SectionId id) {
     switch (id) {
     case SectionId::None... SectionId::Max:
         return REPLACED(GetSoundId)(id);
+    case SectionId::WU8Library:
+        return Sound::SoundId::SEQ_O_EARTH;
     default:
         panic("Unhandled extended section ID! 0x%x", static_cast<s32>(id));
     }
@@ -128,6 +139,8 @@ Sound::GroupId Section::GetGroupId(const SectionId id) {
     switch (id) {
     case SectionId::None... SectionId::Max:
         return REPLACED(GetGroupId)(id);
+    case SectionId::WU8Library:
+        return Sound::GroupId::Online;
     default:
         panic("Unhandled extended section ID! 0x%x", static_cast<s32>(id));
     }
@@ -138,6 +151,8 @@ s32 Section::GetPriority(const SectionId id) {
     switch (id) {
     case SectionId::None... SectionId::Max:
         return REPLACED(GetPriority)(id);
+    case SectionId::WU8Library:
+        return 0;
     default:
         panic("Unhandled extended section ID! 0x%x", static_cast<s32>(id));
     }
@@ -147,6 +162,8 @@ s32 Section::GetSoundTrigger(const PageId id) {
     switch (id) {
     case PageId::Empty... PageId::Max:
         return REPLACED(GetSoundTrigger)(id);
+    case PageId::WU8Library:
+        return 6;
     default:
         return 6;
     }
@@ -243,7 +260,7 @@ void Section::addPage(PageId pageId) {
             {SectionId::OnlineSingle, PageId::WifiFriendMenu},
 
             {SectionId::OnlineMulti, PageId::ConfirmWifiQuit},
-            {SectionId::OnlineMulti, PageId::ReadingGhostData},
+            {SectionId::OnlineMulti, PageId::SpinnerAwaitPage},
             {SectionId::OnlineMulti, PageId::ConnectingNintendoWfc},
             {SectionId::OnlineMulti, PageId::Confirm},
             {SectionId::OnlineMulti, PageId::CharacterSelect},
@@ -433,7 +450,7 @@ void Section::addPages(SectionId id) {
             {SectionId::SingleSelectBTCourse, PageId::GhostManager},
 
             // Change Ghost Data
-            {SectionId::SingleChangeGhostData, PageId::ReadingGhostData},
+            {SectionId::SingleChangeGhostData, PageId::SpinnerAwaitPage},
             {SectionId::SingleChangeGhostData, PageId::MenuMessage},
             {SectionId::SingleChangeGhostData, PageId::MessageBoardPopup},
             {SectionId::SingleChangeGhostData, PageId::SingleTop},
@@ -478,6 +495,9 @@ void Section::addPages(SectionId id) {
             {SectionId::ServicePackChannel, PageId::ServicePackChannel},
 
             // Extended sections add their used pages here!
+            {SectionId::WU8Library, PageId::SpinnerAwaitPage},
+            {SectionId::WU8Library, PageId::LineBackgroundWhite},
+            {SectionId::WU8Library, PageId::WU8Library},
 
             // clang-format on
     };
@@ -512,6 +532,8 @@ void Section::addActivePages(SectionId id) {
             {SectionId::ServicePackChannel, PageId::ServicePackChannel},
 
             // Extended sections define their active pages here!
+            {SectionId::WU8Library, PageId::LineBackgroundWhite},
+            {SectionId::WU8Library, PageId::WU8Library},
 
     };
     for (const auto &addition : additions) {
@@ -593,6 +615,8 @@ Page *Section::CreatePage(PageId pageId) {
         return new PackSelectPage;
     case PageId::CourseDebug:
         return new CourseDebugPage;
+    case PageId::WU8Library:
+        return new WU8LibraryPage;
     default:
         return REPLACED(CreatePage)(pageId);
     }

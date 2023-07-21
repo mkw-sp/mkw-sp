@@ -180,7 +180,7 @@ enum class SectionId {
 
     // Extensions go here {
     // Do not explicitly assign values to prevent merge conflicts
-
+    WU8Library,
     // }
 };
 
