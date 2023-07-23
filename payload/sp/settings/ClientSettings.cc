@@ -698,15 +698,15 @@ const Entry entries[] = {
         .valueMessageIds = (u32[]) { 10349, 10351, 10353 },
         .valueExplanationMessageIds = (u32[]) { 10350, 10352, 10354 },
     },
-    [static_cast<u32>(Setting::ItemWheel)] = {
+    [static_cast<u32>(Setting::YButton)] = {
         .category = Category::DebugOverlay,
-        .name = magic_enum::enum_name(Setting::ItemWheel),
-        .messageId = 10428,
-        .defaultValue = static_cast<u32>(ItemWheel::Disable),
-        .valueCount = magic_enum::enum_count<ItemWheel>(),
-        .valueNames = magic_enum::enum_names<ItemWheel>().data(),
-        .valueMessageIds = (u32[]) { 10429, 10430 },
-        .valueExplanationMessageIds = (u32[]) { 10431, 10432 },
+        .name = magic_enum::enum_name(Setting::YButton),
+        .messageId = 10432,
+        .defaultValue = static_cast<u32>(YButton::Screenshot),
+        .valueCount = magic_enum::enum_count<YButton>(),
+        .valueNames = magic_enum::enum_names<YButton>().data(),
+        .valueMessageIds = (u32[]) { 10433, 10435, 10440},
+        .valueExplanationMessageIds = (u32[]) { 10434, 10436, 10441 },
     },
 };
 // clang-format on

@@ -43,10 +43,10 @@ void KartItem::calc() {
     auto *raceConfig = System::RaceConfig::Instance();
     auto gameMode = raceConfig->raceScenario().gameMode;
     auto *saveManager = System::SaveManager::Instance();
-    auto setting = saveManager->getSetting<SP::ClientSettings::Setting::ItemWheel>();
+    auto setting = saveManager->getSetting<SP::ClientSettings::Setting::YButton>();
 
     if (gameMode == System::RaceConfig::GameMode::TimeAttack &&
-            setting == SP::ClientSettings::ItemWheel::Enable) {
+            setting == SP::ClientSettings::YButton::ItemWheel) {
         auto *playerPadProxy = System::RaceManager::Instance()->player(0)->padProxy();
         auto buttons = playerPadProxy->currentRaceInputState().rawButtons;
         auto controller = playerPadProxy->pad()->getControllerId();

@@ -13,8 +13,8 @@ void ItemInventory::resetItem() {
     auto *raceConfig = System::RaceConfig::Instance();
     auto gameMode = raceConfig->raceScenario().gameMode;
     auto *saveManager = System::SaveManager::Instance();
-    auto setting = saveManager->getSetting<SP::ClientSettings::Setting::ItemWheel>();
-    if (setting == SP::ClientSettings::ItemWheel::Enable &&
+    auto setting = saveManager->getSetting<SP::ClientSettings::Setting::YButton>();
+    if (setting == SP::ClientSettings::YButton::ItemWheel &&
             gameMode == System::RaceConfig::GameMode::TimeAttack) {
         return;
     }
@@ -25,8 +25,8 @@ void ItemInventory::resetHeldItem() {
     auto *raceConfig = System::RaceConfig::Instance();
     auto gameMode = raceConfig->raceScenario().gameMode;
     auto *saveManager = System::SaveManager::Instance();
-    auto setting = saveManager->getSetting<SP::ClientSettings::Setting::ItemWheel>();
-    if (setting == SP::ClientSettings::ItemWheel::Enable &&
+    auto setting = saveManager->getSetting<SP::ClientSettings::Setting::YButton>();
+    if (setting == SP::ClientSettings::YButton::ItemWheel &&
             gameMode == System::RaceConfig::GameMode::TimeAttack) {
         return;
     }

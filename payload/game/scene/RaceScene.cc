@@ -126,8 +126,8 @@ void RaceScene::createSubsystems() {
     SP::SaveStateManager::CreateInstance();
 #endif
     auto *saveManager = System::SaveManager::Instance();
-    auto setting = saveManager->getSetting<SP::ClientSettings::Setting::ItemWheel>();
-    saveManager->m_usedItemWheel = setting == SP::ClientSettings::ItemWheel::Enable;
+    auto setting = saveManager->getSetting<SP::ClientSettings::Setting::YButton>();
+    saveManager->m_usedItemWheel = setting == SP::ClientSettings::YButton::ItemWheel;
 }
 
 } // namespace Scene

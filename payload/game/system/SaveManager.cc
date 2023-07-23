@@ -340,10 +340,9 @@ void SaveManager::setSetting(u32 setting, u32 value) {
         return;
     }
 
-    if (static_cast<SP::ClientSettings::Setting>(setting) ==
-                    SP::ClientSettings::Setting::ItemWheel &&
-            static_cast<SP::ClientSettings::ItemWheel>(value) ==
-                    SP::ClientSettings::ItemWheel::Enable) {
+    if (static_cast<SP::ClientSettings::Setting>(setting) == SP::ClientSettings::Setting::YButton &&
+            static_cast<SP::ClientSettings::YButton>(value) ==
+                    SP::ClientSettings::YButton::ItemWheel) {
         m_usedItemWheel = true;
     }
     m_spLicenses[*m_spCurrentLicense].set(setting, value);
@@ -578,14 +577,6 @@ Sha1 SaveManager::courseSHA1(Registry::Course courseId) const {
 
 bool SaveManager::isCourseReplaced(Registry::Course courseId) const {
     return m_courseSHA1s[static_cast<u32>(courseId)] != s_courseSHA1s[static_cast<u32>(courseId)];
-}
-
-void SaveManager::setItemWheelFlag(bool itemWheel) {
-    m_usedItemWheel = itemWheel;
-}
-
-bool SaveManager::getItemWheelFlag() {
-    return m_usedItemWheel;
 }
 
 SaveManager *SaveManager::Instance() {
