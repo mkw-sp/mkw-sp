@@ -30,11 +30,7 @@ void OnlineConnectionManagerPage::onInit() {
 void OnlineConnectionManagerPage::afterCalc() {
     std::optional<STCMessage> event;
     if (!m_socket.poll()) {
-        auto globalContext = SectionManager::Instance()->globalContext();
-        globalContext->m_onlineDisconnectInfo.m_category = OnlineErrorCategory::ErrorCode;
-        globalContext->m_onlineDisconnectInfo.m_errorCode = 30000;
-
-        changeSection(SectionId::OnlineDisconnected, Anim::None, 0);
+        SectionManager::Instance()->transitionToError(30000);
     }
 
     if (!m_socket.ready()) {
@@ -206,11 +202,7 @@ void OnlineConnectionManagerPage::write(CTSMessage message) {
     assert(pb_encode(&stream, CTSMessage_fields, &message));
 
     if (!m_socket.write(buffer, stream.bytes_written)) {
-        auto globalContext = SectionManager::Instance()->globalContext();
-        globalContext->m_onlineDisconnectInfo.m_category = OnlineErrorCategory::ErrorCode;
-        globalContext->m_onlineDisconnectInfo.m_errorCode = 30002;
-
-        changeSection(SectionId::OnlineDisconnected, Anim::None, 0);
+        SectionManager::Instance()->transitionToError(30002);
     }
 }
 
