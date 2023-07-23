@@ -63,8 +63,10 @@ public:
     bool isPageActive(PageId pageId) const;
     Vec2<f32> scaleFor() const;
     f32 locationAdjustScaleDivider() const;
+
     void loadTHP();
     void loadFriendListManager();
+    void shutdownNet();
 
     void logDebuggingInfo(bool verbose);
 

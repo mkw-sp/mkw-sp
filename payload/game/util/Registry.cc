@@ -68,19 +68,4 @@ const char *GetItemPane(u32 itemId, u32 count) {
     return REPLACED(GetItemPane)(itemId, count);
 }
 
-u32 WifiErrorExplain(u32 error) {
-    // Destroy the room client if it exists
-    auto *roomClient = SP::RoomClient::Instance();
-    if (roomClient) {
-        roomClient->destroyInstance();
-    }
-
-    // MKW-SP Online error codes are simply message IDs
-    if (error >= 30000) {
-        return error;
-    }
-
-    return REPLACED(WifiErrorExplain)(error);
-}
-
 } // namespace Registry

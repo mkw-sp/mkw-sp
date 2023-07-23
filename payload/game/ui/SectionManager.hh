@@ -24,7 +24,7 @@ public:
     void calc();
     void REPLACED(startChangeSection)(s32 delay, u32 color);
     REPLACE void startChangeSection(s32 delay, u32 color);
-    void transitionToError(u32 errorCode);
+    void transitionToError(u32 errorCode, std::optional<MessageInfo> info = std::nullopt);
 
     static SectionManager *Instance();
 
