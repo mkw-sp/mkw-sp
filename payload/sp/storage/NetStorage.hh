@@ -80,7 +80,7 @@ private:
     std::optional<DirHandle> readOpenDir(Dir *dir);
     std::optional<NodeInfo> readNodeInfo();
     bool readOk();
-    std::optional<NetStorageResponse> read();
+    std::expected<std::optional<NetStorageResponse>, const wchar_t *> read();
 
     void connect();
 

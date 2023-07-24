@@ -46,17 +46,18 @@ public:
         return m_state;
     }
 
+    std::expected<void, const wchar_t *> transition();
     std::optional<STCMessage_FoundMatch> takeMatchResponse();
 
     u32 m_gamemode;
 
 private:
-    bool read(std::optional<STCMessage> &event);
-    void write(CTSMessage message);
+    std::expected<std::optional<STCMessage>, const wchar_t *> read();
+    [[nodiscard]] std::expected<void, const wchar_t *> write(CTSMessage message);
 
-    void startLogin();
-    void sendSearchMessage();
-    void respondToChallenge(const STCMessage &event);
+    [[nodiscard]] std::expected<void, const wchar_t *> startLogin();
+    [[nodiscard]] std::expected<void, const wchar_t *> sendSearchMessage();
+    [[nodiscard]] std::expected<void, const wchar_t *> respondToChallenge(const STCMessage &event);
     void setupRatings(const STCMessage &event);
     void setupMatch(const STCMessage &event);
 

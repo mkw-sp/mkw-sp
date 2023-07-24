@@ -25,6 +25,7 @@ private:
         ~Handler();
 
         void onSelect() override;
+        void onError(const wchar_t *errorMessage) override;
 
     private:
         RandomMatchingPage &m_page;

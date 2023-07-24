@@ -44,14 +44,8 @@ void VotingBackPage::onActivate() {
 
 void VotingBackPage::afterCalc() {
     auto *client = SP::RoomClient::Instance();
-    if (!client) {
-        auto sectionManager = SectionManager::Instance();
-        sectionManager->transitionToError(30004);
-    }
-
-    if (!client->calc(m_handler)) {
-        return client->handleError(30001);
-    }
+    assert(client != nullptr);
+    client->calc(m_handler);
 }
 
 void VotingBackPage::onRefocus() {
@@ -125,6 +119,17 @@ void VotingBackPage::Handler::onReceiveInfo(s8 playerId, Registry::Course course
         m_page.setPlayerTypes();
         auto *roulettePage = SectionManager::Instance()->currentSection()->page<PageId::Roulette>();
         roulettePage->initSelectingStage(selectedPlayer);
+    }
+}
+
+void VotingBackPage::Handler::onError(const wchar_t *errorMessage) {
+    auto *sectionManager = SectionManager::Instance();
+    if (errorMessage == nullptr) {
+        sectionManager->transitionToError(30001);
+    } else {
+        MessageInfo info;
+        info.strings[0] = errorMessage;
+        sectionManager->transitionToError(30003, info);
     }
 }
 

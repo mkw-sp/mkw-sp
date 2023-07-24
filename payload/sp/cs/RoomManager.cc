@@ -80,9 +80,4 @@ RoomManager::~RoomManager() = default;
 void *RoomManager::s_block = nullptr;
 RoomManager *RoomManager::s_instance = nullptr;
 
-void RoomManager::Handler::onError(u32 errorCode) {
-    auto *sectionManager = UI::SectionManager::Instance();
-    sectionManager->transitionToError(errorCode);
-}
-
 } // namespace SP

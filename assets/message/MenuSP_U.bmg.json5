@@ -428,7 +428,6 @@
     "20047": "You don't have any Track Packs installed!",
     "30000": "Your connection to the central server has been lost.",
     "30001": "Your connection to the game server has been lost.",
-    "30002": "Your connection to the central server has failed.\n\nReason: AsyncSocket write buffer full",
-    "30003": "Your connection to the game server has failed.\n\nReason: AsyncSocket write buffer full",
-    "30004": "Your connection to the game server has failed.\n\nReason: Missing RoomClient?",
+    "30002": "Your connection to the central server has failed.\n\nReason: {arg string|0}",
+    "30003": "Your connection to the game server has failed.\n\nReason: {arg string|0}",
 }

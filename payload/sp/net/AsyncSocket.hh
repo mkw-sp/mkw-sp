@@ -1,15 +1,18 @@
 #pragma once
 
 #include "sp/CircularBuffer.hh"
+#include "sp/net/Socket.hh"
 
 extern "C" {
 #include <libhydrogen/hydrogen.h>
 #include <revolution.h>
 }
 
+#include <expected>
+
 namespace SP::Net {
 
-class AsyncSocket {
+class AsyncSocket : public Socket {
 public:
     // XX variant, client-side
     AsyncSocket(u32 ip, u16 port, const char context[hydro_secretbox_CONTEXTBYTES]);
@@ -23,8 +26,11 @@ public:
     hydro_kx_session_keypair keypair() const;
     bool ready() const;
     bool poll();
-    std::optional<u16> read(u8 *message, u16 maxSize);
-    bool write(const u8 *message, u16 size);
+
+    // The integer returned is always not zero, as that is expressed in the nullopt case.
+    [[nodiscard]] std::expected<std::optional<u16>, const wchar_t *> read(u8 *message,
+            u16 maxSize) override;
+    [[nodiscard]] std::expected<void, const wchar_t *> write(const u8 *message, u16 size) override;
 
 private:
     struct ConnectTask {

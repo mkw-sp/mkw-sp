@@ -45,15 +45,13 @@ std::optional<Info> GetInfo() {
     return info;
 }
 
-static bool Sync(bool update) {
-    if (versionInfo.type != BUILD_TYPE_RELEASE) {
-        return false;
-    }
+static std::expected<void, const wchar_t *> Sync(bool update) {
+    assert(versionInfo.type == BUILD_TYPE_RELEASE);
 
     status = Status::Connect;
     SP::Net::SyncSocket socket("update.mkw-sp.com", 21328, serverPK, "update  ");
     if (!socket.ok()) {
-        return false;
+        return std::unexpected(L"Unable to connect to update.mkw-sp.com!");
     }
 
     status = Status::SendInfo;
@@ -70,25 +68,22 @@ static bool Sync(bool update) {
         NWC24iStrLCpy(request.hostPlatform, Host_GetPlatformString(), sizeof(request.hostPlatform));
 
         assert(pb_encode(&stream, UpdateRequest_fields, &request));
-
-        if (!socket.write(buffer, stream.bytes_written)) {
-            return false;
-        }
+        TRY(socket.write(buffer, stream.bytes_written));
     }
 
     status = Status::ReceiveInfo;
     {
         u8 buffer[UpdateResponse_size];
-        std::optional<u16> size = socket.read(buffer, sizeof(buffer));
+        std::optional<u16> size = TRY(socket.read(buffer, sizeof(buffer)));
         if (!size) {
-            return false;
+            return std::unexpected(L"Unable to recieve update information");
         }
 
         pb_istream_t stream = pb_istream_from_buffer(buffer, *size);
 
         UpdateResponse response;
         if (!pb_decode(&stream, UpdateResponse_fields, &response)) {
-            return false;
+            return std::unexpected(L"Unable to decode update information");
         }
 
         Info newInfo{};
@@ -96,19 +91,17 @@ static bool Sync(bool update) {
         newInfo.version.minor = response.versionMinor;
         newInfo.version.patch = response.versionPatch;
         newInfo.size = response.size;
-        if (response.signature.size != sizeof(newInfo.signature)) {
-            return false;
-        }
+        assert(response.signature.size == sizeof(newInfo.signature));
         memcpy(newInfo.signature, response.signature.bytes, sizeof(newInfo.signature));
         if (!update) {
             if (newInfo.version > versionInfo) {
                 info.emplace(newInfo);
             }
             status = Status::Idle;
-            return true;
+            return {};
         } else if (memcmp(&*info, &newInfo, sizeof(Info))) {
             info.reset();
-            return false;
+            return std::unexpected(L"Update information has changed since last checked!");
         }
     }
 
@@ -117,52 +110,53 @@ static bool Sync(bool update) {
         OSTime startTime = OSGetTime();
         hydro_sign_state state;
         if (hydro_sign_init(&state, "update  ") != 0) {
-            return false;
+            return std::unexpected(L"Failed to initialise encryption");
         }
         NANDPrivateDelete(TMP_CONTENTS_PATH);
         u8 perms = NAND_PERM_OWNER_MASK | NAND_PERM_GROUP_MASK | NAND_PERM_OTHER_MASK;
         if (NANDPrivateCreate(TMP_CONTENTS_PATH, perms, 0) != NAND_RESULT_OK) {
-            return false;
+            return std::unexpected(L"Failed to create nand file");
         }
         NANDFileInfo fileInfo;
         if (NANDPrivateOpen(TMP_CONTENTS_PATH, &fileInfo, NAND_ACCESS_WRITE) != NAND_RESULT_OK) {
-            return false;
+            return std::unexpected(L"Failed to open nand file");
         }
         for (info->downloadedSize = 0; info->downloadedSize < info->size;) {
             alignas(0x20) u8 message[0x1000] = {};
             u16 chunkSize = std::min(info->size - info->downloadedSize, static_cast<u32>(0x1000));
-            if (!socket.read(message, chunkSize)) {
+            auto res = socket.read(message, chunkSize);
+            if (!res) {
                 NANDClose(&fileInfo);
-                return false;
+                return std::unexpected(res.error());
             }
             if (hydro_sign_update(&state, message, chunkSize) != 0) {
                 NANDClose(&fileInfo);
-                return false;
+                return std::unexpected(L"Failed to verify update file part");
             }
             if (NANDWrite(&fileInfo, message, chunkSize) != chunkSize) {
                 NANDClose(&fileInfo);
-                return false;
+                return std::unexpected(L"Failed to write update file to nand");
             }
             info->downloadedSize += chunkSize;
             OSTime duration = OSGetTime() - startTime;
             info->throughput = OSSecondsToTicks(static_cast<u64>(info->downloadedSize)) / duration;
         }
         if (NANDClose(&fileInfo) != NAND_RESULT_OK) {
-            return false;
+            return std::unexpected(L"Failed to close nand file");
         }
         if (hydro_sign_final_verify(&state, info->signature, signPK) != 0) {
-            return false;
+            return std::unexpected(L"Failed to verify downloaded update file");
         }
     }
 
     status = Status::Move;
     if (NANDPrivateMove(TMP_CONTENTS_PATH, UPDATE_PATH) != NAND_RESULT_OK) {
-        return false;
+        return std::unexpected(L"Failed to finalize update");
     }
 
     info->updated = true;
     status = Status::Idle;
-    return true;
+    return {};
 }
 
 bool Check() {

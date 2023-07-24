@@ -64,7 +64,7 @@ void RandomMatchingPage::afterCalc() {
     auto foundMatchOpt = onlineManager->takeMatchResponse();
 
     if (foundMatchOpt.has_value()) {
-        SP_LOG("RandomMatchingPage: Found match!");
+        SP_LOG("Found match!");
         auto foundMatch = *foundMatchOpt;
 
         auto &menuScenario = System::RaceConfig::Instance()->menuScenario();
@@ -84,6 +84,17 @@ RandomMatchingPage::Handler::~Handler() = default;
 
 void RandomMatchingPage::Handler::onSelect() {
     m_page.changeSection(SectionId::Voting1PVS, Anim::Next, 0);
+}
+
+void RandomMatchingPage::Handler::onError(const wchar_t *errorMessage) {
+    auto *sectionManager = SectionManager::Instance();
+    if (errorMessage == nullptr) {
+        sectionManager->transitionToError(30001);
+    } else {
+        MessageInfo info;
+        info.strings[0] = errorMessage;
+        sectionManager->transitionToError(30003, info);
+    }
 }
 
 } // namespace UI

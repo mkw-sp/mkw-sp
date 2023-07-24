@@ -1,14 +1,14 @@
 #pragma once
 
+#include "sp/net/Socket.hh"
+
 extern "C" {
 #include <libhydrogen/hydrogen.h>
 }
 
-#include <Common.hh>
-
 namespace SP::Net {
 
-class SyncSocket {
+class SyncSocket : public Socket {
 public:
     // N variant, client-side
     SyncSocket(const char *hostname, u16 port, const u8 serverPK[hydro_kx_PUBLICKEYBYTES],
@@ -19,8 +19,8 @@ public:
     ~SyncSocket();
 
     bool ok() const;
-    std::optional<u16> read(u8 *message, u16 maxSize);
-    bool write(const u8 *message, u16 size);
+    std::expected<std::optional<u16>, const wchar_t *> read(u8 *message, u16 maxSize) override;
+    std::expected<void, const wchar_t *> write(const u8 *message, u16 size) override;
 
 private:
     s32 m_handle = -1;

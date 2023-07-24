@@ -5,6 +5,7 @@
 #include <game/kart/KartObjectManager.hh>
 #include <game/system/RaceConfig.hh>
 #include <game/system/RaceManager.hh>
+#include <game/ui/SectionManager.hh>
 #include <vendor/nanopb/pb_decode.h>
 #include <vendor/nanopb/pb_encode.h>
 
@@ -86,11 +87,17 @@ void RaceClient::calcWrite() {
 
     assert(pb_encode(&stream, RoomRequest_fields, &request));
 
-    // TODO proper error handling
-    m_roomClient.socket().write(buffer, stream.bytes_written);
+    auto *sectionManager = UI::SectionManager::Instance();
+    auto res = m_roomClient.socket().write(buffer, stream.bytes_written);
+    if (!res) {
+        UI::MessageInfo info;
+        info.strings[0] = res.error();
+        return sectionManager->transitionToError(30003, info);
+    }
+
     if (!m_roomClient.socket().poll()) {
-        m_roomClient.handleError(30001);
-    };
+        sectionManager->transitionToError(30001);
+    }
 }
 
 void RaceClient::calcRead() {
@@ -156,9 +163,8 @@ RaceClient *RaceClient::Instance() {
 }
 
 RaceClient::RaceClient(RoomClient &roomClient)
-    : m_roomClient(roomClient),
-      m_socket("race    ", {}), m_connection{roomClient.ip(), roomClient.port(),
-                                        roomClient.keypair()} {}
+    : m_roomClient(roomClient), m_socket("race    ", {}),
+      m_connection{roomClient.ip(), roomClient.port(), roomClient.keypair()} {}
 
 RaceClient::~RaceClient() {
     hydro_memzero(&m_connection, sizeof(m_connection));

@@ -231,36 +231,39 @@ bool AsyncSocket::poll() {
     return true;
 }
 
-std::optional<u16> AsyncSocket::read(u8 *message, u16 maxSize) {
+std::expected<std::optional<u16>, const wchar_t *> AsyncSocket::read(u8 *message, u16 maxSize) {
     assert(m_handle >= 0);
 
     auto *readTask = m_readQueue.front();
     if (!readTask) {
-        return 0;
+        return std::unexpected(L"Socket is not ready!");
     }
 
     if (readTask->offset < sizeof(u16) + readTask->size) {
-        return 0;
+        return std::nullopt;
     }
 
     if (hydro_secretbox_HEADERBYTES + maxSize < readTask->size) {
-        SP_LOG("Failed to decrypt message");
-        return {};
+        return std::unexpected(L"Failed to decrypt message");
     }
     if (hydro_secretbox_decrypt(message, readTask->buffer + sizeof(u16), readTask->size,
                 m_readMessageID++, m_context, m_keypair.rx) != 0) {
-        SP_LOG("Failed to decrypt message");
-        return {};
+        return std::unexpected(L"Failed to decrypt message");
     }
     u16 size = readTask->size - hydro_secretbox_HEADERBYTES;
     m_readQueue.pop_front();
-    return size;
+
+    if (size == 0) {
+        return std::nullopt;
+    } else {
+        return size;
+    }
 }
 
-bool AsyncSocket::write(const u8 *message, u16 size) {
+std::expected<void, const wchar_t *> AsyncSocket::write(const u8 *message, u16 size) {
     assert(m_handle >= 0);
     if (!ready()) {
-        panic("Cannot write messages until socket is ready!");
+        return std::unexpected(L"Cannot write messages until socket is ready!");
     }
 
     WriteTask writeTask{};
@@ -269,10 +272,13 @@ bool AsyncSocket::write(const u8 *message, u16 size) {
     Bytes::Write<u16>(writeTask.buffer, 0, writeTask.size - sizeof(u16));
     if (hydro_secretbox_encrypt(writeTask.buffer + sizeof(u16), message, size, m_writeMessageID++,
                 m_context, m_keypair.tx) != 0) {
-        SP_LOG("Failed to encrypt message");
-        return false;
+        return std::unexpected(L"Failed to encrypt message");
     }
-    return m_writeQueue.push_back(std::move(writeTask));
+    if (!m_writeQueue.push_back(std::move(writeTask))) {
+        return std::unexpected(L"Write queue is too full!");
+    }
+
+    return {};
 }
 
 bool AsyncSocket::makeNonBlocking() {

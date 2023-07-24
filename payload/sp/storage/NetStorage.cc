@@ -405,82 +405,89 @@ bool NetStorage::write(NetStorageRequest request) {
 
     assert(pb_encode(&stream, NetStorageRequest_fields, &request));
 
-    return m_socket->write(buffer, stream.bytes_written);
+    return m_socket->write(buffer, stream.bytes_written).has_value();
 }
 
 std::optional<FileHandle> NetStorage::readOpen(File *file) {
-    auto response = read();
-    if (!response) {
-        return {};
+    auto responseRes = read();
+    if (!responseRes) {
+        SP_LOG("[Warning] Ignoring readOpen error: %ls", responseRes.error());
+        return std::nullopt;
     }
 
-    if (response->which_response != NetStorageResponse_open_tag) {
-        return {};
+    auto response = TRY_OPT(*responseRes);
+    if (response.which_response != NetStorageResponse_open_tag) {
+        SP_LOG("[Warning] Got wrong response for Open request");
+        return std::nullopt;
     }
 
-    file->m_handle = response->response.open.handle;
-    file->m_size = response->response.open.size;
+    file->m_handle = response.response.open.handle;
+    file->m_size = response.response.open.size;
     return file;
 }
 
 std::optional<DirHandle> NetStorage::readOpenDir(Dir *dir) {
-    auto response = read();
-    if (!response) {
-        return {};
+    auto responseRes = read();
+    if (!responseRes) {
+        SP_LOG("[Warning] Ignoring readOpenDir error: %ls", responseRes.error());
+        return std::nullopt;
     }
 
-    if (response->which_response != NetStorageResponse_openDir_tag) {
-        return {};
+    auto response = TRY_OPT(*responseRes);
+    if (response.which_response != NetStorageResponse_openDir_tag) {
+        SP_LOG("[Warning] Got wrong response for OpenDir request");
+        return std::nullopt;
     }
 
-    dir->m_handle = response->response.openDir.handle;
+    dir->m_handle = response.response.openDir.handle;
     return dir;
 }
 
 std::optional<NodeInfo> NetStorage::readNodeInfo() {
-    auto response = read();
-    if (!response) {
-        return {};
+    auto responseRes = read();
+    if (!responseRes) {
+        SP_LOG("[Warning] Ignoring readNodeInfo error: %ls", responseRes.error());
+        return std::nullopt;
     }
 
-    if (response->which_response != NetStorageResponse_nodeInfo_tag) {
-        return {};
+    auto response = TRY_OPT(*responseRes);
+    if (response.which_response != NetStorageResponse_nodeInfo_tag) {
+        SP_LOG("[Warning] Got wrong response for readNodeInfo request");
+        return std::nullopt;
     }
 
     NodeInfo info{};
     info.id.storage = this;
-    info.id.id = response->response.nodeInfo.id;
-    info.type = static_cast<NodeType>(response->response.nodeInfo.type);
-    info.size = response->response.nodeInfo.size;
-    swprintf(info.name, std::size(info.name), L"%s", response->response.nodeInfo.name);
+    info.id.id = response.response.nodeInfo.id;
+    info.type = static_cast<NodeType>(response.response.nodeInfo.type);
+    info.size = response.response.nodeInfo.size;
+    swprintf(info.name, std::size(info.name), L"%s", response.response.nodeInfo.name);
     return info;
 }
 
 bool NetStorage::readOk() {
-    auto response = read();
-    if (!response) {
+    auto responseRes = read();
+    if (!responseRes || !(*responseRes)) {
         return false;
     }
 
-    if (response->which_response != NetStorageResponse_ok_tag) {
+    auto response = **responseRes;
+    if (response.which_response != NetStorageResponse_ok_tag) {
         return false;
     }
 
     return true;
 }
 
-std::optional<NetStorageResponse> NetStorage::read() {
+std::expected<std::optional<NetStorageResponse>, const wchar_t *> NetStorage::read() {
     u8 buffer[NetStorageResponse_size];
-    std::optional<u16> size = m_socket->read(buffer, sizeof(buffer));
-    if (!size) {
-        return {};
-    }
+    u16 size = TRY_OPT(TRY(m_socket->read(buffer, sizeof(buffer))));
 
-    pb_istream_t stream = pb_istream_from_buffer(buffer, *size);
+    pb_istream_t stream = pb_istream_from_buffer(buffer, size);
 
     NetStorageResponse response;
     if (!pb_decode(&stream, NetStorageResponse_fields, &response)) {
-        return {};
+        return std::unexpected(L"Failed to decode proto message");
     }
 
     return response;

@@ -37,7 +37,6 @@ public:
     void changeLocalSettings();
     void sendTeamSelect(u32 playerId);
     void sendVote(Registry::Course course, std::optional<Player::Properties> properties);
-    void handleError(u32 error_code);
 
     static RoomClient *CreateInstance(u32 localPlayerCount, u32 ip, u16 port, u16 passcode);
     static RoomClient *CreateInstance(u32 localPlayerCount, u32 ip, u16 port, LoginInfo loginInfo);
@@ -52,38 +51,40 @@ private:
 
     // Used to update m_state
     std::optional<State> resolve(Handler &handler);
-    bool transition(Handler &handler, State state);
+    void transition(Handler &handler, State state);
 
     // Main state-specific update, used to receive events
-    std::optional<State> calcConnect();
-    std::optional<State> calcSetup(Handler &handler);
-    std::optional<State> calcMain(Handler &handler);
-    std::optional<State> calcTeamSelect(Handler &handler);
-    std::optional<State> calcSelect(Handler &handler);
-    bool onSetup(Handler &handler);
-    bool onMain(Handler &handler);
-    bool onTeamSelect(Handler &handler);
-    bool onSelect(Handler &handler);
+    std::expected<State, const wchar_t *> calcConnect();
+    std::expected<State, const wchar_t *> calcSetup(Handler &handler);
+    std::expected<State, const wchar_t *> calcMain(Handler &handler);
+    std::expected<State, const wchar_t *> calcTeamSelect(Handler &h);
+    std::expected<State, const wchar_t *> calcSelect(Handler &handler);
+    std::expected<void, const wchar_t *> onSetup(Handler &handler);
+    void onMain(Handler &handler);
+    void onTeamSelect(Handler &handler);
+    void onSelect(Handler &handler);
 
     // Event reading, called from above calc functions
-    bool onPlayerJoin(Handler &handler, const System::RawMii *mii, u32 location, u16 latitude,
+    void onPlayerJoin(Handler &handler, const System::RawMii *mii, u32 location, u16 latitude,
             u16 longitude, u32 regionLineColor);
-    bool onPlayerLeave(Handler &handler, u32 playerId);
-    bool onReceiveComment(Handler &handler, u32 playerId, u32 messageId);
-    bool onRoomStart(Handler &handler, u32 gamemode);
-    bool onReceiveTeamSelect(Handler &handler, u32 playerId, u32 teamId);
-    bool onReceivePulse(Handler &handler, u32 playerId);
-    bool onReceiveInfo(Handler &handler, RoomEvent event);
+    void onPlayerLeave(Handler &handler, u32 playerId);
+    void onReceiveComment(Handler &handler, u32 playerId, u32 messageId);
+    void onRoomStart(Handler &handler, u32 gamemode);
+    void onReceiveTeamSelect(Handler &handler, u32 playerId, u32 teamId);
+    void onReceivePulse(Handler &handler, u32 playerId);
+    void onReceiveInfo(Handler &handler, RoomEvent event);
 
     // Request writing - interface should call these!
-    bool read(std::optional<RoomEvent> &event);
-    void writeJoin();
-    void writeComment(u32 messageId);
-    void writeStart(u32 gamemode);
-    void writeSettings();
-    void writeTeamSelect(u32 playerId, u32 teamId);
-    void writeVote(u32 course, std::optional<Player::Properties> properties);
-    void write(RoomRequest request);
+    std::expected<void, const wchar_t *> writeJoin();
+    std::expected<void, const wchar_t *> writeComment(u32 messageId);
+    std::expected<void, const wchar_t *> writeStart(u32 gamemode);
+    std::expected<void, const wchar_t *> writeSettings();
+    std::expected<void, const wchar_t *> writeTeamSelect(u32 playerId, u32 teamId);
+    std::expected<void, const wchar_t *> writeVote(u32 course,
+            std::optional<Player::Properties> properties);
+
+    [[nodiscard]] std::expected<std::optional<RoomEvent>, const wchar_t *> read();
+    [[nodiscard]] std::expected<void, const wchar_t *> write(RoomRequest request);
 
     u32 m_localPlayerCount;
     u32 m_localPlayerIds[2];
@@ -93,8 +94,8 @@ private:
     u32 m_ip;
     u16 m_port;
     std::optional<LoginInfo> m_loginInfo;
-    std::optional<u32> m_errorCode;
-    bool m_reportedError;
+    const wchar_t *m_errorMessage;
+    bool m_errored;
 
     static RoomClient *s_instance;
 };

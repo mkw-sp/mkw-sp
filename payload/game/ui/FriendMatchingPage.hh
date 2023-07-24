@@ -43,7 +43,7 @@ private:
         void onReceiveComment(u32 playerId, u32 messageId) override;
         void onSettingsChange(const std::array<u32, SP::RoomSettings::count> &settings) override;
         void onReceiveTeamSelect(u32 playerId, u32 teamId) override;
-        void onError(u32 errorCode) override;
+        void onError(const wchar_t *errorMessage) override;
 
     private:
         FriendMatchingPage &m_page;

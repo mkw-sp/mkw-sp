@@ -110,29 +110,25 @@ bool SyncSocket::ok() const {
     return m_handle >= 0;
 }
 
-std::optional<u16> SyncSocket::read(u8 *message, u16 maxSize) {
+std::expected<std::optional<u16>, const wchar_t *> SyncSocket::read(u8 *message, u16 maxSize) {
     auto tmp = Alloc<u8>(sizeof(u16) + hydro_secretbox_HEADERBYTES + maxSize);
     for (u16 offset = 0; offset < sizeof(u16);) {
         s32 result = SORecv(m_handle, tmp.get() + offset, sizeof(u16) - offset, 0);
         if (result <= 0) {
-            SP_LOG("Failed to receive size, returned %d", result);
-            return {};
+            return std::unexpected(L"Failed to receive size");
         }
         offset += result;
     }
 
     u16 size = Bytes::Read<u16>(tmp.get(), 0);
     if (size > GetSize(tmp) - sizeof(u16)) {
-        SP_LOG("Message %llu is larger than the allotted buffer size (0x%04X > 0x%04X)",
-                m_messageID, size, GetSize(tmp) - sizeof(u16));
-        return {};
+        return std::unexpected(L"Message is larger than the allotted buffer size");
     }
 
     for (u16 offset = sizeof(u16); offset < sizeof(u16) + size;) {
         s32 result = SORecv(m_handle, tmp.get() + offset, sizeof(u16) + size - offset, 0);
         if (result <= 0) {
-            SP_LOG("Failed to receive message, returned %d", result);
-            return {};
+            return std::unexpected(L"Failed to receive message");
         }
         offset += result;
     }
@@ -140,28 +136,25 @@ std::optional<u16> SyncSocket::read(u8 *message, u16 maxSize) {
     const u8 *key = m_keypair.rx;
     if (hydro_secretbox_decrypt(message, tmp.get() + sizeof(u16), size, m_messageID++, m_context,
                 key) != 0) {
-        SP_LOG("Failed to decrypt message");
-        return {};
+        return std::unexpected(L"Failed to decrypt message");
     }
     return size - hydro_secretbox_HEADERBYTES;
 }
 
-bool SyncSocket::write(const u8 *message, u16 size) {
+std::expected<void, const wchar_t *> SyncSocket::write(const u8 *message, u16 size) {
     const u8 *key = m_keypair.tx;
     auto tmp = Alloc<u8>(sizeof(u16) + hydro_secretbox_HEADERBYTES + size);
     assert(GetSize(tmp) - 2 <= UINT16_MAX);
     Bytes::Write<u16>(tmp.get(), 0, GetSize(tmp) - 2);
     if (hydro_secretbox_encrypt(tmp.get() + sizeof(u16), message, size, m_messageID++, m_context,
                 key) != 0) {
-        SP_LOG("Failed to encrypt message");
-        return false;
+        return std::unexpected(L"Failed to encrypt message");
     }
     s32 result = SOSend(m_handle, tmp.get(), GetSize(tmp), 0);
     if (result != static_cast<s32>(GetSize(tmp))) {
-        SP_LOG("Failed to send message, returned %d", result);
-        return false;
+        return std::unexpected(L"Failed to send message");
     }
-    return true;
+    return {};
 }
 
 } // namespace SP::Net

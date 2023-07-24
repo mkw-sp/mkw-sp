@@ -31,7 +31,8 @@ public:
         virtual void onReceivePulse(s8 /* playerId */) {}
         virtual void onReceiveInfo(s8 /* playerId */, Registry::Course /* course */,
                 u32 /* selectedPlayer */, u32 /* character */, u32 /* vehicle */) {}
-        virtual void onError(u32 errorCode);
+        // errorMessage may be nullptr if there is no details
+        virtual void onError(const wchar_t *errorMessage) = 0;
     };
 
     // TODO cleanup

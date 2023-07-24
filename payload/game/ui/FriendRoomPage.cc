@@ -192,12 +192,8 @@ void FriendRoomPage::onBackConfirm(s32 /* choice */, PushButton * /* button */) 
 void FriendRoomPage::onSettingsBack(SettingsPage * /* settingsPage */, PushButton * /* button */) {
     m_instructionText.setMessage(20022);
 
-    if (auto *client = SP::RoomClient::Instance()) {
-        client->changeLocalSettings();
-    } else {
-        auto sectionManager = SectionManager::Instance();
-        sectionManager->transitionToError(30004);
-    }
+    auto *client = SP::RoomClient::Instance();
+    client->changeLocalSettings();
 }
 
 } // namespace UI

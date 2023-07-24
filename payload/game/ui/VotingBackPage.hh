@@ -62,6 +62,7 @@ private:
         void onReceivePulse(s8 playerId) override;
         void onReceiveInfo(s8 playerId, Registry::Course course, u32 selectedPlayer, u32 character,
                 u32 vehicle) override;
+        void onError(const wchar_t *errorMessage) override;
 
     private:
         VotingBackPage &m_page;

@@ -134,20 +134,15 @@ void FriendMatchingPage::onBack(u32 /* localPlayerId */) {
 
 void FriendMatchingPage::startClient() {
     auto *client = SP::RoomClient::Instance();
-    if (client) {
-        auto setting = client->getSetting<SP::ClientSettings::Setting::RoomTeamSize>();
-        if (setting == SP::ClientSettings::TeamSize::FFA) {
-            auto *section = SectionManager::Instance()->currentSection();
-            auto *driftSelectPage = section->page<PageId::DriftSelect>();
-            driftSelectPage->setReplacementSection(static_cast<SectionId>(m_gamemode + 0x60));
+    auto setting = client->getSetting<SP::ClientSettings::Setting::RoomTeamSize>();
+    if (setting == SP::ClientSettings::TeamSize::FFA) {
+        auto *section = SectionManager::Instance()->currentSection();
+        auto *driftSelectPage = section->page<PageId::DriftSelect>();
+        driftSelectPage->setReplacementSection(static_cast<SectionId>(m_gamemode + 0x60));
 
-            push(PageId::CharacterSelect, Anim::Next);
-        } else {
-            push(PageId::OnlineTeamSelect, Anim::Next);
-        }
+        push(PageId::CharacterSelect, Anim::Next);
     } else {
-        auto sectionManager = SectionManager::Instance();
-        sectionManager->transitionToError(30004);
+        push(PageId::OnlineTeamSelect, Anim::Next);
     }
 }
 
@@ -210,9 +205,7 @@ void FriendMatchingPage::Handler::onReceiveTeamSelect(u32 playerId, u32 teamId) 
     onlineTeamSelectPage->onReceiveTeamSelect(playerId, teamId);
 }
 
-void FriendMatchingPage::Handler::onError(u32 errorCode) {
-    SP_LOG("FriendMatchingPage::Handler::onError(%d)", errorCode);
-
+void FriendMatchingPage::Handler::onError(const wchar_t * /* errorMessage */) {
     m_page.m_roomHasError = true;
     m_page.collapse(Anim::Next);
 }
