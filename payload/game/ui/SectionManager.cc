@@ -4,6 +4,8 @@
 #include "game/host_system/SystemManager.hh"
 #include "game/system/SaveManager.hh"
 
+#include <sp/WU8Library.hh>
+
 namespace UI {
 
 Section *SectionManager::currentSection() {
@@ -33,7 +35,7 @@ GlobalContext *SectionManager::globalContext() {
 void SectionManager::init() {
     REPLACED(init)();
 
-    if (!SP::Storage::Open(L"autoadd/.finished", "r")) {
+    if (SP::WU8Library::ShouldExtract()) {
         m_nextSectionId = SectionId::WU8Library;
     }
 }

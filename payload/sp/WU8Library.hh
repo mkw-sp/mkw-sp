@@ -23,6 +23,7 @@ struct ExtractionState {
     std::array<char, 64> archive;
 };
 
+bool ShouldExtract();
 void StartExtraction(EGG::Heap *mem2);
 ExtractionState GetExtractionState();
 
