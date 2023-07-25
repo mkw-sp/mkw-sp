@@ -1,5 +1,7 @@
 #pragma once
 
+#include <optional>
+
 #include <Common.hh>
 
 namespace IOS {
@@ -7,8 +9,12 @@ namespace IOS {
 void Init();
 u16 GetNumber();
 bool EscalatePrivileges(bool again);
+#ifdef SP_LOADER
+void DeescalatePrivileges(std::optional<u32> newKeyAddress);
+std::optional<std::optional<u32>> ImportNewCommonKey();
+#else
 void DeescalatePrivileges();
-bool ImportNewCommonKey();
+#endif
 bool IsDolphin();
 
 enum class Mode : u32 {
