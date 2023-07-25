@@ -316,6 +316,46 @@ void SetExtractionState(ExtractionStage stage, const char *currentFile) {
     }
 }
 
+bool ContainsWBZ(SP::Storage::DirHandle &dir);
+
+bool ContainsWBZ(SP::Storage::NodeId dirId) {
+    auto dir = Storage::FastOpenDir(dirId);
+    if (dir) {
+        return ContainsWBZ(*dir);
+    } else {
+        return false;
+    }
+}
+
+bool ContainsWBZ(SP::Storage::DirHandle &dir) {
+    while (auto node = dir.read()) {
+        if (node->type == SP::Storage::NodeType::Dir) {
+            if (ContainsWBZ(node->id)) {
+                return true;
+            }
+        }
+
+        if (std::wstring_view(node->name).ends_with(L".wbz")) {
+            return true;
+        }
+    }
+
+    return false;
+}
+
+bool ShouldExtract() {
+    if (SP::Storage::Open(L"autoadd/.finished", "r")) {
+        return false;
+    }
+
+    auto myStuff = SP::Storage::OpenDir(L"My Stuff");
+    if (!myStuff) {
+        return false;
+    }
+
+    return ContainsWBZ(*myStuff);
+}
+
 void StartExtraction(EGG::Heap *mem2) {
     void *buffer = new (mem2, -0x20) u8[ExtractionHeapSize];
     auto *extractionHeap = EGG::ExpHeap::Create(buffer, ExtractionHeapSize, 1);
