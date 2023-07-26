@@ -115,6 +115,8 @@ void CourseSelectPage::onInit() {
     case SectionId::SingleSelectVSCourse:
     case SectionId::SingleSelectBTCourse:
     case SectionId::SingleChangeGhostData:
+    case SectionId::Voting1PVS:
+    case SectionId::Voting2PVS:
     case SectionId::Rankings:
         filter();
         break;
