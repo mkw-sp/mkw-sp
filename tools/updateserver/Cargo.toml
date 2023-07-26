@@ -14,3 +14,7 @@ zeroize = "1.5.5"
 
 [build-dependencies]
 prost-build = "0.10.4"
+
+# Startup password hashing will take insane amounts of time otherwise.
+[profile.dev.package.argon2]
+opt-level = 3
