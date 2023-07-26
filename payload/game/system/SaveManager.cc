@@ -81,7 +81,7 @@ void SaveManager::initSPSave() {
         swprintf(pathOld, std::size(pathOld), L"/mkw-sp/settings%u.ini", m_spLicenseCount);
         swprintf(path, std::size(path), L"/mkw-sp/licenses/slot%u.ini", m_spLicenseCount);
 
-        auto oldLicenseExists = SP::Storage::Open(pathOld, "r");
+        bool oldLicenseExists = static_cast<bool>(SP::Storage::Open(pathOld, "r"));
         if (oldLicenseExists) {
             SP::Storage::CreateDir(L"/mkw-sp/licenses", true);
             SP::Storage::Rename(pathOld, path);
