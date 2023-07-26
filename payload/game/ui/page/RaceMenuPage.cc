@@ -66,12 +66,14 @@ void RaceMenuPage::onButtonFront(PushButton *button, u32 localPlayerId) {
 }
 
 void RaceMenuPage::onNextButtonFront(PushButton *button, u32 /* localPlayerId */) {
-    System::RaceConfig::Instance()->endRace();
+    auto *raceConfig = System::RaceConfig::Instance();
+    auto &menuScenario = raceConfig->menuScenario();
+
+    raceConfig->endRace();
 
     playSound(Sound::SoundId::SE_RC_PAUSE_EXIT_GAME, -1);
 
     SectionId sectionId;
-    auto &menuScenario = System::RaceConfig::Instance()->menuScenario();
     if (IsLastMatch()) {
         bool isWin = false;
         for (u32 playerId = 0; playerId < menuScenario.localPlayerCount; playerId++) {
@@ -98,55 +100,24 @@ void RaceMenuPage::onNextButtonFront(PushButton *button, u32 /* localPlayerId */
         menuScenario.courseId = isWin ? Registry::Course::WinDemo : Registry::Course::LoseDemo;
         menuScenario.gameMode = System::RaceConfig::GameMode::Awards;
     } else {
-        auto *saveManager = System::SaveManager::Instance();
-        auto &courseDatabase = SP::CourseDatabase::Instance();
-
         menuScenario.cameraMode = 5;
 
-        SP::ClientSettings::CourseSelection setting;
-        SectionId nextSelectSection;
-        if (menuScenario.isBattle()) {
-            setting = saveManager->getSetting<SP::ClientSettings::Setting::BTCourseSelection>();
-            nextSelectSection = SectionId::SingleSelectBTCourse;
-            sectionId = SectionId::BTDemo;
-        } else {
-            setting = saveManager->getSetting<SP::ClientSettings::Setting::VSCourseSelection>();
-            nextSelectSection = SectionId::SingleSelectVSCourse;
-            sectionId = SectionId::VSDemo;
-        };
+        auto *globalContext = UI::SectionManager::Instance()->globalContext();
+        auto nextCourse = globalContext->getCourse(globalContext->m_match);
 
-        SP::CourseDatabase::Filter filter;
-        filter.battle = menuScenario.isBattle();
-        filter.race = !filter.battle;
-
-        if (setting == SP::ClientSettings::CourseSelection::InOrder) {
-            SP::CourseDatabase::Filter fullFilter;
-            fullFilter.battle = true;
-            fullFilter.race = true;
-
-            std::optional<Registry::Course> nextCourse = std::nullopt;
-            bool foundCurrentCourse = false;
-            for (u8 i = 0; i < courseDatabase.totalCount(); i += 1) {
-                auto entry = courseDatabase.entry(fullFilter, i);
-                if (entry.courseId == menuScenario.courseId) {
-                    foundCurrentCourse = true;
-                } else if (foundCurrentCourse && entry.battle == menuScenario.isBattle()) {
-                    nextCourse = entry.courseId;
-                    break;
-                }
-            }
-
-            if (!nextCourse) {
-                menuScenario.courseId = courseDatabase.entry(filter, 0).courseId;
+        if (nextCourse.has_value()) {
+            menuScenario.courseId = *nextCourse;
+            if (menuScenario.isBattle()) {
+                sectionId = SectionId::BTDemo;
             } else {
-                menuScenario.courseId = *nextCourse;
+                sectionId = SectionId::VSDemo;
             }
-        } else if (setting == SP::ClientSettings::CourseSelection::Random) {
-            auto courseCount = courseDatabase.count(filter);
-            auto courseIdx = hydro_random_uniform(courseCount);
-            menuScenario.courseId = courseDatabase.entry(filter, courseIdx).courseId;
         } else {
-            sectionId = nextSelectSection;
+            if (menuScenario.isBattle()) {
+                sectionId = SectionId::SingleSelectBTCourse;
+            } else {
+                sectionId = SectionId::SingleSelectVSCourse;
+            }
         }
     }
 

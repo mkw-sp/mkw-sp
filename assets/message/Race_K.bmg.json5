@@ -1,169 +1,59 @@
 {
-    "1000": {
-        string: "",
-    },
-    "1001": {
-        string: "계속하기",
-    },
-    "1002": {
-        string: "그만두기",
-    },
-    "1003": {
-        string: "게임을 계속하기",
-    },
-    "1004": {
-        string: "게임을 그만두기",
-    },
-    "1005": {
-        string: "코스를 변경하기",
-    },
-    "1006": {
-        string: "캐릭터를 변경하기",
-    },
-    "1007": {
-        string: "다시 시작하기",
-    },
-    "1008": {
-        string: "미션을 선택하기",
-    },
-    "1009": {
-        string: "다음 경기로",
-    },
-    "1010": {
-        string: "다음",
-    },
-    "1011": {
-        string: "재도전",
-    },
-    "1012": {
-        string: "리플레이 감상하기",
-    },
-    "1013": {
-        string: "리플레이를 계속하기",
-    },
-    "1014": {
-        string: "처음부터 리플레이",
-    },
-    "1015": {
-        string: "랭킹 확인",
-    },
-    "1016": {
-        string: "고스트 목록 확인",
-    },
-    "1017": {
-        string: null,
-    },
-    "1018": {
-        string: "다음 고스트",
-    },
-    "1019": {
-        string: null,
-    },
-    "1020": {
-        string: "Wi-Fi 메뉴",
-    },
-    "1021": {
-        string: "리플레이를 그만두기",
-    },
-    "1022": {
-        string: "경기를 시작하기",
-    },
-    "1023": {
-        string: "다음 경기로",
-    },
-    "1024": {
-        string: "다음 배틀로",
-    },
-    "1025": {
-        string: "잠시 기다려 주십시오",
-    },
-    "1026": {
-        string: "고스트를 변경하기",
-    },
-    "1027": {
-        string: "고스트와 경기하기",
-    },
-    "1028": {
-        string: "리플레이를 계속하기",
-    },
-    "1029": {
-        string: "리플레이를 그만두기",
-    },
-    "1030": {
-        string: "처음부터 리플레이",
-    },
-    "1031": {
-        string: "다음 경기는 약 {arg integer|0 0}명과\n플레이하게 됩니다",
-    },
-    "1032": {
-        string: "기록을 보내기",
-    },
-    "1033": {
-        string: "",
-    },
-    "1101": {
-        string: "정말로 그만두시겠습니까?",
-    },
-    "1102": {
-        string: "마리오 카트 채널의\n랭킹으로\n이동하시겠습니까?",
-    },
-    "1103": {
-        string: "OK",
-    },
-    "1104": {
-        string: null,
-    },
-    "1105": {
-        string: "축하합니다!\n{arg player|0} 님을 이겼습니다!\n\n자신의 고스트를 보내시겠습니까?",
-    },
-    "1106": {
-        string: "보내기",
-    },
-    "1107": {
-        string: "보내지 않기",
-    },
-    "1108": {
-        string: "예",
-    },
-    "1109": {
-        string: "아니요",
-    },
-    "1110": {
-        string: "",
-    },
-    "1111": {
-        string: "친구 목록으로\n이동하시겠습니까?",
-    },
-    "1112": {
-        string: "기록을 보내시겠습니까?\n(대회 중에는 몇 번이고\n보낼 수 있습니다)",
-    },
-    "1113": {
-        string: "경기를 포기하고\n다음 고스트를\n받으시겠습니까?",
-    },
-    "1114": {
-        string: "경기를 포기하고\n메뉴 화면으로\n돌아가시겠습니까?",
-    },
-    "1115": {
-        string: "{current player|} 님의 고스트를 만들었습니다!",
-    },
-    "1116": {
-        string: "고스트를 만들지 못했습니다",
-    },
-    "1117": {
-        string: "고스트 도전장을 보내지 못했습니다",
-    },
-    "1118": {
-        string: "코스 선택 화면으로\n돌아가시겠습니까?",
-    },
-    "1119": {
-        string: "고스트를 만들지 못했습니다",
-    },
-    "1120": {
-        string: "",
-    },
-    "1121": {
-        string: "개발자의 빠른 고스트가 등장했습니다!",
-    },
+    "1000": "",
+    "1001": "계속하기",
+    "1002": "그만두기",
+    "1003": "게임을 계속하기",
+    "1004": "게임을 그만두기",
+    "1005": "코스를 변경하기",
+    "1006": "캐릭터를 변경하기",
+    "1007": "다시 시작하기",
+    "1008": "미션을 선택하기",
+    "1009": "다음 경기로",
+    "1010": "다음",
+    "1011": "재도전",
+    "1012": "리플레이 감상하기",
+    "1013": "리플레이를 계속하기",
+    "1014": "처음부터 리플레이",
+    "1015": "랭킹 확인",
+    "1016": "고스트 목록 확인",
+    "1017": null,
+    "1018": "다음 고스트",
+    "1019": null,
+    "1020": "Wi-Fi 메뉴",
+    "1021": "리플레이를 그만두기",
+    "1022": "경기를 시작하기",
+    "1023": "다음 경기로",
+    "1024": "다음 배틀로",
+    "1025": "잠시 기다려 주십시오",
+    "1026": "고스트를 변경하기",
+    "1027": "고스트와 경기하기",
+    "1028": "리플레이를 계속하기",
+    "1029": "리플레이를 그만두기",
+    "1030": "처음부터 리플레이",
+    "1031": "다음 경기는 약 {arg integer|0 0}명과\n플레이하게 됩니다",
+    "1032": "기록을 보내기",
+    "1033": "",
+    "1101": "정말로 그만두시겠습니까?",
+    "1102": "마리오 카트 채널의\n랭킹으로\n이동하시겠습니까?",
+    "1103": "OK",
+    "1104": null,
+    "1105": "축하합니다!\n{arg player|0} 님을 이겼습니다!\n\n자신의 고스트를 보내시겠습니까?",
+    "1106": "보내기",
+    "1107": "보내지 않기",
+    "1108": "예",
+    "1109": "아니요",
+    "1110": "",
+    "1111": "친구 목록으로\n이동하시겠습니까?",
+    "1112": "기록을 보내시겠습니까?\n(대회 중에는 몇 번이고\n보낼 수 있습니다)",
+    "1113": "경기를 포기하고\n다음 고스트를\n받으시겠습니까?",
+    "1114": "경기를 포기하고\n메뉴 화면으로\n돌아가시겠습니까?",
+    "1115": "{current player|} 님의 고스트를 만들었습니다!",
+    "1116": "고스트를 만들지 못했습니다",
+    "1117": "고스트 도전장을 보내지 못했습니다",
+    "1118": "코스 선택 화면으로\n돌아가시겠습니까?",
+    "1119": "고스트를 만들지 못했습니다",
+    "1120": "",
+    "1121": "개발자의 빠른 고스트가 등장했습니다!",
     "1201": {
         string: "3",
         font: "caps",
@@ -192,362 +82,126 @@
         string: "YOU LOSE",
         font: "caps",
     },
-    "1208": {
-        string: null,
-    },
-    "1209": {
-        string: null,
-    },
-    "1210": {
-        string: "축하합니다!",
-    },
+    "1208": null,
+    "1209": null,
+    "1210": "축하합니다!",
     "1211": {
         string: "NEW RECORD!!",
         font: "caps",
     },
-    "1212": {
-        string: "기록",
-    },
-    "1213": {
-        string: "Best Lap",
-    },
-    "1214": {
-        string: "{color|team red}레드 팀 승!",
-    },
-    "1215": {
-        string: "{color|team blue}블루 팀 승!",
-    },
-    "1216": {
-        string: "{color|team red}레드 팀 우승!",
-    },
-    "1217": {
-        string: "{color|team blue}블루 팀 우승!",
-    },
-    "1218": {
-        string: "무승부",
-    },
-    "1219": {
-        string: "우승 축하합니다!",
-    },
-    "1220": {
-        string: "준우승 축하합니다!",
-    },
-    "1221": {
-        string: "3위 축하합니다!",
-    },
-    "1222": {
-        string: "다음번을 기대할게요!",
-    },
-    "1223": {
-        string: "{color|team red}레드 팀 패",
-    },
-    "1224": {
-        string: "{color|team blue}블루 팀 패",
-    },
-    "1225": {
-        string: "{color|team red}레드 팀 패",
-    },
-    "1226": {
-        string: "{color|team blue}블루 팀 패",
-    },
-    "1227": {
-        string: "",
-    },
-    "1301": {
-        string: "1st",
-    },
-    "1302": {
-        string: "2nd",
-    },
-    "1303": {
-        string: "3rd",
-    },
-    "1304": {
-        string: "4th",
-    },
-    "1305": {
-        string: "5th",
-    },
-    "1306": {
-        string: "6th",
-    },
-    "1307": {
-        string: "7th",
-    },
-    "1308": {
-        string: "8th",
-    },
-    "1309": {
-        string: "9th",
-    },
-    "1310": {
-        string: "10th",
-    },
-    "1311": {
-        string: "11th",
-    },
-    "1312": {
-        string: "12th",
-    },
-    "1313": {
-        string: "{arg cond messages|0 1316 1317}",
-    },
-    "1314": {
-        string: "{arg integer|0 0}",
-    },
-    "1315": {
-        string: "{arg signed integer|0 0}",
-    },
-    "1316": {
-        string: "pt",
-    },
-    "1317": {
-        string: "pts",
-    },
-    "1318": {
-        string: "{arg cond messages|0 1319 1320}",
-    },
-    "1319": {
-        string: "{color|team red}win",
-    },
-    "1320": {
-        string: "{color|team red}wins",
-    },
-    "1321": {
-        string: "{arg cond messages|0 1322 1323}",
-    },
-    "1322": {
-        string: "{color|team blue}win",
-    },
-    "1323": {
-        string: "{color|team blue}wins",
-    },
-    "1324": {
-        string: "{arg cond messages|0 1325 1326}",
-    },
-    "1325": {
-        string: "{color|team red}pt",
-    },
-    "1326": {
-        string: "{color|team red}pts",
-    },
-    "1327": {
-        string: "{arg cond messages|0 1328 1329}",
-    },
-    "1328": {
-        string: "{color|team blue}pt",
-    },
-    "1329": {
-        string: "{color|team blue}pts",
-    },
-    "1330": {
-        string: "고스트 배틀: {arg integer|0 0}승 {arg integer|1 0}패",
-    },
-    "1331": {
-        string: "고스트 배틀: {arg integer|0 0}승 {arg integer|1 0}패",
-    },
-    "1332": {
-        string: "{color|team red}{arg message|0}",
-    },
-    "1333": {
-        string: "{color|team blue}{arg message|0}",
-    },
-    "1334": {
-        string: "TIME",
-    },
-    "1335": {
-        string: "LAP",
-    },
-    "1336": {
-        string: "SCORE",
-    },
-    "1337": {
-        string: "LIVE",
-    },
-    "1338": {
-        string: "다음 경기부터\n참가합니다({arg integer|0 0}명).\n잠시 기다려 주십시오.",
-    },
-    "1339": {
-        string: "다음 배틀부터\n참가합니다({arg integer|0 0}명).\n잠시 기다려 주십시오.",
-    },
-    "1340": {
-        string: "\n순위가 결정되었으므로\n경기를 마치겠습니다",
-    },
-    "1341": {
-        string: "\n시작 후 5분이 경과되었으므로\n경기를 마치겠습니다",
-    },
-    "1342": {
-        string: "\n1위가 골인한 후 30초가 경과되었으므로\n경기를 마치겠습니다",
-    },
-    "1343": {
-        string: "VR",
-    },
-    "1344": {
-        string: "BR",
-    },
-    "1345": {
-        string: "{1 char|}",
-    },
-    "1400": {
-        string: "{arg integer|0 2}:{arg integer|1 2}.{arg integer|2 3}",
-    },
-    "1401": {
-        string: "--:--.---",
-    },
-    "1402": {
-        string: ":",
-    },
-    "1403": {
-        string: ".",
-    },
-    "1404": {
-        string: "",
-    },
-    "1409": {
-        string: "{arg message|0} VS 단체전 {arg integer|0 0}/{arg integer|1 0}",
-    },
-    "1410": {
-        string: "{arg message|0} {arg message|1} 1st 레이스",
-    },
-    "1411": {
-        string: "{arg message|0} {arg message|1} 2nd 레이스",
-    },
-    "1412": {
-        string: "{arg message|0} {arg message|1} 3rd 레이스",
-    },
-    "1413": {
-        string: "{arg message|0} {arg message|1} 파이널 레이스",
-    },
-    "1414": {
-        string: "{arg message|0} VS {arg integer|0 0}/{arg integer|1 0}",
-    },
-    "1415": {
-        string: "풍선 배틀!",
-    },
-    "1416": {
-        string: "코인을 모아라!",
-    },
-    "1417": {
-        string: "50cc",
-    },
-    "1418": {
-        string: "100cc",
-    },
-    "1419": {
-        string: "150cc",
-    },
-    "1420": {
-        string: "미러",
-    },
-    "1421": {
-        string: "{arg message|0} {arg message|1}",
-    },
-    "1422": {
-        string: "{arg message|0} VS",
-    },
-    "1423": {
-        string: "랭크:",
-    },
-    "1424": {
-        string: "{1 char|}",
-    },
-    "1425": {
-        string: "{1 char|}",
-    },
-    "1426": {
-        string: "{1 char|}",
-    },
-    "1427": {
-        string: "{1 char|}　",
-    },
-    "1428": {
-        string: "{1 char|}",
-    },
-    "1429": {
-        string: "{1 char|}",
-    },
-    "1430": {
-        string: "{1 char|}",
-    },
-    "1431": {
-        string: "{1 char|}",
-    },
-    "1432": {
-        string: "F",
-    },
-    "1433": {
-        string: "{arg message|0} 그랑프리",
-    },
-    "1434": {
-        string: "{arg message|0} 그랑프리 단체전",
-    },
-    "1435": {
-        string: "{arg message|0} VS 단체전",
-    },
-    "1436": {
-        string: null,
-    },
-    "1437": {
-        string: null,
-    },
-    "1438": {
-        string: null,
-    },
-    "1439": {
-        string: null,
-    },
-    "1440": {
-        string: "{arg message|0} VS {arg message|1}",
-    },
-    "1441": {
-        string: "{arg message|2}{arg message|0} 그랑프리 1st 레이스",
-    },
-    "1442": {
-        string: "{arg message|2}{arg message|0} 그랑프리 2nd 레이스",
-    },
-    "1443": {
-        string: "{arg message|2}{arg message|0} 그랑프리 3rd 레이스",
-    },
-    "1444": {
-        string: "{arg message|2}{arg message|0} 그랑프리 파이널 레이스",
-    },
-    "1445": {
-        string: "{arg message|2}풍선 배틀!",
-    },
-    "1446": {
-        string: "{arg message|2}코인을 모아라!",
-    },
-    "1447": {
-        string: "({arg integer|0 0}명)",
-    },
-    "1448": {
-        string: "",
-    },
-    "1449": {
-        string: "{color|team red}",
-    },
-    "1450": {
-        string: "{color|team blue}",
-    },
-    "1451": {
-        string: "",
-    },
-    "1500": {
-        string: "아이템",
-    },
-    "1501": {
-        string: "핸들",
-    },
-    "1502": {
-        string: "액셀",
-    },
-    "1503": {
-        string: "브레이크/드리프트",
-    },
-    "1504": {
-        string: "브레이크",
-    },
-    "1505": {
-        string: "",
-    },
+    "1212": "기록",
+    "1213": "Best Lap",
+    "1214": "{color|team red}레드 팀 승!",
+    "1215": "{color|team blue}블루 팀 승!",
+    "1216": "{color|team red}레드 팀 우승!",
+    "1217": "{color|team blue}블루 팀 우승!",
+    "1218": "무승부",
+    "1219": "우승 축하합니다!",
+    "1220": "준우승 축하합니다!",
+    "1221": "3위 축하합니다!",
+    "1222": "다음번을 기대할게요!",
+    "1223": "{color|team red}레드 팀 패",
+    "1224": "{color|team blue}블루 팀 패",
+    "1225": "{color|team red}레드 팀 패",
+    "1226": "{color|team blue}블루 팀 패",
+    "1227": "",
+    "1301": "1st",
+    "1302": "2nd",
+    "1303": "3rd",
+    "1304": "4th",
+    "1305": "5th",
+    "1306": "6th",
+    "1307": "7th",
+    "1308": "8th",
+    "1309": "9th",
+    "1310": "10th",
+    "1311": "11th",
+    "1312": "12th",
+    "1313": "{arg cond messages|0 1316 1317}",
+    "1314": "{arg integer|0 0}",
+    "1315": "{arg signed integer|0 0}",
+    "1316": "pt",
+    "1317": "pts",
+    "1318": "{arg cond messages|0 1319 1320}",
+    "1319": "{color|team red}win",
+    "1320": "{color|team red}wins",
+    "1321": "{arg cond messages|0 1322 1323}",
+    "1322": "{color|team blue}win",
+    "1323": "{color|team blue}wins",
+    "1324": "{arg cond messages|0 1325 1326}",
+    "1325": "{color|team red}pt",
+    "1326": "{color|team red}pts",
+    "1327": "{arg cond messages|0 1328 1329}",
+    "1328": "{color|team blue}pt",
+    "1329": "{color|team blue}pts",
+    "1330": "고스트 배틀: {arg integer|0 0}승 {arg integer|1 0}패",
+    "1331": "고스트 배틀: {arg integer|0 0}승 {arg integer|1 0}패",
+    "1332": "{color|team red}{arg message|0}",
+    "1333": "{color|team blue}{arg message|0}",
+    "1334": "TIME",
+    "1335": "LAP",
+    "1336": "SCORE",
+    "1337": "LIVE",
+    "1338": "다음 경기부터\n참가합니다({arg integer|0 0}명).\n잠시 기다려 주십시오.",
+    "1339": "다음 배틀부터\n참가합니다({arg integer|0 0}명).\n잠시 기다려 주십시오.",
+    "1340": "\n순위가 결정되었으므로\n경기를 마치겠습니다",
+    "1341": "\n시작 후 5분이 경과되었으므로\n경기를 마치겠습니다",
+    "1342": "\n1위가 골인한 후 30초가 경과되었으므로\n경기를 마치겠습니다",
+    "1343": "VR",
+    "1344": "BR",
+    "1345": "{1 char|}",
+    "1400": "{arg integer|0 2}:{arg integer|1 2}.{arg integer|2 3}",
+    "1401": "--:--.---",
+    "1402": ":",
+    "1403": ".",
+    "1404": "",
+    "1409": "{arg message|0} VS 단체전 {arg integer|0 0}/{arg integer|1 0}",
+    "1410": "{arg message|0} {arg message|1} 1st 레이스",
+    "1411": "{arg message|0} {arg message|1} 2nd 레이스",
+    "1412": "{arg message|0} {arg message|1} 3rd 레이스",
+    "1413": "{arg message|0} {arg message|1} 파이널 레이스",
+    "1414": "{arg message|0} VS {arg integer|0 0}/{arg integer|1 0}",
+    "1415": "풍선 배틀!",
+    "1416": "코인을 모아라!",
+    "1417": "50cc",
+    "1418": "100cc",
+    "1419": "150cc",
+    "1420": "미러",
+    "1421": "{arg message|0} {arg message|1}",
+    "1422": "{arg message|0} VS",
+    "1423": "랭크:",
+    "1424": "{1 char|}",
+    "1425": "{1 char|}",
+    "1426": "{1 char|}",
+    "1427": "{1 char|}　",
+    "1428": "{1 char|}",
+    "1429": "{1 char|}",
+    "1430": "{1 char|}",
+    "1431": "{1 char|}",
+    "1432": "F",
+    "1433": "{arg message|0} 그랑프리",
+    "1434": "{arg message|0} 그랑프리 단체전",
+    "1435": "{arg message|0} VS 단체전",
+    "1436": null,
+    "1437": null,
+    "1438": null,
+    "1439": null,
+    "1440": "{arg message|0} VS {arg message|1}",
+    "1441": "{arg message|2}{arg message|0} 그랑프리 1st 레이스",
+    "1442": "{arg message|2}{arg message|0} 그랑프리 2nd 레이스",
+    "1443": "{arg message|2}{arg message|0} 그랑프리 3rd 레이스",
+    "1444": "{arg message|2}{arg message|0} 그랑프리 파이널 레이스",
+    "1445": "{arg message|2}풍선 배틀!",
+    "1446": "{arg message|2}코인을 모아라!",
+    "1447": "({arg integer|0 0}명)",
+    "1448": "",
+    "1449": "{color|team red}",
+    "1450": "{color|team blue}",
+    "1451": "",
+    "1500": "아이템",
+    "1501": "핸들",
+    "1502": "액셀",
+    "1503": "브레이크/드리프트",
+    "1504": "브레이크",
+    "1505": "",
 }

@@ -2,8 +2,6 @@
 
 #include "IOS.hh"
 
-#include <optional>
-
 namespace IOS {
 
 class FS final : private Resource {

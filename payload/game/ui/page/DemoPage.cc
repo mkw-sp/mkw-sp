@@ -11,9 +11,9 @@ void DemoPage::onInit() {
 
     auto sectionManager = SectionManager::Instance();
     auto globalContext = sectionManager->globalContext();
-    auto raceConfig = System::RaceConfig::Instance();
 
-    auto &menuScenario = raceConfig->menuScenario();
+    auto *raceConfig = System::RaceConfig::Instance();
+    assert(raceConfig != nullptr);
     auto &raceScenario = raceConfig->raceScenario();
     auto currentSectionId = sectionManager->currentSection()->id();
 
@@ -24,10 +24,16 @@ void DemoPage::onInit() {
     m_courseDisplay.load("demo", "course_name", "course_name", 0);
     m_cupDisplay.load("demo", "cup_name", "cup_name", 0);
 
-    auto courseId = menuScenario.courseId;
+    auto courseId = raceScenario.courseId;
     auto cupId = Registry::GetCourseCupId(courseId);
 
-    m_courseDisplay.setMessageAll(Registry::GetCourseName(courseId), nullptr);
+    if (raceConfig->m_spRace.nameReplacement.m_len == 0) {
+        m_courseDisplay.setMessageAll(Registry::GetCourseName(courseId), nullptr);
+    } else {
+        MessageInfo info;
+        info.strings[0] = raceConfig->m_spRace.nameReplacement.c_str();
+        m_courseDisplay.setMessageAll(10420, &info);
+    }
 
     u32 cupMsgId = 9999;
     MessageInfo cupInfo = {};

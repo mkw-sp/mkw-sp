@@ -86,11 +86,18 @@ void SingleTopPage::onInit() {
     m_taButton.selectDefault(0);
     m_instructionText.setMessage(3051);
 
-    ModelPage::SetModel(0);
+    SectionManager::Instance()->globalContext()->clearCourses();
 }
 
 void SingleTopPage::onActivate() {
     m_replacement = PageId::None;
+
+    // Reset button to TT when going from PackSelect, to fix possible
+    // mismatches between the ModelPage and/or future concerns.
+    if (anim() == Anim::Next) {
+        m_taButton.selectDefault(0);
+        onTAButtonSelect(&m_taButton, 0);
+    }
 
     auto &menuScenario = System::RaceConfig::Instance()->menuScenario();
     menuScenario.itemMode = 0;
@@ -103,7 +110,7 @@ void SingleTopPage::onActivate() {
 }
 
 void SingleTopPage::onBack(u32 /* localPlayerId */) {
-    changeSection(SectionId::TitleFromMenu, Anim::Prev, 0.0f);
+    onBackCommon(0);
 }
 
 void SingleTopPage::onSettingsButtonFront(PushButton *button, u32 /* localPlayerId */) {
@@ -127,7 +134,7 @@ void SingleTopPage::onTAButtonFront(PushButton *button, u32 /* localPlayerId */)
     menuScenario.cameraMode = 0;
 
     raceConfig->applyEngineClass();
-    raceConfig->applyPlayers(System::RaceConfig::Player::Type::None);
+    raceConfig->applyPlayers();
 
     Section *section = SectionManager::Instance()->currentSection();
     auto *courseSelectPage = section->page<PageId::CourseSelect>();
@@ -162,7 +169,7 @@ void SingleTopPage::onVSButtonFront(PushButton *button, u32 /* localPlayerId */)
     menuScenario.cameraMode = 5;
 
     context->applyVehicleRestriction(false);
-    raceConfig->applyPlayers(System::RaceConfig::Player::Type::CPU);
+    raceConfig->applyPlayers();
     raceConfig->applyCPUMode();
     raceConfig->applyItemFreq();
     raceConfig->applyEngineClass();
@@ -200,7 +207,7 @@ void SingleTopPage::onBTButtonFront(PushButton *button, u32 /* localPlayerId */)
     menuScenario.cameraMode = 5;
 
     context->applyVehicleRestriction(true);
-    raceConfig->applyPlayers(System::RaceConfig::Player::Type::CPU);
+    raceConfig->applyPlayers();
     raceConfig->applyCPUMode();
     raceConfig->applyItemFreq();
     raceConfig->applyEngineClass();
@@ -230,7 +237,7 @@ void SingleTopPage::onMRButtonFront(PushButton *button, u32 /* localPlayerId */)
     menuScenario.gameMode = System::RaceConfig::GameMode::Mission;
     menuScenario.cameraMode = 0;
 
-    raceConfig->applyPlayers(System::RaceConfig::Player::Type::None);
+    raceConfig->applyPlayers();
 
     Section *section = SectionManager::Instance()->currentSection();
     auto *courseSelectPage = section->page<PageId::CourseSelect>();
@@ -251,7 +258,12 @@ void SingleTopPage::onMRButtonSelect(PushButton * /* button */, u32 /* localPlay
 #endif
 
 void SingleTopPage::onBackButtonFront(PushButton *button, u32 /* localPlayerId */) {
-    changeSection(SectionId::TitleFromMenu, Anim::Prev, button->getDelay());
+    onBackCommon(button->getDelay());
+}
+
+void SingleTopPage::onBackCommon(f32 delay) {
+    m_replacement = PageId::PackSelect;
+    startReplace(Anim::Prev, delay);
 }
 
 void SingleTopPage::onBackButtonSelect(PushButton * /* button */, u32 /* localPlayerId */) {

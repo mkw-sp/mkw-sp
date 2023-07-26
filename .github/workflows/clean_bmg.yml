@@ -1,0 +1,24 @@
+name: Clean BMG
+
+on:
+  push:
+    paths:
+      - 'assets/**.bmg.json5'
+  pull_request:
+    paths:
+      - 'assets/**.bmg.json5'
+
+jobs:
+  clean_bmg:
+    name: Check BMG files are clean
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Install deps
+        run: python3 -m pip install json5
+      - name: Run BMG cleaner
+        working-directory: tools/bmg-cleaner
+        run: python3 bmg-cleaner.py
+      - name: Check if BMG cleaner made a difference
+        run: git diff --exit-code

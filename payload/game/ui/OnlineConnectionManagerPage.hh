@@ -1,3 +1,5 @@
+// For mentions of "Track Packs", see `PackSelectPage.cc` for more information.
+
 #pragma once
 
 #include "game/ui/Page.hh"

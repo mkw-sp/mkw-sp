@@ -1,6 +1,7 @@
 #include "CourseSelectPage.hh"
 
 #include "game/system/RaceConfig.hh"
+#include "game/system/SaveManager.hh"
 #include "game/ui/ModelRenderPage.hh"
 #include "game/ui/RaceConfirmPage.hh"
 #include "game/ui/RankingPage.hh"
@@ -134,6 +135,12 @@ void CourseSelectPage::onDeinit() {
 
 void CourseSelectPage::onActivate() {
     m_replacement = PageId::None;
+
+    auto *sectionManager = SectionManager::Instance();
+    auto section = sectionManager->currentSection()->id();
+    if (section != SectionId::SingleSelectVSCourse && section != SectionId::SingleSelectBTCourse) {
+        sectionManager->globalContext()->clearCourses();
+    }
 }
 
 void CourseSelectPage::afterCalc() {
@@ -176,10 +183,9 @@ void CourseSelectPage::afterCalc() {
 }
 
 void CourseSelectPage::onRefocus() {
-    auto *section = SectionManager::Instance()->currentSection();
-    auto sectionId = section->id();
-
-    if (Section::HasRoomClient(sectionId)) {
+    auto *sectionManager = SectionManager::Instance();
+    auto *section = sectionManager->currentSection();
+    if (Section::HasRoomClient(section->id())) {
         return;
     }
 
@@ -188,15 +194,16 @@ void CourseSelectPage::onRefocus() {
         return;
     }
 
+    auto *raceConfig = System::RaceConfig::Instance();
     auto *raceConfirmPage = section->page<PageId::RaceConfirm>();
     if (raceConfirmPage->hasConfirmed()) {
-        auto menuScenario = System::RaceConfig::Instance()->menuScenario();
-
-        if (menuScenario.gameMode == System::RaceConfig::GameMode::OfflineBT) {
+        if (raceConfig->menuScenario().gameMode == System::RaceConfig::GameMode::OfflineBT) {
             changeSection(SectionId::BTDemo, Anim::Next, 0.0f);
         } else {
             changeSection(SectionId::VSDemo, Anim::Next, 0.0f);
         }
+    } else {
+        sectionManager->globalContext()->clearCourses();
     }
 }
 
@@ -274,17 +281,29 @@ void CourseSelectPage::onButtonFront(PushButton *button, u32 /* localPlayerId */
         votingBackPage->setLocalVote(entry.courseId);
         votingBackPage->setSubmitted(true);
         startReplace(Anim::Next, button->getDelay());
+    } else if (sectionId == SectionId::Rankings) {
+        s32 courseButtonIndex = GetButtonIndexFromCourse(entry.courseId);
+
+        auto *rankingPage = section->page<PageId::Ranking>();
+        rankingPage->courseControl().choose(courseButtonIndex);
+
+        m_replacement = PageId::None;
+        startReplace(Anim::Prev, button->getDelay());
     } else {
+        auto *globalContext = sectionManager->globalContext();
         auto &menuScenario = System::RaceConfig::Instance()->menuScenario();
-        menuScenario.courseId = entry.courseId;
-        if (sectionId == SectionId::Rankings) {
-            auto *rankingPage = section->page<PageId::Ranking>();
-            s32 courseButtonIndex =
-                    GetButtonIndexFromCourse(static_cast<Registry::Course>(entry.courseId));
-            rankingPage->courseControl().choose(courseButtonIndex);
-            m_replacement = PageId::None;
-            startReplace(Anim::Prev, button->getDelay());
-        } else if (menuScenario.gameMode == System::RaceConfig::GameMode::TimeAttack) {
+        auto &spMenu = System::RaceConfig::Instance()->m_spMenu;
+
+        if (!sectionManager->globalContext()->generateOrderedCourses(courseIndex)) {
+            globalContext->setCurrentCourse(entry.courseId);
+            menuScenario.courseId = globalContext->getCourse(0).value();
+            spMenu.pathReplacement.m_len = 0;
+            spMenu.musicReplacement = std::nullopt;
+            spMenu.courseSha = std::nullopt;
+            spMenu.nameReplacement.m_len = 0;
+        }
+
+        if (menuScenario.gameMode == System::RaceConfig::GameMode::TimeAttack) {
             m_replacement = PageId::TimeAttackTop;
             startReplace(Anim::Next, button->getDelay());
         } else {
@@ -491,7 +510,18 @@ void CourseSelectPage::loadThumbnails() {
             if (requestedDatabaseIds[i] == std::numeric_limits<u32>::max()) {
                 continue;
             }
-            JRESULT result = loadThumbnail(i, requestedDatabaseIds[i]);
+
+            auto &courseDatabase = SP::CourseDatabase::Instance();
+
+            std::optional<Sha1> courseSha1 = std::nullopt;
+            for (u32 courseIdx = 0; courseIdx < courseDatabase.count(m_filter); courseIdx += 1) {
+                auto entry = courseDatabase.entry(m_filter, courseIdx);
+                if (entry.databaseId == requestedDatabaseIds[i]) {
+                    courseSha1 = System::SaveManager::Instance()->courseSHA1(entry.courseId);
+                }
+            }
+
+            JRESULT result = loadThumbnail(i, courseSha1.value());
             if (result == JDR_OK) {
                 databaseIds[i] = requestedDatabaseIds[i];
             } else {
@@ -510,9 +540,11 @@ void CourseSelectPage::loadThumbnails() {
     }
 }
 
-JRESULT CourseSelectPage::loadThumbnail(u32 i, u32 databaseId) {
-    char path[32];
-    snprintf(path, std::size(path), "/thumbnails/%u.jpg", databaseId);
+JRESULT CourseSelectPage::loadThumbnail(u32 i, Sha1 courseSha1) {
+    char path[64];
+
+    auto hex = sha1ToHex(courseSha1);
+    snprintf(path, std::size(path), "/thumbnails/%s.jpg", hex.data());
 
     auto file = SP::Storage::OpenRO(path);
     if (!file) {

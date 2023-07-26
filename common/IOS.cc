@@ -45,6 +45,10 @@ void Init() {
 #endif
 }
 
+u16 GetNumber() {
+    return *reinterpret_cast<volatile u16 *>(0x80003140);
+}
+
 enum class SC {
     IOS_SetUid = 0x2B,
     IOS_InvalidateDCache = 0x3F,
@@ -249,17 +253,25 @@ bool EscalatePrivileges(bool again) {
     return true;
 }
 
+#ifdef SP_LOADER
+void DeescalatePrivileges(std::optional<u32> newKeyAddress) {
+#else
 void DeescalatePrivileges() {
+#endif
     if (IsDolphin()) {
         return;
     }
 
+#ifdef SP_LOADER
+    WriteMessage(2, newKeyAddress.value_or(0x00000000));
+#endif
     WriteMessage(1, 2);
     while (ReadMessage(1) != 3) {
         Clock::WaitMilliseconds(1);
     }
 }
 
+#ifdef SP_LOADER
 template <size_t N>
 static bool Compare(const u32 (&mask)[N], const u32 (&pattern)[N], const u32 *ptr) {
     for (size_t i = 0; i < N; i++) {
@@ -288,9 +300,9 @@ static void Copy(const u32 (&mask)[N], const u32 (&pattern)[N], u32 *ptr) {
     }
 }
 
-bool ImportNewCommonKey() {
+std::optional<std::optional<u32>> ImportNewCommonKey() {
     if (IsDolphin()) {
-        return true;
+        return std::make_optional<std::optional<u32>>({});
     }
 
     // Find the common key in the Starlet SRAM.
@@ -302,7 +314,7 @@ bool ImportNewCommonKey() {
     const u32 *end = reinterpret_cast<u32 *>(0xCD420000);
     start = Find(keyMask, keyPattern, start, end);
     if (!start) {
-        return false;
+        return {};
     }
 
     // The new common key should be at a fixed offset.
@@ -313,7 +325,7 @@ bool ImportNewCommonKey() {
     u32 newKeyPattern[] = {0x0163B82B, 0xB4F4614E, 0x2E13F2FE, 0xFBBA4C9B, 0x7E000000, 0x00000000,
             0x00000000, 0x00000000, 0x00000000};
     if (Compare(newKeyMask, newKeyPattern, start)) {
-        return true;
+        return std::make_optional<std::optional<u32>>({});
     }
 
     // For other Wiis, it's all zeros instead.
@@ -322,14 +334,14 @@ bool ImportNewCommonKey() {
     u32 noKeyPattern[] = {0x01000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000,
             0x00000000, 0x00000000, 0x00000000};
     if (!Compare(noKeyMask, noKeyPattern, start)) {
-        return false;
+        return {};
     }
 
     // Copy it, and the address to invalidate the cache on the IOS side.
     Copy(newKeyMask, newKeyPattern, const_cast<u32 *>(start));
-    WriteMessage(2, reinterpret_cast<u32>(start) & 0xffff0000);
-    return true;
+    return reinterpret_cast<u32>(start) & 0xffff0000;
 }
+#endif
 
 enum class Command : u32 {
     Open = 1,

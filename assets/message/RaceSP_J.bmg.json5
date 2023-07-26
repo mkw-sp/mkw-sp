@@ -1,5 +1,3 @@
 {
-    "10071": {
-        string: "{arg integer|0 0}:{arg integer|1 0}.{arg integer|2 3}",
-    },
+    "10071": "{arg integer|0 0}:{arg integer|1 0}.{arg integer|2 3}",
 }

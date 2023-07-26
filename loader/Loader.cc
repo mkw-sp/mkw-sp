@@ -56,6 +56,15 @@ std::optional<Apploader::GameEntryFunc> Run() {
     Console::Print("\n");
     Console::Print("\n");
 
+    u16 iosNumber = IOS::GetNumber();
+    if (iosNumber != 58 && iosNumber != 59) {
+        Console::Print(
+                "In order for MKW-SP to work, IOS58 (or IOS59) must be installed.\n"
+                "Please perform a Wii System Update or use the IOS58 Installer\n"
+                "to install IOS58.");
+        return {};
+    }
+
     Console::Print("Escalating privileges...");
     if (!IOS::EscalatePrivileges(true)) {
         Console::Print(" failed!\n");
@@ -81,11 +90,15 @@ std::optional<Apploader::GameEntryFunc> Run() {
     }
 
     Console::Print("Importing new common key...");
-    IOS::ImportNewCommonKey();
-    Console::Print(" done.\n");
+    auto newKey = IOS::ImportNewCommonKey();
+    if (newKey) {
+        Console::Print(" done.\n");
+    } else {
+        Console::Print(" failed!\n");
+    }
 
     Console::Print("Deescalating privileges...");
-    IOS::DeescalatePrivileges();
+    IOS::DeescalatePrivileges(newKey.value_or(std::nullopt));
     Console::Print(" done.\n");
 
     std::optional<Apploader::GameEntryFunc> gameEntry;

@@ -6,6 +6,7 @@
 extern "C" {
 #include <sp/Host.h>
 }
+
 #include <vendor/libhydrogen/hydrogen.h>
 
 namespace UI {

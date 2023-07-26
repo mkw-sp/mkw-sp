@@ -1,29 +1,11 @@
 {
-    "10047": {
-        string: "Guardando datos fantasma...",
-    },
-    "10070": {
-        string: "Los datos fantasma serán truncados.",
-    },
-    "10071": {
-        string: "{arg integer|0 0}:{arg integer|1 0}.{arg integer|2 3}",
-    },
-    "10284": {
-        string: "{color|player 3}¡Gana el rojo!",
-    },
-    "10285": {
-        string: "{color|sp blue}¡Gana el azul!",
-    },
-    "10286": {
-        string: "{color|sp green}¡Gana el verde!",
-    },
-    "10287": {
-        string: "{color|player 1}¡Gana el amarillo!",
-    },
-    "10288": {
-        string: "{color|sp pink}¡Gana el magenta!",
-    },
-    "10289": {
-        string: "¡Gana el blanco!",
-    },
+    "10047": "Guardando datos fantasma...",
+    "10070": "Los datos fantasma serán truncados.",
+    "10071": "{arg integer|0 0}:{arg integer|1 0}.{arg integer|2 3}",
+    "10284": "{color|player 3}¡Gana el rojo!",
+    "10285": "{color|sp blue}¡Gana el azul!",
+    "10286": "{color|sp green}¡Gana el verde!",
+    "10287": "{color|player 1}¡Gana el amarillo!",
+    "10288": "{color|sp pink}¡Gana el magenta!",
+    "10289": "¡Gana el blanco!",
 }

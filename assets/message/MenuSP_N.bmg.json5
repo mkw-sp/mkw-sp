@@ -1,1016 +1,340 @@
 {
-    "2053": {
-        string: "Er is iets fout gegaan bij het lezen of schrijven van de spelgegevens.",
-    },
-    "3400": {
-        string: "Instellingen",
-    },
-    "3420": {
-        string: "CPU-moeilijkheid",
-    },
-    "3475": {
-        string: "Verander instellingen voor dit rijbewijs.",
-    },
-    "3700": {
-        string: "Selecteer Level",
-    },
-    "3701": {
-        string: "Selecteer Missie",
-    },
-    "10000": {
-        string: "Race tegen 1 geest",
-    },
-    "10001": {
-        string: "Bekijk 1 geest",
-    },
-    "10002": {
-        string: "Race tegen {arg integer|0 0} geesten",
-    },
-    "10003": {
-        string: "Bekijk {arg integer|0 0} geesten",
-    },
-    "10004": {
-        string: "HUD-tekst",
-    },
-    "10005": {
-        string: "Verberg",
-    },
-    "10006": {
-        string: "Toon",
-    },
-    "10007": {
-        string: "Verberg HUD-tekst.",
-    },
-    "10008": {
-        string: "Toon HUD-tekst.",
-    },
-    "10009": {
-        string: "16:9-gezichtsveld",
-    },
-    "10010": {
-        string: "Standaard",
-    },
-    "10011": {
-        string: "Wijder",
-    },
-    "10012": {
-        string: "Gebruik het standaard gezichtsveld in 16:9-modus.",
-    },
-    "10013": {
-        string: "Gebruik het wijdere 4:3-gezichtsveld in 16:9-modus.",
-    },
-    "10014": {
-        string: "Mapiconen",
-    },
-    "10015": {
-        string: "Coureurs",
-    },
-    "10016": {
-        string: "Mii's",
-    },
-    "10017": {
-        string: "Gebruik coureurs als minimapiconen.",
-    },
-    "10018": {
-        string: "Gebruik Mii's als minimapiconen.",
-    },
-    "10019": {
-        string: "Geestsortering",
-    },
-    "10028": {
-        string: "Tag-zichtbaarheid",
-    },
-    "10029": {
-        string: "Niets",
-    },
-    "10030": {
-        string: "Bekeken",
-    },
-    "10031": {
-        string: "Alle",
-    },
-    "10032": {
-        string: "Geef geen enkele tag van een geest weer.",
-    },
-    "10033": {
-        string: "Geef alleen de tag van de bekeken geest weer.",
-    },
-    "10034": {
-        string: "Geef de tags van alle geesten weer.",
-    },
-    "10035": {
-        string: "Tag-inhoud",
-    },
-    "10036": {
-        string: "Naam",
-    },
-    "10037": {
-        string: "Tijd",
-    },
-    "10038": {
-        string: "Datum",
-    },
-    "10039": {
-        string: "Gebruik de naam van de geest als zijn tag.",
-    },
-    "10040": {
-        string: "Gebruik de tijd van de geest als zijn tag.",
-    },
-    "10041": {
-        string: "Gebruik de aanmaakdatum van de geest als zijn tag.",
-    },
-    "10042": {
-        string: "Solide geesten",
-    },
-    "10043": {
-        string: "Maak geen enkele geest solide.",
-    },
-    "10044": {
-        string: "Maak de bekeken geest solide.",
-    },
-    "10045": {
-        string: "Maak alle geesten solide.",
-    },
-    "10046": {
-        string: "Speel tijdraces met deze regels.",
-    },
-    "10053": {
-        string: "Verkorte tijd",
-    },
-    "10054": {
-        string: "Tijdoptie zonder de eerste nullen.",
-    },
-    "10055": {
-        string: "Gecko-codes zijn NIET ONDERSTEUND\nen kunnen het spel laten crashen.\nDruk op de A-knop als je weet wat\nje doet en rapporteer GEEN bugs.",
-    },
-    "10056": {
-        string: "Menutransities",
-    },
-    "10057": {
-        string: "Uitschakelen",
-    },
-    "10058": {
-        string: "Inschakelen",
-    },
-    "10059": {
-        string: "Maak de menutransities onmiddelijk.",
-    },
-    "10060": {
-        string: "Behoud de standaardsnelheid van de menutransities.",
-    },
-    "10061": {
-        string: "Invoerdisplay",
-    },
-    "10062": {
-        string: "Uitschakelen",
-    },
-    "10063": {
-        string: "Inschakelen",
-    },
-    "10064": {
-        string: "Geef geen invoer weer tijdens een race.",
-    },
-    "10065": {
-        string: "Geef invoer weer tijdens een race.",
-    },
-    "10066": {
-        string: "Geestengeluid",
-    },
-    "10067": {
-        string: "Zet geen enkel geluid van geesten aan.",
-    },
-    "10068": {
-        string: "Zet alleen het geluid van de bekeken geest aan.",
-    },
-    "10069": {
-        string: "Zet het geluid van alle geesten aan.",
-    },
-    "10073": {
-        string: "Tijdraces en meer voor één speler!",
-    },
-    "10074": {
-        string: "Verander instellingen of jouw Mii!",
-    },
-    "10078": {
-        string: "0,9x snelheidsfactor.",
-    },
-    "10079": {
-        string: "1,0x snelheidsfactor.",
-    },
-    "10080": {
-        string: "1,0x snelheidsfactor met gespiegelde circuits.",
-    },
-    "10081": {
-        string: "1,5x snelheidsfactor met rem-driften en snel-vallen.",
-    },
-    "10082": {
-        string: "MKW-SP-instellingen",
-    },
-    "10083": {
-        string: "Service Pack",
-    },
-    "10087": {
-        string: "Update",
-    },
-    "10088": {
-        string: "Kanaal",
-    },
-    "10089": {
-        string: "Over",
-    },
-    "10090": {
-        string: "Wanneer het MKW-SP-kanaal is\ngeïnstalleerd, kan MKW-SP worden\nopgestart via het Wii-menu en\nhoeft dat niet meer via het\nHomebrew-kanaal of een andere exploit.\nUpdates worden synchroon gehouden\ntussen de twee.",
-    },
-    "10091": {
-        string: "Wil je het MKW-SP-kanaal installeren?",
-    },
-    "10092": {
-        string: "Een update voor het MKW-SP-kanaal\nis beschikbaar. Wil je deze installeren?",
-    },
-    "10093": {
-        string: "Het MKW-SP-kanaal is al geïnstalleerd.",
-    },
-    "10094": {
-        string: "Een nieuwere versie van het\nMKW-SP-kanaal is al geïnstalleerd!",
-    },
-    "10095": {
-        string: "Bezig met het installeren van het\nMKW-SP-kanaal...",
-    },
-    "10096": {
-        string: "Bezig met het updaten van het\nMKW-SP-kanaal...",
-    },
-    "10097": {
-        string: "De installatie van het\nMKW-SP-kanaal is gelukt!",
-    },
-    "10098": {
-        string: "De installatie van het\nMKW-SP-kanaal is mislukt!",
-    },
-    "10099": {
-        string: "De update van het\nMKW-SP-kanaal is gelukt!",
-    },
-    "10100": {
-        string: "De update van het\nMKW-SP-kanaal is mislukt!",
-    },
-    "10101": {
-        string: "Het MKW-SP-kanaal kan alleen worden\ngeïnstalleerd vanuit officiële releases!",
-    },
-    "10102": {
-        string: "Aan het zoeken voor updates...\n{arg message|0}",
-    },
-    "10103": {
-        string: "Een nieuwe versie van MKW-SP is beschikbaar!\n{arg string|0} → {arg string|1}",
-    },
-    "10104": {
-        string: "De nieuwste versie van MKW-SP ({arg string|0})\nis al geïnstalleerd.",
-    },
-    "10105": {
-        string: "Het is mislukt om te zoeken voor\nupdates van MKW-SP!",
-    },
-    "10106": {
-        string: "Wil je MKW-SP updaten naar {arg string|0}?\nEr zijn {arg string|1} MiB ({arg integer|0 0} blokken)\nnodig in het Wii-systeemgeheugen.",
-    },
-    "10107": {
-        string: "MKW-SP aan het updaten...\n{arg message|0}",
-    },
-    "10108": {
-        string: "Het is gelukt om MKW-SP te updaten van\n{arg string|0} naar {arg string|1}. Een herstart\nis nodig om de update toe te passen.",
-    },
-    "10109": {
-        string: "De MKW-SP update is mislukt!",
-    },
-    "10110": {
-        string: "Wil je MKW-SP nu opnieuw opstarten?",
-    },
-    "10111": {
-        string: "MKW-SP kan alleen worden geïnstalleerd\nvanuit officiële releases!",
-    },
-    "10112": {
-        string: "Aan het verbinden met de server...",
-    },
-    "10113": {
-        string: "Versie-informatie aan het versturen...",
-    },
-    "10114": {
-        string: "Versie-informatie aan het ontvangen...",
-    },
-    "10115": {
-        string: "Inhoud aan het downloaden...\n{arg string|0} MiB van {arg string|1} MiB - {arg string|2} MiB/s",
-    },
-    "10116": {
-        string: "Inhoud aan het verplaatsen...",
-    },
-    "10118": {
-        string: "Race",
-    },
-    "10119": {
-        string: "Tijdraces",
-    },
-    "10120": {
-        string: "Rijbewijs",
-    },
-    "10121": {
-        string: "Positietracker",
-    },
-    "10122": {
-        string: "GP en VS",
-    },
-    "10123": {
-        string: "Altijd",
-    },
-    "10124": {
-        string: "Geef de positietracker alleen weer in GPs en versusraces.",
-    },
-    "10125": {
-        string: "Geef de positietracker altijd weer.",
-    },
-    "10126": {
-        string: "Geluid",
-    },
-    "10127": {
-        string: "Voorwerpmuziek",
-    },
-    "10128": {
-        string: "Geen",
-    },
-    "10129": {
-        string: "Alleen klein/plat",
-    },
-    "10130": {
-        string: "Alles",
-    },
-    "10131": {
-        string: "Laat voorwerpen de muziek niet veranderen.",
-    },
-    "10132": {
-        string: "Pas alleen de kleine/platte muziekvariatie toe.",
-    },
-    "10133": {
-        string: "Laat Sterren, Megapaddenstoelen en Bliksemschichten de muziek veranderen.",
-    },
-    "10134": {
-        string: "Laaste ronde-jingle",
-    },
-    "10135": {
-        string: "Alleen gameplay",
-    },
-    "10136": {
-        string: "Altijd",
-    },
-    "10137": {
-        string: "Gebruik de laatste ronde-jingle voor alleen gameplay.",
-    },
-    "10138": {
-        string: "Gebruik de laatste ronde-jingle voor gameplay en herhalingen.",
-    },
-    "10139": {
-        string: "Laatste ronde-versnelling",
-    },
-    "10140": {
-        string: "Geen",
-    },
-    "10141": {
-        string: "Standaard",
-    },
-    "10142": {
-        string: "Dynamisch",
-    },
-    "10143": {
-        string: "Gebruik de \"_N\"-BRSTM tijdens de laatste ronde.",
-    },
-    "10144": {
-        string: "Gebruik de \"_F\"-BRSTM tijdens de laatste ronde.",
-    },
-    "10145": {
-        string: "Genereer de laatste ronde-muziek van de \"_N\"-BRSTM.",
-    },
-    "10146": {
-        string: "Opslag-benchmark",
-    },
-    "10147": {
-        string: "Op welke apparatuur wil je een benchmark uitvoeren?",
-    },
-    "10148": {
-        string: "Benchmark aan het uitvoeren op de {arg message|0}...\n{arg message|1}",
-    },
-    "10149": {
-        string: "De benchmark op de {arg message|0} is gelukt.\n{arg integer|0 0} KiB: Lz. {arg string|0} MiB/s - Schr. {arg string|1} MiB/s\n{arg integer|1 0} KiB: Lz. {arg string|2} MiB/s - Schr. {arg string|3} MiB/s\n{arg integer|2 0} KiB: Lz. {arg string|4} MiB/s - Schr. {arg string|5} MiB/s\n{arg integer|3 0} KiB: Lz. {arg string|6} MiB/s - Schr. {arg string|7} MiB/s",
-    },
-    "10150": {
-        string: "De benchmark op de {arg message|0} is mislukt!",
-    },
-    "10151": {
-        string: "Initialiseren...",
-    },
-    "10152": {
-        string: "{arg integer|0 0} KiB chunks aan het lezen...",
-    },
-    "10153": {
-        string: "{arg integer|0 0} KiB chunks aan het schrijven...",
-    },
-    "10154": {
-        string: "SD-kaart",
-    },
-    "10155": {
-        string: "SD-kaartopslag",
-    },
-    "10156": {
-        string: "USB",
-    },
-    "10157": {
-        string: "USB-opslag",
-    },
-    "10158": {
-        string: "Netwerk",
-    },
-    "10159": {
-        string: "netwerkopslag",
-    },
-    "10160": {
-        string: "Missies",
-    },
-    "10161": {
-        string: "Speel missies met verschillende uitdagingen.",
-    },
-    "10162": {
-        string: "Race {arg integer|0 0} {arg cond messages|0 10164 10165}",
-    },
-    "10163": {
-        string: "Bekijk {arg integer|0 0} {arg cond messages|0 10164 10165}",
-    },
-    "10164": {
-        string: "geest",
-    },
-    "10165": {
-        string: "geesten",
-    },
-    "10166": {
-        string: "Normale modus",
-    },
-    "10167": {
-        string: "Uitschakelen",
-    },
-    "10168": {
-        string: "Inschakelen",
-    },
-    "10169": {
-        string: "Sta alle MKW-SP-veranderingen toe.",
-    },
-    "10170": {
-        string: "Sta de meeste MKW-SP-veranderingen niet toe.",
-    },
-    "10171": {
-        string: "Tijd",
-    },
-    "10172": {
-        string: "Datum",
-    },
-    "10173": {
-        string: "Snelste ronde",
-    },
-    "10174": {
-        string: "Tweede ronde-tempo",
-    },
-    "10175": {
-        string: "Derde ronde-tempo",
-    },
-    "10176": {
-        string: "Sorteer geesten op basis van hun eindtijd.",
-    },
-    "10177": {
-        string: "Sorteer geesten op basis van hun aanmaakdatum.",
-    },
-    "10178": {
-        string: "Sorteer geesten op basis van hun snelste ronde.",
-    },
-    "10179": {
-        string: "Sorteer geesten op basis van hun tempo naar de tweede ronde.",
-    },
-    "10180": {
-        string: "Sorteer geesten op basis van hun tempo naar de derde ronde.",
-    },
-    "10181": {
-        string: "De benchmark op de {arg message|0} is gelukt.\nRang: {arg message|1}\n{arg integer|0 0} KiB: Lz. {arg string|0} MiB/s - Schr. {arg string|1} MiB/s\n{arg integer|1 0} KiB: Lz. {arg string|2} MiB/s - Schr. {arg string|3} MiB/s\n{arg integer|2 0} KiB: Lz. {arg string|4} MiB/s - Schr. {arg string|5} MiB/s\n{arg integer|3 0} KiB: Lz. {arg string|6} MiB/s - Schr. {arg string|7} MiB/s",
-    },
-    "10183": {
-        string: "Spelertags",
-    },
-    "10185": {
-        string: "Geef maximaal {arg integer|0 0} {arg cond messages|0 10186 10187} weer.",
-    },
-    "10186": {
-        string: "tag",
-    },
-    "10187": {
-        string: "tags",
-    },
-    "10188": {
-        string: "Prestatie-overlay",
-    },
-    "10189": {
-        string: "Geef de CPU-, GPU- en geheugenstaven niet weer.",
-    },
-    "10190": {
-        string: "Geef de CPU-, GPU- en geheugenstaven weer.",
-    },
-    "10191": {
-        string: "GCN-trillingen",
-    },
-    "10192": {
-        string: "Schakel de trilfunctie van GCN-controllers uit.",
-    },
-    "10193": {
-        string: "Schakel de trilfunctie van GCN-controllers in.",
-    },
-    "10194": {
-        string: "Regiolijnkleur",
-    },
-    "10195": {
-        string: "Rood",
-    },
-    "10196": {
-        string: "Blauw",
-    },
-    "10197": {
-        string: "Groen",
-    },
-    "10198": {
-        string: "Geel",
-    },
-    "10199": {
-        string: "Wit",
-    },
-    "10200": {
-        string: "Roze",
-    },
-    "10201": {
-        string: "De kleur van de lijn onder jouw naam zal {color|player 3}rood{color|unspecified} zijn.",
-    },
-    "10202": {
-        string: "De kleur van de lijn onder jouw naam zal {color|sp blue}blauw{color|unspecified} zijn.",
-    },
-    "10203": {
-        string: "De kleur van de lijn onder jouw naam zal {color|sp green}groen{color|unspecified} zijn.",
-    },
-    "10204": {
-        string: "De kleur van de lijn onder jouw naam zal {color|player 1}geel{color|unspecified} zijn.",
-    },
-    "10205": {
-        string: "De kleur van de lijn onder jouw naam zal wit zijn.",
-    },
-    "10206": {
-        string: "De kleur van de lijn onder jouw naam zal {color|sp pink}roze{color|unspecified} zijn.",
-    },
-    "10207": {
-        string: "Teamgrootte",
-    },
-    "10208": {
-        string: "FFA",
-    },
-    "10213": {
-        string: "Speel niet in teams.",
-    },
-    "10214": {
-        string: "Beperk de teamgrootte tot 2 spelers.",
-    },
-    "10215": {
-        string: "Beperk de teamgrootte tot 3 spelers.",
-    },
-    "10216": {
-        string: "Beperk de teamgrootte tot 4 spelers.",
-    },
-    "10217": {
-        string: "Beperk de teamgrootte tot 6 spelers.",
-    },
-    "10218": {
-        string: "Willekeurig",
-    },
-    "10224": {
-        string: "Race-aantal",
-    },
-    "10226": {
-        string: "Speel {arg integer|0 0} {arg cond messages|0 10282 10283}.",
-    },
-    "10227": {
-        string: "Circuitselectie",
-    },
-    "10228": {
-        string: "Willekeurig",
-    },
-    "10231": {
-        string: "Circuits worden willekeurig gekozen.",
-    },
-    "10234": {
-        string: "Klasse",
-    },
-    "10235": {
-        string: "Gemengd",
-    },
-    "10236": {
-        string: "150 cc",
-    },
-    "10237": {
-        string: "Spiegel",
-    },
-    "10238": {
-        string: "200 cc",
-    },
-    "10239": {
-        string: "Races zijn 85% 150 cc, 15% gespiegeld.",
-    },
-    "10240": {
-        string: "Races zijn altijd 150 cc.",
-    },
-    "10241": {
-        string: "Races zijn altijd gespiegeld.",
-    },
-    "10242": {
-        string: "Races zijn altijd 200 cc.",
-    },
-    "10243": {
-        string: "Voertuigen",
-    },
-    "10244": {
-        string: "Alle",
-    },
-    "10245": {
-        string: "Karts",
-    },
-    "10246": {
-        string: "Motors",
-    },
-    "10247": {
-        string: "In-drift",
-    },
-    "10248": {
-        string: "Uit-drift",
-    },
-    "10249": {
-        string: "Optimaal",
-    },
-    "10250": {
-        string: "Willekeurig",
-    },
-    "10251": {
-        string: "Sta alle voertuigen toe.",
-    },
-    "10252": {
-        string: "Sta alleen karts toe.",
-    },
-    "10253": {
-        string: "Sta alleen motors toe.",
-    },
-    "10254": {
-        string: "Sta alleen voertuigen met in-drift toe.",
-    },
-    "10255": {
-        string: "Sta alleen voertuigen met uit-drift toe.",
-    },
-    "10256": {
-        string: "Sta alleen het beste voertuig voor elke coureur toe.",
-    },
-    "10257": {
-        string: "Kiest willekeurig een enkele combinatie voor alle spelers.",
-    },
-    "10260": {
-        string: "Circuits worden individueel gekozen.",
-    },
-    "10261": {
-        string: "Circuits worden op volgorde gespeeld.",
-    },
-    "10262": {
-        string: "Offline VS",
-    },
-    "10263": {
-        string: "Kleurenpalet",
-    },
-    "10264": {
-        string: "Helder",
-    },
-    "10265": {
-        string: "Kleurenblind",
-    },
-    "10266": {
-        string: "Gebruik het heldere kleurenpalet voor teamkleuren.",
-    },
-    "10267": {
-        string: "Gebruik het kleurenblinde kleurenpalet voor teamkleuren.",
-    },
-    "10268": {
-        string: "{color|player 3}Team Rood",
-    },
-    "10269": {
-        string: "{color|sp blue}Team Blauw",
-    },
-    "10270": {
-        string: "{color|sp green}Team Groen",
-    },
-    "10271": {
-        string: "{color|player 1}Team Geel",
-    },
-    "10272": {
-        string: "{color|sp pink}Team Roze",
-    },
-    "10273": {
-        string: "Team Wit",
-    },
-    "10274": {
-        string: "De teams zijn oneven.\n\nKies opnieuw.",
-    },
-    "10282": {
-        string: "race",
-    },
-    "10283": {
-        string: "races",
-    },
-    "10296": {
-        string: "HUD-Teamkleuren",
-    },
-    "10297": {
-        string: "Uitschakelen",
-    },
-    "10298": {
-        string: "Inschakelen",
-    },
-    "10299": {
-        string: "Gebruik de standaardkleur voor HUD-tekst.",
-    },
-    "10300": {
-        string: "Gebruik teamkleuren voor HUD-tekst.",
-    },
-    "10301": {
-        string: "Vereenvoudigde Controls",
-    },
-    "10302": {
-        string: "Uit",
-    },
-    "10303": {
-        string: "Niet exclusief",
-    },
-    "10304": {
-        string: "Exclusief",
-    },
-    "10305": {
-        string: "Gebruik de normale controls om alleen sprintboosts en wheelies te doen.",
-    },
-    "10306": {
-        string: "Gebruik Y (GCN) of ZL (CC/CCP) om sprintboosts en wheelies te doen.",
-    },
-    "10307": {
-        string: "Gebruik Y (GCN) of ZL (CC/CCP) om alleen sprintboosts en wheelies te doen.",
-    },
-    "10308": {
-        string: "Verre Spelertags",
-    },
-    "10309": {
-        string: "Uitschakelen",
-    },
-    "10310": {
-        string: "Inschakelen",
-    },
-    "10311": {
-        string: "Gebruik de normale afstand om spelertags te tonen.",
-    },
-    "10312": {
-        string: "Gebruik een grotere afstand om spelertags te tonen.",
-    },
-    "10313": {
-        string: "Miniaturen",
-    },
-    "10314": {
-        string: "Er is geen circuit in de /mkw-sp/thumbnails map gevonden.",
-    },
-    "10315": {
-        string: "Debugscherm",
-    },
-    "10316": {
-        string: "Checkpoints",
-    },
-    "10317": {
-        string: "Uitschakelen",
-    },
-    "10318": {
-        string: "Inschakelen",
-    },
-    "10319": {
-        string: "Geef checkpoints niet weer.",
-    },
-    "10320": {
-        string: "Geef checkpoints weer.",
-    },
-    "10321": {
-        string: "Snelheidsmeter",
-    },
-    "10322": {
-        string: "Intern + Bewegende Weg",
-    },
-    "10323": {
-        string: "Intern",
-    },
-    "10324": {
-        string: "XYZ",
-    },
-    "10325": {
-        string: "XZ",
-    },
-    "10326": {
-        string: "Y",
-    },
-    "10327": {
-        string: "De snelheidsmeter geeft de snelheid van\nhet voertuig en bewegende wegen daarbij weer.",
-    },
-    "10328": {
-        string: "De snelheidsmeter geeft de snelheid\nvan het voertuig weer.",
-    },
-    "10329": {
-        string: "De snelheidsmeter geeft de bewegingssnelheid\nvan het voertuig weer.",
-    },
-    "10330": {
-        string: "De snelheidsmeter geeft de horizontale\nsnelheid van het voertuig weer.",
-    },
-    "10331": {
-        string: "De snelheidsmeter geeft de verticale\nsnelheid van het voertuig weer.",
-    },
-    "10332": {
-        string: "Standaard",
-    },
-    "10333": {
-        string: "De kleur van de lijn onder jouw naam\nwordt bepaald door het spel.",
-    },
-    "10334": {
-        string: "Regio en Vlag",
-    },
-    "10335": {
-        string: "Geef geen informatie over jouw vlag en regio weer.",
-    },
-    "10336": {
-        string: "Geef informatie over jouw vlag en regio weer.",
-    },
-    "10337": {
-        string: "Toon niet",
-    },
-    "10338": {
-        string: "Toon",
-    },
-    "10339": {
-        string: "Toon niet",
-    },
-    "10340": {
-        string: "Toon",
-    },
-    "10341": {
-        string: "Paneel",
-    },
-    "10342": {
-        string: "Uitschakelen",
-    },
-    "10343": {
-        string: "Speler",
-    },
-    "10344": {
-        string: "Online",
-    },
-    "10345": {
-        string: "Laat het debugpaneel niet zien.",
-    },
-    "10346": {
-        string: "Laat spelerinformatie op het debugpaneel zien.",
-    },
-    "10347": {
-        string: "Laat online-informatie op het debugpaneel zien.",
-    },
-    "10348": {
-        string: "Visueel course.kcl",
-    },
-    "10349": {
-        string: "Uitschakelen",
-    },
-    "10350": {
-        string: "Laat alleen course_model.brres zien.",
-    },
-    "10351": {
-        string: "Overlap",
-    },
-    "10352": {
-        string: "Laat het bovenop course_model.brres zien.",
-    },
-    "10353": {
-        string: "Vervang Circuitmodel",
-    },
-    "10354": {
-        string: "Laat course_model.brres niet zien.",
-    },
-    "10360": {
-        string: "Offline Gevechten",
-    },
-    "10361": {
-        string: "Races zijn altijd 50 cc.",
-    },
-    "10362": {
-        string: "Races zijn altijd 100 cc.",
-    },
-    "10365": {
-        string: "50 cc",
-    },
-    "10366": {
-        string: "100 cc",
-    },
-    "10367": {
-        string: "Mini-map",
-    },
-    "10368": {
-        string: "Uitschakelen",
-    },
-    "10369": {
-        string: "Inschakelen",
-    },
-    "10370": {
-        string: "Laat de mini-map op de HUD zien.",
-    },
-    "10371": {
-        string: "Laat de mini-map niet op de HUD zien.",
-    },
-    "10372": {
-        string: "Volume",
-    },
-    "10374": {
-        string: "Stel het volume in op {arg integer|0 0} / 10.",
-    },
-    "10375": {
-        string: "Muziekvolume",
-    },
-    "10377": {
-        string: "Stel het muziekvolume in op {arg integer|0 0} / 10.",
-    },
-    "10378": {
-        string: "My Stuff",
-    },
-    "10379": {
-        string: "Bestandsvervanging",
-    },
-    "10380": {
-        string: "Uitschakelen",
-    },
-    "10381": {
-        string: "Alleen BRSTMs",
-    },
-    "10382": {
-        string: "Alles",
-    },
-    "10383": {
-        string: "Vervang geen enkel bestand.",
-    },
-    "10384": {
-        string: "Vervang alleen \".brstm\"-bestanden.",
-    },
-    "10385": {
-        string: "Vervang alle bestanden.",
-    },
-    "10386": {
-        string: "FPS-Modus",
-    },
-    "10387": {
-        string: "Normaal",
-    },
-    "10388": {
-        string: "Forceer 60 FPS",
-    },
-    "10389": {
-        string: "Forceer 30 FPS",
-    },
-    "10390": {
-        string: "Gebruik 60 FPS, behalve tijdens intensieve scenario's.",
-    },
-    "10391": {
-        string: "Gebruik 60 FPS, zelfs tijdens intensieve scenario's.",
-    },
-    "10392": {
-        string: "Gebruik 30 FPS, kan helpen bij Dolphin-prestaties.",
-    },
-    "10393": {
-        string: "Kies de teamgrootte willekeurig.",
-    },
-    "10420": {
-        string: "Aantal Gevechten",
-    },
-    "10421": {
-        string: "Speel {arg integer|0 0} {arg cond messages|0 10282 10283}.",
-    },
-    "10422": {
-        string: "gevecht",
-    },
-    "10423": {
-        string: "gevechten",
-    },
-    "10424": {
-        string: "Gevechtsarenaselectie",
-    },
-    "10425": {
-        string: "Gevechtsarena's worden individueel gekozen.",
-    },
-    "10426": {
-        string: "Gevechtsarena's worden willekeurig gekozen.",
-    },
-    "10427": {
-        string: "Gevechtsarena's worden in volgorde gespeeld.",
-    },
+    "2053": "Er is iets fout gegaan bij het lezen of schrijven van de spelgegevens.",
+    "3400": "Instellingen",
+    "3420": "CPU-moeilijkheid",
+    "3475": "Verander instellingen voor dit rijbewijs.",
+    "3700": "Selecteer Level",
+    "3701": "Selecteer Missie",
+    "10000": "Race tegen 1 geest",
+    "10001": "Bekijk 1 geest",
+    "10002": "Race tegen {arg integer|0 0} geesten",
+    "10003": "Bekijk {arg integer|0 0} geesten",
+    "10004": "HUD-tekst",
+    "10005": "Verberg",
+    "10006": "Toon",
+    "10007": "Verberg HUD-tekst.",
+    "10008": "Toon HUD-tekst.",
+    "10009": "16:9-gezichtsveld",
+    "10010": "Standaard",
+    "10011": "Wijder",
+    "10012": "Gebruik het standaard gezichtsveld in 16:9-modus.",
+    "10013": "Gebruik het wijdere 4:3-gezichtsveld in 16:9-modus.",
+    "10014": "Mapiconen",
+    "10015": "Coureurs",
+    "10016": "Mii's",
+    "10017": "Gebruik coureurs als minimapiconen.",
+    "10018": "Gebruik Mii's als minimapiconen.",
+    "10019": "Geestsortering",
+    "10028": "Tag-zichtbaarheid",
+    "10029": "Niets",
+    "10030": "Bekeken",
+    "10031": "Alle",
+    "10032": "Geef geen enkele tag van een geest weer.",
+    "10033": "Geef alleen de tag van de bekeken geest weer.",
+    "10034": "Geef de tags van alle geesten weer.",
+    "10035": "Tag-inhoud",
+    "10036": "Naam",
+    "10037": "Tijd",
+    "10038": "Datum",
+    "10039": "Gebruik de naam van de geest als zijn tag.",
+    "10040": "Gebruik de tijd van de geest als zijn tag.",
+    "10041": "Gebruik de aanmaakdatum van de geest als zijn tag.",
+    "10042": "Solide geesten",
+    "10043": "Maak geen enkele geest solide.",
+    "10044": "Maak de bekeken geest solide.",
+    "10045": "Maak alle geesten solide.",
+    "10046": "Speel tijdraces met deze regels.",
+    "10053": "Verkorte tijd",
+    "10054": "Tijdoptie zonder de eerste nullen.",
+    "10055": "Gecko-codes zijn NIET ONDERSTEUND\nen kunnen het spel laten crashen.\nDruk op de A-knop als je weet wat\nje doet en rapporteer GEEN bugs.",
+    "10056": "Menutransities",
+    "10057": "Uitschakelen",
+    "10058": "Inschakelen",
+    "10059": "Maak de menutransities onmiddelijk.",
+    "10060": "Behoud de standaardsnelheid van de menutransities.",
+    "10061": "Invoerdisplay",
+    "10062": "Uitschakelen",
+    "10063": "Inschakelen",
+    "10064": "Geef geen invoer weer tijdens een race.",
+    "10065": "Geef invoer weer tijdens een race.",
+    "10066": "Geestengeluid",
+    "10067": "Zet geen enkel geluid van geesten aan.",
+    "10068": "Zet alleen het geluid van de bekeken geest aan.",
+    "10069": "Zet het geluid van alle geesten aan.",
+    "10073": "Tijdraces en meer voor één speler!",
+    "10074": "Verander instellingen of jouw Mii!",
+    "10078": "0,9x snelheidsfactor.",
+    "10079": "1,0x snelheidsfactor.",
+    "10080": "1,0x snelheidsfactor met gespiegelde circuits.",
+    "10081": "1,5x snelheidsfactor met rem-driften en snel-vallen.",
+    "10082": "MKW-SP-instellingen",
+    "10083": "Service Pack",
+    "10087": "Update",
+    "10088": "Kanaal",
+    "10089": "Over",
+    "10090": "Wanneer het MKW-SP-kanaal is\ngeïnstalleerd, kan MKW-SP worden\nopgestart via het Wii-menu en\nhoeft dat niet meer via het\nHomebrew-kanaal of een andere exploit.\nUpdates worden synchroon gehouden\ntussen de twee.",
+    "10091": "Wil je het MKW-SP-kanaal installeren?",
+    "10092": "Een update voor het MKW-SP-kanaal\nis beschikbaar. Wil je deze installeren?",
+    "10093": "Het MKW-SP-kanaal is al geïnstalleerd.",
+    "10094": "Een nieuwere versie van het\nMKW-SP-kanaal is al geïnstalleerd!",
+    "10095": "Bezig met het installeren van het\nMKW-SP-kanaal...",
+    "10096": "Bezig met het updaten van het\nMKW-SP-kanaal...",
+    "10097": "De installatie van het\nMKW-SP-kanaal is gelukt!",
+    "10098": "De installatie van het\nMKW-SP-kanaal is mislukt!",
+    "10099": "De update van het\nMKW-SP-kanaal is gelukt!",
+    "10100": "De update van het\nMKW-SP-kanaal is mislukt!",
+    "10101": "Het MKW-SP-kanaal kan alleen worden\ngeïnstalleerd vanuit officiële releases!",
+    "10102": "Aan het zoeken voor updates...\n{arg message|0}",
+    "10103": "Een nieuwe versie van MKW-SP is beschikbaar!\n{arg string|0} → {arg string|1}",
+    "10104": "De nieuwste versie van MKW-SP ({arg string|0})\nis al geïnstalleerd.",
+    "10105": "Het is mislukt om te zoeken voor\nupdates van MKW-SP!",
+    "10106": "Wil je MKW-SP updaten naar {arg string|0}?\nEr zijn {arg string|1} MiB ({arg integer|0 0} blokken)\nnodig in het Wii-systeemgeheugen.",
+    "10107": "MKW-SP aan het updaten...\n{arg message|0}",
+    "10108": "Het is gelukt om MKW-SP te updaten van\n{arg string|0} naar {arg string|1}. Een herstart\nis nodig om de update toe te passen.",
+    "10109": "De MKW-SP update is mislukt!",
+    "10110": "Wil je MKW-SP nu opnieuw opstarten?",
+    "10111": "MKW-SP kan alleen worden geïnstalleerd\nvanuit officiële releases!",
+    "10112": "Aan het verbinden met de server...",
+    "10113": "Versie-informatie aan het versturen...",
+    "10114": "Versie-informatie aan het ontvangen...",
+    "10115": "Inhoud aan het downloaden...\n{arg string|0} MiB van {arg string|1} MiB - {arg string|2} MiB/s",
+    "10116": "Inhoud aan het verplaatsen...",
+    "10118": "Race",
+    "10119": "Tijdraces",
+    "10120": "Rijbewijs",
+    "10121": "Positietracker",
+    "10122": "GP en VS",
+    "10123": "Altijd",
+    "10124": "Geef de positietracker alleen weer in GPs en versusraces.",
+    "10125": "Geef de positietracker altijd weer.",
+    "10126": "Geluid",
+    "10127": "Voorwerpmuziek",
+    "10128": "Geen",
+    "10129": "Alleen klein/plat",
+    "10130": "Alles",
+    "10131": "Laat voorwerpen de muziek niet veranderen.",
+    "10132": "Pas alleen de kleine/platte muziekvariatie toe.",
+    "10133": "Laat Sterren, Megapaddenstoelen en Bliksemschichten de muziek veranderen.",
+    "10134": "Laaste ronde-jingle",
+    "10135": "Alleen gameplay",
+    "10136": "Altijd",
+    "10137": "Gebruik de laatste ronde-jingle voor alleen gameplay.",
+    "10138": "Gebruik de laatste ronde-jingle voor gameplay en herhalingen.",
+    "10139": "Laatste ronde-versnelling",
+    "10140": "Geen",
+    "10141": "Standaard",
+    "10142": "Dynamisch",
+    "10143": "Gebruik de \"_N\"-BRSTM tijdens de laatste ronde.",
+    "10144": "Gebruik de \"_F\"-BRSTM tijdens de laatste ronde.",
+    "10145": "Genereer de laatste ronde-muziek van de \"_N\"-BRSTM.",
+    "10146": "Opslag-benchmark",
+    "10147": "Op welke apparatuur wil je een benchmark uitvoeren?",
+    "10148": "Benchmark aan het uitvoeren op de {arg message|0}...\n{arg message|1}",
+    "10149": "De benchmark op de {arg message|0} is gelukt.\n{arg integer|0 0} KiB: Lz. {arg string|0} MiB/s - Schr. {arg string|1} MiB/s\n{arg integer|1 0} KiB: Lz. {arg string|2} MiB/s - Schr. {arg string|3} MiB/s\n{arg integer|2 0} KiB: Lz. {arg string|4} MiB/s - Schr. {arg string|5} MiB/s\n{arg integer|3 0} KiB: Lz. {arg string|6} MiB/s - Schr. {arg string|7} MiB/s",
+    "10150": "De benchmark op de {arg message|0} is mislukt!",
+    "10151": "Initialiseren...",
+    "10152": "{arg integer|0 0} KiB chunks aan het lezen...",
+    "10153": "{arg integer|0 0} KiB chunks aan het schrijven...",
+    "10154": "SD-kaart",
+    "10155": "SD-kaartopslag",
+    "10156": "USB",
+    "10157": "USB-opslag",
+    "10158": "Netwerk",
+    "10159": "netwerkopslag",
+    "10160": "Missies",
+    "10161": "Speel missies met verschillende uitdagingen.",
+    "10162": "Race {arg integer|0 0} {arg cond messages|0 10164 10165}",
+    "10163": "Bekijk {arg integer|0 0} {arg cond messages|0 10164 10165}",
+    "10164": "geest",
+    "10165": "geesten",
+    "10166": "Normale modus",
+    "10167": "Uitschakelen",
+    "10168": "Inschakelen",
+    "10169": "Sta alle MKW-SP-veranderingen toe.",
+    "10170": "Sta de meeste MKW-SP-veranderingen niet toe.",
+    "10171": "Tijd",
+    "10172": "Datum",
+    "10173": "Snelste ronde",
+    "10174": "Tweede ronde-tempo",
+    "10175": "Derde ronde-tempo",
+    "10176": "Sorteer geesten op basis van hun eindtijd.",
+    "10177": "Sorteer geesten op basis van hun aanmaakdatum.",
+    "10178": "Sorteer geesten op basis van hun snelste ronde.",
+    "10179": "Sorteer geesten op basis van hun tempo naar de tweede ronde.",
+    "10180": "Sorteer geesten op basis van hun tempo naar de derde ronde.",
+    "10181": "De benchmark op de {arg message|0} is gelukt.\nRang: {arg message|1}\n{arg integer|0 0} KiB: Lz. {arg string|0} MiB/s - Schr. {arg string|1} MiB/s\n{arg integer|1 0} KiB: Lz. {arg string|2} MiB/s - Schr. {arg string|3} MiB/s\n{arg integer|2 0} KiB: Lz. {arg string|4} MiB/s - Schr. {arg string|5} MiB/s\n{arg integer|3 0} KiB: Lz. {arg string|6} MiB/s - Schr. {arg string|7} MiB/s",
+    "10183": "Spelertags",
+    "10185": "Geef maximaal {arg integer|0 0} {arg cond messages|0 10186 10187} weer.",
+    "10186": "tag",
+    "10187": "tags",
+    "10188": "Prestatie-overlay",
+    "10189": "Geef de CPU-, GPU- en geheugenstaven niet weer.",
+    "10190": "Geef de CPU-, GPU- en geheugenstaven weer.",
+    "10191": "GCN-trillingen",
+    "10192": "Schakel de trilfunctie van GCN-controllers uit.",
+    "10193": "Schakel de trilfunctie van GCN-controllers in.",
+    "10194": "Regiolijnkleur",
+    "10195": "Rood",
+    "10196": "Blauw",
+    "10197": "Groen",
+    "10198": "Geel",
+    "10199": "Wit",
+    "10200": "Roze",
+    "10201": "De kleur van de lijn onder jouw naam zal {color|player 3}rood{color|unspecified} zijn.",
+    "10202": "De kleur van de lijn onder jouw naam zal {color|sp blue}blauw{color|unspecified} zijn.",
+    "10203": "De kleur van de lijn onder jouw naam zal {color|sp green}groen{color|unspecified} zijn.",
+    "10204": "De kleur van de lijn onder jouw naam zal {color|player 1}geel{color|unspecified} zijn.",
+    "10205": "De kleur van de lijn onder jouw naam zal wit zijn.",
+    "10206": "De kleur van de lijn onder jouw naam zal {color|sp pink}roze{color|unspecified} zijn.",
+    "10207": "Teamgrootte",
+    "10208": "FFA",
+    "10213": "Speel niet in teams.",
+    "10214": "Beperk de teamgrootte tot 2 spelers.",
+    "10215": "Beperk de teamgrootte tot 3 spelers.",
+    "10216": "Beperk de teamgrootte tot 4 spelers.",
+    "10217": "Beperk de teamgrootte tot 6 spelers.",
+    "10218": "Willekeurig",
+    "10224": "Race-aantal",
+    "10226": "Speel {arg integer|0 0} {arg cond messages|0 10282 10283}.",
+    "10227": "Circuitselectie",
+    "10228": "Willekeurig",
+    "10231": "Circuits worden willekeurig gekozen.",
+    "10234": "Klasse",
+    "10235": "Gemengd",
+    "10236": "150 cc",
+    "10237": "Spiegel",
+    "10238": "200 cc",
+    "10239": "Races zijn 85% 150 cc, 15% gespiegeld.",
+    "10240": "Races zijn altijd 150 cc.",
+    "10241": "Races zijn altijd gespiegeld.",
+    "10242": "Races zijn altijd 200 cc.",
+    "10243": "Voertuigen",
+    "10244": "Alle",
+    "10245": "Karts",
+    "10246": "Motors",
+    "10247": "In-drift",
+    "10248": "Uit-drift",
+    "10249": "Optimaal",
+    "10250": "Willekeurig",
+    "10251": "Sta alle voertuigen toe.",
+    "10252": "Sta alleen karts toe.",
+    "10253": "Sta alleen motors toe.",
+    "10254": "Sta alleen voertuigen met in-drift toe.",
+    "10255": "Sta alleen voertuigen met uit-drift toe.",
+    "10256": "Sta alleen het beste voertuig voor elke coureur toe.",
+    "10257": "Kiest willekeurig een enkele combinatie voor alle spelers.",
+    "10260": "Circuits worden individueel gekozen.",
+    "10261": "Circuits worden op volgorde gespeeld.",
+    "10262": "Offline VS",
+    "10263": "Kleurenpalet",
+    "10264": "Helder",
+    "10265": "Kleurenblind",
+    "10266": "Gebruik het heldere kleurenpalet voor teamkleuren.",
+    "10267": "Gebruik het kleurenblinde kleurenpalet voor teamkleuren.",
+    "10268": "{color|player 3}Team Rood",
+    "10269": "{color|sp blue}Team Blauw",
+    "10270": "{color|sp green}Team Groen",
+    "10271": "{color|player 1}Team Geel",
+    "10272": "{color|sp pink}Team Roze",
+    "10273": "Team Wit",
+    "10274": "De teams zijn oneven.\n\nKies opnieuw.",
+    "10282": "race",
+    "10283": "races",
+    "10296": "HUD-Teamkleuren",
+    "10297": "Uitschakelen",
+    "10298": "Inschakelen",
+    "10299": "Gebruik de standaardkleur voor HUD-tekst.",
+    "10300": "Gebruik teamkleuren voor HUD-tekst.",
+    "10301": "Vereenvoudigde Controls",
+    "10302": "Uit",
+    "10303": "Niet exclusief",
+    "10304": "Exclusief",
+    "10305": "Gebruik de normale controls om alleen sprintboosts en wheelies te doen.",
+    "10306": "Gebruik Y (GCN) of ZL (CC/CCP) om sprintboosts en wheelies te doen.",
+    "10307": "Gebruik Y (GCN) of ZL (CC/CCP) om alleen sprintboosts en wheelies te doen.",
+    "10308": "Verre Spelertags",
+    "10309": "Uitschakelen",
+    "10310": "Inschakelen",
+    "10311": "Gebruik de normale afstand om spelertags te tonen.",
+    "10312": "Gebruik een grotere afstand om spelertags te tonen.",
+    "10313": "Miniaturen",
+    "10314": "Er is geen circuit in de /mkw-sp/thumbnails map gevonden.",
+    "10315": "Debugscherm",
+    "10316": "Checkpoints",
+    "10317": "Uitschakelen",
+    "10318": "Inschakelen",
+    "10319": "Geef checkpoints niet weer.",
+    "10320": "Geef checkpoints weer.",
+    "10321": "Snelheidsmeter",
+    "10322": "Intern + Bewegende Weg",
+    "10323": "Intern",
+    "10324": "XYZ",
+    "10325": "XZ",
+    "10326": "Y",
+    "10327": "De snelheidsmeter geeft de snelheid van\nhet voertuig en bewegende wegen daarbij weer.",
+    "10328": "De snelheidsmeter geeft de snelheid\nvan het voertuig weer.",
+    "10329": "De snelheidsmeter geeft de bewegingssnelheid\nvan het voertuig weer.",
+    "10330": "De snelheidsmeter geeft de horizontale\nsnelheid van het voertuig weer.",
+    "10331": "De snelheidsmeter geeft de verticale\nsnelheid van het voertuig weer.",
+    "10332": "Standaard",
+    "10333": "De kleur van de lijn onder jouw naam\nwordt bepaald door het spel.",
+    "10334": "Regio en Vlag",
+    "10335": "Geef geen informatie over jouw vlag en regio weer.",
+    "10336": "Geef informatie over jouw vlag en regio weer.",
+    "10337": "Toon niet",
+    "10338": "Toon",
+    "10339": "Toon niet",
+    "10340": "Toon",
+    "10341": "Paneel",
+    "10342": "Uitschakelen",
+    "10343": "Speler",
+    "10344": "Online",
+    "10345": "Laat het debugpaneel niet zien.",
+    "10346": "Laat spelerinformatie op het debugpaneel zien.",
+    "10347": "Laat online-informatie op het debugpaneel zien.",
+    "10348": "Visueel course.kcl",
+    "10349": "Uitschakelen",
+    "10350": "Laat alleen course_model.brres zien.",
+    "10351": "Overlap",
+    "10352": "Laat het bovenop course_model.brres zien.",
+    "10353": "Vervang Circuitmodel",
+    "10354": "Laat course_model.brres niet zien.",
+    "10360": "Offline Gevechten",
+    "10361": "Races zijn altijd 50 cc.",
+    "10362": "Races zijn altijd 100 cc.",
+    "10365": "50 cc",
+    "10366": "100 cc",
+    "10367": "Mini-map",
+    "10368": "Uitschakelen",
+    "10369": "Inschakelen",
+    "10370": "Laat de mini-map op de HUD zien.",
+    "10371": "Laat de mini-map niet op de HUD zien.",
+    "10372": "Volume",
+    "10374": "Stel het volume in op {arg integer|0 0} / 10.",
+    "10375": "Muziekvolume",
+    "10377": "Stel het muziekvolume in op {arg integer|0 0} / 10.",
+    "10378": "My Stuff",
+    "10379": "Bestandsvervanging",
+    "10380": "Uitschakelen",
+    "10381": "Alleen BRSTMs",
+    "10382": "Alles",
+    "10383": "Vervang geen enkel bestand.",
+    "10384": "Vervang alleen \".brstm\"-bestanden.",
+    "10385": "Vervang alle bestanden.",
+    "10386": "FPS-Modus",
+    "10387": "Normaal",
+    "10388": "Forceer 60 FPS",
+    "10389": "Forceer 30 FPS",
+    "10390": "Gebruik 60 FPS, behalve tijdens intensieve scenario's.",
+    "10391": "Gebruik 60 FPS, zelfs tijdens intensieve scenario's.",
+    "10392": "Gebruik 30 FPS, kan helpen bij Dolphin-prestaties.",
+    "10393": "Kies de teamgrootte willekeurig.",
+    "10420": "Aantal Gevechten",
+    "10421": "Speel {arg integer|0 0} {arg cond messages|0 10282 10283}.",
+    "10422": "gevecht",
+    "10423": "gevechten",
+    "10424": "Gevechtsarenaselectie",
+    "10425": "Gevechtsarena's worden individueel gekozen.",
+    "10426": "Gevechtsarena's worden willekeurig gekozen.",
+    "10427": "Gevechtsarena's worden in volgorde gespeeld.",
 }

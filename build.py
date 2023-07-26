@@ -128,6 +128,25 @@ HUD_LANGUAGES = {
     'N': 'N',
 }
 
+pack_select_assets = [
+    os.path.join('bg', 'blyt', 'obi_bottom.brlyt.json5'),
+    os.path.join('bg', 'blyt', 'obi_bottom_message.brlyt.json5'),
+    os.path.join('button', 'anim', 'course_select_button_free.brlan.json5'),
+    os.path.join('button', 'anim', 'course_select_button_free_to_select.brlan.json5'),
+    os.path.join('button', 'anim', 'course_select_button_select.brlan.json5'),
+    os.path.join('button', 'anim', 'course_select_button_select_to_free.brlan.json5'),
+    os.path.join('button', 'blyt', 'course_select_button.brlyt.json5'),
+    os.path.join('button', 'blyt', 'course_select_scroll_bar.brlyt.json5'),
+    os.path.join('button', 'ctrl', 'CourseSelectArrowLeft.brctr.json5'),
+    os.path.join('button', 'ctrl', 'CourseSelectArrowRight.brctr.json5'),
+    os.path.join('button', 'ctrl', 'CourseSelectButton.brctr.json5'),
+    os.path.join('button', 'ctrl', 'CourseSelectScrollBar.brctr.json5'),
+    os.path.join('button', 'blyt', 'pack_select_button.brlyt.json5'),
+    os.path.join('button', 'ctrl', 'PackSelectButton.brctr.json5'),
+    os.path.join('control', 'ctrl', 'CourseSelectPageNum.brctr.json5'),
+    os.path.join('control', 'ctrl', 'TimeAttackGhostListPageNum.brctr.json5'),
+]
+
 asset_in_files = {
     os.path.join('Scene', 'UI', 'AwardSP.arc.lzma'): sorted(glob.glob("award/**/*.json5", root_dir="assets")),
     os.path.join('Scene', 'UI', 'CrashSP.arc.lzma'): sorted(glob.glob("fatal/**/*.*", root_dir="assets", recursive=True)),
@@ -159,19 +178,8 @@ asset_in_files = {
         os.path.join('button', 'ctrl', 'ServicePackToolsButton.brctr.json5'),
         os.path.join('button', 'ctrl', 'ServicePackTopButton.brctr.json5'),
         os.path.join('button', 'ctrl', 'ToolsButton.brctr.json5'),
-        # Course Select
-        os.path.join('button', 'anim', 'course_select_button_free.brlan.json5'),
-        os.path.join('button', 'anim', 'course_select_button_free_to_select.brlan.json5'),
-        os.path.join('button', 'anim', 'course_select_button_select.brlan.json5'),
-        os.path.join('button', 'anim', 'course_select_button_select_to_free.brlan.json5'),
-        os.path.join('button', 'blyt', 'course_select_button.brlyt.json5'),
-        os.path.join('button', 'blyt', 'course_select_scroll_bar.brlyt.json5'),
-        os.path.join('button', 'ctrl', 'CourseSelectArrowLeft.brctr.json5'),
-        os.path.join('button', 'ctrl', 'CourseSelectArrowRight.brctr.json5'),
-        os.path.join('button', 'ctrl', 'CourseSelectButton.brctr.json5'),
-        os.path.join('button', 'ctrl', 'CourseSelectScrollBar.brctr.json5'),
-        os.path.join('control', 'ctrl', 'CourseSelectPageNum.brctr.json5'),
-        os.path.join('control', 'ctrl', 'TimeAttackGhostListPageNum.brctr.json5'),
+        # Course/Pack Select
+        *pack_select_assets,
     ],
     os.path.join('Scene', 'UI', 'FontSP_K.arc.lzma'): [
         os.path.join('kart_font_korea.brfnt'),
@@ -287,6 +295,13 @@ asset_in_files = {
         os.path.join('button', 'ctrl', 'CharacterSelect4_2_Multi.brctr.json5'),
         os.path.join('button', 'ctrl', 'CharacterSelect4_3_Multi.brctr.json5'),
         os.path.join('button', 'blyt', 'common_w117_mii_suit.brlyt.json5'),
+        # Pack select assets
+        os.path.join('button', 'anim', 'common_w010_cup_fuchi_check_loop.brlan.json5'),
+        os.path.join('button', 'anim', 'common_w010_cup_text_light_01_ok.brlan.json5'),
+        os.path.join('button', 'anim', 'common_w010_cup_text_light_01_stop.brlan.json5'),
+        os.path.join('button', 'anim', 'common_w010_cup_text_light_02_select.brlan.json5'),
+        os.path.join('button', 'anim', 'common_w010_cup_text_light_02_stop.brlan.json5'),
+        *pack_select_assets,
     ],
     os.path.join('Scene', 'UI', 'MenuMultiSP.arc.lzma'): [
         os.path.join('button', 'anim', 'common_w083_earth_chat_message_fade_in.brlan.json5'),
@@ -392,19 +407,7 @@ asset_in_files = {
         os.path.join('button', 'ctrl', 'CharacterSelect4_2_Multi.brctr.json5'),
         os.path.join('button', 'ctrl', 'CharacterSelect4_3_Multi.brctr.json5'),
         os.path.join('button', 'blyt', 'common_w117_mii_suit.brlyt.json5'),
-        # Course Select
-        os.path.join('button', 'anim', 'course_select_button_free.brlan.json5'),
-        os.path.join('button', 'anim', 'course_select_button_free_to_select.brlan.json5'),
-        os.path.join('button', 'anim', 'course_select_button_select.brlan.json5'),
-        os.path.join('button', 'anim', 'course_select_button_select_to_free.brlan.json5'),
-        os.path.join('button', 'blyt', 'course_select_button.brlyt.json5'),
-        os.path.join('button', 'blyt', 'course_select_scroll_bar.brlyt.json5'),
-        os.path.join('button', 'ctrl', 'CourseSelectArrowLeft.brctr.json5'),
-        os.path.join('button', 'ctrl', 'CourseSelectArrowRight.brctr.json5'),
-        os.path.join('button', 'ctrl', 'CourseSelectButton.brctr.json5'),
-        os.path.join('button', 'ctrl', 'CourseSelectScrollBar.brctr.json5'),
-        os.path.join('control', 'ctrl', 'CourseSelectPageNum.brctr.json5'),
-        os.path.join('control', 'ctrl', 'TimeAttackGhostListPageNum.brctr.json5'),
+        *pack_select_assets,
     ],
     os.path.join('Scene', 'UI', 'MenuOtherSP.arc.lzma'): [
         # Explanation text with 2 lines
@@ -589,18 +592,13 @@ asset_in_files = {
         os.path.join('button', 'ctrl', 'CharacterSelect4_2_Multi.brctr.json5'),
         os.path.join('button', 'ctrl', 'CharacterSelect4_3_Multi.brctr.json5'),
         os.path.join('button', 'blyt', 'common_w117_mii_suit.brlyt.json5'),
-        # Course Select
-        os.path.join('button', 'anim', 'course_select_button_free.brlan.json5'),
-        os.path.join('button', 'anim', 'course_select_button_free_to_select.brlan.json5'),
-        os.path.join('button', 'anim', 'course_select_button_select.brlan.json5'),
-        os.path.join('button', 'anim', 'course_select_button_select_to_free.brlan.json5'),
-        os.path.join('button', 'blyt', 'course_select_button.brlyt.json5'),
-        os.path.join('button', 'blyt', 'course_select_scroll_bar.brlyt.json5'),
-        os.path.join('button', 'ctrl', 'CourseSelectArrowLeft.brctr.json5'),
-        os.path.join('button', 'ctrl', 'CourseSelectArrowRight.brctr.json5'),
-        os.path.join('button', 'ctrl', 'CourseSelectButton.brctr.json5'),
-        os.path.join('button', 'ctrl', 'CourseSelectScrollBar.brctr.json5'),
-        os.path.join('control', 'ctrl', 'CourseSelectPageNum.brctr.json5'),
+        *pack_select_assets,
+        # CourseDebug
+        os.path.join('control', 'anim', 'CourseDebug.brlan.json5'),
+        os.path.join('control', 'blyt', 'CourseDebug.brlyt.json5'),
+        os.path.join('control', 'ctrl', 'CourseDebug.brctr.json5'),
+        os.path.join('control', 'timg', 'download.tpl'),
+        os.path.join('control', 'timg', 'ef_wave_indMip.tpl'),
         # Flags
         os.path.join('control', 'blyt', 'chara_flag_machine_picture_common.brlyt.json5'),
         *[os.path.normpath(i) for i in sorted(glob.glob("control/timg/[0-9][0-9][0-9].tpl", root_dir="assets", recursive=True))],
@@ -1202,6 +1200,7 @@ code_in_files = {
         os.path.join('vendor', 'nanopb', 'pb_decode.c'),
         os.path.join('vendor', 'nanopb', 'pb_encode.c'),
         os.path.join('vendor', 'tjpgd', 'tjpgd.c'),
+        *sorted(glob.glob("vendor/bzip2/*.c")),
         *sorted(glob.glob("payload/**/*.cc", recursive=True)),
         *sorted(glob.glob("payload/**/*.c", recursive=True)),
         *sorted(glob.glob("payload/**/*.S", recursive=True)),
@@ -1398,6 +1397,8 @@ for region in ['P', 'E', 'J', 'K']:
         code_out_files[profile]['loader'] += [out_file]
 n.newline()
 
+loader_base = 0x80e00000 if args.gdb_compatible else 0x80b00000
+
 for fmt in ['binary', 'elf32-powerpc']:
     for profile in ['DEBUG', 'RELEASE']:
         suffix = 'D' if profile == 'DEBUG' else ''
@@ -1409,7 +1410,7 @@ for fmt in ['binary', 'elf32-powerpc']:
             variables = {
                 'ldflags' : ' '.join([
                     *common_ldflags,
-                    '-Wl,--defsym,base=0x80b00000',
+                    f'-Wl,--defsym,base={loader_base}',
                     '-Wl,--entry=start',
                     f'-Wl,--oformat,{fmt}',
                     '-Wl,-T,' + os.path.join('common', 'RMC.ld'),

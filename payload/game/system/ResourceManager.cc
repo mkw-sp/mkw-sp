@@ -1,7 +1,6 @@
 #include "ResourceManager.hh"
 
 #include "game/system/RootScene.hh"
-#include "game/util/Registry.hh"
 
 #include <sp/storage/DecompLoader.hh>
 
@@ -29,7 +28,7 @@ void ResourceManager::deinitGlobeHeap() {
 }
 
 DvdArchive *ResourceManager::getMenuArchive(size_t idx) {
-    MultiDvdArchive *archive = m_archives[static_cast<size_t>(MultiDvdArchive::Type::Menu)];
+    MultiDvdArchive *archive = m_archives[static_cast<size_t>(ResourceType::Menu)];
     u16 loadedCount = 0;
     for (u16 i = 0; i < archive->count(); i++) {
         DvdArchive &candidate = archive->archive(i);
@@ -44,7 +43,7 @@ DvdArchive *ResourceManager::getMenuArchive(size_t idx) {
 }
 
 u16 ResourceManager::getMenuArchiveCount() const {
-    MultiDvdArchive *archive = m_archives[static_cast<size_t>(MultiDvdArchive::Type::Menu)];
+    MultiDvdArchive *archive = m_archives[static_cast<size_t>(ResourceType::Menu)];
     u16 loadedCount = 0;
     for (u16 i = 0; i < archive->count(); i++) {
         if (archive->archive(i).state() == DvdArchive::State::Mounted) {
@@ -79,6 +78,13 @@ ResourceManager *ResourceManager::CreateInstance() {
 
 ResourceManager *ResourceManager::Instance() {
     return s_instance;
+}
+
+const char *ResourceManager::GetCourseFilename(Registry::Course course) {
+    u32 courseId = static_cast<u32>(course);
+
+    assert(courseId < std::size(CourseFilenames));
+    return CourseFilenames[courseId];
 }
 
 void ResourceManager::loadGlobe(u8 **dst) {
@@ -123,11 +129,12 @@ void ResourceManager::LoadGlobeTask(void *arg) {
     s_instance->loadGlobe(reinterpret_cast<u8 **>(arg));
 }
 
-MultiDvdArchive *ResourceManager::loadCourse(u32 courseId, EGG::Heap *heap, bool splitScreen) {
-    MultiDvdArchive *archive = m_archives[static_cast<size_t>(MultiDvdArchive::Type::Course)];
+MultiDvdArchive *ResourceManager::loadCourse(Registry::Course courseId, EGG::Heap *heap,
+        bool splitScreen) {
+    MultiDvdArchive *archive = m_archives[static_cast<size_t>(ResourceType::Course)];
     if (archive->isLoaded()) {
         return archive;
-    };
+    }
 
     archive->init();
 
@@ -135,9 +142,10 @@ MultiDvdArchive *ResourceManager::loadCourse(u32 courseId, EGG::Heap *heap, bool
     jobContext->multiArchive = archive;
     jobContext->archiveHeap = heap;
 
-    auto filePath = jobContext->filename;
+    auto *filePath = jobContext->filename;
     auto filePathSize = sizeof(jobContext->filename);
-    auto courseFilename = Registry::courseFilenames[courseId];
+    assert(static_cast<u32>(courseId) < std::size(CourseFilenames));
+    auto *courseFilename = CourseFilenames[static_cast<u32>(courseId)];
 
     if (splitScreen) {
         snprintf(filePath, filePathSize, "Race/Course/%s_d", courseFilename);

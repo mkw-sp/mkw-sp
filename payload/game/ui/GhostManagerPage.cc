@@ -13,15 +13,24 @@ void GhostManagerPage::List::populate(u32 /* courseId */) {}
 
 void GhostManagerPage::SPList::populate() {
     auto *saveManager = System::SaveManager::Instance();
-    auto courseId = System::RaceConfig::Instance()->menuScenario().courseId;
-    auto courseSHA1 = saveManager->courseSHA1(courseId);
+    auto *raceConfig = System::RaceConfig::Instance();
+
+    auto courseId = raceConfig->menuScenario().courseId;
     auto cc = saveManager->getSetting<SP::ClientSettings::Setting::TAClass>();
     bool speedModIsEnabled = cc == SP::ClientSettings::TAClass::CC200;
+
+    Sha1 courseSha1;
+    if (raceConfig->m_spMenu.courseSha.has_value()) {
+        courseSha1 = *raceConfig->m_spMenu.courseSha;
+    } else {
+        courseSha1 = saveManager->courseSHA1(courseId);
+    }
+
     m_count = 0;
     for (u32 i = 0; i < saveManager->ghostCount(); i++) {
         auto *header = saveManager->rawGhostHeader(i);
         auto *footer = saveManager->ghostFooter(i);
-        if (footer->courseSHA1() && footer->courseSHA1() != courseSHA1) {
+        if (footer->courseSHA1() && footer->courseSHA1() != courseSha1) {
             continue;
         }
         if (footer->hasSpeedMod() && *(footer->hasSpeedMod()) != speedModIsEnabled) {

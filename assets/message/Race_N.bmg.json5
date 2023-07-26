@@ -1,169 +1,59 @@
 {
-    "1000": {
-        string: "",
-    },
-    "1001": {
-        string: "Nee",
-    },
-    "1002": {
-        string: "Ja",
-    },
-    "1003": {
-        string: "Verder",
-    },
-    "1004": {
-        string: "Verlaten",
-    },
-    "1005": {
-        string: "Verander circuit",
-    },
-    "1006": {
-        string: "Verander coureur",
-    },
-    "1007": {
-        string: "Herstart",
-    },
-    "1008": {
-        string: "Kies een missie",
-    },
-    "1009": {
-        string: "Volgende race",
-    },
-    "1010": {
-        string: "Volgende",
-    },
-    "1011": {
-        string: "Opnieuw",
-    },
-    "1012": {
-        string: "Bekijk de herhaling",
-    },
-    "1013": {
-        string: "Verder met herhaling",
-    },
-    "1014": {
-        string: "Herhaling herstarten",
-    },
-    "1015": {
-        string: "Bekijk rangen",
-    },
-    "1016": {
-        string: "Geestenlijst",
-    },
-    "1017": {
-        string: null,
-    },
-    "1018": {
-        string: "Volgende geestrace",
-    },
-    "1019": {
-        string: null,
-    },
-    "1020": {
-        string: "Nintendo WFC-menu",
-    },
-    "1021": {
-        string: "Stop herhaling",
-    },
-    "1022": {
-        string: "Begin race",
-    },
-    "1023": {
-        string: "Volgende race",
-    },
-    "1024": {
-        string: "Volgend gevecht",
-    },
-    "1025": {
-        string: "Even geduld...",
-    },
-    "1026": {
-        string: "Geestgegevens veranderen",
-    },
-    "1027": {
-        string: "Daag deze geest uit",
-    },
-    "1028": {
-        string: "Verder met herhaling",
-    },
-    "1029": {
-        string: "Beëindig herhaling",
-    },
-    "1030": {
-        string: "Herhaling herstarten",
-    },
-    "1031": {
-        string: "Geschatte aantal spelers voor volgende\nrace: {arg integer|0 0}",
-    },
-    "1032": {
-        string: "Stuur record",
-    },
-    "1033": {
-        string: "",
-    },
-    "1101": {
-        string: "Weet je zeker dat je het spel wilt verlaten?",
-    },
-    "1102": {
-        string: "Naar het Mario Kart-kanaal om de rangen te bekijken?",
-    },
-    "1103": {
-        string: "Oké",
-    },
-    "1104": {
-        string: null,
-    },
-    "1105": {
-        string: "Gefeliciteerd!\nJe hebt het record van {arg player|0} verslagen!\n\nWil je jouw geest naar\n{arg player|0} versturen?",
-    },
-    "1106": {
-        string: "Versturen",
-    },
-    "1107": {
-        string: "Niet versturen",
-    },
-    "1108": {
-        string: "Ja",
-    },
-    "1109": {
-        string: "Nee",
-    },
-    "1110": {
-        string: "",
-    },
-    "1111": {
-        string: "Naar je vriendenlijst?",
-    },
-    "1112": {
-        string: "Je kan zo veel records versturen\nals je wilt voor de deadline.\nDit record versturen?",
-    },
-    "1113": {
-        string: "Weet je zeker dat je deze\nrace wilt beëindigen en de\nvolgende geest wilt downloaden?",
-    },
-    "1114": {
-        string: "Weet je zeker dat je deze\nrace wilt verlaten en\nterugkeert naar het hoofdmenu?",
-    },
-    "1115": {
-        string: "Geest opgeslagen voor {current player|}!",
-    },
-    "1116": {
-        string: "Geest kon niet worden opgeslagen.",
-    },
-    "1117": {
-        string: "Geestuitdaging kon niet worden verzonden.",
-    },
-    "1118": {
-        string: "Terug naar het circuit-selectiescherm?",
-    },
-    "1119": {
-        string: "GEEST KAN NIET WORDEN OPGESLAGEN",
-    },
-    "1120": {
-        string: "",
-    },
-    "1121": {
-        string: "Je hebt een expertgeest vrijgespeeld!",
-    },
+    "1000": "",
+    "1001": "Nee",
+    "1002": "Ja",
+    "1003": "Verder",
+    "1004": "Verlaten",
+    "1005": "Verander circuit",
+    "1006": "Verander coureur",
+    "1007": "Herstart",
+    "1008": "Kies een missie",
+    "1009": "Volgende race",
+    "1010": "Volgende",
+    "1011": "Opnieuw",
+    "1012": "Bekijk de herhaling",
+    "1013": "Verder met herhaling",
+    "1014": "Herhaling herstarten",
+    "1015": "Bekijk rangen",
+    "1016": "Geestenlijst",
+    "1017": null,
+    "1018": "Volgende geestrace",
+    "1019": null,
+    "1020": "Nintendo WFC-menu",
+    "1021": "Stop herhaling",
+    "1022": "Begin race",
+    "1023": "Volgende race",
+    "1024": "Volgend gevecht",
+    "1025": "Even geduld...",
+    "1026": "Geestgegevens veranderen",
+    "1027": "Daag deze geest uit",
+    "1028": "Verder met herhaling",
+    "1029": "Beëindig herhaling",
+    "1030": "Herhaling herstarten",
+    "1031": "Geschatte aantal spelers voor volgende\nrace: {arg integer|0 0}",
+    "1032": "Stuur record",
+    "1033": "",
+    "1101": "Weet je zeker dat je het spel wilt verlaten?",
+    "1102": "Naar het Mario Kart-kanaal om de rangen te bekijken?",
+    "1103": "Oké",
+    "1104": null,
+    "1105": "Gefeliciteerd!\nJe hebt het record van {arg player|0} verslagen!\n\nWil je jouw geest naar\n{arg player|0} versturen?",
+    "1106": "Versturen",
+    "1107": "Niet versturen",
+    "1108": "Ja",
+    "1109": "Nee",
+    "1110": "",
+    "1111": "Naar je vriendenlijst?",
+    "1112": "Je kan zo veel records versturen\nals je wilt voor de deadline.\nDit record versturen?",
+    "1113": "Weet je zeker dat je deze\nrace wilt beëindigen en de\nvolgende geest wilt downloaden?",
+    "1114": "Weet je zeker dat je deze\nrace wilt verlaten en\nterugkeert naar het hoofdmenu?",
+    "1115": "Geest opgeslagen voor {current player|}!",
+    "1116": "Geest kon niet worden opgeslagen.",
+    "1117": "Geestuitdaging kon niet worden verzonden.",
+    "1118": "Terug naar het circuit-selectiescherm?",
+    "1119": "GEEST KAN NIET WORDEN OPGESLAGEN",
+    "1120": "",
+    "1121": "Je hebt een expertgeest vrijgespeeld!",
     "1201": {
         string: "3",
         font: "caps",
@@ -192,362 +82,126 @@
         string: "JIJ VERLIEST!",
         font: "caps",
     },
-    "1208": {
-        string: null,
-    },
-    "1209": {
-        string: null,
-    },
-    "1210": {
-        string: "Gefeliciteerd!",
-    },
+    "1208": null,
+    "1209": null,
+    "1210": "Gefeliciteerd!",
     "1211": {
         string: "NIEUW RECORD!",
         font: "caps",
     },
-    "1212": {
-        string: "Record",
-    },
-    "1213": {
-        string: "Beste ronde",
-    },
-    "1214": {
-        string: "{color|team red}TEAM ROOD WINT!",
-    },
-    "1215": {
-        string: "{color|team blue}TEAM BLAUW WINT!",
-    },
-    "1216": {
-        string: "{color|team red}OVERWINNING VOOR TEAM ROOD!",
-    },
-    "1217": {
-        string: "{color|team blue}OVERWINNING VOOR TEAM BLAUW!",
-    },
-    "1218": {
-        string: "GELIJKSPEL",
-    },
-    "1219": {
-        string: "GEFELICITEERD!",
-    },
-    "1220": {
-        string: "GEFELICITEERD!",
-    },
-    "1221": {
-        string: "GEFELICITEERD!",
-    },
-    "1222": {
-        string: "VOLGENDE KEER BETER!",
-    },
-    "1223": {
-        string: "{color|team red}TEAM ROOD VERLIEST!",
-    },
-    "1224": {
-        string: "{color|team blue}TEAM BLAUW VERLIEST!",
-    },
-    "1225": {
-        string: "{color|team red}TEAM ROOD VERLIEST!",
-    },
-    "1226": {
-        string: "{color|team blue}TEAM BLAUW VERLIEST!",
-    },
-    "1227": {
-        string: "",
-    },
-    "1301": {
-        string: "1e",
-    },
-    "1302": {
-        string: "2e",
-    },
-    "1303": {
-        string: "3e",
-    },
-    "1304": {
-        string: "4e",
-    },
-    "1305": {
-        string: "5e",
-    },
-    "1306": {
-        string: "6e",
-    },
-    "1307": {
-        string: "7e",
-    },
-    "1308": {
-        string: "8e",
-    },
-    "1309": {
-        string: "9e",
-    },
-    "1310": {
-        string: "10e",
-    },
-    "1311": {
-        string: "11e",
-    },
-    "1312": {
-        string: "12e",
-    },
-    "1313": {
-        string: "{arg cond messages|0 1316 1317}",
-    },
-    "1314": {
-        string: "{arg integer|0 0}",
-    },
-    "1315": {
-        string: "{arg signed integer|0 0}",
-    },
-    "1316": {
-        string: "pt",
-    },
-    "1317": {
-        string: "ptn",
-    },
-    "1318": {
-        string: "{arg cond messages|0 1319 1320}",
-    },
-    "1319": {
-        string: "{color|team red}winst",
-    },
-    "1320": {
-        string: "{color|team red}winsten",
-    },
-    "1321": {
-        string: "{arg cond messages|0 1322 1323}",
-    },
-    "1322": {
-        string: "{color|team blue}winst",
-    },
-    "1323": {
-        string: "{color|team blue}winsten",
-    },
-    "1324": {
-        string: "{arg cond messages|0 1325 1326}",
-    },
-    "1325": {
-        string: "{color|team red}pt",
-    },
-    "1326": {
-        string: "{color|team red}ptn",
-    },
-    "1327": {
-        string: "{arg cond messages|0 1328 1329}",
-    },
-    "1328": {
-        string: "{color|team blue}pt",
-    },
-    "1329": {
-        string: "{color|team blue}ptn",
-    },
-    "1330": {
-        string: "Winst: {arg integer|0 0} - Verlies: {arg integer|1 0}",
-    },
-    "1331": {
-        string: "Winst: {arg integer|0 0} - Verlies: {arg integer|1 0}",
-    },
-    "1332": {
-        string: "{color|team red}{arg message|0}",
-    },
-    "1333": {
-        string: "{color|team blue}{arg message|0}",
-    },
-    "1334": {
-        string: "TIJD",
-    },
-    "1335": {
-        string: "RONDE",
-    },
-    "1336": {
-        string: "SCORE",
-    },
-    "1337": {
-        string: "LIVE",
-    },
-    "1338": {
-        string: "Je zal de volgende race meespelen.\nGeschatte aantal spelers: {arg integer|0 0}\nEven geduld...",
-    },
-    "1339": {
-        string: "Je zal het volgende gevecht meespelen.\nGeschatte aantal spelers: {arg integer|0 0}\nEven geduld...",
-    },
-    "1340": {
-        string: "\nDe uitslag is bepaald.\nDe race is afgelopen.",
-    },
-    "1341": {
-        string: "De 5 minuten zijn voorbij.\nDe race is afgelopen.",
-    },
-    "1342": {
-        string: "30 seconden zijn voorbij sinds de\nwinnaar de race heeft gewonnen.\nDe race is afgelopen.",
-    },
-    "1343": {
-        string: "",
-    },
-    "1344": {
-        string: "",
-    },
-    "1345": {
-        string: "{1 char|}",
-    },
-    "1400": {
-        string: "{arg integer|0 2}:{arg integer|1 2}.{arg integer|2 3}",
-    },
-    "1401": {
-        string: "--:--.---",
-    },
-    "1402": {
-        string: ":",
-    },
-    "1403": {
-        string: ".",
-    },
-    "1404": {
-        string: "",
-    },
-    "1409": {
-        string: "{arg message|0} Team versusrace - {arg integer|0 0} van {arg integer|1 0}",
-    },
-    "1410": {
-        string: "{arg message|0} {arg message|1} - 1e race",
-    },
-    "1411": {
-        string: "{arg message|0} {arg message|1} - 2e race",
-    },
-    "1412": {
-        string: "{arg message|0} {arg message|1} - 3e race",
-    },
-    "1413": {
-        string: "{arg message|0} {arg message|1} - Laatste race",
-    },
-    "1414": {
-        string: "{arg message|0} versusrace - {arg integer|0 0} van {arg integer|1 0}",
-    },
-    "1415": {
-        string: "Ballongevecht",
-    },
-    "1416": {
-        string: "Muntengevecht",
-    },
-    "1417": {
-        string: "50 cc",
-    },
-    "1418": {
-        string: "100 cc",
-    },
-    "1419": {
-        string: "150 cc",
-    },
-    "1420": {
-        string: "Gespiegeld",
-    },
-    "1421": {
-        string: "{arg message|0} {arg message|1}",
-    },
-    "1422": {
-        string: "{arg message|0} versusrace",
-    },
-    "1423": {
-        string: "Rang: ",
-    },
-    "1424": {
-        string: "{1 char|}",
-    },
-    "1425": {
-        string: "{1 char|}",
-    },
-    "1426": {
-        string: "{1 char|}",
-    },
-    "1427": {
-        string: "{1 char|}",
-    },
-    "1428": {
-        string: "{1 char|}",
-    },
-    "1429": {
-        string: "{1 char|}",
-    },
-    "1430": {
-        string: "{1 char|}",
-    },
-    "1431": {
-        string: "{1 char|}",
-    },
-    "1432": {
-        string: "F",
-    },
-    "1433": {
-        string: "{arg message|0} Grand Prix",
-    },
-    "1434": {
-        string: "{arg message|0} Team Grand Prix",
-    },
-    "1435": {
-        string: "{arg message|0} Team versusrace",
-    },
-    "1436": {
-        string: null,
-    },
-    "1437": {
-        string: null,
-    },
-    "1438": {
-        string: null,
-    },
-    "1439": {
-        string: null,
-    },
-    "1440": {
-        string: "{arg message|0} versusrace {arg message|1}",
-    },
-    "1441": {
-        string: "{arg message|2}{arg message|0}  Grand Prix - 1e race",
-    },
-    "1442": {
-        string: "{arg message|2}{arg message|0}  Grand Prix - 2e race",
-    },
-    "1443": {
-        string: "{arg message|2}{arg message|0}  Grand Prix - 3e race",
-    },
-    "1444": {
-        string: "{arg message|2}{arg message|0}  Grand Prix - Laatste race",
-    },
-    "1445": {
-        string: "{arg message|2}Ballongevecht",
-    },
-    "1446": {
-        string: "{arg message|2}Muntengevecht",
-    },
-    "1447": {
-        string: "({arg integer|0 0} spelers)",
-    },
-    "1448": {
-        string: "",
-    },
-    "1449": {
-        string: "{color|team red}",
-    },
-    "1450": {
-        string: "{color|team blue}",
-    },
-    "1451": {
-        string: "",
-    },
-    "1500": {
-        string: "Voorwerp gebruiken",
-    },
-    "1501": {
-        string: "Sturen",
-    },
-    "1502": {
-        string: "Accelereren",
-    },
-    "1503": {
-        string: "Remmen/Driften",
-    },
-    "1504": {
-        string: "Remmen",
-    },
-    "1505": {
-        string: "",
-    },
+    "1212": "Record",
+    "1213": "Beste ronde",
+    "1214": "{color|team red}TEAM ROOD WINT!",
+    "1215": "{color|team blue}TEAM BLAUW WINT!",
+    "1216": "{color|team red}OVERWINNING VOOR TEAM ROOD!",
+    "1217": "{color|team blue}OVERWINNING VOOR TEAM BLAUW!",
+    "1218": "GELIJKSPEL",
+    "1219": "GEFELICITEERD!",
+    "1220": "GEFELICITEERD!",
+    "1221": "GEFELICITEERD!",
+    "1222": "VOLGENDE KEER BETER!",
+    "1223": "{color|team red}TEAM ROOD VERLIEST!",
+    "1224": "{color|team blue}TEAM BLAUW VERLIEST!",
+    "1225": "{color|team red}TEAM ROOD VERLIEST!",
+    "1226": "{color|team blue}TEAM BLAUW VERLIEST!",
+    "1227": "",
+    "1301": "1e",
+    "1302": "2e",
+    "1303": "3e",
+    "1304": "4e",
+    "1305": "5e",
+    "1306": "6e",
+    "1307": "7e",
+    "1308": "8e",
+    "1309": "9e",
+    "1310": "10e",
+    "1311": "11e",
+    "1312": "12e",
+    "1313": "{arg cond messages|0 1316 1317}",
+    "1314": "{arg integer|0 0}",
+    "1315": "{arg signed integer|0 0}",
+    "1316": "pt",
+    "1317": "ptn",
+    "1318": "{arg cond messages|0 1319 1320}",
+    "1319": "{color|team red}winst",
+    "1320": "{color|team red}winsten",
+    "1321": "{arg cond messages|0 1322 1323}",
+    "1322": "{color|team blue}winst",
+    "1323": "{color|team blue}winsten",
+    "1324": "{arg cond messages|0 1325 1326}",
+    "1325": "{color|team red}pt",
+    "1326": "{color|team red}ptn",
+    "1327": "{arg cond messages|0 1328 1329}",
+    "1328": "{color|team blue}pt",
+    "1329": "{color|team blue}ptn",
+    "1330": "Winst: {arg integer|0 0} - Verlies: {arg integer|1 0}",
+    "1331": "Winst: {arg integer|0 0} - Verlies: {arg integer|1 0}",
+    "1332": "{color|team red}{arg message|0}",
+    "1333": "{color|team blue}{arg message|0}",
+    "1334": "TIJD",
+    "1335": "RONDE",
+    "1336": "SCORE",
+    "1337": "LIVE",
+    "1338": "Je zal de volgende race meespelen.\nGeschatte aantal spelers: {arg integer|0 0}\nEven geduld...",
+    "1339": "Je zal het volgende gevecht meespelen.\nGeschatte aantal spelers: {arg integer|0 0}\nEven geduld...",
+    "1340": "\nDe uitslag is bepaald.\nDe race is afgelopen.",
+    "1341": "De 5 minuten zijn voorbij.\nDe race is afgelopen.",
+    "1342": "30 seconden zijn voorbij sinds de\nwinnaar de race heeft gewonnen.\nDe race is afgelopen.",
+    "1343": "",
+    "1344": "",
+    "1345": "{1 char|}",
+    "1400": "{arg integer|0 2}:{arg integer|1 2}.{arg integer|2 3}",
+    "1401": "--:--.---",
+    "1402": ":",
+    "1403": ".",
+    "1404": "",
+    "1409": "{arg message|0} Team versusrace - {arg integer|0 0} van {arg integer|1 0}",
+    "1410": "{arg message|0} {arg message|1} - 1e race",
+    "1411": "{arg message|0} {arg message|1} - 2e race",
+    "1412": "{arg message|0} {arg message|1} - 3e race",
+    "1413": "{arg message|0} {arg message|1} - Laatste race",
+    "1414": "{arg message|0} versusrace - {arg integer|0 0} van {arg integer|1 0}",
+    "1415": "Ballongevecht",
+    "1416": "Muntengevecht",
+    "1417": "50 cc",
+    "1418": "100 cc",
+    "1419": "150 cc",
+    "1420": "Gespiegeld",
+    "1421": "{arg message|0} {arg message|1}",
+    "1422": "{arg message|0} versusrace",
+    "1423": "Rang: ",
+    "1424": "{1 char|}",
+    "1425": "{1 char|}",
+    "1426": "{1 char|}",
+    "1427": "{1 char|}",
+    "1428": "{1 char|}",
+    "1429": "{1 char|}",
+    "1430": "{1 char|}",
+    "1431": "{1 char|}",
+    "1432": "F",
+    "1433": "{arg message|0} Grand Prix",
+    "1434": "{arg message|0} Team Grand Prix",
+    "1435": "{arg message|0} Team versusrace",
+    "1436": null,
+    "1437": null,
+    "1438": null,
+    "1439": null,
+    "1440": "{arg message|0} versusrace {arg message|1}",
+    "1441": "{arg message|2}{arg message|0}  Grand Prix - 1e race",
+    "1442": "{arg message|2}{arg message|0}  Grand Prix - 2e race",
+    "1443": "{arg message|2}{arg message|0}  Grand Prix - 3e race",
+    "1444": "{arg message|2}{arg message|0}  Grand Prix - Laatste race",
+    "1445": "{arg message|2}Ballongevecht",
+    "1446": "{arg message|2}Muntengevecht",
+    "1447": "({arg integer|0 0} spelers)",
+    "1448": "",
+    "1449": "{color|team red}",
+    "1450": "{color|team blue}",
+    "1451": "",
+    "1500": "Voorwerp gebruiken",
+    "1501": "Sturen",
+    "1502": "Accelereren",
+    "1503": "Remmen/Driften",
+    "1504": "Remmen",
+    "1505": "",
 }

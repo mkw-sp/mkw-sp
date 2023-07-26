@@ -1,743 +1,249 @@
 {
-    "9000": {
-        string: "Mario",
-    },
-    "9001": {
-        string: "Baby Peach",
-    },
-    "9002": {
-        string: "Waluigi",
-    },
-    "9003": {
-        string: "Bowser",
-    },
-    "9004": {
-        string: "Baby Daisy",
-    },
-    "9005": {
-        string: "Knochentrocken",
-    },
-    "9006": {
-        string: "Baby Mario",
-    },
-    "9007": {
-        string: "Luigi",
-    },
-    "9008": {
-        string: "Toad",
-    },
-    "9009": {
-        string: "Donkey Kong",
-    },
-    "9010": {
-        string: "Yoshi",
-    },
-    "9011": {
-        string: "Wario",
-    },
-    "9012": {
-        string: "Baby Luigi",
-    },
-    "9013": {
-        string: "Toadette",
-    },
-    "9014": {
-        string: "Koopa",
-    },
-    "9015": {
-        string: "Daisy",
-    },
-    "9016": {
-        string: "Peach",
-    },
-    "9017": {
-        string: "Birdo",
-    },
-    "9018": {
-        string: "Diddy Kong",
-    },
-    "9019": {
-        string: "König Buu Huu",
-    },
-    "9020": {
-        string: "Bowser Jr.",
-    },
-    "9021": {
-        string: "Knochen-Bowser",
-    },
-    "9022": {
-        string: "Funky Kong",
-    },
-    "9023": {
-        string: "Rosalina",
-    },
-    "9024": {
-        string: "Mii",
-    },
-    "9050": {
-        string: "{arg player|0}",
-    },
-    "9051": {
-        string: "{arg player|0}",
-    },
-    "9052": {
-        string: "Mii (Outfit A)",
-    },
-    "9053": {
-        string: "Mii (Outfit B)",
-    },
-    "9054": {
-        string: null,
-    },
-    "9100": {
-        string: "Mini-Kart",
-    },
-    "9101": {
-        string: "Medi-Kart",
-    },
-    "9102": {
-        string: "Maxi-Kart",
-    },
-    "9103": {
-        string: "Baby-Booster",
-    },
-    "9104": {
-        string: "Nostalgia 1",
-    },
-    "9105": {
-        string: "Offroader",
-    },
-    "9106": {
-        string: "Minibiest",
-    },
-    "9107": {
-        string: "Windschnitte",
-    },
-    "9108": {
-        string: "Feuerschleuder",
-    },
-    "9109": {
-        string: "Bob-Cheep",
-    },
-    "9110": {
-        string: "Blooper-Bolide",
-    },
-    "9111": {
-        string: "Pistenpiranha",
-    },
-    "9112": {
-        string: "Monztruck",
-    },
-    "9113": {
-        string: "Cabriosa",
-    },
-    "9114": {
-        string: "Sterngleiter",
-    },
-    "9115": {
-        string: "Blue Falcon",
-    },
-    "9116": {
-        string: "Glory",
-    },
-    "9117": {
-        string: "Turbetto",
-    },
-    "9118": {
-        string: "Mini-Kart",
-    },
-    "9119": {
-        string: "Medi-Kart",
-    },
-    "9120": {
-        string: "Maxi-Kart",
-    },
-    "9121": {
-        string: "Mini-Kart",
-    },
-    "9122": {
-        string: "Medi-Kart",
-    },
-    "9123": {
-        string: "Maxi-Kart",
-    },
-    "9124": {
-        string: "",
-    },
-    "9150": {
-        string: "Mini-Bike",
-    },
-    "9151": {
-        string: "Medi-Bike",
-    },
-    "9152": {
-        string: "Maxi-Bike",
-    },
-    "9153": {
-        string: "Willi-Bike",
-    },
-    "9154": {
-        string: "Mach-Bike",
-    },
-    "9155": {
-        string: "Bowser-Bike",
-    },
-    "9156": {
-        string: "Blitzer",
-    },
-    "9157": {
-        string: "Bonbon-Bike",
-    },
-    "9158": {
-        string: "Wario-Bike",
-    },
-    "9159": {
-        string: "Quakquak",
-    },
-    "9160": {
-        string: "Rapido",
-    },
-    "9161": {
-        string: "Schnuppe",
-    },
-    "9162": {
-        string: "Kameknaller",
-    },
-    "9163": {
-        string: "Pistensturm",
-    },
-    "9164": {
-        string: "Torped",
-    },
-    "9165": {
-        string: "Jet-A",
-    },
-    "9166": {
-        string: "Flippster",
-    },
-    "9167": {
-        string: "Phantom",
-    },
-    "9168": {
-        string: "Mini-Bike",
-    },
-    "9169": {
-        string: "Medi-Bike",
-    },
-    "9170": {
-        string: "Maxi-Bike",
-    },
-    "9171": {
-        string: "Mini-Bike",
-    },
-    "9172": {
-        string: "Medi-Bike",
-    },
-    "9173": {
-        string: "Maxi-Bike",
-    },
-    "9174": {
-        string: null,
-    },
-    "9200": {
-        string: "Pilz-Cup",
-    },
-    "9201": {
-        string: "Blumen-Cup",
-    },
-    "9202": {
-        string: "Stern-Cup",
-    },
-    "9203": {
-        string: "Spezial-Cup",
-    },
-    "9204": {
-        string: "Panzer-Cup",
-    },
-    "9205": {
-        string: "Bananen-Cup",
-    },
-    "9206": {
-        string: "Blatt-Cup",
-    },
-    "9207": {
-        string: "Blitz-Cup",
-    },
-    "9208": {
-        string: "Galaxis-Arena",
-    },
-    "9300": {
-        string: "Marios Piste",
-    },
-    "9301": {
-        string: "Kuhmuh-Weide",
-    },
-    "9302": {
-        string: "Pilz-Schlucht",
-    },
-    "9303": {
-        string: "Vulkangrollen",
-    },
-    "9304": {
-        string: "Toads Fabrik",
-    },
-    "9305": {
-        string: "Kokos-Promenade",
-    },
-    "9306": {
-        string: "DK Skikane",
-    },
-    "9307": {
-        string: "Warios Goldmine",
-    },
-    "9308": {
-        string: "Luigis Piste",
-    },
-    "9309": {
-        string: "Daisys Piste",
-    },
-    "9310": {
-        string: "Mondblickstraße",
-    },
-    "9311": {
-        string: "Blätterwald",
-    },
-    "9312": {
-        string: "Bowsers Festung",
-    },
-    "9313": {
-        string: "Regenbogen-Boulevard",
-    },
-    "9314": {
-        string: "Staubtrockene Ruinen",
-    },
-    "9315": {
-        string: "Koopa-Kap",
-    },
-    "9316": {
-        string: "GCN Peach Beach",
-    },
-    "9317": {
-        string: "GCN Marios Piste",
-    },
-    "9318": {
-        string: "GCN Waluigi-Arena",
-    },
-    "9319": {
-        string: "GCN DK Bergland",
-    },
-    "9320": {
-        string: "DS Yoshi-Kaskaden",
-    },
-    "9321": {
-        string: "DS Glühheiße Wüste",
-    },
-    "9322": {
-        string: "DS Peachs Schlossgarten",
-    },
-    "9323": {
-        string: "DS Piazzale Delfino",
-    },
-    "9324": {
-        string: "SNES Marios Piste 3",
-    },
-    "9325": {
-        string: "SNES Geistertal 2",
-    },
-    "9326": {
-        string: "N64 Marios Rennpiste",
-    },
-    "9327": {
-        string: "N64 Sorbet-Land",
-    },
-    "9328": {
-        string: "N64 Bowsers Festung",
-    },
-    "9329": {
-        string: "N64 DKs Dschungelpark",
-    },
-    "9330": {
-        string: "GBA Bowsers Festung 3",
-    },
-    "9331": {
-        string: "GBA Shy Guy-Strand",
-    },
-    "9350": {
-        string: null,
-    },
-    "9351": {
-        string: "Ballonbalgerei",
-    },
-    "9352": {
-        string: "Münzenjäger",
-    },
-    "9353": {
-        string: "Wii-Arenen",
-    },
-    "9354": {
-        string: "Retro-Arenen",
-    },
-    "9355": {
-        string: null,
-    },
-    "9360": {
-        string: "Marios Piste",
-    },
-    "9361": {
-        string: "Kuhmuh-Weide",
-    },
-    "9362": {
-        string: "Pilz-Schlucht",
-    },
-    "9363": {
-        string: "Vulkangrollen",
-    },
-    "9364": {
-        string: "Toads Fabrik",
-    },
-    "9365": {
-        string: "Kokos-Promenade",
-    },
-    "9366": {
-        string: "DK Skikane",
-    },
-    "9367": {
-        string: "Warios Goldmine",
-    },
-    "9368": {
-        string: "Luigis Piste",
-    },
-    "9369": {
-        string: "Daisys Piste",
-    },
-    "9370": {
-        string: "Mondblickstraße",
-    },
-    "9371": {
-        string: "Blätterwald",
-    },
-    "9372": {
-        string: "Bowsers Festung",
-    },
-    "9373": {
-        string: "Regenbogen-Boulevard",
-    },
-    "9374": {
-        string: "Staubtrockene Ruinen",
-    },
-    "9375": {
-        string: "Koopa-Kap",
-    },
-    "9376": {
-        string: "GCN Peach Beach",
-    },
-    "9377": {
-        string: "GCN Marios Piste",
-    },
-    "9378": {
-        string: "GCN Waluigi-Arena",
-    },
-    "9379": {
-        string: "GCN DK Bergland",
-    },
-    "9380": {
-        string: "DS Yoshi-Kaskaden",
-    },
-    "9381": {
-        string: "DS Glühheiße Wüste",
-    },
-    "9382": {
-        string: "DS Peachs Schlossgarten",
-    },
-    "9383": {
-        string: "DS Piazzale Delfino",
-    },
-    "9384": {
-        string: "SNES Marios Piste 3",
-    },
-    "9385": {
-        string: "SNES Geistertal 2",
-    },
-    "9386": {
-        string: "N64 Marios Rennpiste",
-    },
-    "9387": {
-        string: "N64 Sorbet-Land",
-    },
-    "9388": {
-        string: "N64 Bowsers Festung",
-    },
-    "9389": {
-        string: "N64 DKs Dschungelpark",
-    },
-    "9390": {
-        string: "GBA Bowsers Festung 3",
-    },
-    "9391": {
-        string: "GBA Shy Guy-Strand",
-    },
-    "9392": {
-        string: null,
-    },
-    "9400": {
-        string: "Delfino-Pier",
-    },
-    "9401": {
-        string: "Block-Plaza",
-    },
-    "9402": {
-        string: "Kettenhund-Roulette",
-    },
-    "9403": {
-        string: "Funky-Stadion",
-    },
-    "9404": {
-        string: "Steinwüste",
-    },
-    "9405": {
-        string: "GCN Keks-Land",
-    },
-    "9406": {
-        string: "DS Finstervilla",
-    },
-    "9407": {
-        string: "SNES Kampfkurs 4",
-    },
-    "9408": {
-        string: "GBA Kampfkurs 3",
-    },
-    "9409": {
-        string: "N64 Wolkenkratzer",
-    },
-    "9410": {
-        string: null,
-    },
-    "9420": {
-        string: "Delfino-Pier",
-    },
-    "9421": {
-        string: "Block-Plaza",
-    },
-    "9422": {
-        string: "Kettenhund-Roulette",
-    },
-    "9423": {
-        string: "Funky-Stadion",
-    },
-    "9424": {
-        string: "Steinwüste",
-    },
-    "9425": {
-        string: "GCN Keks-Land",
-    },
-    "9426": {
-        string: "DS Finstervilla",
-    },
-    "9427": {
-        string: "SNES Kampfkurs 4",
-    },
-    "9428": {
-        string: "GBA Kampfkurs 3",
-    },
-    "9429": {
-        string: "N64 Wolkenkratzer",
-    },
-    "9430": {
-        string: null,
-    },
-    "9450": {
-        string: "GCN Keks-Land",
-    },
-    "9451": {
-        string: "DS Finstervilla",
-    },
-    "9452": {
-        string: "SNES Kampfkurs 4",
-    },
-    "9453": {
-        string: "GBA Kampfkurs 3",
-    },
-    "9454": {
-        string: "N64 Wolkenkratzer",
-    },
-    "9455": {
-        string: null,
-    },
-    "9500": {
-        string: "Spieler {arg player|0}",
-    },
-    "9501": {
-        string: "{arg player|0}",
-    },
-    "9502": {
-        string: "{arg border|0}",
-    },
-    "9503": {
-        string: "{arg question mark|0}",
-    },
-    "9504": {
-        string: "{arg front button|0}",
-    },
-    "9505": {
-        string: null,
-    },
-    "9550": {
-        string: "S1",
-    },
-    "9551": {
-        string: "S2",
-    },
-    "9552": {
-        string: "S3",
-    },
-    "9553": {
-        string: "S4",
-    },
-    "9554": {
-        string: null,
-    },
-    "9600": {
-        string: "{1 char|①}",
-    },
-    "9601": {
-        string: "{1 char|②}",
-    },
-    "9602": {
-        string: "{1 char|③}",
-    },
-    "9603": {
-        string: "{1 char|④}",
-    },
-    "9604": {
-        string: "{1 char|⑤}",
-    },
-    "9605": {
-        string: "{1 char|⑥}",
-    },
-    "9606": {
-        string: "{1 char|⑦}",
-    },
-    "9607": {
-        string: "{1 char|⑧}",
-    },
-    "9608": {
-        string: "{1 char|⑨}",
-    },
-    "9609": {
-        string: "{1 char|⑩}",
-    },
-    "9610": {
-        string: "{1 char|⑪}",
-    },
-    "9611": {
-        string: "{1 char|⑫}",
-    },
-    "9612": {
-        string: "/{1 char|⑬}",
-    },
-    "9613": {
-        string: "-{1 char|⑭}",
-    },
-    "9614": {
-        string: "+{1 char|⑮}",
-    },
-    "9615": {
-        string: null,
-    },
-    "9650": {
-        string: "{arg message|0}{arg message|1}{arg message|2}{arg message|3}{arg message|4}{arg message|5}{arg message|6}{arg message|7}{arg message|8}",
-    },
-    "9651": {
-        string: "{1 char|⑭}{arg message|0}{arg message|1}{arg message|2}{arg message|3}{arg message|4}{arg message|5}{arg message|6}{arg message|7}{arg message|8}",
-    },
-    "9652": {
-        string: "{1 char|⑮}{arg message|0}{arg message|1}{arg message|2}{arg message|3}{arg message|4}{arg message|5}{arg message|6}{arg message|7}{arg message|8}",
-    },
-    "9653": {
-        string: "{arg message|0}{font scale|70}/{arg message|1}",
-    },
-    "9654": {
-        string: "{arg message|0}{arg message|1}{font scale|70}/{arg message|2}{arg message|3}",
-    },
-    "9655": {
-        string: "{arg message|0}{arg message|1}{arg message|2}{font scale|70}/{arg message|3}{arg message|4}{arg message|5}",
-    },
-    "9656": {
-        string: null,
-    },
-    "9700": {
-        string: "R-Punkte",
-    },
-    "9701": {
-        string: "W-Punkte",
-    },
-    "9702": {
-        string: "RANG",
-    },
-    "9703": {
-        string: "Gast",
-    },
-    "9704": {
-        string: "----",
-    },
-    "9705": {
-        string: null,
-    },
-    "9710": {
-        string: "{1 char|}",
-    },
-    "9711": {
-        string: "{1 char|}",
-    },
-    "9712": {
-        string: "{1 char|}",
-    },
-    "9713": {
-        string: "{1 char|}",
-    },
-    "9714": {
-        string: "{1 char|}",
-    },
-    "9715": {
-        string: "{1 char|}",
-    },
-    "9716": {
-        string: "{1 char|}",
-    },
-    "9717": {
-        string: "{1 char|}",
-    },
-    "9718": {
-        string: "{1 char|}",
-    },
-    "9719": {
-        string: "{1 char|}",
-    },
-    "9720": {
-        string: "{1 char|}",
-    },
-    "9721": {
-        string: "{1 char|}",
-    },
-    "9722": {
-        string: null,
-    },
-    "9900": {
-        string: "Die Verbindung zum\nController wurde unterbrochen.\nBitte den A-Knopf drücken.",
-    },
-    "9901": {
-        string: "Controllerwechsel!\nBitte den A-Knopf drücken.",
-    },
-    "9902": {
-        string: "Während eines Matchs kann der\nController nicht gewechselt werden.\nBitte vorherigen Controller verwenden.",
-    },
-    "9903": {
-        string: "Während eines Matchs via Nintendo WFC\nkann der Controller nicht gewechselt werden\nBitte vorherigen Controller verwenden.",
-    },
-    "9904": {
-        string: "In diesem Wettbewerb wird das Wii Wheel\nbenötigt. Bitte lege die Wii-Fernbedienung in\ndas Wii Wheel ein und drücke den A-Knopf.",
-    },
-    "9999": {
-        string: "?",
-    },
+    "9000": "Mario",
+    "9001": "Baby Peach",
+    "9002": "Waluigi",
+    "9003": "Bowser",
+    "9004": "Baby Daisy",
+    "9005": "Knochentrocken",
+    "9006": "Baby Mario",
+    "9007": "Luigi",
+    "9008": "Toad",
+    "9009": "Donkey Kong",
+    "9010": "Yoshi",
+    "9011": "Wario",
+    "9012": "Baby Luigi",
+    "9013": "Toadette",
+    "9014": "Koopa",
+    "9015": "Daisy",
+    "9016": "Peach",
+    "9017": "Birdo",
+    "9018": "Diddy Kong",
+    "9019": "König Buu Huu",
+    "9020": "Bowser Jr.",
+    "9021": "Knochen-Bowser",
+    "9022": "Funky Kong",
+    "9023": "Rosalina",
+    "9024": "Mii",
+    "9050": "{arg player|0}",
+    "9051": "{arg player|0}",
+    "9052": "Mii (Outfit A)",
+    "9053": "Mii (Outfit B)",
+    "9054": null,
+    "9100": "Mini-Kart",
+    "9101": "Medi-Kart",
+    "9102": "Maxi-Kart",
+    "9103": "Baby-Booster",
+    "9104": "Nostalgia 1",
+    "9105": "Offroader",
+    "9106": "Minibiest",
+    "9107": "Windschnitte",
+    "9108": "Feuerschleuder",
+    "9109": "Bob-Cheep",
+    "9110": "Blooper-Bolide",
+    "9111": "Pistenpiranha",
+    "9112": "Monztruck",
+    "9113": "Cabriosa",
+    "9114": "Sterngleiter",
+    "9115": "Blue Falcon",
+    "9116": "Glory",
+    "9117": "Turbetto",
+    "9118": "Mini-Kart",
+    "9119": "Medi-Kart",
+    "9120": "Maxi-Kart",
+    "9121": "Mini-Kart",
+    "9122": "Medi-Kart",
+    "9123": "Maxi-Kart",
+    "9124": "",
+    "9150": "Mini-Bike",
+    "9151": "Medi-Bike",
+    "9152": "Maxi-Bike",
+    "9153": "Willi-Bike",
+    "9154": "Mach-Bike",
+    "9155": "Bowser-Bike",
+    "9156": "Blitzer",
+    "9157": "Bonbon-Bike",
+    "9158": "Wario-Bike",
+    "9159": "Quakquak",
+    "9160": "Rapido",
+    "9161": "Schnuppe",
+    "9162": "Kameknaller",
+    "9163": "Pistensturm",
+    "9164": "Torped",
+    "9165": "Jet-A",
+    "9166": "Flippster",
+    "9167": "Phantom",
+    "9168": "Mini-Bike",
+    "9169": "Medi-Bike",
+    "9170": "Maxi-Bike",
+    "9171": "Mini-Bike",
+    "9172": "Medi-Bike",
+    "9173": "Maxi-Bike",
+    "9174": null,
+    "9200": "Pilz-Cup",
+    "9201": "Blumen-Cup",
+    "9202": "Stern-Cup",
+    "9203": "Spezial-Cup",
+    "9204": "Panzer-Cup",
+    "9205": "Bananen-Cup",
+    "9206": "Blatt-Cup",
+    "9207": "Blitz-Cup",
+    "9208": "Galaxis-Arena",
+    "9300": "Marios Piste",
+    "9301": "Kuhmuh-Weide",
+    "9302": "Pilz-Schlucht",
+    "9303": "Vulkangrollen",
+    "9304": "Toads Fabrik",
+    "9305": "Kokos-Promenade",
+    "9306": "DK Skikane",
+    "9307": "Warios Goldmine",
+    "9308": "Luigis Piste",
+    "9309": "Daisys Piste",
+    "9310": "Mondblickstraße",
+    "9311": "Blätterwald",
+    "9312": "Bowsers Festung",
+    "9313": "Regenbogen-Boulevard",
+    "9314": "Staubtrockene Ruinen",
+    "9315": "Koopa-Kap",
+    "9316": "GCN Peach Beach",
+    "9317": "GCN Marios Piste",
+    "9318": "GCN Waluigi-Arena",
+    "9319": "GCN DK Bergland",
+    "9320": "DS Yoshi-Kaskaden",
+    "9321": "DS Glühheiße Wüste",
+    "9322": "DS Peachs Schlossgarten",
+    "9323": "DS Piazzale Delfino",
+    "9324": "SNES Marios Piste 3",
+    "9325": "SNES Geistertal 2",
+    "9326": "N64 Marios Rennpiste",
+    "9327": "N64 Sorbet-Land",
+    "9328": "N64 Bowsers Festung",
+    "9329": "N64 DKs Dschungelpark",
+    "9330": "GBA Bowsers Festung 3",
+    "9331": "GBA Shy Guy-Strand",
+    "9350": null,
+    "9351": "Ballonbalgerei",
+    "9352": "Münzenjäger",
+    "9353": "Wii-Arenen",
+    "9354": "Retro-Arenen",
+    "9355": null,
+    "9360": "Marios Piste",
+    "9361": "Kuhmuh-Weide",
+    "9362": "Pilz-Schlucht",
+    "9363": "Vulkangrollen",
+    "9364": "Toads Fabrik",
+    "9365": "Kokos-Promenade",
+    "9366": "DK Skikane",
+    "9367": "Warios Goldmine",
+    "9368": "Luigis Piste",
+    "9369": "Daisys Piste",
+    "9370": "Mondblickstraße",
+    "9371": "Blätterwald",
+    "9372": "Bowsers Festung",
+    "9373": "Regenbogen-Boulevard",
+    "9374": "Staubtrockene Ruinen",
+    "9375": "Koopa-Kap",
+    "9376": "GCN Peach Beach",
+    "9377": "GCN Marios Piste",
+    "9378": "GCN Waluigi-Arena",
+    "9379": "GCN DK Bergland",
+    "9380": "DS Yoshi-Kaskaden",
+    "9381": "DS Glühheiße Wüste",
+    "9382": "DS Peachs Schlossgarten",
+    "9383": "DS Piazzale Delfino",
+    "9384": "SNES Marios Piste 3",
+    "9385": "SNES Geistertal 2",
+    "9386": "N64 Marios Rennpiste",
+    "9387": "N64 Sorbet-Land",
+    "9388": "N64 Bowsers Festung",
+    "9389": "N64 DKs Dschungelpark",
+    "9390": "GBA Bowsers Festung 3",
+    "9391": "GBA Shy Guy-Strand",
+    "9392": null,
+    "9400": "Delfino-Pier",
+    "9401": "Block-Plaza",
+    "9402": "Kettenhund-Roulette",
+    "9403": "Funky-Stadion",
+    "9404": "Steinwüste",
+    "9405": "GCN Keks-Land",
+    "9406": "DS Finstervilla",
+    "9407": "SNES Kampfkurs 4",
+    "9408": "GBA Kampfkurs 3",
+    "9409": "N64 Wolkenkratzer",
+    "9410": null,
+    "9420": "Delfino-Pier",
+    "9421": "Block-Plaza",
+    "9422": "Kettenhund-Roulette",
+    "9423": "Funky-Stadion",
+    "9424": "Steinwüste",
+    "9425": "GCN Keks-Land",
+    "9426": "DS Finstervilla",
+    "9427": "SNES Kampfkurs 4",
+    "9428": "GBA Kampfkurs 3",
+    "9429": "N64 Wolkenkratzer",
+    "9430": null,
+    "9450": "GCN Keks-Land",
+    "9451": "DS Finstervilla",
+    "9452": "SNES Kampfkurs 4",
+    "9453": "GBA Kampfkurs 3",
+    "9454": "N64 Wolkenkratzer",
+    "9455": null,
+    "9500": "Spieler {arg player|0}",
+    "9501": "{arg player|0}",
+    "9502": "{arg border|0}",
+    "9503": "{arg question mark|0}",
+    "9504": "{arg front button|0}",
+    "9505": null,
+    "9550": "S1",
+    "9551": "S2",
+    "9552": "S3",
+    "9553": "S4",
+    "9554": null,
+    "9600": "{1 char|①}",
+    "9601": "{1 char|②}",
+    "9602": "{1 char|③}",
+    "9603": "{1 char|④}",
+    "9604": "{1 char|⑤}",
+    "9605": "{1 char|⑥}",
+    "9606": "{1 char|⑦}",
+    "9607": "{1 char|⑧}",
+    "9608": "{1 char|⑨}",
+    "9609": "{1 char|⑩}",
+    "9610": "{1 char|⑪}",
+    "9611": "{1 char|⑫}",
+    "9612": "/{1 char|⑬}",
+    "9613": "-{1 char|⑭}",
+    "9614": "+{1 char|⑮}",
+    "9615": null,
+    "9650": "{arg message|0}{arg message|1}{arg message|2}{arg message|3}{arg message|4}{arg message|5}{arg message|6}{arg message|7}{arg message|8}",
+    "9651": "{1 char|⑭}{arg message|0}{arg message|1}{arg message|2}{arg message|3}{arg message|4}{arg message|5}{arg message|6}{arg message|7}{arg message|8}",
+    "9652": "{1 char|⑮}{arg message|0}{arg message|1}{arg message|2}{arg message|3}{arg message|4}{arg message|5}{arg message|6}{arg message|7}{arg message|8}",
+    "9653": "{arg message|0}{font scale|70}/{arg message|1}",
+    "9654": "{arg message|0}{arg message|1}{font scale|70}/{arg message|2}{arg message|3}",
+    "9655": "{arg message|0}{arg message|1}{arg message|2}{font scale|70}/{arg message|3}{arg message|4}{arg message|5}",
+    "9656": null,
+    "9700": "R-Punkte",
+    "9701": "W-Punkte",
+    "9702": "RANG",
+    "9703": "Gast",
+    "9704": "----",
+    "9705": null,
+    "9710": "{1 char|}",
+    "9711": "{1 char|}",
+    "9712": "{1 char|}",
+    "9713": "{1 char|}",
+    "9714": "{1 char|}",
+    "9715": "{1 char|}",
+    "9716": "{1 char|}",
+    "9717": "{1 char|}",
+    "9718": "{1 char|}",
+    "9719": "{1 char|}",
+    "9720": "{1 char|}",
+    "9721": "{1 char|}",
+    "9722": null,
+    "9900": "Die Verbindung zum\nController wurde unterbrochen.\nBitte den A-Knopf drücken.",
+    "9901": "Controllerwechsel!\nBitte den A-Knopf drücken.",
+    "9902": "Während eines Matchs kann der\nController nicht gewechselt werden.\nBitte vorherigen Controller verwenden.",
+    "9903": "Während eines Matchs via Nintendo WFC\nkann der Controller nicht gewechselt werden\nBitte vorherigen Controller verwenden.",
+    "9904": "In diesem Wettbewerb wird das Wii Wheel\nbenötigt. Bitte lege die Wii-Fernbedienung in\ndas Wii Wheel ein und drücke den A-Knopf.",
+    "9999": "?",
 }

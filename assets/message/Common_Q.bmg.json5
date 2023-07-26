@@ -1,743 +1,249 @@
 {
-    "9000": {
-        string: "Mario",
-    },
-    "9001": {
-        string: "Baby Peach",
-    },
-    "9002": {
-        string: "Waluigi",
-    },
-    "9003": {
-        string: "Bowser",
-    },
-    "9004": {
-        string: "Baby Daisy",
-    },
-    "9005": {
-        string: "Dry Bones",
-    },
-    "9006": {
-        string: "Baby Mario",
-    },
-    "9007": {
-        string: "Luigi",
-    },
-    "9008": {
-        string: "Toad",
-    },
-    "9009": {
-        string: "Donkey Kong",
-    },
-    "9010": {
-        string: "Yoshi",
-    },
-    "9011": {
-        string: "Wario",
-    },
-    "9012": {
-        string: "Baby Luigi",
-    },
-    "9013": {
-        string: "Toadette",
-    },
-    "9014": {
-        string: "Koopa Troopa",
-    },
-    "9015": {
-        string: "Daisy",
-    },
-    "9016": {
-        string: "Peach",
-    },
-    "9017": {
-        string: "Birdo",
-    },
-    "9018": {
-        string: "Diddy Kong",
-    },
-    "9019": {
-        string: "King Boo",
-    },
-    "9020": {
-        string: "Bowser Jr.",
-    },
-    "9021": {
-        string: "Dry Bowser",
-    },
-    "9022": {
-        string: "Funky Kong",
-    },
-    "9023": {
-        string: "Rosalina",
-    },
-    "9024": {
-        string: "Mii",
-    },
-    "9050": {
-        string: "{arg player|0}",
-    },
-    "9051": {
-        string: "{arg player|0}",
-    },
-    "9052": {
-        string: "Mii (Tenue A)",
-    },
-    "9053": {
-        string: "Mii (Tenue B)",
-    },
-    "9054": {
-        string: null,
-    },
-    "9100": {
-        string: "Kart Léger",
-    },
-    "9101": {
-        string: "Kart Standard",
-    },
-    "9102": {
-        string: "Kart Lourd",
-    },
-    "9103": {
-        string: "Rehausseur",
-    },
-    "9104": {
-        string: "Dragster Classique",
-    },
-    "9105": {
-        string: "VTT",
-    },
-    "9106": {
-        string: "Mini-bête",
-    },
-    "9107": {
-        string: "Cabriolaile",
-    },
-    "9108": {
-        string: "Crache-flammes",
-    },
-    "9109": {
-        string: "Cheepmobile",
-    },
-    "9110": {
-        string: "Super Bloups",
-    },
-    "9111": {
-        string: "Kart Piranha",
-    },
-    "9112": {
-        string: "Petit Titan",
-    },
-    "9113": {
-        string: "Kart Calèche",
-    },
-    "9114": {
-        string: "Bolide Stellaire",
-    },
-    "9115": {
-        string: "Blue Falcon",
-    },
-    "9116": {
-        string: "Intrépide",
-    },
-    "9117": {
-        string: "Coupé Miel",
-    },
-    "9118": {
-        string: "Kart Léger",
-    },
-    "9119": {
-        string: "Kart Standard",
-    },
-    "9120": {
-        string: "Kart Lourd",
-    },
-    "9121": {
-        string: "Kart Léger",
-    },
-    "9122": {
-        string: "Kart Standard",
-    },
-    "9123": {
-        string: "Kart Lourd",
-    },
-    "9124": {
-        string: "",
-    },
-    "9150": {
-        string: "Moto Légère",
-    },
-    "9151": {
-        string: "Moto Standard",
-    },
-    "9152": {
-        string: "Moto Lourde",
-    },
-    "9153": {
-        string: "Moto Balle",
-    },
-    "9154": {
-        string: "Moto Mach",
-    },
-    "9155": {
-        string: "Moto Flammes",
-    },
-    "9156": {
-        string: "Mini-cyclo",
-    },
-    "9157": {
-        string: "Étincelle",
-    },
-    "9158": {
-        string: "Moto Wario",
-    },
-    "9159": {
-        string: "Coin-coin",
-    },
-    "9160": {
-        string: "Cyclo Vroum",
-    },
-    "9161": {
-        string: "Étoile Filante",
-    },
-    "9162": {
-        string: "Kamekroiseur",
-    },
-    "9163": {
-        string: "Nitrocyclette",
-    },
-    "9164": {
-        string: "Torpille",
-    },
-    "9165": {
-        string: "Capsule Jet",
-    },
-    "9166": {
-        string: "Coryphène",
-    },
-    "9167": {
-        string: "Spectre",
-    },
-    "9168": {
-        string: "Moto Légère",
-    },
-    "9169": {
-        string: "Moto Standard",
-    },
-    "9170": {
-        string: "Moto Lourde",
-    },
-    "9171": {
-        string: "Moto Légère",
-    },
-    "9172": {
-        string: "Moto Standard",
-    },
-    "9173": {
-        string: "Moto Lourde",
-    },
-    "9174": {
-        string: null,
-    },
-    "9200": {
-        string: "Coupe Champignon",
-    },
-    "9201": {
-        string: "Coupe Fleur",
-    },
-    "9202": {
-        string: "Coupe Étoile",
-    },
-    "9203": {
-        string: "Coupe Spéciale",
-    },
-    "9204": {
-        string: "Coupe Carapace",
-    },
-    "9205": {
-        string: "Coupe Banane",
-    },
-    "9206": {
-        string: "Coupe Feuille",
-    },
-    "9207": {
-        string: "Coupe Éclair",
-    },
-    "9208": {
-        string: "Colisée Galactique",
-    },
-    "9300": {
-        string: "Circuit Mario",
-    },
-    "9301": {
-        string: "Prairie Meuh Meuh",
-    },
-    "9302": {
-        string: "Gorge Champignon",
-    },
-    "9303": {
-        string: "Volcan Grondant",
-    },
-    "9304": {
-        string: "Usine de Toad",
-    },
-    "9305": {
-        string: "Centre Cocotier",
-    },
-    "9306": {
-        string: "Sommet DK",
-    },
-    "9307": {
-        string: "Mine d'Or de Wario",
-    },
-    "9308": {
-        string: "Circuit Luigi",
-    },
-    "9309": {
-        string: "Circuit Daisy",
-    },
-    "9310": {
-        string: "Autoroute de la Lune",
-    },
-    "9311": {
-        string: "Chemin à la Sucrerie",
-    },
-    "9312": {
-        string: "Château de Bowser",
-    },
-    "9313": {
-        string: "Route Arc-en-ciel",
-    },
-    "9314": {
-        string: "Ruines Sec-Sec",
-    },
-    "9315": {
-        string: "Cap Koopa",
-    },
-    "9316": {
-        string: "GCN Plage Peach",
-    },
-    "9317": {
-        string: "GCN Circuit Mario",
-    },
-    "9318": {
-        string: "GCN Stade Waluigi",
-    },
-    "9319": {
-        string: "GCN Montagne DK",
-    },
-    "9320": {
-        string: "DS Cascades Yoshi",
-    },
-    "9321": {
-        string: "DS Désert du Soleil",
-    },
-    "9322": {
-        string: "DS Jardin Peach",
-    },
-    "9323": {
-        string: "DS Quartier Delfino",
-    },
-    "9324": {
-        string: "SNES Circuit Mario 3",
-    },
-    "9325": {
-        string: "SNES Vallée Fantôme 2",
-    },
-    "9326": {
-        string: "N64 Autodrome Mario",
-    },
-    "9327": {
-        string: "N64 Royaume Sorbet",
-    },
-    "9328": {
-        string: "N64 Château de Bowser",
-    },
-    "9329": {
-        string: "N64 Jungle de DK",
-    },
-    "9330": {
-        string: "GBA Château de Bowser 3",
-    },
-    "9331": {
-        string: "GBA Plage Shy Guy",
-    },
-    "9350": {
-        string: null,
-    },
-    "9351": {
-        string: "Bataille de Ballons",
-    },
-    "9352": {
-        string: "Pilotes Pièces",
-    },
-    "9353": {
-        string: "Arènes Wii",
-    },
-    "9354": {
-        string: "Arènes Rétro",
-    },
-    "9355": {
-        string: null,
-    },
-    "9360": {
-        string: "Circuit Mario",
-    },
-    "9361": {
-        string: "Prairie Meuh Meuh",
-    },
-    "9362": {
-        string: "Gorge Champignon",
-    },
-    "9363": {
-        string: "Volcan Grondant",
-    },
-    "9364": {
-        string: "Usine de Toad",
-    },
-    "9365": {
-        string: "Centre Cocotier",
-    },
-    "9366": {
-        string: "Sommet DK",
-    },
-    "9367": {
-        string: "Mine d'Or de Wario",
-    },
-    "9368": {
-        string: "Circuit Luigi",
-    },
-    "9369": {
-        string: "Circuit Daisy",
-    },
-    "9370": {
-        string: "Autoroute de la Lune",
-    },
-    "9371": {
-        string: "Chemin à la Sucrerie",
-    },
-    "9372": {
-        string: "Château de Bowser",
-    },
-    "9373": {
-        string: "Route Arc-en-ciel",
-    },
-    "9374": {
-        string: "Ruines Sec-Sec",
-    },
-    "9375": {
-        string: "Cap Koopa",
-    },
-    "9376": {
-        string: "GCN Plage Peach",
-    },
-    "9377": {
-        string: "GCN Circuit Mario",
-    },
-    "9378": {
-        string: "GCN Stade Waluigi",
-    },
-    "9379": {
-        string: "GCN Montagne DK",
-    },
-    "9380": {
-        string: "DS Cascades Yoshi",
-    },
-    "9381": {
-        string: "DS Désert du Soleil",
-    },
-    "9382": {
-        string: "DS Jardin Peach",
-    },
-    "9383": {
-        string: "DS Quartier Delfino",
-    },
-    "9384": {
-        string: "SNES Circuit Mario 3",
-    },
-    "9385": {
-        string: "SNES Vallée Fantôme 2",
-    },
-    "9386": {
-        string: "N64 Autodrome Mario",
-    },
-    "9387": {
-        string: "N64 Royaume Sorbet",
-    },
-    "9388": {
-        string: "N64 Château de Bowser",
-    },
-    "9389": {
-        string: "N64 Jungle de DK",
-    },
-    "9390": {
-        string: "GBA Château de Bowser 3",
-    },
-    "9391": {
-        string: "GBA Plage Shy Guy",
-    },
-    "9392": {
-        string: null,
-    },
-    "9400": {
-        string: "Quai Delfino",
-    },
-    "9401": {
-        string: "Square Bloc",
-    },
-    "9402": {
-        string: "Roulette Chain Chomp",
-    },
-    "9403": {
-        string: "Stade de Funky Kong",
-    },
-    "9404": {
-        string: "Désert Thwomp",
-    },
-    "9405": {
-        string: "GCN Cookie Arena",
-    },
-    "9406": {
-        string: "DS Maison de l'Aube",
-    },
-    "9407": {
-        string: "SNES Circuit de Bataille 4",
-    },
-    "9408": {
-        string: "GBA Circuit de Bataille 3",
-    },
-    "9409": {
-        string: "N64 Gratte-ciel",
-    },
-    "9410": {
-        string: null,
-    },
-    "9420": {
-        string: "Quai Delfino",
-    },
-    "9421": {
-        string: "Square Bloc",
-    },
-    "9422": {
-        string: "Roulette Chain Chomp",
-    },
-    "9423": {
-        string: "Stade de Funky Kong",
-    },
-    "9424": {
-        string: "Désert Thwomp",
-    },
-    "9425": {
-        string: "GCN Cookie Arena",
-    },
-    "9426": {
-        string: "DS Maison de l'Aube",
-    },
-    "9427": {
-        string: "SNES Circuit de Bataille 4",
-    },
-    "9428": {
-        string: "GBA Circuit de Bataille 3",
-    },
-    "9429": {
-        string: "N64 Gratte-Ciel",
-    },
-    "9430": {
-        string: null,
-    },
-    "9450": {
-        string: "GCN Cookie Arena",
-    },
-    "9451": {
-        string: "DS Maison de l'Aube",
-    },
-    "9452": {
-        string: "SNES Circuit de Bataille 4",
-    },
-    "9453": {
-        string: "GBA Circuit de Bataille 3",
-    },
-    "9454": {
-        string: "N64 Gratte-ciel",
-    },
-    "9455": {
-        string: null,
-    },
-    "9500": {
-        string: "Joueur {arg player|0}",
-    },
-    "9501": {
-        string: "{arg player|0}",
-    },
-    "9502": {
-        string: "{arg border|0}",
-    },
-    "9503": {
-        string: "{arg question mark|0}",
-    },
-    "9504": {
-        string: "{arg front button|0}",
-    },
-    "9505": {
-        string: null,
-    },
-    "9550": {
-        string: "J1",
-    },
-    "9551": {
-        string: "J2",
-    },
-    "9552": {
-        string: "J3",
-    },
-    "9553": {
-        string: "J4",
-    },
-    "9554": {
-        string: null,
-    },
-    "9600": {
-        string: "{1 char|①}",
-    },
-    "9601": {
-        string: "{1 char|②}",
-    },
-    "9602": {
-        string: "{1 char|③}",
-    },
-    "9603": {
-        string: "{1 char|④}",
-    },
-    "9604": {
-        string: "{1 char|⑤}",
-    },
-    "9605": {
-        string: "{1 char|⑥}",
-    },
-    "9606": {
-        string: "{1 char|⑦}",
-    },
-    "9607": {
-        string: "{1 char|⑧}",
-    },
-    "9608": {
-        string: "{1 char|⑨}",
-    },
-    "9609": {
-        string: "{1 char|⑩}",
-    },
-    "9610": {
-        string: "{1 char|⑪}",
-    },
-    "9611": {
-        string: "{1 char|⑫}",
-    },
-    "9612": {
-        string: "/{1 char|⑬}",
-    },
-    "9613": {
-        string: "-{1 char|⑭}",
-    },
-    "9614": {
-        string: "+{1 char|⑮}",
-    },
-    "9615": {
-        string: null,
-    },
-    "9650": {
-        string: "{arg message|0}{arg message|1}{arg message|2}{arg message|3}{arg message|4}{arg message|5}{arg message|6}{arg message|7}{arg message|8}",
-    },
-    "9651": {
-        string: "{1 char|⑭}{arg message|0}{arg message|1}{arg message|2}{arg message|3}{arg message|4}{arg message|5}{arg message|6}{arg message|7}{arg message|8}",
-    },
-    "9652": {
-        string: "{1 char|⑮}{arg message|0}{arg message|1}{arg message|2}{arg message|3}{arg message|4}{arg message|5}{arg message|6}{arg message|7}{arg message|8}",
-    },
-    "9653": {
-        string: "{arg message|0}{font scale|70}/{arg message|1}",
-    },
-    "9654": {
-        string: "{arg message|0}{arg message|1}{font scale|70}/{arg message|2}{arg message|3}",
-    },
-    "9655": {
-        string: "{arg message|0}{arg message|1}{arg message|2}{font scale|70}/{arg message|3}{arg message|4}{arg message|5}",
-    },
-    "9656": {
-        string: null,
-    },
-    "9700": {
-        string: "Pts Course",
-    },
-    "9701": {
-        string: "Pts Bataille",
-    },
-    "9702": {
-        string: "Classe",
-    },
-    "9703": {
-        string: "Invité",
-    },
-    "9704": {
-        string: "----",
-    },
-    "9705": {
-        string: null,
-    },
-    "9710": {
-        string: "{1 char|}",
-    },
-    "9711": {
-        string: "{1 char|}",
-    },
-    "9712": {
-        string: "{1 char|}",
-    },
-    "9713": {
-        string: "{1 char|}",
-    },
-    "9714": {
-        string: "{1 char|}",
-    },
-    "9715": {
-        string: "{1 char|}",
-    },
-    "9716": {
-        string: "{1 char|}",
-    },
-    "9717": {
-        string: "{1 char|}",
-    },
-    "9718": {
-        string: "{1 char|}",
-    },
-    "9719": {
-        string: "{1 char|}",
-    },
-    "9720": {
-        string: "{1 char|}",
-    },
-    "9721": {
-        string: "{1 char|}",
-    },
-    "9722": {
-        string: null,
-    },
-    "9900": {
-        string: "La connexion avec la manette\na été interrompue. Veuillez \nappuyer sur le Bouton A.",
-    },
-    "9901": {
-        string: "La manette a été changée.\nVeuillez appuyer sur le\nBouton A.",
-    },
-    "9902": {
-        string: "Impossible de changer de manette\npendant une partie. Reconnectez \nla manette originale.",
-    },
-    "9903": {
-        string: "Impossible de changer de manette \npendant une partie CWF Nintendo. \nReconnectez la manette originale.",
-    },
-    "9904": {
-        string: "Ce tournoi nécessite un Wii Wheel.\nInsérez la télécommande Wii dans le\nWii Wheel et appuyez sur le Bouton A.",
-    },
-    "9999": {
-        string: "?",
-    },
+    "9000": "Mario",
+    "9001": "Baby Peach",
+    "9002": "Waluigi",
+    "9003": "Bowser",
+    "9004": "Baby Daisy",
+    "9005": "Dry Bones",
+    "9006": "Baby Mario",
+    "9007": "Luigi",
+    "9008": "Toad",
+    "9009": "Donkey Kong",
+    "9010": "Yoshi",
+    "9011": "Wario",
+    "9012": "Baby Luigi",
+    "9013": "Toadette",
+    "9014": "Koopa Troopa",
+    "9015": "Daisy",
+    "9016": "Peach",
+    "9017": "Birdo",
+    "9018": "Diddy Kong",
+    "9019": "King Boo",
+    "9020": "Bowser Jr.",
+    "9021": "Dry Bowser",
+    "9022": "Funky Kong",
+    "9023": "Rosalina",
+    "9024": "Mii",
+    "9050": "{arg player|0}",
+    "9051": "{arg player|0}",
+    "9052": "Mii (Tenue A)",
+    "9053": "Mii (Tenue B)",
+    "9054": null,
+    "9100": "Kart Léger",
+    "9101": "Kart Standard",
+    "9102": "Kart Lourd",
+    "9103": "Rehausseur",
+    "9104": "Dragster Classique",
+    "9105": "VTT",
+    "9106": "Mini-bête",
+    "9107": "Cabriolaile",
+    "9108": "Crache-flammes",
+    "9109": "Cheepmobile",
+    "9110": "Super Bloups",
+    "9111": "Kart Piranha",
+    "9112": "Petit Titan",
+    "9113": "Kart Calèche",
+    "9114": "Bolide Stellaire",
+    "9115": "Blue Falcon",
+    "9116": "Intrépide",
+    "9117": "Coupé Miel",
+    "9118": "Kart Léger",
+    "9119": "Kart Standard",
+    "9120": "Kart Lourd",
+    "9121": "Kart Léger",
+    "9122": "Kart Standard",
+    "9123": "Kart Lourd",
+    "9124": "",
+    "9150": "Moto Légère",
+    "9151": "Moto Standard",
+    "9152": "Moto Lourde",
+    "9153": "Moto Balle",
+    "9154": "Moto Mach",
+    "9155": "Moto Flammes",
+    "9156": "Mini-cyclo",
+    "9157": "Étincelle",
+    "9158": "Moto Wario",
+    "9159": "Coin-coin",
+    "9160": "Cyclo Vroum",
+    "9161": "Étoile Filante",
+    "9162": "Kamekroiseur",
+    "9163": "Nitrocyclette",
+    "9164": "Torpille",
+    "9165": "Capsule Jet",
+    "9166": "Coryphène",
+    "9167": "Spectre",
+    "9168": "Moto Légère",
+    "9169": "Moto Standard",
+    "9170": "Moto Lourde",
+    "9171": "Moto Légère",
+    "9172": "Moto Standard",
+    "9173": "Moto Lourde",
+    "9174": null,
+    "9200": "Coupe Champignon",
+    "9201": "Coupe Fleur",
+    "9202": "Coupe Étoile",
+    "9203": "Coupe Spéciale",
+    "9204": "Coupe Carapace",
+    "9205": "Coupe Banane",
+    "9206": "Coupe Feuille",
+    "9207": "Coupe Éclair",
+    "9208": "Colisée Galactique",
+    "9300": "Circuit Mario",
+    "9301": "Prairie Meuh Meuh",
+    "9302": "Gorge Champignon",
+    "9303": "Volcan Grondant",
+    "9304": "Usine de Toad",
+    "9305": "Centre Cocotier",
+    "9306": "Sommet DK",
+    "9307": "Mine d'Or de Wario",
+    "9308": "Circuit Luigi",
+    "9309": "Circuit Daisy",
+    "9310": "Autoroute de la Lune",
+    "9311": "Chemin à la Sucrerie",
+    "9312": "Château de Bowser",
+    "9313": "Route Arc-en-ciel",
+    "9314": "Ruines Sec-Sec",
+    "9315": "Cap Koopa",
+    "9316": "GCN Plage Peach",
+    "9317": "GCN Circuit Mario",
+    "9318": "GCN Stade Waluigi",
+    "9319": "GCN Montagne DK",
+    "9320": "DS Cascades Yoshi",
+    "9321": "DS Désert du Soleil",
+    "9322": "DS Jardin Peach",
+    "9323": "DS Quartier Delfino",
+    "9324": "SNES Circuit Mario 3",
+    "9325": "SNES Vallée Fantôme 2",
+    "9326": "N64 Autodrome Mario",
+    "9327": "N64 Royaume Sorbet",
+    "9328": "N64 Château de Bowser",
+    "9329": "N64 Jungle de DK",
+    "9330": "GBA Château de Bowser 3",
+    "9331": "GBA Plage Shy Guy",
+    "9350": null,
+    "9351": "Bataille de Ballons",
+    "9352": "Pilotes Pièces",
+    "9353": "Arènes Wii",
+    "9354": "Arènes Rétro",
+    "9355": null,
+    "9360": "Circuit Mario",
+    "9361": "Prairie Meuh Meuh",
+    "9362": "Gorge Champignon",
+    "9363": "Volcan Grondant",
+    "9364": "Usine de Toad",
+    "9365": "Centre Cocotier",
+    "9366": "Sommet DK",
+    "9367": "Mine d'Or de Wario",
+    "9368": "Circuit Luigi",
+    "9369": "Circuit Daisy",
+    "9370": "Autoroute de la Lune",
+    "9371": "Chemin à la Sucrerie",
+    "9372": "Château de Bowser",
+    "9373": "Route Arc-en-ciel",
+    "9374": "Ruines Sec-Sec",
+    "9375": "Cap Koopa",
+    "9376": "GCN Plage Peach",
+    "9377": "GCN Circuit Mario",
+    "9378": "GCN Stade Waluigi",
+    "9379": "GCN Montagne DK",
+    "9380": "DS Cascades Yoshi",
+    "9381": "DS Désert du Soleil",
+    "9382": "DS Jardin Peach",
+    "9383": "DS Quartier Delfino",
+    "9384": "SNES Circuit Mario 3",
+    "9385": "SNES Vallée Fantôme 2",
+    "9386": "N64 Autodrome Mario",
+    "9387": "N64 Royaume Sorbet",
+    "9388": "N64 Château de Bowser",
+    "9389": "N64 Jungle de DK",
+    "9390": "GBA Château de Bowser 3",
+    "9391": "GBA Plage Shy Guy",
+    "9392": null,
+    "9400": "Quai Delfino",
+    "9401": "Square Bloc",
+    "9402": "Roulette Chain Chomp",
+    "9403": "Stade de Funky Kong",
+    "9404": "Désert Thwomp",
+    "9405": "GCN Cookie Arena",
+    "9406": "DS Maison de l'Aube",
+    "9407": "SNES Circuit de Bataille 4",
+    "9408": "GBA Circuit de Bataille 3",
+    "9409": "N64 Gratte-ciel",
+    "9410": null,
+    "9420": "Quai Delfino",
+    "9421": "Square Bloc",
+    "9422": "Roulette Chain Chomp",
+    "9423": "Stade de Funky Kong",
+    "9424": "Désert Thwomp",
+    "9425": "GCN Cookie Arena",
+    "9426": "DS Maison de l'Aube",
+    "9427": "SNES Circuit de Bataille 4",
+    "9428": "GBA Circuit de Bataille 3",
+    "9429": "N64 Gratte-Ciel",
+    "9430": null,
+    "9450": "GCN Cookie Arena",
+    "9451": "DS Maison de l'Aube",
+    "9452": "SNES Circuit de Bataille 4",
+    "9453": "GBA Circuit de Bataille 3",
+    "9454": "N64 Gratte-ciel",
+    "9455": null,
+    "9500": "Joueur {arg player|0}",
+    "9501": "{arg player|0}",
+    "9502": "{arg border|0}",
+    "9503": "{arg question mark|0}",
+    "9504": "{arg front button|0}",
+    "9505": null,
+    "9550": "J1",
+    "9551": "J2",
+    "9552": "J3",
+    "9553": "J4",
+    "9554": null,
+    "9600": "{1 char|①}",
+    "9601": "{1 char|②}",
+    "9602": "{1 char|③}",
+    "9603": "{1 char|④}",
+    "9604": "{1 char|⑤}",
+    "9605": "{1 char|⑥}",
+    "9606": "{1 char|⑦}",
+    "9607": "{1 char|⑧}",
+    "9608": "{1 char|⑨}",
+    "9609": "{1 char|⑩}",
+    "9610": "{1 char|⑪}",
+    "9611": "{1 char|⑫}",
+    "9612": "/{1 char|⑬}",
+    "9613": "-{1 char|⑭}",
+    "9614": "+{1 char|⑮}",
+    "9615": null,
+    "9650": "{arg message|0}{arg message|1}{arg message|2}{arg message|3}{arg message|4}{arg message|5}{arg message|6}{arg message|7}{arg message|8}",
+    "9651": "{1 char|⑭}{arg message|0}{arg message|1}{arg message|2}{arg message|3}{arg message|4}{arg message|5}{arg message|6}{arg message|7}{arg message|8}",
+    "9652": "{1 char|⑮}{arg message|0}{arg message|1}{arg message|2}{arg message|3}{arg message|4}{arg message|5}{arg message|6}{arg message|7}{arg message|8}",
+    "9653": "{arg message|0}{font scale|70}/{arg message|1}",
+    "9654": "{arg message|0}{arg message|1}{font scale|70}/{arg message|2}{arg message|3}",
+    "9655": "{arg message|0}{arg message|1}{arg message|2}{font scale|70}/{arg message|3}{arg message|4}{arg message|5}",
+    "9656": null,
+    "9700": "Pts Course",
+    "9701": "Pts Bataille",
+    "9702": "Classe",
+    "9703": "Invité",
+    "9704": "----",
+    "9705": null,
+    "9710": "{1 char|}",
+    "9711": "{1 char|}",
+    "9712": "{1 char|}",
+    "9713": "{1 char|}",
+    "9714": "{1 char|}",
+    "9715": "{1 char|}",
+    "9716": "{1 char|}",
+    "9717": "{1 char|}",
+    "9718": "{1 char|}",
+    "9719": "{1 char|}",
+    "9720": "{1 char|}",
+    "9721": "{1 char|}",
+    "9722": null,
+    "9900": "La connexion avec la manette\na été interrompue. Veuillez \nappuyer sur le Bouton A.",
+    "9901": "La manette a été changée.\nVeuillez appuyer sur le\nBouton A.",
+    "9902": "Impossible de changer de manette\npendant une partie. Reconnectez \nla manette originale.",
+    "9903": "Impossible de changer de manette \npendant une partie CWF Nintendo. \nReconnectez la manette originale.",
+    "9904": "Ce tournoi nécessite un Wii Wheel.\nInsérez la télécommande Wii dans le\nWii Wheel et appuyez sur le Bouton A.",
+    "9999": "?",
 }

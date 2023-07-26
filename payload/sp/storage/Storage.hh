@@ -7,7 +7,6 @@ extern "C" {
 }
 
 #include <cwchar>
-#include <optional>
 
 namespace SP::Storage {
 

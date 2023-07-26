@@ -2,11 +2,19 @@
 
 #include "game/host_system/Scene.hh"
 #include "game/system/MultiDvdArchive.hh"
+#include "game/util/Registry.hh"
 
 #include <egg/core/eggExpHeap.hh>
 #include <egg/core/eggTaskThread.hh>
 
 namespace System {
+
+enum class ResourceType {
+    Race = 0,
+    Course = 1,
+    Menu = 2,
+    Font = 3,
+};
 
 class ResourceManager {
 public:
@@ -42,15 +50,19 @@ public:
 
     DvdArchive *getMenuArchive(size_t idx);
     REPLACE u16 getMenuArchiveCount() const;
-    REPLACE MultiDvdArchive *loadCourse(u32 courseId, EGG::Heap *heap, bool splitScreen);
-    REPLACE MultiDvdArchive *loadMission(u32 courseId, u32 missionId, EGG::Heap *heap,
+    REPLACE MultiDvdArchive *loadCourse(Registry::Course courseId, EGG::Heap *heap,
+            bool splitScreen);
+    REPLACE MultiDvdArchive *loadMission(Registry::Course courseId, u32 missionId, EGG::Heap *heap,
             bool splitScreen);
 
-    void *getFile(u32 i, const char *name, u32 *size);
+    void *getFile(ResourceType i, const char *name, size_t *size);
 
     static void OnCreateScene(SceneId sceneId);
     static REPLACE ResourceManager *CreateInstance();
     static ResourceManager *Instance();
+
+    static const char *GetCourseFilename(Registry::Course course);
+    static const char *CourseFilenames[67];
 
 private:
     struct JobContext {

@@ -1,9 +1,16 @@
 #pragma once
 
+#include "game/sound/SoundId.hh"
 #include "game/util/Registry.hh"
+
+#include <sp/FixedString.hh>
+#include <sp/ShaUtil.hh>
 
 namespace System {
 
+/// Configuration for the current race.
+///
+/// For configuration over a set of VS/BT races, see GlobalContext.
 class RaceConfig {
 public:
     RaceConfig();
@@ -53,6 +60,19 @@ public:
         OnlinePrivateVS = 7,
         OnlinePrivateBT = 10,
         Awards = 11,
+    };
+
+    struct SPScenario {
+        // The course path to load instead of the vanilla course.
+        // If this is empty, the vanilla course will be loaded.
+        SP::FixedString<64> pathReplacement;
+        // The background music to load instead of the course ID's music.
+        std::optional<Sound::SoundId> musicReplacement;
+        // The course hash to use for ghost lookup instead of the slot's hash.
+        std::optional<Sha1> courseSha;
+        // The course name to use instead of the slot's name.
+        // If this is empty, the slot's name will be used.
+        SP::WFixedString<48> nameReplacement;
     };
 
     struct Scenario {
@@ -116,13 +136,22 @@ public:
     Scenario &awardsScenario();
     u8 (&ghostBuffers())[2][11][0x2800];
     bool isSameTeam(u32 p0, u32 p1) const;
-    void applyPlayers(Player::Type otherType);
     void applyEngineClass();
     void applyItemFreq();
+    void applyPlayers();
     void applyCPUMode();
-    bool selectRandomCourse();
     void endRace();
 
+    REPLACE void initRace();
+    REPLACE void initAwards();
+    REPLACE void initCredits();
+
+private:
+    void REPLACED(initRace)();
+    void REPLACED(initAwards)();
+    void REPLACED(initCredits)();
+
+public:
     REPLACE static RaceConfig *CreateInstance();
     static RaceConfig *Instance();
 
@@ -130,9 +159,17 @@ private:
     REPLACE static void ConfigurePlayers(Scenario &scenario, u32 screenCount);
 
     u8 _0004[0x0020 - 0x0004];
+
+public:
     Scenario m_raceScenario;
     Scenario m_menuScenario;
     Scenario m_awardsScenario;
+
+    SPScenario m_spRace;
+    SPScenario m_spMenu;
+    SPScenario m_spAwards;
+
+private:
     u8 m_ghostBuffers[2][11][0x2800]; // Modified
 
     static RaceConfig *s_instance;

@@ -4,7 +4,7 @@
 
 #include <game/util/Registry.hh>
 
-#include <array>
+#include <sp/FixedString.hh>
 
 namespace SP {
 
@@ -17,7 +17,7 @@ public:
     static bool Continue();
     static bool IsActive();
     static Registry::Course CourseId();
-    static std::array<wchar_t, 256> Path();
+    static FixedString<64> Path();
 
 private:
     ThumbnailManager(const ThumbnailManager &) = delete;
@@ -26,13 +26,13 @@ private:
     void nextDir();
     void nextName();
     void capture();
-    std::array<wchar_t, 256> path();
+    FixedString<64> path();
 
     static bool Next();
 
     u32 m_courseId = 0;
     std::optional<Storage::DirHandle> m_dir{};
-    std::optional<std::array<char, 128>> m_name{};
+    std::optional<std::array<char, 32>> m_name{};
 
     static std::optional<ThumbnailManager> s_instance;
 };

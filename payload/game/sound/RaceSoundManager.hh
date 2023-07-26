@@ -1,5 +1,7 @@
 #pragma once
 
+#include "game/sound/SoundId.hh"
+
 #include <Common.hh>
 
 namespace Sound {
@@ -8,6 +10,9 @@ class RaceSoundManager {
 public:
     u32 state() const;
     void transition(u32 state);
+
+    SoundId REPLACED(getBGMSoundId)() const;
+    REPLACE SoundId getBGMSoundId() const;
 
     static RaceSoundManager *Instance();
 

@@ -60,13 +60,15 @@ void ServicePackToolsPage::onStorageBenchmarkButtonFront(PushButton *button,
 
 void ServicePackToolsPage::onThumbnailsButtonFront(PushButton *button, u32 /* localPlayerId */) {
     if (SP::ThumbnailManager::Start()) {
-        auto &menuScenario = System::RaceConfig::Instance()->menuScenario();
+        auto *raceConfig = System::RaceConfig::Instance();
+        auto &menuScenario = raceConfig->menuScenario();
         menuScenario.players[0].vehicleId = 1;
         menuScenario.players[0].characterId = 0;
         menuScenario.players[0].type = System::RaceConfig::Player::Type::Local;
         for (size_t i = 1; i < std::size(menuScenario.players); i++) {
             menuScenario.players[i].type = System::RaceConfig::Player::Type::None;
         }
+        raceConfig->m_spMenu.pathReplacement = SP::ThumbnailManager::Path();
         menuScenario.courseId = SP::ThumbnailManager::CourseId();
         menuScenario.engineClass = System::RaceConfig::EngineClass::CC150;
         menuScenario.gameMode = System::RaceConfig::GameMode::TimeAttack;

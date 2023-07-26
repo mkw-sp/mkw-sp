@@ -1,169 +1,59 @@
 {
-    "1000": {
-        string: "",
-    },
-    "1001": {
-        string: "Non",
-    },
-    "1002": {
-        string: "Oui",
-    },
-    "1003": {
-        string: "Continuer la partie",
-    },
-    "1004": {
-        string: "Quitter la partie",
-    },
-    "1005": {
-        string: "Changer de circuit",
-    },
-    "1006": {
-        string: "Changer de pilote",
-    },
-    "1007": {
-        string: "Recommencer",
-    },
-    "1008": {
-        string: "Choisir une mission",
-    },
-    "1009": {
-        string: "Course suivante",
-    },
-    "1010": {
-        string: "Suite",
-    },
-    "1011": {
-        string: "Réessayer",
-    },
-    "1012": {
-        string: "Revoir la course",
-    },
-    "1013": {
-        string: "Reprendre",
-    },
-    "1014": {
-        string: "Revoir depuis le début",
-    },
-    "1015": {
-        string: "Voir le classement",
-    },
-    "1016": {
-        string: "Liste de fantômes",
-    },
-    "1017": {
-        string: null,
-    },
-    "1018": {
-        string: "Fantôme suivant",
-    },
-    "1019": {
-        string: null,
-    },
-    "1020": {
-        string: "Menu CWF Nintendo",
-    },
-    "1021": {
-        string: "Quitter",
-    },
-    "1022": {
-        string: "Commencer la course",
-    },
-    "1023": {
-        string: "Course suivante",
-    },
-    "1024": {
-        string: "Bataille suivante",
-    },
-    "1025": {
-        string: "Veuillez patienter...",
-    },
-    "1026": {
-        string: "Changer de fantôme",
-    },
-    "1027": {
-        string: "Affronter ce fantôme",
-    },
-    "1028": {
-        string: "Reprendre",
-    },
-    "1029": {
-        string: "Quitter",
-    },
-    "1030": {
-        string: "Revoir depuis le début",
-    },
-    "1031": {
-        string: "Partie suivante: {arg integer|0 0} joueurs prévus",
-    },
-    "1032": {
-        string: "Envoyer votre record",
-    },
-    "1033": {
-        string: "",
-    },
-    "1101": {
-        string: "Voulez-vous vraiment quitter?",
-    },
-    "1102": {
-        string: "Voulez-vous consulter\nle classement de la\nChaîne Mario Kart?",
-    },
-    "1103": {
-        string: "OK",
-    },
-    "1104": {
-        string: null,
-    },
-    "1105": {
-        string: "Félicitations!\nVous avez battu le fantôme \nde {arg player|0}!\n\nVoulez-vous lui envoyer \nvotre fantôme?",
-    },
-    "1106": {
-        string: "Oui",
-    },
-    "1107": {
-        string: "Non",
-    },
-    "1108": {
-        string: "Oui",
-    },
-    "1109": {
-        string: "Non",
-    },
-    "1110": {
-        string: "",
-    },
-    "1111": {
-        string: "Voulez-vous accéder\nà votre liste d'amis?",
-    },
-    "1112": {
-        string: "Vous pouvez envoyer autant de\nrecords que vous voulez avant\nla fin du tournoi. Voulez-vous\nenvoyer votre record?",
-    },
-    "1113": {
-        string: "Voulez-vous vraiment quitter\ncette course et télécharger\nle fantôme suivant?",
-    },
-    "1114": {
-        string: "Voulez-vous vraiment quitter\ncette course et retourner au\nmenu principal?",
-    },
-    "1115": {
-        string: "Un fantôme a été créé pour {current player|}!",
-    },
-    "1116": {
-        string: "Impossible de créér le fantôme.",
-    },
-    "1117": {
-        string: "Impossible d'envoyer un fantôme en défi.",
-    },
-    "1118": {
-        string: "Voulez-vous retourner à \nl'écran de choix du circuit?",
-    },
-    "1119": {
-        string: "Impossible de créer un fantôme.",
-    },
-    "1120": {
-        string: "",
-    },
-    "1121": {
-        string: "Vous avez déverrouillé un super fantôme des développeurs!",
-    },
+    "1000": "",
+    "1001": "Non",
+    "1002": "Oui",
+    "1003": "Continuer la partie",
+    "1004": "Quitter la partie",
+    "1005": "Changer de circuit",
+    "1006": "Changer de pilote",
+    "1007": "Recommencer",
+    "1008": "Choisir une mission",
+    "1009": "Course suivante",
+    "1010": "Suite",
+    "1011": "Réessayer",
+    "1012": "Revoir la course",
+    "1013": "Reprendre",
+    "1014": "Revoir depuis le début",
+    "1015": "Voir le classement",
+    "1016": "Liste de fantômes",
+    "1017": null,
+    "1018": "Fantôme suivant",
+    "1019": null,
+    "1020": "Menu CWF Nintendo",
+    "1021": "Quitter",
+    "1022": "Commencer la course",
+    "1023": "Course suivante",
+    "1024": "Bataille suivante",
+    "1025": "Veuillez patienter...",
+    "1026": "Changer de fantôme",
+    "1027": "Affronter ce fantôme",
+    "1028": "Reprendre",
+    "1029": "Quitter",
+    "1030": "Revoir depuis le début",
+    "1031": "Partie suivante: {arg integer|0 0} joueurs prévus",
+    "1032": "Envoyer votre record",
+    "1033": "",
+    "1101": "Voulez-vous vraiment quitter?",
+    "1102": "Voulez-vous consulter\nle classement de la\nChaîne Mario Kart?",
+    "1103": "OK",
+    "1104": null,
+    "1105": "Félicitations!\nVous avez battu le fantôme \nde {arg player|0}!\n\nVoulez-vous lui envoyer \nvotre fantôme?",
+    "1106": "Oui",
+    "1107": "Non",
+    "1108": "Oui",
+    "1109": "Non",
+    "1110": "",
+    "1111": "Voulez-vous accéder\nà votre liste d'amis?",
+    "1112": "Vous pouvez envoyer autant de\nrecords que vous voulez avant\nla fin du tournoi. Voulez-vous\nenvoyer votre record?",
+    "1113": "Voulez-vous vraiment quitter\ncette course et télécharger\nle fantôme suivant?",
+    "1114": "Voulez-vous vraiment quitter\ncette course et retourner au\nmenu principal?",
+    "1115": "Un fantôme a été créé pour {current player|}!",
+    "1116": "Impossible de créér le fantôme.",
+    "1117": "Impossible d'envoyer un fantôme en défi.",
+    "1118": "Voulez-vous retourner à \nl'écran de choix du circuit?",
+    "1119": "Impossible de créer un fantôme.",
+    "1120": "",
+    "1121": "Vous avez déverrouillé un super fantôme des développeurs!",
     "1201": {
         string: "3",
         font: "caps",
@@ -192,362 +82,126 @@
         string: "DÉFAITE!",
         font: "caps",
     },
-    "1208": {
-        string: null,
-    },
-    "1209": {
-        string: null,
-    },
-    "1210": {
-        string: "Félicitations!",
-    },
+    "1208": null,
+    "1209": null,
+    "1210": "Félicitations!",
     "1211": {
         string: "NOUVEAU RECORD!",
         font: "caps",
     },
-    "1212": {
-        string: "Record",
-    },
-    "1213": {
-        string: "Meil. tour",
-    },
-    "1214": {
-        string: "{color|team red}VICTOIRE DES ROUGES!",
-    },
-    "1215": {
-        string: "{color|team blue}VICTOIRE DES BLEUS!",
-    },
-    "1216": {
-        string: "{color|team red}LES ROUGES L'EMPORTENT!",
-    },
-    "1217": {
-        string: "{color|team blue}LES BLEUS L'EMPORTENT!",
-    },
-    "1218": {
-        string: "ÉGALITÉ!",
-    },
-    "1219": {
-        string: "PREMIÈRE PLACE!",
-    },
-    "1220": {
-        string: "DEUXIÈME PLACE!",
-    },
-    "1221": {
-        string: "TROISIÈME PLACE!",
-    },
-    "1222": {
-        string: "QUEL DOMMAGE!",
-    },
-    "1223": {
-        string: "{color|team red}DÉFAITE DES ROUGES!",
-    },
-    "1224": {
-        string: "{color|team blue}DÉFAITE DES BLEUS!",
-    },
-    "1225": {
-        string: "{color|team red}DÉFAITE DES ROUGES!",
-    },
-    "1226": {
-        string: "{color|team blue}DÉFAITE DES BLEUS!",
-    },
-    "1227": {
-        string: "",
-    },
-    "1301": {
-        string: "1{1 char|}",
-    },
-    "1302": {
-        string: "2{1 char|}",
-    },
-    "1303": {
-        string: "3{1 char|}",
-    },
-    "1304": {
-        string: "4{1 char|}",
-    },
-    "1305": {
-        string: "5{1 char|}",
-    },
-    "1306": {
-        string: "6{1 char|}",
-    },
-    "1307": {
-        string: "7{1 char|}",
-    },
-    "1308": {
-        string: "8{1 char|}",
-    },
-    "1309": {
-        string: "9{1 char|}",
-    },
-    "1310": {
-        string: "10{1 char|}",
-    },
-    "1311": {
-        string: "11{1 char|}",
-    },
-    "1312": {
-        string: "12{1 char|}",
-    },
-    "1313": {
-        string: "{arg cond messages|0 1316 1317}",
-    },
-    "1314": {
-        string: "{arg integer|0 0}",
-    },
-    "1315": {
-        string: "{arg signed integer|0 0}",
-    },
-    "1316": {
-        string: "pt",
-    },
-    "1317": {
-        string: "pts",
-    },
-    "1318": {
-        string: "{arg cond messages|0 1319 1320}",
-    },
-    "1319": {
-        string: "{color|team red}victoire",
-    },
-    "1320": {
-        string: "{color|team red}victoires",
-    },
-    "1321": {
-        string: "{arg cond messages|0 1322 1323}",
-    },
-    "1322": {
-        string: "{color|team blue}victoire",
-    },
-    "1323": {
-        string: "{color|team blue}victoires",
-    },
-    "1324": {
-        string: "{arg cond messages|0 1325 1326}",
-    },
-    "1325": {
-        string: "{color|team red}pt",
-    },
-    "1326": {
-        string: "{color|team red}pts",
-    },
-    "1327": {
-        string: "{arg cond messages|0 1328 1329}",
-    },
-    "1328": {
-        string: "{color|team blue}pt",
-    },
-    "1329": {
-        string: "{color|team blue}pts",
-    },
-    "1330": {
-        string: "Course fantôme - Victoires: {arg integer|0 0} Défaites: {arg integer|1 0}",
-    },
-    "1331": {
-        string: "Course fantôme - Victoires: {arg integer|0 0} Défaites: {arg integer|1 0}",
-    },
-    "1332": {
-        string: "{color|team red}{arg message|0}",
-    },
-    "1333": {
-        string: "{color|team blue}{arg message|0}",
-    },
-    "1334": {
-        string: "TEMPS",
-    },
-    "1335": {
-        string: "TOUR",
-    },
-    "1336": {
-        string: "POINTAGE",
-    },
-    "1337": {
-        string: "EN DIRECT",
-    },
-    "1338": {
-        string: "Vous allez participer\nà la course suivante\n({arg integer|0 0} joueurs prévus).",
-    },
-    "1339": {
-        string: "Vous allez participer\nà la bataille suivante\n({arg integer|0 0} joueurs prévus).",
-    },
-    "1340": {
-        string: "\nLe classement a été établi.\nLa course est terminée.",
-    },
-    "1341": {
-        string: "\n5 minutes se sont écoulées.\nLa course est terminée.",
-    },
-    "1342": {
-        string: "Le pilote gagnant a franchi la\nligne d'arrivée il y a 30 secondes.\nLa partie est terminée.",
-    },
-    "1343": {
-        string: "",
-    },
-    "1344": {
-        string: "",
-    },
-    "1345": {
-        string: "{1 char|}",
-    },
-    "1400": {
-        string: "{arg integer|0 2}:{arg integer|1 2}.{arg integer|2 3}",
-    },
-    "1401": {
-        string: "--:--.---",
-    },
-    "1402": {
-        string: ":",
-    },
-    "1403": {
-        string: ".",
-    },
-    "1404": {
-        string: "",
-    },
-    "1409": {
-        string: "Course VS par équipes {arg message|0} - {arg integer|0 0}/{arg integer|1 0}",
-    },
-    "1410": {
-        string: "{arg message|1} {arg message|0} - 1{1 char|} course",
-    },
-    "1411": {
-        string: "{arg message|1} {arg message|0} - 2{1 char|} course",
-    },
-    "1412": {
-        string: "{arg message|1} {arg message|0} - 3{1 char|} course",
-    },
-    "1413": {
-        string: "{arg message|1} {arg message|0} - Course finale",
-    },
-    "1414": {
-        string: "Course VS {arg message|0} - {arg integer|0 0}/{arg integer|1 0}",
-    },
-    "1415": {
-        string: "Bataille de Ballons",
-    },
-    "1416": {
-        string: "Pilotes Pièces",
-    },
-    "1417": {
-        string: "50cc",
-    },
-    "1418": {
-        string: "100cc",
-    },
-    "1419": {
-        string: "150cc",
-    },
-    "1420": {
-        string: "Miroir",
-    },
-    "1421": {
-        string: "{arg message|1} {arg message|0}",
-    },
-    "1422": {
-        string: "Course VS {arg message|0}",
-    },
-    "1423": {
-        string: "CLASSE:",
-    },
-    "1424": {
-        string: "{1 char|}",
-    },
-    "1425": {
-        string: "{1 char|}",
-    },
-    "1426": {
-        string: "{1 char|}",
-    },
-    "1427": {
-        string: "{1 char|}",
-    },
-    "1428": {
-        string: "{1 char|}",
-    },
-    "1429": {
-        string: "{1 char|}",
-    },
-    "1430": {
-        string: "{1 char|}",
-    },
-    "1431": {
-        string: "{1 char|}",
-    },
-    "1432": {
-        string: "F",
-    },
-    "1433": {
-        string: "Course VS {arg message|0}",
-    },
-    "1434": {
-        string: "Course VS amis par équipes {arg message|0}",
-    },
-    "1435": {
-        string: "Course VS par équipes {arg message|0}",
-    },
-    "1436": {
-        string: null,
-    },
-    "1437": {
-        string: null,
-    },
-    "1438": {
-        string: null,
-    },
-    "1439": {
-        string: null,
-    },
-    "1440": {
-        string: "Course VS {arg message|0} {arg message|1}",
-    },
-    "1441": {
-        string: "{arg message|2}Course VS {arg message|0} - 1{1 char|} course",
-    },
-    "1442": {
-        string: "{arg message|2}Course VS {arg message|0} - 2{1 char|} course",
-    },
-    "1443": {
-        string: "{arg message|2}Course VS {arg message|0} {arg message|2} - 3{1 char|} course",
-    },
-    "1444": {
-        string: "{arg message|2}Course VS {arg message|0} {arg message|2} - Course finale",
-    },
-    "1445": {
-        string: "{arg message|2}Bataille de Ballons",
-    },
-    "1446": {
-        string: "{arg message|2}Pilotes Pièces",
-    },
-    "1447": {
-        string: "({arg integer|0 0} joueurs)",
-    },
-    "1448": {
-        string: "",
-    },
-    "1449": {
-        string: "{color|team red}",
-    },
-    "1450": {
-        string: "{color|team blue}",
-    },
-    "1451": {
-        string: "",
-    },
-    "1500": {
-        string: "Utiliser un objet",
-    },
-    "1501": {
-        string: "Tourner",
-    },
-    "1502": {
-        string: "Accélérer",
-    },
-    "1503": {
-        string: "Freiner/Déraper",
-    },
-    "1504": {
-        string: "Freiner",
-    },
-    "1505": {
-        string: "",
-    },
+    "1212": "Record",
+    "1213": "Meil. tour",
+    "1214": "{color|team red}VICTOIRE DES ROUGES!",
+    "1215": "{color|team blue}VICTOIRE DES BLEUS!",
+    "1216": "{color|team red}LES ROUGES L'EMPORTENT!",
+    "1217": "{color|team blue}LES BLEUS L'EMPORTENT!",
+    "1218": "ÉGALITÉ!",
+    "1219": "PREMIÈRE PLACE!",
+    "1220": "DEUXIÈME PLACE!",
+    "1221": "TROISIÈME PLACE!",
+    "1222": "QUEL DOMMAGE!",
+    "1223": "{color|team red}DÉFAITE DES ROUGES!",
+    "1224": "{color|team blue}DÉFAITE DES BLEUS!",
+    "1225": "{color|team red}DÉFAITE DES ROUGES!",
+    "1226": "{color|team blue}DÉFAITE DES BLEUS!",
+    "1227": "",
+    "1301": "1{1 char|}",
+    "1302": "2{1 char|}",
+    "1303": "3{1 char|}",
+    "1304": "4{1 char|}",
+    "1305": "5{1 char|}",
+    "1306": "6{1 char|}",
+    "1307": "7{1 char|}",
+    "1308": "8{1 char|}",
+    "1309": "9{1 char|}",
+    "1310": "10{1 char|}",
+    "1311": "11{1 char|}",
+    "1312": "12{1 char|}",
+    "1313": "{arg cond messages|0 1316 1317}",
+    "1314": "{arg integer|0 0}",
+    "1315": "{arg signed integer|0 0}",
+    "1316": "pt",
+    "1317": "pts",
+    "1318": "{arg cond messages|0 1319 1320}",
+    "1319": "{color|team red}victoire",
+    "1320": "{color|team red}victoires",
+    "1321": "{arg cond messages|0 1322 1323}",
+    "1322": "{color|team blue}victoire",
+    "1323": "{color|team blue}victoires",
+    "1324": "{arg cond messages|0 1325 1326}",
+    "1325": "{color|team red}pt",
+    "1326": "{color|team red}pts",
+    "1327": "{arg cond messages|0 1328 1329}",
+    "1328": "{color|team blue}pt",
+    "1329": "{color|team blue}pts",
+    "1330": "Course fantôme - Victoires: {arg integer|0 0} Défaites: {arg integer|1 0}",
+    "1331": "Course fantôme - Victoires: {arg integer|0 0} Défaites: {arg integer|1 0}",
+    "1332": "{color|team red}{arg message|0}",
+    "1333": "{color|team blue}{arg message|0}",
+    "1334": "TEMPS",
+    "1335": "TOUR",
+    "1336": "POINTAGE",
+    "1337": "EN DIRECT",
+    "1338": "Vous allez participer\nà la course suivante\n({arg integer|0 0} joueurs prévus).",
+    "1339": "Vous allez participer\nà la bataille suivante\n({arg integer|0 0} joueurs prévus).",
+    "1340": "\nLe classement a été établi.\nLa course est terminée.",
+    "1341": "\n5 minutes se sont écoulées.\nLa course est terminée.",
+    "1342": "Le pilote gagnant a franchi la\nligne d'arrivée il y a 30 secondes.\nLa partie est terminée.",
+    "1343": "",
+    "1344": "",
+    "1345": "{1 char|}",
+    "1400": "{arg integer|0 2}:{arg integer|1 2}.{arg integer|2 3}",
+    "1401": "--:--.---",
+    "1402": ":",
+    "1403": ".",
+    "1404": "",
+    "1409": "Course VS par équipes {arg message|0} - {arg integer|0 0}/{arg integer|1 0}",
+    "1410": "{arg message|1} {arg message|0} - 1{1 char|} course",
+    "1411": "{arg message|1} {arg message|0} - 2{1 char|} course",
+    "1412": "{arg message|1} {arg message|0} - 3{1 char|} course",
+    "1413": "{arg message|1} {arg message|0} - Course finale",
+    "1414": "Course VS {arg message|0} - {arg integer|0 0}/{arg integer|1 0}",
+    "1415": "Bataille de Ballons",
+    "1416": "Pilotes Pièces",
+    "1417": "50cc",
+    "1418": "100cc",
+    "1419": "150cc",
+    "1420": "Miroir",
+    "1421": "{arg message|1} {arg message|0}",
+    "1422": "Course VS {arg message|0}",
+    "1423": "CLASSE:",
+    "1424": "{1 char|}",
+    "1425": "{1 char|}",
+    "1426": "{1 char|}",
+    "1427": "{1 char|}",
+    "1428": "{1 char|}",
+    "1429": "{1 char|}",
+    "1430": "{1 char|}",
+    "1431": "{1 char|}",
+    "1432": "F",
+    "1433": "Course VS {arg message|0}",
+    "1434": "Course VS amis par équipes {arg message|0}",
+    "1435": "Course VS par équipes {arg message|0}",
+    "1436": null,
+    "1437": null,
+    "1438": null,
+    "1439": null,
+    "1440": "Course VS {arg message|0} {arg message|1}",
+    "1441": "{arg message|2}Course VS {arg message|0} - 1{1 char|} course",
+    "1442": "{arg message|2}Course VS {arg message|0} - 2{1 char|} course",
+    "1443": "{arg message|2}Course VS {arg message|0} {arg message|2} - 3{1 char|} course",
+    "1444": "{arg message|2}Course VS {arg message|0} {arg message|2} - Course finale",
+    "1445": "{arg message|2}Bataille de Ballons",
+    "1446": "{arg message|2}Pilotes Pièces",
+    "1447": "({arg integer|0 0} joueurs)",
+    "1448": "",
+    "1449": "{color|team red}",
+    "1450": "{color|team blue}",
+    "1451": "",
+    "1500": "Utiliser un objet",
+    "1501": "Tourner",
+    "1502": "Accélérer",
+    "1503": "Freiner/Déraper",
+    "1504": "Freiner",
+    "1505": "",
 }

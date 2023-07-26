@@ -4,7 +4,7 @@
 
 #include "game/util/Registry.hh"
 
-#include <optional>
+#include <sp/ShaUtil.hh>
 
 namespace System {
 
@@ -63,7 +63,7 @@ static_assert(sizeof(FooterFooter) == 0x8);
 
 struct CTGPFooter {
     u8 _00[0x48 - 0x00];
-    u8 courseSHA1[0x14];
+    Sha1 courseSHA1;
     u8 _5c[0x64 - 0x5c];
     f32 raceTimeDiff;
     u8 _68[0x80 - 0x68];
@@ -88,10 +88,10 @@ struct SPFooter {
     static void OnHWG();
     static void OnWallride();
     static void OnShroom(u32 lap);
-    static void OnRaceEnd(const u8 *courseSHA1);
+    static void OnRaceEnd(Sha1 courseSHA1);
 
     u32 version;
-    u8 courseSHA1[0x14];
+    Sha1 courseSHA1;
     f32 lapTimeDiffs[11];
     bool hasSpeedMod : 1;
     bool hasUltraShortcut : 1;
@@ -114,7 +114,7 @@ public:
     GhostFooter();
     GhostFooter(const u8 *raw, u32 size);
     ~GhostFooter();
-    std::optional<std::array<u8, 0x14>> courseSHA1() const;
+    std::optional<Sha1> courseSHA1() const;
     std::optional<bool> hasSpeedMod() const;
 
 private:

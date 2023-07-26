@@ -1,10 +1,9 @@
 #include "KartMove.hh"
 
-#include "game/kart/KartState.hh"
+#include "game/kart/KartObjectManager.hh"
 #include "game/system/SaveManager.hh"
 
 #include <sp/ThumbnailManager.hh>
-#include <sp/settings/ClientSettings.hh>
 
 namespace Kart {
 
@@ -14,6 +13,19 @@ f32 KartMove::hardSpeedLimit() const {
 
 const Vec3 *KartMove::internalVelDir() const {
     return &m_internalVelDir;
+}
+
+void KartMove::init(u32 r4, u32 r5) {
+    REPLACED(init)(r4, r5);
+    m_hardSpeedLimit = m_hardSpeedLimit * g_speedModFactor;
+}
+
+void KartMove::applyBulletSpeedLimit() {
+    m_hardSpeedLimit = 145.0f * g_speedModFactor;
+}
+
+void KartMove::revertBulletSpeedLimit() {
+    m_hardSpeedLimit = 120.0f * g_speedModFactor;
 }
 
 void KartMove::calcBlink() {

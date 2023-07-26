@@ -1,169 +1,59 @@
 {
-    "1000": {
-        string: "",
-    },
-    "1001": {
-        string: "Continuar",
-    },
-    "1002": {
-        string: "Salir",
-    },
-    "1003": {
-        string: "Continuar",
-    },
-    "1004": {
-        string: "Salir",
-    },
-    "1005": {
-        string: "Cambiar de circuito",
-    },
-    "1006": {
-        string: "Cambiar de personaje",
-    },
-    "1007": {
-        string: "Volver a empezar",
-    },
-    "1008": {
-        string: "Elegir una misión",
-    },
-    "1009": {
-        string: "Siguiente carrera",
-    },
-    "1010": {
-        string: "Siguiente",
-    },
-    "1011": {
-        string: "Volver a correr",
-    },
-    "1012": {
-        string: "Ver repetición",
-    },
-    "1013": {
-        string: "Continuar repetición",
-    },
-    "1014": {
-        string: "Ver desde el principio",
-    },
-    "1015": {
-        string: "Ver las clasificaciones",
-    },
-    "1016": {
-        string: "Ver la lista de fantasmas",
-    },
-    "1017": {
-        string: null,
-    },
-    "1018": {
-        string: "Siguiente fantasma",
-    },
-    "1019": {
-        string: null,
-    },
-    "1020": {
-        string: "Menú de la CWF de Nintendo",
-    },
-    "1021": {
-        string: "Salir de la repetición",
-    },
-    "1022": {
-        string: "Empezar la carrera",
-    },
-    "1023": {
-        string: "Siguiente carrera",
-    },
-    "1024": {
-        string: "Siguiente batalla",
-    },
-    "1025": {
-        string: "Espera un momento...",
-    },
-    "1026": {
-        string: "Cambiar el fantasma",
-    },
-    "1027": {
-        string: "Correr contra este fantasma",
-    },
-    "1028": {
-        string: "Continuar la repetición",
-    },
-    "1029": {
-        string: "Salir de la repetición",
-    },
-    "1030": {
-        string: "Ver desde el principio",
-    },
-    "1031": {
-        string: "Siguiente partida:\n{arg integer|0 0} jugadores previstos",
-    },
-    "1032": {
-        string: "Enviar resultado",
-    },
-    "1033": {
-        string: "",
-    },
-    "1101": {
-        string: "¿Seguro que quieres salir?",
-    },
-    "1102": {
-        string: "¿Quieres acceder a las \nclasificaciones del Canal \nMario Kart?",
-    },
-    "1103": {
-        string: "OK",
-    },
-    "1104": {
-        string: null,
-    },
-    "1105": {
-        string: "¡Felicidades!\n¡Has batido el récord de {arg player|0}!\n\n¿Quieres enviar tu fantasma a\n{arg player|0}?",
-    },
-    "1106": {
-        string: "Enviar",
-    },
-    "1107": {
-        string: "No enviar",
-    },
-    "1108": {
-        string: "Sí",
-    },
-    "1109": {
-        string: "No",
-    },
-    "1110": {
-        string: "",
-    },
-    "1111": {
-        string: "¿Quieres ir a tu lista de amigos?",
-    },
-    "1112": {
-        string: "Puedes enviar todos los resultados que \nquieras hasta la fecha límite del \ntorneo. ¿Envías este resultado?",
-    },
-    "1113": {
-        string: "¿Seguro que quieres finalizar\nesta carrera y descargar el\nsiguiente fantasma?",
-    },
-    "1114": {
-        string: "¿Seguro que quieres\nsalir de esta carrera y\nvolver al menú principal?",
-    },
-    "1115": {
-        string: "¡Se ha guardado el fantasma de {current player|}!",
-    },
-    "1116": {
-        string: "No se ha podido guardar el fantasma.",
-    },
-    "1117": {
-        string: "No se ha podido enviar el fantasma.",
-    },
-    "1118": {
-        string: "¿Quieres volver a la pantalla \nde selección de circuitos?",
-    },
-    "1119": {
-        string: "No ha sido posible guardar el fantasma.",
-    },
-    "1120": {
-        string: "",
-    },
-    "1121": {
-        string: "¡Has desbloqueado un fantasma experto del personal!",
-    },
+    "1000": "",
+    "1001": "Continuar",
+    "1002": "Salir",
+    "1003": "Continuar",
+    "1004": "Salir",
+    "1005": "Cambiar de circuito",
+    "1006": "Cambiar de personaje",
+    "1007": "Volver a empezar",
+    "1008": "Elegir una misión",
+    "1009": "Siguiente carrera",
+    "1010": "Siguiente",
+    "1011": "Volver a correr",
+    "1012": "Ver repetición",
+    "1013": "Continuar repetición",
+    "1014": "Ver desde el principio",
+    "1015": "Ver las clasificaciones",
+    "1016": "Ver la lista de fantasmas",
+    "1017": null,
+    "1018": "Siguiente fantasma",
+    "1019": null,
+    "1020": "Menú de la CWF de Nintendo",
+    "1021": "Salir de la repetición",
+    "1022": "Empezar la carrera",
+    "1023": "Siguiente carrera",
+    "1024": "Siguiente batalla",
+    "1025": "Espera un momento...",
+    "1026": "Cambiar el fantasma",
+    "1027": "Correr contra este fantasma",
+    "1028": "Continuar la repetición",
+    "1029": "Salir de la repetición",
+    "1030": "Ver desde el principio",
+    "1031": "Siguiente partida:\n{arg integer|0 0} jugadores previstos",
+    "1032": "Enviar resultado",
+    "1033": "",
+    "1101": "¿Seguro que quieres salir?",
+    "1102": "¿Quieres acceder a las \nclasificaciones del Canal \nMario Kart?",
+    "1103": "OK",
+    "1104": null,
+    "1105": "¡Felicidades!\n¡Has batido el récord de {arg player|0}!\n\n¿Quieres enviar tu fantasma a\n{arg player|0}?",
+    "1106": "Enviar",
+    "1107": "No enviar",
+    "1108": "Sí",
+    "1109": "No",
+    "1110": "",
+    "1111": "¿Quieres ir a tu lista de amigos?",
+    "1112": "Puedes enviar todos los resultados que \nquieras hasta la fecha límite del \ntorneo. ¿Envías este resultado?",
+    "1113": "¿Seguro que quieres finalizar\nesta carrera y descargar el\nsiguiente fantasma?",
+    "1114": "¿Seguro que quieres\nsalir de esta carrera y\nvolver al menú principal?",
+    "1115": "¡Se ha guardado el fantasma de {current player|}!",
+    "1116": "No se ha podido guardar el fantasma.",
+    "1117": "No se ha podido enviar el fantasma.",
+    "1118": "¿Quieres volver a la pantalla \nde selección de circuitos?",
+    "1119": "No ha sido posible guardar el fantasma.",
+    "1120": "",
+    "1121": "¡Has desbloqueado un fantasma experto del personal!",
     "1201": {
         string: "3",
         font: "caps",
@@ -192,362 +82,126 @@
         string: "¡MALA SUERTE!",
         font: "caps",
     },
-    "1208": {
-        string: null,
-    },
-    "1209": {
-        string: null,
-    },
-    "1210": {
-        string: "¡Felicidades!",
-    },
+    "1208": null,
+    "1209": null,
+    "1210": "¡Felicidades!",
     "1211": {
         string: "¡NUEVO RÉCORD!",
         font: "caps",
     },
-    "1212": {
-        string: "Récord",
-    },
-    "1213": {
-        string: "Mejor vuelta",
-    },
-    "1214": {
-        string: "{color|team red}¡Victoria roja!",
-    },
-    "1215": {
-        string: "{color|team blue}¡Victoria azul!",
-    },
-    "1216": {
-        string: "{color|team red}¡Victoria roja!",
-    },
-    "1217": {
-        string: "{color|team blue}¡Victoria azul!",
-    },
-    "1218": {
-        string: "Empate",
-    },
-    "1219": {
-        string: "¡Felicidades!",
-    },
-    "1220": {
-        string: "¡Felicidades!",
-    },
-    "1221": {
-        string: "¡Felicidades!",
-    },
-    "1222": {
-        string: "¡Quizá la próxima vez!",
-    },
-    "1223": {
-        string: "{color|team red}¡Pierde el rojo!",
-    },
-    "1224": {
-        string: "{color|team blue}¡Pierde el azul!",
-    },
-    "1225": {
-        string: "{color|team red}¡Pierde el rojo!",
-    },
-    "1226": {
-        string: "{color|team blue}¡Pierde el azul!",
-    },
-    "1227": {
-        string: "",
-    },
-    "1301": {
-        string: "1.º",
-    },
-    "1302": {
-        string: "2.º",
-    },
-    "1303": {
-        string: "3.º",
-    },
-    "1304": {
-        string: "4.º",
-    },
-    "1305": {
-        string: "5.º",
-    },
-    "1306": {
-        string: "6.º",
-    },
-    "1307": {
-        string: "7.º",
-    },
-    "1308": {
-        string: "8.º",
-    },
-    "1309": {
-        string: "9.º",
-    },
-    "1310": {
-        string: "10.º",
-    },
-    "1311": {
-        string: "11.º",
-    },
-    "1312": {
-        string: "12.º",
-    },
-    "1313": {
-        string: "{arg cond messages|0 1316 1317}",
-    },
-    "1314": {
-        string: "{arg integer|0 0}",
-    },
-    "1315": {
-        string: "{arg signed integer|0 0}",
-    },
-    "1316": {
-        string: "pto.",
-    },
-    "1317": {
-        string: "ptos.",
-    },
-    "1318": {
-        string: "{arg cond messages|0 1319 1320}",
-    },
-    "1319": {
-        string: "{color|team red}victoria",
-    },
-    "1320": {
-        string: "{color|team red}victorias",
-    },
-    "1321": {
-        string: "{arg cond messages|0 1322 1323}",
-    },
-    "1322": {
-        string: "{color|team blue}victoria",
-    },
-    "1323": {
-        string: "{color|team blue}victorias",
-    },
-    "1324": {
-        string: "{arg cond messages|0 1325 1326}",
-    },
-    "1325": {
-        string: "{color|team red}pto.",
-    },
-    "1326": {
-        string: "{color|team red}ptos.",
-    },
-    "1327": {
-        string: "{arg cond messages|0 1328 1329}",
-    },
-    "1328": {
-        string: "{color|team blue}pto.",
-    },
-    "1329": {
-        string: "{color|team blue}ptos.",
-    },
-    "1330": {
-        string: "Victorias: {arg integer|0 0} - Derrotas: {arg integer|1 0}",
-    },
-    "1331": {
-        string: "Victorias: {arg integer|0 0} - Derrotas: {arg integer|1 0}",
-    },
-    "1332": {
-        string: "{color|team red}{arg message|0}",
-    },
-    "1333": {
-        string: "{color|team blue}{arg message|0}",
-    },
-    "1334": {
-        string: "TIEMPO",
-    },
-    "1335": {
-        string: "VUELTA",
-    },
-    "1336": {
-        string: "PUNTOS",
-    },
-    "1337": {
-        string: "EN DIRECTO",
-    },
-    "1338": {
-        string: "Te unirás a la siguiente carrera.\nNúm. de jugadores previsto: {arg integer|0 0}\nEspera un momento...",
-    },
-    "1339": {
-        string: "Te unirás a la siguiente batalla.\nNúm. de jugadores previsto: {arg integer|0 0}\nEspera un momento...",
-    },
-    "1340": {
-        string: "\nSe han establecido los resultados.\nLa carrera ha terminado.",
-    },
-    "1341": {
-        string: "\nHan pasado 5 minutos.\nLa carrera ha terminado.",
-    },
-    "1342": {
-        string: "Han pasado 30 segundos desde\nque el ganador cruzó la línea\nde meta. La carrera ha terminado.",
-    },
-    "1343": {
-        string: "PC",
-    },
-    "1344": {
-        string: "PB",
-    },
-    "1345": {
-        string: "{1 char|}",
-    },
-    "1400": {
-        string: "{arg integer|0 2}:{arg integer|1 2}.{arg integer|2 3}",
-    },
-    "1401": {
-        string: "--:--.---",
-    },
-    "1402": {
-        string: ":",
-    },
-    "1403": {
-        string: ".",
-    },
-    "1404": {
-        string: "",
-    },
-    "1409": {
-        string: "Carrera VS. en equipo {arg message|0} {arg integer|0 0}/{arg integer|1 0}",
-    },
-    "1410": {
-        string: "{arg message|1} {arg message|0} - Primera carrera",
-    },
-    "1411": {
-        string: "{arg message|1} {arg message|0} - Segunda carrera",
-    },
-    "1412": {
-        string: "{arg message|1} {arg message|0} - Tercera carrera",
-    },
-    "1413": {
-        string: "{arg message|1} {arg message|0} - Última carrera",
-    },
-    "1414": {
-        string: "Carrera VS. {arg message|0} - {arg integer|0 0} de {arg integer|1 0}",
-    },
-    "1415": {
-        string: "Batalla de globos",
-    },
-    "1416": {
-        string: "Carrera de monedas",
-    },
-    "1417": {
-        string: "50cc",
-    },
-    "1418": {
-        string: "100cc",
-    },
-    "1419": {
-        string: "150cc",
-    },
-    "1420": {
-        string: "Espejo",
-    },
-    "1421": {
-        string: "{arg message|1} {arg message|0}",
-    },
-    "1422": {
-        string: "Carrera VS. {arg message|0} ",
-    },
-    "1423": {
-        string: "Clase:",
-    },
-    "1424": {
-        string: "{1 char|}",
-    },
-    "1425": {
-        string: "{1 char|}",
-    },
-    "1426": {
-        string: "{1 char|}",
-    },
-    "1427": {
-        string: "{1 char|}",
-    },
-    "1428": {
-        string: "{1 char|}",
-    },
-    "1429": {
-        string: "{1 char|}",
-    },
-    "1430": {
-        string: "{1 char|}",
-    },
-    "1431": {
-        string: "{1 char|}",
-    },
-    "1432": {
-        string: "F",
-    },
-    "1433": {
-        string: "Carrera VS. {arg message|0}",
-    },
-    "1434": {
-        string: "Carrera VS. en equipo {arg message|0}",
-    },
-    "1435": {
-        string: "Carrera VS. en equipo {arg message|0}",
-    },
-    "1436": {
-        string: null,
-    },
-    "1437": {
-        string: null,
-    },
-    "1438": {
-        string: null,
-    },
-    "1439": {
-        string: null,
-    },
-    "1440": {
-        string: "Carrera VS. {arg message|0} {arg message|1}",
-    },
-    "1441": {
-        string: "{arg message|2}Carrera VS. {arg message|0} - 1.ª carrera",
-    },
-    "1442": {
-        string: "{arg message|2}Carrera VS. {arg message|0} - 2.ª carrera",
-    },
-    "1443": {
-        string: "{arg message|2}Carrera VS. {arg message|0} - 3.ª carrera",
-    },
-    "1444": {
-        string: "{arg message|2}Carrera VS. {arg message|0} - Última carrera",
-    },
-    "1445": {
-        string: "{arg message|2}Batalla de globos",
-    },
-    "1446": {
-        string: "{arg message|2}Carrera de monedas",
-    },
-    "1447": {
-        string: "({arg integer|0 0} jugadores)",
-    },
-    "1448": {
-        string: "",
-    },
-    "1449": {
-        string: "{color|team red}",
-    },
-    "1450": {
-        string: "{color|team blue}",
-    },
-    "1451": {
-        string: "",
-    },
-    "1500": {
-        string: "Usar objeto",
-    },
-    "1501": {
-        string: "Manejar",
-    },
-    "1502": {
-        string: "Acelerar",
-    },
-    "1503": {
-        string: "Frenar/Derrapar",
-    },
-    "1504": {
-        string: "Frenar",
-    },
-    "1505": {
-        string: "",
-    },
+    "1212": "Récord",
+    "1213": "Mejor vuelta",
+    "1214": "{color|team red}¡Victoria roja!",
+    "1215": "{color|team blue}¡Victoria azul!",
+    "1216": "{color|team red}¡Victoria roja!",
+    "1217": "{color|team blue}¡Victoria azul!",
+    "1218": "Empate",
+    "1219": "¡Felicidades!",
+    "1220": "¡Felicidades!",
+    "1221": "¡Felicidades!",
+    "1222": "¡Quizá la próxima vez!",
+    "1223": "{color|team red}¡Pierde el rojo!",
+    "1224": "{color|team blue}¡Pierde el azul!",
+    "1225": "{color|team red}¡Pierde el rojo!",
+    "1226": "{color|team blue}¡Pierde el azul!",
+    "1227": "",
+    "1301": "1.º",
+    "1302": "2.º",
+    "1303": "3.º",
+    "1304": "4.º",
+    "1305": "5.º",
+    "1306": "6.º",
+    "1307": "7.º",
+    "1308": "8.º",
+    "1309": "9.º",
+    "1310": "10.º",
+    "1311": "11.º",
+    "1312": "12.º",
+    "1313": "{arg cond messages|0 1316 1317}",
+    "1314": "{arg integer|0 0}",
+    "1315": "{arg signed integer|0 0}",
+    "1316": "pto.",
+    "1317": "ptos.",
+    "1318": "{arg cond messages|0 1319 1320}",
+    "1319": "{color|team red}victoria",
+    "1320": "{color|team red}victorias",
+    "1321": "{arg cond messages|0 1322 1323}",
+    "1322": "{color|team blue}victoria",
+    "1323": "{color|team blue}victorias",
+    "1324": "{arg cond messages|0 1325 1326}",
+    "1325": "{color|team red}pto.",
+    "1326": "{color|team red}ptos.",
+    "1327": "{arg cond messages|0 1328 1329}",
+    "1328": "{color|team blue}pto.",
+    "1329": "{color|team blue}ptos.",
+    "1330": "Victorias: {arg integer|0 0} - Derrotas: {arg integer|1 0}",
+    "1331": "Victorias: {arg integer|0 0} - Derrotas: {arg integer|1 0}",
+    "1332": "{color|team red}{arg message|0}",
+    "1333": "{color|team blue}{arg message|0}",
+    "1334": "TIEMPO",
+    "1335": "VUELTA",
+    "1336": "PUNTOS",
+    "1337": "EN DIRECTO",
+    "1338": "Te unirás a la siguiente carrera.\nNúm. de jugadores previsto: {arg integer|0 0}\nEspera un momento...",
+    "1339": "Te unirás a la siguiente batalla.\nNúm. de jugadores previsto: {arg integer|0 0}\nEspera un momento...",
+    "1340": "\nSe han establecido los resultados.\nLa carrera ha terminado.",
+    "1341": "\nHan pasado 5 minutos.\nLa carrera ha terminado.",
+    "1342": "Han pasado 30 segundos desde\nque el ganador cruzó la línea\nde meta. La carrera ha terminado.",
+    "1343": "PC",
+    "1344": "PB",
+    "1345": "{1 char|}",
+    "1400": "{arg integer|0 2}:{arg integer|1 2}.{arg integer|2 3}",
+    "1401": "--:--.---",
+    "1402": ":",
+    "1403": ".",
+    "1404": "",
+    "1409": "Carrera VS. en equipo {arg message|0} {arg integer|0 0}/{arg integer|1 0}",
+    "1410": "{arg message|1} {arg message|0} - Primera carrera",
+    "1411": "{arg message|1} {arg message|0} - Segunda carrera",
+    "1412": "{arg message|1} {arg message|0} - Tercera carrera",
+    "1413": "{arg message|1} {arg message|0} - Última carrera",
+    "1414": "Carrera VS. {arg message|0} - {arg integer|0 0} de {arg integer|1 0}",
+    "1415": "Batalla de globos",
+    "1416": "Carrera de monedas",
+    "1417": "50cc",
+    "1418": "100cc",
+    "1419": "150cc",
+    "1420": "Espejo",
+    "1421": "{arg message|1} {arg message|0}",
+    "1422": "Carrera VS. {arg message|0} ",
+    "1423": "Clase:",
+    "1424": "{1 char|}",
+    "1425": "{1 char|}",
+    "1426": "{1 char|}",
+    "1427": "{1 char|}",
+    "1428": "{1 char|}",
+    "1429": "{1 char|}",
+    "1430": "{1 char|}",
+    "1431": "{1 char|}",
+    "1432": "F",
+    "1433": "Carrera VS. {arg message|0}",
+    "1434": "Carrera VS. en equipo {arg message|0}",
+    "1435": "Carrera VS. en equipo {arg message|0}",
+    "1436": null,
+    "1437": null,
+    "1438": null,
+    "1439": null,
+    "1440": "Carrera VS. {arg message|0} {arg message|1}",
+    "1441": "{arg message|2}Carrera VS. {arg message|0} - 1.ª carrera",
+    "1442": "{arg message|2}Carrera VS. {arg message|0} - 2.ª carrera",
+    "1443": "{arg message|2}Carrera VS. {arg message|0} - 3.ª carrera",
+    "1444": "{arg message|2}Carrera VS. {arg message|0} - Última carrera",
+    "1445": "{arg message|2}Batalla de globos",
+    "1446": "{arg message|2}Carrera de monedas",
+    "1447": "({arg integer|0 0} jugadores)",
+    "1448": "",
+    "1449": "{color|team red}",
+    "1450": "{color|team blue}",
+    "1451": "",
+    "1500": "Usar objeto",
+    "1501": "Manejar",
+    "1502": "Acelerar",
+    "1503": "Frenar/Derrapar",
+    "1504": "Frenar",
+    "1505": "",
 }

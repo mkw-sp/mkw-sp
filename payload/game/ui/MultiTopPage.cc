@@ -58,6 +58,8 @@ void MultiTopPage::onInit() {
     m_pageTitleText.setMessage(2028 + context->m_localPlayerCount);
 
     m_reset = true;
+
+    SectionManager::Instance()->globalContext()->clearCourses();
 }
 
 void MultiTopPage::onActivate() {
@@ -83,10 +85,7 @@ void MultiTopPage::onActivate() {
 }
 
 void MultiTopPage::onBack(u32 /* localPlayerId */) {
-    m_reset = true;
-
-    m_replacement = PageId::ControllerBoxes;
-    startReplace(Anim::Prev, 0.0f);
+    onBackCommon(0.0f);
 }
 
 void MultiTopPage::onSettingsButtonFront(PushButton *button, u32 /* localPlayerId */) {
@@ -108,9 +107,7 @@ void MultiTopPage::onVSButtonFront(PushButton *button, u32 /* localPlayerId */) 
     auto *context = SectionManager::Instance()->globalContext();
     context->m_matchCount = saveManager->getSetting<SP::ClientSettings::Setting::VSRaceCount>();
 
-    u32 localPlayerCount = context->m_localPlayerCount;
     auto teamsizeSetting = saveManager->getSetting<SP::ClientSettings::Setting::VSTeamSize>();
-
     u32 maxTeamSize = SP::ClientSettings::GenerateMaxTeamSize(teamsizeSetting);
 
     auto &menuScenario = raceConfig->menuScenario();
@@ -118,14 +115,8 @@ void MultiTopPage::onVSButtonFront(PushButton *button, u32 /* localPlayerId */) 
     menuScenario.spMaxTeamSize = maxTeamSize;
     menuScenario.cameraMode = 5;
 
-    for (u32 i = 0; i < localPlayerCount; i++) {
-        menuScenario.players[i].type = System::RaceConfig::Player::Type::Local;
-    }
-    for (u32 i = localPlayerCount; i < 12; i++) {
-        menuScenario.players[i].type = System::RaceConfig::Player::Type::CPU;
-    }
-
     context->applyVehicleRestriction(false);
+    raceConfig->applyPlayers();
     raceConfig->applyCPUMode();
     raceConfig->applyItemFreq();
     raceConfig->applyEngineClass();
@@ -153,9 +144,7 @@ void MultiTopPage::onBTButtonFront(PushButton *button, u32 /* localPlayerId */) 
     auto *context = SectionManager::Instance()->globalContext();
     context->m_matchCount = saveManager->getSetting<SP::ClientSettings::Setting::BTRaceCount>();
 
-    u32 localPlayerCount = context->m_localPlayerCount;
     auto teamsizeSetting = saveManager->getSetting<SP::ClientSettings::Setting::BTTeamSize>();
-
     u32 maxTeamSize = SP::ClientSettings::GenerateMaxTeamSize(teamsizeSetting);
 
     auto &menuScenario = raceConfig->menuScenario();
@@ -163,17 +152,11 @@ void MultiTopPage::onBTButtonFront(PushButton *button, u32 /* localPlayerId */) 
     menuScenario.spMaxTeamSize = maxTeamSize;
     menuScenario.cameraMode = 5;
 
-    for (u32 i = 0; i < localPlayerCount; i++) {
-        menuScenario.players[i].type = System::RaceConfig::Player::Type::Local;
-    }
-    for (u32 i = localPlayerCount; i < 12; i++) {
-        menuScenario.players[i].type = System::RaceConfig::Player::Type::CPU;
-    }
-
     context->applyVehicleRestriction(true);
-    raceConfig->applyEngineClass();
+    raceConfig->applyPlayers();
     raceConfig->applyCPUMode();
     raceConfig->applyItemFreq();
+    raceConfig->applyEngineClass();
 
     Section *section = SectionManager::Instance()->currentSection();
     auto *courseSelectPage = section->page<PageId::CourseSelect>();
@@ -193,10 +176,14 @@ void MultiTopPage::onBTButtonSelect(PushButton * /* button */, u32 /* localPlaye
 }
 
 void MultiTopPage::onBackButtonFront(PushButton *button, u32 /* localPlayerId */) {
+    onBackCommon(button->getDelay());
+}
+
+void MultiTopPage::onBackCommon(f32 delay) {
     m_reset = true;
 
-    m_replacement = PageId::ControllerBoxes;
-    startReplace(Anim::Prev, button->getDelay());
+    m_replacement = PageId::PackSelect;
+    startReplace(Anim::Prev, delay);
 }
 
 void MultiTopPage::onBackButtonSelect(PushButton * /* button */, u32 /* localPlayerId */) {

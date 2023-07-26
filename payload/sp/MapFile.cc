@@ -19,7 +19,6 @@ extern "C" {
 #include <cmath>
 #include <cstdio>
 #include <ctype.h>
-#include <optional>
 #include <string_view>
 
 namespace SP::MapFile {

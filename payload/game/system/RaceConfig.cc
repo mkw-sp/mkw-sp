@@ -7,9 +7,6 @@ extern "C" {
 #include <vendor/libhydrogen/hydrogen.h>
 }
 
-#include <sp/CourseDatabase.hh>
-#include <sp/settings/ClientSettings.hh>
-
 #include <cstring>
 
 namespace System {
@@ -38,11 +35,25 @@ bool RaceConfig::isSameTeam(u32 p0, u32 p1) const {
     return m_raceScenario.players[p0].spTeam == m_raceScenario.players[p1].spTeam;
 }
 
-void RaceConfig::applyPlayers(Player::Type otherType) {
-    m_menuScenario.players[0].type = Player::Type::Local;
+void RaceConfig::applyPlayers() {
+    auto *saveManager = System::SaveManager::Instance();
 
-    for (u32 i = 1; i < 12; i++) {
-        m_menuScenario.players[i].type = otherType;
+    u8 minPlayerCount = 1;
+    if (m_menuScenario.gameMode == GameMode::OfflineVS) {
+        minPlayerCount = saveManager->getSetting<SP::ClientSettings::Setting::VSPlayerCount>();
+    } else if (m_menuScenario.gameMode == GameMode::OfflineBT) {
+        minPlayerCount = saveManager->getSetting<SP::ClientSettings::Setting::BTPlayerCount>();
+    }
+
+    u8 i = 0;
+    for (; i < m_menuScenario.localPlayerCount; i++) {
+        m_menuScenario.players[i].type = Player::Type::Local;
+    }
+    for (; i < minPlayerCount; i++) {
+        m_menuScenario.players[i].type = Player::Type::CPU;
+    }
+    for (; i < 12; i++) {
+        m_menuScenario.players[i].type = Player::Type::None;
     }
 }
 
@@ -116,18 +127,25 @@ void RaceConfig::applyCPUMode() {
         panic("applyCPUMode called with invalid GameMode");
     }
 
-    if (setting != SP::ClientSettings::CPUMode::None) {
-        m_menuScenario.cpuMode = static_cast<u32>(setting);
-        return;
-    }
-
-    for (u32 i = 1; i < 12; i++) {
-        if (m_menuScenario.players[i].type == Player::Type::CPU) {
-            m_menuScenario.players[i].type = Player::Type::None;
-        }
-    }
+    m_menuScenario.cpuMode = static_cast<u32>(setting);
 }
 
+void RaceConfig::initRace() {
+    REPLACED(initRace)();
+    m_spRace = m_spMenu;
+}
+
+void RaceConfig::initAwards() {
+    REPLACED(initAwards)();
+    m_spRace = m_spMenu;
+    m_spAwards = m_spRace;
+}
+
+void RaceConfig::initCredits() {
+    REPLACED(initCredits)();
+    m_spMenu = m_spAwards;
+    m_spRace = m_spMenu;
+}
 RaceConfig *RaceConfig::CreateInstance() {
     assert(!s_instance);
     s_instance = new RaceConfig;
@@ -196,35 +214,6 @@ void RaceConfig::ConfigurePlayers(Scenario &scenario, u32 screenCount) {
 
         screenId++;
     }
-}
-
-bool RaceConfig::selectRandomCourse() {
-    auto *saveManager = System::SaveManager::Instance();
-
-    SP::CourseDatabase::Filter filter;
-    SP::ClientSettings::CourseSelection setting;
-    if (m_menuScenario.gameMode == System::RaceConfig::GameMode::OfflineVS) {
-        setting = saveManager->getSetting<SP::ClientSettings::Setting::VSCourseSelection>();
-        filter.battle = false;
-        filter.race = true;
-    } else if (m_menuScenario.gameMode == System::RaceConfig::GameMode::OfflineBT) {
-        setting = saveManager->getSetting<SP::ClientSettings::Setting::BTCourseSelection>();
-        filter.battle = true;
-        filter.race = false;
-    } else {
-        return false;
-    }
-
-    if (setting != SP::ClientSettings::CourseSelection::Random) {
-        return false;
-    }
-
-    auto &courseDatabase = SP::CourseDatabase::Instance();
-    auto courseCount = courseDatabase.count(filter);
-    auto courseIdx = hydro_random_uniform(courseCount);
-
-    m_menuScenario.courseId = courseDatabase.entry(filter, courseIdx).courseId;
-    return true;
 }
 
 extern "C" void RaceConfigScenario_resetGhostPlayerTypes(RaceConfig::Scenario *self) {

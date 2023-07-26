@@ -30,7 +30,7 @@ Registry::Course ThumbnailManager::CourseId() {
     return static_cast<Registry::Course>(s_instance->m_courseId - 1);
 }
 
-std::array<wchar_t, 256> ThumbnailManager::Path() {
+FixedString<64> ThumbnailManager::Path() {
     assert(s_instance);
     return s_instance->path();
 }
@@ -58,7 +58,7 @@ void ThumbnailManager::nextName() {
                 continue;
             }
 
-            std::array<char, 128> name{};
+            std::array<char, 32> name{};
             if (snprintf(name.data(), name.size(), "%ls", info->name) >=
                     static_cast<s32>(name.size())) {
                 continue;
@@ -91,9 +91,13 @@ void ThumbnailManager::capture() {
     Storage::WriteFile(path.data(), xfb->buffer(), size, true);
 }
 
-std::array<wchar_t, 256> ThumbnailManager::path() {
-    std::array<wchar_t, 256> path{};
-    swprintf(path.data(), path.size(), L"/mkw-sp/thumbnails/inputs/%u/%s", m_courseId - 1, m_name);
+FixedString<64> ThumbnailManager::path() {
+    FixedString<64> path{};
+    auto len = snprintf(path.m_buf.data(), 64, "/mkw-sp/thumbnails/inputs/%u/%s", m_courseId - 1,
+            m_name->data());
+    assert(len > 0);
+
+    path.m_len = len;
     return path;
 }
 

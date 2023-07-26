@@ -4,8 +4,6 @@
 
 #include <egg/core/eggHeap.hh>
 
-#include <optional>
-
 namespace SP {
 
 class YAZDecoder : public Decoder {

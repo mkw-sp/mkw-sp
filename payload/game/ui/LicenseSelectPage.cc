@@ -43,7 +43,7 @@ void LicenseSelectPage::onInit() {
     m_servicePackButton.setFrontHandler(&m_onServicePackButtonFront, false);
     m_backButton.setFrontHandler(&m_onBackButtonFront, false);
 
-    m_miiGroup.init(4, 0x1, nullptr);
+    m_miiGroup.init(6, 0x1, nullptr);
     m_pageTitleText.setMessage(2104);
     m_servicePackButton.setMessageAll(10083);
     for (size_t i = 0; i < m_licenseButtons.size(); i++) {

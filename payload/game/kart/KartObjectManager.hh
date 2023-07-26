@@ -2,6 +2,8 @@
 
 #include "game/kart/KartObject.hh"
 
+extern f32 g_speedModFactor;
+
 namespace Kart {
 
 class KartObjectManager {

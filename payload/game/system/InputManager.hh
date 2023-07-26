@@ -1,5 +1,9 @@
 #pragma once
 
+extern "C" {
+#include <revolution/pad.h>
+}
+
 #include <sp/CircularBuffer.hh>
 
 namespace System {
@@ -252,6 +256,7 @@ public:
     bool isMirror() const;
     GhostPadProxy *ghostProxy(u32 i);
     UserPadProxy *userProxy(u32 i);
+    const PADStatus &padStatus(u32 i) const;
     UserPad *extraUserPad(u32 i);
     GhostPadProxy *extraGhostProxy(u32 i);
 
@@ -284,7 +289,9 @@ private:
     UserPadProxy m_userProxies[12];
     u8 _15b4[0x1690 - 0x15b4];
     DummyPad m_dummyPad;
-    u8 _1720[0x4154 - 0x1720];
+    u8 _1720[0x4120 - 0x1720];
+    PADStatus m_padStatus[4];
+    u8 _4150[0x4154 - 0x4150];
     bool m_isPaused;
     bool m_isMirror;
     u8 _4156[0x415c - 0x4156];

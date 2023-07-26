@@ -5,8 +5,6 @@ extern "C" {
 #include <revolution.h>
 }
 
-#include <optional>
-
 #include <Common.hh>
 
 namespace SP::Net {

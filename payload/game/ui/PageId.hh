@@ -4,7 +4,7 @@ namespace UI {
 
 enum class PageId {
     None = -0x1,
-
+    Empty = 0x0,
     EsrbNotice = 0x1,
     FpsNotice = 0x2,
     CorruptSave = 0x3,
@@ -84,7 +84,7 @@ enum class PageId {
     SpinnerMessagePopup = 0x4C,
     MessagePopup = 0x4D,
     YesNoPopup = 0x4E,
-    ReadingGhostData = 0x4F,
+    SpinnerAwaitPage = 0x4F,
     ConnectingNintendoWfc = 0x50,
     MenuMessage = 0x51,
     Confirm = 0x52,
@@ -102,7 +102,7 @@ enum class PageId {
     Obi = 0x5E,
     PressA = 0x5F,
     SelectMii = 0x60,
-    ControllerBoxes = 0x61, // Activates ControllerRegister when activated
+    PlayerPad = 0x61, // Activates ControllerRegister when activated
     ControllerRegister = 0x62,
     ControllerRegisterInstructions = 0x63,
     ControllerRegisterComplete = 0x64,
@@ -215,6 +215,10 @@ enum class PageId {
     Ext_MinExclusive__ = 0xff,
 
     // Extensions go here {
+    // Do not explicitly assign values to prevent merge conflicts
+    PackSelect,
+    CourseDebug,
+    WU8Library,
     // }
 
     Ext_MaxExclusive__,

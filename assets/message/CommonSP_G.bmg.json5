@@ -1,8 +1,4 @@
 {
-    "10076": {
-        string: "Einstellungen",
-    },
-    "10072": {
-        string: "200ccm",
-    },
+    "10076": "Einstellungen",
+    "10072": "200ccm",
 }

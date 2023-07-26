@@ -1,962 +1,322 @@
 {
-    "2053": {
-        string: "Something went wrong when reading from\nor writing to the save.",
-    },
-    "3475": {
-        string: "Change settings for this licence.",
-    },
-    "10000": {
-        string: "Race Against 1 Ghost",
-    },
-    "10001": {
-        string: "Watch 1 Ghost",
-    },
-    "10002": {
-        string: "Race Against {arg integer|0 0} Ghosts",
-    },
-    "10003": {
-        string: "Watch {arg integer|0 0} Ghosts",
-    },
-    "10004": {
-        string: "HUD Labels",
-    },
-    "10005": {
-        string: "Hide",
-    },
-    "10006": {
-        string: "Show",
-    },
-    "10007": {
-        string: "Hide HUD control labels.",
-    },
-    "10008": {
-        string: "Show HUD control labels.",
-    },
-    "10009": {
-        string: "16:9 FOV",
-    },
-    "10010": {
-        string: "Default",
-    },
-    "10011": {
-        string: "Wider",
-    },
-    "10012": {
-        string: "Use the default field of view in 16:9 mode.",
-    },
-    "10013": {
-        string: "Use the wider 4:3 field of view in 16:9 mode.",
-    },
-    "10014": {
-        string: "Map Icons",
-    },
-    "10015": {
-        string: "Characters",
-    },
-    "10016": {
-        string: "Miis",
-    },
-    "10017": {
-        string: "Use characters as minimap icons.",
-    },
-    "10018": {
-        string: "Use Miis as minimap icons.",
-    },
-    "10019": {
-        string: "Ghost Sorting",
-    },
-    "10028": {
-        string: "Tag Visibility",
-    },
-    "10029": {
-        string: "None",
-    },
-    "10030": {
-        string: "Watched",
-    },
-    "10031": {
-        string: "All",
-    },
-    "10032": {
-        string: "Do not display any ghost tag.",
-    },
-    "10033": {
-        string: "Only display the tag of the watched ghost.",
-    },
-    "10034": {
-        string: "Display tags for all ghosts.",
-    },
-    "10035": {
-        string: "Tag Content",
-    },
-    "10036": {
-        string: "Name",
-    },
-    "10037": {
-        string: "Time",
-    },
-    "10038": {
-        string: "Date",
-    },
-    "10039": {
-        string: "Use the ghost name as the tag.",
-    },
-    "10040": {
-        string: "Use the ghost finish time as the tag.",
-    },
-    "10041": {
-        string: "Use the ghost creation date as the tag.",
-    },
-    "10042": {
-        string: "Solid Ghosts",
-    },
-    "10043": {
-        string: "Do not make any ghost solid.",
-    },
-    "10044": {
-        string: "Make the watched ghost solid.",
-    },
-    "10045": {
-        string: "Make all ghosts solid.",
-    },
-    "10046": {
-        string: "Play Time Trials with these rules.",
-    },
-    "10053": {
-        string: "Shortened Time",
-    },
-    "10054": {
-        string: "Time option without leading zeroes.",
-    },
-    "10055": {
-        string: "Gecko codes are UNSUPPORTED\nand will crash your game.\nPress A if you know what you are doing\nand do NOT report bugs.",
-    },
-    "10073": {
-        string: "Time Trials and more for one player!",
-    },
-    "10074": {
-        string: "Edit settings or change your Mii!",
-    },
-    "10078": {
-        string: "0.9x speed factor.",
-    },
-    "10079": {
-        string: "1.0x speed factor.",
-    },
-    "10080": {
-        string: "1.0x speed factor with mirrored courses.",
-    },
-    "10081": {
-        string: "1.5x speed factor with brake drifting and fast falling.",
-    },
-    "10082": {
-        string: "MKW-SP Options",
-    },
-    "10083": {
-        string: "Service Pack",
-    },
-    "10087": {
-        string: "Update",
-    },
-    "10088": {
-        string: "Channel",
-    },
-    "10089": {
-        string: "About",
-    },
-    "10090": {
-        string: "Installing the MKW-SP channel allows you\nto launch MKW-SP from the Wii Menu\nrather than from the Homebrew Channel\nor an exploit.\nUpdates will be kept in sync between the two.",
-    },
-    "10091": {
-        string: "Would you like to install\nthe MKW-SP channel?",
-    },
-    "10092": {
-        string: "An update to the MKW-SP channel\nis available. Would you like\nto install it?",
-    },
-    "10093": {
-        string: "The MKW-SP channel is already installed.",
-    },
-    "10094": {
-        string: "A newer version of the MKW-SP channel\nis already installed!",
-    },
-    "10095": {
-        string: "Installing the MKW-SP channel...",
-    },
-    "10096": {
-        string: "Updating the MKW-SP channel...",
-    },
-    "10097": {
-        string: "The MKW-SP channel was successfully\ninstalled!",
-    },
-    "10098": {
-        string: "The MKW-SP channel installation\nfailed!",
-    },
-    "10099": {
-        string: "The MKW-SP channel was successfully\nupdated!",
-    },
-    "10100": {
-        string: "The MKW-SP channel update failed!",
-    },
-    "10101": {
-        string: "The MKW-SP channel can only be\ninstalled from release builds!",
-    },
-    "10102": {
-        string: "Checking for updates...\n{arg message|0}",
-    },
-    "10103": {
-        string: "A new version of MKW-SP is available!\n{arg string|0} → {arg string|1}",
-    },
-    "10104": {
-        string: "The latest version of MKW-SP ({arg string|0})\nis already installed.",
-    },
-    "10105": {
-        string: "The MKW-SP update check failed!",
-    },
-    "10106": {
-        string: "Would you like to update MKW-SP to {arg string|0}?\nYou will need {arg string|1} MiB ({arg integer|0 0} blocks)\nof free space on the Wii System Memory.",
-    },
-    "10107": {
-        string: "Updating MKW-SP...\n{arg message|0}",
-    },
-    "10108": {
-        string: "MKW-SP was successfully updated\nfrom {arg string|0} to {arg string|1}.\nA restart is necessary for the update\nto be applied.",
-    },
-    "10109": {
-        string: "The MKW-SP update failed!",
-    },
-    "10110": {
-        string: "Would you like to restart MKW-SP now?",
-    },
-    "10111": {
-        string: "MKW-SP can only be updated\nfrom release builds!",
-    },
-    "10112": {
-        string: "Connecting to the server...",
-    },
-    "10113": {
-        string: "Sending version information...",
-    },
-    "10114": {
-        string: "Receiving version information...",
-    },
-    "10115": {
-        string: "Downloading contents...\n{arg string|0} MiB of {arg string|1} MiB - {arg string|2} MiB/s",
-    },
-    "10116": {
-        string: "Moving contents...",
-    },
-    "10118": {
-        string: "Race",
-    },
-    "10119": {
-        string: "Time Trials",
-    },
-    "10120": {
-        string: "Licence",
-    },
-    "10121": {
-        string: "Position Tracker",
-    },
-    "10122": {
-        string: "GP and VS",
-    },
-    "10123": {
-        string: "Always",
-    },
-    "10124": {
-        string: "Only show the position tracker in GP and VS.",
-    },
-    "10125": {
-        string: "Always show the position tracker.",
-    },
-    "10126": {
-        string: "Sound",
-    },
-    "10127": {
-        string: "Item Music",
-    },
-    "10128": {
-        string: "None",
-    },
-    "10129": {
-        string: "Shocked/Squashed Only",
-    },
-    "10130": {
-        string: "All",
-    },
-    "10131": {
-        string: "Do not let items affect the music.",
-    },
-    "10132": {
-        string: "Only apply the shocked/squashed music effect.",
-    },
-    "10133": {
-        string: "Let Stars, Mega Mushrooms and Lightnings affect the music.",
-    },
-    "10134": {
-        string: "Final Lap Jingle",
-    },
-    "10135": {
-        string: "Gameplay Only",
-    },
-    "10136": {
-        string: "Always",
-    },
-    "10137": {
-        string: "Use the final lap jingle for gameplay only.",
-    },
-    "10138": {
-        string: "Use the final lap jingle for gameplay and replays.",
-    },
-    "10139": {
-        string: "Final Lap Speedup",
-    },
-    "10140": {
-        string: "None",
-    },
-    "10141": {
-        string: "Static",
-    },
-    "10142": {
-        string: "Dynamic",
-    },
-    "10143": {
-        string: "Use the \"_N\" BRSTM on the final lap.",
-    },
-    "10144": {
-        string: "Use the \"_F\" BRSTM on the final lap.",
-    },
-    "10145": {
-        string: "Generate final lap music from the \"_N\" BRSTM.",
-    },
-    "10146": {
-        string: "Storage Benchmark",
-    },
-    "10147": {
-        string: "What device do you want to benchmark?",
-    },
-    "10148": {
-        string: "Benchmarking the {arg message|0} storage...\n{arg message|1}",
-    },
-    "10149": {
-        string: "The {arg message|0} storage benchmark succeeded.\n{arg integer|0 0} KiB: R {arg string|0} MiB/s - W {arg string|1} MiB/s\n{arg integer|1 0} KiB: R {arg string|2} MiB/s - W {arg string|3} MiB/s\n{arg integer|2 0} KiB: R {arg string|4} MiB/s - W {arg string|5} MiB/s\n{arg integer|3 0} KiB: R {arg string|6} MiB/s - W {arg string|7} MiB/s",
-    },
-    "10150": {
-        string: "The {arg message|0} storage benchmark failed!",
-    },
-    "10151": {
-        string: "Initializing...",
-    },
-    "10152": {
-        string: "Reading {arg integer|0 0} KiB chunks...",
-    },
-    "10153": {
-        string: "Writing {arg integer|0 0} KiB chunks...",
-    },
-    "10154": {
-        string: "SD card",
-    },
-    "10155": {
-        string: "SD card",
-    },
-    "10156": {
-        string: "USB",
-    },
-    "10157": {
-        string: "USB",
-    },
-    "10158": {
-        string: "Network",
-    },
-    "10159": {
-        string: "network",
-    },
-    "10160": {
-        string: "Missions",
-    },
-    "10161": {
-        string: "Play missions with various objectives.",
-    },
-    "10162": {
-        string: "Race {arg integer|0 0} {arg cond messages|0 10164 10165}",
-    },
-    "10163": {
-        string: "Watch {arg integer|0 0} {arg cond messages|0 10164 10165}",
-    },
-    "10164": {
-        string: "Ghost",
-    },
-    "10165": {
-        string: "Ghosts",
-    },
-    "10166": {
-        string: "Vanilla Mode",
-    },
-    "10167": {
-        string: "Disable",
-    },
-    "10168": {
-        string: "Enable",
-    },
-    "10169": {
-        string: "Allow all MKW-SP changes.",
-    },
-    "10170": {
-        string: "Disallow most MKW-SP changes.",
-    },
-    "10171": {
-        string: "Time",
-    },
-    "10172": {
-        string: "Date",
-    },
-    "10173": {
-        string: "Fastest Lap",
-    },
-    "10174": {
-        string: "Lap 2 Pace",
-    },
-    "10175": {
-        string: "Lap 3 Pace",
-    },
-    "10176": {
-        string: "Sort ghosts by their finish time.",
-    },
-    "10177": {
-        string: "Sort ghosts by their creation date.",
-    },
-    "10178": {
-        string: "Sort ghosts by their fastest lap.",
-    },
-    "10179": {
-        string: "Sort ghosts by their pace into lap 2.",
-    },
-    "10180": {
-        string: "Sort ghosts by their pace into lap 3.",
-    },
-    "10181": {
-        string: "The {arg message|0} storage benchmark succeeded.\nRank: {arg message|1}\n{arg integer|0 0} KiB: R {arg string|0} MiB/s - W {arg string|1} MiB/s\n{arg integer|1 0} KiB: R {arg string|2} MiB/s - W {arg string|3} MiB/s\n{arg integer|2 0} KiB: R {arg string|4} MiB/s - W {arg string|5} MiB/s\n{arg integer|3 0} KiB: R {arg string|6} MiB/s - W {arg string|7} MiB/s",
-    },
-    "10183": {
-        string: "Player Tags",
-    },
-    "10185": {
-        string: "Display at most {arg integer|0 0} {arg cond messages|0 10186 10187} at once.",
-    },
-    "10186": {
-        string: "tag",
-    },
-    "10187": {
-        string: "tags",
-    },
-    "10188": {
-        string: "Performance Overlay",
-    },
-    "10189": {
-        string: "Do not display CPU, GPU and memory bars.",
-    },
-    "10190": {
-        string: "Display CPU, GPU and memory bars.",
-    },
-    "10191": {
-        string: "GCN Rumble",
-    },
-    "10192": {
-        string: "Disable the rumble feature of the GCN controller.",
-    },
-    "10193": {
-        string: "Enable the rumble feature of the GCN controller.",
-    },
-    "10194": {
-        string: "Region Line Color",
-    },
-    "10195": {
-        string: "Red",
-    },
-    "10196": {
-        string: "Blue",
-    },
-    "10197": {
-        string: "Green",
-    },
-    "10198": {
-        string: "Yellow",
-    },
-    "10199": {
-        string: "White",
-    },
-    "10200": {
-        string: "Pink",
-    },
-    "10201": {
-        string: "The color of the line under your name will be {color|player 3}red{color|unspecified}.",
-    },
-    "10202": {
-        string: "The color of the line under your name will be {color|sp blue}blue{color|unspecified}.",
-    },
-    "10203": {
-        string: "The color of the line under your name will be {color|sp green}green{color|unspecified}.",
-    },
-    "10204": {
-        string: "The color of the line under your name will be {color|player 1}yellow{color|unspecified}.",
-    },
-    "10205": {
-        string: "The color of the line under your name will be white.",
-    },
-    "10206": {
-        string: "The color of the line under your name will be {color|sp pink}pink{color|unspecified}.",
-    },
-    "10207": {
-        string: "Team Size",
-    },
-    "10208": {
-        string: "FFA",
-    },
-    "10213": {
-        string: "Do not play in teams.",
-    },
-    "10214": {
-        string: "Limit the team size to 2 players.",
-    },
-    "10215": {
-        string: "Limit the team size to 3 players.",
-    },
-    "10216": {
-        string: "Limit the team size to 4 players.",
-    },
-    "10217": {
-        string: "Limit the team size to 6 players.",
-    },
-    "10218": {
-        string: "Random",
-    },
-    "10224": {
-        string: "Race Count",
-    },
-    "10226": {
-        string: "Play {arg integer|0 0} {arg cond messages|0 10282 10283}.",
-    },
-    "10227": {
-        string: "Course Selection",
-    },
-    "10228": {
-        string: "Random",
-    },
-    "10231": {
-        string: "Courses are picked at random.",
-    },
-    "10234": {
-        string: "Class",
-    },
-    "10235": {
-        string: "Mixed",
-    },
-    "10236": {
-        string: "150cc",
-    },
-    "10237": {
-        string: "Mirror",
-    },
-    "10238": {
-        string: "200cc",
-    },
-    "10239": {
-        string: "Races are 85% 150cc, 15% mirror.",
-    },
-    "10240": {
-        string: "Races are always 150cc.",
-    },
-    "10241": {
-        string: "Races are always mirror.",
-    },
-    "10242": {
-        string: "Races are always 200cc.",
-    },
-    "10243": {
-        string: "Vehicles",
-    },
-    "10244": {
-        string: "All",
-    },
-    "10245": {
-        string: "Karts",
-    },
-    "10246": {
-        string: "Bikes",
-    },
-    "10247": {
-        string: "Inside Drift",
-    },
-    "10248": {
-        string: "Outside Drift",
-    },
-    "10249": {
-        string: "Optimal",
-    },
-    "10250": {
-        string: "Random",
-    },
-    "10251": {
-        string: "Allow all vehicles.",
-    },
-    "10252": {
-        string: "Only allow karts.",
-    },
-    "10253": {
-        string: "Only allow bikes.",
-    },
-    "10254": {
-        string: "Only allow inside-drifting vehicles.",
-    },
-    "10255": {
-        string: "Only allow outside-drifting vehicles.",
-    },
-    "10256": {
-        string: "Only allow the optimal vehicle for each character.",
-    },
-    "10257": {
-        string: "Randomly choose a combination common to all players.",
-    },
-    "10260": {
-        string: "Courses are chosen individually.",
-    },
-    "10261": {
-        string: "Courses are played in order.",
-    },
-    "10262": {
-        string: "Offline VS",
-    },
-    "10263": {
-        string: "Color Palette",
-    },
-    "10264": {
-        string: "Vivid",
-    },
-    "10265": {
-        string: "Colorblind",
-    },
-    "10266": {
-        string: "Use the vivid palette for team colors.",
-    },
-    "10267": {
-        string: "Use the colorblind palette for team colors.",
-    },
-    "10268": {
-        string: "{color|player 3}Red Team",
-    },
-    "10269": {
-        string: "{color|sp blue}Blue Team",
-    },
-    "10270": {
-        string: "{color|sp green}Green Team",
-    },
-    "10271": {
-        string: "{color|player 1}Yellow Team",
-    },
-    "10272": {
-        string: "{color|sp pink}Pink Team",
-    },
-    "10273": {
-        string: "White Team",
-    },
-    "10274": {
-        string: "Teams are uneven.\n\nPlease choose again.",
-    },
-    "10282": {
-        string: "race",
-    },
-    "10283": {
-        string: "races",
-    },
-    "10296": {
-        string: "HUD Team Colors",
-    },
-    "10297": {
-        string: "Disable",
-    },
-    "10298": {
-        string: "Enable",
-    },
-    "10299": {
-        string: "Always use local player colors for HUD controls.",
-    },
-    "10300": {
-        string: "Use team colors for HUD controls.",
-    },
-    "10301": {
-        string: "Simplified Controls",
-    },
-    "10302": {
-        string: "Off",
-    },
-    "10303": {
-        string: "Non-Exclusive",
-    },
-    "10304": {
-        string: "Exclusive",
-    },
-    "10305": {
-        string: "Use the default controls only to trick or wheelie.",
-    },
-    "10306": {
-        string: "Use Y (GCN) or ZL (CC/CCP) to trick or wheelie.",
-    },
-    "10307": {
-        string: "Use Y (GCN) or ZL (CC/CCP) only to trick or wheelie.",
-    },
-    "10308": {
-        string: "Far Player Tags",
-    },
-    "10309": {
-        string: "Disable",
-    },
-    "10310": {
-        string: "Enable",
-    },
-    "10311": {
-        string: "Use the default render distance of player tags.",
-    },
-    "10312": {
-        string: "Increase the render distance of player tags.",
-    },
-    "10313": {
-        string: "Thumbnails",
-    },
-    "10314": {
-        string: "No track was found in the\n/mkw-sp/thumbnails folder.",
-    },
-    "10315": {
-        string: "Debug Overlay",
-    },
-    "10316": {
-        string: "Checkpoints",
-    },
-    "10317": {
-        string: "Disable",
-    },
-    "10318": {
-        string: "Enable",
-    },
-    "10319": {
-        string: "Don't display checkpoints.",
-    },
-    "10320": {
-        string: "Standard checkpoint overlay.",
-    },
-    "10321": {
-        string: "Speedometer",
-    },
-    "10322": {
-        string: "Internal + Moving Road",
-    },
-    "10323": {
-        string: "Internal",
-    },
-    "10324": {
-        string: "XYZ",
-    },
-    "10325": {
-        string: "XZ",
-    },
-    "10326": {
-        string: "Y",
-    },
-    "10327": {
-        string: "Speedometer displays the internal speed\nof the vehicle plus moving road.",
-    },
-    "10328": {
-        string: "Speedometer displays the internal speed of the vehicle.",
-    },
-    "10329": {
-        string: "Speedometer displays the speed the vehicle moves.",
-    },
-    "10330": {
-        string: "Speedometer displays the speed\nthe vehicle moves horizontally.",
-    },
-    "10331": {
-        string: "Speedometer displays the speed\nthe vehicle moves vertically.",
-    },
-    "10332": {
-        string: "Default",
-    },
-    "10333": {
-        string: "The color of the line under your name will be\ndetermined by the game.",
-    },
-    "10334": {
-        string: "Region and Country Flag",
-    },
-    "10335": {
-        string: "Do not display your flag and region information in-game.",
-    },
-    "10336": {
-        string: "Display your flag and region information in-game.",
-    },
-    "10337": {
-        string: "Don't Display",
-    },
-    "10338": {
-        string: "Display",
-    },
-    "10339": {
-        string: "Don't Display",
-    },
-    "10340": {
-        string: "Display",
-    },
-    "10341": {
-        string: "Panel",
-    },
-    "10342": {
-        string: "Disable",
-    },
-    "10343": {
-        string: "Player",
-    },
-    "10344": {
-        string: "Online",
-    },
-    "10345": {
-        string: "Do not show the debug panel.",
-    },
-    "10346": {
-        string: "Show player information on the debug panel.",
-    },
-    "10347": {
-        string: "Show online information on the debug panel.",
-    },
-    "10348": {
-        string: "Visual course.kcl",
-    },
-    "10349": {
-        string: "Off",
-    },
-    "10350": {
-        string: "Only show course_model.brres.",
-    },
-    "10351": {
-        string: "Overlay",
-    },
-    "10352": {
-        string: "Show on top of course_model.brres.",
-    },
-    "10353": {
-        string: "Replace Course Model",
-    },
-    "10354": {
-        string: "Hide course_model.brres.",
-    },
-    "10360": {
-        string: "Offline Battle",
-    },
-    "10361": {
-        string: "Races are always 50cc.",
-    },
-    "10362": {
-        string: "Races are always 100cc.",
-    },
-    "10365": {
-        string: "50cc",
-    },
-    "10366": {
-        string: "100cc",
-    },
-    "10367": {
-        string: "Minimap",
-    },
-    "10368": {
-        string: "Enable",
-    },
-    "10369": {
-        string: "Disable",
-    },
-    "10370": {
-        string: "Show the minimap on the HUD.",
-    },
-    "10371": {
-        string: "Do not show the minimap on the HUD.",
-    },
-    "10372": {
-        string: "Volume",
-    },
-    "10374": {
-        string: "Set the volume to {arg integer|0 0} / 10.",
-    },
-    "10375": {
-        string: "Music Volume",
-    },
-    "10377": {
-        string: "Set the music volume to {arg integer|0 0} / 10.",
-    },
-    "10378": {
-        string: "My Stuff",
-    },
-    "10379": {
-        string: "File Replacement",
-    },
-    "10380": {
-        string: "Off",
-    },
-    "10381": {
-        string: "BRSTMs Only",
-    },
-    "10382": {
-        string: "All",
-    },
-    "10383": {
-        string: "Do not allow any files to be replaced.",
-    },
-    "10384": {
-        string: "Allow '.brstm' files to be replaced.",
-    },
-    "10385": {
-        string: "Allow all files to be replaced.",
-    },
-    "10386": {
-        string: "FPS Mode",
-    },
-    "10387": {
-        string: "Vanilla",
-    },
-    "10388": {
-        string: "Force 60 FPS",
-    },
-    "10389": {
-        string: "Force 30 FPS",
-    },
-    "10390": {
-        string: "Uses 60fps, except in intensive scenes.",
-    },
-    "10391": {
-        string: "Forces 60fps, even in intensive scenes.",
-    },
-    "10392": {
-        string: "Forces 30fps, can help with Dolphin performance.",
-    },
-    "10393": {
-        string: "Choose the team size randomly.",
-    },
-    "10420": {
-        string: "Battle Count",
-    },
-    "10421": {
-        string: "Play {arg integer|0 0} {arg cond messages|0 10422 10423}.",
-    },
-    "10422": {
-        string: "battle",
-    },
-    "10423": {
-        string: "battles",
-    },
-    "10424": {
-        string: "Stage Selection",
-    },
-    "10425": {
-        string: "Stages are chosen individually.",
-    },
-    "10426": {
-        string: "Stages are picked at random.",
-    },
-    "10427": {
-        string: "Stages are played in order.",
-    },
+    "2053": "Something went wrong when reading from\nor writing to the save.",
+    "3475": "Change settings for this licence.",
+    "10000": "Race Against 1 Ghost",
+    "10001": "Watch 1 Ghost",
+    "10002": "Race Against {arg integer|0 0} Ghosts",
+    "10003": "Watch {arg integer|0 0} Ghosts",
+    "10004": "HUD Labels",
+    "10005": "Hide",
+    "10006": "Show",
+    "10007": "Hide HUD control labels.",
+    "10008": "Show HUD control labels.",
+    "10009": "16:9 FOV",
+    "10010": "Default",
+    "10011": "Wider",
+    "10012": "Use the default field of view in 16:9 mode.",
+    "10013": "Use the wider 4:3 field of view in 16:9 mode.",
+    "10014": "Map Icons",
+    "10015": "Characters",
+    "10016": "Miis",
+    "10017": "Use characters as minimap icons.",
+    "10018": "Use Miis as minimap icons.",
+    "10019": "Ghost Sorting",
+    "10028": "Tag Visibility",
+    "10029": "None",
+    "10030": "Watched",
+    "10031": "All",
+    "10032": "Do not display any ghost tag.",
+    "10033": "Only display the tag of the watched ghost.",
+    "10034": "Display tags for all ghosts.",
+    "10035": "Tag Content",
+    "10036": "Name",
+    "10037": "Time",
+    "10038": "Date",
+    "10039": "Use the ghost name as the tag.",
+    "10040": "Use the ghost finish time as the tag.",
+    "10041": "Use the ghost creation date as the tag.",
+    "10042": "Solid Ghosts",
+    "10043": "Do not make any ghost solid.",
+    "10044": "Make the watched ghost solid.",
+    "10045": "Make all ghosts solid.",
+    "10046": "Play Time Trials with these rules.",
+    "10053": "Shortened Time",
+    "10054": "Time option without leading zeroes.",
+    "10055": "Gecko codes are UNSUPPORTED\nand will crash your game.\nPress A if you know what you are doing\nand do NOT report bugs.",
+    "10073": "Time Trials and more for one player!",
+    "10074": "Edit settings or change your Mii!",
+    "10078": "0.9x speed factor.",
+    "10079": "1.0x speed factor.",
+    "10080": "1.0x speed factor with mirrored courses.",
+    "10081": "1.5x speed factor with brake drifting and fast falling.",
+    "10082": "MKW-SP Options",
+    "10083": "Service Pack",
+    "10087": "Update",
+    "10088": "Channel",
+    "10089": "About",
+    "10090": "Installing the MKW-SP channel allows you\nto launch MKW-SP from the Wii Menu\nrather than from the Homebrew Channel\nor an exploit.\nUpdates will be kept in sync between the two.",
+    "10091": "Would you like to install\nthe MKW-SP channel?",
+    "10092": "An update to the MKW-SP channel\nis available. Would you like\nto install it?",
+    "10093": "The MKW-SP channel is already installed.",
+    "10094": "A newer version of the MKW-SP channel\nis already installed!",
+    "10095": "Installing the MKW-SP channel...",
+    "10096": "Updating the MKW-SP channel...",
+    "10097": "The MKW-SP channel was successfully\ninstalled!",
+    "10098": "The MKW-SP channel installation\nfailed!",
+    "10099": "The MKW-SP channel was successfully\nupdated!",
+    "10100": "The MKW-SP channel update failed!",
+    "10101": "The MKW-SP channel can only be\ninstalled from release builds!",
+    "10102": "Checking for updates...\n{arg message|0}",
+    "10103": "A new version of MKW-SP is available!\n{arg string|0} → {arg string|1}",
+    "10104": "The latest version of MKW-SP ({arg string|0})\nis already installed.",
+    "10105": "The MKW-SP update check failed!",
+    "10106": "Would you like to update MKW-SP to {arg string|0}?\nYou will need {arg string|1} MiB ({arg integer|0 0} blocks)\nof free space on the Wii System Memory.",
+    "10107": "Updating MKW-SP...\n{arg message|0}",
+    "10108": "MKW-SP was successfully updated\nfrom {arg string|0} to {arg string|1}.\nA restart is necessary for the update\nto be applied.",
+    "10109": "The MKW-SP update failed!",
+    "10110": "Would you like to restart MKW-SP now?",
+    "10111": "MKW-SP can only be updated\nfrom release builds!",
+    "10112": "Connecting to the server...",
+    "10113": "Sending version information...",
+    "10114": "Receiving version information...",
+    "10115": "Downloading contents...\n{arg string|0} MiB of {arg string|1} MiB - {arg string|2} MiB/s",
+    "10116": "Moving contents...",
+    "10118": "Race",
+    "10119": "Time Trials",
+    "10120": "Licence",
+    "10121": "Position Tracker",
+    "10122": "GP and VS",
+    "10123": "Always",
+    "10124": "Only show the position tracker in GP and VS.",
+    "10125": "Always show the position tracker.",
+    "10126": "Sound",
+    "10127": "Item Music",
+    "10128": "None",
+    "10129": "Shocked/Squashed Only",
+    "10130": "All",
+    "10131": "Do not let items affect the music.",
+    "10132": "Only apply the shocked/squashed music effect.",
+    "10133": "Let Stars, Mega Mushrooms and Lightnings affect the music.",
+    "10134": "Final Lap Jingle",
+    "10135": "Gameplay Only",
+    "10136": "Always",
+    "10137": "Use the final lap jingle for gameplay only.",
+    "10138": "Use the final lap jingle for gameplay and replays.",
+    "10139": "Final Lap Speedup",
+    "10140": "None",
+    "10141": "Static",
+    "10142": "Dynamic",
+    "10143": "Use the \"_N\" BRSTM on the final lap.",
+    "10144": "Use the \"_F\" BRSTM on the final lap.",
+    "10145": "Generate final lap music from the \"_N\" BRSTM.",
+    "10146": "Storage Benchmark",
+    "10147": "What device do you want to benchmark?",
+    "10148": "Benchmarking the {arg message|0} storage...\n{arg message|1}",
+    "10149": "The {arg message|0} storage benchmark succeeded.\n{arg integer|0 0} KiB: R {arg string|0} MiB/s - W {arg string|1} MiB/s\n{arg integer|1 0} KiB: R {arg string|2} MiB/s - W {arg string|3} MiB/s\n{arg integer|2 0} KiB: R {arg string|4} MiB/s - W {arg string|5} MiB/s\n{arg integer|3 0} KiB: R {arg string|6} MiB/s - W {arg string|7} MiB/s",
+    "10150": "The {arg message|0} storage benchmark failed!",
+    "10151": "Initializing...",
+    "10152": "Reading {arg integer|0 0} KiB chunks...",
+    "10153": "Writing {arg integer|0 0} KiB chunks...",
+    "10154": "SD card",
+    "10155": "SD card",
+    "10156": "USB",
+    "10157": "USB",
+    "10158": "Network",
+    "10159": "network",
+    "10160": "Missions",
+    "10161": "Play missions with various objectives.",
+    "10162": "Race {arg integer|0 0} {arg cond messages|0 10164 10165}",
+    "10163": "Watch {arg integer|0 0} {arg cond messages|0 10164 10165}",
+    "10164": "Ghost",
+    "10165": "Ghosts",
+    "10166": "Vanilla Mode",
+    "10167": "Disable",
+    "10168": "Enable",
+    "10169": "Allow all MKW-SP changes.",
+    "10170": "Disallow most MKW-SP changes.",
+    "10171": "Time",
+    "10172": "Date",
+    "10173": "Fastest Lap",
+    "10174": "Lap 2 Pace",
+    "10175": "Lap 3 Pace",
+    "10176": "Sort ghosts by their finish time.",
+    "10177": "Sort ghosts by their creation date.",
+    "10178": "Sort ghosts by their fastest lap.",
+    "10179": "Sort ghosts by their pace into lap 2.",
+    "10180": "Sort ghosts by their pace into lap 3.",
+    "10181": "The {arg message|0} storage benchmark succeeded.\nRank: {arg message|1}\n{arg integer|0 0} KiB: R {arg string|0} MiB/s - W {arg string|1} MiB/s\n{arg integer|1 0} KiB: R {arg string|2} MiB/s - W {arg string|3} MiB/s\n{arg integer|2 0} KiB: R {arg string|4} MiB/s - W {arg string|5} MiB/s\n{arg integer|3 0} KiB: R {arg string|6} MiB/s - W {arg string|7} MiB/s",
+    "10183": "Player Tags",
+    "10185": "Display at most {arg integer|0 0} {arg cond messages|0 10186 10187} at once.",
+    "10186": "tag",
+    "10187": "tags",
+    "10188": "Performance Overlay",
+    "10189": "Do not display CPU, GPU and memory bars.",
+    "10190": "Display CPU, GPU and memory bars.",
+    "10191": "GCN Rumble",
+    "10192": "Disable the rumble feature of the GCN controller.",
+    "10193": "Enable the rumble feature of the GCN controller.",
+    "10194": "Region Line Color",
+    "10195": "Red",
+    "10196": "Blue",
+    "10197": "Green",
+    "10198": "Yellow",
+    "10199": "White",
+    "10200": "Pink",
+    "10201": "The color of the line under your name will be {color|player 3}red{color|unspecified}.",
+    "10202": "The color of the line under your name will be {color|sp blue}blue{color|unspecified}.",
+    "10203": "The color of the line under your name will be {color|sp green}green{color|unspecified}.",
+    "10204": "The color of the line under your name will be {color|player 1}yellow{color|unspecified}.",
+    "10205": "The color of the line under your name will be white.",
+    "10206": "The color of the line under your name will be {color|sp pink}pink{color|unspecified}.",
+    "10207": "Team Size",
+    "10208": "FFA",
+    "10213": "Do not play in teams.",
+    "10214": "Limit the team size to 2 players.",
+    "10215": "Limit the team size to 3 players.",
+    "10216": "Limit the team size to 4 players.",
+    "10217": "Limit the team size to 6 players.",
+    "10218": "Random",
+    "10224": "Race Count",
+    "10226": "Play {arg integer|0 0} {arg cond messages|0 10282 10283}.",
+    "10227": "Course Selection",
+    "10228": "Random",
+    "10231": "Courses are picked at random.",
+    "10234": "Class",
+    "10235": "Mixed",
+    "10236": "150cc",
+    "10237": "Mirror",
+    "10238": "200cc",
+    "10239": "Races are 85% 150cc, 15% mirror.",
+    "10240": "Races are always 150cc.",
+    "10241": "Races are always mirror.",
+    "10242": "Races are always 200cc.",
+    "10243": "Vehicles",
+    "10244": "All",
+    "10245": "Karts",
+    "10246": "Bikes",
+    "10247": "Inside Drift",
+    "10248": "Outside Drift",
+    "10249": "Optimal",
+    "10250": "Random",
+    "10251": "Allow all vehicles.",
+    "10252": "Only allow karts.",
+    "10253": "Only allow bikes.",
+    "10254": "Only allow inside-drifting vehicles.",
+    "10255": "Only allow outside-drifting vehicles.",
+    "10256": "Only allow the optimal vehicle for each character.",
+    "10257": "Randomly choose a combination common to all players.",
+    "10260": "Courses are chosen individually.",
+    "10261": "Courses are played in order.",
+    "10262": "Offline VS",
+    "10263": "Color Palette",
+    "10264": "Vivid",
+    "10265": "Colorblind",
+    "10266": "Use the vivid palette for team colors.",
+    "10267": "Use the colorblind palette for team colors.",
+    "10268": "{color|player 3}Red Team",
+    "10269": "{color|sp blue}Blue Team",
+    "10270": "{color|sp green}Green Team",
+    "10271": "{color|player 1}Yellow Team",
+    "10272": "{color|sp pink}Pink Team",
+    "10273": "White Team",
+    "10274": "Teams are uneven.\n\nPlease choose again.",
+    "10282": "race",
+    "10283": "races",
+    "10296": "HUD Team Colors",
+    "10297": "Disable",
+    "10298": "Enable",
+    "10299": "Always use local player colors for HUD controls.",
+    "10300": "Use team colors for HUD controls.",
+    "10301": "Simplified Controls",
+    "10302": "Off",
+    "10303": "Non-Exclusive",
+    "10304": "Exclusive",
+    "10305": "Use the default controls only to trick or wheelie.",
+    "10306": "Use Y (GCN) or ZL (CC/CCP) to trick or wheelie.",
+    "10307": "Use Y (GCN) or ZL (CC/CCP) only to trick or wheelie.",
+    "10308": "Far Player Tags",
+    "10309": "Disable",
+    "10310": "Enable",
+    "10311": "Use the default render distance of player tags.",
+    "10312": "Increase the render distance of player tags.",
+    "10313": "Thumbnails",
+    "10314": "No track was found in the\n/mkw-sp/thumbnails folder.",
+    "10315": "Debug Overlay",
+    "10316": "Checkpoints",
+    "10317": "Disable",
+    "10318": "Enable",
+    "10319": "Don't display checkpoints.",
+    "10320": "Standard checkpoint overlay.",
+    "10321": "Speedometer",
+    "10322": "Internal + Moving Road",
+    "10323": "Internal",
+    "10324": "XYZ",
+    "10325": "XZ",
+    "10326": "Y",
+    "10327": "Speedometer displays the internal speed\nof the vehicle plus moving road.",
+    "10328": "Speedometer displays the internal speed of the vehicle.",
+    "10329": "Speedometer displays the speed the vehicle moves.",
+    "10330": "Speedometer displays the speed\nthe vehicle moves horizontally.",
+    "10331": "Speedometer displays the speed\nthe vehicle moves vertically.",
+    "10332": "Default",
+    "10333": "The color of the line under your name will be\ndetermined by the game.",
+    "10334": "Region and Country Flag",
+    "10335": "Do not display your flag and region information in-game.",
+    "10336": "Display your flag and region information in-game.",
+    "10337": "Don't Display",
+    "10338": "Display",
+    "10339": "Don't Display",
+    "10340": "Display",
+    "10341": "Panel",
+    "10342": "Disable",
+    "10343": "Player",
+    "10344": "Online",
+    "10345": "Do not show the debug panel.",
+    "10346": "Show player information on the debug panel.",
+    "10347": "Show online information on the debug panel.",
+    "10348": "Visual course.kcl",
+    "10349": "Off",
+    "10350": "Only show course_model.brres.",
+    "10351": "Overlay",
+    "10352": "Show on top of course_model.brres.",
+    "10353": "Replace Course Model",
+    "10354": "Hide course_model.brres.",
+    "10360": "Offline Battle",
+    "10361": "Races are always 50cc.",
+    "10362": "Races are always 100cc.",
+    "10365": "50cc",
+    "10366": "100cc",
+    "10367": "Minimap",
+    "10368": "Enable",
+    "10369": "Disable",
+    "10370": "Show the minimap on the HUD.",
+    "10371": "Do not show the minimap on the HUD.",
+    "10372": "Volume",
+    "10374": "Set the volume to {arg integer|0 0} / 10.",
+    "10375": "Music Volume",
+    "10377": "Set the music volume to {arg integer|0 0} / 10.",
+    "10378": "My Stuff",
+    "10379": "File Replacement",
+    "10380": "Off",
+    "10381": "BRSTMs Only",
+    "10382": "All",
+    "10383": "Do not allow any files to be replaced.",
+    "10384": "Allow '.brstm' files to be replaced.",
+    "10385": "Allow all files to be replaced.",
+    "10386": "FPS Mode",
+    "10387": "Vanilla",
+    "10388": "Force 60 FPS",
+    "10389": "Force 30 FPS",
+    "10390": "Uses 60fps, except in intensive scenes.",
+    "10391": "Forces 60fps, even in intensive scenes.",
+    "10392": "Forces 30fps, can help with Dolphin performance.",
+    "10393": "Choose the team size randomly.",
+    "10420": "Battle Count",
+    "10421": "Play {arg integer|0 0} {arg cond messages|0 10422 10423}.",
+    "10422": "battle",
+    "10423": "battles",
+    "10424": "Stage Selection",
+    "10425": "Stages are chosen individually.",
+    "10426": "Stages are picked at random.",
+    "10427": "Stages are played in order.",
 }

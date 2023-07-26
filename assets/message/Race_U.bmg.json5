@@ -1,169 +1,59 @@
 {
-    "1000": {
-        string: "",
-    },
-    "1001": {
-        string: "Continue",
-    },
-    "1002": {
-        string: "Quit",
-    },
-    "1003": {
-        string: "Continue Game",
-    },
-    "1004": {
-        string: "Quit Game",
-    },
-    "1005": {
-        string: "Change Course",
-    },
-    "1006": {
-        string: "Change Character",
-    },
-    "1007": {
-        string: "Restart",
-    },
-    "1008": {
-        string: "Choose a Mission",
-    },
-    "1009": {
-        string: "Next Race",
-    },
-    "1010": {
-        string: "Next",
-    },
-    "1011": {
-        string: "Retry",
-    },
-    "1012": {
-        string: "View Replay",
-    },
-    "1013": {
-        string: "Continue Replay",
-    },
-    "1014": {
-        string: "Restart Replay",
-    },
-    "1015": {
-        string: "Check Rankings",
-    },
-    "1016": {
-        string: "Check Ghost List",
-    },
-    "1017": {
-        string: null,
-    },
-    "1018": {
-        string: "Next Ghost",
-    },
-    "1019": {
-        string: null,
-    },
-    "1020": {
-        string: "Nintendo WFC Menu",
-    },
-    "1021": {
-        string: "Quit Replay",
-    },
-    "1022": {
-        string: "Start Race",
-    },
-    "1023": {
-        string: "Next Race",
-    },
-    "1024": {
-        string: "Next Battle",
-    },
-    "1025": {
-        string: "Please wait a moment...",
-    },
-    "1026": {
-        string: "Change Ghost",
-    },
-    "1027": {
-        string: "Race This Ghost",
-    },
-    "1028": {
-        string: "Continue Replay",
-    },
-    "1029": {
-        string: "Quit Replay",
-    },
-    "1030": {
-        string: "Restart Replay",
-    },
-    "1031": {
-        string: "The next match might\nhave {arg integer|0 0} players.",
-    },
-    "1032": {
-        string: "Send Your Record",
-    },
-    "1033": {
-        string: "",
-    },
-    "1101": {
-        string: "Are you sure you want to quit?",
-    },
-    "1102": {
-        string: "Moving to Mario Kart\nChannel rankings.\nIs this OK?",
-    },
-    "1103": {
-        string: "OK",
-    },
-    "1104": {
-        string: null,
-    },
-    "1105": {
-        string: "Congratulations!\nYou beat {arg player|0}'s ghost!\n\nDo you want to send your ghost\nto {arg player|0}?",
-    },
-    "1106": {
-        string: "Send",
-    },
-    "1107": {
-        string: "Don't Send",
-    },
-    "1108": {
-        string: "Yes",
-    },
-    "1109": {
-        string: "No",
-    },
-    "1110": {
-        string: "",
-    },
-    "1111": {
-        string: "Go to your friend roster?",
-    },
-    "1112": {
-        string: "Send your record? (This can\nbe done multiple times\nduring a tournament period.)",
-    },
-    "1113": {
-        string: "Forfeit this match and\nplay the next ghost?",
-    },
-    "1114": {
-        string: "Forfeit this match\nand return to the\nmain menu?",
-    },
-    "1115": {
-        string: "A ghost has been created for {current player|}!",
-    },
-    "1116": {
-        string: "Unable to create a ghost.",
-    },
-    "1117": {
-        string: "Unable to send a ghost challenge.",
-    },
-    "1118": {
-        string: "Return to the Courses\nscreen?",
-    },
-    "1119": {
-        string: "Unable to create a ghost.",
-    },
-    "1120": {
-        string: "",
-    },
-    "1121": {
-        string: "A fast staff ghost has appeared!",
-    },
+    "1000": "",
+    "1001": "Continue",
+    "1002": "Quit",
+    "1003": "Continue Game",
+    "1004": "Quit Game",
+    "1005": "Change Course",
+    "1006": "Change Character",
+    "1007": "Restart",
+    "1008": "Choose a Mission",
+    "1009": "Next Race",
+    "1010": "Next",
+    "1011": "Retry",
+    "1012": "View Replay",
+    "1013": "Continue Replay",
+    "1014": "Restart Replay",
+    "1015": "Check Rankings",
+    "1016": "Check Ghost List",
+    "1017": null,
+    "1018": "Next Ghost",
+    "1019": null,
+    "1020": "Nintendo WFC Menu",
+    "1021": "Quit Replay",
+    "1022": "Start Race",
+    "1023": "Next Race",
+    "1024": "Next Battle",
+    "1025": "Please wait a moment...",
+    "1026": "Change Ghost",
+    "1027": "Race This Ghost",
+    "1028": "Continue Replay",
+    "1029": "Quit Replay",
+    "1030": "Restart Replay",
+    "1031": "The next match might\nhave {arg integer|0 0} players.",
+    "1032": "Send Your Record",
+    "1033": "",
+    "1101": "Are you sure you want to quit?",
+    "1102": "Moving to Mario Kart\nChannel rankings.\nIs this OK?",
+    "1103": "OK",
+    "1104": null,
+    "1105": "Congratulations!\nYou beat {arg player|0}'s ghost!\n\nDo you want to send your ghost\nto {arg player|0}?",
+    "1106": "Send",
+    "1107": "Don't Send",
+    "1108": "Yes",
+    "1109": "No",
+    "1110": "",
+    "1111": "Go to your friend roster?",
+    "1112": "Send your record? (This can\nbe done multiple times\nduring a tournament period.)",
+    "1113": "Forfeit this match and\nplay the next ghost?",
+    "1114": "Forfeit this match\nand return to the\nmain menu?",
+    "1115": "A ghost has been created for {current player|}!",
+    "1116": "Unable to create a ghost.",
+    "1117": "Unable to send a ghost challenge.",
+    "1118": "Return to the Courses\nscreen?",
+    "1119": "Unable to create a ghost.",
+    "1120": "",
+    "1121": "A fast staff ghost has appeared!",
     "1201": {
         string: "3",
         font: "caps",
@@ -192,362 +82,126 @@
         string: "YOU LOSE",
         font: "caps",
     },
-    "1208": {
-        string: null,
-    },
-    "1209": {
-        string: null,
-    },
-    "1210": {
-        string: "Congratulations!",
-    },
+    "1208": null,
+    "1209": null,
+    "1210": "Congratulations!",
     "1211": {
         string: "NEW RECORD!",
         font: "caps",
     },
-    "1212": {
-        string: "Record",
-    },
-    "1213": {
-        string: "Best Lap",
-    },
-    "1214": {
-        string: "{color|team red}The red team wins!",
-    },
-    "1215": {
-        string: "{color|team blue}The blue team wins!",
-    },
-    "1216": {
-        string: "{color|team red}The red team wins!",
-    },
-    "1217": {
-        string: "{color|team blue}The blue team wins!",
-    },
-    "1218": {
-        string: "Tie",
-    },
-    "1219": {
-        string: "You got 1st place!",
-    },
-    "1220": {
-        string: "You got 2nd place!",
-    },
-    "1221": {
-        string: "You got 3rd place!",
-    },
-    "1222": {
-        string: "Better luck next time!",
-    },
-    "1223": {
-        string: "{color|team red}The red team lost.",
-    },
-    "1224": {
-        string: "{color|team blue}The blue team lost.",
-    },
-    "1225": {
-        string: "{color|team red}The red team lost.",
-    },
-    "1226": {
-        string: "{color|team blue}The blue team lost.",
-    },
-    "1227": {
-        string: "",
-    },
-    "1301": {
-        string: "1st",
-    },
-    "1302": {
-        string: "2nd",
-    },
-    "1303": {
-        string: "3rd",
-    },
-    "1304": {
-        string: "4th",
-    },
-    "1305": {
-        string: "5th",
-    },
-    "1306": {
-        string: "6th",
-    },
-    "1307": {
-        string: "7th",
-    },
-    "1308": {
-        string: "8th",
-    },
-    "1309": {
-        string: "9th",
-    },
-    "1310": {
-        string: "10th",
-    },
-    "1311": {
-        string: "11th",
-    },
-    "1312": {
-        string: "12th",
-    },
-    "1313": {
-        string: "{arg cond messages|0 1316 1317}",
-    },
-    "1314": {
-        string: "{arg integer|0 0}",
-    },
-    "1315": {
-        string: "{arg signed integer|0 0}",
-    },
-    "1316": {
-        string: "pt",
-    },
-    "1317": {
-        string: "pts",
-    },
-    "1318": {
-        string: "{arg cond messages|0 1319 1320}",
-    },
-    "1319": {
-        string: "{color|team red}win",
-    },
-    "1320": {
-        string: "{color|team red}wins",
-    },
-    "1321": {
-        string: "{arg cond messages|0 1322 1323}",
-    },
-    "1322": {
-        string: "{color|team blue}win",
-    },
-    "1323": {
-        string: "{color|team blue}wins",
-    },
-    "1324": {
-        string: "{arg cond messages|0 1325 1326}",
-    },
-    "1325": {
-        string: "{color|team red}pt",
-    },
-    "1326": {
-        string: "{color|team red}pts",
-    },
-    "1327": {
-        string: "{arg cond messages|0 1328 1329}",
-    },
-    "1328": {
-        string: "{color|team blue}pt",
-    },
-    "1329": {
-        string: "{color|team blue}pts",
-    },
-    "1330": {
-        string: "Ghost Race Wins: {arg integer|0 0} Losses: {arg integer|1 0}",
-    },
-    "1331": {
-        string: "Ghost Race Wins: {arg integer|0 0} Losses: {arg integer|1 0}",
-    },
-    "1332": {
-        string: "{color|team red}{arg message|0}",
-    },
-    "1333": {
-        string: "{color|team blue}{arg message|0}",
-    },
-    "1334": {
-        string: "TIME",
-    },
-    "1335": {
-        string: "LAP",
-    },
-    "1336": {
-        string: "SCORE",
-    },
-    "1337": {
-        string: "LIVE",
-    },
-    "1338": {
-        string: "You will join the next race\n({arg integer|0 0} players).\nPlease wait a moment.",
-    },
-    "1339": {
-        string: "You will join the next battle\n({arg integer|0 0} players).\nPlease wait a moment.",
-    },
-    "1340": {
-        string: "\nThe rankings have been\ndetermined, so the race has ended.",
-    },
-    "1341": {
-        string: "\nFive minutes have passed, so\nthe race has ended.",
-    },
-    "1342": {
-        string: "\nThirty seconds have passed since the leader\ncrossed the finish line, so the race has ended.",
-    },
-    "1343": {
-        string: "VR",
-    },
-    "1344": {
-        string: "BR",
-    },
-    "1345": {
-        string: "{1 char|}",
-    },
-    "1400": {
-        string: "{arg integer|0 2}:{arg integer|1 2}.{arg integer|2 3}",
-    },
-    "1401": {
-        string: "--:--.---",
-    },
-    "1402": {
-        string: ":",
-    },
-    "1403": {
-        string: ".",
-    },
-    "1404": {
-        string: "",
-    },
-    "1409": {
-        string: "{arg message|0} Team VS Race {arg integer|0 0}/{arg integer|1 0}",
-    },
-    "1410": {
-        string: "{arg message|0} {arg message|1} 1st Race",
-    },
-    "1411": {
-        string: "{arg message|0} {arg message|1} 2nd Race",
-    },
-    "1412": {
-        string: "{arg message|0} {arg message|1} 3rd Race",
-    },
-    "1413": {
-        string: "{arg message|0} {arg message|1} Final Race",
-    },
-    "1414": {
-        string: "{arg message|0} VS {arg integer|0 0}/{arg integer|1 0}",
-    },
-    "1415": {
-        string: "Balloon Battle",
-    },
-    "1416": {
-        string: "Coin Runners",
-    },
-    "1417": {
-        string: "50cc",
-    },
-    "1418": {
-        string: "100cc",
-    },
-    "1419": {
-        string: "150cc",
-    },
-    "1420": {
-        string: "Mirror",
-    },
-    "1421": {
-        string: "{arg message|0} {arg message|1}",
-    },
-    "1422": {
-        string: "{arg message|0} VS",
-    },
-    "1423": {
-        string: "RANK:",
-    },
-    "1424": {
-        string: "{1 char|}",
-    },
-    "1425": {
-        string: "{1 char|}",
-    },
-    "1426": {
-        string: "{1 char|}",
-    },
-    "1427": {
-        string: "{1 char|}",
-    },
-    "1428": {
-        string: "{1 char|}",
-    },
-    "1429": {
-        string: "{1 char|}",
-    },
-    "1430": {
-        string: "{1 char|}",
-    },
-    "1431": {
-        string: "{1 char|}",
-    },
-    "1432": {
-        string: "F",
-    },
-    "1433": {
-        string: "{arg message|0} VS Race",
-    },
-    "1434": {
-        string: "{arg message|0} Team VS Race",
-    },
-    "1435": {
-        string: "{arg message|0} Team VS Match",
-    },
-    "1436": {
-        string: null,
-    },
-    "1437": {
-        string: null,
-    },
-    "1438": {
-        string: null,
-    },
-    "1439": {
-        string: null,
-    },
-    "1440": {
-        string: "{arg message|0} VS {arg message|1}",
-    },
-    "1441": {
-        string: "{arg message|2}{arg message|0} VS Race 1st Race",
-    },
-    "1442": {
-        string: "{arg message|2}{arg message|0} VS Race 2nd Race",
-    },
-    "1443": {
-        string: "{arg message|2}{arg message|0} VS Race 3rd Race",
-    },
-    "1444": {
-        string: "{arg message|2}{arg message|0} VS Race Final Race",
-    },
-    "1445": {
-        string: "{arg message|2}Balloon Battle",
-    },
-    "1446": {
-        string: "{arg message|2}Coin Runners",
-    },
-    "1447": {
-        string: "({arg integer|0 0} players)",
-    },
-    "1448": {
-        string: "",
-    },
-    "1449": {
-        string: "{color|team red}",
-    },
-    "1450": {
-        string: "{color|team blue}",
-    },
-    "1451": {
-        string: "",
-    },
-    "1500": {
-        string: "Use Item",
-    },
-    "1501": {
-        string: "Steer",
-    },
-    "1502": {
-        string: "Accelerate",
-    },
-    "1503": {
-        string: "Brake/Drift",
-    },
-    "1504": {
-        string: "Brake",
-    },
-    "1505": {
-        string: "",
-    },
+    "1212": "Record",
+    "1213": "Best Lap",
+    "1214": "{color|team red}The red team wins!",
+    "1215": "{color|team blue}The blue team wins!",
+    "1216": "{color|team red}The red team wins!",
+    "1217": "{color|team blue}The blue team wins!",
+    "1218": "Tie",
+    "1219": "You got 1st place!",
+    "1220": "You got 2nd place!",
+    "1221": "You got 3rd place!",
+    "1222": "Better luck next time!",
+    "1223": "{color|team red}The red team lost.",
+    "1224": "{color|team blue}The blue team lost.",
+    "1225": "{color|team red}The red team lost.",
+    "1226": "{color|team blue}The blue team lost.",
+    "1227": "",
+    "1301": "1st",
+    "1302": "2nd",
+    "1303": "3rd",
+    "1304": "4th",
+    "1305": "5th",
+    "1306": "6th",
+    "1307": "7th",
+    "1308": "8th",
+    "1309": "9th",
+    "1310": "10th",
+    "1311": "11th",
+    "1312": "12th",
+    "1313": "{arg cond messages|0 1316 1317}",
+    "1314": "{arg integer|0 0}",
+    "1315": "{arg signed integer|0 0}",
+    "1316": "pt",
+    "1317": "pts",
+    "1318": "{arg cond messages|0 1319 1320}",
+    "1319": "{color|team red}win",
+    "1320": "{color|team red}wins",
+    "1321": "{arg cond messages|0 1322 1323}",
+    "1322": "{color|team blue}win",
+    "1323": "{color|team blue}wins",
+    "1324": "{arg cond messages|0 1325 1326}",
+    "1325": "{color|team red}pt",
+    "1326": "{color|team red}pts",
+    "1327": "{arg cond messages|0 1328 1329}",
+    "1328": "{color|team blue}pt",
+    "1329": "{color|team blue}pts",
+    "1330": "Ghost Race Wins: {arg integer|0 0} Losses: {arg integer|1 0}",
+    "1331": "Ghost Race Wins: {arg integer|0 0} Losses: {arg integer|1 0}",
+    "1332": "{color|team red}{arg message|0}",
+    "1333": "{color|team blue}{arg message|0}",
+    "1334": "TIME",
+    "1335": "LAP",
+    "1336": "SCORE",
+    "1337": "LIVE",
+    "1338": "You will join the next race\n({arg integer|0 0} players).\nPlease wait a moment.",
+    "1339": "You will join the next battle\n({arg integer|0 0} players).\nPlease wait a moment.",
+    "1340": "\nThe rankings have been\ndetermined, so the race has ended.",
+    "1341": "\nFive minutes have passed, so\nthe race has ended.",
+    "1342": "\nThirty seconds have passed since the leader\ncrossed the finish line, so the race has ended.",
+    "1343": "VR",
+    "1344": "BR",
+    "1345": "{1 char|}",
+    "1400": "{arg integer|0 2}:{arg integer|1 2}.{arg integer|2 3}",
+    "1401": "--:--.---",
+    "1402": ":",
+    "1403": ".",
+    "1404": "",
+    "1409": "{arg message|0} Team VS Race {arg integer|0 0}/{arg integer|1 0}",
+    "1410": "{arg message|0} {arg message|1} 1st Race",
+    "1411": "{arg message|0} {arg message|1} 2nd Race",
+    "1412": "{arg message|0} {arg message|1} 3rd Race",
+    "1413": "{arg message|0} {arg message|1} Final Race",
+    "1414": "{arg message|0} VS {arg integer|0 0}/{arg integer|1 0}",
+    "1415": "Balloon Battle",
+    "1416": "Coin Runners",
+    "1417": "50cc",
+    "1418": "100cc",
+    "1419": "150cc",
+    "1420": "Mirror",
+    "1421": "{arg message|0} {arg message|1}",
+    "1422": "{arg message|0} VS",
+    "1423": "RANK:",
+    "1424": "{1 char|}",
+    "1425": "{1 char|}",
+    "1426": "{1 char|}",
+    "1427": "{1 char|}",
+    "1428": "{1 char|}",
+    "1429": "{1 char|}",
+    "1430": "{1 char|}",
+    "1431": "{1 char|}",
+    "1432": "F",
+    "1433": "{arg message|0} VS Race",
+    "1434": "{arg message|0} Team VS Race",
+    "1435": "{arg message|0} Team VS Match",
+    "1436": null,
+    "1437": null,
+    "1438": null,
+    "1439": null,
+    "1440": "{arg message|0} VS {arg message|1}",
+    "1441": "{arg message|2}{arg message|0} VS Race 1st Race",
+    "1442": "{arg message|2}{arg message|0} VS Race 2nd Race",
+    "1443": "{arg message|2}{arg message|0} VS Race 3rd Race",
+    "1444": "{arg message|2}{arg message|0} VS Race Final Race",
+    "1445": "{arg message|2}Balloon Battle",
+    "1446": "{arg message|2}Coin Runners",
+    "1447": "({arg integer|0 0} players)",
+    "1448": "",
+    "1449": "{color|team red}",
+    "1450": "{color|team blue}",
+    "1451": "",
+    "1500": "Use Item",
+    "1501": "Steer",
+    "1502": "Accelerate",
+    "1503": "Brake/Drift",
+    "1504": "Brake",
+    "1505": "",
 }
