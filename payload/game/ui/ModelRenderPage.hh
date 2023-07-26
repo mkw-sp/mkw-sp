@@ -1,12 +1,17 @@
 #pragma once
 
 #include "game/ui/Page.hh"
+#include "game/util/Registry.hh"
 
 namespace UI {
 
 class ModelRenderPage : public Page {
 public:
     void REPLACE onInit() override;
+
+    void configure(u32 localPlayerId, bool r5, bool r6);
+    void setCharacterId(u32 localPlayerId, Registry::Character characterId);
+    void setVehicleId(u32 localPlayerId, Registry::Vehicle vehicleId);
 
     static u8 determineModelCount(SectionId sectionId);
 
