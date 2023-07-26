@@ -77,9 +77,15 @@ void SaveManager::initSPSave() {
     char iniBuffer[2048];
 
     for (m_spLicenseCount = 0; m_spLicenseCount < std::size(m_spLicenses);) {
-        wchar_t path[64];
-        swprintf(path, std::size(path), L"/mkw-sp/settings%u.ini", m_spLicenseCount);
+        wchar_t path[64], pathOld[64];
+        swprintf(pathOld, std::size(pathOld), L"/mkw-sp/settings%u.ini", m_spLicenseCount);
+        swprintf(path, std::size(path), L"/mkw-sp/licenses/slot%u.ini", m_spLicenseCount);
 
+        bool oldLicenseExists = static_cast<bool>(SP::Storage::Open(pathOld, "r"));
+        if (oldLicenseExists) {
+            SP::Storage::CreateDir(L"/mkw-sp/licenses", true);
+            SP::Storage::Rename(pathOld, path);
+        }
         auto size = SP::Storage::ReadFile(path, iniBuffer, sizeof(iniBuffer));
         if (!size) {
             break;
@@ -237,7 +243,7 @@ void SaveManager::saveSPSave() {
         m_spLicenses[i].writeIni(iniBuffer, sizeof(iniBuffer));
 
         wchar_t path[64];
-        swprintf(path, std::size(path), L"/mkw-sp/settings%u.ini", (unsigned)i);
+        swprintf(path, std::size(path), L"/mkw-sp/licenses/slot%u.ini", (unsigned)i);
 
         if (!SP::Storage::WriteFile(path, iniBuffer, strlen(iniBuffer), true)) {
             SP_LOG("Failed to save %ls", path);
@@ -250,7 +256,7 @@ void SaveManager::saveSPSave() {
 
     for (size_t i = m_spLicenseCount; i < 6; ++i) {
         wchar_t path[64];
-        swprintf(path, std::size(path), L"/mkw-sp/settings%u.ini", (unsigned)i);
+        swprintf(path, std::size(path), L"/mkw-sp/licenses/slot%u.ini", (unsigned)i);
 
         if (!SP::Storage::Remove(path, true)) {
             SP_LOG("Failed to delete %ls", path);
