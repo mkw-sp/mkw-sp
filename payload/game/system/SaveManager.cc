@@ -83,7 +83,6 @@ void SaveManager::initSPSave() {
 
         auto oldLicenseExists = SP::Storage::Open(pathOld, "r");
         if (oldLicenseExists) {
-            delete &oldLicenseExists;
             SP::Storage::CreateDir(L"/mkw-sp/licenses", true);
             SP::Storage::Rename(pathOld, path);
         }
