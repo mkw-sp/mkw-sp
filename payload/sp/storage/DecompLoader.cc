@@ -61,8 +61,8 @@ static std::optional<FileHandle> Open(const char *path, std::optional<StorageTyp
     }
 
     size_t length = strlen(path);
-    if (!strncmp(path, "ro:/", strlen("ro:/")) && length >= strlen(".szs") &&
-            !strcmp(path + length - strlen(".szs"), ".szs")) {
+    std::string_view pathSv(path, length);
+    if (pathSv.starts_with("ro:/") && pathSv.ends_with(".szs")) {
         wchar_t testPath[128];
         std::optional<FileHandle> file;
 
