@@ -86,7 +86,6 @@ void SaveManager::initSPSave() {
             oldLicenseExists->~FileHandle();
             SP::Storage::CreateDir(L"/mkw-sp/licenses", true);
             SP::Storage::Rename(path_old, path);
-            SP::Storage::Remove(path_old, false);
         }
         auto size = SP::Storage::ReadFile(path, iniBuffer, sizeof(iniBuffer));
         if (!size) {
