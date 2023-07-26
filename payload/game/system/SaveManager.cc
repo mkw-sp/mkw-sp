@@ -77,15 +77,15 @@ void SaveManager::initSPSave() {
     char iniBuffer[2048];
 
     for (m_spLicenseCount = 0; m_spLicenseCount < std::size(m_spLicenses);) {
-        wchar_t path[64], path_old[64];
-        swprintf(path_old, std::size(path_old), L"/mkw-sp/settings%u.ini", m_spLicenseCount);
+        wchar_t path[64], pathOld[64];
+        swprintf(pathOld, std::size(pathOld), L"/mkw-sp/settings%u.ini", m_spLicenseCount);
         swprintf(path, std::size(path), L"/mkw-sp/licenses/slot%u.ini", m_spLicenseCount);
 
-        auto oldLicenseExists = SP::Storage::Open(path_old, "r");
+        auto oldLicenseExists = SP::Storage::Open(pathOld, "r");
         if (oldLicenseExists) {
-            oldLicenseExists->~FileHandle();
+            delete oldLicenseExists;
             SP::Storage::CreateDir(L"/mkw-sp/licenses", true);
-            SP::Storage::Rename(path_old, path);
+            SP::Storage::Rename(pathOld, path);
         }
         auto size = SP::Storage::ReadFile(path, iniBuffer, sizeof(iniBuffer));
         if (!size) {
