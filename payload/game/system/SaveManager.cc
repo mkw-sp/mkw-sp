@@ -257,7 +257,7 @@ void SaveManager::saveSPSave() {
 
     for (size_t i = m_spLicenseCount; i < 6; ++i) {
         wchar_t path[64];
-        swprintf(path, std::size(path), L"/mkw-sp/slot%u.ini", (unsigned)i);
+        swprintf(path, std::size(path), L"/mkw-sp/licenses/slot%u.ini", (unsigned)i);
 
         if (!SP::Storage::Remove(path, true)) {
             SP_LOG("Failed to delete %ls", path);
