@@ -8,7 +8,7 @@ namespace UI {
 class TimeAttackSplitsPage : public Page {
 public:
     TimeAttackSplitsPage();
-    virtual ~TimeAttackSplitsPage();
+    ~TimeAttackSplitsPage() override;
 
     TimeAttackSplitsPage *REPLACED(ct)();
     REPLACE TimeAttackSplitsPage *ct();

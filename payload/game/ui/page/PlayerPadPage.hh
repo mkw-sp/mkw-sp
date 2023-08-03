@@ -7,8 +7,8 @@ namespace UI {
 class PlayerPadPage : public Page {
 public:
     PlayerPadPage();
-    virtual ~PlayerPadPage();
-    virtual void dt(s32 type) override;
+    ~PlayerPadPage() override;
+    void dt(s32 type) override;
 
     REPLACE PageId getReplacement() override;
 
