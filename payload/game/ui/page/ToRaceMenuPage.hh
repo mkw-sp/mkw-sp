@@ -8,7 +8,7 @@ class ToRaceMenuPage : public RaceMenuPage {
 public:
     ToRaceMenuPage();
     ~ToRaceMenuPage() override;
-    virtual void dt(s32 type) override;
+    void dt(s32 type) override;
 
     REPLACE const ButtonId *getButtons() override;
     REPLACE const char *getResFileName() override;
