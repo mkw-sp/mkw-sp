@@ -7,7 +7,7 @@ namespace UI {
 class TopMenuPage : public MenuPage {
 public:
     TopMenuPage();
-    virtual ~TopMenuPage();
+    ~TopMenuPage() override;
 
     void REPLACED(onInit)();
     REPLACE void onInit() override;

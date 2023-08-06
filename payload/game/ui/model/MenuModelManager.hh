@@ -1,6 +1,6 @@
 #pragma once
 
-#include <Common.hh>
+#include "game/util/Registry.hh"
 
 typedef void (*GameEntryFunc)(s8 idx);
 
@@ -11,7 +11,13 @@ public:
     void setAnim(u32 r4, u32 r5);
 
 private:
-    u8 _00[0x28 - 0x00];
+    u8 _00[0x14 - 0x00];
+
+public:
+    Registry::Vehicle m_vehicleId;
+
+private:
+    u8 _18[0x28 - 0x18];
 };
 static_assert(sizeof(DriverModel) == 0x28);
 

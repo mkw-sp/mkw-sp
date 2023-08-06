@@ -8,7 +8,7 @@ class AfterTaRaceMenuPage : public RaceMenuPage {
 public:
     AfterTaRaceMenuPage();
     ~AfterTaRaceMenuPage() override;
-    virtual void dt(s32 type) override;
+    void dt(s32 type) override;
 
     REPLACE s32 getButtonCount() override;
     REPLACE const ButtonId *getButtons() override;

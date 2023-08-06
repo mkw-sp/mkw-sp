@@ -2,10 +2,12 @@
 
 #include "game/system/RaceConfig.hh"
 #include "game/system/SaveManager.hh"
+#include "game/ui/ModelRenderPage.hh"
 #include "game/ui/RaceConfirmPage.hh"
 #include "game/ui/RankingPage.hh"
 #include "game/ui/SectionManager.hh"
 #include "game/ui/VotingBackPage.hh"
+#include "game/ui/model/MenuModelManager.hh"
 
 #include <sp/ScopeLock.hh>
 
@@ -113,6 +115,8 @@ void CourseSelectPage::onInit() {
     case SectionId::SingleSelectVSCourse:
     case SectionId::SingleSelectBTCourse:
     case SectionId::SingleChangeGhostData:
+    case SectionId::Voting1PVS:
+    case SectionId::Voting2PVS:
     case SectionId::Rankings:
         filter();
         break;
@@ -156,6 +160,27 @@ void CourseSelectPage::afterCalc() {
     }
     if (changed) {
         GXInvalidateTexAll();
+    }
+
+    // When we reach the DriftSelectPage the first time in one of these sections, no vehicle is
+    // selected for the model. Vehicles that are not selected (here, all of them) are constantly
+    // rotating, thus we would get an unexpected spin animation as the NoteModelControl of the
+    // DriftSelectPage restores the selection from GlobalContext. We avoid this by restoring the
+    // selection manually in this function.
+    auto *sectionManager = SectionManager::Instance();
+    auto *globalContext = sectionManager->globalContext();
+    auto *section = sectionManager->currentSection();
+    auto sectionId = section->id();
+    if (sectionId == SectionId::SingleChangeCourse ||
+            sectionId == SectionId::SingleChangeGhostData) {
+        auto *modelRenderPage = section->page<PageId::ModelRender>();
+        modelRenderPage->configure(0, true, true);
+        modelRenderPage->setCharacterId(0, globalContext->m_localCharacterIds[0]);
+        modelRenderPage->setVehicleId(0, globalContext->m_localVehicleIds[0]);
+        auto *driverModelManager = MenuModelManager::Instance()->driverModelManager();
+        auto *model = driverModelManager->handle(0)->model;
+        model->m_vehicleId = globalContext->m_localVehicleIds[0];
+        model->setAnim(0, 3);
     }
 }
 

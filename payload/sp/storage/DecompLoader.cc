@@ -4,6 +4,7 @@
 #include "sp/LZ77Decoder.hh"
 #include "sp/LZMADecoder.hh"
 #include "sp/ThumbnailManager.hh"
+#include "sp/WBZDecoder.hh"
 #include "sp/YAZDecoder.hh"
 
 #include <game/system/RaceConfig.hh>
@@ -29,6 +30,16 @@ static u8 stack[0x2000 /* 8 KiB */];
 static OSThread thread;
 alignas(0x20) static u8 srcs[2][0x20000 /* 128 KiB */];
 
+std::optional<FileHandle> ReadOptStorage(const wchar_t *path,
+        std::optional<StorageType> storageType) {
+    if (storageType.has_value()) {
+        auto *storage = Storage::GetStorage(*storageType);
+        return storage->open(path, "r");
+    } else {
+        return Storage::Open(path, "r");
+    }
+}
+
 static std::optional<FileHandle> Open(const char *path, std::optional<StorageType> storageType) {
     auto *raceConfig = System::RaceConfig::Instance();
 
@@ -44,27 +55,31 @@ static std::optional<FileHandle> Open(const char *path, std::optional<StorageTyp
             FixedString<64> pathReplacement = raceConfig->m_spRace.pathReplacement;
             raceConfig->m_spRace.pathReplacement = "";
 
-            // Recursive call to allow for .szs or .arc.lzma to be added on.
+            // Recursive call to allow for .arc.lzma or .wbz to be added on.
             return Open(pathReplacement.c_str(), storageType);
         }
     }
 
     size_t length = strlen(path);
-    if (!strncmp(path, "ro:/", strlen("ro:/")) && length >= strlen(".szs") &&
-            !strcmp(path + length - strlen(".szs"), ".szs")) {
-        wchar_t lzmaPath[128];
-        swprintf(lzmaPath, std::size(lzmaPath), L"%.*s.arc.lzma", length - strlen(".szs"), path);
-        auto file = storageType ? Storage::GetStorage(*storageType)->open(lzmaPath, "r") :
-                                  Storage::Open(lzmaPath, "r");
-        if (file) {
+    std::string_view pathSv(path, length);
+    if (pathSv.starts_with("ro:/") && pathSv.ends_with(".szs")) {
+        wchar_t testPath[128];
+        std::optional<FileHandle> file;
+
+        swprintf(testPath, std::size(testPath), L"%.*s.arc.lzma", length - strlen(".szs"), path);
+        if ((file = ReadOptStorage(testPath, storageType))) {
+            return file;
+        }
+
+        swprintf(testPath, std::size(testPath), L"%.*s.wbz", length - strlen(".szs"), path);
+        if ((file = ReadOptStorage(testPath, storageType))) {
             return file;
         }
     }
 
     wchar_t szsPath[128];
     swprintf(szsPath, std::size(szsPath), L"%s", path);
-    return storageType ? Storage::GetStorage(*storageType)->open(szsPath, "r") :
-                         Storage::Open(szsPath, "r");
+    return ReadOptStorage(szsPath, storageType);
 }
 
 static void Read(StartInfo info) {
@@ -121,6 +136,8 @@ bool Load(const char *path, size_t srcMaxSize, u64 srcOffset, u8 **dst, size_t *
         decoder.reset(new (heap, 0x4) YAZDecoder(src, srcSize, heap));
     } else if (LZ77Decoder::CheckMagic(Bytes::Read<u32, std::endian::little>(src, 0x0))) {
         decoder.reset(new (heap, 0x4) LZ77Decoder(src, srcSize, heap));
+    } else if (WBZDecoder::CheckMagic(Bytes::Read<u64, std::endian::big>(src, 0x0))) {
+        decoder.reset(new (heap, 0x4) WBZDecoder(src, srcSize, heap));
     } else {
         decoder.reset(new (heap, 0x4) LZMADecoder(src, srcSize, heap));
     }

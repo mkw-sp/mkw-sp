@@ -8,7 +8,7 @@ class ResultCompetitionPage : public ResultPlayerPage {
 public:
     ResultCompetitionPage();
     ~ResultCompetitionPage() override;
-    virtual void dt(s32 type) override;
+    void dt(s32 type) override;
 
     REPLACE PageId getReplacement() override;
 };

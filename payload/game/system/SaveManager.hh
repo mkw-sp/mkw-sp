@@ -111,6 +111,7 @@ public:
             bool saveLicense);
 
     Sha1 courseSHA1(Registry::Course courseId) const;
+    Sha1 vanillaSHA1(Registry::Course courseId) const;
     bool isCourseReplaced(Registry::Course courseId) const;
 
     void getLocation(u32 *location) const;

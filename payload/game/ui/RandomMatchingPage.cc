@@ -68,8 +68,13 @@ void RandomMatchingPage::afterCalc() {
         auto foundMatch = *foundMatchOpt;
 
         auto &menuScenario = System::RaceConfig::Instance()->menuScenario();
-        menuScenario.gameMode =
-                static_cast<System::RaceConfig::GameMode>(onlineManager->m_gamemode);
+        if (onlineManager->m_gamemode == 0) {
+            menuScenario.gameMode = System::RaceConfig::GameMode::OfflineVS;
+        } else if (onlineManager->m_gamemode == 1) {
+            menuScenario.gameMode = System::RaceConfig::GameMode::OfflineBT;
+        } else {
+            panic("Unknown gamemode response!");
+        }
 
         auto port = 21330;
         auto ip = foundMatch.room_ip;

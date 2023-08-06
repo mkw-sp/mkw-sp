@@ -4,6 +4,8 @@
 #include "game/host_system/SystemManager.hh"
 #include "game/system/SaveManager.hh"
 
+#include <sp/WU8Library.hh>
+
 namespace UI {
 
 Section *SectionManager::currentSection() {
@@ -28,6 +30,14 @@ SaveManagerProxy *SectionManager::saveManagerProxy() {
 
 GlobalContext *SectionManager::globalContext() {
     return m_globalContext;
+}
+
+void SectionManager::init() {
+    REPLACED(init)();
+
+    if (SP::WU8Library::ShouldExtract()) {
+        m_nextSectionId = SectionId::WU8Library;
+    }
 }
 
 void SectionManager::createSection() {
