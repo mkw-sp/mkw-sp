@@ -19,6 +19,7 @@
 #include "game/ui/OnlineTopPage.hh"
 #include "game/ui/PackSelectPage.hh"
 #include "game/ui/RandomMatchingPage.hh"
+#include "game/ui/RankingDownloadManagerPage.hh"
 #include "game/ui/RankingPage.hh"
 #include "game/ui/RankingTopTenDownloadPage.hh"
 #include "game/ui/RoulettePage.hh"
@@ -260,7 +261,7 @@ void Section::addPage(PageId pageId) {
             {SectionId::OnlineSingle, PageId::WifiFriendMenu},
 
             {SectionId::OnlineMulti, PageId::ConfirmWifiQuit},
-            {SectionId::OnlineMulti, PageId::SpinnerAwaitPage},
+            {SectionId::OnlineMulti, PageId::SpinnerAwait},
             {SectionId::OnlineMulti, PageId::ConnectingNintendoWfc},
             {SectionId::OnlineMulti, PageId::Confirm},
             {SectionId::OnlineMulti, PageId::CharacterSelect},
@@ -450,7 +451,7 @@ void Section::addPages(SectionId id) {
             {SectionId::SingleSelectBTCourse, PageId::GhostManager},
 
             // Change Ghost Data
-            {SectionId::SingleChangeGhostData, PageId::SpinnerAwaitPage},
+            {SectionId::SingleChangeGhostData, PageId::SpinnerAwait},
             {SectionId::SingleChangeGhostData, PageId::MenuMessage},
             {SectionId::SingleChangeGhostData, PageId::MessageBoardPopup},
             {SectionId::SingleChangeGhostData, PageId::SingleTop},
@@ -494,8 +495,10 @@ void Section::addPages(SectionId id) {
 
             {SectionId::ServicePackChannel, PageId::ServicePackChannel},
 
+            {SectionId::Rankings, PageId::RankingDownloadManager},
+
             // Extended sections add their used pages here!
-            {SectionId::WU8Library, PageId::SpinnerAwaitPage},
+            {SectionId::WU8Library, PageId::SpinnerAwait},
             {SectionId::WU8Library, PageId::LineBackgroundWhite},
             {SectionId::WU8Library, PageId::WU8Library},
 
@@ -617,6 +620,8 @@ Page *Section::CreatePage(PageId pageId) {
         return new CourseDebugPage;
     case PageId::WU8Library:
         return new WU8LibraryPage;
+    case PageId::RankingDownloadManager:
+        return new RankingDownloadManagerPage;
     default:
         return REPLACED(CreatePage)(pageId);
     }

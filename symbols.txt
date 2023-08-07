@@ -387,6 +387,15 @@
 0x801d2544 NETSHA1Update
 0x801d25f8 NETSHA1GetDigest
 
+0x801D8D30 NHTTPStartup
+0x801D8DBC NHTTPCleanupAsync
+0x801D8FF8 NHTTPCreateRequest
+0x801D925C NHTTPSendRequestAsync
+0x801D92B8 NHTTPCancelRequestAsync
+0x801D92F8 NHTTPDestroyResponse
+0x801D937C NHTTPGetBodyAll
+0x801D93E4 NHTTPGetResultCode
+
 0x801DCC50 NWC24iStrLCpy
 
 0x801EBEC0 SOInit
@@ -856,6 +865,7 @@
 0x805e2200 _ZN2UI16GhostManagerPage4List8populateEj
 0x805e3080 _ZN2UI13GlobalContext5resetEv
 0x805e39d8 _ZN2UI13GlobalContext14copyPlayerMiisEv
+0x805E3F68 _ZN2UI13GlobalContext24GetCourseFromButtonIndexEi
 0x805e40a8 _ZN2UI13GlobalContext15onChangeLicenseEv
 0x805e439c GlobePage_onInit
 0x805e5a0c _ZN2UI9GlobePage14requestCommentEPKN6System3MiiEttjjjS4_RNS_20FriendMatchingPlayer8CallbackE

@@ -1,6 +1,7 @@
 #include "RankingPage.hh"
 
 #include "game/ui/CourseSelectPage.hh"
+#include "game/ui/RankingDownloadManagerPage.hh"
 #include "game/ui/SectionManager.hh"
 
 namespace UI {
@@ -36,7 +37,15 @@ void RankingPage::onBack() {
 }
 
 void RankingPage::handleTopTenDownload(f32 delay) {
-    m_replacement = PageId::RankingTopTenDownload;
+    auto *sectionManager = SectionManager::Instance();
+    auto *rankingDownloadManagerPage =
+            sectionManager->currentSection()->page<PageId::RankingDownloadManager>();
+
+    rankingDownloadManagerPage->setCourse(
+            sectionManager->globalContext()->GetCourseFromButtonIndex(m_courseControl.chosen()));
+    rankingDownloadManagerPage->setArea(static_cast<Area>(m_areaControl.chosen()));
+
+    m_replacement = PageId::RankingDownloadManager;
     startReplace(Anim::Next, delay);
 }
 

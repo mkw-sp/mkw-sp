@@ -1,15 +1,13 @@
 #pragma once
 
-extern "C" {
-#include "sp/Slab.h"
-}
+#include <Common.hh>
 
 #include <memory>
 
 namespace SP::Net {
 
 void *Alloc(s32 size);
-void Free(void *ptr, s32 size);
+void Free(void *block, s32 size);
 
 template <typename T>
 class Deleter {
