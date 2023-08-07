@@ -136,15 +136,6 @@ public:
 
 protected:
     void REPLACED(
-            processChuck)(void *r4, RaceInputState &raceInputState, UIInputState &uiInputState);
-    REPLACE void processChuck(void *r4, RaceInputState &raceInputState, UIInputState &uiInputState);
-
-    void REPLACED(
-            processWiimote)(void *r4, RaceInputState &raceInputState, UIInputState &uiInputState);
-    REPLACE void processWiimote(void *r4, RaceInputState &raceInputState,
-            UIInputState &uiInputState);
-
-    void REPLACED(
             processClassic)(void *r4, RaceInputState &raceInputState, UIInputState &uiInputState);
     REPLACE void processClassic(void *r4, RaceInputState &raceInputState,
             UIInputState &uiInputState);
