@@ -24,12 +24,12 @@ void WU8LibraryPage::onInit() {
 
 void WU8LibraryPage::onActivate() {
     auto *section = SectionManager::Instance()->currentSection();
-    auto *awaitPage = section->page<PageId::SpinnerAwaitPage>();
+    auto *awaitPage = section->page<PageId::SpinnerAwait>();
 
     awaitPage->setTitleMessage(10440);
     awaitPage->setWindowMessage(10441);
 
-    push(PageId::SpinnerAwaitPage, Anim::None);
+    push(PageId::SpinnerAwait, Anim::None);
 }
 
 void WU8LibraryPage::onDeinit() {
@@ -41,7 +41,7 @@ void WU8LibraryPage::onDeinit() {
 void WU8LibraryPage::afterCalc() {
     auto *sectionManager = SectionManager::Instance();
     auto *section = sectionManager->currentSection();
-    auto *awaitPage = section->page<PageId::SpinnerAwaitPage>();
+    auto *awaitPage = section->page<PageId::SpinnerAwait>();
 
     wchar_t fileWide[64];
     auto extractionState = SP::WU8Library::GetExtractionState();

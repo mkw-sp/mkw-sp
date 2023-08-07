@@ -8,6 +8,12 @@ namespace UI {
 
 class RankingPage : public Page {
 public:
+    enum class Area {
+        Friend,
+        Regional,
+        Worldwide,
+    };
+
     RankingPage *construct();
     RankingPage();
 
@@ -31,7 +37,9 @@ private:
 
     u8 _0044[0x031C - 0x0044];
     UpDownControl m_courseControl;
-    u8 _08E4[0x1B70 - 0x08E4];
+    u8 _08E4[0x0D58 - 0x08E4];
+    UpDownControl m_areaControl;
+    u8 _1320[0x1B70 - 0x1320];
     PageId m_replacement;
     u8 _1B74[0x1C28 - 0x1B74];
 

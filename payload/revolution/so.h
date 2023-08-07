@@ -31,6 +31,7 @@ int SOWrite(int s, const void *buf, int len);
 #define SO_F_SETFL 4
 #define SO_O_NONBLOCK 0x04
 
+#define SO_OK 0
 #define SO_EADDRINUSE -3
 #define SO_EAGAIN -6
 #define SO_EALREADY -7
