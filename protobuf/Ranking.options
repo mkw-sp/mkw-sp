@@ -1,0 +1,4 @@
+RankingResponse.Player.name max_length:10
+RankingResponse.Player.time max_length:9
+
+RankingResponse.players max_count:10

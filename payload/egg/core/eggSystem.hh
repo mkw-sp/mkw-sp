@@ -34,6 +34,7 @@ public:
     Heap *eggRootMEM1() const;
     Heap *eggRootMEM2() const;
     Heap *eggRootDebug() const;
+    Heap *eggRootSystem() const;
 
     static TSystem &Instance();
 

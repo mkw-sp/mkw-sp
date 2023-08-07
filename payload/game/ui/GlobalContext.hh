@@ -31,6 +31,8 @@ public:
 
     void applyVehicleRestriction(bool isBattle);
 
+    static Registry::Course GetCourseFromButtonIndex(s32 buttonIndex);
+
 public:
     struct SelectPlayer {
         u32 m_characterId;
