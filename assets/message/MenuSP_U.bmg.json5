@@ -390,6 +390,8 @@
     "10447": "Extracting files for My Stuff .wbz support.\nThis one-time process may take over a minute\n\n{color|team red}Error:{color|unspecified} Not all track files are vanilla!\n\nPlease make sure you are using a clean disk/dump.\n{arg string|0}.szs has been modified.",
     "10448": "An error occured when requesting for\nthe Top 10!",
     "10449": "An error occurred when downloading the\nTop 10!",
+    "10450": "Item Wheel",
+    "10451": "Allows item cycling in time trials. For other controllers,\nPress A (Wheel), down DPAD (Chuck), or ZL (CC/CCP).",
     "20000": "Online",
     "20001": "Play online.",
     "20002": "Play online with a friend.",

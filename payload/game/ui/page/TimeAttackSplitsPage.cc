@@ -34,7 +34,7 @@ void TimeAttackSplitsPage::afterCalc() {
         m_ghostMessage.setMessageAll(1115);
     } else {
         if (saveManager->m_usedItemWheel) {
-            m_ghostMessage.setMessageAll(10442);
+            m_ghostMessage.setMessageAll(10452);
         } else {
             m_ghostMessage.setMessageAll(1116);
         }
