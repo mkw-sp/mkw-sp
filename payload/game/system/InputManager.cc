@@ -75,6 +75,16 @@ void WiiPad::processClassic(void *r4, RaceInputState &raceInputState, UIInputSta
     }
 }
 
+void GCPad::process(RaceInputState &raceInputState, UIInputState &uiInputState) {
+    REPLACED(process)(raceInputState, uiInputState);
+
+    processSimplified(raceInputState, raceInputState.rawButtons & PAD_BUTTON_Y);
+
+    if (InputManager::Instance()->isMirror()) {
+        uiInputState.stick.x *= -1.0f;
+    }
+}
+
 void GhostPad::process(RaceInputState &raceInputState, UIInputState &uiInputState) {
     REPLACED(process)(raceInputState, uiInputState);
     auto *rc = System::RaceConfig::Instance();
