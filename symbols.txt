@@ -1282,6 +1282,7 @@
 0x8078d4cc _ZN4Race13DriverManager20GetTeamPlayerOutcomeEj
 0x8078d824 _ZN4Race13DriverManager4calcEv
 0x8078ddb4 unk_8078ddb4
+0x80797928 _ZN4Item8KartItem4calcEv
 0x8079864c KartItem_activateMushroom
 0x80798c38 _ZN4Item8KartItem7setItemEjjj
 0x80799850 _ZN4Item11ItemManager4calcEv
@@ -1293,6 +1294,9 @@
 0x807ad958 ItemObjKouraAo_807ad958
 0x807aec64 ItemObjKouraMidori_807aec64
 0x807b54f4 Item_807b54f4
+0x807bc940 _ZN4Item13ItemInventory7setItemENS_6ItemIdE
+0x807bc97c _ZN4Item13ItemInventory9resetItemEv
+0x807bc9c0 _ZN4Item13ItemInventory13resetHeldItemEv
 0x807C2884 _ZN2SP14KCLManager_dsiEPv
 0x807C28D8 _ZN2SP19KCLManager_fromFileEPvS0_
 0x807cb198 Driver_807cb198

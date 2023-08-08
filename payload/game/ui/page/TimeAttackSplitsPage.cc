@@ -33,7 +33,11 @@ void TimeAttackSplitsPage::afterCalc() {
     if (saveManager->saveGhostResult()) {
         m_ghostMessage.setMessageAll(1115);
     } else {
-        m_ghostMessage.setMessageAll(1116);
+        if (saveManager->m_usedItemWheel) {
+            m_ghostMessage.setMessageAll(10452);
+        } else {
+            m_ghostMessage.setMessageAll(1116);
+        }
     }
 
     m_isReady = true;

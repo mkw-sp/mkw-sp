@@ -171,16 +171,19 @@ private:
     bool m_canSave;
     bool m_spCanSave; // Added (was padding)
     NandResult m_result;
-    u32 m_spLicenseCount;                         // Added
-    SP::ClientSettings::Settings m_spLicenses[6]; // Added
-    std::optional<u8> m_spCurrentLicense;         // Added
-    u8 m_ghostInitStack[0x8000 /* 32 KiB */];     // Added
-    OSThread m_ghostInitThread;                   // Added
-    std::array<Sha1, 42> m_courseSHA1s;           // Added
+    u32 m_spLicenseCount;                               // Added
+    SP::ClientSettings::Settings m_spLicenses[6];       // Added
+    std::optional<u8> m_spCurrentLicense;               // Added
+    u8 m_ghostInitStack[0x8000 /* 32 KiB */];           // Added
+    OSThread m_ghostInitThread;                         // Added
+    std::array<std::array<u8, 0x14>, 32> m_courseSHA1s; // Added
 
     static SaveManager *s_instance;
     static const std::array<Sha1, 42> s_courseSHA1s;
     static const char *s_courseAbbreviations[32];
+
+public:
+    bool m_usedItemWheel; // Added
 };
 
 } // namespace System

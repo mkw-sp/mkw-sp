@@ -346,6 +346,11 @@ void SaveManager::setSetting(u32 setting, u32 value) {
         return;
     }
 
+    if (static_cast<SP::ClientSettings::Setting>(setting) == SP::ClientSettings::Setting::YButton &&
+            static_cast<SP::ClientSettings::YButton>(value) ==
+                    SP::ClientSettings::YButton::ItemWheel) {
+        m_usedItemWheel = true;
+    }
     m_spLicenses[*m_spCurrentLicense].set(setting, value);
 
     refreshGCPadRumble();
@@ -490,6 +495,10 @@ void SaveManager::SaveGhostTask(void *arg) {
 void SaveManager::saveGhost(GhostFile *file) {
     if (OSJoinThread(&m_ghostInitThread, nullptr)) {
         OSDetachThread(&m_ghostInitThread);
+    }
+
+    if (m_usedItemWheel) {
+        return;
     }
 
     m_saveGhostResult = false;

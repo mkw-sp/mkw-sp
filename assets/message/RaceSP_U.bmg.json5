@@ -116,4 +116,5 @@
     "10418": "Save State",
     "10419": "Load State",
     "10420": "{arg string|0}",
+    "10452": "Unable to save ghost. Please turn off item wheel!",
 }

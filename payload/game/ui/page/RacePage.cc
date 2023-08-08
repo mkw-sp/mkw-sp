@@ -66,6 +66,10 @@ void RacePage::onInit() {
 }
 
 void RacePage::afterCalc() {
+    if (System::SaveManager::Instance()->m_usedItemWheel) {
+        m_ghostMessage->setMessageAll(10452);
+        m_ghostMessage->setVisible(true);
+    }
     m_lastWatchedPlayerId = m_watchedPlayerId;
 
     REPLACED(afterCalc)();

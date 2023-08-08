@@ -1,7 +1,6 @@
 #pragma once
 
 #include "game/system/Mii.hh"
-
 #include "game/util/Registry.hh"
 
 #include <sp/ShaUtil.hh>
@@ -34,7 +33,7 @@ struct RawGhostHeader {
     u32 year : 7;
     u32 month : 4;
     u32 day : 5;
-    u32 controllerId : 4;
+    Registry::Controller controllerId : 4;
 
     u8 _pad1 : 4;
     bool isCompressed : 1;

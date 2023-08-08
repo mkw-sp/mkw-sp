@@ -92,6 +92,7 @@ enum class Vehicle {
 };
 
 enum class Controller {
+    None = -0x1,
     WiiWheel = 0x0,
     WiiRemoteAndNunchuck = 0x1,
     Classic = 0x2,
@@ -151,6 +152,7 @@ enum class Course {
 extern const Course OrderedCourses[0x20];
 
 bool IsCombinationValid(Character character, Vehicle vehicle);
+bool IsControllerValid(Controller controller);
 
 u32 GetCharacterMessageId(u32 characterId, bool resolveMiiNames);
 REPLACE bool UseBattleRenders();

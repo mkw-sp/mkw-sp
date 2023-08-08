@@ -170,7 +170,8 @@ void RaceConfig::ConfigurePlayers(Scenario &scenario, u32 screenCount) {
         if (scenario.players[i].type == Player::Type::Local) {
             assert(ghostProxyId < 4);
 
-            s32 controllerId = inputManager->ghostProxy(ghostProxyId)->pad()->getControllerId();
+            Registry::Controller controllerId =
+                    inputManager->ghostProxy(ghostProxyId)->pad()->getControllerId();
             scenario.players[i].screenId = screenId;
             scenario.players[i].ghostProxyId = ghostProxyId;
             scenario.players[i].controllerId = controllerId;
@@ -191,12 +192,12 @@ void RaceConfig::ConfigurePlayers(Scenario &scenario, u32 screenCount) {
                 scenario.players[i].controllerId = rawGhostHeader->controllerId;
             } else {
                 inputManager->setGhostPad(i, rawGhostFile + 0x88, false);
-                scenario.players[i].characterId = 0;  // Mario
-                scenario.players[i].vehicleId = 1;    // Standard Kart M
-                scenario.players[i].controllerId = 0; // Wii Wheel
+                scenario.players[i].characterId = 0; // Mario
+                scenario.players[i].vehicleId = 1;   // Standard Kart M
+                scenario.players[i].controllerId = Registry::Controller::WiiWheel;
             }
         } else {
-            scenario.players[i].controllerId = -1;
+            scenario.players[i].controllerId = Registry::Controller::None;
         }
     }
 

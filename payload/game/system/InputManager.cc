@@ -78,7 +78,7 @@ void WiiPad::processClassic(void *r4, RaceInputState &raceInputState, UIInputSta
 
     processSimplified(raceInputState, raceInputState.rawButtons & KPAD_CL_TRIGGER_ZL);
 
-    if (auto saveStateManager = SP::SaveStateManager::Instance()) {
+    if (auto *saveStateManager = SP::SaveStateManager::Instance()) {
         saveStateManager->processInput(raceInputState.rawButtons & KPAD_CL_BUTTON_MINUS);
     }
 }

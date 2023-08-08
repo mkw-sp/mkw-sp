@@ -4,6 +4,8 @@ extern "C" {
 #include <revolution/pad.h>
 }
 
+#include "game/util/Registry.hh"
+
 #include <sp/CircularBuffer.hh>
 
 namespace System {
@@ -76,7 +78,7 @@ protected:
     virtual void process(RaceInputState &raceInputState, UIInputState &uiInputState) = 0;
 
 public:
-    virtual s32 getControllerId() const;
+    virtual Registry::Controller getControllerId() const;
     virtual void vf_14();
     virtual void vf_18();
     virtual void vf_1c();
@@ -118,7 +120,7 @@ public:
     ~UserPad();
 
     void process(RaceInputState &raceInputState, UIInputState &uiInputState) override;
-    s32 getControllerId() const override;
+    Registry::Controller getControllerId() const override;
 
     RaceInputState m_userInputState;
 };

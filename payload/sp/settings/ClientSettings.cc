@@ -705,8 +705,8 @@ const Entry entries[] = {
         .defaultValue = static_cast<u32>(YButton::Screenshot),
         .valueCount = magic_enum::enum_count<YButton>(),
         .valueNames = magic_enum::enum_names<YButton>().data(),
-        .valueMessageIds = (u32[]) { 10433, 10435 },
-        .valueExplanationMessageIds = (u32[]) { 10434, 10436 },
+        .valueMessageIds = (u32[]) { 10433, 10435, 10450},
+        .valueExplanationMessageIds = (u32[]) { 10434, 10436, 10451 },
     },
 };
 // clang-format on

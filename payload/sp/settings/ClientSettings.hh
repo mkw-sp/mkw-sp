@@ -353,6 +353,7 @@ enum class DebugPanel {
 enum class YButton {
     Disabled,
     Screenshot,
+    ItemWheel,
 };
 
 typedef Settings::Group<Category> Group;
