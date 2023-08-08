@@ -38,7 +38,9 @@ private:
     REPLACE void initControls(u32 controls);
 
     PageId m_replacement;
-    u8 _048[0x064 - 0x048];
+    u8 _048[0x05c - 0x048];
+    LayoutUIControl *m_ghostMessage;
+    u8 _060[0x064 - 0x060];
     u32 m_watchedPlayerId;
     u8 _068[0x069 - 0x068];
     u8 m_lastWatchedPlayerId; // Added (was padding)
