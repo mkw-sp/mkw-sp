@@ -151,7 +151,7 @@ void TimeAttackGhostListPage::onRefocus() {
     }
 
     GlobalContext *context = SectionManager::Instance()->globalContext();
-    context->m_timeAttackGhostType = GHOST_TYPE_SAVED;
+    context->m_timeAttackGhostType = GHOST_TYPE_PERSONAL_BEST;
     context->m_timeAttackCourseId = menuScenario.courseId;
     context->m_timeAttackLicenseId = -1;
 

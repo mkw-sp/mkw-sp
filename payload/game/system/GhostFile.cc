@@ -438,7 +438,7 @@ std::optional<u32> GhostFile::write(u8 *raw) {
 
     auto *header = reinterpret_cast<RawGhostHeader *>(raw);
     writeHeader(header);
-    header->type = GHOST_TYPE_FAST_STAFF;
+    header->type = GHOST_TYPE_EXPERT_STAFF;
     header->inputsSize = m_inputsSize;
     header->isCompressed = true;
     u8 *dst = raw + sizeof(RawGhostHeader) + sizeof(u32);

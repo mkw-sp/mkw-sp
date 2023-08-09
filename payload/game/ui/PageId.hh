@@ -219,7 +219,8 @@ enum class PageId {
     PackSelect,
     CourseDebug,
     WU8Library,
-    RankingDownloadManager,
+    SPRankingGhostDownload,
+    SPRankingTopTenDownload,
     // }
 
     Ext_MaxExclusive__,

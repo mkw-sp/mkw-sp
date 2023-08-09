@@ -35,9 +35,10 @@ class OnlineTeamSelectPage;
 class OptionExplanationPage;
 class OptionSelectPage;
 class RaceConfirmPage;
-class RankingDownloadManagerPage;
 class RankingPage;
 class RoulettePage;
+class SPRankingGhostDownloadPage;
+class SPRankingTopTenDownloadPage;
 class SettingsPagePopup;
 class TeamConfirmPage;
 class TimeAttackGhostListPage;
@@ -314,8 +315,13 @@ struct Section::PageIdHelper<PageId::Ranking> {
 };
 
 template <>
-struct Section::PageIdHelper<PageId::RankingDownloadManager> {
-    using type = RankingDownloadManagerPage;
+struct Section::PageIdHelper<PageId::SPRankingGhostDownload> {
+    using type = SPRankingGhostDownloadPage;
+};
+
+template <>
+struct Section::PageIdHelper<PageId::SPRankingTopTenDownload> {
+    using type = SPRankingTopTenDownloadPage;
 };
 
 } // namespace UI

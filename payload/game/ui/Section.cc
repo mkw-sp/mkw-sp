@@ -19,10 +19,10 @@
 #include "game/ui/OnlineTopPage.hh"
 #include "game/ui/PackSelectPage.hh"
 #include "game/ui/RandomMatchingPage.hh"
-#include "game/ui/RankingDownloadManagerPage.hh"
 #include "game/ui/RankingPage.hh"
-#include "game/ui/RankingTopTenDownloadPage.hh"
 #include "game/ui/RoulettePage.hh"
+#include "game/ui/SPRankingGhostDownloadPage.hh"
+#include "game/ui/SPRankingTopTenDownloadPage.hh"
 #include "game/ui/SectionManager.hh"
 #include "game/ui/ServicePackChannelPage.hh"
 #include "game/ui/ServicePackToolsPage.hh"
@@ -495,7 +495,8 @@ void Section::addPages(SectionId id) {
 
             {SectionId::ServicePackChannel, PageId::ServicePackChannel},
 
-            {SectionId::Rankings, PageId::RankingDownloadManager},
+            {SectionId::Rankings, PageId::SPRankingGhostDownload},
+            {SectionId::Rankings, PageId::SPRankingTopTenDownload},
 
             // Extended sections add their used pages here!
             {SectionId::WU8Library, PageId::SpinnerAwait},
@@ -602,8 +603,6 @@ Page *Section::CreatePage(PageId pageId) {
         return new GhostManagerPage;
     case PageId::Ranking:
         return new RankingPage;
-    case PageId::RankingTopTenDownload:
-        return new RankingTopTenDownloadPage;
     case PageId::Channel:
         return new ChannelPage;
     case PageId::Update:
@@ -620,8 +619,10 @@ Page *Section::CreatePage(PageId pageId) {
         return new CourseDebugPage;
     case PageId::WU8Library:
         return new WU8LibraryPage;
-    case PageId::RankingDownloadManager:
-        return new RankingDownloadManagerPage;
+    case PageId::SPRankingTopTenDownload:
+        return new SPRankingTopTenDownloadPage;
+    case PageId::SPRankingGhostDownload:
+        return new SPRankingGhostDownloadPage;
     default:
         return REPLACED(CreatePage)(pageId);
     }

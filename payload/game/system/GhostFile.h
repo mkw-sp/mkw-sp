@@ -5,10 +5,14 @@
 #include <egg/core/eggHeap.h>
 
 enum {
-    GHOST_TYPE_NONE = 0x0,
-    GHOST_TYPE_SAVED = 0x1,
-    GHOST_TYPE_FAST_STAFF = 0x26,
-    GHOST_TYPE_MAX = 0x26,
+    GHOST_TYPE_PERSONAL_BEST = 0x01,
+    GHOST_TYPE_WORLD_CHAMPION = 0x02,
+    GHOST_TYPE_CONTINENTAL_CHAMPION = 0x03,
+    GHOST_TYPE_RIVAL = 0x04,
+    GHOST_TYPE_SPECIAL = 0x05,
+    GHOST_TYPE_RACE = 0x06,
+    GHOST_TYPE_NORMAL_STAFF = 0x25,
+    GHOST_TYPE_EXPERT_STAFF = 0x26,
 };
 
 typedef struct __attribute__((packed)) {
