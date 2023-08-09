@@ -10,40 +10,48 @@ extern "C" {
 
 namespace UI {
 
-class RankingDownloadManagerPage : public Page {
+class SPRankingDownloadPage : public Page {
 public:
-    RankingDownloadManagerPage();
-    ~RankingDownloadManagerPage() override;
+    SPRankingDownloadPage();
+    ~SPRankingDownloadPage() override;
 
     PageId getReplacement() override;
     void onInit() override;
     void onDeinit() override;
-    void onActivate() override;
+    void onActivate() override = 0;
     void afterCalc() override;
     void onRefocus() override;
 
-    void setCourse(Registry::Course course);
-    void setArea(RankingPage::Area area);
-
-private:
-    enum class State {
-        InDevelopment,
-        Request,
-        Response,
-        Finished,
-    };
+protected:
     enum class ResponseStatus {
         Ok,
         RequestError,
         ResponseError,
     };
+    enum class State {
+        Previous,
+        InDevelopment,
+        Request,
+        Response,
+        Finished,
+    };
 
+    virtual void transition(State state) = 0;
+
+    bool makeRequest(const char *url);
+    s32 getRegionParameterValue() const;
+    s32 getCourseParameterValue() const;
+
+    ResponseStatus responseStatus() const;
+    const RankingResponse &rankingResponse() const;
+
+    State m_state;
+    PageId m_replacement;
+
+private:
     State resolve();
-    void transition(State state);
 
-    bool makeRequest();
-    s32 getRegionParameterValue();
-    bool hasRequestTimedOut();
+    bool hasRequestTimedOut() const;
     void requestCallback(NHTTPError error, NHTTPResponseHandle responseHandle);
     ResponseStatus processResponse(NHTTPResponseHandle responseHandle);
 
@@ -51,20 +59,16 @@ private:
     static void NHTTPFree(void *block);
     static void RequestCallback(NHTTPError error, NHTTPResponseHandle responseHandle, void *arg);
 
-    PageId m_replacement;
     MenuInputManager m_inputManager;
 
-    Registry::Course m_course = Registry::Course::LuigiCircuit;
-    RankingPage::Area m_area = RankingPage::Area::Friend;
-
-    State m_state;
-    bool m_initialisedNHTTPLibrary = false;
     NHTTPRequestHandle m_requestHandle;
     int m_requestId;
     OSTime m_requestTimeout;
     ResponseStatus m_responseStatus;
     std::array<char, RankingResponse_size> m_responseBuffer;
     RankingResponse m_rankingResponse;
+
+    static bool s_initialisedNHTTPLibrary;
 
     static constexpr u32 s_nhttpThreadPriority = 17;
     static constexpr u32 s_requestTimeoutSeconds = 10;
