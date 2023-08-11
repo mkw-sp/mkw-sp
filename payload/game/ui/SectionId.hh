@@ -118,11 +118,11 @@ enum class SectionId {
     WifiMultiBtVoting = 0x5F,
 
     Voting1PVS = 0x60,
-    Voting1PTeamVS = 0x61, // Unused, free to use!
+    Voting1PTeamVS = 0x61, // Unused
     Voting1PBalloon = 0x62,
     Voting1PCoin = 0x63,
     Voting2PVS = 0x64,
-    Voting2PTeamVS = 0x65, // Unused, free to use!
+    Voting2PTeamVS = 0x65, // Unused
     Voting2PBalloon = 0x66,
     Voting2PCoin = 0x67,
 
@@ -137,23 +137,23 @@ enum class SectionId {
     WifiBTMultiSpectate = 0x6F,
 
     OnlineFriend1PVS = 0x70,
-    OnlineFriend1PTeamVS = 0x71, // Unused, free to use!
+    OnlineFriend1PTeamVS = 0x71, // Unused
     OnlineFriend1PBalloon = 0x72,
     OnlineFriend1PCoin = 0x73,
 
     OnlineFriend2PVS = 0x74,
-    OnlineFriend2PTeamVS = 0x75, // Unused, free to use!
+    OnlineFriend2PTeamVS = 0x75, // Unused
     OnlineFriend2PBalloon = 0x76,
     OnlineFriend2PCoin = 0x77,
 
     OnlineDisconnected = 0x78,
     OnlineDisconnectedGeneric = 0x79,
 
-    ServicePack = 0x7A,        // Replaces Channel
-    ServicePackChannel = 0x7B, // Replaces Channel from Time Trials
+    ServicePack = 0x7A, // Replaces Channel
+    ChannelFromTimeTrials = 0x7B,
     Rankings = 0x7D,
     // ^^ All channel sections vv
-    // 0x84 replaces OnlineServer, free to use!
+    // 0x84 replaces OnlineServer
 
     CompetitionChannel = 0x85,
     CompetitionChangeCharacter = 0x86,
@@ -181,6 +181,7 @@ enum class SectionId {
     // Extensions go here {
     // Do not explicitly assign values to prevent merge conflicts
     WU8Library,
+    ServicePackChannel,
     // }
 };
 
