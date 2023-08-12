@@ -37,7 +37,7 @@ FATStorage::FATStorage() {
         m_dirs[i].m_storage = this;
     }
 
-    std::array initFuncs{UsbStorage_init, SdiStorage_init};
+    std::array initFuncs{SdiStorage_init, UsbStorage_init};
 
     for (auto initFunc : initFuncs) {
         if (!initFunc(&s_storage)) {
