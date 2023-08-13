@@ -71,7 +71,7 @@ void RaceMenuPage::onNextButtonFront(PushButton *button, u32 /* localPlayerId */
 
     raceConfig->endRace();
 
-    playSound(Sound::SoundId::SE_RC_PAUSE_EXIT_GAME, -1);
+    button->setFrontSoundId(Sound::SoundId::SE_RC_PAUSE_EXIT_GAME);
 
     SectionId sectionId;
     if (IsLastMatch()) {
@@ -137,7 +137,7 @@ void RaceMenuPage::onSettingsButtonFront(PushButton *button, u32 /* localPlayerI
 }
 
 void RaceMenuPage::onChangeGhostDataButtonFront(PushButton *button, u32 /* localPlayerId */) {
-    playSound(Sound::SoundId::SE_RC_PAUSE_EXIT_GAME, -1);
+    button->setFrontSoundId(Sound::SoundId::SE_RC_PAUSE_EXIT_GAME);
 
     auto &menuScenario = System::RaceConfig::Instance()->menuScenario();
     menuScenario.cameraMode = 0;
