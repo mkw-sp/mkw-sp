@@ -97,14 +97,7 @@ void TimeAttackGhostListPage::onActivate() {
     auto *saveManager = System::SaveManager::Instance();
     auto cc = saveManager->getSetting<SP::ClientSettings::Setting::TAClass>();
     if (!m_cc || *m_cc != cc) {
-        if (!m_cc) {
-            m_sheetSelect.setPointerOnly(false);
-            if (m_chosenCount == 0) {
-                m_aloneButton.selectDefault(0);
-            } else {
-                m_raceButton.selectDefault(0);
-            }
-        }
+        m_aloneButton.selectDefault(0);
 
         const u32 buttonsPerSheet = m_ghostSelects[0].buttons.size();
         m_sheetCount = (m_ghostList->count() + buttonsPerSheet - 1) / buttonsPerSheet;
@@ -301,6 +294,10 @@ void TimeAttackGhostListPage::onWatchButtonDeselect(PushButton * /* button */,
 }
 
 void TimeAttackGhostListPage::onBackButtonFront(PushButton *button, u32 /* localPlayerId */) {
+    m_lastSelected = -1;
+    m_sheetSelect.setPointerOnly(false);
+    m_watchButton.setPointerOnly(false);
+    m_settingsButton.setPointerOnly(false);
     m_cc.reset();
     SectionManager::Instance()->globalContext()->clearCourses();
 
