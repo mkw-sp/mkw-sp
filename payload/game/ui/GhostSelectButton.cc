@@ -157,7 +157,11 @@ void GhostSelectButton::refresh(u32 listIndex) {
     setMessage("time_light_02", 6052, &timeInfo);
 
     m_chosen = page->m_ghostIsChosen[ghostIndex];
-    setChosen(m_chosen);
+    if (m_chosen) {
+        setChosen(m_chosen);
+    } else {
+        m_animator.setAnimation(GROUP_ID_CHOICE, ANIM_ID_CHOICE_OFF, 0.0f);
+    }
 }
 
 } // namespace UI
