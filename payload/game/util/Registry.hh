@@ -153,6 +153,7 @@ extern const Course OrderedCourses[0x20];
 
 bool IsCombinationValid(Character character, Vehicle vehicle);
 bool IsControllerValid(Controller controller);
+bool IsRaceCourse(Course course);
 
 u32 GetCharacterMessageId(u32 characterId, bool resolveMiiNames);
 REPLACE bool UseBattleRenders();

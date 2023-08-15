@@ -53,6 +53,15 @@ bool IsControllerValid(Controller controller) {
     }
 }
 
+bool IsRaceCourse(Course course) {
+    switch (course) {
+    case Course::MarioCircuit... Course::GBAShyGuyBeach:
+        return true;
+    default:
+        return false;
+    }
+}
+
 // This disables trying to load red/blue thumbnails and models
 // for all the vehicles in the vehicle select screen
 bool UseBattleRenders() {

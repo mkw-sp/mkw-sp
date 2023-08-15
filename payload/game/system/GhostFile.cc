@@ -12,6 +12,8 @@ extern "C" {
 }
 #include <sp/YAZDecoder.hh>
 
+#include <vendor/magic_enum/magic_enum.hpp>
+
 #include <algorithm>
 #include <cstring>
 #include <iterator>
@@ -180,30 +182,6 @@ bool IsValid(const u8 *raw) {
     return header->magic == HEADER_MAGIC;
 }
 
-static bool CharacterIdIsValid(u32 characterId) {
-    // Non-Miis
-    if (characterId < 0x18) {
-        return true;
-    }
-
-    // Small Miis
-    if (characterId >= 0x18 && characterId < 0x1c) {
-        return true;
-    }
-
-    // Medium Miis
-    if (characterId >= 0x1e && characterId < 0x22) {
-        return true;
-    }
-
-    // Large Miis
-    if (characterId >= 0x24 && characterId < 0x28) {
-        return true;
-    }
-
-    return false;
-}
-
 static bool DateIsValid(u32 year, u32 month, u32 day) {
     if (year > 99) {
         return false;
@@ -259,15 +237,23 @@ bool IsValid(const u8 *raw, u32 size) {
         return false;
     }
 
-    if (static_cast<u32>(header->courseId) >= 0x20) {
+    if (!Registry::IsRaceCourse(header->courseId)) {
         return false;
     }
 
-    if (header->vehicleId >= 0x24) {
+    std::optional<Registry::Character> character =
+            magic_enum::enum_cast<Registry::Character>(header->characterId);
+    if (!character.has_value()) {
         return false;
     }
 
-    if (!CharacterIdIsValid(header->characterId)) {
+    std::optional<Registry::Vehicle> vehicle =
+            magic_enum::enum_cast<Registry::Vehicle>(header->vehicleId);
+    if (!vehicle.has_value()) {
+        return false;
+    }
+
+    if (!Registry::IsCombinationValid(character.value(), vehicle.value())) {
         return false;
     }
 
