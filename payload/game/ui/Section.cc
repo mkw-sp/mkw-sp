@@ -66,6 +66,7 @@ System::SceneId Section::GetSceneId(SectionId id) {
     case SectionId::WU8Library:
         return System::SceneId::Menu;
     case SectionId::ServicePackChannel:
+    case SectionId::ServicePackRankings:
         return System::SceneId::Globe;
     default:
         panic("Unhandled extended section ID! 0x%x", static_cast<s32>(id));
@@ -87,6 +88,7 @@ const char *Section::GetResourceName(SectionId id) {
         return HandleResourceNamePatches(id);
     case SectionId::WU8Library:
     case SectionId::ServicePackChannel:
+    case SectionId::ServicePackRankings:
         return "/Scene/UI/Channel";
     default:
         panic("Unhandled extended section ID! 0x%x", static_cast<s32>(id));
@@ -110,6 +112,7 @@ bool Section::HasBackModel(const SectionId id) {
         return REPLACED(HasBackModel)(id);
     case SectionId::WU8Library:
     case SectionId::ServicePackChannel:
+    case SectionId::ServicePackRankings:
         return false;
     default:
         panic("Unhandled extended section ID! 0x%x", static_cast<s32>(id));
@@ -138,6 +141,8 @@ Sound::SoundId Section::GetSoundId(const SectionId id) {
         return Sound::SoundId::SEQ_O_EARTH;
     case SectionId::ServicePackChannel:
         return Sound::SoundId::SEQ_O_SELECT_CH;
+    case SectionId::ServicePackRankings:
+        return Sound::SoundId::SEQ_O_RANKING_CH;
     default:
         panic("Unhandled extended section ID! 0x%x", static_cast<s32>(id));
     }
@@ -151,6 +156,8 @@ Sound::GroupId Section::GetGroupId(const SectionId id) {
         return Sound::GroupId::Online;
     case SectionId::ServicePackChannel:
         return Sound::GroupId::Channel;
+    case SectionId::ServicePackRankings:
+        return Sound::GroupId::Rankings;
     default:
         panic("Unhandled extended section ID! 0x%x", static_cast<s32>(id));
     }
@@ -164,6 +171,7 @@ s32 Section::GetPriority(const SectionId id) {
     case SectionId::WU8Library:
         return 0;
     case SectionId::ServicePackChannel:
+    case SectionId::ServicePackRankings:
         return 1;
     default:
         panic("Unhandled extended section ID! 0x%x", static_cast<s32>(id));
@@ -308,11 +316,6 @@ void Section::addPage(PageId pageId) {
             // The channel section is repurposed into the Service Pack section. Remove some pages
             // that aren't needed anymore.
             {SectionId::ServicePack, PageId::TimeAttackTop},
-
-            {SectionId::Rankings, PageId::RaceCourseSelect},
-            {SectionId::Rankings, PageId::DirectConnection},
-            {SectionId::Rankings, PageId::OnlineConnectionManager},
-            {SectionId::Rankings, PageId::WifiConnectionFailed},
     };
     for (const auto &deletion : deletions) {
         if (deletion.first == m_id && deletion.second == pageId) {
@@ -346,8 +349,6 @@ void Section::addActivePage(PageId pageId) {
 
             {SectionId::OnlineFriend1PVS, PageId::OnlineConnectionManager},
             {SectionId::OnlineFriend1PVS, PageId::OnlineTeamSelect},
-
-            {SectionId::Rankings, PageId::OnlineConnectionManager},
     };
     for (const auto &deletion : deletions) {
         if (deletion.first == m_id && deletion.second == pageId) {
@@ -495,9 +496,6 @@ void Section::addPages(SectionId id) {
             {SectionId::ServicePack, PageId::Update},
             {SectionId::ServicePack, PageId::Channel},
 
-            {SectionId::Rankings, PageId::SPRankingGhostDownload},
-            {SectionId::Rankings, PageId::SPRankingTopTenDownload},
-
             // Extended sections add their used pages here!
             {SectionId::WU8Library, PageId::SpinnerAwait},
             {SectionId::WU8Library, PageId::LineBackgroundWhite},
@@ -505,6 +503,17 @@ void Section::addPages(SectionId id) {
 
             {SectionId::ServicePackChannel, PageId::Obi},
             {SectionId::ServicePackChannel, PageId::ServicePackChannel},
+
+            {SectionId::ServicePackRankings, PageId::SpinnerAwait},
+            {SectionId::ServicePackRankings, PageId::MenuMessage},
+            {SectionId::ServicePackRankings, PageId::Confirm},
+            {SectionId::ServicePackRankings, PageId::Obi},
+            {SectionId::ServicePackRankings, PageId::CourseSelect},
+            {SectionId::ServicePackRankings, PageId::Globe},
+            {SectionId::ServicePackRankings, PageId::Ranking},
+            {SectionId::ServicePackRankings, PageId::ChannelStartTimeTrial},
+            {SectionId::ServicePackRankings, PageId::SPRankingGhostDownload},
+            {SectionId::ServicePackRankings, PageId::SPRankingTopTenDownload},
             // clang-format on
     };
     for (const auto &addition : additions) {
@@ -541,6 +550,9 @@ void Section::addActivePages(SectionId id) {
 
             {SectionId::ServicePackChannel, PageId::Obi},
             {SectionId::ServicePackChannel, PageId::ServicePackChannel},
+
+            {SectionId::ServicePackRankings, PageId::Obi},
+            {SectionId::ServicePackRankings, PageId::Ranking},
     };
     for (const auto &addition : additions) {
         if (addition.first == id) {

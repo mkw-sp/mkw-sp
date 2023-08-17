@@ -178,7 +178,7 @@ enum class PageId {
     Ranking = 0xA8,
     RankingBack = 0xAA,
 
-    ChannelGhostBackground = 0xAC,
+    ChannelStartTimeTrial = 0xAC,
     ChannelGhostSelected = 0xAD,
     RankingTopTenDownload = 0xAE,
 

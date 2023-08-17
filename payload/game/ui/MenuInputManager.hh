@@ -217,6 +217,7 @@ public:
     // TODO r6
     void select(u32 localPlayerId, ControlInputManager *child, s32 r6);
     void setPerControl(u32 localPlayerId, bool perControl);
+    bool isPerControl(u32 localPlayerId) const;
 
     static TypeInfo *GetTypeInfo();
 
@@ -227,6 +228,7 @@ private:
         u32 sequenceFrames() const;
         bool isPointer() const;
         Vec2<f32> pointerPos() const;
+        bool isPerControl() const;
 
     private:
         u8 _00[0x3c - 0x00];
@@ -235,7 +237,8 @@ private:
         bool m_isPointer;
         u8 _45[0x48 - 0x45];
         Vec2<f32> m_pointerPos;
-        u8 _50[0x5c - 0x50];
+        bool m_isPerControl;
+        u8 _51[0x5c - 0x51];
     };
     static_assert(sizeof(Player) == 0x5c);
 

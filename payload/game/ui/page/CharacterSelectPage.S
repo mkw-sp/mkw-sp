@@ -1,4 +1,5 @@
 #include "../SectionId.S"
+
 #include <Common.S>
 
 PATCH_BL_START(CharacterSelectPage_onInit, 0x90)
@@ -19,12 +20,6 @@ PATCH_BL_END(CharacterSelectPage_onInit, 0x90)
 PATCH_REPLACE_START(CharacterSelectPage_onActivate, 0x180)
     cmpwi r0, SingleChannelLeaderboardChallenge
 PATCH_REPLACE_END(CharacterSelectPage_onActivate, 0x180)
-
-PATCH_REPLACE_START(CharacterSelectPage_8083e928, 0x27C)
-    cmpwi r0, SingleChannelLeaderboardChallenge
-PATCH_REPLACE_END(CharacterSelectPage_8083e928, 0x27C)
-
-
 
 PATCH_REPLACE_START(CharacterSelectPage_8083dfa8, 0x564)
     // Check the SP bits for team mode

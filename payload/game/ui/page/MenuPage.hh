@@ -11,7 +11,7 @@ public:
     virtual void vf_64();
     virtual void vf_68();
     virtual void vf_6c();
-    virtual void vf_70();
+    virtual MenuInputManager *getInputManager();
     virtual void vf_74();
     virtual void selectDefault(PushButton *button);
     virtual void vf_7c();
@@ -26,6 +26,7 @@ public:
 
 protected:
     void startReplace(PageId pageId, const PushButton *button);
+    void startReplacePreviousPage(f32 delay);
     void onBackButtonFront(const PushButton *button);
     void requestChangeSection(SectionId sectionId, const PushButton *button);
     void pushMessage(u32 messageId, MessageInfo *info = nullptr);
@@ -42,7 +43,13 @@ protected:
     CtrlMenuPageTitleText *m_instructionText;
 
 private:
-    u8 _2c0[0x3d8 - 0x2c0];
+    u8 _2c0[0x310 - 0x2c0];
+
+protected:
+    MessageInfo m_titleMessage;
+
+private:
+    u8 _3d4[0x3d8 - 0x3d4];
 
 protected:
     u32 m_buttonCount;

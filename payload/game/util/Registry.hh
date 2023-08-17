@@ -2,6 +2,8 @@
 
 #include <Common.hh>
 
+#include "game/ui/SectionId.hh"
+
 namespace Registry {
 
 enum class Character {
@@ -100,22 +102,22 @@ enum class Controller {
 };
 
 enum class Course {
-    MarioCircuit = 0x0,
-    MooMooMeadows = 0x1,
-    MushroomGorge = 0x2,
-    GrumbleVolcano = 0x3,
-    ToadsFactory = 0x4,
-    CoconutMall = 0x5,
-    DKSummit = 0x6,
-    WarioGoldMine = 0x7,
-    LuigiCircuit = 0x8,
-    DaisyCircuit = 0x9,
-    MoonviewHighway = 0xA,
-    MapleTreeway = 0xB,
-    BowsersCastle = 0xC,
-    RainbowRoad = 0xD,
-    DryDryRuins = 0xE,
-    KoopaCape = 0xF,
+    MarioCircuit = 0x00,
+    MooMooMeadows = 0x01,
+    MushroomGorge = 0x02,
+    GrumbleVolcano = 0x03,
+    ToadsFactory = 0x04,
+    CoconutMall = 0x05,
+    DKSummit = 0x06,
+    WarioGoldMine = 0x07,
+    LuigiCircuit = 0x08,
+    DaisyCircuit = 0x09,
+    MoonviewHighway = 0x0A,
+    MapleTreeway = 0x0B,
+    BowsersCastle = 0x0C,
+    RainbowRoad = 0x0D,
+    DryDryRuins = 0x0E,
+    KoopaCape = 0x0F,
     GCNPeachBeach = 0x10,
     GCNMarioCircuit = 0x11,
     GCNWaluigiStadium = 0x12,
@@ -159,6 +161,11 @@ u32 GetCharacterMessageId(u32 characterId, bool resolveMiiNames);
 REPLACE bool UseBattleRenders();
 
 s32 GetButtonIndexFromCourse(Course course);
+
+bool IsWiFiMenuSection(UI::SectionId sectionId);
+bool IsGhostRaceSection(UI::SectionId sectionId);
+bool IsCompetitionSection(UI::SectionId sectionId);
+
 const char *GetCharacterPane(u32 characterId);
 const char *GetCupIconName(u32 cupId);
 u32 GetCupMessageId(u32 cupId);

@@ -1,5 +1,7 @@
 #pragma once
 
+#include <Common.h>
+
 typedef enum {
     NHTTP_ERROR_NONE,
 } NHTTPError;

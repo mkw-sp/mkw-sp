@@ -12,7 +12,7 @@ CourseSelectButton::~CourseSelectButton() = default;
 
 void CourseSelectButton::load(u32 i) {
     char variant[0x20];
-    if (SectionManager::Instance()->currentSection()->id() == SectionId::Rankings) {
+    if (SectionManager::Instance()->currentSection()->id() == SectionId::ServicePackRankings) {
         snprintf(variant, std::size(variant), "RankingButton%zu", i);
     } else {
         snprintf(variant, std::size(variant), "Button%zu", i);
