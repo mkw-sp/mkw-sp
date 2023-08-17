@@ -9,7 +9,7 @@ public:
     MultiDriftSelectPage();
     ~MultiDriftSelectPage() override;
 
-    MultiControlInputManager *getInputManager();
+    MultiControlInputManager *getInputManager() override;
 
     REPLACE void onButtonFront(PushButton *button, u32 localPlayerId);
 

@@ -8,7 +8,7 @@ namespace UI {
 
 class DriverModel {
 public:
-    void setAnim(u32 r4, u32 r5);
+    void setAnim(u32 localPlayerId, u32 r5);
 
 private:
     u8 _00[0x14 - 0x00];

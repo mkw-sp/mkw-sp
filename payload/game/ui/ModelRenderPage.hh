@@ -12,21 +12,22 @@ public:
     void configure(u32 localPlayerId, bool r5, bool r6);
     void setCharacterId(u32 localPlayerId, Registry::Character characterId);
     void setVehicleId(u32 localPlayerId, Registry::Vehicle vehicleId);
+    bool player_09(u8 localPlayerId) const;
 
     static u8 determineModelCount(SectionId sectionId);
 
     static void onDriverModelLoaded(s8 idx);
 
 private:
-    struct Something {
-        u32 _00;
-        u32 _04;
-        u8 _08;
-        u8 _09;
+    struct Player {
+        Registry::Character m_characterId;
+        Registry::Vehicle m_vehicleId;
+        bool _08;
+        bool _09;
     };
 
     MenuInputManager m_inputManager;
-    Something _54[4];
+    Player m_players[4];
     u8 _82[0x84 - 0x82];
     u8 m_modelCount;
     u32 _88;

@@ -26,6 +26,10 @@ Vec2<f32> MultiControlInputManager::pointerPos(u32 localPlayerId) const {
     return m_players[localPlayerId].pointerPos();
 }
 
+bool MultiControlInputManager::isPerControl(u32 localPlayerId) const {
+    return m_players[localPlayerId].isPerControl();
+}
+
 u32 MultiControlInputManager::Player::sequenceFlags() const {
     return m_sequenceFlags;
 }
@@ -36,6 +40,10 @@ bool MultiControlInputManager::Player::isPointer() const {
 
 Vec2<f32> MultiControlInputManager::Player::pointerPos() const {
     return m_pointerPos;
+}
+
+bool MultiControlInputManager::Player::isPerControl() const {
+    return m_isPerControl;
 }
 
 } // namespace UI

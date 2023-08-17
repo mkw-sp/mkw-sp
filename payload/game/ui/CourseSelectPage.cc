@@ -25,7 +25,8 @@ PageId CourseSelectPage::getReplacement() {
 }
 
 void CourseSelectPage::onInit() {
-    bool isRanking = SectionManager::Instance()->currentSection()->id() == SectionId::Rankings;
+    bool isSPRankingsSection =
+            SectionManager::Instance()->currentSection()->id() == SectionId::ServicePackRankings;
 
     m_filter = {false, false};
     m_sheetCount = 1;
@@ -36,7 +37,7 @@ void CourseSelectPage::onInit() {
     setInputManager(&m_inputManager);
     m_inputManager.setWrappingMode(MultiControlInputManager::WrappingMode::Neither);
 
-    initChildren(5 + m_buttons.size() + isRanking);
+    initChildren(5 + m_buttons.size() + isSPRankingsSection);
     insertChild(0, &m_pageTitleText, 0);
     insertChild(1, &m_sheetSelect, 0);
     insertChild(2, &m_sheetLabel, 0);
@@ -45,7 +46,7 @@ void CourseSelectPage::onInit() {
     for (size_t i = 0; i < m_buttons.size(); i++) {
         insertChild(5 + i, &m_buttons[i], 0);
     }
-    if (isRanking) {
+    if (isSPRankingsSection) {
         m_blackBackControl = std::make_unique<BlackBackControl>();
         insertChild(5 + m_buttons.size(), m_blackBackControl.get(), 0);
         m_blackBackControl->load("control", "RankingBlackBack", "RankingBlackBack");
@@ -61,7 +62,7 @@ void CourseSelectPage::onInit() {
     const char *buttonArrowLeftVariant;
     const char *courseSelectPageNumVariant;
     const char *courseSelectScrollBarVariant;
-    if (isRanking) {
+    if (isSPRankingsSection) {
         buttonArrowRightVariant = "RankingButtonArrowRight";
         buttonArrowLeftVariant = "RankingButtonArrowLeft";
         courseSelectPageNumVariant = "RankingCourseSelectPageNum";
@@ -117,7 +118,7 @@ void CourseSelectPage::onInit() {
     case SectionId::SingleChangeGhostData:
     case SectionId::Voting1PVS:
     case SectionId::Voting2PVS:
-    case SectionId::Rankings:
+    case SectionId::ServicePackRankings:
         filter();
         break;
     default: {
@@ -283,7 +284,7 @@ void CourseSelectPage::onButtonFront(PushButton *button, u32 /* localPlayerId */
         votingBackPage->setLocalVote(entry.courseId);
         votingBackPage->setSubmitted(true);
         startReplace(Anim::Next, button->getDelay());
-    } else if (sectionId == SectionId::Rankings) {
+    } else if (sectionId == SectionId::ServicePackRankings) {
         s32 courseButtonIndex = GetButtonIndexFromCourse(entry.courseId);
 
         auto *rankingPage = section->page<PageId::Ranking>();
@@ -384,7 +385,7 @@ void CourseSelectPage::onBackCommon(f32 delay) {
     } else if (sectionId == SectionId::SingleSelectBTCourse) {
         backMessageId = 3471;
     } else {
-        if (sectionId == SectionId::Rankings) {
+        if (sectionId == SectionId::ServicePackRankings) {
             m_replacement = PageId::None;
         } else if (sectionId == SectionId::Multi) {
             m_replacement = PageId::MultiDriftSelect;

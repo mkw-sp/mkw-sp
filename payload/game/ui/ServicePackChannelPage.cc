@@ -35,7 +35,7 @@ void ServicePackChannelPage::onBack(u32 /* localPlayerId */) {
 
 void ServicePackChannelPage::onRankingsButtonFront(PushButton *pushButton,
         u32 /* localPlayerId */) {
-    changeSection(SectionId::Rankings, Anim::Next, pushButton->getDelay());
+    changeSection(SectionId::ServicePackRankings, Anim::Next, pushButton->getDelay());
 }
 
 void ServicePackChannelPage::onBackButtonFront(PushButton *pushButton, u32 /* localPlayerId */) {

@@ -9,10 +9,10 @@ namespace UI {
 
 void ModelRenderPage::onInit() {
     for (u8 i = 0; i < 4; i++) {
-        _54[i]._00 = 0;
-        _54[i]._04 = 4;
-        _54[i]._08 = 0;
-        _54[i]._09 = 0;
+        m_players[i].m_characterId = Registry::Character::Mario;
+        m_players[i].m_vehicleId = Registry::Vehicle::ClassicDragster;
+        m_players[i]._08 = false;
+        m_players[i]._09 = false;
     }
 
     _88 = 0;
@@ -40,6 +40,10 @@ void ModelRenderPage::onInit() {
     m_inputManager.init(0, false);
     setInputManager(&m_inputManager);
     initChildren(0);
+}
+
+bool ModelRenderPage::player_09(u8 localPlayerId) const {
+    return m_players[localPlayerId]._09;
 }
 
 } // namespace UI
