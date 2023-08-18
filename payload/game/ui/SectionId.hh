@@ -155,7 +155,7 @@ enum class SectionId {
     // ^^ All channel sections vv
     // 0x84 replaces OnlineServer
 
-    _82 = 0x82,
+    Unknown82 = 0x82,
     CompetitionChannel = 0x85,
     CompetitionChangeCharacter = 0x86,
     CompetitionSubmitRecord = 0x87,

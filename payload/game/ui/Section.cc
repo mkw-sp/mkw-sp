@@ -241,7 +241,7 @@ void Section::addPage(PageId pageId) {
             // The game has 5 pages for the records, we only need 1 for the settings. Remove the 4
             // others.
             {SectionId::LicenseSettings, PageId::SettingsPopup},
-            {SectionId::LicenseSettings, PageId::ServicePackChannel},
+            {SectionId::LicenseSettings, PageId::LicenseRecordsFriends},
             {SectionId::LicenseSettings, PageId::LicenseRecordsWFC},
             {SectionId::LicenseSettings, PageId::LicenseRecordsOther},
 
@@ -625,18 +625,18 @@ Page *Section::CreatePage(PageId pageId) {
         return new MenuSettingsPage;
     case PageId::SettingsPopup:
         return new SettingsPagePopup;
-    case PageId::ServicePackChannel:
-        return new ServicePackChannelPage;
     case PageId::PackSelect:
         return new PackSelectPage;
     case PageId::CourseDebug:
         return new CourseDebugPage;
     case PageId::WU8Library:
         return new WU8LibraryPage;
-    case PageId::SPRankingTopTenDownload:
-        return new SPRankingTopTenDownloadPage;
+    case PageId::ServicePackChannel:
+        return new ServicePackChannelPage;
     case PageId::SPRankingGhostDownload:
         return new SPRankingGhostDownloadPage;
+    case PageId::SPRankingTopTenDownload:
+        return new SPRankingTopTenDownloadPage;
     default:
         return REPLACED(CreatePage)(pageId);
     }
