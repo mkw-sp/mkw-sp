@@ -205,7 +205,7 @@ enum class PageId {
     MenuSettings = 0xCE,  // Replaces LicenseRecordsOverall
     SettingsPopup = 0xCF, // Replaces LicenseRecordsFavorites
     // Disabled {
-    ServicePackChannel = 0xD0, // Replaces LicenseRecordsFriends
+    LicenseRecordsFriends = 0xD0,
     LicenseRecordsWFC = 0xD1,
     LicenseRecordsOther = 0xD2,
     // }
@@ -219,6 +219,7 @@ enum class PageId {
     PackSelect,
     CourseDebug,
     WU8Library,
+    ServicePackChannel,
     SPRankingGhostDownload,
     SPRankingTopTenDownload,
     // }

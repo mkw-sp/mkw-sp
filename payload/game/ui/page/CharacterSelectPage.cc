@@ -85,7 +85,7 @@ void CharacterSelectPage::goBack() {
         changeSection(SectionId::ServicePackRankings, Anim::Prev, 0.0f);
         break;
     case SectionId::SingleGhostListChallenge:
-        changeSection(SectionId::_82, Anim::Prev, 0.0f);
+        changeSection(SectionId::Unknown82, Anim::Prev, 0.0f);
         break;
     default:
         startReplacePreviousPage(0.0f);
