@@ -291,7 +291,7 @@ void CourseSelectPage::onButtonFront(PushButton *button, u32 /* localPlayerId */
         rankingPage->courseControl().choose(courseButtonIndex);
 
         m_replacement = PageId::None;
-        startReplace(Anim::Prev, button->getDelay());
+        startReplace(Anim::Next, button->getDelay());
     } else {
         auto *globalContext = sectionManager->globalContext();
         auto &menuScenario = System::RaceConfig::Instance()->menuScenario();
