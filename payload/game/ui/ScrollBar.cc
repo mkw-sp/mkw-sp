@@ -211,7 +211,7 @@ void ScrollBar::onFront(u32 localPlayerId, u32 /* r5 */) {
         }
     }
 
-    playSound(Sound::SoundId::SE_UI_CTRL_ON, localPlayerId);
+    playSound(Sound::SoundId::SE_UI_BTN_OK, localPlayerId);
 }
 
 void ScrollBar::onRight(u32 /* localPlayerId */, u32 /* r5 */) {}
