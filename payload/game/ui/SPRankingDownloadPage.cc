@@ -1,12 +1,13 @@
 #include "SPRankingDownloadPage.hh"
 
 #include "game/host_system/SystemManager.hh"
+#include "game/system/GameScene.hh"
 #include "game/system/SaveManager.hh"
 #include "game/ui/AwaitPage.hh"
 #include "game/ui/MessagePage.hh"
 #include "game/ui/SectionManager.hh"
 
-#include <egg/core/eggSystem.hh>
+#include <egg/core/eggExpHeap.hh>
 #include <sp/settings/RegionLineColor.hh>
 
 extern "C" {
@@ -16,6 +17,7 @@ extern "C" {
 namespace UI {
 
 bool SPRankingDownloadPage::s_initialisedNHTTPLibrary = false;
+EGG::Heap *SPRankingDownloadPage::s_nhttpHeap = nullptr;
 
 SPRankingDownloadPage::SPRankingDownloadPage() = default;
 
@@ -29,12 +31,22 @@ void SPRankingDownloadPage::onInit() {
     m_inputManager.init(0, false);
     setInputManager(&m_inputManager);
     initChildren(0);
+
+    if (!s_nhttpHeap) {
+        EGG::Heap *heap = System::GameScene::Instance()->volatileHeapCollection.mem2;
+        void *block = heap->alloc(s_nhttpHeapSize, 32);
+        s_nhttpHeap = EGG::ExpHeap::Create(block, s_nhttpHeapSize, 1);
+    }
 }
 
 void SPRankingDownloadPage::onDeinit() {
     if (s_initialisedNHTTPLibrary) {
         NHTTPCleanupAsync(nullptr);
         s_initialisedNHTTPLibrary = false;
+    }
+    if (s_nhttpHeap) {
+        s_nhttpHeap->destroy();
+        s_nhttpHeap = nullptr;
     }
 }
 
@@ -175,11 +187,11 @@ SPRankingDownloadPage::ResponseStatus SPRankingDownloadPage::processResponse(
 }
 
 void *SPRankingDownloadPage::NHTTPAlloc(u32 size, int align) {
-    return EGG::TSystem::Instance().eggRootSystem()->alloc(size, align);
+    return s_nhttpHeap->alloc(size, align);
 }
 
 void SPRankingDownloadPage::NHTTPFree(void *block) {
-    EGG::TSystem::Instance().eggRootSystem()->free(block);
+    s_nhttpHeap->free(block);
 }
 
 void SPRankingDownloadPage::RequestCallback(NHTTPError error, NHTTPResponseHandle responseHandle,

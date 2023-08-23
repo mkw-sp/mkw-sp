@@ -69,7 +69,9 @@ private:
     RankingResponse m_rankingResponse;
 
     static bool s_initialisedNHTTPLibrary;
+    static EGG::Heap *s_nhttpHeap;
 
+    static constexpr u32 s_nhttpHeapSize = 0x0000A860;
     static constexpr u32 s_nhttpThreadPriority = 17;
     static constexpr u32 s_requestTimeoutSeconds = 10;
 };
