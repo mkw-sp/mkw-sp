@@ -66,7 +66,6 @@ bool SPRankingDownloadPage::makeRequest(const char *url) {
     if (!s_initialisedNHTTPLibrary) {
         if (NHTTPStartup(NHTTPAlloc, NHTTPFree, s_nhttpThreadPriority) != NHTTP_ERROR_NONE) {
             SP_LOG("Failed to start the 'NHTTP' library!");
-            m_responseStatus = ResponseStatus::RequestError;
             return false;
         }
         s_initialisedNHTTPLibrary = true;
@@ -123,19 +122,17 @@ SPRankingDownloadPage::State SPRankingDownloadPage::resolve() {
     case State::Previous:
         break;
     case State::InDevelopment:
-        return State::Finished;
+        return State::Previous;
     case State::Request:
         return State::Response;
+    case State::RequestError:
+        return State::Previous;
     case State::Response:
         switch (responseStatus()) {
         case ResponseStatus::Ok:
-            return State::Finished;
-        case ResponseStatus::RequestError:
-        case ResponseStatus::ResponseError:
+        case ResponseStatus::Error:
             return State::Previous;
         }
-    case State::Finished:
-        break;
     }
 
     return m_state;
@@ -149,7 +146,7 @@ void SPRankingDownloadPage::requestCallback(NHTTPError error, NHTTPResponseHandl
     if (error == NHTTP_ERROR_NONE) {
         m_responseStatus = processResponse(responseHandle);
     } else {
-        m_responseStatus = ResponseStatus::RequestError;
+        m_responseStatus = ResponseStatus::Error;
     }
     NHTTPDestroyResponse(responseHandle);
 
@@ -161,26 +158,20 @@ void SPRankingDownloadPage::requestCallback(NHTTPError error, NHTTPResponseHandl
 
 SPRankingDownloadPage::ResponseStatus SPRankingDownloadPage::processResponse(
         NHTTPResponseHandle responseHandle) {
-    int statusCode = NHTTPGetResultCode(responseHandle);
-    if (statusCode != NHTTP_STATUS_CODE_OK) {
-        if (statusCode >= NHTTP_STATUS_CODE_BAD_REQUEST &&
-                statusCode < NHTTP_STATUS_CODE_INTERNAL_SERVER_ERROR) {
-            return ResponseStatus::RequestError;
-        } else {
-            return ResponseStatus::ResponseError;
-        }
+    if (NHTTPGetResultCode(responseHandle) != NHTTP_STATUS_CODE_OK) {
+        return ResponseStatus::Error;
     }
 
     char *responseBody;
     int responseBodyLength = NHTTPGetBodyAll(responseHandle, &responseBody);
     if (responseBodyLength < 0) {
-        return ResponseStatus::ResponseError;
+        return ResponseStatus::Error;
     }
 
     pb_istream_t stream =
             pb_istream_from_buffer(reinterpret_cast<u8 *>(responseBody), responseBodyLength);
     if (!pb_decode(&stream, RankingResponse_fields, &m_rankingResponse)) {
-        return ResponseStatus::ResponseError;
+        return ResponseStatus::Error;
     }
 
     return ResponseStatus::Ok;

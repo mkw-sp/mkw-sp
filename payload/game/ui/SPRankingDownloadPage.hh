@@ -25,15 +25,14 @@ public:
 protected:
     enum class ResponseStatus {
         Ok,
-        RequestError,
-        ResponseError,
+        Error,
     };
     enum class State {
         Previous,
         InDevelopment,
         Request,
+        RequestError,
         Response,
-        Finished,
     };
 
     virtual void transition(State state) = 0;
