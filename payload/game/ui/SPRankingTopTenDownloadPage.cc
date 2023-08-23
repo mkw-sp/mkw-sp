@@ -28,7 +28,7 @@ void SPRankingTopTenDownloadPage::onActivate() {
         if (makeRequest(url)) {
             transition(State::Request);
         } else {
-            transition(State::Response);
+            transition(State::RequestError);
         }
         break;
     }
@@ -46,7 +46,7 @@ void SPRankingTopTenDownloadPage::transition(State state) {
     switch (state) {
     case State::Previous:
         m_replacement = PageId::Ranking;
-        startReplace(Anim::Next, 0.0f);
+        startReplace(Anim::Prev, 0.0f);
         break;
     case State::InDevelopment:
         menuMessagePage->reset();
@@ -58,24 +58,22 @@ void SPRankingTopTenDownloadPage::transition(State state) {
         spinnerAwaitPage->setWindowMessage(6114);
         push(PageId::SpinnerAwait, Anim::Next);
         break;
+    case State::RequestError:
+        menuMessagePage->reset();
+        menuMessagePage->setWindowMessage(10448);
+        push(PageId::MenuMessage, Anim::Next);
+        break;
     case State::Response:
         menuMessagePage->reset();
         switch (responseStatus()) {
         case ResponseStatus::Ok:
             menuMessagePage->setWindowMessage(10430);
             break;
-        case ResponseStatus::RequestError:
-            menuMessagePage->setWindowMessage(10448);
-            break;
-        case ResponseStatus::ResponseError:
+        case ResponseStatus::Error:
             menuMessagePage->setWindowMessage(10449);
             break;
         }
         push(PageId::MenuMessage, Anim::Next);
-        break;
-    case State::Finished:
-        m_replacement = PageId::Ranking;
-        startReplace(Anim::Next, 0.0f);
         break;
     }
 

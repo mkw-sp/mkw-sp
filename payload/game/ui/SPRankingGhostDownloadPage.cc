@@ -28,7 +28,7 @@ void SPRankingGhostDownloadPage::onActivate() {
         if (makeRequest(url)) {
             transition(State::Request);
         } else {
-            transition(State::Response);
+            transition(State::RequestError);
         }
         break;
     default:
@@ -49,7 +49,7 @@ void SPRankingGhostDownloadPage::transition(State state) {
     switch (state) {
     case State::Previous:
         m_replacement = PageId::Ranking;
-        startReplace(Anim::Next, 0.0f);
+        startReplace(Anim::Prev, 0.0f);
         break;
     case State::InDevelopment:
         menuMessagePage->reset();
@@ -61,24 +61,22 @@ void SPRankingGhostDownloadPage::transition(State state) {
         spinnerAwaitPage->setWindowMessage(6110);
         push(PageId::SpinnerAwait, Anim::Next);
         break;
+    case State::RequestError:
+        menuMessagePage->reset();
+        menuMessagePage->setWindowMessage(10452);
+        push(PageId::MenuMessage, Anim::Next);
+        break;
     case State::Response:
         menuMessagePage->reset();
         switch (responseStatus()) {
         case ResponseStatus::Ok:
             menuMessagePage->setWindowMessage(10430);
             break;
-        case ResponseStatus::RequestError:
-            menuMessagePage->setWindowMessage(10452);
-            break;
-        case ResponseStatus::ResponseError:
+        case ResponseStatus::Error:
             menuMessagePage->setWindowMessage(10453);
             break;
         }
         push(PageId::MenuMessage, Anim::Next);
-        break;
-    case State::Finished:
-        m_replacement = PageId::Ranking;
-        startReplace(Anim::Next, 0.0f);
         break;
     }
 
