@@ -510,6 +510,7 @@ void Section::addPages(SectionId id) {
             {SectionId::ServicePackRankings, PageId::Obi},
             {SectionId::ServicePackRankings, PageId::CourseSelect},
             {SectionId::ServicePackRankings, PageId::Globe},
+            {SectionId::ServicePackRankings, PageId::GhostManager},
             {SectionId::ServicePackRankings, PageId::Ranking},
             {SectionId::ServicePackRankings, PageId::ChannelStartTimeTrial},
             {SectionId::ServicePackRankings, PageId::SPRankingGhostDownload},
