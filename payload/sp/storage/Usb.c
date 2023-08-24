@@ -193,7 +193,7 @@ static void Usb_handleAddition(u32 i) {
         return;
     }
 
-    for (u32 k = 0; k < deviceEntries->alternateSettingCount && !devices[j].handler; k++) {
+    for (u32 k = 0; k < deviceEntries[i].alternateSettingCount && !devices[j].handler; k++) {
         memset(buffer, 0, 0x20 + 0xc0);
         write_u32(buffer, 0x0, deviceEntries[i].id);
         write_u8(buffer, 0x8, k);
