@@ -14,6 +14,14 @@ extern "C" {
 
 #include <cstring>
 
+#define EXCEPTION_CONSOLE_WIDTH 75
+#define EXCEPTION_CONSOLE_HEIGHT 98
+
+#define EXCEPTION_CONSOLE_ATTRIBUTE_NO_LINE_WRAP (1 << 0)
+#define EXCEPTION_CONSOLE_ATTRIBUTE_TAB_SIZE_4 (1 << 2)
+#define EXCEPTION_CONSOLE_ATTRIBUTES \
+    EXCEPTION_CONSOLE_ATTRIBUTE_NO_LINE_WRAP | EXCEPTION_CONSOLE_ATTRIBUTE_TAB_SIZE_4
+
 namespace EGG {
 
 static constexpr bool CheckGCStickThreshold(s8 stick) {
@@ -152,6 +160,16 @@ bool ExceptionCallBack_(nw4r::db::ConsoleHandle console, void * /* arg */) {
             nw4r::db::Console_DrawDirect(console);
         }
     }
+}
+
+Exception *Exception::create(u16 /* width */, u16 /* height */, u16 /* attributes */, Heap *heap,
+        u32 numMapFiles) {
+    return REPLACED(create)(EXCEPTION_CONSOLE_WIDTH, EXCEPTION_CONSOLE_HEIGHT,
+            EXCEPTION_CONSOLE_ATTRIBUTES, heap, numMapFiles);
+}
+
+void Exception::setUserCallBack(void * /* arg */) {
+    REPLACED(setUserCallBack)(nullptr);
 }
 
 } // namespace EGG
