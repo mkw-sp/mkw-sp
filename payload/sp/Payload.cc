@@ -17,6 +17,7 @@ extern "C" {
 }
 #include "sp/net/Net.hh"
 #include "sp/security/Function.hh"
+#include "sp/security/FunctionPointer.hh"
 #include "sp/security/Heap.hh"
 #include "sp/security/Memory.hh"
 #include "sp/security/PageTable.hh"
@@ -199,6 +200,8 @@ static void Run() {
             reinterpret_cast<u32 *>(Dol_getTextSectionEnd()));
 #endif
     Patcher_patch(PATCHER_BINARY_DOL);
+    SP::FunctionPointer::DoCountRegisterPatches(reinterpret_cast<u32 *>(Dol_getTextSectionStart()),
+            reinterpret_cast<u32 *>(Dol_getTextSectionEnd()));
 }
 
 } // namespace SP::Payload
