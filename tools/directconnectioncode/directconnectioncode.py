@@ -1,4 +1,4 @@
-from argparse import ArgumentParser
+import argparse
 import re
 import socket
 import struct
@@ -33,14 +33,24 @@ def generate(ip: str, port: int, passcode: int):
     direct_code = direct_code[:6] + '-' + \
         direct_code[6:12] + '-' + direct_code[-6:]
 
-    print(direct_code)
+    return direct_code
 
 
 if __name__ == '__main__':
-    parser = ArgumentParser()
-    parser.add_argument('ip', type=str)
-    parser.add_argument('port', type=int)
-    parser.add_argument('passcode', type=int)
+    # Use argument parsing to allow the user to input their own IP, port, and passcode from the command line
+    parser = argparse.ArgumentParser()
+    parser.add_argument('ip', type=str, nargs='?', help="IP address for the server")
+    parser.add_argument('port', type=int, nargs='?', help="Port number for the server")
+    parser.add_argument('passcode', type=int, nargs='?', help="Passcode for the server")
     args = parser.parse_args()
 
-    generate(args.ip, args.port, args.passcode)
+    # If arguement parsing was not used, make the user input own arguments
+    if args.ip is None or args.port is None or args.passcode is None:
+            args.ip = input("Enter the IP address for the server: ")
+            args.port = int(input("Enter the port number for the server: "))
+            args.passcode = int(input("Enter the passcode for the server: "))
+            
+    direct_code = generate(args.ip, args.port, args.passcode)
+
+    print("Your direct connection code is \"" + direct_code + "\".")
+    print("Please have other clients use this code to connect to your server.")
