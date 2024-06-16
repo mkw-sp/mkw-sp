@@ -48,7 +48,8 @@ void TimeAttackSplitsPage::onFront() {
         return;
     }
 
-    startReplace(Anim::Prev, 0.0f);
+    setAnimSfxIds(Sound::SoundId::SE_DUMMY, Sound::SoundId::SE_DUMMY);
+    startReplace(Anim::Next, 0.0f);
 }
 
 } // namespace UI
