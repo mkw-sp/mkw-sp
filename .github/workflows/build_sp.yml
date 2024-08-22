@@ -61,7 +61,7 @@ jobs:
       - name: Install itanium_demangler
         run: pip install itanium_demangler
       - name: Install protobuf
-        run: pip install protobuf
+        run: pip install protobuf==4.22.0
       - name: Compile
         run: ./build.py --ci -- ${{ matrix.profile }}
       - name: Upload result
