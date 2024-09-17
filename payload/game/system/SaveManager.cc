@@ -543,7 +543,8 @@ void SaveManager::saveGhost(GhostFile *file) {
     if (miiName[0] == L'\0') {
         miiName = L"Player";
     }
-    offset += swprintf(path + offset, 255 + 1 - offset, L"%ls", miiName);
+    offset += swprintf(path + offset, 255 + 1 - offset, L"%.*ls",
+            sizeof(RawMii::name) / sizeof(RawMii::name[0]), miiName);
     swprintf(path + offset, 255 + 1 - offset, L".rkg");
 
     if (!SP::Storage::WriteFile(path, m_rawGhostFile, *size, false)) {
