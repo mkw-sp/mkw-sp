@@ -55,6 +55,9 @@ private:
     f32 m_internalSpeed;
     PODKartBoost m_boostState;
 
+    // KartState
+    u32 m_airtime;
+
     MinifiedWheelPhysics m_wheelPhysics[4];
 
     KartItem m_item;

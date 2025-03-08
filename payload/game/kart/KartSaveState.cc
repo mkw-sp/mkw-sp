@@ -24,6 +24,8 @@ void KartSaveState::save(KartAccessor accessor, VehiclePhysics *physics, KartIte
     m_boostState.m_1c = accessor.move->m_boost.m_1c;
     m_boostState.m_boostSpeedLimit = accessor.move->m_boost.m_boostSpeedLimit;
 
+    m_airtime = accessor.state->m_airtime;
+
     m_item = *item;
 
     for (u8 i = 0; i < accessor.settings->tireCount; i++) {
@@ -45,6 +47,8 @@ void KartSaveState::reload(KartAccessor accessor, VehiclePhysics *physics, KartI
     accessor.move->m_boost.m_boostAcceleration = m_boostState.m_boostAcceleration;
     accessor.move->m_boost.m_1c = m_boostState.m_1c;
     accessor.move->m_boost.m_boostSpeedLimit = m_boostState.m_boostSpeedLimit;
+
+    accessor.state->m_airtime = m_airtime;
 
     *item = m_item;
 
