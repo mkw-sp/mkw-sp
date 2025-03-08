@@ -65,7 +65,7 @@ jobs:
       - name: Compile
         run: ./build.py --ci -- ${{ matrix.profile }}
       - name: Upload result
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: mkw-sp-${{ matrix.profile }}
           path: out/${{ matrix.profile }}
@@ -75,7 +75,7 @@ jobs:
     runs-on: ubuntu-22.04
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
       - name: Install clang-format
         run: sudo apt-get update && sudo apt-get install clang-format-15
       - name: Format MKW-SP
