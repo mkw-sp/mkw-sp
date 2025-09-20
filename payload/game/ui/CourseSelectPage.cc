@@ -299,7 +299,7 @@ void CourseSelectPage::onButtonFront(PushButton *button, u32 /* localPlayerId */
 
         if (!sectionManager->globalContext()->generateOrderedCourses(courseIndex)) {
             globalContext->setCurrentCourse(entry.courseId);
-            menuScenario.courseId = globalContext->getCourse(0).value();
+            menuScenario.courseId = entry.courseId;
             spMenu.pathReplacement.m_len = 0;
             spMenu.musicReplacement = std::nullopt;
             spMenu.courseSha = std::nullopt;
