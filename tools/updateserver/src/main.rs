@@ -1,7 +1,7 @@
 use std::collections::VecDeque;
 use std::fmt;
 use std::fs::{self, File};
-use std::io::{self, ErrorKind, Read, Write};
+use std::io::{ErrorKind, Read, Write};
 use std::net::SocketAddr;
 use std::time::{Duration, Instant};
 
@@ -19,9 +19,7 @@ use zeroize::Zeroizing;
 include!(concat!(env!("OUT_DIR"), "/_.rs"));
 
 fn main() -> Result<(), Box<dyn std::error::Error>> {
-    eprint!("Password: ");
-    io::stderr().flush()?;
-    let password = Zeroizing::new(passterm::read_password()?);
+    let password = Zeroizing::new(passterm::prompt_password_tty(Some("Password: "))?);
     eprintln!("[hidden]");
 
     libhydrogen::init()?;

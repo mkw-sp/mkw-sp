@@ -1,6 +1,6 @@
 use std::env;
 use std::fs::{self, File};
-use std::io::{self, ErrorKind, Read, Write};
+use std::io::{ErrorKind, Read, Write};
 
 use argon2::{Argon2, Params};
 use libhydrogen::errors::anyhow;
@@ -14,8 +14,7 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
     }
 
     eprint!("Password: ");
-    io::stdout().flush()?;
-    let password = Zeroizing::new(passterm::read_password()?);
+    let password = Zeroizing::new(passterm::prompt_password_tty(Some("Password: "))?);
     eprintln!("[hidden]");
 
     libhydrogen::init()?;
