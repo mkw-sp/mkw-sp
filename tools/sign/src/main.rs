@@ -5,6 +5,7 @@ use std::io::{ErrorKind, Read, Write};
 use argon2::{Argon2, Params};
 use libhydrogen::errors::anyhow;
 use libhydrogen::{random, sign};
+use passterm::Stream;
 use zeroize::Zeroizing;
 
 fn main() -> Result<(), Box<dyn std::error::Error>> {
@@ -14,7 +15,8 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
     }
 
     eprint!("Password: ");
-    let password = Zeroizing::new(passterm::prompt_password_tty(Some("Password: "))?);
+    let password =
+        Zeroizing::new(passterm::prompt_password_stdin(Some("Password: "), Stream::Stderr)?);
     eprintln!("[hidden]");
 
     libhydrogen::init()?;
