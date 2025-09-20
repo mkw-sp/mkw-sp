@@ -39,7 +39,9 @@ private:
     u8 _030[0x038 - 0x030];
     Vec3 m_up;
     Vec3 m_rawUp;
-    u8 _050[0x074 - 0x050];
+    u8 _050[0x05c - 0x050];
+    Vec3 m_dir;
+    u8 _068[0x074 - 0x068];
     Vec3 m_internalVelDir;
     u8 _080[0x108 - 0x080];
     KartBoost m_boost;

@@ -23,6 +23,10 @@ void KartSaveState::save(KartAccessor accessor, VehiclePhysics *physics, KartIte
     m_boostState.m_boostAcceleration = accessor.move->m_boost.m_boostAcceleration;
     m_boostState.m_1c = accessor.move->m_boost.m_1c;
     m_boostState.m_boostSpeedLimit = accessor.move->m_boost.m_boostSpeedLimit;
+    m_up = accessor.move->m_up;
+    m_dir = accessor.move->m_dir;
+
+    m_airtime = accessor.state->m_airtime;
 
     m_item = *item;
 
@@ -45,6 +49,10 @@ void KartSaveState::reload(KartAccessor accessor, VehiclePhysics *physics, KartI
     accessor.move->m_boost.m_boostAcceleration = m_boostState.m_boostAcceleration;
     accessor.move->m_boost.m_1c = m_boostState.m_1c;
     accessor.move->m_boost.m_boostSpeedLimit = m_boostState.m_boostSpeedLimit;
+    accessor.move->m_up = m_up;
+    accessor.move->m_dir = m_dir;
+
+    accessor.state->m_airtime = m_airtime;
 
     *item = m_item;
 
