@@ -22,7 +22,9 @@ impl WebsocketListener {
 
     pub async fn accept_loop(self) {
         loop {
-            let Ok((stream, addr)) = self.listener.accept().await else {continue};
+            let Ok((stream, addr)) = self.listener.accept().await else {
+                continue;
+            };
             tracing::debug!("Accepted connection from {addr}");
 
             let server = self.server.clone();
@@ -37,9 +39,13 @@ impl WebsocketListener {
     }
 
     async fn handle_connection(mut ws: WebSocketStream<TcpStream>, server: Server) -> Fallible {
-        let Some(initial_message) = ws.next().await.transpose()? else {bail!("No initial message")};
+        let Some(initial_message) = ws.next().await.transpose()? else {
+            bail!("No initial message")
+        };
         let initial_message = GTSMessageOpt::decode(&*initial_message.into_data())?;
-        let Some(GTSMessage::AddServer (initial_message)) = initial_message.message else {bail!("Wrong initial message sent")};
+        let Some(GTSMessage::AddServer(initial_message)) = initial_message.message else {
+            bail!("Wrong initial message sent")
+        };
 
         let id = GameserverID(initial_message.gameserver_id.try_into()?);
         let (sender, receiver) = tokio::sync::mpsc::unbounded_channel();

@@ -160,7 +160,10 @@ async fn central_listener(
             }
         };
 
-        let STGMessageOpt {message: Some(msg)} = STGMessageOpt::decode(&*msg?.into_data())? else {
+        let STGMessageOpt {
+            message: Some(msg),
+        } = STGMessageOpt::decode(&*msg?.into_data())?
+        else {
             anyhow::bail!("Failed to decode message!")
         };
 

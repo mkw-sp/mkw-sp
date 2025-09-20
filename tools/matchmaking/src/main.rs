@@ -135,7 +135,9 @@ impl Server {
         client_id: ClientId,
     ) -> Fallible {
         while let Some(msg) = tcp.read().await? {
-            let Some(msg) = msg.message else {todo!("Handle client disconnect")};
+            let Some(msg) = msg.message else {
+                todo!("Handle client disconnect")
+            };
 
             match msg {
                 CTSMessage::StartMatchmaking(cts_message::StartMatchmaking {

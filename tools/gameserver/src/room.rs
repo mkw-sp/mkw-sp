@@ -87,9 +87,13 @@ impl Room {
     }
 
     pub async fn handle(&mut self) -> Result<()> {
-        let Some(gamemode) = self.handle_lobby().await? else { return Ok(()) };
+        let Some(gamemode) = self.handle_lobby().await? else {
+            return Ok(());
+        };
 
-        let Some(course_id) = self.handle_select(gamemode).await? else { return Ok(()) };
+        let Some(course_id) = self.handle_select(gamemode).await? else {
+            return Ok(());
+        };
 
         self.handle_race().await?;
 
@@ -164,8 +168,12 @@ impl Room {
 
         let mut player_frames = vec![None; self.players.len()];
         let mut player_frames = loop {
-            let Some((client_key, request)) = self.read_rx.recv().await else {return Ok(())};
-            let Some(request) = request.request else { continue }; // TODO handle
+            let Some((client_key, request)) = self.read_rx.recv().await else {
+                return Ok(());
+            };
+            let Some(request) = request.request else {
+                continue;
+            }; // TODO handle
             let race = match request {
                 RoomRequest::Race(race) => race,
                 _ => continue, // TODO handle
@@ -187,8 +195,12 @@ impl Room {
         };
 
         for time in 0.. {
-            let Some((client_key, request)) = self.read_rx.recv().await else {return Ok(())};
-            let Some(request) = request.request else { continue }; // TODO handle
+            let Some((client_key, request)) = self.read_rx.recv().await else {
+                return Ok(());
+            };
+            let Some(request) = request.request else {
+                continue;
+            }; // TODO handle
             let race = match request {
                 RoomRequest::Race(race) => race,
                 _ => continue, // TODO handle
@@ -498,7 +510,11 @@ impl Room {
                     let _ = self.write_tx.send(event);
                 }
 
-                let Some(player_properties): Option<Vec<_>> = self.players.iter().map(|player| player.properties.clone()).collect() else { return Ok(None) };
+                let Some(player_properties): Option<Vec<_>> =
+                    self.players.iter().map(|player| player.properties.clone()).collect()
+                else {
+                    return Ok(None);
+                };
 
                 let selected_player = rand::thread_rng().gen_range(0..self.players.len());
                 let course = player_properties[selected_player].course;
