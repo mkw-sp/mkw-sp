@@ -1,13 +1,14 @@
 use std::collections::VecDeque;
 use std::fmt;
 use std::fs::{self, File};
-use std::io::{self, ErrorKind, Read, Write};
+use std::io::{ErrorKind, Read, Write};
 use std::net::SocketAddr;
 use std::time::{Duration, Instant};
 
 use argon2::{Argon2, Params};
 use chrono::Utc;
 use libhydrogen::{kx, random, secretbox, sign};
+use passterm::Stream as PasstermStream;
 use prost::Message;
 use tokio::fs::OpenOptions;
 use tokio::io::{AsyncReadExt, AsyncWriteExt};
@@ -19,9 +20,10 @@ use zeroize::Zeroizing;
 include!(concat!(env!("OUT_DIR"), "/_.rs"));
 
 fn main() -> Result<(), Box<dyn std::error::Error>> {
-    eprint!("Password: ");
-    io::stderr().flush()?;
-    let password = Zeroizing::new(passterm::read_password()?);
+    let password = Zeroizing::new(passterm::prompt_password_stdin(
+        Some("Password: "),
+        PasstermStream::Stderr,
+    )?);
     eprintln!("[hidden]");
 
     libhydrogen::init()?;

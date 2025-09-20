@@ -32,7 +32,7 @@ jobs:
     runs-on: ${{ matrix.os }}
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
       - name: Install protoc
         uses: arduino/setup-protoc@6d13ebf0ad347646e03d7e7792110174fe20745d
         with:
@@ -40,7 +40,7 @@ jobs:
       - name: Build ${{ matrix.tool }}
         run: cargo build --manifest-path tools/${{ matrix.tool }}/Cargo.toml --release
       - name: Upload result
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: ${{ matrix.tool }}_${{ matrix.os }}
           path: |
@@ -62,6 +62,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
       - name: Format ${{ matrix.tool }}
         run: cargo fmt --manifest-path tools/${{ matrix.tool }}/Cargo.toml --check

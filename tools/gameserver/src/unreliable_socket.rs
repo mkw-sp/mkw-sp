@@ -39,9 +39,13 @@ impl UnreliableSocket {
             for (index, connection) in self.connections.iter_mut().enumerate() {
                 let message =
                     secretbox::decrypt(&message[0..size], 0, &self.context, &connection.read_key);
-                let Ok(message) = message else {continue};
+                let Ok(message) = message else {
+                    continue;
+                };
                 connection.addr = Some(addr);
-                let Ok(message) = M::decode(&*message) else {break};
+                let Ok(message) = M::decode(&*message) else {
+                    break;
+                };
                 return Ok((index, message));
             }
         }

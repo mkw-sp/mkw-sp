@@ -37,7 +37,9 @@ impl ClientForwarder {
         let logged_in_clients = Arc::new(DashSet::new());
 
         loop {
-            let Ok((stream, addr)) = self.listener.accept().await else {continue};
+            let Ok((stream, addr)) = self.listener.accept().await else {
+                continue;
+            };
             tracing::debug!("Accepted connection from {addr}");
 
             let server = self.server.clone();
@@ -82,8 +84,12 @@ impl ClientForwarder {
         stream: &mut AsyncStream<CTSMessageOpt, STCMessageOpt>,
         db_pool: &sqlx::PgPool,
     ) -> Result<ClientId> {
-        let Some(initial_message) = stream.read().await? else {bail!("No initial message")};
-        let Some(CTSMessage::Login(initial_message)) = initial_message.message else {bail!("Invalid initial message")};
+        let Some(initial_message) = stream.read().await? else {
+            bail!("No initial message")
+        };
+        let Some(CTSMessage::Login(initial_message)) = initial_message.message else {
+            bail!("Invalid initial message")
+        };
 
         tracing::debug!("Successfully fetched initial message");
 
@@ -114,14 +120,19 @@ impl ClientForwarder {
 
         stream.write(&message).await?;
 
-        let Some(message) = stream.read().await? else {bail!("No login response")};
+        let Some(message) = stream.read().await? else {
+            bail!("No login response")
+        };
         let Some(CTSMessage::LoginChallengeAnswer(cts_message::LoginChallengeAnswer {
             challenge_signed,
             location,
             latitude,
             longitude,
             mii,
-        })) = message.message else {bail!("Invalid login response")};
+        })) = message.message
+        else {
+            bail!("Invalid login response")
+        };
 
         if !verify_challenge_response(&challenge, &challenge_signed) {
             bail!("Challenge response verification failed");
