@@ -1,5 +1,6 @@
 #pragma once
 
+#include <egg/core/eggExpHeap.hh>
 #include <egg/core/eggHeap.hh>
 #include <egg/core/eggScene.hh>
 
@@ -12,7 +13,7 @@ public:
     EGG::Heap *mem1;
     EGG::Heap *mem2;
     EGG::Heap *debug;
-    u8 _00c[0xc0c - 0x00c];
+    std::array<EGG::ExpHeap::GroupSizeRecord, 3> groupSizeRecords;
 };
 
 static_assert(sizeof(HeapCollection) == 0xc0c);
